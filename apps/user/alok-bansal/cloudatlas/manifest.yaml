@@ -1,22 +1,17 @@
-# PRD-Dev Non-Topomaster hosts
 apiVersion: v1
- 
 system:
   functions:
   - name: cloudatlas-test
     count: 1
-    strategy:
-      rollingUpdate:
-        maxSurge: 0
-        maxUnavailable: 1
-    hostnetwork: true
     containers:
     - name: cloudatlas-baked
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/alok-bansal/c2c-ca-docker:49be539
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/alok-bansal/c2c-ca-docker:811a2be
       ports:
       - containerPort: 1636
       - containerPort: 8090
       - containerPort: 7030
+      - containerPort: 1389
+      - containerPort: 8989
       livenessProbe:
         exec:
           command:
@@ -30,8 +25,8 @@ system:
         name: pinglogvol
       - mountPath: /log
         name: logvol
-      - mountPath: /opt/pdm
-        name: pdmvol
+      - mountPath: /clientcerts
+        name: client-cert
     volumes:
     - name: logvol
       emptyDir: {}
@@ -41,6 +36,10 @@ system:
       emptyDir: {}
     - name: pdmvol
       emptyDir: {}
+    - name: client-cert
+      maddogCert:
+        type: client
+
 # SLB
   loadbalancers:
   - lbname: ca-service-lb
