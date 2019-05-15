@@ -6,7 +6,7 @@ system:
       type: stateful-set
       containers:
         - name: mgmtserver-api
-          image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/anudeept/mgmtapi:1.0
+          image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/naga/mgmtapi:1.0
           command:
           - /bin/bash
           - -c
@@ -14,7 +14,7 @@ system:
           - tail -f /dev/null
           livenessProbe:
             exec:
-              command: ["ps -ef"]
+              command: ["bash -c ps -ef"]
             initialDelaySeconds: 600000
             timeoutSeconds: 10000000
           volumeMounts:
@@ -34,6 +34,8 @@ system:
           env:
             - name: SHELL
               value: "/bin/bash"
+            - name: SECURE
+              value: "true"
             - name: UP_STRING
               value: "UI API Server Blocking."
             - name: SERVERNAME
