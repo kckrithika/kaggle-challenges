@@ -16,7 +16,6 @@ system:
         - --servicePort=7022
         - --mesh
         - --settingsPath=$(SETTINGS_PATH)
-        - --metrics.funnelEndPointURL=http://ajnafunneldirecttls.funnel.localhost.mesh.force.com:5442
       ports:
       - containerPort: 7022
         name: http
