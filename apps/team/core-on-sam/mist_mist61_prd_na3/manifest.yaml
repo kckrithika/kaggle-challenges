@@ -47,7 +47,7 @@ system:
       - name: DISABLE_AUTH_RELEASE_CHECK
         value: true
       - name: CASAM_APP_COLOR
-        value: green
+        value: blue
       - name: SD_PORT_OVERRIDE
         value: 13065
       - name: CASAM_SETTINGS_PATH
@@ -55,9 +55,7 @@ system:
       - name: CLUSTER_NAME
         value: na3
       - name: DEPLOYMENT
-        value: G
-      - name: ZDT
-        value: true
+        value: B
       - name: CASAM_HOST_NAME
         valueFrom:
           fieldRef:
@@ -66,11 +64,10 @@ system:
       livenessProbe:
         exec:
           command:
-          - /home/sfdc/salesforce/casam/bin/live_probe.sh
-        failureThreshold: 99999
-        initialDelaySeconds: 120
-        periodSeconds: 5
-        timeoutSeconds: 5
+          - echo
+          - HEALTHY
+        initialDelaySeconds: 480
+        periodSeconds: 1
       name: coreapp
       ports:
       - containerPort: 8998
@@ -207,7 +204,7 @@ system:
   - containers:
     - env:
       - name: NONCE
-        value: 1554420871292794112
+        value: 1557939143956478976
       - name: DRY_RUN
         value: 0
       - name: CHATTER_GROUP_NAME
@@ -227,9 +224,9 @@ system:
       - name: PATCH_RELEASE_NUMBER
         value: 0
       - name: CURRENT_RELEASE_VERSION
-        value: blue
-      - name: NEW_RELEASE_VERSION
         value: green
+      - name: NEW_RELEASE_VERSION
+        value: blue
       - name: READY_SERVER_COUNT
         value: 1
       - name: DB_SID
@@ -259,9 +256,7 @@ system:
       - name: HTTP_PROXY
         value: public0-proxy1-0-prd.data.sfdc.net:8080
       - name: SKIP_KAIJU
-        value: 1
-      - name: ZDT
-        value: true
+        value: 0
       - name: KAIJU_REFOCUS_GETRESULT_URL
         value: https://refocus.internal.salesforce.com/v1/samples/
       - name: KAIJU_RUNTIME_TIMEOUT_MS
