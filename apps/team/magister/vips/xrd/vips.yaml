@@ -1,0 +1,13 @@
+- lbname: sec0-magister1-0-xrd
+  customlbname: sec0-magister1-0-xrd
+  cnames:
+   - cname: sec0-magister1-0-xrd.data.sfdc.net
+  servers:
+   - sec0-magisterca1-1-xrd.eng.sfdc.net
+   - sec0-magisterca1-2-xrd.eng.sfdc.net
+   - sec0-magisterca2-1-xrd.eng.sfdc.net
+   - sec0-magisterca2-2-xrd.eng.sfdc.net
+  ports:
+   - port: 443
+     targetport: 443
+     lbtype: tcp
