@@ -15,7 +15,7 @@ spec:
         - apply
         - -f
         - /etc/istio/crd-11/crd-11.yaml
-        image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/shaktiprakash-das/istio/kubectl:1.1.1
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-sfci-dev/sfci/servicemesh/istio-packaging/kubectl:6888b79cd0b7516618de282a96eb580342e0ea5f
         imagePullPolicy: IfNotPresent
         name: istio-init-crd-11
         volumeMounts:
