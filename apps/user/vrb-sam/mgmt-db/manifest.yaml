@@ -1,0 +1,69 @@
+apiVersion: v1
+ 
+system:
+  functions:
+  - name: guiapi-db
+    # number of instances ("kpods") to deploy and run
+    count: 1
+    
+    # Docker image(s) that make up one instance of the service
+    containers:
+    - name: guiapi-db
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/anudeept/mgmtdb:10.3.11
+      command: ["/docker-entrypoint.sh"]
+      resources:
+        requests:
+          memory: 1.5Gi
+          cpu: 750m
+        limits:
+          memory: 1.75Gi
+          cpu: 1
+      args:
+        - "mysqld"
+        - "--ignore-db-dir=lost+found"
+        - "--character-set-server=utf8mb4"
+        - "--collation-server=utf8mb4_bin"
+        - "--max_allowed_packet=250M"
+      # set container environment variables
+      env:
+      - name: SHELL
+        value: "/bin/bash"
+      - name: MYSQL_ROOT_PASSWORD_FILE
+        value: /var/mgmt-server-secrets/mysql-root-password
+      - name: MYSQL_ROOT_FILE
+        value: /var/mgmt-server-secrets/mysql-root
+      - name: MYSQL_USER_FILE
+        value: /var/mgmt-server-secrets/mysql-user
+      - name: MYSQL_DATABASE_FILE
+        value: /var/mgmt-server-secrets/mysql-database
+      - name: MYSQL_PASSWORD_FILE
+        value: /var/mgmt-server-secrets/mysql-user-password
+      - name: max_allowed_packet
+        value: "1073741824"
+        
+      ports:
+      - containerPort: 3306
+      livenessProbe:
+        exec:
+          command: ["mysqladmin", "status", "-h", "127.0.0.1", "-u", "$MYSQL_ROOT", "-p","$MYSQL_ROOT_PASSWORD"]
+        initialDelaySeconds: 60
+        timeoutSeconds: 10 
+      volumeMounts:
+      - mountPath: /var/lib/mysql
+        name: mgmtdbservice
+      - mountPath: /var/mgmt-server-secrets/
+        name: mgmt-server-secrets-vol
+        readOnly: true
+    volumes:
+    - name: mgmtdbservice
+      hostPath:
+        path: /home/sfdc-guiapi-db/guiapi/data
+    - name: mgmt-server-secrets-vol
+      k4aSecret:
+        secretName: mgmt-server-secrets
+  loadbalancers:
+  - lbname: guiapi-db-lb
+    function: guiapi-db
+    ports:
+    - port: 3306
+      targetport: 3306
