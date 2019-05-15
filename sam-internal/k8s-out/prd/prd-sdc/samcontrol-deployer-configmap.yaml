@@ -14,6 +14,7 @@ data:
       "key-file": "/etc/pki_service/platform/platform-client/keys/platform-client-key.pem",
       "max-resource-time": "20m",
       "poll-delay": "30s",
+      "prevent-rewind": true,
       "recipient": "sam@salesforce.com,slb@salesforce.com",
       "resource-cooldown": "15s",
       "resource-progression-timeout": "2m",

@@ -35,4 +35,6 @@ std.prune({
     tokenfile: (if self.enableDailyDeployment then "/var/token/token"),
     "daily-deployment-offset": (if self.enableDailyDeployment then "0"),
     "daily-deployment-frequency": (if configs.estate == "prd-samtest" then "24h" else (if configs.estate == "prd-samdev" then "3h")),
-})
+} + if configs.estate == "prd-samtest" || configs.estate == "prd-sdc" || configs.estate == "prd-samdev" then {
+  "prevent-rewind": true,
+} else {})
