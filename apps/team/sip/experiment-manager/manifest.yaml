@@ -1,6 +1,9 @@
 apiVersion: v1
 
 system:
+  notifications:
+    email:
+      - smarwaha@salesforce.com
   functions:
   - name: sip-em
     count: 1
@@ -13,10 +16,21 @@ system:
         secretName: blacktab-credentials
     containers:
     - name: sip-em-k4a 
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/sip/em:sip-em-k4a-20190502T1630 
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/sip/em:sip-em-20190508T1330
       livenessProbe:
         exec:
           command: ["true"]
+#        - 5         
+#        initialDelaySeconds: 120
+#        periodSeconds: 60
+#        timeoutSeconds: 10
+#      readinessProbe:
+#        exec:
+#        command:
+#        - ./runcheck.sh
+#        - "5"
+#        initialDelaySeconds: 110
+#        timeoutSeconds: 10
       volumeMounts:
       - mountPath: /secrets/heroku/
         name: heroku-secret
@@ -24,3 +38,20 @@ system:
       - mountPath: /secrets/blacktab/
         name: blacktab-secret
         readOnly: true
+#    ports:
+#      - name: grpc
+#        containerPort: 8181
+#      - name: unknown_port_1
+#        containerPort: 15372
+#      - name: unknown_port_2
+#        containerPort: 8080
+#    env:
+#      - name: SFDC_ENVIRONMENT
+#        value: sam
+#    resources:
+#      limits:
+#        cpu: "12"
+#        memory: 10Gi
+#      requests:
+#        cpu: "12"
+#        memory: 10Gi
