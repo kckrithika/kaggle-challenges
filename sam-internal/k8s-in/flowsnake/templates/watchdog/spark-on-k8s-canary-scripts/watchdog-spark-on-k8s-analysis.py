@@ -154,19 +154,66 @@ parser.add_argument("--metrics", action='store_true',
 args, additional_args = parser.parse_known_args()
 
 simple_regex_tests = {
-    # Not really sure what causes this or if we need to classify further.
+    # Driver pod's init container errors out. Cause TBD.
     'DRIVER_INIT_ERROR': re.compile('Pod change detected.*-driver changed to Init:Error'),
-    # Josh is working on restarting the scheduler when this is encountered.
+    # Scheduler bug in Kubernetes <= 1.9.7 that randomly prevents re-use of pod name. No longer expected because pod names are now unique.
     'SCHEDULER_ASSUME_POD': re.compile("FailedScheduling.*AssumePod failed: pod .* state wasn't initial but get assumed")
 }
 
+r_driver_context_submitted = re.compile(r'SparkContext.* - Submitted application')
+r_driver_context_jar_added = re.compile(r'SparkContext.* - Added JAR file:')
+r_executor_allocator_ran = re.compile(r'ExecutorPodsAllocator.* - Going to request [0-9]* executors from Kubernetes')
+r_timeout_running = re.compile(r'Timeout reached. Aborting wait for SparkApplication .* even though in non-terminal state RUNNING.')
+#r_ driver_running_event = re.compile(r'SparkDriverRunning\s+([0-9]+)([sm])\s+spark-operator\s+Driver .* is running')
+r_driver_running_epoch = re.compile(r'\[([0-9]+)\] .* - Pod change detected: .*-driver changed to Running.')
+r_exec_running_epoch = re.compile(r'\[([0-9]+)\] .* - Pod change detected: .*-exec-[0-9]+ changed to Running.')
 
-def analyze(combined_output):
-    result = "UNRECOGNIZED"
+def analyze_helper(combined_output):
     for code, regex in simple_regex_tests.iteritems():
         if regex.search(combined_output):
-            result = code
-            break
+            return code
+
+    # Check for termination due to timeout.
+    if r_timeout_running.search(combined_output):
+
+        # Check for failures after the driver is running
+        m = r_driver_running_epoch.search(combined_output)
+        if m:
+            # Check for failure cases that occur after the driver is runnning
+            driver_running_epoch = int(m.group(1))
+            # This block digs into driver logs
+            if r_driver_context_submitted.search(combined_output):
+                # Check for failure cases that occur after the application JAR has been loaded
+                if r_driver_context_jar_added.search(combined_output):
+                    # Requesting executors is the next thing to do after adding the application JAR. Unknown why it sometimes doesn't happen.
+                    if not r_executor_allocator_ran.search(combined_output):
+                        return 'EXECUTOR_ALLOCATOR_DID_NOT_RUN'
+            # Figure out when the executor started
+
+            # If we can't figure out a specific reason, look into what part was slow.
+            m = r_exec_running_epoch.search(combined_output)
+            if m:
+                exec_running_epoch = int(m.group(1))
+                if exec_running_epoch - driver_running_epoch >= 180:
+                    # We're likely to not complete in time if it takes this long for the driver to launch an executor.
+                    # If this is a frequent occurrence, we should get more precise. Specifically, when did
+                    # r_executor_allocator_ran happen? That would shed some light on whether the driver was slow to
+                    # request the executor, or whether the executor was slow to start.
+                    # (In the case of timeout_executor_late_001.txt, it took over three minutes from driver Running to
+                    # executors requested.)
+                    return "TIMEOUT_EXECUTOR_LATE"
+
+            # NOTE: do not put checks for error messages here. Error messages are more informative that timeouts, so if
+            # we have an error message, we should return it. Therefore put all error message checks above the timeout
+            # checks.
+            return 'UNRECOGNIZED_TIMEOUT_DRIVER_RUNNING'
+        else:
+            return "UNRECOGNIZED_TIMEOUT_DRIVER_NOT_RUNNING"
+    return "UNRECOGNIZED"
+
+
+def analyze(combined_output):
+    result = analyze_helper(combined_output)
     if metrics_enabled:
         emit_metrics(result)
     return result
