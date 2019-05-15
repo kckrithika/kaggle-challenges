@@ -5,7 +5,7 @@ system:
     count: 1
     containers:
     - name: syncmaster
-      image: dva/winterfell-syncmaster:3-a6d9470ef6745897ca21464459c097d56359dddc
+      image: dva/winterfell-syncmaster:12-eef446808dd6832f7b655a2dc306455dd53376e6
       env:
       - name: SFDC_ENVIRONMENT
         value: prod
@@ -24,12 +24,12 @@ system:
         httpGet:
           path: /manage/health
           port: 15372
-        initialDelaySeconds: 230
+        initialDelaySeconds: 360
       readinessProbe:
         httpGet:
           path: /manage/health
           port: 15372
-        initialDelaySeconds: 230
+        initialDelaySeconds: 360
 
       volumeMounts:
         - name: tls-client-cert
