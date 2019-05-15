@@ -44,7 +44,7 @@ system:
         requests: {cpu: 1, memory: 2G}
       volumeMounts:
       - {mountPath: /home/scone/client-certs, name: tls-client-certs}
-    count: 3
+    count: 1
     hostnetwork: false
     identity: {serviceName: moana-driver}
     name: moana-driver-release
