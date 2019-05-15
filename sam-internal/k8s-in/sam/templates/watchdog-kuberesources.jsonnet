@@ -20,10 +20,7 @@ local utils = import "util_functions.jsonnet";
                                      "-alertThreshold=1h",
                                      "-maxUptimeSampleSize=5",
                                      "-shouldBatchMetrics=true",
-                                     # Flag watchDogKind here is used for watchdog crd report generation
-                                     # Watchdog-kuberesource is a global watchdog which includes health checks of all nodes.
-                                     # It runs as deployment but as to generating watchdog crd it should do as what DaemonSet does.
-                                     "-watchDogKind=DaemonSet",
+                                     "-watchDogKind=Deployment",
                                      "-recipient=\"\"",
                                  ]
                                  + samwdconfig.shared_args

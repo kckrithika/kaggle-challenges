@@ -43,7 +43,6 @@ data:
         "filesystemChecker",
         "kubeletChecker",
         "cliChecker.DockerDaemon",
-        "kubeResourcesChecker.NodeHealth",
         "procUpTime"
       ]
     }
