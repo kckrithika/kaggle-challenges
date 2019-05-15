@@ -43,7 +43,7 @@ spec:
         - -leader-election-lock-namespace=flowsnake
         command:
         - /usr/bin/spark-operator
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/kubernetes-spark-operator-2.4.0-sfdc-0.0.1:jenkins-dva-transformation-spark-on-k8s-operator-development-sfdc-3-itest
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/kubernetes-spark-operator-2.4.0-sfdc-0.0.1:jenkins-dva-transformation-spark-on-k8s-operator-development-sfdc-4-itest
         imagePullPolicy: Always
         name: spark-operator
         ports:
@@ -56,7 +56,7 @@ spec:
         readinessProbe:
           httpGet:
             path: /healthz
-            port: "8443"
+            port: 8443
             scheme: HTTPS
           initialDelaySeconds: 5
           periodSeconds: 5

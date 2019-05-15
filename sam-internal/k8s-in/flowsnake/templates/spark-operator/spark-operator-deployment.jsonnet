@@ -83,7 +83,7 @@ local cert_name = "spark-webhook";
                             readinessProbe: {
                                 httpGet: {
                                     path: "/healthz",
-                                    port: "8443",
+                                    port: 8443,
                                     scheme: "HTTPS",
                                 },
                                 initialDelaySeconds: 5,
