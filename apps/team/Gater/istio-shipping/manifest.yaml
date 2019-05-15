@@ -5,46 +5,44 @@ apiVersion: v1
 
 system:
   functions:
-  - name: istio-ordering
+  - name: istio-shipping
     count: 1
     labels:
-      app: istio-ordering
+      app: istio-shipping
       disco_dc: prd
       disco_env: ""
       disco_subenv: ""
       disco_pod: ""
       disco_sp: ""
-      disco_role: istio-ordering
-      settings_path: stmg.-.prd.-.istio-ordering
+      disco_role: istio-shipping
+      settings_path: test.-.prd.-.istio-shipping
       superpod: NONE
     annotations:
       sidecar.istio.io/inject: "true"
       routing.mesh.sfdc.net/enabled: "true"
     containers:
-    - name: ordering
-      # Ordering App
-      #    https://git.soma.salesforce.com/services/sfdc-bazel/tree/master/projects/services/ordering/ordering-scone
-      # Ordering Config
-      #    https://git.soma.salesforce.com/services/sfdc-bazel/blob/master/projects/services/ordering/ordering-scone/src/main/resources/config/application.properties
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/scone/ordering-service:bazel-monorepo
+    - name: shipping
+      # Shipping App
+      #   https://git.soma.salesforce.com/services/sfdc-bazel/tree/master/projects/services/shipping/shipping-scone
+      # Shipping Config
+      #   https://git.soma.salesforce.com/services/sfdc-bazel/blob/master/projects/services/shipping/shipping-scone/src/main/resources/config/application.properties
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/scone/shipping-service:bazel-monorepo
       env:
       - name: SFDC_ENVIRONMENT
         value: istio
       - name: GRPC_PORT
         value: 7443
       - name: JAVA_OPTS
-        value: "-Dscone.service.name=istio-ordering -Dshipping.dest=istio-shipping.gater.svc.mesh.sfdc.net:7443 -Dmanagement.server.port=15372"
+        value: "-Dscone.service.name=istio-shipping -Dmanagement.server.port=15372"
       - name: JAVA_HEAP_OPTS
         value: -Xmx64m
-      - name: SCONE_SHIPPING_DEST
-        value: istio-shipping.gater.svc.mesh.sfdc.net:7443
       ports:
       - containerPort: 7443
         name: grpc-svc
       - containerPort: 15372
         name: scone-mgmt
       livenessProbe:
-        initialDelaySeconds: 120
+        initialDelaySeconds: 15
         httpGet:
           path: /manage/health
           port: 15372
@@ -73,10 +71,10 @@ system:
         type: server
 
   loadbalancers:
-    - lbname: istio-ordering
-      function: istio-ordering
+    - lbname: istio-shipping
+      function: istio-shipping
       ports:
         - lbtype: dsr
           port: 7443
           targetport: 7443
-          name: grpc-ordering
+          name: grpc-shipping
