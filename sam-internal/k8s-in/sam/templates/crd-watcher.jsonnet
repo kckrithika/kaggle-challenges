@@ -4,7 +4,7 @@ local utils = import "util_functions.jsonnet";
 local name = "crd-watcher";
 local samreleases = import "samreleases.json";
 
-{
+if configs.kingdom != "mvp" then {
         kind: "Deployment",
         spec: {
             replicas: 1,
@@ -95,4 +95,4 @@ local samreleases = import "samreleases.json";
             + configs.pcnEnableLabel,
             name: name,
         },
-    }
+    } else "SKIP"
