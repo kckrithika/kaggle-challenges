@@ -3000,11 +3000,11 @@
     {
       "namespaces": [
         "search-scale-safely",
-        "search-intelligence-platform"
+        "sip"
       ],
       "access": [
         "team/Search_Scale_Safely",
-        "team/Search_Intelligence_Platform"
+        "team/sip"
       ],
       "controlEstate": "prd-sam",
       "estate": "prd-search_model_executor",

@@ -1452,8 +1452,8 @@ items:
 - apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: RoleBinding
   metadata:
-    name: search-intelligence-platform:prd-search_model_executor:rolebinding
-    namespace: search-intelligence-platform
+    name: search-scale-safely:prd-search_model_executor:rolebinding
+    namespace: search-scale-safely
   roleRef:
     apiGroup: rbac.authorization.k8s.io
     kind: ClusterRole
@@ -1470,8 +1470,8 @@ items:
 - apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: RoleBinding
   metadata:
-    name: search-scale-safely:prd-search_model_executor:rolebinding
-    namespace: search-scale-safely
+    name: sip:prd-search_model_executor:rolebinding
+    namespace: sip
   roleRef:
     apiGroup: rbac.authorization.k8s.io
     kind: ClusterRole
