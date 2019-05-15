@@ -5,6 +5,7 @@ system:
     count: 1
     # Ports below should match those in the Nginx reverse path proxy's nginx.conf
     containers:
+    # Nginx reverse path proxy
     - name: revpathproxy
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/ccotofana/nginx-revpathproxy:lh-20190515
       ports:
@@ -48,16 +49,17 @@ system:
     - name: cache-volume
       emptyDir: {}
 
-loadbalancers:
- - lbname: revpathproxytestonelb
-   function: revpathproxytestone
-   slbEnabled: true
-   # Ports not mentioned here are still forwarded to target container
-   ports:
-      - port: 9090
-        targetport: 8085
-      - port: 8080
-        targetport: 8080
-      - port: 8082
-        targetport: 8082
+  # SLB
+  loadbalancers:
+   - lbname: revpathproxytestonelb
+     function: revpathproxytestone
+     slbEnabled: true
+     # Ports not mentioned here are still forwarded to target container
+     ports:
+        - port: 9090
+          targetport: 8085
+        - port: 8080
+          targetport: 8080
+        - port: 8082
+          targetport: 8082
 
