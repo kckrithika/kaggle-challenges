@@ -61,14 +61,14 @@ system:
         initialDelaySeconds: 120
         periodSeconds: 1
 
-#      volumeMounts:
-#      - mountPath: /var/lib/mysql
-#        name: mariadbservice
+      volumeMounts:
+      - mountPath: /var/lib/mysql
+        name: mariadbservice
 
     volumes:
-#    - name: mariadbservice
-#      hostPath:
-#        path: /home/sfdc-mariadb/guiapi/data
+    - name: mariadbservice
+      hostPath:
+        path: /home/sfdc-mariadb/guiapi/data1
 
     - name: certs
       maddogCert:
