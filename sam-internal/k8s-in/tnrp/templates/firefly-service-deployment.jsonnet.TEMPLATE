@@ -18,15 +18,26 @@ local envConfig = import "configs/firefly_service_conf.jsonnet";
   local configs = import "config.jsonnet",
   local firefly_feature_flags = import "firefly_feature_flags.jsonnet",
 
-  // Only generate certs for customer vaults for PR and Package services
-  local is_customer_certs_enabled = ($['serviceName'] == "firefly-pullrequest" ||
-    $['serviceName'] == "firefly-package" ||
-    $['serviceName'] == "firefly-pullrequest-fcp" ||
+  // Only generate certs for customer vaults for PR and Package services in prd-samtwo
+  local is_fcp_prod_certs_enabled = configs.estate == 'prd-samtwo' &&
+   ($['serviceName'] == "firefly-pullrequest-fcp" ||
     $['serviceName'] == "firefly-pullrequest-fcp-test" ||
     $['serviceName'] == "firefly-package-fcp"||
-    $['serviceName'] == "firefly-package-fcp-test" ||
-    $['serviceName'] == "firefly-pullrequest-mdp" ||
+    $['serviceName'] == "firefly-package-fcp-test"),
+
+  // mdp certs in prd-samtwo
+  local is_mdp_prod_certs_enabled = configs.estate == 'prd-samtwo' &&
+  ($['serviceName'] == "firefly-pullrequest-mdp" ||
     $['serviceName'] == "firefly-package-mdp"),
+
+  // prd-sam test certs common for both mdp
+  local is_mdp_test_certs_enabled = configs.estate == 'prd-sam' &&
+  ($['serviceName'] == "firefly-pullrequest-mdp" ||
+    $['serviceName'] == "firefly-package-mdp"),
+    
+  local is_fcp_test_certs_enabled = configs.estate == 'prd-sam' &&
+   ($['serviceName'] == "firefly-pullrequest-fcp" ||
+    $['serviceName'] == "firefly-package-fcp"),
 
   serviceConf:: {},
   commonVolMounts:: [
@@ -137,8 +148,17 @@ local envConfig = import "configs/firefly_service_conf.jsonnet";
           } + configs.ownerLabel.tnrp,
           local certReqs = [
             {"name": "certs", "cert-type":"client", "kingdom":"prd", "role": $.role},
-          ] + if is_customer_certs_enabled then [
+          ] + if is_fcp_prod_certs_enabled then [
             {"name": "customer-certs", "cert-type":"client", "kingdom":"prd", "role": $.role + ".customer"},
+            {"name": "nqa-certs", "cert-type":"client", "kingdom":"prd", "role": $.role + ".customer.nqa"},
+          ] else if is_mdp_prod_certs_enabled then [
+            {"name": "mdp-certs", "cert-type":"client", "kingdom":"prd", "role": $.role + ".mdp"},
+          ] else if is_mdp_test_certs_enabled then [
+            {"name": "tnrpfirefly-certs", "cert-type":"client", "kingdom":"prd", "role": $.role + ".customer.tnrpfirefly"},
+          ] else if is_fcp_test_certs_enabled then [
+            {"name": "customer-certs", "cert-type":"client", "kingdom":"prd", "role": $.role + ".customer"},
+            {"name": "nqa-certs", "cert-type":"client", "kingdom":"prd", "role": $.role + ".customer.nqa"},
+            {"name": "tnrpfirefly-certs", "cert-type":"client", "kingdom":"prd", "role": $.role + ".customer.tnrpfirefly"},
           ] else [],
           annotations: {
             'madkub.sam.sfdc.net/allcerts': std.manifestJson({"certreqs" : certReqs}),
@@ -146,29 +166,131 @@ local envConfig = import "configs/firefly_service_conf.jsonnet";
         },
         spec: {
           initContainers: [
-            madkub.madkubInitContainer() + if is_customer_certs_enabled then {
+            madkub.madkubInitContainer() + if is_fcp_prod_certs_enabled then {
               args +: [
                 "--cert-folders",
                 "customer-certs:/customer-certs/",
+                "--cert-folders",
+                "nqa-certs:/nqa-certs/",
               ],
               volumeMounts +: [
                 {
                   mountPath: "/customer-certs/",
                   name: "customer-certs",
                 },
+                {
+                  mountPath: "/nqa-certs/",
+                  name: "nqa-certs",
+                },
+              ],
+            } else if is_mdp_prod_certs_enabled then {
+              args +: [
+                "--cert-folders",
+                "mdp-certs:/mdp-certs/",
+              ],
+              volumeMounts +: [
+                {
+                  mountPath: "/mdp-certs/",
+                  name: "mdp-certs",
+                },
+              ],
+            } else if is_mdp_test_certs_enabled then {
+              args +: [
+                "--cert-folders",
+                "tnrpfirefly-certs:/tnrpfirefly-certs/",
+              ],
+              volumeMounts +: [
+                {
+                  mountPath: "/tnrpfirefly-certs/",
+                  name: "tnrpfirefly-certs",
+                },
+              ],
+            } else if is_fcp_test_certs_enabled then {
+              args +: [
+                "--cert-folders",
+                "tnrpfirefly-certs:/tnrpfirefly-certs/",
+                "--cert-folders",
+                "customer-certs:/customer-certs/",
+                "--cert-folders",
+                "nqa-certs:/nqa-certs/",
+              ],
+              volumeMounts +: [
+                {
+                  mountPath: "/tnrpfirefly-certs/",
+                  name: "tnrpfirefly-certs",
+                },
+                {
+                  mountPath: "/customer-certs/",
+                  name: "customer-certs",
+                },
+                {
+                  mountPath: "/nqa-certs/",
+                  name: "nqa-certs",
+                },
               ],
             } else {},
           ],
           containers: [
-            madkub.madkubRefreshContainer() + if is_customer_certs_enabled then {
+            madkub.madkubRefreshContainer() + if is_fcp_prod_certs_enabled then {
               args +: [
                 "--cert-folders",
                 "customer-certs:/customer-certs/",
+                "--cert-folders",
+                "nqa-certs:/nqa-certs/",
               ],
-              volumeMounts +: [         
+              volumeMounts +: [
                 {
                   mountPath: "/customer-certs/",
                   name: "customer-certs",
+                },
+                {
+                  mountPath: "/nqa-certs/",
+                  name: "nqa-certs",
+                },
+              ],
+            } else if is_mdp_prod_certs_enabled then {
+              args +: [
+                "--cert-folders",
+                "mdp-certs:/mdp-certs/",
+              ],
+              volumeMounts +: [         
+                {
+                  mountPath: "/mdp-certs/",
+                  name: "mdp-certs",
+                },
+              ],
+            } else if is_mdp_test_certs_enabled then {
+              args +: [
+                "--cert-folders",
+                "tnrpfirefly-certs:/tnrpfirefly-certs/",
+              ],
+              volumeMounts +: [
+                {
+                  mountPath: "/tnrpfirefly-certs/",
+                  name: "tnrpfirefly-certs",
+                },
+              ],
+            } else if is_fcp_test_certs_enabled then {
+              args +: [
+                "--cert-folders",
+                "tnrpfirefly-certs:/tnrpfirefly-certs/",
+                "--cert-folders",
+                "customer-certs:/customer-certs/",
+                "--cert-folders",
+                "nqa-certs:/nqa-certs/",
+              ],
+              volumeMounts +: [
+                {
+                  mountPath: "/tnrpfirefly-certs/",
+                  name: "tnrpfirefly-certs",
+                },
+                {
+                  mountPath: "/customer-certs/",
+                  name: "customer-certs",
+                },
+                {
+                  mountPath: "/nqa-certs/",
+                  name: "nqa-certs",
                 },
               ],
             } else {},
@@ -229,11 +351,39 @@ local envConfig = import "configs/firefly_service_conf.jsonnet";
                   name: "firefly-root-dir",
                   mountPath: "/firefly",
                 },
-                {
-                  name: "customer-certs",
-                  mountPath: "/customer-certs/",
-                },
-              ],
+              ] + if is_fcp_prod_certs_enabled then [
+                  {
+                    name: "customer-certs",
+                    mountPath: "/customer-certs/",
+                  },
+                  {
+                  mountPath: "/nqa-certs/",
+                  name: "nqa-certs",
+                  },
+                ] else if is_mdp_prod_certs_enabled then [
+                  {
+                    name: "mdp-certs",
+                    mountPath: "/mdp-certs/",
+                  },
+                ] else if is_mdp_test_certs_enabled then [
+                  {
+                    name: "tnrpfirefly-certs",
+                    mountPath: "/tnrpfirefly-certs/",
+                  },
+                ] else if is_fcp_test_certs_enabled then [
+                  {
+                    name: "customer-certs",
+                    mountPath: "/customer-certs/",
+                  },
+                  {
+                  mountPath: "/nqa-certs/",
+                  name: "nqa-certs",
+                  },
+                  {
+                    name: "tnrpfirefly-certs",
+                    mountPath: "/tnrpfirefly-certs/",
+                  },
+                ] else [],
             },
           ],
           volumes: [
@@ -282,9 +432,48 @@ local envConfig = import "configs/firefly_service_conf.jsonnet";
               },
             },
             configs.maddog_cert_volume,
-          ] + if is_customer_certs_enabled then [
+          ] + if is_fcp_prod_certs_enabled then [
               {
                 name: "customer-certs",
+                emptyDir: {
+                  medium: "Memory",
+                },
+              },
+               {
+                name: "nqa-certs",
+                emptyDir: {
+                  medium: "Memory",
+                },
+              },
+          ] else if is_mdp_prod_certs_enabled then [
+              {
+                name: "mdp-certs",
+                emptyDir: {
+                  medium: "Memory",
+                },
+              },
+          ] else if is_mdp_test_certs_enabled then [
+              {
+                name: "tnrpfirefly-certs",
+                emptyDir: {
+                  medium: "Memory",
+                },
+              },
+          ] else if is_fcp_test_certs_enabled then [
+              {
+                name: "tnrpfirefly-certs",
+                emptyDir: {
+                  medium: "Memory",
+                },
+              },
+              {
+                name: "customer-certs",
+                emptyDir: {
+                  medium: "Memory",
+                },
+              },
+               {
+                name: "nqa-certs",
                 emptyDir: {
                   medium: "Memory",
                 },

@@ -192,11 +192,11 @@ items:
   kind: Service
   metadata:
     annotations:
-      slb.sfdc.net/name: firefly-package
+      slb.sfdc.net/name: firefly-package-fcp
       slb.sfdc.net/portconfigurations: '[{"lbtype": "http", "port": 8081, "reencrypt":
         false, "sticky": 0, "targetPort": 8081, "tls": false}]'
     labels:
-      app: firefly-package
+      app: firefly-package-fcp
       sam.data.sfdc.net/owner: tnrp
     name: firefly-package-fcp-service
     namespace: firefly
@@ -207,13 +207,13 @@ items:
       protocol: TCP
       targetPort: 8081
     selector:
-      name: firefly-package
+      name: firefly-package-fcp
     type: NodePort
 - apiVersion: extensions/v1beta1
   kind: Deployment
   metadata:
     labels:
-      name: firefly-package
+      name: firefly-package-fcp
       sam.data.sfdc.net/owner: tnrp
     name: firefly-package-fcp-deployment
     namespace: firefly
@@ -221,7 +221,7 @@ items:
     replicas: 1
     selector:
       matchLabels:
-        name: firefly-package
+        name: firefly-package-fcp
         sam.data.sfdc.net/owner: tnrp
     strategy:
       rollingUpdate:
@@ -245,11 +245,23 @@ items:
                         "kingdom": "prd",
                         "name": "customer-certs",
                         "role": "firefly.customer"
+                    },
+                    {
+                        "cert-type": "client",
+                        "kingdom": "prd",
+                        "name": "nqa-certs",
+                        "role": "firefly.customer.nqa"
+                    },
+                    {
+                        "cert-type": "client",
+                        "kingdom": "prd",
+                        "name": "tnrpfirefly-certs",
+                        "role": "firefly.customer.tnrpfirefly"
                     }
                 ]
             }
         labels:
-          name: firefly-package
+          name: firefly-package-fcp
           sam.data.sfdc.net/owner: tnrp
         name: firefly-package-fcp-deployment
         namespace: firefly
@@ -276,7 +288,11 @@ items:
           - --ca-folder
           - /maddog-certs/ca
           - --cert-folders
+          - tnrpfirefly-certs:/tnrpfirefly-certs/
+          - --cert-folders
           - customer-certs:/customer-certs/
+          - --cert-folders
+          - nqa-certs:/nqa-certs/
           env:
           - name: MADKUB_NODENAME
             valueFrom:
@@ -300,8 +316,12 @@ items:
             name: tokens
           - mountPath: /maddog-certs/
             name: maddog-certs
+          - mountPath: /tnrpfirefly-certs/
+            name: tnrpfirefly-certs
           - mountPath: /customer-certs/
             name: customer-certs
+          - mountPath: /nqa-certs/
+            name: nqa-certs
         - command:
           - java
           - -jar
@@ -346,7 +366,7 @@ items:
             value: firefly-fcp.package
           - name: LATEST_FILE_QUEUE
             value: firefly-fcp.latestfile
-          image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-package:410
+          image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-package:417
           imagePullPolicy: Always
           livenessProbe:
             failureThreshold: 10
@@ -357,7 +377,7 @@ items:
             periodSeconds: 30
             successThreshold: 1
             timeoutSeconds: 30
-          name: firefly-package
+          name: firefly-package-fcp
           ports:
           - containerPort: 8081
             name: admin-port
@@ -389,6 +409,10 @@ items:
             name: firefly-root-dir
           - mountPath: /customer-certs/
             name: customer-certs
+          - mountPath: /nqa-certs/
+            name: nqa-certs
+          - mountPath: /tnrpfirefly-certs/
+            name: tnrpfirefly-certs
         initContainers:
         - args:
           - /sam/madkub-client
@@ -409,7 +433,11 @@ items:
           - --ca-folder
           - /maddog-certs/ca
           - --cert-folders
+          - tnrpfirefly-certs:/tnrpfirefly-certs/
+          - --cert-folders
           - customer-certs:/customer-certs/
+          - --cert-folders
+          - nqa-certs:/nqa-certs/
           env:
           - name: MADKUB_NODENAME
             valueFrom:
@@ -436,8 +464,12 @@ items:
             name: maddog-certs
           - mountPath: /tokens
             name: tokens
+          - mountPath: /tnrpfirefly-certs/
+            name: tnrpfirefly-certs
           - mountPath: /customer-certs/
             name: customer-certs
+          - mountPath: /nqa-certs/
+            name: nqa-certs
         nodeSelector:
           pool: prd-sam
         terminationGracePeriodSeconds: 10
@@ -468,7 +500,13 @@ items:
           name: maddog-certs
         - emptyDir:
             medium: Memory
+          name: tnrpfirefly-certs
+        - emptyDir:
+            medium: Memory
           name: customer-certs
+        - emptyDir:
+            medium: Memory
+          name: nqa-certs
 - apiVersion: v1
   data:
     application.yml: |-
@@ -501,7 +539,7 @@ items:
               "docker": {
                   "connect-timeout": "480000ms",
                   "docker-cert-path": "/etc/docker/certs.d",
-                  "force-create-container": "false",
+                  "force-create-container": true,
                   "read-timeout": "480000ms",
                   "remote-docker-host": "http://localhost:2375"
               },
@@ -661,11 +699,11 @@ items:
   kind: Service
   metadata:
     annotations:
-      slb.sfdc.net/name: firefly-package-singleton
+      slb.sfdc.net/name: firefly-package-singleton-fcp
       slb.sfdc.net/portconfigurations: '[{"lbtype": "http", "port": 8081, "reencrypt":
         false, "sticky": 0, "targetPort": 8081, "tls": false}]'
     labels:
-      app: firefly-package-singleton
+      app: firefly-package-singleton-fcp
       sam.data.sfdc.net/owner: tnrp
     name: firefly-package-singleton-fcp-service
     namespace: firefly
@@ -676,13 +714,13 @@ items:
       protocol: TCP
       targetPort: 8081
     selector:
-      name: firefly-package-singleton
+      name: firefly-package-singleton-fcp
     type: NodePort
 - apiVersion: extensions/v1beta1
   kind: Deployment
   metadata:
     labels:
-      name: firefly-package-singleton
+      name: firefly-package-singleton-fcp
       sam.data.sfdc.net/owner: tnrp
     name: firefly-package-singleton-fcp-deployment
     namespace: firefly
@@ -690,7 +728,7 @@ items:
     replicas: 1
     selector:
       matchLabels:
-        name: firefly-package-singleton
+        name: firefly-package-singleton-fcp
         sam.data.sfdc.net/owner: tnrp
     strategy:
       rollingUpdate:
@@ -712,7 +750,7 @@ items:
                 ]
             }
         labels:
-          name: firefly-package-singleton
+          name: firefly-package-singleton-fcp
           sam.data.sfdc.net/owner: tnrp
         name: firefly-package-singleton-fcp-deployment
         namespace: firefly
@@ -805,7 +843,7 @@ items:
             value: firefly-fcp.package
           - name: LATEST_FILE_QUEUE
             value: firefly-fcp.latestfile
-          image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-package:410
+          image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-package:417
           imagePullPolicy: Always
           livenessProbe:
             failureThreshold: 10
@@ -816,7 +854,7 @@ items:
             periodSeconds: 30
             successThreshold: 1
             timeoutSeconds: 30
-          name: firefly-package-singleton
+          name: firefly-package-singleton-fcp
           ports:
           - containerPort: 8081
             name: admin-port
@@ -935,7 +973,7 @@ items:
               },
               "instance-type": "${INSTANCE_TYPE}",
               "multi-repo-supported": true,
-              "self-auth-allowed": false,
+              "self-auth-allowed": true,
               "workspace-config": {
                   "root-dir": "/firefly"
               }
@@ -1074,11 +1112,11 @@ items:
   kind: Service
   metadata:
     annotations:
-      slb.sfdc.net/name: firefly-pullrequest
+      slb.sfdc.net/name: firefly-pullrequest-fcp
       slb.sfdc.net/portconfigurations: '[{"lbtype": "http", "port": 8081, "reencrypt":
         false, "sticky": 0, "targetPort": 8081, "tls": false}]'
     labels:
-      app: firefly-pullrequest
+      app: firefly-pullrequest-fcp
       sam.data.sfdc.net/owner: tnrp
     name: firefly-pullrequest-fcp-service
     namespace: firefly
@@ -1089,13 +1127,13 @@ items:
       protocol: TCP
       targetPort: 8081
     selector:
-      name: firefly-pullrequest
+      name: firefly-pullrequest-fcp
     type: NodePort
 - apiVersion: extensions/v1beta1
   kind: Deployment
   metadata:
     labels:
-      name: firefly-pullrequest
+      name: firefly-pullrequest-fcp
       sam.data.sfdc.net/owner: tnrp
     name: firefly-pullrequest-fcp-deployment
     namespace: firefly
@@ -1103,7 +1141,7 @@ items:
     replicas: 1
     selector:
       matchLabels:
-        name: firefly-pullrequest
+        name: firefly-pullrequest-fcp
         sam.data.sfdc.net/owner: tnrp
     strategy:
       rollingUpdate:
@@ -1127,11 +1165,23 @@ items:
                         "kingdom": "prd",
                         "name": "customer-certs",
                         "role": "firefly.customer"
+                    },
+                    {
+                        "cert-type": "client",
+                        "kingdom": "prd",
+                        "name": "nqa-certs",
+                        "role": "firefly.customer.nqa"
+                    },
+                    {
+                        "cert-type": "client",
+                        "kingdom": "prd",
+                        "name": "tnrpfirefly-certs",
+                        "role": "firefly.customer.tnrpfirefly"
                     }
                 ]
             }
         labels:
-          name: firefly-pullrequest
+          name: firefly-pullrequest-fcp
           sam.data.sfdc.net/owner: tnrp
         name: firefly-pullrequest-fcp-deployment
         namespace: firefly
@@ -1158,7 +1208,11 @@ items:
           - --ca-folder
           - /maddog-certs/ca
           - --cert-folders
+          - tnrpfirefly-certs:/tnrpfirefly-certs/
+          - --cert-folders
           - customer-certs:/customer-certs/
+          - --cert-folders
+          - nqa-certs:/nqa-certs/
           env:
           - name: MADKUB_NODENAME
             valueFrom:
@@ -1182,8 +1236,12 @@ items:
             name: tokens
           - mountPath: /maddog-certs/
             name: maddog-certs
+          - mountPath: /tnrpfirefly-certs/
+            name: tnrpfirefly-certs
           - mountPath: /customer-certs/
             name: customer-certs
+          - mountPath: /nqa-certs/
+            name: nqa-certs
         - command:
           - java
           - -jar
@@ -1224,7 +1282,7 @@ items:
             value: firefly-fcp
           - name: RABBIT_MQ_QUEUE_NAME
             value: firefly-fcp.pr
-          image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-pullrequest:410
+          image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-pullrequest:417
           imagePullPolicy: Always
           livenessProbe:
             failureThreshold: 10
@@ -1235,7 +1293,7 @@ items:
             periodSeconds: 30
             successThreshold: 1
             timeoutSeconds: 30
-          name: firefly-pullrequest
+          name: firefly-pullrequest-fcp
           ports:
           - containerPort: 8081
             name: admin-port
@@ -1269,6 +1327,10 @@ items:
             name: firefly-root-dir
           - mountPath: /customer-certs/
             name: customer-certs
+          - mountPath: /nqa-certs/
+            name: nqa-certs
+          - mountPath: /tnrpfirefly-certs/
+            name: tnrpfirefly-certs
         initContainers:
         - args:
           - /sam/madkub-client
@@ -1289,7 +1351,11 @@ items:
           - --ca-folder
           - /maddog-certs/ca
           - --cert-folders
+          - tnrpfirefly-certs:/tnrpfirefly-certs/
+          - --cert-folders
           - customer-certs:/customer-certs/
+          - --cert-folders
+          - nqa-certs:/nqa-certs/
           env:
           - name: MADKUB_NODENAME
             valueFrom:
@@ -1316,8 +1382,12 @@ items:
             name: maddog-certs
           - mountPath: /tokens
             name: tokens
+          - mountPath: /tnrpfirefly-certs/
+            name: tnrpfirefly-certs
           - mountPath: /customer-certs/
             name: customer-certs
+          - mountPath: /nqa-certs/
+            name: nqa-certs
         nodeSelector:
           pool: prd-sam
         terminationGracePeriodSeconds: 10
@@ -1348,5 +1418,11 @@ items:
           name: maddog-certs
         - emptyDir:
             medium: Memory
+          name: tnrpfirefly-certs
+        - emptyDir:
+            medium: Memory
           name: customer-certs
+        - emptyDir:
+            medium: Memory
+          name: nqa-certs
 kind: List

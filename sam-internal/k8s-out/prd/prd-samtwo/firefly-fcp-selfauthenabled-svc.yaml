@@ -256,6 +256,12 @@ items:
                         "kingdom": "prd",
                         "name": "customer-certs",
                         "role": "firefly.customer"
+                    },
+                    {
+                        "cert-type": "client",
+                        "kingdom": "prd",
+                        "name": "nqa-certs",
+                        "role": "firefly.customer.nqa"
                     }
                 ]
             }
@@ -288,6 +294,8 @@ items:
           - /maddog-certs/ca
           - --cert-folders
           - customer-certs:/customer-certs/
+          - --cert-folders
+          - nqa-certs:/nqa-certs/
           env:
           - name: MADKUB_NODENAME
             valueFrom:
@@ -313,6 +321,8 @@ items:
             name: maddog-certs
           - mountPath: /customer-certs/
             name: customer-certs
+          - mountPath: /nqa-certs/
+            name: nqa-certs
         - command:
           - java
           - -jar
@@ -357,7 +367,7 @@ items:
             value: firefly-fcp-test.package
           - name: LATEST_FILE_QUEUE
             value: firefly-fcp-test.latestfile
-          image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-package:410
+          image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-package:417
           imagePullPolicy: Always
           livenessProbe:
             failureThreshold: 10
@@ -395,6 +405,8 @@ items:
             name: firefly-root-dir
           - mountPath: /customer-certs/
             name: customer-certs
+          - mountPath: /nqa-certs/
+            name: nqa-certs
         initContainers:
         - args:
           - /sam/madkub-client
@@ -416,6 +428,8 @@ items:
           - /maddog-certs/ca
           - --cert-folders
           - customer-certs:/customer-certs/
+          - --cert-folders
+          - nqa-certs:/nqa-certs/
           env:
           - name: MADKUB_NODENAME
             valueFrom:
@@ -444,6 +458,8 @@ items:
             name: tokens
           - mountPath: /customer-certs/
             name: customer-certs
+          - mountPath: /nqa-certs/
+            name: nqa-certs
         nodeSelector:
           pool: prd-sam_tnrp_merger
         terminationGracePeriodSeconds: 10
@@ -475,6 +491,9 @@ items:
         - emptyDir:
             medium: Memory
           name: customer-certs
+        - emptyDir:
+            medium: Memory
+          name: nqa-certs
 - apiVersion: v1
   data:
     application.yml: |-
@@ -816,7 +835,7 @@ items:
             value: firefly-fcp-test.package
           - name: LATEST_FILE_QUEUE
             value: firefly-fcp-test.latestfile
-          image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-package:410
+          image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-package:417
           imagePullPolicy: Always
           livenessProbe:
             failureThreshold: 10
@@ -1133,6 +1152,12 @@ items:
                         "kingdom": "prd",
                         "name": "customer-certs",
                         "role": "firefly.customer"
+                    },
+                    {
+                        "cert-type": "client",
+                        "kingdom": "prd",
+                        "name": "nqa-certs",
+                        "role": "firefly.customer.nqa"
                     }
                 ]
             }
@@ -1165,6 +1190,8 @@ items:
           - /maddog-certs/ca
           - --cert-folders
           - customer-certs:/customer-certs/
+          - --cert-folders
+          - nqa-certs:/nqa-certs/
           env:
           - name: MADKUB_NODENAME
             valueFrom:
@@ -1190,6 +1217,8 @@ items:
             name: maddog-certs
           - mountPath: /customer-certs/
             name: customer-certs
+          - mountPath: /nqa-certs/
+            name: nqa-certs
         - command:
           - java
           - -jar
@@ -1230,7 +1259,7 @@ items:
             value: firefly-fcp-test
           - name: RABBIT_MQ_QUEUE_NAME
             value: firefly-fcp-test.pr
-          image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-pullrequest:410
+          image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-pullrequest:417
           imagePullPolicy: Always
           livenessProbe:
             failureThreshold: 10
@@ -1270,6 +1299,8 @@ items:
             name: firefly-root-dir
           - mountPath: /customer-certs/
             name: customer-certs
+          - mountPath: /nqa-certs/
+            name: nqa-certs
         initContainers:
         - args:
           - /sam/madkub-client
@@ -1291,6 +1322,8 @@ items:
           - /maddog-certs/ca
           - --cert-folders
           - customer-certs:/customer-certs/
+          - --cert-folders
+          - nqa-certs:/nqa-certs/
           env:
           - name: MADKUB_NODENAME
             valueFrom:
@@ -1319,6 +1352,8 @@ items:
             name: tokens
           - mountPath: /customer-certs/
             name: customer-certs
+          - mountPath: /nqa-certs/
+            name: nqa-certs
         nodeSelector:
           pool: prd-sam_tnrp_merger
         terminationGracePeriodSeconds: 10
@@ -1350,4 +1385,7 @@ items:
         - emptyDir:
             medium: Memory
           name: customer-certs
+        - emptyDir:
+            medium: Memory
+          name: nqa-certs
 kind: List

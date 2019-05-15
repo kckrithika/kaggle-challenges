@@ -277,12 +277,6 @@ items:
                         "kingdom": "prd",
                         "name": "certs",
                         "role": "firefly"
-                    },
-                    {
-                        "cert-type": "client",
-                        "kingdom": "prd",
-                        "name": "customer-certs",
-                        "role": "firefly.customer"
                     }
                 ]
             }
@@ -313,8 +307,6 @@ items:
           - --run-init-for-refresher-mode
           - --ca-folder
           - /maddog-certs/ca
-          - --cert-folders
-          - customer-certs:/customer-certs/
           env:
           - name: MADKUB_NODENAME
             valueFrom:
@@ -338,8 +330,6 @@ items:
             name: tokens
           - mountPath: /maddog-certs/
             name: maddog-certs
-          - mountPath: /customer-certs/
-            name: customer-certs
         - command:
           - java
           - -jar
@@ -386,7 +376,7 @@ items:
             value: sam-test-manifests.promotion
           - name: LATEST_FILE_QUEUE
             value: sam-test-manifests.latestfile
-          image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-package:410
+          image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-package:417
           imagePullPolicy: Always
           livenessProbe:
             failureThreshold: 10
@@ -422,8 +412,6 @@ items:
             name: git-ssh-keys
           - mountPath: /firefly
             name: firefly-root-dir
-          - mountPath: /customer-certs/
-            name: customer-certs
         initContainers:
         - args:
           - /sam/madkub-client
@@ -443,8 +431,6 @@ items:
           - client
           - --ca-folder
           - /maddog-certs/ca
-          - --cert-folders
-          - customer-certs:/customer-certs/
           env:
           - name: MADKUB_NODENAME
             valueFrom:
@@ -471,8 +457,6 @@ items:
             name: maddog-certs
           - mountPath: /tokens
             name: tokens
-          - mountPath: /customer-certs/
-            name: customer-certs
         nodeSelector:
           pool: prd-sam_tnrp_merger
         terminationGracePeriodSeconds: 10
@@ -501,9 +485,6 @@ items:
         - hostPath:
             path: /etc/pki_service
           name: maddog-certs
-        - emptyDir:
-            medium: Memory
-          name: customer-certs
 - apiVersion: v1
   data:
     application.yml: |-
@@ -842,7 +823,7 @@ items:
             value: sam-test-manifests.promotion
           - name: LATEST_FILE_QUEUE
             value: sam-test-manifests.latestfile
-          image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-package:410
+          image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-package:417
           imagePullPolicy: Always
           livenessProbe:
             failureThreshold: 10
@@ -1153,12 +1134,6 @@ items:
                         "kingdom": "prd",
                         "name": "certs",
                         "role": "firefly"
-                    },
-                    {
-                        "cert-type": "client",
-                        "kingdom": "prd",
-                        "name": "customer-certs",
-                        "role": "firefly.customer"
                     }
                 ]
             }
@@ -1189,8 +1164,6 @@ items:
           - --run-init-for-refresher-mode
           - --ca-folder
           - /maddog-certs/ca
-          - --cert-folders
-          - customer-certs:/customer-certs/
           env:
           - name: MADKUB_NODENAME
             valueFrom:
@@ -1214,8 +1187,6 @@ items:
             name: tokens
           - mountPath: /maddog-certs/
             name: maddog-certs
-          - mountPath: /customer-certs/
-            name: customer-certs
         - command:
           - java
           - -jar
@@ -1256,7 +1227,7 @@ items:
             value: test-manifests
           - name: RABBIT_MQ_QUEUE_NAME
             value: sam-test-manifests.pr
-          image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-pullrequest:410
+          image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-pullrequest:417
           imagePullPolicy: Always
           livenessProbe:
             failureThreshold: 10
@@ -1294,8 +1265,6 @@ items:
             name: git-ssh-keys
           - mountPath: /firefly
             name: firefly-root-dir
-          - mountPath: /customer-certs/
-            name: customer-certs
         initContainers:
         - args:
           - /sam/madkub-client
@@ -1315,8 +1284,6 @@ items:
           - client
           - --ca-folder
           - /maddog-certs/ca
-          - --cert-folders
-          - customer-certs:/customer-certs/
           env:
           - name: MADKUB_NODENAME
             valueFrom:
@@ -1343,8 +1310,6 @@ items:
             name: maddog-certs
           - mountPath: /tokens
             name: tokens
-          - mountPath: /customer-certs/
-            name: customer-certs
         nodeSelector:
           pool: prd-sam_tnrp_merger
         terminationGracePeriodSeconds: 10
@@ -1373,7 +1338,4 @@ items:
         - hostPath:
             path: /etc/pki_service
           name: maddog-certs
-        - emptyDir:
-            medium: Memory
-          name: customer-certs
 kind: List

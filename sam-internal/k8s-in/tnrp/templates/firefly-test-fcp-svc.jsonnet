@@ -9,9 +9,7 @@ local prConfig = import "configs/firefly-pullrequest.jsonnet";
 if configs.estate == "prd-sam" then
 {
   local package = packagesvc {
-      serviceConf:: super.serviceConf {
-          repoName: "fcp",
-      },
+      serviceName:: "firefly-package-fcp",
       env:: super.env + [
           {
               name: "INSTANCE_TYPE",
@@ -39,9 +37,7 @@ if configs.estate == "prd-sam" then
      },
   },
   local packagesingleton = packagesvcsingleton {
-      serviceConf:: super.serviceConf {
-          repoName: "fcp",
-      },
+      serviceName:: "firefly-package-singleton-fcp",
       env:: super.env + [
           {
               name: "INSTANCE_TYPE",
@@ -60,15 +56,16 @@ if configs.estate == "prd-sam" then
         local appConfig = packageConfig.config("firefly-package") + {
          appconfig+: {
             "multi-repo-supported": true,
+            docker+: {
+              "force-create-container": true,
+            },
           },
         },
         "application.yml": std.manifestJson(appConfig),
       },
   },
   local pullrequest = pullrequestsvc {
-      serviceConf:: super.serviceConf {
-          repoName: "fcp",
-      },
+      serviceName:: "firefly-pullrequest-fcp",
       env:: super.env + [
           {
               name: "INSTANCE_TYPE",
@@ -83,7 +80,7 @@ if configs.estate == "prd-sam" then
         local appConfig = prConfig.config("firefly-pullrequest") + {
           appconfig+: {
             "multi-repo-supported": true,
-            "self-auth-allowed": false,
+            "self-auth-allowed": true,
             docker+: {
               "force-create-container": true,
             },
@@ -92,10 +89,8 @@ if configs.estate == "prd-sam" then
         "application.yml": std.manifestJson(appConfig),
       },
   },
-
   apiVersion: "v1",
   kind: "List",
   items: std.flattenArrays([package.items, packagesingleton.items, pullrequest.items]),
-
 }
 else "SKIP"

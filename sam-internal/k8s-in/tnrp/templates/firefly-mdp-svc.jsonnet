@@ -41,35 +41,6 @@ if configs.estate == "prd-samtwo" then
        "application.yml": std.manifestJson(appConfig),
      },
   },
-  local packagesingleton = packagesvcsingleton {
-      serviceName:: "firefly-package-singleton-mdp",
-      env:: super.env + [
-          {
-              name: "INSTANCE_TYPE",
-              value: "firefly-mdp",
-          },
-          {
-              name: "PACKAGE_QUEUE",
-              value: "firefly-mdp.package",
-          },
-          {
-              name: "PROMOTION_QUEUE",
-              value: "firefly-mdp.promotion",
-          },
-          {
-              name: "LATEST_FILE_QUEUE",
-              value: "firefly-mdp.latestfile",
-          },
-      ],
-      data:: {
-        local appConfig = packageConfig.config("firefly-package") + {
-         appconfig+: {
-            "multi-repo-supported": true,
-          },
-        },
-        "application.yml": std.manifestJson(appConfig),
-      },
-  },
   local pullrequest = pullrequestsvc {
       serviceName:: "firefly-pullrequest-mdp",
       replicas:: 2,
@@ -114,7 +85,7 @@ if configs.estate == "prd-samtwo" then
 
   apiVersion: "v1",
   kind: "List",
-  items: std.flattenArrays([package.items, packagesingleton.items, pullrequest.items, promotion.items]),
+  items: std.flattenArrays([package.items, pullrequest.items, promotion.items]),
 
 }
 else "SKIP"
