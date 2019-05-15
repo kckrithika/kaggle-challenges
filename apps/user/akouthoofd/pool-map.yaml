@@ -1,3 +1,9 @@
 apps:
-    warden-test:
-        - prd/prd-sam
+ prd-cantor-grpc-server:
+  - prd/prd-sam
+ prd-cantor-http-server:
+  - prd/prd-sam
+ prd-maiev-receiver:
+  - prd/prd-sam
+ warden-test:
+  - prd/prd-sam

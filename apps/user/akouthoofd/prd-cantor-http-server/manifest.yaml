@@ -1,0 +1,37 @@
+apiVersion: v1
+
+system:
+    notifications:
+      email:
+        - akouthoofd@salesforce.com
+    functions:
+    - name: cantor-http-server
+      count: 1
+      strategy:
+        type: RollingUpdate
+        rollingUpdate:
+          maxSurge: 0
+          maxUnavailable: 1
+      containers:
+      - name: prd-cantor-http-server
+        image: dva/casp/cantor_http_strata:5
+        ports:
+        - name: cantor-http
+          containerPort: 8084
+          hostPort: 18084
+        livenessProbe:
+          exec:
+            command:
+            - /usr/bin/true
+        env:
+        - name: SUBDOMAIN
+          value: "eng"
+        - name: STORAGE_TYPE
+          value: "grpc"
+    loadbalancers:
+    - lbname: cantor-service
+      function: cantor-http-server
+      slbEnabled: true
+      ports:
+        - port: 80
+          targetport: 8084
