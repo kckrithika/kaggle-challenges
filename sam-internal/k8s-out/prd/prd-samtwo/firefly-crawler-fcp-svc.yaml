@@ -10,7 +10,7 @@ items:
                   "job-interval-in-milliseconds": 300000,
                   "max-commit-retry": 3,
                   "max-prr-retry": 3,
-                  "repositories": "Infrastructure-Security/infrasec-secrets-config,gate-definitions/gate-definitions,nvt/mom-data,monitoring/nagios_configs,SiteReliability/srcore,nvt/routerdb,sdn/sitebridge-manifests",
+                  "repositories": "Infrastructure-Security/infrasec-secrets-config,gate-definitions/gate-definitions,nvt/mom-data,monitoring/nagios_configs,SiteReliability/srcore,nvt/routerdb,sdn/sitebridge-manifests,ddi/ddi-health-config,ddi/dhcpdata,ddi/ddi-config,SiteSwitching/siteswitching,nqa/nqa-services-data,nqa/render-manifest",
                   "since-commit-time-in-minutes": 45,
                   "since-prr-time-in-minutes": 45,
                   "until-commit-status-time-in-minutes": 15,
