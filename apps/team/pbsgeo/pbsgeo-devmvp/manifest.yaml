@@ -5,14 +5,14 @@ system:
     count: 4 
     containers:
     - name: pbsgeo
-      image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-gcp/dva/pbspectrum:fd1674848d5b824aeb7d8108ccd91c5954df36ea
+      image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-gcp/dva/pbspectrum:c980d51b866925b503a548e9279831901bf55d10
       ports:
       - containerPort: 8080
       livenessProbe:
         httpGet:
           path: /ping.jsp
           port: 8080
-        initialDelaySeconds: 4000 
+        initialDelaySeconds: 5000 
         periodSeconds: 30
       resources:
         limits: {cpu: "8", memory: "64Gi"}
