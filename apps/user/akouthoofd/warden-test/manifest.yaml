@@ -16,11 +16,9 @@ system:
           hostPort: 18889
         - name: https
           containerPort: 8443
-        - name: grpc
-          containerPort: 7878
         env:
         - name: BRANCH
-          value: "dev"
+          value: "eng_production"
         volumeMounts:
         - mountPath: /home/sfdc-casp/logs
           name: log-vol
@@ -66,5 +64,3 @@ system:
           targetport: 8889
         - port: 443
           targetport: 8443
-        - port: 7878
-          targetport: 7878
