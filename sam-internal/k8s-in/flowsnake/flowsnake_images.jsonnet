@@ -22,7 +22,7 @@ local utils = import "util_functions.jsonnet";
         # Only include new things not yet promoted to next phase. To promote, move line items to next phase.
         "1": self["2"] {
             image_tags+: {
-                spark_operator_image_tag: "jenkins-dva-transformation-spark-on-k8s-operator-development-sfdc-3-itest",
+                spark_operator_image_tag: "jenkins-dva-transformation-spark-on-k8s-operator-development-sfdc-4-itest",
             },
             feature_flags+: {
                 # Note: the *value* of the flags is ignored. jsonnet lacks array search, so we use a an object.
