@@ -24,7 +24,7 @@ system:
          secretName: jkspass    
       containers:
       - name: zipkin-kafka-proxy
-        image: dva/zipkin-kafka-proxy:47
+        image: dva/zipkin-kafka-proxy:45
         env:
         - name: ZIPKIN_KAFKA_PROXY_HOST
           value: zipkin-kafka-proxy
