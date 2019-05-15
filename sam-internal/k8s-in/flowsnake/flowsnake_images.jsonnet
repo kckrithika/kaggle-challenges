@@ -22,7 +22,6 @@ local utils = import "util_functions.jsonnet";
         # Only include new things not yet promoted to next phase. To promote, move line items to next phase.
         "1": self["2"] {
             image_tags+: {
-                spark_operator_image_tag: "jenkins-dva-transformation-spark-on-k8s-operator-development-sfdc-4-itest",
             },
             feature_flags+: {
                 # Note: the *value* of the flags is ignored. jsonnet lacks array search, so we use a an object.
@@ -30,7 +29,6 @@ local utils = import "util_functions.jsonnet";
                 image_renames_and_canary_build_tags: "unverified",
                 slb_ingress: "unverified",
                 watchdog_kuberesources: "enabled",
-                spark_operator_election: "enabled",
             },
             # prd-test offers legacy version mappings. Phase 2 does not, so cannot inherit from there.
             # Start with 2-prd-dev (which also have legacy version mappings),
@@ -42,8 +40,10 @@ local utils = import "util_functions.jsonnet";
         # Only include new things not yet promoted to next phase. To promote, move line items to next phase.
         "2": self["3"] {
             image_tags+: {
+                spark_operator_image_tag: "jenkins-dva-transformation-spark-on-k8s-operator-development-sfdc-4-itest",
             },
             feature_flags+: {
+                spark_operator_election: "enabled",
             },
             version_mapping+: {
             },
