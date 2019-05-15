@@ -39,7 +39,7 @@ spec:
         - --log_dir=/host/data/slb/logs/slb-iface-processor
         - --hostsConfigFile=/sfdchosts/hosts.json
         - --subnet=10.163.28.0/22,13.110.50.0/23
-        image: ops0-artifactrepo1-0-ia2.data.sfdc.net/dva/slb/hyperslb:2142-cf9466b15d50fd9f824150f2b436b072d1e2581f
+        image: ops0-artifactrepo1-0-ia2.data.sfdc.net/dva/slb/hyperslb:2155-95ed23888661e74b3460407a65290d2106501a00
         name: slb-iface-processor
         securityContext:
           privileged: true
@@ -82,7 +82,7 @@ spec:
           valueFrom:
             fieldRef:
               fieldPath: spec.nodeName
-        image: ops0-artifactrepo1-0-ia2.data.sfdc.net/dva/slb/hyperslb:2142-cf9466b15d50fd9f824150f2b436b072d1e2581f
+        image: ops0-artifactrepo1-0-ia2.data.sfdc.net/dva/slb/hyperslb:2155-95ed23888661e74b3460407a65290d2106501a00
         livenessProbe:
           httpGet:
             path: /liveness-probe
@@ -121,7 +121,7 @@ spec:
         - --shouldSkipSlbBlock=true
         - --skipFilesWithSuffix=.sock
         - --maxDeleteFileCount=20
-        image: ops0-artifactrepo1-0-ia2.data.sfdc.net/dva/slb/hyperslb:2142-cf9466b15d50fd9f824150f2b436b072d1e2581f
+        image: ops0-artifactrepo1-0-ia2.data.sfdc.net/dva/slb/hyperslb:2155-95ed23888661e74b3460407a65290d2106501a00
         name: slb-cleanup-config-processor
         securityContext:
           privileged: true
@@ -145,7 +145,7 @@ spec:
         - --readOnly=false
         - --checkMwSentinel=false
         - --control.manifestWatcherSentinel=/host/data/slb/config/slb-iface-processor/slb-manifest-watcher.sentinel
-        image: ops0-artifactrepo1-0-ia2.data.sfdc.net/dva/slb/hyperslb:2142-cf9466b15d50fd9f824150f2b436b072d1e2581f
+        image: ops0-artifactrepo1-0-ia2.data.sfdc.net/dva/slb/hyperslb:2155-95ed23888661e74b3460407a65290d2106501a00
         name: slb-node-api
         volumeMounts:
         - mountPath: /host/data/slb
@@ -163,7 +163,7 @@ spec:
         env:
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig-platform
-        image: ops0-artifactrepo1-0-ia2.data.sfdc.net/dva/slb/hyperslb:2142-cf9466b15d50fd9f824150f2b436b072d1e2581f
+        image: ops0-artifactrepo1-0-ia2.data.sfdc.net/dva/slb/hyperslb:2155-95ed23888661e74b3460407a65290d2106501a00
         name: slb-cleanup
         securityContext:
           privileged: true
