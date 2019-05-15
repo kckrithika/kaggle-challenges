@@ -10,4 +10,5 @@ spec:
   - bind: 127.1.2.3
     captureMode: NONE
     hosts:
-    - '*/*'
+    - gater/gater.gater.svc.cluster.local
+    - ccait/geoip.ccait.svc.cluster.local

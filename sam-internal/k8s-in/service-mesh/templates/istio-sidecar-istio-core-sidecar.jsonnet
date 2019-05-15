@@ -14,8 +14,10 @@
       {
         bind: "127.1.2.3",
         captureMode: "NONE",
+        # Whitelist of Egress Services
         hosts: [
-          "*/*",
+          "gater/gater.gater.svc.cluster.local",
+          "ccait/geoip.ccait.svc.cluster.local",
         ],
       },
     ],
