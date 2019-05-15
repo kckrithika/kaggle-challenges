@@ -1,63 +1,22 @@
-# Manifest for path-based proxying to multiple containers in same kpod.
-#
-# Next step is for path-based proxying to containers in a different kpod. 
-# 
-# Misc manifest.yaml notes below
-# ====
-#
-# The value for function.name is subject to Kubernetes naming requirements for DNS_LABELs. 
-# It must be 64 or fewer characters long. Stated as a regular expression, this is [a-z0-9]([-a-z0-9]*[a-z0-9]). 
-# Note that only lower cased alpha characters are permitted, and the name must start with an alphanumeric character.
-#
-# https://confluence.internal.salesforce.com/display/SAM/Set+Up+SAM+Network+Options
-# Because you can have multiple functions specified in your SAM manifest, you need to make sure that you have specified non-conflicting
-# container and lbnames, non-conflicting port numbers for containers, and non-conflicting port numbers between containers and services. 
-#
-# If you specify nodeExposed in the loadbalancers section, you cannot specify hostnetwork in the function section.
-#
-# With nodeExposed set to true, make sure if you specify port values between 1025 and 31999.
-# Other ports are reserved for unix (0-1024) and SAM (32000-40000). If you specify a reserved port number, your validation will fail.
-# If for some reason you need port 80, specify 8080 instead.
-#
-# If you do not specify either nodeExposed nor hostnetwork, there is no predictable endpoint. 
-# Kubernetes defines a random node port (between 30000 and 40000) when the service is created.
-# Once created, you can use it to connect to your container. (See How to Find the Endpoint of a SAM-deployed App).
-#
 apiVersion: v1
 system:
   functions:
   - name: revpathproxytestone
     count: 1
-
-    # Not using host networking like CA.
-    # If this works, maybe we don't need to tie the business-tier kpod to specific hosts 
-    hostnetwork: true
-
+    # Ports below should match those in the Nginx reverse path proxy's nginx.conf
     containers:
+    # Nginx reverse path proxy
     - name: revpathproxy
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/ccotofana/nginx-revpathproxy:lh_20190513
-      command: ["/bin/sh"]
-      args: ["/etc/nginx/config_and_restart_nginx.sh"]
-      env:
-      - name: CC_POD_HOST
-        value: $(FUNCTION_INSTANCE_IP)      # SAM environment variable
-      - name: CC_NGINX_PORT
-        value: 10090
-      - name: CC_APP_ONE_PORT
-        value: 10091
-      - name: CC_APP_TWO_PORT
-        value: 10092
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/ccotofana/nginx-revpathproxy:lh-20190515
       ports:
-      - containerPort: 10090
+      - containerPort: 8085
       livenessProbe:
         httpGet:
-          path: /
-          port: 10090
-        #initialDelaySeconds: 15
-        initialDelaySeconds: 900    # 15 min for debug 
-        #timeoutSeconds: 5
-        timeoutSeconds: 900     # 15 min for debug
-        periodSeconds: 900      # 15 min for debug
+          path: /health
+          port: 8085
+        initialDelaySeconds: 15
+        timeoutSeconds: 5
+        periodSeconds: 60
       volumeMounts:
       - mountPath: /var/cache/nginx/client_temp
         name: cache-volume
@@ -66,44 +25,41 @@ system:
     - name: appone
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/ccotofana/samhello:withargs
       command: ["/bin/samhello"]
-      args: ["10091", "one"]
-      #TODO Find a way to not expose these ports outside the kpod
+      args: ["8080", "one"]
       ports:
-      - containerPort: 10091
-      #TODO Replace httpGet liveness probe with shell script in the container (so don't have expose/declare port number)
+      - containerPort: 8080
       livenessProbe:
         httpGet:
           path: /
-          port: 10091
+          port: 8080
 
     # Fake Entity API
     - name: apptwo
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/ccotofana/samhello:withargs 
       command: ["/bin/samhello"]
-      args: ["10092", "two"]
+      args: ["8082", "two"]
       ports:
-      - containerPort: 10092
+      - containerPort: 8082
       livenessProbe:
         httpGet:
           path: /
-          port: 10092
+          port: 8082
 
     volumes:
     - name: cache-volume
       emptyDir: {}
 
-#  loadbalancers:
-#  - lbname: revpathproxytestonelb
-#    function: revpathproxytestone
-#    # Don't use regular (hardware?) loadbalancing
-#    #nodeExposed: true
-#    slbEnabled: true
-#    # Ports not mentioned here are still forwarded to target container
-#    ports:
-#      - port: 9090 
-#        targetport: 9090
-#     # - port: 9091
-#     #   targetport: 9091
-#     # - port: 9092
-#     #   targetport: 9092
+  # SLB
+  loadbalancers:
+   - lbname: revpathproxytestonelb
+     function: revpathproxytestone
+     slbEnabled: true
+     # Ports not mentioned here are still forwarded to target container
+     ports:
+        - port: 9090
+          targetport: 8085
+        - port: 8080
+          targetport: 8080
+        - port: 8082
+          targetport: 8082
 
