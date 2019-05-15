@@ -53,6 +53,13 @@ spec:
         - containerPort: 8443
           name: webhook
           protocol: TCP
+        readinessProbe:
+          httpGet:
+            path: /healthz
+            port: "8443"
+            scheme: HTTPS
+          initialDelaySeconds: 5
+          periodSeconds: 5
         volumeMounts:
         - mountPath: /certs
           name: datacerts

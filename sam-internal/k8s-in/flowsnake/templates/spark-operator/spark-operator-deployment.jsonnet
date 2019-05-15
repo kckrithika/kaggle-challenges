@@ -79,7 +79,17 @@ local cert_name = "spark-webhook";
                             protocol: "TCP",
                         }],
                         volumeMounts: madkub_common.cert_mounts(cert_name),
-                        },
+                        } + (if election then {
+                            readinessProbe: {
+                                httpGet: {
+                                    path: "/healthz",
+                                    port: "8443",
+                                    scheme: "HTTPS",
+                                },
+                                initialDelaySeconds: 5,
+                                periodSeconds: 5,
+                            }
+                        } else {}),
                         madkub_common.refresher_container(cert_name)
                 ],
                 volumes: madkub_common.cert_volumes(cert_name),
