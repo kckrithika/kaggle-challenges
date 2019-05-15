@@ -29,4 +29,7 @@
     "npshenichnyy@salesforce.com",
     # DVA Team
     "gjiang@salesforce.com",
+    "gabriel.intrator@salesforce.com",
+    "xiayang.wu@salesforce.com",
+    "awaheed@salesforce.com",
 ]

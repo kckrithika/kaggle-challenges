@@ -81,3 +81,12 @@ subjects:
 - apiGroup: rbac.authorization.k8s.io
   kind: User
   name: gjiang@salesforce.com
+- apiGroup: rbac.authorization.k8s.io
+  kind: User
+  name: gabriel.intrator@salesforce.com
+- apiGroup: rbac.authorization.k8s.io
+  kind: User
+  name: xiayang.wu@salesforce.com
+- apiGroup: rbac.authorization.k8s.io
+  kind: User
+  name: awaheed@salesforce.com
