@@ -27,6 +27,7 @@ spec:
         - -maxUptimeSampleSize=5
         - -shouldBatchMetrics=true
         - -watchDogKind=Deployment
+        - -publishToWatchDogCrd=false
         - -recipient=""
         - -funnelEndpoint=mandm-funnel-wax.data.sfdc.net:8080
         - --config=/config/watchdog.json

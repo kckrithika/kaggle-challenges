@@ -21,6 +21,7 @@ local utils = import "util_functions.jsonnet";
                                      "-maxUptimeSampleSize=5",
                                      "-shouldBatchMetrics=true",
                                      "-watchDogKind=Deployment",
+                                     "-publishToWatchDogCrd=false",
                                      "-recipient=\"\"",
                                  ]
                                  + samwdconfig.shared_args
