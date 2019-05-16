@@ -47,6 +47,7 @@ local utils = import "util_functions.jsonnet";
                 ksm_prome_add_name_label: "enabled",
             },
             version_mapping+: {
+              "0.12.5-hbase": "jenkins-dva-transformation-flowsnake-platform-PR-829-4-itest",
             },
         },
         # prd-dev: Exceptions vs the rest of phase 2 only
