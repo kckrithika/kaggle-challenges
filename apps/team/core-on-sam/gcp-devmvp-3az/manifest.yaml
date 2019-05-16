@@ -155,16 +155,12 @@ system:
         periodSeconds: 1
 
       readinessProbe:
-        httpGet:
-          path: /ping.jsp
-          port: 8085
-#        exec:
-#          command:
-#           - /home/sfdc/salesforce/build/ready_probe.sh
+        exec:
+          command:
+           - echo
+           - READY
         initialDelaySeconds: 120
         periodSeconds: 5
-        timeoutSeconds: 5
-        failureThreshold: 99999
 
       ports:
         # Actually used by the container
