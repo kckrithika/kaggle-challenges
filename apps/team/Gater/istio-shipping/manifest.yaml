@@ -15,7 +15,7 @@ system:
       disco_pod: ""
       disco_sp: ""
       disco_role: istio-shipping
-      settings_path: test.-.prd.-.istio-shipping
+      settings_path: stmg.-.prd.-.istio-shipping
       superpod: NONE
     annotations:
       sidecar.istio.io/inject: "true"
