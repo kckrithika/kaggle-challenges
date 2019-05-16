@@ -26,6 +26,13 @@ system:
         periodSeconds: 10
         timeoutSeconds: 10
         initialDelaySeconds: 10
+      resources:
+        limits:
+          cpu: 28
+          memory: 16Gi
+        requests:
+          cpu: 28
+          memory: 16Gi
     volumes:
       - name: sherlock-data-vol
         hostPath:
