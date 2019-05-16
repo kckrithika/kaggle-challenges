@@ -1,19 +1,13 @@
 apps:
  gate-manager:
   - phx/phx-sam_gater
-  - dfw/dfw-sam_gater
   - frf/frf-sam_gater
   - ukb/ukb-sam_gater
-  - iad/iad-sam_gater
-  - ord/ord-sam_gater
-  - hnd/hnd-sam_gater
-  - fra/fra-sam_gater
   - ia2/ia2-sam_gater
   - lo2/lo2-sam_gater
   - lo3/lo3-sam_gater
-  - cdg/cdg-sam_gater
+  - ph2/ph2-sam_gater
  gate-manager-par:
-  - par/par-sam_gater
  gate-manager-public-cloud:
   - cdu/cdu-sam_gater
   - syd/syd-sam_gater
@@ -28,8 +22,14 @@ apps:
  gate-manager-2instances:
  gate-manager-3instances:
  gate-manager-4instances:
- gate-manager-ph2:
-  - ph2/ph2-sam_gater
+ gate-manager-10instances:
+  - par/par-sam_gater
+  - dfw/dfw-sam_gater
+  - iad/iad-sam_gater
+  - ord/ord-sam_gater
+  - hnd/hnd-sam_gater
+  - fra/fra-sam_gater
+  - cdg/cdg-sam_gater
  gate-manager-test:
   - prd/prd-sam_gater
  gate-manager-test-tnrp:
