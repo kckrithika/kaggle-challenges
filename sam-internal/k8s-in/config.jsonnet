@@ -217,7 +217,9 @@ local utils = import "util_functions.jsonnet",
 
     # The default maximum number of pod IP addresses a node is capable of supporting. This is used
     # by node-controller when there's an error reading from the --sdn-subnet-file-path file.
-    defaultMaxPodIP: (if estate == "prd-sdc" then 13 else 25),
+    # In PRD we really have 29, but setting it to 28 incase we have a pod missing the request.  With a setting of 29
+    # any mis-labeled pod will cause issues.  This gives us a tiny bit of buffer.
+    defaultMaxPodIP: (if estate == "prd-sdc" then 13 else 28),
 
     # This base contains common deployment fields to cut down on copy paste.
     # Use it like this (dont forget the '+' after spec):
