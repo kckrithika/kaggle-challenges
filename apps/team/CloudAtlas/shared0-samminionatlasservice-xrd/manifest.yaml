@@ -75,6 +75,9 @@ system:
     - name: cloudatlas-service
       image: sfci/cloud-atlas/cloudatlas/cloudatlas-service:2.22split1
       command: ["java", "-jar", "cloudatlas-service.jar"]
+      env:
+        - name: security_server_dynamickeystore_monitoredDirectory
+          value: "/certs/server"
       volumeMounts:
       - mountPath: /log
         name: logvol
