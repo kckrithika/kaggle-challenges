@@ -134,6 +134,10 @@ local mcpIstioConfig = (import "service-mesh/istio-config.jsonnet");
                 value: mcpIstioConfig.istioEstate,
               },
               {
+                name: "ISTIO_METAJSON_METRICS_INCLUSIONS",
+                value: "{\"sidecar.istio.io/statsInclusionPrefixes\": \"access_log_file,cluster,cluster_manager,control_plane,http,http2,http_mixer_filter,listener,listener_manager,redis,runtime,server,stats,tcp,tcp_mixer_filter,tracing\"}",
+              },
+              {
                 name: "POD_NAME",
                 valueFrom: {
                   fieldRef: {
@@ -196,27 +200,7 @@ local mcpIstioConfig = (import "service-mesh/istio-config.jsonnet");
             name: "istio-proxy",
             ports: [
               {
-                containerPort: 15008,
-              },
-              {
-                containerPort: 15009,
-              },
-              {
-                containerPort: 15020,
-              },
-              {
-                containerPort: 15029,
-              },
-              {
-                containerPort: 15032,
-              },
-              {
-                containerPort: 15443,
-              },
-              {
-                containerPort: 15090,
-                name: "http-envoy-prom",
-                protocol: "TCP",
+                containerPort: 8443,
               },
             ],
             readinessProbe: {
@@ -234,11 +218,11 @@ local mcpIstioConfig = (import "service-mesh/istio-config.jsonnet");
             resources: {
               limits: {
                 cpu: "2000m",
-                memory: "256Mi",
+                memory: "1024Mi",
               },
               requests: {
                 cpu: "100m",
-                memory: "128Mi",
+                memory: "1024Mi",
               },
             },
             volumeMounts: [

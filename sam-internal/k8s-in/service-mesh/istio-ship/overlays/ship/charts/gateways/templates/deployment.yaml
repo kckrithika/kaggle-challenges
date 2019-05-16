@@ -44,21 +44,19 @@ spec:
         env:
         - name: ESTATE
           value: mcpIstioConfig.istioEstate
+        - name: ISTIO_METAJSON_METRICS_INCLUSIONS
+          value: "{\"sidecar.istio.io/statsInclusionPrefixes\": \"access_log_file,cluster,cluster_manager,control_plane,http,http2,http_mixer_filter,listener,listener_manager,redis,runtime,server,stats,tcp,tcp_mixer_filter,tracing\"}"
         image: mcpIstioConfig.proxyImage
         name: istio-proxy
         ports:
-        - $patch: delete
-          containerPort: 80
-        - $patch: delete
-          containerPort: 443
-        - $patch: delete
-          containerPort: 15030
-        - $patch: delete
-          containerPort: 15031
-        - $patch: delete
-          containerPort: 31400
-        - containerPort: 15008
-        - containerPort: 15009
+        # coreapp https
+        - containerPort: 8443
+        - $patch: replace
+        resources:
+          limits:
+            memory: 1024Mi
+          requests:
+            memory: 1024Mi
         volumeMounts:
         - mountPath: /etc/pki_service
           name: maddog-certs
@@ -116,7 +114,7 @@ spec:
               apiVersion: v1
               fieldPath: metadata.namespace
         - name: ESTATE
-          value: mcpIstioConfig.istioEstate      
+          value: mcpIstioConfig.istioEstate  
         image: mcpIstioConfig.madkubImage
         imagePullPolicy: IfNotPresent
         name: madkub-refresher
