@@ -20,22 +20,6 @@ metadata:
   namespace: mesh-control-plane
 spec:
   ports:
-  - $patch: delete
-    port: 80
-  - $patch: delete
-    port: 443
-  - $patch: delete
-    port: 15030
-  - $patch: delete
-    port: 15031
-  - $patch: delete
-    port: 31400
-  - port: 32400
-    nodePort: 32400
-    name: tcp
-  - name: http2
-    port: 15008
-    nodePort: 32380
-  - name: https
-    port: 15009
-    nodePort: 32390
+  - port: 8443
+    name: https-coreapp
+  - $patch: replace

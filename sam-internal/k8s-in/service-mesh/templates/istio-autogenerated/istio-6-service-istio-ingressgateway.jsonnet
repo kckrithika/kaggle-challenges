@@ -19,39 +19,8 @@ local mcpIstioConfig = (import "service-mesh/istio-config.jsonnet");
   spec: {
     ports: [
       {
-        name: "tcp",
-        nodePort: 32400,
-        port: 32400,
-      },
-      {
-        name: "http2",
-        nodePort: 32380,
-        port: 15008,
-      },
-      {
-        name: "https",
-        nodePort: 32390,
-        port: 15009,
-      },
-      {
-        name: "status-port",
-        port: 15020,
-        targetPort: 15020,
-      },
-      {
-        name: "https-kiali",
-        port: 15029,
-        targetPort: 15029,
-      },
-      {
-        name: "https-tracing",
-        port: 15032,
-        targetPort: 15032,
-      },
-      {
-        name: "tls",
-        port: 15443,
-        targetPort: 15443,
+        name: "https-coreapp",
+        port: 8443,
       },
     ],
     selector: {
