@@ -28,7 +28,7 @@ system:
       - {name: TESTRECIPE_MAESTROPINGTEST, value: 'true'}
       - {name: DEPLOYMENT_ID, value: prd-master}
       - {name: HANDLED_PODS_PATTERN, value: stmfa\..*|moana-driver-master}
-      image: sfci/insights/moana-driver:master-28-3108134
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/insights/moana-driver:mb-fix-execptions-2-71d3c9e
       livenessProbe:
         httpGet: {path: /manage/health, port: 15372}
         initialDelaySeconds: 30
@@ -43,7 +43,7 @@ system:
         requests: {cpu: 1, memory: 2G}
       volumeMounts:
       - {mountPath: /home/scone/client-certs, name: tls-client-certs}
-    count: 0 
+    count: 1
     hostnetwork: false
     identity: {serviceName: moana-driver}
     name: moana-driver-master
