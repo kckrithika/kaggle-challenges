@@ -10,17 +10,9 @@ spec:
         name: flowsnake-environment-service
       - image: ops0-artifactrepo1-0-frf.data.sfdc.net/dva/flowsnake-job-flowsnake-demo-job:0.12.5
         name: flowsnake-job-flowsnake-demo-job
-      - image: ops0-artifactrepo1-0-frf.data.sfdc.net/dva/flowsnake-job-flowsnake-demo-job:0.12.5-hbase
-        name: flowsnake-job-flowsnake-demo-job
-      - image: ops0-artifactrepo1-0-frf.data.sfdc.net/dva/flowsnake-job-flowsnake-demo-job:jenkins-dva-transformation-flowsnake-platform-PR-829-5-itest
-        name: flowsnake-job-flowsnake-demo-job
       - image: ops0-artifactrepo1-0-frf.data.sfdc.net/dva/flowsnake-job-flowsnake-demo-job:jenkins-dva-transformation-flowsnake-platform-master-781-itest
         name: flowsnake-job-flowsnake-demo-job
       - image: ops0-artifactrepo1-0-frf.data.sfdc.net/dva/flowsnake-job-flowsnake-spark-local-mode-demo-job:0.12.5
-        name: flowsnake-job-flowsnake-spark-local-mode-demo-job
-      - image: ops0-artifactrepo1-0-frf.data.sfdc.net/dva/flowsnake-job-flowsnake-spark-local-mode-demo-job:0.12.5-hbase
-        name: flowsnake-job-flowsnake-spark-local-mode-demo-job
-      - image: ops0-artifactrepo1-0-frf.data.sfdc.net/dva/flowsnake-job-flowsnake-spark-local-mode-demo-job:jenkins-dva-transformation-flowsnake-platform-PR-829-5-itest
         name: flowsnake-job-flowsnake-spark-local-mode-demo-job
       - image: ops0-artifactrepo1-0-frf.data.sfdc.net/dva/flowsnake-job-flowsnake-spark-local-mode-demo-job:jenkins-dva-transformation-flowsnake-platform-master-781-itest
         name: flowsnake-job-flowsnake-spark-local-mode-demo-job
