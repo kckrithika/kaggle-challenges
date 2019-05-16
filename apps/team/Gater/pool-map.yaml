@@ -8,6 +8,7 @@ apps:
   - lo3/lo3-sam_gater
   - ph2/ph2-sam_gater
  gate-manager-par:
+  - par/par-sam_gater
  gate-manager-public-cloud:
   - cdu/cdu-sam_gater
   - syd/syd-sam_gater
@@ -23,7 +24,6 @@ apps:
  gate-manager-3instances:
  gate-manager-4instances:
  gate-manager-10instances:
-  - par/par-sam_gater
   - dfw/dfw-sam_gater
   - iad/iad-sam_gater
   - ord/ord-sam_gater
