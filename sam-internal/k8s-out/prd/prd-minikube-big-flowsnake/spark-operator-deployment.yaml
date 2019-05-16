@@ -7,7 +7,7 @@ metadata:
   name: spark-operator
   namespace: flowsnake
 spec:
-  replicas: 1
+  replicas: 3
   selector:
     matchLabels:
       app.kubernetes.io/name: spark-operator
@@ -39,6 +39,8 @@ spec:
         - -webhook-server-cert=/certs/server/certificates/server.pem
         - -webhook-server-cert-key=/certs/server/keys/server-key.pem
         - -webhook-ca-cert=/certs/ca/cabundle.pem
+        - -leader-election
+        - -leader-election-lock-namespace=flowsnake
         command:
         - /usr/bin/spark-operator
         image: minikube/kubernetes-spark-operator-2.4.0-sfdc-0.0.1:minikube
