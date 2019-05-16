@@ -3,6 +3,7 @@ system:
   notifications:
     email:
     - metadataservice@salesforce.com
+    - vivanov@salesforce.com
   functions:
   - name: metadata-service-prd-perf
     identity:
@@ -140,4 +141,3 @@ system:
     ports:
     - port: 9092
       targetport: 9091
-
