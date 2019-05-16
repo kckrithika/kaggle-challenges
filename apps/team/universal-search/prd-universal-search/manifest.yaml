@@ -109,7 +109,7 @@ system:
           command:
           - "/home/scone/is-alive.sh"
   - name: universal-search-synthetics
-    count: 1
+    count: 4
     volumes:
     - name: synthetics-log-vol
       hostpath:
