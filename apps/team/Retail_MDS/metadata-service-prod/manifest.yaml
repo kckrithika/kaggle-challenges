@@ -37,6 +37,9 @@ system:
         value: 9091
       - name: MANAGEMENT_PORT
         value: 15523
+        # An environment variable used to trigger containers redeployment without making other changes to the manifest
+      - name: RESTART
+        value: May-16-2019
       livenessProbe:
         initialDelaySeconds: 60
         periodSeconds: 60
