@@ -11,7 +11,7 @@ system:
       count: 3
       containers:
         - name: qpid-broker-runtime
-          image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-sfci-dev/sfci/appscale/qpid-broker-runtime:0.7.0
+          image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-sfci-dev/sfci/appscale/qpid-broker-runtime:0.8.0
           ports:
             - name: amqp-port
               containerPort: 5672
