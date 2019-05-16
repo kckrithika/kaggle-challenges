@@ -1,4 +1,4 @@
-color: green
+color: blue
 db:
   connectionCount: 25
   hostName: gkr1ice3-db1-1-prd-vip.eng.sfdc.net
@@ -26,6 +26,6 @@ images:
   switchboard: sfci/servicelibs/switchboard:26c3cdce981042262b9f0f26c226cab1841bf9fd
   switchboardEnvoy: sfci/frontend-gateway/sfproxy:bc7e1fa
 name: na45
-nonce: 1557988368100763906
+nonce: 1558001059872095291
 replicaCount: 1
 settingsSuperPod: sp2
