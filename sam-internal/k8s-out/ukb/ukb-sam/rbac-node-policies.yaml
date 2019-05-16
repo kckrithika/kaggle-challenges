@@ -1056,6 +1056,32 @@ items:
 - apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
+    name: role:shared0-samminioncrosscloudplatform1-4-ukb.ops.sfdc.net
+  rules:
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-samminioncrosscloudplatform1-4-ukb.ops.sfdc.net
+    resources:
+    - nodes/status
+    verbs:
+    - '*'
+- apiVersion: rbac.authorization.k8s.io/v1beta1
+  kind: ClusterRole
+  metadata:
+    name: role:shared0-samminioncrosscloudplatform1-5-ukb.ops.sfdc.net
+  rules:
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-samminioncrosscloudplatform1-5-ukb.ops.sfdc.net
+    resources:
+    - nodes/status
+    verbs:
+    - '*'
+- apiVersion: rbac.authorization.k8s.io/v1beta1
+  kind: ClusterRole
+  metadata:
     name: role:shared0-samminioncrosscloudplatform2-1-ukb.ops.sfdc.net
   rules:
   - apiGroups:
@@ -1082,6 +1108,45 @@ items:
 - apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
+    name: role:shared0-samminioncrosscloudplatform2-3-ukb.ops.sfdc.net
+  rules:
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-samminioncrosscloudplatform2-3-ukb.ops.sfdc.net
+    resources:
+    - nodes/status
+    verbs:
+    - '*'
+- apiVersion: rbac.authorization.k8s.io/v1beta1
+  kind: ClusterRole
+  metadata:
+    name: role:shared0-samminioncrosscloudplatform2-4-ukb.ops.sfdc.net
+  rules:
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-samminioncrosscloudplatform2-4-ukb.ops.sfdc.net
+    resources:
+    - nodes/status
+    verbs:
+    - '*'
+- apiVersion: rbac.authorization.k8s.io/v1beta1
+  kind: ClusterRole
+  metadata:
+    name: role:shared0-samminioncrosscloudplatform2-5-ukb.ops.sfdc.net
+  rules:
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-samminioncrosscloudplatform2-5-ukb.ops.sfdc.net
+    resources:
+    - nodes/status
+    verbs:
+    - '*'
+- apiVersion: rbac.authorization.k8s.io/v1beta1
+  kind: ClusterRole
+  metadata:
     name: role:shared0-samminioncrosscloudplatform3-1-ukb.ops.sfdc.net
   rules:
   - apiGroups:
@@ -1101,6 +1166,45 @@ items:
     - '*'
     resourceNames:
     - shared0-samminioncrosscloudplatform3-2-ukb.ops.sfdc.net
+    resources:
+    - nodes/status
+    verbs:
+    - '*'
+- apiVersion: rbac.authorization.k8s.io/v1beta1
+  kind: ClusterRole
+  metadata:
+    name: role:shared0-samminioncrosscloudplatform3-3-ukb.ops.sfdc.net
+  rules:
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-samminioncrosscloudplatform3-3-ukb.ops.sfdc.net
+    resources:
+    - nodes/status
+    verbs:
+    - '*'
+- apiVersion: rbac.authorization.k8s.io/v1beta1
+  kind: ClusterRole
+  metadata:
+    name: role:shared0-samminioncrosscloudplatform3-4-ukb.ops.sfdc.net
+  rules:
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-samminioncrosscloudplatform3-4-ukb.ops.sfdc.net
+    resources:
+    - nodes/status
+    verbs:
+    - '*'
+- apiVersion: rbac.authorization.k8s.io/v1beta1
+  kind: ClusterRole
+  metadata:
+    name: role:shared0-samminioncrosscloudplatform3-5-ukb.ops.sfdc.net
+  rules:
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-samminioncrosscloudplatform3-5-ukb.ops.sfdc.net
     resources:
     - nodes/status
     verbs:
@@ -1140,6 +1244,19 @@ items:
     - '*'
     resourceNames:
     - shared0-samminioncrosscloudsetup2-1-ukb.ops.sfdc.net
+    resources:
+    - nodes/status
+    verbs:
+    - '*'
+- apiVersion: rbac.authorization.k8s.io/v1beta1
+  kind: ClusterRole
+  metadata:
+    name: role:shared0-samminioncrosscloudsetup2-2-ukb.ops.sfdc.net
+  rules:
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-samminioncrosscloudsetup2-2-ukb.ops.sfdc.net
     resources:
     - nodes/status
     verbs:
@@ -1199,6 +1316,32 @@ items:
 - apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
+    name: role:shared0-samminioncustomerresolutionengine1-4-ukb.ops.sfdc.net
+  rules:
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-samminioncustomerresolutionengine1-4-ukb.ops.sfdc.net
+    resources:
+    - nodes/status
+    verbs:
+    - '*'
+- apiVersion: rbac.authorization.k8s.io/v1beta1
+  kind: ClusterRole
+  metadata:
+    name: role:shared0-samminioncustomerresolutionengine1-5-ukb.ops.sfdc.net
+  rules:
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-samminioncustomerresolutionengine1-5-ukb.ops.sfdc.net
+    resources:
+    - nodes/status
+    verbs:
+    - '*'
+- apiVersion: rbac.authorization.k8s.io/v1beta1
+  kind: ClusterRole
+  metadata:
     name: role:shared0-samminioncustomerresolutionengine2-1-ukb.ops.sfdc.net
   rules:
   - apiGroups:
@@ -1225,6 +1368,45 @@ items:
 - apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
+    name: role:shared0-samminioncustomerresolutionengine2-3-ukb.ops.sfdc.net
+  rules:
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-samminioncustomerresolutionengine2-3-ukb.ops.sfdc.net
+    resources:
+    - nodes/status
+    verbs:
+    - '*'
+- apiVersion: rbac.authorization.k8s.io/v1beta1
+  kind: ClusterRole
+  metadata:
+    name: role:shared0-samminioncustomerresolutionengine2-4-ukb.ops.sfdc.net
+  rules:
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-samminioncustomerresolutionengine2-4-ukb.ops.sfdc.net
+    resources:
+    - nodes/status
+    verbs:
+    - '*'
+- apiVersion: rbac.authorization.k8s.io/v1beta1
+  kind: ClusterRole
+  metadata:
+    name: role:shared0-samminioncustomerresolutionengine2-5-ukb.ops.sfdc.net
+  rules:
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-samminioncustomerresolutionengine2-5-ukb.ops.sfdc.net
+    resources:
+    - nodes/status
+    verbs:
+    - '*'
+- apiVersion: rbac.authorization.k8s.io/v1beta1
+  kind: ClusterRole
+  metadata:
     name: role:shared0-samminioncustomerresolutionengine3-1-ukb.ops.sfdc.net
   rules:
   - apiGroups:
@@ -1244,6 +1426,45 @@ items:
     - '*'
     resourceNames:
     - shared0-samminioncustomerresolutionengine3-2-ukb.ops.sfdc.net
+    resources:
+    - nodes/status
+    verbs:
+    - '*'
+- apiVersion: rbac.authorization.k8s.io/v1beta1
+  kind: ClusterRole
+  metadata:
+    name: role:shared0-samminioncustomerresolutionengine3-3-ukb.ops.sfdc.net
+  rules:
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-samminioncustomerresolutionengine3-3-ukb.ops.sfdc.net
+    resources:
+    - nodes/status
+    verbs:
+    - '*'
+- apiVersion: rbac.authorization.k8s.io/v1beta1
+  kind: ClusterRole
+  metadata:
+    name: role:shared0-samminioncustomerresolutionengine3-4-ukb.ops.sfdc.net
+  rules:
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-samminioncustomerresolutionengine3-4-ukb.ops.sfdc.net
+    resources:
+    - nodes/status
+    verbs:
+    - '*'
+- apiVersion: rbac.authorization.k8s.io/v1beta1
+  kind: ClusterRole
+  metadata:
+    name: role:shared0-samminioncustomerresolutionengine3-5-ukb.ops.sfdc.net
+  rules:
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-samminioncustomerresolutionengine3-5-ukb.ops.sfdc.net
     resources:
     - nodes/status
     verbs:
@@ -3468,6 +3689,28 @@ items:
 - apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRoleBinding
   metadata:
+    name: rolebinding:shared0-samminioncrosscloudplatform1-4-ukb.ops.sfdc.net
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: role:shared0-samminioncrosscloudplatform1-4-ukb.ops.sfdc.net
+  subjects:
+  - kind: User
+    name: shared0-samminioncrosscloudplatform1-4-ukb.ops.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1beta1
+  kind: ClusterRoleBinding
+  metadata:
+    name: rolebinding:shared0-samminioncrosscloudplatform1-5-ukb.ops.sfdc.net
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: role:shared0-samminioncrosscloudplatform1-5-ukb.ops.sfdc.net
+  subjects:
+  - kind: User
+    name: shared0-samminioncrosscloudplatform1-5-ukb.ops.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1beta1
+  kind: ClusterRoleBinding
+  metadata:
     name: rolebinding:shared0-samminioncrosscloudplatform2-1-ukb.ops.sfdc.net
   roleRef:
     apiGroup: rbac.authorization.k8s.io
@@ -3490,6 +3733,39 @@ items:
 - apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRoleBinding
   metadata:
+    name: rolebinding:shared0-samminioncrosscloudplatform2-3-ukb.ops.sfdc.net
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: role:shared0-samminioncrosscloudplatform2-3-ukb.ops.sfdc.net
+  subjects:
+  - kind: User
+    name: shared0-samminioncrosscloudplatform2-3-ukb.ops.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1beta1
+  kind: ClusterRoleBinding
+  metadata:
+    name: rolebinding:shared0-samminioncrosscloudplatform2-4-ukb.ops.sfdc.net
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: role:shared0-samminioncrosscloudplatform2-4-ukb.ops.sfdc.net
+  subjects:
+  - kind: User
+    name: shared0-samminioncrosscloudplatform2-4-ukb.ops.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1beta1
+  kind: ClusterRoleBinding
+  metadata:
+    name: rolebinding:shared0-samminioncrosscloudplatform2-5-ukb.ops.sfdc.net
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: role:shared0-samminioncrosscloudplatform2-5-ukb.ops.sfdc.net
+  subjects:
+  - kind: User
+    name: shared0-samminioncrosscloudplatform2-5-ukb.ops.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1beta1
+  kind: ClusterRoleBinding
+  metadata:
     name: rolebinding:shared0-samminioncrosscloudplatform3-1-ukb.ops.sfdc.net
   roleRef:
     apiGroup: rbac.authorization.k8s.io
@@ -3509,6 +3785,39 @@ items:
   subjects:
   - kind: User
     name: shared0-samminioncrosscloudplatform3-2-ukb.ops.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1beta1
+  kind: ClusterRoleBinding
+  metadata:
+    name: rolebinding:shared0-samminioncrosscloudplatform3-3-ukb.ops.sfdc.net
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: role:shared0-samminioncrosscloudplatform3-3-ukb.ops.sfdc.net
+  subjects:
+  - kind: User
+    name: shared0-samminioncrosscloudplatform3-3-ukb.ops.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1beta1
+  kind: ClusterRoleBinding
+  metadata:
+    name: rolebinding:shared0-samminioncrosscloudplatform3-4-ukb.ops.sfdc.net
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: role:shared0-samminioncrosscloudplatform3-4-ukb.ops.sfdc.net
+  subjects:
+  - kind: User
+    name: shared0-samminioncrosscloudplatform3-4-ukb.ops.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1beta1
+  kind: ClusterRoleBinding
+  metadata:
+    name: rolebinding:shared0-samminioncrosscloudplatform3-5-ukb.ops.sfdc.net
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: role:shared0-samminioncrosscloudplatform3-5-ukb.ops.sfdc.net
+  subjects:
+  - kind: User
+    name: shared0-samminioncrosscloudplatform3-5-ukb.ops.sfdc.net
 - apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRoleBinding
   metadata:
@@ -3542,6 +3851,17 @@ items:
   subjects:
   - kind: User
     name: shared0-samminioncrosscloudsetup2-1-ukb.ops.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1beta1
+  kind: ClusterRoleBinding
+  metadata:
+    name: rolebinding:shared0-samminioncrosscloudsetup2-2-ukb.ops.sfdc.net
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: role:shared0-samminioncrosscloudsetup2-2-ukb.ops.sfdc.net
+  subjects:
+  - kind: User
+    name: shared0-samminioncrosscloudsetup2-2-ukb.ops.sfdc.net
 - apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRoleBinding
   metadata:
@@ -3589,6 +3909,28 @@ items:
 - apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRoleBinding
   metadata:
+    name: rolebinding:shared0-samminioncustomerresolutionengine1-4-ukb.ops.sfdc.net
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: role:shared0-samminioncustomerresolutionengine1-4-ukb.ops.sfdc.net
+  subjects:
+  - kind: User
+    name: shared0-samminioncustomerresolutionengine1-4-ukb.ops.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1beta1
+  kind: ClusterRoleBinding
+  metadata:
+    name: rolebinding:shared0-samminioncustomerresolutionengine1-5-ukb.ops.sfdc.net
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: role:shared0-samminioncustomerresolutionengine1-5-ukb.ops.sfdc.net
+  subjects:
+  - kind: User
+    name: shared0-samminioncustomerresolutionengine1-5-ukb.ops.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1beta1
+  kind: ClusterRoleBinding
+  metadata:
     name: rolebinding:shared0-samminioncustomerresolutionengine2-1-ukb.ops.sfdc.net
   roleRef:
     apiGroup: rbac.authorization.k8s.io
@@ -3611,6 +3953,39 @@ items:
 - apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRoleBinding
   metadata:
+    name: rolebinding:shared0-samminioncustomerresolutionengine2-3-ukb.ops.sfdc.net
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: role:shared0-samminioncustomerresolutionengine2-3-ukb.ops.sfdc.net
+  subjects:
+  - kind: User
+    name: shared0-samminioncustomerresolutionengine2-3-ukb.ops.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1beta1
+  kind: ClusterRoleBinding
+  metadata:
+    name: rolebinding:shared0-samminioncustomerresolutionengine2-4-ukb.ops.sfdc.net
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: role:shared0-samminioncustomerresolutionengine2-4-ukb.ops.sfdc.net
+  subjects:
+  - kind: User
+    name: shared0-samminioncustomerresolutionengine2-4-ukb.ops.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1beta1
+  kind: ClusterRoleBinding
+  metadata:
+    name: rolebinding:shared0-samminioncustomerresolutionengine2-5-ukb.ops.sfdc.net
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: role:shared0-samminioncustomerresolutionengine2-5-ukb.ops.sfdc.net
+  subjects:
+  - kind: User
+    name: shared0-samminioncustomerresolutionengine2-5-ukb.ops.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1beta1
+  kind: ClusterRoleBinding
+  metadata:
     name: rolebinding:shared0-samminioncustomerresolutionengine3-1-ukb.ops.sfdc.net
   roleRef:
     apiGroup: rbac.authorization.k8s.io
@@ -3630,6 +4005,39 @@ items:
   subjects:
   - kind: User
     name: shared0-samminioncustomerresolutionengine3-2-ukb.ops.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1beta1
+  kind: ClusterRoleBinding
+  metadata:
+    name: rolebinding:shared0-samminioncustomerresolutionengine3-3-ukb.ops.sfdc.net
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: role:shared0-samminioncustomerresolutionengine3-3-ukb.ops.sfdc.net
+  subjects:
+  - kind: User
+    name: shared0-samminioncustomerresolutionengine3-3-ukb.ops.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1beta1
+  kind: ClusterRoleBinding
+  metadata:
+    name: rolebinding:shared0-samminioncustomerresolutionengine3-4-ukb.ops.sfdc.net
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: role:shared0-samminioncustomerresolutionengine3-4-ukb.ops.sfdc.net
+  subjects:
+  - kind: User
+    name: shared0-samminioncustomerresolutionengine3-4-ukb.ops.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1beta1
+  kind: ClusterRoleBinding
+  metadata:
+    name: rolebinding:shared0-samminioncustomerresolutionengine3-5-ukb.ops.sfdc.net
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: role:shared0-samminioncustomerresolutionengine3-5-ukb.ops.sfdc.net
+  subjects:
+  - kind: User
+    name: shared0-samminioncustomerresolutionengine3-5-ukb.ops.sfdc.net
 - apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRoleBinding
   metadata:
