@@ -209,7 +209,7 @@ configs.deploymentBase("service-mesh") {
               periodSeconds: 3,
             },
             resources: {},
-          },
+          } + configs.ipAddressResourceRequest,
           maddogRefresher.madkubRefresherContainer,
           {
             name: "sherpa",
