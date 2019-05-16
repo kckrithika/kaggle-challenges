@@ -5,7 +5,7 @@ system:
     email:
       - smarwaha@salesforce.com
   functions:
-  - name: sip-em
+  - name: exp-manager
     count: 1
     volumes:
     - name: heroku-secret
@@ -15,8 +15,8 @@ system:
       k4asecret:
         secretName: blacktab-credentials
     containers:
-    - name: sip-em-k4a 
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/sip/em:sip-em-20190508T1330
+    - name: sip-em 
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/sip/em:sip-em-k4a-20190502T1630
       livenessProbe:
         exec:
           command: ["true"]
