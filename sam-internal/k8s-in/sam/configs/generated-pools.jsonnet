@@ -1598,8 +1598,7 @@
         "vagabond",
         "pbsgeo",
         "pbsmatch",
-        "care",
-        "sdb-dataengineering"
+        "care"
       ],
       "access": [
         "team/CSC_Sam",
@@ -1635,8 +1634,7 @@
         "team/Vagabond",
         "team/pbsgeo",
         "team/pbsmatch",
-        "team/care",
-        "team/sdb-dataengineering"
+        "team/care"
       ],
       "controlEstate": "gsf-core-devmvp-sam2-sam",
       "estate": "gsf-core-devmvp-sam2-sam",
