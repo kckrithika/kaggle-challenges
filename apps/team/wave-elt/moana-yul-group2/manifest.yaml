@@ -6,19 +6,19 @@ apiVersion: v1
 system:
   functions:
   - containers:
-    - image: ops0-artifactrepo1-0-syd.data.sfdc.net/sfci/insights/moanaengine:release-1.0.4-27d617f
+    - image: ops0-artifactrepo1-0-yul.data.sfdc.net/sfci/insights/moanaengine:release-1.0.4-27d617f
       livenessProbe:
         exec:
           command: [ls]
         initialDelaySeconds: 5
       name: moana-engine
     count: 0
-    name: moana-engine-group1
+    name: moana-engine-group2
   - containers:
     - env:
       - {name: LOGGING_JSON_STDOUT_LEVEL, value: ALL}
       - {name: LOGGING_STDERR_LEVEL, value: ALL}
-      - {name: TEST_POD, value: moana-driver-group1}
+      - {name: TEST_POD, value: moana-driver-group2}
       - {name: PKI_TRUSTSTORE_DIR, value: /home/scone/client-certs}
       - {name: PKI_KEYSTORE_DIR, value: /home/scone/client-certs/client}
       - {name: JAVA_OPTS, value: '-server -XX:MaxMetaspaceSize=256m -Xmx1024m -Xms1024m'}
@@ -26,8 +26,9 @@ system:
       - {name: TESTRECIPE_TIMEOUT, value: 240s}
       - {name: TESTRECIPE_LASTSUCCESSTARGET, value: 360s}
       - {name: TESTRECIPE_MAESTROPINGTEST, value: 'true'}
-      - {name: DEPLOYMENT_ID, value: syd-group1}
+      - {name: DEPLOYMENT_ID, value: yul-group2}
       - {name: HANDLED_PODS_PATTERN, value: 'cs[0-9]+\..*|moana-driver-group1'}
+      - {name: HANDLED_PODS_INVERT_MATCH, value: 'true'}
       image: sfci/insights/moana-driver:release-12-2319d24
       livenessProbe:
         httpGet: {path: /manage/health, port: 15372}
@@ -45,7 +46,7 @@ system:
     count: 1
     hostnetwork: true
     identity: {serviceName: moana-driver}
-    name: moana-driver-group1
+    name: moana-driver-group2
     volumes:
     - maddogCert: {type: server}
       name: tls-server-certs
@@ -55,21 +56,22 @@ system:
     - env:
       - {name: LOGGING_JSON_STDOUT_LEVEL, value: ALL}
       - {name: LOGGING_STDERR_LEVEL, value: ALL}
-      - {name: MOANA_SPARK_ENGINE_IMAGE, value: 'ops0-artifactrepo1-0-syd.data.sfdc.net/sfci/insights/moanaengine:release-1.0.4-27d617f'}
-      - {name: KAFKA_GROUP_ID, value: moana-jobcontroller-group1}
+      - {name: MOANA_SPARK_ENGINE_IMAGE, value: 'ops0-artifactrepo1-0-yul.data.sfdc.net/sfci/insights/moanaengine:release-1.0.4-27d617f'}
+      - {name: KAFKA_GROUP_ID, value: moana-jobcontroller-group2}
       - {name: K8S_SPARK_OVERRIDES, value: '{"spark.eventLog.enabled": "false", "spark.executor.extraJavaOptions":
           "-XX:MaxDirectMemorySize=256M -XX:ReservedCodeCacheSize=128M -XX:MaxMetaspaceSize=128M
           -XX:+UseG1GC -verbose:gc -XX:+PrintGCDateStamps -XX:+PrintGCDetails -XX:+UseCompressedOops
           -Djdk.nio.maxCachedBufferSize=262144", "spark.shuffle.accurateBlockThreshold":
           "1048576", "spark.shuffle.io.preferDirectBufs": "false", "spark.ui.enabled":
           "false"}'}
-      - {name: DEPLOYMENT_ID, value: syd-group1}
+      - {name: DEPLOYMENT_ID, value: yul-group2}
       - {name: DARK_LAUNCH_WRITE_TO_M3, value: 'false'}
       - {name: JAVA_OPTS, value: '-server -XX:MaxMetaspaceSize=512m -Xmx2048m -Xms2048m'}
       - {name: SIZING_MEMORY_OVERHEAD, value: '1024'}
       - {name: K8S_CPU_LIMIT_APPLY, value: 'false'}
       - {name: HANDLED_PODS_PATTERN, value: 'cs[0-9]+\..*|moana-driver-group1'}
-      - {name: K8S_API_ENDPOINT, value: 'https://kubernetes-api-flowsnake-syd.data.sfdc.net'}
+      - {name: HANDLED_PODS_INVERT_MATCH, value: 'true'}
+      - {name: K8S_API_ENDPOINT, value: 'https://kubernetes-api-flowsnake-yul.data.sfdc.net'}
       - {name: MAESTRO_ENDPOINT, value: 'https://insights1-iworker{{superPodIndex}}-0-${kingdom}.data.sfdc.net:8008'}
       image: sfci/insights/jobcontroller:release-1.0.3-5937af6
       livenessProbe:
@@ -115,7 +117,7 @@ system:
     count: 3
     hostnetwork: true
     identity: {serviceName: datapool}
-    name: jobcontroller-group1
+    name: jobcontroller-group2
     volumes:
     - hostPath: {path: /data/sam/wave/log/datapool}
       name: logvol
