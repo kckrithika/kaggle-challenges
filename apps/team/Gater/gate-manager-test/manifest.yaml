@@ -22,6 +22,7 @@ system:
       - --gater-service.thread.pool.max-size=0
       - --scone.detectsidecars=false
       - --synctask.host-affinity=false
+      - --scone.srpc.announcing-enabled=false
       ports:
       - containerPort: 7020
       - containerPort: 9522
