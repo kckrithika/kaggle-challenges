@@ -8,6 +8,7 @@ data:
       "enableIdentityEnvVar": false,
       "enableK4a": false,
       "enableMaddog": true,
+      "enableStatefulSet": true,
       "funnelEndpoint": "ajna0-funnel1-0-vpod.data.sfdc.net:80",
       "imagePullPolicy": "IfNotPresent",
       "k4aInitContainerImage": "ops0-artifactrepo2-0-prd.data.sfdc.net/tnrp/sam/hypersam:sam-0002447-69fdc914",

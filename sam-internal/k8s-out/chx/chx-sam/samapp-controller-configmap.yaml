@@ -7,6 +7,7 @@ data:
       "enableDNS": true,
       "enableIdentityEnvVar": false,
       "enableMaddog": false,
+      "enableStatefulSet": true,
       "funnelEndpoint": "mandm-funnel-chx.data.sfdc.net:8080",
       "imagePullPolicy": "IfNotPresent",
       "k4aInitContainerImage": "ops-artifactrepo1-0-chx.data.sfdc.net/tnrp/sam/hypersam:sam-0002447-69fdc914",
