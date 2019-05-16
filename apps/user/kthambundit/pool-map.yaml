@@ -4,4 +4,4 @@ apps:
   - name: prd/prd-sam  # the SAM Sandbox uses the prd/prd-sam host cluster
                  # you can also specify other pools
  gid-runtime-service:
-  - name: prd/prd-sam
+  - name: xrd/xrd-sampool
