@@ -39,6 +39,12 @@ apps:
       - shared0-samminionatlasdir2-1-xrd.eng.sfdc.net
       - shared0-samminionatlasdir1-2-xrd.eng.sfdc.net
 
+  # XRD Experimental Cloud Atlas Service
+  shared0-samminionatlasservice-xrd:
+    - name: xrd/xrd-sam_cloudatlas_dir
+      hostSubList:
+        - shared0-samminionatlasdir1-1-xrd.eng.sfdc.net
+
   # DFW DS Topomaster
   shared0-samminionatlasdir1-1-dfw:
     - name: dfw/dfw-sam_cloudatlas_dir
