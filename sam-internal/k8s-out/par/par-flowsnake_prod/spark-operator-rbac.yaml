@@ -19,8 +19,13 @@ items:
   - apiGroups:
     - ""
     resources:
-    - services
     - configmaps
+    verbs:
+    - '*'
+  - apiGroups:
+    - ""
+    resources:
+    - services
     - secrets
     verbs:
     - create

@@ -3,7 +3,6 @@ local kingdom = std.extVar("kingdom");
 local flowsnake_config = import "flowsnake_config.jsonnet";
 local flowsnake_images = import "flowsnake_images.jsonnet";
 local enabled = std.objectHas(flowsnake_images.feature_flags, "spark_operator");
-local election = std.objectHas(flowsnake_images.feature_flags, "spark_operator_election");
 local madkub_common = import "madkub_common.jsonnet";
 local cert_name = "spark-webhook";
 
@@ -19,7 +18,7 @@ local cert_name = "spark-webhook";
       },
     },
     spec: {
-        replicas: (if election then 3 else 1),
+        replicas: 3,
         selector: {
             matchLabels: {
                 "app.kubernetes.io/name": "spark-operator",
@@ -65,10 +64,9 @@ local cert_name = "spark-webhook";
                             "-webhook-server-cert=/certs/server/certificates/server.pem",
                             "-webhook-server-cert-key=/certs/server/keys/server-key.pem",
                             "-webhook-ca-cert=/certs/ca/cabundle.pem",
-                        ] + (if election then [
                             "-leader-election",
                             "-leader-election-lock-namespace=flowsnake",
-                            ] else []),
+                        ],
                         ports: [{
                             containerPort: 10254,
                             name: "metrics",
