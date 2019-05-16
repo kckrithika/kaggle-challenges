@@ -16,7 +16,7 @@ system:
       - --gater.perf.gate-names=com.salesforce.gater.perftest1
       - --management.server.port=15375
       - --server.port=8081
-      - --metrics.collectionInterval=61
+      - --metrics.collectionInterval=60
       - --gater.grpc.deadline-ms=1000
       - --gater.timeout-in-millis=1000
       - --gater.perf.should-log=false      
