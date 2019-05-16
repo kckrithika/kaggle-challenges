@@ -65,7 +65,7 @@ if samfeatureflags.kafkaConsumer then {
                             readOnly: true,
                         },
                     ] + madkub.madkubSamCertVolumeMounts(certDirs),
-                },
+                } + configs.ipAddressResourceRequest,
 ] + [madkub.madkubRefreshContainer(certDirs)],
                 volumes+: [
                     configs.sfdchosts_volume,

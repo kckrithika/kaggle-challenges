@@ -29,7 +29,7 @@ if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" || configs.
                              initialDelaySeconds: 5,
                              periodSeconds: 5,
                          },
-                    },
+                    } + configs.ipAddressResourceRequest,
                 ],
                 volumes+: [
                     configs.cert_volume,

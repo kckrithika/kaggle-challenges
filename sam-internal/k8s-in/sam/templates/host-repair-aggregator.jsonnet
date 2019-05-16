@@ -45,7 +45,7 @@ if configs.estate == "prd-samtest" || configs.estate == "prd-sam" then {
                             readOnly: true,
                         },
                     ],
-                }],
+                } + configs.ipAddressResourceRequest],
                 volumes+: [
                     configs.sfdchosts_volume,
                     configs.config_volume("host-repair-aggregator"),
