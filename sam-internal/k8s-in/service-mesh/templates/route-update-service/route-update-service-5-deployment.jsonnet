@@ -92,7 +92,7 @@ configs.deploymentBase("service-mesh") {
               periodSeconds: 30,
               timeoutSeconds: 5,
             },
-          },
+          } + configs.ipAddressResourceRequest,
           madkub.madkubRefreshContainer(certConfigs)
         ],
         nodeSelector: {

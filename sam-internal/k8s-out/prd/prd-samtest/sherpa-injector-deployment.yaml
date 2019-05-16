@@ -125,7 +125,11 @@ spec:
             - /client-certs/client/keys/client-key.pem
           initialDelaySeconds: 4
           periodSeconds: 3
-        resources: {}
+        resources:
+          limits:
+            sam.sfdc.net/ip-address: "1"
+          requests:
+            sam.sfdc.net/ip-address: "1"
         terminationMessagePolicy: FallbackToLogsOnError
         volumeMounts:
         - mountPath: /server-certs
