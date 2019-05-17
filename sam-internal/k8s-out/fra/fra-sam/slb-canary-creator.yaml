@@ -33,6 +33,7 @@ spec:
         - --hostnameOverride=$(NODE_NAME)
         - --minSleepTime=2h
         - --maxSleepTime=3h
+        - --allHours=true
         env:
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig-platform
