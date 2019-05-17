@@ -14,7 +14,7 @@ system:
         - name: BROKER_URL
           value: 'mycroft.casp.prd-sam.prd.slb.sfdc.net'
         - name: CELERY_QUEUES
-          value: 'dfw,phx'
+          value: 'wax,chx,cdu,yul,syd,chi,lo3,lo2,par,cdg,hnd,fra,ukb,frf,ord,iad,phx,dfw,ia2,ph2'
       volumeMounts:
         - mountPath: /opt/sherlock/data
           name: sherlock-data-vol
