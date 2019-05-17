@@ -98,7 +98,7 @@ system:
 
         # App color to be used for blue/green release. Use PINK so it doesnt register in a real cluster
         - name: CASAM_APP_COLOR
-          value: pink
+          value: fuscia
 
         # Override port being announced in SD by coreapp - use the Envoy side car's listen port
         - name: SD_PORT_OVERRIDE
