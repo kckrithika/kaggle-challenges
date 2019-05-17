@@ -71,13 +71,13 @@ system:
       image: sfci/services/sfdc-bazel/disco/beacon:d7f1640
       args:
       - -endpoint
-      - samapp/$(FUNCTION_NAMESPACE)/$(FUNCTION):DATACENTER_ALLENV:7443
+      - $(FUNCTION_NAMESPACE)/$(FUNCTION):DATACENTER_ALLENV:7443
       - -endpoint
-      - samapp/$(FUNCTION_NAMESPACE)/$(FUNCTION):DATACENTER_ALLENV:7442
+      - $(FUNCTION_NAMESPACE)/$(FUNCTION):DATACENTER_ALLENV:7442
       livenessProbe:
         exec:
           command:
-          - /home/scone/is-alive.sh
+          - /opt/beacon/is-alive.sh
         initialDelaySeconds: 60
 
     # Add MadDog certificate volumes
