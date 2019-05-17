@@ -1,0 +1,63 @@
+- lbname: sledge
+  customlbname: sledge-lo2
+  servers:
+   - edge0-accelerator1-1-lo2.ops.sfdc.net
+   - edge0-accelerator1-2-lo2.ops.sfdc.net
+   - edge0-accelerator1-3-lo2.ops.sfdc.net
+   - edge0-accelerator1-4-lo2.ops.sfdc.net
+   - edge0-accelerator2-1-lo2.ops.sfdc.net
+   - edge0-accelerator2-2-lo2.ops.sfdc.net
+   - edge0-accelerator2-3-lo2.ops.sfdc.net
+   - edge0-accelerator2-4-lo2.ops.sfdc.net
+  ports:
+   - port: 80
+     targetport: 80
+     lbtype: dsr
+     healthport: 80
+     healthpath: "/ping.jsp"
+     healthprotocol: "http"
+   - port: 443
+     targetport: 443
+     lbtype: dsr
+     healthport: 443
+     healthpath: "/ping.jsp"
+     healthprotocol: "https"
+   - port: 8443
+     targetport: 8443
+     lbtype: dsr
+     healthport: 443
+     healthpath: "/ping.jsp"
+     healthprotocol: "https"
+- lbname: sledge-ead-lb
+  servers:
+   - public0-gateway1-1-lo2.ops.sfdc.net
+   - public0-gateway1-2-lo2.ops.sfdc.net
+   - public0-gateway1-3-lo2.ops.sfdc.net
+   - public0-gateway1-4-lo2.ops.sfdc.net
+   - public0-gateway1-5-lo2.ops.sfdc.net
+   - public0-gateway1-6-lo2.ops.sfdc.net
+   - public0-gateway2-1-lo2.ops.sfdc.net
+   - public0-gateway2-2-lo2.ops.sfdc.net
+   - public0-gateway2-3-lo2.ops.sfdc.net
+   - public0-gateway2-4-lo2.ops.sfdc.net
+   - public0-gateway2-5-lo2.ops.sfdc.net
+   - public0-gateway2-6-lo2.ops.sfdc.net
+  ports:
+   - port: 80
+     targetport: 80
+     lbtype: tcp
+     healthport: 81
+     healthpath: "/ping.jsp"
+     healthprotocol: "http"
+   - port: 443
+     targetport: 443
+     lbtype: tcp
+     healthport: 81
+     healthpath: "/ping.jsp"
+     healthprotocol: "http"
+   - port: 8443
+     targetport: 8443
+     lbtype: tcp
+     healthport: 81
+     healthpath: "/ping.jsp"
+     healthprotocol: "http"
