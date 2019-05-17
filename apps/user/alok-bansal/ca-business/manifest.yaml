@@ -76,6 +76,8 @@ system:
           env:
             - name: cloudatlas_http_server_port_servicemesh
               value: 7080
+            - name: management_server_port
+              value: 15371
           volumeMounts:
             - mountPath: /log
               name: logvol
