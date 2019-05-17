@@ -27,7 +27,6 @@ system:
       - {name: TESTRECIPE_LASTSUCCESSTARGET, value: 360s}
       - {name: TESTRECIPE_MAESTROPINGTEST, value: 'true'}
       - {name: DEPLOYMENT_ID, value: syd-group1}
-      - {name: HANDLED_PODS_PATTERN, value: 'cs[0-9]+\..*|moana-driver-group1'}
       image: sfci/insights/moana-driver:release-12-2319d24
       livenessProbe:
         httpGet: {path: /manage/health, port: 15372}
@@ -43,7 +42,7 @@ system:
       volumeMounts:
       - {mountPath: /home/scone/client-certs, name: tls-client-certs}
     count: 1
-    hostnetwork: true
+    hostnetwork: false
     identity: {serviceName: moana-driver}
     name: moana-driver-group1
     volumes:
@@ -113,7 +112,7 @@ system:
       - {mountPath: /client-certs, name: tls-client-certs}
       - {mountPath: /log, name: sherpa-log-volume}
     count: 3
-    hostnetwork: true
+    hostnetwork: false
     identity: {serviceName: datapool}
     name: jobcontroller-group1
     volumes:

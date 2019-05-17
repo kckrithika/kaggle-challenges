@@ -3,12 +3,6 @@ apps:
 
   moana-syd-group2:
   - syd/syd-sam_datapool
-  moana-cdu-group2:
-  - cdu/cdu-sam_datapool
-  moana-yul-group2:
-  - yul/yul-sam_datapool
-  moana-yhu-group2:
-  - yhu/yhu-sam_datapool
   moana-engine-lo3-frf-group2:
   - frf/frf-sam_datapool
   moana-lo3-group2:
