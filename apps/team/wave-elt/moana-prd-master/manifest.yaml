@@ -41,7 +41,7 @@ system:
       volumeMounts:
       - {mountPath: /home/scone/client-certs, name: tls-client-certs}
     count: 3
-    hostnetwork: false
+    hostnetwork: true
     identity: {serviceName: moana-driver}
     name: moana-driver-master
     volumes:
@@ -85,7 +85,7 @@ system:
       - {mountPath: /home/datapool/logs, name: logvol}
       - {mountPath: /home/datapool/client-certs, name: tls-client-certs}
     count: 3
-    hostnetwork: false
+    hostnetwork: true
     identity: {serviceName: datapool}
     name: jobcontroller-master
     volumes:
