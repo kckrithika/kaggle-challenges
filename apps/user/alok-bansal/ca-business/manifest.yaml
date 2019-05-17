@@ -6,6 +6,7 @@ system:
       containers:
         #####################################################################################
         # NGINX Rev Proxy
+        #####################################################################################
         - name: nginx-rev-proxy
           image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/alok-bansal/alok-nginx:latest
           ports:
@@ -22,6 +23,7 @@ system:
               name: cache-volume
         #####################################################################################
         # GID service
+        #####################################################################################
         - name: gid-service
           image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/gid/gid-service:latest
           env:
@@ -43,6 +45,7 @@ system:
               mountPath: /certs
         #####################################################################################
         # C2C service
+        #####################################################################################
         - name: c2c-service
           image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/gid/c2c-service:latest
           env:
@@ -62,12 +65,13 @@ system:
               mountPath: /certs
         #####################################################################################
         # Entity API
+        #####################################################################################
         - name: cloudatlas-service
           image: sfci/cloud-atlas/cloudatlas/cloudatlas-service:2.22split2
           command: ["java", "-jar", "cloudatlas-service.jar"]
           env:
             - name: cloudatlas_http_server_port_servicemesh
-            - value: 7080
+              value: 7080
           volumeMounts:
             - mountPath: /log
               name: logvol
@@ -96,12 +100,12 @@ system:
             failureThreshold: 120
       #####################################################################################
       # Volumes Needed
+      #####################################################################################
       volumes:
         - name: cache-volume
           emptyDir: {}
         - name: logvol
-          hostPath:
-            path: /home/sfdc-atlas/logs
+          emptyDir: {}
         - name: server-cert
           maddogCert:
             type: server
@@ -111,7 +115,9 @@ system:
         - name: k4a-secrets
           k4asecret:
             secretName: ca-secrets
+  #####################################################################################
   # SLB
+  #####################################################################################
   loadbalancers:
     - lbname: cabusinesslb
       function: ca-business-layer
