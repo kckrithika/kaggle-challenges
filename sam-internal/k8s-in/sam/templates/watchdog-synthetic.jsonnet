@@ -44,7 +44,7 @@ if configs.kingdom != "mvp" then {
                                      # TODO: When we move to the bundle controller and deployer bot we can move this back to simply be samimages.hypersam
                                      "-imageName=" + samimages.hypersam,
                                      "-watchDogKind=" + $.kind,
-                                     "-enableStatefulChecks=false",
+                                     "-enableStatefulChecks=" + if configs.estate == "prd-samtest" then "true" else "false",
                                  ]
                                  + samwdconfig.shared_args
                                  + (if samfeatureflags.syntheticwdPagerDutyEnabled then samwdconfig.low_urgency_pagerduty_args else []),
