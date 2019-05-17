@@ -9,7 +9,7 @@ system:
     count: 1
     containers:
     - name: cre-sp-ccp-func
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cre/cre-stream-processing:1.7.0-freeze-001.0.release-1.7.76d4b18.1
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cre-fusion/services/stream-processor:1.8.0.0.develop.f3cf074.18
       env:
         - name: PUBLISHING_TOPIC
           value: sfdc.prod.cre__prd.ajna_local__cre_outbound_CCP_Integration_Functional
@@ -36,7 +36,7 @@ system:
         - name: METRICS_FUNNEL_URI
           value: http://ajna0-funnel1-0-prd.data.sfdc.net
         - name: CONTROLPLANE_ENDPOINT
-          value: cre-control-plane-ccp-func.retail-cre.localhost.mesh.force.com:5443
+          value: http://cre-control-plane-ccp-func.retail-cre.localhost.mesh.force.com:5442
         - name: DUMMY_RESTART_VAR
           value: helloworld1
         - name: JVM_ARGS
@@ -54,7 +54,7 @@ system:
                   -Xmx4G -Xms4G -XX:ParallelGCThreads=8"
       ports:
       - containerPort: 8080
-      - containerPort: 7020
+      - containerPort: 7022
       - containerPort: 15372
       resources:
         limits: { cpu: "2", memory: "6Gi" }
@@ -92,7 +92,7 @@ system:
         limits: { cpu: "1", memory: "1Gi" }
         requests: { cpu: "1", memory: "1Gi" }
       ports:
-      - containerPort: 7443
+      - containerPort: 7442
         name: sh-in-http1-tls
       - containerPort: 15373 # Sherpa admin port. This can be handy when debugging issues.
         name: sherpa-in-admin
@@ -112,7 +112,7 @@ system:
       image: sfci/servicelibs/beacon:f6445b2b299f232eda1e0be9739b8242153478ea
       args:
       - -endpoint
-      - retail-cre/cre-sp-ccp-func:DATACENTER_ALLENV:7443
+      - retail-cre/cre-sp-ccp-func:DATACENTER_ALLENV:7442
       resources:
         limits: { cpu: "1", memory: "1Gi" }
         requests: { cpu: "1", memory: "1Gi" }
