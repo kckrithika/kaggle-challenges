@@ -35,6 +35,9 @@ system:
         periodSeconds: 60
         timeoutSeconds: 30
       name: moana-driver
+      ports:
+      - {containerPort: 8080, name: http}
+      - {containerPort: 15372, name: mgmt}
       resources:
         limits: {cpu: 2, memory: 2G}
         requests: {cpu: 1, memory: 2G}
