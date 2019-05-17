@@ -5,13 +5,13 @@ system:
     count: 4
     containers:
     - name: pbsmatch
-      image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-gcp/dva/pbspectrum:4a26beb324260523455f2bdf5b4cb8d53e10089a
+      image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-gcp/dva/pbspectrum:e28d974e3275405e7c54fb4796e65cd62026668e
       ports:
-      - containerPort: 8080
+      - containerPort: 7022
       livenessProbe:
         httpGet:
           path: /ping.jsp
-          port: 8080
+          port: 7022
         initialDelaySeconds: 500 
         periodSeconds: 30
       resources:
@@ -34,6 +34,6 @@ system:
     function: default
     slbenabled: true
     ports:
-      - port: 8080
-        targetport: 8080
+      - port: 7022
+        targetport: 7022
         lbtype: tcp
