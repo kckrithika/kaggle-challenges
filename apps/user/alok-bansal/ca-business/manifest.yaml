@@ -79,9 +79,6 @@ system:
               name: server-cert
             - mountPath: /clientcerts
               name: client-cert
-            - mountPath: /k4asecrets
-              name: k4a-secrets
-              readOnly: true
           ports:
             - containerPort: 7030
             - containerPort: 7032
@@ -112,9 +109,6 @@ system:
         - name: client-cert
           maddogCert:
             type: client
-        - name: k4a-secrets
-          k4asecret:
-            secretName: ca-secrets
   #####################################################################################
   # SLB
   #####################################################################################
