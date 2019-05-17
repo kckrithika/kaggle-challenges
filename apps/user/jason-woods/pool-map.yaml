@@ -1,9 +1,1 @@
 apps:
-    qpid-broker-stateful:
-        - prd/prd-sam
-    qpid-broker-stateless:
-        - prd/prd-sam
-    prd-qpid-test-client:
-        - prd/prd-sam
-    prd-qpid-test-new-client:
-        - prd/prd-sam
