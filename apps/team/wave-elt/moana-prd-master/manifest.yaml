@@ -35,9 +35,6 @@ system:
         periodSeconds: 60
         timeoutSeconds: 30
       name: moana-driver
-      ports:
-      - {containerPort: 8080, name: http}
-      - {containerPort: 15372, name: mgmt}
       resources:
         limits: {cpu: 2, memory: 2G}
         requests: {cpu: 1, memory: 2G}
@@ -81,40 +78,12 @@ system:
         periodSeconds: 60
         timeoutSeconds: 30
       name: jobcontroller
-      ports:
-      - {containerPort: 7020, name: grpc}
-      - {containerPort: 15372, name: mgmt}
       resources:
         limits: {cpu: 2, memory: 4G}
         requests: {cpu: 2, memory: 4G}
       volumeMounts:
       - {mountPath: /home/datapool/logs, name: logvol}
       - {mountPath: /home/datapool/client-certs, name: tls-client-certs}
-    - env:
-      - {name: SFDC_ENVIRONMENT, value: prod}
-      image: sfci/servicelibs/sherpa:2.0.24
-      livenessProbe:
-        exec:
-          command: [./bin/is-alive]
-        initialDelaySeconds: 120
-        periodSeconds: 5
-      name: sherpa
-      ports:
-      - {containerPort: 7012, name: sherpa-in-plain}
-      - {containerPort: 7443, name: sherpa-in-tls}
-      - {containerPort: 15373, name: sherpa-adm}
-      readinessProbe:
-        exec:
-          command: [./bin/is-ready]
-        initialDelaySeconds: 110
-        periodSeconds: 5
-      resources:
-        limits: {cpu: '1', memory: 1Gi}
-        requests: {cpu: '1', memory: 1Gi}
-      volumeMounts:
-      - {mountPath: /server-certs, name: tls-server-certs}
-      - {mountPath: /client-certs, name: tls-client-certs}
-      - {mountPath: /log, name: sherpa-log-volume}
     count: 3
     hostnetwork: false
     identity: {serviceName: datapool}
