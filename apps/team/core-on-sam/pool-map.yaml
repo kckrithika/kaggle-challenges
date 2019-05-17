@@ -131,6 +131,4 @@ apps:
   - name: mvp/gsf-core-devmvp-sam2-sam
  gcp-devmvp-proxy:
   - name: mvp/gsf-core-devmvp-sam2-sam
- gcp-devmvp-3az:
-  - name: mvp/gsf-core-devmvp-sam2-sam
 
