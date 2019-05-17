@@ -78,7 +78,7 @@ system:
       volumeMounts:
       - mountPath: /log
         name: logvol
-      - mountPath: /certs/cloudatlas
+      - mountPath: /certs
         name: server-cert
       - mountPath: /clientcerts
         name: client-cert
