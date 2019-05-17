@@ -77,7 +77,7 @@ system:
       livenessProbe:
         exec:
           command:
-          - /home/scone/is-alive.sh
+          - /opt/beacon/is-alive.sh
         initialDelaySeconds: 60
 
     # Add MadDog certificate volumes
