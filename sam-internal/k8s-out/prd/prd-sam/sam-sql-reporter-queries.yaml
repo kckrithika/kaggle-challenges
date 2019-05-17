@@ -985,6 +985,10 @@ data:
         {
           "name": "Pods in prd-sam that use pod IP but are missing the ip address request",
           "sql": "select * from (\nselect\n  namespace,\n  name,\n  (case when Payload-\u003e\u003e'$.spec.containers[*].resources.limits.\"sam.sfdc.net/ip-address\"' is NULL then 0 else 1 end) as HasIpRequest,\n  (case when Payload-\u003e\u003e'$.status.hostIP' != Payload-\u003e\u003e'$.status.podIP' then 1 else 0 end) as UsePodIP\nfrom k8s_resource where apikind = 'Pod' and controlEstate = 'prd-sam' and IsTombstone=0\n) as ss\nwhere HasIpRequest = 0 and UsePodIP = 1"
+        },
+        {
+          "name": "Prd-SAM-IpAddress-Resource-Capacity",
+          "sql": "select name, Payload-\u003e\u003e'$.status.capacity.\"sam.sfdc.net/ip-address\"' as IpAddressCapacity from k8s_resource where apikind = 'Node' and controlEstate = 'prd-sam'"
         }
       ]
     }
