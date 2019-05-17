@@ -52,7 +52,7 @@ if configs.estate == "prd-sdc" || slbconfigs.isProdEstate then configs.deploymen
                                  ] + (if configs.estate == "fra-sam" || configs.estate == "cdg-sam" then [
                                      "--minSleepTime=2h",
                                      "--maxSleepTime=3h",
-                                 ] else []),
+                                 ] else []) + (if slbflights.slbCanaryAllHours ["--allHours=true",] else []),
                         volumeMounts: configs.filter_empty([
                             configs.maddog_cert_volume_mount,
                             slbconfigs.logs_volume_mount,
