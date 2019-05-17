@@ -6,7 +6,7 @@ system:
     containers:
     # C2C service
     - name: c2c-service
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/gid/c2c-service:latest
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/gid/c2c-service:20190516160348-30d61d1-argus-debug
       env:
       - name: c2c_common_gdotBasePath
         value: http://10.233.180.195:8090/scim
