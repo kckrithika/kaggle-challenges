@@ -5,6 +5,7 @@ data:
     0.12.0 = 696
     0.12.1 = 10001
     0.12.5 = 10011
+    0.12.5-hbase = jenkins-dva-transformation-flowsnake-platform-PR-831-2-itest
 kind: ConfigMap
 metadata:
   creationTimestamp: null

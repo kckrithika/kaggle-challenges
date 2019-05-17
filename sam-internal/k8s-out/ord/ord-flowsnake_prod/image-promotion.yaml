@@ -12,6 +12,8 @@ spec:
         name: flowsnake-environment-service
       - image: ops0-artifactrepo1-0-ord.data.sfdc.net/dva/flowsnake-environment-service:696
         name: flowsnake-environment-service
+      - image: ops0-artifactrepo1-0-ord.data.sfdc.net/dva/flowsnake-environment-service:jenkins-dva-transformation-flowsnake-platform-PR-831-2-itest
+        name: flowsnake-environment-service
       - image: ops0-artifactrepo1-0-ord.data.sfdc.net/dva/flowsnake-job-flowsnake-airflow-dags:0.10.0
         name: flowsnake-job-flowsnake-airflow-dags
       - image: ops0-artifactrepo1-0-ord.data.sfdc.net/dva/flowsnake-job-flowsnake-airflow-dags:662
@@ -60,6 +62,8 @@ spec:
         name: flowsnake-kafka-configurator
       - image: ops0-artifactrepo1-0-ord.data.sfdc.net/dva/flowsnake-kafka-configurator:696
         name: flowsnake-kafka-configurator
+      - image: ops0-artifactrepo1-0-ord.data.sfdc.net/dva/flowsnake-kafka-configurator:jenkins-dva-transformation-flowsnake-platform-PR-831-2-itest
+        name: flowsnake-kafka-configurator
       - image: ops0-artifactrepo1-0-ord.data.sfdc.net/dva/flowsnake-kafka-connect:10001
         name: flowsnake-kafka-connect
       - image: ops0-artifactrepo1-0-ord.data.sfdc.net/dva/flowsnake-kafka-connect:10011
@@ -67,6 +71,8 @@ spec:
       - image: ops0-artifactrepo1-0-ord.data.sfdc.net/dva/flowsnake-kafka-connect:662
         name: flowsnake-kafka-connect
       - image: ops0-artifactrepo1-0-ord.data.sfdc.net/dva/flowsnake-kafka-connect:696
+        name: flowsnake-kafka-connect
+      - image: ops0-artifactrepo1-0-ord.data.sfdc.net/dva/flowsnake-kafka-connect:jenkins-dva-transformation-flowsnake-platform-PR-831-2-itest
         name: flowsnake-kafka-connect
       - image: ops0-artifactrepo1-0-ord.data.sfdc.net/dva/flowsnake-kafka-rest-proxy:10001
         name: flowsnake-kafka-rest-proxy
@@ -76,6 +82,8 @@ spec:
         name: flowsnake-kafka-rest-proxy
       - image: ops0-artifactrepo1-0-ord.data.sfdc.net/dva/flowsnake-kafka-rest-proxy:696
         name: flowsnake-kafka-rest-proxy
+      - image: ops0-artifactrepo1-0-ord.data.sfdc.net/dva/flowsnake-kafka-rest-proxy:jenkins-dva-transformation-flowsnake-platform-PR-831-2-itest
+        name: flowsnake-kafka-rest-proxy
       - image: ops0-artifactrepo1-0-ord.data.sfdc.net/dva/flowsnake-local-kafka:10001
         name: flowsnake-local-kafka
       - image: ops0-artifactrepo1-0-ord.data.sfdc.net/dva/flowsnake-local-kafka:10011
@@ -83,6 +91,8 @@ spec:
       - image: ops0-artifactrepo1-0-ord.data.sfdc.net/dva/flowsnake-local-kafka:662
         name: flowsnake-local-kafka
       - image: ops0-artifactrepo1-0-ord.data.sfdc.net/dva/flowsnake-local-kafka:696
+        name: flowsnake-local-kafka
+      - image: ops0-artifactrepo1-0-ord.data.sfdc.net/dva/flowsnake-local-kafka:jenkins-dva-transformation-flowsnake-platform-PR-831-2-itest
         name: flowsnake-local-kafka
       - image: ops0-artifactrepo1-0-ord.data.sfdc.net/dva/flowsnake-local-zookeeper:10001
         name: flowsnake-local-zookeeper
@@ -92,6 +102,8 @@ spec:
         name: flowsnake-local-zookeeper
       - image: ops0-artifactrepo1-0-ord.data.sfdc.net/dva/flowsnake-local-zookeeper:696
         name: flowsnake-local-zookeeper
+      - image: ops0-artifactrepo1-0-ord.data.sfdc.net/dva/flowsnake-local-zookeeper:jenkins-dva-transformation-flowsnake-platform-PR-831-2-itest
+        name: flowsnake-local-zookeeper
       - image: ops0-artifactrepo1-0-ord.data.sfdc.net/dva/flowsnake-logstash:10001
         name: flowsnake-logstash
       - image: ops0-artifactrepo1-0-ord.data.sfdc.net/dva/flowsnake-logstash:10011
@@ -99,6 +111,8 @@ spec:
       - image: ops0-artifactrepo1-0-ord.data.sfdc.net/dva/flowsnake-logstash:662
         name: flowsnake-logstash
       - image: ops0-artifactrepo1-0-ord.data.sfdc.net/dva/flowsnake-logstash:696
+        name: flowsnake-logstash
+      - image: ops0-artifactrepo1-0-ord.data.sfdc.net/dva/flowsnake-logstash:jenkins-dva-transformation-flowsnake-platform-PR-831-2-itest
         name: flowsnake-logstash
       - image: ops0-artifactrepo1-0-ord.data.sfdc.net/dva/flowsnake-postgresql:662
         name: flowsnake-postgresql
@@ -112,6 +126,8 @@ spec:
         name: flowsnake-rewriting-proxy
       - image: ops0-artifactrepo1-0-ord.data.sfdc.net/dva/flowsnake-rewriting-proxy:696
         name: flowsnake-rewriting-proxy
+      - image: ops0-artifactrepo1-0-ord.data.sfdc.net/dva/flowsnake-rewriting-proxy:jenkins-dva-transformation-flowsnake-platform-PR-831-2-itest
+        name: flowsnake-rewriting-proxy
       - image: ops0-artifactrepo1-0-ord.data.sfdc.net/dva/flowsnake-sluice-configurator:10001
         name: flowsnake-sluice-configurator
       - image: ops0-artifactrepo1-0-ord.data.sfdc.net/dva/flowsnake-sluice-configurator:10011
@@ -119,6 +135,8 @@ spec:
       - image: ops0-artifactrepo1-0-ord.data.sfdc.net/dva/flowsnake-sluice-configurator:662
         name: flowsnake-sluice-configurator
       - image: ops0-artifactrepo1-0-ord.data.sfdc.net/dva/flowsnake-sluice-configurator:696
+        name: flowsnake-sluice-configurator
+      - image: ops0-artifactrepo1-0-ord.data.sfdc.net/dva/flowsnake-sluice-configurator:jenkins-dva-transformation-flowsnake-platform-PR-831-2-itest
         name: flowsnake-sluice-configurator
       - image: ops0-artifactrepo1-0-ord.data.sfdc.net/dva/flowsnake-spark-driver:662
         name: flowsnake-spark-driver
@@ -128,11 +146,15 @@ spec:
         name: flowsnake-spark-driver-2-1-0
       - image: ops0-artifactrepo1-0-ord.data.sfdc.net/dva/flowsnake-spark-driver_2.1.0:696
         name: flowsnake-spark-driver-2-1-0
+      - image: ops0-artifactrepo1-0-ord.data.sfdc.net/dva/flowsnake-spark-driver_2.1.0:jenkins-dva-transformation-flowsnake-platform-PR-831-2-itest
+        name: flowsnake-spark-driver-2-1-0
       - image: ops0-artifactrepo1-0-ord.data.sfdc.net/dva/flowsnake-spark-driver_2.3.0:10001
         name: flowsnake-spark-driver-2-3-0
       - image: ops0-artifactrepo1-0-ord.data.sfdc.net/dva/flowsnake-spark-driver_2.3.0:10011
         name: flowsnake-spark-driver-2-3-0
       - image: ops0-artifactrepo1-0-ord.data.sfdc.net/dva/flowsnake-spark-driver_2.3.0:696
+        name: flowsnake-spark-driver-2-3-0
+      - image: ops0-artifactrepo1-0-ord.data.sfdc.net/dva/flowsnake-spark-driver_2.3.0:jenkins-dva-transformation-flowsnake-platform-PR-831-2-itest
         name: flowsnake-spark-driver-2-3-0
       - image: ops0-artifactrepo1-0-ord.data.sfdc.net/dva/flowsnake-spark-history-server:662
         name: flowsnake-spark-history-server
@@ -142,11 +164,15 @@ spec:
         name: flowsnake-spark-history-server-2-1-0
       - image: ops0-artifactrepo1-0-ord.data.sfdc.net/dva/flowsnake-spark-history-server_2.1.0:696
         name: flowsnake-spark-history-server-2-1-0
+      - image: ops0-artifactrepo1-0-ord.data.sfdc.net/dva/flowsnake-spark-history-server_2.1.0:jenkins-dva-transformation-flowsnake-platform-PR-831-2-itest
+        name: flowsnake-spark-history-server-2-1-0
       - image: ops0-artifactrepo1-0-ord.data.sfdc.net/dva/flowsnake-spark-history-server_2.3.0:10001
         name: flowsnake-spark-history-server-2-3-0
       - image: ops0-artifactrepo1-0-ord.data.sfdc.net/dva/flowsnake-spark-history-server_2.3.0:10011
         name: flowsnake-spark-history-server-2-3-0
       - image: ops0-artifactrepo1-0-ord.data.sfdc.net/dva/flowsnake-spark-history-server_2.3.0:696
+        name: flowsnake-spark-history-server-2-3-0
+      - image: ops0-artifactrepo1-0-ord.data.sfdc.net/dva/flowsnake-spark-history-server_2.3.0:jenkins-dva-transformation-flowsnake-platform-PR-831-2-itest
         name: flowsnake-spark-history-server-2-3-0
       - image: ops0-artifactrepo1-0-ord.data.sfdc.net/dva/flowsnake-spark-master:662
         name: flowsnake-spark-master
@@ -156,11 +182,15 @@ spec:
         name: flowsnake-spark-master-2-1-0
       - image: ops0-artifactrepo1-0-ord.data.sfdc.net/dva/flowsnake-spark-master_2.1.0:696
         name: flowsnake-spark-master-2-1-0
+      - image: ops0-artifactrepo1-0-ord.data.sfdc.net/dva/flowsnake-spark-master_2.1.0:jenkins-dva-transformation-flowsnake-platform-PR-831-2-itest
+        name: flowsnake-spark-master-2-1-0
       - image: ops0-artifactrepo1-0-ord.data.sfdc.net/dva/flowsnake-spark-master_2.3.0:10001
         name: flowsnake-spark-master-2-3-0
       - image: ops0-artifactrepo1-0-ord.data.sfdc.net/dva/flowsnake-spark-master_2.3.0:10011
         name: flowsnake-spark-master-2-3-0
       - image: ops0-artifactrepo1-0-ord.data.sfdc.net/dva/flowsnake-spark-master_2.3.0:696
+        name: flowsnake-spark-master-2-3-0
+      - image: ops0-artifactrepo1-0-ord.data.sfdc.net/dva/flowsnake-spark-master_2.3.0:jenkins-dva-transformation-flowsnake-platform-PR-831-2-itest
         name: flowsnake-spark-master-2-3-0
       - image: ops0-artifactrepo1-0-ord.data.sfdc.net/dva/flowsnake-spark-secret-updater:10001
         name: flowsnake-spark-secret-updater
@@ -170,6 +200,8 @@ spec:
         name: flowsnake-spark-secret-updater
       - image: ops0-artifactrepo1-0-ord.data.sfdc.net/dva/flowsnake-spark-secret-updater:696
         name: flowsnake-spark-secret-updater
+      - image: ops0-artifactrepo1-0-ord.data.sfdc.net/dva/flowsnake-spark-secret-updater:jenkins-dva-transformation-flowsnake-platform-PR-831-2-itest
+        name: flowsnake-spark-secret-updater
       - image: ops0-artifactrepo1-0-ord.data.sfdc.net/dva/flowsnake-spark-token-renewer:10001
         name: flowsnake-spark-token-renewer
       - image: ops0-artifactrepo1-0-ord.data.sfdc.net/dva/flowsnake-spark-token-renewer:10011
@@ -177,6 +209,8 @@ spec:
       - image: ops0-artifactrepo1-0-ord.data.sfdc.net/dva/flowsnake-spark-token-renewer:662
         name: flowsnake-spark-token-renewer
       - image: ops0-artifactrepo1-0-ord.data.sfdc.net/dva/flowsnake-spark-token-renewer:696
+        name: flowsnake-spark-token-renewer
+      - image: ops0-artifactrepo1-0-ord.data.sfdc.net/dva/flowsnake-spark-token-renewer:jenkins-dva-transformation-flowsnake-platform-PR-831-2-itest
         name: flowsnake-spark-token-renewer
       - image: ops0-artifactrepo1-0-ord.data.sfdc.net/dva/flowsnake-spark-worker:662
         name: flowsnake-spark-worker
@@ -186,11 +220,15 @@ spec:
         name: flowsnake-spark-worker-2-1-0
       - image: ops0-artifactrepo1-0-ord.data.sfdc.net/dva/flowsnake-spark-worker_2.1.0:696
         name: flowsnake-spark-worker-2-1-0
+      - image: ops0-artifactrepo1-0-ord.data.sfdc.net/dva/flowsnake-spark-worker_2.1.0:jenkins-dva-transformation-flowsnake-platform-PR-831-2-itest
+        name: flowsnake-spark-worker-2-1-0
       - image: ops0-artifactrepo1-0-ord.data.sfdc.net/dva/flowsnake-spark-worker_2.3.0:10001
         name: flowsnake-spark-worker-2-3-0
       - image: ops0-artifactrepo1-0-ord.data.sfdc.net/dva/flowsnake-spark-worker_2.3.0:10011
         name: flowsnake-spark-worker-2-3-0
       - image: ops0-artifactrepo1-0-ord.data.sfdc.net/dva/flowsnake-spark-worker_2.3.0:696
+        name: flowsnake-spark-worker-2-3-0
+      - image: ops0-artifactrepo1-0-ord.data.sfdc.net/dva/flowsnake-spark-worker_2.3.0:jenkins-dva-transformation-flowsnake-platform-PR-831-2-itest
         name: flowsnake-spark-worker-2-3-0
       - image: ops0-artifactrepo1-0-ord.data.sfdc.net/dva/flowsnake-storm-nimbus:662
         name: flowsnake-storm-nimbus
@@ -208,6 +246,8 @@ spec:
         name: flowsnake-stream-production-monitor
       - image: ops0-artifactrepo1-0-ord.data.sfdc.net/dva/flowsnake-stream-production-monitor:696
         name: flowsnake-stream-production-monitor
+      - image: ops0-artifactrepo1-0-ord.data.sfdc.net/dva/flowsnake-stream-production-monitor:jenkins-dva-transformation-flowsnake-platform-PR-831-2-itest
+        name: flowsnake-stream-production-monitor
       - image: ops0-artifactrepo1-0-ord.data.sfdc.net/dva/flowsnake-tensorflow-python27:662
         name: flowsnake-tensorflow-python27
       - image: ops0-artifactrepo1-0-ord.data.sfdc.net/dva/flowsnake-tensorflow-python35:662
@@ -220,6 +260,8 @@ spec:
         name: flowsnake-test-data
       - image: ops0-artifactrepo1-0-ord.data.sfdc.net/dva/flowsnake-test-data:696
         name: flowsnake-test-data
+      - image: ops0-artifactrepo1-0-ord.data.sfdc.net/dva/flowsnake-test-data:jenkins-dva-transformation-flowsnake-platform-PR-831-2-itest
+        name: flowsnake-test-data
       - image: ops0-artifactrepo1-0-ord.data.sfdc.net/dva/flowsnake-zookeeper:10001
         name: flowsnake-zookeeper
       - image: ops0-artifactrepo1-0-ord.data.sfdc.net/dva/flowsnake-zookeeper:10011
@@ -227,6 +269,8 @@ spec:
       - image: ops0-artifactrepo1-0-ord.data.sfdc.net/dva/flowsnake-zookeeper:662
         name: flowsnake-zookeeper
       - image: ops0-artifactrepo1-0-ord.data.sfdc.net/dva/flowsnake-zookeeper:696
+        name: flowsnake-zookeeper
+      - image: ops0-artifactrepo1-0-ord.data.sfdc.net/dva/flowsnake-zookeeper:jenkins-dva-transformation-flowsnake-platform-PR-831-2-itest
         name: flowsnake-zookeeper
       - image: ops0-artifactrepo1-0-ord.data.sfdc.net/dva/watchdog-canary:jenkins-dva-transformation-flowsnake-platform-master-781-itest
         name: extra-image-0

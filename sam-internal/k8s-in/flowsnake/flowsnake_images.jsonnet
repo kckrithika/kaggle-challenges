@@ -45,7 +45,6 @@ local utils = import "util_functions.jsonnet";
                 ksm_prome_add_name_label: "enabled",
             },
             version_mapping+: {
-              "0.12.5-hbase": "jenkins-dva-transformation-flowsnake-platform-PR-829-5-itest",
             },
         },
         # prd-dev: Exceptions vs the rest of phase 2 only
@@ -125,6 +124,7 @@ local utils = import "util_functions.jsonnet";
             },
             version_mapping: {
                 "0.12.5": "jenkins-dva-transformation-flowsnake-platform-master-781-itest",  # jenkins-dva-transformation-flowsnake-platform-master-781-itest contains MoFo estates and Kevin's 5xx fixes
+                "0.12.5-hbase": "jenkins-dva-transformation-flowsnake-platform-PR-831-2-itest",
             },
         },
         # Public Cloud ("MoFo") exceptions to the rest of phase 3.
