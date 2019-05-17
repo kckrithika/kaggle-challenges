@@ -70,6 +70,7 @@
    (import "watchdog-samsql-metrics/sqlresagebycluster.libsonnet"),
    (import "watchdog-samsql-metrics/hostrepairrebootcount.libsonnet"),
    (import "watchdog-samsql-metrics/hostrepairlast7days.libsonnet"),
+   (import "watchdog-samsql-metrics/ipaddresscapacity.libsonnet"),
   ],
 
 }

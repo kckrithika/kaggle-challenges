@@ -97,5 +97,6 @@ local bedhealth = (import "sam-sql-reporter/bedhealth.libsonnet").bedhealth;
     (import "sam-sql-reporter/host-repair.libsonnet"),
     (import "sam-sql-reporter/sam-internal-image-tag-global-view.libsonnet"),
     (import "sam-sql-reporter/prd-sam-pods-missing-ip-address.libsonnet"),
+    (import "sam-sql-reporter/prd-sam-ip-capacity.libsonnet"),
   ],
 }
