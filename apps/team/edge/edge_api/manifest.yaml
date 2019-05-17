@@ -20,6 +20,11 @@ system:
       livenessProbe:
         httpGet:
             path: /health
+    - name: edge-api-backup
+      image: ops0-artifactrepo1-0-par.data.sfdc.net/dva/edge/backup:92
+      livenessProbe:
+        httpGet:
+            path: /health
     - name: edge-rptc
       image: ops0-artifactrepo1-0-par.data.sfdc.net/dva/edge/rptc:233
       livenessProbe:
