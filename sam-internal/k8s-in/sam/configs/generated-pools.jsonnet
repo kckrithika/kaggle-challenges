@@ -498,9 +498,9 @@
       "access": [
         "team/CSC_Sam"
       ],
-      "controlEstate": "eks-us-east2-sam2-samtest",
-      "estate": "eks-us-east2-sam2-samtest",
-      "kingdom": "eks",
+      "controlEstate": "eks-us-east-2-samtest",
+      "estate": "eks-us-east-2-samtest",
+      "kingdom": "eks-us-east-2",
       "superPod": "None"
     },
     {

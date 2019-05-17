@@ -6,7 +6,7 @@ local kingdom = std.extVar("kingdom");
     # This is temp hack for PCN
     is_pcn(kingdom):: (
         (std.length(kingdom) > 3) && (std.substr(kingdom, 0, 4) == "gcp-") ||
-        (kingdom == "mvp") || (kingdom == "eks")
+        (kingdom == "mvp") || (std.length(kingdom) > 3) && (std.substr(kingdom, 0, 4) == "eks-")
     ),
 
     # This is for filtering Public Clouds from Private Clouds

@@ -20,7 +20,7 @@ spec:
            "certreqs": [
             {
              "cert-type": "client",
-             "kingdom": "eks",
+             "kingdom": "eks-us-east-2",
              "name": "cert1",
              "role": "sam-system.snapshot-producer"
             }
@@ -41,9 +41,9 @@ spec:
         - --alsologtostderr
         env:
         - name: SFDCLOC_PCN_KINGDOM
-          value: eks
+          value: eks-us-east-2
         - name: SFDCLOC_PCN_ESTATE
-          value: eks-us-east2-sam2-samtest
+          value: eks-us-east-2-samtest
         - name: KUBECONFIG
           value: ""
         image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/dva/sam/hypersam:2709-2c64bef305a811db319b1982738ba42022157744
@@ -66,7 +66,7 @@ spec:
       - args:
         - /sam/madkub-client
         - --madkub-endpoint=https://$(MADKUBSERVER_SERVICE_HOST):32007
-        - --maddog-endpoint=https://all.pkicontroller.pki.blank.eks.prod.non-estates.sfdcsd.net:8443
+        - --maddog-endpoint=https://all.pkicontroller.pki.blank.eks-us-east-2.prod.non-estates.sfdcsd.net:8443
         - --maddog-server-ca=/maddog-certs/ca/security-ca.pem
         - --madkub-server-ca=/maddog-certs/ca/cacerts.pem
         - --cert-folders=cert1:/cert1/
@@ -105,7 +105,7 @@ spec:
       hostNetwork: true
       initContainers: []
       nodeSelector:
-        pool: eks-us-east2-sam2-samtest
+        pool: eks-us-east-2-samtest
       serviceAccount: sam-stack-edit
       serviceAccountName: sam-stack-edit
       volumes:

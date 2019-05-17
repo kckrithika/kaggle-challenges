@@ -2,63 +2,58 @@ apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
   labels:
-    name: crd-watcher
+    name: samappcontroller
     pcn: deploy
     sam.data.sfdc.net/owner: sam
-  name: crd-watcher
+  name: samappcontroller
 spec:
   replicas: 1
   selector:
     matchLabels:
-      name: crd-watcher
+      name: samappcontroller
   template:
     metadata:
       labels:
         apptype: control
-        name: crd-watcher
+        name: samappcontroller
         sam.data.sfdc.net/owner: sam
       namespace: sam-system
     spec:
       containers:
       - command:
-        - /sam/manifest-watcher
+        - /sam/samapp-controller
+        - --v=3
         - --funnelEndpoint=funnel.ajnalocal1.vip.core.test.us-central1.gcp.sfdc.net:443
-        - --v=2
         - --logtostderr=true
-        - --config=/config/tempmanifestwatcher.json
-        - --syntheticEndpoint=http://$(WATCHDOG_SYNTHETIC_SERVICE_SERVICE_HOST):9090/tnrp/content_repo/0/archive
+        - --config=/config/samapp-controller-config.json
         - --hostsConfigFile=/sfdchosts/hosts.json
-        - --etcdSetDisabled=true
-        - --etcdGetDisabled=true
+        - --madkubEndpoint=https://$(MADKUBSERVER_SERVICE_HOST):32007
         env:
         - name: SFDCLOC_PCN_KINGDOM
-          value: eks
+          value: eks-us-east-2
         - name: SFDCLOC_PCN_ESTATE
-          value: eks-us-east2-sam2-samtest
+          value: eks-us-east-2-samtest
         - name: KUBECONFIG
           value: ""
         image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/dva/sam/hypersam:2709-2c64bef305a811db319b1982738ba42022157744
         livenessProbe:
           httpGet:
             path: /healthz
-            port: 21553
-          initialDelaySeconds: 60
-          periodSeconds: 30
-        name: crd-watcher
+            port: 21548
+          initialDelaySeconds: 30
+          periodSeconds: 5
+        name: samapp-controller
         ports:
-        - containerPort: 21553
+        - containerPort: 21548
         volumeMounts:
         - mountPath: /config
           name: config
       hostNetwork: true
       nodeSelector:
-        pool: eks-us-east2-sam2-samtest
+        pool: eks-us-east-2-samtest
       serviceAccount: sam-stack-edit
       serviceAccountName: sam-stack-edit
       volumes:
-      - hostPath:
-          path: /manifests
-        name: sfdc-volume
       - configMap:
-          name: crd-watcher
+          name: samapp-controller
         name: config
