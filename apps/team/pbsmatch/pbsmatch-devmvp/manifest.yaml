@@ -24,7 +24,7 @@ system:
         mountPath: /etc/pki_service/sfdc
     - name: sherpa
       # Use the latest release version from https://git.soma.salesforce.com/servicelibs/serpa-envoy/releases
-      image: sfci/service/libs/sherpa-envoy:1.0.7
+      image: sfci/servicelibs/sherpa-envoy:1.0.7
       # See https://git.soma.salesforce.com/servicelibs/sherpa#ports
       ports:
       - containerPort: 7442
@@ -51,7 +51,7 @@ system:
       - name: server-cert
         mountPath: /server-certs
     - name: beacon
-      image: sfci/servicelibs/beacon:78f14c7b6
+      image: sfci/servicelibs/beacon:78f14c7b600b2d2f828ece9cedf31bc349515da1
       args:
       - -endpoint
       # Namespaced announcement for TLS http2/grpc at the DATACENTER_ALLENV level for a service in a team's namespace
