@@ -108,7 +108,7 @@ local mcpIstioConfig = (import "service-mesh/istio-config.jsonnet");
               "--domain",
               "$(POD_NAMESPACE).svc.cluster.local",
               "--log_output_level",
-              "info",
+              "default:debug",
               "--drainDuration",
               "45s",
               "--parentShutdownDuration",
