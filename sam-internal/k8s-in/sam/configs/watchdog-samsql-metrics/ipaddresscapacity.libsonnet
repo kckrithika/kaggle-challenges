@@ -2,7 +2,7 @@
     watchdogFrequency: "1m",
     name: "IpAddressResourceCapacity",
     sql: "select
-  UPPER(SUBSTRING(controlEstate,1,3)) as kingdom,
+  UPPER(SUBSTRING(controlEstate,1,3)) as Kingdom,
   'NONE' as SuperPod,
   controlEstate as Estate,
   'sql.ipAddressResourceCapacity' as Metric,
