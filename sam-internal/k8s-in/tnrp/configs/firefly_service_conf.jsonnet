@@ -57,19 +57,24 @@ local portConfig = import "portconfig.jsonnet";
         rabbitMqPort:: '5672',
         repositories:: 'sam/test-manifests,sam/manifests',
         repositoriesMDP:: 'tnrp/manifest_driven_promotions',
-        repositoriesFCP:: 'Infrastructure-Security/infrasec-secrets-config'+
-                            ',gate-definitions/gate-definitions'+
-                            ',nvt/mom-data'+
-                            ',monitoring/nagios_configs'+
-                            ',SiteReliability/srcore'+
-                            ',nvt/routerdb'+
+        repositoriesFCP:: 'Infrastructure-Security/infrasec-secrets-config' +
+                            ',gate-definitions/gate-definitions' +
+                            ',nvt/mom-data' +
+                            ',monitoring/nagios_configs' +
+                            ',SiteReliability/srcore' +
+                            ',nvt/routerdb' +
                             ',sdn/sitebridge-manifests' +
                             ',ddi/ddi-health-config' +
                             ',ddi/dhcpdata' +
                             ',ddi/ddi-config' +
                             ',SiteSwitching/siteswitching' +
-                            ',nqa/nqa-services-data'+
-                            ',nqa/render-manifest',
+                            ',nqa/nqa-services-data' +
+                            ',nqa/render-manifest' +
+                            ',ssa/publicproxy-acls' +
+                            ',DBIAAS/tnrp_instance_refresh_config' +
+                            ',nqa/nqa-configs' +
+                            ',CPT/captain_config' +
+                            ',radc/svc_config',
     },
     environmentMapping:: {
         "prd-sam": $.prdsam,
