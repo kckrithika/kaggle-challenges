@@ -27,21 +27,21 @@ system:
       - {name: TESTRECIPE_LASTSUCCESSTARGET, value: 360s}
       - {name: TESTRECIPE_MAESTROPINGTEST, value: 'true'}
       - {name: DEPLOYMENT_ID, value: yhu-group1}
-      image: sfci/insights/moana-driver:release-12-2319d24
+      - {name: HANDLED_PODS_PATTERN, value: 'cs[0-9]+\..*|moana-driver-group1'}
+      image: sfci/insights/moana-driver:release-14-bbc378c
       livenessProbe:
         httpGet: {path: /manage/health, port: 15372}
         initialDelaySeconds: 30
         periodSeconds: 60
         timeoutSeconds: 30
       name: moana-driver
-      ports:
-      - {containerPort: 15372, name: mgmt}
+      ports: []
       resources:
         limits: {cpu: 2, memory: 2G}
         requests: {cpu: 1, memory: 2G}
       volumeMounts:
       - {mountPath: /home/scone/client-certs, name: tls-client-certs}
-    count: 1
+    count: 3
     hostnetwork: true
     identity: {serviceName: moana-driver}
     name: moana-driver-group1
@@ -67,6 +67,7 @@ system:
       - {name: JAVA_OPTS, value: '-server -XX:MaxMetaspaceSize=512m -Xmx2048m -Xms2048m'}
       - {name: SIZING_MEMORY_OVERHEAD, value: '1024'}
       - {name: K8S_CPU_LIMIT_APPLY, value: 'false'}
+      - {name: HANDLED_PODS_PATTERN, value: 'cs[0-9]+\..*|moana-driver-group1'}
       - {name: K8S_API_ENDPOINT, value: 'https://kubernetes-api-flowsnake-yhu.data.sfdc.net'}
       - {name: MAESTRO_ENDPOINT, value: 'https://insights1-iworker{{superPodIndex}}-0-${kingdom}.data.sfdc.net:8008'}
       image: sfci/insights/jobcontroller:release-1.0.3-5937af6
@@ -76,40 +77,12 @@ system:
         periodSeconds: 60
         timeoutSeconds: 30
       name: jobcontroller
-      ports:
-      - {containerPort: 7020, name: grpc}
-      - {containerPort: 15372, name: mgmt}
       resources:
         limits: {cpu: 2, memory: 4G}
         requests: {cpu: 2, memory: 4G}
       volumeMounts:
       - {mountPath: /home/datapool/logs, name: logvol}
       - {mountPath: /home/datapool/client-certs, name: tls-client-certs}
-    - env:
-      - {name: SFDC_ENVIRONMENT, value: prod}
-      image: sfci/servicelibs/sherpa:2.0.24
-      livenessProbe:
-        exec:
-          command: [./bin/is-alive]
-        initialDelaySeconds: 120
-        periodSeconds: 5
-      name: sherpa
-      ports:
-      - {containerPort: 7012, name: sherpa-in-plain}
-      - {containerPort: 7443, name: sherpa-in-tls}
-      - {containerPort: 15373, name: sherpa-adm}
-      readinessProbe:
-        exec:
-          command: [./bin/is-ready]
-        initialDelaySeconds: 110
-        periodSeconds: 5
-      resources:
-        limits: {cpu: '1', memory: 1Gi}
-        requests: {cpu: '1', memory: 1Gi}
-      volumeMounts:
-      - {mountPath: /server-certs, name: tls-server-certs}
-      - {mountPath: /client-certs, name: tls-client-certs}
-      - {mountPath: /log, name: sherpa-log-volume}
     count: 3
     hostnetwork: true
     identity: {serviceName: datapool}
