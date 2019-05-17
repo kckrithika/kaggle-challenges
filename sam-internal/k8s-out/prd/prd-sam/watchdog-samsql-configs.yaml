@@ -224,7 +224,7 @@ data:
     NOW())/60.0/24.0 as ageInDays\n  from k8s_resource\n  where ApiKind = ''HostRepair''\n  )
     as ss\nwhere ageInDays < 7\ngroup by Healthy", "watchdogFrequency": "15m"}, {"name":
     "IpAddressResourceCapacity", "sql": "select\n  UPPER(SUBSTRING(controlEstate,1,3))
-    as kingdom,\n  ''NONE'' as SuperPod,\n  controlEstate as Estate,\n  ''sql.ipAddressResourceCapacity''
+    as Kingdom,\n  ''NONE'' as SuperPod,\n  controlEstate as Estate,\n  ''sql.ipAddressResourceCapacity''
     as Metric,\n  CONCAT(''Capacity='',IpAddressCapacity) as Tags,\n  count(*) as
     Value\nfrom (\n  select controlEstate, Payload->>''$.status.capacity.\"sam.sfdc.net/ip-address\"''
     as IpAddressCapacity\n  from k8s_resource\n  where apikind = ''Node'' and controlEstate
