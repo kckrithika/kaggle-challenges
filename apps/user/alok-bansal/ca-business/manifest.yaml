@@ -9,6 +9,7 @@ system:
         #####################################################################################
         - name: nginx-rev-proxy
           image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/alok-bansal/alok-nginx:latest
+          imagePullPolicy: Always
           ports:
             - containerPort: 8085
           livenessProbe:
@@ -26,6 +27,7 @@ system:
         #####################################################################################
         - name: gid-service
           image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/gid/gid-service:latest
+          imagePullPolicy: Always
           env:
             - name: ca_service_host
               value: 10.233.180.195
@@ -48,6 +50,7 @@ system:
         #####################################################################################
         - name: c2c-service
           image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/gid/c2c-service:latest
+          imagePullPolicy: Always
           env:
             - name: c2c_common_gdotBasePath
               value: http://10.233.180.195:8090/scim
@@ -68,6 +71,7 @@ system:
         #####################################################################################
         - name: cloudatlas-service
           image: sfci/cloud-atlas/cloudatlas/cloudatlas-service:2.22split2
+          imagePullPolicy: Always
           command: ["java", "-jar", "cloudatlas-service.jar"]
           env:
             - name: cloudatlas_http_server_port_servicemesh
