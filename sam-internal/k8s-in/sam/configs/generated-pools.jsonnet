@@ -2886,7 +2886,7 @@
       "access": [
         "team/distributed-tracing"
       ],
-      "controlEstate": "prd-sam",
+      "controlEstate": "prd-samtwo",
       "estate": "prd-sam_zipkin",
       "kingdom": "prd",
       "superPod": "None"
