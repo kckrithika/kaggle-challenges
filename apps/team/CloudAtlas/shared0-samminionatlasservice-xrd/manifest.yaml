@@ -18,7 +18,7 @@ system:
       image: sfci/servicelibs/sherpa-envoy:1.0.2
       env:
       - name: SFDC_ENVIRONMENT
-        value: "stmfa"
+        value: "prod"
       resources:
         limits: { cpu: "1", memory: "1Gi" }
         requests: { cpu: "1", memory: "1Gi" }
