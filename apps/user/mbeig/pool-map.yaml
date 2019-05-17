@@ -1,0 +1,4 @@
+version: v2
+apps:
+  c2c-service:
+    - name: xrd/xrd-sampool

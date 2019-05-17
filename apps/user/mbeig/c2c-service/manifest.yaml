@@ -1,0 +1,39 @@
+apiVersion: v1
+system:
+  functions:
+  - name: c2c-service
+    count: 1
+    containers:
+    # C2C service
+    - name: c2c-service
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/gid/c2c-service:20190516160348-30d61d1-argus-debug
+      env:
+      - name: c2c_common_gdotBasePath
+        value: http://10.233.180.195:8090/scim
+      - name: GDOT_URL
+        value: http://10.233.180.195:8090/scim
+      ports:
+      - containerPort: 8080
+      - containerPort: 15372
+      livenessProbe:
+        httpGet:
+          path: /manage/info
+          port: 15372
+      volumeMounts:
+      - name: cert
+        mountPath: /certs
+    # Volumes Needed  
+    volumes:
+    - name: cache-volume
+      emptyDir: {}
+    - name: cert
+      maddogCert:
+        type: client
+# SLB
+  loadbalancers:
+  - lbname: c2c-service-lb
+    function: c2c-service
+    slbEnabled: true
+    ports:
+      - port: 9090 
+        targetport: 8080
