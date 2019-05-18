@@ -33,5 +33,5 @@ local slbconfigs = import "slbconfig.jsonnet";
 
     # test our theory that ddi is having trouble with long-lived connections by enabling canary-creator
     # to run 24 hours (as a corollary, shift alerts to be business hours only) - start in just cdg
-    slbCanaryAllHours: (configs.estate == "cdg-sam" || configs.estate == "hnd-sam" || configs.estate == "fra-sam"),
+    slbCanaryAllHours: (slbimages.phaseNum < 1),
 }
