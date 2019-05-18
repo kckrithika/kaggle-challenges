@@ -10,6 +10,10 @@ if samfeatureflags.estatessvc then {
         replicas: 1,
         template: {
             spec: configs.specWithKubeConfigAndMadDog {
+                # Todo: We should use hostnetwork everywhere for consistency, but switching prd for now
+                # NOTE: Dont ever have this app use "IpAddress" custom resources, as kubelet restarts evict pods using IpAddress resources
+                # and only this app can add them back.
+                [if configs.ipAddressResourceRequest != {} then "hostNetwork"]: true,
                 containers: [
                     configs.containerWithKubeConfigAndMadDog {
                         name: "node-controller",
@@ -36,7 +40,7 @@ if samfeatureflags.estatessvc then {
                                 },
                             },
                         ],
-                    } + configs.ipAddressResourceRequest,
+                    },
                 ],
                 volumes+: [
                     configs.sfdchosts_volume,
