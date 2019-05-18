@@ -45,7 +45,7 @@ system:
           livenessProbe:
             httpGet:
               path: /manage/health
-              port: 15375
+              port: 15371
           volumeMounts:
             - name: server-cert
               mountPath: /certs
