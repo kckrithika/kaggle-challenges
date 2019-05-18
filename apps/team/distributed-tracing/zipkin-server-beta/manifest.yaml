@@ -36,9 +36,11 @@ system:
       - name: ES_INDEX_REPLICAS
         value: 3
       - name: ES_HOSTS
-        value: es-baremetal-test-klu-prd.slb.sfdc.net:9200
+        value: es-prod-distributed-tracing-prd.slb.sfdc.net:9200
       - name: ZIPKIN_COLLECTOR_HOST
         value: zipkin-collector
+      - name: ZIPKIN_SSL_KEYSTORE_LOCATION
+        value: /var/certs/zipkin-client-keystore.jks
       - name: KAFKA_ACCEPT_BATCH_SIZE
         value: 100
       - name: KAFKA_BOOTSTRAP_SERVERS
@@ -99,11 +101,21 @@ system:
         requests: { cpu: "30", memory: "12Gi" }
       env:
       - name: ES_HOSTS
-        value: es-baremetal-test-klu-prd.slb.sfdc.net:9200
+        value: es-prod-distributed-tracing-prd.slb.sfdc.net:9200
       - name: JAVA_OPTS
         value: -Xmx6g
       - name: QUERY_PORT
         value: 9422
+      - name: ZIPKIN_SERVER_HOST
+        value: zipkin-server
+      - name: ZIPKIN_SSL_KEYSTORE_LOCATION
+        value: /var/certs/zipkin-client-keystore.jks
+      volumeMounts:
+      - mountPath: /etc/pki_service/zipkin-server
+        name: client-certs
+      - mountPath: /var/secrets
+        name: secretvol
+        readOnly: true
       ports:
       - name: zipkin
         containerPort: 9422
