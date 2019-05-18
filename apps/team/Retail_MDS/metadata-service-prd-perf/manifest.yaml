@@ -144,3 +144,6 @@ system:
     ports:
     - port: 9092
       targetport: 9091
+      # A plain-text sherpa-inbound port. Must not be exposed in production.
+    - port: 7012
+      targetport: 7012
