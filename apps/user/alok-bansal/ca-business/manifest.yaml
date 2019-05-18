@@ -61,9 +61,9 @@ system:
             - name: management_server_port
               value: 15372
             - name: c2c_common_gdotBasePath
-              value: http://127.0.0.1:8090/scim
+              value: http://127.0.0.1:8090/empire/scim
             - name: GDOT_URL
-              value: http://127.0.0.1:8090/scim
+              value: http://127.0.0.1:8090/empire/scim
           ports:
             - containerPort: 8082
             - containerPort: 15372
