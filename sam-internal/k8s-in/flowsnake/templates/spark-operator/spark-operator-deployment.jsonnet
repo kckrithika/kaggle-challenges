@@ -5,6 +5,7 @@ local flowsnake_images = import "flowsnake_images.jsonnet";
 local enabled = std.objectHas(flowsnake_images.feature_flags, "spark_operator");
 local madkub_common = import "madkub_common.jsonnet";
 local cert_name = "spark-webhook";
+local autodeployer = import "auto_deployer.jsonnet";
 
 {
     apiVersion: "extensions/v1beta1",
@@ -65,7 +66,7 @@ local cert_name = "spark-webhook";
                             "-webhook-server-cert-key=/certs/server/keys/server-key.pem",
                             "-webhook-ca-cert=/certs/ca/cabundle.pem",
                             "-leader-election",
-                            "-leader-election-lock-namespace=flowsnake",
+                            "-leader-election-lock-namespace=" + (if autodeployer.samcontroldeployer["delete-orphans"] then "spark-operator-lock" else "flowsnake"),
                         ],
                         ports: [{
                             containerPort: 10254,
