@@ -105,6 +105,9 @@ system:
         periodSeconds: 5
         failureThreshold: 120
     volumes:
+    - name: logvol
+      hostPath:
+        path: /home/sfdc-atlas/logs
     - name: hosthomevol
       hostPath:
         path: /data/ca-cluster-a
