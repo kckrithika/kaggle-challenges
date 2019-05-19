@@ -6,8 +6,6 @@ system:
       - cloudatlas-dev@salesforce.com
   functions:
   - name: cloudatlas-prd-dev-service
-    identity:
-      serviceName: cloudatlas-prd-dev-service
     count: 1
     strategy:
       type: RollingUpdate
@@ -77,14 +75,7 @@ system:
     - name: cloudatlas-service
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cloud-atlas/cloudatlas/cloudatlas-service:4665c9a
       command: ["java", "-jar", "cloudatlas-service.jar"]
-      env:
-      - name: UBID_DEPLOYMENT_STAGE
-        value: ALL
       volumeMounts:
-      - mountPath: /home/sfdc-atlas
-        name: hosthomevol
-      - mountPath: /home/sfdc-atlas/logs/servers/ds
-        name: pinglogvol
       - mountPath: /log
         name: logvol
       - mountPath: /certs
@@ -98,20 +89,18 @@ system:
         name: k4a-secrets
         readOnly: true
       ports:
-      - containerPort: 1389
-      - containerPort: 1636
-      - containerPort: 8989
+      - containerPort: 7030
+      - containerPort: 7032
       livenessProbe:
         exec:
           command:
-          - /opt/pdm/pdm.customer/bin/is-alive.sh
+          - /bin/true
         initialDelaySeconds: 60
         periodSeconds: 30
       readinessProbe:
         exec:
           command:
-          - cat
-          - /tmp/ready
+          - /bin/true
         initialDelaySeconds: 60
         periodSeconds: 5
         failureThreshold: 120
@@ -119,12 +108,6 @@ system:
     - name: hosthomevol
       hostPath:
         path: /data/ca-cluster-a
-    - name: pinglogvol
-      hostPath:
-        path: /home/sfdc-atlas/logs/pingserver
-    - name: logvol
-      hostPath:
-        path: /home/sfdc-atlas/logs
     - name: server-cert
       maddogCert:
         type: server
