@@ -8,7 +8,7 @@ system:
     count: 1
     containers:
     - name: prod-debug-service
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/jsanzgonzalez/prod-debug:1
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/jsanzgonzalez/prod-debug:jsanzgonzalez-20190520-1ff40bf
       ports:
       - containerPort: 15372
         name: scone-mgmt
