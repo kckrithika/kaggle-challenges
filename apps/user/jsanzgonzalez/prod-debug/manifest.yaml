@@ -22,6 +22,8 @@ system:
         httpGet:
           path: /manage/ready
           port: 15372
+    - name: envoy
+      image: sfci/servicelibs/sherpa-envoy:1.0.7
 
     # The volumes to mount for shipping logs to splunk
     # General rule is to use path that satisfies the pattern: /home/sfdc-*/logs/**/*.json
