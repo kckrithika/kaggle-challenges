@@ -40,7 +40,7 @@ system:
           name: wardenservercert
         - mountPath: /warden-secrets/
           name: splunk-credentials
-        - mountPath: /warden-secrets/
+        - mountPath: /warden/secrets/
           name: warden-secrets-conf
         - mountPath: /warden-secrets/argus-secrets/
           name: argus-secrets
