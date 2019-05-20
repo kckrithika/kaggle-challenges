@@ -22,9 +22,9 @@ system:
        volumeMounts:
 #         - name: relay-persistent
 #           mountPath: /acds
-#         - mountPath: /acds-relay-secrets/
-#           name: acds-relay-secrets-vol
-#           readOnly: true
+         - mountPath: /acds/acds-secrets/
+           name: acds-relay-secrets-vol
+           readOnly: true
          - name: tls-client-cert
            mountPath: /client-certs
          - name: tls-server-cert
@@ -118,9 +118,9 @@ system:
        - name : DUMMY_VARIABLE
          value: "DUMMY_VARIABLE_4"
      volumes:
-#     - name: acds-relay-secrets-vol
-#       k4aSecret:
-#         secretName: acds-relay-secrets
+     - name: acds-relay-secrets-vol
+       k4aSecret:
+         secretName: acds-relay-secrets
      - name: relay-persistent
        hostPath:
          path: /home/sfdc-acds-relay/persistent
