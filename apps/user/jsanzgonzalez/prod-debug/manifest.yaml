@@ -6,6 +6,10 @@ system:
   functions:
   - name: prod-debug
     count: 1
+    volumes:
+    - name: tls-client-cert
+      maddogCert:
+        type: client
     containers:
     - name: prod-debug-service
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/jsanzgonzalez/prod-debug:jsanzgonzalez-20190520-1ff40bf
@@ -39,6 +43,9 @@ system:
           - /tmp/live
         initialDelaySeconds: 10
         periodSeconds: 5
+      volumeMounts:
+      - name: tls-client-cert
+        mountPath: /client-certs
 
     # The volumes to mount for shipping logs to splunk
     # General rule is to use path that satisfies the pattern: /home/sfdc-*/logs/**/*.json
