@@ -7,7 +7,6 @@ system:
     - nguyentoan@salesforce.com
   functions:
   - name: soter
-    hostNetwork: true
     count: 1
     volumes:
       - name: servercert
