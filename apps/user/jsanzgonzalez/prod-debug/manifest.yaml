@@ -24,6 +24,12 @@ system:
           port: 15372
     - name: envoy
       image: sfci/servicelibs/sherpa-envoy:1.0.7
+      livenessProbe:
+        exec:
+          command:
+          - ./bin/is-alive
+        initialDelaySeconds: 20
+        periodSeconds: 5
 
     # The volumes to mount for shipping logs to splunk
     # General rule is to use path that satisfies the pattern: /home/sfdc-*/logs/**/*.json
