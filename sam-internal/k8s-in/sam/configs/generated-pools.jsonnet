@@ -8,6 +8,18 @@
       "access": [
         "team/CSC_Sam"
       ],
+      "controlEstate": "aws-us-east-2-samtest",
+      "estate": "aws-us-east-2-samtest",
+      "kingdom": "aws-us-east-2",
+      "superPod": "None"
+    },
+    {
+      "namespaces": [
+        "csc-sam"
+      ],
+      "access": [
+        "team/CSC_Sam"
+      ],
       "controlEstate": "cdg-sam",
       "estate": "cdg-sam",
       "kingdom": "cdg",
@@ -490,18 +502,6 @@
       "estate": "dfw-sp4-sam_caas",
       "kingdom": "dfw",
       "superPod": "sp4"
-    },
-    {
-      "namespaces": [
-        "csc-sam"
-      ],
-      "access": [
-        "team/CSC_Sam"
-      ],
-      "controlEstate": "eks-us-east-2-samtest",
-      "estate": "eks-us-east-2-samtest",
-      "kingdom": "eks-us-east-2",
-      "superPod": "None"
     },
     {
       "namespaces": [

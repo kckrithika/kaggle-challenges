@@ -44,18 +44,18 @@ spec:
         - --funnel-endpoint
         - ""
         - --kingdom
-        - eks-us-east-2
+        - aws-us-east-2
         - --estate
-        - eks-us-east-2-samtest
+        - aws-us-east-2-samtest
         - --dns-domain
         - samtest.core.test.us-central1.gcp.sfdc.net
         - --service-hostname
         - madkubserver.sam-system.svc
         env:
         - name: SFDCLOC_PCN_KINGDOM
-          value: eks-us-east-2
+          value: aws-us-east-2
         - name: SFDCLOC_PCN_ESTATE
-          value: eks-us-east-2-samtest
+          value: aws-us-east-2-samtest
         - name: KUBECONFIG
           value: ""
         image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-gcp/dva/sam/madkub:108-f011ff42f384e0d22ea5b916ee2f3c2146850b2f
@@ -96,7 +96,7 @@ spec:
         - --funnel-endpoint
         - ""
         - --kingdom
-        - eks-us-east-2
+        - aws-us-east-2
         - --ca-folder
         - /maddog-certs/ca
         - --cert-folders
