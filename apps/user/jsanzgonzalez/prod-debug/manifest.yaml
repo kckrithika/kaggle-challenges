@@ -22,13 +22,22 @@ system:
         httpGet:
           path: /manage/ready
           port: 15372
-    - name: envoy
+    - name: envoy-sidecar
       image: sfci/servicelibs/sherpa-envoy:1.0.7
       livenessProbe:
         exec:
           command:
           - ./bin/is-alive
         initialDelaySeconds: 20
+        periodSeconds: 5
+    - name: envoy-sidecar-config
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/casam/cyan-config:49d21a
+      livenessProbe:
+        exec:
+          command:
+          - cat
+          - /tmp/live
+        initialDelaySeconds: 10
         periodSeconds: 5
 
     # The volumes to mount for shipping logs to splunk
