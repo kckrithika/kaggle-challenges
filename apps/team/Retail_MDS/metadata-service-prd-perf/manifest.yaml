@@ -62,11 +62,12 @@ system:
       - --server-ca
       - /server-certs/ca_test/cacerts.pem
       ports:
-      - name: sherpa-h2-plain
-        containerPort: 7012
       - name: sherpa-h2-tls
         containerPort: 7443
       - containerPort: 15373
+        # A plain-text sherpa-inbound port. Used by internal tooling and developers. Must not be exposed in production.
+      - name: sherpa-h2-plain
+        containerPort: 7012
       env:
       - name: SFDC_ENVIRONMENT
         value: mist
@@ -122,6 +123,8 @@ system:
     - name: mds-server-cert
       maddogCert:
         type: server
+        lbnames:
+        - metadata-service-prd-perf-lb
     - name: mds-client-cert
       maddogCert:
         type: client
@@ -142,8 +145,9 @@ system:
     function: metadata-service-prd-perf
     slbEnabled: true
     ports:
+      # A plain-text HTTP port that serves REST API and developer utilities. Must not be exposed in production.
     - port: 9092
       targetport: 9091
-      # A plain-text sherpa-inbound port. Must not be exposed in production.
+      # A plain-text sherpa-inbound port. Used by internal tooling and developers. Must not be exposed in production.
     - port: 7012
       targetport: 7012
