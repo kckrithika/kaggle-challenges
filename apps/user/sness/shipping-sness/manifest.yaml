@@ -1,0 +1,51 @@
+apiVersion: v1
+
+system:
+  functions:
+  - name: shipping-sness
+    count: 1
+    annotations:
+      "sherpa-injector.service-mesh/inject": "enabled"      
+      "sherpa-injector.service-mesh/canary": "enabled"
+    containers:
+
+    - name: shipping
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/scone/shipping-service:bazel-monorepo
+      env:
+      - name: SFDC_ENVIRONMENT
+        value: mesh
+      - name: JAVA_OPTS
+        value: "-Dscone.service.name=shipping-service-sness -Dmanagement.server.port=15372"
+      ports:
+      - containerPort: 7020
+        name: grpc-svc
+      - containerPort: 15372
+        name: scone-mgmt
+      livenessProbe:
+        initialDelaySeconds: 15
+        httpGet:
+          path: /manage/health
+          port: 15372
+
+    - name: beacon
+      # https://git.soma.salesforce.com/services/sfdc-bazel/tree/master/projects/sidecars/beacon#docker-image
+      image: sfci/services/sfdc-bazel/disco/beacon:d7f1640
+      env:
+      - name: SFDC_ENVIRONMENT
+        value: mesh
+      args:
+      - -endpoint
+      - service-mesh/shipping-sness:DATACENTER:7443     
+      livenessProbe:
+        initialDelaySeconds: 5
+        exec:
+          command:
+          - "/opt/beacon/is-alive.sh"
+
+    volumes:
+    - name: tls-client-cert
+      maddogCert:
+        type: client
+    - name: tls-server-cert
+      maddogCert:
+        type: server
