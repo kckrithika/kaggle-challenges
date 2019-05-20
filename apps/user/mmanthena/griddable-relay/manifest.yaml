@@ -20,11 +20,17 @@ system:
          initialDelaySeconds: 10
          timeoutSeconds: 5
        volumeMounts:
-#         - name: relay-persistent
-#           mountPath: /acds
-         - mountPath: /acds/acds-secrets/
-           name: acds-relay-secrets-vol
-           readOnly: true
+         - name: relay-persistent-conf
+           mountPath: /acds/conf
+         - name: relay-persistent-extlib
+           mountPath: /acds/extlib
+         - name: relay-persistent-logs
+           mountPath: /acds/logs
+         - name: relay-persistent-checkpoints
+           mountPath: /acds/remote_checkpoints
+#         - mountPath: /acds/acds-secrets/
+#           name: acds-relay-secrets-vol
+#           readOnly: true
          - name: tls-client-cert
            mountPath: /client-certs
          - name: tls-server-cert
@@ -121,9 +127,18 @@ system:
      - name: acds-relay-secrets-vol
        k4aSecret:
          secretName: acds-relay-secrets
-     - name: relay-persistent
+     - name: relay-persistent-conf
        hostPath:
-         path: /home/sfdc-acds-relay/persistent
+         path: /home/sfdc-acds-relay/conf
+     - name: relay-persistent-logs
+       hostPath:
+         path: /home/sfdc-acds-relay/logs
+     - name: relay-persistent-extlib
+       hostPath:
+         path: /home/sfdc-acds-relay/extlib
+     - name: relay-persistent-checkpoints
+       hostPath:
+         path: /home/sfdc-acds-relay/remote_checkpoints
      - name: tls-client-cert
        maddogCert:
          type: client
