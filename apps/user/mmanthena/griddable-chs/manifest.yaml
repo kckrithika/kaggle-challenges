@@ -20,8 +20,14 @@ system:
          initialDelaySeconds: 10
          timeoutSeconds: 5
        volumeMounts:
-         - name: chs-persistent
-           mountPath: /acds
+         - name: chs-persistent-conf
+           mountPath: /acds/conf
+         - name: chs-persistent-extlib
+           mountPath: /acds/extlib
+         - name: chs-persistent-logs
+           mountPath: /acds/logs
+         - name: chs-peristent-checkpoints
+           mountPath: /acds/remote_checkpoints
          - name: tls-client-cert
            mountPath: /client-certs
          - name: tls-server-cert
@@ -133,9 +139,18 @@ system:
        - name : MYSQL_DATABASE
          value: "griddable"
      volumes:
-     - name: chs-persistent
+     - name: chs-persistent-conf
        hostPath:
-         path: /home/sfdc-acds-chs/persistent
+         path: /home/sfdc-acds-chs/conf
+     - name: chs-persistent-extlib
+       hostPath:
+         path: /home/sfdc-acds-chs/extlib
+     - name: chs-persistent-logs
+       hostPath:
+         path: /home/sfdc-acds-chs/logs
+     - name: chs-peristent-checkpoints 
+       hostPath:
+         path: /home/sfdc-acds-chs/remote_checkpoints
      - name: tls-client-cert
        maddogCert:
          type: client
