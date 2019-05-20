@@ -124,9 +124,9 @@ system:
        - name : DUMMY_VARIABLE
          value: "DUMMY_VARIABLE_5"
      volumes:
-     - name: acds-relay-secrets-vol
-       k4aSecret:
-         secretName: acds-relay-secrets
+#     - name: acds-relay-secrets-vol
+#       k4aSecret:
+#         secretName: acds-relay-secrets
      - name: relay-persistent-conf
        hostPath:
          path: /home/sfdc-acds-relay/conf
