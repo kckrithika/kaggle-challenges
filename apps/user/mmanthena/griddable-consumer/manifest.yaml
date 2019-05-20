@@ -17,8 +17,14 @@ system:
          initialDelaySeconds: 10
          timeoutSeconds: 5
        volumeMounts:
-#         - name: consumer-persistent
-#           mountPath: /acds
+         - name: consumer-persistent-conf
+           mountPath: /acds/conf
+         - name: consumer-persistent-extlib
+           mountPath: /acds/extlib
+         - name: consumer-persistent-logs
+           mountPath: /acds/logs
+         - name: consumer-persistent-checkpoints
+           mountPath: /acds/remote_checkpoints
 #         - mountPath: /task-manager-secrets/
 #           name: task-manager-secrets-vol
 #           readOnly: true
@@ -129,9 +135,18 @@ system:
        - name : DUMMY_VARIABLE
          value: "DUMMY_VARIABLE_3"
      volumes:
-     - name: consumer-persistent
+     - name: consumer-persistent-conf
        hostPath:
-         path: /home/sfdc-acds-consumer/persistent
+         path: /home/sfdc-acds-consumer/conf
+     - name: consumer-persistent-logs
+       hostPath:
+         path: /home/sfdc-acds-consumer/logs
+     - name: consumer-persistent-extlib
+       hostPath:
+         path: /home/sfdc-acds-consumer/extlib
+     - name: consumer-persistent-checkpoints
+       hostPath:
+         path: /home/sfdc-acds-consumer/remote_checkpoints
      - name: tls-client-cert
        maddogCert:
          type: client
