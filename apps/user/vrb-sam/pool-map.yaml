@@ -5,3 +5,5 @@ apps:
   - prd/prd-sam
  mgmt-policydesigner:
   - prd/prd-sam
+ mgmt-db:
+  - prd/prd-sam
