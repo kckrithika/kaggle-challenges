@@ -55,6 +55,9 @@ system:
       - name: sherpa-h2-tls
         containerPort: 7443
       - containerPort: 15373
+        # A plain-text sherpa-inbound port. Used by internal tooling and developers. Must not be exposed in production.
+      - name: sherpa-h2-plain
+        containerPort: 7012
       env:
       - name: SFDC_ENVIRONMENT
         value: stmfa
@@ -129,8 +132,12 @@ system:
     function: metadata-service
     slbEnabled: true
     ports:
-    - port: 9091
-      targetport: 9091
     - port: 7443
       targetport: 7443
       name: mds-func
+      # A plain-text HTTP port that serves REST API and developer utilities. Must not be exposed in production.
+    - port: 9091
+      targetport: 9091
+      # A plain-text sherpa-inbound port. Used by internal tooling and developers.
+    - port: 7012
+      targetport: 7012
