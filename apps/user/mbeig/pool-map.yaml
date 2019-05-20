@@ -1,4 +1,6 @@
 version: v2
 apps:
-  c2c-service:
+  identity-service-layer:
+    - name: xrd/xrd-sampool
+  ca-business:
     - name: xrd/xrd-sampool
