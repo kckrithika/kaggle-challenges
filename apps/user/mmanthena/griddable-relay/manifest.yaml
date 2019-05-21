@@ -43,20 +43,20 @@ system:
        - name : TRUSTED_CERT
          value: "cat /client-certs/ca.pem"
        - name : ACDS_POLICY
-         value: "io.griddable.policy:{\"KARTHIK\":{}}"
+         value: "io.griddable.policy:{\"ACDS_TEST\":{}}"
        - name : ACDS_DB_CONFIG
          value: "{
     \"additionalParams\" : {
         \"useServiceName\" : \"AUTO\",
         \"useStatementBatching\" : false
     },
-    \"host\" : \"10.215.44.10\",
-    \"id\" : \"src_db\",
-    \"instanceName\" : \"DATABASE\",
+    \"host\" : \"10.225.240.220\",
+    \"id\" : \"srcdb\",
+    \"instanceName\" : \"EE\",
     \"password\" : \"basic:xRdN9n9+Yto2hHDW/sldaA==\",
     \"port\" : 1521,
     \"type\" : \"oracle\",
-    \"user\" : \"KARTHIK\"}"
+    \"user\" : \"ACDS_TEST\"}"
        - name : TENANT_ADMIN_NAME
          value: "admin@local"
        - name : TENANR_ADMIN_PASSWORD
