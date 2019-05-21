@@ -10,8 +10,10 @@ users:
   - robert.reid
   - qcai
   - s.sun
+  - mgilham
+  - lorrin.nelson
 
 # Admins are responsible for ensuring only approved changes are made during moratoriums.  See https://sfdc.co/sam-admins
 admins:
-  - mgilham
-  - lorrin.nelson
+#  - mgilham
+#  - lorrin.nelson
