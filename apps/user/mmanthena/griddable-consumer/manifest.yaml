@@ -127,7 +127,7 @@ system:
        - name : ACDS_REPL_CONSUMER_DB_CONFIG
          value: "targetdb"
        - name : ACDS_CONSUMER_POLICY
-         value: "replicate_all:1"
+         value: "consumer_policy"
        - name : ACDS_START_RELAY
          value: "no"
        - name : ACDS_START_CLIENT
