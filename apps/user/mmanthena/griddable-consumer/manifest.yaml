@@ -133,7 +133,7 @@ system:
        - name : ACDS_START_CLIENT
          value: "yes"     
        - name : DUMMY_VARIABLE
-         value: "DUMMY_VARIABLE_3"
+         value: "DUMMY_VARIABLE_4"
      volumes:
 #     - name: consumer-persistent-conf
 #       hostPath:
