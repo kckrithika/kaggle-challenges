@@ -5,14 +5,16 @@ system:
     count: 1
     containers:
     - name: syncmaster
-      image: docker-dva-rc/dva/winterfell-syncmaster:8-661696451d82dcd3a180114475a4b2d2f8ee3181
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/j-zoch/winterfell-syncmaster:297309a67a1f976bfa4335896e1d0fc7d769a85c
       env:
+      - name: SFDC_ENVIRONMENT
+        value: prod
       - name: SPRING_CONFIG_NAME
         value: prod
       - name: DC
         value: $(KINGDOM)
       - name: SPRING_PROFILES_ACTIVE 
-        value: dc.(KINGDOM),h2,sam
+        value: dc.$(KINGDOM),sam,oracle,h2
       ports:
       - containerPort: 7020
       - containerPort: 8080
@@ -22,12 +24,12 @@ system:
         httpGet:
           path: /manage/health
           port: 15372
-        initialDelaySeconds: 230
+        initialDelaySeconds: 360
       readinessProbe:
         httpGet:
           path: /manage/health
           port: 15372
-        initialDelaySeconds: 230
+        initialDelaySeconds: 360
 
       volumeMounts:
         - name: tls-client-cert
@@ -75,7 +77,7 @@ system:
       livenessProbe:
         exec:
           command:
-          - /home/scone/is-alive.sh
+          - /opt/beacon/is-alive.sh
         initialDelaySeconds: 60
 
     # Add MadDog certificate volumes
@@ -92,7 +94,7 @@ system:
     function: syncmaster
     slbEnabled: true
     ports:
-      - port: 80
+      - port: 8080
         targetport: 8080
       - port: 15372
         targetport: 15372
