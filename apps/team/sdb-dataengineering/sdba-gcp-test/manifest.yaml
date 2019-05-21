@@ -1,0 +1,23 @@
+apiVersion: v3
+system:
+  functions:
+  - name: sdba-gcp-test
+    count: 1
+    containers:
+    - name: sdba-gcp-test-image
+      image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/sdba/sdba_gcp_test:0.0.1
+      ports:
+      - containerPort: 9090
+      - containerPort: 9091
+      livenessProbe:
+        httpGet:
+          path: /
+          port: 9091
+  loadbalancers:
+  - lbname: sdba-gcp-test-image-lb
+    function: sdba-gcp-test
+    slbenabled: true
+    ports:
+      - port: 9090
+        targetport: 9090
+        lbtype: tcp
