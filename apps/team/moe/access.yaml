@@ -1,8 +1,8 @@
 #Use corp user name instead of git user ids e.g. prahlad.joshi instead of prahlad-joshi
 # Admins are responsible for ensuring only approved changes are made during moratoriums.  See https://sfdc.co/sam-admins
 admins:
-  - vyjayanthi.raja
-  - mgrass
+#  - vyjayanthi.raja
+#  - mgrass
 users:
   #MOE team members (team contact -- moe@salesforce.com)
   - agajjala
