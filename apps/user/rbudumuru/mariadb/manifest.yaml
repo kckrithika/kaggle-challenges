@@ -28,9 +28,6 @@ system:
       - name: MYSQL_PASSWORD
         value: myuserpassword
 
-
-
-
       volumeMounts:
       - mountPath: /certs
         name: certs
