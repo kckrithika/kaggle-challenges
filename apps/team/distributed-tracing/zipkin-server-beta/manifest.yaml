@@ -31,7 +31,7 @@ system:
         secretName: oauth2-proxy
     containers:
     - name: zipkin-collector
-      image: docker-dva-rc/dva/zipkin-collector:56
+      image: docker-dva-rc/dva/zipkin-collector:67
       env:
       - name: ES_INDEX_REPLICAS
         value: 3
@@ -94,7 +94,7 @@ system:
           command:
           - /bin/true
     - name: zipkin-beta
-      image: docker-dva-rc/dva/zipkin-server:36
+      image: docker-dva-rc/dva/zipkin-frontend:2
       resources:
          # forcing the pods to different hosts (each has 56 CPU)
         limits: { cpu: "30", memory: "12Gi" }
