@@ -187,7 +187,9 @@ simple_regex_tests = {
     # Scheduler bug in Kubernetes <= 1.9.7 that randomly prevents re-use of pod name. No longer expected because pod names are now unique.
     'SCHEDULER_ASSUME_POD': re.compile("FailedScheduling.*AssumePod failed: pod .* state wasn't initial but get assumed"),
     # This should be accompanied by a useful Exception
-    'SPARK_CONTEXT_INIT_ERROR': re.compile("Error initializing SparkContext")
+    'SPARK_CONTEXT_INIT_ERROR': re.compile("Error initializing SparkContext"),
+    # This one might be due to IP exhaustion; need to check kubelet logs. https://salesforce.quip.com/i0ThASBMoHqf#VCTACATj2IO
+    'DOCKER_SANDBOX': re.compile("Failed create pod sandbox")
 }
 
 r_spark_submit_failed = re.compile(r'failed to run spark-submit')
