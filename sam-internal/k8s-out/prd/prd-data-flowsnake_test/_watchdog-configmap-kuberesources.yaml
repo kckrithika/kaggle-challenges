@@ -38,7 +38,7 @@ data:
       "deployer-smtpServer": "smtpops-prd-sp1.data.sfdc.net:25",
       "email-subject-prefix": "FLOWSNAKEWD",
       "funnelEndpoint": "ajna0-funnel1-0-prd.data.sfdc.net:80",
-      "imageName": "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/sam/hypersam:2687-6c147b04d2d506c9fd591d50f400bd86c485b155",
+      "imageName": "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/sam/hypersam:2722-a1231485debac6b17dfa76e7a1af01750e0f4f8b",
       "keyFile": "/etc/pki_service/platform/platform-client/keys/platform-client-key.pem",
       "kubeResourceNamespacePrefixBlacklist": "sam-watchdog",
       "kubeResourceNamespacePrefixWhitelist": "kube-system,flowsnake",
