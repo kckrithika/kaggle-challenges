@@ -311,7 +311,7 @@ done;
 
 if $(echo ${STATE} | grep -P '(COMPLETED|FAILED)' > /dev/null); then
     # Delete so that Kubernetes is in a cleaner state when the next test execution starts
-    log "Cleaning up stuff for complated or failed test."
+    log "Cleaning up stuff for completed or failed test."
     kcfw_log delete sparkapplication ${APP_NAME}
     kcfw_log delete pod -l ${SELECTOR}
 fi
