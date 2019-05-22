@@ -5,7 +5,7 @@ system:
     - drichelson@salesforce.com
   functions:
   - name: geoip-go
-    count: 0
+    count: 1
     containers:
     - name: geoip-database
       image: tnrp/ccait/geoip2-database:20170918
@@ -22,7 +22,7 @@ system:
         initialDelaySeconds: 10
         periodSeconds: 5
     - name: geoip-go
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/ccait/geoip-go:0.0.9
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/ccait/geoip-go:2019.0.0
       resources:
         limits:
           cpu: "1"
