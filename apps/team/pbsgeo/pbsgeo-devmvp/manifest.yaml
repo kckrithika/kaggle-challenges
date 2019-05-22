@@ -5,24 +5,74 @@ system:
     count: 4 
     containers:
     - name: pbsgeo
-      image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-gcp/dva/pbspectrum:38085fac73c053fb38b4d91bbc00fe86b3cb97f4
+      image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-gcp/dva/pbspectrum:6afabe656f69a7fe6b156d39c4c522665eb2e0db
       ports:
-      - containerPort: 8080
+      - containerPort: 7022
       livenessProbe:
         httpGet:
           path: /ping.jsp
-          port: 8080
-        initialDelaySeconds: 5000 
+          port: 7022
+        initialDelaySeconds: 2500 
         periodSeconds: 30
       resources:
-        limits: {cpu: "20", memory: "100Gi"}
-        requests: {cpu: "20", memory: "100Gi"}
+        limits: {cpu: "4", memory: "64Gi"}
+        requests: {cpu: "4", memory: "64Gi"}
       volumeMounts:
       - mountPath: /home/sfdc/logs
         name: logs
       - mountPath: /home/sdfc/unpackeddata
-        name: unpackeddata      
+        name: unpackeddata   
+    - name: sherpa
+      # Use the latest release version from https://git.soma.salesforce.com/servicelibs/serpa-envoy/releases
+      image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-gcp/sfci/servicelibs/sherpa-envoy:1.0.7
+      # See https://git.soma.salesforce.com/servicelibs/sherpa#ports
+      args:
+      - --switchboard=switchboard.service-mesh.svc:15001
+      ports:
+      - containerPort: 7442
+        name: http1-tls-in
+      - containerPort: 15373
+        name: sherpa-adm
+      livenessProbe:
+        exec:
+          command:
+          - ./bin/is-alive
+        initialDelaySeconds: 60
+        periodSeconds: 5
+      readinessProbe:
+        exec:
+          command:
+          - ./bin/is-ready
+        initialDelaySeconds: 50
+        periodSeconds: 5
+      # The cert names should match whateer you choose below in your volumes section.
+      # The mount paths match the defaults assumed by sherpa. Changing the paths requires a corresponding manual ovveride in sherpa
+      volumeMounts:
+      - name: client-cert
+        mountPath: /client-certs
+      - name: server-cert
+        mountPath: /server-certs
+    - name: beacon
+      image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-gcp/sfci/services/sfdc-bazel/disco/beacon:78f14c7b6
+      args:
+      - -endpoint
+      # Namespaced announcement for TLS http2/grpc at the DATACENTER_ALLENV level for a service in a team's namespace
+      # Note: If your service is in a user's personal namespace, a `samapp` namespace will need to be added. ie. `samapp/user-<USER>/<SAM function name>:DATACENTER:7443`
+      # For detailed info on other announcement types, see https://confluence.internal.salesforce.com/display/SERVMESH/Service+Mesh+Announcements and
+      # https://confluence.internal.salesforce.com/x/Ym2XAw
+      - $(FUNCTION_NAMESPACE)/$(FUNCTION):DATACENTER_ALLENV:HTTP1_TLS
+      livenessProbe:
+        initialDelaySeconds: 5
+        exec:
+          command:
+          - /opt/beacon/is-alive.sh  
     volumes:
+    - name: client-cert
+      maddogCert:
+        type: client
+    - name: server-cert
+      maddogCert:
+        type: server 
     - name: logs
       hostPath:
         path: /mnt/disks/ssd0/var/log/pbsgeo/logs
@@ -34,6 +84,6 @@ system:
     function: default
     slbenabled: true
     ports:
-      - port: 8080
-        targetport: 8080
+      - port: 7022
+        targetport: 7022
         lbtype: tcp
