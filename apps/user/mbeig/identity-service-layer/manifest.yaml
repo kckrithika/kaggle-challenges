@@ -34,8 +34,8 @@ system:
             - name: security_client_dynamickeystore_monitoredDirectory
               value: /certs
           ports:
-            - containerPort: 8082
-            - containerPort: 15375
+            - containerPort: 8081
+            - containerPort: 15371
           livenessProbe:
             httpGet:
               path: /manage/health
