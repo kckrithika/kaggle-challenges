@@ -30,6 +30,8 @@ spec:
         - --hostsConfigFile=/sfdchosts/hosts.json
         - --etcdSetDisabled=true
         - --etcdGetDisabled=true
+        - --crdSetEnabled=true
+        - --crdGetEnabled=true
         env:
         - name: SFDCLOC_PCN_KINGDOM
           value: aws-us-east-2
@@ -37,7 +39,7 @@ spec:
           value: aws-us-east-2-samtest
         - name: KUBECONFIG
           value: ""
-        image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/dva/sam/hypersam:2709-2c64bef305a811db319b1982738ba42022157744
+        image: 791719295754.dkr.ecr.us-east-2.amazonaws.com/dva/sam/hypersam:2601-1bbc5de4786678763a4e8a71681ee42ada887c76
         livenessProbe:
           httpGet:
             path: /healthz

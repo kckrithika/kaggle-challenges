@@ -82,13 +82,17 @@ local samreleases = import "samreleases.json";
 
         #[xiao.zhou] Override samapp controller for a bug showed in elastic search in prd-sam
         "prd,prd-sam,samapp-controller,hypersam": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/xiao.zhou/hypersam:20190415_152129.1843c9f94.clean.xiaozhou-ltm2",
+
+
+         #[min.wang] Needed temperarly for EKS images
+         "aws-us-east-2,aws-us-east-2-samtest,*,hypersam": "791719295754.dkr.ecr.us-east-2.amazonaws.com/dva/sam/hypersam:2601-1bbc5de4786678763a4e8a71681ee42ada887c76",
         },
 
     ### Per-phase image tags have been moved to samreleases.json
 
     ### Phase kingdom/estate mapping
     phase: (
-        if (estate == "prd-samtest" || kingdom == "mvp") then
+        if (estate == "prd-samtest" || kingdom == "mvp" || utils.is_aws(kingdom)) then
             "1"
         else if (estate == "prd-samdev") then
             "2"

@@ -39,14 +39,8 @@ if configs.kingdom != "mvp" then {
                     configs.cert_volume,
                     configs.config_volume("bundle-controller"),
                 ]),
-                nodeSelector: {
-                              } +
-                              if !utils.is_production(configs.kingdom) then {
-                                  master: "true",
-                              } else {
-                                  pool: configs.estate,
-                              },
-            } + configs.serviceAccount,
+            } + configs.serviceAccount
+             + configs.nodeSelector,
             metadata: {
                 labels: {
                     name: "bundlecontroller",
