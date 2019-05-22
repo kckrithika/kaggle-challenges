@@ -40,7 +40,7 @@ spec:
           valueFrom:
             fieldRef:
               fieldPath: spec.nodeName
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/slb/hyperslb:2160-e5212007143a8bc1d8a6a193632176bf6e02c3ec
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/slb/hyperslb:2165-05d59ef3dbf648a5a83f365d52dd1fa196c5c1ad
         name: slb-estate-installer
         resources:
           limits:
