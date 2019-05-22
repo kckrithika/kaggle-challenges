@@ -1,0 +1,378 @@
+TIMEOUT_EXECUTOR_SLOW_POD_CREATION
+0521 20:51:05 [1558471865] spark-pi-9ddef67e - ======== Beginning spark-pi-9ddef67e test ========
+0521 20:51:05 [1558471865] spark-pi-9ddef67e -  [0;32mKubernetes master [0m is running at  [0;33mhttps://10.254.208.1:443 [0m
+0521 20:51:05 [1558471865] spark-pi-9ddef67e -
+0521 20:51:05 [1558471865] spark-pi-9ddef67e - To further debug and diagnose cluster problems, use 'kubectl cluster-info dump'.
+0521 20:51:08 [1558471868] spark-pi-9ddef67e - Cleaning up SparkApplication/Pod older than 1 hours from prior runs.
+0521 20:51:12 [1558471872] spark-pi-9ddef67e - sparkapplication "spark-pi-8bad40ac" deleted
+0521 20:51:17 [1558471877] spark-pi-9ddef67e - Creating SparkApplication spark-pi-9ddef67e
+0521 20:51:17 [1558471877] spark-pi-9ddef67e - sparkapplication "spark-pi-9ddef67e" created
+0521 20:51:19 [1558471879] spark-pi-9ddef67e - Waiting for SparkApplication spark-pi-9ddef67e to reach a terminal state.
+0521 20:51:24 [1558471884] spark-pi-9ddef67e - Pod change detected: spark-pi-9ddef67e-driver: Pending on host <none>.
+0521 20:51:26 [1558471886] spark-pi-9ddef67e - Pod change detected: spark-pi-9ddef67e-driver changed to Init:0/1 (previously Pending).
+0521 20:51:33 [1558471893] spark-pi-9ddef67e - Pod change detected: spark-pi-9ddef67e-driver changed to PodInitializing (previously Init:0/1).
+0521 20:51:35 [1558471895] spark-pi-9ddef67e - Pod change detected: spark-pi-9ddef67e-driver changed to Running (previously PodInitializing).
+0521 20:52:21 [1558471941] spark-pi-9ddef67e - ...still waiting for terminal state (currently RUNNING) after 62 seconds.
+0521 20:52:21 [1558471941] spark-pi-9ddef67e - ---- Begin Events ----
+0521 20:52:21 [1558471941] spark-pi-9ddef67e - Name:         spark-pi-9ddef67e
+0521 20:52:21 [1558471941] spark-pi-9ddef67e - Events:
+0521 20:52:21 [1558471941] spark-pi-9ddef67e -   Type    Reason                     Age   From            Message
+0521 20:52:21 [1558471941] spark-pi-9ddef67e -   ----    ------                     ----  ----            -------
+0521 20:52:21 [1558471941] spark-pi-9ddef67e -   Normal  SparkApplicationAdded      1m    spark-operator  SparkApplication spark-pi-9ddef67e was added, enqueuing it for submission
+0521 20:52:21 [1558471941] spark-pi-9ddef67e -   Normal  SparkApplicationSubmitted  58s   spark-operator  SparkApplication spark-pi-9ddef67e was submitted successfully
+0521 20:52:21 [1558471941] spark-pi-9ddef67e -   Normal  SparkDriverRunning         50s   spark-operator  Driver spark-pi-9ddef67e-driver is running
+0521 20:52:24 [1558471944] spark-pi-9ddef67e - Name:           spark-pi-9ddef67e-driver
+0521 20:52:24 [1558471944] spark-pi-9ddef67e - Events:
+0521 20:52:24 [1558471944] spark-pi-9ddef67e -   Type     Reason                 Age   From                                                      Message
+0521 20:52:24 [1558471944] spark-pi-9ddef67e -   ----     ------                 ----  ----                                                      -------
+0521 20:52:24 [1558471944] spark-pi-9ddef67e -   Normal   SuccessfulMountVolume  1m    kubelet, shared0-flowsnakeworkerprod1-1-syd.ops.sfdc.net  MountVolume.SetUp succeeded for volume "datacerts"
+0521 20:52:24 [1558471944] spark-pi-9ddef67e -   Normal   SuccessfulMountVolume  1m    kubelet, shared0-flowsnakeworkerprod1-1-syd.ops.sfdc.net  MountVolume.SetUp succeeded for volume "certificate-authority"
+0521 20:52:24 [1558471944] spark-pi-9ddef67e -   Normal   SuccessfulMountVolume  1m    kubelet, shared0-flowsnakeworkerprod1-1-syd.ops.sfdc.net  MountVolume.SetUp succeeded for volume "client-certificate"
+0521 20:52:24 [1558471944] spark-pi-9ddef67e -   Normal   SuccessfulMountVolume  1m    kubelet, shared0-flowsnakeworkerprod1-1-syd.ops.sfdc.net  MountVolume.SetUp succeeded for volume "client-key"
+0521 20:52:24 [1558471944] spark-pi-9ddef67e -   Normal   SuccessfulMountVolume  1m    kubelet, shared0-flowsnakeworkerprod1-1-syd.ops.sfdc.net  MountVolume.SetUp succeeded for volume "spark-local-dir-1"
+0521 20:52:24 [1558471944] spark-pi-9ddef67e -   Normal   SuccessfulMountVolume  1m    kubelet, shared0-flowsnakeworkerprod1-1-syd.ops.sfdc.net  MountVolume.SetUp succeeded for volume "tokens"
+0521 20:52:24 [1558471944] spark-pi-9ddef67e -   Normal   Scheduled              1m    default-scheduler                                         Successfully assigned spark-pi-9ddef67e-driver to shared0-flowsnakeworkerprod1-1-syd.ops.sfdc.net
+0521 20:52:24 [1558471944] spark-pi-9ddef67e -   Normal   SuccessfulMountVolume  1m    kubelet, shared0-flowsnakeworkerprod1-1-syd.ops.sfdc.net  MountVolume.SetUp succeeded for volume "spark-conf-volume"
+0521 20:52:24 [1558471944] spark-pi-9ddef67e -   Warning  FailedMount            1m    kubelet, shared0-flowsnakeworkerprod1-1-syd.ops.sfdc.net  MountVolume.SetUp failed for volume "spark-conf-volume" : configmaps "spark-pi-9ddef67e-1558471881070-driver-conf-map" not found
+0521 20:52:24 [1558471944] spark-pi-9ddef67e -   Normal   SuccessfulMountVolume  1m    kubelet, shared0-flowsnakeworkerprod1-1-syd.ops.sfdc.net  MountVolume.SetUp succeeded for volume "spark-driver-flowsnake-watchdog-token-jbgdx"
+0521 20:52:24 [1558471944] spark-pi-9ddef67e -   Normal   Pulled                 1m    kubelet, shared0-flowsnakeworkerprod1-1-syd.ops.sfdc.net  Container image "ops0-artifactrepo1-0-syd.data.sfdc.net/tnrp/sam/madkub:1.0.0-0000084-9f4a6ca6" already present on machine
+0521 20:52:24 [1558471944] spark-pi-9ddef67e -   Normal   Created                1m    kubelet, shared0-flowsnakeworkerprod1-1-syd.ops.sfdc.net  Created container
+0521 20:52:24 [1558471944] spark-pi-9ddef67e -   Normal   Started                1m    kubelet, shared0-flowsnakeworkerprod1-1-syd.ops.sfdc.net  Started container
+0521 20:52:24 [1558471944] spark-pi-9ddef67e -   Normal   Pulling                56s   kubelet, shared0-flowsnakeworkerprod1-1-syd.ops.sfdc.net  pulling image "ops0-artifactrepo1-0-syd.data.sfdc.net/dva/flowsnake-spark-on-k8s-sample-apps:4"
+0521 20:52:24 [1558471944] spark-pi-9ddef67e -   Normal   Pulled                 56s   kubelet, shared0-flowsnakeworkerprod1-1-syd.ops.sfdc.net  Successfully pulled image "ops0-artifactrepo1-0-syd.data.sfdc.net/dva/flowsnake-spark-on-k8s-sample-apps:4"
+0521 20:52:24 [1558471944] spark-pi-9ddef67e -   Normal   Created                56s   kubelet, shared0-flowsnakeworkerprod1-1-syd.ops.sfdc.net  Created container
+0521 20:52:24 [1558471944] spark-pi-9ddef67e -   Normal   Started                55s   kubelet, shared0-flowsnakeworkerprod1-1-syd.ops.sfdc.net  Started container
+0521 20:52:28 [1558471948] spark-pi-9ddef67e - ---- End Events ----
+0521 20:53:22 [1558472002] spark-pi-9ddef67e - ...still waiting for terminal state (currently RUNNING) after 123 seconds.
+0521 20:53:22 [1558472002] spark-pi-9ddef67e - ---- Begin Events ----
+0521 20:53:22 [1558472002] spark-pi-9ddef67e - Name:         spark-pi-9ddef67e
+0521 20:53:22 [1558472002] spark-pi-9ddef67e - Events:
+0521 20:53:22 [1558472002] spark-pi-9ddef67e -   Type    Reason                     Age   From            Message
+0521 20:53:22 [1558472002] spark-pi-9ddef67e -   ----    ------                     ----  ----            -------
+0521 20:53:22 [1558472002] spark-pi-9ddef67e -   Normal  SparkApplicationAdded      2m    spark-operator  SparkApplication spark-pi-9ddef67e was added, enqueuing it for submission
+0521 20:53:22 [1558472002] spark-pi-9ddef67e -   Normal  SparkApplicationSubmitted  1m    spark-operator  SparkApplication spark-pi-9ddef67e was submitted successfully
+0521 20:53:22 [1558472002] spark-pi-9ddef67e -   Normal  SparkDriverRunning         1m    spark-operator  Driver spark-pi-9ddef67e-driver is running
+0521 20:53:24 [1558472004] spark-pi-9ddef67e - Name:           spark-pi-9ddef67e-driver
+0521 20:53:24 [1558472004] spark-pi-9ddef67e - Events:
+0521 20:53:24 [1558472004] spark-pi-9ddef67e -   Type     Reason                 Age   From                                                      Message
+0521 20:53:24 [1558472004] spark-pi-9ddef67e -   ----     ------                 ----  ----                                                      -------
+0521 20:53:24 [1558472004] spark-pi-9ddef67e -   Normal   SuccessfulMountVolume  2m    kubelet, shared0-flowsnakeworkerprod1-1-syd.ops.sfdc.net  MountVolume.SetUp succeeded for volume "datacerts"
+0521 20:53:24 [1558472004] spark-pi-9ddef67e -   Normal   SuccessfulMountVolume  2m    kubelet, shared0-flowsnakeworkerprod1-1-syd.ops.sfdc.net  MountVolume.SetUp succeeded for volume "certificate-authority"
+0521 20:53:24 [1558472004] spark-pi-9ddef67e -   Normal   SuccessfulMountVolume  2m    kubelet, shared0-flowsnakeworkerprod1-1-syd.ops.sfdc.net  MountVolume.SetUp succeeded for volume "client-certificate"
+0521 20:53:24 [1558472004] spark-pi-9ddef67e -   Normal   SuccessfulMountVolume  2m    kubelet, shared0-flowsnakeworkerprod1-1-syd.ops.sfdc.net  MountVolume.SetUp succeeded for volume "client-key"
+0521 20:53:24 [1558472004] spark-pi-9ddef67e -   Normal   SuccessfulMountVolume  2m    kubelet, shared0-flowsnakeworkerprod1-1-syd.ops.sfdc.net  MountVolume.SetUp succeeded for volume "spark-local-dir-1"
+0521 20:53:24 [1558472004] spark-pi-9ddef67e -   Normal   SuccessfulMountVolume  2m    kubelet, shared0-flowsnakeworkerprod1-1-syd.ops.sfdc.net  MountVolume.SetUp succeeded for volume "tokens"
+0521 20:53:24 [1558472004] spark-pi-9ddef67e -   Normal   Scheduled              2m    default-scheduler                                         Successfully assigned spark-pi-9ddef67e-driver to shared0-flowsnakeworkerprod1-1-syd.ops.sfdc.net
+0521 20:53:24 [1558472004] spark-pi-9ddef67e -   Normal   SuccessfulMountVolume  2m    kubelet, shared0-flowsnakeworkerprod1-1-syd.ops.sfdc.net  MountVolume.SetUp succeeded for volume "spark-conf-volume"
+0521 20:53:24 [1558472004] spark-pi-9ddef67e -   Warning  FailedMount            2m    kubelet, shared0-flowsnakeworkerprod1-1-syd.ops.sfdc.net  MountVolume.SetUp failed for volume "spark-conf-volume" : configmaps "spark-pi-9ddef67e-1558471881070-driver-conf-map" not found
+0521 20:53:24 [1558472004] spark-pi-9ddef67e -   Normal   SuccessfulMountVolume  2m    kubelet, shared0-flowsnakeworkerprod1-1-syd.ops.sfdc.net  MountVolume.SetUp succeeded for volume "spark-driver-flowsnake-watchdog-token-jbgdx"
+0521 20:53:24 [1558472004] spark-pi-9ddef67e -   Normal   Pulled                 1m    kubelet, shared0-flowsnakeworkerprod1-1-syd.ops.sfdc.net  Container image "ops0-artifactrepo1-0-syd.data.sfdc.net/tnrp/sam/madkub:1.0.0-0000084-9f4a6ca6" already present on machine
+0521 20:53:24 [1558472004] spark-pi-9ddef67e -   Normal   Created                1m    kubelet, shared0-flowsnakeworkerprod1-1-syd.ops.sfdc.net  Created container
+0521 20:53:24 [1558472004] spark-pi-9ddef67e -   Normal   Started                1m    kubelet, shared0-flowsnakeworkerprod1-1-syd.ops.sfdc.net  Started container
+0521 20:53:24 [1558472004] spark-pi-9ddef67e -   Normal   Pulling                1m    kubelet, shared0-flowsnakeworkerprod1-1-syd.ops.sfdc.net  pulling image "ops0-artifactrepo1-0-syd.data.sfdc.net/dva/flowsnake-spark-on-k8s-sample-apps:4"
+0521 20:53:24 [1558472004] spark-pi-9ddef67e -   Normal   Pulled                 1m    kubelet, shared0-flowsnakeworkerprod1-1-syd.ops.sfdc.net  Successfully pulled image "ops0-artifactrepo1-0-syd.data.sfdc.net/dva/flowsnake-spark-on-k8s-sample-apps:4"
+0521 20:53:24 [1558472004] spark-pi-9ddef67e -   Normal   Created                1m    kubelet, shared0-flowsnakeworkerprod1-1-syd.ops.sfdc.net  Created container
+0521 20:53:24 [1558472004] spark-pi-9ddef67e -   Normal   Started                1m    kubelet, shared0-flowsnakeworkerprod1-1-syd.ops.sfdc.net  Started container
+0521 20:53:26 [1558472006] spark-pi-9ddef67e - ---- End Events ----
+0521 20:53:33 [1558472013] spark-pi-9ddef67e - Pod change detected: spark-pi-9ddef67e-1558471881070-exec-1: Init:0/1 on host shared0-flowsnakeworkerprod1-5-syd.ops.sfdc.net.
+0521 20:54:13 [1558472053] spark-pi-9ddef67e - Pod change detected: spark-pi-9ddef67e-1558471881070-exec-1 changed to PodInitializing (previously Init:0/1).
+0521 20:54:23 [1558472063] spark-pi-9ddef67e - ...still waiting for terminal state (currently RUNNING) after 184 seconds.
+0521 20:54:23 [1558472063] spark-pi-9ddef67e - ---- Begin Events ----
+0521 20:54:23 [1558472063] spark-pi-9ddef67e - Name:         spark-pi-9ddef67e
+0521 20:54:23 [1558472063] spark-pi-9ddef67e - Events:
+0521 20:54:23 [1558472063] spark-pi-9ddef67e -   Type    Reason                     Age   From            Message
+0521 20:54:23 [1558472063] spark-pi-9ddef67e -   ----    ------                     ----  ----            -------
+0521 20:54:23 [1558472063] spark-pi-9ddef67e -   Normal  SparkApplicationAdded      3m    spark-operator  SparkApplication spark-pi-9ddef67e was added, enqueuing it for submission
+0521 20:54:23 [1558472063] spark-pi-9ddef67e -   Normal  SparkApplicationSubmitted  2m    spark-operator  SparkApplication spark-pi-9ddef67e was submitted successfully
+0521 20:54:23 [1558472063] spark-pi-9ddef67e -   Normal  SparkDriverRunning         2m    spark-operator  Driver spark-pi-9ddef67e-driver is running
+0521 20:54:23 [1558472063] spark-pi-9ddef67e -   Normal  SparkExecutorPending       55s   spark-operator  Executor spark-pi-9ddef67e-1558471881070-exec-1 is pending
+0521 20:54:23 [1558472063] spark-pi-9ddef67e -   Normal  SparkExecutorRunning       2s    spark-operator  Executor spark-pi-9ddef67e-1558471881070-exec-1 is running
+0521 20:54:25 [1558472065] spark-pi-9ddef67e - Name:           spark-pi-9ddef67e-driver
+0521 20:54:25 [1558472065] spark-pi-9ddef67e - Events:
+0521 20:54:25 [1558472065] spark-pi-9ddef67e -   Type     Reason                 Age   From                                                      Message
+0521 20:54:25 [1558472065] spark-pi-9ddef67e -   ----     ------                 ----  ----                                                      -------
+0521 20:54:25 [1558472065] spark-pi-9ddef67e -   Normal   SuccessfulMountVolume  3m    kubelet, shared0-flowsnakeworkerprod1-1-syd.ops.sfdc.net  MountVolume.SetUp succeeded for volume "datacerts"
+0521 20:54:25 [1558472065] spark-pi-9ddef67e -   Normal   SuccessfulMountVolume  3m    kubelet, shared0-flowsnakeworkerprod1-1-syd.ops.sfdc.net  MountVolume.SetUp succeeded for volume "certificate-authority"
+0521 20:54:25 [1558472065] spark-pi-9ddef67e -   Normal   SuccessfulMountVolume  3m    kubelet, shared0-flowsnakeworkerprod1-1-syd.ops.sfdc.net  MountVolume.SetUp succeeded for volume "client-certificate"
+0521 20:54:25 [1558472065] spark-pi-9ddef67e -   Normal   SuccessfulMountVolume  3m    kubelet, shared0-flowsnakeworkerprod1-1-syd.ops.sfdc.net  MountVolume.SetUp succeeded for volume "client-key"
+0521 20:54:25 [1558472065] spark-pi-9ddef67e -   Normal   SuccessfulMountVolume  3m    kubelet, shared0-flowsnakeworkerprod1-1-syd.ops.sfdc.net  MountVolume.SetUp succeeded for volume "spark-local-dir-1"
+0521 20:54:25 [1558472065] spark-pi-9ddef67e -   Normal   SuccessfulMountVolume  3m    kubelet, shared0-flowsnakeworkerprod1-1-syd.ops.sfdc.net  MountVolume.SetUp succeeded for volume "tokens"
+0521 20:54:25 [1558472065] spark-pi-9ddef67e -   Normal   Scheduled              3m    default-scheduler                                         Successfully assigned spark-pi-9ddef67e-driver to shared0-flowsnakeworkerprod1-1-syd.ops.sfdc.net
+0521 20:54:25 [1558472065] spark-pi-9ddef67e -   Normal   SuccessfulMountVolume  3m    kubelet, shared0-flowsnakeworkerprod1-1-syd.ops.sfdc.net  MountVolume.SetUp succeeded for volume "spark-conf-volume"
+0521 20:54:25 [1558472065] spark-pi-9ddef67e -   Warning  FailedMount            3m    kubelet, shared0-flowsnakeworkerprod1-1-syd.ops.sfdc.net  MountVolume.SetUp failed for volume "spark-conf-volume" : configmaps "spark-pi-9ddef67e-1558471881070-driver-conf-map" not found
+0521 20:54:25 [1558472065] spark-pi-9ddef67e -   Normal   SuccessfulMountVolume  3m    kubelet, shared0-flowsnakeworkerprod1-1-syd.ops.sfdc.net  MountVolume.SetUp succeeded for volume "spark-driver-flowsnake-watchdog-token-jbgdx"
+0521 20:54:25 [1558472065] spark-pi-9ddef67e -   Normal   Pulled                 3m    kubelet, shared0-flowsnakeworkerprod1-1-syd.ops.sfdc.net  Container image "ops0-artifactrepo1-0-syd.data.sfdc.net/tnrp/sam/madkub:1.0.0-0000084-9f4a6ca6" already present on machine
+0521 20:54:25 [1558472065] spark-pi-9ddef67e -   Normal   Created                3m    kubelet, shared0-flowsnakeworkerprod1-1-syd.ops.sfdc.net  Created container
+0521 20:54:25 [1558472065] spark-pi-9ddef67e -   Normal   Started                3m    kubelet, shared0-flowsnakeworkerprod1-1-syd.ops.sfdc.net  Started container
+0521 20:54:25 [1558472065] spark-pi-9ddef67e -   Normal   Pulling                2m    kubelet, shared0-flowsnakeworkerprod1-1-syd.ops.sfdc.net  pulling image "ops0-artifactrepo1-0-syd.data.sfdc.net/dva/flowsnake-spark-on-k8s-sample-apps:4"
+0521 20:54:25 [1558472065] spark-pi-9ddef67e -   Normal   Pulled                 2m    kubelet, shared0-flowsnakeworkerprod1-1-syd.ops.sfdc.net  Successfully pulled image "ops0-artifactrepo1-0-syd.data.sfdc.net/dva/flowsnake-spark-on-k8s-sample-apps:4"
+0521 20:54:25 [1558472065] spark-pi-9ddef67e -   Normal   Created                2m    kubelet, shared0-flowsnakeworkerprod1-1-syd.ops.sfdc.net  Created container
+0521 20:54:25 [1558472065] spark-pi-9ddef67e -   Normal   Started                2m    kubelet, shared0-flowsnakeworkerprod1-1-syd.ops.sfdc.net  Started container
+0521 20:54:28 [1558472068] spark-pi-9ddef67e - Name:           spark-pi-9ddef67e-1558471881070-exec-1
+0521 20:54:28 [1558472068] spark-pi-9ddef67e - Events:
+0521 20:54:28 [1558472068] spark-pi-9ddef67e -   Type    Reason                 Age   From                                                      Message
+0521 20:54:28 [1558472068] spark-pi-9ddef67e -   ----    ------                 ----  ----                                                      -------
+0521 20:54:28 [1558472068] spark-pi-9ddef67e -   Normal  SuccessfulMountVolume  59s   kubelet, shared0-flowsnakeworkerprod1-5-syd.ops.sfdc.net  MountVolume.SetUp succeeded for volume "default-token-c6l96"
+0521 20:54:28 [1558472068] spark-pi-9ddef67e -   Normal  SuccessfulMountVolume  59s   kubelet, shared0-flowsnakeworkerprod1-5-syd.ops.sfdc.net  MountVolume.SetUp succeeded for volume "certificate-authority"
+0521 20:54:28 [1558472068] spark-pi-9ddef67e -   Normal  SuccessfulMountVolume  59s   kubelet, shared0-flowsnakeworkerprod1-5-syd.ops.sfdc.net  MountVolume.SetUp succeeded for volume "client-key"
+0521 20:54:28 [1558472068] spark-pi-9ddef67e -   Normal  SuccessfulMountVolume  59s   kubelet, shared0-flowsnakeworkerprod1-5-syd.ops.sfdc.net  MountVolume.SetUp succeeded for volume "client-certificate"
+0521 20:54:28 [1558472068] spark-pi-9ddef67e -   Normal  SuccessfulMountVolume  59s   kubelet, shared0-flowsnakeworkerprod1-5-syd.ops.sfdc.net  MountVolume.SetUp succeeded for volume "spark-local-dir-1"
+0521 20:54:28 [1558472068] spark-pi-9ddef67e -   Normal  SuccessfulMountVolume  59s   kubelet, shared0-flowsnakeworkerprod1-5-syd.ops.sfdc.net  MountVolume.SetUp succeeded for volume "datacerts"
+0521 20:54:28 [1558472068] spark-pi-9ddef67e -   Normal  SuccessfulMountVolume  59s   kubelet, shared0-flowsnakeworkerprod1-5-syd.ops.sfdc.net  MountVolume.SetUp succeeded for volume "tokens"
+0521 20:54:28 [1558472068] spark-pi-9ddef67e -   Normal  Scheduled              59s   default-scheduler                                         Successfully assigned spark-pi-9ddef67e-1558471881070-exec-1 to shared0-flowsnakeworkerprod1-5-syd.ops.sfdc.net
+0521 20:54:28 [1558472068] spark-pi-9ddef67e -   Normal  Pulled                 48s   kubelet, shared0-flowsnakeworkerprod1-5-syd.ops.sfdc.net  Container image "ops0-artifactrepo1-0-syd.data.sfdc.net/tnrp/sam/madkub:1.0.0-0000084-9f4a6ca6" already present on machine
+0521 20:54:28 [1558472068] spark-pi-9ddef67e -   Normal  Created                41s   kubelet, shared0-flowsnakeworkerprod1-5-syd.ops.sfdc.net  Created container
+0521 20:54:28 [1558472068] spark-pi-9ddef67e -   Normal  Started                39s   kubelet, shared0-flowsnakeworkerprod1-5-syd.ops.sfdc.net  Started container
+0521 20:54:28 [1558472068] spark-pi-9ddef67e -   Normal  Pulling                19s   kubelet, shared0-flowsnakeworkerprod1-5-syd.ops.sfdc.net  pulling image "ops0-artifactrepo1-0-syd.data.sfdc.net/dva/flowsnake-spark-on-k8s-sample-apps:4"
+0521 20:54:28 [1558472068] spark-pi-9ddef67e -   Normal  Pulled                 19s   kubelet, shared0-flowsnakeworkerprod1-5-syd.ops.sfdc.net  Successfully pulled image "ops0-artifactrepo1-0-syd.data.sfdc.net/dva/flowsnake-spark-on-k8s-sample-apps:4"
+0521 20:54:28 [1558472068] spark-pi-9ddef67e -   Normal  Created                12s   kubelet, shared0-flowsnakeworkerprod1-5-syd.ops.sfdc.net  Created container
+0521 20:54:28 [1558472068] spark-pi-9ddef67e -   Normal  Started                11s   kubelet, shared0-flowsnakeworkerprod1-5-syd.ops.sfdc.net  Started container
+0521 20:54:30 [1558472070] spark-pi-9ddef67e - ---- End Events ----
+0521 20:54:30 [1558472070] spark-pi-9ddef67e - Pod change detected: spark-pi-9ddef67e-1558471881070-exec-1 changed to Running (previously PodInitializing).
+0521 20:55:24 [1558472124] spark-pi-9ddef67e - ...still waiting for terminal state (currently RUNNING) after 245 seconds.
+0521 20:55:24 [1558472124] spark-pi-9ddef67e - ---- Begin Events ----
+0521 20:55:25 [1558472125] spark-pi-9ddef67e - Name:         spark-pi-9ddef67e
+0521 20:55:25 [1558472125] spark-pi-9ddef67e - Events:
+0521 20:55:25 [1558472125] spark-pi-9ddef67e -   Type    Reason                     Age   From            Message
+0521 20:55:25 [1558472125] spark-pi-9ddef67e -   ----    ------                     ----  ----            -------
+0521 20:55:25 [1558472125] spark-pi-9ddef67e -   Normal  SparkApplicationAdded      4m    spark-operator  SparkApplication spark-pi-9ddef67e was added, enqueuing it for submission
+0521 20:55:25 [1558472125] spark-pi-9ddef67e -   Normal  SparkApplicationSubmitted  4m    spark-operator  SparkApplication spark-pi-9ddef67e was submitted successfully
+0521 20:55:25 [1558472125] spark-pi-9ddef67e -   Normal  SparkDriverRunning         3m    spark-operator  Driver spark-pi-9ddef67e-driver is running
+0521 20:55:25 [1558472125] spark-pi-9ddef67e -   Normal  SparkExecutorPending       1m    spark-operator  Executor spark-pi-9ddef67e-1558471881070-exec-1 is pending
+0521 20:55:25 [1558472125] spark-pi-9ddef67e -   Normal  SparkExecutorRunning       1m    spark-operator  Executor spark-pi-9ddef67e-1558471881070-exec-1 is running
+0521 20:55:27 [1558472127] spark-pi-9ddef67e - Name:           spark-pi-9ddef67e-driver
+0521 20:55:27 [1558472127] spark-pi-9ddef67e - Events:
+0521 20:55:27 [1558472127] spark-pi-9ddef67e -   Type     Reason                 Age   From                                                      Message
+0521 20:55:27 [1558472127] spark-pi-9ddef67e -   ----     ------                 ----  ----                                                      -------
+0521 20:55:27 [1558472127] spark-pi-9ddef67e -   Normal   SuccessfulMountVolume  4m    kubelet, shared0-flowsnakeworkerprod1-1-syd.ops.sfdc.net  MountVolume.SetUp succeeded for volume "datacerts"
+0521 20:55:27 [1558472127] spark-pi-9ddef67e -   Normal   SuccessfulMountVolume  4m    kubelet, shared0-flowsnakeworkerprod1-1-syd.ops.sfdc.net  MountVolume.SetUp succeeded for volume "certificate-authority"
+0521 20:55:27 [1558472127] spark-pi-9ddef67e -   Normal   SuccessfulMountVolume  4m    kubelet, shared0-flowsnakeworkerprod1-1-syd.ops.sfdc.net  MountVolume.SetUp succeeded for volume "client-certificate"
+0521 20:55:27 [1558472127] spark-pi-9ddef67e -   Normal   SuccessfulMountVolume  4m    kubelet, shared0-flowsnakeworkerprod1-1-syd.ops.sfdc.net  MountVolume.SetUp succeeded for volume "client-key"
+0521 20:55:27 [1558472127] spark-pi-9ddef67e -   Normal   SuccessfulMountVolume  4m    kubelet, shared0-flowsnakeworkerprod1-1-syd.ops.sfdc.net  MountVolume.SetUp succeeded for volume "spark-local-dir-1"
+0521 20:55:27 [1558472127] spark-pi-9ddef67e -   Normal   SuccessfulMountVolume  4m    kubelet, shared0-flowsnakeworkerprod1-1-syd.ops.sfdc.net  MountVolume.SetUp succeeded for volume "tokens"
+0521 20:55:27 [1558472127] spark-pi-9ddef67e -   Normal   Scheduled              4m    default-scheduler                                         Successfully assigned spark-pi-9ddef67e-driver to shared0-flowsnakeworkerprod1-1-syd.ops.sfdc.net
+0521 20:55:27 [1558472127] spark-pi-9ddef67e -   Normal   SuccessfulMountVolume  4m    kubelet, shared0-flowsnakeworkerprod1-1-syd.ops.sfdc.net  MountVolume.SetUp succeeded for volume "spark-conf-volume"
+0521 20:55:27 [1558472127] spark-pi-9ddef67e -   Warning  FailedMount            4m    kubelet, shared0-flowsnakeworkerprod1-1-syd.ops.sfdc.net  MountVolume.SetUp failed for volume "spark-conf-volume" : configmaps "spark-pi-9ddef67e-1558471881070-driver-conf-map" not found
+0521 20:55:27 [1558472127] spark-pi-9ddef67e -   Normal   SuccessfulMountVolume  4m    kubelet, shared0-flowsnakeworkerprod1-1-syd.ops.sfdc.net  MountVolume.SetUp succeeded for volume "spark-driver-flowsnake-watchdog-token-jbgdx"
+0521 20:55:27 [1558472127] spark-pi-9ddef67e -   Normal   Pulled                 4m    kubelet, shared0-flowsnakeworkerprod1-1-syd.ops.sfdc.net  Container image "ops0-artifactrepo1-0-syd.data.sfdc.net/tnrp/sam/madkub:1.0.0-0000084-9f4a6ca6" already present on machine
+0521 20:55:27 [1558472127] spark-pi-9ddef67e -   Normal   Created                4m    kubelet, shared0-flowsnakeworkerprod1-1-syd.ops.sfdc.net  Created container
+0521 20:55:27 [1558472127] spark-pi-9ddef67e -   Normal   Started                4m    kubelet, shared0-flowsnakeworkerprod1-1-syd.ops.sfdc.net  Started container
+0521 20:55:27 [1558472127] spark-pi-9ddef67e -   Normal   Pulling                3m    kubelet, shared0-flowsnakeworkerprod1-1-syd.ops.sfdc.net  pulling image "ops0-artifactrepo1-0-syd.data.sfdc.net/dva/flowsnake-spark-on-k8s-sample-apps:4"
+0521 20:55:27 [1558472127] spark-pi-9ddef67e -   Normal   Pulled                 3m    kubelet, shared0-flowsnakeworkerprod1-1-syd.ops.sfdc.net  Successfully pulled image "ops0-artifactrepo1-0-syd.data.sfdc.net/dva/flowsnake-spark-on-k8s-sample-apps:4"
+0521 20:55:27 [1558472127] spark-pi-9ddef67e -   Normal   Created                3m    kubelet, shared0-flowsnakeworkerprod1-1-syd.ops.sfdc.net  Created container
+0521 20:55:27 [1558472127] spark-pi-9ddef67e -   Normal   Started                3m    kubelet, shared0-flowsnakeworkerprod1-1-syd.ops.sfdc.net  Started container
+0521 20:55:29 [1558472129] spark-pi-9ddef67e - Name:           spark-pi-9ddef67e-1558471881070-exec-1
+0521 20:55:29 [1558472129] spark-pi-9ddef67e - Events:
+0521 20:55:29 [1558472129] spark-pi-9ddef67e -   Type    Reason                 Age   From                                                      Message
+0521 20:55:29 [1558472129] spark-pi-9ddef67e -   ----    ------                 ----  ----                                                      -------
+0521 20:55:29 [1558472129] spark-pi-9ddef67e -   Normal  SuccessfulMountVolume  2m    kubelet, shared0-flowsnakeworkerprod1-5-syd.ops.sfdc.net  MountVolume.SetUp succeeded for volume "default-token-c6l96"
+0521 20:55:29 [1558472129] spark-pi-9ddef67e -   Normal  SuccessfulMountVolume  2m    kubelet, shared0-flowsnakeworkerprod1-5-syd.ops.sfdc.net  MountVolume.SetUp succeeded for volume "certificate-authority"
+0521 20:55:29 [1558472129] spark-pi-9ddef67e -   Normal  SuccessfulMountVolume  2m    kubelet, shared0-flowsnakeworkerprod1-5-syd.ops.sfdc.net  MountVolume.SetUp succeeded for volume "client-key"
+0521 20:55:29 [1558472129] spark-pi-9ddef67e -   Normal  SuccessfulMountVolume  2m    kubelet, shared0-flowsnakeworkerprod1-5-syd.ops.sfdc.net  MountVolume.SetUp succeeded for volume "client-certificate"
+0521 20:55:29 [1558472129] spark-pi-9ddef67e -   Normal  SuccessfulMountVolume  2m    kubelet, shared0-flowsnakeworkerprod1-5-syd.ops.sfdc.net  MountVolume.SetUp succeeded for volume "spark-local-dir-1"
+0521 20:55:29 [1558472129] spark-pi-9ddef67e -   Normal  SuccessfulMountVolume  2m    kubelet, shared0-flowsnakeworkerprod1-5-syd.ops.sfdc.net  MountVolume.SetUp succeeded for volume "datacerts"
+0521 20:55:29 [1558472129] spark-pi-9ddef67e -   Normal  SuccessfulMountVolume  2m    kubelet, shared0-flowsnakeworkerprod1-5-syd.ops.sfdc.net  MountVolume.SetUp succeeded for volume "tokens"
+0521 20:55:29 [1558472129] spark-pi-9ddef67e -   Normal  Scheduled              2m    default-scheduler                                         Successfully assigned spark-pi-9ddef67e-1558471881070-exec-1 to shared0-flowsnakeworkerprod1-5-syd.ops.sfdc.net
+0521 20:55:29 [1558472129] spark-pi-9ddef67e -   Normal  Pulled                 1m    kubelet, shared0-flowsnakeworkerprod1-5-syd.ops.sfdc.net  Container image "ops0-artifactrepo1-0-syd.data.sfdc.net/tnrp/sam/madkub:1.0.0-0000084-9f4a6ca6" already present on machine
+0521 20:55:29 [1558472129] spark-pi-9ddef67e -   Normal  Created                1m    kubelet, shared0-flowsnakeworkerprod1-5-syd.ops.sfdc.net  Created container
+0521 20:55:29 [1558472129] spark-pi-9ddef67e -   Normal  Started                1m    kubelet, shared0-flowsnakeworkerprod1-5-syd.ops.sfdc.net  Started container
+0521 20:55:29 [1558472129] spark-pi-9ddef67e -   Normal  Pulling                1m    kubelet, shared0-flowsnakeworkerprod1-5-syd.ops.sfdc.net  pulling image "ops0-artifactrepo1-0-syd.data.sfdc.net/dva/flowsnake-spark-on-k8s-sample-apps:4"
+0521 20:55:29 [1558472129] spark-pi-9ddef67e -   Normal  Pulled                 1m    kubelet, shared0-flowsnakeworkerprod1-5-syd.ops.sfdc.net  Successfully pulled image "ops0-artifactrepo1-0-syd.data.sfdc.net/dva/flowsnake-spark-on-k8s-sample-apps:4"
+0521 20:55:29 [1558472129] spark-pi-9ddef67e -   Normal  Created                1m    kubelet, shared0-flowsnakeworkerprod1-5-syd.ops.sfdc.net  Created container
+0521 20:55:29 [1558472129] spark-pi-9ddef67e -   Normal  Started                1m    kubelet, shared0-flowsnakeworkerprod1-5-syd.ops.sfdc.net  Started container
+0521 20:55:31 [1558472131] spark-pi-9ddef67e - ---- End Events ----
+0521 20:56:05 [1558472165] spark-pi-9ddef67e - Timeout reached. Aborting wait for SparkApplication spark-pi-9ddef67e even though in non-terminal state RUNNING.
+0521 20:56:06 [1558472166] spark-pi-9ddef67e - ---- Begin Events ----
+0521 20:56:06 [1558472166] spark-pi-9ddef67e - Name:         spark-pi-9ddef67e
+0521 20:56:06 [1558472166] spark-pi-9ddef67e - Events:
+0521 20:56:06 [1558472166] spark-pi-9ddef67e -   Type    Reason                     Age   From            Message
+0521 20:56:06 [1558472166] spark-pi-9ddef67e -   ----    ------                     ----  ----            -------
+0521 20:56:06 [1558472166] spark-pi-9ddef67e -   Normal  SparkApplicationAdded      4m    spark-operator  SparkApplication spark-pi-9ddef67e was added, enqueuing it for submission
+0521 20:56:06 [1558472166] spark-pi-9ddef67e -   Normal  SparkApplicationSubmitted  4m    spark-operator  SparkApplication spark-pi-9ddef67e was submitted successfully
+0521 20:56:06 [1558472166] spark-pi-9ddef67e -   Normal  SparkDriverRunning         4m    spark-operator  Driver spark-pi-9ddef67e-driver is running
+0521 20:56:06 [1558472166] spark-pi-9ddef67e -   Normal  SparkExecutorPending       2m    spark-operator  Executor spark-pi-9ddef67e-1558471881070-exec-1 is pending
+0521 20:56:06 [1558472166] spark-pi-9ddef67e -   Normal  SparkExecutorRunning       1m    spark-operator  Executor spark-pi-9ddef67e-1558471881070-exec-1 is running
+0521 20:56:08 [1558472168] spark-pi-9ddef67e - Name:           spark-pi-9ddef67e-driver
+0521 20:56:08 [1558472168] spark-pi-9ddef67e - Events:
+0521 20:56:08 [1558472168] spark-pi-9ddef67e -   Type     Reason                 Age   From                                                      Message
+0521 20:56:08 [1558472168] spark-pi-9ddef67e -   ----     ------                 ----  ----                                                      -------
+0521 20:56:08 [1558472168] spark-pi-9ddef67e -   Normal   SuccessfulMountVolume  4m    kubelet, shared0-flowsnakeworkerprod1-1-syd.ops.sfdc.net  MountVolume.SetUp succeeded for volume "datacerts"
+0521 20:56:08 [1558472168] spark-pi-9ddef67e -   Normal   SuccessfulMountVolume  4m    kubelet, shared0-flowsnakeworkerprod1-1-syd.ops.sfdc.net  MountVolume.SetUp succeeded for volume "certificate-authority"
+0521 20:56:08 [1558472168] spark-pi-9ddef67e -   Normal   SuccessfulMountVolume  4m    kubelet, shared0-flowsnakeworkerprod1-1-syd.ops.sfdc.net  MountVolume.SetUp succeeded for volume "client-certificate"
+0521 20:56:08 [1558472168] spark-pi-9ddef67e -   Normal   SuccessfulMountVolume  4m    kubelet, shared0-flowsnakeworkerprod1-1-syd.ops.sfdc.net  MountVolume.SetUp succeeded for volume "client-key"
+0521 20:56:08 [1558472168] spark-pi-9ddef67e -   Normal   SuccessfulMountVolume  4m    kubelet, shared0-flowsnakeworkerprod1-1-syd.ops.sfdc.net  MountVolume.SetUp succeeded for volume "spark-local-dir-1"
+0521 20:56:08 [1558472168] spark-pi-9ddef67e -   Normal   SuccessfulMountVolume  4m    kubelet, shared0-flowsnakeworkerprod1-1-syd.ops.sfdc.net  MountVolume.SetUp succeeded for volume "tokens"
+0521 20:56:08 [1558472168] spark-pi-9ddef67e -   Normal   Scheduled              4m    default-scheduler                                         Successfully assigned spark-pi-9ddef67e-driver to shared0-flowsnakeworkerprod1-1-syd.ops.sfdc.net
+0521 20:56:08 [1558472168] spark-pi-9ddef67e -   Normal   SuccessfulMountVolume  4m    kubelet, shared0-flowsnakeworkerprod1-1-syd.ops.sfdc.net  MountVolume.SetUp succeeded for volume "spark-conf-volume"
+0521 20:56:08 [1558472168] spark-pi-9ddef67e -   Warning  FailedMount            4m    kubelet, shared0-flowsnakeworkerprod1-1-syd.ops.sfdc.net  MountVolume.SetUp failed for volume "spark-conf-volume" : configmaps "spark-pi-9ddef67e-1558471881070-driver-conf-map" not found
+0521 20:56:08 [1558472168] spark-pi-9ddef67e -   Normal   SuccessfulMountVolume  4m    kubelet, shared0-flowsnakeworkerprod1-1-syd.ops.sfdc.net  MountVolume.SetUp succeeded for volume "spark-driver-flowsnake-watchdog-token-jbgdx"
+0521 20:56:08 [1558472168] spark-pi-9ddef67e -   Normal   Pulled                 4m    kubelet, shared0-flowsnakeworkerprod1-1-syd.ops.sfdc.net  Container image "ops0-artifactrepo1-0-syd.data.sfdc.net/tnrp/sam/madkub:1.0.0-0000084-9f4a6ca6" already present on machine
+0521 20:56:08 [1558472168] spark-pi-9ddef67e -   Normal   Created                4m    kubelet, shared0-flowsnakeworkerprod1-1-syd.ops.sfdc.net  Created container
+0521 20:56:08 [1558472168] spark-pi-9ddef67e -   Normal   Started                4m    kubelet, shared0-flowsnakeworkerprod1-1-syd.ops.sfdc.net  Started container
+0521 20:56:08 [1558472168] spark-pi-9ddef67e -   Normal   Pulling                4m    kubelet, shared0-flowsnakeworkerprod1-1-syd.ops.sfdc.net  pulling image "ops0-artifactrepo1-0-syd.data.sfdc.net/dva/flowsnake-spark-on-k8s-sample-apps:4"
+0521 20:56:08 [1558472168] spark-pi-9ddef67e -   Normal   Pulled                 4m    kubelet, shared0-flowsnakeworkerprod1-1-syd.ops.sfdc.net  Successfully pulled image "ops0-artifactrepo1-0-syd.data.sfdc.net/dva/flowsnake-spark-on-k8s-sample-apps:4"
+0521 20:56:08 [1558472168] spark-pi-9ddef67e -   Normal   Created                4m    kubelet, shared0-flowsnakeworkerprod1-1-syd.ops.sfdc.net  Created container
+0521 20:56:08 [1558472168] spark-pi-9ddef67e -   Normal   Started                4m    kubelet, shared0-flowsnakeworkerprod1-1-syd.ops.sfdc.net  Started container
+0521 20:56:10 [1558472170] spark-pi-9ddef67e - Name:           spark-pi-9ddef67e-1558471881070-exec-1
+0521 20:56:10 [1558472170] spark-pi-9ddef67e - Events:
+0521 20:56:10 [1558472170] spark-pi-9ddef67e -   Type    Reason                 Age   From                                                      Message
+0521 20:56:10 [1558472170] spark-pi-9ddef67e -   ----    ------                 ----  ----                                                      -------
+0521 20:56:10 [1558472170] spark-pi-9ddef67e -   Normal  SuccessfulMountVolume  2m    kubelet, shared0-flowsnakeworkerprod1-5-syd.ops.sfdc.net  MountVolume.SetUp succeeded for volume "default-token-c6l96"
+0521 20:56:10 [1558472170] spark-pi-9ddef67e -   Normal  SuccessfulMountVolume  2m    kubelet, shared0-flowsnakeworkerprod1-5-syd.ops.sfdc.net  MountVolume.SetUp succeeded for volume "certificate-authority"
+0521 20:56:10 [1558472170] spark-pi-9ddef67e -   Normal  SuccessfulMountVolume  2m    kubelet, shared0-flowsnakeworkerprod1-5-syd.ops.sfdc.net  MountVolume.SetUp succeeded for volume "client-key"
+0521 20:56:10 [1558472170] spark-pi-9ddef67e -   Normal  SuccessfulMountVolume  2m    kubelet, shared0-flowsnakeworkerprod1-5-syd.ops.sfdc.net  MountVolume.SetUp succeeded for volume "client-certificate"
+0521 20:56:10 [1558472170] spark-pi-9ddef67e -   Normal  SuccessfulMountVolume  2m    kubelet, shared0-flowsnakeworkerprod1-5-syd.ops.sfdc.net  MountVolume.SetUp succeeded for volume "spark-local-dir-1"
+0521 20:56:10 [1558472170] spark-pi-9ddef67e -   Normal  SuccessfulMountVolume  2m    kubelet, shared0-flowsnakeworkerprod1-5-syd.ops.sfdc.net  MountVolume.SetUp succeeded for volume "datacerts"
+0521 20:56:10 [1558472170] spark-pi-9ddef67e -   Normal  SuccessfulMountVolume  2m    kubelet, shared0-flowsnakeworkerprod1-5-syd.ops.sfdc.net  MountVolume.SetUp succeeded for volume "tokens"
+0521 20:56:10 [1558472170] spark-pi-9ddef67e -   Normal  Scheduled              2m    default-scheduler                                         Successfully assigned spark-pi-9ddef67e-1558471881070-exec-1 to shared0-flowsnakeworkerprod1-5-syd.ops.sfdc.net
+0521 20:56:10 [1558472170] spark-pi-9ddef67e -   Normal  Pulled                 2m    kubelet, shared0-flowsnakeworkerprod1-5-syd.ops.sfdc.net  Container image "ops0-artifactrepo1-0-syd.data.sfdc.net/tnrp/sam/madkub:1.0.0-0000084-9f4a6ca6" already present on machine
+0521 20:56:10 [1558472170] spark-pi-9ddef67e -   Normal  Created                2m    kubelet, shared0-flowsnakeworkerprod1-5-syd.ops.sfdc.net  Created container
+0521 20:56:10 [1558472170] spark-pi-9ddef67e -   Normal  Started                2m    kubelet, shared0-flowsnakeworkerprod1-5-syd.ops.sfdc.net  Started container
+0521 20:56:10 [1558472170] spark-pi-9ddef67e -   Normal  Pulling                2m    kubelet, shared0-flowsnakeworkerprod1-5-syd.ops.sfdc.net  pulling image "ops0-artifactrepo1-0-syd.data.sfdc.net/dva/flowsnake-spark-on-k8s-sample-apps:4"
+0521 20:56:10 [1558472170] spark-pi-9ddef67e -   Normal  Pulled                 2m    kubelet, shared0-flowsnakeworkerprod1-5-syd.ops.sfdc.net  Successfully pulled image "ops0-artifactrepo1-0-syd.data.sfdc.net/dva/flowsnake-spark-on-k8s-sample-apps:4"
+0521 20:56:10 [1558472170] spark-pi-9ddef67e -   Normal  Created                1m    kubelet, shared0-flowsnakeworkerprod1-5-syd.ops.sfdc.net  Created container
+0521 20:56:10 [1558472170] spark-pi-9ddef67e -   Normal  Started                1m    kubelet, shared0-flowsnakeworkerprod1-5-syd.ops.sfdc.net  Started container
+0521 20:56:11 [1558472171] spark-pi-9ddef67e - ---- End Events ----
+0521 20:56:12 [1558472172] spark-pi-9ddef67e - ---- Begin pods/spark-pi-9ddef67e-driver Log ----
+++ id -u
++ myuid=0
+++ id -g
++ mygid=0
++ set +e
+++ getent passwd 0
++ uidentry=root:x:0:0:root:/root:/bin/bash
++ set -e
++ '[' -z root:x:0:0:root:/root:/bin/bash ']'
++ SPARK_K8S_CMD=driver
++ case "$SPARK_K8S_CMD" in
++ shift 1
++ SPARK_CLASSPATH=':/opt/spark/jars/*'
++ env
++ grep SPARK_JAVA_OPT_
++ sort -t_ -k4 -n
++ sed 's/[^=]*=\(.*\)/\1/g'
++ readarray -t SPARK_EXECUTOR_JAVA_OPTS
++ '[' -n '' ']'
++ '[' -n '' ']'
++ PYSPARK_ARGS=
++ '[' -n '' ']'
++ R_ARGS=
++ '[' -n '' ']'
++ '[' '' == 2 ']'
++ '[' '' == 3 ']'
++ case "$SPARK_K8S_CMD" in
++ CMD=("$SPARK_HOME/bin/spark-submit" --conf "spark.driver.bindAddress=$SPARK_DRIVER_BIND_ADDRESS" --deploy-mode client "$@")
++ exec /sbin/tini -s -- /opt/spark/bin/spark-submit --conf spark.driver.bindAddress=10.255.74.7 --deploy-mode client --properties-file /opt/spark/conf/spark.properties --class org.apache.spark.examples.SparkPi spark-internal
+2019-05-21 20:51:57 WARN  NativeCodeLoader:62 - Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+2019-05-21 20:52:09 INFO  SparkContext:54 - Running Spark version 2.4.0-sfdc-0.2-SNAPSHOT
+2019-05-21 20:52:10 INFO  SparkContext:54 - Submitted application: Spark Pi
+2019-05-21 20:52:11 INFO  SecurityManager:54 - Changing view acls to: root
+2019-05-21 20:52:11 INFO  SecurityManager:54 - Changing modify acls to: root
+2019-05-21 20:52:11 INFO  SecurityManager:54 - Changing view acls groups to:
+2019-05-21 20:52:11 INFO  SecurityManager:54 - Changing modify acls groups to:
+2019-05-21 20:52:11 INFO  SecurityManager:54 - SecurityManager: authentication disabled; ui acls disabled; users  with view permissions: Set(root); groups with view permissions: Set(); users  with modify permissions: Set(root); groups with modify permissions: Set()
+2019-05-21 20:52:20 INFO  Utils:54 - Successfully started service 'sparkDriver' on port 7078.
+2019-05-21 20:52:21 INFO  SparkEnv:54 - Registering MapOutputTracker
+2019-05-21 20:52:21 INFO  SparkEnv:54 - Registering BlockManagerMaster
+2019-05-21 20:52:21 INFO  BlockManagerMasterEndpoint:54 - Using org.apache.spark.storage.DefaultTopologyMapper for getting topology information
+2019-05-21 20:52:21 INFO  BlockManagerMasterEndpoint:54 - BlockManagerMasterEndpoint up
+2019-05-21 20:52:21 INFO  DiskBlockManager:54 - Created local directory at /var/data/spark-226db9af-1834-48a8-996a-b7350bec953d/blockmgr-30a612b4-e6e1-48fd-931a-ae6220c48aad
+2019-05-21 20:52:21 INFO  MemoryStore:54 - MemoryStore started with capacity 93.3 MB
+2019-05-21 20:52:22 INFO  SparkEnv:54 - Registering OutputCommitCoordinator
+2019-05-21 20:52:23 INFO  log:192 - Logging initialized @46601ms
+2019-05-21 20:52:24 INFO  Server:351 - jetty-9.3.z-SNAPSHOT, build timestamp: unknown, git hash: unknown
+2019-05-21 20:52:24 INFO  Server:419 - Started @47988ms
+2019-05-21 20:52:24 INFO  AbstractConnector:278 - Started ServerConnector@4fcc529{HTTP/1.1,[http/1.1]}{0.0.0.0:4040}
+2019-05-21 20:52:24 INFO  Utils:54 - Successfully started service 'SparkUI' on port 4040.
+2019-05-21 20:52:25 INFO  ContextHandler:781 - Started o.s.j.s.ServletContextHandler@3c443976{/jobs,null,AVAILABLE,@Spark}
+2019-05-21 20:52:25 INFO  ContextHandler:781 - Started o.s.j.s.ServletContextHandler@497570fb{/jobs/json,null,AVAILABLE,@Spark}
+2019-05-21 20:52:25 INFO  ContextHandler:781 - Started o.s.j.s.ServletContextHandler@412c995d{/jobs/job,null,AVAILABLE,@Spark}
+2019-05-21 20:52:25 INFO  ContextHandler:781 - Started o.s.j.s.ServletContextHandler@4dd94a58{/jobs/job/json,null,AVAILABLE,@Spark}
+2019-05-21 20:52:25 INFO  ContextHandler:781 - Started o.s.j.s.ServletContextHandler@2f4919b0{/stages,null,AVAILABLE,@Spark}
+2019-05-21 20:52:25 INFO  ContextHandler:781 - Started o.s.j.s.ServletContextHandler@a8a8b75{/stages/json,null,AVAILABLE,@Spark}
+2019-05-21 20:52:25 INFO  ContextHandler:781 - Started o.s.j.s.ServletContextHandler@75b21c3b{/stages/stage,null,AVAILABLE,@Spark}
+2019-05-21 20:52:25 INFO  ContextHandler:781 - Started o.s.j.s.ServletContextHandler@4bd2f0dc{/stages/stage/json,null,AVAILABLE,@Spark}
+2019-05-21 20:52:25 INFO  ContextHandler:781 - Started o.s.j.s.ServletContextHandler@2e647e59{/stages/pool,null,AVAILABLE,@Spark}
+2019-05-21 20:52:25 INFO  ContextHandler:781 - Started o.s.j.s.ServletContextHandler@2c42b421{/stages/pool/json,null,AVAILABLE,@Spark}
+2019-05-21 20:52:25 INFO  ContextHandler:781 - Started o.s.j.s.ServletContextHandler@51e37590{/storage,null,AVAILABLE,@Spark}
+2019-05-21 20:52:25 INFO  ContextHandler:781 - Started o.s.j.s.ServletContextHandler@deb3b60{/storage/json,null,AVAILABLE,@Spark}
+2019-05-21 20:52:26 INFO  ContextHandler:781 - Started o.s.j.s.ServletContextHandler@701a32{/storage/rdd,null,AVAILABLE,@Spark}
+2019-05-21 20:52:26 INFO  ContextHandler:781 - Started o.s.j.s.ServletContextHandler@39aa45a1{/storage/rdd/json,null,AVAILABLE,@Spark}
+2019-05-21 20:52:26 INFO  ContextHandler:781 - Started o.s.j.s.ServletContextHandler@73aff8f1{/environment,null,AVAILABLE,@Spark}
+2019-05-21 20:52:26 INFO  ContextHandler:781 - Started o.s.j.s.ServletContextHandler@27cbfddf{/environment/json,null,AVAILABLE,@Spark}
+2019-05-21 20:52:26 INFO  ContextHandler:781 - Started o.s.j.s.ServletContextHandler@27ead29e{/executors,null,AVAILABLE,@Spark}
+2019-05-21 20:52:26 INFO  ContextHandler:781 - Started o.s.j.s.ServletContextHandler@4c060c8f{/executors/json,null,AVAILABLE,@Spark}
+2019-05-21 20:52:26 INFO  ContextHandler:781 - Started o.s.j.s.ServletContextHandler@40620d8e{/executors/threadDump,null,AVAILABLE,@Spark}
+2019-05-21 20:52:26 INFO  ContextHandler:781 - Started o.s.j.s.ServletContextHandler@383f3558{/executors/threadDump/json,null,AVAILABLE,@Spark}
+2019-05-21 20:52:26 INFO  ContextHandler:781 - Started o.s.j.s.ServletContextHandler@49b07ee3{/static,null,AVAILABLE,@Spark}
+2019-05-21 20:52:26 INFO  ContextHandler:781 - Started o.s.j.s.ServletContextHandler@5488b5c5{/,null,AVAILABLE,@Spark}
+2019-05-21 20:52:26 INFO  ContextHandler:781 - Started o.s.j.s.ServletContextHandler@4248ed58{/api,null,AVAILABLE,@Spark}
+2019-05-21 20:52:26 INFO  ContextHandler:781 - Started o.s.j.s.ServletContextHandler@51745f40{/jobs/job/kill,null,AVAILABLE,@Spark}
+2019-05-21 20:52:26 INFO  ContextHandler:781 - Started o.s.j.s.ServletContextHandler@45673f68{/stages/stage/kill,null,AVAILABLE,@Spark}
+2019-05-21 20:52:27 INFO  SparkUI:54 - Bound SparkUI to 0.0.0.0, and started at http://spark-pi-9ddef67e-1558471881070-driver-svc.flowsnake-watchdog.svc:4040
+2019-05-21 20:52:27 INFO  SparkContext:54 - Added JAR file:///sample-apps/sample-basic-spark-operator/sample-basic-spark-operator.jar at spark://spark-pi-9ddef67e-1558471881070-driver-svc.flowsnake-watchdog.svc:7078/jars/sample-basic-spark-operator.jar with timestamp 1558471947741
+2019-05-21 20:53:23 INFO  ExecutorPodsAllocator:54 - Going to request 1 executors from Kubernetes.
+2019-05-21 20:53:25 INFO  Utils:54 - Successfully started service 'org.apache.spark.network.netty.NettyBlockTransferService' on port 7079.
+2019-05-21 20:53:25 INFO  NettyBlockTransferService:54 - Server created on spark-pi-9ddef67e-1558471881070-driver-svc.flowsnake-watchdog.svc:7079
+2019-05-21 20:53:25 INFO  BlockManager:54 - Using org.apache.spark.storage.RandomBlockReplicationPolicy for block replication policy
+2019-05-21 20:53:26 INFO  BlockManagerMaster:54 - Registering BlockManager BlockManagerId(driver, spark-pi-9ddef67e-1558471881070-driver-svc.flowsnake-watchdog.svc, 7079, None)
+2019-05-21 20:53:26 INFO  BlockManagerMasterEndpoint:54 - Registering block manager spark-pi-9ddef67e-1558471881070-driver-svc.flowsnake-watchdog.svc:7079 with 93.3 MB RAM, BlockManagerId(driver, spark-pi-9ddef67e-1558471881070-driver-svc.flowsnake-watchdog.svc, 7079, None)
+2019-05-21 20:53:26 INFO  BlockManagerMaster:54 - Registered BlockManager BlockManagerId(driver, spark-pi-9ddef67e-1558471881070-driver-svc.flowsnake-watchdog.svc, 7079, None)
+2019-05-21 20:53:26 INFO  BlockManager:54 - Initialized BlockManager: BlockManagerId(driver, spark-pi-9ddef67e-1558471881070-driver-svc.flowsnake-watchdog.svc, 7079, None)
+2019-05-21 20:53:27 INFO  ContextHandler:781 - Started o.s.j.s.ServletContextHandler@6cfd9a54{/metrics/json,null,AVAILABLE,@Spark}
+2019-05-21 20:53:53 INFO  KubernetesClusterSchedulerBackend:54 - SchedulerBackend is ready for scheduling beginning after waiting maxRegisteredResourcesWaitingTime: 30000(ms)
+2019-05-21 20:53:57 INFO  SparkContext:54 - Starting job: reduce at SparkPi.scala:38
+2019-05-21 20:53:58 INFO  DAGScheduler:54 - Got job 0 (reduce at SparkPi.scala:38) with 2 output partitions
+2019-05-21 20:53:58 INFO  DAGScheduler:54 - Final stage: ResultStage 0 (reduce at SparkPi.scala:38)
+2019-05-21 20:53:58 INFO  DAGScheduler:54 - Parents of final stage: List()
+2019-05-21 20:53:58 INFO  DAGScheduler:54 - Missing parents: List()
+2019-05-21 20:53:58 INFO  DAGScheduler:54 - Submitting ResultStage 0 (MapPartitionsRDD[1] at map at SparkPi.scala:34), which has no missing parents
+2019-05-21 20:54:01 INFO  MemoryStore:54 - Block broadcast_0 stored as values in memory (estimated size 1936.0 B, free 93.3 MB)
+2019-05-21 20:54:01 INFO  MemoryStore:54 - Block broadcast_0_piece0 stored as bytes in memory (estimated size 1256.0 B, free 93.3 MB)
+2019-05-21 20:54:01 INFO  BlockManagerInfo:54 - Added broadcast_0_piece0 in memory on spark-pi-9ddef67e-1558471881070-driver-svc.flowsnake-watchdog.svc:7079 (size: 1256.0 B, free: 93.3 MB)
+2019-05-21 20:54:01 INFO  SparkContext:54 - Created broadcast 0 from broadcast at DAGScheduler.scala:1161
+2019-05-21 20:54:02 INFO  DAGScheduler:54 - Submitting 2 missing tasks from ResultStage 0 (MapPartitionsRDD[1] at map at SparkPi.scala:34) (first 15 tasks are for partitions Vector(0, 1))
+2019-05-21 20:54:02 INFO  TaskSchedulerImpl:54 - Adding task set 0.0 with 2 tasks
+2019-05-21 20:54:17 WARN  TaskSchedulerImpl:66 - Initial job has not accepted any resources; check your cluster UI to ensure that workers are registered and have sufficient resources
+2019-05-21 20:54:32 WARN  TaskSchedulerImpl:66 - Initial job has not accepted any resources; check your cluster UI to ensure that workers are registered and have sufficient resources
+2019-05-21 20:54:47 WARN  TaskSchedulerImpl:66 - Initial job has not accepted any resources; check your cluster UI to ensure that workers are registered and have sufficient resources
+2019-05-21 20:55:02 WARN  TaskSchedulerImpl:66 - Initial job has not accepted any resources; check your cluster UI to ensure that workers are registered and have sufficient resources
+2019-05-21 20:55:17 WARN  TaskSchedulerImpl:66 - Initial job has not accepted any resources; check your cluster UI to ensure that workers are registered and have sufficient resources
+2019-05-21 20:55:32 WARN  TaskSchedulerImpl:66 - Initial job has not accepted any resources; check your cluster UI to ensure that workers are registered and have sufficient resources
+2019-05-21 20:55:47 WARN  TaskSchedulerImpl:66 - Initial job has not accepted any resources; check your cluster UI to ensure that workers are registered and have sufficient resources
+2019-05-21 20:56:02 WARN  TaskSchedulerImpl:66 - Initial job has not accepted any resources; check your cluster UI to ensure that workers are registered and have sufficient resources
+0521 20:56:14 [1558472174] spark-pi-9ddef67e - ---- End pods/spark-pi-9ddef67e-driver Log ----
+0521 20:56:14 [1558472174] spark-pi-9ddef67e - -------- Executor Pods ----------
+0521 20:56:14 [1558472174] spark-pi-9ddef67e - ---- Begin pods/spark-pi-9ddef67e-1558471881070-exec-1 Log ----
+++ id -u
++ myuid=0
+++ id -g
++ mygid=0
++ set +e
+++ getent passwd 0
++ uidentry=root:x:0:0:root:/root:/bin/bash
++ set -e
++ '[' -z root:x:0:0:root:/root:/bin/bash ']'
++ SPARK_K8S_CMD=executor
++ case "$SPARK_K8S_CMD" in
++ shift 1
++ SPARK_CLASSPATH=':/opt/spark/jars/*'
++ env
++ grep SPARK_JAVA_OPT_
++ sort -t_ -k4 -n
++ sed 's/[^=]*=\(.*\)/\1/g'
++ readarray -t SPARK_EXECUTOR_JAVA_OPTS
++ '[' -n '' ']'
++ '[' -n '' ']'
++ PYSPARK_ARGS=
++ '[' -n '' ']'
++ R_ARGS=
++ '[' -n '' ']'
++ '[' '' == 2 ']'
++ '[' '' == 3 ']'
++ case "$SPARK_K8S_CMD" in
++ CMD=(${JAVA_HOME}/bin/java "${SPARK_EXECUTOR_JAVA_OPTS[@]}" -Xms$SPARK_EXECUTOR_MEMORY -Xmx$SPARK_EXECUTOR_MEMORY -cp "$SPARK_CLASSPATH" org.apache.spark.executor.CoarseGrainedExecutorBackend --driver-url $SPARK_DRIVER_URL --executor-id $SPARK_EXECUTOR_ID --cores $SPARK_EXECUTOR_CORES --app-id $SPARK_APPLICATION_ID --hostname $SPARK_EXECUTOR_POD_IP)
++ exec /sbin/tini -s -- /opt/tools/Linux/jdk/openjdk1.8.0_181_x64/bin/java -Xms512m -Xmx512m -cp ':/opt/spark/jars/*' org.apache.spark.executor.CoarseGrainedExecutorBackend --driver-url spark://CoarseGrainedScheduler@spark-pi-9ddef67e-1558471881070-driver-svc.flowsnake-watchdog.svc:7078 --executor-id 1 --cores 1 --app-id spark-application-1558472003146 --hostname 10.255.78.6
+2019-05-21 20:56:16 INFO  CoarseGrainedExecutorBackend:2566 - Started daemon with process name: 14@spark-pi-9ddef67e-1558471881070-exec-1
+0521 20:56:17 [1558472177] spark-pi-9ddef67e - ---- End pods/spark-pi-9ddef67e-1558471881070-exec-1 Log ----
+0521 20:56:17 [1558472177] spark-pi-9ddef67e - ======== Completion of spark-pi-9ddef67e test, returning 1 ========

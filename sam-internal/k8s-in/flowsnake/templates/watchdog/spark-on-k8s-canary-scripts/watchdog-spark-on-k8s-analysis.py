@@ -14,6 +14,7 @@ tallied relatively easily with Splunk (TODO: query goes here). In the future con
 """
 
 from argparse import ArgumentParser
+import calendar
 import os
 import re
 import subprocess
@@ -162,11 +163,21 @@ simple_regex_tests = {
 
 r_driver_context_submitted = re.compile(r'SparkContext.* - Submitted application')
 r_driver_context_jar_added = re.compile(r'SparkContext.* - Added JAR file:')
-r_executor_allocator_ran = re.compile(r'ExecutorPodsAllocator.* - Going to request [0-9]* executors from Kubernetes')
+r_executor_allocator_ran_time = re.compile(r'([- :0-9]*) INFO.*ExecutorPodsAllocator.* - Going to request [0-9]* executors from Kubernetes')
 r_timeout_running = re.compile(r'Timeout reached. Aborting wait for SparkApplication .* even though in non-terminal state RUNNING.')
 #r_ driver_running_event = re.compile(r'SparkDriverRunning\s+([0-9]+)([sm])\s+spark-operator\s+Driver .* is running')
 r_driver_running_epoch = re.compile(r'\[([0-9]+)\] .* - Pod change detected: .*-driver changed to Running.')
 r_exec_running_epoch = re.compile(r'\[([0-9]+)\] .* - Pod change detected: .*-exec-[0-9]+ changed to Running.')
+
+
+def spark_log_time_to_epoch(spark_time):
+    """
+    Convert time format of Spark logs to unix epoch (seconds)
+    :param spark_time: UTC formatted e.g. 2019-05-15 00:31:56
+    :return: unix epoch in seconds
+    """
+    return calendar.timegm(time.strptime(spark_time, "%Y-%m-%d %H:%M:%S"))
+
 
 def analyze_helper(combined_output):
     for code, regex in simple_regex_tests.iteritems():
@@ -186,22 +197,53 @@ def analyze_helper(combined_output):
                 # Check for failure cases that occur after the application JAR has been loaded
                 if r_driver_context_jar_added.search(combined_output):
                     # Requesting executors is the next thing to do after adding the application JAR. Unknown why it sometimes doesn't happen.
-                    if not r_executor_allocator_ran.search(combined_output):
+                    m_executor_allocator_ran_time = r_executor_allocator_ran_time.search(combined_output)
+                    if m_executor_allocator_ran_time:
+                        # Figure out when the executors were requested
+                        allocator_epoch = spark_log_time_to_epoch(m_executor_allocator_ran_time.group(1))
+                        if allocator_epoch - driver_running_epoch >= 180:
+                            return "TIMEOUT_EXECUTOR_ALLOCATOR_LATE"
+                        else:
+                            m = r_exec_running_epoch.search(combined_output)
+                            if m:
+                                exec_running_epoch = int(m.group(1))
+                                # We know that the executor pod started running but that we timed out before completing the job.
+                                # In the happy case, it takes about 15 seconds for the executor to start and register itself. Logs:
+                                # KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint:54 - Registered executor NettyRpcEndpointRef(spark-client://Executor) (10.251.124.170:46644) with ID 1
+                                # KubernetesClusterSchedulerBackend:54 - SchedulerBackend is ready for scheduling beginning after reached minRegisteredResourcesRatio: 0.8
+
+                                # Conversely, if the executor startup was slow, then we see the Spark Driver log:
+                                # KubernetesClusterSchedulerBackend:54 - SchedulerBackend is ready for scheduling beginning after waiting maxRegisteredResourcesWaitingTime: 30000(ms)
+                                # (after which the driver just continues anyway), and then it logs:
+                                # TaskSchedulerImpl:66 - Initial job has not accepted any resources; check your cluster UI to ensure that workers are registered and have sufficient resources
+                                # which repeats until the executors finally do show up.
+                                # If the executors do start performing work after the timeout, then we have to infer it from the following in the driver logs:
+                                # TaskSetManager:54 - Starting task 0.0 in stage 0.0 (TID 0, 10.251.124.170, executor 1, partition 0, PROCESS_LOCAL, 7878 bytes)
+
+                                # In the happy case, it's ~25 seconds from requesting executors to work beginning.
+
+                                # As a first pass, let's say that if the time from requesting executor to running executor
+                                # pod is 60s, then that is the cause of the test failure.
+
+                                if exec_running_epoch - allocator_epoch >= 60:
+                                    return "TIMEOUT_EXECUTOR_SLOW_POD_CREATION"
+                                else:
+                                    # "UNKNOWN" because we haven't yet collected an example of this
+                                    # Check for delay between pod running and driver logging task start, perhaps?
+                                    return "UNKNOWN_TIMEOUT_EXECUTOR_RUNNING"
+                            else:
+                                # "UNKNOWN" because we haven't yet collected an example of this
+                                return "UNKNOWN_TIMEOUT_EXECUTOR_NOT_RUNNING"
+                    else:
                         return 'EXECUTOR_ALLOCATOR_DID_NOT_RUN'
-            # Figure out when the executor started
+                else:
+                    # "UNKNOWN" because we haven't yet collected an example of this
+                    return "UNKNOWN_TIMEOUT_DRIVER_CONTEXT_JAR_NOT_ADDED"
+            else:
+                # "UNKNOWN" because we haven't yet collected an example of this
+                return "UNKNOWN_TIMEOUT_DRIVER_CONTEXT_NOT_SUBMITTED"
 
             # If we can't figure out a specific reason, look into what part was slow.
-            m = r_exec_running_epoch.search(combined_output)
-            if m:
-                exec_running_epoch = int(m.group(1))
-                if exec_running_epoch - driver_running_epoch >= 180:
-                    # We're likely to not complete in time if it takes this long for the driver to launch an executor.
-                    # If this is a frequent occurrence, we should get more precise. Specifically, when did
-                    # r_executor_allocator_ran happen? That would shed some light on whether the driver was slow to
-                    # request the executor, or whether the executor was slow to start.
-                    # (In the case of timeout_executor_late_001.txt, it took over three minutes from driver Running to
-                    # executors requested.)
-                    return "TIMEOUT_EXECUTOR_LATE"
 
             # NOTE: do not put checks for error messages here. Error messages are more informative that timeouts, so if
             # we have an error message, we should return it. Therefore put all error message checks above the timeout
@@ -209,7 +251,10 @@ def analyze_helper(combined_output):
             return 'UNRECOGNIZED_TIMEOUT_DRIVER_RUNNING'
         else:
             return "UNRECOGNIZED_TIMEOUT_DRIVER_NOT_RUNNING"
-    return "UNRECOGNIZED"
+    else:
+        # Failure was *not* due to a timeout.
+        # TODO: analysis of non-timeout failures goes here
+        return "UNRECOGNIZED_NON_TIMEOUT"
 
 
 def analyze(combined_output):
