@@ -9,7 +9,7 @@ system:
     count: 1
     containers:
     - name: gateway
-      image: dva/gateway:23-18306dbfb2c270e28a9ea25a6b00ba7b39421da1
+      image: dva/gateway:24-830e47184783740a1692df09016f5573b9d62720
       livenessProbe:
         httpGet:
           path: /rest/deployments/all/Steam/220
