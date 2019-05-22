@@ -26,7 +26,7 @@ if configs.kingdom != "mvp" then {
                                 "--etcdSetDisabled=true",
                                 "--etcdGetDisabled=true",
                             ]) + (
-                                if utils.is_pcn(configs.kingdom) then
+                                if configs.kingdom == "mvp" then
                                 [
                                      "--crdSetEnabled=true",
                                      "--crdGetEnabled=true",

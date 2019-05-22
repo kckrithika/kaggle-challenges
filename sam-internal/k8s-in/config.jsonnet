@@ -414,7 +414,7 @@ local utils = import "util_functions.jsonnet",
 
     } else {}),
 
-    nodeSelector: (if kingdom != "eks" then {
+    nodeSelector: (if !utils.is_aws(kingdom) then {
          nodeSelector: {} +
          if !utils.is_production(kingdom) then {
              master: "true",
