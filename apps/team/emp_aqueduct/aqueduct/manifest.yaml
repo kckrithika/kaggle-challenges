@@ -16,7 +16,7 @@ system:
           type: client
       containers:
       - name: aqueduct
-        image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/aqueduct/aqueduct:varun.vyas-20190514-6c97241
+        image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/aqueduct/aqueduct:varun.vyas-20190521-c1056ef
         env:
         - name: SFDC_ENVIRONMENT
           value: "prod" # Use whatever environment your kpod uses
