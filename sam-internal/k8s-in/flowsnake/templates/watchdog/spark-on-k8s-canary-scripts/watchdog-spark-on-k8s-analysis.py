@@ -185,7 +185,9 @@ simple_regex_tests = {
     # Driver pod's init container errors out. Cause TBD.
     'DRIVER_INIT_ERROR': re.compile('Pod change detected.*-driver changed to Init:Error'),
     # Scheduler bug in Kubernetes <= 1.9.7 that randomly prevents re-use of pod name. No longer expected because pod names are now unique.
-    'SCHEDULER_ASSUME_POD': re.compile("FailedScheduling.*AssumePod failed: pod .* state wasn't initial but get assumed")
+    'SCHEDULER_ASSUME_POD': re.compile("FailedScheduling.*AssumePod failed: pod .* state wasn't initial but get assumed"),
+    # This should be accompanied by a useful Exception
+    'SPARK_CONTEXT_INIT_ERROR': re.compile("Error initializing SparkContext")
 }
 
 r_spark_submit_failed = re.compile(r'failed to run spark-submit')
@@ -289,19 +291,49 @@ def analyze_helper(combined_output):
             return "UNRECOGNIZED_NON_TIMEOUT"
 
 # Regex for fully-qualified Java class name https://stackoverflow.com/a/5205467/708883
-r_exception = re.compile(r'(?:[a-zA-Z_$][a-zA-Z\d_$]*\.)*([a-zA-Z_$][a-zA-Z\d_$]*Exception): (.*)')
-r_etcd_no_leader = re.compile(r'client: etcd member .* has no leader')
+r_exception = re.compile(r'(?P<cause>(Caused by: )?)(?P<package>[a-zA-Z_$][a-zA-Z\d_$]*\.)*(?P<class>[a-zA-Z_$][a-zA-Z\d_$]*Exception): (?P<message>.*)')
+simple_regex_exception_messages = {
+    # Driver pod's init container errors out. Cause TBD.
+    'ETCD_NO_LEADER': re.compile(r'client: etcd member .* has no leader'),
+    'BROKEN_PIPE': re.compile(r'Broken pipe'),
+}
 
 
 def detect_exceptions(combined_output):
     exception = {}
-    m = r_exception.search(combined_output)
-    if m:
+    match_iterator = r_exception.finditer(combined_output)
+    # heuristic: assume that the first Exception is the most interesting, but if it has logged "Caused by" lines, use
+    # the final reported cause. E.g. BazException is selected from the following:
+    # FooException: foo
+    #    ...
+    # Caused by BarException: bar
+    #    ...
+    # Caused by BazException: baz
+    #    ...
+    # ...
+    # QuuxException: quux
+    #    ...
+    # Caused by FnarfException: fnarf
+    #    ...
+    exception_match = None
+    for m in match_iterator:
+        if not exception_match:
+            # First exception found is better than no exception
+            exception_match = m
+        elif m.group('cause'):
+            # If this is a cause, prefer it over the previously found exception
+            exception_match = m
+        else:
+            # Otherwise we're done; subsequent exception blocks are probably just cascading errors
+            break
+
+    if exception_match:
         # Record the exception itself
-        exception[EXCEPTION] =m.group(1)
+        exception[EXCEPTION] = exception_match.group('class')
         # Record additional exception classification based on the message
-        if r_etcd_no_leader.search(m.group(2)):
-            exception[EXCEPTION_CAUSE] = 'ETCD_NO_LEADER'
+        for code, regex in simple_regex_exception_messages.iteritems():
+            if regex.search(exception_match.group('message')):
+                exception[EXCEPTION_CAUSE] = code
     return exception
 
 
