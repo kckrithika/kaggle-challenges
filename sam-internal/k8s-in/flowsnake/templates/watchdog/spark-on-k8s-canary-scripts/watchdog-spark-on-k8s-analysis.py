@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+# coding: utf-8
 
 """
 Runs the Spark Operator Watchdog script (e.g. watchdog-spark-on-k8s.sh). Performs analysis on the script's output to
@@ -9,8 +10,32 @@ The purpose of this program is to make it easier to determine which types of fai
 script failures (and thus Flowsnake Service availability gaps). Determining what went wrong with a failed run requires
 carefully looking through the log, which was previously a tedious and manual process.
 
-Analysis result is written to stderr after the stderr output of the script itself. The analysis results can be
-tallied relatively easily with Splunk (TODO: query goes here). In the future consider reporting them to Funnel.
+Example: running analysis on test data:
+$ flowsnake/templates/watchdog/spark-on-k8s-canary-scripts/watchdog-spark-on-k8s-analysis.py --test-dir flowsnake/templates/watchdog/spark-on-k8s-canary-scripts/tests
+✓ timeout_executor_slow_pod_creation_001.txt: TIMEOUT_EXECUTOR_SLOW_POD_CREATION
+✓ driver_init_error_001.txt: DRIVER_INIT_ERROR
+✓ etcd_no_leader_001.txt: {"class": "TIMEOUT_EXECUTOR_SLOW_POD_CREATION", "exception": "KubernetesClientException", "exception_cause": "ETCD_NO_LEADER"}
+✓ executor_allocator_did_not_run_002.txt: EXECUTOR_ALLOCATOR_DID_NOT_RUN
+✓ etcd_no_leader_002.txt: {"class": "SPARK_SUBMIT_FAILED", "exception": "KubernetesClientException", "exception_cause": "ETCD_NO_LEADER"}
+✓ executor_allocator_did_not_run_001.txt: EXECUTOR_ALLOCATOR_DID_NOT_RUN
+✓ timeout_executor_slow_pod_creation_002.txt: TIMEOUT_EXECUTOR_SLOW_POD_CREATION
+✓ timeout_executor_slow_pod_creation_003.txt: TIMEOUT_EXECUTOR_SLOW_POD_CREATION
+✓ timeout_executor_allocator_late_001.txt: TIMEOUT_EXECUTOR_ALLOCATOR_LATE
+✓ scheduler_assume_pod_001.txt: SCHEDULER_ASSUME_POD
+
+Example: as above, but also writing metrics to Funnel:
+$ flowsnake/templates/watchdog/spark-on-k8s-canary-scripts/watchdog-spark-on-k8s-analysis.py --test-dir flowsnake/templates/watchdog/spark-on-k8s-canary-scripts/tests --metrics --sfdchosts /sfdchosts/hosts.json --watchdog-config /config/watchdog.json --host fs1shared0-flowsnakemastertest1-3-prd.eng.sfdc.net
+
+Example: as above, but writing to Funnel using defaults appropriate for local development:
+$ flowsnake/templates/watchdog/spark-on-k8s-canary-scripts/watchdog-spark-on-k8s-analysis.py --test-dir flowsnake/templates/watchdog/spark-on-k8s-canary-scripts/tests --metrics --dev
+
+Metrics written with the --dev flag can be found using Argus expression
+-15m:sam.watchdog.CORP.NONE.flowsnake-local-test:cliChecker.SparkOperatorTest.FailureAnalysis{class=*,exception=*,exception_cause=*}:count:1m-count
+
+Analysis result is written to Funnel and can be viewed in Argus:
+-15m:sam.watchdog.*.NONE.*flowsnake*:cliChecker.SparkOperatorTest.FailureAnalysis{class=*,exception=*,exception_cause=*}:count:1m-count
+
+TODO: Make a dashboard
 """
 
 from argparse import ArgumentParser
@@ -152,6 +177,8 @@ parser.add_argument("--hostname",
                     help="Override hostname to use when determining metrics configuration")
 parser.add_argument("--metrics", action='store_true',
                     help="If set, metrics will be written indicating the analysis result")
+parser.add_argument("--dev", action='store_true',
+                    help="If set, metrics can be written without specifying --sfdchosts or --watchdog-config. Uses hard-coded PRD Funnel endpoint, dc:CORP, superpod:NONE, pod:flowsnake-local-test.")
 args, additional_args = parser.parse_known_args()
 
 simple_regex_tests = {
@@ -184,6 +211,7 @@ def spark_log_time_to_epoch(spark_time):
 CLASSIFICATION = 'class'
 EXCEPTION = 'exception'
 EXCEPTION_CAUSE = 'exception_cause'
+ANALYSIS_KEYS = [CLASSIFICATION, EXCEPTION, EXCEPTION_CAUSE]
 
 
 def analyze_helper(combined_output):
@@ -290,8 +318,11 @@ def analyze(combined_output):
 def emit_metrics(analysis):
     funnel_client = FunnelClient(funnel_endpoint)
     metric_context = MetricContext(kingdom, superpod, pod, hostname)
+    # Argus doesn't query well when some metrics tags aren't always present. So populate with a null value.
+    # https://gus.lightning.force.com/lightning/r/0D5B000000sQcBnKAK/view
+    analysis_nulled = dict([(key, analysis.get(key, "None")) for key in ANALYSIS_KEYS])
     m_list = [
-        Metric('sam.watchdog', ['cliChecker', 'SparkOperatorTest', 'FailureAnalysis'], 1, int(time.time()), metric_context, analysis)
+        Metric('sam.watchdog', ['cliChecker', 'SparkOperatorTest', 'FailureAnalysis'], 1, int(time.time()), metric_context, analysis_nulled)
     ]
     try:
         funnel_client.publish_batch(m_list)
@@ -305,8 +336,17 @@ if args.metrics:
         hostname = args.hostname
     else:
         hostname = socket.gethostname()
-    if not args.sfdchosts or not args.watchdog_config:
-        logging.error("Cannot emit metrics: --sfdchosts and --watchdog-config are both required")
+    if args.dev:
+        kingdom = 'CORP'
+        # kingdom = 'PRD'
+        superpod = 'NONE'
+        pod = 'flowsnake-local-test'
+        # pod = 'prd-data-flowsnake_test'
+        # host = 'fs1shared0-flowsnakemastertest1-3-prd.eng.sfdc.net'
+        funnel_endpoint = 'ajna0-funnel1-0-prd.data.sfdc.net:80'
+        metrics_enabled = True
+    elif not args.sfdchosts or not args.watchdog_config:
+        logging.error("Cannot emit metrics: --sfdchosts and --watchdog-config are both required (or --dev)")
     else:
         try:
             with open(args.sfdchosts) as f:
