@@ -6,7 +6,8 @@ system:
       - aditya.sureshkumar@salesforce.com
   functions:
   - name: zones-intake-backend-staging
-    count: 2
+    hostNetwork: true
+    count: 1
     volumes:
       - name: servercert
         maddogCert:
