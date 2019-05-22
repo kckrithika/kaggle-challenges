@@ -174,7 +174,7 @@ system:
     # NGINX Rev Proxy
     #####################################################################################
     - name: nginx-rev-proxy
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/gid/gid-nginx:f5af04e
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/gid/gid-nginx:f4a391d
       imagePullPolicy: Always
       ports:
         - containerPort: 7022
