@@ -1,6 +1,8 @@
-- lbname: es-baremetal-test
+- lbname: es-prod-test
   servers:
-   - shared0-samminionzipkin2-5-prd.eng.sfdc.net
+   - shared0-samminionzipkin1-1-prd.eng.sfdc.net
+   - shared0-samminionzipkin1-14-prd.eng.sfdc.net
+   - shared0-samminionzipkin1-15-prd.eng.sfdc.net
   ports:
    - port: 9200
      targetport: 9200
