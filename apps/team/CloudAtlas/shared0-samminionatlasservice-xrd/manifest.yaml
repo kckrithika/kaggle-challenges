@@ -86,7 +86,7 @@ system:
         - name: server_port
           value: 8083
         - name: management_server_port
-          value: 15373
+          value: 15374
         - name: cloudatlas_http_server_port_servicemesh
           value: 7080
       volumeMounts:
