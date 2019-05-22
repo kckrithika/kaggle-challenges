@@ -7,4 +7,5 @@ apps:
   - xrd/xrd-sdstools
   soter:
   - prd/prd-sam
-
+  soter-staging:
+  - xrd/xrd-sdstoolsdev
