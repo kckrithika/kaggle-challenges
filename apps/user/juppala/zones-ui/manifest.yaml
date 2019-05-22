@@ -82,23 +82,22 @@ system:
         mountPath: /servercerts
       - name: uiclientcert
         mountPath: /clientcerts
-  
   loadbalancers:
-  - lbname: zones-ui-lb
-    function: zones-ui
-    slbenabled: true
-    ports:
-      # - port: 443
-      #   targetport: 8445
-      #   lbtype: http
-      #   tls: true
-      # - port: 8445
-      #   targetport: 8445
-      #   lbtype: http
-      #   tls: true
-      - port: 8080
-        targetport: 8445
-        lbtype: http
+  # - lbname: zones-ui-lb
+  #   function: zones-ui
+  #   slbenabled: true
+  #   ports:
+  #     # - port: 443
+  #     #   targetport: 8445
+  #     #   lbtype: http
+  #     #   tls: true
+  #     # - port: 8445
+  #     #   targetport: 8445
+  #     #   lbtype: http
+  #     #   tls: true
+  #     - port: 8080
+  #       targetport: 8445
+  #       lbtype: http
   - lbname: sfsg
     function: zones-ui
     slbenabled: true
@@ -107,18 +106,10 @@ system:
         targetport: 8445
         lbtype: tcp
         tls: false
-      - port: 8445
-        targetport: 8445
-        lbtype: tcp
-        tls: false
   - lbname: sfsg-cron
     function: zones-ui-cron
     slbenabled: true
     ports:
-      - port: 443
-        targetport: 8445
-        lbtype: tcp
-        tls: false
       - port: 8445
         targetport: 8445
         lbtype: tcp
