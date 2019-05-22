@@ -34,8 +34,8 @@ system:
             - name: security_client_dynamickeystore_monitoredDirectory
               value: /certs
           ports:
-            - containerPort: 8082
-            - containerPort: 15375
+            - containerPort: 8081
+            - containerPort: 15371
           livenessProbe:
             httpGet:
               path: /manage/health
@@ -54,7 +54,7 @@ system:
             - name: GDOT_URL
               value: http://10.233.180.195:8090/scim        
           ports:
-            - containerPort: 8080
+            - containerPort: 8082
             - containerPort: 15372
           livenessProbe:
             httpGet:
