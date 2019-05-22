@@ -29,7 +29,7 @@ system:
         periodSeconds: 5
       env:
        - name: NOT_REQUIRED
-         value: newton2
+         value: newton3
     - name: sherpa
       image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/npshenichnyy/sherpa-envoy:1.0.4-201902081120
       args:
