@@ -3,7 +3,7 @@ local admins = import "configs/pcn-sam-admins.jsonnet";
 local rbac_utils = import "sam_rbac_functions.jsonnet";
 local utils = import "util_functions.jsonnet";
 
-if utils.is_pcn(configs.kingdom) then
+if utils.is_pcn(configs.kingdom) && !utils.is_aws(configs.kingdom) then
 {
   apiVersion: rbac_utils.rbac_api_version,
   kind: "ClusterRoleBinding",

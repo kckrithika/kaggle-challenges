@@ -30,7 +30,7 @@ local clusterRoleBindings = [{
   },
 } for namespace in enabledNamespaces];
 
-if utils.is_pcn(configs.kingdom) then {
+if utils.is_pcn(configs.kingdom) && !utils.is_aws(configs.kingdom) then {
   apiVersion: "v1",
   kind: "List",
   metadata: {

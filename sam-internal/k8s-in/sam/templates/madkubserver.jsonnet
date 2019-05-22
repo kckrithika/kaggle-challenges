@@ -3,7 +3,7 @@ local samimages = (import "samimages.jsonnet") + { templateFilename:: std.thisFi
 local utils = import "util_functions.jsonnet";
 local samfeatureflags = import "sam-feature-flags.jsonnet";
 
-if samfeatureflags.maddogforsamapps then configs.deploymentBase("sam") {
+if samfeatureflags.maddogforsamapps && !utils.is_aws(configs.kingdom) then configs.deploymentBase("sam") {
     metadata+: {
         name: "madkubserver",
         namespace: "sam-system",

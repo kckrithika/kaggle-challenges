@@ -1,5 +1,8 @@
 local auto_deployer = import "auto_deployer.jsonnet";
-if !auto_deployer.auto_deployer_enabled then
+local utils = import "util_functions.jsonnet";
+local configs = import "config.jsonnet";
+
+if !auto_deployer.auto_deployer_enabled || utils.is_aws(configs.kingdom) then
 "SKIP"
 else
 {
