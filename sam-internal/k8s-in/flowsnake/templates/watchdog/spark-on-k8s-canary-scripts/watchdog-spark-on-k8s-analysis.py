@@ -161,6 +161,7 @@ simple_regex_tests = {
     'SCHEDULER_ASSUME_POD': re.compile("FailedScheduling.*AssumePod failed: pod .* state wasn't initial but get assumed")
 }
 
+r_spark_submit_failed = re.compile(r'failed to run spark-submit')
 r_driver_context_submitted = re.compile(r'SparkContext.* - Submitted application')
 r_driver_context_jar_added = re.compile(r'SparkContext.* - Added JAR file:')
 r_executor_allocator_ran_time = re.compile(r'([- :0-9]*) INFO.*ExecutorPodsAllocator.* - Going to request [0-9]* executors from Kubernetes')
@@ -177,6 +178,12 @@ def spark_log_time_to_epoch(spark_time):
     :return: unix epoch in seconds
     """
     return calendar.timegm(time.strptime(spark_time, "%Y-%m-%d %H:%M:%S"))
+
+
+# Analysis dict keys
+CLASSIFICATION = 'class'
+EXCEPTION = 'exception'
+EXCEPTION_CAUSE = 'exception_cause'
 
 
 def analyze_helper(combined_output):
@@ -207,6 +214,8 @@ def analyze_helper(combined_output):
                             m = r_exec_running_epoch.search(combined_output)
                             if m:
                                 exec_running_epoch = int(m.group(1))
+                                # If we can't figure out a specific reason, look into what part was slow.
+
                                 # We know that the executor pod started running but that we timed out before completing the job.
                                 # In the happy case, it takes about 15 seconds for the executor to start and register itself. Logs:
                                 # KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint:54 - Registered executor NettyRpcEndpointRef(spark-client://Executor) (10.251.124.170:46644) with ID 1
@@ -242,38 +251,53 @@ def analyze_helper(combined_output):
             else:
                 # "UNKNOWN" because we haven't yet collected an example of this
                 return "UNKNOWN_TIMEOUT_DRIVER_CONTEXT_NOT_SUBMITTED"
-
-            # If we can't figure out a specific reason, look into what part was slow.
-
-            # NOTE: do not put checks for error messages here. Error messages are more informative that timeouts, so if
-            # we have an error message, we should return it. Therefore put all error message checks above the timeout
-            # checks.
-            return 'UNRECOGNIZED_TIMEOUT_DRIVER_RUNNING'
         else:
             return "UNRECOGNIZED_TIMEOUT_DRIVER_NOT_RUNNING"
     else:
         # Failure was *not* due to a timeout.
-        # TODO: analysis of non-timeout failures goes here
-        return "UNRECOGNIZED_NON_TIMEOUT"
+        if r_spark_submit_failed.search(combined_output):
+            return "SPARK_SUBMIT_FAILED"  # Exception classification will provide reason
+        else:
+            return "UNRECOGNIZED_NON_TIMEOUT"
+
+# Regex for fully-qualified Java class name https://stackoverflow.com/a/5205467/708883
+r_exception = re.compile(r'(?:[a-zA-Z_$][a-zA-Z\d_$]*\.)*([a-zA-Z_$][a-zA-Z\d_$]*Exception): (.*)')
+r_etcd_no_leader = re.compile(r'client: etcd member .* has no leader')
+
+
+def detect_exceptions(combined_output):
+    exception = {}
+    m = r_exception.search(combined_output)
+    if m:
+        # Record the exception itself
+        exception[EXCEPTION] =m.group(1)
+        # Record additional exception classification based on the message
+        if r_etcd_no_leader.search(m.group(2)):
+            exception[EXCEPTION_CAUSE] = 'ETCD_NO_LEADER'
+    return exception
 
 
 def analyze(combined_output):
-    result = analyze_helper(combined_output)
+    analysis = {
+        CLASSIFICATION: analyze_helper(combined_output)
+    }
+    analysis.update(detect_exceptions(combined_output))
     if metrics_enabled:
-        emit_metrics(result)
-    return result
+        emit_metrics(analysis)
+    return analysis
 
 
-def emit_metrics(result):
+def emit_metrics(analysis):
     funnel_client = FunnelClient(funnel_endpoint)
     metric_context = MetricContext(kingdom, superpod, pod, hostname)
     m_list = [
-        Metric('sam.watchdog', ['cliChecker', 'SparkOperatorTest', 'FailureAnalysis'], 1, int(time.time()), metric_context, {'class': result})
+        Metric('sam.watchdog', ['cliChecker', 'SparkOperatorTest', 'FailureAnalysis'], 1, int(time.time()), metric_context, analysis)
     ]
     try:
         funnel_client.publish_batch(m_list)
     except Exception as e:
         logging.exception('Failed to send %d metrics to funnel' % len(m_list))
+
 
 metrics_enabled = False
 if args.metrics:
@@ -312,19 +336,25 @@ if args.command:
         sys.exit(e.returncode)
 elif args.analyze:
     with open(args.analyze, 'r') as file:
-        result = analyze(file.read())
-        print result
+        analysis = analyze(file.read())
+        if len(analysis) == 1:
+            print analysis[CLASSIFICATION]
+        else:
+            print json.dumps(analysis, sort_keys=True)
 elif args.test_dir:
     success = True
     for filename in os.listdir(args.test_dir):
         with open(os.path.join(args.test_dir, filename), 'r') as file:
             data = file.read()
             expect, contents = data.split('\n', 1)
-            result = analyze(contents)
-            if result == expect:
+            analysis = analyze(contents)
+            # Convert result to format used in the test files
+            # Use bare classification if there is no additional info. Otherwise string representation of named tuple.
+            text_result = json.dumps(analysis, sort_keys=True) if len(analysis) > 1 else analysis[CLASSIFICATION]
+            if text_result == expect:
                 print (u"\u2713 {}: {}".format(filename, expect))
             else:
-                print (u"\u2718 {}: {} expected, {} obtained".format(filename, expect, result))
+                print (u"\u2718 {}: {} expected, {} obtained".format(filename, expect, text_result))
                 success = True
     if not success:
         sys.exit(1)

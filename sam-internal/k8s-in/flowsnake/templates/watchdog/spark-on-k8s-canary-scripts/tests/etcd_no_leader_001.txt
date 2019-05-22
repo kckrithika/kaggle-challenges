@@ -1,0 +1,395 @@
+{"class": "TIMEOUT_EXECUTOR_SLOW_POD_CREATION", "exception": "KubernetesClientException", "exception_cause": "ETCD_NO_LEADER"}
+0521 15:30:45 [1558452645] spark-impersonation-3a4d0ddf - ======== Beginning spark-impersonation-3a4d0ddf test ========
+0521 15:30:45 [1558452645] spark-impersonation-3a4d0ddf -  [0;32mKubernetes master [0m is running at  [0;33mhttps://kubernetes-api-flowsnake-cdu.data.sfdc.net [0m
+0521 15:30:45 [1558452645] spark-impersonation-3a4d0ddf -
+0521 15:30:45 [1558452645] spark-impersonation-3a4d0ddf - To further debug and diagnose cluster problems, use 'kubectl cluster-info dump'.
+0521 15:30:46 [1558452646] spark-impersonation-3a4d0ddf - Cleaning up SparkApplication/Pod older than 1 hours from prior runs.
+0521 15:31:01 [1558452661] spark-impersonation-3a4d0ddf - Creating SparkApplication spark-impersonation-3a4d0ddf
+0521 15:31:01 [1558452661] spark-impersonation-3a4d0ddf - sparkapplication "spark-impersonation-3a4d0ddf" created
+0521 15:31:02 [1558452662] spark-impersonation-3a4d0ddf - Waiting for SparkApplication spark-impersonation-3a4d0ddf to reach a terminal state.
+0521 15:31:07 [1558452667] spark-impersonation-3a4d0ddf - Pod change detected: spark-impersonation-3a4d0ddf-driver: Pending on host <none>.
+0521 15:31:10 [1558452670] spark-impersonation-3a4d0ddf - Pod change detected: spark-impersonation-3a4d0ddf-driver changed to Init:0/1 (previously Pending).
+0521 15:31:17 [1558452677] spark-impersonation-3a4d0ddf - Pod change detected: spark-impersonation-3a4d0ddf-driver changed to PodInitializing (previously Init:0/1).
+0521 15:31:19 [1558452679] spark-impersonation-3a4d0ddf - Pod change detected: spark-impersonation-3a4d0ddf-driver changed to Running (previously PodInitializing).
+0521 15:32:04 [1558452724] spark-impersonation-3a4d0ddf - ...still waiting for terminal state (currently RUNNING) after 62 seconds.
+0521 15:32:04 [1558452724] spark-impersonation-3a4d0ddf - ---- Begin Events ----
+0521 15:32:04 [1558452724] spark-impersonation-3a4d0ddf - Name:         spark-impersonation-3a4d0ddf
+0521 15:32:04 [1558452724] spark-impersonation-3a4d0ddf - Events:
+0521 15:32:04 [1558452724] spark-impersonation-3a4d0ddf -   Type    Reason                     Age   From            Message
+0521 15:32:04 [1558452724] spark-impersonation-3a4d0ddf -   ----    ------                     ----  ----            -------
+0521 15:32:04 [1558452724] spark-impersonation-3a4d0ddf -   Normal  SparkApplicationAdded      1m    spark-operator  SparkApplication spark-impersonation-3a4d0ddf was added, enqueuing it for submission
+0521 15:32:04 [1558452724] spark-impersonation-3a4d0ddf -   Normal  SparkApplicationSubmitted  56s   spark-operator  SparkApplication spark-impersonation-3a4d0ddf was submitted successfully
+0521 15:32:04 [1558452724] spark-impersonation-3a4d0ddf -   Normal  SparkDriverRunning         47s   spark-operator  Driver spark-impersonation-3a4d0ddf-driver is running
+0521 15:32:06 [1558452726] spark-impersonation-3a4d0ddf - Name:           spark-impersonation-3a4d0ddf-driver
+0521 15:32:06 [1558452726] spark-impersonation-3a4d0ddf - Events:
+0521 15:32:06 [1558452726] spark-impersonation-3a4d0ddf -   Type     Reason                 Age   From                                                      Message
+0521 15:32:06 [1558452726] spark-impersonation-3a4d0ddf -   ----     ------                 ----  ----                                                      -------
+0521 15:32:06 [1558452726] spark-impersonation-3a4d0ddf -   Normal   Scheduled              1m    default-scheduler                                         Successfully assigned spark-impersonation-3a4d0ddf-driver to shared0-flowsnakeworkerprod1-1-cdu.ops.sfdc.net
+0521 15:32:06 [1558452726] spark-impersonation-3a4d0ddf -   Normal   SuccessfulMountVolume  1m    kubelet, shared0-flowsnakeworkerprod1-1-cdu.ops.sfdc.net  MountVolume.SetUp succeeded for volume "certificate-authority"
+0521 15:32:06 [1558452726] spark-impersonation-3a4d0ddf -   Normal   SuccessfulMountVolume  1m    kubelet, shared0-flowsnakeworkerprod1-1-cdu.ops.sfdc.net  MountVolume.SetUp succeeded for volume "client-certificate"
+0521 15:32:06 [1558452726] spark-impersonation-3a4d0ddf -   Normal   SuccessfulMountVolume  1m    kubelet, shared0-flowsnakeworkerprod1-1-cdu.ops.sfdc.net  MountVolume.SetUp succeeded for volume "client-key"
+0521 15:32:06 [1558452726] spark-impersonation-3a4d0ddf -   Normal   SuccessfulMountVolume  1m    kubelet, shared0-flowsnakeworkerprod1-1-cdu.ops.sfdc.net  MountVolume.SetUp succeeded for volume "spark-local-dir-1"
+0521 15:32:06 [1558452726] spark-impersonation-3a4d0ddf -   Normal   SuccessfulMountVolume  1m    kubelet, shared0-flowsnakeworkerprod1-1-cdu.ops.sfdc.net  MountVolume.SetUp succeeded for volume "tokens"
+0521 15:32:06 [1558452726] spark-impersonation-3a4d0ddf -   Normal   SuccessfulMountVolume  1m    kubelet, shared0-flowsnakeworkerprod1-1-cdu.ops.sfdc.net  MountVolume.SetUp succeeded for volume "datacerts"
+0521 15:32:06 [1558452726] spark-impersonation-3a4d0ddf -   Normal   SuccessfulMountVolume  1m    kubelet, shared0-flowsnakeworkerprod1-1-cdu.ops.sfdc.net  MountVolume.SetUp succeeded for volume "spark-driver-flowsnake-watchdog-token-84f98"
+0521 15:32:06 [1558452726] spark-impersonation-3a4d0ddf -   Warning  FailedMount            1m    kubelet, shared0-flowsnakeworkerprod1-1-cdu.ops.sfdc.net  MountVolume.SetUp failed for volume "spark-conf-volume" : configmaps "spark-impersonation-3a4d0ddf-1558452663791-driver-conf-map" not found
+0521 15:32:06 [1558452726] spark-impersonation-3a4d0ddf -   Normal   SuccessfulMountVolume  59s   kubelet, shared0-flowsnakeworkerprod1-1-cdu.ops.sfdc.net  MountVolume.SetUp succeeded for volume "spark-conf-volume"
+0521 15:32:06 [1558452726] spark-impersonation-3a4d0ddf -   Normal   Pulled                 59s   kubelet, shared0-flowsnakeworkerprod1-1-cdu.ops.sfdc.net  Container image "ops0-artifactrepo1-0-cdu.data.sfdc.net/tnrp/sam/madkub:1.0.0-0000084-9f4a6ca6" already present on machine
+0521 15:32:06 [1558452726] spark-impersonation-3a4d0ddf -   Normal   Created                58s   kubelet, shared0-flowsnakeworkerprod1-1-cdu.ops.sfdc.net  Created container
+0521 15:32:06 [1558452726] spark-impersonation-3a4d0ddf -   Normal   Started                58s   kubelet, shared0-flowsnakeworkerprod1-1-cdu.ops.sfdc.net  Started container
+0521 15:32:06 [1558452726] spark-impersonation-3a4d0ddf -   Normal   Pulling                53s   kubelet, shared0-flowsnakeworkerprod1-1-cdu.ops.sfdc.net  pulling image "ops0-artifactrepo1-0-cdu.data.sfdc.net/dva/flowsnake-spark-on-k8s-sample-apps:4"
+0521 15:32:06 [1558452726] spark-impersonation-3a4d0ddf -   Normal   Pulled                 52s   kubelet, shared0-flowsnakeworkerprod1-1-cdu.ops.sfdc.net  Successfully pulled image "ops0-artifactrepo1-0-cdu.data.sfdc.net/dva/flowsnake-spark-on-k8s-sample-apps:4"
+0521 15:32:06 [1558452726] spark-impersonation-3a4d0ddf -   Normal   Created                52s   kubelet, shared0-flowsnakeworkerprod1-1-cdu.ops.sfdc.net  Created container
+0521 15:32:06 [1558452726] spark-impersonation-3a4d0ddf -   Normal   Started                52s   kubelet, shared0-flowsnakeworkerprod1-1-cdu.ops.sfdc.net  Started container
+0521 15:32:09 [1558452729] spark-impersonation-3a4d0ddf - ---- End Events ----
+0521 15:33:10 [1558452790] spark-impersonation-3a4d0ddf - ...still waiting for terminal state (currently RUNNING) after 128 seconds.
+0521 15:33:10 [1558452790] spark-impersonation-3a4d0ddf - ---- Begin Events ----
+0521 15:33:10 [1558452790] spark-impersonation-3a4d0ddf - Name:         spark-impersonation-3a4d0ddf
+0521 15:33:10 [1558452790] spark-impersonation-3a4d0ddf - Events:
+0521 15:33:10 [1558452790] spark-impersonation-3a4d0ddf -   Type    Reason                     Age   From            Message
+0521 15:33:10 [1558452790] spark-impersonation-3a4d0ddf -   ----    ------                     ----  ----            -------
+0521 15:33:10 [1558452790] spark-impersonation-3a4d0ddf -   Normal  SparkApplicationAdded      2m    spark-operator  SparkApplication spark-impersonation-3a4d0ddf was added, enqueuing it for submission
+0521 15:33:10 [1558452790] spark-impersonation-3a4d0ddf -   Normal  SparkApplicationSubmitted  2m    spark-operator  SparkApplication spark-impersonation-3a4d0ddf was submitted successfully
+0521 15:33:10 [1558452790] spark-impersonation-3a4d0ddf -   Normal  SparkDriverRunning         1m    spark-operator  Driver spark-impersonation-3a4d0ddf-driver is running
+0521 15:33:11 [1558452792] spark-impersonation-3a4d0ddf - Name:           spark-impersonation-3a4d0ddf-driver
+0521 15:33:11 [1558452792] spark-impersonation-3a4d0ddf - Events:
+0521 15:33:11 [1558452792] spark-impersonation-3a4d0ddf -   Type     Reason                 Age   From                                                      Message
+0521 15:33:11 [1558452792] spark-impersonation-3a4d0ddf -   ----     ------                 ----  ----                                                      -------
+0521 15:33:11 [1558452792] spark-impersonation-3a4d0ddf -   Normal   Scheduled              2m    default-scheduler                                         Successfully assigned spark-impersonation-3a4d0ddf-driver to shared0-flowsnakeworkerprod1-1-cdu.ops.sfdc.net
+0521 15:33:11 [1558452792] spark-impersonation-3a4d0ddf -   Normal   SuccessfulMountVolume  2m    kubelet, shared0-flowsnakeworkerprod1-1-cdu.ops.sfdc.net  MountVolume.SetUp succeeded for volume "certificate-authority"
+0521 15:33:11 [1558452792] spark-impersonation-3a4d0ddf -   Normal   SuccessfulMountVolume  2m    kubelet, shared0-flowsnakeworkerprod1-1-cdu.ops.sfdc.net  MountVolume.SetUp succeeded for volume "client-certificate"
+0521 15:33:11 [1558452792] spark-impersonation-3a4d0ddf -   Normal   SuccessfulMountVolume  2m    kubelet, shared0-flowsnakeworkerprod1-1-cdu.ops.sfdc.net  MountVolume.SetUp succeeded for volume "client-key"
+0521 15:33:11 [1558452792] spark-impersonation-3a4d0ddf -   Normal   SuccessfulMountVolume  2m    kubelet, shared0-flowsnakeworkerprod1-1-cdu.ops.sfdc.net  MountVolume.SetUp succeeded for volume "spark-local-dir-1"
+0521 15:33:11 [1558452792] spark-impersonation-3a4d0ddf -   Normal   SuccessfulMountVolume  2m    kubelet, shared0-flowsnakeworkerprod1-1-cdu.ops.sfdc.net  MountVolume.SetUp succeeded for volume "tokens"
+0521 15:33:11 [1558452792] spark-impersonation-3a4d0ddf -   Normal   SuccessfulMountVolume  2m    kubelet, shared0-flowsnakeworkerprod1-1-cdu.ops.sfdc.net  MountVolume.SetUp succeeded for volume "datacerts"
+0521 15:33:11 [1558452792] spark-impersonation-3a4d0ddf -   Normal   SuccessfulMountVolume  2m    kubelet, shared0-flowsnakeworkerprod1-1-cdu.ops.sfdc.net  MountVolume.SetUp succeeded for volume "spark-driver-flowsnake-watchdog-token-84f98"
+0521 15:33:11 [1558452792] spark-impersonation-3a4d0ddf -   Warning  FailedMount            2m    kubelet, shared0-flowsnakeworkerprod1-1-cdu.ops.sfdc.net  MountVolume.SetUp failed for volume "spark-conf-volume" : configmaps "spark-impersonation-3a4d0ddf-1558452663791-driver-conf-map" not found
+0521 15:33:11 [1558452792] spark-impersonation-3a4d0ddf -   Normal   SuccessfulMountVolume  2m    kubelet, shared0-flowsnakeworkerprod1-1-cdu.ops.sfdc.net  MountVolume.SetUp succeeded for volume "spark-conf-volume"
+0521 15:33:11 [1558452792] spark-impersonation-3a4d0ddf -   Normal   Pulled                 2m    kubelet, shared0-flowsnakeworkerprod1-1-cdu.ops.sfdc.net  Container image "ops0-artifactrepo1-0-cdu.data.sfdc.net/tnrp/sam/madkub:1.0.0-0000084-9f4a6ca6" already present on machine
+0521 15:33:11 [1558452792] spark-impersonation-3a4d0ddf -   Normal   Created                2m    kubelet, shared0-flowsnakeworkerprod1-1-cdu.ops.sfdc.net  Created container
+0521 15:33:11 [1558452792] spark-impersonation-3a4d0ddf -   Normal   Started                2m    kubelet, shared0-flowsnakeworkerprod1-1-cdu.ops.sfdc.net  Started container
+0521 15:33:11 [1558452792] spark-impersonation-3a4d0ddf -   Normal   Pulling                1m    kubelet, shared0-flowsnakeworkerprod1-1-cdu.ops.sfdc.net  pulling image "ops0-artifactrepo1-0-cdu.data.sfdc.net/dva/flowsnake-spark-on-k8s-sample-apps:4"
+0521 15:33:11 [1558452792] spark-impersonation-3a4d0ddf -   Normal   Pulled                 1m    kubelet, shared0-flowsnakeworkerprod1-1-cdu.ops.sfdc.net  Successfully pulled image "ops0-artifactrepo1-0-cdu.data.sfdc.net/dva/flowsnake-spark-on-k8s-sample-apps:4"
+0521 15:33:11 [1558452792] spark-impersonation-3a4d0ddf -   Normal   Created                1m    kubelet, shared0-flowsnakeworkerprod1-1-cdu.ops.sfdc.net  Created container
+0521 15:33:11 [1558452792] spark-impersonation-3a4d0ddf -   Normal   Started                1m    kubelet, shared0-flowsnakeworkerprod1-1-cdu.ops.sfdc.net  Started container
+0521 15:33:14 [1558452794] spark-impersonation-3a4d0ddf - ---- End Events ----
+0521 15:33:33 [1558452813] spark-impersonation-3a4d0ddf - Pod change detected: spark-impersonation-3a4d0ddf-1558452663791-exec-2: Pending on host shared0-flowsnakeworkerprod1-4-cdu.ops.sfdc.net.
+0521 15:34:04 [1558452844] spark-impersonation-3a4d0ddf - Pod change detected: spark-impersonation-3a4d0ddf-1558452663791-exec-2 changed to Init:0/1 (previously Pending).
+0521 15:34:11 [1558452851] spark-impersonation-3a4d0ddf - ...still waiting for terminal state (currently RUNNING) after 189 seconds.
+0521 15:34:11 [1558452851] spark-impersonation-3a4d0ddf - ---- Begin Events ----
+0521 15:34:11 [1558452851] spark-impersonation-3a4d0ddf - Name:         spark-impersonation-3a4d0ddf
+0521 15:34:11 [1558452851] spark-impersonation-3a4d0ddf - Events:
+0521 15:34:11 [1558452851] spark-impersonation-3a4d0ddf -   Type    Reason                     Age   From            Message
+0521 15:34:11 [1558452851] spark-impersonation-3a4d0ddf -   ----    ------                     ----  ----            -------
+0521 15:34:11 [1558452851] spark-impersonation-3a4d0ddf -   Normal  SparkApplicationAdded      3m    spark-operator  SparkApplication spark-impersonation-3a4d0ddf was added, enqueuing it for submission
+0521 15:34:11 [1558452851] spark-impersonation-3a4d0ddf -   Normal  SparkApplicationSubmitted  3m    spark-operator  SparkApplication spark-impersonation-3a4d0ddf was submitted successfully
+0521 15:34:11 [1558452851] spark-impersonation-3a4d0ddf -   Normal  SparkDriverRunning         2m    spark-operator  Driver spark-impersonation-3a4d0ddf-driver is running
+0521 15:34:11 [1558452851] spark-impersonation-3a4d0ddf -   Normal  SparkExecutorPending       41s   spark-operator  Executor spark-impersonation-3a4d0ddf-1558452663791-exec-2 is pending
+0521 15:34:13 [1558452853] spark-impersonation-3a4d0ddf - Name:           spark-impersonation-3a4d0ddf-driver
+0521 15:34:13 [1558452853] spark-impersonation-3a4d0ddf - Events:
+0521 15:34:13 [1558452853] spark-impersonation-3a4d0ddf -   Type     Reason                 Age   From                                                      Message
+0521 15:34:13 [1558452853] spark-impersonation-3a4d0ddf -   ----     ------                 ----  ----                                                      -------
+0521 15:34:13 [1558452853] spark-impersonation-3a4d0ddf -   Normal   Scheduled              3m    default-scheduler                                         Successfully assigned spark-impersonation-3a4d0ddf-driver to shared0-flowsnakeworkerprod1-1-cdu.ops.sfdc.net
+0521 15:34:13 [1558452853] spark-impersonation-3a4d0ddf -   Normal   SuccessfulMountVolume  3m    kubelet, shared0-flowsnakeworkerprod1-1-cdu.ops.sfdc.net  MountVolume.SetUp succeeded for volume "certificate-authority"
+0521 15:34:13 [1558452853] spark-impersonation-3a4d0ddf -   Normal   SuccessfulMountVolume  3m    kubelet, shared0-flowsnakeworkerprod1-1-cdu.ops.sfdc.net  MountVolume.SetUp succeeded for volume "client-certificate"
+0521 15:34:13 [1558452853] spark-impersonation-3a4d0ddf -   Normal   SuccessfulMountVolume  3m    kubelet, shared0-flowsnakeworkerprod1-1-cdu.ops.sfdc.net  MountVolume.SetUp succeeded for volume "client-key"
+0521 15:34:13 [1558452853] spark-impersonation-3a4d0ddf -   Normal   SuccessfulMountVolume  3m    kubelet, shared0-flowsnakeworkerprod1-1-cdu.ops.sfdc.net  MountVolume.SetUp succeeded for volume "spark-local-dir-1"
+0521 15:34:13 [1558452853] spark-impersonation-3a4d0ddf -   Normal   SuccessfulMountVolume  3m    kubelet, shared0-flowsnakeworkerprod1-1-cdu.ops.sfdc.net  MountVolume.SetUp succeeded for volume "tokens"
+0521 15:34:13 [1558452853] spark-impersonation-3a4d0ddf -   Normal   SuccessfulMountVolume  3m    kubelet, shared0-flowsnakeworkerprod1-1-cdu.ops.sfdc.net  MountVolume.SetUp succeeded for volume "datacerts"
+0521 15:34:13 [1558452853] spark-impersonation-3a4d0ddf -   Normal   SuccessfulMountVolume  3m    kubelet, shared0-flowsnakeworkerprod1-1-cdu.ops.sfdc.net  MountVolume.SetUp succeeded for volume "spark-driver-flowsnake-watchdog-token-84f98"
+0521 15:34:13 [1558452853] spark-impersonation-3a4d0ddf -   Warning  FailedMount            3m    kubelet, shared0-flowsnakeworkerprod1-1-cdu.ops.sfdc.net  MountVolume.SetUp failed for volume "spark-conf-volume" : configmaps "spark-impersonation-3a4d0ddf-1558452663791-driver-conf-map" not found
+0521 15:34:13 [1558452853] spark-impersonation-3a4d0ddf -   Normal   SuccessfulMountVolume  3m    kubelet, shared0-flowsnakeworkerprod1-1-cdu.ops.sfdc.net  MountVolume.SetUp succeeded for volume "spark-conf-volume"
+0521 15:34:13 [1558452853] spark-impersonation-3a4d0ddf -   Normal   Pulled                 3m    kubelet, shared0-flowsnakeworkerprod1-1-cdu.ops.sfdc.net  Container image "ops0-artifactrepo1-0-cdu.data.sfdc.net/tnrp/sam/madkub:1.0.0-0000084-9f4a6ca6" already present on machine
+0521 15:34:13 [1558452853] spark-impersonation-3a4d0ddf -   Normal   Created                3m    kubelet, shared0-flowsnakeworkerprod1-1-cdu.ops.sfdc.net  Created container
+0521 15:34:13 [1558452853] spark-impersonation-3a4d0ddf -   Normal   Started                3m    kubelet, shared0-flowsnakeworkerprod1-1-cdu.ops.sfdc.net  Started container
+0521 15:34:13 [1558452853] spark-impersonation-3a4d0ddf -   Normal   Pulling                2m    kubelet, shared0-flowsnakeworkerprod1-1-cdu.ops.sfdc.net  pulling image "ops0-artifactrepo1-0-cdu.data.sfdc.net/dva/flowsnake-spark-on-k8s-sample-apps:4"
+0521 15:34:13 [1558452853] spark-impersonation-3a4d0ddf -   Normal   Pulled                 2m    kubelet, shared0-flowsnakeworkerprod1-1-cdu.ops.sfdc.net  Successfully pulled image "ops0-artifactrepo1-0-cdu.data.sfdc.net/dva/flowsnake-spark-on-k8s-sample-apps:4"
+0521 15:34:13 [1558452853] spark-impersonation-3a4d0ddf -   Normal   Created                2m    kubelet, shared0-flowsnakeworkerprod1-1-cdu.ops.sfdc.net  Created container
+0521 15:34:13 [1558452853] spark-impersonation-3a4d0ddf -   Normal   Started                2m    kubelet, shared0-flowsnakeworkerprod1-1-cdu.ops.sfdc.net  Started container
+0521 15:34:14 [1558452854] spark-impersonation-3a4d0ddf - Name:           spark-impersonation-3a4d0ddf-1558452663791-exec-2
+0521 15:34:14 [1558452854] spark-impersonation-3a4d0ddf - Events:
+0521 15:34:14 [1558452854] spark-impersonation-3a4d0ddf -   Type    Reason                 Age   From                                                      Message
+0521 15:34:14 [1558452854] spark-impersonation-3a4d0ddf -   ----    ------                 ----  ----                                                      -------
+0521 15:34:14 [1558452854] spark-impersonation-3a4d0ddf -   Normal  Scheduled              44s   default-scheduler                                         Successfully assigned spark-impersonation-3a4d0ddf-1558452663791-exec-2 to shared0-flowsnakeworkerprod1-4-cdu.ops.sfdc.net
+0521 15:34:14 [1558452854] spark-impersonation-3a4d0ddf -   Normal  SuccessfulMountVolume  20s   kubelet, shared0-flowsnakeworkerprod1-4-cdu.ops.sfdc.net  MountVolume.SetUp succeeded for volume "client-certificate"
+0521 15:34:14 [1558452854] spark-impersonation-3a4d0ddf -   Normal  SuccessfulMountVolume  20s   kubelet, shared0-flowsnakeworkerprod1-4-cdu.ops.sfdc.net  MountVolume.SetUp succeeded for volume "client-key"
+0521 15:34:14 [1558452854] spark-impersonation-3a4d0ddf -   Normal  SuccessfulMountVolume  20s   kubelet, shared0-flowsnakeworkerprod1-4-cdu.ops.sfdc.net  MountVolume.SetUp succeeded for volume "certificate-authority"
+0521 15:34:14 [1558452854] spark-impersonation-3a4d0ddf -   Normal  SuccessfulMountVolume  20s   kubelet, shared0-flowsnakeworkerprod1-4-cdu.ops.sfdc.net  MountVolume.SetUp succeeded for volume "spark-local-dir-1"
+0521 15:34:14 [1558452854] spark-impersonation-3a4d0ddf -   Normal  SuccessfulMountVolume  20s   kubelet, shared0-flowsnakeworkerprod1-4-cdu.ops.sfdc.net  MountVolume.SetUp succeeded for volume "datacerts"
+0521 15:34:14 [1558452854] spark-impersonation-3a4d0ddf -   Normal  SuccessfulMountVolume  20s   kubelet, shared0-flowsnakeworkerprod1-4-cdu.ops.sfdc.net  MountVolume.SetUp succeeded for volume "tokens"
+0521 15:34:14 [1558452854] spark-impersonation-3a4d0ddf -   Normal  SuccessfulMountVolume  18s   kubelet, shared0-flowsnakeworkerprod1-4-cdu.ops.sfdc.net  MountVolume.SetUp succeeded for volume "default-token-95mxp"
+0521 15:34:15 [1558452855] spark-impersonation-3a4d0ddf - ---- End Events ----
+0521 15:34:54 [1558452894] spark-impersonation-3a4d0ddf - Pod change detected: spark-impersonation-3a4d0ddf-1558452663791-exec-2 changed to PodInitializing (previously Init:0/1).
+0521 15:35:12 [1558452912] spark-impersonation-3a4d0ddf - ...still waiting for terminal state (currently RUNNING) after 250 seconds.
+0521 15:35:12 [1558452912] spark-impersonation-3a4d0ddf - ---- Begin Events ----
+0521 15:35:12 [1558452912] spark-impersonation-3a4d0ddf - Name:         spark-impersonation-3a4d0ddf
+0521 15:35:12 [1558452912] spark-impersonation-3a4d0ddf - Events:
+0521 15:35:12 [1558452912] spark-impersonation-3a4d0ddf -   Type    Reason                     Age   From            Message
+0521 15:35:12 [1558452912] spark-impersonation-3a4d0ddf -   ----    ------                     ----  ----            -------
+0521 15:35:12 [1558452912] spark-impersonation-3a4d0ddf -   Normal  SparkApplicationAdded      4m    spark-operator  SparkApplication spark-impersonation-3a4d0ddf was added, enqueuing it for submission
+0521 15:35:12 [1558452912] spark-impersonation-3a4d0ddf -   Normal  SparkApplicationSubmitted  4m    spark-operator  SparkApplication spark-impersonation-3a4d0ddf was submitted successfully
+0521 15:35:12 [1558452912] spark-impersonation-3a4d0ddf -   Normal  SparkDriverRunning         3m    spark-operator  Driver spark-impersonation-3a4d0ddf-driver is running
+0521 15:35:12 [1558452912] spark-impersonation-3a4d0ddf -   Normal  SparkExecutorPending       1m    spark-operator  Executor spark-impersonation-3a4d0ddf-1558452663791-exec-2 is pending
+0521 15:35:13 [1558452913] spark-impersonation-3a4d0ddf - Name:           spark-impersonation-3a4d0ddf-driver
+0521 15:35:13 [1558452913] spark-impersonation-3a4d0ddf - Events:
+0521 15:35:13 [1558452913] spark-impersonation-3a4d0ddf -   Type     Reason                 Age   From                                                      Message
+0521 15:35:13 [1558452913] spark-impersonation-3a4d0ddf -   ----     ------                 ----  ----                                                      -------
+0521 15:35:13 [1558452913] spark-impersonation-3a4d0ddf -   Normal   Scheduled              4m    default-scheduler                                         Successfully assigned spark-impersonation-3a4d0ddf-driver to shared0-flowsnakeworkerprod1-1-cdu.ops.sfdc.net
+0521 15:35:13 [1558452913] spark-impersonation-3a4d0ddf -   Normal   SuccessfulMountVolume  4m    kubelet, shared0-flowsnakeworkerprod1-1-cdu.ops.sfdc.net  MountVolume.SetUp succeeded for volume "certificate-authority"
+0521 15:35:13 [1558452913] spark-impersonation-3a4d0ddf -   Normal   SuccessfulMountVolume  4m    kubelet, shared0-flowsnakeworkerprod1-1-cdu.ops.sfdc.net  MountVolume.SetUp succeeded for volume "client-certificate"
+0521 15:35:13 [1558452913] spark-impersonation-3a4d0ddf -   Normal   SuccessfulMountVolume  4m    kubelet, shared0-flowsnakeworkerprod1-1-cdu.ops.sfdc.net  MountVolume.SetUp succeeded for volume "client-key"
+0521 15:35:13 [1558452913] spark-impersonation-3a4d0ddf -   Normal   SuccessfulMountVolume  4m    kubelet, shared0-flowsnakeworkerprod1-1-cdu.ops.sfdc.net  MountVolume.SetUp succeeded for volume "spark-local-dir-1"
+0521 15:35:13 [1558452913] spark-impersonation-3a4d0ddf -   Normal   SuccessfulMountVolume  4m    kubelet, shared0-flowsnakeworkerprod1-1-cdu.ops.sfdc.net  MountVolume.SetUp succeeded for volume "tokens"
+0521 15:35:13 [1558452913] spark-impersonation-3a4d0ddf -   Normal   SuccessfulMountVolume  4m    kubelet, shared0-flowsnakeworkerprod1-1-cdu.ops.sfdc.net  MountVolume.SetUp succeeded for volume "datacerts"
+0521 15:35:13 [1558452913] spark-impersonation-3a4d0ddf -   Normal   SuccessfulMountVolume  4m    kubelet, shared0-flowsnakeworkerprod1-1-cdu.ops.sfdc.net  MountVolume.SetUp succeeded for volume "spark-driver-flowsnake-watchdog-token-84f98"
+0521 15:35:13 [1558452913] spark-impersonation-3a4d0ddf -   Warning  FailedMount            4m    kubelet, shared0-flowsnakeworkerprod1-1-cdu.ops.sfdc.net  MountVolume.SetUp failed for volume "spark-conf-volume" : configmaps "spark-impersonation-3a4d0ddf-1558452663791-driver-conf-map" not found
+0521 15:35:13 [1558452913] spark-impersonation-3a4d0ddf -   Normal   SuccessfulMountVolume  4m    kubelet, shared0-flowsnakeworkerprod1-1-cdu.ops.sfdc.net  MountVolume.SetUp succeeded for volume "spark-conf-volume"
+0521 15:35:13 [1558452913] spark-impersonation-3a4d0ddf -   Normal   Pulled                 4m    kubelet, shared0-flowsnakeworkerprod1-1-cdu.ops.sfdc.net  Container image "ops0-artifactrepo1-0-cdu.data.sfdc.net/tnrp/sam/madkub:1.0.0-0000084-9f4a6ca6" already present on machine
+0521 15:35:13 [1558452913] spark-impersonation-3a4d0ddf -   Normal   Created                4m    kubelet, shared0-flowsnakeworkerprod1-1-cdu.ops.sfdc.net  Created container
+0521 15:35:13 [1558452913] spark-impersonation-3a4d0ddf -   Normal   Started                4m    kubelet, shared0-flowsnakeworkerprod1-1-cdu.ops.sfdc.net  Started container
+0521 15:35:13 [1558452913] spark-impersonation-3a4d0ddf -   Normal   Pulling                4m    kubelet, shared0-flowsnakeworkerprod1-1-cdu.ops.sfdc.net  pulling image "ops0-artifactrepo1-0-cdu.data.sfdc.net/dva/flowsnake-spark-on-k8s-sample-apps:4"
+0521 15:35:13 [1558452913] spark-impersonation-3a4d0ddf -   Normal   Pulled                 3m    kubelet, shared0-flowsnakeworkerprod1-1-cdu.ops.sfdc.net  Successfully pulled image "ops0-artifactrepo1-0-cdu.data.sfdc.net/dva/flowsnake-spark-on-k8s-sample-apps:4"
+0521 15:35:13 [1558452913] spark-impersonation-3a4d0ddf -   Normal   Created                3m    kubelet, shared0-flowsnakeworkerprod1-1-cdu.ops.sfdc.net  Created container
+0521 15:35:13 [1558452913] spark-impersonation-3a4d0ddf -   Normal   Started                3m    kubelet, shared0-flowsnakeworkerprod1-1-cdu.ops.sfdc.net  Started container
+0521 15:35:15 [1558452915] spark-impersonation-3a4d0ddf - Name:           spark-impersonation-3a4d0ddf-1558452663791-exec-2
+0521 15:35:15 [1558452915] spark-impersonation-3a4d0ddf - Events:
+0521 15:35:15 [1558452915] spark-impersonation-3a4d0ddf -   Type    Reason                 Age   From                                                      Message
+0521 15:35:15 [1558452915] spark-impersonation-3a4d0ddf -   ----    ------                 ----  ----                                                      -------
+0521 15:35:15 [1558452915] spark-impersonation-3a4d0ddf -   Normal  Scheduled              1m    default-scheduler                                         Successfully assigned spark-impersonation-3a4d0ddf-1558452663791-exec-2 to shared0-flowsnakeworkerprod1-4-cdu.ops.sfdc.net
+0521 15:35:15 [1558452915] spark-impersonation-3a4d0ddf -   Normal  SuccessfulMountVolume  1m    kubelet, shared0-flowsnakeworkerprod1-4-cdu.ops.sfdc.net  MountVolume.SetUp succeeded for volume "client-certificate"
+0521 15:35:15 [1558452915] spark-impersonation-3a4d0ddf -   Normal  SuccessfulMountVolume  1m    kubelet, shared0-flowsnakeworkerprod1-4-cdu.ops.sfdc.net  MountVolume.SetUp succeeded for volume "client-key"
+0521 15:35:15 [1558452915] spark-impersonation-3a4d0ddf -   Normal  SuccessfulMountVolume  1m    kubelet, shared0-flowsnakeworkerprod1-4-cdu.ops.sfdc.net  MountVolume.SetUp succeeded for volume "certificate-authority"
+0521 15:35:15 [1558452915] spark-impersonation-3a4d0ddf -   Normal  SuccessfulMountVolume  1m    kubelet, shared0-flowsnakeworkerprod1-4-cdu.ops.sfdc.net  MountVolume.SetUp succeeded for volume "spark-local-dir-1"
+0521 15:35:15 [1558452915] spark-impersonation-3a4d0ddf -   Normal  SuccessfulMountVolume  1m    kubelet, shared0-flowsnakeworkerprod1-4-cdu.ops.sfdc.net  MountVolume.SetUp succeeded for volume "datacerts"
+0521 15:35:15 [1558452915] spark-impersonation-3a4d0ddf -   Normal  SuccessfulMountVolume  1m    kubelet, shared0-flowsnakeworkerprod1-4-cdu.ops.sfdc.net  MountVolume.SetUp succeeded for volume "tokens"
+0521 15:35:15 [1558452915] spark-impersonation-3a4d0ddf -   Normal  SuccessfulMountVolume  1m    kubelet, shared0-flowsnakeworkerprod1-4-cdu.ops.sfdc.net  MountVolume.SetUp succeeded for volume "default-token-95mxp"
+0521 15:35:15 [1558452915] spark-impersonation-3a4d0ddf -   Normal  Pulled                 57s   kubelet, shared0-flowsnakeworkerprod1-4-cdu.ops.sfdc.net  Container image "ops0-artifactrepo1-0-cdu.data.sfdc.net/tnrp/sam/madkub:1.0.0-0000084-9f4a6ca6" already present on machine
+0521 15:35:15 [1558452915] spark-impersonation-3a4d0ddf -   Normal  Created                50s   kubelet, shared0-flowsnakeworkerprod1-4-cdu.ops.sfdc.net  Created container
+0521 15:35:15 [1558452915] spark-impersonation-3a4d0ddf -   Normal  Started                47s   kubelet, shared0-flowsnakeworkerprod1-4-cdu.ops.sfdc.net  Started container
+0521 15:35:15 [1558452915] spark-impersonation-3a4d0ddf -   Normal  Pulling                24s   kubelet, shared0-flowsnakeworkerprod1-4-cdu.ops.sfdc.net  pulling image "ops0-artifactrepo1-0-cdu.data.sfdc.net/dva/flowsnake-spark-on-k8s-sample-apps:4"
+0521 15:35:15 [1558452915] spark-impersonation-3a4d0ddf -   Normal  Pulled                 20s   kubelet, shared0-flowsnakeworkerprod1-4-cdu.ops.sfdc.net  Successfully pulled image "ops0-artifactrepo1-0-cdu.data.sfdc.net/dva/flowsnake-spark-on-k8s-sample-apps:4"
+0521 15:35:15 [1558452915] spark-impersonation-3a4d0ddf -   Normal  Created                11s   kubelet, shared0-flowsnakeworkerprod1-4-cdu.ops.sfdc.net  Created container
+0521 15:35:15 [1558452915] spark-impersonation-3a4d0ddf -   Normal  Started                7s    kubelet, shared0-flowsnakeworkerprod1-4-cdu.ops.sfdc.net  Started container
+0521 15:35:17 [1558452917] spark-impersonation-3a4d0ddf - ---- End Events ----
+0521 15:35:18 [1558452918] spark-impersonation-3a4d0ddf - Pod change detected: spark-impersonation-3a4d0ddf-1558452663791-exec-2 changed to Running (previously PodInitializing).
+0521 15:35:45 [1558452945] spark-impersonation-3a4d0ddf - Timeout reached. Aborting wait for SparkApplication spark-impersonation-3a4d0ddf even though in non-terminal state RUNNING.
+0521 15:35:45 [1558452945] spark-impersonation-3a4d0ddf - ---- Begin Events ----
+0521 15:35:45 [1558452945] spark-impersonation-3a4d0ddf - Name:         spark-impersonation-3a4d0ddf
+0521 15:35:45 [1558452945] spark-impersonation-3a4d0ddf - Events:
+0521 15:35:45 [1558452945] spark-impersonation-3a4d0ddf -   Type    Reason                     Age   From            Message
+0521 15:35:45 [1558452945] spark-impersonation-3a4d0ddf -   ----    ------                     ----  ----            -------
+0521 15:35:45 [1558452945] spark-impersonation-3a4d0ddf -   Normal  SparkApplicationAdded      4m    spark-operator  SparkApplication spark-impersonation-3a4d0ddf was added, enqueuing it for submission
+0521 15:35:45 [1558452945] spark-impersonation-3a4d0ddf -   Normal  SparkApplicationSubmitted  4m    spark-operator  SparkApplication spark-impersonation-3a4d0ddf was submitted successfully
+0521 15:35:45 [1558452945] spark-impersonation-3a4d0ddf -   Normal  SparkDriverRunning         4m    spark-operator  Driver spark-impersonation-3a4d0ddf-driver is running
+0521 15:35:45 [1558452945] spark-impersonation-3a4d0ddf -   Normal  SparkExecutorPending       2m    spark-operator  Executor spark-impersonation-3a4d0ddf-1558452663791-exec-2 is pending
+0521 15:35:45 [1558452945] spark-impersonation-3a4d0ddf -   Normal  SparkExecutorRunning       34s   spark-operator  Executor spark-impersonation-3a4d0ddf-1558452663791-exec-2 is running
+0521 15:35:47 [1558452947] spark-impersonation-3a4d0ddf - Name:           spark-impersonation-3a4d0ddf-driver
+0521 15:35:47 [1558452947] spark-impersonation-3a4d0ddf - Events:
+0521 15:35:47 [1558452947] spark-impersonation-3a4d0ddf -   Type     Reason                 Age   From                                                      Message
+0521 15:35:47 [1558452947] spark-impersonation-3a4d0ddf -   ----     ------                 ----  ----                                                      -------
+0521 15:35:47 [1558452947] spark-impersonation-3a4d0ddf -   Normal   Scheduled              4m    default-scheduler                                         Successfully assigned spark-impersonation-3a4d0ddf-driver to shared0-flowsnakeworkerprod1-1-cdu.ops.sfdc.net
+0521 15:35:47 [1558452947] spark-impersonation-3a4d0ddf -   Normal   SuccessfulMountVolume  4m    kubelet, shared0-flowsnakeworkerprod1-1-cdu.ops.sfdc.net  MountVolume.SetUp succeeded for volume "certificate-authority"
+0521 15:35:47 [1558452947] spark-impersonation-3a4d0ddf -   Normal   SuccessfulMountVolume  4m    kubelet, shared0-flowsnakeworkerprod1-1-cdu.ops.sfdc.net  MountVolume.SetUp succeeded for volume "client-certificate"
+0521 15:35:47 [1558452947] spark-impersonation-3a4d0ddf -   Normal   SuccessfulMountVolume  4m    kubelet, shared0-flowsnakeworkerprod1-1-cdu.ops.sfdc.net  MountVolume.SetUp succeeded for volume "client-key"
+0521 15:35:47 [1558452947] spark-impersonation-3a4d0ddf -   Normal   SuccessfulMountVolume  4m    kubelet, shared0-flowsnakeworkerprod1-1-cdu.ops.sfdc.net  MountVolume.SetUp succeeded for volume "spark-local-dir-1"
+0521 15:35:47 [1558452947] spark-impersonation-3a4d0ddf -   Normal   SuccessfulMountVolume  4m    kubelet, shared0-flowsnakeworkerprod1-1-cdu.ops.sfdc.net  MountVolume.SetUp succeeded for volume "tokens"
+0521 15:35:47 [1558452947] spark-impersonation-3a4d0ddf -   Normal   SuccessfulMountVolume  4m    kubelet, shared0-flowsnakeworkerprod1-1-cdu.ops.sfdc.net  MountVolume.SetUp succeeded for volume "datacerts"
+0521 15:35:47 [1558452947] spark-impersonation-3a4d0ddf -   Normal   SuccessfulMountVolume  4m    kubelet, shared0-flowsnakeworkerprod1-1-cdu.ops.sfdc.net  MountVolume.SetUp succeeded for volume "spark-driver-flowsnake-watchdog-token-84f98"
+0521 15:35:47 [1558452947] spark-impersonation-3a4d0ddf -   Warning  FailedMount            4m    kubelet, shared0-flowsnakeworkerprod1-1-cdu.ops.sfdc.net  MountVolume.SetUp failed for volume "spark-conf-volume" : configmaps "spark-impersonation-3a4d0ddf-1558452663791-driver-conf-map" not found
+0521 15:35:47 [1558452947] spark-impersonation-3a4d0ddf -   Normal   SuccessfulMountVolume  4m    kubelet, shared0-flowsnakeworkerprod1-1-cdu.ops.sfdc.net  MountVolume.SetUp succeeded for volume "spark-conf-volume"
+0521 15:35:47 [1558452947] spark-impersonation-3a4d0ddf -   Normal   Pulled                 4m    kubelet, shared0-flowsnakeworkerprod1-1-cdu.ops.sfdc.net  Container image "ops0-artifactrepo1-0-cdu.data.sfdc.net/tnrp/sam/madkub:1.0.0-0000084-9f4a6ca6" already present on machine
+0521 15:35:47 [1558452947] spark-impersonation-3a4d0ddf -   Normal   Created                4m    kubelet, shared0-flowsnakeworkerprod1-1-cdu.ops.sfdc.net  Created container
+0521 15:35:47 [1558452947] spark-impersonation-3a4d0ddf -   Normal   Started                4m    kubelet, shared0-flowsnakeworkerprod1-1-cdu.ops.sfdc.net  Started container
+0521 15:35:47 [1558452947] spark-impersonation-3a4d0ddf -   Normal   Pulling                4m    kubelet, shared0-flowsnakeworkerprod1-1-cdu.ops.sfdc.net  pulling image "ops0-artifactrepo1-0-cdu.data.sfdc.net/dva/flowsnake-spark-on-k8s-sample-apps:4"
+0521 15:35:47 [1558452947] spark-impersonation-3a4d0ddf -   Normal   Pulled                 4m    kubelet, shared0-flowsnakeworkerprod1-1-cdu.ops.sfdc.net  Successfully pulled image "ops0-artifactrepo1-0-cdu.data.sfdc.net/dva/flowsnake-spark-on-k8s-sample-apps:4"
+0521 15:35:47 [1558452947] spark-impersonation-3a4d0ddf -   Normal   Created                4m    kubelet, shared0-flowsnakeworkerprod1-1-cdu.ops.sfdc.net  Created container
+0521 15:35:47 [1558452947] spark-impersonation-3a4d0ddf -   Normal   Started                4m    kubelet, shared0-flowsnakeworkerprod1-1-cdu.ops.sfdc.net  Started container
+0521 15:35:49 [1558452949] spark-impersonation-3a4d0ddf - Name:           spark-impersonation-3a4d0ddf-1558452663791-exec-2
+0521 15:35:49 [1558452949] spark-impersonation-3a4d0ddf - Events:
+0521 15:35:49 [1558452949] spark-impersonation-3a4d0ddf -   Type    Reason                 Age   From                                                      Message
+0521 15:35:49 [1558452949] spark-impersonation-3a4d0ddf -   ----    ------                 ----  ----                                                      -------
+0521 15:35:49 [1558452949] spark-impersonation-3a4d0ddf -   Normal  Scheduled              2m    default-scheduler                                         Successfully assigned spark-impersonation-3a4d0ddf-1558452663791-exec-2 to shared0-flowsnakeworkerprod1-4-cdu.ops.sfdc.net
+0521 15:35:49 [1558452949] spark-impersonation-3a4d0ddf -   Normal  SuccessfulMountVolume  1m    kubelet, shared0-flowsnakeworkerprod1-4-cdu.ops.sfdc.net  MountVolume.SetUp succeeded for volume "client-certificate"
+0521 15:35:49 [1558452949] spark-impersonation-3a4d0ddf -   Normal  SuccessfulMountVolume  1m    kubelet, shared0-flowsnakeworkerprod1-4-cdu.ops.sfdc.net  MountVolume.SetUp succeeded for volume "client-key"
+0521 15:35:49 [1558452949] spark-impersonation-3a4d0ddf -   Normal  SuccessfulMountVolume  1m    kubelet, shared0-flowsnakeworkerprod1-4-cdu.ops.sfdc.net  MountVolume.SetUp succeeded for volume "certificate-authority"
+0521 15:35:49 [1558452949] spark-impersonation-3a4d0ddf -   Normal  SuccessfulMountVolume  1m    kubelet, shared0-flowsnakeworkerprod1-4-cdu.ops.sfdc.net  MountVolume.SetUp succeeded for volume "spark-local-dir-1"
+0521 15:35:49 [1558452949] spark-impersonation-3a4d0ddf -   Normal  SuccessfulMountVolume  1m    kubelet, shared0-flowsnakeworkerprod1-4-cdu.ops.sfdc.net  MountVolume.SetUp succeeded for volume "datacerts"
+0521 15:35:49 [1558452949] spark-impersonation-3a4d0ddf -   Normal  SuccessfulMountVolume  1m    kubelet, shared0-flowsnakeworkerprod1-4-cdu.ops.sfdc.net  MountVolume.SetUp succeeded for volume "tokens"
+0521 15:35:49 [1558452949] spark-impersonation-3a4d0ddf -   Normal  SuccessfulMountVolume  1m    kubelet, shared0-flowsnakeworkerprod1-4-cdu.ops.sfdc.net  MountVolume.SetUp succeeded for volume "default-token-95mxp"
+0521 15:35:49 [1558452949] spark-impersonation-3a4d0ddf -   Normal  Pulled                 1m    kubelet, shared0-flowsnakeworkerprod1-4-cdu.ops.sfdc.net  Container image "ops0-artifactrepo1-0-cdu.data.sfdc.net/tnrp/sam/madkub:1.0.0-0000084-9f4a6ca6" already present on machine
+0521 15:35:49 [1558452949] spark-impersonation-3a4d0ddf -   Normal  Created                1m    kubelet, shared0-flowsnakeworkerprod1-4-cdu.ops.sfdc.net  Created container
+0521 15:35:49 [1558452949] spark-impersonation-3a4d0ddf -   Normal  Started                1m    kubelet, shared0-flowsnakeworkerprod1-4-cdu.ops.sfdc.net  Started container
+0521 15:35:49 [1558452949] spark-impersonation-3a4d0ddf -   Normal  Pulling                58s   kubelet, shared0-flowsnakeworkerprod1-4-cdu.ops.sfdc.net  pulling image "ops0-artifactrepo1-0-cdu.data.sfdc.net/dva/flowsnake-spark-on-k8s-sample-apps:4"
+0521 15:35:49 [1558452949] spark-impersonation-3a4d0ddf -   Normal  Pulled                 54s   kubelet, shared0-flowsnakeworkerprod1-4-cdu.ops.sfdc.net  Successfully pulled image "ops0-artifactrepo1-0-cdu.data.sfdc.net/dva/flowsnake-spark-on-k8s-sample-apps:4"
+0521 15:35:49 [1558452949] spark-impersonation-3a4d0ddf -   Normal  Created                45s   kubelet, shared0-flowsnakeworkerprod1-4-cdu.ops.sfdc.net  Created container
+0521 15:35:49 [1558452949] spark-impersonation-3a4d0ddf -   Normal  Started                41s   kubelet, shared0-flowsnakeworkerprod1-4-cdu.ops.sfdc.net  Started container
+0521 15:35:51 [1558452951] spark-impersonation-3a4d0ddf - ---- End Events ----
+0521 15:35:51 [1558452951] spark-impersonation-3a4d0ddf - ---- Begin pods/spark-impersonation-3a4d0ddf-driver Log ----
+++ id -u
++ myuid=0
+++ id -g
++ mygid=0
++ set +e
+++ getent passwd 0
++ uidentry=root:x:0:0:root:/root:/bin/bash
++ set -e
++ '[' -z root:x:0:0:root:/root:/bin/bash ']'
++ SPARK_K8S_CMD=driver
++ case "$SPARK_K8S_CMD" in
++ shift 1
++ SPARK_CLASSPATH=':/opt/spark/jars/*'
++ env
++ grep SPARK_JAVA_OPT_
++ sort -t_ -k4 -n
++ sed 's/[^=]*=\(.*\)/\1/g'
++ readarray -t SPARK_EXECUTOR_JAVA_OPTS
++ '[' -n '' ']'
++ '[' -n '' ']'
++ PYSPARK_ARGS=
++ '[' -n '' ']'
++ R_ARGS=
++ '[' -n '' ']'
++ '[' '' == 2 ']'
++ '[' '' == 3 ']'
++ case "$SPARK_K8S_CMD" in
++ CMD=("$SPARK_HOME/bin/spark-submit" --conf "spark.driver.bindAddress=$SPARK_DRIVER_BIND_ADDRESS" --deploy-mode client "$@")
++ exec /sbin/tini -s -- /opt/spark/bin/spark-submit --conf spark.driver.bindAddress=10.255.34.7 --deploy-mode client --properties-file /opt/spark/conf/spark.properties --class org.apache.spark.examples.SparkPi spark-internal
+2019-05-21 15:31:40 WARN  NativeCodeLoader:62 - Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+2019-05-21 15:31:49 INFO  SparkContext:54 - Running Spark version 2.4.0-sfdc-0.2-SNAPSHOT
+2019-05-21 15:31:50 INFO  SparkContext:54 - Submitted application: Spark Pi
+2019-05-21 15:31:51 INFO  SecurityManager:54 - Changing view acls to: root
+2019-05-21 15:31:51 INFO  SecurityManager:54 - Changing modify acls to: root
+2019-05-21 15:31:51 INFO  SecurityManager:54 - Changing view acls groups to:
+2019-05-21 15:31:51 INFO  SecurityManager:54 - Changing modify acls groups to:
+2019-05-21 15:31:51 INFO  SecurityManager:54 - SecurityManager: authentication disabled; ui acls disabled; users  with view permissions: Set(root); groups with view permissions: Set(); users  with modify permissions: Set(root); groups with modify permissions: Set()
+2019-05-21 15:32:01 INFO  Utils:54 - Successfully started service 'sparkDriver' on port 7078.
+2019-05-21 15:32:02 INFO  SparkEnv:54 - Registering MapOutputTracker
+2019-05-21 15:32:02 INFO  SparkEnv:54 - Registering BlockManagerMaster
+2019-05-21 15:32:02 INFO  BlockManagerMasterEndpoint:54 - Using org.apache.spark.storage.DefaultTopologyMapper for getting topology information
+2019-05-21 15:32:02 INFO  BlockManagerMasterEndpoint:54 - BlockManagerMasterEndpoint up
+2019-05-21 15:32:02 INFO  DiskBlockManager:54 - Created local directory at /var/data/spark-1757fcca-a6e6-41f8-b1f0-be61048cc0d2/blockmgr-0479722e-a029-45c5-8f5a-077b0677c4b9
+2019-05-21 15:32:02 INFO  MemoryStore:54 - MemoryStore started with capacity 93.3 MB
+2019-05-21 15:32:02 INFO  SparkEnv:54 - Registering OutputCommitCoordinator
+2019-05-21 15:32:03 INFO  log:192 - Logging initialized @42691ms
+2019-05-21 15:32:04 INFO  Server:351 - jetty-9.3.z-SNAPSHOT, build timestamp: unknown, git hash: unknown
+2019-05-21 15:32:04 INFO  Server:419 - Started @43891ms
+2019-05-21 15:32:05 INFO  AbstractConnector:278 - Started ServerConnector@4beddc56{HTTP/1.1,[http/1.1]}{0.0.0.0:4040}
+2019-05-21 15:32:05 INFO  Utils:54 - Successfully started service 'SparkUI' on port 4040.
+2019-05-21 15:32:06 INFO  ContextHandler:781 - Started o.s.j.s.ServletContextHandler@3bd55d8{/jobs,null,AVAILABLE,@Spark}
+2019-05-21 15:32:06 INFO  ContextHandler:781 - Started o.s.j.s.ServletContextHandler@3249a1ce{/jobs/json,null,AVAILABLE,@Spark}
+2019-05-21 15:32:06 INFO  ContextHandler:781 - Started o.s.j.s.ServletContextHandler@4dd94a58{/jobs/job,null,AVAILABLE,@Spark}
+2019-05-21 15:32:06 INFO  ContextHandler:781 - Started o.s.j.s.ServletContextHandler@a8a8b75{/jobs/job/json,null,AVAILABLE,@Spark}
+2019-05-21 15:32:06 INFO  ContextHandler:781 - Started o.s.j.s.ServletContextHandler@75b21c3b{/stages,null,AVAILABLE,@Spark}
+2019-05-21 15:32:06 INFO  ContextHandler:781 - Started o.s.j.s.ServletContextHandler@72be135f{/stages/json,null,AVAILABLE,@Spark}
+2019-05-21 15:32:06 INFO  ContextHandler:781 - Started o.s.j.s.ServletContextHandler@155d1021{/stages/stage,null,AVAILABLE,@Spark}
+2019-05-21 15:32:06 INFO  ContextHandler:781 - Started o.s.j.s.ServletContextHandler@2c42b421{/stages/stage/json,null,AVAILABLE,@Spark}
+2019-05-21 15:32:06 INFO  ContextHandler:781 - Started o.s.j.s.ServletContextHandler@51e37590{/stages/pool,null,AVAILABLE,@Spark}
+2019-05-21 15:32:06 INFO  ContextHandler:781 - Started o.s.j.s.ServletContextHandler@deb3b60{/stages/pool/json,null,AVAILABLE,@Spark}
+2019-05-21 15:32:06 INFO  ContextHandler:781 - Started o.s.j.s.ServletContextHandler@701a32{/storage,null,AVAILABLE,@Spark}
+2019-05-21 15:32:06 INFO  ContextHandler:781 - Started o.s.j.s.ServletContextHandler@39aa45a1{/storage/json,null,AVAILABLE,@Spark}
+2019-05-21 15:32:06 INFO  ContextHandler:781 - Started o.s.j.s.ServletContextHandler@73aff8f1{/storage/rdd,null,AVAILABLE,@Spark}
+2019-05-21 15:32:06 INFO  ContextHandler:781 - Started o.s.j.s.ServletContextHandler@27cbfddf{/storage/rdd/json,null,AVAILABLE,@Spark}
+2019-05-21 15:32:07 INFO  ContextHandler:781 - Started o.s.j.s.ServletContextHandler@27ead29e{/environment,null,AVAILABLE,@Spark}
+2019-05-21 15:32:07 INFO  ContextHandler:781 - Started o.s.j.s.ServletContextHandler@4c060c8f{/environment/json,null,AVAILABLE,@Spark}
+2019-05-21 15:32:07 INFO  ContextHandler:781 - Started o.s.j.s.ServletContextHandler@40620d8e{/executors,null,AVAILABLE,@Spark}
+2019-05-21 15:32:07 INFO  ContextHandler:781 - Started o.s.j.s.ServletContextHandler@383f3558{/executors/json,null,AVAILABLE,@Spark}
+2019-05-21 15:32:07 INFO  ContextHandler:781 - Started o.s.j.s.ServletContextHandler@49b07ee3{/executors/threadDump,null,AVAILABLE,@Spark}
+2019-05-21 15:32:07 INFO  ContextHandler:781 - Started o.s.j.s.ServletContextHandler@352e612e{/executors/threadDump/json,null,AVAILABLE,@Spark}
+2019-05-21 15:32:07 INFO  ContextHandler:781 - Started o.s.j.s.ServletContextHandler@65f00478{/static,null,AVAILABLE,@Spark}
+2019-05-21 15:32:07 INFO  ContextHandler:781 - Started o.s.j.s.ServletContextHandler@712ca57b{/,null,AVAILABLE,@Spark}
+2019-05-21 15:32:07 INFO  ContextHandler:781 - Started o.s.j.s.ServletContextHandler@4564e94b{/api,null,AVAILABLE,@Spark}
+2019-05-21 15:32:07 INFO  ContextHandler:781 - Started o.s.j.s.ServletContextHandler@27abb83e{/jobs/job/kill,null,AVAILABLE,@Spark}
+2019-05-21 15:32:07 INFO  ContextHandler:781 - Started o.s.j.s.ServletContextHandler@69e308c6{/stages/stage/kill,null,AVAILABLE,@Spark}
+2019-05-21 15:32:07 INFO  SparkUI:54 - Bound SparkUI to 0.0.0.0, and started at http://spark-impersonation-3a4d0ddf-1558452663791-driver-svc.flowsnake-watchdog.svc:4040
+2019-05-21 15:32:09 INFO  SparkContext:54 - Added JAR file:///sample-apps/sample-basic-spark-operator/sample-basic-spark-operator.jar at spark://spark-impersonation-3a4d0ddf-1558452663791-driver-svc.flowsnake-watchdog.svc:7078/jars/sample-basic-spark-operator.jar with timestamp 1558452729290
+2019-05-21 15:32:56 INFO  ExecutorPodsAllocator:54 - Going to request 1 executors from Kubernetes.
+2019-05-21 15:32:57 INFO  Utils:54 - Successfully started service 'org.apache.spark.network.netty.NettyBlockTransferService' on port 7079.
+2019-05-21 15:32:57 INFO  NettyBlockTransferService:54 - Server created on spark-impersonation-3a4d0ddf-1558452663791-driver-svc.flowsnake-watchdog.svc:7079
+2019-05-21 15:32:57 INFO  BlockManager:54 - Using org.apache.spark.storage.RandomBlockReplicationPolicy for block replication policy
+2019-05-21 15:32:58 INFO  BlockManagerMaster:54 - Registering BlockManager BlockManagerId(driver, spark-impersonation-3a4d0ddf-1558452663791-driver-svc.flowsnake-watchdog.svc, 7079, None)
+2019-05-21 15:32:58 INFO  BlockManagerMasterEndpoint:54 - Registering block manager spark-impersonation-3a4d0ddf-1558452663791-driver-svc.flowsnake-watchdog.svc:7079 with 93.3 MB RAM, BlockManagerId(driver, spark-impersonation-3a4d0ddf-1558452663791-driver-svc.flowsnake-watchdog.svc, 7079, None)
+2019-05-21 15:32:58 INFO  BlockManagerMaster:54 - Registered BlockManager BlockManagerId(driver, spark-impersonation-3a4d0ddf-1558452663791-driver-svc.flowsnake-watchdog.svc, 7079, None)
+2019-05-21 15:32:58 INFO  BlockManager:54 - Initialized BlockManager: BlockManagerId(driver, spark-impersonation-3a4d0ddf-1558452663791-driver-svc.flowsnake-watchdog.svc, 7079, None)
+2019-05-21 15:32:59 INFO  ContextHandler:781 - Started o.s.j.s.ServletContextHandler@9aa2002{/metrics/json,null,AVAILABLE,@Spark}
+2019-05-21 15:33:08 ERROR Utils:91 - Uncaught exception in thread kubernetes-executor-snapshots-subscribers-1
+io.fabric8.kubernetes.client.KubernetesClientException: Failure executing: POST at: https://kubernetes.default.svc/api/v1/namespaces/flowsnake-watchdog/pods. Message: client: etcd member https://shared0-flowsnakemasterprod4-1-cdu.ops.sfdc.net:2379 has no leader. Received status: Status(apiVersion=v1, code=500, details=null, kind=Status, message=client: etcd member https://shared0-flowsnakemasterprod4-1-cdu.ops.sfdc.net:2379 has no leader, metadata=ListMeta(resourceVersion=null, selfLink=null, additionalProperties={}), reason=null, status=Failure, additionalProperties={}).
+	at io.fabric8.kubernetes.client.dsl.base.OperationSupport.requestFailure(OperationSupport.java:470)
+	at io.fabric8.kubernetes.client.dsl.base.OperationSupport.assertResponseCode(OperationSupport.java:409)
+	at io.fabric8.kubernetes.client.dsl.base.OperationSupport.handleResponse(OperationSupport.java:379)
+	at io.fabric8.kubernetes.client.dsl.base.OperationSupport.handleResponse(OperationSupport.java:343)
+	at io.fabric8.kubernetes.client.dsl.base.OperationSupport.handleCreate(OperationSupport.java:226)
+	at io.fabric8.kubernetes.client.dsl.base.BaseOperation.handleCreate(BaseOperation.java:769)
+	at io.fabric8.kubernetes.client.dsl.base.BaseOperation.create(BaseOperation.java:356)
+	at org.apache.spark.scheduler.cluster.k8s.ExecutorPodsAllocator$$anonfun$org$apache$spark$scheduler$cluster$k8s$ExecutorPodsAllocator$$onNewSnapshots$1.apply$mcVI$sp(ExecutorPodsAllocator.scala:137)
+	at scala.collection.immutable.Range.foreach$mVc$sp(Range.scala:160)
+	at org.apache.spark.scheduler.cluster.k8s.ExecutorPodsAllocator.org$apache$spark$scheduler$cluster$k8s$ExecutorPodsAllocator$$onNewSnapshots(ExecutorPodsAllocator.scala:124)
+	at org.apache.spark.scheduler.cluster.k8s.ExecutorPodsAllocator$$anonfun$start$1.apply(ExecutorPodsAllocator.scala:68)
+	at org.apache.spark.scheduler.cluster.k8s.ExecutorPodsAllocator$$anonfun$start$1.apply(ExecutorPodsAllocator.scala:68)
+	at org.apache.spark.scheduler.cluster.k8s.ExecutorPodsSnapshotsStoreImpl$$anonfun$org$apache$spark$scheduler$cluster$k8s$ExecutorPodsSnapshotsStoreImpl$$callSubscriber$1.apply$mcV$sp(ExecutorPodsSnapshotsStoreImpl.scala:102)
+	at org.apache.spark.util.Utils$.tryLogNonFatalError(Utils.scala:1340)
+	at org.apache.spark.scheduler.cluster.k8s.ExecutorPodsSnapshotsStoreImpl.org$apache$spark$scheduler$cluster$k8s$ExecutorPodsSnapshotsStoreImpl$$callSubscriber(ExecutorPodsSnapshotsStoreImpl.scala:99)
+	at org.apache.spark.scheduler.cluster.k8s.ExecutorPodsSnapshotsStoreImpl$$anonfun$addSubscriber$1.apply$mcV$sp(ExecutorPodsSnapshotsStoreImpl.scala:71)
+	at org.apache.spark.scheduler.cluster.k8s.ExecutorPodsSnapshotsStoreImpl$$anon$1.run(ExecutorPodsSnapshotsStoreImpl.scala:107)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511)
+	at java.util.concurrent.FutureTask.runAndReset(FutureTask.java:308)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$301(ScheduledThreadPoolExecutor.java:180)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:294)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at java.lang.Thread.run(Thread.java:748)
+2019-05-21 15:33:25 INFO  KubernetesClusterSchedulerBackend:54 - SchedulerBackend is ready for scheduling beginning after waiting maxRegisteredResourcesWaitingTime: 30000(ms)
+2019-05-21 15:33:28 INFO  ExecutorPodsAllocator:54 - Going to request 1 executors from Kubernetes.
+2019-05-21 15:33:30 INFO  SparkContext:54 - Starting job: reduce at SparkPi.scala:38
+2019-05-21 15:33:32 INFO  DAGScheduler:54 - Got job 0 (reduce at SparkPi.scala:38) with 2 output partitions
+2019-05-21 15:33:32 INFO  DAGScheduler:54 - Final stage: ResultStage 0 (reduce at SparkPi.scala:38)
+2019-05-21 15:33:32 INFO  DAGScheduler:54 - Parents of final stage: List()
+2019-05-21 15:33:32 INFO  DAGScheduler:54 - Missing parents: List()
+2019-05-21 15:33:32 INFO  DAGScheduler:54 - Submitting ResultStage 0 (MapPartitionsRDD[1] at map at SparkPi.scala:34), which has no missing parents
+2019-05-21 15:33:38 INFO  MemoryStore:54 - Block broadcast_0 stored as values in memory (estimated size 1936.0 B, free 93.3 MB)
+2019-05-21 15:33:39 INFO  MemoryStore:54 - Block broadcast_0_piece0 stored as bytes in memory (estimated size 1256.0 B, free 93.3 MB)
+2019-05-21 15:33:39 INFO  BlockManagerInfo:54 - Added broadcast_0_piece0 in memory on spark-impersonation-3a4d0ddf-1558452663791-driver-svc.flowsnake-watchdog.svc:7079 (size: 1256.0 B, free: 93.3 MB)
+2019-05-21 15:33:39 INFO  SparkContext:54 - Created broadcast 0 from broadcast at DAGScheduler.scala:1161
+2019-05-21 15:33:40 INFO  DAGScheduler:54 - Submitting 2 missing tasks from ResultStage 0 (MapPartitionsRDD[1] at map at SparkPi.scala:34) (first 15 tasks are for partitions Vector(0, 1))
+2019-05-21 15:33:40 INFO  TaskSchedulerImpl:54 - Adding task set 0.0 with 2 tasks
+2019-05-21 15:33:55 WARN  TaskSchedulerImpl:66 - Initial job has not accepted any resources; check your cluster UI to ensure that workers are registered and have sufficient resources
+2019-05-21 15:34:10 WARN  TaskSchedulerImpl:66 - Initial job has not accepted any resources; check your cluster UI to ensure that workers are registered and have sufficient resources
+2019-05-21 15:34:25 WARN  TaskSchedulerImpl:66 - Initial job has not accepted any resources; check your cluster UI to ensure that workers are registered and have sufficient resources
+2019-05-21 15:34:40 WARN  TaskSchedulerImpl:66 - Initial job has not accepted any resources; check your cluster UI to ensure that workers are registered and have sufficient resources
+2019-05-21 15:34:55 WARN  TaskSchedulerImpl:66 - Initial job has not accepted any resources; check your cluster UI to ensure that workers are registered and have sufficient resources
+2019-05-21 15:35:10 WARN  TaskSchedulerImpl:66 - Initial job has not accepted any resources; check your cluster UI to ensure that workers are registered and have sufficient resources
+2019-05-21 15:35:25 WARN  TaskSchedulerImpl:66 - Initial job has not accepted any resources; check your cluster UI to ensure that workers are registered and have sufficient resources
+2019-05-21 15:35:40 WARN  TaskSchedulerImpl:66 - Initial job has not accepted any resources; check your cluster UI to ensure that workers are registered and have sufficient resources
+0521 15:35:52 [1558452952] spark-impersonation-3a4d0ddf - ---- End pods/spark-impersonation-3a4d0ddf-driver Log ----
+0521 15:35:52 [1558452952] spark-impersonation-3a4d0ddf - -------- Executor Pods ----------
+0521 15:35:53 [1558452953] spark-impersonation-3a4d0ddf - ---- Begin pods/spark-impersonation-3a4d0ddf-1558452663791-exec-2 Log ----
+++ id -u
++ myuid=0
+++ id -g
++ mygid=0
++ set +e
+++ getent passwd 0
++ uidentry=root:x:0:0:root:/root:/bin/bash
++ set -e
++ '[' -z root:x:0:0:root:/root:/bin/bash ']'
++ SPARK_K8S_CMD=executor
++ case "$SPARK_K8S_CMD" in
++ shift 1
++ SPARK_CLASSPATH=':/opt/spark/jars/*'
++ env
++ grep SPARK_JAVA_OPT_
++ sort -t_ -k4 -n
++ sed 's/[^=]*=\(.*\)/\1/g'
++ readarray -t SPARK_EXECUTOR_JAVA_OPTS
++ '[' -n '' ']'
++ '[' -n '' ']'
++ PYSPARK_ARGS=
++ '[' -n '' ']'
++ R_ARGS=
++ '[' -n '' ']'
++ '[' '' == 2 ']'
++ '[' '' == 3 ']'
++ case "$SPARK_K8S_CMD" in
++ CMD=(${JAVA_HOME}/bin/java "${SPARK_EXECUTOR_JAVA_OPTS[@]}" -Xms$SPARK_EXECUTOR_MEMORY -Xmx$SPARK_EXECUTOR_MEMORY -cp "$SPARK_CLASSPATH" org.apache.spark.executor.CoarseGrainedExecutorBackend --driver-url $SPARK_DRIVER_URL --executor-id $SPARK_EXECUTOR_ID --cores $SPARK_EXECUTOR_CORES --app-id $SPARK_APPLICATION_ID --hostname $SPARK_EXECUTOR_POD_IP)
++ exec /sbin/tini -s -- /opt/tools/Linux/jdk/openjdk1.8.0_181_x64/bin/java -Xms512m -Xmx512m -cp ':/opt/spark/jars/*' org.apache.spark.executor.CoarseGrainedExecutorBackend --driver-url spark://CoarseGrainedScheduler@spark-impersonation-3a4d0ddf-1558452663791-driver-svc.flowsnake-watchdog.svc:7078 --executor-id 2 --cores 1 --app-id spark-application-1558452775499 --hostname 10.255.5.13
+0521 15:35:54 [1558452954] spark-impersonation-3a4d0ddf - ---- End pods/spark-impersonation-3a4d0ddf-1558452663791-exec-2 Log ----
+0521 15:35:54 [1558452954] spark-impersonation-3a4d0ddf - ======== Completion of spark-impersonation-3a4d0ddf test, returning 1 ========
