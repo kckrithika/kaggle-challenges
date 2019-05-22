@@ -1,4 +1,4 @@
 version: v2
 apps:
-  c2c-service:
+  identity-service-layer:
     - name: xrd/xrd-sampool
