@@ -7,11 +7,8 @@ db:
   sid: gkr13-1
   user: happy
 endpoints:
-  httpProxy: public0-proxy1-0-prd.data.sfdc.net:8080
-  publicDNSSuffix: ci-ice-pd.prd-sam.prd.slb.sfdc.net
-  publicHostName: gk13lb.ci-ice-pd.prd-sam.prd.slb.sfdc.net
-  sfProxyVIP: https://gk13lb.ci-ice-pd.prd-sam.prd.slb.sfdc.net:8085
-  switchboard: gk13-switchboard-lb.ci-ice-pd.prd-sam.prd.slb.sfdc.net:8088
+   httpProxy: public0-proxy1-0-prd.data.sfdc.net:8080
+  publicDNSSuffix: core-on-sam-sp2.prd-sam.prd.slb.sfdc.net
 env:
   name: stmfa
   region: prd
@@ -21,7 +18,7 @@ images:
   coreAppOverrides: sfci/casam/coreapp_overrides:476eb5
   envoy: sfci/servicelibs/sherpa-envoy:1.0.4
   envoyConfig: sfci/casam/cyan-config:208cc2
-  sequencer: sfci/casam/sequencer:d48544
+  sequencer: sfci/casam/sequencer:180d92
   sfProxy: sfci/frontend-gateway/sfproxy:659513c
   switchboard: sfci/servicelibs/switchboard:26c3cdce981042262b9f0f26c226cab1841bf9fd
   switchboardEnvoy: sfci/frontend-gateway/sfproxy:bc7e1fa
