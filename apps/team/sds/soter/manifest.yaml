@@ -18,7 +18,7 @@ system:
           type: client
     containers:
     - name: soter
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/sriram.srinivasan/soter_image_git_path:fix
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/sriram.srinivasan/soter_image_git_path:push_mesg
       ports:
       - containerPort: 8080
       env:
