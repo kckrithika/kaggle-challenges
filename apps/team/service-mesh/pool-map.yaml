@@ -121,8 +121,8 @@ apps:
     - prd/prd-sam_gater
   istio-fake-casam-na35:
     - prd/prd-sam_gater
-  istio-gater:
-    - prd/prd-sam_gater
+#  istio-gater:
+#    - prd/prd-sam_gater
 # Enable as needed:
 #  geoipnk:
 #    - prd/prd-sam_gater
