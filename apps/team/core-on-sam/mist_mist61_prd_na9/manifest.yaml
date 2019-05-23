@@ -241,7 +241,7 @@ system:
         value: https://refocus.internal.salesforce.com/v1/samples/
       - name: KAIJU_RUNTIME_TIMEOUT_MS
         value: 360000
-      image: sfci/casam/sequencer:4a4b1b
+      image: sfci/casam/sequencer:180d92
       livenessProbe:
         exec:
           command:
@@ -373,7 +373,7 @@ system:
         value: 7020
       - name: JVM_HEAP_MAX
         value: 4G
-      image: sfci/servicelibs/switchboard:0c4c543cd166bcb2e5516795a30989bc89165d60
+      image: sfci/servicelibs/switchboard:26c3cdce981042262b9f0f26c226cab1841bf9fd
       livenessProbe:
         httpGet:
           path: /manage/health
@@ -403,7 +403,7 @@ system:
         value: mist61
       - name: ENVOY_DEBUG_OPTIONS
         value: --log-path /home/sfdc-sherpa/envoy.log
-      image: sfci/frontend-gateway/sfproxy:5deb946
+      image: sfci/frontend-gateway/sfproxy:33e43ab
       livenessProbe:
         exec:
           command:
