@@ -19,29 +19,16 @@ system:
           type: client
     containers:
     - name: soter
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/varun.kulkarni/varks-try:test1
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/varun.kulkarni/varks-try:test2
       ports:
       - containerPort: 8080
-      env:
-      - name: HOST
-        value: "0.0.0.0"
-      - name: PORT
-        value: 7022
-      - name: TLS_HOST
-        value: "0.0.0.0"
-      - name: TLS_PORT
-        value: 8443
-      - name: TLS_CERTIFICATE
-        value: /servercerts/server/certificates/server.pem
-      - name: TLS_PRIVATE_KEY
-        value: /servercerts/server/keys/server-key.pem
-      - name: TLS_CA_CERTIFICATE
-        value: /servercerts/ca.pem
+      - containerPort: 7090
       livenessProbe:
-        exec:
-          command:
-          - ls
-        initialDelaySeconds: 5
+        httpGet:
+          path: /health
+          port: 7090
+        initialDelaySeconds: 60
+        timeoutSeconds: 10
         periodSeconds: 5
       volumeMounts:
       - name: servercert
