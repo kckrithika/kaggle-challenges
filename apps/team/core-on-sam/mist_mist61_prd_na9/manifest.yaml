@@ -37,7 +37,7 @@ system:
       - name: SFPROXY_VIP
         value: https://us9-sfproxy-lb.core-on-sam-sp2.prd-sam.prd.slb.sfdc.net:8443
       - name: HTTP_PORT
-        value: 8085
+        value: 7022
       - name: SPORT
         value: 8443
       - name: S2PORT
@@ -49,7 +49,7 @@ system:
       - name: CASAM_APP_COLOR
         value: blue
       - name: SD_PORT_OVERRIDE
-        value: 13065
+        value: 7442
       - name: CASAM_SETTINGS_PATH
         value: mist.mist61.prd.na9.app
       - name: CLUSTER_NAME
@@ -120,59 +120,33 @@ system:
       volumeMounts:
       - mountPath: /home/sfdc/salesforce/casam
         name: coreapp-casam-volume
-    - args:
-      - --template
-      - /cyan-config/tls-terminator-config.yaml.template
-      env:
-      - name: SFDC_ENVIRONMENT
-        value: envoy-sidecar
-      image: sfci/servicelibs/sherpa-envoy:1.0.4
+        
+    - name: sherpa
+      # Use the latest release version from https://git.soma.salesforce.com/servicelibs/sherpa-envoy/releases
+      image: sfci/servicelibs/sherpa-envoy:1.0.6
+      # See https://git.soma.salesforce.com/servicelibs/sherpa#ports
+      ports:
+      - containerPort: 7442
+        name: http1-tls-in
+      - containerPort: 15373
+        name: sherpa-adm
       livenessProbe:
         exec:
           command:
           - ./bin/is-alive
-        initialDelaySeconds: 20
+        initialDelaySeconds: 60
         periodSeconds: 5
-      name: envoy-sidecar
-      ports:
-      - containerPort: 13065
-      - containerPort: 15373
       readinessProbe:
         exec:
           command:
           - ./bin/is-ready
-        initialDelaySeconds: 15
+        initialDelaySeconds: 50
         periodSeconds: 5
       volumeMounts:
-      - mountPath: /cyan-config
-        name: envoy-config-volume
-      - mountPath: /certs/cert-client
-        name: tls-client-cert
-      - mountPath: /certs/cert-server
-        name: tls-server-cert
-    - env:
-      - name: CONFIG_DIR
-        value: /home/sfdc-sherpa/sherpa-envoy-config-volume
-      image: sfci/casam/cyan-config:208cc2
-      livenessProbe:
-        exec:
-          command:
-          - cat
-          - /tmp/live
-        initialDelaySeconds: 10
-        periodSeconds: 5
-      name: envoy-sidecar-config
-      readinessProbe:
-        exec:
-          command:
-          - cat
-          - /tmp/ready
-        initialDelaySeconds: 10
-        periodSeconds: 5
-      volumeMounts:
-      - mountPath: /home/sfdc-sherpa/sherpa-envoy-config-volume
-        name: envoy-config-volume
-
+      - name: tls-client-cert
+        mountPath: /client-certs
+      - name: tls-server-cert
+        mountPath: /server-certs
     count: 1
     identity:
       pod: na9
