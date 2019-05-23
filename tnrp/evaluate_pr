@@ -103,7 +103,7 @@ $SAMBINDIR/evaluate-pr \
 -pr="$STAGE_PULL_REQUEST_ID" \
 -smb $SAMBINDIR/sam-manifest-builder \
 -repo-name="$TNRP_PRODUCT" \
--unvalidated-image-prefixes "minikube,ops0-artifactrepo1-0-mvp,gcr.io,ops0-artifactrepo2-0-xrd.slb.sfdc.net" \
+-unvalidated-image-prefixes "minikube,ops0-artifactrepo1-0-mvp,gcr.io,ops0-artifactrepo2-0-xrd.slb.sfdc.net,791719295754.dkr.ecr.us-east-2.amazonaws.com" \
 -full-schema \
 -image-exists-tries=2 \
 -image-exists-try-sleep-duration=10s \

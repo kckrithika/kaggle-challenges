@@ -1,6 +1,6 @@
 local configs = import "config.jsonnet";
-local samimages = (import "samimages.jsonnet") + { templateFilename:: std.thisFile };
 local utils = import "util_functions.jsonnet";
+local samimages = (import "samimages.jsonnet") + { templateFilename:: std.thisFile };
 
 if utils.is_aws(configs.kingdom) then "SKIP"
 else
