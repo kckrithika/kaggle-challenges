@@ -12065,7 +12065,7 @@
       hostname: "shared0-searchidx1-14-frf.ops.sfdc.net",
       kingdom: "frf",
       pod: "none",
-      rack: "b04-m305",
+      rack: "d01-m316",
       superpod: "none",
     },
     {
@@ -12076,7 +12076,7 @@
       hostname: "shared0-searchidx1-15-frf.ops.sfdc.net",
       kingdom: "frf",
       pod: "none",
-      rack: "b04-m305",
+      rack: "d01-m316",
       superpod: "none",
     },
     {
@@ -12109,7 +12109,7 @@
       hostname: "shared0-searchidx1-18-frf.ops.sfdc.net",
       kingdom: "frf",
       pod: "none",
-      rack: "c06-m305",
+      rack: "c01-m316",
       superpod: "none",
     },
     {
@@ -12120,7 +12120,7 @@
       hostname: "shared0-searchidx1-19-frf.ops.sfdc.net",
       kingdom: "frf",
       pod: "none",
-      rack: "c06-m305",
+      rack: "d01-m316",
       superpod: "none",
     },
     {
@@ -12197,7 +12197,7 @@
       hostname: "shared0-searchidx1-8-frf.ops.sfdc.net",
       kingdom: "frf",
       pod: "none",
-      rack: "c05-m305",
+      rack: "c01-m316",
       superpod: "none",
     },
     {
@@ -12208,7 +12208,7 @@
       hostname: "shared0-searchidx1-9-frf.ops.sfdc.net",
       kingdom: "frf",
       pod: "none",
-      rack: "c05-m305",
+      rack: "c01-m316",
       superpod: "none",
     },
     {
@@ -15068,7 +15068,7 @@
       hostname: "shared0-samminionuniversalsearchmt2-1-hnd.ops.sfdc.net",
       kingdom: "hnd",
       pod: "none",
-      rack: "c11-2g",
+      rack: "b17-2g",
       superpod: "none",
     },
     {
@@ -47655,7 +47655,7 @@
     },
     {
       bomrolename: "sam_minion_zipkin",
-      controlestate: "prd-sam",
+      controlestate: "prd-samtwo",
       devicerole: "samcompute",
       estate: "prd-sam_zipkin",
       hostname: "shared0-samminionzipkin1-1-prd.eng.sfdc.net",
@@ -47666,7 +47666,7 @@
     },
     {
       bomrolename: "sam_minion_zipkin",
-      controlestate: "prd-sam",
+      controlestate: "prd-samtwo",
       devicerole: "samcompute",
       estate: "prd-sam_zipkin",
       hostname: "shared0-samminionzipkin1-10-prd.eng.sfdc.net",
@@ -47677,7 +47677,7 @@
     },
     {
       bomrolename: "sam_minion_zipkin",
-      controlestate: "prd-sam",
+      controlestate: "prd-samtwo",
       devicerole: "samcompute",
       estate: "prd-sam_zipkin",
       hostname: "shared0-samminionzipkin1-11-prd.eng.sfdc.net",
@@ -47688,7 +47688,7 @@
     },
     {
       bomrolename: "sam_minion_zipkin",
-      controlestate: "prd-sam",
+      controlestate: "prd-samtwo",
       devicerole: "samcompute",
       estate: "prd-sam_zipkin",
       hostname: "shared0-samminionzipkin1-12-prd.eng.sfdc.net",
@@ -47699,7 +47699,7 @@
     },
     {
       bomrolename: "sam_minion_zipkin",
-      controlestate: "prd-sam",
+      controlestate: "prd-samtwo",
       devicerole: "samcompute",
       estate: "prd-sam_zipkin",
       hostname: "shared0-samminionzipkin1-13-prd.eng.sfdc.net",
@@ -47710,7 +47710,7 @@
     },
     {
       bomrolename: "sam_minion_zipkin",
-      controlestate: "prd-sam",
+      controlestate: "prd-samtwo",
       devicerole: "samcompute",
       estate: "prd-sam_zipkin",
       hostname: "shared0-samminionzipkin1-14-prd.eng.sfdc.net",
@@ -47721,7 +47721,7 @@
     },
     {
       bomrolename: "sam_minion_zipkin",
-      controlestate: "prd-sam",
+      controlestate: "prd-samtwo",
       devicerole: "samcompute",
       estate: "prd-sam_zipkin",
       hostname: "shared0-samminionzipkin1-15-prd.eng.sfdc.net",
@@ -47732,7 +47732,7 @@
     },
     {
       bomrolename: "sam_minion_zipkin",
-      controlestate: "prd-sam",
+      controlestate: "prd-samtwo",
       devicerole: "samcompute",
       estate: "prd-sam_zipkin",
       hostname: "shared0-samminionzipkin1-2-prd.eng.sfdc.net",
@@ -47743,7 +47743,7 @@
     },
     {
       bomrolename: "sam_minion_zipkin",
-      controlestate: "prd-sam",
+      controlestate: "prd-samtwo",
       devicerole: "samcompute",
       estate: "prd-sam_zipkin",
       hostname: "shared0-samminionzipkin1-3-prd.eng.sfdc.net",
@@ -47754,7 +47754,7 @@
     },
     {
       bomrolename: "sam_minion_zipkin",
-      controlestate: "prd-sam",
+      controlestate: "prd-samtwo",
       devicerole: "samcompute",
       estate: "prd-sam_zipkin",
       hostname: "shared0-samminionzipkin1-4-prd.eng.sfdc.net",
@@ -47765,7 +47765,7 @@
     },
     {
       bomrolename: "sam_minion_zipkin",
-      controlestate: "prd-sam",
+      controlestate: "prd-samtwo",
       devicerole: "samcompute",
       estate: "prd-sam_zipkin",
       hostname: "shared0-samminionzipkin1-5-prd.eng.sfdc.net",
@@ -47776,7 +47776,7 @@
     },
     {
       bomrolename: "sam_minion_zipkin",
-      controlestate: "prd-sam",
+      controlestate: "prd-samtwo",
       devicerole: "samcompute",
       estate: "prd-sam_zipkin",
       hostname: "shared0-samminionzipkin1-6-prd.eng.sfdc.net",
@@ -47787,7 +47787,7 @@
     },
     {
       bomrolename: "sam_minion_zipkin",
-      controlestate: "prd-sam",
+      controlestate: "prd-samtwo",
       devicerole: "samcompute",
       estate: "prd-sam_zipkin",
       hostname: "shared0-samminionzipkin1-7-prd.eng.sfdc.net",
@@ -47798,7 +47798,7 @@
     },
     {
       bomrolename: "sam_minion_zipkin",
-      controlestate: "prd-sam",
+      controlestate: "prd-samtwo",
       devicerole: "samcompute",
       estate: "prd-sam_zipkin",
       hostname: "shared0-samminionzipkin1-8-prd.eng.sfdc.net",
@@ -47809,7 +47809,7 @@
     },
     {
       bomrolename: "sam_minion_zipkin",
-      controlestate: "prd-sam",
+      controlestate: "prd-samtwo",
       devicerole: "samcompute",
       estate: "prd-sam_zipkin",
       hostname: "shared0-samminionzipkin1-9-prd.eng.sfdc.net",
@@ -47820,7 +47820,7 @@
     },
     {
       bomrolename: "sam_minion_zipkin",
-      controlestate: "prd-sam",
+      controlestate: "prd-samtwo",
       devicerole: "samcompute",
       estate: "prd-sam_zipkin",
       hostname: "shared0-samminionzipkin2-1-prd.eng.sfdc.net",
@@ -47831,7 +47831,7 @@
     },
     {
       bomrolename: "sam_minion_zipkin",
-      controlestate: "prd-sam",
+      controlestate: "prd-samtwo",
       devicerole: "samcompute",
       estate: "prd-sam_zipkin",
       hostname: "shared0-samminionzipkin2-10-prd.eng.sfdc.net",
@@ -47842,7 +47842,7 @@
     },
     {
       bomrolename: "sam_minion_zipkin",
-      controlestate: "prd-sam",
+      controlestate: "prd-samtwo",
       devicerole: "samcompute",
       estate: "prd-sam_zipkin",
       hostname: "shared0-samminionzipkin2-11-prd.eng.sfdc.net",
@@ -47853,7 +47853,7 @@
     },
     {
       bomrolename: "sam_minion_zipkin",
-      controlestate: "prd-sam",
+      controlestate: "prd-samtwo",
       devicerole: "samcompute",
       estate: "prd-sam_zipkin",
       hostname: "shared0-samminionzipkin2-12-prd.eng.sfdc.net",
@@ -47864,7 +47864,7 @@
     },
     {
       bomrolename: "sam_minion_zipkin",
-      controlestate: "prd-sam",
+      controlestate: "prd-samtwo",
       devicerole: "samcompute",
       estate: "prd-sam_zipkin",
       hostname: "shared0-samminionzipkin2-13-prd.eng.sfdc.net",
@@ -47875,7 +47875,7 @@
     },
     {
       bomrolename: "sam_minion_zipkin",
-      controlestate: "prd-sam",
+      controlestate: "prd-samtwo",
       devicerole: "samcompute",
       estate: "prd-sam_zipkin",
       hostname: "shared0-samminionzipkin2-14-prd.eng.sfdc.net",
@@ -47886,7 +47886,7 @@
     },
     {
       bomrolename: "sam_minion_zipkin",
-      controlestate: "prd-sam",
+      controlestate: "prd-samtwo",
       devicerole: "samcompute",
       estate: "prd-sam_zipkin",
       hostname: "shared0-samminionzipkin2-15-prd.eng.sfdc.net",
@@ -47897,7 +47897,7 @@
     },
     {
       bomrolename: "sam_minion_zipkin",
-      controlestate: "prd-sam",
+      controlestate: "prd-samtwo",
       devicerole: "samcompute",
       estate: "prd-sam_zipkin",
       hostname: "shared0-samminionzipkin2-2-prd.eng.sfdc.net",
@@ -47908,7 +47908,7 @@
     },
     {
       bomrolename: "sam_minion_zipkin",
-      controlestate: "prd-sam",
+      controlestate: "prd-samtwo",
       devicerole: "samcompute",
       estate: "prd-sam_zipkin",
       hostname: "shared0-samminionzipkin2-3-prd.eng.sfdc.net",
@@ -47919,7 +47919,7 @@
     },
     {
       bomrolename: "sam_minion_zipkin",
-      controlestate: "prd-sam",
+      controlestate: "prd-samtwo",
       devicerole: "samcompute",
       estate: "prd-sam_zipkin",
       hostname: "shared0-samminionzipkin2-4-prd.eng.sfdc.net",
@@ -47930,7 +47930,7 @@
     },
     {
       bomrolename: "sam_minion_zipkin",
-      controlestate: "prd-sam",
+      controlestate: "prd-samtwo",
       devicerole: "samcompute",
       estate: "prd-sam_zipkin",
       hostname: "shared0-samminionzipkin2-5-prd.eng.sfdc.net",
@@ -47941,7 +47941,7 @@
     },
     {
       bomrolename: "sam_minion_zipkin",
-      controlestate: "prd-sam",
+      controlestate: "prd-samtwo",
       devicerole: "samcompute",
       estate: "prd-sam_zipkin",
       hostname: "shared0-samminionzipkin2-6-prd.eng.sfdc.net",
@@ -47952,7 +47952,7 @@
     },
     {
       bomrolename: "sam_minion_zipkin",
-      controlestate: "prd-sam",
+      controlestate: "prd-samtwo",
       devicerole: "samcompute",
       estate: "prd-sam_zipkin",
       hostname: "shared0-samminionzipkin2-7-prd.eng.sfdc.net",
@@ -47963,7 +47963,7 @@
     },
     {
       bomrolename: "sam_minion_zipkin",
-      controlestate: "prd-sam",
+      controlestate: "prd-samtwo",
       devicerole: "samcompute",
       estate: "prd-sam_zipkin",
       hostname: "shared0-samminionzipkin2-8-prd.eng.sfdc.net",
@@ -47974,7 +47974,7 @@
     },
     {
       bomrolename: "sam_minion_zipkin",
-      controlestate: "prd-sam",
+      controlestate: "prd-samtwo",
       devicerole: "samcompute",
       estate: "prd-sam_zipkin",
       hostname: "shared0-samminionzipkin2-9-prd.eng.sfdc.net",
@@ -48332,7 +48332,7 @@
       hostname: "shared0-samtwokubeapi2-2-prd.eng.sfdc.net",
       kingdom: "prd",
       pod: "none",
-      rack: "n09-45",
+      rack: "t03-45",
       superpod: "none",
     },
     {
@@ -54888,7 +54888,7 @@
       hostname: "shared0-samminionuniversalsearchmt2-2-ukb.ops.sfdc.net",
       kingdom: "ukb",
       pod: "none",
-      rack: "f24-ks32",
+      rack: "q02-ks31",
       superpod: "none",
     },
     {
@@ -54899,7 +54899,7 @@
       hostname: "shared0-samminionuniversalsearchmt2-3-ukb.ops.sfdc.net",
       kingdom: "ukb",
       pod: "none",
-      rack: "j06-ks31",
+      rack: "c11-ks31",
       superpod: "none",
     },
     {
@@ -54910,7 +54910,7 @@
       hostname: "shared0-samminionuniversalsearchmt2-4-ukb.ops.sfdc.net",
       kingdom: "ukb",
       pod: "none",
-      rack: "n03-ks31",
+      rack: "p30-ks32",
       superpod: "none",
     },
     {
