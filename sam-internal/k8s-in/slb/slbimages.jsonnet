@@ -58,6 +58,12 @@ local slbreleases = import "slbreleases.json";
     slbnginx: imageFunc.do_override_for_pipeline_image($.overrides, "slb", "nginx", slbreleases[$.phase].slbnginx.label),
     slbnginx_build: imageFunc.build_info_from_tag(slbreleases[$.phase].slbnginx.label).buildNumber,
 
+    # Guessing here..
+    # I assume these values depend on what we choose for the slb envoy proxy image name
+    # Need to add the sherpa-envoy one, or create a new one
+    # slbenvoy: imageFunc.do_override_for_pipeline_image($.overrides, "slb", "envoy", slbreleases[$.phase].slbenvoy.label),
+    # slbenvoy_build: imageFunc.build_info_from_tag(slbreleases[$.phase].slbenvoy.label).buildNumber,
+
     hsmnginx: imageFunc.do_override_for_pipeline_image($.overrides, "slb", "nginx-kms", slbreleases[$.phase].kmsnginx.label),
     hsmnginx_build: imageFunc.build_info_from_tag(slbreleases[$.phase].kmsnginx.label).buildNumber,
 
