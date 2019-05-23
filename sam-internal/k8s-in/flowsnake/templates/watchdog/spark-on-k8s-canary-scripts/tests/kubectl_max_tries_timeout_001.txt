@@ -1,0 +1,22 @@
+KUBECTL_MAX_TRIES_TIMEOUT
+0523 00:12:24 [1558570344] spark-pi-7a84880a - ======== Beginning spark-pi-7a84880a test ========
+0523 00:12:24 [1558570344] spark-pi-7a84880a -  [0;32mKubernetes master [0m is running at  [0;33mhttps://10.254.208.1:443 [0m
+0523 00:12:24 [1558570344] spark-pi-7a84880a -
+0523 00:12:24 [1558570344] spark-pi-7a84880a - To further debug and diagnose cluster problems, use 'kubectl cluster-info dump'.
+0523 00:12:25 [1558570345] spark-pi-7a84880a - Cleaning up SparkApplication/Pod older than 1 hours from prior runs.
+0523 00:12:30 [1558570350] spark-pi-7a84880a - sparkapplication "spark-pi-c2b3af22" deleted
+0523 00:12:33 [1558570353] spark-pi-7a84880a - Creating SparkApplication spark-pi-7a84880a
+/watchdog-spark-scripts/check-spark-operator.sh: line 114: 52355 Killed                  timeout --signal=9 ${KUBECTL_TIMEOUT_SECS} kubectl -n ${NAMESPACE} "$@" 2> ${stderr} > ${stdout}
+0523 00:12:43 [1558570363] spark-pi-7a84880a - Invocation (1/7) of [kubectl -n flowsnake-watchdog create -f /strata-test-specs-out/basic-spark-pi-7a84880a.json] failed (timed out (10s)). Will sleep 10 seconds and then try again.
+/watchdog-spark-scripts/check-spark-operator.sh: line 114: 52508 Killed                  timeout --signal=9 ${KUBECTL_TIMEOUT_SECS} kubectl -n ${NAMESPACE} "$@" 2> ${stderr} > ${stdout}
+0523 00:13:03 [1558570383] spark-pi-7a84880a - Invocation (2/7) of [kubectl -n flowsnake-watchdog create -f /strata-test-specs-out/basic-spark-pi-7a84880a.json] failed (timed out (10s)). Will sleep 10 seconds and then try again.
+/watchdog-spark-scripts/check-spark-operator.sh: line 114: 52646 Killed                  timeout --signal=9 ${KUBECTL_TIMEOUT_SECS} kubectl -n ${NAMESPACE} "$@" 2> ${stderr} > ${stdout}
+0523 00:13:23 [1558570403] spark-pi-7a84880a - Invocation (3/7) of [kubectl -n flowsnake-watchdog create -f /strata-test-specs-out/basic-spark-pi-7a84880a.json] failed (timed out (10s)). Will sleep 10 seconds and then try again.
+/watchdog-spark-scripts/check-spark-operator.sh: line 114: 52777 Killed                  timeout --signal=9 ${KUBECTL_TIMEOUT_SECS} kubectl -n ${NAMESPACE} "$@" 2> ${stderr} > ${stdout}
+0523 00:13:43 [1558570423] spark-pi-7a84880a - Invocation (4/7) of [kubectl -n flowsnake-watchdog create -f /strata-test-specs-out/basic-spark-pi-7a84880a.json] failed (timed out (10s)). Will sleep 10 seconds and then try again.
+/watchdog-spark-scripts/check-spark-operator.sh: line 114: 52909 Killed                  timeout --signal=9 ${KUBECTL_TIMEOUT_SECS} kubectl -n ${NAMESPACE} "$@" 2> ${stderr} > ${stdout}
+0523 00:14:03 [1558570443] spark-pi-7a84880a - Invocation (5/7) of [kubectl -n flowsnake-watchdog create -f /strata-test-specs-out/basic-spark-pi-7a84880a.json] failed (timed out (10s)). Will sleep 10 seconds and then try again.
+/watchdog-spark-scripts/check-spark-operator.sh: line 114: 53047 Killed                  timeout --signal=9 ${KUBECTL_TIMEOUT_SECS} kubectl -n ${NAMESPACE} "$@" 2> ${stderr} > ${stdout}
+0523 00:14:23 [1558570463] spark-pi-7a84880a - Invocation (6/7) of [kubectl -n flowsnake-watchdog create -f /strata-test-specs-out/basic-spark-pi-7a84880a.json] failed (timed out (10s)). Will sleep 10 seconds and then try again.
+/watchdog-spark-scripts/check-spark-operator.sh: line 114: 53185 Killed                  timeout --signal=9 ${KUBECTL_TIMEOUT_SECS} kubectl -n ${NAMESPACE} "$@" 2> ${stderr} > ${stdout}
+0523 00:14:43 [1558570483] spark-pi-7a84880a - Invocation (7/7) of [kubectl -n flowsnake-watchdog create -f /strata-test-specs-out/basic-spark-pi-7a84880a.json] failed (timed out (10s)). Giving up.

@@ -183,13 +183,14 @@ args, additional_args = parser.parse_known_args()
 
 simple_regex_tests = {
     # Driver pod's init container errors out. Cause TBD.
-    'DRIVER_INIT_ERROR': re.compile('Pod change detected.*-driver changed to Init:Error'),
+    'DRIVER_INIT_ERROR': re.compile(r'Pod change detected.*-driver changed to Init:Error'),
     # Scheduler bug in Kubernetes <= 1.9.7 that randomly prevents re-use of pod name. No longer expected because pod names are now unique.
-    'SCHEDULER_ASSUME_POD': re.compile("FailedScheduling.*AssumePod failed: pod .* state wasn't initial but get assumed"),
+    'SCHEDULER_ASSUME_POD': re.compile(r"FailedScheduling.*AssumePod failed: pod .* state wasn't initial but get assumed"),
     # This should be accompanied by a useful Exception
-    'SPARK_CONTEXT_INIT_ERROR': re.compile("Error initializing SparkContext"),
+    'SPARK_CONTEXT_INIT_ERROR': re.compile(r'Error initializing SparkContext'),
     # This one might be due to IP exhaustion; need to check kubelet logs. https://salesforce.quip.com/i0ThASBMoHqf#VCTACATj2IO
-    'DOCKER_SANDBOX': re.compile("Failed create pod sandbox")
+    'DOCKER_SANDBOX': re.compile(r'Failed create pod sandbox'),
+    'KUBECTL_MAX_TRIES_TIMEOUT': re.compile(r'Invocation \([0-9/]*\) of \[kubectl .*\] failed \(timed out \([0-9]*s\)\). Giving up.')
 }
 
 r_spark_submit_failed = re.compile(r'failed to run spark-submit')
