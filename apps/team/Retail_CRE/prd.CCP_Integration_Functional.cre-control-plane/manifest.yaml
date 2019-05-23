@@ -36,7 +36,7 @@ system:
         - name: ENGINE_IMAGE_TAG
           value: docker-sam/cre/cre-engine:1.6.0.0.develop-1.6.942d067.18
         - name: FLOWSNAKE_ARTIFACT
-          value: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cre/cre-engine:1.8.0.0.develop-1.8.42d80ac.102
+          value: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cre/cre-engine:1.8.0.0.develop-1.8.7c330be.132
         - name: ENGINE_APPLICATION_NAME
           value: cre-engine-ccp-func
         - name: ENGINE_HBASE_DATACENTER
