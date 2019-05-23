@@ -5,11 +5,6 @@
 
 version: v2
 apps:
-  # Single-pod path-based proxy test
-  # PRD-Dev: Fake business-tier SAM/k pod (hosts path-based proxy and two dummy http services)
-  gid-business-tier:
-    - name: prd/prd-sam
-
   # CC dev testing of GID Data Service
   # Deployed to XRD because the required custom Cloud Atlas image is only available in that environment
   gid-data-service:
