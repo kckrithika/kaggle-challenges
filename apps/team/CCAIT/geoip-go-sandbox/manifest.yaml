@@ -22,7 +22,7 @@ system:
         initialDelaySeconds: 10
         periodSeconds: 5
     - name: geoip-go
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/ccait/geoip-go:2019.0.2
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/ccait/geoip-go:2019.0.3
       resources:
         limits:
           cpu: "1"
