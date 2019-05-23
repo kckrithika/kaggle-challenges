@@ -429,23 +429,23 @@
       ]
       + slbconfigs.getNodeApiClientSocketSettings()
       + (if waitForRealsvrCfg then [
-        "--control.realsvrCfgSentinel=" + realsvrCfgSentinel,
-        "--control.sentinelExpiration=60s",
+//        "--control.realsvrCfgSentinel=" + realsvrCfgSentinel,
+//        "--control.sentinelExpiration=60s",
 //        "--featureflagWaitForRealsvrCfg=true",
       ] else [])
       + [
-        slbconfigs.nginx.reloadSentinelParam,
+//        slbconfigs.nginx.reloadSentinelParam,
 //        "--httpconfig.custCertsDir=" + slbconfigs.nginx.customerCertsPath,
 //        "--checkDuplicateVips=true",
 //        "--httpconfig.accessLogFormat=main",
-        "--commonconfig.riseCount=5",
-        "--commonconfig.fallCount=2",
-        "--commonconfig.healthTimeout=3000",
+//        "--commonconfig.riseCount=5",
+//        "--commonconfig.fallCount=2",
+//        "--commonconfig.healthTimeout=3000",
       ] + (if std.length(vipInterfaceName) > 0 then [
         # The default vip interface name is tunl0
 //        "--vipInterfaceName=" + vipInterfaceName,
       ] else [])
-      + [slbconfigs.nginx.configUpdateSentinelParam]
+//      + [slbconfigs.nginx.configUpdateSentinelParam]
       + (if tlsConfigEnabled then [
 //        "--httpconfig.tlsConfigEnabled=true",
 //        "--httpconfig.allowedCiphers=ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-RSA-AES256-GCM-SHA384:ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES128-GCM-SHA256:ECDHE-ECDSA-AES256-SHA384:ECDHE-ECDSA-AES128-SHA256:ECDHE-RSA-AES256-SHA384:ECDHE-RSA-AES128-SHA256:AES256-GCM-SHA384:AES128-GCM-SHA256:AES256-SHA256:AES128-SHA256:AES256-SHA:AES128-SHA",
@@ -505,7 +505,7 @@
 //        slbconfigs.nginx.configUpdateSentinelPath,
 //      ],
       command: [
-        "/envoy",
+        "/home/sfdc-sherpa/envoy",
         "--config-path",
         slbconfigs.nginx.containerTargetDir + "/envoy-bootstrap.yaml",
         ],

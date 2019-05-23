@@ -73,27 +73,27 @@
         slbconfigs.node_name_env,
       ],
     },
-    {
-      image: slbimages.hyperslb,
-      command: [
-          "/sdn/slb-tcpdump",
-          "--tcpdump.pollinterval=15m",
-      ],
-      name: "slb-tcpdump",
-      resources: {
-          requests: {
-              cpu: "0.5",
-              memory: "300Mi",
-          },
-          limits: {
-              cpu: "0.5",
-              memory: "300Mi",
-          },
-      },
-      volumeMounts: [
-        configs.config_volume_mount,
-      ],
-    },
+//    {
+//      image: slbimages.hyperslb,
+//      command: [
+//          "/sdn/slb-tcpdump",
+//          "--tcpdump.pollinterval=15m",
+//      ],
+//      name: "slb-tcpdump",
+//      resources: {
+//          requests: {
+//              cpu: "0.5",
+//              memory: "300Mi",
+//          },
+//          limits: {
+//              cpu: "0.5",
+//              memory: "300Mi",
+//          },
+//      },
+//      volumeMounts: [
+//        configs.config_volume_mount,
+//      ],
+//    },
   ],
 
   // The nginx config wipe init container runs when a new nginx pod is first scheduled to a node.
