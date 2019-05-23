@@ -1,0 +1,606 @@
+{"class": "SPARK_CONTEXT_INIT_ERROR", "exception": "UnknownHostException"}
+0522 18:43:04 [1558550584] spark-impersonation-ed3a9d57 - ======== Beginning spark-impersonation-ed3a9d57 test ========
+0522 18:43:04 [1558550584] spark-impersonation-ed3a9d57 -  [0;32mKubernetes master [0m is running at  [0;33mhttps://kubernetes-api-flowsnake-ia2.slb.sfdc.net [0m
+0522 18:43:04 [1558550584] spark-impersonation-ed3a9d57 -
+0522 18:43:04 [1558550584] spark-impersonation-ed3a9d57 - To further debug and diagnose cluster problems, use 'kubectl cluster-info dump'.
+0522 18:43:05 [1558550585] spark-impersonation-ed3a9d57 - Cleaning up SparkApplication/Pod older than 1 hours from prior runs.
+0522 18:43:06 [1558550586] spark-impersonation-ed3a9d57 - Creating SparkApplication spark-impersonation-ed3a9d57
+0522 18:43:06 [1558550586] spark-impersonation-ed3a9d57 - sparkapplication "spark-impersonation-ed3a9d57" created
+0522 18:43:07 [1558550587] spark-impersonation-ed3a9d57 - Waiting for SparkApplication spark-impersonation-ed3a9d57 to reach a terminal state.
+0522 18:43:18 [1558550598] spark-impersonation-ed3a9d57 - Pod change detected: spark-impersonation-ed3a9d57-driver: Init:0/1 on host shared0-flowsnakeworkerprod1-24-ia2.ops.sfdc.net.
+0522 18:43:21 [1558550601] spark-impersonation-ed3a9d57 - Pod change detected: spark-impersonation-ed3a9d57-driver changed to PodInitializing (previously Init:0/1).
+0522 18:43:23 [1558550603] spark-impersonation-ed3a9d57 - Pod change detected: spark-impersonation-ed3a9d57-driver changed to Running (previously PodInitializing).
+0522 18:44:08 [1558550648] spark-impersonation-ed3a9d57 - ...still waiting for terminal state (currently RUNNING) after 61 seconds.
+0522 18:44:08 [1558550648] spark-impersonation-ed3a9d57 - ---- Begin Events ----
+0522 18:44:08 [1558550648] spark-impersonation-ed3a9d57 - Name:         spark-impersonation-ed3a9d57
+0522 18:44:08 [1558550648] spark-impersonation-ed3a9d57 - Events:                          <none>
+0522 18:44:10 [1558550650] spark-impersonation-ed3a9d57 - Name:           spark-impersonation-ed3a9d57-driver
+0522 18:44:10 [1558550650] spark-impersonation-ed3a9d57 - Events:
+0522 18:44:10 [1558550650] spark-impersonation-ed3a9d57 -   Type    Reason                 Age   From                                                       Message
+0522 18:44:10 [1558550650] spark-impersonation-ed3a9d57 -   ----    ------                 ----  ----                                                       -------
+0522 18:44:10 [1558550650] spark-impersonation-ed3a9d57 -   Normal  SuccessfulMountVolume  53s   kubelet, shared0-flowsnakeworkerprod1-24-ia2.ops.sfdc.net  MountVolume.SetUp succeeded for volume "datacerts"
+0522 18:44:10 [1558550650] spark-impersonation-ed3a9d57 -   Normal  SuccessfulMountVolume  53s   kubelet, shared0-flowsnakeworkerprod1-24-ia2.ops.sfdc.net  MountVolume.SetUp succeeded for volume "client-key"
+0522 18:44:10 [1558550650] spark-impersonation-ed3a9d57 -   Normal  SuccessfulMountVolume  53s   kubelet, shared0-flowsnakeworkerprod1-24-ia2.ops.sfdc.net  MountVolume.SetUp succeeded for volume "client-certificate"
+0522 18:44:10 [1558550650] spark-impersonation-ed3a9d57 -   Normal  SuccessfulMountVolume  53s   kubelet, shared0-flowsnakeworkerprod1-24-ia2.ops.sfdc.net  MountVolume.SetUp succeeded for volume "certificate-authority"
+0522 18:44:10 [1558550650] spark-impersonation-ed3a9d57 -   Normal  SuccessfulMountVolume  53s   kubelet, shared0-flowsnakeworkerprod1-24-ia2.ops.sfdc.net  MountVolume.SetUp succeeded for volume "spark-local-dir-1"
+0522 18:44:10 [1558550650] spark-impersonation-ed3a9d57 -   Normal  SuccessfulMountVolume  53s   kubelet, shared0-flowsnakeworkerprod1-24-ia2.ops.sfdc.net  MountVolume.SetUp succeeded for volume "spark-conf-volume"
+0522 18:44:10 [1558550650] spark-impersonation-ed3a9d57 -   Normal  SuccessfulMountVolume  53s   kubelet, shared0-flowsnakeworkerprod1-24-ia2.ops.sfdc.net  MountVolume.SetUp succeeded for volume "spark-driver-flowsnake-watchdog-token-zqwvx"
+0522 18:44:10 [1558550650] spark-impersonation-ed3a9d57 -   Normal  SuccessfulMountVolume  53s   kubelet, shared0-flowsnakeworkerprod1-24-ia2.ops.sfdc.net  MountVolume.SetUp succeeded for volume "tokens"
+0522 18:44:10 [1558550650] spark-impersonation-ed3a9d57 -   Normal  Scheduled              53s   default-scheduler                                          Successfully assigned spark-impersonation-ed3a9d57-driver to shared0-flowsnakeworkerprod1-24-ia2.ops.sfdc.net
+0522 18:44:10 [1558550650] spark-impersonation-ed3a9d57 -   Normal  Pulled                 52s   kubelet, shared0-flowsnakeworkerprod1-24-ia2.ops.sfdc.net  Container image "ops0-artifactrepo1-0-ia2.data.sfdc.net/tnrp/sam/madkub:1.0.0-0000084-9f4a6ca6" already present on machine
+0522 18:44:10 [1558550650] spark-impersonation-ed3a9d57 -   Normal  Created                52s   kubelet, shared0-flowsnakeworkerprod1-24-ia2.ops.sfdc.net  Created container
+0522 18:44:10 [1558550650] spark-impersonation-ed3a9d57 -   Normal  Started                52s   kubelet, shared0-flowsnakeworkerprod1-24-ia2.ops.sfdc.net  Started container
+0522 18:44:10 [1558550650] spark-impersonation-ed3a9d57 -   Normal  Pulling                50s   kubelet, shared0-flowsnakeworkerprod1-24-ia2.ops.sfdc.net  pulling image "ops0-artifactrepo1-0-ia2.data.sfdc.net/dva/flowsnake-spark-on-k8s-sample-apps:4"
+0522 18:44:10 [1558550650] spark-impersonation-ed3a9d57 -   Normal  Pulled                 49s   kubelet, shared0-flowsnakeworkerprod1-24-ia2.ops.sfdc.net  Successfully pulled image "ops0-artifactrepo1-0-ia2.data.sfdc.net/dva/flowsnake-spark-on-k8s-sample-apps:4"
+0522 18:44:10 [1558550650] spark-impersonation-ed3a9d57 -   Normal  Created                49s   kubelet, shared0-flowsnakeworkerprod1-24-ia2.ops.sfdc.net  Created container
+0522 18:44:10 [1558550650] spark-impersonation-ed3a9d57 -   Normal  Started                49s   kubelet, shared0-flowsnakeworkerprod1-24-ia2.ops.sfdc.net  Started container
+0522 18:44:11 [1558550651] spark-impersonation-ed3a9d57 - ---- End Events ----
+0522 18:44:17 [1558550657] spark-impersonation-ed3a9d57 - Pod change detected: spark-impersonation-ed3a9d57-driver changed to Error (previously Running).
+0522 18:44:18 [1558550658] spark-impersonation-ed3a9d57 - SparkApplication spark-impersonation-ed3a9d57 has terminated after 71 seconds. State is FAILED.
+0522 18:44:18 [1558550658] spark-impersonation-ed3a9d57 - ---- Begin Events ----
+0522 18:44:18 [1558550658] spark-impersonation-ed3a9d57 - Name:         spark-impersonation-ed3a9d57
+0522 18:44:18 [1558550658] spark-impersonation-ed3a9d57 - Events:                          <none>
+0522 18:44:20 [1558550660] spark-impersonation-ed3a9d57 - Name:           spark-impersonation-ed3a9d57-driver
+0522 18:44:20 [1558550660] spark-impersonation-ed3a9d57 - Events:
+0522 18:44:20 [1558550660] spark-impersonation-ed3a9d57 -   Type    Reason                 Age   From                                                       Message
+0522 18:44:20 [1558550660] spark-impersonation-ed3a9d57 -   ----    ------                 ----  ----                                                       -------
+0522 18:44:20 [1558550660] spark-impersonation-ed3a9d57 -   Normal  SuccessfulMountVolume  1m    kubelet, shared0-flowsnakeworkerprod1-24-ia2.ops.sfdc.net  MountVolume.SetUp succeeded for volume "datacerts"
+0522 18:44:20 [1558550660] spark-impersonation-ed3a9d57 -   Normal  SuccessfulMountVolume  1m    kubelet, shared0-flowsnakeworkerprod1-24-ia2.ops.sfdc.net  MountVolume.SetUp succeeded for volume "client-key"
+0522 18:44:20 [1558550660] spark-impersonation-ed3a9d57 -   Normal  SuccessfulMountVolume  1m    kubelet, shared0-flowsnakeworkerprod1-24-ia2.ops.sfdc.net  MountVolume.SetUp succeeded for volume "client-certificate"
+0522 18:44:20 [1558550660] spark-impersonation-ed3a9d57 -   Normal  SuccessfulMountVolume  1m    kubelet, shared0-flowsnakeworkerprod1-24-ia2.ops.sfdc.net  MountVolume.SetUp succeeded for volume "certificate-authority"
+0522 18:44:20 [1558550660] spark-impersonation-ed3a9d57 -   Normal  SuccessfulMountVolume  1m    kubelet, shared0-flowsnakeworkerprod1-24-ia2.ops.sfdc.net  MountVolume.SetUp succeeded for volume "spark-local-dir-1"
+0522 18:44:20 [1558550660] spark-impersonation-ed3a9d57 -   Normal  SuccessfulMountVolume  1m    kubelet, shared0-flowsnakeworkerprod1-24-ia2.ops.sfdc.net  MountVolume.SetUp succeeded for volume "spark-conf-volume"
+0522 18:44:20 [1558550660] spark-impersonation-ed3a9d57 -   Normal  SuccessfulMountVolume  1m    kubelet, shared0-flowsnakeworkerprod1-24-ia2.ops.sfdc.net  MountVolume.SetUp succeeded for volume "spark-driver-flowsnake-watchdog-token-zqwvx"
+0522 18:44:20 [1558550660] spark-impersonation-ed3a9d57 -   Normal  SuccessfulMountVolume  1m    kubelet, shared0-flowsnakeworkerprod1-24-ia2.ops.sfdc.net  MountVolume.SetUp succeeded for volume "tokens"
+0522 18:44:20 [1558550660] spark-impersonation-ed3a9d57 -   Normal  Scheduled              1m    default-scheduler                                          Successfully assigned spark-impersonation-ed3a9d57-driver to shared0-flowsnakeworkerprod1-24-ia2.ops.sfdc.net
+0522 18:44:20 [1558550660] spark-impersonation-ed3a9d57 -   Normal  Pulled                 1m    kubelet, shared0-flowsnakeworkerprod1-24-ia2.ops.sfdc.net  Container image "ops0-artifactrepo1-0-ia2.data.sfdc.net/tnrp/sam/madkub:1.0.0-0000084-9f4a6ca6" already present on machine
+0522 18:44:20 [1558550660] spark-impersonation-ed3a9d57 -   Normal  Created                1m    kubelet, shared0-flowsnakeworkerprod1-24-ia2.ops.sfdc.net  Created container
+0522 18:44:20 [1558550660] spark-impersonation-ed3a9d57 -   Normal  Started                1m    kubelet, shared0-flowsnakeworkerprod1-24-ia2.ops.sfdc.net  Started container
+0522 18:44:20 [1558550660] spark-impersonation-ed3a9d57 -   Normal  Pulling                1m    kubelet, shared0-flowsnakeworkerprod1-24-ia2.ops.sfdc.net  pulling image "ops0-artifactrepo1-0-ia2.data.sfdc.net/dva/flowsnake-spark-on-k8s-sample-apps:4"
+0522 18:44:20 [1558550660] spark-impersonation-ed3a9d57 -   Normal  Pulled                 1m    kubelet, shared0-flowsnakeworkerprod1-24-ia2.ops.sfdc.net  Successfully pulled image "ops0-artifactrepo1-0-ia2.data.sfdc.net/dva/flowsnake-spark-on-k8s-sample-apps:4"
+0522 18:44:20 [1558550660] spark-impersonation-ed3a9d57 -   Normal  Created                1m    kubelet, shared0-flowsnakeworkerprod1-24-ia2.ops.sfdc.net  Created container
+0522 18:44:20 [1558550660] spark-impersonation-ed3a9d57 -   Normal  Started                1m    kubelet, shared0-flowsnakeworkerprod1-24-ia2.ops.sfdc.net  Started container
+0522 18:44:22 [1558550662] spark-impersonation-ed3a9d57 - ---- End Events ----
+0522 18:44:22 [1558550662] spark-impersonation-ed3a9d57 - ---- Begin pods/spark-impersonation-ed3a9d57-driver Log ----
+++ id -u
++ myuid=0
+++ id -g
++ mygid=0
++ set +e
+++ getent passwd 0
++ uidentry=root:x:0:0:root:/root:/bin/bash
++ set -e
++ '[' -z root:x:0:0:root:/root:/bin/bash ']'
++ SPARK_K8S_CMD=driver
++ case "$SPARK_K8S_CMD" in
++ shift 1
++ SPARK_CLASSPATH=':/opt/spark/jars/*'
++ env
++ grep SPARK_JAVA_OPT_
++ sort -t_ -k4 -n
++ sed 's/[^=]*=\(.*\)/\1/g'
++ readarray -t SPARK_EXECUTOR_JAVA_OPTS
++ '[' -n '' ']'
++ '[' -n '' ']'
++ PYSPARK_ARGS=
++ '[' -n '' ']'
++ R_ARGS=
++ '[' -n '' ']'
++ '[' '' == 2 ']'
++ '[' '' == 3 ']'
++ case "$SPARK_K8S_CMD" in
++ CMD=("$SPARK_HOME/bin/spark-submit" --conf "spark.driver.bindAddress=$SPARK_DRIVER_BIND_ADDRESS" --deploy-mode client "$@")
++ exec /sbin/tini -s -- /opt/spark/bin/spark-submit --conf spark.driver.bindAddress=10.178.64.36 --deploy-mode client --properties-file /opt/spark/conf/spark.properties --class org.apache.spark.examples.SparkPi spark-internal
+2019-05-22 18:43:34 WARN  NativeCodeLoader:62 - Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+2019-05-22 18:43:40 INFO  SparkContext:54 - Running Spark version 2.4.0-sfdc-0.2-SNAPSHOT
+2019-05-22 18:43:40 INFO  SparkContext:54 - Submitted application: Spark Pi
+2019-05-22 18:43:41 INFO  SecurityManager:54 - Changing view acls to: root
+2019-05-22 18:43:41 INFO  SecurityManager:54 - Changing modify acls to: root
+2019-05-22 18:43:41 INFO  SecurityManager:54 - Changing view acls groups to:
+2019-05-22 18:43:41 INFO  SecurityManager:54 - Changing modify acls groups to:
+2019-05-22 18:43:41 INFO  SecurityManager:54 - SecurityManager: authentication disabled; ui acls disabled; users  with view permissions: Set(root); groups with view permissions: Set(); users  with modify permissions: Set(root); groups with modify permissions: Set()
+2019-05-22 18:43:47 INFO  Utils:54 - Successfully started service 'sparkDriver' on port 7078.
+2019-05-22 18:43:47 INFO  SparkEnv:54 - Registering MapOutputTracker
+2019-05-22 18:43:47 INFO  SparkEnv:54 - Registering BlockManagerMaster
+2019-05-22 18:43:47 INFO  BlockManagerMasterEndpoint:54 - Using org.apache.spark.storage.DefaultTopologyMapper for getting topology information
+2019-05-22 18:43:47 INFO  BlockManagerMasterEndpoint:54 - BlockManagerMasterEndpoint up
+2019-05-22 18:43:47 INFO  DiskBlockManager:54 - Created local directory at /var/data/spark-d9ba31b0-5053-4963-a025-154f9f10999f/blockmgr-e77fa3ef-3946-4137-8b59-1cd35060e2cb
+2019-05-22 18:43:47 INFO  MemoryStore:54 - MemoryStore started with capacity 93.3 MB
+2019-05-22 18:43:47 INFO  SparkEnv:54 - Registering OutputCommitCoordinator
+2019-05-22 18:43:48 INFO  log:192 - Logging initialized @23396ms
+2019-05-22 18:43:48 INFO  Server:351 - jetty-9.3.z-SNAPSHOT, build timestamp: unknown, git hash: unknown
+2019-05-22 18:43:48 INFO  Server:419 - Started @24085ms
+2019-05-22 18:43:48 INFO  AbstractConnector:278 - Started ServerConnector@20d11153{HTTP/1.1,[http/1.1]}{0.0.0.0:4040}
+2019-05-22 18:43:48 INFO  Utils:54 - Successfully started service 'SparkUI' on port 4040.
+2019-05-22 18:43:49 INFO  ContextHandler:781 - Started o.s.j.s.ServletContextHandler@62a8fd44{/jobs,null,AVAILABLE,@Spark}
+2019-05-22 18:43:49 INFO  ContextHandler:781 - Started o.s.j.s.ServletContextHandler@155d1021{/jobs/json,null,AVAILABLE,@Spark}
+2019-05-22 18:43:49 INFO  ContextHandler:781 - Started o.s.j.s.ServletContextHandler@4bd2f0dc{/jobs/job,null,AVAILABLE,@Spark}
+2019-05-22 18:43:49 INFO  ContextHandler:781 - Started o.s.j.s.ServletContextHandler@2c42b421{/jobs/job/json,null,AVAILABLE,@Spark}
+2019-05-22 18:43:49 INFO  ContextHandler:781 - Started o.s.j.s.ServletContextHandler@51e37590{/stages,null,AVAILABLE,@Spark}
+2019-05-22 18:43:49 INFO  ContextHandler:781 - Started o.s.j.s.ServletContextHandler@deb3b60{/stages/json,null,AVAILABLE,@Spark}
+2019-05-22 18:43:49 INFO  ContextHandler:781 - Started o.s.j.s.ServletContextHandler@701a32{/stages/stage,null,AVAILABLE,@Spark}
+2019-05-22 18:43:49 INFO  ContextHandler:781 - Started o.s.j.s.ServletContextHandler@27cbfddf{/stages/stage/json,null,AVAILABLE,@Spark}
+2019-05-22 18:43:49 INFO  ContextHandler:781 - Started o.s.j.s.ServletContextHandler@27ead29e{/stages/pool,null,AVAILABLE,@Spark}
+2019-05-22 18:43:49 INFO  ContextHandler:781 - Started o.s.j.s.ServletContextHandler@4c060c8f{/stages/pool/json,null,AVAILABLE,@Spark}
+2019-05-22 18:43:49 INFO  ContextHandler:781 - Started o.s.j.s.ServletContextHandler@40620d8e{/storage,null,AVAILABLE,@Spark}
+2019-05-22 18:43:49 INFO  ContextHandler:781 - Started o.s.j.s.ServletContextHandler@383f3558{/storage/json,null,AVAILABLE,@Spark}
+2019-05-22 18:43:49 INFO  ContextHandler:781 - Started o.s.j.s.ServletContextHandler@49b07ee3{/storage/rdd,null,AVAILABLE,@Spark}
+2019-05-22 18:43:49 INFO  ContextHandler:781 - Started o.s.j.s.ServletContextHandler@352e612e{/storage/rdd/json,null,AVAILABLE,@Spark}
+2019-05-22 18:43:49 INFO  ContextHandler:781 - Started o.s.j.s.ServletContextHandler@65f00478{/environment,null,AVAILABLE,@Spark}
+2019-05-22 18:43:49 INFO  ContextHandler:781 - Started o.s.j.s.ServletContextHandler@2424686b{/environment/json,null,AVAILABLE,@Spark}
+2019-05-22 18:43:49 INFO  ContextHandler:781 - Started o.s.j.s.ServletContextHandler@6ea94d6a{/executors,null,AVAILABLE,@Spark}
+2019-05-22 18:43:49 INFO  ContextHandler:781 - Started o.s.j.s.ServletContextHandler@28486680{/executors/json,null,AVAILABLE,@Spark}
+2019-05-22 18:43:49 INFO  ContextHandler:781 - Started o.s.j.s.ServletContextHandler@4d7e7435{/executors/threadDump,null,AVAILABLE,@Spark}
+2019-05-22 18:43:49 INFO  ContextHandler:781 - Started o.s.j.s.ServletContextHandler@4a1e3ac1{/executors/threadDump/json,null,AVAILABLE,@Spark}
+2019-05-22 18:43:49 INFO  ContextHandler:781 - Started o.s.j.s.ServletContextHandler@6e78fcf5{/static,null,AVAILABLE,@Spark}
+2019-05-22 18:43:49 INFO  ContextHandler:781 - Started o.s.j.s.ServletContextHandler@69e308c6{/,null,AVAILABLE,@Spark}
+2019-05-22 18:43:49 INFO  ContextHandler:781 - Started o.s.j.s.ServletContextHandler@1a1ed4e5{/api,null,AVAILABLE,@Spark}
+2019-05-22 18:43:49 INFO  ContextHandler:781 - Started o.s.j.s.ServletContextHandler@1efdcd5{/jobs/job/kill,null,AVAILABLE,@Spark}
+2019-05-22 18:43:49 INFO  ContextHandler:781 - Started o.s.j.s.ServletContextHandler@1623bbe5{/stages/stage/kill,null,AVAILABLE,@Spark}
+2019-05-22 18:43:50 INFO  SparkUI:54 - Bound SparkUI to 0.0.0.0, and started at http://spark-impersonation-ed3a9d57-1558550597604-driver-svc.flowsnake-watchdog.svc:4040
+2019-05-22 18:43:50 INFO  SparkContext:54 - Added JAR file:///sample-apps/sample-basic-spark-operator/sample-basic-spark-operator.jar at spark://spark-impersonation-ed3a9d57-1558550597604-driver-svc.flowsnake-watchdog.svc:7078/jars/sample-basic-spark-operator.jar with timestamp 1558550630414
+2019-05-22 18:44:14 ERROR SparkContext:91 - Error initializing SparkContext.
+org.apache.spark.SparkException: External scheduler cannot be instantiated
+	at org.apache.spark.SparkContext$.org$apache$spark$SparkContext$$createTaskScheduler(SparkContext.scala:2794)
+	at org.apache.spark.SparkContext.<init>(SparkContext.scala:493)
+	at org.apache.spark.SparkContext$.getOrCreate(SparkContext.scala:2520)
+	at org.apache.spark.sql.SparkSession$Builder$$anonfun$7.apply(SparkSession.scala:935)
+	at org.apache.spark.sql.SparkSession$Builder$$anonfun$7.apply(SparkSession.scala:926)
+	at scala.Option.getOrElse(Option.scala:121)
+	at org.apache.spark.sql.SparkSession$Builder.getOrCreate(SparkSession.scala:926)
+	at org.apache.spark.examples.SparkPi$.main(SparkPi.scala:31)
+	at org.apache.spark.examples.SparkPi.main(SparkPi.scala)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.apache.spark.deploy.JavaMainApplication.start(SparkApplication.scala:52)
+	at org.apache.spark.deploy.SparkSubmit.org$apache$spark$deploy$SparkSubmit$$runMain(SparkSubmit.scala:849)
+	at org.apache.spark.deploy.SparkSubmit.doRunMain$1(SparkSubmit.scala:167)
+	at org.apache.spark.deploy.SparkSubmit.submit(SparkSubmit.scala:195)
+	at org.apache.spark.deploy.SparkSubmit.doSubmit(SparkSubmit.scala:86)
+	at org.apache.spark.deploy.SparkSubmit$$anon$2.doSubmit(SparkSubmit.scala:924)
+	at org.apache.spark.deploy.SparkSubmit$.main(SparkSubmit.scala:933)
+	at org.apache.spark.deploy.SparkSubmit.main(SparkSubmit.scala)
+Caused by: io.fabric8.kubernetes.client.KubernetesClientException: Operation: [get]  for kind: [Pod]  with name: [spark-impersonation-ed3a9d57-driver]  in namespace: [flowsnake-watchdog]  failed.
+	at io.fabric8.kubernetes.client.KubernetesClientException.launderThrowable(KubernetesClientException.java:62)
+	at io.fabric8.kubernetes.client.KubernetesClientException.launderThrowable(KubernetesClientException.java:71)
+	at io.fabric8.kubernetes.client.dsl.base.BaseOperation.getMandatory(BaseOperation.java:228)
+	at io.fabric8.kubernetes.client.dsl.base.BaseOperation.get(BaseOperation.java:184)
+	at org.apache.spark.scheduler.cluster.k8s.ExecutorPodsAllocator$$anonfun$1.apply(ExecutorPodsAllocator.scala:57)
+	at org.apache.spark.scheduler.cluster.k8s.ExecutorPodsAllocator$$anonfun$1.apply(ExecutorPodsAllocator.scala:55)
+	at scala.Option.map(Option.scala:146)
+	at org.apache.spark.scheduler.cluster.k8s.ExecutorPodsAllocator.<init>(ExecutorPodsAllocator.scala:55)
+	at org.apache.spark.scheduler.cluster.k8s.KubernetesClusterManager.createSchedulerBackend(KubernetesClusterManager.scala:89)
+	at org.apache.spark.SparkContext$.org$apache$spark$SparkContext$$createTaskScheduler(SparkContext.scala:2788)
+	... 20 more
+Caused by: java.net.UnknownHostException: kubernetes.default.svc: Name or service not known
+	at java.net.Inet6AddressImpl.lookupAllHostAddr(Native Method)
+	at java.net.InetAddress$2.lookupAllHostAddr(InetAddress.java:928)
+	at java.net.InetAddress.getAddressesFromNameService(InetAddress.java:1323)
+	at java.net.InetAddress.getAllByName0(InetAddress.java:1276)
+	at java.net.InetAddress.getAllByName(InetAddress.java:1192)
+	at java.net.InetAddress.getAllByName(InetAddress.java:1126)
+	at okhttp3.Dns$1.lookup(Dns.java:39)
+	at okhttp3.internal.connection.RouteSelector.resetNextInetSocketAddress(RouteSelector.java:171)
+	at okhttp3.internal.connection.RouteSelector.nextProxy(RouteSelector.java:137)
+	at okhttp3.internal.connection.RouteSelector.next(RouteSelector.java:82)
+	at okhttp3.internal.connection.StreamAllocation.findConnection(StreamAllocation.java:171)
+	at okhttp3.internal.connection.StreamAllocation.findHealthyConnection(StreamAllocation.java:121)
+	at okhttp3.internal.connection.StreamAllocation.newStream(StreamAllocation.java:100)
+	at okhttp3.internal.connection.ConnectInterceptor.intercept(ConnectInterceptor.java:42)
+	at okhttp3.internal.http.RealInterceptorChain.proceed(RealInterceptorChain.java:92)
+	at okhttp3.internal.http.RealInterceptorChain.proceed(RealInterceptorChain.java:67)
+	at okhttp3.internal.cache.CacheInterceptor.intercept(CacheInterceptor.java:93)
+	at okhttp3.internal.http.RealInterceptorChain.proceed(RealInterceptorChain.java:92)
+	at okhttp3.internal.http.RealInterceptorChain.proceed(RealInterceptorChain.java:67)
+	at okhttp3.internal.http.BridgeInterceptor.intercept(BridgeInterceptor.java:93)
+	at okhttp3.internal.http.RealInterceptorChain.proceed(RealInterceptorChain.java:92)
+	at okhttp3.internal.http.RetryAndFollowUpInterceptor.intercept(RetryAndFollowUpInterceptor.java:120)
+	at okhttp3.internal.http.RealInterceptorChain.proceed(RealInterceptorChain.java:92)
+	at okhttp3.internal.http.RealInterceptorChain.proceed(RealInterceptorChain.java:67)
+	at io.fabric8.kubernetes.client.utils.HttpClientUtils$2.intercept(HttpClientUtils.java:93)
+	at okhttp3.internal.http.RealInterceptorChain.proceed(RealInterceptorChain.java:92)
+	at okhttp3.internal.http.RealInterceptorChain.proceed(RealInterceptorChain.java:67)
+	at okhttp3.RealCall.getResponseWithInterceptorChain(RealCall.java:185)
+	at okhttp3.RealCall.execute(RealCall.java:69)
+	at io.fabric8.kubernetes.client.dsl.base.OperationSupport.handleResponse(OperationSupport.java:377)
+	at io.fabric8.kubernetes.client.dsl.base.OperationSupport.handleResponse(OperationSupport.java:343)
+	at io.fabric8.kubernetes.client.dsl.base.OperationSupport.handleGet(OperationSupport.java:312)
+	at io.fabric8.kubernetes.client.dsl.base.OperationSupport.handleGet(OperationSupport.java:295)
+	at io.fabric8.kubernetes.client.dsl.base.BaseOperation.handleGet(BaseOperation.java:783)
+	at io.fabric8.kubernetes.client.dsl.base.BaseOperation.getMandatory(BaseOperation.java:217)
+	... 27 more
+2019-05-22 18:44:14 INFO  AbstractConnector:318 - Stopped Spark@20d11153{HTTP/1.1,[http/1.1]}{0.0.0.0:4040}
+2019-05-22 18:44:14 INFO  SparkUI:54 - Stopped Spark web UI at http://spark-impersonation-ed3a9d57-1558550597604-driver-svc.flowsnake-watchdog.svc:4040
+2019-05-22 18:44:15 INFO  MapOutputTrackerMasterEndpoint:54 - MapOutputTrackerMasterEndpoint stopped!
+2019-05-22 18:44:15 INFO  MemoryStore:54 - MemoryStore cleared
+2019-05-22 18:44:15 INFO  BlockManager:54 - BlockManager stopped
+2019-05-22 18:44:15 INFO  BlockManagerMaster:54 - BlockManagerMaster stopped
+2019-05-22 18:44:15 WARN  MetricsSystem:66 - Stopping a MetricsSystem that is not running
+2019-05-22 18:44:15 INFO  OutputCommitCoordinator$OutputCommitCoordinatorEndpoint:54 - OutputCommitCoordinator stopped!
+2019-05-22 18:44:15 INFO  SparkContext:54 - Successfully stopped SparkContext
+Exception in thread "main" org.apache.spark.SparkException: External scheduler cannot be instantiated
+	at org.apache.spark.SparkContext$.org$apache$spark$SparkContext$$createTaskScheduler(SparkContext.scala:2794)
+	at org.apache.spark.SparkContext.<init>(SparkContext.scala:493)
+	at org.apache.spark.SparkContext$.getOrCreate(SparkContext.scala:2520)
+	at org.apache.spark.sql.SparkSession$Builder$$anonfun$7.apply(SparkSession.scala:935)
+	at org.apache.spark.sql.SparkSession$Builder$$anonfun$7.apply(SparkSession.scala:926)
+	at scala.Option.getOrElse(Option.scala:121)
+	at org.apache.spark.sql.SparkSession$Builder.getOrCreate(SparkSession.scala:926)
+	at org.apache.spark.examples.SparkPi$.main(SparkPi.scala:31)
+	at org.apache.spark.examples.SparkPi.main(SparkPi.scala)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.apache.spark.deploy.JavaMainApplication.start(SparkApplication.scala:52)
+	at org.apache.spark.deploy.SparkSubmit.org$apache$spark$deploy$SparkSubmit$$runMain(SparkSubmit.scala:849)
+	at org.apache.spark.deploy.SparkSubmit.doRunMain$1(SparkSubmit.scala:167)
+	at org.apache.spark.deploy.SparkSubmit.submit(SparkSubmit.scala:195)
+	at org.apache.spark.deploy.SparkSubmit.doSubmit(SparkSubmit.scala:86)
+	at org.apache.spark.deploy.SparkSubmit$$anon$2.doSubmit(SparkSubmit.scala:924)
+	at org.apache.spark.deploy.SparkSubmit$.main(SparkSubmit.scala:933)
+	at org.apache.spark.deploy.SparkSubmit.main(SparkSubmit.scala)
+Caused by: io.fabric8.kubernetes.client.KubernetesClientException: Operation: [get]  for kind: [Pod]  with name: [spark-impersonation-ed3a9d57-driver]  in namespace: [flowsnake-watchdog]  failed.
+	at io.fabric8.kubernetes.client.KubernetesClientException.launderThrowable(KubernetesClientException.java:62)
+	at io.fabric8.kubernetes.client.KubernetesClientException.launderThrowable(KubernetesClientException.java:71)
+	at io.fabric8.kubernetes.client.dsl.base.BaseOperation.getMandatory(BaseOperation.java:228)
+	at io.fabric8.kubernetes.client.dsl.base.BaseOperation.get(BaseOperation.java:184)
+	at org.apache.spark.scheduler.cluster.k8s.ExecutorPodsAllocator$$anonfun$1.apply(ExecutorPodsAllocator.scala:57)
+	at org.apache.spark.scheduler.cluster.k8s.ExecutorPodsAllocator$$anonfun$1.apply(ExecutorPodsAllocator.scala:55)
+	at scala.Option.map(Option.scala:146)
+	at org.apache.spark.scheduler.cluster.k8s.ExecutorPodsAllocator.<init>(ExecutorPodsAllocator.scala:55)
+	at org.apache.spark.scheduler.cluster.k8s.KubernetesClusterManager.createSchedulerBackend(KubernetesClusterManager.scala:89)
+	at org.apache.spark.SparkContext$.org$apache$spark$SparkContext$$createTaskScheduler(SparkContext.scala:2788)
+	... 20 more
+Caused by: java.net.UnknownHostException: kubernetes.default.svc: Name or service not known
+	at java.net.Inet6AddressImpl.lookupAllHostAddr(Native Method)
+	at java.net.InetAddress$2.lookupAllHostAddr(InetAddress.java:928)
+	at java.net.InetAddress.getAddressesFromNameService(InetAddress.java:1323)
+	at java.net.InetAddress.getAllByName0(InetAddress.java:1276)
+	at java.net.InetAddress.getAllByName(InetAddress.java:1192)
+	at java.net.InetAddress.getAllByName(InetAddress.java:1126)
+	at okhttp3.Dns$1.lookup(Dns.java:39)
+	at okhttp3.internal.connection.RouteSelector.resetNextInetSocketAddress(RouteSelector.java:171)
+	at okhttp3.internal.connection.RouteSelector.nextProxy(RouteSelector.java:137)
+	at okhttp3.internal.connection.RouteSelector.next(RouteSelector.java:82)
+	at okhttp3.internal.connection.StreamAllocation.findConnection(StreamAllocation.java:171)
+	at okhttp3.internal.connection.StreamAllocation.findHealthyConnection(StreamAllocation.java:121)
+	at okhttp3.internal.connection.StreamAllocation.newStream(StreamAllocation.java:100)
+	at okhttp3.internal.connection.ConnectInterceptor.intercept(ConnectInterceptor.java:42)
+	at okhttp3.internal.http.RealInterceptorChain.proceed(RealInterceptorChain.java:92)
+	at okhttp3.internal.http.RealInterceptorChain.proceed(RealInterceptorChain.java:67)
+	at okhttp3.internal.cache.CacheInterceptor.intercept(CacheInterceptor.java:93)
+	at okhttp3.internal.http.RealInterceptorChain.proceed(RealInterceptorChain.java:92)
+	at okhttp3.internal.http.RealInterceptorChain.proceed(RealInterceptorChain.java:67)
+	at okhttp3.internal.http.BridgeInterceptor.intercept(BridgeInterceptor.java:93)
+	at okhttp3.internal.http.RealInterceptorChain.proceed(RealInterceptorChain.java:92)
+	at okhttp3.internal.http.RetryAndFollowUpInterceptor.intercept(RetryAndFollowUpInterceptor.java:120)
+	at okhttp3.internal.http.RealInterceptorChain.proceed(RealInterceptorChain.java:92)
+	at okhttp3.internal.http.RealInterceptorChain.proceed(RealInterceptorChain.java:67)
+	at io.fabric8.kubernetes.client.utils.HttpClientUtils$2.intercept(HttpClientUtils.java:93)
+	at okhttp3.internal.http.RealInterceptorChain.proceed(RealInterceptorChain.java:92)
+	at okhttp3.internal.http.RealInterceptorChain.proceed(RealInterceptorChain.java:67)
+	at okhttp3.RealCall.getResponseWithInterceptorChain(RealCall.java:185)
+	at okhttp3.RealCall.execute(RealCall.java:69)
+	at io.fabric8.kubernetes.client.dsl.base.OperationSupport.handleResponse(OperationSupport.java:377)
+	at io.fabric8.kubernetes.client.dsl.base.OperationSupport.handleResponse(OperationSupport.java:343)
+	at io.fabric8.kubernetes.client.dsl.base.OperationSupport.handleGet(OperationSupport.java:312)
+	at io.fabric8.kubernetes.client.dsl.base.OperationSupport.handleGet(OperationSupport.java:295)
+	at io.fabric8.kubernetes.client.dsl.base.BaseOperation.handleGet(BaseOperation.java:783)
+	at io.fabric8.kubernetes.client.dsl.base.BaseOperation.getMandatory(BaseOperation.java:217)
+	... 27 more
+2019-05-22 18:44:15 INFO  ShutdownHookManager:54 - Shutdown hook called
+2019-05-22 18:44:15 INFO  ShutdownHookManager:54 - Deleting directory /tmp/spark-d3b24f05-b149-444c-82e7-d3f486974b68
+2019-05-22 18:44:15 INFO  ShutdownHookManager:54 - Deleting directory /var/data/spark-d9ba31b0-5053-4963-a025-154f9f10999f/spark-a369492f-6e63-4f99-b0c0-739aac95fe65
+0522 18:44:23 [1558550663] spark-impersonation-ed3a9d57 - ---- End pods/spark-impersonation-ed3a9d57-driver Log ----
+0522 18:44:23 [1558550663] spark-impersonation-ed3a9d57 - -------- Executor Pods ----------
+0522 18:44:24 [1558550664] spark-impersonation-ed3a9d57 - Cleaning up stuff for complated or failed test.
+0522 18:44:24 [1558550664] spark-impersonation-ed3a9d57 - sparkapplication "spark-impersonation-ed3a9d57" deleted
+0522 18:44:25 [1558550665] spark-impersonation-ed3a9d57 - ======== Completion of spark-impersonation-ed3a9d57 test, returning 1 ========
+
+
+
+      0522 18:43:04 [1558550584] spark-pi-c1bab454 - ======== Beginning spark-pi-c1bab454 test ========
+0522 18:43:04 [1558550584] spark-pi-c1bab454 -  [0;32mKubernetes master [0m is running at  [0;33mhttps://10.254.208.1:443 [0m
+0522 18:43:04 [1558550584] spark-pi-c1bab454 -
+0522 18:43:04 [1558550584] spark-pi-c1bab454 - To further debug and diagnose cluster problems, use 'kubectl cluster-info dump'.
+0522 18:43:05 [1558550585] spark-pi-c1bab454 - Cleaning up SparkApplication/Pod older than 1 hours from prior runs.
+0522 18:43:06 [1558550586] spark-pi-c1bab454 - Creating SparkApplication spark-pi-c1bab454
+0522 18:43:06 [1558550586] spark-pi-c1bab454 - sparkapplication "spark-pi-c1bab454" created
+0522 18:43:06 [1558550586] spark-pi-c1bab454 - Waiting for SparkApplication spark-pi-c1bab454 to reach a terminal state.
+0522 18:43:19 [1558550599] spark-pi-c1bab454 - Pod change detected: spark-pi-c1bab454-driver: Init:0/1 on host shared0-flowsnakeworkerprod1-25-ia2.ops.sfdc.net.
+0522 18:43:23 [1558550603] spark-pi-c1bab454 - Pod change detected: spark-pi-c1bab454-driver changed to PodInitializing (previously Init:0/1).
+0522 18:43:25 [1558550605] spark-pi-c1bab454 - Pod change detected: spark-pi-c1bab454-driver changed to Running (previously PodInitializing).
+0522 18:44:07 [1558550647] spark-pi-c1bab454 - ...still waiting for terminal state (currently RUNNING) after 61 seconds.
+0522 18:44:07 [1558550647] spark-pi-c1bab454 - ---- Begin Events ----
+0522 18:44:07 [1558550647] spark-pi-c1bab454 - Name:         spark-pi-c1bab454
+0522 18:44:07 [1558550647] spark-pi-c1bab454 - Events:                          <none>
+0522 18:44:08 [1558550648] spark-pi-c1bab454 - Name:           spark-pi-c1bab454-driver
+0522 18:44:08 [1558550648] spark-pi-c1bab454 - Events:
+0522 18:44:08 [1558550648] spark-pi-c1bab454 -   Type     Reason                 Age   From                                                       Message
+0522 18:44:08 [1558550648] spark-pi-c1bab454 -   ----     ------                 ----  ----                                                       -------
+0522 18:44:08 [1558550648] spark-pi-c1bab454 -   Normal   SuccessfulMountVolume  52s   kubelet, shared0-flowsnakeworkerprod1-25-ia2.ops.sfdc.net  MountVolume.SetUp succeeded for volume "datacerts"
+0522 18:44:08 [1558550648] spark-pi-c1bab454 -   Normal   SuccessfulMountVolume  52s   kubelet, shared0-flowsnakeworkerprod1-25-ia2.ops.sfdc.net  MountVolume.SetUp succeeded for volume "certificate-authority"
+0522 18:44:08 [1558550648] spark-pi-c1bab454 -   Normal   SuccessfulMountVolume  52s   kubelet, shared0-flowsnakeworkerprod1-25-ia2.ops.sfdc.net  MountVolume.SetUp succeeded for volume "client-certificate"
+0522 18:44:08 [1558550648] spark-pi-c1bab454 -   Normal   SuccessfulMountVolume  52s   kubelet, shared0-flowsnakeworkerprod1-25-ia2.ops.sfdc.net  MountVolume.SetUp succeeded for volume "client-key"
+0522 18:44:08 [1558550648] spark-pi-c1bab454 -   Normal   SuccessfulMountVolume  52s   kubelet, shared0-flowsnakeworkerprod1-25-ia2.ops.sfdc.net  MountVolume.SetUp succeeded for volume "spark-local-dir-1"
+0522 18:44:08 [1558550648] spark-pi-c1bab454 -   Warning  FailedMount            52s   kubelet, shared0-flowsnakeworkerprod1-25-ia2.ops.sfdc.net  MountVolume.SetUp failed for volume "spark-conf-volume" : configmaps "spark-pi-c1bab454-1558550597390-driver-conf-map" not found
+0522 18:44:08 [1558550648] spark-pi-c1bab454 -   Normal   SuccessfulMountVolume  52s   kubelet, shared0-flowsnakeworkerprod1-25-ia2.ops.sfdc.net  MountVolume.SetUp succeeded for volume "spark-driver-flowsnake-watchdog-token-zqwvx"
+0522 18:44:08 [1558550648] spark-pi-c1bab454 -   Normal   SuccessfulMountVolume  52s   kubelet, shared0-flowsnakeworkerprod1-25-ia2.ops.sfdc.net  MountVolume.SetUp succeeded for volume "tokens"
+0522 18:44:08 [1558550648] spark-pi-c1bab454 -   Normal   Scheduled              52s   default-scheduler                                          Successfully assigned spark-pi-c1bab454-driver to shared0-flowsnakeworkerprod1-25-ia2.ops.sfdc.net
+0522 18:44:08 [1558550648] spark-pi-c1bab454 -   Normal   SuccessfulMountVolume  51s   kubelet, shared0-flowsnakeworkerprod1-25-ia2.ops.sfdc.net  MountVolume.SetUp succeeded for volume "spark-conf-volume"
+0522 18:44:08 [1558550648] spark-pi-c1bab454 -   Normal   Pulled                 51s   kubelet, shared0-flowsnakeworkerprod1-25-ia2.ops.sfdc.net  Container image "ops0-artifactrepo1-0-ia2.data.sfdc.net/tnrp/sam/madkub:1.0.0-0000084-9f4a6ca6" already present on machine
+0522 18:44:08 [1558550648] spark-pi-c1bab454 -   Normal   Created                51s   kubelet, shared0-flowsnakeworkerprod1-25-ia2.ops.sfdc.net  Created container
+0522 18:44:08 [1558550648] spark-pi-c1bab454 -   Normal   Started                51s   kubelet, shared0-flowsnakeworkerprod1-25-ia2.ops.sfdc.net  Started container
+0522 18:44:08 [1558550648] spark-pi-c1bab454 -   Normal   Pulling                48s   kubelet, shared0-flowsnakeworkerprod1-25-ia2.ops.sfdc.net  pulling image "ops0-artifactrepo1-0-ia2.data.sfdc.net/dva/flowsnake-spark-on-k8s-sample-apps:4"
+0522 18:44:08 [1558550648] spark-pi-c1bab454 -   Normal   Pulled                 48s   kubelet, shared0-flowsnakeworkerprod1-25-ia2.ops.sfdc.net  Successfully pulled image "ops0-artifactrepo1-0-ia2.data.sfdc.net/dva/flowsnake-spark-on-k8s-sample-apps:4"
+0522 18:44:08 [1558550648] spark-pi-c1bab454 -   Normal   Created                47s   kubelet, shared0-flowsnakeworkerprod1-25-ia2.ops.sfdc.net  Created container
+0522 18:44:08 [1558550648] spark-pi-c1bab454 -   Normal   Started                47s   kubelet, shared0-flowsnakeworkerprod1-25-ia2.ops.sfdc.net  Started container
+0522 18:44:10 [1558550650] spark-pi-c1bab454 - ---- End Events ----
+0522 18:44:17 [1558550657] spark-pi-c1bab454 - Pod change detected: spark-pi-c1bab454-driver changed to Error (previously Running).
+0522 18:44:18 [1558550658] spark-pi-c1bab454 - SparkApplication spark-pi-c1bab454 has terminated after 72 seconds. State is FAILED.
+0522 18:44:19 [1558550659] spark-pi-c1bab454 - ---- Begin Events ----
+0522 18:44:19 [1558550659] spark-pi-c1bab454 - Name:         spark-pi-c1bab454
+0522 18:44:19 [1558550659] spark-pi-c1bab454 - Events:                          <none>
+0522 18:44:20 [1558550660] spark-pi-c1bab454 - Name:           spark-pi-c1bab454-driver
+0522 18:44:20 [1558550660] spark-pi-c1bab454 - Events:
+0522 18:44:20 [1558550660] spark-pi-c1bab454 -   Type     Reason                 Age   From                                                       Message
+0522 18:44:20 [1558550660] spark-pi-c1bab454 -   ----     ------                 ----  ----                                                       -------
+0522 18:44:20 [1558550660] spark-pi-c1bab454 -   Normal   SuccessfulMountVolume  1m    kubelet, shared0-flowsnakeworkerprod1-25-ia2.ops.sfdc.net  MountVolume.SetUp succeeded for volume "datacerts"
+0522 18:44:20 [1558550660] spark-pi-c1bab454 -   Normal   SuccessfulMountVolume  1m    kubelet, shared0-flowsnakeworkerprod1-25-ia2.ops.sfdc.net  MountVolume.SetUp succeeded for volume "certificate-authority"
+0522 18:44:20 [1558550660] spark-pi-c1bab454 -   Normal   SuccessfulMountVolume  1m    kubelet, shared0-flowsnakeworkerprod1-25-ia2.ops.sfdc.net  MountVolume.SetUp succeeded for volume "client-certificate"
+0522 18:44:20 [1558550660] spark-pi-c1bab454 -   Normal   SuccessfulMountVolume  1m    kubelet, shared0-flowsnakeworkerprod1-25-ia2.ops.sfdc.net  MountVolume.SetUp succeeded for volume "client-key"
+0522 18:44:20 [1558550660] spark-pi-c1bab454 -   Normal   SuccessfulMountVolume  1m    kubelet, shared0-flowsnakeworkerprod1-25-ia2.ops.sfdc.net  MountVolume.SetUp succeeded for volume "spark-local-dir-1"
+0522 18:44:20 [1558550660] spark-pi-c1bab454 -   Warning  FailedMount            1m    kubelet, shared0-flowsnakeworkerprod1-25-ia2.ops.sfdc.net  MountVolume.SetUp failed for volume "spark-conf-volume" : configmaps "spark-pi-c1bab454-1558550597390-driver-conf-map" not found
+0522 18:44:20 [1558550660] spark-pi-c1bab454 -   Normal   SuccessfulMountVolume  1m    kubelet, shared0-flowsnakeworkerprod1-25-ia2.ops.sfdc.net  MountVolume.SetUp succeeded for volume "spark-driver-flowsnake-watchdog-token-zqwvx"
+0522 18:44:20 [1558550660] spark-pi-c1bab454 -   Normal   SuccessfulMountVolume  1m    kubelet, shared0-flowsnakeworkerprod1-25-ia2.ops.sfdc.net  MountVolume.SetUp succeeded for volume "tokens"
+0522 18:44:20 [1558550660] spark-pi-c1bab454 -   Normal   Scheduled              1m    default-scheduler                                          Successfully assigned spark-pi-c1bab454-driver to shared0-flowsnakeworkerprod1-25-ia2.ops.sfdc.net
+0522 18:44:20 [1558550660] spark-pi-c1bab454 -   Normal   SuccessfulMountVolume  1m    kubelet, shared0-flowsnakeworkerprod1-25-ia2.ops.sfdc.net  MountVolume.SetUp succeeded for volume "spark-conf-volume"
+0522 18:44:20 [1558550660] spark-pi-c1bab454 -   Normal   Pulled                 1m    kubelet, shared0-flowsnakeworkerprod1-25-ia2.ops.sfdc.net  Container image "ops0-artifactrepo1-0-ia2.data.sfdc.net/tnrp/sam/madkub:1.0.0-0000084-9f4a6ca6" already present on machine
+0522 18:44:20 [1558550660] spark-pi-c1bab454 -   Normal   Created                1m    kubelet, shared0-flowsnakeworkerprod1-25-ia2.ops.sfdc.net  Created container
+0522 18:44:20 [1558550660] spark-pi-c1bab454 -   Normal   Started                1m    kubelet, shared0-flowsnakeworkerprod1-25-ia2.ops.sfdc.net  Started container
+0522 18:44:20 [1558550660] spark-pi-c1bab454 -   Normal   Pulling                1m    kubelet, shared0-flowsnakeworkerprod1-25-ia2.ops.sfdc.net  pulling image "ops0-artifactrepo1-0-ia2.data.sfdc.net/dva/flowsnake-spark-on-k8s-sample-apps:4"
+0522 18:44:20 [1558550660] spark-pi-c1bab454 -   Normal   Pulled                 1m    kubelet, shared0-flowsnakeworkerprod1-25-ia2.ops.sfdc.net  Successfully pulled image "ops0-artifactrepo1-0-ia2.data.sfdc.net/dva/flowsnake-spark-on-k8s-sample-apps:4"
+0522 18:44:20 [1558550660] spark-pi-c1bab454 -   Normal   Created                59s   kubelet, shared0-flowsnakeworkerprod1-25-ia2.ops.sfdc.net  Created container
+0522 18:44:20 [1558550660] spark-pi-c1bab454 -   Normal   Started                59s   kubelet, shared0-flowsnakeworkerprod1-25-ia2.ops.sfdc.net  Started container
+0522 18:44:23 [1558550663] spark-pi-c1bab454 - ---- End Events ----
+0522 18:44:23 [1558550663] spark-pi-c1bab454 - ---- Begin pods/spark-pi-c1bab454-driver Log ----
+++ id -u
++ myuid=0
+++ id -g
++ mygid=0
++ set +e
+++ getent passwd 0
++ uidentry=root:x:0:0:root:/root:/bin/bash
++ set -e
++ '[' -z root:x:0:0:root:/root:/bin/bash ']'
++ SPARK_K8S_CMD=driver
++ case "$SPARK_K8S_CMD" in
++ shift 1
++ SPARK_CLASSPATH=':/opt/spark/jars/*'
++ env
++ grep SPARK_JAVA_OPT_
++ sort -t_ -k4 -n
++ sed 's/[^=]*=\(.*\)/\1/g'
++ readarray -t SPARK_EXECUTOR_JAVA_OPTS
++ '[' -n '' ']'
++ '[' -n '' ']'
++ PYSPARK_ARGS=
++ '[' -n '' ']'
++ R_ARGS=
++ '[' -n '' ']'
++ '[' '' == 2 ']'
++ '[' '' == 3 ']'
++ case "$SPARK_K8S_CMD" in
++ CMD=("$SPARK_HOME/bin/spark-submit" --conf "spark.driver.bindAddress=$SPARK_DRIVER_BIND_ADDRESS" --deploy-mode client "$@")
++ exec /sbin/tini -s -- /opt/spark/bin/spark-submit --conf spark.driver.bindAddress=10.178.65.133 --deploy-mode client --properties-file /opt/spark/conf/spark.properties --class org.apache.spark.examples.SparkPi spark-internal
+2019-05-22 18:43:35 WARN  NativeCodeLoader:62 - Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+2019-05-22 18:43:40 INFO  SparkContext:54 - Running Spark version 2.4.0-sfdc-0.2-SNAPSHOT
+2019-05-22 18:43:40 INFO  SparkContext:54 - Submitted application: Spark Pi
+2019-05-22 18:43:41 INFO  SecurityManager:54 - Changing view acls to: root
+2019-05-22 18:43:41 INFO  SecurityManager:54 - Changing modify acls to: root
+2019-05-22 18:43:41 INFO  SecurityManager:54 - Changing view acls groups to:
+2019-05-22 18:43:41 INFO  SecurityManager:54 - Changing modify acls groups to:
+2019-05-22 18:43:41 INFO  SecurityManager:54 - SecurityManager: authentication disabled; ui acls disabled; users  with view permissions: Set(root); groups with view permissions: Set(); users  with modify permissions: Set(root); groups with modify permissions: Set()
+2019-05-22 18:43:48 INFO  Utils:54 - Successfully started service 'sparkDriver' on port 7078.
+2019-05-22 18:43:48 INFO  SparkEnv:54 - Registering MapOutputTracker
+2019-05-22 18:43:48 INFO  SparkEnv:54 - Registering BlockManagerMaster
+2019-05-22 18:43:48 INFO  BlockManagerMasterEndpoint:54 - Using org.apache.spark.storage.DefaultTopologyMapper for getting topology information
+2019-05-22 18:43:48 INFO  BlockManagerMasterEndpoint:54 - BlockManagerMasterEndpoint up
+2019-05-22 18:43:48 INFO  DiskBlockManager:54 - Created local directory at /var/data/spark-838e784a-acb0-42b3-ab8f-1b8c06262f14/blockmgr-19d0bc1b-ab6f-4dc1-b7f6-1d78b464cec8
+2019-05-22 18:43:48 INFO  MemoryStore:54 - MemoryStore started with capacity 93.3 MB
+2019-05-22 18:43:48 INFO  SparkEnv:54 - Registering OutputCommitCoordinator
+2019-05-22 18:43:49 INFO  log:192 - Logging initialized @23897ms
+2019-05-22 18:43:49 INFO  Server:351 - jetty-9.3.z-SNAPSHOT, build timestamp: unknown, git hash: unknown
+2019-05-22 18:43:50 INFO  Server:419 - Started @24590ms
+2019-05-22 18:43:50 INFO  AbstractConnector:278 - Started ServerConnector@20d11153{HTTP/1.1,[http/1.1]}{0.0.0.0:4040}
+2019-05-22 18:43:50 INFO  Utils:54 - Successfully started service 'SparkUI' on port 4040.
+2019-05-22 18:43:50 INFO  ContextHandler:781 - Started o.s.j.s.ServletContextHandler@62a8fd44{/jobs,null,AVAILABLE,@Spark}
+2019-05-22 18:43:50 INFO  ContextHandler:781 - Started o.s.j.s.ServletContextHandler@155d1021{/jobs/json,null,AVAILABLE,@Spark}
+2019-05-22 18:43:50 INFO  ContextHandler:781 - Started o.s.j.s.ServletContextHandler@4bd2f0dc{/jobs/job,null,AVAILABLE,@Spark}
+2019-05-22 18:43:50 INFO  ContextHandler:781 - Started o.s.j.s.ServletContextHandler@2c42b421{/jobs/job/json,null,AVAILABLE,@Spark}
+2019-05-22 18:43:50 INFO  ContextHandler:781 - Started o.s.j.s.ServletContextHandler@51e37590{/stages,null,AVAILABLE,@Spark}
+2019-05-22 18:43:50 INFO  ContextHandler:781 - Started o.s.j.s.ServletContextHandler@deb3b60{/stages/json,null,AVAILABLE,@Spark}
+2019-05-22 18:43:50 INFO  ContextHandler:781 - Started o.s.j.s.ServletContextHandler@701a32{/stages/stage,null,AVAILABLE,@Spark}
+2019-05-22 18:43:50 INFO  ContextHandler:781 - Started o.s.j.s.ServletContextHandler@27cbfddf{/stages/stage/json,null,AVAILABLE,@Spark}
+2019-05-22 18:43:50 INFO  ContextHandler:781 - Started o.s.j.s.ServletContextHandler@27ead29e{/stages/pool,null,AVAILABLE,@Spark}
+2019-05-22 18:43:50 INFO  ContextHandler:781 - Started o.s.j.s.ServletContextHandler@4c060c8f{/stages/pool/json,null,AVAILABLE,@Spark}
+2019-05-22 18:43:50 INFO  ContextHandler:781 - Started o.s.j.s.ServletContextHandler@40620d8e{/storage,null,AVAILABLE,@Spark}
+2019-05-22 18:43:50 INFO  ContextHandler:781 - Started o.s.j.s.ServletContextHandler@383f3558{/storage/json,null,AVAILABLE,@Spark}
+2019-05-22 18:43:50 INFO  ContextHandler:781 - Started o.s.j.s.ServletContextHandler@49b07ee3{/storage/rdd,null,AVAILABLE,@Spark}
+2019-05-22 18:43:50 INFO  ContextHandler:781 - Started o.s.j.s.ServletContextHandler@352e612e{/storage/rdd/json,null,AVAILABLE,@Spark}
+2019-05-22 18:43:50 INFO  ContextHandler:781 - Started o.s.j.s.ServletContextHandler@65f00478{/environment,null,AVAILABLE,@Spark}
+2019-05-22 18:43:50 INFO  ContextHandler:781 - Started o.s.j.s.ServletContextHandler@2424686b{/environment/json,null,AVAILABLE,@Spark}
+2019-05-22 18:43:50 INFO  ContextHandler:781 - Started o.s.j.s.ServletContextHandler@6ea94d6a{/executors,null,AVAILABLE,@Spark}
+2019-05-22 18:43:50 INFO  ContextHandler:781 - Started o.s.j.s.ServletContextHandler@28486680{/executors/json,null,AVAILABLE,@Spark}
+2019-05-22 18:43:50 INFO  ContextHandler:781 - Started o.s.j.s.ServletContextHandler@4d7e7435{/executors/threadDump,null,AVAILABLE,@Spark}
+2019-05-22 18:43:50 INFO  ContextHandler:781 - Started o.s.j.s.ServletContextHandler@4a1e3ac1{/executors/threadDump/json,null,AVAILABLE,@Spark}
+2019-05-22 18:43:51 INFO  ContextHandler:781 - Started o.s.j.s.ServletContextHandler@6e78fcf5{/static,null,AVAILABLE,@Spark}
+2019-05-22 18:43:51 INFO  ContextHandler:781 - Started o.s.j.s.ServletContextHandler@69e308c6{/,null,AVAILABLE,@Spark}
+2019-05-22 18:43:51 INFO  ContextHandler:781 - Started o.s.j.s.ServletContextHandler@1a1ed4e5{/api,null,AVAILABLE,@Spark}
+2019-05-22 18:43:51 INFO  ContextHandler:781 - Started o.s.j.s.ServletContextHandler@1efdcd5{/jobs/job/kill,null,AVAILABLE,@Spark}
+2019-05-22 18:43:51 INFO  ContextHandler:781 - Started o.s.j.s.ServletContextHandler@1623bbe5{/stages/stage/kill,null,AVAILABLE,@Spark}
+2019-05-22 18:43:51 INFO  SparkUI:54 - Bound SparkUI to 0.0.0.0, and started at http://spark-pi-c1bab454-1558550597390-driver-svc.flowsnake-watchdog.svc:4040
+2019-05-22 18:43:51 INFO  SparkContext:54 - Added JAR file:///sample-apps/sample-basic-spark-operator/sample-basic-spark-operator.jar at spark://spark-pi-c1bab454-1558550597390-driver-svc.flowsnake-watchdog.svc:7078/jars/sample-basic-spark-operator.jar with timestamp 1558550631431
+2019-05-22 18:44:15 ERROR SparkContext:91 - Error initializing SparkContext.
+org.apache.spark.SparkException: External scheduler cannot be instantiated
+	at org.apache.spark.SparkContext$.org$apache$spark$SparkContext$$createTaskScheduler(SparkContext.scala:2794)
+	at org.apache.spark.SparkContext.<init>(SparkContext.scala:493)
+	at org.apache.spark.SparkContext$.getOrCreate(SparkContext.scala:2520)
+	at org.apache.spark.sql.SparkSession$Builder$$anonfun$7.apply(SparkSession.scala:935)
+	at org.apache.spark.sql.SparkSession$Builder$$anonfun$7.apply(SparkSession.scala:926)
+	at scala.Option.getOrElse(Option.scala:121)
+	at org.apache.spark.sql.SparkSession$Builder.getOrCreate(SparkSession.scala:926)
+	at org.apache.spark.examples.SparkPi$.main(SparkPi.scala:31)
+	at org.apache.spark.examples.SparkPi.main(SparkPi.scala)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.apache.spark.deploy.JavaMainApplication.start(SparkApplication.scala:52)
+	at org.apache.spark.deploy.SparkSubmit.org$apache$spark$deploy$SparkSubmit$$runMain(SparkSubmit.scala:849)
+	at org.apache.spark.deploy.SparkSubmit.doRunMain$1(SparkSubmit.scala:167)
+	at org.apache.spark.deploy.SparkSubmit.submit(SparkSubmit.scala:195)
+	at org.apache.spark.deploy.SparkSubmit.doSubmit(SparkSubmit.scala:86)
+	at org.apache.spark.deploy.SparkSubmit$$anon$2.doSubmit(SparkSubmit.scala:924)
+	at org.apache.spark.deploy.SparkSubmit$.main(SparkSubmit.scala:933)
+	at org.apache.spark.deploy.SparkSubmit.main(SparkSubmit.scala)
+Caused by: io.fabric8.kubernetes.client.KubernetesClientException: Operation: [get]  for kind: [Pod]  with name: [spark-pi-c1bab454-driver]  in namespace: [flowsnake-watchdog]  failed.
+	at io.fabric8.kubernetes.client.KubernetesClientException.launderThrowable(KubernetesClientException.java:62)
+	at io.fabric8.kubernetes.client.KubernetesClientException.launderThrowable(KubernetesClientException.java:71)
+	at io.fabric8.kubernetes.client.dsl.base.BaseOperation.getMandatory(BaseOperation.java:228)
+	at io.fabric8.kubernetes.client.dsl.base.BaseOperation.get(BaseOperation.java:184)
+	at org.apache.spark.scheduler.cluster.k8s.ExecutorPodsAllocator$$anonfun$1.apply(ExecutorPodsAllocator.scala:57)
+	at org.apache.spark.scheduler.cluster.k8s.ExecutorPodsAllocator$$anonfun$1.apply(ExecutorPodsAllocator.scala:55)
+	at scala.Option.map(Option.scala:146)
+	at org.apache.spark.scheduler.cluster.k8s.ExecutorPodsAllocator.<init>(ExecutorPodsAllocator.scala:55)
+	at org.apache.spark.scheduler.cluster.k8s.KubernetesClusterManager.createSchedulerBackend(KubernetesClusterManager.scala:89)
+	at org.apache.spark.SparkContext$.org$apache$spark$SparkContext$$createTaskScheduler(SparkContext.scala:2788)
+	... 20 more
+Caused by: java.net.UnknownHostException: kubernetes.default.svc: Name or service not known
+	at java.net.Inet6AddressImpl.lookupAllHostAddr(Native Method)
+	at java.net.InetAddress$2.lookupAllHostAddr(InetAddress.java:928)
+	at java.net.InetAddress.getAddressesFromNameService(InetAddress.java:1323)
+	at java.net.InetAddress.getAllByName0(InetAddress.java:1276)
+	at java.net.InetAddress.getAllByName(InetAddress.java:1192)
+	at java.net.InetAddress.getAllByName(InetAddress.java:1126)
+	at okhttp3.Dns$1.lookup(Dns.java:39)
+	at okhttp3.internal.connection.RouteSelector.resetNextInetSocketAddress(RouteSelector.java:171)
+	at okhttp3.internal.connection.RouteSelector.nextProxy(RouteSelector.java:137)
+	at okhttp3.internal.connection.RouteSelector.next(RouteSelector.java:82)
+	at okhttp3.internal.connection.StreamAllocation.findConnection(StreamAllocation.java:171)
+	at okhttp3.internal.connection.StreamAllocation.findHealthyConnection(StreamAllocation.java:121)
+	at okhttp3.internal.connection.StreamAllocation.newStream(StreamAllocation.java:100)
+	at okhttp3.internal.connection.ConnectInterceptor.intercept(ConnectInterceptor.java:42)
+	at okhttp3.internal.http.RealInterceptorChain.proceed(RealInterceptorChain.java:92)
+	at okhttp3.internal.http.RealInterceptorChain.proceed(RealInterceptorChain.java:67)
+	at okhttp3.internal.cache.CacheInterceptor.intercept(CacheInterceptor.java:93)
+	at okhttp3.internal.http.RealInterceptorChain.proceed(RealInterceptorChain.java:92)
+	at okhttp3.internal.http.RealInterceptorChain.proceed(RealInterceptorChain.java:67)
+	at okhttp3.internal.http.BridgeInterceptor.intercept(BridgeInterceptor.java:93)
+	at okhttp3.internal.http.RealInterceptorChain.proceed(RealInterceptorChain.java:92)
+	at okhttp3.internal.http.RetryAndFollowUpInterceptor.intercept(RetryAndFollowUpInterceptor.java:120)
+	at okhttp3.internal.http.RealInterceptorChain.proceed(RealInterceptorChain.java:92)
+	at okhttp3.internal.http.RealInterceptorChain.proceed(RealInterceptorChain.java:67)
+	at io.fabric8.kubernetes.client.utils.HttpClientUtils$2.intercept(HttpClientUtils.java:93)
+	at okhttp3.internal.http.RealInterceptorChain.proceed(RealInterceptorChain.java:92)
+	at okhttp3.internal.http.RealInterceptorChain.proceed(RealInterceptorChain.java:67)
+	at okhttp3.RealCall.getResponseWithInterceptorChain(RealCall.java:185)
+	at okhttp3.RealCall.execute(RealCall.java:69)
+	at io.fabric8.kubernetes.client.dsl.base.OperationSupport.handleResponse(OperationSupport.java:377)
+	at io.fabric8.kubernetes.client.dsl.base.OperationSupport.handleResponse(OperationSupport.java:343)
+	at io.fabric8.kubernetes.client.dsl.base.OperationSupport.handleGet(OperationSupport.java:312)
+	at io.fabric8.kubernetes.client.dsl.base.OperationSupport.handleGet(OperationSupport.java:295)
+	at io.fabric8.kubernetes.client.dsl.base.BaseOperation.handleGet(BaseOperation.java:783)
+	at io.fabric8.kubernetes.client.dsl.base.BaseOperation.getMandatory(BaseOperation.java:217)
+	... 27 more
+2019-05-22 18:44:15 INFO  AbstractConnector:318 - Stopped Spark@20d11153{HTTP/1.1,[http/1.1]}{0.0.0.0:4040}
+2019-05-22 18:44:15 INFO  SparkUI:54 - Stopped Spark web UI at http://spark-pi-c1bab454-1558550597390-driver-svc.flowsnake-watchdog.svc:4040
+2019-05-22 18:44:15 INFO  MapOutputTrackerMasterEndpoint:54 - MapOutputTrackerMasterEndpoint stopped!
+2019-05-22 18:44:15 INFO  MemoryStore:54 - MemoryStore cleared
+2019-05-22 18:44:15 INFO  BlockManager:54 - BlockManager stopped
+2019-05-22 18:44:15 INFO  BlockManagerMaster:54 - BlockManagerMaster stopped
+2019-05-22 18:44:15 WARN  MetricsSystem:66 - Stopping a MetricsSystem that is not running
+2019-05-22 18:44:15 INFO  OutputCommitCoordinator$OutputCommitCoordinatorEndpoint:54 - OutputCommitCoordinator stopped!
+2019-05-22 18:44:15 INFO  SparkContext:54 - Successfully stopped SparkContext
+Exception in thread "main" org.apache.spark.SparkException: External scheduler cannot be instantiated
+	at org.apache.spark.SparkContext$.org$apache$spark$SparkContext$$createTaskScheduler(SparkContext.scala:2794)
+	at org.apache.spark.SparkContext.<init>(SparkContext.scala:493)
+	at org.apache.spark.SparkContext$.getOrCreate(SparkContext.scala:2520)
+	at org.apache.spark.sql.SparkSession$Builder$$anonfun$7.apply(SparkSession.scala:935)
+	at org.apache.spark.sql.SparkSession$Builder$$anonfun$7.apply(SparkSession.scala:926)
+	at scala.Option.getOrElse(Option.scala:121)
+	at org.apache.spark.sql.SparkSession$Builder.getOrCreate(SparkSession.scala:926)
+	at org.apache.spark.examples.SparkPi$.main(SparkPi.scala:31)
+	at org.apache.spark.examples.SparkPi.main(SparkPi.scala)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.apache.spark.deploy.JavaMainApplication.start(SparkApplication.scala:52)
+	at org.apache.spark.deploy.SparkSubmit.org$apache$spark$deploy$SparkSubmit$$runMain(SparkSubmit.scala:849)
+	at org.apache.spark.deploy.SparkSubmit.doRunMain$1(SparkSubmit.scala:167)
+	at org.apache.spark.deploy.SparkSubmit.submit(SparkSubmit.scala:195)
+	at org.apache.spark.deploy.SparkSubmit.doSubmit(SparkSubmit.scala:86)
+	at org.apache.spark.deploy.SparkSubmit$$anon$2.doSubmit(SparkSubmit.scala:924)
+	at org.apache.spark.deploy.SparkSubmit$.main(SparkSubmit.scala:933)
+	at org.apache.spark.deploy.SparkSubmit.main(SparkSubmit.scala)
+Caused by: io.fabric8.kubernetes.client.KubernetesClientException: Operation: [get]  for kind: [Pod]  with name: [spark-pi-c1bab454-driver]  in namespace: [flowsnake-watchdog]  failed.
+	at io.fabric8.kubernetes.client.KubernetesClientException.launderThrowable(KubernetesClientException.java:62)
+	at io.fabric8.kubernetes.client.KubernetesClientException.launderThrowable(KubernetesClientException.java:71)
+	at io.fabric8.kubernetes.client.dsl.base.BaseOperation.getMandatory(BaseOperation.java:228)
+	at io.fabric8.kubernetes.client.dsl.base.BaseOperation.get(BaseOperation.java:184)
+	at org.apache.spark.scheduler.cluster.k8s.ExecutorPodsAllocator$$anonfun$1.apply(ExecutorPodsAllocator.scala:57)
+	at org.apache.spark.scheduler.cluster.k8s.ExecutorPodsAllocator$$anonfun$1.apply(ExecutorPodsAllocator.scala:55)
+	at scala.Option.map(Option.scala:146)
+	at org.apache.spark.scheduler.cluster.k8s.ExecutorPodsAllocator.<init>(ExecutorPodsAllocator.scala:55)
+	at org.apache.spark.scheduler.cluster.k8s.KubernetesClusterManager.createSchedulerBackend(KubernetesClusterManager.scala:89)
+	at org.apache.spark.SparkContext$.org$apache$spark$SparkContext$$createTaskScheduler(SparkContext.scala:2788)
+	... 20 more
+Caused by: java.net.UnknownHostException: kubernetes.default.svc: Name or service not known
+	at java.net.Inet6AddressImpl.lookupAllHostAddr(Native Method)
+	at java.net.InetAddress$2.lookupAllHostAddr(InetAddress.java:928)
+	at java.net.InetAddress.getAddressesFromNameService(InetAddress.java:1323)
+	at java.net.InetAddress.getAllByName0(InetAddress.java:1276)
+	at java.net.InetAddress.getAllByName(InetAddress.java:1192)
+	at java.net.InetAddress.getAllByName(InetAddress.java:1126)
+	at okhttp3.Dns$1.lookup(Dns.java:39)
+	at okhttp3.internal.connection.RouteSelector.resetNextInetSocketAddress(RouteSelector.java:171)
+	at okhttp3.internal.connection.RouteSelector.nextProxy(RouteSelector.java:137)
+	at okhttp3.internal.connection.RouteSelector.next(RouteSelector.java:82)
+	at okhttp3.internal.connection.StreamAllocation.findConnection(StreamAllocation.java:171)
+	at okhttp3.internal.connection.StreamAllocation.findHealthyConnection(StreamAllocation.java:121)
+	at okhttp3.internal.connection.StreamAllocation.newStream(StreamAllocation.java:100)
+	at okhttp3.internal.connection.ConnectInterceptor.intercept(ConnectInterceptor.java:42)
+	at okhttp3.internal.http.RealInterceptorChain.proceed(RealInterceptorChain.java:92)
+	at okhttp3.internal.http.RealInterceptorChain.proceed(RealInterceptorChain.java:67)
+	at okhttp3.internal.cache.CacheInterceptor.intercept(CacheInterceptor.java:93)
+	at okhttp3.internal.http.RealInterceptorChain.proceed(RealInterceptorChain.java:92)
+	at okhttp3.internal.http.RealInterceptorChain.proceed(RealInterceptorChain.java:67)
+	at okhttp3.internal.http.BridgeInterceptor.intercept(BridgeInterceptor.java:93)
+	at okhttp3.internal.http.RealInterceptorChain.proceed(RealInterceptorChain.java:92)
+	at okhttp3.internal.http.RetryAndFollowUpInterceptor.intercept(RetryAndFollowUpInterceptor.java:120)
+	at okhttp3.internal.http.RealInterceptorChain.proceed(RealInterceptorChain.java:92)
+	at okhttp3.internal.http.RealInterceptorChain.proceed(RealInterceptorChain.java:67)
+	at io.fabric8.kubernetes.client.utils.HttpClientUtils$2.intercept(HttpClientUtils.java:93)
+	at okhttp3.internal.http.RealInterceptorChain.proceed(RealInterceptorChain.java:92)
+	at okhttp3.internal.http.RealInterceptorChain.proceed(RealInterceptorChain.java:67)
+	at okhttp3.RealCall.getResponseWithInterceptorChain(RealCall.java:185)
+	at okhttp3.RealCall.execute(RealCall.java:69)
+	at io.fabric8.kubernetes.client.dsl.base.OperationSupport.handleResponse(OperationSupport.java:377)
+	at io.fabric8.kubernetes.client.dsl.base.OperationSupport.handleResponse(OperationSupport.java:343)
+	at io.fabric8.kubernetes.client.dsl.base.OperationSupport.handleGet(OperationSupport.java:312)
+	at io.fabric8.kubernetes.client.dsl.base.OperationSupport.handleGet(OperationSupport.java:295)
+	at io.fabric8.kubernetes.client.dsl.base.BaseOperation.handleGet(BaseOperation.java:783)
+	at io.fabric8.kubernetes.client.dsl.base.BaseOperation.getMandatory(BaseOperation.java:217)
+	... 27 more
+2019-05-22 18:44:15 INFO  ShutdownHookManager:54 - Shutdown hook called
+2019-05-22 18:44:15 INFO  ShutdownHookManager:54 - Deleting directory /tmp/spark-0a18fd3d-1bd0-4aa9-9af5-a3e0c4aa2cee
+2019-05-22 18:44:15 INFO  ShutdownHookManager:54 - Deleting directory /var/data/spark-838e784a-acb0-42b3-ab8f-1b8c06262f14/spark-380d014b-04d3-4a68-a129-1de0a24e3b8f
+0522 18:44:24 [1558550664] spark-pi-c1bab454 - ---- End pods/spark-pi-c1bab454-driver Log ----
+0522 18:44:24 [1558550664] spark-pi-c1bab454 - -------- Executor Pods ----------
+0522 18:44:24 [1558550664] spark-pi-c1bab454 - Cleaning up stuff for complated or failed test.
+0522 18:44:24 [1558550664] spark-pi-c1bab454 - sparkapplication "spark-pi-c1bab454" deleted
+0522 18:44:25 [1558550665] spark-pi-c1bab454 - ======== Completion of spark-pi-c1bab454 test, returning 1 ========
