@@ -47,7 +47,7 @@ system:
         #    - ./bin/is-ready
         #  initialDelaySeconds: 15
         #  periodSeconds: 5
-        
+
         volumeMounts:
           - mountPath: /cyan-config
             name: envoy-config-volume
@@ -56,18 +56,18 @@ system:
       
 
 
-    #  - name: envoy-sidecar-config
-    #    image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/casam/cyan-config:49d21a
-    #    livenessProbe:
-    #      exec:
-    #        command:
-    #        - cat
-    #        - /tmp/live
-    #      initialDelaySeconds: 10
-    #      periodSeconds: 5
-    #    volumeMounts:
-    #      - name: tls-client-cert
-    #        mountPath: /client-certs
+      - name: envoy-sidecar-config
+        image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/casam/cyan-config:49d21a
+        livenessProbe:
+          exec:
+            command:
+            - cat
+            - /tmp/live
+          initialDelaySeconds: 10
+          periodSeconds: 5
+        volumeMounts:
+          - name: tls-client-cert
+            mountPath: /client-certs
 
     # The volumes to mount for shipping logs to splunk
     # General rule is to use path that satisfies the pattern: /home/sfdc-*/logs/**/*.json
