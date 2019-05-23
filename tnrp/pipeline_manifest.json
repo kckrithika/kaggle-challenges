@@ -11,6 +11,5 @@
    ],
    "os_release": [ "7" ],
    "snapshot_id":"",
-   "build_image": "ops0-artifactrepo1-0-prd.data.sfdc.net/dva/sam/hypersam:2693-d92f9638336c1e9b12a82e7c6d8face251aa983d",
-   "upload_to_s3": true
+   "build_image": "ops0-artifactrepo1-0-prd.data.sfdc.net/dva/sam/hypersam:2693-d92f9638336c1e9b12a82e7c6d8face251aa983d"
 }
