@@ -6,15 +6,27 @@ system:
       - rpothana@salesforce.com
   functions:
   - name: sherlock
-    count: 1
+    count: 3
     containers:
     - name: sherlock
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/aborra/sherlock:rc0-s9d7f
+      ports:
+      - name: http
+        containerPort: 5555
+        hostPort: 5555
       env:
         - name: BROKER_URL
           value: 'mycroft.casp.prd-sam.prd.slb.sfdc.net'
-        - name: CELERY_QUEUES
-          value: 'wax,chx,cdu,yul,syd,chi,lo3,lo2,par,cdg,hnd,fra,ukb,frf,ord,iad,phx,dfw,ia2,ph2'
+        - name: SHARED0_SAMMINION1_1_PRD_KINGDOMS
+          value: 'ph2, phx, par, frf, lo2, yul, chx'
+        - name: SHARED0_SAMMINION1_2_PRD_KINGDOMS
+          value: 'dfw, iad, ukb, hnd, lo3, chi, wax'
+        - name: SHARED0_SAMMINION2_1_PRD_KINGDOMS
+          value: 'ia2, ord, fra, cdg, syd, cdu'
+        - name: MY_SAM_HOST_NAME
+          valueFrom:
+            fieldRef:
+              fieldPath: spec.nodeName
       volumeMounts:
         - mountPath: /opt/sherlock/data
           name: sherlock-data-vol
@@ -28,12 +40,20 @@ system:
         initialDelaySeconds: 10
       resources:
         limits:
-          cpu: 28
+          cpu: 20
           memory: 16Gi
         requests:
-          cpu: 28
+          cpu: 20
           memory: 16Gi
     volumes:
       - name: sherlock-data-vol
         hostPath:
           path: /data/sherlock
+
+  loadbalancers:
+  - lbname: sherlock-flower-lb
+    function: sherlock
+    slbenabled: true
+    ports:
+      - port: 80
+        targetport: 5555
