@@ -1,0 +1,57 @@
+apiVersion: v1
+system:
+  functions:
+    - name: gid-service-layer
+      count: 1
+      containers:
+      #####################################################################################
+      # GID service
+      #####################################################################################
+        - name: gid-service 
+          image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/gid/gid-service:a071e29
+          imagePullPolicy: Always
+          env:
+            - name: server_port
+              value: 8081
+            - name: management_server_port
+              value: 15371
+            - name: ca_service_host
+              value: 10.233.180.195
+            - name: security_client_dynamickeystore_cadir
+              value: /certs
+            - name: security_client_dynamickeystore_monitoredDirectory
+              value: /certs
+          ports:
+            - containerPort: 8081
+            - containerPort: 15371
+          livenessProbe:
+            httpGet:
+              path: /manage/health
+              port: 15371
+          volumeMounts:
+            - name: server-cert
+              mountPath: /certs
+      #####################################################################################
+      # Volumes Needed
+      #####################################################################################
+      volumes:
+        - name: cache-volume
+          emptyDir: {}
+        - name: logvol
+          emptyDir: {}
+        - name: server-cert
+          maddogCert:
+            type: server
+        - name: client-cert
+          maddogCert:
+            type: client
+  #####################################################################################
+  # SLB
+  #####################################################################################
+  loadbalancers:
+    - lbname: gidservicelb
+      function: gid-service-layer
+      slbEnabled: true
+      ports:
+        - port: 7022
+          targetport: 8081
