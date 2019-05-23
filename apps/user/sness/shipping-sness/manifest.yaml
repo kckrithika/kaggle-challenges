@@ -4,47 +4,92 @@ system:
   functions:
   - name: shipping-sness
     count: 1
-    annotations:
-      "sherpa-injector.service-mesh/inject": "enabled"      
-      "sherpa-injector.service-mesh/canary": "enabled"
     containers:
-
     - name: shipping
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/scone/shipping-service:bazel-monorepo
+      # Shipping App
+      #   https://git.soma.salesforce.com/services/sfdc-bazel/tree/master/projects/services/shipping/shipping-scone
+      # Shipping Config
+      #   https://git.soma.salesforce.com/services/sfdc-bazel/blob/master/projects/services/shipping/shipping-scone/src/main/resources/config/application.properties
+      image:  ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/scone/shipping-service:bazel-monorepo
       env:
       - name: SFDC_ENVIRONMENT
-        value: mesh
-      - name: JAVA_OPTS
-        value: "-Dscone.service.name=shipping-sness -Dmanagement.server.port=15372"
+        value: sconex
+      - name: JAVA_HEAP_OPTS
+        value: -Xmx64m
       ports:
       - containerPort: 7020
         name: grpc-svc
-      - containerPort: 15372
+      - containerPort: 15375
         name: scone-mgmt
+      - containerPort: 9010
+        name: jmx-remote
       livenessProbe:
         initialDelaySeconds: 15
         httpGet:
           path: /manage/health
-          port: 15372
+          port: 15375
+      readinessProbe:
+        timeoutSeconds: 10
+        httpGet:
+          path: /manage/ready
+          port: 15375
+      terminationMessagePolicy: FallbackToLogsOnError
 
     - name: beacon
-      # https://git.soma.salesforce.com/services/sfdc-bazel/tree/master/projects/sidecars/beacon#docker-image
-      image: sfci/services/sfdc-bazel/disco/beacon:d7f1640
-      env:
-      - name: SFDC_ENVIRONMENT
-        value: mesh
-      - name: FAKE_ENV_VAR_INCREMENT_TO_TRIGGER_SAM_DEPLOY
-        value: "1"
+      # https://sconelibci.dop.sfdc.net/job/servicelibs/job/beacon/job/master/216/
+      image: sfci/servicelibs/beacon:853c4db9f14805018be6f5e7607ffe65b5648822
       args:
       - -endpoint
-      - service-mesh/shipping-sness:DATACENTER:7443     
+      - $(FUNCTION_NAMESPACE)/$(FUNCTION):DATACENTER:7443
+      - -logging.dir
+      - /log
       livenessProbe:
-        initialDelaySeconds: 5
+        initialDelaySeconds: 30
         exec:
           command:
-          - "/opt/beacon/is-alive.sh"
+          - "/home/scone/is-alive.sh"
+      # Need to mount to a volume so that logs can be shipped to splunk
+      volumeMounts:
+      - mountPath: /log
+        name: logvolbeacon
 
+    - name: sherpa
+      # https://sconelibci.dop.sfdc.net/job/servicelibs/job/sherpa-envoy/job/master/75
+      image: sfci/servicelibs/sherpa-envoy:7e40ce8be635a6ef46fbc64657af42ab9c39ea65
+      env:
+      - name: SFDC_ENVIRONMENT
+        value: sconex
+      ports:
+      - containerPort: 15373
+        name: sherpa-adm
+      - containerPort: 7443
+        name: h2-tls-in
+      - containerPort: 7012
+        name: grpc-in
+      livenessProbe:
+        exec:
+          command:
+          - ./bin/is-alive
+        initialDelaySeconds: 20
+      readinessProbe:
+        exec:
+          command:
+          - ./bin/is-ready
+        initialDelaySeconds: 15
+      volumeMounts:
+        - name: logvolbeacon
+          mountPath: /log
+        - name: tls-client-cert
+          mountPath: /client-certs
+        - name: tls-server-cert
+          mountPath: /server-certs
+
+    # The volumes to mount for shipping logs to splunk and certs
+    # General rule is to use path that satisfies the pattern: /home/sfdc-*/logs/**/*.json
     volumes:
+    - name: logvolbeacon
+      hostPath:
+        path: /home/sfdc-scone-shipping-beacon/logs
     - name: tls-client-cert
       maddogCert:
         type: client
