@@ -1,8 +1,8 @@
 apps:
  my-sam-test:    
   - prd/prd-sam
- shipping-sness:
-  - prd/prd-sam
- ordering-sness:
-  - prd/prd-sam
+# shipping-sness:
+#  - prd/prd-sam
+# ordering-sness:
+#  - prd/prd-sam
   
