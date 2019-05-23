@@ -416,23 +416,29 @@
       image: slbimages.hyperslb,
       command: [
         "/sdn/slb-envoy-config",
-//        TODO Mike to add parameters
-//        "--target=" + slbconfigs.nginx.containerTargetDir,
-//        "--netInterfaceName=eth0",
-//        "--metricsEndpoint=" + configs.funnelVIP,
-//        "--log_dir=" + slbconfigs.logsDir,
+//        TODO Start example
+        "--target=" + slbconfigs.nginx.containerTargetDir,
+        "--netInterfaceName=eth0",
+        "--livenessProbePort=8080",
+        "--heartbeat.defaultdecayduration=5m",
+        "--client.serverInterface=lo",
+        "--commonoptions.metricsendpoint=" + configs.funnelVIP,
+        "--envoyNodeID=$(NODE_NAME)",
+        "--envoyNodeNamespace=sam-system",
+//        TODO End example
+        "--log_dir=" + slbconfigs.logsDir,
 //        "--maxDeleteServiceCount=" + std.max((if configs.kingdom == "xrd" then 150 else 0), slbconfigs.maxDeleteLimit(deleteLimitOverride)),
-//        configs.sfdchosts_arg,
-//        "--client.serverInterface=lo",
-//        "--hostnameOverride=$(NODE_NAME)",
+        configs.sfdchosts_arg,
+        "--hostnameOverride=$(NODE_NAME)",
 //        "--httpconfig.trustedProxies=" + slbconfigs.perCluster.trustedProxies[configs.estate],
 //        "--iprange.InternalIpRange=" + slbconfigs.perCluster.internalIpRange[configs.estate],
-      ] + (if waitForRealsvrCfg then [
+      ]
+      + slbconfigs.getNodeApiClientSocketSettings()
+      + (if waitForRealsvrCfg then [
         "--control.realsvrCfgSentinel=" + realsvrCfgSentinel,
         "--control.sentinelExpiration=60s",
 //        "--featureflagWaitForRealsvrCfg=true",
       ] else [])
-      + slbconfigs.getNodeApiClientSocketSettings()
       + [
         slbconfigs.nginx.reloadSentinelParam,
 //        "--httpconfig.custCertsDir=" + slbconfigs.nginx.customerCertsPath,
@@ -443,14 +449,14 @@
         "--commonconfig.healthTimeout=3000",
       ] + (if std.length(vipInterfaceName) > 0 then [
         # The default vip interface name is tunl0
-        "--vipInterfaceName=" + vipInterfaceName,
+//        "--vipInterfaceName=" + vipInterfaceName,
       ] else [])
       + [slbconfigs.nginx.configUpdateSentinelParam]
       + (if tlsConfigEnabled then [
-        "--httpconfig.tlsConfigEnabled=true",
-        "--httpconfig.allowedCiphers=ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-RSA-AES256-GCM-SHA384:ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES128-GCM-SHA256:ECDHE-ECDSA-AES256-SHA384:ECDHE-ECDSA-AES128-SHA256:ECDHE-RSA-AES256-SHA384:ECDHE-RSA-AES128-SHA256:AES256-GCM-SHA384:AES128-GCM-SHA256:AES256-SHA256:AES128-SHA256:AES256-SHA:AES128-SHA",
-        "--httpconfig.allowedEcdhCurves=secp521r1:secp384r1:prime256v1",
-        "--httpconfig.dhParamsFile=/tlsparams/dhparams.pem",
+//        "--httpconfig.tlsConfigEnabled=true",
+//        "--httpconfig.allowedCiphers=ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-RSA-AES256-GCM-SHA384:ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES128-GCM-SHA256:ECDHE-ECDSA-AES256-SHA384:ECDHE-ECDSA-AES128-SHA256:ECDHE-RSA-AES256-SHA384:ECDHE-RSA-AES128-SHA256:AES256-GCM-SHA384:AES128-GCM-SHA256:AES256-SHA256:AES128-SHA256:AES256-SHA:AES128-SHA",
+//        "--httpconfig.allowedEcdhCurves=secp521r1:secp384r1:prime256v1",
+//        "--httpconfig.dhParamsFile=/tlsparams/dhparams.pem",
       ] else [])
       + [
 //        "--commonconfig.accessLogDirectory=" + slbconfigs.logsDir,
@@ -475,6 +481,7 @@
     } + configs.ipAddressResourceRequest,
   slbEnvoyProxy(proxyImage, proxyFlavor="", tlsConfigEnabled=false): {
       name: "slb-envoy-proxy",
+      // TODO replace with sherpa image
       image: proxyImage,
       env: [
         {

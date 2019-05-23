@@ -51,7 +51,7 @@ local envoyAffinity = {
 if slbconfigs.isSlbEstate && configs.estate == "prd-sdc" then
   // Re-use nginxConfigReplicaCount for now.
   // Also, need to replace "slbimages.slbnginx" with "slbimages.slbenvoy" (or whatever) once that image is present in slbreleases.json
-  slbbaseenvoyproxy.slbBaseEnvoyProxyDeployment(slbconfigs.envoyProxyConfigDeploymentName, slbconfigs.nginxConfigReplicaCount, envoyAffinity, slbimages.slbnginx) {
+  slbbaseenvoyproxy.slbBaseEnvoyProxyDeployment(slbconfigs.envoyProxyConfigDeploymentName, slbconfigs.nginxConfigReplicaCount, envoyAffinity, slbimages.slbenvoy) {
     spec+: {
         strategy+: {
             rollingUpdate+: {
