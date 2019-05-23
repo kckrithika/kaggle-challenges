@@ -13,7 +13,7 @@ system:
         - name: GEOIP_ADDRESS
           value: geoip-go.ccait.localhost.mesh.force.com:5443
         - name: GEOIP_TOTALRPS
-          value: 100
+          value: 10
       resources:
         limits:
           cpu: "1"
