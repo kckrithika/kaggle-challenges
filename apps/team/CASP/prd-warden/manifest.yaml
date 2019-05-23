@@ -39,6 +39,8 @@ system:
           name: wardenservercert
         - mountPath: /warden-secrets/
           name: splunk-credentials
+        - mountPath: /warden/secrets/
+          name: warden-secrets-conf
         - mountPath: /warden-secrets/argus-secrets/
           name: argus-secrets
         - mountPath: /mysql-secrets/
@@ -70,6 +72,9 @@ system:
       - name: splunk-credentials
         k4aSecret:
           secretName: warden-secrets
+      - name: warden-secrets-conf
+        k4aSecret:
+          secretName: warden-secrets-conf
       - name: argus-secrets
         k4aSecret:
           secretName: argus-secrets
