@@ -70,7 +70,7 @@ system:
     # General rule is to use path that satisfies the pattern: /home/sfdc-*/logs/**/*.json
     volumes:
       - maddogCert:
-        type: client
+          type: client
         name: tls-client-cert
       - emptyDir: {}
         name: envoy-config-volume
