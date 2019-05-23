@@ -19,7 +19,7 @@ system:
         #   Runs on container port 7022 (as per nginx config)
         ####################################################################################################
         - name: rev-path-proxy
-          image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/gid/gid-service:latest
+          image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/gid/gid-nginx:latest
           ports:
             - containerPort: 7022
           livenessProbe:
