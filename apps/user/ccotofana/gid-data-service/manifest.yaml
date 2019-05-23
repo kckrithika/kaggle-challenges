@@ -1,0 +1,81 @@
+####################################################################################################
+# Deployment for testing dev versions of Global Identity Data Service
+#
+# Ports should match those defined in the Nginx reverse path proxy config:
+#   https://git.soma.salesforce.com/globalIdentity/nginx-routing/blob/master/conf.nginx
+#
+####################################################################################################
+apiVersion: v1
+system:
+  notifications:
+    email:
+      - ccotofana@salesforce.com
+  functions:
+    - name: gid-data-service-ccotofana
+      count: 1
+      containers:
+        ####################################################################################################
+        # Reverse-path Proxy (Nginx)
+        #   Runs on container port 7022 (as per nginx config)
+        ####################################################################################################
+        - name: rev-path-proxy
+          image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/gid/gid-nginx:latest
+          ports:
+            - containerPort: 7022
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: 7022
+            initialDelaySeconds: 15
+            timeoutSeconds: 10
+            periodSeconds: 30
+          volumeMounts:
+            - mountPath: /var/cache/nginx/client_temp
+              name: cache-volume 
+  
+        ####################################################################################################
+        # GID Service
+        #   Runs on container port 8081 (as per nginx config)
+        #   Management link on 15371
+        ####################################################################################################
+        - name: gid-data-service
+          image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/ccotofana/gid-service:W-6168542
+          env:
+            - name: ca_service_host
+              value: 10.233.180.195
+            - name: security_client_dynamickeystore_cadir
+              value: /certs
+            - name: security_client_dynamickeystore_monitoredDirectory
+              value: /certs
+          ports:
+            - containerPort: 8081
+            - containerPort: 15371
+          livenessProbe:
+            httpGet:
+              path: /manage/health
+              port: 15371
+          volumeMounts:
+            - name: cert
+              mountPath: /certs  
+
+      ####################################################################################################
+      # Volumes needed
+      ####################################################################################################
+      volumes:
+        - name: cache-volume
+          emptyDir: {}
+        - name: cert
+          maddogCert:
+            type: server
+
+  ####################################################################################################
+  # SLB
+  ####################################################################################################
+  loadbalancers:
+    - lbname: gid-data-service-ccotofana-lb
+      function: gid-data-service-ccotofana
+      slbEnabled: true
+      ports:
+         - port: 9090
+           targetport: 7022 
+
