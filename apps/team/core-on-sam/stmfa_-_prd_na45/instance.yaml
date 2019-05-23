@@ -7,7 +7,7 @@ db:
   sid: gkr13-1
   user: happy
 endpoints:
-   httpProxy: public0-proxy1-0-prd.data.sfdc.net:8080
+  httpProxy: public0-proxy1-0-prd.data.sfdc.net:8080
   publicDNSSuffix: core-on-sam-sp2.prd-sam.prd.slb.sfdc.net
 env:
   name: stmfa
