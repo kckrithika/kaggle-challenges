@@ -301,7 +301,7 @@ simple_regex_exception_messages = {
     'BROKEN_PIPE': re.compile(r'Broken pipe'),
     'SPARK_ADMISSION_WEBHOOK': re.compile(r'failed calling admission webhook "webhook\.sparkoperator\.k8s\.io'),
     'REMOTE_CLOSED_CONNECTION': re.compile(r'Remote host closed connection'),
-    'CONNECTION_RESET': re.compile(r'Connection reset')
+    'CONNECTION_RESET': re.compile(r'Connection reset'),
 }
 
 
@@ -329,11 +329,15 @@ def detect_exceptions(combined_output):
         elif m.group('cause'):
             # If this is a cause, prefer it over the previously found exception
 
-            # Exception (ha!) to the rule:
+            # Exception (ha!) to the rule: sometimes the cause is less specific. Don't prefer it in that case. E.g.
             # javax.net.ssl.SSLHandshakeException: Remote host closed connection during handshake
             # Caused by: java.io.EOFException: SSL peer shut down incorrectly
             # "Remote host closed connection" actually seems more useful.
-            if exception_match.group('class') == 'SSLHandshakeException' and m.group('class') == 'EOFException':
+            more_specific_than = {
+                'SSLHandshakeException': 'EOFException',
+                'SocketTimeoutException': 'SocketException',
+            }
+            if more_specific_than.get(exception_match.group('class'), 'NO_MATCH') == m.group('class'):
                 continue
             else:
                 exception_match = m
