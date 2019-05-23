@@ -38,6 +38,7 @@ Analysis result is written to Funnel and can be viewed in Argus:
 TODO: Make a dashboard
 """
 
+from __future__ import print_function
 from argparse import ArgumentParser
 import calendar
 import os
@@ -58,6 +59,7 @@ import logging
 import socket
 
 MAX_TRIES = 10
+THIS_SCRIPT = os.path.basename(__file__)
 
 logging.basicConfig(
     level=logging.INFO,
@@ -418,38 +420,43 @@ if args.metrics:
                               args.sfdchosts, args.watchdog_config)
 
 
+def pretty_result(analysis):
+    # Convert result to format used in the test files
+    # Use bare classification if there is no additional info. Otherwise string representation of named tuple.
+    return json.dumps(analysis, sort_keys=True) if len(analysis) > 1 else analysis[CLASSIFICATION]
+
+
+def log(s):
+    print('+++ [{}] {}'.format(THIS_SCRIPT, s))
+
 if args.command:
+    start = time.time()
     try:
-        print subprocess.check_output(additional_args, stderr=subprocess.STDOUT)
+        log("Executing and analyzing output of: {}".format(" ".join(additional_args)))
+        print(subprocess.check_output(additional_args, stderr=subprocess.STDOUT), end='')
+        log("No errors ({}s)".format(int(time.time() - start)))
         sys.exit(0)
     except subprocess.CalledProcessError as e:
-        print e.output
-        print "Analysis of failure: {}".format(analyze(e.output))
+        print(e.output, end='')
+        log("Analysis of failure [{}] ({}s): {}".format(e.returncode, int(time.time() - start), pretty_result(analyze(e.output))))
         sys.exit(e.returncode)
 elif args.analyze:
     with open(args.analyze, 'r') as file:
-        analysis = analyze(file.read())
-        if len(analysis) == 1:
-            print analysis[CLASSIFICATION]
-        else:
-            print json.dumps(analysis, sort_keys=True)
+        print(pretty_result(analyze(file.read())))
 elif args.test_dir:
     success = True
     for filename in sorted(os.listdir(args.test_dir)):
         with open(os.path.join(args.test_dir, filename), 'r') as file:
             data = file.read()
             expect, contents = data.split('\n', 1)
-            analysis = analyze(contents)
-            # Convert result to format used in the test files
-            # Use bare classification if there is no additional info. Otherwise string representation of named tuple.
-            text_result = json.dumps(analysis, sort_keys=True) if len(analysis) > 1 else analysis[CLASSIFICATION]
+            text_result = pretty_result(analyze(contents))
             if text_result == expect:
-                print (u"\u2713 {}: {}".format(filename, expect))
+                print(u"\u2713 {}: {}".format(filename, expect))
             else:
-                print (u"\u2718 {}: {} expected, {} obtained".format(filename, expect, text_result))
+                print(u"\u2718 {}: {} expected, {} obtained".format(filename, expect, text_result))
                 success = True
     if not success:
         sys.exit(1)
 else:
-    print "Bug: argparse failed to set a known operation mode."
+    log("Bug: argparse failed to set a known operation mode.")
     sys.exit(1)
