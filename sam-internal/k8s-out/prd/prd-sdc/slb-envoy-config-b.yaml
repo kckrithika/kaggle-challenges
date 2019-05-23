@@ -124,13 +124,18 @@ spec:
           name: sfdchosts
         - mountPath: /tlsparams
           name: tlsparams-volume
-      - command:
-        - /runner.sh
-        - /host/data/slb/logs/slb-envoy-config-b
-        - /host/data/slb/slb-envoy-config-b/config/nginx.sentinel
-        env:
+      - env:
         - name: KINGDOM
           value: prd
+        - name: FUNCTION_NAMESPACE
+          valueFrom:
+            fieldRef:
+              apiVersion: v1
+              fieldPath: metadata.namespace
+        - name: SETTINGS_SUPERPOD
+          value: None
+        - name: SETTINGS_PATH
+          value: -.-.prd.-.slb-envoy
         image: ops0-artifactrepo2-0-prd.data.sfdc.net/sfci/servicelibs/sherpa-envoy:e6ae1aef47d40fa3d4a184f8a446cb4bb8c90b71
         livenessProbe:
           httpGet:

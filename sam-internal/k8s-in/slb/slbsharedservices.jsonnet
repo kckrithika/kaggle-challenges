@@ -481,19 +481,35 @@
     } + configs.ipAddressResourceRequest,
   slbEnvoyProxy(proxyImage, proxyFlavor="", tlsConfigEnabled=false): {
       name: "slb-envoy-proxy",
-      // TODO replace with sherpa image
       image: proxyImage,
       env: [
         {
           name: "KINGDOM",
           value: configs.kingdom,
         },
+        {
+          name: "FUNCTION_NAMESPACE",
+          valueFrom: {
+            fieldRef: {
+              apiVersion: "v1",
+              fieldPath: "metadata.namespace",
+            },
+          },
+        },
+        {
+          name: "SETTINGS_SUPERPOD",
+          value: "None",
+        },
+        {
+          name: "SETTINGS_PATH",
+          value: "-.-.prd.-.slb-envoy",
+        },
       ] + (if proxyFlavor != "" then [{ name: "PROXY_FLAVOR", value: proxyFlavor }] else []),
-      command: [
-        "/runner.sh",
-        slbconfigs.logsDir,
-        slbconfigs.nginx.configUpdateSentinelPath,
-      ],
+//      command: [
+//        "/runner.sh",
+//        slbconfigs.logsDir,
+//        slbconfigs.nginx.configUpdateSentinelPath,
+//      ],
       livenessProbe: {
         httpGet: {
           path: "/",
