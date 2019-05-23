@@ -82,7 +82,6 @@ local samreleases = import "samreleases.json";
 
         #[xiao.zhou] Override samapp controller for a bug showed in elastic search in prd-sam
         "prd,prd-sam,samapp-controller,hypersam": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/xiao.zhou/hypersam:20190415_152129.1843c9f94.clean.xiaozhou-ltm2",
-
         },
 
     ### Per-phase image tags have been moved to samreleases.json
