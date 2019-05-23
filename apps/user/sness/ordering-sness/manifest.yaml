@@ -16,7 +16,7 @@ system:
       - name: SFDC_ENVIRONMENT
         value: mesh
       - name: JAVA_OPTS
-        value: "-Dscone.service.name=ordering-service-sness -Dshipping.dest=shipping-sness.service-mesh.localhost.mesh.force.com:5443 -Dshipping.interval=2000 -Dmanagement.server.port=15372"
+        value: "-Dscone.service.name=ordering-sness -Dshipping.dest=shipping-sness.service-mesh.localhost.mesh.force.com:5443 -Dshipping.interval=2000 -Dmanagement.server.port=15372"
       ports:
       - containerPort: 7020
         name: grpc-svc
