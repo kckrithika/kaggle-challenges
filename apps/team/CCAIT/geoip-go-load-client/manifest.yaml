@@ -8,7 +8,7 @@ system:
     count: 1
     containers:
     - name: geoip-go-load
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/ccait/geoip-client:2019.0.0
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/ccait/geoip-client:2019.0.1
       env:
         - name: GEOIP_ADDRESS
           value: geoip-go.ccait.localhost.mesh.force.com:5443
