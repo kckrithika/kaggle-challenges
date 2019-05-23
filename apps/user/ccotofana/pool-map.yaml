@@ -1,27 +1,8 @@
-# File: pool-map.yaml
-#
-# Version 1 format:
-#   apps:
-#     caas-test:
-#       - prd/prd-sam
-#     caas:
-#       - prd/prd-sam
-#
-# Version 2 format:
-#   version: v2
-#   apps:
-#    <app name>:
-#     - name: <pool name>
-#       hostSubList:
-#       - <host name>
+################################################################################################
+# File: pool-map.yaml for user ccotofana
+# 
+################################################################################################
 
-## v1 style
-#apps:
-# my-sam-test:    # this must match the name of your application. It must be lower case.
-#  - prd/prd-sam  # the SAM Sandbox uses the prd/prd-sam host cluster
-#                 # you can also specify other pools
-
-# v2 style
 version: v2
 apps:
   # Single-pod path-based proxy test
@@ -29,21 +10,10 @@ apps:
   gid-business-tier:
     - name: prd/prd-sam
 
-   # Multi-pod path-based proxy test
-#  # PRD-Dev: Fake business-tier SAM/k pod (hosts GID service, Entity service, etc.)
-#  gid-business-tier:
-#    - name: prd/prd-sam_cloudatlas_dir
-#      hostSubList:
-#      - test0shared0-samminionatlasdir2-1-prd.eng.sfdc.net
-#
-#  # PRD-Dev: Fake PDM directory service SAM/k pod Topomaster
-#  gid-ds-topopaster:
-#    - prd/prd-sam_cloudatlas_dir
-#    hostSubList:
-#      - test0shared0-samminionatlasdir1-2-prd.eng.sfdc.net
-#
-#  # PRD-Dev: Fake PDM directory service SAM/k pod DS nodes
-#  #TODO
+  # CC dev testing of GID Data Service
+  # Deployed to XRD because the required custom Cloud Atlas image is only available in that environment
+  gid-data-service:
+    - name: xrd/xrd-sampool
 
   
 
