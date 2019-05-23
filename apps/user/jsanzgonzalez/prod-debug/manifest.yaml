@@ -11,6 +11,9 @@ system:
         ports:
         - containerPort: 15372
           name: scone-mgmt
+        volumeMounts:
+          - name: tls-client-cert
+            mountPath: /client-certs
         livenessProbe:
           initialDelaySeconds: 30
           httpGet:
@@ -44,7 +47,7 @@ system:
 
     # The volumes to mount for shipping logs to splunk
     # General rule is to use path that satisfies the pattern: /home/sfdc-*/logs/**/*.json
-    #volumes:
-    #- name: tls-client-cert
-    #  maddogCert:
-    #    type: client
+    volumes:
+    - name: tls-client-cert
+      maddogCert:
+        type: client
