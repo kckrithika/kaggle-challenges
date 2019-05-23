@@ -5,7 +5,7 @@ system:
     count: 4 
     containers:
     - name: pbsgeo
-      image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-gcp/dva/pbspectrum:6afabe656f69a7fe6b156d39c4c522665eb2e0db
+      image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-gcp/dva/pbspectrum:b4d15a43e215dc52891bc3246f172287319be979
       ports:
       - containerPort: 7022
       livenessProbe:
@@ -21,7 +21,9 @@ system:
       - mountPath: /home/sfdc/logs
         name: logs
       - mountPath: /home/sdfc/unpackeddata
-        name: unpackeddata   
+        name: unpackeddata
+      - mountPath: /etc/pki_service/sfdc
+        name: pbsgeocert
     - name: sherpa
       # Use the latest release version from https://git.soma.salesforce.com/servicelibs/serpa-envoy/releases
       image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-gcp/sfci/servicelibs/sherpa-envoy:1.0.7
@@ -78,7 +80,10 @@ system:
         path: /mnt/disks/ssd0/var/log/pbsgeo/logs
     - name: unpackeddata        
       hostPath:
-        path: /mnt/disks/ssd0/data/pbsgeo/unpackeddata 
+        path: /mnt/disks/ssd0/data/pbsgeo/unpackeddata
+    - name: pbsgeocert
+      maddogCert:
+        type: client
   loadbalancers:
   - lbname: pbsgeolb
     function: default
