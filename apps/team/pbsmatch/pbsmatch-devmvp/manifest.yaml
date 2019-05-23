@@ -5,7 +5,7 @@ system:
     count: 4
     containers:
     - name: pbsmatch
-      image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-gcp/dva/pbspectrum:f1146c1174c80bfa2ae64478f19e1751615f1a57
+      image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-gcp/dva/pbspectrum:c4ec099abc6aa4a1407f76ddea721460dab0c075
       ports:
       - containerPort: 7022
       livenessProbe:
