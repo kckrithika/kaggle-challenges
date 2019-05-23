@@ -6,14 +6,14 @@ system:
   - name: prod-debug
     count: 1
     containers:
+      
+
+
       - name: prod-debug-service
         image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/jsanzgonzalez/prod-debug:jsanzgonzalez-20190523-1ff40bf
         ports:
         - containerPort: 15372
           name: scone-mgmt
-        volumeMounts:
-          - name: tls-client-cert
-            mountPath: /client-certs
         livenessProbe:
           initialDelaySeconds: 30
           httpGet:
@@ -24,6 +24,9 @@ system:
           httpGet:
             path: /manage/ready
             port: 15372
+      
+
+
       - name: envoy-sidecar
         image: sfci/servicelibs/sherpa-envoy:1.0.7
         livenessProbe:
@@ -32,22 +35,42 @@ system:
             - ./bin/is-alive
           initialDelaySeconds: 20
           periodSeconds: 5
-      #- name: envoy-sidecar-config
-      #  image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/casam/cyan-config:49d21a
-      #  livenessProbe:
-      #    exec:
-      #      command:
-      #      - cat
-      #      - /tmp/live
-      #    initialDelaySeconds: 10
-      #    periodSeconds: 5
-      #  volumeMounts:
-      #    - name: tls-client-cert
-      #      mountPath: /client-certs
+        ports:
+        - containerPort: 13065
+        - containerPort: 13066
+        - containerPort: 15373
+        readinessProbe:
+          exec:
+            command:
+            - ./bin/is-ready
+          initialDelaySeconds: 15
+          periodSeconds: 5
+        volumeMounts:
+          - mountPath: /cyan-config
+            name: envoy-config-volume
+          - mountPath: /certs/cert-client
+            name: tls-client-cert
+      
+
+
+    #  - name: envoy-sidecar-config
+    #    image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/casam/cyan-config:49d21a
+    #    livenessProbe:
+    #      exec:
+    #        command:
+    #        - cat
+    #        - /tmp/live
+    #      initialDelaySeconds: 10
+    #      periodSeconds: 5
+    #    volumeMounts:
+    #      - name: tls-client-cert
+    #        mountPath: /client-certs
 
     # The volumes to mount for shipping logs to splunk
     # General rule is to use path that satisfies the pattern: /home/sfdc-*/logs/**/*.json
     volumes:
-    - name: tls-client-cert
-      maddogCert:
-        type: client
+      - maddogCert:
+          type: client
+        name: tls-client-cert
+      - emptyDir: {}
+        name: envoy-config-volume
