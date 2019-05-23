@@ -300,7 +300,8 @@ simple_regex_exception_messages = {
     'ETCD_NO_LEADER': re.compile(r'client: etcd member .* has no leader'),
     'BROKEN_PIPE': re.compile(r'Broken pipe'),
     'SPARK_ADMISSION_WEBHOOK': re.compile(r'failed calling admission webhook "webhook\.sparkoperator\.k8s\.io'),
-    'REMOTE_CLOSED_CONNECTION': re.compile(r'Remote host closed connection')
+    'REMOTE_CLOSED_CONNECTION': re.compile(r'Remote host closed connection'),
+    'CONNECTION_RESET': re.compile(r'Connection reset')
 }
 
 
