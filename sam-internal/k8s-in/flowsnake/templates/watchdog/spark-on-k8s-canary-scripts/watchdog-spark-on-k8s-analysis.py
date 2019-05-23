@@ -418,7 +418,7 @@ elif args.analyze:
             print json.dumps(analysis, sort_keys=True)
 elif args.test_dir:
     success = True
-    for filename in os.listdir(args.test_dir):
+    for filename in sorted(os.listdir(args.test_dir)):
         with open(os.path.join(args.test_dir, filename), 'r') as file:
             data = file.read()
             expect, contents = data.split('\n', 1)
