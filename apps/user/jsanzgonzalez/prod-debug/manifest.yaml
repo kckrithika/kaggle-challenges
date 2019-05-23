@@ -39,12 +39,15 @@ system:
         - containerPort: 13065
         - containerPort: 13066
         - containerPort: 15373
-        readinessProbe:
-          exec:
-            command:
-            - ./bin/is-ready
-          initialDelaySeconds: 15
-          periodSeconds: 5
+        
+        #Fails: Readiness probe failed: listeners http code: 200 listeners: [] server state: "state": "LIVE",
+        #readinessProbe:
+        #  exec:
+        #    command:
+        #    - ./bin/is-ready
+        #  initialDelaySeconds: 15
+        #  periodSeconds: 5
+        
         volumeMounts:
           - mountPath: /cyan-config
             name: envoy-config-volume
