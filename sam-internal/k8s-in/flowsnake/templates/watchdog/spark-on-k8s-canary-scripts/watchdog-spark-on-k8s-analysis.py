@@ -300,6 +300,7 @@ simple_regex_exception_messages = {
     'ETCD_NO_LEADER': re.compile(r'client: etcd member .* has no leader'),
     'BROKEN_PIPE': re.compile(r'Broken pipe'),
     'SPARK_ADMISSION_WEBHOOK': re.compile(r'failed calling admission webhook "webhook\.sparkoperator\.k8s\.io'),
+    'REMOTE_CLOSED_CONNECTION': re.compile(r'Remote host closed connection')
 }
 
 
@@ -326,7 +327,15 @@ def detect_exceptions(combined_output):
             exception_match = m
         elif m.group('cause'):
             # If this is a cause, prefer it over the previously found exception
-            exception_match = m
+
+            # Exception (ha!) to the rule:
+            # javax.net.ssl.SSLHandshakeException: Remote host closed connection during handshake
+            # Caused by: java.io.EOFException: SSL peer shut down incorrectly
+            # "Remote host closed connection" actually seems more useful.
+            if exception_match.group('class') == 'SSLHandshakeException' and m.group('class') == 'EOFException':
+                continue
+            else:
+                exception_match = m
         else:
             # Otherwise we're done; subsequent exception blocks are probably just cascading errors
             break
