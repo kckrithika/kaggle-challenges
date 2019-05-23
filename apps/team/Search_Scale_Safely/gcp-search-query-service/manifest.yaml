@@ -5,7 +5,7 @@ system:
     count: 2
     containers:
     - name: search-query-service
-      image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-gcp/sfci/searchdev/search-query-execution-platform:5.2-RC.1
+      image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-gcp/sfci/searchdev/search-query-execution-platform:5.3-RC.1
       command: ["java", "-Xdebug", "-Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=8955", "-jar", "service.jar"]
       args:
       - --modelstore.repo.models=model_repository_root/models
