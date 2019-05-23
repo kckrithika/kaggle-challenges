@@ -25,9 +25,11 @@
     maxDeleteDefault: 10,
     trustedProxyDefault: "0.0.0.0/0",
 
+    // These are deployment names.
     nginxProxyName: "slb-nginx-config-b",
     hsmNginxProxyName: "slb-hsm-nginx",
     envoyProxyName: "slb-envoy",
+    envoyProxyConfigDeploymentName: "slb-envoy-config-b",
     # The aggregated portal only makes sense to deploy in prd, where we have access and can link to the pseudo-api servers.
     isSlbAggregatedPortalEstate: (estate == "prd-sam"),
 
