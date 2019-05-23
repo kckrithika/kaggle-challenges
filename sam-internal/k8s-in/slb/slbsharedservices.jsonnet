@@ -405,6 +405,118 @@
       successThreshold: 4,
     },
   },
+  slbEnvoyConfig(deleteLimitOverride=0, vipInterfaceName="", tlsConfigEnabled=false, waitForRealsvrCfg=false): {
+      ports: [
+        {
+          name: "slb-nginx-port",  // TODO (Something?)
+          containerPort: portconfigs.slb.slbNginxControlPort,
+        },
+      ],
+      name: "slb-envoy-config",
+      image: slbimages.hyperslb,
+      command: [
+        "/sdn/slb-envoy-config",
+//        TODO Mike to add parameters
+//        "--target=" + slbconfigs.nginx.containerTargetDir,
+//        "--netInterfaceName=eth0",
+//        "--metricsEndpoint=" + configs.funnelVIP,
+//        "--log_dir=" + slbconfigs.logsDir,
+//        "--maxDeleteServiceCount=" + std.max((if configs.kingdom == "xrd" then 150 else 0), slbconfigs.maxDeleteLimit(deleteLimitOverride)),
+//        configs.sfdchosts_arg,
+//        "--client.serverInterface=lo",
+//        "--hostnameOverride=$(NODE_NAME)",
+//        "--httpconfig.trustedProxies=" + slbconfigs.perCluster.trustedProxies[configs.estate],
+//        "--iprange.InternalIpRange=" + slbconfigs.perCluster.internalIpRange[configs.estate],
+      ] + (if waitForRealsvrCfg then [
+        "--control.realsvrCfgSentinel=" + realsvrCfgSentinel,
+        "--control.sentinelExpiration=60s",
+//        "--featureflagWaitForRealsvrCfg=true",
+      ] else [])
+      + slbconfigs.getNodeApiClientSocketSettings()
+      + [
+        slbconfigs.nginx.reloadSentinelParam,
+//        "--httpconfig.custCertsDir=" + slbconfigs.nginx.customerCertsPath,
+//        "--checkDuplicateVips=true",
+//        "--httpconfig.accessLogFormat=main",
+        "--commonconfig.riseCount=5",
+        "--commonconfig.fallCount=2",
+        "--commonconfig.healthTimeout=3000",
+      ] + (if std.length(vipInterfaceName) > 0 then [
+        # The default vip interface name is tunl0
+        "--vipInterfaceName=" + vipInterfaceName,
+      ] else [])
+      + [slbconfigs.nginx.configUpdateSentinelParam]
+      + (if tlsConfigEnabled then [
+        "--httpconfig.tlsConfigEnabled=true",
+        "--httpconfig.allowedCiphers=ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-RSA-AES256-GCM-SHA384:ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES128-GCM-SHA256:ECDHE-ECDSA-AES256-SHA384:ECDHE-ECDSA-AES128-SHA256:ECDHE-RSA-AES256-SHA384:ECDHE-RSA-AES128-SHA256:AES256-GCM-SHA384:AES128-GCM-SHA256:AES256-SHA256:AES128-SHA256:AES256-SHA:AES128-SHA",
+        "--httpconfig.allowedEcdhCurves=secp521r1:secp384r1:prime256v1",
+        "--httpconfig.dhParamsFile=/tlsparams/dhparams.pem",
+      ] else [])
+      + [
+//        "--commonconfig.accessLogDirectory=" + slbconfigs.logsDir,
+//        "--tcpconfig.accessLogFormat=basic",
+//        "--httpconfig.accessLogDirectory=" + slbconfigs.logsDir,
+      ],
+      volumeMounts: std.prune([
+        // Probably fine since we get a generic (i.e. non-nginx-specific) directory path
+        slbconfigs.nginx.target_config_volume_mount,
+        slbconfigs.slb_volume_mount,
+        slbconfigs.logs_volume_mount,
+        configs.sfdchosts_volume_mount,
+        if tlsConfigEnabled then slbconfigs.nginx.tlsparams_volume_mount else {},
+      ]),
+      securityContext: {
+        privileged: true,
+      },
+      env: [
+        slbconfigs.node_name_env,
+        configs.kube_config_env,
+      ],
+    } + configs.ipAddressResourceRequest,
+  slbEnvoyProxy(proxyImage, proxyFlavor="", tlsConfigEnabled=false): {
+      name: "slb-envoy-proxy",
+      image: proxyImage,
+      env: [
+        {
+          name: "KINGDOM",
+          value: configs.kingdom,
+        },
+      ] + (if proxyFlavor != "" then [{ name: "PROXY_FLAVOR", value: proxyFlavor }] else []),
+      command: [
+        "/runner.sh",
+        slbconfigs.logsDir,
+        slbconfigs.nginx.configUpdateSentinelPath,
+      ],
+      livenessProbe: {
+        httpGet: {
+          path: "/",
+          // Same port is okay for Envoy?
+          port: portconfigs.slb.slbNginxProxyLivenessProbePort,
+        },
+        initialDelaySeconds: 15,
+        periodSeconds: 10,
+      },
+      volumeMounts: std.prune([
+        slbconfigs.nginx.nginx_config_volume_mount,
+        slbconfigs.logs_volume_mount,
+        slbconfigs.nginx.customer_certs_volume_mount,
+      ]
+      + madkub.madkubSlbCertVolumeMounts(slbconfigs.nginx.certDirs)
+      + [
+        slbconfigs.slb_volume_mount,
+        if tlsConfigEnabled then slbconfigs.nginx.tlsparams_volume_mount else {},
+        if proxyFlavor == "hsm" then slbconfigs.kmsconfig_volume_mount else {},
+      ]),
+      readinessProbe: {
+        httpGet: {
+          path: "/",
+          port: portconfigs.slb.slbNginxProxyLivenessProbePort,
+        },
+        initialDelaySeconds: 2,
+        periodSeconds: 5,
+        successThreshold: 4,
+      },
+    },
   slbUnknownPodCleanup(name, namespace): {
     name: "slb-cleanup-unknownpods" + name,
     image: slbimages.hyperslb,
