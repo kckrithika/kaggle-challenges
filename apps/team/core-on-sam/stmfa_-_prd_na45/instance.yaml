@@ -9,6 +9,7 @@ db:
 endpoints:
   httpProxy: public0-proxy1-0-prd.data.sfdc.net:8080
   publicDNSSuffix: core-on-sam-sp2.prd-sam.prd.slb.sfdc.net
+  publicHostName: us45-sfproxy-lb.core-on-sam-sp2.prd-sam.prd.slb.sfdc.net
 env:
   name: stmfa
   region: prd
@@ -23,6 +24,6 @@ images:
   switchboard: sfci/servicelibs/switchboard:26c3cdce981042262b9f0f26c226cab1841bf9fd
   switchboardEnvoy: sfci/frontend-gateway/sfproxy:bc7e1fa
 name: na45
-nonce: 1558561941120800178
+nonce: 1558649485941734000
 replicaCount: 1
 settingsSuperPod: sp2
