@@ -190,7 +190,8 @@ simple_regex_tests = {
     'SPARK_CONTEXT_INIT_ERROR': re.compile(r'Error initializing SparkContext'),
     # This one might be due to IP exhaustion; need to check kubelet logs. https://salesforce.quip.com/i0ThASBMoHqf#VCTACATj2IO
     'DOCKER_SANDBOX': re.compile(r'Failed create pod sandbox'),
-    'KUBECTL_MAX_TRIES_TIMEOUT': re.compile(r'Invocation \([0-9/]*\) of \[kubectl .*\] failed \(timed out \([0-9]*s\)\). Giving up.')
+    'KUBECTL_MAX_TRIES_TIMEOUT': re.compile(r'Invocation \([0-9/]*\) of \[kubectl .*\] failed \(timed out \([0-9]*s\)\). Giving up.'),
+    'DRIVER_EVICTED': re.compile(r'NodeControllerEviction.*node-controller.*Marking for deletion Pod .*-driver'),
 }
 
 r_spark_submit_failed = re.compile(r'failed to run spark-submit')
