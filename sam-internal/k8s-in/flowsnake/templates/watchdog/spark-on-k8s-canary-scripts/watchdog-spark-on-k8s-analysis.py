@@ -192,6 +192,7 @@ simple_regex_tests = {
     'DOCKER_SANDBOX': re.compile(r'Failed create pod sandbox'),
     'KUBECTL_MAX_TRIES_TIMEOUT': re.compile(r'Invocation \([0-9/]*\) of \[kubectl .*\] failed \(timed out \([0-9]*s\)\). Giving up.'),
     'DRIVER_EVICTED': re.compile(r'NodeControllerEviction.*node-controller.*Marking for deletion Pod .*-driver'),
+    'MADKUB_INIT_EMPTY_DIR': re.compile(r'Error: failed to start container "madkub-init": .*kubernetes.io~empty-dir/datacerts'),
 }
 
 r_spark_submit_failed = re.compile(r'failed to run spark-submit')
