@@ -298,6 +298,7 @@ simple_regex_exception_messages = {
     # Driver pod's init container errors out. Cause TBD.
     'ETCD_NO_LEADER': re.compile(r'client: etcd member .* has no leader'),
     'BROKEN_PIPE': re.compile(r'Broken pipe'),
+    'SPARK_ADMISSION_WEBHOOK': re.compile(r'failed calling admission webhook "webhook\.sparkoperator\.k8s\.io'),
 }
 
 
