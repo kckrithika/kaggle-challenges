@@ -35,7 +35,7 @@ system:
           ## HBASE
         - name: HBASE_ENVIRONMENT
           value: kingdom-test
-        -name: HBASE_NAMESPACE
+        - name: HBASE_NAMESPACE
           value: CRE
         - name: HBASE_DATACENTER
           value: prd
