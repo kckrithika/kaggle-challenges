@@ -54,6 +54,8 @@ system:
         value: na45
       - name: DEPLOYMENT
         value: G
+      - name: ZDT
+        value: true
       - name: CASAM_HOST_NAME
         valueFrom:
           fieldRef:
@@ -62,10 +64,11 @@ system:
       livenessProbe:
         exec:
           command:
-          - echo
-          - HEALTHY
-        initialDelaySeconds: 480
-        periodSeconds: 1
+          - /home/sfdc/salesforce/casam/bin/live_probe.sh
+        failureThreshold: 99999
+        initialDelaySeconds: 120
+        periodSeconds: 5
+        timeoutSeconds: 5
       name: coreapp
       ports:
       - containerPort: 8998
@@ -178,7 +181,7 @@ system:
         maxSurge: 200%
         maxUnavailable: 0
       type: RollingUpdate
-    terminationGracePeriodSeconds: 500
+    terminationGracePeriodSeconds: 120
     volumes:
     - emptyDir: {}
       name: envoy-config-volume
@@ -202,7 +205,7 @@ system:
   - containers:
     - env:
       - name: NONCE
-        value: 1558649485941733888
+        value: 1558650855729818880
       - name: DRY_RUN
         value: 0
       - name: CHATTER_GROUP_NAME
@@ -217,6 +220,8 @@ system:
         value: MINOR
       - name: MAJOR_RELEASE_NUMBER
         value: 222
+      - name: DB_EDITION
+        value: 222
       - name: MINOR_RELEASE_NUMBER
         value: 0
       - name: PATCH_RELEASE_NUMBER
@@ -230,8 +235,6 @@ system:
       - name: DB_SID
         value: gkr13-1
       - name: ENABLE_DB_SCHEMA_UPGRADE
-        value: 0
-      - name: SET_DEFAULT_ORACLE_EDITION
         value: 0
       - name: OLD_DWARF
         value: sneezy
@@ -255,6 +258,8 @@ system:
         value: public0-proxy1-0-prd.data.sfdc.net:8080
       - name: SKIP_KAIJU
         value: 0
+      - name: ZDT
+        value: true
       - name: KAIJU_REFOCUS_GETRESULT_URL
         value: https://refocus.hk.salesforce.com/v1/samples/
       - name: KAIJU_RUNTIME_TIMEOUT_MS
@@ -292,7 +297,7 @@ system:
       serviceName: sequencer
     name: na45-sequencer-prd
     progressDeadlineSeconds: 300
-    terminationGracePeriodSeconds: 500
+    terminationGracePeriodSeconds: 60
     volumes:
     - maddogCert:
         type: client
@@ -380,13 +385,6 @@ system:
           port: 15372
         initialDelaySeconds: 15
         periodSeconds: 5
-      resources:
-        limits:
-          cpu: 8
-          memory: 6Gi
-        requests:
-          cpu: 8
-          memory: 6Gi
       volumeMounts:
       - mountPath: /home/sfdc-switchboard/sherpa-envoy-config-volume
         name: envoy-config-volume
@@ -417,13 +415,6 @@ system:
           - ./bin/is-ready
         initialDelaySeconds: 15
         periodSeconds: 5
-      resources:
-        limits:
-          cpu: 1
-          memory: 1Gi
-        requests:
-          cpu: 1
-          memory: 1Gi
       volumeMounts:
       - mountPath: /switchboard-config
         name: envoy-config-volume
