@@ -16,7 +16,7 @@ system:
         secretName: blacktab-credentials
     containers:
     - name: sip-em 
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/sip/em:sip-em-20190522T1700
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/sip/em:sip-em-20190522T1730
       livenessProbe:
         exec:
           command: ["true"]
