@@ -18,10 +18,10 @@ system:
     # Service Mesh / Envoy / Sherpa
     #####################################################################################
     - name: sherpa-cloudatlas-client
-      image: sfci/servicelibs/sherpa-envoy:1.0.2
+      image: sfci/servicelibs/sherpa-envoy:1.0.7
       env:
       - name: SFDC_ENVIRONMENT
-        value: "xrd"
+        value: "prod"
       resources:
         limits: { cpu: "1", memory: "1Gi" }
         requests: { cpu: "1", memory: "1Gi" }
@@ -60,7 +60,7 @@ system:
       image: sfci/servicelibs/beacon:7ad9e771192cd0b3e43393eea2e1e5c1de81dfda
       env:
       - name: SFDC_ENVIRONMENT
-        value: "stmfa"
+        value: "prod"
       volumeMounts:
       - mountPath: /log
         name: logvolbeacon
