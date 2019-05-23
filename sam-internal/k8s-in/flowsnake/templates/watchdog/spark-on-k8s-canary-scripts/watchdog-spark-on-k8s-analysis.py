@@ -15,12 +15,12 @@ $ flowsnake/templates/watchdog/spark-on-k8s-canary-scripts/watchdog-spark-on-k8s
 ✓ timeout_executor_slow_pod_creation_001.txt: TIMEOUT_EXECUTOR_SLOW_POD_CREATION
 ✓ driver_init_error_001.txt: DRIVER_INIT_ERROR
 ✓ etcd_no_leader_001.txt: {"class": "TIMEOUT_EXECUTOR_SLOW_POD_CREATION", "exception": "KubernetesClientException", "exception_cause": "ETCD_NO_LEADER"}
-✓ executor_allocator_did_not_run_002.txt: EXECUTOR_ALLOCATOR_DID_NOT_RUN
+✓ exec_allocator_did_not_run_002.txt: EXECUTOR_ALLOCATOR_DID_NOT_RUN
 ✓ etcd_no_leader_002.txt: {"class": "SPARK_SUBMIT_FAILED", "exception": "KubernetesClientException", "exception_cause": "ETCD_NO_LEADER"}
-✓ executor_allocator_did_not_run_001.txt: EXECUTOR_ALLOCATOR_DID_NOT_RUN
+✓ exec_allocator_did_not_run_001.txt: EXECUTOR_ALLOCATOR_DID_NOT_RUN
 ✓ timeout_executor_slow_pod_creation_002.txt: TIMEOUT_EXECUTOR_SLOW_POD_CREATION
 ✓ timeout_executor_slow_pod_creation_003.txt: TIMEOUT_EXECUTOR_SLOW_POD_CREATION
-✓ timeout_executor_allocator_late_001.txt: TIMEOUT_EXECUTOR_ALLOCATOR_LATE
+✓ timeout_exec_allocator_late_001.txt: TIMEOUT_EXECUTOR_ALLOCATOR_LATE
 ✓ scheduler_assume_pod_001.txt: SCHEDULER_ASSUME_POD
 
 Example: as above, but also writing metrics to Funnel:
@@ -200,12 +200,12 @@ simple_regex_tests = {
 r_spark_submit_failed = re.compile(r'failed to run spark-submit')
 r_driver_context_submitted = re.compile(r'SparkContext.* - Submitted application')
 r_driver_context_jar_added = re.compile(r'SparkContext.* - Added JAR file:')
-r_executor_allocator_ran_time = re.compile(r'([- :0-9]*) INFO.*ExecutorPodsAllocator.* - Going to request [0-9]* executors from Kubernetes')
+r_exec_allocator_ran_time = re.compile(r'([- :0-9]*) INFO.*ExecutorPodsAllocator.* - Going to request [0-9]* executors from Kubernetes')
 r_timeout_running = re.compile(r'Timeout reached. Aborting wait for SparkApplication .* even though in non-terminal state RUNNING.')
 #r_ driver_running_event = re.compile(r'SparkDriverRunning\s+([0-9]+)([sm])\s+spark-operator\s+Driver .* is running')
 r_driver_running_epoch = re.compile(r'\[([0-9]+)\] .* - Pod change detected: .*-driver changed to Running.')
 r_exec_running_epoch = re.compile(r'\[([0-9]+)\] .* - Pod change detected: .*-exec-[0-9]+ changed to Running.')
-
+r_exec_registered_time = re.compile(r'([- :0-9]*) INFO.*KubernetesClusterSchedulerBackend.*Registered executor')
 
 def spark_log_time_to_epoch(spark_time):
     """
@@ -241,10 +241,10 @@ def analyze_helper(combined_output):
                 # Check for failure cases that occur after the application JAR has been loaded
                 if r_driver_context_jar_added.search(combined_output):
                     # Requesting executors is the next thing to do after adding the application JAR. Unknown why it sometimes doesn't happen.
-                    m_executor_allocator_ran_time = r_executor_allocator_ran_time.search(combined_output)
-                    if m_executor_allocator_ran_time:
+                    m_exec_allocator_ran_time = r_exec_allocator_ran_time.search(combined_output)
+                    if m_exec_allocator_ran_time:
                         # Figure out when the executors were requested
-                        allocator_epoch = spark_log_time_to_epoch(m_executor_allocator_ran_time.group(1))
+                        allocator_epoch = spark_log_time_to_epoch(m_exec_allocator_ran_time.group(1))
                         if allocator_epoch - driver_running_epoch >= 180:
                             return "TIMEOUT_EXECUTOR_ALLOCATOR_LATE"
                         else:
@@ -269,11 +269,19 @@ def analyze_helper(combined_output):
                                 # In the happy case, it's ~25 seconds from requesting executors to work beginning.
 
                                 # As a first pass, let's say that if the time from requesting executor to running executor
-                                # pod is 60s, then that is the cause of the test failure.
+                                # pod exceeds 60s, then that is the cause of the test failure.
 
                                 if exec_running_epoch - allocator_epoch >= 60:
                                     return "TIMEOUT_EXECUTOR_SLOW_POD_CREATION"
                                 else:
+                                    m_exec_registered_time = r_exec_registered_time.search(combined_output)
+                                    if m_exec_registered_time:
+                                        # Figure out when the executor registered itself
+                                        exec_registered_epoch = spark_log_time_to_epoch(m_exec_registered_time.group(1))
+                                        # As a first pass, let's say that if the time from running executor to registered executor
+                                        # exceeds 60s, then that is the cause of the test failure.
+                                        if exec_registered_epoch - exec_running_epoch >= 60:
+                                            return "TIMEOUT_EXECUTOR_SLOW_REGISTRATION"
                                     # "UNKNOWN" because we haven't yet collected an example of this
                                     # Check for delay between pod running and driver logging task start, perhaps?
                                     return "UNKNOWN_TIMEOUT_EXECUTOR_RUNNING"
