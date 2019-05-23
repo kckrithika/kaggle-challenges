@@ -297,6 +297,8 @@
     },
   } else {}),
   slbNginxConfig(deleteLimitOverride=0, vipInterfaceName="", tlsConfigEnabled=false, waitForRealsvrCfg=false): {
+    // TODO this can likely be deleted
+    // TODO https://computecloud.slack.com/archives/G340CE86R/p1558639955057700
     ports: [
       {
         name: "slb-nginx-port",
@@ -406,17 +408,10 @@
     },
   },
   slbEnvoyConfig(deleteLimitOverride=0, vipInterfaceName="", tlsConfigEnabled=false, waitForRealsvrCfg=false): {
-      ports: [
-        {
-          name: "slb-nginx-port",  // TODO (Something?)
-          containerPort: portconfigs.slb.slbNginxControlPort,
-        },
-      ],
       name: "slb-envoy-config",
       image: slbimages.hyperslb,
       command: [
         "/sdn/slb-envoy-config",
-//        TODO Start example
         "--target=" + slbconfigs.nginx.containerTargetDir,
         "--netInterfaceName=eth0",
         "--livenessProbePort=8080",
@@ -425,11 +420,10 @@
         "--commonoptions.metricsendpoint=" + configs.funnelVIP,
         "--envoyNodeID=$(NODE_NAME)",
         "--envoyNodeNamespace=sam-system",
-//        TODO End example
         "--log_dir=" + slbconfigs.logsDir,
 //        "--maxDeleteServiceCount=" + std.max((if configs.kingdom == "xrd" then 150 else 0), slbconfigs.maxDeleteLimit(deleteLimitOverride)),
         configs.sfdchosts_arg,
-        "--hostnameOverride=$(NODE_NAME)",
+        "--commonoptions.hostname=$(NODE_NAME)",
 //        "--httpconfig.trustedProxies=" + slbconfigs.perCluster.trustedProxies[configs.estate],
 //        "--iprange.InternalIpRange=" + slbconfigs.perCluster.internalIpRange[configs.estate],
       ]
@@ -510,6 +504,11 @@
 //        slbconfigs.logsDir,
 //        slbconfigs.nginx.configUpdateSentinelPath,
 //      ],
+      command: [
+        "/envoy",
+        "--config-path",
+        slbconfigs.nginx.containerTargetDir + "/envoy-bootstrap.yaml",
+        ],
       livenessProbe: {
         httpGet: {
           path: "/",
