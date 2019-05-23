@@ -50,7 +50,7 @@ system:
       readinessProbe:
         exec:
           command:
-          - "/home/sfdc-sherpa/bin/is-ready"
+          - /bin/true
         initialDelaySeconds: 110
         periodSeconds: 5
     #####################################################################################
@@ -122,7 +122,7 @@ system:
     # C2C service
     #####################################################################################
     - name: c2c-service
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/gid/c2c-service:20190520135220-b16c1e0
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/gid/c2c-service:20190523133332-3fe3411
       imagePullPolicy: Always
       env:
         - name: server_port
