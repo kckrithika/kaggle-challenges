@@ -11,14 +11,18 @@ system:
     - name: cre-control-plane-ccp-func
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cre-fusion/services/control-plane:1.8.0-freeze-001.0.release-1.8.3df673e.8
       env:
-        # ENGINE/DDS FLOWSNAKE ARTIFACTS ( Most frequently changed )
+        ####################################################################################################
+        ############################   ENGINE/DDS FLOWSNAKE ARTIFACTS ( Most frequently changed ) ##########
+        ####################################################################################################
         - name: IMPORT_FLOWSNAKE_ARTIFACT
           value: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cre/cre-engine:1.8.0.0.develop-1.8.7c330be.132
         - name: SAVE_FLOWSNAKE_ARTIFACT
           value: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cre/cre-dds-spark:1.8.0.0.develop-1.8.1abaf41.52
         - name: EXPORT_FLOWSNAKE_ARTIFACT
           value: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cre/cre-dds-spark:1.8.0.0.develop-1.8.1abaf41.52
-        # GLOBAL SHARED VALUES
+        ####################################################################################################
+        ####################################### GLOBAL SHARED VALUES #######################################
+        ####################################################################################################
         - name: SFDC_ENVIRONMENT
           value: ccp-func
           ## KAFKA
@@ -36,26 +40,34 @@ system:
           ## FLOWSNAKE
         - name: MAX_FLOWSNAKE_ENVIRONMENTS
           value: 25
-        # IMPORT environment variables
+        ####################################################################################################
+        ####################################### IMPORT environment variables ###############################
+        ####################################################################################################
         - name: CRE_ENGINE_MP_ENV
           value: prd
         - name: IMPORT_CRE_APPLICATION_NAME
           value: cre-engine
         - name: IMPORT_K4A_VAULT
           value: cre-engine-dev
-        # SAVE environment variables
+        ####################################################################################################
+        ####################################### SAVE environment variables ###############################
+        ####################################################################################################
         - name: CRE_DDS_ENV
           value: Prd
         - name: SAVE_CRE_APPLICATION_NAME
           value: cre-engine-ccp-func
         - name: SAVE_K4A_VAULT
           value: cre-dds-dev
-        # EXPORT environment variables
+        ####################################################################################################
+        ####################################### EXPORT environment variables ###############################
+        ####################################################################################################
         - name: EXPORT_CRE_APPLICATION_NAME
           value: cre-engine-ccp-func
         - name: EXPORT_FLOWSNAKE_ARTIFACT
           value: cre-engine-ccp-func
-        # APP CONFIG ENV VARIABLES
+        ####################################################################################################
+        ##################################### APP Config environment variables #############################
+        ####################################################################################################
         - name: FLOWSNAKE_ENDPOINT
           value: https://dev0shared0-flowsnakeiottest1-0-prd.data.sfdc.net
           ## MADDOG (MAD DOG)
@@ -69,7 +81,9 @@ system:
           ## Stream Processor
         - name: STREAM_PROCESSING_ENDPOINT
           value: cre-sp-ccp-func.retail-cre.localhost.mesh.force.com:5443
-        # PERF PROVIDED
+        ####################################################################################################
+        ####################################### PERF environment variables #################################
+        ####################################################################################################
         - name: JVM_ARGS
           value: "-Djava.util.concurrent.ForkJoinPool.common.parallelism=8
                   -verbose:gc -XX:+PrintGCDateStamps -XX:+PrintHeapAtGC
