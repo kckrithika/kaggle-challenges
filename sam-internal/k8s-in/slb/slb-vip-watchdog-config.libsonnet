@@ -134,6 +134,10 @@ local vipwdConfig = {
       "vir512-1-0-xrd*",
       // 2019/05/03 - mgrass: Flappy upstreams timing out requests make VIP watchdog sad.
       "ceph0-dash-prd.slb.sfdc.net:*",
+      // 2019/05/22 - pperger: 1x healthy by port check, 1x healthy by health check results in
+      //              SLA-eligible VIP despite despite no single backend being 100% healthy.
+      // W-6178236
+      "horizon-xrd*",
     ],
     vivips:
     [
