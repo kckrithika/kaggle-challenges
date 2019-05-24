@@ -24,9 +24,8 @@ system:
       - containerPort: 7022
         name: http-svc
       livenessProbe:
-        httpGet:
-          path: /v1/health
-          port: 7014
+        exec:
+          command: ["/bin/true"]
         initialDelaySeconds: 30
     - name: beacon
       # https://git.soma.salesforce.com/services/sfdc-bazel/tree/master/projects/sidecars/beacon#docker-image
