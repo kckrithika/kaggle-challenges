@@ -142,8 +142,8 @@ spec:
         name: slb-envoy-proxy
         readinessProbe:
           httpGet:
-            path: /
-            port: 12080
+            path: /liveness-probe
+            port: 8080
           initialDelaySeconds: 2
           periodSeconds: 5
           successThreshold: 4
