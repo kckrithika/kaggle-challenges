@@ -190,13 +190,13 @@ pod_log() {
 declare -A PREVIOUS_POD_REPORTS # pod name -> "<pod_status> on host <nodeName>"
 report_pod_changes() {
     unset POD_REPORTS
-    declare -A POD_REPORTS # pod name -> "<pod_name> <pod_status> on host <nodeName>"
+    declare -A POD_REPORTS # pod name -> "<pod_status> on host <nodeName>"
     # Fetch pod names and their status for this SparkApplication
     # Note that the status from kubectl get contains a more informative single-term status than is available in the JSON.
     # The JSON contains the phase (Pending -> Running -> Completed), which does not mention Init, and the detailed
     # conditions and containerStatuses lists, which are difficult to summarize.
     # Relevant pods for our spark application have label metadata.labels.spark-app-selector=$APP_ID
-    # Reading command ouptut line by line: https://unix.stackexchange.com/a/52027
+    # Reading command output line by line: https://unix.stackexchange.com/a/52027
     while read POD_REPORT; do
         POD_NAME=$(echo $POD_REPORT | cut -d' ' -f1)
         REPORT=$(echo $POD_REPORT | cut -d' ' -f1 --complement)
@@ -231,13 +231,20 @@ report_pod_changes() {
         PREVIOUS_POD_REPORTS["$POD_NAME"]=${POD_REPORTS["${POD_NAME}"]}
     done;
     for POD_NAME in ${EXISTING_POD_NAMES}; do
-        # The hostname won't change, so only report the pod status. ${VAR%% *} means delete everything after the first space
-        # space. Thus "<pod_name> <pod_status> on host <nodeName>" becomes "<pod_name>"
+        # The hostname won't change, so only report the pod status. ${VAR%% *} means delete everything after the first
+        # space. Thus "<pod_status> on host <nodeName>" becomes "<pod_status>"
         # http://tldp.org/LDP/abs/html/string-manipulation.html
+        # Except if the previous status was 'Pending on host <none>', in which case this is the first opportunity to log
+        # the host name.
         OLD_REPORT="${PREVIOUS_POD_REPORTS[${POD_NAME}]}"
         NEW_REPORT="${POD_REPORTS[${POD_NAME}]}"
         if [[ "${OLD_REPORT}" != "${NEW_REPORT}" ]]; then
-            log "Pod change detected: ${POD_NAME} changed to ${NEW_REPORT%% *} (previously ${OLD_REPORT%% *})."
+            if [[ ${OLD_REPORT} == *"on host <none>" ]] && [[ ${NEW_REPORT} != *"on host <none>" ]]; then
+                REPORT_DISPLAY="${NEW_REPORT}"
+            else
+                REPORT_DISPLAY="${NEW_REPORT%% *}"
+            fi
+            log "Pod change detected: ${POD_NAME} changed to ${REPORT_DISPLAY} (previously ${OLD_REPORT%% *})."
             PREVIOUS_POD_REPORTS["$POD_NAME"]="${NEW_REPORT}"
         fi
     done;

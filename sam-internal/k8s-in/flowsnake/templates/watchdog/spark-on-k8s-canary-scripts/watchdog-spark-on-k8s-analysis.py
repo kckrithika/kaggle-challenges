@@ -3,8 +3,10 @@
 
 """
 Runs the Spark Operator Watchdog script (e.g. watchdog-spark-on-k8s.sh). Performs analysis on the script's output to
-to classify failed runs by type of failure. Output and error code are then returned unmodified to the caller
-(cliChecker Watchdog Go code).
+to classify failed runs by type of failure. Output and error code are then returned (with minimal additional decoration)
+to the caller (i.e. to the cliChecker Watchdog Go code). Additionally computes timing metrics (e.g. interval between
+Spark Driver requesting an exectuor and executor pod running). These timing metrics are reported for successful runs
+as well.
 
 The purpose of this program is to make it easier to determine which types of failures are the primary causes of
 script failures (and thus Flowsnake Service availability gaps). Determining what went wrong with a failed run requires
@@ -29,11 +31,26 @@ $ flowsnake/templates/watchdog/spark-on-k8s-canary-scripts/watchdog-spark-on-k8s
 Example: as above, but writing to Funnel using defaults appropriate for local development:
 $ flowsnake/templates/watchdog/spark-on-k8s-canary-scripts/watchdog-spark-on-k8s-analysis.py --test-dir flowsnake/templates/watchdog/spark-on-k8s-canary-scripts/tests --metrics --dev
 
-Metrics written with the --dev flag can be found using Argus expression
--15m:sam.watchdog.CORP.NONE.flowsnake-local-test:cliChecker.SparkOperatorTest.FailureAnalysis{class=*,exception=*,exception_cause=*}:count:1m-count
+Metrics written with the --dev flag can be found using Argus expressions
+GROUPBYTAG(-15m:sam.watchdog.CORP.NONE.flowsnake-local-test:cliChecker.SparkOperatorTest.FailureAnalysis:none, #class#, #exception#, #exception_cause#, #SUM#)
+or, to also group by app:
+GROUPBYTAG(-15m:sam.watchdog.CORP.NONE.flowsnake-local-test:cliChecker.SparkOperatorTest.FailureAnalysis:none, #app#, #class#, #exception#, #exception_cause#, #SUM#)
+and for timing:
+GROUPBYTAG(-15m:sam.watchdog.CORP.NONE.flowsnake-local-test:cliChecker.SparkOperatorTest.Times.*:none, #app#, #succeeded#, #AVERAGE#)
 
-Analysis result is written to Funnel and can be viewed in Argus:
--15m:sam.watchdog.*.NONE.*flowsnake*:cliChecker.SparkOperatorTest.FailureAnalysis{class=*,exception=*,exception_cause=*}:count:1m-count
+The GROUPBYTAG facilitates display of optional tags per
+https://gus.lightning.force.com/lightning/r/0D5B000000sQcBnKAK/view
+
+Real results from live fleets can be found using Argus expressions
+GROUPBYTAG(-15m:sam.watchdog.*.NONE.*flowsnake*:cliChecker.SparkOperatorTest.FailureAnalysis:none, #class#, #exception#, #exception_cause#, #SUM#)
+GROUPBYTAG(-15m:sam.watchdog.*.NONE.*flowsnake*:cliChecker.SparkOperatorTest.FailureAnalysis:none, #app#, #class#, #exception#, #exception_cause#, #SUM#)
+GROUPBYTAG(-15m:sam.watchdog.*.NONE.*flowsnake*:cliChecker.SparkOperatorTest.Times.*:none, #app#, #succeeded#, #AVERAGE#)
+
+Or to separate out estates and/or data centers, include the #estate# and/or #dc# tag in the grouping:
+GROUPBYTAG(-15m:sam.watchdog.*.NONE.*flowsnake*:cliChecker.SparkOperatorTest.FailureAnalysis:none, #esate#, #class#, #exception#, #exception_cause#, #SUM#)
+
+To view all metric and tag permutations, omit grouping and aggregation:
+-15m:sam.watchdog.*.NONE.*flowsnake*:cliChecker.SparkOperatorTest.FailureAnalysis:none
 
 TODO: Make a dashboard
 """
@@ -46,7 +63,39 @@ import re
 import subprocess
 import sys
 
-# ------------ metrics-related code adapted from
+
+"""
+Failure analysis metric. Recorded only when the result is a failure. Value always is 1. Metric tags indicate
+analysis of what went wrong.
+"""
+FAILURE_ANALYSIS_METRIC_NAME = 'FailureAnalysis'
+#
+# Analysis dict keys
+# The result of the analysis is a string,string map, which is then sent to Argus as tags on a metric.
+CLASSIFICATION = 'class'  # Overall classification of the failure
+EXCEPTION = 'exception'  # Java class of most pertinent Exception, if any
+EXCEPTION_CAUSE = 'exception_cause'  # Determined cause of the Exception
+ANALYSIS_KEYS = [CLASSIFICATION, EXCEPTION, EXCEPTION_CAUSE]
+
+
+"""
+Timing analysis metrics. Recorded whenever the data could be obtained, including for successful runs. Value is time in
+seconds. Each time has its own metric.
+"""
+TIMING_METRIC_SUCCESS_TAG = 'succeeded'
+
+# Interval between the creating of the Spark Application and detecting the driver pod. 
+TIMING_METRIC_NAME_DRIVER_POD_DETECTED = 'AppCreationToDriverPodDetected'
+# Interval between pending driver pod and scheduled driver pod. Only present when the driver got stuck pending instead of being directly created.
+TIMING_METRIC_NAME_DRIVER_POD_PENDING_DELAY = 'DriverPodSchedulingDelay'
+
+
+TAG_APP = 'app'  # Name of the Spark Application. Same across concurrent watchdog instances. Roughly represents feature being tested.
+TAG_APP_ID = 'app_id'  # Id of the Spark Application. Unique across concurrent executions but recurring over time.
+TAG_ESTATE = 'estate'  # Estate this metric was emitted from ("pod" of the Argus scope)
+TAG_DC = 'dc'  # Datacenter this metric was emitted from
+
+# ------------ Funnel client code adapted from
 # https://git.soma.salesforce.com/monitoring/collectd-write_funnel_py/blob/18ef838f5a6221450e51ee2d7beb984adb0a3dc7/funnel_writer.py
 # ------------
 import httplib
@@ -181,6 +230,8 @@ parser.add_argument("--metrics", action='store_true',
                     help="If set, metrics will be written indicating the analysis result")
 parser.add_argument("--dev", action='store_true',
                     help="If set, metrics can be written without specifying --sfdchosts or --watchdog-config. Uses hard-coded PRD Funnel endpoint, dc:CORP, superpod:NONE, pod:flowsnake-local-test.")
+parser.add_argument("--estate",
+                    help="Override estate (Argus pod) to use when determining metrics configuration. For use in combination with --dev")
 args, additional_args = parser.parse_known_args()
 
 simple_regex_tests = {
@@ -197,6 +248,42 @@ simple_regex_tests = {
     'MADKUB_INIT_EMPTY_DIR': re.compile(r'Error: failed to start container "madkub-init": .*kubernetes.io~empty-dir/datacerts'),
 }
 
+metrics_enabled = False
+if args.metrics:
+    hostname = args.hostname if args.hostname else socket.gethostname()
+    if args.dev:
+        funnel_client = FunnelClient('ajna0-funnel1-0-prd.data.sfdc.net:80')
+        estate = args.estate if args.estate else 'flowsnake-local-test'
+        metric_context = MetricContext('CORP', 'NONE', estate, hostname)
+        metrics_enabled = True
+    elif not args.sfdchosts or not args.watchdog_config:
+        logging.error("Cannot emit metrics: --sfdchosts and --watchdog-config are both required (or --dev)")
+    else:
+        if args.estate:
+            logging.error("Cannot specify estate except in combination with --dev")
+        else:
+            try:
+                with open(args.sfdchosts) as f:
+                    host_data = json.load(f)
+                    try:
+                        host_entry = next(e for e in host_data['hosts'] if e['hostname'] == hostname)
+                        kingdom = host_entry['kingdom'].upper()
+                        superpod = host_entry['superpod'].upper()
+                        pod = host_entry['estate']
+                    except StopIteration:
+                        raise StandardError("Cannot emit metrics: host %s not found in sfdchosts" % hostname)
+                with open(args.watchdog_config) as f:
+                    funnel_endpoint = json.load(f)['funnelEndpoint']
+                funnel_client = FunnelClient(funnel_endpoint)
+                metric_context = MetricContext(kingdom, superpod, pod, hostname)
+                metrics_enabled = True
+            except StandardError as e:
+                logging.exception("Cannot emit metrics: error parsing sfdchosts %s and watchdog-config %s",
+                                  args.sfdchosts, args.watchdog_config)
+
+r_app_created = re.compile(r'\[(?P<epoch>[0-9]+)\] .* - sparkapplication "(?P<app>.*)" created')
+r_driver_pod_creation_event = re.compile(r'\[(?P<epoch>[0-9]+)\] .* - Pod change detected: .*-driver: (?P<state>.*) on host.*')
+r_driver_pod_change_event = re.compile(r'\[(?P<epoch>[0-9]+)\] .* - Pod change detected: .*-driver changed to (?P<state>[^ ]*).*\(previously (?P<previous>.*)\)')
 r_spark_submit_failed = re.compile(r'failed to run spark-submit')
 r_driver_context_submitted = re.compile(r'SparkContext.* - Submitted application')
 r_driver_context_jar_added = re.compile(r'SparkContext.* - Added JAR file:')
@@ -207,6 +294,20 @@ r_driver_running_epoch = re.compile(r'\[([0-9]+)\] .* - Pod change detected: .*-
 r_exec_running_epoch = re.compile(r'\[([0-9]+)\] .* - Pod change detected: .*-exec-[0-9]+ changed to Running.')
 r_exec_registered_time = re.compile(r'([- :0-9]*) INFO.*KubernetesClusterSchedulerBackend.*Registered executor')
 
+# Regex for fully-qualified Java class name https://stackoverflow.com/a/5205467/708883
+r_exception = re.compile(r'(?P<cause>(Caused by: )?)(?P<package>[a-zA-Z_$][a-zA-Z\d_$]*\.)*(?P<class>[a-zA-Z_$][a-zA-Z\d_$]*Exception): (?P<message>.*)')
+simple_regex_exception_messages = {
+    # Driver pod's init container errors out. Cause TBD.
+    'ETCD_NO_LEADER': re.compile(r'client: etcd member .* has no leader'),
+    'BROKEN_PIPE': re.compile(r'Broken pipe'),
+    'SPARK_ADMISSION_WEBHOOK': re.compile(r'failed calling admission webhook "webhook\.sparkoperator\.k8s\.io'),
+    'REMOTE_CLOSED_CONNECTION': re.compile(r'Remote host closed connection'),
+    'CONNECTION_RESET': re.compile(r'Connection reset'),
+}
+
+app = None
+app_id = None
+
 def spark_log_time_to_epoch(spark_time):
     """
     Convert time format of Spark logs to unix epoch (seconds)
@@ -216,39 +317,91 @@ def spark_log_time_to_epoch(spark_time):
     return calendar.timegm(time.strptime(spark_time, "%Y-%m-%d %H:%M:%S"))
 
 
-# Analysis dict keys
-CLASSIFICATION = 'class'
-EXCEPTION = 'exception'
-EXCEPTION_CAUSE = 'exception_cause'
-ANALYSIS_KEYS = [CLASSIFICATION, EXCEPTION, EXCEPTION_CAUSE]
+def compute_times(output, succeeded=False):
+    """
+    Calculates time intervals between events in provided output. Side effect: sets global app_id and app variables.
+    :param output: Output from spark operator execution
+    :param succeeded: Whether output represents a successful execution
+    :return: metric -> int (seconds) dictionary
+    """
+    result = {}
+    global app, app_id
+    ERROR_STATES = {'Terminating', 'Unknown', 'Error'}
+    # Identify app creation
+    m_app_created = r_app_created.search(output)
+    if m_app_created:
+        app_id = m_app_created.group('app')
+        if app_id:
+            app = '-'.join(app_id.split('-')[0:-1])  # Assume app-name-uniqueid format
+        app_created = int(m_app_created.group('epoch'))
+        # Identify driver pod creation
+        m_driver_pod_creation = r_driver_pod_creation_event.search(output)
+        if m_driver_pod_creation:
+            driver_pod_detected = int(m_driver_pod_creation.group('epoch'))
+            result[TIMING_METRIC_NAME_DRIVER_POD_DETECTED] = driver_pod_detected - app_created
+            driver_event_iterator = r_driver_pod_change_event.finditer(output)
+            for m in driver_event_iterator:
+                if m.group('previous') == 'Pending' and not m.group('state') in ERROR_STATES:
+                    result[TIMING_METRIC_NAME_DRIVER_POD_PENDING_DELAY] = int(m.group('epoch')) - driver_pod_detected
+    if metrics_enabled:
+        emit_timing_metrics(result, succeeded)
+    return result
 
 
-def analyze_helper(combined_output):
+def add_standard_tags(tags):
+    if app_id:
+        tags[TAG_APP_ID] = app_id
+    if app:
+        tags[TAG_APP] = app
+    tags[TAG_ESTATE] = metric_context.pod
+    tags[TAG_DC] = metric_context.datacenter
+    return tags
+
+
+def emit_timing_metrics(times, succeeded):
+    tags = add_standard_tags({
+        TIMING_METRIC_SUCCESS_TAG: "OK" if succeeded else "FAIL"
+    })
+    m_list = [
+        Metric('sam.watchdog', ['cliChecker', 'SparkOperatorTest', 'Times', metric], seconds, int(time.time()), metric_context, tags)
+        for metric, seconds in times.iteritems()]
+    try:
+        funnel_client.publish_batch(m_list)
+    except Exception as e:
+        logging.exception('Failed to send %d metrics to funnel' % len(m_list))
+
+
+def analyze_helper(output):
+    """
+    Classifies failure in provided output
+    :param output: output from failed spark operator execution
+    :return: class (as string)
+    """
     for code, regex in simple_regex_tests.iteritems():
-        if regex.search(combined_output):
+        if regex.search(output):
             return code
 
     # Check for termination due to timeout.
-    if r_timeout_running.search(combined_output):
+    if r_timeout_running.search(output):
 
         # Check for failures after the driver is running
-        m = r_driver_running_epoch.search(combined_output)
+        m = r_driver_running_epoch.search(output)
         if m:
             # Check for failure cases that occur after the driver is runnning
             driver_running_epoch = int(m.group(1))
             # This block digs into driver logs
-            if r_driver_context_submitted.search(combined_output):
+            if r_driver_context_submitted.search(output):
                 # Check for failure cases that occur after the application JAR has been loaded
-                if r_driver_context_jar_added.search(combined_output):
+                if r_driver_context_jar_added.search(output):
                     # Requesting executors is the next thing to do after adding the application JAR. Unknown why it sometimes doesn't happen.
-                    m_exec_allocator_ran_time = r_exec_allocator_ran_time.search(combined_output)
+                    m_exec_allocator_ran_time = r_exec_allocator_ran_time.search(output)
                     if m_exec_allocator_ran_time:
                         # Figure out when the executors were requested
                         allocator_epoch = spark_log_time_to_epoch(m_exec_allocator_ran_time.group(1))
                         if allocator_epoch - driver_running_epoch >= 180:
                             return "TIMEOUT_EXECUTOR_ALLOCATOR_LATE"
                         else:
-                            m = r_exec_running_epoch.search(combined_output)
+                            m = r_exec_running_epoch.search(output)
                             if m:
                                 exec_running_epoch = int(m.group(1))
                                 # If we can't figure out a specific reason, look into what part was slow.
@@ -274,7 +427,7 @@ def analyze_helper(combined_output):
                                 if exec_running_epoch - allocator_epoch >= 60:
                                     return "TIMEOUT_EXECUTOR_SLOW_POD_CREATION"
                                 else:
-                                    m_exec_registered_time = r_exec_registered_time.search(combined_output)
+                                    m_exec_registered_time = r_exec_registered_time.search(output)
                                     if m_exec_registered_time:
                                         # Figure out when the executor registered itself
                                         exec_registered_epoch = spark_log_time_to_epoch(m_exec_registered_time.group(1))
@@ -300,26 +453,15 @@ def analyze_helper(combined_output):
             return "UNRECOGNIZED_TIMEOUT_DRIVER_NOT_RUNNING"
     else:
         # Failure was *not* due to a timeout.
-        if r_spark_submit_failed.search(combined_output):
+        if r_spark_submit_failed.search(output):
             return "SPARK_SUBMIT_FAILED"  # Exception classification will provide reason
         else:
             return "UNRECOGNIZED_NON_TIMEOUT"
 
-# Regex for fully-qualified Java class name https://stackoverflow.com/a/5205467/708883
-r_exception = re.compile(r'(?P<cause>(Caused by: )?)(?P<package>[a-zA-Z_$][a-zA-Z\d_$]*\.)*(?P<class>[a-zA-Z_$][a-zA-Z\d_$]*Exception): (?P<message>.*)')
-simple_regex_exception_messages = {
-    # Driver pod's init container errors out. Cause TBD.
-    'ETCD_NO_LEADER': re.compile(r'client: etcd member .* has no leader'),
-    'BROKEN_PIPE': re.compile(r'Broken pipe'),
-    'SPARK_ADMISSION_WEBHOOK': re.compile(r'failed calling admission webhook "webhook\.sparkoperator\.k8s\.io'),
-    'REMOTE_CLOSED_CONNECTION': re.compile(r'Remote host closed connection'),
-    'CONNECTION_RESET': re.compile(r'Connection reset'),
-}
 
-
-def detect_exceptions(combined_output):
+def detect_exceptions(output):
     exception = {}
-    match_iterator = r_exception.finditer(combined_output)
+    match_iterator = r_exception.finditer(output)
     # heuristic: assume that the first Exception is the most interesting, but if it has logged "Caused by" lines, use
     # the final reported cause. E.g. BazException is selected from the following:
     # FooException: foo
@@ -367,65 +509,27 @@ def detect_exceptions(combined_output):
     return exception
 
 
-def analyze(combined_output):
+def analyze(output):
     analysis = {
-        CLASSIFICATION: analyze_helper(combined_output)
+        CLASSIFICATION: analyze_helper(output)
     }
-    analysis.update(detect_exceptions(combined_output))
+    analysis.update(detect_exceptions(output))
     if metrics_enabled:
-        emit_metrics(analysis)
+        emit_failure_analysis_metrics(analysis)
     return analysis
 
 
-def emit_metrics(analysis):
-    funnel_client = FunnelClient(funnel_endpoint)
-    metric_context = MetricContext(kingdom, superpod, pod, hostname)
-    # Argus doesn't query well when some metrics tags aren't always present. So populate with a null value.
-    # https://gus.lightning.force.com/lightning/r/0D5B000000sQcBnKAK/view
-    analysis_nulled = dict([(key, analysis.get(key, "None")) for key in ANALYSIS_KEYS])
+def emit_failure_analysis_metrics(analysis):
+    # Although the GROUPBY magic as described in the example metric queries can work around optional tags, it seems
+    # expedient to just always populate the tags to prevent Argus surprises in the future.
+    tags = add_standard_tags(dict([(key, analysis.get(key, "None")) for key in ANALYSIS_KEYS]))
     m_list = [
-        Metric('sam.watchdog', ['cliChecker', 'SparkOperatorTest', 'FailureAnalysis'], 1, int(time.time()), metric_context, analysis_nulled)
+        Metric('sam.watchdog', ['cliChecker', 'SparkOperatorTest', FAILURE_ANALYSIS_METRIC_NAME], 1, int(time.time()), metric_context, tags)
     ]
     try:
         funnel_client.publish_batch(m_list)
     except Exception as e:
         logging.exception('Failed to send %d metrics to funnel' % len(m_list))
-
-
-metrics_enabled = False
-if args.metrics:
-    if args.hostname:
-        hostname = args.hostname
-    else:
-        hostname = socket.gethostname()
-    if args.dev:
-        kingdom = 'CORP'
-        # kingdom = 'PRD'
-        superpod = 'NONE'
-        pod = 'flowsnake-local-test'
-        # pod = 'prd-data-flowsnake_test'
-        # host = 'fs1shared0-flowsnakemastertest1-3-prd.eng.sfdc.net'
-        funnel_endpoint = 'ajna0-funnel1-0-prd.data.sfdc.net:80'
-        metrics_enabled = True
-    elif not args.sfdchosts or not args.watchdog_config:
-        logging.error("Cannot emit metrics: --sfdchosts and --watchdog-config are both required (or --dev)")
-    else:
-        try:
-            with open(args.sfdchosts) as f:
-                host_data = json.load(f)
-                try:
-                    host_entry = next(e for e in host_data['hosts'] if e['hostname'] == hostname)
-                    kingdom = host_entry['kingdom'].upper()
-                    superpod = host_entry['superpod'].upper()
-                    pod = host_entry['estate']
-                except StopIteration:
-                    raise StandardError("Cannot emit metrics: host %s not found in sfdchosts" % hostname)
-            with open(args.watchdog_config) as f:
-                funnel_endpoint = json.load(f)['funnelEndpoint']
-            metrics_enabled = True
-        except StandardError as e:
-            logging.exception("Cannot emit metrics: error parsing sfdchosts %s and watchdog-config %s",
-                              args.sfdchosts, args.watchdog_config)
 
 
 def pretty_result(analysis):
@@ -437,27 +541,35 @@ def pretty_result(analysis):
 def log(s):
     print('+++ [{}] {}'.format(THIS_SCRIPT, s))
 
+
 if args.command:
     start = time.time()
     try:
         log("Executing and analyzing output of: {}".format(" ".join(additional_args)))
         print(subprocess.check_output(additional_args, stderr=subprocess.STDOUT), end='')
+        times = compute_times(subprocess.STDOUT, succeeded=True)
+        log("Times: ")
         log("No errors ({}s)".format(int(time.time() - start)))
         sys.exit(0)
     except subprocess.CalledProcessError as e:
         print(e.output, end='')
+        times = compute_times(e.output)
         log("Analysis of failure [{}] ({}s): {}".format(e.returncode, int(time.time() - start), pretty_result(analyze(e.output))))
+        log("Times: {}".format(json.dumps(times, sort_keys=True)))
         sys.exit(e.returncode)
 elif args.analyze:
     with open(args.analyze, 'r') as file:
-        print(pretty_result(analyze(file.read())))
+        output = file.read()
+        times = compute_times(output)
+        print(pretty_result(analyze(output)))
+        print("Times: {}".format(json.dumps(times, sort_keys=True)))
 elif args.test_dir:
     success = True
     for filename in sorted(os.listdir(args.test_dir)):
         with open(os.path.join(args.test_dir, filename), 'r') as file:
-            data = file.read()
-            expect, contents = data.split('\n', 1)
-            text_result = pretty_result(analyze(contents))
+            expect, output = file.read().split('\n', 1)
+            compute_times(output)
+            text_result = pretty_result(analyze(output))
             if text_result == expect:
                 print(u"\u2713 {}: {}".format(filename, expect))
             else:
