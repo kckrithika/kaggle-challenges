@@ -40,21 +40,21 @@ system:
        - name : TENANT_ADMIN_NAME
          value: "admin@local"
        - name : ACDS_POLICY
-         value: "io.griddable.policy:{\"KARTHIK\":{}}"
+         value: "io.griddable.policy:{\"ACDS_TEST\":{}}"
        - name : ACDS_DB_CONFIG
          value: "{
     \"additionalParams\" : {
         \"useServiceName\" : \"AUTO\",
         \"useStatementBatching\" : false
     },
-    \"host\" : \"10.215.34.141\",
-    \"id\" : \"target_db\",
-    \"instanceName\" : \"DATABASE\",
+    \"host\" : \"10.225.241.81\",
+    \"id\" : \"targetdb\",
+    \"instanceName\" : \"EE\",
     \"password\" : \"basic:xRdN9n9+Yto2hHDW/sldaA==\",
     \"port\" : 1521,
     \"type\" : \"oracle\",
-    \"user\" : \"KARTHIK\"}"
-       - name : TENANR_ADMIN_PASSWORD
+    \"user\" : \"ACDS_TEST\"}"
+       - name : TENANT_ADMIN_NAME
          value: "admin@local" 
        - name : TENANT_ADMIN_PASSWORD
          value: "synchronize"
@@ -127,13 +127,13 @@ system:
        - name : ACDS_REPL_CONSUMER_DB_CONFIG
          value: "targetdb"
        - name : ACDS_CONSUMER_POLICY
-         value: "replicate_all:1"
+         value: "consumer_policy"
        - name : ACDS_START_RELAY
          value: "no"
        - name : ACDS_START_CLIENT
          value: "yes"     
        - name : DUMMY_VARIABLE
-         value: "DUMMY_VARIABLE_3"
+         value: "DUMMY_VARIABLE_4"
      volumes:
 #     - name: consumer-persistent-conf
 #       hostPath:

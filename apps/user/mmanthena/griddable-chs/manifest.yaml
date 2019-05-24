@@ -40,20 +40,20 @@ system:
        - name : LOGGING_STDERR_LEVEL
          value: all
        - name : ACDS_POLICY
-         value: "io.griddable.policy:{\"KARTHIK\":{}}"
+         value: "io.griddable.policy:{\"ACDS_TEST\":{}}"
        - name : ACDS_DB_CONFIG
          value: "{
     \"additionalParams\" : {
         \"useServiceName\" : \"AUTO\",
         \"useStatementBatching\" : false
     },
-    \"host\" : \"10.215.34.141\",
-    \"id\" : \"target_db\",
-    \"instanceName\" : \"DATABASE\",
+    \"host\" : \"10.225.240.220\",
+    \"id\" : \"srcdb\",
+    \"instanceName\" : \"EE\",
     \"password\" : \"basic:xRdN9n9+Yto2hHDW/sldaA==\",
     \"port\" : 1521,
     \"type\" : \"oracle\",
-    \"user\" : \"KARTHIK\"}"
+    \"user\" : \"ACDS_TEST\"}"
        - name : TENANT_ADMIN_NAME
          value: "admin@local"
        - name : TENANR_ADMIN_PASSWORD
