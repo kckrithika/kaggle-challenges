@@ -49,7 +49,7 @@ system:
             command:
             - cat
             - /tmp/live
-          initialDelaySeconds: 10
+          initialDelaySeconds: 3600
           periodSeconds: 5
         volumeMounts:
           - mountPath: /home/sfdc-sherpa/sherpa-envoy-config-volume
