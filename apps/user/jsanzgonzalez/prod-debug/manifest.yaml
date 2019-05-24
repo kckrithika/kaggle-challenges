@@ -40,7 +40,9 @@ system:
         - containerPort: 13065
         - containerPort: 13066
         - containerPort: 15373
-        
+        - args:
+          - --template
+          - /cyan-config/tls-terminator-config.yaml.template
 
 
         #Fails: Readiness probe failed: listeners http code: 200 listeners: [] server state: "state": "LIVE",
