@@ -47,10 +47,18 @@ GROUPBYTAG(-15m:sam.watchdog.*.NONE.*flowsnake*:cliChecker.SparkOperatorTest.Fai
 GROUPBYTAG(-15m:sam.watchdog.*.NONE.*flowsnake*:cliChecker.SparkOperatorTest.Times.*:none, #app#, #succeeded#, #AVERAGE#)
 
 Or to separate out estates and/or data centers, include the #estate# and/or #dc# tag in the grouping:
-GROUPBYTAG(-15m:sam.watchdog.*.NONE.*flowsnake*:cliChecker.SparkOperatorTest.FailureAnalysis:none, #esate#, #class#, #exception#, #exception_cause#, #SUM#)
+GROUPBYTAG(-15m:sam.watchdog.*.NONE.*flowsnake*:cliChecker.SparkOperatorTest.FailureAnalysis:none, #estate#, #class#, #exception#, #exception_cause#, #SUM#)
 
 To view all metric and tag permutations, omit grouping and aggregation:
 -15m:sam.watchdog.*.NONE.*flowsnake*:cliChecker.SparkOperatorTest.FailureAnalysis:none
+
+To view timing metrics:
+-15m:sam.watchdog.*.NONE.*flowsnake*:cliChecker.SparkOperatorTest.Times.*:avg
+Or, to separate out times per spark application:
+-15m:sam.watchdog.*.NONE.*flowsnake*:cliChecker.SparkOperatorTest.Times.*{app=*}:avg
+
+To view all metric and tag permutations, omit grouping and aggregation:
+-15m:sam.watchdog.*.NONE.*flowsnake*:cliChecker.SparkOperatorTest.Times.*:none
 
 TODO: Make a dashboard
 """
@@ -88,6 +96,26 @@ TIMING_METRIC_SUCCESS_TAG = 'succeeded'
 TIMING_METRIC_NAME_DRIVER_POD_DETECTED = 'AppCreationToDriverPodDetected'
 # Interval between pending driver pod and scheduled driver pod. Only present when the driver got stuck pending instead of being directly created.
 TIMING_METRIC_NAME_DRIVER_POD_PENDING_DELAY = 'DriverPodSchedulingDelay'
+# Interval between driver pod scheduled and driver pod Running
+TIMING_METRIC_NAME_DRIVER_POD_INITIALIZATION = 'DriverPodInitialization'
+# Interval between driver pod Running and driver logging that the Spark App was submitted
+TIMING_METRIC_NAME_DRIVER_APP_SUBMIT = 'DriverPodAppSubmit'
+# Interval between driver pod logging that the Spark App was submitted and that the JAR was added. (Believe that JAR added is logged after all prep work prior to requesting executors has been completed)
+TIMING_METRIC_NAME_DRIVER_APP_LOAD = 'DriverPodAppLoad'
+# Interval between driver pod logging that an executors was requested and that it starts doing work
+TIMING_METRIC_NAME_EXECUTOR_WAIT_TOTAL = 'ExecutorTotalWait'
+# Interval between the driver requesting an executor and detecting the executor pod.
+TIMING_METRIC_NAME_EXEC_POD_DETECTED = 'ExecutorAllocatorToPodDetected'
+# Interval between pending executor pod and scheduled executor pod. Only present when the executor got stuck pending instead of being directly created.
+TIMING_METRIC_NAME_EXEC_POD_PENDING_DELAY = 'ExecutorPodSchedulingDelay'
+# Interval between executor pod scheduled and executor pod Running
+TIMING_METRIC_NAME_EXEC_POD_INITIALIZATION = 'ExecutorPodInitialization'
+# Interval between executor pod running and executor picking up work from the driver
+TIMING_METRIC_NAME_EXEC_REGISTRATION = 'ExecutorPodRegistration'
+# Interval between executor picking up work from the driver and job completion
+TIMING_METRIC_NAME_JOB_RUNTIME = 'JobRunTime'
+# Interval between job completion and watchdog script completion
+TIMING_METRIC_NAME_CLEAN_UP = 'CleanUp'
 
 
 TAG_APP = 'app'  # Name of the Spark Application. Same across concurrent watchdog instances. Roughly represents feature being tested.
@@ -283,16 +311,23 @@ if args.metrics:
 
 r_app_created = re.compile(r'\[(?P<epoch>[0-9]+)\] .* - sparkapplication "(?P<app>.*)" created')
 r_driver_pod_creation_event = re.compile(r'\[(?P<epoch>[0-9]+)\] .* - Pod change detected: .*-driver: (?P<state>.*) on host.*')
-r_driver_pod_change_event = re.compile(r'\[(?P<epoch>[0-9]+)\] .* - Pod change detected: .*-driver changed to (?P<state>[^ ]*).*\(previously (?P<previous>.*)\)')
+r_driver_pod_creation_event_pending = re.compile(r'\[(?P<epoch>[0-9]+)\] .* - Pod change detected: .*-driver: Pending on host.*')
+r_driver_pod_initializing = re.compile(r'\[(?P<epoch>[0-9]+)\] .* - Pod change detected: .*-driver(:| changed to) (PodInitializing|Init)')
+r_driver_pod_running = re.compile(r'\[(?P<epoch>[0-9]+)\] .* - Pod change detected: .*-driver(:| changed to) Running')
+# r_driver_pod_change_event = re.compile(r'\[(?P<epoch>[0-9]+)\] .* - Pod change detected: .*-driver changed to (?P<state>[^ ]*).*\(previously (?P<previous>.*)\)')
 r_spark_submit_failed = re.compile(r'failed to run spark-submit')
-r_driver_context_submitted = re.compile(r'SparkContext.* - Submitted application')
-r_driver_context_jar_added = re.compile(r'SparkContext.* - Added JAR file:')
-r_exec_allocator_ran_time = re.compile(r'([- :0-9]*) INFO.*ExecutorPodsAllocator.* - Going to request [0-9]* executors from Kubernetes')
+r_driver_context_app_submitted = re.compile(r'(?P<spark_time>[- :0-9]*) INFO.*SparkContext.* - Submitted application')
+r_driver_context_jar_added = re.compile(r'(?P<spark_time>[- :0-9]*) INFO.*SparkContext.* - Added JAR file:')
+r_exec_allocator = re.compile(r'(?P<spark_time>[- :0-9]*) INFO.*ExecutorPodsAllocator.* - Going to request [0-9]* executors from Kubernetes')
 r_timeout_running = re.compile(r'Timeout reached. Aborting wait for SparkApplication .* even though in non-terminal state RUNNING.')
 #r_ driver_running_event = re.compile(r'SparkDriverRunning\s+([0-9]+)([sm])\s+spark-operator\s+Driver .* is running')
-r_driver_running_epoch = re.compile(r'\[([0-9]+)\] .* - Pod change detected: .*-driver changed to Running.')
-r_exec_running_epoch = re.compile(r'\[([0-9]+)\] .* - Pod change detected: .*-exec-[0-9]+ changed to Running.')
-r_exec_registered_time = re.compile(r'([- :0-9]*) INFO.*KubernetesClusterSchedulerBackend.*Registered executor')
+r_exec_pod_creation_event = re.compile(r'\[(?P<epoch>[0-9]+)\] .* - Pod change detected: .*-exec-[0-9]+: (?P<state>.*) on host.*')
+r_exec_pod_creation_event_pending = re.compile(r'\[(?P<epoch>[0-9]+)\] .* - Pod change detected: .*-exec-[0-9]+: Pending on host.*')
+r_exec_pod_initializing = re.compile(r'\[(?P<epoch>[0-9]+)\] .* - Pod change detected: .*-exec-[0-9]+(:| changed to) (PodInitializing|Init)')
+r_exec_pod_running = re.compile(r'\[(?P<epoch>[0-9]+)\] .* - Pod change detected: .*-exec-[0-9]+ changed to Running.')
+r_exec_registered_time = re.compile(r'(?P<spark_time>[- :0-9]*) INFO.*KubernetesClusterSchedulerBackend.*Registered executor')
+r_job_finished = re.compile(r'(?P<spark_time>[- :0-9]*) INFO.*DAGScheduler.*Job 0 finished')
+r_complete = re.compile(r'\[(?P<epoch>[0-9]+)\] .* - .*Completion of .* test')
 
 # Regex for fully-qualified Java class name https://stackoverflow.com/a/5205467/708883
 r_exception = re.compile(r'(?P<cause>(Caused by: )?)(?P<package>[a-zA-Z_$][a-zA-Z\d_$]*\.)*(?P<class>[a-zA-Z_$][a-zA-Z\d_$]*Exception): (?P<message>.*)')
@@ -322,30 +357,68 @@ def compute_times(output, succeeded=False):
     Calculates time intervals between events in provided output. Side effect: sets global app_id and app variables.
     :param output: Output from spark operator execution
     :param succeeded: Whether output represents a successful execution
-    :return: metric -> int (seconds) dictionary
+    :return: (metric -> int (seconds) dictionary, regex -> epoch dictionary)
     """
-    result = {}
+    timings = {}  # interval name -> computed interval in seconds
     global app, app_id
-    ERROR_STATES = {'Terminating', 'Unknown', 'Error'}
+    error_states = {'Terminating', 'Unknown', 'Error'}
+    # The times are computed by using two regular expressions; one marks the start of the interval and
+    # one marks the end of the interval.
+
+    # interval name -> (start regex, end regex). This the blueprint of what is to be computed.
+    time_regex = {
+        TIMING_METRIC_NAME_DRIVER_POD_DETECTED: (r_app_created, r_driver_pod_creation_event),
+        TIMING_METRIC_NAME_DRIVER_POD_PENDING_DELAY: (r_driver_pod_creation_event_pending, r_driver_pod_initializing),
+        TIMING_METRIC_NAME_DRIVER_POD_INITIALIZATION: (r_driver_pod_initializing, r_driver_pod_running),
+        TIMING_METRIC_NAME_DRIVER_APP_SUBMIT: (r_driver_pod_running, r_driver_context_app_submitted),
+        TIMING_METRIC_NAME_DRIVER_APP_LOAD: (r_driver_context_app_submitted, r_driver_context_jar_added),
+        TIMING_METRIC_NAME_EXECUTOR_WAIT_TOTAL: (r_exec_allocator, r_exec_registered_time),
+        TIMING_METRIC_NAME_EXEC_POD_DETECTED: (r_exec_allocator, r_exec_pod_creation_event),
+        TIMING_METRIC_NAME_EXEC_POD_PENDING_DELAY: (r_exec_pod_creation_event_pending, r_exec_pod_initializing),
+        TIMING_METRIC_NAME_EXEC_POD_INITIALIZATION: (r_exec_pod_initializing, r_exec_pod_running),
+        TIMING_METRIC_NAME_EXEC_REGISTRATION: (r_exec_pod_running, r_exec_registered_time),
+        TIMING_METRIC_NAME_JOB_RUNTIME: (r_exec_registered_time, r_job_finished),
+        TIMING_METRIC_NAME_CLEAN_UP: (r_job_finished, r_complete),
+    }
+
+    # regex -> (epoch, match). Time value found for each regex. Memoize because regexes are used multiple times.
+    regex_results = {}
+    for r1, r2 in time_regex.values():
+        for r in [r1, r2]:
+            if r not in regex_results:
+                m = r.search(output)
+                if m:
+                    # Not all log lines express time in the same format, so need multiple conversion rules
+                    # to get to epoch. Presume regex group names are standardized.
+                    match_groups = m.groupdict()
+                    if 'epoch' in match_groups:
+                        regex_results[r] = int(match_groups['epoch'])
+                    elif 'spark_time' in match_groups:
+                        regex_results[r] = spark_log_time_to_epoch(match_groups['spark_time'])
+                    else:
+                        log("Bug: regex {} is supposed to extract times but has no recognized group names. Matched {}.".format(
+                            r.pattern, m.group(0)))
+                else:
+                    # Record explicit failure ot match so we don't try this regex again
+                    regex_results[r] = None
+
+    # compute intervals now that we have found all the times.
+    for interval_name, (r_start, r_end) in time_regex.iteritems():
+        epoch_start = regex_results.get(r_start)
+        epoch_end = regex_results.get(r_end)
+        if epoch_start and epoch_end:
+            timings[interval_name] = epoch_end - epoch_start
+
     # Identify app creation
     m_app_created = r_app_created.search(output)
     if m_app_created:
         app_id = m_app_created.group('app')
         if app_id:
             app = '-'.join(app_id.split('-')[0:-1])  # Assume app-name-uniqueid format
-        app_created = int(m_app_created.group('epoch'))
-        # Identify driver pod creation
-        m_driver_pod_creation = r_driver_pod_creation_event.search(output)
-        if m_driver_pod_creation:
-            driver_pod_detected = int(m_driver_pod_creation.group('epoch'))
-            result[TIMING_METRIC_NAME_DRIVER_POD_DETECTED] = driver_pod_detected - app_created
-            driver_event_iterator = r_driver_pod_change_event.finditer(output)
-            for m in driver_event_iterator:
-                if m.group('previous') == 'Pending' and not m.group('state') in ERROR_STATES:
-                    result[TIMING_METRIC_NAME_DRIVER_POD_PENDING_DELAY] = int(m.group('epoch')) - driver_pod_detected
+
     if metrics_enabled:
-        emit_timing_metrics(result, succeeded)
-    return result
+        emit_timing_metrics(timings, succeeded)
+    return (timings, regex_results)
 
 
 def add_standard_tags(tags):
@@ -371,10 +444,11 @@ def emit_timing_metrics(times, succeeded):
         logging.exception('Failed to send %d metrics to funnel' % len(m_list))
 
 
-def analyze_helper(output):
+def analyze_helper(output, epochs):
     """
     Classifies failure in provided output
     :param output: output from failed spark operator execution
+    :param epochs: dict(regex -> epoch) of when in the output notable events occurred. See compute_times
     :return: class (as string)
     """
     for code, regex in simple_regex_tests.iteritems():
@@ -383,27 +457,19 @@ def analyze_helper(output):
 
     # Check for termination due to timeout.
     if r_timeout_running.search(output):
-
-        # Check for failures after the driver is running
-        m = r_driver_running_epoch.search(output)
-        if m:
-            # Check for failure cases that occur after the driver is runnning
-            driver_running_epoch = int(m.group(1))
+        if epochs.get(r_driver_pod_running):
+            # Check for failures after the driver is running
             # This block digs into driver logs
-            if r_driver_context_submitted.search(output):
+            if epochs.get(r_driver_context_app_submitted):
                 # Check for failure cases that occur after the application JAR has been loaded
-                if r_driver_context_jar_added.search(output):
+                if epochs.get(r_driver_context_jar_added):
                     # Requesting executors is the next thing to do after adding the application JAR. Unknown why it sometimes doesn't happen.
-                    m_exec_allocator_ran_time = r_exec_allocator_ran_time.search(output)
-                    if m_exec_allocator_ran_time:
+                    if epochs.get(r_exec_allocator):
                         # Figure out when the executors were requested
-                        allocator_epoch = spark_log_time_to_epoch(m_exec_allocator_ran_time.group(1))
-                        if allocator_epoch - driver_running_epoch >= 180:
+                        if epochs.get(r_exec_allocator) - epochs.get(r_driver_pod_running) >= 180:
                             return "TIMEOUT_EXECUTOR_ALLOCATOR_LATE"
                         else:
-                            m = r_exec_running_epoch.search(output)
-                            if m:
-                                exec_running_epoch = int(m.group(1))
+                            if epochs.get(r_exec_pod_running):
                                 # If we can't figure out a specific reason, look into what part was slow.
 
                                 # We know that the executor pod started running but that we timed out before completing the job.
@@ -424,16 +490,13 @@ def analyze_helper(output):
                                 # As a first pass, let's say that if the time from requesting executor to running executor
                                 # pod exceeds 60s, then that is the cause of the test failure.
 
-                                if exec_running_epoch - allocator_epoch >= 60:
+                                if epochs.get(r_exec_pod_running) - epochs.get(r_exec_allocator) >= 60:
                                     return "TIMEOUT_EXECUTOR_SLOW_POD_CREATION"
                                 else:
-                                    m_exec_registered_time = r_exec_registered_time.search(output)
-                                    if m_exec_registered_time:
-                                        # Figure out when the executor registered itself
-                                        exec_registered_epoch = spark_log_time_to_epoch(m_exec_registered_time.group(1))
+                                    if epochs.get(r_exec_registered_time):
                                         # As a first pass, let's say that if the time from running executor to registered executor
                                         # exceeds 60s, then that is the cause of the test failure.
-                                        if exec_registered_epoch - exec_running_epoch >= 60:
+                                        if epochs.get(r_exec_registered_time) - epochs.get(r_exec_pod_running) >= 60:
                                             return "TIMEOUT_EXECUTOR_SLOW_REGISTRATION"
                                     # "UNKNOWN" because we haven't yet collected an example of this
                                     # Check for delay between pod running and driver logging task start, perhaps?
@@ -460,6 +523,11 @@ def analyze_helper(output):
 
 
 def detect_exceptions(output):
+    """
+    Identifies noteworthy exceptions in provided output
+    :param output: output from failed spark operator execution
+    :return: class (as string)
+    """
     exception = {}
     match_iterator = r_exception.finditer(output)
     # heuristic: assume that the first Exception is the most interesting, but if it has logged "Caused by" lines, use
@@ -509,9 +577,15 @@ def detect_exceptions(output):
     return exception
 
 
-def analyze(output):
+def analyze(output, epochs):
+    """
+    Classifies failure in provided output, identifies noteworthy exceptions, and emits metrics (if enabled)
+    :param output: output from failed spark operator execution
+    :param epochs: dict(regex -> epoch) of when in the output notable events occurred. See compute_times
+    :return: class (as string)
+    """
     analysis = {
-        CLASSIFICATION: analyze_helper(output)
+        CLASSIFICATION: analyze_helper(output, epochs)
     }
     analysis.update(detect_exceptions(output))
     if metrics_enabled:
@@ -547,34 +621,39 @@ if args.command:
     try:
         log("Executing and analyzing output of: {}".format(" ".join(additional_args)))
         print(subprocess.check_output(additional_args, stderr=subprocess.STDOUT), end='')
-        times = compute_times(subprocess.STDOUT, succeeded=True)
+        timings, epochs = compute_times(subprocess.STDOUT, succeeded=True)
         log("Times: ")
         log("No errors ({}s)".format(int(time.time() - start)))
         sys.exit(0)
     except subprocess.CalledProcessError as e:
         print(e.output, end='')
-        times = compute_times(e.output)
-        log("Analysis of failure [{}] ({}s): {}".format(e.returncode, int(time.time() - start), pretty_result(analyze(e.output))))
-        log("Times: {}".format(json.dumps(times, sort_keys=True)))
+        timings, epochs = compute_times(e.output)
+        log("Analysis of failure [{}] ({}s): {}".format(
+            e.returncode,
+            int(time.time() - start),
+            pretty_result(analyze(e.output, epochs))))
+        log("Times: {}".format(json.dumps(timings, sort_keys=True)))
         sys.exit(e.returncode)
 elif args.analyze:
     with open(args.analyze, 'r') as file:
         output = file.read()
-        times = compute_times(output)
-        print(pretty_result(analyze(output)))
-        print("Times: {}".format(json.dumps(times, sort_keys=True)))
+        timings, epochs = compute_times(output)
+        print(pretty_result(analyze(output, epochs)))
+        print("Times: {}".format(json.dumps(timings, sort_keys=True)))
 elif args.test_dir:
     success = True
     for filename in sorted(os.listdir(args.test_dir)):
         with open(os.path.join(args.test_dir, filename), 'r') as file:
             expect, output = file.read().split('\n', 1)
-            compute_times(output)
-            text_result = pretty_result(analyze(output))
+            timings, epochs = compute_times(output)
+            text_result = pretty_result(analyze(output, epochs))
             if text_result == expect:
-                print(u"\u2713 {}: {}".format(filename, expect))
+                print(u"\u2713 {}: {}".format(filename, expect).encode('utf-8'))
             else:
-                print(u"\u2718 {}: {} expected, {} obtained".format(filename, expect, text_result))
+                print(u"\u2718 {}: {} expected, {} obtained".format(filename, expect, text_result).encode('utf-8'))
                 success = True
+            # Too much visual noise. But occasionally useful during development.
+            # print("Times: {}".format(json.dumps(timings, sort_keys=True)))
     if not success:
         sys.exit(1)
 else:
