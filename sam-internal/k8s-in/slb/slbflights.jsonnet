@@ -38,5 +38,5 @@ local slbconfigs = import "slbconfig.jsonnet";
     # 2019/05/22
     # Deploy slb-envoy-config-b only if hyperslb version is >= 2166.
     # This ensures dependent microservices are available.
-    deploySLBEnvoyConfig: (slbimages.hyperslb_build >= 2166),
+    deploySLBEnvoyConfig: (slbimages.hyperslb_build >= 2166 && slbimages.phaseNum <= 1),
 }

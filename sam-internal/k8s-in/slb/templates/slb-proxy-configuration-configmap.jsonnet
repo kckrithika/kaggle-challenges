@@ -14,13 +14,20 @@ local proxyConfigs = {
             healthport: 12080,
             healthpath: "/",
         },
-    ] + if slbflights.envoyProxyEnabled then [
+    ] + (if slbflights.envoyProxyEnabled then [
         {
             name: slbconfigs.envoyProxyName,
             healthport: 12080,
             healthpath: "/",
         },
-    ] else [],
+    ] else [])
+    + (if slbflights.deploySLBEnvoyConfig then [
+        {
+            name: slbconfigs.envoyProxyConfigDeploymentName,
+            healthport: 8080,
+            healthpath: "/liveness-probe",
+        },
+    ] else []),
 };
 
 local proxyVipMapping = {
@@ -30,12 +37,18 @@ local proxyVipMapping = {
             vips: slbconfigs.hsmEnabledVips,
         },
 
-    ] + if slbflights.envoyProxyEnabled then [
+    ] + (if slbflights.envoyProxyEnabled then [
         {
             proxyname: slbconfigs.envoyProxyName,
             vips: slbconfigs.envoyEnabledVips,
         },
-    ] else [],
+    ] else [])
+    + (if slbflights.deploySLBEnvoyConfig then [
+        {
+            proxyname: slbconfigs.envoyProxyConfigDeploymentName,
+            vips: ["slb-canary-envoy-svc.sam-system.prd-sdc.prd.slb.sfdc.net"],
+        },
+    ] else []),
 };
 
 if slbconfigs.isSlbEstate then {

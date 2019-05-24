@@ -297,6 +297,8 @@
     },
   } else {}),
   slbNginxConfig(deleteLimitOverride=0, vipInterfaceName="", tlsConfigEnabled=false, waitForRealsvrCfg=false): {
+    // TODO this can likely be deleted
+    // TODO https://computecloud.slack.com/archives/G340CE86R/p1558639955057700
     ports: [
       {
         name: "slb-nginx-port",
@@ -406,17 +408,10 @@
     },
   },
   slbEnvoyConfig(deleteLimitOverride=0, vipInterfaceName="", tlsConfigEnabled=false, waitForRealsvrCfg=false): {
-      ports: [
-        {
-          name: "slb-nginx-port",  // TODO (Something?)
-          containerPort: portconfigs.slb.slbNginxControlPort,
-        },
-      ],
       name: "slb-envoy-config",
       image: slbimages.hyperslb,
       command: [
         "/sdn/slb-envoy-config",
-//        TODO Start example
         "--target=" + slbconfigs.nginx.containerTargetDir,
         "--netInterfaceName=eth0",
         "--livenessProbePort=8080",
@@ -425,33 +420,32 @@
         "--commonoptions.metricsendpoint=" + configs.funnelVIP,
         "--envoyNodeID=$(NODE_NAME)",
         "--envoyNodeNamespace=sam-system",
-//        TODO End example
         "--log_dir=" + slbconfigs.logsDir,
 //        "--maxDeleteServiceCount=" + std.max((if configs.kingdom == "xrd" then 150 else 0), slbconfigs.maxDeleteLimit(deleteLimitOverride)),
         configs.sfdchosts_arg,
-        "--hostnameOverride=$(NODE_NAME)",
+        "--commonoptions.hostname=$(NODE_NAME)",
 //        "--httpconfig.trustedProxies=" + slbconfigs.perCluster.trustedProxies[configs.estate],
 //        "--iprange.InternalIpRange=" + slbconfigs.perCluster.internalIpRange[configs.estate],
       ]
       + slbconfigs.getNodeApiClientSocketSettings()
       + (if waitForRealsvrCfg then [
-        "--control.realsvrCfgSentinel=" + realsvrCfgSentinel,
-        "--control.sentinelExpiration=60s",
+//        "--control.realsvrCfgSentinel=" + realsvrCfgSentinel,
+//        "--control.sentinelExpiration=60s",
 //        "--featureflagWaitForRealsvrCfg=true",
       ] else [])
       + [
-        slbconfigs.nginx.reloadSentinelParam,
+//        slbconfigs.nginx.reloadSentinelParam,
 //        "--httpconfig.custCertsDir=" + slbconfigs.nginx.customerCertsPath,
 //        "--checkDuplicateVips=true",
 //        "--httpconfig.accessLogFormat=main",
-        "--commonconfig.riseCount=5",
-        "--commonconfig.fallCount=2",
-        "--commonconfig.healthTimeout=3000",
+//        "--commonconfig.riseCount=5",
+//        "--commonconfig.fallCount=2",
+//        "--commonconfig.healthTimeout=3000",
       ] + (if std.length(vipInterfaceName) > 0 then [
         # The default vip interface name is tunl0
 //        "--vipInterfaceName=" + vipInterfaceName,
       ] else [])
-      + [slbconfigs.nginx.configUpdateSentinelParam]
+//      + [slbconfigs.nginx.configUpdateSentinelParam]
       + (if tlsConfigEnabled then [
 //        "--httpconfig.tlsConfigEnabled=true",
 //        "--httpconfig.allowedCiphers=ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-RSA-AES256-GCM-SHA384:ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES128-GCM-SHA256:ECDHE-ECDSA-AES256-SHA384:ECDHE-ECDSA-AES128-SHA256:ECDHE-RSA-AES256-SHA384:ECDHE-RSA-AES128-SHA256:AES256-GCM-SHA384:AES128-GCM-SHA256:AES256-SHA256:AES128-SHA256:AES256-SHA:AES128-SHA",
@@ -510,11 +504,19 @@
 //        slbconfigs.logsDir,
 //        slbconfigs.nginx.configUpdateSentinelPath,
 //      ],
+      command: [
+        "/home/sfdc-sherpa/envoy",
+        "--config-path",
+        slbconfigs.nginx.containerTargetDir + "/envoy-bootstrap.yaml",
+        ],
       livenessProbe: {
         httpGet: {
-          path: "/",
-          // Same port is okay for Envoy?
-          port: portconfigs.slb.slbNginxProxyLivenessProbePort,
+          path: "/liveness-probe",
+          // TODO Bring up a liveness port on Envoy
+          // (8080 is currently associated with slb-proxy-config)
+          // TODO Also create a variable for this port
+          port: 8080,
+          //port: portconfigs.slb.slbNginxProxyLivenessProbePort,
         },
         initialDelaySeconds: 15,
         periodSeconds: 10,

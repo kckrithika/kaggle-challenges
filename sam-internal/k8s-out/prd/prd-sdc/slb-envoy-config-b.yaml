@@ -7,7 +7,7 @@ metadata:
   namespace: sam-system
 spec:
   minReadySeconds: 30
-  replicas: 6
+  replicas: 1
   revisionHistoryLimit: 2
   selector:
     matchLabels:
@@ -84,16 +84,9 @@ spec:
         - --envoyNodeNamespace=sam-system
         - --log_dir=/host/data/slb/logs/slb-envoy-config-b
         - --hostsConfigFile=/sfdchosts/hosts.json
-        - --hostnameOverride=$(NODE_NAME)
+        - --commonoptions.hostname=$(NODE_NAME)
         - --client.socketDir=/host/data/slb/config/slb-envoy-config-b
         - --client.dialSocket=true
-        - --control.realsvrCfgSentinel=/host/data/slb/config/slb-envoy-config-b/slb-realsvrcfg.sentinel
-        - --control.sentinelExpiration=60s
-        - --control.nginxReloadSentinel=/host/data/slb/slb-envoy-config-b/config/nginx.marker
-        - --commonconfig.riseCount=5
-        - --commonconfig.fallCount=2
-        - --commonconfig.healthTimeout=3000
-        - --control.nginxSentinel=/host/data/slb/slb-envoy-config-b/config/nginx.sentinel
         env:
         - name: NODE_NAME
           valueFrom:
@@ -103,9 +96,6 @@ spec:
           value: /kubeconfig/kubeconfig-platform
         image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/slb/hyperslb:2166-26f8c41897c1cf3eca60f7371822c37f606497c7
         name: slb-envoy-config
-        ports:
-        - containerPort: 32146
-          name: slb-nginx-port
         resources:
           limits:
             sam.sfdc.net/ip-address: "1"
@@ -124,7 +114,11 @@ spec:
           name: sfdchosts
         - mountPath: /tlsparams
           name: tlsparams-volume
-      - env:
+      - command:
+        - /home/sfdc-sherpa/envoy
+        - --config-path
+        - /host/data/slb/slb-envoy-config-b/config/envoy-bootstrap.yaml
+        env:
         - name: KINGDOM
           value: prd
         - name: FUNCTION_NAMESPACE
@@ -139,8 +133,8 @@ spec:
         image: ops0-artifactrepo2-0-prd.data.sfdc.net/sfci/servicelibs/sherpa-envoy:e6ae1aef47d40fa3d4a184f8a446cb4bb8c90b71
         livenessProbe:
           httpGet:
-            path: /
-            port: 12080
+            path: /liveness-probe
+            port: 8080
           initialDelaySeconds: 15
           periodSeconds: 10
         name: slb-envoy-proxy
@@ -466,21 +460,6 @@ spec:
           name: var-logs-volume
         - mountPath: /sfdchosts
           name: sfdchosts
-      - command:
-        - /sdn/slb-tcpdump
-        - --tcpdump.pollinterval=15m
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/slb/hyperslb:2166-26f8c41897c1cf3eca60f7371822c37f606497c7
-        name: slb-tcpdump
-        resources:
-          limits:
-            cpu: "0.5"
-            memory: 300Mi
-          requests:
-            cpu: "0.5"
-            memory: 300Mi
-        volumeMounts:
-        - mountPath: /config
-          name: config
       dnsPolicy: Default
       initContainers:
       - args:
@@ -573,6 +552,3 @@ spec:
       - configMap:
           name: slb-tlsparams
         name: tlsparams-volume
-      - configMap:
-          name: slb-envoy-config-b
-        name: config
