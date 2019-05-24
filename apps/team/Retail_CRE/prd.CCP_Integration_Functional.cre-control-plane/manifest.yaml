@@ -9,7 +9,7 @@ system:
     count: 1
     containers:
     - name: cre-control-plane-ccp-func
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cre-fusion/services/control-plane:1.8.0-freeze-001.0.release-1.8.3df673e.8
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cre-fusion/services/control-plane:1.8.0-freeze-002.0.release-1.8.bdd2b11.13
       env:
         ####################################################################################################
         ############################   ENGINE/DDS FLOWSNAKE ARTIFACTS ( Most frequently changed ) ##########
@@ -17,9 +17,9 @@ system:
         - name: IMPORT_FLOWSNAKE_ARTIFACT
           value: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cre/cre-engine:1.8.0.0.develop-1.8.7c330be.132
         - name: SAVE_FLOWSNAKE_ARTIFACT
-          value: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cre/cre-dds-spark:1.8.0.0.develop-1.8.1abaf41.52
+          value: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cre/cre-dds-spark:1.8.0.0.develop-1.8.73964a0.55
         - name: EXPORT_FLOWSNAKE_ARTIFACT
-          value: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cre/cre-dds-spark:1.8.0.0.develop-1.8.1abaf41.52
+          value: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cre/cre-dds-spark:1.8.0.0.develop-1.8.73964a0.55
         ####################################################################################################
         ####################################### GLOBAL SHARED VALUES #######################################
         ####################################################################################################
@@ -35,6 +35,8 @@ system:
           ## HBASE
         - name: HBASE_ENVIRONMENT
           value: kingdom-test
+        - name: HBASE_NAMESPACE
+          value: CRE
         - name: HBASE_DATACENTER
           value: prd
           ## FLOWSNAKE
@@ -43,10 +45,8 @@ system:
         ####################################################################################################
         ####################################### IMPORT environment variables ###############################
         ####################################################################################################
-        - name: CRE_ENGINE_MP_ENV
-          value: prd
         - name: IMPORT_CRE_APPLICATION_NAME
-          value: cre-engine
+          value: cre-engine-ccp-func
         - name: IMPORT_K4A_VAULT
           value: cre-engine-dev
         ####################################################################################################
@@ -63,8 +63,6 @@ system:
         ####################################################################################################
         - name: EXPORT_CRE_APPLICATION_NAME
           value: cre-engine-ccp-func
-        - name: EXPORT_FLOWSNAKE_ARTIFACT
-          value: cre-engine-ccp-func
         ####################################################################################################
         ##################################### APP Config environment variables #############################
         ####################################################################################################
@@ -78,6 +76,8 @@ system:
           ## DBaaS
         - name: DATABASE_NAMESPACE
           value: crecontrolplaneccpfunc
+        - name: SPRING_DATASOURCE_URL
+          value: jdbc:discover://dbaas0-minionapp1-1-prd.eng.sfdc.net:1511,dbaas0-minionapp2-1-prd.eng.sfdc.net:1511,dbaas0-minionapp3-1-prd.eng.sfdc.net:1511/${database.namespace}?${database.discovery.params}
           ## Stream Processor
         - name: STREAM_PROCESSING_ENDPOINT
           value: cre-sp-ccp-func.retail-cre.localhost.mesh.force.com:5443
