@@ -530,8 +530,12 @@
       ]),
       readinessProbe: {
         httpGet: {
-          path: "/",
-          port: portconfigs.slb.slbNginxProxyLivenessProbePort,
+          path: "/liveness-probe",
+          // TODO Bring up a liveness port on Envoy
+          // (8080 is currently associated with slb-proxy-config)
+          // TODO Also create a variable for this port
+          port: 8080,
+          //port: portconfigs.slb.slbNginxProxyLivenessProbePort,
         },
         initialDelaySeconds: 2,
         periodSeconds: 5,
