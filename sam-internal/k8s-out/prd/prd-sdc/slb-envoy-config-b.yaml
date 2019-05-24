@@ -74,17 +74,19 @@ spec:
       containers:
       - command:
         - /sdn/slb-envoy-config
-        - --target=/host/data/slb/slb-envoy-config-b/config
-        - --netInterfaceName=eth0
-        - --livenessProbePort=8080
-        - --heartbeat.defaultdecayduration=5m
         - --client.serverInterface=lo
         - --commonoptions.metricsendpoint=ajna0-funnel1-0-prd.data.sfdc.net:80
+        - --commonoptions.hostname=$(NODE_NAME)
+        - --control.realsvrCfgSentinel=/host/data/slb/config/slb-envoy-config-b/slb-realsvrcfg.sentinel
+        - --control.sentinelExpiration=60s
         - --envoyNodeID=$(NODE_NAME)
         - --envoyNodeNamespace=sam-system
+        - --heartbeat.defaultdecayduration=5m
+        - --livenessProbePort=8080
         - --log_dir=/host/data/slb/logs/slb-envoy-config-b
+        - --netInterfaceName=eth0
+        - --target=/host/data/slb/slb-envoy-config-b/config
         - --hostsConfigFile=/sfdchosts/hosts.json
-        - --commonoptions.hostname=$(NODE_NAME)
         - --client.socketDir=/host/data/slb/config/slb-envoy-config-b
         - --client.dialSocket=true
         env:
