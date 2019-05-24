@@ -41,8 +41,15 @@ system:
         - name: gid-data-service
           image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/ccotofana/gid-service:W-6168542
           env:
+            # Override ports in application.properties to match nginx config
+            - name: server_port
+              value: 8081
+            - name: management_server_port
+              value: 15371
+            # Point to Cloud Atlas / Entity API host
             - name: ca_service_host
               value: 10.233.180.195
+            # Certificate stuff
             - name: security_client_dynamickeystore_cadir
               value: /certs
             - name: security_client_dynamickeystore_monitoredDirectory
