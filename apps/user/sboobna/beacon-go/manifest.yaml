@@ -1,0 +1,16 @@
+apiVersion: v1
+system:
+  functions:
+  - name: beacon-go
+    count: 1
+    containers:
+    - name: beacon-go
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/configurator/beacon-go:latest
+      args:
+      - -endpoint
+      - $(FUNCTION_NAMESPACE)/$(FUNCTION):DATACENTER_ALLENV:2181
+      livenessProbe:
+        exec:
+          command:
+          - /home/scone/is-alive.sh
+        initialDelaySeconds: 5
