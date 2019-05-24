@@ -16,7 +16,7 @@
   // Getting replaced: slb-nginx-config, slb-config-proxy
   // Getting deferred: slb-nginx-data, slb-file-watcher, slb-upstream-status-reporter
   local beforeSharedContainers(proxyImage, deleteLimitOverride=0, proxyFlavor="", slbUpstreamReporterEnabled=true) = [
-    slbshared.slbEnvoyConfig(deleteLimitOverride=deleteLimitOverride, tlsConfigEnabled=true, waitForRealsvrCfg=true),
+    slbshared.slbEnvoyConfig(deleteLimitOverride=deleteLimitOverride, tlsConfigEnabled=true),
     slbshared.slbEnvoyProxy(proxyImage, proxyFlavor, true),
     madkub.madkubRefreshContainer(slbconfigs.nginx.certDirs),
     {

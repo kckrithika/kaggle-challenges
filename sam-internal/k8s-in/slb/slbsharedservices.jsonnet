@@ -407,43 +407,39 @@
       successThreshold: 4,
     },
   },
-  slbEnvoyConfig(deleteLimitOverride=0, vipInterfaceName="", tlsConfigEnabled=false, waitForRealsvrCfg=false): {
+  slbEnvoyConfig(deleteLimitOverride=0, vipInterfaceName="", tlsConfigEnabled=false): {
       name: "slb-envoy-config",
       image: slbimages.hyperslb,
       command: [
         "/sdn/slb-envoy-config",
-        "--target=" + slbconfigs.nginx.containerTargetDir,
-        "--netInterfaceName=eth0",
-        "--livenessProbePort=8080",
-        "--heartbeat.defaultdecayduration=5m",
         "--client.serverInterface=lo",
         "--commonoptions.metricsendpoint=" + configs.funnelVIP,
+        "--commonoptions.hostname=$(NODE_NAME)",
+        "--control.realsvrCfgSentinel=" + realsvrCfgSentinel,
+        "--control.sentinelExpiration=60s",
         "--envoyNodeID=$(NODE_NAME)",
         "--envoyNodeNamespace=sam-system",
+        "--heartbeat.defaultdecayduration=5m",
+        "--livenessProbePort=8080",
         "--log_dir=" + slbconfigs.logsDir,
+        "--netInterfaceName=eth0",
+        "--target=" + slbconfigs.nginx.containerTargetDir,
 //        "--maxDeleteServiceCount=" + std.max((if configs.kingdom == "xrd" then 150 else 0), slbconfigs.maxDeleteLimit(deleteLimitOverride)),
         configs.sfdchosts_arg,
-        "--commonoptions.hostname=$(NODE_NAME)",
 //        "--httpconfig.trustedProxies=" + slbconfigs.perCluster.trustedProxies[configs.estate],
 //        "--iprange.InternalIpRange=" + slbconfigs.perCluster.internalIpRange[configs.estate],
       ]
       + slbconfigs.getNodeApiClientSocketSettings()
-      + (if waitForRealsvrCfg then [
-//        "--control.realsvrCfgSentinel=" + realsvrCfgSentinel,
-//        "--control.sentinelExpiration=60s",
-//        "--featureflagWaitForRealsvrCfg=true",
-      ] else [])
       + [
 //        slbconfigs.nginx.reloadSentinelParam,
 //        "--httpconfig.custCertsDir=" + slbconfigs.nginx.customerCertsPath,
-//        "--checkDuplicateVips=true",
 //        "--httpconfig.accessLogFormat=main",
 //        "--commonconfig.riseCount=5",
 //        "--commonconfig.fallCount=2",
 //        "--commonconfig.healthTimeout=3000",
       ] + (if std.length(vipInterfaceName) > 0 then [
         # The default vip interface name is tunl0
-//        "--vipInterfaceName=" + vipInterfaceName,
+        "--vipInterfaceName=" + vipInterfaceName,
       ] else [])
 //      + [slbconfigs.nginx.configUpdateSentinelParam]
       + (if tlsConfigEnabled then [
