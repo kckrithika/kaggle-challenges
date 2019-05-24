@@ -40,7 +40,7 @@ system:
         - containerPort: 13065
         - containerPort: 13066
         - containerPort: 15373
-        - args:
+        args:
           - --template
           - /cyan-config/tls-terminator-config.yaml.template
 
