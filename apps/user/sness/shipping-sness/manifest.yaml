@@ -42,7 +42,7 @@ system:
       image: sfci/servicelibs/beacon:853c4db9f14805018be6f5e7607ffe65b5648822
       args:
       - -endpoint
-      - $(FUNCTION_NAMESPACE)/$(FUNCTION):DATACENTER:7443
+      - samapp/user-sness/shipping-sness:DATACENTER:7443
       - -logging.dir
       - /log
       livenessProbe:
