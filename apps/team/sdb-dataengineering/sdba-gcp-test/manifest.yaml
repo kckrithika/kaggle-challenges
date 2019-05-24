@@ -5,7 +5,7 @@ system:
     count: 1
     containers:
     - name: sdba-gcp-test-image
-      image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/sdba/sdba_gcp_test:0.0.1
+      image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/sdba/sdba_gcp_test:0.0.2
       ports:
       - containerPort: 9090
       - containerPort: 9091
