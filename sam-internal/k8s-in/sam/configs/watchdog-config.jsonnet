@@ -27,14 +27,14 @@ std.prune({
   funnelEndpoint: configs.funnelVIP,
   rcImtEndpoint: configs.rcImtEndpoint,
   smtpServer: configs.smtpServer,
-  sender: $.recipient,
+  sender: samwdconfig.sender,
   recipient: samwdconfig.recipient,
 
   # Watchdog CRD
   publishToWatchDogCrd: true,
 
   # Hairpin deployer
-  "deployer-sender": $.recipient,
+  "deployer-sender": $.sender,
   "deployer-recipient": $.recipient,
   "deployer-imageName": samimages.hypersam,
   "deployer-funnelEndpoint": configs.funnelVIP,
