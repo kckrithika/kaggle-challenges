@@ -121,6 +121,8 @@ system:
          value: "true"
        - name : ACDS_START_RELAY
          value: "yes"
+       - name : ACDS_START_CLIENT
+         value: "no"
        - name : DUMMY_VARIABLE
          value: "DUMMY_VARIABLE_5"
      volumes:
