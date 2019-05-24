@@ -16,7 +16,7 @@ system:
        livenessProbe:
          exec:
            command:
-           - "/acds/bin/acdsOk.sh"
+           - "/acds/bin/consumerOk.sh"
          initialDelaySeconds: 10
          timeoutSeconds: 5
        volumeMounts:
