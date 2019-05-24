@@ -26,7 +26,7 @@ system:
       livenessProbe:
         httpGet:
           path: /v1/health
-          port: 7022
+          port: 7014
         initialDelaySeconds: 30
     - name: beacon
       # https://git.soma.salesforce.com/services/sfdc-bazel/tree/master/projects/sidecars/beacon#docker-image
