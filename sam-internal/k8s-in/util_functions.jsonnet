@@ -3,10 +3,15 @@ local kingdom = std.extVar("kingdom");
 
 # Public functions
 {
+    # This is temp hack for AWS
+    is_aws(kingdom):: (
+       (std.length(kingdom) > 3) && (std.substr(kingdom, 0, 4) == "aws-")
+    ),
+
     # This is temp hack for PCN
     is_pcn(kingdom):: (
         (std.length(kingdom) > 3) && (std.substr(kingdom, 0, 4) == "gcp-") ||
-        (kingdom == "mvp") || (kingdom == "eks")
+        (kingdom == "mvp") || self.is_aws(kingdom)
     ),
 
     # This is for filtering Public Clouds from Private Clouds

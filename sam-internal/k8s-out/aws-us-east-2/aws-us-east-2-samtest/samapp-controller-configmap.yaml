@@ -11,14 +11,14 @@ data:
       "enableStatefulSet": true,
       "funnelEndpoint": "funnel.ajnalocal1.vip.core.test.us-central1.gcp.sfdc.net:443",
       "imagePullPolicy": "IfNotPresent",
-      "k4aInitContainerImage": "ops0-artifactrepo2-0-xrd.slb.sfdc.net/tnrp/sam/hypersam:sam-0002447-69fdc914",
+      "k4aInitContainerImage": "791719295754.dkr.ecr.us-east-2.amazonaws.com/tnrp/sam/hypersam:sam-0002447-69fdc914",
       "maddogMaddogEndpoint": "https://10.168.192.190:8443",
-      "madkubImage": "ops0-artifactrepo2-0-xrd.slb.sfdc.net/tnrp/sam/madkub:1.0.0-0000077-b1d3a629",
+      "madkubImage": "791719295754.dkr.ecr.us-east-2.amazonaws.com/tnrp/sam/madkub:1.0.0-0000077-b1d3a629",
       "namespaceHostSubList": [
         "cloudatlas"
       ],
       "slbUseIlbInGkeEnv": true,
-      "volPermissionInitContainerImage": "ops0-artifactrepo2-0-xrd.slb.sfdc.net/tnrp/sam/hypersam:sam-1ebeb0ac-657"
+      "volPermissionInitContainerImage": "791719295754.dkr.ecr.us-east-2.amazonaws.com/tnrp/sam/hypersam:sam-1ebeb0ac-657"
     }
 kind: ConfigMap
 metadata:

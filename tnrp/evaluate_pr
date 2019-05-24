@@ -96,14 +96,14 @@ gpg --yes --batch --passphrase=$(md5sum /root/.ssh/id_rsa | cut -f1 -d" ") ./tok
 #  2)for MANIFESTCTL, it is reserved in its original form
 $SAMBINDIR/evaluate-pr \
 --ghe-token-file ./token.txt \
---self-authorize-dirs=xrd,prd,mvp \
+--self-authorize-dirs=xrd,prd,mvp,aws-us-east-2 \
 -authorizer $STAGE_GO_TRIGGER_USER \
 -orig-dir /tmp/manifests \
 -dir-with-changes $PWD \
 -pr="$STAGE_PULL_REQUEST_ID" \
 -smb $SAMBINDIR/sam-manifest-builder \
 -repo-name="$TNRP_PRODUCT" \
--unvalidated-image-prefixes "minikube,ops0-artifactrepo1-0-mvp,gcr.io,ops0-artifactrepo2-0-xrd.slb.sfdc.net" \
+-unvalidated-image-prefixes "minikube,ops0-artifactrepo1-0-mvp,gcr.io,ops0-artifactrepo2-0-xrd.slb.sfdc.net,791719295754.dkr.ecr.us-east-2.amazonaws.com" \
 -full-schema \
 -image-exists-tries=2 \
 -image-exists-try-sleep-duration=10s \

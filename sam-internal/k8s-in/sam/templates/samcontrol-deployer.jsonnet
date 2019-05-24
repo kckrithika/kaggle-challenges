@@ -1,6 +1,7 @@
 local configs = import "config.jsonnet";
-local samimages = (import "samimages.jsonnet") + { templateFilename:: std.thisFile };
 local utils = import "util_functions.jsonnet";
+local samimages = (import "samimages.jsonnet") + { templateFilename:: std.thisFile };
+
 configs.deploymentBase("sam") {
     spec+: {
         replicas: 1,

@@ -1,6 +1,7 @@
 local configs = import "config.jsonnet";
+local utils = import "util_functions.jsonnet";
 
-{
+if !utils.is_aws(configs.kingdom) then {
     kind: "ConfigMap",
     apiVersion: "v1",
     metadata: {
@@ -11,4 +12,4 @@ local configs = import "config.jsonnet";
     data: {
         "watchdog.json": std.toString(import "configs/watchdog-config.jsonnet"),
     },
-}
+} else "SKIP"

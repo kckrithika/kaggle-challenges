@@ -28,12 +28,12 @@ spec:
         - --hostsConfigFile=/sfdchosts/hosts.json
         env:
         - name: SFDCLOC_PCN_KINGDOM
-          value: eks
+          value: aws-us-east-2
         - name: SFDCLOC_PCN_ESTATE
-          value: eks-us-east2-sam2-samtest
+          value: aws-us-east-2-samtest
         - name: KUBECONFIG
           value: ""
-        image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/dva/sam/hypersam:2709-2c64bef305a811db319b1982738ba42022157744
+        image: 791719295754.dkr.ecr.us-east-2.amazonaws.com/dva/sam/hypersam:2709-2c64bef305a811db319b1982738ba42022157744
         livenessProbe:
           httpGet:
             path: /
@@ -53,16 +53,16 @@ spec:
         - --initial-cluster-state=new
         env:
         - name: SFDCLOC_PCN_KINGDOM
-          value: eks
+          value: aws-us-east-2
         - name: SFDCLOC_PCN_ESTATE
-          value: eks-us-east2-sam2-samtest
+          value: aws-us-east-2-samtest
         - name: KUBECONFIG
           value: ""
         image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/tnrp/sam/etcd:v2.3.7
         name: etcd-client
       hostNetwork: true
       nodeSelector:
-        pool: eks-us-east2-sam2-samtest
+        pool: aws-us-east-2-samtest
       serviceAccount: sam-stack-edit
       serviceAccountName: sam-stack-edit
       volumes:

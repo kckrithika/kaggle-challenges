@@ -3,7 +3,7 @@ local samimages = (import "samimages.jsonnet") + { templateFilename:: std.thisFi
 local utils = import "util_functions.jsonnet";
 local samfeatureflags = import "sam-feature-flags.jsonnet";
 
-if samfeatureflags.maddogforsamapps then {
+if samfeatureflags.maddogforsamapps && !utils.is_aws(configs.kingdom) then {
     apiVersion: "v1",
     kind: "Service",
     metadata: {

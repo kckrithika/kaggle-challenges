@@ -108,8 +108,10 @@ local utils = import "util_functions.jsonnet",
     else if kingdom == "vpod" then
         #use PRD
         "ops0-artifactrepo2-0-prd.data.sfdc.net"
-    else if utils.is_pcn(kingdom) then
+    else if kingdom == "mvp" then
         "ops0-artifactrepo2-0-xrd.slb.sfdc.net"
+    else if utils.is_aws(kingdom) then
+        "791719295754.dkr.ecr.us-east-2.amazonaws.com"
     else
         "ops0-artifactrepo1-0-" + kingdom + ".data.sfdc.net"
     ),
@@ -410,6 +412,15 @@ local utils = import "util_functions.jsonnet",
          serviceAccount: "sam-stack-edit",
          serviceAccountName: "sam-stack-edit",
 
+    } else {}),
+
+    nodeSelector: (if !utils.is_aws(kingdom) then {
+         nodeSelector: {} +
+         if !utils.is_production(kingdom) then {
+             master: "true",
+         } else {
+             pool: estate,
+         },
     } else {}),
 
     pcnEnableLabel: (if utils.is_pcn(kingdom) then {

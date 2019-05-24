@@ -2,7 +2,7 @@ local configs = import "config.jsonnet";
 local samfeatureflags = import "sam-feature-flags.jsonnet";
 local utils = import "util_functions.jsonnet";
 
-if samfeatureflags.kafkaProducer then {
+if samfeatureflags.kafkaProducer && !utils.is_aws(configs.kingdom) then {
     kind: "ConfigMap",
     apiVersion: "v1",
     metadata: {

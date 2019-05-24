@@ -8,7 +8,7 @@
     "requiredLabelValues": { "pcn": "deploy" }
   },
   {
-    "kingdomEstateMatch": "eks/*",
+    "kingdomEstateMatch": "aws-us-east-2/*",
     "requiredLabelValues": { "pcn": "deploy" }
   }
 ]

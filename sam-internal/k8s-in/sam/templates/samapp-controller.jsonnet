@@ -58,14 +58,8 @@ local samfeatureflags = import "sam-feature-flags.jsonnet";
                     (if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" || configs.estate == "prd-sam" || configs.estate == "vpod" then configs.ci_namespaces_volume else {}),
                     configs.config_volume("samapp-controller"),
                 ]),
-                nodeSelector: {
-                              } +
-                              if !utils.is_production(configs.kingdom) then {
-                                  master: "true",
-                              } else {
-                                  pool: configs.estate,
-                              },
-            } + configs.serviceAccount,
+            } + configs.serviceAccount
+             + configs.nodeSelector,
             metadata: {
                 labels: {
                     name: "samappcontroller",

@@ -6,7 +6,7 @@ local utils = import "util_functions.jsonnet";
 
 local certDirs = ["cert1"];
 
-if samfeatureflags.kafkaProducer then {
+if samfeatureflags.kafkaProducer && !utils.is_aws(configs.kingdom) then {
     apiVersion: "extensions/v1beta1",
     kind: "Deployment",
     metadata: {

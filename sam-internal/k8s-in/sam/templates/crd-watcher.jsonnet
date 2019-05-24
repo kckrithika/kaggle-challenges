@@ -26,11 +26,11 @@ if configs.kingdom != "mvp" then {
                                 "--etcdSetDisabled=true",
                                 "--etcdGetDisabled=true",
                             ]) + (
-                                if configs.kingdom != "mvp" then
-                                [] else [
-                                   "--crdSetEnabled=true",
-                                   "--crdGetEnabled=true",
-                                ]
+                                if configs.kingdom == "mvp" then
+                                [
+                                     "--crdSetEnabled=true",
+                                     "--crdGetEnabled=true",
+                                ] else []
                             ),
                             volumeMounts+: configs.filter_empty([
                                 configs.sfdchosts_volume_mount,
@@ -65,14 +65,8 @@ if configs.kingdom != "mvp" then {
                         },
                         configs.config_volume(name),
                     ]),
-                    nodeSelector: {
-                                  } +
-                                  if !utils.is_production(configs.kingdom) then {
-                                      master: "true",
-                                  } else {
-                                      pool: configs.estate,
-                                  },
-                } + configs.serviceAccount,
+                } + configs.serviceAccount
+                + configs.nodeSelector,
                 metadata: {
                     labels: {
                         name: name,
