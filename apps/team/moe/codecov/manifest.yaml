@@ -8,6 +8,10 @@ system:
   functions:
     - name: postgres
       count: 1
+      # Mitigate problem with pods being booted from the node because of the issue discussed in
+      # https://computecloud.slack.com/archives/C7VQEN8HX/p1557269590012400. hostnetwork pods
+      # don't consume a sam.sfdc.net/ip-address resource.
+      hostnetwork: true
       type: stateful-set
       containers:
         - name: postgres
@@ -54,17 +58,26 @@ system:
 
     - name: redis
       count: 1
+      # Mitigate problem with pods being booted from the node because of the issue discussed in
+      # https://computecloud.slack.com/archives/C7VQEN8HX/p1557269590012400. hostnetwork pods
+      # don't consume a sam.sfdc.net/ip-address resource.
+      hostnetwork: true
       type: stateful-set
       containers:
         - name: redis
           image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mgrass/redis:3.0.7-alpine
+
+          # Custom port to avoid conflicts.
+          args:
+            - --port
+            - 9736
 
           volumeMounts:
             - name: datavol-rdi
               mountPath: /data
 
           ports:
-            - containerPort: 6379
+            - containerPort: 9736
 
           resources:
             requests:
@@ -76,7 +89,7 @@ system:
 
           livenessProbe:
             tcpSocket:
-              port: 6379
+              port: 9736
             failureThreshold: 3
             initialDelaySeconds: 5
             periodSeconds: 60
@@ -95,6 +108,8 @@ system:
     - name: monitor
       count: 1
       type: stateful-set
+      # Don't need the hostnetworking mitigation for the monitor pod -- it doesn't use ceph storage.
+      # hostnetwork: true
       containers:
         - name: monitor
           image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/moe/codecov/enterprise:v4.3.10
@@ -138,6 +153,10 @@ system:
 
     - name: core
       count: 1
+      # Mitigate problem with pods being booted from the node because of the issue discussed in
+      # https://computecloud.slack.com/archives/C7VQEN8HX/p1557269590012400. hostnetwork pods
+      # don't consume a sam.sfdc.net/ip-address resource.
+      hostnetwork: true
       type: stateful-set
       containers:
         # worker container
@@ -180,20 +199,20 @@ system:
             periodSeconds: 60
         # nginx container
         - name: nginx
-          image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mgrass/nginx:20190416-cors-allow-all
+          image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mgrass/nginx:20190523-nginx-host-network-ports
           volumeMounts:
             - name: datavol-rdi
               mountPath: /archive
             - name: certs
               mountPath: /certs
           ports:
-            - containerPort: 80
-            - containerPort: 443
+            - containerPort: 18081
+            - containerPort: 18442
           livenessProbe:
             httpGet:
               path: /
               scheme: HTTPS
-              port: 443
+              port: 18442
             failureThreshold: 3
             initialDelaySeconds: 60
             periodSeconds: 10
@@ -231,7 +250,7 @@ system:
       slbEnabled: false
       ports:
         - port: 6379
-          targetport: 6379
+          targetport: 9736
     - lbname: codecov-monitor
       function: monitor
       slbEnabled: true
@@ -245,8 +264,8 @@ system:
       nodeExposed: false
       ports:
         - port: 80
-          targetport: 80
+          targetport: 18081
           lbtype: dsr
         - port: 443
-          targetport: 443
+          targetport: 18442
           lbtype: dsr
