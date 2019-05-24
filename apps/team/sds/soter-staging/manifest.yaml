@@ -43,3 +43,10 @@ system:
       - port: 8080
         targetport: 8080
         lbtype: tcp
+  - lbname: soterlb-healthtest
+    function: soter-staging
+    slbenabled: true
+    ports:
+      - port: 7090
+        targetport: 7090
+        lbtype: tcp      
