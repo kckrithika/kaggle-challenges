@@ -205,5 +205,47 @@ items:
     name: shared0-samminiongwc2-1-lo2.ops.sfdc.net
   - kind: User
     name: shared0-samminiongwc2-2-lo2.ops.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1beta1
+  kind: RoleBinding
+  metadata:
+    name: csc-health:lo2-sam_report_collector:rolebinding
+    namespace: csc-health
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: minion:role
+  subjects:
+  - kind: User
+    name: shared0-samminionreportcollector1-1-lo2.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionreportcollector2-1-lo2.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionreportcollector3-1-lo2.ops.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1beta1
+  kind: RoleBinding
+  metadata:
+    name: cache-as-a-service-sp1:lo2-sp1-sam_caas:rolebinding
+    namespace: cache-as-a-service-sp1
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: minion:role
+  subjects:
+  - kind: User
+    name: samcaas1-caasminion1-1-lo2.ops.sfdc.net
+  - kind: User
+    name: samcaas1-caasminion1-2-lo2.ops.sfdc.net
+  - kind: User
+    name: samcaas1-caasminion1-3-lo2.ops.sfdc.net
+  - kind: User
+    name: samcaas1-caasminion2-1-lo2.ops.sfdc.net
+  - kind: User
+    name: samcaas1-caasminion2-2-lo2.ops.sfdc.net
+  - kind: User
+    name: samcaas1-caasminion2-3-lo2.ops.sfdc.net
+  - kind: User
+    name: samcaas1-caasminion3-1-lo2.ops.sfdc.net
+  - kind: User
+    name: samcaas1-caasminion3-2-lo2.ops.sfdc.net
 kind: List
 metadata: {}

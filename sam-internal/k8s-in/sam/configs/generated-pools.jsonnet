@@ -1499,6 +1499,30 @@
     },
     {
       "namespaces": [
+        "csc-health"
+      ],
+      "access": [
+        "team/CSC_Health"
+      ],
+      "controlEstate": "lo2-sam",
+      "estate": "lo2-sam_report_collector",
+      "kingdom": "lo2",
+      "superPod": "None"
+    },
+    {
+      "namespaces": [
+        "cache-as-a-service-sp1"
+      ],
+      "access": [
+        "team/Cache_As_A_service"
+      ],
+      "controlEstate": "lo2-sam",
+      "estate": "lo2-sp1-sam_caas",
+      "kingdom": "lo2",
+      "superPod": "sp1"
+    },
+    {
+      "namespaces": [
         "csc-sam"
       ],
       "access": [
@@ -1562,6 +1586,30 @@
       "estate": "lo3-sam_gatewayconfig",
       "kingdom": "lo3",
       "superPod": "None"
+    },
+    {
+      "namespaces": [
+        "csc-health"
+      ],
+      "access": [
+        "team/CSC_Health"
+      ],
+      "controlEstate": "lo3-sam",
+      "estate": "lo3-sam_report_collector",
+      "kingdom": "lo3",
+      "superPod": "None"
+    },
+    {
+      "namespaces": [
+        "cache-as-a-service-sp1"
+      ],
+      "access": [
+        "team/Cache_As_A_service"
+      ],
+      "controlEstate": "lo3-sam",
+      "estate": "lo3-sp1-sam_caas",
+      "kingdom": "lo3",
+      "superPod": "sp1"
     },
     {
       "namespaces": [
