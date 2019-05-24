@@ -1,3 +1,5 @@
 apps:
   sdba-gcp-test:
     - mvp/gsf-core-devmvp-sam2-sam
+  kpagent-consumer-sam:
+    - mvp/gsf-core-devmvp-sam2-sam
