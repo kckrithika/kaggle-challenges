@@ -1,9 +1,7 @@
 ####################################################################################################
 # Deployment for testing dev versions of Global Identity Data Service
 #
-# Ports should match those defined in the Nginx reverse path proxy config:
-#   https://git.soma.salesforce.com/globalIdentity/nginx-routing/blob/master/conf.nginx
-#
+# Ports should match those defined in the Nginx reverse path proxy config
 ####################################################################################################
 apiVersion: v1
 system:
@@ -15,8 +13,11 @@ system:
       count: 1
       containers:
         ####################################################################################################
-        # Reverse-path Proxy (Nginx)
+        # Container: Nginx reverse-path Proxy
         #   Runs on container port 7022 (as per nginx config)
+        #
+        #   Expected forwarding paths and ports are defined in the nginx config:
+        #     https://git.soma.salesforce.com/globalIdentity/nginx-routing/blob/master/conf.nginx
         ####################################################################################################
         - name: rev-path-proxy
           image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/gid/gid-nginx:latest
@@ -34,21 +35,29 @@ system:
               name: cache-volume 
   
         ####################################################################################################
-        # GID Service
-        #   Runs on container port 8081 (as per nginx config)
-        #   Management link on 15371
+        # Container: GID Data Service
+        #   Runs on container port 8081 (as expected by nginx config)
+        #   Management link on 15371 (as expected by nginx config)
+        # 
+        #   Default ports are defined in the app's application.properties:
+        #     https://git.soma.salesforce.com/globalIdentity/gid-service/blob/master/api-server/src/main/resources/config/application.properties
+        #       Default server port: 8082
+        #       Default management port: 15375
         ####################################################################################################
         - name: gid-data-service
           image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/ccotofana/gid-service:W-6168542
           env:
             # Override ports in application.properties to match nginx config
+            #   Spring will override applicatoin.properties values if it finds equivalently named environment variables.
+            #   Those environment variables can have "_" or "-" instead of ".".
+            #   Dots are not allowed in variable names in SAM (k8s?), so replacing with "_" 
             - name: server_port
               value: 8081
             - name: management_server_port
               value: 15371
             # Point to Cloud Atlas / Entity API host
             - name: ca_service_host
-              value: 10.233.180.195
+              value: 10.233.180.195     # XRD one-off customized Cloud Atlas container
             # Certificate stuff
             - name: security_client_dynamickeystore_cadir
               value: /certs
@@ -66,7 +75,7 @@ system:
               mountPath: /certs  
 
       ####################################################################################################
-      # Volumes needed
+      # Volume definitions (referenced above)
       ####################################################################################################
       volumes:
         - name: cache-volume
@@ -77,6 +86,18 @@ system:
 
   ####################################################################################################
   # SLB
+  #   For XRD environment, here are example endpoints that can be accessed with this configuration:
+  #     - Nginx health endpoint (defined in nginx config)
+  #         http://gid-data-service-ccotofana-lb.user-ccotofana.xrd-sam.xrd.slb.sfdc.net:9090/health
+  #
+  #     - GID Data Service health endpoint (built-in Scone endpoint, hosted by GID Data Service container)
+  #         http://gid-data-service-ccotofana-lb.user-ccotofana.xrd-sam.xrd.slb.sfdc.net:9090/gid/manage/health
+  #
+  #     - GID Data Service API sample invocation
+  #         http://gid-data-service-ccotofana-lb.user-ccotofana.xrd-sam.xrd.slb.sfdc.net:9090/gid/api/v1/user
+  #           Note: will fail in browser because endpoint is expecting POST not GET, but it is proof that 
+  #           the endpoint is up.
+  #
   ####################################################################################################
   loadbalancers:
     - lbname: gid-data-service-ccotofana-lb
