@@ -20,7 +20,7 @@ system:
         #     https://git.soma.salesforce.com/globalIdentity/nginx-routing/blob/master/conf.nginx
         ####################################################################################################
         - name: rev-path-proxy
-          image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/gid/gid-nginx:latest
+          image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/gid/gid-nginx:f4a391d    # Built by Jenkins on 22 May 2019
           ports:
             - containerPort: 7022
           livenessProbe:
