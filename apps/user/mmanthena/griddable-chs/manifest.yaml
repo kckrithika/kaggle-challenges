@@ -138,6 +138,10 @@ system:
          value: "ddnpassword"
        - name : MYSQL_DATABASE
          value: "griddable"
+       - name : ACDS_START_RELAY
+         value: "no"
+       - name : ACDS_START_CLIENT
+         value: "yes"
      volumes:
      - name: chs-persistent-conf
        hostPath:
