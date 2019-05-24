@@ -5,8 +5,9 @@ system:
   functions:
   - name: prod-debug
     count: 1
+
     containers:
-      
+
 
 
       - name: prod-debug-service
@@ -24,7 +25,7 @@ system:
           httpGet:
             path: /manage/ready
             port: 15372
-      
+
 
 
       - name: envoy-sidecar
@@ -40,6 +41,8 @@ system:
         - containerPort: 13066
         - containerPort: 15373
         
+
+
         #Fails: Readiness probe failed: listeners http code: 200 listeners: [] server state: "state": "LIVE",
         #readinessProbe:
         #  exec:
@@ -48,12 +51,14 @@ system:
         #  initialDelaySeconds: 15
         #  periodSeconds: 5
 
+
+
         volumeMounts:
           - mountPath: /cyan-config
             name: envoy-config-volume
           - mountPath: /certs/cert-client
             name: tls-client-cert
-      
+
 
 
       #- name: envoy-sidecar-config
@@ -66,11 +71,13 @@ system:
       #    initialDelaySeconds: 10
       #    periodSeconds: 5
       #  volumeMounts:
-      #    - name: tls-client-cert
-      #      mountPath: /client-certs
+      #    - mountPath: /home/sfdc-sherpa/sherpa-envoy-config-volume
+      #      name: envoy-config-volume
 
     # The volumes to mount for shipping logs to splunk
     # General rule is to use path that satisfies the pattern: /home/sfdc-*/logs/**/*.json
+    
+
     volumes:
       - maddogCert:
           type: client
