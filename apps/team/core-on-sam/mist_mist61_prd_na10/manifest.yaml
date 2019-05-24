@@ -257,7 +257,7 @@ system:
       - --clusters.external-clusters[1]=spaasmesh:HTTP2
       - --metrics.maxNumberOfCollectedMetrics=100000
       - --metrics.funnelTimeOut=90000
-      - --metrics.funnelEndPointURL=http://ajna0-funnel1-0-prd.data.sfdc.net:80
+      - --metrics.funnelEndPointURL=http://ajnafunneldirect.localhost.mesh.force.com:7013
       env:
       - name: SFDC_ENVIRONMENT
         value: mist61
