@@ -52,7 +52,7 @@ system:
     },
     \"host\" : \"10.225.240.220\",
     \"id\" : \"srcdb\",
-    \"instanceName\" : \"EE\",
+    \"instanceName\" : \"DATABASE\",
     \"password\" : \"basic:xRdN9n9+Yto2hHDW/sldaA==\",
     \"port\" : 1521,
     \"type\" : \"oracle\",
