@@ -6,7 +6,7 @@ apiVersion: v1
 system:
   functions:
   - containers:
-    - image: ops0-artifactrepo2-0-prd.data.sfdc.net/sfci/insights/moanaengine:release-1.0.4-27d617f
+    - image: ops0-artifactrepo2-0-prd.data.sfdc.net/sfci/insights/moanaengine:release-1.0.5-4c3ffc1
       livenessProbe:
         exec:
           command: [ls]
@@ -57,7 +57,7 @@ system:
     - env:
       - {name: LOGGING_JSON_STDOUT_LEVEL, value: ALL}
       - {name: LOGGING_STDERR_LEVEL, value: ALL}
-      - {name: MOANA_SPARK_ENGINE_IMAGE, value: 'ops0-artifactrepo2-0-prd.data.sfdc.net/sfci/insights/moanaengine:release-1.0.4-27d617f'}
+      - {name: MOANA_SPARK_ENGINE_IMAGE, value: 'ops0-artifactrepo2-0-prd.data.sfdc.net/sfci/insights/moanaengine:release-1.0.5-4c3ffc1'}
       - {name: KAFKA_GROUP_ID, value: moana-jobcontroller-release}
       - {name: K8S_SPARK_OVERRIDES, value: '{"spark.eventLog.dir": "s3a://moana-spark-history//",
           "spark.eventLog.enabled": "true", "spark.executor.extraJavaOptions": "-XX:MaxDirectMemorySize=256M
@@ -74,49 +74,22 @@ system:
       - {name: JAVA_OPTS, value: '-server -XX:MaxMetaspaceSize=512m -Xmx2048m -Xms2048m'}
       - {name: SIZING_MEMORY_OVERHEAD, value: '1024'}
       - {name: K8S_CPU_LIMIT_APPLY, value: 'false'}
+      - {name: STARTUP_JOB_ENABLED, value: 'false'}
       - {name: HANDLED_PODS_PATTERN, value: stmfa\..*|moana-driver-master}
       - {name: HANDLED_PODS_INVERT_MATCH, value: 'true'}
-      image: sfci/insights/jobcontroller:release-1.0.3-5937af6
+      image: sfci/insights/jobcontroller:release-1.0.4-9565685
       livenessProbe:
         httpGet: {path: /manage/health, port: 15372}
         initialDelaySeconds: 90
         periodSeconds: 60
         timeoutSeconds: 30
       name: jobcontroller
-      ports:
-      - {containerPort: 7020, name: grpc}
-      - {containerPort: 15372, name: mgmt}
       resources:
         limits: {cpu: 2, memory: 4G}
         requests: {cpu: 2, memory: 4G}
       volumeMounts:
       - {mountPath: /home/datapool/logs, name: logvol}
       - {mountPath: /home/datapool/client-certs, name: tls-client-certs}
-    - env:
-      - {name: SFDC_ENVIRONMENT, value: prod}
-      image: sfci/servicelibs/sherpa:2.0.24
-      livenessProbe:
-        exec:
-          command: [./bin/is-alive]
-        initialDelaySeconds: 120
-        periodSeconds: 5
-      name: sherpa
-      ports:
-      - {containerPort: 7012, name: sherpa-in-plain}
-      - {containerPort: 7443, name: sherpa-in-tls}
-      - {containerPort: 15373, name: sherpa-adm}
-      readinessProbe:
-        exec:
-          command: [./bin/is-ready]
-        initialDelaySeconds: 110
-        periodSeconds: 5
-      resources:
-        limits: {cpu: '1', memory: 1Gi}
-        requests: {cpu: '1', memory: 1Gi}
-      volumeMounts:
-      - {mountPath: /server-certs, name: tls-server-certs}
-      - {mountPath: /client-certs, name: tls-client-certs}
-      - {mountPath: /log, name: sherpa-log-volume}
     count: 3
     hostnetwork: false
     identity: {serviceName: datapool}
