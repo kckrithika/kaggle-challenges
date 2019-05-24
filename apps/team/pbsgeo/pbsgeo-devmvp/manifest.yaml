@@ -5,7 +5,7 @@ system:
     count: 4 
     containers:
     - name: pbsgeo
-      image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-gcp/dva/pbspectrum:b4d15a43e215dc52891bc3246f172287319be979
+      image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-gcp/dva/pbspectrum:bd1c17448daabc0c934da0ca64c147dc83101c28
       ports:
       - containerPort: 7022
       livenessProbe:
@@ -18,6 +18,8 @@ system:
         limits: {cpu: "4", memory: "64Gi"}
         requests: {cpu: "4", memory: "64Gi"}
       volumeMounts:
+      - mountPath: /home/sfdc/current/pbspectrum/pbspectrum/data
+        name: pbsgeodata
       - mountPath: /home/sfdc/logs
         name: logs
       - mountPath: /home/sdfc/unpackeddata
@@ -92,3 +94,7 @@ system:
       - port: 7022
         targetport: 7022
         lbtype: tcp
+  volumeClaimTemplates:
+    - name: pbsgeodata
+      storageClassName: standard
+      storageSizeRequest: 55Gi
