@@ -23,7 +23,7 @@
     # http1 server
     server {
         listen %(envoyVip)s:7013;
-        access_log /host/data/slb/logs/slb-envoy-proxy.access.slb_envoy_proxy_service_sam_system_9115.log combined buffer=64k gzip=1 flush=5m;
+        access_log /host/data/slb/logs/slb-envoy.access.slb_envoy_proxy_service_sam_system_9115.log combined buffer=64k gzip=1 flush=5m;
         location ~ ^/(?<service>[^\/]+) {
             set $mesh_host $service.localhost.mesh.force.com;
             rewrite ^/[^\/]+$ / break;
@@ -40,7 +40,7 @@
     # http1-tls server
     server {
         listen %(envoyVip)s:5442 ssl;
-        access_log /host/data/slb/logs/slb-envoy-proxy.access.slb_envoy_proxy_service_sam_system_9115.log combined buffer=64k gzip=1 flush=5m;
+        access_log /host/data/slb/logs/slb-envoy.access.slb_envoy_proxy_service_sam_system_9115.log combined buffer=64k gzip=1 flush=5m;
         location ~ ^/(?<service>[^\/]+) {
             set $mesh_host $service.localhost.mesh.force.com;
             rewrite ^/[^\/]+$ / break;
@@ -59,7 +59,7 @@
     # http2 server
     server {
         listen %(envoyVip)s:7011 http2;
-        access_log /host/data/slb/logs/slb-envoy-proxy.access.slb_envoy_proxy_service_sam_system_9115.log combined buffer=64k gzip=1 flush=5m;
+        access_log /host/data/slb/logs/slb-envoy.access.slb_envoy_proxy_service_sam_system_9115.log combined buffer=64k gzip=1 flush=5m;
         location ~ ^/(?<service>[^\/]+) {
             set $mesh_host $service.localhost.mesh.force.com;
             rewrite ^/[^\/]+$ / break;
@@ -76,7 +76,7 @@
     # http2-tls server
     server {
         listen %(envoyVip)s:5443 ssl http2;
-        access_log /host/data/slb/logs/slb-envoy-proxy.access.slb_envoy_proxy_service_sam_system_9115.log combined buffer=64k gzip=1 flush=5m;
+        access_log /host/data/slb/logs/slb-envoy.access.slb_envoy_proxy_service_sam_system_9115.log combined buffer=64k gzip=1 flush=5m;
         location ~ ^/(?<service>[^\/]+) {
             set $mesh_host $service.localhost.mesh.force.com;
             rewrite ^/[^\/]+$ / break;
