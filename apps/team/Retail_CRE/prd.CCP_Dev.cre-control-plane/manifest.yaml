@@ -71,6 +71,8 @@ system:
           value: crecontrolplaneccpdev
         - name: SPRING_PROFILES_ACTIVE
           value: default,production
+        - name: SCONE_SERVER_SECURITY_MUTUALAUTH
+          value: false
         - name: JVM_ARGS
           value: "-Djava.util.concurrent.ForkJoinPool.common.parallelism=8
                   -verbose:gc -XX:+PrintGCDateStamps -XX:+PrintHeapAtGC
