@@ -42,18 +42,19 @@ system:
           - mountPath: /certs/cert-client
             name: tls-client-cert
 
-      - name: envoy-sidecar-config
-        image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/casam/cyan-config:49d21a
-        livenessProbe:
-          exec:
-            command:
-            - cat
-            - /tmp/live
-          initialDelaySeconds: 3600
-          periodSeconds: 5
-        volumeMounts:
-          - mountPath: /home/sfdc-sherpa/sherpa-envoy-config-volume
-            name: envoy-config-volume
+
+      #- name: envoy-sidecar-config
+      #  image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/casam/cyan-config:49d21a
+      #  livenessProbe:
+      #    exec:
+      #      command:
+      #      - cat
+      #      - /tmp/live
+      #    initialDelaySeconds: 3600
+      #    periodSeconds: 5
+      #  volumeMounts:
+      #    - mountPath: /home/sfdc-sherpa/sherpa-envoy-config-volume
+      #      name: envoy-config-volume
 
     # The volumes to mount for shipping logs to splunk
     # General rule is to use path that satisfies the pattern: /home/sfdc-*/logs/**/*.json
