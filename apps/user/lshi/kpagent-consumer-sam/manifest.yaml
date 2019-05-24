@@ -1,0 +1,13 @@
+apiVersion: v1
+system:
+  functions:
+  - name: kpagent-consumer-sam
+    count: 1
+    hostnetwork: true
+    containers:
+    - name: kpagent-consumer-sam-image
+      image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/production_image:jenkins-SayonaraAnalytics-sdba_sam_test-master-4-itest
+      livenessProbe:
+        httpGet:
+          path: /
+          port: 9091

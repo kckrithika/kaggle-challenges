@@ -1,3 +1,5 @@
 apps:
   lshi-test-sam:
     - prd/prd-sam
+  kpagent-consumer-sam:
+    - prd/prd-sam
