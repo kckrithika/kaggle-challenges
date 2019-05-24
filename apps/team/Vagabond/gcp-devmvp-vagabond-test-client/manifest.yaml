@@ -20,7 +20,7 @@ system:
         - --type=VAGABOND
         - --testTime=900
         - --reportInterval=300
-        - --threadCount=30
+        - --threadCount=10
         - --url=acs-mesh-0.vagabond.localhost.mesh.force.com:7013,acs-mesh-1.vagabond.localhost.mesh.force.com:7013,acs-mesh-2.vagabond.localhost.mesh.force.com:7013,acs-mesh-3.vagabond.localhost.mesh.force.com:7013
       livenessProbe:
         exec:
