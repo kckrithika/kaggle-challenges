@@ -48,7 +48,7 @@ system:
         - name: CRE_ENGINE_MP_ENV
           value: prd
         - name: IMPORT_CRE_APPLICATION_NAME
-          value: cre-engine
+          value: cre-engine-ccp-func
         - name: IMPORT_K4A_VAULT
           value: cre-engine-dev
         ####################################################################################################
@@ -64,8 +64,6 @@ system:
         ####################################### EXPORT environment variables ###############################
         ####################################################################################################
         - name: EXPORT_CRE_APPLICATION_NAME
-          value: cre-engine-ccp-func
-        - name: EXPORT_FLOWSNAKE_ARTIFACT
           value: cre-engine-ccp-func
         ####################################################################################################
         ##################################### APP Config environment variables #############################
