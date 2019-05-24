@@ -2,6 +2,7 @@ apiVersion: v1
 system:
   functions:
   - name: default
+    type: stateful-set
     count: 4 
     containers:
     - name: pbsgeo
@@ -86,15 +87,9 @@ system:
     - name: pbsgeocert
       maddogCert:
         type: client
-  loadbalancers:
-  - lbname: pbsgeolb
-    function: default
-    slbenabled: true
-    ports:
-      - port: 7022
-        targetport: 7022
-        lbtype: tcp
-  volumeClaimTemplates:
+    lbname: pbsgeolb
+    volumeClaimTemplates:
     - name: pbsgeodata
       storageClassName: standard
       storageSizeRequest: 55Gi
+
