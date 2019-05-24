@@ -20,11 +20,11 @@ system:
         - name: BROKER_URL
           value: 'mycroft.casp.prd-sam.prd.slb.sfdc.net'
         - name: SHARED0_SAMMINIONWARDEN1_1_PRD_KINGDOMS
-          value: 'ph2,phx,par,chx,syd,cdu'
+          value: 'ph2,phx,par,chx,lo2'
         - name: SHARED0_SAMMINIONWARDEN1_2_PRD_KINGDOMS
-          value: 'dfw,iad,ukb,hnd,lo3,chi,wax,lo2,yul'
+          value: 'dfw,iad,ukb,hnd,lo3,chi,wax,yul'
         - name: SHARED0_SAMMINIONWARDEN2_1_PRD_KINGDOMS
-          value: 'ia2,ord,fra,cdg,frf'
+          value: 'ia2,ord,fra,cdg,frf,syd,cdu'
         - name: MY_SAM_HOST_NAME
           valueFrom:
             fieldRef:
