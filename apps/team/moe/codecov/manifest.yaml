@@ -8,6 +8,10 @@ system:
   functions:
     - name: postgres
       count: 1
+      # Mitigate problem with pods being booted from the node because of the issue discussed in
+      # https://computecloud.slack.com/archives/C7VQEN8HX/p1557269590012400. hostnetwork pods
+      # don't consume a sam.sfdc.net/ip-address resource.
+      hostnetwork: true
       type: stateful-set
       containers:
         - name: postgres
@@ -54,6 +58,10 @@ system:
 
     - name: redis
       count: 1
+      # Mitigate problem with pods being booted from the node because of the issue discussed in
+      # https://computecloud.slack.com/archives/C7VQEN8HX/p1557269590012400. hostnetwork pods
+      # don't consume a sam.sfdc.net/ip-address resource.
+      hostnetwork: true
       type: stateful-set
       containers:
         - name: redis
@@ -95,6 +103,8 @@ system:
     - name: monitor
       count: 1
       type: stateful-set
+      # Don't need the hostnetworking mitigation for the monitor pod -- it doesn't use ceph storage.
+      # hostnetwork: true
       containers:
         - name: monitor
           image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/moe/codecov/enterprise:v4.3.10
@@ -138,6 +148,10 @@ system:
 
     - name: core
       count: 1
+      # Mitigate problem with pods being booted from the node because of the issue discussed in
+      # https://computecloud.slack.com/archives/C7VQEN8HX/p1557269590012400. hostnetwork pods
+      # don't consume a sam.sfdc.net/ip-address resource.
+      hostnetwork: true
       type: stateful-set
       containers:
         # worker container
