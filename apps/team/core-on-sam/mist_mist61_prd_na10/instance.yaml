@@ -20,7 +20,7 @@ images:
   envoy: sfci/servicelibs/sherpa-envoy:1.0.4
   envoyConfig: sfci/casam/cyan-config:208cc2
   sequencer: sfci/casam/sequencer:5d6b80
-  sfProxy: sfci/frontend-gateway/sfproxy:659513c
+  sfProxy: sfci/frontend-gateway/sfproxy:bc7e1fa
   switchboard: sfci/servicelibs/switchboard:26c3cdce981042262b9f0f26c226cab1841bf9fd
   switchboardEnvoy: sfci/frontend-gateway/sfproxy:bc7e1fa
 name: na10
