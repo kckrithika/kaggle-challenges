@@ -100,7 +100,7 @@
   // It erases any files in the config directory, ensuring that any stale service config / block files
   // are removed before new envoy services start.
   local envoyConfigWipeInitContainer = {
-    assert std.length(slbconfigs.nginx.containerTargetDir) > 0: "Invalid configuration: slbconfigs.nginx.containerTargetDir is empty",
+    assert std.length(slbconfigs.nginx.containerTargetDir) > 0 : "Invalid configuration: slbconfigs.nginx.containerTargetDir is empty",
     name: "slb-envoy-config-wipe",
     image: slbimages.hyperslb,
     command: [
