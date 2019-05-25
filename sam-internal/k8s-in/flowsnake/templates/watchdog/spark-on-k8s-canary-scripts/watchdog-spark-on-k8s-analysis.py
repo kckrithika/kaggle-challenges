@@ -338,6 +338,8 @@ simple_regex_exception_messages = {
     'SPARK_ADMISSION_WEBHOOK': re.compile(r'failed calling admission webhook "webhook\.sparkoperator\.k8s\.io'),
     'REMOTE_CLOSED_CONNECTION': re.compile(r'Remote host closed connection'),
     'CONNECTION_RESET': re.compile(r'Connection reset'),
+    'KUBEAPI_SHUTDOWN': re.compile(r'Apisever is shutting down'),
+    'RBAC': re.compile(r'(?:role.rbac.authorization.k8s.io ".*" not found|forbidden: User ".*" cannot .* in the namespace)'),
 }
 
 app = None
@@ -555,17 +557,24 @@ def detect_exceptions(output):
             # javax.net.ssl.SSLHandshakeException: Remote host closed connection during handshake
             # Caused by: java.io.EOFException: SSL peer shut down incorrectly
             # "Remote host closed connection" actually seems more useful.
-            more_specific_than = {
+            key_is_more_specific_than = {
                 'SSLHandshakeException': 'EOFException',
                 'SocketTimeoutException': 'SocketException',
             }
-            if more_specific_than.get(exception_match.group('class'), 'NO_MATCH') == m.group('class'):
+            if key_is_more_specific_than.get(exception_match.group('class')) == m.group('class'):
                 continue
             else:
                 exception_match = m
         else:
             # Otherwise we're done; subsequent exception blocks are probably just cascading errors
-            break
+            # Exception (ha!) to the rule: sometimes the first exception logged has fewer details.
+            key_is_more_specific_than = {
+                'KubernetesClientException': 'ProtocolException',
+            }
+            if key_is_more_specific_than.get(m.group('class')) == exception_match.group('class'):
+                exception_match = m
+            else:
+                break
 
     if exception_match:
         # Record the exception itself
