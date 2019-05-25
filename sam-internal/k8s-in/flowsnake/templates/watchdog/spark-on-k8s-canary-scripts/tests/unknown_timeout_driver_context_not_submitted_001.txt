@@ -1,0 +1,151 @@
+UNKNOWN_TIMEOUT_DRIVER_CONTEXT_NOT_SUBMITTED
+//
+// Failed to get driver logs so cannot determine why driver didn't launch any executors.
+//
+0523 23:19:46 [1558653586] spark-pi-2d23001c - ======== Beginning spark-pi-2d23001c test ========
+0523 23:19:46 [1558653586] spark-pi-2d23001c -  [0;32mKubernetes master [0m is running at  [0;33mhttps://10.254.208.1:443 [0m
+0523 23:19:46 [1558653586] spark-pi-2d23001c -
+0523 23:19:46 [1558653586] spark-pi-2d23001c - To further debug and diagnose cluster problems, use 'kubectl cluster-info dump'.
+0523 23:19:46 [1558653586] spark-pi-2d23001c - Cleaning up SparkApplication/Pod older than 1 hours from prior runs.
+0523 23:19:47 [1558653587] spark-pi-2d23001c - Creating SparkApplication spark-pi-2d23001c
+0523 23:19:47 [1558653587] spark-pi-2d23001c - sparkapplication "spark-pi-2d23001c" created
+0523 23:19:47 [1558653587] spark-pi-2d23001c - Waiting for SparkApplication spark-pi-2d23001c to reach a terminal state.
+0523 23:19:50 [1558653590] spark-pi-2d23001c - Pod change detected: spark-pi-2d23001c-driver: Init:0/1 on host shared0-flowsnakeworkerprod1-85-dfw.ops.sfdc.net.
+0523 23:19:53 [1558653593] spark-pi-2d23001c - Pod change detected: spark-pi-2d23001c-driver changed to PodInitializing (previously Init:0/1).
+0523 23:19:54 [1558653594] spark-pi-2d23001c - Pod change detected: spark-pi-2d23001c-driver changed to Running (previously PodInitializing).
+0523 23:20:48 [1558653648] spark-pi-2d23001c - ...still waiting for terminal state (currently RUNNING) after 61 seconds.
+0523 23:20:48 [1558653648] spark-pi-2d23001c - ---- Begin Events ----
+0523 23:20:48 [1558653648] spark-pi-2d23001c - Name:         spark-pi-2d23001c
+0523 23:20:48 [1558653648] spark-pi-2d23001c - Events:                          <none>
+0523 23:20:50 [1558653650] spark-pi-2d23001c - Name:           spark-pi-2d23001c-driver
+0523 23:20:50 [1558653650] spark-pi-2d23001c - Events:
+0523 23:20:50 [1558653650] spark-pi-2d23001c -   Type     Reason                 Age   From                                                       Message
+0523 23:20:50 [1558653650] spark-pi-2d23001c -   ----     ------                 ----  ----                                                       -------
+0523 23:20:50 [1558653650] spark-pi-2d23001c -   Normal   Scheduled              1m    default-scheduler                                          Successfully assigned spark-pi-2d23001c-driver to shared0-flowsnakeworkerprod1-85-dfw.ops.sfdc.net
+0523 23:20:50 [1558653650] spark-pi-2d23001c -   Normal   Pulled                 1m    kubelet, shared0-flowsnakeworkerprod1-85-dfw.ops.sfdc.net  Container image "ops0-artifactrepo1-0-dfw.data.sfdc.net/tnrp/sam/madkub:1.0.0-0000084-9f4a6ca6" already present on machine
+0523 23:20:50 [1558653650] spark-pi-2d23001c -   Normal   SuccessfulMountVolume  1m    kubelet, shared0-flowsnakeworkerprod1-85-dfw.ops.sfdc.net  MountVolume.SetUp succeeded for volume "client-key"
+0523 23:20:50 [1558653650] spark-pi-2d23001c -   Normal   SuccessfulMountVolume  1m    kubelet, shared0-flowsnakeworkerprod1-85-dfw.ops.sfdc.net  MountVolume.SetUp succeeded for volume "certificate-authority"
+0523 23:20:50 [1558653650] spark-pi-2d23001c -   Normal   SuccessfulMountVolume  1m    kubelet, shared0-flowsnakeworkerprod1-85-dfw.ops.sfdc.net  MountVolume.SetUp succeeded for volume "spark-local-dir-1"
+0523 23:20:50 [1558653650] spark-pi-2d23001c -   Warning  FailedMount            1m    kubelet, shared0-flowsnakeworkerprod1-85-dfw.ops.sfdc.net  MountVolume.SetUp failed for volume "spark-conf-volume" : configmaps "spark-pi-2d23001c-1558653588843-driver-conf-map" not found
+0523 23:20:50 [1558653650] spark-pi-2d23001c -   Normal   SuccessfulMountVolume  1m    kubelet, shared0-flowsnakeworkerprod1-85-dfw.ops.sfdc.net  MountVolume.SetUp succeeded for volume "tokens"
+0523 23:20:50 [1558653650] spark-pi-2d23001c -   Normal   SuccessfulMountVolume  1m    kubelet, shared0-flowsnakeworkerprod1-85-dfw.ops.sfdc.net  MountVolume.SetUp succeeded for volume "datacerts"
+0523 23:20:50 [1558653650] spark-pi-2d23001c -   Normal   SuccessfulMountVolume  1m    kubelet, shared0-flowsnakeworkerprod1-85-dfw.ops.sfdc.net  MountVolume.SetUp succeeded for volume "client-certificate"
+0523 23:20:50 [1558653650] spark-pi-2d23001c -   Normal   SuccessfulMountVolume  1m    kubelet, shared0-flowsnakeworkerprod1-85-dfw.ops.sfdc.net  MountVolume.SetUp succeeded for volume "spark-conf-volume"
+0523 23:20:50 [1558653650] spark-pi-2d23001c -   Normal   SuccessfulMountVolume  1m    kubelet, shared0-flowsnakeworkerprod1-85-dfw.ops.sfdc.net  MountVolume.SetUp succeeded for volume "spark-driver-flowsnake-watchdog-token-6x9b4"
+0523 23:20:50 [1558653650] spark-pi-2d23001c -   Normal   Created                1m    kubelet, shared0-flowsnakeworkerprod1-85-dfw.ops.sfdc.net  Created container
+0523 23:20:50 [1558653650] spark-pi-2d23001c -   Normal   Started                1m    kubelet, shared0-flowsnakeworkerprod1-85-dfw.ops.sfdc.net  Started container
+0523 23:20:50 [1558653650] spark-pi-2d23001c -   Normal   Pulling                59s   kubelet, shared0-flowsnakeworkerprod1-85-dfw.ops.sfdc.net  pulling image "ops0-artifactrepo1-0-dfw.data.sfdc.net/dva/flowsnake-spark-on-k8s-sample-apps:4"
+0523 23:20:50 [1558653650] spark-pi-2d23001c -   Normal   Pulled                 58s   kubelet, shared0-flowsnakeworkerprod1-85-dfw.ops.sfdc.net  Successfully pulled image "ops0-artifactrepo1-0-dfw.data.sfdc.net/dva/flowsnake-spark-on-k8s-sample-apps:4"
+0523 23:20:50 [1558653650] spark-pi-2d23001c -   Normal   Created                58s   kubelet, shared0-flowsnakeworkerprod1-85-dfw.ops.sfdc.net  Created container
+0523 23:20:50 [1558653650] spark-pi-2d23001c -   Normal   Started                58s   kubelet, shared0-flowsnakeworkerprod1-85-dfw.ops.sfdc.net  Started container
+0523 23:20:52 [1558653652] spark-pi-2d23001c - ---- End Events ----
+0523 23:21:50 [1558653710] spark-pi-2d23001c - ...still waiting for terminal state (currently RUNNING) after 123 seconds.
+0523 23:21:50 [1558653710] spark-pi-2d23001c - ---- Begin Events ----
+0523 23:21:50 [1558653710] spark-pi-2d23001c - Name:         spark-pi-2d23001c
+0523 23:21:50 [1558653710] spark-pi-2d23001c - Events:                          <none>
+0523 23:21:51 [1558653711] spark-pi-2d23001c - Name:           spark-pi-2d23001c-driver
+0523 23:21:51 [1558653711] spark-pi-2d23001c - Events:
+0523 23:21:51 [1558653711] spark-pi-2d23001c -   Type     Reason                 Age   From                                                       Message
+0523 23:21:51 [1558653711] spark-pi-2d23001c -   ----     ------                 ----  ----                                                       -------
+0523 23:21:51 [1558653711] spark-pi-2d23001c -   Normal   Scheduled              2m    default-scheduler                                          Successfully assigned spark-pi-2d23001c-driver to shared0-flowsnakeworkerprod1-85-dfw.ops.sfdc.net
+0523 23:21:51 [1558653711] spark-pi-2d23001c -   Normal   Pulled                 2m    kubelet, shared0-flowsnakeworkerprod1-85-dfw.ops.sfdc.net  Container image "ops0-artifactrepo1-0-dfw.data.sfdc.net/tnrp/sam/madkub:1.0.0-0000084-9f4a6ca6" already present on machine
+0523 23:21:51 [1558653711] spark-pi-2d23001c -   Normal   SuccessfulMountVolume  2m    kubelet, shared0-flowsnakeworkerprod1-85-dfw.ops.sfdc.net  MountVolume.SetUp succeeded for volume "client-key"
+0523 23:21:51 [1558653711] spark-pi-2d23001c -   Normal   SuccessfulMountVolume  2m    kubelet, shared0-flowsnakeworkerprod1-85-dfw.ops.sfdc.net  MountVolume.SetUp succeeded for volume "certificate-authority"
+0523 23:21:51 [1558653711] spark-pi-2d23001c -   Normal   SuccessfulMountVolume  2m    kubelet, shared0-flowsnakeworkerprod1-85-dfw.ops.sfdc.net  MountVolume.SetUp succeeded for volume "spark-local-dir-1"
+0523 23:21:51 [1558653711] spark-pi-2d23001c -   Warning  FailedMount            2m    kubelet, shared0-flowsnakeworkerprod1-85-dfw.ops.sfdc.net  MountVolume.SetUp failed for volume "spark-conf-volume" : configmaps "spark-pi-2d23001c-1558653588843-driver-conf-map" not found
+0523 23:21:51 [1558653711] spark-pi-2d23001c -   Normal   SuccessfulMountVolume  2m    kubelet, shared0-flowsnakeworkerprod1-85-dfw.ops.sfdc.net  MountVolume.SetUp succeeded for volume "tokens"
+0523 23:21:51 [1558653711] spark-pi-2d23001c -   Normal   SuccessfulMountVolume  2m    kubelet, shared0-flowsnakeworkerprod1-85-dfw.ops.sfdc.net  MountVolume.SetUp succeeded for volume "datacerts"
+0523 23:21:51 [1558653711] spark-pi-2d23001c -   Normal   SuccessfulMountVolume  2m    kubelet, shared0-flowsnakeworkerprod1-85-dfw.ops.sfdc.net  MountVolume.SetUp succeeded for volume "client-certificate"
+0523 23:21:51 [1558653711] spark-pi-2d23001c -   Normal   SuccessfulMountVolume  2m    kubelet, shared0-flowsnakeworkerprod1-85-dfw.ops.sfdc.net  MountVolume.SetUp succeeded for volume "spark-conf-volume"
+0523 23:21:51 [1558653711] spark-pi-2d23001c -   Normal   SuccessfulMountVolume  2m    kubelet, shared0-flowsnakeworkerprod1-85-dfw.ops.sfdc.net  MountVolume.SetUp succeeded for volume "spark-driver-flowsnake-watchdog-token-6x9b4"
+0523 23:21:51 [1558653711] spark-pi-2d23001c -   Normal   Created                2m    kubelet, shared0-flowsnakeworkerprod1-85-dfw.ops.sfdc.net  Created container
+0523 23:21:51 [1558653711] spark-pi-2d23001c -   Normal   Started                2m    kubelet, shared0-flowsnakeworkerprod1-85-dfw.ops.sfdc.net  Started container
+0523 23:21:51 [1558653711] spark-pi-2d23001c -   Normal   Pulling                2m    kubelet, shared0-flowsnakeworkerprod1-85-dfw.ops.sfdc.net  pulling image "ops0-artifactrepo1-0-dfw.data.sfdc.net/dva/flowsnake-spark-on-k8s-sample-apps:4"
+0523 23:21:51 [1558653711] spark-pi-2d23001c -   Normal   Pulled                 2m    kubelet, shared0-flowsnakeworkerprod1-85-dfw.ops.sfdc.net  Successfully pulled image "ops0-artifactrepo1-0-dfw.data.sfdc.net/dva/flowsnake-spark-on-k8s-sample-apps:4"
+0523 23:21:51 [1558653711] spark-pi-2d23001c -   Normal   Created                2m    kubelet, shared0-flowsnakeworkerprod1-85-dfw.ops.sfdc.net  Created container
+0523 23:21:51 [1558653711] spark-pi-2d23001c -   Normal   Started                2m    kubelet, shared0-flowsnakeworkerprod1-85-dfw.ops.sfdc.net  Started container
+0523 23:21:53 [1558653713] spark-pi-2d23001c - ---- End Events ----
+0523 23:22:51 [1558653771] spark-pi-2d23001c - ...still waiting for terminal state (currently RUNNING) after 184 seconds.
+0523 23:22:51 [1558653771] spark-pi-2d23001c - ---- Begin Events ----
+0523 23:22:51 [1558653771] spark-pi-2d23001c - Name:         spark-pi-2d23001c
+0523 23:22:51 [1558653771] spark-pi-2d23001c - Events:                          <none>
+0523 23:22:53 [1558653773] spark-pi-2d23001c - Name:           spark-pi-2d23001c-driver
+0523 23:22:53 [1558653773] spark-pi-2d23001c - Events:
+0523 23:22:53 [1558653773] spark-pi-2d23001c -   Type     Reason                 Age   From                                                       Message
+0523 23:22:53 [1558653773] spark-pi-2d23001c -   ----     ------                 ----  ----                                                       -------
+0523 23:22:53 [1558653773] spark-pi-2d23001c -   Normal   Scheduled              3m    default-scheduler                                          Successfully assigned spark-pi-2d23001c-driver to shared0-flowsnakeworkerprod1-85-dfw.ops.sfdc.net
+0523 23:22:53 [1558653773] spark-pi-2d23001c -   Normal   Pulled                 3m    kubelet, shared0-flowsnakeworkerprod1-85-dfw.ops.sfdc.net  Container image "ops0-artifactrepo1-0-dfw.data.sfdc.net/tnrp/sam/madkub:1.0.0-0000084-9f4a6ca6" already present on machine
+0523 23:22:53 [1558653773] spark-pi-2d23001c -   Normal   SuccessfulMountVolume  3m    kubelet, shared0-flowsnakeworkerprod1-85-dfw.ops.sfdc.net  MountVolume.SetUp succeeded for volume "client-key"
+0523 23:22:53 [1558653773] spark-pi-2d23001c -   Normal   SuccessfulMountVolume  3m    kubelet, shared0-flowsnakeworkerprod1-85-dfw.ops.sfdc.net  MountVolume.SetUp succeeded for volume "certificate-authority"
+0523 23:22:53 [1558653773] spark-pi-2d23001c -   Normal   SuccessfulMountVolume  3m    kubelet, shared0-flowsnakeworkerprod1-85-dfw.ops.sfdc.net  MountVolume.SetUp succeeded for volume "spark-local-dir-1"
+0523 23:22:53 [1558653773] spark-pi-2d23001c -   Warning  FailedMount            3m    kubelet, shared0-flowsnakeworkerprod1-85-dfw.ops.sfdc.net  MountVolume.SetUp failed for volume "spark-conf-volume" : configmaps "spark-pi-2d23001c-1558653588843-driver-conf-map" not found
+0523 23:22:53 [1558653773] spark-pi-2d23001c -   Normal   SuccessfulMountVolume  3m    kubelet, shared0-flowsnakeworkerprod1-85-dfw.ops.sfdc.net  MountVolume.SetUp succeeded for volume "tokens"
+0523 23:22:53 [1558653773] spark-pi-2d23001c -   Normal   SuccessfulMountVolume  3m    kubelet, shared0-flowsnakeworkerprod1-85-dfw.ops.sfdc.net  MountVolume.SetUp succeeded for volume "datacerts"
+0523 23:22:53 [1558653773] spark-pi-2d23001c -   Normal   SuccessfulMountVolume  3m    kubelet, shared0-flowsnakeworkerprod1-85-dfw.ops.sfdc.net  MountVolume.SetUp succeeded for volume "client-certificate"
+0523 23:22:53 [1558653773] spark-pi-2d23001c -   Normal   SuccessfulMountVolume  3m    kubelet, shared0-flowsnakeworkerprod1-85-dfw.ops.sfdc.net  MountVolume.SetUp succeeded for volume "spark-conf-volume"
+0523 23:22:53 [1558653773] spark-pi-2d23001c -   Normal   SuccessfulMountVolume  3m    kubelet, shared0-flowsnakeworkerprod1-85-dfw.ops.sfdc.net  MountVolume.SetUp succeeded for volume "spark-driver-flowsnake-watchdog-token-6x9b4"
+0523 23:22:53 [1558653773] spark-pi-2d23001c -   Normal   Created                3m    kubelet, shared0-flowsnakeworkerprod1-85-dfw.ops.sfdc.net  Created container
+0523 23:22:53 [1558653773] spark-pi-2d23001c -   Normal   Started                3m    kubelet, shared0-flowsnakeworkerprod1-85-dfw.ops.sfdc.net  Started container
+0523 23:22:53 [1558653773] spark-pi-2d23001c -   Normal   Pulling                3m    kubelet, shared0-flowsnakeworkerprod1-85-dfw.ops.sfdc.net  pulling image "ops0-artifactrepo1-0-dfw.data.sfdc.net/dva/flowsnake-spark-on-k8s-sample-apps:4"
+0523 23:22:53 [1558653773] spark-pi-2d23001c -   Normal   Pulled                 3m    kubelet, shared0-flowsnakeworkerprod1-85-dfw.ops.sfdc.net  Successfully pulled image "ops0-artifactrepo1-0-dfw.data.sfdc.net/dva/flowsnake-spark-on-k8s-sample-apps:4"
+0523 23:22:53 [1558653773] spark-pi-2d23001c -   Normal   Created                3m    kubelet, shared0-flowsnakeworkerprod1-85-dfw.ops.sfdc.net  Created container
+0523 23:22:53 [1558653773] spark-pi-2d23001c -   Normal   Started                3m    kubelet, shared0-flowsnakeworkerprod1-85-dfw.ops.sfdc.net  Started container
+0523 23:22:54 [1558653775] spark-pi-2d23001c - ---- End Events ----
+0523 23:23:52 [1558653832] spark-pi-2d23001c - ...still waiting for terminal state (currently RUNNING) after 245 seconds.
+0523 23:23:52 [1558653832] spark-pi-2d23001c - ---- Begin Events ----
+0523 23:23:52 [1558653832] spark-pi-2d23001c - Name:         spark-pi-2d23001c
+0523 23:23:52 [1558653832] spark-pi-2d23001c - Events:                          <none>
+0523 23:23:54 [1558653834] spark-pi-2d23001c - Name:           spark-pi-2d23001c-driver
+0523 23:23:54 [1558653834] spark-pi-2d23001c - Events:
+0523 23:23:54 [1558653834] spark-pi-2d23001c -   Type     Reason                 Age   From                                                       Message
+0523 23:23:54 [1558653834] spark-pi-2d23001c -   ----     ------                 ----  ----                                                       -------
+0523 23:23:54 [1558653834] spark-pi-2d23001c -   Normal   Scheduled              4m    default-scheduler                                          Successfully assigned spark-pi-2d23001c-driver to shared0-flowsnakeworkerprod1-85-dfw.ops.sfdc.net
+0523 23:23:54 [1558653834] spark-pi-2d23001c -   Normal   Pulled                 4m    kubelet, shared0-flowsnakeworkerprod1-85-dfw.ops.sfdc.net  Container image "ops0-artifactrepo1-0-dfw.data.sfdc.net/tnrp/sam/madkub:1.0.0-0000084-9f4a6ca6" already present on machine
+0523 23:23:54 [1558653834] spark-pi-2d23001c -   Normal   SuccessfulMountVolume  4m    kubelet, shared0-flowsnakeworkerprod1-85-dfw.ops.sfdc.net  MountVolume.SetUp succeeded for volume "client-key"
+0523 23:23:54 [1558653834] spark-pi-2d23001c -   Normal   SuccessfulMountVolume  4m    kubelet, shared0-flowsnakeworkerprod1-85-dfw.ops.sfdc.net  MountVolume.SetUp succeeded for volume "certificate-authority"
+0523 23:23:54 [1558653834] spark-pi-2d23001c -   Normal   SuccessfulMountVolume  4m    kubelet, shared0-flowsnakeworkerprod1-85-dfw.ops.sfdc.net  MountVolume.SetUp succeeded for volume "spark-local-dir-1"
+0523 23:23:54 [1558653834] spark-pi-2d23001c -   Warning  FailedMount            4m    kubelet, shared0-flowsnakeworkerprod1-85-dfw.ops.sfdc.net  MountVolume.SetUp failed for volume "spark-conf-volume" : configmaps "spark-pi-2d23001c-1558653588843-driver-conf-map" not found
+0523 23:23:54 [1558653834] spark-pi-2d23001c -   Normal   SuccessfulMountVolume  4m    kubelet, shared0-flowsnakeworkerprod1-85-dfw.ops.sfdc.net  MountVolume.SetUp succeeded for volume "tokens"
+0523 23:23:54 [1558653834] spark-pi-2d23001c -   Normal   SuccessfulMountVolume  4m    kubelet, shared0-flowsnakeworkerprod1-85-dfw.ops.sfdc.net  MountVolume.SetUp succeeded for volume "datacerts"
+0523 23:23:54 [1558653834] spark-pi-2d23001c -   Normal   SuccessfulMountVolume  4m    kubelet, shared0-flowsnakeworkerprod1-85-dfw.ops.sfdc.net  MountVolume.SetUp succeeded for volume "client-certificate"
+0523 23:23:54 [1558653834] spark-pi-2d23001c -   Normal   SuccessfulMountVolume  4m    kubelet, shared0-flowsnakeworkerprod1-85-dfw.ops.sfdc.net  MountVolume.SetUp succeeded for volume "spark-conf-volume"
+0523 23:23:54 [1558653834] spark-pi-2d23001c -   Normal   SuccessfulMountVolume  4m    kubelet, shared0-flowsnakeworkerprod1-85-dfw.ops.sfdc.net  MountVolume.SetUp succeeded for volume "spark-driver-flowsnake-watchdog-token-6x9b4"
+0523 23:23:54 [1558653834] spark-pi-2d23001c -   Normal   Created                4m    kubelet, shared0-flowsnakeworkerprod1-85-dfw.ops.sfdc.net  Created container
+0523 23:23:54 [1558653834] spark-pi-2d23001c -   Normal   Started                4m    kubelet, shared0-flowsnakeworkerprod1-85-dfw.ops.sfdc.net  Started container
+0523 23:23:54 [1558653834] spark-pi-2d23001c -   Normal   Pulling                4m    kubelet, shared0-flowsnakeworkerprod1-85-dfw.ops.sfdc.net  pulling image "ops0-artifactrepo1-0-dfw.data.sfdc.net/dva/flowsnake-spark-on-k8s-sample-apps:4"
+0523 23:23:54 [1558653834] spark-pi-2d23001c -   Normal   Pulled                 4m    kubelet, shared0-flowsnakeworkerprod1-85-dfw.ops.sfdc.net  Successfully pulled image "ops0-artifactrepo1-0-dfw.data.sfdc.net/dva/flowsnake-spark-on-k8s-sample-apps:4"
+0523 23:23:54 [1558653834] spark-pi-2d23001c -   Normal   Created                4m    kubelet, shared0-flowsnakeworkerprod1-85-dfw.ops.sfdc.net  Created container
+0523 23:23:54 [1558653834] spark-pi-2d23001c -   Normal   Started                4m    kubelet, shared0-flowsnakeworkerprod1-85-dfw.ops.sfdc.net  Started container
+0523 23:23:55 [1558653835] spark-pi-2d23001c - ---- End Events ----
+0523 23:24:46 [1558653886] spark-pi-2d23001c - Timeout reached. Aborting wait for SparkApplication spark-pi-2d23001c even though in non-terminal state RUNNING.
+0523 23:24:46 [1558653886] spark-pi-2d23001c - ---- Begin Events ----
+0523 23:24:46 [1558653886] spark-pi-2d23001c - Name:         spark-pi-2d23001c
+0523 23:24:46 [1558653886] spark-pi-2d23001c - Events:                          <none>
+0523 23:24:48 [1558653888] spark-pi-2d23001c - Name:           spark-pi-2d23001c-driver
+0523 23:24:48 [1558653888] spark-pi-2d23001c - Events:
+0523 23:24:48 [1558653888] spark-pi-2d23001c -   Type     Reason                 Age   From                                                       Message
+0523 23:24:48 [1558653888] spark-pi-2d23001c -   ----     ------                 ----  ----                                                       -------
+0523 23:24:48 [1558653888] spark-pi-2d23001c -   Normal   Scheduled              5m    default-scheduler                                          Successfully assigned spark-pi-2d23001c-driver to shared0-flowsnakeworkerprod1-85-dfw.ops.sfdc.net
+0523 23:24:48 [1558653888] spark-pi-2d23001c -   Normal   Pulled                 4m    kubelet, shared0-flowsnakeworkerprod1-85-dfw.ops.sfdc.net  Container image "ops0-artifactrepo1-0-dfw.data.sfdc.net/tnrp/sam/madkub:1.0.0-0000084-9f4a6ca6" already present on machine
+0523 23:24:48 [1558653888] spark-pi-2d23001c -   Normal   SuccessfulMountVolume  4m    kubelet, shared0-flowsnakeworkerprod1-85-dfw.ops.sfdc.net  MountVolume.SetUp succeeded for volume "client-key"
+0523 23:24:48 [1558653888] spark-pi-2d23001c -   Normal   SuccessfulMountVolume  4m    kubelet, shared0-flowsnakeworkerprod1-85-dfw.ops.sfdc.net  MountVolume.SetUp succeeded for volume "certificate-authority"
+0523 23:24:48 [1558653888] spark-pi-2d23001c -   Normal   SuccessfulMountVolume  4m    kubelet, shared0-flowsnakeworkerprod1-85-dfw.ops.sfdc.net  MountVolume.SetUp succeeded for volume "spark-local-dir-1"
+0523 23:24:48 [1558653888] spark-pi-2d23001c -   Warning  FailedMount            4m    kubelet, shared0-flowsnakeworkerprod1-85-dfw.ops.sfdc.net  MountVolume.SetUp failed for volume "spark-conf-volume" : configmaps "spark-pi-2d23001c-1558653588843-driver-conf-map" not found
+0523 23:24:48 [1558653888] spark-pi-2d23001c -   Normal   SuccessfulMountVolume  4m    kubelet, shared0-flowsnakeworkerprod1-85-dfw.ops.sfdc.net  MountVolume.SetUp succeeded for volume "tokens"
+0523 23:24:48 [1558653888] spark-pi-2d23001c -   Normal   SuccessfulMountVolume  4m    kubelet, shared0-flowsnakeworkerprod1-85-dfw.ops.sfdc.net  MountVolume.SetUp succeeded for volume "datacerts"
+0523 23:24:48 [1558653888] spark-pi-2d23001c -   Normal   SuccessfulMountVolume  4m    kubelet, shared0-flowsnakeworkerprod1-85-dfw.ops.sfdc.net  MountVolume.SetUp succeeded for volume "client-certificate"
+0523 23:24:48 [1558653888] spark-pi-2d23001c -   Normal   SuccessfulMountVolume  4m    kubelet, shared0-flowsnakeworkerprod1-85-dfw.ops.sfdc.net  MountVolume.SetUp succeeded for volume "spark-conf-volume"
+0523 23:24:48 [1558653888] spark-pi-2d23001c -   Normal   SuccessfulMountVolume  4m    kubelet, shared0-flowsnakeworkerprod1-85-dfw.ops.sfdc.net  MountVolume.SetUp succeeded for volume "spark-driver-flowsnake-watchdog-token-6x9b4"
+0523 23:24:48 [1558653888] spark-pi-2d23001c -   Normal   Created                4m    kubelet, shared0-flowsnakeworkerprod1-85-dfw.ops.sfdc.net  Created container
+0523 23:24:48 [1558653888] spark-pi-2d23001c -   Normal   Started                4m    kubelet, shared0-flowsnakeworkerprod1-85-dfw.ops.sfdc.net  Started container
+0523 23:24:48 [1558653888] spark-pi-2d23001c -   Normal   Pulling                4m    kubelet, shared0-flowsnakeworkerprod1-85-dfw.ops.sfdc.net  pulling image "ops0-artifactrepo1-0-dfw.data.sfdc.net/dva/flowsnake-spark-on-k8s-sample-apps:4"
+0523 23:24:48 [1558653888] spark-pi-2d23001c -   Normal   Pulled                 4m    kubelet, shared0-flowsnakeworkerprod1-85-dfw.ops.sfdc.net  Successfully pulled image "ops0-artifactrepo1-0-dfw.data.sfdc.net/dva/flowsnake-spark-on-k8s-sample-apps:4"
+0523 23:24:48 [1558653888] spark-pi-2d23001c -   Normal   Created                4m    kubelet, shared0-flowsnakeworkerprod1-85-dfw.ops.sfdc.net  Created container
+0523 23:24:48 [1558653888] spark-pi-2d23001c -   Normal   Started                4m    kubelet, shared0-flowsnakeworkerprod1-85-dfw.ops.sfdc.net  Started container
+0523 23:24:50 [1558653890] spark-pi-2d23001c - ---- End Events ----
+0523 23:24:50 [1558653890] spark-pi-2d23001c - ---- Begin pods/spark-pi-2d23001c-driver Log ----
+0523 23:24:56 [1558653896] spark-pi-2d23001c - Error from server: Get https://shared0-flowsnakeworkerprod1-85-dfw.ops.sfdc.net:10250/containerLogs/flowsnake-watchdog/spark-pi-2d23001c-driver/spark-kubernetes-driver: dial tcp 10.220.225.75:10250: getsockopt: connection refused
+0523 23:24:56 [1558653896] spark-pi-2d23001c - Invocation (1/7) of [kubectl -n flowsnake-watchdog logs pods/spark-pi-2d23001c-driver] failed (1). Out of time. Giving up.
+0523 23:24:56 [1558653896] spark-pi-2d23001c - ---- End pods/spark-pi-2d23001c-driver Log ----
+0523 23:24:56 [1558653896] spark-pi-2d23001c - -------- Executor Pods ----------
+0523 23:24:57 [1558653897] spark-pi-2d23001c - ======== Completion of spark-pi-2d23001c test, returning 1 ========
