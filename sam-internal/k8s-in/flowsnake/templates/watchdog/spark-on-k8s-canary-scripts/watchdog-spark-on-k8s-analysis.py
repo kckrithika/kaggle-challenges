@@ -459,6 +459,9 @@ def analyze_helper(output, epochs):
 
     # Check for termination due to timeout.
     if r_timeout_running.search(output):
+        if epochs.get(r_app_created) and epochs.get(r_driver_pod_creation_event):
+            if epochs.get(r_driver_pod_creation_event) - epochs.get(r_app_created) >= 60:
+                return "TIMEOUT_DRIVER_SLOW_POD_CREATION"
         if epochs.get(r_driver_pod_running):
             # Check for failures after the driver is running
             # This block digs into driver logs
