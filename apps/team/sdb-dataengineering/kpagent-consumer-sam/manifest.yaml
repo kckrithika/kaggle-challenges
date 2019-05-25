@@ -9,7 +9,6 @@ system:
       image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/sdba/sdba_gcp_test:0.0.2
       ports:
       - containerPort: 9090
-      - containerPort: 9091
       livenessProbe:
         httpGet:
           path: /
