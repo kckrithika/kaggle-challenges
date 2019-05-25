@@ -503,6 +503,15 @@ spec:
           name: maddog-certs
         - mountPath: /tokens
           name: tokens
+      - command:
+        - /bin/bash
+        - -xec
+        - rm -rf /host/data/slb/slb-envoy-config-b/config/*
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/slb/hyperslb:2172-7840a68375e7f96383c98383c4f9410710dd0bb3
+        name: slb-envoy-config-wipe
+        volumeMounts:
+        - mountPath: /host/data/slb/slb-envoy-config-b/config
+          name: var-target-config-volume
       nodeSelector:
         pool: prd-sdc
       volumes:

@@ -96,11 +96,12 @@
 //    },
   ],
 
-  // The nginx config wipe init container runs when a new nginx pod is first scheduled to a node.
+  // The envoy config wipe init container runs when a new envoy pod is first scheduled to a node.
   // It erases any files in the config directory, ensuring that any stale service config / block files
-  // are removed before new nginx services start.
-  local nginxConfigWipeInitContainer = {
-    name: "slb-nginx-config-wipe",
+  // are removed before new envoy services start.
+  local envoyConfigWipeInitContainer = {
+    assert std.length(slbconfigs.nginx.containerTargetDir) > 0 : "Invalid configuration: slbconfigs.nginx.containerTargetDir is empty",
+    name: "slb-envoy-config-wipe",
     image: slbimages.hyperslb,
     command: [
       "/bin/bash",
@@ -158,7 +159,7 @@
           ),
           initContainers: std.prune([
             madkub.madkubInitContainer(slbconfigs.nginx.certDirs),
-            //nginxConfigWipeInitContainer,
+            envoyConfigWipeInitContainer,
           ]),
           nodeSelector: { pool: slbconfigs.slbEstate },
         },
