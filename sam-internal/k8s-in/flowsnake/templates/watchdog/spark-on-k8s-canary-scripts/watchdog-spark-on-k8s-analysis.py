@@ -446,11 +446,11 @@ def emit_timing_metrics(times, succeeded):
         logging.exception('Failed to send %d metrics to funnel' % len(m_list))
 
 
-def analyze_helper(output, epochs):
+def analyze_helper(output, timings):
     """
     Classifies failure in provided output
     :param output: output from failed spark operator execution
-    :param epochs: dict(regex -> epoch) of when in the output notable events occurred. See compute_times
+    :param timings: metric -> int (seconds) dictionary. See compute_times
     :return: class (as string)
     """
     for code, regex in simple_regex_tests.iteritems():
@@ -459,66 +459,27 @@ def analyze_helper(output, epochs):
 
     # Check for termination due to timeout.
     if r_timeout_running.search(output):
-        if epochs.get(r_app_created) and epochs.get(r_driver_pod_creation_event):
-            if epochs.get(r_driver_pod_creation_event) - epochs.get(r_app_created) >= 60:
-                return "TIMEOUT_DRIVER_SLOW_POD_CREATION"
-        if epochs.get(r_driver_pod_running):
-            # Check for failures after the driver is running
-            # This block digs into driver logs
-            if epochs.get(r_driver_context_app_submitted):
-                # Check for failure cases that occur after the application JAR has been loaded
-                if epochs.get(r_driver_context_jar_added):
-                    # Requesting executors is the next thing to do after adding the application JAR. Unknown why it sometimes doesn't happen.
-                    if epochs.get(r_exec_allocator):
-                        # Figure out when the executors were requested
-                        if epochs.get(r_exec_allocator) - epochs.get(r_driver_pod_running) >= 180:
-                            return "TIMEOUT_EXECUTOR_ALLOCATOR_LATE"
-                        else:
-                            if epochs.get(r_exec_pod_running):
-                                # If we can't figure out a specific reason, look into what part was slow.
-
-                                # We know that the executor pod started running but that we timed out before completing the job.
-                                # In the happy case, it takes about 15 seconds for the executor to start and register itself. Logs:
-                                # KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint:54 - Registered executor NettyRpcEndpointRef(spark-client://Executor) (10.251.124.170:46644) with ID 1
-                                # KubernetesClusterSchedulerBackend:54 - SchedulerBackend is ready for scheduling beginning after reached minRegisteredResourcesRatio: 0.8
-
-                                # Conversely, if the executor startup was slow, then we see the Spark Driver log:
-                                # KubernetesClusterSchedulerBackend:54 - SchedulerBackend is ready for scheduling beginning after waiting maxRegisteredResourcesWaitingTime: 30000(ms)
-                                # (after which the driver just continues anyway), and then it logs:
-                                # TaskSchedulerImpl:66 - Initial job has not accepted any resources; check your cluster UI to ensure that workers are registered and have sufficient resources
-                                # which repeats until the executors finally do show up.
-                                # If the executors do start performing work after the timeout, then we have to infer it from the following in the driver logs:
-                                # TaskSetManager:54 - Starting task 0.0 in stage 0.0 (TID 0, 10.251.124.170, executor 1, partition 0, PROCESS_LOCAL, 7878 bytes)
-
-                                # In the happy case, it's ~25 seconds from requesting executors to work beginning.
-
-                                # As a first pass, let's say that if the time from requesting executor to running executor
-                                # pod exceeds 60s, then that is the cause of the test failure.
-
-                                if epochs.get(r_exec_pod_running) - epochs.get(r_exec_allocator) >= 60:
-                                    return "TIMEOUT_EXECUTOR_SLOW_POD_CREATION"
-                                else:
-                                    if epochs.get(r_exec_registered_time):
-                                        # As a first pass, let's say that if the time from running executor to registered executor
-                                        # exceeds 60s, then that is the cause of the test failure.
-                                        if epochs.get(r_exec_registered_time) - epochs.get(r_exec_pod_running) >= 60:
-                                            return "TIMEOUT_EXECUTOR_SLOW_REGISTRATION"
-                                    # "UNKNOWN" because we haven't yet collected an example of this
-                                    # Check for delay between pod running and driver logging task start, perhaps?
-                                    return "UNKNOWN_TIMEOUT_EXECUTOR_RUNNING"
-                            else:
-                                # "UNKNOWN" because we haven't yet collected an example of this
-                                return "UNKNOWN_TIMEOUT_EXECUTOR_NOT_RUNNING"
-                    else:
-                        return 'EXECUTOR_ALLOCATOR_DID_NOT_RUN'
-                else:
-                    # "UNKNOWN" because we haven't yet collected an example of this
-                    return "UNKNOWN_TIMEOUT_DRIVER_CONTEXT_JAR_NOT_ADDED"
-            else:
-                # "UNKNOWN" because we haven't yet collected an example of this
-                return "UNKNOWN_TIMEOUT_DRIVER_CONTEXT_NOT_SUBMITTED"
-        else:
-            return "UNRECOGNIZED_TIMEOUT_DRIVER_NOT_RUNNING"
+        # TODO: Look at collected metrics for a better sense of what normal values are.
+        # timing -> (max_seconds, classification_if_exceeded)
+        thresholds = {
+            TIMING_METRIC_NAME_DRIVER_POD_DETECTED: (60, 'TIMEOUT_DRIVER_SLOW_POD_CREATION'),
+            TIMING_METRIC_NAME_DRIVER_POD_PENDING_DELAY: (60, 'TIMEOUT_DRIVER_SLOW_POD_SCHEDULING'),
+            TIMING_METRIC_NAME_DRIVER_POD_INITIALIZATION: (60, 'TIMEOUT_DRIVER_SLOW_POD_INIT'),
+            TIMING_METRIC_NAME_DRIVER_APP_SUBMIT: (60, 'TIMEOUT_DRIVER_SLOW_APP_SUBMIT'),
+            TIMING_METRIC_NAME_DRIVER_APP_LOAD: (60, 'TIMEOUT_DRIVER_SLOW_APP_LOAD'),
+            TIMING_METRIC_NAME_EXEC_POD_DETECTED: (30, 'TIMEOUT_EXECUTOR_SLOW_POD_CREATION'),
+            TIMING_METRIC_NAME_EXEC_POD_PENDING_DELAY: (60, 'TIMEOUT_EXECUTOR_SLOW_POD_SCHEDULING'),
+            TIMING_METRIC_NAME_EXEC_POD_INITIALIZATION: (30, 'TIMEOUT_EXECUTOR_SLOW_POD_INIT'),
+            TIMING_METRIC_NAME_EXEC_REGISTRATION: (30, 'TIMEOUT_EXECUTOR_SLOW_REGISTRATION'),
+            TIMING_METRIC_NAME_JOB_RUNTIME: (30, 'TIMEOUT_SLOW_JOB_RUN'),
+            TIMING_METRIC_NAME_CLEAN_UP: (30, 'TIMEOUT_SLOW_CLEANUP'),
+        }
+        for metric, seconds in timings.iteritems():
+            if metric in thresholds:
+                threshold, classification = thresholds[metric]
+                if seconds >= threshold:
+                    return classification
+        return "UNRECOGNIZED_TIMEOUT"
     else:
         # Failure was *not* due to a timeout.
         if r_spark_submit_failed.search(output):
@@ -589,15 +550,15 @@ def detect_exceptions(output):
     return exception
 
 
-def analyze(output, epochs):
+def analyze(output, timings):
     """
     Classifies failure in provided output, identifies noteworthy exceptions, and emits metrics (if enabled)
     :param output: output from failed spark operator execution
-    :param epochs: dict(regex -> epoch) of when in the output notable events occurred. See compute_times
+    :param timings: metric -> int (seconds) dictionary. See compute_times
     :return: class (as string)
     """
     analysis = {
-        CLASSIFICATION: analyze_helper(output, epochs)
+        CLASSIFICATION: analyze_helper(output, timings)
     }
     analysis.update(detect_exceptions(output))
     if metrics_enabled:
@@ -643,14 +604,14 @@ if args.command:
         log("Analysis of failure [{}] ({}s): {}".format(
             e.returncode,
             int(time.time() - start),
-            pretty_result(analyze(e.output, epochs))))
+            pretty_result(analyze(e.output, timings))))
         log("Times: {}".format(json.dumps(timings, sort_keys=True)))
         sys.exit(e.returncode)
 elif args.analyze:
     with open(args.analyze, 'r') as file:
         output = file.read()
         timings, epochs = compute_times(output)
-        print(pretty_result(analyze(output, epochs)))
+        print(pretty_result(analyze(output, timings)))
         print("Times: {}".format(json.dumps(timings, sort_keys=True)))
 elif args.test_dir:
     success = True
@@ -658,12 +619,12 @@ elif args.test_dir:
         with open(os.path.join(args.test_dir, filename), 'r') as file:
             expect, output = file.read().split('\n', 1)
             timings, epochs = compute_times(output)
-            text_result = pretty_result(analyze(output, epochs))
+            text_result = pretty_result(analyze(output, timings))
             if text_result == expect:
                 print(u"\u2713 {}: {}".format(filename, expect).encode('utf-8'))
             else:
                 print(u"\u2718 {}: {} expected, {} obtained".format(filename, expect, text_result).encode('utf-8'))
-                success = True
+                success = False
             # Too much visual noise. But occasionally useful during development.
             # print("Times: {}".format(json.dumps(timings, sort_keys=True)))
     if not success:

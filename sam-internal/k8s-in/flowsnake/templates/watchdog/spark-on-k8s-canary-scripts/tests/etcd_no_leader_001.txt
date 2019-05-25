@@ -1,4 +1,4 @@
-{"class": "TIMEOUT_EXECUTOR_SLOW_POD_CREATION", "exception": "KubernetesClientException", "exception_cause": "ETCD_NO_LEADER"}
+{"class": "TIMEOUT_EXECUTOR_SLOW_POD_INIT", "exception": "KubernetesClientException", "exception_cause": "ETCD_NO_LEADER"}
 0521 15:30:45 [1558452645] spark-impersonation-3a4d0ddf - ======== Beginning spark-impersonation-3a4d0ddf test ========
 0521 15:30:45 [1558452645] spark-impersonation-3a4d0ddf -  [0;32mKubernetes master [0m is running at  [0;33mhttps://kubernetes-api-flowsnake-cdu.data.sfdc.net [0m
 0521 15:30:45 [1558452645] spark-impersonation-3a4d0ddf -

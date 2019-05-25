@@ -1,4 +1,4 @@
-TIMEOUT_EXECUTOR_SLOW_POD_CREATION
+TIMEOUT_EXECUTOR_SLOW_POD_INIT
 0521 20:51:05 [1558471865] spark-pi-9ddef67e - ======== Beginning spark-pi-9ddef67e test ========
 0521 20:51:05 [1558471865] spark-pi-9ddef67e -  [0;32mKubernetes master [0m is running at  [0;33mhttps://10.254.208.1:443 [0m
 0521 20:51:05 [1558471865] spark-pi-9ddef67e -

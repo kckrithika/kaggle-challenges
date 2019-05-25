@@ -242,22 +242,24 @@ items:
       etcd member .* has no leader'),\n    'BROKEN_PIPE': re.compile(r'Broken pipe'),\n
       \   'SPARK_ADMISSION_WEBHOOK': re.compile(r'failed calling admission webhook
       \"webhook\\.sparkoperator\\.k8s\\.io'),\n    'REMOTE_CLOSED_CONNECTION': re.compile(r'Remote
-      host closed connection'),\n    'CONNECTION_RESET': re.compile(r'Connection reset'),\n}\n\napp
-      = None\napp_id = None\n\ndef spark_log_time_to_epoch(spark_time):\n    \"\"\"\n
-      \   Convert time format of Spark logs to unix epoch (seconds)\n    :param spark_time:
-      UTC formatted e.g. 2019-05-15 00:31:56\n    :return: unix epoch in seconds\n
-      \   \"\"\"\n    return calendar.timegm(time.strptime(spark_time, \"%Y-%m-%d
-      %H:%M:%S\"))\n\n\ndef compute_times(output, succeeded=False):\n    \"\"\"\n
-      \   Calculates time intervals between events in provided output. Side effect:
-      sets global app_id and app variables.\n    :param output: Output from spark
-      operator execution\n    :param succeeded: Whether output represents a successful
-      execution\n    :return: (metric -> int (seconds) dictionary, regex -> epoch
-      dictionary)\n    \"\"\"\n    timings = {}  # interval name -> computed interval
-      in seconds\n    global app, app_id\n    error_states = {'Terminating', 'Unknown',
-      'Error'}\n    # The times are computed by using two regular expressions; one
-      marks the start of the interval and\n    # one marks the end of the interval.\n\n
-      \   # interval name -> (start regex, end regex). This the blueprint of what
-      is to be computed.\n    time_regex = {\n        TIMING_METRIC_NAME_DRIVER_POD_DETECTED:
+      host closed connection'),\n    'CONNECTION_RESET': re.compile(r'Connection reset'),\n
+      \   'KUBEAPI_SHUTDOWN': re.compile(r'Apisever is shutting down'),\n    'RBAC':
+      re.compile(r'(?:role.rbac.authorization.k8s.io \".*\" not found|forbidden: User
+      \".*\" cannot .* in the namespace)'),\n}\n\napp = None\napp_id = None\n\ndef
+      spark_log_time_to_epoch(spark_time):\n    \"\"\"\n    Convert time format of
+      Spark logs to unix epoch (seconds)\n    :param spark_time: UTC formatted e.g.
+      2019-05-15 00:31:56\n    :return: unix epoch in seconds\n    \"\"\"\n    return
+      calendar.timegm(time.strptime(spark_time, \"%Y-%m-%d %H:%M:%S\"))\n\n\ndef compute_times(output,
+      succeeded=False):\n    \"\"\"\n    Calculates time intervals between events
+      in provided output. Side effect: sets global app_id and app variables.\n    :param
+      output: Output from spark operator execution\n    :param succeeded: Whether
+      output represents a successful execution\n    :return: (metric -> int (seconds)
+      dictionary, regex -> epoch dictionary)\n    \"\"\"\n    timings = {}  # interval
+      name -> computed interval in seconds\n    global app, app_id\n    error_states
+      = {'Terminating', 'Unknown', 'Error'}\n    # The times are computed by using
+      two regular expressions; one marks the start of the interval and\n    # one
+      marks the end of the interval.\n\n    # interval name -> (start regex, end regex).
+      This the blueprint of what is to be computed.\n    time_regex = {\n        TIMING_METRIC_NAME_DRIVER_POD_DETECTED:
       (r_app_created, r_driver_pod_creation_event),\n        TIMING_METRIC_NAME_DRIVER_POD_PENDING_DELAY:
       (r_driver_pod_creation_event_pending, r_driver_pod_initializing),\n        TIMING_METRIC_NAME_DRIVER_POD_INITIALIZATION:
       (r_driver_pod_initializing, r_driver_pod_running),\n        TIMING_METRIC_NAME_DRIVER_APP_SUBMIT:
@@ -301,70 +303,30 @@ items:
       'SparkOperatorTest', 'Times', metric], seconds, int(time.time()), metric_context,
       tags)\n        for metric, seconds in times.iteritems()]\n    try:\n        funnel_client.publish_batch(m_list)\n
       \   except Exception as e:\n        logging.exception('Failed to send %d metrics
-      to funnel' % len(m_list))\n\n\ndef analyze_helper(output, epochs):\n    \"\"\"\n
+      to funnel' % len(m_list))\n\n\ndef analyze_helper(output, timings):\n    \"\"\"\n
       \   Classifies failure in provided output\n    :param output: output from failed
-      spark operator execution\n    :param epochs: dict(regex -> epoch) of when in
-      the output notable events occurred. See compute_times\n    :return: class (as
-      string)\n    \"\"\"\n    for code, regex in simple_regex_tests.iteritems():\n
-      \       if regex.search(output):\n            return code\n\n    # Check for
-      termination due to timeout.\n    if r_timeout_running.search(output):\n        if
-      epochs.get(r_driver_pod_running):\n            # Check for failures after the
-      driver is running\n            # This block digs into driver logs\n            if
-      epochs.get(r_driver_context_app_submitted):\n                # Check for failure
-      cases that occur after the application JAR has been loaded\n                if
-      epochs.get(r_driver_context_jar_added):\n                    # Requesting executors
-      is the next thing to do after adding the application JAR. Unknown why it sometimes
-      doesn't happen.\n                    if epochs.get(r_exec_allocator):\n                        #
-      Figure out when the executors were requested\n                        if epochs.get(r_exec_allocator)
-      - epochs.get(r_driver_pod_running) >= 180:\n                            return
-      \"TIMEOUT_EXECUTOR_ALLOCATOR_LATE\"\n                        else:\n                            if
-      epochs.get(r_exec_pod_running):\n                                # If we can't
-      figure out a specific reason, look into what part was slow.\n\n                                #
-      We know that the executor pod started running but that we timed out before completing
-      the job.\n                                # In the happy case, it takes about
-      15 seconds for the executor to start and register itself. Logs:\n                                #
-      KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint:54 - Registered executor
-      NettyRpcEndpointRef(spark-client://Executor) (10.251.124.170:46644) with ID
-      1\n                                # KubernetesClusterSchedulerBackend:54 -
-      SchedulerBackend is ready for scheduling beginning after reached minRegisteredResourcesRatio:
-      0.8\n\n                                # Conversely, if the executor startup
-      was slow, then we see the Spark Driver log:\n                                #
-      KubernetesClusterSchedulerBackend:54 - SchedulerBackend is ready for scheduling
-      beginning after waiting maxRegisteredResourcesWaitingTime: 30000(ms)\n                                #
-      (after which the driver just continues anyway), and then it logs:\n                                #
-      TaskSchedulerImpl:66 - Initial job has not accepted any resources; check your
-      cluster UI to ensure that workers are registered and have sufficient resources\n
-      \                               # which repeats until the executors finally
-      do show up.\n                                # If the executors do start performing
-      work after the timeout, then we have to infer it from the following in the driver
-      logs:\n                                # TaskSetManager:54 - Starting task 0.0
-      in stage 0.0 (TID 0, 10.251.124.170, executor 1, partition 0, PROCESS_LOCAL,
-      7878 bytes)\n\n                                # In the happy case, it's ~25
-      seconds from requesting executors to work beginning.\n\n                                #
-      As a first pass, let's say that if the time from requesting executor to running
-      executor\n                                # pod exceeds 60s, then that is the
-      cause of the test failure.\n\n                                if epochs.get(r_exec_pod_running)
-      - epochs.get(r_exec_allocator) >= 60:\n                                    return
-      \"TIMEOUT_EXECUTOR_SLOW_POD_CREATION\"\n                                else:\n
-      \                                   if epochs.get(r_exec_registered_time):\n
-      \                                       # As a first pass, let's say that if
-      the time from running executor to registered executor\n                                        #
-      exceeds 60s, then that is the cause of the test failure.\n                                        if
-      epochs.get(r_exec_registered_time) - epochs.get(r_exec_pod_running) >= 60:\n
-      \                                           return \"TIMEOUT_EXECUTOR_SLOW_REGISTRATION\"\n
-      \                                   # \"UNKNOWN\" because we haven't yet collected
-      an example of this\n                                    # Check for delay between
-      pod running and driver logging task start, perhaps?\n                                    return
-      \"UNKNOWN_TIMEOUT_EXECUTOR_RUNNING\"\n                            else:\n                                #
-      \"UNKNOWN\" because we haven't yet collected an example of this\n                                return
-      \"UNKNOWN_TIMEOUT_EXECUTOR_NOT_RUNNING\"\n                    else:\n                        return
-      'EXECUTOR_ALLOCATOR_DID_NOT_RUN'\n                else:\n                    #
-      \"UNKNOWN\" because we haven't yet collected an example of this\n                    return
-      \"UNKNOWN_TIMEOUT_DRIVER_CONTEXT_JAR_NOT_ADDED\"\n            else:\n                #
-      \"UNKNOWN\" because we haven't yet collected an example of this\n                return
-      \"UNKNOWN_TIMEOUT_DRIVER_CONTEXT_NOT_SUBMITTED\"\n        else:\n            return
-      \"UNRECOGNIZED_TIMEOUT_DRIVER_NOT_RUNNING\"\n    else:\n        # Failure was
-      *not* due to a timeout.\n        if r_spark_submit_failed.search(output):\n
+      spark operator execution\n    :param timings: metric -> int (seconds) dictionary.
+      See compute_times\n    :return: class (as string)\n    \"\"\"\n    for code,
+      regex in simple_regex_tests.iteritems():\n        if regex.search(output):\n
+      \           return code\n\n    # Check for termination due to timeout.\n    if
+      r_timeout_running.search(output):\n        # TODO: Look at collected metrics
+      for a better sense of what normal values are.\n        # timing -> (max_seconds,
+      classification_if_exceeded)\n        thresholds = {\n            TIMING_METRIC_NAME_DRIVER_POD_DETECTED:
+      (60, 'TIMEOUT_DRIVER_SLOW_POD_CREATION'),\n            TIMING_METRIC_NAME_DRIVER_POD_PENDING_DELAY:
+      (60, 'TIMEOUT_DRIVER_SLOW_POD_SCHEDULING'),\n            TIMING_METRIC_NAME_DRIVER_POD_INITIALIZATION:
+      (60, 'TIMEOUT_DRIVER_SLOW_POD_INIT'),\n            TIMING_METRIC_NAME_DRIVER_APP_SUBMIT:
+      (60, 'TIMEOUT_DRIVER_SLOW_APP_SUBMIT'),\n            TIMING_METRIC_NAME_DRIVER_APP_LOAD:
+      (60, 'TIMEOUT_DRIVER_SLOW_APP_LOAD'),\n            TIMING_METRIC_NAME_EXEC_POD_DETECTED:
+      (30, 'TIMEOUT_EXECUTOR_SLOW_POD_CREATION'),\n            TIMING_METRIC_NAME_EXEC_POD_PENDING_DELAY:
+      (60, 'TIMEOUT_EXECUTOR_SLOW_POD_SCHEDULING'),\n            TIMING_METRIC_NAME_EXEC_POD_INITIALIZATION:
+      (30, 'TIMEOUT_EXECUTOR_SLOW_POD_INIT'),\n            TIMING_METRIC_NAME_EXEC_REGISTRATION:
+      (30, 'TIMEOUT_EXECUTOR_SLOW_REGISTRATION'),\n            TIMING_METRIC_NAME_JOB_RUNTIME:
+      (30, 'TIMEOUT_SLOW_JOB_RUN'),\n            TIMING_METRIC_NAME_CLEAN_UP: (30,
+      'TIMEOUT_SLOW_CLEANUP'),\n        }\n        for metric, seconds in timings.iteritems():\n
+      \           if metric in thresholds:\n                threshold, classification
+      = thresholds[metric]\n                if seconds >= threshold:\n                    return
+      classification\n        return \"UNRECOGNIZED_TIMEOUT\"\n    else:\n        #
+      Failure was *not* due to a timeout.\n        if r_spark_submit_failed.search(output):\n
       \           return \"SPARK_SUBMIT_FAILED\"  # Exception classification will
       provide reason\n        else:\n            return \"UNRECOGNIZED_NON_TIMEOUT\"\n\n\ndef
       detect_exceptions(output):\n    \"\"\"\n    Identifies noteworthy exceptions
@@ -384,30 +346,32 @@ items:
       \           # javax.net.ssl.SSLHandshakeException: Remote host closed connection
       during handshake\n            # Caused by: java.io.EOFException: SSL peer shut
       down incorrectly\n            # \"Remote host closed connection\" actually seems
-      more useful.\n            more_specific_than = {\n                'SSLHandshakeException':
+      more useful.\n            key_is_more_specific_than = {\n                'SSLHandshakeException':
       'EOFException',\n                'SocketTimeoutException': 'SocketException',\n
-      \           }\n            if more_specific_than.get(exception_match.group('class'),
-      'NO_MATCH') == m.group('class'):\n                continue\n            else:\n
-      \               exception_match = m\n        else:\n            # Otherwise
-      we're done; subsequent exception blocks are probably just cascading errors\n
-      \           break\n\n    if exception_match:\n        # Record the exception
-      itself\n        exception[EXCEPTION] = exception_match.group('class')\n        #
-      Record additional exception classification based on the message\n        for
-      code, regex in simple_regex_exception_messages.iteritems():\n            if
-      regex.search(exception_match.group('message')):\n                exception[EXCEPTION_CAUSE]
-      = code\n    return exception\n\n\ndef analyze(output, epochs):\n    \"\"\"\n
+      \           }\n            if key_is_more_specific_than.get(exception_match.group('class'))
+      == m.group('class'):\n                continue\n            else:\n                exception_match
+      = m\n        else:\n            # Otherwise we're done; subsequent exception
+      blocks are probably just cascading errors\n            # Exception (ha!) to
+      the rule: sometimes the first exception logged has fewer details.\n            key_is_more_specific_than
+      = {\n                'KubernetesClientException': 'ProtocolException',\n            }\n
+      \           if key_is_more_specific_than.get(m.group('class')) == exception_match.group('class'):\n
+      \               exception_match = m\n            else:\n                break\n\n
+      \   if exception_match:\n        # Record the exception itself\n        exception[EXCEPTION]
+      = exception_match.group('class')\n        # Record additional exception classification
+      based on the message\n        for code, regex in simple_regex_exception_messages.iteritems():\n
+      \           if regex.search(exception_match.group('message')):\n                exception[EXCEPTION_CAUSE]
+      = code\n    return exception\n\n\ndef analyze(output, timings):\n    \"\"\"\n
       \   Classifies failure in provided output, identifies noteworthy exceptions,
       and emits metrics (if enabled)\n    :param output: output from failed spark
-      operator execution\n    :param epochs: dict(regex -> epoch) of when in the output
-      notable events occurred. See compute_times\n    :return: class (as string)\n
-      \   \"\"\"\n    analysis = {\n        CLASSIFICATION: analyze_helper(output,
-      epochs)\n    }\n    analysis.update(detect_exceptions(output))\n    if metrics_enabled:\n
-      \       emit_failure_analysis_metrics(analysis)\n    return analysis\n\n\ndef
-      emit_failure_analysis_metrics(analysis):\n    # Although the GROUPBY magic as
-      described in the example metric queries can work around optional tags, it seems\n
-      \   # expedient to just always populate the tags to prevent Argus surprises
-      in the future.\n    tags = add_standard_tags(dict([(key, analysis.get(key, \"None\"))
-      for key in ANALYSIS_KEYS]))\n    m_list = [\n        Metric('sam.watchdog',
+      operator execution\n    :param timings: metric -> int (seconds) dictionary.
+      See compute_times\n    :return: class (as string)\n    \"\"\"\n    analysis
+      = {\n        CLASSIFICATION: analyze_helper(output, timings)\n    }\n    analysis.update(detect_exceptions(output))\n
+      \   if metrics_enabled:\n        emit_failure_analysis_metrics(analysis)\n    return
+      analysis\n\n\ndef emit_failure_analysis_metrics(analysis):\n    # Although the
+      GROUPBY magic as described in the example metric queries can work around optional
+      tags, it seems\n    # expedient to just always populate the tags to prevent
+      Argus surprises in the future.\n    tags = add_standard_tags(dict([(key, analysis.get(key,
+      \"None\")) for key in ANALYSIS_KEYS]))\n    m_list = [\n        Metric('sam.watchdog',
       ['cliChecker', 'SparkOperatorTest', FAILURE_ANALYSIS_METRIC_NAME], 1, int(time.time()),
       metric_context, tags)\n    ]\n    try:\n        funnel_client.publish_batch(m_list)\n
       \   except Exception as e:\n        logging.exception('Failed to send %d metrics
@@ -424,19 +388,19 @@ items:
       e:\n        print(e.output, end='')\n        timings, epochs = compute_times(e.output)\n
       \       log(\"Analysis of failure [{}] ({}s): {}\".format(\n            e.returncode,\n
       \           int(time.time() - start),\n            pretty_result(analyze(e.output,
-      epochs))))\n        log(\"Times: {}\".format(json.dumps(timings, sort_keys=True)))\n
+      timings))))\n        log(\"Times: {}\".format(json.dumps(timings, sort_keys=True)))\n
       \       sys.exit(e.returncode)\nelif args.analyze:\n    with open(args.analyze,
       'r') as file:\n        output = file.read()\n        timings, epochs = compute_times(output)\n
-      \       print(pretty_result(analyze(output, epochs)))\n        print(\"Times:
+      \       print(pretty_result(analyze(output, timings)))\n        print(\"Times:
       {}\".format(json.dumps(timings, sort_keys=True)))\nelif args.test_dir:\n    success
       = True\n    for filename in sorted(os.listdir(args.test_dir)):\n        with
       open(os.path.join(args.test_dir, filename), 'r') as file:\n            expect,
       output = file.read().split('\\n', 1)\n            timings, epochs = compute_times(output)\n
-      \           text_result = pretty_result(analyze(output, epochs))\n            if
+      \           text_result = pretty_result(analyze(output, timings))\n            if
       text_result == expect:\n                print(u\"\\u2713 {}: {}\".format(filename,
       expect).encode('utf-8'))\n            else:\n                print(u\"\\u2718
       {}: {} expected, {} obtained\".format(filename, expect, text_result).encode('utf-8'))\n
-      \               success = True\n            # Too much visual noise. But occasionally
+      \               success = False\n            # Too much visual noise. But occasionally
       useful during development.\n            # print(\"Times: {}\".format(json.dumps(timings,
       sort_keys=True)))\n    if not success:\n        sys.exit(1)\nelse:\n    log(\"Bug:
       argparse failed to set a known operation mode.\")\n    sys.exit(1)\n"
