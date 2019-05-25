@@ -157,6 +157,9 @@
               //configs.config_volume(proxyName),
             ]
           ),
+          securityContext: {
+            fsGroup: 7447,
+          },
           initContainers: std.prune([
             madkub.madkubInitContainer(slbconfigs.nginx.certDirs),
             envoyConfigWipeInitContainer,

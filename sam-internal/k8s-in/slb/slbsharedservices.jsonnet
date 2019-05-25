@@ -517,17 +517,6 @@
         initialDelaySeconds: 15,
         periodSeconds: 10,
       },
-      volumeMounts: std.prune([
-        slbconfigs.nginx.nginx_config_volume_mount,
-        slbconfigs.logs_volume_mount,
-        slbconfigs.nginx.customer_certs_volume_mount,
-      ]
-      + madkub.madkubSlbCertVolumeMounts(slbconfigs.nginx.certDirs)
-      + [
-        slbconfigs.slb_volume_mount,
-        if tlsConfigEnabled then slbconfigs.nginx.tlsparams_volume_mount else {},
-        if proxyFlavor == "hsm" then slbconfigs.kmsconfig_volume_mount else {},
-      ]),
       readinessProbe: {
         httpGet: {
           path: "/liveness-probe",
@@ -541,6 +530,26 @@
         periodSeconds: 5,
         successThreshold: 4,
       },
+      # Add the [CAP_]NET_BIND_SERVICE capability so that envoy running as a 
+      # low-privileged user can bind to privileged ports.
+      securityContext: {
+        capabilities: {
+          add: [
+            "NET_BIND_SERVICE",
+          ],
+        },
+      },
+      volumeMounts: std.prune([
+        slbconfigs.nginx.nginx_config_volume_mount,
+        slbconfigs.logs_volume_mount,
+        slbconfigs.nginx.customer_certs_volume_mount,
+      ]
+      + madkub.madkubSlbCertVolumeMounts(slbconfigs.nginx.certDirs)
+      + [
+        slbconfigs.slb_volume_mount,
+        if tlsConfigEnabled then slbconfigs.nginx.tlsparams_volume_mount else {},
+        if proxyFlavor == "hsm" then slbconfigs.kmsconfig_volume_mount else {},
+      ]),
     },
   slbUnknownPodCleanup(name, namespace): {
     name: "slb-cleanup-unknownpods" + name,
