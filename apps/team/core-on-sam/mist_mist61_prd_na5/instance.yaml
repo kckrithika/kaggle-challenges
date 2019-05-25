@@ -6,7 +6,7 @@ db:
   lockUser: sneezy
   sid: mist61c220utf
   statsUser: snowwhite
-  user: sleepy
+  user: doc
 endpoints:
   httpProxy: public0-proxy1-0-prd.data.sfdc.net:8080
   publicDNSSuffix: core-on-sam-sp2.prd-sam.prd.slb.sfdc.net
@@ -15,7 +15,7 @@ env:
   region: prd
   subEnvName: mist61
 images:
-  coreApp: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/coreonsam/casam:release_main_17487231
+  coreApp: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/coreonsam/casam:release_main_18153481
   coreAppOverrides: sfci/casam/coreapp_overrides:063ee2
   envoy: sfci/servicelibs/sherpa-envoy:1.0.4
   envoyConfig: sfci/casam/cyan-config:208cc2
