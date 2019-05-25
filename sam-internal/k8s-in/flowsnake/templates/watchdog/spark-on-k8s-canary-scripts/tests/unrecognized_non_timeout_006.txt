@@ -1,0 +1,69 @@
+UNRECOGNIZED_NON_TIMEOUT
+//
+// What happened here? The SparkApplication failed while the driver was still initializing, but then the driver started
+// running and logging. Less than 20s from driver creation to logging is faster than usual.
+//
+0523 21:41:53 [1558647713] spark-pi-51c8ff65 - ======== Beginning spark-pi-51c8ff65 test ========
+0523 21:41:53 [1558647713] spark-pi-51c8ff65 -  [0;32mKubernetes master [0m is running at  [0;33mhttps://10.254.208.1:443 [0m
+0523 21:41:53 [1558647713] spark-pi-51c8ff65 -
+0523 21:41:53 [1558647713] spark-pi-51c8ff65 - To further debug and diagnose cluster problems, use 'kubectl cluster-info dump'.
+0523 21:41:54 [1558647714] spark-pi-51c8ff65 - Cleaning up SparkApplication/Pod older than 1 hours from prior runs.
+0523 21:41:55 [1558647715] spark-pi-51c8ff65 - Creating SparkApplication spark-pi-51c8ff65
+0523 21:41:55 [1558647715] spark-pi-51c8ff65 - sparkapplication "spark-pi-51c8ff65" created
+0523 21:41:56 [1558647716] spark-pi-51c8ff65 - Waiting for SparkApplication spark-pi-51c8ff65 to reach a terminal state.
+0523 21:42:12 [1558647732] spark-pi-51c8ff65 - SparkApplication spark-pi-51c8ff65 has terminated after 16 seconds. State is SUBMISSION_FAILED.
+0523 21:42:12 [1558647732] spark-pi-51c8ff65 - ---- Begin Events ----
+0523 21:42:12 [1558647732] spark-pi-51c8ff65 - Name:         spark-pi-51c8ff65
+0523 21:42:12 [1558647732] spark-pi-51c8ff65 - Events:                          <none>
+0523 21:42:13 [1558647733] spark-pi-51c8ff65 - Name:           spark-pi-51c8ff65-driver
+0523 21:42:13 [1558647733] spark-pi-51c8ff65 - Events:
+0523 21:42:13 [1558647733] spark-pi-51c8ff65 -   Type     Reason                 Age   From                                                       Message
+0523 21:42:13 [1558647733] spark-pi-51c8ff65 -   ----     ------                 ----  ----                                                       -------
+0523 21:42:13 [1558647733] spark-pi-51c8ff65 -   Normal   Scheduled              2s    default-scheduler                                          Successfully assigned spark-pi-51c8ff65-driver to shared0-flowsnakeworkerprod1-43-phx.ops.sfdc.net
+0523 21:42:13 [1558647733] spark-pi-51c8ff65 -   Normal   SuccessfulMountVolume  2s    kubelet, shared0-flowsnakeworkerprod1-43-phx.ops.sfdc.net  MountVolume.SetUp succeeded for volume "client-certificate"
+0523 21:42:13 [1558647733] spark-pi-51c8ff65 -   Normal   SuccessfulMountVolume  2s    kubelet, shared0-flowsnakeworkerprod1-43-phx.ops.sfdc.net  MountVolume.SetUp succeeded for volume "client-key"
+0523 21:42:13 [1558647733] spark-pi-51c8ff65 -   Normal   SuccessfulMountVolume  2s    kubelet, shared0-flowsnakeworkerprod1-43-phx.ops.sfdc.net  MountVolume.SetUp succeeded for volume "certificate-authority"
+0523 21:42:13 [1558647733] spark-pi-51c8ff65 -   Normal   SuccessfulMountVolume  2s    kubelet, shared0-flowsnakeworkerprod1-43-phx.ops.sfdc.net  MountVolume.SetUp succeeded for volume "spark-local-dir-1"
+0523 21:42:13 [1558647733] spark-pi-51c8ff65 -   Warning  FailedMount            2s    kubelet, shared0-flowsnakeworkerprod1-43-phx.ops.sfdc.net  MountVolume.SetUp failed for volume "spark-conf-volume" : configmaps "spark-pi-51c8ff65-1558647732115-driver-conf-map" not found
+0523 21:42:13 [1558647733] spark-pi-51c8ff65 -   Normal   SuccessfulMountVolume  2s    kubelet, shared0-flowsnakeworkerprod1-43-phx.ops.sfdc.net  MountVolume.SetUp succeeded for volume "datacerts"
+0523 21:42:13 [1558647733] spark-pi-51c8ff65 -   Normal   SuccessfulMountVolume  2s    kubelet, shared0-flowsnakeworkerprod1-43-phx.ops.sfdc.net  MountVolume.SetUp succeeded for volume "spark-driver-flowsnake-watchdog-token-94wzs"
+0523 21:42:13 [1558647733] spark-pi-51c8ff65 -   Normal   SuccessfulMountVolume  2s    kubelet, shared0-flowsnakeworkerprod1-43-phx.ops.sfdc.net  MountVolume.SetUp succeeded for volume "tokens"
+0523 21:42:13 [1558647733] spark-pi-51c8ff65 -   Normal   SuccessfulMountVolume  2s    kubelet, shared0-flowsnakeworkerprod1-43-phx.ops.sfdc.net  MountVolume.SetUp succeeded for volume "spark-conf-volume"
+0523 21:42:16 [1558647736] spark-pi-51c8ff65 - ---- End Events ----
+0523 21:42:16 [1558647736] spark-pi-51c8ff65 - ---- Begin pods/spark-pi-51c8ff65-driver Log ----
+0523 21:42:16 [1558647736] spark-pi-51c8ff65 - Error from server (BadRequest): container "spark-kubernetes-driver" in pod "spark-pi-51c8ff65-driver" is waiting to start: PodInitializing
+0523 21:42:16 [1558647736] spark-pi-51c8ff65 - Invocation (1/7) of [kubectl -n flowsnake-watchdog logs pods/spark-pi-51c8ff65-driver] failed (1). Will sleep 10 seconds and then try again.
+++ id -u
++ myuid=0
+++ id -g
++ mygid=0
++ set +e
+++ getent passwd 0
++ uidentry=root:x:0:0:root:/root:/bin/bash
++ set -e
++ '[' -z root:x:0:0:root:/root:/bin/bash ']'
++ SPARK_K8S_CMD=driver
++ case "$SPARK_K8S_CMD" in
++ shift 1
++ SPARK_CLASSPATH=':/opt/spark/jars/*'
++ env
++ grep SPARK_JAVA_OPT_
++ sort -t_ -k4 -n
++ sed 's/[^=]*=\(.*\)/\1/g'
++ readarray -t SPARK_EXECUTOR_JAVA_OPTS
++ '[' -n '' ']'
++ '[' -n '' ']'
++ PYSPARK_ARGS=
++ '[' -n '' ']'
++ R_ARGS=
++ '[' -n '' ']'
++ '[' '' == 2 ']'
++ '[' '' == 3 ']'
++ case "$SPARK_K8S_CMD" in
++ CMD=("$SPARK_HOME/bin/spark-submit" --conf "spark.driver.bindAddress=$SPARK_DRIVER_BIND_ADDRESS" --deploy-mode client "$@")
++ exec /sbin/tini -s -- /opt/spark/bin/spark-submit --conf spark.driver.bindAddress=10.235.34.35 --deploy-mode client --properties-file /opt/spark/conf/spark.properties --class org.apache.spark.examples.SparkPi spark-internal
+0523 21:42:27 [1558647747] spark-pi-51c8ff65 - ---- End pods/spark-pi-51c8ff65-driver Log ----
+0523 21:42:27 [1558647747] spark-pi-51c8ff65 - -------- Executor Pods ----------
+0523 21:42:27 [1558647747] spark-pi-51c8ff65 - Cleaning up stuff for complated or failed test.
+0523 21:42:27 [1558647747] spark-pi-51c8ff65 - sparkapplication "spark-pi-51c8ff65" deleted
+0523 21:42:29 [1558647749] spark-pi-51c8ff65 - ======== Completion of spark-pi-51c8ff65 test, returning 1 ========

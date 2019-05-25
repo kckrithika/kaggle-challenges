@@ -1,0 +1,65 @@
+UNRECOGNIZED_NON_TIMEOUT
+//
+// What happened here? Unknown driver pod state suggests eviction, but without the events from the driver we can't be sure.
+//
+0523 07:47:13 [1558597633] spark-pi-3855cdb4 - ======== Beginning spark-pi-3855cdb4 test ========
+0523 07:47:13 [1558597633] spark-pi-3855cdb4 -  [0;32mKubernetes master [0m is running at  [0;33mhttps://10.254.208.1:443 [0m
+0523 07:47:13 [1558597633] spark-pi-3855cdb4 -
+0523 07:47:13 [1558597633] spark-pi-3855cdb4 - To further debug and diagnose cluster problems, use 'kubectl cluster-info dump'.
+0523 07:47:14 [1558597634] spark-pi-3855cdb4 - Cleaning up SparkApplication/Pod older than 1 hours from prior runs.
+0523 07:47:15 [1558597635] spark-pi-3855cdb4 - Creating SparkApplication spark-pi-3855cdb4
+0523 07:47:15 [1558597635] spark-pi-3855cdb4 - sparkapplication "spark-pi-3855cdb4" created
+0523 07:47:16 [1558597636] spark-pi-3855cdb4 - Waiting for SparkApplication spark-pi-3855cdb4 to reach a terminal state.
+0523 07:47:28 [1558597648] spark-pi-3855cdb4 - Pod change detected: spark-pi-3855cdb4-driver: Pending on host shared0-flowsnakeworkerprod1-85-dfw.ops.sfdc.net.
+0523 07:48:19 [1558597699] spark-pi-3855cdb4 - ...still waiting for terminal state (currently SUBMITTED) after 63 seconds.
+0523 07:48:19 [1558597699] spark-pi-3855cdb4 - ---- Begin Events ----
+0523 07:48:19 [1558597699] spark-pi-3855cdb4 - Name:         spark-pi-3855cdb4
+0523 07:48:19 [1558597699] spark-pi-3855cdb4 - Events:                          <none>
+0523 07:48:21 [1558597701] spark-pi-3855cdb4 - Name:           spark-pi-3855cdb4-driver
+0523 07:48:21 [1558597701] spark-pi-3855cdb4 - Events:
+0523 07:48:21 [1558597701] spark-pi-3855cdb4 -   Type    Reason     Age   From               Message
+0523 07:48:21 [1558597701] spark-pi-3855cdb4 -   ----    ------     ----  ----               -------
+0523 07:48:21 [1558597701] spark-pi-3855cdb4 -   Normal  Scheduled  57s   default-scheduler  Successfully assigned spark-pi-3855cdb4-driver to shared0-flowsnakeworkerprod1-85-dfw.ops.sfdc.net
+0523 07:48:23 [1558597703] spark-pi-3855cdb4 - ---- End Events ----
+0523 07:49:20 [1558597760] spark-pi-3855cdb4 - ...still waiting for terminal state (currently SUBMITTED) after 124 seconds.
+0523 07:49:20 [1558597760] spark-pi-3855cdb4 - ---- Begin Events ----
+0523 07:49:20 [1558597760] spark-pi-3855cdb4 - Name:         spark-pi-3855cdb4
+0523 07:49:20 [1558597760] spark-pi-3855cdb4 - Events:                          <none>
+0523 07:49:22 [1558597762] spark-pi-3855cdb4 - Name:           spark-pi-3855cdb4-driver
+0523 07:49:22 [1558597762] spark-pi-3855cdb4 - Events:
+0523 07:49:22 [1558597762] spark-pi-3855cdb4 -   Type    Reason     Age   From               Message
+0523 07:49:22 [1558597762] spark-pi-3855cdb4 -   ----    ------     ----  ----               -------
+0523 07:49:22 [1558597762] spark-pi-3855cdb4 -   Normal  Scheduled  1m    default-scheduler  Successfully assigned spark-pi-3855cdb4-driver to shared0-flowsnakeworkerprod1-85-dfw.ops.sfdc.net
+0523 07:49:24 [1558597764] spark-pi-3855cdb4 - ---- End Events ----
+0523 07:50:22 [1558597822] spark-pi-3855cdb4 - ...still waiting for terminal state (currently SUBMITTED) after 186 seconds.
+0523 07:50:22 [1558597822] spark-pi-3855cdb4 - ---- Begin Events ----
+0523 07:50:22 [1558597822] spark-pi-3855cdb4 - Name:         spark-pi-3855cdb4
+0523 07:50:22 [1558597822] spark-pi-3855cdb4 - Events:                          <none>
+0523 07:50:24 [1558597824] spark-pi-3855cdb4 - Name:           spark-pi-3855cdb4-driver
+0523 07:50:24 [1558597824] spark-pi-3855cdb4 - Events:
+0523 07:50:24 [1558597824] spark-pi-3855cdb4 -   Type    Reason     Age   From               Message
+0523 07:50:24 [1558597824] spark-pi-3855cdb4 -   ----    ------     ----  ----               -------
+0523 07:50:24 [1558597824] spark-pi-3855cdb4 -   Normal  Scheduled  2m    default-scheduler  Successfully assigned spark-pi-3855cdb4-driver to shared0-flowsnakeworkerprod1-85-dfw.ops.sfdc.net
+0523 07:50:26 [1558597826] spark-pi-3855cdb4 - ---- End Events ----
+0523 07:51:24 [1558597884] spark-pi-3855cdb4 - ...still waiting for terminal state (currently SUBMITTED) after 248 seconds.
+0523 07:51:24 [1558597884] spark-pi-3855cdb4 - ---- Begin Events ----
+0523 07:51:24 [1558597884] spark-pi-3855cdb4 - Name:         spark-pi-3855cdb4
+0523 07:51:24 [1558597884] spark-pi-3855cdb4 - Events:                          <none>
+0523 07:51:25 [1558597885] spark-pi-3855cdb4 - Name:           spark-pi-3855cdb4-driver
+0523 07:51:25 [1558597885] spark-pi-3855cdb4 - Events:
+0523 07:51:25 [1558597885] spark-pi-3855cdb4 -   Type    Reason     Age   From               Message
+0523 07:51:25 [1558597885] spark-pi-3855cdb4 -   ----    ------     ----  ----               -------
+0523 07:51:25 [1558597885] spark-pi-3855cdb4 -   Normal  Scheduled  4m    default-scheduler  Successfully assigned spark-pi-3855cdb4-driver to shared0-flowsnakeworkerprod1-85-dfw.ops.sfdc.net
+0523 07:51:28 [1558597888] spark-pi-3855cdb4 - ---- End Events ----
+0523 07:52:01 [1558597921] spark-pi-3855cdb4 - Pod change detected: spark-pi-3855cdb4-driver changed to Unknown (previously Pending).
+0523 07:52:06 [1558597926] spark-pi-3855cdb4 - Pod change detected: spark-pi-3855cdb4-driver removed.
+0523 07:52:09 [1558597929] spark-pi-3855cdb4 - SparkApplication spark-pi-3855cdb4 has terminated after 293 seconds. State is FAILED.
+0523 07:52:09 [1558597929] spark-pi-3855cdb4 - ---- Begin Events ----
+0523 07:52:09 [1558597929] spark-pi-3855cdb4 - Name:         spark-pi-3855cdb4
+0523 07:52:09 [1558597929] spark-pi-3855cdb4 - Events:                          <none>
+0523 07:52:11 [1558597931] spark-pi-3855cdb4 - ---- End Events ----
+0523 07:52:12 [1558597932] spark-pi-3855cdb4 - Cannot locate driver pod. Maybe it never started? No logs to display.
+0523 07:52:12 [1558597932] spark-pi-3855cdb4 - -------- Executor Pods ----------
+0523 07:52:12 [1558597932] spark-pi-3855cdb4 - Cleaning up stuff for complated or failed test.
+0523 07:52:12 [1558597932] spark-pi-3855cdb4 - sparkapplication "spark-pi-3855cdb4" deleted
+0523 07:52:13 [1558597933] spark-pi-3855cdb4 - ======== Completion of spark-pi-3855cdb4 test, returning 1 ========
