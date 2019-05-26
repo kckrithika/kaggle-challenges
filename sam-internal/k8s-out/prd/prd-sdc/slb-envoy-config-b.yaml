@@ -90,7 +90,7 @@ spec:
         - --log_dir=/host/data/slb/logs/slb-envoy-config-b
         - --netInterfaceName=eth0
         - --target=/host/data/slb/slb-envoy-config-b/config
-        - --tlsconfig.allowedCiphers=ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-RSA-AES256-GCM-SHA384:ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES128-GCM-SHA256:AES256-GCM-SHA384:AES128-GCM-SHA256:AES256-SHA256:AES256-SHA
+        - --tlsconfig.allowedCiphers=ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-RSA-AES256-GCM-SHA384:ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES128-GCM-SHA256:AES256-GCM-SHA384:AES128-GCM-SHA256:AES256-SHA
         - --tlsconfig.allowedEcdhCurves=P-256
         - --tlsconfig.custCertsDir=/customer-certs
         - --tlsconfig.certsDir=/server-certs/server/certificates
@@ -142,7 +142,7 @@ spec:
         env:
         - name: KINGDOM
           value: prd
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/sfci/servicelibs/sherpa-envoy:96e2e48f9b97d921f9b64e630a0a13a7dcf995f0
+        image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mgrass/sherpa-envoy:96e2e48f9b97d921f9b64e630a0a13a7dcf995f0-withcap
         livenessProbe:
           httpGet:
             path: /liveness-probe
