@@ -39,7 +39,7 @@ spec:
           valueFrom:
             fieldRef:
               fieldPath: spec.nodeName
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/slb/hyperslb:2175-c07c60cd6e13700c9a1457a22a68541684f3c339
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/slb/hyperslb:2178-8ca5d6c48792a16aca25de4aa79caa318d604a38
         name: slb-labels-checker
         resources:
           limits:
@@ -70,7 +70,7 @@ spec:
         env:
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig-platform
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/slb/hyperslb:2175-c07c60cd6e13700c9a1457a22a68541684f3c339
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/slb/hyperslb:2178-8ca5d6c48792a16aca25de4aa79caa318d604a38
         livenessProbe:
           exec:
             command:
