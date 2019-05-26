@@ -49,7 +49,7 @@ spec:
         - --serviceName=slb-canary-passthrough-tls
         - --log_dir=/host/data/slb/logs/
         - --ports=9114
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/slb/hyperslb:2174-1f03b4706ddd223da61731692d18668fdb4dc5ce
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/slb/hyperslb:2175-c07c60cd6e13700c9a1457a22a68541684f3c339
         livenessProbe:
           httpGet:
             path: /
