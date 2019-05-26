@@ -16,9 +16,9 @@
   // Getting replaced: slb-nginx-config, slb-config-proxy
   // Getting deferred: slb-nginx-data, slb-file-watcher, slb-upstream-status-reporter
   local beforeSharedContainers(proxyImage, deleteLimitOverride=0, proxyFlavor="", slbUpstreamReporterEnabled=true) = [
-    slbshared.slbEnvoyConfig(deleteLimitOverride=deleteLimitOverride, tlsConfigEnabled=true),
-    slbshared.slbEnvoyProxy(proxyImage, proxyFlavor, true),
-    madkub.madkubRefreshContainer(slbconfigs.nginx.certDirs),
+    slbshared.slbEnvoyConfig(deleteLimitOverride=deleteLimitOverride),
+    slbshared.slbEnvoyProxy(proxyImage, proxyFlavor),
+    madkub.madkubRefreshContainer(slbconfigs.envoy.certDirs),
     {
       name: "slb-cert-checker",
       image: slbimages.hyperslb,
@@ -27,15 +27,17 @@
         "--metricsEndpoint=" + configs.funnelVIP,
         "--hostnameOverride=$(NODE_NAME)",
         "--log_dir=" + slbconfigs.logsDir,
+        "--server cert name=/server-certs/server/certificates/server.pem",
+        "--root cert name=/server-certs/ca.pem",
         configs.sfdchosts_arg,
       ],
       volumeMounts: std.prune(
-        madkub.madkubSlbCertVolumeMounts(slbconfigs.nginx.certDirs) + [
-          slbconfigs.nginx.target_config_volume_mount,
+        madkub.madkubSlbCertVolumeMounts(slbconfigs.envoy.certDirs) + [
+          slbconfigs.envoy.target_config_volume_mount,
           slbconfigs.slb_volume_mount,
           slbconfigs.logs_volume_mount,
           configs.sfdchosts_volume_mount,
-          slbconfigs.nginx.customer_certs_volume_mount,
+          slbconfigs.envoy.customer_certs_volume_mount,
         ]
       ),
       env: [
@@ -53,17 +55,20 @@
         "--metricsEndpoint=" + configs.funnelVIP,
         "--hostnameOverride=$(NODE_NAME)",
         "--log_dir=" + slbconfigs.logsDir,
-        "--custCertsDir=" + slbconfigs.nginx.customerCertsPath,
+        "--custCertsDir=" + slbconfigs.envoy.customerCertsPath,
+        "--certfile=/client-certs/client/certificates/client.pem",
+        "--keyfile=/client-certs/client/keys/client-key.pem",
+        "--cafile=/client-certs/ca.pem",
         configs.sfdchosts_arg,
       ]
       + slbconfigs.getNodeApiClientSocketSettings()
       + [
-        slbconfigs.nginx.reloadSentinelParam,
+        slbconfigs.envoy.reloadSentinelParam,
       ],
       volumeMounts: std.prune(
-        madkub.madkubSlbCertVolumeMounts(slbconfigs.nginx.certDirs) + [
-          slbconfigs.nginx.target_config_volume_mount,
-          slbconfigs.nginx.customer_certs_volume_mount,
+        madkub.madkubSlbCertVolumeMounts(slbconfigs.envoy.certDirs) + [
+          slbconfigs.envoy.target_config_volume_mount,
+          slbconfigs.envoy.customer_certs_volume_mount,
           slbconfigs.slb_volume_mount,
           slbconfigs.logs_volume_mount,
           configs.sfdchosts_volume_mount,
@@ -100,17 +105,17 @@
   // It erases any files in the config directory, ensuring that any stale service config / block files
   // are removed before new envoy services start.
   local envoyConfigWipeInitContainer = {
-    assert std.length(slbconfigs.nginx.containerTargetDir) > 0 : "Invalid configuration: slbconfigs.nginx.containerTargetDir is empty",
+    assert std.length(slbconfigs.envoy.containerTargetDir) > 0 : "Invalid configuration: slbconfigs.envoy.containerTargetDir is empty",
     name: "slb-envoy-config-wipe",
     image: slbimages.hyperslb,
     command: [
       "/bin/bash",
       "-xec",
       // Variable substitution results in something like /host/data/slb/$.dirSuffix/config
-      "rm -rf %s/*" % [slbconfigs.nginx.containerTargetDir],
+      "rm -rf %s/*" % [slbconfigs.envoy.containerTargetDir],
     ],
     volumeMounts: [
-      slbconfigs.nginx.target_config_volume_mount,
+      slbconfigs.envoy.target_config_volume_mount,
     ],
   },
 
@@ -143,17 +148,17 @@
       template+: {
         metadata+: {
           annotations: {
-            "madkub.sam.sfdc.net/allcerts": std.manifestJsonEx(madkub.madkubSlbCertsAnnotation(slbconfigs.nginx.certDirs), " "),
+            "madkub.sam.sfdc.net/allcerts": std.manifestJsonEx(madkub.madkubSlbCertsAnnotation(slbconfigs.envoy.certDirs), " "),
           },
         },
         spec+: {
           volumes+: std.prune(
-            madkub.madkubSlbCertVolumes(slbconfigs.nginx.certDirs)
+            madkub.madkubSlbCertVolumes(slbconfigs.envoy.certDirs)
             + madkub.madkubSlbMadkubVolumes()
             + [
-              slbconfigs.nginx.target_config_volume,
-              slbconfigs.nginx.customer_certs_volume,
-              slbconfigs.nginx.tlsparams_volume,
+              slbconfigs.envoy.target_config_volume,
+              slbconfigs.envoy.customer_certs_volume,
+              slbconfigs.envoy.tlsparams_volume,
               //configs.config_volume(proxyName),
             ]
           ),
@@ -161,7 +166,7 @@
             fsGroup: 7447,
           },
           initContainers: std.prune([
-            madkub.madkubInitContainer(slbconfigs.nginx.certDirs),
+            madkub.madkubInitContainer(slbconfigs.envoy.certDirs),
             envoyConfigWipeInitContainer,
           ]),
           nodeSelector: { pool: slbconfigs.slbEstate },
