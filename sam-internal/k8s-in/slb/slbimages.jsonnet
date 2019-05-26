@@ -63,7 +63,7 @@ local slbreleases = import "slbreleases.json";
     # needs to be tweaked.
     # slbenvoy: ...
     # slbenvoy_build: ...
-    slbenvoy: "ops0-artifactrepo2-0-prd.data.sfdc.net/sfci/servicelibs/sherpa-envoy:96e2e48f9b97d921f9b64e630a0a13a7dcf995f0",
+    slbenvoy: "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mgrass/sherpa-envoy:96e2e48f9b97d921f9b64e630a0a13a7dcf995f0-withcap",
 
     hsmnginx: imageFunc.do_override_for_pipeline_image($.overrides, "slb", "nginx-kms", slbreleases[$.phase].kmsnginx.label),
     hsmnginx_build: imageFunc.build_info_from_tag(slbreleases[$.phase].kmsnginx.label).buildNumber,

@@ -12,6 +12,45 @@ metadata:
     slb.sfdc.net/portconfigurations: |-
       [
        {
+        "healthpath": "/",
+        "healthport": 9091,
+        "healthprotocol": "http",
+        "lbtype": "http",
+        "port": 80,
+        "sticky": 300,
+        "targetport": 9090
+       },
+       {
+        "addheaders": [
+         {
+          "name": "here-be-headers",
+          "value": "arggh"
+         }
+        ],
+        "lbalgorithm": "roundrobin",
+        "lbtype": "http",
+        "port": 443,
+        "reencrypt": true,
+        "targetport": 9443,
+        "tls": true
+       },
+       {
+        "addheaders": [
+         {
+          "name": "here-be-mtls-headers",
+          "value": "arggh"
+         }
+        ],
+        "lbalgorithm": "leastconn",
+        "lbtype": "http",
+        "mtls": true,
+        "port": 8443,
+        "reencrypt": true,
+        "targetport": 9443,
+        "tls": true
+       },
+       {
+        "lbalgorithm": "leastconn",
         "lbtype": "tcp",
         "port": 9090,
         "targetport": 9090
@@ -38,6 +77,18 @@ metadata:
   namespace: sam-system
 spec:
   ports:
+  - name: http
+    port: 80
+    protocol: TCP
+    targetPort: 9090
+  - name: https
+    port: 443
+    protocol: TCP
+    targetPort: 9443
+  - name: mtls
+    port: 8443
+    protocol: TCP
+    targetPort: 9443
   - name: slb-canary-envoy-port
     port: 9090
     protocol: TCP
