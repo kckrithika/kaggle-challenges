@@ -84,7 +84,10 @@
         },
     },
 
-    local secretServiceClientCert(name) = {
+    // slb internal certificate, used as a client cert for mTLS sessions that
+    // are not originated by customer traffic (e.g., talking to secret service
+    // or vault or your best friend).
+    local slbInternalCertificate(name) = {
         mount: {
             mountPath: "/" + name,
             name: name,
@@ -111,7 +114,7 @@
         "client-certs": clientCert("client-certs"),
 
         // slb internal certificate for SS
-        cert3: secretServiceClientCert("cert3"),
+        cert3: slbInternalCertificate("cert3"),
 
         canarycert: {  // certificate for canaries setting up https ports
             mount: {
