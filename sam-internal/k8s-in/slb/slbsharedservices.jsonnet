@@ -407,69 +407,76 @@
       successThreshold: 4,
     },
   },
-  slbEnvoyConfig(deleteLimitOverride=0, vipInterfaceName="", tlsConfigEnabled=false): {
+  slbEnvoyConfig(deleteLimitOverride=0, vipInterfaceName=""): {
       name: "slb-envoy-config",
       image: slbimages.hyperslb,
       command: [
         "/sdn/slb-envoy-config",
+        "--cdsconfig.healthyCount=5",
+        "--cdsconfig.unhealthyCount=2",
+        "--cdsconfig.healthTimeout=3s",
+        "--cdsconfig.healthCheckInterval=3s",
         "--client.serverInterface=lo",
         "--commonoptions.metricsendpoint=" + configs.funnelVIP,
         "--commonoptions.hostname=$(NODE_NAME)",
         "--control.realsvrCfgSentinel=" + realsvrCfgSentinel,
         "--control.sentinelExpiration=60s",
-        "--envoyNodeID=$(NODE_NAME)",
-        "--envoyNodeNamespace=sam-system",
+        "--envoyNodeID=%s.$(FUNCTION_NAMESPACE).$(FUNCTION_INSTANCE_NAME)" % [slbconfigs.envoyProxyConfigDeploymentName],
+        "--envoyNodeNamespace=$(FUNCTION_NAMESPACE)",
         "--heartbeat.defaultdecayduration=5m",
         "--livenessProbePort=8080",
         "--log_dir=" + slbconfigs.logsDir,
         "--netInterfaceName=eth0",
-        "--target=" + slbconfigs.nginx.containerTargetDir,
-//        "--maxDeleteServiceCount=" + std.max((if configs.kingdom == "xrd" then 150 else 0), slbconfigs.maxDeleteLimit(deleteLimitOverride)),
+        "--target=" + slbconfigs.envoy.containerTargetDir,
+        "--tlsconfig.allowedCiphers=%s" % [
+          std.join(":", [
+            "ECDHE-ECDSA-AES256-GCM-SHA384",  // envoy (BoringSSL) supports a narrower set of ciphers than nginx (OpenSSL).
+            "ECDHE-RSA-AES256-GCM-SHA384",
+            "ECDHE-ECDSA-AES128-GCM-SHA256",
+            "ECDHE-RSA-AES128-GCM-SHA256",
+            "AES256-GCM-SHA384",
+            "AES128-GCM-SHA256",
+            "AES256-SHA256",
+            "AES256-SHA",
+          ]),
+        ],
+        "--tlsconfig.allowedEcdhCurves=P-256",  // P-256 is the same as secp256r1, see https://www.ietf.org/rfc/rfc5480.txt. Envoy only knows it by P-256 though.
+        "--tlsconfig.custCertsDir=" + slbconfigs.envoy.customerCertsPath,
+        "--tlsconfig.certsDir=/server-certs/server/certificates",
+        "--tlsconfig.keysDir=/server-certs/server/keys",
+        "--tlsconfig.caFile=/server-certs/ca.pem",
+        "--tlsconfig.clientCertsDir=/client-certs/client/certificates",
+        "--tlsconfig.clientKeysDir=/client-certs/client/keys",
+        "--tlsconfig.clientCAFile=/client-certs/ca.pem",
         configs.sfdchosts_arg,
+
+//        "--maxDeleteServiceCount=" + std.max((if configs.kingdom == "xrd" then 150 else 0), slbconfigs.maxDeleteLimit(deleteLimitOverride)),
 //        "--httpconfig.trustedProxies=" + slbconfigs.perCluster.trustedProxies[configs.estate],
 //        "--iprange.InternalIpRange=" + slbconfigs.perCluster.internalIpRange[configs.estate],
       ]
       + slbconfigs.getNodeApiClientSocketSettings()
       + [
-//        slbconfigs.nginx.reloadSentinelParam,
-//        "--httpconfig.custCertsDir=" + slbconfigs.nginx.customerCertsPath,
+//        slbconfigs.envoy.reloadSentinelParam,
+//        slbconfigs.envoy.configUpdateSentinelParam,
 //        "--httpconfig.accessLogFormat=main",
-//        "--commonconfig.riseCount=5",
-//        "--commonconfig.fallCount=2",
-//        "--commonconfig.healthTimeout=3000",
       ] + (if std.length(vipInterfaceName) > 0 then [
         # The default vip interface name is tunl0
         "--vipInterfaceName=" + vipInterfaceName,
-      ] else [])
-//      + [slbconfigs.nginx.configUpdateSentinelParam]
-      + (if tlsConfigEnabled then [
-//        "--httpconfig.tlsConfigEnabled=true",
-//        "--httpconfig.allowedCiphers=ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-RSA-AES256-GCM-SHA384:ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES128-GCM-SHA256:ECDHE-ECDSA-AES256-SHA384:ECDHE-ECDSA-AES128-SHA256:ECDHE-RSA-AES256-SHA384:ECDHE-RSA-AES128-SHA256:AES256-GCM-SHA384:AES128-GCM-SHA256:AES256-SHA256:AES128-SHA256:AES256-SHA:AES128-SHA",
-//        "--httpconfig.allowedEcdhCurves=secp521r1:secp384r1:prime256v1",
-//        "--httpconfig.dhParamsFile=/tlsparams/dhparams.pem",
-      ] else [])
-      + [
-//        "--commonconfig.accessLogDirectory=" + slbconfigs.logsDir,
-//        "--tcpconfig.accessLogFormat=basic",
-//        "--httpconfig.accessLogDirectory=" + slbconfigs.logsDir,
-      ],
+      ] else []),
       volumeMounts: std.prune([
-        // Probably fine since we get a generic (i.e. non-nginx-specific) directory path
-        slbconfigs.nginx.target_config_volume_mount,
+        slbconfigs.envoy.target_config_volume_mount,
         slbconfigs.slb_volume_mount,
         slbconfigs.logs_volume_mount,
         configs.sfdchosts_volume_mount,
-        if tlsConfigEnabled then slbconfigs.nginx.tlsparams_volume_mount else {},
       ]),
-      securityContext: {
-        privileged: true,
-      },
       env: [
         slbconfigs.node_name_env,
+        slbconfigs.function_namespace_env,
+        slbconfigs.function_instance_name_env,
         configs.kube_config_env,
       ],
     } + configs.ipAddressResourceRequest,
-  slbEnvoyProxy(proxyImage, proxyFlavor="", tlsConfigEnabled=false): {
+  slbEnvoyProxy(proxyImage, proxyFlavor=""): {
       name: "slb-envoy-proxy",
       image: proxyImage,
       env: [
@@ -477,33 +484,16 @@
           name: "KINGDOM",
           value: configs.kingdom,
         },
-        {
-          name: "FUNCTION_NAMESPACE",
-          valueFrom: {
-            fieldRef: {
-              apiVersion: "v1",
-              fieldPath: "metadata.namespace",
-            },
-          },
-        },
-        {
-          name: "SETTINGS_SUPERPOD",
-          value: "None",
-        },
-        {
-          name: "SETTINGS_PATH",
-          value: "-.-.prd.-.slb-envoy",
-        },
       ] + (if proxyFlavor != "" then [{ name: "PROXY_FLAVOR", value: proxyFlavor }] else []),
 //      command: [
 //        "/runner.sh",
 //        slbconfigs.logsDir,
-//        slbconfigs.nginx.configUpdateSentinelPath,
+//        slbconfigs.envoy.configUpdateSentinelPath,
 //      ],
       command: [
         "/home/sfdc-sherpa/envoy",
         "--config-path",
-        slbconfigs.nginx.containerTargetDir + "/envoy-bootstrap.yaml",
+        slbconfigs.envoy.containerTargetDir + "/envoy-bootstrap.yaml",
         ],
       livenessProbe: {
         httpGet: {
@@ -517,17 +507,6 @@
         initialDelaySeconds: 15,
         periodSeconds: 10,
       },
-      volumeMounts: std.prune([
-        slbconfigs.nginx.nginx_config_volume_mount,
-        slbconfigs.logs_volume_mount,
-        slbconfigs.nginx.customer_certs_volume_mount,
-      ]
-      + madkub.madkubSlbCertVolumeMounts(slbconfigs.nginx.certDirs)
-      + [
-        slbconfigs.slb_volume_mount,
-        if tlsConfigEnabled then slbconfigs.nginx.tlsparams_volume_mount else {},
-        if proxyFlavor == "hsm" then slbconfigs.kmsconfig_volume_mount else {},
-      ]),
       readinessProbe: {
         httpGet: {
           path: "/liveness-probe",
@@ -541,6 +520,21 @@
         periodSeconds: 5,
         successThreshold: 4,
       },
+      # Add the [CAP_]NET_BIND_SERVICE capability so that envoy running as a
+      # low-privileged user can bind to privileged ports.
+      securityContext: {
+        capabilities: {
+          add: [
+            "NET_BIND_SERVICE",
+          ],
+        },
+      },
+      volumeMounts: std.prune([
+        slbconfigs.logs_volume_mount,
+        slbconfigs.envoy.customer_certs_volume_mount,
+        slbconfigs.slb_volume_mount,
+      ]
+      + madkub.madkubSlbCertVolumeMounts(slbconfigs.envoy.certDirs)),
     },
   slbUnknownPodCleanup(name, namespace): {
     name: "slb-cleanup-unknownpods" + name,

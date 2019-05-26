@@ -26,7 +26,7 @@ spec:
             {
              "cert-type": "server",
              "kingdom": "prd",
-             "name": "cert1",
+             "name": "server-certs",
              "role": "samapp.slb",
              "san": [
               "*.sam-system.prd-sdc.prd.slb.sfdc.net",
@@ -41,7 +41,7 @@ spec:
             {
              "cert-type": "client",
              "kingdom": "prd",
-             "name": "cert2",
+             "name": "client-certs",
              "role": "samapp.slb"
             }
            ]
@@ -74,18 +74,31 @@ spec:
       containers:
       - command:
         - /sdn/slb-envoy-config
+        - --cdsconfig.healthyCount=5
+        - --cdsconfig.unhealthyCount=2
+        - --cdsconfig.healthTimeout=3s
+        - --cdsconfig.healthCheckInterval=3s
         - --client.serverInterface=lo
         - --commonoptions.metricsendpoint=ajna0-funnel1-0-prd.data.sfdc.net:80
         - --commonoptions.hostname=$(NODE_NAME)
         - --control.realsvrCfgSentinel=/host/data/slb/config/slb-envoy-config-b/slb-realsvrcfg.sentinel
         - --control.sentinelExpiration=60s
-        - --envoyNodeID=$(NODE_NAME)
-        - --envoyNodeNamespace=sam-system
+        - --envoyNodeID=slb-envoy-config-b.$(FUNCTION_NAMESPACE).$(FUNCTION_INSTANCE_NAME)
+        - --envoyNodeNamespace=$(FUNCTION_NAMESPACE)
         - --heartbeat.defaultdecayduration=5m
         - --livenessProbePort=8080
         - --log_dir=/host/data/slb/logs/slb-envoy-config-b
         - --netInterfaceName=eth0
         - --target=/host/data/slb/slb-envoy-config-b/config
+        - --tlsconfig.allowedCiphers=ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-RSA-AES256-GCM-SHA384:ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES128-GCM-SHA256:AES256-GCM-SHA384:AES128-GCM-SHA256:AES256-SHA256:AES256-SHA
+        - --tlsconfig.allowedEcdhCurves=P-256
+        - --tlsconfig.custCertsDir=/customer-certs
+        - --tlsconfig.certsDir=/server-certs/server/certificates
+        - --tlsconfig.keysDir=/server-certs/server/keys
+        - --tlsconfig.caFile=/server-certs/ca.pem
+        - --tlsconfig.clientCertsDir=/client-certs/client/certificates
+        - --tlsconfig.clientKeysDir=/client-certs/client/keys
+        - --tlsconfig.clientCAFile=/client-certs/ca.pem
         - --hostsConfigFile=/sfdchosts/hosts.json
         - --client.socketDir=/host/data/slb/config/slb-envoy-config-b
         - --client.dialSocket=true
@@ -94,6 +107,16 @@ spec:
           valueFrom:
             fieldRef:
               fieldPath: spec.nodeName
+        - name: FUNCTION_NAMESPACE
+          valueFrom:
+            fieldRef:
+              apiVersion: v1
+              fieldPath: metadata.namespace
+        - name: FUNCTION_INSTANCE_NAME
+          valueFrom:
+            fieldRef:
+              apiVersion: v1
+              fieldPath: metadata.name
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig-platform
         image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/slb/hyperslb:2174-1f03b4706ddd223da61731692d18668fdb4dc5ce
@@ -103,8 +126,6 @@ spec:
             sam.sfdc.net/ip-address: "1"
           requests:
             sam.sfdc.net/ip-address: "1"
-        securityContext:
-          privileged: true
         volumeMounts:
         - mountPath: /host/data/slb/slb-envoy-config-b/config
           name: var-target-config-volume
@@ -114,8 +135,6 @@ spec:
           name: var-logs-volume
         - mountPath: /sfdchosts
           name: sfdchosts
-        - mountPath: /tlsparams
-          name: tlsparams-volume
       - command:
         - /home/sfdc-sherpa/envoy
         - --config-path
@@ -123,15 +142,6 @@ spec:
         env:
         - name: KINGDOM
           value: prd
-        - name: FUNCTION_NAMESPACE
-          valueFrom:
-            fieldRef:
-              apiVersion: v1
-              fieldPath: metadata.namespace
-        - name: SETTINGS_SUPERPOD
-          value: None
-        - name: SETTINGS_PATH
-          value: -.-.prd.-.slb-envoy
         image: ops0-artifactrepo2-0-prd.data.sfdc.net/sfci/servicelibs/sherpa-envoy:96e2e48f9b97d921f9b64e630a0a13a7dcf995f0
         livenessProbe:
           httpGet:
@@ -147,29 +157,29 @@ spec:
           initialDelaySeconds: 2
           periodSeconds: 5
           successThreshold: 4
+        securityContext:
+          capabilities:
+            add:
+            - NET_BIND_SERVICE
         volumeMounts:
-        - mountPath: /etc/nginx/conf.d
-          name: var-target-config-volume
         - mountPath: /host/data/slb/logs/slb-envoy-config-b
           name: var-logs-volume
-        - mountPath: /customerCerts
+        - mountPath: /customer-certs
           name: customer-certs
-        - mountPath: /cert1
-          name: cert1
-        - mountPath: /cert2
-          name: cert2
         - mountPath: /host/data/slb
           name: var-slb-volume
-        - mountPath: /tlsparams
-          name: tlsparams-volume
+        - mountPath: /server-certs
+          name: server-certs
+        - mountPath: /client-certs
+          name: client-certs
       - args:
         - /sam/madkub-client
         - --madkub-endpoint=https://$(MADKUBSERVER_SERVICE_HOST):32007
         - --maddog-endpoint=https://all.pkicontroller.pki.blank.prd.prod.non-estates.sfdcsd.net:8443
         - --maddog-server-ca=/maddog-certs/ca/security-ca.pem
         - --madkub-server-ca=/maddog-certs/ca/cacerts.pem
-        - --cert-folders=cert1:/cert1/
-        - --cert-folders=cert2:/cert2/
+        - --cert-folders=server-certs:/server-certs/
+        - --cert-folders=client-certs:/client-certs/
         - --token-folder=/tokens/
         - --requested-cert-type=client
         - --ca-folder=/maddog-certs/ca
@@ -196,10 +206,10 @@ spec:
         name: madkub-refresher
         resources: {}
         volumeMounts:
-        - mountPath: /cert1
-          name: cert1
-        - mountPath: /cert2
-          name: cert2
+        - mountPath: /server-certs
+          name: server-certs
+        - mountPath: /client-certs
+          name: client-certs
         - mountPath: /maddog-certs/
           name: maddog-certs
         - mountPath: /tokens
@@ -209,6 +219,8 @@ spec:
         - --metricsEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80
         - --hostnameOverride=$(NODE_NAME)
         - --log_dir=/host/data/slb/logs/slb-envoy-config-b
+        - --server cert name=/server-certs/server/certificates/server.pem
+        - --root cert name=/server-certs/ca.pem
         - --hostsConfigFile=/sfdchosts/hosts.json
         env:
         - name: NODE_NAME
@@ -218,10 +230,10 @@ spec:
         image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/slb/hyperslb:2174-1f03b4706ddd223da61731692d18668fdb4dc5ce
         name: slb-cert-checker
         volumeMounts:
-        - mountPath: /cert1
-          name: cert1
-        - mountPath: /cert2
-          name: cert2
+        - mountPath: /server-certs
+          name: server-certs
+        - mountPath: /client-certs
+          name: client-certs
         - mountPath: /host/data/slb/slb-envoy-config-b/config
           name: var-target-config-volume
         - mountPath: /host/data/slb
@@ -230,7 +242,7 @@ spec:
           name: var-logs-volume
         - mountPath: /sfdchosts
           name: sfdchosts
-        - mountPath: /customerCerts
+        - mountPath: /customer-certs
           name: customer-certs
       - command:
         - /sdn/slb-config-processor
@@ -435,7 +447,10 @@ spec:
         - --metricsEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80
         - --hostnameOverride=$(NODE_NAME)
         - --log_dir=/host/data/slb/logs/slb-envoy-config-b
-        - --custCertsDir=/customerCerts
+        - --custCertsDir=/customer-certs
+        - --certfile=/client-certs/client/certificates/client.pem
+        - --keyfile=/client-certs/client/keys/client-key.pem
+        - --cafile=/client-certs/ca.pem
         - --hostsConfigFile=/sfdchosts/hosts.json
         - --client.socketDir=/host/data/slb/config/slb-envoy-config-b
         - --client.dialSocket=true
@@ -448,13 +463,13 @@ spec:
         image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/slb/hyperslb:2174-1f03b4706ddd223da61731692d18668fdb4dc5ce
         name: slb-cert-deployer
         volumeMounts:
-        - mountPath: /cert1
-          name: cert1
-        - mountPath: /cert2
-          name: cert2
+        - mountPath: /server-certs
+          name: server-certs
+        - mountPath: /client-certs
+          name: client-certs
         - mountPath: /host/data/slb/slb-envoy-config-b/config
           name: var-target-config-volume
-        - mountPath: /customerCerts
+        - mountPath: /customer-certs
           name: customer-certs
         - mountPath: /host/data/slb
           name: var-slb-volume
@@ -470,8 +485,8 @@ spec:
         - --maddog-endpoint=https://all.pkicontroller.pki.blank.prd.prod.non-estates.sfdcsd.net:8443
         - --maddog-server-ca=/maddog-certs/ca/security-ca.pem
         - --madkub-server-ca=/maddog-certs/ca/cacerts.pem
-        - --cert-folders=cert1:/cert1/
-        - --cert-folders=cert2:/cert2/
+        - --cert-folders=server-certs:/server-certs/
+        - --cert-folders=client-certs:/client-certs/
         - --token-folder=/tokens/
         - --requested-cert-type=client
         - --ca-folder=/maddog-certs/ca
@@ -495,10 +510,10 @@ spec:
         imagePullPolicy: IfNotPresent
         name: madkub-init
         volumeMounts:
-        - mountPath: /cert1
-          name: cert1
-        - mountPath: /cert2
-          name: cert2
+        - mountPath: /server-certs
+          name: server-certs
+        - mountPath: /client-certs
+          name: client-certs
         - mountPath: /maddog-certs/
           name: maddog-certs
         - mountPath: /tokens
@@ -514,6 +529,8 @@ spec:
           name: var-target-config-volume
       nodeSelector:
         pool: prd-sdc
+      securityContext:
+        fsGroup: 7447
       volumes:
       - hostPath:
           path: /data/slb
@@ -547,10 +564,10 @@ spec:
         name: proxyconfig
       - emptyDir:
           medium: Memory
-        name: cert1
+        name: server-certs
       - emptyDir:
           medium: Memory
-        name: cert2
+        name: client-certs
       - emptyDir:
           medium: Memory
         name: tokens

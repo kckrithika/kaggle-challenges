@@ -536,6 +536,16 @@
           },
     },
 
+    envoy: $.nginx {
+        certDirs: ["server-certs", "client-certs"],
+        customerCertsPath: "/customer-certs",
+
+        customer_certs_volume_mount: {
+            name: "customer-certs",
+            mountPath: $.envoy.customerCertsPath,
+        },
+    },
+
     # Frequently used env variable: NODE_NAME
     node_name_env: {
         name: "NODE_NAME",

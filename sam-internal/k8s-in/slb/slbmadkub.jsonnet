@@ -29,79 +29,90 @@
         "cloudatlas.stmda.stm.salesforce.com",
         "*.a.stmda.stm.forceusercontent.com",
         "*.d.stmda.stm.forceusercontent.com",
-
     ],
 
+    local serverCert(name) = {
+        mount: {
+            mountPath: "/" + name,
+            name: name,
+        },
+        volume: {
+            emptyDir: {
+                medium: "Memory",
+            },
+            name: name,
+        },
+        annotation: {
+            name: name,
+            "cert-type": "server",
+            kingdom: configs.kingdom,
+            role: slbconfigs.samrole,
+            san: [
+                "*.sam-system." + configs.estate + "." + configs.kingdom + ".slb.sfdc.net",
+                "*.slb.sfdc.net",
+                "*.soma.salesforce.com",
+                "*.data.sfdc.net",
+                "*.kms.slb.sfdc.net",
+                "*.moe." + configs.estate + "." + configs.kingdom + ".slb.sfdc.net",
+                "*.internal.salesforce.com",
+            ] + (if configs.estate == "prd-sam" then (steamVipSans + [
+                "*.retail-rsui." + configs.estate + "." + configs.kingdom + ".slb.sfdc.net",
+                "*.stmfa.stm.salesforce-hub.com",
+                "*.my.stmfa.stm.salesforce-hub.com",
+                "*.my.stmfb.stm.salesforce-hub.com",
+                "*.my.mist60.stm.salesforce-hub.com",
+            ]) else []),
+        },
+    },
+
+    local clientCert(name) = {
+        mount: {
+            mountPath: "/" + name,
+            name: name,
+        },
+        volume: {
+            emptyDir: {
+                medium: "Memory",
+            },
+            name: name,
+        },
+        annotation: {
+            name: name,
+            "cert-type": "client",
+            kingdom: configs.kingdom,
+            role: slbconfigs.samrole,
+        },
+    },
+
+    local secretServiceClientCert(name) = {
+        mount: {
+            mountPath: "/" + name,
+            name: name,
+        },
+        volume: {
+            emptyDir: {
+                medium: "Memory",
+            },
+            name: name,
+        },
+        annotation: {
+            name: name,
+            "cert-type": "client",
+            kingdom: configs.kingdom,
+            role: "slb.internal",
+        },
+    },
+
     local certDirLookup = {
-        cert1: {  // server certificate
-            mount: {
-                mountPath: "/cert1",
-                name: "cert1",
-            },
-            volume: {
-                emptyDir: {
-                    medium: "Memory",
-                },
-                name: "cert1",
-            },
-            annotation: {
-                name: "cert1",
-                "cert-type": "server",
-                kingdom: configs.kingdom,
-                role: slbconfigs.samrole,
-                san: [
-                    "*.sam-system." + configs.estate + "." + configs.kingdom + ".slb.sfdc.net",
-                    "*.slb.sfdc.net",
-                    "*.soma.salesforce.com",
-                    "*.data.sfdc.net",
-                    "*.kms.slb.sfdc.net",
-                    "*.moe." + configs.estate + "." + configs.kingdom + ".slb.sfdc.net",
-                    "*.internal.salesforce.com",
-                ] + (if configs.estate == "prd-sam" then (steamVipSans + [
-                    "*.retail-rsui." + configs.estate + "." + configs.kingdom + ".slb.sfdc.net",
-                    "*.stmfa.stm.salesforce-hub.com",
-                    "*.my.stmfa.stm.salesforce-hub.com",
-                    "*.my.stmfb.stm.salesforce-hub.com",
-                    "*.my.mist60.stm.salesforce-hub.com",
-                ]) else []),
-            },
-        },
-        cert2: {  // client certificate
-            mount: {
-                mountPath: "/cert2",
-                name: "cert2",
-            },
-            volume: {
-                emptyDir: {
-                    medium: "Memory",
-                },
-                name: "cert2",
-            },
-            annotation: {
-                name: "cert2",
-                "cert-type": "client",
-                kingdom: configs.kingdom,
-                role: slbconfigs.samrole,
-            },
-        },
-        cert3: {  // slb internal certificate for SS
-            mount: {
-                mountPath: "/cert3",
-                name: "cert3",
-            },
-            volume: {
-                emptyDir: {
-                    medium: "Memory",
-                },
-                name: "cert3",
-            },
-            annotation: {
-                name: "cert3",
-                "cert-type": "client",
-                kingdom: configs.kingdom,
-                role: "slb.internal",
-            },
-        },
+        cert1: serverCert("cert1"),
+        "server-certs": serverCert("server-certs"),
+
+        cert2: clientCert("cert2"),
+        "client-certs": clientCert("client-certs"),
+
+        // slb internal certificate for SS
+        cert3: secretServiceClientCert("cert3"),
+
         canarycert: {  // certificate for canaries setting up https ports
             mount: {
                 mountPath: "/canarycert",
