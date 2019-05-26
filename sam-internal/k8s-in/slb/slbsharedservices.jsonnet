@@ -436,7 +436,6 @@
             "ECDHE-RSA-AES128-GCM-SHA256",
             "AES256-GCM-SHA384",
             "AES128-GCM-SHA256",
-            "AES256-SHA256",
             "AES256-SHA",
           ]),
         ],

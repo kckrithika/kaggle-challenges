@@ -13,10 +13,56 @@ local vipName = serviceName;
 
 local portConfig = [
     slbportconfiguration.newPortConfiguration(
+        port=80,
+        targetPort=9090,
+        lbType="http",
+        name="http",
+    ) {
+        sticky: 300,
+        healthport: 9091,
+        healthpath: "/",
+        healthprotocol: "http",
+    },
+    slbportconfiguration.newPortConfiguration(
+        port=443,
+        targetPort=portconfigs.slb.canaryServiceTlsPort,
+        lbType="http",
+        name="https",
+    ) {
+        tls: true,
+        reencrypt: true,
+        lbalgorithm: "roundrobin",
+        addheaders: [
+            {
+                name: "here-be-headers",
+                value: "arggh",
+            },
+        ],
+    },
+    slbportconfiguration.newPortConfiguration(
+        port=8443,
+        targetPort=portconfigs.slb.canaryServiceTlsPort,
+        lbType="http",
+        name="mtls",
+    ) {
+        tls: true,
+        reencrypt: true,
+        lbalgorithm: "leastconn",
+        addheaders: [
+            {
+                name: "here-be-mtls-headers",
+                value: "arggh",
+            },
+        ],
+        mtls: true,
+    },
+    slbportconfiguration.newPortConfiguration(
         port=9090,
         lbType="tcp",
         name="slb-canary-envoy-port",
-    ),
+    ) {
+        lbalgorithm: "leastconn",
+    },
     slbportconfiguration.newPortConfiguration(
         port=9091,
         lbType="http",
