@@ -50,7 +50,7 @@ system:
         \"useServiceName\" : \"AUTO\",
         \"useStatementBatching\" : false
     },
-    \"host\" : \"10.225.240.220\",
+    \"host\" : \"10.225.241.5\",
     \"id\" : \"srcdb\",
     \"instanceName\" : \"DATABASE\",
     \"password\" : \"basic:xRdN9n9+Yto2hHDW/sldaA==\",
