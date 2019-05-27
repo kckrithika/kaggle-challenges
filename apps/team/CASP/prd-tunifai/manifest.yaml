@@ -43,8 +43,6 @@ system:
       function: tunifai-func
       slbEnabled: true
       ports:
-        - port: 80
-          targetport: 5000
         - port: 443
           targetport: 5000
           lbtype: http
