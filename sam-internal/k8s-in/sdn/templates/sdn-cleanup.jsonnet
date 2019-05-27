@@ -3,6 +3,11 @@ local sdnconfigs = import "sdnconfig.jsonnet";
 local sdnimages = (import "sdnimages.jsonnet") + { templateFilename:: std.thisFile };
 local utils = import "util_functions.jsonnet";
 
+// Free up docker ip addresses in sdc by running this pod as host-network in prd-sdc.
+local useHostNetwork = (configs.estate == "prd-sdc");
+local ipAddressResourceRequestIfNonHostNetwork = (if !useHostNetwork then configs.ipAddressResourceRequest else {});
+local hostNetworkIfEnabled = (if useHostNetwork then { hostNetwork: true } else {});
+
 if !utils.is_public_cloud(configs.kingdom) && !utils.is_gia(configs.kingdom) then configs.daemonSetBase("sdn") {
     spec+: {
         template: {
@@ -30,9 +35,9 @@ if !utils.is_public_cloud(configs.kingdom) && !utils.is_gia(configs.kingdom) the
                         securityContext: {
                             privileged: true,
                         },
-                    } + configs.ipAddressResourceRequest,
+                    } + ipAddressResourceRequestIfNonHostNetwork,
                 ],
-            },
+            } + hostNetworkIfEnabled,
             metadata: {
                 labels: {
                     name: "sdn-cleanup",
