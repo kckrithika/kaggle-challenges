@@ -59,7 +59,7 @@ spec:
         - --monitorFrequency=10s
         - --client.serverInterface=lo
         - --metricsBatchTimeout=30s
-        - --slaOptOutVips=sfcd-onboarding-test.sfcd.prd-samtwo.prd.slb.sfdc.net:443,*firefly*test*,*test*firefly*,*slb-portal-service*
+        - --slaOptOutVips=sfcd-onboarding-test.sfcd.prd-samtwo.prd.slb.sfdc.net:443,*firefly*test*,*test*firefly*,zipkin-beta.distributed-tracing.*,*slb-portal-service*
         - --client.socketDir=/host/data/slb/config/slb-vip-watchdog
         - --client.dialSocket=true
         env:
