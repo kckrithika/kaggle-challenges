@@ -117,6 +117,10 @@ local vipwdConfig = {
       "sfcd-onboarding-test.sfcd.prd-samtwo.prd.slb.sfdc.net:443",
       "*firefly*test*",
       "*test*firefly*",
+      // 2019/05/26 - mgrass: This VIP has a single flappy backend (SAM app that is in crashloopbackoff).
+      // W-6079563 (https://gus.my.salesforce.com/a07B0000006JutqIAC) should help filter out such VIPs by
+      // implementing rise/fall counts in VIP watchdog.
+      "zipkin-beta.distributed-tracing.*",
     ],
   },
   "xrd-sam":
