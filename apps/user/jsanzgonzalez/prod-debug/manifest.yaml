@@ -44,7 +44,7 @@ system:
 
 
       - name: envoy-sidecar-config
-        image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/casam/cyan-config:49d21a
+        image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/jsanzgonzalez/cyan-config:jsanzgonzalez-20190527-223713
         env: 
         - name: CONFIG_DIR
           value: /home/sfdc-sherpa/sherpa-envoy-config-volume
