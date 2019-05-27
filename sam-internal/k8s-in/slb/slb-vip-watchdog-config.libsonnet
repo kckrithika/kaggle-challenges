@@ -45,6 +45,14 @@ local vipwdConfig = {
     [
       "slb-canary-proxy-http.sam-system.prd-sdc.prd.slb.sfdc.net:*",
     ],
+    slaOptOutVips:
+    [
+      // 2019/05/27 - mgrass: This VIP is configured to require client certs (mtls: true), but the backends (slb-canary) don't
+      // require a client cert. VIP watchdog never presents a client cert on TLS sessions, so it is able to reach the backends
+      // but unable to talk to the VIP, causing the VIP to be treated as SLA-eligible but failing (triggering alerts).
+      // Remove once W-6182163 (https://gus.lightning.force.com/lightning/r/ADM_Work__c/a07B0000006uYhEIAU/view) is resolved.
+      "slb-canary-envoy-svc.sam-system.prd-sdc.prd.slb.sfdc.net:8443",
+    ],
   },
   "prd-sam":
   {
