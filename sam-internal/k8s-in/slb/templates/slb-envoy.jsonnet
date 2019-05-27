@@ -125,7 +125,7 @@ local affinity = {
 if slbconfigs.isSlbEstate && slbflights.envoyProxyEnabled then
     slbbasedeployment.slbBaseDeployment(
         name=slbconfigs.envoyProxyName,
-        replicas=3,
+        replicas=(if configs.estate == "prd-sdc" then 1 else 3),
         affinity=affinity,
         beforeSharedContainers=[nginxContainer, sherpaContainer, madkub.madkubRefreshContainer(certDirs)],
     ) {
