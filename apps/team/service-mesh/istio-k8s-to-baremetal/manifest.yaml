@@ -1,0 +1,68 @@
+# This app runs with istio-proxy getting configs from Istio Pilot. Note the annotation "sidecar.istio.io/inject".
+# Ordering (istio-proxy) -> Shipping (istio-proxy).
+
+apiVersion: v1
+
+system:
+  functions:
+  - name: istio-k8s-to-baremetal
+    count: 1
+    labels:
+      app: istio-k8s-to-baremetal
+      disco_dc: prd
+      disco_env: ""
+      disco_subenv: ""
+      disco_pod: ""
+      disco_sp: ""
+      disco_role: istio-k8s-to-baremetal
+      settings_path: stm.-.prd.-.istio-k8s-to-baremetal
+      superpod: NONE
+    annotations:
+      sidecar.istio.io/inject: "true"
+      routing.mesh.sfdc.net/enabled: "true"
+    containers:
+    - name: ordering
+      # Ordering App
+      #    https://git.soma.salesforce.com/services/sfdc-bazel/tree/master/projects/services/ordering/ordering-scone
+      # Ordering Config
+      #    https://git.soma.salesforce.com/services/sfdc-bazel/blob/master/projects/services/ordering/ordering-scone/src/main/resources/config/application.properties
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/scone/ordering-service:bazel-monorepo
+      env:
+      - name: SFDC_ENVIRONMENT
+        value: istio
+      - name: GRPC_PORT
+        value: 7443
+      - name: JAVA_OPTS
+        value: "-Dscone.service.name=istio-k8s-to-baremetal -Dshipping.dest=app-na43.app.svc.mesh.sfdc.net:7443 -Dmanagement.server.port=15372"
+      - name: JAVA_HEAP_OPTS
+        value: -Xmx64m
+      - name: SCONE_SHIPPING_DEST
+        value: app-na43.app.svc.mesh.sfdc.net:7443
+      ports:
+      - containerPort: 7443
+        name: grpc-svc
+      - containerPort: 15372
+        name: scone-mgmt
+      livenessProbe:
+        initialDelaySeconds: 120
+        httpGet:
+          path: /manage/health
+          port: 15372
+
+    # Volumes used by auto-injected istio-proxy.
+    volumes:
+    - name: tls-client-cert
+      maddogCert:
+        type: client
+    - name: tls-server-cert
+      maddogCert:
+        type: server
+
+  loadbalancers:
+    - lbname: istio-k8s-to-baremetal
+      function: istio-k8s-to-baremetal
+      ports:
+        - lbtype: dsr
+          port: 7443
+          targetport: 7443
+          name: grpc-ordering

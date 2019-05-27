@@ -127,6 +127,9 @@ apps:
 #  geoipnk:
 #    - prd/prd-sam_gater
 
+  istio-k8s-to-baremetal:
+    - prd/prd-sam_gater
+
   authz-svc:
     - prd/prd-sam_gater
   demo-authz:
