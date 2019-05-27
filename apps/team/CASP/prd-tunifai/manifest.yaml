@@ -16,7 +16,7 @@ system:
           maxUnavailable: 1
       containers:
       - name: prd-tunifai
-        image: dva/casp/tunifai_strata:jenkins-CASP-tunifai-dev-9-itest
+        image: dva/casp/tunifai_strata:jenkins-CASP-tunifai-dev-10-itest
         ports:
         - name: http
           containerPort: 5000
