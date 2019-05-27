@@ -66,7 +66,7 @@ spec:
         - --client.serverInterface=lo
         - --metricsBatchTimeout=30s
         - --veryImportantVips=slb-canary-proxy-http.sam-system.prd-sdc.prd.slb.sfdc.net:*
-        - --slaOptOutVips=*slb-portal-service*
+        - --slaOptOutVips=slb-canary-envoy-svc.sam-system.prd-sdc.prd.slb.sfdc.net:8443,*slb-portal-service*
         - --client.socketDir=/host/data/slb/config/slb-vip-watchdog
         - --client.dialSocket=true
         env:
