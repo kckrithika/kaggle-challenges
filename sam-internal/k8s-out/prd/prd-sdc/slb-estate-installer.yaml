@@ -42,11 +42,6 @@ spec:
               fieldPath: spec.nodeName
         image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/slb/hyperslb:2180-0b049d83248e95dbc6366fddeb506cb935e170bf
         name: slb-estate-installer
-        resources:
-          limits:
-            sam.sfdc.net/ip-address: "1"
-          requests:
-            sam.sfdc.net/ip-address: "1"
         securityContext:
           privileged: true
         volumeMounts:
@@ -59,6 +54,7 @@ spec:
         - mountPath: /host/data/slb/logs/slb-estate-installer
           name: var-logs-volume
       dnsPolicy: Default
+      hostNetwork: true
       terminationGracePeriodSeconds: 5
       volumes:
       - hostPath:

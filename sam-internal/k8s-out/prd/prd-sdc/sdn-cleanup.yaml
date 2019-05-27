@@ -31,16 +31,12 @@ spec:
         - --alsologtostderr=true
         image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/sdn/hypersdn:2138-419bfa61fefbbe25c3c629d44045585a3b29d644
         name: sdn-cleanup
-        resources:
-          limits:
-            sam.sfdc.net/ip-address: "1"
-          requests:
-            sam.sfdc.net/ip-address: "1"
         securityContext:
           privileged: true
         volumeMounts:
         - mountPath: /var/logs/sdn/
           name: sdnlogs
+      hostNetwork: true
       volumes:
       - hostPath:
           path: /var/logs/sdn/

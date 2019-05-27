@@ -4,6 +4,11 @@ local slbimages = (import "slbimages.jsonnet") + { templateFilename:: std.thisFi
 local slbconfigs = (import "slbconfig.jsonnet") + { dirSuffix:: "slb-estate-installer" };
 local slbflights = import "slbflights.jsonnet";
 
+// Free up docker ip addresses in sdc by running this pod as host-network in prd-sdc.
+local useHostNetwork = (configs.estate == "prd-sdc");
+local ipAddressResourceRequestIfNonHostNetwork = (if !useHostNetwork then configs.ipAddressResourceRequest else {});
+local hostNetworkIfEnabled = (if useHostNetwork then { hostNetwork: true } else {});
+
 if slbconfigs.isSlbEstate then configs.daemonSetBase("slb") {
     metadata: {
         labels: {
@@ -83,10 +88,11 @@ if slbconfigs.isSlbEstate then configs.daemonSetBase("slb") {
                             configs.kube_config_env,
                             slbconfigs.node_name_env,
                         ],
-                    } + configs.ipAddressResourceRequest,
+                    } + ipAddressResourceRequestIfNonHostNetwork,
                 ],
             } + slbconfigs.getGracePeriod()
-              + slbconfigs.getDnsPolicy(),
+              + slbconfigs.getDnsPolicy()
+              + hostNetworkIfEnabled,
         },
         updateStrategy: {
             type: "RollingUpdate",
