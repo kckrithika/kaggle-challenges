@@ -25,7 +25,7 @@ spec:
         - -role=SYNTHETIC
         - -watchdogFrequency=300s
         - -alertThreshold=1h
-        - -emailFrequency=12h
+        - -emailFrequency=336h
         - -laddr=0.0.0.0:8083
         - -imageName=ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/sam/hypersam:2727-8ff8b127b0a2856c5f9392ce332653062249aaf2
         - -watchDogKind=Deployment

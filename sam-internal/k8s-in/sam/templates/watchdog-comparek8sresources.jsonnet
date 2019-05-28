@@ -17,7 +17,7 @@ if configs.estate == "prd-sam" then {
                         command: [
                                     "/sam/watchdog",
                                     "--role=COMPAREK8SRESOURCES",
-                                    "--emailFrequency=24h",
+                                    "--emailFrequency=336h",
                                     "--watchdogFrequency=30m",
                                     "--alertThreshold=1h",
                                     "--enableEmailPerCheckerInstance=true",

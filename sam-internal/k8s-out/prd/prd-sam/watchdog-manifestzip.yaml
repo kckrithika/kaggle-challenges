@@ -24,7 +24,7 @@ spec:
         - -role=MANIFESTZIP
         - -watchdogFrequency=7m
         - -alertThreshold=10s
-        - -emailFrequency=1h
+        - -emailFrequency=336h
         - -watchDogKind=Deployment
         - -funnelEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80
         - --config=/config/watchdog.json

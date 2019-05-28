@@ -23,7 +23,7 @@ if samfeatureflags.rbacwd then {
                                      "-watchDogKind=" + $.kind,
                                  ]
                                  + samwdconfig.shared_args
-                                 + ["-emailFrequency=24h"],
+                                 + ["-emailFrequency=336h"],
                         volumeMounts+: [
                             configs.sfdchosts_volume_mount,
                             configs.cert_volume_mount,

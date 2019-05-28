@@ -18,7 +18,7 @@ configs.daemonSetBase("sam") {
                                      "-watchDogKind=" + $.kind,
                                  ]
                                  + samwdconfig.shared_args
-                                 + (if configs.kingdom == "prd" then ["-emailFrequency=48h"] else ["-emailFrequency=12h"]),
+                                 + ["-emailFrequency=336h"],
                         volumeMounts+: configs.filter_empty([
                             configs.sfdchosts_volume_mount,
                             configs.cert_volume_mount,
