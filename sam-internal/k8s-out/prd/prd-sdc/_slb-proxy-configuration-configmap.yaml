@@ -21,7 +21,7 @@ data:
         {
           "healthpath": "/liveness-probe",
           "healthport": 8080,
-          "name": "slb-envoy-config-b"
+          "name": "slb-envoy-proxy"
         }
       ]
     }
@@ -41,7 +41,7 @@ data:
           ]
         },
         {
-          "proxyname": "slb-envoy-config-b",
+          "proxyname": "slb-envoy-proxy",
           "vips": [
             "slb-canary-envoy-svc.sam-system.prd-sdc.prd.slb.sfdc.net"
           ]
