@@ -59,7 +59,6 @@ spec:
                 operator: NotIn
                 values:
                 - slb-ipvs
-                - slb-nginx-config-b
         podAntiAffinity:
           requiredDuringSchedulingIgnoredDuringExecution:
           - labelSelector:
@@ -68,7 +67,6 @@ spec:
                 operator: In
                 values:
                 - slb-ipvs
-                - slb-nginx-config-b
                 - slb-envoy-config-b
             topologyKey: kubernetes.io/hostname
       containers:

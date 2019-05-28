@@ -20,7 +20,6 @@ local envoyAffinity = {
                     operator: "In",
                     values: [
                         "slb-ipvs",
-                        "slb-nginx-config-b",
                         "slb-envoy-config-b",
                     ],
                 }],
@@ -36,7 +35,7 @@ local envoyAffinity = {
                 matchExpressions: [{
                     key: "slb-service",
                     operator: "NotIn",
-                    values: ["slb-ipvs", "slb-nginx-config-b"],
+                    values: ["slb-ipvs"],
                 }],
             }],
         },
