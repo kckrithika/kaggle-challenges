@@ -165,7 +165,7 @@ system:
         mountPath: /home/retail-setup/secrets/encryption-key2
         readOnly: true
 
-    - name: sherpa-rsui-func-patch
+    - name: sherpa-rsui-func-prod
       image: sfci/servicelibs/sherpa-envoy:1.0.5
       env:
       - name: SFDC_ENVIRONMENT
@@ -196,7 +196,7 @@ system:
         initialDelaySeconds: 110
         periodSeconds: 5
 
-    - name: beacon-rsui-func-patch
+    - name: beacon-rsui-func-prod
       image: sfci/servicelibs/beacon:ce3b9722faf59dc7550a1df2905ecff794fbb2e3
       env:
       - name: SFDC_ENVIRONMENT
