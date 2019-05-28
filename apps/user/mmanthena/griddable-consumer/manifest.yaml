@@ -128,7 +128,7 @@ system:
        - name : REMOTE_CATCHUPS
          value: "chs-lb.user-mmanthena:11111"
        - name : MEM_TOTAL_BYTES
-         value: "600m"
+         value: "2000m"
        - name : ACDS_PERSIST_STATE
          value: "yes"
        - name : ACDS_REPL_CONSUMER_DB_CONFIG
