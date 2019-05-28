@@ -1,0 +1,161 @@
+UNRECOGNIZED_NON_TIMEOUT
+//
+// What happened here? I don't see anything that could explain why the sparkapplication's state changed to failed. What additional data do we need to collect?
+//
+0522 12:24:39 [1558527879] spark-impersonation-f26b9795 - ======== Beginning spark-impersonation-f26b9795 test ========
+0522 12:24:39 [1558527879] spark-impersonation-f26b9795 -  [0;32mKubernetes master [0m is running at  [0;33mhttps://kubernetes-api-flowsnake-yul.data.sfdc.net [0m
+0522 12:24:39 [1558527879] spark-impersonation-f26b9795 -
+0522 12:24:39 [1558527879] spark-impersonation-f26b9795 - To further debug and diagnose cluster problems, use 'kubectl cluster-info dump'.
+0522 12:24:41 [1558527881] spark-impersonation-f26b9795 - Cleaning up SparkApplication/Pod older than 1 hours from prior runs.
+0522 12:24:42 [1558527882] spark-impersonation-f26b9795 - Creating SparkApplication spark-impersonation-f26b9795
+0522 12:24:42 [1558527882] spark-impersonation-f26b9795 - sparkapplication "spark-impersonation-f26b9795" created
+0522 12:24:44 [1558527884] spark-impersonation-f26b9795 - Waiting for SparkApplication spark-impersonation-f26b9795 to reach a terminal state.
+0522 12:24:48 [1558527888] spark-impersonation-f26b9795 - Pod change detected: spark-impersonation-f26b9795-driver: Pending on host shared0-flowsnakeworkerprod1-3-yul.ops.sfdc.net.
+0522 12:24:51 [1558527891] spark-impersonation-f26b9795 - Pod change detected: spark-impersonation-f26b9795-driver changed to Init:0/1 (previously Pending).
+0522 12:24:59 [1558527899] spark-impersonation-f26b9795 - Pod change detected: spark-impersonation-f26b9795-driver changed to PodInitializing (previously Init:0/1).
+0522 12:25:02 [1558527902] spark-impersonation-f26b9795 - Pod change detected: spark-impersonation-f26b9795-driver changed to Running (previously PodInitializing).
+0522 12:25:46 [1558527946] spark-impersonation-f26b9795 - ...still waiting for terminal state (currently ) after 62 seconds.
+0522 12:25:46 [1558527946] spark-impersonation-f26b9795 - ---- Begin Events ----
+0522 12:25:46 [1558527946] spark-impersonation-f26b9795 - Name:         spark-impersonation-f26b9795
+0522 12:25:46 [1558527946] spark-impersonation-f26b9795 - Events:
+0522 12:25:46 [1558527946] spark-impersonation-f26b9795 -   Type    Reason                 Age               From            Message
+0522 12:25:46 [1558527946] spark-impersonation-f26b9795 -   ----    ------                 ----              ----            -------
+0522 12:25:46 [1558527946] spark-impersonation-f26b9795 -   Normal  SparkApplicationAdded  1m                spark-operator  SparkApplication spark-impersonation-f26b9795 was added, enqueuing it for submission
+0522 12:25:46 [1558527946] spark-impersonation-f26b9795 -   Normal  SparkApplicationAdded  14s (x3 over 1m)  spark-operator  SparkApplication spark-impersonation-f26b9795 was added, enqueuing it for submission
+0522 12:25:46 [1558527946] spark-impersonation-f26b9795 -   Normal  SparkApplicationAdded  6s                spark-operator  SparkApplication spark-impersonation-f26b9795 was added, enqueuing it for submission
+0522 12:25:49 [1558527949] spark-impersonation-f26b9795 - Name:           spark-impersonation-f26b9795-driver
+0522 12:25:49 [1558527949] spark-impersonation-f26b9795 - Events:
+0522 12:25:49 [1558527949] spark-impersonation-f26b9795 -   Type     Reason                 Age              From                                                      Message
+0522 12:25:49 [1558527949] spark-impersonation-f26b9795 -   ----     ------                 ----             ----                                                      -------
+0522 12:25:49 [1558527949] spark-impersonation-f26b9795 -   Normal   Scheduled              1m               default-scheduler                                         Successfully assigned spark-impersonation-f26b9795-driver to shared0-flowsnakeworkerprod1-3-yul.ops.sfdc.net
+0522 12:25:49 [1558527949] spark-impersonation-f26b9795 -   Normal   SuccessfulMountVolume  1m               kubelet, shared0-flowsnakeworkerprod1-3-yul.ops.sfdc.net  MountVolume.SetUp succeeded for volume "client-key"
+0522 12:25:49 [1558527949] spark-impersonation-f26b9795 -   Normal   SuccessfulMountVolume  1m               kubelet, shared0-flowsnakeworkerprod1-3-yul.ops.sfdc.net  MountVolume.SetUp succeeded for volume "certificate-authority"
+0522 12:25:49 [1558527949] spark-impersonation-f26b9795 -   Normal   SuccessfulMountVolume  1m               kubelet, shared0-flowsnakeworkerprod1-3-yul.ops.sfdc.net  MountVolume.SetUp succeeded for volume "client-certificate"
+0522 12:25:49 [1558527949] spark-impersonation-f26b9795 -   Normal   SuccessfulMountVolume  1m               kubelet, shared0-flowsnakeworkerprod1-3-yul.ops.sfdc.net  MountVolume.SetUp succeeded for volume "spark-local-dir-1"
+0522 12:25:49 [1558527949] spark-impersonation-f26b9795 -   Normal   SuccessfulMountVolume  1m               kubelet, shared0-flowsnakeworkerprod1-3-yul.ops.sfdc.net  MountVolume.SetUp succeeded for volume "datacerts"
+0522 12:25:49 [1558527949] spark-impersonation-f26b9795 -   Normal   SuccessfulMountVolume  1m               kubelet, shared0-flowsnakeworkerprod1-3-yul.ops.sfdc.net  MountVolume.SetUp succeeded for volume "tokens"
+0522 12:25:49 [1558527949] spark-impersonation-f26b9795 -   Normal   SuccessfulMountVolume  1m               kubelet, shared0-flowsnakeworkerprod1-3-yul.ops.sfdc.net  MountVolume.SetUp succeeded for volume "spark-driver-flowsnake-watchdog-token-brtgl"
+0522 12:25:49 [1558527949] spark-impersonation-f26b9795 -   Warning  FailedMount            1m (x2 over 1m)  kubelet, shared0-flowsnakeworkerprod1-3-yul.ops.sfdc.net  MountVolume.SetUp failed for volume "spark-conf-volume" : configmaps "spark-impersonation-f26b9795-1558527885428-driver-conf-map" not found
+0522 12:25:49 [1558527949] spark-impersonation-f26b9795 -   Normal   SuccessfulMountVolume  1m               kubelet, shared0-flowsnakeworkerprod1-3-yul.ops.sfdc.net  MountVolume.SetUp succeeded for volume "spark-conf-volume"
+0522 12:25:49 [1558527949] spark-impersonation-f26b9795 -   Normal   Pulled                 1m               kubelet, shared0-flowsnakeworkerprod1-3-yul.ops.sfdc.net  Container image "ops0-artifactrepo1-0-yul.data.sfdc.net/tnrp/sam/madkub:1.0.0-0000084-9f4a6ca6" already present on machine
+0522 12:25:49 [1558527949] spark-impersonation-f26b9795 -   Normal   Created                1m               kubelet, shared0-flowsnakeworkerprod1-3-yul.ops.sfdc.net  Created container
+0522 12:25:49 [1558527949] spark-impersonation-f26b9795 -   Normal   Started                1m               kubelet, shared0-flowsnakeworkerprod1-3-yul.ops.sfdc.net  Started container
+0522 12:25:49 [1558527949] spark-impersonation-f26b9795 -   Normal   Pulling                55s              kubelet, shared0-flowsnakeworkerprod1-3-yul.ops.sfdc.net  pulling image "ops0-artifactrepo1-0-yul.data.sfdc.net/dva/flowsnake-spark-on-k8s-sample-apps:4"
+0522 12:25:49 [1558527949] spark-impersonation-f26b9795 -   Normal   Pulled                 55s              kubelet, shared0-flowsnakeworkerprod1-3-yul.ops.sfdc.net  Successfully pulled image "ops0-artifactrepo1-0-yul.data.sfdc.net/dva/flowsnake-spark-on-k8s-sample-apps:4"
+0522 12:25:49 [1558527949] spark-impersonation-f26b9795 -   Normal   Created                55s              kubelet, shared0-flowsnakeworkerprod1-3-yul.ops.sfdc.net  Created container
+0522 12:25:49 [1558527949] spark-impersonation-f26b9795 -   Normal   Started                55s              kubelet, shared0-flowsnakeworkerprod1-3-yul.ops.sfdc.net  Started container
+0522 12:25:53 [1558527953] spark-impersonation-f26b9795 - ---- End Events ----
+0522 12:26:05 [1558527965] spark-impersonation-f26b9795 - SparkApplication spark-impersonation-f26b9795 has terminated after 81 seconds. State is FAILED.
+0522 12:26:06 [1558527966] spark-impersonation-f26b9795 - ---- Begin Events ----
+0522 12:26:06 [1558527966] spark-impersonation-f26b9795 - Name:         spark-impersonation-f26b9795
+0522 12:26:06 [1558527966] spark-impersonation-f26b9795 - Events:
+0522 12:26:06 [1558527966] spark-impersonation-f26b9795 -   Type    Reason                 Age                From            Message
+0522 12:26:06 [1558527966] spark-impersonation-f26b9795 -   ----    ------                 ----               ----            -------
+0522 12:26:06 [1558527966] spark-impersonation-f26b9795 -   Normal  SparkApplicationAdded  1m                 spark-operator  SparkApplication spark-impersonation-f26b9795 was added, enqueuing it for submission
+0522 12:26:06 [1558527966] spark-impersonation-f26b9795 -   Normal  SparkApplicationAdded  33s (x3 over 1m)   spark-operator  SparkApplication spark-impersonation-f26b9795 was added, enqueuing it for submission
+0522 12:26:06 [1558527966] spark-impersonation-f26b9795 -   Normal  SparkApplicationAdded  10s (x2 over 25s)  spark-operator  SparkApplication spark-impersonation-f26b9795 was added, enqueuing it for submission
+0522 12:26:08 [1558527968] spark-impersonation-f26b9795 - Name:           spark-impersonation-f26b9795-driver
+0522 12:26:08 [1558527968] spark-impersonation-f26b9795 - Events:
+0522 12:26:08 [1558527968] spark-impersonation-f26b9795 -   Type     Reason                 Age              From                                                      Message
+0522 12:26:08 [1558527968] spark-impersonation-f26b9795 -   ----     ------                 ----             ----                                                      -------
+0522 12:26:08 [1558527968] spark-impersonation-f26b9795 -   Normal   Scheduled              1m               default-scheduler                                         Successfully assigned spark-impersonation-f26b9795-driver to shared0-flowsnakeworkerprod1-3-yul.ops.sfdc.net
+0522 12:26:08 [1558527968] spark-impersonation-f26b9795 -   Normal   SuccessfulMountVolume  1m               kubelet, shared0-flowsnakeworkerprod1-3-yul.ops.sfdc.net  MountVolume.SetUp succeeded for volume "client-key"
+0522 12:26:08 [1558527968] spark-impersonation-f26b9795 -   Normal   SuccessfulMountVolume  1m               kubelet, shared0-flowsnakeworkerprod1-3-yul.ops.sfdc.net  MountVolume.SetUp succeeded for volume "certificate-authority"
+0522 12:26:08 [1558527968] spark-impersonation-f26b9795 -   Normal   SuccessfulMountVolume  1m               kubelet, shared0-flowsnakeworkerprod1-3-yul.ops.sfdc.net  MountVolume.SetUp succeeded for volume "client-certificate"
+0522 12:26:08 [1558527968] spark-impersonation-f26b9795 -   Normal   SuccessfulMountVolume  1m               kubelet, shared0-flowsnakeworkerprod1-3-yul.ops.sfdc.net  MountVolume.SetUp succeeded for volume "spark-local-dir-1"
+0522 12:26:08 [1558527968] spark-impersonation-f26b9795 -   Normal   SuccessfulMountVolume  1m               kubelet, shared0-flowsnakeworkerprod1-3-yul.ops.sfdc.net  MountVolume.SetUp succeeded for volume "datacerts"
+0522 12:26:08 [1558527968] spark-impersonation-f26b9795 -   Normal   SuccessfulMountVolume  1m               kubelet, shared0-flowsnakeworkerprod1-3-yul.ops.sfdc.net  MountVolume.SetUp succeeded for volume "tokens"
+0522 12:26:08 [1558527968] spark-impersonation-f26b9795 -   Normal   SuccessfulMountVolume  1m               kubelet, shared0-flowsnakeworkerprod1-3-yul.ops.sfdc.net  MountVolume.SetUp succeeded for volume "spark-driver-flowsnake-watchdog-token-brtgl"
+0522 12:26:08 [1558527968] spark-impersonation-f26b9795 -   Warning  FailedMount            1m (x2 over 1m)  kubelet, shared0-flowsnakeworkerprod1-3-yul.ops.sfdc.net  MountVolume.SetUp failed for volume "spark-conf-volume" : configmaps "spark-impersonation-f26b9795-1558527885428-driver-conf-map" not found
+0522 12:26:08 [1558527968] spark-impersonation-f26b9795 -   Normal   SuccessfulMountVolume  1m               kubelet, shared0-flowsnakeworkerprod1-3-yul.ops.sfdc.net  MountVolume.SetUp succeeded for volume "spark-conf-volume"
+0522 12:26:08 [1558527968] spark-impersonation-f26b9795 -   Normal   Pulled                 1m               kubelet, shared0-flowsnakeworkerprod1-3-yul.ops.sfdc.net  Container image "ops0-artifactrepo1-0-yul.data.sfdc.net/tnrp/sam/madkub:1.0.0-0000084-9f4a6ca6" already present on machine
+0522 12:26:08 [1558527968] spark-impersonation-f26b9795 -   Normal   Created                1m               kubelet, shared0-flowsnakeworkerprod1-3-yul.ops.sfdc.net  Created container
+0522 12:26:08 [1558527968] spark-impersonation-f26b9795 -   Normal   Started                1m               kubelet, shared0-flowsnakeworkerprod1-3-yul.ops.sfdc.net  Started container
+0522 12:26:08 [1558527968] spark-impersonation-f26b9795 -   Normal   Pulling                1m               kubelet, shared0-flowsnakeworkerprod1-3-yul.ops.sfdc.net  pulling image "ops0-artifactrepo1-0-yul.data.sfdc.net/dva/flowsnake-spark-on-k8s-sample-apps:4"
+0522 12:26:08 [1558527968] spark-impersonation-f26b9795 -   Normal   Pulled                 1m               kubelet, shared0-flowsnakeworkerprod1-3-yul.ops.sfdc.net  Successfully pulled image "ops0-artifactrepo1-0-yul.data.sfdc.net/dva/flowsnake-spark-on-k8s-sample-apps:4"
+0522 12:26:08 [1558527968] spark-impersonation-f26b9795 -   Normal   Created                1m               kubelet, shared0-flowsnakeworkerprod1-3-yul.ops.sfdc.net  Created container
+0522 12:26:08 [1558527968] spark-impersonation-f26b9795 -   Normal   Started                1m               kubelet, shared0-flowsnakeworkerprod1-3-yul.ops.sfdc.net  Started container
+0522 12:26:14 [1558527974] spark-impersonation-f26b9795 - ---- End Events ----
+0522 12:26:14 [1558527974] spark-impersonation-f26b9795 - ---- Begin pods/spark-impersonation-f26b9795-driver Log ----
+++ id -u
++ myuid=0
+++ id -g
++ mygid=0
++ set +e
+++ getent passwd 0
++ uidentry=root:x:0:0:root:/root:/bin/bash
++ set -e
++ '[' -z root:x:0:0:root:/root:/bin/bash ']'
++ SPARK_K8S_CMD=driver
++ case "$SPARK_K8S_CMD" in
++ shift 1
++ SPARK_CLASSPATH=':/opt/spark/jars/*'
++ env
++ grep SPARK_JAVA_OPT_
++ sort -t_ -k4 -n
++ sed 's/[^=]*=\(.*\)/\1/g'
++ readarray -t SPARK_EXECUTOR_JAVA_OPTS
++ '[' -n '' ']'
++ '[' -n '' ']'
++ PYSPARK_ARGS=
++ '[' -n '' ']'
++ R_ARGS=
++ '[' -n '' ']'
++ '[' '' == 2 ']'
++ '[' '' == 3 ']'
++ case "$SPARK_K8S_CMD" in
++ CMD=("$SPARK_HOME/bin/spark-submit" --conf "spark.driver.bindAddress=$SPARK_DRIVER_BIND_ADDRESS" --deploy-mode client "$@")
++ exec /sbin/tini -s -- /opt/spark/bin/spark-submit --conf spark.driver.bindAddress=10.255.73.10 --deploy-mode client --properties-file /opt/spark/conf/spark.properties --class org.apache.spark.examples.SparkPi spark-internal
+2019-05-22 12:25:21 WARN  NativeCodeLoader:62 - Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+2019-05-22 12:25:33 INFO  SparkContext:54 - Running Spark version 2.4.0-sfdc-0.2-SNAPSHOT
+2019-05-22 12:25:33 INFO  SparkContext:54 - Submitted application: Spark Pi
+2019-05-22 12:25:35 INFO  SecurityManager:54 - Changing view acls to: root
+2019-05-22 12:25:35 INFO  SecurityManager:54 - Changing modify acls to: root
+2019-05-22 12:25:35 INFO  SecurityManager:54 - Changing view acls groups to:
+2019-05-22 12:25:35 INFO  SecurityManager:54 - Changing modify acls groups to:
+2019-05-22 12:25:35 INFO  SecurityManager:54 - SecurityManager: authentication disabled; ui acls disabled; users  with view permissions: Set(root); groups with view permissions: Set(); users  with modify permissions: Set(root); groups with modify permissions: Set()
+2019-05-22 12:25:46 INFO  Utils:54 - Successfully started service 'sparkDriver' on port 7078.
+2019-05-22 12:25:46 INFO  SparkEnv:54 - Registering MapOutputTracker
+2019-05-22 12:25:46 INFO  SparkEnv:54 - Registering BlockManagerMaster
+2019-05-22 12:25:46 INFO  BlockManagerMasterEndpoint:54 - Using org.apache.spark.storage.DefaultTopologyMapper for getting topology information
+2019-05-22 12:25:46 INFO  BlockManagerMasterEndpoint:54 - BlockManagerMasterEndpoint up
+2019-05-22 12:25:47 INFO  DiskBlockManager:54 - Created local directory at /var/data/spark-bc862d65-020d-414d-8baf-063074fbf5cb/blockmgr-37df5f6c-7e37-42c0-80be-069275c30f88
+2019-05-22 12:25:47 INFO  MemoryStore:54 - MemoryStore started with capacity 93.3 MB
+2019-05-22 12:25:47 INFO  SparkEnv:54 - Registering OutputCommitCoordinator
+2019-05-22 12:25:48 INFO  log:192 - Logging initialized @48005ms
+2019-05-22 12:25:49 INFO  Server:351 - jetty-9.3.z-SNAPSHOT, build timestamp: unknown, git hash: unknown
+2019-05-22 12:25:49 INFO  Server:419 - Started @49301ms
+2019-05-22 12:25:50 INFO  AbstractConnector:278 - Started ServerConnector@4fcc529{HTTP/1.1,[http/1.1]}{0.0.0.0:4040}
+2019-05-22 12:25:50 INFO  Utils:54 - Successfully started service 'SparkUI' on port 4040.
+2019-05-22 12:25:51 INFO  ContextHandler:781 - Started o.s.j.s.ServletContextHandler@3c443976{/jobs,null,AVAILABLE,@Spark}
+2019-05-22 12:25:51 INFO  ContextHandler:781 - Started o.s.j.s.ServletContextHandler@497570fb{/jobs/json,null,AVAILABLE,@Spark}
+2019-05-22 12:25:51 INFO  ContextHandler:781 - Started o.s.j.s.ServletContextHandler@412c995d{/jobs/job,null,AVAILABLE,@Spark}
+2019-05-22 12:25:51 INFO  ContextHandler:781 - Started o.s.j.s.ServletContextHandler@4dd94a58{/jobs/job/json,null,AVAILABLE,@Spark}
+2019-05-22 12:25:51 INFO  ContextHandler:781 - Started o.s.j.s.ServletContextHandler@2f4919b0{/stages,null,AVAILABLE,@Spark}
+2019-05-22 12:25:51 INFO  ContextHandler:781 - Started o.s.j.s.ServletContextHandler@a8a8b75{/stages/json,null,AVAILABLE,@Spark}
+2019-05-22 12:25:51 INFO  ContextHandler:781 - Started o.s.j.s.ServletContextHandler@75b21c3b{/stages/stage,null,AVAILABLE,@Spark}
+2019-05-22 12:25:51 INFO  ContextHandler:781 - Started o.s.j.s.ServletContextHandler@4bd2f0dc{/stages/stage/json,null,AVAILABLE,@Spark}
+2019-05-22 12:25:51 INFO  ContextHandler:781 - Started o.s.j.s.ServletContextHandler@2e647e59{/stages/pool,null,AVAILABLE,@Spark}
+2019-05-22 12:25:51 INFO  ContextHandler:781 - Started o.s.j.s.ServletContextHandler@2c42b421{/stages/pool/json,null,AVAILABLE,@Spark}
+2019-05-22 12:25:51 INFO  ContextHandler:781 - Started o.s.j.s.ServletContextHandler@51e37590{/storage,null,AVAILABLE,@Spark}
+2019-05-22 12:25:51 INFO  ContextHandler:781 - Started o.s.j.s.ServletContextHandler@deb3b60{/storage/json,null,AVAILABLE,@Spark}
+2019-05-22 12:25:51 INFO  ContextHandler:781 - Started o.s.j.s.ServletContextHandler@701a32{/storage/rdd,null,AVAILABLE,@Spark}
+2019-05-22 12:25:51 INFO  ContextHandler:781 - Started o.s.j.s.ServletContextHandler@39aa45a1{/storage/rdd/json,null,AVAILABLE,@Spark}
+2019-05-22 12:25:51 INFO  ContextHandler:781 - Started o.s.j.s.ServletContextHandler@73aff8f1{/environment,null,AVAILABLE,@Spark}
+2019-05-22 12:25:52 INFO  ContextHandler:781 - Started o.s.j.s.ServletContextHandler@27cbfddf{/environment/json,null,AVAILABLE,@Spark}
+2019-05-22 12:25:52 INFO  ContextHandler:781 - Started o.s.j.s.ServletContextHandler@27ead29e{/executors,null,AVAILABLE,@Spark}
+2019-05-22 12:25:52 INFO  ContextHandler:781 - Started o.s.j.s.ServletContextHandler@4c060c8f{/executors/json,null,AVAILABLE,@Spark}
+2019-05-22 12:25:52 INFO  ContextHandler:781 - Started o.s.j.s.ServletContextHandler@40620d8e{/executors/threadDump,null,AVAILABLE,@Spark}
+2019-05-22 12:25:52 INFO  ContextHandler:781 - Started o.s.j.s.ServletContextHandler@383f3558{/executors/threadDump/json,null,AVAILABLE,@Spark}
+2019-05-22 12:25:52 INFO  ContextHandler:781 - Started o.s.j.s.ServletContextHandler@49b07ee3{/static,null,AVAILABLE,@Spark}
+2019-05-22 12:25:52 INFO  ContextHandler:781 - Started o.s.j.s.ServletContextHandler@5488b5c5{/,null,AVAILABLE,@Spark}
+2019-05-22 12:25:52 INFO  ContextHandler:781 - Started o.s.j.s.ServletContextHandler@4248ed58{/api,null,AVAILABLE,@Spark}
+2019-05-22 12:25:52 INFO  ContextHandler:781 - Started o.s.j.s.ServletContextHandler@51745f40{/jobs/job/kill,null,AVAILABLE,@Spark}
+2019-05-22 12:25:52 INFO  ContextHandler:781 - Started o.s.j.s.ServletContextHandler@45673f68{/stages/stage/kill,null,AVAILABLE,@Spark}
+2019-05-22 12:25:53 INFO  SparkUI:54 - Bound SparkUI to 0.0.0.0, and started at http://spark-impersonation-f26b9795-1558527885428-driver-svc.flowsnake-watchdog.svc:4040
+2019-05-22 12:25:53 INFO  SparkContext:54 - Added JAR file:///sample-apps/sample-basic-spark-operator/sample-basic-spark-operator.jar at spark://spark-impersonation-f26b9795-1558527885428-driver-svc.flowsnake-watchdog.svc:7078/jars/sample-basic-spark-operator.jar with timestamp 1558527953886
+0522 12:26:16 [1558527976] spark-impersonation-f26b9795 - ---- End pods/spark-impersonation-f26b9795-driver Log ----
+0522 12:26:16 [1558527976] spark-impersonation-f26b9795 - -------- Executor Pods ----------
+0522 12:26:17 [1558527977] spark-impersonation-f26b9795 - Cleaning up stuff for complated or failed test.
+0522 12:26:17 [1558527977] spark-impersonation-f26b9795 - sparkapplication "spark-impersonation-f26b9795" deleted
+0522 12:26:27 [1558527987] spark-impersonation-f26b9795 - ======== Completion of spark-impersonation-f26b9795 test, returning 1 ========

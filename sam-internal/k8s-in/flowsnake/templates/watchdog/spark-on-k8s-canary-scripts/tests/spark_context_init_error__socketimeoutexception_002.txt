@@ -1,0 +1,350 @@
+{"class": "SPARK_CONTEXT_INIT_ERROR", "exception": "SocketTimeoutException"}
+0521 08:49:11 [1558428551] spark-impersonation-d80e68f8 - ======== Beginning spark-impersonation-d80e68f8 test ========
+0521 08:49:11 [1558428551] spark-impersonation-d80e68f8 -  [0;32mKubernetes master [0m is running at  [0;33mhttps://kubernetes-api-flowsnake-yhu.data.sfdc.net [0m
+0521 08:49:11 [1558428551] spark-impersonation-d80e68f8 -
+0521 08:49:11 [1558428551] spark-impersonation-d80e68f8 - To further debug and diagnose cluster problems, use 'kubectl cluster-info dump'.
+0521 08:49:12 [1558428552] spark-impersonation-d80e68f8 - Cleaning up SparkApplication/Pod older than 1 hours from prior runs.
+0521 08:49:13 [1558428553] spark-impersonation-d80e68f8 - Creating SparkApplication spark-impersonation-d80e68f8
+0521 08:49:13 [1558428553] spark-impersonation-d80e68f8 - sparkapplication "spark-impersonation-d80e68f8" created
+0521 08:49:15 [1558428555] spark-impersonation-d80e68f8 - Waiting for SparkApplication spark-impersonation-d80e68f8 to reach a terminal state.
+0521 08:49:19 [1558428559] spark-impersonation-d80e68f8 - Pod change detected: spark-impersonation-d80e68f8-driver: Pending on host <none>.
+0521 08:49:22 [1558428562] spark-impersonation-d80e68f8 - Pod change detected: spark-impersonation-d80e68f8-driver changed to Init:0/1 (previously Pending).
+0521 08:49:30 [1558428570] spark-impersonation-d80e68f8 - Pod change detected: spark-impersonation-d80e68f8-driver changed to PodInitializing (previously Init:0/1).
+0521 08:49:34 [1558428574] spark-impersonation-d80e68f8 - Pod change detected: spark-impersonation-d80e68f8-driver changed to Running (previously PodInitializing).
+0521 08:50:18 [1558428618] spark-impersonation-d80e68f8 - ...still waiting for terminal state (currently RUNNING) after 63 seconds.
+0521 08:50:18 [1558428618] spark-impersonation-d80e68f8 - ---- Begin Events ----
+0521 08:50:18 [1558428618] spark-impersonation-d80e68f8 - Name:         spark-impersonation-d80e68f8
+0521 08:50:18 [1558428618] spark-impersonation-d80e68f8 - Events:
+0521 08:50:18 [1558428618] spark-impersonation-d80e68f8 -   Type    Reason                     Age   From            Message
+0521 08:50:18 [1558428618] spark-impersonation-d80e68f8 -   ----    ------                     ----  ----            -------
+0521 08:50:18 [1558428618] spark-impersonation-d80e68f8 -   Normal  SparkApplicationAdded      1m    spark-operator  SparkApplication spark-impersonation-d80e68f8 was added, enqueuing it for submission
+0521 08:50:18 [1558428618] spark-impersonation-d80e68f8 -   Normal  SparkApplicationSubmitted  59s   spark-operator  SparkApplication spark-impersonation-d80e68f8 was submitted successfully
+0521 08:50:18 [1558428618] spark-impersonation-d80e68f8 -   Normal  SparkDriverRunning         50s   spark-operator  Driver spark-impersonation-d80e68f8-driver is running
+0521 08:50:20 [1558428620] spark-impersonation-d80e68f8 - Name:           spark-impersonation-d80e68f8-driver
+0521 08:50:20 [1558428620] spark-impersonation-d80e68f8 - Events:
+0521 08:50:20 [1558428620] spark-impersonation-d80e68f8 -   Type     Reason                 Age   From                                                      Message
+0521 08:50:20 [1558428620] spark-impersonation-d80e68f8 -   ----     ------                 ----  ----                                                      -------
+0521 08:50:20 [1558428620] spark-impersonation-d80e68f8 -   Normal   SuccessfulMountVolume  1m    kubelet, shared0-flowsnakeworkerprod1-3-yhu.ops.sfdc.net  MountVolume.SetUp succeeded for volume "spark-driver-flowsnake-watchdog-token-nzpnz"
+0521 08:50:20 [1558428620] spark-impersonation-d80e68f8 -   Normal   SuccessfulMountVolume  1m    kubelet, shared0-flowsnakeworkerprod1-3-yhu.ops.sfdc.net  MountVolume.SetUp succeeded for volume "certificate-authority"
+0521 08:50:20 [1558428620] spark-impersonation-d80e68f8 -   Normal   SuccessfulMountVolume  1m    kubelet, shared0-flowsnakeworkerprod1-3-yhu.ops.sfdc.net  MountVolume.SetUp succeeded for volume "client-certificate"
+0521 08:50:20 [1558428620] spark-impersonation-d80e68f8 -   Normal   SuccessfulMountVolume  1m    kubelet, shared0-flowsnakeworkerprod1-3-yhu.ops.sfdc.net  MountVolume.SetUp succeeded for volume "client-key"
+0521 08:50:20 [1558428620] spark-impersonation-d80e68f8 -   Normal   SuccessfulMountVolume  1m    kubelet, shared0-flowsnakeworkerprod1-3-yhu.ops.sfdc.net  MountVolume.SetUp succeeded for volume "spark-local-dir-1"
+0521 08:50:20 [1558428620] spark-impersonation-d80e68f8 -   Normal   SuccessfulMountVolume  1m    kubelet, shared0-flowsnakeworkerprod1-3-yhu.ops.sfdc.net  MountVolume.SetUp succeeded for volume "datacerts"
+0521 08:50:20 [1558428620] spark-impersonation-d80e68f8 -   Normal   SuccessfulMountVolume  1m    kubelet, shared0-flowsnakeworkerprod1-3-yhu.ops.sfdc.net  MountVolume.SetUp succeeded for volume "tokens"
+0521 08:50:20 [1558428620] spark-impersonation-d80e68f8 -   Warning  FailedMount            1m    kubelet, shared0-flowsnakeworkerprod1-3-yhu.ops.sfdc.net  MountVolume.SetUp failed for volume "spark-conf-volume" : configmaps "spark-impersonation-d80e68f8-1558428556529-driver-conf-map" not found
+0521 08:50:20 [1558428620] spark-impersonation-d80e68f8 -   Normal   Scheduled              1m    default-scheduler                                         Successfully assigned spark-impersonation-d80e68f8-driver to shared0-flowsnakeworkerprod1-3-yhu.ops.sfdc.net
+0521 08:50:20 [1558428620] spark-impersonation-d80e68f8 -   Normal   SuccessfulMountVolume  1m    kubelet, shared0-flowsnakeworkerprod1-3-yhu.ops.sfdc.net  MountVolume.SetUp succeeded for volume "spark-conf-volume"
+0521 08:50:20 [1558428620] spark-impersonation-d80e68f8 -   Normal   Pulled                 1m    kubelet, shared0-flowsnakeworkerprod1-3-yhu.ops.sfdc.net  Container image "ops0-artifactrepo1-0-yhu.data.sfdc.net/tnrp/sam/madkub:1.0.0-0000084-9f4a6ca6" already present on machine
+0521 08:50:20 [1558428620] spark-impersonation-d80e68f8 -   Normal   Created                1m    kubelet, shared0-flowsnakeworkerprod1-3-yhu.ops.sfdc.net  Created container
+0521 08:50:20 [1558428620] spark-impersonation-d80e68f8 -   Normal   Started                1m    kubelet, shared0-flowsnakeworkerprod1-3-yhu.ops.sfdc.net  Started container
+0521 08:50:20 [1558428620] spark-impersonation-d80e68f8 -   Normal   Pulling                56s   kubelet, shared0-flowsnakeworkerprod1-3-yhu.ops.sfdc.net  pulling image "ops0-artifactrepo1-0-yhu.data.sfdc.net/dva/flowsnake-spark-on-k8s-sample-apps:4"
+0521 08:50:20 [1558428620] spark-impersonation-d80e68f8 -   Normal   Pulled                 54s   kubelet, shared0-flowsnakeworkerprod1-3-yhu.ops.sfdc.net  Successfully pulled image "ops0-artifactrepo1-0-yhu.data.sfdc.net/dva/flowsnake-spark-on-k8s-sample-apps:4"
+0521 08:50:20 [1558428620] spark-impersonation-d80e68f8 -   Normal   Created                54s   kubelet, shared0-flowsnakeworkerprod1-3-yhu.ops.sfdc.net  Created container
+0521 08:50:20 [1558428620] spark-impersonation-d80e68f8 -   Normal   Started                53s   kubelet, shared0-flowsnakeworkerprod1-3-yhu.ops.sfdc.net  Started container
+0521 08:50:23 [1558428623] spark-impersonation-d80e68f8 - ---- End Events ----
+0521 08:51:16 [1558428676] spark-impersonation-d80e68f8 - Pod change detected: spark-impersonation-d80e68f8-1558428556529-exec-1: Terminating on host shared0-flowsnakeworkerprod1-1-yhu.ops.sfdc.net.
+0521 08:51:19 [1558428679] spark-impersonation-d80e68f8 - Pod change detected: spark-impersonation-d80e68f8-driver changed to Error (previously Running).
+0521 08:51:21 [1558428681] spark-impersonation-d80e68f8 - ...still waiting for terminal state (currently FAILING) after 126 seconds.
+0521 08:51:21 [1558428681] spark-impersonation-d80e68f8 - ---- Begin Events ----
+0521 08:51:21 [1558428681] spark-impersonation-d80e68f8 - Name:         spark-impersonation-d80e68f8
+0521 08:51:21 [1558428681] spark-impersonation-d80e68f8 - Events:
+0521 08:51:21 [1558428681] spark-impersonation-d80e68f8 -   Type     Reason                     Age   From            Message
+0521 08:51:21 [1558428681] spark-impersonation-d80e68f8 -   ----     ------                     ----  ----            -------
+0521 08:51:21 [1558428681] spark-impersonation-d80e68f8 -   Normal   SparkApplicationAdded      2m    spark-operator  SparkApplication spark-impersonation-d80e68f8 was added, enqueuing it for submission
+0521 08:51:21 [1558428681] spark-impersonation-d80e68f8 -   Normal   SparkApplicationSubmitted  2m    spark-operator  SparkApplication spark-impersonation-d80e68f8 was submitted successfully
+0521 08:51:21 [1558428681] spark-impersonation-d80e68f8 -   Normal   SparkDriverRunning         1m    spark-operator  Driver spark-impersonation-d80e68f8-driver is running
+0521 08:51:21 [1558428681] spark-impersonation-d80e68f8 -   Normal   SparkExecutorPending       7s    spark-operator  Executor spark-impersonation-d80e68f8-1558428556529-exec-1 is pending
+0521 08:51:21 [1558428681] spark-impersonation-d80e68f8 -   Warning  SparkDriverFailed          4s    spark-operator  Driver spark-impersonation-d80e68f8-driver failed
+0521 08:51:21 [1558428681] spark-impersonation-d80e68f8 -   Warning  SparkApplicationFailed     3s    spark-operator  SparkApplication spark-impersonation-d80e68f8 failed:
+0521 08:51:23 [1558428683] spark-impersonation-d80e68f8 - Name:           spark-impersonation-d80e68f8-driver
+0521 08:51:23 [1558428683] spark-impersonation-d80e68f8 - Events:
+0521 08:51:23 [1558428683] spark-impersonation-d80e68f8 -   Type     Reason                 Age   From                                                      Message
+0521 08:51:23 [1558428683] spark-impersonation-d80e68f8 -   ----     ------                 ----  ----                                                      -------
+0521 08:51:23 [1558428683] spark-impersonation-d80e68f8 -   Normal   SuccessfulMountVolume  2m    kubelet, shared0-flowsnakeworkerprod1-3-yhu.ops.sfdc.net  MountVolume.SetUp succeeded for volume "spark-driver-flowsnake-watchdog-token-nzpnz"
+0521 08:51:23 [1558428683] spark-impersonation-d80e68f8 -   Normal   SuccessfulMountVolume  2m    kubelet, shared0-flowsnakeworkerprod1-3-yhu.ops.sfdc.net  MountVolume.SetUp succeeded for volume "certificate-authority"
+0521 08:51:23 [1558428683] spark-impersonation-d80e68f8 -   Normal   SuccessfulMountVolume  2m    kubelet, shared0-flowsnakeworkerprod1-3-yhu.ops.sfdc.net  MountVolume.SetUp succeeded for volume "client-certificate"
+0521 08:51:23 [1558428683] spark-impersonation-d80e68f8 -   Normal   SuccessfulMountVolume  2m    kubelet, shared0-flowsnakeworkerprod1-3-yhu.ops.sfdc.net  MountVolume.SetUp succeeded for volume "client-key"
+0521 08:51:23 [1558428683] spark-impersonation-d80e68f8 -   Normal   SuccessfulMountVolume  2m    kubelet, shared0-flowsnakeworkerprod1-3-yhu.ops.sfdc.net  MountVolume.SetUp succeeded for volume "spark-local-dir-1"
+0521 08:51:23 [1558428683] spark-impersonation-d80e68f8 -   Normal   SuccessfulMountVolume  2m    kubelet, shared0-flowsnakeworkerprod1-3-yhu.ops.sfdc.net  MountVolume.SetUp succeeded for volume "datacerts"
+0521 08:51:23 [1558428683] spark-impersonation-d80e68f8 -   Normal   SuccessfulMountVolume  2m    kubelet, shared0-flowsnakeworkerprod1-3-yhu.ops.sfdc.net  MountVolume.SetUp succeeded for volume "tokens"
+0521 08:51:23 [1558428683] spark-impersonation-d80e68f8 -   Warning  FailedMount            2m    kubelet, shared0-flowsnakeworkerprod1-3-yhu.ops.sfdc.net  MountVolume.SetUp failed for volume "spark-conf-volume" : configmaps "spark-impersonation-d80e68f8-1558428556529-driver-conf-map" not found
+0521 08:51:23 [1558428683] spark-impersonation-d80e68f8 -   Normal   Scheduled              2m    default-scheduler                                         Successfully assigned spark-impersonation-d80e68f8-driver to shared0-flowsnakeworkerprod1-3-yhu.ops.sfdc.net
+0521 08:51:23 [1558428683] spark-impersonation-d80e68f8 -   Normal   SuccessfulMountVolume  2m    kubelet, shared0-flowsnakeworkerprod1-3-yhu.ops.sfdc.net  MountVolume.SetUp succeeded for volume "spark-conf-volume"
+0521 08:51:23 [1558428683] spark-impersonation-d80e68f8 -   Normal   Pulled                 2m    kubelet, shared0-flowsnakeworkerprod1-3-yhu.ops.sfdc.net  Container image "ops0-artifactrepo1-0-yhu.data.sfdc.net/tnrp/sam/madkub:1.0.0-0000084-9f4a6ca6" already present on machine
+0521 08:51:23 [1558428683] spark-impersonation-d80e68f8 -   Normal   Created                2m    kubelet, shared0-flowsnakeworkerprod1-3-yhu.ops.sfdc.net  Created container
+0521 08:51:23 [1558428683] spark-impersonation-d80e68f8 -   Normal   Started                2m    kubelet, shared0-flowsnakeworkerprod1-3-yhu.ops.sfdc.net  Started container
+0521 08:51:23 [1558428683] spark-impersonation-d80e68f8 -   Normal   Pulling                1m    kubelet, shared0-flowsnakeworkerprod1-3-yhu.ops.sfdc.net  pulling image "ops0-artifactrepo1-0-yhu.data.sfdc.net/dva/flowsnake-spark-on-k8s-sample-apps:4"
+0521 08:51:23 [1558428683] spark-impersonation-d80e68f8 -   Normal   Pulled                 1m    kubelet, shared0-flowsnakeworkerprod1-3-yhu.ops.sfdc.net  Successfully pulled image "ops0-artifactrepo1-0-yhu.data.sfdc.net/dva/flowsnake-spark-on-k8s-sample-apps:4"
+0521 08:51:23 [1558428683] spark-impersonation-d80e68f8 -   Normal   Created                1m    kubelet, shared0-flowsnakeworkerprod1-3-yhu.ops.sfdc.net  Created container
+0521 08:51:23 [1558428683] spark-impersonation-d80e68f8 -   Normal   Started                1m    kubelet, shared0-flowsnakeworkerprod1-3-yhu.ops.sfdc.net  Started container
+0521 08:51:26 [1558428686] spark-impersonation-d80e68f8 - ---- End Events ----
+0521 08:51:28 [1558428688] spark-impersonation-d80e68f8 - Pod change detected: spark-impersonation-d80e68f8-1558428556529-exec-1 removed.
+0521 08:51:29 [1558428689] spark-impersonation-d80e68f8 - SparkApplication spark-impersonation-d80e68f8 has terminated after 134 seconds. State is FAILED.
+0521 08:51:30 [1558428690] spark-impersonation-d80e68f8 - ---- Begin Events ----
+0521 08:51:30 [1558428690] spark-impersonation-d80e68f8 - Name:         spark-impersonation-d80e68f8
+0521 08:51:30 [1558428690] spark-impersonation-d80e68f8 - Events:
+0521 08:51:30 [1558428690] spark-impersonation-d80e68f8 -   Type     Reason                     Age   From            Message
+0521 08:51:30 [1558428690] spark-impersonation-d80e68f8 -   ----     ------                     ----  ----            -------
+0521 08:51:30 [1558428690] spark-impersonation-d80e68f8 -   Normal   SparkApplicationAdded      2m    spark-operator  SparkApplication spark-impersonation-d80e68f8 was added, enqueuing it for submission
+0521 08:51:30 [1558428690] spark-impersonation-d80e68f8 -   Normal   SparkApplicationSubmitted  2m    spark-operator  SparkApplication spark-impersonation-d80e68f8 was submitted successfully
+0521 08:51:30 [1558428690] spark-impersonation-d80e68f8 -   Normal   SparkDriverRunning         2m    spark-operator  Driver spark-impersonation-d80e68f8-driver is running
+0521 08:51:30 [1558428690] spark-impersonation-d80e68f8 -   Normal   SparkExecutorPending       18s   spark-operator  Executor spark-impersonation-d80e68f8-1558428556529-exec-1 is pending
+0521 08:51:30 [1558428690] spark-impersonation-d80e68f8 -   Warning  SparkDriverFailed          15s   spark-operator  Driver spark-impersonation-d80e68f8-driver failed
+0521 08:51:30 [1558428690] spark-impersonation-d80e68f8 -   Warning  SparkApplicationFailed     14s   spark-operator  SparkApplication spark-impersonation-d80e68f8 failed:
+0521 08:51:34 [1558428694] spark-impersonation-d80e68f8 - Name:           spark-impersonation-d80e68f8-driver
+0521 08:51:34 [1558428694] spark-impersonation-d80e68f8 - Events:
+0521 08:51:34 [1558428694] spark-impersonation-d80e68f8 -   Type     Reason                 Age   From                                                      Message
+0521 08:51:34 [1558428694] spark-impersonation-d80e68f8 -   ----     ------                 ----  ----                                                      -------
+0521 08:51:34 [1558428694] spark-impersonation-d80e68f8 -   Normal   SuccessfulMountVolume  2m    kubelet, shared0-flowsnakeworkerprod1-3-yhu.ops.sfdc.net  MountVolume.SetUp succeeded for volume "spark-driver-flowsnake-watchdog-token-nzpnz"
+0521 08:51:34 [1558428694] spark-impersonation-d80e68f8 -   Normal   SuccessfulMountVolume  2m    kubelet, shared0-flowsnakeworkerprod1-3-yhu.ops.sfdc.net  MountVolume.SetUp succeeded for volume "certificate-authority"
+0521 08:51:34 [1558428694] spark-impersonation-d80e68f8 -   Normal   SuccessfulMountVolume  2m    kubelet, shared0-flowsnakeworkerprod1-3-yhu.ops.sfdc.net  MountVolume.SetUp succeeded for volume "client-certificate"
+0521 08:51:34 [1558428694] spark-impersonation-d80e68f8 -   Normal   SuccessfulMountVolume  2m    kubelet, shared0-flowsnakeworkerprod1-3-yhu.ops.sfdc.net  MountVolume.SetUp succeeded for volume "client-key"
+0521 08:51:34 [1558428694] spark-impersonation-d80e68f8 -   Normal   SuccessfulMountVolume  2m    kubelet, shared0-flowsnakeworkerprod1-3-yhu.ops.sfdc.net  MountVolume.SetUp succeeded for volume "spark-local-dir-1"
+0521 08:51:34 [1558428694] spark-impersonation-d80e68f8 -   Normal   SuccessfulMountVolume  2m    kubelet, shared0-flowsnakeworkerprod1-3-yhu.ops.sfdc.net  MountVolume.SetUp succeeded for volume "datacerts"
+0521 08:51:34 [1558428694] spark-impersonation-d80e68f8 -   Normal   SuccessfulMountVolume  2m    kubelet, shared0-flowsnakeworkerprod1-3-yhu.ops.sfdc.net  MountVolume.SetUp succeeded for volume "tokens"
+0521 08:51:34 [1558428694] spark-impersonation-d80e68f8 -   Warning  FailedMount            2m    kubelet, shared0-flowsnakeworkerprod1-3-yhu.ops.sfdc.net  MountVolume.SetUp failed for volume "spark-conf-volume" : configmaps "spark-impersonation-d80e68f8-1558428556529-driver-conf-map" not found
+0521 08:51:34 [1558428694] spark-impersonation-d80e68f8 -   Normal   Scheduled              2m    default-scheduler                                         Successfully assigned spark-impersonation-d80e68f8-driver to shared0-flowsnakeworkerprod1-3-yhu.ops.sfdc.net
+0521 08:51:34 [1558428694] spark-impersonation-d80e68f8 -   Normal   SuccessfulMountVolume  2m    kubelet, shared0-flowsnakeworkerprod1-3-yhu.ops.sfdc.net  MountVolume.SetUp succeeded for volume "spark-conf-volume"
+0521 08:51:34 [1558428694] spark-impersonation-d80e68f8 -   Normal   Pulled                 2m    kubelet, shared0-flowsnakeworkerprod1-3-yhu.ops.sfdc.net  Container image "ops0-artifactrepo1-0-yhu.data.sfdc.net/tnrp/sam/madkub:1.0.0-0000084-9f4a6ca6" already present on machine
+0521 08:51:34 [1558428694] spark-impersonation-d80e68f8 -   Normal   Created                2m    kubelet, shared0-flowsnakeworkerprod1-3-yhu.ops.sfdc.net  Created container
+0521 08:51:34 [1558428694] spark-impersonation-d80e68f8 -   Normal   Started                2m    kubelet, shared0-flowsnakeworkerprod1-3-yhu.ops.sfdc.net  Started container
+0521 08:51:34 [1558428694] spark-impersonation-d80e68f8 -   Normal   Pulling                2m    kubelet, shared0-flowsnakeworkerprod1-3-yhu.ops.sfdc.net  pulling image "ops0-artifactrepo1-0-yhu.data.sfdc.net/dva/flowsnake-spark-on-k8s-sample-apps:4"
+0521 08:51:34 [1558428694] spark-impersonation-d80e68f8 -   Normal   Pulled                 2m    kubelet, shared0-flowsnakeworkerprod1-3-yhu.ops.sfdc.net  Successfully pulled image "ops0-artifactrepo1-0-yhu.data.sfdc.net/dva/flowsnake-spark-on-k8s-sample-apps:4"
+0521 08:51:34 [1558428694] spark-impersonation-d80e68f8 -   Normal   Created                2m    kubelet, shared0-flowsnakeworkerprod1-3-yhu.ops.sfdc.net  Created container
+0521 08:51:34 [1558428694] spark-impersonation-d80e68f8 -   Normal   Started                2m    kubelet, shared0-flowsnakeworkerprod1-3-yhu.ops.sfdc.net  Started container
+0521 08:51:38 [1558428698] spark-impersonation-d80e68f8 - ---- End Events ----
+0521 08:51:39 [1558428699] spark-impersonation-d80e68f8 - ---- Begin pods/spark-impersonation-d80e68f8-driver Log ----
+++ id -u
++ myuid=0
+++ id -g
++ mygid=0
++ set +e
+++ getent passwd 0
++ uidentry=root:x:0:0:root:/root:/bin/bash
++ set -e
++ '[' -z root:x:0:0:root:/root:/bin/bash ']'
++ SPARK_K8S_CMD=driver
++ case "$SPARK_K8S_CMD" in
++ shift 1
++ SPARK_CLASSPATH=':/opt/spark/jars/*'
++ env
++ grep SPARK_JAVA_OPT_
++ sort -t_ -k4 -n
++ sed 's/[^=]*=\(.*\)/\1/g'
++ readarray -t SPARK_EXECUTOR_JAVA_OPTS
++ '[' -n '' ']'
++ '[' -n '' ']'
++ PYSPARK_ARGS=
++ '[' -n '' ']'
++ R_ARGS=
++ '[' -n '' ']'
++ '[' '' == 2 ']'
++ '[' '' == 3 ']'
++ case "$SPARK_K8S_CMD" in
++ CMD=("$SPARK_HOME/bin/spark-submit" --conf "spark.driver.bindAddress=$SPARK_DRIVER_BIND_ADDRESS" --deploy-mode client "$@")
++ exec /sbin/tini -s -- /opt/spark/bin/spark-submit --conf spark.driver.bindAddress=10.255.69.13 --deploy-mode client --properties-file /opt/spark/conf/spark.properties --class org.apache.spark.examples.SparkPi spark-internal
+2019-05-21 08:49:52 WARN  NativeCodeLoader:62 - Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+2019-05-21 08:50:03 INFO  SparkContext:54 - Running Spark version 2.4.0-sfdc-0.2-SNAPSHOT
+2019-05-21 08:50:04 INFO  SparkContext:54 - Submitted application: Spark Pi
+2019-05-21 08:50:05 INFO  SecurityManager:54 - Changing view acls to: root
+2019-05-21 08:50:05 INFO  SecurityManager:54 - Changing modify acls to: root
+2019-05-21 08:50:05 INFO  SecurityManager:54 - Changing view acls groups to:
+2019-05-21 08:50:05 INFO  SecurityManager:54 - Changing modify acls groups to:
+2019-05-21 08:50:05 INFO  SecurityManager:54 - SecurityManager: authentication disabled; ui acls disabled; users  with view permissions: Set(root); groups with view permissions: Set(); users  with modify permissions: Set(root); groups with modify permissions: Set()
+2019-05-21 08:50:14 INFO  Utils:54 - Successfully started service 'sparkDriver' on port 7078.
+2019-05-21 08:50:15 INFO  SparkEnv:54 - Registering MapOutputTracker
+2019-05-21 08:50:15 INFO  SparkEnv:54 - Registering BlockManagerMaster
+2019-05-21 08:50:15 INFO  BlockManagerMasterEndpoint:54 - Using org.apache.spark.storage.DefaultTopologyMapper for getting topology information
+2019-05-21 08:50:15 INFO  BlockManagerMasterEndpoint:54 - BlockManagerMasterEndpoint up
+2019-05-21 08:50:15 INFO  DiskBlockManager:54 - Created local directory at /var/data/spark-ef0c3e8e-fec6-4314-9b41-5eba5c70c473/blockmgr-09b82088-57aa-4e88-8345-1952f66f3b7a
+2019-05-21 08:50:15 INFO  MemoryStore:54 - MemoryStore started with capacity 93.3 MB
+2019-05-21 08:50:15 INFO  SparkEnv:54 - Registering OutputCommitCoordinator
+2019-05-21 08:50:16 INFO  log:192 - Logging initialized @44602ms
+2019-05-21 08:50:18 INFO  Server:351 - jetty-9.3.z-SNAPSHOT, build timestamp: unknown, git hash: unknown
+2019-05-21 08:50:18 INFO  Server:419 - Started @45806ms
+2019-05-21 08:50:18 INFO  AbstractConnector:278 - Started ServerConnector@4fcc529{HTTP/1.1,[http/1.1]}{0.0.0.0:4040}
+2019-05-21 08:50:18 INFO  Utils:54 - Successfully started service 'SparkUI' on port 4040.
+2019-05-21 08:50:19 INFO  ContextHandler:781 - Started o.s.j.s.ServletContextHandler@3c443976{/jobs,null,AVAILABLE,@Spark}
+2019-05-21 08:50:19 INFO  ContextHandler:781 - Started o.s.j.s.ServletContextHandler@497570fb{/jobs/json,null,AVAILABLE,@Spark}
+2019-05-21 08:50:19 INFO  ContextHandler:781 - Started o.s.j.s.ServletContextHandler@412c995d{/jobs/job,null,AVAILABLE,@Spark}
+2019-05-21 08:50:19 INFO  ContextHandler:781 - Started o.s.j.s.ServletContextHandler@4dd94a58{/jobs/job/json,null,AVAILABLE,@Spark}
+2019-05-21 08:50:19 INFO  ContextHandler:781 - Started o.s.j.s.ServletContextHandler@2f4919b0{/stages,null,AVAILABLE,@Spark}
+2019-05-21 08:50:19 INFO  ContextHandler:781 - Started o.s.j.s.ServletContextHandler@a8a8b75{/stages/json,null,AVAILABLE,@Spark}
+2019-05-21 08:50:19 INFO  ContextHandler:781 - Started o.s.j.s.ServletContextHandler@75b21c3b{/stages/stage,null,AVAILABLE,@Spark}
+2019-05-21 08:50:19 INFO  ContextHandler:781 - Started o.s.j.s.ServletContextHandler@4bd2f0dc{/stages/stage/json,null,AVAILABLE,@Spark}
+2019-05-21 08:50:19 INFO  ContextHandler:781 - Started o.s.j.s.ServletContextHandler@2e647e59{/stages/pool,null,AVAILABLE,@Spark}
+2019-05-21 08:50:19 INFO  ContextHandler:781 - Started o.s.j.s.ServletContextHandler@2c42b421{/stages/pool/json,null,AVAILABLE,@Spark}
+2019-05-21 08:50:19 INFO  ContextHandler:781 - Started o.s.j.s.ServletContextHandler@51e37590{/storage,null,AVAILABLE,@Spark}
+2019-05-21 08:50:19 INFO  ContextHandler:781 - Started o.s.j.s.ServletContextHandler@deb3b60{/storage/json,null,AVAILABLE,@Spark}
+2019-05-21 08:50:19 INFO  ContextHandler:781 - Started o.s.j.s.ServletContextHandler@701a32{/storage/rdd,null,AVAILABLE,@Spark}
+2019-05-21 08:50:19 INFO  ContextHandler:781 - Started o.s.j.s.ServletContextHandler@39aa45a1{/storage/rdd/json,null,AVAILABLE,@Spark}
+2019-05-21 08:50:19 INFO  ContextHandler:781 - Started o.s.j.s.ServletContextHandler@73aff8f1{/environment,null,AVAILABLE,@Spark}
+2019-05-21 08:50:19 INFO  ContextHandler:781 - Started o.s.j.s.ServletContextHandler@27cbfddf{/environment/json,null,AVAILABLE,@Spark}
+2019-05-21 08:50:19 INFO  ContextHandler:781 - Started o.s.j.s.ServletContextHandler@27ead29e{/executors,null,AVAILABLE,@Spark}
+2019-05-21 08:50:19 INFO  ContextHandler:781 - Started o.s.j.s.ServletContextHandler@4c060c8f{/executors/json,null,AVAILABLE,@Spark}
+2019-05-21 08:50:19 INFO  ContextHandler:781 - Started o.s.j.s.ServletContextHandler@40620d8e{/executors/threadDump,null,AVAILABLE,@Spark}
+2019-05-21 08:50:19 INFO  ContextHandler:781 - Started o.s.j.s.ServletContextHandler@383f3558{/executors/threadDump/json,null,AVAILABLE,@Spark}
+2019-05-21 08:50:20 INFO  ContextHandler:781 - Started o.s.j.s.ServletContextHandler@49b07ee3{/static,null,AVAILABLE,@Spark}
+2019-05-21 08:50:20 INFO  ContextHandler:781 - Started o.s.j.s.ServletContextHandler@5488b5c5{/,null,AVAILABLE,@Spark}
+2019-05-21 08:50:20 INFO  ContextHandler:781 - Started o.s.j.s.ServletContextHandler@4248ed58{/api,null,AVAILABLE,@Spark}
+2019-05-21 08:50:20 INFO  ContextHandler:781 - Started o.s.j.s.ServletContextHandler@51745f40{/jobs/job/kill,null,AVAILABLE,@Spark}
+2019-05-21 08:50:20 INFO  ContextHandler:781 - Started o.s.j.s.ServletContextHandler@45673f68{/stages/stage/kill,null,AVAILABLE,@Spark}
+2019-05-21 08:50:20 INFO  SparkUI:54 - Bound SparkUI to 0.0.0.0, and started at http://spark-impersonation-d80e68f8-1558428556529-driver-svc.flowsnake-watchdog.svc:4040
+2019-05-21 08:50:21 INFO  SparkContext:54 - Added JAR file:///sample-apps/sample-basic-spark-operator/sample-basic-spark-operator.jar at spark://spark-impersonation-d80e68f8-1558428556529-driver-svc.flowsnake-watchdog.svc:7078/jars/sample-basic-spark-operator.jar with timestamp 1558428621399
+2019-05-21 08:51:07 INFO  ExecutorPodsAllocator:54 - Going to request 1 executors from Kubernetes.
+2019-05-21 08:51:13 WARN  WatchConnectionManager:192 - Exec Failure
+java.net.SocketTimeoutException: timeout
+	at okio.Okio$4.newTimeoutException(Okio.java:230)
+	at okio.AsyncTimeout.exit(AsyncTimeout.java:285)
+	at okio.AsyncTimeout$2.read(AsyncTimeout.java:241)
+	at okio.RealBufferedSource.indexOf(RealBufferedSource.java:345)
+	at okio.RealBufferedSource.readUtf8LineStrict(RealBufferedSource.java:217)
+	at okio.RealBufferedSource.readUtf8LineStrict(RealBufferedSource.java:211)
+	at okhttp3.internal.http1.Http1Codec.readResponseHeaders(Http1Codec.java:189)
+	at okhttp3.internal.http.CallServerInterceptor.intercept(CallServerInterceptor.java:75)
+	at okhttp3.internal.http.RealInterceptorChain.proceed(RealInterceptorChain.java:92)
+	at okhttp3.internal.connection.ConnectInterceptor.intercept(ConnectInterceptor.java:45)
+	at okhttp3.internal.http.RealInterceptorChain.proceed(RealInterceptorChain.java:92)
+	at okhttp3.internal.http.RealInterceptorChain.proceed(RealInterceptorChain.java:67)
+	at okhttp3.internal.cache.CacheInterceptor.intercept(CacheInterceptor.java:93)
+	at okhttp3.internal.http.RealInterceptorChain.proceed(RealInterceptorChain.java:92)
+	at okhttp3.internal.http.RealInterceptorChain.proceed(RealInterceptorChain.java:67)
+	at okhttp3.internal.http.BridgeInterceptor.intercept(BridgeInterceptor.java:93)
+	at okhttp3.internal.http.RealInterceptorChain.proceed(RealInterceptorChain.java:92)
+	at okhttp3.internal.http.RetryAndFollowUpInterceptor.intercept(RetryAndFollowUpInterceptor.java:120)
+	at okhttp3.internal.http.RealInterceptorChain.proceed(RealInterceptorChain.java:92)
+	at okhttp3.internal.http.RealInterceptorChain.proceed(RealInterceptorChain.java:67)
+	at io.fabric8.kubernetes.client.utils.HttpClientUtils$2.intercept(HttpClientUtils.java:93)
+	at okhttp3.internal.http.RealInterceptorChain.proceed(RealInterceptorChain.java:92)
+	at okhttp3.internal.http.RealInterceptorChain.proceed(RealInterceptorChain.java:67)
+	at okhttp3.RealCall.getResponseWithInterceptorChain(RealCall.java:185)
+	at okhttp3.RealCall$AsyncCall.execute(RealCall.java:135)
+	at okhttp3.internal.NamedRunnable.run(NamedRunnable.java:32)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at java.lang.Thread.run(Thread.java:748)
+Caused by: java.net.SocketException: Socket closed
+	at java.net.SocketInputStream.read(SocketInputStream.java:204)
+	at java.net.SocketInputStream.read(SocketInputStream.java:141)
+	at sun.security.ssl.InputRecord.readFully(InputRecord.java:465)
+	at sun.security.ssl.InputRecord.read(InputRecord.java:503)
+	at sun.security.ssl.SSLSocketImpl.readRecord(SSLSocketImpl.java:983)
+	at sun.security.ssl.SSLSocketImpl.readDataRecord(SSLSocketImpl.java:940)
+	at sun.security.ssl.AppInputStream.read(AppInputStream.java:105)
+	at okio.Okio$2.read(Okio.java:139)
+	at okio.AsyncTimeout$2.read(AsyncTimeout.java:237)
+	... 26 more
+2019-05-21 08:51:13 ERROR SparkContext:91 - Error initializing SparkContext.
+io.fabric8.kubernetes.client.KubernetesClientException: Failed to start websocket
+	at io.fabric8.kubernetes.client.dsl.internal.WatchConnectionManager$2.onFailure(WatchConnectionManager.java:194)
+	at okhttp3.internal.ws.RealWebSocket.failWebSocket(RealWebSocket.java:543)
+	at okhttp3.internal.ws.RealWebSocket$2.onFailure(RealWebSocket.java:208)
+	at okhttp3.RealCall$AsyncCall.execute(RealCall.java:148)
+	at okhttp3.internal.NamedRunnable.run(NamedRunnable.java:32)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at java.lang.Thread.run(Thread.java:748)
+Caused by: java.net.SocketTimeoutException: timeout
+	at okio.Okio$4.newTimeoutException(Okio.java:230)
+	at okio.AsyncTimeout.exit(AsyncTimeout.java:285)
+	at okio.AsyncTimeout$2.read(AsyncTimeout.java:241)
+	at okio.RealBufferedSource.indexOf(RealBufferedSource.java:345)
+	at okio.RealBufferedSource.readUtf8LineStrict(RealBufferedSource.java:217)
+	at okio.RealBufferedSource.readUtf8LineStrict(RealBufferedSource.java:211)
+	at okhttp3.internal.http1.Http1Codec.readResponseHeaders(Http1Codec.java:189)
+	at okhttp3.internal.http.CallServerInterceptor.intercept(CallServerInterceptor.java:75)
+	at okhttp3.internal.http.RealInterceptorChain.proceed(RealInterceptorChain.java:92)
+	at okhttp3.internal.connection.ConnectInterceptor.intercept(ConnectInterceptor.java:45)
+	at okhttp3.internal.http.RealInterceptorChain.proceed(RealInterceptorChain.java:92)
+	at okhttp3.internal.http.RealInterceptorChain.proceed(RealInterceptorChain.java:67)
+	at okhttp3.internal.cache.CacheInterceptor.intercept(CacheInterceptor.java:93)
+	at okhttp3.internal.http.RealInterceptorChain.proceed(RealInterceptorChain.java:92)
+	at okhttp3.internal.http.RealInterceptorChain.proceed(RealInterceptorChain.java:67)
+	at okhttp3.internal.http.BridgeInterceptor.intercept(BridgeInterceptor.java:93)
+	at okhttp3.internal.http.RealInterceptorChain.proceed(RealInterceptorChain.java:92)
+	at okhttp3.internal.http.RetryAndFollowUpInterceptor.intercept(RetryAndFollowUpInterceptor.java:120)
+	at okhttp3.internal.http.RealInterceptorChain.proceed(RealInterceptorChain.java:92)
+	at okhttp3.internal.http.RealInterceptorChain.proceed(RealInterceptorChain.java:67)
+	at io.fabric8.kubernetes.client.utils.HttpClientUtils$2.intercept(HttpClientUtils.java:93)
+	at okhttp3.internal.http.RealInterceptorChain.proceed(RealInterceptorChain.java:92)
+	at okhttp3.internal.http.RealInterceptorChain.proceed(RealInterceptorChain.java:67)
+	at okhttp3.RealCall.getResponseWithInterceptorChain(RealCall.java:185)
+	at okhttp3.RealCall$AsyncCall.execute(RealCall.java:135)
+	... 4 more
+Caused by: java.net.SocketException: Socket closed
+	at java.net.SocketInputStream.read(SocketInputStream.java:204)
+	at java.net.SocketInputStream.read(SocketInputStream.java:141)
+	at sun.security.ssl.InputRecord.readFully(InputRecord.java:465)
+	at sun.security.ssl.InputRecord.read(InputRecord.java:503)
+	at sun.security.ssl.SSLSocketImpl.readRecord(SSLSocketImpl.java:983)
+	at sun.security.ssl.SSLSocketImpl.readDataRecord(SSLSocketImpl.java:940)
+	at sun.security.ssl.AppInputStream.read(AppInputStream.java:105)
+	at okio.Okio$2.read(Okio.java:139)
+	at okio.AsyncTimeout$2.read(AsyncTimeout.java:237)
+	... 26 more
+2019-05-21 08:51:14 INFO  AbstractConnector:318 - Stopped Spark@4fcc529{HTTP/1.1,[http/1.1]}{0.0.0.0:4040}
+2019-05-21 08:51:14 INFO  SparkUI:54 - Stopped Spark web UI at http://spark-impersonation-d80e68f8-1558428556529-driver-svc.flowsnake-watchdog.svc:4040
+2019-05-21 08:51:14 INFO  KubernetesClusterSchedulerBackend:54 - Shutting down all executors
+2019-05-21 08:51:14 INFO  KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint:54 - Asking each executor to shut down
+2019-05-21 08:51:16 INFO  MapOutputTrackerMasterEndpoint:54 - MapOutputTrackerMasterEndpoint stopped!
+2019-05-21 08:51:16 INFO  MemoryStore:54 - MemoryStore cleared
+2019-05-21 08:51:16 INFO  BlockManager:54 - BlockManager stopped
+2019-05-21 08:51:16 INFO  BlockManagerMaster:54 - BlockManagerMaster stopped
+2019-05-21 08:51:16 WARN  MetricsSystem:66 - Stopping a MetricsSystem that is not running
+2019-05-21 08:51:16 INFO  OutputCommitCoordinator$OutputCommitCoordinatorEndpoint:54 - OutputCommitCoordinator stopped!
+2019-05-21 08:51:16 INFO  SparkContext:54 - Successfully stopped SparkContext
+Exception in thread "main" io.fabric8.kubernetes.client.KubernetesClientException: Failed to start websocket
+	at io.fabric8.kubernetes.client.dsl.internal.WatchConnectionManager$2.onFailure(WatchConnectionManager.java:194)
+	at okhttp3.internal.ws.RealWebSocket.failWebSocket(RealWebSocket.java:543)
+	at okhttp3.internal.ws.RealWebSocket$2.onFailure(RealWebSocket.java:208)
+	at okhttp3.RealCall$AsyncCall.execute(RealCall.java:148)
+	at okhttp3.internal.NamedRunnable.run(NamedRunnable.java:32)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at java.lang.Thread.run(Thread.java:748)
+Caused by: java.net.SocketTimeoutException: timeout
+	at okio.Okio$4.newTimeoutException(Okio.java:230)
+	at okio.AsyncTimeout.exit(AsyncTimeout.java:285)
+	at okio.AsyncTimeout$2.read(AsyncTimeout.java:241)
+	at okio.RealBufferedSource.indexOf(RealBufferedSource.java:345)
+	at okio.RealBufferedSource.readUtf8LineStrict(RealBufferedSource.java:217)
+	at okio.RealBufferedSource.readUtf8LineStrict(RealBufferedSource.java:211)
+	at okhttp3.internal.http1.Http1Codec.readResponseHeaders(Http1Codec.java:189)
+	at okhttp3.internal.http.CallServerInterceptor.intercept(CallServerInterceptor.java:75)
+	at okhttp3.internal.http.RealInterceptorChain.proceed(RealInterceptorChain.java:92)
+	at okhttp3.internal.connection.ConnectInterceptor.intercept(ConnectInterceptor.java:45)
+	at okhttp3.internal.http.RealInterceptorChain.proceed(RealInterceptorChain.java:92)
+	at okhttp3.internal.http.RealInterceptorChain.proceed(RealInterceptorChain.java:67)
+	at okhttp3.internal.cache.CacheInterceptor.intercept(CacheInterceptor.java:93)
+	at okhttp3.internal.http.RealInterceptorChain.proceed(RealInterceptorChain.java:92)
+	at okhttp3.internal.http.RealInterceptorChain.proceed(RealInterceptorChain.java:67)
+	at okhttp3.internal.http.BridgeInterceptor.intercept(BridgeInterceptor.java:93)
+	at okhttp3.internal.http.RealInterceptorChain.proceed(RealInterceptorChain.java:92)
+	at okhttp3.internal.http.RetryAndFollowUpInterceptor.intercept(RetryAndFollowUpInterceptor.java:120)
+	at okhttp3.internal.http.RealInterceptorChain.proceed(RealInterceptorChain.java:92)
+	at okhttp3.internal.http.RealInterceptorChain.proceed(RealInterceptorChain.java:67)
+	at io.fabric8.kubernetes.client.utils.HttpClientUtils$2.intercept(HttpClientUtils.java:93)
+	at okhttp3.internal.http.RealInterceptorChain.proceed(RealInterceptorChain.java:92)
+	at okhttp3.internal.http.RealInterceptorChain.proceed(RealInterceptorChain.java:67)
+	at okhttp3.RealCall.getResponseWithInterceptorChain(RealCall.java:185)
+	at okhttp3.RealCall$AsyncCall.execute(RealCall.java:135)
+	... 4 more
+Caused by: java.net.SocketException: Socket closed
+	at java.net.SocketInputStream.read(SocketInputStream.java:204)
+	at java.net.SocketInputStream.read(SocketInputStream.java:141)
+	at sun.security.ssl.InputRecord.readFully(InputRecord.java:465)
+	at sun.security.ssl.InputRecord.read(InputRecord.java:503)
+	at sun.security.ssl.SSLSocketImpl.readRecord(SSLSocketImpl.java:983)
+	at sun.security.ssl.SSLSocketImpl.readDataRecord(SSLSocketImpl.java:940)
+	at sun.security.ssl.AppInputStream.read(AppInputStream.java:105)
+	at okio.Okio$2.read(Okio.java:139)
+	at okio.AsyncTimeout$2.read(AsyncTimeout.java:237)
+	... 26 more
+2019-05-21 08:51:16 INFO  ShutdownHookManager:54 - Shutdown hook called
+2019-05-21 08:51:16 INFO  ShutdownHookManager:54 - Deleting directory /var/data/spark-ef0c3e8e-fec6-4314-9b41-5eba5c70c473/spark-3202d2e3-e17e-474a-a543-8c187268a359
+2019-05-21 08:51:16 INFO  ShutdownHookManager:54 - Deleting directory /tmp/spark-490ce938-1ca0-45d2-86d2-0e63c9515b7a
+0521 08:51:42 [1558428702] spark-impersonation-d80e68f8 - ---- End pods/spark-impersonation-d80e68f8-driver Log ----
+0521 08:51:42 [1558428702] spark-impersonation-d80e68f8 - -------- Executor Pods ----------
+0521 08:51:43 [1558428703] spark-impersonation-d80e68f8 - Cleaning up stuff for complated or failed test.
+0521 08:51:43 [1558428703] spark-impersonation-d80e68f8 - sparkapplication "spark-impersonation-d80e68f8" deleted
+0521 08:51:47 [1558428707] spark-impersonation-d80e68f8 - ======== Completion of spark-impersonation-d80e68f8 test, returning 1 ========

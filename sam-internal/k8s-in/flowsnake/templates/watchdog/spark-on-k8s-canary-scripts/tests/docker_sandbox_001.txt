@@ -1,0 +1,116 @@
+DOCKER_SANDBOX
+0522 22:51:58 [1558565518] spark-pi-b6ff2e03 - ======== Beginning spark-pi-b6ff2e03 test ========
+0522 22:51:58 [1558565518] spark-pi-b6ff2e03 -  [0;32mKubernetes master [0m is running at  [0;33mhttps://10.254.208.1:443 [0m
+0522 22:51:58 [1558565518] spark-pi-b6ff2e03 -
+0522 22:51:58 [1558565518] spark-pi-b6ff2e03 - To further debug and diagnose cluster problems, use 'kubectl cluster-info dump'.
+0522 22:51:59 [1558565519] spark-pi-b6ff2e03 - Cleaning up SparkApplication/Pod older than 1 hours from prior runs.
+0522 22:52:00 [1558565520] spark-pi-b6ff2e03 - Creating SparkApplication spark-pi-b6ff2e03
+0522 22:52:00 [1558565520] spark-pi-b6ff2e03 - sparkapplication "spark-pi-b6ff2e03" created
+0522 22:52:01 [1558565521] spark-pi-b6ff2e03 - Waiting for SparkApplication spark-pi-b6ff2e03 to reach a terminal state.
+0522 22:52:11 [1558565531] spark-pi-b6ff2e03 - Pod change detected: spark-pi-b6ff2e03-driver: Init:0/1 on host shared0-flowsnakeworkerprod1-19-ukb.ops.sfdc.net.
+0522 22:53:04 [1558565584] spark-pi-b6ff2e03 - ...still waiting for terminal state (currently SUBMITTED) after 63 seconds.
+0522 22:53:04 [1558565584] spark-pi-b6ff2e03 - ---- Begin Events ----
+0522 22:53:04 [1558565584] spark-pi-b6ff2e03 - Name:         spark-pi-b6ff2e03
+0522 22:53:04 [1558565584] spark-pi-b6ff2e03 - Events:                          <none>
+0522 22:53:05 [1558565585] spark-pi-b6ff2e03 - Name:           spark-pi-b6ff2e03-driver
+0522 22:53:05 [1558565585] spark-pi-b6ff2e03 - Events:
+0522 22:53:05 [1558565585] spark-pi-b6ff2e03 -   Type     Reason                  Age   From                                                       Message
+0522 22:53:05 [1558565585] spark-pi-b6ff2e03 -   ----     ------                  ----  ----                                                       -------
+0522 22:53:05 [1558565585] spark-pi-b6ff2e03 -   Normal   Scheduled               58s   default-scheduler                                          Successfully assigned spark-pi-b6ff2e03-driver to shared0-flowsnakeworkerprod1-19-ukb.ops.sfdc.net
+0522 22:53:05 [1558565585] spark-pi-b6ff2e03 -   Normal   SuccessfulMountVolume   58s   kubelet, shared0-flowsnakeworkerprod1-19-ukb.ops.sfdc.net  MountVolume.SetUp succeeded for volume "client-certificate"
+0522 22:53:05 [1558565585] spark-pi-b6ff2e03 -   Normal   SuccessfulMountVolume   58s   kubelet, shared0-flowsnakeworkerprod1-19-ukb.ops.sfdc.net  MountVolume.SetUp succeeded for volume "certificate-authority"
+0522 22:53:05 [1558565585] spark-pi-b6ff2e03 -   Normal   SuccessfulMountVolume   58s   kubelet, shared0-flowsnakeworkerprod1-19-ukb.ops.sfdc.net  MountVolume.SetUp succeeded for volume "client-key"
+0522 22:53:05 [1558565585] spark-pi-b6ff2e03 -   Normal   SuccessfulMountVolume   58s   kubelet, shared0-flowsnakeworkerprod1-19-ukb.ops.sfdc.net  MountVolume.SetUp succeeded for volume "spark-local-dir-1"
+0522 22:53:05 [1558565585] spark-pi-b6ff2e03 -   Warning  FailedMount             58s   kubelet, shared0-flowsnakeworkerprod1-19-ukb.ops.sfdc.net  MountVolume.SetUp failed for volume "spark-conf-volume" : configmaps "spark-pi-b6ff2e03-1558565529448-driver-conf-map" not found
+0522 22:53:05 [1558565585] spark-pi-b6ff2e03 -   Normal   SuccessfulMountVolume   58s   kubelet, shared0-flowsnakeworkerprod1-19-ukb.ops.sfdc.net  MountVolume.SetUp succeeded for volume "datacerts"
+0522 22:53:05 [1558565585] spark-pi-b6ff2e03 -   Normal   SuccessfulMountVolume   58s   kubelet, shared0-flowsnakeworkerprod1-19-ukb.ops.sfdc.net  MountVolume.SetUp succeeded for volume "tokens"
+0522 22:53:05 [1558565585] spark-pi-b6ff2e03 -   Normal   SuccessfulMountVolume   58s   kubelet, shared0-flowsnakeworkerprod1-19-ukb.ops.sfdc.net  MountVolume.SetUp succeeded for volume "spark-driver-flowsnake-watchdog-token-vcd4p"
+0522 22:53:05 [1558565585] spark-pi-b6ff2e03 -   Normal   SuccessfulMountVolume   57s   kubelet, shared0-flowsnakeworkerprod1-19-ukb.ops.sfdc.net  MountVolume.SetUp succeeded for volume "spark-conf-volume"
+0522 22:53:05 [1558565585] spark-pi-b6ff2e03 -   Warning  FailedCreatePodSandBox  12s   kubelet, shared0-flowsnakeworkerprod1-19-ukb.ops.sfdc.net  Failed create pod sandbox.
+0522 22:53:08 [1558565588] spark-pi-b6ff2e03 - ---- End Events ----
+0522 22:54:05 [1558565645] spark-pi-b6ff2e03 - ...still waiting for terminal state (currently SUBMITTED) after 124 seconds.
+0522 22:54:05 [1558565645] spark-pi-b6ff2e03 - ---- Begin Events ----
+0522 22:54:05 [1558565645] spark-pi-b6ff2e03 - Name:         spark-pi-b6ff2e03
+0522 22:54:05 [1558565645] spark-pi-b6ff2e03 - Events:                          <none>
+0522 22:54:06 [1558565646] spark-pi-b6ff2e03 - Name:           spark-pi-b6ff2e03-driver
+0522 22:54:06 [1558565646] spark-pi-b6ff2e03 - Events:
+0522 22:54:06 [1558565646] spark-pi-b6ff2e03 -   Type     Reason                  Age               From                                                       Message
+0522 22:54:06 [1558565646] spark-pi-b6ff2e03 -   ----     ------                  ----              ----                                                       -------
+0522 22:54:06 [1558565646] spark-pi-b6ff2e03 -   Normal   Scheduled               1m                default-scheduler                                          Successfully assigned spark-pi-b6ff2e03-driver to shared0-flowsnakeworkerprod1-19-ukb.ops.sfdc.net
+0522 22:54:06 [1558565646] spark-pi-b6ff2e03 -   Normal   SuccessfulMountVolume   1m                kubelet, shared0-flowsnakeworkerprod1-19-ukb.ops.sfdc.net  MountVolume.SetUp succeeded for volume "client-certificate"
+0522 22:54:06 [1558565646] spark-pi-b6ff2e03 -   Normal   SuccessfulMountVolume   1m                kubelet, shared0-flowsnakeworkerprod1-19-ukb.ops.sfdc.net  MountVolume.SetUp succeeded for volume "certificate-authority"
+0522 22:54:06 [1558565646] spark-pi-b6ff2e03 -   Normal   SuccessfulMountVolume   1m                kubelet, shared0-flowsnakeworkerprod1-19-ukb.ops.sfdc.net  MountVolume.SetUp succeeded for volume "client-key"
+0522 22:54:06 [1558565646] spark-pi-b6ff2e03 -   Normal   SuccessfulMountVolume   1m                kubelet, shared0-flowsnakeworkerprod1-19-ukb.ops.sfdc.net  MountVolume.SetUp succeeded for volume "spark-local-dir-1"
+0522 22:54:06 [1558565646] spark-pi-b6ff2e03 -   Warning  FailedMount             1m                kubelet, shared0-flowsnakeworkerprod1-19-ukb.ops.sfdc.net  MountVolume.SetUp failed for volume "spark-conf-volume" : configmaps "spark-pi-b6ff2e03-1558565529448-driver-conf-map" not found
+0522 22:54:06 [1558565646] spark-pi-b6ff2e03 -   Normal   SuccessfulMountVolume   1m                kubelet, shared0-flowsnakeworkerprod1-19-ukb.ops.sfdc.net  MountVolume.SetUp succeeded for volume "datacerts"
+0522 22:54:06 [1558565646] spark-pi-b6ff2e03 -   Normal   SuccessfulMountVolume   1m                kubelet, shared0-flowsnakeworkerprod1-19-ukb.ops.sfdc.net  MountVolume.SetUp succeeded for volume "tokens"
+0522 22:54:06 [1558565646] spark-pi-b6ff2e03 -   Normal   SuccessfulMountVolume   1m                kubelet, shared0-flowsnakeworkerprod1-19-ukb.ops.sfdc.net  MountVolume.SetUp succeeded for volume "spark-driver-flowsnake-watchdog-token-vcd4p"
+0522 22:54:06 [1558565646] spark-pi-b6ff2e03 -   Normal   SuccessfulMountVolume   1m                kubelet, shared0-flowsnakeworkerprod1-19-ukb.ops.sfdc.net  MountVolume.SetUp succeeded for volume "spark-conf-volume"
+0522 22:54:06 [1558565646] spark-pi-b6ff2e03 -   Warning  FailedCreatePodSandBox  15s (x2 over 1m)  kubelet, shared0-flowsnakeworkerprod1-19-ukb.ops.sfdc.net  Failed create pod sandbox.
+0522 22:54:08 [1558565648] spark-pi-b6ff2e03 - ---- End Events ----
+0522 22:55:06 [1558565706] spark-pi-b6ff2e03 - ...still waiting for terminal state (currently SUBMITTED) after 185 seconds.
+0522 22:55:06 [1558565706] spark-pi-b6ff2e03 - ---- Begin Events ----
+0522 22:55:06 [1558565706] spark-pi-b6ff2e03 - Name:         spark-pi-b6ff2e03
+0522 22:55:06 [1558565706] spark-pi-b6ff2e03 - Events:                          <none>
+0522 22:55:07 [1558565707] spark-pi-b6ff2e03 - Name:           spark-pi-b6ff2e03-driver
+0522 22:55:07 [1558565707] spark-pi-b6ff2e03 - Events:
+0522 22:55:07 [1558565707] spark-pi-b6ff2e03 -   Type     Reason                  Age               From                                                       Message
+0522 22:55:07 [1558565707] spark-pi-b6ff2e03 -   ----     ------                  ----              ----                                                       -------
+0522 22:55:07 [1558565707] spark-pi-b6ff2e03 -   Normal   Scheduled               2m                default-scheduler                                          Successfully assigned spark-pi-b6ff2e03-driver to shared0-flowsnakeworkerprod1-19-ukb.ops.sfdc.net
+0522 22:55:07 [1558565707] spark-pi-b6ff2e03 -   Normal   SuccessfulMountVolume   2m                kubelet, shared0-flowsnakeworkerprod1-19-ukb.ops.sfdc.net  MountVolume.SetUp succeeded for volume "client-certificate"
+0522 22:55:07 [1558565707] spark-pi-b6ff2e03 -   Normal   SuccessfulMountVolume   2m                kubelet, shared0-flowsnakeworkerprod1-19-ukb.ops.sfdc.net  MountVolume.SetUp succeeded for volume "certificate-authority"
+0522 22:55:07 [1558565707] spark-pi-b6ff2e03 -   Normal   SuccessfulMountVolume   2m                kubelet, shared0-flowsnakeworkerprod1-19-ukb.ops.sfdc.net  MountVolume.SetUp succeeded for volume "client-key"
+0522 22:55:07 [1558565707] spark-pi-b6ff2e03 -   Normal   SuccessfulMountVolume   2m                kubelet, shared0-flowsnakeworkerprod1-19-ukb.ops.sfdc.net  MountVolume.SetUp succeeded for volume "spark-local-dir-1"
+0522 22:55:07 [1558565707] spark-pi-b6ff2e03 -   Warning  FailedMount             2m                kubelet, shared0-flowsnakeworkerprod1-19-ukb.ops.sfdc.net  MountVolume.SetUp failed for volume "spark-conf-volume" : configmaps "spark-pi-b6ff2e03-1558565529448-driver-conf-map" not found
+0522 22:55:07 [1558565707] spark-pi-b6ff2e03 -   Normal   SuccessfulMountVolume   2m                kubelet, shared0-flowsnakeworkerprod1-19-ukb.ops.sfdc.net  MountVolume.SetUp succeeded for volume "datacerts"
+0522 22:55:07 [1558565707] spark-pi-b6ff2e03 -   Normal   SuccessfulMountVolume   2m                kubelet, shared0-flowsnakeworkerprod1-19-ukb.ops.sfdc.net  MountVolume.SetUp succeeded for volume "tokens"
+0522 22:55:07 [1558565707] spark-pi-b6ff2e03 -   Normal   SuccessfulMountVolume   2m                kubelet, shared0-flowsnakeworkerprod1-19-ukb.ops.sfdc.net  MountVolume.SetUp succeeded for volume "spark-driver-flowsnake-watchdog-token-vcd4p"
+0522 22:55:07 [1558565707] spark-pi-b6ff2e03 -   Normal   SuccessfulMountVolume   2m                kubelet, shared0-flowsnakeworkerprod1-19-ukb.ops.sfdc.net  MountVolume.SetUp succeeded for volume "spark-conf-volume"
+0522 22:55:07 [1558565707] spark-pi-b6ff2e03 -   Warning  FailedCreatePodSandBox  17s (x3 over 2m)  kubelet, shared0-flowsnakeworkerprod1-19-ukb.ops.sfdc.net  Failed create pod sandbox.
+0522 22:55:09 [1558565709] spark-pi-b6ff2e03 - ---- End Events ----
+0522 22:56:07 [1558565767] spark-pi-b6ff2e03 - ...still waiting for terminal state (currently SUBMITTED) after 246 seconds.
+0522 22:56:07 [1558565767] spark-pi-b6ff2e03 - ---- Begin Events ----
+0522 22:56:07 [1558565767] spark-pi-b6ff2e03 - Name:         spark-pi-b6ff2e03
+0522 22:56:07 [1558565767] spark-pi-b6ff2e03 - Events:                          <none>
+0522 22:56:09 [1558565769] spark-pi-b6ff2e03 - Name:           spark-pi-b6ff2e03-driver
+0522 22:56:09 [1558565769] spark-pi-b6ff2e03 - Events:
+0522 22:56:09 [1558565769] spark-pi-b6ff2e03 -   Type     Reason                  Age               From                                                       Message
+0522 22:56:09 [1558565769] spark-pi-b6ff2e03 -   ----     ------                  ----              ----                                                       -------
+0522 22:56:09 [1558565769] spark-pi-b6ff2e03 -   Normal   Scheduled               4m                default-scheduler                                          Successfully assigned spark-pi-b6ff2e03-driver to shared0-flowsnakeworkerprod1-19-ukb.ops.sfdc.net
+0522 22:56:09 [1558565769] spark-pi-b6ff2e03 -   Normal   SuccessfulMountVolume   4m                kubelet, shared0-flowsnakeworkerprod1-19-ukb.ops.sfdc.net  MountVolume.SetUp succeeded for volume "client-certificate"
+0522 22:56:09 [1558565769] spark-pi-b6ff2e03 -   Normal   SuccessfulMountVolume   4m                kubelet, shared0-flowsnakeworkerprod1-19-ukb.ops.sfdc.net  MountVolume.SetUp succeeded for volume "certificate-authority"
+0522 22:56:09 [1558565769] spark-pi-b6ff2e03 -   Normal   SuccessfulMountVolume   4m                kubelet, shared0-flowsnakeworkerprod1-19-ukb.ops.sfdc.net  MountVolume.SetUp succeeded for volume "client-key"
+0522 22:56:09 [1558565769] spark-pi-b6ff2e03 -   Normal   SuccessfulMountVolume   4m                kubelet, shared0-flowsnakeworkerprod1-19-ukb.ops.sfdc.net  MountVolume.SetUp succeeded for volume "spark-local-dir-1"
+0522 22:56:09 [1558565769] spark-pi-b6ff2e03 -   Warning  FailedMount             4m                kubelet, shared0-flowsnakeworkerprod1-19-ukb.ops.sfdc.net  MountVolume.SetUp failed for volume "spark-conf-volume" : configmaps "spark-pi-b6ff2e03-1558565529448-driver-conf-map" not found
+0522 22:56:09 [1558565769] spark-pi-b6ff2e03 -   Normal   SuccessfulMountVolume   4m                kubelet, shared0-flowsnakeworkerprod1-19-ukb.ops.sfdc.net  MountVolume.SetUp succeeded for volume "datacerts"
+0522 22:56:09 [1558565769] spark-pi-b6ff2e03 -   Normal   SuccessfulMountVolume   4m                kubelet, shared0-flowsnakeworkerprod1-19-ukb.ops.sfdc.net  MountVolume.SetUp succeeded for volume "tokens"
+0522 22:56:09 [1558565769] spark-pi-b6ff2e03 -   Normal   SuccessfulMountVolume   4m                kubelet, shared0-flowsnakeworkerprod1-19-ukb.ops.sfdc.net  MountVolume.SetUp succeeded for volume "spark-driver-flowsnake-watchdog-token-vcd4p"
+0522 22:56:09 [1558565769] spark-pi-b6ff2e03 -   Normal   SuccessfulMountVolume   3m                kubelet, shared0-flowsnakeworkerprod1-19-ukb.ops.sfdc.net  MountVolume.SetUp succeeded for volume "spark-conf-volume"
+0522 22:56:09 [1558565769] spark-pi-b6ff2e03 -   Warning  FailedCreatePodSandBox  19s (x4 over 3m)  kubelet, shared0-flowsnakeworkerprod1-19-ukb.ops.sfdc.net  Failed create pod sandbox.
+0522 22:56:11 [1558565771] spark-pi-b6ff2e03 - ---- End Events ----
+0522 22:56:59 [1558565819] spark-pi-b6ff2e03 - Timeout reached. Aborting wait for SparkApplication spark-pi-b6ff2e03 even though in non-terminal state SUBMITTED.
+0522 22:56:59 [1558565819] spark-pi-b6ff2e03 - ---- Begin Events ----
+0522 22:56:59 [1558565819] spark-pi-b6ff2e03 - Name:         spark-pi-b6ff2e03
+0522 22:56:59 [1558565819] spark-pi-b6ff2e03 - Events:                          <none>
+0522 22:57:01 [1558565821] spark-pi-b6ff2e03 - Name:           spark-pi-b6ff2e03-driver
+0522 22:57:01 [1558565821] spark-pi-b6ff2e03 - Events:
+0522 22:57:01 [1558565821] spark-pi-b6ff2e03 -   Type     Reason                  Age               From                                                       Message
+0522 22:57:01 [1558565821] spark-pi-b6ff2e03 -   ----     ------                  ----              ----                                                       -------
+0522 22:57:01 [1558565821] spark-pi-b6ff2e03 -   Normal   Scheduled               4m                default-scheduler                                          Successfully assigned spark-pi-b6ff2e03-driver to shared0-flowsnakeworkerprod1-19-ukb.ops.sfdc.net
+0522 22:57:01 [1558565821] spark-pi-b6ff2e03 -   Normal   SuccessfulMountVolume   4m                kubelet, shared0-flowsnakeworkerprod1-19-ukb.ops.sfdc.net  MountVolume.SetUp succeeded for volume "client-certificate"
+0522 22:57:01 [1558565821] spark-pi-b6ff2e03 -   Normal   SuccessfulMountVolume   4m                kubelet, shared0-flowsnakeworkerprod1-19-ukb.ops.sfdc.net  MountVolume.SetUp succeeded for volume "certificate-authority"
+0522 22:57:01 [1558565821] spark-pi-b6ff2e03 -   Normal   SuccessfulMountVolume   4m                kubelet, shared0-flowsnakeworkerprod1-19-ukb.ops.sfdc.net  MountVolume.SetUp succeeded for volume "client-key"
+0522 22:57:01 [1558565821] spark-pi-b6ff2e03 -   Normal   SuccessfulMountVolume   4m                kubelet, shared0-flowsnakeworkerprod1-19-ukb.ops.sfdc.net  MountVolume.SetUp succeeded for volume "spark-local-dir-1"
+0522 22:57:01 [1558565821] spark-pi-b6ff2e03 -   Warning  FailedMount             4m                kubelet, shared0-flowsnakeworkerprod1-19-ukb.ops.sfdc.net  MountVolume.SetUp failed for volume "spark-conf-volume" : configmaps "spark-pi-b6ff2e03-1558565529448-driver-conf-map" not found
+0522 22:57:01 [1558565821] spark-pi-b6ff2e03 -   Normal   SuccessfulMountVolume   4m                kubelet, shared0-flowsnakeworkerprod1-19-ukb.ops.sfdc.net  MountVolume.SetUp succeeded for volume "datacerts"
+0522 22:57:01 [1558565821] spark-pi-b6ff2e03 -   Normal   SuccessfulMountVolume   4m                kubelet, shared0-flowsnakeworkerprod1-19-ukb.ops.sfdc.net  MountVolume.SetUp succeeded for volume "tokens"
+0522 22:57:01 [1558565821] spark-pi-b6ff2e03 -   Normal   SuccessfulMountVolume   4m                kubelet, shared0-flowsnakeworkerprod1-19-ukb.ops.sfdc.net  MountVolume.SetUp succeeded for volume "spark-driver-flowsnake-watchdog-token-vcd4p"
+0522 22:57:01 [1558565821] spark-pi-b6ff2e03 -   Normal   SuccessfulMountVolume   4m                kubelet, shared0-flowsnakeworkerprod1-19-ukb.ops.sfdc.net  MountVolume.SetUp succeeded for volume "spark-conf-volume"
+0522 22:57:01 [1558565821] spark-pi-b6ff2e03 -   Warning  FailedCreatePodSandBox  10s (x5 over 4m)  kubelet, shared0-flowsnakeworkerprod1-19-ukb.ops.sfdc.net  Failed create pod sandbox.
+0522 22:57:03 [1558565823] spark-pi-b6ff2e03 - ---- End Events ----
+0522 22:57:03 [1558565823] spark-pi-b6ff2e03 - ---- Begin pods/spark-pi-b6ff2e03-driver Log ----
+0522 22:57:03 [1558565823] spark-pi-b6ff2e03 - Error from server (BadRequest): container "spark-kubernetes-driver" in pod "spark-pi-b6ff2e03-driver" is waiting to start: PodInitializing
+0522 22:57:03 [1558565823] spark-pi-b6ff2e03 - Invocation (1/7) of [kubectl -n flowsnake-watchdog logs pods/spark-pi-b6ff2e03-driver] failed (1). Out of time. Giving up.
+0522 22:57:03 [1558565823] spark-pi-b6ff2e03 - ---- End pods/spark-pi-b6ff2e03-driver Log ----
+0522 22:57:03 [1558565823] spark-pi-b6ff2e03 - -------- Executor Pods ----------
+0522 22:57:04 [1558565824] spark-pi-b6ff2e03 - ======== Completion of spark-pi-b6ff2e03 test, returning 1 ========

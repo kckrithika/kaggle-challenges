@@ -1,0 +1,111 @@
+{"class": "SPARK_SUBMIT_FAILED", "exception": "KubernetesClientException", "exception_cause": "SPARK_ADMISSION_WEBHOOK"}
+0522 07:31:27 [1558510287] spark-pi-a684547a - ======== Beginning spark-pi-a684547a test ========
+0522 07:31:27 [1558510287] spark-pi-a684547a -  [0;32mKubernetes master [0m is running at  [0;33mhttps://10.254.208.1:443 [0m
+0522 07:31:27 [1558510287] spark-pi-a684547a -
+0522 07:31:27 [1558510287] spark-pi-a684547a - To further debug and diagnose cluster problems, use 'kubectl cluster-info dump'.
+0522 07:31:29 [1558510289] spark-pi-a684547a - Cleaning up SparkApplication/Pod older than 1 hours from prior runs.
+0522 07:31:29 [1558510289] spark-pi-a684547a - Creating SparkApplication spark-pi-a684547a
+0522 07:31:30 [1558510290] spark-pi-a684547a - sparkapplication "spark-pi-a684547a" created
+0522 07:31:31 [1558510291] spark-pi-a684547a - Waiting for SparkApplication spark-pi-a684547a to reach a terminal state.
+0522 07:31:36 [1558510296] spark-pi-a684547a - SparkApplication spark-pi-a684547a has terminated after 5 seconds. State is FAILED.
+0522 07:31:36 [1558510296] spark-pi-a684547a - Pod change detected: spark-pi-a684547a-driver: Init:0/1 on host shared0-flowsnakeworkerprod1-5-yul.ops.sfdc.net.
+0522 07:31:36 [1558510296] spark-pi-a684547a - ---- Begin Events ----
+0522 07:31:36 [1558510296] spark-pi-a684547a - Name:         spark-pi-a684547a
+0522 07:31:36 [1558510296] spark-pi-a684547a - Events:
+0522 07:31:36 [1558510296] spark-pi-a684547a -   Type     Reason                            Age   From            Message
+0522 07:31:36 [1558510296] spark-pi-a684547a -   ----     ------                            ----  ----            -------
+0522 07:31:36 [1558510296] spark-pi-a684547a -   Normal   SparkApplicationAdded             8s    spark-operator  SparkApplication spark-pi-a684547a was added, enqueuing it for submission
+0522 07:31:36 [1558510296] spark-pi-a684547a -   Normal   SparkApplicationAdded             8s    spark-operator  SparkApplication spark-pi-a684547a was added, enqueuing it for submission
+0522 07:31:36 [1558510296] spark-pi-a684547a -   Warning  SparkApplicationSubmissionFailed  5s    spark-operator  failed to submit SparkApplication spark-pi-a684547a: failed to run spark-submit for SparkApplication flowsnake-watchdog/spark-pi-a684547a: SLF4J: Class path contains multiple SLF4J bindings.
+0522 07:31:36 [1558510296] spark-pi-a684547a - SLF4J: Found binding in [jar:file:/opt/spark/jars/slf4j-log4j12-1.7.16.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+0522 07:31:36 [1558510296] spark-pi-a684547a - SLF4J: Found binding in [jar:file:/usr/local/share/hadoop/common/lib/slf4j-log4j12-1.7.10.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+0522 07:31:36 [1558510296] spark-pi-a684547a - SLF4J: See http://www.slf4j.org/codes.html#multiple_bindings for an explanation.
+0522 07:31:36 [1558510296] spark-pi-a684547a - SLF4J: Actual binding is of type [org.slf4j.impl.Log4jLoggerFactory]
+0522 07:31:36 [1558510296] spark-pi-a684547a - Exception in thread "main" io.fabric8.kubernetes.client.KubernetesClientException: Failure executing: POST at: https://10.254.208.1/api/v1/namespaces/flowsnake-watchdog/pods. Message: Internal error occurred: failed calling admission webhook "webhook.sparkoperator.k8s.io": Post https://spark-webhook.flowsnake.svc:443/webhook: dial tcp 10.254.215.218:443: getsockopt: connection refused. Received status: Status(apiVersion=v1, code=500, details=StatusDetails(causes=[StatusCause(field=null, message=failed calling admission webhook "webhook.sparkoperator.k8s.io": Post https://spark-webhook.flowsnake.svc:443/webhook: dial tcp 10.254.215.218:443: getsockopt: connection refused, reason=null, additionalProperties={})], group=null, kind=null, name=null, retryAfterSeconds=null, uid=null, additionalProperties={}), kind=Status, message=Internal error occurred: failed calling admission webhook "webhook.sparkoperator.k8s.io": Post https://spark-webhook.flowsnake.svc:443/webhook: dial tcp 10.254.215.218:443: getsockopt: connection refused, metadata=ListMeta(resourceVersion=null, selfLink=null, additionalProperties={}), reason=InternalError, status=Failure, additionalProperties={}).
+0522 07:31:36 [1558510296] spark-pi-a684547a -            at io.fabric8.kubernetes.client.dsl.base.OperationSupport.requestFailure(OperationSupport.java:470)
+0522 07:31:36 [1558510296] spark-pi-a684547a -            at io.fabric8.kubernetes.client.dsl.base.OperationSupport.assertResponseCode(OperationSupport.java:409)
+0522 07:31:36 [1558510296] spark-pi-a684547a -            at io.fabric8.kubernetes.client.dsl.base.OperationSupport.handleResponse(OperationSupport.java:379)
+0522 07:31:36 [1558510296] spark-pi-a684547a -            at io.fabric8.kubernetes.client.dsl.base.OperationSupport.handleResponse(OperationSupport.java:343)
+0522 07:31:36 [1558510296] spark-pi-a684547a -            at io.fabric8.kubernetes.client.dsl.base.OperationSupport.handleCreate(OperationSupport.java:226)
+0522 07:31:36 [1558510296] spark-pi-a684547a -            at io.fabric8.kubernetes.client.dsl.base.BaseOperation.handleCreate(BaseOperation.java:769)
+0522 07:31:36 [1558510296] spark-pi-a684547a -            at io.fabric8.kubernetes.client.dsl.base.BaseOperation.create(BaseOperation.java:356)
+0522 07:31:36 [1558510296] spark-pi-a684547a -            at org.apache.spark.deploy.k8s.submit.Client$$anonfun$run$2.apply(KubernetesClientApplication.scala:141)
+0522 07:31:36 [1558510296] spark-pi-a684547a -            at org.apache.spark.deploy.k8s.submit.Client$$anonfun$run$2.apply(KubernetesClientApplication.scala:140)
+0522 07:31:36 [1558510296] spark-pi-a684547a -            at org.apache.spark.util.Utils$.tryWithResource(Utils.scala:2543)
+0522 07:31:36 [1558510296] spark-pi-a684547a -            at org.apache.spark.deploy.k8s.submit.Client.run(KubernetesClientApplication.scala:140)
+0522 07:31:36 [1558510296] spark-pi-a684547a -            at org.apache.spark.deploy.k8s.submit.KubernetesClientApplication$$anonfun$run$5.apply(KubernetesClientApplication.scala:250)
+0522 07:31:36 [1558510296] spark-pi-a684547a -            at org.apache.spark.deploy.k8s.submit.KubernetesClientApplication$$anonfun$run$5.apply(KubernetesClientApplication.scala:241)
+0522 07:31:36 [1558510296] spark-pi-a684547a -            at org.apache.spark.util.Utils$.tryWithResource(Utils.scala:2543)
+0522 07:31:36 [1558510296] spark-pi-a684547a -            at org.apache.spark.deploy.k8s.submit.KubernetesClientApplication.run(KubernetesClientApplication.scala:241)
+0522 07:31:36 [1558510296] spark-pi-a684547a -            at org.apache.spark.deploy.k8s.submit.KubernetesClientApplication.start(KubernetesClientApplication.scala:204)
+0522 07:31:36 [1558510296] spark-pi-a684547a -            at org.apache.spark.deploy.SparkSubmit.org$apache$spark$deploy$SparkSubmit$$runMain(SparkSubmit.scala:849)
+0522 07:31:36 [1558510296] spark-pi-a684547a -            at org.apache.spark.deploy.SparkSubmit.doRunMain$1(SparkSubmit.scala:167)
+0522 07:31:36 [1558510296] spark-pi-a684547a -            at org.apache.spark.deploy.SparkSubmit.submit(SparkSubmit.scala:195)
+0522 07:31:36 [1558510296] spark-pi-a684547a -            at org.apache.spark.deploy.SparkSubmit.doSubmit(SparkSubmit.scala:86)
+0522 07:31:36 [1558510296] spark-pi-a684547a -            at org.apache.spark.deploy.SparkSubmit$$anon$2.doSubmit(SparkSubmit.scala:924)
+0522 07:31:36 [1558510296] spark-pi-a684547a -            at org.apache.spark.deploy.SparkSubmit$.main(SparkSubmit.scala:933)
+0522 07:31:36 [1558510296] spark-pi-a684547a -            at org.apache.spark.deploy.SparkSubmit.main(SparkSubmit.scala)
+0522 07:31:36 [1558510296] spark-pi-a684547a -   Warning  SparkApplicationFailed  5s  spark-operator  SparkApplication spark-pi-a684547a failed: failed to run spark-submit for SparkApplication flowsnake-watchdog/spark-pi-a684547a: SLF4J: Class path contains multiple SLF4J bindings.
+0522 07:31:36 [1558510296] spark-pi-a684547a - SLF4J: Found binding in [jar:file:/opt/spark/jars/slf4j-log4j12-1.7.16.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+0522 07:31:36 [1558510296] spark-pi-a684547a - SLF4J: Found binding in [jar:file:/usr/local/share/hadoop/common/lib/slf4j-log4j12-1.7.10.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+0522 07:31:36 [1558510296] spark-pi-a684547a - SLF4J: See http://www.slf4j.org/codes.html#multiple_bindings for an explanation.
+0522 07:31:36 [1558510296] spark-pi-a684547a - SLF4J: Actual binding is of type [org.slf4j.impl.Log4jLoggerFactory]
+0522 07:31:36 [1558510296] spark-pi-a684547a - Exception in thread "main" io.fabric8.kubernetes.client.KubernetesClientException: Failure executing: POST at: https://10.254.208.1/api/v1/namespaces/flowsnake-watchdog/pods. Message: Internal error occurred: failed calling admission webhook "webhook.sparkoperator.k8s.io": Post https://spark-webhook.flowsnake.svc:443/webhook: dial tcp 10.254.215.218:443: getsockopt: connection refused. Received status: Status(apiVersion=v1, code=500, details=StatusDetails(causes=[StatusCause(field=null, message=failed calling admission webhook "webhook.sparkoperator.k8s.io": Post https://spark-webhook.flowsnake.svc:443/webhook: dial tcp 10.254.215.218:443: getsockopt: connection refused, reason=null, additionalProperties={})], group=null, kind=null, name=null, retryAfterSeconds=null, uid=null, additionalProperties={}), kind=Status, message=Internal error occurred: failed calling admission webhook "webhook.sparkoperator.k8s.io": Post https://spark-webhook.flowsnake.svc:443/webhook: dial tcp 10.254.215.218:443: getsockopt: connection refused, metadata=ListMeta(resourceVersion=null, selfLink=null, additionalProperties={}), reason=InternalError, status=Failure, additionalProperties={}).
+0522 07:31:36 [1558510296] spark-pi-a684547a -   at io.fabric8.kubernetes.client.dsl.base.OperationSupport.requestFailure(OperationSupport.java:470)
+0522 07:31:36 [1558510296] spark-pi-a684547a -   at io.fabric8.kubernetes.client.dsl.base.OperationSupport.assertResponseCode(OperationSupport.java:409)
+0522 07:31:36 [1558510296] spark-pi-a684547a -   at io.fabric8.kubernetes.client.dsl.base.OperationSupport.handleResponse(OperationSupport.java:379)
+0522 07:31:36 [1558510296] spark-pi-a684547a -   at io.fabric8.kubernetes.client.dsl.base.OperationSupport.handleResponse(OperationSupport.java:343)
+0522 07:31:36 [1558510296] spark-pi-a684547a -   at io.fabric8.kubernetes.client.dsl.base.OperationSupport.handleCreate(OperationSupport.java:226)
+0522 07:31:36 [1558510296] spark-pi-a684547a -   at io.fabric8.kubernetes.client.dsl.base.BaseOperation.handleCreate(BaseOperation.java:769)
+0522 07:31:36 [1558510296] spark-pi-a684547a -   at io.fabric8.kubernetes.client.dsl.base.BaseOperation.create(BaseOperation.java:356)
+0522 07:31:36 [1558510296] spark-pi-a684547a -   at org.apache.spark.deploy.k8s.submit.Client$$anonfun$run$2.apply(KubernetesClientApplication.scala:141)
+0522 07:31:36 [1558510296] spark-pi-a684547a -   at org.apache.spark.deploy.k8s.submit.Client$$anonfun$run$2.apply(KubernetesClientApplication.scala:140)
+0522 07:31:36 [1558510296] spark-pi-a684547a -   at org.apache.spark.util.Utils$.tryWithResource(Utils.scala:2543)
+0522 07:31:36 [1558510296] spark-pi-a684547a -   at org.apache.spark.deploy.k8s.submit.Client.run(KubernetesClientApplication.scala:140)
+0522 07:31:36 [1558510296] spark-pi-a684547a -   at org.apache.spark.deploy.k8s.submit.KubernetesClientApplication$$anonfun$run$5.apply(KubernetesClientApplication.scala:250)
+0522 07:31:36 [1558510296] spark-pi-a684547a -   at org.apache.spark.deploy.k8s.submit.KubernetesClientApplication$$anonfun$run$5.apply(KubernetesClientApplication.scala:241)
+0522 07:31:36 [1558510296] spark-pi-a684547a -   at org.apache.spark.util.Utils$.tryWithResource(Utils.scala:2543)
+0522 07:31:36 [1558510296] spark-pi-a684547a -   at org.apache.spark.deploy.k8s.submit.KubernetesClientApplication.run(KubernetesClientApplication.scala:241)
+0522 07:31:36 [1558510296] spark-pi-a684547a -   at org.apache.spark.deploy.k8s.submit.KubernetesClientApplication.start(KubernetesClientApplication.scala:204)
+0522 07:31:36 [1558510296] spark-pi-a684547a -   at org.apache.spark.deploy.SparkSubmit.org$apache$spark$deploy$SparkSubmit$$runMain(SparkSubmit.scala:849)
+0522 07:31:36 [1558510296] spark-pi-a684547a -   at org.apache.spark.deploy.SparkSubmit.doRunMain$1(SparkSubmit.scala:167)
+0522 07:31:36 [1558510296] spark-pi-a684547a -   at org.apache.spark.deploy.SparkSubmit.submit(SparkSubmit.scala:195)
+0522 07:31:36 [1558510296] spark-pi-a684547a -   at org.apache.spark.deploy.SparkSubmit.doSubmit(SparkSubmit.scala:86)
+0522 07:31:36 [1558510296] spark-pi-a684547a -   at org.apache.spark.deploy.SparkSubmit$$anon$2.doSubmit(SparkSubmit.scala:924)
+0522 07:31:36 [1558510296] spark-pi-a684547a -   at org.apache.spark.deploy.SparkSubmit$.main(SparkSubmit.scala:933)
+0522 07:31:36 [1558510296] spark-pi-a684547a -   at org.apache.spark.deploy.SparkSubmit.main(SparkSubmit.scala)
+0522 07:31:39 [1558510299] spark-pi-a684547a - Name:           spark-pi-a684547a-driver
+0522 07:31:39 [1558510299] spark-pi-a684547a - Events:
+0522 07:31:39 [1558510299] spark-pi-a684547a -   Type     Reason                 Age              From                                                      Message
+0522 07:31:39 [1558510299] spark-pi-a684547a -   ----     ------                 ----             ----                                                      -------
+0522 07:31:39 [1558510299] spark-pi-a684547a -   Normal   Scheduled              8s               default-scheduler                                         Successfully assigned spark-pi-a684547a-driver to shared0-flowsnakeworkerprod1-5-yul.ops.sfdc.net
+0522 07:31:39 [1558510299] spark-pi-a684547a -   Normal   SuccessfulMountVolume  8s               kubelet, shared0-flowsnakeworkerprod1-5-yul.ops.sfdc.net  MountVolume.SetUp succeeded for volume "certificate-authority"
+0522 07:31:39 [1558510299] spark-pi-a684547a -   Normal   SuccessfulMountVolume  8s               kubelet, shared0-flowsnakeworkerprod1-5-yul.ops.sfdc.net  MountVolume.SetUp succeeded for volume "client-certificate"
+0522 07:31:39 [1558510299] spark-pi-a684547a -   Normal   SuccessfulMountVolume  8s               kubelet, shared0-flowsnakeworkerprod1-5-yul.ops.sfdc.net  MountVolume.SetUp succeeded for volume "client-key"
+0522 07:31:39 [1558510299] spark-pi-a684547a -   Normal   SuccessfulMountVolume  8s               kubelet, shared0-flowsnakeworkerprod1-5-yul.ops.sfdc.net  MountVolume.SetUp succeeded for volume "spark-local-dir-1"
+0522 07:31:39 [1558510299] spark-pi-a684547a -   Normal   SuccessfulMountVolume  8s               kubelet, shared0-flowsnakeworkerprod1-5-yul.ops.sfdc.net  MountVolume.SetUp succeeded for volume "datacerts"
+0522 07:31:39 [1558510299] spark-pi-a684547a -   Normal   SuccessfulMountVolume  8s               kubelet, shared0-flowsnakeworkerprod1-5-yul.ops.sfdc.net  MountVolume.SetUp succeeded for volume "tokens"
+0522 07:31:39 [1558510299] spark-pi-a684547a -   Normal   SuccessfulMountVolume  7s               kubelet, shared0-flowsnakeworkerprod1-5-yul.ops.sfdc.net  MountVolume.SetUp succeeded for volume "spark-driver-flowsnake-watchdog-token-brtgl"
+0522 07:31:39 [1558510299] spark-pi-a684547a -   Warning  FailedMount            4s (x4 over 8s)  kubelet, shared0-flowsnakeworkerprod1-5-yul.ops.sfdc.net  MountVolume.SetUp failed for volume "spark-conf-volume" : configmaps "spark-pi-a684547a-1558510292619-driver-conf-map" not found
+0522 07:31:42 [1558510302] spark-pi-a684547a - ---- End Events ----
+0522 07:31:43 [1558510303] spark-pi-a684547a - ---- Begin pods/spark-pi-a684547a-driver Log ----
+0522 07:31:44 [1558510304] spark-pi-a684547a - Error from server (BadRequest): container "spark-kubernetes-driver" in pod "spark-pi-a684547a-driver" is waiting to start: PodInitializing
+0522 07:31:44 [1558510304] spark-pi-a684547a - Invocation (1/7) of [kubectl -n flowsnake-watchdog logs pods/spark-pi-a684547a-driver] failed (1). Will sleep 10 seconds and then try again.
+0522 07:31:56 [1558510316] spark-pi-a684547a - Error from server (BadRequest): container "spark-kubernetes-driver" in pod "spark-pi-a684547a-driver" is waiting to start: PodInitializing
+0522 07:31:56 [1558510316] spark-pi-a684547a - Invocation (2/7) of [kubectl -n flowsnake-watchdog logs pods/spark-pi-a684547a-driver] failed (1). Will sleep 10 seconds and then try again.
+0522 07:32:09 [1558510329] spark-pi-a684547a - Error from server (BadRequest): container "spark-kubernetes-driver" in pod "spark-pi-a684547a-driver" is waiting to start: PodInitializing
+0522 07:32:10 [1558510330] spark-pi-a684547a - Invocation (3/7) of [kubectl -n flowsnake-watchdog logs pods/spark-pi-a684547a-driver] failed (1). Will sleep 10 seconds and then try again.
+0522 07:32:22 [1558510342] spark-pi-a684547a - Error from server (BadRequest): container "spark-kubernetes-driver" in pod "spark-pi-a684547a-driver" is waiting to start: PodInitializing
+0522 07:32:22 [1558510342] spark-pi-a684547a - Invocation (4/7) of [kubectl -n flowsnake-watchdog logs pods/spark-pi-a684547a-driver] failed (1). Will sleep 10 seconds and then try again.
+0522 07:32:33 [1558510353] spark-pi-a684547a - Error from server (BadRequest): container "spark-kubernetes-driver" in pod "spark-pi-a684547a-driver" is waiting to start: PodInitializing
+0522 07:32:33 [1558510353] spark-pi-a684547a - Invocation (5/7) of [kubectl -n flowsnake-watchdog logs pods/spark-pi-a684547a-driver] failed (1). Will sleep 10 seconds and then try again.
+0522 07:32:45 [1558510365] spark-pi-a684547a - Error from server (BadRequest): container "spark-kubernetes-driver" in pod "spark-pi-a684547a-driver" is waiting to start: PodInitializing
+0522 07:32:45 [1558510365] spark-pi-a684547a - Invocation (6/7) of [kubectl -n flowsnake-watchdog logs pods/spark-pi-a684547a-driver] failed (1). Will sleep 10 seconds and then try again.
+0522 07:32:57 [1558510377] spark-pi-a684547a - Error from server (BadRequest): container "spark-kubernetes-driver" in pod "spark-pi-a684547a-driver" is waiting to start: PodInitializing
+0522 07:32:57 [1558510377] spark-pi-a684547a - Invocation (7/7) of [kubectl -n flowsnake-watchdog logs pods/spark-pi-a684547a-driver] failed (1). Giving up.
+0522 07:32:57 [1558510377] spark-pi-a684547a - ---- End pods/spark-pi-a684547a-driver Log ----
+0522 07:32:57 [1558510377] spark-pi-a684547a - -------- Executor Pods ----------
+0522 07:32:58 [1558510378] spark-pi-a684547a - Cleaning up stuff for complated or failed test.
+0522 07:32:58 [1558510378] spark-pi-a684547a - sparkapplication "spark-pi-a684547a" deleted
+0522 07:33:00 [1558510380] spark-pi-a684547a - pod "spark-pi-a684547a-driver" deleted
+0522 07:33:02 [1558510382] spark-pi-a684547a - ======== Completion of spark-pi-a684547a test, returning 1 ========

@@ -1,0 +1,27 @@
+UNRECOGNIZED_NON_TIMEOUT
+//
+// What happened here? No events to explain why driver went from Running to Terminating
+//
+0524 03:06:41 [1558667201] spark-pi-8a74e8c4 - ======== Beginning spark-pi-8a74e8c4 test ========
+0524 03:06:41 [1558667201] spark-pi-8a74e8c4 -  [0;32mKubernetes master [0m is running at  [0;33mhttps://10.254.208.1:443 [0m
+0524 03:06:41 [1558667201] spark-pi-8a74e8c4 -
+0524 03:06:41 [1558667201] spark-pi-8a74e8c4 - To further debug and diagnose cluster problems, use 'kubectl cluster-info dump'.
+0524 03:06:42 [1558667202] spark-pi-8a74e8c4 - Cleaning up SparkApplication/Pod older than 1 hours from prior runs.
+0524 03:06:43 [1558667203] spark-pi-8a74e8c4 - Creating SparkApplication spark-pi-8a74e8c4
+0524 03:06:43 [1558667203] spark-pi-8a74e8c4 - sparkapplication "spark-pi-8a74e8c4" created
+0524 03:06:44 [1558667204] spark-pi-8a74e8c4 - Waiting for SparkApplication spark-pi-8a74e8c4 to reach a terminal state.
+0524 03:06:51 [1558667211] spark-pi-8a74e8c4 - Pod change detected: spark-pi-8a74e8c4-driver: Init:0/1 on host fs1shared0-flowsnakeworkertest2-4-prd.eng.sfdc.net.
+0524 03:06:56 [1558667216] spark-pi-8a74e8c4 - Pod change detected: spark-pi-8a74e8c4-driver changed to PodInitializing (previously Init:0/1).
+0524 03:06:58 [1558667218] spark-pi-8a74e8c4 - Pod change detected: spark-pi-8a74e8c4-driver changed to Running (previously PodInitializing).
+0524 03:07:01 [1558667221] spark-pi-8a74e8c4 - Pod change detected: spark-pi-8a74e8c4-driver changed to Terminating (previously Running).
+0524 03:07:18 [1558667238] spark-pi-8a74e8c4 - SparkApplication spark-pi-8a74e8c4 has terminated after 33 seconds. State is FAILED.
+0524 03:07:18 [1558667238] spark-pi-8a74e8c4 - Pod change detected: spark-pi-8a74e8c4-driver removed.
+0524 03:07:18 [1558667238] spark-pi-8a74e8c4 - ---- Begin Events ----
+0524 03:07:18 [1558667238] spark-pi-8a74e8c4 - Name:         spark-pi-8a74e8c4
+0524 03:07:18 [1558667238] spark-pi-8a74e8c4 - Events:                          <none>
+0524 03:07:21 [1558667241] spark-pi-8a74e8c4 - ---- End Events ----
+0524 03:07:21 [1558667241] spark-pi-8a74e8c4 - Cannot locate driver pod. Maybe it never started? No logs to display.
+0524 03:07:21 [1558667241] spark-pi-8a74e8c4 - -------- Executor Pods ----------
+0524 03:07:21 [1558667241] spark-pi-8a74e8c4 - Cleaning up stuff for complated or failed test.
+0524 03:07:21 [1558667241] spark-pi-8a74e8c4 - sparkapplication "spark-pi-8a74e8c4" deleted
+0524 03:07:23 [1558667243] spark-pi-8a74e8c4 - ======== Completion of spark-pi-8a74e8c4 test, returning 1 ========

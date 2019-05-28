@@ -1,0 +1,22 @@
+UNRECOGNIZED_NON_TIMEOUT
+//
+// What happened here? Did it even try to create a driver? Why no events from the spark application?
+//
+0524 12:00:40 [1558699240] spark-pi-12be83bc - ======== Beginning spark-pi-12be83bc test ========
+0524 12:00:40 [1558699240] spark-pi-12be83bc -  [0;32mKubernetes master [0m is running at  [0;33mhttps://10.254.208.1:443 [0m
+0524 12:00:40 [1558699240] spark-pi-12be83bc -
+0524 12:00:40 [1558699240] spark-pi-12be83bc - To further debug and diagnose cluster problems, use 'kubectl cluster-info dump'.
+0524 12:00:40 [1558699240] spark-pi-12be83bc - Cleaning up SparkApplication/Pod older than 1 hours from prior runs.
+0524 12:00:41 [1558699241] spark-pi-12be83bc - Creating SparkApplication spark-pi-12be83bc
+0524 12:00:41 [1558699241] spark-pi-12be83bc - sparkapplication "spark-pi-12be83bc" created
+0524 12:00:42 [1558699242] spark-pi-12be83bc - Waiting for SparkApplication spark-pi-12be83bc to reach a terminal state.
+0524 12:01:01 [1558699261] spark-pi-12be83bc - SparkApplication spark-pi-12be83bc has terminated after 19 seconds. State is SUBMISSION_FAILED.
+0524 12:01:02 [1558699262] spark-pi-12be83bc - ---- Begin Events ----
+0524 12:01:02 [1558699262] spark-pi-12be83bc - Name:         spark-pi-12be83bc
+0524 12:01:02 [1558699262] spark-pi-12be83bc - Events:                          <none>
+0524 12:01:04 [1558699264] spark-pi-12be83bc - ---- End Events ----
+0524 12:01:04 [1558699264] spark-pi-12be83bc - Cannot locate driver pod. Maybe it never started? No logs to display.
+0524 12:01:04 [1558699264] spark-pi-12be83bc - -------- Executor Pods ----------
+0524 12:01:05 [1558699265] spark-pi-12be83bc - Cleaning up stuff for complated or failed test.
+0524 12:01:05 [1558699265] spark-pi-12be83bc - sparkapplication "spark-pi-12be83bc" deleted
+0524 12:01:05 [1558699265] spark-pi-12be83bc - ======== Completion of spark-pi-12be83bc test, returning 1 ========
