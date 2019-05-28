@@ -28,8 +28,10 @@
     // These are deployment names.
     nginxProxyName: "slb-nginx-config-b",
     hsmNginxProxyName: "slb-hsm-nginx",
+    // Mike's Oct 2018 POC deployment (Envoy + Nginx)
     envoyProxyName: "slb-envoy",
-    envoyProxyConfigDeploymentName: "slb-envoy-config-b",
+    // Envoy-based proxy (100% replaces Nginx)
+    envoyProxyConfigDeploymentName: "slb-envoy-proxy",
     # The aggregated portal only makes sense to deploy in prd, where we have access and can link to the pseudo-api servers.
     isSlbAggregatedPortalEstate: (estate == "prd-sam"),
 
