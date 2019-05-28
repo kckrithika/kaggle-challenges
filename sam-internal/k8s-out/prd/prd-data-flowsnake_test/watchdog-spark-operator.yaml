@@ -381,20 +381,20 @@ items:
       json.dumps(analysis, sort_keys=True) if len(analysis) > 1 else analysis[CLASSIFICATION]\n\n\ndef
       log(s):\n    print('+++ [{}] {}'.format(THIS_SCRIPT, s))\n\n\nif args.command:\n
       \   start = time.time()\n    try:\n        log(\"Executing and analyzing output
-      of: {}\".format(\" \".join(additional_args)))\n        print(subprocess.check_output(additional_args,
-      stderr=subprocess.STDOUT), end='')\n        timings, epochs = compute_times(subprocess.STDOUT,
-      succeeded=True)\n        log(\"Times: \")\n        log(\"No errors ({}s)\".format(int(time.time()
-      - start)))\n        sys.exit(0)\n    except subprocess.CalledProcessError as
-      e:\n        print(e.output, end='')\n        timings, epochs = compute_times(e.output)\n
-      \       log(\"Analysis of failure [{}] ({}s): {}\".format(\n            e.returncode,\n
-      \           int(time.time() - start),\n            pretty_result(analyze(e.output,
-      timings))))\n        log(\"Times: {}\".format(json.dumps(timings, sort_keys=True)))\n
-      \       sys.exit(e.returncode)\nelif args.analyze:\n    with open(args.analyze,
-      'r') as file:\n        output = file.read()\n        timings, epochs = compute_times(output)\n
-      \       print(pretty_result(analyze(output, timings)))\n        print(\"Times:
-      {}\".format(json.dumps(timings, sort_keys=True)))\nelif args.test_dir:\n    success
-      = True\n    for filename in sorted(os.listdir(args.test_dir)):\n        with
-      open(os.path.join(args.test_dir, filename), 'r') as file:\n            expect,
+      of: {}\".format(\" \".join(additional_args)))\n        output = subprocess.check_output(additional_args,
+      stderr=subprocess.STDOUT)\n        print(output, end='')\n        timings, epochs
+      = compute_times(output, succeeded=True)\n        log(\"Times: \")\n        log(\"No
+      errors ({}s)\".format(int(time.time() - start)))\n        sys.exit(0)\n    except
+      subprocess.CalledProcessError as e:\n        print(e.output, end='')\n        timings,
+      epochs = compute_times(e.output)\n        log(\"Analysis of failure [{}] ({}s):
+      {}\".format(\n            e.returncode,\n            int(time.time() - start),\n
+      \           pretty_result(analyze(e.output, timings))))\n        log(\"Times:
+      {}\".format(json.dumps(timings, sort_keys=True)))\n        sys.exit(e.returncode)\nelif
+      args.analyze:\n    with open(args.analyze, 'r') as file:\n        output = file.read()\n
+      \       timings, epochs = compute_times(output)\n        print(pretty_result(analyze(output,
+      timings)))\n        print(\"Times: {}\".format(json.dumps(timings, sort_keys=True)))\nelif
+      args.test_dir:\n    success = True\n    for filename in sorted(os.listdir(args.test_dir)):\n
+      \       with open(os.path.join(args.test_dir, filename), 'r') as file:\n            expect,
       output = file.read().split('\\n', 1)\n            timings, epochs = compute_times(output)\n
       \           text_result = pretty_result(analyze(output, timings))\n            if
       text_result == expect:\n                print(u\"\\u2713 {}: {}\".format(filename,
