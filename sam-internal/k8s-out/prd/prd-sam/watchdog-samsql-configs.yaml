@@ -391,9 +391,15 @@ data:
     nd\n                          WHERE\n                            Name like ''%kubeapi%''\n                            AND
     minionpool NOT LIKE ''%ceph%''\n                            AND minionpool NOT
     LIKE ''%slb%''\n                            AND minionpool NOT LIKE ''%storage%''\n                            AND
-    (now() > STR_TO_DATE(''2019-01-10'', ''%Y-%m-%d'') OR Name != ''shared0-samkubeapi3-1-par.ops.sfdc.net'')\n                                AND
-    (now() > STR_TO_DATE(''2019-01-10'', ''%Y-%m-%d'') OR Name != ''shared0-samkubeapi1-1-phx.ops.sfdc.net'')\n                                AND
-    (now() > STR_TO_DATE(''2019-03-21'', ''%Y-%m-%d'') OR Name != ''shared0-samkubeapi1-1-yhu.ops.sfdc.net'')\n                          GROUP
+    (now() > STR_TO_DATE(''2019-01-10'', ''%Y-%m-%d'') OR Name != ''shared0-samkubeapi3-1-par.ops.sfdc.net'')\n                            AND(Name
+    != ''shared0-samkubeapi2-1-hnd.ops.sfdc.net'')\n                            AND(Name
+    != ''shared0-samkubeapi2-1-xrd.eng.sfdc.net'')\n                            AND(Name
+    != ''shared0-samkubeapi2-1-dfw.ops.sfdc.net'')\n                            AND(Name
+    != ''shared0-samkubeapi1-1-lo2.ops.sfdc.net'')\n                            AND(Name
+    != ''shared0-samkubeapi3-2-ph2.ops.sfdc.net'')\n                            AND(Name
+    != ''shared0-samkubeapi3-1-par.ops.sfdc.net'')\n                            AND(Name
+    != ''shared0-samkubeapi2-1-yhu.ops.sfdc.net'')\n                            AND(Name
+    != ''shared0-samtwokubeapi1-1-prd.eng.sfdc.net'')\n                          GROUP
     BY minionpool\n                        ) ss\n                        ) ss2\n                where
     NotReadyApiCount>0 and dist=0", "watchdogFrequency": "5m"}, {"alertAction": "businesshours_pagerduty",
     "alertFrequency": "24h", "alertProfile": "sam", "alertThreshold": "20m", "instructions":
@@ -407,9 +413,15 @@ data:
     nd\n                          WHERE\n                            Name like ''%kubeapi%''\n                            AND
     minionpool NOT LIKE ''%ceph%''\n                            AND minionpool NOT
     LIKE ''%slb%''\n                            AND minionpool NOT LIKE ''%storage%''\n                            AND
-    (now() > STR_TO_DATE(''2019-01-10'', ''%Y-%m-%d'') OR Name != ''shared0-samkubeapi3-1-par.ops.sfdc.net'')\n                                AND
-    (now() > STR_TO_DATE(''2019-01-10'', ''%Y-%m-%d'') OR Name != ''shared0-samkubeapi1-1-phx.ops.sfdc.net'')\n                                AND
-    (now() > STR_TO_DATE(''2019-03-21'', ''%Y-%m-%d'') OR Name != ''shared0-samkubeapi1-1-yhu.ops.sfdc.net'')\n                          GROUP
+    (now() > STR_TO_DATE(''2019-01-10'', ''%Y-%m-%d'') OR Name != ''shared0-samkubeapi3-1-par.ops.sfdc.net'')\n                            AND(Name
+    != ''shared0-samkubeapi2-1-hnd.ops.sfdc.net'')\n                            AND(Name
+    != ''shared0-samkubeapi2-1-xrd.eng.sfdc.net'')\n                            AND(Name
+    != ''shared0-samkubeapi2-1-dfw.ops.sfdc.net'')\n                            AND(Name
+    != ''shared0-samkubeapi1-1-lo2.ops.sfdc.net'')\n                            AND(Name
+    != ''shared0-samkubeapi3-2-ph2.ops.sfdc.net'')\n                            AND(Name
+    != ''shared0-samkubeapi3-1-par.ops.sfdc.net'')\n                            AND(Name
+    != ''shared0-samkubeapi2-1-yhu.ops.sfdc.net'')\n                            AND(Name
+    != ''shared0-samtwokubeapi1-1-prd.eng.sfdc.net'')\n                          GROUP
     BY minionpool\n                        ) ss\n                        ) ss2\n                where
     NotReadyApiCount>0 and dist>0", "watchdogFrequency": "5m"}, {"alertAction": "businesshours_pagerduty",
     "alertFrequency": "24h", "alertProfile": "sam", "alertThreshold": "20m", "instructions":
