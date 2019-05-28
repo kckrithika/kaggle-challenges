@@ -14,7 +14,7 @@ data:
       "deployer-imageName": "ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-gcp/dva/sam/hypersam:2601-1bbc5de4786678763a4e8a71681ee42ada887c76",
       "deployer-rcImtEndpoint": "https://reportcollector-mvp.data.sfdc.net:18443/v1/bark",
       "deployer-recipient": "",
-      "deployer-sender": "",
+      "deployer-sender": "sam-alerts@salesforce.com",
       "deployer-smtpServer": "fakeSmtpServer",
       "email-subject-prefix": "SAMWD",
       "enableMaddogCertChecks": false,
@@ -65,7 +65,7 @@ data:
       "rcImtEndpoint": "https://reportcollector-mvp.data.sfdc.net:18443/v1/bark",
       "recipient": "",
       "sdpEndpoint": "http://localhost:39999",
-      "sender": "",
+      "sender": "sam-alerts@salesforce.com",
       "smtpServer": "fakeSmtpServer",
       "snooze": [
         {
