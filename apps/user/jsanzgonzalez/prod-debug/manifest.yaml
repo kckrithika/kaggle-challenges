@@ -15,7 +15,7 @@ system:
             command:
             - cat
             - /tmp/live
-          initialDelaySeconds: 10
+          initialDelaySeconds: 20
           periodSeconds: 5
 
       - name: envoy-sidecar
