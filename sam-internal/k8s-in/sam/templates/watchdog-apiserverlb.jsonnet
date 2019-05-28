@@ -22,7 +22,7 @@ local utils = import "util_functions.jsonnet";
                                  ])
                                  + samwdconfig.pagerduty_args
                                  + samwdconfig.shared_args
-                                 + (if configs.kingdom == "prd" then ["-emailFrequency=72h"] else ["-emailFrequency=12h"]),
+                                 + ["-emailFrequency=336h"],
                         volumeMounts+: [
                             configs.sfdchosts_volume_mount,
                             configs.cert_volume_mount,

@@ -19,7 +19,7 @@ if configs.kingdom == "prd" then {
                                      "-k8sproxyEndpoint=http://localhost:40000",
                                      "-watchdogFrequency=10s",
                                      "-alertThreshold=300s",
-                                     "-emailFrequency=48h",
+                                     "-emailFrequency=336h",
                                      "-watchDogKind=" + $.kind,
                                  ]
                                  + samwdconfig.shared_args,

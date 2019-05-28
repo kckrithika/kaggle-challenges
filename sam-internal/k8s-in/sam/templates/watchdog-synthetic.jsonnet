@@ -38,7 +38,7 @@ if configs.kingdom != "mvp" then {
                                      "-role=SYNTHETIC",
                                      if configs.kingdom == "prd" then "-watchdogFrequency=300s" else "-watchdogFrequency=180s",
                                      "-alertThreshold=1h",
-                                     "-emailFrequency=12h",
+                                     "-emailFrequency=336h",
                                      "-laddr=" + samwdconfig.laddr,
                                      # SAM AutoDeployer replaces "auto" keyword with the newest hypersam tag but only in containers[*].image, not in command line.  We will just use hypersam from next phase
                                      # TODO: When we move to the bundle controller and deployer bot we can move this back to simply be samimages.hypersam

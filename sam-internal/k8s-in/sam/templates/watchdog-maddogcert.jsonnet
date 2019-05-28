@@ -19,7 +19,7 @@ configs.daemonSetBase("sam") {
                                      "-role=MADDOGCERT",
                                      "-watchdogFrequency=10m",
                                      "-alertThreshold=30m",
-                                     "-emailFrequency=24h",
+                                     "-emailFrequency=336h",
                                      "-watchDogKind=" + $.kind,
                                  ]
                                  + samwdconfig.shared_args,

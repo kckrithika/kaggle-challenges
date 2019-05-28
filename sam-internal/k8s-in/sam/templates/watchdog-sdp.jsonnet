@@ -19,7 +19,7 @@ if samfeatureflags.sdpv1 then {
                                      "-role=SDP",
                                      "-watchdogFrequency=10s",
                                      "-alertThreshold=300s",
-                                     "-emailFrequency=24h",
+                                     "-emailFrequency=336h",
                                      "-watchDogKind=" + $.kind,
                                  ]
                                  + samwdconfig.shared_args,

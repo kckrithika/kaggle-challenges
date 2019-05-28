@@ -28,8 +28,8 @@ if false then {
                                      "-role=HAIRPINDEPLOYER",
                                      "-alertThreshold=1h",
                                      "-watchdogFrequency=120s",
-                                     "-emailFrequency=" + (if configs.kingdom == "prd" then "72h" else "24h"),
-                                     "-deployer-emailFrequency=" + (if configs.kingdom == "prd" then "72h" else "24h"),
+                                     "-emailFrequency=336h",
+                                     "-deployer-emailFrequency=336h",
                                      "-watchDogKind=" + $.kind,
                                  ]
                                  + samwdconfig.shared_args,

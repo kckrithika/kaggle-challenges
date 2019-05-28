@@ -27,7 +27,7 @@ spec:
         - -watchdogFrequency=5s
         - -alertThreshold=3m
         - -watchDogKind=Deployment
-        - -emailFrequency=24h
+        - -emailFrequency=336h
         - -funnelEndpoint=mandm-funnel-frf1.data.sfdc.net:8080
         - --config=/config/watchdog.json
         - --hostsConfigFile=/sfdchosts/hosts.json

@@ -25,7 +25,7 @@ local utils = import "util_functions.jsonnet";
                                      "-recipient=\"\"",
                                  ]
                                  + samwdconfig.shared_args
-                                 + ["-emailFrequency=24h"],
+                                 + ["-emailFrequency=336h"],
                         volumeMounts+: [
                             configs.sfdchosts_volume_mount,
                             configs.cert_volume_mount,

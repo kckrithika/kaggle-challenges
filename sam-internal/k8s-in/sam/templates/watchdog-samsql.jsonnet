@@ -25,7 +25,7 @@ if configs.estate == "prd-sam" then {
                                     "--sqlDbPort=3306",
                                     "--sqlQueryFile=/var/queries/watchdog-samsql-queries.jsonnet",
                                     "--sqlAlertFile=/var/queries/watchdog-samsql-profiles.jsonnet",
-                                    "--emailFrequency=24h",
+                                    "--emailFrequency=336h",
                                     "--enableEmailPerCheckerInstance=true",
                                     "-v=5",
                                     "--alsologtostderr",

@@ -27,7 +27,7 @@ spec:
         - -role=MADDOGCERT
         - -watchdogFrequency=10m
         - -alertThreshold=30m
-        - -emailFrequency=24h
+        - -emailFrequency=336h
         - -watchDogKind=DaemonSet
         - -funnelEndpoint=ajna0-funnel1-0-ttd.data.sfdc.net:80
         - --config=/config/watchdog.json

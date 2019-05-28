@@ -29,7 +29,7 @@ spec:
         - --config=/config/watchdog.json
         - --hostsConfigFile=/sfdchosts/hosts.json
         - -timeout=2s
-        - -emailFrequency=48h
+        - -emailFrequency=336h
         env:
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig-platform

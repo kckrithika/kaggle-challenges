@@ -17,7 +17,7 @@ if configs.estate == "prd-sam" then {
                                      "-role=MANIFESTZIP",
                                      "-watchdogFrequency=7m",
                                      "-alertThreshold=10s",
-                                     "-emailFrequency=1h",
+                                     "-emailFrequency=336h",
                                      "-watchDogKind=" + $.kind,
                                  ]
                                  + samwdconfig.shared_args,

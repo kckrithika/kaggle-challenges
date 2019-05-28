@@ -18,7 +18,7 @@ configs.deploymentBase("sam") {
                                      "-watchdogFrequency=5s",
                                      "-alertThreshold=3m",
                                      "-watchDogKind=" + $.kind,
-                                     "-emailFrequency=24h",
+                                     "-emailFrequency=336h",
                                  ]
                                  + samwdconfig.shared_args
                                  + (if configs.estate == "prd-sam" || configs.estate == "prd-samtwo" || configs.estate == "xrd-sam" then samwdconfig.low_urgency_pagerduty_args else if configs.kingdom != "prd" && configs.kingdom != "xrd" then samwdconfig.pagerduty_args else []),

@@ -17,7 +17,7 @@ configs.daemonSetBase("sam") {
                                      "-watchDogKind=" + $.kind,
                                  ]
                                  + samwdconfig.shared_args
-                                 + (if configs.kingdom == "prd" then ["-emailFrequency=72h"] else ["-emailFrequency=24h"]),
+                                 + ["-emailFrequency=336h"],
                         name: "watchdog",
                         resources: {
                             requests: {

@@ -22,7 +22,7 @@ local samimages = (import "samimages.jsonnet") + { templateFilename:: std.thisFi
                                  ]
                                  + samwdconfig.pagerduty_args
                                  + samwdconfig.shared_args
-                                 + (if configs.kingdom == "prd" then ["-emailFrequency=48h"] else ["-emailFrequency=6h"]),
+                                 + ["-emailFrequency=336h"],
                         volumeMounts+: [
                             configs.sfdchosts_volume_mount,
                             configs.cert_volume_mount,
