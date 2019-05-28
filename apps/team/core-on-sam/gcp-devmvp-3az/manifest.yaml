@@ -47,7 +47,7 @@ system:
           
         # db pw extracted from k4a at startup
         - name: DB_USER
-          value: sneezy
+          value: doc
         - name: DB_SID
           value: NADB11
         - name: DB_INSTANCE_NAME
@@ -262,7 +262,7 @@ system:
         mountPath: /certs/cert-server
 
     - name: casam-sidecar
-      image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-gcp/sfci/casam/coreapp_overrides:ea709a
+      image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-gcp/sfci/casam/coreapp_overrides:e75ff6
       env:
       - name: CASAM_SETTINGS_PATH
         value: prod.-.phx.na3.app
