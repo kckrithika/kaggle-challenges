@@ -11,7 +11,7 @@ system:
     count: 3
     containers:
     - name: metadata-service
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/metadata-cannon/metadata-service:0.8.63
+      image: sfci/metadata-cannon/metadata-service:0.8.70
       ports:
       - containerPort: 9091
       - containerPort: 15523
@@ -23,7 +23,7 @@ system:
       - name: MANAGEMENT_PORT
         value: "15523"
       - name: JVM_ARGS
-        value: -Ddatabase.name=metadataservice_perf_test5 -Dstartup.upsert.canonical.model=false -Djwt-validation.enabled=false
+        value: -Ddatabase.name=metadataservice_perf_test5 -Djwt-validation.enabled=false
           -verbose:gc -XX:+PrintGCDateStamps -XX:+PrintHeapAtGC -XX:+PrintPromotionFailure
           -XX:+PrintTenuringDistribution -XX:+PrintGCDetails -XX:+PrintGCDateStamps
           -XX:+PrintGCApplicationStoppedTime -XX:+PrintGCApplicationConcurrentTime
