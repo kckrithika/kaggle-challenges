@@ -286,18 +286,6 @@ system:
       port: 8443
       targetport: 8443
       name: https-core
-  - function: na7-mist61app-prd
-    lbname: us7-mist61app-prd
-    ports:
-    - lbtype: dsr
-      port: 8085
-      targetport: 8085
-      name: http-core
-    - lbtype: dsr
-      port: 8443
-      targetport: 8443
-      name: https-core
-    slbEnabled: true
   - function: na7-mist61sequencer-prd
     lbname: na7-mist61sequencer-prd
     ports:
