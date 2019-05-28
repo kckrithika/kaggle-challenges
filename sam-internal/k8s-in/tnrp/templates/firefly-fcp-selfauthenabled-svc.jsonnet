@@ -36,7 +36,7 @@ if configs.estate == "prd-samtwo" then
               enabled: true,
               "service-account-key": "${gcsUploaderKey#FromSecretService}",
             },
-            "gcs-bucket": "fcp_archive",
+            "gcs-bucket": "fcparchive",
             s3: {
               enabled: true,
               "s3-access-key-id": "${s3AccessKeyId#FromSecretService}",
@@ -75,7 +75,13 @@ if configs.estate == "prd-samtwo" then
               enabled: true,
               "service-account-key": "${gcsUploaderKey#FromSecretService}",
             },
-            "gcs-bucket": "fcp_archive",
+            "gcs-bucket": "fcparchive",
+            s3: {
+              enabled: true,
+              "s3-access-key-id": "${s3AccessKeyId#FromSecretService}",
+              "s3-secret-access-key": "${s3SecretAccessKey#FromSecretService}",
+            },
+            "s3-bucket": "fcparchive",
           },
         },
         "application.yml": std.manifestJson(appConfig),

@@ -34,10 +34,10 @@ if configs.estate == "prd-samtwo" then
          local appConfig = packageConfig.config("firefly-package") + {
            appconfig+: {
               gcs: {
-                enabled: false,
+                enabled: true,
                 "service-account-key": "${gcsUploaderKey#FromSecretService}",
               },
-              "gcs-bucket": "fcp_archive",
+              "gcs-bucket": "fcparchive",
               s3: {
                 enabled: true,
                 "s3-access-key-id": "${s3AccessKeyId#FromSecretService}",
@@ -76,10 +76,10 @@ if configs.estate == "prd-samtwo" then
          local appConfig = packageConfig.config("firefly-package") + {
            appconfig+: {
               gcs: {
-                enabled: false,
+                enabled: true,
                 "service-account-key": "${gcsUploaderKey#FromSecretService}",
               },
-              "gcs-bucket": "fcp_archive",
+              "gcs-bucket": "fcparchive",
               s3: {
                 enabled: true,
                 "s3-access-key-id": "${s3AccessKeyId#FromSecretService}",
