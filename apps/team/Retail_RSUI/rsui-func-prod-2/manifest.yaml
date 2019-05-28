@@ -2,7 +2,7 @@ apiVersion: v1
 
 system:
   functions:
-  - name: rsui-func-prod
+  - name: rsui-func-prod-2
     count: 3
     identity:
      serviceName: retail-setup
@@ -14,8 +14,8 @@ system:
       maddogCert:
         type: server
         lbnames:
-        - rsui-func-prod-lb
-        - rsui-func-prod-test-lb
+        - rsui-func-prod-2-lb
+        - rsui-func-prod-2-test-lb
     - name: retailclientcert
       maddogCert:
         type: client
@@ -87,7 +87,7 @@ system:
       - name: CORE_OAUTH_SANDBOXURL
         value: https://test.stmfc.stm.salesforce.com
       - name: RSUI_OAUTH_CALLBACK
-        value: https://rsui-func-prod-lb.retail-rsui.prd-sam.prd.slb.sfdc.net/service/oauth/callback
+        value: https://rsui-func-prod-2-lb.retail-rsui.prd-sam.prd.slb.sfdc.net/service/oauth/callback
       - name: OAUTH_CONSUMER_KEY
         value: 3MVG9qKMKuRGRcbsuPuzRDiXVrjOrpresbHd9IQYuanSzwEa86PEyPRevAGTtXwf9DyuQsSBx3oAilDhrxRl9
       - name: OAUTH_CONSUMER_SECRET
@@ -165,7 +165,7 @@ system:
         mountPath: /home/retail-setup/secrets/encryption-key2
         readOnly: true
 
-    - name: sherpa-rsui-func-prod
+    - name: sherpa-rsui-func-prod-2
       image: sfci/servicelibs/sherpa-envoy:1.0.5
       env:
       - name: SFDC_ENVIRONMENT
@@ -196,7 +196,7 @@ system:
         initialDelaySeconds: 110
         periodSeconds: 5
 
-    - name: beacon-rsui-func-prod
+    - name: beacon-rsui-func-prod-2
       image: sfci/servicelibs/beacon:ce3b9722faf59dc7550a1df2905ecff794fbb2e3
       env:
       - name: SFDC_ENVIRONMENT
@@ -214,8 +214,8 @@ system:
             - "/home/scone/is-alive.sh"
 
   loadbalancers:
-  - lbname: rsui-func-prod-lb
-    function: rsui-func-prod
+  - lbname: rsui-func-prod-2-lb
+    function: rsui-func-prod-2
     slbEnabled: true
     ports:
       - port: 443
@@ -223,7 +223,7 @@ system:
         tls: true
         lbtype: http
         reencrypt: true
-  - lbname: rsui-func-prod-test-lb
+  - lbname: rsui-func-prod-2-test-lb
     function: rsui-func-prod
     slbEnabled: true
     ports:
