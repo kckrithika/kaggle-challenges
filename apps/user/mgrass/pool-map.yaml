@@ -2,3 +2,4 @@ version: v2
 apps:
   aviary:
   - name: prd/prd-sam
+  - name: prd/prd-sdc
