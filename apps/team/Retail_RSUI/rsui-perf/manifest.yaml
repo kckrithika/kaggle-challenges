@@ -40,7 +40,7 @@ system:
 
     containers:
     - name: rsui-perf
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/retail/retail-setup:0.1.8.98
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/retail/retail-setup:0.1.8.100
       ports:
       - containerPort: 7022
         name: rsui-in-http1
@@ -148,6 +148,8 @@ system:
         value: false
       - name: ENDPOINTS_JVM_ENABLED
         value: false
+      - name: CORE_GRPC_RETRY_LIMIT
+        value: 5
       livenessProbe:
         initialDelaySeconds: 120
         periodSeconds: 30
