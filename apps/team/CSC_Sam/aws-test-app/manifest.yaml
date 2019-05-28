@@ -1,0 +1,15 @@
+apiVersion: v1
+
+system:
+  functions:
+  - name: sam-gcp-test-func
+    count: 2
+    containers:
+    - name: samhello
+      image: 908150051399.dkr.ecr.us-east-2.amazonaws.com/test-samapp:20190524
+      ports:
+      - containerPort: 9090
+      livenessProbe:
+        httpGet:
+          path: /
+          port: 9090
