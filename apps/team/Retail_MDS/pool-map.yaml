@@ -25,3 +25,8 @@ apps:
     metadata-service-prod:        # production
     - name: iad/iad-sam_crosscloudplatform
     - name: ord/ord-sam_crosscloudplatform
+
+    istio-core-test:    # temp app
+      - name: prd/prd-sam_crosscloudplatform
+        hostSubList:
+          - shared0-samminioncrosscloudplatform2-3-prd.eng.sfdc.net
