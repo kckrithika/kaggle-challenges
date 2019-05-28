@@ -9,14 +9,21 @@ system:
     containers:
 
       - name: prod-debug-service
-        image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/jsanzgonzalez/prod-debug:jsanzgonzalez-20190528-d9cfcea
+        image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/jsanzgonzalez/prod-debug:jsanzgonzalez-20190528-489af70
         livenessProbe:
           exec:
             command:
             - cat
             - /tmp/live
-          initialDelaySeconds: 20
+          initialDelaySeconds: 10
           periodSeconds: 5
+        readinessProbe:
+        exec:
+          command:
+          - cat
+          - /tmp/ready
+        initialDelaySeconds: 10
+        periodSeconds: 5
 
       - name: envoy-sidecar
         image: sfci/servicelibs/sherpa-envoy:1.0.7
