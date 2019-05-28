@@ -593,8 +593,9 @@ if args.command:
     start = time.time()
     try:
         log("Executing and analyzing output of: {}".format(" ".join(additional_args)))
-        print(subprocess.check_output(additional_args, stderr=subprocess.STDOUT), end='')
-        timings, epochs = compute_times(subprocess.STDOUT, succeeded=True)
+        output = subprocess.check_output(additional_args, stderr=subprocess.STDOUT)
+        print(output, end='')
+        timings, epochs = compute_times(output, succeeded=True)
         log("Times: ")
         log("No errors ({}s)".format(int(time.time() - start)))
         sys.exit(0)
