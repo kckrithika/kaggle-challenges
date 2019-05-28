@@ -141,6 +141,8 @@ system:
          value: "yes"     
        - name : DUMMY_VARIABLE
          value: "DUMMY_VARIABLE_4"
+       - name : GRID_CONNECTION_ID
+         value: 1
      volumes:
 #     - name: consumer-persistent-conf
 #       hostPath:
