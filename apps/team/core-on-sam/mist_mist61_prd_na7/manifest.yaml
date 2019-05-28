@@ -285,7 +285,7 @@ system:
     - lbtype: dsr
       port: 8443
       targetport: 8443
-      name: https-core
+      name: http-coretls
   - function: na7-mist61sequencer-prd
     lbname: na7-mist61sequencer-prd
     ports:
