@@ -11,13 +11,13 @@ system:
     hostnetwork: true
     containers:
     - name: kpagent-consumer-sam-image
-      image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/sdba/kpconsumer:0.1.1
+      image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/sdba/kpconsumer:0.1.2
       ports:
       - containerPort: 9090
       livenessProbe:
         httpGet:
           path: /
-          port: 9091
+          port: 9090
       volumeMounts:
         - name: tmp
           mountPath: /usr/src/app/tmp
