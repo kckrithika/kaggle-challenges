@@ -1,3 +1,5 @@
 apps:
  gid-service-layer:
   - xrd/xrd-sampool
+ logging:
+  - xrd/xrd-sampool
