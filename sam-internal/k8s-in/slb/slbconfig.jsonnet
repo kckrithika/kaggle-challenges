@@ -661,4 +661,6 @@
     maxDeleteLimit(deleteLimitOverride): (if deleteLimitOverride > 0
         then deleteLimitOverride
         else $.perCluster.maxDeleteCount[configs.estate]),
+
+    maxResourceTime: if configs.estate == "lo3-sam" then "50m0s" else "",
 }
