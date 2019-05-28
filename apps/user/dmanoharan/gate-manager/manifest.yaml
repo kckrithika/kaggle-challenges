@@ -19,7 +19,7 @@ system:
             - --gater.thrift.admin.endpoint=gater-mesh-admin
             - --metrics.collectionInterval=61
           ports:
-            - containerPort: 7020
+            - containerPort: 7121
             - containerPort: 9522
             - containerPort: 9523
             - containerPort: 9524
