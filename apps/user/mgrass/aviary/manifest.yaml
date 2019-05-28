@@ -163,6 +163,7 @@ system:
       - port: 80
         httpsredirectport: 443
         lbalgorithm: roundrobin
+        lbtype: http
       - port: 443
         targetport: 7022
         lbtype: http
