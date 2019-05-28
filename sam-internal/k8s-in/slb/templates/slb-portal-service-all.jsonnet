@@ -13,7 +13,7 @@ local services = [
         local portalPortConfig = [
             slbportconfiguration.newPortConfiguration(
                 port=80,
-                targetPort=portconfigs.slb.slbPortalServicePort,
+                targetPort=0,
                 lbType="http",
                 name="slb-portal-port",
             ) {
