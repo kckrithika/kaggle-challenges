@@ -77,15 +77,16 @@ local build_btrfs_test_commands = if std.objectHas(flowsnake_images.feature_flag
 
 local build_spark_operator_test_commands = {
   SparkOperatorTest: {
-    SparkOperatorTest: "/watchdog-spark-scripts/check-spark-operator.sh /strata-test-specs-in/basic-spark-pi.jsonnet",
+    SparkOperatorTest: if std.objectHas(flowsnake_images.feature_flags, "sok_watchdog_analysis")
+        then "/watchdog-spark-scripts/analysis.py --metrics --sfdchosts /sfdchosts/hosts.json --watchdog-config /config/watchdog.json --command /watchdog-spark-scripts/check-spark-operator.sh /strata-test-specs-in/basic-spark-pi.jsonnet"
+        else "/watchdog-spark-scripts/check-spark-operator.sh /strata-test-specs-in/basic-spark-pi.jsonnet",
     # Verify impersonation works at all
     ImpersonationProxyMinimalTest: "/watchdog-spark-scripts/check-impersonation.sh /watchdog-spark-scripts/kubeconfig-impersonation-proxy",
     # Run a Spark Application via the impersonation proxy
-    ImpersonationProxySparkTest: "/watchdog-spark-scripts/check-spark-operator.sh --kubeconfig /watchdog-spark-scripts/kubeconfig-impersonation-proxy /strata-test-specs-in/basic-spark-impersonation.jsonnet",
-  } + (if flowsnake_config.is_test then {
-    # Testing analysis of errors
-    AnalysisTest: "/watchdog-spark-scripts/analysis.py --metrics --sfdchosts /sfdchosts/hosts.json --watchdog-config /config/watchdog.json --command /watchdog-spark-scripts/check-spark-operator.sh /strata-test-specs-in/basic-spark-pi.jsonnet",
-  } else {}),
+    ImpersonationProxySparkTest: if std.objectHas(flowsnake_images.feature_flags, "sok_watchdog_analysis")
+        then "/watchdog-spark-scripts/analysis.py --metrics --sfdchosts /sfdchosts/hosts.json --watchdog-config /config/watchdog.json --command /watchdog-spark-scripts/check-spark-operator.sh --kubeconfig /watchdog-spark-scripts/kubeconfig-impersonation-proxy /strata-test-specs-in/basic-spark-impersonation.jsonnet"
+        else "/watchdog-spark-scripts/check-spark-operator.sh --kubeconfig /watchdog-spark-scripts/kubeconfig-impersonation-proxy /strata-test-specs-in/basic-spark-impersonation.jsonnet",
+  },
 };
 {
     command_sets:: build_canary_commands + build_docker_test_commands + build_btrfs_test_commands + build_spark_operator_test_commands,
