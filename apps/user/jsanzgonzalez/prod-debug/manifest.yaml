@@ -9,20 +9,14 @@ system:
     containers:
 
       - name: prod-debug-service
-        image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/jsanzgonzalez/prod-debug:jsanzgonzalez-20190527-2f89274
-        ports:
-        - containerPort: 15372
-          name: scone-mgmt
+        image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/jsanzgonzalez/prod-debug:jsanzgonzalez-20190528-bc9b2a1
         livenessProbe:
-          initialDelaySeconds: 30
-          httpGet:
-            path: /manage/health
-            port: 15372
-        readinessProbe:
-          timeoutSeconds: 10
-          httpGet:
-            path: /manage/ready
-            port: 15372
+          exec:
+            command:
+            - cat
+            - /tmp/live
+          initialDelaySeconds: 10
+          periodSeconds: 5
 
       - name: envoy-sidecar
         image: sfci/servicelibs/sherpa-envoy:1.0.7
@@ -53,7 +47,7 @@ system:
             command:
             - cat
             - /tmp/live
-          initialDelaySeconds: 3600
+          initialDelaySeconds: 20
           periodSeconds: 5
         volumeMounts:
           - mountPath: /home/sfdc-sherpa/sherpa-envoy-config-volume
