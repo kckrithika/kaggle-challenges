@@ -17,13 +17,6 @@ system:
             - /tmp/live
           initialDelaySeconds: 10
           periodSeconds: 5
-        readinessProbe:
-        exec:
-          command:
-          - cat
-          - /tmp/ready
-        initialDelaySeconds: 10
-        periodSeconds: 5
 
       - name: envoy-sidecar
         image: sfci/servicelibs/sherpa-envoy:1.0.7
