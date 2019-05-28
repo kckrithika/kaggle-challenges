@@ -17,7 +17,7 @@ items:
           "httpsredirectport": 443,
           "lbtype": "http",
           "port": 80,
-          "targetport": 9112
+          "targetport": 0
          },
          {
           "lbtype": "http",
@@ -36,7 +36,7 @@ items:
     - name: slb-portal-port
       port: 80
       protocol: TCP
-      targetPort: 9112
+      targetPort: 0
     - name: slb-portal-https-port
       port: 443
       protocol: TCP
@@ -61,7 +61,7 @@ items:
           "httpsredirectport": 443,
           "lbtype": "http",
           "port": 80,
-          "targetport": 9112
+          "targetport": 0
          },
          {
           "lbtype": "http",
@@ -80,7 +80,7 @@ items:
     - name: slb-portal-port
       port: 80
       protocol: TCP
-      targetPort: 9112
+      targetPort: 0
     - name: slb-portal-https-port
       port: 443
       protocol: TCP
@@ -105,7 +105,7 @@ items:
           "httpsredirectport": 443,
           "lbtype": "http",
           "port": 80,
-          "targetport": 9112
+          "targetport": 0
          },
          {
           "lbtype": "http",
@@ -124,7 +124,7 @@ items:
     - name: slb-portal-port
       port: 80
       protocol: TCP
-      targetPort: 9112
+      targetPort: 0
     - name: slb-portal-https-port
       port: 443
       protocol: TCP
@@ -149,7 +149,7 @@ items:
           "httpsredirectport": 443,
           "lbtype": "http",
           "port": 80,
-          "targetport": 9112
+          "targetport": 0
          },
          {
           "lbtype": "http",
@@ -168,7 +168,7 @@ items:
     - name: slb-portal-port
       port: 80
       protocol: TCP
-      targetPort: 9112
+      targetPort: 0
     - name: slb-portal-https-port
       port: 443
       protocol: TCP
@@ -193,7 +193,7 @@ items:
           "httpsredirectport": 443,
           "lbtype": "http",
           "port": 80,
-          "targetport": 9112
+          "targetport": 0
          },
          {
           "lbtype": "http",
@@ -212,7 +212,7 @@ items:
     - name: slb-portal-port
       port: 80
       protocol: TCP
-      targetPort: 9112
+      targetPort: 0
     - name: slb-portal-https-port
       port: 443
       protocol: TCP
@@ -237,7 +237,7 @@ items:
           "httpsredirectport": 443,
           "lbtype": "http",
           "port": 80,
-          "targetport": 9112
+          "targetport": 0
          },
          {
           "lbtype": "http",
@@ -256,7 +256,7 @@ items:
     - name: slb-portal-port
       port: 80
       protocol: TCP
-      targetPort: 9112
+      targetPort: 0
     - name: slb-portal-https-port
       port: 443
       protocol: TCP
@@ -281,7 +281,7 @@ items:
           "httpsredirectport": 443,
           "lbtype": "http",
           "port": 80,
-          "targetport": 9112
+          "targetport": 0
          },
          {
           "lbtype": "http",
@@ -300,7 +300,7 @@ items:
     - name: slb-portal-port
       port: 80
       protocol: TCP
-      targetPort: 9112
+      targetPort: 0
     - name: slb-portal-https-port
       port: 443
       protocol: TCP
@@ -325,7 +325,7 @@ items:
           "httpsredirectport": 443,
           "lbtype": "http",
           "port": 80,
-          "targetport": 9112
+          "targetport": 0
          },
          {
           "lbtype": "http",
@@ -344,7 +344,7 @@ items:
     - name: slb-portal-port
       port: 80
       protocol: TCP
-      targetPort: 9112
+      targetPort: 0
     - name: slb-portal-https-port
       port: 443
       protocol: TCP
@@ -369,7 +369,7 @@ items:
           "httpsredirectport": 443,
           "lbtype": "http",
           "port": 80,
-          "targetport": 9112
+          "targetport": 0
          },
          {
           "lbtype": "http",
@@ -388,7 +388,7 @@ items:
     - name: slb-portal-port
       port: 80
       protocol: TCP
-      targetPort: 9112
+      targetPort: 0
     - name: slb-portal-https-port
       port: 443
       protocol: TCP
@@ -413,7 +413,7 @@ items:
           "httpsredirectport": 443,
           "lbtype": "http",
           "port": 80,
-          "targetport": 9112
+          "targetport": 0
          },
          {
           "lbtype": "http",
@@ -432,7 +432,7 @@ items:
     - name: slb-portal-port
       port: 80
       protocol: TCP
-      targetPort: 9112
+      targetPort: 0
     - name: slb-portal-https-port
       port: 443
       protocol: TCP
@@ -457,7 +457,7 @@ items:
           "httpsredirectport": 443,
           "lbtype": "http",
           "port": 80,
-          "targetport": 9112
+          "targetport": 0
          },
          {
           "lbtype": "http",
@@ -476,7 +476,7 @@ items:
     - name: slb-portal-port
       port: 80
       protocol: TCP
-      targetPort: 9112
+      targetPort: 0
     - name: slb-portal-https-port
       port: 443
       protocol: TCP
@@ -501,7 +501,7 @@ items:
           "httpsredirectport": 443,
           "lbtype": "http",
           "port": 80,
-          "targetport": 9112
+          "targetport": 0
          },
          {
           "lbtype": "http",
@@ -520,7 +520,7 @@ items:
     - name: slb-portal-port
       port: 80
       protocol: TCP
-      targetPort: 9112
+      targetPort: 0
     - name: slb-portal-https-port
       port: 443
       protocol: TCP
@@ -545,7 +545,7 @@ items:
           "httpsredirectport": 443,
           "lbtype": "http",
           "port": 80,
-          "targetport": 9112
+          "targetport": 0
          },
          {
           "lbtype": "http",
@@ -564,7 +564,7 @@ items:
     - name: slb-portal-port
       port: 80
       protocol: TCP
-      targetPort: 9112
+      targetPort: 0
     - name: slb-portal-https-port
       port: 443
       protocol: TCP
@@ -589,7 +589,7 @@ items:
           "httpsredirectport": 443,
           "lbtype": "http",
           "port": 80,
-          "targetport": 9112
+          "targetport": 0
          },
          {
           "lbtype": "http",
@@ -608,7 +608,7 @@ items:
     - name: slb-portal-port
       port: 80
       protocol: TCP
-      targetPort: 9112
+      targetPort: 0
     - name: slb-portal-https-port
       port: 443
       protocol: TCP
@@ -633,7 +633,7 @@ items:
           "httpsredirectport": 443,
           "lbtype": "http",
           "port": 80,
-          "targetport": 9112
+          "targetport": 0
          },
          {
           "lbtype": "http",
@@ -652,7 +652,7 @@ items:
     - name: slb-portal-port
       port: 80
       protocol: TCP
-      targetPort: 9112
+      targetPort: 0
     - name: slb-portal-https-port
       port: 443
       protocol: TCP
