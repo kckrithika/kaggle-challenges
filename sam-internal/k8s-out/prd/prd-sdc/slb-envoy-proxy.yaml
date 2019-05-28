@@ -2,8 +2,8 @@ apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
   labels:
-    name: slb-envoy-config-b
-  name: slb-envoy-config-b
+    name: slb-envoy-proxy
+  name: slb-envoy-proxy
   namespace: sam-system
 spec:
   minReadySeconds: 30
@@ -11,7 +11,7 @@ spec:
   revisionHistoryLimit: 2
   selector:
     matchLabels:
-      name: slb-envoy-config-b
+      name: slb-envoy-proxy
   strategy:
     rollingUpdate:
       maxSurge: 0
@@ -47,7 +47,7 @@ spec:
            ]
           }
       labels:
-        name: slb-envoy-config-b
+        name: slb-envoy-proxy
       namespace: sam-system
     spec:
       affinity:
@@ -79,15 +79,15 @@ spec:
         - --client.serverInterface=lo
         - --commonoptions.metricsendpoint=ajna0-funnel1-0-prd.data.sfdc.net:80
         - --commonoptions.hostname=$(NODE_NAME)
-        - --control.realsvrCfgSentinel=/host/data/slb/config/slb-envoy-config-b/slb-realsvrcfg.sentinel
+        - --control.realsvrCfgSentinel=/host/data/slb/config/slb-envoy-proxy/slb-realsvrcfg.sentinel
         - --control.sentinelExpiration=60s
-        - --envoyNodeID=slb-envoy-config-b.$(FUNCTION_NAMESPACE).$(FUNCTION_INSTANCE_NAME)
+        - --envoyNodeID=slb-envoy-proxy.$(FUNCTION_NAMESPACE).$(FUNCTION_INSTANCE_NAME)
         - --envoyNodeNamespace=$(FUNCTION_NAMESPACE)
         - --heartbeat.defaultdecayduration=5m
         - --livenessProbePort=8080
-        - --log_dir=/host/data/slb/logs/slb-envoy-config-b
+        - --log_dir=/host/data/slb/logs/slb-envoy-proxy
         - --netInterfaceName=eth0
-        - --target=/host/data/slb/slb-envoy-config-b/config
+        - --target=/host/data/slb/slb-envoy-proxy/config
         - --tlsconfig.allowedCiphers=ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-RSA-AES256-GCM-SHA384:ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES128-GCM-SHA256:AES256-GCM-SHA384:AES128-GCM-SHA256:AES256-SHA
         - --tlsconfig.allowedEcdhCurves=P-256
         - --tlsconfig.custCertsDir=/customer-certs
@@ -98,7 +98,7 @@ spec:
         - --tlsconfig.clientKeysDir=/client-certs/client/keys
         - --tlsconfig.clientCAFile=/client-certs/ca.pem
         - --hostsConfigFile=/sfdchosts/hosts.json
-        - --client.socketDir=/host/data/slb/config/slb-envoy-config-b
+        - --client.socketDir=/host/data/slb/config/slb-envoy-proxy
         - --client.dialSocket=true
         env:
         - name: NODE_NAME
@@ -125,18 +125,18 @@ spec:
           requests:
             sam.sfdc.net/ip-address: "1"
         volumeMounts:
-        - mountPath: /host/data/slb/slb-envoy-config-b/config
+        - mountPath: /host/data/slb/slb-envoy-proxy/config
           name: var-target-config-volume
         - mountPath: /host/data/slb
           name: var-slb-volume
-        - mountPath: /host/data/slb/logs/slb-envoy-config-b
+        - mountPath: /host/data/slb/logs/slb-envoy-proxy
           name: var-logs-volume
         - mountPath: /sfdchosts
           name: sfdchosts
       - command:
         - /home/sfdc-sherpa/envoy
         - --config-path
-        - /host/data/slb/slb-envoy-config-b/config/envoy-bootstrap.yaml
+        - /host/data/slb/slb-envoy-proxy/config/envoy-bootstrap.yaml
         env:
         - name: KINGDOM
           value: prd
@@ -160,7 +160,7 @@ spec:
             add:
             - NET_BIND_SERVICE
         volumeMounts:
-        - mountPath: /host/data/slb/logs/slb-envoy-config-b
+        - mountPath: /host/data/slb/logs/slb-envoy-proxy
           name: var-logs-volume
         - mountPath: /customer-certs
           name: customer-certs
@@ -216,7 +216,7 @@ spec:
         - /sdn/slb-cert-checker
         - --metricsEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80
         - --hostnameOverride=$(NODE_NAME)
-        - --log_dir=/host/data/slb/logs/slb-envoy-config-b
+        - --log_dir=/host/data/slb/logs/slb-envoy-proxy
         - --server cert name=/server-certs/server/certificates/server.pem
         - --root cert name=/server-certs/ca.pem
         - --hostsConfigFile=/sfdchosts/hosts.json
@@ -232,11 +232,11 @@ spec:
           name: server-certs
         - mountPath: /client-certs
           name: client-certs
-        - mountPath: /host/data/slb/slb-envoy-config-b/config
+        - mountPath: /host/data/slb/slb-envoy-proxy/config
           name: var-target-config-volume
         - mountPath: /host/data/slb
           name: var-slb-volume
-        - mountPath: /host/data/slb/logs/slb-envoy-config-b
+        - mountPath: /host/data/slb/logs/slb-envoy-proxy
           name: var-logs-volume
         - mountPath: /sfdchosts
           name: sfdchosts
@@ -244,7 +244,7 @@ spec:
           name: customer-certs
       - command:
         - /sdn/slb-config-processor
-        - --configDir=/host/data/slb/config/slb-envoy-config-b
+        - --configDir=/host/data/slb/config/slb-envoy-proxy
         - --period=1200s
         - --vipsToAcl=
         - --podPhaseCheck=true
@@ -255,15 +255,15 @@ spec:
         - --serviceList=
         - --useVipLabelToSelectSvcs=true
         - --metricsEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80
-        - --log_dir=/host/data/slb/logs/slb-envoy-config-b
+        - --log_dir=/host/data/slb/logs/slb-envoy-proxy
         - --sleepTime=100ms
         - --livenessProbePort=9876
         - --shouldRemoveConfig=true
         - --hostsConfigFile=/sfdchosts/hosts.json
         - --proxySelectorLabelValue=slb-nginx-config-b
         - --hostnameOverride=$(NODE_NAME)
-        - --control.configProcSentinel=/host/data/slb/config/slb-envoy-config-b/slb-config-proc.sentinel
-        - --pipeline.supportedProxies=slb-envoy-config-b
+        - --control.configProcSentinel=/host/data/slb/config/slb-envoy-proxy/slb-config-proc.sentinel
+        - --pipeline.supportedProxies=slb-envoy-proxy
         env:
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig-platform
@@ -287,9 +287,9 @@ spec:
           name: maddog-certs
         - mountPath: /host/data/slb
           name: var-slb-volume
-        - mountPath: /host/data/slb/config/slb-envoy-config-b
+        - mountPath: /host/data/slb/config/slb-envoy-proxy
           name: var-config-volume
-        - mountPath: /host/data/slb/logs/slb-envoy-config-b
+        - mountPath: /host/data/slb/logs/slb-envoy-proxy
           name: var-logs-volume
         - mountPath: /data/certs
           name: certs
@@ -303,10 +303,10 @@ spec:
         - /sdn/slb-cleanup
         - --period=1800s
         - --logsMaxAge=1h
-        - --filesDirToCleanup=/host/data/slb/config/slb-envoy-config-b
+        - --filesDirToCleanup=/host/data/slb/config/slb-envoy-proxy
         - --shouldSkipServiceRecords=true
         - --shouldNotDeleteAllFiles=true
-        - --log_dir=/host/data/slb/logs/slb-envoy-config-b
+        - --log_dir=/host/data/slb/logs/slb-envoy-proxy
         - --shouldSkipSlbBlock=true
         - --skipFilesWithSuffix=.sock
         - --maxDeleteFileCount=20
@@ -317,43 +317,43 @@ spec:
         volumeMounts:
         - mountPath: /host/data/slb
           name: var-slb-volume
-        - mountPath: /host/data/slb/config/slb-envoy-config-b
+        - mountPath: /host/data/slb/config/slb-envoy-proxy
           name: var-config-volume
-        - mountPath: /host/data/slb/logs/slb-envoy-config-b
+        - mountPath: /host/data/slb/logs/slb-envoy-proxy
           name: var-logs-volume
       - command:
         - /sdn/slb-node-api
         - --port=9130
-        - --configDir=/host/data/slb/config/slb-envoy-config-b
-        - --log_dir=/host/data/slb/logs/slb-envoy-config-b
+        - --configDir=/host/data/slb/config/slb-envoy-proxy
+        - --log_dir=/host/data/slb/logs/slb-envoy-proxy
         - --netInterface=lo
         - --checkSentinel=true
-        - --control.configProcSentinel=/host/data/slb/config/slb-envoy-config-b/slb-config-proc.sentinel
+        - --control.configProcSentinel=/host/data/slb/config/slb-envoy-proxy/slb-config-proc.sentinel
         - --control.sentinelExpiration=1800s
         - --listenOnSocket=true
         - --readOnly=false
         - --checkMwSentinel=true
-        - --control.manifestWatcherSentinel=/host/data/slb/config/slb-envoy-config-b/slb-manifest-watcher.sentinel
+        - --control.manifestWatcherSentinel=/host/data/slb/config/slb-envoy-proxy/slb-manifest-watcher.sentinel
         image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/slb/hyperslb:2181-b630e4c2ca8b29a5b1c750e5e3a585c93ea03402
         name: slb-node-api
         volumeMounts:
         - mountPath: /host/data/slb
           name: var-slb-volume
-        - mountPath: /host/data/slb/logs/slb-envoy-config-b
+        - mountPath: /host/data/slb/logs/slb-envoy-proxy
           name: var-logs-volume
-        - mountPath: /host/data/slb/config/slb-envoy-config-b
+        - mountPath: /host/data/slb/config/slb-envoy-proxy
           name: var-config-volume
       - command:
         - /sdn/slb-realsvrcfg
-        - --configDir=/host/data/slb/config/slb-envoy-config-b
+        - --configDir=/host/data/slb/config/slb-envoy-proxy
         - --period=5s
         - --netInterfaceName=eth0
-        - --log_dir=/host/data/slb/logs/slb-envoy-config-b
+        - --log_dir=/host/data/slb/logs/slb-envoy-proxy
         - --client.serverPort=9130
         - --client.serverInterface=lo
-        - --control.realsvrCfgSentinel=/host/data/slb/config/slb-envoy-config-b/slb-realsvrcfg.sentinel
+        - --control.realsvrCfgSentinel=/host/data/slb/config/slb-envoy-proxy/slb-realsvrcfg.sentinel
         - --nginxPodMode=true
-        - --client.socketDir=/host/data/slb/config/slb-envoy-config-b
+        - --client.socketDir=/host/data/slb/config/slb-envoy-proxy
         - --client.dialSocket=true
         - --maxDeleteVipCount=10
         image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/slb/hyperslb:2181-b630e4c2ca8b29a5b1c750e5e3a585c93ea03402
@@ -365,7 +365,7 @@ spec:
           name: var-slb-volume
         - mountPath: /host/sbin
           name: sbin-volume
-        - mountPath: /host/data/slb/logs/slb-envoy-config-b
+        - mountPath: /host/data/slb/logs/slb-envoy-proxy
           name: var-logs-volume
         - mountPath: /sfdchosts
           name: sfdchosts
@@ -373,8 +373,8 @@ spec:
         - /sdn/slb-cleanup
         - --period=1800s
         - --logsMaxAge=48h
-        - --log_dir=/host/data/slb/logs/slb-envoy-config-b/cleanup
-        - --filesDirToCleanup=/host/data/slb/logs/slb-envoy-config-b
+        - --log_dir=/host/data/slb/logs/slb-envoy-proxy/cleanup
+        - --filesDirToCleanup=/host/data/slb/logs/slb-envoy-proxy
         - --shouldSkipServiceRecords=false
         - --shouldNotDeleteAllFiles=false
         env:
@@ -394,30 +394,30 @@ spec:
         volumeMounts:
         - mountPath: /host/data/slb
           name: var-slb-volume
-        - mountPath: /host/data/slb/config/slb-envoy-config-b
+        - mountPath: /host/data/slb/config/slb-envoy-proxy
           name: var-config-volume
-        - mountPath: /host/data/slb/logs/slb-envoy-config-b
+        - mountPath: /host/data/slb/logs/slb-envoy-proxy
           name: var-logs-volume
         - mountPath: /sfdchosts
           name: sfdchosts
-        - mountPath: /host/data/slb/logs/slb-envoy-config-b/cleanup
+        - mountPath: /host/data/slb/logs/slb-envoy-proxy/cleanup
           name: var-cleanup-logs-volume
       - command:
         - /sdn/slb-manifest-watcher
-        - --manifestOutputDir=/host/data/slb/manifests/slb-envoy-config-b
+        - --manifestOutputDir=/host/data/slb/manifests/slb-envoy-proxy
         - --tnrpEndpoint=https://ops0-piperepo1-0-prd.data.sfdc.net/
         - --hostnameOverride=$(NODE_NAME)
-        - --log_dir=/host/data/slb/logs/slb-envoy-config-b
+        - --log_dir=/host/data/slb/logs/slb-envoy-proxy
         - --hostsConfigFile=/sfdchosts/hosts.json
-        - --client.socketDir=/host/data/slb/config/slb-envoy-config-b
+        - --client.socketDir=/host/data/slb/config/slb-envoy-proxy
         - --client.dialSocket=true
         - --maxDeleteLimit=10
         - --isRoleUsed=true
         - --metricsEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80
         - --vcioptions.strict=true
         - --client.allowStale=true
-        - --control.manifestWatcherSentinel=/host/data/slb/config/slb-envoy-config-b/slb-manifest-watcher.sentinel
-        - --pipeline.supportedProxies=slb-envoy-config-b
+        - --control.manifestWatcherSentinel=/host/data/slb/config/slb-envoy-proxy/slb-manifest-watcher.sentinel
+        - --pipeline.supportedProxies=slb-envoy-proxy
         env:
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig-platform
@@ -444,15 +444,15 @@ spec:
         - /sdn/slb-cert-deployer
         - --metricsEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80
         - --hostnameOverride=$(NODE_NAME)
-        - --log_dir=/host/data/slb/logs/slb-envoy-config-b
+        - --log_dir=/host/data/slb/logs/slb-envoy-proxy
         - --custCertsDir=/customer-certs
         - --certfile=/client-certs/client/certificates/client.pem
         - --keyfile=/client-certs/client/keys/client-key.pem
         - --cafile=/client-certs/ca.pem
         - --hostsConfigFile=/sfdchosts/hosts.json
-        - --client.socketDir=/host/data/slb/config/slb-envoy-config-b
+        - --client.socketDir=/host/data/slb/config/slb-envoy-proxy
         - --client.dialSocket=true
-        - --control.nginxReloadSentinel=/host/data/slb/slb-envoy-config-b/config/nginx.marker
+        - --control.nginxReloadSentinel=/host/data/slb/slb-envoy-proxy/config/nginx.marker
         env:
         - name: NODE_NAME
           valueFrom:
@@ -465,13 +465,13 @@ spec:
           name: server-certs
         - mountPath: /client-certs
           name: client-certs
-        - mountPath: /host/data/slb/slb-envoy-config-b/config
+        - mountPath: /host/data/slb/slb-envoy-proxy/config
           name: var-target-config-volume
         - mountPath: /customer-certs
           name: customer-certs
         - mountPath: /host/data/slb
           name: var-slb-volume
-        - mountPath: /host/data/slb/logs/slb-envoy-config-b
+        - mountPath: /host/data/slb/logs/slb-envoy-proxy
           name: var-logs-volume
         - mountPath: /sfdchosts
           name: sfdchosts
@@ -519,11 +519,11 @@ spec:
       - command:
         - /bin/bash
         - -xec
-        - rm -rf /host/data/slb/slb-envoy-config-b/config/*
+        - rm -rf /host/data/slb/slb-envoy-proxy/config/*
         image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/slb/hyperslb:2181-b630e4c2ca8b29a5b1c750e5e3a585c93ea03402
         name: slb-envoy-config-wipe
         volumeMounts:
-        - mountPath: /host/data/slb/slb-envoy-config-b/config
+        - mountPath: /host/data/slb/slb-envoy-proxy/config
           name: var-target-config-volume
       nodeSelector:
         pool: prd-sdc
@@ -534,13 +534,13 @@ spec:
           path: /data/slb
         name: var-slb-volume
       - hostPath:
-          path: /data/slb/logs/slb-envoy-config-b
+          path: /data/slb/logs/slb-envoy-proxy
         name: var-logs-volume
       - hostPath:
-          path: /data/slb/config/slb-envoy-config-b
+          path: /data/slb/config/slb-envoy-proxy
         name: var-config-volume
       - hostPath:
-          path: /data/slb/logs/slb-envoy-config-b/cleanup
+          path: /data/slb/logs/slb-envoy-proxy/cleanup
         name: var-cleanup-logs-volume
       - configMap:
           name: sfdchosts
@@ -570,7 +570,7 @@ spec:
           medium: Memory
         name: tokens
       - hostPath:
-          path: /data/slb/slb-envoy-config-b/config
+          path: /data/slb/slb-envoy-proxy/config
         name: var-target-config-volume
       - emptyDir:
           medium: Memory
