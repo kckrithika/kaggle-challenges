@@ -1,3 +1,5 @@
 apps:
  expression-evaluator:
   - prd/prd-sam
+ gate-manager:
+  - prd/prd-sam
