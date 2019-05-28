@@ -84,7 +84,7 @@ local build_spark_operator_test_commands = {
     ImpersonationProxySparkTest: "/watchdog-spark-scripts/check-spark-operator.sh --kubeconfig /watchdog-spark-scripts/kubeconfig-impersonation-proxy /strata-test-specs-in/basic-spark-impersonation.jsonnet",
   } + (if flowsnake_config.is_test then {
     # Testing analysis of errors
-    AnalysisTest: "/watchdog-spark-scripts/analysis.py --sfdchosts /sfdchosts/hosts.json --watchdog-config /config/watchdog.json --command /watchdog-spark-scripts/check-spark-operator.sh /strata-test-specs-in/basic-spark-pi.jsonnet",
+    AnalysisTest: "/watchdog-spark-scripts/analysis.py --metrics --sfdchosts /sfdchosts/hosts.json --watchdog-config /config/watchdog.json --command /watchdog-spark-scripts/check-spark-operator.sh /strata-test-specs-in/basic-spark-pi.jsonnet",
   } else {}),
 };
 {
