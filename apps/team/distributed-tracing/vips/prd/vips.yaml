@@ -1,5 +1,6 @@
 - lbname: es-prod
   servers:
+   - shared0-samminionzipkin1-1-prd.eng.sfdc.net
    - shared0-samminionzipkin1-4-prd.eng.sfdc.net
    - shared0-samminionzipkin1-6-prd.eng.sfdc.net
    - shared0-samminionzipkin1-8-prd.eng.sfdc.net
@@ -14,7 +15,6 @@
    - shared0-samminionzipkin2-12-prd.eng.sfdc.net
    - shared0-samminionzipkin2-13-prd.eng.sfdc.net
    - shared0-samminionzipkin2-14-prd.eng.sfdc.net
-   - shared0-samminionzipkin2-15-prd.eng.sfdc.net
   ports:
    - port: 9200
      targetport: 9200
