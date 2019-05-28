@@ -47,7 +47,7 @@ system:
         \"useServiceName\" : \"AUTO\",
         \"useStatementBatching\" : false
     },
-    \"host\" : \"10.225.241.5\",
+    \"host\" : \"10.225.242.101\",
     \"id\" : \"srcdb\",
     \"instanceName\" : \"DATABASE\",
     \"password\" : \"basic:xRdN9n9+Yto2hHDW/sldaA==\",
@@ -142,6 +142,12 @@ system:
          value: "no"
        - name : ACDS_START_CLIENT
          value: "yes"
+       - name : MEM_TOTAL_BYTES
+         value: "2000m"
+       - name : POLICY_DESIGNER_DB_HOSTNAME
+         value: guiapi-db-lb
+       - name : POLICY_DESIGNER_DB_PORT
+         value: 3306
      volumes:
 #     - name: chs-persistent-conf
 #       hostPath:
