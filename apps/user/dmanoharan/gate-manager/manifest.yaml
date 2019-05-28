@@ -52,7 +52,7 @@ system:
             - name: http2-in
               containerPort: 7012
             - name: http2-tls-in
-              containerPort: 7443
+              containerPort: 7444
             - name: sherpa-adm
               containerPort: 15373
           volumeMounts:
