@@ -6,7 +6,7 @@ system:
   functions:
     - name: gater-mesh
       count: 1
-      hostnetwork: true
+      hostnetwork: false
       containers:
         - name: gater1
           image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/dmanoharan/gate-manager:dmanoharan-20190528B
