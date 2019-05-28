@@ -270,26 +270,24 @@ data:
     "alertProfile": "sam", "alertThreshold": "20m", "instructions": "The following
     minion pools have multiple nodes down in Production requiring immediate attention
     according to our SLA. Debug Instructions: https://git.soma.salesforce.com/sam/sam/wiki/Repair-Failed-SAM-Host",
-    "name": "SqlSlaNode", "sql": "SELECT\n              \tminionpool,\n              \tTotalCount,\n              \tNotReadyCount,\n              \tNotReadyPerc\n              FROM\n              (\n              SELECT\n                      minionpool,\n                      TotalCount
-    ,\n                      NotReadyCount,\n                      (NotReadyCount/TotalCount)
-    as ''NotReadyPerc''\n\n              FROM\n              (\n                  SELECT\n                        COUNT(*)
-    as TotalCount,\n                        SUM(CASE WHEN READY = ''True'' THEN 0
-    ELSE 1 END) as NotReadyCount,\n                        minionpool\n                  FROM\n                        nodeDetailView
-    nd\n                  WHERE\n                        KINGDOM != ''PRD'' AND KINGDOM
-    != ''UNK'' AND KINGDOM != ''GSF''\n                        AND minionpool NOT
-    LIKE ''%ceph%''\n                        AND minionpool NOT LIKE ''%slb%''\n                        AND
-    minionpool NOT LIKE ''%storage%''\n                        AND minionpool NOT
-    LIKE ''%chatbot%''\n                  GROUP BY minionpool\n              ) ss\n              )
-    ss2\n              WHERE\n              ((TotalCount >= 10 AND NotReadyPerc >0.25)\n              OR\n              (TotalCount
-    < 10 AND NotReadyCount >2))\n              \n              AND NOT\n              (minionpool
-    like ''par-sam_warden'' AND now() < STR_TO_DATE(''2019-03-21'', ''%Y-%m-%d''))
-    #as in https://gus.lightning.force.com/lightning/r/ADM_Work__c/a07B0000006UbTRIA0/view\n              AND
-    NOT\n              (minionpool like ''phx-sam_mgmt_hub'' AND now() < STR_TO_DATE(''2019-01-22'',
-    ''%Y-%m-%d''))\n              AND NOT\n              (minionpool like ''ph2-sam_gater''
-    AND NotReadyPerc < 0.5 AND now() < STR_TO_DATE(''2019-01-30'', ''%Y-%m-%d''))",
-    "watchdogFrequency": "5m"}, {"alertAction": "businesshours_pagerduty", "alertFrequency":
-    "24h", "alertProfile": "sam", "alertThreshold": "20m", "instructions": "The following
-    alert is for SamApp CRDs that dont have corresponding Bundle CRDs", "name": "SqlSamAppWithoutBundle",
+    "name": "SqlSlaNode", "sql": "SELECT\n  minionpool,\n  TotalCount,\n  NotReadyCount,\n  NotReadyPerc,\n  activePools.appCount
+    as SamAppCount\nFROM\n(\n  SELECT\n    minionpool,\n    TotalCount ,\n    NotReadyCount,\n    (NotReadyCount/TotalCount)
+    as ''NotReadyPerc''\n  FROM\n  (\n    SELECT\n      COUNT(*) as TotalCount,\n      SUM(CASE
+    WHEN READY = ''True'' THEN 0 ELSE 1 END) as NotReadyCount,\n      minionpool\n    FROM\n      nodeDetailView
+    nd\n    WHERE\n      KINGDOM != ''PRD'' AND KINGDOM != ''UNK'' AND KINGDOM !=
+    ''GSF''\n      GROUP BY minionpool\n    ) ss\n  ) ss2\ninner join\n(\n  select
+    SUBSTRING_INDEX(Payload->>''$.spec.controlMap.pool'', ''/'', -1) as pool, count(*)
+    as appCount\n  from k8s_resource\n  where apikind = ''samapp''\n  group by pool\n)
+    as activePools\non ss2.minionpool = activePools.pool\nWHERE\n  ((TotalCount >=
+    10 AND NotReadyPerc >0.25) OR (TotalCount < 10 AND NotReadyCount >2))\n-- AND
+    NOT\n-- (minionpool like ''par-sam_warden'' AND now() < STR_TO_DATE(''2019-03-21'',
+    ''%Y-%m-%d'')) #as in https://gus.lightning.force.com/lightning/r/ADM_Work__c/a07B0000006UbTRIA0/view\n--
+    AND NOT\n-- (minionpool like ''phx-sam_mgmt_hub'' AND now() < STR_TO_DATE(''2019-01-22'',
+    ''%Y-%m-%d''))\n-- AND NOT\n-- (minionpool like ''ph2-sam_gater'' AND NotReadyPerc
+    < 0.5 AND now() < STR_TO_DATE(''2019-01-30'', ''%Y-%m-%d''))\n", "watchdogFrequency":
+    "5m"}, {"alertAction": "businesshours_pagerduty", "alertFrequency": "24h", "alertProfile":
+    "sam", "alertThreshold": "20m", "instructions": "The following alert is for SamApp
+    CRDs that dont have corresponding Bundle CRDs", "name": "SqlSamAppWithoutBundle",
     "sql": "SELECT\n                        samApp.controlEstate,\n                        samApp.name,\n                        samApp.namespace,\n                        samAppCreationTimestamp,\n                        bundleCreationTimestamp,\n                        samAppNumResourceLinks,\n                        bundleState,\n                        bundleStatus\n                      FROM\n                      (\n                          SELECT\n                            controlEstate,\n                            name,\n                            namespace,\n                            json_length(Payload->''$.status.resourceLinks'')
     as samAppNumResourceLinks,\n                            Payload->>''$.metadata.creationTimestamp''
     as samAppCreationTimestamp\n                          FROM\n                            k8s_resource\n                          WHERE\n                            ApiKind
