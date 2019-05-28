@@ -32,6 +32,9 @@ system:
       - --metrics.funnelTimeOut=100000
       - --healthIndicator.maxThreadCount=1300
       - --authz.dest=authz-svc.service-mesh.localhost.mesh.force.com:5443
+      # WIP cluster scrapte timeout + delay while investigating W-6166785
+      - --clusters.zkScraper.scrapeTimeoutMs=120000
+      - --cluster.scraper.delayMs=120000
       ports:
       - containerPort: 15372
       env:
