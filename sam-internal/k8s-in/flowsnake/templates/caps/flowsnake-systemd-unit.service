@@ -1,0 +1,24 @@
+# Evicts pods from nodes in preparation for OS patching (CAPS) and other maintenance
+
+[Unit]
+Description=Flowsnake Service
+# PartOf means that if one of the listed services is to be stopped or restarted, flowsnake will as well.
+# Everything listed here is also listed in After=, because we want to ensure that flowsnake gets to stop
+# before these services stop.
+# kubectl, which flowsnake depends on, will not work unless haproxy is running.
+# kubelet is required to communicate to Kubernetes that pods have been stopped.
+# docker does not need to be specified because kubelet is already linked to it.
+PartOf=haproxy_apiserverlb.service kubelet.service
+After=haproxy_apiserverlb.service kubelet.service
+
+[Install]
+# When kubelet is started, it should try to first start flowsnake.
+# This is intended to avoid unintentionally not untainting the node when bringing it back up.
+WantedBy=kubelet.service
+
+[Service]
+Type=oneshot
+ExecStart=/etc/systemd/system/flowsnake-start.sh
+RemainAfterExit=true
+ExecStop=/etc/systemd/system/flowsnake-stop.sh
+StandardOutput=journal

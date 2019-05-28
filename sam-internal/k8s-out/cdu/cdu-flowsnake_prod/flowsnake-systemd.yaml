@@ -1,0 +1,206 @@
+apiVersion: v1
+items:
+- apiVersion: v1
+  data:
+    configure-systemd.sh: |
+      #!/bin/bash
+      SRC=/systemd-files
+      DEST=/host/etc/systemd/system
+      CHANGES=false
+      for f in flowsnake.service flowsnake-start.sh flowsnake-stop.sh; do
+          if ! [[ -e ${DEST}/${f} ]] || ! diff ${SRC}/${f} ${DEST}/${f}; then
+              echo "$(date) Updating ${DEST}/${f} to SHA-1 $(sha1sum ${SRC}/${f} | awk '{print $1}')"
+              cp --force ${SRC}/${f} ${DEST}/
+              CHANGES=true
+          fi
+      done
+      if [[ ${CHANGES} == 'true' ]]; then
+          echo "$(date) flowsnake.service changed; systemd reload"
+          chroot /host systemctl daemon-reload
+      else
+          echo "${date} flowsnake.service unchanged."
+      fi
+      # Our old version of systemd does not support listing which things are enabled.
+      # So just do it unconditionally.
+      chroot /host systemctl enable flowsnake
+      chroot /host systemctl start flowsnake
+      chroot /host systemctl status flowsnake
+      # DaemonSet restart policy is Always, so after sleep we exit and pod gets recreated.
+      # No need to run this very frequently. But to make updating easier, detect
+      # when there were changes and exit early.
+      SLEEP=14400
+      START_TIME=$(date '+%s')
+      echo "$(date) Waiting for $SLEEP seconds before pod restart"
+      while true; do
+          for f in flowsnake.service flowsnake-start.sh flowsnake-stop.sh; do
+              if ! diff ${SRC}/${f} ${DEST}/${f}; then
+                  echo "$(date) Detected change in ${f}. Exiting early."
+                  exit 0
+              fi
+          done
+          if (( $(date '+%s') - START_TIME >= SLEEP )); then
+              exit 0
+          fi
+          sleep 10
+      done
+    flowsnake-start.sh: |
+      #!/bin/bash
+      TAINT=flowsnake-patching
+      echo "Starting up. Removing any prior ${TAINT} taints."
+      # kubectl taint removal has no built-in way return success if the taint was not present.
+      # But we want to be sure to fail if anything else goes wrong to prevent patching
+      # causing a rolling outage. So we can't || true and have to instead verify the
+      # taint is present.
+      # Verifying is a pain, because the taints are stored in a list and not addressable
+      # by id with a simple go template. Just presume our name is sufficiently unique.
+      if sudo kubectl --kubeconfig /etc/kubernetes/kubeconfig get node $HOSTNAME -o json | grep $TAINT >/dev/null; then
+          echo "Removing $TAINT taint."
+          sudo kubectl --kubeconfig /etc/kubernetes/kubeconfig taint nodes ${HOSTNAME} ${TAINT}-
+      else
+          echo "No $TAINT taint to remove."
+      fi
+    flowsnake-stop.sh: |
+      #!/bin/bash
+      TAINT=flowsnake-patching
+      echo "Shutting down. Applying ${TAINT} taints."
+      sudo kubectl --kubeconfig /etc/kubernetes/kubeconfig taint nodes ${HOSTNAME} ${TAINT}=cordon:NoSchedule
+      sudo kubectl --kubeconfig /etc/kubernetes/kubeconfig taint nodes ${HOSTNAME} ${TAINT}=drain:NoExecute
+      GRACEFUL_SECONDS=60
+      START_TIME=$(date '+%s')
+      echo "Waiting up to $GRACEFUL_SECONDS seconds for pods to exit gracefully."
+      while true; do
+          PROCESS_COUNT=$(sudo docker ps -q | wc -l)
+          if [[ "$PROCESS_COUNT" == "0" ]]; then
+              echo "All Docker processes have exited."
+              break
+          else
+              echo "$PROCESS_COUNT Docker processes still running."
+              if (( $(date '+%s') - START_TIME >= GRACEFUL_SECONDS )); then
+                  # Note assumption that every Docker process belongs to Kubernetes!
+                  echo "Forcibly killing remaining Docker processes:"
+                  sudo docker ps
+                  sudo docker kill $(sudo docker ps -q)
+                  break
+              fi
+              sleep 5
+          fi
+      done
+      # Docker processes have exited, but Kubernetes might not be aware yet. Give it time to update
+      # so we don't leave pods stuck in Terminating state
+      FORCEFUL_SECONDS=30
+      START_TIME=$(date '+%s')
+      echo "Waiting up to $FORCEFUL_SECONDS seconds for Kubernetes to observe that processes have terminated."
+      while true; do
+          POD_COUNT=$(sudo kubectl --kubeconfig /etc/kubernetes/kubeconfig get pods --all-namespaces -o wide | grep ${HOSTNAME} | wc -l)
+          if [[ "$POD_COUNT" == "0" ]]; then
+              echo "All pods have terminated."
+              exit 0
+          else
+              if (( $(date '+%s') - START_TIME >= FORCEFUL_SECONDS )); then
+                  PROCESS_COUNT=$(sudo docker ps -q | wc -l)
+                  if [[ "$PROCESS_COUNT" == "0" ]]; then
+                      # This should be safe since we confirmed they really are not running.
+                      echo "All Docker processes have exited. Force deleting remaining $POD_COUNT pods from Kubernetes:"
+                      sudo kubectl --kubeconfig /etc/kubernetes/kubeconfig get pods --all-namespaces -o wide | grep ${HOSTNAME}
+                      for NSPOD in $(sudo kubectl --kubeconfig /etc/kubernetes/kubeconfig get pods --all-namespaces --field-selector spec.nodeName=$HOSTNAME -o template --template '{{ range .items }}{{.metadata.namespace}}{{":"}}{{.metadata.name}}{{"\n"}}{{end}}'); do
+                          NS=${NSPOD%:*}
+                          POD=${NSPOD#*:}
+                          sudo kubectl --kubeconfig /etc/kubernetes/kubeconfig  -n ${NS} delete pod ${POD} --grace-period=0 --force
+                      done;
+                      exit 0
+                  else
+                      echo "Giving up even though some pods have not terminated:"
+                      sudo kubectl --kubeconfig /etc/kubernetes/kubeconfig get pods --all-namespaces -o wide | grep ${HOSTNAME}
+                      exit 1
+                  fi
+              else
+                  echo "Kubernetes still sees $POD_COUNT pods on this node."
+                  sleep 5
+              fi
+          fi
+      done
+    flowsnake.service: |
+      # Evicts pods from nodes in preparation for OS patching (CAPS) and other maintenance
+
+      [Unit]
+      Description=Flowsnake Service
+      # PartOf means that if one of the listed services is to be stopped or restarted, flowsnake will as well.
+      # Everything listed here is also listed in After=, because we want to ensure that flowsnake gets to stop
+      # before these services stop.
+      # kubectl, which flowsnake depends on, will not work unless haproxy is running.
+      # kubelet is required to communicate to Kubernetes that pods have been stopped.
+      # docker does not need to be specified because kubelet is already linked to it.
+      PartOf=haproxy_apiserverlb.service kubelet.service
+      After=haproxy_apiserverlb.service kubelet.service
+
+      [Install]
+      # When kubelet is started, it should try to first start flowsnake.
+      # This is intended to avoid unintentionally not untainting the node when bringing it back up.
+      WantedBy=kubelet.service
+
+      [Service]
+      Type=oneshot
+      ExecStart=/etc/systemd/system/flowsnake-start.sh
+      RemainAfterExit=true
+      ExecStop=/etc/systemd/system/flowsnake-stop.sh
+      StandardOutput=journal
+  kind: ConfigMap
+  metadata:
+    name: flowsnake-systemd-files
+    namespace: flowsnake
+- apiVersion: extensions/v1beta1
+  kind: DaemonSet
+  metadata:
+    labels:
+      name: flowsnake-systemd-deployer
+    name: flowsnake-systemd-deployer
+    namespace: flowsnake
+  spec:
+    selector:
+      matchLabels:
+        app: flowsnake-systemd-deployer
+        apptype: testing
+    template:
+      metadata:
+        annotations:
+          sfdc.net/disable-madkub: "true"
+        labels:
+          app: flowsnake-systemd-deployer
+          apptype: testing
+          daemonset: "true"
+          flowsnakeOwner: dva-transform
+          flowsnakeRole: FlowsnakeSystemdDeployer
+      spec:
+        automountServiceAccountToken: true
+        containers:
+        - command:
+          - sh
+          - -c
+          - /systemd-files/configure-systemd.sh
+          image: ops0-artifactrepo1-0-cdu.data.sfdc.net/dva/sfdc_centos7_jdk8:33
+          name: agent
+          resources:
+            requests:
+              cpu: 50m
+              memory: 1Mi
+          securityContext:
+            privileged: true
+          volumeMounts:
+          - mountPath: /host
+            name: host-path
+            readOnly: false
+          - mountPath: /systemd-files
+            name: flowsnake-systemd-files
+            readOnly: true
+        hostPID: true
+        restartPolicy: Always
+        volumes:
+        - hostPath:
+            path: /
+          name: host-path
+        - configMap:
+            defaultMode: 493
+            name: flowsnake-systemd-files
+          name: flowsnake-systemd-files
+kind: List
+metadata: {}

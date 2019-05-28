@@ -45,6 +45,7 @@ local utils = import "util_functions.jsonnet";
             feature_flags+: {
                 watchdog_kuberesources: "enabled",
                 ksm_prome_add_name_label: "enabled",
+                systemd_caps: "enabled",
             },
             version_mapping+: {
             },
@@ -91,7 +92,6 @@ local utils = import "util_functions.jsonnet";
                 glok_image_tag: "472",  # NOTE: THIS MUST NOT CHANGE. As of Aug 2018, this image is no longer built by the flowsnake-platform project.
                 ingressControllerNginx_image_tag: "jenkins-dva-transformation-flowsnake-platform-master-781-itest",
                 ingressDefaultBackend_image_tag: "jenkins-dva-transformation-flowsnake-platform-master-781-itest",
-                jdk8_base_tag: "33",
                 kibana_image_tag: "345",
                 logloader_image_tag: "468",
                 logstash_image_tag: "468",
@@ -111,6 +111,7 @@ local utils = import "util_functions.jsonnet";
                 deployer_image_tag: "2653-de840aef94cedaeb0b971120b108b3570db4eb59",
                 docker_daemon_watchdog_image_tag: "jenkins-dva-transformation-flowsnake-platform-master-781-itest",
                 eventExporter_image_tag: "jenkins-dva-transformation-flowsnake-platform-master-781-itest",
+                jdk8_base_tag: "33",
                 kubedns_image_tag: "1.14.9",
                 madkub_image_tag: "1.0.0-0000084-9f4a6ca6",  # Madkub server gets token for itself using host IP
                 madkub_injector_image_tag: "13",
