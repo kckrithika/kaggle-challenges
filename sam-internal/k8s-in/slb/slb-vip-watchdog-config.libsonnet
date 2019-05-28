@@ -90,6 +90,10 @@ local vipwdConfig = {
       "ceph0-dash-prd.slb.sfdc.net:*",
       // 2019/05/09 - hsuanyu-chen: Flappy updstreams and was down the next day.
       "mysql.flowsnake.prd-sam.prd.slb.sfdc.net:*",
+      // 2019/05/28 - mgrass: upstream pod is in CrashLoopBackOff. See https://computecloud.slack.com/archives/G340CE86R/p1559077619296600?thread_ts=1559077522.296100&cid=G340CE86R.
+      // W-6079563 (https://gus.lightning.force.com/a07B0000006JutqIAC), when implemented, should help reduce the alert noise by
+      // requiring the backend servers to report a consistent signal.
+      "topology-svc-lb.topology-svc.prd-sam.prd.slb.sfdc.net:*",
     ],
     vivips: [
        // There are 3 sledge VIPs that listen on these ports:
