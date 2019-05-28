@@ -151,3 +151,4 @@ system:
       # A plain-text sherpa-inbound port. Used by internal tooling and developers. Must not be exposed in production.
     - port: 7012
       targetport: 7012
+      lbalgorithm: leastconn
