@@ -6,6 +6,10 @@ system:
   functions:
   - name: geoip
     count: 3
+    labels:
+      app: geoip
+    annotations:
+      "routing.mesh.sfdc.net/enabled": "true"
     containers:
     - name: geoip-database
       image: tnrp/ccait/geoip2-database:20170918
@@ -98,3 +102,12 @@ system:
     - name: tls-server-cert
       maddogCert:
         type: server
+
+  loadbalancers:
+  - lbname: geoip
+    function: geoip
+    ports:
+      - lbtype: dsr
+        port: 7443
+        targetport: 7443
+        name: grpc-geoip
