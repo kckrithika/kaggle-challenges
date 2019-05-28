@@ -4,10 +4,14 @@ system:
   - name: kpagent-consumer-sam
     type: stateful-set
     count: 1
+    volumes:
+    - name: kpagentclientcert
+      maddogCert:
+        type: client
     hostnetwork: true
     containers:
     - name: kpagent-consumer-sam-image
-      image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/sdba/sdba_gcp_test:test_volumes
+      image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/sdba/kpconsumer:0.0.3
       ports:
       - containerPort: 9090
       livenessProbe:
@@ -19,6 +23,8 @@ system:
           mountPath: /usr/src/app/tmp
         - name: out
           mountPath: /usr/src/app/out
+        - name: kpagentclientcert
+          mountPath: /clientcert
     lbname: kpagent-consumer-sam-lb
     volumeClaimTemplates:
     - name: tmp
