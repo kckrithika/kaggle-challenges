@@ -10,12 +10,8 @@ recipient: (
         if configs.estate == "prd-sdc" then "sdn@salesforce.com"
         else ""
 ),
-# TODO: Any watchdog with an empty sender will not send email.  This is a mistake, but
-# we are under moratorium and we can not change production right now.  FIX THIS ASAP!!!
-sender: (
-        if utils.is_production(configs.kingdom) then ""
-        else "sam-alerts@salesforce.com"
-),
+# This must not be an empty string or it will break all emails and we wont get pagerduty alerts
+sender: "sam-alerts@salesforce.com",
 
 laddr: (if configs.estate == "prd-sam" then "0.0.0.0:8063" else "0.0.0.0:8083"),
 syntheticPort: (if configs.estate == "prd-sam" then 8063 else 8083),
