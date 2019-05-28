@@ -8,7 +8,7 @@ system:
     containers:
 
       - name: prod-debug-service
-        image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/hubs/prod-debug:prod-debug-2019-05-28-17-09-31
+        image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/hubs/prod-debug:prod-debug-2019-05-28-17-36-44
         livenessProbe:
           exec:
             command:
@@ -44,7 +44,7 @@ system:
 
 
       - name: envoy-sidecar-config
-        image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/jsanzgonzalez/cyan-config:jsanzgonzalez-20190527-223713
+        image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/hubs/cyan-config:jsanzgonzalez-20190528-173239
         env: 
         - name: CONFIG_DIR
           value: /home/sfdc-sherpa/sherpa-envoy-config-volume
