@@ -54,7 +54,7 @@ system:
             - name: http2-tls-in
               containerPort: 7444
             - name: sherpa-adm
-              containerPort: 15374
+              containerPort: 16394
           volumeMounts:
             - mountPath: /client-certs
               name: tls-client-cert
