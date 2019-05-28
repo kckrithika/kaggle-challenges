@@ -32,6 +32,13 @@ system:
            mountPath: /client-certs
          - name: tls-server-cert
            mountPath: /server-certs
+       resources:
+         requests:
+           cpu: 2
+           memory: 4Gi
+         limits:
+           cpu: 3
+           memory: 6Gi
        env:
        - name : LOGGING_JSON_STDOUT_LEVEL
          value: all
