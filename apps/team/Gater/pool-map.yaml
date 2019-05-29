@@ -46,7 +46,3 @@ apps:
   - prd/prd-sam
  gater-perf:
   - prd/prd-sam_gater
- istio-ordering:
-  - prd/prd-sam_gater
- istio-shipping:
-  - prd/prd-sam_gater
