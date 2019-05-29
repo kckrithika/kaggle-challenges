@@ -28,9 +28,9 @@ system:
 #           mountPath: /acds/logs
 #         - name: relay-persistent-checkpoints
 #           mountPath: /acds/remote_checkpoints
-#         - mountPath: /acds/acds-secrets/
-#           name: acds-relay-secrets-vol
-#           readOnly: true
+         - mountPath: /acds/acds-secrets/
+           name: acds-relay-secrets-vol
+           readOnly: true
          - name: tls-client-cert
            mountPath: /client-certs
          - name: tls-server-cert
@@ -133,9 +133,6 @@ system:
        - name : DUMMY_VARIABLE
          value: "DUMMY_VARIABLE_5"
      volumes:
-#     - name: acds-relay-secrets-vol
-#       k4aSecret:
-#         secretName: acds-relay-secrets
 #     - name: relay-persistent-conf
 #       hostPath:
 #         path: /home/sfdc-acds-relay/conf
@@ -154,6 +151,9 @@ system:
      - name: tls-server-cert
        maddogCert:
          type: server
+     - name: acds-relay-secrets-vol
+       k4aSecret:
+         secretName: acds-relay-secrets
      lbname: acds-relay-stateful-lb    
    loadbalancers:
    - lbname: acds-relay-lb
