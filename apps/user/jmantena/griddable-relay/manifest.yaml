@@ -20,14 +20,6 @@ system:
          initialDelaySeconds: 10
          timeoutSeconds: 5
        volumeMounts:
-#         - name: relay-persistent-conf
-#           mountPath: /acds/conf
-#         - name: relay-persistent-extlib
-#           mountPath: /acds/extlib
-#         - name: relay-persistent-logs
-#           mountPath: /acds/logs
-#         - name: relay-persistent-checkpoints
-#           mountPath: /acds/remote_checkpoints
          - mountPath: /acds/acds-secrets/
            name: acds-secrets-vol
            readOnly: true
@@ -47,8 +39,6 @@ system:
          value: all
        - name : LOGGING_STDERR_LEVEL
          value: all
-       - name : TRUSTED_CERT
-         value: "cat /client-certs/ca.pem"
        - name : ACDS_POLICY
          value: "io.griddable.policy:{\"ACDS_TEST\":{}}"
        - name : ACDS_DB_CONFIG
@@ -66,18 +56,16 @@ system:
     \"user\" : \"ACDS_TEST\"}"
        - name : TENANT_ADMIN_NAME
          value: "admin@local"
-       - name : TENANR_ADMIN_PASSWORD
-         value: "admin@local" 
        - name : TENANT_ADMIN_PASSWORD
          value: "synchronize"
        - name : GRID_NAME
-         value: "Grid_01"
+         value: "Grid_02"
        - name : GRID_CONNECTION_NAME
-         value: "DS_CONN_DD_1"
+         value: "DS_CONN_DD_2"
        - name : DD_NAME
-         value: "Target_1"
+         value: "Target_12"
        - name : DS_NAME
-         value: "Source_1"
+         value: "Source_12"
        - name : DB_NAME
          value: "ddnprod"
        - name : GRID_CONNECTION_ID
@@ -97,21 +85,13 @@ system:
        - name : SERVICE_USER_PASSWORD
          value: "synchronize"
        - name : ACDS_APISERVER_HOST
-         value: "mgmt-api-lb.user-athatipalli.prd-sam.prd.slb.sfdc.net"
+         value: "acds-mgmt-api-lb.user-athatipalli.prd-sam.prd.slb.sfdc.net"
        - name : ACDS_APISERVER_PORT
          value: "5004"
        - name : ACDS_APISERVER_HTTPS
          value: "false"
-       - name : ACDS_APISERVER_ZKCONN
-         value: "shared0-discovery1-0-crd.data.sfdc.net:2181"
-       - name : SERVICE_USER_EMAIL
-         value: "acds_admin@local"
        - name : SECRETS_FOLDER_NAME
-         value: "acds-secrets"
-       - name : POLICY_DESIGNER_SERVER_IP
-         value: "10.253.213.26"
-       - name : POLICY_DESIGNER_SERVER_PORT
-         value: "8080"
+         value: "/acds/acds-secrets/"
        - name : RELAY_MEMORY_LIMIT
          value: "1700m"
        - name : ACDS_RELAY_EVENT_BUFFER_SIZE
@@ -133,18 +113,6 @@ system:
        - name : DUMMY_VARIABLE
          value: "DUMMY_VARIABLE_5"
      volumes:
-#     - name: relay-persistent-conf
-#       hostPath:
-#         path: /home/sfdc-acds-relay/conf
-#     - name: relay-persistent-logs
-#       hostPath:
-#         path: /home/sfdc-acds-relay/logs
-#     - name: relay-persistent-extlib
-#       hostPath:
-#         path: /home/sfdc-acds-relay/extlib
-#     - name: relay-persistent-checkpoints
-#       hostPath:
-#         path: /home/sfdc-acds-relay/remote_checkpoints
      - name: tls-client-cert
        maddogCert:
          type: client

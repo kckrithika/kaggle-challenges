@@ -20,14 +20,6 @@ system:
          initialDelaySeconds: 10
          timeoutSeconds: 5
        volumeMounts:
-#         - name: chs-persistent-conf
-#           mountPath: /acds/conf
-#         - name: chs-persistent-extlib
-#           mountPath: /acds/extlib
-#         - name: chs-persistent-logs
-#           mountPath: /acds/logs
-#         - name: chs-peristent-checkpoints
-#           mountPath: /acds/remote_checkpoints
          - mountPath: /acds/acds-secrets/
            name: acds-secrets-vol
            readOnly: true
@@ -37,7 +29,7 @@ system:
            mountPath: /server-certs
        env:
        - name : REMOTE_RELAYS
-         value: "acds-relay-lb.user-mmanthena:10234" 
+         value: "acds-relay-lb.user-jmantena:10234" 
        - name : LOGGING_JSON_STDOUT_LEVEL
          value: all
        - name : LOGGING_STDERR_LEVEL
@@ -64,17 +56,17 @@ system:
        - name : TENANT_ADMIN_PASSWORD
          value: "synchronize"
        - name : GRID_NAME
-         value: "Grid_01"
+         value: "Grid_02"
        - name : GRID_CONNECTION_NAME
-         value: "DS_CONN_DD_1"
+         value: "DS_CONN_DD_2"
        - name : DD_NAME
-         value: "Target_1"
+         value: "Target_12"
        - name : DS_NAME
-         value: "Source_1"
+         value: "Source_12"
        - name : DB_NAME
          value: "ddnprod"
        - name : GRID_CONNECTION_ID
-         value: "DS_CONN_DD_1"
+         value: 1
        - name : PATH
          value: "/opt/tools/Linux/jdk/openjdk1.8.0_172_x64/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
        - name : JAVA_HOME
@@ -90,7 +82,7 @@ system:
        - name : SERVICE_USER_PASSWORD
          value: "synchronize"
        - name : ACDS_APISERVER_HOST
-         value: "mgmt-api-lb.user-athatipalli.prd-sam.prd.slb.sfdc.net"
+         value: "acds-mgmt-api-lb.user-athatipalli.prd-sam.prd.slb.sfdc.net"
        - name : ACDS_APISERVER_PORT
          value: "5004"
        - name : ACDS_APISERVER_HTTPS
@@ -100,9 +92,7 @@ system:
        - name : SERVICE_USER_EMAIL
          value: "acds_admin@local"
        - name : SECRETS_FOLDER_NAME
-         value: "acds-secrets"
-       - name : POLICY_DESIGNER_SERVER_IP
-         value: "10.253.213.26"
+         value: "/acds/acds-secrets/"
        - name : POLICY_DESIGNER_SERVER_PORT
          value: "8080"
        - name : RELAY_MEMORY_LIMIT
@@ -152,18 +142,6 @@ system:
        - name : POLICY_DESIGNER_DB_PORT
          value: 3306
      volumes:
-#     - name: chs-persistent-conf
-#       hostPath:
-#         path: /home/sfdc-acds-chs/conf
-#     - name: chs-persistent-extlib
-#       hostPath:
-#         path: /home/sfdc-acds-chs/extlib
-#     - name: chs-persistent-logs
-#       hostPath:
-#         path: /home/sfdc-acds-chs/logs
-#     - name: chs-peristent-checkpoints 
-#       hostPath:
-#         path: /home/sfdc-acds-chs/remote_checkpoints
      - name: tls-client-cert
        maddogCert:
          type: client
