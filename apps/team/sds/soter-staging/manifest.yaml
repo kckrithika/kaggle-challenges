@@ -13,7 +13,7 @@ system:
         maddogCert:
           type: server
           lbnames:
-            - soterlb-staging
+            - soterlb
       - name: clientcert
         maddogCert:
           type: client
@@ -36,7 +36,7 @@ system:
       - name: clientcert
         mountPath: /clientcerts
   loadbalancers:
-  - lbname: soterlb-staging
+  - lbname: soterlb
     function: soter-staging
     slbenabled: true
     ports:
