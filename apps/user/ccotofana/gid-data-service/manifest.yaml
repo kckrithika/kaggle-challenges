@@ -45,7 +45,8 @@ system:
         #       Default management port: 15375
         ####################################################################################################
         - name: gid-data-service
-          image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/ccotofana/gid-service:W-6168542
+#          image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/ccotofana/gid-service:W-6168542
+          image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/ccotofana/gid-service:ping_20190529
           env:
             # Override ports in application.properties to match nginx config
             #   Spring will override applicatoin.properties values if it finds equivalently named environment variables.
