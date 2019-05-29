@@ -5,6 +5,9 @@ apps:
  zones-ui:       # 
   - prd/prd-sam  # 
                  # 
+ zones-ui-cron:  # 
+  - prd/prd-sam  # 
+                 # 
  amp-ui:         # 
   - prd/prd-sam  # 
                  # 
