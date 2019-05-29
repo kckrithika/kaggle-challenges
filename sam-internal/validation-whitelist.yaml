@@ -47,7 +47,7 @@ imagePromotionPrefixRepl:
   sfci/: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-all/sfci/
   # xrd docker-sam is a mirror of prd docker-sam.
   ops0-artifactrepo1-0-xrd.data.sfdc.net/docker-sam: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam
-  791719295754.dkr.ecr.us-east-2.amazonaws.com/dva/sam: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam
+  791719295754.dkr.ecr.us-east-2.amazonaws.com/dva/sam: ops0-artifactrepo1-0-prd.data.sfdc.net/dva/sam
 FullSchemaExceptions: 
   - 36faf410cc2c8265ce522476d14176f9becdde26
   - c8d9f5e09126e2b29367259ee99ac6a3a122184c
