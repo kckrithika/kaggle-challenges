@@ -1647,7 +1647,8 @@
         "pbsgeo",
         "pbsmatch",
         "care",
-        "sdb-dataengineering"
+        "sdb-dataengineering",
+        "dbprovision"
       ],
       "access": [
         "team/CSC_Sam",
@@ -1684,7 +1685,8 @@
         "team/pbsgeo",
         "team/pbsmatch",
         "team/care",
-        "team/sdb-dataengineering"
+        "team/sdb-dataengineering",
+        "team/dbprovision"
       ],
       "controlEstate": "gsf-core-devmvp-sam2-sam",
       "estate": "gsf-core-devmvp-sam2-sam",
