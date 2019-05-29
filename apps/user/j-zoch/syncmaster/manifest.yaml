@@ -5,8 +5,7 @@ system:
     count: 1
     containers:
     - name: syncmaster
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/j-zoch/winterfell-syncmaster:297309a67a1f976bfa4335896e1d0fc7d769a85c
-      env:
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/j-zoch/winterfell-syncmaster:develop
       - name: SFDC_ENVIRONMENT
         value: prod
       - name: SPRING_CONFIG_NAME
