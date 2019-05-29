@@ -160,7 +160,7 @@ spec:
         - --dropEntry=1
         - --dropPacket=1
         - --metricsEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80
-        - --iprange.InternalIpRange=10.231.187.0/24,10.254.230.0/23
+        - --iprange.InternalIpRange=10.253.152.128/26,10.251.128.0/23
         - --client.socketDir=/host/data/slb/config/slb-ipvs
         - --client.dialSocket=true
         image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/slb/hyperslb:2187-93ecf89008706e3afdbf4957ad809ac4e5e0ca0a

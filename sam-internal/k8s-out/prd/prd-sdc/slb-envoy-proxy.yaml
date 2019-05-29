@@ -84,7 +84,7 @@ spec:
         - --envoyNodeID=slb-envoy-proxy.$(FUNCTION_NAMESPACE).$(FUNCTION_INSTANCE_NAME)
         - --envoyNodeNamespace=$(FUNCTION_NAMESPACE)
         - --heartbeat.defaultdecayduration=5m
-        - --iprange.InternalIpRange=10.231.187.0/24,10.254.230.0/23
+        - --iprange.InternalIpRange=10.253.152.128/26,10.251.128.0/23
         - --livenessProbePort=8080
         - --log_dir=/host/data/slb/logs/slb-envoy-proxy
         - --netInterfaceName=eth0
