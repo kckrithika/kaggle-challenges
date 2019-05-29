@@ -39,4 +39,8 @@ local slbconfigs = import "slbconfig.jsonnet";
     # Deploy slb-envoy-proxy only if hyperslb version is >= 2166.
     # This ensures dependent microservices are available.
     deploySLBEnvoyConfig: (slbimages.hyperslb_build >= 2166 && slbimages.phaseNum <= 1),
+
+    # 2019/05/28
+    # Feature flag to rename "slb-(envoy|nginx)-config-wipe" to "slb-config-wipe".
+    renameConfigWipe: (slbimages.phaseNum <= 0),
 }
