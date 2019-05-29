@@ -6,29 +6,29 @@ system:
     count: 1
     containers:
     - name: samtestapp
-          image: 791719295754.dkr.ecr.us-east-2.amazonaws.com/dva/sam/hypersam:2731-1248fc1bee4e634b1b4fdb2b43ea98710680db35
-          command: ["/sam/sam-test-app"]
-          args: ["-estate", "$(ESTATE)", "-kingdom", "$(KINGDOM)"]
-          env:
-            - name: El337
-              value: "30100111012"
-          ports:
-          - containerPort: 8000
-          livenessProbe:
-            httpGet:
-              path: /
-              port: 8000
-          volumeMounts:
-          - mountPath: /log
-            name: logvol
-          - mountPath: /tmp
-            name: amagicvolumethatvanishes
-        volumes:
-        - name: logvol
-          hostPath:
-            path: /home/caas/logs/apps
-        - name: amagicvolumethatvanishes
-          emptyDir: {}
+      image: 791719295754.dkr.ecr.us-east-2.amazonaws.com/dva/sam/hypersam:2731-1248fc1bee4e634b1b4fdb2b43ea98710680db35
+      command: ["/sam/sam-test-app"]
+      args: ["-estate", "$(ESTATE)", "-kingdom", "$(KINGDOM)"]
+      env:
+        - name: El337
+          value: "30100111012"
+      ports:
+      - containerPort: 8000
+      livenessProbe:
+        httpGet:
+          path: /
+          port: 8000
+      volumeMounts:
+      - mountPath: /log
+        name: logvol
+      - mountPath: /tmp
+        name: amagicvolumethatvanishes
+    volumes:
+    - name: logvol
+      hostPath:
+        path: /home/caas/logs/apps
+    - name: amagicvolumethatvanishes
+      emptyDir: {}
   - name: sam-aws-test-func
     count: 1
     containers:
