@@ -124,29 +124,21 @@ system:
          value: "catchup:1"
        - name : ACDS_CONSUMER_TYPE
          value: "catchup"
-       - name : DB_ROOT_PASSWORD
-         value: "rootPassword"
-       - name : DB_USER
-         value: "ddnuser"
-       - name : DB_PASSWORD
-         value: "ddnpassword"
-       - name : DB_NAME
-         value: "ddnprod"
        - name : MYSQL_USER
-         value: "ddnuser"
+         value: "root"
        - name : MYSQL_PASSWORD
-         value: "ddnpassword"
+         value: "rootPassword"
        - name : MYSQL_DATABASE
-         value: "griddable"
+         value: "bootstrap"
        - name : ACDS_START_RELAY
          value: "no"
        - name : ACDS_START_CLIENT
          value: "yes"
        - name : MEM_TOTAL_BYTES
          value: "2000m"
-       - name : POLICY_DESIGNER_DB_HOSTNAME
+       - name : MYSQL_HOST
          value: guiapi-db-lb
-       - name : POLICY_DESIGNER_DB_PORT
+       - name : MYSQL_PORT
          value: 3306
      volumes:
 #     - name: chs-persistent-conf
