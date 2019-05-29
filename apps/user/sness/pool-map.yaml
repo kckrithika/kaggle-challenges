@@ -1,8 +1,5 @@
 apps:
  my-sam-test:    
   - prd/prd-sam
- shipping-sness:
+ switchboard:
   - prd/prd-sam
- ordering-sness:
-  - prd/prd-sam
-  
