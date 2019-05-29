@@ -24,10 +24,9 @@
       "image_check_replacement_host": "ops0-artifactrepo2-0-prd.data.sfdc.net"
     },
     {
-      "match": "^(dva|tnrp|docker-dva-rc|docker-sfci-dev|sfci)",
-      "note": "Short-form images get turned into long-form in-cluster by the controller.  In PRD we use 2-0",
-      "image_check_replacement_host": "ops0-artifactrepo2-0-prd.data.sfdc.net",
-      "is_short_form": true
+      "match": "^(791719295754.dkr.ecr.us-east-2.amazonaws.com)",
+      "note": "We have no way to check images for ECR in firefly",
+      "skip_image_exist_check": true
     },
     {
       "match": "^/(dva|tnrp|docker-all|docker-dva-rc|docker-sfci-dev|sfci)",
@@ -40,14 +39,15 @@
       "skip_image_exist_check": true
     },
     {
-      "match": "^(791719295754.dkr.ecr.us-east-2.amazonaws.com)",
-      "note": "We have no way to check images for ECR in firefly",
-      "skip_image_exist_check": true
-    },
-    {
       "match": "^(minikube)",
       "note": "Minikube is for local testing only, skip",
       "skip_image_exist_check": true
+    },
+    {
+      "match": "^(dva|tnrp|docker-dva-rc|docker-sfci-dev|sfci)",
+      "note": "Short-form images get turned into long-form in-cluster by the controller.  In PRD we use 2-0",
+      "image_check_replacement_host": "ops0-artifactrepo2-0-prd.data.sfdc.net",
+      "is_short_form": true
     },
     {
       "match": ".*",
