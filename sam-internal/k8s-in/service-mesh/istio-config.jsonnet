@@ -18,13 +18,13 @@ local sidecarInjectorCertConfigs = [sidecarInjectorServerCertConfig];
 ## Istio ingressGateway madkub certificates.
 local ingressGatewayServerCertSans = [
   "istio-ingressgateway",
-  "istio-ingressgateway.mesh-control-plane",
-  "istio-ingressgateway.mesh-control-plane.svc",
-  "istio-ingressgateway.mesh-control-plane.svc.%s" % configs.dnsdomain,
-  "istio-ingressgateway.mesh-control-plane.prd-sam.prd.slb.sfdc.net",
+  "istio-ingressgateway.core-on-sam-sp2",
+  "istio-ingressgateway.core-on-sam-sp2.svc",
+  "istio-ingressgateway.core-on-sam-sp2.svc.%s" % configs.dnsdomain,
+  "istio-ingressgateway.core-on-sam-sp2.prd-sam.prd.slb.sfdc.net",
 ];
-local ingressGatewayServerCertConfig = madkub.serverCertConfig("tls-server-cert", "/server-cert", "istio-ingressgateway", "mesh-control-plane", ingressGatewayServerCertSans);
-local ingressGatewayClientCertConfig = madkub.clientCertConfig("tls-client-cert", "/client-cert", "istio-ingressgateway", "mesh-control-plane");
+local ingressGatewayServerCertConfig = madkub.serverCertConfig("tls-server-cert", "/server-cert", "istio-ingressgateway", "core-on-sam-sp2", ingressGatewayServerCertSans);
+local ingressGatewayClientCertConfig = madkub.clientCertConfig("tls-client-cert", "/client-cert", "istio-ingressgateway", "core-on-sam-sp2");
 local ingressGatewayCertConfigs = [ingressGatewayClientCertConfig, ingressGatewayServerCertConfig];
 
 {
