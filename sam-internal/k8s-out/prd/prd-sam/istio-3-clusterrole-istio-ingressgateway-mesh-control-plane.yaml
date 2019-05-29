@@ -6,7 +6,7 @@ metadata:
   labels:
     app: ingressgateway
     release: istio
-  name: istio-ingressgateway-mesh-control-plane
+  name: istio-ingressgateway-core-on-sam-sp2
 rules:
 - apiGroups:
   - networking.istio.io

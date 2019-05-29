@@ -66,6 +66,12 @@ local ingressGatewayCertConfigs = [ingressGatewayClientCertConfig, ingressGatewa
     else
       configs.estate + "_gater"
   ),
+  casamEstate: (
+    if configs.estate == "prd-samtest" then
+      configs.estate
+    else
+      "prd-sp2-sam_coreapp"
+  ),
 
   superpod: "-",
   settingsPath: "-.-." + configs.kingdom + ".-." + "istio-pilot",
