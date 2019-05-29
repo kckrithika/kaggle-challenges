@@ -36,6 +36,8 @@ apps:
   - prd/prd-sam_gater
  gate-manager-test-mesh:
   - prd/prd-sam_gater
+ gate-manager-test-psc:
+  - prd/prd-sam_gater
  gate-manager-prd-investigation:
   - prd/prd-sam_gater
  gate-manager-mvp:
