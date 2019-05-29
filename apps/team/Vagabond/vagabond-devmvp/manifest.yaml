@@ -9,14 +9,13 @@ system:
       pod: devmvp
     containers:
     - name: acs  
-      image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/vagabond:4
+      image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/vagabond:6
       args:
         - --servers=$(FUNCTION)-0.$(FUNCTION_NAMESPACE).localhost.mesh.force.com:7013,$(FUNCTION)-1.$(FUNCTION_NAMESPACE).localhost.mesh.force.com:7013,$(FUNCTION)-2.$(FUNCTION_NAMESPACE).localhost.mesh.force.com:7013,$(FUNCTION)-3.$(FUNCTION_NAMESPACE).localhost.mesh.force.com:7013
         - --dataroot=/home/sfdc-acs/data
         - --servicePort=7022
         - --mesh
         - --settingsPath=$(SETTINGS_PATH)
-        - --metrics.funnelEndPointURL=http://ajnafunneldirecttls.funnel.localhost.mesh.force.com:5442
       ports:
       - containerPort: 7022
         name: http
@@ -28,10 +27,13 @@ system:
       - name: acs-data-volume
         mountPath: /home/sfdc-acs/data
       livenessProbe:
-        exec:
-          command: ["true"]
-        initialDelaySeconds: 120
-        periodSeconds: 5
+        httpGet:
+          path: /apicursorfile/v/node/status
+          port: 7022
+        initialDelaySeconds: 240
+        timeoutSeconds: 15
+        periodSeconds: 10
+        failureThreshold: 1
     - name: acs-announcer
       image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/npshenichnyy/beacon:853c4db9f14805018be6f5e7607ffe65b5648822-201902081500
       args:
@@ -98,12 +100,3 @@ system:
     - name: tls-server-cert
       maddogCert:
         type: server
-  loadbalancers:
-  - lbname: acs-lb
-    function: acs-mesh
-    slbEnabled: true
-    ports:
-      - port: 7022
-        targetport: 7022
-      - port: 15372
-        targetport: 15372
