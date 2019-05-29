@@ -43,7 +43,7 @@ system:
         requests: {cpu: 1, memory: 2G}
       volumeMounts:
       - {mountPath: /home/scone/client-certs, name: tls-client-certs}
-    count: 1
+    count: 3
     hostnetwork: true
     identity: {serviceName: moana-driver}
     name: moana-driver-group1
@@ -89,7 +89,7 @@ system:
       volumeMounts:
       - {mountPath: /home/datapool/logs, name: logvol}
       - {mountPath: /home/datapool/client-certs, name: tls-client-certs}
-    count: 1
+    count: 3
     hostnetwork: true
     identity: {serviceName: datapool}
     name: jobcontroller-group1
