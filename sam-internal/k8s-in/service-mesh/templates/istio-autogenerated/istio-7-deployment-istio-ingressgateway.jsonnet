@@ -426,7 +426,7 @@ local mcpIstioConfig = (import "service-mesh/istio-config.jsonnet");
           },
         ],
         nodeSelector: {
-          pool: mcpIstioConfig.istioEstate,
+          pool: mcpIstioConfig.casamEstate,
         },
         serviceAccountName: "istio-ingressgateway-service-account",
         volumes: [

@@ -288,7 +288,7 @@ spec:
         - mountPath: /server-cert
           name: tls-server-cert
       nodeSelector:
-        pool: prd-sam_gater
+        pool: prd-sp2-sam_coreapp
       serviceAccountName: istio-ingressgateway-service-account
       volumes:
       - hostPath:
