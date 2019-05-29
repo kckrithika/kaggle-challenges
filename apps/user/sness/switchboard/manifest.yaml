@@ -4,12 +4,12 @@ system:
     email:
     - servicemesh@salesforce.com
   functions:
-  - name: switchboard-sness
+  - name: switchboard
     count: 5
     annotations:
       routing.mesh.sfdc.net/enabled: "true"
     labels:
-      app: switchboard-sness
+      app: switchboard
     containers:
     - name: switchboard
       image: sfci/servicelibs/switchboard:0143a74a3ae13b30676aaad8f13f1abc8f3201d7
@@ -32,6 +32,9 @@ system:
       - --metrics.funnelTimeOut=100000
       - --healthIndicator.maxThreadCount=1300
       - --authz.dest=authz-svc.service-mesh.localhost.mesh.force.com:5443
+      # WIP cluster scrapte timeout + delay while investigating W-6166785
+      - --clusters.zkScraper.scrapeTimeoutMs=120000
+      - --cluster.scraper.delayMs=120000
       ports:
       - containerPort: 15372
       env:
@@ -129,9 +132,9 @@ system:
         # that is unhealthy and that stalled the deployment
         maxUnavailable: 2
   loadbalancers:
-  - lbname: switchboard-sness
+  - lbname: switchboard
     nodeExposed: true
-    function: switchboard-sness
+    function: switchboard
     ports:
     - lbtype: dsr
       port: 15001
