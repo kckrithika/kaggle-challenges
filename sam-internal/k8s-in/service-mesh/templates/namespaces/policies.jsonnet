@@ -1,30 +1,30 @@
-local mesh_namespaces = [ "service-mesh", "gater", "mesh-control-plane", "ccait", "core-on-sam-sp2", "core-on-sam"];
+local mesh_namespaces = ["service-mesh", "gater", "mesh-control-plane", "ccait", "core-on-sam-sp2", "core-on-sam"];
 
 {
-  "apiVersion": "v1",
-  "items": [
+  apiVersion: "v1",
+  items: [
     {
-      "apiVersion": "authentication.istio.io/v1alpha1",
-      "kind": "Policy",
-      "metadata": {
-        "annotations": {
-          "manifestctl.sam.data.sfdc.net/swagger": "disable"
+      apiVersion: "authentication.istio.io/v1alpha1",
+      kind: "Policy",
+      metadata: {
+        annotations: {
+          "manifestctl.sam.data.sfdc.net/swagger": "disable",
         },
-        "clusterName": "",
-        "generation": 1,
-        "name": "istio-mtls-enable",
-        "namespace": namespace
+        clusterName: "",
+        generation: 1,
+        name: "istio-mtls-enable",
+        namespace: namespace,
       },
-      "spec": {
-        "peer_is_optional": true,
-        "peers": [
+      spec: {
+        peer_is_optional: true,
+        peers: [
           {
-            "mtls": {}
-          }
-        ]
-      }
+            mtls: {},
+          },
+        ],
+      },
     }
     for namespace in mesh_namespaces
   ],
-  "kind": "List"
+  kind: "List",
 }
