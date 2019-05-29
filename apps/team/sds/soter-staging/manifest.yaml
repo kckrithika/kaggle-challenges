@@ -13,7 +13,7 @@ system:
         maddogCert:
           type: server
           lbnames:
-            - soterlb-staging
+            - soterlb
       - name: clientcert
         maddogCert:
           type: client
