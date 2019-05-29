@@ -46,6 +46,7 @@ local utils = import "util_functions.jsonnet";
                 watchdog_kuberesources: "enabled",
                 ksm_prome_add_name_label: "enabled",
                 systemd_caps: "enabled",
+                sok_watchdog_analysis: "verified-prd-test",
             },
             version_mapping+: {
             },
