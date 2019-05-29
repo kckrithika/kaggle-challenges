@@ -33,11 +33,11 @@ system:
             - name: GRPC_PORT
               value: 7443
             - name: JAVA_OPTS
-              value: "-Dscone.service.name=istio-core-test -Dshipping.dest=app-na43.app.svc.mesh.sfdc.net:5443 -Dmanagement.server.port=15372"
+              value: "-Dscone.service.name=istio-core-test -Dshipping.dest=app-na43.app.svc.mesh.sfdc.net:7443 -Dmanagement.server.port=15372"
             - name: JAVA_HEAP_OPTS
               value: -Xmx64m
             - name: SCONE_SHIPPING_DEST
-              value: app-na43.app.svc.mesh.sfdc.net:5443
+              value: app-na43.app.svc.mesh.sfdc.net:7443
           ports:
             - containerPort: 7443
               name: grpc-svc
