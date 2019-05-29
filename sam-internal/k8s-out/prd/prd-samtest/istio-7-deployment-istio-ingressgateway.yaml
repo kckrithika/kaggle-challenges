@@ -22,19 +22,19 @@ spec:
              "cert-type": "client",
              "kingdom": "prd",
              "name": "tls-client-cert",
-             "role": "istio-ingressgateway.mesh-control-plane"
+             "role": "istio-ingressgateway.core-on-sam-sp2"
             },
             {
              "cert-type": "server",
              "kingdom": "prd",
              "name": "tls-server-cert",
-             "role": "istio-ingressgateway.mesh-control-plane",
+             "role": "istio-ingressgateway.core-on-sam-sp2",
              "san": [
               "istio-ingressgateway",
-              "istio-ingressgateway.mesh-control-plane",
-              "istio-ingressgateway.mesh-control-plane.svc",
-              "istio-ingressgateway.mesh-control-plane.svc.prd-samtest.prd.sam.sfdc.net",
-              "istio-ingressgateway.mesh-control-plane.prd-sam.prd.slb.sfdc.net"
+              "istio-ingressgateway.core-on-sam-sp2",
+              "istio-ingressgateway.core-on-sam-sp2.svc",
+              "istio-ingressgateway.core-on-sam-sp2.svc.prd-samtest.prd.sam.sfdc.net",
+              "istio-ingressgateway.core-on-sam-sp2.prd-sam.prd.slb.sfdc.net"
              ]
             }
            ]
