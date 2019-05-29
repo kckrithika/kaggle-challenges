@@ -14,14 +14,11 @@ local vipName = serviceName;
 local portConfig = [
     slbportconfiguration.newPortConfiguration(
         port=80,
-        targetPort=9090,
+        targetPort=0,
         lbType="http",
         name="http",
     ) {
-        sticky: 300,
-        healthport: 9091,
-        healthpath: "/",
-        healthprotocol: "http",
+        httpsredirectport: 443,
     },
     slbportconfiguration.newPortConfiguration(
         port=443,
@@ -62,12 +59,24 @@ local portConfig = [
         name="slb-canary-envoy-port",
     ) {
         lbalgorithm: "leastconn",
+        allow: [
+            "8.8.8.8",
+            "10.3.0.0/16",
+        ],
+        deny: [
+            "10.3.2.27"
+        ],
     },
     slbportconfiguration.newPortConfiguration(
         port=9091,
         lbType="http",
         name="slb-canary-envoy-port-1",
-    ),
+    ) {
+        sticky: 300,
+        healthport: 9091,
+        healthpath: "/",
+        healthprotocol: "http",
+    },
     slbportconfiguration.newPortConfiguration(
         port=9092,
         lbType="dsr",
