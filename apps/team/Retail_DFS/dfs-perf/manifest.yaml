@@ -13,6 +13,9 @@ system:
     - name: logvol
       hostPath:
         path: /home/sfdc-dfs/logs
+    - name: secretvol
+      k4aSecret:
+        secretName: perf-jwk
     - name: dfs-server-cert
       maddogCert:
         type: server
@@ -32,6 +35,9 @@ system:
         mountPath: /home/scone/logs
       - name: dfs-client-cert
         mountPath: /client-certs
+      - name: secretvol
+        mountPath: /secrets/
+        readOnly: true
       env:
       - name: SFDC_ENVIRONMENT
         value: mist
@@ -57,6 +63,8 @@ system:
         value: mist
       - name: USE_CC_PROXY
         value: false
+      - name: JWK_PROPERTIES_PATH
+        value: /secrets/.jwttool.config
       - name: JVM_ARGS
         value: "-Dspring.profiles.active=dev,realC2C,grpcMDS,stubConnector
                 -Djava.util.concurrent.ForkJoinPool.common.parallelism=100
