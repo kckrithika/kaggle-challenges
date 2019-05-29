@@ -34,7 +34,8 @@ spec:
               "istio-ingressgateway.core-on-sam-sp2",
               "istio-ingressgateway.core-on-sam-sp2.svc",
               "istio-ingressgateway.core-on-sam-sp2.svc.prd-sam.prd.sam.sfdc.net",
-              "istio-ingressgateway.core-on-sam-sp2.prd-sam.prd.slb.sfdc.net"
+              "istio-ingressgateway.core-on-sam-sp2.prd-sam.prd.slb.sfdc.net",
+              "na7.mist61.salesforce.com"
              ]
             }
            ]

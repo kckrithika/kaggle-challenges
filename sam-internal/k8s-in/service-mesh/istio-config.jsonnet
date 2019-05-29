@@ -22,6 +22,7 @@ local ingressGatewayServerCertSans = [
   "istio-ingressgateway.core-on-sam-sp2.svc",
   "istio-ingressgateway.core-on-sam-sp2.svc.%s" % configs.dnsdomain,
   "istio-ingressgateway.core-on-sam-sp2.prd-sam.prd.slb.sfdc.net",
+  "na7.mist61.salesforce.com",
 ];
 local ingressGatewayServerCertConfig = madkub.serverCertConfig("tls-server-cert", "/server-cert", "istio-ingressgateway", "core-on-sam-sp2", ingressGatewayServerCertSans);
 local ingressGatewayClientCertConfig = madkub.clientCertConfig("tls-client-cert", "/client-cert", "istio-ingressgateway", "core-on-sam-sp2");
