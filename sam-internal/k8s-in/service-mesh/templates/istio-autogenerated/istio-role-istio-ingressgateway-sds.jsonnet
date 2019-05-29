@@ -8,7 +8,7 @@ local mcpIstioConfig = (import "service-mesh/istio-config.jsonnet");
       "manifestctl.sam.data.sfdc.net/swagger": "disable",
     },
     name: "istio-ingressgateway-sds",
-    namespace: "mesh-control-plane",
+    namespace: "core-on-sam-sp2",
   },
   rules: [
     {

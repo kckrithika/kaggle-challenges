@@ -10,7 +10,7 @@ local mcpIstioConfig = (import "service-mesh/istio-config.jsonnet");
       release: "istio",
     },
     name: "istio-ingressgateway",
-    namespace: "mesh-control-plane",
+    namespace: "core-on-sam-sp2",
   },
   spec: {
     selector: {
@@ -131,7 +131,7 @@ local mcpIstioConfig = (import "service-mesh/istio-config.jsonnet");
             env: [
               {
                 name: "ESTATE",
-                value: mcpIstioConfig.istioEstate,
+                value: mcpIstioConfig.casamEstate,
               },
               {
                 name: "ISTIO_METAJSON_METRICS_INCLUSIONS",
@@ -309,7 +309,7 @@ local mcpIstioConfig = (import "service-mesh/istio-config.jsonnet");
               },
               {
                 name: "ESTATE",
-                value: mcpIstioConfig.istioEstate,
+                value: mcpIstioConfig.casamEstate,
               },
             ],
             image: mcpIstioConfig.madkubImage,

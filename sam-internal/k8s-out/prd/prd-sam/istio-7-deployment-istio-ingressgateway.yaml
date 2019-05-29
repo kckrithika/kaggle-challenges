@@ -6,7 +6,7 @@ metadata:
     istio: ingressgateway
     release: istio
   name: istio-ingressgateway
-  namespace: mesh-control-plane
+  namespace: core-on-sam-sp2
 spec:
   selector:
     matchLabels:
@@ -109,7 +109,7 @@ spec:
         - istio-pilot:15010
         env:
         - name: ESTATE
-          value: prd-sam_gater
+          value: prd-sp2-sam_coreapp
         - name: ISTIO_METAJSON_METRICS_INCLUSIONS
           value: '{"sidecar.istio.io/statsInclusionPrefixes": "access_log_file,cluster,cluster_manager,control_plane,http,http2,http_mixer_filter,listener,listener_manager,redis,runtime,server,stats,tcp,tcp_mixer_filter,tracing"}'
         - name: POD_NAME
@@ -216,7 +216,7 @@ spec:
               apiVersion: v1
               fieldPath: metadata.namespace
         - name: ESTATE
-          value: prd-sam_gater
+          value: prd-sp2-sam_coreapp
         image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/madkub:1.0.0-0000082-3d5c21b4
         imagePullPolicy: IfNotPresent
         name: madkub-refresher

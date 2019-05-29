@@ -11,18 +11,18 @@ local mcpIstioConfig = (import "service-mesh/istio-config.jsonnet");
       app: "ingressgateway",
       release: "istio",
     },
-    name: "istio-ingressgateway-mesh-control-plane",
+    name: "istio-ingressgateway-core-on-sam-sp2",
   },
   roleRef: {
     apiGroup: "rbac.authorization.k8s.io",
     kind: "ClusterRole",
-    name: "istio-ingressgateway-mesh-control-plane",
+    name: "istio-ingressgateway-core-on-sam-sp2",
   },
   subjects: [
     {
       kind: "ServiceAccount",
       name: "istio-ingressgateway-service-account",
-      namespace: "mesh-control-plane",
+      namespace: "core-on-sam-sp2",
     },
   ],
 }
