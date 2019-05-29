@@ -5,7 +5,7 @@ system:
     email:
     - dmanoharan@salesforce.com
   functions:
-  - name: gater-mesh
+  - name: gater-mesh-psc
     count: 1
     hostnetwork: true
     containers:
