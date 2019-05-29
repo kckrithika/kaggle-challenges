@@ -16,7 +16,7 @@ apps:
         - shared0-samminioncrosscloudplatform2-3-prd.eng.sfdc.net
         - shared0-samminioncrosscloudplatform2-4-prd.eng.sfdc.net
     
-    metadata-service-prd-func-prod-2:    # functional prod version 
+    metadata-service-prd-func-freeze:    # functional freeze  
     - name: prd/prd-sam_crosscloudplatform
       hostSubList:
         - shared0-samminioncrosscloudplatform2-1-prd.eng.sfdc.net

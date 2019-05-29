@@ -5,7 +5,7 @@ system:
     - ascheer@salesforce.com
     - kanchan.sannidhanam@salesforce.com
   functions:
-  - name: metadata-service-prd-func-prod-2
+  - name: metadata-service-prd-func-freeze
     identity:
       serviceName: metadata-service
     count: 1
@@ -121,8 +121,8 @@ system:
       k4aSecret:
         secretName: mds-gdot-secrets-prd
   loadbalancers:
-  - lbname: metadata-service-prd-func-prod-2-lb
-    function: metadata-service-prd-func-prod-2
+  - lbname: metadata-service-prd-func-freeze-lb
+    function: metadata-service-prd-func-freeze
     slbEnabled: true
     ports:
     - port: 9093
