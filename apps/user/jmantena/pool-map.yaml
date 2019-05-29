@@ -1,3 +1,7 @@
 apps:
  griddable-relay:
   - prd/prd-sam
+ griddable-chs:
+  - prd/prd-sam
+ griddable-consumer:
+  - prd/prd-sam
