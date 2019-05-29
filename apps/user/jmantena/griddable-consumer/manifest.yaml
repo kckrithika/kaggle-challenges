@@ -1,14 +1,11 @@
 apiVersion: v1
 system:
    functions:
-   - name: acds-relay
+   - name: acds-consumer
      count: 1
-     type: stateful-set
      containers:
-     - name: acds-relay-cont
+     - name: acds-consumer-cont
        image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mmanthena/griddable-full:v0.0.1
-       ports:
-          - containerPort: 10234
        command:
        - /bin/bash
        - -c
@@ -16,18 +13,21 @@ system:
        livenessProbe:
          exec:
            command:
-           - "/acds/bin/acdsOk.sh"
+           - "/acds/bin/consumerOk.sh"
          initialDelaySeconds: 10
          timeoutSeconds: 5
        volumeMounts:
-#         - name: relay-persistent-conf
+#         - name: consumer-persistent-conf
 #           mountPath: /acds/conf
-#         - name: relay-persistent-extlib
+#         - name: consumer-persistent-extlib
 #           mountPath: /acds/extlib
-#         - name: relay-persistent-logs
+#         - name: consumer-persistent-logs
 #           mountPath: /acds/logs
-#         - name: relay-persistent-checkpoints
+#         - name: consumer-persistent-checkpoints
 #           mountPath: /acds/remote_checkpoints
+#         - mountPath: /task-manager-secrets/
+#           name: task-manager-secrets-vol
+#           readOnly: true
          - mountPath: /acds/acds-secrets/
            name: acds-secrets-vol
            readOnly: true
@@ -47,8 +47,8 @@ system:
          value: all
        - name : LOGGING_STDERR_LEVEL
          value: all
-       - name : TRUSTED_CERT
-         value: "cat /client-certs/ca.pem"
+       - name : TENANT_ADMIN_NAME
+         value: "admin@local"
        - name : ACDS_POLICY
          value: "io.griddable.policy:{\"ACDS_TEST\":{}}"
        - name : ACDS_DB_CONFIG
@@ -57,16 +57,14 @@ system:
         \"useServiceName\" : \"AUTO\",
         \"useStatementBatching\" : false
     },
-    \"host\" : \"10.225.242.101\",
-    \"id\" : \"srcdb\",
+    \"host\" : \"10.225.241.81\",
+    \"id\" : \"targetdb\",
     \"instanceName\" : \"DATABASE\",
     \"password\" : \"basic:xRdN9n9+Yto2hHDW/sldaA==\",
     \"port\" : 1521,
     \"type\" : \"oracle\",
     \"user\" : \"ACDS_TEST\"}"
        - name : TENANT_ADMIN_NAME
-         value: "admin@local"
-       - name : TENANR_ADMIN_PASSWORD
          value: "admin@local" 
        - name : TENANT_ADMIN_PASSWORD
          value: "synchronize"
@@ -83,7 +81,7 @@ system:
        - name : GRID_CONNECTION_ID
          value: "DS_CONN_DD_1"
        - name : PATH
-         value: "/opt/tools/Linux/jdk/openjdk1.8.0_172_x64/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:$PATH"
+         value: "/opt/tools/Linux/jdk/openjdk1.8.0_172_x64/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
        - name : JAVA_HOME
          value: "/opt/tools/Linux/jdk/openjdk1.8.0_172_x64"
        - name : LANG
@@ -126,25 +124,41 @@ system:
          value: "20m"
        - name : ACDS_AUTO_CBC_ENABLED
          value: "true"
-       - name : ACDS_START_RELAY
+       - name : DEFAULT_CONSUMER_ERROR_ACTION
+         value: "fail"
+       - name : REMOTE_RELAYS
+         value: "acds-relay-lb.user-mmanthena:10234"
+       - name : REMOTE_CATCHUPS
+         value: "chs-lb.user-mmanthena:11111"
+       - name : MEM_TOTAL_BYTES
+         value: "2000m"
+       - name : ACDS_PERSIST_STATE
          value: "yes"
-       - name : ACDS_START_CLIENT
+       - name : ACDS_REPL_CONSUMER_DB_CONFIG
+         value: "targetdb"
+       - name : ACDS_CONSUMER_POLICY
+         value: "consumer_policy:1"
+       - name : ACDS_START_RELAY
          value: "no"
+       - name : ACDS_START_CLIENT
+         value: "yes"     
        - name : DUMMY_VARIABLE
-         value: "DUMMY_VARIABLE_5"
+         value: "DUMMY_VARIABLE_4"
+       - name : GRID_CONNECTION_ID
+         value: 1
      volumes:
-#     - name: relay-persistent-conf
+#     - name: consumer-persistent-conf
 #       hostPath:
-#         path: /home/sfdc-acds-relay/conf
-#     - name: relay-persistent-logs
+#         path: /home/sfdc-acds-consumer/conf
+#     - name: consumer-persistent-logs
 #       hostPath:
-#         path: /home/sfdc-acds-relay/logs
-#     - name: relay-persistent-extlib
+#         path: /home/sfdc-acds-consumer/logs
+#     - name: consumer-persistent-extlib
 #       hostPath:
-#         path: /home/sfdc-acds-relay/extlib
-#     - name: relay-persistent-checkpoints
+#         path: /home/sfdc-acds-consumer/extlib
+#     - name: consumer-persistent-checkpoints
 #       hostPath:
-#         path: /home/sfdc-acds-relay/remote_checkpoints
+#         path: /home/sfdc-acds-consumer/remote_checkpoints
      - name: tls-client-cert
        maddogCert:
          type: client
@@ -154,11 +168,3 @@ system:
      - name: acds-secrets-vol
        k4aSecret:
          secretName: acds-secrets
-     lbname: acds-relay-stateful-lb    
-   loadbalancers:
-   - lbname: acds-relay-lb
-     function: acds-relay
-     slbEnabled: true
-     ports:
-       - port: 10234
-         targetport: 10234

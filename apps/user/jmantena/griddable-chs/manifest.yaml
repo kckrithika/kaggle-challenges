@@ -1,14 +1,14 @@
 apiVersion: v1
 system:
    functions:
-   - name: acds-relay
+   - name: acds-chs
      count: 1
      type: stateful-set
      containers:
-     - name: acds-relay-cont
+     - name: acds-chs-cont
        image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mmanthena/griddable-full:v0.0.1
        ports:
-          - containerPort: 10234
+          - containerPort: 11111
        command:
        - /bin/bash
        - -c
@@ -16,17 +16,17 @@ system:
        livenessProbe:
          exec:
            command:
-           - "/acds/bin/acdsOk.sh"
+           - "/acds/bin/consumerOk.sh"
          initialDelaySeconds: 10
          timeoutSeconds: 5
        volumeMounts:
-#         - name: relay-persistent-conf
+#         - name: chs-persistent-conf
 #           mountPath: /acds/conf
-#         - name: relay-persistent-extlib
+#         - name: chs-persistent-extlib
 #           mountPath: /acds/extlib
-#         - name: relay-persistent-logs
+#         - name: chs-persistent-logs
 #           mountPath: /acds/logs
-#         - name: relay-persistent-checkpoints
+#         - name: chs-peristent-checkpoints
 #           mountPath: /acds/remote_checkpoints
          - mountPath: /acds/acds-secrets/
            name: acds-secrets-vol
@@ -35,20 +35,13 @@ system:
            mountPath: /client-certs
          - name: tls-server-cert
            mountPath: /server-certs
-       resources:
-         requests:
-           cpu: 2
-           memory: 4Gi
-         limits:
-           cpu: 3
-           memory: 6Gi
        env:
+       - name : REMOTE_RELAYS
+         value: "acds-relay-lb.user-mmanthena:10234" 
        - name : LOGGING_JSON_STDOUT_LEVEL
          value: all
        - name : LOGGING_STDERR_LEVEL
          value: all
-       - name : TRUSTED_CERT
-         value: "cat /client-certs/ca.pem"
        - name : ACDS_POLICY
          value: "io.griddable.policy:{\"ACDS_TEST\":{}}"
        - name : ACDS_DB_CONFIG
@@ -83,7 +76,7 @@ system:
        - name : GRID_CONNECTION_ID
          value: "DS_CONN_DD_1"
        - name : PATH
-         value: "/opt/tools/Linux/jdk/openjdk1.8.0_172_x64/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:$PATH"
+         value: "/opt/tools/Linux/jdk/openjdk1.8.0_172_x64/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
        - name : JAVA_HOME
          value: "/opt/tools/Linux/jdk/openjdk1.8.0_172_x64"
        - name : LANG
@@ -126,25 +119,51 @@ system:
          value: "20m"
        - name : ACDS_AUTO_CBC_ENABLED
          value: "true"
-       - name : ACDS_START_RELAY
-         value: "yes"
-       - name : ACDS_START_CLIENT
-         value: "no"
        - name : DUMMY_VARIABLE
-         value: "DUMMY_VARIABLE_5"
+         value: "DUMMY_VARIABLE_3"
+       - name : ACDS_REPL_CONSUMER_DB_CONFIG
+         value: "bootstrap"
+       - name : ACDS_CONSUMER_POLICY
+         value: "catchup:1"
+       - name : ACDS_CONSUMER_TYPE
+         value: "catchup"
+       - name : DB_ROOT_PASSWORD
+         value: "rootPassword"
+       - name : DB_USER
+         value: "ddnuser"
+       - name : DB_PASSWORD
+         value: "ddnpassword"
+       - name : DB_NAME
+         value: "ddnprod"
+       - name : MYSQL_USER
+         value: "ddnuser"
+       - name : MYSQL_PASSWORD
+         value: "ddnpassword"
+       - name : MYSQL_DATABASE
+         value: "griddable"
+       - name : ACDS_START_RELAY
+         value: "no"
+       - name : ACDS_START_CLIENT
+         value: "yes"
+       - name : MEM_TOTAL_BYTES
+         value: "2000m"
+       - name : POLICY_DESIGNER_DB_HOSTNAME
+         value: guiapi-db-lb
+       - name : POLICY_DESIGNER_DB_PORT
+         value: 3306
      volumes:
-#     - name: relay-persistent-conf
+#     - name: chs-persistent-conf
 #       hostPath:
-#         path: /home/sfdc-acds-relay/conf
-#     - name: relay-persistent-logs
+#         path: /home/sfdc-acds-chs/conf
+#     - name: chs-persistent-extlib
 #       hostPath:
-#         path: /home/sfdc-acds-relay/logs
-#     - name: relay-persistent-extlib
+#         path: /home/sfdc-acds-chs/extlib
+#     - name: chs-persistent-logs
 #       hostPath:
-#         path: /home/sfdc-acds-relay/extlib
-#     - name: relay-persistent-checkpoints
+#         path: /home/sfdc-acds-chs/logs
+#     - name: chs-peristent-checkpoints 
 #       hostPath:
-#         path: /home/sfdc-acds-relay/remote_checkpoints
+#         path: /home/sfdc-acds-chs/remote_checkpoints
      - name: tls-client-cert
        maddogCert:
          type: client
@@ -154,11 +173,11 @@ system:
      - name: acds-secrets-vol
        k4aSecret:
          secretName: acds-secrets
-     lbname: acds-relay-stateful-lb    
+     lbname: chs-stateful-lb  
    loadbalancers:
-   - lbname: acds-relay-lb
-     function: acds-relay
+   - lbname: chs-lb
+     function: acds-chs
      slbEnabled: true
      ports:
-       - port: 10234
-         targetport: 10234
+       - port: 11111
+         targetport: 11111
