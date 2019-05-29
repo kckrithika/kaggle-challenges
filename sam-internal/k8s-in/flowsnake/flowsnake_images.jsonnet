@@ -29,7 +29,6 @@ local utils = import "util_functions.jsonnet";
                 btrfs_watchdog_hard_reset: "",
                 image_renames_and_canary_build_tags: "unverified",
                 slb_ingress: "unverified",
-                sok_watchdog_analysis: "unverified",
                 rm_kuberesources_cm: "",
             },
             # prd-test offers legacy version mappings. Phase 2 does not, so cannot inherit from there.
@@ -47,7 +46,6 @@ local utils = import "util_functions.jsonnet";
                 watchdog_kuberesources: "enabled",
                 ksm_prome_add_name_label: "enabled",
                 systemd_caps: "enabled",
-                sok_watchdog_analysis: "verified-prd-test",
             },
             version_mapping+: {
             },
@@ -126,7 +124,6 @@ local utils = import "util_functions.jsonnet";
             feature_flags: {
                 # After promoting a feature-flag to phase 3, please submit a follow-on PR to remove the flag and
                 # associated conditional logic. That PR will not affect k8s-out, so you can self-approve it.
-                sok_watchdog_analysis: "verified-phase-2",
             },
             version_mapping: {
                 "0.12.5": "jenkins-dva-transformation-flowsnake-platform-master-781-itest",  # jenkins-dva-transformation-flowsnake-platform-master-781-itest contains MoFo estates and Kevin's 5xx fixes
