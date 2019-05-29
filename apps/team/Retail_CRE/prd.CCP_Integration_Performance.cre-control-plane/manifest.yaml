@@ -9,64 +9,80 @@ system:
     count: 1
     containers:
     - name: cre-control-plane-ccp-perf
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cre/cre-control-plane:1.7.0-freeze-001.0.release-1.7.344cf71.1
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cre-fusion/services/control-plane:1.8.0-freeze-003.0.release-1.8.315a373.16
       env:
-        - name: AUTHORIZED_USERS
-          value: "admin@bt8.salesforce.com,adminqa@bt8.salesforce.com,adminqa@bt60.salesforce.com,admin@bt.salesforce.com,cre-api@salesforce.com"
-        - name: METRICS_KAFKA_TOPIC
-          value: sfdc.prod.cre__prd.ajna_local__cre_metrics_CCP_Integration_Performance
-        - name: METRICS_KAFKA_SERVER
-          value: ajna0-broker1-0-prd.data.sfdc.net:9093
+        ####################################################################################################
+        ############################   ENGINE/DDS FLOWSNAKE ARTIFACTS ( Most frequently changed ) ##########
+        ####################################################################################################
+        - name: IMPORT_FLOWSNAKE_ARTIFACT
+          value: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cre/cre-engine:1.8.0.0.release.f1632bc.4
+        - name: SAVE_FLOWSNAKE_ARTIFACT
+          value: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cre/cre-dds-spark:1.8.0-freeze-001.0.release-1.8.f68ae51.5
+        - name: EXPORT_FLOWSNAKE_ARTIFACT
+          value: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cre/cre-dds-spark:1.8.0-freeze-001.0.release-1.8.f68ae51.5
+        ####################################################################################################
+        ####################################### GLOBAL SHARED VALUES #######################################
+        ####################################################################################################
         - name: SFDC_ENVIRONMENT
           value: ccp-perf
         - name: METRICS_KAFKA_ENABLED
           value: true
+        - name: METRICS_KAFKA_TOPIC
+          value: sfdc.prod.cre__prd.ajna_local__cre_metrics_CCP_Integration_Performance
+        - name: METRICS_KAFKA_SERVER
+          value: ajna0-broker1-0-prd.data.sfdc.net:9093
+          ## HBASE
+        - name: HBASE_ENVIRONMENT
+          value: kingdom-test
+        - name: HBASE_NAMESPACE
+          value: CRE_PERF
+        - name: HBASE_DATACENTER
+          value: prd
+          ## FLOWSNAKE
+        - name: MAX_FLOWSNAKE_ENVIRONMENTS
+          value: 25
+        ####################################################################################################
+        ####################################### IMPORT environment variables ###############################
+        ####################################################################################################
+        - name: IMPORT_CRE_APPLICATION_NAME
+          value: cre-engine-ccp-perf
+        - name: IMPORT_K4A_VAULT
+          value: cre-engine-dev
+        ####################################################################################################
+        ####################################### SAVE environment variables ###############################
+        ####################################################################################################
+        - name: CRE_DDS_ENV
+          value: Prd
+        - name: SAVE_CRE_APPLICATION_NAME
+          value: cre-engine-ccp-perf
+        - name: SAVE_K4A_VAULT
+          value: cre-dds-dev
+        ####################################################################################################
+        ####################################### EXPORT environment variables ###############################
+        ####################################################################################################
+        - name: EXPORT_CRE_APPLICATION_NAME
+          value: cre-engine-ccp-perf
+        ####################################################################################################
+        ##################################### APP Config environment variables #############################
+        ####################################################################################################
+        - name: FLOWSNAKE_ENDPOINT
+          value: https://dev0shared0-flowsnakeiottest1-0-prd.data.sfdc.net
+          ## MADDOG (MAD DOG)
         - name: MADDOG_CLIENT_KEYSTORE
           value: maddog/maddog-client-keystore.json
         - name: MADDOG_CLIENT_TRUSTSTORE
           value: maddog/maddog-client-truststore.json
-        - name: GDOT_PROVISIONING_USER_KEY_FILE_PATH
-          value: /secrets-kube/cre-gdot-private-key.json
-        - name: GRPC_PORT
-          value: 7020
-        - name: FLOWSNAKE_ENDPOINT
-          value: https://dev0shared0-flowsnakeiottest1-0-prd.data.sfdc.net
-        - name: ENGINE_PKI_NAME_OVERRIDE
-          value: cre-engine-ccp-perf
-        - name: ENGINE_IMAGE_TAG
-          value: docker-sam/cre/cre-engine:1.6.0.0.develop-1.6.942d067.18
-        - name: ENGINE_APPLICATION_NAME
-          value: cre-engine-ccp-perf
-        - name: ENGINE_HBASE_DATACENTER
-          value: prd
-        - name: ENGINE_HBASE_ENVIRONMENT
-          value: kingdom-perf
-        - name: ENGINE_METRICS_KAFKA_SERVER
-          value: ajna0-broker1-0-prd.data.sfdc.net:9093
-        - name: ENGINE_METRICS_KAFKA_TOPIC
-          value: sfdc.prod.cre__prd.ajna_local__cre_metrics_CCP_Integration_Performance
-        - name: ENGINE_INCOMING_QUEUE
-          value: sfdc.prod.cre__prd.ajna_local__cre_inbound_CCP_Integration_Performance
-        - name: ENGINE_OUTGOING_QUEUE
-          value: sfdc.prod.cre__prd.ajna_local__cre_outbound_CCP_Integration_Performance
-        - name: ENGINE_SUPER_TENANT_ID_OVERRIDE
-          value: <placeholder_super_tenant_id>
-        - name: HBASE_ENVIRONMENT
-          value: kingdom-perf
-        - name: HBASE_DATACENTER
-          value: prd
-        - name: MAX_FLOWSNAKE_ENVIRONMENTS
-          value: 25
-        - name: STREAM_PROCESSING_ENDPOINT
-          value: cre-sp-ccp-perf.retail-cre.localhost.mesh.force.com:5443
-        - name: GDOT_FORCE_PROVISIONING
-          value: false
-        - name: GDOT_BASE_PATH
-          value: https://login.stmfa.stm.salesforce.com/empire/cloudatlas/scim
-        - name: SECRET_KEY_FILE
-          value: /keys-kube/cre-aes.key
+          ## DBaaS
         - name: DATABASE_NAMESPACE
           value: crecontrolplaneccpperf
+        - name: SPRING_DATASOURCE_URL
+          value: jdbc:discover://dbaas0-minionapp1-1-prd.eng.sfdc.net:1511,dbaas0-minionapp2-1-prd.eng.sfdc.net:1511,dbaas0-minionapp3-1-prd.eng.sfdc.net:1511/${database.namespace}?${database.discovery.params}
+          ## Stream Processor
+        - name: STREAM_PROCESSING_ENDPOINT
+          value: cre-sp-ccp-perf.retail-cre.localhost.mesh.force.com:5443
+        ####################################################################################################
+        ####################################### PERF environment variables #################################
+        ####################################################################################################
         - name: JVM_ARGS
           value: "-Djava.util.concurrent.ForkJoinPool.common.parallelism=8
                   -verbose:gc -XX:+PrintGCDateStamps -XX:+PrintHeapAtGC
@@ -89,16 +105,10 @@ system:
       - containerPort: 15372
       livenessProbe:
         exec:
-            command:
+          command:
             - ls
         initialDelaySeconds: 30
       volumeMounts:
-      - mountPath: /secrets-kube/
-        name: secretvol
-        readOnly: true
-      - mountPath: /keys-kube/
-        name: aeskey
-        readOnly: true
       - mountPath: /client-certs
         name: client-certs
       - mountPath: /server-certs
