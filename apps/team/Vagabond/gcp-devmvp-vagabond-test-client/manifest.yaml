@@ -22,7 +22,7 @@ system:
         - --reportInterval=300
         - --initialDelaySeconds=120
         - --threadCount=10
-        - --url=acs-mesh-0.vagabond.localhost.mesh.force.com:7013,acs-mesh-1.vagabond.localhost.mesh.force.com:7013,acs-mesh-2.vagabond.localhost.mesh.force.com:7013,acs-mesh-3.vagabond.localhost.mesh.force.com:7013
+        - --url=acs-test-mesh-0.vagabond.localhost.mesh.force.com:7013,acs-test-mesh-1.vagabond.localhost.mesh.force.com:7013,acs-test-mesh-2.vagabond.localhost.mesh.force.com:7013,acs-test-mesh-3.vagabond.localhost.mesh.force.com:7013
       livenessProbe:
         exec:
           command: ["true"]
