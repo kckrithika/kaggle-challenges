@@ -42,10 +42,7 @@ local utils = import "util_functions.jsonnet";
         configs.estate == "prd-sdc" ||
         configs.estate == "xrd-sam",
 
-     # lo2 and lo3 kingdoms are not ready yet
-     syntheticwdPagerDutyEnabled:
-        configs.kingdom != "lo2" &&
-        configs.kingdom != "lo3",
+     syntheticwdPagerDutyEnabled: true,
 
      maddogCopyTestCA: (if configs.kingdom == "prd" then true),
 
