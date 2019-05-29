@@ -6,7 +6,7 @@ system:
     count: 4 
     containers:
     - name: pbsgeo
-      image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-gcp/dva/pbspectrum:9a46c6d0bb66de55a3a0467cb25ff9dc7be8a1ed
+      image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-gcp/dva/pbspectrum:93d9457f83a64b03ad557b6f1856c3dca829b7d1
       ports:
       - containerPort: 7022
       livenessProbe:
@@ -23,8 +23,6 @@ system:
         name: pbsgeodata
       - mountPath: /home/sfdc/logs
         name: logs
-      - mountPath: /home/sdfc/unpackeddata
-        name: unpackeddata
       - mountPath: /etc/pki_service/sfdc
         name: pbsgeocert
     - name: sherpa
@@ -81,9 +79,6 @@ system:
     - name: logs
       hostPath:
         path: /mnt/disks/ssd0/var/log/pbsgeo/logs
-    - name: unpackeddata        
-      hostPath:
-        path: /mnt/disks/ssd0/data/pbsgeo/unpackeddata
     - name: pbsgeocert
       maddogCert:
         type: client
