@@ -12,13 +12,10 @@ metadata:
     slb.sfdc.net/portconfigurations: |-
       [
        {
-        "healthpath": "/",
-        "healthport": 9091,
-        "healthprotocol": "http",
+        "httpsredirectport": 443,
         "lbtype": "http",
         "port": 80,
-        "sticky": 300,
-        "targetport": 9090
+        "targetport": 0
        },
        {
         "addheaders": [
@@ -50,14 +47,25 @@ metadata:
         "tls": true
        },
        {
+        "allow": [
+         "8.8.8.8/32",
+         "10.3.0.0/16"
+        ],
+        "deny": [
+         "10.3.2.27/32"
+        ],
         "lbalgorithm": "leastconn",
         "lbtype": "tcp",
         "port": 9090,
         "targetport": 9090
        },
        {
+        "healthpath": "/",
+        "healthport": 9091,
+        "healthprotocol": "http",
         "lbtype": "http",
         "port": 9091,
+        "sticky": 300,
         "targetport": 9091
        },
        {
@@ -80,7 +88,7 @@ spec:
   - name: http
     port: 80
     protocol: TCP
-    targetPort: 9090
+    targetPort: 0
   - name: https
     port: 443
     protocol: TCP

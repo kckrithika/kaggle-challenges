@@ -64,7 +64,7 @@ local portConfig = [
             "10.3.0.0/16",
         ],
         deny: [
-            "10.3.2.27/32"
+            "10.3.2.27/32",
         ],
     },
     slbportconfiguration.newPortConfiguration(
