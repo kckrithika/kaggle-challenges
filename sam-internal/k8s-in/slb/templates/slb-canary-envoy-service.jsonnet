@@ -60,11 +60,11 @@ local portConfig = [
     ) {
         lbalgorithm: "leastconn",
         allow: [
-            "8.8.8.8",
+            "8.8.8.8/32",
             "10.3.0.0/16",
         ],
         deny: [
-            "10.3.2.27"
+            "10.3.2.27/32"
         ],
     },
     slbportconfiguration.newPortConfiguration(
