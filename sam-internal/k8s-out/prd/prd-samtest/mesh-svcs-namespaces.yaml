@@ -5,6 +5,12 @@ items:
   metadata:
     labels:
       istio-injection: enabled
+    name: app
+- apiVersion: v1
+  kind: Namespace
+  metadata:
+    labels:
+      istio-injection: enabled
     name: service-mesh
 - apiVersion: v1
   kind: Namespace
