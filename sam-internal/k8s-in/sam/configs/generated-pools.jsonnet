@@ -20,6 +20,30 @@
       "access": [
         "team/CSC_Sam"
       ],
+      "controlEstate": "aws-us-west-2-sam",
+      "estate": "aws-us-west-2-sam",
+      "kingdom": "aws-us-west-2",
+      "superPod": "None"
+    },
+    {
+      "namespaces": [
+        "csc-sam"
+      ],
+      "access": [
+        "team/CSC_Sam"
+      ],
+      "controlEstate": "aws-us-west-2-samtest",
+      "estate": "aws-us-west-2-samtest",
+      "kingdom": "aws-us-west-2",
+      "superPod": "None"
+    },
+    {
+      "namespaces": [
+        "csc-sam"
+      ],
+      "access": [
+        "team/CSC_Sam"
+      ],
       "controlEstate": "cdg-sam",
       "estate": "cdg-sam",
       "kingdom": "cdg",

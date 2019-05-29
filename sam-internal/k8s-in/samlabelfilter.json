@@ -10,5 +10,9 @@
   {
     "kingdomEstateMatch": "aws-us-east-2/*",
     "requiredLabelValues": { "pcn": "deploy" }
+  },
+  {
+    "kingdomEstateMatch": "aws-us-west-2/*",
+    "requiredLabelValues": { "pcn": "deploy" }
   }
 ]

@@ -423,7 +423,7 @@ local utils = import "util_functions.jsonnet",
          },
     } else {}),
 
-    pcnEnableLabel: (if utils.is_pcn(kingdom) then {
+    pcnEnableLabel: (if utils.is_pcn(kingdom) && (kingdom != "aws-us-west-2") then {
         pcn: "deploy",
     } else {}),
 
