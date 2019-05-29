@@ -3,7 +3,7 @@ apiVersion: v1
  
 system:
   functions:
-  - name: dfs-func-prod-2
+  - name: dfs-func-freeze
     count: 1
     identity:
       serviceName: dfs
@@ -15,13 +15,13 @@ system:
       maddogCert:
         type: server
         lbnames:
-        - dfs-func-prod-2-lb
+        - dfs-func-freeze
     - name: dfs-client-cert
       maddogCert:
         type: client
 
     containers:
-    - name: dfs-func-prod-2
+    - name: dfs-func-freeze
       # Please update https://salesforce.quip.com/A9HVAFytGaqG with any changes.
       image: sfci/enterprise-api/sfdc-platform-dfs:0.18.3
       volumeMounts:
@@ -102,7 +102,7 @@ system:
           - "./bin/is-ready"
         initialDelaySeconds: 60
         periodSeconds: 120
-    - name: beacon-dfs-func-prod-2
+    - name: beacon-dfs-func-freeze
       image: sfci/servicelibs/beacon:853c4db9f14805018be6f5e7607ffe65b5648822
       env:
       - name: SFDC_ENVIRONMENT
@@ -120,8 +120,8 @@ system:
             - "/home/scone/is-alive.sh"
 
   loadbalancers:
-  - lbname: dfs-func-prod-2-lb
-    function: dfs-func-prod-2
+  - lbname: dfs-func-freeze-lb
+    function: dfs-func-freeze
     nodeExposed: true
     slbEnabled: true
     ports:
