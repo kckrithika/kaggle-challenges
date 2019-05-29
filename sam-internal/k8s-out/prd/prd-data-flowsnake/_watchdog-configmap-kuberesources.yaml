@@ -22,8 +22,8 @@ data:
         },
         "SparkOperatorTest": {
           "ImpersonationProxyMinimalTest": "/watchdog-spark-scripts/check-impersonation.sh /watchdog-spark-scripts/kubeconfig-impersonation-proxy",
-          "ImpersonationProxySparkTest": "/watchdog-spark-scripts/check-spark-operator.sh --kubeconfig /watchdog-spark-scripts/kubeconfig-impersonation-proxy /strata-test-specs-in/basic-spark-impersonation.jsonnet",
-          "SparkOperatorTest": "/watchdog-spark-scripts/check-spark-operator.sh /strata-test-specs-in/basic-spark-pi.jsonnet"
+          "ImpersonationProxySparkTest": "/watchdog-spark-scripts/analysis.py --metrics --sfdchosts /sfdchosts/hosts.json --watchdog-config /config/watchdog.json --command /watchdog-spark-scripts/check-spark-operator.sh --kubeconfig /watchdog-spark-scripts/kubeconfig-impersonation-proxy /strata-test-specs-in/basic-spark-impersonation.jsonnet",
+          "SparkOperatorTest": "/watchdog-spark-scripts/analysis.py --metrics --sfdchosts /sfdchosts/hosts.json --watchdog-config /config/watchdog.json --command /watchdog-spark-scripts/check-spark-operator.sh /strata-test-specs-in/basic-spark-pi.jsonnet"
         }
       },
       "deployer-funnelEndpoint": "ajna0-funnel1-0-prd.data.sfdc.net:80",
