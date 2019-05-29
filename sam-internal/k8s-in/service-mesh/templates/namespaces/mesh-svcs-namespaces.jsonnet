@@ -1,4 +1,5 @@
-local mesh_namespaces = ["service-mesh", "gater", "ccait", "core-on-sam-sp2", "core-on-sam"];
+# istio-inject: enabled enables both the webhooks - istio-sidecar-injector & istio-routing-webhook
+local mesh_namespaces = ["app", "service-mesh", "gater", "ccait", "core-on-sam-sp2", "core-on-sam"];
 {
   apiVersion: "v1",
   items: [

@@ -5,8 +5,17 @@ items:
   metadata:
     annotations:
       manifestctl.sam.data.sfdc.net/swagger: disable
-    clusterName: ""
-    generation: 1
+    name: istio-mtls-enable
+    namespace: app
+  spec:
+    peer_is_optional: true
+    peers:
+    - mtls: {}
+- apiVersion: authentication.istio.io/v1alpha1
+  kind: Policy
+  metadata:
+    annotations:
+      manifestctl.sam.data.sfdc.net/swagger: disable
     name: istio-mtls-enable
     namespace: service-mesh
   spec:
@@ -18,8 +27,6 @@ items:
   metadata:
     annotations:
       manifestctl.sam.data.sfdc.net/swagger: disable
-    clusterName: ""
-    generation: 1
     name: istio-mtls-enable
     namespace: gater
   spec:
@@ -31,8 +38,6 @@ items:
   metadata:
     annotations:
       manifestctl.sam.data.sfdc.net/swagger: disable
-    clusterName: ""
-    generation: 1
     name: istio-mtls-enable
     namespace: mesh-control-plane
   spec:
@@ -44,8 +49,6 @@ items:
   metadata:
     annotations:
       manifestctl.sam.data.sfdc.net/swagger: disable
-    clusterName: ""
-    generation: 1
     name: istio-mtls-enable
     namespace: ccait
   spec:
@@ -57,8 +60,6 @@ items:
   metadata:
     annotations:
       manifestctl.sam.data.sfdc.net/swagger: disable
-    clusterName: ""
-    generation: 1
     name: istio-mtls-enable
     namespace: core-on-sam-sp2
   spec:
@@ -70,8 +71,6 @@ items:
   metadata:
     annotations:
       manifestctl.sam.data.sfdc.net/swagger: disable
-    clusterName: ""
-    generation: 1
     name: istio-mtls-enable
     namespace: core-on-sam
   spec:
