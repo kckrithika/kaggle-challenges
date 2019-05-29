@@ -277,6 +277,11 @@ system:
   loadbalancers:
   - function: na7-mist61app-prd
     lbname: na7-mist61app-prd
+    labels:
+      app: app
+      settings_path: mist.mist61.prd.na7.app
+      superpod: sp2
+      version: BLUE
     ports:
     - lbtype: dsr
       port: 8085
