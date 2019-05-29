@@ -92,7 +92,7 @@ seconds. Each time has its own metric.
 """
 TIMING_METRIC_SUCCESS_TAG = 'succeeded'
 
-# Interval between the creating of the Spark Application and detecting the driver pod. 
+# Interval between the creating of the Spark Application and detecting the driver pod.
 TIMING_METRIC_NAME_DRIVER_POD_DETECTED = 'AppCreationToDriverPodDetected'
 # Interval between pending driver pod and scheduled driver pod. Only present when the driver got stuck pending instead of being directly created.
 TIMING_METRIC_NAME_DRIVER_POD_PENDING_DELAY = 'DriverPodSchedulingDelay'

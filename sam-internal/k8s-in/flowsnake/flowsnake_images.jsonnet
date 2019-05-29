@@ -126,6 +126,7 @@ local utils = import "util_functions.jsonnet";
             feature_flags: {
                 # After promoting a feature-flag to phase 3, please submit a follow-on PR to remove the flag and
                 # associated conditional logic. That PR will not affect k8s-out, so you can self-approve it.
+                sok_watchdog_analysis: "verified-phase-2",
             },
             version_mapping: {
                 "0.12.5": "jenkins-dva-transformation-flowsnake-platform-master-781-itest",  # jenkins-dva-transformation-flowsnake-platform-master-781-itest contains MoFo estates and Kevin's 5xx fixes
