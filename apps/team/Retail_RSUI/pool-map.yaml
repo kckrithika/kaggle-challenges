@@ -10,7 +10,7 @@ apps:
     hostSubList:
         - shared0-samminioncrosscloudsetup1-1-prd.eng.sfdc.net
         - shared0-samminioncrosscloudsetup2-1-prd.eng.sfdc.net
-  rsui-func-prod-2:
+  rsui-func-freeze:
   - name: prd/prd-sam_crosscloudsetup
     hostSubList:
         - shared0-samminioncrosscloudsetup1-1-prd.eng.sfdc.net
