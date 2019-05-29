@@ -128,7 +128,7 @@ system:
       app: app
       settings_path: mist.mist61.prd.na7.app
       superpod: sp2
-      version: BLUE
+      version: blue
     annotations:
       sidecar.istio.io/inject: "true"
       routing.mesh.sfdc.net/enabled: "true"
@@ -281,7 +281,7 @@ system:
       app: app
       settings_path: mist.mist61.prd.na7.app
       superpod: sp2
-      version: BLUE
+      version: blue
     ports:
     - lbtype: dsr
       port: 8085
