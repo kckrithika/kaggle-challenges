@@ -36,7 +36,7 @@ system:
       - name: clientcert
         mountPath: /clientcerts
   loadbalancers:
-  - lbname: soterlb-staging
+  - lbname: soterlb
     function: soter-staging
     slbenabled: true
     ports:
