@@ -6,7 +6,7 @@ apiVersion: v1
 system:
   functions:
   - containers:
-    - image: ops0-artifactrepo1-0-cdu.data.sfdc.net/sfci/insights/moanaengine:release-1.0.4-27d617f
+    - image: ops0-artifactrepo1-0-cdu.data.sfdc.net/sfci/insights/moanaengine:release-1.0.6-d75b287
       livenessProbe:
         exec:
           command: [ls]
@@ -16,6 +16,7 @@ system:
     name: moana-engine-group1
   - containers:
     - env:
+      - {name: MANAGEMENT_SERVER_PORT, value: '15384'}
       - {name: LOGGING_JSON_STDOUT_LEVEL, value: ALL}
       - {name: LOGGING_STDERR_LEVEL, value: ALL}
       - {name: TEST_POD, value: moana-driver-group1}
@@ -30,11 +31,13 @@ system:
       - {name: HANDLED_PODS_PATTERN, value: 'cs[0-9]+\..*|moana-driver-group1'}
       image: sfci/insights/moana-driver:release-14-bbc378c
       livenessProbe:
-        httpGet: {path: /manage/health, port: 15372}
+        httpGet: {path: /manage/health, port: 15384}
         initialDelaySeconds: 30
         periodSeconds: 60
         timeoutSeconds: 30
       name: moana-driver
+      ports:
+      - {containerPort: 15384, name: mgmt}
       resources:
         limits: {cpu: 2, memory: 2G}
         requests: {cpu: 1, memory: 2G}
@@ -51,9 +54,10 @@ system:
       name: tls-client-certs
   - containers:
     - env:
+      - {name: MANAGEMENT_SERVER_PORT, value: '15382'}
       - {name: LOGGING_JSON_STDOUT_LEVEL, value: ALL}
       - {name: LOGGING_STDERR_LEVEL, value: ALL}
-      - {name: MOANA_SPARK_ENGINE_IMAGE, value: 'ops0-artifactrepo1-0-cdu.data.sfdc.net/sfci/insights/moanaengine:release-1.0.4-27d617f'}
+      - {name: MOANA_SPARK_ENGINE_IMAGE, value: 'ops0-artifactrepo1-0-cdu.data.sfdc.net/sfci/insights/moanaengine:release-1.0.6-d75b287'}
       - {name: KAFKA_GROUP_ID, value: moana-jobcontroller-group1}
       - {name: K8S_SPARK_OVERRIDES, value: '{"spark.eventLog.enabled": "false", "spark.executor.extraJavaOptions":
           "-XX:MaxDirectMemorySize=256M -XX:ReservedCodeCacheSize=128M -XX:MaxMetaspaceSize=128M
@@ -66,16 +70,19 @@ system:
       - {name: JAVA_OPTS, value: '-server -XX:MaxMetaspaceSize=512m -Xmx2048m -Xms2048m'}
       - {name: SIZING_MEMORY_OVERHEAD, value: '1024'}
       - {name: K8S_CPU_LIMIT_APPLY, value: 'false'}
+      - {name: STARTUP_JOB_ENABLED, value: 'false'}
       - {name: HANDLED_PODS_PATTERN, value: 'cs[0-9]+\..*|moana-driver-group1'}
       - {name: K8S_API_ENDPOINT, value: 'https://kubernetes-api-flowsnake-cdu.data.sfdc.net'}
       - {name: MAESTRO_ENDPOINT, value: 'https://insights1-iworker{{superPodIndex}}-0-${kingdom}.data.sfdc.net:8008'}
-      image: sfci/insights/jobcontroller:release-1.0.3-5937af6
+      image: sfci/insights/jobcontroller:release-1.0.5-e7b2b5a
       livenessProbe:
-        httpGet: {path: /manage/health, port: 15372}
+        httpGet: {path: /manage/health, port: 15382}
         initialDelaySeconds: 90
         periodSeconds: 60
         timeoutSeconds: 30
       name: jobcontroller
+      ports:
+      - {containerPort: 15382, name: mgmt}
       resources:
         limits: {cpu: 2, memory: 4G}
         requests: {cpu: 2, memory: 4G}
