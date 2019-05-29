@@ -17,17 +17,6 @@ system:
          initialDelaySeconds: 10
          timeoutSeconds: 5
        volumeMounts:
-#         - name: consumer-persistent-conf
-#           mountPath: /acds/conf
-#         - name: consumer-persistent-extlib
-#           mountPath: /acds/extlib
-#         - name: consumer-persistent-logs
-#           mountPath: /acds/logs
-#         - name: consumer-persistent-checkpoints
-#           mountPath: /acds/remote_checkpoints
-#         - mountPath: /task-manager-secrets/
-#           name: task-manager-secrets-vol
-#           readOnly: true
          - mountPath: /acds/acds-secrets/
            name: acds-secrets-vol
            readOnly: true
@@ -47,8 +36,6 @@ system:
          value: all
        - name : LOGGING_STDERR_LEVEL
          value: all
-       - name : TENANT_ADMIN_NAME
-         value: "admin@local"
        - name : ACDS_POLICY
          value: "io.griddable.policy:{\"ACDS_TEST\":{}}"
        - name : ACDS_DB_CONFIG
@@ -69,25 +56,21 @@ system:
        - name : TENANT_ADMIN_PASSWORD
          value: "synchronize"
        - name : GRID_NAME
-         value: "Grid_01"
+         value: "Grid_02"
        - name : GRID_CONNECTION_NAME
-         value: "DS_CONN_DD_1"
+         value: "DS_CONN_DD_2"
        - name : DD_NAME
-         value: "Target_1"
+         value: "Target_12"
        - name : DS_NAME
-         value: "Source_1"
+         value: "Source_12"
        - name : DB_NAME
          value: "ddnprod"
-       - name : GRID_CONNECTION_ID
-         value: "DS_CONN_DD_1"
        - name : PATH
          value: "/opt/tools/Linux/jdk/openjdk1.8.0_172_x64/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
        - name : JAVA_HOME
          value: "/opt/tools/Linux/jdk/openjdk1.8.0_172_x64"
        - name : LANG
          value: "en_US.UTF-8"
-       - name : SERVICE_USER_EMAIL
-         value: "acds_admin@local"
        - name : TOKEN_SECRET
          value: "jJ5mPbFutWIzGIGvehio1onUctIv5yd3"
        - name : SERVICE_USER_NAME
@@ -95,17 +78,15 @@ system:
        - name : SERVICE_USER_PASSWORD
          value: "synchronize"
        - name : ACDS_APISERVER_HOST
-         value: "mgmt-api-lb.user-athatipalli.prd-sam.prd.slb.sfdc.net"
+         value: "acds-mgmt-api-lb.user-athatipalli.prd-sam.prd.slb.sfdc.net"
        - name : ACDS_APISERVER_PORT
          value: "5004"
        - name : ACDS_APISERVER_HTTPS
          value: "false"
-       - name : ACDS_APISERVER_ZKCONN
-         value: "shared0-discovery1-0-crd.data.sfdc.net:2181"
        - name : SERVICE_USER_EMAIL
          value: "acds_admin@local"
        - name : SECRETS_FOLDER_NAME
-         value: "acds-secrets"
+         value: "/acds/acds-secrets/"
        - name : POLICY_DESIGNER_SERVER_IP
          value: "10.253.213.26"
        - name : POLICY_DESIGNER_SERVER_PORT
@@ -127,7 +108,7 @@ system:
        - name : DEFAULT_CONSUMER_ERROR_ACTION
          value: "fail"
        - name : REMOTE_RELAYS
-         value: "acds-relay-lb.user-mmanthena:10234"
+         value: "acds-relay-lb.user-jmantena:10234"
        - name : REMOTE_CATCHUPS
          value: "chs-lb.user-mmanthena:11111"
        - name : MEM_TOTAL_BYTES
@@ -147,18 +128,6 @@ system:
        - name : GRID_CONNECTION_ID
          value: 1
      volumes:
-#     - name: consumer-persistent-conf
-#       hostPath:
-#         path: /home/sfdc-acds-consumer/conf
-#     - name: consumer-persistent-logs
-#       hostPath:
-#         path: /home/sfdc-acds-consumer/logs
-#     - name: consumer-persistent-extlib
-#       hostPath:
-#         path: /home/sfdc-acds-consumer/extlib
-#     - name: consumer-persistent-checkpoints
-#       hostPath:
-#         path: /home/sfdc-acds-consumer/remote_checkpoints
      - name: tls-client-cert
        maddogCert:
          type: client
