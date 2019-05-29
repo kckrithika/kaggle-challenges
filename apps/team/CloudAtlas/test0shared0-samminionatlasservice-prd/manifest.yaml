@@ -94,13 +94,13 @@ system:
       livenessProbe:
         httpGet:
           path: /empire/cloudatlas/api/schema/logicalVersion
-          port: 7032
+          port: 7030
         initialDelaySeconds: 60
         periodSeconds: 30
       readinessProbe:
         httpGet:
           path: /empire/cloudatlas/api/schema/logicalVersion
-          port: 7032
+          port: 7030
         initialDelaySeconds: 60
         periodSeconds: 5
         failureThreshold: 120
