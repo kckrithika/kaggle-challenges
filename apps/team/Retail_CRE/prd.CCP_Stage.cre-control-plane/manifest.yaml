@@ -80,7 +80,7 @@ system:
           value: jdbc:discover://dbaas0-minionapp1-1-prd.eng.sfdc.net:1511,dbaas0-minionapp2-1-prd.eng.sfdc.net:1511,dbaas0-minionapp3-1-prd.eng.sfdc.net:1511/${database.namespace}?${database.discovery.params}
           ## Stream Processor
         - name: STREAM_PROCESSING_ENDPOINT
-          value: cre-sp-ccp-stage.retail-cre.localhost.mesh.force.com:5443
+          value: cre-sp-ccp-stage.retail-cre.localhost.mesh.force.com:5442
         ####################################################################################################
         ####################################### PERF environment variables #################################
         ####################################################################################################
