@@ -1,4 +1,4 @@
-local mesh_namespaces = [ "service-mesh", "gater", "mesh-control-plane"];
+local mesh_namespaces = [ "service-mesh", "gater", "mesh-control-plane", "ccait", "core-on-sam-sp2", "core-on-sam"];
 
 {
   "apiVersion": "v1",
