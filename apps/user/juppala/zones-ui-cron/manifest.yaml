@@ -4,20 +4,20 @@ system:
     email:
       - juppala@salesforce.com
   functions:
-  - name: zones-ui
-    count: 2
+  - name: zones-ui-cron
+    count: 1
     volumes:
       - name: uiservercert
         maddogCert:
           type: server
           lbnames:
-            - sfsg
+            - sfsg-cron
       - name: uiclientcert
         maddogCert:
           type: client
     containers:
-    - name: zones-ui
-      image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/zones-ui:15
+    - name: zones-ui-cron
+      image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/zones-ui:14
       #image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/zones-ui:5
       env:
       - name: ZONES_ENVIRONMENT
@@ -43,23 +43,8 @@ system:
       - name: uiclientcert
         mountPath: /clientcerts
   loadbalancers:
-  # - lbname: zones-ui-lb
-  #   function: zones-ui
-  #   slbenabled: true
-  #   ports:
-  #     # - port: 443
-  #     #   targetport: 8445
-  #     #   lbtype: http
-  #     #   tls: true
-  #     # - port: 8445
-  #     #   targetport: 8445
-  #     #   lbtype: http
-  #     #   tls: true
-  #     - port: 8080
-  #       targetport: 8445
-  #       lbtype: http
-  - lbname: sfsg
-    function: zones-ui
+  - lbname: sfsg-cron
+    function: zones-ui-cron
     slbenabled: true
     ports:
       - port: 443
