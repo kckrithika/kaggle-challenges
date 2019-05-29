@@ -12,19 +12,55 @@
   local madkub = (import "slbmadkub.jsonnet") + { templateFileName:: std.thisFile, dirSuffix:: $.dirSuffix },
   local utils = import "util_functions.jsonnet",
 
+  // *** NOTE ***
+  // The functions within this library contain conditionals that inspect a variable
+  // capturing the type of proxy being deployed.
+  // As of this writing, the supported values are "envoy" and "nginx".
+  //
+  // slbBaseProxyDeployment(...) is the entry point for proxy deployment; other functions with
+  // conditionals based on proxy type are downstream of slbBaseProxyDeployment(...).
+  //
+  // Thus, slbBaseProxyDeployment(...) is THE ONLY PLACE where the proxy type is validated.
+  // Downstream, we do things like `if proxyType == "envoy" then envoyStuff() else nginxStuff()`.
+  // In other words, we assume if it's not envoy, it's nginx.  The introduction of additional
+  // proxy implementations will require updates to the single assertion and multiple conditionals.
+
+  // This, and the following, function implement a feature flag for consolidating
+  // beforeSharedContainers() and afterSharedContainers.
+  // The existence of these two separate functions is vestigial; it was used to avoid
+  // sweeping re-deployments due to the reordering of containers in the deployment YAML.
+  // At this point, the existence of two functions is simply confusing/distracting.
+  //
+  // The "consolidateSharedContainers" feature flag allows us to squash the contents returned by
+  // the two *SharedContainers() functions into one array of hashmaps and roll this out phase-by-phase.
+  // Once this is complete for all phases:
+  // - The feature flag can be removed.
+  // - afterSharedContainers() can be removed.
+  // - beforeSharedContainers() can be renamed to e.g. sharedContainers() (or hopefully a better function name).
+  // - The proxy-specific (before|after)SharedContainers() functions can be consolidated.
+  //
   local beforeSharedContainers(proxyType, proxyImage, deleteLimitOverride, proxyFlavor, slbUpstreamReporterEnabled) =
-    if proxyType == "envoy" then
-    envoyBeforeSharedContainers(proxyImage, deleteLimitOverride, proxyFlavor, slbUpstreamReporterEnabled) else
-    nginxBeforeSharedContainers(proxyImage, deleteLimitOverride, proxyFlavor, slbUpstreamReporterEnabled),
+    if !slbflights.consolidateSharedContainers then
+      (if proxyType == "envoy" then
+      envoyBeforeSharedContainers(proxyImage, deleteLimitOverride, proxyFlavor, slbUpstreamReporterEnabled)
+      else
+      nginxBeforeSharedContainers(proxyImage, deleteLimitOverride, proxyFlavor, slbUpstreamReporterEnabled))
+    else
+      (if proxyType == "envoy" then
+      envoyBeforeSharedContainers(proxyImage, deleteLimitOverride, proxyFlavor, slbUpstreamReporterEnabled) +
+      envoyAfterSharedContainers
+      else
+      nginxBeforeSharedContainers(proxyImage, deleteLimitOverride, proxyFlavor, slbUpstreamReporterEnabled) +
+      nginxAfterSharedContainers),
 
   local afterSharedContainers(proxyType) =
-    if proxyType == "envoy" then
-    envoyAfterSharedContainers else
-    nginxAfterSharedContainers,
-
-  //local beforeSharedContainersInternal = [],
-
-  //local afterSharedContainersInternal = [],
+    if !slbflights.consolidateSharedContainers then
+      (if proxyType == "envoy" then
+      envoyAfterSharedContainers
+      else
+      nginxAfterSharedContainers)
+    else
+      [],
 
   local envoyBeforeSharedContainers(proxyImage, deleteLimitOverride=0, proxyFlavor="", slbUpstreamReporterEnabled=true) = [
     slbshared.slbEnvoyConfig(deleteLimitOverride=deleteLimitOverride),

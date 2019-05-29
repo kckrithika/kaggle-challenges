@@ -41,6 +41,11 @@ local slbconfigs = import "slbconfig.jsonnet";
     deploySLBEnvoyConfig: (slbimages.hyperslb_build >= 2166 && slbimages.phaseNum <= 1),
 
     # 2019/05/28
+    # Feature flag to use "sharedContainers" in lieu of
+    # "beforeSharedContainers + <other resources> + afterSharedContainers".
+    consolidateSharedContainers: (slbimages.phaseNum <= 0),
+
+    # 2019/05/28
     # Feature flag to rename "slb-(envoy|nginx)-config-wipe" to "slb-config-wipe".
     renameConfigWipe: (slbimages.phaseNum <= 0),
 }
