@@ -15,7 +15,7 @@ system:
       maddogCert:
         type: server
         lbnames:
-        - dfs-func-freeze
+        - dfs-func-freeze-lb
     - name: dfs-client-cert
       maddogCert:
         type: client
