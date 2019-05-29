@@ -92,15 +92,15 @@ system:
       - containerPort: 7030
       - containerPort: 7032
       livenessProbe:
-        exec:
-          command:
-          - /bin/true
+        httpGet:
+          path: /empire/cloudatlas/api/schema/logicalVersion
+          port: 7032
         initialDelaySeconds: 60
         periodSeconds: 30
       readinessProbe:
-        exec:
-          command:
-          - /bin/true
+        httpGet:
+          path: /empire/cloudatlas/api/schema/logicalVersion
+          port: 7032
         initialDelaySeconds: 60
         periodSeconds: 5
         failureThreshold: 120
