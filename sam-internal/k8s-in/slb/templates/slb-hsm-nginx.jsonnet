@@ -7,7 +7,7 @@ local samimages = (import "sam/samimages.jsonnet") + { templateFilename:: std.th
 local slbshared = (import "slbsharedservices.jsonnet") + { dirSuffix:: slbconfigs.hsmNginxProxyName };
 local madkub = (import "slbmadkub.jsonnet") + { templateFileName:: std.thisFile, dirSuffix:: slbconfigs.hsmNginxProxyName };
 local slbflights = (import "slbflights.jsonnet") + { dirSuffix:: slbconfigs.hsmNginxProxyName };
-local slbbasenginxproxy = (import "slb-base-nginx-proxy.libsonnet") + { dirSuffix:: slbconfigs.hsmNginxProxyName };
+local slbbaseproxy = (import "slb-base-proxy.libsonnet") + { dirSuffix:: slbconfigs.hsmNginxProxyName };
 
 local hsmNginxAffinity = {
     podAntiAffinity: {
@@ -45,7 +45,8 @@ local replicas = 2;
 local certDirs = ["cert1", "cert2"];
 
 if slbconfigs.hsmNginxEnabledEstate then
-    slbbasenginxproxy.slbBaseNginxProxyDeployment(
+    slbbaseproxy.slbBaseProxyDeployment(
+      "nginx",
       slbconfigs.hsmNginxProxyName,
       replicas,
       hsmNginxAffinity,

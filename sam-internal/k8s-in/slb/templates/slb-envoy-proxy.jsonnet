@@ -7,7 +7,7 @@ local samimages = (import "sam/samimages.jsonnet") + { templateFilename:: std.th
 local slbshared = (import "slbsharedservices.jsonnet") + { dirSuffix:: "slb-envoy-proxy" };
 local madkub = (import "slbmadkub.jsonnet") + { templateFileName:: std.thisFile, dirSuffix:: "slb-nginx-config-b" };
 local slbflights = (import "slbflights.jsonnet") + { dirSuffix:: "slb-envoy-proxy" };
-local slbbaseenvoyproxy = (import "slb-base-envoy-proxy.libsonnet") + { dirSuffix:: slbconfigs.envoyProxyConfigDeploymentName };
+local slbbaseproxy = (import "slb-base-proxy.libsonnet") + { dirSuffix:: slbconfigs.envoyProxyConfigDeploymentName };
 
 local certDirs = ["cert1", "cert2"];
 
@@ -43,7 +43,7 @@ local envoyAffinity = {
 };
 
 if slbconfigs.isSlbEstate && slbflights.deploySLBEnvoyConfig then
-  slbbaseenvoyproxy.slbBaseEnvoyProxyDeployment(slbconfigs.envoyProxyConfigDeploymentName, 1, envoyAffinity, slbimages.slbenvoy) {
+  slbbaseproxy.slbBaseProxyDeployment("envoy", slbconfigs.envoyProxyConfigDeploymentName, 1, envoyAffinity, slbimages.slbenvoy) {
     spec+: {
         strategy+: {
             rollingUpdate+: {

@@ -247,6 +247,9 @@
     },
   ],
 
+  // This function implements a feature flag that accommodates the gradual
+  // renaming of "slb-(envoy|nginx)-config-wipe" to "slb-config-wipe".
+  //
   local configWipeInitContainer(proxyType="") = {
     local proxyconfigs = if proxyType == "envoy" then slbconfigs.envoy else slbconfigs.nginx,
     local imageName = if proxyType == "envoy" then "slb-envoy-config-wipe" else "slb-nginx-config-wipe",
