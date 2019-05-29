@@ -40,7 +40,7 @@ data:
       "imageName": "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/sam/hypersam:2722-a1231485debac6b17dfa76e7a1af01750e0f4f8b",
       "keyFile": "/etc/pki_service/platform/platform-client/keys/platform-client-key.pem",
       "kubeResourceNamespacePrefixBlacklist": "sam-watchdog",
-      "kubeResourceNamespacePrefixWhitelist": "sam-system,flowsnake",
+      "kubeResourceNamespacePrefixWhitelist": "sam-system,flowsnake,kube-system",
       "maxUptimeSampleSize": 5,
       "monitoredProcesses": {
         "docker-containerd.*docker-bootstrap": "age.dockercontainerdbootstrap",

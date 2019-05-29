@@ -84,7 +84,10 @@ else
                  },
                  {
                    configMap: {
-                     name: "watchdog-kuberesources",
+                     name: 
+                       if std.objectHas(flowsnake_images.feature_flags, "rm_kuberesources_cm")
+                       then "watchdog"
+                       else "watchdog-kuberesources",
                    },
                    name: "config",
                  },
