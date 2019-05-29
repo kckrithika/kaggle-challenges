@@ -32,8 +32,6 @@ LivenessProbeExceptions:
 DuplicateFunctionExceptions:
   - "user/dkardach:default"
 InsecureImageExceptions:
-  - "gcr.io/*"
-  - "791719295754.dkr.ecr.us-east-2.amazonaws.com/*"
 PortCollisionExceptions:
   - "user/gutsin/redis-test"
   - "user/adhoot/TestRCHostNW"
