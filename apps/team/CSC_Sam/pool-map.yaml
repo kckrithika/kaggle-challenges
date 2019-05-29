@@ -97,3 +97,5 @@ apps:
  gcp-test-app-stateful-pvc:
    - mvp/gsf-core-devmvp-sam2-sam
    - mvp/gsf-core-devmvp-sam2-samtest
+ aws-test-app:
+   - aws-us-east-2/aws-us-east-2-samtest

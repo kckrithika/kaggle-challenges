@@ -1,0 +1,15 @@
+apiVersion: v1
+
+system:
+  functions:
+  - name: sam-gcp-test-func
+    count: 2
+    containers:
+    - name: samhello
+      image: 791719295754.dkr.ecr.us-east-2.amazonaws.com/dva/sam/hypersam:2731-1248fc1bee4e634b1b4fdb2b43ea98710680db35
+      ports:
+      - containerPort: 9090
+      livenessProbe:
+        httpGet:
+          path: /
+          port: 9090
