@@ -1,7 +1,7 @@
 local watchdog = import "watchdog.jsonnet";
 local flowsnake_images = (import "flowsnake_images.jsonnet") + { templateFilename:: std.thisFile };
 
-if !watchdog.watchdog_enabled || !std.objectHas(flowsnake_images.feature_flags, "watchdog_kuberesources") then
+if !watchdog.watchdog_enabled || !std.objectHas(flowsnake_images.feature_flags, "watchdog_kuberesources") || std.objectHas(flowsnake_images.feature_flags, "rm_kuberesources_cm") then
 "SKIP"
 else
 {

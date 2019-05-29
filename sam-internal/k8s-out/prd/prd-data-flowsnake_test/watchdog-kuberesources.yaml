@@ -64,7 +64,7 @@ spec:
           path: /proc
         name: procfs-volume
       - configMap:
-          name: watchdog-kuberesources
+          name: watchdog
         name: config
       - hostPath:
           path: /etc/kubernetes
