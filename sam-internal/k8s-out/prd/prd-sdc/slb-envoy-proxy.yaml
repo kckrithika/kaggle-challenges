@@ -67,7 +67,7 @@ spec:
                 operator: In
                 values:
                 - slb-ipvs
-                - slb-envoy-config-b
+                - slb-envoy-proxy
             topologyKey: kubernetes.io/hostname
       containers:
       - command:
