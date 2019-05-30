@@ -96,17 +96,6 @@ data:
           "controlestate": "ukb-sam",
           "devicerole": "samcompute",
           "estate": "ukb-sam_ceph",
-          "hostname": "shared0-samminionceph1-1-ukb.ops.sfdc.net",
-          "kingdom": "ukb",
-          "pod": "none",
-          "rack": "g08-ks31",
-          "superpod": "none"
-        },
-        {
-          "bomrolename": "sam_minion_ceph",
-          "controlestate": "ukb-sam",
-          "devicerole": "samcompute",
-          "estate": "ukb-sam_ceph",
           "hostname": "shared0-samminionceph1-10-ukb.ops.sfdc.net",
           "kingdom": "ukb",
           "pod": "none",
@@ -122,17 +111,6 @@ data:
           "kingdom": "ukb",
           "pod": "none",
           "rack": "k10-ks31",
-          "superpod": "none"
-        },
-        {
-          "bomrolename": "sam_minion_ceph",
-          "controlestate": "ukb-sam",
-          "devicerole": "samcompute",
-          "estate": "ukb-sam_ceph",
-          "hostname": "shared0-samminionceph1-12-ukb.ops.sfdc.net",
-          "kingdom": "ukb",
-          "pod": "none",
-          "rack": "j07-ks31",
           "superpod": "none"
         },
         {
@@ -184,39 +162,6 @@ data:
           "controlestate": "ukb-sam",
           "devicerole": "samcompute",
           "estate": "ukb-sam_ceph",
-          "hostname": "shared0-samminionceph1-17-ukb.ops.sfdc.net",
-          "kingdom": "ukb",
-          "pod": "none",
-          "rack": "f03-ks31",
-          "superpod": "none"
-        },
-        {
-          "bomrolename": "sam_minion_ceph",
-          "controlestate": "ukb-sam",
-          "devicerole": "samcompute",
-          "estate": "ukb-sam_ceph",
-          "hostname": "shared0-samminionceph1-2-ukb.ops.sfdc.net",
-          "kingdom": "ukb",
-          "pod": "none",
-          "rack": "k10-ks31",
-          "superpod": "none"
-        },
-        {
-          "bomrolename": "sam_minion_ceph",
-          "controlestate": "ukb-sam",
-          "devicerole": "samcompute",
-          "estate": "ukb-sam_ceph",
-          "hostname": "shared0-samminionceph1-3-ukb.ops.sfdc.net",
-          "kingdom": "ukb",
-          "pod": "none",
-          "rack": "l02-ks31",
-          "superpod": "none"
-        },
-        {
-          "bomrolename": "sam_minion_ceph",
-          "controlestate": "ukb-sam",
-          "devicerole": "samcompute",
-          "estate": "ukb-sam_ceph",
           "hostname": "shared0-samminionceph1-4-ukb.ops.sfdc.net",
           "kingdom": "ukb",
           "pod": "none",
@@ -261,43 +206,10 @@ data:
           "controlestate": "ukb-sam",
           "devicerole": "samcompute",
           "estate": "ukb-sam_ceph",
-          "hostname": "shared0-samminionceph1-8-ukb.ops.sfdc.net",
-          "kingdom": "ukb",
-          "pod": "none",
-          "rack": "l02-ks31",
-          "superpod": "none"
-        },
-        {
-          "bomrolename": "sam_minion_ceph",
-          "controlestate": "ukb-sam",
-          "devicerole": "samcompute",
-          "estate": "ukb-sam_ceph",
           "hostname": "shared0-samminionceph1-9-ukb.ops.sfdc.net",
           "kingdom": "ukb",
           "pod": "none",
           "rack": "h01-ks31",
-          "superpod": "none"
-        },
-        {
-          "bomrolename": "sam_minion_ceph",
-          "controlestate": "ukb-sam",
-          "devicerole": "samcompute",
-          "estate": "ukb-sam_ceph",
-          "hostname": "shared0-samminionceph2-1-ukb.ops.sfdc.net",
-          "kingdom": "ukb",
-          "pod": "none",
-          "rack": "m21-ks32",
-          "superpod": "none"
-        },
-        {
-          "bomrolename": "sam_minion_ceph",
-          "controlestate": "ukb-sam",
-          "devicerole": "samcompute",
-          "estate": "ukb-sam_ceph",
-          "hostname": "shared0-samminionceph2-10-ukb.ops.sfdc.net",
-          "kingdom": "ukb",
-          "pod": "none",
-          "rack": "f02-ks31",
           "superpod": "none"
         },
         {
@@ -320,28 +232,6 @@ data:
           "kingdom": "ukb",
           "pod": "none",
           "rack": "b09-ks31",
-          "superpod": "none"
-        },
-        {
-          "bomrolename": "sam_minion_ceph",
-          "controlestate": "ukb-sam",
-          "devicerole": "samcompute",
-          "estate": "ukb-sam_ceph",
-          "hostname": "shared0-samminionceph2-13-ukb.ops.sfdc.net",
-          "kingdom": "ukb",
-          "pod": "none",
-          "rack": "c09-ks31",
-          "superpod": "none"
-        },
-        {
-          "bomrolename": "sam_minion_ceph",
-          "controlestate": "ukb-sam",
-          "devicerole": "samcompute",
-          "estate": "ukb-sam_ceph",
-          "hostname": "shared0-samminionceph2-14-ukb.ops.sfdc.net",
-          "kingdom": "ukb",
-          "pod": "none",
-          "rack": "k08-ks31",
           "superpod": "none"
         },
         {
@@ -393,17 +283,6 @@ data:
           "controlestate": "ukb-sam",
           "devicerole": "samcompute",
           "estate": "ukb-sam_ceph",
-          "hostname": "shared0-samminionceph2-3-ukb.ops.sfdc.net",
-          "kingdom": "ukb",
-          "pod": "none",
-          "rack": "m21-ks32",
-          "superpod": "none"
-        },
-        {
-          "bomrolename": "sam_minion_ceph",
-          "controlestate": "ukb-sam",
-          "devicerole": "samcompute",
-          "estate": "ukb-sam_ceph",
           "hostname": "shared0-samminionceph2-4-ukb.ops.sfdc.net",
           "kingdom": "ukb",
           "pod": "none",
@@ -437,17 +316,6 @@ data:
           "controlestate": "ukb-sam",
           "devicerole": "samcompute",
           "estate": "ukb-sam_ceph",
-          "hostname": "shared0-samminionceph2-7-ukb.ops.sfdc.net",
-          "kingdom": "ukb",
-          "pod": "none",
-          "rack": "k25-ks32",
-          "superpod": "none"
-        },
-        {
-          "bomrolename": "sam_minion_ceph",
-          "controlestate": "ukb-sam",
-          "devicerole": "samcompute",
-          "estate": "ukb-sam_ceph",
           "hostname": "shared0-samminionceph2-8-ukb.ops.sfdc.net",
           "kingdom": "ukb",
           "pod": "none",
@@ -470,65 +338,10 @@ data:
           "controlestate": "ukb-sam",
           "devicerole": "samcompute",
           "estate": "ukb-sam_ceph",
-          "hostname": "shared0-samminionceph3-1-ukb.ops.sfdc.net",
-          "kingdom": "ukb",
-          "pod": "none",
-          "rack": "f05-ks31",
-          "superpod": "none"
-        },
-        {
-          "bomrolename": "sam_minion_ceph",
-          "controlestate": "ukb-sam",
-          "devicerole": "samcompute",
-          "estate": "ukb-sam_ceph",
           "hostname": "shared0-samminionceph3-10-ukb.ops.sfdc.net",
           "kingdom": "ukb",
           "pod": "none",
           "rack": "b10-ks31",
-          "superpod": "none"
-        },
-        {
-          "bomrolename": "sam_minion_ceph",
-          "controlestate": "ukb-sam",
-          "devicerole": "samcompute",
-          "estate": "ukb-sam_ceph",
-          "hostname": "shared0-samminionceph3-11-ukb.ops.sfdc.net",
-          "kingdom": "ukb",
-          "pod": "none",
-          "rack": "h22-ks32",
-          "superpod": "none"
-        },
-        {
-          "bomrolename": "sam_minion_ceph",
-          "controlestate": "ukb-sam",
-          "devicerole": "samcompute",
-          "estate": "ukb-sam_ceph",
-          "hostname": "shared0-samminionceph3-12-ukb.ops.sfdc.net",
-          "kingdom": "ukb",
-          "pod": "none",
-          "rack": "l28-ks32",
-          "superpod": "none"
-        },
-        {
-          "bomrolename": "sam_minion_ceph",
-          "controlestate": "ukb-sam",
-          "devicerole": "samcompute",
-          "estate": "ukb-sam_ceph",
-          "hostname": "shared0-samminionceph3-13-ukb.ops.sfdc.net",
-          "kingdom": "ukb",
-          "pod": "none",
-          "rack": "b08-ks31",
-          "superpod": "none"
-        },
-        {
-          "bomrolename": "sam_minion_ceph",
-          "controlestate": "ukb-sam",
-          "devicerole": "samcompute",
-          "estate": "ukb-sam_ceph",
-          "hostname": "shared0-samminionceph3-14-ukb.ops.sfdc.net",
-          "kingdom": "ukb",
-          "pod": "none",
-          "rack": "f05-ks31",
           "superpod": "none"
         },
         {
@@ -558,39 +371,6 @@ data:
           "controlestate": "ukb-sam",
           "devicerole": "samcompute",
           "estate": "ukb-sam_ceph",
-          "hostname": "shared0-samminionceph3-2-ukb.ops.sfdc.net",
-          "kingdom": "ukb",
-          "pod": "none",
-          "rack": "b03-ks31",
-          "superpod": "none"
-        },
-        {
-          "bomrolename": "sam_minion_ceph",
-          "controlestate": "ukb-sam",
-          "devicerole": "samcompute",
-          "estate": "ukb-sam_ceph",
-          "hostname": "shared0-samminionceph3-3-ukb.ops.sfdc.net",
-          "kingdom": "ukb",
-          "pod": "none",
-          "rack": "d06-ks31",
-          "superpod": "none"
-        },
-        {
-          "bomrolename": "sam_minion_ceph",
-          "controlestate": "ukb-sam",
-          "devicerole": "samcompute",
-          "estate": "ukb-sam_ceph",
-          "hostname": "shared0-samminionceph3-4-ukb.ops.sfdc.net",
-          "kingdom": "ukb",
-          "pod": "none",
-          "rack": "b03-ks31",
-          "superpod": "none"
-        },
-        {
-          "bomrolename": "sam_minion_ceph",
-          "controlestate": "ukb-sam",
-          "devicerole": "samcompute",
-          "estate": "ukb-sam_ceph",
           "hostname": "shared0-samminionceph3-5-ukb.ops.sfdc.net",
           "kingdom": "ukb",
           "pod": "none",
@@ -602,32 +382,10 @@ data:
           "controlestate": "ukb-sam",
           "devicerole": "samcompute",
           "estate": "ukb-sam_ceph",
-          "hostname": "shared0-samminionceph3-6-ukb.ops.sfdc.net",
-          "kingdom": "ukb",
-          "pod": "none",
-          "rack": "k24-ks32",
-          "superpod": "none"
-        },
-        {
-          "bomrolename": "sam_minion_ceph",
-          "controlestate": "ukb-sam",
-          "devicerole": "samcompute",
-          "estate": "ukb-sam_ceph",
           "hostname": "shared0-samminionceph3-7-ukb.ops.sfdc.net",
           "kingdom": "ukb",
           "pod": "none",
           "rack": "h02-ks31",
-          "superpod": "none"
-        },
-        {
-          "bomrolename": "sam_minion_ceph",
-          "controlestate": "ukb-sam",
-          "devicerole": "samcompute",
-          "estate": "ukb-sam_ceph",
-          "hostname": "shared0-samminionceph3-8-ukb.ops.sfdc.net",
-          "kingdom": "ukb",
-          "pod": "none",
-          "rack": "d06-ks31",
           "superpod": "none"
         },
         {

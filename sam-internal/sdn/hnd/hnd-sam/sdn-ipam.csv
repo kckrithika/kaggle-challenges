@@ -27,7 +27,12 @@ shared0-samkubeapi2-1-hnd.ops.sfdc.net,10.219.181.82/28,10.213.66.0/27,b01-02,hn
 shared0-samkubeapi2-2-hnd.ops.sfdc.net,10.219.181.83/28,10.213.66.192/27,b01-02,hnd-sam,65009
 shared0-samkubeapi3-1-hnd.ops.sfdc.net,10.219.181.18/28,10.213.66.64/27,d13-02,hnd-sam,65009
 shared0-samminionaqueduct1-1-hnd.ops.sfdc.net,10.219.190.186/29,10.213.112.32/27,f10-01,hnd-sam_eventbus,65009
+shared0-samminionaqueduct1-2-hnd.ops.sfdc.net,10.219.231.162/29,10.213.112.160/27,g08-01,hnd-sam_eventbus,65009
+shared0-samminionaqueduct1-3-hnd.ops.sfdc.net,10.219.231.163/29,10.213.112.192/27,g08-01,hnd-sam_eventbus,65009
 shared0-samminionaqueduct2-1-hnd.ops.sfdc.net,10.219.190.178/29,10.213.112.0/27,d13-01,hnd-sam_eventbus,65009
+shared0-samminionaqueduct2-2-hnd.ops.sfdc.net,10.219.190.179/29,10.213.112.128/27,d13-01,hnd-sam_eventbus,65009
+shared0-samminionaqueduct3-1-hnd.ops.sfdc.net,10.219.231.178/29,10.213.112.96/27,c05-02,hnd-sam_eventbus,65009
+shared0-samminionaqueduct3-2-hnd.ops.sfdc.net,10.219.231.170/29,10.213.112.64/27,b13-02,hnd-sam_eventbus,65009
 shared0-samminionatlasdir1-1-hnd.ops.sfdc.net,10.219.183.18/29,10.213.74.64/27,d16-02,hnd-sam_cloudatlas_dir,65009
 shared0-samminionatlasdir1-2-hnd.ops.sfdc.net,10.219.183.10/29,10.213.74.32/27,b09-02,hnd-sam_cloudatlas_dir,65009
 shared0-samminionatlasdir2-1-hnd.ops.sfdc.net,10.219.183.2/29,10.213.74.0/27,a09-02,hnd-sam_cloudatlas_dir,65009
