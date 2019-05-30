@@ -16,7 +16,7 @@ system:
     name: moana-engine-group2
   - containers:
     - env:
-      - {name: MANAGEMENT_SERVER_PORT, value: '15385'}
+      - {name: MANAGEMENT_SERVER_PORT, value: '15375'}
       - {name: LOGGING_JSON_STDOUT_LEVEL, value: ALL}
       - {name: LOGGING_STDERR_LEVEL, value: ALL}
       - {name: TEST_POD, value: moana-driver-group2}
@@ -32,19 +32,19 @@ system:
       - {name: HANDLED_PODS_INVERT_MATCH, value: 'true'}
       image: sfci/insights/moana-driver:release-14-bbc378c
       livenessProbe:
-        httpGet: {path: /manage/health, port: 15385}
+        httpGet: {path: /manage/health, port: 15375}
         initialDelaySeconds: 30
         periodSeconds: 60
         timeoutSeconds: 30
       name: moana-driver
       ports:
-      - {containerPort: 15385, name: mgmt}
+      - {containerPort: 15375, name: mgmt}
       resources:
         limits: {cpu: 2, memory: 2G}
         requests: {cpu: 1, memory: 2G}
       volumeMounts:
       - {mountPath: /home/scone/client-certs, name: tls-client-certs}
-    count: 3
+    count: 1
     hostnetwork: true
     identity: {serviceName: moana-driver}
     name: moana-driver-group2
@@ -55,7 +55,7 @@ system:
       name: tls-client-certs
   - containers:
     - env:
-      - {name: MANAGEMENT_SERVER_PORT, value: '15383'}
+      - {name: MANAGEMENT_SERVER_PORT, value: '15373'}
       - {name: LOGGING_JSON_STDOUT_LEVEL, value: ALL}
       - {name: LOGGING_STDERR_LEVEL, value: ALL}
       - {name: MOANA_SPARK_ENGINE_IMAGE, value: 'ops0-artifactrepo1-0-yul.data.sfdc.net/sfci/insights/moanaengine:release-1.0.7-b0dfb04'}
@@ -78,20 +78,20 @@ system:
       - {name: MAESTRO_ENDPOINT, value: 'https://insights1-iworker{{superPodIndex}}-0-${kingdom}.data.sfdc.net:8008'}
       image: sfci/insights/jobcontroller:release-1.0.6-0152efd
       livenessProbe:
-        httpGet: {path: /manage/health, port: 15383}
+        httpGet: {path: /manage/health, port: 15373}
         initialDelaySeconds: 90
         periodSeconds: 60
         timeoutSeconds: 30
       name: jobcontroller
       ports:
-      - {containerPort: 15383, name: mgmt}
+      - {containerPort: 15373, name: mgmt}
       resources:
         limits: {cpu: 2, memory: 4G}
         requests: {cpu: 2, memory: 4G}
       volumeMounts:
       - {mountPath: /home/datapool/logs, name: logvol}
       - {mountPath: /home/datapool/client-certs, name: tls-client-certs}
-    count: 3
+    count: 1
     hostnetwork: true
     identity: {serviceName: datapool}
     name: jobcontroller-group2
