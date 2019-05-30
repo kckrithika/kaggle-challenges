@@ -33,7 +33,7 @@ local samconfig = import "config.jsonnet";
         imageName: flowsnake_images.watchdog,
         kubeResourceNamespacePrefixBlacklist: "sam-watchdog",
         kubeResourceNamespacePrefixWhitelist: "sam-system,flowsnake" +
-          if std.objectHas(flowsnake_images.feature_flags, "rm_kuberesources_cm") then ",kube-system" else "",
+          if std.objectHas(flowsnake_images.feature_flags, "watchdog_kuberesources") then ",kube-system" else "",
         maxUptimeSampleSize: 5,
         monitoredProcesses: {
           "docker-containerd.*docker-bootstrap": "age.dockercontainerdbootstrap",
