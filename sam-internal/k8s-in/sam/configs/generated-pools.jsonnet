@@ -466,7 +466,7 @@
       "estate": "dfw-sam_warden",
       "kingdom": "dfw",
       "superPod": "None"
-sam-internal/k8s-in/sam/configs/generated-pools.jsonnet    },
+    },
     {
       "namespaces": [
         "search-scale-safely"
