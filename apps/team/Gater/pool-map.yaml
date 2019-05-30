@@ -1,4 +1,6 @@
 apps:
+ expression-evaluator:
+  - prd/prd-sam_gater
  gate-manager:
   - phx/phx-sam_gater
   - frf/frf-sam_gater
