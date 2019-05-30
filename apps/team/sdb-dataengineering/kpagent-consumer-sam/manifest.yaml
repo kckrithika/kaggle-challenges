@@ -29,7 +29,7 @@ system:
     volumeClaimTemplates:
     - name: tmp
       storageClassName: standard
-      storageSizeRequest: 1Gi
+      storageSizeRequest: 2Gi
     - name: out
       storageClassName: standard
-      storageSizeRequest: 1Gi
+      storageSizeRequest: 2Gi
