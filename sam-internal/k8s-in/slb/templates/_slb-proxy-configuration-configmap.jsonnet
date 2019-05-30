@@ -46,7 +46,13 @@ local proxyVipMapping = {
     + (if slbflights.deploySLBEnvoyConfig then [
         {
             proxyname: slbconfigs.envoyProxyConfigDeploymentName,
-            vips: ["slb-canary-envoy-svc.sam-system.prd-sdc.prd.slb.sfdc.net"],
+            vips: [
+                "slb-canary-envoy-svc.sam-system.prd-sdc.prd.slb.sfdc.net",
+                #### DEMO -- Toggle these between nginx and envoy pipelines ####
+                "aviary.user-mgrass.prd-sdc.prd.slb.sfdc.net",
+                "slb-portal-service.sam-system.prd-sdc.prd.slb.sfdc.net",
+                "slb-upstream-status.sam-system.prd-sdc.prd.slb.sfdc.net",
+            ],
         },
     ] else []),
 };
