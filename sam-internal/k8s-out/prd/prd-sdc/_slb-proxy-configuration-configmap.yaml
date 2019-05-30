@@ -43,7 +43,10 @@ data:
         {
           "proxyname": "slb-envoy-proxy",
           "vips": [
-            "slb-canary-envoy-svc.sam-system.prd-sdc.prd.slb.sfdc.net"
+            "slb-canary-envoy-svc.sam-system.prd-sdc.prd.slb.sfdc.net",
+            "aviary.user-mgrass.prd-sdc.prd.slb.sfdc.net",
+            "slb-portal-service.sam-system.prd-sdc.prd.slb.sfdc.net",
+            "slb-upstream-status.sam-system.prd-sdc.prd.slb.sfdc.net"
           ]
         }
       ]
