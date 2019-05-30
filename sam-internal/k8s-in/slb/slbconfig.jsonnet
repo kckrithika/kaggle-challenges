@@ -495,6 +495,8 @@
           configUpdateSentinelPath: $.nginx.containerTargetDir + "/nginx.sentinel",
           reloadSentinelParam: "--control.nginxReloadSentinel=" + $.nginx.containerTargetDir + "/nginx.marker",
           configUpdateSentinelParam: "--control.nginxSentinel=" + $.nginx.configUpdateSentinelPath,
+          maxResourceTime: if configs.estate == "lo3-sam" then "50m0s" else "",
+          legacyConfigWipeInitContainerName: "slb-nginx-config-wipe",
 
           customer_certs_volume: {
             emptyDir: {
@@ -536,15 +538,27 @@
             name: "tlsparams-volume",
             mountPath: "/tlsparams",
           },
+
+          pod_security_context: {},
     },
 
     envoy: $.nginx {
         certDirs: ["server-certs", "client-certs"],
         customerCertsPath: "/customer-certs",
+        maxResourceTime: "",
+        legacyConfigWipeInitContainerName: "slb-envoy-config-wipe",
 
         customer_certs_volume_mount: {
             name: "customer-certs",
             mountPath: $.envoy.customerCertsPath,
+        },
+
+        pod_security_context: {
+        # Envoy-proxy runs as a low-privileged user (uid/gid: 7447). Mount configmaps in the pod such that
+        # 7447 has access to the files.
+          securityContext: {
+            fsGroup: 7447,
+          },
         },
     },
 
