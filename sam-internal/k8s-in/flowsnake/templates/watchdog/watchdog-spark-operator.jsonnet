@@ -153,7 +153,15 @@ else
                                     { name: "S3_PROXY_HOST", value: flowsnakeconfig.s3_public_proxy_host },
                                     { name: "DRIVER_SERVICE_ACCOUNT", value: "spark-driver-flowsnake-watchdog" },
                                     { name: "DOCKER_REGISTRY", value: flowsnakeconfig.registry },
-                                ],
+                                ] + (if std.objectHas(flowsnake_images.feature_flags, "sok_analysis_mofo_fix") then
+                                [
+                                    { name: "NODENAME", valueFrom: {
+                                        fieldRef: {
+                                            apiVersion: "v1",
+                                            fieldPath: "spec.nodeName" }
+                                        }
+                                    },
+                                ] else [])
                             },
                             # Watchdogs run as user sfdc (7337) per https://git.soma.salesforce.com/sam/sam/blob/master/docker/hypersam/Dockerfile
                             madkub_common.refresher_container(cert_name, user=7337)
