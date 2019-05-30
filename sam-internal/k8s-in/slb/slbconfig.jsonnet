@@ -545,6 +545,7 @@
     envoy: $.nginx {
         certDirs: ["server-certs", "client-certs"],
         customerCertsPath: "/customer-certs",
+        maxResourceTime: "",
         legacyConfigWipeInitContainerName: "slb-envoy-config-wipe",
 
         customer_certs_volume_mount: {
