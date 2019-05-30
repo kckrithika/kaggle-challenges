@@ -11,7 +11,7 @@ system:
     hostnetwork: true
     containers:
     - name: kpagent-consumer-sam-image
-      image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/sdba/kpconsumer:0.1.9
+      image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-gcp/dva/kpagent-consumer-sam-poc:2-b45f883d28ef4c71ca10f054c31fc02947464547
       ports:
       - containerPort: 9090
       livenessProbe:
