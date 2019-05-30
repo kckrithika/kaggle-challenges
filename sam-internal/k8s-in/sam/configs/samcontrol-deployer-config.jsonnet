@@ -21,7 +21,7 @@ std.prune({
   "app-key-ttl-duration": "12h",
   "delete-orphans": !utils.is_pcn(configs.kingdom),
   "resources-to-skip": ["sdn-secret.yaml"],
-
+  [if !utils.is_production(configs.kingdom) then "prevent-rewind"]: true,
 } + if utils.is_pcn(configs.kingdom) then {
     "etcd-override": "http://0.0.0.0:2379",
 } else {
@@ -35,6 +35,4 @@ std.prune({
     tokenfile: (if self.enableDailyDeployment then "/var/token/token"),
     "daily-deployment-offset": (if self.enableDailyDeployment then "0"),
     "daily-deployment-frequency": (if configs.estate == "prd-samtest" then "24h" else (if configs.estate == "prd-samdev" then "3h")),
-} + if configs.estate == "prd-samtest" || configs.estate == "prd-sdc" || configs.estate == "prd-samdev" then {
-  "prevent-rewind": true,
-} else {})
+})
