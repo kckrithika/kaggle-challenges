@@ -325,9 +325,9 @@
     assert (proxyType == "envoy" || proxyType == "nginx") :
     'proxyType "%s" is invalid, must be one of %s' % [proxyType, validTypes],
     local proxyconfigs = if proxyType == "envoy" then slbconfigs.envoy else slbconfigs.nginx,
-    metadata+: std.prune({
-      annotations+: utils.fieldIfNonEmpty("autodeployer.sam.data.sfdc.net/maxResourceTime", slbconfigs.maxResourceTime, slbconfigs.maxResourceTime),
-    }),
+    metadata+: std.prune(if proxyType == "nginx" then {
+      annotations+: utils.fieldIfNonEmpty("autodeployer.sam.data.sfdc.net/maxResourceTime", proxyconfigs.maxResourceTime, proxyconfigs.maxResourceTime),
+    } else {}),
     spec+: {
       template+: {
         metadata+: {

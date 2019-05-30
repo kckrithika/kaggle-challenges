@@ -495,6 +495,7 @@
           configUpdateSentinelPath: $.nginx.containerTargetDir + "/nginx.sentinel",
           reloadSentinelParam: "--control.nginxReloadSentinel=" + $.nginx.containerTargetDir + "/nginx.marker",
           configUpdateSentinelParam: "--control.nginxSentinel=" + $.nginx.configUpdateSentinelPath,
+          maxResourceTime: if configs.estate == "lo3-sam" then "50m0s" else "",
 
           customer_certs_volume: {
             emptyDir: {
@@ -661,6 +662,4 @@
     maxDeleteLimit(deleteLimitOverride): (if deleteLimitOverride > 0
         then deleteLimitOverride
         else $.perCluster.maxDeleteCount[configs.estate]),
-
-    maxResourceTime: if configs.estate == "lo3-sam" then "50m0s" else "",
 }
