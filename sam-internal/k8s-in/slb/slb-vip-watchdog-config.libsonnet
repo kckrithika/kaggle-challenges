@@ -94,6 +94,10 @@ local vipwdConfig = {
       // W-6079563 (https://gus.lightning.force.com/a07B0000006JutqIAC), when implemented, should help reduce the alert noise by
       // requiring the backend servers to report a consistent signal.
       "topology-svc-lb.topology-svc.prd-sam.prd.slb.sfdc.net:*",
+      // 2019/05/30 - mgrass: VIPs in firefly-<user> namespace frequently flap due to flaky backends.
+      // W-6079563 (https://gus.lightning.force.com/a07B0000006JutqIAC), when implemented, should help reduce the alert noise by
+      // requiring the backend servers to report a consistent signal.
+      "*.firefly-*.prd-sam.prd.slb.sfdc.net:*",
     ],
     vivips: [
        // There are 3 sledge VIPs that listen on these ports:
