@@ -92,6 +92,8 @@ apps:
     - cdg/cdg-sam_report_collector
     - ia2/ia2-sam_report_collector
     - ph2/ph2-sam_report_collector
+    - lo2/lo2-sam_report_collector
+    - lo3/lo3-sam_report_collector
   observation-service-watchdog:
     - prd/prd-sam_report_collector
     - dfw/dfw-sam_report_collector
@@ -106,6 +108,8 @@ apps:
     - cdg/cdg-sam_report_collector
     - ia2/ia2-sam_report_collector
     - ph2/ph2-sam_report_collector
+    - lo2/lo2-sam_report_collector
+    - lo3/lo3-sam_report_collector
   expcandidate-service:
   candidate-service:
     - prd/prd-sam_report_collector
@@ -121,6 +125,8 @@ apps:
     - cdg/cdg-sam_report_collector
     - ia2/ia2-sam_report_collector
     - ph2/ph2-sam_report_collector
+    - lo2/lo2-sam_report_collector
+    - lo3/lo3-sam_report_collector
   expcandidate-service-watchdog:
   candidate-service-watchdog:
     - prd/prd-sam_report_collector
@@ -136,6 +142,8 @@ apps:
     - cdg/cdg-sam_report_collector
     - ia2/ia2-sam_report_collector
     - ph2/ph2-sam_report_collector
+    - lo2/lo2-sam_report_collector
+    - lo3/lo3-sam_report_collector
   expreportcollectorha:
   exprepcollavailwd:
   expcname-repcollavailwd:
