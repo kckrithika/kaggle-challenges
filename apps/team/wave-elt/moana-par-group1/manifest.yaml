@@ -6,7 +6,7 @@ apiVersion: v1
 system:
   functions:
   - containers:
-    - image: ops0-artifactrepo1-0-par.data.sfdc.net/sfci/insights/moanaengine:release-1.0.4-27d617f
+    - image: ops0-artifactrepo1-0-par.data.sfdc.net/sfci/insights/moanaengine:release-1.0.7-b0dfb04
       livenessProbe:
         exec:
           command: [ls]
@@ -16,6 +16,7 @@ system:
     name: moana-engine-group1
   - containers:
     - env:
+      - {name: MANAGEMENT_SERVER_PORT, value: '15372'}
       - {name: LOGGING_JSON_STDOUT_LEVEL, value: ALL}
       - {name: LOGGING_STDERR_LEVEL, value: ALL}
       - {name: TEST_POD, value: moana-driver-group1}
@@ -28,7 +29,7 @@ system:
       - {name: TESTRECIPE_MAESTROPINGTEST, value: 'true'}
       - {name: DEPLOYMENT_ID, value: par-group1}
       - {name: HANDLED_PODS_PATTERN, value: 'cs[0-9]+\..*|moana-driver-group1'}
-      image: sfci/insights/moana-driver:release-12-2319d24
+      image: sfci/insights/moana-driver:release-14-bbc378c
       livenessProbe:
         httpGet: {path: /manage/health, port: 15372}
         initialDelaySeconds: 30
@@ -42,7 +43,7 @@ system:
         requests: {cpu: 1, memory: 2G}
       volumeMounts:
       - {mountPath: /home/scone/client-certs, name: tls-client-certs}
-    count: 1
+    count: 3
     hostnetwork: false
     identity: {serviceName: moana-driver}
     name: moana-driver-group1
@@ -53,9 +54,10 @@ system:
       name: tls-client-certs
   - containers:
     - env:
+      - {name: MANAGEMENT_SERVER_PORT, value: '15372'}
       - {name: LOGGING_JSON_STDOUT_LEVEL, value: ALL}
       - {name: LOGGING_STDERR_LEVEL, value: ALL}
-      - {name: MOANA_SPARK_ENGINE_IMAGE, value: 'ops0-artifactrepo1-0-par.data.sfdc.net/sfci/insights/moanaengine:release-1.0.4-27d617f'}
+      - {name: MOANA_SPARK_ENGINE_IMAGE, value: 'ops0-artifactrepo1-0-par.data.sfdc.net/sfci/insights/moanaengine:release-1.0.7-b0dfb04'}
       - {name: KAFKA_GROUP_ID, value: moana-jobcontroller-group1}
       - {name: K8S_SPARK_OVERRIDES, value: '{"spark.eventLog.enabled": "false", "spark.executor.extraJavaOptions":
           "-XX:MaxDirectMemorySize=256M -XX:ReservedCodeCacheSize=128M -XX:MaxMetaspaceSize=128M
@@ -68,8 +70,9 @@ system:
       - {name: JAVA_OPTS, value: '-server -XX:MaxMetaspaceSize=512m -Xmx2048m -Xms2048m'}
       - {name: SIZING_MEMORY_OVERHEAD, value: '1024'}
       - {name: K8S_CPU_LIMIT_APPLY, value: 'false'}
+      - {name: STARTUP_JOB_ENABLED, value: 'false'}
       - {name: HANDLED_PODS_PATTERN, value: 'cs[0-9]+\..*|moana-driver-group1'}
-      image: sfci/insights/jobcontroller:release-1.0.3-5937af6
+      image: sfci/insights/jobcontroller:release-1.0.6-0152efd
       livenessProbe:
         httpGet: {path: /manage/health, port: 15372}
         initialDelaySeconds: 90
@@ -77,7 +80,6 @@ system:
         timeoutSeconds: 30
       name: jobcontroller
       ports:
-      - {containerPort: 7020, name: grpc}
       - {containerPort: 15372, name: mgmt}
       resources:
         limits: {cpu: 2, memory: 4G}
@@ -85,31 +87,6 @@ system:
       volumeMounts:
       - {mountPath: /home/datapool/logs, name: logvol}
       - {mountPath: /home/datapool/client-certs, name: tls-client-certs}
-    - env:
-      - {name: SFDC_ENVIRONMENT, value: prod}
-      image: sfci/servicelibs/sherpa:2.0.24
-      livenessProbe:
-        exec:
-          command: [./bin/is-alive]
-        initialDelaySeconds: 120
-        periodSeconds: 5
-      name: sherpa
-      ports:
-      - {containerPort: 7012, name: sherpa-in-plain}
-      - {containerPort: 7443, name: sherpa-in-tls}
-      - {containerPort: 15373, name: sherpa-adm}
-      readinessProbe:
-        exec:
-          command: [./bin/is-ready]
-        initialDelaySeconds: 110
-        periodSeconds: 5
-      resources:
-        limits: {cpu: '1', memory: 1Gi}
-        requests: {cpu: '1', memory: 1Gi}
-      volumeMounts:
-      - {mountPath: /server-certs, name: tls-server-certs}
-      - {mountPath: /client-certs, name: tls-client-certs}
-      - {mountPath: /log, name: sherpa-log-volume}
     count: 3
     hostnetwork: false
     identity: {serviceName: datapool}
