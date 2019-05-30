@@ -22,7 +22,7 @@ system:
         type: server
     containers:
     - name: sip-em 
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/deepaksharma/sip-experiment-manager:20190530T1152
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/deepaksharma/sip-experiment-manager:20190530T1250
       livenessProbe:
         initialDelaySeconds: 30
         httpGet:
