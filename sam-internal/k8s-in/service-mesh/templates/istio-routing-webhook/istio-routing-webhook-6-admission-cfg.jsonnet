@@ -33,6 +33,12 @@ local configs = import "config.jsonnet";
           apiGroups: ["mesh.sfdc.net"],
           apiVersions: ["v1"],
           resources: ["routingcontexts"],
+        },
+        {
+          operations: ["CREATE","UPDATE"],
+          apiGroups: ["networking.istio.io"],
+          apiVersions: ["v1alpha3"],
+          resources: ["serviceentries"],
         }
       ],
       failurePolicy: "Fail",
