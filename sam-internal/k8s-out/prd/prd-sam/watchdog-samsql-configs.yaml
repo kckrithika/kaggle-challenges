@@ -446,14 +446,16 @@ data:
     "The following SAM control stack components dont have a healhty autodeployer pod",
     "name": "SqlSamControlDeployer", "sql": "select\n                      ControlEstate,\n                      name,\n                      NodeName\n                  from
     podDetailView\n                  where\n                  Phase <> ''Running''
-    and\n                  Namespace = ''sam-system'' and name like ''samcontrol-deployer%''
-    ", "watchdogFrequency": "5m"}, {"alertAction": "email", "alertFrequency": "24h",
-    "alertProfile": "sam", "alertThreshold": "5m", "name": "SqlTooManyPodsInNamespace",
-    "sql": "select * from (\n  select \n    controlEstate, \n    namespace, \n    count(*)
-    as podCount,\n    count(distinct Payload->>''$.spec.nodeName'') as nodeCount,\n    sum(case
-    when Payload->>''$.status.reason'' = ''Evicted'' then 1 else 0 end) as podEvictedCount,\n    sum(case
-    when Payload->>''$.status.phase'' = ''Pending'' then 1 else 0 end) as podPendingCount,\n    sum(case
-    when Payload->>''$.status.phase'' = ''Running'' then 1 else 0 end) as podRunningCount,\n    left(group_concat(Payload->>''$.status.message''),
+    and\n                  Namespace = ''sam-system''\n                  and name
+    like ''samcontrol-deployer%''\n                  and controlEstate not like ''aws%''\n                  and
+    controlEstate not like ''gsf%'' ", "watchdogFrequency": "5m"}, {"alertAction":
+    "email", "alertFrequency": "24h", "alertProfile": "sam", "alertThreshold": "5m",
+    "name": "SqlTooManyPodsInNamespace", "sql": "select * from (\n  select \n    controlEstate,
+    \n    namespace, \n    count(*) as podCount,\n    count(distinct Payload->>''$.spec.nodeName'')
+    as nodeCount,\n    sum(case when Payload->>''$.status.reason'' = ''Evicted'' then
+    1 else 0 end) as podEvictedCount,\n    sum(case when Payload->>''$.status.phase''
+    = ''Pending'' then 1 else 0 end) as podPendingCount,\n    sum(case when Payload->>''$.status.phase''
+    = ''Running'' then 1 else 0 end) as podRunningCount,\n    left(group_concat(Payload->>''$.status.message''),
     1024) as sampleMessages\n  from k8s_resource\n  where ApiKind = ''Pod''\n  group
     by controlEstate, namespace\n) as ss having podCount > (case when namespace =
     ''sam-system'' then 15*nodeCount else 200 end)", "watchdogFrequency": "5m"}]}'
