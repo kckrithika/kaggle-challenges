@@ -86,13 +86,9 @@ items:
     name: minion:role
   subjects:
   - kind: User
-    name: shared0-samminionceph1-1-ukb.ops.sfdc.net
-  - kind: User
     name: shared0-samminionceph1-10-ukb.ops.sfdc.net
   - kind: User
     name: shared0-samminionceph1-11-ukb.ops.sfdc.net
-  - kind: User
-    name: shared0-samminionceph1-12-ukb.ops.sfdc.net
   - kind: User
     name: shared0-samminionceph1-13-ukb.ops.sfdc.net
   - kind: User
@@ -102,12 +98,6 @@ items:
   - kind: User
     name: shared0-samminionceph1-16-ukb.ops.sfdc.net
   - kind: User
-    name: shared0-samminionceph1-17-ukb.ops.sfdc.net
-  - kind: User
-    name: shared0-samminionceph1-2-ukb.ops.sfdc.net
-  - kind: User
-    name: shared0-samminionceph1-3-ukb.ops.sfdc.net
-  - kind: User
     name: shared0-samminionceph1-4-ukb.ops.sfdc.net
   - kind: User
     name: shared0-samminionceph1-5-ukb.ops.sfdc.net
@@ -116,21 +106,11 @@ items:
   - kind: User
     name: shared0-samminionceph1-7-ukb.ops.sfdc.net
   - kind: User
-    name: shared0-samminionceph1-8-ukb.ops.sfdc.net
-  - kind: User
     name: shared0-samminionceph1-9-ukb.ops.sfdc.net
-  - kind: User
-    name: shared0-samminionceph2-1-ukb.ops.sfdc.net
-  - kind: User
-    name: shared0-samminionceph2-10-ukb.ops.sfdc.net
   - kind: User
     name: shared0-samminionceph2-11-ukb.ops.sfdc.net
   - kind: User
     name: shared0-samminionceph2-12-ukb.ops.sfdc.net
-  - kind: User
-    name: shared0-samminionceph2-13-ukb.ops.sfdc.net
-  - kind: User
-    name: shared0-samminionceph2-14-ukb.ops.sfdc.net
   - kind: User
     name: shared0-samminionceph2-15-ukb.ops.sfdc.net
   - kind: User
@@ -140,49 +120,25 @@ items:
   - kind: User
     name: shared0-samminionceph2-2-ukb.ops.sfdc.net
   - kind: User
-    name: shared0-samminionceph2-3-ukb.ops.sfdc.net
-  - kind: User
     name: shared0-samminionceph2-4-ukb.ops.sfdc.net
   - kind: User
     name: shared0-samminionceph2-5-ukb.ops.sfdc.net
   - kind: User
     name: shared0-samminionceph2-6-ukb.ops.sfdc.net
   - kind: User
-    name: shared0-samminionceph2-7-ukb.ops.sfdc.net
-  - kind: User
     name: shared0-samminionceph2-8-ukb.ops.sfdc.net
   - kind: User
     name: shared0-samminionceph2-9-ukb.ops.sfdc.net
   - kind: User
-    name: shared0-samminionceph3-1-ukb.ops.sfdc.net
-  - kind: User
     name: shared0-samminionceph3-10-ukb.ops.sfdc.net
-  - kind: User
-    name: shared0-samminionceph3-11-ukb.ops.sfdc.net
-  - kind: User
-    name: shared0-samminionceph3-12-ukb.ops.sfdc.net
-  - kind: User
-    name: shared0-samminionceph3-13-ukb.ops.sfdc.net
-  - kind: User
-    name: shared0-samminionceph3-14-ukb.ops.sfdc.net
   - kind: User
     name: shared0-samminionceph3-15-ukb.ops.sfdc.net
   - kind: User
     name: shared0-samminionceph3-16-ukb.ops.sfdc.net
   - kind: User
-    name: shared0-samminionceph3-2-ukb.ops.sfdc.net
-  - kind: User
-    name: shared0-samminionceph3-3-ukb.ops.sfdc.net
-  - kind: User
-    name: shared0-samminionceph3-4-ukb.ops.sfdc.net
-  - kind: User
     name: shared0-samminionceph3-5-ukb.ops.sfdc.net
   - kind: User
-    name: shared0-samminionceph3-6-ukb.ops.sfdc.net
-  - kind: User
     name: shared0-samminionceph3-7-ukb.ops.sfdc.net
-  - kind: User
-    name: shared0-samminionceph3-8-ukb.ops.sfdc.net
   - kind: User
     name: shared0-samminionceph3-9-ukb.ops.sfdc.net
 - apiVersion: rbac.authorization.k8s.io/v1beta1
@@ -196,13 +152,9 @@ items:
     name: minion:role
   subjects:
   - kind: User
-    name: shared0-samminionceph1-1-ukb.ops.sfdc.net
-  - kind: User
     name: shared0-samminionceph1-10-ukb.ops.sfdc.net
   - kind: User
     name: shared0-samminionceph1-11-ukb.ops.sfdc.net
-  - kind: User
-    name: shared0-samminionceph1-12-ukb.ops.sfdc.net
   - kind: User
     name: shared0-samminionceph1-13-ukb.ops.sfdc.net
   - kind: User
@@ -212,12 +164,6 @@ items:
   - kind: User
     name: shared0-samminionceph1-16-ukb.ops.sfdc.net
   - kind: User
-    name: shared0-samminionceph1-17-ukb.ops.sfdc.net
-  - kind: User
-    name: shared0-samminionceph1-2-ukb.ops.sfdc.net
-  - kind: User
-    name: shared0-samminionceph1-3-ukb.ops.sfdc.net
-  - kind: User
     name: shared0-samminionceph1-4-ukb.ops.sfdc.net
   - kind: User
     name: shared0-samminionceph1-5-ukb.ops.sfdc.net
@@ -226,21 +172,11 @@ items:
   - kind: User
     name: shared0-samminionceph1-7-ukb.ops.sfdc.net
   - kind: User
-    name: shared0-samminionceph1-8-ukb.ops.sfdc.net
-  - kind: User
     name: shared0-samminionceph1-9-ukb.ops.sfdc.net
-  - kind: User
-    name: shared0-samminionceph2-1-ukb.ops.sfdc.net
-  - kind: User
-    name: shared0-samminionceph2-10-ukb.ops.sfdc.net
   - kind: User
     name: shared0-samminionceph2-11-ukb.ops.sfdc.net
   - kind: User
     name: shared0-samminionceph2-12-ukb.ops.sfdc.net
-  - kind: User
-    name: shared0-samminionceph2-13-ukb.ops.sfdc.net
-  - kind: User
-    name: shared0-samminionceph2-14-ukb.ops.sfdc.net
   - kind: User
     name: shared0-samminionceph2-15-ukb.ops.sfdc.net
   - kind: User
@@ -250,49 +186,25 @@ items:
   - kind: User
     name: shared0-samminionceph2-2-ukb.ops.sfdc.net
   - kind: User
-    name: shared0-samminionceph2-3-ukb.ops.sfdc.net
-  - kind: User
     name: shared0-samminionceph2-4-ukb.ops.sfdc.net
   - kind: User
     name: shared0-samminionceph2-5-ukb.ops.sfdc.net
   - kind: User
     name: shared0-samminionceph2-6-ukb.ops.sfdc.net
   - kind: User
-    name: shared0-samminionceph2-7-ukb.ops.sfdc.net
-  - kind: User
     name: shared0-samminionceph2-8-ukb.ops.sfdc.net
   - kind: User
     name: shared0-samminionceph2-9-ukb.ops.sfdc.net
   - kind: User
-    name: shared0-samminionceph3-1-ukb.ops.sfdc.net
-  - kind: User
     name: shared0-samminionceph3-10-ukb.ops.sfdc.net
-  - kind: User
-    name: shared0-samminionceph3-11-ukb.ops.sfdc.net
-  - kind: User
-    name: shared0-samminionceph3-12-ukb.ops.sfdc.net
-  - kind: User
-    name: shared0-samminionceph3-13-ukb.ops.sfdc.net
-  - kind: User
-    name: shared0-samminionceph3-14-ukb.ops.sfdc.net
   - kind: User
     name: shared0-samminionceph3-15-ukb.ops.sfdc.net
   - kind: User
     name: shared0-samminionceph3-16-ukb.ops.sfdc.net
   - kind: User
-    name: shared0-samminionceph3-2-ukb.ops.sfdc.net
-  - kind: User
-    name: shared0-samminionceph3-3-ukb.ops.sfdc.net
-  - kind: User
-    name: shared0-samminionceph3-4-ukb.ops.sfdc.net
-  - kind: User
     name: shared0-samminionceph3-5-ukb.ops.sfdc.net
   - kind: User
-    name: shared0-samminionceph3-6-ukb.ops.sfdc.net
-  - kind: User
     name: shared0-samminionceph3-7-ukb.ops.sfdc.net
-  - kind: User
-    name: shared0-samminionceph3-8-ukb.ops.sfdc.net
   - kind: User
     name: shared0-samminionceph3-9-ukb.ops.sfdc.net
 - apiVersion: rbac.authorization.k8s.io/v1beta1

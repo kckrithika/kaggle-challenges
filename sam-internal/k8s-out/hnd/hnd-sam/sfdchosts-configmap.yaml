@@ -800,10 +800,65 @@ data:
           "controlestate": "hnd-sam",
           "devicerole": "samcompute",
           "estate": "hnd-sam_eventbus",
+          "hostname": "shared0-samminionaqueduct1-2-hnd.ops.sfdc.net",
+          "kingdom": "hnd",
+          "pod": "none",
+          "rack": "g08-3g",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sam_minion_aqueduct",
+          "controlestate": "hnd-sam",
+          "devicerole": "samcompute",
+          "estate": "hnd-sam_eventbus",
+          "hostname": "shared0-samminionaqueduct1-3-hnd.ops.sfdc.net",
+          "kingdom": "hnd",
+          "pod": "none",
+          "rack": "g08-3g",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sam_minion_aqueduct",
+          "controlestate": "hnd-sam",
+          "devicerole": "samcompute",
+          "estate": "hnd-sam_eventbus",
           "hostname": "shared0-samminionaqueduct2-1-hnd.ops.sfdc.net",
           "kingdom": "hnd",
           "pod": "none",
           "rack": "d13-3g",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sam_minion_aqueduct",
+          "controlestate": "hnd-sam",
+          "devicerole": "samcompute",
+          "estate": "hnd-sam_eventbus",
+          "hostname": "shared0-samminionaqueduct2-2-hnd.ops.sfdc.net",
+          "kingdom": "hnd",
+          "pod": "none",
+          "rack": "d13-3g",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sam_minion_aqueduct",
+          "controlestate": "hnd-sam",
+          "devicerole": "samcompute",
+          "estate": "hnd-sam_eventbus",
+          "hostname": "shared0-samminionaqueduct3-1-hnd.ops.sfdc.net",
+          "kingdom": "hnd",
+          "pod": "none",
+          "rack": "c05-2g",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sam_minion_aqueduct",
+          "controlestate": "hnd-sam",
+          "devicerole": "samcompute",
+          "estate": "hnd-sam_eventbus",
+          "hostname": "shared0-samminionaqueduct3-2-hnd.ops.sfdc.net",
+          "kingdom": "hnd",
+          "pod": "none",
+          "rack": "b13-2g",
           "superpod": "none"
         },
         {
