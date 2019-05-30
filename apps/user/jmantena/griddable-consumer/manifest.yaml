@@ -17,13 +17,13 @@ system:
          initialDelaySeconds: 10
          timeoutSeconds: 5
        volumeMounts:
-         - mountPath: /acds/acds-secrets/
-           name: acds-secrets-vol
-           readOnly: true
          - name: tls-client-cert
            mountPath: /client-certs
          - name: tls-server-cert
            mountPath: /server-certs
+         - mountPath: /acds/acds-secrets/
+           name: acds-secrets-vol
+           readOnly: true
        resources:
          requests:
            cpu: 2
