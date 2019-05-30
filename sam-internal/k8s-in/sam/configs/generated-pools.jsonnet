@@ -1672,7 +1672,8 @@
         "pbsmatch",
         "care",
         "sdb-dataengineering",
-        "dbprovision"
+        "dbprovision",
+        "industries-loyalty"
       ],
       "access": [
         "team/CSC_Sam",
@@ -1710,7 +1711,8 @@
         "team/pbsmatch",
         "team/care",
         "team/sdb-dataengineering",
-        "team/dbprovision"
+        "team/dbprovision",
+        "team/industries-loyalty"
       ],
       "controlEstate": "gsf-core-devmvp-sam2-sam",
       "estate": "gsf-core-devmvp-sam2-sam",

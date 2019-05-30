@@ -5,7 +5,7 @@
             alertFrequency: "24h",
             watchdogFrequency: "5m",
             alertProfile: "sam",
-            alertAction: "",
+            alertAction: "businesshours_pagerduty",
             sql: "SELECT * FROM
                   (
                     SELECT
@@ -29,6 +29,8 @@
                      ControlEstate NOT LIKE '%storage%' AND
                      ControlEstate NOT LIKE '%sdn%' AND
                      ControlEstate NOT LIKE '%slb%' AND
+                     ControlEstate != 'prd-samtest' AND
+                     ControlEstate != 'prd-samdev' AND
                      desiredReplicas != 0",
     }
 
