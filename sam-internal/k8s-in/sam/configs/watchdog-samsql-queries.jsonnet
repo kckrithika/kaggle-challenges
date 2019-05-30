@@ -20,6 +20,7 @@
     (import "watchdog-samsql-alerts/sqlsladepl.libsonnet"),
     (import "watchdog-samsql-alerts/customerpodswithimagepullerrors.libsonnet"),
     (import "watchdog-samsql-alerts/sqlslanode.libsonnet"),
+    (import "watchdog-samsql-alerts/sqlsamcontrol.libsonnet"),
     (import "watchdog-samsql-alerts/sqlsamappwithoutbundle.libsonnet"),
     (import "watchdog-samsql-alerts/sqlbundlewithoutdeployment.libsonnet"),
     (import "watchdog-samsql-alerts/sqlprlatency.libsonnet"),
