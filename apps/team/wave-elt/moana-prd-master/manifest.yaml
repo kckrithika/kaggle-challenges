@@ -16,7 +16,7 @@ system:
     name: moana-engine-master
   - containers:
     - env:
-      - {name: MANAGEMENT_SERVER_PORT, value: '15372'}
+      - {name: MANAGEMENT_SERVER_PORT, value: '15385'}
       - {name: LOGGING_JSON_STDOUT_LEVEL, value: ALL}
       - {name: LOGGING_STDERR_LEVEL, value: ALL}
       - {name: TEST_POD, value: moana-driver-master}
@@ -29,16 +29,16 @@ system:
       - {name: TESTRECIPE_MAESTROPINGTEST, value: 'true'}
       - {name: DEPLOYMENT_ID, value: prd-master}
       - {name: HANDLED_PODS_PATTERN, value: stmfa\..*|moana-driver-master}
-      image: sfci/insights/moana-driver:master-29-d3739ba
+      image: sfci/insights/moana-driver:master-30-d4ef2d5
       livenessProbe:
-        httpGet: {path: /manage/health, port: 15372}
+        httpGet: {path: /manage/health, port: 15385}
         initialDelaySeconds: 30
         periodSeconds: 60
         timeoutSeconds: 30
       name: moana-driver
       ports:
       - {containerPort: 8080, name: http}
-      - {containerPort: 15372, name: mgmt}
+      - {containerPort: 15385, name: mgmt}
       resources:
         limits: {cpu: 2, memory: 2G}
         requests: {cpu: 1, memory: 2G}
@@ -55,7 +55,7 @@ system:
       name: tls-client-certs
   - containers:
     - env:
-      - {name: MANAGEMENT_SERVER_PORT, value: '15372'}
+      - {name: MANAGEMENT_SERVER_PORT, value: '15383'}
       - {name: LOGGING_JSON_STDOUT_LEVEL, value: ALL}
       - {name: LOGGING_STDERR_LEVEL, value: ALL}
       - {name: MOANA_SPARK_ENGINE_IMAGE, value: 'ops0-artifactrepo2-0-prd.data.sfdc.net/sfci/insights/moanaengine:master-1.0.24-53b32cc'}
@@ -79,13 +79,13 @@ system:
       - {name: HANDLED_PODS_PATTERN, value: stmfa\..*|moana-driver-master}
       image: sfci/insights/jobcontroller:master-1.0.22-0dd9822
       livenessProbe:
-        httpGet: {path: /manage/health, port: 15372}
+        httpGet: {path: /manage/health, port: 15383}
         initialDelaySeconds: 90
         periodSeconds: 60
         timeoutSeconds: 30
       name: jobcontroller
       ports:
-      - {containerPort: 15372, name: mgmt}
+      - {containerPort: 15383, name: mgmt}
       resources:
         limits: {cpu: 2, memory: 4G}
         requests: {cpu: 2, memory: 4G}
