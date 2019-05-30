@@ -13,6 +13,9 @@
                   from podDetailView
                   where
                   Phase <> 'Running' and
-                  Namespace = 'sam-system' and name like 'samcontrol-deployer%' ",
+                  Namespace = 'sam-system'
+                  and name like 'samcontrol-deployer%'
+                  and controlEstate not like 'aws%'
+                  and controlEstate not like 'gsf%' ",
     }
 
