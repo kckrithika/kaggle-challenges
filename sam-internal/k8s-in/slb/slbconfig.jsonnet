@@ -538,6 +538,8 @@
             name: "tlsparams-volume",
             mountPath: "/tlsparams",
           },
+
+          pod_security_context: {},
     },
 
     envoy: $.nginx {
@@ -548,6 +550,14 @@
         customer_certs_volume_mount: {
             name: "customer-certs",
             mountPath: $.envoy.customerCertsPath,
+        },
+
+        pod_security_context: {
+        # Envoy-proxy runs as a low-privileged user (uid/gid: 7447). Mount configmaps in the pod such that
+        # 7447 has access to the files.
+          securityContext: {
+            fsGroup: 7447,
+          },
         },
     },
 

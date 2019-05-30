@@ -344,13 +344,12 @@
               if proxyType == "nginx" then configs.config_volume(proxyName),
             ]
           ),
-          [if proxyType == "envoy" then "securityContext"]: { fsGroup: 7447 },
           initContainers: std.prune([
             madkub.madkubInitContainer(proxyconfigs.certDirs),
             configWipeInitContainer(proxyconfigs),
           ]),
           nodeSelector: { pool: slbconfigs.slbEstate },
-        },
+        } + proxyconfigs.pod_security_context,
       },
     },
   },
