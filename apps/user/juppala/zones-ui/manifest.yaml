@@ -42,6 +42,44 @@ system:
         mountPath: /servercerts
       - name: uiclientcert
         mountPath: /clientcerts
+  - name: zones-ui-cron
+    count: 1
+    volumes:
+      - name: uiservercert
+        maddogCert:
+          type: server
+          lbnames:
+            - sfsg-cron
+      - name: uiclientcert
+        maddogCert:
+          type: client
+    containers:
+    - name: zones-ui-cron
+      image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/zones-ui:14
+      #image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/zones-ui:5
+      env:
+      - name: ZONES_ENVIRONMENT
+        value: "dev"
+      - name: ZONES_HTTPS_PROXY
+        value: "http://public0-proxy1-0-prd.data.sfdc.net:8080"
+      - name: ZONES_BASE_URL
+        value: "https://gus--zonesintk.my.salesforce.com"
+      - name: ZONES_SERVICE_URL
+        value: "https://zones-intake-backend-secure.user-jiaqi-wu.prd-sam.prd.slb.sfdc.net:4443"
+      - name: ZONES_SECRET_SERVICE_URL
+        value: "https://secretservice.dmz.salesforce.com:8271/vaultczar/api/1.0/getSecretBySubscriber"
+      ports:
+      - containerPort: 8445
+      livenessProbe:
+        httpGet:
+          scheme: HTTPS
+          path: /zones/v1/healthCheck
+          port: 8445
+      volumeMounts:
+      - name: uiservercert
+        mountPath: /servercerts
+      - name: uiclientcert
+        mountPath: /clientcerts
   loadbalancers:
   # - lbname: zones-ui-lb
   #   function: zones-ui
@@ -60,6 +98,14 @@ system:
   #       lbtype: http
   - lbname: sfsg
     function: zones-ui
+    slbenabled: true
+    ports:
+      - port: 443
+        targetport: 8445
+        lbtype: tcp
+        tls: false
+  - lbname: sfsg-cron
+    function: zones-ui-cron
     slbenabled: true
     ports:
       - port: 443
