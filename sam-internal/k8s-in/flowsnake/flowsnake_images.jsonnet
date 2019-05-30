@@ -30,7 +30,6 @@ local utils = import "util_functions.jsonnet";
                 image_renames_and_canary_build_tags: "unverified",
                 slb_ingress: "unverified",
                 rm_kuberesources_cm: "",
-                sok_analysis_mofo_fix: "unverified",
             },
             # prd-test offers legacy version mappings. Phase 2 does not, so cannot inherit from there.
             # Start with 2-prd-dev (which also have legacy version mappings),
@@ -46,6 +45,7 @@ local utils = import "util_functions.jsonnet";
             feature_flags+: {
                 watchdog_kuberesources: "enabled",
                 ksm_prome_add_name_label: "enabled",
+                sok_analysis_mofo_fix: "verified in prd-test and cdu",
             },
             version_mapping+: {
             },
@@ -79,9 +79,6 @@ local utils = import "util_functions.jsonnet";
         # cdu: Exceptions vs. the rest of phase 2 only
         "2-cdu": self["2"] {
             version_mapping: {},  # No legacy Flowsnake in Public Cloud; therefore force empty verson_mapping
-            feature_flags+: {
-                sok_analysis_mofo_fix: "verified in prd-test",
-            },
         },
         # Phase 3: Remaining production fleets.
         # This is the defacto "default" set of items.
