@@ -1,0 +1,35 @@
+apiVersion: v1
+system:
+  functions:
+  - name: kpagent-consumer-sam
+    type: stateful-set
+    count: 1
+    volumes:
+    - name: kpagentclientcert
+      maddogCert:
+        type: client
+    hostnetwork: true
+    containers:
+    - name: kpagent-consumer-sam-image
+      image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-gcp/dva/production_image:2-b45f883d28ef4c71ca10f054c31fc02947464547
+      ports:
+      - containerPort: 9090
+      livenessProbe:
+        httpGet:
+          path: /
+          port: 9090
+      volumeMounts:
+        - name: tmp
+          mountPath: /usr/src/app/tmp
+        - name: out
+          mountPath: /usr/src/app/out
+        - name: kpagentclientcert
+          mountPath: /clientcert
+    lbname: kpagent-consumer-sam-lb
+    volumeClaimTemplates:
+    - name: tmp
+      storageClassName: standard
+      storageSizeRequest: 2Gi
+    - name: out
+      storageClassName: standard
+      storageSizeRequest: 2Gi
