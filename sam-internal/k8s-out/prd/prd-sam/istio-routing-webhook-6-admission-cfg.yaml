@@ -35,3 +35,12 @@ webhooks:
     - UPDATE
     resources:
     - routingcontexts
+  - apiGroups:
+    - networking.istio.io
+    apiVersions:
+    - v1alpha3
+    operations:
+    - CREATE
+    - UPDATE
+    resources:
+    - serviceentries
