@@ -319,8 +319,8 @@
     supportedProxies=[proxyName],
     deleteLimitOverride=deleteLimitOverride
 ) {
-    local validTypes = ["envoy", "nginx"],
-    assert (proxyType == "envoy" || proxyType == "nginx") :
+    local validTypes = std.set(["envoy", "nginx"]),
+    assert std.setMember(proxyType, validTypes) :
       'proxyType "%s" is invalid, must be one of %s' % [proxyType, validTypes],
     local proxyconfigs = if proxyType == "envoy" then slbconfigs.envoy else slbconfigs.nginx,
     metadata+: std.prune(if proxyType == "nginx" then {
