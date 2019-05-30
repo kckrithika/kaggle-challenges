@@ -99,3 +99,5 @@ apps:
    - mvp/gsf-core-devmvp-sam2-samtest
  aws-test-app:
    - aws-us-east-2/aws-us-east-2-samtest
+   - aws-us-west-2/aws-us-west-2-samtest
+
