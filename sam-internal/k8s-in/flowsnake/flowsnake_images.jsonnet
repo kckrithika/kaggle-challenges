@@ -45,7 +45,6 @@ local utils = import "util_functions.jsonnet";
             feature_flags+: {
                 watchdog_kuberesources: "enabled",
                 ksm_prome_add_name_label: "enabled",
-                systemd_caps: "enabled",
             },
             version_mapping+: {
             },
