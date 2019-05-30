@@ -79,6 +79,9 @@ local utils = import "util_functions.jsonnet";
         # cdu: Exceptions vs. the rest of phase 2 only
         "2-cdu": self["2"] {
             version_mapping: {},  # No legacy Flowsnake in Public Cloud; therefore force empty verson_mapping
+            feature_flags+: {
+                sok_analysis_mofo_fix: "verified in prd-test",
+            },
         },
         # Phase 3: Remaining production fleets.
         # This is the defacto "default" set of items.
