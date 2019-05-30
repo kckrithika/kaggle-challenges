@@ -30,6 +30,7 @@ local utils = import "util_functions.jsonnet";
                 image_renames_and_canary_build_tags: "unverified",
                 slb_ingress: "unverified",
                 rm_kuberesources_cm: "",
+                sok_analysis_mofo_fix: "unverified",
             },
             # prd-test offers legacy version mappings. Phase 2 does not, so cannot inherit from there.
             # Start with 2-prd-dev (which also have legacy version mappings),
