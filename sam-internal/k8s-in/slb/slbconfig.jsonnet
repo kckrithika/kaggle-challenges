@@ -496,6 +496,7 @@
           reloadSentinelParam: "--control.nginxReloadSentinel=" + $.nginx.containerTargetDir + "/nginx.marker",
           configUpdateSentinelParam: "--control.nginxSentinel=" + $.nginx.configUpdateSentinelPath,
           maxResourceTime: if configs.estate == "lo3-sam" then "50m0s" else "",
+          legacyConfigWipeInitContainerName: "slb-nginx-config-wipe",
 
           customer_certs_volume: {
             emptyDir: {
@@ -542,6 +543,7 @@
     envoy: $.nginx {
         certDirs: ["server-certs", "client-certs"],
         customerCertsPath: "/customer-certs",
+        legacyConfigWipeInitContainerName: "slb-envoy-config-wipe",
 
         customer_certs_volume_mount: {
             name: "customer-certs",

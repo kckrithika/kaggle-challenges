@@ -286,12 +286,10 @@
   // This function implements a feature flag that accommodates the gradual
   // renaming of "slb-(envoy|nginx)-config-wipe" to "slb-config-wipe".
   //
-  local configWipeInitContainer(proxyType="") = {
-    local proxyconfigs = if proxyType == "envoy" then slbconfigs.envoy else slbconfigs.nginx,
-    local imageName = if proxyType == "envoy" then "slb-envoy-config-wipe" else "slb-nginx-config-wipe",
+  local configWipeInitContainer(proxyconfigs) = {
     assert std.length(proxyconfigs.containerTargetDir) > 0 :
-      "Invalid configuration: slbconfigs.%s.containerTargetDir is empty" % proxyType,
-    name: if slbflights.renameConfigWipe then "slb-config-wipe" else imageName,
+      "Invalid configuration: proxyconfigs.containerTargetDir is empty",
+    name: if slbflights.renameConfigWipe then "slb-config-wipe" else proxyconfigs.legacyConfigWipeInitContainerName,
     image: slbimages.hyperslb,
     command: [
       "/bin/bash",
@@ -349,7 +347,7 @@
           [if proxyType == "envoy" then "securityContext"]: { fsGroup: 7447 },
           initContainers: std.prune([
             madkub.madkubInitContainer(proxyconfigs.certDirs),
-            configWipeInitContainer(proxyType),
+            configWipeInitContainer(proxyconfigs),
           ]),
           nodeSelector: { pool: slbconfigs.slbEstate },
         },
