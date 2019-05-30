@@ -20,6 +20,8 @@ system:
     - name: server-cert-vol
       maddogCert:
         type: server
+        lbnames:
+          - sip-exp-manager-slb
     containers:
     - name: sip-em 
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/deepaksharma/sip-experiment-manager:20190530T1250
@@ -61,7 +63,7 @@ system:
           memory: "10Gi"
       env:
         - name: GRPC_HOST
-          value: sip-exp-manager-slb.sip-exp-manager.prd-sam.prd.slb.sfdc.net:8181
+          value: sip-exp-manager-slb.sip.prd-sam.prd.slb.sfdc.net:8181
   loadbalancers:
   - function: sip-exp-manager
     lbname: sip-exp-manager-slb
