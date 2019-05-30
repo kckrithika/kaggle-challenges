@@ -24,7 +24,7 @@
       "image_check_replacement_host": "ops0-artifactrepo2-0-prd.data.sfdc.net"
     },
     {
-      "match": ".*((791719295754|908150051399).dkr.ecr.us-east-2.amazonaws.com).*",
+      "match": ".*((791719295754|908150051399).dkr.ecr.us-east-2.amazonaws.com)|(715181697345.dkr.ecr.us-west-2.amazonaws.com).*",
       "note": "We have no way to check images for ECR in firefly",
       "skip_image_exist_check": true
     },
