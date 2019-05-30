@@ -42,23 +42,23 @@
   local beforeSharedContainers(proxyType, proxyImage, deleteLimitOverride, proxyFlavor, slbUpstreamReporterEnabled) =
     if !slbflights.consolidateSharedContainers then
       (if proxyType == "envoy" then
-      envoyBeforeSharedContainers(proxyImage, deleteLimitOverride, proxyFlavor, slbUpstreamReporterEnabled)
+        envoyBeforeSharedContainers(proxyImage, deleteLimitOverride, proxyFlavor, slbUpstreamReporterEnabled)
       else
-      nginxBeforeSharedContainers(proxyImage, deleteLimitOverride, proxyFlavor, slbUpstreamReporterEnabled))
+        nginxBeforeSharedContainers(proxyImage, deleteLimitOverride, proxyFlavor, slbUpstreamReporterEnabled))
     else
       (if proxyType == "envoy" then
-      envoyBeforeSharedContainers(proxyImage, deleteLimitOverride, proxyFlavor, slbUpstreamReporterEnabled) +
-      envoyAfterSharedContainers
+        envoyBeforeSharedContainers(proxyImage, deleteLimitOverride, proxyFlavor, slbUpstreamReporterEnabled) +
+        envoyAfterSharedContainers
       else
-      nginxBeforeSharedContainers(proxyImage, deleteLimitOverride, proxyFlavor, slbUpstreamReporterEnabled) +
-      nginxAfterSharedContainers),
+        nginxBeforeSharedContainers(proxyImage, deleteLimitOverride, proxyFlavor, slbUpstreamReporterEnabled) +
+        nginxAfterSharedContainers),
 
   local afterSharedContainers(proxyType) =
     if !slbflights.consolidateSharedContainers then
       (if proxyType == "envoy" then
-      envoyAfterSharedContainers
+        envoyAfterSharedContainers
       else
-      nginxAfterSharedContainers)
+        nginxAfterSharedContainers)
     else
       [],
 
@@ -290,7 +290,7 @@
     local proxyconfigs = if proxyType == "envoy" then slbconfigs.envoy else slbconfigs.nginx,
     local imageName = if proxyType == "envoy" then "slb-envoy-config-wipe" else "slb-nginx-config-wipe",
     assert std.length(proxyconfigs.containerTargetDir) > 0 :
-    "Invalid configuration: slbconfigs.%s.containerTargetDir is empty" % proxyType,
+      "Invalid configuration: slbconfigs.%s.containerTargetDir is empty" % proxyType,
     name: if slbflights.renameConfigWipe then "slb-config-wipe" else imageName,
     image: slbimages.hyperslb,
     command: [
@@ -323,7 +323,7 @@
 ) {
     local validTypes = ["envoy", "nginx"],
     assert (proxyType == "envoy" || proxyType == "nginx") :
-    'proxyType "%s" is invalid, must be one of %s' % [proxyType, validTypes],
+      'proxyType "%s" is invalid, must be one of %s' % [proxyType, validTypes],
     local proxyconfigs = if proxyType == "envoy" then slbconfigs.envoy else slbconfigs.nginx,
     metadata+: std.prune(if proxyType == "nginx" then {
       annotations+: utils.fieldIfNonEmpty("autodeployer.sam.data.sfdc.net/maxResourceTime", proxyconfigs.maxResourceTime, proxyconfigs.maxResourceTime),
