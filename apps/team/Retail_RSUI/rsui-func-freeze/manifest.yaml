@@ -224,7 +224,7 @@ system:
         lbtype: http
         reencrypt: true
   - lbname: rsui-func-freeze-test-lb
-    function: rsui-func-freeze-test
+    function: rsui-func-freeze
     slbEnabled: true
     ports:
       - port: 443
