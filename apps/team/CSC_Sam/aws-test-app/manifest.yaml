@@ -33,7 +33,7 @@ system:
     count: 1
     containers:
     - name: samhello
-      image: 908150051399.dkr.ecr.us-east-2.amazonaws.com/test-samapp:20190524
+      image: 715181697345.dkr.ecr.us-west-2.amazonaws.com/test-samapp:20190524
       ports:
       - containerPort: 9090
       livenessProbe:
