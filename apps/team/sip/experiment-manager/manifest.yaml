@@ -5,7 +5,7 @@ system:
     email:
       - smarwaha@salesforce.com
   functions:
-  - name: exp-manager
+  - name: sip-exp-manager
     count: 1
     volumes:
     - name: heroku-secret
@@ -14,12 +14,20 @@ system:
     - name: blacktab-secret
       k4asecret:
         secretName: blacktab-credentials
+    - name: client-cert-vol
+      maddogCert:
+        type: client
+    - name: server-cert-vol
+      maddogCert:
+        type: server
     containers:
     - name: sip-em 
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/sip/em:sip-em-git-20190529T1630
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/deepaksharma/sip-experiment-manager:05302019
       livenessProbe:
-        exec:
-          command: ["true"]
+        initialDelaySeconds: 30
+        httpGet:
+          path: /manage/health
+          port: 15372
 #        - 5         
 #        initialDelaySeconds: 120
 #        periodSeconds: 60
@@ -38,13 +46,32 @@ system:
       - mountPath: /secrets/blacktab/
         name: blacktab-secret
         readOnly: true
-#    ports:
-#      - name: grpc
-#        containerPort: 8181
-#      - name: unknown_port_1
-#        containerPort: 15372
-#      - name: unknown_port_2
-#        containerPort: 8080
+      - name: client-cert-vol
+        mountPath: /certs
+      - name: server-cert-vol
+        mountPath: /server-certs
+      ports:
+        - containerPort: 8181
+          name: scone-grpc
+        - containerPort: 15372
+          name: scone-mgmt
+      resources:
+        limits:
+          cpu: "4"
+          memory: "10Gi"
+      env:
+        - name: GRPC_HOST
+          value: sip-exp-manager-slb.sip-exp-manager.prd-sam.prd.slb.sfdc.net:8181
+  loadbalancers:
+  - function: sip-exp-manager
+    lbname: sip-exp-manager-slb
+    ports:
+      - port: 8181
+        targetport: 8181
+      - lbtype: http
+        port: 15372
+        targetport: 15372
+    slbEnabled: true
 #    env:
 #      - name: SFDC_ENVIRONMENT
 #        value: sam
