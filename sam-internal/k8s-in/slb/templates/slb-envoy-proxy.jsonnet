@@ -1,12 +1,12 @@
 local configs = import "config.jsonnet";
 local slbimages = (import "slbimages.jsonnet") + { templateFilename:: std.thisFile };
-local slbconfigs = (import "slbconfig.jsonnet") + { dirSuffix:: "slb-envoy-config-b" };
+local slbconfigs = (import "slbconfig.jsonnet") + { dirSuffix:: "slb-envoy-proxy" };
 local portconfigs = import "portconfig.jsonnet";
 local slbports = import "slbports.jsonnet";
 local samimages = (import "sam/samimages.jsonnet") + { templateFilename:: std.thisFile };
-local slbshared = (import "slbsharedservices.jsonnet") + { dirSuffix:: "slb-envoy-config-b" };
+local slbshared = (import "slbsharedservices.jsonnet") + { dirSuffix:: "slb-envoy-proxy" };
 local madkub = (import "slbmadkub.jsonnet") + { templateFileName:: std.thisFile, dirSuffix:: "slb-nginx-config-b" };
-local slbflights = (import "slbflights.jsonnet") + { dirSuffix:: "slb-envoy-config-b" };
+local slbflights = (import "slbflights.jsonnet") + { dirSuffix:: "slb-envoy-proxy" };
 local slbbaseenvoyproxy = (import "slb-base-envoy-proxy.libsonnet") + { dirSuffix:: slbconfigs.envoyProxyConfigDeploymentName };
 
 local certDirs = ["cert1", "cert2"];
@@ -20,7 +20,7 @@ local envoyAffinity = {
                     operator: "In",
                     values: [
                         "slb-ipvs",
-                        "slb-envoy-config-b",
+                        "slb-envoy-proxy",
                     ],
                 }],
             },
