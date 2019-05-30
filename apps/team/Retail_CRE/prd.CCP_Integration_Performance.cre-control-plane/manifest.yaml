@@ -33,9 +33,7 @@ system:
           value: ajna0-broker1-0-prd.data.sfdc.net:9093
           ## HBASE
         - name: HBASE_ENVIRONMENT
-          value: kingdom-test
-        - name: HBASE_NAMESPACE
-          value: CRE_PERF
+          value: kingdom-perf
         - name: HBASE_DATACENTER
           value: prd
           ## FLOWSNAKE
