@@ -2,9 +2,11 @@ version: v2
 apps:
   dfs-dev:    # team development env instance
     - name: prd/prd-sam_crosscloudplatform
-  dfs-func:   # fuctional test env instance
+  dfs-func:   # functional test env instance
     - name: prd/prd-sam_crosscloudplatform
-  dfs-func-patch:   # fuctional patch test env instance
+  dfs-func-patch:   # functional patch test env instance
+    - name: prd/prd-sam_crosscloudplatform
+  dfs-func-freeze:   # functional freeze test env instance
     - name: prd/prd-sam_crosscloudplatform
   dfs-perf:   # perf test env instance
     - name: prd/prd-sam_crosscloudplatform
