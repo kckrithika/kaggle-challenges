@@ -32,8 +32,9 @@ system:
       - name: admin-port
         containerPort: 15372
       resources:
-        limits: { cpu: "20", memory: "16Gi" }
-        requests: { cpu: "20", memory: "16Gi" }
+        limits:
+          cpu: "20"
+          memory: "16Gi"
       env:
       - name: KRB5_CONF
         value: /home/sfdc-usmt/krb-config/krb5_searchzk_iad.conf
@@ -56,7 +57,7 @@ system:
         periodSeconds: 120
         failureThreshold: 1
     - name: sherpa
-      image: sfci/servicelibs/sherpa-envoy:1.0.5
+      image: sfci/servicelibs/sherpa-envoy:1.0.7
       ports:
       - containerPort: 7443
         name: sherpa-tls  
@@ -66,8 +67,9 @@ system:
       - name: SFDC_ENVIRONMENT
         value: "sam"
       resources:
-        limits: { cpu: "1", memory: "1Gi" }
-        requests: { cpu: "1", memory: "1Gi" }
+        limits:
+          cpu: "1"
+          memory: "1Gi"
       volumeMounts:
         - name: server-cert-vol
           mountPath: /server-certs
@@ -112,9 +114,6 @@ system:
     containers:
     - name: universal-search-synthetics
       image: sfci/searchdev/universal-search-synthetics:0.1.0
-      resources:
-        limits: { cpu: "100m", memory: "1Gi" }
-        requests: { cpu: "100m", memory: "1Gi" }
       volumeMounts:
         - name: synthetics-log-vol
           mountPath: /home/sfdc-usmt/logs
@@ -132,7 +131,7 @@ system:
         periodSeconds: 900
         failureThreshold: 1
     - name: sherpa
-      image: sfci/servicelibs/sherpa-envoy:1.0.5
+      image: sfci/servicelibs/sherpa-envoy:1.0.7
       ports:
       - containerPort: 15373
         name: sherpa-adm
@@ -140,8 +139,9 @@ system:
       - name: SFDC_ENVIRONMENT
         value: "sam"
       resources:
-        limits: { cpu: "1", memory: "1Gi" }
-        requests: { cpu: "1", memory: "1Gi" }
+        limits:
+          cpu: "1"
+          memory: "1Gi"
       volumeMounts:
       - name: client-cert-vol
         mountPath: /client-certs
