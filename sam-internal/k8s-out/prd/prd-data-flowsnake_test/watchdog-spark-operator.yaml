@@ -866,7 +866,8 @@ items:
       # Future: Alternatively, generate a Splunk link?
       declare -A POD_LOGS_COLLECTED # pod name -> "true" if logs for pod were already collected
       pod_log() {
-          if [[ -z ${POD_LOGS_COLLECTED["$1"]} ]]; then
+          # Checking for key with set -o nounset active: https://stackoverflow.com/a/13221491
+          if [[ -z "${POD_LOGS_COLLECTED[$1]+present}" ]]; then
               log_sub_heading "Begin $1 Log"
               # || true to avoid failing script if pod has gone away.
               kcfw logs $1 || true
