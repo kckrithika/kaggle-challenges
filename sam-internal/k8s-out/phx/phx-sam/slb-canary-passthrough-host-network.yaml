@@ -28,7 +28,7 @@ spec:
         - --serviceName=slb-canary-passthrough-host-network
         - --log_dir=/host/data/slb/logs/
         - --ports=9113
-        image: ops0-artifactrepo1-0-phx.data.sfdc.net/dva/slb/hyperslb:2158-fe2566ab6d3429b31af09cc90e7812bf452b2ef7
+        image: ops0-artifactrepo1-0-phx.data.sfdc.net/dva/slb/hyperslb:2160-e5212007143a8bc1d8a6a193632176bf6e02c3ec
         name: slb-canary-passthrough-host-network
         volumeMounts:
         - mountPath: /host/data/slb/logs/
