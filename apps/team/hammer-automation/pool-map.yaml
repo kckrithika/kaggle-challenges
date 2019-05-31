@@ -1,2 +1,4 @@
-version: v2
 apps:
+  jcoordinator:
+    - prd/prd-sam
+    - mvp/gsf-core-devmvp-sam2-sam

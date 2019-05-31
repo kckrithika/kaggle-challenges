@@ -1,0 +1,18 @@
+apiVersion: v1
+system:
+  functions:
+  - name: gcp-devmvp-jcoordinator
+    type: deployment
+    count: 1
+    containers:
+    - name: jarvis-coordinator
+      image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-gcp/dva/jarvis-coordinator:c24eac4df3a8ea40c4a145dadf64a2b5d82287bb
+      livenessProbe:
+        exec:
+          command:
+          - echo
+          - "OK"
+  loadbalancers:
+  - lbname: gcp-devmvp-jcoordinator
+    function: gcp-devmvp-jcoordinator
+    slbenabled: true
