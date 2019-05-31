@@ -11,6 +11,7 @@ items:
   metadata:
     labels:
       istio-injection: enabled
+      pcn: deploy
       sherpa-injection: enabled
     name: service-mesh
 - apiVersion: v1
@@ -39,4 +40,5 @@ items:
     name: core-on-sam
 kind: List
 metadata:
-  labels: {}
+  labels:
+    pcn: deploy

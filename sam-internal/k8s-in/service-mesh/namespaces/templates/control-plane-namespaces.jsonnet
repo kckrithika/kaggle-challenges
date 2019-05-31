@@ -6,7 +6,6 @@
       kind: "Namespace",
       metadata: {
         labels: {
-          "sherpa-injector.service-mesh/inject": "disabled",
           "istio-injection": "disabled",
         },
         name: "mesh-control-plane",

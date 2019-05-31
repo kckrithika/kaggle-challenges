@@ -11,6 +11,7 @@ items:
   metadata:
     labels:
       istio-injection: enabled
+      sherpa-injection: enabled
     name: service-mesh
 - apiVersion: v1
   kind: Namespace
@@ -37,3 +38,5 @@ items:
       istio-injection: enabled
     name: core-on-sam
 kind: List
+metadata:
+  labels: {}
