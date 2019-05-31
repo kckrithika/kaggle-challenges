@@ -1,0 +1,37 @@
+CONNECTION_REFUSED
+0531 00:00:47 [1559260847] spark-pi-1f89eb03 - ======== Beginning spark-pi-1f89eb03 test ========
+0531 00:00:48 [1559260848] spark-pi-1f89eb03 - The connection to the server 10.254.208.1:443 was refused - did you specify the right host or port?
+0531 00:00:48 [1559260848] spark-pi-1f89eb03 - Invocation (1/7) of [kubectl -n flowsnake-watchdog cluster-info] failed (1). Will sleep 10 seconds and then try again.
+0531 00:00:59 [1559260859] spark-pi-1f89eb03 - The connection to the server 10.254.208.1:443 was refused - did you specify the right host or port?
+0531 00:00:59 [1559260859] spark-pi-1f89eb03 - Invocation (2/7) of [kubectl -n flowsnake-watchdog cluster-info] failed (1). Will sleep 10 seconds and then try again.
+0531 00:01:11 [1559260871] spark-pi-1f89eb03 - The connection to the server 10.254.208.1:443 was refused - did you specify the right host or port?
+0531 00:01:11 [1559260871] spark-pi-1f89eb03 - Invocation (3/7) of [kubectl -n flowsnake-watchdog cluster-info] failed (1). Will sleep 10 seconds and then try again.
+0531 00:01:21 [1559260881] spark-pi-1f89eb03 - The connection to the server 10.254.208.1:443 was refused - did you specify the right host or port?
+0531 00:01:21 [1559260881] spark-pi-1f89eb03 - Invocation (4/7) of [kubectl -n flowsnake-watchdog cluster-info] failed (1). Will sleep 10 seconds and then try again.
+0531 00:01:33 [1559260893] spark-pi-1f89eb03 - The connection to the server 10.254.208.1:443 was refused - did you specify the right host or port?
+0531 00:01:33 [1559260893] spark-pi-1f89eb03 - Invocation (5/7) of [kubectl -n flowsnake-watchdog cluster-info] failed (1). Will sleep 10 seconds and then try again.
+0531 00:01:44 [1559260905] spark-pi-1f89eb03 - The connection to the server 10.254.208.1:443 was refused - did you specify the right host or port?
+0531 00:01:45 [1559260905] spark-pi-1f89eb03 - Invocation (6/7) of [kubectl -n flowsnake-watchdog cluster-info] failed (1). Will sleep 10 seconds and then try again.
+0531 00:01:56 [1559260916] spark-pi-1f89eb03 - The connection to the server 10.254.208.1:443 was refused - did you specify the right host or port?
+0531 00:01:56 [1559260916] spark-pi-1f89eb03 - Invocation (7/7) of [kubectl -n flowsnake-watchdog cluster-info] failed (1). Giving up.
+0531 00:00:47 [1559260847] spark-pi-1f89eb03 -  [0;32mKubernetes master [0m is running at  [0;33mhttps://10.254.208.1:443 [0m
+0531 00:00:47 [1559260847] spark-pi-1f89eb03 -
+0531 00:00:47 [1559260847] spark-pi-1f89eb03 - To further debug and diagnose cluster problems, use 'kubectl cluster-info dump'.
+0531 00:00:47 [1559260847] spark-pi-1f89eb03 -  [0;32mKubernetes master [0m is running at  [0;33mhttps://10.254.208.1:443 [0m
+0531 00:00:47 [1559260847] spark-pi-1f89eb03 -
+0531 00:00:47 [1559260847] spark-pi-1f89eb03 - To further debug and diagnose cluster problems, use 'kubectl cluster-info dump'.
+0531 00:00:47 [1559260847] spark-pi-1f89eb03 -  [0;32mKubernetes master [0m is running at  [0;33mhttps://10.254.208.1:443 [0m
+0531 00:00:47 [1559260847] spark-pi-1f89eb03 -
+0531 00:00:47 [1559260847] spark-pi-1f89eb03 - To further debug and diagnose cluster problems, use 'kubectl cluster-info dump'.
+0531 00:00:47 [1559260847] spark-pi-1f89eb03 -  [0;32mKubernetes master [0m is running at  [0;33mhttps://10.254.208.1:443 [0m
+0531 00:00:47 [1559260847] spark-pi-1f89eb03 -
+0531 00:00:47 [1559260847] spark-pi-1f89eb03 - To further debug and diagnose cluster problems, use 'kubectl cluster-info dump'.
+0531 00:00:47 [1559260847] spark-pi-1f89eb03 -  [0;32mKubernetes master [0m is running at  [0;33mhttps://10.254.208.1:443 [0m
+0531 00:00:47 [1559260847] spark-pi-1f89eb03 -
+0531 00:00:47 [1559260847] spark-pi-1f89eb03 - To further debug and diagnose cluster problems, use 'kubectl cluster-info dump'.
+0531 00:00:47 [1559260847] spark-pi-1f89eb03 -  [0;32mKubernetes master [0m is running at  [0;33mhttps://10.254.208.1:443 [0m
+0531 00:00:47 [1559260847] spark-pi-1f89eb03 -
+0531 00:00:47 [1559260847] spark-pi-1f89eb03 - To further debug and diagnose cluster problems, use 'kubectl cluster-info dump'.
+0531 00:00:47 [1559260847] spark-pi-1f89eb03 -  [0;32mKubernetes master [0m is running at  [0;33mhttps://10.254.208.1:443 [0m
+0531 00:00:47 [1559260847] spark-pi-1f89eb03 -
+0531 00:00:47 [1559260847] spark-pi-1f89eb03 - To further debug and diagnose cluster problems, use 'kubectl cluster-info dump'.

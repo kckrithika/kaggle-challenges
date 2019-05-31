@@ -1,0 +1,135 @@
+TIMEOUT_SUCCEEDING
+// The Spark Application spends a long time in SUCCEEDING state. Might be worth getting a metric on that.
+0531 00:00:19 [1559260819] spark-pi-066f5f63 - ======== Beginning spark-pi-066f5f63 test ========
+0531 00:00:19 [1559260819] spark-pi-066f5f63 -  [0;32mKubernetes master [0m is running at  [0;33mhttps://10.254.208.1:443 [0m
+0531 00:00:19 [1559260819] spark-pi-066f5f63 -
+0531 00:00:19 [1559260819] spark-pi-066f5f63 - To further debug and diagnose cluster problems, use 'kubectl cluster-info dump'.
+0531 00:00:20 [1559260820] spark-pi-066f5f63 - Cleaning up SparkApplication/Pod older than 1 hours from prior runs.
+0531 00:00:21 [1559260821] spark-pi-066f5f63 - sparkapplication "spark-impersonation-0ebca04b" deleted
+0531 00:00:23 [1559260823] spark-pi-066f5f63 - sparkapplication "spark-impersonation-9ff68d3e" deleted
+0531 00:00:24 [1559260824] spark-pi-066f5f63 - sparkapplication "spark-impersonation-b9483a3c" deleted
+0531 00:00:25 [1559260825] spark-pi-066f5f63 - sparkapplication "spark-pi-6d730728" deleted
+0531 00:00:27 [1559260827] spark-pi-066f5f63 - sparkapplication "spark-pi-a7b7ebb8" deleted
+0531 00:00:28 [1559260828] spark-pi-066f5f63 - sparkapplication "spark-pi-e832a383" deleted
+0531 00:00:30 [1559260830] spark-pi-066f5f63 - sparkapplication "spark-pi-f55b4fe3" deleted
+0531 00:00:31 [1559260831] spark-pi-066f5f63 - Creating SparkApplication spark-pi-066f5f63
+0531 00:00:31 [1559260831] spark-pi-066f5f63 - sparkapplication "spark-pi-066f5f63" created
+0531 00:00:32 [1559260832] spark-pi-066f5f63 - Waiting for SparkApplication spark-pi-066f5f63 to reach a terminal state.
+0531 00:01:14 [1559260874] spark-pi-066f5f63 - Pod change detected: spark-pi-066f5f63-driver: Init:0/1 on host shared0-flowsnakeworkerprod1-49-frf.ops.sfdc.net.
+0531 00:01:17 [1559260877] spark-pi-066f5f63 - Pod change detected: spark-pi-066f5f63-driver changed to PodInitializing (previously Init:0/1).
+0531 00:01:18 [1559260879] spark-pi-066f5f63 - Pod change detected: spark-pi-066f5f63-driver changed to Running (previously PodInitializing).
+0531 00:01:34 [1559260894] spark-pi-066f5f63 - ...still waiting for terminal state (currently SUBMITTED) after 62 seconds.
+0531 00:01:34 [1559260894] spark-pi-066f5f63 - ---- Begin Events ----
+0531 00:01:34 [1559260894] spark-pi-066f5f63 - Name:         spark-pi-066f5f63
+0531 00:01:34 [1559260894] spark-pi-066f5f63 - Events:
+0531 00:01:34 [1559260894] spark-pi-066f5f63 -   Type    Reason                     Age   From            Message
+0531 00:01:34 [1559260894] spark-pi-066f5f63 -   ----    ------                     ----  ----            -------
+0531 00:01:34 [1559260894] spark-pi-066f5f63 -   Normal  SparkApplicationAdded      25s   spark-operator  SparkApplication spark-pi-066f5f63 was added, enqueuing it for submission
+0531 00:01:34 [1559260894] spark-pi-066f5f63 -   Normal  SparkApplicationSubmitted  22s   spark-operator  SparkApplication spark-pi-066f5f63 was submitted successfully
+0531 00:01:35 [1559260895] spark-pi-066f5f63 - Name:           spark-pi-066f5f63-driver
+0531 00:01:35 [1559260895] spark-pi-066f5f63 - Events:
+0531 00:01:35 [1559260895] spark-pi-066f5f63 -   Type    Reason                 Age   From                                                       Message
+0531 00:01:35 [1559260895] spark-pi-066f5f63 -   ----    ------                 ----  ----                                                       -------
+0531 00:01:35 [1559260895] spark-pi-066f5f63 -   Normal  Scheduled              25s   default-scheduler                                          Successfully assigned spark-pi-066f5f63-driver to shared0-flowsnakeworkerprod1-49-frf.ops.sfdc.net
+0531 00:01:35 [1559260895] spark-pi-066f5f63 -   Normal  SuccessfulMountVolume  24s   kubelet, shared0-flowsnakeworkerprod1-49-frf.ops.sfdc.net  MountVolume.SetUp succeeded for volume "datacerts"
+0531 00:01:35 [1559260895] spark-pi-066f5f63 -   Normal  SuccessfulMountVolume  24s   kubelet, shared0-flowsnakeworkerprod1-49-frf.ops.sfdc.net  MountVolume.SetUp succeeded for volume "certificate-authority"
+0531 00:01:35 [1559260895] spark-pi-066f5f63 -   Normal  SuccessfulMountVolume  24s   kubelet, shared0-flowsnakeworkerprod1-49-frf.ops.sfdc.net  MountVolume.SetUp succeeded for volume "client-key"
+0531 00:01:35 [1559260895] spark-pi-066f5f63 -   Normal  SuccessfulMountVolume  24s   kubelet, shared0-flowsnakeworkerprod1-49-frf.ops.sfdc.net  MountVolume.SetUp succeeded for volume "spark-local-dir-1"
+0531 00:01:35 [1559260895] spark-pi-066f5f63 -   Normal  SuccessfulMountVolume  24s   kubelet, shared0-flowsnakeworkerprod1-49-frf.ops.sfdc.net  MountVolume.SetUp succeeded for volume "spark-conf-volume"
+0531 00:01:35 [1559260895] spark-pi-066f5f63 -   Normal  SuccessfulMountVolume  24s   kubelet, shared0-flowsnakeworkerprod1-49-frf.ops.sfdc.net  MountVolume.SetUp succeeded for volume "spark-driver-flowsnake-watchdog-token-68l4m"
+0531 00:01:35 [1559260895] spark-pi-066f5f63 -   Normal  SuccessfulMountVolume  24s   kubelet, shared0-flowsnakeworkerprod1-49-frf.ops.sfdc.net  MountVolume.SetUp succeeded for volume "tokens"
+0531 00:01:35 [1559260895] spark-pi-066f5f63 -   Normal  SuccessfulMountVolume  24s   kubelet, shared0-flowsnakeworkerprod1-49-frf.ops.sfdc.net  MountVolume.SetUp succeeded for volume "client-certificate"
+0531 00:01:35 [1559260895] spark-pi-066f5f63 -   Normal  Pulled                 24s   kubelet, shared0-flowsnakeworkerprod1-49-frf.ops.sfdc.net  Container image "ops0-artifactrepo1-0-frf.data.sfdc.net/tnrp/sam/madkub:1.0.0-0000084-9f4a6ca6" already present on machine
+0531 00:01:35 [1559260895] spark-pi-066f5f63 -   Normal  Created                24s   kubelet, shared0-flowsnakeworkerprod1-49-frf.ops.sfdc.net  Created container
+0531 00:01:35 [1559260895] spark-pi-066f5f63 -   Normal  Started                24s   kubelet, shared0-flowsnakeworkerprod1-49-frf.ops.sfdc.net  Started container
+0531 00:01:35 [1559260895] spark-pi-066f5f63 -   Normal  Pulling                21s   kubelet, shared0-flowsnakeworkerprod1-49-frf.ops.sfdc.net  pulling image "ops0-artifactrepo1-0-frf.data.sfdc.net/dva/flowsnake-spark-on-k8s-sample-apps:4"
+0531 00:01:35 [1559260895] spark-pi-066f5f63 -   Normal  Pulled                 20s   kubelet, shared0-flowsnakeworkerprod1-49-frf.ops.sfdc.net  Successfully pulled image "ops0-artifactrepo1-0-frf.data.sfdc.net/dva/flowsnake-spark-on-k8s-sample-apps:4"
+0531 00:01:35 [1559260895] spark-pi-066f5f63 -   Normal  Created                20s   kubelet, shared0-flowsnakeworkerprod1-49-frf.ops.sfdc.net  Created container
+0531 00:01:35 [1559260895] spark-pi-066f5f63 -   Normal  Started                20s   kubelet, shared0-flowsnakeworkerprod1-49-frf.ops.sfdc.net  Started container
+0531 00:01:38 [1559260898] spark-pi-066f5f63 - ---- End Events ----
+0531 00:02:36 [1559260956] spark-pi-066f5f63 - ...still waiting for terminal state (currently SUBMITTED) after 124 seconds.
+0531 00:02:36 [1559260956] spark-pi-066f5f63 - ---- Begin Events ----
+0531 00:02:36 [1559260956] spark-pi-066f5f63 - Name:         spark-pi-066f5f63
+0531 00:02:36 [1559260956] spark-pi-066f5f63 - Events:
+0531 00:02:36 [1559260956] spark-pi-066f5f63 -   Type    Reason                     Age   From            Message
+0531 00:02:36 [1559260956] spark-pi-066f5f63 -   ----    ------                     ----  ----            -------
+0531 00:02:36 [1559260956] spark-pi-066f5f63 -   Normal  SparkApplicationAdded      1m    spark-operator  SparkApplication spark-pi-066f5f63 was added, enqueuing it for submission
+0531 00:02:36 [1559260956] spark-pi-066f5f63 -   Normal  SparkApplicationSubmitted  1m    spark-operator  SparkApplication spark-pi-066f5f63 was submitted successfully
+0531 00:02:37 [1559260957] spark-pi-066f5f63 - Name:           spark-pi-066f5f63-driver
+0531 00:02:37 [1559260957] spark-pi-066f5f63 - Events:
+0531 00:02:37 [1559260957] spark-pi-066f5f63 -   Type    Reason                 Age   From                                                       Message
+0531 00:02:37 [1559260957] spark-pi-066f5f63 -   ----    ------                 ----  ----                                                       -------
+0531 00:02:37 [1559260957] spark-pi-066f5f63 -   Normal  Scheduled              1m    default-scheduler                                          Successfully assigned spark-pi-066f5f63-driver to shared0-flowsnakeworkerprod1-49-frf.ops.sfdc.net
+0531 00:02:37 [1559260957] spark-pi-066f5f63 -   Normal  SuccessfulMountVolume  1m    kubelet, shared0-flowsnakeworkerprod1-49-frf.ops.sfdc.net  MountVolume.SetUp succeeded for volume "datacerts"
+0531 00:02:37 [1559260957] spark-pi-066f5f63 -   Normal  SuccessfulMountVolume  1m    kubelet, shared0-flowsnakeworkerprod1-49-frf.ops.sfdc.net  MountVolume.SetUp succeeded for volume "certificate-authority"
+0531 00:02:37 [1559260957] spark-pi-066f5f63 -   Normal  SuccessfulMountVolume  1m    kubelet, shared0-flowsnakeworkerprod1-49-frf.ops.sfdc.net  MountVolume.SetUp succeeded for volume "client-key"
+0531 00:02:37 [1559260957] spark-pi-066f5f63 -   Normal  SuccessfulMountVolume  1m    kubelet, shared0-flowsnakeworkerprod1-49-frf.ops.sfdc.net  MountVolume.SetUp succeeded for volume "spark-local-dir-1"
+0531 00:02:37 [1559260957] spark-pi-066f5f63 -   Normal  SuccessfulMountVolume  1m    kubelet, shared0-flowsnakeworkerprod1-49-frf.ops.sfdc.net  MountVolume.SetUp succeeded for volume "spark-conf-volume"
+0531 00:02:37 [1559260957] spark-pi-066f5f63 -   Normal  SuccessfulMountVolume  1m    kubelet, shared0-flowsnakeworkerprod1-49-frf.ops.sfdc.net  MountVolume.SetUp succeeded for volume "spark-driver-flowsnake-watchdog-token-68l4m"
+0531 00:02:37 [1559260957] spark-pi-066f5f63 -   Normal  SuccessfulMountVolume  1m    kubelet, shared0-flowsnakeworkerprod1-49-frf.ops.sfdc.net  MountVolume.SetUp succeeded for volume "tokens"
+0531 00:02:37 [1559260957] spark-pi-066f5f63 -   Normal  SuccessfulMountVolume  1m    kubelet, shared0-flowsnakeworkerprod1-49-frf.ops.sfdc.net  MountVolume.SetUp succeeded for volume "client-certificate"
+0531 00:02:37 [1559260957] spark-pi-066f5f63 -   Normal  Pulled                 1m    kubelet, shared0-flowsnakeworkerprod1-49-frf.ops.sfdc.net  Container image "ops0-artifactrepo1-0-frf.data.sfdc.net/tnrp/sam/madkub:1.0.0-0000084-9f4a6ca6" already present on machine
+0531 00:02:37 [1559260957] spark-pi-066f5f63 -   Normal  Created                1m    kubelet, shared0-flowsnakeworkerprod1-49-frf.ops.sfdc.net  Created container
+0531 00:02:37 [1559260957] spark-pi-066f5f63 -   Normal  Started                1m    kubelet, shared0-flowsnakeworkerprod1-49-frf.ops.sfdc.net  Started container
+0531 00:02:37 [1559260957] spark-pi-066f5f63 -   Normal  Pulling                1m    kubelet, shared0-flowsnakeworkerprod1-49-frf.ops.sfdc.net  pulling image "ops0-artifactrepo1-0-frf.data.sfdc.net/dva/flowsnake-spark-on-k8s-sample-apps:4"
+0531 00:02:37 [1559260957] spark-pi-066f5f63 -   Normal  Pulled                 1m    kubelet, shared0-flowsnakeworkerprod1-49-frf.ops.sfdc.net  Successfully pulled image "ops0-artifactrepo1-0-frf.data.sfdc.net/dva/flowsnake-spark-on-k8s-sample-apps:4"
+0531 00:02:37 [1559260957] spark-pi-066f5f63 -   Normal  Created                1m    kubelet, shared0-flowsnakeworkerprod1-49-frf.ops.sfdc.net  Created container
+0531 00:02:37 [1559260957] spark-pi-066f5f63 -   Normal  Started                1m    kubelet, shared0-flowsnakeworkerprod1-49-frf.ops.sfdc.net  Started container
+0531 00:02:38 [1559260958] spark-pi-066f5f63 - ---- End Events ----
+0531 00:02:48 [1559260968] spark-pi-066f5f63 - Pod change detected: spark-pi-066f5f63-1559260871799-exec-1: Init:0/1 on host shared0-flowsnakeworkerprod1-20-frf.ops.sfdc.net.
+0531 00:02:52 [1559260972] spark-pi-066f5f63 - Pod change detected: spark-pi-066f5f63-1559260871799-exec-1 changed to PodInitializing (previously Init:0/1).
+0531 00:02:54 [1559260974] spark-pi-066f5f63 - Pod change detected: spark-pi-066f5f63-1559260871799-exec-1 changed to Running (previously PodInitializing).
+0531 00:03:06 [1559260986] spark-pi-066f5f63 - Pod change detected: spark-pi-066f5f63-1559260871799-exec-1 changed to Terminating (previously Running).
+0531 00:03:08 [1559260988] spark-pi-066f5f63 - Pod change detected: spark-pi-066f5f63-driver changed to Completed (previously Running).
+0531 00:03:33 [1559261013] spark-pi-066f5f63 - Pod change detected: spark-pi-066f5f63-driver removed.
+0531 00:03:38 [1559261018] spark-pi-066f5f63 - ...still waiting for terminal state (currently SUCCEEDING) after 186 seconds.
+0531 00:03:38 [1559261018] spark-pi-066f5f63 - ---- Begin Events ----
+0531 00:03:38 [1559261018] spark-pi-066f5f63 - Name:         spark-pi-066f5f63
+0531 00:03:38 [1559261018] spark-pi-066f5f63 - Events:
+0531 00:03:38 [1559261018] spark-pi-066f5f63 -   Type    Reason                     Age   From            Message
+0531 00:03:38 [1559261018] spark-pi-066f5f63 -   ----    ------                     ----  ----            -------
+0531 00:03:38 [1559261018] spark-pi-066f5f63 -   Normal  SparkApplicationAdded      2m    spark-operator  SparkApplication spark-pi-066f5f63 was added, enqueuing it for submission
+0531 00:03:38 [1559261018] spark-pi-066f5f63 -   Normal  SparkApplicationSubmitted  2m    spark-operator  SparkApplication spark-pi-066f5f63 was submitted successfully
+0531 00:03:39 [1559261019] spark-pi-066f5f63 - Name:                      spark-pi-066f5f63-1559260871799-exec-1
+0531 00:03:39 [1559261019] spark-pi-066f5f63 - Events:
+0531 00:03:39 [1559261019] spark-pi-066f5f63 -   Type    Reason                 Age   From                                                       Message
+0531 00:03:39 [1559261019] spark-pi-066f5f63 -   ----    ------                 ----  ----                                                       -------
+0531 00:03:39 [1559261019] spark-pi-066f5f63 -   Normal  SuccessfulMountVolume  53s   kubelet, shared0-flowsnakeworkerprod1-20-frf.ops.sfdc.net  MountVolume.SetUp succeeded for volume "datacerts"
+0531 00:03:39 [1559261019] spark-pi-066f5f63 -   Normal  SuccessfulMountVolume  53s   kubelet, shared0-flowsnakeworkerprod1-20-frf.ops.sfdc.net  MountVolume.SetUp succeeded for volume "client-key"
+0531 00:03:39 [1559261019] spark-pi-066f5f63 -   Normal  SuccessfulMountVolume  53s   kubelet, shared0-flowsnakeworkerprod1-20-frf.ops.sfdc.net  MountVolume.SetUp succeeded for volume "client-certificate"
+0531 00:03:39 [1559261019] spark-pi-066f5f63 -   Normal  SuccessfulMountVolume  53s   kubelet, shared0-flowsnakeworkerprod1-20-frf.ops.sfdc.net  MountVolume.SetUp succeeded for volume "certificate-authority"
+0531 00:03:39 [1559261019] spark-pi-066f5f63 -   Normal  SuccessfulMountVolume  53s   kubelet, shared0-flowsnakeworkerprod1-20-frf.ops.sfdc.net  MountVolume.SetUp succeeded for volume "spark-local-dir-1"
+0531 00:03:39 [1559261019] spark-pi-066f5f63 -   Normal  SuccessfulMountVolume  53s   kubelet, shared0-flowsnakeworkerprod1-20-frf.ops.sfdc.net  MountVolume.SetUp succeeded for volume "tokens"
+0531 00:03:39 [1559261019] spark-pi-066f5f63 -   Normal  Scheduled              53s   default-scheduler                                          Successfully assigned spark-pi-066f5f63-1559260871799-exec-1 to shared0-flowsnakeworkerprod1-20-frf.ops.sfdc.net
+0531 00:03:39 [1559261019] spark-pi-066f5f63 -   Normal  Created                52s   kubelet, shared0-flowsnakeworkerprod1-20-frf.ops.sfdc.net  Created container
+0531 00:03:39 [1559261019] spark-pi-066f5f63 -   Normal  SuccessfulMountVolume  52s   kubelet, shared0-flowsnakeworkerprod1-20-frf.ops.sfdc.net  MountVolume.SetUp succeeded for volume "default-token-dbcl5"
+0531 00:03:39 [1559261019] spark-pi-066f5f63 -   Normal  Pulled                 52s   kubelet, shared0-flowsnakeworkerprod1-20-frf.ops.sfdc.net  Container image "ops0-artifactrepo1-0-frf.data.sfdc.net/tnrp/sam/madkub:1.0.0-0000084-9f4a6ca6" already present on machine
+0531 00:03:39 [1559261019] spark-pi-066f5f63 -   Normal  Started                51s   kubelet, shared0-flowsnakeworkerprod1-20-frf.ops.sfdc.net  Started container
+0531 00:03:39 [1559261019] spark-pi-066f5f63 -   Normal  Pulling                49s   kubelet, shared0-flowsnakeworkerprod1-20-frf.ops.sfdc.net  pulling image "ops0-artifactrepo1-0-frf.data.sfdc.net/dva/flowsnake-spark-on-k8s-sample-apps:4"
+0531 00:03:39 [1559261019] spark-pi-066f5f63 -   Normal  Pulled                 49s   kubelet, shared0-flowsnakeworkerprod1-20-frf.ops.sfdc.net  Successfully pulled image "ops0-artifactrepo1-0-frf.data.sfdc.net/dva/flowsnake-spark-on-k8s-sample-apps:4"
+0531 00:03:39 [1559261019] spark-pi-066f5f63 -   Normal  Created                48s   kubelet, shared0-flowsnakeworkerprod1-20-frf.ops.sfdc.net  Created container
+0531 00:03:39 [1559261019] spark-pi-066f5f63 -   Normal  Started                48s   kubelet, shared0-flowsnakeworkerprod1-20-frf.ops.sfdc.net  Started container
+0531 00:03:39 [1559261019] spark-pi-066f5f63 -   Normal  Killing                34s   kubelet, shared0-flowsnakeworkerprod1-20-frf.ops.sfdc.net  Killing container with id docker://executor:Need to kill Pod
+0531 00:03:40 [1559261020] spark-pi-066f5f63 - ---- End Events ----
+0531 00:03:52 [1559261032] spark-pi-066f5f63 - Pod change detected: spark-pi-066f5f63-1559260871799-exec-1 removed.
+0531 00:04:40 [1559261080] spark-pi-066f5f63 - ...still waiting for terminal state (currently SUCCEEDING) after 248 seconds.
+0531 00:04:40 [1559261080] spark-pi-066f5f63 - ---- Begin Events ----
+0531 00:04:40 [1559261080] spark-pi-066f5f63 - Name:         spark-pi-066f5f63
+0531 00:04:40 [1559261080] spark-pi-066f5f63 - Events:
+0531 00:04:40 [1559261080] spark-pi-066f5f63 -   Type    Reason                     Age   From            Message
+0531 00:04:40 [1559261080] spark-pi-066f5f63 -   ----    ------                     ----  ----            -------
+0531 00:04:40 [1559261080] spark-pi-066f5f63 -   Normal  SparkApplicationAdded      3m    spark-operator  SparkApplication spark-pi-066f5f63 was added, enqueuing it for submission
+0531 00:04:40 [1559261080] spark-pi-066f5f63 -   Normal  SparkApplicationSubmitted  3m    spark-operator  SparkApplication spark-pi-066f5f63 was submitted successfully
+0531 00:04:42 [1559261082] spark-pi-066f5f63 - ---- End Events ----
+0531 00:05:20 [1559261120] spark-pi-066f5f63 - Timeout reached. Aborting wait for SparkApplication spark-pi-066f5f63 even though in non-terminal state SUCCEEDING.
+0531 00:05:20 [1559261120] spark-pi-066f5f63 - ---- Begin Events ----
+0531 00:05:20 [1559261120] spark-pi-066f5f63 - Name:         spark-pi-066f5f63
+0531 00:05:20 [1559261120] spark-pi-066f5f63 - Events:
+0531 00:05:20 [1559261120] spark-pi-066f5f63 -   Type    Reason                     Age   From            Message
+0531 00:05:20 [1559261120] spark-pi-066f5f63 -   ----    ------                     ----  ----            -------
+0531 00:05:20 [1559261120] spark-pi-066f5f63 -   Normal  SparkApplicationAdded      4m    spark-operator  SparkApplication spark-pi-066f5f63 was added, enqueuing it for submission
+0531 00:05:20 [1559261120] spark-pi-066f5f63 -   Normal  SparkApplicationSubmitted  4m    spark-operator  SparkApplication spark-pi-066f5f63 was submitted successfully
+0531 00:05:22 [1559261122] spark-pi-066f5f63 - ---- End Events ----
+0531 00:05:22 [1559261122] spark-pi-066f5f63 - Cannot locate driver pod. Maybe it never started? No logs to display.
+0531 00:05:22 [1559261122] spark-pi-066f5f63 - -------- Executor Pods ----------
+0531 00:05:23 [1559261123] spark-pi-066f5f63 - ======== Completion of spark-pi-066f5f63 test, returning 1 ========
