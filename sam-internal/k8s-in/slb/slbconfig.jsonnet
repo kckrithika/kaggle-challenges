@@ -4,6 +4,7 @@
     local slbimages = import "slbimages.jsonnet",
     local configs = import "config.jsonnet",
     local slbvipwdconfig = import "slb-vip-watchdog-config.libsonnet",
+    local slbflights = import "slbflights.jsonnet",
     local set_value_to_all_in_list(value, list) = { [item]: value for item in list },
     local set_value_to_all_in_list_skip(value, list, skip) = { [item]: value for item in list if item != skip },
 
@@ -573,6 +574,22 @@
           },
 
           pod_security_context: {},
+    },
+
+    tcpdump_volume(proxyName): {
+        local nameLocal = if slbflights.tcpdumpNamingRevamp then "tcpdump-config" else "config",
+        local proxyNameLocal = if slbflights.tcpdumpNamingRevamp then proxyName + "-tcpdump" else proxyName,
+        name: nameLocal,
+        configMap: {
+            name: proxyNameLocal,
+        },
+    },
+
+    tcpdump_volume_mount: {
+        local mountPathLocal = if slbflights.tcpdumpNamingRevamp then "/tcpdump-config" else "/config",
+        local nameLocal = if slbflights.tcpdumpNamingRevamp then "tcp-dump-config" else "config",
+        mountPath: mountPathLocal,
+        name: nameLocal,
     },
 
     envoy: $.nginx {
