@@ -7,12 +7,12 @@
       sql: "select
   controlEstate,
   sum(case when Status = 'healthy' then 1 end) as HealthyCount,
-  group_concat(case when NodeNum = 'n1-1' then Status else NULL end) as node1_1,
-  group_concat(case when NodeNum = 'n2-1' then Status else NULL end) as node2_1,
-  group_concat(case when NodeNum = 'n3-1' then Status else NULL end) as node3_1,
-  group_concat(case when NodeNum = 'n1-2' then Status else NULL end) as node1_2,
-  group_concat(case when NodeNum = 'n2-2' then Status else NULL end) as node2_2,
-  group_concat(case when NodeNum = 'n3-2' then Status else NULL end) as node3_2,
+  group_concat(case when NodeNum = 'n1-1' then Status else NULL end) as node1_1old,
+  group_concat(case when NodeNum = 'n2-1' then Status else NULL end) as node2_1old,
+  group_concat(case when NodeNum = 'n3-1' then Status else NULL end) as node3_1old,
+  group_concat(case when NodeNum = 'n1-2' then Status else NULL end) as node1_2new,
+  group_concat(case when NodeNum = 'n2-2' then Status else NULL end) as node2_2new,
+  
   group_concat(case when NodeNum = 'n1-3' then Status else NULL end) as extra_1_3,
   group_concat(case when NodeNum = 'n3-2' then Status else NULL end) as extra_3_2
   from
