@@ -137,7 +137,7 @@ system:
     - env:
       - name: CASAM_SETTINGS_PATH
         value: prod.-.phx.na3.app
-      image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-gcp/sfci/casam/coreapp_overrides:e49533
+      image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-gcp/sfci/casam/coreapp_overrides:da91f9
       livenessProbe:
         exec:
           command:
