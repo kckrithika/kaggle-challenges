@@ -98,6 +98,12 @@ local vipwdConfig = {
       // W-6079563 (https://gus.lightning.force.com/a07B0000006JutqIAC), when implemented, should help reduce the alert noise by
       // requiring the backend servers to report a consistent signal.
       "*.firefly-*.prd-sam.prd.slb.sfdc.net:*",
+      // .
+      // 2019/05/27 - mgrass: This VIP is configured to require client certs (mtls: true), but the backends (slb-canary) don't
+      // require a client cert. VIP watchdog never presents a client cert on TLS sessions, so it is able to reach the backends
+      // but unable to talk to the VIP, causing the VIP to be treated as SLA-eligible but failing (triggering alerts).
+      // Remove once W-6182163 (https://gus.lightning.force.com/lightning/r/ADM_Work__c/a07B0000006uYhEIAU/view) is resolved.
+      "slb-canary-envoy-svc.sam-system.prd-sam.prd.slb.sfdc.net:8443",
     ],
     vivips: [
        // There are 3 sledge VIPs that listen on these ports:
