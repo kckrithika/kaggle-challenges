@@ -282,7 +282,7 @@
           },
       },
       volumeMounts: [
-        configs.config_volume_mount,
+        slbconfigs.tcpdump_volume_mount,
       ],
     },
   ],
@@ -345,7 +345,7 @@
               proxyconfigs.target_config_volume,
               proxyconfigs.customer_certs_volume,
               proxyconfigs.tlsparams_volume,
-              if proxyType == "nginx" then configs.config_volume(proxyName),
+              slbconfigs.tcpdump_volume(proxyName),
             ]
           ),
           initContainers: std.prune([
