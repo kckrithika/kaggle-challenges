@@ -1173,6 +1173,18 @@
     },
     {
       "namespaces": [
+        "universal-search"
+      ],
+      "access": [
+        "team/universal-search"
+      ],
+      "controlEstate": "ia2-sam",
+      "estate": "ia2-universalsearch_svc",
+      "kingdom": "ia2",
+      "superPod": "None"
+    },
+    {
+      "namespaces": [
         "csc-sam"
       ],
       "access": [
@@ -2360,6 +2372,18 @@
       "estate": "ph2-sp2-sam_caas",
       "kingdom": "ph2",
       "superPod": "sp2"
+    },
+    {
+      "namespaces": [
+        "universal-search"
+      ],
+      "access": [
+        "team/universal-search"
+      ],
+      "controlEstate": "ph2-sam",
+      "estate": "ph2-universalsearch_svc",
+      "kingdom": "ph2",
+      "superPod": "None"
     },
     {
       "namespaces": [
