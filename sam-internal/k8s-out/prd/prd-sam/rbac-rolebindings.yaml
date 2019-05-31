@@ -1740,6 +1740,28 @@ items:
 - apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: RoleBinding
   metadata:
+    name: search-scale-safely:prd-universalsearch_svc:rolebinding
+    namespace: search-scale-safely
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: minion:role
+  subjects:
+  - kind: User
+    name: shared0-samminionuniversalsearchmt1-1-prd.eng.sfdc.net
+  - kind: User
+    name: shared0-samminionuniversalsearchmt1-2-prd.eng.sfdc.net
+  - kind: User
+    name: shared0-samminionuniversalsearchmt1-3-prd.eng.sfdc.net
+  - kind: User
+    name: shared0-samminionuniversalsearchmt2-1-prd.eng.sfdc.net
+  - kind: User
+    name: shared0-samminionuniversalsearchmt2-2-prd.eng.sfdc.net
+  - kind: User
+    name: shared0-samminionuniversalsearchmt2-3-prd.eng.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1beta1
+  kind: RoleBinding
+  metadata:
     name: universal-search:prd-universalsearch_svc:rolebinding
     namespace: universal-search
   roleRef:
