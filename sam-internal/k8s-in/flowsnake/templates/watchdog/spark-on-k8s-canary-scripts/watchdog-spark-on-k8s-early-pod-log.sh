@@ -181,7 +181,7 @@ state() {
 # Future: Alternatively, generate a Splunk link?
 declare -A POD_LOGS_COLLECTED # pod name -> "true" if logs for pod were already collected
 pod_log() {
-    if [[ -z "${POD_LOGS_COLLECTED[$1]}" ]]; then
+    if [[ -z ${POD_LOGS_COLLECTED["$1"]} ]]; then
         log_sub_heading "Begin $1 Log"
         # || true to avoid failing script if pod has gone away.
         kcfw logs $1 || true
