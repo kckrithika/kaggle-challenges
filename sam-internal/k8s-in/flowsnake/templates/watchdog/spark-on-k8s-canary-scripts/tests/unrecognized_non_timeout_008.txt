@@ -1,0 +1,248 @@
+UNRECOGNIZED_NON_TIMEOUT
+// This is a strange one. Driver completes successfully, and then Spark Application state changes to FAILED.
+// SparkOperator log (found via Splunk) contains:
+// 2019-05-31T03:28:50Z, message=SparkApplication spark-pi-61053602 failed: Driver Pod not found
+0531 03:26:15 [1559273175] spark-pi-61053602 - ======== Beginning spark-pi-61053602 test ========
+0531 03:26:15 [1559273175] spark-pi-61053602 -  [0;32mKubernetes master [0m is running at  [0;33mhttps://10.254.208.1:443 [0m
+0531 03:26:15 [1559273175] spark-pi-61053602 -
+0531 03:26:15 [1559273175] spark-pi-61053602 - To further debug and diagnose cluster problems, use 'kubectl cluster-info dump'.
+0531 03:26:15 [1559273175] spark-pi-61053602 - Cleaning up SparkApplication/Pod older than 1 hours from prior runs.
+0531 03:26:15 [1559273175] spark-pi-61053602 - Creating SparkApplication spark-pi-61053602
+0531 03:26:15 [1559273175] spark-pi-61053602 - sparkapplication "spark-pi-61053602" created
+0531 03:26:16 [1559273176] spark-pi-61053602 - Waiting for SparkApplication spark-pi-61053602 to reach a terminal state.
+0531 03:26:21 [1559273181] spark-pi-61053602 - Pod change detected: spark-pi-61053602-driver: Init:0/1 on host shared0-flowsnakeworkerprod1-68-par.ops.sfdc.net.
+0531 03:26:23 [1559273183] spark-pi-61053602 - Pod change detected: spark-pi-61053602-driver changed to PodInitializing (previously Init:0/1).
+0531 03:26:26 [1559273186] spark-pi-61053602 - Pod change detected: spark-pi-61053602-driver changed to Running (previously PodInitializing).
+0531 03:27:17 [1559273237] spark-pi-61053602 - ...still waiting for terminal state (currently RUNNING) after 61 seconds.
+0531 03:27:17 [1559273237] spark-pi-61053602 - ---- Begin Events ----
+0531 03:27:17 [1559273237] spark-pi-61053602 - Name:         spark-pi-61053602
+0531 03:27:17 [1559273237] spark-pi-61053602 - Events:                          <none>
+0531 03:27:18 [1559273238] spark-pi-61053602 - Name:           spark-pi-61053602-driver
+0531 03:27:18 [1559273238] spark-pi-61053602 - Events:
+0531 03:27:18 [1559273238] spark-pi-61053602 -   Type     Reason                 Age   From                                                       Message
+0531 03:27:18 [1559273238] spark-pi-61053602 -   ----     ------                 ----  ----                                                       -------
+0531 03:27:18 [1559273238] spark-pi-61053602 -   Normal   SuccessfulMountVolume  59s   kubelet, shared0-flowsnakeworkerprod1-68-par.ops.sfdc.net  MountVolume.SetUp succeeded for volume "spark-conf-volume"
+0531 03:27:18 [1559273238] spark-pi-61053602 -   Normal   SuccessfulMountVolume  59s   kubelet, shared0-flowsnakeworkerprod1-68-par.ops.sfdc.net  MountVolume.SetUp succeeded for volume "client-key"
+0531 03:27:18 [1559273238] spark-pi-61053602 -   Normal   SuccessfulMountVolume  59s   kubelet, shared0-flowsnakeworkerprod1-68-par.ops.sfdc.net  MountVolume.SetUp succeeded for volume "certificate-authority"
+0531 03:27:18 [1559273238] spark-pi-61053602 -   Normal   SuccessfulMountVolume  59s   kubelet, shared0-flowsnakeworkerprod1-68-par.ops.sfdc.net  MountVolume.SetUp succeeded for volume "client-certificate"
+0531 03:27:18 [1559273238] spark-pi-61053602 -   Normal   SuccessfulMountVolume  59s   kubelet, shared0-flowsnakeworkerprod1-68-par.ops.sfdc.net  MountVolume.SetUp succeeded for volume "spark-local-dir-1"
+0531 03:27:18 [1559273238] spark-pi-61053602 -   Warning  FailedMount            59s   kubelet, shared0-flowsnakeworkerprod1-68-par.ops.sfdc.net  MountVolume.SetUp failed for volume "spark-conf-volume" : configmaps "spark-pi-61053602-1559273179100-driver-conf-map" not found
+0531 03:27:18 [1559273238] spark-pi-61053602 -   Normal   SuccessfulMountVolume  59s   kubelet, shared0-flowsnakeworkerprod1-68-par.ops.sfdc.net  MountVolume.SetUp succeeded for volume "spark-driver-flowsnake-watchdog-token-trcd2"
+0531 03:27:18 [1559273238] spark-pi-61053602 -   Normal   SuccessfulMountVolume  59s   kubelet, shared0-flowsnakeworkerprod1-68-par.ops.sfdc.net  MountVolume.SetUp succeeded for volume "tokens"
+0531 03:27:18 [1559273238] spark-pi-61053602 -   Normal   SuccessfulMountVolume  59s   kubelet, shared0-flowsnakeworkerprod1-68-par.ops.sfdc.net  MountVolume.SetUp succeeded for volume "datacerts"
+0531 03:27:18 [1559273238] spark-pi-61053602 -   Normal   Scheduled              59s   default-scheduler                                          Successfully assigned spark-pi-61053602-driver to shared0-flowsnakeworkerprod1-68-par.ops.sfdc.net
+0531 03:27:18 [1559273238] spark-pi-61053602 -   Normal   Pulled                 58s   kubelet, shared0-flowsnakeworkerprod1-68-par.ops.sfdc.net  Container image "ops0-artifactrepo1-0-par.data.sfdc.net/tnrp/sam/madkub:1.0.0-0000084-9f4a6ca6" already present on machine
+0531 03:27:18 [1559273238] spark-pi-61053602 -   Normal   Created                58s   kubelet, shared0-flowsnakeworkerprod1-68-par.ops.sfdc.net  Created container
+0531 03:27:18 [1559273238] spark-pi-61053602 -   Normal   Started                58s   kubelet, shared0-flowsnakeworkerprod1-68-par.ops.sfdc.net  Started container
+0531 03:27:18 [1559273238] spark-pi-61053602 -   Normal   Pulling                55s   kubelet, shared0-flowsnakeworkerprod1-68-par.ops.sfdc.net  pulling image "ops0-artifactrepo1-0-par.data.sfdc.net/dva/flowsnake-spark-on-k8s-sample-apps:4"
+0531 03:27:18 [1559273238] spark-pi-61053602 -   Normal   Pulled                 55s   kubelet, shared0-flowsnakeworkerprod1-68-par.ops.sfdc.net  Successfully pulled image "ops0-artifactrepo1-0-par.data.sfdc.net/dva/flowsnake-spark-on-k8s-sample-apps:4"
+0531 03:27:18 [1559273238] spark-pi-61053602 -   Normal   Created                55s   kubelet, shared0-flowsnakeworkerprod1-68-par.ops.sfdc.net  Created container
+0531 03:27:18 [1559273238] spark-pi-61053602 -   Normal   Started                54s   kubelet, shared0-flowsnakeworkerprod1-68-par.ops.sfdc.net  Started container
+0531 03:27:19 [1559273239] spark-pi-61053602 - ---- End Events ----
+0531 03:28:10 [1559273290] spark-pi-61053602 - Pod change detected: spark-pi-61053602-1559273179100-exec-1: Init:0/1 on host shared0-flowsnakeworkerprod1-2-par.ops.sfdc.net.
+0531 03:28:13 [1559273293] spark-pi-61053602 - Pod change detected: spark-pi-61053602-1559273179100-exec-1 changed to PodInitializing (previously Init:0/1).
+0531 03:28:16 [1559273296] spark-pi-61053602 - Pod change detected: spark-pi-61053602-1559273179100-exec-1 changed to Running (previously PodInitializing).
+0531 03:28:18 [1559273298] spark-pi-61053602 - ...still waiting for terminal state (currently RUNNING) after 122 seconds.
+0531 03:28:18 [1559273298] spark-pi-61053602 - ---- Begin Events ----
+0531 03:28:18 [1559273298] spark-pi-61053602 - Name:         spark-pi-61053602
+0531 03:28:18 [1559273298] spark-pi-61053602 - Events:                          <none>
+0531 03:28:19 [1559273299] spark-pi-61053602 - Name:           spark-pi-61053602-driver
+0531 03:28:19 [1559273299] spark-pi-61053602 - Events:
+0531 03:28:19 [1559273299] spark-pi-61053602 -   Type     Reason                 Age   From                                                       Message
+0531 03:28:19 [1559273299] spark-pi-61053602 -   ----     ------                 ----  ----                                                       -------
+0531 03:28:19 [1559273299] spark-pi-61053602 -   Normal   SuccessfulMountVolume  2m    kubelet, shared0-flowsnakeworkerprod1-68-par.ops.sfdc.net  MountVolume.SetUp succeeded for volume "spark-conf-volume"
+0531 03:28:19 [1559273299] spark-pi-61053602 -   Normal   SuccessfulMountVolume  2m    kubelet, shared0-flowsnakeworkerprod1-68-par.ops.sfdc.net  MountVolume.SetUp succeeded for volume "client-key"
+0531 03:28:19 [1559273299] spark-pi-61053602 -   Normal   SuccessfulMountVolume  2m    kubelet, shared0-flowsnakeworkerprod1-68-par.ops.sfdc.net  MountVolume.SetUp succeeded for volume "certificate-authority"
+0531 03:28:19 [1559273299] spark-pi-61053602 -   Normal   SuccessfulMountVolume  2m    kubelet, shared0-flowsnakeworkerprod1-68-par.ops.sfdc.net  MountVolume.SetUp succeeded for volume "client-certificate"
+0531 03:28:19 [1559273299] spark-pi-61053602 -   Normal   SuccessfulMountVolume  2m    kubelet, shared0-flowsnakeworkerprod1-68-par.ops.sfdc.net  MountVolume.SetUp succeeded for volume "spark-local-dir-1"
+0531 03:28:19 [1559273299] spark-pi-61053602 -   Warning  FailedMount            2m    kubelet, shared0-flowsnakeworkerprod1-68-par.ops.sfdc.net  MountVolume.SetUp failed for volume "spark-conf-volume" : configmaps "spark-pi-61053602-1559273179100-driver-conf-map" not found
+0531 03:28:19 [1559273299] spark-pi-61053602 -   Normal   SuccessfulMountVolume  2m    kubelet, shared0-flowsnakeworkerprod1-68-par.ops.sfdc.net  MountVolume.SetUp succeeded for volume "spark-driver-flowsnake-watchdog-token-trcd2"
+0531 03:28:19 [1559273299] spark-pi-61053602 -   Normal   SuccessfulMountVolume  2m    kubelet, shared0-flowsnakeworkerprod1-68-par.ops.sfdc.net  MountVolume.SetUp succeeded for volume "tokens"
+0531 03:28:19 [1559273299] spark-pi-61053602 -   Normal   SuccessfulMountVolume  2m    kubelet, shared0-flowsnakeworkerprod1-68-par.ops.sfdc.net  MountVolume.SetUp succeeded for volume "datacerts"
+0531 03:28:19 [1559273299] spark-pi-61053602 -   Normal   Scheduled              2m    default-scheduler                                          Successfully assigned spark-pi-61053602-driver to shared0-flowsnakeworkerprod1-68-par.ops.sfdc.net
+0531 03:28:19 [1559273299] spark-pi-61053602 -   Normal   Pulled                 1m    kubelet, shared0-flowsnakeworkerprod1-68-par.ops.sfdc.net  Container image "ops0-artifactrepo1-0-par.data.sfdc.net/tnrp/sam/madkub:1.0.0-0000084-9f4a6ca6" already present on machine
+0531 03:28:19 [1559273299] spark-pi-61053602 -   Normal   Created                1m    kubelet, shared0-flowsnakeworkerprod1-68-par.ops.sfdc.net  Created container
+0531 03:28:19 [1559273299] spark-pi-61053602 -   Normal   Started                1m    kubelet, shared0-flowsnakeworkerprod1-68-par.ops.sfdc.net  Started container
+0531 03:28:19 [1559273299] spark-pi-61053602 -   Normal   Pulling                1m    kubelet, shared0-flowsnakeworkerprod1-68-par.ops.sfdc.net  pulling image "ops0-artifactrepo1-0-par.data.sfdc.net/dva/flowsnake-spark-on-k8s-sample-apps:4"
+0531 03:28:19 [1559273299] spark-pi-61053602 -   Normal   Pulled                 1m    kubelet, shared0-flowsnakeworkerprod1-68-par.ops.sfdc.net  Successfully pulled image "ops0-artifactrepo1-0-par.data.sfdc.net/dva/flowsnake-spark-on-k8s-sample-apps:4"
+0531 03:28:19 [1559273299] spark-pi-61053602 -   Normal   Created                1m    kubelet, shared0-flowsnakeworkerprod1-68-par.ops.sfdc.net  Created container
+0531 03:28:19 [1559273299] spark-pi-61053602 -   Normal   Started                1m    kubelet, shared0-flowsnakeworkerprod1-68-par.ops.sfdc.net  Started container
+0531 03:28:20 [1559273300] spark-pi-61053602 - Name:           spark-pi-61053602-1559273179100-exec-1
+0531 03:28:20 [1559273300] spark-pi-61053602 - Events:
+0531 03:28:20 [1559273300] spark-pi-61053602 -   Type    Reason                 Age   From                                                      Message
+0531 03:28:20 [1559273300] spark-pi-61053602 -   ----    ------                 ----  ----                                                      -------
+0531 03:28:20 [1559273300] spark-pi-61053602 -   Normal  SuccessfulMountVolume  12s   kubelet, shared0-flowsnakeworkerprod1-2-par.ops.sfdc.net  MountVolume.SetUp succeeded for volume "datacerts"
+0531 03:28:20 [1559273300] spark-pi-61053602 -   Normal  SuccessfulMountVolume  12s   kubelet, shared0-flowsnakeworkerprod1-2-par.ops.sfdc.net  MountVolume.SetUp succeeded for volume "certificate-authority"
+0531 03:28:20 [1559273300] spark-pi-61053602 -   Normal  SuccessfulMountVolume  12s   kubelet, shared0-flowsnakeworkerprod1-2-par.ops.sfdc.net  MountVolume.SetUp succeeded for volume "client-certificate"
+0531 03:28:20 [1559273300] spark-pi-61053602 -   Normal  SuccessfulMountVolume  12s   kubelet, shared0-flowsnakeworkerprod1-2-par.ops.sfdc.net  MountVolume.SetUp succeeded for volume "client-key"
+0531 03:28:20 [1559273300] spark-pi-61053602 -   Normal  SuccessfulMountVolume  12s   kubelet, shared0-flowsnakeworkerprod1-2-par.ops.sfdc.net  MountVolume.SetUp succeeded for volume "spark-local-dir-1"
+0531 03:28:20 [1559273300] spark-pi-61053602 -   Normal  SuccessfulMountVolume  12s   kubelet, shared0-flowsnakeworkerprod1-2-par.ops.sfdc.net  MountVolume.SetUp succeeded for volume "default-token-r6nlv"
+0531 03:28:20 [1559273300] spark-pi-61053602 -   Normal  SuccessfulMountVolume  12s   kubelet, shared0-flowsnakeworkerprod1-2-par.ops.sfdc.net  MountVolume.SetUp succeeded for volume "tokens"
+0531 03:28:20 [1559273300] spark-pi-61053602 -   Normal  Scheduled              12s   default-scheduler                                         Successfully assigned spark-pi-61053602-1559273179100-exec-1 to shared0-flowsnakeworkerprod1-2-par.ops.sfdc.net
+0531 03:28:20 [1559273300] spark-pi-61053602 -   Normal  Pulled                 11s   kubelet, shared0-flowsnakeworkerprod1-2-par.ops.sfdc.net  Container image "ops0-artifactrepo1-0-par.data.sfdc.net/tnrp/sam/madkub:1.0.0-0000084-9f4a6ca6" already present on machine
+0531 03:28:20 [1559273300] spark-pi-61053602 -   Normal  Created                11s   kubelet, shared0-flowsnakeworkerprod1-2-par.ops.sfdc.net  Created container
+0531 03:28:20 [1559273300] spark-pi-61053602 -   Normal  Started                11s   kubelet, shared0-flowsnakeworkerprod1-2-par.ops.sfdc.net  Started container
+0531 03:28:20 [1559273300] spark-pi-61053602 -   Normal  Pulling                9s    kubelet, shared0-flowsnakeworkerprod1-2-par.ops.sfdc.net  pulling image "ops0-artifactrepo1-0-par.data.sfdc.net/dva/flowsnake-spark-on-k8s-sample-apps:4"
+0531 03:28:20 [1559273300] spark-pi-61053602 -   Normal  Pulled                 8s    kubelet, shared0-flowsnakeworkerprod1-2-par.ops.sfdc.net  Successfully pulled image "ops0-artifactrepo1-0-par.data.sfdc.net/dva/flowsnake-spark-on-k8s-sample-apps:4"
+0531 03:28:20 [1559273300] spark-pi-61053602 -   Normal  Created                8s    kubelet, shared0-flowsnakeworkerprod1-2-par.ops.sfdc.net  Created container
+0531 03:28:20 [1559273300] spark-pi-61053602 -   Normal  Started                8s    kubelet, shared0-flowsnakeworkerprod1-2-par.ops.sfdc.net  Started container
+0531 03:28:22 [1559273302] spark-pi-61053602 - ---- End Events ----
+0531 03:28:37 [1559273317] spark-pi-61053602 - Pod change detected: spark-pi-61053602-1559273179100-exec-1 removed.
+0531 03:28:41 [1559273321] spark-pi-61053602 - Pod change detected: spark-pi-61053602-driver changed to Completed (previously Running).
+0531 03:28:52 [1559273332] spark-pi-61053602 - SparkApplication spark-pi-61053602 has terminated after 156 seconds. State is FAILED.
+0531 03:28:53 [1559273333] spark-pi-61053602 - ---- Begin Events ----
+0531 03:28:53 [1559273333] spark-pi-61053602 - Name:         spark-pi-61053602
+0531 03:28:53 [1559273333] spark-pi-61053602 - Events:                          <none>
+0531 03:28:54 [1559273334] spark-pi-61053602 - Name:           spark-pi-61053602-driver
+0531 03:28:54 [1559273334] spark-pi-61053602 - Events:
+0531 03:28:54 [1559273334] spark-pi-61053602 -   Type     Reason                 Age   From                                                       Message
+0531 03:28:54 [1559273334] spark-pi-61053602 -   ----     ------                 ----  ----                                                       -------
+0531 03:28:54 [1559273334] spark-pi-61053602 -   Normal   SuccessfulMountVolume  2m    kubelet, shared0-flowsnakeworkerprod1-68-par.ops.sfdc.net  MountVolume.SetUp succeeded for volume "spark-conf-volume"
+0531 03:28:54 [1559273334] spark-pi-61053602 -   Normal   SuccessfulMountVolume  2m    kubelet, shared0-flowsnakeworkerprod1-68-par.ops.sfdc.net  MountVolume.SetUp succeeded for volume "client-key"
+0531 03:28:54 [1559273334] spark-pi-61053602 -   Normal   SuccessfulMountVolume  2m    kubelet, shared0-flowsnakeworkerprod1-68-par.ops.sfdc.net  MountVolume.SetUp succeeded for volume "certificate-authority"
+0531 03:28:54 [1559273334] spark-pi-61053602 -   Normal   SuccessfulMountVolume  2m    kubelet, shared0-flowsnakeworkerprod1-68-par.ops.sfdc.net  MountVolume.SetUp succeeded for volume "client-certificate"
+0531 03:28:54 [1559273334] spark-pi-61053602 -   Normal   SuccessfulMountVolume  2m    kubelet, shared0-flowsnakeworkerprod1-68-par.ops.sfdc.net  MountVolume.SetUp succeeded for volume "spark-local-dir-1"
+0531 03:28:54 [1559273334] spark-pi-61053602 -   Warning  FailedMount            2m    kubelet, shared0-flowsnakeworkerprod1-68-par.ops.sfdc.net  MountVolume.SetUp failed for volume "spark-conf-volume" : configmaps "spark-pi-61053602-1559273179100-driver-conf-map" not found
+0531 03:28:54 [1559273334] spark-pi-61053602 -   Normal   SuccessfulMountVolume  2m    kubelet, shared0-flowsnakeworkerprod1-68-par.ops.sfdc.net  MountVolume.SetUp succeeded for volume "spark-driver-flowsnake-watchdog-token-trcd2"
+0531 03:28:54 [1559273334] spark-pi-61053602 -   Normal   SuccessfulMountVolume  2m    kubelet, shared0-flowsnakeworkerprod1-68-par.ops.sfdc.net  MountVolume.SetUp succeeded for volume "tokens"
+0531 03:28:54 [1559273334] spark-pi-61053602 -   Normal   SuccessfulMountVolume  2m    kubelet, shared0-flowsnakeworkerprod1-68-par.ops.sfdc.net  MountVolume.SetUp succeeded for volume "datacerts"
+0531 03:28:54 [1559273334] spark-pi-61053602 -   Normal   Scheduled              2m    default-scheduler                                          Successfully assigned spark-pi-61053602-driver to shared0-flowsnakeworkerprod1-68-par.ops.sfdc.net
+0531 03:28:54 [1559273334] spark-pi-61053602 -   Normal   Pulled                 2m    kubelet, shared0-flowsnakeworkerprod1-68-par.ops.sfdc.net  Container image "ops0-artifactrepo1-0-par.data.sfdc.net/tnrp/sam/madkub:1.0.0-0000084-9f4a6ca6" already present on machine
+0531 03:28:54 [1559273334] spark-pi-61053602 -   Normal   Created                2m    kubelet, shared0-flowsnakeworkerprod1-68-par.ops.sfdc.net  Created container
+0531 03:28:54 [1559273334] spark-pi-61053602 -   Normal   Started                2m    kubelet, shared0-flowsnakeworkerprod1-68-par.ops.sfdc.net  Started container
+0531 03:28:54 [1559273334] spark-pi-61053602 -   Normal   Pulling                2m    kubelet, shared0-flowsnakeworkerprod1-68-par.ops.sfdc.net  pulling image "ops0-artifactrepo1-0-par.data.sfdc.net/dva/flowsnake-spark-on-k8s-sample-apps:4"
+0531 03:28:54 [1559273334] spark-pi-61053602 -   Normal   Pulled                 2m    kubelet, shared0-flowsnakeworkerprod1-68-par.ops.sfdc.net  Successfully pulled image "ops0-artifactrepo1-0-par.data.sfdc.net/dva/flowsnake-spark-on-k8s-sample-apps:4"
+0531 03:28:54 [1559273334] spark-pi-61053602 -   Normal   Created                2m    kubelet, shared0-flowsnakeworkerprod1-68-par.ops.sfdc.net  Created container
+0531 03:28:54 [1559273334] spark-pi-61053602 -   Normal   Started                2m    kubelet, shared0-flowsnakeworkerprod1-68-par.ops.sfdc.net  Started container
+0531 03:28:55 [1559273335] spark-pi-61053602 - ---- End Events ----
+0531 03:28:55 [1559273335] spark-pi-61053602 - ---- Begin pods/spark-pi-61053602-driver Log ----
+++ id -u
++ myuid=0
+++ id -g
++ mygid=0
++ set +e
+++ getent passwd 0
++ uidentry=root:x:0:0:root:/root:/bin/bash
++ set -e
++ '[' -z root:x:0:0:root:/root:/bin/bash ']'
++ SPARK_K8S_CMD=driver
++ case "$SPARK_K8S_CMD" in
++ shift 1
++ SPARK_CLASSPATH=':/opt/spark/jars/*'
++ env
++ grep SPARK_JAVA_OPT_
++ sort -t_ -k4 -n
++ sed 's/[^=]*=\(.*\)/\1/g'
++ readarray -t SPARK_EXECUTOR_JAVA_OPTS
++ '[' -n '' ']'
++ '[' -n '' ']'
++ PYSPARK_ARGS=
++ '[' -n '' ']'
++ R_ARGS=
++ '[' -n '' ']'
++ '[' '' == 2 ']'
++ '[' '' == 3 ']'
++ case "$SPARK_K8S_CMD" in
++ CMD=("$SPARK_HOME/bin/spark-submit" --conf "spark.driver.bindAddress=$SPARK_DRIVER_BIND_ADDRESS" --deploy-mode client "$@")
++ exec /sbin/tini -s -- /opt/spark/bin/spark-submit --conf spark.driver.bindAddress=10.249.104.164 --deploy-mode client --properties-file /opt/spark/conf/spark.properties --class org.apache.spark.examples.SparkPi spark-internal
+2019-05-31 03:26:47 WARN  NativeCodeLoader:62 - Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+2019-05-31 03:26:57 INFO  SparkContext:54 - Running Spark version 2.4.0-sfdc-0.2-SNAPSHOT
+2019-05-31 03:26:57 INFO  SparkContext:54 - Submitted application: Spark Pi
+2019-05-31 03:26:58 INFO  SecurityManager:54 - Changing view acls to: root
+2019-05-31 03:26:59 INFO  SecurityManager:54 - Changing modify acls to: root
+2019-05-31 03:26:59 INFO  SecurityManager:54 - Changing view acls groups to:
+2019-05-31 03:26:59 INFO  SecurityManager:54 - Changing modify acls groups to:
+2019-05-31 03:26:59 INFO  SecurityManager:54 - SecurityManager: authentication disabled; ui acls disabled; users  with view permissions: Set(root); groups with view permissions: Set(); users  with modify permissions: Set(root); groups with modify permissions: Set()
+2019-05-31 03:27:08 INFO  Utils:54 - Successfully started service 'sparkDriver' on port 7078.
+2019-05-31 03:27:08 INFO  SparkEnv:54 - Registering MapOutputTracker
+2019-05-31 03:27:09 INFO  SparkEnv:54 - Registering BlockManagerMaster
+2019-05-31 03:27:09 INFO  BlockManagerMasterEndpoint:54 - Using org.apache.spark.storage.DefaultTopologyMapper for getting topology information
+2019-05-31 03:27:09 INFO  BlockManagerMasterEndpoint:54 - BlockManagerMasterEndpoint up
+2019-05-31 03:27:09 INFO  DiskBlockManager:54 - Created local directory at /var/data/spark-73c3a2ac-d37c-4564-8cf5-8a432c7f798c/blockmgr-33840b67-b243-4f59-bb0e-bf1dc35b4431
+2019-05-31 03:27:09 INFO  MemoryStore:54 - MemoryStore started with capacity 93.3 MB
+2019-05-31 03:27:09 INFO  SparkEnv:54 - Registering OutputCommitCoordinator
+2019-05-31 03:27:10 INFO  log:192 - Logging initialized @41903ms
+2019-05-31 03:27:11 INFO  Server:351 - jetty-9.3.z-SNAPSHOT, build timestamp: unknown, git hash: unknown
+2019-05-31 03:27:12 INFO  Server:419 - Started @43196ms
+2019-05-31 03:27:12 INFO  AbstractConnector:278 - Started ServerConnector@794b435f{HTTP/1.1,[http/1.1]}{0.0.0.0:4040}
+2019-05-31 03:27:12 INFO  Utils:54 - Successfully started service 'SparkUI' on port 4040.
+2019-05-31 03:27:12 INFO  ContextHandler:781 - Started o.s.j.s.ServletContextHandler@4cfbaf4{/jobs,null,AVAILABLE,@Spark}
+2019-05-31 03:27:12 INFO  ContextHandler:781 - Started o.s.j.s.ServletContextHandler@73aff8f1{/jobs/json,null,AVAILABLE,@Spark}
+2019-05-31 03:27:12 INFO  ContextHandler:781 - Started o.s.j.s.ServletContextHandler@27cbfddf{/jobs/job,null,AVAILABLE,@Spark}
+2019-05-31 03:27:12 INFO  ContextHandler:781 - Started o.s.j.s.ServletContextHandler@4c060c8f{/jobs/job/json,null,AVAILABLE,@Spark}
+2019-05-31 03:27:13 INFO  ContextHandler:781 - Started o.s.j.s.ServletContextHandler@40620d8e{/stages,null,AVAILABLE,@Spark}
+2019-05-31 03:27:13 INFO  ContextHandler:781 - Started o.s.j.s.ServletContextHandler@383f3558{/stages/json,null,AVAILABLE,@Spark}
+2019-05-31 03:27:13 INFO  ContextHandler:781 - Started o.s.j.s.ServletContextHandler@49b07ee3{/stages/stage,null,AVAILABLE,@Spark}
+2019-05-31 03:27:13 INFO  ContextHandler:781 - Started o.s.j.s.ServletContextHandler@2424686b{/stages/stage/json,null,AVAILABLE,@Spark}
+2019-05-31 03:27:13 INFO  ContextHandler:781 - Started o.s.j.s.ServletContextHandler@6ea94d6a{/stages/pool,null,AVAILABLE,@Spark}
+2019-05-31 03:27:13 INFO  ContextHandler:781 - Started o.s.j.s.ServletContextHandler@28486680{/stages/pool/json,null,AVAILABLE,@Spark}
+2019-05-31 03:27:13 INFO  ContextHandler:781 - Started o.s.j.s.ServletContextHandler@4d7e7435{/storage,null,AVAILABLE,@Spark}
+2019-05-31 03:27:13 INFO  ContextHandler:781 - Started o.s.j.s.ServletContextHandler@4a1e3ac1{/storage/json,null,AVAILABLE,@Spark}
+2019-05-31 03:27:13 INFO  ContextHandler:781 - Started o.s.j.s.ServletContextHandler@6e78fcf5{/storage/rdd,null,AVAILABLE,@Spark}
+2019-05-31 03:27:13 INFO  ContextHandler:781 - Started o.s.j.s.ServletContextHandler@56febdc{/storage/rdd/json,null,AVAILABLE,@Spark}
+2019-05-31 03:27:13 INFO  ContextHandler:781 - Started o.s.j.s.ServletContextHandler@3b8ee898{/environment,null,AVAILABLE,@Spark}
+2019-05-31 03:27:13 INFO  ContextHandler:781 - Started o.s.j.s.ServletContextHandler@7d151a{/environment/json,null,AVAILABLE,@Spark}
+2019-05-31 03:27:13 INFO  ContextHandler:781 - Started o.s.j.s.ServletContextHandler@294bdeb4{/executors,null,AVAILABLE,@Spark}
+2019-05-31 03:27:13 INFO  ContextHandler:781 - Started o.s.j.s.ServletContextHandler@5300f14a{/executors/json,null,AVAILABLE,@Spark}
+2019-05-31 03:27:13 INFO  ContextHandler:781 - Started o.s.j.s.ServletContextHandler@1f86099a{/executors/threadDump,null,AVAILABLE,@Spark}
+2019-05-31 03:27:13 INFO  ContextHandler:781 - Started o.s.j.s.ServletContextHandler@77bb0ab5{/executors/threadDump/json,null,AVAILABLE,@Spark}
+2019-05-31 03:27:13 INFO  ContextHandler:781 - Started o.s.j.s.ServletContextHandler@f2c488{/static,null,AVAILABLE,@Spark}
+2019-05-31 03:27:13 INFO  ContextHandler:781 - Started o.s.j.s.ServletContextHandler@4351171a{/,null,AVAILABLE,@Spark}
+2019-05-31 03:27:13 INFO  ContextHandler:781 - Started o.s.j.s.ServletContextHandler@3c2772d1{/api,null,AVAILABLE,@Spark}
+2019-05-31 03:27:13 INFO  ContextHandler:781 - Started o.s.j.s.ServletContextHandler@faa3fed{/jobs/job/kill,null,AVAILABLE,@Spark}
+2019-05-31 03:27:13 INFO  ContextHandler:781 - Started o.s.j.s.ServletContextHandler@381cad29{/stages/stage/kill,null,AVAILABLE,@Spark}
+2019-05-31 03:27:14 INFO  SparkUI:54 - Bound SparkUI to 0.0.0.0, and started at http://spark-pi-61053602-1559273179100-driver-svc.flowsnake-watchdog.svc:4040
+2019-05-31 03:27:14 INFO  SparkContext:54 - Added JAR file:///sample-apps/sample-basic-spark-operator/sample-basic-spark-operator.jar at spark://spark-pi-61053602-1559273179100-driver-svc.flowsnake-watchdog.svc:7078/jars/sample-basic-spark-operator.jar with timestamp 1559273234790
+2019-05-31 03:27:58 INFO  ExecutorPodsAllocator:54 - Going to request 1 executors from Kubernetes.
+2019-05-31 03:28:01 INFO  Utils:54 - Successfully started service 'org.apache.spark.network.netty.NettyBlockTransferService' on port 7079.
+2019-05-31 03:28:01 INFO  NettyBlockTransferService:54 - Server created on spark-pi-61053602-1559273179100-driver-svc.flowsnake-watchdog.svc:7079
+2019-05-31 03:28:01 INFO  BlockManager:54 - Using org.apache.spark.storage.RandomBlockReplicationPolicy for block replication policy
+2019-05-31 03:28:02 INFO  BlockManagerMaster:54 - Registering BlockManager BlockManagerId(driver, spark-pi-61053602-1559273179100-driver-svc.flowsnake-watchdog.svc, 7079, None)
+2019-05-31 03:28:02 INFO  BlockManagerMasterEndpoint:54 - Registering block manager spark-pi-61053602-1559273179100-driver-svc.flowsnake-watchdog.svc:7079 with 93.3 MB RAM, BlockManagerId(driver, spark-pi-61053602-1559273179100-driver-svc.flowsnake-watchdog.svc, 7079, None)
+2019-05-31 03:28:03 INFO  BlockManagerMaster:54 - Registered BlockManager BlockManagerId(driver, spark-pi-61053602-1559273179100-driver-svc.flowsnake-watchdog.svc, 7079, None)
+2019-05-31 03:28:03 INFO  BlockManager:54 - Initialized BlockManager: BlockManagerId(driver, spark-pi-61053602-1559273179100-driver-svc.flowsnake-watchdog.svc, 7079, None)
+2019-05-31 03:28:04 INFO  ContextHandler:781 - Started o.s.j.s.ServletContextHandler@496a31da{/metrics/json,null,AVAILABLE,@Spark}
+2019-05-31 03:28:21 INFO  KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint:54 - Registered executor NettyRpcEndpointRef(spark-client://Executor) (10.249.97.68:59600) with ID 1
+2019-05-31 03:28:21 INFO  KubernetesClusterSchedulerBackend:54 - SchedulerBackend is ready for scheduling beginning after reached minRegisteredResourcesRatio: 0.8
+2019-05-31 03:28:22 INFO  BlockManagerMasterEndpoint:54 - Registering block manager 10.249.97.68:39424 with 114.6 MB RAM, BlockManagerId(1, 10.249.97.68, 39424, None)
+2019-05-31 03:28:28 INFO  SparkContext:54 - Starting job: reduce at SparkPi.scala:38
+2019-05-31 03:28:28 INFO  DAGScheduler:54 - Got job 0 (reduce at SparkPi.scala:38) with 2 output partitions
+2019-05-31 03:28:28 INFO  DAGScheduler:54 - Final stage: ResultStage 0 (reduce at SparkPi.scala:38)
+2019-05-31 03:28:28 INFO  DAGScheduler:54 - Parents of final stage: List()
+2019-05-31 03:28:28 INFO  DAGScheduler:54 - Missing parents: List()
+2019-05-31 03:28:28 INFO  DAGScheduler:54 - Submitting ResultStage 0 (MapPartitionsRDD[1] at map at SparkPi.scala:34), which has no missing parents
+2019-05-31 03:28:31 INFO  MemoryStore:54 - Block broadcast_0 stored as values in memory (estimated size 1936.0 B, free 93.3 MB)
+2019-05-31 03:28:33 INFO  MemoryStore:54 - Block broadcast_0_piece0 stored as bytes in memory (estimated size 1256.0 B, free 93.3 MB)
+2019-05-31 03:28:33 INFO  BlockManagerInfo:54 - Added broadcast_0_piece0 in memory on spark-pi-61053602-1559273179100-driver-svc.flowsnake-watchdog.svc:7079 (size: 1256.0 B, free: 93.3 MB)
+2019-05-31 03:28:33 INFO  SparkContext:54 - Created broadcast 0 from broadcast at DAGScheduler.scala:1161
+2019-05-31 03:28:33 INFO  DAGScheduler:54 - Submitting 2 missing tasks from ResultStage 0 (MapPartitionsRDD[1] at map at SparkPi.scala:34) (first 15 tasks are for partitions Vector(0, 1))
+2019-05-31 03:28:33 INFO  TaskSchedulerImpl:54 - Adding task set 0.0 with 2 tasks
+2019-05-31 03:28:34 INFO  TaskSetManager:54 - Starting task 0.0 in stage 0.0 (TID 0, 10.249.97.68, executor 1, partition 0, PROCESS_LOCAL, 7878 bytes)
+2019-05-31 03:28:35 INFO  BlockManagerInfo:54 - Added broadcast_0_piece0 in memory on 10.249.97.68:39424 (size: 1256.0 B, free: 114.6 MB)
+2019-05-31 03:28:35 INFO  TaskSetManager:54 - Starting task 1.0 in stage 0.0 (TID 1, 10.249.97.68, executor 1, partition 1, PROCESS_LOCAL, 7878 bytes)
+2019-05-31 03:28:36 INFO  TaskSetManager:54 - Finished task 1.0 in stage 0.0 (TID 1) in 291 ms on 10.249.97.68 (executor 1) (1/2)
+2019-05-31 03:28:36 INFO  TaskSetManager:54 - Finished task 0.0 in stage 0.0 (TID 0) in 2198 ms on 10.249.97.68 (executor 1) (2/2)
+2019-05-31 03:28:36 INFO  TaskSchedulerImpl:54 - Removed TaskSet 0.0, whose tasks have all completed, from pool
+2019-05-31 03:28:36 INFO  DAGScheduler:54 - ResultStage 0 (reduce at SparkPi.scala:38) finished in 6.896 s
+2019-05-31 03:28:36 INFO  DAGScheduler:54 - Job 0 finished: reduce at SparkPi.scala:38, took 7.991356 s
+Pi is roughly 3.144355721778609
+2019-05-31 03:28:36 INFO  AbstractConnector:318 - Stopped Spark@794b435f{HTTP/1.1,[http/1.1]}{0.0.0.0:4040}
+2019-05-31 03:28:36 INFO  SparkUI:54 - Stopped Spark web UI at http://spark-pi-61053602-1559273179100-driver-svc.flowsnake-watchdog.svc:4040
+2019-05-31 03:28:36 INFO  KubernetesClusterSchedulerBackend:54 - Shutting down all executors
+2019-05-31 03:28:36 INFO  KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint:54 - Asking each executor to shut down
+2019-05-31 03:28:36 INFO  KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint:54 - Disabling executor 1.
+2019-05-31 03:28:36 WARN  ExecutorPodsWatchSnapshotSource:87 - Kubernetes client has been closed (this is expected if the application is shutting down.)
+2019-05-31 03:28:37 INFO  MapOutputTrackerMasterEndpoint:54 - MapOutputTrackerMasterEndpoint stopped!
+2019-05-31 03:28:37 INFO  MemoryStore:54 - MemoryStore cleared
+2019-05-31 03:28:37 INFO  BlockManager:54 - BlockManager stopped
+2019-05-31 03:28:37 INFO  BlockManagerMaster:54 - BlockManagerMaster stopped
+2019-05-31 03:28:37 INFO  OutputCommitCoordinator$OutputCommitCoordinatorEndpoint:54 - OutputCommitCoordinator stopped!
+2019-05-31 03:28:38 INFO  SparkContext:54 - Successfully stopped SparkContext
+2019-05-31 03:28:38 INFO  ShutdownHookManager:54 - Shutdown hook called
+2019-05-31 03:28:38 INFO  ShutdownHookManager:54 - Deleting directory /var/data/spark-73c3a2ac-d37c-4564-8cf5-8a432c7f798c/spark-d613dec5-003d-4e74-ad40-3a74cec9fb4a
+2019-05-31 03:28:38 INFO  ShutdownHookManager:54 - Deleting directory /tmp/spark-0697c9a2-95b3-4802-b3e6-15c516b45bf2
+0531 03:28:55 [1559273335] spark-pi-61053602 - ---- End pods/spark-pi-61053602-driver Log ----
+0531 03:28:55 [1559273335] spark-pi-61053602 - -------- Executor Pods ----------
+0531 03:28:56 [1559273336] spark-pi-61053602 - Cleaning up stuff for completed or failed test.
+0531 03:28:56 [1559273336] spark-pi-61053602 - sparkapplication "spark-pi-61053602" deleted
+0531 03:28:56 [1559273336] spark-pi-61053602 - ======== Completion of spark-pi-61053602 test, returning 1 ========

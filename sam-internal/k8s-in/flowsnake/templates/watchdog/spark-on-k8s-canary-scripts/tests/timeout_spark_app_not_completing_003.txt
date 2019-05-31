@@ -1,4 +1,4 @@
-TIMEOUT_SUCCEEDING
+TIMEOUT_SPARK_APP_NOT_COMPLETING
 // The Spark Application spends a long time in SUCCEEDING state. Might be worth getting a metric on that.
 0531 00:00:19 [1559260819] spark-pi-066f5f63 - ======== Beginning spark-pi-066f5f63 test ========
 0531 00:00:19 [1559260819] spark-pi-066f5f63 -  [0;32mKubernetes master [0m is running at  [0;33mhttps://10.254.208.1:443 [0m

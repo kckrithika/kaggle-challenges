@@ -1,6 +1,5 @@
-TIMEOUT_SUBMITTED
-// This one is a little interesting in that the SparkApplication is still in SUBMITTED state when the timeout occurs.
-// AFAICT, the transition to RUNNING happens when the driver Pod is Running. If so, this sequence just missed it.
+TIMEOUT_DRIVER_SLOW_POD_CREATION
+// SparkApplication state failed to update to RUNNING, but primary failure is that the job did not complete on time.
 0531 03:56:46 [1559275006] spark-impersonation-2d717386 - ======== Beginning spark-impersonation-2d717386 test ========
 0531 03:56:47 [1559275007] spark-impersonation-2d717386 -  [0;32mKubernetes master [0m is running at  [0;33mhttps://kubernetes-api-flowsnake-frf.slb.sfdc.net [0m
 0531 03:56:47 [1559275007] spark-impersonation-2d717386 -
