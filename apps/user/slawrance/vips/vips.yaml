@@ -4,7 +4,9 @@
    - stmfana43ice1-app2-2-prd.eng.sfdc.net
   ports:
   - port: 443
-    targetport: 8085
+    targetport: 8090
+    reencrypt: true
+    healthport: 8085
     lbtype: http
     healthprotocol: http
     healthpath: /ping.jsp?allBusy
@@ -27,7 +29,9 @@
    - stmfana44ice1-app2-5-prd.eng.sfdc.net
   ports:
   - port: 443
-    targetport: 8085
+    targetport: 8090
+    reencrypt: true
+    healthport: 8085
     lbtype: http
     healthprotocol: http
     healthpath: /ping.jsp?allBusy
@@ -50,7 +54,9 @@
    - stmfana44ice1-app2-5-prd.eng.sfdc.net
   ports:
   - port: 443
-    targetport: 8085
+    targetport: 8090
+    reencrypt: true
+    healthport: 8085
     lbtype: http
     healthprotocol: http
     healthpath: /ping.jsp?allBusy
@@ -73,7 +79,9 @@
    - stmfana45ice1-app2-2-prd.eng.sfdc.net
   ports:
   - port: 443
-    targetport: 8085
+    targetport: 8090
+    reencrypt: true
+    healthport: 8085
     lbtype: http
     healthprotocol: http
     healthpath: /ping.jsp?allBusy
@@ -96,7 +104,9 @@
    - stmfana45ice1-app2-2-prd.eng.sfdc.net
   ports:
   - port: 443
-    targetport: 8085
+    targetport: 8090
+    reencrypt: true
+    healthport: 8085
     lbtype: http
     healthprotocol: http
     healthpath: /ping.jsp?allBusy
@@ -119,7 +129,9 @@
    - stmfana47ice1-app2-2-prd.eng.sfdc.net
   ports:
   - port: 443
-    targetport: 8085
+    targetport: 8090
+    reencrypt: true
+    healthport: 8085
     lbtype: http
     healthprotocol: http
     healthpath: /ping.jsp?allBusy
@@ -140,7 +152,9 @@
    - stmfana43ice1-app2-2-prd.eng.sfdc.net
   ports:
   - port: 443
-    targetport: 8085
+    targetport: 8090
+    reencrypt: true
+    healthport: 8085
     lbtype: http
     healthprotocol: http
     healthpath: /ping.jsp?allBusy
@@ -163,7 +177,9 @@
    - stmfana44ice1-app2-5-prd.eng.sfdc.net
   ports:
   - port: 443
-    targetport: 8085
+    targetport: 8090
+    reencrypt: true
+    healthport: 8085
     lbtype: http
     healthprotocol: http
     healthpath: /ping.jsp?allBusy
@@ -186,7 +202,9 @@
    - stmfana44ice1-app2-5-prd.eng.sfdc.net
   ports:
   - port: 443
-    targetport: 8085
+    targetport: 8090
+    reencrypt: true
+    healthport: 8085
     lbtype: http
     healthprotocol: http
     healthpath: /ping.jsp?allBusy
@@ -209,7 +227,9 @@
    - stmfana45ice1-app2-2-prd.eng.sfdc.net
   ports:
   - port: 443
-    targetport: 8085
+    targetport: 8090
+    reencrypt: true
+    healthport: 8085
     lbtype: http
     healthprotocol: http
     healthpath: /ping.jsp?allBusy
@@ -232,7 +252,9 @@
    - stmfana45ice1-app2-2-prd.eng.sfdc.net
   ports:
   - port: 443
-    targetport: 8085
+    targetport: 8090
+    reencrypt: true
+    healthport: 8085
     lbtype: http
     healthprotocol: http
     healthpath: /ping.jsp?allBusy
@@ -255,7 +277,9 @@
    - stmfana47ice1-app2-2-prd.eng.sfdc.net
   ports:
   - port: 443
-    targetport: 8085
+    targetport: 8090
+    reencrypt: true
+    healthport: 8085
     lbtype: http
     healthprotocol: http
     healthpath: /ping.jsp?allBusy
