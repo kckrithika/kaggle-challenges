@@ -10,7 +10,7 @@ system:
       - containerPort: 8080
       livenessProbe:
         httpGet:
-          path: /
+          path: /users/
           port: 8080
   loadbalancers:
   - lbname: restdemolb
