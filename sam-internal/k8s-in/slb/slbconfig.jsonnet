@@ -340,6 +340,19 @@
         envoyEnabledVips:
             set_value_to_all_in_list(["service-mesh-ingress.sam-system." + configs.estate + "." + configs.kingdom + ".slb.sfdc.net"], $.slbEstates),
 
+        envoyProxyEnabledVips:
+            set_value_to_all_in_list(["slb-canary-envoy-svc.sam-system." + configs.estate + "." + configs.kingdom + ".slb.sfdc.net"], $.slbEstates)
+            {
+              "prd-sdc"+: [
+                ## Demo VIPs
+                "aviary.user-mgrass.prd-sdc.prd.slb.sfdc.net",
+                "slb-portal-service.sam-system.prd-sdc.prd.slb.sfdc.net",
+                "slb-upstream-status.sam-system.prd-sdc.prd.slb.sfdc.net",
+              ],
+              "prd-sam"+: [
+              ],
+            },
+
         envoyVip:
             set_value_to_all_in_list("", $.slbEstates)
             + {
@@ -664,6 +677,7 @@
     ] else [],
     hsmEnabledVips: self.perCluster.hsmEnabledVips[estate] + self.hsmDefaultEnabledVips,
     envoyEnabledVips: self.perCluster.envoyEnabledVips[estate],
+    envoyProxyEnabledVips: self.perCluster.envoyProxyEnabledVips[estate],
     envoyVip: self.perCluster.envoyVip[estate],
     envoyVipCIDR: if std.length(self.envoyVip) != 0 then ([self.envoyVip + "/32"]) else [],
     vipsToAcl: self.perCluster.vipsToAcl[estate],
