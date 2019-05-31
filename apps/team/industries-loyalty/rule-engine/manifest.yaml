@@ -8,11 +8,22 @@ system:
     - name: rule-engine
       image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/industriesloyaltystarks/rule-engine:v1
       ports:
-      - containerPort: 5000
+      - containerPort: 8080
+        name: scone-http
+      - containerPort: 7020
+        name: grpc-svc
+      - containerPort: 15372
+        name: scone-mgmt
       livenessProbe:
+        initialDelaySeconds: 30
         httpGet:
-          path: /
-          port: 5000
+          path: /manage/health
+          port: 15372
+      readinessProbe:
+        timeoutSeconds: 10
+        httpGet:
+          path: /manage/ready
+          port: 15372
       volumeMounts:
         - mountPath: /secrets/
           name: secretvol
