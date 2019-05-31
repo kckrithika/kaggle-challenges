@@ -221,3 +221,13 @@ system:
         path: /home/sfdc-scone-hellodiscovery-beacon/logs
     - name: cache-volume
       emptyDir: {}
+  #####################################################################################
+  # SLB
+  #####################################################################################
+  loadbalancers:
+    - lbname: cabusinesslb
+      function: cloudatlas-prd-dev-service
+      slbEnabled: true
+      ports:
+        - port: 9090
+          targetport: 7022
