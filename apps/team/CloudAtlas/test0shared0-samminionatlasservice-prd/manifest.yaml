@@ -225,7 +225,7 @@ system:
   # SLB
   #####################################################################################
   loadbalancers:
-    - lbname: cabusinesslb
+    - lbname: cabusinesslb-test
       function: cloudatlas-prd-dev-service
       slbEnabled: true
       ports:
