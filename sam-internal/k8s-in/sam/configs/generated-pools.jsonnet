@@ -843,10 +843,12 @@
     },
     {
       "namespaces": [
-        "universal-search"
+        "universal-search",
+        "search-scale-safely"
       ],
       "access": [
-        "team/universal-search"
+        "team/universal-search",
+        "team/Search_Scale_Safely"
       ],
       "controlEstate": "frf-sam",
       "estate": "frf-universalsearch_svc",
@@ -1173,10 +1175,12 @@
     },
     {
       "namespaces": [
-        "universal-search"
+        "universal-search",
+        "search-scale-safely"
       ],
       "access": [
-        "team/universal-search"
+        "team/universal-search",
+        "team/Search_Scale_Safely"
       ],
       "controlEstate": "ia2-sam",
       "estate": "ia2-universalsearch_svc",
@@ -1457,10 +1461,12 @@
     },
     {
       "namespaces": [
-        "universal-search"
+        "universal-search",
+        "search-scale-safely"
       ],
       "access": [
-        "team/universal-search"
+        "team/universal-search",
+        "team/Search_Scale_Safely"
       ],
       "controlEstate": "iad-sam",
       "estate": "iad-universalsearch_svc",
@@ -2049,10 +2055,12 @@
     },
     {
       "namespaces": [
-        "universal-search"
+        "universal-search",
+        "search-scale-safely"
       ],
       "access": [
-        "team/universal-search"
+        "team/universal-search",
+        "team/Search_Scale_Safely"
       ],
       "controlEstate": "ord-sam",
       "estate": "ord-universalsearch_svc",
@@ -2249,10 +2257,12 @@
     },
     {
       "namespaces": [
-        "universal-search"
+        "universal-search",
+        "search-scale-safely"
       ],
       "access": [
-        "team/universal-search"
+        "team/universal-search",
+        "team/Search_Scale_Safely"
       ],
       "controlEstate": "par-sam",
       "estate": "par-universalsearch_svc",
@@ -2375,10 +2385,12 @@
     },
     {
       "namespaces": [
-        "universal-search"
+        "universal-search",
+        "search-scale-safely"
       ],
       "access": [
-        "team/universal-search"
+        "team/universal-search",
+        "team/Search_Scale_Safely"
       ],
       "controlEstate": "ph2-sam",
       "estate": "ph2-universalsearch_svc",
@@ -3243,10 +3255,12 @@
     },
     {
       "namespaces": [
-        "universal-search"
+        "universal-search",
+        "search-scale-safely"
       ],
       "access": [
-        "team/universal-search"
+        "team/universal-search",
+        "team/Search_Scale_Safely"
       ],
       "controlEstate": "prd-sam",
       "estate": "prd-universalsearch_svc",
