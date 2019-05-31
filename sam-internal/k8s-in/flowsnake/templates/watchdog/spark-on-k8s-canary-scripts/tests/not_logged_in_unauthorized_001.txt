@@ -1,0 +1,38 @@
+NOT_LOGGED_IN_UNAUTHORIZED
+// Suspect this means the service token has expired.
+0529 20:07:52 [1559160472] spark-pi-bc89c184 - ======== Beginning spark-pi-bc89c184 test ========
+0529 20:07:53 [1559160473] spark-pi-bc89c184 - error: You must be logged in to the server (Unauthorized)
+0529 20:07:53 [1559160473] spark-pi-bc89c184 - Invocation (1/7) of [kubectl -n flowsnake-watchdog cluster-info] failed (1). Will sleep 10 seconds and then try again.
+0529 20:08:03 [1559160483] spark-pi-bc89c184 - error: You must be logged in to the server (Unauthorized)
+0529 20:08:03 [1559160483] spark-pi-bc89c184 - Invocation (2/7) of [kubectl -n flowsnake-watchdog cluster-info] failed (1). Will sleep 10 seconds and then try again.
+0529 20:08:13 [1559160493] spark-pi-bc89c184 - error: You must be logged in to the server (Unauthorized)
+0529 20:08:13 [1559160493] spark-pi-bc89c184 - Invocation (3/7) of [kubectl -n flowsnake-watchdog cluster-info] failed (1). Will sleep 10 seconds and then try again.
+0529 20:08:24 [1559160504] spark-pi-bc89c184 - error: You must be logged in to the server (Unauthorized)
+0529 20:08:24 [1559160504] spark-pi-bc89c184 - Invocation (4/7) of [kubectl -n flowsnake-watchdog cluster-info] failed (1). Will sleep 10 seconds and then try again.
+0529 20:08:34 [1559160514] spark-pi-bc89c184 - error: You must be logged in to the server (Unauthorized)
+0529 20:08:34 [1559160514] spark-pi-bc89c184 - Invocation (5/7) of [kubectl -n flowsnake-watchdog cluster-info] failed (1). Will sleep 10 seconds and then try again.
+0529 20:08:44 [1559160524] spark-pi-bc89c184 - error: You must be logged in to the server (Unauthorized)
+0529 20:08:44 [1559160524] spark-pi-bc89c184 - Invocation (6/7) of [kubectl -n flowsnake-watchdog cluster-info] failed (1). Will sleep 10 seconds and then try again.
+0529 20:08:55 [1559160535] spark-pi-bc89c184 - error: You must be logged in to the server (Unauthorized)
+0529 20:08:55 [1559160535] spark-pi-bc89c184 - Invocation (7/7) of [kubectl -n flowsnake-watchdog cluster-info] failed (1). Giving up.
+0529 20:07:52 [1559160472] spark-pi-bc89c184 -  [0;32mKubernetes master [0m is running at  [0;33mhttps://10.254.208.1:443 [0m
+0529 20:07:52 [1559160472] spark-pi-bc89c184 -
+0529 20:07:52 [1559160472] spark-pi-bc89c184 - To further debug and diagnose cluster problems, use 'kubectl cluster-info dump'.
+0529 20:07:52 [1559160472] spark-pi-bc89c184 -  [0;32mKubernetes master [0m is running at  [0;33mhttps://10.254.208.1:443 [0m
+0529 20:07:52 [1559160472] spark-pi-bc89c184 -
+0529 20:07:52 [1559160472] spark-pi-bc89c184 - To further debug and diagnose cluster problems, use 'kubectl cluster-info dump'.
+0529 20:07:52 [1559160472] spark-pi-bc89c184 -  [0;32mKubernetes master [0m is running at  [0;33mhttps://10.254.208.1:443 [0m
+0529 20:07:52 [1559160472] spark-pi-bc89c184 -
+0529 20:07:52 [1559160472] spark-pi-bc89c184 - To further debug and diagnose cluster problems, use 'kubectl cluster-info dump'.
+0529 20:07:52 [1559160472] spark-pi-bc89c184 -  [0;32mKubernetes master [0m is running at  [0;33mhttps://10.254.208.1:443 [0m
+0529 20:07:52 [1559160472] spark-pi-bc89c184 -
+0529 20:07:52 [1559160472] spark-pi-bc89c184 - To further debug and diagnose cluster problems, use 'kubectl cluster-info dump'.
+0529 20:07:52 [1559160472] spark-pi-bc89c184 -  [0;32mKubernetes master [0m is running at  [0;33mhttps://10.254.208.1:443 [0m
+0529 20:07:52 [1559160472] spark-pi-bc89c184 -
+0529 20:07:52 [1559160472] spark-pi-bc89c184 - To further debug and diagnose cluster problems, use 'kubectl cluster-info dump'.
+0529 20:07:52 [1559160472] spark-pi-bc89c184 -  [0;32mKubernetes master [0m is running at  [0;33mhttps://10.254.208.1:443 [0m
+0529 20:07:52 [1559160472] spark-pi-bc89c184 -
+0529 20:07:52 [1559160472] spark-pi-bc89c184 - To further debug and diagnose cluster problems, use 'kubectl cluster-info dump'.
+0529 20:07:52 [1559160472] spark-pi-bc89c184 -  [0;32mKubernetes master [0m is running at  [0;33mhttps://10.254.208.1:443 [0m
+0529 20:07:52 [1559160472] spark-pi-bc89c184 -
+0529 20:07:52 [1559160472] spark-pi-bc89c184 - To further debug and diagnose cluster problems, use 'kubectl cluster-info dump'.
