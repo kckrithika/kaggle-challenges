@@ -42,7 +42,7 @@ local envoyAffinity = {
     },
 };
 
-if slbconfigs.isSlbEstate && slbflights.deploySLBEnvoyConfig then
+if (slbconfigs.isProdEstate || configs.estate == "prd-sdc") && slbflights.deploySLBEnvoyConfig then
   slbbaseproxy.slbBaseProxyDeployment("envoy", slbconfigs.envoyProxyConfigDeploymentName, 1, envoyAffinity, slbimages.slbenvoy) {
     spec+: {
         strategy+: {

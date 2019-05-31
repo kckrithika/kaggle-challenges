@@ -38,7 +38,11 @@ local slbconfigs = import "slbconfig.jsonnet";
     # 2019/05/22
     # Deploy slb-envoy-proxy only if hyperslb version is >= 2166.
     # This ensures dependent microservices are available.
-    deploySLBEnvoyConfig: (slbimages.hyperslb_build >= 2166 && slbimages.phaseNum <= 1),
+    deploySLBEnvoyConfig: (
+       slbimages.hyperslb_build >= 2166 &&  # Minimum build that contains slb-envoy-config
+       slbimages.phaseNum <= 2 &&  # Current deployment phase
+       (slbconfigs.isProdEstate || configs.estate == "prd-sdc")  # Only deploy to prd-sdc and ProdEstates
+    ),
 
     # 2019/05/28
     # Feature flag to use "sharedContainers" in lieu of
