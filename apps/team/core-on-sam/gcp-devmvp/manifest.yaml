@@ -128,6 +128,9 @@ system:
       - mountPath: /home/sfdc/salesforce/config/settings/overrides/gcp-mvp-3az-db-pw
         name: secretvol-db
         readOnly: true
+      - mountPath: /home/sfdc/salesforce/config/settings/overrides/gcp-mvp-pbs-pw
+        name: secretvol-pbs
+        readOnly: true
       - mountPath: /var/secrets/google
         name: gcp-svc-creds
         readOnly: true
@@ -283,6 +286,9 @@ system:
     - k4aSecret:
         secretName: gcp-mvp-3az-db-pw
       name: secretvol-db
+    - k4aSecret:
+        secretName: gcp-mvp-pbs-pw
+      name: secretvol-pbs
     - name: gcp-svc-creds
       secret:
         secretName: casam-gcs-gcpsa
