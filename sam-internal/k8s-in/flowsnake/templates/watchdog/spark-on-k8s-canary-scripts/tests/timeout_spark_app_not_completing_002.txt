@@ -1,4 +1,4 @@
-TIMEOUT_SUBMITTED
+TIMEOUT_SPARK_APP_NOT_COMPLETING
 // The job actually completed fully nearly two minutes before the timeout was reached and the SparkApplication was still in SUBMITTED state! :-(
 0531 00:00:46 [1559260846] spark-impersonation-8627ba1c - ======== Beginning spark-impersonation-8627ba1c test ========
 0531 00:00:46 [1559260846] spark-impersonation-8627ba1c -  [0;32mKubernetes master [0m is running at  [0;33mhttps://kubernetes-api-flowsnake-frf.slb.sfdc.net [0m

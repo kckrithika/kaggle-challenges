@@ -316,12 +316,12 @@ r_driver_pod_creation_event = re.compile(r'\[(?P<epoch>[0-9]+)\] .* - Pod change
 r_driver_pod_creation_event_pending = re.compile(r'\[(?P<epoch>[0-9]+)\] .* - Pod change detected: .*-driver: Pending on host.*')
 r_driver_pod_initializing = re.compile(r'\[(?P<epoch>[0-9]+)\] .* - Pod change detected: .*-driver(:| changed to) (PodInitializing|Init)')
 r_driver_pod_running = re.compile(r'\[(?P<epoch>[0-9]+)\] .* - Pod change detected: .*-driver(:| changed to) Running')
-# r_driver_pod_change_event = re.compile(r'\[(?P<epoch>[0-9]+)\] .* - Pod change detected: .*-driver changed to (?P<state>[^ ]*).*\(previously (?P<previous>.*)\)')
+r_driver_pod_completed = re.compile(r'\[(?P<epoch>[0-9]+)\] .* - Pod change detected: .*-driver changed to Completed')
 r_spark_submit_failed = re.compile(r'failed to run spark-submit')
 r_driver_context_app_submitted = re.compile(r'(?P<spark_time>[- :0-9]*) INFO.*SparkContext.* - Submitted application')
 r_driver_context_jar_added = re.compile(r'(?P<spark_time>[- :0-9]*) INFO.*SparkContext.* - Added JAR file:')
 r_exec_allocator = re.compile(r'(?P<spark_time>[- :0-9]*) INFO.*ExecutorPodsAllocator.* - Going to request [0-9]* executors from Kubernetes')
-r_timeout = re.compile(r'Timeout reached. Aborting wait for SparkApplication .* even though in non-terminal state (?P<state>\w*)\.')
+r_timeout = re.compile(r'\[(?P<epoch>[0-9]+)\] .* - Timeout reached. Aborting wait for SparkApplication .* even though in non-terminal state (?P<state>\w*)\.')
 #r_ driver_running_event = re.compile(r'SparkDriverRunning\s+([0-9]+)([sm])\s+spark-operator\s+Driver .* is running')
 r_exec_pod_creation_event = re.compile(r'\[(?P<epoch>[0-9]+)\] .* - Pod change detected: .*-exec-[0-9]+: (?P<state>.*) on host.*')
 r_exec_pod_creation_event_pending = re.compile(r'\[(?P<epoch>[0-9]+)\] .* - Pod change detected: .*-exec-[0-9]+: Pending on host.*')
@@ -462,7 +462,13 @@ def analyze_helper(output, timings):
     # Check for termination due to timeout.
     m_timeout = r_timeout.search(output)
     if m_timeout:
-        if m_timeout.group('state') == 'RUNNING':
+        # We have observed the Spark Application state failing to update even though e.g. the driver runs to
+        # completion.
+        m_completed = r_driver_pod_completed.search(output)
+        if m_completed and int(m_completed.group('epoch')) < int(m_timeout.group('epoch')):
+            # Driver pod completed before the timeout was reached.
+            return 'TIMEOUT_SPARK_APP_NOT_COMPLETING'
+        if m_timeout.group('state') in {'RUNNING', 'SUBMITTED'}:
             # TODO: Look at collected metrics for a better sense of what normal values are.
             # timing -> (max_seconds, classification_if_exceeded)
             thresholds = {
@@ -483,9 +489,7 @@ def analyze_helper(output, timings):
                     threshold, classification = thresholds[metric]
                     if seconds >= threshold:
                         return classification
-            return "UNRECOGNIZED_TIMEOUT"
-        else:
-            return 'TIMEOUT_' + (m_timeout.group('state') or 'WITHOUT_STATE')
+        return 'TIMEOUT_' + (m_timeout.group('state') or 'WITHOUT_STATE')
     else:
         # Failure was *not* due to a timeout.
         if r_spark_submit_failed.search(output):
