@@ -2,7 +2,7 @@ local configs = import "config.jsonnet";
 local samimages = (import "samimages.jsonnet") + { templateFilename:: std.thisFile };
 local utils = import "util_functions.jsonnet";
 
-if (!utils.is_public_cloud(configs.kingdom) && !utils.is_gia(configs.kingdom)) then
+if (!utils.is_public_cloud(configs.kingdom) && !utils.is_gia(configs.kingdom)) && configs.kingdom != "lo2" && configs.kingdom != "lo3" then
 configs.deploymentBase("sam") {
         spec+: {
                 replicas: 1,
