@@ -1,0 +1,271 @@
+- lbname: encinoman1
+  servers:
+   - stmfana43ice1-app2-1-prd.eng.sfdc.net
+   - stmfana43ice1-app2-2-prd.eng.sfdc.net
+  ports:
+  - port: 443
+    targetport: 8085
+    lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy
+    sticky: 86400
+    tls: true
+    addheaders:
+    - name: "X-Salesforce-VIP"
+      value: "FORCE"
+  - port: 80
+    httpsredirectport: 443
+    lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy
+
+- lbname: encinoman2
+  servers:
+   - stmfana44ice1-app1-4-prd.eng.sfdc.net
+   - stmfana44ice1-app1-5-prd.eng.sfdc.net
+   - stmfana44ice1-app2-4-prd.eng.sfdc.net
+   - stmfana44ice1-app2-5-prd.eng.sfdc.net
+  ports:
+  - port: 443
+    targetport: 8085
+    lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy
+    sticky: 86400
+    tls: true
+    addheaders:
+    - name: "X-Salesforce-VIP"
+      value: "FORCE"
+  - port: 80
+    httpsredirectport: 443
+    lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy
+
+- lbname: encinoman3
+  servers:
+   - stmfana44ice1-app1-4-prd.eng.sfdc.net
+   - stmfana44ice1-app1-5-prd.eng.sfdc.net
+   - stmfana44ice1-app2-4-prd.eng.sfdc.net
+   - stmfana44ice1-app2-5-prd.eng.sfdc.net
+  ports:
+  - port: 443
+    targetport: 8085
+    lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy
+    sticky: 86400
+    tls: true
+    addheaders:
+    - name: "X-Salesforce-VIP"
+      value: "FORCE"
+  - port: 80
+    httpsredirectport: 443
+    lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy
+
+- lbname: encinoman4
+  servers:
+   - stmfana45ice1-app1-1-prd.eng.sfdc.net
+   - stmfana45ice1-app1-2-prd.eng.sfdc.net
+   - stmfana45ice1-app2-1-prd.eng.sfdc.net
+   - stmfana45ice1-app2-2-prd.eng.sfdc.net
+  ports:
+  - port: 443
+    targetport: 8085
+    lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy
+    sticky: 86400
+    tls: true
+    addheaders:
+    - name: "X-Salesforce-VIP"
+      value: "FORCE"
+  - port: 80
+    httpsredirectport: 443
+    lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy
+
+- lbname: encinoman5
+  servers:
+   - stmfana45ice1-app1-1-prd.eng.sfdc.net
+   - stmfana45ice1-app1-2-prd.eng.sfdc.net
+   - stmfana45ice1-app2-1-prd.eng.sfdc.net
+   - stmfana45ice1-app2-2-prd.eng.sfdc.net
+  ports:
+  - port: 443
+    targetport: 8085
+    lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy
+    sticky: 86400
+    tls: true
+    addheaders:
+    - name: "X-Salesforce-VIP"
+      value: "FORCE"
+  - port: 80
+    httpsredirectport: 443
+    lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy
+
+- lbname: encinoman6
+  servers:
+   - stmfana47ice1-app1-1-prd.eng.sfdc.net
+   - stmfana47ice1-app1-2-prd.eng.sfdc.net
+   - stmfana47ice1-app2-1-prd.eng.sfdc.net
+   - stmfana47ice1-app2-2-prd.eng.sfdc.net
+  ports:
+  - port: 443
+    targetport: 8085
+    lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy
+    sticky: 86400
+    tls: true
+    addheaders:
+    - name: "X-Salesforce-VIP"
+      value: "FORCE"
+  - port: 80
+    httpsredirectport: 443
+    lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy
+
+- lbname: cuttingedge1
+  servers:
+   - stmfana43ice1-app2-1-prd.eng.sfdc.net
+   - stmfana43ice1-app2-2-prd.eng.sfdc.net
+  ports:
+  - port: 443
+    targetport: 8085
+    lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy
+    sticky: 86400
+    tls: true
+    addheaders:
+    - name: "X-Salesforce-VIP"
+      value: "FORCE"
+  - port: 80
+    httpsredirectport: 443
+    lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy
+
+- lbname: cuttingedge2
+  servers:
+   - stmfana44ice1-app1-4-prd.eng.sfdc.net
+   - stmfana44ice1-app1-5-prd.eng.sfdc.net
+   - stmfana44ice1-app2-4-prd.eng.sfdc.net
+   - stmfana44ice1-app2-5-prd.eng.sfdc.net
+  ports:
+  - port: 443
+    targetport: 8085
+    lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy
+    sticky: 86400
+    tls: true
+    addheaders:
+    - name: "X-Salesforce-VIP"
+      value: "FORCE"
+  - port: 80
+    httpsredirectport: 443
+    lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy
+
+- lbname: cuttingedge3
+  servers:
+   - stmfana44ice1-app1-4-prd.eng.sfdc.net
+   - stmfana44ice1-app1-5-prd.eng.sfdc.net
+   - stmfana44ice1-app2-4-prd.eng.sfdc.net
+   - stmfana44ice1-app2-5-prd.eng.sfdc.net
+  ports:
+  - port: 443
+    targetport: 8085
+    lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy
+    sticky: 86400
+    tls: true
+    addheaders:
+    - name: "X-Salesforce-VIP"
+      value: "FORCE"
+  - port: 80
+    httpsredirectport: 443
+    lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy
+
+- lbname: cuttingedge4
+  servers:
+   - stmfana45ice1-app1-1-prd.eng.sfdc.net
+   - stmfana45ice1-app1-2-prd.eng.sfdc.net
+   - stmfana45ice1-app2-1-prd.eng.sfdc.net
+   - stmfana45ice1-app2-2-prd.eng.sfdc.net
+  ports:
+  - port: 443
+    targetport: 8085
+    lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy
+    sticky: 86400
+    tls: true
+    addheaders:
+    - name: "X-Salesforce-VIP"
+      value: "FORCE"
+  - port: 80
+    httpsredirectport: 443
+    lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy
+
+- lbname: cuttingedge5
+  servers:
+   - stmfana45ice1-app1-1-prd.eng.sfdc.net
+   - stmfana45ice1-app1-2-prd.eng.sfdc.net
+   - stmfana45ice1-app2-1-prd.eng.sfdc.net
+   - stmfana45ice1-app2-2-prd.eng.sfdc.net
+  ports:
+  - port: 443
+    targetport: 8085
+    lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy
+    sticky: 86400
+    tls: true
+    addheaders:
+    - name: "X-Salesforce-VIP"
+      value: "FORCE"
+  - port: 80
+    httpsredirectport: 443
+    lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy
+
+- lbname: cuttingedge6
+  servers:
+   - stmfana47ice1-app1-1-prd.eng.sfdc.net
+   - stmfana47ice1-app1-2-prd.eng.sfdc.net
+   - stmfana47ice1-app2-1-prd.eng.sfdc.net
+   - stmfana47ice1-app2-2-prd.eng.sfdc.net
+  ports:
+  - port: 443
+    targetport: 8085
+    lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy
+    sticky: 86400
+    tls: true
+    addheaders:
+    - name: "X-Salesforce-VIP"
+      value: "FORCE"
+  - port: 80
+    httpsredirectport: 443
+    lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy
