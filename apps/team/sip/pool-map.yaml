@@ -1,6 +1,6 @@
 version: v2
 
 apps:
-  experiment-manager:
+  experiment-manager-prd_sam:
    - name: prd/prd-sam
 #   - name: prd/prd-search_model_executor

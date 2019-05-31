@@ -24,7 +24,7 @@ system:
           - sip-exp-manager-slb
     containers:
     - name: sip-em 
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/deepaksharma/sip-experiment-manager:20190530T1558
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/deepaksharma/sip-experiment-manager:20190531T0931
       livenessProbe:
         initialDelaySeconds: 30
         httpGet:
@@ -53,7 +53,7 @@ system:
       - name: server-cert-vol
         mountPath: /server-certs
       ports:
-        - containerPort: 8181
+        - containerPort: 7020
           name: scone-grpc
         - containerPort: 15372
           name: scone-mgmt
@@ -63,14 +63,14 @@ system:
           memory: "10Gi"
       env:
         - name: GRPC_HOST
-          value: sip-exp-manager-slb.sip.prd-sam.prd.slb.sfdc.net:8181
+          value: sip-exp-manager-slb.sip.prd-sam.prd.slb.sfdc.net:7020
   loadbalancers:
   - function: sip-exp-manager
     lbname: sip-exp-manager-slb
     ports:
       - lbtype: tcp
-        port: 8181
-        targetport: 8181
+        port: 7020
+        targetport: 7020
       - lbtype: http
         port: 15372
         targetport: 15372
