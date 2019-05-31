@@ -7,7 +7,6 @@
     targetport: 8090
     reencrypt: true
     healthport: 8085
-    healthprotocol: http
     lbtype: http
     healthprotocol: http
     healthpath: /ping.jsp?allBusy
@@ -33,7 +32,6 @@
     targetport: 8090
     reencrypt: true
     healthport: 8085
-    healthprotocol: http
     lbtype: http
     healthprotocol: http
     healthpath: /ping.jsp?allBusy
@@ -59,7 +57,6 @@
     targetport: 8090
     reencrypt: true
     healthport: 8085
-    healthprotocol: http
     lbtype: http
     healthprotocol: http
     healthpath: /ping.jsp?allBusy
@@ -85,7 +82,6 @@
     targetport: 8090
     reencrypt: true
     healthport: 8085
-    healthprotocol: http
     lbtype: http
     healthprotocol: http
     healthpath: /ping.jsp?allBusy
@@ -111,7 +107,6 @@
     targetport: 8090
     reencrypt: true
     healthport: 8085
-    healthprotocol: http
     lbtype: http
     healthprotocol: http
     healthpath: /ping.jsp?allBusy
@@ -137,7 +132,6 @@
     targetport: 8090
     reencrypt: true
     healthport: 8085
-    healthprotocol: http
     lbtype: http
     healthprotocol: http
     healthpath: /ping.jsp?allBusy
@@ -161,7 +155,6 @@
     targetport: 8090
     reencrypt: true
     healthport: 8085
-    healthprotocol: http
     lbtype: http
     healthprotocol: http
     healthpath: /ping.jsp?allBusy
@@ -187,7 +180,6 @@
     targetport: 8090
     reencrypt: true
     healthport: 8085
-    healthprotocol: http
     lbtype: http
     healthprotocol: http
     healthpath: /ping.jsp?allBusy
@@ -213,7 +205,6 @@
     targetport: 8090
     reencrypt: true
     healthport: 8085
-    healthprotocol: http
     lbtype: http
     healthprotocol: http
     healthpath: /ping.jsp?allBusy
@@ -239,7 +230,6 @@
     targetport: 8090
     reencrypt: true
     healthport: 8085
-    healthprotocol: http
     lbtype: http
     healthprotocol: http
     healthpath: /ping.jsp?allBusy
@@ -265,7 +255,6 @@
     targetport: 8090
     reencrypt: true
     healthport: 8085
-    healthprotocol: http
     lbtype: http
     healthprotocol: http
     healthpath: /ping.jsp?allBusy
@@ -291,7 +280,6 @@
     targetport: 8090
     reencrypt: true
     healthport: 8085
-    healthprotocol: http
     lbtype: http
     healthprotocol: http
     healthpath: /ping.jsp?allBusy
