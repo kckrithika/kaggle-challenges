@@ -4,7 +4,7 @@
       alertFrequency: "24h",
       watchdogFrequency: "5m",
       alertProfile: "sam",
-      alertAction: "email",
+      alertAction: "businesshours_pagerduty",
       sql: "select * from (
   select 
     controlEstate, 
@@ -18,5 +18,5 @@
   from k8s_resource
   where ApiKind = 'Pod'
   group by controlEstate, namespace
-) as ss having podCount > (case when namespace = 'sam-system' then 15*nodeCount else 200 end)",
+) as ss having podCount > (15*nodeCount) and podCount > 1000",
     }
