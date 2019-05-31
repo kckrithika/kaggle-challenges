@@ -350,8 +350,6 @@
                 "slb-upstream-status.sam-system.prd-sdc.prd.slb.sfdc.net",
               ],
               "prd-sam"+: [
-                ## Demo VIPs
-                "slb-portal-service.sam-system.prd-sam.prd.slb.sfdc.net",
               ],
             },
 
