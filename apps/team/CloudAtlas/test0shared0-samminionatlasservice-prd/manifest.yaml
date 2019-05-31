@@ -226,7 +226,7 @@ system:
   #####################################################################################
   loadbalancers:
     - lbname: cabusinesslb
-      function: cloudatlas-prd-service
+      function: cloudatlas-prd-dev-service
       slbEnabled: true
       ports:
         - port: 9090
