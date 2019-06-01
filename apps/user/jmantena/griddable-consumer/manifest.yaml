@@ -5,7 +5,7 @@ system:
      count: 1
      containers:
      - name: acds-consumer-cont
-       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mmanthena/griddable-full:v0.0.1
+       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mmanthena/griddable-full:v0.0.2
        command:
        - /bin/bash
        - -c
@@ -78,7 +78,7 @@ system:
        - name : SERVICE_USER_PASSWORD
          value: "synchronize"
        - name : ACDS_APISERVER_HOST
-         value: "acds-mgmt-api-lb.user-athatipalli.prd-sam.prd.slb.sfdc.net"
+         value: "mgmt-api-lb.user-athatipalli.prd-sam.prd.slb.sfdc.net"
        - name : ACDS_APISERVER_PORT
          value: "5004"
        - name : ACDS_APISERVER_HTTPS
