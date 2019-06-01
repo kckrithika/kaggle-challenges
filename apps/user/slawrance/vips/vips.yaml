@@ -305,3 +305,166 @@
     lbtype: http
     healthprotocol: http
     healthpath: /ping.jsp?allBusy
+
+
+- lbname: cuttingedge1-cs2
+  servers:
+   - stmfacs2ice1-app1-1-prd.eng.sfdc.net
+   - stmfacs2ice1-app1-2-prd.eng.sfdc.net
+   - stmfacs2ice1-app2-1-prd.eng.sfdc.net
+   - stmfacs2ice1-app2-2-prd.eng.sfdc.net
+  ports:
+  - port: 443
+    targetport: 8090
+    reencrypt: true
+    healthport: 8085
+    lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy
+    sticky: 86400
+    tls: true
+    tlscertificate: secret_service:BofA-Stmfa-VIP-Certs:cuttingedge1.stmfa.stm.my-salesforce.com.crt
+    tlskey: secret_service:BofA-Stmfa-VIP-Certs:cuttingedge1.stmfa.stm.my-salesforce.com.key
+    addheaders:
+    - name: "X-Salesforce-VIP"
+      value: "FORCE"
+  - port: 80
+    httpsredirectport: 443
+    lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy
+
+- lbname: cuttingedge2-cs2
+  servers:
+   - stmfacs2ice1-app1-1-prd.eng.sfdc.net
+   - stmfacs2ice1-app1-2-prd.eng.sfdc.net
+   - stmfacs2ice1-app2-1-prd.eng.sfdc.net
+   - stmfacs2ice1-app2-2-prd.eng.sfdc.net
+  ports:
+  - port: 443
+    targetport: 8090
+    reencrypt: true
+    healthport: 8085
+    lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy
+    sticky: 86400
+    tls: true
+    tlscertificate: secret_service:BofA-Stmfa-VIP-Certs:cuttingedge2.stmfa.stm.my-salesforce.com.crt
+    tlskey: secret_service:BofA-Stmfa-VIP-Certs:cuttingedge2.stmfa.stm.my-salesforce.com.key
+    addheaders:
+    - name: "X-Salesforce-VIP"
+      value: "FORCE"
+  - port: 80
+    httpsredirectport: 443
+    lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy
+
+- lbname: cuttingedge3-cs2
+  servers:
+   - stmfacs2ice1-app1-1-prd.eng.sfdc.net
+   - stmfacs2ice1-app1-2-prd.eng.sfdc.net
+   - stmfacs2ice1-app2-1-prd.eng.sfdc.net
+   - stmfacs2ice1-app2-2-prd.eng.sfdc.net
+  ports:
+  - port: 443
+    targetport: 8090
+    reencrypt: true
+    healthport: 8085
+    lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy
+    sticky: 86400
+    tls: true
+    tlscertificate: secret_service:BofA-Stmfa-VIP-Certs:cuttingedge3.stmfa.stm.my-salesforce.com.crt
+    tlskey: secret_service:BofA-Stmfa-VIP-Certs:cuttingedge3.stmfa.stm.my-salesforce.com.key
+    addheaders:
+    - name: "X-Salesforce-VIP"
+      value: "FORCE"
+  - port: 80
+    httpsredirectport: 443
+    lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy
+
+- lbname: cuttingedge4-cs2
+  servers:
+   - stmfacs2ice1-app1-1-prd.eng.sfdc.net
+   - stmfacs2ice1-app1-2-prd.eng.sfdc.net
+   - stmfacs2ice1-app2-1-prd.eng.sfdc.net
+   - stmfacs2ice1-app2-2-prd.eng.sfdc.net
+  ports:
+  - port: 443
+    targetport: 8090
+    reencrypt: true
+    healthport: 8085
+    lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy
+    sticky: 86400
+    tls: true
+    tlscertificate: secret_service:BofA-Stmfa-VIP-Certs:cuttingedge4.stmfa.stm.my-salesforce.com.crt
+    tlskey: secret_service:BofA-Stmfa-VIP-Certs:cuttingedge4.stmfa.stm.my-salesforce.com.key
+    addheaders:
+    - name: "X-Salesforce-VIP"
+      value: "FORCE"
+  - port: 80
+    httpsredirectport: 443
+    lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy
+
+- lbname: cuttingedge5-cs2
+  servers:
+   - stmfacs2ice1-app1-1-prd.eng.sfdc.net
+   - stmfacs2ice1-app1-2-prd.eng.sfdc.net
+   - stmfacs2ice1-app2-1-prd.eng.sfdc.net
+   - stmfacs2ice1-app2-2-prd.eng.sfdc.net
+  ports:
+  - port: 443
+    targetport: 8090
+    reencrypt: true
+    healthport: 8085
+    lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy
+    sticky: 86400
+    tls: true
+    tlscertificate: secret_service:BofA-Stmfa-VIP-Certs:cuttingedge5.stmfa.stm.my-salesforce.com.crt
+    tlskey: secret_service:BofA-Stmfa-VIP-Certs:cuttingedge5.stmfa.stm.my-salesforce.com.key
+    addheaders:
+    - name: "X-Salesforce-VIP"
+      value: "FORCE"
+  - port: 80
+    httpsredirectport: 443
+    lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy
+
+- lbname: cuttingedge6-cs2
+  servers:
+   - stmfacs2ice1-app1-1-prd.eng.sfdc.net
+   - stmfacs2ice1-app1-2-prd.eng.sfdc.net
+   - stmfacs2ice1-app2-1-prd.eng.sfdc.net
+   - stmfacs2ice1-app2-2-prd.eng.sfdc.net
+  ports:
+  - port: 443
+    targetport: 8090
+    reencrypt: true
+    healthport: 8085
+    lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy
+    sticky: 86400
+    tls: true
+    tlscertificate: secret_service:BofA-Stmfa-VIP-Certs:cuttingedge6.stmfa.stm.my-salesforce.com.crt
+    tlskey: secret_service:BofA-Stmfa-VIP-Certs:cuttingedge6.stmfa.stm.my-salesforce.com.key
+    addheaders:
+    - name: "X-Salesforce-VIP"
+      value: "FORCE"
+  - port: 80
+    httpsredirectport: 443
+    lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy
