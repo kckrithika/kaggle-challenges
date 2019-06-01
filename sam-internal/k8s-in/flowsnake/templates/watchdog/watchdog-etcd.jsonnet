@@ -44,6 +44,10 @@ configs.daemonSetBase("flowsnake") {
                             mountPath: "/config",
                             name: "config",
                           },
+                          {
+                            mountPath: "/var/tmp",
+                            name: "etcd-health-info",
+                          },
                         ] +
                         certs_and_kubeconfig.platform_cert_volumeMounts,
                         name: "watchdog",
@@ -71,6 +75,12 @@ configs.daemonSetBase("flowsnake") {
                       name: "watchdog",
                     },
                     name: "config",
+                  },
+                  {
+                    hostPath: {
+                      path: "/var/tmp",
+                    },
+                    name: "etcd-health-info",
                   },
                 ] +
                 certs_and_kubeconfig.platform_cert_volume,
