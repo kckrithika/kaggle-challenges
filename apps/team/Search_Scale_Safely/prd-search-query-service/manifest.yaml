@@ -49,7 +49,7 @@ system:
         initialDelaySeconds: 110
         timeoutSeconds: 10
     - name: beacon
-      image: sfci/services/sfdc-bazel/disco/beacon:488bf42
+      image: sfci/services/sfdc-bazel/disco/beacon:cba828fda
       args:
       - -endpoint
       - search-scale-safely/search-query-service:DATACENTER_ALLENV:7443
@@ -62,7 +62,7 @@ system:
           - /opt/beacon/is-alive.sh
         initialDelaySeconds: 5
     - name: sherpa-b
-      image: sfci/servicelibs/sherpa-envoy:1.0.6
+      image: sfci/servicelibs/sherpa-envoy:1.0.8
       ports:
       - name: sherpa-b-tls
         containerPort: 7443
