@@ -11,7 +11,7 @@ system:
     count: 3
     containers:
     - name: mariadbcluster
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/anudeept/mgmtdb:10.1-cluster-c1
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/anudeept/mgmtdb:10.1-cluster-c2
       env:
       - name: MYSQL_ROOT_PASSWORD
         value: myrootpassword
@@ -27,9 +27,6 @@ system:
         value: myuser
       - name: MYSQL_PASSWORD
         value: myuserpassword
-
-
-
 
       volumeMounts:
       - mountPath: /certs
@@ -49,7 +46,7 @@ system:
 
       livenessProbe:
         exec:
-          command: ["mysqladmin", "status", "-h", "127.0.0.1", "-u", "$MYSQL_ROOT", "-p","$MYSQL_ROOT_PASSWORD"]
+          command: ["mysql", "status", "-h", "127.0.0.1", "-u", "$MYSQL_ROOT", "-p","$MYSQL_ROOT_PASSWORD"]
         initialDelaySeconds: 60
         timeoutSeconds: 10
 
