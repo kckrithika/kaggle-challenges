@@ -44,7 +44,7 @@ spec:
           valueFrom:
             fieldRef:
               fieldPath: spec.nodeName
-        image: ops0-artifactrepo1-0-ord.data.sfdc.net/dva/slb/hyperslb:2158-fe2566ab6d3429b31af09cc90e7812bf452b2ef7
+        image: ops0-artifactrepo1-0-ord.data.sfdc.net/dva/slb/hyperslb:2160-e5212007143a8bc1d8a6a193632176bf6e02c3ec
         name: slb-fred
         volumeMounts:
         - mountPath: /host/data/slb/logs/
