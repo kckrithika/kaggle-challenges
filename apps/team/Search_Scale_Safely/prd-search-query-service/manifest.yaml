@@ -5,7 +5,7 @@ system:
     count: 8
     containers:
     - name: search-query-service
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/searchdev/smt-search-query-service:12c9a9f
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/searchdev/smt-search-query-service:1251bc2
       command:
       - java
       - -Xdebug
