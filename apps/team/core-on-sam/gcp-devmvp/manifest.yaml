@@ -83,7 +83,7 @@ system:
         value: 00D500000008aMD
       - name: SU_USERID
         value: 00550000000HgO1
-      image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/casam/coreapp:release_main_18177342
+      image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/casam/coreapp:release_main_18192680
       livenessProbe:
         exec:
           command:
@@ -137,7 +137,7 @@ system:
     - env:
       - name: CASAM_SETTINGS_PATH
         value: prod.-.phx.na3.app
-      image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-gcp/sfci/casam/coreapp_overrides:da91f9
+      image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-gcp/sfci/casam/coreapp_overrides:eb3aca
       livenessProbe:
         exec:
           command:
