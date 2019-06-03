@@ -1016,6 +1016,94 @@ data:
           "superpod": "sp2"
         },
         {
+          "bomrolename": "sam_minion_caas",
+          "controlestate": "ia2-sam",
+          "devicerole": "samcompute",
+          "estate": "ia2-sp3-sam_caas",
+          "hostname": "samcaas3-caasminion1-1-ia2.ops.sfdc.net",
+          "kingdom": "ia2",
+          "pod": "none",
+          "rack": "u42-dh10",
+          "superpod": "sp3"
+        },
+        {
+          "bomrolename": "sam_minion_caas",
+          "controlestate": "ia2-sam",
+          "devicerole": "samcompute",
+          "estate": "ia2-sp3-sam_caas",
+          "hostname": "samcaas3-caasminion1-2-ia2.ops.sfdc.net",
+          "kingdom": "ia2",
+          "pod": "none",
+          "rack": "u42-dh10",
+          "superpod": "sp3"
+        },
+        {
+          "bomrolename": "sam_minion_caas",
+          "controlestate": "ia2-sam",
+          "devicerole": "samcompute",
+          "estate": "ia2-sp3-sam_caas",
+          "hostname": "samcaas3-caasminion1-3-ia2.ops.sfdc.net",
+          "kingdom": "ia2",
+          "pod": "none",
+          "rack": "u42-dh10",
+          "superpod": "sp3"
+        },
+        {
+          "bomrolename": "sam_minion_caas",
+          "controlestate": "ia2-sam",
+          "devicerole": "samcompute",
+          "estate": "ia2-sp3-sam_caas",
+          "hostname": "samcaas3-caasminion2-1-ia2.ops.sfdc.net",
+          "kingdom": "ia2",
+          "pod": "none",
+          "rack": "p44-dh10",
+          "superpod": "sp3"
+        },
+        {
+          "bomrolename": "sam_minion_caas",
+          "controlestate": "ia2-sam",
+          "devicerole": "samcompute",
+          "estate": "ia2-sp3-sam_caas",
+          "hostname": "samcaas3-caasminion2-2-ia2.ops.sfdc.net",
+          "kingdom": "ia2",
+          "pod": "none",
+          "rack": "m43-dh10",
+          "superpod": "sp3"
+        },
+        {
+          "bomrolename": "sam_minion_caas",
+          "controlestate": "ia2-sam",
+          "devicerole": "samcompute",
+          "estate": "ia2-sp3-sam_caas",
+          "hostname": "samcaas3-caasminion2-3-ia2.ops.sfdc.net",
+          "kingdom": "ia2",
+          "pod": "none",
+          "rack": "m43-dh10",
+          "superpod": "sp3"
+        },
+        {
+          "bomrolename": "sam_minion_caas",
+          "controlestate": "ia2-sam",
+          "devicerole": "samcompute",
+          "estate": "ia2-sp3-sam_caas",
+          "hostname": "samcaas3-caasminion3-1-ia2.ops.sfdc.net",
+          "kingdom": "ia2",
+          "pod": "none",
+          "rack": "j06-dh10",
+          "superpod": "sp3"
+        },
+        {
+          "bomrolename": "sam_minion_caas",
+          "controlestate": "ia2-sam",
+          "devicerole": "samcompute",
+          "estate": "ia2-sp3-sam_caas",
+          "hostname": "samcaas3-caasminion3-2-ia2.ops.sfdc.net",
+          "kingdom": "ia2",
+          "pod": "none",
+          "rack": "j06-dh10",
+          "superpod": "sp3"
+        },
+        {
           "bomrolename": "sam_minion_universalsearchmt",
           "controlestate": "ia2-sam",
           "devicerole": "samcompute",
