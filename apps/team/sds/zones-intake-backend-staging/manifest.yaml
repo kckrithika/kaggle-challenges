@@ -6,7 +6,7 @@ system:
       - aditya.sureshkumar@salesforce.com
   functions:
   - name: zones-intake-backend-staging
-    #hostNetwork: true
+    hostNetwork: true
     count: 1
     volumes:
       - name: servercert
