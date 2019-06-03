@@ -5,7 +5,7 @@ system:
     email:
       - smarwaha@salesforce.com
   functions:
-  - name: sip-exp-manager
+  - name: sip-exp-manager-prd
     count: 1
     volumes:
     - name: heroku-secret
@@ -21,7 +21,7 @@ system:
       maddogCert:
         type: server
         lbnames:
-          - sip-exp-manager-slb
+          - sip-exp-manager-prd-slb
     containers:
     - name: sip-em 
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/deepaksharma/sip-experiment-manager:20190531T0931
@@ -63,10 +63,10 @@ system:
           memory: "10Gi"
       env:
         - name: GRPC_HOST
-          value: sip-exp-manager-slb.sip.prd-search_model_executor.prd.slb.sfdc.net:7020
+          value: sip-exp-manager-prd-slb.sip.prd-search_model_executor.prd.slb.sfdc.net:7020
   loadbalancers:
-  - function: sip-exp-manager
-    lbname: sip-exp-manager-slb
+  - function: sip-exp-manager-prd
+    lbname: sip-exp-manager-prd-slb
     ports:
       - lbtype: tcp
         port: 7020
