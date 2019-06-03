@@ -34,3 +34,19 @@
    - port: 9200
      targetport: 9200
      lbtype: tcp
+
+- lbname: zipkin-prod
+  servers:
+   - shared0-samminionzipkin1-2-prd.eng.sfdc.net
+   - shared0-samminionzipkin1-10-prd.eng.sfdc.net
+   - shared0-samminionzipkin1-11-prd.eng.sfdc.net
+  ports:
+   - port: 443
+     targetport: 9422
+     lbtype: http
+     # tls indicates if the connection between the client and the VIP should be encrypted.
+     tls: true
+     # reencrypt indicates if the connection between the load balancer and the backend should be 
+     # encrypted. For end-to-end encryption, both tls and reencrypt should be set to true.
+     reencrypt: true
+
