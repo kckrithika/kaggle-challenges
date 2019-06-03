@@ -9,19 +9,27 @@ system:
     count: 1
     containers:
     - name: mycroft
-      image: dva/casp/mycroft_strata:jenkins-CASP-mycroft-master-9-itest
+      image: dva/casp/mycroft_strata:jenkins-CASP-mycroft-master-10-itest
       ports:
       - name: http
         containerPort: 5555
       - name: tcp
         containerPort: 6379
       livenessProbe:
-        httpGet:
-          path: /
-          port: 5555
+        exec:
+          command:
+            - /opt/mycroft/bin/ping.sh
         failureThreshold: 60
         periodSeconds: 10
         timeoutSeconds: 10
+        initialDelaySeconds: 30
+      volumeMounts:
+        - mountPath: /opt/mycroft/logs
+          name: mycroft-logs-vol
+    volumes:
+      - name: mycroft-logs-vol
+        hostPath:
+          path: /data/mycroft-logs
   loadbalancers:
   - lbname: mycroft
     function: mycroft
