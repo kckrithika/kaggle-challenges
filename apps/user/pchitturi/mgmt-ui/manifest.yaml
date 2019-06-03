@@ -6,7 +6,7 @@ system:
       type: stateful-set
       containers:
         - name: mgmt-ui
-          image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/pchitturi/geocloud.io/mgmt-platform-ui:042219
+          image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/pchitturi/geocloud.io/mgmt-platform-ui:1.2
           livenessProbe:
             exec:
               command: ["curl", "http://127.0.0.1:3000/"]
@@ -33,9 +33,9 @@ system:
               value: 127.0.0.1
             - name: ENV_MODE
               value: "production"
-      lbname: mgmt-ui-dummy-lb
+      lbname: mgmt-ui-stateful-lb
   loadbalancers:
-  - lbname: mgmt-uione-lb
+  - lbname: guiapi-lb
     function: mgmt-ui
     slbEnabled: true
     ports:
