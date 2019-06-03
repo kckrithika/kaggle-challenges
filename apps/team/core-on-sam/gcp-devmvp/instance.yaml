@@ -15,8 +15,8 @@ env:
   region: phx
   subEnvName: '-'
 images:
-  coreApp: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/casam/coreapp:release_main_18029619
-  coreAppOverrides: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-gcp/sfci/casam/coreapp_overrides:ea709a
+  coreApp: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/casam/coreapp:release_main_18192680
+  coreAppOverrides: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-gcp/sfci/casam/coreapp_overrides:eb3aca
   envoy: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-gcp/sfci/servicelibs/sherpa-envoy:1.0.7
   envoyConfig: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/casam/cyan-config:208cc2
   sequencer: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-gcp/sfci/casam/sequencer:180d92
