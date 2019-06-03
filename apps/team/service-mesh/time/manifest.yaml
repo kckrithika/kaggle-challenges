@@ -13,6 +13,8 @@ system:
       env:
       - name: SFDC_ENVIRONMENT
         value: mesh
+      - name: FAKE_ENV_VAR_INCREMENT_TO_TRIGGER_SAM_DEPLOY
+        value: "1"
       livenessProbe:
         exec:
           command: ["/bin/true"]

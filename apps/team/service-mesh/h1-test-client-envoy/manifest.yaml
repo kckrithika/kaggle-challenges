@@ -16,7 +16,7 @@ system:
       - name: SFDC_ENVIRONMENT
         value: sam
       - name: FAKE_VAR
-        value: 42
+        value: 43
       livenessProbe:
         exec:
           command: ["/bin/true"]
