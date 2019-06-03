@@ -17,6 +17,8 @@ system:
         value: mesh
       - name: JAVA_OPTS
         value: "-Dscone.service.name=ordering-service-envoy-tls -Dshipping.dest=shipping-envoy-tls.service-mesh.localhost.mesh.force.com:5443 -Dshipping.interval=5000 -Dmanagement.server.port=15372"
+      - name: FAKE_ENV_VAR_INCREMENT_TO_TRIGGER_SAM_DEPLOY
+        value: "1"      
       ports:
       - containerPort: 7020
         name: grpc-svc
