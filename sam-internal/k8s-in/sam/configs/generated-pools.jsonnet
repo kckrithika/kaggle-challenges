@@ -1692,7 +1692,8 @@
         "care",
         "sdb-dataengineering",
         "dbprovision",
-        "industries-loyalty"
+        "industries-loyalty",
+        "dataprotection"
       ],
       "access": [
         "team/CSC_Sam",
@@ -1732,7 +1733,8 @@
         "team/care",
         "team/sdb-dataengineering",
         "team/dbprovision",
-        "team/industries-loyalty"
+        "team/industries-loyalty",
+        "team/dataprotection"
       ],
       "controlEstate": "gsf-core-devmvp-sam2-sam",
       "estate": "gsf-core-devmvp-sam2-sam",

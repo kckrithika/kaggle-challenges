@@ -42,6 +42,7 @@ access:
   - 'team/sdb-dataengineering'
   - 'team/dbprovision'
   - 'team/industries-loyalty'
+  - 'team/dataprotection'
 
 # Each pool is managed by a SAM control stack running in one estate
 # Name here is an exact match on a file under estates/estates repo
