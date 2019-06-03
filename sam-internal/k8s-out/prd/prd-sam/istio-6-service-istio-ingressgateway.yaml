@@ -21,7 +21,7 @@ metadata:
     istio: ingressgateway
     release: istio
   name: istio-ingressgateway
-  namespace: core-on-sam-sp2
+  namespace: mesh-control-plane
 spec:
   ports:
   - name: https-coreapp

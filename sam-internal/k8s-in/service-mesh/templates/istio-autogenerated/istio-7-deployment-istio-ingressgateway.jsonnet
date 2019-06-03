@@ -10,7 +10,7 @@ local mcpIstioConfig = (import "service-mesh/istio-config.jsonnet");
       release: "istio",
     },
     name: "istio-ingressgateway",
-    namespace: "core-on-sam-sp2",
+    namespace: "mesh-control-plane",
   },
   spec: {
     selector: {
@@ -108,7 +108,7 @@ local mcpIstioConfig = (import "service-mesh/istio-config.jsonnet");
               "--domain",
               "$(POD_NAMESPACE).svc.cluster.local",
               "--log_output_level",
-              "default:debug",
+              "info",
               "--drainDuration",
               "45s",
               "--parentShutdownDuration",
@@ -126,12 +126,12 @@ local mcpIstioConfig = (import "service-mesh/istio-config.jsonnet");
               "--controlPlaneAuthPolicy",
               "NONE",
               "--discoveryAddress",
-              "istio-pilot.mesh-control-plane:15010",
+              "istio-pilot:15010",
             ],
             env: [
               {
                 name: "ESTATE",
-                value: mcpIstioConfig.casamEstate,
+                value: mcpIstioConfig.istioEstate,
               },
               {
                 name: "ISTIO_METAJSON_METRICS_INCLUSIONS",
@@ -309,7 +309,7 @@ local mcpIstioConfig = (import "service-mesh/istio-config.jsonnet");
               },
               {
                 name: "ESTATE",
-                value: mcpIstioConfig.casamEstate,
+                value: mcpIstioConfig.istioEstate,
               },
             ],
             image: mcpIstioConfig.madkubImage,
@@ -426,7 +426,7 @@ local mcpIstioConfig = (import "service-mesh/istio-config.jsonnet");
           },
         ],
         nodeSelector: {
-          pool: mcpIstioConfig.casamEstate,
+          pool: mcpIstioConfig.istioEstate,
         },
         serviceAccountName: "istio-ingressgateway-service-account",
         volumes: [

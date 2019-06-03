@@ -6,7 +6,7 @@ metadata:
     istio: ingressgateway
     release: istio
   name: istio-ingressgateway
-  namespace: core-on-sam-sp2
+  namespace: mesh-control-plane
 spec:
   selector:
     matchLabels:
@@ -89,7 +89,7 @@ spec:
         - --domain
         - $(POD_NAMESPACE).svc.cluster.local
         - --log_output_level
-        - default:debug
+        - info
         - --drainDuration
         - 45s
         - --parentShutdownDuration
@@ -107,7 +107,7 @@ spec:
         - --controlPlaneAuthPolicy
         - NONE
         - --discoveryAddress
-        - istio-pilot.mesh-control-plane:15010
+        - istio-pilot:15010
         env:
         - name: ESTATE
           value: prd-samtest

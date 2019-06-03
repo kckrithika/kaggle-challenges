@@ -6,7 +6,7 @@ metadata:
     istio: ingressgateway
     release: istio
   name: istio-ingressgateway
-  namespace: core-on-sam-sp2
+  namespace: mesh-control-plane
 spec:
   selector:
     matchLabels:
@@ -89,7 +89,7 @@ spec:
         - --domain
         - $(POD_NAMESPACE).svc.cluster.local
         - --log_output_level
-        - default:debug
+        - info
         - --drainDuration
         - 45s
         - --parentShutdownDuration
@@ -107,10 +107,10 @@ spec:
         - --controlPlaneAuthPolicy
         - NONE
         - --discoveryAddress
-        - istio-pilot.mesh-control-plane:15010
+        - istio-pilot:15010
         env:
         - name: ESTATE
-          value: prd-sp2-sam_coreapp
+          value: prd-sam_gater
         - name: ISTIO_METAJSON_METRICS_INCLUSIONS
           value: '{"sidecar.istio.io/statsInclusionPrefixes": "access_log_file,cluster,cluster_manager,control_plane,http,http2,http_mixer_filter,listener,listener_manager,redis,runtime,server,stats,tcp,tcp_mixer_filter,tracing"}'
         - name: POD_NAME
@@ -217,7 +217,7 @@ spec:
               apiVersion: v1
               fieldPath: metadata.namespace
         - name: ESTATE
-          value: prd-sp2-sam_coreapp
+          value: prd-sam_gater
         image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/madkub:1.0.0-0000082-3d5c21b4
         imagePullPolicy: IfNotPresent
         name: madkub-refresher
@@ -289,7 +289,7 @@ spec:
         - mountPath: /server-cert
           name: tls-server-cert
       nodeSelector:
-        pool: prd-sp2-sam_coreapp
+        pool: prd-sam_gater
       serviceAccountName: istio-ingressgateway-service-account
       volumes:
       - hostPath:

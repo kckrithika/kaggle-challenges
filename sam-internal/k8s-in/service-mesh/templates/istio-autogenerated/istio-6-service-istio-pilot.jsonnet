@@ -4,6 +4,10 @@ local mcpIstioConfig = (import "service-mesh/istio-config.jsonnet");
   apiVersion: "v1",
   kind: "Service",
   metadata: {
+    annotations: {
+      "slb.sfdc.net/name": "istio-pilot",
+      "slb.sfdc.net/portconfigurations": "[\n {\n  \"lbtype\": \"dsr\",\n  \"port\": 15010,\n  \"targetport\": 15010\n }\n]",
+    },
     labels: {
       app: "pilot",
       istio: "pilot",
