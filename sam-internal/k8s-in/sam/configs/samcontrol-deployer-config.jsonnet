@@ -21,7 +21,7 @@ std.prune({
   "app-key-ttl-duration": "12h",
   "delete-orphans": !utils.is_pcn(configs.kingdom),
   "resources-to-skip": ["sdn-secret.yaml"],
-  [if !utils.is_production(configs.kingdom) then "prevent-rewind"]: true,
+  "prevent-rewind": true,
 } + if utils.is_pcn(configs.kingdom) then {
     "etcd-override": "http://0.0.0.0:2379",
 } else {

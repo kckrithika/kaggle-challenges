@@ -12,6 +12,7 @@ data:
       "funnelEndpoint": "funnel.ajnalocal1.vip.core.test.us-central1.gcp.sfdc.net:443",
       "max-resource-time": "20m",
       "poll-delay": 30000000000,
+      "prevent-rewind": true,
       "recipient": "sam@salesforce.com",
       "resource-cooldown": 15000000000,
       "resource-progression-timeout": 120000000000,
