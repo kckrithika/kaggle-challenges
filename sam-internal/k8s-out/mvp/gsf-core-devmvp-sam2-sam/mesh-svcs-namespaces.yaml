@@ -38,6 +38,12 @@ items:
     labels:
       istio-injection: enabled
     name: core-on-sam
+- apiVersion: v1
+  kind: Namespace
+  metadata:
+    labels:
+      istio-injection: enabled
+    name: casam
 kind: List
 metadata:
   labels:
