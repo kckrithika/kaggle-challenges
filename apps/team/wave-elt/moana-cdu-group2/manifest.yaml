@@ -30,7 +30,7 @@ system:
       - {name: DEPLOYMENT_ID, value: cdu-group2}
       - {name: HANDLED_PODS_PATTERN, value: 'cs[0-9]+\..*|moana-driver-group1'}
       - {name: HANDLED_PODS_INVERT_MATCH, value: 'true'}
-      image: sfci/insights/moana-driver:release-14-bbc378c
+      image: sfci/insights/moana-driver:release-15-144ecab
       livenessProbe:
         httpGet: {path: /manage/health, port: 15375}
         initialDelaySeconds: 30
@@ -76,7 +76,7 @@ system:
       - {name: HANDLED_PODS_INVERT_MATCH, value: 'true'}
       - {name: K8S_API_ENDPOINT, value: 'https://kubernetes-api-flowsnake-cdu.data.sfdc.net'}
       - {name: MAESTRO_ENDPOINT, value: 'https://insights1-iworker{{superPodIndex}}-0-${kingdom}.data.sfdc.net:8008'}
-      image: sfci/insights/jobcontroller:release-1.0.6-0152efd
+      image: sfci/insights/jobcontroller:release-1.0.7-919e925
       livenessProbe:
         httpGet: {path: /manage/health, port: 15373}
         initialDelaySeconds: 90
