@@ -29,7 +29,6 @@ local utils = import "util_functions.jsonnet";
                 btrfs_watchdog_hard_reset: "",
                 image_renames_and_canary_build_tags: "unverified",
                 slb_ingress: "unverified",
-                rm_kuberesources_cm: "",
                 sok_analysis_timeout_states: "unverified",
             },
             # prd-test offers legacy version mappings. Phase 2 does not, so cannot inherit from there.
@@ -45,7 +44,6 @@ local utils = import "util_functions.jsonnet";
             },
             feature_flags+: {
                 watchdog_kuberesources: "enabled",
-                ksm_prome_add_name_label: "enabled",
                 sok_analysis_mofo_fix: "verified in prd-test and cdu",
             },
             version_mapping+: {

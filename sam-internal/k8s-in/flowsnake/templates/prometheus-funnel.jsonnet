@@ -29,7 +29,7 @@ configs.deploymentBase("flowsnake") {
           flowsnakeOwner: "dva-transform",
           flowsnakeRole: "PrometheusScraper",
         } + (
-if std.objectHas(flowsnake_images.feature_flags, "ksm_prome_add_name_label") then
+if std.objectHas(flowsnake_images.feature_flags, "watchdog_kuberesources") then
         {
           name: "prometheus-scraper",
         } else {}
