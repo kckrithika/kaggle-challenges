@@ -19,10 +19,10 @@ system:
         exec:
           command:
             - /opt/mycroft/bin/ping.sh
-          failureThreshold: 60
-          periodSeconds: 10
-          timeoutSeconds: 10
-          initialDelaySeconds: 30
+        failureThreshold: 60
+        periodSeconds: 10
+        timeoutSeconds: 10
+        initialDelaySeconds: 30
       volumeMounts:
         - mountPath: /opt/mycroft/logs
           name: mycroft-logs-vol
