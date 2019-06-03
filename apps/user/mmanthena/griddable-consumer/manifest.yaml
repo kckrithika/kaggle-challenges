@@ -54,7 +54,7 @@ system:
         \"useServiceName\" : \"AUTO\",
         \"useStatementBatching\" : false
     },
-    \"host\" : \"10.225.244.228\",
+    \"host\" : \"10.225.244.198\",
     \"id\" : \"targetdb\",
     \"instanceName\" : \"DATABASE\",
     \"password\" : \"basic:xRdN9n9+Yto2hHDW/sldaA==\",
