@@ -2,7 +2,7 @@ apps:
   zones-intake-backend:
   - xrd/xrd-sdstools
   zones-intake-backend-staging:
-  - xrd/xrd-sdstoolsdev
+  - xrd/xrd-sdstools
   zones-ui:
   - xrd/xrd-sdstools
   soter:
