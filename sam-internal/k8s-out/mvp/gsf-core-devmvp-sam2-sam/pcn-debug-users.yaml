@@ -643,6 +643,28 @@ items:
   - apiGroup: rbac.authorization.k8s.io
     kind: User
     name: yu.chen@salesforce.com
+- apiVersion: rbac.authorization.k8s.io/v1beta1
+  kind: RoleBinding
+  metadata:
+    name: debug
+    namespace: hammer-automation
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: debug
+  subjects:
+  - apiGroup: rbac.authorization.k8s.io
+    kind: User
+    name: mgore@salesforce.com
+  - apiGroup: rbac.authorization.k8s.io
+    kind: User
+    name: svazirani@salesforce.com
+  - apiGroup: rbac.authorization.k8s.io
+    kind: User
+    name: pmaru@salesforce.com
+  - apiGroup: rbac.authorization.k8s.io
+    kind: User
+    name: spaganini@salesforce.com
 kind: List
 metadata:
   labels:
