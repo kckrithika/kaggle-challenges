@@ -32,6 +32,8 @@ system:
       volumeMounts:
         - mountPath: /opt/sherlock/data
           name: sherlock-data-vol
+        - mountPath: /opt/sherlock/logs
+          name: sherlock-logs-vol
       livenessProbe:
         exec:
           command:
@@ -51,6 +53,9 @@ system:
       - name: sherlock-data-vol
         hostPath:
           path: /data/sherlock
+      - name: sherlock-logs-vol
+        hostPath:
+          path: /data/sherlock-logs
 
   loadbalancers:
   - lbname: sherlock-flower-lb
