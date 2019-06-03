@@ -2,7 +2,7 @@
     name: "SqlBundleWithoutDeployment",
     instructions: "This alert is for Bundle CRDs that do not have a corresponding deployment",
     alertThreshold: "20m",
-    alertFrequency: "24h",
+    alertFrequency: "336h",
     watchdogFrequency: "5m",
     alertProfile: "sam",
     alertAction: "businesshours_pagerduty",

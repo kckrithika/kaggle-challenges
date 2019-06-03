@@ -2,7 +2,7 @@
       name: "SqlPRFailedToRunEvalPR",
       instructions: "Following PRs haven't run evaluatePR more than 30 mins after getting authorized.",
       alertThreshold: "10m",
-      alertFrequency: "24h",
+      alertFrequency: "336h",
       watchdogFrequency: "10m",
       alertProfile: "sam",
       alertAction: "businesshours_pagerduty",

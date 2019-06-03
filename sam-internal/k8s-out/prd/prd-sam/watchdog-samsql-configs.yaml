@@ -230,7 +230,7 @@ data:
     as IpAddressCapacity\n  from k8s_resource\n  where apikind = ''Node'' and controlEstate
     = ''prd-sam''\n) as ss\ngroup by controlEstate, IpAddressCapacity", "watchdogFrequency":
     "1m"}], "sql_alerts": [{"alertAction": "businesshours_pagerduty", "alertFrequency":
-    "24h", "alertProfile": "sam", "alertThreshold": "10m", "instructions": "The following
+    "336h", "alertProfile": "sam", "alertThreshold": "10m", "instructions": "The following
     deployments are reported as bad customer deployments in Production. Debug Instructions:
     https://git.soma.salesforce.com/sam/sam/wiki/Debug-Failed-Deployment", "name":
     "SqlSlaDepl", "sql": "SELECT * FROM\n                        (\n                          SELECT\n                            ControlEstate,\n                            Namespace,\n                            Name,\n                            JSON_EXTRACT(Payload,
@@ -261,14 +261,14 @@ data:
     like ''mc-eventing'' AND now() < STR_TO_DATE(''2019-03-21'', ''%Y-%m-%d''))\n                             AND
     NOT\n                             (controlestate like ''frf-sam'' AND namespace
     like ''casp'' AND now() < STR_TO_DATE(''2019-03-21'', ''%Y-%m-%d''))", "watchdogFrequency":
-    "10m"}, {"alertAction": "businesshours_pagerduty", "alertFrequency": "24h", "alertProfile":
+    "10m"}, {"alertAction": "businesshours_pagerduty", "alertFrequency": "336h", "alertProfile":
     "sam", "alertThreshold": "5m", "name": "SqlCustomerAppsWithImagePullErrorsProd",
     "sql": "select \n  controlEstate,\n  namespace,\n  name,\n  nodename,\n  phase,\n  Payload->>''$.status.containerStatuses[*].state.waiting.reason''
     as reason,\n  Payload->>''$.status.containerStatuses[*].state.waiting.message''
     as message\nfrom podDetailView where \n  JSON_SEARCH(Payload->>''$.status.containerStatuses[*].state.waiting.reason'',
     ''one'', ''ImagePullBackOff'') is not null \n  AND Kingdom != ''prd'' \n  AND
     Kingdom != ''xrd'' \n  AND IsSamApp = 1;", "watchdogFrequency": "1m"}, {"alertAction":
-    "pagerduty", "alertFrequency": "24h", "alertProfile": "sam", "alertThreshold":
+    "pagerduty", "alertFrequency": "336h", "alertProfile": "sam", "alertThreshold":
     "20m", "instructions": "The following minion pools have multiple nodes down in
     Production requiring immediate attention according to our SLA. Debug Instructions:
     https://git.soma.salesforce.com/sam/sam/wiki/Repair-Failed-SAM-Host", "name":
@@ -287,7 +287,7 @@ data:
     AND NOT\n-- (minionpool like ''phx-sam_mgmt_hub'' AND now() < STR_TO_DATE(''2019-01-22'',
     ''%Y-%m-%d''))\n-- AND NOT\n-- (minionpool like ''ph2-sam_gater'' AND NotReadyPerc
     < 0.5 AND now() < STR_TO_DATE(''2019-01-30'', ''%Y-%m-%d''))\n", "watchdogFrequency":
-    "5m"}, {"alertAction": "businesshours_pagerduty", "alertFrequency": "24h", "alertProfile":
+    "5m"}, {"alertAction": "businesshours_pagerduty", "alertFrequency": "336h", "alertProfile":
     "sam", "alertThreshold": "20m", "instructions": "The following SAM control stack
     components dont have even 1 healhty pod", "name": "SqlSamControl", "sql": "SELECT
     * FROM\n                  (\n                    SELECT\n                      ControlEstate,\n                      Namespace,\n                      Name,\n                      JSON_EXTRACT(Payload,
@@ -308,7 +308,7 @@ data:
     NOT LIKE ''%slb%'' AND\n                     ControlEstate != ''prd-samtest''
     AND\n                     ControlEstate != ''prd-samdev'' AND\n                     desiredReplicas
     != 0", "watchdogFrequency": "5m"}, {"alertAction": "businesshours_pagerduty",
-    "alertFrequency": "24h", "alertProfile": "sam", "alertThreshold": "20m", "instructions":
+    "alertFrequency": "336h", "alertProfile": "sam", "alertThreshold": "20m", "instructions":
     "The following alert is for SamApp CRDs that dont have corresponding Bundle CRDs",
     "name": "SqlSamAppWithoutBundle", "sql": "SELECT\n                        samApp.controlEstate,\n                        samApp.name,\n                        samApp.namespace,\n                        samAppCreationTimestamp,\n                        bundleCreationTimestamp,\n                        samAppNumResourceLinks,\n                        bundleState,\n                        bundleStatus\n                      FROM\n                      (\n                          SELECT\n                            controlEstate,\n                            name,\n                            namespace,\n                            json_length(Payload->''$.status.resourceLinks'')
     as samAppNumResourceLinks,\n                            Payload->>''$.metadata.creationTimestamp''
@@ -321,7 +321,7 @@ data:
     samApp.controlEstate = bundle.controlEstate and samApp.name = bundle.name and
     samApp.namespace = bundle.namespace\n                      WHERE bundle.controlEstate
     is NULL AND bundle.name is NUll AND bundle.namespace is NULL", "watchdogFrequency":
-    "5m"}, {"alertAction": "businesshours_pagerduty", "alertFrequency": "24h", "alertProfile":
+    "5m"}, {"alertAction": "businesshours_pagerduty", "alertFrequency": "336h", "alertProfile":
     "sam", "alertThreshold": "20m", "instructions": "This alert is for Bundle CRDs
     that do not have a corresponding deployment", "name": "SqlBundleWithoutDeployment",
     "sql": "\n        SELECT\n            bundle.controlEstate,\n            bundle.namespace,\n            bundle.name,\n            bundleCreationTimestamp,\n            bundle.bundleDeploymentName,\n            bundleKind,\n            bundleState,\n            overallStatus,\n            bundle.UID\n        FROM\n            (\n                SELECT\n                    controlEstate,\n                    name,\n                    namespace,\n                    Payload->>''$.status.state''
@@ -340,7 +340,7 @@ data:
     deployment.ownerRef IS NULL AND deployment.name IS NULL AND deployment.namespace
     IS NULL\n              \n              AND NOT\n              (bundle.controlEstate
     like ''frf-sam'' AND now() < STR_TO_DATE(''2019-01-21'', ''%Y-%m-%d''))", "watchdogFrequency":
-    "5m"}, {"alertAction": "businesshours_pagerduty", "alertFrequency": "24h", "alertProfile":
+    "5m"}, {"alertAction": "businesshours_pagerduty", "alertFrequency": "336h", "alertProfile":
     "sam", "alertThreshold": "10m", "instructions": "Following PRs have failed to
     get deployed within 45 minutes of getting authorized.", "name": "SqlPRLatency",
     "sql": "SELECT * FROM(\n      SELECT\n        prs.pr_url,\n        prs.merged_time,\n        crds.PoolName,\n        crds.ControlEstate,\n        TIMESTAMPDIFF(MINUTE,prs.merged_time,
@@ -350,7 +350,7 @@ data:
     ON crds.PRNum = prs.pr_num\n        WHERE  prs.merged_time > now() - INTERVAL
     24 hour\n        ORDER BY prs.pr_num\n        ) prLatency\n      WHERE latency
     > 45", "watchdogFrequency": "10m"}, {"alertAction": "businesshours_pagerduty",
-    "alertFrequency": "24h", "alertProfile": "sam", "alertThreshold": "10m", "instructions":
+    "alertFrequency": "336h", "alertProfile": "sam", "alertThreshold": "10m", "instructions":
     "Following PRs haven''t run evaluatePR more than 30 mins after getting authorized.",
     "name": "SqlPRFailedToRunEvalPR", "sql": "SELECT \n         *   \n        FROM\n        (SELECT
     \n          pr_num,\n          created_time,\n          evaluate_pr_status,\n          authorized_by,\n          most_recent_authorized_time,\n          TIMESTAMPDIFF(MINUTE,  most_recent_authorized_time,
@@ -359,7 +359,7 @@ data:
     authorized_by !='''' AND (`evaluate_pr_status` IS NULL OR evaluate_pr_status =
     ''unknown'') AND most_recent_authorized_time IS NOT NULL\n            AND state
     =''open''\n        ) authedButUnkwn\n        WHERE authedButUnkwn.latency > 30",
-    "watchdogFrequency": "10m"}, {"alertAction": "pagerduty", "alertFrequency": "24h",
+    "watchdogFrequency": "10m"}, {"alertAction": "pagerduty", "alertFrequency": "336h",
     "alertProfile": "sam", "alertThreshold": "10m", "instructions": "Following PRs
     have failed to produce corresponding manifest.zip file after 30 minutes of getting  merged.",
     "name": "SqlPRFailedToProduceManifestZip", "sql": "SELECT\n                 *\n                FROM\n                (SELECT\n                  p.pr_num,\n                  t.manifest_zip_time,\n                  p.merged_time,\n                  TIMESTAMPDIFF(MINUTE,
@@ -369,7 +369,7 @@ data:
     p.state =''merged''   AND p.`merged_time` > NOW() - INTERVAL 10 DAY AND manifest_zip_time
     IS NULL order by p.merged_time desc)\n                 manifestZip\n                WHERE
     manifestZip.latency > 30", "watchdogFrequency": "10m"}, {"alertAction": "email",
-    "alertFrequency": "24h", "alertProfile": "sam", "alertThreshold": "0m", "instructions":
+    "alertFrequency": "336h", "alertProfile": "sam", "alertThreshold": "0m", "instructions":
     "Following PRs have at least one image that''s not available after 20 minutes
     of starting deployment", "name": "SqlPRImageUnavailable", "sql": "SELECT\n                *\n            FROM\n                (\n                SELECT\n                    prs.pr_num,\n                    crds.PoolName,\n                    crds.ControlEstate,\n                    payload
     -> ''$.status.startTime'',\n                    payload -> ''$.status.maxImageEndTime'',\n                    TIMESTAMPDIFF(MINUTE,
@@ -383,7 +383,7 @@ data:
     ApiKind = ''Bundle'') crds\n                ON crds.PRNum = prs.pr_num\n                WHERE  prs.merged_time
     > now() - INTERVAL 10 DAY\n            ORDER BY prs.merged_time desc\n            )
     imageLatency\n            WHERE  latencyMin > 20", "watchdogFrequency": "10m"},
-    {"alertAction": "businesshours_pagerduty", "alertFrequency": "24h", "alertProfile":
+    {"alertAction": "businesshours_pagerduty", "alertFrequency": "336h", "alertProfile":
     "sam", "alertThreshold": "3m", "name": "KubednsPodCount", "sql": "SELECT\n              controlEstate,\n              Running,\n              NotRunning\n            FROM\n            (\n            SELECT\n              controlEstate,\n              SUM(Running)
     as Running,\n              SUM(NotRunning) as NotRunning\n            FROM\n            (\n            SELECT\n              controlEstate,\n              (CASE
     WHEN Phase = ''Running'' then 1 else 0 end) as Running,\n              (CASE WHEN
@@ -391,7 +391,7 @@ data:
     namespace = ''kube-system'' AND name LIKE ''kube-dns-%'' AND controlEstate = ''prd-sam''\n            )
     as ss\n            GROUP BY controlEstate\n            ORDER BY NotRunning desc\n            )
     as ss1\n            WHERE\n             Running < NotRunning", "watchdogFrequency":
-    "1m"}, {"alertAction": "email", "alertFrequency": "24h", "alertProfile": "sam",
+    "1m"}, {"alertAction": "email", "alertFrequency": "336h", "alertProfile": "sam",
     "alertThreshold": "5m", "name": "KubednsPodCountProd", "sql": "SELECT\n              controlEstate,\n              Running,\n              NotRunning\n            FROM\n            (\n            SELECT\n              controlEstate,\n              SUM(Running)
     as Running,\n              SUM(NotRunning) as NotRunning\n            FROM\n            (\n            SELECT\n              controlEstate,\n              (CASE
     WHEN Phase = ''Running'' then 1 else 0 end) as Running,\n              (CASE WHEN
@@ -400,7 +400,7 @@ data:
     IN (''PRD'', ''XRD'', ''LO2'', ''LO3''))\n            ) as ss\n            GROUP
     BY controlEstate\n            ORDER BY NotRunning desc\n            ) as ss1\n            WHERE\n             Running
     < NotRunning", "watchdogFrequency": "1m"}, {"alertAction": "pagerduty", "alertFrequency":
-    "24h", "alertProfile": "sam", "alertThreshold": "20m", "instructions": "The following
+    "336h", "alertProfile": "sam", "alertThreshold": "20m", "instructions": "The following
     minion pools have kubeApi nodes down requiring attention during business hours.
     Debug Instructions: https://git.soma.salesforce.com/sam/sam/wiki/Repair-Failed-SAM-Host",
     "name": "SqlKubeApiNode", "sql": "SELECT\n                      minionpool,\n                        TotalApiCount,\n                        NotReadyApiCount,\n                        NewNotReadyNodes,\n                        dist\n                      FROM\n                      (\n                        SELECT\n                            minionpool,\n                            TotalApiCount,\n                            (TotalApiCount
@@ -422,7 +422,7 @@ data:
     > STR_TO_DATE(''2019-07-10'', ''%Y-%m-%d'') OR Name != ''shared0-samtestkubeapi3-1-prd.eng.sfdc.net'')\n                          GROUP
     BY minionpool\n                        ) ss\n                        ) ss2\n                where
     NotReadyApiCount>0 and dist=0", "watchdogFrequency": "5m"}, {"alertAction": "businesshours_pagerduty",
-    "alertFrequency": "24h", "alertProfile": "sam", "alertThreshold": "20m", "instructions":
+    "alertFrequency": "336h", "alertProfile": "sam", "alertThreshold": "20m", "instructions":
     "The following minion pools have kubeApi nodes down requiring attention during
     business hours. Debug Instructions: https://git.soma.salesforce.com/sam/sam/wiki/Repair-Failed-SAM-Host",
     "name": "SqlKubeApiNode", "sql": "SELECT\n                      minionpool,\n                        TotalApiCount,\n                        NotReadyApiCount,\n                        NewNotReadyNodes,\n                        dist\n                      FROM\n                      (\n                        SELECT\n                            minionpool,\n                            TotalApiCount,\n                            (TotalApiCount
@@ -444,7 +444,7 @@ data:
     > STR_TO_DATE(''2019-07-10'', ''%Y-%m-%d'') OR Name != ''shared0-samtestkubeapi3-1-prd.eng.sfdc.net'')\n                          GROUP
     BY minionpool\n                        ) ss\n                        ) ss2\n                where
     NotReadyApiCount>0 and dist>0", "watchdogFrequency": "5m"}, {"alertAction": "businesshours_pagerduty",
-    "alertFrequency": "24h", "alertProfile": "sam", "alertThreshold": "20m", "instructions":
+    "alertFrequency": "336h", "alertProfile": "sam", "alertThreshold": "20m", "instructions":
     "The following SAM control stack components dont have a healhty autodeployer pod",
     "name": "SqlSamControlDeployer", "sql": "select * from (\n  select controlEstate\n  from
     k8s_resource\n  group by controlEstate\n) as allce\n\nleft join\n\n(\n  select
@@ -455,7 +455,7 @@ data:
     as ss\n\non allce.controlEstate = ss.controlEstate\nwhere readyReplicas is null
     or readyReplicas < 1\nand allce.controlEstate not like ''aws%''\nand allce.controlEstate
     not like ''gsf%''", "watchdogFrequency": "5m"}, {"alertAction": "businesshours_pagerduty",
-    "alertFrequency": "24h", "alertProfile": "sam", "alertThreshold": "5m", "name":
+    "alertFrequency": "336h", "alertProfile": "sam", "alertThreshold": "5m", "name":
     "SqlTooManyPodsInNamespace", "sql": "select * from (\n  select \n    controlEstate,
     \n    namespace, \n    count(*) as podCount,\n    count(distinct Payload->>''$.spec.nodeName'')
     as nodeCount,\n    sum(case when Payload->>''$.status.reason'' = ''Evicted'' then

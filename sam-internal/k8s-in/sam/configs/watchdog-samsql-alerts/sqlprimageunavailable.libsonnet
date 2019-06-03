@@ -2,7 +2,7 @@
       name: "SqlPRImageUnavailable",
       instructions: "Following PRs have at least one image that's not available after 20 minutes of starting deployment",
       alertThreshold: "0m",
-      alertFrequency: "24h",
+      alertFrequency: "336h",
       watchdogFrequency: "10m",
       alertProfile: "sam",
       alertAction: "email",

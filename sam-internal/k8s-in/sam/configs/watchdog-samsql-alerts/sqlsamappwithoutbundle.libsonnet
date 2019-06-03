@@ -2,7 +2,7 @@
                 name: "SqlSamAppWithoutBundle",
                 instructions: "The following alert is for SamApp CRDs that dont have corresponding Bundle CRDs",
                 alertThreshold: "20m",
-                alertFrequency: "24h",
+                alertFrequency: "336h",
                 watchdogFrequency: "5m",
                 alertProfile: "sam",
                 alertAction: "businesshours_pagerduty",

@@ -1,7 +1,7 @@
 {
       name: "SqlTooManyPodsInNamespace",
       alertThreshold: "5m",
-      alertFrequency: "24h",
+      alertFrequency: "336h",
       watchdogFrequency: "5m",
       alertProfile: "sam",
       alertAction: "businesshours_pagerduty",

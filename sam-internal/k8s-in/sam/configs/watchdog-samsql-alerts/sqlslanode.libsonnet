@@ -2,7 +2,7 @@
         name: "SqlSlaNode",
         instructions: "The following minion pools have multiple nodes down in Production requiring immediate attention according to our SLA. Debug Instructions: https://git.soma.salesforce.com/sam/sam/wiki/Repair-Failed-SAM-Host",
         alertThreshold: "20m",
-        alertFrequency: "24h",
+        alertFrequency: "336h",
         watchdogFrequency: "5m",
         alertProfile: "sam",
         alertAction: "pagerduty",

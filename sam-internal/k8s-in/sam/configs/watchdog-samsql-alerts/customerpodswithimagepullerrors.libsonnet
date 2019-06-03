@@ -1,7 +1,7 @@
 {
       name: "SqlCustomerAppsWithImagePullErrorsProd",
       alertThreshold: "5m",
-      alertFrequency: "24h",
+      alertFrequency: "336h",
       watchdogFrequency: "1m",
       alertProfile: "sam",
       alertAction: "businesshours_pagerduty",

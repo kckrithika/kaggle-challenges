@@ -3,7 +3,7 @@
           name: "SqlKubeApiNode",
           instructions: "The following minion pools have kubeApi nodes down requiring attention during business hours. Debug Instructions: https://git.soma.salesforce.com/sam/sam/wiki/Repair-Failed-SAM-Host",
           alertThreshold: "20m",
-          alertFrequency: "24h",
+          alertFrequency: "336h",
           watchdogFrequency: "5m",
           alertProfile: "sam",
           alertAction: action,
