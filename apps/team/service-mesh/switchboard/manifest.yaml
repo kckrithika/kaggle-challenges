@@ -23,6 +23,8 @@ system:
       - --listeners.rate-limit-enabled-clusters[2]=metadata-service.retail-mds
       - --listeners.rate-limit-enabled-clusters[3]=cre-api-ccp-perf.retail-cre
       - --listeners.rate-limit-enabled-clusters[4]=retail-setup.retail-rsui
+      - --listeners.rate-limit-enabled-clusters[5]=cloudatlas-prd-dev-service.cloudatlas
+      - --listeners.rate-limit-enabled-clusters[6]=gid-runtime-service.global-identity
       - --listeners.authz-policy-enabled-clusters[0]=ordering-authz-policy.service-mesh
       - --listeners.authz-policy-enabled-clusters[1]=shipping-authz-policy.service-mesh
       - --listeners.authz-policy-enabled-clusters[2]=authz-svc.service-mesh
