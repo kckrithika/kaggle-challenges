@@ -46,7 +46,7 @@ system:
 
       livenessProbe:
         exec:
-          command: ["mysqladmin", "status", "-h", "127.0.0.1", "-u", "$MYSQL_ROOT", "-p","$MYSQL_ROOT_PASSWORD"]
+          command: ["mysql", "status", "-h", "127.0.0.1", "-u", "$MYSQL_ROOT", "-p","$MYSQL_ROOT_PASSWORD"]
         initialDelaySeconds: 60
         timeoutSeconds: 10
 
