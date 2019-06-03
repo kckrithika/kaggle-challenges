@@ -58,8 +58,6 @@ system:
         value: B
       - name: ZDT
         value: true
-      - name: IS_DEBUGAPP
-        value: true
       - name: CASAM_HOST_NAME
         valueFrom:
           fieldRef:
@@ -95,8 +93,6 @@ system:
         name: log-volume-jvm
       - mountPath: /etc/pki_service
         name: tls-client-cert
-      - mountPath: /certs/cert-server
-        name: tls-server-cert
       - mountPath: /home/sfdc/salesforce/casam
         name: coreapp-casam-volume
       - mountPath: /home/sfdc/salesforce/config/settings/overrides/caas-cluster-casam-sp2
@@ -105,7 +101,7 @@ system:
     - env:
       - name: CASAM_SETTINGS_PATH
         value: mist.mist61.prd.na6.app
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/casam/coreapp_overrides:80af46
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/casam/coreapp_overrides:5f109d
       livenessProbe:
         exec:
           command:
@@ -140,7 +136,6 @@ system:
       name: envoy-sidecar
       ports:
       - containerPort: 13065
-      - containerPort: 13066
       - containerPort: 15373
       readinessProbe:
         exec:
