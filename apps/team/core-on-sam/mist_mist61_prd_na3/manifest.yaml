@@ -298,7 +298,7 @@ system:
       pod: na3
       serviceName: sequencer
     name: na3-mist61sequencer-prd
-    serviceAccountName: casam-sequencer-serviceaccount
+    serviceAccountName: casamserviceaccount
     progressDeadlineSeconds: 300
     terminationGracePeriodSeconds: 500
     volumes:
