@@ -2,7 +2,7 @@
       name: "SqlSlaDepl",
       instructions: "The following deployments are reported as bad customer deployments in Production. Debug Instructions: https://git.soma.salesforce.com/sam/sam/wiki/Debug-Failed-Deployment",
       alertThreshold: "10m",
-      alertFrequency: "24h",
+      alertFrequency: "336h",
       watchdogFrequency: "10m",
       alertProfile: "sam",
       alertAction: "businesshours_pagerduty",

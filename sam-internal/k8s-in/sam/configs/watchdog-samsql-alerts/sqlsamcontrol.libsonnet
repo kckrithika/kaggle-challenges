@@ -2,7 +2,7 @@
             name: "SqlSamControl",
             instructions: "The following SAM control stack components dont have even 1 healhty pod",
             alertThreshold: "20m",
-            alertFrequency: "24h",
+            alertFrequency: "336h",
             watchdogFrequency: "5m",
             alertProfile: "sam",
             alertAction: "businesshours_pagerduty",

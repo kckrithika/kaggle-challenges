@@ -2,7 +2,7 @@
             name: "SqlSamControlDeployer",
             instructions: "The following SAM control stack components dont have a healhty autodeployer pod",
             alertThreshold: "20m",
-            alertFrequency: "24h",
+            alertFrequency: "336h",
             watchdogFrequency: "5m",
             alertProfile: "sam",
             alertAction: "businesshours_pagerduty",
