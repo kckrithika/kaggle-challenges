@@ -63,7 +63,7 @@ system:
           memory: "10Gi"
       env:
         - name: GRPC_HOST
-          value: sip-exp-manager-prd-slb.sip.prd-search_model_executor.prd.slb.sfdc.net:7020
+          value: sip-exp-manager-prd-slb.sip.prd-sam.prd.slb.sfdc.net:7020
   loadbalancers:
   - function: sip-exp-manager-prd
     lbname: sip-exp-manager-prd-slb
