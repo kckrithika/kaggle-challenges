@@ -14,7 +14,7 @@ local mcpIstioConfig = (import "service-mesh/istio-config.jsonnet");
       release: "istio",
     },
     name: "istio-ingressgateway",
-    namespace: "mesh-control-plane",
+    namespace: "core-on-sam-sp2",
   },
   spec: {
     ports: [

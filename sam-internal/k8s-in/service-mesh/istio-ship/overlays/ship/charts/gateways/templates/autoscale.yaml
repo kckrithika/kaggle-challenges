@@ -2,6 +2,6 @@ apiVersion: autoscaling/v2beta1
 kind: HorizontalPodAutoscaler
 metadata:
   name: istio-ingressgateway
-  namespace: mesh-control-plane
+  namespace: core-on-sam-sp2
   annotations:
     manifestctl.sam.data.sfdc.net/swagger: disable

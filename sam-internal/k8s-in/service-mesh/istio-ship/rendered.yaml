@@ -590,7 +590,7 @@ metadata:
     istio: ingressgateway
     release: istio
   name: istio-ingressgateway
-  namespace: mesh-control-plane
+  namespace: core-on-sam-sp2
 spec:
   ports:
   - name: https-coreapp
@@ -658,7 +658,7 @@ metadata:
     istio: ingressgateway
     release: istio
   name: istio-ingressgateway
-  namespace: mesh-control-plane
+  namespace: core-on-sam-sp2
 spec:
   selector:
     matchLabels:
@@ -1365,7 +1365,7 @@ metadata:
     app: ingressgateway
     release: istio
   name: istio-ingressgateway
-  namespace: mesh-control-plane
+  namespace: core-on-sam-sp2
 spec:
   maxReplicas: 5
   metrics:

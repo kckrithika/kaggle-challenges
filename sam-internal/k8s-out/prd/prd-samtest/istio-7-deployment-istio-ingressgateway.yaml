@@ -6,7 +6,7 @@ metadata:
     istio: ingressgateway
     release: istio
   name: istio-ingressgateway
-  namespace: mesh-control-plane
+  namespace: core-on-sam-sp2
 spec:
   selector:
     matchLabels:
