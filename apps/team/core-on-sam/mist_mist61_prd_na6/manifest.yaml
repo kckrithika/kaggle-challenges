@@ -58,6 +58,8 @@ system:
         value: B
       - name: ZDT
         value: true
+      - name: IS_DEBUGAPP
+        value: true
       - name: CASAM_HOST_NAME
         valueFrom:
           fieldRef:
@@ -93,6 +95,8 @@ system:
         name: log-volume-jvm
       - mountPath: /etc/pki_service
         name: tls-client-cert
+      - mountPath: /certs/cert-server
+        name: tls-server-cert
       - mountPath: /home/sfdc/salesforce/casam
         name: coreapp-casam-volume
       - mountPath: /home/sfdc/salesforce/config/settings/overrides/caas-cluster-casam-sp2
