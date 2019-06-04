@@ -158,6 +158,156 @@
     healthprotocol: http
     healthpath: /ping.jsp?allBusy
 
+- lbname: encinoman1-cs2
+  servers:
+   - stmfacs2ice1-app1-1-prd.eng.sfdc.net
+   - stmfacs2ice1-app1-2-prd.eng.sfdc.net
+   - stmfacs2ice1-app2-1-prd.eng.sfdc.net
+   - stmfacs2ice1-app2-2-prd.eng.sfdc.net
+  ports:
+  - port: 443
+    targetport: 8090
+    reencrypt: true
+    healthport: 8085
+    lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy
+    sticky: 86400
+    tls: true
+    addheaders:
+    - name: "X-Salesforce-VIP"
+      value: "FORCE"
+  - port: 80
+    httpsredirectport: 443
+    lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy
+
+- lbname: encinoman2-cs2
+  servers:
+   - stmfacs2ice1-app1-1-prd.eng.sfdc.net
+   - stmfacs2ice1-app1-2-prd.eng.sfdc.net
+   - stmfacs2ice1-app2-1-prd.eng.sfdc.net
+   - stmfacs2ice1-app2-2-prd.eng.sfdc.net
+  ports:
+  - port: 443
+    targetport: 8090
+    reencrypt: true
+    healthport: 8085
+    lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy
+    sticky: 86400
+    tls: true
+    addheaders:
+    - name: "X-Salesforce-VIP"
+      value: "FORCE"
+  - port: 80
+    httpsredirectport: 443
+    lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy
+
+- lbname: encinoman3-cs2
+  servers:
+   - stmfacs2ice1-app1-1-prd.eng.sfdc.net
+   - stmfacs2ice1-app1-2-prd.eng.sfdc.net
+   - stmfacs2ice1-app2-1-prd.eng.sfdc.net
+   - stmfacs2ice1-app2-2-prd.eng.sfdc.net
+  ports:
+  - port: 443
+    targetport: 8090
+    reencrypt: true
+    healthport: 8085
+    lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy
+    sticky: 86400
+    tls: true
+    addheaders:
+    - name: "X-Salesforce-VIP"
+      value: "FORCE"
+  - port: 80
+    httpsredirectport: 443
+    lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy
+
+- lbname: encinoman4-cs2
+  servers:
+   - stmfacs2ice1-app1-1-prd.eng.sfdc.net
+   - stmfacs2ice1-app1-2-prd.eng.sfdc.net
+   - stmfacs2ice1-app2-1-prd.eng.sfdc.net
+   - stmfacs2ice1-app2-2-prd.eng.sfdc.net
+  ports:
+  - port: 443
+    targetport: 8090
+    reencrypt: true
+    healthport: 8085
+    lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy
+    sticky: 86400
+    tls: true
+    addheaders:
+    - name: "X-Salesforce-VIP"
+      value: "FORCE"
+  - port: 80
+    httpsredirectport: 443
+    lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy
+
+- lbname: encinoman5-cs2
+  servers:
+   - stmfacs2ice1-app1-1-prd.eng.sfdc.net
+   - stmfacs2ice1-app1-2-prd.eng.sfdc.net
+   - stmfacs2ice1-app2-1-prd.eng.sfdc.net
+   - stmfacs2ice1-app2-2-prd.eng.sfdc.net
+  ports:
+  - port: 443
+    targetport: 8090
+    reencrypt: true
+    healthport: 8085
+    lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy
+    sticky: 86400
+    tls: true
+    addheaders:
+    - name: "X-Salesforce-VIP"
+      value: "FORCE"
+  - port: 80
+    httpsredirectport: 443
+    lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy
+
+- lbname: encinoman6-cs2
+  servers:
+   - stmfacs2ice1-app1-1-prd.eng.sfdc.net
+   - stmfacs2ice1-app1-2-prd.eng.sfdc.net
+   - stmfacs2ice1-app2-1-prd.eng.sfdc.net
+   - stmfacs2ice1-app2-2-prd.eng.sfdc.net
+  ports:
+  - port: 443
+    targetport: 8090
+    reencrypt: true
+    healthport: 8085
+    lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy
+    sticky: 86400
+    tls: true
+    addheaders:
+    - name: "X-Salesforce-VIP"
+      value: "FORCE"
+  - port: 80
+    httpsredirectport: 443
+    lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy
+
 - lbname: cuttingedge1
   servers:
    - stmfana43ice1-app2-1-prd.eng.sfdc.net
