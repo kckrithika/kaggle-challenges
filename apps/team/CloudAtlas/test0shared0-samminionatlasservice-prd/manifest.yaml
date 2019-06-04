@@ -225,9 +225,9 @@ system:
   # SLB
   #####################################################################################
   loadbalancers:
-    - lbname: cabusinesslb
+    - lbname: cabusinesslb-test
       function: cloudatlas-prd-dev-service
       slbEnabled: true
       ports:
         - port: 9090
-          targetport: 7022
+          targetport: 7012
