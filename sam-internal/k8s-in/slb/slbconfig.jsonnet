@@ -342,6 +342,12 @@
                   "encinoman4-slawrance-prd.slb.sfdc.net",
                   "encinoman5-slawrance-prd.slb.sfdc.net",
                   "encinoman6-slawrance-prd.slb.sfdc.net",
+                  "encinoman1-cs2-slawrance-prd.slb.sfdc.net",
+                  "encinoman2-cs2-slawrance-prd.slb.sfdc.net",
+                  "encinoman3-cs2-slawrance-prd.slb.sfdc.net",
+                  "encinoman4-cs2-slawrance-prd.slb.sfdc.net",
+                  "encinoman5-cs2-slawrance-prd.slb.sfdc.net",
+                  "encinoman6-cs2-slawrance-prd.slb.sfdc.net"
               ],
               "phx-sam": ["login-cloudforce-phx.slb.sfdc.net"],
               "dfw-sam": ["login-cloudforce-dfw.slb.sfdc.net"],
