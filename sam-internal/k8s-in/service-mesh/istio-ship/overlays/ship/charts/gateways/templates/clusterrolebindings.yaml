@@ -3,9 +3,6 @@ kind: ClusterRoleBinding
 metadata:
   annotations:
     manifestctl.sam.data.sfdc.net/swagger: disable
-  labels:
-    app: ingressgateway
-    release: istio
   name: istio-ingressgateway-mesh-control-plane
 subjects:
 - kind: ServiceAccount
