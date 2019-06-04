@@ -5,7 +5,7 @@ system:
       - dmanoharan@salesforce.com
   functions:
     - name: gater-mesh
-      count: 0
+      count: 1
       hostnetwork: false
       containers:
         - name: gater1
