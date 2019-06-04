@@ -52,4 +52,14 @@ local slbconfigs = import "slbconfig.jsonnet";
     # 2019/05/28
     # Feature flag to rename "slb-(envoy|nginx)-config-wipe" to "slb-config-wipe".
     renameConfigWipe: (slbimages.phaseNum <= 0),
+
+    # nginx-accesslogs tends to kill spinning disks, driving queue depths up to >150. See
+    # https://computecloud.slack.com/archives/G340CE86R/p1559625970018500?thread_ts=1559590829.287500&cid=G340CE86R
+    # for more discussion.
+    # Disable nginx-accesslogs in later phases until issues discussed in the following work items are addressed.
+    #   https://gus.my.salesforce.com/a07B0000006v3IOIAY
+    #   https://gus.my.salesforce.com/a07B0000006v3JRIAY
+    #   https://gus.my.salesforce.com/a07B0000006v3JlIAI
+    #   https://gus.my.salesforce.com/a07B0000006v3KAIAY
+    enableNginxAccessLogsAggregation: (slbimages.phaseNum <= 1),
 }
