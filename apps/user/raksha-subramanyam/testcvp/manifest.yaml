@@ -3,28 +3,25 @@ system:
   functions: 
     - name: testcvp
       count: 1
+      volumes:
+      - name: cert
+        maddogCert:
+          type: client
       containers:  
       - name: heimdall-ui 
-        image: ops0-artifactrepo1-0-prd.data.sfdc.net/heimdall/heimdall-ui
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/heimdall/heimdall-ui:1.284.0
         resources:
           limits: { cpu: "10", memory: "4Gi" }
           requests: { cpu: "10", memory: "4Gi" }
         ports:
         - containerPort: 80
-          name: heimdall-ui-http-port
+          name: http
         livenessProbe:
           exec:
             command:
             - "false"
-          initialDelaySeconds: 120 
+          initialDelaySeconds: 120
           periodSeconds: 5
         volumeMounts:
-          - name: config
-  	    mountPath: /etc/nginx/nginx.conf
-   	      subPath: nginx.conf
-	  - name: cert
-            mountPath: /certs
-      volumes:
-        - name: pki-cert
-      	  maddogCert:
-            type: client
+        - name: cert
+          mountPath: /certs
