@@ -17,8 +17,11 @@ webhooks:
   failurePolicy: Ignore
   name: sherpa-injector.service-mesh.svc
   namespaceSelector:
-    matchLabels:
-      sherpa-injection: enabled
+    matchExpressions:
+    - key: sherpa-injector.service-mesh/inject
+      operator: NotIn
+      values:
+      - disabled
   rules:
   - apiGroups:
     - apps

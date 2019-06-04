@@ -50,9 +50,15 @@ local utils = import "util_functions.jsonnet";
       ],
       failurePolicy: "Ignore",  //TODO: Set to "Fail", when the code/configs are stable
       namespaceSelector: {
-        matchLabels: {
-          "sherpa-injection": "enabled",
-        },
+        matchExpressions: [
+          {
+            key: "sherpa-injector.service-mesh/inject",
+            operator: "NotIn",
+            values: [
+              "disabled",
+            ],
+          },
+        ],
       },
     },
   ],
