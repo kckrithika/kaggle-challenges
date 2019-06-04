@@ -46,7 +46,8 @@ system:
                   -Dcom.sun.management.jmxremote.rmi.port=8898
                   -Dcom.sun.management.jmxremote.ssl=false
                   -Dcom.sun.management.jmxremote.authenticate=false
-                  -Xmx4G -Xms4G -XX:ParallelGCThreads=8"
+                  -Xmx4G -Xms4G -XX:ParallelGCThreads=8
+                  -Dsun.security.krb5.debug=true"
       resources:
         limits: { cpu: "8", memory: "6Gi" }
         requests: { cpu: "8", memory: "5Gi" }
