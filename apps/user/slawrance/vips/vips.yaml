@@ -120,7 +120,7 @@
     healthpath: /ping.jsp?allBusy
     sticky: 86400
     tls: true
-    tlscertificate: secret_service:BofA-Stmfa-VIP-Certs:encinoman5.stmfa.stm.my-salesforce.com.crt
+    tlscertificate: secret_service:BofA-Stmfa-VIP-Certs:encinoman5b.stmfa.stm.my-salesforce.com.crt
     tlskey: kms:1:2:39511828A26F7F464E472A3E75E15C8D27B4A4558B8F7231704D844ACB28ABE2:d887c988-4967-4eaf-bd63-26e1a8c98a0c
     addheaders:
     - name: "X-Salesforce-VIP"
