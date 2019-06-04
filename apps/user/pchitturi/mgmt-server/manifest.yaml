@@ -1,0 +1,69 @@
+apiVersion: v1
+system:
+  functions:
+    - name: mgmt-server-api
+      count: 1
+      type: stateful-set
+      containers:
+        - name: mgmt-server-api-cont
+          image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/anudeept/mgmtapi:1.3
+          livenessProbe:
+            exec:
+              command: ["curl", "http://127.0.0.1:5004/"]
+            initialDelaySeconds: 60
+            timeoutSeconds: 10
+          ports:
+          - containerPort: 5004
+          resources:
+            requests:
+              cpu: 2
+              memory: 3Gi
+            limits:
+              cpu: 3
+              memory: 4Gi
+          env:
+            - name: SHELL
+              value: "/bin/bash"
+            - name: UP_STRING
+              value: "UI API Server Blocking."
+            - name: SERVERNAME
+              value: 127.0.0.1
+            - name: ENV_MODE
+              value: "production"
+            - name: NODE_ENV
+              value: "production"
+            - name: INSTALLATION_TYPE
+              value: "CLUSTER"
+            - name: MYSQL_SERVER
+              value: guiapi-db-lb
+            - name: POLICY_DESIGNER_SERVER_IP
+              value: "mgmt-pd-lb"
+            - name: POLICY_DESIGNER_SERVER_PORT
+              value: 8080
+            - name: LOGGING_JSON_STDOUT_LEVEL
+              value: all
+            - name: LOGGING_STDERR_LEVEL
+              value: all
+            - name: SECRETS_PATH
+              value: "/var/mgmt-server-secrets/"
+          volumeMounts:
+            - mountPath: /var/mgmt-server-secrets/
+              name: mgmt-server-secrets-vol
+              readOnly: true
+            - name: tls-server-cert
+              mountPath: /server-certs
+      volumes:
+        - name: mgmt-server-secrets-vol
+          k4aSecret:
+            secretName: mgmt-server-secrets
+        - name: tls-server-cert
+          maddogCert:
+            type: server
+      lbname: mgmtserver-api-stateful-lb
+  loadbalancers:
+  - lbname: mgmt-api-lb
+    function: mgmt-server-api
+    slbEnabled: true
+    ports:
+      - port: 5004
+        targetport: 5004
