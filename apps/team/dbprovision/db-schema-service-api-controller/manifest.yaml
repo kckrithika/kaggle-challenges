@@ -6,7 +6,7 @@ system:
     count: 1
     containers:
     - name: db-schema-service-api-controller
-      image: gcr.io/gsf-mgmt-devmvp-spinnaker/dva/db-schema-service-api-controller:latest
+      image: gcr.io/gsf-mgmt-devmvp-spinnaker/dva/db-schema-service-api-controller:2
       command: ["java -jar -Dspring.profiles.active=gcp-dev /home/scone/controller/build/libs/controller.jar"]
       env:
         - name: VAULT_TOKEN
@@ -21,7 +21,7 @@ system:
         - mountPath: /secrets/
           name: dbprovision-vaulttoken
           readOnly: true
-  volumes:
-    - name: dbprovision-vaulttoken
-      k4aSecret:
-        secretName: dbprovision-vaulttoken
+    volumes:
+      - name: dbprovision-vaulttoken
+        k4aSecret:
+          secretName: dbprovision-vaulttoken

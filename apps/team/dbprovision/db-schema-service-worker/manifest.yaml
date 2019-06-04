@@ -6,16 +6,20 @@ system:
     count: 1
     containers:
     - name: db-schema-service-worker
-      image: gcr.io/gsf-mgmt-devmvp-spinnaker/dva/db-schema-service-worker:latest
+      image: gcr.io/gsf-mgmt-devmvp-spinnaker/dva/db-schema-service-worker:2
       command: ["java -jar /home/scone/worker/build/libs/worker.jar"]
       env:
         - name: VAULT_TOKEN
           value: "/secrets/tk.txt"
+      livenessProbe:
+        httpGet:
+          path: /
+          port: 11443
       volumeMounts:
         - mountPath: /secrets/
           name: dbprovision-vaulttoken
           readOnly: true
-  volumes:
-    - name: dbprovision-vaulttoken
-      k4aSecret:
-        secretName: dbprovision-vaulttoken
+    volumes:
+      - name: dbprovision-vaulttoken
+        k4aSecret:
+          secretName: dbprovision-vaulttoken
