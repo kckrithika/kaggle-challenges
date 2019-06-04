@@ -27,7 +27,7 @@ system:
             - name: UP_STRING
               value: "UI API Server Blocking."
             - name: SERVERNAME
-              value: 127.0.0.1
+              value: "127.0.0.1"
             - name: ENV_MODE
               value: "production"
             - name: NODE_ENV
