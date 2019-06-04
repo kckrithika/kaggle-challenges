@@ -334,14 +334,14 @@
             + {
               "prd-sam": [
                   "mist51-app-hsm-prd.slb.sfdc.net",
-"mist51-app-prd.slb.sfdc.net",
+                  "mist51-app-prd.slb.sfdc.net",
                   # Steven Lawrance (@slawrance) KMS testing in PRD 2019/06/03
                   "encinoman1-slawrance-prd.slb.sfdc.net",
-"encinoman2-slawrance-prd.slb.sfdc.net",
+                  "encinoman2-slawrance-prd.slb.sfdc.net",
                   "encinoman3-slawrance-prd.slb.sfdc.net",
-"encinoman4-slawrance-prd.slb.sfdc.net",
+                  "encinoman4-slawrance-prd.slb.sfdc.net",
                   "encinoman5-slawrance-prd.slb.sfdc.net",
-"encinoman6-slawrance-prd.slb.sfdc.net",
+                  "encinoman6-slawrance-prd.slb.sfdc.net",
               ],
               "phx-sam": ["login-cloudforce-phx.slb.sfdc.net"],
               "dfw-sam": ["login-cloudforce-dfw.slb.sfdc.net"],
