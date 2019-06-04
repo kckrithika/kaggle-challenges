@@ -58,7 +58,7 @@ system:
     \"id\" : \"targetdb\",
     \"instanceName\" : \"EE\",
     \"password\" : \"basic:xRdN9n9+Yto2hHDW/sldaA==\",
-    \"port\" : 1521,
+    \"port\" : 1522,
     \"type\" : \"oracle\",
     \"user\" : \"ACDS_TEST\"}"
        - name : TENANT_ADMIN_NAME
