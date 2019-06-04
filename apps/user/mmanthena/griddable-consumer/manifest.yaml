@@ -54,9 +54,9 @@ system:
         \"useServiceName\" : \"AUTO\",
         \"useStatementBatching\" : false
     },
-    \"host\" : \"10.225.244.198\",
+    \"host\" : \"10.225.193.88\",
     \"id\" : \"targetdb\",
-    \"instanceName\" : \"DATABASE\",
+    \"instanceName\" : \"EE\",
     \"password\" : \"basic:xRdN9n9+Yto2hHDW/sldaA==\",
     \"port\" : 1521,
     \"type\" : \"oracle\",
