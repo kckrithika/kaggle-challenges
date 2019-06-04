@@ -33,6 +33,12 @@ data:
           "vips": [
             "mist51-app-hsm-prd.slb.sfdc.net",
             "mist51-app-prd.slb.sfdc.net",
+            "encinoman1-slawrance-prd.slb.sfdc.net",
+            "encinoman2-slawrance-prd.slb.sfdc.net",
+            "encinoman3-slawrance-prd.slb.sfdc.net",
+            "encinoman4-slawrance-prd.slb.sfdc.net",
+            "encinoman5-slawrance-prd.slb.sfdc.net",
+            "encinoman6-slawrance-prd.slb.sfdc.net",
             "slb-canary-hsm.sam-system.prd-sam.prd.slb.sfdc.net"
           ]
         },
