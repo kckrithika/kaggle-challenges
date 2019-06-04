@@ -8,7 +8,7 @@ system:
     count: 3
     containers:
     - name: gater1
-      image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/gater/gate-manager:1.14.1-SNAPSHOT_20190522_174_1d83f1f
+      image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/gater/gate-manager:1.14.1-SNAPSHOT_20190604_1_1d83f1f
       args:
       - --server.port=9090
       - --spring.datasource.hikari.maximumPoolSize=6
