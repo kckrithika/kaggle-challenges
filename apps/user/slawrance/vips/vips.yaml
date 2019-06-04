@@ -13,7 +13,7 @@
     sticky: 86400
     tls: true
     tlscertificate: secret_service:BofA-Stmfa-VIP-Certs:encinoman1.stmfa.stm.my-salesforce.com.crt
-    tlskey: 1:2:39511828A26F7F464E472A3E75E15C8D27B4A4558B8F7231704D844ACB28ABE2:02cf64ca-0084-4d32-b003-e2688547b3b7
+    tlskey: kms:1:2:39511828A26F7F464E472A3E75E15C8D27B4A4558B8F7231704D844ACB28ABE2:02cf64ca-0084-4d32-b003-e2688547b3b7
     addheaders:
     - name: "X-Salesforce-VIP"
       value: "FORCE"
