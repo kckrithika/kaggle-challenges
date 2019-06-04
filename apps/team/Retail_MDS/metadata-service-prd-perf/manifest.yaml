@@ -137,9 +137,6 @@ system:
     - name: gdot-secrets-volume
       k4aSecret:
         secretName: mds-gdot-secrets-prd
-    labels:
-      chaos.sfdc.net/podDelete: "true"
-      chaos.sfdc.net/podDeletePeriod: 30m
   loadbalancers:
   - lbname: metadata-service-prd-perf-lb
     function: metadata-service-prd-perf
