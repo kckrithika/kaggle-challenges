@@ -9,7 +9,7 @@ system:
           type: client
       containers:  
       - name: heimdall-ui 
-        image: ops0-artifactrepo1-0-prd.data.sfdc.net/heimdall/heimdall-ui-sam-poc:1.0.0
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/heimdall/heimdall-ui-sam-poc:1.0.0
         resources:
           limits: { cpu: "10", memory: "4Gi" }
           requests: { cpu: "10", memory: "4Gi" }
