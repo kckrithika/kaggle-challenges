@@ -35,9 +35,9 @@ system:
             - name: INSTALLATION_TYPE
               value: "CLUSTER"
             - name: MYSQL_SERVER
-              value: athatipalli.guiapi-db-lb
+              value: user-athatipalli.guiapi-db-lb
             - name: POLICY_DESIGNER_SERVER_IP
-              value: "mgmt-pd-lb"
+              value: user-athatipalli.mgmt-pd-lb
             - name: POLICY_DESIGNER_SERVER_PORT
               value: 8080
             - name: LOGGING_JSON_STDOUT_LEVEL
