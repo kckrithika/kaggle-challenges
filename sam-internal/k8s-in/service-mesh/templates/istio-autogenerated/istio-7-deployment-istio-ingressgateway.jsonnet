@@ -126,12 +126,12 @@ local mcpIstioConfig = (import "service-mesh/istio-config.jsonnet");
               "--controlPlaneAuthPolicy",
               "NONE",
               "--discoveryAddress",
-              "istio-pilot:15010",
+              "istio-pilot.mesh-control-plane:15010",
             ],
             env: [
               {
                 name: "ESTATE",
-                value: mcpIstioConfig.istioEstate,
+                value: mcpIstioConfig.casamEstate,
               },
               {
                 name: "ISTIO_METAJSON_METRICS_INCLUSIONS",
@@ -309,7 +309,7 @@ local mcpIstioConfig = (import "service-mesh/istio-config.jsonnet");
               },
               {
                 name: "ESTATE",
-                value: mcpIstioConfig.istioEstate,
+                value: mcpIstioConfig.casamEstate,
               },
             ],
             image: mcpIstioConfig.madkubImage,
@@ -426,7 +426,7 @@ local mcpIstioConfig = (import "service-mesh/istio-config.jsonnet");
           },
         ],
         nodeSelector: {
-          pool: mcpIstioConfig.istioEstate,
+          pool: mcpIstioConfig.casamEstate,
         },
         serviceAccountName: "istio-ingressgateway-service-account",
         volumes: [
