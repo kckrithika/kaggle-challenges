@@ -42,7 +42,6 @@ local utils = import "util_functions.jsonnet";
             image_tags+: {
             },
             feature_flags+: {
-                watchdog_kuberesources: "enabled",
             },
             version_mapping+: {
             },

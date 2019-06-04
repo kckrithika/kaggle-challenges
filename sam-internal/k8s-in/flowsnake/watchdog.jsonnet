@@ -32,8 +32,7 @@ local samconfig = import "config.jsonnet";
         funnelEndpoint: flowsnakeconfig.funnel_vip_and_port,
         imageName: flowsnake_images.watchdog,
         kubeResourceNamespacePrefixBlacklist: "sam-watchdog",
-        kubeResourceNamespacePrefixWhitelist: "sam-system,flowsnake" +
-          if std.objectHas(flowsnake_images.feature_flags, "watchdog_kuberesources") then ",kube-system" else "",
+        kubeResourceNamespacePrefixWhitelist: "sam-system,flowsnake,kube-system",
         maxUptimeSampleSize: 5,
         monitoredProcesses: {
           "docker-containerd.*docker-bootstrap": "age.dockercontainerdbootstrap",

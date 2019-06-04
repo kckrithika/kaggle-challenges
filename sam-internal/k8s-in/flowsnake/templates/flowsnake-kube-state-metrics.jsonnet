@@ -164,12 +164,8 @@ local flowsnake_images = (import "flowsnake_images.jsonnet") + { templateFilenam
                     metadata: {
                         labels: {
                             "k8s-app": "kube-state-metrics",
-                        } + (
-if std.objectHas(flowsnake_images.feature_flags, "watchdog_kuberesources") then
-                        {
                             name: "kube-state-metrics",
-                        } else {}
-                        ),
+                        },
                     },
                     spec: {
                         serviceAccountName: "kube-state-metrics-serviceaccount",
