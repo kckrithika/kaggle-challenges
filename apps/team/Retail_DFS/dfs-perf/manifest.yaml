@@ -5,9 +5,6 @@ system:
     count: 3
     identity:
       serviceName: dfs
-    labels:
-      chaos.sfdc.net/podDelete: true
-      chaos.sfdc.net/podDeletePeriod: 30m
     # maps the dfslogvol volumnMount to a directory on the host machine
     volumes:
     - name: logvol
