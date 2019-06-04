@@ -230,4 +230,4 @@ system:
       slbEnabled: true
       ports:
         - port: 9090
-          targetport: 7012
+          targetport: 7014
