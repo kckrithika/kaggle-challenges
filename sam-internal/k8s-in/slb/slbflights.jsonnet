@@ -33,7 +33,7 @@ local slbconfigs = import "slbconfig.jsonnet";
 
     # test our theory that ddi is having trouble with long-lived connections by enabling canary-creator
     # to run 24 hours (as a corollary, shift alerts to be business hours only) - start in just cdg
-    slbCanaryAllHours: (slbimages.phaseNum < 1),
+    slbCanaryAllHours: (configs.kingdom == "cdg" || configs.kingdom == "hnd" || configs.kingdom == "lo2"),
 
     # 2019/05/22
     # Deploy slb-envoy-proxy only if hyperslb version is >= 2166.
