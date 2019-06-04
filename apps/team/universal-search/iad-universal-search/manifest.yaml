@@ -125,7 +125,25 @@ system:
           command:
           - "/home/sfdc-usmt/run.sh"
           - "--domain"
-          - "synthetics-cre"          
+          - "synthetics-shared"
+        initialDelaySeconds: 120
+        timeoutSeconds: 30
+        periodSeconds: 900
+        failureThreshold: 1
+    - name: universal-search-synthetics-cre
+      image: sfci/searchdev/universal-search-synthetics:0.1.0
+      volumeMounts:
+        - name: synthetics-log-vol
+          mountPath: /home/sfdc-usmt/logs
+      livenessProbe:
+        exec:
+          command: ["true"]
+      readinessProbe:
+        exec:
+          command:
+          - "/home/sfdc-usmt/run.sh"
+          - "--domain"
+          - "synthetics-cre"
         initialDelaySeconds: 120
         timeoutSeconds: 30
         periodSeconds: 900
