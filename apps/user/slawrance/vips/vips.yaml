@@ -12,6 +12,8 @@
     healthpath: /ping.jsp?allBusy
     sticky: 86400
     tls: true
+    tlscertificate: secret_service:BofA-Stmfa-VIP-Certs:encinoman1.stmfa.stm.my-salesforce.com.crt
+    tlskey: kms:1:2:39511828A26F7F464E472A3E75E15C8D27B4A4558B8F7231704D844ACB28ABE2:02cf64ca-0084-4d32-b003-e2688547b3b7
     addheaders:
     - name: "X-Salesforce-VIP"
       value: "FORCE"
@@ -37,6 +39,8 @@
     healthpath: /ping.jsp?allBusy
     sticky: 86400
     tls: true
+    tlscertificate: secret_service:BofA-Stmfa-VIP-Certs:encinoman2.stmfa.stm.my-salesforce.com.crt
+    tlskey: kms:1:2:39511828A26F7F464E472A3E75E15C8D27B4A4558B8F7231704D844ACB28ABE2:778fa96b-1f70-4023-8606-c4a156ded2c1
     addheaders:
     - name: "X-Salesforce-VIP"
       value: "FORCE"
@@ -62,6 +66,8 @@
     healthpath: /ping.jsp?allBusy
     sticky: 86400
     tls: true
+    tlscertificate: secret_service:BofA-Stmfa-VIP-Certs:encinoman3.stmfa.stm.my-salesforce.com.crt
+    tlskey: kms:1:2:39511828A26F7F464E472A3E75E15C8D27B4A4558B8F7231704D844ACB28ABE2:f5741a93-7bf4-41f0-b995-aab0d0518e1a
     addheaders:
     - name: "X-Salesforce-VIP"
       value: "FORCE"
@@ -87,6 +93,8 @@
     healthpath: /ping.jsp?allBusy
     sticky: 86400
     tls: true
+    tlscertificate: secret_service:BofA-Stmfa-VIP-Certs:encinoman4.stmfa.stm.my-salesforce.com.crt
+    tlskey: kms:1:2:39511828A26F7F464E472A3E75E15C8D27B4A4558B8F7231704D844ACB28ABE2:ccf680f0-f89a-401f-af83-1dfae3e60de7
     addheaders:
     - name: "X-Salesforce-VIP"
       value: "FORCE"
@@ -112,6 +120,8 @@
     healthpath: /ping.jsp?allBusy
     sticky: 86400
     tls: true
+    tlscertificate: secret_service:BofA-Stmfa-VIP-Certs:encinoman5.stmfa.stm.my-salesforce.com.crt
+    tlskey: kms:1:2:39511828A26F7F464E472A3E75E15C8D27B4A4558B8F7231704D844ACB28ABE2:c454c5d3-1327-4b71-820a-fcbff35a0703
     addheaders:
     - name: "X-Salesforce-VIP"
       value: "FORCE"
@@ -137,6 +147,8 @@
     healthpath: /ping.jsp?allBusy
     sticky: 86400
     tls: true
+    tlscertificate: secret_service:BofA-Stmfa-VIP-Certs:encinoman6.stmfa.stm.my-salesforce.com.crt
+    tlskey: kms:1:2:39511828A26F7F464E472A3E75E15C8D27B4A4558B8F7231704D844ACB28ABE2:cddf11d8-2ed4-4d3d-8267-945386124cb0
     addheaders:
     - name: "X-Salesforce-VIP"
       value: "FORCE"
