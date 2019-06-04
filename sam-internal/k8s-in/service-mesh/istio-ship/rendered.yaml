@@ -7,7 +7,7 @@ metadata:
     app: istio-ingressgateway
     release: istio
   name: istio-ingressgateway-service-account
-  namespace: mesh-control-plane
+  namespace: core-on-sam-sp2
 ---
 apiVersion: v1
 kind: ServiceAccount
@@ -46,7 +46,7 @@ metadata:
   annotations:
     manifestctl.sam.data.sfdc.net/swagger: disable
   name: istio-ingressgateway-sds
-  namespace: mesh-control-plane
+  namespace: core-on-sam-sp2
 rules:
 - apiGroups:
   - ""
@@ -216,7 +216,7 @@ metadata:
   annotations:
     manifestctl.sam.data.sfdc.net/swagger: disable
   name: istio-ingressgateway-sds
-  namespace: mesh-control-plane
+  namespace: core-on-sam-sp2
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: Role
