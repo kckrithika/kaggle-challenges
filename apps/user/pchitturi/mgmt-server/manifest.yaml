@@ -62,7 +62,7 @@ system:
       lbname: mgmtserver-api-stateful-lb
   loadbalancers:
   - lbname: mgmt-api-lb
-    function: mgmtserver-api
+    function: mgmt-server-api
     slbEnabled: true
     ports:
       - port: 5004
