@@ -6,7 +6,7 @@ system:
     count: 1
     containers:
     - name: db-schema-service-worker
-      image: gcr.io/gsf-mgmt-devmvp-spinnaker/dva/db-schema-service-worker:2
+      image: gcr.io/gsf-mgmt-devmvp-spinnaker/dva/db-schema-service-worker:3
       command: ["java -jar /home/scone/worker/build/libs/worker.jar"]
       env:
         - name: VAULT_TOKEN
