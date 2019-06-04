@@ -17,6 +17,7 @@ spec:
         apptype: monitoring
         flowsnakeOwner: dva-transform
         flowsnakeRole: PrometheusScraper
+        name: prometheus-scraper
         service: prometheus-scraper
     spec:
       containers:

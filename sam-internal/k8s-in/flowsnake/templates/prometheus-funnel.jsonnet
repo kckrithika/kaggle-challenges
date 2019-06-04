@@ -28,12 +28,8 @@ configs.deploymentBase("flowsnake") {
           service: "prometheus-scraper",
           flowsnakeOwner: "dva-transform",
           flowsnakeRole: "PrometheusScraper",
-        } + (
-if std.objectHas(flowsnake_images.feature_flags, "watchdog_kuberesources") then
-        {
           name: "prometheus-scraper",
-        } else {}
-        ),
+        },
       },
       spec: {
         serviceAccountName: "prometheus-scraper",
