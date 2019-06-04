@@ -9,12 +9,15 @@ system:
     count: 1
     containers:
     - name: mycroft
-      image: dva/casp/mycroft_strata:jenkins-CASP-mycroft-master-10-itest
+      image: dva/casp/mycroft_strata:jenkins-CASP-mycroft-master-11-itest
       ports:
       - name: http
         containerPort: 5555
       - name: tcp
         containerPort: 6379
+      env:
+        - name: CELERY_BEAT_LOG_LEVEL
+          value: 'info'
       livenessProbe:
         exec:
           command:

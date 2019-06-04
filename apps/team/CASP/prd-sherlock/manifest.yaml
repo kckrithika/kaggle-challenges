@@ -11,7 +11,7 @@ system:
       type: Recreate
     containers:
     - name: sherlock
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/aborra/sherlock:rc0-s9d7f
+      image: dva/casp/sherlock_strata:jenkins-CASP-sherlock-master-9-itest
       ports:
       - name: http
         containerPort: 5555
@@ -25,6 +25,10 @@ system:
           value: 'iad,ukb,hnd,lo3,chi,wax,yul,cdu,syd,chx,cdg'
         - name: SHARED0_SAMMINIONWARDEN2_1_PRD_KINGDOMS
           value: 'ia2,ord,dfw,ph2'
+        - name: CELERY_LOG_LEVEL
+          value: 'info'
+        - name: FLOWER_LOG_LEVEL
+          value: 'info'
         - name: MY_SAM_HOST_NAME
           valueFrom:
             fieldRef:
