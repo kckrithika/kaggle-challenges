@@ -1,6 +1,16 @@
 apiVersion: v1
 kind: Service
 metadata:
+  annotations:
+    slb.sfdc.net/name: istio-pilot
+    slb.sfdc.net/portconfigurations: |-
+      [
+       {
+        "lbtype": "dsr",
+        "port": 15010,
+        "targetport": 15010
+       }
+      ]
   labels:
     app: pilot
     istio: pilot

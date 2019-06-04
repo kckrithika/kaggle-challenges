@@ -7,7 +7,7 @@ metadata:
     app: istio-ingressgateway
     release: istio
   name: istio-ingressgateway-service-account
-  namespace: mesh-control-plane
+  namespace: core-on-sam-sp2
 ---
 apiVersion: v1
 kind: ServiceAccount
@@ -46,7 +46,7 @@ metadata:
   annotations:
     manifestctl.sam.data.sfdc.net/swagger: disable
   name: istio-ingressgateway-sds
-  namespace: mesh-control-plane
+  namespace: core-on-sam-sp2
 rules:
 - apiGroups:
   - ""
@@ -216,7 +216,7 @@ metadata:
   annotations:
     manifestctl.sam.data.sfdc.net/swagger: disable
   name: istio-ingressgateway-sds
-  namespace: mesh-control-plane
+  namespace: core-on-sam-sp2
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: Role
@@ -241,7 +241,7 @@ roleRef:
 subjects:
 - kind: ServiceAccount
   name: istio-ingressgateway-service-account
-  namespace: mesh-control-plane
+  namespace: core-on-sam-sp2
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRoleBinding
@@ -590,7 +590,7 @@ metadata:
     istio: ingressgateway
     release: istio
   name: istio-ingressgateway
-  namespace: mesh-control-plane
+  namespace: core-on-sam-sp2
 spec:
   ports:
   - name: https-coreapp
@@ -604,6 +604,16 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
+  annotations:
+    slb.sfdc.net/name: istio-pilot
+    slb.sfdc.net/portconfigurations: |-
+      [
+       {
+        "lbtype": "dsr",
+        "port": 15010,
+        "targetport": 15010
+       }
+      ]
   labels:
     app: pilot
     istio: pilot
@@ -648,7 +658,7 @@ metadata:
     istio: ingressgateway
     release: istio
   name: istio-ingressgateway
-  namespace: mesh-control-plane
+  namespace: core-on-sam-sp2
 spec:
   selector:
     matchLabels:
@@ -725,10 +735,10 @@ spec:
         - --controlPlaneAuthPolicy
         - NONE
         - --discoveryAddress
-        - istio-pilot:15010
+        - istio-pilot.mesh-control-plane:15010
         env:
         - name: ESTATE
-          value: mcpIstioConfig.istioEstate
+          value: mcpIstioConfig.casamEstate
         - name: ISTIO_METAJSON_METRICS_INCLUSIONS
           value: '{"sidecar.istio.io/statsInclusionPrefixes": "access_log_file,cluster,cluster_manager,control_plane,http,http2,http_mixer_filter,listener,listener_manager,redis,runtime,server,stats,tcp,tcp_mixer_filter,tracing"}'
         - name: POD_NAME
@@ -835,7 +845,7 @@ spec:
               apiVersion: v1
               fieldPath: metadata.namespace
         - name: ESTATE
-          value: mcpIstioConfig.istioEstate
+          value: mcpIstioConfig.casamEstate
         image: mcpIstioConfig.madkubImage
         imagePullPolicy: IfNotPresent
         name: madkub-refresher
@@ -907,7 +917,7 @@ spec:
         - mountPath: /server-cert
           name: tls-server-cert
       nodeSelector:
-        pool: mcpIstioConfig.istioEstate
+        pool: mcpIstioConfig.casamEstate
       serviceAccountName: istio-ingressgateway-service-account
       volumes:
       - hostPath:
@@ -1355,7 +1365,7 @@ metadata:
     app: ingressgateway
     release: istio
   name: istio-ingressgateway
-  namespace: mesh-control-plane
+  namespace: core-on-sam-sp2
 spec:
   maxReplicas: 5
   metrics:
