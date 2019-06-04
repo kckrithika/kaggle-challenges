@@ -77,6 +77,9 @@ local samreleases = import "samreleases.json";
         "yhu,yhu-sam,watchdog-kuberesources,hypersam": "2712-49c6098a85641d114c3f44b4ed9f3a1be26bb7b5",
         "yul,yul-sam,watchdog-kuberesources,hypersam": "2712-49c6098a85641d114c3f44b4ed9f3a1be26bb7b5",
 
+        # [toli] Override etcdchecker to introduce more logging
+        "prd,prd-sam,watchdog-etcd,hypersam": "2737-afb27b9bdf88a8da458bc8a476467f6e125269aa",
+
         #[xiao.zhou] Override crd watcher for team "secrets"
         "xrd,xrd-sam,crd-watcher,hypersam": "2690-3c76e4d1bc7bebf17bfa304fd309dc9332acd196",
 
