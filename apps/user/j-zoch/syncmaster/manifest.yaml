@@ -14,7 +14,7 @@ system:
       - name: DC
         value: $(KINGDOM)
       - name: SPRING_PROFILES_ACTIVE 
-        value: dc.$(KINGDOM),sam,oracle,h2
+        value: dc.$(KINGDOM),sam,h2
       ports:
       - containerPort: 7020
       - containerPort: 8080
