@@ -179,11 +179,16 @@ state() {
 
 # Output logs for specified pod to stdout
 # Future: Alternatively, generate a Splunk link?
+declare -A POD_LOGS_COLLECTED # pod name -> "true" if logs for pod were already collected
 pod_log() {
-    log_sub_heading "Begin $1 Log"
-    # || true to avoid failing script if pod has gone away.
-    kcfw logs $1 || true
-    log_sub_heading "End $1 Log"
+    # Checking for key with set -o nounset active: https://stackoverflow.com/a/13221491
+    if [[ -z "${POD_LOGS_COLLECTED[$1]+present}" ]]; then
+        log_sub_heading "Begin $1 Log"
+        # || true to avoid failing script if pod has gone away.
+        kcfw logs $1 || true
+        log_sub_heading "End $1 Log"
+        POD_LOGS_COLLECTED["$1"]="true"
+    fi
 }
 
 # Log changes to pods spawned for SparkApplication
@@ -246,6 +251,10 @@ report_pod_changes() {
             fi
             log "Pod change detected: ${POD_NAME} changed to ${REPORT_DISPLAY} (previously ${OLD_REPORT%% *})."
             PREVIOUS_POD_REPORTS["$POD_NAME"]="${NEW_REPORT}"
+            if [[ "${NEW_REPORT%% *}" == "Completed" ]] || [[ "${NEW_REPORT%% *}" == "Error" ]] || [[ "${NEW_REPORT%% *}" == "Terminating" ]]; then
+                # Grab the logs now rather than waiting until the end of the script; the pod might be deleted by then.
+                pod_log ${POD_NAME}
+            fi
         fi
     done;
 }
