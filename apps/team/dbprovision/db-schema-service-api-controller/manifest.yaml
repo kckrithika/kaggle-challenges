@@ -3,14 +3,14 @@ apiVersion: v1
 system:
   functions:
   - name: db-schema-service-api-controller
-    count: 2
+    count: 1
     containers:
     - name: db-schema-service-api-controller
       image: gcr.io/gsf-mgmt-devmvp-spinnaker/dva/db-schema-service-api-controller:latest
-      command: ["java -jar -Dspring.profiles.active=gcp-dev controller/build/libs/controller.jar"]
+      command: ["java -jar -Dspring.profiles.active=gcp-dev /home/scone/controller/build/libs/controller.jar"]
       env:
         - name: VAULT_TOKEN
-          value: "/secrets/dbprovision-vaulttoken"
+          value: "/secrets/tk.txt"
       ports:
       - containerPort: 11443
       livenessProbe:
