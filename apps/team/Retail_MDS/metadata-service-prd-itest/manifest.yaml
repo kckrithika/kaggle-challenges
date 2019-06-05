@@ -10,13 +10,13 @@ system:
     count: 1
     containers:
     - name: metadata-service
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/metadata-cannon/metadata-service:0.8.63
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/metadata-cannon/metadata-service:latest
       ports:
       - containerPort: 9091
       - containerPort: 15523
       env:
       - name: SFDC_ENVIRONMENT
-        value: stmfa
+        value: itest
       - name: SERVER_PORT
         value: "9091"
       - name: MANAGEMENT_PORT
