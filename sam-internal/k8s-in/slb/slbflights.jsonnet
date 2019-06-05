@@ -29,7 +29,7 @@ local slbconfigs = import "slbconfig.jsonnet";
     slbFredNewNodeName: (slbimages.hyperslb_build >= 2156),
 
     # turn on perVip analysis for nginx upstream status reporter
-    slbNginxReadyPerVip: (slbimages.phaseNum <= 1),
+    slbNginxReadyPerVip: (slbimages.phaseNum <= 2),
 
     # test our theory that ddi is having trouble with long-lived connections by enabling canary-creator
     # to run 24 hours (as a corollary, shift alerts to be business hours only)

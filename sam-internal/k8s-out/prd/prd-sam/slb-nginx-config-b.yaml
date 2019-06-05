@@ -318,6 +318,7 @@ spec:
         - /sdn/slb-upstream-status-reporter
         - --nginxStatusPublishingAddress=$(POD_IP):9999
         - --log_dir=/host/data/slb/logs/slb-nginx-config-b
+        - --perVipReadinessCheck=true
         env:
         - name: POD_IP
           valueFrom:
