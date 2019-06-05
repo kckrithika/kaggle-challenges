@@ -44,13 +44,9 @@ if slbconfigs.isSlbEstate then configs.deploymentBase("slb") {
                         volumeMounts: std.prune([
                             slbconfigs.logs_volume_mount,
                         ]),
-                        env:
-                            if slbflights.slbFredNewNodeName then [
-                                slbconfigs.sfdcloc_node_name_env,
-                            ]
-                            else [
-                                slbconfigs.node_name_env,
-                            ],
+                        env: [
+                            slbconfigs.sfdcloc_node_name_env,
+                        ],
                     } + configs.ipAddressResourceRequest,
                 ],
                 nodeSelector: {

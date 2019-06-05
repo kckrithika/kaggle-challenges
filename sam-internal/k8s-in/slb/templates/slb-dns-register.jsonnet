@@ -48,7 +48,7 @@ if slbconfigs.isSlbEstate then configs.deploymentBase("slb") {
                       ] + madkub.madkubSlbCertVolumes(certDirs) + madkub.madkubSlbMadkubVolumes()),
                       containers: [
                                       {
-                                          name: slbflights.slbDnsRegisterContainerName,
+                                          name: "slb-dns-register",
                                           image: slbimages.hyperslb,
                                           command: [
                                                        "/sdn/slb-dns-register",
