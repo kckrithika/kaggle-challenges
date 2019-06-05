@@ -381,10 +381,13 @@
             + { vpod: "" },
 
         realsvrcfg_pools:
-            set_value_to_all_in_list([configs.estate], $.slbEstates)
+            set_value_to_all_in_list(
+              [configs.estate] +
+              (if $.isProdEstate then [configs.kingdom + "-sam_gater"] else []),
+              $.slbEstates
+)
             + {
               "prd-sam"+: [
-                  "prd-sam_gater",
                   "prd-sp2-sam_coreapp",
               ],
             },

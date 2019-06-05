@@ -29,6 +29,7 @@ spec:
                 operator: In
                 values:
                 - cdg-sam
+                - cdg-sam_gater
       containers:
       - command:
         - /sdn/slb-realsvrcfg
