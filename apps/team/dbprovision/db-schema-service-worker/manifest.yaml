@@ -1,0 +1,25 @@
+apiVersion: v1
+
+system:
+  functions:
+  - name: db-schema-service-worker
+    count: 1
+    containers:
+    - name: db-schema-service-worker
+      image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-gcp/dva/db-schema-service-worker:3
+      command: ["java -jar /home/scone/worker/build/libs/worker.jar"]
+      env:
+        - name: VAULT_TOKEN
+          value: "/secrets/tk.txt"
+      livenessProbe:
+        httpGet:
+          path: /
+          port: 11443
+      volumeMounts:
+        - mountPath: /secrets/
+          name: dbprovision-vaulttoken
+          readOnly: true
+    volumes:
+      - name: dbprovision-vaulttoken
+        k4aSecret:
+          secretName: dbprovision-vaulttoken
