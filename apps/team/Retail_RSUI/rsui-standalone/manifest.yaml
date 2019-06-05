@@ -38,7 +38,7 @@ system:
 
     containers:
     - name: retail-setup
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/retail/retail-setup:0.1.8.18
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/retail/retail-setup:0.1.9.23
       ports:
       # Jetty http1 ports for incoming public traffic via SLB
       - containerPort: 7022
@@ -151,6 +151,13 @@ system:
         value: false
       - name: ENDPOINTS_JVM_ENABLED
         value: false
+
+      # Temporary until we have these added to k4a
+      - name: OAUTH_SERVICE_CONSUMER_KEY
+        value: 3MVG9qKMKuRGRcbuw4QeSjOU47qgAq1Y.1chn3gGVOVzTGqgJld6gRLuN0Ol_38XWIiBpUKvZeq8gdNFRKZka
+      - name: OAUTH_SERVICE_CONSUMER_SECRET
+        value: 716E32266730CCB0E72F27813FD6C7E456C7C5392A62777DB6933291747BA386
+
       livenessProbe:
         initialDelaySeconds: 120
         periodSeconds: 30
