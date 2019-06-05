@@ -29,6 +29,7 @@ spec:
                 operator: In
                 values:
                 - lo2-sam
+                - lo2-sam_gater
       containers:
       - command:
         - /sdn/slb-realsvrcfg

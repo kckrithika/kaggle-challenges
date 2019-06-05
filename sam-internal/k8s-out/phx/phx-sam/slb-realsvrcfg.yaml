@@ -29,6 +29,7 @@ spec:
                 operator: In
                 values:
                 - phx-sam
+                - phx-sam_gater
       containers:
       - command:
         - /sdn/slb-realsvrcfg

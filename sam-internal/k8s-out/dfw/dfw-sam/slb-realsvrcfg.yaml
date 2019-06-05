@@ -29,6 +29,7 @@ spec:
                 operator: In
                 values:
                 - dfw-sam
+                - dfw-sam_gater
       containers:
       - command:
         - /sdn/slb-realsvrcfg

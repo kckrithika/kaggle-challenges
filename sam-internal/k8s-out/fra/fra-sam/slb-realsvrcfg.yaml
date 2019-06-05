@@ -29,6 +29,7 @@ spec:
                 operator: In
                 values:
                 - fra-sam
+                - fra-sam_gater
       containers:
       - command:
         - /sdn/slb-realsvrcfg
