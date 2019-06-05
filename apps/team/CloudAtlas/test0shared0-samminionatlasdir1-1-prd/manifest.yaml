@@ -1,87 +1,144 @@
 apiVersion: v1
- 
+
 system:
   notifications:
     email:
       - cloudatlas-dev@salesforce.com
   functions:
-  - name: cloudatlas-prd-dev-dir1-1
-    identity:
-      serviceName: cloudatlas-prd-dev-dir
-    count: 1
-    strategy:
-      type: RollingUpdate
-      rollingUpdate:
-        maxSurge: 0
-        maxUnavailable: 1
-    hostnetwork: true
-    containers:
-    - name: cloudatlas-pdm-install
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cloud-atlas/cloudatlas/cloudatlas-pdm:4665c9a
-      command: ["/opt/pdm/pdm.customer/bin/entrypoint.sh"]
-      env:
-      - name: UBID_DEPLOYMENT_STAGE
-        value: ALL
-      volumeMounts:
-      - mountPath: /home/sfdc-atlas
-        name: hosthomevol
-      - mountPath: /home/sfdc-atlas/logs/servers/ds
-        name: pinglogvol
-      - mountPath: /log
-        name: logvol
-      - mountPath: /certs
-        name: server-cert
-      - mountPath: /clientcerts
-        name: client-cert
-      - mountPath: /secrets
-        name: secretsvol
-        readOnly: true
-      - mountPath: /k4asecrets
-        name: k4a-secrets
-        readOnly: true
-      ports:
-      - containerPort: 1389
-      - containerPort: 1636
-      - containerPort: 8989
-      livenessProbe:
-        exec:
-          command:
-          - /opt/pdm/pdm.customer/bin/is-alive.sh
-        initialDelaySeconds: 60
-        periodSeconds: 30
-      readinessProbe:
-        exec:
-          command:
-          - cat
-          - /tmp/ready
-        initialDelaySeconds: 60
-        periodSeconds: 5
-        failureThreshold: 120
-    volumes:
-    - name: hosthomevol
-      hostPath:
-        path: /data/ca-cluster-a
-    - name: pinglogvol
-      hostPath:
-        path: /home/sfdc-atlas/logs/pingserver
-    - name: logvol
-      hostPath:
-        path: /home/sfdc-atlas/logs
-    - name: server-cert
-      maddogCert:
-        type: server
-    - name: client-cert
-      maddogCert:
-        type: client
-    - name: secretsvol
-      secret:
-        secretName: passwd
-    - name: k4a-secrets
-      k4asecret:
-        secretName: ca-secrets
-    - name: logvolsherpa
-      hostPath:
-        path: /home/sfdc-scone-hellodiscovery-sherpa/logs
-    - name: logvolbeacon
-      hostPath:
-        path: /home/sfdc-scone-hellodiscovery-beacon/logs
+    - name: cloudatlas-prd-dev-dir1-1
+      identity:
+        serviceName: cloudatlas-prd-dev-dir
+      count: 1
+      strategy:
+        type: Recreate
+      hostnetwork: true
+      containers:
+        - name: sherpa-cloudatlas-client
+          image: sfci/servicelibs/sherpa-envoy:1.0.7
+          env:
+            - name: SFDC_ENVIRONMENT
+              value: "stmfa"
+          resources:
+            limits: { cpu: "1", memory: "1Gi" }
+            requests: { cpu: "1", memory: "1Gi" }
+          volumeMounts:
+            - name: client-cert
+              mountPath: /client-certs
+            - name: server-cert
+              mountPath: /server-certs
+            - mountPath: /log
+              name: logvolsherpa
+          ports:
+            - containerPort: 7012
+              name: sherpa-in
+            - containerPort: 7014
+              name: http1-in
+            - containerPort: 7442
+              name: http1-tls-in
+            - containerPort: 15373
+              name: sherpa-adm
+          livenessProbe:
+            exec:
+              command:
+                - "/home/sfdc-sherpa/bin/is-alive"
+            initialDelaySeconds: 120
+            periodSeconds: 5
+          readinessProbe:
+            exec:
+              command:
+                - "/home/sfdc-sherpa/bin/is-ready"
+            initialDelaySeconds: 110
+            periodSeconds: 5
+
+        - name: beacon-cloudatlas
+          image: sfci/servicelibs/beacon:7ad9e771192cd0b3e43393eea2e1e5c1de81dfda
+          env:
+            - name: SFDC_ENVIRONMENT
+              value: "stmfa"
+          volumeMounts:
+            - mountPath: /log
+              name: logvolbeacon
+          resources:
+            limits: { cpu: "1", memory: "1Gi" }
+            requests: { cpu: "1", memory: "1Gi" }
+          args:
+            - -endpoint
+            - $(FUNCTION_NAMESPACE)/cloudatlas-prd-dev-dir:DATACENTER_ALLENV:7442
+          livenessProbe:
+            exec:
+              command:
+                - "/home/scone/is-alive.sh"
+            initialDelaySeconds: 5
+            periodSeconds: 5
+
+        - name: cloudatlas-pdm-install
+          image: sfci/cloud-atlas/cloudatlas:2.22rc2
+          command: ["/opt/pdm/pdm.customer/bin/entrypoint.sh"]
+          env:
+            - name: UBID_DEPLOYMENT_STAGE
+              value: NONE
+            - name: UBID_REMOVE_EXISTING
+              value: TRUE
+          volumeMounts:
+            - mountPath: /home/sfdc-atlas
+              name: hosthomevol
+            - mountPath: /home/sfdc-atlas/logs/servers/ds
+              name: pinglogvol
+            - mountPath: /log
+              name: logvol
+            - mountPath: /certs
+              name: server-cert
+            - mountPath: /clientcerts
+              name: client-cert
+            - mountPath: /secrets
+              name: secretsvol
+              readOnly: true
+            - mountPath: /k4asecrets
+              name: k4a-secrets
+              readOnly: true
+          ports:
+            - containerPort: 1389
+            - containerPort: 1636
+            - containerPort: 8989
+          livenessProbe:
+            exec:
+              command:
+                - /opt/pdm/pdm.customer/bin/is-alive.sh
+            initialDelaySeconds: 60
+            periodSeconds: 30
+          readinessProbe:
+            exec:
+              command:
+                - cat
+                - /tmp/ready
+            initialDelaySeconds: 60
+            periodSeconds: 5
+            failureThreshold: 120
+      volumes:
+        - name: hosthomevol
+          hostPath:
+            path: /data/ca-cluster-a
+        - name: pinglogvol
+          hostPath:
+            path: /home/sfdc-atlas/logs/pingserver
+        - name: logvol
+          hostPath:
+            path: /home/sfdc-atlas/logs
+        - name: server-cert
+          maddogCert:
+            type: server
+        - name: client-cert
+          maddogCert:
+            type: client
+        - name: secretsvol
+          secret:
+            secretName: passwd
+        - name: k4a-secrets
+          k4asecret:
+            secretName: ca-secrets
+        - name: logvolsherpa
+          hostPath:
+            path: /home/sfdc-scone-hellodiscovery-sherpa/logs
+        - name: logvolbeacon
+          hostPath:
+            path: /home/sfdc-scone-hellodiscovery-beacon/logs
