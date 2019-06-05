@@ -7,9 +7,6 @@ system:
   functions:
   - name: cre-api-ccp-perf
     count: 2
-    labels:
-      chaos.sfdc.net/podDelete: true
-      chaos.sfdc.net/podDeletePeriod: 30m
     containers:
     - name: cre-api-ccp-perf
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cre/cre-api:1.7.0-freeze-001.0.release-1.7.fa97c80.1
