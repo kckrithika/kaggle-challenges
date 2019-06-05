@@ -385,7 +385,7 @@
               [configs.estate] +
               (if $.isProdEstate then [configs.kingdom + "-sam_gater"] else []),
               $.slbEstates
-)
+              )
             + {
               "prd-sam"+: [
                   "prd-sp2-sam_coreapp",
