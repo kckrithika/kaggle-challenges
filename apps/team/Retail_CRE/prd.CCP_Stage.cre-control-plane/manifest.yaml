@@ -15,7 +15,7 @@ system:
         ############################   ENGINE/DDS FLOWSNAKE ARTIFACTS ( Most frequently changed ) ##########
         ####################################################################################################
         - name: IMPORT_FLOWSNAKE_ARTIFACT
-          value: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cre/cre-engine:1.8.0.0.release.0c7e9da.8
+          value: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cre/cre-engine:1.8.0.0.release.881abc3.11
         - name: SAVE_FLOWSNAKE_ARTIFACT
           value: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cre/cre-dds-spark:1.8.0-freeze-001.0.release-1.8.4ca9a1a.7
         - name: EXPORT_FLOWSNAKE_ARTIFACT
