@@ -38,7 +38,7 @@ system:
 
     containers:
     - name: retail-setup
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/retail/retail-setup:0.1.9.23
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/retail/retail-setup:0.1.9.22
       ports:
       # Jetty http1 ports for incoming public traffic via SLB
       - containerPort: 7022
@@ -110,6 +110,8 @@ system:
         value: secrets/encryption-key1/rsui-encryption-key3.key
       - name: SECURITY_ENCRYPTION_KEY2_PATH
         value: secrets/encryption-key2/rsui-encryption-key1.key
+      - name: RSUI_HOST
+        value: salesforce-hub.com
       - name: GATER_EMBEDDED_MODE
         value: false
       - name: TRANSFORMATIONLIB_MDS_MODE
