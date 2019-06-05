@@ -100,5 +100,8 @@ apps:
  aws-test-app:
    - aws-us-west-2/aws-us-west-2-samtest
    - aws-us-west-2/aws-us-west-2-sam
+ aws-tnrpendpoint-test-app:
+    - aws-us-west-2/aws-us-west-2-samtest
+    - aws-us-west-2/aws-us-west-2-sam
 
 
