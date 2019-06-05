@@ -491,10 +491,11 @@
 //        slbconfigs.envoy.configUpdateSentinelPath,
 //      ],
     command: [
-      "/home/sfdc-sherpa/envoy",
-      "--config-path",
+      "/home/sfdc-sherpa/hot_restarter",
+      "/home/sfdc-sherpa/bin/runner.sh",
       slbconfigs.envoy.containerTargetDir + "/envoy-bootstrap.yaml",
-      ],
+      slbconfigs.envoy.reloadSentinelPath,
+    ],
     livenessProbe: {
       httpGet: {
         path: "/liveness-probe",

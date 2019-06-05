@@ -117,6 +117,38 @@ system:
     - name: slb-private-slack-notification
       k4aSecret:
         secretName: slb-private-slack-notification
+    - name: imagedeployer-envoy
+      image: dva/moe/deployerbot:2153-917f288240dd5ccfdc4ecfc9bef83a3abb8a2e55
+      command: ["/moe/imagedeployer"]
+      args:
+      - "-deployerbotServiceEndpoint=http://localhost:8080/deploy"
+      - "-interval=10m"
+      - "-image=envoy" # The name of the image in artifactory.
+      - "-owner=slb"
+      - "-imageKey=slbenvoy" # The name of the object to update in slbreleases.json.
+      - "-samInternalTeamName=SLB"
+      - "-targetPhaseNumber=1"
+      - "-imageRegistryImageSource=dva"
+      - "-heartbeat.defaultdecayduration=15m"
+      - "-livenessProbePort=8084"
+      ports:
+      - containerPort: 8084
+      livenessProbe:
+        httpGet:
+          path: /liveness-probe
+          port: 8084
+        initialDelaySeconds: 180
+        periodSeconds: 60
+    volumes:
+    - name: deployerbot-ghe-pat
+      k4aSecret:
+        secretName: speedometer-ghe-pat
+    - name: moe-gpg-signing-key
+      k4aSecret:
+        secretName: moe-gpg-signing-key
+    - name: slb-private-slack-notification
+      k4aSecret:
+        secretName: slb-private-slack-notification
   - name: deployerbot-sam
     count: 1
     containers:

@@ -77,6 +77,7 @@
         "--server cert name=/server-certs/server/certificates/server.pem",
         "--root cert name=/server-certs/ca.pem",
         configs.sfdchosts_arg,
+        slbconfigs.envoy.reloadSentinelParam,
       ],
       volumeMounts: std.prune(
         madkub.madkubSlbCertVolumeMounts(slbconfigs.envoy.certDirs) + [
@@ -135,6 +136,12 @@
         "--hostnameOverride=$(NODE_NAME)",
         "--log_dir=" + slbconfigs.logsDir,
         configs.sfdchosts_arg,
+        ## TODO ##
+        # slb-cert-checker is currently using the default path for the reload sentinel ("/host/data/slb/nginx.reload"),
+        # which is incorrect. For nginx there are reloads induced often enough by other events (deployments, canary VIP
+        # creation/update/deletion) that this isn't impactful.
+        #
+        # slbconfigs.nginx.reloadSentinelParam,
       ],
       volumeMounts: std.prune(
         madkub.madkubSlbCertVolumeMounts(slbconfigs.nginx.certDirs) + [

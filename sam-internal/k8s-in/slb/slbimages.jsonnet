@@ -58,12 +58,8 @@ local slbreleases = import "slbreleases.json";
     slbnginx: imageFunc.do_override_for_pipeline_image($.overrides, "slb", "nginx", slbreleases[$.phase].slbnginx.label),
     slbnginx_build: imageFunc.build_info_from_tag(slbreleases[$.phase].slbnginx.label).buildNumber,
 
-    # TODO Hard-code build for now, figure other stuff out later.
-    # Note: image path is not beneath /dva, thus some of the logic in "do_override_for_pipeline_image"
-    # needs to be tweaked.
-    # slbenvoy: ...
-    # slbenvoy_build: ...
-    slbenvoy: "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mgrass/sherpa-envoy:96e2e48f9b97d921f9b64e630a0a13a7dcf995f0-withcap",
+    slbenvoy: imageFunc.do_override_for_pipeline_image($.overrides, "slb", "envoy", slbreleases[$.phase].slbenvoy.label),
+    slbenvoy_build: imageFunc.build_info_from_tag(slbreleases[$.phase].slbenvoy.label).buildNumber,
 
     hsmnginx: imageFunc.do_override_for_pipeline_image($.overrides, "slb", "nginx-kms", slbreleases[$.phase].kmsnginx.label),
     hsmnginx_build: imageFunc.build_info_from_tag(slbreleases[$.phase].kmsnginx.label).buildNumber,
