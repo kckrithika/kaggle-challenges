@@ -19,7 +19,7 @@ system:
           type: client
     containers:
     - name: soter-staging
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/varun.kulkarni/varks-try:tests3
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/varun.kulkarni/varks-try:s3
       ports:
       - containerPort: 8080
       - containerPort: 7090
