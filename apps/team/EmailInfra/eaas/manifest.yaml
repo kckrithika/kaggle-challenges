@@ -6,6 +6,10 @@ system:
   functions:
   - name: eaas
     count: 3
+    labels:
+      app: eaas
+    annotations:
+      "routing.mesh.sfdc.net/enabled": "true"
     terminationGracePeriodSeconds: 35
     containers:
     - name: eaas
@@ -147,3 +151,10 @@ system:
     - lbtype: tcp
       port: 7022
       targetport: 7022
+  - lbname: eaas
+    function: eaas
+    ports:
+      - lbtype: dsr
+        port: 7443
+        targetport: 7443
+        name: grpc-eaas
