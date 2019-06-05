@@ -6,7 +6,7 @@ apiVersion: v1
 system:
   functions:
   - containers:
-    - image: ops0-artifactrepo1-0-iad.data.sfdc.net/sfci/insights/moanaengine:release-1.0.7-b0dfb04
+    - image: ops0-artifactrepo1-0-iad.data.sfdc.net/sfci/insights/moanaengine:release-1.0.8-e06846e
       livenessProbe:
         exec:
           command: [ls]
@@ -28,7 +28,7 @@ system:
       - {name: TESTRECIPE_LASTSUCCESSTARGET, value: 360s}
       - {name: TESTRECIPE_MAESTROPINGTEST, value: 'true'}
       - {name: DEPLOYMENT_ID, value: iad-group2}
-      - {name: HANDLED_PODS_PATTERN, value: 'cs[0-9]+\..*|moana-driver-group1'}
+      - {name: HANDLED_PODS_PATTERN, value: 'cs[0-9]+|moana-driver-group1'}
       - {name: HANDLED_PODS_INVERT_MATCH, value: 'true'}
       image: sfci/insights/moana-driver:release-15-144ecab
       livenessProbe:
@@ -58,7 +58,7 @@ system:
       - {name: MANAGEMENT_SERVER_PORT, value: '15372'}
       - {name: LOGGING_JSON_STDOUT_LEVEL, value: ALL}
       - {name: LOGGING_STDERR_LEVEL, value: ALL}
-      - {name: MOANA_SPARK_ENGINE_IMAGE, value: 'ops0-artifactrepo1-0-iad.data.sfdc.net/sfci/insights/moanaengine:release-1.0.7-b0dfb04'}
+      - {name: MOANA_SPARK_ENGINE_IMAGE, value: 'ops0-artifactrepo1-0-iad.data.sfdc.net/sfci/insights/moanaengine:release-1.0.8-e06846e'}
       - {name: KAFKA_GROUP_ID, value: moana-jobcontroller-group2}
       - {name: K8S_SPARK_OVERRIDES, value: '{"spark.eventLog.enabled": "false", "spark.executor.extraJavaOptions":
           "-XX:MaxDirectMemorySize=256M -XX:ReservedCodeCacheSize=128M -XX:MaxMetaspaceSize=128M
@@ -72,9 +72,9 @@ system:
       - {name: SIZING_MEMORY_OVERHEAD, value: '1024'}
       - {name: K8S_CPU_LIMIT_APPLY, value: 'false'}
       - {name: STARTUP_JOB_ENABLED, value: 'false'}
-      - {name: HANDLED_PODS_PATTERN, value: 'cs[0-9]+\..*|moana-driver-group1'}
+      - {name: HANDLED_PODS_PATTERN, value: 'cs[0-9]+|moana-driver-group1'}
       - {name: HANDLED_PODS_INVERT_MATCH, value: 'true'}
-      image: sfci/insights/jobcontroller:release-1.0.7-919e925
+      image: sfci/insights/jobcontroller:release-1.0.8-5f7f554
       livenessProbe:
         httpGet: {path: /manage/health, port: 15372}
         initialDelaySeconds: 90
