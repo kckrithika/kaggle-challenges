@@ -522,8 +522,9 @@
           hostTargetDir: $.slb_volume.hostPath.path + "/" + $.dirSuffix + "/config",
           containerTargetDir: $.slb_volume_mount.mountPath + "/" + $.dirSuffix + "/config",
           configUpdateSentinelPath: $.nginx.containerTargetDir + "/nginx.sentinel",
-          reloadSentinelParam: "--control.nginxReloadSentinel=" + $.nginx.containerTargetDir + "/nginx.marker",
           configUpdateSentinelParam: "--control.nginxSentinel=" + $.nginx.configUpdateSentinelPath,
+          reloadSentinelPath: $.nginx.containerTargetDir + "/nginx.marker",
+          reloadSentinelParam: "--control.nginxReloadSentinel=" + $.nginx.reloadSentinelPath,
           maxResourceTime: if configs.estate == "lo3-sam" then "50m0s" else "",
           legacyConfigWipeInitContainerName: "slb-nginx-config-wipe",
 
@@ -589,6 +590,9 @@
             fsGroup: 7447,
           },
         },
+
+        reloadSentinelPath: $.envoy.containerTargetDir + "/envoy.hot-reload-marker",
+        reloadSentinelParam: "--control.nginxReloadSentinel=" + $.envoy.reloadSentinelPath,
     },
 
     # Frequently used env variable: NODE_NAME
