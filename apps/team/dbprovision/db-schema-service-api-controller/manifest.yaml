@@ -6,7 +6,7 @@ system:
     count: 1
     containers:
     - name: db-schema-service-api-controller
-      image: gcr.io/gsf-mgmt-devmvp-spinnaker/dva/db-schema-service-api-controller:3
+      image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-gcp/dva/db-schema-service-api-controller:3
       command: ["java -jar -Dspring.profiles.active=gcp-dev /home/scone/controller/build/libs/controller.jar"]
       env:
         - name: VAULT_TOKEN
