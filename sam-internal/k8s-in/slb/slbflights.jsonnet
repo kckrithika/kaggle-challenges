@@ -19,15 +19,6 @@ local slbconfigs = import "slbconfig.jsonnet";
     # See: https://computecloud.slack.com/archives/G340CE86R/p1550291706553800
     alertOnlyOnProxyErrorCode: (slbimages.phaseNum < 1),
 
-    # slb-nginx-data is generating failures because of k8s probe failures causing the process to get killed
-    # This change decreases the aggressiveness of the slb-nginx-data probe
-    tamerNginxDataProbes: (slbimages.phaseNum <= 5),
-
-    # slb-dns-register's container name was (confusingly) slb-dns-register-processor. Sanitize it.
-    slbDnsRegisterContainerName: (if slbimages.hyperslb_build >= 2155 then "slb-dns-register" else "slb-dns-register-processor"),
-
-    slbFredNewNodeName: (slbimages.hyperslb_build >= 2156),
-
     # turn on perVip analysis for nginx upstream status reporter
     slbNginxReadyPerVip: (slbimages.phaseNum <= 2),
 
