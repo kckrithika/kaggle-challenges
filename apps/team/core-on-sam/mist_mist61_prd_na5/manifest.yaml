@@ -7,9 +7,9 @@ system:
   - containers:
     - env:
       - name: DB_SID
-        value: mist61c220utf
+        value: mist61c222utf
       - name: DB_INSTANCE_NAME
-        value: mist61c220utf-1
+        value: mist61c222utf-1
       - name: DB_USER
         value: doc
       - name: DB_STATS_USER
