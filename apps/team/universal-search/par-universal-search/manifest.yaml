@@ -113,7 +113,7 @@ system:
         path: /home/sfdc-sherpa/logs
     containers:
     - name: universal-search-synthetics
-      image: sfci/searchdev/universal-search-synthetics:0.1.0
+      image: sfci/searchdev/universal-search-synthetics:0.1.1
       volumeMounts:
         - name: synthetics-log-vol
           mountPath: /home/sfdc-usmt/logs
