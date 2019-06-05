@@ -31,7 +31,6 @@ spec:
         - --maxParallelism=2
         - --hostsConfigFile=/sfdchosts/hosts.json
         - --hostnameOverride=$(NODE_NAME)
-        - --allHours=true
         env:
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig-platform
