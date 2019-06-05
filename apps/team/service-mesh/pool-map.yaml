@@ -15,15 +15,19 @@ apps:
     - frf/frf-sam_gater
     - ukb/ukb-sam_gater
     - lo2/lo2-sam_gater
+    - cdu/cdu-sam_gater
   switchboard-prod-3:
     - fra/fra-sam_gater
     - hnd/hnd-sam_gater
     - lo3/lo3-sam_gater
+    - syd/syd-sam_gater
   switchboard-prod-4:
     - iad/iad-sam_gater
     - ord/ord-sam_gater
+    - yul/yul-sam_gater
   switchboard-prod-5:
     - dfw/dfw-sam_gater
+    - yhu/yhu-sam_gater
   switchboard-prod-6:
     - cdg/cdg-sam_gater
     - phx/phx-sam_gater
