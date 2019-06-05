@@ -43,6 +43,24 @@ items:
     labels:
       istio-injection: enabled
     name: casam
+- apiVersion: v1
+  kind: Namespace
+  metadata:
+    labels:
+      istio-injection: enabled
+    name: emailinfra
+- apiVersion: v1
+  kind: Namespace
+  metadata:
+    labels:
+      istio-injection: enabled
+    name: universal-search
+- apiVersion: v1
+  kind: Namespace
+  metadata:
+    labels:
+      istio-injection: enabled
+    name: search-scale-safely
 kind: List
 metadata:
   labels: {}
