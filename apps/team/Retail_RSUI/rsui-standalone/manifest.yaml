@@ -112,6 +112,8 @@ system:
         value: secrets/encryption-key2/rsui-encryption-key1.key
       - name: RSUI_HOST
         value: salesforce-hub.com
+      - name: RSUI_HOST_REDIRECT_WHITELIST
+        value: salesforce.hub,prd-sam.prd.slb.sfdc.net
       - name: GATER_EMBEDDED_MODE
         value: false
       - name: TRANSFORMATIONLIB_MDS_MODE
