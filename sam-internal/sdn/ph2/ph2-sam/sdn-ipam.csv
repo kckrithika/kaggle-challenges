@@ -15,8 +15,8 @@ samcaas2-caasminion1-5-ph2.ops.sfdc.net,10.226.190.149/29,10.163.154.224/27,f22-
 samcaas2-caasminion1-6-ph2.ops.sfdc.net,10.226.190.147/29,10.163.155.0/27,f22-01,ph2-sp2-sam_caas,4203041204
 samcaas2-caasminion1-7-ph2.ops.sfdc.net,10.226.190.150/29,10.163.155.32/27,f22-01,ph2-sp2-sam_caas,4203041204
 samcaas2-caasminion1-8-ph2.ops.sfdc.net,10.226.190.156/29,10.163.153.160/27,e09-01,ph2-sp2-sam_caas,4203081215
-samcaas3-caasminion1-1-ph2.ops.sfdc.net,10.176.155.10/29,10.163.161.192/27,k65-01,ph2-sp3-sam_caas,4203161210
-samcaas3-caasminion1-2-ph2.ops.sfdc.net,10.176.155.11/29,10.163.161.224/27,k65-01,ph2-sp3-sam_caas,4203161210
+samcaas3-caasminion1-1-ph2.ops.sfdc.net,10.176.155.42/29,10.163.161.192/27,b22-01,ph2-sp3-sam_caas,4203131204
+samcaas3-caasminion1-2-ph2.ops.sfdc.net,10.176.155.43/29,10.163.161.224/27,b22-01,ph2-sp3-sam_caas,4203131204
 samcaas3-caasminion1-3-ph2.ops.sfdc.net,10.176.155.26/29,10.163.161.32/27,d42-01,ph2-sp3-sam_caas,4203061204
 samcaas3-caasminion2-1-ph2.ops.sfdc.net,10.176.155.2/29,10.163.161.64/27,e04-01,ph2-sp3-sam_caas,4203081207
 samcaas3-caasminion2-2-ph2.ops.sfdc.net,10.176.155.3/29,10.163.161.96/27,e04-01,ph2-sp3-sam_caas,4203081207
@@ -45,8 +45,11 @@ shared0-samminiondp2-1-ph2.ops.sfdc.net,10.176.154.250/29,10.163.132.192/27,b26-
 shared0-samminiongater1-1-ph2.ops.sfdc.net,10.226.137.66/29,10.163.130.64/27,f23-01,ph2-sam_gater,4203041206
 shared0-samminiongater1-2-ph2.ops.sfdc.net,10.226.137.67/29,10.163.130.96/27,f23-01,ph2-sam_gater,4203041206
 shared0-samminiongater1-3-ph2.ops.sfdc.net,10.226.137.68/29,10.163.130.128/27,f23-01,ph2-sam_gater,4203041206
+shared0-samminiongater1-6-ph2.ops.sfdc.net,10.226.137.82/29,10.163.130.160/27,a43-01,ph2-sam_gater,4203151205
+shared0-samminiongater1-7-ph2.ops.sfdc.net,10.226.137.83/29,10.163.130.192/27,a43-01,ph2-sam_gater,4203151205
 shared0-samminiongater2-1-ph2.ops.sfdc.net,10.226.137.74/29,10.163.130.0/27,d25-01,ph2-sam_gater,4203051210
 shared0-samminiongater2-2-ph2.ops.sfdc.net,10.226.137.75/29,10.163.130.32/27,d25-01,ph2-sam_gater,4203051210
+shared0-samminiongater2-3-ph2.ops.sfdc.net,10.226.137.90/29,10.163.130.224/27,c55-01,ph2-sam_gater,4203061227
 shared0-samminiongwc1-1-ph2.ops.sfdc.net,10.226.225.146/29,10.163.160.0/27,e64-01,ph2-sam_gatewayconfig,4203071207
 shared0-samminiongwc1-2-ph2.ops.sfdc.net,10.226.225.154/29,10.163.160.64/27,f42-01,ph2-sam_gatewayconfig,4203031204
 shared0-samminiongwc2-1-ph2.ops.sfdc.net,10.226.225.147/29,10.163.160.32/27,e64-01,ph2-sam_gatewayconfig,4203071207
