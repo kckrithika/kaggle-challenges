@@ -587,7 +587,7 @@
 
     tcpdump_volume_mount: {
         local mountPathLocal = if slbflights.tcpdumpNamingRevamp then "/tcpdump-config" else "/config",
-        local nameLocal = if slbflights.tcpdumpNamingRevamp then "tcp-dump-config" else "config",
+        local nameLocal = if slbflights.tcpdumpNamingRevamp then "tcpdump-config" else "config",
         mountPath: mountPathLocal,
         name: nameLocal,
     },
