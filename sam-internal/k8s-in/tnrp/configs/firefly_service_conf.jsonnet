@@ -74,7 +74,12 @@ local portConfig = import "portconfig.jsonnet";
                             ',DBIAAS/tnrp_instance_refresh_config' +
                             ',nqa/nqa-configs' +
                             ',CPT/captain_config' +
-                            ',radc/svc_config',
+                            ',radc/svc_config' +
+                            ',monitoring/dvamon_configs' +
+                            ',monitoring/dvaalerting_role_settings' +
+                            ',edge-ad/edge_config' +
+                            ',defense-integration/defensedatapipeline' +
+                            ',sandman/sandman-appspecs',
     },
     environmentMapping:: {
         "prd-sam": $.prdsam,
