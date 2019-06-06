@@ -1,0 +1,32 @@
+# created by scone-gen e4d02613
+
+apiVersion: v1
+
+system:
+  functions:
+  - name: asyncapi-playground
+    count: 2
+    containers:
+    - name: asyncapi-playground
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/ynagata/asyncapi-playground:2.0.0-rc1
+      ports:
+      - containerPort: 5000
+        name: http
+      env:
+        - name: IMAGE_NAME
+          value: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/ynagata/asyncapi-playground:2.0.0-rc1
+        - name: MANIFEST_VERSION
+          value: v1.0
+      livenessProbe:
+        initialDelaySeconds: 30
+        httpGet:
+          path: /
+          port: 5000
+
+  loadbalancers:
+    - lbname: asyncapi-playground-lb
+      function: asyncapi-playground
+      slbenabled: true
+      ports:
+        - port: 80 
+          targetport: 5000
