@@ -8,16 +8,14 @@ system:
     count: 5
     containers:
     - name: switchboard
-      image: sfci/servicelibs/switchboard:183059c16584b14b941d5b094937a7f82d7fb494
+      image: sfci/servicelibs/switchboard:0143a74a3ae13b30676aaad8f13f1abc8f3201d7
       args:
       - --clusters.external-clusters[0]=ajnafunneldirect:HTTP1
       - --clusters.external-clusters[1]=spaasmesh:HTTP2
       - --metrics.maxNumberOfCollectedMetrics=150000
       - --metrics.funnelTimeOut=100000
       - --healthIndicator.maxThreadCount=1300
-      # Standard is 60,000
       - --clusters.zkScraper.scrapeTimeoutMs=120000
-      - --clusters.zkScraper.zkSessionTimeoutMs=120000
       - --cluster.scraper.delayMs=120000
       ports:
       - containerPort: 15372
@@ -29,7 +27,7 @@ system:
       - name: JVM_HEAP_MAX
         value: 4G
       - name: FAKE_ENV_VAR_INCREMENT_TO_TRIGGER_SAM_DEPLOY
-        value: "1"
+        value: "0"
       resources:
         limits:
           cpu: "8"
@@ -51,12 +49,15 @@ system:
         httpGet:
           path: /manage/ready
           port: 15372
-        initialDelaySeconds: 15
+        # Switchboard won't become Ready until there was a successful scrape.
+        # So we don't want to start touching the readiness probe until then.
+        # Using 60+ seconds here will also allow us to slow down the gradual rollout
+        initialDelaySeconds: 60
         periodSeconds: 5
         timeoutSeconds: 4
       terminationMessagePolicy: FallbackToLogsOnError
     - name: sherpa
-      image: sfci/servicelibs/sherpa-envoy:1.0.5
+      image: sfci/servicelibs/sherpa-envoy:1.0.7
       args:
       - --template
       - /switchboard-config/switchboard-sidecar.config.yaml.template
@@ -102,8 +103,15 @@ system:
     - name: tls-server-cert
       maddogCert:
         type: server
+    # We consider a pod Ready when it was ready and healthy for at least 20 seconds
+    # This helps to slow down the rollout
+    minReadySeconds: 20
     strategy:
       rollingUpdate:
+        # We allow up to 1 pod over the desired count
+        maxSurge: 1
+        # We want 2 pods unavailable instead of 1, in order to overcome issues when 1 pod was scheduled on a node
+        # that is unhealthy and that stalled the deployment
         maxUnavailable: 2
   loadbalancers:
   - lbname: switchboard
@@ -113,9 +121,12 @@ system:
     - lbtype: dsr
       port: 15001
       targetport: 15001
+      name: grpc-xds
     - lbtype: dsr
       port: 15370
       targetport: 15372
+      name: http-app
     - lbtype: dsr
       port: 15374
       targetport: 15373
+      name: http-envoy
