@@ -9,5 +9,5 @@ local Duration = "1m";
 local Packetcapture = false;
 
 if slbconfigs.isSlbEstate then
-    tcpdumpbaseservice.slbtcpdumpService(Command, Duration, Packetcapture, slbconfigs.nginxProxyName) {
-} else "SKIP"
+    tcpdumpbaseservice.slbtcpdumpService(Command, Duration, Packetcapture, slbconfigs.nginxProxyName)
+else "SKIP"

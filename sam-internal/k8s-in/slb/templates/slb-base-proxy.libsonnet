@@ -212,27 +212,27 @@
         slbconfigs.node_name_env,
       ],
     },
-//    {
-//      image: slbimages.hyperslb,
-//      command: [
-//          "/sdn/slb-tcpdump",
-//          "--tcpdump.pollinterval=15m",
-//      ],
-//      name: "slb-tcpdump",
-//      resources: {
-//          requests: {
-//              cpu: "0.5",
-//              memory: "300Mi",
-//          },
-//          limits: {
-//              cpu: "0.5",
-//              memory: "300Mi",
-//          },
-//      },
-//      volumeMounts: [
-//        configs.config_volume_mount,
-//      ],
-//    },
+    {
+      image: slbimages.hyperslb,
+      command: [
+          "/sdn/slb-tcpdump",
+          "--tcpdump.pollinterval=15m",
+      ],
+      name: "slb-tcpdump",
+      resources: {
+          requests: {
+              cpu: "0.5",
+              memory: "300Mi",
+          },
+          limits: {
+              cpu: "0.5",
+              memory: "300Mi",
+          },
+      },
+      volumeMounts: [
+        slbconfigs.tcpdump_volume_mount,
+      ],
+    },
   ],
 
   local nginxAfterSharedContainers = [
@@ -282,7 +282,7 @@
           },
       },
       volumeMounts: [
-        configs.config_volume_mount,
+        slbconfigs.tcpdump_volume_mount,
       ],
     },
   ],
@@ -345,7 +345,7 @@
               proxyconfigs.target_config_volume,
               proxyconfigs.customer_certs_volume,
               proxyconfigs.tlsparams_volume,
-              if proxyType == "nginx" then configs.config_volume(proxyName),
+              slbconfigs.tcpdump_volume(proxyName),
             ]
           ),
           initContainers: std.prune([

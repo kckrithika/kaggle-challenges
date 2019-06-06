@@ -5,6 +5,9 @@ local slbflights = import "slbflights.jsonnet";
 
 {
     slbtcpdumpService(command, duration, packetcapture, proxyName):: (
+        local proxyNameInternal = if slbflights.tcpdumpNamingRevamp then
+            (proxyName + "-tcpdump") else
+            proxyName;
         local slbAnnotations = {
             tcpdumpcommands: [
                 {
@@ -19,7 +22,7 @@ local slbflights = import "slbflights.jsonnet";
             kind: "ConfigMap",
             apiVersion: "v1",
             metadata: {
-                name: proxyName,
+                name: proxyNameInternal,
                 namespace: "sam-system",
                 labels: {} + configs.ownerLabel.slb,
             },
