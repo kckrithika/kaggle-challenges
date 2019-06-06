@@ -348,7 +348,7 @@ items:
             value: firefly-mdp.promotion
           - name: LATEST_FILE_QUEUE
             value: firefly-mdp.latestfile
-          image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-package:423
+          image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-package:427
           imagePullPolicy: Always
           livenessProbe:
             failureThreshold: 10
@@ -789,7 +789,7 @@ items:
             value: firefly-mdp
           - name: RABBIT_MQ_QUEUE_NAME
             value: firefly-mdp.pr
-          image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-pullrequest:423
+          image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-pullrequest:427
           imagePullPolicy: Always
           livenessProbe:
             failureThreshold: 10
@@ -1227,7 +1227,7 @@ items:
             value: firefly-mdp
           - name: RABBIT_MQ_QUEUE_NAME
             value: firefly-mdp.promotion
-          image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-promotion:423
+          image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-promotion:427
           imagePullPolicy: Always
           livenessProbe:
             failureThreshold: 10
