@@ -971,6 +971,18 @@
     },
     {
       "namespaces": [
+        "emp-aqueduct"
+      ],
+      "access": [
+        "team/emp_aqueduct"
+      ],
+      "controlEstate": "hnd-sam",
+      "estate": "hnd-sam_eventbus",
+      "kingdom": "hnd",
+      "superPod": "None"
+    },
+    {
+      "namespaces": [
         "gater",
         "service-mesh",
         "service-protection"
@@ -3442,6 +3454,18 @@
       ],
       "controlEstate": "ukb-sam",
       "estate": "ukb-sam_dp",
+      "kingdom": "ukb",
+      "superPod": "None"
+    },
+    {
+      "namespaces": [
+        "emp-aqueduct"
+      ],
+      "access": [
+        "team/emp_aqueduct"
+      ],
+      "controlEstate": "ukb-sam",
+      "estate": "ukb-sam_eventbus",
       "kingdom": "ukb",
       "superPod": "None"
     },
