@@ -4,10 +4,10 @@ local slbconfigs = import "slbconfig.jsonnet";
 local slbflights = import "slbflights.jsonnet";
 local tcpdumpbaseservice = import "slb-tcpdump-base-configmap.libsonnet";
 
-local Command = "-i eth0";
-local Duration = "1m";
-local Packetcapture = false;
+local command = "-i tunl0";
+local duration = "1m";
+local packetCapture = false;
 
 if slbconfigs.isSlbEstate && slbflights.deploySLBEnvoyConfig then
-    tcpdumpbaseservice.slbtcpdumpService(Command, Duration, Packetcapture, slbconfigs.envoyProxyConfigDeploymentName)
+    tcpdumpbaseservice.slbtcpdumpService(command, duration, packetCapture, slbconfigs.envoyProxyConfigDeploymentName)
 else "SKIP"
