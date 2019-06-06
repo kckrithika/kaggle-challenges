@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  labels:
+    pcn: deploy
+    sherpa-injector.service-mesh/inject: disabled
+  name: sherpa-injector-test
