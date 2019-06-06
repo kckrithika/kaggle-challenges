@@ -110,13 +110,13 @@ system:
       - containerPort: 15374
       livenessProbe:
         httpGet:
-          path: /empire/cloudatlas/api/schema/logicalVersion
+          path: /empire/alive
           port: 7030
         initialDelaySeconds: 60
         periodSeconds: 30
       readinessProbe:
         httpGet:
-          path: /empire/cloudatlas/api/schema/logicalVersion
+          path: /empire/alive
           port: 7030
         initialDelaySeconds: 60
         periodSeconds: 5
