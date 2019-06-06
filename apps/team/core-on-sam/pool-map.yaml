@@ -22,6 +22,18 @@ apps:
  cs103-sfproxy:
   - name: fra/fra-sp1-sam_coreappalpha
 
+ # NA1 - for CASAM team testing
+ mist_mist61_prd_na1:
+  - name: prd/prd-sp2-sam_coreapp
+    hostSubList:
+      - shared2-samminioncoreapp1-1-prd.eng.sfdc.net
+      - shared2-samminioncoreapp1-2-prd.eng.sfdc.net
+      - shared2-samminioncoreapp1-3-prd.eng.sfdc.net
+      - shared2-samminioncoreapp1-4-prd.eng.sfdc.net
+      - shared2-samminioncoreapp1-5-prd.eng.sfdc.net
+      - shared2-samminioncoreapp2-1-prd.eng.sfdc.net
+      - shared2-samminioncoreapp2-2-prd.eng.sfdc.net
+
  # NA2 is generated from casam/manifests using templates
  mist_mist61_prd_na2:
   - name: prd/prd-sp2-sam_coreapp
