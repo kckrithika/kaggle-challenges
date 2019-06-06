@@ -6,6 +6,8 @@ system:
       - cloudatlas-dev@salesforce.com
   functions:
   - name: cloudatlas-prd-dev-service
+    identity:
+      serviceName: cloudatlas-prd-dev-service
     count: 3
     strategy:
       type: RollingUpdate
