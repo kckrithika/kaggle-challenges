@@ -59,7 +59,7 @@ system:
           
         # db pw extracted from k4a at startup
         - name: DB_USER
-          value: doc
+          value: grumpy
         - name: DB_SID
           value: NADB11
         - name: DB_INSTANCE_NAME
