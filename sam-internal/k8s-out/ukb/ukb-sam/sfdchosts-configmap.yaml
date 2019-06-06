@@ -1111,7 +1111,7 @@ data:
           "hostname": "shared0-samminionaqueduct1-2-ukb.ops.sfdc.net",
           "kingdom": "ukb",
           "pod": "none",
-          "rack": "q04-ks31",
+          "rack": "p30-ks32",
           "superpod": "none"
         },
         {
@@ -1122,7 +1122,7 @@ data:
           "hostname": "shared0-samminionaqueduct1-3-ukb.ops.sfdc.net",
           "kingdom": "ukb",
           "pod": "none",
-          "rack": "h03-ks31",
+          "rack": "p30-ks32",
           "superpod": "none"
         },
         {
@@ -1155,7 +1155,7 @@ data:
           "hostname": "shared0-samminionaqueduct3-1-ukb.ops.sfdc.net",
           "kingdom": "ukb",
           "pod": "none",
-          "rack": "b09-ks31",
+          "rack": "m09-ks31",
           "superpod": "none"
         },
         {
@@ -2321,7 +2321,7 @@ data:
           "hostname": "shared0-searchidx1-3-ukb.ops.sfdc.net",
           "kingdom": "ukb",
           "pod": "none",
-          "rack": "q01-ks31",
+          "rack": "b07-ks31",
           "superpod": "none"
         },
         {
@@ -2343,7 +2343,7 @@ data:
           "hostname": "shared0-searchidx1-5-ukb.ops.sfdc.net",
           "kingdom": "ukb",
           "pod": "none",
-          "rack": "q01-ks31",
+          "rack": "b07-ks31",
           "superpod": "none"
         },
         {
@@ -2508,7 +2508,7 @@ data:
           "hostname": "shared0-searchidx2-2-ukb.ops.sfdc.net",
           "kingdom": "ukb",
           "pod": "none",
-          "rack": "d04-ks31",
+          "rack": "p30-ks32",
           "superpod": "none"
         },
         {
@@ -2530,7 +2530,7 @@ data:
           "hostname": "shared0-searchidx2-4-ukb.ops.sfdc.net",
           "kingdom": "ukb",
           "pod": "none",
-          "rack": "b11-ks31",
+          "rack": "p30-ks32",
           "superpod": "none"
         },
         {
