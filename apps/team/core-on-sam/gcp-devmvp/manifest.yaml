@@ -52,7 +52,7 @@ system:
       - name: DISABLE_AUTH_RELEASE_CHECK
         value: true
       - name: CASAM_APP_COLOR
-        value: blue
+        value: green
       - name: SD_PORT_OVERRIDE
         value: 13065
       - name: CASAM_SETTINGS_PATH
@@ -318,21 +318,27 @@ system:
       - name: MAJOR_RELEASE_NUMBER
         value: 222
       - name: DB_EDITION
-        value: 222
+        value: SFDC_222
+      - name: DB_HOST
+        value: 10.211.161.137
+      - name: DB_PORT
+        value: 1521
+      - name: DB_VENDOR
+        value: sayonara
       - name: MINOR_RELEASE_NUMBER
         value: 0
       - name: PATCH_RELEASE_NUMBER
         value: 0
       - name: CURRENT_RELEASE_VERSION
-        value: green
-      - name: NEW_RELEASE_VERSION
         value: blue
+      - name: NEW_RELEASE_VERSION
+        value: green
       - name: READY_SERVER_COUNT
         value: 3
       - name: DB_SID
-        value: NADB11
+        value: devmvp
       - name: ENABLE_DB_SCHEMA_UPGRADE
-        value: 0
+        value: 1
       - name: SET_DEFAULT_ORACLE_EDITION
         value: 0
       - name: OLD_DWARF
@@ -367,7 +373,7 @@ system:
         value: 30000
       - name: dns_override_enabled
         value: true
-      image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-gcp/sfci/casam/sequencer:180d92
+      image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/casam/sequencer:32216b
       livenessProbe:
         exec:
           command:
