@@ -4,26 +4,13 @@ local utils = import "util_functions.jsonnet";
 
 {
   apiVersion: "v1",
-  kind: "Service",
+  kind: "Namespace",
   metadata: {
-    name: "sherpa-injector",
-    namespace: versions.injectorNamespace,
+    name: "sherpa-injector-test",
     labels: {
-      app: "sherpa-injector",
+          "sherpa-injector.service-mesh/inject": "disabled",
     } +
     // samlabelfilter.json requires this label to be present on GCP deployments
     if utils.is_pcn(configs.kingdom) then configs.pcnEnableLabel else {},
-  },
-  spec: {
-    ports: [
-      {
-        name: "h1-tls-in-port",
-        port: if utils.is_pcn(configs.kingdom) then 443 else 17442,
-        targetPort: 17442,
-      },
-    ],
-    selector: {
-      app: "sherpa-injector",
-    },
   },
 }
