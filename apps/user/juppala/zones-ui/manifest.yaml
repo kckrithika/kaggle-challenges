@@ -17,7 +17,7 @@ system:
           type: client
     containers:
     - name: zones-ui
-      image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/zones-ui:15
+      image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/zones-ui:19
       #image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/zones-ui:5
       env:
       - name: ZONES_ENVIRONMENT
@@ -55,9 +55,11 @@ system:
           type: client
     containers:
     - name: zones-ui-cron
-      image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/zones-ui:14
+      image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/zones-ui:19
       #image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/zones-ui:5
       env:
+      - name: ZONES_SERVER_TYPE
+        value: "cron"
       - name: ZONES_ENVIRONMENT
         value: "dev"
       - name: ZONES_HTTPS_PROXY
