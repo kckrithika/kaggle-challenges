@@ -8,13 +8,13 @@ system:
     count: 2
     containers:
     - name: asyncapi-playground
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/ynagata/asyncapi-playground:2.0.0-rc1
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/ynagata/asyncapi-playground:2.0.0-rc1.1
       ports:
       - containerPort: 5000
         name: http
       env:
         - name: IMAGE_NAME
-          value: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/ynagata/asyncapi-playground:2.0.0-rc1
+          value: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/ynagata/asyncapi-playground:2.0.0-rc1.1
         - name: MANIFEST_VERSION
           value: v1.0
       livenessProbe:
