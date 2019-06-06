@@ -113,4 +113,10 @@ apps:
       hostSubList:
       - shared0-samminionatlasdir1-1-ukb.ops.sfdc.net
       - shared0-samminionatlasdir1-2-ukb.ops.sfdc.net
-      - shared0-samminionatlasdir2-1-ukb.ops.sfdc.net       
+      - shared0-samminionatlasdir2-1-ukb.ops.sfdc.net
+
+  # HND DS Nodes
+  shared0-samminionatlasdir-hnd:
+    - name: hnd/hnd-sam_cloudatlas_dir
+      hostSubList:
+      - shared0-samminionatlasdir1-1-hnd.ops.sfdc.net       
