@@ -19,7 +19,8 @@ system:
         livenessProbe:
           exec:
             command:
-            - "false"
+            - cat
+            - /etc/nginx/nginx.conf
           initialDelaySeconds: 120
           periodSeconds: 5
         volumeMounts:
