@@ -9,12 +9,12 @@ system:
           type: client
       containers:  
       - name: heimdall-ui 
-        image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/heimdall/heimdall-ui-sam-poc:1.0.3
+        image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/heimdall/heimdall-ui-sam-poc:1.0.4
         resources:
           limits: { cpu: "10", memory: "4Gi" }
           requests: { cpu: "10", memory: "4Gi" }
         ports:
-        - containerPort: 80
+        - containerPort: 8080
           name: http
         livenessProbe:
           exec:
