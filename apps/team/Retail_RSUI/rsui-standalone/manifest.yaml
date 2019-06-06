@@ -111,9 +111,9 @@ system:
       - name: SECURITY_ENCRYPTION_KEY2_PATH
         value: secrets/encryption-key2/rsui-encryption-key1.key
       - name: RSUI_HOST
-        value: salesforce-hub.com
+        value: stmfa.stm.salesforce-hub.com
       - name: RSUI_HOST_REDIRECT_WHITELIST
-        value: salesforce.hub,prd-sam.prd.slb.sfdc.net
+        value: salesforce-hub.com,prd-sam.prd.slb.sfdc.net
       - name: GATER_EMBEDDED_MODE
         value: false
       - name: TRANSFORMATIONLIB_MDS_MODE
@@ -124,8 +124,8 @@ system:
                 -XX:+PrintPromotionFailure -XX:+PrintTenuringDistribution -XX:+PrintGCDetails
                 -XX:+PrintGCDateStamps -XX:+PrintGCApplicationStoppedTime
                 -XX:+PrintGCApplicationConcurrentTime -XX:+PrintGCCause -XX:+DisableExplicitGC
-                -Xloggc:/home/scone/logs/dfs/verbosegc_$(FUNCTION_INSTANCE_NAME).log
-                -XX:+HeapDumpOnOutOfMemoryError  -XX:HeapDumpPath=/home/scone/logs/dfs
+                -Xloggc:/home/scone/logs/retail-setup/verbosegc_$(FUNCTION_INSTANCE_NAME).log
+                -XX:+HeapDumpOnOutOfMemoryError  -XX:HeapDumpPath=/home/scone/logs/retail-setup
                 -Xmx2G -Xms2G -XX:ParallelGCThreads=8 -Daura.production=true
                 -Dopen-context.enforce=false"
       - name: LOGGING_JSON_STDOUT_LEVEL
