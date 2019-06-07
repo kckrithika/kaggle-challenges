@@ -17,7 +17,7 @@ system:
     #####################################################################################
     # Service Mesh / Envoy / Sherpa
     #####################################################################################
-    - name: sherpa-cloudatlas-client
+    - name: sherpa-envoy
       image: sfci/servicelibs/sherpa-envoy:1.0.8
       env:
       - name: SFDC_ENVIRONMENT
@@ -58,8 +58,8 @@ system:
     #####################################################################################
     # Service Beacon
     #####################################################################################
-    - name: beacon-cloudatlas
-      image: sfci/servicelibs/beacon:c574fe83d
+    - name: beacon
+      image: sfci/servicelibs/beacon:7ad9e771192cd0b3e43393eea2e1e5c1de81dfda
       env:
       - name: SFDC_ENVIRONMENT
         value: "stmfa"
