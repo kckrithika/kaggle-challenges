@@ -42,6 +42,8 @@ system:
         value: docker
       - name: POSTGRES_DB
         value: dp
+      - name: POSTGRES_USER
+        value: scone
       ports:
       - containerPort: 5432
       livenessProbe:
