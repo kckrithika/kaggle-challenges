@@ -7,7 +7,7 @@ system:
   - containers:
     - env:
       - name: DB_USER
-        value: doc
+        value: bashful
 
       # Oracle (not used currently)
       - name: DB_SID
@@ -52,7 +52,7 @@ system:
       - name: DISABLE_AUTH_RELEASE_CHECK
         value: true
       - name: CASAM_APP_COLOR
-        value: green
+        value: blue
       - name: SD_PORT_OVERRIDE
         value: 13065
       - name: CASAM_SETTINGS_PATH
@@ -83,7 +83,7 @@ system:
         value: 00D500000008aMD
       - name: SU_USERID
         value: 00550000000HgO1
-      image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/casam/coreapp:release_main_18205639
+      image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/casam/coreapp:release_main_18203351
       livenessProbe:
         exec:
           command:
@@ -330,9 +330,9 @@ system:
       - name: PATCH_RELEASE_NUMBER
         value: 0
       - name: CURRENT_RELEASE_VERSION
-        value: blue
-      - name: NEW_RELEASE_VERSION
         value: green
+      - name: NEW_RELEASE_VERSION
+        value: blue
       - name: READY_SERVER_COUNT
         value: 3
       - name: DB_SID
@@ -373,7 +373,7 @@ system:
         value: 30000
       - name: dns_override_enabled
         value: true
-      image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/casam/sequencer:32216b
+      image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/casam/sequencer:2ea5d1
       livenessProbe:
         exec:
           command:
