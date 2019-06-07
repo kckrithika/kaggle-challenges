@@ -90,6 +90,7 @@ system:
         value: 15375
       ports:
       - containerPort: 7022
+      - containerPort: 15375
       livenessProbe:
         httpGet:
           path: /manage/health
