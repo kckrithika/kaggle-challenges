@@ -5,6 +5,8 @@ apps:
   - xrd/xrd-sdstoolsdev
   zones-ui:
   - xrd/xrd-sdstools
+  zones-ui-staging:
+  - xrd/xrd-sdstoolsdev
   soter:
   - prd/prd-sam
 
