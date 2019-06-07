@@ -39,7 +39,7 @@ system:
       - name: TLS_CA_CERTIFICATE
         value: /clientcerts/ca.pem
       - name: FRONTEND_MADDOG_ID
-        value: sds.zones-ui
+        value: sds.zones-ui-staging
       # config overrides
       - name: ZI_ESTATESREPO_FORKREPOOWNER
         value: tok-zones-intake
