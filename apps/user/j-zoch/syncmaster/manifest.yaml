@@ -14,7 +14,7 @@ system:
       - name: DC
         value: $(KINGDOM)
       - name: SPRING_PROFILES_ACTIVE 
-        value: dc.$(KINGDOM),sam,h2
+        value: dc.$(KINGDOM),sam
       ports:
       - containerPort: 7020
       - containerPort: 8080
@@ -36,7 +36,26 @@ system:
           mountPath: /client-certs
         - name: tls-server-cert
           mountPath: /server-certs
-
+    - name: db
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/j-zoch/postgres:9.6
+      env:
+      - name: POSTGRES_PASSWORD
+        value: docker
+      - name: POSTGRES_DB
+        value: dp
+      ports:
+      - containerPort: 5432
+      livenessProbe:
+        exec:
+          command:
+            - pg_isready
+        initialDelaySeconds: 90
+      readinessProbe:
+        exec:
+          command:
+            - pg_isready
+        initialDelaySeconds: 90
+      terminationMessagePolicy: FallbackToLogsOnError
     # mTLS container s
     - name: sherpa
       image:  sfci/servicelibs/sherpa-envoy:1.0.6
