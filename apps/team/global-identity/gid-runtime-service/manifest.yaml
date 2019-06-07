@@ -123,3 +123,4 @@ system:
           targetport: 7442
           lbtype: http
           tls: true
+          reencrypt: true
