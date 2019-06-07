@@ -119,7 +119,7 @@ system:
       function: gid-runtime-service
       slbEnabled: true
       ports:
-        - port: 9090
+        - port: 443
           targetport: 7442
           lbtype: http
           tls: true
