@@ -1,11 +1,18 @@
-# Warning: DO NOT EDIT this generated file
-# See here on how to generate this file https://git.soma.salesforce.com/casam/casamctl
-
 apiVersion: v1
 system:
+  notifications:
+    email:
+      - rshinde@salesforce.com
   functions:
-  - containers:
-    - env:
+  - name: na6-mist61dapp-prd
+    count: 1
+    identity:
+      pod: na5
+      serviceName: dapp
+    containers:
+    - name: coreapp
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/coreonsam/casam:release_main_18153481
+      env:
       - name: DB_SID
         value: mist61c220utf
       - name: DB_INSTANCE_NAME
@@ -58,13 +65,12 @@ system:
         value: B
       - name: ZDT
         value: true
-      - name: IS_DEBUGAPP
+      - name: ENABLE_APP_DEBUG_MODE
         value: true
       - name: CASAM_HOST_NAME
         valueFrom:
           fieldRef:
             fieldPath: spec.nodeName
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/coreonsam/casam:release_main_17641343
       livenessProbe:
         exec:
           command:
@@ -73,7 +79,6 @@ system:
         initialDelaySeconds: 120
         periodSeconds: 5
         timeoutSeconds: 5
-      name: coreapp
       ports:
       - containerPort: 8998
       - containerPort: 8085
@@ -102,10 +107,11 @@ system:
       - mountPath: /home/sfdc/salesforce/config/settings/overrides/caas-cluster-casam-sp2
         name: secretvol
         readOnly: true
-    - env:
+    - name: casam-sidecar
+      image: sfci/casam/coreapp_overrides:8320e0
+      env:
       - name: CASAM_SETTINGS_PATH
         value: mist.mist61.prd.na6.app
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/casam/coreapp_overrides:5f109d
       livenessProbe:
         exec:
           command:
@@ -113,7 +119,6 @@ system:
           - /tmp/live
         initialDelaySeconds: 10
         periodSeconds: 5
-      name: casam-sidecar
       readinessProbe:
         exec:
           command:
@@ -124,20 +129,20 @@ system:
       volumeMounts:
       - mountPath: /home/sfdc/salesforce/casam
         name: coreapp-casam-volume
-    - args:
+    - name: envoy-sidecar
+      image: sfci/servicelibs/sherpa-envoy:1.0.7
+      args:
       - --template
       - /cyan-config/tls-terminator-config.yaml.template
       env:
       - name: SFDC_ENVIRONMENT
         value: envoy-sidecar
-      image: sfci/servicelibs/sherpa-envoy:1.0.7
       livenessProbe:
         exec:
           command:
           - ./bin/is-alive
         initialDelaySeconds: 20
         periodSeconds: 5
-      name: envoy-sidecar
       ports:
       - containerPort: 13065
       - containerPort: 15373
@@ -154,10 +159,11 @@ system:
         name: tls-client-cert
       - mountPath: /certs/cert-server
         name: tls-server-cert
-    - env:
+    - name: envoy-sidecar-config
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/casam/cyan-config:49d21a
+      env:
       - name: CONFIG_DIR
         value: /home/sfdc-sherpa/sherpa-envoy-config-volume
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/casam/cyan-config:49d21a
       livenessProbe:
         exec:
           command:
@@ -165,7 +171,6 @@ system:
           - /tmp/live
         initialDelaySeconds: 10
         periodSeconds: 5
-      name: envoy-sidecar-config
       readinessProbe:
         exec:
           command:
@@ -176,11 +181,6 @@ system:
       volumeMounts:
       - mountPath: /home/sfdc-sherpa/sherpa-envoy-config-volume
         name: envoy-config-volume
-    count: 1
-    identity:
-      pod: na6
-      serviceName: app
-    name: na6-mist61app-prd
     progressDeadlineSeconds: 300
     strategy:
       rollingUpdate:
@@ -208,158 +208,3 @@ system:
     - k4aSecret:
         secretName: caas-k4a-secret-prd
       name: secretvol
-  - containers:
-    - args:
-      - --template=/home/sfdc-sherpa/sfproxy/config/core-on-sam/sfproxy-rds.yaml.template
-      - --switchboard=na6-switchboard-lb.core-on-sam-sp2.prd-sam.prd.slb.sfdc.net:8088
-      - --log-level=trace
-      env:
-      - name: ENVOY_DEBUG_OPTIONS
-        value: --log-path /home/sfdc-sherpa/envoy.log
-      - name: SFDC_ENVIRONMENT
-        value: mist61
-      image: sfci/frontend-gateway/sfproxy:659513c
-      livenessProbe:
-        exec:
-          command:
-          - ./bin/is-alive
-        initialDelaySeconds: 20
-        periodSeconds: 5
-      name: sfproxy-envoy
-      ports:
-      - containerPort: 2525
-      - containerPort: 12060
-      - containerPort: 15373
-      readinessProbe:
-        exec:
-          command:
-          - ./bin/is-ready
-        initialDelaySeconds: 15
-        periodSeconds: 5
-      volumeMounts:
-      - mountPath: /client-certs
-        name: tls-client-cert
-      - mountPath: /server-certs
-        name: tls-server-cert
-    count: 1
-    identity:
-      pod: na6
-      serviceName: sfproxy
-    name: na6-mist61sfproxy-prd
-    volumes:
-    - maddogCert:
-        type: client
-      name: tls-client-cert
-    - maddogCert:
-        lbnames:
-        - us6-sfproxy-lb
-        type: server
-      name: tls-server-cert
-  - containers:
-    - args:
-      - --clusters.external-clusters[0]=ajnafunneldirect:HTTP1
-      - --clusters.external-clusters[1]=spaasmesh:HTTP2
-      - --metrics.maxNumberOfCollectedMetrics=100000
-      - --metrics.funnelTimeOut=90000
-      env:
-      - name: SFDC_ENVIRONMENT
-        value: mist61
-      - name: GRPC_SERVER_PORT
-        value: 7020
-      - name: JVM_HEAP_MAX
-        value: 4G
-      image: sfci/servicelibs/switchboard:26c3cdce981042262b9f0f26c226cab1841bf9fd
-      livenessProbe:
-        httpGet:
-          path: /manage/health
-          port: 15372
-        initialDelaySeconds: 20
-        periodSeconds: 5
-      name: switchboard
-      ports:
-      - containerPort: 7020
-      - containerPort: 15372
-      readinessProbe:
-        httpGet:
-          path: /manage/health
-          port: 15372
-        initialDelaySeconds: 15
-        periodSeconds: 5
-      volumeMounts:
-      - mountPath: /home/sfdc-switchboard/sherpa-envoy-config-volume
-        name: envoy-config-volume
-    - args:
-      - --template
-      - /home/sfdc-sherpa/sfproxy/config/switchboard-sidecar/sfproxy-switchboard-sidecar.config.yaml.template
-      - --log-level
-      - trace
-      env:
-      - name: SFDC_ENVIRONMENT
-        value: mist61
-      - name: ENVOY_DEBUG_OPTIONS
-        value: --log-path /home/sfdc-sherpa/envoy.log
-      image: sfci/frontend-gateway/sfproxy:bc7e1fa
-      livenessProbe:
-        exec:
-          command:
-          - ./sfproxy/scripts/check-switchboard.sh
-        initialDelaySeconds: 20
-        periodSeconds: 5
-      name: envoy-sidecar
-      ports:
-      - containerPort: 15001
-      - containerPort: 15373
-      readinessProbe:
-        exec:
-          command:
-          - ./bin/is-ready
-        initialDelaySeconds: 15
-        periodSeconds: 5
-      volumeMounts:
-      - mountPath: /switchboard-config
-        name: envoy-config-volume
-      - mountPath: /client-certs
-        name: tls-client-cert
-      - mountPath: /server-certs
-        name: tls-server-cert
-    count: 1
-    identity:
-      pod: na6
-      serviceName: switchboard
-    name: na6-mist61switchboard-prd
-    volumes:
-    - emptyDir: {}
-      name: envoy-config-volume
-    - maddogCert:
-        type: client
-      name: tls-client-cert
-    - maddogCert:
-        lbnames:
-        - na6-switchboard-lb
-        type: server
-      name: tls-server-cert
-  loadbalancers:
-  - function: na6-mist61sfproxy-prd
-    lbname: us6-sfproxy-lb
-    nodeExposed: false
-    ports:
-    - port: 2525
-      targetport: 2525
-    - port: 8443
-      targetport: 12060
-    - port: 8087
-      targetport: 15373
-    slbEnabled: true
-  - function: na6-mist61switchboard-prd
-    lbname: na6-switchboard-lb
-    nodeExposed: false
-    ports:
-    - port: 8088
-      targetport: 15001
-    - port: 8089
-      targetport: 15372
-    - port: 8090
-      targetport: 15373
-    - port: 8888
-      targetport: 7020
-    slbEnabled: true
