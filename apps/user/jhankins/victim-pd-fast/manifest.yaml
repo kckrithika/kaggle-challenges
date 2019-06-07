@@ -34,7 +34,7 @@ system:
     labels:
       chaos.sfdc.net/podDeleteSpeed1s: true
       chaos.sfdc.net/podDeletePeriodSpeed1s: 5m
-      chaos.sfdc.net/podDeleteMinDeploymentPctSpeed1s: 60
+      chaos.sfdc.net/podDeleteMinDeploymentPctSpeed1s: 0.6
     count: 3
     containers:
     - name: echo
