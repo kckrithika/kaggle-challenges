@@ -2,8 +2,6 @@ kind: ""
 apiversion: ""
 resources:
 - charts/gateways/templates/autoscale.yaml
-- charts/gateways/templates/clusterrole.yaml
-- charts/gateways/templates/clusterrolebindings.yaml
 - charts/gateways/templates/deployment.yaml
 - charts/gateways/templates/role.yaml
 - charts/gateways/templates/rolebindings.yaml

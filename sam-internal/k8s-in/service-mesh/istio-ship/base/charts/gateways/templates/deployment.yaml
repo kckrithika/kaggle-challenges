@@ -1,4 +1,4 @@
-apiVersion: extensions/v1beta1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
@@ -8,6 +8,10 @@ metadata:
   name: istio-ingressgateway
   namespace: mesh-control-plane
 spec:
+  selector:
+    matchLabels:
+      app: istio-ingressgateway
+      istio: ingressgateway
   template:
     metadata:
       annotations:
@@ -78,6 +82,11 @@ spec:
         - --discoveryAddress
         - istio-pilot:15010
         env:
+        - name: NODE_NAME
+          valueFrom:
+            fieldRef:
+              apiVersion: v1
+              fieldPath: spec.nodeName
         - name: POD_NAME
           valueFrom:
             fieldRef:
@@ -109,7 +118,7 @@ spec:
               fieldPath: metadata.namespace
         - name: ISTIO_META_ROUTER_MODE
           value: sni-dnat
-        image: gcr.io/istio-release/proxyv2:release-1.1-latest-daily
+        image: gcr.io/istio-release/proxyv2:master-latest-daily
         imagePullPolicy: IfNotPresent
         name: istio-proxy
         ports:
@@ -138,7 +147,7 @@ spec:
         resources:
           limits:
             cpu: 2000m
-            memory: 256Mi
+            memory: 1024Mi
           requests:
             cpu: 100m
             memory: 128Mi

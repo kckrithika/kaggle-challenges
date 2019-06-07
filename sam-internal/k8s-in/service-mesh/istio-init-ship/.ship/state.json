@@ -18,15 +18,15 @@
         }
       }
     },
-    "upstream": "https://github.com/istio/istio/tree/9b6d31b74d1c0cc9358cc82d395b53f71393326b/install/kubernetes/helm/istio-init",
+    "upstream": "https://github.com/istio/istio/tree/a258df827ed2e39215fac1fd01fa104fc424cb32/install/kubernetes/helm/istio-init",
     "metadata": {
       "applicationType": "helm",
       "icon": "https://istio.io/favicons/android-192x192.png",
       "name": "istio-init",
-      "releaseNotes": "Add helm resource-policy to CRDs to prevent deletion (#12484)\n\n* Add helm resource-policy to CRDs to prevent deletion\r\n\r\n* Remove crd-install - add keep\r\n\r\nBased upon Stono's suggestion, cleaning up his PR a bit.",
+      "releaseNotes": "remove unused permission in istio_init. (#12978)",
       "version": "1.1.0"
     },
-    "contentSHA": "7c4941c21c9b1a2c7ded31b4553435433b18278fe55e5bd9221b3a4606777aed",
+    "contentSHA": "615055631a1369a19b8016922b71117977642bdf39efbd3f2209e0c05e6be6cb",
     "lifecycle": {
       "stepsCompleted": {
         "intro": true,
