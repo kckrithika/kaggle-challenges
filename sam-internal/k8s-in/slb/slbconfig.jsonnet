@@ -384,7 +384,7 @@
         realsvrcfg_pools:
             set_value_to_all_in_list(
               [configs.estate] +
-              (if $.isProdEstate then [configs.kingdom + "-sam_gater"] else []),
+              (if $.isProdEstate then [configs.estate + "_gater"] else []),
               $.slbEstates
               )
             + {
