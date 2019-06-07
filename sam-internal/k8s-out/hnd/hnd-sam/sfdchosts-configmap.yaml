@@ -440,7 +440,7 @@ data:
           "hostname": "shared0-samminioncustomerresolutionengine1-5-hnd.ops.sfdc.net",
           "kingdom": "hnd",
           "pod": "none",
-          "rack": "c11-2g",
+          "rack": "d13-2g",
           "superpod": "none"
         },
         {
@@ -1914,7 +1914,7 @@ data:
           "hostname": "shared0-searchidx2-7-hnd.ops.sfdc.net",
           "kingdom": "hnd",
           "pod": "none",
-          "rack": "e12-3g",
+          "rack": "g08-3g",
           "superpod": "none"
         },
         {
