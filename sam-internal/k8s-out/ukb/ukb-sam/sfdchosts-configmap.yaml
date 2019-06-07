@@ -1034,7 +1034,7 @@ data:
           "hostname": "shared0-samminioncustomerresolutionengine3-3-ukb.ops.sfdc.net",
           "kingdom": "ukb",
           "pod": "none",
-          "rack": "b02-ks31",
+          "rack": "b03-ks31",
           "superpod": "none"
         },
         {
@@ -1056,7 +1056,7 @@ data:
           "hostname": "shared0-samminioncustomerresolutionengine3-5-ukb.ops.sfdc.net",
           "kingdom": "ukb",
           "pod": "none",
-          "rack": "b01-ks31",
+          "rack": "b03-ks31",
           "superpod": "none"
         },
         {
@@ -2365,7 +2365,7 @@ data:
           "hostname": "shared0-searchidx1-7-ukb.ops.sfdc.net",
           "kingdom": "ukb",
           "pod": "none",
-          "rack": "f04-ks31",
+          "rack": "m09-ks31",
           "superpod": "none"
         },
         {

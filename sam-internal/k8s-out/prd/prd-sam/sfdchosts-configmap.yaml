@@ -2479,28 +2479,6 @@ data:
           "superpod": "sp1"
         },
         {
-          "bomrolename": "retail_perf_controller",
-          "controlestate": "prd-sam",
-          "devicerole": "samcompute",
-          "estate": "prd-sp2-retail_perf_controller",
-          "hostname": "shared2-retailperfcontroller1-1-prd.eng.sfdc.net",
-          "kingdom": "prd",
-          "pod": "none",
-          "rack": "u03-45",
-          "superpod": "sp2"
-        },
-        {
-          "bomrolename": "retail_perf_controller",
-          "controlestate": "prd-sam",
-          "devicerole": "samcompute",
-          "estate": "prd-sp2-retail_perf_controller",
-          "hostname": "shared2-retailperfcontroller2-1-prd.eng.sfdc.net",
-          "kingdom": "prd",
-          "pod": "none",
-          "rack": "u04-45",
-          "superpod": "sp2"
-        },
-        {
           "bomrolename": "sam_minion_chatbot",
           "controlestate": "prd-sam",
           "devicerole": "samcompute",
