@@ -76,7 +76,7 @@ system:
       - {name: HANDLED_PODS_INVERT_MATCH, value: 'true'}
       - {name: K8S_API_ENDPOINT, value: 'https://kubernetes-api-flowsnake-yul.data.sfdc.net'}
       - {name: MAESTRO_ENDPOINT, value: 'https://insights1-iworker{{superPodIndex}}-0-${kingdom}.data.sfdc.net:8008'}
-      image: sfci/insights/jobcontroller:release-1.0.9-3850901
+      image: sfci/insights/jobcontroller:release-1.0.10-d544426
       livenessProbe:
         httpGet: {path: /manage/health, port: 15373}
         initialDelaySeconds: 90
