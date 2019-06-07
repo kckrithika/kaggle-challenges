@@ -5,7 +5,7 @@ system:
       - juppala@salesforce.com
   functions:
   - name: zones-ui-staging
-    count: 2
+    count: 1
     volumes:
       - name: uiservercert
         maddogCert:
@@ -17,44 +17,6 @@ system:
           type: client
     containers:
     - name: zones-ui
-      image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/zones-ui:19
-      #image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/zones-ui:5
-      env:
-      - name: ZONES_ENVIRONMENT
-        value: "dev"
-      - name: ZONES_HTTPS_PROXY
-        value: "http://public0-proxy1-0-xrd.data.sfdc.net:8080"
-      - name: ZONES_BASE_URL
-        value: "https://gus--zonesintk.my.salesforce.com"
-      - name: ZONES_SERVICE_URL
-        value: "zones-intake-backend-staging-secure.sds.xrd-sam.xrd.slb.sfdc.net:4443"
-      - name: ZONES_SECRET_SERVICE_URL
-        value: "https://secretservice.dmz.salesforce.com:8271/vaultczar/api/1.0/getSecretBySubscriber"
-      ports:
-      - containerPort: 8445
-      livenessProbe:
-        httpGet:
-          scheme: HTTPS
-          path: /zones/v1/healthCheck
-          port: 8445
-      volumeMounts:
-      - name: uiservercert
-        mountPath: /servercerts
-      - name: uiclientcert
-        mountPath: /clientcerts
-  - name: zones-ui-staging-cron
-    count: 1
-    volumes:
-      - name: uiservercert
-        maddogCert:
-          type: server
-          lbnames:
-            - sfsg-stage-cron
-      - name: uiclientcert
-        maddogCert:
-          type: client
-    containers:
-    - name: zones-ui-cron
       image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/zones-ui:19
       #image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/zones-ui:5
       env:
@@ -83,31 +45,8 @@ system:
       - name: uiclientcert
         mountPath: /clientcerts
   loadbalancers:
-  # - lbname: zones-ui-lb
-  #   function: zones-ui
-  #   slbenabled: true
-  #   ports:
-  #     # - port: 443
-  #     #   targetport: 8445
-  #     #   lbtype: http
-  #     #   tls: true
-  #     # - port: 8445
-  #     #   targetport: 8445
-  #     #   lbtype: http
-  #     #   tls: true
-  #     - port: 8080
-  #       targetport: 8445
-  #       lbtype: http
   - lbname: sfsg-stage
     function: zones-ui-staging
-    slbenabled: true
-    ports:
-      - port: 443
-        targetport: 8445
-        lbtype: tcp
-        tls: false
-  - lbname: sfsg-stage-cron
-    function: zones-ui-staging-cron
     slbenabled: true
     ports:
       - port: 443
