@@ -72,7 +72,7 @@ system:
           "spark.shuffle.accurateBlockThreshold": "1048576", "spark.shuffle.io.preferDirectBufs":
           "false", "spark.ui.enabled": "false"}'}
       - {name: DEPLOYMENT_ID, value: prd-release}
-      - {name: DARK_LAUNCH_WRITE_TO_M3, value: 'true'}
+      - {name: DARK_LAUNCH_WRITE_TO_M3, value: 'false'}
       - {name: JAVA_OPTS, value: '-server -XX:MaxMetaspaceSize=512m -Xmx2048m -Xms2048m'}
       - {name: SIZING_MEMORY_OVERHEAD, value: '1024'}
       - {name: K8S_CPU_LIMIT_APPLY, value: 'false'}
