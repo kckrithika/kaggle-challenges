@@ -11,8 +11,6 @@ system:
     - name: cre-api-ccp-stage
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cre/cre-api:1.7.0-freeze-001.0.release-1.7.fa97c80.1
       env:
-        - name: HBASE_SUPER_TENANT_IDS_FLUSH
-          value: 00DRM00000086Ur2AI
         - name: METRICS_KAFKA_TOPIC
           value: sfdc.prod.cre__prd.ajna_local__cre_metrics_CCP_Stage
         - name: METRICS_KAFKA_SERVER
