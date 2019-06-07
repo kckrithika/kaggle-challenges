@@ -947,6 +947,52 @@
     },
     {
       "namespaces": [
+        "retail-mds",
+        "retail-dfs",
+        "retail-eventlistener"
+      ],
+      "access": [
+        "team/Retail_MDS",
+        "team/Retail_DFS",
+        "team/Retail_EventListener"
+      ],
+      "controlEstate": "hnd-sam",
+      "estate": "hnd-sam_crosscloudplatform",
+      "kingdom": "hnd",
+      "superPod": "None"
+    },
+    {
+      "namespaces": [
+        "retail-rsui",
+        "retail-rrps",
+        "retail-eventlistener"
+      ],
+      "access": [
+        "team/Retail_RSUI",
+        "team/Retail_RRPS",
+        "team/Retail_EventListener"
+      ],
+      "controlEstate": "hnd-sam",
+      "estate": "hnd-sam_crosscloudsetup",
+      "kingdom": "hnd",
+      "superPod": "None"
+    },
+    {
+      "namespaces": [
+        "retail-cre",
+        "retail-credata"
+      ],
+      "access": [
+        "team/Retail_CRE",
+        "team/Retail_CREDATA"
+      ],
+      "controlEstate": "hnd-sam",
+      "estate": "hnd-sam_customerresolutionengine",
+      "kingdom": "hnd",
+      "superPod": "None"
+    },
+    {
+      "namespaces": [
         "wave-elt"
       ],
       "access": [
@@ -3430,6 +3476,52 @@
       ],
       "controlEstate": "ukb-sam",
       "estate": "ukb-sam_cloudatlas_dir",
+      "kingdom": "ukb",
+      "superPod": "None"
+    },
+    {
+      "namespaces": [
+        "retail-mds",
+        "retail-dfs",
+        "retail-eventlistener"
+      ],
+      "access": [
+        "team/Retail_MDS",
+        "team/Retail_DFS",
+        "team/Retail_EventListener"
+      ],
+      "controlEstate": "ukb-sam",
+      "estate": "ukb-sam_crosscloudplatform",
+      "kingdom": "ukb",
+      "superPod": "None"
+    },
+    {
+      "namespaces": [
+        "retail-rsui",
+        "retail-rrps",
+        "retail-eventlistener"
+      ],
+      "access": [
+        "team/Retail_RSUI",
+        "team/Retail_RRPS",
+        "team/Retail_EventListener"
+      ],
+      "controlEstate": "ukb-sam",
+      "estate": "ukb-sam_crosscloudsetup",
+      "kingdom": "ukb",
+      "superPod": "None"
+    },
+    {
+      "namespaces": [
+        "retail-cre",
+        "retail-credata"
+      ],
+      "access": [
+        "team/Retail_CRE",
+        "team/Retail_CREDATA"
+      ],
+      "controlEstate": "ukb-sam",
+      "estate": "ukb-sam_customerresolutionengine",
       "kingdom": "ukb",
       "superPod": "None"
     },
