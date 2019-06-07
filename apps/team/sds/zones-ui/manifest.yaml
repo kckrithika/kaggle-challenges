@@ -5,7 +5,6 @@ system:
       - juppala@salesforce.com
   functions:
   - name: zones-ui
-    hostNetwork: true
     count: 1
     volumes:
       - name: uiservercert
@@ -18,8 +17,10 @@ system:
           type: client
     containers:
     - name: zones-ui
-      image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/zones-ui:15
+      image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/zones-ui:20
       env:
+      - name: ZONES_SERVER_TYPE
+        value: "cron"
       - name: ZONES_ENVIRONMENT
         value: "prod"
       - name: ZONES_HTTPS_PROXY
@@ -43,21 +44,6 @@ system:
       - name: uiclientcert
         mountPath: /clientcerts
   loadbalancers:
-  - lbname: zones-ui-lb
-    function: zones-ui
-    slbenabled: true
-    ports:
-      # - port: 443
-      #   targetport: 8445
-      #   lbtype: http
-      #   tls: true
-      # - port: 8445
-      #   targetport: 8445
-      #   lbtype: http
-      #   tls: true
-      - port: 8080
-        targetport: 8445
-        lbtype: http
   - lbname: sfsg
     function: zones-ui
     slbenabled: true
