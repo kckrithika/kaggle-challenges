@@ -44,6 +44,8 @@ system:
         value: dp
       - name: POSTGRES_USER
         value: scone
+      - name: PGDATA
+        value: /home/scone/postgresql/data/pgdata
       ports:
       - containerPort: 5432
       livenessProbe:
