@@ -1,9 +1,13 @@
 apps:
-  victim:
+  victim-pd-default:
+    - prd/prd-samtest
+    - prd/prd-sam
+  victim-pd-fast:
+    - prd/prd-samtest
+    - prd/prd-sam
+  victim-pd-slow:
     - prd/prd-samtest
     - prd/prd-sam
   no-victim:
     - prd/prd-samtest
-    - prd/prd-sam
-  aimee-mann:
     - prd/prd-sam
