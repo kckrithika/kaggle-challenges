@@ -14,7 +14,7 @@ system:
       - name: DC
         value: $(KINGDOM)
       - name: SPRING_PROFILES_ACTIVE 
-        value: dc.$(KINGDOM),sam
+        value: dc.$(KINGDOM),sam,ssbypass
       ports:
       - containerPort: 7020
       - containerPort: 8080
