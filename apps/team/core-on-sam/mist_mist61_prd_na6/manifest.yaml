@@ -7,7 +7,6 @@ system:
   - name: na6-mist61dapp-prd
     count: 1
     identity:
-      pod: na5
       serviceName: dapp
     containers:
     - name: coreapp
@@ -40,9 +39,9 @@ system:
       - name: PUBLIC_PORT_IS_SECURE
         value: true
       - name: PUBLIC_HOST_NAME
-        value: us6-sfproxy-lb.core-on-sam-sp2.prd-sam.prd.slb.sfdc.net
+        value: us5-sfproxy-lb.core-on-sam-sp2.prd-sam.prd.slb.sfdc.net
       - name: SFPROXY_VIP
-        value: https://us6-sfproxy-lb.core-on-sam-sp2.prd-sam.prd.slb.sfdc.net:8443
+        value: https://us5-sfproxy-lb.core-on-sam-sp2.prd-sam.prd.slb.sfdc.net:8443
       - name: HTTP_PORT
         value: 8085
       - name: SPORT
@@ -58,7 +57,7 @@ system:
       - name: SD_PORT_OVERRIDE
         value: 13065
       - name: CASAM_SETTINGS_PATH
-        value: mist.mist61.prd.na6.app
+        value: mist.mist61.prd.na6.dapp
       - name: CLUSTER_NAME
         value: na6
       - name: DEPLOYMENT
@@ -108,10 +107,10 @@ system:
         name: secretvol
         readOnly: true
     - name: casam-sidecar
-      image: sfci/casam/coreapp_overrides:8320e0
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/casam/coreapp_overrides:94924f
       env:
       - name: CASAM_SETTINGS_PATH
-        value: mist.mist61.prd.na6.app
+        value: mist.mist61.prd.na6.dapp
       livenessProbe:
         exec:
           command:
@@ -133,7 +132,7 @@ system:
       image: sfci/servicelibs/sherpa-envoy:1.0.7
       args:
       - --template
-      - /cyan-config/tls-terminator-config.yaml.template
+      - /cyan-config/dapp-config.yaml.template
       env:
       - name: SFDC_ENVIRONMENT
         value: envoy-sidecar
@@ -160,7 +159,7 @@ system:
       - mountPath: /certs/cert-server
         name: tls-server-cert
     - name: envoy-sidecar-config
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/casam/cyan-config:49d21a
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/casam/cyan-config:8edb96
       env:
       - name: CONFIG_DIR
         value: /home/sfdc-sherpa/sherpa-envoy-config-volume
