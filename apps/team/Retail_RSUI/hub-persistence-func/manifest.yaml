@@ -34,6 +34,7 @@ system:
             # Inbound http2 port for incoming gRPC service mesh calls
             - containerPort: 7020
               name: hp-in-http2
+            - containerPort: 15372
           resources:
             limits: { cpu: "2", memory: "10Gi" }
             requests: { cpu: "2", memory: "10Gi" }
@@ -51,7 +52,7 @@ system:
           livenessProbe:
             httpGet:
               path: /manage/health
-              port: 15523
+              port: 15372
             initialDelaySeconds: 60
             periodSeconds: 60
             timeoutSeconds: 90
