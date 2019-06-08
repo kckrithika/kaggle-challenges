@@ -1,0 +1,124 @@
+apiVersion: v1
+
+system:
+  notifications:
+    email:
+      - retail-setup@salesforce.com
+  functions:
+    - name: hub-persistence-func
+      count: 3
+      identity:
+        serviceName: hub-persistence
+      volumes:
+        - name: sherpa-log-volume
+          hostPath:
+            path: /home/sfdc-hub-persistence/logs
+        - name: hp-server-cert
+          maddogCert:
+            type: server
+            lbnames:
+              - hub-persistence-func-lb
+        - name: hp-client-cert
+          maddogCert:
+            type: client
+
+      containers:
+        - name: hub-persistence
+          image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/eli/hub-persistence:alpha-20190607
+          ports:
+            # Jetty http1 ports for incoming public traffic via SLB
+            - containerPort: 7022
+              name: hp-in-http1
+            - containerPort: 7023
+              name: hp-test-http3
+            # Inbound http2 port for incoming gRPC service mesh calls
+            - containerPort: 7020
+              name: hp-in-http2
+          resources:
+            limits: { cpu: "2", memory: "10Gi" }
+            requests: { cpu: "2", memory: "10Gi" }
+          env:
+            - name: SERVER_PORT
+              value: 7022
+            - name: GRPC_SERVICE_PORT
+              value: 7020
+            - name: SERVER_ADDITIONALPORTS_SANDBOXLOGIN
+              value: 7023
+            - name: SFDC_ENVIRONMENT
+              value: stmfa
+            - name: JVM_ARGS
+              value: -Xmx2G -Xms2G -XX:ParallelGCThreads=8
+          livenessProbe:
+            httpGet:
+              path: /manage/health
+              port: 15523
+            initialDelaySeconds: 60
+            periodSeconds: 60
+            timeoutSeconds: 90
+          volumeMounts:
+            - name: hp-server-cert
+              mountPath: /server-certs
+            - name: hp-client-cert
+              mountPath: /client-certs
+
+        - name: sherpa-hub-persistence-func
+          image: sfci/servicelibs/sherpa-envoy:1.0.5
+          args:
+            - --server-ca
+            - /server-certs/ca_test/cacerts.pem
+          env:
+            - name: SFDC_ENVIRONMENT
+              value: stmfa
+          resources:
+            limits: { cpu: "1", memory: "1Gi" }
+            requests: { cpu: "1", memory: "1Gi" }
+          volumeMounts:
+            - name: sherpa-log-volume
+              mountPath: /log
+            - name: hp-server-cert
+              mountPath: /server-certs
+            - name: hp-client-cert
+              mountPath: /client-certs
+          ports:
+            - containerPort: 7443 # http2 in port for grpc
+              name: sher-in-htp2tls
+          livenessProbe:
+            exec:
+              command:
+                - "./bin/is-alive"
+            initialDelaySeconds: 120
+            periodSeconds: 5
+          readinessProbe:
+            exec:
+              command:
+                - "./bin/is-ready"
+            initialDelaySeconds: 110
+            periodSeconds: 5
+
+        - name: beacon-hub-persistence-func
+          image: sfci/servicelibs/beacon:ce3b9722faf59dc7550a1df2905ecff794fbb2e3
+          env:
+            - name: SFDC_ENVIRONMENT
+              value: stmfa
+          resources:
+            limits: { cpu: "1", memory: "1Gi" }
+            requests: { cpu: "1", memory: "1Gi" }
+          args:
+            - -endpoint
+            - retail-rsui/hub-persistence:DATACENTER:7443
+          livenessProbe:
+            initialDelaySeconds: 15
+            exec:
+              command:
+                - "/home/scone/is-alive.sh"
+
+  loadbalancers:
+    - lbname: hub-persistence-func-lb
+      function: hub-persistence-func
+      slbEnabled: true
+      ports:
+        - port: 443
+          targetport: 7022
+          tls: true
+          lbtype: http
+          reencrypt: true
