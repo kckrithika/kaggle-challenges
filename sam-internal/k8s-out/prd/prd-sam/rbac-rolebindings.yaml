@@ -435,6 +435,40 @@ items:
 - apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: RoleBinding
   metadata:
+    name: retail-rsui:prd-sam_crosscloudplatform:rolebinding
+    namespace: retail-rsui
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: minion:role
+  subjects:
+  - kind: User
+    name: shared0-samminioncrosscloudplatform1-1-prd.eng.sfdc.net
+  - kind: User
+    name: shared0-samminioncrosscloudplatform1-2-prd.eng.sfdc.net
+  - kind: User
+    name: shared0-samminioncrosscloudplatform1-3-prd.eng.sfdc.net
+  - kind: User
+    name: shared0-samminioncrosscloudplatform1-4-prd.eng.sfdc.net
+  - kind: User
+    name: shared0-samminioncrosscloudplatform2-1-prd.eng.sfdc.net
+  - kind: User
+    name: shared0-samminioncrosscloudplatform2-2-prd.eng.sfdc.net
+  - kind: User
+    name: shared0-samminioncrosscloudplatform2-3-prd.eng.sfdc.net
+  - kind: User
+    name: shared0-samminioncrosscloudplatform2-4-prd.eng.sfdc.net
+  - kind: User
+    name: shared0-samminioncrosscloudplatform3-1-prd.eng.sfdc.net
+  - kind: User
+    name: shared0-samminioncrosscloudplatform3-2-prd.eng.sfdc.net
+  - kind: User
+    name: shared0-samminioncrosscloudplatform3-3-prd.eng.sfdc.net
+  - kind: User
+    name: shared0-samminioncrosscloudplatform3-4-prd.eng.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1beta1
+  kind: RoleBinding
+  metadata:
     name: ci-retail-dfs:prd-sam_crosscloudplatform:rolebinding
     namespace: ci-retail-dfs
   roleRef:

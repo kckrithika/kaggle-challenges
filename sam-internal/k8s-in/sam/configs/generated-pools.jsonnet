@@ -2807,11 +2807,13 @@
     },
     {
       "namespaces": [
+        "retail-rsui",
         "retail-mds",
         "retail-dfs",
         "retail-eventlistener"
       ],
       "access": [
+        "team/Retail_RSUI",
         "team/Retail_MDS",
         "team/Retail_DFS",
         "team/Retail_EventListener"
