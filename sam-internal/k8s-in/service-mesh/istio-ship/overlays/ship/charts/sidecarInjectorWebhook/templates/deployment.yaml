@@ -1,6 +1,8 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
+  annotations:
+    manifestctl.sam.data.sfdc.net/swagger: disable
   name: istio-sidecar-injector
   namespace: mesh-control-plane
 spec:

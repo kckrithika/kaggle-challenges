@@ -1,0 +1,13 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: istio-init-crd-12
+  namespace: mesh-control-plane
+spec:
+  template:
+    spec:
+      containers:
+      - name: istio-init-crd-12
+        image: mcpIstioConfig.kubectlImage
+      nodeSelector:
+        pool: mcpIstioConfig.istioEstate

@@ -9,25 +9,11 @@ local mcpIstioConfig = (import "service-mesh/istio-config.jsonnet");
     },
     labels: {
       app: "istio-init",
-      istio: "istio-init",
+      istio: "init",
     },
     name: "istio-init-mesh-control-plane",
   },
   rules: [
-    {
-      apiGroups: [
-        "",
-      ],
-      resources: [
-        "configmaps",
-      ],
-      verbs: [
-        "get",
-        "list",
-        "create",
-        "watch",
-      ],
-    },
     {
       apiGroups: [
         "apiextensions.k8s.io",
