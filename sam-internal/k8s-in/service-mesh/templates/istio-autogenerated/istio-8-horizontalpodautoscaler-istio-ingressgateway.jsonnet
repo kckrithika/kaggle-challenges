@@ -8,7 +8,8 @@ local mcpIstioConfig = (import "service-mesh/istio-config.jsonnet");
       "manifestctl.sam.data.sfdc.net/swagger": "disable",
     },
     labels: {
-      app: "ingressgateway",
+      app: "istio-ingressgateway",
+      istio: "ingressgateway",
       release: "istio",
     },
     name: "istio-ingressgateway",
@@ -27,7 +28,7 @@ local mcpIstioConfig = (import "service-mesh/istio-config.jsonnet");
     ],
     minReplicas: 1,
     scaleTargetRef: {
-      apiVersion: "apps/v1beta1",
+      apiVersion: "apps/v1",
       kind: "Deployment",
       name: "istio-ingressgateway",
     },

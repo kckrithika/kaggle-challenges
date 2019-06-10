@@ -13,6 +13,7 @@
             "/clusterrolebinding.yaml": "apiVersion: rbac.authorization.k8s.io/v1\nkind: ClusterRoleBinding\nmetadata:\n  annotations:\n    manifestctl.sam.data.sfdc.net/swagger: disable\n  name: istio-init-admin-role-binding-mesh-control-plane",
             "/job-crd-10.yaml": "apiVersion: batch/v1\nkind: Job\nmetadata:\n  name: istio-init-crd-10\n  namespace: mesh-control-plane\nspec:\n  template:\n    spec:\n      containers:\n      - name: istio-init-crd-10\n        image: mcpIstioConfig.kubectlImage\n      nodeSelector:\n        pool: mcpIstioConfig.istioEstate",
             "/job-crd-11.yaml": "apiVersion: batch/v1\nkind: Job\nmetadata:\n  name: istio-init-crd-11\n  namespace: mesh-control-plane\nspec:\n  template:\n    spec:\n      containers:\n      - name: istio-init-crd-11\n        image: mcpIstioConfig.kubectlImage\n      nodeSelector:\n        pool: mcpIstioConfig.istioEstate",
+            "/job-crd-12.yaml": "apiVersion: batch/v1\nkind: Job\nmetadata:\n  name: istio-init-crd-12\n  namespace: mesh-control-plane\nspec:\n  template:\n    spec:\n      containers:\n      - name: istio-init-crd-12\n        image: mcpIstioConfig.kubectlImage\n      nodeSelector:\n        pool: mcpIstioConfig.istioEstate",
             "/serviceaccount.yaml": "apiVersion: v1\nkind: ServiceAccount\nmetadata:\n  annotations:\n    manifestctl.sam.data.sfdc.net/swagger: disable\n  name: istio-init-service-account\n  namespace: mesh-control-plane"
           }
         }

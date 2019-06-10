@@ -614,6 +614,8 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
+  annotations:
+    manifestctl.sam.data.sfdc.net/swagger: disable
   labels:
     app: istio-ingressgateway
     istio: ingressgateway
@@ -904,6 +906,7 @@ kind: Deployment
 metadata:
   annotations:
     checksum/config-volume: f8da08b6b8c170dde721efd680270b2901e750d4aa186ebb6c22bef5b78a43f9
+    manifestctl.sam.data.sfdc.net/swagger: disable
   labels:
     app: pilot
     istio: pilot
@@ -1058,6 +1061,8 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
+  annotations:
+    manifestctl.sam.data.sfdc.net/swagger: disable
   labels:
     app: sidecarInjectorWebhook
     istio: sidecar-injector

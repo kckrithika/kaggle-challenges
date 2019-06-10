@@ -1,9 +1,12 @@
 # Auto-generated file. Do not modify manually. Check README.md.
 local mcpIstioConfig = (import "service-mesh/istio-config.jsonnet");
 {
-  apiVersion: "extensions/v1beta1",
+  apiVersion: "apps/v1",
   kind: "Deployment",
   metadata: {
+    annotations: {
+      "manifestctl.sam.data.sfdc.net/swagger": "disable",
+    },
     labels: {
       app: "istio-ingressgateway",
       istio: "ingressgateway",
@@ -136,6 +139,15 @@ local mcpIstioConfig = (import "service-mesh/istio-config.jsonnet");
               {
                 name: "ISTIO_METAJSON_METRICS_INCLUSIONS",
                 value: "{\"sidecar.istio.io/statsInclusionPrefixes\": \"access_log_file,cluster,cluster_manager,control_plane,http,http2,http_mixer_filter,listener,listener_manager,redis,runtime,server,stats,tcp,tcp_mixer_filter,tracing\"}",
+              },
+              {
+                name: "NODE_NAME",
+                valueFrom: {
+                  fieldRef: {
+                    apiVersion: "v1",
+                    fieldPath: "spec.nodeName",
+                  },
+                },
               },
               {
                 name: "POD_NAME",

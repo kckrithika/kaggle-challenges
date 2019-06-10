@@ -5,18 +5,9 @@ metadata:
     manifestctl.sam.data.sfdc.net/swagger: disable
   labels:
     app: istio-init
-    istio: istio-init
+    istio: init
   name: istio-init-mesh-control-plane
 rules:
-- apiGroups:
-  - ""
-  resources:
-  - configmaps
-  verbs:
-  - get
-  - list
-  - create
-  - watch
 - apiGroups:
   - apiextensions.k8s.io
   resources:

@@ -1,9 +1,12 @@
 # Auto-generated file. Do not modify manually. Check README.md.
 local mcpIstioConfig = (import "service-mesh/istio-config.jsonnet");
 {
-  apiVersion: "extensions/v1beta1",
+  apiVersion: "apps/v1",
   kind: "Deployment",
   metadata: {
+    annotations: {
+      "manifestctl.sam.data.sfdc.net/swagger": "disable",
+    },
     labels: {
       app: "sidecarInjectorWebhook",
       istio: "sidecar-injector",
@@ -375,6 +378,10 @@ local mcpIstioConfig = (import "service-mesh/istio-config.jsonnet");
                 {
                   key: "config",
                   path: "config",
+                },
+                {
+                  key: "values",
+                  path: "values",
                 },
               ],
               name: "istio-sidecar-injector",

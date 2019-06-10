@@ -27,7 +27,7 @@ local mcpIstioConfig = (import "service-mesh/istio-config.jsonnet");
     ],
     minReplicas: 1,
     scaleTargetRef: {
-      apiVersion: "apps/v1beta1",
+      apiVersion: "apps/v1",
       kind: "Deployment",
       name: "istio-pilot",
     },
