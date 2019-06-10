@@ -2,7 +2,8 @@ apiVersion: autoscaling/v2beta1
 kind: HorizontalPodAutoscaler
 metadata:
   labels:
-    app: ingressgateway
+    app: istio-ingressgateway
+    istio: ingressgateway
     release: istio
   name: istio-ingressgateway
   namespace: mesh-control-plane
@@ -15,6 +16,6 @@ spec:
     type: Resource
   minReplicas: 1
   scaleTargetRef:
-    apiVersion: apps/v1beta1
+    apiVersion: apps/v1
     kind: Deployment
     name: istio-ingressgateway

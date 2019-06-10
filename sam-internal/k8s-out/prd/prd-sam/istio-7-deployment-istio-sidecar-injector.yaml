@@ -91,7 +91,7 @@ spec:
         env:
         - name: ESTATE
           value: prd-sam_gater
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-sfci-dev/sfci/servicemesh/istio-packaging/sidecar_injector:6888b79cd0b7516618de282a96eb580342e0ea5f
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-sfci-dev/sfci/servicemesh/istio-packaging/sidecar_injector:341081ddba29fab76df2a8d8e36a1ee8ebd206bd
         imagePullPolicy: IfNotPresent
         livenessProbe:
           exec:

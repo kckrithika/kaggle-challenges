@@ -1,19 +1,23 @@
 apiVersion: v1
 data:
   mesh: "# Set the following variable to true to disable policy checks by the Mixer.\n#
-    Note that metrics will still be reported to the Mixer.\ndisablePolicyChecks: true\n\n#
-    Set enableTracing to false to disable request tracing.\nenableTracing: true\n\n#
-    Set accessLogFile to empty string to disable access log.\naccessLogFile: \"\"\n\n#
-    If accessLogEncoding is TEXT, value will be used directly as the log format\n#
-    example: \"[%START_TIME%] %REQ(:METHOD)% %REQ(X-ENVOY-ORIGINAL-PATH?:PATH)% %PROTOCOL%\\n\"\n#
-    If AccessLogEncoding is JSON, value will be parsed as map[string]string\n# example:
-    '{\"start_time\": \"%START_TIME%\", \"req_method\": \"%REQ(:METHOD)%\"}'\n# Leave
-    empty to use default log format\naccessLogFormat: \"\"\n\n# Set accessLogEncoding
-    to JSON or TEXT to configure sidecar access log\naccessLogEncoding: 'TEXT'\n#
-    Let Pilot give ingresses the public IP of the Istio ingressgateway\ningressService:
+    Note that metrics will still be reported to the Mixer.\ndisablePolicyChecks: true\n#
+    reportBatchMaxEntries is the number of requests that are batched before telemetry
+    data is sent to the mixer server\nreportBatchMaxEntries: 100\n# reportBatchMaxTime
+    is the max waiting time before the telemetry data of a request is sent to the
+    mixer server\nreportBatchMaxTime: 1s\n\n# Set enableTracing to false to disable
+    request tracing.\nenableTracing: true\n\n# Set accessLogFile to empty string to
+    disable access log.\naccessLogFile: \"\"\n\n# If accessLogEncoding is TEXT, value
+    will be used directly as the log format\n# example: \"[%START_TIME%] %REQ(:METHOD)%
+    %REQ(X-ENVOY-ORIGINAL-PATH?:PATH)% %PROTOCOL%\\n\"\n# If AccessLogEncoding is
+    JSON, value will be parsed as map[string]string\n# example: '{\"start_time\":
+    \"%START_TIME%\", \"req_method\": \"%REQ(:METHOD)%\"}'\n# Leave empty to use default
+    log format\naccessLogFormat: \"\"\n\n# Set accessLogEncoding to JSON or TEXT to
+    configure sidecar access log\naccessLogEncoding: 'TEXT'\n\nenableEnvoyAccessLogService:
+    false\n# Let Pilot give ingresses the public IP of the Istio ingressgateway\ningressService:
     istio-ingressgateway\n\n# Default connect timeout for dynamic clusters generated
     by Pilot and returned via XDS\nconnectTimeout: 10s\n\n# DNS refresh rate for Envoy
-    clusters of type STRICT_DNS\ndnsRefreshRate: 5s\n\n# Unix Domain Socket through
+    clusters of type STRICT_DNS\ndnsRefreshRate: 300s\n\n# Unix Domain Socket through
     which envoy communicates with NodeAgent SDS to get\n# key/cert for mTLS. Use secret-mount
     files instead of SDS if set to empty. \nsdsUdsPath: \n\n# This flag is used by
     secret discovery service(SDS). \n# If set to true(prerequisite: https://kubernetes.io/docs/concepts/storage/volumes/#projected),

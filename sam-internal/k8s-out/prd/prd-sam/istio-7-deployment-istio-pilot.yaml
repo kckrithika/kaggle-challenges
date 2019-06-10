@@ -96,7 +96,7 @@ spec:
           value: "1"
         - name: PILOT_DISABLE_XDS_MARSHALING_TO_ANY
           value: "1"
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-sfci-dev/sfci/servicemesh/istio-packaging/pilot:6888b79cd0b7516618de282a96eb580342e0ea5f
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-sfci-dev/sfci/servicemesh/istio-packaging/pilot:341081ddba29fab76df2a8d8e36a1ee8ebd206bd
         imagePullPolicy: IfNotPresent
         name: discovery
         ports:

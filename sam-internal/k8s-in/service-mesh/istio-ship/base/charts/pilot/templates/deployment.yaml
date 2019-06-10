@@ -1,4 +1,4 @@
-apiVersion: extensions/v1beta1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   annotations:
@@ -91,7 +91,7 @@ spec:
           value: "1"
         - name: PILOT_DISABLE_XDS_MARSHALING_TO_ANY
           value: "1"
-        image: gcr.io/istio-release/pilot:release-1.1-latest-daily
+        image: gcr.io/istio-release/pilot:master-latest-daily
         imagePullPolicy: IfNotPresent
         name: discovery
         ports:
@@ -140,7 +140,7 @@ spec:
             fieldRef:
               apiVersion: v1
               fieldPath: status.podIP
-        image: gcr.io/istio-release/proxyv2:release-1.1-latest-daily
+        image: gcr.io/istio-release/proxyv2:master-latest-daily
         imagePullPolicy: IfNotPresent
         name: istio-proxy
         ports:
@@ -151,7 +151,7 @@ spec:
         resources:
           limits:
             cpu: 2000m
-            memory: 128Mi
+            memory: 1024Mi
           requests:
             cpu: 100m
             memory: 128Mi
