@@ -61,6 +61,60 @@ items:
     labels:
       istio-injection: enabled
     name: search-scale-safely
+- apiVersion: v1
+  kind: Namespace
+  metadata:
+    labels:
+      istio-injection: enabled
+    name: retail-cre
+- apiVersion: v1
+  kind: Namespace
+  metadata:
+    labels:
+      istio-injection: enabled
+    name: retail-dfs
+- apiVersion: v1
+  kind: Namespace
+  metadata:
+    labels:
+      istio-injection: enabled
+    name: retail-dss
+- apiVersion: v1
+  kind: Namespace
+  metadata:
+    labels:
+      istio-injection: enabled
+    name: cloudatlas
+- apiVersion: v1
+  kind: Namespace
+  metadata:
+    labels:
+      istio-injection: enabled
+    name: retail-eventlistener
+- apiVersion: v1
+  kind: Namespace
+  metadata:
+    labels:
+      istio-injection: enabled
+    name: retail-mds
+- apiVersion: v1
+  kind: Namespace
+  metadata:
+    labels:
+      istio-injection: enabled
+    name: retail-rrps
+- apiVersion: v1
+  kind: Namespace
+  metadata:
+    labels:
+      istio-injection: enabled
+    name: retail-rsui
+- apiVersion: v1
+  kind: Namespace
+  metadata:
+    labels:
+      istio-injection: enabled
+    name: retail-setup
 kind: List
 metadata:
   labels: {}
