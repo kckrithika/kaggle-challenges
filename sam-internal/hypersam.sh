@@ -5,4 +5,4 @@
 # Changing hypersam can impact apps in every kingdom at the same time, so extreme care must be taken when updating the image+rpm to make sure the output is the same as before.
 # Follow instructions here for validating the new SMB: https://git.soma.salesforce.com/sam/sam/wiki/Update-SAM-Manifest-Builder#verify-the-new-smb-changes-produce-good-output
 # PR Reviewer: Ensure that PR comments include the results of the above check (image_promotion, control_estate, manifest diffs)
-HYPERSAM=ops0-artifactrepo1-0-prd.data.sfdc.net/dva/sam/hypersam:2693-d92f9638336c1e9b12a82e7c6d8face251aa983d
+HYPERSAM=ops0-artifactrepo1-0-prd.data.sfdc.net/dva/sam/hypersam:2743-4c5eaa97aabb0a93655c9bc06943f733ea304915
