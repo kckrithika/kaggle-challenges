@@ -7,6 +7,10 @@ system:
   functions:
   - name: universal-search
     count: 6
+    labels:
+      app: universal-search
+    annotations:
+      "routing.mesh.sfdc.net/enabled": "true"
     volumes:
     - name: client-cert-vol
       maddogCert:
@@ -280,3 +284,10 @@ system:
       port: 15372
       targetport: 15372
     slbEnabled: true
+  - lbname: universal-search
+    function: universal-search
+    ports:
+      - lbtype: dsr
+        port: 7443
+        targetport: 7443
+        name: grpc-search
