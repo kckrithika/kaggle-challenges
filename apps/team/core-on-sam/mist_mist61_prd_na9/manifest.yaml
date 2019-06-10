@@ -47,7 +47,7 @@ system:
       - name: DISABLE_AUTH_RELEASE_CHECK
         value: true
       - name: CASAM_APP_COLOR
-        value: blue
+        value: green
       - name: SD_PORT_OVERRIDE
         value: 7442
       - name: CASAM_SETTINGS_PATH
@@ -204,9 +204,9 @@ system:
       - name: PATCH_RELEASE_NUMBER
         value: 0
       - name: CURRENT_RELEASE_VERSION
-        value: green
-      - name: NEW_RELEASE_VERSION
         value: blue
+      - name: NEW_RELEASE_VERSION
+        value: green
       - name: READY_SERVER_COUNT
         value: 1
       - name: DB_SID
@@ -243,7 +243,7 @@ system:
         value: 360000
       - name: ENABLE_HEALTH_CHECK_TLS
         value: false
-      image: sfci/casam/sequencer:0dd565
+      image: sfci/casam/sequencer:81be90
       livenessProbe:
         exec:
           command:
