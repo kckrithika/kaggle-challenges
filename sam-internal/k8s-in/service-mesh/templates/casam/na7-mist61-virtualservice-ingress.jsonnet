@@ -76,8 +76,7 @@
         "route": [
           {
             "destination": {
-              "host": "na7-mist61app-prd",
-              "subset": "BLUE"
+              "host": "na7-mist61app-prd"
             }
           }
         ]
