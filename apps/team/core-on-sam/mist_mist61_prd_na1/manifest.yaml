@@ -241,7 +241,7 @@ system:
         value: https://refocus.internal.salesforce.com/v1/samples/
       - name: KAIJU_RUNTIME_TIMEOUT_MS
         value: 360000
-      image: sfci/casam/sequencer:180d92
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/casam/sequencer:a29e44
       livenessProbe:
         exec:
           command:
