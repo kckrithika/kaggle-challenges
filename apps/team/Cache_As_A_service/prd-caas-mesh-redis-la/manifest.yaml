@@ -74,9 +74,6 @@ system:
         requests: { memory: "50M" }
     - name: sherpa
       image: sfci/servicelibs/sherpa-envoy:1.0.7
-      args:
-      # 2018-02-08: Direct Connection to the switchboard for now
-      - --switchboard=switchboard.service-mesh.svc:15001
       ports:
       - containerPort: 15373
       env:
