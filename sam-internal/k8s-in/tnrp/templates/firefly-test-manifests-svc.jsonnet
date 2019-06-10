@@ -114,7 +114,6 @@ if configs.estate == "prd-samtwo" then
                 value: "sam-test-manifests.pr",
             },
        ],
-
     },
     apiVersion: "v1",
     kind: "List",
