@@ -23,6 +23,8 @@ system:
           mountPath: /kpdata
         - name: sdblog
           mountPath: /sdblog
+        - name: kpagentlog
+          mountPath: /app
         - name: kpagentclientcert
           mountPath: /clientcert
     lbname: kpagent-sam-lb
@@ -33,3 +35,6 @@ system:
     - name: sdblog
       storageClassName: standard
       storageSizeRequest: 2Gi
+    - name: kpagentlog
+      storageClassName: standard
+      storageSizeRequest: 1Gi
