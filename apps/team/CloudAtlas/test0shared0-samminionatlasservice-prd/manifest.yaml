@@ -82,11 +82,11 @@ system:
     # Entity API
     #####################################################################################
     - name: cloudatlas-service
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cloud-atlas/cloudatlas/cloudatlas-service:8cfcfe9
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cloud-atlas/cloudatlas/cloudatlas-service:3207e07
       command: ["java", "-jar", "cloudatlas-service.jar"]
       env:
         - name: server_port
-          value: 8083
+          value: 7032
         - name: management_server_port
           value: 15374
         - name: cloudatlas_http_server_port_servicemesh
@@ -108,7 +108,6 @@ system:
       - containerPort: 7030
       - containerPort: 7032
       - containerPort: 7080
-      - containerPort: 8083
       - containerPort: 15374
       livenessProbe:
         httpGet:
