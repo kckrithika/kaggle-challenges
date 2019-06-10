@@ -50,7 +50,7 @@ system:
           command:
           - /bin/true
     - name: zipkin-alpha
-      image: docker-dva-rc/dva/zipkin-frontend:3
+      image: docker-dva-rc/dva/zipkin-server:36
       env:
       - name: ES_HOSTS
         value: es-test-distributed-tracing-prd.slb.sfdc.net:9200
