@@ -338,7 +338,7 @@ items:
             value: tnrpfirefly-test_sam_manifests.promotion
           - name: LATEST_FILE_QUEUE
             value: tnrpfirefly-test_sam_manifests.latestfile
-          image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-package:427
+          image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-package:428
           imagePullPolicy: Always
           livenessProbe:
             failureThreshold: 10
@@ -790,7 +790,7 @@ items:
             value: tnrpfirefly-test_sam_manifests.promotion
           - name: LATEST_FILE_QUEUE
             value: tnrpfirefly-test_sam_manifests.latestfile
-          image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-package:427
+          image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-package:428
           imagePullPolicy: Always
           livenessProbe:
             failureThreshold: 10
@@ -899,12 +899,23 @@ items:
               "artifactory": {
                   "artifact-manifest-time-property-key": "snd_artifact_promotion_time",
                   "artifactory-content-repo-gcp": "content_repo_gcp",
+                  "artifactory-content-repo-password": "${artifactoryContentRepoPassword#FromSecretService}",
+                  "artifactory-content-repo-password-prod": "${artifactoryContentRepoPasswordProd#FromSecretService}",
                   "artifactory-content-repo-prod": "content_repo_prod",
                   "artifactory-content-repo-rc": "content_repo_rc",
+                  "artifactory-content-repo-user-name": "svc_tnrp_ci_test",
+                  "artifactory-content-repo-user-name-prod": "svc_tnrp_cd_test",
+                  "artifactory-dev-endpoint": "https://${appconfig.artifactory.artifactory-dev-host}/",
                   "artifactory-dev-host": "testrepo1-0-prd.data.sfdc.net",
+                  "artifactory-p2p-api-endpoint": "https://${appconfig.artifactory.artifactory-p2p-host}/artifactory/",
+                  "artifactory-p2p-endpoint": "https://${appconfig.artifactory.artifactory-p2p-host}/",
                   "artifactory-p2p-host": "testrepo2-0-prd.data.sfdc.net",
                   "artifactory-password": "${artifactoryPassword#FromSecretService}",
-                  "artifactory-user-name": "svc_tnrp_artifactory"
+                  "artifactory-user-name": "svc_tnrp_artifactory",
+                  "backoff-time": "1000ms",
+                  "connection-timeout": "20000ms",
+                  "max-retry": 3,
+                  "socket-timeout": "30000ms"
               },
               "back-off-period": "2000ms",
               "context-prefix": "",
@@ -1199,7 +1210,7 @@ items:
             value: test_sam_manifests
           - name: RABBIT_MQ_QUEUE_NAME
             value: tnrpfirefly-test_sam_manifests.pr
-          image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-pullrequest:427
+          image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-pullrequest:428
           imagePullPolicy: Always
           livenessProbe:
             failureThreshold: 10
@@ -1628,7 +1639,7 @@ items:
             value: test_sam_manifests
           - name: RABBIT_MQ_QUEUE_NAME
             value: tnrpfirefly-test_sam_manifests.promotion
-          image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-promotion:427
+          image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-promotion:428
           imagePullPolicy: Always
           livenessProbe:
             failureThreshold: 10
