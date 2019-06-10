@@ -1,6 +1,5 @@
 local configs = import "config.jsonnet";
 local samimages = (import "sam/samimages.jsonnet") + { templateFilename:: std.thisFile };
-local istioImages = (import "service-mesh/istio-images.jsonnet") + { templateFilename:: std.thisFile };
 local madkub = (import "service-mesh/istio-madkub-config.jsonnet") + { templateFilename:: std.thisFile };
 
 local funnelEndpoint = std.split(configs.funnelVIP, ":");

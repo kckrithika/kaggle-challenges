@@ -27,7 +27,7 @@ before running `ship update --headed`.
 A copy of the same values with Mesh Control Plane defaults is in [`istio-helm-mcp-defaults`](./istio-helm-mcp-defaults) which helps to check diff during upgrade.
 
 ### Update/Upgrade and Deployment Steps (Skip steps as required based on the action)
-1. If updating Istio images, update the new image as required in [istio-images.jsonnet](./istio-images.jsonnet). Note: Phased deployment not decided yet for istio, only phase 0 active.
+1. If updating Istio images, update the new image as required in Helm values for [istio](./istio-helm-mcp-defaults/istio-values.yaml) or [istio-init](./istio-helm-mcp-defaults/istio-init-values.yaml). Run `ship update --headed` and copy these values to the helm values entry. This process is manual as of now, something that can be automated in future. 
 1. If updating the estates Istio runs on, update the [istio-pilot-estates.json](./istio-pilot-estates.json).
 1. If updating overlays, ensure [Ship is installed](https://github.com/replicatedhq/ship#installation), navigate to [istio-ship](./istio-ship) directory and run `ship update --headed`.
 1. If updating overlays, complete all the steps in Ship's visual UI. Jsonnet variables in overlays can be represented as `mcpIstioConfig.<name>` or `%(<name>)s`. Where, `<name>` is the variable name defined in [`istio-config.jsonnet`](./istio-config.jsonnet).
