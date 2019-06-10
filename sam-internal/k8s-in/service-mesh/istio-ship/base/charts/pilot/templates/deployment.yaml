@@ -91,7 +91,7 @@ spec:
           value: "1"
         - name: PILOT_DISABLE_XDS_MARSHALING_TO_ANY
           value: "1"
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-sfci-dev/sfci/servicemesh/istio-packaging/pilot:341081ddba29fab76df2a8d8e36a1ee8ebd206bd
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-sfci-dev/sfci/servicemesh/istio-packaging/pilot:f500cb1e6e3dfb7974af66ac91cb347098595916
         imagePullPolicy: IfNotPresent
         name: discovery
         ports:
@@ -140,7 +140,7 @@ spec:
             fieldRef:
               apiVersion: v1
               fieldPath: status.podIP
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-sfci-dev/sfci/servicemesh/istio-packaging/proxy:341081ddba29fab76df2a8d8e36a1ee8ebd206bd
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-sfci-dev/sfci/servicemesh/istio-packaging/proxy:f500cb1e6e3dfb7974af66ac91cb347098595916
         imagePullPolicy: IfNotPresent
         name: istio-proxy
         ports:

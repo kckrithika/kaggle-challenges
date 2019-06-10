@@ -29,7 +29,6 @@ spec:
         env:
         - name: ESTATE
           value: mcpIstioConfig.istioEstate
-        image: mcpIstioConfig.sidecarInjectorImage
         name: sidecar-injector-webhook
         ports:
         - containerPort: 15009

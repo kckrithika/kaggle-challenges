@@ -23,7 +23,7 @@ local mcpIstioConfig = (import "service-mesh/istio-config.jsonnet");
               "-f",
               "/etc/istio/crd-10/crd-10.yaml",
             ],
-            image: mcpIstioConfig.kubectlImage,
+            image: "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-sfci-dev/sfci/servicemesh/istio-packaging/kubectl:f500cb1e6e3dfb7974af66ac91cb347098595916",
             imagePullPolicy: "IfNotPresent",
             name: "istio-init-crd-10",
             volumeMounts: [
