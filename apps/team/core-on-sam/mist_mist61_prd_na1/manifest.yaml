@@ -241,6 +241,8 @@ system:
         value: https://refocus.internal.salesforce.com/v1/samples/
       - name: KAIJU_RUNTIME_TIMEOUT_MS
         value: 360000
+      - name: ENABLE_HEALTH_CHECK_TLS
+        value: false
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/casam/sequencer:373df6
       livenessProbe:
         exec:
