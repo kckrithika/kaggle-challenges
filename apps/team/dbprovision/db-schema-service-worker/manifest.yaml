@@ -6,15 +6,16 @@ system:
     count: 1
     containers:
     - name: db-schema-service-worker
-      image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-gcp/dva/db-schema-service-worker:3
-      command: ["java -jar /home/scone/worker/build/libs/worker.jar"]
+      image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-gcp/dva/db-schema-service-worker:4
       env:
         - name: VAULT_TOKEN
           value: "/secrets/tk.txt"
       livenessProbe:
-        httpGet:
-          path: /
-          port: 11443
+        initialDelaySeconds: 30
+        exec:
+          command:
+          - echo
+          - "OK"
       volumeMounts:
         - mountPath: /secrets/
           name: dbprovision-vaulttoken
