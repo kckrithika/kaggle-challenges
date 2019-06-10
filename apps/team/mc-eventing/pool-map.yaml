@@ -16,3 +16,8 @@ apps:
   - name: cdg/cdg-sam_mc_consumer
   fra-event-notification-service:
   - name: fra/fra-sam_mc_consumer
+
+  prd-dev-event-transfer-control-plane:
+  - name: prd/prd-sam_mc_consumer
+  prd-dev-event-transfer-service:
+  - name: prd/prd-sam_mc_consumer
