@@ -131,7 +131,7 @@ system:
     ports:
     - port: 9093
       targetport: 9091
-  - lbname: metadata-service
+  - lbname: metadata-service-prd-func-patch
     function: metadata-service-prd-func-patch
     ports:
     - port: 7443

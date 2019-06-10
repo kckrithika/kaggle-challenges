@@ -131,7 +131,7 @@ system:
     ports:
     - port: 9093
       targetport: 9091
-  - lbname: metadata-service
+  - lbname: metadata-service-prd-func-freeze 
     function: metadata-service-prd-func-freeze 
     ports:
     - port: 7443
