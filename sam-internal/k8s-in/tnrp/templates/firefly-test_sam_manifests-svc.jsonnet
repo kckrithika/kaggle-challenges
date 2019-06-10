@@ -4,8 +4,6 @@ local pullrequestsvc = import "firefly-pullrequest-svc.jsonnet.TEMPLATE";
 local configs = import "config.jsonnet";
 local pullrequestsvc = import "firefly-pullrequest-svc.jsonnet.TEMPLATE";
 local promotionsvc = import "firefly-promotion-svc.jsonnet.TEMPLATE";
-local prConfig = import "configs/firefly-pullrequest.jsonnet";
-local artifactoryConfig = import "configs/firefly-artifactory.jsonnet";
 
 if configs.estate == "prd-sam" then
 {
@@ -72,15 +70,6 @@ if configs.estate == "prd-sam" then
         value: "tnrpfirefly-test_sam_manifests.pr",
       },
    ],
-    data:: {
-        local appConfig = prConfig.config("firefly-pullrequest") + {
-          appconfig+: {
-            artifactory: artifactoryConfig.prod,
-          },
-        },
-        "application.yml": std.manifestJson(appConfig),
-     },
-
   },
   local promotion = promotionsvc {
     serviceConf:: super.serviceConf {
