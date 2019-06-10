@@ -51,7 +51,7 @@ system:
               command:
                 - "/opt/beacon/is-alive.sh"
         - name: sherpa
-          image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-gcp/sfci/servicelibs/sherpa-envoy:eeb8e3bfc9d7912299ed28658895aca9523f348f
+          image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-gcp/sfci/servicelibs/sherpa-envoy:b985afe5636e65db57ebef3e5ba67657c769d93d
           args:
             # 2018-02-08: Direct Connection to the switchboard for now
             - --switchboard=switchboard.service-mesh.svc:15001
