@@ -29,11 +29,11 @@ local kingdom = std.extVar("kingdom");
 
     ### Release Phase 0 - prd-sam and prd-samtest
     "0": $.per_phase["1"] {
-       kubectl: "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-sfci-dev/sfci/servicemesh/istio-packaging/kubectl:6888b79cd0b7516618de282a96eb580342e0ea5f",
-       pilot: "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-sfci-dev/sfci/servicemesh/istio-packaging/pilot:6888b79cd0b7516618de282a96eb580342e0ea5f",
-       proxy: "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-sfci-dev/sfci/servicemesh/istio-packaging/proxy:6888b79cd0b7516618de282a96eb580342e0ea5f",
-       proxyinit: "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-sfci-dev/sfci/servicemesh/istio-packaging/proxy_init:6888b79cd0b7516618de282a96eb580342e0ea5f",
-       sidecarinjector: "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-sfci-dev/sfci/servicemesh/istio-packaging/sidecar_injector:6888b79cd0b7516618de282a96eb580342e0ea5f",
+       kubectl: "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-sfci-dev/sfci/servicemesh/istio-packaging/kubectl:341081ddba29fab76df2a8d8e36a1ee8ebd206bd",
+       pilot: "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-sfci-dev/sfci/servicemesh/istio-packaging/pilot:341081ddba29fab76df2a8d8e36a1ee8ebd206bd",
+       proxy: "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-sfci-dev/sfci/servicemesh/istio-packaging/proxy:341081ddba29fab76df2a8d8e36a1ee8ebd206bd",
+       proxyinit: "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-sfci-dev/sfci/servicemesh/istio-packaging/proxy_init:341081ddba29fab76df2a8d8e36a1ee8ebd206bd",
+       sidecarinjector: "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-sfci-dev/sfci/servicemesh/istio-packaging/sidecar_injector:341081ddba29fab76df2a8d8e36a1ee8ebd206bd",
        metricsscraper: "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/servicemesh/metrics-scraper:dev",
      },
 
