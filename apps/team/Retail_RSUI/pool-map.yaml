@@ -35,4 +35,4 @@ apps:
   rsui-production-ord:
   - name: ord/ord-sam_crosscloudsetup
   hub-persistence-func:
-  - name: prd/prd-sam_crosscloudsetup
+  - name: prd/prd-sam_crosscloudplatform
