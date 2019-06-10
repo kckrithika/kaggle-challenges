@@ -6,9 +6,9 @@ data:
     data is sent to the mixer server\nreportBatchMaxEntries: 100\n# reportBatchMaxTime
     is the max waiting time before the telemetry data of a request is sent to the
     mixer server\nreportBatchMaxTime: 1s\n\n# Set enableTracing to false to disable
-    request tracing.\nenableTracing: true\n\n# Set accessLogFile to empty string to
-    disable access log.\naccessLogFile: \"\"\n\n# If accessLogEncoding is TEXT, value
-    will be used directly as the log format\n# example: \"[%START_TIME%] %REQ(:METHOD)%
+    request tracing.\nenableTracing: false\n\n# Set accessLogFile to empty string
+    to disable access log.\naccessLogFile: \"\"\n\n# If accessLogEncoding is TEXT,
+    value will be used directly as the log format\n# example: \"[%START_TIME%] %REQ(:METHOD)%
     %REQ(X-ENVOY-ORIGINAL-PATH?:PATH)% %PROTOCOL%\\n\"\n# If AccessLogEncoding is
     JSON, value will be parsed as map[string]string\n# example: '{\"start_time\":
     \"%START_TIME%\", \"req_method\": \"%REQ(:METHOD)%\"}'\n# Leave empty to use default
@@ -62,6 +62,8 @@ data:
     number to control the number of Proxy worker threads.\n  # If set to 0 (default),
     then start worker thread for each CPU thread/core.\n  concurrency: 2\n  #\n  tracing:\n
     \   zipkin:\n      # Address of the Zipkin collector\n      address: zipkin.mesh-control-plane:9411\n
+    \ #\n  # Envoy's Metrics Service stats sink pushes Envoy metrics to a remote collector
+    via the Metrics Service gRPC API.\n  envoyMetricsServiceAddress: switchboard.service-mesh:15001\n
     \ #\n  # Mutual TLS authentication between sidecars and istio control plane.\n
     \ controlPlaneAuthPolicy: NONE\n  #\n  # Address where istio Pilot service is
     running\n  discoveryAddress: istio-pilot.mesh-control-plane:15010"

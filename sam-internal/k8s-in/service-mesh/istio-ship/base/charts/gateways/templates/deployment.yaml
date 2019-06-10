@@ -73,6 +73,8 @@ spec:
         - istio-ingressgateway
         - --zipkinAddress
         - zipkin:9411
+        - --envoyMetricsServiceAddress
+        - switchboard.service-mesh:15001
         - --proxyAdminPort
         - "15000"
         - --statusPort
@@ -118,7 +120,7 @@ spec:
               fieldPath: metadata.namespace
         - name: ISTIO_META_ROUTER_MODE
           value: sni-dnat
-        image: gcr.io/istio-release/proxyv2:master-latest-daily
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-sfci-dev/sfci/servicemesh/istio-packaging/proxy:341081ddba29fab76df2a8d8e36a1ee8ebd206bd
         imagePullPolicy: IfNotPresent
         name: istio-proxy
         ports:

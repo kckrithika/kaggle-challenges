@@ -30,6 +30,7 @@ local ingressGatewayCertConfigs = [ingressGatewayClientCertConfig, ingressGatewa
 
 {
   ## Istio Images. Represented as `"mcpIstioConfig.<image>"` in template.
+  tag: istioImages.tag,
   pilotImage: istioImages.pilot,
   proxyImage: istioImages.proxy,
   proxyInitImage: istioImages.proxyinit,
