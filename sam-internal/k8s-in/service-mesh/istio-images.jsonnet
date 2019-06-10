@@ -2,6 +2,8 @@ local estate = std.extVar("estate");
 local kingdom = std.extVar("kingdom");
 
 {
+  tag: "341081ddba29fab76df2a8d8e36a1ee8ebd206bd",
+
   ### Global overrides - Anything here will override anything below
   overrides: {
     #
@@ -29,11 +31,11 @@ local kingdom = std.extVar("kingdom");
 
     ### Release Phase 0 - prd-sam and prd-samtest
     "0": $.per_phase["1"] {
-       kubectl: "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-sfci-dev/sfci/servicemesh/istio-packaging/kubectl:341081ddba29fab76df2a8d8e36a1ee8ebd206bd",
-       pilot: "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-sfci-dev/sfci/servicemesh/istio-packaging/pilot:341081ddba29fab76df2a8d8e36a1ee8ebd206bd",
-       proxy: "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-sfci-dev/sfci/servicemesh/istio-packaging/proxy:341081ddba29fab76df2a8d8e36a1ee8ebd206bd",
-       proxyinit: "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-sfci-dev/sfci/servicemesh/istio-packaging/proxy_init:341081ddba29fab76df2a8d8e36a1ee8ebd206bd",
-       sidecarinjector: "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-sfci-dev/sfci/servicemesh/istio-packaging/sidecar_injector:341081ddba29fab76df2a8d8e36a1ee8ebd206bd",
+       kubectl: "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-sfci-dev/sfci/servicemesh/istio-packaging/kubectl:" + $.tag,
+       pilot: "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-sfci-dev/sfci/servicemesh/istio-packaging/pilot:" + $.tag,
+       proxy: "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-sfci-dev/sfci/servicemesh/istio-packaging/proxy:" + $.tag,
+       proxyinit: "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-sfci-dev/sfci/servicemesh/istio-packaging/proxy_init:" + $.tag,
+       sidecarinjector: "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-sfci-dev/sfci/servicemesh/istio-packaging/sidecar_injector:" + $.tag,
        metricsscraper: "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/servicemesh/metrics-scraper:dev",
      },
 

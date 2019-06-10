@@ -105,10 +105,10 @@ global:
   # Default hub for Istio images.
   # Releases are published to docker hub under 'istio' project.
   # Daily builds from prow are on gcr.io, and nightly builds from circle on docker.io/istionightly
-  hub: gcr.io/istio-release
+  hub: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-sfci-dev/sfci/servicemesh/istio-packaging
 
   # Default tag for Istio images.
-  tag: master-latest-daily
+  tag: mcpIstioConfig.tag
 
   # Comma-separated minimum per-scope logging level of messages to output, in the form of <scope>:<level>,<scope>:<level>
   # The control plane has different scopes depending on component, but can configure default log level across all components
@@ -133,7 +133,7 @@ global:
     enableHttps: false
 
   proxy:
-    image: proxyv2
+    image: proxy
 
     # cluster domain. Default value is "cluster.local".
     clusterDomain: "cluster.local"
@@ -205,7 +205,7 @@ global:
     # example: includeIPRanges: "172.30.0.0/16,172.20.0.0/16"
     # would only capture egress traffic on those two IP Ranges, all other outbound traffic would
     # be allowed by the sidecar
-    includeIPRanges: "*"
+    includeIPRanges: "127.1.2.3/32"
     excludeIPRanges: ""
     excludeOutboundPorts: ""
 
@@ -243,9 +243,9 @@ global:
     #
     # Disabled by default.
     envoyMetricsService:
-      enabled: false
-      host: # example: metrics-service.istio-system
-      port: # example: 15000
+      enabled: true
+      host: switchboard.service-mesh
+      port: 15001
 
     # Specify which tracer to use. One of: lightstep, zipkin, datadog
     tracer: "zipkin"
@@ -273,7 +273,7 @@ global:
   policyCheckFailOpen: false
 
   # EnableTracing sets the value with same name in istio config map, requires pilot restart to take effect.
-  enableTracing: true
+  enableTracing: false
 
   # Configuration for each of the supported tracers
   tracer:
