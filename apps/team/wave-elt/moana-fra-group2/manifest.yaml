@@ -67,7 +67,7 @@ system:
       - {name: HANDLED_PODS_INVERT_MATCH, value: 'true'}
       - {name: K8S_API_ENDPOINT, value: 'https://kubernetes-api-flowsnake-frf.slb.sfdc.net'}
       - {name: ARGUS_ENDPOINT, value: 'http://ajna0-funnel1-0-frf.data.sfdc.net:8080'}
-      image: sfci/insights/jobcontroller:release-1.0.10-d544426
+      image: sfci/insights/jobcontroller:release-1.0.11-ce0ccff
       livenessProbe:
         httpGet: {path: /manage/health, port: 15372}
         initialDelaySeconds: 90
