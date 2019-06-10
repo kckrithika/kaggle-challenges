@@ -15,7 +15,7 @@ system:
             - name: GRPC_SERVER_BIND_ENDPOINT
               value: tcp://0.0.0.0:7020
             - name: JAVA_OPTS
-              value: "-Xmx6g -Xms2g -Djmagick.systemclassloader=no -Djava.library.path=/usr/lib/jni/ -Dmetrics.funnelEndPointURL=http://ajnafunneldirecttls.funnel.localhost.mesh.force.com:5442"
+              value: "-Xmx6g -Xms2g -Djmagick.systemclassloader=no -Djava.library.path=/usr/lib/jni/ -Dmetrics.funnelEndPointURL=http://ajnafunneldirecttls.funnel.localhost.mesh.force.com:80"
           resources:
             limits:
               cpu: "8"
