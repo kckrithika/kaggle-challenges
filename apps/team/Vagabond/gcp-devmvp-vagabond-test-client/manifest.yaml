@@ -12,7 +12,7 @@ system:
       pod: devmvp
     containers:
     - name: vagabond-test-client
-      image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/vagabond/vagabond-load-test:6
+      image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/vagabond/vagabond-load-test:7
       resources:
         limits: { memory: "6G" }
         requests: { memory: "6G" }
@@ -22,9 +22,9 @@ system:
         - --reportInterval=300
         - --initialDelaySeconds=120
         - --threadCount=10
-        - --enableLogging
-        - --distributionGeneratorClass com.force.vagabond.trafficgen.FixedDistributionGenerator
-        - --operationSequence PUT
+        - --enableLogging=true
+        - --distributionGeneratorClass=com.force.vagabond.trafficgen.FixedDistributionGenerator
+        - --operationSequence=PUT
         - --url=acs-test-mesh-0.vagabond.localhost.mesh.force.com:7013,acs-test-mesh-1.vagabond.localhost.mesh.force.com:7013,acs-test-mesh-2.vagabond.localhost.mesh.force.com:7013,acs-test-mesh-3.vagabond.localhost.mesh.force.com:7013
       livenessProbe:
         exec:
