@@ -1,7 +1,7 @@
 local flowsnake_images = (import "flowsnake_images.jsonnet") + { templateFilename:: std.thisFile };
 local configs = import "config.jsonnet";
 local flowsnakeconfig = import "flowsnake_config.jsonnet";
-if flowsnakeconfig.is_minikube then
+if flowsnakeconfig.is_minikube || ! ("systemd_installer_enabled" in flowsnake_images.feature_flags) then
 "SKIP"
 else
 {
