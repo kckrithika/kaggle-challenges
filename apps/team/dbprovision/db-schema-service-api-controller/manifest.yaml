@@ -6,16 +6,16 @@ system:
     count: 1
     containers:
     - name: db-schema-service-api-controller
-      image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-gcp/dva/db-schema-service-api-controller:3
-      command: ["java -jar -Dspring.profiles.active=gcp-dev /home/scone/controller/build/libs/controller.jar"]
+      image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-gcp/dva/db-schema-service-api-controller:4
       env:
         - name: VAULT_TOKEN
           value: "/secrets/tk.txt"
       ports:
       - containerPort: 11443
       livenessProbe:
+        initialDelaySeconds: 30
         httpGet:
-          path: /
+          path: /api/v1/roles
           port: 11443
       volumeMounts:
         - mountPath: /secrets/
