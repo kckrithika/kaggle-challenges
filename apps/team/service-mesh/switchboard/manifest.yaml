@@ -12,7 +12,7 @@ system:
       app: switchboard
     containers:
     - name: switchboard
-      image: sfci/servicelibs/switchboard:0143a74a3ae13b30676aaad8f13f1abc8f3201d7
+      image: sfci/servicelibs/switchboard:4b49594779aea1a67388fd1e2c41225a8dab10e6
       args:
       - --clusters.external-clusters[0]=ajnafunneldirect:HTTP1
       - --clusters.external-clusters[1]=spaasmesh:HTTP2
@@ -29,12 +29,11 @@ system:
       - --listeners.authz-policy-enabled-clusters[1]=shipping-authz-policy.service-mesh
       - --listeners.authz-policy-enabled-clusters[2]=authz-svc.service-mesh
       - --listeners.authz-policy-enabled-clusters[3]=eaas.emailinfra
-      # TODO: we need to reduce this number 
       - --metrics.maxNumberOfCollectedMetrics=400000
       - --metrics.funnelTimeOut=100000
       - --healthIndicator.maxThreadCount=1300
       - --authz.dest=authz-svc.service-mesh.localhost.mesh.force.com:5443
-      # WIP cluster scrapte timeout + delay while investigating W-6166785
+      # WIP cluster scrape timeout + delay while investigating W-6166785
       - --clusters.zkScraper.scrapeTimeoutMs=120000
       - --cluster.scraper.delayMs=120000
       ports:
@@ -77,7 +76,7 @@ system:
         timeoutSeconds: 4
       terminationMessagePolicy: FallbackToLogsOnError
     - name: sherpa
-      image: sfci/servicelibs/sherpa-envoy:1.0.8
+      image: sfci/servicelibs/sherpa-envoy:34d3aa683c4cc65258bb53febe999f2412e69f44
       args:
       - --template
       - /switchboard-config/switchboard-sidecar.config.yaml.template
