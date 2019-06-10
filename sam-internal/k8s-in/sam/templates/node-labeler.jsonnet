@@ -1,13 +1,11 @@
 local configs = import "config.jsonnet";
 local samimages = (import "samimages.jsonnet") + { templateFilename:: std.thisFile };
 
-if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" then configs.daemonSetBase("sam") {
+if configs.estate == "prd-samtest" then configs.daemonSetBase("sam") {
     spec+: {
         template: {
             spec: {
                 hostNetwork: true,
-                serviceAccountName: "node-labeler-sa",
-                serviceAccount: "node-labeler-sa",
                 containers: [
                     {
                         image: samimages.hypersam,
@@ -35,6 +33,8 @@ if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" then config
                         },
                     },
                 ],
+                serviceAccount: "node-labeler-sa",
+                serviceAccountName: "node-labeler-sa",
                 volumes+: configs.filter_empty([
                     configs.config_volume("node-labeler"),
                     {
