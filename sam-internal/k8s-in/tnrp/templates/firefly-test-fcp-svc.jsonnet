@@ -5,7 +5,6 @@ local pullrequestsvc = import "firefly-pullrequest-svc.jsonnet.TEMPLATE";
 local promotionsvc = import "firefly-promotion-svc.jsonnet.TEMPLATE";
 local packageConfig = import "configs/firefly-package.jsonnet";
 local prConfig = import "configs/firefly-pullrequest.jsonnet";
-local artifactoryConfig = import "configs/firefly-artifactory.jsonnet";
 
 if configs.estate == "prd-sam" then
 {
@@ -85,7 +84,6 @@ if configs.estate == "prd-sam" then
             docker+: {
               "force-create-container": true,
             },
-            artifactory: artifactoryConfig.prod,
           },
         },
         "application.yml": std.manifestJson(appConfig),
