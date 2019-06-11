@@ -24,16 +24,11 @@ system:
 
       containers:
         - name: hub-persistence
-          image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/eli/hub-persistence:alpha-20190607
+          image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/eli/hub-persistence:alpha-20190610
           ports:
             # Jetty http1 ports for incoming public traffic via SLB
             - containerPort: 7022
               name: hp-in-http1
-            - containerPort: 7023
-              name: hp-test-http3
-            # Inbound http2 port for incoming gRPC service mesh calls
-            - containerPort: 7020
-              name: hp-in-http2
             - containerPort: 15372
           resources:
             limits: { cpu: "2", memory: "10Gi" }
@@ -41,19 +36,29 @@ system:
           env:
             - name: SERVER_PORT
               value: 7022
-            - name: GRPC_SERVICE_PORT
-              value: 7020
-            - name: SERVER_ADDITIONALPORTS_SANDBOXLOGIN
-              value: 7023
             - name: SFDC_ENVIRONMENT
               value: stmfa
             - name: JVM_ARGS
               value: -Xmx2G -Xms2G -XX:ParallelGCThreads=8
+            - name: SECURITY_CLIENT_DYNAMICKEYSTORE_MONITOREDDIRECTORY
+              value: /client-certs/client
+            - name: SECURITY_CLIENT_DYNAMICKEYSTORE_CADIR
+              value: /client-certs/ca
+            - name: PKI_CA_DIR
+              value: /server-certs
+            - name: PKI_MONITORDIR
+              value: /server-certs/server
+            - name: SECURITY_SERVER_DYNAMICKEYSTORE_MONITOREDDIRECTORY
+              value: /server-certs/server
+            - name: SECURITY_SERVER_DYNAMICKEYSTORE_CADIR
+              value: /server-certs/ca
+            - name: SECURITY_SERVER_DYNAMICKEYSTORE_CAFILE
+              value: /server-certs/ca/cacerts.pem
           livenessProbe:
             httpGet:
               path: /manage/health
               port: 15372
-              scheme: HTTPS
+              scheme: HTTP
             initialDelaySeconds: 60
             periodSeconds: 60
             timeoutSeconds: 90
@@ -82,8 +87,10 @@ system:
             - name: hp-client-cert
               mountPath: /client-certs
           ports:
-            - containerPort: 7443 # http2 in port for grpc
-              name: sher-in-htp2tls
+            - containerPort: 7442
+              name: sh-in-http1-tls
+            - containerPort: 15373 # Sherpa admin port. This can be handy when debugging issues.
+              name: sherpa-in-admin
           livenessProbe:
             exec:
               command:
@@ -107,7 +114,7 @@ system:
             requests: { cpu: "1", memory: "1Gi" }
           args:
             - -endpoint
-            - retail-rsui/hub-persistence:DATACENTER:7443
+            - retail-rsui/hub-persistence:DATACENTER:7442
           livenessProbe:
             initialDelaySeconds: 15
             exec:
@@ -118,9 +125,3 @@ system:
     - lbname: hub-persistence-func-lb
       function: hub-persistence-func
       slbEnabled: true
-      ports:
-        - port: 443
-          targetport: 7022
-          tls: true
-          lbtype: http
-          reencrypt: true
