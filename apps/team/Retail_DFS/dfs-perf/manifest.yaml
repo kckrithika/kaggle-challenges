@@ -3,6 +3,10 @@ system:
   functions:
   - name: dfs-perf
     count: 3
+    labels:
+      app: dfs
+    annotations:
+      "routing.mesh.sfdc.net/enabled": "true"
     identity:
       serviceName: dfs
     # maps the dfslogvol volumnMount to a directory on the host machine
@@ -148,3 +152,10 @@ system:
       targetport: 7442
     - port: 15373
       targetport: 15372
+  - lbname: dfs-perf 
+    function: dfs-perf
+    ports:
+      - lbtype: dsr
+        port: 7442
+        targetport: 7442
+        name: https-dfs
