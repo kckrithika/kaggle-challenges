@@ -20,67 +20,8 @@ local samreleases = import "samreleases.json";
         #
         # Example:
         #   # [alias] Added this override to fix issue xxx
-        #   "prd,prd-sam,samcontrol,hypersam": "sam-0000123-deadbeef",
+        #   "prd,prd-sam,samcontrol,hypersam": "2690-3c76e4d1bc7bebf17bfa304fd309dc9332acd196",
 
-        #[arijeetmitra] running corrected node-labeler in samtest and samdev
-        "prd,prd-samtest,node-labeler,hypersam": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/arijeetmitra/hypersam:20190610_121410.27cdf773.dirty.arijeetmitr-ltm",
-        "prd,prd-samdev,node-labeler,hypersam": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/arijeetmitra/hypersam:20190610_121410.27cdf773.dirty.arijeetmitr-ltm",
-
-        #[thargrove] Needed only until Artifactory adds a docker-all alias to docker-gcp in XRD 2-0
-        "mvp,gsf-core-devmvp-sam2-sam,*,hypersam": "ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-gcp/dva/sam/hypersam:2601-1bbc5de4786678763a4e8a71681ee42ada887c76",
-        "mvp,gsf-core-devmvp-sam2-samtest,*,hypersam": "ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-gcp/dva/sam/hypersam:2601-1bbc5de4786678763a4e8a71681ee42ada887c76",
-
-        #[cdebains] Override with strata that's ready
-        "mvp,gsf-core-devmvp-sam2-sam,*,madkub": "ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-gcp/dva/sam/madkub:105-93f66ec3114a4a5f805ac2bc889903f7fc63c32e",
-        "mvp,gsf-core-devmvp-sam2-samtest,*,madkub": "ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-gcp/dva/sam/madkub:105-93f66ec3114a4a5f805ac2bc889903f7fc63c32e",
-
-        #[hsuanyu-chen] Enable Internal Load Balancer in PCN
-        "mvp,gsf-core-devmvp-sam2-sam,samapp-controller,hypersam": "2686-546f034ba27d1c5facfa2a87cb56b59d5f4faacf",
-        "mvp,gsf-core-devmvp-sam2-samtest,samapp-controller,hypersam": "2686-546f034ba27d1c5facfa2a87cb56b59d5f4faacf",
-
-        #[prabh-singh] Fix AutoDeployer error/override in GIA
-        "ttd,ttd-sam,samcontrol-deployer,hypersam": "sam-0002532-de840aef",
-        "hio,hio-sam,samcontrol-deployer,hypersam": "sam-0002532-de840aef",
-
-
-        #[xiao.zhou] Override Synthetic watchdog so the alert won't go off
-        "frf,frf-sam,watchdog-synthetic,hypersam": "2688-26c72ce1be33f92fc7bc5441c0a5ff668c961d78",
-
-        #[d.smith] Override kuberesource checker
-        "prd,prd-sam,watchdog-kuberesource,hypersam": "2712-49c6098a85641d114c3f44b4ed9f3a1be26bb7b5",
-        "prd,prd-samtwo,watchdog-kuberesource,hypersam": "2712-49c6098a85641d114c3f44b4ed9f3a1be26bb7b5",
-        "prd,prd-sdc,watchdog-kuberesource,hypersam": "2712-49c6098a85641d114c3f44b4ed9f3a1be26bb7b5",
-        "cdg,cdg-sam,watchdog-kuberesources,hypersam": "2712-49c6098a85641d114c3f44b4ed9f3a1be26bb7b5",
-        "cdu,cdu-sam,watchdog-kuberesources,hypersam": "2712-49c6098a85641d114c3f44b4ed9f3a1be26bb7b5",
-        "chx,chx-sam,watchdog-kuberesources,hypersam": "2712-49c6098a85641d114c3f44b4ed9f3a1be26bb7b5",
-        "dfw,dfw-sam,watchdog-kuberesources,hypersam": "2712-49c6098a85641d114c3f44b4ed9f3a1be26bb7b5",
-        "fra,fra-sam,watchdog-kuberesources,hypersam": "2712-49c6098a85641d114c3f44b4ed9f3a1be26bb7b5",
-        "frf,frf-sam,watchdog-kuberesources,hypersam": "2712-49c6098a85641d114c3f44b4ed9f3a1be26bb7b5",
-        "hio,hio-sam,watchdog-kuberesources,hypersam": "2712-49c6098a85641d114c3f44b4ed9f3a1be26bb7b5",
-        "hnd,hnd-sam,watchdog-kuberesources,hypersam": "2712-49c6098a85641d114c3f44b4ed9f3a1be26bb7b5",
-        "ia2,ia2-sam,watchdog-kuberesources,hypersam": "2712-49c6098a85641d114c3f44b4ed9f3a1be26bb7b5",
-        "iad,iad-sam,watchdog-kuberesources,hypersam": "2712-49c6098a85641d114c3f44b4ed9f3a1be26bb7b5",
-        "io2,io2-sam,watchdog-kuberesources,hypersam": "2712-49c6098a85641d114c3f44b4ed9f3a1be26bb7b5",
-        "io3,io3-sam,watchdog-kuberesources,hypersam": "2712-49c6098a85641d114c3f44b4ed9f3a1be26bb7b5",
-        "mvp,mvp-sam,watchdog-kuberesources,hypersam": "2712-49c6098a85641d114c3f44b4ed9f3a1be26bb7b5",
-        "ord,ord-sam,watchdog-kuberesources,hypersam": "2712-49c6098a85641d114c3f44b4ed9f3a1be26bb7b5",
-        "par,par-sam,watchdog-kuberesources,hypersam": "2712-49c6098a85641d114c3f44b4ed9f3a1be26bb7b5",
-        "ph2,ph2-sam,watchdog-kuberesources,hypersam": "2712-49c6098a85641d114c3f44b4ed9f3a1be26bb7b5",
-        "phx,phx-sam,watchdog-kuberesources,hypersam": "2712-49c6098a85641d114c3f44b4ed9f3a1be26bb7b5",
-        "prd,prd-sam,watchdog-kuberesources,hypersam": "2712-49c6098a85641d114c3f44b4ed9f3a1be26bb7b5",
-        "syd,syd-sam,watchdog-kuberesources,hypersam": "2712-49c6098a85641d114c3f44b4ed9f3a1be26bb7b5",
-        "ttd,ttd-sam,watchdog-kuberesources,hypersam": "2712-49c6098a85641d114c3f44b4ed9f3a1be26bb7b5",
-        "ukb,ukb-sam,watchdog-kuberesources,hypersam": "2712-49c6098a85641d114c3f44b4ed9f3a1be26bb7b5",
-        "wax,wax-sam,watchdog-kuberesources,hypersam": "2712-49c6098a85641d114c3f44b4ed9f3a1be26bb7b5",
-        "xrd,xrd-sam,watchdog-kuberesources,hypersam": "2712-49c6098a85641d114c3f44b4ed9f3a1be26bb7b5",
-        "yhu,yhu-sam,watchdog-kuberesources,hypersam": "2712-49c6098a85641d114c3f44b4ed9f3a1be26bb7b5",
-        "yul,yul-sam,watchdog-kuberesources,hypersam": "2712-49c6098a85641d114c3f44b4ed9f3a1be26bb7b5",
-
-        #[xiao.zhou] Override crd watcher for team "secrets"
-        "xrd,xrd-sam,crd-watcher,hypersam": "2690-3c76e4d1bc7bebf17bfa304fd309dc9332acd196",
-
-        #[xiao.zhou] Override samapp controller for a bug showed in elastic search in prd-sam
-        "prd,prd-sam,samapp-controller,hypersam": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/xiao.zhou/hypersam:20190415_152129.1843c9f94.clean.xiaozhou-ltm2",
         },
 
     ### Per-phase image tags have been moved to samreleases.json

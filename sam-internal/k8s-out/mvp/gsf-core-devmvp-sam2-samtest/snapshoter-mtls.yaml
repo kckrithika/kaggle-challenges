@@ -46,7 +46,7 @@ spec:
           value: gsf-core-devmvp-sam2-samtest
         - name: KUBECONFIG
           value: ""
-        image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-gcp/dva/sam/hypersam:2601-1bbc5de4786678763a4e8a71681ee42ada887c76
+        image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/dva/sam/hypersam:2743-4c5eaa97aabb0a93655c9bc06943f733ea304915
         livenessProbe:
           failureThreshold: 5
           httpGet:
@@ -91,7 +91,7 @@ spec:
             fieldRef:
               apiVersion: v1
               fieldPath: metadata.namespace
-        image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-gcp/dva/sam/madkub:105-93f66ec3114a4a5f805ac2bc889903f7fc63c32e
+        image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/tnrp/sam/madkub:1.0.0-0000082-3d5c21b4
         imagePullPolicy: IfNotPresent
         name: madkub-refresher
         resources: {}
