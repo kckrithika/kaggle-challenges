@@ -60,6 +60,11 @@ system:
       livenessProbe:
         httpGet:
             path: /health
+    - name: edge-redis
+      image: ops0-artifactrepo1-0-par.data.sfdc.net/dva/edge/redis:270
+      livenessProbe:
+        httpGet:
+            path: /health
     - name: edge-accd
       image: ops0-artifactrepo1-0-par.data.sfdc.net/dva/edge/accd:13
       livenessProbe:
