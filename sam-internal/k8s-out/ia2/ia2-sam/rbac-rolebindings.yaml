@@ -358,6 +358,32 @@ items:
 - apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: RoleBinding
   metadata:
+    name: cache-as-a-service-sp3:ia2-sp3-sam_caas:rolebinding
+    namespace: cache-as-a-service-sp3
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: minion:role
+  subjects:
+  - kind: User
+    name: samcaas3-caasminion1-1-ia2.ops.sfdc.net
+  - kind: User
+    name: samcaas3-caasminion1-2-ia2.ops.sfdc.net
+  - kind: User
+    name: samcaas3-caasminion1-3-ia2.ops.sfdc.net
+  - kind: User
+    name: samcaas3-caasminion2-1-ia2.ops.sfdc.net
+  - kind: User
+    name: samcaas3-caasminion2-2-ia2.ops.sfdc.net
+  - kind: User
+    name: samcaas3-caasminion2-3-ia2.ops.sfdc.net
+  - kind: User
+    name: samcaas3-caasminion3-1-ia2.ops.sfdc.net
+  - kind: User
+    name: samcaas3-caasminion3-2-ia2.ops.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1beta1
+  kind: RoleBinding
+  metadata:
     name: search-scale-safely:ia2-universalsearch_svc:rolebinding
     namespace: search-scale-safely
   roleRef:
