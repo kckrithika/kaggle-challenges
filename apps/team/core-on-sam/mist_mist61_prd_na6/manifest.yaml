@@ -183,7 +183,7 @@ system:
       - mountPath: /home/sfdc-sherpa/sherpa-envoy-config-volume
         name: envoy-config-volume
     - name: dapp-beacon
-      image: sfci/servicelibs/beacon:c574fe83d
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/casam/beacon:c574fe83d
       args:
       - -endpoint
       - dapp:POD:4500
