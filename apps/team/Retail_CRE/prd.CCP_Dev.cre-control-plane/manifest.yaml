@@ -7,6 +7,10 @@ system:
   functions:
   - name: cre-control-plane-ccp-dev
     count: 1
+    labels:
+      app: cre-control-plane-ccp-dev
+    annotations:
+      "routing.mesh.sfdc.net/enabled": "true"
     containers:
     - name: cre-control-plane-ccp-dev
       image: sfci/cre/cre-control-plane:1.7.0.0.master.86d2877.7
@@ -187,3 +191,10 @@ system:
     ports:
       - port: 8091
         targetport: 7020
+  - lbname: cre-control-plane-ccp-dev
+    function: cre-control-plane-ccp-dev
+    ports:
+      - lbtype: dsr
+        port: 7443
+        targetport: 7443
+        name: grpc-cre

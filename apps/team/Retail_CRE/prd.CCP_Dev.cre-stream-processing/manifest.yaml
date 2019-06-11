@@ -7,6 +7,10 @@ system:
   functions:
   - name: cre-sp-ccp-dev
     count: 1
+    labels:
+      app: cre-sp-ccp-dev
+    annotations:
+      "routing.mesh.sfdc.net/enabled": "true"
     containers:
     - name: cre-sp-ccp-dev
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cre-fusion/services/stream-processor:1.8.0-freeze-001.0.release-1.8.3df673e.8
@@ -145,3 +149,10 @@ system:
     ports:
       - port: 8093
         targetport: 7022
+  - lbname: cre-sp-ccp-dev
+    function: cre-sp-ccp-dev
+    ports:
+      - lbtype: dsr
+        port: 7442
+        targetport: 7442
+        name: https-cre

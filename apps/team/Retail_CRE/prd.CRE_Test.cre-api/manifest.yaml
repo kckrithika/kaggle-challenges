@@ -7,6 +7,10 @@ system:
   functions:
   - name: cre-api-cre-test
     count: 1
+    labels:
+      app: cre-api-cre-test
+    annotations:
+      "routing.mesh.sfdc.net/enabled": "true"
     containers:
     - name: cre-api-cre-test
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cre/cre-api:1.8.0.0.release-1.8.dfdf869.1
@@ -145,3 +149,10 @@ system:
     ports:
       - port: 8074
         targetport: 7022
+  - lbname: cre-api-cre-test
+    function: cre-api-cre-test 
+    ports:
+      - lbtype: dsr
+        port: 7442
+        targetport: 7442
+        name: https-cre
