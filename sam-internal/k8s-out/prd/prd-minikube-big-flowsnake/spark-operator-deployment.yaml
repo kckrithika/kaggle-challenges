@@ -41,6 +41,7 @@ spec:
         - -webhook-ca-cert=/certs/ca/cabundle.pem
         - -leader-election
         - -leader-election-lock-namespace=flowsnake
+        - -webhook-namespace-selector=spark-operator-webhook=enabled
         command:
         - /usr/bin/spark-operator
         image: minikube/kubernetes-spark-operator-2.4.0-sfdc-0.0.1:minikube
