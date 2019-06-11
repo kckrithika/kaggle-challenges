@@ -193,7 +193,7 @@ system:
         initialDelaySeconds: 5
         exec:
           command:
-          - echo 1
+          - "/opt/beacon/is-alive.sh"
     progressDeadlineSeconds: 300
     strategy:
       type: Recreate
