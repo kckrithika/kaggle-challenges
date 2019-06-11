@@ -57,29 +57,30 @@ local portConfig = import "portconfig.jsonnet";
         rabbitMqPort:: '5672',
         repositories:: 'sam/test-manifests,sam/manifests',
         repositoriesMDP:: 'tnrp/manifest_driven_promotions',
-        repositoriesFCP:: 'Infrastructure-Security/infrasec-secrets-config' +
-                            ',gate-definitions/gate-definitions' +
-                            ',nvt/mom-data' +
-                            ',monitoring/nagios_configs' +
-                            ',SiteReliability/srcore' +
-                            ',nvt/routerdb' +
-                            ',sdn/sitebridge-manifests' +
-                            ',ddi/ddi-health-config' +
-                            ',ddi/dhcpdata' +
-                            ',ddi/ddi-config' +
-                            ',SiteSwitching/siteswitching' +
-                            ',nqa/nqa-services-data' +
-                            ',nqa/render-manifest' +
-                            ',ssa/publicproxy-acls' +
-                            ',DBIAAS/tnrp_instance_refresh_config' +
-                            ',nqa/nqa-configs' +
-                            ',CPT/captain_config' +
-                            ',radc/svc_config' +
-                            ',monitoring/dvamon_configs' +
-                            ',monitoring/dvaalerting_role_settings' +
-                            ',edge-ad/edge_config' +
-                            ',defense-integration/defensedatapipeline' +
-                            ',sandman/sandman-appspecs',
+        repositoriesFCP:: 'Infrastructure-Security/infrasec-secrets-config,' +
+                            'gate-definitions/gate-definitions,' +
+                            'nvt/mom-data,' +
+                            'monitoring/nagios_configs,' +
+                            'SiteReliability/srcore,' +
+                            'nvt/routerdb,' +
+                            'sdn/sitebridge-manifests,' +
+                            'ddi/ddi-health-config,' +
+                            'ddi/dhcpdata,' +
+                            'ddi/ddi-config,' +
+                            'SiteSwitching/siteswitching,' +
+                            'nqa/nqa-services-data,' +
+                            'nqa/render-manifest,' +
+                            'ssa/publicproxy-acls,' +
+                            'DBIAAS/tnrp_instance_refresh_config,' +
+                            'nqa/nqa-configs,' +
+                            'CPT/captain_config,' +
+                            'radc/svc_config,' +
+                            'monitoring/dvamon_configs,' +
+                            'monitoring/dvaalerting_role_settings,' +
+                            'edge-ad/edge_config,' +
+                            'defense-integration/defensedatapipeline,' +
+                            'sandman/sandman-appspecs,' +
+                            'infrastructure-fabric/estatespecs',
     },
     environmentMapping:: {
         "prd-sam": $.prdsam,
