@@ -6,6 +6,10 @@ system:
   functions:
   - name: metadata-service
     count: 3
+    labels:
+      app: metadata-service
+    annotations:
+      "routing.mesh.sfdc.net/enabled": "true"
     containers:
     - name: metadata-service
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/metadata-cannon/metadata-service:0.9.39
@@ -141,3 +145,13 @@ system:
       # A plain-text sherpa-inbound port. Used by internal tooling and developers.
     - port: 7012
       targetport: 7012
+  - lbname: metadata-service
+    function: metadata-service
+    ports:
+    - port: 7443
+      targetport: 7443
+      name: grpc-func
+      # A plain-text sherpa-inbound port. Used by internal tooling and developers.
+    - port: 7012
+      targetport: 7012
+      name: grpc-plainfunc

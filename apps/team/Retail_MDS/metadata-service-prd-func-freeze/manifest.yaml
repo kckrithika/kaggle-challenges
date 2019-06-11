@@ -9,6 +9,10 @@ system:
     identity:
       serviceName: metadata-service
     count: 1
+    labels:
+      app: metadata-service
+    annotations:
+      "routing.mesh.sfdc.net/enabled": "true"
     containers:
     - name: metadata-service
       image: sfci/metadata-cannon/metadata-service:0.7.76
@@ -127,3 +131,9 @@ system:
     ports:
     - port: 9093
       targetport: 9091
+  - lbname: metadata-service-prd-func-freeze 
+    function: metadata-service-prd-func-freeze 
+    ports:
+    - port: 7443
+      targetport: 7443
+      name: grpc-func
