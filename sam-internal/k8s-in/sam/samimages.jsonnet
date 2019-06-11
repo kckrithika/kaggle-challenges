@@ -22,9 +22,6 @@ local samreleases = import "samreleases.json";
         #   # [alias] Added this override to fix issue xxx
         #   "prd,prd-sam,samcontrol,hypersam": "sam-0000123-deadbeef",
 
-        #[a.mitra] turn on synthetic checker without PV in sam-test
-        "prd,prd-samtest,watchdog-synthetic,hypersam": "2727-8ff8b127b0a2856c5f9392ce332653062249aaf2",
-
         #[thargrove] Needed only until Artifactory adds a docker-all alias to docker-gcp in XRD 2-0
         "mvp,gsf-core-devmvp-sam2-sam,*,hypersam": "ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-gcp/dva/sam/hypersam:2601-1bbc5de4786678763a4e8a71681ee42ada887c76",
         "mvp,gsf-core-devmvp-sam2-samtest,*,hypersam": "ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-gcp/dva/sam/hypersam:2601-1bbc5de4786678763a4e8a71681ee42ada887c76",
@@ -47,8 +44,6 @@ local samreleases = import "samreleases.json";
 
         #[d.smith] Override kuberesource checker
         "prd,prd-sam,watchdog-kuberesource,hypersam": "2712-49c6098a85641d114c3f44b4ed9f3a1be26bb7b5",
-        "prd,prd-samdev,watchdog-kuberesource,hypersam": "2712-49c6098a85641d114c3f44b4ed9f3a1be26bb7b5",
-        "prd,prd-samtest,watchdog-kuberesource,hypersam": "2712-49c6098a85641d114c3f44b4ed9f3a1be26bb7b5",
         "prd,prd-samtwo,watchdog-kuberesource,hypersam": "2712-49c6098a85641d114c3f44b4ed9f3a1be26bb7b5",
         "prd,prd-sdc,watchdog-kuberesource,hypersam": "2712-49c6098a85641d114c3f44b4ed9f3a1be26bb7b5",
         "cdg,cdg-sam,watchdog-kuberesources,hypersam": "2712-49c6098a85641d114c3f44b4ed9f3a1be26bb7b5",
