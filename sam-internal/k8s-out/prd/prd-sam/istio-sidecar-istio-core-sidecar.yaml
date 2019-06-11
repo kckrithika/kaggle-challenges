@@ -12,3 +12,10 @@ spec:
     hosts:
     - gater/gater.gater.svc.cluster.local
     - ccait/geoip.ccait.svc.cluster.local
+  ingress:
+  - captureMode: NONE
+    defaultEndpoint: 127.0.0.1:7021
+    port:
+      name: grpc-core
+      number: 7443
+      protocol: GRPC
