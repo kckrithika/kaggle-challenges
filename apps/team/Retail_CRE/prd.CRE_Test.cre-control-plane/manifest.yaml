@@ -7,6 +7,10 @@ system:
   functions:
   - name: cre-control-plane-cre-test
     count: 1
+    labels:
+      app: cre-control-plane-cre-test
+    annotations:
+      "routing.mesh.sfdc.net/enabled": "true"
     containers:
     - name: cre-control-plane-cre-test
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cre/cre-control-plane:1.8.0.0.develop-1.8.5a757e7.18
@@ -201,3 +205,10 @@ system:
     ports:
       - port: 8072
         targetport: 7020
+  - lbname: cre-control-plane-cre-test
+    function: cre-control-plane-cre-test 
+    ports:
+      - lbtype: dsr
+        port: 7443
+        targetport: 7443
+        name: grpc-cre

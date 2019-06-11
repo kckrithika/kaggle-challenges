@@ -7,6 +7,10 @@ system:
   functions:
   - name: cre-api-ccp-func
     count: 1
+    labels:
+      app: cre-api-ccp-func
+    annotations:
+      "routing.mesh.sfdc.net/enabled": "true"
     containers:
     - name: cre-api-ccp-func
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cre/cre-api:1.7.0-freeze-001.0.release-1.7.fa97c80.1
@@ -139,3 +143,10 @@ system:
     ports:
       - port: 8082
         targetport: 8080
+  - lbname: cre-api-ccp-func
+    function: cre-api-ccp-func
+    ports:
+      - lbtype: dsr
+        port: 7442
+        targetport: 7442
+        name: https-cre

@@ -7,6 +7,10 @@ system:
   functions:
   - name: cre-sp-cre-test
     count: 1
+    labels:
+      app: cre-sp-cre-test
+    annotations:
+      "routing.mesh.sfdc.net/enabled": "true"
     containers:
     - name: cre-sp-cre-test
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cre/cre-stream-processing:1.7.0.0.ap-intg_mode_sp.da5f4c2.4
@@ -146,3 +150,10 @@ system:
     ports:
       - port: 8070
         targetport: 7022
+  - lbname: cre-sp-cre-test
+    function: cre-sp-cre-test
+    ports:
+      - lbtype: dsr
+        port: 7443
+        targetport: 7443
+        name: grpc-cre
