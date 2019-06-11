@@ -1,5 +1,7 @@
 local estate = std.extVar("estate");
 local kingdom = std.extVar("kingdom");
+local hosts = import "flowsnake_hosts.jsonnet";
+local flowsnake_images = (import "flowsnake_images.jsonnet") + { templateFilename:: std.thisFile };
 
 {
     "global": {
@@ -195,5 +197,21 @@ local kingdom = std.extVar("kingdom");
               "ca_file": "/var/run/secrets/kubernetes.io/serviceaccount/ca.crt"
             }
         },
-    ]
+    ] + (if std.objectHas(flowsnake_images.feature_flags, "etcd_cluster_metrics") then 
+    [
+        {
+            "job_name": "etcd",
+            "static_configs": [
+                {
+                    "targets": [h.hostname + ":2379" for h in hosts.hosts if h.estate == estate && h.kingdom == kingdom && h.devicerole == "samkubeapi"],
+                },
+            ],
+            "scheme": "https",
+            "tls_config": {
+                "ca_file": "/certs/ca/cabundle.pem",
+                "cert_file": "/certs/client/certificates/client.pem",
+                "key_file": "/certs/client/keys/client-key.pem",
+            }
+        }
+    ] else []),
 }
