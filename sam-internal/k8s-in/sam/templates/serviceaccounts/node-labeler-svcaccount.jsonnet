@@ -1,6 +1,6 @@
 local configs = import "config.jsonnet";
 
-if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" || configs.estate == "prd-sam" then {
+if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" then {
     apiVersion: "v1",
     kind: "List",
     metadata: {},
@@ -18,14 +18,14 @@ if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" || configs.
             kind: "ClusterRoleBinding",
             apiVersion: "rbac.authorization.k8s.io/v1",
             metadata: {
-                name: "node-labeler-update",
+                name: "node-labeler-rolebind",
                 annotations: {
                      "manifestctl.sam.data.sfdc.net/swagger": "disable",
                 },
             },
             roleRef: {
                 kind: "ClusterRole",
-                name: "node-labeler-update",
+                name: "update-node-label",
                 apiGroup: "rbac.authorization.k8s.io",
             },
             subjects: [
@@ -35,6 +35,20 @@ if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" || configs.
                     name: "node-labeler-sa",
                 },
             ],
+        },
+        {
+            apiVersion: "rbac.authorization.k8s.io/v1beta1",
+            kind: "ClusterRole",
+            metadata: {
+                name: "update-node-label",
+            },
+            rules: [
+            {
+                apiGroups: ["*"],
+                resources: ["nodes"],
+                verbs: ["*"],
+            },
+        ],
         },
     ]
 } else "SKIP"

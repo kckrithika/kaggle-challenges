@@ -6,8 +6,6 @@ if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" then config
         template: {
             spec: {
                 hostNetwork: true,
-                serviceAccountName: "node-labeler-sa",
-                serviceAccount: "node-labeler-sa",
                 containers: [
                     {
                         image: samimages.hypersam,
@@ -35,6 +33,8 @@ if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" then config
                         },
                     },
                 ],
+                serviceAccount: "node-labeler-sa",
+                serviceAccountName: "node-labeler-sa",
                 volumes+: configs.filter_empty([
                     configs.config_volume("node-labeler"),
                     {
