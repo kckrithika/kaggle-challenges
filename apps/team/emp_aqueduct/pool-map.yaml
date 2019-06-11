@@ -1,3 +1,10 @@
 apps:
-  aqueduct:
+  # XRD functional testing env
+  aqueduct-func:
+    - xrd/xrd-sam_eventbus
+  # XRD integration testing env
+  aqueduct-int:
+    - xrd/xrd-sam_eventbus
+  # XRD performance testing env
+  aqueduct-perf:
     - xrd/xrd-sam_eventbus
