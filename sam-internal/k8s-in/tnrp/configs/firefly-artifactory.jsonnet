@@ -11,6 +11,8 @@ local configs = import "config.jsonnet";
     'artifactory-content-repo-rc': 'content_repo_rc',
     'artifactory-content-repo-prod': 'content_repo_prod',
     'artifactory-content-repo-gcp': 'content_repo_gcp',
+    'artifactory-remote-content-repo': 'content_repo',
+    'artifactory-dev-api-endpoint': 'https://${appconfig.artifactory.artifactory-dev-host}/artifactory/',
   },
 
   prod:: self.base + {
