@@ -11,7 +11,7 @@ system:
     hostnetwork: true
     containers:
     - name: kpagent-sam-image
-      image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/sdba/kpagent:0.0.1
+      image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/sdba/kpagent:0.0.2
       ports:
       - containerPort: 9090
       livenessProbe:
