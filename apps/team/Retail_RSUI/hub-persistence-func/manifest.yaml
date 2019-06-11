@@ -1,9 +1,6 @@
 apiVersion: v1
 
 system:
-  notifications:
-    email:
-      - retail-setup@salesforce.com
   functions:
     - name: hub-persistence-func
       count: 3
@@ -24,7 +21,7 @@ system:
 
       containers:
         - name: hub-persistence
-          image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/eli/hub-persistence:alpha-20190610
+          image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/eli/hub-persistence:alpha-20190611
           ports:
             # Jetty http1 ports for incoming public traffic via SLB
             - containerPort: 7022
@@ -40,20 +37,6 @@ system:
               value: stmfa
             - name: JVM_ARGS
               value: -Xmx2G -Xms2G -XX:ParallelGCThreads=8
-            - name: SECURITY_CLIENT_DYNAMICKEYSTORE_MONITOREDDIRECTORY
-              value: /client-certs/client
-            - name: SECURITY_CLIENT_DYNAMICKEYSTORE_CADIR
-              value: /client-certs/ca
-            - name: PKI_CA_DIR
-              value: /server-certs
-            - name: PKI_MONITORDIR
-              value: /server-certs/server
-            - name: SECURITY_SERVER_DYNAMICKEYSTORE_MONITOREDDIRECTORY
-              value: /server-certs/server
-            - name: SECURITY_SERVER_DYNAMICKEYSTORE_CADIR
-              value: /server-certs/ca
-            - name: SECURITY_SERVER_DYNAMICKEYSTORE_CAFILE
-              value: /server-certs/ca/cacerts.pem
           livenessProbe:
             httpGet:
               path: /manage/health
