@@ -66,6 +66,8 @@ system:
         value: true
       - name: ENABLE_APP_DEBUG_MODE
         value: true
+      - name: APP_DEBUG_PORT
+        value: 4501
       - name: CASAM_HOST_NAME
         valueFrom:
           fieldRef:
@@ -107,7 +109,7 @@ system:
         name: secretvol
         readOnly: true
     - name: casam-sidecar
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/casam/coreapp_overrides:94924f
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/casam/coreapp_overrides:5e6abc
       env:
       - name: CASAM_SETTINGS_PATH
         value: mist.mist61.prd.na6.dapp
@@ -180,6 +182,18 @@ system:
       volumeMounts:
       - mountPath: /home/sfdc-sherpa/sherpa-envoy-config-volume
         name: envoy-config-volume
+    - name: dapp-beacon
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/casam/beacon:c574fe83d
+      args:
+      - -endpoint
+      - dapp:POD:4500
+      - -endpoint
+      - dapp2:POD:4504
+      livenessProbe:
+        initialDelaySeconds: 5
+        exec:
+          command:
+          - "/home/scone/is-alive.sh"
     progressDeadlineSeconds: 300
     strategy:
       rollingUpdate:
