@@ -2,7 +2,7 @@ apiVersion: v1
 system:
   functions:
   - name: gater-perf
-    count: 40
+    count: 1
     containers:
     - name: gater-perf
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/gater/gater-perf:dmanoharan-1557857354
@@ -19,7 +19,8 @@ system:
       - --metrics.collectionInterval=60
       - --gater.grpc.deadline-ms=1000
       - --gater.timeout-in-millis=1000
-      - --gater.perf.should-log=false      
+      - --gater.perf.should-log=true
+      - --gater.client.log-opts=ALWAYS_LOG
       ports:
       - containerPort: 8081
       - containerPort: 15375
