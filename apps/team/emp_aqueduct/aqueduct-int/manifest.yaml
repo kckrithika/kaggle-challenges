@@ -1,0 +1,61 @@
+apiVersion: v1
+
+
+system:
+  functions:
+    - name: aqueduct-int
+      count: 3
+      type: stateful-set
+      identity:
+        emptyServiceName: true
+        namespace: emp_aqueduct
+      lbname: aqueduct-int-lb
+      volumes:
+      - name: kafkaclientcerts
+        maddogCert:
+          type: client
+      containers:
+      - name: aqueduct
+        image: sfci/messagingplatform/aqueduct:1.1
+        env:
+        - name: SFDC_ENVIRONMENT
+          value: "prod" # Use whatever environment your kpod uses
+        - name: SETTINGS_SERVICENAME
+          value: emp-aqueduct
+        - name: SFDC_POD 
+          value: emp-aqueduct_sam_aqueduct 
+        - name: SETTINGS_SUPERPOD 
+          value: "NONE" 
+        ports:
+        - containerPort: 8080
+          name: ext-port
+        - containerPort: 8082
+          name: inter-port
+        - containerPort: 15372
+          name: manage-port
+        livenessProbe:
+          initialDelaySeconds: 600
+          periodSeconds: 60
+          timeoutSeconds: 10
+          failureThreshold: 5 #perhaps should change this for production.
+          httpGet:
+            path: /manage/health
+            port: 15372
+            scheme: HTTP
+        volumeMounts:
+          - name: kafkaclientcerts
+            mountPath: /etc/pki_service/sfdc-aqueduct
+  loadbalancers:
+  - lbname: aqueduct-int
+    function: aqueduct-int
+    slbenabled: true
+    ports:
+      - port: 8080
+        targetport: 8080
+        lbtype: http
+      - port: 443
+        targetport: 8082
+        lbtype: http
+      - port: 15372
+        targetport: 15372
+        lbtype: http

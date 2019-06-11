@@ -3,13 +3,13 @@ apiVersion: v1
 
 system:
   functions:
-    - name: aqueduct
+    - name: aqueduct-perf
       count: 3
       type: stateful-set
       identity:
         emptyServiceName: true
         namespace: emp_aqueduct
-      lbname: aqueduct-lb
+      lbname: aqueduct-perf-lb
       volumes:
       - name: kafkaclientcerts
         maddogCert:
@@ -46,8 +46,8 @@ system:
           - name: kafkaclientcerts
             mountPath: /etc/pki_service/sfdc-aqueduct
   loadbalancers:
-  - lbname: aqueduct-on-sam
-    function: aqueduct
+  - lbname: aqueduct-perf
+    function: aqueduct-perf
     slbenabled: true
     ports:
       - port: 8080
