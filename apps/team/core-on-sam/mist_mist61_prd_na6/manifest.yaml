@@ -21,7 +21,7 @@ system:
       - name: DB_STATS_USER
         value: snowwhite
       - name: DB_CONN_NUM
-        value: 25
+        value: 20
       - name: IP_DB
         value: mist61ice1-db1-1-prd.eng.sfdc.net
       - name: DB_PASSWORD
@@ -193,13 +193,10 @@ system:
         initialDelaySeconds: 5
         exec:
           command:
-          - "/home/scone/is-alive.sh"
+          - "/opt/beacon/is-alive.sh"
     progressDeadlineSeconds: 300
     strategy:
-      rollingUpdate:
-        maxSurge: 200%
-        maxUnavailable: 0
-      type: RollingUpdate
+      type: Recreate
     terminationGracePeriodSeconds: 120
     volumes:
     - emptyDir: {}
