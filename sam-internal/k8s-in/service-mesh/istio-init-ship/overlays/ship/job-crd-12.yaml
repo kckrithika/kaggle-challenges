@@ -6,8 +6,5 @@ metadata:
 spec:
   template:
     spec:
-      containers:
-      - name: istio-init-crd-12
-        image: mcpIstioConfig.kubectlImage
       nodeSelector:
         pool: mcpIstioConfig.istioEstate

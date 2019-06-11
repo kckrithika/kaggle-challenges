@@ -15,21 +15,9 @@ spec:
         name: istio-pilot
     spec:
       containers:
-      - args:
-        - discovery
-        - --monitoringAddr=:15014
-        - --domain
-        - cluster.local
-        - --secureGrpcAddr
-        - ""
-        - --keepaliveMaxServerConnectionAge
-        - 30m
-        - --log_output_level
-        - info
-        env:
+      - env:
         - name: ESTATE
           value: mcpIstioConfig.istioEstate
-        image: mcpIstioConfig.pilotImage
         name: discovery
         ports:
         - containerPort: 15011

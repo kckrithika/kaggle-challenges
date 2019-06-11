@@ -114,14 +114,13 @@ local mcpIstioConfig = (import "service-mesh/istio-config.jsonnet");
             args: [
               "discovery",
               "--monitoringAddr=:15014",
+              "--log_output_level=default:info",
               "--domain",
               "cluster.local",
               "--secureGrpcAddr",
               "",
               "--keepaliveMaxServerConnectionAge",
               "30m",
-              "--log_output_level",
-              "info",
             ],
             env: [
               {
@@ -163,7 +162,7 @@ local mcpIstioConfig = (import "service-mesh/istio-config.jsonnet");
                 value: "1",
               },
             ],
-            image: mcpIstioConfig.pilotImage,
+            image: "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-sfci-dev/sfci/servicemesh/istio-packaging/pilot:f500cb1e6e3dfb7974af66ac91cb347098595916",
             imagePullPolicy: "IfNotPresent",
             name: "discovery",
             ports: [

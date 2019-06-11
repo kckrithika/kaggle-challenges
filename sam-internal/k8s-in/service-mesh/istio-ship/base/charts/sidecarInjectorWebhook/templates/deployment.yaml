@@ -69,7 +69,7 @@ spec:
         - --meshConfig=/etc/istio/config/mesh
         - --healthCheckInterval=2s
         - --healthCheckFile=/health
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-sfci-dev/sfci/servicemesh/istio-packaging/sidecar_injector:341081ddba29fab76df2a8d8e36a1ee8ebd206bd
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-sfci-dev/sfci/servicemesh/istio-packaging/sidecar_injector:f500cb1e6e3dfb7974af66ac91cb347098595916
         imagePullPolicy: IfNotPresent
         livenessProbe:
           exec:
