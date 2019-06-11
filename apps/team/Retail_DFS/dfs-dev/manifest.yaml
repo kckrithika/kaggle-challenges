@@ -5,6 +5,10 @@ system:
   functions:
   - name: dfs-dev
     count: 1
+    labels:
+      app: dfs
+    annotations:
+      "routing.mesh.sfdc.net/enabled": "true"
     volumes:
     - name: logvol
       hostPath:
@@ -123,3 +127,10 @@ system:
       targetport: 7022
     - port: 15374
       targetport: 15372
+  - lbname: dfs-dev
+    function: dfs-dev
+    ports:
+      - lbtype: dsr
+        port: 7442
+        targetport: 7442
+        name: https-dfs

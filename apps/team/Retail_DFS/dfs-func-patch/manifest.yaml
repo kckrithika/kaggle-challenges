@@ -5,6 +5,10 @@ system:
   functions:
   - name: dfs-func-patch
     count: 1
+    labels:
+      app: dfs
+    annotations:
+      "routing.mesh.sfdc.net/enabled": "true"
     identity:
       serviceName: dfs
     volumes:
@@ -129,3 +133,10 @@ system:
       targetport: 7442
     - port: 15375
       targetport: 15372
+  - lbname: dfs-func-patch
+    function: dfs-func-patch
+    ports:
+      - lbtype: dsr
+        port: 7442
+        targetport: 7442
+        name: https-dfs
