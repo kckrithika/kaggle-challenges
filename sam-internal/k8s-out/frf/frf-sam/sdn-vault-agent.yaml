@@ -34,7 +34,7 @@ spec:
         - --log_dir=/var/logs/sdn/
         - --logtostderr=false
         - --alsologtostderr=true
-        image: ops0-artifactrepo1-0-frf.data.sfdc.net/dva/sdn/hypersdn:2193-c7bbd5f5bd258931c4fb59483721648ba3db5ae5
+        image: ops0-artifactrepo1-0-frf.data.sfdc.net/dva/sdn/hypersdn:2199-26acb3b2228eab681f36dac105f1d8b14f24cf82
         livenessProbe:
           httpGet:
             path: /liveness-probe
