@@ -526,6 +526,21 @@ data:
         {{- end }}
         - mountPath: /etc/istio/proxy
           name: istio-envoy
+        - mountPath: /etc/certs/root-cert.pem # Maddog certs mapped to istio certs default locations.
+          name: tls-server-cert               # Volume should be defined in Manifest file.
+          subPath: ca.pem
+        - mountPath: /etc/certs/cert-chain.pem
+          name: tls-server-cert
+          subPath: server/certificates/server.pem
+        - mountPath: /etc/certs/key.pem
+          name: tls-server-cert
+          subPath: server/keys/server-key.pem
+        - mountPath: /etc/certs/client.pem
+          name: tls-client-cert
+          subPath: client/certificates/client.pem
+        - mountPath: /etc/certs/client-key.pem
+          name: tls-client-cert
+          subPath: client/keys/client-key.pem
         {{- if .Values.global.sds.enabled }}
         - mountPath: /var/run/sds/uds_path
           name: sds-uds-path
