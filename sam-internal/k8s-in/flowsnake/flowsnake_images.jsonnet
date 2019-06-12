@@ -26,11 +26,22 @@ local utils = import "util_functions.jsonnet";
             },
             feature_flags+: {
                 # Note: the *value* of the flags is ignored. jsonnet lacks array search, so we use a an object.
+                # --- flag A (Do not edit ... ---
                 btrfs_watchdog_hard_reset: "",
+                # --- flag B (these comments ... ---
                 image_renames_and_canary_build_tags: "unverified",
+                # --- flag C (and place only ... ---
                 slb_ingress: "unverified",
+                # --- flag D (one flag between ... ---
                 prometheus_pki: "",
+                # --- flag E (each pair. ... ---
                 etcd_cluster_metrics: "unverified",
+                # --- flag F (Their only purpose ... ---
+                next_analysis_script: "unverified",
+                # --- flag G (is to assist ... ---
+                # --- flag H (git's diff logic ... ---
+                # --- flag I (to reduce the ---
+                # --- flag J (likelihood of merge conflicts.) ---
             },
             # prd-test offers legacy version mappings. Phase 2 does not, so cannot inherit from there.
             # Start with 2-prd-dev (which also have legacy version mappings),
@@ -44,6 +55,16 @@ local utils = import "util_functions.jsonnet";
             image_tags+: {
             },
             feature_flags+: {
+                # --- flag A (Do not edit ... ---
+                # --- flag B (these comments ... ---
+                # --- flag C (and place only ... ---
+                # --- flag D (one flag between ... ---
+                # --- flag E (each pair. ... ---
+                # --- flag F (Their only purpose ... ---
+                # --- flag G (is to assist ... ---
+                # --- flag H (git's diff logic ... ---
+                # --- flag I (to reduce the ---
+                # --- flag J (likelihood of merge conflicts.) ---
             },
             version_mapping+: {
             },
@@ -122,6 +143,17 @@ local utils = import "util_functions.jsonnet";
             feature_flags: {
                 # After promoting a feature-flag to phase 3, please submit a follow-on PR to remove the flag and
                 # associated conditional logic. That PR will not affect k8s-out, so you can self-approve it.
+
+                # --- flag A (Do not edit ... ---
+                # --- flag B (these comments ... ---
+                # --- flag C (and place only ... ---
+                # --- flag D (one flag between ... ---
+                # --- flag E (each pair. ... ---
+                # --- flag F (Their only purpose ... ---
+                # --- flag G (is to assist ... ---
+                # --- flag H (git's diff logic ... ---
+                # --- flag I (to reduce the ---
+                # --- flag J (likelihood of merge conflicts.) ---
             },
             version_mapping: {
                 "0.12.5": "jenkins-dva-transformation-flowsnake-platform-master-781-itest",  # jenkins-dva-transformation-flowsnake-platform-master-781-itest contains MoFo estates and Kevin's 5xx fixes
