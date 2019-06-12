@@ -373,7 +373,7 @@ system:
         value: 30000
       - name: dns_override_enabled
         value: true
-      image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/casam/sequencer:7486e5
+      image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/casam/sequencer:68eb66
       livenessProbe:
         exec:
           command:
