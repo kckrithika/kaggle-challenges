@@ -43,7 +43,7 @@ system:
       - name: SFPROXY_VIP
         value: https://us5-sfproxy-lb.core-on-sam-sp2.prd-sam.prd.slb.sfdc.net:8443
       - name: HTTP_PORT
-        value: 8085
+        value: 7022
       - name: SPORT
         value: 8443
       - name: S2PORT
@@ -55,7 +55,7 @@ system:
       - name: CASAM_APP_COLOR
         value: blue
       - name: SD_PORT_OVERRIDE
-        value: 13065
+        value: 7442
       - name: CASAM_SETTINGS_PATH
         value: mist.mist61.prd.na6.dapp
       - name: CLUSTER_NAME
@@ -82,10 +82,12 @@ system:
         timeoutSeconds: 5
       ports:
       - containerPort: 8998
-      - containerPort: 8085
+      - containerPort: 7022
       - containerPort: 11211
       - containerPort: 12098
       - containerPort: 8443
+      - containerPort: 4501
+      - containerPort: 4505
       readinessProbe:
         exec:
           command:
@@ -130,23 +132,23 @@ system:
       volumeMounts:
       - mountPath: /home/sfdc/salesforce/casam
         name: coreapp-casam-volume
-    - name: envoy-sidecar
+    - name: dapp-sherpa
       image: sfci/servicelibs/sherpa-envoy:1.0.7
-      args:
-      - --template
-      - /cyan-config/dapp-config.yaml.template
-      env:
-      - name: SFDC_ENVIRONMENT
-        value: envoy-sidecar
+      ports:
+      - containerPort: 15373
+        name: sherpa-adm
+      - containerPort: 4500
+        name: jdwp-in
+      - containerPort: 4504
+        name: jdwpproxy-in
+      - containerPort: 7014
+        name: http1-in
       livenessProbe:
         exec:
           command:
           - ./bin/is-alive
         initialDelaySeconds: 20
         periodSeconds: 5
-      ports:
-      - containerPort: 13065
-      - containerPort: 15373
       readinessProbe:
         exec:
           command:
@@ -154,47 +156,25 @@ system:
         initialDelaySeconds: 15
         periodSeconds: 5
       volumeMounts:
-      - mountPath: /cyan-config
-        name: envoy-config-volume
       - mountPath: /certs/cert-client
         name: tls-client-cert
       - mountPath: /certs/cert-server
         name: tls-server-cert
-    - name: envoy-sidecar-config
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/casam/cyan-config:8edb96
-      env:
-      - name: CONFIG_DIR
-        value: /home/sfdc-sherpa/sherpa-envoy-config-volume
-      livenessProbe:
-        exec:
-          command:
-          - cat
-          - /tmp/live
-        initialDelaySeconds: 10
-        periodSeconds: 5
-      readinessProbe:
-        exec:
-          command:
-          - cat
-          - /tmp/ready
-        initialDelaySeconds: 10
-        periodSeconds: 5
-      volumeMounts:
-      - mountPath: /home/sfdc-sherpa/sherpa-envoy-config-volume
-        name: envoy-config-volume
     - name: dapp-beacon
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/casam/beacon:c574fe83d
       args:
       - -endpoint
       - dapp:POD:4500
       - -endpoint
-      - dapp2:POD:4504
+      - dappproxy:POD:4504
+      - -endpoint
+      - na6app:POD:7014
       livenessProbe:
-        initialDelaySeconds: 5
+        initialDelaySeconds: 20
         exec:
           command:
           - "/opt/beacon/is-alive.sh"
-    progressDeadlineSeconds: 300
+    progressDeadlineSeconds: 400
     strategy:
       type: Recreate
     terminationGracePeriodSeconds: 120
@@ -215,6 +195,9 @@ system:
     - hostPath:
         path: /data/logs/jvm
       name: log-volume-jvm
-    - k4aSecret:
+    - name: sherpa-log-volume
+      hostPath:
+        path: /data/logs/sherpa
+    - name: secretvol
+      k4aSecret:
         secretName: caas-k4a-secret-prd
-      name: secretvol
