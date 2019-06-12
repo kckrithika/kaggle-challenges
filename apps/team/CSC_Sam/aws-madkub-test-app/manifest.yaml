@@ -2,7 +2,7 @@ apiVersion: v1
 
 system:
   functions:
-  - name: samtestwd
+  - name: samtestwdmadkub
     serviceAccountName: samtestapp-1k162rvrbl31rlpq6ds
     count: 1
     containers:
@@ -30,7 +30,7 @@ system:
         path: /home/caas/logs/apps
     - name: amagicvolumethatvanishes
       emptyDir: {}
-  - name: sam-aws-test-func
+  - name: sam-aws-test-func-madkub
     count: 1
     containers:
     - name: samhello
