@@ -22,12 +22,12 @@ system:
       livenessProbe:
         httpGet:
           path: /manage/health
-          port: 15372
+          port: 15572
         initialDelaySeconds: 360
       readinessProbe:
         httpGet:
           path: /manage/health
-          port: 15372
+          port: 15572
         initialDelaySeconds: 360
       volumeMounts:
         - name: tls-client-cert
