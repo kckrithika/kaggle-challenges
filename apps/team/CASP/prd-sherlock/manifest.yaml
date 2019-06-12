@@ -11,7 +11,7 @@ system:
       type: Recreate
     containers:
     - name: sherlock
-      image: dva/casp/sherlock_strata:jenkins-CASP-sherlock-master-10-itest
+      image: dva/casp/sherlock_strata:jenkins-CASP-sherlock-master-11-itest
       ports:
       - name: http
         containerPort: 5555
