@@ -10,7 +10,7 @@ system:
     hostnetwork: true
     containers:
     - name: gater2
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/dmanoharan/gater-psc:dmanoharan-20190612B
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/dmanoharan/gater-psc:dmanoharan-20190612C
       args:
       - --server.port=9090
       - --logging.evaluator.level=ERRORS_ONLY
