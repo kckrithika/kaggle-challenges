@@ -7,7 +7,7 @@ local slbconfigs = import "slbconfig.jsonnet";
     local slbshared = (import "slbsharedservices.jsonnet") + { dirSuffix:: $.dirSuffix },
     local slbconfigs = (import "slbconfig.jsonnet") + { dirSuffix:: $.dirSuffix },
     envoyProxyEnabled: (slbimages.phaseNum <= 1 || configs.estate == "prd-sam"),
-    roleEnabled: (slbimages.phaseNum <= 1),
+    roleEnabled: (slbimages.phaseNum <= 2),
     slbJournaldKillerEnabled: (slbimages.phaseNum <= 5),
 
     # HSM nginx currently serves too few VIPs for the upstream status reporter to provide a good signal about
