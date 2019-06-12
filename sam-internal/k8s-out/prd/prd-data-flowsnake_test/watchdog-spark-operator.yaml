@@ -507,7 +507,7 @@ items:
                       TIMING_METRIC_NAME_EXEC_POD_PENDING_DELAY: (60, 'TIMEOUT_EXECUTOR_SLOW_POD_SCHEDULING'),
                       TIMING_METRIC_NAME_EXEC_POD_INITIALIZATION: (30, 'TIMEOUT_EXECUTOR_SLOW_POD_INIT'),
                       TIMING_METRIC_NAME_EXEC_REGISTRATION: (30, 'TIMEOUT_EXECUTOR_SLOW_REGISTRATION'),
-                      TIMING_METRIC_NAME_JOB_RUNTIME: (30, 'TIMEOUT_SLOW_JOB_RUN'),
+                      TIMING_METRIC_NAME_JOB_RUNTIME: (30, 'TIMEOUT_SPARK_SLOW_JOB_RUN'),
                       TIMING_METRIC_NAME_CLEAN_UP: (30, 'TIMEOUT_SLOW_CLEANUP'),
                   }
                   for metric, seconds in timings.iteritems():
