@@ -42,7 +42,8 @@
               "host": "na7-mist61app-prd"
             }
           }
-        ]
+        ],
+        "timeout" : "1920s"
       },
       {
         "fault": {
@@ -67,7 +68,35 @@
               "host": "na7-mist61app-prd"
             }
           }
-        ]
+        ],
+        "timeout" : "1920s"
+      },
+      {
+        "headers": {
+          "request": {
+            "set" : {
+               "x-salesforce-sip"  : "%DOWNSTREAM_REMOTE_ADDRESS_WITHOUT_PORT%"
+            },
+          },
+        },
+        "match": [
+          {
+            "uri": {
+              "regex": "(/cometd|.*/lightning)(/.*|)|.*/ltng/.*|(|.*/sfsites)(/auracmpdef|/auraanalytics|/auraresource|/aurafw/.*|/aurafw|/aura|/l/.*)|.*\\.(app|cmp)"
+            }
+          }
+        ],
+        "retries": {
+          "attempts": 5
+        },
+        "route": [
+          {
+            "destination": {
+              "host": "na7-mist61app-prd"
+            }
+          }
+        ],
+        "timeout" : "1920s"
       },
       {
         "headers": {
@@ -86,7 +115,8 @@
               "host": "na7-mist61app-prd"
             }
           }
-        ]
+        ],
+        "timeout" : "1920s"
       }
     ]
   }
