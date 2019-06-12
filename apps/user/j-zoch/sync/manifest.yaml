@@ -2,7 +2,7 @@ apiVersion: v1
 system:
   functions:
   - name: sync
-    count: 3
+    count: 5
     containers:
     - name: sync
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/j-zoch/winterfell-sync:develop
