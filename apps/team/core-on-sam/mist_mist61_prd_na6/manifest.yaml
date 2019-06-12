@@ -133,7 +133,7 @@ system:
       - mountPath: /home/sfdc/salesforce/casam
         name: coreapp-casam-volume
     - name: dapp-sherpa
-      image: sfci/servicelibs/sherpa-envoy:1.0.7
+      image: sfci/servicelibs/sherpa-envoy:1.0.6
       ports:
       - containerPort: 15373
         name: sherpa-adm
@@ -147,19 +147,19 @@ system:
         exec:
           command:
           - ./bin/is-alive
-        initialDelaySeconds: 20
+        initialDelaySeconds: 60
         periodSeconds: 5
       readinessProbe:
         exec:
           command:
           - ./bin/is-ready
-        initialDelaySeconds: 15
+        initialDelaySeconds: 50
         periodSeconds: 5
       volumeMounts:
-      - mountPath: /certs/cert-client
-        name: tls-client-cert
-      - mountPath: /certs/cert-server
-        name: tls-server-cert
+      - name: tls-client-cert
+        mountPath: /client-certs
+      - name: tls-server-cert
+        mountPath: /server-certs
     - name: dapp-beacon
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/casam/beacon:c574fe83d
       args:
