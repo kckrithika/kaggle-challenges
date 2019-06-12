@@ -274,6 +274,7 @@ items:
           - --client.socketDir=/host/data/slb/config/slb-portal-frf
           - --client.dialSocket=true
           - --maxDeleteLimit=50
+          - --isRoleUsed=true
           - --metricsEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80
           - --vcioptions.strict=true
           - --client.allowStale=true
@@ -653,6 +654,7 @@ items:
           - --client.socketDir=/host/data/slb/config/slb-portal-phx
           - --client.dialSocket=true
           - --maxDeleteLimit=50
+          - --isRoleUsed=true
           - --metricsEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80
           - --vcioptions.strict=true
           - --client.allowStale=true
@@ -1032,6 +1034,7 @@ items:
           - --client.socketDir=/host/data/slb/config/slb-portal-iad
           - --client.dialSocket=true
           - --maxDeleteLimit=50
+          - --isRoleUsed=true
           - --metricsEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80
           - --vcioptions.strict=true
           - --client.allowStale=true
@@ -1411,6 +1414,7 @@ items:
           - --client.socketDir=/host/data/slb/config/slb-portal-ord
           - --client.dialSocket=true
           - --maxDeleteLimit=50
+          - --isRoleUsed=true
           - --metricsEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80
           - --vcioptions.strict=true
           - --client.allowStale=true
@@ -1790,6 +1794,7 @@ items:
           - --client.socketDir=/host/data/slb/config/slb-portal-dfw
           - --client.dialSocket=true
           - --maxDeleteLimit=50
+          - --isRoleUsed=true
           - --metricsEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80
           - --vcioptions.strict=true
           - --client.allowStale=true
@@ -2169,6 +2174,7 @@ items:
           - --client.socketDir=/host/data/slb/config/slb-portal-hnd
           - --client.dialSocket=true
           - --maxDeleteLimit=50
+          - --isRoleUsed=true
           - --metricsEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80
           - --vcioptions.strict=true
           - --client.allowStale=true
@@ -2548,6 +2554,7 @@ items:
           - --client.socketDir=/host/data/slb/config/slb-portal-xrd
           - --client.dialSocket=true
           - --maxDeleteLimit=50
+          - --isRoleUsed=true
           - --metricsEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80
           - --vcioptions.strict=true
           - --client.allowStale=true
@@ -2927,6 +2934,7 @@ items:
           - --client.socketDir=/host/data/slb/config/slb-portal-cdg
           - --client.dialSocket=true
           - --maxDeleteLimit=50
+          - --isRoleUsed=true
           - --metricsEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80
           - --vcioptions.strict=true
           - --client.allowStale=true
@@ -3306,6 +3314,7 @@ items:
           - --client.socketDir=/host/data/slb/config/slb-portal-fra
           - --client.dialSocket=true
           - --maxDeleteLimit=50
+          - --isRoleUsed=true
           - --metricsEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80
           - --vcioptions.strict=true
           - --client.allowStale=true
@@ -3685,6 +3694,7 @@ items:
           - --client.socketDir=/host/data/slb/config/slb-portal-ia2
           - --client.dialSocket=true
           - --maxDeleteLimit=50
+          - --isRoleUsed=true
           - --metricsEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80
           - --vcioptions.strict=true
           - --client.allowStale=true
@@ -4064,6 +4074,7 @@ items:
           - --client.socketDir=/host/data/slb/config/slb-portal-ph2
           - --client.dialSocket=true
           - --maxDeleteLimit=50
+          - --isRoleUsed=true
           - --metricsEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80
           - --vcioptions.strict=true
           - --client.allowStale=true
@@ -4443,6 +4454,7 @@ items:
           - --client.socketDir=/host/data/slb/config/slb-portal-par
           - --client.dialSocket=true
           - --maxDeleteLimit=50
+          - --isRoleUsed=true
           - --metricsEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80
           - --vcioptions.strict=true
           - --client.allowStale=true
@@ -4822,6 +4834,7 @@ items:
           - --client.socketDir=/host/data/slb/config/slb-portal-ukb
           - --client.dialSocket=true
           - --maxDeleteLimit=50
+          - --isRoleUsed=true
           - --metricsEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80
           - --vcioptions.strict=true
           - --client.allowStale=true
@@ -5201,6 +5214,7 @@ items:
           - --client.socketDir=/host/data/slb/config/slb-portal-lo2
           - --client.dialSocket=true
           - --maxDeleteLimit=50
+          - --isRoleUsed=true
           - --metricsEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80
           - --vcioptions.strict=true
           - --client.allowStale=true
@@ -5580,6 +5594,7 @@ items:
           - --client.socketDir=/host/data/slb/config/slb-portal-lo3
           - --client.dialSocket=true
           - --maxDeleteLimit=50
+          - --isRoleUsed=true
           - --metricsEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80
           - --vcioptions.strict=true
           - --client.allowStale=true
