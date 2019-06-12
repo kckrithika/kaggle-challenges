@@ -53,7 +53,7 @@ subjects:
   name: small@salesforce.com
 - apiGroup: rbac.authorization.k8s.io
   kind: User
-  name: a.mitra@salesforce.com
+  name: arijeetmitra@salesforce.com
 - apiGroup: rbac.authorization.k8s.io
   kind: User
   name: prabh.singh@salesforce.com
