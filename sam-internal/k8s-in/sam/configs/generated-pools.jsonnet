@@ -1269,6 +1269,18 @@
     },
     {
       "namespaces": [
+        "cache-as-a-service-sp3"
+      ],
+      "access": [
+        "team/Cache_As_A_service"
+      ],
+      "controlEstate": "ia2-sam",
+      "estate": "ia2-sp3-sam_caas",
+      "kingdom": "ia2",
+      "superPod": "sp3"
+    },
+    {
+      "namespaces": [
         "universal-search",
         "search-scale-safely"
       ],
@@ -2478,6 +2490,18 @@
       "estate": "ph2-sp2-sam_caas",
       "kingdom": "ph2",
       "superPod": "sp2"
+    },
+    {
+      "namespaces": [
+        "cache-as-a-service-sp3"
+      ],
+      "access": [
+        "team/Cache_As_A_service"
+      ],
+      "controlEstate": "ph2-sam",
+      "estate": "ph2-sp3-sam_caas",
+      "kingdom": "ph2",
+      "superPod": "sp3"
     },
     {
       "namespaces": [
