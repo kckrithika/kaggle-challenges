@@ -70,6 +70,13 @@
         ]
       },
       {
+        "headers": {
+          "request": {
+            "set" : {
+               "x-salesforce-sip"  : "%DOWNSTREAM_REMOTE_ADDRESS_WITHOUT_PORT%"
+            },
+          },
+        },
         "retries": {
           "attempts": 5
         },
