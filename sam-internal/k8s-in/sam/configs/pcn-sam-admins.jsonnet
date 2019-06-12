@@ -16,7 +16,7 @@
     "rgade@salesforce.com",
     "lizhang.li@salesforce.com",
     "small@salesforce.com",
-    "a.mitra@salesforce.com",
+    "arijeetmitra@salesforce.com",
     "prabh.singh@salesforce.com",
     "h.udhayakumar@salesforce.com",
     # SLB Team
