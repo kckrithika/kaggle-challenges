@@ -51,6 +51,7 @@ spec:
     route:
     - destination:
         host: na7-mist61app-prd
+        subset: blue
     timeout: 1920s
   - headers:
       request:
@@ -61,4 +62,5 @@ spec:
     route:
     - destination:
         host: na7-mist61app-prd
+        subset: blue
     timeout: 1920s
