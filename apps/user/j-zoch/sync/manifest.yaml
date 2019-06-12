@@ -5,7 +5,7 @@ system:
     count: 3
     containers:
     - name: sync
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/j-zoch/winterfell-sync:develops
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/j-zoch/winterfell-sync:develop
       env:
       - name: SFDC_ENVIRONMENT
         value: prod
