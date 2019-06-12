@@ -34,8 +34,6 @@ system:
               ## HBASE
             - name: HBASE_ENVIRONMENT
               value: prod
-            #        - name: HBASE_NAMESPACE
-            #          value: CRE
             - name: HBASE_DATACENTER
               value: iad
               ## FLOWSNAKE
@@ -79,7 +77,7 @@ system:
               value: jdbc:discover://dbaas0-minionapp1-1-iad.ops.sfdc.net:1511,dbaas0-minionapp2-1-iad.ops.sfdc.net:1511,dbaas0-minionapp3-1-iad.ops.sfdc.net:1511/${database.namespace}?${database.discovery.params}
               ## Stream Processor
             - name: STREAM_PROCESSING_ENDPOINT
-              value: cre-sp.retail-cre.localhost.mesh.force.com:5443
+              value: cre-sp.retail-cre.localhost.mesh.force.com:5442
             ####################################################################################################
             ####################################### PERF environment variables #################################
             ####################################################################################################
@@ -130,8 +128,8 @@ system:
             limits: { cpu: "1", memory: "1Gi" }
             requests: { cpu: "1", memory: "1Gi" }
           ports:
-            - containerPort: 7443
-              name: sh-in-http2-tls
+            - containerPort: 7442
+              name: sh-in-http1-tls
             - containerPort: 15373 # Sherpa admin port. This can be handy when debugging issues.
               name: sherpa-in-admin
           livenessProbe:
@@ -150,7 +148,7 @@ system:
           image: sfci/servicelibs/beacon:f6445b2b299f232eda1e0be9739b8242153478ea
           args:
             - -endpoint
-            - retail-cre/cre-control-plane:DATACENTER_ALLENV:7443
+            - retail-cre/cre-control-plane:DATACENTER_ALLENV:7442
           resources:
             limits: { cpu: "1", memory: "1Gi" }
             requests: { cpu: "1", memory: "1Gi" }
