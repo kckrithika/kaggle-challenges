@@ -15,6 +15,12 @@ system:
         value: $(KINGDOM)
       - name: SPRING_PROFILES_ACTIVE 
         value: h2,ssbypass
+      - name: GRPC_TLS
+        value: false 
+      - name: PATH_HOSTCERT
+        value: /client-certs/client/certificates/client.pem
+      - name: PATH_HOSTKEY
+        value: /client-certs/client/keys/client-key.pem
       ports:
       - containerPort: 7021
       - containerPort: 8081
