@@ -9,7 +9,7 @@ system:
     count: 1
     containers:
     - name: cre-sp
-      image: sfci/cre-fusion/services:1.8.0.2.master.41fede9.14
+      image: sfci/cre-fusion/services:1.8.0.3.master.41fede9.15
       env:
         - name: PUBLISHING_TOPIC
           value: sfdc.prod.cre__iad.ajna_local__cre_outbound
