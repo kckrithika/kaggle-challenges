@@ -43,6 +43,8 @@ system:
            cpu: 3
            memory: 6Gi
        env:
+       - name : RELAY_NAME
+         value: "SAM_RELAY_1"
        - name : LOGGING_JSON_STDOUT_LEVEL
          value: all
        - name : LOGGING_STDERR_LEVEL
@@ -57,7 +59,7 @@ system:
         \"useServiceName\" : \"AUTO\",
         \"useStatementBatching\" : false
     },
-    \"host\" : \"10.225.192.188\",
+    \"host\" : \"10.225.192.49\",
     \"id\" : \"srcdb\",
     \"instanceName\" : \"EE\",
     \"password\" : \"basic:xRdN9n9+Yto2hHDW/sldaA==\",
