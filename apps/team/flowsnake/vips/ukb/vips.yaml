@@ -59,6 +59,21 @@
     - shared0-flowsnakeworkerprod1-48-ukb.ops.sfdc.net
     - shared0-flowsnakeworkerprod1-49-ukb.ops.sfdc.net
     - shared0-flowsnakeworkerprod1-50-ukb.ops.sfdc.net
+    - shared0-flowsnakeworkerprod1-51-ukb.ops.sfdc.net
+    - shared0-flowsnakeworkerprod1-52-ukb.ops.sfdc.net
+    - shared0-flowsnakeworkerprod1-53-ukb.ops.sfdc.net
+    - shared0-flowsnakeworkerprod1-54-ukb.ops.sfdc.net
+    - shared0-flowsnakeworkerprod1-55-ukb.ops.sfdc.net
+    - shared0-flowsnakeworkerprod1-56-ukb.ops.sfdc.net
+    - shared0-flowsnakeworkerprod1-57-ukb.ops.sfdc.net
+    - shared0-flowsnakeworkerprod1-58-ukb.ops.sfdc.net
+    - shared0-flowsnakeworkerprod1-59-ukb.ops.sfdc.net
+    - shared0-flowsnakeworkerprod1-60-ukb.ops.sfdc.net
+    - shared0-flowsnakeworkerprod1-61-ukb.ops.sfdc.net
+    - shared0-flowsnakeworkerprod1-62-ukb.ops.sfdc.net
+    - shared0-flowsnakeworkerprod1-63-ukb.ops.sfdc.net
+    - shared0-flowsnakeworkerprod1-64-ukb.ops.sfdc.net
+    - shared0-flowsnakeworkerprod1-65-ukb.ops.sfdc.net
 - lbname: ingress
   ports:
       - port: 443
@@ -121,3 +136,18 @@
       - shared0-flowsnakeworkerprod1-48-ukb.ops.sfdc.net
       - shared0-flowsnakeworkerprod1-49-ukb.ops.sfdc.net
       - shared0-flowsnakeworkerprod1-50-ukb.ops.sfdc.net
+      - shared0-flowsnakeworkerprod1-51-ukb.ops.sfdc.net
+      - shared0-flowsnakeworkerprod1-52-ukb.ops.sfdc.net
+      - shared0-flowsnakeworkerprod1-53-ukb.ops.sfdc.net
+      - shared0-flowsnakeworkerprod1-54-ukb.ops.sfdc.net
+      - shared0-flowsnakeworkerprod1-55-ukb.ops.sfdc.net
+      - shared0-flowsnakeworkerprod1-56-ukb.ops.sfdc.net
+      - shared0-flowsnakeworkerprod1-57-ukb.ops.sfdc.net
+      - shared0-flowsnakeworkerprod1-58-ukb.ops.sfdc.net
+      - shared0-flowsnakeworkerprod1-59-ukb.ops.sfdc.net
+      - shared0-flowsnakeworkerprod1-60-ukb.ops.sfdc.net
+      - shared0-flowsnakeworkerprod1-61-ukb.ops.sfdc.net
+      - shared0-flowsnakeworkerprod1-62-ukb.ops.sfdc.net
+      - shared0-flowsnakeworkerprod1-63-ukb.ops.sfdc.net
+      - shared0-flowsnakeworkerprod1-64-ukb.ops.sfdc.net
+      - shared0-flowsnakeworkerprod1-65-ukb.ops.sfdc.net
