@@ -23,6 +23,7 @@ system:
     - name: logvol
       hostPath:
         path: /home/sfdc-retail/logs
+
     - name: oauth-keys
       k4aSecret: 
         secretName: rsui-oauth-keys
