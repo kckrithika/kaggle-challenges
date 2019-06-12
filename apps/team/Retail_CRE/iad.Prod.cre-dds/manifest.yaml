@@ -2,11 +2,11 @@ apiVersion: v1
 
 system:
   functions:
-  - name: cre-engine
+  - name: cre-dds
     count: 0
     containers:
-    - name: cre-engine
-      image: sfci/cre/cre-engine:1.8.0.0.master.58cdbe8.3
+    - name: cre-dds
+      image: sfci/cre/cre-dds-spark:1.8.0.0.master.6767458.2
       livenessProbe:
         exec:
             command:

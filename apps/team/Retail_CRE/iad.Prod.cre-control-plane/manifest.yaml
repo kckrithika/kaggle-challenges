@@ -5,70 +5,84 @@ system:
     email:
       - cre@salesforce.com
   functions:
-  - name: cre-control-plane
-    count: 1
-    containers:
     - name: cre-control-plane
-      image: sfci/cre/cre-control-plane:1.7.0.0.master.86d2877.7
-      env:
-        - name: AUTHORIZED_USERS
-          value: "morun@salesforce.com,morun@sbt2.salesforce.com,morun@sbt3.salesforce.com,mbahrenburg@salesforce.com,mbahrenburg@sbt2.salesforce.com,mbahrenburg@sbt3.salesforce.com,adray@salesforce.com,adray@sbt2.salesforce.com,adray@sbt3.salesforce.com,adray@bt2.salesforce.com,bmontesano@sbt2.salesforce.com,jferguson@sbt2.salesforce.com,cre-api@salesforce.com"
-        - name: METRICS_KAFKA_TOPIC
-          value: sfdc.prod.cre__iad.ajna_local__cre_metrics
-        - name: METRICS_KAFKA_SERVER
-          value: ajna0-broker1-0-iad.data.sfdc.net:9093
-        - name: SFDC_ENVIRONMENT
-          value: prod
-        - name: METRICS_KAFKA_ENABLED
-          value: true
-        - name: MADDOG_CLIENT_KEYSTORE
-          value: maddog/maddog-client-keystore.json
-        - name: MADDOG_CLIENT_TRUSTSTORE
-          value: maddog/maddog-client-truststore.json
-        - name: GDOT_PROVISIONING_USER_KEY_FILE_PATH
-          value: /secrets-kube/cre-prod-gdot-private-key
-        - name: GDOT_ENVIRONMENT
-          value: production
-        - name: GDOT_PRODUCTION
-          value: false
-        - name: GRPC_PORT
-          value: 7020
-        - name: FLOWSNAKE_ENDPOINT
-          value: https://flowsnake-iad.data.sfdc.net
-        - name: ENGINE_IMAGE_TAG
-          value: sfci/cre/cre-engine:1.5.1.1.master.b277e87.582
-        - name: ENGINE_APPLICATION_NAME
-          value: cre-engine
-        - name: ENGINE_HBASE_DATACENTER
-          value: iad
-        - name: ENGINE_HBASE_ENVIRONMENT
-          value: prod
-        - name: ENGINE_METRICS_KAFKA_SERVER
-          value: ajna0-broker1-0-iad.data.sfdc.net:9093
-        - name: ENGINE_METRICS_KAFKA_TOPIC
-          value: sfdc.prod.cre__iad.ajna_local__cre_metrics
-        - name: ENGINE_INCOMING_QUEUE
-          value: sfdc.prod.cre__iad.ajna_local__cre_inbound
-        - name: ENGINE_OUTGOING_QUEUE
-          value: sfdc.prod.cre__iad.ajna_local__cre_outbound
-        - name: GDOT_PROVISIONING_USER_NAME
-          value: creprodprovisioner
-        - name: HBASE_ENVIRONMENT
-          value: prod
-        - name: HBASE_DATACENTER
-          value: iad
-        - name: MAX_FLOWSNAKE_ENVIRONMENTS
-          value: 25
-        - name: STREAM_PROCESSING_ENDPOINT
-          value: cre-sp.retail-cre.localhost.mesh.force.com:5443
-        - name: GDOT_FORCE_PROVISIONING
-          value: false
-        - name: SECRET_KEY_FILE
-          value: /keys-kube/cre-aes.key
-        - name: OU_NAME
-          value: app, retail-cre.cre-api, retail-cre.cre-sp
-        - name: JVM_ARGS
-          value: "-Djava.util.concurrent.ForkJoinPool.common.parallelism=8
+      count: 1
+      containers:
+        - name: cre-control-plane
+          image: sfci/cre-fusion/services:1.8.0.1.master.41fede9.13
+          env:
+            ####################################################################################################
+            ############################   ENGINE/DDS FLOWSNAKE ARTIFACTS ( Most frequently changed ) ##########
+            ####################################################################################################
+            - name: IMPORT_FLOWSNAKE_ARTIFACT
+              value: sfci/cre/cre-engine:1.8.0.0.master.58cdbe8.3
+            - name: SAVE_FLOWSNAKE_ARTIFACT
+              value: sfci/cre/cre-dds-spark:1.8.0.0.master.6767458.2
+            - name: EXPORT_FLOWSNAKE_ARTIFACT
+              value: sfci/cre/cre-dds-spark:1.8.0.0.master.6767458.2
+            ####################################################################################################
+            ####################################### GLOBAL SHARED VALUES #######################################
+            ####################################################################################################
+            - name: SFDC_ENVIRONMENT
+              value: prod
+            - name: METRICS_KAFKA_ENABLED
+              value: true
+            - name: METRICS_KAFKA_TOPIC
+              value: sfdc.prod.cre__iad.ajna_local__cre_metrics
+            - name: METRICS_KAFKA_SERVER
+              value: ajna0-broker1-0-iad.data.sfdc.net:9093
+              ## HBASE
+            - name: HBASE_ENVIRONMENT
+              value: prod
+            - name: HBASE_DATACENTER
+              value: iad
+              ## FLOWSNAKE
+            - name: MAX_FLOWSNAKE_ENVIRONMENTS
+              value: 25
+            ####################################################################################################
+            ####################################### IMPORT environment variables ###############################
+            ####################################################################################################
+            - name: IMPORT_CRE_APPLICATION_NAME
+              value: cre-engine
+            - name: IMPORT_K4A_VAULT
+              value: cre-engine-na-1
+            ####################################################################################################
+            ####################################### SAVE environment variables ###############################
+            ####################################################################################################
+            - name: CRE_DDS_ENV
+              value: Prod
+            - name: SAVE_CRE_APPLICATION_NAME
+              value: cre-engine
+            - name: SAVE_K4A_VAULT
+              value: cre-dds-na-1
+            ####################################################################################################
+            ####################################### EXPORT environment variables ###############################
+            ####################################################################################################
+            - name: EXPORT_CRE_APPLICATION_NAME
+              value: cre-engine
+            ####################################################################################################
+            ##################################### APP Config environment variables #############################
+            ####################################################################################################
+            - name: FLOWSNAKE_ENDPOINT
+              value:  https://flowsnake-iad.data.sfdc.net
+              ## MADDOG (MAD DOG)
+            - name: MADDOG_CLIENT_KEYSTORE
+              value: maddog/maddog-client-keystore.json
+            - name: MADDOG_CLIENT_TRUSTSTORE
+              value: maddog/maddog-client-truststore.json
+              ## DBaaS
+            - name: DATABASE_NAMESPACE
+              value: crecontrolplane
+            - name: SPRING_DATASOURCE_URL
+              value: jdbc:discover://dbaas0-minionapp1-1-iad.ops.sfdc.net:1511,dbaas0-minionapp2-1-iad.ops.sfdc.net:1511,dbaas0-minionapp3-1-iad.ops.sfdc.net:1511/${database.namespace}?${database.discovery.params}
+              ## Stream Processor
+            - name: STREAM_PROCESSING_ENDPOINT
+              value: cre-sp.retail-cre.localhost.mesh.force.com:5442
+            ####################################################################################################
+            ####################################### PERF environment variables #################################
+            ####################################################################################################
+            - name: JVM_ARGS
+              value: "-Djava.util.concurrent.ForkJoinPool.common.parallelism=8
                   -verbose:gc -XX:+PrintHeapAtGC
                   -XX:+PrintPromotionFailure -XX:+PrintTenuringDistribution -XX:+PrintGCDetails
                   -XX:+PrintGCDateStamps -XX:+PrintGCApplicationStoppedTime
@@ -77,104 +91,92 @@ system:
                   -XX:+UseGCLogFileRotation -XX:NumberOfGCLogFiles=5 -XX:GCLogFileSize=20M
                   -XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=/opt/cre/cre-control-plane-prod
                   -Xmx4G -Xms4G -XX:ParallelGCThreads=8"
-      resources:
-        limits: { cpu: "2", memory: "6Gi" }
-        requests: { cpu: "2", memory: "5Gi" }
-      ports:
-      - containerPort: 8080
-      - containerPort: 7020
-      - containerPort: 15372
-      livenessProbe:
-        exec:
-            command:
-            - ls
-        initialDelaySeconds: 30
-      volumeMounts:
-      - mountPath: /secrets-kube/
-        name: secretvol
-        readOnly: true
-      - mountPath: /keys-kube/
-        name: aeskey
-        readOnly: true
-      - mountPath: /client-certs
-        name: client-certs
-      - mountPath: /server-certs
-        name: server-certs
-      - mountPath: /opt/cre/cre-control-plane-prod
-        name: logvol
-    - name: sherpa-cre-control-plane
-      # Each commit to master for https://git.soma.salesforce.com/servicelibs/sherpa-envoy/commits/master has an image created.
-      # Use the full git SHA as the docker image tag.
-      image: sfci/servicelibs/sherpa-envoy:213d5137f0015e81c59afe6f93f6ab775dc4798b
-      volumeMounts:
-      - mountPath: /log
-        name: sherpa-log-volume
-      - mountPath: /client-certs
-        name: client-certs
-      - mountPath: /server-certs
-        name: server-certs
-      env:
-        - name: SFDC_ENVIRONMENT
-          value: prod
-      resources:
-        limits: { cpu: "1", memory: "1Gi" }
-        requests: { cpu: "1", memory: "1Gi" }
-      ports:
-      - containerPort: 7443
-        name: sh-in-http2-tls
-      - containerPort: 15373 # Sherpa admin port. This can be handy when debugging issues.
-        name: sherpa-in-admin
-      livenessProbe:
-        exec:
-          command:
-          - "./bin/is-alive"
-        initialDelaySeconds: 120
-        periodSeconds: 5
-      readinessProbe:
-        exec:
-          command:
-          - "./bin/is-ready"
-        initialDelaySeconds: 110
-        periodSeconds: 5
-    - name: beacon
-      image: sfci/servicelibs/beacon:f6445b2b299f232eda1e0be9739b8242153478ea
-      args:
-      - -endpoint
-      - retail-cre/cre-control-plane:DATACENTER_ALLENV:7443
-      resources:
-        limits: { cpu: "1", memory: "1Gi" }
-        requests: { cpu: "1", memory: "1Gi" }
-      livenessProbe:
-        initialDelaySeconds: 5
-        exec:
-          command:
-          - "/home/scone/is-alive.sh"
-    volumes:
-    - name: secretvol
-      secret:
-        secretName: cre-prod-gdot-private-key
-    - name: aeskey
-      secret:
-        secretName: cre-aes-key-kube
-    - name: logvol
-      hostPath:
-        path: /home/sfdc-cre/logs/cre-control-plane-prod
-    - name: client-certs
-      maddogCert:
-        type: client
-    - name: server-certs
-      maddogCert:
-        type: server
-        lbnames:
-          - cre-control-plane-lb
-    - name: sherpa-log-volume
-      hostPath:
-        path: /home/sfdc-sherpa/logs
+          resources:
+            limits: { cpu: "2", memory: "6Gi" }
+            requests: { cpu: "2", memory: "5Gi" }
+          ports:
+            - containerPort: 8080
+            - containerPort: 7022
+            - containerPort: 15372
+          livenessProbe:
+            exec:
+              command:
+                - ls
+            initialDelaySeconds: 30
+          volumeMounts:
+            - mountPath: /client-certs
+              name: client-certs
+            - mountPath: /server-certs
+              name: server-certs
+            - mountPath: /opt/cre/cre-control-plane-prod
+              name: logvol
+        - name: sherpa-cre-control-plane
+          # Each commit to master for https://git.soma.salesforce.com/servicelibs/sherpa-envoy/commits/master has an image created.
+          # Use the full git SHA as the docker image tag.
+          image: sfci/servicelibs/sherpa-envoy:213d5137f0015e81c59afe6f93f6ab775dc4798b
+          volumeMounts:
+            - mountPath: /log
+              name: sherpa-log-volume
+            - mountPath: /client-certs
+              name: client-certs
+            - mountPath: /server-certs
+              name: server-certs
+          env:
+            - name: SFDC_ENVIRONMENT
+              value: prod
+          resources:
+            limits: { cpu: "1", memory: "1Gi" }
+            requests: { cpu: "1", memory: "1Gi" }
+          ports:
+            - containerPort: 7442
+              name: sh-in-http1-tls
+            - containerPort: 15373 # Sherpa admin port. This can be handy when debugging issues.
+              name: sherpa-in-admin
+          livenessProbe:
+            exec:
+              command:
+                - "./bin/is-alive"
+            initialDelaySeconds: 120
+            periodSeconds: 5
+          readinessProbe:
+            exec:
+              command:
+                - "./bin/is-ready"
+            initialDelaySeconds: 110
+            periodSeconds: 5
+        - name: beacon
+          image: sfci/servicelibs/beacon:f6445b2b299f232eda1e0be9739b8242153478ea
+          args:
+            - -endpoint
+            - retail-cre/cre-control-plane:DATACENTER_ALLENV:7442
+          resources:
+            limits: { cpu: "1", memory: "1Gi" }
+            requests: { cpu: "1", memory: "1Gi" }
+          livenessProbe:
+            initialDelaySeconds: 5
+            exec:
+              command:
+                - "/home/scone/is-alive.sh"
+      volumes:
+        - name: logvol
+          hostPath:
+            path: /home/sfdc-cre/logs/cre-control-plane-prod
+        - name: client-certs
+          maddogCert:
+            type: client
+        - name: server-certs
+          maddogCert:
+            type: server
+            lbnames:
+              - cre-control-plane-lb
+        - name: sherpa-log-volume
+          hostPath:
+            path: /home/sfdc-sherpa/logs
   loadbalancers:
-  - lbname: cre-control-plane-lb
-    function: cre-control-plane
-    nodeExposed: true
-    slbEnabled: true
-    ports:
-      - port: 8094
-        targetport: 8080
+    - lbname: cre-control-plane-lb
+      function: cre-control-plane
+      nodeExposed: true
+      slbEnabled: true
+      ports:
+        - port: 8094
+          targetport: 8080

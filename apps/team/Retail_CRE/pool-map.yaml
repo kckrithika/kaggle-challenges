@@ -127,3 +127,9 @@ apps:
     - name: iad/iad-sam_customerresolutionengine
   ord.Prod.cre-engine:
       - name: ord/ord-sam_customerresolutionengine
+
+  # ======= DDS ======== #
+  iad.Prod.cre-dds:
+    - name: iad/iad-sam_customerresolutionengine
+  ord.Prod.cre-dds:
+    - name: ord/ord-sam_customerresolutionengine
