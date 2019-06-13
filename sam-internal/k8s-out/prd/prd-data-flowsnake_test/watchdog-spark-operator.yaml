@@ -343,6 +343,7 @@ items:
           'MADKUB_INIT_EMPTY_DIR': re.compile(r'Error: failed to start container "madkub-init": .*kubernetes.io~empty-dir/datacerts'),
           'CONNECTION_REFUSED': re.compile(r'The connection to the server 10.254.208.1:443 was refused'),
           'NOT_LOGGED_IN_UNAUTHORIZED': re.compile(r'error: You must be logged in to the server \(Unauthorized\)'),
+          'IMAGE_PULL': re.compile(r'Pod change detected: .* changed to ImagePullBackOff')
       }
 
       metrics_enabled = False
