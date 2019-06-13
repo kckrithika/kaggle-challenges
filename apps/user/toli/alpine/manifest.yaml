@@ -1,5 +1,5 @@
 # generic alpine image in GCR
-apiVersion: v1
+apiVersion: apps/v1
 kind: Pod
 metadata:
  name: toli-alpine
