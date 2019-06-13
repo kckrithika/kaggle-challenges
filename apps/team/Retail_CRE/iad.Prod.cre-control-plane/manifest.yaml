@@ -80,6 +80,10 @@ system:
               value: cre-sp.retail-cre.localhost.mesh.force.com:5442
             - name: OU_NAME
               value: app, retail-cre.cre-sp
+            - name: GDOT_ENVIRONMENT
+              value: production
+            - name: GDOT_PRODUCTION
+              value: false
             ####################################################################################################
             ####################################### PERF environment variables #################################
             ####################################################################################################
