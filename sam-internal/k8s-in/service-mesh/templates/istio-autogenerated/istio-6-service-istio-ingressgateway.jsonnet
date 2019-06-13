@@ -22,6 +22,10 @@ local mcpIstioConfig = (import "service-mesh/istio-config.jsonnet");
         name: "https-coreapp",
         port: 8443,
       },
+      {
+        name: "https-istio-coreapp",
+        port: 8085,
+      },
     ],
     selector: {
       app: "istio-ingressgateway",
