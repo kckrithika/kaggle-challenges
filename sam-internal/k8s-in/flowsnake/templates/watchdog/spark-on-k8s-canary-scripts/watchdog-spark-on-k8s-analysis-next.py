@@ -306,6 +306,8 @@ simple_regex_tests = {
     'DRIVER_INIT_ERROR': re.compile(r'Pod change detected.*-driver changed to Init:Error'),
     # Scheduler bug in Kubernetes <= 1.9.7 that randomly prevents re-use of pod name. No longer expected because pod names are now unique.
     'SCHEDULER_ASSUME_POD': re.compile(r"FailedScheduling.*AssumePod failed: pod .* state wasn't initial but get assumed"),
+    # No available nodes. Error could have been transient, but for now just assume if it was seen is caused the failure.
+    'SCHEDULER_NO_NODES': re.compile(r"FailedScheduling.*0/[0-9]* nodes are available"),
     # This should be accompanied by a useful Exception
     'SPARK_CONTEXT_INIT_ERROR': re.compile(r'Error initializing SparkContext'),
     # This one might be due to IP exhaustion; need to check kubelet logs. https://salesforce.quip.com/i0ThASBMoHqf#VCTACATj2IO
