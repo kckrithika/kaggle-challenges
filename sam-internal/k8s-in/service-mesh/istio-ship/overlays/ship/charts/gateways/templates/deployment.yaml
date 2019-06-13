@@ -51,7 +51,7 @@ spec:
         name: istio-proxy
         ports:
         # coreapp https
-        - containerPort: 8443
+        - containerPort: 8085
         - $patch: replace
         resources:
           limits:

@@ -719,6 +719,8 @@ spec:
   ports:
   - name: https-coreapp
     port: 8443
+  - name: https-istio-coreapp
+    port: 8085
   selector:
     app: istio-ingressgateway
     istio: ingressgateway
@@ -907,7 +909,7 @@ spec:
         imagePullPolicy: IfNotPresent
         name: istio-proxy
         ports:
-        - containerPort: 8443
+        - containerPort: 8085
         readinessProbe:
           failureThreshold: 30
           httpGet:
