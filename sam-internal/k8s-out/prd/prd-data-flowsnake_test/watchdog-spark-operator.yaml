@@ -112,25 +112,47 @@ items:
       ANALYSIS_KEYS = [CLASSIFICATION, EXCEPTION, EXCEPTION_CAUSE]
 
 
+      r_app_created = re.compile(r'\[(?P<epoch>[0-9]+)\] .* - sparkapplication "(?P<app>.*)" created')
+      r_driver_pod_creation_event = re.compile(r'\[(?P<epoch>[0-9]+)\] .* - Pod change detected: .*-driver: (?P<state>.*) on host.*')
+      r_driver_pod_creation_event_pending = re.compile(r'\[(?P<epoch>[0-9]+)\] .* - Pod change detected: .*-driver: Pending on host.*')
+      r_driver_pod_initializing = re.compile(r'\[(?P<epoch>[0-9]+)\] .* - Pod change detected: .*-driver(:| changed to) (PodInitializing|Init)')
+      r_driver_pod_running = re.compile(r'\[(?P<epoch>[0-9]+)\] .* - Pod change detected: .*-driver(:| changed to) Running')
+      r_driver_pod_completed = re.compile(r'\[(?P<epoch>[0-9]+)\] .* - Pod change detected: .*-driver changed to Completed')
+      r_spark_submit_failed = re.compile(r'failed to run spark-submit')
+      r_driver_context_app_submitted = re.compile(r'(?P<spark_time>[- :0-9]*) INFO.*SparkContext.* - Submitted application')
+      r_driver_context_jar_added = re.compile(r'(?P<spark_time>[- :0-9]*) INFO.*SparkContext.* - Added JAR file:')
+      r_exec_allocator = re.compile(r'(?P<spark_time>[- :0-9]*) INFO.*ExecutorPodsAllocator.* - Going to request [0-9]* executors from Kubernetes')
+      r_timeout = re.compile(r'\[(?P<epoch>[0-9]+)\] .* - Timeout reached. Aborting wait for SparkApplication .* even though in non-terminal state (?P<state>\w*)\.')
+      #r_ driver_running_event = re.compile(r'SparkDriverRunning\s+([0-9]+)([sm])\s+spark-operator\s+Driver .* is running')
+      r_exec_pod_creation_event = re.compile(r'\[(?P<epoch>[0-9]+)\] .* - Pod change detected: .*-exec-[0-9]+: (?P<state>.*) on host.*')
+      r_exec_pod_creation_event_pending = re.compile(r'\[(?P<epoch>[0-9]+)\] .* - Pod change detected: .*-exec-[0-9]+: Pending on host.*')
+      r_exec_pod_initializing = re.compile(r'\[(?P<epoch>[0-9]+)\] .* - Pod change detected: .*-exec-[0-9]+(:| changed to) (PodInitializing|Init)')
+      r_exec_pod_running = re.compile(r'\[(?P<epoch>[0-9]+)\] .* - Pod change detected: .*-exec-[0-9]+ changed to Running.')
+      r_exec_registered_time = re.compile(r'(?P<spark_time>[- :0-9]*) INFO.*KubernetesClusterSchedulerBackend.*Registered executor')
+      r_job_finished = re.compile(r'(?P<spark_time>[- :0-9]*) INFO.*DAGScheduler.*Job 0 finished')
+      r_complete = re.compile(r'\[(?P<epoch>[0-9]+)\] .* - .*Completion of .* test')
+
       """
       Timing analysis metrics. Recorded whenever the data could be obtained, including for successful runs. Value is time in
       seconds. Each time has its own metric.
       """
       TIMING_METRIC_SUCCESS_TAG = 'succeeded'
 
-      # Interval between the creating of the Spark Application and detecting the driver pod.
+      # Interval between script creating Spark Application and Spark Operator creating a driver pod. Includes Spark Operator time-to-react and Spark Operator time-to-spark-submit
       TIMING_METRIC_NAME_DRIVER_POD_DETECTED = 'AppCreationToDriverPodDetected'
       # Interval between pending driver pod and scheduled driver pod. Only present when the driver got stuck pending instead of being directly created.
       TIMING_METRIC_NAME_DRIVER_POD_PENDING_DELAY = 'DriverPodSchedulingDelay'
-      # Interval between driver pod scheduled and driver pod Running
+      # Interval between driver pod scheduled and driver pod Running. This is container creation, image pull, and MadKub execution
       TIMING_METRIC_NAME_DRIVER_POD_INITIALIZATION = 'DriverPodInitialization'
-      # Interval between driver pod Running and driver logging that the Spark App was submitted
+      # Interval between driver pod Running and driver submitting the Spark Context for the App. Primarily JVM bootup and Spark start time.
       TIMING_METRIC_NAME_DRIVER_APP_SUBMIT = 'DriverPodAppSubmit'
-      # Interval between driver pod logging that the Spark App was submitted and that the JAR was added. (Believe that JAR added is logged after all prep work prior to requesting executors has been completed)
+      # Interval between driver pod submitting the Spark Context for the App and adding its JAR. (Believe that JAR added is logged after all prep work prior to requesting executors has been completed)
       TIMING_METRIC_NAME_DRIVER_APP_LOAD = 'DriverPodAppLoad'
-      # Interval between driver pod logging that an executors was requested and that it starts doing work
+      # Interval between driver pod completing job application load and requesting executors to perform the work.
+      TIMING_METRIC_NAME_DRIVER_APP_STARTUP = 'DriverPodAppStart'
+      # Interval between driver requesting executor(s) and that it registers with the driver to start doing work
       TIMING_METRIC_NAME_EXECUTOR_WAIT_TOTAL = 'ExecutorTotalWait'
-      # Interval between the driver requesting an executor and detecting the executor pod.
+      # Interval between driver requesting executor(s) and detecting the executor pod.
       TIMING_METRIC_NAME_EXEC_POD_DETECTED = 'ExecutorAllocatorToPodDetected'
       # Interval between pending executor pod and scheduled executor pod. Only present when the executor got stuck pending instead of being directly created.
       TIMING_METRIC_NAME_EXEC_POD_PENDING_DELAY = 'ExecutorPodSchedulingDelay'
@@ -143,6 +165,23 @@ items:
       # Interval between job completion and watchdog script completion
       TIMING_METRIC_NAME_CLEAN_UP = 'CleanUp'
 
+
+      # interval name -> (start regex, end regex). This the blueprint of what is to be computed.
+      time_regex = {
+          TIMING_METRIC_NAME_DRIVER_POD_DETECTED: (r_app_created, r_driver_pod_creation_event),
+          TIMING_METRIC_NAME_DRIVER_POD_PENDING_DELAY: (r_driver_pod_creation_event_pending, r_driver_pod_initializing),
+          TIMING_METRIC_NAME_DRIVER_POD_INITIALIZATION: (r_driver_pod_initializing, r_driver_pod_running),
+          TIMING_METRIC_NAME_DRIVER_APP_SUBMIT: (r_driver_pod_running, r_driver_context_app_submitted),
+          TIMING_METRIC_NAME_DRIVER_APP_LOAD: (r_driver_context_app_submitted, r_driver_context_jar_added),
+          TIMING_METRIC_NAME_DRIVER_APP_STARTUP: (r_driver_context_jar_added, r_exec_allocator),
+          TIMING_METRIC_NAME_EXECUTOR_WAIT_TOTAL: (r_exec_allocator, r_exec_registered_time),
+          TIMING_METRIC_NAME_EXEC_POD_DETECTED: (r_exec_allocator, r_exec_pod_creation_event),
+          TIMING_METRIC_NAME_EXEC_POD_PENDING_DELAY: (r_exec_pod_creation_event_pending, r_exec_pod_initializing),
+          TIMING_METRIC_NAME_EXEC_POD_INITIALIZATION: (r_exec_pod_initializing, r_exec_pod_running),
+          TIMING_METRIC_NAME_EXEC_REGISTRATION: (r_exec_pod_running, r_exec_registered_time),
+          TIMING_METRIC_NAME_JOB_RUNTIME: (r_exec_registered_time, r_job_finished),
+          TIMING_METRIC_NAME_CLEAN_UP: (r_job_finished, r_complete),
+      }
 
       TAG_APP = 'app'  # Name of the Spark Application. Same across concurrent watchdog instances. Roughly represents feature being tested.
       TAG_APP_ID = 'app_id'  # Id of the Spark Application. Unique across concurrent executions but recurring over time.
@@ -337,25 +376,6 @@ items:
                       logging.exception("Cannot emit metrics: error parsing sfdchosts %s and watchdog-config %s",
                                         args.sfdchosts, args.watchdog_config)
 
-      r_app_created = re.compile(r'\[(?P<epoch>[0-9]+)\] .* - sparkapplication "(?P<app>.*)" created')
-      r_driver_pod_creation_event = re.compile(r'\[(?P<epoch>[0-9]+)\] .* - Pod change detected: .*-driver: (?P<state>.*) on host.*')
-      r_driver_pod_creation_event_pending = re.compile(r'\[(?P<epoch>[0-9]+)\] .* - Pod change detected: .*-driver: Pending on host.*')
-      r_driver_pod_initializing = re.compile(r'\[(?P<epoch>[0-9]+)\] .* - Pod change detected: .*-driver(:| changed to) (PodInitializing|Init)')
-      r_driver_pod_running = re.compile(r'\[(?P<epoch>[0-9]+)\] .* - Pod change detected: .*-driver(:| changed to) Running')
-      r_driver_pod_completed = re.compile(r'\[(?P<epoch>[0-9]+)\] .* - Pod change detected: .*-driver changed to Completed')
-      r_spark_submit_failed = re.compile(r'failed to run spark-submit')
-      r_driver_context_app_submitted = re.compile(r'(?P<spark_time>[- :0-9]*) INFO.*SparkContext.* - Submitted application')
-      r_driver_context_jar_added = re.compile(r'(?P<spark_time>[- :0-9]*) INFO.*SparkContext.* - Added JAR file:')
-      r_exec_allocator = re.compile(r'(?P<spark_time>[- :0-9]*) INFO.*ExecutorPodsAllocator.* - Going to request [0-9]* executors from Kubernetes')
-      r_timeout = re.compile(r'\[(?P<epoch>[0-9]+)\] .* - Timeout reached. Aborting wait for SparkApplication .* even though in non-terminal state (?P<state>\w*)\.')
-      #r_ driver_running_event = re.compile(r'SparkDriverRunning\s+([0-9]+)([sm])\s+spark-operator\s+Driver .* is running')
-      r_exec_pod_creation_event = re.compile(r'\[(?P<epoch>[0-9]+)\] .* - Pod change detected: .*-exec-[0-9]+: (?P<state>.*) on host.*')
-      r_exec_pod_creation_event_pending = re.compile(r'\[(?P<epoch>[0-9]+)\] .* - Pod change detected: .*-exec-[0-9]+: Pending on host.*')
-      r_exec_pod_initializing = re.compile(r'\[(?P<epoch>[0-9]+)\] .* - Pod change detected: .*-exec-[0-9]+(:| changed to) (PodInitializing|Init)')
-      r_exec_pod_running = re.compile(r'\[(?P<epoch>[0-9]+)\] .* - Pod change detected: .*-exec-[0-9]+ changed to Running.')
-      r_exec_registered_time = re.compile(r'(?P<spark_time>[- :0-9]*) INFO.*KubernetesClusterSchedulerBackend.*Registered executor')
-      r_job_finished = re.compile(r'(?P<spark_time>[- :0-9]*) INFO.*DAGScheduler.*Job 0 finished')
-      r_complete = re.compile(r'\[(?P<epoch>[0-9]+)\] .* - .*Completion of .* test')
 
       # Regex for fully-qualified Java class name https://stackoverflow.com/a/5205467/708883
       r_exception = re.compile(r'(?P<cause>(Caused by: )?)(?P<package>[a-zA-Z_$][a-zA-Z\d_$]*\.)*(?P<class>[a-zA-Z_$][a-zA-Z\d_$]*Exception): (?P<message>.*)')
@@ -394,22 +414,6 @@ items:
           error_states = {'Terminating', 'Unknown', 'Error'}
           # The times are computed by using two regular expressions; one marks the start of the interval and
           # one marks the end of the interval.
-
-          # interval name -> (start regex, end regex). This the blueprint of what is to be computed.
-          time_regex = {
-              TIMING_METRIC_NAME_DRIVER_POD_DETECTED: (r_app_created, r_driver_pod_creation_event),
-              TIMING_METRIC_NAME_DRIVER_POD_PENDING_DELAY: (r_driver_pod_creation_event_pending, r_driver_pod_initializing),
-              TIMING_METRIC_NAME_DRIVER_POD_INITIALIZATION: (r_driver_pod_initializing, r_driver_pod_running),
-              TIMING_METRIC_NAME_DRIVER_APP_SUBMIT: (r_driver_pod_running, r_driver_context_app_submitted),
-              TIMING_METRIC_NAME_DRIVER_APP_LOAD: (r_driver_context_app_submitted, r_driver_context_jar_added),
-              TIMING_METRIC_NAME_EXECUTOR_WAIT_TOTAL: (r_exec_allocator, r_exec_registered_time),
-              TIMING_METRIC_NAME_EXEC_POD_DETECTED: (r_exec_allocator, r_exec_pod_creation_event),
-              TIMING_METRIC_NAME_EXEC_POD_PENDING_DELAY: (r_exec_pod_creation_event_pending, r_exec_pod_initializing),
-              TIMING_METRIC_NAME_EXEC_POD_INITIALIZATION: (r_exec_pod_initializing, r_exec_pod_running),
-              TIMING_METRIC_NAME_EXEC_REGISTRATION: (r_exec_pod_running, r_exec_registered_time),
-              TIMING_METRIC_NAME_JOB_RUNTIME: (r_exec_registered_time, r_job_finished),
-              TIMING_METRIC_NAME_CLEAN_UP: (r_job_finished, r_complete),
-          }
 
           # regex -> (epoch, match). Time value found for each regex. Memoize because regexes are used multiple times.
           regex_results = {}
@@ -503,6 +507,7 @@ items:
                       TIMING_METRIC_NAME_DRIVER_POD_INITIALIZATION: (60, 'TIMEOUT_DRIVER_SLOW_POD_INIT'),
                       TIMING_METRIC_NAME_DRIVER_APP_SUBMIT: (60, 'TIMEOUT_DRIVER_SLOW_APP_SUBMIT'),
                       TIMING_METRIC_NAME_DRIVER_APP_LOAD: (60, 'TIMEOUT_DRIVER_SLOW_APP_LOAD'),
+                      TIMING_METRIC_NAME_DRIVER_APP_STARTUP: (60, 'TIMEOUT_DRIVER_SLOW_APP_STARTUP'),
                       TIMING_METRIC_NAME_EXEC_POD_DETECTED: (30, 'TIMEOUT_EXECUTOR_SLOW_POD_CREATION'),
                       TIMING_METRIC_NAME_EXEC_POD_PENDING_DELAY: (60, 'TIMEOUT_EXECUTOR_SLOW_POD_SCHEDULING'),
                       TIMING_METRIC_NAME_EXEC_POD_INITIALIZATION: (30, 'TIMEOUT_EXECUTOR_SLOW_POD_INIT'),
