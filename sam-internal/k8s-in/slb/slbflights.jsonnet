@@ -6,7 +6,6 @@ local slbconfigs = import "slbconfig.jsonnet";
     local slbimages = import "slbimages.jsonnet",
     local slbshared = (import "slbsharedservices.jsonnet") + { dirSuffix:: $.dirSuffix },
     local slbconfigs = (import "slbconfig.jsonnet") + { dirSuffix:: $.dirSuffix },
-    envoyProxyEnabled: (slbimages.phaseNum <= 1 || configs.estate == "prd-sam"),
     roleEnabled: (slbimages.hyperslb_build >= 2199),
     slbJournaldKillerEnabled: (slbimages.phaseNum <= 5),
 

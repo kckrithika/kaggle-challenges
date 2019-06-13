@@ -370,13 +370,6 @@
               ],
             },
 
-        envoyVip:
-            set_value_to_all_in_list("", $.slbEstates)
-            + {
-              "prd-sdc": "10.254.247.101",
-              "prd-sam": "10.251.197.48",
-            },
-
         vipsToAcl:
             set_value_to_all_in_list("", $.slbEstates)
             + { vpod: "" },
@@ -689,7 +682,7 @@
 
     subnet: self.perCluster.subnet[estate],
     publicSubnet: self.perCluster.publicSubnet[estate],
-    reservedIps: std.join(",", self.perCluster.reservedIps[estate] + self.envoyVipCIDR),
+    reservedIps: std.join(",", self.perCluster.reservedIps[estate]),
     serviceList: self.perCluster.serviceList[estate],
     namespace: self.perCluster.namespace[estate],
     ddiService: self.perCluster.ddiService[kingdom],
@@ -718,8 +711,6 @@
     hsmEnabledVips: self.perCluster.hsmEnabledVips[estate] + self.hsmDefaultEnabledVips,
     envoyEnabledVips: self.perCluster.envoyEnabledVips[estate],
     envoyProxyEnabledVips: self.perCluster.envoyProxyEnabledVips[estate],
-    envoyVip: self.perCluster.envoyVip[estate],
-    envoyVipCIDR: if std.length(self.envoyVip) != 0 then ([self.envoyVip + "/32"]) else [],
     vipsToAcl: self.perCluster.vipsToAcl[estate],
     vipwdConfigOptions: slbvipwdconfig.getVipWdConfigOptions(estate),
 
