@@ -1,0 +1,86 @@
+SCHEDULER_NO_NODES
+0612 21:28:33 [1560374913] spark-pi-8d093104 - ======== Beginning spark-pi-8d093104 test ========
+0612 21:28:33 [1560374913] spark-pi-8d093104 -  [0;32mKubernetes master [0m is running at  [0;33mhttps://10.254.208.1:443 [0m
+0612 21:28:33 [1560374913] spark-pi-8d093104 -
+0612 21:28:33 [1560374913] spark-pi-8d093104 - To further debug and diagnose cluster problems, use 'kubectl cluster-info dump'.
+0612 21:28:35 [1560374915] spark-pi-8d093104 - Cleaning up SparkApplication/Pod older than 1 hours from prior runs.
+0612 21:28:36 [1560374916] spark-pi-8d093104 - sparkapplication "spark-impersonation-22466743" deleted
+0612 21:28:39 [1560374919] spark-pi-8d093104 - sparkapplication "spark-pi-07707a99" deleted
+0612 21:28:43 [1560374923] spark-pi-8d093104 - Creating SparkApplication spark-pi-8d093104
+0612 21:28:43 [1560374923] spark-pi-8d093104 - sparkapplication "spark-pi-8d093104" created
+0612 21:28:44 [1560374924] spark-pi-8d093104 - Waiting for SparkApplication spark-pi-8d093104 to reach a terminal state.
+0612 21:28:51 [1560374931] spark-pi-8d093104 - Pod change detected: spark-pi-8d093104-driver: Pending on host <none>.
+0612 21:29:46 [1560374986] spark-pi-8d093104 - ...still waiting for terminal state (currently SUBMITTED) after 62 seconds.
+0612 21:29:46 [1560374986] spark-pi-8d093104 - ---- Begin Events ----
+0612 21:29:46 [1560374986] spark-pi-8d093104 - Name:         spark-pi-8d093104
+0612 21:29:46 [1560374986] spark-pi-8d093104 - Events:
+0612 21:29:46 [1560374986] spark-pi-8d093104 -   Type    Reason                     Age   From            Message
+0612 21:29:46 [1560374986] spark-pi-8d093104 -   ----    ------                     ----  ----            -------
+0612 21:29:46 [1560374986] spark-pi-8d093104 -   Normal  SparkApplicationAdded      1m    spark-operator  SparkApplication spark-pi-8d093104 was added, enqueuing it for submission
+0612 21:29:46 [1560374986] spark-pi-8d093104 -   Normal  SparkApplicationSubmitted  56s   spark-operator  SparkApplication spark-pi-8d093104 was submitted successfully
+0612 21:29:47 [1560374987] spark-pi-8d093104 - Name:           spark-pi-8d093104-driver
+0612 21:29:47 [1560374987] spark-pi-8d093104 - Events:
+0612 21:29:47 [1560374987] spark-pi-8d093104 -   Type     Reason            Age                From               Message
+0612 21:29:47 [1560374987] spark-pi-8d093104 -   ----     ------            ----               ----               -------
+0612 21:29:47 [1560374987] spark-pi-8d093104 -   Warning  FailedScheduling  25s (x7 over 58s)  default-scheduler  0/9 nodes are available: 4 Insufficient pods, 5 node(s) were unschedulable.
+0612 21:29:50 [1560374990] spark-pi-8d093104 - ---- End Events ----
+0612 21:30:47 [1560375047] spark-pi-8d093104 - ...still waiting for terminal state (currently SUBMITTED) after 123 seconds.
+0612 21:30:48 [1560375048] spark-pi-8d093104 - ---- Begin Events ----
+0612 21:30:48 [1560375048] spark-pi-8d093104 - Name:         spark-pi-8d093104
+0612 21:30:48 [1560375048] spark-pi-8d093104 - Events:
+0612 21:30:48 [1560375048] spark-pi-8d093104 -   Type    Reason                     Age   From            Message
+0612 21:30:48 [1560375048] spark-pi-8d093104 -   ----    ------                     ----  ----            -------
+0612 21:30:48 [1560375048] spark-pi-8d093104 -   Normal  SparkApplicationAdded      2m    spark-operator  SparkApplication spark-pi-8d093104 was added, enqueuing it for submission
+0612 21:30:48 [1560375048] spark-pi-8d093104 -   Normal  SparkApplicationSubmitted  1m    spark-operator  SparkApplication spark-pi-8d093104 was submitted successfully
+0612 21:30:50 [1560375050] spark-pi-8d093104 - Name:           spark-pi-8d093104-driver
+0612 21:30:50 [1560375050] spark-pi-8d093104 - Events:
+0612 21:30:50 [1560375050] spark-pi-8d093104 -   Type     Reason            Age               From               Message
+0612 21:30:50 [1560375050] spark-pi-8d093104 -   ----     ------            ----              ----               -------
+0612 21:30:50 [1560375050] spark-pi-8d093104 -   Warning  FailedScheduling  56s (x8 over 2m)  default-scheduler  0/9 nodes are available: 4 Insufficient pods, 5 node(s) were unschedulable.
+0612 21:30:53 [1560375053] spark-pi-8d093104 - ---- End Events ----
+0612 21:31:49 [1560375109] spark-pi-8d093104 - ...still waiting for terminal state (currently SUBMITTED) after 185 seconds.
+0612 21:31:49 [1560375109] spark-pi-8d093104 - ---- Begin Events ----
+0612 21:31:49 [1560375109] spark-pi-8d093104 - Name:         spark-pi-8d093104
+0612 21:31:49 [1560375109] spark-pi-8d093104 - Events:
+0612 21:31:49 [1560375109] spark-pi-8d093104 -   Type    Reason                     Age   From            Message
+0612 21:31:49 [1560375109] spark-pi-8d093104 -   ----    ------                     ----  ----            -------
+0612 21:31:49 [1560375109] spark-pi-8d093104 -   Normal  SparkApplicationAdded      3m    spark-operator  SparkApplication spark-pi-8d093104 was added, enqueuing it for submission
+0612 21:31:49 [1560375109] spark-pi-8d093104 -   Normal  SparkApplicationSubmitted  3m    spark-operator  SparkApplication spark-pi-8d093104 was submitted successfully
+0612 21:31:51 [1560375111] spark-pi-8d093104 - Name:           spark-pi-8d093104-driver
+0612 21:31:51 [1560375111] spark-pi-8d093104 - Events:
+0612 21:31:51 [1560375111] spark-pi-8d093104 -   Type     Reason            Age                From               Message
+0612 21:31:51 [1560375111] spark-pi-8d093104 -   ----     ------            ----               ----               -------
+0612 21:31:51 [1560375111] spark-pi-8d093104 -   Warning  FailedScheduling  23s (x14 over 3m)  default-scheduler  0/9 nodes are available: 4 Insufficient pods, 5 node(s) were unschedulable.
+0612 21:31:54 [1560375114] spark-pi-8d093104 - ---- End Events ----
+0612 21:32:51 [1560375171] spark-pi-8d093104 - ...still waiting for terminal state (currently SUBMITTED) after 247 seconds.
+0612 21:32:51 [1560375171] spark-pi-8d093104 - ---- Begin Events ----
+0612 21:32:51 [1560375171] spark-pi-8d093104 - Name:         spark-pi-8d093104
+0612 21:32:51 [1560375171] spark-pi-8d093104 - Events:
+0612 21:32:51 [1560375171] spark-pi-8d093104 -   Type    Reason                     Age   From            Message
+0612 21:32:51 [1560375171] spark-pi-8d093104 -   ----    ------                     ----  ----            -------
+0612 21:32:51 [1560375171] spark-pi-8d093104 -   Normal  SparkApplicationAdded      4m    spark-operator  SparkApplication spark-pi-8d093104 was added, enqueuing it for submission
+0612 21:32:51 [1560375171] spark-pi-8d093104 -   Normal  SparkApplicationSubmitted  4m    spark-operator  SparkApplication spark-pi-8d093104 was submitted successfully
+0612 21:32:52 [1560375172] spark-pi-8d093104 - Name:           spark-pi-8d093104-driver
+0612 21:32:52 [1560375172] spark-pi-8d093104 - Events:
+0612 21:32:52 [1560375172] spark-pi-8d093104 -   Type     Reason            Age                From               Message
+0612 21:32:52 [1560375172] spark-pi-8d093104 -   ----     ------            ----               ----               -------
+0612 21:32:52 [1560375172] spark-pi-8d093104 -   Warning  FailedScheduling  51s (x15 over 4m)  default-scheduler  0/9 nodes are available: 4 Insufficient pods, 5 node(s) were unschedulable.
+0612 21:32:56 [1560375176] spark-pi-8d093104 - ---- End Events ----
+0612 21:33:34 [1560375214] spark-pi-8d093104 - Timeout reached. Aborting wait for SparkApplication spark-pi-8d093104 even though in non-terminal state SUBMITTED.
+0612 21:33:35 [1560375215] spark-pi-8d093104 - ---- Begin Events ----
+0612 21:33:35 [1560375215] spark-pi-8d093104 - Name:         spark-pi-8d093104
+0612 21:33:35 [1560375215] spark-pi-8d093104 - Events:
+0612 21:33:35 [1560375215] spark-pi-8d093104 -   Type    Reason                     Age   From            Message
+0612 21:33:35 [1560375215] spark-pi-8d093104 -   ----    ------                     ----  ----            -------
+0612 21:33:35 [1560375215] spark-pi-8d093104 -   Normal  SparkApplicationAdded      4m    spark-operator  SparkApplication spark-pi-8d093104 was added, enqueuing it for submission
+0612 21:33:35 [1560375215] spark-pi-8d093104 -   Normal  SparkApplicationSubmitted  4m    spark-operator  SparkApplication spark-pi-8d093104 was submitted successfully
+0612 21:33:38 [1560375218] spark-pi-8d093104 - Name:           spark-pi-8d093104-driver
+0612 21:33:38 [1560375218] spark-pi-8d093104 - Events:
+0612 21:33:38 [1560375218] spark-pi-8d093104 -   Type     Reason            Age                From               Message
+0612 21:33:38 [1560375218] spark-pi-8d093104 -   ----     ------            ----               ----               -------
+0612 21:33:38 [1560375218] spark-pi-8d093104 -   Warning  FailedScheduling  20s (x20 over 4m)  default-scheduler  0/9 nodes are available: 4 Insufficient pods, 5 node(s) were unschedulable.
+0612 21:33:41 [1560375221] spark-pi-8d093104 - ---- End Events ----
+0612 21:33:42 [1560375222] spark-pi-8d093104 - ---- Begin pods/spark-pi-8d093104-driver Log ----
+0612 21:33:43 [1560375223] spark-pi-8d093104 - ---- End pods/spark-pi-8d093104-driver Log ----
+0612 21:33:43 [1560375223] spark-pi-8d093104 - -------- Executor Pods ----------
+0612 21:33:44 [1560375224] spark-pi-8d093104 - ======== Completion of spark-pi-8d093104 test, returning 1 ========
