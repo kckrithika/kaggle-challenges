@@ -134,7 +134,7 @@ spec:
         env:
         - name: KINGDOM
           value: dfw
-        image: ops0-artifactrepo1-0-dfw.data.sfdc.net/dva/slb/nginx:122-2c073ca06d614038e35d7ea19ed32b497a4a8af8
+        image: ops0-artifactrepo1-0-dfw.data.sfdc.net/dva/slb/nginx:123-e0e859c05184559e48728c6c3d8bd74634afefbc
         livenessProbe:
           httpGet:
             path: /
