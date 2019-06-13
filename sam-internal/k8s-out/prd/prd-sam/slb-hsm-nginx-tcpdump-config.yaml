@@ -15,5 +15,5 @@ metadata:
   creationTimestamp: null
   labels:
     sam.data.sfdc.net/owner: slb
-  name: slb-hsm-nginx
+  name: slb-hsm-nginx-tcpdump
   namespace: sam-system

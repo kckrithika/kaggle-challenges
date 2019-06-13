@@ -319,6 +319,54 @@ spec:
         - mountPath: /customerCerts
           name: customer-certs
       - command:
+        - /sdn/slb-cert-deployer
+        - --metricsEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80
+        - --hostnameOverride=$(NODE_NAME)
+        - --log_dir=/host/data/slb/logs/slb-hsm-nginx
+        - --custCertsDir=/customerCerts
+        - --hostsConfigFile=/sfdchosts/hosts.json
+        - --client.socketDir=/host/data/slb/config/slb-hsm-nginx
+        - --client.dialSocket=true
+        - --control.nginxReloadSentinel=/host/data/slb/slb-hsm-nginx/config/nginx.marker
+        env:
+        - name: NODE_NAME
+          valueFrom:
+            fieldRef:
+              fieldPath: spec.nodeName
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/slb/hyperslb:2199-26acb3b2228eab681f36dac105f1d8b14f24cf82
+        name: slb-cert-deployer
+        volumeMounts:
+        - mountPath: /cert1
+          name: cert1
+        - mountPath: /cert2
+          name: cert2
+        - mountPath: /host/data/slb/slb-hsm-nginx/config
+          name: var-target-config-volume
+        - mountPath: /customerCerts
+          name: customer-certs
+        - mountPath: /host/data/slb
+          name: var-slb-volume
+        - mountPath: /host/data/slb/logs/slb-hsm-nginx
+          name: var-logs-volume
+        - mountPath: /sfdchosts
+          name: sfdchosts
+      - command:
+        - /sdn/slb-tcpdump
+        - --tcpdump.pollinterval=15m
+        - --tcpdump.filepath=/tcpdump-config/tcpdumpcommand.json
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/slb/hyperslb:2199-26acb3b2228eab681f36dac105f1d8b14f24cf82
+        name: slb-tcpdump
+        resources:
+          limits:
+            cpu: "0.5"
+            memory: 300Mi
+          requests:
+            cpu: "0.5"
+            memory: 300Mi
+        volumeMounts:
+        - mountPath: /tcpdump-config
+          name: tcpdump-config
+      - command:
         - /sdn/slb-config-processor
         - --configDir=/host/data/slb/config/slb-hsm-nginx
         - --period=1800s
@@ -509,53 +557,6 @@ spec:
           name: maddog-certs
         - mountPath: /proxyconfig
           name: proxyconfig
-      - command:
-        - /sdn/slb-cert-deployer
-        - --metricsEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80
-        - --hostnameOverride=$(NODE_NAME)
-        - --log_dir=/host/data/slb/logs/slb-hsm-nginx
-        - --custCertsDir=/customerCerts
-        - --hostsConfigFile=/sfdchosts/hosts.json
-        - --client.socketDir=/host/data/slb/config/slb-hsm-nginx
-        - --client.dialSocket=true
-        - --control.nginxReloadSentinel=/host/data/slb/slb-hsm-nginx/config/nginx.marker
-        env:
-        - name: NODE_NAME
-          valueFrom:
-            fieldRef:
-              fieldPath: spec.nodeName
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/slb/hyperslb:2199-26acb3b2228eab681f36dac105f1d8b14f24cf82
-        name: slb-cert-deployer
-        volumeMounts:
-        - mountPath: /cert1
-          name: cert1
-        - mountPath: /cert2
-          name: cert2
-        - mountPath: /host/data/slb/slb-hsm-nginx/config
-          name: var-target-config-volume
-        - mountPath: /customerCerts
-          name: customer-certs
-        - mountPath: /host/data/slb
-          name: var-slb-volume
-        - mountPath: /host/data/slb/logs/slb-hsm-nginx
-          name: var-logs-volume
-        - mountPath: /sfdchosts
-          name: sfdchosts
-      - command:
-        - /sdn/slb-tcpdump
-        - --tcpdump.pollinterval=15m
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/slb/hyperslb:2199-26acb3b2228eab681f36dac105f1d8b14f24cf82
-        name: slb-tcpdump
-        resources:
-          limits:
-            cpu: "0.5"
-            memory: 300Mi
-          requests:
-            cpu: "0.5"
-            memory: 300Mi
-        volumeMounts:
-        - mountPath: /config
-          name: config
       dnsPolicy: Default
       initContainers:
       - args:
@@ -602,7 +603,7 @@ spec:
         - -xec
         - rm -rf /host/data/slb/slb-hsm-nginx/config/*
         image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/slb/hyperslb:2199-26acb3b2228eab681f36dac105f1d8b14f24cf82
-        name: slb-nginx-config-wipe
+        name: slb-config-wipe
         volumeMounts:
         - mountPath: /host/data/slb/slb-hsm-nginx/config
           name: var-target-config-volume
@@ -658,8 +659,8 @@ spec:
           name: slb-tlsparams
         name: tlsparams-volume
       - configMap:
-          name: slb-hsm-nginx
-        name: config
+          name: slb-hsm-nginx-tcpdump
+        name: tcpdump-config
       - configMap:
           name: slb-kms-configuration
         name: kmsconfig

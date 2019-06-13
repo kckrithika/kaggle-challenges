@@ -15,5 +15,5 @@ metadata:
   creationTimestamp: null
   labels:
     sam.data.sfdc.net/owner: slb
-  name: slb-tcpdump-ipvs
+  name: slb-tcpdump-ipvs-tcpdump
   namespace: sam-system
