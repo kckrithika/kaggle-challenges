@@ -79,7 +79,7 @@ system:
             - name: STREAM_PROCESSING_ENDPOINT
               value: cre-sp.retail-cre.localhost.mesh.force.com:5442
             - name: OU_NAME
-              value: retail-cre.cre-sp,app
+              value: app, retail-cre.cre-sp
             ####################################################################################################
             ####################################### PERF environment variables #################################
             ####################################################################################################
