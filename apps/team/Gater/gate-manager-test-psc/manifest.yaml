@@ -42,6 +42,7 @@ system:
           port: 15372
         initialDelaySeconds: 60
         timeoutSeconds: 10
+        periodSeconds: 50000
       readinessProbe:
         httpGet:
           path: /manage/health
@@ -91,7 +92,7 @@ system:
     - name: perf-sidecar       # Sidecar container that deploys automation folder
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/kviphong/perfsidecar:20180312-1
       ports:
-        - containerPort: 10001   # Port for the profiler
+        - containerPort: 15578    # Port for the profiler
       livenessProbe:
         exec:
           command:
