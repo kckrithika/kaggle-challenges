@@ -23,12 +23,9 @@ system:
     - name: logvol
       hostPath:
         path: /home/sfdc-retail/logs
-    - name: consumer-key
+    - name: oauth-keys
       k4aSecret:
-        secretName: rsui-consumer-key
-    - name: consumer-secret
-      k4aSecret:
-        secretName: rsui-consumer-secret
+        secretName: rsui-oauth-keys
     - name: encryption-key1
       k4aSecret:
         secretName: rsui-encryption-key1
@@ -38,7 +35,7 @@ system:
 
     containers:
     - name: retail-setup
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/retail/retail-setup:0.1.9.53
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/retail/retail-setup:0.1.9.61
       ports:
       # Jetty http1 ports for incoming public traffic via SLB
       - containerPort: 7022
@@ -100,10 +97,8 @@ system:
         value: https://test.stmfa.stm.salesforce.com
       - name: RSUI_OAUTH_CALLBACK
         value: https://rsui-func-lb.retail-rsui.prd-sam.prd.slb.sfdc.net/service/oauth/callback
-      - name: OAUTH_CONSUMER_KEY_FILE_PATH
-        value: secrets/consumer-key/rsui-consumer-key.key
-      - name: OAUTH_CONSUMER_SECRET_FILE_PATH
-        value: secrets/consumer-secret/rsui-consumer-secret.key
+      - name: OAUTH_SECRETS_FILE_PATH
+        value: secrets/oauth-keys/rsui-oauth-keys.json
       - name: SECURITY_ENCRYPTION_KEY1_PATH
         value: secrets/encryption-key1/rsui-encryption-key1.key
       - name: SECURITY_ENCRYPTION_KEY2_PATH
@@ -172,11 +167,8 @@ system:
       #mount splunk logs mount
       - name: logvol
         mountPath: /home/retail-setup/logs
-      - name: consumer-key
-        mountPath: /home/retail-setup/secrets/consumer-key
-        readOnly: true
-      - name: consumer-secret
-        mountPath: /home/retail-setup/secrets/consumer-secret
+      - name: oauth-keys
+        mountPath: /home/retail-setup/secrets/oauth-keys
         readOnly: true
       - name: encryption-key1
         mountPath: /home/retail-setup/secrets/encryption-key1
