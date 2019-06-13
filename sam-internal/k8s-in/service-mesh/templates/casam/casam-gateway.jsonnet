@@ -18,9 +18,14 @@
           "*",
         ],
         "port": {
-          "name": "http",
+          "name": "https",
           "number": 8085,
-          "protocol": "HTTP"
+          "protocol": "HTTPS"
+        },
+        "tls": {
+          "mode": "SIMPLE",
+          "privateKey": "/etc/certs/key.pem",
+          "serverCertificate": "/etc/certs/cert-chain.pem"
         }
       },
       {
