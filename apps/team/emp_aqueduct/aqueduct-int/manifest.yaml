@@ -45,6 +45,13 @@ system:
         volumeMounts:
           - name: kafkaclientcerts
             mountPath: /etc/pki_service/sfdc-aqueduct
+        resources:
+          limits:
+            cpu: 8
+            memory: 6Gi
+          requests:
+            cpu: 8
+            memory: 6Gi
   loadbalancers:
   - lbname: aqueduct-int
     function: aqueduct-int
