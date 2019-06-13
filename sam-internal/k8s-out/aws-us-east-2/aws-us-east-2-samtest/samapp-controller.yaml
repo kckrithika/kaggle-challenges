@@ -35,7 +35,7 @@ spec:
           value: aws-us-east-2-samtest
         - name: KUBECONFIG
           value: ""
-        image: 791719295754.dkr.ecr.us-east-2.amazonaws.com/dva/sam/hypersam:2739-980d7a3a46925a4f037b20962c1cbd2f20b1716e
+        image: 791719295754.dkr.ecr.us-east-2.amazonaws.com/dva/sam/hypersam:2743-4c5eaa97aabb0a93655c9bc06943f733ea304915
         livenessProbe:
           httpGet:
             path: /healthz
