@@ -13,5 +13,5 @@ data:
 kind: ConfigMap
 metadata:
   creationTimestamp: null
-  name: slb-nginx-config-b
+  name: slb-nginx-config-b-tcpdump
   namespace: sam-system
