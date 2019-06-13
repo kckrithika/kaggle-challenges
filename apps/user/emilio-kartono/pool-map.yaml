@@ -1,7 +1,7 @@
 apps:
- eventbus-client-web-api:
+  eventbus-client-web-api:
   - prd/prd-sam
 
- eventbus-client-web-ui:
- - prd/prd-sam
+  eventbus-client-web-ui:
+  - prd/prd-sam
 
