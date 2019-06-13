@@ -2,7 +2,7 @@
  apiVersion: v1
  system:
    functions:
-     - name: samtestwd
+     - name: alpine
        count: 1
        containers:
          - name: alping
