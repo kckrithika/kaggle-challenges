@@ -12,7 +12,7 @@ system:
         livenessProbe:
           initialDelaySeconds: 6000
           periodSeconds: 60
-          timeoutSeconds: 11
+          timeoutSeconds: 10
           failureThreshold: 5
           httpGet:
             path: /
