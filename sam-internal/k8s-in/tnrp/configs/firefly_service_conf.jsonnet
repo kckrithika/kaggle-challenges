@@ -80,7 +80,9 @@ local portConfig = import "portconfig.jsonnet";
                             'edge-ad/edge_config,' +
                             'defense-integration/defensedatapipeline,' +
                             'sandman/sandman-appspecs,' +
-                            'infrastructure-fabric/estatespecs',
+                            'infrastructure-fabric/estatespecs,' +
+                            'nqa/nhal-config,' +
+                            'nqa/target-data',
     },
     environmentMapping:: {
         "prd-sam": $.prdsam,
