@@ -15,5 +15,5 @@ metadata:
   creationTimestamp: null
   labels:
     sam.data.sfdc.net/owner: slb
-  name: slb-envoy-proxy
+  name: slb-envoy-proxy-tcpdump
   namespace: sam-system
