@@ -1,9 +1,0 @@
-- lbname: minwang-selfservice
-  servers:
-   - 10.231.187.82
-   - 10.231.187.19
-  ports:
-   - port: 88
-     targetport: 12087
-     lbtype: http
-
