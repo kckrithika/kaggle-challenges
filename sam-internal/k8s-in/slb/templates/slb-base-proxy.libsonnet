@@ -217,7 +217,9 @@
       command: [
           "/sdn/slb-tcpdump",
           "--tcpdump.pollinterval=15m",
-      ],
+      ] + (if slbflights.tcpdumpNamingRevamp then [
+          "--tcpdump.filepath=%s/tcpdumpcommand.json" % slbconfigs.tcpdump_volume_mount.mountPath,
+      ] else []),
       name: "slb-tcpdump",
       resources: {
           requests: {
