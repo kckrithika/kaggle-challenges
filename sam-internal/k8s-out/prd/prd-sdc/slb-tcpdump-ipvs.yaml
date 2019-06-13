@@ -20,6 +20,7 @@ spec:
       - command:
         - /sdn/slb-tcpdump
         - --tcpdump.pollinterval=15m
+        - --tcpdump.filepath=/tcpdump-config/tcpdumpcommand.json
         image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/slb/hyperslb:2199-26acb3b2228eab681f36dac105f1d8b14f24cf82
         name: slb-tcpdump-ipvs
         resources:
@@ -32,16 +33,16 @@ spec:
             memory: 300Mi
             sam.sfdc.net/ip-address: "1"
         volumeMounts:
-        - mountPath: /config
-          name: config
+        - mountPath: /tcpdump-config
+          name: tcpdump-config
       dnsPolicy: Default
       nodeSelector:
         slb-service: slb-ipvs
       terminationGracePeriodSeconds: 5
       volumes:
       - configMap:
-          name: slb-tcpdump-ipvs
-        name: config
+          name: slb-tcpdump-ipvs-tcpdump
+        name: tcpdump-config
   updateStrategy:
     rollingUpdate:
       maxUnavailable: 25%
