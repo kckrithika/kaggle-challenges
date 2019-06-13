@@ -13,7 +13,9 @@ if slbconfigs.isSlbEstate then configs.daemonSetBase("slb") {
                         command: [
                             "/sdn/slb-tcpdump",
                             "--tcpdump.pollinterval=15m",
-                        ],
+                        ] + (if slbflights.tcpdumpNamingRevamp then [
+                            "--tcpdump.filepath=%s/tcpdumpcommand.json" % slbconfigs.tcpdump_volume_mount.mountPath,
+                        ] else []),
                         name: "slb-tcpdump-ipvs",
                         resources: {
                             requests: {
@@ -26,12 +28,12 @@ if slbconfigs.isSlbEstate then configs.daemonSetBase("slb") {
                             },
                         },
                         volumeMounts: [
-                            configs.config_volume_mount,
+                            slbconfigs.tcpdump_volume_mount,
                         ],
                     } + configs.ipAddressResourceRequest,
                 ],
                 volumes: [
-                    configs.config_volume("slb-tcpdump-ipvs"),
+                    slbconfigs.tcpdump_volume("slb-tcpdump-ipvs"),
                 ],
                 nodeSelector: {
                     // Only need to run this on ipvs nodes.
