@@ -242,6 +242,7 @@ spec:
         - --client.socketDir=/host/data/slb/config/slb-dns-register
         - --client.dialSocket=true
         - --maxDeleteLimit=20
+        - --isRoleUsed=true
         - --metricsEndpoint=ajna0-funnel1-0-xrd.data.sfdc.net:80
         - --vcioptions.strict=true
         - --client.allowStale=true
