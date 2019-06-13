@@ -1,0 +1,28 @@
+apiVersion: v1
+system:
+  functions:
+  - name: default
+    count: 1
+    containers:
+    - name: eventbus-client-web-ui
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/emilio.kartono/eventbus-client-web-ui:eventbus-client-web-ui
+      ports:
+      - containerPort: 5000
+        name: ext-port
+      livenessProbe:
+        initialDelaySeconds: 6000
+        periodSeconds: 60
+        timeoutSeconds: 10
+        failureThreshold: 5
+        httpGet:
+          path: /
+          port: 5000
+          scheme: HTTP
+  loadbalancers:
+  - lbname: eventbus-client-web-ui-lb
+    function: default
+    slbenabled: true
+    ports:
+      - port: 5000
+        targetPort: 5000
+        lbtype: tcp
