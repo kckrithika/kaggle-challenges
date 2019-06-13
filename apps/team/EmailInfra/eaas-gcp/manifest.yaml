@@ -5,6 +5,8 @@ system:
     - emailinfrastructure@salesforce.com
   functions:
   - name: eaas
+    serviceAccountName: emailinfra-45rtcaskgkajzi53tt5
+    automountServiceAccountToken: true
     count: 3
     terminationGracePeriodSeconds: 35
     containers:
@@ -32,9 +34,6 @@ system:
       volumeMounts:
       - mountPath: /home/sfdc-eaas/logs
         name: logvol
-      # mount pki client certs (and CA cert) for SMTP connection Eaas -> MTA
-      - mountPath: /etc/pki_service
-        name: eaas-client-cert
       livenessProbe:
         httpGet:
           path: /manage/health
@@ -128,11 +127,6 @@ system:
           cpu: "1"
           memory: 1Gi
       volumeMounts:
-      # mount the client certs even though we do not need them as sherpa will complain otherwise
-      - mountPath: /client-certs
-        name: eaas-client-cert
-      - mountPath: /server-certs
-        name: eaas-server-cert
       - mountPath: /log
         name: sherpa-log-volume
       livenessProbe:
@@ -151,12 +145,6 @@ system:
     - name: logvol
       hostPath:
         path: /home/sfdc-eaas/logs
-    - name: eaas-client-cert
-      maddogCert:
-        type: client
-    - name: eaas-server-cert
-      maddogCert:
-        type: server
     - name: sherpa-log-volume
       hostPath:
         path: /home/sfdc-sherpa/logs

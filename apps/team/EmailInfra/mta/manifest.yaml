@@ -5,6 +5,8 @@ system:
       - awaterman@salesforce.com
   functions:
   - name: mta
+    serviceAccountName: emailinfra-45rtcaskgkajzi53tt5
+    automountServiceAccountToken: true
     count: 3 
     terminationGracePeriodSeconds: 35
     containers:
