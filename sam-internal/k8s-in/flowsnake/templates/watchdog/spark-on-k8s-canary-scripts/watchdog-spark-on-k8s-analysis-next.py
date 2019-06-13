@@ -103,7 +103,8 @@ r_exec_pod_creation_event_pending = re.compile(r'\[(?P<epoch>[0-9]+)\] .* - Pod 
 r_exec_pod_initializing = re.compile(r'\[(?P<epoch>[0-9]+)\] .* - Pod change detected: .*-exec-[0-9]+(:| changed to) (PodInitializing|Init)')
 r_exec_pod_running = re.compile(r'\[(?P<epoch>[0-9]+)\] .* - Pod change detected: .*-exec-[0-9]+ changed to Running.')
 r_exec_registered_time = re.compile(r'(?P<spark_time>[- :0-9]*) INFO.*KubernetesClusterSchedulerBackend.*Registered executor')
-r_job_finished = re.compile(r'(?P<spark_time>[- :0-9]*) INFO.*DAGScheduler.*Job 0 finished')
+r_driver_job_finished = re.compile(r'(?P<spark_time>[- :0-9]*) INFO.*DAGScheduler.*Job 0 finished')
+r_app_completed = re.compile(r'\[(?P<epoch>[0-9]+)\] .* - SparkApplication .* has terminated .* State is COMPLETED')
 r_complete = re.compile(r'\[(?P<epoch>[0-9]+)\] .* - .*Completion of .* test')
 
 """
@@ -136,8 +137,10 @@ TIMING_METRIC_NAME_EXEC_POD_INITIALIZATION = 'ExecutorPodInitialization'
 TIMING_METRIC_NAME_EXEC_REGISTRATION = 'ExecutorPodRegistration'
 # Interval between executor picking up work from the driver and job completion
 TIMING_METRIC_NAME_JOB_RUNTIME = 'JobRunTime'
-# Interval between job completion and watchdog script completion
-TIMING_METRIC_NAME_CLEAN_UP = 'CleanUp'
+# Interval between Spark job completion driver pod state changing to Completed
+TIMING_METRIC_NAME_DRIVER_CLEANUP = 'DriverCleanup'
+# Interval between Spark driver pod being Completed and Spark App being Completed. This is Spark Operator queue processing time.
+TIMING_METRIC_NAME_SPARKAPP_CLEANUP = 'SparkAppCleanUp'
 
 
 # interval name -> (start regex, end regex). This the blueprint of what is to be computed.
@@ -153,8 +156,9 @@ time_regex = {
     TIMING_METRIC_NAME_EXEC_POD_PENDING_DELAY: (r_exec_pod_creation_event_pending, r_exec_pod_initializing),
     TIMING_METRIC_NAME_EXEC_POD_INITIALIZATION: (r_exec_pod_initializing, r_exec_pod_running),
     TIMING_METRIC_NAME_EXEC_REGISTRATION: (r_exec_pod_running, r_exec_registered_time),
-    TIMING_METRIC_NAME_JOB_RUNTIME: (r_exec_registered_time, r_job_finished),
-    TIMING_METRIC_NAME_CLEAN_UP: (r_job_finished, r_complete),
+    TIMING_METRIC_NAME_JOB_RUNTIME: (r_exec_registered_time, r_driver_job_finished),
+    TIMING_METRIC_NAME_DRIVER_CLEANUP: (r_driver_job_finished, r_driver_pod_completed),
+    TIMING_METRIC_NAME_SPARKAPP_CLEANUP: (r_driver_pod_completed, r_app_completed),
 }
 
 TAG_APP = 'app'  # Name of the Spark Application. Same across concurrent watchdog instances. Roughly represents feature being tested.
@@ -490,7 +494,7 @@ def analyze_helper(output, timings):
                 TIMING_METRIC_NAME_EXEC_POD_INITIALIZATION: (30, 'TIMEOUT_EXECUTOR_SLOW_POD_INIT'),
                 TIMING_METRIC_NAME_EXEC_REGISTRATION: (30, 'TIMEOUT_EXECUTOR_SLOW_REGISTRATION'),
                 TIMING_METRIC_NAME_JOB_RUNTIME: (30, 'TIMEOUT_SPARK_SLOW_JOB_RUN'),
-                TIMING_METRIC_NAME_CLEAN_UP: (30, 'TIMEOUT_SLOW_CLEANUP'),
+                TIMING_METRIC_NAME_DRIVER_CLEANUP: (30, 'TIMEOUT_DRIVER_SLOW_CLEANUP'),
             }
             for metric, seconds in timings.iteritems():
                 if metric in thresholds:
