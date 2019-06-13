@@ -29,14 +29,3 @@ system:
         path: /home/caas/logs/apps
     - name: amagicvolumethatvanishes
       emptyDir: {}
-  - name: ssamtest-tnrpendpoint-func
-    count: 1
-    containers:
-    - name: samhello-test-tnrpendpoint
-      image: 715181697345.dkr.ecr.us-west-2.amazonaws.com/test-samapp:20190524
-      ports:
-      - containerPort: 9090
-      livenessProbe:
-        httpGet:
-          path: /
-          port: 9090
