@@ -14,11 +14,6 @@ data:
           "name": "slb-hsm-nginx"
         },
         {
-          "healthpath": "/",
-          "healthport": 12080,
-          "name": "slb-envoy"
-        },
-        {
           "healthpath": "/liveness-probe",
           "healthport": 8080,
           "name": "slb-envoy-proxy"
@@ -46,12 +41,6 @@ data:
             "encinoman5-cs2-slawrance-prd.slb.sfdc.net",
             "encinoman6-cs2-slawrance-prd.slb.sfdc.net",
             "slb-canary-hsm.sam-system.prd-sam.prd.slb.sfdc.net"
-          ]
-        },
-        {
-          "proxyname": "slb-envoy",
-          "vips": [
-            "service-mesh-ingress.sam-system.prd-sam.prd.slb.sfdc.net"
           ]
         },
         {
