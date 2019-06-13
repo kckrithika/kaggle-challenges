@@ -647,7 +647,7 @@ items:
   kind: RoleBinding
   metadata:
     name: debug
-    namespace: hammer-automation
+    namespace: jarvis
   roleRef:
     apiGroup: rbac.authorization.k8s.io
     kind: ClusterRole
