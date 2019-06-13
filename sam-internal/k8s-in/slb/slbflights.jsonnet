@@ -38,16 +38,16 @@ local slbconfigs = import "slbconfig.jsonnet";
     # 2019/05/28
     # Feature flag to use "sharedContainers" in lieu of
     # "beforeSharedContainers + <other resources> + afterSharedContainers".
-    consolidateSharedContainers: (slbimages.phaseNum <= 2),
+    consolidateSharedContainers: (slbimages.hyperslb_build >= 2199),
 
     # 2019/05/28
     # Feature flag to rename "slb-(envoy|nginx)-config-wipe" to "slb-config-wipe".
-    renameConfigWipe: (slbimages.phaseNum <= 2),
+    renameConfigWipe: (slbimages.hyperslb_build >= 2199),
 
     # 2019/05/30
     # Feature flag to change the names of the tcpdump configmaps, volumes, and mounts.
     # (for nginx, nginx-hsm, envoy).
-    tcpdumpNamingRevamp: (slbimages.phaseNum <= 2),
+    tcpdumpNamingRevamp: (slbimages.hyperslb_build >= 2199),
 
     # nginx-accesslogs tends to kill spinning disks, driving queue depths up to >150. See
     # https://computecloud.slack.com/archives/G340CE86R/p1559625970018500?thread_ts=1559590829.287500&cid=G340CE86R
