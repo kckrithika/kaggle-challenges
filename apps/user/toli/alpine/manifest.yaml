@@ -1,15 +1,12 @@
 # generic alpine image in GCR
-apiVersion: apps/v1
-kind: Pod
-metadata:
- name: toli-alpine
- namespace: toli
-spec:
- dnsPolicy: ClusterFirstWithHostNet
- containers:
-   - name: alpine
-     image: 098883994845.dkr.ecr.us-west-2.amazonaws.com/alpine
-     command:
-       - sleep
-       - "3600"
- restartPolicy: Never
+ apiVersion: v1
+ system:
+   functions:
+     - name: samtestwd
+       count: 1
+       containers:
+         - name: alping
+           image: 098883994845.dkr.ecr.us-west-2.amazonaws.com/alpine
+           command:
+             - sleep
+             - "3600"
