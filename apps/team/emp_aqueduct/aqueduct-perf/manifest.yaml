@@ -4,7 +4,7 @@ apiVersion: v1
 system:
   functions:
     - name: aqueduct-perf
-      count: 3
+      count: 4
       type: stateful-set
       identity:
         emptyServiceName: true
