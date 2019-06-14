@@ -97,7 +97,7 @@ system:
       - name: SECURITY_ENCRYPTION_KEY1_PATH
         value: secrets/encryption-key1/rsui-encryption-key3.key
       - name: SECURITY_ENCRYPTION_KEY2_PATH
-        value: secrets/encryption-key2/rsui-encryption-key3.key
+        value: secrets/encryption-key2/rsui-encryption-key1.key
       - name: RSUI_HOST
         value: stmfc.stm.salesforce-hub.com
       - name: GATER_EMBEDDED_MODE
