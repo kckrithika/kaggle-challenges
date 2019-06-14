@@ -82,7 +82,8 @@ local portConfig = import "portconfig.jsonnet";
                             'sandman/sandman-appspecs,' +
                             'infrastructure-fabric/estatespecs,' +
                             'nqa/nhal-config,' +
-                            'nqa/target-data',
+                            'nqa/target-data,' +
+                            'backbone-eng/backbone',
     },
     environmentMapping:: {
         "prd-sam": $.prdsam,
