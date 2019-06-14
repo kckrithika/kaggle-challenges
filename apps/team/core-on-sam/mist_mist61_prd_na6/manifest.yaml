@@ -139,8 +139,6 @@ system:
         name: sherpa-adm
       - containerPort: 4500
         name: jdwp-in
-      - containerPort: 4504
-        name: jdwpproxy-in
       - containerPort: 7014
         name: http1-in
       livenessProbe:
@@ -164,11 +162,9 @@ system:
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/casam/beacon:c574fe83d
       args:
       - -endpoint
-      - $(FUNCTION_NAMESPACE)/dapp:POD:4500
+      - core-on-sam/dapp:POD:4500
       - -endpoint
-      - $(FUNCTION_NAMESPACE)/dappproxy:POD:4504
-      - -endpoint
-      - $(FUNCTION_NAMESPACE)/na6app:POD:7014
+      - core-on-sam/na6dapp:DATACENTER:7014
       livenessProbe:
         initialDelaySeconds: 20
         exec:
