@@ -1,21 +1,25 @@
 #Use corp user name instead of git user ids e.g. prahlad.joshi instead of prahlad-joshi
 admins:
-#  - robert.snell
-#  - vivanov
+  - robert.snell
+  - vivanov
 users:
+# Team Members
   - blatorre
   - dayong-gu
   - evorobiev
   - james.spagnola
-  - kthapaliya
-  - ltran
   - nhorne
   - rchase
   - robert.snell
+  - shijie.xu
   - steven.booth
   - vivanov
+# C360 Team Members
+  - ltran
   - ynagata
+# DevOps
   - ksivashanmugam
   - xlu
+# Service Accounts/Bots
+  - svc.atf.user
   - svc-metadata
-  - shijie.xu
