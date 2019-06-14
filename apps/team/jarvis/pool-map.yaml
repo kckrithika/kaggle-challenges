@@ -5,3 +5,7 @@ apps:
   jstatus_reporter:
     - prd/prd-sam
     - mvp/gsf-core-devmvp-sam2-sam
+  jcoordinator-aws-rddev:
+    - aws-us-west-2/aws-us-west-2-processing
+  jstatus_reporter-aws-rddev:
+    - aws-us-west-2/aws-us-west-2-processing
