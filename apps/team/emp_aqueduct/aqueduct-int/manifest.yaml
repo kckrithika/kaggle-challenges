@@ -47,11 +47,11 @@ system:
             mountPath: /etc/pki_service/sfdc-aqueduct
         resources:
           limits:
-            cpu: 8
-            memory: 6Gi
+            cpu: 48
+            memory: 90Gi
           requests:
-            cpu: 8
-            memory: 6Gi
+            cpu: 48
+            memory: 90Gi
   loadbalancers:
   - lbname: aqueduct-int
     function: aqueduct-int
