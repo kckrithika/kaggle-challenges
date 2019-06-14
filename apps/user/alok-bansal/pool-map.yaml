@@ -1,6 +1,6 @@
 version: v2
 apps:
-#  identity-service-layer:
-#    - name: xrd/xrd-sampool
-#  ca-business:
-#    - name: xrd/xrd-sampool#
+  with-nginx:
+    - name: prd/prd-samtest
+  without-nginx:
+    - name: prd/prd-samtest
