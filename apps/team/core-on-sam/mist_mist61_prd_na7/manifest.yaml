@@ -29,7 +29,7 @@ system:
       - name: SERVER_ID
         value: x
       - name: PUBLIC_PORT
-        value: 8443
+        value: 8085
       - name: PUBLIC_PORT_IS_SECURE
         value: true
       - name: PUBLIC_HOST_NAME
