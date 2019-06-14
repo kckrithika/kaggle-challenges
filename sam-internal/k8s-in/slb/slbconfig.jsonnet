@@ -570,8 +570,8 @@
     },
 
     tcpdump_volume(proxyName): {
-        local nameLocal = if slbflights.tcpdumpNamingRevamp then "tcpdump-config" else "config",
-        local proxyNameLocal = if slbflights.tcpdumpNamingRevamp then proxyName + "-tcpdump" else proxyName,
+        local nameLocal = "tcpdump-config",
+        local proxyNameLocal = proxyName + "-tcpdump",
         name: nameLocal,
         configMap: {
             name: proxyNameLocal,
@@ -579,8 +579,8 @@
     },
 
     tcpdump_volume_mount: {
-        local mountPathLocal = if slbflights.tcpdumpNamingRevamp then "/tcpdump-config" else "/config",
-        local nameLocal = if slbflights.tcpdumpNamingRevamp then "tcpdump-config" else "config",
+        local mountPathLocal = "/tcpdump-config",
+        local nameLocal = "tcpdump-config",
         mountPath: mountPathLocal,
         name: nameLocal,
     },
