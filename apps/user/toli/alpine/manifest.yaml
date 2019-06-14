@@ -10,3 +10,10 @@
            command:
              - sleep
              - "3600"
+           livenessProbe:
+             exec:
+               command:
+               - echo
+               - always_healthy
+             initialDelaySeconds: 5
+             periodSeconds: 30
