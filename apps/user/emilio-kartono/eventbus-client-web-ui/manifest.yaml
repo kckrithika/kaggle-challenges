@@ -26,3 +26,4 @@ system:
       - port: 5000
         targetPort: 5000
         lbtype: tcp
+        tls: true
