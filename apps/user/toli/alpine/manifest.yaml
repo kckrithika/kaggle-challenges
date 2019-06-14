@@ -6,7 +6,7 @@
        count: 1
        containers:
          - name: alpine
-           image: 098883994845.dkr.ecr.us-west-2.amazonaws.com/alpine:latest
+           image: 098883994845.dkr.ecr.us-west-2.amazonaws.com/alpine:3.9
            command:
              - sleep
              - "3600"
