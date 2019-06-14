@@ -12,6 +12,10 @@ spec:
   healthCheckNodePort: 32638
   loadBalancerIP: 35.193.207.80
   ports:
+  - name: http
+    port: 80
+    protocol: TCP
+    targetPort: 12080
   - name: https
     nodePort: 31006
     port: 443
@@ -21,7 +25,7 @@ spec:
     nodePort: 31745
     port: 8443
     protocol: TCP
-    targetPort: 12060
+    targetPort: 18443
   selector:
     sam_app: gcp-devmvp-proxy
     sam_function: na3-sfproxy-phx
