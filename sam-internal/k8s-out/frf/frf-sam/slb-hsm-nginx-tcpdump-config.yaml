@@ -13,5 +13,5 @@ data:
 kind: ConfigMap
 metadata:
   creationTimestamp: null
-  name: slb-hsm-nginx
+  name: slb-hsm-nginx-tcpdump
   namespace: sam-system
