@@ -164,11 +164,11 @@ system:
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/casam/beacon:c574fe83d
       args:
       - -endpoint
-      - dapp:POD:4500
+      - $(FUNCTION_NAMESPACE)/dapp:POD:4500
       - -endpoint
-      - dappproxy:POD:4504
+      - $(FUNCTION_NAMESPACE)/dappproxy:POD:4504
       - -endpoint
-      - na6app:POD:7014
+      - $(FUNCTION_NAMESPACE)/na6app:POD:7014
       livenessProbe:
         initialDelaySeconds: 20
         exec:
