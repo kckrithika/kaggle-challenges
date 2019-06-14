@@ -28,18 +28,15 @@ if casamSFProxyLoadBalancerEnabled then {
     loadBalancerIP: "35.193.207.80",
 
     ports: [
-    # sfproxy isn't currently configured to listen for plaintext http requests.
-    # Disabled until https://git.soma.salesforce.com/frontend-gateway/sfproxy/blob/master/config/core-on-sam/sfproxy-config.yaml.template#L33
-    # is updated.
-    #   {
-    #     name: "http",
-    #     protocol: "TCP",
-    #     port: 80,
-    #     targetPort: 120??,
-    #   },
+      {
+        name: "http",
+        protocol: "TCP",
+        port: 80,
+        targetPort: 12080,
+      },
       {
         name: "https",
-        protocol: 'TCP',
+        protocol: "TCP",
         port: 443,
         nodePort: ports.slb.casamMVP_SFProxyHTTPSNodePort,
         targetPort: 12060,
@@ -49,7 +46,7 @@ if casamSFProxyLoadBalancerEnabled then {
         protocol: "TCP",
         port: 8443,
         nodePort: ports.slb.casamMVP_SFProxyMTLSNodePort,
-        targetPort: 12060,
+        targetPort: 18443,
       },
     ],
     selector: {
