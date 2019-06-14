@@ -1,7 +1,7 @@
 local configs = import "config.jsonnet";
 local samimages = (import "samimages.jsonnet") + { templateFilename:: std.thisFile };
 
-if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" || configs.estate == "prd-sam" || configs.estate == "xrd-sam" then configs.daemonSetBase("sam") {
+configs.daemonSetBase("sam") {
     spec+: {
         template: {
             spec: {
@@ -67,4 +67,4 @@ if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" || configs.
         name: "node-labeler",
         namespace: "sam-system",
     },
-} else "SKIP"
+}

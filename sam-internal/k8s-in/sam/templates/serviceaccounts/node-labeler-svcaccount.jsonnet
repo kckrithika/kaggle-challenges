@@ -1,6 +1,6 @@
 local configs = import "config.jsonnet";
 
-if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" || configs.estate == "prd-sam" || configs.estate == "xrd-sam" then {
+{
     apiVersion: "v1",
     kind: "List",
     metadata: {},
@@ -51,4 +51,4 @@ if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" || configs.
         ],
         },
     ]
-} else "SKIP"
+}
