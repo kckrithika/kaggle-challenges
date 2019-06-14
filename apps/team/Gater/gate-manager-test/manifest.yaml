@@ -42,6 +42,8 @@ system:
           port: 15372
         initialDelaySeconds: 60
         timeoutSeconds: 10
+        periodSeconds: 5000
+        failureThreshold: 10
     - name: sherpa
       image: sfci/servicelibs/sherpa-envoy:1.0.3
       ports:
