@@ -15,68 +15,79 @@ system:
     - name: cre-control-plane-ccp-dev
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cre-fusion/services/control-plane:1.9.0.0.PR-267.0b05bf4.6
       env:
-        - name: AUTHORIZED_USERS
-          value: "admin@bt8.salesforce.com,adminqa@bt8.salesforce.com,adminqa@bt60.salesforce.com,admin@bt11.salesforce.com,adminqa@bt11.salesforce.com,cre-api@salesforce.com"
+        ####################################################################################################
+        ############################   ENGINE/DDS FLOWSNAKE ARTIFACTS ( Most frequently changed ) ##########
+        ####################################################################################################
+        - name: IMPORT_FLOWSNAKE_ARTIFACT
+          value: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cre/cre-engine:1.8.0.0.release.aa0e2f1.12
+        - name: SAVE_FLOWSNAKE_ARTIFACT
+          value: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cre/cre-dds-spark:1.8.0-freeze-001.0.release-1.8.4ca9a1a.7
+        - name: EXPORT_FLOWSNAKE_ARTIFACT
+          value: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cre/cre-dds-spark:1.8.0-freeze-001.0.release-1.8.4ca9a1a.7
+        ####################################################################################################
+        ####################################### GLOBAL SHARED VALUES #######################################
+        ####################################################################################################
+        - name: SFDC_ENVIRONMENT
+          value: ccp-dev
+          ## KAFKA
+        - name: METRICS_KAFKA_ENABLED
+          value: true
         - name: METRICS_KAFKA_TOPIC
           value: sfdc.prod.cre__prd.ajna_local__cre_metrics_CCP_Shared_Dev
         - name: METRICS_KAFKA_SERVER
           value: ajna0-broker1-0-prd.data.sfdc.net:9093
-        - name: SFDC_ENVIRONMENT
-          value: ccp-dev
-        - name: METRICS_KAFKA_ENABLED
-          value: true
+          ## HBASE
+        - name: HBASE_ENVIRONMENT
+          value: kingdom-test
+        - name: HBASE_NAMESPACE
+          value: CRE_DEV
+        - name: HBASE_DATACENTER
+          value: prd
+          ## FLOWSNAKE
+        - name: MAX_FLOWSNAKE_ENVIRONMENTS
+          value: 25
+        ####################################################################################################
+        ####################################### IMPORT environment variables ###############################
+        ####################################################################################################
+        - name: IMPORT_CRE_APPLICATION_NAME
+          value: cre-engine-ccp-func
+        - name: IMPORT_K4A_VAULT
+          value: cre-engine-dev
+        ####################################################################################################
+        ####################################### SAVE environment variables ###############################
+        ####################################################################################################
+        - name: CRE_DDS_ENV
+          value: Prd
+        - name: SAVE_CRE_APPLICATION_NAME
+          value: cre-engine-ccp-func
+        - name: SAVE_K4A_VAULT
+          value: cre-dds-dev
+        ####################################################################################################
+        ####################################### EXPORT environment variables ###############################
+        ####################################################################################################
+        - name: EXPORT_CRE_APPLICATION_NAME
+          value: cre-engine-ccp-func
+        ####################################################################################################
+        ##################################### APP Config environment variables #############################
+        ####################################################################################################
+        - name: FLOWSNAKE_ENDPOINT
+          value: https://dev0shared0-flowsnakeiottest1-0-prd.data.sfdc.net
+          ## MADDOG (MAD DOG)
         - name: MADDOG_CLIENT_KEYSTORE
           value: maddog/maddog-client-keystore.json
         - name: MADDOG_CLIENT_TRUSTSTORE
           value: maddog/maddog-client-truststore.json
-        - name: GDOT_PROVISIONING_USER_KEY_FILE_PATH
-          value: /secrets-kube/cre-gdot-private-key.json
-        - name: GRPC_PORT
-          value: 7020
-        - name: FLOWSNAKE_ENDPOINT
-          value: https://dev0shared0-flowsnakeiottest1-0-prd.data.sfdc.net
-        - name: ENGINE_PKI_NAME_OVERRIDE
-          value: cre-engine-ccp-dev
-        - name: ENGINE_IMAGE_TAG
-          value: docker-sam/cre/cre-engine:1.6.0.0.develop-1.6.942d067.18
-        - name: ENGINE_APPLICATION_NAME
-          value: cre-engine-ccp-dev
-        - name: ENGINE_HBASE_DATACENTER
-          value: prd
-        - name: ENGINE_HBASE_ENVIRONMENT
-          value: kingdom-test
-        - name: ENGINE_HBASE_NAMESPACE
-          value: CRE_DEV
-        - name: ENGINE_METRICS_KAFKA_SERVER
-          value: ajna0-broker1-0-prd.data.sfdc.net:9093
-        - name: ENGINE_METRICS_KAFKA_TOPIC
-          value: sfdc.prod.cre__prd.ajna_local__cre_metrics_CCP_Shared_Dev
-        - name: ENGINE_INCOMING_QUEUE
-          value: sfdc.prod.cre__prd.ajna_local__cre_inbound_CCP_Shared_Dev
-        - name: ENGINE_OUTGOING_QUEUE
-          value: sfdc.prod.cre__prd.ajna_local__cre_outbound_CCP_Shared_Dev
-        - name: ENGINE_SUPER_TENANT_ID_OVERRIDE
-          value: <placeholder_super_tenant_id>
-        - name: HBASE_ENVIRONMENT
-          value: kingdom-test
-        - name: HBASE_DATACENTER
-          value: prd
-        - name: HBASE_NAMESPACE
-          value: CRE_DEV
-        - name: MAX_FLOWSNAKE_ENVIRONMENTS
-          value: 25
-        - name: STREAM_PROCESSING_ENDPOINT
-          value: cre-sp-ccp-dev.retail-cre.localhost.mesh.force.com:5443
-        - name: GDOT_FORCE_PROVISIONING
-          value: false
-        - name: SECRET_KEY_FILE
-          value: /keys-kube/cre-aes.key
+          ## DBaaS
         - name: DATABASE_NAMESPACE
           value: crecontrolplaneccpdev
-        - name: SPRING_PROFILES_ACTIVE
-          value: default,production
-        - name: SCONE_SERVER_SECURITY_MUTUALAUTH
-          value: false
+        - name: SPRING_DATASOURCE_URL
+          value: jdbc:discover://dbaas0-minionapp1-1-prd.eng.sfdc.net:1511,dbaas0-minionapp2-1-prd.eng.sfdc.net:1511,dbaas0-minionapp3-1-prd.eng.sfdc.net:1511/${database.namespace}?${database.discovery.params}
+          ## Stream Processor
+        - name: STREAM_PROCESSING_ENDPOINT
+          value: cre-sp-ccp-dev.retail-cre.localhost.mesh.force.com:5442
+        ####################################################################################################
+        ####################################### PERF environment variables #################################
+        ####################################################################################################
         - name: JVM_ARGS
           value: "-Djava.util.concurrent.ForkJoinPool.common.parallelism=8
                   -verbose:gc -XX:+PrintGCDateStamps -XX:+PrintHeapAtGC
@@ -95,7 +106,7 @@ system:
         requests: { cpu: "2", memory: "5Gi" }
       ports:
       - containerPort: 8080
-      - containerPort: 7020
+      - containerPort: 7022
       - containerPort: 15372
       livenessProbe:
         exec:
@@ -103,12 +114,6 @@ system:
             - ls
         initialDelaySeconds: 30
       volumeMounts:
-      - mountPath: /secrets-kube/
-        name: secretvol
-        readOnly: true
-      - mountPath: /keys-kube/
-        name: aeskey
-        readOnly: true
       - mountPath: /client-certs
         name: client-certs
       - mountPath: /server-certs
@@ -133,8 +138,8 @@ system:
         limits: { cpu: "1", memory: "1Gi" }
         requests: { cpu: "1", memory: "1Gi" }
       ports:
-      - containerPort: 7443
-        name: sh-in-http2-tls
+      - containerPort: 7442
+        name: sh-in-http1-tls
       - containerPort: 15373 # Sherpa admin port. This can be handy when debugging issues.
         name: sherpa-in-admin
       livenessProbe:
@@ -153,7 +158,7 @@ system:
       image: sfci/servicelibs/beacon:f6445b2b299f232eda1e0be9739b8242153478ea
       args:
       - -endpoint
-      - retail-cre/cre-control-plane-ccp-dev:DATACENTER_ALLENV:7443
+      - retail-cre/cre-control-plane-ccp-dev:DATACENTER_ALLENV:7442
       resources:
         limits: { cpu: "1", memory: "1Gi" }
         requests: { cpu: "1", memory: "1Gi" }
@@ -163,12 +168,6 @@ system:
           command:
           - "/home/scone/is-alive.sh"
     volumes:
-    - name: secretvol
-      secret:
-        secretName: cre-gdot-private-key
-    - name: aeskey
-      secret:
-        secretName: cre-aes-key-k8
     - name: logvol
       hostPath:
         path: /home/sfdc-cre/logs/cre-control-plane-ccp-dev
@@ -190,11 +189,11 @@ system:
     slbEnabled: true
     ports:
       - port: 8091
-        targetport: 7020
+        targetport: 7022
   - lbname: cre-control-plane-ccp-dev
     function: cre-control-plane-ccp-dev
     ports:
       - lbtype: dsr
-        port: 7443
-        targetport: 7443
-        name: grpc-cre
+        port: 7442
+        targetport: 7442
+        name: https-cre
