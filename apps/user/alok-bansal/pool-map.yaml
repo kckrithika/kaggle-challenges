@@ -1,6 +1,6 @@
 version: v2
 apps:
   with-nginx:
-    - name: prd/prd-samtest
+    - name: prd/prd-sam
   without-nginx:
-    - name: prd/prd-samtest
+    - name: prd/prd-sam
