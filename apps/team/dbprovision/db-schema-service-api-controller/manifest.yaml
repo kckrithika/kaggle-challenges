@@ -6,7 +6,7 @@ system:
     count: 1
     containers:
     - name: db-schema-service-api-controller
-      image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-gcp/dva/db-schema-service-api-controller:6
+      image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-gcp/dva/db-schema-service-api-controller:7
       env:
         - name: VAULT_TOKEN
           value: "/secrets/tk.txt"
