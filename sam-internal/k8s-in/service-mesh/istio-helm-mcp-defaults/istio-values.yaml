@@ -172,7 +172,7 @@ global:
 
     # Log level for proxy, applies to gateways and sidecars.  If left empty, "warning" is used.
     # Expected values are: trace|debug|info|warning|error|critical|off
-    logLevel: ""
+    logLevel: "info"
 
     # Per Component log level for proxy, applies to gateways and sidecars. If a component level is
     # not set, then the global "logLevel" will be used. If left empty, "misc:error" is used.
