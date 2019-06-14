@@ -235,49 +235,10 @@
         healthprotocol: "http"
         healthpath: "/ping.jsp"
         lbalgorithm: roundrobin
-    # Derived from estates:
-    # grep 'worker.*\.sfdc\.net' kingdoms/prd/prd-dev-flowsnake_iot_test.yaml | sed -e 's/\(.*\([1-9]-[0-9]*\)-.*\)/\2-\1/' | sort -t- -k1n -k2n | sed -e 's/^[-0-9]*\s*/    /'
-  servers:
-      - dev0shared0-flowsnakeworkeriottest1-1-prd.eng.sfdc.net
-      - dev0shared0-flowsnakeworkeriottest1-2-prd.eng.sfdc.net
-      - dev0shared0-flowsnakeworkeriottest1-3-prd.eng.sfdc.net
-      - dev0shared0-flowsnakeworkeriottest1-4-prd.eng.sfdc.net
-      - dev0shared0-flowsnakeworkeriottest1-5-prd.eng.sfdc.net
-      - dev0shared0-flowsnakeworkeriottest1-6-prd.eng.sfdc.net
-      - dev0shared0-flowsnakeworkeriottest1-7-prd.eng.sfdc.net
-      - dev0shared0-flowsnakeworkeriottest1-8-prd.eng.sfdc.net
-      - dev0shared0-flowsnakeworkeriottest1-9-prd.eng.sfdc.net
-      - dev0shared0-flowsnakeworkeriottest1-10-prd.eng.sfdc.net
-      - dev0shared0-flowsnakeworkeriottest1-11-prd.eng.sfdc.net
-      - dev0shared0-flowsnakeworkeriottest1-12-prd.eng.sfdc.net
-      - dev0shared0-flowsnakeworkeriottest1-13-prd.eng.sfdc.net
-      - dev0shared0-flowsnakeworkeriottest1-14-prd.eng.sfdc.net
-      - dev0shared0-flowsnakeworkeriottest1-15-prd.eng.sfdc.net
-      - dev0shared0-flowsnakeworkeriottest1-16-prd.eng.sfdc.net
-      - dev0shared0-flowsnakeworkeriottest1-17-prd.eng.sfdc.net
-      - dev0shared0-flowsnakeworkeriottest1-18-prd.eng.sfdc.net
-      - dev0shared0-flowsnakeworkeriottest1-19-prd.eng.sfdc.net
-      - dev0shared0-flowsnakeworkeriottest1-20-prd.eng.sfdc.net
-      - dev0shared0-flowsnakeworkeriottest1-21-prd.eng.sfdc.net
-      - dev0shared0-flowsnakeworkeriottest1-22-prd.eng.sfdc.net
-      - dev0shared0-flowsnakeworkeriottest1-23-prd.eng.sfdc.net
-      - dev0shared0-flowsnakeworkeriottest1-24-prd.eng.sfdc.net
-      - dev0shared0-flowsnakeworkeriottest1-25-prd.eng.sfdc.net
-      - dev0shared0-flowsnakeworkeriottest1-26-prd.eng.sfdc.net
-      - dev0shared0-flowsnakeworkeriottest1-27-prd.eng.sfdc.net
-      - dev0shared0-flowsnakeworkeriottest1-28-prd.eng.sfdc.net
-      - dev0shared0-flowsnakeworkeriottest1-29-prd.eng.sfdc.net
-      - dev0shared0-flowsnakeworkeriottest1-31-prd.eng.sfdc.net
-      - dev0shared0-flowsnakeworkeriottest1-32-prd.eng.sfdc.net
-      - dev0shared0-flowsnakeworkeriottest1-33-prd.eng.sfdc.net
-      - dev0shared0-flowsnakeworkeriottest1-34-prd.eng.sfdc.net
-      - dev0shared0-flowsnakeworkeriottest1-35-prd.eng.sfdc.net
-      - dev0shared0-flowsnakeworkeriottest1-36-prd.eng.sfdc.net
-      - dev0shared0-flowsnakeworkeriottest1-37-prd.eng.sfdc.net
-      - dev0shared0-flowsnakeworkeriottest1-38-prd.eng.sfdc.net
-      - dev0shared0-flowsnakeworkeriottest1-39-prd.eng.sfdc.net
-      - dev0shared0-flowsnakeworkeriottest1-41-prd.eng.sfdc.net
-      - dev0shared0-flowsnakeworkeriottest1-42-prd.eng.sfdc.net
+  # All nodes with the 'flowsnake_worker_iot_test' role are eligible for hosting the ingress controller.
+  # See https://git.soma.salesforce.com/estates/estates/blob/2f5b83aca4012bed134a4d4adc187b2bc2bbcb2a/kingdoms/prd/prd-dev-flowsnake_iot_test.yaml#L8
+  roles:
+      - flowsnake_worker_iot_test
 - lbname: ingress
   ports:
       - port: 443
@@ -444,16 +405,7 @@
         healthprotocol: "http"
         healthpath: "/ping.jsp"
         lbalgorithm: roundrobin
-      # Derived from estates:
-      # grep 'worker.*\.sfdc\.net' kingdoms/prd/prd-data-flowsnake_test.yaml | sed -e 's/\(.*\([1-9]-[0-9]*\)-.*\)/\2-\1/' | sort -t- -k1n -k2n | sed -e 's/^[-0-9]*\s*/    /'
-  servers:
-      - fs1shared0-flowsnakeworkertest1-1-prd.eng.sfdc.net
-      - fs1shared0-flowsnakeworkertest1-2-prd.eng.sfdc.net
-      - fs1shared0-flowsnakeworkertest1-3-prd.eng.sfdc.net
-      - fs1shared0-flowsnakeworkertest1-4-prd.eng.sfdc.net
-      - fs1shared0-flowsnakeworkertest1-5-prd.eng.sfdc.net
-      - fs1shared0-flowsnakeworkertest2-1-prd.eng.sfdc.net
-      - fs1shared0-flowsnakeworkertest2-2-prd.eng.sfdc.net
-      - fs1shared0-flowsnakeworkertest2-3-prd.eng.sfdc.net
-      - fs1shared0-flowsnakeworkertest2-4-prd.eng.sfdc.net
-      - fs1shared0-flowsnakeworkertest2-5-prd.eng.sfdc.net
+  # All nodes with the 'flowsnake_worker_iot_test' role are eligible for hosting the ingress controller.
+  # See https://git.soma.salesforce.com/estates/estates/blob/2f5b83aca4012bed134a4d4adc187b2bc2bbcb2a/kingdoms/prd/prd-data-flowsnake_test.yaml#L13
+  roles:
+      - flowsnake_worker_test
