@@ -5,6 +5,8 @@ system:
     - emailinfrastructure@salesforce.com
   functions:
   - name: eaas-grpc-client
+    serviceAccountName: emailinfra-45rtcaskgkajzi53tt5
+    automountServiceAccountToken: true
     count: 3
     containers:
     - name: eaas-grpc-client
@@ -12,9 +14,6 @@ system:
       env:
       - name: SFDC_ENVIRONMENT
         value: mesh
-      volumeMounts:
-      - mountPath: /etc/pki_service
-        name: eaas-client-cert
       livenessProbe:
         exec:
           command:
@@ -45,10 +44,6 @@ system:
           cpu: "1"
           memory: 1Gi
       volumeMounts:
-      - mountPath: /client-certs
-        name: eaas-client-cert
-      - mountPath: /server-certs
-        name: eaas-server-cert
       - mountPath: /log
         name: sherpa-log-volume
       livenessProbe:
@@ -64,12 +59,6 @@ system:
         initialDelaySeconds: 110
         periodSeconds: 5
     volumes:
-    - name: eaas-client-cert
-      maddogCert:
-        type: client
-    - name: eaas-server-cert
-      maddogCert:
-        type: server
     - name: sherpa-log-volume
       hostPath:
         path: /home/sfdc-sherpa/logs
