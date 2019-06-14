@@ -1,6 +1,8 @@
 local configs = import "config.jsonnet";
 
-{
+local utils = import "util_functions.jsonnet";
+
+if !utils.is_pcn(configs.kingdom) then {
     apiVersion: "v1",
     kind: "List",
     metadata: {},
@@ -51,4 +53,4 @@ local configs = import "config.jsonnet";
         ],
         },
     ]
-}
+} else "SKIP"

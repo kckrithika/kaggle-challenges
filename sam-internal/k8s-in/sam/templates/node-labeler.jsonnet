@@ -1,7 +1,10 @@
 local configs = import "config.jsonnet";
+
 local samimages = (import "samimages.jsonnet") + { templateFilename:: std.thisFile };
 
-configs.daemonSetBase("sam") {
+local utils = import "util_functions.jsonnet";
+
+if !utils.is_pcn(configs.kingdom) then configs.daemonSetBase("sam") {
     spec+: {
         template: {
             spec: {
@@ -67,4 +70,4 @@ configs.daemonSetBase("sam") {
         name: "node-labeler",
         namespace: "sam-system",
     },
-}
+} else "SKIP"
