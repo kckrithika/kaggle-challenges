@@ -1,0 +1,47 @@
+- lbname: swarm-xrd
+  # this is necessary to keep the custom vip name of swarm-xrd.slb.sfdc.net
+  customlbname: swarm-xrd
+  servers:
+    - scmvm1scm-swarm1-1-xrd.eng.sfdc.net
+    - scmvm1scm-swarm1-2-xrd.eng.sfdc.net
+    - scmvm1scm-swarm1-3-xrd.eng.sfdc.net
+  ports:
+    - port: 80
+      targetport: 80
+      lbtype: http
+      reencrypt: false
+      healthport: 80
+      healthpath: /login
+      healthprotocol: http
+    - port: 443
+      targetport: 80
+      lbtype: http
+      tls: true
+      reencrypt: false
+      healthport: 80
+      healthpath: /login
+      healthprotocol: http
+
+- lbname: swarm-xrd-bck
+  # this is necessary to keep the custom vip name of swarm-xrd-bck.slb.sfdc.net
+  customlbname: swarm-xrd-bck
+  servers:
+    - scmvm1scm-swarm2-1-xrd.eng.sfdc.net
+    - scmvm1scm-swarm2-2-xrd.eng.sfdc.net
+    - scmvm1scm-swarm2-3-xrd.eng.sfdc.net
+  ports:
+    - port: 80
+      targetport: 80
+      lbtype: http
+      reencrypt: false
+      healthport: 80
+      healthpath: /login
+      healthprotocol: http
+    - port: 443
+      targetport: 80
+      lbtype: http
+      tls: true
+      reencrypt: false
+      healthport: 80
+      healthpath: /login
+      healthprotocol: http
