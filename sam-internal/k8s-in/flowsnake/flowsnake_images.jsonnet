@@ -426,6 +426,7 @@ local utils = import "util_functions.jsonnet";
            "flowsnake-kafka-connect",
            "flowsnake-zookeeper",
            "flowsnake-logstash",
+           "flowsnake-hbase-init-container",
         ],
         # Aliases for pre-0.11.0 versions
         "0.9.10": self['__pre-spark-2.3'],
