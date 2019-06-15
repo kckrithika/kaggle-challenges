@@ -85,6 +85,8 @@ system:
           ## Stream Processor
         - name: STREAM_PROCESSING_ENDPOINT
           value: cre-sp-ccp-dev.retail-cre.localhost.mesh.force.com:5442
+        - name: LOGGING_LEVEL_ORG_SPRINGFRAMEWORK_WEB
+          value: DEBUG
         ####################################################################################################
         ####################################### PERF environment variables #################################
         ####################################################################################################
@@ -100,6 +102,7 @@ system:
                   -Dcom.sun.management.jmxremote.rmi.port=8898
                   -Dcom.sun.management.jmxremote.ssl=false
                   -Dcom.sun.management.jmxremote.authenticate=false
+                  -Dlogging.level.org=DEBUG
                   -Xmx4G -Xms4G -XX:ParallelGCThreads=8"
       resources:
         limits: { cpu: "2", memory: "6Gi" }
