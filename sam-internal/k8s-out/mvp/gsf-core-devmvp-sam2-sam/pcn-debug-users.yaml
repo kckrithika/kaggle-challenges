@@ -665,6 +665,25 @@ items:
   - apiGroup: rbac.authorization.k8s.io
     kind: User
     name: spaganini@salesforce.com
+- apiVersion: rbac.authorization.k8s.io/v1beta1
+  kind: RoleBinding
+  metadata:
+    name: debug
+    namespace: dbprovision
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: debug
+  subjects:
+  - apiGroup: rbac.authorization.k8s.io
+    kind: User
+    name: nitin.arora@salesforce.com
+  - apiGroup: rbac.authorization.k8s.io
+    kind: User
+    name: sbhanegaonkar@salesforce.com
+  - apiGroup: rbac.authorization.k8s.io
+    kind: User
+    name: p.doan@salesforce.com
 kind: List
 metadata:
   labels:
