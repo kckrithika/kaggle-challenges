@@ -26,7 +26,8 @@
   // proxy implementations will require updates to the single assertion and multiple conditionals.
 
   local beforeSharedContainers(proxyType, proxyImage, deleteLimitOverride, proxyFlavor, slbUpstreamReporterEnabled) =
-      (if proxyType == "envoy" then
+      (
+if proxyType == "envoy" then
         envoySharedContainers(proxyImage, deleteLimitOverride, proxyFlavor, slbUpstreamReporterEnabled)
       else
         nginxSharedContainers(proxyImage, deleteLimitOverride, proxyFlavor, slbUpstreamReporterEnabled)
