@@ -25,44 +25,15 @@
   // In other words, we assume if it's not envoy, it's nginx.  The introduction of additional
   // proxy implementations will require updates to the single assertion and multiple conditionals.
 
-  // This, and the following, function implement a feature flag for consolidating
-  // beforeSharedContainers() and afterSharedContainers.
-  // The existence of these two separate functions is vestigial; it was used to avoid
-  // sweeping re-deployments due to the reordering of containers in the deployment YAML.
-  // At this point, the existence of two functions is simply confusing/distracting.
-  //
-  // The "consolidateSharedContainers" feature flag allows us to squash the contents returned by
-  // the two *SharedContainers() functions into one array of hashmaps and roll this out phase-by-phase.
-  // Once this is complete for all phases:
-  // - The feature flag can be removed.
-  // - afterSharedContainers() can be removed.
-  // - beforeSharedContainers() can be renamed to e.g. sharedContainers() (or hopefully a better function name).
-  // - The proxy-specific (before|after)SharedContainers() functions can be consolidated.
-  //
   local beforeSharedContainers(proxyType, proxyImage, deleteLimitOverride, proxyFlavor, slbUpstreamReporterEnabled) =
-    if !slbflights.consolidateSharedContainers then
-      (if proxyType == "envoy" then
-        envoyBeforeSharedContainers(proxyImage, deleteLimitOverride, proxyFlavor, slbUpstreamReporterEnabled)
+      (
+if proxyType == "envoy" then
+        envoySharedContainers(proxyImage, deleteLimitOverride, proxyFlavor, slbUpstreamReporterEnabled)
       else
-        nginxBeforeSharedContainers(proxyImage, deleteLimitOverride, proxyFlavor, slbUpstreamReporterEnabled))
-    else
-      (if proxyType == "envoy" then
-        envoyBeforeSharedContainers(proxyImage, deleteLimitOverride, proxyFlavor, slbUpstreamReporterEnabled) +
-        envoyAfterSharedContainers
-      else
-        nginxBeforeSharedContainers(proxyImage, deleteLimitOverride, proxyFlavor, slbUpstreamReporterEnabled) +
-        nginxAfterSharedContainers),
+        nginxSharedContainers(proxyImage, deleteLimitOverride, proxyFlavor, slbUpstreamReporterEnabled)
+      ),
 
-  local afterSharedContainers(proxyType) =
-    if !slbflights.consolidateSharedContainers then
-      (if proxyType == "envoy" then
-        envoyAfterSharedContainers
-      else
-        nginxAfterSharedContainers)
-    else
-      [],
-
-  local envoyBeforeSharedContainers(proxyImage, deleteLimitOverride=0, proxyFlavor="", slbUpstreamReporterEnabled=true) = [
+  local envoySharedContainers(proxyImage, deleteLimitOverride=0, proxyFlavor="", slbUpstreamReporterEnabled=true) = [
     slbshared.slbEnvoyConfig(deleteLimitOverride=deleteLimitOverride),
     slbshared.slbEnvoyProxy(proxyImage, proxyFlavor),
     madkub.madkubRefreshContainer(slbconfigs.envoy.certDirs),
@@ -92,9 +63,62 @@
         slbconfigs.node_name_env,
       ],
     },
+    {
+      name: "slb-cert-deployer",
+      image: slbimages.hyperslb,
+      command: [
+        "/sdn/slb-cert-deployer",
+        "--metricsEndpoint=" + configs.funnelVIP,
+        "--hostnameOverride=$(NODE_NAME)",
+        "--log_dir=" + slbconfigs.logsDir,
+        "--custCertsDir=" + slbconfigs.envoy.customerCertsPath,
+        "--certfile=/client-certs/client/certificates/client.pem",
+        "--keyfile=/client-certs/client/keys/client-key.pem",
+        "--cafile=/client-certs/ca.pem",
+        configs.sfdchosts_arg,
+      ]
+      + slbconfigs.getNodeApiClientSocketSettings()
+      + [
+        slbconfigs.envoy.reloadSentinelParam,
+      ],
+      volumeMounts: std.prune(
+        madkub.madkubSlbCertVolumeMounts(slbconfigs.envoy.certDirs) + [
+          slbconfigs.envoy.target_config_volume_mount,
+          slbconfigs.envoy.customer_certs_volume_mount,
+          slbconfigs.slb_volume_mount,
+          slbconfigs.logs_volume_mount,
+          configs.sfdchosts_volume_mount,
+        ]
+      ),
+      env: [
+        slbconfigs.node_name_env,
+      ],
+    },
+    {
+      image: slbimages.hyperslb,
+      command: [
+          "/sdn/slb-tcpdump",
+          "--tcpdump.pollinterval=15m",
+          "--tcpdump.filepath=%s/tcpdumpcommand.json" % slbconfigs.tcpdump_volume_mount.mountPath,
+      ],
+      name: "slb-tcpdump",
+      resources: {
+          requests: {
+              cpu: "0.5",
+              memory: "300Mi",
+          },
+          limits: {
+              cpu: "0.5",
+              memory: "300Mi",
+          },
+      },
+      volumeMounts: [
+        slbconfigs.tcpdump_volume_mount,
+      ],
+    },
   ],
 
-  local nginxBeforeSharedContainers(proxyImage, deleteLimitOverride=0, proxyFlavor="", slbUpstreamReporterEnabled=true) = [
+  local nginxSharedContainers(proxyImage, deleteLimitOverride=0, proxyFlavor="", slbUpstreamReporterEnabled=true) = [
     slbshared.slbNginxConfig(deleteLimitOverride=deleteLimitOverride, tlsConfigEnabled=true, waitForRealsvrCfg=true),
     slbshared.slbNginxProxy(proxyImage, proxyFlavor, true),
     {
@@ -163,7 +187,7 @@
     ] + (if (slbconfigs.perCluster.upstreamStatusReporterMinPercent[configs.estate] != "") then
         ["--minHealthPercentageForReadiness=" + slbconfigs.perCluster.upstreamStatusReporterMinPercent[configs.estate]]
         else [])
-        + (if slbflights.slbNginxReadyPerVip then ["--perVipReadinessCheck=true"] else []),
+      + ["--perVipReadinessCheck=true"],
     volumeMounts: std.prune([
       slbconfigs.logs_volume_mount,
     ]),
@@ -178,66 +202,7 @@
       initialDelaySeconds: 5,
       periodSeconds: 3,
     },
-  }] else []),
-
-  local envoyAfterSharedContainers = [
-    {
-      name: "slb-cert-deployer",
-      image: slbimages.hyperslb,
-      command: [
-        "/sdn/slb-cert-deployer",
-        "--metricsEndpoint=" + configs.funnelVIP,
-        "--hostnameOverride=$(NODE_NAME)",
-        "--log_dir=" + slbconfigs.logsDir,
-        "--custCertsDir=" + slbconfigs.envoy.customerCertsPath,
-        "--certfile=/client-certs/client/certificates/client.pem",
-        "--keyfile=/client-certs/client/keys/client-key.pem",
-        "--cafile=/client-certs/ca.pem",
-        configs.sfdchosts_arg,
-      ]
-      + slbconfigs.getNodeApiClientSocketSettings()
-      + [
-        slbconfigs.envoy.reloadSentinelParam,
-      ],
-      volumeMounts: std.prune(
-        madkub.madkubSlbCertVolumeMounts(slbconfigs.envoy.certDirs) + [
-          slbconfigs.envoy.target_config_volume_mount,
-          slbconfigs.envoy.customer_certs_volume_mount,
-          slbconfigs.slb_volume_mount,
-          slbconfigs.logs_volume_mount,
-          configs.sfdchosts_volume_mount,
-        ]
-      ),
-      env: [
-        slbconfigs.node_name_env,
-      ],
-    },
-    {
-      image: slbimages.hyperslb,
-      command: [
-          "/sdn/slb-tcpdump",
-          "--tcpdump.pollinterval=15m",
-      ] + (if slbflights.tcpdumpNamingRevamp then [
-          "--tcpdump.filepath=%s/tcpdumpcommand.json" % slbconfigs.tcpdump_volume_mount.mountPath,
-      ] else []),
-      name: "slb-tcpdump",
-      resources: {
-          requests: {
-              cpu: "0.5",
-              memory: "300Mi",
-          },
-          limits: {
-              cpu: "0.5",
-              memory: "300Mi",
-          },
-      },
-      volumeMounts: [
-        slbconfigs.tcpdump_volume_mount,
-      ],
-    },
-  ],
-
-  local nginxAfterSharedContainers = [
+  }] else []) + [
     {
       name: "slb-cert-deployer",
       image: slbimages.hyperslb,
@@ -271,9 +236,8 @@
       command: [
           "/sdn/slb-tcpdump",
           "--tcpdump.pollinterval=15m",
-      ] + (if slbflights.tcpdumpNamingRevamp then [
           "--tcpdump.filepath=%s/tcpdumpcommand.json" % slbconfigs.tcpdump_volume_mount.mountPath,
-      ] else []),
+      ],
       name: "slb-tcpdump",
       resources: {
           requests: {
@@ -291,13 +255,10 @@
     },
   ],
 
-  // This function implements a feature flag that accommodates the gradual
-  // renaming of "slb-(envoy|nginx)-config-wipe" to "slb-config-wipe".
-  //
   local configWipeInitContainer(proxyconfigs) = {
     assert std.length(proxyconfigs.containerTargetDir) > 0 :
       "Invalid configuration: proxyconfigs.containerTargetDir is empty",
-    name: if slbflights.renameConfigWipe then "slb-config-wipe" else proxyconfigs.legacyConfigWipeInitContainerName,
+    name: "slb-config-wipe",
     image: slbimages.hyperslb,
     command: [
       "/bin/bash",
@@ -323,7 +284,7 @@
     replicas,
     affinity,
     beforeSharedContainers(proxyType, proxyImage, deleteLimitOverride, proxyFlavor, slbUpstreamReporterEnabled),
-    afterSharedContainers(proxyType),
+    afterSharedContainers=[],
     supportedProxies=[proxyName],
     deleteLimitOverride=deleteLimitOverride
 ) {

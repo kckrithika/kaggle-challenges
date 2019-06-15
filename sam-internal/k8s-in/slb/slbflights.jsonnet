@@ -18,9 +18,6 @@ local slbconfigs = import "slbconfig.jsonnet";
     # See: https://computecloud.slack.com/archives/G340CE86R/p1550291706553800
     alertOnlyOnProxyErrorCode: (slbimages.phaseNum < 1),
 
-    # turn on perVip analysis for nginx upstream status reporter
-    slbNginxReadyPerVip: (slbimages.hyperslb_build >= 2199),
-
     # test our theory that ddi is having trouble with long-lived connections by enabling canary-creator
     # to run 24 hours (as a corollary, shift alerts to be business hours only)
     slbCanaryAllHours: false,
@@ -33,20 +30,6 @@ local slbconfigs = import "slbconfig.jsonnet";
        slbimages.phaseNum <= 2 &&  # Current deployment phase
        (slbconfigs.isProdEstate || configs.estate == "prd-sdc")  # Only deploy to prd-sdc and ProdEstates
     ),
-
-    # 2019/05/28
-    # Feature flag to use "sharedContainers" in lieu of
-    # "beforeSharedContainers + <other resources> + afterSharedContainers".
-    consolidateSharedContainers: (slbimages.hyperslb_build >= 2199),
-
-    # 2019/05/28
-    # Feature flag to rename "slb-(envoy|nginx)-config-wipe" to "slb-config-wipe".
-    renameConfigWipe: (slbimages.hyperslb_build >= 2199),
-
-    # 2019/05/30
-    # Feature flag to change the names of the tcpdump configmaps, volumes, and mounts.
-    # (for nginx, nginx-hsm, envoy).
-    tcpdumpNamingRevamp: (slbimages.hyperslb_build >= 2199),
 
     # nginx-accesslogs tends to kill spinning disks, driving queue depths up to >150. See
     # https://computecloud.slack.com/archives/G340CE86R/p1559625970018500?thread_ts=1559590829.287500&cid=G340CE86R
