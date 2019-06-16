@@ -10,7 +10,7 @@ system:
             maxSurge: 1
             maxUnavailable: 1
     containers:
-    - name: samhello
+    - name: cloudatlas-dashboard
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/sananthakrishnan/cloudatlas-dashboard:b47001c
       ports:
       - containerPort: 8080
