@@ -2,7 +2,7 @@ apps:
   # XRD functional testing env
   aqueduct-func:
     - xrd/xrd-sam_eventbus
-  # XRD integration testing env
+  # XRD integration testing env and canary env
   aqueduct-int:
     - xrd/xrd-sam_eventbus
   # XRD performance testing env
@@ -12,3 +12,7 @@ apps:
   # Add only Kingdoms that need hotfix.
   # Remove Kingdoms from other mappings
   aqueduct-hotfix:
+  # Group 1 of Private Kingdoms: 1 production private Kingdom
+  aqueduct-private-group-1:
+  # Group 2 of Private Kingdoms: Rest of private Kingdoms
+  aqueduct-private-group-2:
