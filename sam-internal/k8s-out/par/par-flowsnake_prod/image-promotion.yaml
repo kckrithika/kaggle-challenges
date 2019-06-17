@@ -8,6 +8,8 @@ spec:
         name: flowsnake-environment-service
       - image: ops0-artifactrepo1-0-par.data.sfdc.net/dva/flowsnake-environment-service:jenkins-dva-transformation-flowsnake-platform-master-781-itest
         name: flowsnake-environment-service
+      - image: ops0-artifactrepo1-0-par.data.sfdc.net/dva/flowsnake-hbase-init-container:jenkins-dva-transformation-flowsnake-platform-PR-831-2-itest
+        name: flowsnake-hbase-init-container
       - image: ops0-artifactrepo1-0-par.data.sfdc.net/dva/flowsnake-job-flowsnake-demo-job:0.12.5
         name: flowsnake-job-flowsnake-demo-job
       - image: ops0-artifactrepo1-0-par.data.sfdc.net/dva/flowsnake-job-flowsnake-demo-job:jenkins-dva-transformation-flowsnake-platform-master-781-itest
