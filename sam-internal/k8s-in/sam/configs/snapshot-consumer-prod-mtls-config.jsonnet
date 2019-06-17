@@ -5,7 +5,7 @@ local samfeatureflags = import "sam-feature-flags.jsonnet";
 if samfeatureflags.kafkaConsumer then
 std.prune({
   caFile: configs.caFile,
-  dbHostname: mysql.readWriteHostName,
+  dbHostname: mysql.dbHostname,
   dbUsername: "ssc-prod",
   dbPasswordFile: "/var/mysqlPwd/ssc-prod",
   k8sResourceDbName: mysql.visibilityDBName,

@@ -6,7 +6,7 @@ std.prune({
         "tnrp-endpoint": configs.tnrpEndpoint,
         "tnrp-bot-account-names": ["svc-tnrp-git-rw", "svc-tnrp-git"],
         "tnrp-bot-scan-frequency": "10s",
-        "db-hostname": mysql.readWriteHostName,
+        "db-hostname": mysql.dbHostname,
         "db-username": "mani-repo-watch",
         "db-password-file": "/var/mysqlPwd/mani-repo-watch",
         "db-name": mysql.visibilityDBName,

@@ -38,7 +38,7 @@ std.prune({
           "yhu-sam",
           "yul-sam",
   ]),
-  dbHostname: (if configs.estate == "prd-samtest" then mysql.readOnlyHostName else mysql.readWriteHostName),
+  dbHostname: mysql.dbHostname,
   dbUsername: "host-repair-agg",
   dbPasswordFile: "/var/mysqlPwd/host-repair-agg",
   signals: [
