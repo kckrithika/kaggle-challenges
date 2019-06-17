@@ -8,3 +8,7 @@ apps:
   # XRD performance testing env
   aqueduct-perf:
     - xrd/xrd-sam_eventbus
+  # Hotfix SAM app
+  # Add only Kingdoms that need hotfix.
+  # Remove Kingdoms from other mappings
+  aqueduct-hotfix:
