@@ -1,0 +1,117 @@
+apiVersion: v1
+
+system:
+  notifications:
+    email:
+      - rpragada@salesforce.com
+  functions:
+  - name: devmvp-caas-gcp-test
+    count: 3
+    identity:
+      serviceName: caas
+      pod: devmvp
+    containers:
+    - name: caas-redis
+      image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/caas/redis-4.0.10:2
+      resources:
+        limits: { memory: "8G" }
+        requests: { memory: "8G" }
+      args:
+        - --port=12021
+        - --maxMemoryMB=4096
+        - --noAuth
+        - --disableProtectedMode
+        - --bindToLoopback
+      livenessProbe:
+        exec:
+          command:
+           - /opt/caas/redis/redis-livenessprobe.py
+           - --port=12021
+           - --noAuth
+        initialDelaySeconds: 15
+        timeoutSeconds: 10
+      ports:
+      - containerPort: 12021
+      env:
+       - name: PYTHONUNBUFFERED
+         value: 1
+    - name: caas-redis-announcer
+      image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/npshenichnyy/beacon:853c4db9f14805018be6f5e7607ffe65b5648822-201902081500
+      args:
+      - -endpoint
+      - caas/caas-cluster-1:POD:12020
+      - -zk
+      - 10.168.160.76
+      livenessProbe:
+        initialDelaySeconds: 5
+        exec:
+          command:
+            - "/home/scone/is-alive.sh"
+      env:
+       - name: SFDC_ENVIRONMENT
+         value: mesh
+       - name: NO_ENV_FOR_RESTART
+         value: 1
+      resources:
+        limits: { memory: "500M" }
+        requests: { memory: "500M" }
+    - name: caas-metrics-publisher
+      image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-gcp/sfci/cache-as-a-service/caas-metrics-publisher:4fc653c8a058a17d09c34472471a2505905a6384
+      args:
+      - --publishMetricsViaMesh
+      - --clusterName=caas-cluster-1
+      - --redisPort=12021
+      livenessProbe:
+        initialDelaySeconds: 5
+        exec:
+          command:
+            - "/home/caas/is-alive.sh"
+      env:
+       - name: SFDC_ENVIRONMENT
+         value: mesh
+       - name: NO_ENV_FOR_RESTART
+         value: new9
+      resources:
+        limits: { memory: "100M" }
+        requests: { memory: "50M" }
+    - name: sherpa
+      image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-gcp/sfci/servicelibs/sherpa-envoy:1.0.7
+      args:
+      # 2018-02-08: Direct Connection to the switchboard for now
+      - --switchboard=switchboard.service-mesh.svc:15001
+      ports:
+      - containerPort: 15373
+      env:
+      - name: SFDC_ENVIRONMENT
+        value: mesh
+      resources:
+        limits:
+          cpu: "1"
+          memory: 1Gi
+        requests:
+          cpu: "1"
+          memory: 1Gi
+      volumeMounts:
+      - mountPath: /client-certs
+        name: tls-client-cert
+      - mountPath: /server-certs
+        name: tls-server-cert
+      livenessProbe:
+        exec:
+          command:
+          - ./bin/is-alive
+        initialDelaySeconds: 20
+        periodSeconds: 5
+      readinessProbe:
+        exec:
+          command:
+          - ./bin/is-ready
+        initialDelaySeconds: 15
+        periodSeconds: 5
+    volumes:
+    - name: tls-client-cert
+      maddogCert:
+        type: client
+    - name: tls-server-cert
+      maddogCert:
+        type: server
