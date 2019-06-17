@@ -61,7 +61,7 @@ system:
         periodSeconds: 60
         timeoutSeconds: 90
     - name: sherpa-mds
-      image: sfci/servicelibs/sherpa-envoy:1.0.3
+      image: sfci/servicelibs/sherpa-envoy:1.0.8
       args:
       - --server-ca
       - /server-certs/ca_test/cacerts.pem
