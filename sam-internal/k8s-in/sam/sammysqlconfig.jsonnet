@@ -1,5 +1,5 @@
 {
 local configs = import "config.jsonnet",
-dbHostname: (if configs.estate == "prd-sam" then "mysql-inmem-service.sam-system.prd-sam.prd.slb.sfdc.net" else if configs.estate == "prd-samtwo" then "mysql-inmem-service.sam-system.prd-samtwo.prd.slb.sfdc.net" else ""),
+dbHostname: "mysql-inmem-service.sam-system." + configs.estate + "." + configs.kingdom + ".slb.sfdc.net",
 visibilityDBName: "sam_kube_resource",
 }

@@ -5,7 +5,7 @@ data:
       "crdNamespace": "sam-system",
       "crdPollFrequency": "5m",
       "crdPushFrequency": "5m",
-      "dbHostname": "",
+      "dbHostname": "mysql-inmem-service.sam-system.prd-samtest.prd.slb.sfdc.net",
       "dbPasswordFile": "/var/mysqlPwd/host-repair-agg",
       "dbUsername": "host-repair-agg",
       "funnelEndpoint": "ajna0-funnel1-0-prd.data.sfdc.net:80",
