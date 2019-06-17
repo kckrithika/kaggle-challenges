@@ -12,7 +12,7 @@ system:
       app: switchboard
     containers:
     - name: switchboard
-      image: sfci/servicelibs/switchboard:9d22f758f07a729fec87d090b1a8b6f9c2fe6d48
+      image: sfci/servicelibs/switchboard:dab7b4da4de96d7dccd2372ecee07e5c3bd5bd8a
       args:
       - --clusters.external-clusters[0]=ajnafunneldirect:HTTP1
       - --clusters.external-clusters[1]=spaasmesh:HTTP2
