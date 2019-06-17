@@ -44,8 +44,7 @@ spec:
         set:
           x-salesforce-sip: '%DOWNSTREAM_REMOTE_ADDRESS_WITHOUT_PORT%'
     match:
-    - ignore_uri_case: true
-      uri:
+    - uri:
         regex: (/cometd|.*/lightning)(/.*|)|.*/ltng/.*|(|.*/sfsites)(/auracmpdef|/auraanalytics|/auraresource|/aurafw/.*|/aurafw|/aura|/l/.*)|.*\.(app|cmp)
     retries:
       attempts: 5
