@@ -421,5 +421,5 @@ system:
     nodeExposed: true
     ports:
     - lbtype: tcp
-      port: 13065
-      targetport: 13065
+      port: 7442
+      targetport: 7442
