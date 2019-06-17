@@ -11,7 +11,7 @@ system:
       "sherpa-injector.service-mesh/inject": "enabled"
     containers:
     - name: demo-authz
-      image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/strauz_sam:407f81a4af1a5b7a89bb24d3531f98ae9ecc3f53
+      image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/electron_sam:cde054e9eca74fde18792af67cf34ad98b7118f9
       env:
       - name: SFDC_ENVIRONMENT
         value: mesh
