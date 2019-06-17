@@ -1,7 +1,8 @@
 local configs = import "config.jsonnet";
 local mysql = import "sammysqlconfig.jsonnet";
+local samfeatureflags = import "sam-feature-flags.jsonnet";
 
-if configs.estate == "prd-sam" then
+if samfeatureflags.kafkaConsumer then
 std.prune({
   caFile: configs.caFile,
   dbHostname: mysql.readWriteHostName,
