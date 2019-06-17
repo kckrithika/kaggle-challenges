@@ -86,7 +86,6 @@ system:
     - name: dbvol
       hostPath:
         path: /home/sfdc-gater/db
-        type: server
     strategy:
       type: RollingUpdate
       rollingUpdate:
