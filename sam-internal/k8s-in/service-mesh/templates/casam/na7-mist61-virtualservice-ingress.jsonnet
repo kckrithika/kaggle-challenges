@@ -84,7 +84,6 @@
             "uri": {
               "regex": "(/cometd|.*/lightning)(/.*|)|.*/ltng/.*|(|.*/sfsites)(/auracmpdef|/auraanalytics|/auraresource|/aurafw/.*|/aurafw|/aura|/l/.*)|.*\\.(app|cmp)"
             },
-            "ignore_uri_case": true,
           }
         ],
         "retries": {
