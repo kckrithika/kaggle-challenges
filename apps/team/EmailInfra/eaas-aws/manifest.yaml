@@ -12,11 +12,6 @@ system:
     containers:
     - name: eaas
       image: 791719295754.dkr.ecr.us-east-2.amazonaws.com/sfci/eaas/emailservice:2.0.70-168958d9e76ec9f4cdff694561503e6920d5b4a3
-      ports:
-      - name: grpc
-        containerPort: 7020
-      - name: chaos
-        containerPort: 7022
       env:
       - name: SFDC_ENVIRONMENT
         value: sam
@@ -83,12 +78,6 @@ system:
       # Namespaced, mTLS HTTP2 GRPC
       - -endpoint
       - emailinfra/eaas:DATACENTER_ALLENV:7443
-      # Non namespaced, plain-text HTTP2 GRPC
-      - -endpoint
-      - eaas:DATACENTER_ALLENV:7012
-      # Non namespaced, plain-text HTTP1 for Chaos endpoint
-      - -endpoint
-      - eaas-chaos:DATACENTER_ALLENV:7014
       volumeMounts:
       - mountPath: /home/scone/logs
         name: beacon-log-volume
@@ -104,12 +93,6 @@ system:
       # 2018-02-08: Direct Connection to the switchboard for now
       - --switchboard=switchboard.service-mesh.svc:15001
       ports:
-      # plain-text HTTP2 GRPC port
-      - name: sherpa-eaas-in
-        containerPort: 7012
-      # plain-text HTTP1 Jetty port
-      - name: sherpa-eaas-jet
-        containerPort: 7014
       # mTLS HTTP2 GRPC port
       - name: sherpa-eaas-tls
         containerPort: 7443
