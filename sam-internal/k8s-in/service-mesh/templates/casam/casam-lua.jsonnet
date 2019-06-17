@@ -23,7 +23,6 @@
        "filterConfig" : {
         "inlineCode" : |||
             function envoy_on_request(request_handle)
-                request_handle:logInfo("Calling Lua Script")
                 -- Log all headers
                 for key, value in pairs(request_handle:headers()) do
                     request_handle:logDebug("header key " .. key .. " value " .. value)
