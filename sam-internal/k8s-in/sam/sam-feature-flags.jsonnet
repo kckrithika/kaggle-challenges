@@ -61,5 +61,5 @@ local utils = import "util_functions.jsonnet";
        configs.estate != "prd-sam_storage" && configs.estate != "prd-sam_storagedev" && configs.estate != "prd-sdc" && configs.estate != "vpod",
 
      kafkaConsumer:
-       configs.estate == "prd-sam",
+       configs.estate == "prd-sam" || configs.estate == "prd-samtwo",
 }
