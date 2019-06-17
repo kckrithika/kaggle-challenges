@@ -1,0 +1,66 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  labels:
+    name: sam-manifest-repo-watcher
+    sam.data.sfdc.net/owner: sam
+  name: sam-manifest-repo-watcher
+  namespace: sam-system
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      apptype: control
+      name: sam-manifest-repo-watcher
+      sam.data.sfdc.net/owner: sam
+  template:
+    metadata:
+      labels:
+        apptype: control
+        name: sam-manifest-repo-watcher
+        sam.data.sfdc.net/owner: sam
+    spec:
+      containers:
+      - command:
+        - /sam/sam-manifest-repo-watcher
+        - --config=/config/sammanifestrepowatcher.json
+        - --v=99
+        - --alsologtostderr
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/sam/hypersam:2743-4c5eaa97aabb0a93655c9bc06943f733ea304915
+        livenessProbe:
+          httpGet:
+            path: /
+            port: 8099
+          initialDelaySeconds: 20
+          periodSeconds: 10
+          timeoutSeconds: 10
+        name: sam-manifest-repo-watcher
+        volumeMounts:
+        - mountPath: /config
+          name: config
+        - mountPath: /var/mysqlPwd
+          name: mysql
+          readOnly: true
+        - mountPath: /var/token
+          name: token
+          readOnly: true
+        - mountPath: /var/webhook-token
+          name: webhook-token
+          readOnly: true
+      dnsPolicy: ClusterFirstWithHostNet
+      hostNetwork: true
+      nodeSelector:
+        master: "true"
+      volumes:
+      - configMap:
+          name: sam-manifest-repo-watcher
+        name: config
+      - name: mysql
+        secret:
+          secretName: mysql-passwords
+      - name: token
+        secret:
+          secretName: git-token
+      - name: webhook-token
+        secret:
+          secretName: webhook-token

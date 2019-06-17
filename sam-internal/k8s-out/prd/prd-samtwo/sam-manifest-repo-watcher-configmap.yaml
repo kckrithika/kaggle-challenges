@@ -1,0 +1,45 @@
+apiVersion: v1
+data:
+  sammanifestrepowatcher.json: |-
+    {
+      "commenter-test-mode": true,
+      "commenter-test-mode-authors": [
+        "benjamin-caldwell"
+      ],
+      "db-hostname": "mysql-inmem-service.sam-system.prd-sam.prd.slb.sfdc.net",
+      "db-name": "sam_kube_resource",
+      "db-password-file": "/var/mysqlPwd/mani-repo-watch",
+      "db-username": "mani-repo-watch",
+      "enable-pr-commenter": true,
+      "freq-scan-on": true,
+      "full-scan-on": false,
+      "funnel-endpoint": "ajna0-funnel1-0-prd.data.sfdc.net:80",
+      "ghe-tokenfile": "/var/token/token",
+      "git-url": "https://git.soma.salesforce.com/api/v3/",
+      "look-back": "24h",
+      "maximum-github-calls-per-second": 5,
+      "num-worker-threads": 5,
+      "pool-map-scan-frequency": "900s",
+      "pool-map-scan-on": true,
+      "pool-scan-on": true,
+      "pr-evaluate-completion-regex": "Regarding pull request authorization by.*on SHA [0-9a-f]+",
+      "pr-evaluate-passed-regex": "SUCCESSFUL RUN.",
+      "pr-scan-frequency": "1800s",
+      "sdp-root-url": "http://sdp2.csc-sam.prd-sam.prd.slb.sfdc.net",
+      "tnrp-bot-account-names": [
+        "svc-tnrp-git-rw",
+        "svc-tnrp-git"
+      ],
+      "tnrp-bot-scan-frequency": "10s",
+      "tnrp-endpoint": "https://ops0-piperepo1-0-prd.data.sfdc.net/",
+      "tnrp-scan-on": true,
+      "webhook-on": true,
+      "webhook-tokenfile": "/var/webhook-token/webhook-token"
+    }
+kind: ConfigMap
+metadata:
+  creationTimestamp: null
+  labels:
+    sam.data.sfdc.net/owner: sam
+  name: sam-manifest-repo-watcher
+  namespace: sam-system

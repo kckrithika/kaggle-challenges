@@ -1,7 +1,7 @@
 local configs = import "config.jsonnet";
 local mysql = import "sammysqlconfig.jsonnet";
 
-if configs.estate == "prd-sam" then
+if configs.estate == "prd-sam" || configs.estate == "prd-samtwo" then
 std.prune({
         "tnrp-endpoint": configs.tnrpEndpoint,
         "tnrp-bot-account-names": ["svc-tnrp-git-rw", "svc-tnrp-git"],
