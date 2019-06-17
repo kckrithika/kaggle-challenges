@@ -36,7 +36,7 @@ if configs.estate == "prd-sam" || configs.estate == "prd-samtwo" then configs.de
                             "--alsologtostderr",
                             "--port=64212",
                             "--queryFile=/var/queries/sam-sql-queries.json",
-                            "--dbHostname=mysql-inmem-service.sam-system.prd-sam.prd.slb.sfdc.net",
+                            "--dbHostname=mysql.dbHostname",
                             "--dbUsername=reporter",
                         ],
                         command: [

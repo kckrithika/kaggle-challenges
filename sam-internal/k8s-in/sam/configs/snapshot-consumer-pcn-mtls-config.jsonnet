@@ -4,7 +4,7 @@ local mysql = import "sammysqlconfig.jsonnet";
 if configs.estate == "prd-sam" then
 std.prune({
   caFile: configs.caFile,
-  dbHostname: mysql.readWriteHostName,
+  dbHostname: mysql.dbHostname,
   dbUsername: "ssc-pcn",
   dbPasswordFile: "/var/mysqlPwd/ssc-pcn",
   k8sResourceDbName: mysql.visibilityDBName,
