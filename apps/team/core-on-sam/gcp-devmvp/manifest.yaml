@@ -42,7 +42,7 @@ system:
       - name: SFPROXY_VIP
         value: https://casam.devmvp.gcp.sfdcsvc.net
       - name: HTTP_PORT
-        value: 8085
+        value: 7022
       - name: SPORT
         value: 8443
       - name: S2PORT
@@ -52,9 +52,9 @@ system:
       - name: DISABLE_AUTH_RELEASE_CHECK
         value: true
       - name: CASAM_APP_COLOR
-        value: green
+        value: blue
       - name: SD_PORT_OVERRIDE
-        value: 13065
+        value: 7442
       - name: CASAM_SETTINGS_PATH
         value: prod.-.phx.na3.app
       - name: CLUSTER_NAME
@@ -156,66 +156,9 @@ system:
       volumeMounts:
       - mountPath: /home/sfdc/salesforce/casam
         name: coreapp-casam-volume
-    - args:
-      - |
-        cp /cyan-config/tls-terminator-config.yaml.template /home/sfdc-sherpa/tls-terminator-config.yaml ;
-        /home/sfdc-sherpa/hot_restarter /home/sfdc-sherpa/envoy -c /home/sfdc-sherpa/tls-terminator-config.yaml --restart-epoch 0 --allow-unknown-fields --max-stats 32768 --drain-time-s 60 --parent-shutdown-time-s 90 --base-id 1
-      command:
-      - /bin/sh
-      - -c
-      env:
-      - name: SFDC_ENVIRONMENT
-        value: envoy-sidecar
-      image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-gcp/sfci/servicelibs/sherpa-envoy:1.0.7
-      livenessProbe:
-        exec:
-          command:
-          - echo
-          - HEALTHY
-        initialDelaySeconds: 20
-        periodSeconds: 5
-      name: envoy-sidecar
-      ports:
-      - containerPort: 13065
-      - containerPort: 15373
-      readinessProbe:
-        httpGet:
-          path: /
-          port: 15373
-        initialDelaySeconds: 15
-        periodSeconds: 5
-      volumeMounts:
-      - mountPath: /cyan-config
-        name: envoy-config-volume
-      - mountPath: /certs/cert-client
-        name: tls-client-cert
-      - mountPath: /certs/cert-server
-        name: tls-server-cert
-    - env:
-      - name: CONFIG_DIR
-        value: /home/sfdc-sherpa/sherpa-envoy-config-volume
-      image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/casam/cyan-config:208cc2
-      livenessProbe:
-        exec:
-          command:
-          - cat
-          - /tmp/live
-        initialDelaySeconds: 10
-        periodSeconds: 5
-      name: envoy-sidecar-config
-      readinessProbe:
-        exec:
-          command:
-          - cat
-          - /tmp/ready
-        initialDelaySeconds: 10
-        periodSeconds: 5
-      volumeMounts:
-      - mountPath: /home/sfdc-sherpa/sherpa-envoy-config-volume
-        name: envoy-config-volume
+
     - args:
       - --switchboard=switchboard.service-mesh.svc:15001
-      - --admin-port=15374
       env:
       - name: SFDC_ENVIRONMENT
         value: mesh
@@ -228,7 +171,9 @@ system:
         periodSeconds: 5
       name: sherpa
       ports:
-      - containerPort: 15374
+      - containerPort: 7442
+        name: http1-tls-in
+      - containerPort: 15373
         name: sherpa-adm
       readinessProbe:
         exec:
@@ -330,9 +275,9 @@ system:
       - name: PATCH_RELEASE_NUMBER
         value: 0
       - name: CURRENT_RELEASE_VERSION
-        value: blue
-      - name: NEW_RELEASE_VERSION
         value: green
+      - name: NEW_RELEASE_VERSION
+        value: blue
       - name: READY_SERVER_COUNT
         value: 3
       - name: DB_SID
@@ -373,7 +318,9 @@ system:
         value: 30000
       - name: dns_override_enabled
         value: true
-      image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/casam/sequencer:7486e5
+      - name: ENABLE_HEALTH_CHECK_TLS
+        value: false
+      image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/casam/sequencer:ac008d
       livenessProbe:
         exec:
           command:
@@ -475,4 +422,4 @@ system:
     ports:
     - lbtype: tcp
       port: 13065
-      targetport: 13065
+      targetport: 7442
