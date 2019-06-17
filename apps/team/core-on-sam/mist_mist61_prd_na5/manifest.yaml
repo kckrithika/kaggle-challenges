@@ -50,7 +50,7 @@ system:
       - name: SFPROXY_VIP
         value: https://us5-sfproxy-lb.core-on-sam-sp2.prd-sam.prd.slb.sfdc.net:8443
       - name: HTTP_PORT
-        value: 8085
+        value: 7022
       - name: SPORT
         value: 8443
       - name: S2PORT
@@ -62,7 +62,7 @@ system:
       - name: CASAM_APP_COLOR
         value: blue
       - name: SD_PORT_OVERRIDE
-        value: 13065
+        value: 7442
       - name: CASAM_SETTINGS_PATH
         value: mist.mist61.prd.na5.app
       - name: CLUSTER_NAME
@@ -76,10 +76,11 @@ system:
       livenessProbe:
         exec:
           command:
-          - echo
-          - HEALTHY
-        initialDelaySeconds: 480
-        periodSeconds: 1
+          - /home/sfdc/salesforce/casam/bin/live_probe.sh
+        failureThreshold: 99999
+        initialDelaySeconds: 120
+        periodSeconds: 5
+        timeoutSeconds: 5
       readinessProbe:
         exec:
           command:
