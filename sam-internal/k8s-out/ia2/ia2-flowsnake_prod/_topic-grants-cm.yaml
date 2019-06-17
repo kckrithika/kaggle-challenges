@@ -1,8 +1,0 @@
-apiVersion: v1
-data:
-  data: '{ }'
-kind: ConfigMap
-metadata:
-  creationTimestamp: null
-  name: ajna-topic-grants
-  namespace: flowsnake
