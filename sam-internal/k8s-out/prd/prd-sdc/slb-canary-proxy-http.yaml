@@ -64,7 +64,7 @@ spec:
         - --tlsPorts=443
         - --privateKey=/canarycert/server/keys/server-key.pem
         - --publicKey=/canarycert/server/certificates/server.pem
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/slb/hyperslb:2199-26acb3b2228eab681f36dac105f1d8b14f24cf82
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/slb/hyperslb:2201-1796839062564e184919217cae11841218173c38
         livenessProbe:
           httpGet:
             path: /
