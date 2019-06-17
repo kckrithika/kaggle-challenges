@@ -6,6 +6,8 @@ system:
   functions:
   - name: gater
     count: 3
+    serviceAccountName: gater-ejluz6najimifpi5mnatdpg5
+    automountServiceAccountToken: true
     containers:
     - name: gater1
       image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/gater/gate-manager:1.14.1-SNAPSHOT_20190604_2_2e1b017
@@ -54,11 +56,6 @@ system:
         containerPort: 7443
       - name: sherpa-adm
         containerPort: 15373
-      volumeMounts:
-      - mountPath: /client-certs
-        name: tls-client-cert
-      - mountPath: /server-certs
-        name: tls-server-cert
       livenessProbe:
         exec:
           command:
@@ -89,11 +86,6 @@ system:
     - name: dbvol
       hostPath:
         path: /home/sfdc-gater/db
-    - name: tls-client-cert
-      maddogCert:
-        type: client
-    - name: tls-server-cert
-      maddogCert:
         type: server
     strategy:
       type: RollingUpdate
