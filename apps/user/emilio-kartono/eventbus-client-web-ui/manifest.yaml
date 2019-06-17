@@ -4,12 +4,11 @@ system:
     - name: eventbus-client-web-ui
       count: 1
       volumes:
-        - name: myclientcert
+        - name: clientcert
           maddogCert:
             type: client
-        - name: myservercert
-          maddogCert:
-            type: server
+            lbnames:
+              - eventbus-client-web-ui-lb.user-emilio-kartono.prd-sam.prd.slb.sfdc.net
       containers:
       - name: eventbus-client-web-ui
         image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/emilio.kartono/eventbus-client-web-ui:eventbus-client-web-ui
@@ -26,10 +25,8 @@ system:
             port: 5000
             scheme: HTTP
         volumeMounts:
-          - name: myclientcert
+          - name: clientcert
             mountPath: /clientcert
-          - name: myservercert
-            mountPath: /servercert
   loadbalancers:
   - lbname: eventbus-client-web-ui-lb
     function: eventbus-client-web-ui
