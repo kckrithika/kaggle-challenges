@@ -4,7 +4,10 @@ system:
     - name: eventbus-client-web-ui
       count: 1
       volumes:
-        - name: cert
+        - name: clientcerts
+          maddogCert:
+            type: client
+        - name: servercerts
           maddogCert:
             type: server
             lbnames:
@@ -25,8 +28,10 @@ system:
             port: 5000
             scheme: HTTP
         volumeMounts:
-          - name: cert
-            mountPath: /certs
+          - name: clientcerts
+            mountPath: /clientcerts
+          - name: servercerts
+            mountPath: /servercerts
   loadbalancers:
   - lbname: eventbus-client-web-ui-lb
     function: eventbus-client-web-ui
