@@ -55,7 +55,6 @@ local utils = import "util_functions.jsonnet";
             },
             feature_flags+: {
                 # --- flag A (Do not edit ... ---
-                next_analysis_script: "unverified",
                 # --- flag B (these comments ... ---
                 # --- flag C (and place only ... ---
                 # --- flag D (one flag between ... ---
@@ -145,6 +144,7 @@ local utils = import "util_functions.jsonnet";
                 # associated conditional logic. That PR will not affect k8s-out, so you can self-approve it.
 
                 # --- flag A (Do not edit ... ---
+                next_analysis_script: "verified in in phase1,2",
                 # --- flag B (these comments ... ---
                 # --- flag C (and place only ... ---
                 # --- flag D (one flag between ... ---
