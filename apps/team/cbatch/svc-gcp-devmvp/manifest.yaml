@@ -5,7 +5,7 @@ system:
       count: 2
       containers: 
         - name: cbatch-svc
-          image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/cbatch/cbatch-svc:1.13
+          image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/cbatch/cbatch-svc:1.14
           ports:
             - containerPort: 7020
             - containerPort: 15372
