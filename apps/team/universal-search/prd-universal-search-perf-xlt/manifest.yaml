@@ -93,6 +93,12 @@ system:
       volumeMounts:
       - name: test
         mountPath: /data/test
+    - name: universal-search-client-example
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/irahim/universal-search-client-example:1.2.1-SNAPSHOT
+      livenessProbe:
+        initialDelaySeconds: 30
+        exec:
+          command: ["true"]
   - name: xlt-master
     count: 1
     volumes:
