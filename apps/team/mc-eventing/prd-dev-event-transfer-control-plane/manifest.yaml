@@ -28,11 +28,11 @@ system:
 
     containers:
     - name: eventtransfercontrolplane
-      image: sfci/ets/event-transfer-control-plane:0.0.11
+      image: sfci/ets/event-transfer-control-plane:0.0.13
       ports:
         - containerPort: 7020
         - containerPort: 7022
-        - containerPort: 15372
+        - containerPort: 15385
       resources:
         limits: { cpu: "2", memory: "5Gi" }
         requests: { cpu: "2", memory: "5Gi" }
@@ -42,7 +42,7 @@ system:
         - name: SERVER_PORT
           value: 7022
         - name: MANAGEMENT_PORT
-          value: 15372
+          value: 15385
         - name: JVM_ARGS
           value: "-Xmx3G -Xms512m"
       livenessProbe:
@@ -51,7 +51,7 @@ system:
         timeoutSeconds: 90
         httpGet:
           path: /manage/health
-          port: 15372
+          port: 15385
       volumeMounts:
       - name: clientcert
         mountPath: /client-certs
