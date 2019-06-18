@@ -3,3 +3,5 @@ apps:
     - prd/prd-sam
   lookup-bot:
     - prd/prd-sam
+  prod-debugger:
+    - prd/prd-sam
