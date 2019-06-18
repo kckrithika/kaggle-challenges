@@ -47,7 +47,7 @@ spec:
         - --privateKey=/canarycert/server/keys/server-key.pem
         - --publicKey=/canarycert/server/certificates/server.pem
         - --verbose=false
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/slb/hyperslb:2199-26acb3b2228eab681f36dac105f1d8b14f24cf82
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/slb/hyperslb:2202-9d8d06981a2c80199c69f630fac9d696c1d4c180
         name: slb-canary-proxy-http
         resources:
           limits:
