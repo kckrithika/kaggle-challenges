@@ -6,14 +6,21 @@ system:
       - vivanov@salesforce.com
   functions:
     - name: metadata-service
-      count: 2
+      count: 3
       volumes:
         - name: logvol
           hostPath:
             path: /home/sfdc-mds/logs
       containers:
         - name: metadata-service
-          image: sfci/metadata-cannon/metadata-service:0.8.71
+          image: sfci/metadata-cannon/metadata-service:0.8.70
+          resources:
+            limits:
+              cpu: "4"
+              memory: 3Gi
+            requests:
+              cpu: "4"
+              memory: 3Gi
           ports:
             - containerPort: 9091
             - containerPort: 15523
@@ -32,7 +39,7 @@ system:
             - name: MANAGEMENT_PORT
               value: 15523
             - name: JVM_ARGS
-              value: -Dsettings.path=dev.mydev.landmark.-.metadata-service
+              value: -Dsettings.path=dev.mydev.landmark.-.metadata-service -Dmds.enable.rest.endpoints = false
           volumeMounts:
             - mountPath: /home/sfdc-mds/logs
               name: logvol
