@@ -14,8 +14,12 @@ metadata:
         "lbtype": "dsr",
         "port": 15009,
         "targetport": 15009
-       }
-      ]
+       },
+       {
+        "lbtype": "dsr",
+        "port": 8085,
+        "targetport": 8085
+       }]
   labels:
     app: istio-ingressgateway
     istio: ingressgateway
