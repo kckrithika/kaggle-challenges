@@ -25,6 +25,7 @@ system:
       - --logging.json.stdout.level=ALL
       - --logging.sfdc.level=OFF
       - --logging.json.level=OFF
+      - --noop.change=123
       ports:
       - containerPort: 7020
       - containerPort: 9522
