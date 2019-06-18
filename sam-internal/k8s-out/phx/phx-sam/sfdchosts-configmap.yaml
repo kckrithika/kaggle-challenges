@@ -235,6 +235,83 @@ data:
           "superpod": "none"
         },
         {
+          "bomrolename": "sam_minion_aqueduct",
+          "controlestate": "phx-sam",
+          "devicerole": "samcompute",
+          "estate": "phx-sam_eventbus",
+          "hostname": "shared0-samminionaqueduct1-1-phx.ops.sfdc.net",
+          "kingdom": "phx",
+          "pod": "none",
+          "rack": "r49-40",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sam_minion_aqueduct",
+          "controlestate": "phx-sam",
+          "devicerole": "samcompute",
+          "estate": "phx-sam_eventbus",
+          "hostname": "shared0-samminionaqueduct1-2-phx.ops.sfdc.net",
+          "kingdom": "phx",
+          "pod": "none",
+          "rack": "x11-40",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sam_minion_aqueduct",
+          "controlestate": "phx-sam",
+          "devicerole": "samcompute",
+          "estate": "phx-sam_eventbus",
+          "hostname": "shared0-samminionaqueduct1-3-phx.ops.sfdc.net",
+          "kingdom": "phx",
+          "pod": "none",
+          "rack": "x11-40",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sam_minion_aqueduct",
+          "controlestate": "phx-sam",
+          "devicerole": "samcompute",
+          "estate": "phx-sam_eventbus",
+          "hostname": "shared0-samminionaqueduct2-1-phx.ops.sfdc.net",
+          "kingdom": "phx",
+          "pod": "none",
+          "rack": "e55-40",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sam_minion_aqueduct",
+          "controlestate": "phx-sam",
+          "devicerole": "samcompute",
+          "estate": "phx-sam_eventbus",
+          "hostname": "shared0-samminionaqueduct2-2-phx.ops.sfdc.net",
+          "kingdom": "phx",
+          "pod": "none",
+          "rack": "e55-40",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sam_minion_aqueduct",
+          "controlestate": "phx-sam",
+          "devicerole": "samcompute",
+          "estate": "phx-sam_eventbus",
+          "hostname": "shared0-samminionaqueduct3-1-phx.ops.sfdc.net",
+          "kingdom": "phx",
+          "pod": "none",
+          "rack": "d32-40",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sam_minion_aqueduct",
+          "controlestate": "phx-sam",
+          "devicerole": "samcompute",
+          "estate": "phx-sam_eventbus",
+          "hostname": "shared0-samminionaqueduct3-2-phx.ops.sfdc.net",
+          "kingdom": "phx",
+          "pod": "none",
+          "rack": "y01-40",
+          "superpod": "none"
+        },
+        {
           "bomrolename": "sam_minion_gater",
           "controlestate": "phx-sam",
           "devicerole": "samcompute",
