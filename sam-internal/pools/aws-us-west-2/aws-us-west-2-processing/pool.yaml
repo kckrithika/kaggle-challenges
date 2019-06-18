@@ -5,11 +5,11 @@
 # Run k8s-in/build.sh after updating pools
 access:
   - 'team/CSC_Sam'
-  - 'team/cdpt-caffeine'
   - 'team/Cache_As_A_service'
   - 'team/CASP'
   - 'team/cbatch'
   - 'team/CCAIT'
+  - 'team/cdpt-caffeine'
   - 'team/CloudAtlas'
   - 'team/communities'
   - 'team/core-on-sam'
