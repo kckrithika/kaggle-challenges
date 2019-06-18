@@ -17,9 +17,9 @@ system:
             - name: IMPORT_FLOWSNAKE_ARTIFACT
               value: sfci/cre/cre-engine:1.8.0.0.master.58cdbe8.3
             - name: SAVE_FLOWSNAKE_ARTIFACT
-              value: sfci/cre/cre-dds-spark:1.8.0.0.master.6767458.2
+              value: sfci/cre/cre-dds-spark:1.8.1.0.master.8623df8.3
             - name: EXPORT_FLOWSNAKE_ARTIFACT
-              value: sfci/cre/cre-dds-spark:1.8.0.0.master.6767458.2
+              value: sfci/cre/cre-dds-spark:1.8.1.0.master.8623df8.3
             ####################################################################################################
             ####################################### GLOBAL SHARED VALUES #######################################
             ####################################################################################################
