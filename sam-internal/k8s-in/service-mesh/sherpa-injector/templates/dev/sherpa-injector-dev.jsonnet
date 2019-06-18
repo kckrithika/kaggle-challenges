@@ -8,7 +8,7 @@ if sherpa_utils.is_sherpa_injector_test_cluster(configs.estate) then
   apiVersion: "v1",
   kind: "Namespace",
   metadata: {
-    name: "sherpa-injector",
+    name: "sherpa-injector-dev",
     labels: {
           "sherpa-injector-dev.service-mesh/inject": "disabled",
     } +

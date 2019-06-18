@@ -3,4 +3,4 @@ kind: Namespace
 metadata:
   labels:
     sherpa-injector.service-mesh/inject: disabled
-  name: sherpa-injector
+  name: sherpa-injector-test
