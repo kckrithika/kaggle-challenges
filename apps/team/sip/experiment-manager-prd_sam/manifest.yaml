@@ -3,7 +3,7 @@ apiVersion: v1
 system:
   notifications:
     email:
-      - smarwaha@salesforce.com
+      - srinath.venkatesan@salesforce.com
   functions:
   - name: sip-em-dev
     count: 1
@@ -14,6 +14,9 @@ system:
     - name: blacktab-secret
       k4asecret:
         secretName: blacktab-credentials
+    - name: github-secret
+      k4asecret:
+        secretName: github-token
     - name: client-cert-vol
       maddogCert:
         type: client
@@ -24,7 +27,7 @@ system:
           - sip-em-dev-slb
     containers:
     - name: sip-em 
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/deepaksharma/sip-experiment-manager:20190531T0931
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/sip/em:sip-em-20190522T1630
       livenessProbe:
         initialDelaySeconds: 30
         httpGet:
@@ -47,6 +50,9 @@ system:
         readOnly: true
       - mountPath: /secrets/blacktab/
         name: blacktab-secret
+        readOnly: true
+      - mountPath: /secrets/github/
+        name: github-secret
         readOnly: true
       - name: client-cert-vol
         mountPath: /certs
