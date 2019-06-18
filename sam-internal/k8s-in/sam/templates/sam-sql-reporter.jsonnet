@@ -1,6 +1,7 @@
 local configs = import "config.jsonnet";
 local samimages = (import "samimages.jsonnet") + { templateFilename:: std.thisFile };
 local utils = import "util_functions.jsonnet";
+local mysql = import "sammysqlconfig.jsonnet";
 
 if configs.estate == "prd-sam" || configs.estate == "prd-samtwo" then configs.deploymentBase("sam") {
     metadata+: {
@@ -36,7 +37,7 @@ if configs.estate == "prd-sam" || configs.estate == "prd-samtwo" then configs.de
                             "--alsologtostderr",
                             "--port=64212",
                             "--queryFile=/var/queries/sam-sql-queries.json",
-                            "--dbHostname=mysql.dbHostname",
+                            "--dbHostname=" + mysql.dbHostname,
                             "--dbUsername=reporter",
                         ],
                         command: [

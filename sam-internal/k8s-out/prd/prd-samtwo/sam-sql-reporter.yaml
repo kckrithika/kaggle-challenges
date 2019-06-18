@@ -25,7 +25,7 @@ spec:
         - --alsologtostderr
         - --port=64212
         - --queryFile=/var/queries/sam-sql-queries.json
-        - --dbHostname=mysql.dbHostname
+        - --dbHostname=mysql-inmem-service.sam-system.prd-samtwo.prd.slb.sfdc.net
         - --dbUsername=reporter
         command:
         - /sam/sam-sql-reporter
