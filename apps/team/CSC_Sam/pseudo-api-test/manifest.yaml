@@ -1,7 +1,7 @@
 apiVersion: v1
 system:
   functions:
-  - name: pseudo-kubeapi
+  - name: pseudo-kubeapi-test
     count: 5
     progressDeadlineSeconds: 120
     containers:
@@ -36,8 +36,8 @@ system:
       secret:
         secretName: mysql-passwords
   loadbalancers:
-  - lbname: pseudo-kubeapi
-    function: pseudo-kubeapi
+  - lbname: pseudo-kubeapi-test
+    function: pseudo-kubeapi-test
     slbEnabled: true
     ports:
       - port: 40001
