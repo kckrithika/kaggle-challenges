@@ -825,6 +825,52 @@
     },
     {
       "namespaces": [
+        "retail-mds",
+        "retail-dfs",
+        "retail-eventlistener"
+      ],
+      "access": [
+        "team/Retail_MDS",
+        "team/Retail_DFS",
+        "team/Retail_EventListener"
+      ],
+      "controlEstate": "frf-sam",
+      "estate": "frf-sam_crosscloudplatform",
+      "kingdom": "frf",
+      "superPod": "None"
+    },
+    {
+      "namespaces": [
+        "retail-rsui",
+        "retail-rrps",
+        "retail-eventlistener"
+      ],
+      "access": [
+        "team/Retail_RSUI",
+        "team/Retail_RRPS",
+        "team/Retail_EventListener"
+      ],
+      "controlEstate": "frf-sam",
+      "estate": "frf-sam_crosscloudsetup",
+      "kingdom": "frf",
+      "superPod": "None"
+    },
+    {
+      "namespaces": [
+        "retail-cre",
+        "retail-credata"
+      ],
+      "access": [
+        "team/Retail_CRE",
+        "team/Retail_CREDATA"
+      ],
+      "controlEstate": "frf-sam",
+      "estate": "frf-sam_customerresolutionengine",
+      "kingdom": "frf",
+      "superPod": "None"
+    },
+    {
+      "namespaces": [
         "wave-elt"
       ],
       "access": [
@@ -2306,6 +2352,52 @@
       ],
       "controlEstate": "par-sam",
       "estate": "par-sam_cloudatlas_dir",
+      "kingdom": "par",
+      "superPod": "None"
+    },
+    {
+      "namespaces": [
+        "retail-mds",
+        "retail-dfs",
+        "retail-eventlistener"
+      ],
+      "access": [
+        "team/Retail_MDS",
+        "team/Retail_DFS",
+        "team/Retail_EventListener"
+      ],
+      "controlEstate": "par-sam",
+      "estate": "par-sam_crosscloudplatform",
+      "kingdom": "par",
+      "superPod": "None"
+    },
+    {
+      "namespaces": [
+        "retail-rsui",
+        "retail-rrps",
+        "retail-eventlistener"
+      ],
+      "access": [
+        "team/Retail_RSUI",
+        "team/Retail_RRPS",
+        "team/Retail_EventListener"
+      ],
+      "controlEstate": "par-sam",
+      "estate": "par-sam_crosscloudsetup",
+      "kingdom": "par",
+      "superPod": "None"
+    },
+    {
+      "namespaces": [
+        "retail-cre",
+        "retail-credata"
+      ],
+      "access": [
+        "team/Retail_CRE",
+        "team/Retail_CREDATA"
+      ],
+      "controlEstate": "par-sam",
+      "estate": "par-sam_customerresolutionengine",
       "kingdom": "par",
       "superPod": "None"
     },
