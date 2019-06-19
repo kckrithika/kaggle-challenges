@@ -313,6 +313,7 @@
             + set_value_to_all_in_list($.maxDeleteDefault, $.prodEstates)
             + {
                 "prd-sam": 50,
+                "prd-samtwo": 50,
                 "xrd-sam": 20,
                 vpod: $.maxDeleteDefault,
             },
