@@ -1,0 +1,45 @@
+apiVersion: v1
+system:
+  functions:
+  - name: pseudo-kubeapi-test
+    count: 5
+    progressDeadlineSeconds: 120
+    containers:
+    - name: virtual-api
+      command:
+        - /sam/virtual-api
+        - --sql-db-host=mysql-inmem-service.sam-system.prd-samtwo.prd.slb.sfdc.net
+        - --sql-db-port=3306
+        - --sql-db-name=sam_kube_resource
+        - --sql-db-pass-file=/var/secrets/pseudo-api
+        - --sql-db-user=pseudo-api
+        - --sql-db-resources-table=k8s_resource
+        - --v=4
+        - --alsologtostderr
+        - --insecure-port=7002
+        - --passthrough-api-server=k8sproxy.sam-system.prd-sam.prd.slb.sfdc.net:5000
+        - --passthrough-all-cluster=prd-sam
+        - --secret-passthrough-namespace=kube-system
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/d.smith/hypersam:20180518_123833.16f51950.dirty.duncsmith-ltm
+      ports:
+      - containerPort: 7002
+      livenessProbe:
+        httpGet:
+          path: /healthz
+          port: 7002
+      volumeMounts:
+        - mountPath: /var/secrets/
+          name: mysql
+          readOnly: true
+    volumes:
+    - name: mysql
+      secret:
+        secretName: mysql-passwords
+  loadbalancers:
+  - lbname: pseudo-kubeapi-test
+    function: pseudo-kubeapi-test
+    slbEnabled: true
+    ports:
+      - port: 40001
+        targetport: 7002
+
