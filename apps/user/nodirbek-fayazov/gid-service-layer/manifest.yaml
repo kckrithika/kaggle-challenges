@@ -7,7 +7,7 @@ system:
       #####################################################################################
       # Service Mesh / Envoy / Sherpa
       #####################################################################################
-      - name: sherpa-cloudatlas-client
+      - name: sherpa-gid-service
         image: sfci/servicelibs/sherpa-envoy:1.0.7
         env:
         - name: SFDC_ENVIRONMENT
@@ -46,7 +46,7 @@ system:
       #####################################################################################
       # Service Beacon
       #####################################################################################
-      - name: beacon-cloudatlas
+      - name: beacon-gid-service
         image: sfci/servicelibs/beacon:7ad9e771192cd0b3e43393eea2e1e5c1de81dfda
         env:
         - name: SFDC_ENVIRONMENT
@@ -76,7 +76,7 @@ system:
           - name: server_port
             value: 8081
           - name: management_server_port
-            value: 15371
+            value: 7022
           - name: ca_service_host
             value: 10.233.180.195
           - name: security_client_dynamickeystore_cadir
@@ -85,11 +85,11 @@ system:
             value: /certs
         ports:
           - containerPort: 8081
-          - containerPort: 15371
+          - containerPort: 7022
         livenessProbe:
-          httpGet:
-            path: /manage/health
-            port: 15371
+          exec:
+            command:
+            - /bin/true
         volumeMounts:
           - name: server-cert
             mountPath: /certs
@@ -117,5 +117,5 @@ system:
       function: gid-service-layer
       slbEnabled: true
       ports:
-        - port: 7022
+        - port: 9090
           targetport: 7014
