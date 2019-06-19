@@ -1,16 +1,16 @@
 apiVersion: v1
 system:
   functions:
-  - name: dashboard-test
+  - name: dashboard-secondary
     count: 3
     progressDeadlineSeconds: 120
     containers:
     - name: dashboard-phx
       args:
         - --logtostderr=true
-        - --apiserver-host=http://pseudo-kubeapi-test.csc-sam.prd-samtwo.prd.slb.sfdc.net:40001/phx-sam
+        - --apiserver-host=http://pseudo-kubeapi-secondary.csc-sam.prd-samtwo.prd.slb.sfdc.net:40001/phx-sam
         - --insecure-port=9090
-        - --system-banner-webhook=http://pseudo-kubeapi-test.csc-sam.prd-samtwo.prd.slb.sfdc.net:40001/phx-sam/dashboard-webhook
+        - --system-banner-webhook=http://pseudo-kubeapi-secondary.csc-sam.prd-samtwo.prd.slb.sfdc.net:40001/phx-sam/dashboard-webhook
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/d.smith/dashboard:webhook
       ports:
       - containerPort: 9090
@@ -24,9 +24,9 @@ system:
     - name: dashboard-dfw
       args:
         - --logtostderr=true
-        - --apiserver-host=http://pseudo-kubeapi-test.csc-sam.prd-samtwo.prd.slb.sfdc.net:40001/dfw-sam
+        - --apiserver-host=http://pseudo-kubeapi-secondary.csc-sam.prd-samtwo.prd.slb.sfdc.net:40001/dfw-sam
         - --insecure-port=9091
-        - --system-banner-webhook=http://pseudo-kubeapi-test.csc-sam.prd-samtwo.prd.slb.sfdc.net:40001/dfw-sam/dashboard-webhook
+        - --system-banner-webhook=http://pseudo-kubeapi-secondary.csc-sam.prd-samtwo.prd.slb.sfdc.net:40001/dfw-sam/dashboard-webhook
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/d.smith/dashboard:webhook
       ports:
       - containerPort: 9091
@@ -40,9 +40,9 @@ system:
     - name: dashboard-frf
       args:
         - --logtostderr=true
-        - --apiserver-host=http://pseudo-kubeapi-test.csc-sam.prd-samtwo.prd.slb.sfdc.net:40001/frf-sam
+        - --apiserver-host=http://pseudo-kubeapi-secondary.csc-sam.prd-samtwo.prd.slb.sfdc.net:40001/frf-sam
         - --insecure-port=9092
-        - --system-banner-webhook=http://pseudo-kubeapi-test.csc-sam.prd-samtwo.prd.slb.sfdc.net:40001/frf-sam/dashboard-webhook
+        - --system-banner-webhook=http://pseudo-kubeapi-secondary.csc-sam.prd-samtwo.prd.slb.sfdc.net:40001/frf-sam/dashboard-webhook
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/d.smith/dashboard:webhook
       ports:
       - containerPort: 9092
@@ -56,9 +56,9 @@ system:
     - name: dashboard-iad
       args:
         - --logtostderr=true
-        - --apiserver-host=http://pseudo-kubeapi-test.csc-sam.prd-samtwo.prd.slb.sfdc.net:40001/iad-sam
+        - --apiserver-host=http://pseudo-kubeapi-secondary.csc-sam.prd-samtwo.prd.slb.sfdc.net:40001/iad-sam
         - --insecure-port=9093
-        - --system-banner-webhook=http://pseudo-kubeapi-test.csc-sam.prd-samtwo.prd.slb.sfdc.net:40001/iad-sam/dashboard-webhook
+        - --system-banner-webhook=http://pseudo-kubeapi-secondary.csc-sam.prd-samtwo.prd.slb.sfdc.net:40001/iad-sam/dashboard-webhook
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/d.smith/dashboard:webhook
       ports:
       - containerPort: 9093
@@ -72,9 +72,9 @@ system:
     - name: dashboard-ord
       args:
         - --logtostderr=true
-        - --apiserver-host=http://pseudo-kubeapi-test.csc-sam.prd-samtwo.prd.slb.sfdc.net:40001/ord-sam
+        - --apiserver-host=http://pseudo-kubeapi-secondary.csc-sam.prd-samtwo.prd.slb.sfdc.net:40001/ord-sam
         - --insecure-port=9094
-        - --system-banner-webhook=http://pseudo-kubeapi-test.csc-sam.prd-samtwo.prd.slb.sfdc.net:40001/ord-sam/dashboard-webhook
+        - --system-banner-webhook=http://pseudo-kubeapi-secondary.csc-sam.prd-samtwo.prd.slb.sfdc.net:40001/ord-sam/dashboard-webhook
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/d.smith/dashboard:webhook
       ports:
       - containerPort: 9094
@@ -88,9 +88,9 @@ system:
     - name: dashboard-par
       args:
         - --logtostderr=true
-        - --apiserver-host=http://pseudo-kubeapi-test.csc-sam.prd-samtwo.prd.slb.sfdc.net:40001/par-sam
+        - --apiserver-host=http://pseudo-kubeapi-secondary.csc-sam.prd-samtwo.prd.slb.sfdc.net:40001/par-sam
         - --insecure-port=9095
-        - --system-banner-webhook=http://pseudo-kubeapi-test.csc-sam.prd-samtwo.prd.slb.sfdc.net:40001/par-sam/dashboard-webhook
+        - --system-banner-webhook=http://pseudo-kubeapi-secondary.csc-sam.prd-samtwo.prd.slb.sfdc.net:40001/par-sam/dashboard-webhook
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/d.smith/dashboard:webhook
       ports:
       - containerPort: 9095
@@ -105,9 +105,9 @@ system:
       args:
         - --v=8
         - --logtostderr=true
-        - --apiserver-host=http://pseudo-kubeapi-test.csc-sam.prd-samtwo.prd.slb.sfdc.net:40001/hnd-sam
+        - --apiserver-host=http://pseudo-kubeapi-secondary.csc-sam.prd-samtwo.prd.slb.sfdc.net:40001/hnd-sam
         - --insecure-port=9096
-        - --system-banner-webhook=http://pseudo-kubeapi-test.csc-sam.prd-samtwo.prd.slb.sfdc.net:40001/hnd-sam/dashboard-webhook
+        - --system-banner-webhook=http://pseudo-kubeapi-secondary.csc-sam.prd-samtwo.prd.slb.sfdc.net:40001/hnd-sam/dashboard-webhook
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/d.smith/dashboard:webhook
       ports:
       - containerPort: 9096
@@ -121,9 +121,9 @@ system:
     - name: dashboard-ukb
       args:
         - --logtostderr=true
-        - --apiserver-host=http://pseudo-kubeapi-test.csc-sam.prd-samtwo.prd.slb.sfdc.net:40001/ukb-sam
+        - --apiserver-host=http://pseudo-kubeapi-secondary.csc-sam.prd-samtwo.prd.slb.sfdc.net:40001/ukb-sam
         - --insecure-port=9097
-        - --system-banner-webhook=http://pseudo-kubeapi-test.csc-sam.prd-samtwo.prd.slb.sfdc.net:40001/ukb-sam/dashboard-webhook
+        - --system-banner-webhook=http://pseudo-kubeapi-secondary.csc-sam.prd-samtwo.prd.slb.sfdc.net:40001/ukb-sam/dashboard-webhook
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/d.smith/dashboard:webhook
       ports:
       - containerPort: 9097
@@ -137,9 +137,9 @@ system:
     - name: dashboard-prd-sam
       args:
         - --logtostderr=true
-        - --apiserver-host=http://pseudo-kubeapi-test.csc-sam.prd-samtwo.prd.slb.sfdc.net:40001/prd-sam
+        - --apiserver-host=http://pseudo-kubeapi-secondary.csc-sam.prd-samtwo.prd.slb.sfdc.net:40001/prd-sam
         - --insecure-port=9099
-        - --system-banner-webhook=http://pseudo-kubeapi-test.csc-sam.prd-samtwo.prd.slb.sfdc.net:40001/prd-sam/dashboard-webhook
+        - --system-banner-webhook=http://pseudo-kubeapi-secondary.csc-sam.prd-samtwo.prd.slb.sfdc.net:40001/prd-sam/dashboard-webhook
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/d.smith/dashboard:webhook
       ports:
       - containerPort: 9099
@@ -153,9 +153,9 @@ system:
     - name: dashboard-cdu
       args:
         - --logtostderr=true
-        - --apiserver-host=http://pseudo-kubeapi-test.csc-sam.prd-samtwo.prd.slb.sfdc.net:40001/cdu-sam
+        - --apiserver-host=http://pseudo-kubeapi-secondary.csc-sam.prd-samtwo.prd.slb.sfdc.net:40001/cdu-sam
         - --insecure-port=9101
-        - --system-banner-webhook=http://pseudo-kubeapi-test.csc-sam.prd-samtwo.prd.slb.sfdc.net:40001/cdu-sam/dashboard-webhook
+        - --system-banner-webhook=http://pseudo-kubeapi-secondary.csc-sam.prd-samtwo.prd.slb.sfdc.net:40001/cdu-sam/dashboard-webhook
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/d.smith/dashboard:webhook
       ports:
       - containerPort: 9101
@@ -169,9 +169,9 @@ system:
     - name: dashboard-yhu
       args:
         - --logtostderr=true
-        - --apiserver-host=http://pseudo-kubeapi-test.csc-sam.prd-samtwo.prd.slb.sfdc.net:40001/yhu-sam
+        - --apiserver-host=http://pseudo-kubeapi-secondary.csc-sam.prd-samtwo.prd.slb.sfdc.net:40001/yhu-sam
         - --insecure-port=9102
-        - --system-banner-webhook=http://pseudo-kubeapi-test.csc-sam.prd-samtwo.prd.slb.sfdc.net:40001/yhu-sam/dashboard-webhook
+        - --system-banner-webhook=http://pseudo-kubeapi-secondary.csc-sam.prd-samtwo.prd.slb.sfdc.net:40001/yhu-sam/dashboard-webhook
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/d.smith/dashboard:webhook
       ports:
       - containerPort: 9102
@@ -185,9 +185,9 @@ system:
     - name: dashboard-yul
       args:
         - --logtostderr=true
-        - --apiserver-host=http://pseudo-kubeapi-test.csc-sam.prd-samtwo.prd.slb.sfdc.net:40001/yul-sam
+        - --apiserver-host=http://pseudo-kubeapi-secondary.csc-sam.prd-samtwo.prd.slb.sfdc.net:40001/yul-sam
         - --insecure-port=9103
-        - --system-banner-webhook=http://pseudo-kubeapi-test.csc-sam.prd-samtwo.prd.slb.sfdc.net:40001/yul-sam/dashboard-webhook
+        - --system-banner-webhook=http://pseudo-kubeapi-secondary.csc-sam.prd-samtwo.prd.slb.sfdc.net:40001/yul-sam/dashboard-webhook
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/d.smith/dashboard:webhook
       ports:
       - containerPort: 9103
@@ -201,9 +201,9 @@ system:
     - name: dashboard-syd
       args:
         - --logtostderr=true
-        - --apiserver-host=http://pseudo-kubeapi-test.csc-sam.prd-samtwo.prd.slb.sfdc.net:40001/syd-sam
+        - --apiserver-host=http://pseudo-kubeapi-secondary.csc-sam.prd-samtwo.prd.slb.sfdc.net:40001/syd-sam
         - --insecure-port=9104
-        - --system-banner-webhook=http://pseudo-kubeapi-test.csc-sam.prd-samtwo.prd.slb.sfdc.net:40001/syd-sam/dashboard-webhook
+        - --system-banner-webhook=http://pseudo-kubeapi-secondary.csc-sam.prd-samtwo.prd.slb.sfdc.net:40001/syd-sam/dashboard-webhook
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/d.smith/dashboard:webhook
       ports:
       - containerPort: 9104
@@ -217,9 +217,9 @@ system:
     - name: dashboard-chx
       args:
         - --logtostderr=true
-        - --apiserver-host=http://pseudo-kubeapi-test.csc-sam.prd-samtwo.prd.slb.sfdc.net:40001/chx-sam
+        - --apiserver-host=http://pseudo-kubeapi-secondary.csc-sam.prd-samtwo.prd.slb.sfdc.net:40001/chx-sam
         - --insecure-port=9105
-        - --system-banner-webhook=http://pseudo-kubeapi-test.csc-sam.prd-samtwo.prd.slb.sfdc.net:40001/chx-sam/dashboard-webhook
+        - --system-banner-webhook=http://pseudo-kubeapi-secondary.csc-sam.prd-samtwo.prd.slb.sfdc.net:40001/chx-sam/dashboard-webhook
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/d.smith/dashboard:webhook
       ports:
       - containerPort: 9105
@@ -233,9 +233,9 @@ system:
     - name: dashboard-wax
       args:
         - --logtostderr=true
-        - --apiserver-host=http://pseudo-kubeapi-test.csc-sam.prd-samtwo.prd.slb.sfdc.net:40001/wax-sam
+        - --apiserver-host=http://pseudo-kubeapi-secondary.csc-sam.prd-samtwo.prd.slb.sfdc.net:40001/wax-sam
         - --insecure-port=9106
-        - --system-banner-webhook=http://pseudo-kubeapi-test.csc-sam.prd-samtwo.prd.slb.sfdc.net:40001/wax-sam/dashboard-webhook
+        - --system-banner-webhook=http://pseudo-kubeapi-secondary.csc-sam.prd-samtwo.prd.slb.sfdc.net:40001/wax-sam/dashboard-webhook
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/d.smith/dashboard:webhook
       ports:
       - containerPort: 9106
@@ -249,9 +249,9 @@ system:
     - name: dashboard-xrd
       args:
         - --logtostderr=true
-        - --apiserver-host=http://pseudo-kubeapi-test.csc-sam.prd-samtwo.prd.slb.sfdc.net:40001/xrd-sam
+        - --apiserver-host=http://pseudo-kubeapi-secondary.csc-sam.prd-samtwo.prd.slb.sfdc.net:40001/xrd-sam
         - --insecure-port=9107
-        - --system-banner-webhook=http://pseudo-kubeapi-test.csc-sam.prd-samtwo.prd.slb.sfdc.net:40001/xrd-sam/dashboard-webhook
+        - --system-banner-webhook=http://pseudo-kubeapi-secondary.csc-sam.prd-samtwo.prd.slb.sfdc.net:40001/xrd-sam/dashboard-webhook
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/d.smith/dashboard:webhook
       ports:
       - containerPort: 9107
@@ -265,9 +265,9 @@ system:
     - name: dashboard-prd-samtwo
       args:
         - --logtostderr=true
-        - --apiserver-host=http://pseudo-kubeapi-test.csc-sam.prd-samtwo.prd.slb.sfdc.net:40001/prd-samtwo
+        - --apiserver-host=http://pseudo-kubeapi-secondary.csc-sam.prd-samtwo.prd.slb.sfdc.net:40001/prd-samtwo
         - --insecure-port=9108
-        - --system-banner-webhook=http://pseudo-kubeapi-test.csc-sam.prd-samtwo.prd.slb.sfdc.net:40001/prd-samtwo/dashboard-webhook
+        - --system-banner-webhook=http://pseudo-kubeapi-secondary.csc-sam.prd-samtwo.prd.slb.sfdc.net:40001/prd-samtwo/dashboard-webhook
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/d.smith/dashboard:webhook
       ports:
       - containerPort: 9108
@@ -281,9 +281,9 @@ system:
     - name: dashboard-prd-samdev
       args:
         - --logtostderr=true
-        - --apiserver-host=http://pseudo-kubeapi-test.csc-sam.prd-samtwo.prd.slb.sfdc.net:40001/prd-samdev
+        - --apiserver-host=http://pseudo-kubeapi-secondary.csc-sam.prd-samtwo.prd.slb.sfdc.net:40001/prd-samdev
         - --insecure-port=9109
-        - --system-banner-webhook=http://pseudo-kubeapi-test.csc-sam.prd-samtwo.prd.slb.sfdc.net:40001/prd-samdev/dashboard-webhook
+        - --system-banner-webhook=http://pseudo-kubeapi-secondary.csc-sam.prd-samtwo.prd.slb.sfdc.net:40001/prd-samdev/dashboard-webhook
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/d.smith/dashboard:webhook
       ports:
       - containerPort: 9109
@@ -297,9 +297,9 @@ system:
     - name: dashboard-cdg-sam
       args:
         - --logtostderr=true
-        - --apiserver-host=http://pseudo-kubeapi-test.csc-sam.prd-samtwo.prd.slb.sfdc.net:40001/cdg-sam
+        - --apiserver-host=http://pseudo-kubeapi-secondary.csc-sam.prd-samtwo.prd.slb.sfdc.net:40001/cdg-sam
         - --insecure-port=9110
-        - --system-banner-webhook=http://pseudo-kubeapi-test.csc-sam.prd-samtwo.prd.slb.sfdc.net:40001/cdg-sam/dashboard-webhook
+        - --system-banner-webhook=http://pseudo-kubeapi-secondary.csc-sam.prd-samtwo.prd.slb.sfdc.net:40001/cdg-sam/dashboard-webhook
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/d.smith/dashboard:webhook
       ports:
       - containerPort: 9110
@@ -313,9 +313,9 @@ system:
     - name: dashboard-fra-sam
       args:
         - --logtostderr=true
-        - --apiserver-host=http://pseudo-kubeapi-test.csc-sam.prd-samtwo.prd.slb.sfdc.net:40001/fra-sam
+        - --apiserver-host=http://pseudo-kubeapi-secondary.csc-sam.prd-samtwo.prd.slb.sfdc.net:40001/fra-sam
         - --insecure-port=9111
-        - --system-banner-webhook=http://pseudo-kubeapi-test.csc-sam.prd-samtwo.prd.slb.sfdc.net:40001/fra-sam/dashboard-webhook
+        - --system-banner-webhook=http://pseudo-kubeapi-secondary.csc-sam.prd-samtwo.prd.slb.sfdc.net:40001/fra-sam/dashboard-webhook
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/d.smith/dashboard:webhook
       ports:
       - containerPort: 9111
@@ -329,9 +329,9 @@ system:
     - name: dashboard-ia2-sam
       args:
         - --logtostderr=true
-        - --apiserver-host=http://pseudo-kubeapi-test.csc-sam.prd-samtwo.prd.slb.sfdc.net:40001/ia2-sam
+        - --apiserver-host=http://pseudo-kubeapi-secondary.csc-sam.prd-samtwo.prd.slb.sfdc.net:40001/ia2-sam
         - --insecure-port=9112
-        - --system-banner-webhook=http://pseudo-kubeapi-test.csc-sam.prd-samtwo.prd.slb.sfdc.net:40001/ia2-sam/dashboard-webhook
+        - --system-banner-webhook=http://pseudo-kubeapi-secondary.csc-sam.prd-samtwo.prd.slb.sfdc.net:40001/ia2-sam/dashboard-webhook
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/d.smith/dashboard:webhook
       ports:
       - containerPort: 9112
@@ -345,9 +345,9 @@ system:
     - name: dashboard-lo2-sam
       args:
         - --logtostderr=true
-        - --apiserver-host=http://pseudo-kubeapi-test.csc-sam.prd-samtwo.prd.slb.sfdc.net:40001/lo2-sam
+        - --apiserver-host=http://pseudo-kubeapi-secondary.csc-sam.prd-samtwo.prd.slb.sfdc.net:40001/lo2-sam
         - --insecure-port=9113
-        - --system-banner-webhook=http://pseudo-kubeapi-test.csc-sam.prd-samtwo.prd.slb.sfdc.net:40001/lo2-sam/dashboard-webhook
+        - --system-banner-webhook=http://pseudo-kubeapi-secondary.csc-sam.prd-samtwo.prd.slb.sfdc.net:40001/lo2-sam/dashboard-webhook
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/d.smith/dashboard:webhook
       ports:
       - containerPort: 9113
@@ -361,9 +361,9 @@ system:
     - name: dashboard-lo3-sam
       args:
         - --logtostderr=true
-        - --apiserver-host=http://pseudo-kubeapi-test.csc-sam.prd-samtwo.prd.slb.sfdc.net:40001/lo3-sam
+        - --apiserver-host=http://pseudo-kubeapi-secondary.csc-sam.prd-samtwo.prd.slb.sfdc.net:40001/lo3-sam
         - --insecure-port=9114
-        - --system-banner-webhook=http://pseudo-kubeapi-test.csc-sam.prd-samtwo.prd.slb.sfdc.net:40001/lo3-sam/dashboard-webhook
+        - --system-banner-webhook=http://pseudo-kubeapi-secondary.csc-sam.prd-samtwo.prd.slb.sfdc.net:40001/lo3-sam/dashboard-webhook
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/d.smith/dashboard:webhook
       ports:
       - containerPort: 9114
@@ -377,9 +377,9 @@ system:
     - name: dashboard-ph2-sam
       args:
         - --logtostderr=true
-        - --apiserver-host=http://pseudo-kubeapi-test.csc-sam.prd-samtwo.prd.slb.sfdc.net:40001/ph2-sam
+        - --apiserver-host=http://pseudo-kubeapi-secondary.csc-sam.prd-samtwo.prd.slb.sfdc.net:40001/ph2-sam
         - --insecure-port=9115
-        - --system-banner-webhook=http://pseudo-kubeapi-test.csc-sam.prd-samtwo.prd.slb.sfdc.net:40001/ph2-sam/dashboard-webhook
+        - --system-banner-webhook=http://pseudo-kubeapi-secondary.csc-sam.prd-samtwo.prd.slb.sfdc.net:40001/ph2-sam/dashboard-webhook
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/d.smith/dashboard:webhook
       ports:
       - containerPort: 9115
@@ -393,9 +393,9 @@ system:
     - name: dashboard-prd-samtest
       args:
         - --logtostderr=true
-        - --apiserver-host=http://pseudo-kubeapi-test.csc-sam.prd-samtwo.prd.slb.sfdc.net:40001/prd-samtest
+        - --apiserver-host=http://pseudo-kubeapi-secondary.csc-sam.prd-samtwo.prd.slb.sfdc.net:40001/prd-samtest
         - --insecure-port=9116
-        - --system-banner-webhook=http://pseudo-kubeapi-test.csc-sam.prd-samtwo.prd.slb.sfdc.net:40001/prd-samtest/dashboard-webhook
+        - --system-banner-webhook=http://pseudo-kubeapi-secondary.csc-sam.prd-samtwo.prd.slb.sfdc.net:40001/prd-samtest/dashboard-webhook
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/d.smith/dashboard:webhook
       ports:
       - containerPort: 9116
@@ -409,9 +409,9 @@ system:
     - name: dashboard-gcp-mvp-samtest
       args:
         - --logtostderr=true
-        - --apiserver-host=http://pseudo-kubeapi-test.csc-sam.prd-samtwo.prd.slb.sfdc.net:40001/gsf-core-devmvp-sam2-samtest
+        - --apiserver-host=http://pseudo-kubeapi-secondary.csc-sam.prd-samtwo.prd.slb.sfdc.net:40001/gsf-core-devmvp-sam2-samtest
         - --insecure-port=9117
-        - --system-banner-webhook=http://pseudo-kubeapi-test.csc-sam.prd-samtwo.prd.slb.sfdc.net:40001/gsf-core-devmvp-sam2-samtest/dashboard-webhook
+        - --system-banner-webhook=http://pseudo-kubeapi-secondary.csc-sam.prd-samtwo.prd.slb.sfdc.net:40001/gsf-core-devmvp-sam2-samtest/dashboard-webhook
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/d.smith/dashboard:webhook
       ports:
       - containerPort: 9117
@@ -425,9 +425,9 @@ system:
     - name: dashboard-gcp-mvp-sam
       args:
         - --logtostderr=true
-        - --apiserver-host=http://pseudo-kubeapi-test.csc-sam.prd-samtwo.prd.slb.sfdc.net:40001/gsf-core-devmvp-sam2-sam
+        - --apiserver-host=http://pseudo-kubeapi-secondary.csc-sam.prd-samtwo.prd.slb.sfdc.net:40001/gsf-core-devmvp-sam2-sam
         - --insecure-port=9118
-        - --system-banner-webhook=http://pseudo-kubeapi-test.csc-sam.prd-samtwo.prd.slb.sfdc.net:40001/gsf-core-devmvp-sam2-sam/dashboard-webhook
+        - --system-banner-webhook=http://pseudo-kubeapi-secondary.csc-sam.prd-samtwo.prd.slb.sfdc.net:40001/gsf-core-devmvp-sam2-sam/dashboard-webhook
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/d.smith/dashboard:webhook
       ports:
       - containerPort: 9118
@@ -443,163 +443,163 @@ system:
       emptyDir: {}
   loadbalancers:
   - lbname: dashboard-phx-sam-test
-    function: dashboard-test
+    function: dashboard-secondary
     slbEnabled: true
     ports:
       - port: 80
         targetport: 9090
   - lbname: dashboard-dfw-sam-test
-    function: dashboard-test
+    function: dashboard-secondary
     slbEnabled: true
     ports:
       - port: 80
         targetport: 9091
   - lbname: dashboard-frf-sam-test
-    function: dashboard-test
+    function: dashboard-secondary
     slbEnabled: true
     ports:
       - port: 80
         targetport: 9092
   - lbname: dashboard-iad-sam-test
-    function: dashboard-test
+    function: dashboard-secondary
     slbEnabled: true
     ports:
       - port: 80
         targetport: 9093
   - lbname: dashboard-ord-sam-test
-    function: dashboard-test
+    function: dashboard-secondary
     slbEnabled: true
     ports:
       - port: 80
         targetport: 9094
   - lbname: dashboard-par-sam-test
-    function: dashboard-test
+    function: dashboard-secondary
     slbEnabled: true
     ports:
       - port: 80
         targetport: 9095
   - lbname: dashboard-hnd-sam-test
-    function: dashboard-test
+    function: dashboard-secondary
     slbEnabled: true
     ports:
       - port: 80
         targetport: 9096
   - lbname: dashboard-ukb-sam-test
-    function: dashboard-test
+    function: dashboard-secondary
     slbEnabled: true
     ports:
       - port: 80
         targetport: 9097
   - lbname: dashboard-prd-sam-test
-    function: dashboard-test
+    function: dashboard-secondary
     slbEnabled: true
     ports:
       - port: 80
         targetport: 9099
   - lbname: dashboard-cdu-sam-test
-    function: dashboard-test
+    function: dashboard-secondary
     slbEnabled: true
     ports:
       - port: 80
         targetport: 9101
   - lbname: dashboard-yhu-sam-test
-    function: dashboard-test
+    function: dashboard-secondary
     slbEnabled: true
     ports:
       - port: 80
         targetport: 9102
   - lbname: dashboard-yul-sam-test
-    function: dashboard-test
+    function: dashboard-secondary
     slbEnabled: true
     ports:
       - port: 80
         targetport: 9103
   - lbname: dashboard-syd-sam-test
-    function: dashboard-test
+    function: dashboard-secondary
     slbEnabled: true
     ports:
       - port: 80
         targetport: 9104
   - lbname: dashboard-chx-sam-test
-    function: dashboard-test
+    function: dashboard-secondary
     slbEnabled: true
     ports:
       - port: 80
         targetport: 9105
   - lbname: dashboard-wax-sam-test
-    function: dashboard-test
+    function: dashboard-secondary
     slbEnabled: true
     ports:
       - port: 80
         targetport: 9106
   - lbname: dashboard-xrd-sam-test
-    function: dashboard-test
+    function: dashboard-secondary
     slbEnabled: true
     ports:
       - port: 80
         targetport: 9107
   - lbname: dashboard-prd-sam-two-test
-    function: dashboard-test
+    function: dashboard-secondary
     slbEnabled: true
     ports:
       - port: 80
         targetport: 9108
   - lbname: dashboard-prd-sam-dev-test
-    function: dashboard-test
+    function: dashboard-secondary
     slbEnabled: true
     ports:
       - port: 80
         targetport: 9109
   - lbname: dashboard-cdg-sam-test
-    function: dashboard-test
+    function: dashboard-secondary
     slbEnabled: true
     ports:
       - port: 80
         targetport: 9110
   - lbname: dashboard-fra-sam-test
-    function: dashboard-test
+    function: dashboard-secondary
     slbEnabled: true
     ports:
       - port: 80
         targetport: 9111
   - lbname: dashboard-ia2-sam-test
-    function: dashboard-test
+    function: dashboard-secondary
     slbEnabled: true
     ports:
       - port: 80
         targetport: 9112
   - lbname: dashboard-lo2-sam-test
-    function: dashboard-test
+    function: dashboard-secondary
     slbEnabled: true
     ports:
       - port: 80
         targetport: 9113
   - lbname: dashboard-lo3-sam-test
-    function: dashboard-test
+    function: dashboard-secondary
     slbEnabled: true
     ports:
       - port: 80
         targetport: 9114
   - lbname: dashboard-ph2-sam-test
-    function: dashboard-test
+    function: dashboard-secondary
     slbEnabled: true
     ports:
       - port: 80
         targetport: 9115
   - lbname: dashboard-prd-sam-test-test
-    function: dashboard-test
+    function: dashboard-secondary
     slbEnabled: true
     ports:
       - port: 80
         targetport: 9116
   - lbname: dashboard-gcp-mvp-sam-test-test
-    function: dashboard-test
+    function: dashboard-secondary
     slbEnabled: true
     ports:
       - port: 80
         targetport: 9117
   - lbname: dashboard-gcp-mvp-sam-test
-    function: dashboard-test
+    function: dashboard-secondary
     slbEnabled: true
     ports:
       - port: 80
