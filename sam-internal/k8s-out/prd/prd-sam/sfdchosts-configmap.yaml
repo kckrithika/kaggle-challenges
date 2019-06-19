@@ -1254,7 +1254,7 @@ data:
           "hostname": "shared0-samminioncustomerresolutionengine1-3-prd.eng.sfdc.net",
           "kingdom": "prd",
           "pod": "none",
-          "rack": "s03-45",
+          "rack": "n12-45",
           "superpod": "none"
         },
         {
@@ -1265,7 +1265,7 @@ data:
           "hostname": "shared0-samminioncustomerresolutionengine1-4-prd.eng.sfdc.net",
           "kingdom": "prd",
           "pod": "none",
-          "rack": "d38-45",
+          "rack": "d19-45",
           "superpod": "none"
         },
         {
@@ -1342,7 +1342,7 @@ data:
           "hostname": "shared0-samminioncustomerresolutionengine3-3-prd.eng.sfdc.net",
           "kingdom": "prd",
           "pod": "none",
-          "rack": "u37-45",
+          "rack": "g41-45",
           "superpod": "none"
         },
         {
@@ -1353,7 +1353,7 @@ data:
           "hostname": "shared0-samminioncustomerresolutionengine3-4-prd.eng.sfdc.net",
           "kingdom": "prd",
           "pod": "none",
-          "rack": "u32-45",
+          "rack": "n09-45",
           "superpod": "none"
         },
         {

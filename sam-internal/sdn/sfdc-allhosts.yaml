@@ -31263,7 +31263,7 @@ hosts:
   hostname: samcaas4-caasminion1-1-ph2.ops.sfdc.net
   kingdom: ph2
   pod: none
-  rack: b75-dh10
+  rack: e35-dh10
   superpod: sp4
 - bomrolename: sam_minion_caas
   controlestate: ph2-sam
@@ -31272,7 +31272,7 @@ hosts:
   hostname: samcaas4-caasminion1-2-ph2.ops.sfdc.net
   kingdom: ph2
   pod: none
-  rack: b75-dh10
+  rack: e35-dh10
   superpod: sp4
 - bomrolename: sam_minion_caas
   controlestate: ph2-sam
@@ -32686,6 +32686,69 @@ hosts:
   kingdom: phx
   pod: none
   rack: d55-40
+  superpod: none
+- bomrolename: sam_minion_aqueduct
+  controlestate: phx-sam
+  devicerole: samcompute
+  estate: phx-sam_eventbus
+  hostname: shared0-samminionaqueduct1-1-phx.ops.sfdc.net
+  kingdom: phx
+  pod: none
+  rack: r49-40
+  superpod: none
+- bomrolename: sam_minion_aqueduct
+  controlestate: phx-sam
+  devicerole: samcompute
+  estate: phx-sam_eventbus
+  hostname: shared0-samminionaqueduct1-2-phx.ops.sfdc.net
+  kingdom: phx
+  pod: none
+  rack: x11-40
+  superpod: none
+- bomrolename: sam_minion_aqueduct
+  controlestate: phx-sam
+  devicerole: samcompute
+  estate: phx-sam_eventbus
+  hostname: shared0-samminionaqueduct1-3-phx.ops.sfdc.net
+  kingdom: phx
+  pod: none
+  rack: x11-40
+  superpod: none
+- bomrolename: sam_minion_aqueduct
+  controlestate: phx-sam
+  devicerole: samcompute
+  estate: phx-sam_eventbus
+  hostname: shared0-samminionaqueduct2-1-phx.ops.sfdc.net
+  kingdom: phx
+  pod: none
+  rack: e55-40
+  superpod: none
+- bomrolename: sam_minion_aqueduct
+  controlestate: phx-sam
+  devicerole: samcompute
+  estate: phx-sam_eventbus
+  hostname: shared0-samminionaqueduct2-2-phx.ops.sfdc.net
+  kingdom: phx
+  pod: none
+  rack: e55-40
+  superpod: none
+- bomrolename: sam_minion_aqueduct
+  controlestate: phx-sam
+  devicerole: samcompute
+  estate: phx-sam_eventbus
+  hostname: shared0-samminionaqueduct3-1-phx.ops.sfdc.net
+  kingdom: phx
+  pod: none
+  rack: d32-40
+  superpod: none
+- bomrolename: sam_minion_aqueduct
+  controlestate: phx-sam
+  devicerole: samcompute
+  estate: phx-sam_eventbus
+  hostname: shared0-samminionaqueduct3-2-phx.ops.sfdc.net
+  kingdom: phx
+  pod: none
+  rack: y01-40
   superpod: none
 - bomrolename: sam_minion_gater
   controlestate: phx-sam
@@ -37257,7 +37320,7 @@ hosts:
   hostname: shared0-samminioncustomerresolutionengine1-3-prd.eng.sfdc.net
   kingdom: prd
   pod: none
-  rack: s03-45
+  rack: n12-45
   superpod: none
 - bomrolename: sam_minion_customerresolutionengine
   controlestate: prd-sam
@@ -37266,7 +37329,7 @@ hosts:
   hostname: shared0-samminioncustomerresolutionengine1-4-prd.eng.sfdc.net
   kingdom: prd
   pod: none
-  rack: d38-45
+  rack: d19-45
   superpod: none
 - bomrolename: sam_minion_customerresolutionengine
   controlestate: prd-sam
@@ -37329,7 +37392,7 @@ hosts:
   hostname: shared0-samminioncustomerresolutionengine3-3-prd.eng.sfdc.net
   kingdom: prd
   pod: none
-  rack: u37-45
+  rack: g41-45
   superpod: none
 - bomrolename: sam_minion_customerresolutionengine
   controlestate: prd-sam
@@ -37338,7 +37401,7 @@ hosts:
   hostname: shared0-samminioncustomerresolutionengine3-4-prd.eng.sfdc.net
   kingdom: prd
   pod: none
-  rack: u32-45
+  rack: n09-45
   superpod: none
 - bomrolename: sam_minion_datapool
   controlestate: prd-sam
@@ -42136,15 +42199,6 @@ hosts:
   kingdom: ukb
   pod: none
   rack: b10-ks31
-  superpod: none
-- bomrolename: sam_minion_chatbot_kingdom
-  controlestate: ukb-sam
-  devicerole: samcompute
-  estate: ukb-sam_chatbot_kingdom
-  hostname: shared0-samminionchatbotrt1-5-ukb.ops.sfdc.net
-  kingdom: ukb
-  pod: none
-  rack: f07-ks31
   superpod: none
 - bomrolename: sam_minion_cloudatlas_fe
   controlestate: ukb-sam
