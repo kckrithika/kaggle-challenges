@@ -320,7 +320,7 @@ system:
         value: true
       - name: ENABLE_HEALTH_CHECK_TLS
         value: false
-      image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/casam/sequencer:78b9ae
+      image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/casam/sequencer:85134f
       livenessProbe:
         exec:
           command:
