@@ -22,9 +22,6 @@ apps:
  gate-manager-gia2:
   - hio/hio-sam_gater
   - ttd/ttd-sam_gater
- gate-manager-2instances:
- gate-manager-3instances:
- gate-manager-4instances:
  gate-manager-10instances:
   - dfw/dfw-sam_gater
   - iad/iad-sam_gater
