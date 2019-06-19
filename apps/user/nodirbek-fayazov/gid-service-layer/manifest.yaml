@@ -74,9 +74,9 @@ system:
         imagePullPolicy: Always
         env:
           - name: server_port
-            value: 8081
-          - name: management_server_port
             value: 7022
+          - name: management_server_port
+            value: 15371
           - name: ca_service_host
             value: 10.233.180.195
           - name: security_client_dynamickeystore_cadir
@@ -84,8 +84,8 @@ system:
           - name: security_client_dynamickeystore_monitoredDirectory
             value: /certs
         ports:
-          - containerPort: 8081
           - containerPort: 7022
+          - containerPort: 15371
         livenessProbe:
           exec:
             command:
