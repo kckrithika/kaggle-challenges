@@ -27,7 +27,7 @@ system:
           port: 15372
 
     - name: sherpa
-      image: sfci/servicelibs/sherpa-envoy:ab66651ebe4478a1b819f11edc7b01dd364c3e28
+      image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-gcp/sfci/servicelibs/sherpa-envoy:ab66651ebe4478a1b819f11edc7b01dd364c3e28
       ports:
         - name: http2-in
           containerPort: 7012
