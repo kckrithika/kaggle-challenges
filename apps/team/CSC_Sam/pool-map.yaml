@@ -66,20 +66,19 @@ apps:
   - prd/prd-sam
  SamDailyReport:
   - prd/prd-sam
+ TnrpMonitor:
+  - prd/prd-sam
  pseudo-api:
   - prd/prd-sam
-  - prd/prd-samtwo
- pseudo-api-test:
-  - prd/prd-samtwo
  kubernetes-dashboard:
-  - prd/prd-sam
-  - prd/prd-samtwo
- kubernetes-dashboard-test:
-  - prd/prd-samtwo
- TnrpMonitor:
   - prd/prd-sam
  SamDeploymentPortalV2:
   - prd/prd-sam
+ pseudo-api-secondary:
+  - prd/prd-samtwo
+ kubernetes-dashboard-secondary:
+  - prd/prd-samtwo
+ SamDeploymentPortalV2-secondary:
   - prd/prd-samtwo
  snapshot-producer: 
   - frf/frf-sam
