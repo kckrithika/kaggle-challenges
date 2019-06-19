@@ -5,8 +5,6 @@ system:
   - name: shipping-mvp
     serviceAccountName: service-mesh-3ekss14awi2a42qxp
     count: 1
-#    annotations:
-#      "sherpa-injector.service-mesh/inject": "enabled"
     containers:
     - name: shipping
       image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/npshenichnyy/shipping-service:bazel-monorepo-20190220110527
@@ -28,6 +26,19 @@ system:
 
     - name: sherpa
       image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-gcp/sfci/servicelibs/sherpa-envoy:ab66651ebe4478a1b819f11edc7b01dd364c3e28
+      args:
+      - --client-ca
+      - /etc/identity/ca/cacerts.pem
+      - --client-cert
+      - /etc/identity/client/certificates/client.pem
+      - --client-key
+      - /etc/identity/client/keys/client-key.pem
+      - --server-ca
+      - /etc/identity/ca/cacerts.pem
+      - --server-cert
+      - /etc/identity/server/certificates/server.pem
+      - --server-key
+      - /etc/identity/server/keys/server-key.pem
       ports:
         - name: http2-in
           containerPort: 7012
@@ -35,11 +46,6 @@ system:
           containerPort: 7443
         - name: sherpa-adm
           containerPort: 15373
-      volumeMounts:
-        - mountPath: /client-certs
-          name: tls-client-cert
-        - mountPath: /server-certs
-          name: tls-server-cert
       livenessProbe:
         exec:
           command:
@@ -70,11 +76,3 @@ system:
         exec:
           command:
             - "/opt/beacon/is-alive.sh"
-
-    volumes:
-    - name: tls-client-cert
-      maddogCert:
-        type: client
-    - name: tls-server-cert
-      maddogCert:
-        type: server
