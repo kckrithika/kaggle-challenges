@@ -1,5 +1,4 @@
 apiVersion: v1
-
 system:
   functions:
     - name: search-aws0
@@ -19,7 +18,7 @@ system:
         - name: LBNAME
           value: "searchserver0"
         - name: DNS_SUFFIX
-          value: "cluster.local" #TODO change it.
+          value: "cluster.local"
         - name: DNS_PODNAME
           valueFrom:
             fieldRef:
