@@ -118,4 +118,4 @@ system:
       slbEnabled: true
       ports:
         - port: 7022
-          targetport: 8081
+          targetport: 7014
