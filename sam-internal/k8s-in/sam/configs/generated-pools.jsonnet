@@ -17,12 +17,14 @@
       "namespaces": [
         "csc-sam",
         "core-on-sam",
-        "qpid"
+        "qpid",
+        "solr-service"
       ],
       "access": [
         "team/CSC_Sam",
         "team/core-on-sam",
-        "team/qpid"
+        "team/qpid",
+        "team/solr-service"
       ],
       "controlEstate": "aws-us-west-2-casam",
       "estate": "aws-us-west-2-casam",
