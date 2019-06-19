@@ -45,7 +45,7 @@ system:
       terminationGracePeriodSeconds: 10
       volumeClaimTemplates:
       - name: solr-data-volume
-        storageClassName: faster
+        storageClassName: gp2
         storageSizeRequest: 10Gi
       volumes:
         - name: solr-log-volume
