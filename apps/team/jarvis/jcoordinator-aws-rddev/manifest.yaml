@@ -2,12 +2,10 @@ apiVersion: v1
 system:
   functions:
   - name: jcoordinator
+    serviceAccountName: jarvis-cmanu1bd31m5czytu2qmew1
+    automountServiceAccountToken: true
     type: deployment
     count: 1
-    volumes:
-    - name: clientcert
-      maddogCert:
-        type: client
     containers:
     - name: jarvis-coordinator
       image: 791719295754.dkr.ecr.us-east-2.amazonaws.com/dva/jarvis-coordinator:2e7e4445e6701eed2e3c0bbbf6632bce09ae2064
@@ -16,9 +14,6 @@ system:
           command:
           - echo
           - "OK"
-      volumeMounts:
-      - name: clientcert
-        mountPath: /certs
   loadbalancers:
   - lbname: jcoordinator
     function: jcoordinator
