@@ -162,7 +162,7 @@ system:
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/casam/beacon:c574fe83d
       args:
       - -endpoint
-      - core-on-sam/dapp:POD:4500
+      - core-on-sam/dapp:DATACENTER:4500
       - -endpoint
       - core-on-sam/na6dapp:DATACENTER:7014
       livenessProbe:
