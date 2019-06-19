@@ -15,3 +15,7 @@ apps:
   dfs-production:
     - name: iad/iad-sam_crosscloudplatform
     - name: ord/ord-sam_crosscloudplatform
+    - name: frf/frf-sam_crosscloudplatform
+    - name: par/par-sam_crosscloudplatform
+    - name: ukb/ukb-sam_crosscloudplatform
+    - name: hnd/hnd-sam_crosscloudplatform
