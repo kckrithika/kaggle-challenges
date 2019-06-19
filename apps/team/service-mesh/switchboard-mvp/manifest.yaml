@@ -11,7 +11,7 @@ system:
         maxUnavailable: 2
     containers:
     - name: switchboard
-      image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-gcp/sfci/servicelibs/switchboard:2a6f60acdc8a877797e49d84c1d1da1b84f8c501
+      image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-gcp/sfci/servicelibs/switchboard:aa283eb9ddcae46e0e25607fa3a967c2c065e9b1
       args:
       - --clusters.external-clusters[0]=ajnafunneldirect:HTTP1
       - --clusters.external-clusters[1]=spaasmesh:HTTP2
@@ -70,7 +70,7 @@ system:
         timeoutSeconds: 6
       terminationMessagePolicy: FallbackToLogsOnError
     - name: sherpa
-      image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-gcp/sfci/servicelibs/sherpa-envoy:1.0.7
+      image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-gcp/sfci/servicelibs/sherpa-envoy:ab66651ebe4478a1b819f11edc7b01dd364c3e28
       args:
       - --template
       - /switchboard-config/switchboard-sidecar.config.yaml.template
