@@ -13,7 +13,7 @@ system:
       count: 3
       containers:
         - name: qpid-broker-runtime
-          image: 791719295754.dkr.ecr.us-east-2.amazonaws.com/sfci/appscale/qpid/qpid-broker-runtime:0.9.0
+          image: 791719295754.dkr.ecr.us-east-2.amazonaws.com/sfci/appscale/qpid-broker-runtime:0.9.0
           ports:
             - name: amqp-port
               containerPort: 5672
