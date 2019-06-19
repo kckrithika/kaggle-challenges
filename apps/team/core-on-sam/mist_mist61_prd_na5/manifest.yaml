@@ -125,9 +125,9 @@ system:
       volumeMounts:
       - mountPath: /home/sfdc/salesforce/casam
         name: coreapp-casam-volume
-    - name: sherpa
+    - name: sherpa-envoy
       # Use the latest release version from https://git.soma.salesforce.com/servicelibs/sherpa-envoy/releases
-      image: sfci/servicelibs/sherpa-envoy:1.0.6
+      image: sfci/servicelibs/sherpa-envoy:33101eda4a3280cf3b4b8458da27a9494b0aa9ae
       # See https://git.soma.salesforce.com/servicelibs/sherpa#ports
       ports:
       - containerPort: 7442
@@ -185,7 +185,7 @@ system:
       serviceName: sfproxy
     containers:
     - name: sfproxy-envoy
-      image: sfci/frontend-gateway/sfproxy:33e43ab
+      image: sfci/frontend-gateway/sfproxy:a290f27
       args:
       - --template=/home/sfdc-sherpa/sfproxy/config/core-on-sam/sfproxy-public-cloud-rds.yaml.template
       - --switchboard=na5-switchboard-lb.core-on-sam-sp2.prd-sam.prd.slb.sfdc.net:8088
@@ -229,16 +229,17 @@ system:
     count: 1
     identity:
       pod: na5
-      serviceName: switchboard
+      serviceName: sfproxy-switchboard
     containers:
-    - name: switchboard
-      image: sfci/servicelibs/switchboard:db4c69eded9a83a094ddc8a851a61bee177f52e9
+    - name: sfproxy-switchboard-server
+      image: sfci/servicelibs/switchboard:9d22f758f07a729fec87d090b1a8b6f9c2fe6d48
       args:
       - --clusters.external-clusters[0]=ajnafunneldirect:HTTP1
       - --clusters.external-clusters[1]=spaasmesh:HTTP2
       - --metrics.maxNumberOfCollectedMetrics=100000
       - --metrics.funnelTimeOut=90000
       - --metrics.funnelEndPointURL=http://ajna0-funnel1-0-prd.data.sfdc.net:80
+      - --routes.frontProxy.isTrueFrontProxy=true
       env:
       - name: SFDC_ENVIRONMENT
         value: mist61
@@ -264,8 +265,8 @@ system:
       volumeMounts:
       - mountPath: /home/sfdc-switchboard/sherpa-envoy-config-volume
         name: envoy-config-volume
-    - name: envoy-sidecar
-      image: sfci/frontend-gateway/sfproxy:33e43ab
+    - name: sfproxy-switchboard-sherpa
+      image: sfci/frontend-gateway/sfproxy:a290f27
       ports:
       - containerPort: 15001
       - containerPort: 15373
