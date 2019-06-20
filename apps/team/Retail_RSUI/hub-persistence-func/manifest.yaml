@@ -21,7 +21,7 @@ system:
 
       containers:
         - name: hub-persistence
-          image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/eli/hub-persistence:alpha-20190611-1
+          image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/retail/hub-persistence:0.0.1.1
           ports:
             # Jetty http1 ports for incoming public traffic via SLB
             - containerPort: 7022
@@ -97,7 +97,7 @@ system:
             requests: { cpu: "1", memory: "1Gi" }
           args:
             - -endpoint
-            - retail-rsui/hub-persistence:DATACENTER:7442
+            - retail-rsui/hub-persistence-func:DATACENTER:7442
           livenessProbe:
             initialDelaySeconds: 15
             exec:
