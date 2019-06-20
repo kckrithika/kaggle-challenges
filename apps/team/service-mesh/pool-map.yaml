@@ -98,9 +98,9 @@ apps:
     - prd/prd-sam_gater
 
   # Regular Mode: Istio -> Istio apps
-  istio-geoip:
-    - prd/prd-sam_gater
-    - prd/prd-samtest
+#  istio-geoip: # Enable as required.
+#    - prd/prd-sam_gater
+#    - prd/prd-samtest
   istio-ordering:
     - prd/prd-sam_gater
     - prd/prd-samtest
@@ -127,14 +127,10 @@ apps:
     - prd/prd-sam_gater
   istio-fake-casam-na35:
     - prd/prd-sam_gater
-#  istio-gater:
-#    - prd/prd-sam_gater
+
 # Enable as needed:
 #  geoipnk:
 #    - prd/prd-sam_gater
-
-  istio-k8s-to-baremetal:
-    - prd/prd-sam_gater
 
   authz-svc:
     - prd/prd-sam_gater
