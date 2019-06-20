@@ -98,7 +98,7 @@ system:
       - name: CORE_OAUTH_SANDBOXURL
         value: https://test.salesforce.com
       - name: RSUI_OAUTH_CALLBACK
-        value: https://iad.salesforce-hub.com/service/oauth/callback 
+        value: https://frf.salesforce-hub.com/service/oauth/callback 
       - name: OAUTH_CONSUMER_KEY_FILE_PATH
         value: secrets/consumer-key/rsui-consumer-key.key
       - name: OAUTH_CONSUMER_SECRET_FILE_PATH
@@ -236,8 +236,8 @@ system:
         tls: true
         lbtype: http
         reencrypt: true
-        tlscertificate: secret_service:cstoolkit_iad.salesforce-hub.com_20190204-215232:EndEntity
-        tlskey: secret_service:cstoolkit_iad.salesforce-hub.com_20190204-215232:Key
+        tlscertificate: secret_service:cstoolkit_frf.salesforce-hub.com_20190204-215232:EndEntity
+        tlskey: secret_service:cstoolkit_frf.salesforce-hub.com_20190204-215232:Key
   - lbname: rsui-production-frf-test-lb
     function: rsui-production-frf
     slbEnabled: true
@@ -247,5 +247,5 @@ system:
         tls: true
         lbtype: http
         reencrypt: true
-        tlscertificate: secret_service:cstoolkit_iad-test.salesforce-hub.com_20190204-215232:EndEntity
-        tlskey: secret_service:cstoolkit_iad-test.salesforce-hub.com_20190204-215232:Key
+        tlscertificate: secret_service:cstoolkit_frf-test.salesforce-hub.com_20190204-215232:EndEntity
+        tlskey: secret_service:cstoolkit_frf-test.salesforce-hub.com_20190204-215232:Key
