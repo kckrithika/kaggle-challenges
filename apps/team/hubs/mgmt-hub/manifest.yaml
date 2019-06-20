@@ -16,6 +16,9 @@ system:
     - name: secretvol
       k4aSecret:
         secretName: coreappjmx
+    - name: logvol
+      hostPath:
+        path: /home/sfdc-mgmt/logs
     # Docker image(s) that make up one instance of the service
     containers:
     - name: mgmt-hub
