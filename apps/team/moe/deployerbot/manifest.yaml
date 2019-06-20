@@ -6,7 +6,7 @@ system:
     count: 1
     containers:
     - name: deployerbot
-      image: dva/moe/deployerbot:2153-917f288240dd5ccfdc4ecfc9bef83a3abb8a2e55
+      image: dva/moe/deployerbot:2207-e7b9ccab27934205f59fc594c324e42ad8b03ebc
       env:
       - name: GO_PIPELINE_LABEL
         value: 1
@@ -42,7 +42,7 @@ system:
         name: slb-private-slack-notification
         readOnly: true
     - name: imagedeployer-hyperslb
-      image: dva/moe/deployerbot:2153-917f288240dd5ccfdc4ecfc9bef83a3abb8a2e55
+      image: dva/moe/deployerbot:2207-e7b9ccab27934205f59fc594c324e42ad8b03ebc
       command: ["/moe/imagedeployer"]
       args:
       - "-deployerbotServiceEndpoint=http://localhost:8080/deploy"
@@ -52,6 +52,7 @@ system:
       - "-owner=slb"
       - "-samInternalTeamName=SLB"
       - "-targetPhaseNumber=1"
+      - "-imageRegistryEndpoint=ops0-artifactrepo2-0-prd.data.sfdc.net"
       - "-imageRegistryImageSource=dva"
       - "-heartbeat.defaultdecayduration=15m"
       - "-livenessProbePort=8081"
@@ -64,7 +65,7 @@ system:
         initialDelaySeconds: 180
         periodSeconds: 60
     - name: imagedeployer-nginx
-      image: dva/moe/deployerbot:2153-917f288240dd5ccfdc4ecfc9bef83a3abb8a2e55
+      image: dva/moe/deployerbot:2207-e7b9ccab27934205f59fc594c324e42ad8b03ebc
       command: ["/moe/imagedeployer"]
       args:
       - "-deployerbotServiceEndpoint=http://localhost:8080/deploy"
@@ -74,6 +75,7 @@ system:
       - "-imageKey=slbnginx" # The name of the object to update in slbreleases.json.
       - "-samInternalTeamName=SLB"
       - "-targetPhaseNumber=1"
+      - "-imageRegistryEndpoint=ops0-artifactrepo2-0-prd.data.sfdc.net"
       - "-imageRegistryImageSource=dva"
       - "-heartbeat.defaultdecayduration=15m"
       - "-livenessProbePort=8082"
@@ -86,7 +88,7 @@ system:
         initialDelaySeconds: 180
         periodSeconds: 60
     - name: imagedeployer-nginx-kms
-      image: dva/moe/deployerbot:2153-917f288240dd5ccfdc4ecfc9bef83a3abb8a2e55
+      image: dva/moe/deployerbot:2207-e7b9ccab27934205f59fc594c324e42ad8b03ebc
       command: ["/moe/imagedeployer"]
       args:
       - "-deployerbotServiceEndpoint=http://localhost:8080/deploy"
@@ -96,6 +98,7 @@ system:
       - "-imageKey=kmsnginx" # The name of the object to update in slbreleases.json.
       - "-samInternalTeamName=SLB"
       - "-targetPhaseNumber=1"
+      - "-imageRegistryEndpoint=ops0-artifactrepo2-0-prd.data.sfdc.net"
       - "-imageRegistryImageSource=dva"
       - "-heartbeat.defaultdecayduration=15m"
       - "-livenessProbePort=8083"
@@ -107,18 +110,8 @@ system:
           port: 8083
         initialDelaySeconds: 180
         periodSeconds: 60
-    volumes:
-    - name: deployerbot-ghe-pat
-      k4aSecret:
-        secretName: speedometer-ghe-pat
-    - name: moe-gpg-signing-key
-      k4aSecret:
-        secretName: moe-gpg-signing-key
-    - name: slb-private-slack-notification
-      k4aSecret:
-        secretName: slb-private-slack-notification
     - name: imagedeployer-envoy
-      image: dva/moe/deployerbot:2153-917f288240dd5ccfdc4ecfc9bef83a3abb8a2e55
+      image: dva/moe/deployerbot:2207-e7b9ccab27934205f59fc594c324e42ad8b03ebc
       command: ["/moe/imagedeployer"]
       args:
       - "-deployerbotServiceEndpoint=http://localhost:8080/deploy"
@@ -128,6 +121,7 @@ system:
       - "-imageKey=slbenvoy" # The name of the object to update in slbreleases.json.
       - "-samInternalTeamName=SLB"
       - "-targetPhaseNumber=1"
+      - "-imageRegistryEndpoint=ops0-artifactrepo2-0-prd.data.sfdc.net"
       - "-imageRegistryImageSource=dva"
       - "-heartbeat.defaultdecayduration=15m"
       - "-livenessProbePort=8084"
@@ -153,7 +147,7 @@ system:
     count: 1
     containers:
     - name: deployerbot
-      image: dva/moe/deployerbot:2153-917f288240dd5ccfdc4ecfc9bef83a3abb8a2e55
+      image: dva/moe/deployerbot:2207-e7b9ccab27934205f59fc594c324e42ad8b03ebc
       env:
       - name: GO_PIPELINE_LABEL
         value: 1
@@ -189,7 +183,7 @@ system:
         name: sam-slack-notification
         readOnly: true
     - name: imagedeployer-hypersam
-      image: dva/moe/deployerbot:2153-917f288240dd5ccfdc4ecfc9bef83a3abb8a2e55
+      image: dva/moe/deployerbot:2207-e7b9ccab27934205f59fc594c324e42ad8b03ebc
       command: ["/moe/imagedeployer"]
       args:
       - "-deployerbotServiceEndpoint=http://localhost:8080/deploy"
@@ -199,6 +193,7 @@ system:
       - "-owner=sam"
       - "-samInternalTeamName=SAM"
       - "-targetPhaseNumber=1"
+      - "-imageRegistryEndpoint=ops0-artifactrepo2-0-prd.data.sfdc.net"
       - "-imageRegistryImageSource=dva"
       - "-heartbeat.defaultdecayduration=15m"
       - "-livenessProbePort=8081"
@@ -211,7 +206,7 @@ system:
         initialDelaySeconds: 180
         periodSeconds: 60
     - name: imagedeployer-madkub
-      image: dva/moe/deployerbot:2153-917f288240dd5ccfdc4ecfc9bef83a3abb8a2e55
+      image: dva/moe/deployerbot:2207-e7b9ccab27934205f59fc594c324e42ad8b03ebc
       command: ["/moe/imagedeployer"]
       args:
       - "-deployerbotServiceEndpoint=http://localhost:8080/deploy"
@@ -221,6 +216,7 @@ system:
       - "-owner=sam"
       - "-samInternalTeamName=SAM"
       - "-targetPhaseNumber=1"
+      - "-imageRegistryEndpoint=ops0-artifactrepo2-0-prd.data.sfdc.net"
       - "-imageRegistryImageSource=tnrp"
       - "-heartbeat.defaultdecayduration=15m"
       - "-livenessProbePort=8082"
@@ -233,7 +229,7 @@ system:
         initialDelaySeconds: 180
         periodSeconds: 60
     - name: imagedeployer-madkub-sidecar
-      image: dva/moe/deployerbot:2153-917f288240dd5ccfdc4ecfc9bef83a3abb8a2e55
+      image: dva/moe/deployerbot:2207-e7b9ccab27934205f59fc594c324e42ad8b03ebc
       command: ["/moe/imagedeployer"]
       args:
       - "-deployerbotServiceEndpoint=http://localhost:8080/deploy"
@@ -243,6 +239,7 @@ system:
       - "-owner=sam"
       - "-samInternalTeamName=SAM"
       - "-targetPhaseNumber=1"
+      - "-imageRegistryEndpoint=ops0-artifactrepo2-0-prd.data.sfdc.net"
       - "-imageRegistryImageSource=tnrp"
       - "-heartbeat.defaultdecayduration=15m"
       - "-livenessProbePort=8083"
