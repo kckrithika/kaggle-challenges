@@ -16,7 +16,6 @@ system:
     #####################################################################################
     - name: sherpa-cloudatlas-client
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mbeig/sherpa-envoy:1.0.8_gidcustom
-      imagePullPolicy: Always
       env:
       - name: SFDC_ENVIRONMENT
         value: "stmfa"
@@ -109,7 +108,7 @@ system:
         - name: server_port
           value: 8081
         - name: management_server_port
-          value: 15371
+          value: 7022
         - name: ca_service_host
           value: 127.0.0.1
         - name: security_client_dynamickeystore_cadir
@@ -118,7 +117,7 @@ system:
           value: /certs
       ports:
         - containerPort: 8081
-        - containerPort: 15371
+        - containerPort: 7022
       livenessProbe:
         exec:
           command:
@@ -142,8 +141,6 @@ system:
     - name: logvolbeacon
       hostPath:
         path: /home/sfdc-scone-hellodiscovery-beacon/logs
-    - name: cache-volume
-      emptyDir: {}
   #####################################################################################
   # SLB
   #####################################################################################
