@@ -15,7 +15,7 @@ system:
     # Service Mesh / Envoy / Sherpa
     #####################################################################################
     - name: sherpa-cloudatlas-client
-      image: ops0-artifactrepo2-0-prd.data.sfdc.net/mbeig/sherpa-envoy:1.0.8_gidcustom
+      image: mbeig/sherpa-envoy:1.0.8_gidcustom
       env:
       - name: SFDC_ENVIRONMENT
         value: "stmfa"
