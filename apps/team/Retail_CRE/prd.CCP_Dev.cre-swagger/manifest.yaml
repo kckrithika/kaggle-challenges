@@ -15,7 +15,7 @@ system:
       hostPath:
         path: /home/sfdc-cre/logs
     containers:
-    - name: cre-swagger-dev
+    - name: cre-swagger
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cre/cre-swagger:d51a0ad
       ports:
       - containerPort: 7123
@@ -44,7 +44,7 @@ system:
 
   loadbalancers:
   - lbname: cre-swagger-dev-lb
-    function: cre-swagger-dev
+    function: cre-swagger
     slbEnabled: true
     ports:
       - port: 7123
