@@ -26,7 +26,10 @@ if (!utils.is_public_cloud(configs.kingdom)) || utils.is_pcl_sdn_enabled(configs
                             sdnconfigs.logDirArg,
                             sdnconfigs.logToStdErrArg,
                             sdnconfigs.alsoLogToStdErrArg,
-                        ],
+                        ]
+                        + (if configs.kingdom == "syd" then [
+                                    "--pclKingdom",
+                                ] else []),
                         livenessProbe: {
                             httpGet: {
                                path: "/liveness-probe",
