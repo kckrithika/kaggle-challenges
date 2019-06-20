@@ -1,7 +1,7 @@
 apiVersion: v1
 system:
   functions:
-    - name: search-aws
+    - name: search-aws0
       serviceAccountName: solr-service-rvagfp5hyogf2mxjx
       type: stateful-set
       count: 3
