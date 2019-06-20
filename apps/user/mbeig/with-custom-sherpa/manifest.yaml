@@ -16,6 +16,7 @@ system:
     #####################################################################################
     - name: sherpa-cloudatlas-client
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mbeig/sherpa-envoy:1.0.8_gidcustom
+      imagePullPolicy: Always
       env:
       - name: SFDC_ENVIRONMENT
         value: "stmfa"
