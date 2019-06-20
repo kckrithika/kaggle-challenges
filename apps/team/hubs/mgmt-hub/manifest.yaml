@@ -30,7 +30,11 @@ system:
       - name: SPRING_PROFILES_ACTIVE
         value: dev
       - name: APP_REMOTE_HOST
-        value: stmfana44ice1-app1-4-prd.eng.sfdc.net
+        value: stmfana44ice1-app1-4-prd
+      - name: APP_DOMAIN
+        value: eng.sfdc.net
+      - name: APP_JMX_PORT
+        value: 8998
       volumeMounts:
       - name: cert
         mountPath: /certs
