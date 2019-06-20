@@ -33,8 +33,6 @@ system:
         volumeMounts:
         - name: solr-data-volume
           mountPath: /home/sfdc/local-data/data
-        - name: solr-log-volume
-          mountPath: /home/sfdc-searchserver/logs/solr
         livenessProbe:
           exec:
             command:
@@ -47,7 +45,3 @@ system:
       - name: solr-data-volume
         storageClassName: gp2
         storageSizeRequest: 10Gi
-      volumes:
-        - name: solr-log-volume
-          hostPath:
-            path: /mnt/disks/ssd0/data/logs/solr
