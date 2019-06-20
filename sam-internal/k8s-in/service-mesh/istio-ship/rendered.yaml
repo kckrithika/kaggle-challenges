@@ -1,3 +1,34 @@
+apiVersion: admissionregistration.k8s.io/v1beta1
+kind: MutatingWebhookConfiguration
+metadata:
+  annotations:
+    manifestctl.sam.data.sfdc.net/swagger: disable
+  labels:
+    app: sidecarInjectorWebhook
+    release: istio
+  name: istio-sidecar-injector
+webhooks:
+- clientConfig:
+    caBundle: ""
+    service:
+      name: istio-sidecar-injector
+      namespace: mesh-control-plane
+      path: /inject
+  failurePolicy: Fail
+  name: sidecar-injector.istio.io
+  namespaceSelector:
+    matchLabels:
+      istio-injection: enabled
+  rules:
+  - apiGroups:
+    - ""
+    apiVersions:
+    - v1
+    operations:
+    - CREATE
+    resources:
+    - pods
+---
 apiVersion: v1
 kind: ServiceAccount
 metadata:
@@ -707,6 +738,16 @@ metadata:
         "lbtype": "dsr",
         "port": 15009,
         "targetport": 15009
+       },
+       {
+        "lbtype": "dsr",
+        "port": 8085,
+        "targetport": 8085
+       },
+       {
+        "lbtype": "dsr",
+        "port": 8443,
+        "targetport": 8443
        }
       ]
   labels:
@@ -721,6 +762,8 @@ spec:
     port: 8443
   - name: https-istio-coreapp
     port: 8085
+  - name: tcp-coreapp
+    port: 2525
   selector:
     app: istio-ingressgateway
     istio: ingressgateway
@@ -1461,37 +1504,6 @@ spec:
             path: values
           name: istio-sidecar-injector
         name: inject-config
----
-apiVersion: admissionregistration.k8s.io/v1beta1
-kind: MutatingWebhookConfiguration
-metadata:
-  annotations:
-    manifestctl.sam.data.sfdc.net/swagger: disable
-  labels:
-    app: sidecarInjectorWebhook
-    release: istio
-  name: istio-sidecar-injector
-webhooks:
-- clientConfig:
-    caBundle: ""
-    service:
-      name: istio-sidecar-injector
-      namespace: mesh-control-plane
-      path: /inject
-  failurePolicy: Fail
-  name: sidecar-injector.istio.io
-  namespaceSelector:
-    matchLabels:
-      istio-injection: enabled
-  rules:
-  - apiGroups:
-    - ""
-    apiVersions:
-    - v1
-    operations:
-    - CREATE
-    resources:
-    - pods
 ---
 apiVersion: autoscaling/v2beta1
 kind: HorizontalPodAutoscaler
