@@ -3,7 +3,7 @@ apiVersion: v1
 system:
   notifications:
          email:
-            - jsanzgonzalez@salesforce.com
+           - hubs@salesforce.com
   functions:
   # service name
   - name: mgmt-hub
