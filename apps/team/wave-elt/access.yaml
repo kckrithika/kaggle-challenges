@@ -16,4 +16,6 @@ users:
   - spetschulat
   - stuart.jackson
   - mbyne
-  - svc-atf-user
+
+# Service Accounts
+  - svc.atf.user
