@@ -26,19 +26,19 @@ system:
 
     - name: sherpa
       image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-gcp/sfci/servicelibs/sherpa-envoy:ab66651ebe4478a1b819f11edc7b01dd364c3e28
-      args:
-      - --client-ca
-      - /etc/identity/ca/cacerts.pem
-      - --client-cert
-      - /etc/identity/client/certificates/client.pem
-      - --client-key
-      - /etc/identity/client/keys/client-key.pem
-      - --server-ca
-      - /etc/identity/ca/cacerts.pem
-      - --server-cert
-      - /etc/identity/server/certificates/server.pem
-      - --server-key
-      - /etc/identity/server/keys/server-key.pem
+#      args:
+#      - --client-ca
+#      - /etc/identity/ca/cacerts.pem
+#      - --client-cert
+#      - /etc/identity/client/certificates/client.pem
+#      - --client-key
+#      - /etc/identity/client/keys/client-key.pem
+#      - --server-ca
+#      - /etc/identity/ca/cacerts.pem
+#      - --server-cert
+#      - /etc/identity/server/certificates/server.pem
+#      - --server-key
+#      - /etc/identity/server/keys/server-key.pem
       ports:
         - name: http2-in
           containerPort: 7012
