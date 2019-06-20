@@ -12,7 +12,7 @@ system:
         type: server
     containers:
     - name: estatesservice
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/ydai/estatesservice:ydai-20190606
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/ydai/estatesservice:ydai-20190619
       ports:
       - containerPort: 9090
       livenessProbe:
