@@ -87,10 +87,6 @@ items:
   subjects:
   - kind: User
     name: shared0-samminionceph1-10-ukb.ops.sfdc.net
-  - kind: User
-    name: shared0-samminionceph3-16-ukb.ops.sfdc.net
-  - kind: User
-    name: shared0-samminionceph3-5-ukb.ops.sfdc.net
 - apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: RoleBinding
   metadata:
@@ -103,10 +99,6 @@ items:
   subjects:
   - kind: User
     name: shared0-samminionceph1-10-ukb.ops.sfdc.net
-  - kind: User
-    name: shared0-samminionceph3-16-ukb.ops.sfdc.net
-  - kind: User
-    name: shared0-samminionceph3-5-ukb.ops.sfdc.net
 - apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: RoleBinding
   metadata:
