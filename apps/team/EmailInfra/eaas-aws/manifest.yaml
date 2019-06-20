@@ -1,0 +1,153 @@
+apiVersion: v1
+system:
+  notifications:
+    email:
+    - emailinfrastructure@salesforce.com
+  functions:
+  - name: eaas
+    serviceAccountName: emailinfra-kb5qelszq5hhzyh5bqq
+    automountServiceAccountToken: true
+    count: 3
+    terminationGracePeriodSeconds: 35
+    containers:
+    - name: eaas
+      image: 791719295754.dkr.ecr.us-east-2.amazonaws.com/sfci/eaas/emailservice:2.0.70-168958d9e76ec9f4cdff694561503e6920d5b4a3
+      env:
+      - name: SFDC_ENVIRONMENT
+        value: sam
+      - name: SCONE_SERVICE_NAME
+        value: eaas
+      - name: JAVA_OPTIONS
+        value: -XX:+UnlockExperimentalVMOptions -XX:+UseCGroupMemoryLimitForHeap -XX:MaxRAMFraction=3 -Dmetrics.funnelEndPointURL=http://ajnafunneldirecttls.funnel.localhost.mesh.force.com:5442
+      resources:
+        requests:
+          memory: "6G"
+          cpu: "2"
+        limits:
+          memory: "6G"
+          cpu: "2"
+      volumeMounts:
+      - mountPath: /home/sfdc-eaas/logs
+        name: logvol
+      livenessProbe:
+        httpGet:
+          path: /manage/health
+          port: 15372
+        # Generally we have set this to ~10 seconds longer than the readiness initialDelaySeconds
+        initialDelaySeconds: 120
+        periodSeconds: 60
+        timeoutSeconds: 30
+      readinessProbe:
+        httpGet:
+          path: /manage/health
+          port: 15372
+        # This needs to be longer than the time for scone to start. 
+        # Search the logs for 'Started EaasSconeApp' to get a sense of the startup time which is primary dependent on CPU resources.
+        initialDelaySeconds: 110
+        periodSeconds: 60
+        timeoutSeconds: 30
+    - name: mta
+      image: 791719295754.dkr.ecr.us-east-2.amazonaws.com/dva/sfdc-mta:6
+      ports:
+      - name: smtp 
+        containerPort: 25
+      env:
+      - name: SFDC_ENVIRONMENT
+        value: prd
+      - name: SCONE_SERVICE_NAME
+        value: mta 
+      livenessProbe:
+        exec:
+          command:
+            - /bin/sh
+            - -c
+            - echo QUIT\r\n | nc localhost 25
+        initialDelaySeconds: 120
+        periodSeconds: 5
+      readinessProbe:
+        exec:
+          command:
+            - /bin/sh
+            - -c
+            - echo QUIT\r\n | nc localhost 25
+        initialDelaySeconds: 120
+        periodSeconds: 5
+    - name: beacon-eaas
+      image: 791719295754.dkr.ecr.us-east-2.amazonaws.com/sfci/services/sfdc-bazel/disco/beacon:d7f1640
+      args:
+      # Namespaced, mTLS HTTP2 GRPC
+      - -endpoint
+      - emailinfra/eaas:DATACENTER_ALLENV:7443
+      volumeMounts:
+      - mountPath: /home/scone/logs
+        name: beacon-log-volume
+      livenessProbe:
+        exec:
+          command:
+          - /opt/beacon/is-alive.sh
+        initialDelaySeconds: 5
+    - name: sherpa-eaas
+      # updated based on https://gus.lightning.force.com/lightning/r/CollaborationGroup/0F9B0000000LejfKAC/view
+      image: 791719295754.dkr.ecr.us-east-2.amazonaws.com/sfci/servicelibs/sherpa-envoy:eeb8e3bfc9d7912299ed28658895aca9523f348f
+      args:
+      # 2018-02-08: Direct Connection to the switchboard for now
+      - --switchboard=switchboard.service-mesh.svc:15001
+      ports:
+      # mTLS HTTP2 GRPC port
+      - name: sherpa-eaas-tls
+        containerPort: 7443
+      # management port (health, metrics, etc.)
+      - name: sherpa-eaas-adm
+        containerPort: 15373
+      env:
+      - name: SFDC_ENVIRONMENT
+        value: sam
+      resources:
+        limits:
+          cpu: "1"
+          memory: 1Gi
+        requests:
+          cpu: "1"
+          memory: 1Gi
+      volumeMounts:
+      - mountPath: /log
+        name: sherpa-log-volume
+      livenessProbe:
+        exec:
+          command:
+          - ./bin/is-alive
+        initialDelaySeconds: 120
+        periodSeconds: 5
+      readinessProbe:
+        exec:
+          command:
+          - ./bin/is-ready
+        initialDelaySeconds: 110
+        periodSeconds: 5
+    volumes:
+    - name: logvol
+      hostPath:
+        path: /home/sfdc-eaas/logs
+    - name: sherpa-log-volume
+      hostPath:
+        path: /home/sfdc-sherpa/logs
+    - name: beacon-log-volume
+      hostPath:
+        path: /home/sfdc-beacon/logs
+    strategy:
+      type: RollingUpdate
+  # Enable a load balancer in PRD so we have a stable FQDN to hit from the dev desktops or anywhere without Sherpa/Zookeeper
+  # Full FQDN template: {lbname}.{namespace}.{estate}.{kingdom}.slb.sfdc.net
+  # Actual FQDN: emailinfra-eaas-lb.emailinfra.prd-sam.prd.slb.sfdc.net
+  # NOT AVAILABLE YET
+  # loadbalancers:
+  # - lbname: emailinfra-eaas-lb
+  #   function: eaas
+  #   slbEnabled: true
+  #   ports:
+  #   - lbtype: tcp
+  #     port: 7020
+  #     targetport: 7020
+  #   - lbtype: tcp
+  #     port: 7022
+  #     targetport: 7022
