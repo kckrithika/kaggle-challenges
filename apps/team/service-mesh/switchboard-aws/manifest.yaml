@@ -109,14 +109,14 @@ system:
       livenessProbe:
         exec:
           command:
-          - ./bin/true
+          - /bin/true
 #          - ./bin/is-alive
         initialDelaySeconds: 20
         periodSeconds: 5
       readinessProbe:
         exec:
           command:
-          - ./bin/true
+          - /bin/true
 #          - ./bin/is-ready
         initialDelaySeconds: 15
         periodSeconds: 5
