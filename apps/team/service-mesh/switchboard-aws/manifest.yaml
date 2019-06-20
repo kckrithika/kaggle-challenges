@@ -5,6 +5,7 @@ system:
     - servicemesh@salesforce.com
   functions:
   - name: switchboard
+    serviceAccountName: service-mesh-mnn4n1bolmvadvbeu
     count: 1
     annotations:
       routing.mesh.sfdc.net/enabled: "true"
