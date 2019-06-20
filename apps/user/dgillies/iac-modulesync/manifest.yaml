@@ -6,19 +6,20 @@ system:
       count: 1
       containers:
         - name: iac-modulesync
-          image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/iac_centos7_webhook:3
+          image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/iac_centos7_webhook:4
           command:
             - "/usr/bin/webhook"
             - "-verbose"
             - "-hooks"
-            - "/data/hooks.json"
+            - "/data/hooks.yml"
           ports:
             - containerPort: 9000
           livenessProbe:
-            exec:
-              command: ["true"]
-            initialDelaySeconds: 60
-            periodSeconds: 5
+            httpGet:
+              path: /hooks/status
+              port: 9000
+            initialDelaySeconds: 30
+            periodSeconds: 60
 
   loadbalancers:
     - lbname: iac-modulesync
