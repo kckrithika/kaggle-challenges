@@ -1,0 +1,53 @@
+apiVersion: v1
+
+system:
+  functions:
+  - name: cre-swagger
+    count: 1
+    volumes:
+    - name: retailservercert
+      maddogCert:
+        type: server
+        lbnames:
+        - cre-swagger-dev-lb
+    # maps the retail  volumnMount to a directory on the host machine
+    - name: logvol
+      hostPath:
+        path: /home/sfdc-cre/logs
+    containers:
+    - name: cre-swagger-dev
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cre/cre-swagger:d51a0ad
+      ports:
+      - containerPort: 7123
+      - containerPort: 15372
+      env:
+      - name: PKI_CA_DIR
+        value: /servercerts
+      - name: PKI_MONITORDIR
+        value: /servercerts/server
+      - name: SFDC_ENVIRONMENT
+        value: stmfa
+      livenessProbe:
+        initialDelaySeconds: 120
+        periodSeconds: 30
+        timeoutSeconds: 30
+        httpGet:
+          path: /manage/health
+          port: 15372
+          scheme: HTTP
+      volumeMounts:
+      - name: retailservercert
+        mountPath: /servercerts
+      #mount splunk logs mount
+      - name: logvol
+        mountPath: /home/retail-cre/logs
+
+  loadbalancers:
+  - lbname: cre-swagger-dev-lb
+    function: cre-swagger-dev
+    slbEnabled: true
+    ports:
+      - port: 7123
+        targetport: 7123
+      - port: 15372
+        targetport: 15372
