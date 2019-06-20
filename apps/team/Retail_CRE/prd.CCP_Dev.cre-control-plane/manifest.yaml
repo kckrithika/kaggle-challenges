@@ -102,7 +102,7 @@ system:
                   -Dcom.sun.management.jmxremote.rmi.port=8898
                   -Dcom.sun.management.jmxremote.ssl=false
                   -Dcom.sun.management.jmxremote.authenticate=false
-                  -Dlogging.level.org=DEBUG
+                  -Dlogging.level.com.salesforce=DEBUG
                   -Xmx4G -Xms4G -XX:ParallelGCThreads=8"
       resources:
         limits: { cpu: "2", memory: "6Gi" }
