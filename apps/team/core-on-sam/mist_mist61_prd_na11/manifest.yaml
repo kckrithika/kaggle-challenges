@@ -216,7 +216,7 @@ system:
     identity:
       pod: na1
       serviceName: sfproxy
-    name: na1-mist61sfproxy-prd
+    name: na11-mist61sfproxy-prd
     volumes:
     - maddogCert:
         type: client
