@@ -100,7 +100,7 @@ system:
   loadbalancers:
   - lbname: gate-manager
     function: gater
-    slbenabled: true
+    slbEnabled: true
     ports:
       - port: 9090
         targetport: 9090
