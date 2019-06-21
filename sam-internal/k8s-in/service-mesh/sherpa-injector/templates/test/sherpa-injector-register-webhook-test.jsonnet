@@ -3,7 +3,7 @@ local versions = import "service-mesh/sherpa-injector/versions.jsonnet";
 local sherpa_utils = import "service-mesh/sherpa-injector/sherpa_utils.jsonnet";
 local utils = import "util_functions.jsonnet";
 
-if sherpa_utils.is_sherpa_injector_dev_cluster(configs.estate) then
+if sherpa_utils.is_sherpa_injector_test_cluster(configs.estate) then
 {
   apiVersion: "admissionregistration.k8s.io/v1beta1",
   kind: "MutatingWebhookConfiguration",
