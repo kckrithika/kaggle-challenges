@@ -101,6 +101,7 @@ apps:
      hostSubList:
        - shared2-samminioncoreapp3-1-prd.eng.sfdc.net
 
+
  # NA9 - for CASAM team testing
  mist_mist61_prd_na9:
    - name: prd/prd-sp2-sam_coreapp
@@ -122,6 +123,13 @@ apps:
        - shared2-samminioncoreapp3-2-prd.eng.sfdc.net
        - shared2-samminioncoreapp3-3-prd.eng.sfdc.net
 
+# NA11 - for MIT/FIT Team
+ mist_mist61_prd_na11:
+   - name: prd/prd-sp2-sam_coreapp
+     hostSubList:
+       - shared2-samminioncoreapp3-1-prd.eng.sfdc.net
+       - shared2-samminioncoreapp3-3-prd.eng.sfdc.net
+ 
 # Gatekeeper Envs
  stmfa_-_prd_na45:
   - name: prd/prd-sp2-sam_coreapp
