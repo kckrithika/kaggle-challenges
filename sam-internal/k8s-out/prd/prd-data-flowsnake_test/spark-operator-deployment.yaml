@@ -27,7 +27,7 @@ spec:
       containers:
       - args:
         - -logtostderr
-        - -v=2
+        - -v=3
         - -enable-metrics=true
         - -metrics-endpoint=/metrics
         - -metrics-port=10254
