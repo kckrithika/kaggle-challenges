@@ -4,8 +4,6 @@ system:
   functions:
     - name: hub-persistence-func
       count: 3
-      identity:
-        serviceName: hub-persistence
       volumes:
         - name: sherpa-log-volume
           hostPath:
