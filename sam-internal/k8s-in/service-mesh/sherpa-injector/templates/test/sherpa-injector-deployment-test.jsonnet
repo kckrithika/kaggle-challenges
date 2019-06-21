@@ -9,7 +9,7 @@ local utils = import "util_functions.jsonnet";
 local funnelEndpointHost = std.split(configs.funnelVIP, ":")[0];
 local funnelEndpointPort = std.split(configs.funnelVIP, ":")[1];
 
-if sherpa_utils.is_sherpa_injector_dev_cluster(configs.estate) then
+if sherpa_utils.is_sherpa_injector_test_cluster(configs.estate) then
 configs.deploymentBase("service-mesh") {
   metadata+: {
     name: "sherpa-injector",
