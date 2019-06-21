@@ -27,10 +27,8 @@ apps:
     - iad/iad-sam_gater
     - ord/ord-sam_gater
 #    - yul/yul-sam_gater
-  switchboard-prod-5:
     - dfw/dfw-sam_gater
 #    - yhu/yhu-sam_gater
-  switchboard-prod-6:
     - cdg/cdg-sam_gater
     - phx/phx-sam_gater
     - ph2/ph2-sam_gater
