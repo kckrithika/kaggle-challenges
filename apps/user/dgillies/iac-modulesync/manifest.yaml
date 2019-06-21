@@ -10,12 +10,9 @@ system:
             secretName: iac-modulesync
       containers:
         - name: iac-modulesync
-          image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/iac_centos7_webhook:5
+          image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/iac_centos7_webhook:6
           command:
-            - "/usr/bin/webhook"
-            - "-verbose"
-            - "-hooks"
-            - "/opt/webhook/etc/hooks.yml"
+            - /opt/webhook/bin/run.sh
           ports:
             - containerPort: 9000
           livenessProbe:
