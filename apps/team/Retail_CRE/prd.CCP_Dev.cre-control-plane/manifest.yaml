@@ -104,6 +104,7 @@ system:
                   -Dcom.sun.management.jmxremote.authenticate=false
                   -Dlogging.level.com.salesforce=DEBUG
                   -Dlogging.level.sayonara=DEBUG
+                  -Dlogging.dir=/opt/cre/cre-control-plane-ccp-dev
                   -Xmx4G -Xms4G -XX:ParallelGCThreads=8"
       resources:
         limits: { cpu: "2", memory: "6Gi" }
