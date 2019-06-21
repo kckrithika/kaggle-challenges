@@ -102,8 +102,7 @@ system:
                   -Dcom.sun.management.jmxremote.rmi.port=8898
                   -Dcom.sun.management.jmxremote.ssl=false
                   -Dcom.sun.management.jmxremote.authenticate=false
-                  -Dlogging.level.com.salesforce=DEBUG
-                  -Dlogging.level.sayonara=DEBUG
+                  -Dlogging.json.base.file.pattern=${scone.service.name}.%i.json
                   -Dlogging.dir=./
                   -Xmx4G -Xms4G -XX:ParallelGCThreads=8"
       resources:
