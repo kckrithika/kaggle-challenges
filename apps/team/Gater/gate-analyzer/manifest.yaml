@@ -36,7 +36,7 @@ system:
   loadbalancers:
   - lbname: gate-analyzer-lb
     function: gate-analyzer
-    slbenabled: true
+    slbEnabled: true
     ports:
       - port: 9191
         targetport: 9191
