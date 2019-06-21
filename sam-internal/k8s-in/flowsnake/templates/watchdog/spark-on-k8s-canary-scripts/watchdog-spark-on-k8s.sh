@@ -183,10 +183,14 @@ declare -A POD_LOGS_COLLECTED # pod name -> "true" if logs for pod were already 
 pod_log() {
     # Checking for key with set -o nounset active: https://stackoverflow.com/a/13221491
     if [[ -z "${POD_LOGS_COLLECTED[$1]+present}" ]]; then
-        log_sub_heading "Begin $1 Log"
+        log_sub_heading "Begin $1 madkub-init Log"
+        # || true to avoid failing script if pod has gone away.
+        kcfw logs -c madkub-init $1 || true
+        log_sub_heading "End $1 madkub-init Log"
+        log_sub_heading "Begin $1 main Log"
         # || true to avoid failing script if pod has gone away.
         kcfw logs $1 || true
-        log_sub_heading "End $1 Log"
+        log_sub_heading "End $1 main Log"
         POD_LOGS_COLLECTED["$1"]="true"
     fi
 }
