@@ -644,7 +644,7 @@ items:
               output = subprocess.check_output(additional_args, stderr=subprocess.STDOUT)
               print(output, end='')
               timings, epochs = compute_times(output, succeeded=True)
-              log("Times: ")
+              log("Times: {}".format(json.dumps(timings, sort_keys=True)))
               log("No errors ({}s)".format(int(time.time() - start)))
               sys.exit(0)
           except subprocess.CalledProcessError as e:
