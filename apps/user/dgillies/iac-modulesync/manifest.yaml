@@ -4,6 +4,10 @@ system:
   functions:
     - name: iac-modulesync
       count: 1
+      volumes:
+        - name: secretvol
+          k4aSecret:
+            secretName: iac-modulesync
       containers:
         - name: iac-modulesync
           image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/iac_centos7_webhook:4
@@ -20,6 +24,10 @@ system:
               port: 9000
             initialDelaySeconds: 30
             periodSeconds: 60
+          volumeMounts:
+            - mountPath: /secrets/
+              name: secretvol
+              readOnly: true
 
   loadbalancers:
     - lbname: iac-modulesync
