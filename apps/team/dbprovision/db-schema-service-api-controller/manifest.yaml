@@ -6,7 +6,7 @@ system:
     count: 1
     containers:
     - name: db-schema-service-api-controller
-      image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-gcp/dva/db-schema-service-api-controller:8
+      image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-gcp/dva/db-schema-service-api-controller:9
       env:
         - name: VAULT_TOKEN
           value: "/secrets/tk.txt"
@@ -14,9 +14,10 @@ system:
       - containerPort: 11443
       livenessProbe:
         initialDelaySeconds: 30
-        httpGet:
-          path: /api/v1/roles
-          port: 11443
+        exec:
+          command:
+          - echo
+          - "OK"
       volumeMounts:
         - mountPath: /secrets/
           name: dbprovision-vaulttoken
