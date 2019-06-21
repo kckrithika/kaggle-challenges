@@ -1,1 +1,3 @@
 apps:
+  topology-ui: 
+    - prd/prd-sam
