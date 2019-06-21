@@ -145,20 +145,20 @@ TIMING_METRIC_NAME_SPARKAPP_CLEANUP = 'SparkAppCleanup'
 
 # interval name -> (start regex, end regex). This the blueprint of what is to be computed.
 time_regex = {
-    TIMING_METRIC_NAME_DRIVER_POD_DETECTED: (r_app_created, r_driver_pod_creation_event),
-    TIMING_METRIC_NAME_DRIVER_POD_PENDING_DELAY: (r_driver_pod_creation_event_pending, r_driver_pod_initializing),
-    TIMING_METRIC_NAME_DRIVER_POD_INITIALIZATION: (r_driver_pod_initializing, r_driver_pod_running),
-    TIMING_METRIC_NAME_DRIVER_APP_SUBMIT: (r_driver_pod_running, r_driver_context_app_submitted),
-    TIMING_METRIC_NAME_DRIVER_APP_LOAD: (r_driver_context_app_submitted, r_driver_context_jar_added),
-    TIMING_METRIC_NAME_DRIVER_APP_STARTUP: (r_driver_context_jar_added, r_exec_allocator),
-    TIMING_METRIC_NAME_EXECUTOR_WAIT_TOTAL: (r_exec_allocator, r_exec_registered_time),
-    TIMING_METRIC_NAME_EXEC_POD_DETECTED: (r_exec_allocator, r_exec_pod_creation_event),
-    TIMING_METRIC_NAME_EXEC_POD_PENDING_DELAY: (r_exec_pod_creation_event_pending, r_exec_pod_initializing),
-    TIMING_METRIC_NAME_EXEC_POD_INITIALIZATION: (r_exec_pod_initializing, r_exec_pod_running),
-    TIMING_METRIC_NAME_EXEC_REGISTRATION: (r_exec_pod_running, r_exec_registered_time),
-    TIMING_METRIC_NAME_JOB_RUNTIME: (r_exec_registered_time, r_driver_job_finished),
-    TIMING_METRIC_NAME_DRIVER_CLEANUP: (r_driver_job_finished, r_driver_pod_completed),
-    TIMING_METRIC_NAME_SPARKAPP_CLEANUP: (r_driver_pod_completed, r_app_completed),
+    TIMING_METRIC_NAME_DRIVER_POD_DETECTED: (r_app_created, r_driver_pod_creation_event),  # Average: 7s
+    TIMING_METRIC_NAME_DRIVER_POD_PENDING_DELAY: (r_driver_pod_creation_event_pending, r_driver_pod_initializing),  # Average: 3s
+    TIMING_METRIC_NAME_DRIVER_POD_INITIALIZATION: (r_driver_pod_initializing, r_driver_pod_running),  # Average: 10s
+    TIMING_METRIC_NAME_DRIVER_APP_SUBMIT: (r_driver_pod_running, r_driver_context_app_submitted),  # Average: 20s
+    TIMING_METRIC_NAME_DRIVER_APP_LOAD: (r_driver_context_app_submitted, r_driver_context_jar_added),  # Average: 35s
+    TIMING_METRIC_NAME_DRIVER_APP_STARTUP: (r_driver_context_jar_added, r_exec_allocator),  # Average:43s
+    TIMING_METRIC_NAME_EXECUTOR_WAIT_TOTAL: (r_exec_allocator, r_exec_registered_time),  # Average: 16s
+    TIMING_METRIC_NAME_EXEC_POD_DETECTED: (r_exec_allocator, r_exec_pod_creation_event),  # Average: 3s
+    TIMING_METRIC_NAME_EXEC_POD_PENDING_DELAY: (r_exec_pod_creation_event_pending, r_exec_pod_initializing),  # Average: 3s
+    TIMING_METRIC_NAME_EXEC_POD_INITIALIZATION: (r_exec_pod_initializing, r_exec_pod_running),  # Average: 10s
+    TIMING_METRIC_NAME_EXEC_REGISTRATION: (r_exec_pod_running, r_exec_registered_time),  # Average: 4s
+    TIMING_METRIC_NAME_JOB_RUNTIME: (r_exec_registered_time, r_driver_job_finished),  # Average: 15s
+    TIMING_METRIC_NAME_DRIVER_CLEANUP: (r_driver_job_finished, r_driver_pod_completed),  # Average: 40s
+    TIMING_METRIC_NAME_SPARKAPP_CLEANUP: (r_driver_pod_completed, r_app_completed),  # Average: 4s
 }
 
 TAG_APP = 'app'  # Name of the Spark Application. Same across concurrent watchdog instances. Roughly represents feature being tested.
