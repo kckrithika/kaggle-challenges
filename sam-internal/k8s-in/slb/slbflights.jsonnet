@@ -40,4 +40,7 @@ local slbconfigs = import "slbconfig.jsonnet";
     #   https://gus.my.salesforce.com/a07B0000006v3JlIAI
     #   https://gus.my.salesforce.com/a07B0000006v3KAIAY
     enableNginxAccessLogsAggregation: (slbimages.phaseNum <= 1),
+
+    # enable slb-iwd-health
+    enableIWDHealth: (slbimages.phaseNum <= 1),
 }
