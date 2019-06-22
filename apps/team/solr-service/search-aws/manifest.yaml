@@ -7,7 +7,7 @@ system:
       count: 3
       containers:
       - name: searchserver
-        image : ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/searchserver:18311988.542
+        image : 791719295754.dkr.ecr.us-east-2.amazonaws.com/sfci/search-builder/docker-push:18332268.3
         env:
         - name: INSTANCE_URL
           value: DISABLED
