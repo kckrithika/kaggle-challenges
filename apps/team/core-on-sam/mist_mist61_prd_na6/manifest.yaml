@@ -7,7 +7,7 @@ system:
   - name: na6-mist61dapp-prd
     count: 1
     identity:
-      serviceName: dapp
+      serviceName: dapp.na6
     containers:
     - name: coreapp
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/coreonsam/casam:release_main_18153481
@@ -53,7 +53,7 @@ system:
       - name: DISABLE_AUTH_RELEASE_CHECK
         value: true
       - name: CASAM_APP_COLOR
-        value: blue
+        value: debug
       - name: SD_PORT_OVERRIDE
         value: 7442
       - name: CASAM_SETTINGS_PATH
@@ -133,7 +133,7 @@ system:
       - mountPath: /home/sfdc/salesforce/casam
         name: coreapp-casam-volume
     - name: dapp-sherpa
-      image: sfci/servicelibs/sherpa-envoy:1.0.6
+      image: sfci/servicelibs/sherpa-envoy:1.0.8
       ports:
       - containerPort: 15373
         name: sherpa-adm
@@ -162,9 +162,7 @@ system:
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/casam/beacon:c574fe83d
       args:
       - -endpoint
-      - core-on-sam/dapp:DATACENTER:4500
-      - -endpoint
-      - core-on-sam/na6dapp:DATACENTER:7014
+      - core-on-sam/na6/dapp:DATACENTER:4500
       livenessProbe:
         initialDelaySeconds: 20
         exec:
