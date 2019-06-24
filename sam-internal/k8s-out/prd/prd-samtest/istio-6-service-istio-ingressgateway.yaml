@@ -24,7 +24,8 @@ metadata:
         "lbtype": "dsr",
         "port": 8443,
         "targetport": 8443
-       }]
+       }
+      ]
   labels:
     app: istio-ingressgateway
     istio: ingressgateway
@@ -37,6 +38,8 @@ spec:
     port: 8443
   - name: https-istio-coreapp
     port: 8085
+  - name: tcp-coreapp
+    port: 2525
   selector:
     app: istio-ingressgateway
     istio: ingressgateway

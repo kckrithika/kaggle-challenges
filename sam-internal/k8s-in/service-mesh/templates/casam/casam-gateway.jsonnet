@@ -42,6 +42,21 @@
           "privateKey": "/etc/certs/key.pem",
           "serverCertificate": "/etc/certs/cert-chain.pem"
         }
+      },
+      {
+        "hosts": [
+          "*"
+        ],
+        "port": {
+          "name": "tcp-secure",
+          "number": 2525,
+          "protocol": "TCP"
+        },
+        "tls": {
+          "mode": "SIMPLE",
+          "privateKey": "/etc/certs/key.pem",
+          "serverCertificate": "/etc/certs/cert-chain.pem"
+        }
       }
     ]
   }

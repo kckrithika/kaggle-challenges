@@ -6,7 +6,7 @@ local mcpIstioConfig = (import "service-mesh/istio-config.jsonnet");
   metadata: {
     annotations: {
       "slb.sfdc.net/name": "istio-ingressgateway",
-      "slb.sfdc.net/portconfigurations": "[\n {\n  \"lbtype\": \"dsr\",\n  \"port\": 15008,\n  \"targetport\": 15008\n },\n {\n  \"lbtype\": \"dsr\",\n  \"port\": 15009,\n  \"targetport\": 15009\n },\n {\n  \"lbtype\": \"dsr\",\n  \"port\": 8085,\n  \"targetport\": 8085\n },\n {\n  \"lbtype\": \"dsr\",\n  \"port\": 8443,\n  \"targetport\": 8443\n }]",
+      "slb.sfdc.net/portconfigurations": "[\n {\n  \"lbtype\": \"dsr\",\n  \"port\": 15008,\n  \"targetport\": 15008\n },\n {\n  \"lbtype\": \"dsr\",\n  \"port\": 15009,\n  \"targetport\": 15009\n },\n {\n  \"lbtype\": \"dsr\",\n  \"port\": 8085,\n  \"targetport\": 8085\n },\n {\n  \"lbtype\": \"dsr\",\n  \"port\": 8443,\n  \"targetport\": 8443\n }\n]",
     },
     labels: {
       app: "istio-ingressgateway",
@@ -25,6 +25,10 @@ local mcpIstioConfig = (import "service-mesh/istio-config.jsonnet");
       {
         name: "https-istio-coreapp",
         port: 8085,
+      },
+      {
+        name: "tcp-coreapp",
+        port: 2525,
       },
     ],
     selector: {
