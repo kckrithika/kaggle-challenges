@@ -53,6 +53,7 @@ system:
       #####################################################################################
       - name: beacon-gid-service
         image: sfci/servicelibs/beacon:7ad9e771192cd0b3e43393eea2e1e5c1de81dfda
+        imagePullPolicy: Always
         env:
         - name: SFDC_ENVIRONMENT
           value: "stmfa"
