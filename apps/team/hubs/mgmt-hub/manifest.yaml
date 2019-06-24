@@ -9,7 +9,7 @@ system:
   - name: mgmt-hub
     #type: stateful-set
     # number of instances ("kpods") to deploy and run
-    count: 1
+    count: 3
     volumes:
     - name: cert
       maddogCert:
