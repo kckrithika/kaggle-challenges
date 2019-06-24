@@ -82,7 +82,7 @@ system:
     # Entity API
     #####################################################################################
     - name: cloudatlas-service
-      image: sfci/cloud-atlas/cloudatlas/cloudatlas-service:3.0rc2
+      image: sfci/cloud-atlas/cloudatlas/cloudatlas-service:3.1rc1
       command: ["java", "-jar", "cloudatlas-service.jar"]
       env:
         - name: server_port
