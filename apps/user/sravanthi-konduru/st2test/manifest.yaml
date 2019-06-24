@@ -5,18 +5,12 @@ system:
     count: 1
     containers:
     - name: st2test
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/sravanthi-konduru/st2test:st2test-5sdhg8
-      ports:
-      - containerPort: 9101
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/sravanthi-konduru/st2test:st2test-5sdhg9
       livenessProbe:
-        httpGet:
-          path: /
-          port: 9101
-  loadbalancers:
-  - lbname: st2test
-    function: st2test
-    slbenabled: true
-    ports:
-      - port: 9101
-        targetport: 9101
-        lbtype: tcp
+        exec:
+          command:
+            - /bin/true
+        failureThreshold: 99999
+        periodSeconds: 10
+        timeoutSeconds: 10
+        initialDelaySeconds: 30
