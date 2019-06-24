@@ -16,3 +16,6 @@ apps:
   aqueduct-private-group-1:
   # Group 2 of Private Kingdoms: Rest of private Kingdoms
   aqueduct-private-group-2:
+
+  eventbus-client-web-api:
+    - prd/sam
