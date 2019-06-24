@@ -140,6 +140,7 @@ TIMING_METRIC_NAME_JOB_RUNTIME = 'JobRunTime'
 # Interval between Spark job completion driver pod state changing to Completed
 TIMING_METRIC_NAME_DRIVER_CLEANUP = 'DriverCleanup'
 # Interval between Spark driver pod being Completed and Spark App being Completed. This is Spark Operator queue processing time.
+# Note: if the Spark Operator is not backlogged, it might detect driver completion before the analysis script, leading to a negative time being reported here.
 TIMING_METRIC_NAME_SPARKAPP_CLEANUP = 'SparkAppCleanup'
 
 

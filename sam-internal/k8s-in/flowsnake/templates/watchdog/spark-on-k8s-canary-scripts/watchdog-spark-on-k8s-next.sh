@@ -306,9 +306,9 @@ while true; do
         events;
         LAST_LOGGED=${EPOCH}
     fi;
-    report_pod_changes
     sleep 1;
     STATE=$(state)
+    report_pod_changes
 done;
 EXIT_CODE=$(echo ${STATE} | grep COMPLETED > /dev/null; echo $?)
 
