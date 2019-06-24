@@ -108,14 +108,14 @@ system:
       - containerPort: 15374
       livenessProbe:
         httpGet:
-          path: /empire/alive
-          port: 7030
+          path: /manage/health
+          port: 15372
         initialDelaySeconds: 60
         periodSeconds: 30
       readinessProbe:
         httpGet:
-          path: /empire/alive
-          port: 7030
+          path: /manage/health
+          port: 15372
         initialDelaySeconds: 60
         periodSeconds: 5
         failureThreshold: 120
