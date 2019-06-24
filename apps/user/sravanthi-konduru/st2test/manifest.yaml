@@ -5,7 +5,7 @@ system:
     count: 1
     containers:
     - name: st2test
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/sravanthi-konduru/st2test:st2test-5sdhg9
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/sravanthi-konduru/st2test:st2test-5sdhg6
       livenessProbe:
         exec:
           command:
