@@ -1,7 +1,8 @@
 local configs = import "config.jsonnet";
 
-if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" || configs.estate == "prd-sam" || configs.estate == "xrd-sam" then
-({
+local utils = import "util_functions.jsonnet";
+
+if !utils.is_pcn(configs.kingdom) then {
   commands: {
     osPatch: "cat /etc/sfdc-release | grep -oP '(?<=INSTALL ).*'",
   },
@@ -9,4 +10,4 @@ if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" || configs.
   timeout: "1m",
   resync: "30m",
   livenessProbePort: "21690",
-}) else "SKIP"
+} else "SKIP"

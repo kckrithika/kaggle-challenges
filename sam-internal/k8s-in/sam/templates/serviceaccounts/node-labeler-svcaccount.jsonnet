@@ -1,6 +1,8 @@
 local configs = import "config.jsonnet";
 
-if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" || configs.estate == "prd-sam" || configs.estate == "xrd-sam" then {
+local utils = import "util_functions.jsonnet";
+
+if !utils.is_pcn(configs.kingdom) then {
     apiVersion: "v1",
     kind: "List",
     metadata: {},
