@@ -14,7 +14,7 @@ system:
       - name: DC
         value: $(KINGDOM)
       - name: SPRING_PROFILES_ACTIVE 
-        value: h2,ssbypass
+        value: h2,ssbypass,sam
       - name: GRPC_TLS
         value: false 
       - name: PATH_HOSTCERT
