@@ -1,0 +1,22 @@
+apiVersion: v1
+system:
+  functions:
+  - name: st2test
+    count: 1
+    containers:
+    - name: st2test
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/sravanthi-konduru/st2test:st2test-5sdhg8
+      ports:
+      - containerPort: 9101
+      livenessProbe:
+        httpGet:
+          path: /
+          port: 9101
+  loadbalancers:
+  - lbname: st2test
+    function: st2test
+    slbenabled: true
+    ports:
+      - port: 9101
+        targetport: 9101
+        lbtype: tcp
