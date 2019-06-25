@@ -8,7 +8,7 @@ system:
         - akouthoofd@salesforce.com
     functions:
     - name: cantor-grpc-server
-      count: 3
+      count: 2
       strategy:
         type: RollingUpdate
         rollingUpdate:
