@@ -1,20 +1,4 @@
 version: v2
 apps:
-
-  iad.commercejourneys:
-  - name: iad/iad-sam_crosscloudplatform
-  ord.commercejourneys:
-  - name: ord/ord-sam_crosscloudplatform
-
-  iad.retailcalculator:
-  - name: iad/iad-sam_crosscloudplatform
-  ord.retailcalculator:
-  - name: ord/ord-sam_crosscloudplatform
-
-  iad.eventbeacon:
-  - name: iad/iad-sam_crosscloudsetup
-  ord.eventbeacon:
-  - name: ord/ord-sam_crosscloudsetup
-
   prd.dashboard:
   - name: prd/prd-sam_crosscloudplatform
