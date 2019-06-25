@@ -292,6 +292,10 @@ system:
       port: 8443
       targetport: 8443
       name: http-coretls
+    - lbtype: dsr
+      port: 2525
+      targetport: 2525
+      name: tcp-core
   - function: na7-mist61sequencer-prd
     lbname: na7-mist61sequencer-prd
     ports:
