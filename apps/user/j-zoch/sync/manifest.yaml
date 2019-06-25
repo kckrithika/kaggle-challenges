@@ -22,13 +22,13 @@ system:
       - name: GRPC_SERVERPORT
         value: 7020
       - name: SERVER_PORT
-        value: 8080
+        value: 7022
       - name: DISCOVERY_NAMESPACE
         value: user-j-zoch.samapp
 
       ports:
       - containerPort: 7020
-      - containerPort: 8080
+      - containerPort: 7022
       - containerPort: 15572
       livenessProbe:
         httpGet:
@@ -104,7 +104,7 @@ system:
     slbEnabled: true
     ports:
       - port: 8080
-        targetport: 8080
+        targetport: 7022
       - port: 15372
         targetport: 15572
       - port: 7443
