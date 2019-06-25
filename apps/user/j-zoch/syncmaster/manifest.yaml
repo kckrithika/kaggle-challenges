@@ -17,6 +17,8 @@ system:
         value: dc.$(KINGDOM),sam,ssbypass
       - name: DISCOVERY_NAMESPACE
         value: user-j-zoch
+      - name: GRPC_TLS 
+        value: false
       ports:
       - containerPort: 7020
       - containerPort: 8080
