@@ -9,7 +9,7 @@ system:
     count: 1
     containers:
     - name: gater2
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/dmanoharan/gater-psc:dmanoharan-20190625A
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/dmanoharan/gater-psc:dmanoharan-20190625B
       args:
       - --server.port=9090
       - --logging.evaluator.level=ERRORS_ONLY
@@ -91,7 +91,7 @@ system:
     - name: perf-sidecar       # Sidecar container that deploys automation folder
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/kviphong/perfsidecar:20180312-1
       ports:
-        - containerPort: 15578    # Port for the profiler
+        - containerPort: 10009    # Port for the profiler
       livenessProbe:
         exec:
           command:
