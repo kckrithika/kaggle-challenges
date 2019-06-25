@@ -6,14 +6,14 @@ system:
     count: 1
     containers:
     - name: caffeine-coordinator
-      image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-sfci-dev/sfci/dbiaas/caffeine/caffeine-coordinator:0f1f541dea83949dc4e0c511a38946adc896a418
+      image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-gcp/sfci/dbiaas/caffeine/caffeine-coordinator:a2614ef
       livenessProbe:
         exec:
           command:
           - echo
           - "OK"
     - name: caffeine-cqw
-      image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-sfci-dev/sfci/dbiaas/caffeine/caffeine-cqw:0f1f541dea83949dc4e0c511a38946adc896a418
+      image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-gcp/sfci/dbiaas/caffeine/caffeine-cqw:a2614ef
       livenessProbe:
         exec:
           command:
