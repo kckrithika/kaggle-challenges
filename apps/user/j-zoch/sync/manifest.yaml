@@ -9,8 +9,6 @@ system:
       env:
       - name: SFDC_ENVIRONMENT
         value: prod
-      - name: SPRING_CONFIG_NAME
-        value: prod
       - name: DC
         value: $(KINGDOM)
       - name: SPRING_PROFILES_ACTIVE 
@@ -21,16 +19,14 @@ system:
         value: /client-certs/client/certificates/client.pem
       - name: PATH_HOSTKEY
         value: /client-certs/client/keys/client-key.pem
-      - name: GRPC_TLS
-        value: false
       - name: GRPC_SERVERPORT
         value: 7020
       - name: SERVER_PORT
-        value: 8080
+        value: 8081
 
       ports:
       - containerPort: 7020
-      - containerPort: 8080
+      - containerPort: 8081
       - containerPort: 15572
       livenessProbe:
         httpGet:
@@ -106,7 +102,7 @@ system:
     slbEnabled: true
     ports:
       - port: 8080
-        targetport: 8080
+        targetport: 8081
       - port: 15372
         targetport: 15572
       - port: 7443
