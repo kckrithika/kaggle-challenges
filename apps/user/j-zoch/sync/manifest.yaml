@@ -9,8 +9,6 @@ system:
       env:
       - name: SFDC_ENVIRONMENT
         value: prod
-      - name: SPRING_CONFIG_NAME
-        value: prod
       - name: DC
         value: $(KINGDOM)
       - name: SPRING_PROFILES_ACTIVE 
@@ -21,8 +19,6 @@ system:
         value: /client-certs/client/certificates/client.pem
       - name: PATH_HOSTKEY
         value: /client-certs/client/keys/client-key.pem
-      - name: GRPC_TLS
-        value: false
       - name: GRPC_SERVERPORT
         value: 7020
       - name: SERVER_PORT
