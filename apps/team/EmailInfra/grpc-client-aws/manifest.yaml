@@ -27,6 +27,8 @@ system:
       # 2018-02-08: Direct Connection to the switchboard for now
       - --switchboard=switchboard.service-mesh.svc:15001
       ports:
+      - name: sherpa-eaas-in
+        containerPort: 7012
       - name: sherpa-eaas-tls
         containerPort: 7443
       - name: sherpa-eaas-adm
