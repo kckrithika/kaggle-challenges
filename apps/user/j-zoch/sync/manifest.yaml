@@ -22,11 +22,13 @@ system:
       - name: GRPC_SERVERPORT
         value: 7020
       - name: SERVER_PORT
-        value: 8081
+        value: 8080
+      - name: DISCOVERY_NAMESPACE
+        value: user-j-zoch
 
       ports:
       - containerPort: 7020
-      - containerPort: 8081
+      - containerPort: 8080
       - containerPort: 15572
       livenessProbe:
         httpGet:
@@ -102,7 +104,7 @@ system:
     slbEnabled: true
     ports:
       - port: 8080
-        targetport: 8081
+        targetport: 8080
       - port: 15372
         targetport: 15572
       - port: 7443
