@@ -61,7 +61,7 @@ spec:
               fieldPath: spec.nodeName
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig-platform
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/slb/hyperslb:2208-41a3917c14f60da9d3b6bb4787ee5ef7c272b5a7
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/slb/hyperslb:2209-72f3d82b89c2ad2f8d90ac75f6ec40eead207c8a
         name: slb-ipvsdata-watchdog
         resources:
           limits:
@@ -92,7 +92,7 @@ spec:
         env:
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig-platform
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/slb/hyperslb:2208-41a3917c14f60da9d3b6bb4787ee5ef7c272b5a7
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/slb/hyperslb:2209-72f3d82b89c2ad2f8d90ac75f6ec40eead207c8a
         livenessProbe:
           exec:
             command:
