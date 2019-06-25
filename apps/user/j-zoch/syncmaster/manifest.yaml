@@ -16,12 +16,10 @@ system:
       - name: SPRING_PROFILES_ACTIVE 
         value: dc.$(KINGDOM),sam,ssbypass
       - name: DISCOVERY_NAMESPACE
-        value: user-j-zoch
-      - name: GRPC_TLS 
-        value: false
+        value: user-j-zoch.samapp
       ports:
       - containerPort: 7020
-      - containerPort: 8080
+      - containerPort: 7021
       - containerPort: 15372
       - containerPort: 2181
       livenessProbe:
@@ -125,7 +123,7 @@ system:
       - port: 15372
         targetport: 15372
       - port: 7443
-        targetport: 7443
+        targetport: 7020
       - port: 5432
         targetport: 5432
 
