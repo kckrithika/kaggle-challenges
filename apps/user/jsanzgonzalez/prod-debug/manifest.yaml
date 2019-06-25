@@ -8,7 +8,7 @@ system:
     containers:
 
       - name: prod-debug-service
-        image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/hubs/prod-debug:prod-debug-2019-06-25-15-10-27
+        image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/hubs/prod-debug:prod-debug-2019-06-25-15-37-40
         livenessProbe:
           exec:
             command:
@@ -25,7 +25,7 @@ system:
          periodSeconds: 5
 
       - name: prod-debug-sherpa
-        image: sfci/servicelibs/sherpa-envoy:1.0.6
+        image: sfci/servicelibs/sherpa-envoy:1.0.8
         ports:
         - containerPort: 15373
           name: sherpa-adm
