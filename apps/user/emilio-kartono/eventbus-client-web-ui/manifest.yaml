@@ -7,6 +7,10 @@ system:
         - name: myservercert
           maddogCert:
             type: server
+        - name: secretvol
+          k4aSecret:
+            secretName: eventbus-client-web-ui-secrets
+            
       containers:
       - name: eventbus-client-web-ui
         image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/emilio.kartono/eventbus-client-web-ui:eventbus-client-web-ui
@@ -25,6 +29,9 @@ system:
         volumeMounts:
           - name: myservercert
             mountPath: /certs
+          - name: secretvol
+            mountPath: /secrets/
+            readOnly: true
   loadbalancers:
   - lbname: eventbus-client-web-ui-lb
     function: eventbus-client-web-ui
