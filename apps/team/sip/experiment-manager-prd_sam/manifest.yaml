@@ -10,7 +10,7 @@ system:
     volumes:
     - name: logvol
       hostPath:
-          path: /home/sfdc-search-sip/logs
+        path: /home/sfdc-search-sip/logs
     - name: heroku-secret
       k4aSecret:
         secretName: heroku-api
