@@ -8,7 +8,7 @@ system:
     count: 1
     containers:
     - name: jarvis-coordinator
-      image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-gcp/dva/jarvis-coordinator:2e7e4445e6701eed2e3c0bbbf6632bce09ae2064
+      image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-gcp/dva/jarvis-coordinator:0095eca4d5633d1fbf341bca66605f43e455edba
       livenessProbe:
         exec:
           command:

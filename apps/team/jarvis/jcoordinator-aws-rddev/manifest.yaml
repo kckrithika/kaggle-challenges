@@ -8,7 +8,7 @@ system:
     count: 1
     containers:
     - name: jarvis-coordinator
-      image: 791719295754.dkr.ecr.us-east-2.amazonaws.com/dva/jarvis-coordinator:2e7e4445e6701eed2e3c0bbbf6632bce09ae2064
+      image: 791719295754.dkr.ecr.us-east-2.amazonaws.com/dva/jarvis-coordinator:0095eca4d5633d1fbf341bca66605f43e455edba
       livenessProbe:
         exec:
           command:
