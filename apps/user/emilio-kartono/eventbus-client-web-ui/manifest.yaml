@@ -30,7 +30,7 @@ system:
           - name: myservercert
             mountPath: /certs
           - name: secretvol
-            mountPath: /secrets/
+            mountPath: /secrets
             readOnly: true
   loadbalancers:
   - lbname: eventbus-client-web-ui-lb
