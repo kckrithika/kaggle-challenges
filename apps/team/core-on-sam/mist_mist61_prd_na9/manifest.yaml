@@ -47,7 +47,7 @@ system:
       - name: DISABLE_AUTH_RELEASE_CHECK
         value: true
       - name: CASAM_APP_COLOR
-        value: blue
+        value: green
       - name: SD_PORT_OVERRIDE
         value: 7442
       - name: CASAM_SETTINGS_PATH
@@ -101,7 +101,8 @@ system:
     - env:
       - name: CASAM_SETTINGS_PATH
         value: mist.mist61.prd.na9.app
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/rpulle/coreapp_overrides_rpulle:1.0
+      image: sfci/casam/coreapp_overrides:454996
+#      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/rpulle/coreapp_overrides_rpulle:1.0
       livenessProbe:
         exec:
           command:
@@ -204,9 +205,9 @@ system:
       - name: PATCH_RELEASE_NUMBER
         value: 0
       - name: CURRENT_RELEASE_VERSION
-        value: green
-      - name: NEW_RELEASE_VERSION
         value: blue
+      - name: NEW_RELEASE_VERSION
+        value: green
       - name: READY_SERVER_COUNT
         value: 1
       - name: DB_SID
