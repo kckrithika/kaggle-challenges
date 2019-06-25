@@ -277,6 +277,9 @@ apps:
  cdg-sp1-redis-sp-cs104-pc:
   - name: cdg/cdg-sp1-sam_caas
 
+ topology-ui:
+  - name: prd/prd-sp2-sam_caas
+
 # GCP Alpha
  gcp-devmvp-caas-for-casam:
   - name: mvp/gsf-core-devmvp-sam2-sam
@@ -290,3 +293,4 @@ apps:
   - name: mvp/gsf-core-devmvp-sam2-sam
  gcp-devmvp-caas-pc-for-casam:
   - name: mvp/gsf-core-devmvp-sam2-sam
+

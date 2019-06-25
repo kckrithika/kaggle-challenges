@@ -1,0 +1,41 @@
+apiVersion: v1
+
+system:
+  functions:
+  - name: topology-ui
+    count: 1
+    volumes:
+    - name: cert
+      maddogCert:
+        type: client
+    containers:
+    - name: topology-ui-service
+      image:  ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/ameesala/topology-ui:0.1
+      volumeMounts:
+      - name: cert
+        mountPath: /client-certs
+      env:
+        - name: FALCONS
+          value: "topology.foundation.rddev.aws.sfdc.cl"
+        - name: CA
+          value: "/client-certs/ca/cacerts.pem"
+        - name: CERT
+          value: "/client-certs/client/certificates/client.pem"
+        - name: KEY
+          value: "/client-certs/client/keys/client-key.pem"
+      ports:
+      - containerPort: 8080
+        name: http
+      livenessProbe:
+        initialDelaySeconds: 30
+        httpGet:
+          path: /
+          port: 8080
+  loadbalancers:
+  - lbname: topology-ui-lb
+    function: topology-ui
+    slbenabled: true
+    ports:
+      - port: 80
+        targetport: 8080
+        lbtype: tcp
