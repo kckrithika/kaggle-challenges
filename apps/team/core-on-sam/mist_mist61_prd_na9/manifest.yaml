@@ -7,9 +7,9 @@ system:
   - containers:
     - env:
       - name: DB_SID
-        value: mist61b218utf
+        value: mist61a222utf
       - name: DB_INSTANCE_NAME
-        value: mist61b218utf-1
+        value: mist61a222utf-1
       - name: DB_USER
         value: sleepy
       - name: DB_STATS_USER
@@ -47,7 +47,7 @@ system:
       - name: DISABLE_AUTH_RELEASE_CHECK
         value: true
       - name: CASAM_APP_COLOR
-        value: green
+        value: blue
       - name: SD_PORT_OVERRIDE
         value: 7442
       - name: CASAM_SETTINGS_PATH
@@ -62,7 +62,7 @@ system:
         valueFrom:
           fieldRef:
             fieldPath: spec.nodeName
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/coreonsam/casam:release_218-patch_17562818
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/coreonsam/casam:release_main_18153481
       livenessProbe:
         exec:
           command:
@@ -196,33 +196,33 @@ system:
       - name: RELEASE_TYPE
         value: MINOR
       - name: MAJOR_RELEASE_NUMBER
-        value: 218
+        value: 222
       - name: DB_EDITION
-        value: 218
+        value: SFDC_222
       - name: MINOR_RELEASE_NUMBER
         value: 0
       - name: PATCH_RELEASE_NUMBER
         value: 0
       - name: CURRENT_RELEASE_VERSION
-        value: blue
-      - name: NEW_RELEASE_VERSION
         value: green
+      - name: NEW_RELEASE_VERSION
+        value: blue
       - name: READY_SERVER_COUNT
         value: 1
       - name: DB_SID
-        value: mist61b218utf
+        value: mist61a222utf
       - name: ENABLE_DB_SCHEMA_UPGRADE
-        value: 0
+        value: 1
       - name: OLD_DWARF
         value: sneezy
       - name: KILL_DWARF
-        value: 0
+        value: 1
       - name: LOCK_DWARF
-        value: 0
+        value: 1
       - name: TRIGGER_CAFFEINE
-        value: 0
+        value: 1
       - name: UNLOCK_DWARF
-        value: 0
+        value: 1
       - name: SNOWWHITE_PWD
         value: rotate
       - name: MADDOG_CLIENT
@@ -236,14 +236,20 @@ system:
       - name: SKIP_KAIJU
         value: 1
       - name: ZDT
-        value: true
+        value: false
       - name: KAIJU_REFOCUS_GETRESULT_URL
         value: https://refocus.internal.salesforce.com/v1/samples/
       - name: KAIJU_RUNTIME_TIMEOUT_MS
         value: 360000
       - name: ENABLE_HEALTH_CHECK_TLS
         value: false
-      image: sfci/casam/sequencer:81be90
+      - name: DB_HOST
+        value: mist61ice1-db1-1-prd.eng.sfdc.net
+      - name: DB_PORT
+        value: 1521
+      - name: DB_VENDOR
+        value: oracle
+      image: sfci/casam/sequencer:ec2a90
       livenessProbe:
         exec:
           command:
