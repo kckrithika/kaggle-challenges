@@ -24,7 +24,7 @@ system:
       - name: SERVER_PORT
         value: 8080
       - name: DISCOVERY_NAMESPACE
-        value: user-j-zoch
+        value: user-j-zoch.samapp
 
       ports:
       - containerPort: 7020
