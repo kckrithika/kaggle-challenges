@@ -2,6 +2,8 @@ apiVersion: v1
 system:
   functions:
   - name: caffeine
+    serviceAccountName: caffeine-2yice2eegq55wm2f1zcqz
+    automountServiceAccountToken: true
     type: deployment
     count: 1
     containers:
