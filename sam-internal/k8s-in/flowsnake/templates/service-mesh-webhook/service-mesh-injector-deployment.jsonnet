@@ -5,7 +5,7 @@ local cert_name = "madkubinjector";
 local flowsnake_config = import "flowsnake_config.jsonnet";
 local flowsnake_images = import "flowsnake_images.jsonnet";
 
-if flowsnake_config.madkub_enabled then
+if flowsnake_config.service_mesh_enabled && std.objectHas(flowsnake_images.feature_flags, "service_mesh") then
 {
     apiVersion: "extensions/v1beta1",
     kind: "Deployment",
@@ -41,7 +41,7 @@ if flowsnake_config.madkub_enabled then
                 containers: [
                     {
                         name: "injector",
-                        image: "dva-registry.internal.salesforce.com/dva/flowsnake-service-mesh-injector-webhook:jenkins-dva-transformation-service-mesh-injector-webhook-PR-1-1-itest",
+                        image: flowsnake_images.service_mesh_injector,
                         imagePullPolicy: "Always",
                         ports: [{
                             containerPort: 8443

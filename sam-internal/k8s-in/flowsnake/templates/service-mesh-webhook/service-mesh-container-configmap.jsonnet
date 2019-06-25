@@ -6,10 +6,9 @@ local estate = std.extVar("estate");
 local kingdom = std.extVar("kingdom");
 
 # Copied from madkub_common  
-local containerspec(cert_names, user=0) = {
-    local certs = madkub_common.make_cert_config(cert_names),
+local containerspec = {
     name: "<replaced>",
-    image: "ops0-artifactrepo2-0-prd.data.sfdc.net/sfci/servicelibs/sherpa-envoy:1.0.5",
+    image: flowsnake_images.service_mesh,
     imagePullPolicy: "IfNotPresent",
     terminationMessagePath: "/dev/termination-log",
     terminationMessagePolicy: "File",
@@ -47,19 +46,6 @@ local containerspec(cert_names, user=0) = {
             memory: "1Gi"
         },
     },
-    volumeMounts: madkub_common.cert_mounts(certs)
-        + [{
-            mountPath: "/tokens",
-            name: "tokens",
-        }]
-    + (if !flowsnake_config.is_minikube then
-        certs_and_kubeconfig.platform_cert_volumeMounts
-    else [
-        {
-            mountPath: "/maddog-onebox",
-            name: "maddog-onebox-certs",
-        },
-    ]),
     env: [
         {
             "name": "SETTINGS_PATH",
@@ -79,12 +65,12 @@ local containerspec(cert_names, user=0) = {
         },
         {
             "name": "JVM_HEAP_MAX",
-            "value": "1008M"
+            "value": "1024M"
         },
     ],
 };
 
-if flowsnake_config.madkub_enabled then
+if flowsnake_config.service_mesh_enabled && std.objectHas(flowsnake_images.feature_flags, "service_mesh") then
 {
     apiVersion: "v1",
     kind: "ConfigMap",
@@ -93,6 +79,6 @@ if flowsnake_config.madkub_enabled then
         namespace: "flowsnake",
     },
     data: {
-        "spec.jaysawn": std.toString(containerspec("usercerts"))
+        "spec.jaysawn": std.toString(containerspec)
     }
 } else "SKIP"

@@ -107,7 +107,9 @@ if flowsnake_config.madkub_enabled then
         name: "madkub-container-spec",
         namespace: "flowsnake",
     },
-    data: {
-        "spec.jaysawn": std.toString(containerspec("usercerts"))
-    }
+    data: {} + (if std.objectHas(flowsnake_images.feature_flags, "service_mesh") then {
+      "spec.jaysawn": std.toString(containerspec("usercerts", 7447))
+    } else {
+      "spec.jaysawn": std.toString(containerspec("usercerts"))
+    })
 } else "SKIP"
