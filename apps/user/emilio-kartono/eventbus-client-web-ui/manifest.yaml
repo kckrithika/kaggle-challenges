@@ -8,7 +8,7 @@ system:
           maddogCert:
             type: server
         - name: secretvol
-          k4asSecret:
+          k4aSecret:
             secretName: eventbus-client-web-ui-secrets
             
       containers:
