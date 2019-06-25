@@ -11,7 +11,7 @@ system:
     terminationGracePeriodSeconds: 35
     containers:
     - name: eaas
-      image: 791719295754.dkr.ecr.us-east-2.amazonaws.com/sfci/eaas/emailservice:2.0.70-168958d9e76ec9f4cdff694561503e6920d5b4a3
+      image: 791719295754.dkr.ecr.us-east-2.amazonaws.com/sfci/eaas/emailservice:2.0.73-621c4b3b685c36488a5681ab09dcb0b88c558895
       env:
       - name: SFDC_ENVIRONMENT
         value: sam
