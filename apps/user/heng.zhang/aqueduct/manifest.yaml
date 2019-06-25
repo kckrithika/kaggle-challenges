@@ -3,7 +3,7 @@ apiVersion: v1
 system:
   functions:
     - name: aqueduct
-      count: 0
+      count: 1
       identity:
         serviceName: emp-aqueduct
       volumes:
