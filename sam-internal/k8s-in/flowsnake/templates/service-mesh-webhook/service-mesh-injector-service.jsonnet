@@ -1,0 +1,21 @@
+local flowsnake_config = import "flowsnake_config.jsonnet";
+local flowsnake_images = import "flowsnake_images.jsonnet";
+
+if flowsnake_config.service_mesh_enabled && std.objectHas(flowsnake_images.feature_flags, "service_mesh") then
+{
+    apiVersion: "v1",
+    kind: "Service",
+    metadata: {
+        name: "service-mesh-injector",
+        namespace: "flowsnake",
+    },
+    spec: {
+        ports: [{
+            port: 443,
+            targetPort: 8443
+        }],
+        selector: {
+            app: "service-mesh-injector",
+        },
+    }
+} else "SKIP"

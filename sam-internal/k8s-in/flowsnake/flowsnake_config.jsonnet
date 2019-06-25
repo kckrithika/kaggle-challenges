@@ -167,6 +167,7 @@ local flowsnake_all_kes = (import "flowsnakeEstates.json").kingdomEstates + ["pr
     madkub_endpoint: if self.is_minikube then "https://madkubserver:32007" else "https://10.254.208.254:32007",  // TODO: Fix kubedns so we do not need the IP
     maddog_endpoint: if self.is_minikube then "https://maddog-onebox:8443" else configs.maddogEndpoint,
     madkub_enabled: !self.is_minikube,
+    service_mesh_enabled: !self.is_minikube,
     kubedns_manifests_enabled: !self.is_minikube,
     # Performance impact of logging DNS queries unknown. In test fleet alone it is ~5000 per minute. Presume this can
     # only be done temporarily.

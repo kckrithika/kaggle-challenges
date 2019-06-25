@@ -1,6 +1,7 @@
 local estate = std.extVar("estate");
 local kingdom = std.extVar("kingdom");
 local flowsnakeconfig = import "flowsnake_config.jsonnet";
+local configs = import "config.jsonnet";
 local utils = import "util_functions.jsonnet";
 {
     ### Global overrides - Anything here will override anything below
@@ -40,6 +41,7 @@ local utils = import "util_functions.jsonnet";
                 # --- flag F (Their only purpose ... ---
                 next_analysis_script: "unverified",
                 # --- flag G (is to assist ... ---
+                service_mesh: "",
                 # --- flag H (git's diff logic ... ---
                 # --- flag I (to reduce the ---
                 # --- flag J (likelihood of merge conflicts.) ---
@@ -136,6 +138,8 @@ local utils = import "util_functions.jsonnet";
                 kubedns_image_tag: "1.14.9",
                 madkub_image_tag: "1.0.0-0000084-9f4a6ca6",  # Madkub server gets token for itself using host IP
                 madkub_injector_image_tag: "13",
+                service_mesh_image_tag: "1.0.5",
+                service_injector_image_tag: "jenkins-dva-transformation-service-mesh-injector-webhook-PR-1-23-itest",
                 node_controller_image_tag: "sam-0001970-a296421d",
                 nodeMonitor_image_tag: "jenkins-dva-transformation-flowsnake-platform-master-781-itest",
                 snapshot_consumer_image_tag: "sam-0002052-bc0d9ea5",
@@ -244,6 +248,7 @@ local utils = import "util_functions.jsonnet";
     docker_daemon_watchdog: flowsnakeconfig.strata_registry + "/docker-daemon-watchdog:" + $.per_phase[$.phase].image_tags.docker_daemon_watchdog_image_tag,
     zookeeper: flowsnakeconfig.strata_registry + "/flowsnake-zookeeper:" + $.per_phase[$.phase].image_tags.zookeeper_image_tag,
     madkub_injector: flowsnakeconfig.strata_registry + "/flowsnake-madkub-injector-webhook:" + $.per_phase[$.phase].image_tags.madkub_injector_image_tag,
+    service_mesh_injector: flowsnakeconfig.strata_registry + "/flowsnake-service-mesh-injector-webhook:" + $.per_phase[$.phase].image_tags.service_injector_image_tag,
     spark_operator: flowsnakeconfig.strata_registry + "/kubernetes-spark-operator-2.4.0-sfdc-0.0.1:" + $.per_phase[$.phase].image_tags.spark_operator_image_tag,
     spark_operator_watchdog_canary: flowsnakeconfig.strata_registry + "/flowsnake-spark-on-k8s-integration-test-runner:" + $.per_phase[$.phase].image_tags.integration_test_tag,
     spark_on_k8s_sample_apps: flowsnakeconfig.strata_registry + "/flowsnake-spark-on-k8s-sample-apps:" + $.per_phase[$.phase].image_tags.integration_test_tag,
@@ -263,6 +268,7 @@ local utils = import "util_functions.jsonnet";
     watchdog: imageFunc.do_override_based_on_tag($.overrides, "sam", "hypersam", $.per_phase[$.phase].image_tags.watchdog_image_tag),
     node_controller: imageFunc.do_override_based_on_tag($.overrides, "sam", "hypersam", $.per_phase[$.phase].image_tags.node_controller_image_tag),
     madkub: if flowsnakeconfig.is_minikube then flowsnakeconfig.strata_registry + "/madkub:" + $.per_phase[$.phase].image_tags.madkub_image_tag else imageFunc.do_override_based_on_tag($.overrides, "sam", "madkub", $.per_phase[$.phase].image_tags.madkub_image_tag),
+    service_mesh: configs.registry + "/sfci/servicelibs/sherpa-envoy:" + $.per_phase[$.phase].image_tags.service_mesh_image_tag,
     beacon: flowsnakeconfig.registry + "/sfci/servicelibs/beacon:" + $.per_phase[$.phase].image_tags.beacon_image_tag,
     kubedns: flowsnakeconfig.strata_registry + "/k8s-dns-kube-dns:" + $.per_phase[$.phase].image_tags.kubedns_image_tag,
     kubednsmasq: flowsnakeconfig.strata_registry + "/k8s-dns-dnsmasq-nanny:" + $.per_phase[$.phase].image_tags.kubedns_image_tag,
