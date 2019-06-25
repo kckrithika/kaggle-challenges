@@ -1,0 +1,25 @@
+apiVersion: v1
+system:
+  functions:
+  - name: caffeine
+    type: deployment
+    count: 1
+    containers:
+    - name: caffeine-coordinator
+      image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-gcp/sfci/dbiaas/caffeine/caffeine-coordinator:a2614ef
+      livenessProbe:
+        exec:
+          command:
+          - echo
+          - "OK"
+    - name: caffeine-cqw
+      image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-gcp/sfci/dbiaas/caffeine/caffeine-cqw:a2614ef
+      livenessProbe:
+        exec:
+          command:
+          - echo
+          - "OK"
+  loadbalancers:
+  - lbname: caffeine
+    function: caffeine
+    slbenabled: true
