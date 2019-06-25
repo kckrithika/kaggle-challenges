@@ -101,7 +101,7 @@ system:
     - env:
       - name: CASAM_SETTINGS_PATH
         value: mist.mist61.prd.na1.app
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/casam/coreapp_overrides:latest
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/casam/coreapp_overrides:5f6cc7
       livenessProbe:
         exec:
           command:
@@ -243,7 +243,7 @@ system:
         value: 360000
       - name: ENABLE_HEALTH_CHECK_TLS
         value: false
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/casam/sequencer:latest
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/casam/sequencer:068d3d
       livenessProbe:
         exec:
           command:
