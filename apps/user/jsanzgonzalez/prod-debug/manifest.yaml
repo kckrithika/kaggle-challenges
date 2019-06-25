@@ -8,7 +8,7 @@ system:
     containers:
 
       - name: prod-debug-service
-        image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/hubs/prod-debug:prod-debug-2019-05-30-22-32-53
+        image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/hubs/prod-debug:prod-debug-2019-06-25-14-38-43
         livenessProbe:
           exec:
             command:
@@ -24,40 +24,29 @@ system:
          initialDelaySeconds: 10
          periodSeconds: 5
 
-      - name: envoy-sidecar
-        image: sfci/servicelibs/sherpa-envoy:1.0.7
+      - name: prod-debug-sherpa
+        image: sfci/servicelibs/sherpa-envoy:1.0.6
+        ports:
+        - containerPort: 15373
+          name: sherpa-adm
         livenessProbe:
           exec:
             command:
             - ./bin/is-alive
-          initialDelaySeconds: 20
+          initialDelaySeconds: 60
           periodSeconds: 5
-        ports:
-        - containerPort: 13065
-        - containerPort: 13066
-        - containerPort: 15373
-        volumeMounts:
-          - mountPath: /cyan-config
-            name: envoy-config-volume
-          - mountPath: /certs/cert-client
-            name: tls-client-cert
-
-
-      - name: envoy-sidecar-config
-        image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/hubs/cyan-config:jsanzgonzalez-20190528-173239
-        env: 
-        - name: CONFIG_DIR
-          value: /home/sfdc-sherpa/sherpa-envoy-config-volume
-        livenessProbe:
+        readinessProbe:
           exec:
             command:
-            - cat
-            - /tmp/live
-          initialDelaySeconds: 20
+            - ./bin/is-ready
+          initialDelaySeconds: 50
           periodSeconds: 5
         volumeMounts:
-          - mountPath: /home/sfdc-sherpa/sherpa-envoy-config-volume
-            name: envoy-config-volume
+        - name: tls-client-cert
+          mountPath: /client-certs
+        - name: tls-server-cert
+          mountPath: /server-certs
+
 
     # The volumes to mount for shipping logs to splunk
     # General rule is to use path that satisfies the pattern: /home/sfdc-*/logs/**/*.json
@@ -66,5 +55,6 @@ system:
       - maddogCert:
           type: client
         name: tls-client-cert
-      - emptyDir: {}
-        name: envoy-config-volume
+      - maddogCert:
+          type: server
+        name: tls-server-cert
