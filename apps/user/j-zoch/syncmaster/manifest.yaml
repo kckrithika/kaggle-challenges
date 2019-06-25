@@ -19,7 +19,7 @@ system:
         value: user-j-zoch.samapp
       ports:
       - containerPort: 7020
-      - containerPort: 7021
+      - containerPort: 7022
       - containerPort: 15372
       - containerPort: 2181
       livenessProbe:
