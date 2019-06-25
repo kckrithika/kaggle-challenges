@@ -19,3 +19,6 @@ apps:
 
   eventbus-client-web-api:
     - prd/sam
+    
+  eventbus-client-web-ui:
+    - prd/sam
