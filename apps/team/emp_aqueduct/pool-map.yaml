@@ -18,7 +18,7 @@ apps:
   aqueduct-private-group-2:
 
   eventbus-client-web-api:
-    - prd/sam
+    - prd/prd-sam
     
   eventbus-client-web-ui:
-    - prd/sam
+    - prd/prd-sam
