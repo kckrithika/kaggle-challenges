@@ -47,7 +47,7 @@ system:
       - name: DISABLE_AUTH_RELEASE_CHECK
         value: true
       - name: CASAM_APP_COLOR
-        value: green
+        value: blue
       - name: SD_PORT_OVERRIDE
         value: 7442
       - name: CASAM_SETTINGS_PATH
@@ -57,7 +57,7 @@ system:
       - name: DEPLOYMENT
         value: B
       - name: ZDT
-        value: true
+        value: false
       - name: CASAM_HOST_NAME
         valueFrom:
           fieldRef:
@@ -101,7 +101,7 @@ system:
     - env:
       - name: CASAM_SETTINGS_PATH
         value: mist.mist61.prd.na1.app
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/casam/coreapp_overrides:3dfd96
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/casam/coreapp_overrides:5f6cc7
       livenessProbe:
         exec:
           command:
@@ -204,9 +204,9 @@ system:
       - name: PATCH_RELEASE_NUMBER
         value: 0
       - name: CURRENT_RELEASE_VERSION
-        value: blue
-      - name: NEW_RELEASE_VERSION
         value: green
+      - name: NEW_RELEASE_VERSION
+        value: blue
       - name: READY_SERVER_COUNT
         value: 1
       - name: DB_SID
@@ -236,14 +236,14 @@ system:
       - name: SKIP_KAIJU
         value: 1
       - name: ZDT
-        value: true
+        value: false
       - name: KAIJU_REFOCUS_GETRESULT_URL
         value: https://refocus.internal.salesforce.com/v1/samples/
       - name: KAIJU_RUNTIME_TIMEOUT_MS
         value: 360000
       - name: ENABLE_HEALTH_CHECK_TLS
         value: false
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/casam/sequencer:373df6
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/casam/sequencer:068d3d
       livenessProbe:
         exec:
           command:
