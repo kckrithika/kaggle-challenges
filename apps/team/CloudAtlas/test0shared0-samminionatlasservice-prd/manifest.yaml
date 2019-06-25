@@ -8,7 +8,7 @@ system:
   - name: cloudatlas-prd-dev-service
     identity:
       serviceName: cloudatlas-prd-dev-service
-    count: 0
+    count: 3
     strategy:
       type: RollingUpdate
       rollingUpdate:
@@ -111,13 +111,13 @@ system:
       - containerPort: 15374
       livenessProbe:
         httpGet:
-          path: /manage/health
+          path: /manage/health2
           port: 15372
         initialDelaySeconds: 60
         periodSeconds: 30
       readinessProbe:
         httpGet:
-          path: /manage/health
+          path: /manage/health22
           port: 15372
         initialDelaySeconds: 60
         periodSeconds: 5
