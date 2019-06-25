@@ -152,3 +152,5 @@ system:
       ports:
         - port: 9090
           targetport: 7014
+        - port: 15373
+          targetport: 15373
