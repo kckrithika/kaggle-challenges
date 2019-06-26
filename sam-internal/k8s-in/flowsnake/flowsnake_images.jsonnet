@@ -41,7 +41,6 @@ local utils = import "util_functions.jsonnet";
                 # --- flag G (is to assist ... ---
                 service_mesh: "",
                 # --- flag H (git's diff logic ... ---
-                watchdog_kuberesources_disable: "",
                 # --- flag I (to reduce the ---
                 # --- flag J (likelihood of merge conflicts.) ---
             },
@@ -69,6 +68,7 @@ local utils = import "util_functions.jsonnet";
                 # --- flag G (is to assist ... ---
                 service_mesh: "",
                 # --- flag H (git's diff logic ... ---
+                watchdog_kuberesources_disable: "",
                 # --- flag I (to reduce the ---
                 # --- flag J (likelihood of merge conflicts.) ---
             },
