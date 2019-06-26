@@ -5,8 +5,7 @@ system:
     - name: aqueduct
       count: 1
       identity:
-        emptyServiceName: true
-        namespace: emp_aqueduct #dummy change
+        serviceName: emp-aqueduct
       volumes:
       - name: kafkaclientcerts
         maddogCert:
