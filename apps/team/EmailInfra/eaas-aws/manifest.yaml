@@ -50,7 +50,7 @@ system:
         periodSeconds: 60
         timeoutSeconds: 30
     - name: mta
-      image: 791719295754.dkr.ecr.us-east-2.amazonaws.com/dva/sfdc-mta-config:13
+      image: 791719295754.dkr.ecr.us-east-2.amazonaws.com/dva/sfdc-mta-config:14
       ports:
       - name: smtp 
         containerPort: 52525
