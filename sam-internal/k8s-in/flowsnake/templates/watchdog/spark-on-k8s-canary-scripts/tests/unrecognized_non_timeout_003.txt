@@ -1,48 +1,72 @@
 UNRECOGNIZED_NON_TIMEOUT
 //
-// What happened here? Need to kill Pod might have been a forced eviction?
+// How can it fail with exit code 0? Doesn't that mean success?
 //
-0524 22:59:30 [1558738770] spark-impersonation-a0dbc28e - ======== Beginning spark-impersonation-a0dbc28e test ========
-0524 22:59:30 [1558738770] spark-impersonation-a0dbc28e -  [0;32mKubernetes master [0m is running at  [0;33mhttps://kubernetes-api-test-flowsnake-prd.slb.sfdc.net [0m
-0524 22:59:30 [1558738770] spark-impersonation-a0dbc28e -
-0524 22:59:30 [1558738770] spark-impersonation-a0dbc28e - To further debug and diagnose cluster problems, use 'kubectl cluster-info dump'.
-0524 22:59:32 [1558738772] spark-impersonation-a0dbc28e - Cleaning up SparkApplication/Pod older than 1 hours from prior runs.
-0524 22:59:33 [1558738773] spark-impersonation-a0dbc28e - Creating SparkApplication spark-impersonation-a0dbc28e
-0524 22:59:33 [1558738773] spark-impersonation-a0dbc28e - sparkapplication "spark-impersonation-a0dbc28e" created
-0524 22:59:35 [1558738775] spark-impersonation-a0dbc28e - Waiting for SparkApplication spark-impersonation-a0dbc28e to reach a terminal state.
-0524 22:59:39 [1558738779] spark-impersonation-a0dbc28e - Pod change detected: spark-impersonation-a0dbc28e-driver: Init:0/1 on host fs1shared0-flowsnakeworkertest2-1-prd.eng.sfdc.net.
-0524 22:59:44 [1558738784] spark-impersonation-a0dbc28e - Pod change detected: spark-impersonation-a0dbc28e-driver changed to Running (previously Init:0/1).
-0524 23:00:19 [1558738819] spark-impersonation-a0dbc28e - Pod change detected: spark-impersonation-a0dbc28e-driver changed to Terminating (previously Running).
-0524 23:00:32 [1558738832] spark-impersonation-a0dbc28e - SparkApplication spark-impersonation-a0dbc28e has terminated after 57 seconds. State is FAILED.
-0524 23:00:32 [1558738832] spark-impersonation-a0dbc28e - ---- Begin Events ----
-0524 23:00:32 [1558738832] spark-impersonation-a0dbc28e - Name:         spark-impersonation-a0dbc28e
-0524 23:00:32 [1558738832] spark-impersonation-a0dbc28e - Events:                          <none>
-0524 23:00:34 [1558738834] spark-impersonation-a0dbc28e - Name:                      spark-impersonation-a0dbc28e-driver
-0524 23:00:34 [1558738834] spark-impersonation-a0dbc28e - Events:
-0524 23:00:34 [1558738834] spark-impersonation-a0dbc28e -   Type     Reason                 Age   From                                                         Message
-0524 23:00:34 [1558738834] spark-impersonation-a0dbc28e -   ----     ------                 ----  ----                                                         -------
-0524 23:00:34 [1558738834] spark-impersonation-a0dbc28e -   Normal   Scheduled              59s   default-scheduler                                            Successfully assigned spark-impersonation-a0dbc28e-driver to fs1shared0-flowsnakeworkertest2-1-prd.eng.sfdc.net
-0524 23:00:34 [1558738834] spark-impersonation-a0dbc28e -   Normal   SuccessfulMountVolume  59s   kubelet, fs1shared0-flowsnakeworkertest2-1-prd.eng.sfdc.net  MountVolume.SetUp succeeded for volume "client-certificate"
-0524 23:00:34 [1558738834] spark-impersonation-a0dbc28e -   Normal   SuccessfulMountVolume  59s   kubelet, fs1shared0-flowsnakeworkertest2-1-prd.eng.sfdc.net  MountVolume.SetUp succeeded for volume "certificate-authority"
-0524 23:00:34 [1558738834] spark-impersonation-a0dbc28e -   Normal   SuccessfulMountVolume  59s   kubelet, fs1shared0-flowsnakeworkertest2-1-prd.eng.sfdc.net  MountVolume.SetUp succeeded for volume "spark-local-dir-1"
-0524 23:00:34 [1558738834] spark-impersonation-a0dbc28e -   Normal   SuccessfulMountVolume  59s   kubelet, fs1shared0-flowsnakeworkertest2-1-prd.eng.sfdc.net  MountVolume.SetUp succeeded for volume "client-key"
-0524 23:00:34 [1558738834] spark-impersonation-a0dbc28e -   Warning  FailedMount            59s   kubelet, fs1shared0-flowsnakeworkertest2-1-prd.eng.sfdc.net  MountVolume.SetUp failed for volume "spark-conf-volume" : configmaps "spark-impersonation-a0dbc28e-1558738776312-driver-conf-map" not found
-0524 23:00:34 [1558738834] spark-impersonation-a0dbc28e -   Normal   SuccessfulMountVolume  59s   kubelet, fs1shared0-flowsnakeworkertest2-1-prd.eng.sfdc.net  MountVolume.SetUp succeeded for volume "spark-driver-flowsnake-watchdog-token-zhwvl"
-0524 23:00:34 [1558738834] spark-impersonation-a0dbc28e -   Normal   SuccessfulMountVolume  59s   kubelet, fs1shared0-flowsnakeworkertest2-1-prd.eng.sfdc.net  MountVolume.SetUp succeeded for volume "datacerts"
-0524 23:00:34 [1558738834] spark-impersonation-a0dbc28e -   Normal   SuccessfulMountVolume  59s   kubelet, fs1shared0-flowsnakeworkertest2-1-prd.eng.sfdc.net  MountVolume.SetUp succeeded for volume "tokens"
-0524 23:00:34 [1558738834] spark-impersonation-a0dbc28e -   Normal   SuccessfulMountVolume  58s   kubelet, fs1shared0-flowsnakeworkertest2-1-prd.eng.sfdc.net  MountVolume.SetUp succeeded for volume "spark-conf-volume"
-0524 23:00:34 [1558738834] spark-impersonation-a0dbc28e -   Normal   Pulled                 57s   kubelet, fs1shared0-flowsnakeworkertest2-1-prd.eng.sfdc.net  Container image "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/madkub:1.0.0-0000084-9f4a6ca6" already present on machine
-0524 23:00:34 [1558738834] spark-impersonation-a0dbc28e -   Normal   Created                57s   kubelet, fs1shared0-flowsnakeworkertest2-1-prd.eng.sfdc.net  Created container
-0524 23:00:34 [1558738834] spark-impersonation-a0dbc28e -   Normal   Started                57s   kubelet, fs1shared0-flowsnakeworkertest2-1-prd.eng.sfdc.net  Started container
-0524 23:00:34 [1558738834] spark-impersonation-a0dbc28e -   Normal   Pulling                54s   kubelet, fs1shared0-flowsnakeworkertest2-1-prd.eng.sfdc.net  pulling image "ops0-artifactrepo2-0-prd.data.sfdc.net/dva/flowsnake-spark-on-k8s-sample-apps:4"
-0524 23:00:34 [1558738834] spark-impersonation-a0dbc28e -   Normal   Pulled                 54s   kubelet, fs1shared0-flowsnakeworkertest2-1-prd.eng.sfdc.net  Successfully pulled image "ops0-artifactrepo2-0-prd.data.sfdc.net/dva/flowsnake-spark-on-k8s-sample-apps:4"
-0524 23:00:34 [1558738834] spark-impersonation-a0dbc28e -   Normal   Created                54s   kubelet, fs1shared0-flowsnakeworkertest2-1-prd.eng.sfdc.net  Created container
-0524 23:00:34 [1558738834] spark-impersonation-a0dbc28e -   Normal   Started                54s   kubelet, fs1shared0-flowsnakeworkertest2-1-prd.eng.sfdc.net  Started container
-0524 23:00:34 [1558738834] spark-impersonation-a0dbc28e -   Normal   Killing                13s   kubelet, fs1shared0-flowsnakeworkertest2-1-prd.eng.sfdc.net  Killing container with id docker://spark-kubernetes-driver:Need to kill Pod
-0524 23:00:37 [1558738837] spark-impersonation-a0dbc28e - ---- End Events ----
-0524 23:00:38 [1558738838] spark-impersonation-a0dbc28e - ---- Begin pods/spark-impersonation-a0dbc28e-driver Log ----
-Error: No such container: 5450b449c0e098cd848acd8ab56e6f8627feac894cdd2ae9ed10e34d3929c1300524 23:00:38 [1558738838] spark-impersonation-a0dbc28e - ---- End pods/spark-impersonation-a0dbc28e-driver Log ----
-0524 23:00:38 [1558738838] spark-impersonation-a0dbc28e - -------- Executor Pods ----------
-0524 23:00:39 [1558738839] spark-impersonation-a0dbc28e - Cleaning up stuff for complated or failed test.
-0524 23:00:39 [1558738839] spark-impersonation-a0dbc28e - sparkapplication "spark-impersonation-a0dbc28e" deleted
-0524 23:00:40 [1558738840] spark-impersonation-a0dbc28e - ======== Completion of spark-impersonation-a0dbc28e test, returning 1 ========
+0626 02:31:05 [1561516265] spark-impersonation-2577073c - ======== Beginning spark-impersonation-2577073c test ========
+0626 02:31:05 [1561516265] spark-impersonation-2577073c -  [0;32mKubernetes master [0m is running at  [0;33mhttps://kubernetes-api-flowsnake-cdu.data.sfdc.net [0m
+0626 02:31:05 [1561516265] spark-impersonation-2577073c -
+0626 02:31:05 [1561516265] spark-impersonation-2577073c - To further debug and diagnose cluster problems, use 'kubectl cluster-info dump'.
+0626 02:31:06 [1561516266] spark-impersonation-2577073c - Cleaning up SparkApplication/Pod older than 1 hours from prior runs.
+0626 02:31:08 [1561516268] spark-impersonation-2577073c - Creating SparkApplication spark-impersonation-2577073c
+0626 02:31:08 [1561516268] spark-impersonation-2577073c - sparkapplication "spark-impersonation-2577073c" created
+0626 02:31:09 [1561516269] spark-impersonation-2577073c - Waiting for SparkApplication spark-impersonation-2577073c to reach a terminal state.
+0626 02:31:13 [1561516273] spark-impersonation-2577073c - Pod change detected: spark-impersonation-2577073c-driver: Pending on host shared0-flowsnakeworkerprod1-2-cdu.ops.sfdc.net.
+0626 02:31:16 [1561516276] spark-impersonation-2577073c - Pod change detected: spark-impersonation-2577073c-driver changed to Init:0/1 (previously Pending).
+0626 02:31:21 [1561516281] spark-impersonation-2577073c - Pod change detected: spark-impersonation-2577073c-driver changed to PodInitializing (previously Init:0/1).
+0626 02:31:28 [1561516288] spark-impersonation-2577073c - Pod change detected: spark-impersonation-2577073c-driver changed to Running (previously PodInitializing).
+0626 02:31:48 [1561516308] spark-impersonation-2577073c - Pod change detected: spark-impersonation-2577073c-driver changed to Terminating (previously Running).
+0626 02:31:48 [1561516308] spark-impersonation-2577073c - ---- Begin spark-impersonation-2577073c-driver madkub-init Log ----
+Starting sam/madkub/madkub-client...
+Config used is: &{MadkubTokenServerEndpoint:https://10.254.208.254:32007 MaddogEndpoint:https://all.pkicontroller.pki.blank.cdu.prod.non-estates.sfdcsd.net:8443 MadkubServerCAPath:/etc/pki_service/ca/cacerts.pem CAFolder:/etc/pki_service/ca TestCAFolder: MaddogServerCAPath:/etc/pki_service/ca/security-ca.pem CertFolderUNUSED:./certs CertFolders:map[usercerts:/certs] TokenFolder:/tokens RunInitForRefresherMode:false RefresherMode:false RefresherOnce:false RefresherTokenGracePeriod:0s RefresherCheckerInterval:15m0s RefresherMinimalRenewDelay:12h0m0s IdentityNodeName:shared0-flowsnakeworkerprod1-2-cdu.ops.sfdc.net IdentityName:spark-impersonation-2577073c-driver IdentityNamespace:flowsnake-watchdog IdentityHostname:spark-impersonation-2577073c-driver RetryMaxElapsedTime:3m0s RequestedCertTypeUNUSED:client FunnelEndpoint:http://ajna0-funnel1-0-cdu.data.sfdc.net:80 Kingdom:cdu Superpod:None Estate:cdu-flowsnake_prod LogLevel:0}
+I0626 02:31:15.672435       1 madkubclient.go:424] Starting Run of MadkubClient
+I0626 02:31:15.674302       1 client.go:56] Creating MadkubeApiClient with Endpoint {Scheme:https Opaque: User:<nil> Host:10.254.208.254:32007 Path: RawPath: ForceQuery:false RawQuery: Fragment:}...
+I0626 02:31:15.674808       1 client.go:55] MetricsClient initialized
+I0626 02:31:15.674825       1 madkubclient.go:458] Run madkub client with full options
+I0626 02:31:15.684872       1 client.go:177] Calling getTokenConfig Post with URL https://10.254.208.254:32007/tokenByName...
+I0626 02:31:18.147155       1 madkubclient.go:375] Successfully got and wrote the init token and certtype for cert usercerts into /tokens.
+I0626 02:31:18.322293       1 madkubclient.go:388] Successfully got and wrote the first cert+key for cert usercerts part into /certs.
+I0626 02:31:18.322412       1 fileutil.go:144] sourceOnHostPath /etc/pki_service/ca destinationInsideContainerPath /certs
+I0626 02:31:18.322503       1 fileutil.go:153] caFolderToUse ca
+I0626 02:31:18.322518       1 fileutil.go:155] destinationFolder /certs/ca
+I0626 02:31:18.322550       1 fileutil.go:164] Copying CA files from sourceOnHostPath /etc/pki_service/ca and destinationInsideContainerPath /certs
+I0626 02:31:18.322563       1 fileutil.go:173] Processing file cabundle.pem
+I0626 02:31:18.322647       1 fileutil.go:173] Processing file cacerts.pem
+I0626 02:31:18.322729       1 fileutil.go:173] Processing file security-ca.pem
+I0626 02:31:18.322814       1 madkubclient.go:408] Successfully wrote the CA for cert usercerts file into /certs.
+I0626 02:31:18.322833       1 madkubclient.go:410] Successfully ran the init mode for cert usercerts
+I0626 02:31:18.322856       1 madkubclient.go:335] Ran Init Mode for all certs.
+0626 02:31:49 [1561516309] spark-impersonation-2577073c - ---- End spark-impersonation-2577073c-driver madkub-init Log ----
+0626 02:31:49 [1561516309] spark-impersonation-2577073c - ---- Begin spark-impersonation-2577073c-driver main Log ----
+0626 02:31:50 [1561516310] spark-impersonation-2577073c - Error from server (BadRequest): container "spark-kubernetes-driver" in pod "spark-impersonation-2577073c-driver" is terminated
+0626 02:31:50 [1561516310] spark-impersonation-2577073c - Invocation (1/7) of [kubectl -n flowsnake-watchdog logs spark-impersonation-2577073c-driver] failed (1). Will sleep 10 seconds and then try again.
+0626 02:32:03 [1561516323] spark-impersonation-2577073c - Error from server (BadRequest): container "spark-kubernetes-driver" in pod "spark-impersonation-2577073c-driver" is terminated
+0626 02:32:03 [1561516323] spark-impersonation-2577073c - Invocation (2/7) of [kubectl -n flowsnake-watchdog logs spark-impersonation-2577073c-driver] failed (1). Will sleep 10 seconds and then try again.
+0626 02:32:15 [1561516335] spark-impersonation-2577073c - Error from server (BadRequest): container "spark-kubernetes-driver" in pod "spark-impersonation-2577073c-driver" is terminated
+0626 02:32:15 [1561516335] spark-impersonation-2577073c - Invocation (3/7) of [kubectl -n flowsnake-watchdog logs spark-impersonation-2577073c-driver] failed (1). Will sleep 10 seconds and then try again.
+0626 02:32:27 [1561516347] spark-impersonation-2577073c - Error from server (BadRequest): container "spark-kubernetes-driver" in pod "spark-impersonation-2577073c-driver" is terminated
+0626 02:32:27 [1561516347] spark-impersonation-2577073c - Invocation (4/7) of [kubectl -n flowsnake-watchdog logs spark-impersonation-2577073c-driver] failed (1). Will sleep 10 seconds and then try again.
+0626 02:32:38 [1561516358] spark-impersonation-2577073c - Error from server (BadRequest): container "spark-kubernetes-driver" in pod "spark-impersonation-2577073c-driver" is terminated
+0626 02:32:38 [1561516358] spark-impersonation-2577073c - Invocation (5/7) of [kubectl -n flowsnake-watchdog logs spark-impersonation-2577073c-driver] failed (1). Will sleep 10 seconds and then try again.
+0626 02:32:49 [1561516369] spark-impersonation-2577073c - Error from server (NotFound): pods "spark-impersonation-2577073c-driver" not found
+0626 02:32:49 [1561516369] spark-impersonation-2577073c - Invocation (6/7) of [kubectl -n flowsnake-watchdog logs spark-impersonation-2577073c-driver] failed (1). Will sleep 10 seconds and then try again.
+0626 02:33:00 [1561516380] spark-impersonation-2577073c - Error from server (NotFound): pods "spark-impersonation-2577073c-driver" not found
+0626 02:33:00 [1561516380] spark-impersonation-2577073c - Invocation (7/7) of [kubectl -n flowsnake-watchdog logs spark-impersonation-2577073c-driver] failed (1). Giving up.
+0626 02:33:00 [1561516380] spark-impersonation-2577073c - ---- End spark-impersonation-2577073c-driver main Log ----
+0626 02:33:02 [1561516382] spark-impersonation-2577073c - SparkApplication spark-impersonation-2577073c has terminated after 113 seconds. State is FAILED.
+0626 02:33:03 [1561516383] spark-impersonation-2577073c - Pod change detected: spark-impersonation-2577073c-driver removed.
+0626 02:33:03 [1561516383] spark-impersonation-2577073c - ---- Begin Events ----
+0626 02:33:03 [1561516383] spark-impersonation-2577073c - Name:         spark-impersonation-2577073c
+0626 02:33:03 [1561516383] spark-impersonation-2577073c - Events:
+0626 02:33:03 [1561516383] spark-impersonation-2577073c -   Type     Reason                     Age   From            Message
+0626 02:33:03 [1561516383] spark-impersonation-2577073c -   ----     ------                     ----  ----            -------
+0626 02:33:03 [1561516383] spark-impersonation-2577073c -   Normal   SparkApplicationAdded      1m    spark-operator  SparkApplication spark-impersonation-2577073c was added, enqueuing it for submission
+0626 02:33:03 [1561516383] spark-impersonation-2577073c -   Normal   SparkApplicationSubmitted  1m    spark-operator  SparkApplication spark-impersonation-2577073c was submitted successfully
+0626 02:33:03 [1561516383] spark-impersonation-2577073c -   Normal   SparkDriverRunning         1m    spark-operator  Driver spark-impersonation-2577073c-driver is running
+0626 02:33:03 [1561516383] spark-impersonation-2577073c -   Warning  SparkDriverFailed          56s   spark-operator  Driver spark-impersonation-2577073c-driver failed
+0626 02:33:03 [1561516383] spark-impersonation-2577073c -   Warning  SparkApplicationFailed     56s   spark-operator  SparkApplication spark-impersonation-2577073c failed: driver pod failed with ExitCode: 0, Reason:
+0626 02:33:07 [1561516387] spark-impersonation-2577073c - ---- End Events ----
+0626 02:33:08 [1561516388] spark-impersonation-2577073c - Cannot locate driver pod. Maybe it never started? No logs to display.
+0626 02:33:08 [1561516388] spark-impersonation-2577073c - -------- Executor Pods ----------
+0626 02:33:08 [1561516388] spark-impersonation-2577073c - Cleaning up stuff for completed or failed test.
+0626 02:33:08 [1561516388] spark-impersonation-2577073c - sparkapplication "spark-impersonation-2577073c" deleted
+0626 02:33:11 [1561516391] spark-impersonation-2577073c - ======== Completion of spark-impersonation-2577073c test, returning 1 ========

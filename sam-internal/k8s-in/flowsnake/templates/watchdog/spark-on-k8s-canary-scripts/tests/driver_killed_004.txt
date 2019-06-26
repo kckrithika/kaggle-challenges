@@ -1,0 +1,233 @@
+DRIVER_KILLED
+0626 05:03:10 [1561525390] spark-pi-110d9f94 - ======== Beginning spark-pi-110d9f94 test ========
+0626 05:03:10 [1561525390] spark-pi-110d9f94 -  [0;32mKubernetes master [0m is running at  [0;33mhttps://10.254.208.1:443 [0m
+0626 05:03:10 [1561525390] spark-pi-110d9f94 -
+0626 05:03:10 [1561525390] spark-pi-110d9f94 - To further debug and diagnose cluster problems, use 'kubectl cluster-info dump'.
+0626 05:03:11 [1561525391] spark-pi-110d9f94 - Cleaning up SparkApplication/Pod older than 1 hours from prior runs.
+0626 05:03:11 [1561525391] spark-pi-110d9f94 - Creating SparkApplication spark-pi-110d9f94
+0626 05:03:11 [1561525391] spark-pi-110d9f94 - sparkapplication "spark-pi-110d9f94" created
+0626 05:03:12 [1561525392] spark-pi-110d9f94 - Waiting for SparkApplication spark-pi-110d9f94 to reach a terminal state.
+0626 05:03:16 [1561525396] spark-pi-110d9f94 - Pod change detected: spark-pi-110d9f94-driver: Init:0/1 on host fs1shared0-flowsnakeworkertest1-4-prd.eng.sfdc.net.
+0626 05:03:18 [1561525398] spark-pi-110d9f94 - Pod change detected: spark-pi-110d9f94-driver changed to PodInitializing (previously Init:0/1).
+0626 05:03:19 [1561525399] spark-pi-110d9f94 - Pod change detected: spark-pi-110d9f94-driver changed to Running (previously PodInitializing).
+0626 05:04:10 [1561525450] spark-pi-110d9f94 - Invocation (1/7) of [kubectl -n flowsnake-watchdog get sparkapplication spark-pi-110d9f94 -o jsonpath={.status.applicationState.state}] failed (timed out (10s)). Will sleep 10 seconds and then try again.
+0626 05:04:21 [1561525461] spark-pi-110d9f94 - ...still waiting for terminal state (currently RUNNING) after 69 seconds.
+0626 05:04:21 [1561525461] spark-pi-110d9f94 - ---- Begin Events ----
+0626 05:04:21 [1561525461] spark-pi-110d9f94 - Name:         spark-pi-110d9f94
+0626 05:04:21 [1561525461] spark-pi-110d9f94 - Events:
+0626 05:04:21 [1561525461] spark-pi-110d9f94 -   Type    Reason                     Age   From            Message
+0626 05:04:21 [1561525461] spark-pi-110d9f94 -   ----    ------                     ----  ----            -------
+0626 05:04:21 [1561525461] spark-pi-110d9f94 -   Normal  SparkApplicationAdded      1m    spark-operator  SparkApplication spark-pi-110d9f94 was added, enqueuing it for submission
+0626 05:04:21 [1561525461] spark-pi-110d9f94 -   Normal  SparkApplicationSubmitted  1m    spark-operator  SparkApplication spark-pi-110d9f94 was submitted successfully
+0626 05:04:21 [1561525461] spark-pi-110d9f94 -   Normal  SparkDriverRunning         1m    spark-operator  Driver spark-pi-110d9f94-driver is running
+0626 05:04:22 [1561525462] spark-pi-110d9f94 - Name:           spark-pi-110d9f94-driver
+0626 05:04:22 [1561525462] spark-pi-110d9f94 - Events:
+0626 05:04:22 [1561525462] spark-pi-110d9f94 -   Type     Reason                 Age   From                                                         Message
+0626 05:04:22 [1561525462] spark-pi-110d9f94 -   ----     ------                 ----  ----                                                         -------
+0626 05:04:22 [1561525462] spark-pi-110d9f94 -   Normal   SuccessfulMountVolume  1m    kubelet, fs1shared0-flowsnakeworkertest1-4-prd.eng.sfdc.net  MountVolume.SetUp succeeded for volume "datacerts"
+0626 05:04:22 [1561525462] spark-pi-110d9f94 -   Normal   SuccessfulMountVolume  1m    kubelet, fs1shared0-flowsnakeworkertest1-4-prd.eng.sfdc.net  MountVolume.SetUp succeeded for volume "certificate-authority"
+0626 05:04:22 [1561525462] spark-pi-110d9f94 -   Normal   SuccessfulMountVolume  1m    kubelet, fs1shared0-flowsnakeworkertest1-4-prd.eng.sfdc.net  MountVolume.SetUp succeeded for volume "client-key"
+0626 05:04:22 [1561525462] spark-pi-110d9f94 -   Normal   SuccessfulMountVolume  1m    kubelet, fs1shared0-flowsnakeworkertest1-4-prd.eng.sfdc.net  MountVolume.SetUp succeeded for volume "client-certificate"
+0626 05:04:22 [1561525462] spark-pi-110d9f94 -   Normal   SuccessfulMountVolume  1m    kubelet, fs1shared0-flowsnakeworkertest1-4-prd.eng.sfdc.net  MountVolume.SetUp succeeded for volume "spark-local-dir-1"
+0626 05:04:22 [1561525462] spark-pi-110d9f94 -   Warning  FailedMount            1m    kubelet, fs1shared0-flowsnakeworkertest1-4-prd.eng.sfdc.net  MountVolume.SetUp failed for volume "spark-conf-volume" : configmaps "spark-pi-110d9f94-1561525393737-driver-conf-map" not found
+0626 05:04:22 [1561525462] spark-pi-110d9f94 -   Normal   Scheduled              1m    default-scheduler                                            Successfully assigned spark-pi-110d9f94-driver to fs1shared0-flowsnakeworkertest1-4-prd.eng.sfdc.net
+0626 05:04:22 [1561525462] spark-pi-110d9f94 -   Normal   SuccessfulMountVolume  1m    kubelet, fs1shared0-flowsnakeworkertest1-4-prd.eng.sfdc.net  MountVolume.SetUp succeeded for volume "spark-conf-volume"
+0626 05:04:22 [1561525462] spark-pi-110d9f94 -   Normal   SuccessfulMountVolume  1m    kubelet, fs1shared0-flowsnakeworkertest1-4-prd.eng.sfdc.net  MountVolume.SetUp succeeded for volume "tokens"
+0626 05:04:22 [1561525462] spark-pi-110d9f94 -   Normal   SuccessfulMountVolume  1m    kubelet, fs1shared0-flowsnakeworkertest1-4-prd.eng.sfdc.net  MountVolume.SetUp succeeded for volume "spark-driver-flowsnake-watchdog-token-zhwvl"
+0626 05:04:22 [1561525462] spark-pi-110d9f94 -   Normal   Pulled                 1m    kubelet, fs1shared0-flowsnakeworkertest1-4-prd.eng.sfdc.net  Container image "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/madkub:1.0.0-0000084-9f4a6ca6" already present on machine
+0626 05:04:22 [1561525462] spark-pi-110d9f94 -   Normal   Created                1m    kubelet, fs1shared0-flowsnakeworkertest1-4-prd.eng.sfdc.net  Created container
+0626 05:04:22 [1561525462] spark-pi-110d9f94 -   Normal   Started                1m    kubelet, fs1shared0-flowsnakeworkertest1-4-prd.eng.sfdc.net  Started container
+0626 05:04:22 [1561525462] spark-pi-110d9f94 -   Normal   Pulling                1m    kubelet, fs1shared0-flowsnakeworkertest1-4-prd.eng.sfdc.net  pulling image "ops0-artifactrepo2-0-prd.data.sfdc.net/dva/flowsnake-spark-on-k8s-sample-apps:4"
+0626 05:04:22 [1561525462] spark-pi-110d9f94 -   Normal   Pulled                 1m    kubelet, fs1shared0-flowsnakeworkertest1-4-prd.eng.sfdc.net  Successfully pulled image "ops0-artifactrepo2-0-prd.data.sfdc.net/dva/flowsnake-spark-on-k8s-sample-apps:4"
+0626 05:04:22 [1561525462] spark-pi-110d9f94 -   Normal   Created                1m    kubelet, fs1shared0-flowsnakeworkertest1-4-prd.eng.sfdc.net  Created container
+0626 05:04:22 [1561525462] spark-pi-110d9f94 -   Normal   Started                1m    kubelet, fs1shared0-flowsnakeworkertest1-4-prd.eng.sfdc.net  Started container
+0626 05:04:24 [1561525464] spark-pi-110d9f94 - ---- End Events ----
+0626 05:04:45 [1561525485] spark-pi-110d9f94 - Pod change detected: spark-pi-110d9f94-1561525393737-exec-1: Init:0/1 on host fs1shared0-flowsnakeworkertest2-5-prd.eng.sfdc.net.
+0626 05:04:47 [1561525487] spark-pi-110d9f94 - Pod change detected: spark-pi-110d9f94-1561525393737-exec-1 changed to Running (previously Init:0/1).
+0626 05:05:01 [1561525501] spark-pi-110d9f94 - Pod change detected: spark-pi-110d9f94-driver changed to Terminating (previously Running).
+0626 05:05:01 [1561525501] spark-pi-110d9f94 - ---- Begin spark-pi-110d9f94-driver madkub-init Log ----
+Starting sam/madkub/madkub-client...
+Config used is: &{MadkubTokenServerEndpoint:https://10.254.208.254:32007 MaddogEndpoint:https://all.pkicontroller.pki.blank.prd.prod.non-estates.sfdcsd.net:8443 MadkubServerCAPath:/etc/pki_service/ca/cacerts.pem CAFolder:/etc/pki_service/ca TestCAFolder: MaddogServerCAPath:/etc/pki_service/ca/security-ca.pem CertFolderUNUSED:./certs CertFolders:map[usercerts:/certs] TokenFolder:/tokens RunInitForRefresherMode:false RefresherMode:false RefresherOnce:false RefresherTokenGracePeriod:0s RefresherCheckerInterval:15m0s RefresherMinimalRenewDelay:12h0m0s IdentityNodeName:fs1shared0-flowsnakeworkertest1-4-prd.eng.sfdc.net IdentityName:spark-pi-110d9f94-driver IdentityNamespace:flowsnake-watchdog IdentityHostname:spark-pi-110d9f94-driver RetryMaxElapsedTime:3m0s RequestedCertTypeUNUSED:client FunnelEndpoint:http://ajna0-funnel1-0-prd.data.sfdc.net:80 Kingdom:prd Superpod:None Estate:prd-data-flowsnake_test LogLevel:0}
+I0626 05:03:16.675507       1 madkubclient.go:424] Starting Run of MadkubClient
+I0626 05:03:16.677163       1 client.go:56] Creating MadkubeApiClient with Endpoint {Scheme:https Opaque: User:<nil> Host:10.254.208.254:32007 Path: RawPath: ForceQuery:false RawQuery: Fragment:}...
+I0626 05:03:16.677646       1 client.go:55] MetricsClient initialized
+I0626 05:03:16.677658       1 madkubclient.go:458] Run madkub client with full options
+I0626 05:03:16.682232       1 client.go:177] Calling getTokenConfig Post with URL https://10.254.208.254:32007/tokenByName...
+I0626 05:03:17.029965       1 madkubclient.go:375] Successfully got and wrote the init token and certtype for cert usercerts into /tokens.
+I0626 05:03:17.258664       1 madkubclient.go:388] Successfully got and wrote the first cert+key for cert usercerts part into /certs.
+I0626 05:03:17.258809       1 fileutil.go:144] sourceOnHostPath /etc/pki_service/ca destinationInsideContainerPath /certs
+I0626 05:03:17.258917       1 fileutil.go:153] caFolderToUse ca
+I0626 05:03:17.258932       1 fileutil.go:155] destinationFolder /certs/ca
+I0626 05:03:17.258976       1 fileutil.go:164] Copying CA files from sourceOnHostPath /etc/pki_service/ca and destinationInsideContainerPath /certs
+I0626 05:03:17.258998       1 fileutil.go:173] Processing file cabundle.pem
+I0626 05:03:17.259094       1 fileutil.go:173] Processing file cacerts.pem
+I0626 05:03:17.259178       1 fileutil.go:173] Processing file security-ca.pem
+I0626 05:03:17.259272       1 madkubclient.go:408] Successfully wrote the CA for cert usercerts file into /certs.
+I0626 05:03:17.259291       1 madkubclient.go:410] Successfully ran the init mode for cert usercerts
+I0626 05:03:17.259317       1 madkubclient.go:335] Ran Init Mode for all certs.
+0626 05:05:01 [1561525501] spark-pi-110d9f94 - ---- End spark-pi-110d9f94-driver madkub-init Log ----
+0626 05:05:01 [1561525501] spark-pi-110d9f94 - ---- Begin spark-pi-110d9f94-driver main Log ----
+++ id -u
++ myuid=0
+++ id -g
++ mygid=0
++ set +e
+++ getent passwd 0
++ uidentry=root:x:0:0:root:/root:/bin/bash
++ set -e
++ '[' -z root:x:0:0:root:/root:/bin/bash ']'
++ SPARK_K8S_CMD=driver
++ case "$SPARK_K8S_CMD" in
++ shift 1
++ SPARK_CLASSPATH=':/opt/spark/jars/*'
++ env
++ grep SPARK_JAVA_OPT_
++ sed 's/[^=]*=\(.*\)/\1/g'
++ sort -t_ -k4 -n
++ readarray -t SPARK_EXECUTOR_JAVA_OPTS
++ '[' -n '' ']'
++ '[' -n '' ']'
++ PYSPARK_ARGS=
++ '[' -n '' ']'
++ R_ARGS=
++ '[' -n '' ']'
++ '[' '' == 2 ']'
++ '[' '' == 3 ']'
++ case "$SPARK_K8S_CMD" in
++ CMD=("$SPARK_HOME/bin/spark-submit" --conf "spark.driver.bindAddress=$SPARK_DRIVER_BIND_ADDRESS" --deploy-mode client "$@")
++ exec /sbin/tini -s -- /opt/spark/bin/spark-submit --conf spark.driver.bindAddress=10.251.125.196 --deploy-mode client --properties-file /opt/spark/conf/spark.properties --class org.apache.spark.examples.SparkPi spark-internal
+2019-06-26 05:03:38 WARN  NativeCodeLoader:62 - Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+2019-06-26 05:03:45 INFO  SparkContext:54 - Running Spark version 2.4.0-sfdc-0.2-SNAPSHOT
+2019-06-26 05:03:46 INFO  SparkContext:54 - Submitted application: Spark Pi
+2019-06-26 05:03:47 INFO  SecurityManager:54 - Changing view acls to: root
+2019-06-26 05:03:47 INFO  SecurityManager:54 - Changing modify acls to: root
+2019-06-26 05:03:47 INFO  SecurityManager:54 - Changing view acls groups to:
+2019-06-26 05:03:47 INFO  SecurityManager:54 - Changing modify acls groups to:
+2019-06-26 05:03:47 INFO  SecurityManager:54 - SecurityManager: authentication disabled; ui acls disabled; users  with view permissions: Set(root); groups with view permissions: Set(); users  with modify permissions: Set(root); groups with modify permissions: Set()
+2019-06-26 05:03:55 INFO  Utils:54 - Successfully started service 'sparkDriver' on port 7078.
+2019-06-26 05:03:55 INFO  SparkEnv:54 - Registering MapOutputTracker
+2019-06-26 05:03:55 INFO  SparkEnv:54 - Registering BlockManagerMaster
+2019-06-26 05:03:55 INFO  BlockManagerMasterEndpoint:54 - Using org.apache.spark.storage.DefaultTopologyMapper for getting topology information
+2019-06-26 05:03:55 INFO  BlockManagerMasterEndpoint:54 - BlockManagerMasterEndpoint up
+2019-06-26 05:03:55 INFO  DiskBlockManager:54 - Created local directory at /var/data/spark-14c2bc80-49da-4d35-8790-01e02cda26d5/blockmgr-c0dff6de-0923-4d61-a5da-6251fb4a2ffb
+2019-06-26 05:03:55 INFO  MemoryStore:54 - MemoryStore started with capacity 93.3 MB
+2019-06-26 05:03:56 INFO  SparkEnv:54 - Registering OutputCommitCoordinator
+2019-06-26 05:03:56 INFO  log:192 - Logging initialized @35392ms
+2019-06-26 05:03:57 INFO  Server:351 - jetty-9.3.z-SNAPSHOT, build timestamp: unknown, git hash: unknown
+2019-06-26 05:03:57 INFO  Server:419 - Started @36283ms
+2019-06-26 05:03:58 INFO  AbstractConnector:278 - Started ServerConnector@20d11153{HTTP/1.1,[http/1.1]}{0.0.0.0:4040}
+2019-06-26 05:03:58 INFO  Utils:54 - Successfully started service 'SparkUI' on port 4040.
+2019-06-26 05:03:58 INFO  ContextHandler:781 - Started o.s.j.s.ServletContextHandler@62a8fd44{/jobs,null,AVAILABLE,@Spark}
+2019-06-26 05:03:58 INFO  ContextHandler:781 - Started o.s.j.s.ServletContextHandler@155d1021{/jobs/json,null,AVAILABLE,@Spark}
+2019-06-26 05:03:58 INFO  ContextHandler:781 - Started o.s.j.s.ServletContextHandler@4bd2f0dc{/jobs/job,null,AVAILABLE,@Spark}
+2019-06-26 05:03:58 INFO  ContextHandler:781 - Started o.s.j.s.ServletContextHandler@2c42b421{/jobs/job/json,null,AVAILABLE,@Spark}
+2019-06-26 05:03:58 INFO  ContextHandler:781 - Started o.s.j.s.ServletContextHandler@51e37590{/stages,null,AVAILABLE,@Spark}
+2019-06-26 05:03:58 INFO  ContextHandler:781 - Started o.s.j.s.ServletContextHandler@deb3b60{/stages/json,null,AVAILABLE,@Spark}
+2019-06-26 05:03:58 INFO  ContextHandler:781 - Started o.s.j.s.ServletContextHandler@701a32{/stages/stage,null,AVAILABLE,@Spark}
+2019-06-26 05:03:58 INFO  ContextHandler:781 - Started o.s.j.s.ServletContextHandler@27cbfddf{/stages/stage/json,null,AVAILABLE,@Spark}
+2019-06-26 05:03:58 INFO  ContextHandler:781 - Started o.s.j.s.ServletContextHandler@27ead29e{/stages/pool,null,AVAILABLE,@Spark}
+2019-06-26 05:03:58 INFO  ContextHandler:781 - Started o.s.j.s.ServletContextHandler@4c060c8f{/stages/pool/json,null,AVAILABLE,@Spark}
+2019-06-26 05:03:58 INFO  ContextHandler:781 - Started o.s.j.s.ServletContextHandler@40620d8e{/storage,null,AVAILABLE,@Spark}
+2019-06-26 05:03:58 INFO  ContextHandler:781 - Started o.s.j.s.ServletContextHandler@383f3558{/storage/json,null,AVAILABLE,@Spark}
+2019-06-26 05:03:58 INFO  ContextHandler:781 - Started o.s.j.s.ServletContextHandler@49b07ee3{/storage/rdd,null,AVAILABLE,@Spark}
+2019-06-26 05:03:58 INFO  ContextHandler:781 - Started o.s.j.s.ServletContextHandler@352e612e{/storage/rdd/json,null,AVAILABLE,@Spark}
+2019-06-26 05:03:58 INFO  ContextHandler:781 - Started o.s.j.s.ServletContextHandler@65f00478{/environment,null,AVAILABLE,@Spark}
+2019-06-26 05:03:58 INFO  ContextHandler:781 - Started o.s.j.s.ServletContextHandler@2424686b{/environment/json,null,AVAILABLE,@Spark}
+2019-06-26 05:03:58 INFO  ContextHandler:781 - Started o.s.j.s.ServletContextHandler@6ea94d6a{/executors,null,AVAILABLE,@Spark}
+2019-06-26 05:03:58 INFO  ContextHandler:781 - Started o.s.j.s.ServletContextHandler@28486680{/executors/json,null,AVAILABLE,@Spark}
+2019-06-26 05:03:58 INFO  ContextHandler:781 - Started o.s.j.s.ServletContextHandler@4d7e7435{/executors/threadDump,null,AVAILABLE,@Spark}
+2019-06-26 05:03:58 INFO  ContextHandler:781 - Started o.s.j.s.ServletContextHandler@4a1e3ac1{/executors/threadDump/json,null,AVAILABLE,@Spark}
+2019-06-26 05:03:59 INFO  ContextHandler:781 - Started o.s.j.s.ServletContextHandler@6e78fcf5{/static,null,AVAILABLE,@Spark}
+2019-06-26 05:03:59 INFO  ContextHandler:781 - Started o.s.j.s.ServletContextHandler@69e308c6{/,null,AVAILABLE,@Spark}
+2019-06-26 05:03:59 INFO  ContextHandler:781 - Started o.s.j.s.ServletContextHandler@1a1ed4e5{/api,null,AVAILABLE,@Spark}
+2019-06-26 05:03:59 INFO  ContextHandler:781 - Started o.s.j.s.ServletContextHandler@1efdcd5{/jobs/job/kill,null,AVAILABLE,@Spark}
+2019-06-26 05:03:59 INFO  ContextHandler:781 - Started o.s.j.s.ServletContextHandler@1623bbe5{/stages/stage/kill,null,AVAILABLE,@Spark}
+2019-06-26 05:03:59 INFO  SparkUI:54 - Bound SparkUI to 0.0.0.0, and started at http://spark-pi-110d9f94-1561525393737-driver-svc.flowsnake-watchdog.svc:4040
+2019-06-26 05:03:59 INFO  SparkContext:54 - Added JAR file:///sample-apps/sample-basic-spark-operator/sample-basic-spark-operator.jar at spark://spark-pi-110d9f94-1561525393737-driver-svc.flowsnake-watchdog.svc:7078/jars/sample-basic-spark-operator.jar with timestamp 1561525439757
+2019-06-26 05:04:34 INFO  ExecutorPodsAllocator:54 - Going to request 1 executors from Kubernetes.
+2019-06-26 05:04:36 INFO  Utils:54 - Successfully started service 'org.apache.spark.network.netty.NettyBlockTransferService' on port 7079.
+2019-06-26 05:04:36 INFO  NettyBlockTransferService:54 - Server created on spark-pi-110d9f94-1561525393737-driver-svc.flowsnake-watchdog.svc:7079
+2019-06-26 05:04:37 INFO  BlockManager:54 - Using org.apache.spark.storage.RandomBlockReplicationPolicy for block replication policy
+2019-06-26 05:04:37 INFO  BlockManagerMaster:54 - Registering BlockManager BlockManagerId(driver, spark-pi-110d9f94-1561525393737-driver-svc.flowsnake-watchdog.svc, 7079, None)
+2019-06-26 05:04:38 INFO  BlockManagerMasterEndpoint:54 - Registering block manager spark-pi-110d9f94-1561525393737-driver-svc.flowsnake-watchdog.svc:7079 with 93.3 MB RAM, BlockManagerId(driver, spark-pi-110d9f94-1561525393737-driver-svc.flowsnake-watchdog.svc, 7079, None)
+2019-06-26 05:04:38 INFO  BlockManagerMaster:54 - Registered BlockManager BlockManagerId(driver, spark-pi-110d9f94-1561525393737-driver-svc.flowsnake-watchdog.svc, 7079, None)
+2019-06-26 05:04:38 INFO  BlockManager:54 - Initialized BlockManager: BlockManagerId(driver, spark-pi-110d9f94-1561525393737-driver-svc.flowsnake-watchdog.svc, 7079, None)
+2019-06-26 05:04:38 INFO  ContextHandler:781 - Started o.s.j.s.ServletContextHandler@19f7222e{/metrics/json,null,AVAILABLE,@Spark}
+2019-06-26 05:04:55 INFO  KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint:54 - Registered executor NettyRpcEndpointRef(spark-client://Executor) (10.251.125.135:43066) with ID 1
+2019-06-26 05:04:55 INFO  KubernetesClusterSchedulerBackend:54 - SchedulerBackend is ready for scheduling beginning after reached minRegisteredResourcesRatio: 0.8
+2019-06-26 05:04:55 INFO  BlockManagerMasterEndpoint:54 - Registering block manager 10.251.125.135:35623 with 114.6 MB RAM, BlockManagerId(1, 10.251.125.135, 35623, None)
+2019-06-26 05:05:01 INFO  SparkContext:54 - Invoking stop() from shutdown hook
+0626 05:05:01 [1561525501] spark-pi-110d9f94 - ---- End spark-pi-110d9f94-driver main Log ----
+0626 05:05:03 [1561525503] spark-pi-110d9f94 - Pod change detected: spark-pi-110d9f94-1561525393737-exec-1 changed to Terminating (previously Running).
+0626 05:05:03 [1561525503] spark-pi-110d9f94 - ---- Begin spark-pi-110d9f94-1561525393737-exec-1 madkub-init Log ----
+Starting sam/madkub/madkub-client...
+Config used is: &{MadkubTokenServerEndpoint:https://10.254.208.254:32007 MaddogEndpoint:https://all.pkicontroller.pki.blank.prd.prod.non-estates.sfdcsd.net:8443 MadkubServerCAPath:/etc/pki_service/ca/cacerts.pem CAFolder:/etc/pki_service/ca TestCAFolder: MaddogServerCAPath:/etc/pki_service/ca/security-ca.pem CertFolderUNUSED:./certs CertFolders:map[usercerts:/certs] TokenFolder:/tokens RunInitForRefresherMode:false RefresherMode:false RefresherOnce:false RefresherTokenGracePeriod:0s RefresherCheckerInterval:15m0s RefresherMinimalRenewDelay:12h0m0s IdentityNodeName:fs1shared0-flowsnakeworkertest2-5-prd.eng.sfdc.net IdentityName:spark-pi-110d9f94-1561525393737-exec-1 IdentityNamespace:flowsnake-watchdog IdentityHostname:spark-pi-110d9f94-1561525393737-exec-1 RetryMaxElapsedTime:3m0s RequestedCertTypeUNUSED:client FunnelEndpoint:http://ajna0-funnel1-0-prd.data.sfdc.net:80 Kingdom:prd Superpod:None Estate:prd-data-flowsnake_test LogLevel:0}
+I0626 05:04:44.657633       1 madkubclient.go:424] Starting Run of MadkubClient
+I0626 05:04:44.658648       1 client.go:56] Creating MadkubeApiClient with Endpoint {Scheme:https Opaque: User:<nil> Host:10.254.208.254:32007 Path: RawPath: ForceQuery:false RawQuery: Fragment:}...
+I0626 05:04:44.658916       1 client.go:55] MetricsClient initialized
+I0626 05:04:44.658924       1 madkubclient.go:458] Run madkub client with full options
+I0626 05:04:44.663758       1 client.go:177] Calling getTokenConfig Post with URL https://10.254.208.254:32007/tokenByName...
+I0626 05:04:45.105065       1 madkubclient.go:375] Successfully got and wrote the init token and certtype for cert usercerts into /tokens.
+I0626 05:04:45.534252       1 madkubclient.go:388] Successfully got and wrote the first cert+key for cert usercerts part into /certs.
+I0626 05:04:45.534309       1 fileutil.go:144] sourceOnHostPath /etc/pki_service/ca destinationInsideContainerPath /certs
+I0626 05:04:45.534345       1 fileutil.go:153] caFolderToUse ca
+I0626 05:04:45.534364       1 fileutil.go:155] destinationFolder /certs/ca
+I0626 05:04:45.534379       1 fileutil.go:164] Copying CA files from sourceOnHostPath /etc/pki_service/ca and destinationInsideContainerPath /certs
+I0626 05:04:45.534386       1 fileutil.go:173] Processing file cabundle.pem
+I0626 05:04:45.534427       1 fileutil.go:173] Processing file cacerts.pem
+I0626 05:04:45.534480       1 fileutil.go:173] Processing file security-ca.pem
+I0626 05:04:45.534526       1 madkubclient.go:408] Successfully wrote the CA for cert usercerts file into /certs.
+I0626 05:04:45.534534       1 madkubclient.go:410] Successfully ran the init mode for cert usercerts
+I0626 05:04:45.534547       1 madkubclient.go:335] Ran Init Mode for all certs.
+0626 05:05:03 [1561525503] spark-pi-110d9f94 - ---- End spark-pi-110d9f94-1561525393737-exec-1 madkub-init Log ----
+0626 05:05:03 [1561525503] spark-pi-110d9f94 - ---- Begin spark-pi-110d9f94-1561525393737-exec-1 main Log ----
+0626 05:05:04 [1561525504] spark-pi-110d9f94 - Error from server (BadRequest): container "executor" in pod "spark-pi-110d9f94-1561525393737-exec-1" is waiting to start: PodInitializing
+0626 05:05:04 [1561525504] spark-pi-110d9f94 - Invocation (1/7) of [kubectl -n flowsnake-watchdog logs spark-pi-110d9f94-1561525393737-exec-1] failed (1). Will sleep 10 seconds and then try again.
+0626 05:05:15 [1561525515] spark-pi-110d9f94 - Error from server (BadRequest): container "executor" in pod "spark-pi-110d9f94-1561525393737-exec-1" is waiting to start: PodInitializing
+0626 05:05:15 [1561525515] spark-pi-110d9f94 - Invocation (2/7) of [kubectl -n flowsnake-watchdog logs spark-pi-110d9f94-1561525393737-exec-1] failed (1). Will sleep 10 seconds and then try again.
+0626 05:05:26 [1561525526] spark-pi-110d9f94 - Error from server (BadRequest): container "executor" in pod "spark-pi-110d9f94-1561525393737-exec-1" is waiting to start: PodInitializing
+0626 05:05:26 [1561525526] spark-pi-110d9f94 - Invocation (3/7) of [kubectl -n flowsnake-watchdog logs spark-pi-110d9f94-1561525393737-exec-1] failed (1). Will sleep 10 seconds and then try again.
+0626 05:05:36 [1561525536] spark-pi-110d9f94 - Error from server (BadRequest): container "executor" in pod "spark-pi-110d9f94-1561525393737-exec-1" is waiting to start: PodInitializing
+0626 05:05:36 [1561525536] spark-pi-110d9f94 - Invocation (4/7) of [kubectl -n flowsnake-watchdog logs spark-pi-110d9f94-1561525393737-exec-1] failed (1). Will sleep 10 seconds and then try again.
+0626 05:05:46 [1561525546] spark-pi-110d9f94 - Error from server (BadRequest): container "executor" in pod "spark-pi-110d9f94-1561525393737-exec-1" is waiting to start: PodInitializing
+0626 05:05:46 [1561525546] spark-pi-110d9f94 - Invocation (5/7) of [kubectl -n flowsnake-watchdog logs spark-pi-110d9f94-1561525393737-exec-1] failed (1). Will sleep 10 seconds and then try again.
+0626 05:05:57 [1561525557] spark-pi-110d9f94 - Error from server (BadRequest): container "executor" in pod "spark-pi-110d9f94-1561525393737-exec-1" is waiting to start: PodInitializing
+0626 05:05:57 [1561525557] spark-pi-110d9f94 - Invocation (6/7) of [kubectl -n flowsnake-watchdog logs spark-pi-110d9f94-1561525393737-exec-1] failed (1). Will sleep 10 seconds and then try again.
+0626 05:06:07 [1561525567] spark-pi-110d9f94 - Error from server (NotFound): pods "spark-pi-110d9f94-1561525393737-exec-1" not found
+0626 05:06:07 [1561525567] spark-pi-110d9f94 - Invocation (7/7) of [kubectl -n flowsnake-watchdog logs spark-pi-110d9f94-1561525393737-exec-1] failed (1). Giving up.
+0626 05:06:07 [1561525567] spark-pi-110d9f94 - ---- End spark-pi-110d9f94-1561525393737-exec-1 main Log ----
+0626 05:06:07 [1561525567] spark-pi-110d9f94 - ...still waiting for terminal state (currently RUNNING) after 175 seconds.
+0626 05:06:07 [1561525567] spark-pi-110d9f94 - ---- Begin Events ----
+0626 05:06:07 [1561525567] spark-pi-110d9f94 - Name:         spark-pi-110d9f94
+0626 05:06:07 [1561525567] spark-pi-110d9f94 - Events:
+0626 05:06:07 [1561525567] spark-pi-110d9f94 -   Type     Reason                     Age              From            Message
+0626 05:06:07 [1561525567] spark-pi-110d9f94 -   ----     ------                     ----             ----            -------
+0626 05:06:07 [1561525567] spark-pi-110d9f94 -   Normal   SparkApplicationAdded      2m               spark-operator  SparkApplication spark-pi-110d9f94 was added, enqueuing it for submission
+0626 05:06:07 [1561525567] spark-pi-110d9f94 -   Normal   SparkApplicationSubmitted  2m               spark-operator  SparkApplication spark-pi-110d9f94 was submitted successfully
+0626 05:06:07 [1561525567] spark-pi-110d9f94 -   Normal   SparkDriverRunning         2m               spark-operator  Driver spark-pi-110d9f94-driver is running
+0626 05:06:07 [1561525567] spark-pi-110d9f94 -   Normal   SparkExecutorRunning       1m               spark-operator  Executor spark-pi-110d9f94-1561525393737-exec-1 is running
+0626 05:06:07 [1561525567] spark-pi-110d9f94 -   Normal   SparkExecutorPending       1m (x2 over 1m)  spark-operator  Executor spark-pi-110d9f94-1561525393737-exec-1 is pending
+0626 05:06:07 [1561525567] spark-pi-110d9f94 -   Warning  SparkDriverFailed          52s              spark-operator  Driver spark-pi-110d9f94-driver failed
+0626 05:06:07 [1561525567] spark-pi-110d9f94 -   Warning  SparkApplicationFailed     52s              spark-operator  SparkApplication spark-pi-110d9f94 failed: driver pod failed with ExitCode: 143, Reason: Error
+0626 05:06:09 [1561525569] spark-pi-110d9f94 - ---- End Events ----
+0626 05:06:11 [1561525571] spark-pi-110d9f94 - Pod change detected: spark-pi-110d9f94-1561525393737-exec-1 removed.
+0626 05:06:11 [1561525571] spark-pi-110d9f94 - Pod change detected: spark-pi-110d9f94-driver removed.
+0626 05:06:11 [1561525571] spark-pi-110d9f94 - SparkApplication spark-pi-110d9f94 has terminated after 179 seconds. State is FAILED.
+0626 05:06:11 [1561525571] spark-pi-110d9f94 - ---- Begin Events ----
+0626 05:06:11 [1561525571] spark-pi-110d9f94 - Name:         spark-pi-110d9f94
+0626 05:06:11 [1561525571] spark-pi-110d9f94 - Events:
+0626 05:06:11 [1561525571] spark-pi-110d9f94 -   Type     Reason                     Age              From            Message
+0626 05:06:11 [1561525571] spark-pi-110d9f94 -   ----     ------                     ----             ----            -------
+0626 05:06:11 [1561525571] spark-pi-110d9f94 -   Normal   SparkApplicationAdded      3m               spark-operator  SparkApplication spark-pi-110d9f94 was added, enqueuing it for submission
+0626 05:06:11 [1561525571] spark-pi-110d9f94 -   Normal   SparkApplicationSubmitted  2m               spark-operator  SparkApplication spark-pi-110d9f94 was submitted successfully
+0626 05:06:11 [1561525571] spark-pi-110d9f94 -   Normal   SparkDriverRunning         2m               spark-operator  Driver spark-pi-110d9f94-driver is running
+0626 05:06:11 [1561525571] spark-pi-110d9f94 -   Normal   SparkExecutorRunning       1m               spark-operator  Executor spark-pi-110d9f94-1561525393737-exec-1 is running
+0626 05:06:11 [1561525571] spark-pi-110d9f94 -   Normal   SparkExecutorPending       1m (x2 over 1m)  spark-operator  Executor spark-pi-110d9f94-1561525393737-exec-1 is pending
+0626 05:06:11 [1561525571] spark-pi-110d9f94 -   Warning  SparkDriverFailed          56s              spark-operator  Driver spark-pi-110d9f94-driver failed
+0626 05:06:11 [1561525571] spark-pi-110d9f94 -   Warning  SparkApplicationFailed     56s              spark-operator  SparkApplication spark-pi-110d9f94 failed: driver pod failed with ExitCode: 143, Reason: Error
+0626 05:06:13 [1561525573] spark-pi-110d9f94 - ---- End Events ----
+0626 05:06:13 [1561525573] spark-pi-110d9f94 - Cannot locate driver pod. Maybe it never started? No logs to display.
+0626 05:06:13 [1561525573] spark-pi-110d9f94 - -------- Executor Pods ----------
+0626 05:06:13 [1561525573] spark-pi-110d9f94 - Cleaning up stuff for completed or failed test.
+0626 05:06:13 [1561525573] spark-pi-110d9f94 - sparkapplication "spark-pi-110d9f94" deleted
+0626 05:06:14 [1561525574] spark-pi-110d9f94 - ======== Completion of spark-pi-110d9f94 test, returning 1 ========
