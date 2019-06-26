@@ -6,7 +6,7 @@ system:
       - rpothana@salesforce.com
   functions:
   - name: sherlock
-    count: 3
+    count: 2
     strategy:
       type: Recreate
     containers:
