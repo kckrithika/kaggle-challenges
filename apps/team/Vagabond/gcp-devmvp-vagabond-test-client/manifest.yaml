@@ -24,9 +24,9 @@ system:
         - --initialDelaySeconds=120
         - --threadCount=10
         - --enableLogging=true
-        - --distributionGeneratorClass=com.force.vagabond.trafficgen.FixedDistributionGenerator:10
+        - --distributionGeneratorClass=com.force.vagabond.trafficgen.FixedDistributionGenerator:100
         - --operationSequence=PUT
-        - --limitPerSecond=2.5
+        - --limitPerSecond=0.5
         - --url=acs-test-mesh-0.vagabond.localhost.mesh.force.com:7013,acs-test-mesh-1.vagabond.localhost.mesh.force.com:7013,acs-test-mesh-2.vagabond.localhost.mesh.force.com:7013,acs-test-mesh-3.vagabond.localhost.mesh.force.com:7013
       livenessProbe:
         exec:
