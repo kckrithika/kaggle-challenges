@@ -21,8 +21,6 @@ system:
         ports:
         - containerPort: 8080
           name: ext-port
-        - containerPort: 8082
-          name: inter-port
         - containerPort: 15372
           name: manage-port
         livenessProbe:
@@ -38,12 +36,12 @@ system:
           - name: kafkaclientcerts
             mountPath: /etc/pki_service/sfdc-aqueduct
   loadbalancers:
-    - lbname: aqueduct
+    - lbname: aqueduct-lb
       function: aqueduct
       slbEnabled: true
       ports:
         - port: 443
-          targetport: 8082
+          targetport: 8080
           lbtype: http
         - port: 15372
           targetport: 15372
