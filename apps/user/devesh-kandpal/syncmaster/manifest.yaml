@@ -90,7 +90,7 @@ system:
 
      # Announces services
     - name: beacon
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/servicemesh/beacon:1.0.0
+      image: sfci/services/sfdc-bazel/disco/beacon:d7f1640
       args:
       - -endpoint
       - samapp/user-devesh-kandpal/syncmaster:DATACENTER_ALLENV:7443
