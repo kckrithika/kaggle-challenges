@@ -16,7 +16,7 @@ system:
           type: client
       containers:
       - name: aqueduct
-        image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/heng.zhang/aqueduct:6.1
+        image: sfci/messagingplatform/aqueduct:1.1
         env:
         - name: SFDC_ENVIRONMENT
           value: "prod" # Use whatever environment your kpod uses
@@ -26,8 +26,6 @@ system:
           value: emp-aqueduct_sam_aqueduct 
         - name: SETTINGS_SUPERPOD 
           value: "NONE"
-        - name: SPRING_PROFILES_ACTIVE
-          value: "kafka-broker,prd"
         ports:
         - containerPort: 8080
           name: ext-port
