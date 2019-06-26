@@ -1,9 +1,10 @@
 local configs = import "config.jsonnet";
+local slbflights = import "slbflights.jsonnet";
 local slbimages = (import "slbimages.jsonnet") + { templateFilename:: std.thisFile };
 local slbconfigs = (import "slbconfig.jsonnet") + { dirSuffix:: "slb-iwd-health" };
 local slbshared = (import "slbsharedservices.jsonnet") + { dirSuffix:: "slb-iwd-health" };
 
-if slbconfigs.isSlbEstate then configs.daemonSetBase("slb") {
+if slbconfigs.isSlbEstate && slbflights.enableIWDHealth then configs.daemonSetBase("slb") {
     metadata: {
         labels: {
             name: "slb-iwd-health",
