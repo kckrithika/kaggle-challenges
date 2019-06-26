@@ -78,7 +78,7 @@ system:
 
      # Announces services
     - name: beacon
-      image: sfci/services/sfdc-bazel/disco/beacon:8eae42b4
+      image: sfci/services/sfdc-bazel/disco/beacon:d7f1640
       args:
       - -endpoint
       - samapp/$(FUNCTION_NAMESPACE)/$(FUNCTION):DATACENTER_ALLENV:HTTP2_TLS
