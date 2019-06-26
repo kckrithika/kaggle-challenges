@@ -11,7 +11,7 @@ system:
       type: Recreate
     containers:
     - name: sherlock
-      image: dva/casp/sherlock_strata:jenkins-CASP-sherlock-dev-30-itest
+      image: dva/casp/sherlock_strata:jenkins-CASP-sherlock-dev-32-itest
       ports:
       - name: http
         containerPort: 5555
@@ -60,6 +60,9 @@ system:
       - name: sherlock-logs-vol
         hostPath:
           path: /data/sherlock-logs
+      - name: argus-secrets
+        k4aSecret:
+          secretName: argus-secrets
 
   loadbalancers:
   - lbname: sherlock-flower-lb
