@@ -325,6 +325,14 @@ simple_regex_tests = {
     'IMAGE_PULL': re.compile(r'Pod change detected: .* changed to ImagePullBackOff')
 }
 
+# These might match against runs that have better matches from simple_regex_tests; prefer the other result
+simple_regex_tests_tier2 = {
+    # Something killed the driver; don't know what. Prefer DRIVER_EVICTED if there is evidence of eviction.
+    # Treat observed kubelet event and JVM reporting SIGTERM equivalently
+    'DRIVER_KILLED': re.compile(r'(Killing.*kubelet.*Killing container.*driver:Need to kill Pod|SparkApplicationFailed.*driver pod failed with ExitCode: 143)')
+
+}
+
 metrics_enabled = False
 if args.metrics:
     hostname = args.hostname if args.hostname else socket.gethostname()
@@ -468,6 +476,9 @@ def analyze_helper(output, timings):
     :return: class (as string)
     """
     for code, regex in simple_regex_tests.iteritems():
+        if regex.search(output):
+            return code
+    for code, regex in simple_regex_tests_tier2.iteritems():
         if regex.search(output):
             return code
 

@@ -1,0 +1,128 @@
+DRIVER_KILLED
+0626 03:21:17 [1561519277] spark-pi-82b2485f - ======== Beginning spark-pi-82b2485f test ========
+0626 03:21:17 [1561519277] spark-pi-82b2485f -  [0;32mKubernetes master [0m is running at  [0;33mhttps://10.254.208.1:443 [0m
+0626 03:21:17 [1561519277] spark-pi-82b2485f -
+0626 03:21:17 [1561519277] spark-pi-82b2485f - To further debug and diagnose cluster problems, use 'kubectl cluster-info dump'.
+0626 03:21:18 [1561519278] spark-pi-82b2485f - Cleaning up SparkApplication/Pod older than 1 hours from prior runs.
+0626 03:21:19 [1561519279] spark-pi-82b2485f - Creating SparkApplication spark-pi-82b2485f
+0626 03:21:19 [1561519279] spark-pi-82b2485f - sparkapplication "spark-pi-82b2485f" created
+0626 03:21:20 [1561519280] spark-pi-82b2485f - Waiting for SparkApplication spark-pi-82b2485f to reach a terminal state.
+0626 03:21:24 [1561519284] spark-pi-82b2485f - Pod change detected: spark-pi-82b2485f-driver: Pending on host <none>.
+0626 03:21:27 [1561519287] spark-pi-82b2485f - Pod change detected: spark-pi-82b2485f-driver changed to Init:0/1 on host shared0-flowsnakeworkerprod1-2-yul.ops.sfdc.net (previously Pending).
+0626 03:21:32 [1561519292] spark-pi-82b2485f - Pod change detected: spark-pi-82b2485f-driver changed to PodInitializing (previously Init:0/1).
+0626 03:21:34 [1561519294] spark-pi-82b2485f - Pod change detected: spark-pi-82b2485f-driver changed to Running (previously PodInitializing).
+0626 03:22:05 [1561519325] spark-pi-82b2485f - Pod change detected: spark-pi-82b2485f-driver changed to Terminating (previously Running).
+0626 03:22:05 [1561519325] spark-pi-82b2485f - ---- Begin spark-pi-82b2485f-driver madkub-init Log ----
+Starting sam/madkub/madkub-client...
+Config used is: &{MadkubTokenServerEndpoint:https://10.254.208.254:32007 MaddogEndpoint:https://all.pkicontroller.pki.blank.yul.prod.non-estates.sfdcsd.net:8443 MadkubServerCAPath:/etc/pki_service/ca/cacerts.pem CAFolder:/etc/pki_service/ca TestCAFolder: MaddogServerCAPath:/etc/pki_service/ca/security-ca.pem CertFolderUNUSED:./certs CertFolders:map[usercerts:/certs] TokenFolder:/tokens RunInitForRefresherMode:false RefresherMode:false RefresherOnce:false RefresherTokenGracePeriod:0s RefresherCheckerInterval:15m0s RefresherMinimalRenewDelay:12h0m0s IdentityNodeName:shared0-flowsnakeworkerprod1-2-yul.ops.sfdc.net IdentityName:spark-pi-82b2485f-driver IdentityNamespace:flowsnake-watchdog IdentityHostname:spark-pi-82b2485f-driver RetryMaxElapsedTime:3m0s RequestedCertTypeUNUSED:client FunnelEndpoint:http://ajna0-funnel1-0-yul.data.sfdc.net:80 Kingdom:yul Superpod:None Estate:yul-flowsnake_prod LogLevel:0}
+I0626 03:21:27.826473       1 madkubclient.go:424] Starting Run of MadkubClient
+I0626 03:21:27.828166       1 client.go:56] Creating MadkubeApiClient with Endpoint {Scheme:https Opaque: User:<nil> Host:10.254.208.254:32007 Path: RawPath: ForceQuery:false RawQuery: Fragment:}...
+I0626 03:21:27.828759       1 client.go:55] MetricsClient initialized
+I0626 03:21:27.828780       1 madkubclient.go:458] Run madkub client with full options
+I0626 03:21:27.840086       1 client.go:177] Calling getTokenConfig Post with URL https://10.254.208.254:32007/tokenByName...
+I0626 03:21:29.575605       1 madkubclient.go:375] Successfully got and wrote the init token and certtype for cert usercerts into /tokens.
+I0626 03:21:29.810706       1 madkubclient.go:388] Successfully got and wrote the first cert+key for cert usercerts part into /certs.
+I0626 03:21:29.810834       1 fileutil.go:144] sourceOnHostPath /etc/pki_service/ca destinationInsideContainerPath /certs
+I0626 03:21:29.811241       1 fileutil.go:153] caFolderToUse ca
+I0626 03:21:29.811258       1 fileutil.go:155] destinationFolder /certs/ca
+I0626 03:21:29.811290       1 fileutil.go:164] Copying CA files from sourceOnHostPath /etc/pki_service/ca and destinationInsideContainerPath /certs
+I0626 03:21:29.811303       1 fileutil.go:173] Processing file cabundle.pem
+I0626 03:21:29.811400       1 fileutil.go:173] Processing file cacerts.pem
+I0626 03:21:29.811492       1 fileutil.go:173] Processing file security-ca.pem
+I0626 03:21:29.811636       1 madkubclient.go:408] Successfully wrote the CA for cert usercerts file into /certs.
+I0626 03:21:29.811655       1 madkubclient.go:410] Successfully ran the init mode for cert usercerts
+I0626 03:21:29.811677       1 madkubclient.go:335] Ran Init Mode for all certs.
+0626 03:22:07 [1561519327] spark-pi-82b2485f - ---- End spark-pi-82b2485f-driver madkub-init Log ----
+0626 03:22:07 [1561519327] spark-pi-82b2485f - ---- Begin spark-pi-82b2485f-driver main Log ----
+++ id -u
++ myuid=0
+++ id -g
++ mygid=0
++ set +e
+++ getent passwd 0
++ uidentry=root:x:0:0:root:/root:/bin/bash
++ set -e
++ '[' -z root:x:0:0:root:/root:/bin/bash ']'
++ SPARK_K8S_CMD=driver
++ case "$SPARK_K8S_CMD" in
++ shift 1
++ SPARK_CLASSPATH=':/opt/spark/jars/*'
++ env
++ sed 's/[^=]*=\(.*\)/\1/g'
++ sort -t_ -k4 -n
++ grep SPARK_JAVA_OPT_
++ readarray -t SPARK_EXECUTOR_JAVA_OPTS
++ '[' -n '' ']'
++ '[' -n '' ']'
++ PYSPARK_ARGS=
++ '[' -n '' ']'
++ R_ARGS=
++ '[' -n '' ']'
++ '[' '' == 2 ']'
++ '[' '' == 3 ']'
++ case "$SPARK_K8S_CMD" in
++ CMD=("$SPARK_HOME/bin/spark-submit" --conf "spark.driver.bindAddress=$SPARK_DRIVER_BIND_ADDRESS" --deploy-mode client "$@")
++ exec /sbin/tini -s -- /opt/spark/bin/spark-submit --conf spark.driver.bindAddress=10.255.39.9 --deploy-mode client --properties-file /opt/spark/conf/spark.properties --class org.apache.spark.examples.SparkPi spark-internal
+2019-06-26 03:21:57 WARN  NativeCodeLoader:62 - Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+0626 03:22:08 [1561519328] spark-pi-82b2485f - ---- End spark-pi-82b2485f-driver main Log ----
+0626 03:22:18 [1561519338] spark-pi-82b2485f - SparkApplication spark-pi-82b2485f has terminated after 58 seconds. State is FAILED.
+0626 03:22:18 [1561519338] spark-pi-82b2485f - ---- Begin Events ----
+0626 03:22:18 [1561519338] spark-pi-82b2485f - Name:         spark-pi-82b2485f
+0626 03:22:18 [1561519338] spark-pi-82b2485f - Events:
+0626 03:22:18 [1561519338] spark-pi-82b2485f -   Type     Reason                     Age   From            Message
+0626 03:22:18 [1561519338] spark-pi-82b2485f -   ----     ------                     ----  ----            -------
+0626 03:22:18 [1561519338] spark-pi-82b2485f -   Normal   SparkApplicationAdded      1m    spark-operator  SparkApplication spark-pi-82b2485f was added, enqueuing it for submission
+0626 03:22:18 [1561519338] spark-pi-82b2485f -   Normal   SparkApplicationSubmitted  56s   spark-operator  SparkApplication spark-pi-82b2485f was submitted successfully
+0626 03:22:18 [1561519338] spark-pi-82b2485f -   Normal   SparkDriverRunning         47s   spark-operator  Driver spark-pi-82b2485f-driver is running
+0626 03:22:18 [1561519338] spark-pi-82b2485f -   Warning  SparkDriverFailed          6s    spark-operator  Driver spark-pi-82b2485f-driver failed
+0626 03:22:18 [1561519338] spark-pi-82b2485f -   Warning  SparkApplicationFailed     6s    spark-operator  SparkApplication spark-pi-82b2485f failed: driver pod failed with ExitCode: 143, Reason: Error
+0626 03:22:21 [1561519341] spark-pi-82b2485f - Name:                      spark-pi-82b2485f-driver
+0626 03:22:21 [1561519341] spark-pi-82b2485f - Events:
+0626 03:22:21 [1561519341] spark-pi-82b2485f -   Type     Reason                 Age   From                                                      Message
+0626 03:22:21 [1561519341] spark-pi-82b2485f -   ----     ------                 ----  ----                                                      -------
+0626 03:22:21 [1561519341] spark-pi-82b2485f -   Normal   Scheduled              58s   default-scheduler                                         Successfully assigned spark-pi-82b2485f-driver to shared0-flowsnakeworkerprod1-2-yul.ops.sfdc.net
+0626 03:22:21 [1561519341] spark-pi-82b2485f -   Normal   SuccessfulMountVolume  58s   kubelet, shared0-flowsnakeworkerprod1-2-yul.ops.sfdc.net  MountVolume.SetUp succeeded for volume "client-key"
+0626 03:22:21 [1561519341] spark-pi-82b2485f -   Normal   SuccessfulMountVolume  58s   kubelet, shared0-flowsnakeworkerprod1-2-yul.ops.sfdc.net  MountVolume.SetUp succeeded for volume "client-certificate"
+0626 03:22:21 [1561519341] spark-pi-82b2485f -   Normal   SuccessfulMountVolume  58s   kubelet, shared0-flowsnakeworkerprod1-2-yul.ops.sfdc.net  MountVolume.SetUp succeeded for volume "certificate-authority"
+0626 03:22:21 [1561519341] spark-pi-82b2485f -   Normal   SuccessfulMountVolume  58s   kubelet, shared0-flowsnakeworkerprod1-2-yul.ops.sfdc.net  MountVolume.SetUp succeeded for volume "spark-local-dir-1"
+0626 03:22:21 [1561519341] spark-pi-82b2485f -   Normal   SuccessfulMountVolume  58s   kubelet, shared0-flowsnakeworkerprod1-2-yul.ops.sfdc.net  MountVolume.SetUp succeeded for volume "datacerts"
+0626 03:22:21 [1561519341] spark-pi-82b2485f -   Normal   SuccessfulMountVolume  58s   kubelet, shared0-flowsnakeworkerprod1-2-yul.ops.sfdc.net  MountVolume.SetUp succeeded for volume "tokens"
+0626 03:22:21 [1561519341] spark-pi-82b2485f -   Normal   SuccessfulMountVolume  58s   kubelet, shared0-flowsnakeworkerprod1-2-yul.ops.sfdc.net  MountVolume.SetUp succeeded for volume "spark-driver-flowsnake-watchdog-token-brtgl"
+0626 03:22:21 [1561519341] spark-pi-82b2485f -   Warning  FailedMount            58s   kubelet, shared0-flowsnakeworkerprod1-2-yul.ops.sfdc.net  MountVolume.SetUp failed for volume "spark-conf-volume" : configmaps "spark-pi-82b2485f-1561519281965-driver-conf-map" not found
+0626 03:22:21 [1561519341] spark-pi-82b2485f -   Normal   SuccessfulMountVolume  57s   kubelet, shared0-flowsnakeworkerprod1-2-yul.ops.sfdc.net  MountVolume.SetUp succeeded for volume "spark-conf-volume"
+0626 03:22:21 [1561519341] spark-pi-82b2485f -   Normal   Pulled                 56s   kubelet, shared0-flowsnakeworkerprod1-2-yul.ops.sfdc.net  Container image "ops0-artifactrepo1-0-yul.data.sfdc.net/tnrp/sam/madkub:1.0.0-0000084-9f4a6ca6" already present on machine
+0626 03:22:21 [1561519341] spark-pi-82b2485f -   Normal   Created                56s   kubelet, shared0-flowsnakeworkerprod1-2-yul.ops.sfdc.net  Created container
+0626 03:22:21 [1561519341] spark-pi-82b2485f -   Normal   Started                56s   kubelet, shared0-flowsnakeworkerprod1-2-yul.ops.sfdc.net  Started container
+0626 03:22:21 [1561519341] spark-pi-82b2485f -   Normal   Pulling                52s   kubelet, shared0-flowsnakeworkerprod1-2-yul.ops.sfdc.net  pulling image "ops0-artifactrepo1-0-yul.data.sfdc.net/dva/flowsnake-spark-on-k8s-sample-apps:4"
+0626 03:22:21 [1561519341] spark-pi-82b2485f -   Normal   Pulled                 52s   kubelet, shared0-flowsnakeworkerprod1-2-yul.ops.sfdc.net  Successfully pulled image "ops0-artifactrepo1-0-yul.data.sfdc.net/dva/flowsnake-spark-on-k8s-sample-apps:4"
+0626 03:22:21 [1561519341] spark-pi-82b2485f -   Normal   Created                52s   kubelet, shared0-flowsnakeworkerprod1-2-yul.ops.sfdc.net  Created container
+0626 03:22:21 [1561519341] spark-pi-82b2485f -   Normal   Started                52s   kubelet, shared0-flowsnakeworkerprod1-2-yul.ops.sfdc.net  Started container
+0626 03:22:21 [1561519341] spark-pi-82b2485f -   Normal   Killing                17s   kubelet, shared0-flowsnakeworkerprod1-2-yul.ops.sfdc.net  Killing container with id docker://spark-kubernetes-driver:Need to kill Pod
+0626 03:22:24 [1561519344] spark-pi-82b2485f - ---- End Events ----
+0626 03:22:25 [1561519345] spark-pi-82b2485f - ---- Begin pods/spark-pi-82b2485f-driver madkub-init Log ----
+Starting sam/madkub/madkub-client...
+Config used is: &{MadkubTokenServerEndpoint:https://10.254.208.254:32007 MaddogEndpoint:https://all.pkicontroller.pki.blank.yul.prod.non-estates.sfdcsd.net:8443 MadkubServerCAPath:/etc/pki_service/ca/cacerts.pem CAFolder:/etc/pki_service/ca TestCAFolder: MaddogServerCAPath:/etc/pki_service/ca/security-ca.pem CertFolderUNUSED:./certs CertFolders:map[usercerts:/certs] TokenFolder:/tokens RunInitForRefresherMode:false RefresherMode:false RefresherOnce:false RefresherTokenGracePeriod:0s RefresherCheckerInterval:15m0s RefresherMinimalRenewDelay:12h0m0s IdentityNodeName:shared0-flowsnakeworkerprod1-2-yul.ops.sfdc.net IdentityName:spark-pi-82b2485f-driver IdentityNamespace:flowsnake-watchdog IdentityHostname:spark-pi-82b2485f-driver RetryMaxElapsedTime:3m0s RequestedCertTypeUNUSED:client FunnelEndpoint:http://ajna0-funnel1-0-yul.data.sfdc.net:80 Kingdom:yul Superpod:None Estate:yul-flowsnake_prod LogLevel:0}
+I0626 03:21:27.826473       1 madkubclient.go:424] Starting Run of MadkubClient
+I0626 03:21:27.828166       1 client.go:56] Creating MadkubeApiClient with Endpoint {Scheme:https Opaque: User:<nil> Host:10.254.208.254:32007 Path: RawPath: ForceQuery:false RawQuery: Fragment:}...
+I0626 03:21:27.828759       1 client.go:55] MetricsClient initialized
+I0626 03:21:27.828780       1 madkubclient.go:458] Run madkub client with full options
+I0626 03:21:27.840086       1 client.go:177] Calling getTokenConfig Post with URL https://10.254.208.254:32007/tokenByName...
+I0626 03:21:29.575605       1 madkubclient.go:375] Successfully got and wrote the init token and certtype for cert usercerts into /tokens.
+I0626 03:21:29.810706       1 madkubclient.go:388] Successfully got and wrote the first cert+key for cert usercerts part into /certs.
+I0626 03:21:29.810834       1 fileutil.go:144] sourceOnHostPath /etc/pki_service/ca destinationInsideContainerPath /certs
+I0626 03:21:29.811241       1 fileutil.go:153] caFolderToUse ca
+I0626 03:21:29.811258       1 fileutil.go:155] destinationFolder /certs/ca
+I0626 03:21:29.811290       1 fileutil.go:164] Copying CA files from sourceOnHostPath /etc/pki_service/ca and destinationInsideContainerPath /certs
+I0626 03:21:29.811303       1 fileutil.go:173] Processing file cabundle.pem
+I0626 03:21:29.811400       1 fileutil.go:173] Processing file cacerts.pem
+I0626 03:21:29.811492       1 fileutil.go:173] Processing file security-ca.pem
+I0626 03:21:29.811636       1 madkubclient.go:408] Successfully wrote the CA for cert usercerts file into /certs.
+I0626 03:21:29.811655       1 madkubclient.go:410] Successfully ran the init mode for cert usercerts
+I0626 03:21:29.811677       1 madkubclient.go:335] Ran Init Mode for all certs.
+0626 03:22:26 [1561519346] spark-pi-82b2485f - ---- End pods/spark-pi-82b2485f-driver madkub-init Log ----
+0626 03:22:26 [1561519346] spark-pi-82b2485f - ---- Begin pods/spark-pi-82b2485f-driver main Log ----
+Error: No such container: dd57aed088806974f1b244899ca43b4859e4b7aa5cd3c571c82b36b1fee736200626 03:22:28 [1561519348] spark-pi-82b2485f - ---- End pods/spark-pi-82b2485f-driver main Log ----
+0626 03:22:28 [1561519348] spark-pi-82b2485f - -------- Executor Pods ----------
+0626 03:22:28 [1561519348] spark-pi-82b2485f - Cleaning up stuff for completed or failed test.
+0626 03:22:28 [1561519348] spark-pi-82b2485f - sparkapplication "spark-pi-82b2485f" deleted
+0626 03:22:32 [1561519352] spark-pi-82b2485f - ======== Completion of spark-pi-82b2485f test, returning 1 ========
