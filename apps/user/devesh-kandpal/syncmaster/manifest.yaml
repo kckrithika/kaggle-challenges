@@ -7,8 +7,7 @@ system:
     - name: syncmaster
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/j-zoch/winterfell-syncmaster:store-tarball-and-cache
       env:
-      - name: SFDC_ENVIRONMENT
-        value: prod
+      
       - name: SPRING_CONFIG_NAME
         value: prod
       - name: DC
@@ -97,15 +96,14 @@ system:
 
      # Announces services
     - name: beacon
-      image: sfci/services/sfdc-bazel/disco/beacon:8eae42b4
+      image: sfci/servicelibs/beacon:ce3b9722faf59dc7550a1df2905ecff794fbb2e3
       resources:
         limits: { cpu: "1", memory: "1Gi" }
         requests: { cpu: "1", memory: "1Gi" }
       args:
       - -endpoint
-      - samapp/$(FUNCTION_NAMESPACE)/$(FUNCTION):DATACENTER_ALLENV:HTTP2_TLS
-      - -endpoint
-      - samapp/$(FUNCTION_NAMESPACE)/$(FUNCTION):DATACENTER_ALLENV:HTTP1_TLS
+      - samapp/user-devesh-kandpal/syncmaster:DATACENTER_ALLENV:7443
+      
       livenessProbe:
         exec:
           command:
@@ -121,16 +119,16 @@ system:
       maddogCert:
         type: server
 
-  loadbalancers:
-  - lbname: syncmaster-lb
-    function: syncmaster
-    slbEnabled: true
-    ports:
-      - port: 8080
-        targetport: 7442
-      - port: 15372
-        targetport: 15372
-      - port: 7443
-        targetport: 7443
-      - port: 5432
-        targetport: 5432
+  # loadbalancers:
+  # - lbname: syncmaster-lb
+  #   function: syncmaster
+  #   slbEnabled: true
+  #   ports:
+  #     - port: 8080
+  #       targetport: 7442
+  #     - port: 15372
+  #       targetport: 15372
+  #     - port: 7443
+  #       targetport: 7443
+  #     - port: 5432
+  #       targetport: 5432
