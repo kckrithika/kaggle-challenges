@@ -119,11 +119,11 @@ system:
     slbEnabled: true
     ports:
       - port: 8080
-        targetport: 7022
+        targetport: 7442
       - port: 15372
         targetport: 15372
       - port: 7443
-        targetport: 7020
+        targetport: 7443
       - port: 5432
         targetport: 5432
 
