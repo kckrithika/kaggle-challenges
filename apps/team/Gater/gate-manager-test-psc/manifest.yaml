@@ -89,7 +89,7 @@ system:
         initialDelaySeconds: 5
 
     - name: perf-sidecar       # Sidecar container that deploys automation folder
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/kviphong/perfsidecar:20180312-1
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/kviphong/perfsidecar:20190625-1
       ports:
         - containerPort: 10009    # Port for the profiler
       livenessProbe:
