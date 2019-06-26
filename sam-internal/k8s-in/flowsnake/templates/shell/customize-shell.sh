@@ -1,17 +1,4 @@
 #!/usr/bin/env bash
-
-# HOWTO
-# Initial install on a new host:
-#     sudo kubectl --kubeconfig /etc/kubernetes/kubeconfig get configmap/customize-shell -o jsonpath="{.data['customize-shell']}" | bash
-#     source ~/.bashrc
-#
-# Subsequent updates:
-#     customize-shell
-
-
-
-
-
 #
 # --- Begin custom user content
 
@@ -45,7 +32,7 @@ fi
 #
 # --- Begin ~/.aliases installation
 
-# TODO: with an alternate kc definition, these can work on workstations.
+# TODO: with an alternate kc definition, these can work on workstations, too.
 # TODO: Is there a way to programatically generate all the aliases of a particular type? E.g. bash*?
 
 cat << 'EOF' > ~/aliases
