@@ -76,22 +76,6 @@ system:
         mountPath: /client-certs
       - name: sherpaservercert
         mountPath: /server-certs
-  loadbalancers:
-  - lbname: heap-dump-analyser
-    function: heap-dump-analyser
-    nodeExposed: false
-    slbenabled: true
-    ports:
-      - port: 8080
-        targetport: 8080
-        lbtype: http
-        #tls: true
-        #reencrypt: true
-      - port: 15372 
-        targetport: 15372
-        lbtype: http
-        #tls: true
-        #reencrypt: true
 
     # The volumes to mount for shipping logs to splunk
     # General rule is to use path that satisfies the pattern: /home/sfdc-*/logs/**/*.json
@@ -105,3 +89,22 @@ system:
     - name: sherpaservercert
       maddogCert:
         type: server
+
+  loadbalancers:
+    - lbname: heap-dump-analyser
+      function: heap-dump-analyser
+      nodeExposed: false
+      slbenabled: true
+      ports:
+        - port: 8080
+          targetport: 8080
+          lbtype: http
+          #tls: true
+          #reencrypt: true
+        - port: 15372 
+          targetport: 15372
+          lbtype: http
+          #tls: true
+          #reencrypt: true
+
+
