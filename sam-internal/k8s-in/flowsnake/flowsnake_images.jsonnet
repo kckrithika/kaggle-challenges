@@ -44,6 +44,7 @@ local utils = import "util_functions.jsonnet";
                 # --- flag H (git's diff logic ... ---
                 watchdog_kuberesources_disable: "",
                 # --- flag I (to reduce the ---
+                aliases: "unverified",
                 # --- flag J (likelihood of merge conflicts.) ---
             },
             # prd-test offers legacy version mappings. Phase 2 does not, so cannot inherit from there.

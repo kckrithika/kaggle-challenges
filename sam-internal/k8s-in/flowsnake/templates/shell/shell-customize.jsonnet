@@ -1,5 +1,5 @@
 # This provides a the ability to customize the shell to your liking on a host by running a one-liner.
-# Roughly, the mechanism to to put content in a script in a configmap and execute a one-liner that grabs and runs
+# Roughly, the mechanism is to put content in a script in a configmap and execute a one-liner that grabs and runs
 # the script to install the content.
 
 local flowsnake_images = (import "flowsnake_images.jsonnet") + { templateFilename:: std.thisFile };
@@ -17,13 +17,16 @@ else
             apiVersion: "rbac.authorization.k8s.io/v1",
             metadata: {
                 namespace: "default",
-                name: "shell-customize-reader",
+                name: "customize-shell-reader",
+                annotations: {
+                    "manifestctl.sam.data.sfdc.net/swagger": "disable",
+                },
             },
             rules: [
                 {
                     apiGroups: [""],
                     resources: ["configmaps"],
-                    resourceNames: ["shell-customize"],
+                    resourceNames: ["customize-shell"],
                     verbs: ["get"],
                 },
             ],
@@ -33,14 +36,14 @@ else
             kind: "RoleBinding",
             apiVersion: "rbac.authorization.k8s.io/v1",
             metadata: {
-                name: "shell-customize-reader-everyone",
+                name: "customize-shell-reader-everyone",
                 annotations: {
                      "manifestctl.sam.data.sfdc.net/swagger": "disable",
                 },
             },
             roleRef: {
                 kind: "Role",
-                name: "shell-customize-reader",
+                name: "customize-shell-reader",
                 apiGroup: "rbac.authorization.k8s.io",
             },
             subjects: [
@@ -65,12 +68,11 @@ else
             kind: "ConfigMap",
             apiVersion: "v1",
             metadata: {
-              name: "shell-customize",
+              name: "customize-shell",
               namespace: "default",
             },
             data: {
-              "install.sh":
-                importstr "customize-shell-user-overrides.sh" + importstr "customize-shell-aliases.sh" + importstr "customize-shell-install.sh",
+                "customize-shell": importstr "customize-shell.sh",
             },
         },
     ]

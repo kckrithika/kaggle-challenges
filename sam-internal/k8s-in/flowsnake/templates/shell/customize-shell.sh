@@ -1,7 +1,52 @@
-# Control which alias sets you want in customize-shell-user-overrides.sh
+#!/usr/bin/env bash
 
-# TODO: with an alternate kc definition, these can work on workstations. Do that, then add the git ones as well.
-# TODO: Is there a way to programatically generate all the aliases of a particlar type? E.g. bash*?
+# HOWTO
+# Initial install on a new host:
+#     sudo kubectl --kubeconfig /etc/kubernetes/kubeconfig get configmap/customize-shell -o jsonpath="{.data['customize-shell']}" | bash
+#     source ~/.bashrc
+#
+# Subsequent updates:
+#     customize-shell
+
+
+
+
+
+#
+# --- Begin custom user content
+
+# To customize content for your shell, add a block following the pattern:
+# cat << 'EOF' > ~/.bashrc.<your_username>
+# <your content>
+# EOF
+
+cat << 'EOF' > ~/.bashrc.lorrin.nelson
+set -o vi
+EOF
+
+# --- End custom user content
+#
+#
+# --- Begin user alias selection
+
+#
+# To control which alias blocks are installed for yourself, set flags as follows:
+# if [[ "$USER" == "<your_username>" ]]; then
+#     ALIASES_<the-one-you-want-to-set>=<true|false>
+# fi
+# (Available blocks are defined in customize-shell-aliases.sh)
+
+if [[ "$USER" == "lorrin.nelson" ]]; then
+    ALIASES_EXPERIMENTAL=true
+fi
+
+#
+# --- End user alias selection
+#
+# --- Begin ~/.aliases installation
+
+# TODO: with an alternate kc definition, these can work on workstations.
+# TODO: Is there a way to programatically generate all the aliases of a particular type? E.g. bash*?
 
 cat << 'EOF' > ~/aliases
 #
@@ -28,8 +73,9 @@ kc() {
     sudo kubectl --kubeconfig /etc/kubernetes/kubeconfig "$@"
 }
 
-customize-shell-install() {
-    kc
+customize-shell() {
+    kc get configmap/customize-shell -o jsonpath="{.data['customize-shell']}" | bash
+    source ~/.bashrc
 }
 
 kcf() {
@@ -204,31 +250,31 @@ cat << 'EOF' >> ~/aliases
 # TODO: what about labels on things other than pods?
 # List labels
 labelsn () {
-    kc -n $1 get pods -o template --template '{{ range .items }}{{ range $key, $value := .metadata.labels}}{{ $key }}{{"="}}{{ $value}}{{"\n"}}{{ end }}{{ end }}' | sort | uniq | grep -P '(app|componentName|flowsnakeRole|name|spark-r
+    kc -n $1 get pods -o template --template '{{ range .items }}{{ range $key, $value := .metadata.labels}}{{ $key }}{{"="}}{{ $value}}{{"\n"}}{{ end }}{{ end }}' | sort | uniq | grep -P '(app|componentName|flowsnakeRole|name|spark-role)='
 }
 labelsa() {
-    kca get pods -o template --template '{{ range .items }}{{ range $key, $value := .metadata.labels}}{{ $key }}{{"="}}{{ $value}}{{"\n"}}{{ end }}{{ end }}' | sort | uniq | grep -P '(app|componentName|flowsnakeRole|name|spark-rol
+    kca get pods -o template --template '{{ range .items }}{{ range $key, $value := .metadata.labels}}{{ $key }}{{"="}}{{ $value}}{{"\n"}}{{ end }}{{ end }}' | sort | uniq | grep -P '(app|componentName|flowsnakeRole|name|spark-role)='
 }
 labelsf() {
-    kcf get pods -o template --template '{{ range .items }}{{ range $key, $value := .metadata.labels}}{{ $key }}{{"="}}{{ $value}}{{"\n"}}{{ end }}{{ end }}' | sort | uniq | grep -P '(app|componentName|flowsnakeRole|name|spark-role)=
+    kcf get pods -o template --template '{{ range .items }}{{ range $key, $value := .metadata.labels}}{{ $key }}{{"="}}{{ $value}}{{"\n"}}{{ end }}{{ end }}' | sort | uniq | grep -P '(app|componentName|flowsnakeRole|name|spark-role)='
 }
 labelsft() {
-    kcft get pods -o template --template '{{ range .items }}{{ range $key, $value := .metadata.labels}}{{ $key }}{{"="}}{{ $value}}{{"\n"}}{{ end }}{{ end }}' | sort | uniq | grep -P '(app|componentName|flowsnakeRole|name|spark-role)=
+    kcft get pods -o template --template '{{ range .items }}{{ range $key, $value := .metadata.labels}}{{ $key }}{{"="}}{{ $value}}{{"\n"}}{{ end }}{{ end }}' | sort | uniq | grep -P '(app|componentName|flowsnakeRole|name|spark-role)='
 }
 labelsfw() {
-    kcfw get pods -o template --template '{{ range .items }}{{ range $key, $value := .metadata.labels}}{{ $key }}{{"="}}{{ $value}}{{"\n"}}{{ end }}{{ end }}' | sort | uniq | grep -P '(app|componentName|flowsnakeRole|name|spark-role)=
+    kcfw get pods -o template --template '{{ range .items }}{{ range $key, $value := .metadata.labels}}{{ $key }}{{"="}}{{ $value}}{{"\n"}}{{ end }}{{ end }}' | sort | uniq | grep -P '(app|componentName|flowsnakeRole|name|spark-role)='
 }
 labelsk() {
-    kck get pods -o template --template '{{ range .items }}{{ range $key, $value := .metadata.labels}}{{ $key }}{{"="}}{{ $value}}{{"\n"}}{{ end }}{{ end }}' | sort | uniq | grep -P '(app|componentName|flowsnakeRole|name|spark-role)=
+    kck get pods -o template --template '{{ range .items }}{{ range $key, $value := .metadata.labels}}{{ $key }}{{"="}}{{ $value}}{{"\n"}}{{ end }}{{ end }}' | sort | uniq | grep -P '(app|componentName|flowsnakeRole|name|spark-role)='
 }
 labelss() {
-    kcs get pods -o template --template '{{ range .items }}{{ range $key, $value := .metadata.labels}}{{ $key }}{{"="}}{{ $value}}{{"\n"}}{{ end }}{{ end }}' | sort | uniq | grep -P '(app|componentName|flowsnakeRole|name|spark-role)=
+    kcs get pods -o template --template '{{ range .items }}{{ range $key, $value := .metadata.labels}}{{ $key }}{{"="}}{{ $value}}{{"\n"}}{{ end }}{{ end }}' | sort | uniq | grep -P '(app|componentName|flowsnakeRole|name|spark-role)='
 }
 labelsu() {
-    kcu get pods -o template --template '{{ range .items }}{{ range $key, $value := .metadata.labels}}{{ $key }}{{"="}}{{ $value}}{{"\n"}}{{ end }}{{ end }}' | sort | uniq | grep -P '(app|componentName|flowsnakeRole|name|spark-role)=
+    kcu get pods -o template --template '{{ range .items }}{{ range $key, $value := .metadata.labels}}{{ $key }}{{"="}}{{ $value}}{{"\n"}}{{ end }}{{ end }}' | sort | uniq | grep -P '(app|componentName|flowsnakeRole|name|spark-role)='
 }
 labelse() {
-    kce $1 get pods -o template --template '{{ range .items }}{{ range $key, $value := .metadata.labels}}{{ $key }}{{"="}}{{ $value}}{{"\n"}}{{ end }}{{ end }}' | sort | uniq | grep -P '(app|componentName|flowsnakeRole|name|spark-rol
+    kce $1 get pods -o template --template '{{ range .items }}{{ range $key, $value := .metadata.labels}}{{ $key }}{{"="}}{{ $value}}{{"\n"}}{{ end }}{{ end }}' | sort | uniq | grep -P '(app|componentName|flowsnakeRole|name|spark-role)='
 }
 
 # TODO: add impl's for new kc* flavors
@@ -325,3 +371,19 @@ rcpe() {
 
 EOF
 fi
+
+#
+# --- End ~/.aliases installation
+
+# Delete any previous content from bashrc
+cat ~/.bashrc | awk '/^# BEGIN customize-shell$/{flag=1}/^# END customize-shell$/{flag=0;next}!flag' > .bashrc.tmp
+mv .bashrc.tmp ~/.bashrc
+# Add current content
+cat << "EOF" >> ~/.bashrc
+# BEGIN customize-shell
+source ~/aliases
+if [ -f ~/.bashrc.$USER ]; then
+    source ~/.bashrc.$USER
+fi
+# END customize-shell
+EOF
