@@ -1275,6 +1275,20 @@
     },
     {
       "namespaces": [
+        "universal-search",
+        "search-scale-safely"
+      ],
+      "access": [
+        "team/universal-search",
+        "team/Search_Scale_Safely"
+      ],
+      "controlEstate": "hnd-sam",
+      "estate": "hnd-universalsearch_svc",
+      "kingdom": "hnd",
+      "superPod": "None"
+    },
+    {
+      "namespaces": [
         "csc-sam"
       ],
       "access": [
@@ -3902,6 +3916,20 @@
       "estate": "ukb-sp1-sam_caas",
       "kingdom": "ukb",
       "superPod": "sp1"
+    },
+    {
+      "namespaces": [
+        "universal-search",
+        "search-scale-safely"
+      ],
+      "access": [
+        "team/universal-search",
+        "team/Search_Scale_Safely"
+      ],
+      "controlEstate": "ukb-sam",
+      "estate": "ukb-universalsearch_svc",
+      "kingdom": "ukb",
+      "superPod": "None"
     },
     {
       "namespaces": [

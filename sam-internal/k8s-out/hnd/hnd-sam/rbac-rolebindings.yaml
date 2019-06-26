@@ -645,5 +645,57 @@ items:
     name: samcaas1-caasminion3-4-hnd.ops.sfdc.net
   - kind: User
     name: samcaas1-caasminion3-5-hnd.ops.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1beta1
+  kind: RoleBinding
+  metadata:
+    name: search-scale-safely:hnd-universalsearch_svc:rolebinding
+    namespace: search-scale-safely
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: minion:role
+  subjects:
+  - kind: User
+    name: shared0-samminionuniversalsearchmt1-1-hnd.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionuniversalsearchmt1-2-hnd.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionuniversalsearchmt1-3-hnd.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionuniversalsearchmt1-4-hnd.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionuniversalsearchmt2-1-hnd.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionuniversalsearchmt2-2-hnd.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionuniversalsearchmt2-3-hnd.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionuniversalsearchmt2-4-hnd.ops.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1beta1
+  kind: RoleBinding
+  metadata:
+    name: universal-search:hnd-universalsearch_svc:rolebinding
+    namespace: universal-search
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: minion:role
+  subjects:
+  - kind: User
+    name: shared0-samminionuniversalsearchmt1-1-hnd.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionuniversalsearchmt1-2-hnd.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionuniversalsearchmt1-3-hnd.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionuniversalsearchmt1-4-hnd.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionuniversalsearchmt2-1-hnd.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionuniversalsearchmt2-2-hnd.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionuniversalsearchmt2-3-hnd.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionuniversalsearchmt2-4-hnd.ops.sfdc.net
 kind: List
 metadata: {}
