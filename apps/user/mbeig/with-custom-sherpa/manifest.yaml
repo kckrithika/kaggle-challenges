@@ -15,7 +15,7 @@ system:
     # Service Mesh / Envoy / Sherpa
     #####################################################################################
     - name: sherpa-cloudatlas-client
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mbeig/sherpa-envoy:1.0.8_gidcustom
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mbeig/sherpa-envoy:1.0.7_gidcustom
       imagePullPolicy: Always
       env:
       - name: SFDC_ENVIRONMENT
