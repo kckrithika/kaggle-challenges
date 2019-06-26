@@ -60,6 +60,7 @@ local utils = import "util_functions.jsonnet";
             },
             feature_flags+: {
                 # --- flag A (Do not edit ... ---
+                aliases: "verified in prd-test",
                 # --- flag B (these comments ... ---
                 # --- flag C (and place only ... ---
                 # --- flag D (one flag between ... ---
