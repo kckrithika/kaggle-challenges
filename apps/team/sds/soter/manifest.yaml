@@ -18,7 +18,7 @@ system:
           type: client
     containers:
     - name: soter
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/varun.kulkarni/varks-try:https2
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/varun.kulkarni/varks-try:https3
       ports:
       - containerPort: 8080
       - containerPort: 7090
@@ -41,6 +41,4 @@ system:
     ports:
       - port: 8080
         targetport: 8080
-        lbtype: http
-        tls: true
-        reencrypt: true
+        lbtype: tcp
