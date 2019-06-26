@@ -53,7 +53,7 @@ system:
         periodSeconds: 60
         timeoutSeconds: 30
     - name: mta
-      image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-gcp/dva/sfdc-mta-config:13
+      image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-gcp/dva/sfdc-mta-config:14
       ports:
       - name: smtp 
         containerPort: 52525
@@ -65,15 +65,17 @@ system:
       livenessProbe:
         exec:
           command:
-            - echo
-            - foo
+            - /bin/sh
+            - -c
+            - echo QUIT\r\n | nc localhost 52525
         initialDelaySeconds: 120
         periodSeconds: 5
       readinessProbe:
         exec:
           command:
-            - echo
-            - foo
+            - /bin/sh
+            - -c
+            - echo QUIT\r\n | nc localhost 52525
         initialDelaySeconds: 120
         periodSeconds: 5
     - name: beacon-eaas
