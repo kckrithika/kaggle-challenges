@@ -1,0 +1,38 @@
+apiVersion: v1
+system:
+  functions:
+    - name: eventbus-client-web-api
+      count: 1
+      volumes:
+        - name: myservercert
+          maddogCert:
+            type: server
+      containers:
+      - name: eventbus-client-web-api
+        image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/messagingplatform/eventbus-client-web-api:1.0
+        ports:
+        - containerPort: 8080
+          name: ext-port
+        - containerPort: 15372
+          name: manage-port
+        livenessProbe:
+          initialDelaySeconds: 600
+          periodSeconds: 60
+          timeoutSeconds: 10
+          failureThreshold: 5
+          httpGet:
+            path: /manage/health
+            port: 15372
+            scheme: HTTP
+        volumeMounts:
+          - name: myservercert
+            mountPath: /certs
+  loadbalancers:
+  - lbname: eventbus-client-web-api-lb
+    function: eventbus-client-web-api
+    slbenabled: true
+    ports:
+      - port: 443
+        targetport: 8080
+        lbtype: http
+        tls: true
