@@ -23,7 +23,6 @@ if slbconfigs.isSlbEstate && slbflights.enableIWDHealth then configs.daemonSetBa
                 namespace: "sam-system",
             },
             spec: {
-                hostNetwork: true,
                 volumes: configs.filter_empty([
                     configs.maddog_cert_volume,
                     configs.cert_volume,
@@ -57,9 +56,8 @@ if slbconfigs.isSlbEstate && slbflights.enableIWDHealth then configs.daemonSetBa
                             slbconfigs.node_name_env,
                             configs.kube_config_env,
                         ],
-                    },
+                    } + configs.ipAddressResourceRequest,
                 ],
-
             } + slbconfigs.getGracePeriod()
             + slbconfigs.getDnsPolicy(),
         },
