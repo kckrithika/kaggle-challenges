@@ -7,6 +7,8 @@ system:
     - name: syncmaster
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/j-zoch/winterfell-syncmaster:store-tarball-and-cache
       env:
+      - name: SFDC_ENVIRONMENT
+        value: prod
       - name: SPRING_CONFIG_NAME
         value: prod
       - name: DC
@@ -95,7 +97,7 @@ system:
 
      # Announces services
     - name: beacon
-      image: sfci/servicelibs/beacon:ce3b9722faf59dc7550a1df2905ecff794fbb2e3
+      image: sfci/servicelibs/beacon:8eae42b4
       resources:
         limits: { cpu: "1", memory: "1Gi" }
         requests: { cpu: "1", memory: "1Gi" }
