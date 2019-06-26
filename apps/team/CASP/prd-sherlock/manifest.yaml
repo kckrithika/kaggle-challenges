@@ -6,12 +6,12 @@ system:
       - rpothana@salesforce.com
   functions:
   - name: sherlock
-    count: 2
+    count: 3
     strategy:
       type: Recreate
     containers:
     - name: sherlock
-      image: dva/casp/sherlock_strata:jenkins-CASP-sherlock-dev-30-itest
+      image: dva/casp/sherlock_strata:jenkins-CASP-sherlock-dev-32-itest
       ports:
       - name: http
         containerPort: 5555
@@ -38,6 +38,8 @@ system:
           name: sherlock-data-vol
         - mountPath: /opt/sherlock/logs
           name: sherlock-logs-vol
+        - mountPath: /argus-secrets
+          name: argus-secrets
       livenessProbe:
         exec:
           command:
@@ -60,6 +62,9 @@ system:
       - name: sherlock-logs-vol
         hostPath:
           path: /data/sherlock-logs
+      - name: argus-secrets
+        k4aSecret:
+          secretName: argus-secrets
 
   loadbalancers:
   - lbname: sherlock-flower-lb
