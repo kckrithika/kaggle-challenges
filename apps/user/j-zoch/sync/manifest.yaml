@@ -46,7 +46,7 @@ system:
 
     # mTLS container s
     - name: sherpa
-      image:  sfci/servicelibs/sherpa-envoy:1.0.8
+      image:  sfci/servicelibs/sherpa-envoy:1.0.6
       ports:
       - containerPort: 7443
         name: http2-tls-in
