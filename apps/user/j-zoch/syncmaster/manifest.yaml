@@ -101,9 +101,9 @@ system:
         requests: { cpu: "1", memory: "1Gi" }
       args:
       - -endpoint
-      - samapp/$(FUNCTION_NAMESPACE)/$(FUNCTION):DATACENTER_ALLENV:HTTP2_TLS
+      - $(FUNCTION_NAMESPACE)/$(FUNCTION):DATACENTER_ALLENV:HTTP2_TLS
       - -endpoint
-      - samapp/$(FUNCTION_NAMESPACE)/$(FUNCTION):DATACENTER_ALLENV:HTTP1_TLS
+      - $(FUNCTION_NAMESPACE)/$(FUNCTION):DATACENTER_ALLENV:HTTP1_TLS
       livenessProbe:
         exec:
           command:
