@@ -24,11 +24,13 @@ if slbconfigs.isSlbEstate then configs.daemonSetBase("slb") {
             spec: {
                 hostNetwork: true,
                 volumes: configs.filter_empty([
+                    configs.maddog_cert_volume,
+                    configs.cert_volume,
                     slbconfigs.slb_volume,
                     slbconfigs.logs_volume,
                     slbconfigs.slb_config_volume,
+                    configs.kube_config_volume,
                     configs.sfdchosts_volume,
-                    slbconfigs.cleanup_logs_volume,
                 ]),
                 containers: [
                     {
@@ -37,12 +39,24 @@ if slbconfigs.isSlbEstate then configs.daemonSetBase("slb") {
                         command: [
                             "/sdn/slb-iwd-health",
                             "--metricsEndpoint=" + configs.funnelVIP,
-                            "--k8sapiserver=",
-                            "--deploymentsToMonitor=slb-ipvs:" + slbconfigs.ipvsReplicaCount + ",slb-nginx-config-b:" + slbconfigs.nginxConfigReplicaCount,
+                            "--k8sAPIServer=",
+                            "--deploymentsToMonitor=slb-ipvs=" + slbconfigs.ipvsReplicaCount + ",slb-nginx-config-b=" + slbconfigs.nginxConfigReplicaCount,
                             "--minPercentHealthy=" + 1,
                         ],
+                        volumeMounts: configs.filter_empty([
+                            configs.maddog_cert_volume_mount,
+                            configs.cert_volume_mount,
+                            slbconfigs.slb_volume_mount,
+                            slbconfigs.logs_volume_mount,
+                            slbconfigs.slb_config_volume_mount,
+                            configs.kube_config_volume_mount,
+                            configs.sfdchosts_volume_mount,
+                        ]),
+                        env: [
+                            slbconfigs.node_name_env,
+                            configs.kube_config_env,
+                        ],
                     },
-                    slbshared.slbLogCleanup,
                 ],
 
             } + slbconfigs.getGracePeriod()
