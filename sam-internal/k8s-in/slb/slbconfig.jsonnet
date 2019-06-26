@@ -180,7 +180,6 @@
                   "10.208.108.10/32",  # cre-control-plane-lb.retail-cre.iad-sam.iad.slb.sfdc.net
                   "10.208.108.107/32",  # cre-sp-lb.retail-cre.iad-sam.iad.slb.sfdc.net
                   "10.208.108.148/32",  # dfs-production-lb.retail-dfs.iad-sam.iad.slb.sfdc.net
-                  "10.208.108.106/32",  # event-beacon-lb.retail-eventlistener.iad-sam.iad.slb.sfdc.net
                   "10.208.108.14/32",  # metadata-service-lb.retail-mds.iad-sam.iad.slb.sfdc.net
                   "13.110.24.14/32",  # rsui-production-iad-lb.retail-rsui.iad-sam.iad.slb.sfdc.net
                   "13.110.24.15/32",  # rsui-production-iad-test-lb.retail-rsui.iad-sam.iad.slb.sfdc.net
@@ -190,7 +189,6 @@
                   "10.208.148.11/32",  # cre-control-plane-lb.retail-cre.ord-sam.ord.slb.sfdc.net
                   "10.208.148.110/32",  # cre-sp-lb.retail-cre.ord-sam.ord.slb.sfdc.net
                   "10.208.148.148/32",  # dfs-production-lb.retail-dfs.ord-sam.ord.slb.sfdc.net
-                  "10.208.148.109/32",  # event-beacon-lb.retail-eventlistener.ord-sam.ord.slb.sfdc.net
                   "10.208.148.147/32",  # metadata-service-lb.retail-mds.ord-sam.ord.slb.sfdc.net
                   "13.110.26.14/32",  # rsui-production-ord-lb.retail-rsui.ord-sam.ord.slb.sfdc.net
                   "13.110.26.15/32",  # rsui-production-ord-test-lb.retail-rsui.ord-sam.ord.slb.sfdc.net
