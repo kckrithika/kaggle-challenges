@@ -65,15 +65,15 @@ system:
       livenessProbe:
         exec:
           command:
-            - cat
-            - /opt/msys/ecelerity/etc/license
+            - echo
+            - foo
         initialDelaySeconds: 120
         periodSeconds: 5
       readinessProbe:
         exec:
           command:
-            - cat
-            - /opt/msys/ecelerity/etc/license
+            - echo
+            - foo
         initialDelaySeconds: 120
         periodSeconds: 5
     - name: beacon-eaas
