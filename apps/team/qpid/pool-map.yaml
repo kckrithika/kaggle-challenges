@@ -3,5 +3,3 @@ apps:
     - mvp/gsf-core-devmvp-sam2-sam
   stmfa-prd-na47-qpid:
     - prd/prd-sam
-  aws-rddev-qpid:
-    - aws-us-west-2/aws-us-west-2-processing
