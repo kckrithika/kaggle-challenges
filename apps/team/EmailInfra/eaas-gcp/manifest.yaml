@@ -32,6 +32,8 @@ system:
       volumeMounts:
       - mountPath: /home/sfdc-eaas/logs
         name: logvol
+      - mountPath: /var/log/ecelerity
+        name: mtalog
       # mount pki client certs (and CA cert) for SMTP connection Eaas -> MTA
       - mountPath: /etc/pki_service
         name: eaas-client-cert
@@ -62,6 +64,9 @@ system:
         value: prd
       - name: SCONE_SERVICE_NAME
         value: mta 
+      volumeMounts:
+      - mountPath: /var/log/ecelerity
+        name: mtalog
       livenessProbe:
         exec:
           command:
@@ -151,6 +156,9 @@ system:
     - name: logvol
       hostPath:
         path: /home/sfdc-eaas/logs
+    - name: mtalog
+      hostPath:
+        path: /var/log/ecelerity
     - name: eaas-client-cert
       maddogCert:
         type: client
