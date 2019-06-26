@@ -8,6 +8,7 @@ items:
       sfdc.net/pki-namespace: wave-elt
     labels:
       madkub-injector: enabled
+      service-mesh-injector: enabled
       spark-operator-webhook: enabled
     name: wave-elt
 - apiVersion: v1
@@ -18,6 +19,7 @@ items:
       sfdc.net/pki-namespace: universal-search
     labels:
       madkub-injector: enabled
+      service-mesh-injector: enabled
       spark-operator-webhook: enabled
     name: universal-search
 - apiVersion: v1
@@ -28,6 +30,7 @@ items:
       sfdc.net/pki-namespace: flowsnake_test
     labels:
       madkub-injector: enabled
+      service-mesh-injector: enabled
       spark-operator-webhook: enabled
     name: flowsnake-test
 - apiVersion: v1
@@ -38,6 +41,7 @@ items:
       sfdc.net/pki-namespace: flowsnake_test
     labels:
       madkub-injector: enabled
+      service-mesh-injector: enabled
       spark-operator-webhook: enabled
     name: flowsnake-watchdog
 - apiVersion: v1
@@ -48,6 +52,7 @@ items:
       sfdc.net/pki-namespace: flowsnake_test
     labels:
       madkub-injector: enabled
+      service-mesh-injector: enabled
       spark-operator-webhook: enabled
     name: flowsnake-ci-tests
 kind: List

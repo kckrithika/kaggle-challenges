@@ -1,4 +1,6 @@
 local flowsnake_clients = import "flowsnake_direct_clients.jsonnet";
+local flowsnake_config = import "flowsnake_config.jsonnet";
+local flowsnake_images = import "flowsnake_images.jsonnet";
 
 if std.length(flowsnake_clients.clients) > 0 then (
 {
@@ -18,7 +20,10 @@ if std.length(flowsnake_clients.clients) > 0 then (
                 labels: {
                     "madkub-injector": "enabled",
                     "spark-operator-webhook": "enabled",
-                },
+
+                } + (if flowsnake_config.service_mesh_enabled && std.objectHas(flowsnake_images.feature_flags, "service_mesh") then
+                    { "service-mesh-injector": "enabled" }
+                else {}),
             },
         }
         for client in flowsnake_clients.clients
