@@ -6,9 +6,12 @@ system:
       - rpothana@salesforce.com
   functions:
   - name: sherlock
-    count: 1
+    count: 2
     strategy:
-      type: Recreate
+      type: RollingUpdate
+      rollingUpdate:
+        maxSurge: 0
+        maxUnavailable: 1
     containers:
     - name: sherlock
       image: dva/casp/sherlock_strata:jenkins-CASP-sherlock-dev-32-itest
