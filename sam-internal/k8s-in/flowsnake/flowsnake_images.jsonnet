@@ -38,7 +38,6 @@ local utils = import "util_functions.jsonnet";
                 # --- flag E (each pair. ... ---
                 etcd_cluster_metrics: "unverified",
                 # --- flag F (Their only purpose ... ---
-                next_analysis_script: "unverified",
                 # --- flag G (is to assist ... ---
                 service_mesh: "",
                 # --- flag H (git's diff logic ... ---
@@ -62,6 +61,7 @@ local utils = import "util_functions.jsonnet";
                 # --- flag A (Do not edit ... ---
                 aliases: "verified in prd-test",
                 # --- flag B (these comments ... ---
+                next_analysis_script: "verified reduced negative metrics and driver_killed output",
                 # --- flag C (and place only ... ---
                 # --- flag D (one flag between ... ---
                 # --- flag E (each pair. ... ---
