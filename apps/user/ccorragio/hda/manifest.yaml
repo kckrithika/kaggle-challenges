@@ -8,7 +8,7 @@ system:
     count: 1
     containers:
     - name: heap-dump-analyser-service
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/ccorragio/heap-dump-analyser:ccorragio-20190624-71783fc
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/ccorragio/heap-dump-analyser:ccorragio-20190626-71783fc
       # If your service doesn't serve HTTP traffic then you can remove the scone-http 8080 port.
       ports:
       - containerPort: 8080
@@ -76,6 +76,22 @@ system:
         mountPath: /client-certs
       - name: sherpaservercert
         mountPath: /server-certs
+  loadbalancers:
+  - lbname: heap-dump-analyser
+    function: heap-dump-analyser
+    nodeExposed: false
+    slbenabled: true
+    ports:
+      - port: 8080
+        targetport: 8080
+        lbtype: http
+        #tls: true
+        #reencrypt: true
+      - port: 15372 
+        targetport: 15372
+        lbtype: http
+        #tls: true
+        #reencrypt: true
 
     # The volumes to mount for shipping logs to splunk
     # General rule is to use path that satisfies the pattern: /home/sfdc-*/logs/**/*.json
