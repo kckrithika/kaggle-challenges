@@ -38,6 +38,8 @@ system:
           name: sherlock-data-vol
         - mountPath: /opt/sherlock/logs
           name: sherlock-logs-vol
+        - mountPath: /argus-secrets
+          name: argus-secrets
       livenessProbe:
         exec:
           command:
