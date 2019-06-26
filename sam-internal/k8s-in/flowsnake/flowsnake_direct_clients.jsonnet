@@ -76,6 +76,12 @@ local wave_elt_production = {
         # ---------- PRD-dev fleet -----------
         # ------------------------------------
         "prd-dev-flowsnake_iot_test": [
+            {
+                owner_name: "Carl - Testing",
+                namespace: "carl-spark-test",
+                pki_namespace: "flowsnake_test",
+                users: ["cmeister-ltm.internal.salesforce.com", "flowsnake_test.cmeister"],
+            },
         ],
 
         # -------------------------------
