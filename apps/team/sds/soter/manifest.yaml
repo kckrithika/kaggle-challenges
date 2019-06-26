@@ -41,4 +41,6 @@ system:
     ports:
       - port: 8080
         targetport: 8080
-        lbtype: tcp
+        lbtype: http
+        tls: true
+        reencrypt: true
