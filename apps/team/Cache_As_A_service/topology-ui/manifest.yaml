@@ -16,7 +16,7 @@ system:
         mountPath: /client-certs
       env:
         - name: FALCONS
-          value: "topology.foundation.rddev.aws.sfdc.cl"
+          value: "topology.foundation.rddev.aws.sfdc.cl:443"
         - name: CA
           value: "/client-certs/ca/cacerts.pem"
         - name: CERT
