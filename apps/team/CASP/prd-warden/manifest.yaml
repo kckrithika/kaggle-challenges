@@ -7,7 +7,7 @@ system:
         - akouthoofd@salesforce.com
     functions:
     - name: warden-func
-      count: 1
+      count: 3
       strategy:
         type: RollingUpdate
         rollingUpdate:
@@ -15,7 +15,7 @@ system:
           maxUnavailable: 1
       containers:
       - name: prd-warden
-        image: dva/casp/warden_strata:266
+        image: dva/casp/warden_strata:271
         ports:
         - name: http
           containerPort: 8889
