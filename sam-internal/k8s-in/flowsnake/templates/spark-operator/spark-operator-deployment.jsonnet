@@ -54,7 +54,7 @@ local autodeployer = import "auto_deployer.jsonnet";
                         imagePullPolicy: "Always",
                         command: ["/usr/bin/spark-operator"],
                         args: ["-logtostderr",
-                            if (flowsnake_config.is_test || kingdom=="frf" || kingdom=="cdu" || estate=="prd-data-flowsnake" || estate=="prd-dev-flowsnake_iot_test") then "-v=3" else "-v=2",
+                            "-v=3",
                             "-enable-metrics=true",
                             "-metrics-endpoint=/metrics",
                             "-metrics-port=10254",
