@@ -3,8 +3,7 @@
 # the script to install the content.
 #
 # Initial install on a new host:
-#     sudo kubectl --kubeconfig /etc/kubernetes/kubeconfig get configmap/customize-shell -o jsonpath="{.data['customize-shell']}" | bash
-#     source ~/.bashrc
+#     sudo kubectl --kubeconfig /etc/kubernetes/kubeconfig get configmap/customize-shell -o jsonpath="{.data['customize-shell']}" | bash && source ~/.bashrc
 #
 # Subsequent updates:
 #     customize-shell
