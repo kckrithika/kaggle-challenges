@@ -8,6 +8,7 @@ items:
       sfdc.net/pki-namespace: flowsnake_test
     labels:
       madkub-injector: enabled
+      service-mesh-injector: enabled
       spark-operator-webhook: enabled
     name: carl-spark-test
 - apiVersion: v1
@@ -18,6 +19,7 @@ items:
       sfdc.net/pki-namespace: flowsnake_test
     labels:
       madkub-injector: enabled
+      service-mesh-injector: enabled
       spark-operator-webhook: enabled
     name: kh-spark-test
 - apiVersion: v1
@@ -28,6 +30,7 @@ items:
       sfdc.net/pki-namespace: flowsnake_test
     labels:
       madkub-injector: enabled
+      service-mesh-injector: enabled
       spark-operator-webhook: enabled
     name: flowsnake-test
 - apiVersion: v1
@@ -38,6 +41,7 @@ items:
       sfdc.net/pki-namespace: flowsnake_test
     labels:
       madkub-injector: enabled
+      service-mesh-injector: enabled
       spark-operator-webhook: enabled
     name: flowsnake-watchdog
 kind: List
