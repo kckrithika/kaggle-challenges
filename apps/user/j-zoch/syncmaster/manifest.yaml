@@ -65,7 +65,7 @@ system:
       terminationMessagePolicy: FallbackToLogsOnError
     # mTLS container s
     - name: sherpa
-      image: sfci/servicelibs/sherpa-envoy:1.0.6
+      image: sfci/servicelibs/sherpa-envoy:1.0.8
       ports:
       - containerPort: 7443
         name: http2-tls-in
