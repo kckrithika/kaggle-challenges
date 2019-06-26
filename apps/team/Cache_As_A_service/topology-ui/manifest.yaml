@@ -10,7 +10,7 @@ system:
         type: client
     containers:
     - name: topology-ui-service
-      image:  ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/ameesala/topology-ui:0.1
+      image:  ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/ameesala/topology-ui:0.2
       volumeMounts:
       - name: cert
         mountPath: /client-certs
