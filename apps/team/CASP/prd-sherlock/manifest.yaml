@@ -6,12 +6,12 @@ system:
       - rpothana@salesforce.com
   functions:
   - name: sherlock
-    count: 3
+    count: 2
     strategy:
       type: Recreate
     containers:
     - name: sherlock
-      image: dva/casp/sherlock_strata:jenkins-CASP-sherlock-dev-32-itest
+      image: dva/casp/sherlock_strata:jenkins-CASP-sherlock-master-15-itest
       ports:
       - name: http
         containerPort: 5555
@@ -48,13 +48,6 @@ system:
         periodSeconds: 10
         timeoutSeconds: 10
         initialDelaySeconds: 10
-      resources:
-        limits:
-          cpu: 16
-          memory: 16Gi
-        requests:
-          cpu: 16
-          memory: 16Gi
     volumes:
       - name: sherlock-data-vol
         hostPath:
