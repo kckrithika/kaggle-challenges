@@ -35,10 +35,10 @@
       "namespaces": [
         "csc-sam",
         "cache-as-a-service",
+        "caffeine",
         "casp",
         "cbatch",
         "ccait",
-        "cdpt-caffeine",
         "cloudatlas",
         "communities",
         "core-on-sam",
