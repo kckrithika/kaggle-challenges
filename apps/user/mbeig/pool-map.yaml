@@ -2,3 +2,5 @@ version: v2
 apps:
   with-custom-sherpa:
    - name: prd/prd-sam
+  with-nginx-only:
+   - name: prd/prd-sam
