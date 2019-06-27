@@ -11,7 +11,7 @@ system:
     terminationGracePeriodSeconds: 35
     containers:
     - name: eaas
-      image: 791719295754.dkr.ecr.us-east-2.amazonaws.com/sfci/eaas/emailservice:2.0.74-08c78b3637ac0c17724e40e186fbe7718726ae52
+      image: 791719295754.dkr.ecr.us-east-2.amazonaws.com/sfci/eaas/emailservice:2.0.75-16c995f2dd1891061f1e5a89ec67a679caed3894
       ports:
       - name: grpc
         containerPort: 7020
