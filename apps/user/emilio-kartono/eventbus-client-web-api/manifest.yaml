@@ -9,7 +9,7 @@ system:
             type: server
       containers:
       - name: eventbus-client-web-api
-        image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/messagingplatform/eventbus-client-web-api:1.0
+        image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/emilio-kartono/eventbus-client-web-api:1.0
         ports:
         - containerPort: 8080
           name: ext-port
