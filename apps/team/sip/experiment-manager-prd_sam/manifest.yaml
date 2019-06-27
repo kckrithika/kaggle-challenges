@@ -27,7 +27,7 @@ system:
           - sip-em-dev-slb
     containers:
     - name: sip-em 
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/srinath.venkatesan/em/sip:sip-em-20190627T1603
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/srinath.venkatesan/em/sip:sip-em-20190627T1645
       livenessProbe:
         initialDelaySeconds: 30
         httpGet:
@@ -36,7 +36,6 @@ system:
       volumeMounts:
       - mountPath: /home/sfdc-search-sip/logs
         name: logvol
-        readOnly: true
       - mountPath: /secrets/blacktab/
         name: blacktab-secret
         readOnly: true
