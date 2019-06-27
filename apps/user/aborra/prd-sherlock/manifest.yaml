@@ -40,6 +40,7 @@ system:
           name: sherlock-logs-vol
         - mountPath: /argus-secrets/
           name: argus-secrets
+          readOnly: true
       livenessProbe:
         httpGet:
           path: /
