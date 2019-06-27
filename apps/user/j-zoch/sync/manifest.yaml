@@ -81,9 +81,9 @@ system:
       image: sfci/services/sfdc-bazel/disco/beacon:d7f1640
       args:
       - -endpoint
-      - samapp/$(FUNCTION_NAMESPACE)/$(FUNCTION):DATACENTER_ALLENV:HTTP2_TLS
+      - samapp/$(FUNCTION_NAMESPACE)-grpc/$(FUNCTION):DATACENTER_ALLENV:HTTP2_TLS
       - -endpoint
-      - samapp/$(FUNCTION):DATACENTER_ALLENV:HTTP1_TLS
+      - samapp/$(FUNCTION_NAMESPACE)-http/$(FUNCTION):DATACENTER_ALLENV:HTTP1_TLS
       resources:
         limits: { cpu: "1", memory: "1Gi" }
         requests: { cpu: "1", memory: "1Gi" }
@@ -108,10 +108,10 @@ system:
     slbEnabled: true
     ports:
       - port: 8080
-        targetport: 7442
+        targetport: 7022
       - port: 15372
         targetport: 15572
       - port: 7443
-        targetport: 7443
+        targetport: 7020
 
 

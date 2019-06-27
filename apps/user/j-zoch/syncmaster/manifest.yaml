@@ -103,9 +103,9 @@ system:
         requests: { cpu: "1", memory: "1Gi" }
       args:
       - -endpoint
-      - samapp/$(FUNCTION_NAMESPACE)/$(FUNCTION):DATACENTER_ALLENV:HTTP2_TLS
+      - samapp/$(FUNCTION_NAMESPACE)-grpc/$(FUNCTION):DATACENTER_ALLENV:HTTP2_TLS
       - -endpoint
-      - samapp/$(FUNCTION):DATACENTER_ALLENV:HTTP1_TLS
+      - samapp/$(FUNCTION_NAMESPACE)-http/$(FUNCTION):DATACENTER_ALLENV:HTTP1_TLS
       livenessProbe:
         exec:
           command:
@@ -127,11 +127,11 @@ system:
     slbEnabled: true
     ports:
       - port: 8080
-        targetport: 7442
+        targetport: 7022
       - port: 15372
         targetport: 15372
       - port: 7443
-        targetport: 7443
+        targetport: 7020
       - port: 5432
         targetport: 5432
 
