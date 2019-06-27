@@ -242,8 +242,6 @@ system:
         value: https://refocus.internal.salesforce.com/v1/samples/
       - name: KAIJU_RUNTIME_TIMEOUT_MS
         value: 360000
-      - name: ENABLE_HEALTH_CHECK_TLS
-        value: false
       - name: DB_HOST
         value: mist61ice1-db1-1-prd.eng.sfdc.net
       - name: DB_PORT
