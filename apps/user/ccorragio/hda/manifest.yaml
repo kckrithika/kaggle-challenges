@@ -8,7 +8,7 @@ system:
     count: 1
     containers:
     - name: heap-dump-analyser-service
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/ccorragio/heap-dump-analyser:kfoster-20190627-659aa07
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/ccorragio/heap-dump-analyser:kfoster-20190627-fd35742
       # If your service doesn't serve HTTP traffic then you can remove the scone-http 8080 port.
       ports:
       - containerPort: 8080
@@ -27,9 +27,6 @@ system:
         httpGet:
           path: /manage/ready
           port: 15372
-      volumeMounts:
-        - mountPath: /hda_storage
-          name: hdastorage
     - name: beacon
       # https://sconelibci.dop.sfdc.net/job/servicelibs/job/beacon/job/master/
       image: sfci/servicelibs/beacon:cec13ceb9fc5aed0ce462031a01b2dd5ef73d5ee
@@ -92,9 +89,6 @@ system:
     - name: sherpaservercert
       maddogCert:
         type: server
-    - name: hdastorage
-      hostPath:
-        path: /home/sfdc-heap-dump-analyser/hdastorage
 
   loadbalancers:
     - lbname: heap-dump-analyser
