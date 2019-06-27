@@ -22,15 +22,15 @@ system:
           image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/retail/hub-persistence:0.0.1.5
           ports:
             # Jetty http1 ports for incoming public traffic via SLB
-            - containerPort: 8088
+            - containerPort: 7022
               name: hp-in-http1
-            - containerPort: 15378
+            - containerPort: 15372
           resources:
             limits: { cpu: "2", memory: "10Gi" }
             requests: { cpu: "2", memory: "10Gi" }
           env:
             - name: SERVER_PORT
-              value: 8088
+              value: 7022
             - name: SFDC_ENVIRONMENT
               value: stmfa
             - name: JVM_ARGS
@@ -38,7 +38,7 @@ system:
           livenessProbe:
             httpGet:
               path: /manage/health
-              port: 15378
+              port: 15372
               scheme: HTTP
             initialDelaySeconds: 60
             periodSeconds: 60
@@ -107,7 +107,7 @@ system:
       function: hub-persistence-func
       slbEnabled: true
       ports:
-      - port: 8088
-        targetport: 8088
-      - port: 15378
-        targetport: 15378
+      - port: 7022
+        targetport: 7022
+      - port: 15372
+        targetport: 15372
