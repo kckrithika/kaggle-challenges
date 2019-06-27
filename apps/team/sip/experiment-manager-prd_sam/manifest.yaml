@@ -70,13 +70,3 @@ system:
         port: 15372
         targetport: 15372
     slbEnabled: true
-#    env:
-#      - name: SFDC_ENVIRONMENT
-#        value: sam
-#    resources:
-#      limits:
-#        cpu: "12"
-#        memory: 10Gi
-#      requests:
-#        cpu: "12"
-#        memory: 10Gi
