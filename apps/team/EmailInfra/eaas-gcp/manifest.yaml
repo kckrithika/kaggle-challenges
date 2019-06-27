@@ -53,7 +53,7 @@ system:
         periodSeconds: 60
         timeoutSeconds: 30
     - name: mta
-      image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-gcp/dva/sfdc-mta-config:15
+      image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-gcp/dva/sfdc-mta-config:16
       ports:
       - name: smtp 
         containerPort: 52525
