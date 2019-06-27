@@ -11,7 +11,7 @@ system:
       type: Recreate
     containers:
     - name: sherlock
-      image: dva/casp/sherlock_strata:jenkins-CASP-sherlock-PR-76-3-itest
+      image: dva/casp/sherlock_strata:jenkins-CASP-sherlock-PR-76-4-itest
       ports:
       - name: http
         containerPort: 5555
@@ -38,17 +38,14 @@ system:
           name: sherlock-data-vol
         - mountPath: /opt/sherlock/logs
           name: sherlock-logs-vol
-        - mountPath: /argus-secrets/
-          name: argus-secrets
-          readOnly: true
       livenessProbe:
-        exec:
-          command:
-            - /opt/sherlock/bin/ping.sh
+        httpGet:
+          path: /
+          port: 80
         failureThreshold: 60
         periodSeconds: 10
         timeoutSeconds: 10
-        initialDelaySeconds: 10
+        initialDelaySeconds: 120
     volumes:
       - name: sherlock-data-vol
         hostPath:
@@ -56,9 +53,6 @@ system:
       - name: sherlock-logs-vol
         hostPath:
           path: /data/sherlock-logs
-      - name: argus-secrets
-        k4aSecret:
-          secretName: argus-secrets
 
   loadbalancers:
   - lbname: sherlock-flower-lb
