@@ -81,9 +81,7 @@ system:
       image: sfci/services/sfdc-bazel/disco/beacon:d7f1640
       args:
       - -endpoint
-      - samapp/$(FUNCTION_NAMESPACE)/$(FUNCTION)-grpc:DATACENTER_ALLENV:HTTP2_TLS
-      - -endpoint
-      - samapp/$(FUNCTION_NAMESPACE)/$(FUNCTION)-http:DATACENTER_ALLENV:HTTP1_TLS
+      - samapp/$(FUNCTION_NAMESPACE)/$(FUNCTION):DATACENTER_ALLENV:HTTP2_TLS
       resources:
         limits: { cpu: "1", memory: "1Gi" }
         requests: { cpu: "1", memory: "1Gi" }
