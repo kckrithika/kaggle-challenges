@@ -5,7 +5,7 @@ system:
     count: 2
     containers:
     - name: search-query-service
-      image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-gcp/sfci/searchdev/search-query-execution-platform:5.4
+      image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-gcp/sfci/searchdev/search-query-execution-platform:5.5
       command: ["java", "-Xdebug", "-Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=8955", "-jar", "service.jar"]
       args:
       - --modelstore.repo.models=model_repository_root/models
@@ -45,7 +45,7 @@ system:
         initialDelaySeconds: 110
         timeoutSeconds: 10
     - name: beacon
-      image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-gcp/sfci/services/sfdc-bazel/disco/beacon:cba828fda
+      image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-gcp/sfci/services/sfdc-bazel/disco/beacon:6f46a7abf
       args:
       - -endpoint
       - search-scale-safely/search-query-service:DATACENTER_ALLENV:7443
