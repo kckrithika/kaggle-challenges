@@ -38,8 +38,9 @@ system:
           name: sherlock-data-vol
         - mountPath: /opt/sherlock/logs
           name: sherlock-logs-vol
-        - mountPath: /argus-secrets/
+        - mountPath: /secrets/argus/
           name: argus-secrets
+          readOnly: true
       livenessProbe:
         httpGet:
           path: /
