@@ -103,6 +103,9 @@ system:
       args:
       - -endpoint
       - samapp/user-devesh-kandpal/syncmaster:DATACENTER_ALLENV:7443
+      - -endpoint
+      - samapp/user-devesh-kandpal/syncmaster:DATACENTER_ALLENV:7442
+
       
       livenessProbe:
         exec:
