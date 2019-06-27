@@ -11,9 +11,6 @@ system:
     - name: logvol
       hostPath:
         path: /home/sfdc-search-sip/logs
-    - name: heroku-secret
-      k4aSecret:
-        secretName: heroku-api
     - name: blacktab-secret
       k4asecret:
         secretName: blacktab-credentials
