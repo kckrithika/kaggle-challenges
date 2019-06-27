@@ -5,7 +5,7 @@ system:
     - servicemesh@salesforce.com
   functions:
   - name: switchboard
-    count: 5
+    count: 8
     annotations:
       routing.mesh.sfdc.net/enabled: "true"
     labels:
