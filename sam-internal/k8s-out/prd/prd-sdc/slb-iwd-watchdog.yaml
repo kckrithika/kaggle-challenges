@@ -57,6 +57,7 @@ spec:
         - mountPath: /sfdchosts
           name: sfdchosts
       dnsPolicy: Default
+      hostNetwork: true
       terminationGracePeriodSeconds: 5
       volumes:
       - hostPath:
