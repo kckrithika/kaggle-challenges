@@ -24,7 +24,7 @@ data:
       drainDuration: 45s
       parentShutdownDuration: 1m0s
       interceptionMode: REDIRECT
-      proxyAdminPort: 15000
+      proxyAdminPort: 15373
       concurrency: 2
       tracing:
         zipkin:
