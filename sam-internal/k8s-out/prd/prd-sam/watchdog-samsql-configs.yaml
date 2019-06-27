@@ -229,11 +229,33 @@ data:
     Value\nfrom (\n  select controlEstate, Payload->>''$.status.capacity.\"sam.sfdc.net/ip-address\"''
     as IpAddressCapacity\n  from k8s_resource\n  where apikind = ''Node'' and controlEstate
     = ''prd-sam''\n) as ss\ngroup by controlEstate, IpAddressCapacity", "watchdogFrequency":
-    "1m"}], "sql_alerts": [{"alertAction": "businesshours_pagerduty", "alertFrequency":
-    "336h", "alertProfile": "sam", "alertThreshold": "10m", "instructions": "The following
-    deployments are reported as bad customer deployments in Production. Debug Instructions:
-    https://git.soma.salesforce.com/sam/sam/wiki/Debug-Failed-Deployment", "name":
-    "SqlSlaDepl", "sql": "SELECT * FROM\n                        (\n                          SELECT\n                            ControlEstate,\n                            Namespace,\n                            Name,\n                            JSON_EXTRACT(Payload,
+    "1m"}, {"name": "NodeAvailabilityByPool", "sql": "select ''GLOBAL'' as MinionPool,
+    ''GLOBAL'' as Kingdom, ''sql.available.poolkingdomCount'' as Metric, count(*)
+    as Value, ''GLOBAL'' as Tags\n          from (\n          \tselect MinionPool,
+    kingdom, Ready from nodeDetailView group by MinionPool, kingdom, Ready\n          )
+    as ss1\n          union all\n          select UPPER(MinionPool) as MinionPool,
+    UPPER(kingdom) as kingdom, ''sql.available.nodeStatusPerMinionPool'' as Metric,
+    (CASE WHEN Running>0 THEN 1 ELSE 0 END) as Value, CONCAT(''Ready='',Ready,'',Running='',Running,'',Total='',total)
+    as Tags\n          from (\n            select MinionPool, kingdom, Ready, Count(CASE
+    WHEN Ready = ''True'' THEN 1 ELSE 0 END) as Running, Count(*) as total\n            from
+    nodeDetailView\n            group by MinionPool, kingdom, Ready\n          ) as
+    ss2", "watchdogFrequency": "5m"}, {"name": "PodAvailabilityByPool", "sql": "select
+    ''GLOBAL'' as MinionPool, ''GLOBAL'' as Kingdom, ''sql.available.podStatus'' as
+    Metric, Running as Value, CONCAT(''Ready='',Phase,'',Running='',Running,'',Total='',total)
+    as Tags\n          from (\n            select Phase, Count(CASE WHEN Phase = ''True''
+    THEN 1 ELSE 0 END) as Running, Count(*) as total\n            from podDetailView\n            group
+    by Phase\n          ) as ss1\n          union all\n          select UPPER(MinionPool)
+    as MinionPool, UPPER(kingdom) as kingdom, ''sql.available.podStatusPerMinionPool''
+    as Metric, Running as Value, CONCAT(''Ready='',Phase,'',Running='',Running,'',Total='',total)
+    as Tags\n          from (\n            select kingdom, Phase, Count(CASE WHEN
+    Phase = ''True'' THEN 1 ELSE 0 END) as Running, Count(*) as total,\n            \tjson_unquote(json_extract(`Payload`,
+    ''$.spec.affinity.nodeAffinity.requiredDuringSchedulingIgnoredDuringExecution.nodeSelectorTerms[0].matchExpressions[0].values[0]''))
+    as MinionPool\n            from podDetailView\n            group by MinionPool,
+    kingdom, Phase\n          ) as ss2", "watchdogFrequency": "5m"}], "sql_alerts":
+    [{"alertAction": "businesshours_pagerduty", "alertFrequency": "336h", "alertProfile":
+    "sam", "alertThreshold": "10m", "instructions": "The following deployments are
+    reported as bad customer deployments in Production. Debug Instructions: https://git.soma.salesforce.com/sam/sam/wiki/Debug-Failed-Deployment",
+    "name": "SqlSlaDepl", "sql": "SELECT * FROM\n                        (\n                          SELECT\n                            ControlEstate,\n                            Namespace,\n                            Name,\n                            JSON_EXTRACT(Payload,
     ''$.metadata.annotations.\"smb.sam.data.sfdc.net/emailTo\"'') AS email,\n                            CASE
     WHEN JSON_EXTRACT(Payload, ''$.metadata.labels.sam_app'') is NULL then False\n                                 ELSE
     True END AS IsSamApp,\n                            JSON_EXTRACT(Payload, ''$.spec.replicas'')
