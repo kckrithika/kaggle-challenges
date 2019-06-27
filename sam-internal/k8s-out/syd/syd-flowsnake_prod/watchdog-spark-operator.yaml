@@ -166,25 +166,26 @@ items:
       # Interval between Spark job completion driver pod state changing to Completed
       TIMING_METRIC_NAME_DRIVER_CLEANUP = 'DriverCleanup'
       # Interval between Spark driver pod being Completed and Spark App being Completed. This is Spark Operator queue processing time.
+      # Note: if the Spark Operator is not backlogged, it might detect driver completion before the analysis script, leading to a negative time being reported here.
       TIMING_METRIC_NAME_SPARKAPP_CLEANUP = 'SparkAppCleanup'
 
 
       # interval name -> (start regex, end regex). This the blueprint of what is to be computed.
       time_regex = {
-          TIMING_METRIC_NAME_DRIVER_POD_DETECTED: (r_app_created, r_driver_pod_creation_event),
-          TIMING_METRIC_NAME_DRIVER_POD_PENDING_DELAY: (r_driver_pod_creation_event_pending, r_driver_pod_initializing),
-          TIMING_METRIC_NAME_DRIVER_POD_INITIALIZATION: (r_driver_pod_initializing, r_driver_pod_running),
-          TIMING_METRIC_NAME_DRIVER_APP_SUBMIT: (r_driver_pod_running, r_driver_context_app_submitted),
-          TIMING_METRIC_NAME_DRIVER_APP_LOAD: (r_driver_context_app_submitted, r_driver_context_jar_added),
-          TIMING_METRIC_NAME_DRIVER_APP_STARTUP: (r_driver_context_jar_added, r_exec_allocator),
-          TIMING_METRIC_NAME_EXECUTOR_WAIT_TOTAL: (r_exec_allocator, r_exec_registered_time),
-          TIMING_METRIC_NAME_EXEC_POD_DETECTED: (r_exec_allocator, r_exec_pod_creation_event),
-          TIMING_METRIC_NAME_EXEC_POD_PENDING_DELAY: (r_exec_pod_creation_event_pending, r_exec_pod_initializing),
-          TIMING_METRIC_NAME_EXEC_POD_INITIALIZATION: (r_exec_pod_initializing, r_exec_pod_running),
-          TIMING_METRIC_NAME_EXEC_REGISTRATION: (r_exec_pod_running, r_exec_registered_time),
-          TIMING_METRIC_NAME_JOB_RUNTIME: (r_exec_registered_time, r_driver_job_finished),
-          TIMING_METRIC_NAME_DRIVER_CLEANUP: (r_driver_job_finished, r_driver_pod_completed),
-          TIMING_METRIC_NAME_SPARKAPP_CLEANUP: (r_driver_pod_completed, r_app_completed),
+          TIMING_METRIC_NAME_DRIVER_POD_DETECTED: (r_app_created, r_driver_pod_creation_event),  # Average: 7s
+          TIMING_METRIC_NAME_DRIVER_POD_PENDING_DELAY: (r_driver_pod_creation_event_pending, r_driver_pod_initializing),  # Average: 3s
+          TIMING_METRIC_NAME_DRIVER_POD_INITIALIZATION: (r_driver_pod_initializing, r_driver_pod_running),  # Average: 10s
+          TIMING_METRIC_NAME_DRIVER_APP_SUBMIT: (r_driver_pod_running, r_driver_context_app_submitted),  # Average: 20s
+          TIMING_METRIC_NAME_DRIVER_APP_LOAD: (r_driver_context_app_submitted, r_driver_context_jar_added),  # Average: 35s
+          TIMING_METRIC_NAME_DRIVER_APP_STARTUP: (r_driver_context_jar_added, r_exec_allocator),  # Average:43s
+          TIMING_METRIC_NAME_EXECUTOR_WAIT_TOTAL: (r_exec_allocator, r_exec_registered_time),  # Average: 16s
+          TIMING_METRIC_NAME_EXEC_POD_DETECTED: (r_exec_allocator, r_exec_pod_creation_event),  # Average: 3s
+          TIMING_METRIC_NAME_EXEC_POD_PENDING_DELAY: (r_exec_pod_creation_event_pending, r_exec_pod_initializing),  # Average: 3s
+          TIMING_METRIC_NAME_EXEC_POD_INITIALIZATION: (r_exec_pod_initializing, r_exec_pod_running),  # Average: 10s
+          TIMING_METRIC_NAME_EXEC_REGISTRATION: (r_exec_pod_running, r_exec_registered_time),  # Average: 4s
+          TIMING_METRIC_NAME_JOB_RUNTIME: (r_exec_registered_time, r_driver_job_finished),  # Average: 15s
+          TIMING_METRIC_NAME_DRIVER_CLEANUP: (r_driver_job_finished, r_driver_pod_completed),  # Average: 40s
+          TIMING_METRIC_NAME_SPARKAPP_CLEANUP: (r_driver_pod_completed, r_app_completed),  # Average: 4s
       }
 
       TAG_APP = 'app'  # Name of the Spark Application. Same across concurrent watchdog instances. Roughly represents feature being tested.
@@ -350,6 +351,14 @@ items:
           'IMAGE_PULL': re.compile(r'Pod change detected: .* changed to ImagePullBackOff')
       }
 
+      # These might match against runs that have better matches from simple_regex_tests; prefer the other result
+      simple_regex_tests_tier2 = {
+          # Something killed the driver; don't know what. Prefer DRIVER_EVICTED if there is evidence of eviction.
+          # Treat observed kubelet event and JVM reporting SIGTERM equivalently
+          'DRIVER_KILLED': re.compile(r'(Killing.*kubelet.*Killing container.*driver:Need to kill Pod|SparkApplicationFailed.*driver pod failed with ExitCode: 143)')
+
+      }
+
       metrics_enabled = False
       if args.metrics:
           hostname = args.hostname if args.hostname else socket.gethostname()
@@ -493,6 +502,9 @@ items:
           :return: class (as string)
           """
           for code, regex in simple_regex_tests.iteritems():
+              if regex.search(output):
+                  return code
+          for code, regex in simple_regex_tests_tier2.iteritems():
               if regex.search(output):
                   return code
 
@@ -644,7 +656,7 @@ items:
               output = subprocess.check_output(additional_args, stderr=subprocess.STDOUT)
               print(output, end='')
               timings, epochs = compute_times(output, succeeded=True)
-              log("Times: ")
+              log("Times: {}".format(json.dumps(timings, sort_keys=True)))
               log("No errors ({}s)".format(int(time.time() - start)))
               sys.exit(0)
           except subprocess.CalledProcessError as e:
@@ -1003,9 +1015,9 @@ items:
               events;
               LAST_LOGGED=${EPOCH}
           fi;
-          report_pod_changes
           sleep 1;
           STATE=$(state)
+          report_pod_changes
       done;
       EXIT_CODE=$(echo ${STATE} | grep COMPLETED > /dev/null; echo $?)
 

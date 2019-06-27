@@ -57,9 +57,7 @@ local utils = import "util_functions.jsonnet";
             },
             feature_flags+: {
                 # --- flag A (Do not edit ... ---
-                aliases: "verified in prd-test",
                 # --- flag B (these comments ... ---
-                next_analysis_script: "verified reduced negative metrics and driver_killed output",
                 # --- flag C (and place only ... ---
                 # --- flag D (one flag between ... ---
                 # --- flag E (each pair. ... ---
@@ -151,7 +149,9 @@ local utils = import "util_functions.jsonnet";
                 # associated conditional logic. That PR will not affect k8s-out, so you can self-approve it.
 
                 # --- flag A (Do not edit ... ---
+                next_analysis_script: "verified reduced negative metrics and driver_killed output in phase 2",
                 # --- flag B (these comments ... ---
+                aliases: "verified in phase 2",
                 # --- flag C (and place only ... ---
                 # --- flag D (one flag between ... ---
                 # --- flag E (each pair. ... ---
