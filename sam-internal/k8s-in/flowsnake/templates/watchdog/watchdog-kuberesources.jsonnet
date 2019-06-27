@@ -8,7 +8,7 @@ local utils = import "util_functions.jsonnet";
 // Disable everywhere for now because too noisy, because at any given time we have failed customer pods.
 // Re-enabled as the short-term solution of kube-state-metrics and prometheus pod monitoring, see https://salesforce.quip.com/UpbkAVHAqMXj and https://salesforce.quip.com/6bpoARusWKWU
 // Disable again because kube-state-metrics gives a better monitoring solution
-if !watchdog.watchdog_enabled || std.objectHas(flowsnake_images.feature_flags, "watchdog_kuberesources_disable") then
+if !watchdog.watchdog_enabled || true then
 "SKIP"
 else
 {
