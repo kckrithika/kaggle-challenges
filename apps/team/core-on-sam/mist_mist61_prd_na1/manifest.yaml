@@ -197,10 +197,6 @@ system:
         value: MINOR
       - name: MAJOR_RELEASE_NUMBER
         value: 218
-      - name: DB_EDITION
-        value: 218
-      - name: DB_VENDOR
-        value: oracle
       - name: MINOR_RELEASE_NUMBER
         value: 0
       - name: PATCH_RELEASE_NUMBER
@@ -213,6 +209,14 @@ system:
         value: 1
       - name: DB_SID
         value: mist61b218utf
+      - name: DB_VENDOR
+        value: oracle
+      - name: DB_HOST
+        value: mist61ice1-db1-1-prd.eng.sfdc.net
+      - name: DB_PORT
+        value: 1521
+      - name: DB_EDITION
+        value: 218
       - name: ENABLE_DB_SCHEMA_UPGRADE
         value: 0
       - name: OLD_DWARF
