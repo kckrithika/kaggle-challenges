@@ -53,9 +53,6 @@ system:
       - name: sherlock-logs-vol
         hostPath:
           path: /data/sherlock-logs
-      - name: argus-secrets-vol
-        k4aSecret:
-          secretName: argus-secrets
 
   loadbalancers:
   - lbname: sherlock-flower-lb
