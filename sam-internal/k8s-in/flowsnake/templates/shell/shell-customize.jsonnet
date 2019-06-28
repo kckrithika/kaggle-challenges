@@ -9,9 +9,6 @@
 #     customize-shell
 
 local flowsnake_images = (import "flowsnake_images.jsonnet") + { templateFilename:: std.thisFile };
-if !std.objectHas(flowsnake_images.feature_flags, "aliases") then
-"SKIP"
-else
 {
     kind: "ConfigMap",
     apiVersion: "v1",
