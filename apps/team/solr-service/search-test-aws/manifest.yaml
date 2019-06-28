@@ -9,7 +9,7 @@ system:
       - name: test-app
         image: 715181697345.dkr.ecr.us-west-2.amazonaws.com/test-samapp:20190524
         ports:
-        - containerPort: 80
+        - containerPort: 9090
           name: container-port
         livenessProbe:
           exec:
@@ -21,4 +21,4 @@ system:
     slbEnabled: true
     ports:
       - port: 80
-        targetport: 80
+        targetport: 9090
