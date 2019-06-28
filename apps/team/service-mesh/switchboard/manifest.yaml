@@ -29,6 +29,7 @@ system:
       - --listeners.authz-policy-enabled-clusters[1]=shipping-authz-policy.service-mesh
       - --listeners.authz-policy-enabled-clusters[2]=authz-svc.service-mesh
       - --listeners.authz-policy-enabled-clusters[3]=eaas.emailinfra
+      - --listeners.authz-policy-enabled-clusters[4]=ml-spaas.service-protection
       - --metrics.maxNumberOfCollectedMetrics=400000
       - --metrics.funnelTimeOut=100000
       - --healthIndicator.maxThreadCount=1300
