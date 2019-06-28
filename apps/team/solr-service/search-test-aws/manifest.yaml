@@ -7,7 +7,7 @@ system:
       serviceAccountName: solr-service-rvagfp5hyogf2mxjx
       containers:
       - name: test-app
-        image: 715181697345.dkr.ecr.us-west-2.amazonaws.com/test-samapp:20190524
+        image: 791719295754.dkr.ecr.us-east-2.amazonaws.com/test-samapp:20190524
         ports:
         - containerPort: 9090
           name: container-port
