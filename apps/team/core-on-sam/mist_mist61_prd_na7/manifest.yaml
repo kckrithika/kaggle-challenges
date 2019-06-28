@@ -183,6 +183,10 @@ system:
         value: 220
       - name: DB_VENDOR
         value: oracle
+      - name: DB_HOST
+        value: mist61ice1-db1-1-prd.eng.sfdc.net
+      - name: DB_PORT
+        value: 1521
       - name: MINOR_RELEASE_NUMBER
         value: 0
       - name: PATCH_RELEASE_NUMBER
