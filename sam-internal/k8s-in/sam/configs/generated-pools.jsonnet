@@ -35,10 +35,10 @@
       "namespaces": [
         "csc-sam",
         "cache-as-a-service",
+        "caffeine",
         "casp",
         "cbatch",
         "ccait",
-        "cdpt-caffeine",
         "cloudatlas",
         "communities",
         "core-on-sam",
@@ -77,10 +77,10 @@
       "access": [
         "team/CSC_Sam",
         "team/Cache_As_A_service",
+        "team/caffeine",
         "team/CASP",
         "team/cbatch",
         "team/CCAIT",
-        "team/cdpt-caffeine",
         "team/CloudAtlas",
         "team/communities",
         "team/core-on-sam",
