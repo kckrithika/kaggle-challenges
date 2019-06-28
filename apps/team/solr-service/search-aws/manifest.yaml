@@ -18,7 +18,7 @@ system:
         - name: LBNAME
           value: "searchserver0"
         - name: DNS_SUFFIX
-          value: "cluster.local"
+          value: "svc.cluster.local"
         - name: DNS_PODNAME
           valueFrom:
             fieldRef:
@@ -45,3 +45,10 @@ system:
       - name: solr-data-volume
         storageClassName: gp2
         storageSizeRequest: 10Gi
+  loadbalancers:
+  - lbname: searchserver-slb
+    function: search-aws0
+    slbEnabled: true
+    ports:
+      - port: 80
+        targetport: 8983
