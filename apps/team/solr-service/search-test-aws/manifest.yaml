@@ -1,0 +1,24 @@
+apiVersion: v1
+
+system:
+  functions:
+    - name: test-search
+      count: 1
+      serviceAccountName: solr-service-rvagfp5hyogf2mxjx
+      containers:
+      - name: test-app
+        image: 715181697345.dkr.ecr.us-west-2.amazonaws.com/test-samapp:20190524
+        ports:
+        - containerPort: 80
+          name: container-port
+        livenessProbe:
+          exec:
+            command:
+            - "true"
+  loadbalancers:
+  - lbname: test-search-slb
+    function: test-search
+    slbEnabled: true
+    ports:
+      - port: 80
+        targetport: 80
