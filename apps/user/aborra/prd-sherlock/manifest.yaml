@@ -34,8 +34,12 @@ system:
             fieldRef:
               fieldPath: spec.nodeName
       volumeMounts:
-        - mountPath: /secrets/argus/
-          name: argus-secrets
+        - mountPath: /opt/sherlock/data
+          name: sherlock-data-vol
+        - mountPath: /opt/sherlock/logs
+          name: sherlock-logs-vol
+        - mountPath: /argus-secrets/
+          name: argus-secrets-vol
           readOnly: true
       livenessProbe:
         httpGet:
@@ -46,7 +50,13 @@ system:
         timeoutSeconds: 10
         initialDelaySeconds: 120
     volumes:
-      - name: argus-secrets
+      - name: sherlock-data-vol
+        hostPath:
+          path: /data/sherlock
+      - name: sherlock-logs-vol
+        hostPath:
+          path: /data/sherlock-logs
+      - name: argus-secrets-vol
         k4aSecret:
           secretName: argus-secrets
 
