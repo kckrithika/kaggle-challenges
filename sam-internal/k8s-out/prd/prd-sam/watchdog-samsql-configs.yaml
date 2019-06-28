@@ -230,25 +230,26 @@ data:
     as IpAddressCapacity\n  from k8s_resource\n  where apikind = ''Node'' and controlEstate
     = ''prd-sam''\n) as ss\ngroup by controlEstate, IpAddressCapacity", "watchdogFrequency":
     "1m"}, {"name": "NodeAvailabilityByPool", "sql": "select ''GLOBAL'' as MinionPool,
-    ''GLOBAL'' as Kingdom, ''sql.available.poolkingdomCount'' as Metric, count(*)
-    as Value, ''GLOBAL'' as Tags\n          from (\n          \tselect MinionPool,
-    kingdom, Ready from nodeDetailView group by MinionPool, kingdom, Ready\n          )
+    ''GLOBAL'' as Kingdom, ''GLOBAL'' as Kingdom, ''global'' as Estate, ''sql.available.poolkingdomCount''
+    as Metric, count(*) as Value, ''GLOBAL'' as Tags\n          from (\n          \tselect
+    MinionPool, kingdom, Ready from nodeDetailView group by MinionPool, kingdom, Ready\n          )
     as ss1\n          union all\n          select UPPER(MinionPool) as MinionPool,
-    UPPER(kingdom) as kingdom, ''sql.available.nodeStatusPerMinionPool'' as Metric,
-    (CASE WHEN Running>0 THEN 1 ELSE 0 END) as Value, CONCAT(''Ready='',Ready,'',Running='',Running,'',Total='',total)
+    UPPER(kingdom) as kingdom, ''GLOBAL'' as Kingdom, ''global'' as Estate, ''sql.available.nodeStatusPerMinionPool''
+    as Metric, (CASE WHEN Running>0 THEN 1 ELSE 0 END) as Value, CONCAT(''Ready='',Ready,'',Running='',Running,'',Total='',total)
     as Tags\n          from (\n            select MinionPool, kingdom, Ready, Count(CASE
     WHEN Ready = ''True'' THEN 1 ELSE 0 END) as Running, Count(*) as total\n            from
     nodeDetailView\n            group by MinionPool, kingdom, Ready\n          ) as
     ss2", "watchdogFrequency": "5m"}, {"name": "PodAvailabilityByPool", "sql": "select
-    ''GLOBAL'' as MinionPool, ''GLOBAL'' as Kingdom, ''sql.available.podStatus'' as
-    Metric, Running as Value, CONCAT(''Ready='',Phase,'',Running='',Running,'',Total='',total)
+    ''GLOBAL'' as MinionPool, ''GLOBAL'' as Kingdom, ''GLOBAL'' as Kingdom, ''global''
+    as Estate, ''sql.available.podStatus'' as Metric, Running as Value, CONCAT(''Ready='',Phase,'',Running='',Running,'',Total='',total)
     as Tags\n          from (\n            select Phase, Count(CASE WHEN Phase = ''True''
     THEN 1 ELSE 0 END) as Running, Count(*) as total\n            from podDetailView\n            group
     by Phase\n          ) as ss1\n          union all\n          select UPPER(MinionPool)
-    as MinionPool, UPPER(kingdom) as kingdom, ''sql.available.podStatusPerMinionPool''
-    as Metric, Running as Value, CONCAT(''Ready='',Phase,'',Running='',Running,'',Total='',total)
-    as Tags\n          from (\n            select kingdom, Phase, Count(CASE WHEN
-    Phase = ''True'' THEN 1 ELSE 0 END) as Running, Count(*) as total,\n            \tjson_unquote(json_extract(`Payload`,
+    as MinionPool, UPPER(kingdom) as kingdom, ''GLOBAL'' as Kingdom, ''global'' as
+    Estate, ''sql.available.podStatusPerMinionPool'' as Metric, Running as Value,
+    CONCAT(''Ready='',Phase,'',Running='',Running,'',Total='',total) as Tags\n          from
+    (\n            select kingdom, Phase, Count(CASE WHEN Phase = ''True'' THEN 1
+    ELSE 0 END) as Running, Count(*) as total,\n            \tjson_unquote(json_extract(`Payload`,
     ''$.spec.affinity.nodeAffinity.requiredDuringSchedulingIgnoredDuringExecution.nodeSelectorTerms[0].matchExpressions[0].values[0]''))
     as MinionPool\n            from podDetailView\n            group by MinionPool,
     kingdom, Phase\n          ) as ss2", "watchdogFrequency": "5m"}], "sql_alerts":
