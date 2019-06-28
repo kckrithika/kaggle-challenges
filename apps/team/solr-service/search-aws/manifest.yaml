@@ -33,6 +33,8 @@ system:
         volumeMounts:
         - name: solr-data-volume
           mountPath: /home/sfdc/local-data/data
+        - name: solr-log-volume
+          mountPath: /home/sfdc-searchserver/logs/solr
         livenessProbe:
           exec:
             command:
@@ -41,6 +43,9 @@ system:
           periodSeconds: 5
       lbname: searchserver0
       terminationGracePeriodSeconds: 10
+      volumes:
+        - name: solr-log-volume
+          emptyDir: {}
       volumeClaimTemplates:
       - name: solr-data-volume
         storageClassName: gp2
