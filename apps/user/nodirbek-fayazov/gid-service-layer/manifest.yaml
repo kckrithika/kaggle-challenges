@@ -73,7 +73,7 @@ system:
           initialDelaySeconds: 5
           periodSeconds: 5
       #####################################################################################
-      # GiD service
+      # GID service
       #####################################################################################
       - name: gid-service 
         image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/nfayazov/gid-service:latest
