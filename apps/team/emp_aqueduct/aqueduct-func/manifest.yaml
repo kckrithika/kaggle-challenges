@@ -27,7 +27,7 @@ system:
         - name: SETTINGS_SUPERPOD 
           value: "NONE"
         - name: SPRING_PROFILES_ACTIVE
-          value: "kafka-broker,prd"
+          value: "kafka-broker,ajna"
         ports:
         - containerPort: 8080
           name: ext-port
