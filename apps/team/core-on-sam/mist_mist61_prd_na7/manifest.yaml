@@ -181,6 +181,8 @@ system:
         value: 220
       - name: DB_EDITION
         value: 220
+      - name: DB_VENDOR
+        value: oracle
       - name: MINOR_RELEASE_NUMBER
         value: 0
       - name: PATCH_RELEASE_NUMBER
