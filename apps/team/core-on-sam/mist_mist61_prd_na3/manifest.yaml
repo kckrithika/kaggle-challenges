@@ -216,17 +216,17 @@ system:
       - name: DB_SID
         value: mist61a222utf-1
       - name: ENABLE_DB_SCHEMA_UPGRADE
-        value: 1
+        value: 0
       - name: OLD_DWARF
         value: sneezy
       - name: KILL_DWARF
-        value: 1
+        value: 0
       - name: LOCK_DWARF
-        value: 1
+        value: 0
       - name: TRIGGER_CAFFEINE
-        value: 1
+        value: 0
       - name: UNLOCK_DWARF
-        value: 1
+        value: 0
       - name: SNOWWHITE_PWD
         value: rotate
       - name: MADDOG_CLIENT
@@ -240,7 +240,7 @@ system:
       - name: SKIP_KAIJU
         value: 1
       - name: ZDT
-        value: false
+        value: true
       - name: KAIJU_REFOCUS_GETRESULT_URL
         value: https://refocus.internal.salesforce.com/v1/samples/
       - name: KAIJU_RUNTIME_TIMEOUT_MS
