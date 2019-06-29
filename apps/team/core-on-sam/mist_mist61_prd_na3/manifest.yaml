@@ -7,9 +7,9 @@ system:
   - containers:
     - env:
       - name: DB_SID
-        value: mist61a216utf
+        value: mist61a222utf
       - name: DB_INSTANCE_NAME
-        value: mist61a216utf-1
+        value: mist61a222utf-1
       - name: DB_USER
         value: sleepy
       - name: DB_STATS_USER
@@ -37,7 +37,7 @@ system:
       - name: SFPROXY_VIP
         value: https://us3-sfproxy-lb.core-on-sam-sp2.prd-sam.prd.slb.sfdc.net:8443
       - name: HTTP_PORT
-        value: 8085
+        value: 7022
       - name: SPORT
         value: 8443
       - name: S2PORT
@@ -49,25 +49,28 @@ system:
       - name: CASAM_APP_COLOR
         value: green
       - name: SD_PORT_OVERRIDE
-        value: 13065
+        value: 7442
       - name: CASAM_SETTINGS_PATH
         value: mist.mist61.prd.na3.app
       - name: CLUSTER_NAME
         value: na3
       - name: DEPLOYMENT
-        value: G
+        value: B
+      - name: ZDT
+        value: true
       - name: CASAM_HOST_NAME
         valueFrom:
           fieldRef:
             fieldPath: spec.nodeName
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/coreonsam/casam:release_218-patch_17798957
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/coreonsam/casam:release_main_18153481
       livenessProbe:
         exec:
           command:
-          - echo
-          - HEALTHY
-        initialDelaySeconds: 480
-        periodSeconds: 1
+          - /home/sfdc/salesforce/casam/bin/live_probe.sh
+        failureThreshold: 99999
+        initialDelaySeconds: 120
+        periodSeconds: 5
+        timeoutSeconds: 5
       name: coreapp
       ports:
       - containerPort: 8998
@@ -98,7 +101,8 @@ system:
     - env:
       - name: CASAM_SETTINGS_PATH
         value: mist.mist61.prd.na3.app
-      image: sfci/casam/coreapp_overrides:b68730
+      image: sfci/casam/coreapp_overrides:3b84d8
+#      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/rpulle/coreapp_overrides_rpulle:1.0
       livenessProbe:
         exec:
           command:
@@ -117,58 +121,33 @@ system:
       volumeMounts:
       - mountPath: /home/sfdc/salesforce/casam
         name: coreapp-casam-volume
-    - args:
-      - --template
-      - /cyan-config/tls-terminator-config.yaml.template
-      env:
-      - name: SFDC_ENVIRONMENT
-        value: envoy-sidecar
-      image: sfci/servicelibs/sherpa-envoy:1.0.4
+        
+    - name: sherpa
+      # Use the latest release version from https://git.soma.salesforce.com/servicelibs/sherpa-envoy/releases
+      image: sfci/servicelibs/sherpa-envoy:1.0.6
+      # See https://git.soma.salesforce.com/servicelibs/sherpa#ports
+      ports:
+      - containerPort: 7442
+        name: http1-tls-in
+      - containerPort: 15373
+        name: sherpa-adm
       livenessProbe:
         exec:
           command:
           - ./bin/is-alive
-        initialDelaySeconds: 20
+        initialDelaySeconds: 60
         periodSeconds: 5
-      name: envoy-sidecar
-      ports:
-      - containerPort: 13065
-      - containerPort: 15373
       readinessProbe:
         exec:
           command:
           - ./bin/is-ready
-        initialDelaySeconds: 15
+        initialDelaySeconds: 50
         periodSeconds: 5
       volumeMounts:
-      - mountPath: /cyan-config
-        name: envoy-config-volume
-      - mountPath: /certs/cert-client
-        name: tls-client-cert
-      - mountPath: /certs/cert-server
-        name: tls-server-cert
-    - env:
-      - name: CONFIG_DIR
-        value: /home/sfdc-sherpa/sherpa-envoy-config-volume
-      image: sfci/casam/cyan-config:208cc2
-      livenessProbe:
-        exec:
-          command:
-          - cat
-          - /tmp/live
-        initialDelaySeconds: 10
-        periodSeconds: 5
-      name: envoy-sidecar-config
-      readinessProbe:
-        exec:
-          command:
-          - cat
-          - /tmp/ready
-        initialDelaySeconds: 10
-        periodSeconds: 5
-      volumeMounts:
-      - mountPath: /home/sfdc-sherpa/sherpa-envoy-config-volume
-        name: envoy-config-volume
+      - name: tls-client-cert
+        mountPath: /client-certs
+      - name: tls-server-cert
+        mountPath: /server-certs
     count: 1
     identity:
       pod: na3
@@ -177,15 +156,13 @@ system:
     labels:
       casam-color: green
       app: na3-mist61app-prd
-    annotations:
-      "casam-color-hash": ""
     progressDeadlineSeconds: 300
     strategy:
       rollingUpdate:
         maxSurge: 200%
         maxUnavailable: 0
       type: RollingUpdate
-    terminationGracePeriodSeconds: 500
+    terminationGracePeriodSeconds: 120
     volumes:
     - emptyDir: {}
       name: envoy-config-volume
@@ -209,7 +186,7 @@ system:
   - containers:
     - env:
       - name: NONCE
-        value: 1557942618984937984
+        value: 1555875562200037881
       - name: DRY_RUN
         value: 0
       - name: CHATTER_GROUP_NAME
@@ -223,7 +200,9 @@ system:
       - name: RELEASE_TYPE
         value: MINOR
       - name: MAJOR_RELEASE_NUMBER
-        value: 218
+        value: 222
+      - name: DB_EDITION
+        value: SFDC_222
       - name: MINOR_RELEASE_NUMBER
         value: 0
       - name: PATCH_RELEASE_NUMBER
@@ -235,21 +214,19 @@ system:
       - name: READY_SERVER_COUNT
         value: 1
       - name: DB_SID
-        value: mist61a216utf
+        value: mist61a222utf-1
       - name: ENABLE_DB_SCHEMA_UPGRADE
-        value: 0
-      - name: SET_DEFAULT_ORACLE_EDITION
-        value: 0
+        value: 1
       - name: OLD_DWARF
         value: sneezy
       - name: KILL_DWARF
-        value: 0
+        value: 1
       - name: LOCK_DWARF
-        value: 0
+        value: 1
       - name: TRIGGER_CAFFEINE
-        value: 0
+        value: 1
       - name: UNLOCK_DWARF
-        value: 0
+        value: 1
       - name: SNOWWHITE_PWD
         value: rotate
       - name: MADDOG_CLIENT
@@ -261,12 +238,22 @@ system:
       - name: HTTP_PROXY
         value: public0-proxy1-0-prd.data.sfdc.net:8080
       - name: SKIP_KAIJU
-        value: 0
+        value: 1
+      - name: ZDT
+        value: false
       - name: KAIJU_REFOCUS_GETRESULT_URL
         value: https://refocus.internal.salesforce.com/v1/samples/
       - name: KAIJU_RUNTIME_TIMEOUT_MS
         value: 360000
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/casam/sequencer:k8-sd-test
+      - name: DB_HOST
+        value: mist61ice1-db1-1-prd.eng.sfdc.net
+      - name: DB_PORT
+        value: 1521
+      - name: DB_VENDOR
+        value: oracle
+      - name: SQLMX_PASSWD
+        value: test1234
+      image: sfci/casam/sequencer:b2126f
       livenessProbe:
         exec:
           command:
@@ -286,25 +273,51 @@ system:
         periodSeconds: 1
       volumeMounts:
       - mountPath: /certs
-        name: cert
+        name: client-cert
       - mountPath: /secrets/
         name: secretvol
         readOnly: true
       - mountPath: /kaiju-secrets/
         name: kaiju-secret-vol
         readOnly: true
+    - name: sherpa
+      # Use the latest release version from https://git.soma.salesforce.com/servicelibs/sherpa-envoy/releases
+      image: sfci/servicelibs/sherpa-envoy:1.0.6
+      # See https://git.soma.salesforce.com/servicelibs/sherpa#ports
+      ports:
+      - containerPort: 15373
+        name: sherpa-adm
+      livenessProbe:
+        exec:
+          command:
+          - ./bin/is-alive
+        initialDelaySeconds: 60
+        periodSeconds: 5
+      readinessProbe:
+        exec:
+          command:
+          - ./bin/is-ready
+        initialDelaySeconds: 50
+        periodSeconds: 5
+      volumeMounts:
+      - name: client-cert
+        mountPath: /client-certs
+      - name: server-cert
+        mountPath: /server-certs
     count: 1
     identity:
       pod: na3
       serviceName: sequencer
     name: na3-mist61sequencer-prd
-    serviceAccountName: casamserviceaccount
     progressDeadlineSeconds: 300
-    terminationGracePeriodSeconds: 500
+    terminationGracePeriodSeconds: 60
     volumes:
     - maddogCert:
         type: client
-      name: cert
+      name: client-cert
+    - maddogCert:
+        type: server
+      name: server-cert
     - k4aSecret:
         secretName: sequencer-gus
       name: secretvol
@@ -313,7 +326,7 @@ system:
       name: kaiju-secret-vol
   - containers:
     - args:
-      - --template=/home/sfdc-sherpa/sfproxy/config/core-on-sam/sfproxy-rds.yaml.template
+      - --template=/home/sfdc-sherpa/sfproxy/config/core-on-sam/sfproxy-public-cloud-rds.yaml.template
       - --switchboard=na3-switchboard-lb.core-on-sam-sp2.prd-sam.prd.slb.sfdc.net:8088
       - --log-level=trace
       env:
@@ -321,7 +334,7 @@ system:
         value: --log-path /home/sfdc-sherpa/envoy.log
       - name: SFDC_ENVIRONMENT
         value: mist61
-      image: sfci/frontend-gateway/sfproxy:bc7e1fa
+      image: sfci/frontend-gateway/sfproxy:33e43ab
       livenessProbe:
         exec:
           command:
@@ -364,6 +377,7 @@ system:
       - --clusters.external-clusters[1]=spaasmesh:HTTP2
       - --metrics.maxNumberOfCollectedMetrics=100000
       - --metrics.funnelTimeOut=90000
+      - --metrics.funnelEndPointURL=http://ajna0-funnel1-0-prd.data.sfdc.net:80
       env:
       - name: SFDC_ENVIRONMENT
         value: mist61
@@ -371,7 +385,7 @@ system:
         value: 7020
       - name: JVM_HEAP_MAX
         value: 4G
-      image: sfci/servicelibs/switchboard:26c3cdce981042262b9f0f26c226cab1841bf9fd
+      image: sfci/servicelibs/switchboard:db4c69eded9a83a094ddc8a851a61bee177f52e9
       livenessProbe:
         httpGet:
           path: /manage/health
@@ -388,13 +402,6 @@ system:
           port: 15372
         initialDelaySeconds: 15
         periodSeconds: 5
-      resources:
-        limits:
-          cpu: 8
-          memory: 6Gi
-        requests:
-          cpu: 8
-          memory: 6Gi
       volumeMounts:
       - mountPath: /home/sfdc-switchboard/sherpa-envoy-config-volume
         name: envoy-config-volume
@@ -408,7 +415,7 @@ system:
         value: mist61
       - name: ENVOY_DEBUG_OPTIONS
         value: --log-path /home/sfdc-sherpa/envoy.log
-      image: sfci/frontend-gateway/sfproxy:bc7e1fa
+      image: sfci/frontend-gateway/sfproxy:33e43ab
       livenessProbe:
         exec:
           command:
@@ -425,13 +432,6 @@ system:
           - ./bin/is-ready
         initialDelaySeconds: 15
         periodSeconds: 5
-      resources:
-        limits:
-          cpu: 1
-          memory: 1Gi
-        requests:
-          cpu: 1
-          memory: 1Gi
       volumeMounts:
       - mountPath: /switchboard-config
         name: envoy-config-volume
