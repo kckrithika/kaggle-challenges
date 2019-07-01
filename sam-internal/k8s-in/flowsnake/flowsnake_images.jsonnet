@@ -251,6 +251,7 @@ local utils = import "util_functions.jsonnet";
     spark_operator_watchdog_canary: flowsnakeconfig.strata_registry + "/flowsnake-spark-on-k8s-integration-test-runner:" + $.per_phase[$.phase].image_tags.integration_test_tag,
     spark_on_k8s_sample_apps: flowsnakeconfig.strata_registry + "/flowsnake-spark-on-k8s-sample-apps:" + $.per_phase[$.phase].image_tags.integration_test_tag,
     kube_state_metrics: flowsnakeconfig.strata_registry + "/kube-state-metrics-sfdc-0.0.1:" + $.per_phase[$.phase].image_tags.kube_state_metrics_image_tag,
+    spark_worker_23_hadoop_292: flowsnakeconfig.strata_registry + "/flowsnake-spark-worker_2.3.0-hadoop_2.9.2-cre:jenkins-dva-transformation-flowsnake-sample-apps-cre-hadoop-292-5-itest",
 
     feature_flags: $.per_phase[$.phase].feature_flags,
     # Convert to the format expected by std.manifestIni for generating Windows-style .ini files
