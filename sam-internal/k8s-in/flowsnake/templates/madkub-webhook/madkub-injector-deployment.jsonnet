@@ -1,9 +1,11 @@
 local madkub_common = import "madkub_common.jsonnet";
-local kingdom = std.extVar("kingdom");
 local certs_and_kubeconfig = import "certs_and_kubeconfig.jsonnet";
 local cert_name = "madkubinjector";
 local flowsnake_config = import "flowsnake_config.jsonnet";
 local flowsnake_images = import "flowsnake_images.jsonnet";
+
+local new_std = import "stdlib_0.12.1.jsonnet";
+local pki_kingdom = (if "upcase_pki_kingdom" in flowsnake_images.feature_flags then new_std.asciiUpper(std.extVar("kingdom")) else std.extVar("kingdom"));
 
 if flowsnake_config.madkub_enabled then
 {
@@ -28,7 +30,7 @@ if flowsnake_config.madkub_enabled then
                 annotations: {
                     "madkub.sam.sfdc.net/allcerts": std.toString({"certreqs": [{
                         "cert-type": "server",
-                        "kingdom": kingdom,
+                        "kingdom": pki_kingdom,
                         "name": cert_name,
                         "role": "flowsnake.madkub-injector",
                         "san": ["madkub-injector.flowsnake", "madkub-injector.flowsnake.svc", "madkub-injector.flowsnake.svc.cluster.local"]
@@ -74,7 +76,7 @@ if flowsnake_config.madkub_enabled then
                             "-madkubContainerSpecFile",
                             "/etc/madkub-container-spec/spec.jaysawn",
                             "-kingdom",
-                            kingdom,
+                            pki_kingdom,
                             "-v",
                             "2",
                             "-alsologtostderr",

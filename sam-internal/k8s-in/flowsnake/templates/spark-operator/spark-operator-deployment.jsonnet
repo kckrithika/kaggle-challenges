@@ -1,11 +1,13 @@
 local estate = std.extVar("estate");
-local kingdom = std.extVar("kingdom");
 local flowsnake_config = import "flowsnake_config.jsonnet";
 local flowsnake_images = import "flowsnake_images.jsonnet";
 local enabled = std.objectHas(flowsnake_images.feature_flags, "spark_operator");
 local madkub_common = import "madkub_common.jsonnet";
 local cert_name = "spark-webhook";
 local autodeployer = import "auto_deployer.jsonnet";
+local new_std = import "stdlib_0.12.1.jsonnet";
+local pki_kingdom = (if "upcase_pki_kingdom" in flowsnake_images.feature_flags then new_std.asciiUpper(std.extVar("kingdom")) else std.extVar("kingdom"));
+
 
 {
     apiVersion: "extensions/v1beta1",
@@ -38,7 +40,7 @@ local autodeployer = import "auto_deployer.jsonnet";
                 annotations: {
                     "madkub.sam.sfdc.net/allcerts": std.toString({"certreqs": [{
                         "cert-type": "server",
-                        "kingdom": kingdom,
+                        "kingdom": pki_kingdom,
                         "name": cert_name,
                         "role": "flowsnake.spark-operator",
                         "san": ["spark-webhook.flowsnake", "spark-webhook.flowsnake.svc", "spark-webhook.flowsnake.svc.cluster.local"]
