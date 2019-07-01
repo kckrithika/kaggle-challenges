@@ -12,7 +12,7 @@ system:
       "routing.mesh.sfdc.net/enabled": "true"
     containers:
     - name: gater1
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/gater/gate-manager:1.14.1-SNAPSHOT_20190429_168_3b875bb
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/gater/gate-manager:1.14.1-SNAPSHOT_20190701_8_2e1b017
       args:
       - --server.port=9090
       - --logging.level.com.zaxxer.hikari=debug
