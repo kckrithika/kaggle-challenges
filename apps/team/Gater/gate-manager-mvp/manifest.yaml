@@ -10,7 +10,7 @@ system:
     automountServiceAccountToken: true
     containers:
     - name: gater1
-      image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/gater/gate-manager:1.14.1-SNAPSHOT_20190604_2_2e1b017
+      image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/gater/gate-manager:1.14.1-SNAPSHOT_20190701_8_2e1b017
       args:
       - --server.port=9090
       - --spring.datasource.hikari.maximumPoolSize=6
