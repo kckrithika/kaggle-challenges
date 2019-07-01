@@ -17,6 +17,7 @@ system:
       - containerPort: 9090
       livenessProbe:
         httpGet:
+          scheme: HTTPS
           path: /info
           port: 9090
       volumeMounts:
