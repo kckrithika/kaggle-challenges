@@ -38,7 +38,14 @@ apps:
   - name: iad/iad-sam_customerresolutionengine
   ord.Prod.cre-stream-processing:
   - name: ord/ord-sam_customerresolutionengine
-
+  hnd.Prod.cre-stream-processing:
+  - name: hnd/hnd-sam_customerresolutionengine
+  ukb.Prod.cre-stream-processing:
+  - name: ukb/ukb-sam_customerresolutionengine
+  frf.Prod.cre-stream-processing:
+  - name: frf/frf-sam_customerresolutionengine
+  par.Prod.cre-stream-processing:
+  - name: par/par-sam_customerresolutionengine
 
   # ======= API ======== #
   # ======= PRD ======== #
@@ -120,7 +127,14 @@ apps:
   - name: iad/iad-sam_customerresolutionengine
   ord.Prod.cre-control-plane:
   - name: ord/ord-sam_customerresolutionengine
-
+  hnd.Prod.cre-control-plane:
+  - name: hnd/hnd-sam_customerresolutionengine
+  ukb.Prod.cre-control-plane:
+  - name: ukb/ukb-sam_customerresolutionengine
+  par.Prod.cre-control-plane:
+  - name: par/par-sam_customerresolutionengine
+  frf.Prod.cre-control-plane:
+  - name: frf/frf-sam_customerresolutionengine
 
   # ======= ENGINE ======== #
   iad.Prod.cre-engine:
