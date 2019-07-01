@@ -42,5 +42,5 @@ local slbconfigs = import "slbconfig.jsonnet";
     enableNginxAccessLogsAggregation: (slbimages.phaseNum <= 1),
 
     # enable slb-iwd-health
-    enableIWDHealth: (slbimages.phaseNum <= 2),
+    enableIWDHealth: (slbimages.phaseNum <= 5),
 }
