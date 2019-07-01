@@ -13,3 +13,7 @@ apps:
     - par/par-universalsearch_svc
   frf-universal-search:
     - frf/frf-universalsearch_svc
+  hnd-universal-search:
+    - hnd/hnd-universalsearch_svc
+#  ukb-universal-search:
+#    - ubk/ukb-universalsearch_svc
