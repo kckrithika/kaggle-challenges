@@ -123,7 +123,7 @@ local mcpIstioConfig = (import "service-mesh/istio-config.jsonnet");
               "--zipkinAddress",
               "zipkin.service-mesh:9411",
               "--proxyAdminPort",
-              "15000",
+              "15373",
               "--statusPort",
               "15020",
               "--controlPlaneAuthPolicy",
