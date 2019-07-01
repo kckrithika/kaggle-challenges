@@ -84,6 +84,11 @@ shared0-samminionmcconsumer3-1-fra.ops.sfdc.net,10.212.165.146/29,10.160.20.64/2
 shared0-samminionreportcollector1-1-fra.ops.sfdc.net,10.212.148.228/29,10.160.1.128/27,f03-01,fra-sam_report_collector,4203051205
 shared0-samminionreportcollector2-1-fra.ops.sfdc.net,10.212.148.227/29,10.160.1.160/27,f03-01,fra-sam_report_collector,4203051205
 shared0-samminionreportcollector3-1-fra.ops.sfdc.net,10.212.148.226/29,10.160.1.192/27,f03-01,fra-sam_report_collector,4203051205
+shared0-samminionsme1-1-fra.ops.sfdc.net,10.212.168.34/29,10.160.34.64/27,d35-02,fra-search_model_executor,4203081227
+shared0-samminionsme1-2-fra.ops.sfdc.net,10.212.168.35/29,10.160.34.96/27,d35-02,fra-search_model_executor,4203081227
+shared0-samminionsme1-3-fra.ops.sfdc.net,10.212.168.36/29,10.160.34.128/27,d35-02,fra-search_model_executor,4203081227
+shared0-samminionsme2-1-fra.ops.sfdc.net,10.212.168.50/29,10.160.34.32/27,d26-01,fra-search_model_executor,4203031211
+shared0-samminionsme2-2-fra.ops.sfdc.net,10.212.168.42/29,10.160.34.0/27,c21-02,fra-search_model_executor,4203081202
 shared0-slbminion1-1-fra.ops.sfdc.net,10.212.162.194/29,10.160.4.128/27,d25-01,fra-slb,4203031209
 shared0-slbminion1-10-fra.ops.sfdc.net,10.212.162.195/29,10.160.4.160/27,d25-01,fra-slb,4203031209
 shared0-slbminion1-2-fra.ops.sfdc.net,10.212.162.202/29,10.160.5.192/27,f06-01,fra-slb,4203051211

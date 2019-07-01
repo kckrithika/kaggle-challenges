@@ -3480,6 +3480,61 @@ data:
           "superpod": "none"
         },
         {
+          "bomrolename": "sam_minion_sme",
+          "controlestate": "xrd-sam",
+          "devicerole": "samcompute",
+          "estate": "xrd-search_model_executor",
+          "hostname": "shared0-samminionsme1-1-xrd.eng.sfdc.net",
+          "kingdom": "xrd",
+          "pod": "none",
+          "rack": "d04-cr08",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sam_minion_sme",
+          "controlestate": "xrd-sam",
+          "devicerole": "samcompute",
+          "estate": "xrd-search_model_executor",
+          "hostname": "shared0-samminionsme1-2-xrd.eng.sfdc.net",
+          "kingdom": "xrd",
+          "pod": "none",
+          "rack": "d04-cr08",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sam_minion_sme",
+          "controlestate": "xrd-sam",
+          "devicerole": "samcompute",
+          "estate": "xrd-search_model_executor",
+          "hostname": "shared0-samminionsme1-3-xrd.eng.sfdc.net",
+          "kingdom": "xrd",
+          "pod": "none",
+          "rack": "d04-cr08",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sam_minion_sme",
+          "controlestate": "xrd-sam",
+          "devicerole": "samcompute",
+          "estate": "xrd-search_model_executor",
+          "hostname": "shared0-samminionsme2-1-xrd.eng.sfdc.net",
+          "kingdom": "xrd",
+          "pod": "none",
+          "rack": "e11-cr02",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sam_minion_sme",
+          "controlestate": "xrd-sam",
+          "devicerole": "samcompute",
+          "estate": "xrd-search_model_executor",
+          "hostname": "shared0-samminionsme2-2-xrd.eng.sfdc.net",
+          "kingdom": "xrd",
+          "pod": "none",
+          "rack": "e11-cr02",
+          "superpod": "none"
+        },
+        {
           "bomrolename": "slb_minion",
           "controlestate": "xrd-sam",
           "devicerole": "samcompute",
