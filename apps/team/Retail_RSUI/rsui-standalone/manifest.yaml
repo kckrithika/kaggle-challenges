@@ -35,7 +35,7 @@ system:
 
     containers:
     - name: retail-setup
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/retail/retail-setup:0.1.9.122
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/retail/retail-setup:0.1.9.130
       ports:
       # Jetty http1 ports for incoming public traffic via SLB
       - containerPort: 7022
@@ -197,8 +197,6 @@ system:
       ports:
       - containerPort: 7014 # http1 in port non tls
         name: sherpa-in-http1
-      - containerPort: 7442 # http1 in port tls
-        name: sher-in-htp1tls
       - containerPort: 7012 # http2 in port for grpc
         name: sherpa-in-http2
       - containerPort: 7443 # http2 in port for grpc
@@ -239,7 +237,7 @@ system:
     slbEnabled: true
     ports:
       - port: 443
-        targetport: 7442
+        targetport: 7022
         tls: true
         lbtype: http
         reencrypt: true
