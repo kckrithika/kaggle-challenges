@@ -11,7 +11,7 @@ system:
       type: Recreate
     containers:
     - name: sherlock
-      image: dva/casp/sherlock_strata:jenkins-CASP-sherlock-master-15-itest
+      image: dva/casp/sherlock_strata:jenkins-CASP-sherlock-dev-36-itest
       ports:
       - name: http
         containerPort: 5555
@@ -20,11 +20,9 @@ system:
         - name: BROKER_URL
           value: 'mycroft.casp.prd-sam.prd.slb.sfdc.net'
         - name: SHARED0_SAMMINIONWARDEN1_1_PRD_KINGDOMS
-          value: 'phx,par,lo2,frf,fra,customer_orgs'
-        - name: SHARED0_SAMMINIONWARDEN1_2_PRD_KINGDOMS
-          value: 'iad,ukb,hnd,lo3,chi,wax,yul,cdu,syd,chx,cdg'
+          value: 'wax,ttd,yul,lo2,cdg,fra,ukb,iad,phx,ph2,customer_orgs'
         - name: SHARED0_SAMMINIONWARDEN2_1_PRD_KINGDOMS
-          value: 'ia2,ord,dfw,ph2'
+          value: 'chx,hio,syd,lo3,hnd,frf,par,ord,ia2,dfw'
         - name: CELERY_LOG_LEVEL
           value: 'info'
         - name: FLOWER_LOG_LEVEL
