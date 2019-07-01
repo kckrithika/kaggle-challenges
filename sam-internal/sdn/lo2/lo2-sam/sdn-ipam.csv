@@ -39,8 +39,13 @@ shared0-samminiongater1-3-lo2.ops.sfdc.net,10.161.150.212/29,10.177.0.64/27,a05-
 shared0-samminiongater1-4-lo2.ops.sfdc.net,10.161.150.213/29,10.177.0.160/27,a05-01,lo2-sam_gater,4203041210
 shared0-samminiongater1-5-lo2.ops.sfdc.net,10.161.150.214/29,10.177.0.192/27,a05-01,lo2-sam_gater,4203041210
 shared0-samminiongater1-6-lo2.ops.sfdc.net,10.161.155.34/29,10.177.0.224/27,a05-01,lo2-sam_gater,4203041210
+shared0-samminiongater1-7-lo2.ops.sfdc.net,10.161.155.35/29,10.177.17.0/27,a05-01,lo2-sam_gater,4203041210
 shared0-samminiongater2-1-lo2.ops.sfdc.net,10.161.150.219/29,10.177.0.96/27,b15-01,lo2-sam_gater,4203041227
 shared0-samminiongater2-2-lo2.ops.sfdc.net,10.161.150.218/29,10.177.0.128/27,b15-01,lo2-sam_gater,4203041227
+shared0-samminiongater2-3-lo2.ops.sfdc.net,10.161.155.42/29,10.177.17.32/27,f03-01,lo2-sam_gater,4203061205
+shared0-samminiongater2-4-lo2.ops.sfdc.net,10.161.155.43/29,10.177.17.64/27,f03-01,lo2-sam_gater,4203061205
+shared0-samminiongater2-5-lo2.ops.sfdc.net,10.161.155.44/29,10.177.17.96/27,f03-01,lo2-sam_gater,4203061205
+shared0-samminiongater2-6-lo2.ops.sfdc.net,10.161.155.45/29,10.177.17.128/27,f03-01,lo2-sam_gater,4203061205
 shared0-samminiongwc1-1-lo2.ops.sfdc.net,10.161.192.82/29,10.177.4.64/27,f03-01,lo2-sam_gatewayconfig,4203061205
 shared0-samminiongwc1-2-lo2.ops.sfdc.net,10.161.192.90/29,10.177.4.0/27,b04-01,lo2-sam_gatewayconfig,4203041207
 shared0-samminiongwc2-1-lo2.ops.sfdc.net,10.161.192.91/29,10.177.4.32/27,b04-01,lo2-sam_gatewayconfig,4203041207
@@ -48,6 +53,11 @@ shared0-samminiongwc2-2-lo2.ops.sfdc.net,10.161.192.83/29,10.177.4.96/27,f03-01,
 shared0-samminionreportcollector1-1-lo2.ops.sfdc.net,10.161.135.90/29,10.177.1.128/27,a44-01,lo2-sam_report_collector,4203031208
 shared0-samminionreportcollector2-1-lo2.ops.sfdc.net,10.161.135.91/29,10.177.1.160/27,a44-01,lo2-sam_report_collector,4203031208
 shared0-samminionreportcollector3-1-lo2.ops.sfdc.net,10.161.135.92/29,10.177.1.192/27,a44-01,lo2-sam_report_collector,4203031208
+shared0-samminionsme1-1-lo2.ops.sfdc.net,10.161.155.50/29,10.177.20.0/27,a05-01,lo2-search_model_executor,4203041210
+shared0-samminionsme1-2-lo2.ops.sfdc.net,10.161.155.51/29,10.177.20.32/27,a05-01,lo2-search_model_executor,4203041210
+shared0-samminionsme1-3-lo2.ops.sfdc.net,10.161.155.52/29,10.177.20.64/27,a05-01,lo2-search_model_executor,4203041210
+shared0-samminionsme2-1-lo2.ops.sfdc.net,10.161.155.58/29,10.177.20.96/27,b44-01,lo2-search_model_executor,4203031207
+shared0-samminionsme2-2-lo2.ops.sfdc.net,10.161.155.59/29,10.177.20.128/27,b44-01,lo2-search_model_executor,4203031207
 shared0-slbminion1-1-lo2.ops.sfdc.net,10.161.192.102/28,10.177.9.64/27,e03-01,lo2-slb,4203061206
 shared0-slbminion1-10-lo2.ops.sfdc.net,10.161.224.51/29,10.177.9.96/27,a44-01,lo2-slb,4203031208
 shared0-slbminion1-2-lo2.ops.sfdc.net,10.161.192.104/28,10.177.9.128/27,e03-01,lo2-slb,4203061206
