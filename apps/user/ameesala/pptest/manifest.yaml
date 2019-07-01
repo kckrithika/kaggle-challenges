@@ -1,0 +1,17 @@
+apiVersion: v1
+
+system:
+  functions:
+  - name: pptest
+    count: 1
+    containers:
+    - name: pptest-service
+      image:  ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/ameesala/pptest:0.1
+      ports:
+      - containerPort: 8000
+        name: http
+      livenessProbe:
+        initialDelaySeconds: 30
+        httpGet:
+          path: /
+          port: 8000
