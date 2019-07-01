@@ -14,7 +14,7 @@ system:
           maxUnavailable: 1
       containers:
       - name: prd-cantor-http-server
-        image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/akouthoofd/cantorservice:service
+        image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/akouthoofd/cantor-http-server:latest
         ports:
         - name: cantor-http
           containerPort: 8084
