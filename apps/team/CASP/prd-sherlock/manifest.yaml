@@ -11,11 +11,13 @@ system:
       type: Recreate
     containers:
     - name: sherlock
-      image: dva/casp/sherlock_strata:jenkins-CASP-sherlock-master-17-itest
+      image: dva/casp/sherlock_strata:jenkins-CASP-sherlock-dev-42-itest
       ports:
       - name: http
         containerPort: 5555
         hostPort: 5555
+      - name: http
+        containerPort: 5000
       env:
         - name: BROKER_URL
           value: 'mycroft.casp.prd-sam.prd.slb.sfdc.net'
@@ -62,5 +64,7 @@ system:
     function: sherlock
     slbenabled: true
     ports:
-      - port: 80
+      - port: 5555
         targetport: 5555
+      - port: 80
+        targetport: 5000
