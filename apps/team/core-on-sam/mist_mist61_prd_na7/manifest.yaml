@@ -216,7 +216,7 @@ system:
       - name: MADDOG_CLIENT
         value: /certs
       - name: SFPROXY_SETTINGS_PATH
-        value: mist61.-.prd.na7.sfproxy
+        value: mist.mist61.prd.na7.app
       - name: CASAM_SUPERPOD
         value: sp2
       - name: HTTP_PROXY
