@@ -47,7 +47,7 @@ spec:
         env:
         - name: ESTATE
           value: prd-sam
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/sfci/servicemesh/servicemesh/istio-routing-webhook:14d718177121a9a811eb1b4f691077af4a08f7f4
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/sfci/servicemesh/servicemesh/istio-routing-webhook:d6d7ddc0bb6f48dbfbe63d0d4140fd11bf594d05
         imagePullPolicy: IfNotPresent
         name: istio-routing-webhook
         ports:
