@@ -6,8 +6,6 @@ local flowsnake_clichecker_commands = import "flowsnake_clichecker_commands.json
 local samconfig = import "config.jsonnet";
 {
     watchdog_enabled: !(flowsnakeconfig.is_minikube),
-    ## make sure add cliCheckerFullCommands
-    watchdog_canary_versions:: ["0.11.0", "0.12.0", "0.12.1", "0.12.2", "0.12.5"],
     watchdog_email_frequency: if estate == "prd-data-flowsnake_test" then "72h" else "10m",
     watchdog_email_frequency_kuberesources: "72h",
     sfdchosts_volume: {
