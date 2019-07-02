@@ -13,10 +13,10 @@ system:
     - name: sherlock
       image: dva/casp/sherlock_strata:jenkins-CASP-sherlock-dev-42-itest
       ports:
-      - name: http
+      - name: flower-http
         containerPort: 5555
         hostPort: 5555
-      - name: http
+      - name: sherlock-http
         containerPort: 5000
       env:
         - name: BROKER_URL
