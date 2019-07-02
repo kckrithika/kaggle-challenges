@@ -91,7 +91,6 @@ system:
       readinessProbe:
         exec:
           command: ["/bin/true"]
-#          - /home/sfdc/salesforce/casam/bin/ready_probe.sh
         failureThreshold: 99999
         initialDelaySeconds: 120
         periodSeconds: 20
@@ -195,3 +194,51 @@ system:
     - name: secretvol
       k4aSecret:
         secretName: caas-k4a-secret-prd
+  - name: na6-mist61dhub-prd
+    count: 1
+    containers:
+      - name: prod-debug-service
+        image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/hubs/prod-debug:prod-debug-2019-07-01-10-06-47
+        livenessProbe:
+          exec:
+            command:
+            - cat
+            - /tmp/live
+          initialDelaySeconds: 10
+          periodSeconds: 5
+        readinessProbe:
+         exec:
+          command:
+          - cat
+          - /tmp/ready
+         initialDelaySeconds: 10
+         periodSeconds: 5
+      - name: prod-debug-sherpa
+        image: sfci/servicelibs/sherpa-envoy:1.0.8
+        ports:
+        - containerPort: 15373
+          name: sherpa-adm
+        livenessProbe:
+          exec:
+            command:
+            - ./bin/is-alive
+          initialDelaySeconds: 60
+          periodSeconds: 5
+        readinessProbe:
+          exec:
+            command:
+            - ./bin/is-ready
+          initialDelaySeconds: 50
+          periodSeconds: 5
+        volumeMounts:
+        - name: tls-client-cert
+          mountPath: /client-certs
+        - name: tls-server-cert
+          mountPath: /server-certs
+    volumes:
+      - maddogCert:
+          type: client
+        name: tls-client-cert
+      - maddogCert:
+          type: server
+        name: tls-server-cert
