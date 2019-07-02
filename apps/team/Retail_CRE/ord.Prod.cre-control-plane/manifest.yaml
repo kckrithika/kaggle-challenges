@@ -9,7 +9,7 @@ system:
       count: 0
       containers:
         - name: cre-control-plane
-          image: sfci/cre-fusion/services:1.8.0.1.master.41fede9.13
+          image: sfci/cre-fusion/services:1.8.1.1.master.be8a84d.22
           env:
             ####################################################################################################
             ############################   ENGINE/DDS FLOWSNAKE ARTIFACTS ( Most frequently changed ) ##########
