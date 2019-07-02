@@ -4,9 +4,6 @@ system:
   - name: estatesservice
     count: 1
     volumes:
-    - name: client-cert
-      maddogCert:
-        type: client
     - name: server-cert
       maddogCert:
         type: server
@@ -19,9 +16,6 @@ system:
         httpGet:
           path: /info
           port: 9090
-      volumeMounts:
-        - mountPath: /certs
-          name: client-cert
       volumeMounts:
         - mountPath: /certs
           name: server-cert
