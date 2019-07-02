@@ -1,0 +1,23 @@
+
+apiVersion: v1
+system:
+  functions:
+  - name: default
+    count: 1
+    containers:
+    - name: message-rendition-services
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/esa/message-rendition-services:edwardsa-2216 
+      ports:
+      - containerPort: 8080
+      livenessProbe:
+        httpGet:
+          path: /
+          port: 8080
+  loadbalancers:
+  - lbname: message-rendition-serviceslb
+    function: default
+    slbenabled: true
+    ports:
+      - port: 8080
+        targetport: 8080
+        lbtype: tcp
