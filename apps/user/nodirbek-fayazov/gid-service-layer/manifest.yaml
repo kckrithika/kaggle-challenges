@@ -13,7 +13,7 @@ system:
       # Service Mesh / Envoy / Sherpa
       #####################################################################################
       - name: sherpa-gid-service
-        image: sfci/servicelibs/sherpa-envoy:1.0.7
+        image: sfci/servicelibs/sherpa-envoy:1.0.8
         env:
         - name: SFDC_ENVIRONMENT
           value: "stmfa"
