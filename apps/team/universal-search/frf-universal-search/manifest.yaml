@@ -57,7 +57,7 @@ system:
         periodSeconds: 120
         failureThreshold: 1
     - name: sherpa
-      image: sfci/servicelibs/sherpa-envoy:1.0.7
+      image: sfci/servicelibs/sherpa-envoy:1.0.8
       ports:
       - containerPort: 7443
         name: sherpa-tls

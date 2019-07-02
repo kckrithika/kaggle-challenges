@@ -6,7 +6,7 @@ system:
     - universalsearch@salesforce.com
   functions:
   - name: universal-search
-    count: 12
+    count: 4
     volumes:
     - name: client-cert-vol
       maddogCert:
@@ -37,7 +37,7 @@ system:
           memory: "16Gi"
       env:
       - name: KRB5_CONF
-        value: /home/sfdc-usmt/krb-config/krb5_searchzk_iad.conf
+        value: /home/sfdc-usmt/krb-config/krb5_searchzk_hnd.conf
       - name: JAAS_CONF
         value: /home/sfdc-usmt/krb-config/jaas-private.conf
       volumeMounts:
@@ -143,7 +143,7 @@ system:
           command:
           - "/home/sfdc-usmt/run.sh"
           - "--domain"
-          - "synthetics-cre"
+          - "synthetics-shared"
         initialDelaySeconds: 120
         timeoutSeconds: 30
         periodSeconds: 900
