@@ -7,7 +7,7 @@ system:
   - name: na6-mist61dapp-prd
     count: 1
     identity:
-      serviceName: dapp-na6
+      serviceName: dapp
     containers:
     - name: coreapp
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/coreonsam/casam:release_main_18153481
@@ -91,7 +91,8 @@ system:
       readinessProbe:
         exec:
           command:
-          - /home/sfdc/salesforce/casam/bin/ready_probe.sh
+          - echo "healthy"
+#          - /home/sfdc/salesforce/casam/bin/ready_probe.sh
         failureThreshold: 99999
         initialDelaySeconds: 120
         periodSeconds: 5
@@ -162,7 +163,7 @@ system:
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/casam/beacon:c574fe83d
       args:
       - -endpoint
-      - core-on-sam/dapp-na6:DATACENTER:4500
+      - core-on-sam/dapp:DATACENTER_ALLENV:4500
       livenessProbe:
         initialDelaySeconds: 20
         exec:
