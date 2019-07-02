@@ -1,6 +1,6 @@
 {
     watchdogFrequency: "5m",
-    name: "SAMAvailabilityByPool",
+    name: "SAMAvailability",
     sql: "select 'NONE' as SuperPod, 'global' as Estate, 'GLOBAL' as Kingdom, 'sql.PoolKingdomCount' as Metric, COUNT(*) as Value
           from (
           	select Kingdom,
