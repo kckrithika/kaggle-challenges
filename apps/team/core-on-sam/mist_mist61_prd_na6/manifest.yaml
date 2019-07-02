@@ -78,8 +78,8 @@ system:
           - /home/sfdc/salesforce/casam/bin/live_probe.sh
         failureThreshold: 99999
         initialDelaySeconds: 120
-        periodSeconds: 5
-        timeoutSeconds: 5
+        periodSeconds: 20
+        timeoutSeconds: 20
       ports:
       - containerPort: 8998
       - containerPort: 7022
@@ -90,13 +90,12 @@ system:
       - containerPort: 4505
       readinessProbe:
         exec:
-          command:
-          - echo "healthy"
+          command: ["/bin/true"]
 #          - /home/sfdc/salesforce/casam/bin/ready_probe.sh
         failureThreshold: 99999
         initialDelaySeconds: 120
-        periodSeconds: 5
-        timeoutSeconds: 5
+        periodSeconds: 20
+        timeoutSeconds: 20
       volumeMounts:
       - mountPath: /home/sfdc/logs/sfdc
         name: log-volume-sfdc
