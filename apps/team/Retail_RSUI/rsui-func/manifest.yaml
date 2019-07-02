@@ -6,6 +6,10 @@ system:
     count: 3
     identity:
      serviceName: retail-setup
+    labels:
+      app: retail-setup
+    annotations:
+      "routing.mesh.sfdc.net/enabled": "true"
     volumes:
     - name: sherpa-log-volume
       hostPath:
@@ -246,3 +250,9 @@ system:
         tls: true
         lbtype: http
         reencrypt: true
+  - lbname: rsui-func
+    function: rsui-func
+    ports:
+    - port: 7443
+      targetport: 7443
+      name: grpc-func
