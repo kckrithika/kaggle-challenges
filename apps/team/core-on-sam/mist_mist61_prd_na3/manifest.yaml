@@ -47,7 +47,7 @@ system:
       - name: DISABLE_AUTH_RELEASE_CHECK
         value: true
       - name: CASAM_APP_COLOR
-        value: blue
+        value: green
       - name: SD_PORT_OVERRIDE
         value: 7442
       - name: CASAM_SETTINGS_PATH
@@ -154,7 +154,7 @@ system:
       serviceName: app
     name: na3-mist61app-prd
     labels:
-      casam-color: blue
+      casam-color: green
       app: na3-mist61app-prd
     progressDeadlineSeconds: 300
     strategy:
@@ -208,9 +208,13 @@ system:
       - name: PATCH_RELEASE_NUMBER
         value: 0
       - name: CURRENT_RELEASE_VERSION
-        value: green
-      - name: NEW_RELEASE_VERSION
         value: blue
+      - name: NEW_RELEASE_VERSION
+        value: green
+      - name: USE_K8_SERVICE_DISCOVERY
+        value: 1
+      - name: CORE_APP_NAME
+        value: na3-mist61app-prd
       - name: READY_SERVER_COUNT
         value: 1
       - name: DB_SID
