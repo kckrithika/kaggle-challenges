@@ -16,6 +16,11 @@ local sidecarInjectorCertConfigs = [sidecarInjectorServerCertConfig];
 
 ## Istio ingressGateway madkub certificates.
 local ingressGatewayServerCertSans = [
+  "istio-ingressgateway",
+  "istio-ingressgateway.core-on-sam-sp2",
+  "istio-ingressgateway.core-on-sam-sp2.svc",
+  "istio-ingressgateway.core-on-sam-sp2.svc.%s" % configs.dnsdomain,
+  "istio-ingressgateway.core-on-sam-sp2.prd-sam.prd.slb.sfdc.net",
   "*.istio-prd.eng.sfdc.net",
   "*.istiotest-prd.eng.sfdc.net",
 ];
