@@ -104,6 +104,8 @@ local vipwdConfig = {
       // but unable to talk to the VIP, causing the VIP to be treated as SLA-eligible but failing (triggering alerts).
       // Remove once W-6182163 (https://gus.lightning.force.com/lightning/r/ADM_Work__c/a07B0000006uYhEIAU/view) is resolved.
       "slb-canary-envoy-svc.sam-system.prd-sam.prd.slb.sfdc.net:8443",
+      // Blacklisting VIPs in userspace
+      "*.user-*.prd-sam.*",
     ],
     vivips: [
        // There are 3 sledge VIPs that listen on these ports:
