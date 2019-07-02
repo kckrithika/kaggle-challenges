@@ -34,4 +34,3 @@ system:
       - port: 9090
         targetport: 9090
         lbtype: http
-        tls: true
