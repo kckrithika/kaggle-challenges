@@ -16,6 +16,8 @@ system:
       - name: http
         containerPort: 5555
         hostPort: 5555
+      - name: http
+        containerPort: 5000
       env:
         - name: BROKER_URL
           value: 'mycroft.casp.prd-sam.prd.slb.sfdc.net'
@@ -65,4 +67,4 @@ system:
       - port: 5555
         targetport: 5555
       - port: 80
-          targetport: 5000
+        targetport: 5000
