@@ -1,3 +1,4 @@
+
 #
 # Generated manifest
 # DO NOT MODIFY - See https://git.soma.salesforce.com/insights/DataPoolService/tree/master/release-scripts
@@ -16,7 +17,7 @@ system:
     name: moana-engine-group1
   - containers:
     - env:
-      - {name: MANAGEMENT_SERVER_PORT, value: '15374'}
+      - {name: MANAGEMENT_SERVER_PORT, value: '15372'}
       - {name: LOGGING_JSON_STDOUT_LEVEL, value: ALL}
       - {name: LOGGING_STDERR_LEVEL, value: ALL}
       - {name: TEST_POD, value: moana-driver-group1}
@@ -29,21 +30,21 @@ system:
       - {name: TESTRECIPE_MAESTROPINGTEST, value: 'true'}
       - {name: DEPLOYMENT_ID, value: syd-group1}
       - {name: HANDLED_PODS_PATTERN, value: 'cs[0-9]+|moana-driver-group1'}
-      image: sfci/insights/moana-driver:release-18-ed0c01d
+      - {name: HEALTHCHECK_SELF_INTERVAL, value: '60'}
+      image: sfci/insights/moana-driver:release-19-70e5fe4
       livenessProbe:
-        httpGet: {path: /manage/health, port: 15374}
+        exec:
+          command: [bash, -c, find /tmp -mmin -2 -name health | grep -q "."]
         initialDelaySeconds: 30
         periodSeconds: 60
         timeoutSeconds: 30
       name: moana-driver
-      ports:
-      - {containerPort: 15374, name: mgmt}
       resources:
         limits: {cpu: 2, memory: 2G}
         requests: {cpu: 1, memory: 2G}
       volumeMounts:
       - {mountPath: /home/scone/client-certs, name: tls-client-certs}
-    count: 1
+    count: 3
     hostnetwork: true
     identity: {serviceName: moana-driver}
     name: moana-driver-group1
@@ -73,22 +74,22 @@ system:
       - {name: HANDLED_PODS_PATTERN, value: 'cs[0-9]+|moana-driver-group1'}
       - {name: K8S_API_ENDPOINT, value: 'https://kubernetes-api-flowsnake-syd.data.sfdc.net'}
       - {name: MAESTRO_ENDPOINT, value: 'https://insights1-iworker{{superPodIndex}}-0-${kingdom}.data.sfdc.net:8008'}
-      image: sfci/insights/jobcontroller:release-1.0.15-9ace82d
+      - {name: HEALTHCHECK_SELF_INTERVAL, value: '60'}
+      image: sfci/insights/jobcontroller:release-1.0.16-a06f970
       livenessProbe:
-        httpGet: {path: /manage/health, port: 15372}
+        exec:
+          command: [bash, -c, find /tmp -mmin -2 -name health | grep -q "."]
         initialDelaySeconds: 90
         periodSeconds: 60
         timeoutSeconds: 30
       name: jobcontroller
-      ports:
-      - {containerPort: 15372, name: mgmt}
       resources:
         limits: {cpu: 2, memory: 4G}
         requests: {cpu: 2, memory: 4G}
       volumeMounts:
       - {mountPath: /home/datapool/logs, name: logvol}
       - {mountPath: /home/datapool/client-certs, name: tls-client-certs}
-    count: 1
+    count: 3
     hostnetwork: true
     identity: {serviceName: datapool}
     name: jobcontroller-group1
