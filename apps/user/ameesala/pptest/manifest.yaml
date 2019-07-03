@@ -4,9 +4,16 @@ system:
   functions:
   - name: pptest
     count: 1
+    volumes:
+    - name: cert
+      maddogCert:
+        type: client
     containers:
     - name: pptest-service
-      image:  ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/ameesala/pptest:0.1
+      image:  ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/ameesala/rptest:0.1
+      volumeMounts:
+      - name: cert
+        mountPath: /client-cert
       ports:
       - containerPort: 8000
         name: http
@@ -15,3 +22,11 @@ system:
         httpGet:
           path: /
           port: 8000
+  loadbalancers:
+  - lbname: pptest-lb
+    function: pptest
+    slbenabled: true
+    ports:
+      - port: 80
+        targetport: 8080
+        lbtype: tcp
