@@ -2,13 +2,13 @@ apiVersion: v1
 system:
   functions:
   - name: jstatus-reporter
-    serviceAccountName: jarvis-cmanu1bd31m5czytu2qmew1
+    serviceAccountName: jarvis-reporter-5pf4jfexcaoo1f
     automountServiceAccountToken: true
     type: deployment
     count: 1
     containers:
     - name: jarvis-status-reporter
-      image: 791719295754.dkr.ecr.us-east-2.amazonaws.com/dva/jarvis-status-reporter:0095eca4d5633d1fbf341bca66605f43e455edba
+      image: 791719295754.dkr.ecr.us-east-2.amazonaws.com/dva/jarvis-status-reporter:2dc809e93f3f178f1be6594c6112d4763b453221
       livenessProbe:
         exec:
           command:
