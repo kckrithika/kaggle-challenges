@@ -141,7 +141,7 @@ spec:
           value: prd
         - name: PROXY_FLAVOR
           value: hsm
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/slb/nginx-kms:128-a893fa5dee1ddf6df36380644eea0f3fc68d5b3b
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/slb/nginx-kms:129-308250831fcb876723fb704419ae641aa2d7bde3
         livenessProbe:
           httpGet:
             path: /
