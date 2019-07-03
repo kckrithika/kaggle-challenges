@@ -10,9 +10,9 @@
 - lbname: ssh-to-predict
 # servers specifies the pool members for the VIP
   servers:
-   - 10.233.254.60
-   - 10.233.254.54
-   - 10.233.254.53
+   - predictor-01.eng.sfdc.net
+   - predictor-02.eng.sfdc.net
+   - predictor-03.eng.sfdc.net
   # port specifies the port upon which the VIP listens.
   # targetport specifies the port on the backend pool member that actually receives the traffic.
   # Packets sent to lbname:port will be sent to server:targetport
@@ -41,9 +41,9 @@
 - lbname: predict
 # servers specifies the pool members for the VIP
   servers:
-   - 10.233.254.60
-   - 10.233.254.54
-   - 10.233.254.53
+   - predictor-01.eng.sfdc.net
+   - predictor-02.eng.sfdc.net
+   - predictor-03.eng.sfdc.net
   # port specifies the port upon which the VIP listens.
   # targetport specifies the port on the backend pool member that actually receives the traffic.
   # Packets sent to lbname:port will be sent to server:targetport
