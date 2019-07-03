@@ -8,7 +8,7 @@ system:
     containers:
 
       - name: prod-debugger
-        image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/kfoster/prod-debugger:20190702-1946
+        image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/kfoster/prod-debugger:03072019-0856
         ports:
           - containerPort: 22
         livenessProbe:
