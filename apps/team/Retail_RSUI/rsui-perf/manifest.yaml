@@ -44,7 +44,7 @@ system:
 
     containers:
     - name: rsui-perf
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/retail/retail-setup:0.1.8.102
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/retail/retail-setup:0.1.9.136
       ports:
       - containerPort: 7022
         name: rsui-in-http1
