@@ -60,7 +60,7 @@ system:
           secretName: argus-secrets
 
   loadbalancers:
-  - lbname: sherlock-flower-lb
+  - lbname: sherlock
     function: sherlock
     slbenabled: true
     ports:
