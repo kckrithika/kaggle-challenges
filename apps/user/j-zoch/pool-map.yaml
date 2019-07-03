@@ -3,3 +3,5 @@ apps:
   - prd/prd-sam
  sync:
   - prd/prd-sam
+ archival-worker:
+  - prd/prd-sam

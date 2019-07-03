@@ -17,19 +17,21 @@ system:
         value: dc.$(KINGDOM),sam,oracle
       ports:
       - containerPort: 7020
-      - containerPort: 8080
+        name: grpc
+      - containerPort: 7022
+        name: http
       - containerPort: 15372
-      - containerPort: 2181
+        name: management
       livenessProbe:
         httpGet:
           path: /manage/health
           port: 15372
-        initialDelaySeconds: 360
+        initialDelaySeconds: 130
       readinessProbe:
         httpGet:
           path: /manage/health
           port: 15372
-        initialDelaySeconds: 360
+        initialDelaySeconds: 115
 
       volumeMounts:
         - name: tls-client-cert
@@ -39,14 +41,17 @@ system:
 
     # mTLS container s
     - name: sherpa
-      image:  sfci/servicelibs/sherpa-envoy:1.0.6
+      image: sfci/servicelibs/sherpa-envoy:1.0.8
       ports:
-      - name: http2-tls-in
-        containerPort: 7443
-      - name: http1-tls-in
-        containerPort: 7442
-      - name: sherpa-adm
-        containerPort: 15373
+      - containerPort: 7443
+        name: http2-tls-in
+      - containerPort: 7442
+        name: http1-tls-in
+      - containerPort: 15373
+        name: sherpa-adm
+      resources:
+        limits: { cpu: "1", memory: "1Gi" }
+        requests: { cpu: "1", memory: "1Gi" }
       livenessProbe:
         exec:
           command:
@@ -69,11 +74,12 @@ system:
      # Announces services
     - name: beacon
       image: sfci/services/sfdc-bazel/disco/beacon:d7f1640
+      resources:
+        limits: { cpu: "1", memory: "1Gi" }
+        requests: { cpu: "1", memory: "1Gi" }
       args:
       - -endpoint
-      - $(FUNCTION_NAMESPACE)/$(FUNCTION):DATACENTER_ALLENV:7443
-      - -endpoint
-      - $(FUNCTION_NAMESPACE)/$(FUNCTION):DATACENTER_ALLENV:7442
+      - $(FUNCTION_NAMESPACE)/$(FUNCTION):DATACENTER_ALLENV:HTTP2_TLS
       livenessProbe:
         exec:
           command:
@@ -95,10 +101,11 @@ system:
     slbEnabled: true
     ports:
       - port: 8080
-        targetport: 8080
+        targetport: 7022
       - port: 15372
         targetport: 15372
-      - port: 7020
-        targetport: 7443
+      - port: 7443
+        targetport: 7020
+
 
 
