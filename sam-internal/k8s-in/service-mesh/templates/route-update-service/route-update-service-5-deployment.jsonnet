@@ -64,7 +64,7 @@ configs.deploymentBase("service-mesh") {
         containers: [
           configs.containerWithMadDog {
             name: "route-update-service",
-            image: "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-sfci-dev/sfci/servicemesh/servicemesh/route-update-service:52da498a8b65d9ff88541eeacbecf3704104edea",
+            image: "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-sfci-dev/sfci/servicemesh/servicemesh/route-update-service:ff0bcaf34e27047c7024459b3d3e0235e6d970cb",
             imagePullPolicy: "IfNotPresent",
             args: [
               "-p",
