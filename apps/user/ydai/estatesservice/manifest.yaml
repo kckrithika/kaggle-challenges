@@ -27,4 +27,6 @@ system:
     ports:
       - port: 9090
         targetport: 9090
-        lbtype: dsr
+        lbtype: http
+        tls: true
+        reencrypt: true
