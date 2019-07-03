@@ -11,6 +11,7 @@ system:
     - name: gater1
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/gater/gate-manager:1.14.1-SNAPSHOT_20190703_9_b970bed
       args:
+      - -agentpath:/home/sfdc/automation/bin/yjp_2019/bin/linux-x86-64/libyjpagent.so=delay=10000,disableexceptiontelemetry,port=15578,listen=all
       - --server.port=9090
       - --logging.evaluator.level=ALWAYS_LOG
       - --gater-service.thread.pool.max-size=0
@@ -85,6 +86,25 @@ system:
           - /home/scone/is-alive.sh
         initialDelaySeconds: 5
 
+    - name: perf-sidecar       # Sidecar container that deploys automation folder
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/kviphong/perfsidecar:20190625-1
+      ports:
+        - containerPort: 15578    # Port for the profiler
+      livenessProbe:
+        exec:
+          command:
+            - "date"             # I'm making it so that this container will never get recyled by SAM
+      readinessProbe:
+        exec:
+          command:
+            - cat
+            - /home/sfdc/.done_unpack   # When the container finishes deploying all the bits, it'll create this file
+        initialDelaySeconds: 20
+        periodSeconds: 5
+      volumeMounts:
+        - mountPath: /home/sfdc/automation
+          name: perf-automation-volume
+
     volumes:
     - name: logvol
       hostPath:
@@ -98,6 +118,8 @@ system:
     - name: tls-server-cert
       maddogCert:
         type: server
+    - emptyDir: {}
+      name: perf-automation-volume    # Shared volume with all the automation tools
 
     strategy:
       type: RollingUpdate
