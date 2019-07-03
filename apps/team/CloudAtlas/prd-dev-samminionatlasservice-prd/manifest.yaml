@@ -107,7 +107,7 @@ system:
       ports:
       - containerPort: 7030
       - containerPort: 7032
-      - containerPort: 7080
+      - containerPort: 7022
       - containerPort: 15374
       livenessProbe:
         httpGet:
