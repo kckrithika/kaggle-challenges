@@ -77,6 +77,7 @@ local utils = import "util_functions.jsonnet";
             feature_flags+: {
                 # Note: the *value* of the flags is ignored. jsonnet lacks array search, so we use a an object.
                 btrfs_watchdog_hard_reset: "",  # Was promoted to prd-dev before phasing refactor
+                upcase_pki_kingdom: "",
             },
             # prd-dev offers legacy version mappings. Phase 2 does not, so cannot inherit from there.
             # Start with 3-iad-ord (which also have legacy version mappings),
