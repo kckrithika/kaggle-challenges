@@ -111,12 +111,14 @@ system:
       - containerPort: 15374
       livenessProbe:
         httpGet:
+          scheme: https
           path: /manage/health
           port: 15374
         initialDelaySeconds: 60
         periodSeconds: 30
       readinessProbe:
         httpGet:
+          scheme: https
           path: /manage/health
           port: 15374
         initialDelaySeconds: 60
