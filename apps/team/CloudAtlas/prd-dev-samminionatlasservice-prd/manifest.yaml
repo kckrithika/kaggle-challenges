@@ -88,7 +88,7 @@ system:
         - name: server_port
           value: 7032
         - name: management_server_port
-          value: 15372
+          value: 15374
         - name: cloudatlas_http_server_port_servicemesh
           value: 7022
       volumeMounts:
@@ -108,17 +108,17 @@ system:
       - containerPort: 7030
       - containerPort: 7032
       - containerPort: 7022
-      - containerPort: 15372
+      - containerPort: 15374
       livenessProbe:
         httpGet:
           path: /manage/health
-          port: 15372
+          port: 15374
         initialDelaySeconds: 60
         periodSeconds: 30
       readinessProbe:
         httpGet:
           path: /manage/health
-          port: 15372
+          port: 15374
         initialDelaySeconds: 60
         periodSeconds: 5
         failureThreshold: 120
