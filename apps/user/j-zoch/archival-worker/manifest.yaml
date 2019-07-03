@@ -19,7 +19,6 @@ system:
         value: user-j-zoch.samapp
       - name: SERVER_PORT
         value: 7022
-      - 
       ports:
       - containerPort: 7022
         name: http
