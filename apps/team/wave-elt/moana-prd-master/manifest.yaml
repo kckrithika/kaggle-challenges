@@ -105,5 +105,12 @@ system:
       name: tls-server-certs
     - maddogCert: {type: client}
       name: tls-client-certs
+  loadbalancers:
+  - function: moana-driver-master
+    lbname: moana-driver-master
+    nodeExposed: true
+    ports:
+    - {port: 8081, targetport: 8080}
+    slbEnabled: true
   notifications:
     email: [moanaserviceseng@salesforce.com]
