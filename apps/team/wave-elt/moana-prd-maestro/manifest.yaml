@@ -10,7 +10,7 @@ system:
           ports:
             - containerPort: 15372
               name: manage
-            - containerPort: 8080
+            - containerPort: 8085
               name: http
           livenessProbe:
             httpGet: {path: /manage/health, port: 15372}
@@ -25,4 +25,4 @@ system:
       nodeExposed: true
       ports:
         - port: 8001
-          targetport: 8080
+          targetport: 8085
