@@ -16,8 +16,8 @@
       "core-on-sam-sp2/ingressgateway"
     ],
     "hosts": [
-      "eu7.istio-prd.eng.sfdc.net",
-      "eu7.istiotest-prd.eng.sfdc.net"
+      "us7.istio-prd.eng.sfdc.net",
+      "us7.istiotest-prd.eng.sfdc.net"
     ],
     "http": [
       {
