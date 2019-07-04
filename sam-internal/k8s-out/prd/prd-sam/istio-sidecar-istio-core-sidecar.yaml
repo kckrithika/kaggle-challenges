@@ -10,8 +10,19 @@ spec:
   - bind: 127.1.2.3
     captureMode: NONE
     hosts:
-    - gater/gater.gater.svc.cluster.local
-    - ccait/geoip.ccait.svc.cluster.local
+    - '*/*'
+    port:
+      name: grpc-egress
+      number: 7443
+      protocol: GRPC
+  - bind: 127.1.2.3
+    captureMode: NONE
+    hosts:
+    - '*/*'
+    port:
+      name: http-egress
+      number: 7442
+      protocol: HTTP
   ingress:
   - captureMode: NONE
     defaultEndpoint: 127.0.0.1:7021

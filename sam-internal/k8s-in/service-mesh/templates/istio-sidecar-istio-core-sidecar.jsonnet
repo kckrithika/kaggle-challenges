@@ -24,11 +24,26 @@
     egress: [
       {
         bind: "127.1.2.3",
+        port: {
+          number: 7443,
+          protocol: "GRPC",
+          name: "grpc-egress",
+        },
         captureMode: "NONE",
-        # Whitelist of Egress Services
         hosts: [
-          "gater/gater.gater.svc.cluster.local",
-          "ccait/geoip.ccait.svc.cluster.local",
+          "*/*",
+        ],
+      },
+      {
+        bind: "127.1.2.3",
+        port: {
+          number: 7442,
+          protocol: "HTTP",
+          name: "http-egress",
+        },
+        captureMode: "NONE",
+        hosts: [
+          "*/*",
         ],
       },
     ],
