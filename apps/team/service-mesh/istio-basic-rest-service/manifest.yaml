@@ -1,0 +1,59 @@
+apiVersion: v1
+
+system:
+  functions:
+    - name: istio-basic-rest-service
+      count: 1
+      labels:
+        app: istio-basic-rest-service
+        disco_dc: prd
+        disco_env: istio
+        disco_subenv: ""
+        disco_pod: ""
+        disco_sp: ""
+        disco_role: istio-basic-rest-service
+        settings_path: istio.-.prd.-.istio-basic-rest-service
+        superpod: NONE
+      annotations:
+        sidecar.istio.io/inject: "true"
+        routing.mesh.sfdc.net/enabled: "true"
+      containers:
+        - name: basic-rest-service
+          image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/shaktiprakash-das/basic-rest-service:dev
+          env:
+            - name: SFDC_ENVIRONMENT
+              value: istio
+            - name: SERVER_PORT
+              value: 7442
+            - name: JAVA_OPTS
+              value: "-Dscone.service.name=istio-basic-rest-service -Dmanagement.server.port=15372"
+            - name: JAVA_HEAP_OPTS
+              value: -Xmx64m
+          ports:
+            - containerPort: 7442
+              name: http-svc
+            - containerPort: 15372
+              name: scone-mgmt
+          livenessProbe:
+            initialDelaySeconds: 120
+            httpGet:
+              path: /manage/health
+              port: 15372
+
+      # Volumes used by auto-injected istio-proxy.
+      volumes:
+        - name: tls-client-cert
+          maddogCert:
+            type: client
+        - name: tls-server-cert
+          maddogCert:
+            type: server
+
+  loadbalancers:
+    - lbname: istio-basic-rest-service
+      function: istio-basic-rest-service
+      ports:
+        - lbtype: dsr
+          port: 7442
+          targetport: 7442
+          name: http-svc

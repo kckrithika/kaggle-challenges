@@ -124,6 +124,10 @@ apps:
   istio-fake-casam-na35:
     - prd/prd-sam_gater
 
+  # Demo http1 service used for testing Core -> K8s Http1
+  istio-basic-rest-service:
+    - prd/prd-sam_gater
+
 # Enable as needed:
 #  geoipnk:
 #    - prd/prd-sam_gater
