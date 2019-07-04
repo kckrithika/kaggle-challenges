@@ -24,9 +24,11 @@ system:
       env:
         - name: BROKER_URL
           value: 'mycroft.casp.prd-sam.prd.slb.sfdc.net'
-        - name: SHARED0_SAMMINIONWARDEN1_1_PRD_KINGDOMS
+        - name: SAMCAAS2_CAASMINION2_1_PRD_KINGDOMS
           value: ''
-        - name: SHARED0_SAMMINIONWARDEN2_1_PRD_KINGDOMS
+        - name: SAMCAAS2_CAASMINION2_2_PRD_KINGDOMS
+          value: ''
+        - name: SAMCAAS2_CAASMINION3_6_PRD_KINGDOMS
           value: ''
         - name: CELERY_LOG_LEVEL
           value: 'info'
