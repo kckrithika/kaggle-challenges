@@ -16,7 +16,6 @@ apps:
   - name: prd/prd-sp2-sam_caas
     hostSubList:
     - samcaas2-caasminion1-4-prd.eng.sfdc.net
-    - samcaas2-caasminion2-1-prd.eng.sfdc.net
     - samcaas2-caasminion2-3-prd.eng.sfdc.net
     - samcaas2-caasminion2-4-prd.eng.sfdc.net
     - samcaas2-caasminion2-7-prd.eng.sfdc.net
@@ -25,7 +24,6 @@ apps:
   - name: prd/prd-sp2-sam_caas
     hostSubList:
     - samcaas2-caasminion1-4-prd.eng.sfdc.net
-    - samcaas2-caasminion2-1-prd.eng.sfdc.net
     - samcaas2-caasminion2-3-prd.eng.sfdc.net
     - samcaas2-caasminion2-4-prd.eng.sfdc.net
     - samcaas2-caasminion2-7-prd.eng.sfdc.net
@@ -35,7 +33,7 @@ apps:
  prd-caas-redis-12078:
   - name: prd/prd-sp2-sam_caas
     hostSubList:
-    - samcaas2-caasminion2-2-prd.eng.sfdc.net
+    - samcaas2-caasminion1-5-prd.eng.sfdc.net
  prd-sp2-metrics-publisher-sp-c1:
   - name: prd/prd-sp2-sam_caas
     hostSubList:
@@ -57,12 +55,11 @@ apps:
  prd-sp2-redis-sp-c1-12011:
   - name: prd/prd-sp2-sam_caas
     hostSubList:
-    - samcaas2-caasminion2-2-prd.eng.sfdc.net
+    - samcaas2-caasminion1-5-prd.eng.sfdc.net
  prd-sp2-metrics-publisher-dc-c1:
   - name: prd/prd-sp2-sam_caas
     hostSubList:
-    - samcaas2-caasminion2-2-prd.eng.sfdc.net
- 
+    - samcaas2-caasminion1-5-prd.eng.sfdc.net
  prd-caas-endurance-monitor-perf:
   - name: prd/prd-sp2-sam_caas
     hostSubList:
@@ -88,7 +85,7 @@ apps:
  prd-sp2-redis-sp-na45-c1-12016:
   - name: prd/prd-sp2-sam_caas
     hostSubList:
-    - samcaas2-caasminion2-2-prd.eng.sfdc.net
+    - samcaas2-caasminion1-5-prd.eng.sfdc.net
     - samcaas2-caasminion3-1-prd.eng.sfdc.net
  prd-sp2-metrics-publisher-sp-na45-pc1:
   - name: prd/prd-sp2-sam_caas
@@ -102,7 +99,7 @@ apps:
  prd-sp2-redis-sp-na45-pc1-12017:
   - name: prd/prd-sp2-sam_caas
     hostSubList:
-    - samcaas2-caasminion2-2-prd.eng.sfdc.net
+    - samcaas2-caasminion1-5-prd.eng.sfdc.net
  prd-caas-redis-12098:
   - name: prd/prd-sp2-sam_caas
     hostSubList:
@@ -113,7 +110,7 @@ apps:
  prd-caas-redis-12090:
   - name: prd/prd-sp2-sam_caas
     hostSubList:
-    - samcaas2-caasminion2-2-prd.eng.sfdc.net
+    - samcaas2-caasminion1-5-prd.eng.sfdc.net
  prd-mist30-sp-na1-c1-redis-metrics-publisher:
   - name: prd/prd-sp2-sam_caas
     hostSubList:
@@ -135,7 +132,7 @@ apps:
  prd-sp2-redis-sp-cs2-c1-12014:
   - name: prd/prd-sp2-sam_caas
     hostSubList:
-    - samcaas2-caasminion2-2-prd.eng.sfdc.net
+    - samcaas2-caasminion1-5-prd.eng.sfdc.net
  prd-sp2-metrics-publisher-stmfa-sp-c1:
   - name: prd/prd-sp2-sam_caas
     hostSubList:
@@ -148,7 +145,7 @@ apps:
  prd-sp2-redis-stmfa-sp-c1-12015:
   - name: prd/prd-sp2-sam_caas
     hostSubList:
-    - samcaas2-caasminion2-2-prd.eng.sfdc.net
+    - samcaas2-caasminion1-5-prd.eng.sfdc.net
     - samcaas2-caasminion3-1-prd.eng.sfdc.net
  prd-sp2-metrics-publisher-stmfb-sp-c1:
   - name: prd/prd-sp2-sam_caas
@@ -162,7 +159,7 @@ apps:
  prd-sp2-redis-stmfb-sp-c1-12018:
   - name: prd/prd-sp2-sam_caas
     hostSubList:
-    - samcaas2-caasminion2-2-prd.eng.sfdc.net
+    - samcaas2-caasminion1-5-prd.eng.sfdc.net
     - samcaas2-caasminion3-1-prd.eng.sfdc.net
  prd-sp2-redis-caas-cluster-casam-sp2:
   - name: prd/prd-sp2-sam_caas
@@ -172,6 +169,18 @@ apps:
     - samcaas2-caasminion3-9-prd.eng.sfdc.net
     - samcaas2-caasminion3-8-prd.eng.sfdc.net
     - samcaas2-caasminion3-1-prd.eng.sfdc.net
+ prd-sp2-aiops-sherlock:
+   - name: prd/prd-sp2-sam_caas
+     hostSublist:
+     - samcaas2-caasminion2-1-prd.eng.sfdc.net
+     - samcaas2-caasminion2-2-prd.eng.sfdc.net
+     - samcaas2-caasminion3-6-prd.eng.sfdc.net
+ prd-sp2-aiops-mycroft:
+   - name: prd/prd-sp2-sam_caas
+     hostSublist:
+     - samcaas2-caasminion2-1-prd.eng.sfdc.net
+     - samcaas2-caasminion2-2-prd.eng.sfdc.net
+     - samcaas2-caasminion3-6-prd.eng.sfdc.net
  dfw-sp3-metrics-publisher-sp-c1:
   - name: dfw/dfw-sp3-sam_caas
  dfw-sp3-redis-sp-c1-12050:
