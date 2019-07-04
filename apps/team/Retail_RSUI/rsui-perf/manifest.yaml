@@ -29,10 +29,22 @@ system:
     - name: logvol
       hostPath:
         path: /home/sfdc-retail/logs
+    - name: consumer-key
+      k4aSecret:
+        secretName: rsui-mist60-consumer-key
+    - name: consumer-secret
+      k4aSecret:
+        secretName: rsui-mist60-consumer-secret
+    - name: encryption-key1
+      k4aSecret:
+        secretName: rsui-encryption-key3
+    - name: encryption-key2
+      k4aSecret:
+        secretName: rsui-encryption-key1
 
     containers:
     - name: rsui-perf
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/retail/retail-setup:0.1.9.136
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/retail/retail-setup:0.1.8.102
       ports:
       - containerPort: 7022
         name: rsui-in-http1
@@ -82,20 +94,18 @@ system:
         value: http://cre-api-ccp-perf.retail-cre.localhost.mesh.force.com:5442
       - name: C2C_PATH
         value: https://login.stmfa.stm.salesforce.com/empire/cloudatlas/scim
-      - name: OAUTH_SHADOW_CONSUMERKEY
-        value: 3MVG9lKcPoNINVBKJMizaZu4JcS_p1XaCVAZPvgCHu5XJewumazSzJL6GPWIDmPvYwVT_dxGNoYX62.qGDvqg
-      - name: OAUTH_SHADOW_CONSUMERSECRET
-        value: 04477086C56D4DC7D6956DB051B6F372482BFAEAA68DFC9F76A98376E6AE9869
-      - name: OAUTH_SERVICE_CONSUMERKEY
-        value: 3MVG9lKcPoNINVBKJMizaZu4JcS_p1XaCVAZPvgCHu5XJewumazSzJL6GPWIDmPvYwVT_dxGNoYX62.qGDvqg
-      - name: OAUTH_SERVICE_CONSUMERSECRET
-        value: 04477086C56D4DC7D6956DB051B6F372482BFAEAA68DFC9F76A98376E6AE9869
-      - name: SECURITY_REQUIRE_SECRETS
-        value: false
       - name: CORE_OAUTH_URL
         value: https://na1.mist60.stm.salesforce.com
       - name: RSUI_OAUTH_CALLBACK
         value: https://rsui-perf-lb.retail-rsui.prd-sam.prd.slb.sfdc.net/service/oauth/callback
+      - name: OAUTH_CONSUMER_KEY_FILE_PATH
+        value: secrets/consumer-key/mist60.key
+      - name: OAUTH_CONSUMER_SECRET_FILE_PATH
+        value: secrets/consumer-secret/mist60.secret
+      - name: SECURITY_ENCRYPTION_KEY1_PATH
+        value: secrets/encryption-key1/rsui-encryption-key3.key
+      - name: SECURITY_ENCRYPTION_KEY2_PATH
+        value: secrets/encryption-key2/rsui-encryption-key1.key
       - name: RSUI_HOST
         value: mist60.stm.salesforce-hub.com
       - name: GATER_EMBEDDED_MODE
@@ -160,6 +170,18 @@ system:
       #mount splunk logs mount
       - name: logvol
         mountPath: /home/retail-setup/logs
+      - name: consumer-key
+        mountPath: /home/retail-setup/secrets/consumer-key
+        readOnly: true
+      - name: consumer-secret
+        mountPath: /home/retail-setup/secrets/consumer-secret
+        readOnly: true
+      - name: encryption-key1
+        mountPath: /home/retail-setup/secrets/encryption-key1
+        readOnly: true
+      - name: encryption-key2
+        mountPath: /home/retail-setup/secrets/encryption-key2
+        readOnly: true
 
     - name: sherpa-rsui-perf
        # Each commit to master for https://git.soma.salesforce.com/servicelibs/sherpa-envoy/commits/master has an image created.
