@@ -8,10 +8,7 @@ system:
   - name: sherlock
     count: 3
     strategy:
-      type: RollingUpdate
-      rollingUpdate:
-        maxSurge: 0
-        maxUnavailable: 1
+      type: Recreate
     containers:
     - name: sherlock
       image: dva/casp/sherlock_strata:jenkins-CASP-sherlock-master-18-itest
