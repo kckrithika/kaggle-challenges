@@ -32,6 +32,12 @@ system:
       # WIP cluster scrape timeout + delay while investigating W-6166785
       - --clusters.zkScraper.scrapeTimeoutMs=120000
       - --cluster.scraper.delayMs=120000
+      # External Mesh Service Configuration
+      - --clusters.external-mesh-services[0]_name=ems.ajnafunnel
+      - --clusters.external-mesh-services[0]_cluster_type=HTTP1_TLS 
+      - --clusters.external-mesh-services[0]_resolution=DNS 
+      - --clusters.external-mesh-services[0]_port=443
+      - --clusters.external-mesh-services[0]_endpoints[0]=funnel.ajnalocal1.foundation.rddev.aws.sfdc.cl
       ports:
       - containerPort: 15372
       env:
