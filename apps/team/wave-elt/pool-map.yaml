@@ -98,6 +98,8 @@ apps:
   moana-prd-master:
   - prd/prd-sam_datapool
 
+  moana-prd-maestro:
+  - prd/prd-sam_datapool
 
 
 
