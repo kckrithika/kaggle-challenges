@@ -21,6 +21,8 @@ system:
   loadbalancers:
     - lbname: moana-mock-maestro
       function: moana-mock-maestro
+      slbEnabled: true
+      nodeExposed: true
       ports:
-        - port: 8080
+        - port: 8001
           targetport: 8080
