@@ -1,12 +1,13 @@
+
 #
 # Generated manifest
-# DO NOT MODIFY - See https://git.soma.salesforce.com/insights/DataPoolService/tree/master/release-scripts
+# DO NOT MODIFY - See https://git.soma.salesforce.com/insights/moana-release
 #
 apiVersion: v1
 system:
   functions:
   - containers:
-    - image: ops0-artifactrepo2-0-prd.data.sfdc.net/sfci/insights/moanaengine:master-1.0.45-2ec101a
+    - image: ops0-artifactrepo2-0-prd.data.sfdc.net/sfci/insights/moanaengine:master-1.0.53-b27d731
       livenessProbe:
         exec:
           command: [ls]
@@ -58,7 +59,7 @@ system:
       - {name: MANAGEMENT_SERVER_PORT, value: '15372'}
       - {name: LOGGING_JSON_STDOUT_LEVEL, value: ALL}
       - {name: LOGGING_STDERR_LEVEL, value: ALL}
-      - {name: MOANA_SPARK_ENGINE_IMAGE, value: 'ops0-artifactrepo2-0-prd.data.sfdc.net/sfci/insights/moanaengine:master-1.0.45-2ec101a'}
+      - {name: MOANA_SPARK_ENGINE_IMAGE, value: 'ops0-artifactrepo2-0-prd.data.sfdc.net/sfci/insights/moanaengine:master-1.0.53-b27d731'}
       - {name: KAFKA_GROUP_ID, value: moana-jobcontroller-master}
       - {name: K8S_SPARK_OVERRIDES, value: '{"spark.eventLog.dir": "s3a://moana-spark-history//",
           "spark.eventLog.enabled": "true", "spark.executor.extraJavaOptions": "-XX:MaxDirectMemorySize=256M
