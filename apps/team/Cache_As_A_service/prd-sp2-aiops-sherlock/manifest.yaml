@@ -40,8 +40,6 @@ system:
           name: sherlock-data-vol
         - mountPath: /opt/sherlock/logs
           name: sherlock-logs-vol
-        - mountPath: /argus-secrets
-          name: argus-secrets-vol
       livenessProbe:
         exec:
           command:
@@ -57,10 +55,6 @@ system:
       - name: sherlock-logs-vol
         hostPath:
           path: /data/sherlock-logs
-      - name: argus-secrets-vol
-        k4aSecret:
-          secretName: argus-secrets
-
   loadbalancers:
   - lbname: sherlock
     function: sherlock
