@@ -24,7 +24,7 @@
     "vyjayanthi.raja@salesforce.com",
     "hsuanyu.chen@salesforce.com",
     "nkatta@salesforce.com",
-    "shravya.srinivas@salesforce.com", 
+    "shravya.srinivas@salesforce.com",
     # Service-Mesh Team
     "npshenichnyy@salesforce.com",
     # DVA Team
