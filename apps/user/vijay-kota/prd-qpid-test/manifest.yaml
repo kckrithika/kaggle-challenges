@@ -17,7 +17,7 @@ system:
               containerPort: 12345
           env:
             - name: HTTP_PORT
-              value: 7022
+              value: 7014
             - name: CLIENT_PORT
               value: 12345
             - name: SFDC_ENVIRONMENT
@@ -47,10 +47,6 @@ system:
           ports:
           - containerPort: 15373
             name: sherpa-adm
-          - containerPort: 2060
-            name: tcp-in
-          - containerPort: 7442
-            name: http1-tls-in
           resources:
             limits: { cpu: "1", memory: "1Gi" }
             requests: { cpu: "1", memory: "1Gi" }
@@ -94,42 +90,11 @@ system:
         - name: beacon-log-volume
           hostPath:
             path: /home/sfdc-beacon/logs
+
     - name: cs55-qpid
       type: stateful-set
       count: 2
       containers:
-        - name: qpid-broker-client
-          image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/vijay-kota/myenvoy:Jul19
-          command: ["/usr/bin/python"]
-          args: ["/home/sfdc-sherpa/myscripts/myapp.py"]
-          ports:
-            - name: client-port
-              containerPort: 12345
-          env:
-            - name: HTTP_PORT
-              value: 7022
-            - name: CLIENT_PORT
-              value: 12345
-            - name: SFDC_ENVIRONMENT
-              value: sam 
-          resources:
-            limits: { cpu: "8", memory: "16Gi" }
-            requests: { cpu: "8", memory: "16Gi" }
-          livenessProbe:
-            exec:
-              command: ["/bin/true"]
-            initialDelaySeconds: 10
-            timeoutSeconds: 10
-            periodSeconds: 60
-          readinessProbe:
-            exec:
-              command: ["/bin/true"]
-            initialDelaySeconds: 10
-            timeoutSeconds: 10
-          volumeMounts:
-            - mountPath: /var/log/qpid
-              name: logvol
-
         - name: qpid-broker-runtime
           image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/vijay-kota/myenvoy:Jul19
           command: ["/usr/bin/python"]
@@ -170,7 +135,8 @@ system:
           image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/servicemesh/beacon:1.0.0
           args:
             - -endpoint
-            - samapp/$(FUNCTION_NAMESPACE)/$(FUNCTION)-https:DATACENTER_ALLENV:7442
+            - samapp/$(FUNCTION_NAMESPACE)/$(FUNCTION)-http:DATACENTER_ALLENV:7014
+            # samapp/$(FUNCTION_NAMESPACE)/$(FUNCTION)-https:DATACENTER_ALLENV:7442
             - -endpoint
             - samapp/$(FUNCTION_NAMESPACE)/$(FUNCTION):DATACENTER_ALLENV:2060
           env:
@@ -197,8 +163,10 @@ system:
             name: sherpa-adm
           - containerPort: 2060
             name: tcp-in
-          - containerPort: 7442
-            name: http1-tls-in
+          - containerPort: 7014
+            name: http1-in
+          # containerPort: 7442
+          # name: http1-tls-in
           resources:
             limits: { cpu: "1", memory: "1Gi" }
             requests: { cpu: "1", memory: "1Gi" }
