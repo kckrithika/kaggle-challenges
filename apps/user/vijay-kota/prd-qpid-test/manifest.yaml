@@ -11,7 +11,7 @@ system:
         - name: app
           image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/vijay-kota/myenvoy:Jul19
           command: ["/usr/bin/python"]
-          args: ["/home/sfdc-sherpa/myapp.py"]
+          args: ["/home/sfdc-sherpa/myscripts/myapp.py"]
           ports:
             - name: client-port
               containerPort: 12345
@@ -101,7 +101,7 @@ system:
         - name: qpid-broker-client
           image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/vijay-kota/myenvoy:Jul19
           command: ["/usr/bin/python"]
-          args: ["/home/sfdc-sherpa/myapp.py"]
+          args: ["/home/sfdc-sherpa/myscripts/myapp.py"]
           ports:
             - name: client-port
               containerPort: 12345
@@ -133,7 +133,7 @@ system:
         - name: qpid-broker-runtime
           image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/vijay-kota/myenvoy:Jul19
           command: ["/usr/bin/python"]
-          args: ["/home/sfdc-sherpa/myqpid.py"]
+          args: ["/home/sfdc-sherpa/myscripts/myqpid.py"]
           ports:
             - name: amqp-port
               containerPort: 2061
