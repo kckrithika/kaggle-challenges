@@ -76,7 +76,7 @@ system:
         initialDelaySeconds: 120
         periodSeconds: 5
     - name: beacon-eaas
-      image: 791719295754.dkr.ecr.us-east-2.amazonaws.com/sfci/services/sfdc-bazel/disco/beacon:d7f1640
+      image: 791719295754.dkr.ecr.us-east-2.amazonaws.com/sfci/services/sfdc-bazel/disco/beacon:6f46a7abf
       args:
       # Namespaced, mTLS HTTP2 GRPC
       - -endpoint
@@ -93,8 +93,7 @@ system:
           - /opt/beacon/is-alive.sh
         initialDelaySeconds: 5
     - name: sherpa-eaas
-      # updated based on https://gus.lightning.force.com/lightning/r/CollaborationGroup/0F9B0000000LejfKAC/view
-      image: 791719295754.dkr.ecr.us-east-2.amazonaws.com/sfci/servicelibs/sherpa-envoy:eeb8e3bfc9d7912299ed28658895aca9523f348f
+      image: 791719295754.dkr.ecr.us-east-2.amazonaws.com/sfci/servicelibs/sherpa-envoy:ea28264dc236d360191708d9259fe4fa04ae34eb
       args:
       # 2018-02-08: Direct Connection to the switchboard for now
       - --switchboard=switchboard.service-mesh.svc:15001
