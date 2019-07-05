@@ -10,7 +10,7 @@ system:
       - containerPort: 8080
       livenessProbe:
         httpGet:
-          path: /
+          path: /actuator/health
           port: 8080
   loadbalancers:
   - lbname: message-rendition-serviceslb
