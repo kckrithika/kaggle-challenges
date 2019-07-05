@@ -28,8 +28,9 @@ system:
             limits: { cpu: "8", memory: "16Gi" }
             requests: { cpu: "8", memory: "16Gi" }
           livenessProbe:
-            exec:
-              command: ["/bin/true"]
+            httpGet:
+              path: /api
+              port: 7022
             initialDelaySeconds: 10
             timeoutSeconds: 10
             periodSeconds: 60
