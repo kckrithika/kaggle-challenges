@@ -17,7 +17,7 @@ system:
               containerPort: 12345
           env:
             - name: HTTP_PORT
-              value: 7014
+              value: 2012
             - name: CLIENT_PORT
               value: 12345
             - name: SFDC_ENVIRONMENT
@@ -47,6 +47,8 @@ system:
           ports:
           - containerPort: 15373
             name: sherpa-adm
+          - containerPort: 2012
+            name: tcp-out
           resources:
             limits: { cpu: "1", memory: "1Gi" }
             requests: { cpu: "1", memory: "1Gi" }
@@ -101,14 +103,15 @@ system:
           args: ["/home/sfdc-sherpa/myscripts/myqpid.py"]
           ports:
             - name: amqp-port
-              containerPort: 2061
+              containerPort: 2011
             - name: http-port
               containerPort: 7022
           env:
             - name: AMQP_PORT
-              value: 2061
+              value: 2011
             - name: HTTP_PORT
-              value: 7022
+              value: 2011
+            # value: 7022
             - name: QPID_JAVA_HEAPSZ
               value: 8g
             - name: SFDC_ENVIRONMENT
@@ -138,7 +141,7 @@ system:
             - samapp/$(FUNCTION_NAMESPACE)/$(FUNCTION)-http:DATACENTER_ALLENV:7014
             # samapp/$(FUNCTION_NAMESPACE)/$(FUNCTION)-https:DATACENTER_ALLENV:7442
             - -endpoint
-            - samapp/$(FUNCTION_NAMESPACE)/$(FUNCTION):DATACENTER_ALLENV:2060
+            - samapp/$(FUNCTION_NAMESPACE)/$(FUNCTION):DATACENTER_ALLENV:2010
           env:
             - name: SFDC_ENVIRONMENT
               value: sam
@@ -161,7 +164,7 @@ system:
           ports:
           - containerPort: 15373
             name: sherpa-adm
-          - containerPort: 2060
+          - containerPort: 2010
             name: tcp-in
           - containerPort: 7014
             name: http1-in
