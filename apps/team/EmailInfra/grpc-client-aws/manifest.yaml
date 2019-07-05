@@ -22,7 +22,7 @@ system:
         initialDelaySeconds: 5
         periodSeconds: 5
     - name: sherpa-eaas-grpc-client
-      image: 791719295754.dkr.ecr.us-east-2.amazonaws.com/sfci/servicelibs/sherpa-envoy:eeb8e3bfc9d7912299ed28658895aca9523f348f
+      image: 791719295754.dkr.ecr.us-east-2.amazonaws.com/sfci/servicelibs/sherpa-envoy:ea28264dc236d360191708d9259fe4fa04ae34eb
       args:
       # 2018-02-08: Direct Connection to the switchboard for now
       - --switchboard=switchboard.service-mesh.svc:15001
