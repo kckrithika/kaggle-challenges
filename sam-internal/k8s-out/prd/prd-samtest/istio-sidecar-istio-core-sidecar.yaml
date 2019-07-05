@@ -20,8 +20,24 @@ spec:
     hosts:
     - '*/*'
     port:
-      name: http-egress
+      name: grpc-egress2
+      number: 7012
+      protocol: GRPC
+  - bind: 127.1.2.3
+    captureMode: NONE
+    hosts:
+    - '*/*'
+    port:
+      name: https-egress
       number: 7442
+      protocol: HTTPS
+  - bind: 127.1.2.3
+    captureMode: NONE
+    hosts:
+    - '*/*'
+    port:
+      name: http-egress
+      number: 7014
       protocol: HTTP
   ingress:
   - captureMode: NONE
