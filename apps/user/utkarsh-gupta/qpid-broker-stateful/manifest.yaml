@@ -37,7 +37,6 @@ system:
           readinessProbe:
             exec:
               command:
-                  - sh
                   - /opt/qpid/bin/readiness-probe.sh
             initialDelaySeconds: 10
             timeoutSeconds: 10
