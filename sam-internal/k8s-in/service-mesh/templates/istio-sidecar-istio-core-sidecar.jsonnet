@@ -37,7 +37,31 @@
       {
         bind: "127.1.2.3",
         port: {
+          number: 7012,
+          protocol: "GRPC",
+          name: "grpc-egress2",
+        },
+        captureMode: "NONE",
+        hosts: [
+          "*/*",
+        ],
+      },
+      {
+        bind: "127.1.2.3",
+        port: {
           number: 7442,
+          protocol: "HTTPS",
+          name: "https-egress",
+        },
+        captureMode: "NONE",
+        hosts: [
+          "*/*",
+        ],
+      },
+      {
+        bind: "127.1.2.3",
+        port: {
+          number: 7014,
           protocol: "HTTP",
           name: "http-egress",
         },
