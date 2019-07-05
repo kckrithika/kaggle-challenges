@@ -2,17 +2,17 @@ apiVersion: v1
 
 system:
   functions:
-    - name: istio-basic-rest-service
+    - name: istio-basic-rest-service-tls
       count: 1
       labels:
-        app: istio-basic-rest-service
+        app: istio-basic-rest-service-tls
         disco_dc: prd
         disco_env: istio
         disco_subenv: ""
         disco_pod: ""
         disco_sp: ""
-        disco_role: istio-basic-rest-service
-        settings_path: istio.-.prd.-.istio-basic-rest-service
+        disco_role: istio-basic-rest-service-tls
+        settings_path: istio.-.prd.-.istio-basic-rest-service-tls
         superpod: NONE
       annotations:
         sidecar.istio.io/inject: "true"
@@ -24,14 +24,14 @@ system:
             - name: SFDC_ENVIRONMENT
               value: istio
             - name: SERVER_PORT
-              value: 7014
+              value: 7442
             - name: JAVA_OPTS
-              value: "-Dscone.service.name=istio-basic-rest-service -Dmanagement.server.port=15372"
+              value: "-Dscone.service.name=istio-basic-rest-service-tls -Dmanagement.server.port=15372"
             - name: JAVA_HEAP_OPTS
               value: -Xmx64m
           ports:
-            - containerPort: 7014
-              name: http-svc
+            - containerPort: 7442
+              name: https-svc
             - containerPort: 15372
               name: scone-mgmt
           livenessProbe:
@@ -50,10 +50,10 @@ system:
             type: server
 
   loadbalancers:
-    - lbname: istio-basic-rest-service
-      function: istio-basic-rest-service
+    - lbname: istio-basic-rest-service-tls
+      function: istio-basic-rest-service-tls
       ports:
         - lbtype: dsr
-          port: 7014
-          targetport: 7014
-          name: http-svc
+          port: 7442
+          targetport: 7442
+          name: https-svc
