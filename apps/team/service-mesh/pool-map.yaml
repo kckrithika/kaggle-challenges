@@ -125,6 +125,8 @@ apps:
     - prd/prd-sam_gater
 
   # Demo http1 service used for testing Core -> K8s Http1
+  istio-basic-rest-service-tls:
+    - prd/prd-sam_gater
   istio-basic-rest-service:
     - prd/prd-sam_gater
 
