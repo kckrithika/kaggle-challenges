@@ -21,11 +21,10 @@
     "h.udhayakumar@salesforce.com",
     # SLB Team
     "mgrass@salesforce.com",
-    "paverbuj@salesforce.com",
     "vyjayanthi.raja@salesforce.com",
     "hsuanyu.chen@salesforce.com",
-    "pperger@salesforce.com",
     "nkatta@salesforce.com",
+    "shravya.srinivas@salesforce.com", 
     # Service-Mesh Team
     "npshenichnyy@salesforce.com",
     # DVA Team
