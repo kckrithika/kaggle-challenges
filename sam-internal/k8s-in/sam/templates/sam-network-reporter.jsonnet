@@ -36,7 +36,42 @@ configs.daemonSetBase("sam") {
                             },
                         ],
                     } + configs.ipAddressResourceRequest,
-                ],
+                ] + (
+                    if configs.estate == "prd-samtest" then [
+                         configs.containerWithKubeConfigAndMadDog {
+                            name: "sam-watchdog-connectivitylabeler",
+                            image: samimages.hypersam,
+                            command: [
+                                "/sam/watchdog",
+                                "-role=CONNECTIVITYLABELER",
+                                "-watchdogFrequency=10s",
+                                "-alertThreshold=300s",
+                                "--config=/config/watchdog.json",
+                                "--hostsConfigFile=/sfdchosts/hosts.json",
+                            ],
+                            volumeMounts+: [
+                                configs.sfdchosts_volume_mount,
+                                configs.cert_volume_mount,
+                                configs.config_volume_mount,
+                            ],
+                            env+: [
+                                {
+                                    name: "HOSTNAME",
+                                    valueFrom: {
+                                        fieldRef: {
+                                            fieldPath: "spec.nodeName",
+                                        },
+                                    },
+                                },
+                            ],
+                            ports: [
+                                {
+                                    containerPort: 53353,
+                                },
+                            ],
+                        } + configs.ipAddressResourceRequest,
+                    ] else []
+                ),
                 volumes+: [
                     configs.sfdchosts_volume,
                     configs.cert_volume,
@@ -48,7 +83,16 @@ configs.daemonSetBase("sam") {
                         },
                         name: "config",
                     },
-                ],
+                ] + (
+                    if configs.estate == "prd-samtest" then [
+                        {
+                            configMap: {
+                                name: "watchdog",
+                            },
+                            name: "config",
+                        },
+                    ] else []
+                ),
             },
             metadata: {
                 labels: {

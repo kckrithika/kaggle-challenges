@@ -51,6 +51,40 @@ spec:
           name: sfdchosts
         - mountPath: /config
           name: config
+      - command:
+        - /sam/watchdog
+        - -role=CONNECTIVITYLABELER
+        - -watchdogFrequency=10s
+        - -alertThreshold=300s
+        - --config=/config/watchdog.json
+        - --hostsConfigFile=/sfdchosts/hosts.json
+        env:
+        - name: KUBECONFIG
+          value: /kubeconfig/kubeconfig-platform
+        - name: HOSTNAME
+          valueFrom:
+            fieldRef:
+              fieldPath: spec.nodeName
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/sam/hypersam:2722-a1231485debac6b17dfa76e7a1af01750e0f4f8b
+        name: sam-watchdog-connectivitylabeler
+        ports:
+        - containerPort: 53353
+        resources:
+          limits:
+            sam.sfdc.net/ip-address: "1"
+          requests:
+            sam.sfdc.net/ip-address: "1"
+        volumeMounts:
+        - mountPath: /etc/pki_service
+          name: maddog-certs
+        - mountPath: /kubeconfig
+          name: kubeconfig
+        - mountPath: /sfdchosts
+          name: sfdchosts
+        - mountPath: /data/certs
+          name: certs
+        - mountPath: /config
+          name: config
       volumes:
       - hostPath:
           path: /etc/pki_service
@@ -66,6 +100,9 @@ spec:
         name: certs
       - configMap:
           name: sam-network-reporter
+        name: config
+      - configMap:
+          name: watchdog
         name: config
   updateStrategy:
     rollingUpdate:
