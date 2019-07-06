@@ -10,7 +10,7 @@ system:
       serviceName: dapp
     containers:
     - name: coreapp
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/coreonsam/casam:release_main_18424849
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/coreonsam/casam:release_main_18435895
       env:
       - name: DB_SID
         value: mist61a222utf
