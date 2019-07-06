@@ -10,14 +10,14 @@ system:
       serviceName: dapp
     containers:
     - name: coreapp
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/coreonsam/casam:release_main_18443221
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/coreonsam/casam:release_main_18424849
       env:
       - name: DB_SID
         value: mist61a222utf
       - name: DB_INSTANCE_NAME
         value: mist61a222utf-1
       - name: DB_USER
-        value: sleepy
+        value: doc
       - name: DB_STATS_USER
         value: snowwhite
       - name: DB_CONN_NUM
