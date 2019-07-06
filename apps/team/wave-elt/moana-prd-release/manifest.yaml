@@ -1,12 +1,13 @@
+
 #
 # Generated manifest
-# DO NOT MODIFY - See https://git.soma.salesforce.com/insights/DataPoolService/tree/master/release-scripts
+# DO NOT MODIFY - See https://git.soma.salesforce.com/insights/moana-release
 #
 apiVersion: v1
 system:
   functions:
   - containers:
-    - image: ops0-artifactrepo2-0-prd.data.sfdc.net/sfci/insights/moanaengine:release-1.0.12-57ba7ff
+    - image: ops0-artifactrepo2-0-prd.data.sfdc.net/sfci/insights/moanaengine:release-1.0.14-061a946
       livenessProbe:
         exec:
           command: [ls]
@@ -30,7 +31,7 @@ system:
       - {name: DEPLOYMENT_ID, value: prd-release}
       - {name: HANDLED_PODS_PATTERN, value: stmfa\..*|moana-driver-master}
       - {name: HANDLED_PODS_INVERT_MATCH, value: 'true'}
-      image: sfci/insights/moana-driver:release-18-ed0c01d
+      image: sfci/insights/moana-driver:release-19-70e5fe4
       livenessProbe:
         httpGet: {path: /manage/health, port: 15372}
         initialDelaySeconds: 30
@@ -59,7 +60,7 @@ system:
       - {name: MANAGEMENT_SERVER_PORT, value: '15372'}
       - {name: LOGGING_JSON_STDOUT_LEVEL, value: ALL}
       - {name: LOGGING_STDERR_LEVEL, value: ALL}
-      - {name: MOANA_SPARK_ENGINE_IMAGE, value: 'ops0-artifactrepo2-0-prd.data.sfdc.net/sfci/insights/moanaengine:release-1.0.12-57ba7ff'}
+      - {name: MOANA_SPARK_ENGINE_IMAGE, value: 'ops0-artifactrepo2-0-prd.data.sfdc.net/sfci/insights/moanaengine:release-1.0.14-061a946'}
       - {name: KAFKA_GROUP_ID, value: moana-jobcontroller-release}
       - {name: K8S_SPARK_OVERRIDES, value: '{"spark.eventLog.dir": "s3a://moana-spark-history//",
           "spark.eventLog.enabled": "true", "spark.executor.extraJavaOptions": "-XX:MaxDirectMemorySize=256M
@@ -78,7 +79,7 @@ system:
       - {name: STARTUP_JOB_ENABLED, value: 'false'}
       - {name: HANDLED_PODS_PATTERN, value: stmfa\..*|moana-driver-master}
       - {name: HANDLED_PODS_INVERT_MATCH, value: 'true'}
-      image: sfci/insights/jobcontroller:release-1.0.15-9ace82d
+      image: sfci/insights/jobcontroller:release-1.0.16-a06f970
       livenessProbe:
         httpGet: {path: /manage/health, port: 15372}
         initialDelaySeconds: 90
@@ -106,5 +107,12 @@ system:
       name: tls-server-certs
     - maddogCert: {type: client}
       name: tls-client-certs
+  loadbalancers:
+  - function: moana-driver-release
+    lbname: moana-driver-release
+    nodeExposed: true
+    ports:
+    - {port: 8082, targetport: 8080}
+    slbEnabled: true
   notifications:
     email: [moanaserviceseng@salesforce.com]
