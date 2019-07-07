@@ -14,12 +14,12 @@ system:
           args: ["/home/sfdc-sherpa/myscripts/myapp.py"]
           ports:
             - name: client-port
-              containerPort: 12345
+              containerPort: 12346
           env:
             - name: HTTP_PORT
               value: 2012
             - name: CLIENT_PORT
-              value: 12345
+              value: 12346
             - name: SFDC_ENVIRONMENT
               value: sam 
           resources:
