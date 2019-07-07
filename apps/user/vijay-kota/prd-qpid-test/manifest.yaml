@@ -225,7 +225,7 @@ system:
       - name: caas
         image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/vijay-kota/myenvoy:Jul19
         resources:
-          limits: { memory: "8G" 
+          limits: { memory: "8G" }
           requests: { memory: "8G" }
         command: ["/usr/bin/python"]
         args: ["/home/sfdc-sherpa/myscripts/myqpid.py"]
