@@ -18,7 +18,7 @@ spec:
     metadata:
       annotations:
         madkub.sam.sfdc.net/allcerts: '{"certreqs": [{"cert-type": "server", "kingdom":
-          "cdu", "name": "spark-webhook", "role": "flowsnake.spark-operator", "san":
+          "CDU", "name": "spark-webhook", "role": "flowsnake.spark-operator", "san":
           ["spark-webhook.flowsnake", "spark-webhook.flowsnake.svc", "spark-webhook.flowsnake.svc.cluster.local"]}]}'
       labels:
         app.kubernetes.io/name: spark-operator
