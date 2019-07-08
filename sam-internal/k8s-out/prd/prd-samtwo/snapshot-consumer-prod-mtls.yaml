@@ -154,7 +154,7 @@ spec:
         - mountPath: /data/certs
           name: certs
         - mountPath: /var/mysqlPwd
-          name: mysql-ssc-prod
+          name: mysql-passwords
           readOnly: true
         - mountPath: /cert1
           name: cert1

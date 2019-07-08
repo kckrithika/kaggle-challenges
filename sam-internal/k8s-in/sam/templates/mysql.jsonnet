@@ -5,7 +5,7 @@ local madkub = (import "sammadkub.jsonnet") + { templateFilename:: std.thisFile 
 
 local certDirs = ["cert1"];
 
-if configs.estate == "prd-sam" || configs.estate == "prd-samdev" || configs.estate == "prd-samtwo" then {
+if configs.estate == "prd-sam" || configs.estate == "prd-samdev" || configs.estate == "prd-samtwo" || configs.estate == "prd-data-flowsnake" then {
             apiVersion: "apps/v1beta1",
             kind: "StatefulSet",
             metadata: {
@@ -15,8 +15,8 @@ if configs.estate == "prd-sam" || configs.estate == "prd-samdev" || configs.esta
                     sam_function: "mysql-pure-cache",
                     sam_loadbalancer: "mysql-pure-cache",
                 },
-                name: "mysql-pure-cache",
-                namespace: "sam-system",
+                name: if configs.estate == "prd-data-flowsnake" then "mysql" else "mysql-pure-cache",
+                namespace: if configs.estate == "prd-data-flowsnake" then "flowsnake" else "sam-system",
             },
             spec: {
               podManagementPolicy: "OrderedReady",
