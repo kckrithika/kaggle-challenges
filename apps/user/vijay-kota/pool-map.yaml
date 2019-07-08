@@ -1,3 +1,5 @@
 apps:
     prd-qpid-test:
         - prd/prd-sam
+    prd-caas-test:
+        - prd/prd-sam
