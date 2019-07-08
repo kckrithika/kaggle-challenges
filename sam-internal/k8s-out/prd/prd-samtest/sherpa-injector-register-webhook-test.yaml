@@ -5,6 +5,7 @@ metadata:
     manifestctl.sam.data.sfdc.net/swagger: disable
   labels:
     app: sherpa-injector
+    test: test1
   name: sherpa-injector-cfg
 webhooks:
 - clientConfig:
