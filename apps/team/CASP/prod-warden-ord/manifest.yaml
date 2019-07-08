@@ -48,10 +48,10 @@ system:
         maddogCert:
           type: server
           lbnames:
-          - wardenlb
+          - warden
 
     loadbalancers:
-    - lbname: wardenlb
+    - lbname: warden
       function: warden-func
       slbEnabled: true
       ports:
