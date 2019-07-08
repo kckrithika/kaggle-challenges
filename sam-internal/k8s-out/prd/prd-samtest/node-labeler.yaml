@@ -25,7 +25,7 @@ spec:
       - command:
         - /sam/node-labeler
         - --config=/config/node-labeler-config.json
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/sam/hypersam:2749-e8bc54e68033c31777bdf807e63455f569d50199
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/sam/hypersam:2752-5601ff61ad37520b86ac6f491fc37847b7de7dda
         name: node-labeler
         resources:
           limits:
