@@ -1,7 +1,7 @@
 {
     watchdogFrequency: "5m",
     name: "SAMAvailability",
-    sql: "select 'NONE' as SuperPod, 'global' as Estate, 'GLOBAL' as Kingdom, 'sql.PoolKingdomCount' as Metric, COUNT(*) as Value, 'NONE' as Tags
+    sql: "select 'NONE' as SuperPod, 'global' as Estate, 'GLOBAL' as Kingdom, 'sql.PoolKingdomCount' as Metric, COUNT(*) as Value, 'status=overallAvailability' as Tags
                     from (
                     	select Kingdom,
                     		json_unquote(json_extract(`Payload`, '$.spec.affinity.nodeAffinity.requiredDuringSchedulingIgnoredDuringExecution.nodeSelectorTerms[0].matchExpressions[0].values[0]')) as MinionPool
@@ -16,7 +16,7 @@
                     ) ss2
                     ON ss1.MinionPool = ss2.MinionPool AND ss1.Kingdom = ss2.Kingdom
                     union all
-                    select 'NONE' as SuperPod, 'global' as Estate, 'GLOBAL' as Kingdom, 'sql.available.PoolKingdomCount' as Metric, COUNT(*) as Value, 'NONE' as Tags
+                    select 'NONE' as SuperPod, 'global' as Estate, 'GLOBAL' as Kingdom, 'sql.available.PoolKingdomCount' as Metric, COUNT(*) as Value, 'status=overallAvailability' as Tags
                     FROM
                     (select kingdom,
                       	SUM(CASE WHEN Phase = 'Running' THEN 1 ELSE 0 END) as Running,
