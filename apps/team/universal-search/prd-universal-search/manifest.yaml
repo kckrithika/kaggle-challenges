@@ -118,6 +118,9 @@ system:
     - name: synthetics-log-vol
       hostpath:
         path: /home/sfdc-usmt/logs
+    - name: server-cert-vol
+      maddogCert:
+        type: server
     - name: client-cert-vol
       maddogCert:
         type: client
@@ -167,6 +170,8 @@ system:
       - containerPort: 15373
         name: sherpa-adm
       volumeMounts:
+      - name: server-cert-vol
+        mountPath: /server-certs
       - name: client-cert-vol
         mountPath: /client-certs
       - name: sherpa-log-vol
