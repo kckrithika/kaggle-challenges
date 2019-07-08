@@ -2,7 +2,7 @@ local configs = import "config.jsonnet";
 local samimages = (import "samimages.jsonnet") + { templateFilename:: std.thisFile };
 local utils = import "util_functions.jsonnet";
 
-if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" || configs.estate == "prd-sam" || configs.estate == "prd-samtwo" then {
+if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" || configs.estate == "prd-sam" || configs.estate == "prd-samtwo" || configs.estate == "prd-data-flowsnake" then {
     data: {
         "backup.cnf": |||
         # Apply this config only on backup system
@@ -649,7 +649,7 @@ if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" || configs.
             app: "mysql-inmem",
         },
         name: "mysql-inmem",
-        namespace: "sam-system",
+        namespace: if configs.estate == "prd-data-flowsnake" then "flowsnake" else "sam-system",
     },
     apiVersion: "v1",
 } else "SKIP"

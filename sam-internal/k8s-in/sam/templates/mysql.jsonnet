@@ -15,8 +15,8 @@ if configs.estate == "prd-sam" || configs.estate == "prd-samdev" || configs.esta
                     sam_function: "mysql-pure-cache",
                     sam_loadbalancer: "mysql-pure-cache",
                 },
-                name: "mysql-pure-cache",
-                namespace: "sam-system",
+                name: if configs.estate == "prd-data-flowsnake" then "mysql" else "mysql-pure-cache",
+                namespace: if configs.estate == "prd-data-flowsnake" then "flowsnake" else "sam-system",
             },
             spec: {
               podManagementPolicy: "OrderedReady",

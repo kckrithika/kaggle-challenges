@@ -19,7 +19,7 @@ if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" || configs.
                     app: "mysql-pure-cache",
                 },
                 name: "mysql-inmem-read",
-                namespace: "sam-system",
+                namespace: if configs.estate == "prd-data-flowsnake" then "flowsnake" else "sam-system",
             },
             spec: {
                 ports: [
