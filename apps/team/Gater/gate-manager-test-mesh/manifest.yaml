@@ -29,6 +29,8 @@ system:
       env:
       - name: SFDC_ENVIRONMENT
         value: blitz
+      - name: STANDARD_OPTS
+        value: "-agentpath:/Applications/YourKit-Java-Profiler-2019.1.app/Contents/Resources/bin/mac/libyjpagent.jnilib=delay=60000,disablej2ee,builtinprobes=none,disableexceptiontelemetry,port=10001 -disableassertions"
       volumeMounts:
       - mountPath: /log
         name: logvol
