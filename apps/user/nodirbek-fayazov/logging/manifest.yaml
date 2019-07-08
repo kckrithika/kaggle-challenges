@@ -76,7 +76,7 @@ system:
       # GID service
       #####################################################################################
       - name: gid-service
-        image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/nfayazov/gid-service:02b5b24
+        image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/nfayazov/gid-service:546735d
         imagePullPolicy: Always
         env:
           - name: server_port
