@@ -46,6 +46,9 @@ system:
         - mountPath: /mysql-secrets/
           name: mysql-credentials
           readOnly: true
+        - mountPath: /warden-secrets/gus-secrets/
+          name: gus-credentials
+          readOnly: true
         livenessProbe:
           httpGet:
             path: /manage/health
@@ -81,6 +84,9 @@ system:
       - name: mysql-credentials
         k4aSecret:
           secretName: mysql-secrets
+      - name: gus-credentials
+        k4aSecret:
+          secretName: gus-secrets
 
     loadbalancers:
     - lbname: warden
