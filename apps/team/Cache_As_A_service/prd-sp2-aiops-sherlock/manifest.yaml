@@ -53,10 +53,10 @@ system:
     volumes:
       - name: sherlock-data-vol
         hostPath:
-          path: /data/sherlock
+          path: /cowdata/sherlock
       - name: sherlock-logs-vol
         hostPath:
-          path: /data/sherlock-logs
+          path: /cowdata/sherlock-logs
       - name: argus-secrets-vol
         k4aSecret:
           secretName: argus-secrets
