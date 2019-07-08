@@ -4,13 +4,11 @@ system:
   functions:
   - name: prod-debugger
     count: 1
-
     containers:
-
       - name: prod-debugger
-        image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/kfoster/prod-debugger:05072019
+        image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/kfoster/prod-debugger:20190807-1337
         ports:
-          - containerPort: 22
+          - containerPort: 2022
         livenessProbe:
           exec:
             command:
