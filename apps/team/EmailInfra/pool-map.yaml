@@ -4,8 +4,6 @@ apps:
     - prd/prd-sam
   eaas-gcp: # pod for GCP devMVP deployment
     - mvp/gsf-core-devmvp-sam2-sam
-  eaas-aws: # pod for AWS deployment
-    - aws-us-west-2/aws-us-west-2-processing
   eaas-prod: #- Prod configuration
     - dfw/dfw-sam_eaas
     - phx/phx-sam_eaas
@@ -15,5 +13,3 @@ apps:
     - prd/prd-sam
   grpc-client-gcp: # pod for GCP devMVP deployment
     - mvp/gsf-core-devmvp-sam2-sam
-  grpc-client-aws: # pod for AWS deployment
-    - aws-us-west-2/aws-us-west-2-processing
