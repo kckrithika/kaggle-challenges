@@ -68,6 +68,10 @@ data:
         "illumio_ven/.*Agent": "age.illumio.Agent",
         "name=etcd": "age.etcd"
       },
+      "node-endpoints": {
+        "maddog": "https://all.pkicontroller.pki.blank.prd.prod.non-estates.sfdcsd.net:8443"
+      },
+      "nodeUpdateWindow": "1h",
       "publishToWatchDogCrd": true,
       "rcImtEndpoint": "https://reportcollector-prd.data.sfdc.net:18443/v1/bark",
       "recipient": "",
