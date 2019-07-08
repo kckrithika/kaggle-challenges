@@ -11,6 +11,11 @@ system:
     containers:
     - name: pptest-service
       image:  ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/ameesala/rptest:0.2
+      env:
+        - name: http_proxy
+          value: "http://public0-proxy1-0-prd.data.sfdc.net:8080"
+        - name: https_proxy
+          value: "http://public0-proxy1-0-prd.data.sfdc.net:8080"
       volumeMounts:
       - name: cert
         mountPath: /client-certs
