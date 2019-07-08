@@ -88,7 +88,7 @@ system:
       volumeMounts:
       - {mountPath: /home/datapool/logs, name: logvol}
       - {mountPath: /home/datapool/client-certs, name: tls-client-certs}
-    count: 0
+    count: 3
     hostnetwork: false
     identity: {serviceName: datapool}
     name: jobcontroller-group2
