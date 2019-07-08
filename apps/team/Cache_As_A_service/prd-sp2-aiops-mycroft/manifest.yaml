@@ -4,12 +4,13 @@ system:
     email:
       - aborra@salesforce.com
       - rpothana@salesforce.com
+      - ggopalakrishnan@salesforce.com
   functions:
   - name: mycroft
     count: 1
     containers:
     - name: mycroft
-      image: dva/casp/mycroft_strata:jenkins-CASP-mycroft-master-19-itest
+      image: dva/casp/mycroft_strata:jenkins-CASP-mycroft-master-20-itest
       ports:
       - name: http
         containerPort: 5555
