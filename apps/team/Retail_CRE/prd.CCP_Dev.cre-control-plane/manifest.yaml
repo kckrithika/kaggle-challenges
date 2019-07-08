@@ -13,13 +13,13 @@ system:
       "routing.mesh.sfdc.net/enabled": "true"
     containers:
     - name: cre-control-plane-ccp-dev
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cre-fusion/services/control-plane:1.9.0.0.eb_offset_demo.4b091e4.7
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cre-fusion/services/control-plane:1.9.0.0.develop.3a3ca86.121
       env:
         ####################################################################################################
         ############################   ENGINE/DDS FLOWSNAKE ARTIFACTS ( Most frequently changed ) ##########
         ####################################################################################################
-        - name: IMPORT_FLOWSNAKE_ARTIFACT
-          value: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cre/cre-engine:1.8.0.0.release.aa0e2f1.12
+        - name: INGEST_FLOWSNAKE_ARTIFACT
+          value: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cre/cre-engine:1.9.0.0.sshi-fixstatus.1326346.4
         - name: SAVE_FLOWSNAKE_ARTIFACT
           value: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cre/cre-dds-spark:1.8.0-freeze-001.0.release-1.8.4ca9a1a.7
         - name: EXPORT_FLOWSNAKE_ARTIFACT
@@ -27,6 +27,8 @@ system:
         ####################################################################################################
         ####################################### GLOBAL SHARED VALUES #######################################
         ####################################################################################################
+        - name: CONTROL_PLANE_ENDPOINT
+          value: http://cre-control-plane-ccp-dev.retail-cre.localhost.mesh.force.com:5442
         - name: SFDC_ENVIRONMENT
           value: ccp-dev
           ## KAFKA
@@ -45,13 +47,13 @@ system:
           value: prd
           ## FLOWSNAKE
         - name: MAX_FLOWSNAKE_ENVIRONMENTS
-          value: 25
+          value: 30
         ####################################################################################################
         ####################################### IMPORT environment variables ###############################
         ####################################################################################################
-        - name: IMPORT_CRE_APPLICATION_NAME
+        - name: INGEST_CRE_APPLICATION_NAME
           value: cre-engine-ccp-func
-        - name: IMPORT_K4A_VAULT
+        - name: INGEST_K4A_VAULT
           value: cre-engine-dev
         ####################################################################################################
         ####################################### SAVE environment variables ###############################
