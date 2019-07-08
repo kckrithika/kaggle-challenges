@@ -45,6 +45,9 @@ system:
         - mountPath: /warden-secrets/argus-secrets/
           name: argus-secrets
           readOnly: true
+        - mountPath: /warden-secrets/gus-secrets/
+          name: gus-credentials
+          readOnly: true
         livenessProbe:
           httpGet:
             path: /manage/health
@@ -75,6 +78,9 @@ system:
       - name: argus-secrets
         k4aSecret:
           secretName: argus-secrets
+      - name: gus-credentials
+        k4aSecret:
+          secretName: gus-secrets
 
     loadbalancers:
     - lbname: warden-stage-node
