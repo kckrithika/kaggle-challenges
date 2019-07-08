@@ -28,10 +28,8 @@ system:
         value: "15523"
       - name: JVM_ARGS
         value: -Ddatabase.name=metadataservice_perf_test5 -Djwt-validation.enabled=false
-          -verbose:gc -XX:+PrintGCDateStamps -XX:+PrintHeapAtGC -XX:+PrintPromotionFailure
-          -XX:+PrintTenuringDistribution -XX:+PrintGCDetails -XX:+PrintGCDateStamps
-          -XX:+PrintGCApplicationStoppedTime -XX:+PrintGCApplicationConcurrentTime
-          -XX:+PrintGCCause -XX:+DisableExplicitGC -Xloggc:/home/sfdc-mds/logs/verbosegc_$(FUNCTION_INSTANCE_NAME).log
+          -verbose:gc -Xlog:gc+heap=trace -Xlog:gc* -Xlog:age*=info -Xlog:safepoint
+          -XX:+DisableExplicitGC -Xloggc:/home/sfdc-mds/logs/verbosegc_$(FUNCTION_INSTANCE_NAME).log
           -XX:+HeapDumpOnOutOfMemoryError  -XX:HeapDumpPath=/home/scone/logs/dfs -Dcom.sun.management.jmxremote.port=8898
           -Dcom.sun.management.jmxremote.rmi.port=8898 -Dcom.sun.management.jmxremote.ssl=false
           -Dcom.sun.management.jmxremote.authenticate=false -Xmx2G -Xms2G -XX:ParallelGCThreads=8
