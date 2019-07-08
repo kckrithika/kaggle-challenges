@@ -3,7 +3,7 @@ apiVersion: v1
 system:
   functions:
   - name: with-nginx-only
-    count: 3
+    count: 1
     strategy:
       type: RollingUpdate
       rollingUpdate:
