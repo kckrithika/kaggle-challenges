@@ -9,7 +9,7 @@ system:
     hostnetwork: true
     containers:
     - name: gater1
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/gater/gate-manager:1.14.1-SNAPSHOT_20190708_10_7b43201
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/dmanoharan/gater-psc:dmanoharan-20190626A
       args:
       - --server.port=9090
       - --logging.evaluator.level=ALWAYS_LOG
@@ -28,8 +28,6 @@ system:
       env:
       - name: SFDC_ENVIRONMENT
         value: blitz
-      - name: STANDARD_OPTS
-        value: "-agentpath:/Applications/YourKit-Java-Profiler-2019.1.app/Contents/Resources/bin/mac/libyjpagent.jnilib=delay=60000,disablej2ee,builtinprobes=none,disableexceptiontelemetry,port=10001 -disableassertions"
       volumeMounts:
       - mountPath: /log
         name: logvol
