@@ -1,11 +1,11 @@
 apiVersion: v1
 system:
   functions:
-  - name: syncmaster
-    count: 1
+  - name: archival-worker
+    count: 3
     containers:
-    - name: syncmaster
-      image: dva/winterfell-syncmaster:12-eef446808dd6832f7b655a2dc306455dd53376e6
+    - name: archival-worker
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/j-zoch/sdb-archival-worker:samify
       env:
       - name: SFDC_ENVIRONMENT
         value: prod
@@ -14,10 +14,12 @@ system:
       - name: DC
         value: $(KINGDOM)
       - name: SPRING_PROFILES_ACTIVE 
-        value: dc.$(KINGDOM),sam,oracle
+        value: dc.$(KINGDOM),sam
+      - name: DISCOVERY_NAMESPACE
+        value: user-j-zoch.samapp
+      - name: SERVER_PORT
+        value: 7022
       ports:
-      - containerPort: 7020
-        name: grpc
       - containerPort: 7022
         name: http
       - containerPort: 15372
@@ -38,13 +40,35 @@ system:
           mountPath: /client-certs
         - name: tls-server-cert
           mountPath: /server-certs
+    - name: db
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/j-zoch/postgres:9.6
+      env:
+      - name: POSTGRES_PASSWORD
+        value: docker
+      - name: POSTGRES_DB
+        value: dp
+      - name: POSTGRES_USER
+        value: scone
+      - name: PGDATA
+        value: /home/scone/postgresql/data/pgdata
+      ports:
+      - containerPort: 5432
+      livenessProbe:
+        exec:
+          command:
+            - pg_isready
+        initialDelaySeconds: 90
+      readinessProbe:
+        exec:
+          command:
+            - pg_isready
+        initialDelaySeconds: 90
+      terminationMessagePolicy: FallbackToLogsOnError
 
     # mTLS container s
     - name: sherpa
       image: sfci/servicelibs/sherpa-envoy:1.0.8
       ports:
-      - containerPort: 7443
-        name: http2-tls-in
       - containerPort: 7442
         name: http1-tls-in
       - containerPort: 15373
@@ -79,7 +103,7 @@ system:
         requests: { cpu: "1", memory: "1Gi" }
       args:
       - -endpoint
-      - $(FUNCTION_NAMESPACE)/$(FUNCTION):DATACENTER_ALLENV:HTTP2_TLS
+      - samapp/$(FUNCTION_NAMESPACE)/$(FUNCTION):DATACENTER_ALLENV:HTTP2_TLS
       livenessProbe:
         exec:
           command:
@@ -96,16 +120,16 @@ system:
         type: server
 
   loadbalancers:
-  - lbname: syncmaster-lb
-    function: syncmaster
+  - lbname: archival-worker-lb
+    function: archival-worker
     slbEnabled: true
     ports:
       - port: 8080
         targetport: 7022
       - port: 15372
         targetport: 15372
-      - port: 7443
-        targetport: 7020
+      - port: 5432
+        targetport: 5432
 
 
 

@@ -1,11 +1,11 @@
 apiVersion: v1
 system:
   functions:
-  - name: syncmaster
+  - name: archival-worker
     count: 1
     containers:
-    - name: syncmaster
-      image: dva/winterfell-syncmaster:12-eef446808dd6832f7b655a2dc306455dd53376e6
+    - name: archival-worker
+      image: dva/winterfell-sync:19-e89ef4c30b0ab2a0cd7fcf62238533c278dbe782 
       env:
       - name: SFDC_ENVIRONMENT
         value: prod
@@ -96,8 +96,8 @@ system:
         type: server
 
   loadbalancers:
-  - lbname: syncmaster-lb
-    function: syncmaster
+  - lbname: archival-worker-lb
+    function: archival-worker
     slbEnabled: true
     ports:
       - port: 8080
