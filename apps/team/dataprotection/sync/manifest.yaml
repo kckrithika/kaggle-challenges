@@ -5,7 +5,7 @@ system:
     count: 5
     containers:
     - name: sync
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/j-zoch/winterfell-sync:develop
+      image: dva/winterfell-sync:19-e89ef4c30b0ab2a0cd7fcf62238533c278dbe782
       env:
       - name: DC
         value: $(KINGDOM)
