@@ -58,6 +58,7 @@ spec:
         - -alertThreshold=300s
         - --config=/config/watchdog.json
         - --hostsConfigFile=/sfdchosts/hosts.json
+        - -watchDogKind=DaemonSet
         env:
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig-platform

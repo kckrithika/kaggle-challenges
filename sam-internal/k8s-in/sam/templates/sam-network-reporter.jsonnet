@@ -48,6 +48,7 @@ configs.daemonSetBase("sam") {
                                 "-alertThreshold=300s",
                                 "--config=/config/watchdog.json",
                                 "--hostsConfigFile=/sfdchosts/hosts.json",
+                                "-watchDogKind=" + $.kind,
                             ],
                             volumeMounts+: [
                                 configs.sfdchosts_volume_mount,
