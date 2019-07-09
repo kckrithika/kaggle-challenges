@@ -47,8 +47,6 @@ system:
           ports:
           - containerPort: 15373
             name: sherpa-adm
-          - containerPort: 2012
-            name: tcp-out
           resources:
             limits: { cpu: "1", memory: "1Gi" }
             requests: { cpu: "1", memory: "1Gi" }
@@ -95,7 +93,10 @@ system:
 
     - name: cs55-qpid
       type: stateful-set
-      count: 2
+      count: 1
+      identity:
+        serviceName: qpid
+        pod: cs55
       containers:
         - name: qpid-broker-runtime
           image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/vijay-kota/myenvoy:Jul19
@@ -141,7 +142,8 @@ system:
             - samapp/$(FUNCTION_NAMESPACE)/$(FUNCTION)-http:DATACENTER_ALLENV:7014
             # samapp/$(FUNCTION_NAMESPACE)/$(FUNCTION)-https:DATACENTER_ALLENV:7442
             - -endpoint
-            - samapp/$(FUNCTION_NAMESPACE)/$(FUNCTION):DATACENTER_ALLENV:2010
+            - qpid/$(FUNCTION_INSTANCE_NAME):POD:2010
+            # samapp/$(FUNCTION_NAMESPACE)/$(FUNCTION):DATACENTER_ALLENV:2010
           env:
             - name: SFDC_ENVIRONMENT
               value: sam
@@ -235,15 +237,15 @@ system:
           initialDelaySeconds: 15
           timeoutSeconds: 10
         ports:
-        - containerPort: 12082
+        - containerPort: 12028
         env:
          - name: HTTP_PORT
-           value: 12082
+           value: 12028
       - name: beacon-caas
         image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/servicemesh/beacon:1.0.0
         args:
         - -endpoint
-        - caas/caas-cluster-1:POD:12081
+        - caas/caas-cluster-1:POD:12027
         livenessProbe:
           initialDelaySeconds: 5
           exec:
@@ -260,7 +262,7 @@ system:
       - name: sherpa-caas
         image: sfci/servicelibs/sherpa-envoy:1.0.7
         ports:
-        - containerPort: 12081
+        - containerPort: 12027
         - containerPort: 15373
         env:
         - name: SFDC_ENVIRONMENT
