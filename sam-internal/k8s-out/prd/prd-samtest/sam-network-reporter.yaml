@@ -84,7 +84,7 @@ spec:
         - mountPath: /data/certs
           name: certs
         - mountPath: /config
-          name: config
+          name: watchdogconfig
       volumes:
       - hostPath:
           path: /etc/pki_service
@@ -103,7 +103,7 @@ spec:
         name: config
       - configMap:
           name: watchdog
-        name: config
+        name: watchdogconfig
   updateStrategy:
     rollingUpdate:
       maxUnavailable: 25%
