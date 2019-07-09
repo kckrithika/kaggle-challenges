@@ -16,7 +16,7 @@ system:
     count: 1
     containers:
     - name: scheduler-service
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/rakella/samhello:rakella-09072019 # golang app
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/rakella/rakella-09072019:latest # golang app
       ports:
       - containerPort: 6001
       livenessProbe:
