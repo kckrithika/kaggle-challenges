@@ -69,7 +69,5 @@ system:
     ports:
       - port: 5555
         targetport: 5555
-      - port: 443
+      - port: 80
         targetport: 5000
-        lbtype: http
-        tls: true
