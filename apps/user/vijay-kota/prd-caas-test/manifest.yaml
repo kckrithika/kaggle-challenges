@@ -246,7 +246,7 @@ system:
           image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/servicemesh/beacon:1.0.0
           args:
           - -endpoint
-          - caas/$(FUNCTION):POD:12027
+          - caas/caas-cluster-1:POD:12027
           livenessProbe:
             initialDelaySeconds: 5
             exec:
@@ -327,7 +327,7 @@ system:
           image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/servicemesh/beacon:1.0.0
           args:
           - -endpoint
-          - caas/$(FUNCTION):POD:2087
+          - caas/caas-pc:POD:2087
           livenessProbe:
             initialDelaySeconds: 5
             exec:
