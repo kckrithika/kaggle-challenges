@@ -2,6 +2,8 @@
 local utils = import "util_functions.jsonnet";
 local configs = import "config.jsonnet";
 local mesh_namespaces = ["app", "service-mesh", "gater", "ccait", "core-on-sam-sp2", "core-on-sam", "casam", "emailinfra", "universal-search", "search-scale-safely", "retail-cre", "retail-dfs", "retail-dss", "cloudatlas", "retail-eventlistener", "retail-mds", "retail-rrps", "retail-rsui", "retail-setup"];
+local sherpa_utils = import "service-mesh/sherpa-injector/sherpa_utils.jsonnet";
+
 {
   apiVersion: "v1",
   metadata: {
@@ -16,7 +18,7 @@ local mesh_namespaces = ["app", "service-mesh", "gater", "ccait", "core-on-sam-s
       metadata: {
         labels: {
           "istio-injection": "enabled",
-        } + (if namespace == "service-mesh" then
+        } + (if namespace == "service-mesh" && sherpa_utils.is_sherpa_injector_test_cluster(configs.estate) then
           { "sherpa-injection": "enabled" } else {})
         +
         // samlabelfilter.json requires this label to be present on GCP deployments
