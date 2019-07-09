@@ -54,6 +54,8 @@ configs.daemonSetBase("sam") {
                                 configs.sfdchosts_volume_mount,
                                 configs.cert_volume_mount,
                                 configs.watchdog_volume_mount,
+                                configs.kube_config_volume_mount,
+                                configs.cert_volume_mount,
                             ],
                             env+: [
                                 {
@@ -86,6 +88,8 @@ configs.daemonSetBase("sam") {
                     },
                 ] + (
                     if configs.estate == "prd-samtest" then [
+                        configs.kube_config_volume,
+                        configs.cert_volume,
                         {
                             configMap: {
                                 name: "watchdog",
