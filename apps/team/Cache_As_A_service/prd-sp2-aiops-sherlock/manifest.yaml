@@ -31,6 +31,8 @@ system:
           value: 'info'
         - name: FLOWER_LOG_LEVEL
           value: 'info'
+        - name: SHERLOCK_LOG_LEVEL
+          value: 'info'
         - name: MY_SAM_HOST_NAME
           valueFrom:
             fieldRef:
