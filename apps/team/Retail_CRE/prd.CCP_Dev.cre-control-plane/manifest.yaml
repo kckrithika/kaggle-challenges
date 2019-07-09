@@ -28,7 +28,7 @@ system:
         ####################################### GLOBAL SHARED VALUES #######################################
         ####################################################################################################
         - name: CONTROL_PLANE_ENDPOINT
-          value: http://cre-control-plane-ccp-dev.retail-cre.localhost.mesh.force.com:5442
+          value: http://cre-control-plane-ccp-dev.retail-cre.localhost.mesh.force.com:7442
         - name: SFDC_ENVIRONMENT
           value: ccp-dev
           ## KAFKA
