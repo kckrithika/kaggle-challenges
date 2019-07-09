@@ -215,7 +215,8 @@ system:
               port: 18442
             failureThreshold: 3
             initialDelaySeconds: 60
-            periodSeconds: 10
+            periodSeconds: 30
+            timeoutSeconds: 15
 
       lbname: codecov-headless-lb
 
