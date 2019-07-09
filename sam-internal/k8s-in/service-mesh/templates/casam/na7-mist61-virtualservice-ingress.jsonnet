@@ -121,6 +121,24 @@
         ],
         "timeout" : "1920s"
       }
+    ],
+    "tcp" : [
+    {
+      "match": [{
+         "port": 2525
+      }],
+      "route": [
+        {
+          "destination": {
+            "host": "na7-mist61app-prd",
+            "subset": "blue",
+            "port": {
+             "number": 2525
+           }
+          }
+        }
+      ],
+    }
     ]
   }
 }
