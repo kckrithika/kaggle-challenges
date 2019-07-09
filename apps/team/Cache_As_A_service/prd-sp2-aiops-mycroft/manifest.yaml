@@ -10,7 +10,7 @@ system:
     count: 1
     containers:
     - name: mycroft
-      image: dva/casp/mycroft_strata:jenkins-CASP-mycroft-master-20-itest
+      image: dva/casp/mycroft_strata:jenkins-CASP-mycroft-master-21-itest
       ports:
       - name: http
         containerPort: 5555
