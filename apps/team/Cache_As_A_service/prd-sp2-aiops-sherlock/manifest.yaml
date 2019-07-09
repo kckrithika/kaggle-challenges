@@ -11,7 +11,7 @@ system:
       type: Recreate
     containers:
     - name: sherlock
-      image: dva/casp/sherlock_strata:jenkins-CASP-sherlock-dev-53-itest
+      image: dva/casp/sherlock_strata:jenkins-CASP-sherlock-dev-55-itest
       ports:
       - name: flower-http
         containerPort: 5555
@@ -67,5 +67,7 @@ system:
     ports:
       - port: 5555
         targetport: 5555
-      - port: 80
+      - port: 443
         targetport: 5000
+        lbtype: http
+        tls: true
