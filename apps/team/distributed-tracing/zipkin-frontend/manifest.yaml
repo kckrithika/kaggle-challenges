@@ -56,6 +56,8 @@ system:
         value: es-test-distributed-tracing-prd.slb.sfdc.net:9200
       - name: ZIPKIN_ARGS
         value: --logging.level.zipkin=DEBUG --logging.level.zipkin2=DEBUG
+      - name: ES_TIMEOUT
+        value: 45000
       resources:
          # forcing the pods to different hosts (each has 56 CPU)
         limits: { cpu: "30", memory: "12Gi" }
