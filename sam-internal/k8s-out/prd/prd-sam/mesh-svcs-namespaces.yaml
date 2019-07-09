@@ -11,7 +11,6 @@ items:
   metadata:
     labels:
       istio-injection: enabled
-      sherpa-injection: enabled
     name: service-mesh
 - apiVersion: v1
   kind: Namespace
