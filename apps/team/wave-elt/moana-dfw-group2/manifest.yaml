@@ -1,13 +1,12 @@
-
 #
 # Generated manifest
-# DO NOT MODIFY - See https://git.soma.salesforce.com/insights/moana-release
+# DO NOT MODIFY - See https://git.soma.salesforce.com/insights/DataPoolService/tree/master/release-scripts
 #
 apiVersion: v1
 system:
   functions:
   - containers:
-    - image: ops0-artifactrepo1-0-dfw.data.sfdc.net/sfci/insights/moanaengine:release-1.0.14-061a946
+    - image: ops0-artifactrepo1-0-dfw.data.sfdc.net/sfci/insights/moanaengine:release-1.0.13-a810d1b
       livenessProbe:
         exec:
           command: [ls]
@@ -31,7 +30,7 @@ system:
       - {name: DEPLOYMENT_ID, value: dfw-group2}
       - {name: HANDLED_PODS_PATTERN, value: 'cs[0-9]+|moana-driver-group1'}
       - {name: HANDLED_PODS_INVERT_MATCH, value: 'true'}
-      image: sfci/insights/moana-driver:release-20-8f7fff2
+      image: sfci/insights/moana-driver:release-18-ed0c01d
       livenessProbe:
         httpGet: {path: /manage/health, port: 15372}
         initialDelaySeconds: 30
@@ -59,7 +58,7 @@ system:
       - {name: MANAGEMENT_SERVER_PORT, value: '15372'}
       - {name: LOGGING_JSON_STDOUT_LEVEL, value: ALL}
       - {name: LOGGING_STDERR_LEVEL, value: ALL}
-      - {name: MOANA_SPARK_ENGINE_IMAGE, value: 'ops0-artifactrepo1-0-dfw.data.sfdc.net/sfci/insights/moanaengine:release-1.0.14-061a946'}
+      - {name: MOANA_SPARK_ENGINE_IMAGE, value: 'ops0-artifactrepo1-0-dfw.data.sfdc.net/sfci/insights/moanaengine:release-1.0.13-a810d1b'}
       - {name: KAFKA_GROUP_ID, value: moana-jobcontroller-group2}
       - {name: K8S_SPARK_OVERRIDES, value: '{"spark.eventLog.enabled": "false", "spark.executor.extraJavaOptions":
           "-XX:MaxDirectMemorySize=256M -XX:ReservedCodeCacheSize=128M -XX:MaxMetaspaceSize=128M
@@ -74,7 +73,7 @@ system:
       - {name: STARTUP_JOB_ENABLED, value: 'false'}
       - {name: HANDLED_PODS_PATTERN, value: 'cs[0-9]+|moana-driver-group1'}
       - {name: HANDLED_PODS_INVERT_MATCH, value: 'true'}
-      image: sfci/insights/jobcontroller:release-1.0.17-b91d204
+      image: sfci/insights/jobcontroller:release-1.0.15-9ace82d
       livenessProbe:
         httpGet: {path: /manage/health, port: 15372}
         initialDelaySeconds: 90
