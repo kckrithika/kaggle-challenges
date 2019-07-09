@@ -432,6 +432,10 @@ local utils = import "util_functions.jsonnet",
         mountPath: "/config",
         name: "config",
     },
+    watchdog_volume_mount: {
+        mountPath: "/config",
+        name: "watchdogconfig",
+    },
     config_volume(configMap):: {
         name: "config",
         configMap: {

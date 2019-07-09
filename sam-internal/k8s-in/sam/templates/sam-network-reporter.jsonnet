@@ -52,7 +52,7 @@ configs.daemonSetBase("sam") {
                             volumeMounts+: [
                                 configs.sfdchosts_volume_mount,
                                 configs.cert_volume_mount,
-                                configs.config_volume_mount,
+                                configs.watchdog_volume_mount,
                             ],
                             env+: [
                                 {
@@ -89,7 +89,7 @@ configs.daemonSetBase("sam") {
                             configMap: {
                                 name: "watchdog",
                             },
-                            name: "config",
+                            name: "watchdogconfig",
                         },
                     ] else []
                 ),
