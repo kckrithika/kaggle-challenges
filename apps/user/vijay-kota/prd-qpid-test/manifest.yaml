@@ -297,10 +297,10 @@ system:
         maddogCert:
           type: server            
 
-    - name: cs55-caas2
+    - name: cs55-caas-pc
       count: 1
       identity:
-        serviceName: caas2
+        serviceName: caas
         pod: cs55
       containers:
         - name: caas
@@ -325,7 +325,7 @@ system:
           image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/servicemesh/beacon:1.0.0
           args:
           - -endpoint
-          - caas/caas-cluster-1:POD:12087
+          - caas/caas-pc:POD:12087
           livenessProbe:
             initialDelaySeconds: 5
             exec:
