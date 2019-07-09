@@ -52,15 +52,9 @@ if sherpa_utils.is_sherpa_injector_dev_cluster(configs.estate) then
       ],
       failurePolicy: "Ignore",  //TODO: Set to "Fail", when the code/configs are stable
       namespaceSelector: {
-        matchExpressions: [
-          {
-            key: "sherpa-injector.service-mesh/inject",
-            operator: "NotIn",
-            values: [
-              "disabled",
-            ],
-          },
-        ],
+        matchLabels: {
+          "sherpa-injection": "enabled",
+        },
       },
     },
   ],
