@@ -138,11 +138,11 @@ system:
         - name: beacon-qpid
           image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/servicemesh/beacon:1.0.0
           args:
-            - -endpoint
-            - samapp/$(FUNCTION_NAMESPACE)/$(FUNCTION)-http:DATACENTER_ALLENV:7014
+            # -endpoint
+            # samapp/$(FUNCTION_NAMESPACE)/$(FUNCTION)-http:DATACENTER_ALLENV:7014
             # samapp/$(FUNCTION_NAMESPACE)/$(FUNCTION)-https:DATACENTER_ALLENV:7442
             - -endpoint
-            - qpid/$(FUNCTION_INSTANCE_NAME):POD:2010
+            - qpid/caas-qpid:POD:2010
             # samapp/$(FUNCTION_NAMESPACE)/$(FUNCTION):DATACENTER_ALLENV:2010
           env:
             - name: SFDC_ENVIRONMENT
@@ -217,87 +217,6 @@ system:
         - name: beacon-log-volume
           hostPath:
             path: /home/sfdc-beacon/logs
-
-    - name: cs66-caas
-      count: 1
-      identity:
-        serviceName: caas
-        pod: cs66
-      containers:
-        - name: caas
-          image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/vijay-kota/myenvoy:Jul19
-          resources:
-            limits: { memory: "8G" }
-            requests: { memory: "8G" }
-          command: ["/usr/bin/python"]
-          args: ["/home/sfdc-sherpa/myscripts/myqpid.py"]
-          livenessProbe:
-            exec:
-              command: ["/bin/true"]
-            initialDelaySeconds: 15
-            timeoutSeconds: 10
-          ports:
-          - containerPort: 12028
-          env:
-           - name: HTTP_PORT
-             value: 12028
-
-        - name: beacon-caas
-          image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/servicemesh/beacon:1.0.0
-          args:
-          - -endpoint
-          - caas/caas-cluster-1:POD:12027
-          livenessProbe:
-            initialDelaySeconds: 5
-            exec:
-              command:
-                - "/home/scone/is-alive.sh"
-          env:
-           - name: SFDC_ENVIRONMENT
-             value: mesh
-          resources:
-            limits: { memory: "500M" }
-            requests: { memory: "500M" }
-
-        - name: sherpa-caas
-          image: sfci/servicelibs/sherpa-envoy:1.0.7
-          ports:
-          - containerPort: 12027
-          - containerPort: 15373
-          env:
-          - name: SFDC_ENVIRONMENT
-            value: mesh
-          resources:
-            limits:
-              cpu: "1"
-              memory: 1Gi
-            requests:
-              cpu: "1"
-              memory: 1Gi
-          volumeMounts:
-          - mountPath: /client-certs
-            name: tls-client-cert
-          - mountPath: /server-certs
-            name: tls-server-cert
-          livenessProbe:
-            exec:
-              command:
-              - ./bin/is-alive
-            initialDelaySeconds: 20
-            periodSeconds: 5
-          readinessProbe:
-            exec:
-              command:
-              - ./bin/is-ready
-            initialDelaySeconds: 15
-            periodSeconds: 5
-      volumes:
-        - name: tls-client-cert
-          maddogCert:
-            type: client
-        - name: tls-server-cert
-          maddogCert:
-            type: server            
 
     - name: cs66-caas-pc
       count: 1
