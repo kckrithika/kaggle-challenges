@@ -1,13 +1,12 @@
-
 #
 # Generated manifest
-# DO NOT MODIFY - See https://git.soma.salesforce.com/insights/moana-release
+# DO NOT MODIFY - See https://git.soma.salesforce.com/insights/DataPoolService/tree/master/release-scripts
 #
 apiVersion: v1
 system:
   functions:
   - containers:
-    - image: ops0-artifactrepo1-0-par.data.sfdc.net/sfci/insights/moanaengine:release-1.0.14-061a946
+    - image: ops0-artifactrepo1-0-par.data.sfdc.net/sfci/insights/moanaengine:release-1.0.13-a810d1b
       livenessProbe:
         exec:
           command: [ls]
