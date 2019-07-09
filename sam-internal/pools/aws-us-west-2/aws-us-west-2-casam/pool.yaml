@@ -6,7 +6,6 @@
 access:
   - 'team/CSC_Sam'
   - 'team/core-on-sam'
-  - 'team/qpid'
   - 'team/solr-service'
 
 # Each pool is managed by a SAM control stack running in one estate
