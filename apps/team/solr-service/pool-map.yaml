@@ -11,7 +11,3 @@ apps:
   - mvp/gsf-core-devmvp-sam2-sam
  search-gcp-test:
   - mvp/gsf-core-devmvp-sam2-sam
- search-aws:
-  - aws-us-west-2/aws-us-west-2-casam
- search-test-aws:
-  - aws-us-west-2/aws-us-west-2-casam
