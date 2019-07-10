@@ -29,3 +29,6 @@ system:
       volumeMounts:
         - name: synthetics-log-vol
           mountPath: /home/sfdc-usmt/logs
+      livenessProbe:
+        exec:
+          command: ["true"]
