@@ -5,7 +5,7 @@ import sys
 import os
 import socket
 
-port = int(os.environ['HTTP_PORT'])
+port = int(os.environ['AMQP_PORT'])
 
 class RequestHandler(BaseHTTPRequestHandler):
     def do_GET(self):

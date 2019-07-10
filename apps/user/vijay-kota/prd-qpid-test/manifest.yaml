@@ -9,15 +9,13 @@ system:
       count: 1
       containers:
         - name: app
-          image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/vijay-kota/myenvoy:Jul19
+          image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/vijay-kota/myenvoy:10Jul19
           command: ["/usr/bin/python"]
           args: ["/home/sfdc-sherpa/myscripts/myapp.py"]
           ports:
             - name: client-port
               containerPort: 12345
           env:
-            - name: HTTP_PORT
-              value: 2012
             - name: CLIENT_PORT
               value: 12345
           resources:
@@ -97,19 +95,18 @@ system:
         pod: cs55
       containers:
         - name: qpid-broker-runtime
-          image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/vijay-kota/myenvoy:Jul19
+          image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/vijay-kota/myenvoy:10Jul19
           command: ["/usr/bin/python"]
           args: ["/home/sfdc-sherpa/myscripts/myqpid.py"]
           ports:
             - name: amqp-port
-              containerPort: 2011
-            - name: http-port
-              containerPort: 7022
+              containerPort: 2021
+            # name: http-port
+            # containerPort: 7022
           env:
             - name: AMQP_PORT
-              value: 2011
-            - name: HTTP_PORT
-              value: 2011
+              value: 2021
+            # name: HTTP_PORT
             # value: 7022
             - name: QPID_JAVA_HEAPSZ
               value: 8g
@@ -138,8 +135,8 @@ system:
             # samapp/$(FUNCTION_NAMESPACE)/$(FUNCTION)-http:DATACENTER_ALLENV:7014
             # samapp/$(FUNCTION_NAMESPACE)/$(FUNCTION)-https:DATACENTER_ALLENV:7442
             - -endpoint
-            - qpid/mq-cluster:POD:2010
-            # samapp/$(FUNCTION_NAMESPACE)/$(FUNCTION):DATACENTER_ALLENV:2010
+            - qpid/mq-cluster2:POD:2020
+            # samapp/$(FUNCTION_NAMESPACE)/$(FUNCTION):DATACENTER_ALLENV:2020
           env:
             - name: SFDC_ENVIRONMENT
               value: mesh
@@ -162,10 +159,10 @@ system:
           ports:
           - containerPort: 15373
             name: sherpa-adm
-          - containerPort: 2010
+          - containerPort: 2020
             name: tcp-in
-          - containerPort: 7014
-            name: http1-in
+          # containerPort: 7014
+          # name: http1-in
           # containerPort: 7442
           # name: http1-tls-in
           resources:
@@ -222,7 +219,7 @@ system:
         pod: cs55
       containers:
         - name: caas
-          image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/vijay-kota/myenvoy:Jul19
+          image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/vijay-kota/myenvoy:10Jul19
           resources:
             limits: { memory: "8G" }
             requests: { memory: "8G" }
@@ -234,16 +231,16 @@ system:
             initialDelaySeconds: 15
             timeoutSeconds: 10
           ports:
-          - containerPort: 12088
+          - containerPort: 12038
           env:
-           - name: HTTP_PORT
-             value: 12088
+           - name: AMQP_PORT
+             value: 12038
 
         - name: beacon-caas
           image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/servicemesh/beacon:1.0.0
           args:
           - -endpoint
-          - caas/caas-pc:POD:12087
+          - caas/caas-pc2:POD:12037
           livenessProbe:
             initialDelaySeconds: 5
             exec:
@@ -259,7 +256,7 @@ system:
         - name: sherpa-caas
           image: sfci/servicelibs/sherpa-envoy:1.0.7
           ports:
-          - containerPort: 12087
+          - containerPort: 12037
           - containerPort: 15373
           env:
           - name: SFDC_ENVIRONMENT
