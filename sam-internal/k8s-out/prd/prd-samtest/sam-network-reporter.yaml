@@ -62,8 +62,6 @@ spec:
         env:
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig-platform
-        - name: KUBECONFIG
-          value: /kubeconfig/kubeconfig-platform
         - name: HOSTNAME
           valueFrom:
             fieldRef:
