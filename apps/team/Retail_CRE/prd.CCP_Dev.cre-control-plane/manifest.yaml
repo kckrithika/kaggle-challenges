@@ -19,7 +19,7 @@ system:
         ############################   ENGINE/DDS FLOWSNAKE ARTIFACTS ( Most frequently changed ) ##########
         ####################################################################################################
         - name: INGEST_FLOWSNAKE_ARTIFACT
-          value: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cre/cre-engine:1.9.0.0.sshi-fixstatus.1326346.4
+          value: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cre/cre-engine:1.9.0.0.sshi_status_fix.1
         - name: SAVE_FLOWSNAKE_ARTIFACT
           value: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cre/cre-dds-spark:1.8.0-freeze-001.0.release-1.8.4ca9a1a.7
         - name: EXPORT_FLOWSNAKE_ARTIFACT
@@ -28,7 +28,7 @@ system:
         ####################################### GLOBAL SHARED VALUES #######################################
         ####################################################################################################
         - name: CONTROL_PLANE_ENDPOINT
-          value: http://cre-control-plane-ccp-dev.retail-cre.localhost.mesh.force.com:7442
+          value: http://cre-control-plane-ccp-dev.retail-cre.localhost.mesh.force.com:5442
         - name: SFDC_ENVIRONMENT
           value: ccp-dev
           ## KAFKA
