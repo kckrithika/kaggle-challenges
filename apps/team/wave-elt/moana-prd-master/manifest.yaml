@@ -110,8 +110,8 @@ system:
     lbname: moana-driver-master
     nodeExposed: true
     ports:
-    - {port: 8081, targetport: 8080}
+    - {port: 8081, targetport: 8080, lbalgorithm: roundrobin}
     slbEnabled: true
-    lbalgorithm: roundrobin
+
   notifications:
     email: [moanaserviceseng@salesforce.com]
