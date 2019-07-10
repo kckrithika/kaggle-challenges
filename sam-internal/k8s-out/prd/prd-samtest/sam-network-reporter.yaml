@@ -54,7 +54,7 @@ spec:
       - command:
         - /sam/watchdog
         - -role=CONNECTIVITYLABELER
-        - -watchdogFrequency=10s
+        - -watchdogFrequency=60s
         - -alertThreshold=300s
         - --config=/config/watchdog.json
         - --hostsConfigFile=/sfdchosts/hosts.json
@@ -62,7 +62,7 @@ spec:
         env:
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig-platform
-        - name: HOSTNAME
+        - name: SFDCLOC_NODE_NAME
           valueFrom:
             fieldRef:
               fieldPath: spec.nodeName

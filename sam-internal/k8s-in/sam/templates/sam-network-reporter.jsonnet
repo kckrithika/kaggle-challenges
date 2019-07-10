@@ -44,7 +44,7 @@ configs.daemonSetBase("sam") {
                             command: [
                                 "/sam/watchdog",
                                 "-role=CONNECTIVITYLABELER",
-                                "-watchdogFrequency=10s",
+                                "-watchdogFrequency=60s",
                                 "-alertThreshold=300s",
                                 "--config=/config/watchdog.json",
                                 "--hostsConfigFile=/sfdchosts/hosts.json",
@@ -57,7 +57,7 @@ configs.daemonSetBase("sam") {
                             ],
                             env+: [
                                 {
-                                    name: "HOSTNAME",
+                                    name: "SFDCLOC_NODE_NAME",
                                     valueFrom: {
                                         fieldRef: {
                                             fieldPath: "spec.nodeName",
