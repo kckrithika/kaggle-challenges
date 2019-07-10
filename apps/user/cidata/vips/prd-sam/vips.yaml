@@ -21,4 +21,11 @@
    - port: 443
      targetport: 443
      lbtype: tcp
+- lbname: coverage-pipeline-petools-jenkins
+  servers:
+   - petools-jenkins.eng.sfdc.net
+  ports:
+   - port: 443
+     targetport: 443
+     lbtype: tcp     
 
