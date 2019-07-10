@@ -18,6 +18,8 @@ system:
       env:
         - name: CELERY_BEAT_LOG_LEVEL
           value: 'info'
+        - name: MYCROFT_ENV
+          value: 'prod'
       livenessProbe:
         exec:
           command:
