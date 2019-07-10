@@ -11,6 +11,9 @@ system:
     - name: synthetics-log-vol
       hostpath:
         path: /home/sfdc-usmt/logs
+    - name: server-cert-vol
+      maddogCert:
+        type: server
     - name: client-cert-vol
       maddogCert:
         type: client
@@ -23,9 +26,6 @@ system:
       env:
       - name: SFDC_ENVIRONMENT
         value: "stmfa"
-      resources:
-        limits: { cpu: "1", memory: "1Gi" }
-        requests: { cpu: "1", memory: "1Gi" }
       volumeMounts:
         - name: synthetics-log-vol
           mountPath: /home/sfdc-usmt/logs
