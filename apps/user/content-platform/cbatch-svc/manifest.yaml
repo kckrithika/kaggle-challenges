@@ -5,7 +5,7 @@ system:
       count: 1
       containers: 
         - name: cbatch-svc
-          image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/cbatch/cbatch-svc:1.16
+          image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/content.platform/cbatch-svc:1.16
           ports:
             - containerPort: 7020
             - containerPort: 15372
@@ -35,16 +35,6 @@ system:
             initialDelaySeconds: 120
             timeoutSeconds: 60
           terminationMessagePolicy: FallbackToLogsOnError
-      volumes:
-        - name: envoy-config-volume
-          emptyDir: {}
-        - name: tls-client-cert
-          maddogCert:
-            type: client
-        - name: tls-server-cert
-          maddogCert:
-            type: server
-
   loadbalancers:
     - lbname: cbatch-svc-lb
       function: cbatch-svc
