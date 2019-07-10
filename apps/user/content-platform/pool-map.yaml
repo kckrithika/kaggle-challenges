@@ -1,3 +1,5 @@
 apps:
   content-platform-jmagick:
     - prd/prd-sam
+  cbatch-svc:
+    - prd/prd-sam
