@@ -32,11 +32,3 @@ system:
       livenessProbe:
         exec:
           command: ["true"]
-      readinessProbe:
-        exec:
-          command:
-          - "/home/sfdc-usmt/run.sh --daemon"
-        initialDelaySeconds: 60
-        timeoutSeconds: 30
-        periodSeconds: 900
-        failureThreshold: 1
