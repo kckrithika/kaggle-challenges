@@ -35,6 +35,8 @@ system:
           value: 'info'
         - name: SHERLOCK_LOG_LEVEL
           value: 'info'
+        - name: SHERLOCK_ENV
+          value: 'prod'
         - name: MY_SAM_HOST_NAME
           valueFrom:
             fieldRef:

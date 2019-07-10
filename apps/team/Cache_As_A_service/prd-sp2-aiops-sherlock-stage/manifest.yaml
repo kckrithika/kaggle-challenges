@@ -13,7 +13,7 @@ system:
       type: Recreate
     containers:
     - name: sherlock-stage
-      image: dva/casp/sherlock_strata:jenkins-CASP-sherlock-dev-53-itest
+      image: dva/casp/sherlock_strata:jenkins-CASP-sherlock-dev-56-itest
       ports:
       - name: flower-http
         containerPort: 5555
@@ -34,6 +34,8 @@ system:
           value: 'info'
         - name: SHERLOCK_LOG_LEVEL
           value: 'info'
+        - name: SHERLOCK_ENV
+          value: 'stage'
         - name: MY_SAM_HOST_NAME
           valueFrom:
             fieldRef:
