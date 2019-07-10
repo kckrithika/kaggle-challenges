@@ -4,11 +4,6 @@ system:
   functions:
   - name: ordering-service
     count: 1
-    labels:
-      app: ordering-service
-    annotations:
-      "sherpa-injector.service-mesh/inject": "enabled"
-      "routing.mesh.sfdc.net/enabled": "true"
     containers:
     - name: ordering
       # Ordering App
@@ -20,7 +15,7 @@ system:
       - name: SFDC_ENVIRONMENT
         value: sconex
       - name: SCONE_SHIPPING_DEST
-        value: shipping-service.scone.svc.mesh.sfdc.net:5443
+        value: shipping-service.scone.localhost.mesh.force.com:5443
       - name: JAVA_HEAP_OPTS
         value: -Xmx64m
       ports:
@@ -60,12 +55,46 @@ system:
       - mountPath: /log
         name: logvolbeacon
 
+    - name: sherpa
+      # https://sconelibci.dop.sfdc.net/job/servicelibs/job/sherpa-envoy/job/master/75
+      image: sfci/servicelibs/sherpa-envoy:7e40ce8be635a6ef46fbc64657af42ab9c39ea65
+      env:
+      - name: SFDC_ENVIRONMENT
+        value: sconex
+      ports:
+      - containerPort: 15373
+        name: sherpa-adm
+      - containerPort: 7443
+        name: h2-tls-in
+      - containerPort: 7012
+        name: grpc-in
+      livenessProbe:
+        exec:
+          command:
+          - ./bin/is-alive
+        initialDelaySeconds: 20
+      readinessProbe:
+        exec:
+          command:
+          - ./bin/is-ready
+        initialDelaySeconds: 15
+      volumeMounts:
+        - name: logvolbeacon
+          mountPath: /log
+        - name: tls-client-cert
+          mountPath: /client-certs
+        - name: tls-server-cert
+          mountPath: /server-certs
+
     # The volumes to mount for shipping logs to splunk and certs
     # General rule is to use path that satisfies the pattern: /home/sfdc-*/logs/**/*.json
     volumes:
     - name: logvolbeacon
       hostPath:
         path: /home/sfdc-scone-ordering-beacon/logs
+    - name: logvolsherpa
+      hostPath:
+        path: /home/sfdc-scone-ordering-sherpa/logs
     - name: tls-client-cert
       maddogCert:
         type: client
