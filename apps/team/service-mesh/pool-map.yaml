@@ -140,3 +140,9 @@ apps:
     - prd/prd-sam_gater
   authz-svc-mvp:
     - mvp/gsf-core-devmvp-sam2-sam
+  authz-svc-prod-1:
+    - par/par-sam_gater
+#    - cdu/cdu-sam_gater
+  authz-svc-prod-2:
+#    - syd/syd-sam_gater
+    - ukb/ukb-sam_gater
