@@ -112,5 +112,6 @@ system:
     ports:
     - {port: 8081, targetport: 8080}
     slbEnabled: true
+    lbalgorithm: roundrobin
   notifications:
     email: [moanaserviceseng@salesforce.com]
