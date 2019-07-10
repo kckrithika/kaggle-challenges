@@ -115,8 +115,10 @@ system:
         - port: 7020
           targetport: 7020
           lbtype: http
-          tls: true
+          #tls: true
           #reencrypt: true
-
-
-
+        - port: 7443
+          targetport: 7443
+          lbtype: http
+          #tls: true
+          #reencrypt: true
