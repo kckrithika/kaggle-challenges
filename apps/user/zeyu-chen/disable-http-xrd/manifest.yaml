@@ -83,6 +83,8 @@ system:
       image: sfci/cloud-atlas/cloudatlas/cloudatlas-service:2.22split2
       command: ["java", "-jar", "cloudatlas-service.jar"]
       env:
+        - name: dummy_var
+          value: false
         - name: server_port
           value: 8083
         - name: management_server_port
