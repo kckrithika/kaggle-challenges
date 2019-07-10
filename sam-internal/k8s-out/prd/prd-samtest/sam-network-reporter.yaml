@@ -86,10 +86,6 @@ spec:
           name: certs
         - mountPath: /config
           name: watchdogconfig
-        - mountPath: /kubeconfig
-          name: kubeconfig
-        - mountPath: /data/certs
-          name: certs
       volumes:
       - hostPath:
           path: /etc/pki_service
@@ -106,12 +102,6 @@ spec:
       - configMap:
           name: sam-network-reporter
         name: config
-      - hostPath:
-          path: /etc/kubernetes
-        name: kubeconfig
-      - hostPath:
-          path: /data/certs
-        name: certs
       - configMap:
           name: watchdog
         name: watchdogconfig
