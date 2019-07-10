@@ -29,7 +29,3 @@ system:
       volumeMounts:
         - name: synthetics-log-vol
           mountPath: /home/sfdc-usmt/logs
-        initialDelaySeconds: 60
-        timeoutSeconds: 30
-        periodSeconds: 900
-        failureThreshold: 1
