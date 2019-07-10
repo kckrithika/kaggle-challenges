@@ -50,8 +50,8 @@
         bind: "127.1.2.3",
         port: {
           number: 7442,
-          protocol: "HTTPS",
-          name: "https-egress",
+          protocol: "HTTP",
+          name: "http-egress",
         },
         captureMode: "NONE",
         hosts: [
@@ -63,7 +63,7 @@
         port: {
           number: 7014,
           protocol: "HTTP",
-          name: "http-egress",
+          name: "http-egress2",
         },
         captureMode: "NONE",
         hosts: [

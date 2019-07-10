@@ -28,15 +28,15 @@ spec:
     hosts:
     - '*/*'
     port:
-      name: https-egress
+      name: http-egress
       number: 7442
-      protocol: HTTPS
+      protocol: HTTP
   - bind: 127.1.2.3
     captureMode: NONE
     hosts:
     - '*/*'
     port:
-      name: http-egress
+      name: http-egress2
       number: 7014
       protocol: HTTP
   ingress:
