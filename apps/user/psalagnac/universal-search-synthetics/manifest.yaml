@@ -29,13 +29,6 @@ system:
       volumeMounts:
         - name: synthetics-log-vol
           mountPath: /home/sfdc-usmt/logs
-      livenessProbe:
-        exec:
-          command: ["true"]
-      readinessProbe:
-        exec:
-          command:
-          - "/home/sfdc-usmt/run.sh --daemon"
         initialDelaySeconds: 60
         timeoutSeconds: 30
         periodSeconds: 900
