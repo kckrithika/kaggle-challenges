@@ -55,9 +55,9 @@ configs.daemonSetBase("sam") {
                                 configs.cert_volume_mount,
                                 configs.watchdog_volume_mount,
                                 configs.kube_config_volume_mount,
-                                configs.cert_volume_mount,
                             ],
                             env+: [
+                                configs.kube_config_env,
                                 {
                                     name: "HOSTNAME",
                                     valueFrom: {

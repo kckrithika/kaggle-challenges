@@ -62,6 +62,8 @@ spec:
         env:
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig-platform
+        - name: KUBECONFIG
+          value: /kubeconfig/kubeconfig-platform
         - name: HOSTNAME
           valueFrom:
             fieldRef:
@@ -88,8 +90,6 @@ spec:
           name: watchdogconfig
         - mountPath: /kubeconfig
           name: kubeconfig
-        - mountPath: /data/certs
-          name: certs
       volumes:
       - hostPath:
           path: /etc/pki_service
