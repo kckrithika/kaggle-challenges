@@ -2,4 +2,6 @@ version: v2
 apps:
   disable-http-xrd:
    - name: xrd/xrd-sampool
+  disable-http-envoy:
+   - name: prd/prd-sam
 
