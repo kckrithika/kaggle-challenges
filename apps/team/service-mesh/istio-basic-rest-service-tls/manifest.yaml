@@ -31,7 +31,7 @@ system:
               value: -Xmx64m
           ports:
             - containerPort: 7442
-              name: https-svc
+              name: http-svc
             - containerPort: 15372
               name: scone-mgmt
           livenessProbe:
@@ -56,4 +56,4 @@ system:
         - lbtype: dsr
           port: 7442
           targetport: 7442
-          name: https-svc
+          name: http-svc
