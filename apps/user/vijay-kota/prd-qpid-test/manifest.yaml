@@ -16,8 +16,8 @@ system:
           command: ["/usr/bin/python"]
           args: ["/home/sfdc-sherpa/myscripts/myapp.py"]
           ports:
-            - name: client-port
-              containerPort: 12345
+            - containerPort: 12345
+              name: client-port
           env:
             - name: CLIENT_PORT
               value: 12345
@@ -104,10 +104,8 @@ system:
           command: ["/bin/sh"]
           args: ["-c", "if [[ $FUNCTION_INSTANCE_NAME = *-0 ]]; then export AMQP_PORT=$AMQP0 ; else export AMQP_PORT=$AMQP1 ;fi; touch ${AMQP_PORT} mydebug.log; /usr/bin/python /home/sfdc-sherpa/myscripts/myqpid.py"]
           ports:
-            - name: amqp-port0
-              containerPort: 2031
-            - name: amqp-port1
-              containerPort: 2034
+            - containerPort: 2031
+            - containerPort: 2034
             # name: http-port
             # containerPort: 7022
           env:
@@ -173,9 +171,7 @@ system:
           - containerPort: 15373
             name: sherpa-adm
           - containerPort: 2030
-            name: tcp-in
           - containerPort: 2033
-            name: tcp-in
           # containerPort: 7014
           # name: http1-in
           # containerPort: 7442
