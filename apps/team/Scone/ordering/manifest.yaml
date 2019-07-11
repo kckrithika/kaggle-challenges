@@ -20,7 +20,7 @@ system:
       - name: SFDC_ENVIRONMENT
         value: sconex
       - name: SCONE_SHIPPING_DEST
-        value: shipping-service.scone.localhost.mesh.force.com:5443
+        value: shipping-service.scone.svc.mesh.sfdc.net:5443
       - name: JAVA_HEAP_OPTS
         value: -Xmx64m
       ports:
