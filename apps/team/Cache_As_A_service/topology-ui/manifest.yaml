@@ -26,7 +26,7 @@ system:
         - name: http_proxy
           value: "http://public0-proxy1-0-prd.data.sfdc.net:8080"
         - name: https_proxy
-          value: "http://public0-proxy1-0-prd.data.sfdc.net:8080
+          value: "http://public0-proxy1-0-prd.data.sfdc.net:8080"
       ports:
       - containerPort: 8080
         name: http
