@@ -231,21 +231,13 @@ system:
     function: rsui-production-par
     slbEnabled: true
     ports:
-      - port: 443
+      - port: 7022
         targetport: 7022
-        tls: true
         lbtype: http
-        reencrypt: true
-        tlscertificate: secret_service:slbvip_par.salesforce-hub.com_1562349819:EndEntity
-        tlskey: secret_service:slbvip_par.salesforce-hub.com_1562349819:Key
   - lbname: rsui-production-par-test-lb
     function: rsui-production-par
     slbEnabled: true
     ports:
-      - port: 443
+      - port: 7023
         targetport: 7023
-        tls: true
         lbtype: http
-        reencrypt: true
-        tlscertificate: secret_service:slbvip_par-test.salesforce-hub.com_1562350004:EndEntity
-        tlskey: secret_service:slbvip_par-test.salesforce-hub.com_1562350004:Key
