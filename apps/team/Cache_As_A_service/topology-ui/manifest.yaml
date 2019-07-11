@@ -10,19 +10,23 @@ system:
         type: client
     containers:
     - name: topology-ui-service
-      image:  ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/ameesala/rptest:0.1
+      image:  ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/ameesala/topology-ui:0.8
       volumeMounts:
       - name: cert
         mountPath: /client-certs
       env:
         - name: FALCONS
-          value: "topology.foundation.rddev.aws.sfdc.cl:443"
+          value: "https://topology.foundation.rddev.aws.sfdc.cl:443,https://topology.foundationdev.aws.sfdc.cl:443"
         - name: CA
           value: "/client-certs/ca/cacerts.pem"
         - name: CERT
           value: "/client-certs/client/certificates/client.pem"
         - name: KEY
           value: "/client-certs/client/keys/client-key.pem"
+        - name: http_proxy
+          value: "http://public0-proxy1-0-prd.data.sfdc.net:8080"
+        - name: https_proxy
+          value: "http://public0-proxy1-0-prd.data.sfdc.net:8080"
       ports:
       - containerPort: 8080
         name: http
