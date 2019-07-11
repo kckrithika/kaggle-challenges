@@ -231,21 +231,13 @@ system:
     function: rsui-production-frf
     slbEnabled: true
     ports:
-      - port: 443
+      - port: 7022
         targetport: 7022
-        tls: true
         lbtype: http
-        reencrypt: true
-        tlscertificate: secret_service:slbvip_frf.salesforce-hub.com_1562349643:EndEntity
-        tlskey: secret_service:slbvip_frf.salesforce-hub.com_1562349643:Key
   - lbname: rsui-production-frf-test-lb
     function: rsui-production-frf
     slbEnabled: true
     ports:
-      - port: 443
+      - port: 7023
         targetport: 7023
-        tls: true
         lbtype: http
-        reencrypt: true
-        tlscertificate: secret_service:slbvip_frf-test.salesforce-hub.com_1562349704:EndEntity
-        tlskey: secret_service:slbvip_frf-test.salesforce-hub.com_1562349704:Key
