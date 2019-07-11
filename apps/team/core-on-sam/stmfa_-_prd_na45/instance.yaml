@@ -5,7 +5,7 @@ db:
   instance: gkr13-1
   lockUser: happy
   sid: gkr13-1
-  user: happy
+  user: doc
 endpoints:
   httpProxy: public0-proxy1-0-prd.data.sfdc.net:8080
   publicDNSSuffix: core-on-sam-sp2.prd-sam.prd.slb.sfdc.net
@@ -24,6 +24,6 @@ images:
   switchboard: sfci/servicelibs/switchboard:26c3cdce981042262b9f0f26c226cab1841bf9fd
   switchboardEnvoy: sfci/frontend-gateway/sfproxy:bc7e1fa
 name: na45
-nonce: 1562743713109182448
+nonce: 1562803479108258000
 replicaCount: 1
 settingsSuperPod: sp2
