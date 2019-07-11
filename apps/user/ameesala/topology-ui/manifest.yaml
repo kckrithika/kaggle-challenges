@@ -16,6 +16,10 @@ system:
           value: "/client-certs/client/certificates/client.pem"
         - name: KEY
           value: "/client-certs/client/keys/client-key.pem"
+        - name: http_proxy
+          value: "http://public0-proxy1-0-prd.data.sfdc.net:8080"
+        - name: https_proxy
+          value: "http://public0-proxy1-0-prd.data.sfdc.net:8080"
       ports:
       - containerPort: 8080
         name: http
