@@ -8,7 +8,7 @@ system:
     count: 1
     containers:
     - name: heap-dump-analyser-service
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/kfoster/heap-dump-analyser:ccorragio-20190708-675d7aa
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/kfoster/heap-dump-analyser:kfoster-20190711-bb96b02
       # If your service doesn't serve HTTP traffic then you can remove the scone-http 8080 port.
       ports:
       - containerPort: 8080
@@ -119,6 +119,11 @@ system:
           #reencrypt: true
         - port: 7443
           targetport: 7443
+          lbtype: http
+          #tls: true
+          #reencrypt: true
+        - port: 15373 
+          targetport: 15373
           lbtype: http
           #tls: true
           #reencrypt: true
