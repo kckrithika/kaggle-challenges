@@ -4,16 +4,9 @@ system:
   functions:
   - name: topology-ui
     count: 1
-    volumes:
-    - name: cert
-      maddogCert:
-        type: client
     containers:
     - name: topology-ui-service
-      image:  ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/ameesala/topology-ui:0.1
-      volumeMounts:
-      - name: cert
-        mountPath: /client-certs
+      image:  ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/ameesala/topology-ui:0.3
       env:
         - name: FALCONS
           value: "topology.foundation.rddev.aws.sfdc.cl"
