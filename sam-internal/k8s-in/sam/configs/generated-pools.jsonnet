@@ -2088,9 +2088,9 @@
       "access": [
         "team/gateway"
       ],
-      "controlEstate": "dfw-sam",
+      "controlEstate": "ord-sam",
       "estate": "ord-sam_gatewayconfig",
-      "kingdom": "dfw",
+      "kingdom": "ord",
       "superPod": "None"
     },
     {
