@@ -84,7 +84,7 @@ system:
       command: ["java", "-jar", "cloudatlas-service.jar"]
       env:
         - name: dummy_var
-          value: false0
+          value: false1
         - name: server_port
           value: 8083
         - name: management_server_port
