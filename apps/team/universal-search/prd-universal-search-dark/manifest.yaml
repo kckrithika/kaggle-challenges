@@ -98,7 +98,7 @@ system:
       - -endpoint
       - universal-search/universal-search-dark:DATACENTER_ALLENV:7443
       - -endpoint
-      - universal-search-dark-notls/universal-search:DATACENTER_ALLENV:7012
+      - universal-search/universal-search-dark-notls:DATACENTER_ALLENV:7012
       livenessProbe:
         initialDelaySeconds: 5
         exec:
