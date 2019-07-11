@@ -92,7 +92,7 @@ spec:
         - --domain
         - $(POD_NAMESPACE).svc.cluster.local
         - --log_output_level
-        - info
+        - default:info
         - --drainDuration
         - 45s
         - --parentShutdownDuration
@@ -103,6 +103,8 @@ spec:
         - istio-ingressgateway
         - --zipkinAddress
         - zipkin.service-mesh:9411
+        - --envoyMetricsServiceAddress
+        - switchboard.service-mesh:15001
         - --proxyAdminPort
         - "15373"
         - --statusPort
@@ -152,7 +154,7 @@ spec:
               fieldPath: metadata.namespace
         - name: ISTIO_META_ROUTER_MODE
           value: sni-dnat
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-sfci-dev/sfci/servicemesh/istio-packaging/proxy:f4b0db053ed277ba5335e7c2e88e505445b4ac92
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-sfci-dev/sfci/servicemesh/istio-packaging/proxy:e41f79547a0806e1a3e69f21d3a52074f1cccc3a
         imagePullPolicy: IfNotPresent
         name: istio-proxy
         ports:

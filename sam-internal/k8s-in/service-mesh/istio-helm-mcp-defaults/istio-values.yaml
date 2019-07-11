@@ -110,7 +110,7 @@ global:
   hub: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-sfci-dev/sfci/servicemesh/istio-packaging
 
   # Default tag for Istio images.
-  tag: f4b0db053ed277ba5335e7c2e88e505445b4ac92
+  tag: e41f79547a0806e1a3e69f21d3a52074f1cccc3a
 
   # Comma-separated minimum per-scope logging level of messages to output, in the form of <scope>:<level>,<scope>:<level>
   # The control plane has different scopes depending on component, but can configure default log level across all components
@@ -328,6 +328,14 @@ global:
   # values by adding its node selector block in the relevant section below and setting
   # the desired values.
   defaultNodeSelector: {}
+
+  # Default node tolerations to be applied to all deployments so that all pods can be
+  # scheduled to a particular nodes with matching taints. Each component can overwrite
+  # these default values by adding its tolerations block in the relevant section below
+  # and setting the desired values.
+  # Configure this field in case that all pods of Istio control plane are expected to
+  # be scheduled to particular nodes with specified taints.
+  defaultTolerations: []
 
   # Whether to perform server-side validation of configuration.
   configValidation: false
