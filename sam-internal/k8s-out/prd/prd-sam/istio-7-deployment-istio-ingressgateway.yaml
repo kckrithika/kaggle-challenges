@@ -92,7 +92,7 @@ spec:
         - --domain
         - $(POD_NAMESPACE).svc.cluster.local
         - --log_output_level
-        - info
+        - default:info
         - --drainDuration
         - 45s
         - --parentShutdownDuration
@@ -103,6 +103,8 @@ spec:
         - istio-ingressgateway
         - --zipkinAddress
         - zipkin.service-mesh:9411
+        - --envoyMetricsServiceAddress
+        - switchboard.service-mesh:15001
         - --proxyAdminPort
         - "15373"
         - --statusPort
