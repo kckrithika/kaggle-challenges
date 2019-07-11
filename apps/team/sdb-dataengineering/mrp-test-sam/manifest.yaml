@@ -1,0 +1,23 @@
+apiVersion: v3
+system:
+  functions:
+  - name: mrp-test-sam 
+    count: 1
+    containers:
+    - name: mrp-test-sam-image
+      image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/production_image:jenkins-SayonaraAnalytics-sdba_sam_test-master-7-itest
+      ports:
+      - containerPort: 9090
+      - containerPort: 9091
+      livenessProbe:
+        httpGet:
+          path: /
+          port: 9091
+  loadbalancers:
+  - lbname: mrp-test-sam-image-lb
+    function: mrp-test-sam
+    slbenabled: true
+    ports:
+      - port: 9090
+        targetport: 9090
+        lbtype: tcp
