@@ -2083,6 +2083,18 @@
     },
     {
       "namespaces": [
+        "gateway"
+      ],
+      "access": [
+        "team/gateway"
+      ],
+      "controlEstate": "ord-sam",
+      "estate": "ord-sam_gatewayconfig",
+      "kingdom": "ord",
+      "superPod": "None"
+    },
+    {
+      "namespaces": [
         "iot"
       ],
       "access": [
