@@ -232,7 +232,7 @@ system:
     slbEnabled: true
     ports:
       - port: 443
-        targetport: 7023
+        targetport: 7022
         tls: true
         lbtype: http
         reencrypt: true
