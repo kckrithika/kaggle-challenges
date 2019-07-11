@@ -5,8 +5,8 @@ system:
     email:
       - cloudatlas-dev@salesforce.com
   functions:
-  - name: cloudatlas-xrd-service
-    count: 3
+  - name: disable-http-envoy
+    count: 2
     strategy:
       type: RollingUpdate
       rollingUpdate:
@@ -225,8 +225,13 @@ system:
   #####################################################################################
   loadbalancers:
     - lbname: cabusinesslb
-      function: cloudatlas-xrd-service
+      function: disable-http-envoy
       slbEnabled: true
       ports:
+        - port: 443
+          targetport: 7442
+          lbtype: http
+          tls: true
+          reencrypt: true
         - port: 9090
           targetport: 7022
