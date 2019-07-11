@@ -1160,6 +1160,8 @@ spec:
         env:
         - name: ESTATE
           value: mcpIstioConfig.istioEstate
+        - name: PILOT_SIDECAR_USE_REMOTE_ADDRESS
+          value: "true"
         - name: POD_NAME
           valueFrom:
             fieldRef:
