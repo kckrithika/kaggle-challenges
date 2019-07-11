@@ -7,7 +7,7 @@ system:
     labels:
       app: ordering-service
     annotations:
-      "sherpa-injector.service-mesh/inject": "enabled"
+      "sidecar.istio.io/inject": "true"
       "routing.mesh.sfdc.net/enabled": "true"
     containers:
     - name: ordering
