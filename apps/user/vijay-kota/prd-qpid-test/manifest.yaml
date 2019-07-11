@@ -7,6 +7,9 @@ system:
   functions:
     - name: cs55-app
       count: 1
+      identity:
+        serviceName: app
+        pod: cs55
       containers:
         - name: app
           image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/vijay-kota/myenvoy:10Jul19
@@ -49,6 +52,8 @@ system:
           env:
             - name: SFDC_ENVIRONMENT
               value: mesh
+            - name: ENVOY_DEBUG_OPTIONS
+              value: --log-level trace --log-path /home/sfdc-sherpa/envoy.log
           livenessProbe:
             exec:
               command:
@@ -89,23 +94,27 @@ system:
 
     - name: cs55-qpid
       type: stateful-set
-      count: 1
+      count: 2
       identity:
         serviceName: qpid
         pod: cs55
       containers:
         - name: qpid-broker-runtime
           image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/vijay-kota/myenvoy:10Jul19
-          command: ["/usr/bin/python"]
-          args: ["/home/sfdc-sherpa/myscripts/myqpid.py"]
+          command: ["/bin/sh"]
+          args: ["-c", "if [[ $FUNCTION_INSTANCE_NAME = *-0 ]]; then export AMQP_PORT=$AMQP0 ; else export AMQP_PORT=$AMQP1 ;fi; touch ${AMQP_PORT} mydebug.log; /usr/bin/python /home/sfdc-sherpa/myscripts/myqpid.py"]
           ports:
-            - name: amqp-port
-              containerPort: 2021
+            - name: amqp-port0
+              containerPort: 2031
+            - name: amqp-port1
+              containerPort: 2034
             # name: http-port
             # containerPort: 7022
           env:
-            - name: AMQP_PORT
-              value: 2021
+            - name: AMQP0
+              value: 2031
+            - name: AMQP1
+              value: 2034
             # name: HTTP_PORT
             # value: 7022
             - name: QPID_JAVA_HEAPSZ
@@ -130,16 +139,20 @@ system:
 
         - name: beacon-qpid
           image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/servicemesh/beacon:1.0.0
-          args:
+          command: ["/bin/sh"]
+          args: ["-c", "if [[ $FUNCTION_INSTANCE_NAME = *-0 ]]; then export port=$SHERPA0 ; else export port=$SHERPA1 ;fi; touch ${port} mydebug.log; /usr/bin/java /home/scone/service.jar -endpoint qpid/mq-cluster3:POD:${port}"]
             # -endpoint
             # samapp/$(FUNCTION_NAMESPACE)/$(FUNCTION)-http:DATACENTER_ALLENV:7014
             # samapp/$(FUNCTION_NAMESPACE)/$(FUNCTION)-https:DATACENTER_ALLENV:7442
-            - -endpoint
-            - qpid/mq-cluster2:POD:2020
-            # samapp/$(FUNCTION_NAMESPACE)/$(FUNCTION):DATACENTER_ALLENV:2020
+            # -endpoint
+            # samapp/$(FUNCTION_NAMESPACE)/$(FUNCTION):DATACENTER_ALLENV:2030
           env:
             - name: SFDC_ENVIRONMENT
               value: mesh
+            - name: SHERPA0
+              value: 2030
+            - name: SHERPA1
+              value: 2033
           livenessProbe:
             initialDelaySeconds: 5
             exec:
@@ -159,7 +172,9 @@ system:
           ports:
           - containerPort: 15373
             name: sherpa-adm
-          - containerPort: 2020
+          - containerPort: 2030
+            name: tcp-in
+          - containerPort: 2033
             name: tcp-in
           # containerPort: 7014
           # name: http1-in
@@ -171,6 +186,8 @@ system:
           env:
             - name: SFDC_ENVIRONMENT
               value: mesh
+            - name: ENVOY_DEBUG_OPTIONS
+              value: --log-level trace --log-path /home/sfdc-sherpa/envoy.log
           livenessProbe:
             exec:
               command:
@@ -210,85 +227,3 @@ system:
         - name: beacon-log-volume
           hostPath:
             path: /home/sfdc-beacon/logs
-
-
-    - name: cs55-caas-pc
-      count: 1
-      identity:
-        serviceName: caas
-        pod: cs55
-      containers:
-        - name: caas
-          image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/vijay-kota/myenvoy:10Jul19
-          resources:
-            limits: { memory: "8G" }
-            requests: { memory: "8G" }
-          command: ["/usr/bin/python"]
-          args: ["/home/sfdc-sherpa/myscripts/myqpid.py"]
-          livenessProbe:
-            exec:
-              command: ["/bin/true"]
-            initialDelaySeconds: 15
-            timeoutSeconds: 10
-          ports:
-          - containerPort: 12038
-          env:
-           - name: AMQP_PORT
-             value: 12038
-
-        - name: beacon-caas
-          image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/servicemesh/beacon:1.0.0
-          args:
-          - -endpoint
-          - caas/caas-pc2:POD:12037
-          livenessProbe:
-            initialDelaySeconds: 5
-            exec:
-              command:
-                - "/home/scone/is-alive.sh"
-          env:
-           - name: SFDC_ENVIRONMENT
-             value: mesh
-          resources:
-            limits: { memory: "500M" }
-            requests: { memory: "500M" }
-
-        - name: sherpa-caas
-          image: sfci/servicelibs/sherpa-envoy:1.0.7
-          ports:
-          - containerPort: 12037
-          - containerPort: 15373
-          env:
-          - name: SFDC_ENVIRONMENT
-            value: mesh
-          resources:
-            limits:
-              cpu: "1"
-              memory: 1Gi
-            requests:
-              cpu: "1"
-              memory: 1Gi
-          volumeMounts:
-          - mountPath: /client-certs
-            name: tls-client-cert
-          - mountPath: /server-certs
-            name: tls-server-cert
-          livenessProbe:
-            exec:
-              command:
-              - ./bin/is-alive
-            initialDelaySeconds: 20
-            periodSeconds: 5
-          readinessProbe:
-            exec:
-              command:
-              - ./bin/is-ready
-            initialDelaySeconds: 15
-            periodSeconds: 5
-      volumes:
-        - name: tls-client-cert
-          maddogCert:
-            type: client
-        - name: tls-server-cert
-          maddogCert:
-            type: server            
