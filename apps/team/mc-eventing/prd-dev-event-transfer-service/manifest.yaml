@@ -17,7 +17,7 @@ system:
     volumes:
     - name: eventbusajna-ens-v1
       k4aSecret:
-        secretName: dev-eventbusajna-ens-v1
+        secretName: eventbusajna-ens-v1
     - name: clientcert
       maddogCert:
         type: client
@@ -29,7 +29,7 @@ system:
         path: /home/sfdc-ets/logs
     containers:
     - name: event-transfer-service
-      image: sfci/ets/event-transfer-service:0.0.21
+      image: sfci/ets/event-transfer-service:0.0.22
       ports:
         - containerPort: 8080
         - containerPort: 15382
