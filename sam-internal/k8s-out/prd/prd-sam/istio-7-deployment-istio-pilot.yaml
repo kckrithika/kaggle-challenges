@@ -78,6 +78,8 @@ spec:
         env:
         - name: ESTATE
           value: prd-sam_gater
+        - name: PILOT_SIDECAR_USE_REMOTE_ADDRESS
+          value: "true"
         - name: POD_NAME
           valueFrom:
             fieldRef:

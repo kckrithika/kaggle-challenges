@@ -128,6 +128,10 @@ local mcpIstioConfig = (import "service-mesh/istio-config.jsonnet");
                 value: mcpIstioConfig.istioEstate,
               },
               {
+                name: "PILOT_SIDECAR_USE_REMOTE_ADDRESS",
+                value: "true",
+              },
+              {
                 name: "POD_NAME",
                 valueFrom: {
                   fieldRef: {
