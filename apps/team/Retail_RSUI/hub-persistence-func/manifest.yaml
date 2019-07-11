@@ -5,7 +5,8 @@ system:
     - name: hub-persistence-func
       identity:
         serviceName: hub-persistence
-      count: 3
+      # TODO: increase count back to 3 once issues are resolved
+      count: 1
       volumes:
         - name: sherpa-log-volume
           hostPath:
@@ -38,10 +39,14 @@ system:
             - name: JVM_ARGS
               value: -Xmx2G -Xms2G -XX:ParallelGCThreads=8
           livenessProbe:
-            httpGet:
-              path: /manage/health
-              port: 15372
-              scheme: HTTP
+            #httpGet:
+              #path: /manage/health
+              #port: 15372
+              #scheme: HTTP
+            exec:
+              command:
+                - echo
+                - HEALTHY
             initialDelaySeconds: 60
             periodSeconds: 60
             timeoutSeconds: 90
@@ -77,17 +82,13 @@ system:
           livenessProbe:
             exec:
               command:
-                #- "./bin/is-alive"
-                - echo
-                - HEALTHY
+                - "./bin/is-alive"
             initialDelaySeconds: 120
             periodSeconds: 5
           readinessProbe:
             exec:
               command:
-                #- "./bin/is-ready"
-                - echo
-                - HEALTHY
+                - "./bin/is-ready"
             initialDelaySeconds: 110
             periodSeconds: 5
 
