@@ -17,6 +17,7 @@ system:
     name: moana-engine-master
   - containers:
     - env:
+      - {name: SPRING_MAIN_WEB_APPLICATION_TYPE, value: 'NONE'}
       - {name: MANAGEMENT_SERVER_PORT, value: '-1'}
       - {name: LOGGING_JSON_STDOUT_LEVEL, value: ALL}
       - {name: LOGGING_STDERR_LEVEL, value: ALL}
@@ -55,6 +56,7 @@ system:
       name: tls-client-certs
   - containers:
     - env:
+      - {name: SPRING_MAIN_WEB_APPLICATION_TYPE, value: 'NONE'}
       - {name: MANAGEMENT_SERVER_PORT, value: '-1'}
       - {name: LOGGING_JSON_STDOUT_LEVEL, value: ALL}
       - {name: LOGGING_STDERR_LEVEL, value: ALL}
