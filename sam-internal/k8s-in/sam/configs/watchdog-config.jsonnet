@@ -141,7 +141,7 @@ std.prune({
   #Connectivitylabeler checker
   + (if configs.estate == "prd-samtest" then {
     "node-endpoints": {
-      maddog: "https://all.pkicontroller.pki.blank.prd.prod.non-estates.sfdcsd.net:8443",
+      madkub: "https://10.254.208.254:32007",
     },
     nodeUpdateWindow: "1h",
   } else {})

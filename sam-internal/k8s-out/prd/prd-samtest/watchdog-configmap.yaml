@@ -69,7 +69,7 @@ data:
         "name=etcd": "age.etcd"
       },
       "node-endpoints": {
-        "maddog": "https://all.pkicontroller.pki.blank.prd.prod.non-estates.sfdcsd.net:8443"
+        "madkub": "https://10.254.208.254:32007"
       },
       "nodeUpdateWindow": "1h",
       "publishToWatchDogCrd": true,
