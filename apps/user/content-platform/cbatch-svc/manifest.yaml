@@ -15,7 +15,7 @@ system:
             - name: GRPC_SERVER_BIND_ENDPOINT
               value: tcp://0.0.0.0:7020
             - name: JAVA_OPTS
-              value: "-Xmx6g -Xms2g -Djmagick.systemclassloader=no -Djava.library.path=/usr/lib/jni/"
+              value: "-Xmx6g -Xms2g -Djmagick.systemclassloader=no -Djava.library.path=/usr/lib/jni/ -Dmetrics.funnelEndPointURL=http://ajnafunneldirecttls.funnel.localhost.mesh.force.com:5442"
           resources:
             limits:
               cpu: "8"
@@ -35,6 +35,15 @@ system:
             initialDelaySeconds: 120
             timeoutSeconds: 60
           terminationMessagePolicy: FallbackToLogsOnError
+      volumes:
+        - name: envoy-config-volume
+          emptyDir: {}
+        - name: tls-client-cert
+          maddogCert:
+            type: client
+        - name: tls-server-cert
+          maddogCert:
+            type: server
   loadbalancers:
     - lbname: cbatch-svc-lb
       function: cbatch-svc
