@@ -6,7 +6,7 @@ system:
       - cloudatlas-dev@salesforce.com
   functions:
   - name: disable-http-envoy
-    count: 2
+    count: 1
     strategy:
       type: RollingUpdate
       rollingUpdate:
