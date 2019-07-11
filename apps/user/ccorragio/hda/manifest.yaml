@@ -119,8 +119,8 @@ system:
           #reencrypt: true
         - port: 7443
           targetport: 7443
-          lbtype: http
-          #tls: true
+          lbtype: dsr
+          tls: true
           #reencrypt: true
         - port: 15373 
           targetport: 15373
