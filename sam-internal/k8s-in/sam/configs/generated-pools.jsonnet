@@ -2083,6 +2083,18 @@
     },
     {
       "namespaces": [
+        "gateway"
+      ],
+      "access": [
+        "team/gateway"
+      ],
+      "controlEstate": "dfw-sam",
+      "estate": "ord-sam_gatewayconfig",
+      "kingdom": "dfw",
+      "superPod": "None"
+    },
+    {
+      "namespaces": [
         "iot"
       ],
       "access": [
