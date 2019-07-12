@@ -1357,39 +1357,6 @@ data:
           "superpod": "none"
         },
         {
-          "bomrolename": "sfstorezk",
-          "controlestate": "iad-sam",
-          "devicerole": "dnds",
-          "estate": "iad-sam_sfstore",
-          "hostname": "sfstorezk0-dnds1-1-iad.ops.sfdc.net",
-          "kingdom": "iad",
-          "pod": "none",
-          "rack": "g14-9a",
-          "superpod": "none"
-        },
-        {
-          "bomrolename": "sfstorezk",
-          "controlestate": "iad-sam",
-          "devicerole": "dnds",
-          "estate": "iad-sam_sfstore",
-          "hostname": "sfstorezk0-dnds1-2-iad.ops.sfdc.net",
-          "kingdom": "iad",
-          "pod": "none",
-          "rack": "g11-10b",
-          "superpod": "none"
-        },
-        {
-          "bomrolename": "sfstorezk",
-          "controlestate": "iad-sam",
-          "devicerole": "dnds",
-          "estate": "iad-sam_sfstore",
-          "hostname": "sfstorezk0-dnds2-1-iad.ops.sfdc.net",
-          "kingdom": "iad",
-          "pod": "none",
-          "rack": "c11-9b",
-          "superpod": "none"
-        },
-        {
           "bomrolename": "sam_minion_warden",
           "controlestate": "iad-sam",
           "devicerole": "samcompute",
