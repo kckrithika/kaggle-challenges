@@ -37,7 +37,7 @@ configs.daemonSetBase("sam") {
                         ],
                     } + configs.ipAddressResourceRequest,
                 ] + (
-                    if configs.estate == "prd-samtest" then [
+                    if configs.kingdom == "prd" then [
                          configs.containerWithKubeConfigAndMadDog {
                             name: "sam-watchdog-connectivitylabeler",
                             image: samimages.hypersam,

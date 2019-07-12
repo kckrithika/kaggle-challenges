@@ -139,7 +139,7 @@ std.prune({
      } else {})
 
   #Connectivitylabeler checker
-  + (if configs.estate == "prd-samtest" then {
+  + (if configs.kingdom == "prd" then {
     "node-endpoints": {
       madkub: "https://10.254.208.254:32007",
     },
