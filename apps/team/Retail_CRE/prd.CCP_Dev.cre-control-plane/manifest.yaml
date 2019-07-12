@@ -122,11 +122,8 @@ system:
       livenessProbe:
         exec:
           command:
-            - echo
-            - HEALTHY
-        initialDelaySeconds: 3000
-        periodSeconds: 3000
-        timeoutSeconds: 3000
+            - ls
+        initialDelaySeconds: 30
       volumeMounts:
       - mountPath: /client-certs
         name: client-certs
@@ -160,14 +157,14 @@ system:
         exec:
           command:
           - "./bin/is-alive"
-        initialDelaySeconds: 3000
-        periodSeconds: 3000
+        initialDelaySeconds: 120
+        periodSeconds: 5
       readinessProbe:
         exec:
           command:
           - "./bin/is-ready"
-        initialDelaySeconds: 3000
-        periodSeconds: 3000
+        initialDelaySeconds: 110
+        periodSeconds: 5
     - name: beacon
       image: sfci/servicelibs/beacon:f6445b2b299f232eda1e0be9739b8242153478ea
       args:
@@ -177,7 +174,7 @@ system:
         limits: { cpu: "1", memory: "1Gi" }
         requests: { cpu: "1", memory: "1Gi" }
       livenessProbe:
-        initialDelaySeconds: 3000
+        initialDelaySeconds: 5
         exec:
           command:
           - "/home/scone/is-alive.sh"
