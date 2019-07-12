@@ -47,3 +47,5 @@ apps:
   - prd/prd-sam
  gater-perf:
   - prd/prd-sam_gater
+ archive-backup-service:
+  - prd/prd-sam
