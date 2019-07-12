@@ -17,7 +17,7 @@ system:
     name: moana-engine-group2
   - containers:
     - env:
-      - {name: MANAGEMENT_SERVER_PORT, value: '15372'}
+      - {name: MANAGEMENT_SERVER_PORT, value: '-1'}
       - {name: LOGGING_JSON_STDOUT_LEVEL, value: ALL}
       - {name: LOGGING_STDERR_LEVEL, value: ALL}
       - {name: TEST_POD, value: moana-driver-group2}
@@ -32,6 +32,7 @@ system:
       - {name: HANDLED_PODS_PATTERN, value: 'cs[0-9]+|moana-driver-group1'}
       - {name: HANDLED_PODS_INVERT_MATCH, value: 'true'}
       - {name: HEALTHCHECK_SELF_INTERVAL, value: '60'}
+      - {name: SPRING_MAIN_WEB_APPLICATION_TYPE, value: NONE}
       image: sfci/insights/moana-driver:release-20-8f7fff2
       livenessProbe:
         exec:
@@ -56,7 +57,7 @@ system:
       name: tls-client-certs
   - containers:
     - env:
-      - {name: MANAGEMENT_SERVER_PORT, value: '15372'}
+      - {name: MANAGEMENT_SERVER_PORT, value: '-1'}
       - {name: LOGGING_JSON_STDOUT_LEVEL, value: ALL}
       - {name: LOGGING_STDERR_LEVEL, value: ALL}
       - {name: MOANA_SPARK_ENGINE_IMAGE, value: 'ops0-artifactrepo1-0-yhu.data.sfdc.net/sfci/insights/moanaengine:release-1.0.15-72c138f'}
@@ -77,6 +78,7 @@ system:
       - {name: K8S_API_ENDPOINT, value: 'https://kubernetes-api-flowsnake-yhu.data.sfdc.net'}
       - {name: MAESTRO_ENDPOINT, value: 'https://insights1-iworker{{superPodIndex}}-0-${kingdom}.data.sfdc.net:8008'}
       - {name: HEALTHCHECK_SELF_INTERVAL, value: '60'}
+      - {name: SPRING_MAIN_WEB_APPLICATION_TYPE, value: NONE}
       image: sfci/insights/jobcontroller:release-1.0.17-b91d204
       livenessProbe:
         exec:
