@@ -16,6 +16,7 @@ system:
         lbnames:
         - rsui-production-iad-lb
         - rsui-production-iad-test-lb
+        - rsui-service-iad-lb
     - name: retailclientcert
       maddogCert:
         type: client
@@ -249,3 +250,9 @@ system:
         reencrypt: true
         tlscertificate: secret_service:cstoolkit_iad-test.salesforce-hub.com_20190204-215232:EndEntity
         tlskey: secret_service:cstoolkit_iad-test.salesforce-hub.com_20190204-215232:Key
+  - lbname: rsui-service-iad-lb
+    function: rsui-production-iad
+    slbEnabled: true
+    ports:
+      - port: 7443
+        targetport: 7443
