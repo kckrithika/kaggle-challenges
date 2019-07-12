@@ -48,6 +48,13 @@ system:
           ## FLOWSNAKE
         - name: MAX_FLOWSNAKE_ENVIRONMENTS
           value: 30
+        - name: DISABLE_AUTO_TERMINATE_FLOWSNAKE
+          value: true
+          #0 - PROD, 1 - FUNC, 2 - DEV, 3 - STAGE, 4 - PERF, 5 - TEST, 6 - LOCAL
+        - name: ENVIRONMENT_INDICATOR
+          value: 2
+        - name: EXECUTE_NEW_PROVISIONING_FLOW
+          value: true
         ####################################################################################################
         ####################################### IMPORT environment variables ###############################
         ####################################################################################################
