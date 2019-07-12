@@ -2,4 +2,4 @@ apps:
   lookup-bot-sandbox:
     - prd/prd-sam
   hda-client:
-    - prd/prd-sam
+    - xrd/xrd-sam_mgmt_hub
