@@ -3,3 +3,5 @@ apps:
   - prd/prd-sam
  repcollavailwd:
   - prd/prd-sam
+ redis-ha:
+  - prd/prd-sam
