@@ -31,6 +31,7 @@ system:
       - {name: DEPLOYMENT_ID, value: cdu-group1}
       - {name: HANDLED_PODS_PATTERN, value: 'cs[0-9]+|moana-driver-group1'}
       - {name: HEALTHCHECK_SELF_INTERVAL, value: '60'}
+      - {name: SPRING_MAIN_WEB_APPLICATION_TYPE, value: NONE}
       image: sfci/insights/moana-driver:release-20-8f7fff2
       livenessProbe:
         exec:
@@ -75,6 +76,7 @@ system:
       - {name: K8S_API_ENDPOINT, value: 'https://kubernetes-api-flowsnake-cdu.data.sfdc.net'}
       - {name: MAESTRO_ENDPOINT, value: 'https://insights1-iworker{{superPodIndex}}-0-${kingdom}.data.sfdc.net:8008'}
       - {name: HEALTHCHECK_SELF_INTERVAL, value: '60'}
+      - {name: SPRING_MAIN_WEB_APPLICATION_TYPE, value: NONE}
       image: sfci/insights/jobcontroller:release-1.0.17-b91d204
       livenessProbe:
         exec:
