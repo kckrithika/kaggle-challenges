@@ -5,7 +5,7 @@ system:
     count: 1
     containers:
     - name: archival-worker
-      image: dva/winterfell-sync:19-e89ef4c30b0ab2a0cd7fcf62238533c278dbe782 
+      image: dva/sdb-archival-worker:d47b9ed73f659e5fd8b3daa0ff2d7efb6a847329 
       env:
       - name: SFDC_ENVIRONMENT
         value: prod
@@ -14,7 +14,9 @@ system:
       - name: DC
         value: $(KINGDOM)
       - name: SPRING_PROFILES_ACTIVE 
-        value: dc.$(KINGDOM),sam,oracle
+        value: dc.$(KINGDOM),sam
+      - name: SERVER_PORT
+        value: 7022
       ports:
       - containerPort: 7020
         name: grpc
@@ -39,14 +41,11 @@ system:
         - name: tls-server-cert
           mountPath: /server-certs
 
-    # mTLS container s
     - name: sherpa
       image: sfci/servicelibs/sherpa-envoy:1.0.8
       ports:
       - containerPort: 7443
         name: http2-tls-in
-      - containerPort: 7442
-        name: http1-tls-in
       - containerPort: 15373
         name: sherpa-adm
       resources:

@@ -2,4 +2,6 @@ apps:
   syncmaster:
   - prd/prd-sam
   - dfw/dfw-sam_dp
+  archival-worker:
+  - dfw/dfw-sam_dp
 
