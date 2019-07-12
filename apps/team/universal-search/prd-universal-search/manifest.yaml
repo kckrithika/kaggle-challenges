@@ -47,7 +47,7 @@ system:
       # DO NOT COPY THIS TO PRODUCTION - FOR TESTING ONLY
       # Enable monitoring to test reindexing and schema deployment
       - name: CONTROLPLANE_MONITORING_ENABLE
-        value: 'true'
+        value: 'false'
       # Monitor for schema changes every 5 minutes
       - name: CONTROLPLANE_MONITORING_FIXEDDELAYMS
         value: '300000'
