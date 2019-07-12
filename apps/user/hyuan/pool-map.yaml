@@ -1,0 +1,3 @@
+apps:
+    envoy-canary-new:
+        - prd/prd-sam
