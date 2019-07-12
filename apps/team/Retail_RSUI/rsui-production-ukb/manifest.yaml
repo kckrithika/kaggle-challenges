@@ -16,6 +16,7 @@ system:
         lbnames:
         - rsui-production-ukb-lb
         - rsui-production-ukb-test-lb
+        - rsui-service-ukb-lb
     - name: retailclientcert
       maddogCert:
         type: client
@@ -242,3 +243,9 @@ system:
         targetport: 7023
         tls: true
         lbtype: http
+  - lbname: rsui-service-ukb-lb
+    function: rsui-production-ukb
+    slbEnabled: true
+    ports:
+      - port: 7443
+        targetport: 7443
