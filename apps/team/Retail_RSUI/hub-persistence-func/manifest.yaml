@@ -5,8 +5,7 @@ system:
     - name: hub-persistence-func
       identity:
         serviceName: hub-persistence
-      # TODO: increase count back to 3 once issues are resolved
-      count: 1
+      count: 3
       volumes:
         - name: sherpa-log-volume
           hostPath:
@@ -39,14 +38,10 @@ system:
             - name: JVM_ARGS
               value: -Xmx2G -Xms2G -XX:ParallelGCThreads=8
           livenessProbe:
-            #httpGet:
-              #path: /manage/health
-              #port: 15372
-              #scheme: HTTP
-            exec:
-              command:
-                - echo
-                - HEALTHY
+            httpGet:
+              path: /manage/health
+              port: 15372
+              scheme: HTTP
             initialDelaySeconds: 60
             periodSeconds: 60
             timeoutSeconds: 90
@@ -114,7 +109,10 @@ system:
       function: hub-persistence-func
       slbEnabled: true
       ports:
-      - port: 7022
+      - port: 443
+        targetport: 7442
+      # Do not deploy 80 to production
+      - port: 80
         targetport: 7022
       - port: 15372
         targetport: 15372
