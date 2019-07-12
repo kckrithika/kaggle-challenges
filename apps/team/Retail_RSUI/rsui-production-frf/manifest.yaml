@@ -16,6 +16,7 @@ system:
         lbnames:
         - rsui-production-frf-lb
         - rsui-production-frf-test-lb
+        - rsui-service-frf-lb
     - name: retailclientcert
       maddogCert:
         type: client
@@ -241,3 +242,9 @@ system:
       - port: 7023
         targetport: 7023
         lbtype: http
+  - lbname: rsui-service-frf-lb
+    function: rsui-production-frf
+    slbEnabled: true
+    ports:
+      - port: 7443
+        targetport: 7443

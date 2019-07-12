@@ -16,6 +16,7 @@ system:
         lbnames:
         - rsui-production-par-lb
         - rsui-production-par-test-lb
+        - rsui-service-par-lb
     - name: retailclientcert
       maddogCert:
         type: client
@@ -241,3 +242,9 @@ system:
       - port: 7023
         targetport: 7023
         lbtype: http
+  - lbname: rsui-service-par-lb
+    function: rsui-production-par
+    slbEnabled: true
+    ports:
+      - port: 7443
+        targetport: 7443
