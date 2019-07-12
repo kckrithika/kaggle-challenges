@@ -26,6 +26,6 @@ system:
         initialDelaySeconds: 5
       command: ["/bin/sh", "-c"]
       args: ['
-          ./configure_and_run_master.sh
+          ./configure_and_run_master.sh ;
           redis-server $REDIS_CONFIG_PATH
       ']
