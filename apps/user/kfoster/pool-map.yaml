@@ -1,7 +1,5 @@
 apps:
   lookup-bot-sandbox:
     - prd/prd-sam
-  lookup-bot:
-    - prd/prd-sam
-  prod-debugger:
+  hda-client:
     - prd/prd-sam
