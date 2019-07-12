@@ -3,3 +3,5 @@ apps:
     - xrd/xrd-sam_mgmt_hub
   hda:
     - xrd/xrd-sam_mgmt_hub
+  hda-client:
+    - xrd/xrd-sam_mgmt_hub
