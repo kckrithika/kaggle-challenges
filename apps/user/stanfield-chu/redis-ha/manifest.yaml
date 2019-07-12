@@ -6,6 +6,7 @@ system:
       - stanfield.chu@salesforce.com
   functions:
   - name: redis-ha-master
+    type: stateful-set
     count: 1
     volumes:
       - name: redisauthvol
@@ -13,7 +14,7 @@ system:
           secretName: csc-redis-auth-0
     containers:
     - name: redis-ha-master
-      image: dva/csc-health-redis-auth:jenkins-csc-health-redis-auth-redis-ha-poc-1-itest
+      image: dva/csc-health-redis-auth:jenkins-csc-health-redis-auth-PR-14-2-itest
       volumeMounts:
       - mountPath: /var/secrets/redis
         name: redisauthvol
