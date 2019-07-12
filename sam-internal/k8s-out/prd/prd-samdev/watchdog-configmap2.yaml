@@ -68,6 +68,10 @@ data:
         "illumio_ven/.*Agent": "age.illumio.Agent",
         "name=etcd": "age.etcd"
       },
+      "node-endpoints": {
+        "madkub": "https://10.254.208.254:32007"
+      },
+      "nodeUpdateWindow": "1h",
       "publishToWatchDogCrd": true,
       "rcImtEndpoint": "https://reportcollector-prd.data.sfdc.net:18443/v1/bark",
       "recipient": "",
