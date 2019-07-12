@@ -8,9 +8,10 @@ system:
       app: ordering-service
     annotations:
       # sherpa
-      # "sherpa-injector.service-mesh/inject": "enabled"
+      "sherpa-injector.service-mesh/inject": "enabled"
       # istio
-      "sidecar.istio.io/inject": "true"
+      # "sidecar.istio.io/inject": "true"
+      # both
       "routing.mesh.sfdc.net/enabled": "true"
     containers:
     - name: ordering
@@ -24,12 +25,13 @@ system:
         value: sconex
       - name: SCONE_SHIPPING_DEST
         # sherpa
-        # value: shipping-service.scone.localhost.mesh.force.com:5443
+        value: shipping-service.scone.localhost.mesh.force.com:5443
         # istio
-        value: shipping-service.scone.svc.mesh.sfdc.net:7443
+        # value: shipping-service.scone.svc.mesh.sfdc.net:7443
       # comment out JAVA_OPTS for sherpa
-      - name: JAVA_OPTS
-        value: "-Dmesh.proxydomain=svc.mesh.sfdc.net -Dmesh.httpport=7014"
+      # istio
+      # - name: JAVA_OPTS
+      #   value: "-Dmesh.proxydomain=svc.mesh.sfdc.net -Dmesh.httpport=7014"
       - name: JAVA_HEAP_OPTS
         value: -Xmx64m
       ports:
