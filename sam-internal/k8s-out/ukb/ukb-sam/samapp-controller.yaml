@@ -30,7 +30,7 @@ spec:
         env:
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig-platform
-        image: ops0-artifactrepo1-0-ukb.data.sfdc.net/dva/sam/hypersam:2746-ace6b19b4212da9efaed562a17256d7f216c080d
+        image: ops0-artifactrepo1-0-ukb.data.sfdc.net/dva/sam/hypersam:2753-37179b958a4917314bd53a011b39a87a48688f0b
         livenessProbe:
           httpGet:
             path: /healthz
