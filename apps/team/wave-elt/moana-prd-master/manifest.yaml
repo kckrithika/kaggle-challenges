@@ -1,6 +1,6 @@
 
 #
-# Generated manifest MODIFIED mbyne
+# Generated manifest
 # DO NOT MODIFY - See https://git.soma.salesforce.com/insights/moana-release
 #
 apiVersion: v1
@@ -17,8 +17,7 @@ system:
     name: moana-engine-master
   - containers:
     - env:
-      - {name: SPRING_MAIN_WEB_APPLICATION_TYPE, value: 'NONE'}
-      - {name: MANAGEMENT_SERVER_PORT, value: '-1'}
+      - {name: MANAGEMENT_SERVER_PORT, value: '15372'}
       - {name: LOGGING_JSON_STDOUT_LEVEL, value: ALL}
       - {name: LOGGING_STDERR_LEVEL, value: ALL}
       - {name: TEST_POD, value: moana-driver-master}
@@ -31,22 +30,23 @@ system:
       - {name: TESTRECIPE_MAESTROPINGTEST, value: 'true'}
       - {name: DEPLOYMENT_ID, value: prd-master}
       - {name: HANDLED_PODS_PATTERN, value: stmfa\..*|moana-driver-master}
-      - {name: HEALTHCHECK_SELF_INTERVAL, value: '60'}
       image: sfci/insights/moana-driver:master-39-e4451a9
       livenessProbe:
-        exec:
-          command: [bash, -c, find /tmp -mmin -2 -name health | grep -q "."]
+        httpGet: {path: /manage/health, port: 15372}
         initialDelaySeconds: 30
         periodSeconds: 60
         timeoutSeconds: 30
       name: moana-driver
+      ports:
+      - {containerPort: 8080, name: http}
+      - {containerPort: 15372, name: mgmt}
       resources:
         limits: {cpu: 2, memory: 2G}
         requests: {cpu: 1, memory: 2G}
       volumeMounts:
       - {mountPath: /home/scone/client-certs, name: tls-client-certs}
     count: 3
-    hostnetwork: true
+    hostnetwork: false
     identity: {serviceName: moana-driver}
     name: moana-driver-master
     volumes:
@@ -56,8 +56,7 @@ system:
       name: tls-client-certs
   - containers:
     - env:
-      - {name: SPRING_MAIN_WEB_APPLICATION_TYPE, value: 'NONE'}
-      - {name: MANAGEMENT_SERVER_PORT, value: '-1'}
+      - {name: MANAGEMENT_SERVER_PORT, value: '15372'}
       - {name: LOGGING_JSON_STDOUT_LEVEL, value: ALL}
       - {name: LOGGING_STDERR_LEVEL, value: ALL}
       - {name: MOANA_SPARK_ENGINE_IMAGE, value: 'ops0-artifactrepo2-0-prd.data.sfdc.net/sfci/insights/moanaengine:master-1.0.59-23a4fbe'}
@@ -78,15 +77,15 @@ system:
       - {name: K8S_CPU_LIMIT_APPLY, value: 'false'}
       - {name: STARTUP_JOB_ENABLED, value: 'false'}
       - {name: HANDLED_PODS_PATTERN, value: stmfa\..*|moana-driver-master}
-      - {name: HEALTHCHECK_SELF_INTERVAL, value: '60'}
       image: sfci/insights/jobcontroller:master-1.0.54-af4c99f
       livenessProbe:
-        exec:
-          command: [bash, -c, find /tmp -mmin -2 -name health | grep -q "."]
+        httpGet: {path: /manage/health, port: 15372}
         initialDelaySeconds: 90
         periodSeconds: 60
         timeoutSeconds: 30
       name: jobcontroller
+      ports:
+      - {containerPort: 15372, name: mgmt}
       resources:
         limits: {cpu: 2, memory: 4G}
         requests: {cpu: 2, memory: 4G}
@@ -94,7 +93,7 @@ system:
       - {mountPath: /home/datapool/logs, name: logvol}
       - {mountPath: /home/datapool/client-certs, name: tls-client-certs}
     count: 3
-    hostnetwork: true
+    hostnetwork: false
     identity: {serviceName: datapool}
     name: jobcontroller-master
     volumes:
@@ -106,5 +105,12 @@ system:
       name: tls-server-certs
     - maddogCert: {type: client}
       name: tls-client-certs
+  loadbalancers:
+  - function: moana-driver-master
+    lbname: moana-driver-master
+    nodeExposed: true
+    ports:
+    - {lbalgorithm: roundrobin, lbtype: http, port: 8081, sticky: 0, targetport: 8080}
+    slbEnabled: true
   notifications:
     email: [moanaserviceseng@salesforce.com]
