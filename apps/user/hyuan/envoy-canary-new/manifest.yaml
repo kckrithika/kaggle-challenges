@@ -3,7 +3,7 @@ apiVersion: v1
 system:
   notifications:
     email:
-      - servicemesh@salesforce.com
+      - hyuan@salesforce.com
   functions:
   - name: envoy-canary-new
     count: 1
