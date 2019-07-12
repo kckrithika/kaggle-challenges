@@ -11,7 +11,7 @@ system:
       "sherpa-injector.service-mesh/inject": "enabled"
     containers:
     - name: authz-svc
-      image: docker-dva-rc/dva/electron_sam:19be7410c940c395273681f6b55606454ef9667b
+      image: dva/electron_sam:19be7410c940c395273681f6b55606454ef9667b
       env:
       - name: SFDC_ENVIRONMENT
         value: prod
