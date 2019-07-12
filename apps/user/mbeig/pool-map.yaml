@@ -1,10 +1,12 @@
 version: v2
 apps:
-  with-custom-sherpa:
-   - name: prd/prd-sam
-  with-nginx-only:
-   - name: prd/prd-sam
-  with-nginx:
+  gid-runtime-service:
     - name: prd/prd-sam
-  without-nginx:
-    - name: prd/prd-sam
+  # with-custom-sherpa:
+  #  - name: prd/prd-sam
+  # with-nginx-only:
+  #  - name: prd/prd-sam
+  # with-nginx:
+  #   - name: prd/prd-sam
+  # without-nginx:
+  #   - name: prd/prd-sam
