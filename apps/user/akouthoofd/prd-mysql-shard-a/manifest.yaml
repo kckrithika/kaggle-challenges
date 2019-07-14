@@ -14,7 +14,7 @@ system:
           maxUnavailable: 1
       containers:
       - name: prd-mysql-shard-a
-        image: dva/casp/mysql_strata:18
+        image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/akouthoofd/mysql:test
         ports:
         - name: mysql-shard-a
           containerPort: 3306
@@ -28,6 +28,11 @@ system:
           exec:
             command:
             - /usr/bin/true
+        env:
+        - name: HOSTNAME
+          valueFrom:
+            fieldRef:
+              fieldPath: spec.nodeName
       volumes:
       - name: mysql-data-vol
         hostPath:
