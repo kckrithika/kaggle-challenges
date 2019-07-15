@@ -383,6 +383,9 @@
               "prd-sam"+: [
                   "prd-sp2-sam_coreapp",
               ],
+              "xrd-sam"+: [
+                  "xrd-sam_mgmt_hub",
+              ],
             },
 
         upstreamStatusReporterMinPercent:

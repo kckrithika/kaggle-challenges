@@ -30,6 +30,7 @@ spec:
                 values:
                 - xrd-sam
                 - xrd-sam_gater
+                - xrd-sam_mgmt_hub
       containers:
       - command:
         - /sdn/slb-realsvrcfg
