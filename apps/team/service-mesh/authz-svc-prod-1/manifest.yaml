@@ -7,8 +7,6 @@ system:
   functions:
   - name: authz-svc
     count: 2
-    annotations:
-      "sherpa-injector.service-mesh/inject": "enabled"
     containers:
     - name: authz-svc
       image: dva/electron_sam:19be7410c940c395273681f6b55606454ef9667b
@@ -33,6 +31,39 @@ system:
         exec:
           command: ["/bin/true"]
         initialDelaySeconds: 30
+        periodSeconds: 5
+    - name: sherpa
+      image: sfci/servicelibs/sherpa-envoy:1.0.8
+      ports:
+      - containerPort: 7443
+        name: sherpa-grpc-tls
+      - containerPort: 7442
+        name: sherpa-http-tls
+      - containerPort: 15373
+        name: sherpa-adm
+      env:
+      - name: SFDC_ENVIRONMENT
+        value: prod
+      resources:
+        limits:
+          cpu: "1"
+          memory: "1Gi"
+      volumeMounts:
+      - mountPath: /client-certs
+        name: tls-client-cert
+      - mountPath: /server-certs
+        name: tls-server-cert
+      livenessProbe:
+        exec:
+          command:
+          - "./bin/is-alive"
+        initialDelaySeconds: 60
+        periodSeconds: 5
+      readinessProbe:
+        exec:
+          command:
+          - "./bin/is-ready"
+        initialDelaySeconds: 50
         periodSeconds: 5
     - name: beacon
       # https://git.soma.salesforce.com/services/sfdc-bazel/tree/master/projects/sidecars/beacon#docker-image
