@@ -6,7 +6,7 @@ system:
 
     containers:
     - name: zoobernetes
-      image: sfci/services/sfdc-bazel/disco/zoobernetes:512548d50
+      image: sfci/services/sfdc-bazel/disco/zoobernetes:7add840c6
 
       #Used to trigger redeploy
       env:
