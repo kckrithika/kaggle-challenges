@@ -85,7 +85,7 @@ configs.daemonSetBase("sam") {
                         name: "config",
                     },
                 ] + (
-                    if configs.estate == "prd-samtest" then [
+                    if configs.kingdom == "prd" then [
                         {
                             configMap: {
                                 name: "watchdog",
