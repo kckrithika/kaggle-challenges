@@ -1,3 +1,6 @@
 apps:
   gid-runtime-service:
     - prd/prd-sam
+    # - xrd/xrd-sampool
+  gid-runtime-service:
+    - xrd/xrd-sampool
