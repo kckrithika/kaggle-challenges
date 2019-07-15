@@ -11,7 +11,7 @@ system:
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/noah.pepper/archive-backup-service:bazel-monorepo
       args:
       # Increment this arg when making noop manifest changes
-      - --noop.arg=2
+      - --noop.arg=3
       # Temp fix to allow very low disk space
       - --health.diskSpaceThreshold=0.05
       # If your service doesn't serve HTTP traffic then you can remove the scone-http 8080 port.
