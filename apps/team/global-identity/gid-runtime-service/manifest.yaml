@@ -89,6 +89,8 @@ system:
         value: 7022
       - name: management_server_port
         value: 15375
+      - name: login_vip_url
+        value: https://gidruntimelb.global-identity.xrd-sam.xrd.slb.sfdc.net
       ports:
       - containerPort: 7022
       - containerPort: 15375
