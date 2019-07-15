@@ -26,7 +26,7 @@ system:
       - name: management_server_port
         value: 15375
       - name: login_vip_url
-        value: https://gidruntimelb.user-mbeig.xrd-sam.xrd.slb.sfdc.net:${server.port}
+        value: https://gidruntimelb.user-mbeig.xrd-sam.xrd.slb.sfdc.net
       ports:
       - containerPort: 7022
       - containerPort: 15375
