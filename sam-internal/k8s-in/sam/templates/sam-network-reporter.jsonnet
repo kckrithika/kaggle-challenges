@@ -36,8 +36,7 @@ configs.daemonSetBase("sam") {
                             },
                         ],
                     } + configs.ipAddressResourceRequest,
-                ] + (
-                    if configs.kingdom == "prd" then [
+                ] + [
                          configs.containerWithKubeConfigAndMadDog {
                             name: "sam-watchdog-connectivitylabeler",
                             image: samimages.hypersam,
@@ -71,8 +70,7 @@ configs.daemonSetBase("sam") {
                                 },
                             ],
                         } + configs.ipAddressResourceRequest,
-                    ] else []
-                ),
+                    ],
                 volumes+: [
                     configs.sfdchosts_volume,
                     configs.cert_volume,
@@ -84,16 +82,15 @@ configs.daemonSetBase("sam") {
                         },
                         name: "config",
                     },
-                ] + (
-                    if configs.kingdom == "prd" then [
-                        {
-                            configMap: {
-                                name: "watchdog",
-                            },
-                            name: "watchdogconfig",
+                ]
+                + [
+                    {
+                        configMap: {
+                            name: "watchdog",
                         },
-                    ] else []
-                ),
+                        name: "watchdogconfig",
+                    },
+                ],
             },
             metadata: {
                 labels: {
