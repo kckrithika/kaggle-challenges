@@ -9,6 +9,7 @@ apps:
    - ph2/ph2-sam_gatewayconfig
    - ia2/ia2-sam_gatewayconfig
    - ord/ord-sam_gatewayconfig
+   - iad/iad-sam_gatewayconfig
  gatewayconfig-gcp:
    - mvp/gsf-core-devmvp-sam2-sam
 
