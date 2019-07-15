@@ -69,7 +69,7 @@ data:
         "name=etcd": "age.etcd"
       },
       "node-endpoints": {
-        "madkub": "https://10.254.208.254:32007"
+        "madkub": "https://10.254.208.254:32007/healthz"
       },
       "nodeUpdateWindow": "1h",
       "publishToWatchDogCrd": true,

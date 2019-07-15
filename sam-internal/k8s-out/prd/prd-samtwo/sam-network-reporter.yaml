@@ -92,6 +92,9 @@ spec:
       - configMap:
           name: sam-network-reporter
         name: config
+      - configMap:
+          name: watchdog
+        name: watchdogconfig
   updateStrategy:
     rollingUpdate:
       maxUnavailable: 25%
