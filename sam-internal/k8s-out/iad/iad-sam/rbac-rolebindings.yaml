@@ -604,6 +604,32 @@ items:
 - apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: RoleBinding
   metadata:
+    name: gateway:iad-sam_kingdom_caas:rolebinding
+    namespace: gateway
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: minion:role
+  subjects:
+  - kind: User
+    name: samkingdomcaas0-caasminion1-1-iad.ops.sfdc.net
+  - kind: User
+    name: samkingdomcaas0-caasminion1-2-iad.ops.sfdc.net
+  - kind: User
+    name: samkingdomcaas0-caasminion1-3-iad.ops.sfdc.net
+  - kind: User
+    name: samkingdomcaas0-caasminion2-1-iad.ops.sfdc.net
+  - kind: User
+    name: samkingdomcaas0-caasminion2-2-iad.ops.sfdc.net
+  - kind: User
+    name: samkingdomcaas0-caasminion2-3-iad.ops.sfdc.net
+  - kind: User
+    name: samkingdomcaas0-caasminion3-1-iad.ops.sfdc.net
+  - kind: User
+    name: samkingdomcaas0-caasminion3-2-iad.ops.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1beta1
+  kind: RoleBinding
+  metadata:
     name: mc-eventing:iad-sam_mc_consumer:rolebinding
     namespace: mc-eventing
   roleRef:

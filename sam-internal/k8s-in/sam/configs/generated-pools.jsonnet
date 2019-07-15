@@ -1499,6 +1499,18 @@
     },
     {
       "namespaces": [
+        "gateway"
+      ],
+      "access": [
+        "team/gateway"
+      ],
+      "controlEstate": "iad-sam",
+      "estate": "iad-sam_gatewayconfig",
+      "kingdom": "iad",
+      "superPod": "None"
+    },
+    {
+      "namespaces": [
         "iot"
       ],
       "access": [
@@ -1511,10 +1523,12 @@
     },
     {
       "namespaces": [
-        "cache-as-a-service"
+        "cache-as-a-service",
+        "gateway"
       ],
       "access": [
-        "team/Cache_As_A_service"
+        "team/Cache_As_A_service",
+        "team/gateway"
       ],
       "controlEstate": "iad-sam",
       "estate": "iad-sam_kingdom_caas",
