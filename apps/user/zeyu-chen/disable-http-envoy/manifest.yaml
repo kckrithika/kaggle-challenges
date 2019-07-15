@@ -33,14 +33,8 @@ system:
       - mountPath: /log
         name: logvolsherpa
       ports:
-      - containerPort: 7012
-        name: sherpa-in
-      - containerPort: 7014
-        name: http1-in
       - containerPort: 7442
         name: http1-tls-in
-      - containerPort: 15373
-        name: sherpa-adm
       livenessProbe:
         exec:
           command:
