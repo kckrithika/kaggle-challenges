@@ -11,7 +11,7 @@ system:
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/noah.pepper/archive-backup-service:bazel-monorepo
       args:
       # Increment this arg when making noop manifest changes
-      - --noop.arg=1
+      - --noop.arg=2
       # If your service doesn't serve HTTP traffic then you can remove the scone-http 8080 port.
       ports:
       - containerPort: 8080
