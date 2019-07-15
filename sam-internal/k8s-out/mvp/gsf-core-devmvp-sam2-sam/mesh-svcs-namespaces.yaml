@@ -12,6 +12,7 @@ items:
     labels:
       istio-injection: enabled
       pcn: deploy
+      sherpa-injection: enabled
     name: service-mesh
 - apiVersion: v1
   kind: Namespace
