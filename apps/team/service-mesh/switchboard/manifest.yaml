@@ -12,7 +12,7 @@ system:
       app: switchboard
     containers:
     - name: switchboard
-      image: sfci/servicelibs/switchboard:4329977ce396c10e4309e3ba2382ff55c503f4ad
+      image: sfci/servicelibs/switchboard:4a7d7dc1501dcecf5cc2c7a19900f6a5130e1c23
       args:
       - --clusters.external-clusters[0]=ajnafunneldirect:HTTP1
       - --clusters.external-clusters[1]=spaasmesh:HTTP2
@@ -78,7 +78,7 @@ system:
         timeoutSeconds: 4
       terminationMessagePolicy: FallbackToLogsOnError
     - name: sherpa
-      image: sfci/servicelibs/sherpa-envoy:ab66651ebe4478a1b819f11edc7b01dd364c3e28
+      image: sfci/servicelibs/sherpa-envoy:2b1e3e25691df0907008172519bb8c9d3aa1a12d
       args:
       - --template
       - /switchboard-config/switchboard-sidecar.config.yaml.template
