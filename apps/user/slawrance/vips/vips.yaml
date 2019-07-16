@@ -18,7 +18,7 @@
     - name: "X-Salesforce-VIP"
       value: "FORCE"
   - port: 80
-    httpsredirectport: 443
+    targetport: 8085
     lbtype: http
     healthprotocol: http
     healthpath: /ping.jsp?allBusy
@@ -32,20 +32,20 @@
   ports:
   - port: 443
     targetport: 8090
-    reencrypt: false
+    reencrypt: true
     healthport: 8085
     lbtype: http
     healthprotocol: http
     healthpath: /ping.jsp?allBusy
     sticky: 86400
-    tls: false
+    tls: true
+    tlscertificate: secret_service:BofA-Stmfa-VIP-Certs:encinoman2.stmfa.stm.my-salesforce.com.crt
+    tlskey: kms:1:2:39511828A26F7F464E472A3E75E15C8D27B4A4558B8F7231704D844ACB28ABE2:778fa96b-1f70-4023-8606-c4a156ded2c1
     addheaders:
     - name: "X-Salesforce-VIP"
       value: "FORCE"
-    - name: "CipherSuite"
-      value: "ECDHE-RSA-AES256-GCM-SHA384 TLSv1.2 256-bits"
   - port: 80
-    httpsredirectport: 443
+    targetport: 8085
     lbtype: http
     healthprotocol: http
     healthpath: /ping.jsp?allBusy
@@ -72,7 +72,7 @@
     - name: "X-Salesforce-VIP"
       value: "FORCE"
   - port: 80
-    httpsredirectport: 443
+    targetport: 8085
     lbtype: http
     healthprotocol: http
     healthpath: /ping.jsp?allBusy
@@ -99,7 +99,7 @@
     - name: "X-Salesforce-VIP"
       value: "FORCE"
   - port: 80
-    httpsredirectport: 443
+    targetport: 8085
     lbtype: http
     healthprotocol: http
     healthpath: /ping.jsp?allBusy
@@ -126,7 +126,7 @@
     - name: "X-Salesforce-VIP"
       value: "FORCE"
   - port: 80
-    httpsredirectport: 443
+    targetport: 8085
     lbtype: http
     healthprotocol: http
     healthpath: /ping.jsp?allBusy
@@ -153,7 +153,7 @@
     - name: "X-Salesforce-VIP"
       value: "FORCE"
   - port: 80
-    httpsredirectport: 443
+    targetport: 8085
     lbtype: http
     healthprotocol: http
     healthpath: /ping.jsp?allBusy
@@ -180,7 +180,7 @@
     - name: "X-Salesforce-VIP"
       value: "FORCE"
   - port: 80
-    httpsredirectport: 443
+    targetport: 8085
     lbtype: http
     healthprotocol: http
     healthpath: /ping.jsp?allBusy
@@ -205,7 +205,7 @@
     - name: "X-Salesforce-VIP"
       value: "FORCE"
   - port: 80
-    httpsredirectport: 443
+    targetport: 8085
     lbtype: http
     healthprotocol: http
     healthpath: /ping.jsp?allBusy
@@ -232,7 +232,7 @@
     - name: "X-Salesforce-VIP"
       value: "FORCE"
   - port: 80
-    httpsredirectport: 443
+    targetport: 8085
     lbtype: http
     healthprotocol: http
     healthpath: /ping.jsp?allBusy
@@ -259,7 +259,7 @@
     - name: "X-Salesforce-VIP"
       value: "FORCE"
   - port: 80
-    httpsredirectport: 443
+    targetport: 8085
     lbtype: http
     healthprotocol: http
     healthpath: /ping.jsp?allBusy
@@ -286,7 +286,7 @@
     - name: "X-Salesforce-VIP"
       value: "FORCE"
   - port: 80
-    httpsredirectport: 443
+    targetport: 8085
     lbtype: http
     healthprotocol: http
     healthpath: /ping.jsp?allBusy
@@ -313,7 +313,7 @@
     - name: "X-Salesforce-VIP"
       value: "FORCE"
   - port: 80
-    httpsredirectport: 443
+    targetport: 8085
     lbtype: http
     healthprotocol: http
     healthpath: /ping.jsp?allBusy
@@ -338,7 +338,7 @@
     - name: "X-Salesforce-VIP"
       value: "FORCE"
   - port: 80
-    httpsredirectport: 443
+    targetport: 8085
     lbtype: http
     healthprotocol: http
     healthpath: /ping.jsp?allBusy
@@ -365,7 +365,7 @@
     - name: "X-Salesforce-VIP"
       value: "FORCE"
   - port: 80
-    httpsredirectport: 443
+    targetport: 8085
     lbtype: http
     healthprotocol: http
     healthpath: /ping.jsp?allBusy
@@ -392,7 +392,7 @@
     - name: "X-Salesforce-VIP"
       value: "FORCE"
   - port: 80
-    httpsredirectport: 443
+    targetport: 8085
     lbtype: http
     healthprotocol: http
     healthpath: /ping.jsp?allBusy
@@ -419,7 +419,7 @@
     - name: "X-Salesforce-VIP"
       value: "FORCE"
   - port: 80
-    httpsredirectport: 443
+    targetport: 8085
     lbtype: http
     healthprotocol: http
     healthpath: /ping.jsp?allBusy
@@ -446,7 +446,7 @@
     - name: "X-Salesforce-VIP"
       value: "FORCE"
   - port: 80
-    httpsredirectport: 443
+    targetport: 8085
     lbtype: http
     healthprotocol: http
     healthpath: /ping.jsp?allBusy
@@ -473,7 +473,7 @@
     - name: "X-Salesforce-VIP"
       value: "FORCE"
   - port: 80
-    httpsredirectport: 443
+    targetport: 8085
     lbtype: http
     healthprotocol: http
     healthpath: /ping.jsp?allBusy
@@ -501,7 +501,7 @@
     - name: "X-Salesforce-VIP"
       value: "FORCE"
   - port: 80
-    httpsredirectport: 443
+    targetport: 8085
     lbtype: http
     healthprotocol: http
     healthpath: /ping.jsp?allBusy
@@ -528,7 +528,7 @@
     - name: "X-Salesforce-VIP"
       value: "FORCE"
   - port: 80
-    httpsredirectport: 443
+    targetport: 8085
     lbtype: http
     healthprotocol: http
     healthpath: /ping.jsp?allBusy
@@ -555,7 +555,7 @@
     - name: "X-Salesforce-VIP"
       value: "FORCE"
   - port: 80
-    httpsredirectport: 443
+    targetport: 8085
     lbtype: http
     healthprotocol: http
     healthpath: /ping.jsp?allBusy
@@ -582,7 +582,7 @@
     - name: "X-Salesforce-VIP"
       value: "FORCE"
   - port: 80
-    httpsredirectport: 443
+    targetport: 8085
     lbtype: http
     healthprotocol: http
     healthpath: /ping.jsp?allBusy
@@ -609,7 +609,7 @@
     - name: "X-Salesforce-VIP"
       value: "FORCE"
   - port: 80
-    httpsredirectport: 443
+    targetport: 8085
     lbtype: http
     healthprotocol: http
     healthpath: /ping.jsp?allBusy
@@ -636,7 +636,7 @@
     - name: "X-Salesforce-VIP"
       value: "FORCE"
   - port: 80
-    httpsredirectport: 443
+    targetport: 8085
     lbtype: http
     healthprotocol: http
     healthpath: /ping.jsp?allBusy

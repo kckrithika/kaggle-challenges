@@ -22,7 +22,7 @@
     - name: "X-Salesforce-VIP"
       value: "FORCE"
   - port: 80
-    httpsredirectport: 443
+    targetport: 8085
     lbtype: http
     healthprotocol: http
     healthpath: /ping.jsp?allBusy
