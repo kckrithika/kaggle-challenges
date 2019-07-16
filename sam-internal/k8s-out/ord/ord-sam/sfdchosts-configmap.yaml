@@ -1680,6 +1680,28 @@ data:
           "controlestate": "ord-sam",
           "devicerole": "samcompute",
           "estate": "ord-sam_eventbus",
+          "hostname": "shared0-samminionaqueduct1-4-ord.ops.sfdc.net",
+          "kingdom": "ord",
+          "pod": "none",
+          "rack": "j10-cr10",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sam_minion_aqueduct",
+          "controlestate": "ord-sam",
+          "devicerole": "samcompute",
+          "estate": "ord-sam_eventbus",
+          "hostname": "shared0-samminionaqueduct1-5-ord.ops.sfdc.net",
+          "kingdom": "ord",
+          "pod": "none",
+          "rack": "j10-cr10",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sam_minion_aqueduct",
+          "controlestate": "ord-sam",
+          "devicerole": "samcompute",
+          "estate": "ord-sam_eventbus",
           "hostname": "shared0-samminionaqueduct2-1-ord.ops.sfdc.net",
           "kingdom": "ord",
           "pod": "none",
@@ -1692,6 +1714,39 @@ data:
           "devicerole": "samcompute",
           "estate": "ord-sam_eventbus",
           "hostname": "shared0-samminionaqueduct2-2-ord.ops.sfdc.net",
+          "kingdom": "ord",
+          "pod": "none",
+          "rack": "p16-cr09",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sam_minion_aqueduct",
+          "controlestate": "ord-sam",
+          "devicerole": "samcompute",
+          "estate": "ord-sam_eventbus",
+          "hostname": "shared0-samminionaqueduct2-3-ord.ops.sfdc.net",
+          "kingdom": "ord",
+          "pod": "none",
+          "rack": "p16-cr09",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sam_minion_aqueduct",
+          "controlestate": "ord-sam",
+          "devicerole": "samcompute",
+          "estate": "ord-sam_eventbus",
+          "hostname": "shared0-samminionaqueduct2-4-ord.ops.sfdc.net",
+          "kingdom": "ord",
+          "pod": "none",
+          "rack": "p16-cr09",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sam_minion_aqueduct",
+          "controlestate": "ord-sam",
+          "devicerole": "samcompute",
+          "estate": "ord-sam_eventbus",
+          "hostname": "shared0-samminionaqueduct2-5-ord.ops.sfdc.net",
           "kingdom": "ord",
           "pod": "none",
           "rack": "p16-cr09",
@@ -1717,6 +1772,39 @@ data:
           "kingdom": "ord",
           "pod": "none",
           "rack": "a13-cr10",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sam_minion_aqueduct",
+          "controlestate": "ord-sam",
+          "devicerole": "samcompute",
+          "estate": "ord-sam_eventbus",
+          "hostname": "shared0-samminionaqueduct3-3-ord.ops.sfdc.net",
+          "kingdom": "ord",
+          "pod": "none",
+          "rack": "g02-cr09",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sam_minion_aqueduct",
+          "controlestate": "ord-sam",
+          "devicerole": "samcompute",
+          "estate": "ord-sam_eventbus",
+          "hostname": "shared0-samminionaqueduct3-4-ord.ops.sfdc.net",
+          "kingdom": "ord",
+          "pod": "none",
+          "rack": "g02-cr09",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sam_minion_aqueduct",
+          "controlestate": "ord-sam",
+          "devicerole": "samcompute",
+          "estate": "ord-sam_eventbus",
+          "hostname": "shared0-samminionaqueduct3-5-ord.ops.sfdc.net",
+          "kingdom": "ord",
+          "pod": "none",
+          "rack": "b12-cr10",
           "superpod": "none"
         },
         {
