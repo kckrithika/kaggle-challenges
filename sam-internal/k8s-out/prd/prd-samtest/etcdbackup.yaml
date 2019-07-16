@@ -24,7 +24,7 @@ spec:
         env:
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig-platform
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/sam/hypersam:2754-365539f3b19f1f92f8ee7f1778f157769fae2a07
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/sam/hypersam:2755-f2d626475424807fceb6c047dbb5ae7271561131
         name: etcdbackup
         volumeMounts:
         - mountPath: /data/etcdbackup
