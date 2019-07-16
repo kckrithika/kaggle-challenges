@@ -98,16 +98,4 @@ apps:
  gcp-test-app-stateful-pvc:
    - mvp/gsf-core-devmvp-sam2-sam
    - mvp/gsf-core-devmvp-sam2-samtest
- aws-test-app:
-   - aws-us-west-2/aws-us-west-2-samtest
-   - aws-us-west-2/aws-us-west-2-processing
-   - aws-us-west-2/aws-us-west-2-casam
-   - aws-us-west-2/aws-us-west-2-search   
- aws-tnrpendpoint-test-app:
-    - aws-us-west-2/aws-us-west-2-samtest
-    - aws-us-west-2/aws-us-west-2-processing
- aws-madkub-test-app:
-    - aws-us-west-2/aws-us-west-2-processing
- alpine:
-    - aws-us-west-2/aws-us-west-2-samtest
 
