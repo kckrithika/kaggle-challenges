@@ -15,7 +15,7 @@ system:
           maxUnavailable: 1
       containers:
       - name: prd-warden
-        image: dva/casp/warden_strata:313
+        image: dva/casp/warden_strata:318
         ports:
         - name: http
           containerPort: 8889
@@ -25,6 +25,10 @@ system:
         env:
         - name: BRANCH
           value: "eng_production"
+        - name: NODENAME
+          valueFrom:
+            fieldRef:
+              fieldPath: spec.nodeName
         volumeMounts:
         - mountPath: /home/sfdc-casp/logs
           name: log-vol

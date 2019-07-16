@@ -30,6 +30,11 @@ system:
           exec:
             command:
             - /usr/bin/true
+        env:
+        - name: NODENAME
+          valueFrom:
+            fieldRef:
+              fieldPath: spec.nodeName
       volumes:
       - name: mysql-data-vol
         hostPath:

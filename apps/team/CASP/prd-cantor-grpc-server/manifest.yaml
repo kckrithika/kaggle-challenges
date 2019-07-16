@@ -28,6 +28,10 @@ system:
         env:
         - name: SUBDOMAIN
           value: "eng"
+        - name: NODENAME
+          valueFrom:
+            fieldRef:
+              fieldPath: spec.nodeName
     loadbalancers:
     - lbname: cantor
       function: cantor-grpc-server

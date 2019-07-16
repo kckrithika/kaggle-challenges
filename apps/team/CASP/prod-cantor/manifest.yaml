@@ -31,6 +31,10 @@ system:
         env:
         - name: SUBDOMAIN
           value: "ops"
+        - name: NODENAME
+          valueFrom:
+            fieldRef:
+              fieldPath: spec.nodeName
     loadbalancers:
     - lbname: cantor
       function: cantor-func
