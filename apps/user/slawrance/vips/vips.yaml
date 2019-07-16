@@ -320,7 +320,7 @@
     healthprotocol: http
     healthpath: /ping.jsp?allBusy
 
-- lbname: altsuffix-stmpa-ap1
+- lbname: altsuffix-stmpa-ap1-xrd
   servers:
    - stmpaap1ice1-app1-1-xrd.eng.sfdcsvc.net
    - stmpaap1ice1-app1-2-xrd.eng.sfdcsvc.net
