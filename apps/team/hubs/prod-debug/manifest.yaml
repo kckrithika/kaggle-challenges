@@ -4,9 +4,10 @@ system:
   functions:
   - name: prod-debug
     count: 1
+
     containers:
-      - name: prod-debugger
-        image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/kfoster/prod-debugger:20190807-1337
+      - name: prod-debug-service
+        image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/hubs/prod-debug:prod-debug-2019-07-16-15-26-48
         ports:
           - containerPort: 2022
         livenessProbe:
@@ -23,3 +24,37 @@ system:
           - /tmp/ready
          initialDelaySeconds: 10
          periodSeconds: 5
+
+      - name: prod-debug-sherpa
+        image: sfci/servicelibs/sherpa-envoy:1.0.8
+        ports:
+        - containerPort: 15373
+          name: sherpa-adm
+        livenessProbe:
+          exec:
+            command:
+            - ./bin/is-alive
+          initialDelaySeconds: 60
+          periodSeconds: 5
+        readinessProbe:
+          exec:
+            command:
+            - ./bin/is-ready
+          initialDelaySeconds: 50
+          periodSeconds: 5
+        volumeMounts:
+        - name: tls-client-cert
+          mountPath: /client-certs
+        - name: tls-server-cert
+          mountPath: /server-certs
+
+    # The volumes to mount for shipping logs to splunk
+    # General rule is to use path that satisfies the pattern: /home/sfdc-*/logs/**/*.json
+    
+    volumes:
+      - maddogCert:
+          type: client
+        name: tls-client-cert
+      - maddogCert:
+          type: server
+        name: tls-server-cert
