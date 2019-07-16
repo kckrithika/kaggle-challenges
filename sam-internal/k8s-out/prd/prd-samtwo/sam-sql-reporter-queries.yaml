@@ -1003,6 +1003,10 @@ data:
           ],
           "name": "Etcd Node Overview",
           "note": "View of ETCD health based on etcdChecker CRD.  Stale means the watchdog CRD has not been updated in \u003e 3 hours.  Keep in mind the etcd watcher does not know what etcd nodes are in the ring.  Some errors are general broken etcd and some are members not added."
+        },
+        {
+          "name": "NodeEnpoint-failure-detail",
+          "sql": "select \n                TRIM('connectivitylabelerchecker-' FROM name) as HostName,\n                Payload-\u003e\u003e'$.status.report.Target' as Target, \n                Payload-\u003e\u003e'$.status.report.Success' as Connectivity, \n                TIMESTAMPDIFF(MINUTE, STR_TO_DATE(Payload-\u003e\u003e'$.status.report.ReportCreatedAt', '%Y-%m-%dT%H:%i:%s.'), UTC_TIMESTAMP()) as ReportAgeInMinutes,\n                Payload-\u003e\u003e'$.status.report.ErrorMessage' as ErrorMsg\n        from \n                k8s_resource \n        where \n                apikind = 'watchdog' and \n                name like 'connectivitylabelerchecker-%' and \n                Payload-\u003e\u003e'$.status.report.Success' = 'false'"
         }
       ]
     }
