@@ -1,0 +1,61 @@
+apiVersion: v2
+
+system:
+  functions:
+  - name: sfcd-onboarding-preprod
+    count: 2
+    identity:
+      serviceName: sfcd-onboarding-preprod
+    containers:
+    - name: sfcd-onboarding-app
+      image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/sfcd-onboarding:153
+      command: [ "/etc/sfcd-onboarding/run_app.sh" ]
+      ports:
+      - containerPort: 7000
+      livenessProbe:
+        httpGet:
+          path: /api/health/system
+          port: 7000
+        initialDelaySeconds: 3
+        # Keeping this high due to latencies accessing Spinnaker from SAMTWO
+        periodSeconds: 20
+      env:
+      - name: VAULT_NAME
+        value: "sfcd-onboarding"
+      - name: GCP_SERVICE_KEY_JSON
+        value: '/etc/sfcd-onboarding/.gcp_service_key.json'
+      - name: FLASK_ENV
+        value: 'production'
+      - name: USE_PROXY_FOR_GCLOUD_AUTH
+        value: 'True'
+      - name: ACTIVE_ENV
+        value: 'PREPROD'
+      volumeMounts:
+        - name: client-certs
+          mountPath: /certs
+    - name: sfcd-onboarding-nginx
+      image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/sfcd-onboarding-nginx:153
+      command: [ "nginx" ]
+      ports:
+      - containerPort: 5000
+      livenessProbe:
+        exec:
+          command:
+          # TODO: make this legit
+          - "true"
+        initialDelaySeconds: 3
+        periodSeconds: 10
+    volumes:
+    - name: client-certs
+      maddogCert:
+        type: client
+  loadbalancers:
+  - lbname: sfcd-onboarding-preprod
+    function: sfcd-onboarding-preprod
+    slbenabled: true
+    ports:
+      - port: 443
+        targetport: 5000
+        lbtype: http
+        tls: true
+        sticky: 300

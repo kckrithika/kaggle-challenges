@@ -3,3 +3,5 @@ apps:
     - prd/prd-sam_tnrp_signer
   sfcd-onboarding-test:
     - prd/prd-sam_tnrp_signer
+  sfcd-onboarding-preprod:
+    - prd/prd-sam_tnrp_signer
