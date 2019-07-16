@@ -29,7 +29,7 @@ system:
             command:
             - /usr/bin/true
         env:
-        - name: HOSTNAME
+        - name: NODENAME
           valueFrom:
             fieldRef:
               fieldPath: spec.nodeName
