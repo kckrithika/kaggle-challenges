@@ -1162,6 +1162,8 @@ spec:
           value: mcpIstioConfig.istioEstate
         - name: PILOT_SIDECAR_USE_REMOTE_ADDRESS
           value: "true"
+        - name: PILOT_ENABLE_REDIS_FILTER
+          value: "true"
         - name: POD_NAME
           valueFrom:
             fieldRef:

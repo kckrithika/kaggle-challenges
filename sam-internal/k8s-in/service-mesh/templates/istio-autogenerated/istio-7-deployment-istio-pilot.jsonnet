@@ -132,6 +132,10 @@ local mcpIstioConfig = (import "service-mesh/istio-config.jsonnet");
                 value: "true",
               },
               {
+                name: "PILOT_ENABLE_REDIS_FILTER",
+                value: "true",
+              },
+              {
                 name: "POD_NAME",
                 valueFrom: {
                   fieldRef: {
