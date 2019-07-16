@@ -5,3 +5,5 @@ apps:
     - xrd/xrd-sam_mgmt_hub
   hda-client:
     - xrd/xrd-sam_mgmt_hub
+  prod-debug:
+    - xrd/xrd-sam_mgmt_hub
