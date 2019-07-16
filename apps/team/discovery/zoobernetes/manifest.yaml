@@ -31,7 +31,7 @@ system:
 
     - name: sherpa
       # Use the latest release version from https://git.soma.salesforce.com/servicelibs/sherpa-envoy/releases
-      image: sfci/servicelibs/sherpa-envoy:{sherpa-envoy-version}
+      image: sfci/servicelibs/sherpa-envoy:1.0.8
       # See https://git.soma.salesforce.com/servicelibs/sherpa#ports
       ports:
       - containerPort: 7443
