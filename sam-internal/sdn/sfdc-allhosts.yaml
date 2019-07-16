@@ -9732,7 +9732,25 @@ hosts:
   controlestate: hio-sam
   devicerole: samkubeapi
   estate: hio-sam
+  hostname: shared0-samkubeapi1-2-hio.ops.sfdc.net
+  kingdom: hio
+  pod: none
+  rack: ""
+  superpod: none
+- bomrolename: sam_kube_api
+  controlestate: hio-sam
+  devicerole: samkubeapi
+  estate: hio-sam
   hostname: shared0-samkubeapi2-1-hio.ops.sfdc.net
+  kingdom: hio
+  pod: none
+  rack: ""
+  superpod: none
+- bomrolename: sam_kube_api
+  controlestate: hio-sam
+  devicerole: samkubeapi
+  estate: hio-sam
+  hostname: shared0-samkubeapi2-2-hio.ops.sfdc.net
   kingdom: hio
   pod: none
   rack: ""
@@ -9795,7 +9813,25 @@ hosts:
   controlestate: hio-sam
   devicerole: samcompute
   estate: hio-sam_gater
+  hostname: shared0-samminiongater1-3-hio.ops.sfdc.net
+  kingdom: hio
+  pod: none
+  rack: ""
+  superpod: none
+- bomrolename: sam_minion_gater
+  controlestate: hio-sam
+  devicerole: samcompute
+  estate: hio-sam_gater
   hostname: shared0-samminiongater2-1-hio.ops.sfdc.net
+  kingdom: hio
+  pod: none
+  rack: ""
+  superpod: none
+- bomrolename: sam_minion_gater
+  controlestate: hio-sam
+  devicerole: samcompute
+  estate: hio-sam_gater
+  hostname: shared0-samminiongater2-2-hio.ops.sfdc.net
   kingdom: hio
   pod: none
   rack: ""
@@ -12985,6 +13021,141 @@ hosts:
   kingdom: ia2
   pod: none
   rack: e15-dh10
+  superpod: none
+- bomrolename: sam_minion_aqueduct
+  controlestate: ia2-sam
+  devicerole: samcompute
+  estate: ia2-sam_eventbus
+  hostname: shared0-samminionaqueduct1-1-ia2.ops.sfdc.net
+  kingdom: ia2
+  pod: none
+  rack: x44-dh10
+  superpod: none
+- bomrolename: sam_minion_aqueduct
+  controlestate: ia2-sam
+  devicerole: samcompute
+  estate: ia2-sam_eventbus
+  hostname: shared0-samminionaqueduct1-2-ia2.ops.sfdc.net
+  kingdom: ia2
+  pod: none
+  rack: x44-dh10
+  superpod: none
+- bomrolename: sam_minion_aqueduct
+  controlestate: ia2-sam
+  devicerole: samcompute
+  estate: ia2-sam_eventbus
+  hostname: shared0-samminionaqueduct1-3-ia2.ops.sfdc.net
+  kingdom: ia2
+  pod: none
+  rack: x44-dh10
+  superpod: none
+- bomrolename: sam_minion_aqueduct
+  controlestate: ia2-sam
+  devicerole: samcompute
+  estate: ia2-sam_eventbus
+  hostname: shared0-samminionaqueduct1-4-ia2.ops.sfdc.net
+  kingdom: ia2
+  pod: none
+  rack: x44-dh10
+  superpod: none
+- bomrolename: sam_minion_aqueduct
+  controlestate: ia2-sam
+  devicerole: samcompute
+  estate: ia2-sam_eventbus
+  hostname: shared0-samminionaqueduct1-5-ia2.ops.sfdc.net
+  kingdom: ia2
+  pod: none
+  rack: x44-dh10
+  superpod: none
+- bomrolename: sam_minion_aqueduct
+  controlestate: ia2-sam
+  devicerole: samcompute
+  estate: ia2-sam_eventbus
+  hostname: shared0-samminionaqueduct2-1-ia2.ops.sfdc.net
+  kingdom: ia2
+  pod: none
+  rack: z44-dh10
+  superpod: none
+- bomrolename: sam_minion_aqueduct
+  controlestate: ia2-sam
+  devicerole: samcompute
+  estate: ia2-sam_eventbus
+  hostname: shared0-samminionaqueduct2-2-ia2.ops.sfdc.net
+  kingdom: ia2
+  pod: none
+  rack: z44-dh10
+  superpod: none
+- bomrolename: sam_minion_aqueduct
+  controlestate: ia2-sam
+  devicerole: samcompute
+  estate: ia2-sam_eventbus
+  hostname: shared0-samminionaqueduct2-3-ia2.ops.sfdc.net
+  kingdom: ia2
+  pod: none
+  rack: z44-dh10
+  superpod: none
+- bomrolename: sam_minion_aqueduct
+  controlestate: ia2-sam
+  devicerole: samcompute
+  estate: ia2-sam_eventbus
+  hostname: shared0-samminionaqueduct2-4-ia2.ops.sfdc.net
+  kingdom: ia2
+  pod: none
+  rack: z44-dh10
+  superpod: none
+- bomrolename: sam_minion_aqueduct
+  controlestate: ia2-sam
+  devicerole: samcompute
+  estate: ia2-sam_eventbus
+  hostname: shared0-samminionaqueduct2-5-ia2.ops.sfdc.net
+  kingdom: ia2
+  pod: none
+  rack: z44-dh10
+  superpod: none
+- bomrolename: sam_minion_aqueduct
+  controlestate: ia2-sam
+  devicerole: samcompute
+  estate: ia2-sam_eventbus
+  hostname: shared0-samminionaqueduct3-1-ia2.ops.sfdc.net
+  kingdom: ia2
+  pod: none
+  rack: p55-dh10
+  superpod: none
+- bomrolename: sam_minion_aqueduct
+  controlestate: ia2-sam
+  devicerole: samcompute
+  estate: ia2-sam_eventbus
+  hostname: shared0-samminionaqueduct3-2-ia2.ops.sfdc.net
+  kingdom: ia2
+  pod: none
+  rack: u42-dh10
+  superpod: none
+- bomrolename: sam_minion_aqueduct
+  controlestate: ia2-sam
+  devicerole: samcompute
+  estate: ia2-sam_eventbus
+  hostname: shared0-samminionaqueduct3-3-ia2.ops.sfdc.net
+  kingdom: ia2
+  pod: none
+  rack: u42-dh10
+  superpod: none
+- bomrolename: sam_minion_aqueduct
+  controlestate: ia2-sam
+  devicerole: samcompute
+  estate: ia2-sam_eventbus
+  hostname: shared0-samminionaqueduct3-4-ia2.ops.sfdc.net
+  kingdom: ia2
+  pod: none
+  rack: u42-dh10
+  superpod: none
+- bomrolename: sam_minion_aqueduct
+  controlestate: ia2-sam
+  devicerole: samcompute
+  estate: ia2-sam_eventbus
+  hostname: shared0-samminionaqueduct3-5-ia2.ops.sfdc.net
+  kingdom: ia2
+  pod: none
+  rack: u42-dh10
   superpod: none
 - bomrolename: sam_minion_gater
   controlestate: ia2-sam
@@ -24753,6 +24924,24 @@ hosts:
   controlestate: ord-sam
   devicerole: samcompute
   estate: ord-sam_eventbus
+  hostname: shared0-samminionaqueduct1-4-ord.ops.sfdc.net
+  kingdom: ord
+  pod: none
+  rack: j10-cr10
+  superpod: none
+- bomrolename: sam_minion_aqueduct
+  controlestate: ord-sam
+  devicerole: samcompute
+  estate: ord-sam_eventbus
+  hostname: shared0-samminionaqueduct1-5-ord.ops.sfdc.net
+  kingdom: ord
+  pod: none
+  rack: j10-cr10
+  superpod: none
+- bomrolename: sam_minion_aqueduct
+  controlestate: ord-sam
+  devicerole: samcompute
+  estate: ord-sam_eventbus
   hostname: shared0-samminionaqueduct2-1-ord.ops.sfdc.net
   kingdom: ord
   pod: none
@@ -24763,6 +24952,33 @@ hosts:
   devicerole: samcompute
   estate: ord-sam_eventbus
   hostname: shared0-samminionaqueduct2-2-ord.ops.sfdc.net
+  kingdom: ord
+  pod: none
+  rack: p16-cr09
+  superpod: none
+- bomrolename: sam_minion_aqueduct
+  controlestate: ord-sam
+  devicerole: samcompute
+  estate: ord-sam_eventbus
+  hostname: shared0-samminionaqueduct2-3-ord.ops.sfdc.net
+  kingdom: ord
+  pod: none
+  rack: p16-cr09
+  superpod: none
+- bomrolename: sam_minion_aqueduct
+  controlestate: ord-sam
+  devicerole: samcompute
+  estate: ord-sam_eventbus
+  hostname: shared0-samminionaqueduct2-4-ord.ops.sfdc.net
+  kingdom: ord
+  pod: none
+  rack: p16-cr09
+  superpod: none
+- bomrolename: sam_minion_aqueduct
+  controlestate: ord-sam
+  devicerole: samcompute
+  estate: ord-sam_eventbus
+  hostname: shared0-samminionaqueduct2-5-ord.ops.sfdc.net
   kingdom: ord
   pod: none
   rack: p16-cr09
@@ -24784,6 +25000,33 @@ hosts:
   kingdom: ord
   pod: none
   rack: a13-cr10
+  superpod: none
+- bomrolename: sam_minion_aqueduct
+  controlestate: ord-sam
+  devicerole: samcompute
+  estate: ord-sam_eventbus
+  hostname: shared0-samminionaqueduct3-3-ord.ops.sfdc.net
+  kingdom: ord
+  pod: none
+  rack: g02-cr09
+  superpod: none
+- bomrolename: sam_minion_aqueduct
+  controlestate: ord-sam
+  devicerole: samcompute
+  estate: ord-sam_eventbus
+  hostname: shared0-samminionaqueduct3-4-ord.ops.sfdc.net
+  kingdom: ord
+  pod: none
+  rack: g02-cr09
+  superpod: none
+- bomrolename: sam_minion_aqueduct
+  controlestate: ord-sam
+  devicerole: samcompute
+  estate: ord-sam_eventbus
+  hostname: shared0-samminionaqueduct3-5-ord.ops.sfdc.net
+  kingdom: ord
+  pod: none
+  rack: b12-cr10
   superpod: none
 - bomrolename: sam_minion_gater
   controlestate: ord-sam
@@ -30073,6 +30316,141 @@ hosts:
   devicerole: samcompute
   estate: ph2-sam_dp
   hostname: shared0-samminiondp2-1-ph2.ops.sfdc.net
+  kingdom: ph2
+  pod: none
+  rack: b26-dh10
+  superpod: none
+- bomrolename: sam_minion_aqueduct
+  controlestate: ph2-sam
+  devicerole: samcompute
+  estate: ph2-sam_eventbus
+  hostname: shared0-samminionaqueduct1-1-ph2.ops.sfdc.net
+  kingdom: ph2
+  pod: none
+  rack: a63-dh10
+  superpod: none
+- bomrolename: sam_minion_aqueduct
+  controlestate: ph2-sam
+  devicerole: samcompute
+  estate: ph2-sam_eventbus
+  hostname: shared0-samminionaqueduct1-2-ph2.ops.sfdc.net
+  kingdom: ph2
+  pod: none
+  rack: a63-dh10
+  superpod: none
+- bomrolename: sam_minion_aqueduct
+  controlestate: ph2-sam
+  devicerole: samcompute
+  estate: ph2-sam_eventbus
+  hostname: shared0-samminionaqueduct1-3-ph2.ops.sfdc.net
+  kingdom: ph2
+  pod: none
+  rack: c22-dh10
+  superpod: none
+- bomrolename: sam_minion_aqueduct
+  controlestate: ph2-sam
+  devicerole: samcompute
+  estate: ph2-sam_eventbus
+  hostname: shared0-samminionaqueduct1-4-ph2.ops.sfdc.net
+  kingdom: ph2
+  pod: none
+  rack: b24-dh10
+  superpod: none
+- bomrolename: sam_minion_aqueduct
+  controlestate: ph2-sam
+  devicerole: samcompute
+  estate: ph2-sam_eventbus
+  hostname: shared0-samminionaqueduct1-5-ph2.ops.sfdc.net
+  kingdom: ph2
+  pod: none
+  rack: b24-dh10
+  superpod: none
+- bomrolename: sam_minion_aqueduct
+  controlestate: ph2-sam
+  devicerole: samcompute
+  estate: ph2-sam_eventbus
+  hostname: shared0-samminionaqueduct2-1-ph2.ops.sfdc.net
+  kingdom: ph2
+  pod: none
+  rack: e03-dh10
+  superpod: none
+- bomrolename: sam_minion_aqueduct
+  controlestate: ph2-sam
+  devicerole: samcompute
+  estate: ph2-sam_eventbus
+  hostname: shared0-samminionaqueduct2-2-ph2.ops.sfdc.net
+  kingdom: ph2
+  pod: none
+  rack: c42-dh10
+  superpod: none
+- bomrolename: sam_minion_aqueduct
+  controlestate: ph2-sam
+  devicerole: samcompute
+  estate: ph2-sam_eventbus
+  hostname: shared0-samminionaqueduct2-3-ph2.ops.sfdc.net
+  kingdom: ph2
+  pod: none
+  rack: b63-dh10
+  superpod: none
+- bomrolename: sam_minion_aqueduct
+  controlestate: ph2-sam
+  devicerole: samcompute
+  estate: ph2-sam_eventbus
+  hostname: shared0-samminionaqueduct2-4-ph2.ops.sfdc.net
+  kingdom: ph2
+  pod: none
+  rack: e66-dh10
+  superpod: none
+- bomrolename: sam_minion_aqueduct
+  controlestate: ph2-sam
+  devicerole: samcompute
+  estate: ph2-sam_eventbus
+  hostname: shared0-samminionaqueduct2-5-ph2.ops.sfdc.net
+  kingdom: ph2
+  pod: none
+  rack: a75-dh10
+  superpod: none
+- bomrolename: sam_minion_aqueduct
+  controlestate: ph2-sam
+  devicerole: samcompute
+  estate: ph2-sam_eventbus
+  hostname: shared0-samminionaqueduct3-1-ph2.ops.sfdc.net
+  kingdom: ph2
+  pod: none
+  rack: b22-dh10
+  superpod: none
+- bomrolename: sam_minion_aqueduct
+  controlestate: ph2-sam
+  devicerole: samcompute
+  estate: ph2-sam_eventbus
+  hostname: shared0-samminionaqueduct3-2-ph2.ops.sfdc.net
+  kingdom: ph2
+  pod: none
+  rack: b22-dh10
+  superpod: none
+- bomrolename: sam_minion_aqueduct
+  controlestate: ph2-sam
+  devicerole: samcompute
+  estate: ph2-sam_eventbus
+  hostname: shared0-samminionaqueduct3-3-ph2.ops.sfdc.net
+  kingdom: ph2
+  pod: none
+  rack: b22-dh10
+  superpod: none
+- bomrolename: sam_minion_aqueduct
+  controlestate: ph2-sam
+  devicerole: samcompute
+  estate: ph2-sam_eventbus
+  hostname: shared0-samminionaqueduct3-4-ph2.ops.sfdc.net
+  kingdom: ph2
+  pod: none
+  rack: b46-dh10
+  superpod: none
+- bomrolename: sam_minion_aqueduct
+  controlestate: ph2-sam
+  devicerole: samcompute
+  estate: ph2-sam_eventbus
+  hostname: shared0-samminionaqueduct3-5-ph2.ops.sfdc.net
   kingdom: ph2
   pod: none
   rack: b26-dh10
@@ -44845,6 +45223,33 @@ hosts:
   kingdom: xrd
   pod: none
   rack: c02-cr08
+  superpod: none
+- bomrolename: sam_minion_warden
+  controlestate: xrd-sam
+  devicerole: samcompute
+  estate: xrd-sam_warden
+  hostname: shared0-samminionwarden1-1-xrd.eng.sfdc.net
+  kingdom: xrd
+  pod: none
+  rack: d18-cr02
+  superpod: none
+- bomrolename: sam_minion_warden
+  controlestate: xrd-sam
+  devicerole: samcompute
+  estate: xrd-sam_warden
+  hostname: shared0-samminionwarden1-2-xrd.eng.sfdc.net
+  kingdom: xrd
+  pod: none
+  rack: d18-cr02
+  superpod: none
+- bomrolename: sam_minion_warden
+  controlestate: xrd-sam
+  devicerole: samcompute
+  estate: xrd-sam_warden
+  hostname: shared0-samminionwarden2-1-xrd.eng.sfdc.net
+  kingdom: xrd
+  pod: none
+  rack: e11-cr02
   superpod: none
 - bomrolename: sampool
   controlestate: xrd-sam
