@@ -1,0 +1,87 @@
+apiVersion: v1
+
+system:
+  notifications:
+    email:
+    - strauz@salesforce.com
+  functions:
+  - name: authz-svc
+    count: 2
+    containers:
+    - name: authz-svc
+      image: dva/electron_sam:6151b44222ad399f863679507dc54abae420fb1b
+      env:
+      - name: SFDC_ENVIRONMENT
+        value: prod
+      - name: FAKE_ENV_VAR_INCREMENT_TO_TRIGGER_SAM_DEPLOY
+        value: "1"
+      resources:
+        limits: { cpu: "2", memory: "4Gi" }
+        requests: { cpu: "2", memory: "4Gi" }
+      ports:
+      - containerPort: 7020
+        name: grpc-svc
+      - containerPort: 7022
+        name: http-svc
+      livenessProbe:
+        exec:
+          command: ["/bin/true"]
+        initialDelaySeconds: 15
+      readinessProbe:
+        exec:
+          command: ["/bin/true"]
+        initialDelaySeconds: 30
+        periodSeconds: 5
+    - name: sherpa
+      image: sfci/servicelibs/sherpa-envoy:1.0.8
+      ports:
+      - containerPort: 7443
+        name: sherpa-grpc-tls
+      - containerPort: 7442
+        name: sherpa-http-tls
+      - containerPort: 15373
+        name: sherpa-adm
+      env:
+      - name: SFDC_ENVIRONMENT
+        value: prod
+      resources:
+        limits:
+          cpu: "1"
+          memory: "1Gi"
+      volumeMounts:
+      - mountPath: /client-certs
+        name: tls-client-cert
+      - mountPath: /server-certs
+        name: tls-server-cert
+      livenessProbe:
+        exec:
+          command:
+          - "./bin/is-alive"
+        initialDelaySeconds: 60
+        periodSeconds: 5
+      readinessProbe:
+        exec:
+          command:
+          - "./bin/is-ready"
+        initialDelaySeconds: 50
+        periodSeconds: 5
+    - name: beacon
+      # https://git.soma.salesforce.com/services/sfdc-bazel/tree/master/projects/sidecars/beacon#docker-image
+      image: sfci/services/sfdc-bazel/disco/beacon:d7f1640
+      args:
+      - -endpoint
+      - $(FUNCTION):DATACENTER_ALLENV:HTTP2
+      - -endpoint
+      - $(FUNCTION_NAMESPACE)/$(FUNCTION):DATACENTER_ALLENV:HTTP2_TLS
+      livenessProbe:
+        exec:
+          command:
+          - "/opt/beacon/is-alive.sh"
+        initialDelaySeconds: 10
+    volumes:
+    - name: tls-client-cert
+      maddogCert:
+        type: client
+    - name: tls-server-cert
+      maddogCert:
+        type: server
