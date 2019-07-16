@@ -114,7 +114,7 @@ local mcpIstioConfig = (import "service-mesh/istio-config.jsonnet");
             args: [
               "discovery",
               "--monitoringAddr=:15014",
-              "--log_output_level=default:info",
+              "--log_output_level=default:warn",
               "--domain",
               "cluster.local",
               "--secureGrpcAddr",
