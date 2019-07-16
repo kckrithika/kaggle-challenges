@@ -510,6 +510,39 @@ data:
           "superpod": "none"
         },
         {
+          "bomrolename": "sam_minion_warden",
+          "controlestate": "lo3-sam",
+          "devicerole": "samcompute",
+          "estate": "lo3-sam_warden",
+          "hostname": "shared0-samminionwarden1-1-lo3.ops.sfdc.net",
+          "kingdom": "lo3",
+          "pod": "none",
+          "rack": "a03-dh22",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sam_minion_warden",
+          "controlestate": "lo3-sam",
+          "devicerole": "samcompute",
+          "estate": "lo3-sam_warden",
+          "hostname": "shared0-samminionwarden1-2-lo3.ops.sfdc.net",
+          "kingdom": "lo3",
+          "pod": "none",
+          "rack": "a03-dh22",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sam_minion_warden",
+          "controlestate": "lo3-sam",
+          "devicerole": "samcompute",
+          "estate": "lo3-sam_warden",
+          "hostname": "shared0-samminionwarden2-1-lo3.ops.sfdc.net",
+          "kingdom": "lo3",
+          "pod": "none",
+          "rack": "e03-dh22",
+          "superpod": "none"
+        },
+        {
           "bomrolename": "sam_minion_sme",
           "controlestate": "lo3-sam",
           "devicerole": "samcompute",
