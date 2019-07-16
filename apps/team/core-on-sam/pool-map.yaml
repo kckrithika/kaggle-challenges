@@ -156,6 +156,3 @@ apps:
  gcp-devmvp-pkitest:
   - name: mvp/gsf-core-devmvp-sam2-sam
 
-# AWS R&D Dev
- aws-rddev-test:
-  - name: aws-us-west-2/aws-us-west-2-casam
