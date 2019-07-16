@@ -18,7 +18,7 @@
           name: "grpc-core",
         },
         captureMode: "NONE",
-        defaultEndpoint: "127.0.0.1:7021",  # TODO: Change to 7020 after GRPC server listener change to 127.0.0.1:7020 (instead of 0.0.0.0:7020). 7021 for k8s->Core test.
+        defaultEndpoint: "127.0.0.1:7020",
       },
     ],
     egress: [
