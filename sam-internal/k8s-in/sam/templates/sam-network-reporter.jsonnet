@@ -82,8 +82,6 @@ configs.daemonSetBase("sam") {
                         },
                         name: "config",
                     },
-                ]
-                + [
                     {
                         configMap: {
                             name: "watchdog",
