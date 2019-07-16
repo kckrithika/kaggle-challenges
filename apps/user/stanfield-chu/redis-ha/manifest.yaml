@@ -5,18 +5,18 @@ system:
     email:
       - stanfield.chu@salesforce.com
   functions:
-  - name: redis-ha-master
+  - name: redis-ha-node
     type: stateful-set
-    lbname: redis-ha-master-lb
+    lbname: redis-ha-node-lb
     hostnetwork: true
-    count: 1
+    count: 3
     volumes:
       - name: redisauthvol
         secret:
           secretName: csc-redis-auth-0
     containers:
-    - name: redis-ha-master
-      image: dva/csc-health-redis-auth:jenkins-csc-health-redis-auth-PR-14-3-itest
+    - name: redis-ha-node
+      image: dva/csc-health-redis-auth:jenkins-csc-health-redis-auth-PR-14-6-itest
       volumeMounts:
       - mountPath: /var/secrets/redis
         name: redisauthvol
@@ -29,33 +29,10 @@ system:
         initialDelaySeconds: 5
       command: ["/bin/sh", "-c"]
       args: ['
-          ./configure_and_run_master.sh ;
-          redis-server $REDIS_CONFIG_PATH
-      ']
-  - name: redis-ha-slaves
-    type: stateful-set
-    lbname: redis-ha-slaves-lb
-    hostnetwork: true
-    count: 2
-    volumes:
-      - name: redisauthvol
-        secret:
-          secretName: csc-redis-auth-0
-    containers:
-    - name: redis-ha-slave
-      image: dva/csc-health-redis-auth:jenkins-csc-health-redis-auth-PR-14-3-itest
-      volumeMounts:
-      - mountPath: /var/secrets/redis
-        name: redisauthvol
-        readOnly: true
-      ports:
-      - containerPort: 6379
-      livenessProbe:
-        tcpSocket:
-          port: 6379
-        initialDelaySeconds: 5
-      command: ["/bin/sh", "-c"]
-      args: ['
-          ./configure_and_run_slave.sh ;
-          redis-server $REDIS_CONFIG_PATH
+          stateful_lb_name=redis-ha-node-lb ;
+          stateful_cluster_domain=${KINGDOM}-sam.${KINGDOM}.sam.sfdc.net ;
+          stateful_pod_dns=${FUNCTION_INSTANCE_NAME}.${stateful_lb_name}.${FUNCTION_NAMESPACE}.svc.${stateful_cluster_domain} ;
+          stateful_master_dns=${FUNCTION}-0.${stateful_lb_name}.${FUNCTION_NAMESPACE}.svc.${stateful_cluster_domain} ;
+          ordinal_number=${FUNCTION_INSTANCE_NAME##*-} ;
+          ./configure_and_run_node.sh ${ordinal_number} ${stateful_pod_dns} ${stateful_master_dns};
       ']
