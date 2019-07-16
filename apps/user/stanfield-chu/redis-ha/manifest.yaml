@@ -16,7 +16,7 @@ system:
           secretName: csc-redis-auth-0
     containers:
     - name: redis-ha-node
-      image: dva/csc-health-redis-auth:jenkins-csc-health-redis-auth-PR-14-6-itest
+      image: dva/csc-health-redis-auth:jenkins-csc-health-redis-auth-PR-14-7-itest
       volumeMounts:
       - mountPath: /var/secrets/redis
         name: redisauthvol
@@ -35,4 +35,35 @@ system:
           stateful_master_dns=${FUNCTION}-0.${stateful_lb_name}.${FUNCTION_NAMESPACE}.svc.${stateful_cluster_domain} ;
           ordinal_number=${FUNCTION_INSTANCE_NAME##*-} ;
           ./configure_and_run_node.sh ${ordinal_number} ${stateful_pod_dns} ${stateful_master_dns};
+      ']
+  - name: redis-ha-sentinel
+    type: stateful-set
+    lbname: redis-ha-sentinel-lb
+    hostnetwork: true
+    count: 3
+    volumes:
+      - name: redisauthvol
+        secret:
+          secretName: csc-redis-auth-0
+    containers:
+    - name: redis-ha-sentinel
+      image: dva/csc-health-redis-auth:jenkins-csc-health-redis-auth-PR-14-7-itest
+      volumeMounts:
+      - mountPath: /var/secrets/redis
+        name: redisauthvol
+        readOnly: true
+      ports:
+      - containerPort: 26379
+      livenessProbe:
+        tcpSocket:
+          port: 26379
+        initialDelaySeconds: 5
+      command: ["/bin/sh", "-c"]
+      args: ['
+          stateful_lb_name=redis-ha-sentinel-lb ;
+          stateful_cluster_domain=${KINGDOM}-sam.${KINGDOM}.sam.sfdc.net ;
+          stateful_pod_dns=${FUNCTION_INSTANCE_NAME}.${stateful_lb_name}.${FUNCTION_NAMESPACE}.svc.${stateful_cluster_domain} ;
+          stateful_master_dns=redis-ha-node-0.redis-ha-node-lb.${FUNCTION_NAMESPACE}.svc.${stateful_cluster_domain} ;
+          ordinal_number=${FUNCTION_INSTANCE_NAME##*-} ;
+          ./configure_and_run_sentinel.sh ${ordinal_number} ${stateful_pod_dns} ${stateful_master_dns};
       ']
