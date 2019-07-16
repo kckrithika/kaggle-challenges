@@ -68,7 +68,7 @@ system:
        - name: SFDC_ENVIRONMENT
          value: stmfa
        - name: NO_ENV_FOR_RESTART
-         value: new10
+         value: new11
       resources:
         limits: { memory: "100M" }
         requests: { memory: "50M" }
