@@ -20,7 +20,7 @@ system:
         - --passthrough-api-server=k8sproxy.sam-system.prd-sam.prd.slb.sfdc.net:5000
         - --passthrough-all-cluster=prd-sam
         - --secret-passthrough-namespace=kube-system
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/d.smith/hypersam:20180518_123833.16f51950.dirty.duncsmith-ltm
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/d.smith/hypersam:20190715_122423.e5e8d935.clean.duncsmith-ltm
       ports:
       - containerPort: 7002
       livenessProbe:
