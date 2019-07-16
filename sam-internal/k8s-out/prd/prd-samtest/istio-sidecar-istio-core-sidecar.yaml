@@ -41,7 +41,7 @@ spec:
       protocol: HTTP
   ingress:
   - captureMode: NONE
-    defaultEndpoint: 127.0.0.1:7021
+    defaultEndpoint: 127.0.0.1:7020
     port:
       name: grpc-core
       number: 7443
