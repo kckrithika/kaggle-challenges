@@ -27,5 +27,11 @@
   ports:
    - port: 443
      targetport: 443
-     lbtype: tcp     
-
+     lbtype: tcp
+- lbname: coverage-pipeline-wave-jenkins
+  servers:
+   - wave-master-prd.eng.sfdc.net
+  ports:
+   - port: 8080
+     targetport: 8080
+     lbtype: tcp
