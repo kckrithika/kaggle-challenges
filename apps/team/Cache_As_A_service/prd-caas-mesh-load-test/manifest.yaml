@@ -12,7 +12,7 @@ system:
     count: 1
     containers:
     - name: caas-load
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/tdias/caas-load-test:2.9.2-S1
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/rpragada/caas-load-test:2.10.0
       resources:
         limits: { memory: "6G" }
         requests: { memory: "6G" }
