@@ -13,7 +13,7 @@ system:
       type: Recreate
     containers:
     - name: sherlock
-      image: dva/casp/sherlock_strata:jenkins-CASP-sherlock-master-20-itest
+      image: dva/casp/sherlock_strata:jenkins-CASP-sherlock-master-21-itest
       ports:
       - name: flower-http
         containerPort: 5555
@@ -28,7 +28,7 @@ system:
         - name: SAMCAAS2_CAASMINION2_2_PRD_KINGDOMS
           value: 'chx,yul,lo2,frf,par,phx,ia2'
         - name: SAMCAAS2_CAASMINION3_6_PRD_KINGDOMS
-          value: 'ttd,hio,cdg,hnd,ord,iad,ph2'
+          value: 'cdg,hnd,ord,iad,ph2'
         - name: CELERY_LOG_LEVEL
           value: 'info'
         - name: FLOWER_LOG_LEVEL
