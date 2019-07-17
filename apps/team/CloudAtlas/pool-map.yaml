@@ -55,7 +55,7 @@ apps:
       - shared0-samminionatlasdir2-1-xrd.eng.sfdc.net
       - shared0-samminionatlasdir1-2-xrd.eng.sfdc.net
 
-  # XRD Experimental Cloud Atlas Service
+  # XRD Cloud Atlas Service
   shared0-samminionatlasservice-xrd:
     - name: xrd/xrd-sam_cloudatlas_dir
       hostSubList:
@@ -81,6 +81,8 @@ apps:
    - name: dfw/dfw-sam_cloudatlas_dir
      hostSubList:
       - shared0-samminionatlasdir1-1-dfw.ops.sfdc.net
+      - shared0-samminionatlasdir1-2-dfw.ops.sfdc.net
+      - shared0-samminionatlasdir2-1-dfw.ops.sfdc.net
 
   # IAD DS Nodes
   shared0-samminionatlasdir-iad:
@@ -106,8 +108,24 @@ apps:
       - shared0-samminionatlasdir1-2-frf.ops.sfdc.net
       - shared0-samminionatlasdir2-1-frf.ops.sfdc.net
 
+  # FRF Cloud Atlas Service
+  shared0-samminionatlasservice-frf:
+    - name: frf/frf-sam_cloudatlas_dir
+      hostSubList:
+      - shared0-samminionatlasdir1-1-frf.ops.sfdc.net
+      - shared0-samminionatlasdir1-2-frf.ops.sfdc.net
+      - shared0-samminionatlasdir2-1-frf.ops.sfdc.net
+
   # ORD DS Nodes
   shared0-samminionatlasdir-ord:
+    - name: ord/ord-sam_cloudatlas_dir
+      hostSubList:
+      - shared0-samminionatlasdir1-1-ord.ops.sfdc.net
+      - shared0-samminionatlasdir1-2-ord.ops.sfdc.net
+      - shared0-samminionatlasdir2-1-ord.ops.sfdc.net
+
+  # ORD Cloud Atlas Service
+  shared0-samminionatlasservice-ord:
     - name: ord/ord-sam_cloudatlas_dir
       hostSubList:
       - shared0-samminionatlasdir1-1-ord.ops.sfdc.net
@@ -154,6 +172,14 @@ apps:
       - shared0-samminionatlasdir1-2-ukb.ops.sfdc.net
       - shared0-samminionatlasdir2-1-ukb.ops.sfdc.net
 
+  # UKB Cloud Atlas Service
+  shared0-samminionatlasservice-ukb:
+    - name: ukb/ukb-sam_cloudatlas_dir
+      hostSubList:
+      - shared0-samminionatlasdir1-1-ukb.ops.sfdc.net
+      - shared0-samminionatlasdir1-2-ukb.ops.sfdc.net
+      - shared0-samminionatlasdir2-1-ukb.ops.sfdc.net
+
   # HND DS Nodes
   shared0-samminionatlasdir-hnd:
     - name: hnd/hnd-sam_cloudatlas_dir
@@ -163,7 +189,7 @@ apps:
       - shared0-samminionatlasdir2-1-hnd.ops.sfdc.net              
 
   # HND Cloud Atlas Service
-  shared0-samminionatlasdir-hnd:
+  shared0-samminionatlasservice-hnd:
     - name: hnd/hnd-sam_cloudatlas_dir
       hostSubList:
       - shared0-samminionatlasdir1-1-hnd.ops.sfdc.net
