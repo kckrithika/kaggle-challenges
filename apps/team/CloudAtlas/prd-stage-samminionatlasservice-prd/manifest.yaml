@@ -224,5 +224,8 @@ system:
       function: cloudatlas-prd-stage-service
       slbEnabled: true
       ports:
-        - port: 9090
-          targetport: 7014
+        - port: 443
+          targetport: 7442
+          lbtype: http
+          tls: true
+          reencrypt: true
