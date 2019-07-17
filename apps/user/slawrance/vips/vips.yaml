@@ -42,8 +42,6 @@
     addheaders:
     - name: "X-Salesforce-VIP"
       value: "FORCE"
-    - name: "CipherSuite"
-      value: "ECDHE-RSA-AES256-GCM-SHA384 TLSv1.2 256-bits"
   - port: 80
     targetport: 8085
     lbtype: http
