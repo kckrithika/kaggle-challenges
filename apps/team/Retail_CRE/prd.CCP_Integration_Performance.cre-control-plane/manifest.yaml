@@ -13,7 +13,7 @@ system:
       "routing.mesh.sfdc.net/enabled": "true"
     containers:
     - name: cre-control-plane-ccp-perf
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cre-fusion/services/control-plane:1.9.0.0.develop.3a3ca86.121
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cre-fusion/services/control-plane:1.9.0.0.develop.4542cd9.150
       env:
         ####################################################################################################
         ############################   ENGINE/DDS FLOWSNAKE ARTIFACTS ( Most frequently changed ) ##########
@@ -27,6 +27,8 @@ system:
         ####################################################################################################
         ####################################### GLOBAL SHARED VALUES #######################################
         ####################################################################################################
+        - name: CONTROL_PLANE_ENDPOINT
+          value: http://cre-control-plane-ccp-perf.retail-cre.localhost.mesh.force.com:5442
         - name: SFDC_ENVIRONMENT
           value: ccp-perf
         - name: METRICS_KAFKA_ENABLED
@@ -42,7 +44,7 @@ system:
           value: prd
           ## FLOWSNAKE
         - name: MAX_FLOWSNAKE_ENVIRONMENTS
-          value: 25
+          value: 30
         ####################################################################################################
         ####################################### IMPORT environment variables ###############################
         ####################################################################################################
@@ -76,12 +78,14 @@ system:
           value: maddog/maddog-client-truststore.json
           ## DBaaS
         - name: DATABASE_NAMESPACE
-          value: crecontrolplaneccpperf
+          value: crecontrolplaneccpperfa
         - name: SPRING_DATASOURCE_URL
           value: jdbc:discover://dbaas0-minionapp1-1-prd.eng.sfdc.net:1511,dbaas0-minionapp2-1-prd.eng.sfdc.net:1511,dbaas0-minionapp3-1-prd.eng.sfdc.net:1511/${database.namespace}?${database.discovery.params}
           ## Stream Processor
         - name: STREAM_PROCESSING_ENDPOINT
           value: cre-sp-ccp-perf.retail-cre.localhost.mesh.force.com:5442
+        - name: CRE_API_ENDPOINT
+          value: cre-api-ccp-perf.retail-cre.localhost.mesh.force.com:5442
         ####################################################################################################
         ####################################### PERF environment variables #################################
         ####################################################################################################
