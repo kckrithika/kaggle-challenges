@@ -11,7 +11,7 @@ system:
       "sherpa-injector.service-mesh/inject": "enabled"
     containers:
     - name: demo-authz
-      image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/electron_sam:aec1e5bfeee3e02e49a36393f9b299be8f9bf164
+      image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/electron_sam:38ea3f0f9f11e1507e6ffc4c0dd8873ba555e101
       env:
       - name: SFDC_ENVIRONMENT
         value: mesh
@@ -30,7 +30,7 @@ system:
           command: ["/bin/true"]
         initialDelaySeconds: 30
     - name: demo-authz-grpc-client
-      image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/electron_client:aec1e5bfeee3e02e49a36393f9b299be8f9bf164
+      image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/electron_client:38ea3f0f9f11e1507e6ffc4c0dd8873ba555e101
       args:
       - -endpoint=localhost:7020
       - -service=grpc
@@ -42,7 +42,7 @@ system:
           command: ["/bin/true"]
         initialDelaySeconds: 30
     - name: demo-authz-http-client
-      image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/electron_client:aec1e5bfeee3e02e49a36393f9b299be8f9bf164
+      image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/electron_client:38ea3f0f9f11e1507e6ffc4c0dd8873ba555e101
       args:
       - -endpoint=localhost:7022
       - -service=http
