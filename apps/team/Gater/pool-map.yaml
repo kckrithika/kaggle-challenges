@@ -1,10 +1,6 @@
 apps:
  expression-evaluator:
   - prd/prd-sam_gater
- gate-manager:
-  - phx/phx-sam_gater
-  - ia2/ia2-sam_gater
-  - ph2/ph2-sam_gater
  gate-manager-par:
   - par/par-sam_gater
  gate-manager-ap:
@@ -20,7 +16,15 @@ apps:
   - lo3/lo3-sam_gater
  gate-manager-eu-5:
   - frf/frf-sam_gater
- gate-manager-public-cloud:
+ gate-manager-na:
+  - dfw/dfw-sam_gater
+  - iad/iad-sam_gater
+  - ia2/ia2-sam_gater
+  - ord/ord-sam_gater
+  - ph2/ph2-sam_gater
+ gate-manager-na-5:
+  - phx/phx-sam_gater
+ gate-manager-na-pc:
   - yhu/yhu-sam_gater
   - yul/yul-sam_gater
  gate-manager-gia:
@@ -29,10 +33,6 @@ apps:
  gate-manager-gia2:
   - hio/hio-sam_gater
   - ttd/ttd-sam_gater
- gate-manager-10instances:
-  - dfw/dfw-sam_gater
-  - iad/iad-sam_gater
-  - ord/ord-sam_gater
  gate-manager-test:
   - prd/prd-sam_gater
  gate-manager-test-tnrp:
