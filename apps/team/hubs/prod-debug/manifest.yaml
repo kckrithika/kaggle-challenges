@@ -7,7 +7,7 @@ system:
 
     containers:
       - name: prod-debug-service
-        image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/hubs/prod-debug:prod-debug-2019-07-17-11-59-03
+        image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/hubs/prod-debug:prod-debug-2019-07-17-13-58-30
         ports:
           - containerPort: 2022
         livenessProbe:
@@ -35,12 +35,6 @@ system:
             command:
             - ./bin/is-alive
           initialDelaySeconds: 60
-          periodSeconds: 5
-        readinessProbe:
-          exec:
-            command:
-            - ./bin/is-ready
-          initialDelaySeconds: 50
           periodSeconds: 5
         volumeMounts:
         - name: tls-client-cert
