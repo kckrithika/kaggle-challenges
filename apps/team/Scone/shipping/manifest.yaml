@@ -30,6 +30,8 @@ system:
       # - name: JAVA_OPTS
       #   value: "-Dmesh.proxydomain=svc.mesh.sfdc.net -Dmesh.httpport=7014"
       ports:
+      - containerPort: 7443
+        name: grpc-sherpa
       - containerPort: 7020
         name: grpc-svc
       - containerPort: 15375
@@ -78,3 +80,11 @@ system:
     - name: tls-server-cert
       maddogCert:
         type: server
+  loadbalancers:
+    - lbname: shipping-service
+      function: shipping-service
+      ports:
+        - lbtype: dsr
+          port: 7443
+          targetport: 7443
+          name: grpc-shipping
