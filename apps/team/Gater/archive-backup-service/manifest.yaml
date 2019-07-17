@@ -12,8 +12,11 @@ system:
       args:
       # Increment this arg when making noop manifest changes
       - --noop.arg=3
-      # Temp fix to allow very low disk space
-      - --health.diskSpaceThreshold=0.05
+      # Store archives in /fastdata
+      - --tnrp.archive-dir=/fastdata/gater/backup-archives
+      volumeMounts:
+      - mountPath: /fastdata/gater
+        name: storagevol
       # If your service doesn't serve HTTP traffic then you can remove the scone-http 8080 port.
       ports:
       - containerPort: 8080
@@ -94,7 +97,9 @@ system:
     - name: sherpaservercert
       maddogCert:
         type: server
-
+    - name: storagevol
+      hostPath:
+        path: /home/sfdc-java/gater
   loadbalancers:
   - lbname: archive-backup-service-lb
     function: archive-backup-service
