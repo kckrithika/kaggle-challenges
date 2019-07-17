@@ -1,8 +1,8 @@
 apps:
     ordering:
-        - xrd/xrd-sampool
+        - prd/prd-sam_gater 
     shipping:
-        - xrd/xrd-sampool
+        - prd/prd-sam_gater 
     scone-go:
         - prd/prd-sam
     basic-rest-service-pki:
