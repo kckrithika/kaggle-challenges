@@ -5,7 +5,7 @@ system:
     count: 1
     containers:
     - name: archival-worker
-      image: dva/sdb-archival-worker:d47b9ed73f659e5fd8b3daa0ff2d7efb6a847329 
+      image: dva/sdb-archival-worker:b2e65c2d18020476bad39a38e86704a099816edb
       env:
       - name: SFDC_ENVIRONMENT
         value: prod
