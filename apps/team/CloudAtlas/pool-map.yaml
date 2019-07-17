@@ -79,7 +79,7 @@ apps:
   # DFW Cloud Atlas Service
   shared0-samminionatlasservice-dfw:
    - name: dfw/dfw-sam_cloudatlas_dir
-      hostSubList:
+     hostSubList:
       - shared0-samminionatlasdir1-1-dfw.ops.sfdc.net
 
   # IAD DS Nodes
