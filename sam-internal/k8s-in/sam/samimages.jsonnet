@@ -46,7 +46,6 @@ local samreleases = import "samreleases.json";
         "ttd,ttd-sam,sam-network-reporter,hypersam": "2754-365539f3b19f1f92f8ee7f1778f157769fae2a07",
         "ukb,ukb-sam,sam-network-reporter,hypersam": "2754-365539f3b19f1f92f8ee7f1778f157769fae2a07",
         "wax,wax-sam,sam-network-reporter,hypersam": "2754-365539f3b19f1f92f8ee7f1778f157769fae2a07",
-        "xrd,xrd-sam,sam-network-reporter,hypersam": "2754-365539f3b19f1f92f8ee7f1778f157769fae2a07",
         "yhu,yhu-sam,sam-network-reporter,hypersam": "2754-365539f3b19f1f92f8ee7f1778f157769fae2a07",
         "yul,yul-sam,sam-network-reporter,hypersam": "2754-365539f3b19f1f92f8ee7f1778f157769fae2a07",
         },
