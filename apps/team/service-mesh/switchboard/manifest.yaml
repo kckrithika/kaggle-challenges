@@ -38,6 +38,9 @@ system:
       - --clusters.external-mesh-services[0]_resolution=DNS 
       - --clusters.external-mesh-services[0]_port=443
       - --clusters.external-mesh-services[0]_endpoints[0]=funnel.ajnalocal1.foundation.rddev.aws.sfdc.cl
+      # Streaming Clusters
+      - --routes.streaming-clusters[0]=authz-svc.service-mesh
+      - --routes.streaming-clusters[1]=eaas.emailinfra
       ports:
       - containerPort: 15372
       env:
