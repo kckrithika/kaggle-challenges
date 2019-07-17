@@ -6,9 +6,7 @@ system:
       - cloudatlas-dev@salesforce.com
   functions:
   - name: cloudatlas-phx-service
-    identity:
-      serviceName: cloudatlas-phx-dir
-    count: 1
+    count: 3
     strategy:
       type: RollingUpdate
       rollingUpdate:

@@ -5,10 +5,8 @@ system:
     email:
       - cloudatlas-dev@salesforce.com
   functions:
-  - name: cloudatlas-iad-dir1-1
-    identity:
-      serviceName: cloudatlas-iad-dir
-    count: 1
+  - name: cloudatlas-iad-dir
+    count: 3
     strategy:
       type: RollingUpdate
       rollingUpdate:
@@ -33,9 +31,6 @@ system:
         name: server-cert
       - mountPath: /clientcerts
         name: client-cert
-      - mountPath: /secrets
-        name: secretsvol
-        readOnly: true
       - mountPath: /k4asecrets
         name: k4a-secrets
         readOnly: true
@@ -73,9 +68,6 @@ system:
     - name: client-cert
       maddogCert:
         type: client
-    - name: secretsvol
-      secret:
-        secretName: passwd
     - name: k4a-secrets
       k4asecret:
         secretName: ca-secrets
