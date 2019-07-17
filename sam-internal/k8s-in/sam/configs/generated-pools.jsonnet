@@ -2081,6 +2081,18 @@
     },
     {
       "namespaces": [
+        "emp-aqueduct"
+      ],
+      "access": [
+        "team/emp_aqueduct"
+      ],
+      "controlEstate": "ord-sam",
+      "estate": "ord-sam_eventbus",
+      "kingdom": "ord",
+      "superPod": "None"
+    },
+    {
+      "namespaces": [
         "gater",
         "service-mesh",
         "service-protection"
