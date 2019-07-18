@@ -34,7 +34,7 @@ system:
           stateful_pod_dns=${FUNCTION_INSTANCE_NAME}.${stateful_lb_name}.${FUNCTION_NAMESPACE}.svc.${stateful_cluster_domain} ;
           stateful_master_dns=${FUNCTION}-0.${stateful_lb_name}.${FUNCTION_NAMESPACE}.svc.${stateful_cluster_domain} ;
           ordinal_number=${FUNCTION_INSTANCE_NAME##*-} ;
-          ./configure_and_run_node.sh ${ordinal_number} ${HOSTNAME} ${stateful_master_dns};
+          ./configure_and_run_node.sh ${ordinal_number} ${FUNCTION_INSTANCE_IP} ${stateful_master_dns};
       ']
   - name: redis-ha-sentinel
     type: stateful-set
@@ -65,5 +65,5 @@ system:
           stateful_pod_dns=${FUNCTION_INSTANCE_NAME}.${stateful_lb_name}.${FUNCTION_NAMESPACE}.svc.${stateful_cluster_domain} ;
           stateful_master_dns=redis-ha-node-0.redis-ha-node-lb.${FUNCTION_NAMESPACE}.svc.${stateful_cluster_domain} ;
           ordinal_number=${FUNCTION_INSTANCE_NAME##*-} ;
-          ./configure_and_run_sentinel.sh ${ordinal_number} ${HOSTNAME} ${stateful_master_dns};
+          ./configure_and_run_sentinel.sh ${ordinal_number} ${FUNCTION_INSTANCE_IP} ${stateful_master_dns};
       ']
