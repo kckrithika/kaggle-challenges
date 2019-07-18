@@ -25,11 +25,6 @@ apps:
     hostSubList:
         - shared0-samminioncrosscloudsetup3-1-prd.eng.sfdc.net
         - shared0-samminioncrosscloudsetup3-2-prd.eng.sfdc.net
-  rsui-integ:
-  - name: prd/prd-sam_crosscloudsetup
-    hostSubList:
-        - shared0-samminioncrosscloudsetup1-1-prd.eng.sfdc.net
-        - shared0-samminioncrosscloudsetup2-1-prd.eng.sfdc.net
   rsui-production-iad:
   - name: iad/iad-sam_crosscloudsetup
   rsui-production-ord:
