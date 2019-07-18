@@ -5,9 +5,9 @@ system:
     serviceAccountName: service-mesh.route-update-service-service-account
     count: 1
     labels:
-      app: my_switchboard
+      app: my-switchboard
     containers:
-    - name: my_switchboard
+    - name: my-switchboard
       image: sfci/servicelibs/switchboard:3ba7195ec2fd1c2ace95c502ae40acf5e56b34ae
       args:
       - --clusters.external-clusters[0]=ajnafunneldirect:HTTP1
