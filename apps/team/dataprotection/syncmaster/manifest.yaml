@@ -15,6 +15,8 @@ system:
         value: $(KINGDOM)
       - name: SPRING_PROFILES_ACTIVE 
         value: dc.$(KINGDOM),sam,oracle
+      - name: GRPC_TLS
+        value: false
       ports:
       - containerPort: 7020
         name: grpc
