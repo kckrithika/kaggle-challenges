@@ -3,3 +3,5 @@ apps:
   - prd/prd-sam
  rama-grpc-sample:
   - prd/prd-sam
+ my_switchboard:
+  - prd/prd-sam
