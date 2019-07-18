@@ -34,7 +34,6 @@ local utils = import "util_functions.jsonnet";
                 # --- flag C (and place only ... ---
                 slb_ingress: "unverified",
                 # --- flag D (one flag between ... ---
-                prometheus_pki: "",
                 # --- flag E (each pair. ... ---
                 etcd_cluster_metrics: "unverified",
                 # --- flag F (Their only purpose ... ---
