@@ -10,16 +10,25 @@ system:
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/sam-miller/gca_metrics_service:test-07172019
       # If your service doesn't serve HTTP traffic then you can remove the scone-http 8080 port.
       ports:
-      - containerPort: 8080
+      - containerPort: 5000
         name: gca-http
       livenessProbe:
         initialDelaySeconds: 30
         httpGet:
           path: /up
-          port: 8080
+          port: 5000
       readinessProbe:
         timeoutSeconds: 10
         httpGet:
           path: /up
-          port: 8080
+          port: 5000
       imagePullPolicy: Always
+      env:
+      - name: HTTP_PROXY
+        value: public0-proxy1-0-prd.data.sfdc.net:8080
+      - name: HTTPS_PROXY
+        value: public0-proxy1-0-prd.data.sfdc.net:8080
+      - name: WAVE_USER
+        value: "sam"
+      - name: WAVE_ENV
+        value: "dev"
