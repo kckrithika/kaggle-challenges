@@ -9,14 +9,9 @@ system:
     count: 1
     labels:
       app: istio-shipping-mixed-istio-to-sherpa
-      disco_dc: prd
-      disco_env: ""
-      disco_subenv: ""
-      disco_pod: ""
-      disco_sp: ""
-      disco_role: istio-shipping-mixed-istio-to-sherpa
       settings_path: stm.-.prd.-.istio-shipping
       superpod: NONE
+      istio_app: test
     annotations:
       "sherpa-injector.service-mesh/inject": "enabled"
       routing.mesh.sfdc.net/enabled: "true"
