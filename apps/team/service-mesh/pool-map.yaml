@@ -119,10 +119,10 @@ apps:
   istio-shipping-mixed-istio-to-sherpa:
     - prd/prd-sam_gater
     - prd/prd-samtest
-  istio-fake-casam:
-    - prd/prd-sam_gater
-  istio-fake-casam-na35:
-    - prd/prd-sam_gater
+#  istio-fake-casam:
+#    - prd/prd-sam_gater
+#  istio-fake-casam-na35:
+#    - prd/prd-sam_gater
 
   # Demo http1 service used for testing Core -> K8s Http1
 #  istio-basic-rest-service-tls:
