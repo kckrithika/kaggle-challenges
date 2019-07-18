@@ -46,7 +46,7 @@ system:
        - name: SFDC_ENVIRONMENT
          value: redis
        - name: NO_ENV_FOR_RESTART
-         value: new8
+         value: new9
        - name: SFDC_POD
          value: mist66
       resources:
