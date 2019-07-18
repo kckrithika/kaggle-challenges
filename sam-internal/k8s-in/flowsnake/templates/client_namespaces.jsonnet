@@ -21,7 +21,7 @@ if std.length(flowsnake_clients.clients) > 0 then (
                     "madkub-injector": "enabled",
                     "spark-operator-webhook": "enabled",
 
-                } + (if flowsnake_config.service_mesh_enabled && std.objectHas(flowsnake_images.feature_flags, "service_mesh") then
+                } + (if flowsnake_config.service_mesh_enabled then
                     { "service-mesh-injector": "enabled" }
                 else {}),
             },
