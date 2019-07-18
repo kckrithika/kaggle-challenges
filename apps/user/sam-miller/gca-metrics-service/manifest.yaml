@@ -22,3 +22,4 @@ system:
         httpGet:
           path: /up
           port: 8080
+      imagePullPolicy: Always
