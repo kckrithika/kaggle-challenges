@@ -123,7 +123,6 @@ local vipwdConfig = {
        "jtuley-rsui-lb.user-jtuley.prd-sam.prd.slb.sfdc.net:*",
        "rsui-func-lb.retail-rsui.prd-sam.prd.slb.sfdc.net:*",
        "rsui-perf-lb.retail-rsui.prd-sam.prd.slb.sfdc.net:8080",
-       "rsui-integ-lb.retail-rsui.prd-sam.prd.slb.sfdc.net:*",
        // Flowsnake VIPs
        "kubernetes-api-flowsnake-prd.slb.sfdc.net:443",
        "ingress-flowsnake-prd.slb.sfdc.net:443",

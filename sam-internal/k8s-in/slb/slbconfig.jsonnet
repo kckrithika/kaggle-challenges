@@ -168,7 +168,6 @@
                 "prd-sam": [
                   "10.251.196.91/32",  # jtuley-rsui-lb.user-jtuley.prd-sam.prd.slb.sfdc.net
                   "10.251.196.42/32",  # rsui-func-lb.retail-rsui.prd-sam.prd.slb.sfdc.net
-                  "10.251.196.111/32",  # rsui-integ-lb.retail-rsui.prd-sam.prd.slb.sfdc.net
                   "10.251.196.44/32",  # rsui-perf-lb.retail-rsui.prd-sam.prd.slb.sfdc.net
                   "10.251.197.44/32",  # ops0-dvaregistryssl1-0-prd.slb.sfdc.net
                   "10.251.196.212/32",  # gatekeeper-dashboardlb.gatekeeper.prd-sam.prd.slb.sfdc.net - Peijun Wu - https://computecloud.slack.com/archives/C42SAQVS9/p1556063807120000?thread_ts=1556038442.093300&cid=C42SAQVS9
