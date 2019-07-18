@@ -263,7 +263,7 @@ system:
     annotations:
       sidecar.istio.io/inject: "true"
       routing.mesh.sfdc.net/enabled: "true"
-      dummy: "false"
+      dummy: "true"
     name: na7-mist61sequencer-prd
     progressDeadlineSeconds: 300
     terminationGracePeriodSeconds: 60
