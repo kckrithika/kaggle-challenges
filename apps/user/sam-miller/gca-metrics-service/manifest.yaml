@@ -32,13 +32,14 @@ system:
         value: "sam"
       - name: WAVE_ENV
         value: "dev"
-      - name:  LOCAL_MODE
+      - name: LOCAL_MODE
         value: "True"
       - name: CONFIG_LOCATION
         value: "/var/secrets/profile/user_profile.cfg"
-     volumeMounts:
-      - name: user-profile-test
-        mountPath: /var/secrets/profile
+      volumeMounts:
+        - name: user-profile-test
+          mountPath: /var/secrets/profile
+          readOnly: true
 
     volumes:
     - name: user-profile-test
