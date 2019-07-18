@@ -5,7 +5,7 @@ local certs_and_kubeconfig = import "certs_and_kubeconfig.jsonnet";
 local estate = std.extVar("estate");
 local kingdom = std.extVar("kingdom");
 
-# Copied from madkub_common  
+# Copied from madkub_common
 local containerspec(cert_names, user=0) = {
     local certs = madkub_common.make_cert_config(cert_names),
     name: "<replaced>",
@@ -107,9 +107,7 @@ if flowsnake_config.madkub_enabled then
         name: "madkub-container-spec",
         namespace: "flowsnake",
     },
-    data: {} + (if std.objectHas(flowsnake_images.feature_flags, "service_mesh") then {
-      "spec.jaysawn": std.toString(containerspec("usercerts", 7447))
-    } else {
-      "spec.jaysawn": std.toString(containerspec("usercerts"))
-    })
+    data: {
+        "spec.jaysawn": std.toString(containerspec("usercerts", 7447))
+    }
 } else "SKIP"

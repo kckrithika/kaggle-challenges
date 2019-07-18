@@ -38,7 +38,6 @@ local utils = import "util_functions.jsonnet";
                 etcd_cluster_metrics: "unverified",
                 # --- flag F (Their only purpose ... ---
                 # --- flag G (is to assist ... ---
-                service_mesh: "",
                 # --- flag H (git's diff logic ... ---
                 # --- flag I (to reduce the ---
                 # --- flag J (likelihood of merge conflicts.) ---
@@ -62,7 +61,6 @@ local utils = import "util_functions.jsonnet";
                 # --- flag E (each pair. ... ---
                 # --- flag F (Their only purpose ... ---
                 # --- flag G (is to assist ... ---
-                service_mesh: "",
                 # --- flag H (git's diff logic ... ---
                 # --- flag I (to reduce the ---
                 # --- flag J (likelihood of merge conflicts.) ---
@@ -157,7 +155,6 @@ local utils = import "util_functions.jsonnet";
                 # --- flag E (each pair. ... ---
                 # --- flag F (Their only purpose ... ---
                 # --- flag G (is to assist ... ---
-                service_mesh: "",
                 # --- flag H (git's diff logic ... ---
                 # --- flag I (to reduce the ---
                 # --- flag J (likelihood of merge conflicts.) ---

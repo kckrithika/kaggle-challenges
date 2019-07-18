@@ -5,7 +5,7 @@ local certs_and_kubeconfig = import "certs_and_kubeconfig.jsonnet";
 local estate = std.extVar("estate");
 local kingdom = std.extVar("kingdom");
 
-# Copied from madkub_common  
+# Copied from madkub_common
 local containerspec = {
     name: "<replaced>",
     image: flowsnake_images.service_mesh,
@@ -70,7 +70,7 @@ local containerspec = {
     ],
 };
 
-if flowsnake_config.service_mesh_enabled && std.objectHas(flowsnake_images.feature_flags, "service_mesh") then
+if flowsnake_config.service_mesh_enabled then
 {
     apiVersion: "v1",
     kind: "ConfigMap",

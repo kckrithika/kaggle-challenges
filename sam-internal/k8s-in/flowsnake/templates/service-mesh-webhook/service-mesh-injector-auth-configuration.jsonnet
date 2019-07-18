@@ -1,7 +1,7 @@
 local flowsnake_images = import "flowsnake_images.jsonnet";
 local flowsnake_config = import "flowsnake_config.jsonnet";
 
-if flowsnake_config.service_mesh_enabled && std.objectHas(flowsnake_images.feature_flags, "service_mesh") then
+if flowsnake_config.service_mesh_enabled then
 {
     apiVersion: "v1",
     kind: "List",
