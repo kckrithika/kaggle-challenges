@@ -10,15 +10,10 @@ system:
       serviceName: app
     count: 1
     labels:
-      disco_dc: prd
-      disco_env: "stm"
-      disco_subenv: ""
-      disco_pod: "na35"
-      disco_sp: "SP1"
-      disco_role: app
       app: app
       settings_path: stm.-.prd.na35.app
       superpod: SP1
+      istio_app: test
     annotations:
       sidecar.istio.io/inject: "true"
       routing.mesh.sfdc.net/enabled: "true"
