@@ -3,9 +3,5 @@ apps:
         - prd/prd-sam_gater 
     shipping:
         - prd/prd-sam_gater 
-    scone-go:
-        - prd/prd-sam
-    basic-rest-service-pki:
-        - prd/prd-sam
     scone-gen:
         - prd/prd-sam_gater
