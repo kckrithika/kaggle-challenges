@@ -12,7 +12,7 @@ system:
       app: switchboard
     containers:
     - name: switchboard
-      image: sfci/servicelibs/switchboard:4a7d7dc1501dcecf5cc2c7a19900f6a5130e1c23
+      image: sfci/servicelibs/switchboard:73428fda23c9ce0e84eac7775b4853a442320e4b
       args:
       - --clusters.external-clusters[0]=ajnafunneldirect:HTTP1
       - --clusters.external-clusters[1]=spaasmesh:HTTP2
@@ -32,15 +32,12 @@ system:
       # WIP cluster scrape timeout + delay while investigating W-6166785
       - --clusters.zkScraper.scrapeTimeoutMs=120000
       - --cluster.scraper.delayMs=120000
-      # External Mesh Service Configuration
-      - --clusters.external-mesh-services[0]_name=ems.ajnafunnel
-      - --clusters.external-mesh-services[0]_cluster_type=HTTP1_TLS 
-      - --clusters.external-mesh-services[0]_resolution=DNS 
-      - --clusters.external-mesh-services[0]_port=443
-      - --clusters.external-mesh-services[0]_endpoints[0]=funnel.ajnalocal1.foundation.rddev.aws.sfdc.cl
-      # Streaming Clusters
-      - --routes.streaming-clusters[0]=authz-svc.service-mesh
-      - --routes.streaming-clusters[1]=eaas.emailinfra
+      # External Mesh Service Configuration - Example
+      # - --clusters.external-mesh-services[0]_name=ems.ajnafunnel
+      # - --clusters.external-mesh-services[0]_cluster_type=HTTP1_TLS 
+      # - --clusters.external-mesh-services[0]_resolution=DNS 
+      # - --clusters.external-mesh-services[0]_port=443
+      # - --clusters.external-mesh-services[0]_endpoints[0]=funnel.ajnalocal1.foundation.rddev.aws.sfdc.cl
       ports:
       - containerPort: 15372
       env:
