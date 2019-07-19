@@ -7,7 +7,7 @@ system:
 
     containers:
       - name: prod-debug-service
-        image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/hubs/prod-debug:prod-debug-2019-07-18-17-02-04
+        image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/hubs/prod-debug:prod-debug-2019-07-19-12-48-33
         ports:
           - containerPort: 2022
         livenessProbe:
