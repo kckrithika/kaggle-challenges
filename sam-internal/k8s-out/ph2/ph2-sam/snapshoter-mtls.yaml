@@ -41,7 +41,7 @@ spec:
         env:
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig-platform
-        image: ops0-artifactrepo1-0-ph2.data.sfdc.net/dva/sam/hypersam:2753-37179b958a4917314bd53a011b39a87a48688f0b
+        image: ops0-artifactrepo1-0-ph2.data.sfdc.net/dva/sam/hypersam:2755-f2d626475424807fceb6c047dbb5ae7271561131
         livenessProbe:
           failureThreshold: 5
           httpGet:
