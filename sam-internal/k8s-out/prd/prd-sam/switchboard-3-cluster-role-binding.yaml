@@ -1,0 +1,15 @@
+apiVersion: rbac.authorization.k8s.io/v1beta1
+kind: ClusterRoleBinding
+metadata:
+  labels:
+    app: switchboard
+  name: switchboard
+  namespace: core-on-sam-sp2
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: switchboard
+subjects:
+- kind: ServiceAccount
+  name: switchboard-service-account
+  namespace: core-on-sam-sp2
