@@ -11,7 +11,10 @@ system:
       "sherpa-injector.service-mesh/inject": "enabled"
     containers:
     - name: demo-authz
-      image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/electron_sam:38ea3f0f9f11e1507e6ffc4c0dd8873ba555e101
+      image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/electron_sam:41bd4bb063b1e316b65836e8bfecc03210bf0a96
+      args:
+      - -authz-clients=uri=spiffe://salesforce.com/ns/service-mesh/sa/switchboard,uri=spiffe://pki.sfdc.net/v.*/service/switchboard/namespace/service-mesh.*,dns=switchboard.service-mesh.sfdc-role,dns=switchboard.service-mesh.localhost.mesh.force.com,dns=test-jwt.sfdc-role
+      - -archiveAuthzPaths=opt/identity/authz/test-internal/,opt/identity/authz/
       env:
       - name: SFDC_ENVIRONMENT
         value: mesh
@@ -30,19 +33,20 @@ system:
           command: ["/bin/true"]
         initialDelaySeconds: 30
     - name: demo-authz-grpc-client
-      image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/electron_client:38ea3f0f9f11e1507e6ffc4c0dd8873ba555e101
+      image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/electron_client:41bd4bb063b1e316b65836e8bfecc03210bf0a96
       args:
       - -endpoint=localhost:7020
       - -service=grpc
       - -https=false
       - -loopCount=-1
       - -loopDelayInSeconds=60
+      - -spoof-xfcc=DNS=test-jwt.sfdc-role
       livenessProbe:
         exec:
           command: ["/bin/true"]
         initialDelaySeconds: 30
     - name: demo-authz-http-client
-      image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/electron_client:38ea3f0f9f11e1507e6ffc4c0dd8873ba555e101
+      image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/electron_client:41bd4bb063b1e316b65836e8bfecc03210bf0a96
       args:
       - -endpoint=localhost:7022
       - -service=http
