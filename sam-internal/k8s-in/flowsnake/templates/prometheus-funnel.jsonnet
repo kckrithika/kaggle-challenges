@@ -3,6 +3,8 @@ local flowsnake_images = (import "flowsnake_images.jsonnet") + { templateFilenam
 local flowsnake_config = import "flowsnake_config.jsonnet";
 local estate = std.extVar("estate");
 local kingdom = std.extVar("kingdom");
+local cert_name = "prometheusscrapercerts";
+local madkub_common = import "madkub_common.jsonnet";
 
 configs.deploymentBase("flowsnake") {
   local label_node = self.spec.template.metadata.labels,
@@ -30,7 +32,22 @@ configs.deploymentBase("flowsnake") {
           flowsnakeRole: "PrometheusScraper",
           name: "prometheus-scraper",
         },
-      },
+      } +
+      (if std.objectHas(flowsnake_images.feature_flags, "prometheus_pki") then
+      {
+        annotations: {
+            "madkub.sam.sfdc.net/allcerts": std.toString({
+                certreqs: [
+                    {
+                        name: cert_name,
+                        role: "flowsnake_metrics",
+                        "cert-type": "client",
+                        kingdom: kingdom,
+                    },
+                ],
+            }),
+        },
+      } else {}),
       spec: {
         serviceAccountName: "prometheus-scraper",
         containers: [
@@ -57,7 +74,10 @@ configs.deploymentBase("flowsnake") {
                 mountPath: "/etc/config",
                 name: "prometheus-server-conf",
               },
-            ],
+            ] +
+            (if std.objectHas(flowsnake_images.feature_flags, "prometheus_pki") then
+                madkub_common.cert_mounts(cert_name)
+            else []),
             livenessProbe: {
               httpGet: {
                 path: "/metrics",
@@ -90,7 +110,10 @@ configs.deploymentBase("flowsnake") {
                 mountPath: "/prometheus-storage",
                 name: "prometheus-storage-volume",
               },
-            ],
+            ] +
+            (if std.objectHas(flowsnake_images.feature_flags, "prometheus_pki") then
+                madkub_common.cert_mounts(cert_name)
+            else []),
             livenessProbe: {
               httpGet: {
                 path: "/",
@@ -101,7 +124,10 @@ configs.deploymentBase("flowsnake") {
               periodSeconds: 10,
             },
           },
-        ],
+        ] +
+        (if std.objectHas(flowsnake_images.feature_flags, "prometheus_pki") then
+            [madkub_common.refresher_container(cert_name)]
+        else []),
         restartPolicy: "Always",
         volumes: [
           {
@@ -116,8 +142,14 @@ configs.deploymentBase("flowsnake") {
               medium: "Memory",
             },
           },
-        ],
-      },
+        ] +
+        (if std.objectHas(flowsnake_images.feature_flags, "prometheus_pki") then
+            madkub_common.cert_volumes(cert_name)
+        else []),
+      } +
+      (if std.objectHas(flowsnake_images.feature_flags, "prometheus_pki") then
+          { initContainers: [madkub_common.init_container(cert_name)] }
+      else {}),
     },
   },
 }
