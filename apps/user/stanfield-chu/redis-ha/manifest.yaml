@@ -43,7 +43,6 @@ system:
           sleep_time=30 ;
           ./configure_and_run_node.sh ${ordinal_number} ${FUNCTION_INSTANCE_IP} ${stateful_master_dns} ${sleep_time};
       ']
-    minReadySeconds: 60
   - name: redis-ha-sentinel
     type: stateful-set
     lbname: redis-ha-sentinel-lb
@@ -82,4 +81,3 @@ system:
           sleep_time=30 ;
           ./configure_and_run_sentinel.sh ${ordinal_number} ${FUNCTION_INSTANCE_IP} ${stateful_master_dns} ${sleep_time};
       ']
-    minReadySeconds: 60
