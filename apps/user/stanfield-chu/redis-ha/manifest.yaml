@@ -16,7 +16,7 @@ system:
           secretName: csc-redis-auth-0
     containers:
     - name: redis-ha-node
-      image: dva/csc-health-redis-auth:jenkins-csc-health-redis-auth-PR-14-12-itest
+      image: dva/csc-health-redis-auth:jenkins-csc-health-redis-auth-PR-14-14-itest
       volumeMounts:
       - mountPath: /var/secrets/redis
         name: redisauthvol
@@ -36,6 +36,7 @@ system:
           ordinal_number=${FUNCTION_INSTANCE_NAME##*-} ;
           ./configure_and_run_node.sh ${ordinal_number} ${FUNCTION_INSTANCE_IP} ${stateful_master_dns};
       ']
+    minReadySeconds: 45
   - name: redis-ha-sentinel
     type: stateful-set
     lbname: redis-ha-sentinel-lb
@@ -47,7 +48,7 @@ system:
           secretName: csc-redis-auth-0
     containers:
     - name: redis-ha-sentinel
-      image: dva/csc-health-redis-auth:jenkins-csc-health-redis-auth-PR-14-12-itest
+      image: dva/csc-health-redis-auth:jenkins-csc-health-redis-auth-PR-14-14-itest
       volumeMounts:
       - mountPath: /var/secrets/redis
         name: redisauthvol
@@ -67,3 +68,4 @@ system:
           ordinal_number=${FUNCTION_INSTANCE_NAME##*-} ;
           ./configure_and_run_sentinel.sh ${ordinal_number} ${FUNCTION_INSTANCE_IP} ${stateful_master_dns};
       ']
+    minReadySeconds: 45
