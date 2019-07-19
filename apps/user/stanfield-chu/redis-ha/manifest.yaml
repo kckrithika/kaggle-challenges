@@ -26,7 +26,7 @@ system:
       livenessProbe:
         tcpSocket:
           port: 6379
-        initialDelaySeconds: 10
+        initialDelaySeconds: 60
         periodSeconds: 10
       readinessProbe:
         tcpSocket:
@@ -64,7 +64,7 @@ system:
       livenessProbe:
         tcpSocket:
           port: 26379
-        initialDelaySeconds: 10
+        initialDelaySeconds: 60
         periodSeconds: 10
       readinessProbe:
         tcpSocket:
