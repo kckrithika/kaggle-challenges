@@ -35,7 +35,6 @@ local utils = import "util_functions.jsonnet";
                 slb_ingress: "unverified",
                 # --- flag D (one flag between ... ---
                 # --- flag E (each pair. ... ---
-                etcd_cluster_metrics: "unverified",
                 # --- flag F (Their only purpose ... ---
                 # --- flag G (is to assist ... ---
                 # --- flag H (git's diff logic ... ---
