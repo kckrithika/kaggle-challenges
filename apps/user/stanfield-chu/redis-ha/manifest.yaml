@@ -33,6 +33,9 @@ system:
           port: 6379
         initialDelaySeconds: 60
         periodSeconds: 10
+      env:
+      - name: DUMMY_UNUSED_ENV_VAR_FOR_POD_BOUNCE
+        value: 1
       command: ["/bin/sh", "-c"]
       args: ['
           stateful_lb_name=redis-ha-node-lb ;
@@ -71,6 +74,9 @@ system:
           port: 26379
         initialDelaySeconds: 60
         periodSeconds: 10
+      env:
+      - name: DUMMY_UNUSED_ENV_VAR_FOR_POD_BOUNCE
+        value: 1
       command: ["/bin/sh", "-c"]
       args: ['
           stateful_lb_name=redis-ha-sentinel-lb ;
