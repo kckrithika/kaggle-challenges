@@ -110,6 +110,46 @@ items:
 - apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: RoleBinding
   metadata:
+    name: emp-aqueduct:ph2-sam_eventbus:rolebinding
+    namespace: emp-aqueduct
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: minion:role
+  subjects:
+  - kind: User
+    name: shared0-samminionaqueduct1-1-ph2.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionaqueduct1-2-ph2.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionaqueduct1-3-ph2.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionaqueduct1-4-ph2.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionaqueduct1-5-ph2.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionaqueduct2-1-ph2.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionaqueduct2-2-ph2.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionaqueduct2-3-ph2.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionaqueduct2-4-ph2.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionaqueduct2-5-ph2.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionaqueduct3-1-ph2.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionaqueduct3-2-ph2.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionaqueduct3-3-ph2.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionaqueduct3-4-ph2.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionaqueduct3-5-ph2.ops.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1beta1
+  kind: RoleBinding
+  metadata:
     name: ccait:ph2-sam_gater:rolebinding
     namespace: ccait
   roleRef:

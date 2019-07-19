@@ -1247,6 +1247,18 @@
     },
     {
       "namespaces": [
+        "emp-aqueduct"
+      ],
+      "access": [
+        "team/emp_aqueduct"
+      ],
+      "controlEstate": "ia2-sam",
+      "estate": "ia2-sam_eventbus",
+      "kingdom": "ia2",
+      "superPod": "None"
+    },
+    {
+      "namespaces": [
         "gater",
         "ccait",
         "service-mesh",
@@ -2562,6 +2574,18 @@
       ],
       "controlEstate": "ph2-sam",
       "estate": "ph2-sam_dp",
+      "kingdom": "ph2",
+      "superPod": "None"
+    },
+    {
+      "namespaces": [
+        "emp-aqueduct"
+      ],
+      "access": [
+        "team/emp_aqueduct"
+      ],
+      "controlEstate": "ph2-sam",
+      "estate": "ph2-sam_eventbus",
       "kingdom": "ph2",
       "superPod": "None"
     },
