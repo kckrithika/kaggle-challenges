@@ -17,6 +17,7 @@ local mcpIstioConfig = (import "service-mesh/istio-config.jsonnet");
     namespace: "mesh-control-plane",
   },
   spec: {
+    replicas: 3,
     selector: {
       matchLabels: {
         app: "pilot",

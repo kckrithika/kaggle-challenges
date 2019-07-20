@@ -1,6 +1,0 @@
-apiVersion: autoscaling/v2beta1
-kind: HorizontalPodAutoscaler
-metadata:
-  name: istio-pilot
-  annotations:
-    manifestctl.sam.data.sfdc.net/swagger: disable
