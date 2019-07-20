@@ -398,7 +398,6 @@ system:
           port: 15372
         initialDelaySeconds: 20
         periodSeconds: 5
-      serviceAccountName: switchboard-service-account
       name: switchboard
       ports:
       - containerPort: 7020
@@ -450,6 +449,7 @@ system:
     identity:
       pod: na3
       serviceName: switchboard
+    serviceAccountName: switchboard-service-account
     name: na3-mist61switchboard-prd
     volumes:
     - emptyDir: {}
