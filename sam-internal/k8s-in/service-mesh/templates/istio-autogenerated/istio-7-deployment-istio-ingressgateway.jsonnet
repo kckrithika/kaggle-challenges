@@ -16,6 +16,7 @@ local mcpIstioConfig = (import "service-mesh/istio-config.jsonnet");
     namespace: "core-on-sam-sp2",
   },
   spec: {
+    replicas: 1,
     selector: {
       matchLabels: {
         app: "istio-ingressgateway",

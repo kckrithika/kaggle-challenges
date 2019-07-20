@@ -13,6 +13,10 @@
 #
 gateways:
   enabled: true
+  istio-ingressgateway:
+    enabled: true
+    autoscaleEnabled: false
+    replicaCount: 1
 
 #
 # sidecar-injector webhook configuration, refer to the
@@ -39,12 +43,15 @@ mixer:
     enabled: false
   telemetry:
     enabled: false
+
 #
 # pilot configuration
 #
 # @see charts/pilot/values.yaml
 pilot:
   enabled: true
+  autoscaleEnabled: false
+  replicaCount: 3
 
 #
 # security configuration

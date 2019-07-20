@@ -8,6 +8,7 @@ metadata:
   name: istio-ingressgateway
   namespace: mesh-control-plane
 spec:
+  replicas: 1
   selector:
     matchLabels:
       app: istio-ingressgateway
