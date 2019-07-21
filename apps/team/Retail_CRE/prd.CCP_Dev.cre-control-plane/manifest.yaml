@@ -91,6 +91,8 @@ system:
           ## Stream Processor
         - name: STREAM_PROCESSING_ENDPOINT
           value: cre-sp-ccp-dev.retail-cre.localhost.mesh.force.com:5442
+        - name: CRE_API_ENDPOINT
+          value: cre-api-ccp-dev.retail-cre.localhost.mesh.force.com:5442
         - name: LOGGING_LEVEL_ORG_SPRINGFRAMEWORK_WEB
           value: DEBUG
         ####################################################################################################
