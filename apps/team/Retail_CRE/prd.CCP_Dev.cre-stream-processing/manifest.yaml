@@ -13,7 +13,7 @@ system:
       "routing.mesh.sfdc.net/enabled": "true"
     containers:
     - name: cre-sp-ccp-dev
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cre-fusion/services/control-plane/stream-processor:1.9.0.0.develop.b510b14.155
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cre-fusion/services/control-plane/stream-processor:1.9.0.0.develop.21fd9f6.158
       env:
         - name: PUBLISHING_TOPIC
           value: sfdc.prod.cre__prd.ajna_local__cre_outbound_CCP_Shared_Dev
@@ -45,8 +45,6 @@ system:
           value: true
         - name: CONTROLPLANE_REST_ENDPOINT
           value: http://cre-control-plane-ccp-dev.retail-cre.localhost.mesh.force.com:5442
-        - name: DUMMY_RESTART_VAR
-          value: helloworld1
         - name: ENABLE_BATCH_ORPHAN_CHECKS
           value: true
         - name: JVM_ARGS
