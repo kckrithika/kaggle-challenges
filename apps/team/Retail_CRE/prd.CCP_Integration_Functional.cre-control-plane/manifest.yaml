@@ -48,6 +48,8 @@ system:
           ## FLOWSNAKE
         - name: MAX_FLOWSNAKE_ENVIRONMENTS
           value: 30
+        - name: DISABLE_AUTO_TERMINATE_FLOWSNAKE
+          value: true
         ####################################################################################################
         ####################################### IMPORT environment variables ###############################
         ####################################################################################################
@@ -89,8 +91,6 @@ system:
           value: cre-sp-ccp-func.retail-cre.localhost.mesh.force.com:5442
         - name: CRE_API_ENDPOINT
           value: cre-api-ccp-func.retail-cre.localhost.mesh.force.com:5442
-        - name: DISABLE_AUTO_TERMINATE_FLOWSNAKE
-          value: true          
         ####################################################################################################
         ####################################### PERF environment variables #################################
         ####################################################################################################
