@@ -42,7 +42,7 @@ system:
         - name: HBASE_ENVIRONMENT
           value: kingdom-test
         - name: HBASE_NAMESPACE
-          value: CRE_DEV
+          value: CRE
         - name: HBASE_DATACENTER
           value: prd
           ## FLOWSNAKE
