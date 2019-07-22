@@ -21,6 +21,8 @@ system:
           value: v1.1
         - name: WEBDRIVER_HOST
           value: ${FUNCTION_INSTANCE_IP}
+        - name: SERVICE_JVM_OPTIONS
+          value: -Dtimeout=600
       livenessProbe:
         initialDelaySeconds: 30
         httpGet:

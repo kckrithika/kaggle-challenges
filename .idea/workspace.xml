@@ -1,0 +1,908 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="e8392924-987f-4c87-9182-c906a172172d" name="Default" comment="Rollback environment variables" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FUSProjectUsageTrigger">
+    <session id="1845773985">
+      <usages-collector id="statistics.lifecycle.project">
+        <counts>
+          <entry key="project.closed" value="7" />
+          <entry key="project.open.time.1" value="1" />
+          <entry key="project.open.time.15" value="1" />
+          <entry key="project.open.time.16" value="2" />
+          <entry key="project.open.time.19" value="2" />
+          <entry key="project.open.time.21" value="2" />
+          <entry key="project.open.time.24" value="1" />
+          <entry key="project.opened" value="9" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.extensions.edit">
+        <counts>
+          <entry key="txt" value="242" />
+          <entry key="yaml" value="193" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.edit">
+        <counts>
+          <entry key="PLAIN_TEXT" value="242" />
+          <entry key="YAML" value="193" />
+        </counts>
+      </usages-collector>
+    </session>
+  </component>
+  <component name="FileEditorManager">
+    <splitter split-orientation="horizontal" split-proportion="0.5">
+      <split-first>
+        <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/apps/user/jiayi-yan/pool-map.yaml">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="165">
+                  <caret line="11" selection-start-line="11" selection-end-line="11" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/apps/team/Retail_MDS/metadata-service-prod/manifest.yaml">
+              <provider selected="true" editor-type-id="text-editor" />
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/apps/team/Retail_MDS/metadata-service-prd-func/manifest.yaml">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="1620">
+                  <caret line="110" column="8" selection-start-line="110" selection-start-column="8" selection-end-line="110" selection-end-column="8" />
+                  <folding>
+                    <element signature="e#26#87#0" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/apps/team/Retail_MDS/metadata-service-prd-perf/manifest.yaml">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="1260">
+                  <caret line="84" column="28" selection-start-line="84" selection-start-column="28" selection-end-line="84" selection-end-column="28" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/apps/user/ynagata/shipping-service/manifest.yaml">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="15">
+                  <caret line="22" selection-start-line="22" selection-end-line="22" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/apps/team/Retail_RSUI/rsui-func/manifest.yaml">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="405">
+                  <caret line="27" column="89" selection-start-line="27" selection-start-column="89" selection-end-line="27" selection-end-column="89" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+        </leaf>
+      </split-first>
+      <split-second>
+        <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+          <file pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/apps/user/ynagata/ordering-service/manifest.yaml">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="127">
+                  <caret line="26" column="18" selection-start-line="26" selection-start-column="18" selection-end-line="26" selection-end-column="18" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/apps/team/Retail_RSUI/rsui-perf/manifest.yaml">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="1035">
+                  <caret line="69" column="29" selection-start-line="69" selection-start-column="29" selection-end-line="69" selection-end-column="29" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/apps/team/Retail_MDS/metadata-service-prd-func/manifest.yaml">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="1005">
+                  <caret line="69" selection-start-line="69" selection-end-line="69" />
+                  <folding>
+                    <element signature="e#26#87#0" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/apps/user/ynagata/shipping-scone/manifest.yaml">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="60">
+                  <caret line="4" column="11" selection-start-line="4" selection-start-column="11" selection-end-line="4" selection-end-column="11" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+        </leaf>
+      </split-second>
+    </splitter>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>shipping-service</find>
+      <find>hostSubList</find>
+    </findStrings>
+    <replaceStrings>
+      <replace />
+    </replaceStrings>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/apps/user/ynagata/ordering-scone/manifest.yaml" />
+        <option value="$PROJECT_DIR$/apps/user/ynagata/shipping-scone/manifest.yaml" />
+        <option value="$PROJECT_DIR$/apps/user/ynagata/pool-map.yaml" />
+        <option value="$PROJECT_DIR$/apps/team/Retail_RSUI/rsui-perf/manifest.yaml" />
+        <option value="$PROJECT_DIR$/apps/team/Retail_MDS/metadata-service-prd-func/manifest.yaml" />
+        <option value="$PROJECT_DIR$/apps/team/Retail_MDS/metadata-service-prd-perf/manifest.yaml" />
+        <option value="$PROJECT_DIR$/apps/user/ynagata/shipping-service/manifest.yaml" />
+        <option value="$PROJECT_DIR$/apps/user/ynagata/ordering-service/manifest.yaml" />
+      </list>
+    </option>
+  </component>
+  <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsGulpfileManager">
+    <detection-done>true</detection-done>
+    <sorting>DEFINITION_ORDER</sorting>
+  </component>
+  <component name="ProjectFrameBounds">
+    <option name="y" value="23" />
+    <option name="width" value="2560" />
+    <option name="height" value="1417" />
+  </component>
+  <component name="ProjectView">
+    <navigator proportions="" version="1">
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="manifests" type="b2602c69:ProjectViewProjectNode" />
+              <item name="manifests" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="manifests" type="b2602c69:ProjectViewProjectNode" />
+              <item name="manifests" type="462c0819:PsiDirectoryNode" />
+              <item name="apps" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="manifests" type="b2602c69:ProjectViewProjectNode" />
+              <item name="manifests" type="462c0819:PsiDirectoryNode" />
+              <item name="apps" type="462c0819:PsiDirectoryNode" />
+              <item name="team" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="manifests" type="b2602c69:ProjectViewProjectNode" />
+              <item name="manifests" type="462c0819:PsiDirectoryNode" />
+              <item name="apps" type="462c0819:PsiDirectoryNode" />
+              <item name="team" type="462c0819:PsiDirectoryNode" />
+              <item name="Retail_MDS" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="manifests" type="b2602c69:ProjectViewProjectNode" />
+              <item name="manifests" type="462c0819:PsiDirectoryNode" />
+              <item name="apps" type="462c0819:PsiDirectoryNode" />
+              <item name="team" type="462c0819:PsiDirectoryNode" />
+              <item name="Retail_MDS" type="462c0819:PsiDirectoryNode" />
+              <item name="metadata-service-prd-func" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="manifests" type="b2602c69:ProjectViewProjectNode" />
+              <item name="manifests" type="462c0819:PsiDirectoryNode" />
+              <item name="apps" type="462c0819:PsiDirectoryNode" />
+              <item name="team" type="462c0819:PsiDirectoryNode" />
+              <item name="Retail_MDS" type="462c0819:PsiDirectoryNode" />
+              <item name="metadata-service-prd-perf" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="manifests" type="b2602c69:ProjectViewProjectNode" />
+              <item name="manifests" type="462c0819:PsiDirectoryNode" />
+              <item name="apps" type="462c0819:PsiDirectoryNode" />
+              <item name="team" type="462c0819:PsiDirectoryNode" />
+              <item name="Retail_RSUI" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="manifests" type="b2602c69:ProjectViewProjectNode" />
+              <item name="manifests" type="462c0819:PsiDirectoryNode" />
+              <item name="apps" type="462c0819:PsiDirectoryNode" />
+              <item name="team" type="462c0819:PsiDirectoryNode" />
+              <item name="Retail_RSUI" type="462c0819:PsiDirectoryNode" />
+              <item name="rsui-perf" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="manifests" type="b2602c69:ProjectViewProjectNode" />
+              <item name="manifests" type="462c0819:PsiDirectoryNode" />
+              <item name="apps" type="462c0819:PsiDirectoryNode" />
+              <item name="team" type="462c0819:PsiDirectoryNode" />
+              <item name="Retail_Setup" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="manifests" type="b2602c69:ProjectViewProjectNode" />
+              <item name="manifests" type="462c0819:PsiDirectoryNode" />
+              <item name="apps" type="462c0819:PsiDirectoryNode" />
+              <item name="user" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="manifests" type="b2602c69:ProjectViewProjectNode" />
+              <item name="manifests" type="462c0819:PsiDirectoryNode" />
+              <item name="apps" type="462c0819:PsiDirectoryNode" />
+              <item name="user" type="462c0819:PsiDirectoryNode" />
+              <item name="jiayi-yan" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="manifests" type="b2602c69:ProjectViewProjectNode" />
+              <item name="manifests" type="462c0819:PsiDirectoryNode" />
+              <item name="apps" type="462c0819:PsiDirectoryNode" />
+              <item name="user" type="462c0819:PsiDirectoryNode" />
+              <item name="jiayi-yan" type="462c0819:PsiDirectoryNode" />
+              <item name="my-sam-test" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="manifests" type="b2602c69:ProjectViewProjectNode" />
+              <item name="manifests" type="462c0819:PsiDirectoryNode" />
+              <item name="apps" type="462c0819:PsiDirectoryNode" />
+              <item name="user" type="462c0819:PsiDirectoryNode" />
+              <item name="rmichela" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="manifests" type="b2602c69:ProjectViewProjectNode" />
+              <item name="manifests" type="462c0819:PsiDirectoryNode" />
+              <item name="apps" type="462c0819:PsiDirectoryNode" />
+              <item name="user" type="462c0819:PsiDirectoryNode" />
+              <item name="rmichela" type="462c0819:PsiDirectoryNode" />
+              <item name="ordering" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="manifests" type="b2602c69:ProjectViewProjectNode" />
+              <item name="manifests" type="462c0819:PsiDirectoryNode" />
+              <item name="apps" type="462c0819:PsiDirectoryNode" />
+              <item name="user" type="462c0819:PsiDirectoryNode" />
+              <item name="rmichela" type="462c0819:PsiDirectoryNode" />
+              <item name="shipping" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="manifests" type="b2602c69:ProjectViewProjectNode" />
+              <item name="manifests" type="462c0819:PsiDirectoryNode" />
+              <item name="apps" type="462c0819:PsiDirectoryNode" />
+              <item name="user" type="462c0819:PsiDirectoryNode" />
+              <item name="ynagata" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="manifests" type="b2602c69:ProjectViewProjectNode" />
+              <item name="manifests" type="462c0819:PsiDirectoryNode" />
+              <item name="apps" type="462c0819:PsiDirectoryNode" />
+              <item name="user" type="462c0819:PsiDirectoryNode" />
+              <item name="ynagata" type="462c0819:PsiDirectoryNode" />
+              <item name="ordering-scone" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="manifests" type="b2602c69:ProjectViewProjectNode" />
+              <item name="manifests" type="462c0819:PsiDirectoryNode" />
+              <item name="apps" type="462c0819:PsiDirectoryNode" />
+              <item name="user" type="462c0819:PsiDirectoryNode" />
+              <item name="ynagata" type="462c0819:PsiDirectoryNode" />
+              <item name="ordering-service" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="manifests" type="b2602c69:ProjectViewProjectNode" />
+              <item name="manifests" type="462c0819:PsiDirectoryNode" />
+              <item name="apps" type="462c0819:PsiDirectoryNode" />
+              <item name="user" type="462c0819:PsiDirectoryNode" />
+              <item name="ynagata" type="462c0819:PsiDirectoryNode" />
+              <item name="shipping-scone" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="manifests" type="b2602c69:ProjectViewProjectNode" />
+              <item name="manifests" type="462c0819:PsiDirectoryNode" />
+              <item name="apps" type="462c0819:PsiDirectoryNode" />
+              <item name="user" type="462c0819:PsiDirectoryNode" />
+              <item name="ynagata" type="462c0819:PsiDirectoryNode" />
+              <item name="shipping-service" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="manifests" type="b2602c69:ProjectViewProjectNode" />
+              <item name="manifests" type="462c0819:PsiDirectoryNode" />
+              <item name="sam-internal" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="manifests" type="b2602c69:ProjectViewProjectNode" />
+              <item name="manifests" type="462c0819:PsiDirectoryNode" />
+              <item name="tnrp" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="PackagesPane" />
+      <pane id="Scope" />
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
+    <property name="nodejs_npm_path_reset_for_default_project" value="true" />
+    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager">
+    <configuration default="true" type="Applet" factoryName="Applet">
+      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="Application" factoryName="Application">
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="JUnit" factoryName="JUnit">
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="TestNG" factoryName="TestNG">
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+      <properties />
+      <listeners />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="e8392924-987f-4c87-9182-c906a172172d" name="Default" comment="" />
+      <created>1531866843577</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1531866843577</updated>
+      <workItem from="1531866845895" duration="39942000" />
+      <workItem from="1533918560084" duration="532000" />
+      <workItem from="1534437749581" duration="596000" />
+      <workItem from="1534975120635" duration="6594000" />
+      <workItem from="1536618586382" duration="2047000" />
+      <workItem from="1536791333842" duration="33000" />
+      <workItem from="1536947202493" duration="169000" />
+      <workItem from="1536948421105" duration="682000" />
+      <workItem from="1538585753780" duration="1819000" />
+      <workItem from="1538766897561" duration="69000" />
+      <workItem from="1538776619765" duration="8000" />
+      <workItem from="1539621821755" duration="9044000" />
+      <workItem from="1543597528941" duration="297000" />
+      <workItem from="1543597882206" duration="596000" />
+      <workItem from="1544573514071" duration="8505000" />
+      <workItem from="1547246911275" duration="96000" />
+      <workItem from="1548979277495" duration="1067000" />
+      <workItem from="1549913118677" duration="1757000" />
+      <workItem from="1551115066813" duration="329000" />
+      <workItem from="1551986668234" duration="598000" />
+    </task>
+    <task id="LOCAL-00001" summary="Add log volumes">
+      <created>1531869164906</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1531869164906</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Add log volumes">
+      <created>1531872150497</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1531872150497</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Use image with splunk level ALL&#10;```&#10;ynagata@ynagata-wsm:~/src/manifests(master⚡) » ./validate.sh&#10;NOTE: If the docker run command returns a 'BAD_CREDENTIAL' error, you need to run 'docker login ops0-artifactrepo1-0-prd.data.sfdc.net' (one-time). See https://confluence.internal.salesforce.com/x/NRDa (Set up Docker for Sam)&#10;sam-manifest-builder build version: 20180711_232418.dbe1437.clean.050abeeba28b&#10;### Successful run.  Good files: 1953, Bad Files: 0, Ignored Files: 319&#10;```">
+      <created>1531926754901</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1531926754901</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Use ordering image with splunk level ALL&#10;```&#10;ynagata@ynagata-wsm:~/src/manifests(master⚡) » ./validate.sh   &#10;NOTE: If the docker run command returns a 'BAD_CREDENTIAL' error, you need to run 'docker login ops0-artifactrepo1-0-prd.data.sfdc.net' (one-time). See https://confluence.internal.salesforce.com/x/NRDa (Set up Docker for Sam)&#10;sam-manifest-builder build version: 20180711_232418.dbe1437.clean.050abeeba28b&#10;### Successful run.  Good files: 1953, Bad Files: 0, Ignored Files: 319&#10;&#10;```">
+      <created>1531934902441</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1531934902441</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Update log volume in ordering app&#10;```&#10;ynagata@ynagata-wsm:~/src/manifests(master⚡) » ./validate.sh&#10;NOTE: If the docker run command returns a 'BAD_CREDENTIAL' error, you need to run 'docker login ops0-artifactrepo1-0-prd.data.sfdc.net' (one-time). See https://confluence.internal.salesforce.com/x/NRDa (Set up Docker for Sam)&#10;Unable to find image 'ops0-artifactrepo1-0-prd.data.sfdc.net/tnrp/sam/hypersam:sam-0002094-dbe14378' locally&#10;sam-0002094-dbe14378: Pulling from tnrp/sam/hypersam&#10;c4ff0f350cc2: Pull complete &#10;f696322e1e37: Pull complete &#10;191b7718726a: Pull complete &#10;1dcb436b521f: Pull complete &#10;8b39f0e6658e: Pull complete &#10;7ca0501e6ea5: Pull complete &#10;ec52052d2eee: Pull complete &#10;3133d7777d92: Pull complete &#10;7760eeb84287: Pull complete &#10;645dede2c92a: Pull complete &#10;8c87f1dbe6da: Pull complete &#10;28af9d8bb869: Pull complete &#10;Digest: sha256:32d76251baa8150f1cfad8ef60e1e1469fae95baa719bb5f8d237909ea7d6d18&#10;Status: Downloaded newer image for ops0-artifactrepo1-0-prd.data.sfdc.net/tnrp/sam/hypersam:sam-0002094-dbe14378&#10;sam-manifest-builder build version: 20180711_232418.dbe1437.clean.050abeeba28b&#10;### Successful run.  Good files: 1953, Bad Files: 0, Ignored Files: 319&#10;&#10;```">
+      <created>1531949784034</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1531949784034</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Delete all apps&#10;```&#10;ynagata@ynagata-wsm:~/src/manifests(master⚡) » ./validate.sh&#10;NOTE: If the docker run command returns a 'BAD_CREDENTIAL' error, you need to run 'docker login ops0-artifactrepo1-0-prd.data.sfdc.net' (one-time). See https://confluence.internal.salesforce.com/x/NRDa (Set up Docker for Sam)&#10;sam-manifest-builder build version: 20180711_232418.dbe1437.clean.050abeeba28b&#10;### Successful run.  Good files: 1951, Bad Files: 0, Ignored Files: 321&#10;&#10;```">
+      <created>1532030913081</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1532030913081</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Delete all apps&#10;```&#10;ynagata@ynagata-wsm:~/src/manifests(master⚡) »  ./validate.sh                                                                                                                                                                                                                                                                                               1 ↵&#10;NOTE: If the docker run command returns a 'BAD_CREDENTIAL' error, you need to run 'docker login ops0-artifactrepo1-0-prd.data.sfdc.net' (one-time). See https://confluence.internal.salesforce.com/x/NRDa (Set up Docker for Sam)&#10;sam-manifest-builder build version: 20180711_232418.dbe1437.clean.050abeeba28b&#10;### Successful run.  Good files: 1953, Bad Files: 0, Ignored Files: 321&#10;&#10;```">
+      <created>1532032884481</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1532032884481</updated>
+    </task>
+    <task id="LOCAL-00008" summary="Delete all deployments&#10;```&#10;ynagata@ynagata-wsm:~/src/manifests(master⚡) » ./validate.sh&#10;NOTE: If the docker run command returns a 'BAD_CREDENTIAL' error, you need to run 'docker login ops0-artifactrepo1-0-prd.data.sfdc.net' (one-time). See https://confluence.internal.salesforce.com/x/NRDa (Set up Docker for Sam)&#10;sam-manifest-builder build version: 20180711_232418.dbe1437.clean.050abeeba28b&#10;### Successful run.  Good files: 1951, Bad Files: 0, Ignored Files: 323&#10;&#10;```">
+      <created>1532034508794</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1532034508794</updated>
+    </task>
+    <task id="LOCAL-00009" summary="Deploy ordering-service&#10;```&#10;ynagata@ynagata-wsm:~/src/manifests(master⚡) » ./validate.sh&#10;NOTE: If the docker run command returns a 'BAD_CREDENTIAL' error, you need to run 'docker login ops0-artifactrepo1-0-prd.data.sfdc.net' (one-time). See https://confluence.internal.salesforce.com/x/NRDa (Set up Docker for Sam)&#10;sam-manifest-builder build version: 20180711_232418.dbe1437.clean.050abeeba28b&#10;### Successful run.  Good files: 1952, Bad Files: 0, Ignored Files: 322&#10;```">
+      <created>1532040024468</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1532040024468</updated>
+    </task>
+    <task id="LOCAL-00010" summary="Deploy shipping-service&#10;```&#10;ynagata@ynagata-wsm:~/src/manifests(master⚡) » ./validate.sh&#10;NOTE: If the docker run command returns a 'BAD_CREDENTIAL' error, you need to run 'docker login ops0-artifactrepo1-0-prd.data.sfdc.net' (one-time). See https://confluence.internal.salesforce.com/x/NRDa (Set up Docker for Sam)&#10;sam-manifest-builder build version: 20180711_232418.dbe1437.clean.050abeeba28b&#10;### Successful run.  Good files: 1953, Bad Files: 0, Ignored Files: 321&#10;```">
+      <created>1532045105947</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1532045105947</updated>
+    </task>
+    <task id="LOCAL-00011" summary="Fix volume mounts for shipping-service&#10;```&#10;ynagata@ynagata-wsm:~/src/manifests(master⚡) » ./validate.sh&#10;NOTE: If the docker run command returns a 'BAD_CREDENTIAL' error, you need to run 'docker login ops0-artifactrepo1-0-prd.data.sfdc.net' (one-time). See https://confluence.internal.salesforce.com/x/NRDa (Set up Docker for Sam)&#10;sam-manifest-builder build version: 20180711_232418.dbe1437.clean.050abeeba28b&#10;### Successful run.  Good files: 1953, Bad Files: 0, Ignored Files: 321&#10;```">
+      <created>1532103662554</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1532103662554</updated>
+    </task>
+    <task id="LOCAL-00012" summary="Enable Service Mesh for shipping-service&#10;```&#10;ynagata@ynagata-wsm:~/src/manifests(master⚡) » ./validate.sh &#10;NOTE: If the docker run command returns a 'BAD_CREDENTIAL' error, you need to run 'docker login ops0-artifactrepo1-0-prd.data.sfdc.net' (one-time). See https://confluence.internal.salesforce.com/x/NRDa (Set up Docker for Sam)&#10;sam-manifest-builder build version: 20180711_232418.dbe1437.clean.050abeeba28b&#10;### Successful run.  Good files: 1953, Bad Files: 0, Ignored Files: 321&#10;```">
+      <created>1532109214744</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1532109214744</updated>
+    </task>
+    <task id="LOCAL-00013" summary="Enable ordering service to use Service Mesh for shipping-service&#10;```&#10;ynagata@ynagata-wsm:~/src/manifests(master⚡) » ./validate.sh&#10;NOTE: If the docker run command returns a 'BAD_CREDENTIAL' error, you need to run 'docker login ops0-artifactrepo1-0-prd.data.sfdc.net' (one-time). See https://confluence.internal.salesforce.com/x/NRDa (Set up Docker for Sam)&#10;sam-manifest-builder build version: 20180711_232418.dbe1437.clean.050abeeba28b&#10;### Successful run.  Good files: 1953, Bad Files: 0, Ignored Files: 321&#10;&#10;```">
+      <created>1532112734480</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1532112734480</updated>
+    </task>
+    <task id="LOCAL-00014" summary="Empty deployment pods in an attempt to be redeployed in a node that hasn't exhaused ips: http://samsqlreporter.sam-system.prd-sam.prd.slb.sfdc.net/query?n=Prd-All-IPs-Used-By-Node&#10;```&#10;ynagata@ynagata-wsm:~/src/manifests(master⚡) » ./validate.sh&#10;NOTE: If the docker run command returns a 'BAD_CREDENTIAL' error, you need to run 'docker login ops0-artifactrepo1-0-prd.data.sfdc.net' (one-time). See https://confluence.internal.salesforce.com/x/NRDa (Set up Docker for Sam)&#10;sam-manifest-builder build version: 20180711_232418.dbe1437.clean.050abeeba28b&#10;### Successful run.  Good files: 1953, Bad Files: 0, Ignored Files: 321&#10;```">
+      <created>1532120085031</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1532120085031</updated>
+    </task>
+    <task id="LOCAL-00015" summary="Remove sherpa/beacon&#10;```&#10;ynagata@ynagata-wsm:~/src/manifests(master⚡) » ./validate.sh&#10;NOTE: If the docker run command returns a 'BAD_CREDENTIAL' error, you need to run 'docker login ops0-artifactrepo1-0-prd.data.sfdc.net' (one-time). See https://confluence.internal.salesforce.com/x/NRDa (Set up Docker for Sam)&#10;sam-manifest-builder build version: 20180711_232418.dbe1437.clean.050abeeba28b&#10;### Successful run.  Good files: 1953, Bad Files: 0, Ignored Files: 321&#10;```">
+      <created>1532123392622</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1532123392622</updated>
+    </task>
+    <task id="LOCAL-00016" summary="Remove maddog volume &#10;```&#10;ynagata@ynagata-wsm:~/src/manifests(master⚡) » ./validate.sh&#10;NOTE: If the docker run command returns a 'BAD_CREDENTIAL' error, you need to run 'docker login ops0-artifactrepo1-0-prd.data.sfdc.net' (one-time). See https://confluence.internal.salesforce.com/x/NRDa (Set up Docker for Sam)&#10;sam-manifest-builder build version: 20180711_232418.dbe1437.clean.050abeeba28b&#10;### Successful run.  Good files: 1953, Bad Files: 0, Ignored Files: 321&#10;```">
+      <created>1532126893525</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1532126893525</updated>
+    </task>
+    <task id="LOCAL-00017" summary="Enable sherpa in ordering service&#10;```&#10;ynagata@ynagata-wsm:~/src/manifests(master⚡) » ./validate.sh&#10;NOTE: If the docker run command returns a 'BAD_CREDENTIAL' error, you need to run 'docker login ops0-artifactrepo1-0-prd.data.sfdc.net' (one-time). See https://confluence.internal.salesforce.com/x/NRDa (Set up Docker for Sam)&#10;sam-manifest-builder build version: 20180711_232418.dbe1437.clean.050abeeba28b&#10;### Successful run.  Good files: 1953, Bad Files: 0, Ignored Files: 321&#10;```">
+      <created>1532372031644</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1532372031644</updated>
+    </task>
+    <task id="LOCAL-00018" summary="Enable loadbalancer on shipping service&#10;```&#10;ynagata@ynagata-wsm:~/src/manifests(master⚡) » ./validate.sh&#10;NOTE: If the docker run command returns a 'BAD_CREDENTIAL' error, you need to run 'docker login ops0-artifactrepo1-0-prd.data.sfdc.net' (one-time). See https://confluence.internal.salesforce.com/x/NRDa (Set up Docker for Sam)&#10;sam-manifest-builder build version: 20180711_232418.dbe1437.clean.050abeeba28b&#10;### Successful run.  Good files: 1953, Bad Files: 0, Ignored Files: 321&#10;```">
+      <created>1532377661813</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1532377661813</updated>
+    </task>
+    <task id="LOCAL-00019" summary="Add maddog certs for shipping service&#10;```&#10;ynagata@ynagata-wsm:~/src/manifests(master⚡) »  ./validate.sh                                                                                                                                                                                                                                                                                               1 ↵&#10;NOTE: If the docker run command returns a 'BAD_CREDENTIAL' error, you need to run 'docker login ops0-artifactrepo1-0-prd.data.sfdc.net' (one-time). See https://confluence.internal.salesforce.com/x/NRDa (Set up Docker for Sam)&#10;sam-manifest-builder build version: 20180711_232418.dbe1437.clean.050abeeba28b&#10;### Successful run.  Good files: 1953, Bad Files: 0, Ignored Files: 321&#10;```">
+      <created>1532381795247</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1532381795247</updated>
+    </task>
+    <task id="LOCAL-00020" summary="Announce mtls name&#10;```&#10;ynagata@ynagata-wsm:~/src/manifests(master⚡) » ./validate.sh &#10;NOTE: If the docker run command returns a 'BAD_CREDENTIAL' error, you need to run 'docker login ops0-artifactrepo1-0-prd.data.sfdc.net' (one-time). See https://confluence.internal.salesforce.com/x/NRDa (Set up Docker for Sam)&#10;sam-manifest-builder build version: 20180711_232418.dbe1437.clean.050abeeba28b&#10;### Successful run.  Good files: 1953, Bad Files: 0, Ignored Files: 321&#10;```">
+      <created>1532465877501</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1532465877501</updated>
+    </task>
+    <task id="LOCAL-00021" summary="Enable sherpa,beacon for ordering service&#10;```&#10;ynagata@ynagata-wsm:~/src/manifests(master⚡) » ./validate.sh&#10;NOTE: If the docker run command returns a 'BAD_CREDENTIAL' error, you need to run 'docker login ops0-artifactrepo1-0-prd.data.sfdc.net' (one-time). See https://confluence.internal.salesforce.com/x/NRDa (Set up Docker for Sam)&#10;sam-manifest-builder build version: 20180711_232418.dbe1437.clean.050abeeba28b&#10;### Successful run.  Good files: 1953, Bad Files: 0, Ignored Files: 321&#10;```">
+      <created>1532474286020</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1532474286020</updated>
+    </task>
+    <task id="LOCAL-00022" summary="Use non tls port for calling shipping from ordering&#10;```&#10;ynagata@ynagata-wsm:~/src/manifests(master⚡) » ./validate.sh&#10;NOTE: If the docker run command returns a 'BAD_CREDENTIAL' error, you need to run 'docker login ops0-artifactrepo1-0-prd.data.sfdc.net' (one-time). See https://confluence.internal.salesforce.com/x/NRDa (Set up Docker for Sam)&#10;sam-manifest-builder build version: 20180711_232418.dbe1437.clean.050abeeba28b&#10;### Successful run.  Good files: 1953, Bad Files: 0, Ignored Files: 321&#10;```">
+      <created>1532553781965</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1532553781966</updated>
+    </task>
+    <task id="LOCAL-00023" summary="Update log config for ordering service&#10;```&#10;ynagata@ynagata-wsm:~/src/manifests(master⚡) » ./validate.sh&#10;NOTE: If the docker run command returns a 'BAD_CREDENTIAL' error, you need to run 'docker login ops0-artifactrepo1-0-prd.data.sfdc.net' (one-time). See https://confluence.internal.salesforce.com/x/NRDa (Set up Docker for Sam)&#10;sam-manifest-builder build version: 20180711_232418.dbe1437.clean.050abeeba28b&#10;### Successful run.  Good files: 1953, Bad Files: 0, Ignored Files: 321&#10;```">
+      <created>1532625911726</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1532625911726</updated>
+    </task>
+    <task id="LOCAL-00024" summary="Generates error messages for express shipments&#10;```&#10;ynagata@ynagata-wsm:~/src/manifests(master⚡) » ./validate.sh&#10;NOTE: If the docker run command returns a 'BAD_CREDENTIAL' error, you need to run 'docker login ops0-artifactrepo1-0-prd.data.sfdc.net' (one-time). See https://confluence.internal.salesforce.com/x/NRDa (Set up Docker for Sam)&#10;sam-manifest-builder build version: 20180711_232418.dbe1437.clean.050abeeba28b&#10;### Successful run.  Good files: 1953, Bad Files: 0, Ignored Files: 321&#10;```">
+      <created>1532646155075</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1532646155076</updated>
+    </task>
+    <task id="LOCAL-00025" summary="Update rsui-perf&#10;```&#10;Status: Downloaded newer image for ops0-artifactrepo1-0-prd.data.sfdc.net/tnrp/sdn/hypersdn:v-0001007-7692ca25&#10;### SUCCESSFUL RUN.&#10;```">
+      <created>1535144845439</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1535144845439</updated>
+    </task>
+    <task id="LOCAL-00026" summary="Rollback rsui-perf&#10;```&#10;ynagata@ynagata-wsm:~/src/manifests(master⚡) » ./validate.sh&#10;NOTE: If the docker run command returns a 'BAD_CREDENTIAL' error, you need to run 'docker login ops0-artifactrepo1-0-prd.data.sfdc.net' (one-time). See https://confluence.internal.salesforce.com/x/NRDa (Set up Docker for Sam)&#10;sam-manifest-builder build version: 20180808_223721.ee698bf.clean.deaec1d4963b&#10;### Successful run.  Good files: 2006, Bad Files: 0, Ignored Files: 337&#10;&#10;### SUCCESSFUL RUN.&#10;```">
+      <created>1535146593901</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1535146593901</updated>
+    </task>
+    <task id="LOCAL-00027" summary="Update rsui-perf&#10;```&#10;ynagata@ynagata-wsm:~/src/manifests(master⚡) » ./validate.sh&#10;NOTE: If the docker run command returns a 'BAD_CREDENTIAL' error, you need to run 'docker login ops0-artifactrepo1-0-prd.data.sfdc.net' (one-time). See https://confluence.internal.salesforce.com/x/NRDa (Set up Docker for Sam)&#10;sam-manifest-builder build version: 20180808_223721.ee698bf.clean.deaec1d4963b&#10;### Successful run.  Good files: 2006, Bad Files: 0, Ignored Files: 337&#10;&#10;### SUCCESSFUL RUN.&#10;```">
+      <created>1535152960136</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1535152960136</updated>
+    </task>
+    <task id="LOCAL-00028" summary="Fix camel case of the loadbalancer definition. MIT needs it to be slbEnabled&#10;```&#10;ynagata@ynagata-wsm:~/src/manifests(master⚡) » ./validate.sh&#10;NOTE: If the docker run command returns a 'BAD_CREDENTIAL' error, you need to run 'docker login ops0-artifactrepo1-0-prd.data.sfdc.net' (one-time). See https://confluence.internal.salesforce.com/x/NRDa (Set up Docker for Sam)&#10;sam-manifest-builder build version: 20180808_223721.ee698bf.clean.deaec1d4963b&#10;### Successful run.  Good files: 2006, Bad Files: 0, Ignored Files: 337&#10;&#10;### SUCCESSFUL RUN.&#10;&#10;```">
+      <created>1535411851315</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1535411851315</updated>
+    </task>
+    <task id="LOCAL-00029" summary="Update shipping-service image to one generated from standalone repo &#10;```&#10;NOTE: If the docker run command returns a 'BAD_CREDENTIAL' error, you need to run 'docker login ops0-artifactrepo1-0-prd.data.sfdc.net' (one-time). See https://confluence.internal.salesforce.com/x/NRDa (Set up Docker for Sam)&#10;sam-manifest-builder build version: 20180808_223721.ee698bf.clean.deaec1d4963b&#10;### Successful run.  Good files: 2006, Bad Files: 0, Ignored Files: 337&#10;&#10;### SUCCESSFUL RUN.&#10;&#10;```">
+      <created>1536618803370</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1536618803370</updated>
+    </task>
+    <task id="LOCAL-00030" summary="Update shipping-service image to one generated from standalone repo &#10;```&#10;NOTE: If the docker run command returns a 'BAD_CREDENTIAL' error, you need to run 'docker login ops0-artifactrepo1-0-prd.data.sfdc.net' (one-time). See https://confluence.internal.salesforce.com/x/NRDa (Set up Docker for Sam)&#10;sam-manifest-builder build version: 20180808_223721.ee698bf.clean.deaec1d4963b&#10;### Successful run.  Good files: 2006, Bad Files: 0, Ignored Files: 337&#10;&#10;### SUCCESSFUL RUN.&#10;&#10;```">
+      <created>1536620303528</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1536620303528</updated>
+    </task>
+    <task id="LOCAL-00031" summary="Update shipping-service image to one generated from standalone repo that returns UP for health indicator&#10;```&#10;NOTE: If the docker run command returns a 'BAD_CREDENTIAL' error, you need to run 'docker login ops0-artifactrepo1-0-prd.data.sfdc.net' (one-time). See https://confluence.internal.salesforce.com/x/NRDa (Set up Docker for Sam)&#10;sam-manifest-builder build version: 20180808_223721.ee698bf.clean.deaec1d4963b&#10;### Successful run.  Good files: 2006, Bad Files: 0, Ignored Files: 337&#10;&#10;### SUCCESSFUL RUN.&#10;&#10;```">
+      <created>1536623472392</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1536623472392</updated>
+    </task>
+    <task id="LOCAL-00032" summary="Update ordering-service image to one generated from standalone repo&#10;```&#10;NOTE: If the docker run command returns a 'BAD_CREDENTIAL' error, you need to run 'docker login ops0-artifactrepo1-0-prd.data.sfdc.net' (one-time). See https://confluence.internal.salesforce.com/x/NRDa (Set up Docker for Sam)&#10;sam-manifest-builder build version: 20180808_223721.ee698bf.clean.deaec1d4963b&#10;^[^[[D### Successful run.  Good files: 2006, Bad Files: 0, Ignored Files: 337&#10;&#10;### SUCCESSFUL RUN.&#10;```">
+      <created>1536947361224</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1536947361224</updated>
+    </task>
+    <task id="LOCAL-00033" summary="Update ordering-service image to one generated from standalone repo&#10;```&#10;NOTE: If the docker run command returns a 'BAD_CREDENTIAL' error, you need to run 'docker login ops0-artifactrepo1-0-prd.data.sfdc.net' (one-time). See https://confluence.internal.salesforce.com/x/NRDa (Set up Docker for Sam)&#10;sam-manifest-builder build version: 20180808_223721.ee698bf.clean.deaec1d4963b&#10;^[^[[D### Successful run.  Good files: 2006, Bad Files: 0, Ignored Files: 337&#10;&#10;### SUCCESSFUL RUN.&#10;```">
+      <created>1536948552815</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1536948552815</updated>
+    </task>
+    <task id="LOCAL-00034" summary="Update shipping-service to sherpa-envoy. Adds a few env vars">
+      <created>1539794848646</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1539794848646</updated>
+    </task>
+    <task id="LOCAL-00035" summary="Update ordering-service how env vars are read">
+      <created>1539796449331</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1539796449331</updated>
+    </task>
+    <task id="LOCAL-00036" summary="Add env vars to ordering-service">
+      <created>1539800387797</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1539800387797</updated>
+    </task>
+    <task id="LOCAL-00037" summary="Standardize log lines for ordering-service">
+      <created>1539804937355</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1539804937355</updated>
+    </task>
+    <task id="LOCAL-00038" summary="Override shipping interval">
+      <created>1539814878662</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1539814878662</updated>
+    </task>
+    <option name="localTasksCounter" value="39" />
+    <servers />
+  </component>
+  <component name="TimeTrackingManager">
+    <option name="totallyTimeSpent" value="74780000" />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="0" y="23" width="2560" height="1417" extended-state="0" />
+    <layout>
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.14098491" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info id="Designer" order="2" />
+      <window_info id="Image Layers" order="3" />
+      <window_info id="UI Designer" order="4" />
+      <window_info id="Capture Tool" order="5" />
+      <window_info id="Favorites" order="6" side_tool="true" />
+      <window_info id="Nl-Palette" order="7" />
+      <window_info id="Web" order="8" side_tool="true" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" />
+      <window_info anchor="bottom" id="Run" order="2" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Spring" order="7" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="8" sideWeight="0.49841145" visible="true" weight="0.5592453" />
+      <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.5015886" side_tool="true" visible="true" weight="0.5592453" />
+      <window_info anchor="bottom" id="Database Changes" order="10" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Version Control" order="11" weight="0.25934067" />
+      <window_info anchor="bottom" id="Java Enterprise" order="12" />
+      <window_info anchor="bottom" id="Messages" order="13" weight="0.3287879" />
+      <window_info anchor="right" id="Commander" order="0" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="Palette" order="3" />
+      <window_info anchor="right" id="Capture Analysis" order="4" />
+      <window_info anchor="right" id="Maven Projects" order="5" />
+      <window_info anchor="right" id="Database" order="6" />
+      <window_info anchor="right" id="Palette&#9;" order="7" />
+      <window_info anchor="right" id="Theme Preview" order="8" />
+      <window_info anchor="right" id="Properties" order="9" />
+      <window_info anchor="right" id="Bean Validation" order="10" />
+    </layout>
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Empty deployment pods in an attempt to be redeployed in a node that hasn't exhaused ips: http://samsqlreporter.sam-system.prd-sam.prd.slb.sfdc.net/query?n=Prd-All-IPs-Used-By-Node&#10;```&#10;ynagata@ynagata-wsm:~/src/manifests(master⚡) » ./validate.sh&#10;NOTE: If the docker run command returns a 'BAD_CREDENTIAL' error, you need to run 'docker login ops0-artifactrepo1-0-prd.data.sfdc.net' (one-time). See https://confluence.internal.salesforce.com/x/NRDa (Set up Docker for Sam)&#10;sam-manifest-builder build version: 20180711_232418.dbe1437.clean.050abeeba28b&#10;### Successful run.  Good files: 1953, Bad Files: 0, Ignored Files: 321&#10;```" />
+    <MESSAGE value="Remove sherpa/beacon&#10;```&#10;ynagata@ynagata-wsm:~/src/manifests(master⚡) » ./validate.sh&#10;NOTE: If the docker run command returns a 'BAD_CREDENTIAL' error, you need to run 'docker login ops0-artifactrepo1-0-prd.data.sfdc.net' (one-time). See https://confluence.internal.salesforce.com/x/NRDa (Set up Docker for Sam)&#10;sam-manifest-builder build version: 20180711_232418.dbe1437.clean.050abeeba28b&#10;### Successful run.  Good files: 1953, Bad Files: 0, Ignored Files: 321&#10;```" />
+    <MESSAGE value="Remove maddog volume &#10;```&#10;ynagata@ynagata-wsm:~/src/manifests(master⚡) » ./validate.sh&#10;NOTE: If the docker run command returns a 'BAD_CREDENTIAL' error, you need to run 'docker login ops0-artifactrepo1-0-prd.data.sfdc.net' (one-time). See https://confluence.internal.salesforce.com/x/NRDa (Set up Docker for Sam)&#10;sam-manifest-builder build version: 20180711_232418.dbe1437.clean.050abeeba28b&#10;### Successful run.  Good files: 1953, Bad Files: 0, Ignored Files: 321&#10;```" />
+    <MESSAGE value="Enable sherpa in ordering service&#10;```&#10;ynagata@ynagata-wsm:~/src/manifests(master⚡) » ./validate.sh&#10;NOTE: If the docker run command returns a 'BAD_CREDENTIAL' error, you need to run 'docker login ops0-artifactrepo1-0-prd.data.sfdc.net' (one-time). See https://confluence.internal.salesforce.com/x/NRDa (Set up Docker for Sam)&#10;sam-manifest-builder build version: 20180711_232418.dbe1437.clean.050abeeba28b&#10;### Successful run.  Good files: 1953, Bad Files: 0, Ignored Files: 321&#10;```" />
+    <MESSAGE value="Enable loadbalancer on shipping service&#10;```&#10;ynagata@ynagata-wsm:~/src/manifests(master⚡) » ./validate.sh&#10;NOTE: If the docker run command returns a 'BAD_CREDENTIAL' error, you need to run 'docker login ops0-artifactrepo1-0-prd.data.sfdc.net' (one-time). See https://confluence.internal.salesforce.com/x/NRDa (Set up Docker for Sam)&#10;sam-manifest-builder build version: 20180711_232418.dbe1437.clean.050abeeba28b&#10;### Successful run.  Good files: 1953, Bad Files: 0, Ignored Files: 321&#10;```" />
+    <MESSAGE value="Add maddog certs for shipping service&#10;```&#10;ynagata@ynagata-wsm:~/src/manifests(master⚡) »  ./validate.sh                                                                                                                                                                                                                                                                                               1 ↵&#10;NOTE: If the docker run command returns a 'BAD_CREDENTIAL' error, you need to run 'docker login ops0-artifactrepo1-0-prd.data.sfdc.net' (one-time). See https://confluence.internal.salesforce.com/x/NRDa (Set up Docker for Sam)&#10;sam-manifest-builder build version: 20180711_232418.dbe1437.clean.050abeeba28b&#10;### Successful run.  Good files: 1953, Bad Files: 0, Ignored Files: 321&#10;```" />
+    <MESSAGE value="Announce mtls name&#10;```&#10;ynagata@ynagata-wsm:~/src/manifests(master⚡) » ./validate.sh &#10;NOTE: If the docker run command returns a 'BAD_CREDENTIAL' error, you need to run 'docker login ops0-artifactrepo1-0-prd.data.sfdc.net' (one-time). See https://confluence.internal.salesforce.com/x/NRDa (Set up Docker for Sam)&#10;sam-manifest-builder build version: 20180711_232418.dbe1437.clean.050abeeba28b&#10;### Successful run.  Good files: 1953, Bad Files: 0, Ignored Files: 321&#10;```" />
+    <MESSAGE value="Enable sherpa,beacon for ordering service&#10;```&#10;ynagata@ynagata-wsm:~/src/manifests(master⚡) » ./validate.sh&#10;NOTE: If the docker run command returns a 'BAD_CREDENTIAL' error, you need to run 'docker login ops0-artifactrepo1-0-prd.data.sfdc.net' (one-time). See https://confluence.internal.salesforce.com/x/NRDa (Set up Docker for Sam)&#10;sam-manifest-builder build version: 20180711_232418.dbe1437.clean.050abeeba28b&#10;### Successful run.  Good files: 1953, Bad Files: 0, Ignored Files: 321&#10;```" />
+    <MESSAGE value="Use non tls port for calling shipping from ordering&#10;```&#10;ynagata@ynagata-wsm:~/src/manifests(master⚡) » ./validate.sh&#10;NOTE: If the docker run command returns a 'BAD_CREDENTIAL' error, you need to run 'docker login ops0-artifactrepo1-0-prd.data.sfdc.net' (one-time). See https://confluence.internal.salesforce.com/x/NRDa (Set up Docker for Sam)&#10;sam-manifest-builder build version: 20180711_232418.dbe1437.clean.050abeeba28b&#10;### Successful run.  Good files: 1953, Bad Files: 0, Ignored Files: 321&#10;```" />
+    <MESSAGE value="Update log config for ordering service&#10;```&#10;ynagata@ynagata-wsm:~/src/manifests(master⚡) » ./validate.sh&#10;NOTE: If the docker run command returns a 'BAD_CREDENTIAL' error, you need to run 'docker login ops0-artifactrepo1-0-prd.data.sfdc.net' (one-time). See https://confluence.internal.salesforce.com/x/NRDa (Set up Docker for Sam)&#10;sam-manifest-builder build version: 20180711_232418.dbe1437.clean.050abeeba28b&#10;### Successful run.  Good files: 1953, Bad Files: 0, Ignored Files: 321&#10;```" />
+    <MESSAGE value="Generates error messages for express shipments&#10;```&#10;ynagata@ynagata-wsm:~/src/manifests(master⚡) » ./validate.sh&#10;NOTE: If the docker run command returns a 'BAD_CREDENTIAL' error, you need to run 'docker login ops0-artifactrepo1-0-prd.data.sfdc.net' (one-time). See https://confluence.internal.salesforce.com/x/NRDa (Set up Docker for Sam)&#10;sam-manifest-builder build version: 20180711_232418.dbe1437.clean.050abeeba28b&#10;### Successful run.  Good files: 1953, Bad Files: 0, Ignored Files: 321&#10;```" />
+    <MESSAGE value="Update rsui-perf&#10;```&#10;Status: Downloaded newer image for ops0-artifactrepo1-0-prd.data.sfdc.net/tnrp/sdn/hypersdn:v-0001007-7692ca25&#10;### SUCCESSFUL RUN.&#10;```" />
+    <MESSAGE value="Rollback rsui-perf&#10;```&#10;ynagata@ynagata-wsm:~/src/manifests(master⚡) » ./validate.sh&#10;NOTE: If the docker run command returns a 'BAD_CREDENTIAL' error, you need to run 'docker login ops0-artifactrepo1-0-prd.data.sfdc.net' (one-time). See https://confluence.internal.salesforce.com/x/NRDa (Set up Docker for Sam)&#10;sam-manifest-builder build version: 20180808_223721.ee698bf.clean.deaec1d4963b&#10;### Successful run.  Good files: 2006, Bad Files: 0, Ignored Files: 337&#10;&#10;### SUCCESSFUL RUN.&#10;```" />
+    <MESSAGE value="Update rsui-perf&#10;```&#10;ynagata@ynagata-wsm:~/src/manifests(master⚡) » ./validate.sh&#10;NOTE: If the docker run command returns a 'BAD_CREDENTIAL' error, you need to run 'docker login ops0-artifactrepo1-0-prd.data.sfdc.net' (one-time). See https://confluence.internal.salesforce.com/x/NRDa (Set up Docker for Sam)&#10;sam-manifest-builder build version: 20180808_223721.ee698bf.clean.deaec1d4963b&#10;### Successful run.  Good files: 2006, Bad Files: 0, Ignored Files: 337&#10;&#10;### SUCCESSFUL RUN.&#10;```" />
+    <MESSAGE value="Fix camel case of the loadbalancer definition. MIT needs it to be slbEnabled&#10;```&#10;ynagata@ynagata-wsm:~/src/manifests(master⚡) » ./validate.sh&#10;NOTE: If the docker run command returns a 'BAD_CREDENTIAL' error, you need to run 'docker login ops0-artifactrepo1-0-prd.data.sfdc.net' (one-time). See https://confluence.internal.salesforce.com/x/NRDa (Set up Docker for Sam)&#10;sam-manifest-builder build version: 20180808_223721.ee698bf.clean.deaec1d4963b&#10;### Successful run.  Good files: 2006, Bad Files: 0, Ignored Files: 337&#10;&#10;### SUCCESSFUL RUN.&#10;&#10;```" />
+    <MESSAGE value="Update shipping-service image to one generated from standalone repo &#10;```&#10;NOTE: If the docker run command returns a 'BAD_CREDENTIAL' error, you need to run 'docker login ops0-artifactrepo1-0-prd.data.sfdc.net' (one-time). See https://confluence.internal.salesforce.com/x/NRDa (Set up Docker for Sam)&#10;sam-manifest-builder build version: 20180808_223721.ee698bf.clean.deaec1d4963b&#10;### Successful run.  Good files: 2006, Bad Files: 0, Ignored Files: 337&#10;&#10;### SUCCESSFUL RUN.&#10;&#10;```" />
+    <MESSAGE value="Update shipping-service image to one generated from standalone repo that returns UP for health indicator&#10;```&#10;NOTE: If the docker run command returns a 'BAD_CREDENTIAL' error, you need to run 'docker login ops0-artifactrepo1-0-prd.data.sfdc.net' (one-time). See https://confluence.internal.salesforce.com/x/NRDa (Set up Docker for Sam)&#10;sam-manifest-builder build version: 20180808_223721.ee698bf.clean.deaec1d4963b&#10;### Successful run.  Good files: 2006, Bad Files: 0, Ignored Files: 337&#10;&#10;### SUCCESSFUL RUN.&#10;&#10;```" />
+    <MESSAGE value="Update ordering-service image to one generated from standalone repo&#10;```&#10;NOTE: If the docker run command returns a 'BAD_CREDENTIAL' error, you need to run 'docker login ops0-artifactrepo1-0-prd.data.sfdc.net' (one-time). See https://confluence.internal.salesforce.com/x/NRDa (Set up Docker for Sam)&#10;sam-manifest-builder build version: 20180808_223721.ee698bf.clean.deaec1d4963b&#10;^[^[[D### Successful run.  Good files: 2006, Bad Files: 0, Ignored Files: 337&#10;&#10;### SUCCESSFUL RUN.&#10;```" />
+    <MESSAGE value="Update shipping-service to sherpa-envoy. Adds a few env vars" />
+    <MESSAGE value="Update ordering-service how env vars are read" />
+    <MESSAGE value="Add env vars to ordering-service" />
+    <MESSAGE value="Standardize log lines for ordering-service" />
+    <MESSAGE value="Override shipping interval" />
+    <MESSAGE value="Add environment variables" />
+    <MESSAGE value="Rollback environment variables" />
+    <option name="LAST_COMMIT_MESSAGE" value="Rollback environment variables" />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/apps/team/Retail_DFS/dfs-func/manifest.yaml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="630">
+          <caret line="42" column="51" selection-start-line="42" selection-start-column="51" selection-end-line="42" selection-end-column="51" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/apps/team/Retail_RSUI/pool-map.yaml">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/apps/team/Retail_RSUI/access.yaml">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/apps/team/Retail_CRE/prd.CCP_Integration_Functional.cre-api/manifest.yaml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-159" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/apps/user/rmichela/pool-map.yaml">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/apps/user/ynagata/ordering-scone/manifest.yaml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="330">
+          <caret line="22" column="21" selection-start-line="22" selection-start-column="21" selection-end-line="22" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/apps/user/jiayi-yan/my-sam-test/manifest.yaml">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/apps/team/Retail_MDS/pool-map.yaml">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/apps/user/ynagata/pool-map.yaml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="6" lean-forward="true" selection-start-line="6" selection-end-line="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/apps/user/rmichela/shipping/manifest.yaml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="8" column="17" selection-start-line="8" selection-start-column="17" selection-end-line="8" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/apps/user/rmichela/ordering/manifest.yaml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="705">
+          <caret line="47" column="26" selection-start-line="47" selection-start-column="26" selection-end-line="47" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/apps/user/jiayi-yan/pool-map.yaml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="11" selection-start-line="11" selection-end-line="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/apps/team/Retail_MDS/metadata-service-prod/manifest.yaml">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/apps/team/Retail_MDS/metadata-service-prd-perf/manifest.yaml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1260">
+          <caret line="84" column="28" selection-start-line="84" selection-start-column="28" selection-end-line="84" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/apps/team/Retail_RSUI/rsui-func/manifest.yaml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="405">
+          <caret line="27" column="89" selection-start-line="27" selection-start-column="89" selection-end-line="27" selection-end-column="89" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/apps/user/ynagata/shipping-service/manifest.yaml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="15">
+          <caret line="22" selection-start-line="22" selection-end-line="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/apps/user/ynagata/ordering-service/manifest.yaml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="127">
+          <caret line="26" column="18" selection-start-line="26" selection-start-column="18" selection-end-line="26" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/apps/team/Retail_RSUI/rsui-perf/manifest.yaml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1035">
+          <caret line="69" column="29" selection-start-line="69" selection-start-column="29" selection-end-line="69" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/apps/team/Retail_MDS/metadata-service-prd-func/manifest.yaml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1005">
+          <caret line="69" selection-start-line="69" selection-end-line="69" />
+          <folding>
+            <element signature="e#26#87#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/apps/user/ynagata/shipping-scone/manifest.yaml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="4" column="11" selection-start-line="4" selection-start-column="11" selection-end-line="4" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+  </component>
+  <component name="masterDetails">
+    <states>
+      <state key="ProjectJDKs.UI">
+        <settings>
+          <last-edited>1.8</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+    </states>
+  </component>
+</project>
