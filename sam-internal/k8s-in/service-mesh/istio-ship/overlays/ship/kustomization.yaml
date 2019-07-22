@@ -23,4 +23,4 @@ patchesStrategicMerge:
 - serviceaccount.yaml
 - sidecar-injector-configmap.yaml
 bases:
-- ../../base
+- ../defaults

@@ -171,7 +171,7 @@ local mcpIstioConfig = (import "service-mesh/istio-config.jsonnet");
                 value: "1",
               },
             ],
-            image: "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-sfci-dev/sfci/servicemesh/istio-packaging/pilot:e41f79547a0806e1a3e69f21d3a52074f1cccc3a",
+            image: "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-sfci-dev/sfci/servicemesh/istio-packaging/pilot:1fae9accd5177919f9767a466338b96933ccffd4",
             imagePullPolicy: "IfNotPresent",
             name: "discovery",
             ports: [
