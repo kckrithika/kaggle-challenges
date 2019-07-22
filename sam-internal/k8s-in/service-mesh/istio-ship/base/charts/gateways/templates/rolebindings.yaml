@@ -1,3 +1,6 @@
+---
+# Source: istio/charts/gateways/templates/rolebindings.yaml
+
 apiVersion: rbac.authorization.k8s.io/v1
 kind: RoleBinding
 metadata:
@@ -10,3 +13,4 @@ roleRef:
 subjects:
 - kind: ServiceAccount
   name: istio-ingressgateway-service-account
+---

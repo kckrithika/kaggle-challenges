@@ -117,7 +117,7 @@ global:
   hub: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-sfci-dev/sfci/servicemesh/istio-packaging
 
   # Default tag for Istio images.
-  tag: e41f79547a0806e1a3e69f21d3a52074f1cccc3a
+  tag: 1fae9accd5177919f9767a466338b96933ccffd4
 
   # Comma-separated minimum per-scope logging level of messages to output, in the form of <scope>:<level>,<scope>:<level>
   # The control plane has different scopes depending on component, but can configure default log level across all components
