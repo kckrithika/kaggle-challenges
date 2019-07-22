@@ -619,6 +619,22 @@ items:
   - kind: User
     name: shared0-samminionreportcollector3-1-xrd.eng.sfdc.net
 - apiVersion: rbac.authorization.k8s.io/v1beta1
+  kind: RoleBinding
+  metadata:
+    name: casp:xrd-sam_warden:rolebinding
+    namespace: casp
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: minion:role
+  subjects:
+  - kind: User
+    name: shared0-samminionwarden1-1-xrd.eng.sfdc.net
+  - kind: User
+    name: shared0-samminionwarden1-2-xrd.eng.sfdc.net
+  - kind: User
+    name: shared0-samminionwarden2-1-xrd.eng.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRoleBinding
   metadata:
     name: xrd-sampool:samcompute:clusterrolebinding

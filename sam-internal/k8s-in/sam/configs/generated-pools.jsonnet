@@ -175,6 +175,18 @@
     },
     {
       "namespaces": [
+        "casp"
+      ],
+      "access": [
+        "team/CASP"
+      ],
+      "controlEstate": "cdg-sam",
+      "estate": "cdg-sam_warden",
+      "kingdom": "cdg",
+      "superPod": "None"
+    },
+    {
+      "namespaces": [
         "cache-as-a-service-sp1"
       ],
       "access": [
@@ -658,6 +670,18 @@
       ],
       "controlEstate": "fra-sam",
       "estate": "fra-sam_report_collector",
+      "kingdom": "fra",
+      "superPod": "None"
+    },
+    {
+      "namespaces": [
+        "casp"
+      ],
+      "access": [
+        "team/CASP"
+      ],
+      "controlEstate": "fra-sam",
+      "estate": "fra-sam_warden",
       "kingdom": "fra",
       "superPod": "None"
     },
@@ -1301,6 +1325,18 @@
     },
     {
       "namespaces": [
+        "casp"
+      ],
+      "access": [
+        "team/CASP"
+      ],
+      "controlEstate": "ia2-sam",
+      "estate": "ia2-sam_warden",
+      "kingdom": "ia2",
+      "superPod": "None"
+    },
+    {
+      "namespaces": [
         "cache-as-a-service-sp1"
       ],
       "access": [
@@ -1741,6 +1777,18 @@
     },
     {
       "namespaces": [
+        "casp"
+      ],
+      "access": [
+        "team/CASP"
+      ],
+      "controlEstate": "lo2-sam",
+      "estate": "lo2-sam_warden",
+      "kingdom": "lo2",
+      "superPod": "None"
+    },
+    {
+      "namespaces": [
         "cache-as-a-service-sp1"
       ],
       "access": [
@@ -1826,6 +1874,18 @@
       ],
       "controlEstate": "lo3-sam",
       "estate": "lo3-sam_report_collector",
+      "kingdom": "lo3",
+      "superPod": "None"
+    },
+    {
+      "namespaces": [
+        "casp"
+      ],
+      "access": [
+        "team/CASP"
+      ],
+      "controlEstate": "lo3-sam",
+      "estate": "lo3-sam_warden",
       "kingdom": "lo3",
       "superPod": "None"
     },
@@ -2616,6 +2676,18 @@
       ],
       "controlEstate": "ph2-sam",
       "estate": "ph2-sam_report_collector",
+      "kingdom": "ph2",
+      "superPod": "None"
+    },
+    {
+      "namespaces": [
+        "casp"
+      ],
+      "access": [
+        "team/CASP"
+      ],
+      "controlEstate": "ph2-sam",
+      "estate": "ph2-sam_warden",
       "kingdom": "ph2",
       "superPod": "None"
     },
@@ -4018,6 +4090,18 @@
       ],
       "controlEstate": "xrd-sam",
       "estate": "xrd-sam_report_collector",
+      "kingdom": "xrd",
+      "superPod": "None"
+    },
+    {
+      "namespaces": [
+        "casp"
+      ],
+      "access": [
+        "team/CASP"
+      ],
+      "controlEstate": "xrd-sam",
+      "estate": "xrd-sam_warden",
       "kingdom": "xrd",
       "superPod": "None"
     },
