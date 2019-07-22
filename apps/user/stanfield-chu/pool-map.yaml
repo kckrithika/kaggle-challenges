@@ -4,5 +4,4 @@ apps:
   - name: xrd/xrd-sampool
     hostSubList:
     - shared0-sampool7-1-xrd.eng.sfdc.net
-    - shared0-sampool7-2-xrd.eng.sfdc.net
     - shared0-sampool7-3-xrd.eng.sfdc.net
