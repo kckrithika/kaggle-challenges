@@ -35,7 +35,7 @@ system:
         periodSeconds: 10
       env:
       - name: DUMMY_UNUSED_ENV_VAR_FOR_POD_BOUNCE
-        value: 3
+        value: 4
       command: ["/bin/sh", "-c"]
       args: ['
           stateful_lb_name=redis-ha-node-lb ;
@@ -76,7 +76,7 @@ system:
         periodSeconds: 10
       env:
       - name: DUMMY_UNUSED_ENV_VAR_FOR_POD_BOUNCE
-        value: 3
+        value: 4
       command: ["/bin/sh", "-c"]
       args: ['
           stateful_lb_name=redis-ha-sentinel-lb ;
