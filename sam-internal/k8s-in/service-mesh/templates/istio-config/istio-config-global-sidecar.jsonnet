@@ -2,6 +2,9 @@
   "apiVersion": "networking.istio.io/v1alpha3",
   "kind": "Sidecar",
   "metadata": {
+    "annotations": {
+      "manifestctl.sam.data.sfdc.net/swagger": "disable",
+    },
     "name": "mesh-default",
     "namespace": "mesh-control-plane"
   },
