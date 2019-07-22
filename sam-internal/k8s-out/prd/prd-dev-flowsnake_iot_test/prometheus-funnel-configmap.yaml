@@ -210,6 +210,26 @@ data:
           "tls_config": {
             "ca_file": "/var/run/secrets/kubernetes.io/serviceaccount/ca.crt"
           }
+        },
+        {
+          "job_name": "etcd",
+          "scheme": "https",
+          "static_configs": [
+            {
+              "targets": [
+                "dev0shared0-flowsnakemasteriottest1-1-prd.eng.sfdc.net:2379",
+                "dev0shared0-flowsnakemasteriottest1-2-prd.eng.sfdc.net:2379",
+                "dev0shared0-flowsnakemasteriottest1-3-prd.eng.sfdc.net:2379",
+                "dev0shared0-flowsnakemasteriottest1-4-prd.eng.sfdc.net:2379",
+                "dev0shared0-flowsnakemasteriottest1-5-prd.eng.sfdc.net:2379"
+              ]
+            }
+          ],
+          "tls_config": {
+            "ca_file": "/certs/ca/cabundle.pem",
+            "cert_file": "/certs/client/certificates/client.pem",
+            "key_file": "/certs/client/keys/client-key.pem"
+          }
         }
       ]
     }
