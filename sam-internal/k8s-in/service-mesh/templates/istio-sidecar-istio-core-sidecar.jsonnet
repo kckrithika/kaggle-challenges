@@ -1,4 +1,30 @@
 # Sidecar that applies to namespace `app` which is expected to be Core's ServiceEntry's namespace.
+
+local ingress(port, protocol, name, endpoint) =
+{
+  port: {
+    number: port,  # Bind IP will be the host's actual IPV4 address.
+    protocol: protocol,
+    name: name,
+  },
+  captureMode: "NONE",
+  defaultEndpoint: endpoint,
+};
+
+local egress(port, protocol, name) =
+{
+  bind: "127.1.2.3",
+  port: {
+    number: port,
+    protocol: protocol,
+    name: name,
+  },
+  captureMode: "NONE",
+  hosts: [
+    "*/*",
+  ],
+};
+
 {
   apiVersion: "networking.istio.io/v1alpha3",
   kind: "Sidecar",
@@ -11,65 +37,13 @@
   },
   spec: {
     ingress: [
-      {
-        port: {
-          number: 7443,  # Bind IP will be the host's actual IPV4 address.
-          protocol: "GRPC",
-          name: "grpc-core",
-        },
-        captureMode: "NONE",
-        defaultEndpoint: "127.0.0.1:7020",
-      },
+      ingress(7443, "GRPC", "grpc-core", "127.0.0.1:7020"),
     ],
     egress: [
-      {
-        bind: "127.1.2.3",
-        port: {
-          number: 7443,
-          protocol: "GRPC",
-          name: "grpc-egress",
-        },
-        captureMode: "NONE",
-        hosts: [
-          "*/*",
-        ],
-      },
-      {
-        bind: "127.1.2.3",
-        port: {
-          number: 7012,
-          protocol: "GRPC",
-          name: "grpc-egress2",
-        },
-        captureMode: "NONE",
-        hosts: [
-          "*/*",
-        ],
-      },
-      {
-        bind: "127.1.2.3",
-        port: {
-          number: 7442,
-          protocol: "HTTP",
-          name: "http-egress",
-        },
-        captureMode: "NONE",
-        hosts: [
-          "*/*",
-        ],
-      },
-      {
-        bind: "127.1.2.3",
-        port: {
-          number: 7014,
-          protocol: "HTTP",
-          name: "http-egress2",
-        },
-        captureMode: "NONE",
-        hosts: [
-          "*/*",
-        ],
-      },
+      egress(7443, "GRPC", "grpc-egress"),
+      egress(7012, "GRPC", "grpc-egress2"),
+      egress(7442, "HTTP", "http-egress"),
+      egress(7014, "HTTP", "http-egress2"),
     ],
   },
 }
