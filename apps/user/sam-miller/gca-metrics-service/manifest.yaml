@@ -24,6 +24,27 @@ system:
           port: 5000
       imagePullPolicy: Always
       env:
+      - name: LOCAL_MODE
+        value: "True"
+
+    - name: gca-rq-service
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/sam-miller/gca_metrics_service:test-07172019
+      # If your service doesn't serve HTTP traffic then you can remove the scone-http 8080 port.
+      ports:
+      - containerPort: 5002
+        name: rq-http
+      livenessProbe:
+        initialDelaySeconds: 30
+        httpGet:
+          path: /up
+          port: 5000
+      readinessProbe:
+        timeoutSeconds: 10
+        httpGet:
+          path: /up
+          port: 5000
+      imagePullPolicy: Always
+      env:
       - name: HTTP_PROXY
         value: public0-proxy1-0-prd.data.sfdc.net:8080
       - name: HTTPS_PROXY
