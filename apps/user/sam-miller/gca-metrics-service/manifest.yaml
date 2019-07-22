@@ -7,7 +7,7 @@ system:
     type: deployment
     containers:
     - name: gca-metrics-service
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/sam-miller/gca_metrics_service:test-07172019
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/sam-miller/gca_metrics_service:test-07222019
       # If your service doesn't serve HTTP traffic then you can remove the scone-http 8080 port.
       ports:
       - containerPort: 5000
@@ -26,23 +26,30 @@ system:
       env:
       - name: LOCAL_MODE
         value: "True"
+      - name: REDIS_MASTER_SERVICE_HOST
+        value: "gca-rq-service"
 
+
+  - name: gca-rq-service
+    count: 2
+    type: deployment
+    containers:
     - name: gca-rq-service
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/sam-miller/gca_metrics_service:test-07172019
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/sam-miller/gca_rq_service:test-07222019
       # If your service doesn't serve HTTP traffic then you can remove the scone-http 8080 port.
       ports:
-      - containerPort: 5002
-        name: rq-http
+      - containerPort: 6379
+        name: rq-tcp
       livenessProbe:
         initialDelaySeconds: 30
-        httpGet:
-          path: /up
-          port: 5000
+        exec:
+          command:
+            - /metrics_service/redis_probe.sh
       readinessProbe:
-        timeoutSeconds: 10
-        httpGet:
-          path: /up
-          port: 5000
+        initialDelaySeconds: 30
+        exec:
+          command:
+            - /metrics_service/redis_probe.sh
       imagePullPolicy: Always
       env:
       - name: HTTP_PROXY
