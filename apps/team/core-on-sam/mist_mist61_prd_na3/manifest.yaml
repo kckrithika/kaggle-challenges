@@ -384,6 +384,7 @@ system:
       - --metrics.funnelTimeOut=90000
       - --metrics.funnelEndPointURL=http://ajna0-funnel1-0-prd.data.sfdc.net:80
       - --routeupdates.use.k8s=true
+      - --k8s.enable.debug=true
       env:
       - name: SFDC_ENVIRONMENT
         value: mist61
@@ -391,7 +392,7 @@ system:
         value: 7020
       - name: JVM_HEAP_MAX
         value: 4G
-      image: sfci/servicelibs/switchboard:c22786172b4d9b3acd3fcd79937ff5eddc5f5ad2
+      image: sfci/servicelibs/switchboard:6ce4295ea735e13f0b45be16465e83a8c7e3223c
       livenessProbe:
         httpGet:
           path: /manage/health
