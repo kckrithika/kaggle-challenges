@@ -1371,17 +1371,6 @@ items:
   - kind: User
     name: shared0-samminionsfstore3-2-prd.eng.sfdc.net
 - apiVersion: rbac.authorization.k8s.io/v1beta1
-  kind: ClusterRoleBinding
-  metadata:
-    name: prd-sam_storagedev:samcompute:clusterrolebinding
-  roleRef:
-    apiGroup: rbac.authorization.k8s.io
-    kind: ClusterRole
-    name: minion:role
-  subjects:
-  - kind: User
-    name: shared0-storagetwosamcomputedev1-1-prd.eng.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: RoleBinding
   metadata:
     name: podgroup-prebuild:prd-sam_tardis:rolebinding

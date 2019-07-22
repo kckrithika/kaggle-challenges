@@ -23,8 +23,6 @@ data:
       "email-subject-prefix": "SAMWD",
       "enableK4aChecks": true,
       "enableMaddogCertChecks": true,
-      "enableStatefulChecks": false,
-      "enableStatefulPVChecks": false,
       "filesystemCheckDirs": [
         "/data/",
         "/data/logs/sdn/",
@@ -56,9 +54,7 @@ data:
         "/etc/pki_service/etcd/etcd-peer/certificates/etcd-peer.pem"
       ],
       "maddogServerCAPath": "/etc/pki_service/ca/security-ca.pem",
-      "maxPVCAge": "15m",
       "maxUptimeSampleSize": 5,
-      "maxdeploymentduration": "15m",
       "monitoredProcesses": {
         "docker-containerd.*docker-bootstrap": "age.dockercontainerdbootstrap",
         "docker-containerd.*docker-containerd.sock": "age.dockercontainerd",
@@ -97,9 +93,6 @@ data:
           "until": "2019/01/07"
         }
       ],
-      "storageClassName": "synthetic-hdd-pool",
-      "syntheticPVRetrytimeout": "15m",
-      "syntheticretrytimeout": "15m",
       "tlsEnabled": true,
       "universalProcesses": [
         "dockerd.*docker-bootstrap",
