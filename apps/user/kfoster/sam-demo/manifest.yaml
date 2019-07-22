@@ -5,7 +5,7 @@ system:
     count: 1
     containers:
     - name: lookup-bot-sandbox
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/kfoster/sam-demo:2019-07-22-12-47-56
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/kfoster/sam-demo:2019-07-22-12-47-55
       ports:
       - containerPort: 5000
      # SAM will bounce the container if this returns an HTTP response code other than 200-399
