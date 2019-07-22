@@ -50,22 +50,12 @@ local kingdom = std.extVar("kingdom");
         estate == "prd-samtestpool" ||
         estate == "prd-sdc" ||
         estate == "prd-sam" ||
-        estate == "xrd-sam" ||
-        estate == "prd-sam_storage" ||
-        estate == "prd-sam_cephdev" ||
-        estate == "prd-sam_sfstoredev" ||
-        estate == "prd-sam_storagedev" ||
-        estate == "prd-skipper"
+        estate == "xrd-sam"
     ),
 
     # This is for filtering flowsnake clusters. Detects any name parts starting with "flowsnake".
     is_flowsnake_cluster(estate):: (
         std.length([tok for tok in std.split(estate, "-") if std.startsWith(tok, "flowsnake")]) > 0
-    ),
-
-    # This is for filtering Kingdoms which support Ceph Clusters
-    is_cephstorage_supported(estate):: (
-       estate == "prd-sam"
     ),
 
     # fieldIfNonEmpty allows defining a field in a parent object only if the supplied object is not empty.

@@ -117,15 +117,6 @@ std.prune({
   #processUpTime checker
   universalProcesses: ["dockerd.*docker-bootstrap", "dockerd.*docker.sock", "docker-containerd.*docker-containerd.sock", "docker-containerd.*docker-bootstrap", "hyperkube.*kubelet"],
 })
-  + (if utils.is_cephstorage_supported(configs.estate) then {
-    storageClassName: "synthetic-hdd-pool",
-    enableStatefulChecks: false,
-    enableStatefulPVChecks: false,
-    maxPVCAge: (if configs.estate == "prd-sam" then "15m" else 420000000000),
-    syntheticPVRetrytimeout: (if configs.estate == "prd-sam" then "15m" else 420000000000),
-    syntheticretrytimeout: (if configs.estate == "prd-sam" then "15m" else 420000000000),
-    maxdeploymentduration: (if configs.estate == "prd-sam" then "15m" else 420000000000),
-  } else {})
 
   #kubelet checker
   + (if configs.estate == "prd-samdev" || configs.estate == "prd-samtest" || configs.estate == "prd-sam" then {

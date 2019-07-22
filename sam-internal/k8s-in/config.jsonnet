@@ -132,9 +132,6 @@ local utils = import "util_functions.jsonnet",
                 "sam.data.sfdc.net/owner": "slb",
             } else {}
         ),
-        storage: {
-            "sam.data.sfdc.net/owner": "storage",
-        },
         tnrp: {
             "sam.data.sfdc.net/owner": "tnrp",
         },

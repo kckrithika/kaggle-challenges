@@ -14,14 +14,6 @@ local utils = import "util_functions.jsonnet";
     # for the first pr keeping logic the same, but we should unify this with the one above
     rbacwd: !utils.is_gia(configs.kingdom) && !utils.is_flowsnake_cluster(configs.estate) && configs.estate != "prd-sdc",
 
-    # todo: explain what is blocking this from going everywhere
-    rbacstorage:
-        configs.estate == "prd-sam" ||
-        configs.estate == "prd-sam_storage" ||
-        configs.estate == "phx-sam" ||
-        configs.estate == "prd-sam_storagedev" ||
-        configs.estate == "xrd-sam",
-
     # MadDog
     maddogforsamapps: !(configs.kingdom == "wax" || configs.kingdom == "chx"),
 
@@ -37,8 +29,6 @@ local utils = import "util_functions.jsonnet";
         configs.estate == "prd-samdev" ||
         configs.estate == "prd-samtest" ||
         configs.estate == "prd-sam" ||
-        configs.estate == "prd-sam_storage" ||
-        configs.estate == "prd-sam_storagedev" ||
         configs.estate == "prd-sdc" ||
         configs.estate == "xrd-sam",
 
@@ -58,7 +48,7 @@ local utils = import "util_functions.jsonnet";
         configs.kingdom == "prd",
 
      kafkaProducer:
-       configs.estate != "prd-sam_storage" && configs.estate != "prd-sam_storagedev" && configs.estate != "prd-sdc" && configs.estate != "vpod",
+       configs.estate != "prd-sdc" && configs.estate != "vpod",
 
      kafkaConsumer:
        configs.estate == "prd-sam" || configs.estate == "prd-samtwo",
