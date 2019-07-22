@@ -383,6 +383,7 @@ system:
       - --metrics.maxNumberOfCollectedMetrics=100000
       - --metrics.funnelTimeOut=90000
       - --metrics.funnelEndPointURL=http://ajna0-funnel1-0-prd.data.sfdc.net:80
+      - --routeupdates.use.k8s=true
       env:
       - name: SFDC_ENVIRONMENT
         value: mist61
@@ -390,7 +391,7 @@ system:
         value: 7020
       - name: JVM_HEAP_MAX
         value: 4G
-      image: sfci/servicelibs/switchboard:db4c69eded9a83a094ddc8a851a61bee177f52e9
+      image: sfci/servicelibs/switchboard:c22786172b4d9b3acd3fcd79937ff5eddc5f5ad2
       livenessProbe:
         httpGet:
           path: /manage/health
@@ -448,6 +449,7 @@ system:
     identity:
       pod: na3
       serviceName: switchboard
+    serviceAccountName: switchboard-service-account
     name: na3-mist61switchboard-prd
     volumes:
     - emptyDir: {}
