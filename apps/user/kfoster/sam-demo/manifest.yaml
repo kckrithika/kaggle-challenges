@@ -1,0 +1,16 @@
+apiVersion: v1
+system:
+  functions:
+  - name: sam-demo
+    count: 1
+    containers:
+    - name: lookup-bot-sandbox
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/kfoster/sam-demo:2019-07-22-12-47-55
+      ports:
+      - containerPort: 5000
+     # SAM will bounce the container if this returns an HTTP response code other than 200-399
+      livenessProbe:
+        initialDelaySeconds: 20
+        httpGet:
+          path: /health
+          port: 8080

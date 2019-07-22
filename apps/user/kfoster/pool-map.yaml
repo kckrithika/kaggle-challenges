@@ -3,3 +3,5 @@ apps:
     - prd/prd-sam
   hda-client:
     - prd/prd-sam
+  sam-demo:
+    - prd/prd-sam
