@@ -38,19 +38,18 @@ system:
         httpGet:
           path: /manage/health
           port: 15372
-        # Generally we have set this to ~10 seconds longer than the readinessProbe initialDelaySeconds
-        initialDelaySeconds: 120
-        periodSeconds: 60
-        timeoutSeconds: 30
+        initialDelaySeconds: 45
+        periodSeconds: 10
+        timeoutSeconds: 5
       readinessProbe:
         httpGet:
-          path: /manage/health
+          path: /manage/ready
           port: 15372
         # This needs to be longer than the time for scone to start. 
         # Search the logs for 'Started EaasSconeApp' to get a sense of the startup time which is primary dependent on CPU resources.
-        initialDelaySeconds: 110
-        periodSeconds: 60
-        timeoutSeconds: 30
+        initialDelaySeconds: 60
+        periodSeconds: 10
+        timeoutSeconds: 5
 
     - name: beacon-eaas
       image: sfci/servicelibs/beacon:cec13ceb9fc5aed0ce462031a01b2dd5ef73d5ee

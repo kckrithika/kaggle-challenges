@@ -39,19 +39,17 @@ system:
         httpGet:
           path: /manage/health
           port: 15372
-        # Generally we have set this to ~10 seconds longer than the readiness initialDelaySeconds
-        initialDelaySeconds: 120
-        periodSeconds: 60
-        timeoutSeconds: 30
+        initialDelaySeconds: 45
+        periodSeconds: 10
+        timeoutSeconds: 5
       readinessProbe:
         httpGet:
-          path: /manage/health
+          path: /manage/ready
           port: 15372
         # This needs to be longer than the time for scone to start. 
-        # Search the logs for 'Started EaasSconeApp' to get a sense of the startup time which is primary dependent on CPU resources.
-        initialDelaySeconds: 110
-        periodSeconds: 60
-        timeoutSeconds: 30
+        initialDelaySeconds: 60
+        periodSeconds: 10
+        timeoutSeconds: 5
     - name: mta
       image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-gcp/dva/sfdc-mta-config:17
       ports:
