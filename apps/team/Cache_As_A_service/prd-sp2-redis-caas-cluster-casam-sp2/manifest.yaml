@@ -8,11 +8,11 @@ system:
     - name: caas-redis
       image: dva/caas/release/caas-redis-4.0.10:17
       resources:
-        limits: { memory: "8G" }
-        requests: { memory: "8G" }
+        limits: { memory: "1G" }
+        requests: { memory: "1G" }
       args:
         - --port=12002
-        - --maxMemoryMB=4096
+        - --maxMemoryMB=512
         - --noAuth
         - --disableProtectedMode
         - --bindToLoopback
