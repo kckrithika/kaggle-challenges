@@ -10,7 +10,7 @@ system:
         secretName: csc-nagios-auth
     containers:
     - name: nagios-adapter
-      image: dva/csc-health/nagios-adapter:35
+      image: dva/csc-health/nagios-adapter:36
       volumeMounts:
       - mountPath: /var/secrets/nagios-auth
         name: nagiosauthvol
@@ -41,10 +41,21 @@ system:
         value: /nagios-adapter/nagios-adapter/config_schema.json
       - name: nagiosadapter_sleep_interval_seconds
         value: 300
+      - name: nagiosadapter_ajna_funnel_port
+        value: 80
+      - name: nagiosadapter_ajna_api_endpoint
+        value: funnel/v1/publishBatch
+      - name: nagiosadapter_ajna_api_parameter
+        value: avroSchemaFingerprint
+      - name: nagiosadapter_ajna_avro_schema_fingerprint
+        value: AVG7NnlcHNdk4t_zn2JBnQ
+      - name: nagiosadapter_ajna_servicename
+        value: nagiosadapter
       command: ["/bin/sh", "-c"]
       args: ["
       export nagiosadapter_general_kingdom=${KINGDOM};
       export nagiosadapter_reportcollector_reportcollector_endpoint=https://reportcollector-${KINGDOM}.data.sfdc.net:18443/v1/barkBatch;
+      export nagiosadapter_ajna_funnel_vip=ajna0-funnel1-0-$nagiosadapter_general_kingdom.data.sfdc.net;
 
       /nagios-adapter/nagios-adapter/startNagiosAdapterLoop.sh ${nagiosadapter_script} ${nagiosadapter_config_schema} ${nagiosadapter_sleep_interval_seconds}
       "]
