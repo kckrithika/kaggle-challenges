@@ -86,9 +86,9 @@ system:
           targetport: 5000
 #        - port: 443
 #          targetport: 8443
-    - lbname: gca-rq-service
-      function: gca-rq-service
-      nodeExposed: true
-      ports:
-        - port: 6378
-          targetport: 6379
+#    - lbname: gca-rq-service
+#      function: gca-rq-service
+#      nodeExposed: true
+#      ports:
+#        - port: 6378
+#          targetport: 6379
