@@ -5,3 +5,7 @@ apps:
    - name: prd/prd-sam
   experiment-manager-prd_search_model_executor:
    - name: prd/prd-search_model_executor
+  machine-learning-service-prd_sam:
+   - name: prd/prd-sam
+  machine-learning-service-prd_search_model_executor:
+   - name: prd/prd-search_model_executor
