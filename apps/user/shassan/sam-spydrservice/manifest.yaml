@@ -5,7 +5,7 @@ system:
     count: 1
     containers:
     - name: samspydrservice
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/shassan/samspyderservice:shassan-20190315
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/shassan/samspyderservice:shassan-20190723
       ports:
       - containerPort: 8080
       livenessProbe:
