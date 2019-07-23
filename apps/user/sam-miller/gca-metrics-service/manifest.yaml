@@ -38,7 +38,8 @@ system:
       # If your service doesn't serve HTTP traffic then you can remove the scone-http 8080 port.
       ports:
       - containerPort: 6379
-        name: rq-tcp
+
+
       livenessProbe:
         initialDelaySeconds: 30
         exec:
@@ -72,7 +73,7 @@ system:
     - name: user-profile-test
       k4aSecret:
         secretName: gca-metrics-service-user-profile-secret-test
-    lbname: gca-rq-headless-lb
+    lbname: gca-rq-service
 
   loadbalancers:
     - lbname: gca-metrics-service
