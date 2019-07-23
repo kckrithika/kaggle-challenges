@@ -2,34 +2,6 @@ apiVersion: v1
 
 system:
   functions:
-  - name: gca-metrics-service
-    count: 2
-    type: deployment
-    containers:
-    - name: gca-metrics-service
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/sam-miller/gca_metrics_service:test-07222019
-      # If your service doesn't serve HTTP traffic then you can remove the scone-http 8080 port.
-      ports:
-      - containerPort: 5000
-        name: gca-http
-      livenessProbe:
-        initialDelaySeconds: 30
-        httpGet:
-          path: /up
-          port: 5000
-      readinessProbe:
-        timeoutSeconds: 10
-        httpGet:
-          path: /up
-          port: 5000
-      imagePullPolicy: Always
-      env:
-      - name: LOCAL_MODE
-        value: "True"
-      - name: REDIS_MASTER_SERVICE_HOST
-        value: "gca-rq-service"
-
-
   - name: gca-rq-service
     count: 2
     type: deployment
@@ -75,17 +47,9 @@ system:
         secretName: gca-metrics-service-user-profile-secret-test
 
   loadbalancers:
-    - lbname: gca-metrics-service
-      function: gca-metrics-service
-      slbEnabled: true
+    - lbname: gca-rq-service
+      function: gca-rq-service
+      nodeExposed: true
       ports:
-        - port: 80
-          targetport: 5000
-#        - port: 443
-#          targetport: 8443
-#    - lbname: gca-rq-service
-#      function: gca-rq-service
-#      nodeExposed: true
-#      ports:
-#        - port: 6378
-#          targetport: 6379
+        - port: 6378
+          targetport: 6379
