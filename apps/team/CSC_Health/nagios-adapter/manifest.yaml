@@ -41,8 +41,6 @@ system:
         value: /nagios-adapter/nagios-adapter/config_schema.json
       - name: nagiosadapter_sleep_interval_seconds
         value: 300
-      - name: nagiosadapter_ajna_funnel_port
-        value: 80
       - name: nagiosadapter_ajna_api_endpoint
         value: funnel/v1/publishBatch
       - name: nagiosadapter_ajna_api_parameter
@@ -55,7 +53,8 @@ system:
       args: ["
       export nagiosadapter_general_kingdom=${KINGDOM};
       export nagiosadapter_reportcollector_reportcollector_endpoint=https://reportcollector-${KINGDOM}.data.sfdc.net:18443/v1/barkBatch;
-      export nagiosadapter_ajna_funnel_vip=ajna0-funnel1-0-$nagiosadapter_general_kingdom.data.sfdc.net;
+      export nagiosadapter_ajna_funnel_vip=${SFDC_METRICS_SERVICE_HOST};
+      export nagiosadapter_ajna_funnel_port=${SFDC_METRICS_SERVICE_PORT};
 
       /nagios-adapter/nagios-adapter/startNagiosAdapterLoop.sh ${nagiosadapter_script} ${nagiosadapter_config_schema} ${nagiosadapter_sleep_interval_seconds}
       "]
