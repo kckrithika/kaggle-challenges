@@ -9,7 +9,7 @@ system:
     count: 2
     containers:
     - name: authz-svc
-      image: dva/electron_sam:41bd4bb063b1e316b65836e8bfecc03210bf0a96
+      image: dva/electron_sam:c5f022ac28bc4e391dae93f53416790c0c1eb8b7
       env:
       - name: SFDC_ENVIRONMENT
         value: prod
