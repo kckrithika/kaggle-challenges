@@ -84,6 +84,12 @@ system:
     - name: logvol
       hostPath:
         path: /home/caas/logs
+    - name: tls-client-cert
+      maddogCert:
+        type: client
+    - name: tls-server-cert
+      maddogCert:
+        type: server
   loadbalancers:
   - function: na7-mist61-caas-prd
     lbname: na7-mist61-caas-prd
