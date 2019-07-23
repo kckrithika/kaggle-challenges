@@ -24,7 +24,7 @@ system:
       - name: AST_CX_ENVIRONMENT
         value: "dev"
       - name: AST_CX_HTTPS_PROXY
-        value: "http://public0-proxy1-0-prd.data.sfdc.net:8080"
+        value: "http://public0-proxy1-0-xrd.data.sfdc.net:8080"
       - name: AST_CX_BASE_URL
         value: "https://gus--zonesintk.my.salesforce.com"
       - name: AST_CX_SERVICE_URL
