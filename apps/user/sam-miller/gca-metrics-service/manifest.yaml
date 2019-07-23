@@ -74,6 +74,9 @@ system:
       k4aSecret:
         secretName: gca-metrics-service-user-profile-secret-test
 
+    identity:
+      serviceName: gca-rq-service
+
   loadbalancers:
     - lbname: gca-metrics-service
       function: gca-metrics-service
