@@ -131,7 +131,7 @@ system:
                 -Dopen-context.enforce=false -Dmetrics.startPublisher=true"
       - name: LOGGING_JSON_STDOUT_LEVEL
         value: ALL
-      # Disable all management endpoints except for health and metrics
+      # Disable all management endpoints except for health
       - name: ENDPOINTS_HEALTH_ENABLED
         value: true
       - name: ENDPOINTS_APPMETRICS_ENABLED
@@ -164,7 +164,6 @@ system:
         httpGet:
           path: /manage/health
           port: 15372
-          scheme: HTTPS
       volumeMounts:
       - name: retailservercert
         mountPath: /servercerts
