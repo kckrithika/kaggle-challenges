@@ -52,4 +52,4 @@ apps:
  gater-perf:
   - prd/prd-sam_gater
  archive-backup-service:
-  - prd/prd-sam
+  - prd/prd-sam_gater
