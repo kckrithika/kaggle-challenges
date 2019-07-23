@@ -86,7 +86,6 @@ system:
           targetport: 5000
 #        - port: 443
 #          targetport: 8443
-  loadbalancers:
     - lbname: gca-rq-service
       function: gca-rq-service
       nodeExposed: true
