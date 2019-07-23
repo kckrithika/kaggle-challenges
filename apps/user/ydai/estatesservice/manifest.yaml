@@ -7,9 +7,12 @@ system:
     - name: server-cert
       maddogCert:
         type: server
+    - name: client-cert
+      maddogCert:
+        type: client
     containers:
     - name: estatesservice
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/ydai/estatesservice:ydai-20190718
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/ydai/estatesservice:ydai-20190723
       ports:
       - containerPort: 9090
       livenessProbe:
@@ -20,6 +23,8 @@ system:
       volumeMounts:
         - mountPath: /certs
           name: server-cert
+        - mountPath: /myclientcerts
+          name: client-cert
   loadbalancers:
   - lbname: estatesservicelb
     function: estatesservice
