@@ -43,7 +43,7 @@ system:
        - name: SFDC_ENVIRONMENT
          value: mist61
        - name: NO_ENV_FOR_RESTART
-         value: 1
+         value: 2
        - name: SFDC_POD
          value: caas-cluster-casam-sp2
       resources:
