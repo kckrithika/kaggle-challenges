@@ -28,7 +28,7 @@ system:
       - name: AST_CX_BASE_URL
         value: "https://gus--zonesintk.my.salesforce.com"
       - name: AST_CX_SERVICE_URL
-        value: "https://astcx-backend-secure.user-juppala.prd-sam.prd.slb.sfdc.net:4443"
+        value: "http://10.233.249.44:8085"
       - name: AST_CX_SECRET_SERVICE_URL
         value: "https://secretservice.dmz.salesforce.com:8271/vaultczar/api/1.0/getSecretBySubscriber"
       ports:
