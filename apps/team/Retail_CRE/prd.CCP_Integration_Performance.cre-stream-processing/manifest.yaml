@@ -6,14 +6,14 @@ system:
       - cre@salesforce.com
   functions:
   - name: cre-sp-ccp-perf
-    count: 2
+    count: 1
     labels:
       app: cre-sp-ccp-perf
     annotations:
       "routing.mesh.sfdc.net/enabled": "true"
     containers:
     - name: cre-sp-ccp-perf
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cre-fusion/services/control-plane/stream-processor:1.9.0.0.develop.9e0ab0e.151
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cre-fusion/services/control-plane/stream-processor:1.9.0.0.release-1.9.6ae46ba.5
       env:
         - name: PUBLISHING_TOPIC
           value: sfdc.prod.cre__prd.ajna_local__cre_outbound_CCP_Integration_Performance
