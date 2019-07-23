@@ -45,11 +45,12 @@ system:
     - name: user-profile-test
       k4aSecret:
         secretName: gca-metrics-service-user-profile-secret-test
+    lbname: gca-rq-headless-lb
 
-  loadbalancers:
-    - lbname: gca-rq-service
-      function: gca-rq-service
-      nodeExposed: true
-      ports:
-        - port: 6378
-          targetport: 6379
+#  loadbalancers:
+#    - lbname: gca-rq-service
+#      function: gca-rq-service
+#      nodeExposed: true
+#      ports:
+#        - port: 6378
+#          targetport: 6379
