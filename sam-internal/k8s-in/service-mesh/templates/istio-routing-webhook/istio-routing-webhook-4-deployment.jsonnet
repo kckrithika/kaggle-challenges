@@ -1,6 +1,7 @@
 local configs = import "config.jsonnet";
 local madkub = (import "service-mesh/istio-madkub-config.jsonnet") + { templateFilename:: std.thisFile };
 local samimages = (import "sam/samimages.jsonnet") + { templateFilename:: std.thisFile };
+local mcpIstioConfig = (import "service-mesh/istio-config.jsonnet");
 
 configs.deploymentBase("service-mesh") {
   local serverCertSans = [
@@ -45,7 +46,7 @@ configs.deploymentBase("service-mesh") {
         containers: [
           configs.containerWithMadDog {
             name: "istio-routing-webhook",
-            image: "ops0-artifactrepo2-0-prd.data.sfdc.net/sfci/servicemesh/servicemesh/istio-routing-webhook:0a77d6ce916b84bddae77ebe9c97ad61f1c15fc6",
+            image: "ops0-artifactrepo2-0-prd.data.sfdc.net/sfci/servicemesh/servicemesh/istio-routing-webhook:142a0d8fc76bced9affd0e92c02ffc3380e16280",
             imagePullPolicy: "IfNotPresent",
             args: [
               "server",
@@ -55,6 +56,8 @@ configs.deploymentBase("service-mesh") {
               "/server-cert/server/keys/server-key.pem",
               "--port",
               "10443",
+              "--funnel-address",
+              mcpIstioConfig.funnelHost + ":" + mcpIstioConfig.funnelPort,
             ],
             env: [
               {
