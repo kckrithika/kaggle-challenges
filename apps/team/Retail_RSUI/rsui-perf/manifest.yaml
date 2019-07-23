@@ -102,6 +102,8 @@ system:
         value: false
       - name: TRANSFORMATIONLIB_MDS_MODE
         value: live
+      - name: SCONE_SERVER_SECURITY_MUTUALAUTH
+        value: true
       - name: JVM_ARGS
         value: "-Dspring.profiles.active=prod -Djava.util.concurrent.ForkJoinPool.common.parallelism=50
                 -verbose:gc -XX:+PrintGCDateStamps -XX:+PrintHeapAtGC
