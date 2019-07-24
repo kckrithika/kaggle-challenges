@@ -28,6 +28,8 @@ system:
         value: "True"
       - name: REDIS_MASTER_SERVICE_HOST
         value: "gca-rq-service"
+      - name: CONFIG_LOCATION
+        value: "/var/secrets/profile/user_profile.cfg"
 
   - name: gca-rq-service
     count: 2
