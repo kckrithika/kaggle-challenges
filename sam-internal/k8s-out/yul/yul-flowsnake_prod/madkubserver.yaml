@@ -48,7 +48,7 @@ spec:
         - --funnel-endpoint
         - http://ajna0-funnel1-0-yul.data.sfdc.net:80
         - --retry-max-elapsed-time
-        - 20s
+        - 30s
         env:
         - name: TOKEN_SERVER_IP
           valueFrom:

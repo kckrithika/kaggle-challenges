@@ -68,7 +68,7 @@ configs.deploymentBase("flowsnake") {
               "--log-level",
               "7",
             ]) +
-            ["--retry-max-elapsed-time", "20s"],
+            ["--retry-max-elapsed-time", "30s"],
             # In PCL, Madkub server needs to use its host IP for token IP to get token for itself for bootstrapping.
             [if utils.is_public_cloud(configs.kingdom) then "env"]: [
               {

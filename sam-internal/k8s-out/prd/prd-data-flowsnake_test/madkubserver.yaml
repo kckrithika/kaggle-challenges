@@ -47,7 +47,7 @@ spec:
         - --funnel-endpoint
         - http://ajna0-funnel1-0-prd.data.sfdc.net:80
         - --retry-max-elapsed-time
-        - 20s
+        - 30s
         image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/madkub:1.0.0-0000084-9f4a6ca6
         livenessProbe:
           httpGet:
