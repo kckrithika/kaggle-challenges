@@ -29,26 +29,6 @@ system:
       env:
        - name: PYTHONUNBUFFERED
          value: 1
-    - name: caas-redis-announcer
-      image: sfci/servicelibs/beacon:cec13ceb9fc5aed0ce462031a01b2dd5ef73d5ee
-      args:
-      - -endpoint
-      - caas/cluster/$(SFDC_POD):POD:12002
-      livenessProbe:
-        initialDelaySeconds: 5
-        exec:
-          command:
-            - "/home/scone/is-alive.sh"
-      env:
-       - name: SFDC_ENVIRONMENT
-         value: mist61
-       - name: NO_ENV_FOR_RESTART
-         value: 2
-       - name: SFDC_POD
-         value: caas-cluster-casam-sp2
-      resources:
-        limits: { memory: "100M" }
-        requests: { memory: "100M" }
     - name: sherpa
       image: sfci/servicelibs/sherpa-envoy:1.0.7
       ports:
