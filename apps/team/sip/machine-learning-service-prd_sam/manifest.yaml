@@ -1,0 +1,62 @@
+apiVersion: v1
+
+system:
+  notifications:
+    email:
+      - rama.raman@salesforce.com
+  functions:
+  - name: sip-mls-dev
+    count: 1
+    volumes:
+    - name: logvol
+      hostPath:
+        path: /home/sfdc-search-sip/logs
+    - name: client-cert-vol
+      maddogCert:
+        type: client
+    - name: server-cert-vol
+      maddogCert:
+        type: server
+        lbnames:
+          - sip-mls-dev-slb
+    containers:
+    - name: sip-mls
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/rama.raman/sip-machine-learning-service:20190722T1523
+      livenessProbe:
+        exec:
+          command: ["true"]
+#      livenessProbe:
+#        initialDelaySeconds: 30
+#        httpGet:
+#          path: /manage/health
+#          port: 15372
+      volumeMounts:
+      - mountPath: /home/sfdc-search-sip/logs
+        name: logvol
+      - name: client-cert-vol
+        mountPath: /certs
+      - name: server-cert-vol
+        mountPath: /server-certs
+      ports:
+        - containerPort: 7020
+          name: scone-grpc
+        - containerPort: 15372
+          name: scone-mgmt
+      resources:
+        limits:
+          cpu: "4"
+          memory: "10Gi"
+      env:
+        - name: GRPC_HOST
+          value: sip-mls-dev-slb.sip.prd-sam.prd.slb.sfdc.net:7020
+  loadbalancers:
+  - function: sip-mls-dev
+    lbname: sip-mls-dev-slb
+    ports:
+      - lbtype: tcp
+        port: 7020
+        targetport: 7020
+      - lbtype: http
+        port: 15372
+        targetport: 15372
+    slbEnabled: true
