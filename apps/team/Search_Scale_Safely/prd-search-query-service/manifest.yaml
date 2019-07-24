@@ -34,9 +34,6 @@ system:
         requests:
           cpu: "12"
           memory: 10Gi
-      volumeMounts:
-      - mountPath: /home/sfdc-search-query-service/logs
-        name: logvol
       livenessProbe:
         exec:
           command:
@@ -57,9 +54,6 @@ system:
       args:
       - -endpoint
       - search-scale-safely/search-query-service:DATACENTER_ALLENV:7443
-      volumeMounts:
-      - mountPath: /home/scone/logs
-        name: beacon-log-volume
       livenessProbe:
         exec:
           command:
@@ -83,8 +77,6 @@ system:
           cpu: "1"
           memory: 1Gi
       volumeMounts:
-      - mountPath: /log
-        name: sherpa-log-volume
       - mountPath: /server-certs
         name: tls-server-cert
       - mountPath: /client-certs
@@ -102,15 +94,6 @@ system:
         initialDelaySeconds: 110
         periodSeconds: 5
     volumes:
-    - name: logvol
-      hostPath:
-        path: /home/sfdc-search-query-service/logs
-    - name: sherpa-log-volume
-      hostPath:
-        path: /home/sfdc-sherpa/logs
-    - name: beacon-log-volume
-      hostPath:
-        path: /home/sfdc-beacon/logs
     - name: tls-client-cert
       maddogCert:
         type: client
