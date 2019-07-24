@@ -26,7 +26,7 @@ system:
           name: client-cert
 
     - name: sherpa
-      image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-gcp/sfci/servicelibs/sherpa-envoy:1.0.8
+      image: sfci/servicelibs/sherpa-envoy:1.0.8
       ports:
       - name: http2-tls-in
         containerPort: 7443
@@ -54,7 +54,7 @@ system:
         periodSeconds: 5
 
     - name: beacon
-      image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-gcp/sfci/services/sfdc-bazel/disco/beacon:f804d14
+      image: sfci/services/sfdc-bazel/disco/beacon:f804d14
       args:
       # Non-namespaced, plaintext
       - -endpoint
