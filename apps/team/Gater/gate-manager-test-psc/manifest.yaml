@@ -6,7 +6,7 @@ system:
     - dmanoharan@salesforce.com
   functions:
   - name: gater-mesh-psc
-    count: 1
+    count: 0
     containers:
     - name: gater2
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/dmanoharan/gater-psc:dmanoharan-20190626A
