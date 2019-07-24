@@ -49,7 +49,7 @@ spec:
         - mountPath: /prometheus/
           name: prom-data
         - mountPath: /prometheusconfig
-          name: prometheusconfig
+          name: sloopconfig
       nodeSelector:
         pool: prd-sam
       volumes:
@@ -60,5 +60,5 @@ spec:
           sizeLimit: 12Gi
         name: prom-data
       - configMap:
-          name: prometheus
-        name: sloopprometheusconfig
+          name: sloop
+        name: sloopconfig

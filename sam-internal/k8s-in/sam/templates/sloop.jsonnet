@@ -66,7 +66,7 @@ if configs.estate == "prd-sam" then configs.deploymentBase("sam") {
                                 mountPath: "/prometheus/",
                             },
                             {
-                                name: "prometheusconfig",
+                                name: "sloopconfig",
                                 mountPath: "/prometheusconfig",
                             },
                         ],
@@ -93,9 +93,9 @@ if configs.estate == "prd-sam" then configs.deploymentBase("sam") {
                     },
                     {
                         configMap: {
-                            name: "prometheus",
+                            name: "sloop",
                         },
-                        name: "sloopprometheusconfig",
+                        name: "sloopconfig",
                     },
                 ],
             } + configs.serviceAccount,
