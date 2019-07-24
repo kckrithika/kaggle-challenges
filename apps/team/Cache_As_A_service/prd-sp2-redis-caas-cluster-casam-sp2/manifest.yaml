@@ -3,7 +3,7 @@ apiVersion: v1
 system:
   functions:
   - name: na7-mist61-caas-prd
-    count: 2
+    count: 1
     containers:
     - name: caas-redis
       image: dva/caas/release/caas-redis-4.0.10:17
@@ -47,8 +47,8 @@ system:
        - name: SFDC_POD
          value: caas-cluster-casam-sp2
       resources:
-        limits: { memory: "200M" }
-        requests: { memory: "200M" }
+        limits: { memory: "100M" }
+        requests: { memory: "100M" }
     - name: sherpa
       image: sfci/servicelibs/sherpa-envoy:1.0.7
       ports:
@@ -58,10 +58,8 @@ system:
         value: mist61
       resources:
         limits:
-          cpu: "1"
           memory: 100Mi
         requests:
-          cpu: "1"
           memory: 100Mi
       volumeMounts:
       - mountPath: /client-certs
