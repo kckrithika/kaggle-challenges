@@ -34,6 +34,7 @@ spec:
         - --log_dir=/var/logs/sdn/
         - --logtostderr=false
         - --alsologtostderr=true
+        - --pclKingdom
         image: ops0-artifactrepo1-0-cdu.data.sfdc.net/dva/sdn/hypersdn:2207-e7b9ccab27934205f59fc594c324e42ad8b03ebc
         livenessProbe:
           httpGet:
