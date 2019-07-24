@@ -8,7 +8,7 @@ system:
       count: 1
       containers:
         - name: heap-dump-analyser-service
-          image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/hubs/hda:hda-2019-07-24-13-53-48
+          image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/hubs/hda:hda-2019-07-24-17-05-34
           # If your service doesn't serve HTTP traffic then you can remove the scone-http 8080 port.
           ports:
             - containerPort: 8080
@@ -52,9 +52,9 @@ system:
           volumeMounts:
             - mountPath: /log
               name: logvolbeacon
-        - name: hda-sherpa
+        - name: sherpa
           # https://git.soma.salesforce.com/servicelibs/sherpa-envoy/releases
-          image: sfci/servicelibs/sherpa-envoy:1.0.8
+          image: sfci/servicelibs/sherpa-envoy:1.0.4
           # See https://git.soma.salesforce.com/servicelibs/sherpa#ports
           ports:
             - containerPort: 15373
@@ -64,33 +64,28 @@ system:
           livenessProbe:
             exec:
               command:
-                - ./bin/is-alive
-            initialDelaySeconds: 60
-            periodSeconds: 5
-          readinessProbe:
-            exec:
-              command:
-                - ./bin/is-ready
-            initialDelaySeconds: 50
+                - "./bin/is-alive"
+            initialDelaySeconds: 120
             periodSeconds: 5
           # Mount volumes with certificates. The paths here match the defaults assumed by sherpa
           volumeMounts:
-          - name: tls-client-cert
-            mountPath: /client-certs
-          - name: tls-server-cert
-            mountPath: /server-certs
+            - name: sherpaclientcert
+              mountPath: /client-certs
+            - name: sherpaservercert
+              mountPath: /server-certs
+
       # The volumes to mount for shipping logs to splunk
       # General rule is to use path that satisfies the pattern: /home/sfdc-*/logs/**/*.json
       volumes:
-      - name: logvolbeacon
-        hostPath:
-          path: /home/sfdc-scone-heap-dump-analyser-beacon/logs
-      - maddogCert:
-          type: client
-        name: tls-client-cert
-      - maddogCert:
-          type: server
-        name: tls-server-cert
+        - name: logvolbeacon
+          hostPath:
+            path: /home/sfdc-scone-heap-dump-analyser-beacon/logs
+        - name: sherpaclientcert
+          maddogCert:
+            type: client
+        - name: sherpaservercert
+          maddogCert:
+            type: server
         - name: hdastorage
           hostPath:
             path: /home/sfdc-heap-dump-analyser/storedFiles
