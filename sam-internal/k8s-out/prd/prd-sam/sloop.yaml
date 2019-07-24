@@ -37,9 +37,28 @@ spec:
         volumeMounts:
         - mountPath: /data/
           name: sloop-data
+      - args:
+        - --config.file
+        - /prometheusconfig/prometheus.json
+        image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cbatra/prometheus:20180124
+        name: prometheus
+        ports:
+        - containerPort: 9090
+          protocol: TCP
+        volumeMounts:
+        - mountPath: /prometheus/
+          name: prom-data
+        - mountPath: /prometheusconfig
+          name: sloopconfig
       nodeSelector:
         pool: prd-sam
       volumes:
-      - hostPath:
-          path: /cowdata/sloop
+      - emptyDir:
+          sizeLimit: 12Gi
         name: sloop-data
+      - emptyDir:
+          sizeLimit: 12Gi
+        name: prom-data
+      - configMap:
+          name: sloop
+        name: sloopconfig

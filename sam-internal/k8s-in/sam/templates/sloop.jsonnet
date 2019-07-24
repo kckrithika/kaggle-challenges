@@ -31,6 +31,7 @@ if configs.estate == "prd-sam" then configs.deploymentBase("sam") {
                 },
                 containers: [
                     {
+                        name: "sloop",
                         args: [
                             "-web-files-path=/webfiles/",
                             "--alsologtostderr",
@@ -45,14 +46,6 @@ if configs.estate == "prd-sam" then configs.deploymentBase("sam") {
                                 mountPath: "/data/",
                             },
                         ],
-                        # TODO: Add liveness
-                        #livenessProbe: {
-                        #    httpGet: {
-                        #        path: "/",
-                        #        port: 64212,
-                        #    },
-                        #},
-                        name: "sloop",
                         ports: [
                             {
                                 containerPort: 8080,
@@ -60,14 +53,49 @@ if configs.estate == "prd-sam" then configs.deploymentBase("sam") {
                             },
                         ],
                     } + configs.ipAddressResourceRequest,
+                    {
+                        name: "prometheus",
+                        args: [
+                            "--config.file",
+                            "/prometheusconfig/prometheus.json",
+                        ],
+                        image: samimages.prometheus,
+                        volumeMounts: [
+                            {
+                                name: "prom-data",
+                                mountPath: "/prometheus/",
+                            },
+                            {
+                                name: "sloopconfig",
+                                mountPath: "/prometheusconfig",
+                            },
+                        ],
+                        ports: [
+                            {
+                                containerPort: 9090,
+                                protocol: "TCP",
+                            },
+                        ],
+                    },
                 ],
                 volumes: [
                     {
-                        hostPath: {
-                            # Cowdata is ssd backed and typically ~900 GiB
-                            path: "/cowdata/sloop",
+                        emptyDir: {
+                            sizeLimit: "12Gi",
                         },
                         name: "sloop-data",
+                    },
+                    {
+                        emptyDir: {
+                            sizeLimit: "12Gi",
+                        },
+                        name: "prom-data",
+                    },
+                    {
+                        configMap: {
+                            name: "sloop",
+                        },
+                        name: "sloopconfig",
                     },
                 ],
             } + configs.serviceAccount,
