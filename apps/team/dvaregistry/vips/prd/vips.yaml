@@ -2,9 +2,9 @@
   customlbname: ops0-dvaregistryssl1-0-prd
   servers:
     - strataregproxy0ops0-strataregproxy1-1-prd.eng.sfdc.net
-#    - strataregproxy0ops0-strataregproxy1-2-prd.eng.sfdc.net
-#    - strataregproxy0ops0-strataregproxy2-1-prd.eng.sfdc.net
-#    - strataregproxy0ops0-strataregproxy2-2-prd.eng.sfdc.net
+    - strataregproxy0ops0-strataregproxy1-2-prd.eng.sfdc.net
+    - strataregproxy0ops0-strataregproxy2-1-prd.eng.sfdc.net
+    - strataregproxy0ops0-strataregproxy2-2-prd.eng.sfdc.net
   ports:
     - port: 443
       targetport: 443
