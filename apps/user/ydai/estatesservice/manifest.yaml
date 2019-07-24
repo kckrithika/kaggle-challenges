@@ -76,4 +76,4 @@ system:
     slbenabled: true
     ports:
       - port: 443
-        targetport: 7442
+        targetport: 7020
