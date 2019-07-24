@@ -39,7 +39,12 @@ if slbconfigs.isSlbEstate then configs.deploymentBase("slb") {
                                      "--port=%(canaryServiceProxyHttpPort)d" % slbports.slb,
                                      "--downloadSize=1",
                                      "--uploadSize=1",
-                                 ],
+                                 ] + (
+                                     if slbimages.hyperslb_build >= 2216 then
+                                     [
+                                        "--monitorFrequency=5",
+                                     ] else []
+                                 ),
 
                         volumeMounts: std.prune([
                             slbconfigs.logs_volume_mount,

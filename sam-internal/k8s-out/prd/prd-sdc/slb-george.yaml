@@ -41,6 +41,7 @@ spec:
         - --port=9116
         - --downloadSize=1
         - --uploadSize=1
+        - --monitorFrequency=5
         env:
         - name: SFDCLOC_NODE_NAME
           valueFrom:
