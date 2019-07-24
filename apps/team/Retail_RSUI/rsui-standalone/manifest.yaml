@@ -128,17 +128,17 @@ system:
                 -Xloggc:/home/scone/logs/retail-setup/verbosegc_$(FUNCTION_INSTANCE_NAME).log
                 -XX:+HeapDumpOnOutOfMemoryError  -XX:HeapDumpPath=/home/scone/logs/retail-setup
                 -Xmx2G -Xms2G -XX:ParallelGCThreads=8 -Daura.production=true
-                -Dopen-context.enforce=false -Dmetrics.startPublisher=true"
+                -Dopen-context.enforce=false"
       - name: LOGGING_JSON_STDOUT_LEVEL
         value: ALL
       # Disable all management endpoints except for health
       - name: ENDPOINTS_HEALTH_ENABLED
         value: true
-      - name: ENDPOINTS_APPMETRICS_ENABLED
-        value: true
       - name: ENDPOINTS_INFO_ENABLED
         value: false
       - name: ENDPOINTS_DUMP_ENABLED
+        value: false
+      - name: ENDPOINTS_APPMETRICS_ENABLED
         value: false
       - name: ENDPOINTS_LINT_ENABLED
         value: false
