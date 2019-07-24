@@ -46,9 +46,6 @@ system:
          value: 2
        - name: SFDC_POD
          value: caas-cluster-casam-sp2
-      resources:
-        limits: { memory: "100M" }
-        requests: { memory: "100M" }
     - name: sherpa
       image: sfci/servicelibs/sherpa-envoy:1.0.7
       ports:
@@ -56,11 +53,6 @@ system:
       env:
       - name: SFDC_ENVIRONMENT
         value: mist61
-      resources:
-        limits:
-          memory: 100Mi
-        requests:
-          memory: 100Mi
       volumeMounts:
       - mountPath: /client-certs
         name: tls-client-cert
