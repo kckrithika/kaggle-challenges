@@ -1,3 +1,5 @@
 apps:
  ram-sam-test:
   - prd/prd-sam
+ redis-caas-cluster-casam-sp2:
+  - prd/prd-sam
