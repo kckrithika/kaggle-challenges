@@ -36,7 +36,7 @@ system:
 
     containers:
     - name: retail-setup
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/retail/retail-setup:0.1.8.104
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/retail/retail-setup:0.1.9.178
       ports:
       # Jetty http1 ports for incoming public traffic via SLB
       - containerPort: 7022
@@ -92,9 +92,13 @@ system:
         value: https://test.stmfb.stm.salesforce.com
       - name: RSUI_OAUTH_CALLBACK
         value: https://rsui-func-patch-lb.retail-rsui.prd-sam.prd.slb.sfdc.net/service/oauth/callback
-      - name: OAUTH_CONSUMER_KEY
+      - name: OAUTH_SHADOW_CONSUMERKEY
         value: 3MVG9qKMKuRGRcbsuPuzRDiXVrjOrpresbHd9IQYuanSzwEa86PEyPRevAGTtXwf9DyuQsSBx3oAilDhrxRl9
-      - name: OAUTH_CONSUMER_SECRET
+      - name: OAUTH_SHADOW_CONSUMERSECRET
+        value: DC988C015B06E91C7BE93CCF64F1F620C7B4383CCDE69536C56F33B9CA4F758C
+      - name: OAUTH_SERVICE_CONSUMERKEY
+        value: 3MVG9qKMKuRGRcbsuPuzRDiXVrjOrpresbHd9IQYuanSzwEa86PEyPRevAGTtXwf9DyuQsSBx3oAilDhrxRl9
+      - name: OAUTH_SERVICE_CONSUMERSECRET
         value: DC988C015B06E91C7BE93CCF64F1F620C7B4383CCDE69536C56F33B9CA4F758C
       - name: SECURITY_REQUIRE_SECRETS
         value: false
@@ -108,6 +112,8 @@ system:
         value: false
       - name: TRANSFORMATIONLIB_MDS_MODE
         value: live
+      - name: SCONE_SERVER_SECURITY_MUTUALAUTH
+        value: true
       - name: JVM_ARGS
         value: "-Dspring.profiles.active=prod -Djava.util.concurrent.ForkJoinPool.common.parallelism=50
                 -verbose:gc -XX:+PrintGCDateStamps -XX:+PrintHeapAtGC
