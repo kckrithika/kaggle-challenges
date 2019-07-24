@@ -26,6 +26,10 @@ system:
       env:
       - name: LOCAL_MODE
         value: "True"
+      - name: WAVE_USER
+        value: "sam"
+      - name: WAVE_ENV
+        value: "dev"
       - name: CONFIG_LOCATION
         value: "/var/secrets/profile/user_profile.cfg"
 
