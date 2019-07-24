@@ -27,7 +27,7 @@ if (!utils.is_public_cloud(configs.kingdom)) || utils.is_pcl_sdn_enabled(configs
                             sdnconfigs.logToStdErrArg,
                             sdnconfigs.alsoLogToStdErrArg,
                         ]
-                        + (if configs.kingdom == "syd" then [
+                        + (if utils.is_pcl_sdn_enabled(configs.estate) then [
                                     "--pclKingdom",
                                 ] else []),
                         livenessProbe: {
