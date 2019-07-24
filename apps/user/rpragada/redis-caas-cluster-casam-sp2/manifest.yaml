@@ -3,6 +3,11 @@ apiVersion: v1
 system:
   functions:
   - name: na7-mist61-caas-prd
+    labels:
+      app: na7-mist61-caas-prd
+    annotations:
+      sidecar.istio.io/inject: "true"
+      routing.mesh.sfdc.net/enabled: "true"
     count: 1
     containers:
     - name: caas-redis
@@ -29,35 +34,6 @@ system:
       env:
        - name: PYTHONUNBUFFERED
          value: 1
-    - name: sherpa
-      image: sfci/servicelibs/sherpa-envoy:1.0.7
-      ports:
-      - containerPort: 15373
-      env:
-      - name: SFDC_ENVIRONMENT
-        value: mist61
-      resources:
-        limits:
-          memory: 100Mi
-        requests:
-          memory: 100Mi
-      volumeMounts:
-      - mountPath: /client-certs
-        name: tls-client-cert
-      - mountPath: /server-certs
-        name: tls-server-cert
-      livenessProbe:
-        exec:
-          command:
-          - ./bin/is-alive
-        initialDelaySeconds: 20
-        periodSeconds: 5
-      readinessProbe:
-        exec:
-          command:
-          - ./bin/is-ready
-        initialDelaySeconds: 15
-        periodSeconds: 5
     volumes:
     - name: logvol
       hostPath:
