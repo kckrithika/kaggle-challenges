@@ -5,6 +5,7 @@ system:
   - name: gca-metrics-service
     count: 2
     type: deployment
+
     containers:
     - name: gca-metrics-service
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/sam-miller/gca_metrics_service:test-07222019
@@ -32,6 +33,9 @@ system:
         value: "dev"
       - name: CONFIG_LOCATION
         value: "/var/secrets/profile/user_profile.cfg"
+      volumeMounts:
+        - name: shared-tmp
+          mountPath: /tmp
 
     - name: gca-rq-service
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/sam-miller/gca_rq_service:test-07222019
@@ -67,11 +71,15 @@ system:
         - name: user-profile-test
           mountPath: /var/secrets/profile
           readOnly: true
+        - name: shared-tmp
+          mountPath: /tmp
 
     volumes:
     - name: user-profile-test
       k4aSecret:
         secretName: gca-metrics-service-user-profile-secret-test
+    - name: shared-tmp
+      emptyDir: {}
 
 
   loadbalancers:
