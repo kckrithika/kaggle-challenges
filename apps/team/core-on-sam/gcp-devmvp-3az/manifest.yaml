@@ -68,7 +68,7 @@ system:
           value: NA11-DB1-1-MVP
         - name: IP_DB
 #          value: 10.168.160.184
-          value: 10.168.161.56
+          value: 10.168.161.117
         - name: SERVER_ID
           value: 5
           
