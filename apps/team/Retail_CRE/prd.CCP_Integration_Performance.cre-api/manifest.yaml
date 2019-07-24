@@ -13,8 +13,10 @@ system:
       "routing.mesh.sfdc.net/enabled": "true"
     containers:
     - name: cre-api-ccp-perf
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cre/cre-api:1.9-freeze-003.0.release-1.9.4678637.2
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cre/cre-api:1.9-freeze-003.0.release-1.9.88b661f.3
       env:
+        - name: HBASE_SUPER_TENANT_IDS_FLUSH
+          value: 00Dx00000005SyTEAU
         - name: METRICS_KAFKA_TOPIC
           value: sfdc.prod.cre__prd.ajna_local__cre_metrics_CCP_Integration_Performance
         - name: METRICS_KAFKA_SERVER
