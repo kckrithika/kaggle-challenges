@@ -1,0 +1,45 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  labels:
+    name: sloop
+    sam.data.sfdc.net/owner: sam
+  name: sloop
+  namespace: sam-system
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      name: sloop
+  template:
+    metadata:
+      labels:
+        apptype: control
+        name: sloop
+        sam.data.sfdc.net/owner: sam
+    spec:
+      containers:
+      - args:
+        - -web-files-path=/webfiles/
+        - --alsologtostderr
+        command:
+        - /bin/sloop
+        image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/thargrove/sloop:thargrove-20190724_133755-af89d3f4
+        name: sloop
+        ports:
+        - containerPort: 8080
+          protocol: TCP
+        resources:
+          limits:
+            sam.sfdc.net/ip-address: "1"
+          requests:
+            sam.sfdc.net/ip-address: "1"
+        volumeMounts:
+        - mountPath: /data/
+          name: sloop-data
+      nodeSelector:
+        pool: prd-sam
+      volumes:
+      - hostPath:
+          path: /cowdata/sloop
+        name: sloop-data
