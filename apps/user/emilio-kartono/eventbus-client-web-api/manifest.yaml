@@ -27,6 +27,11 @@ system:
         volumeMounts:
           - name: myservercert
             mountPath: /certs
+      strategy:
+        type: RollingUpdate
+        rollingUpdate:
+          maxSurge: 1
+          maxUnavailable: 1
   loadbalancers:
   - lbname: eventbus-client-web-api-lb
     function: eventbus-client-web-api

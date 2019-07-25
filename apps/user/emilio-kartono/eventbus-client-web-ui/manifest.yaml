@@ -13,7 +13,7 @@ system:
             
       containers:
       - name: eventbus-client-web-ui
-        image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/messagingplatform/eventbus-client-web-ui:1.0
+        image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/user-emilio-kartono/eventbus-client-web-ui:1.1
         imagePullPolicy: Always
         ports:
         - containerPort: 5000
@@ -33,6 +33,11 @@ system:
           - name: secretvol
             mountPath: /secrets
             readOnly: true
+      strategy:
+        type: RollingUpdate
+        rollingUpdate:
+          maxSurge: 1
+          maxUnavailable: 0
   loadbalancers:
   - lbname: eventbus-client-web-ui-lb
     function: eventbus-client-web-ui
