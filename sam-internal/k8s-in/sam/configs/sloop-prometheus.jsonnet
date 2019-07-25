@@ -9,7 +9,6 @@ local hosts = import "hosts.jsonnet";
     scrape_configs: [
         {
             job_name: "sloop",
-            honor_timestamps: true,
             metrics_path: "/metrics",
             scheme: "http",
             static_configs: [
