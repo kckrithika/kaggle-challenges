@@ -89,6 +89,8 @@ system:
       ports:
         - port: 80
           targetport: 5000
+          lbtype: http
+          tls: true
 
 
 #        - port: 443
