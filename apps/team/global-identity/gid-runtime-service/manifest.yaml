@@ -85,6 +85,8 @@ system:
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mbeig/gid-runtime-service:0.0.1
       imagePullPolicy: Always
       env:
+      - name: server_use_forward_headers
+        value: true
       - name: server_port
         value: 7022
       - name: management_server_port
