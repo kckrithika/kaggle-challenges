@@ -6,9 +6,11 @@ system:
   functions:
   - name: switchboard
     count: 8
+    annotations:
+      routing.mesh.sfdc.net/enabled: "true"
     containers:
     - name: switchboard
-      image: sfci/servicelibs/switchboard:9d22f758f07a729fec87d090b1a8b6f9c2fe6d48
+      image: sfci/servicelibs/switchboard:73428fda23c9ce0e84eac7775b4853a442320e4b
       args:
       - --clusters.external-clusters[0]=ajnafunneldirect:HTTP1
       - --clusters.external-clusters[1]=spaasmesh:HTTP2
@@ -57,7 +59,7 @@ system:
         timeoutSeconds: 4
       terminationMessagePolicy: FallbackToLogsOnError
     - name: sherpa
-      image: sfci/servicelibs/sherpa-envoy:1.0.8
+      image: sfci/servicelibs/sherpa-envoy:1.0.9
       args:
       - --template
       - /switchboard-config/switchboard-sidecar.config.yaml.template
