@@ -82,6 +82,12 @@ local wave_elt_production = {
                 pki_namespace: "flowsnake_test",
                 users: ["cmeister-ltm.internal.salesforce.com", "flowsnake_test.cmeister"],
             },
+            {
+                owner_name: "CRE",
+                namespace: "retail-cre",
+                pki_namespace: "retail-cre",
+                users: ["retail-cre.tteats"],
+            },
         ],
 
         # -------------------------------
