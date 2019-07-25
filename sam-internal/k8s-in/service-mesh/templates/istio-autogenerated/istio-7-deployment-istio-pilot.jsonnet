@@ -160,7 +160,7 @@ local mcpIstioConfig = (import "service-mesh/istio-config.jsonnet");
               },
               {
                 name: "PILOT_PUSH_THROTTLE",
-                value: "100",
+                value: "10",
               },
               {
                 name: "PILOT_TRACE_SAMPLING",
