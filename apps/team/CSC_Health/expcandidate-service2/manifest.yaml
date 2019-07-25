@@ -1,0 +1,80 @@
+apiVersion: v1
+
+system:
+  notifications:
+    email:
+      - cschealthcp@salesforce.com
+  functions:
+  - name: expcandidate-service2
+    count: 1
+    containers:
+    - name: expcandidate-service2
+      image: dva-registry.internal.salesforce.com/dva/csc-health/candidate-service:jenkins-csc-health-candidate-service-PR-60-3-itest
+      ports:
+      - containerPort: 8888
+      volumeMounts:
+        - mountPath: /certs
+          name: client-cert
+        - mountPath: /home/sfdc-csc-health/candidate-service
+          name: logvol
+      env:
+      - name: CHS_AJNA_ENABLED
+        value: true
+      - name: CHS_AJNA_CERTPATH
+        value: /certs/client/certificates/client.pem
+      - name: CHS_AJNA_KEYPATH
+        value: /certs/client/keys/client-key.pem
+      - name: CHS_AJNA_CACERTPATH
+        value: /certs/ca.pem
+      - name: CHS_REPORTCOLLECTOR_CERTPATH
+        value: /certs/client/certificates/client.pem
+      - name: CHS_REPORTCOLLECTOR_KEYPATH
+        value: /certs/client/keys/client-key.pem
+      - name: CHS_REPORTCOLLECTOR_CACERTPATH
+        value: /certs/ca.pem
+      - name: CHS_GROK_CERTPATH
+        value: /certs/client/certificates/client.pem
+      - name: CHS_GROK_KEYPATH
+        value: /certs/client/keys/client-key.pem
+      - name: CHS_GROK_CACERTPATH
+        value: /certs/ca.pem
+      - name: CHS_HEALTH_PORT
+        value: 8888
+      - name: CHS_STALENESS_WHITELIST
+        value: LOGICAL_HOST
+      - name: CHS_REPORTCOLLECTOR_WDWHITELIST
+        value: mom,*.infrastructure-watchdog-CP-health
+      - name: CHS_REPORTCOLLECTOR_OBSWHITELIST
+        value: netmgt.nhal_client,netmgt.sandman,sandman
+      livenessProbe:
+        httpGet:
+          path: /healthz
+          port: 8888
+        initialDelaySeconds: 5
+      command: ["/bin/sh", "-c"]
+      args: ["
+        export CHS_AJNA_FUNNELENDPOINT=http://${SFDC_METRICS_SERVICE_HOST}:${SFDC_METRICS_SERVICE_PORT} ;
+        export CHS_AJNA_DATACENTER=${KINGDOM} ;
+        export CHS_AJNA_DEVICE=wesley ;
+        export CHS_GROK_ENDPOINT=dead-end ;
+        export CHS_REPORTCOLLECTOR_ENDPOINT=https://reportcollector-${KINGDOM}.data.sfdc.net:18444 ;
+;
+        export CHS_REPORTCOLLECTOR_WDPOLLPERIOD=120s ;
+        export CHS_REPORTCOLLECTOR_OBSPOLLPERIOD=120s ;
+
+        /candidateservice
+      "]
+    volumes:
+      - name: client-cert
+        maddogCert:
+          type: client
+      - name: logvol
+        hostPath:
+          path: /home/sfdc-csc-health/candidate-service
+
+  loadbalancers:
+  - lbname: expcandidateservice2lb
+    function: expcandidate-service2
+    ports:
+    - port: 80
+      targetport: 8888
