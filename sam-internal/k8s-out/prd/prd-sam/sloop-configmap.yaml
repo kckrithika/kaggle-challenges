@@ -9,7 +9,6 @@ data:
       },
       "scrape_configs": [
         {
-          "honor_timestamps": true,
           "job_name": "sloop",
           "metrics_path": "/metrics",
           "scheme": "http",
