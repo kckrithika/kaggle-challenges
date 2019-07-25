@@ -165,6 +165,8 @@ local vipwdConfig = {
       //              SLA-eligible VIP despite despite no single backend being 100% healthy.
       // W-6178236
       "horizon-xrd*",
+      // 2019/07/25 nkatta: Taking sledge VIPs out because the backends are unstable due to patching.
+      "sledge-xrd*",
     ],
     vivips:
     [
