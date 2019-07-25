@@ -83,7 +83,7 @@ system:
 
 
   loadbalancers:
-    - lbname: gca-metrics-service
+    - lbname: gca-metrics-service2
       function: gca-metrics-service
       slbEnabled: true
       ports:
