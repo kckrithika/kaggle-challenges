@@ -73,6 +73,10 @@ system:
         name: sherpa-in
       - containerPort: 7443
         name: sherpa-tls
+      - containerPort: 7014
+        name: sherpa-http1
+      - containerPort: 7442
+        name: sherpa-http1s
       - containerPort: 15373
         name: sherpa-adm
       volumeMounts:
@@ -98,9 +102,9 @@ system:
       image: sfci/servicelibs/beacon:853c4db9f14805018be6f5e7607ffe65b5648822
       args:
       - -endpoint
-      - universal-search/universal-search-dark:DATACENTER_ALLENV:7443
+      - universal-search/universal-search-dark:DATACENTER_ALLENV:7442
       - -endpoint
-      - universal-search/universal-search-dark-notls:DATACENTER_ALLENV:7012
+      - universal-search/universal-search-dark-notls:DATACENTER_ALLENV:7014
       livenessProbe:
         initialDelaySeconds: 5
         exec:
