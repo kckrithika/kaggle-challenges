@@ -76,7 +76,7 @@ system:
       - containerPort: 7014
         name: sherpa-http1
       - containerPort: 7442
-        name: sherpa-http1-tls
+        name: sherpa-http1s
       - containerPort: 15373
         name: sherpa-adm
       volumeMounts:
