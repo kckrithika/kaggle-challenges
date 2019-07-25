@@ -1,10 +1,10 @@
 apiVersion: v1
 
 system:
-  notifications:
-    email:
-      - akouthoofd@salesforce.com
-  functions:
+    notifications:
+      email:
+        - akouthoofd@salesforce.com
+    functions:
     - name: mysql-func-shard-a-stage
       count: 1
       strategy:
@@ -13,18 +13,18 @@ system:
           maxSurge: 0
           maxUnavailable: 1
       containers:
-        - name: prd-mysql-shard-a-stage
-          image: dva/casp/mysql_strata/jenkins-CASP-mysql-alex-logs-rotate-1-itest
-          ports:
-            - name: mysql-shard-a-stage
-              containerPort: 3306
-              hostPort: 7016
-          livenessProbe:
-            exec:
-              command:
-                - /usr/bin/true
-          env:
-            - name: NODENAME
-              valueFrom:
-                fieldRef:
-                  fieldPath: spec.nodeName
+      - name: prd-mysql-shard-a-stage
+        image: dva/casp/mysql_strata/jenkins-CASP-mysql-alex-logs-rotate-1-itest:1
+        ports:
+        - name: mysql-stage
+          containerPort: 3306
+          hostPort: 7016
+        livenessProbe:
+          exec:
+            command:
+            - /usr/bin/true
+        env:
+        - name: NODENAME
+          valueFrom:
+            fieldRef:
+              fieldPath: spec.nodeName
