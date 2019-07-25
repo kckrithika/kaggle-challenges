@@ -87,8 +87,24 @@ system:
       function: gca-metrics-service
       slbEnabled: true
       ports:
-        - port: 80
-          targetport: 5000
+
+        - name: https
+          port: 443
+          protocol: tcp
+          targetPort: 5000
+          lbtype: http
+          tls: true
+          reencrypt: true
+        - name: http
+          port: 80
+          httpsredirectport: 443
+          lbtype: http
+          protocol: tcp
+
+#        - port: 80
+#          targetport: 5000
+
+
 #        - port: 443
 #          targetport: 8443
 #    - lbname: gca-rq-service
