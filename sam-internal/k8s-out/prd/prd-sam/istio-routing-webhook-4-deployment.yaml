@@ -44,10 +44,12 @@ spec:
         - /server-cert/server/keys/server-key.pem
         - --port
         - "10443"
+        - --funnel-address
+        - ajna0-funnel1-0-prd.data.sfdc.net:80
         env:
         - name: ESTATE
           value: prd-sam
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/sfci/servicemesh/servicemesh/istio-routing-webhook:0a77d6ce916b84bddae77ebe9c97ad61f1c15fc6
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/sfci/servicemesh/servicemesh/istio-routing-webhook:142a0d8fc76bced9affd0e92c02ffc3380e16280
         imagePullPolicy: IfNotPresent
         name: istio-routing-webhook
         ports:
