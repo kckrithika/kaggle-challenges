@@ -13,11 +13,13 @@ data:
           "job_name": "sloop",
           "metrics_path": "/metrics",
           "scheme": "http",
-          "static_configs": {
-            "targets": [
-              "localhost:8080"
-            ]
-          }
+          "static_configs": [
+            {
+              "targets": [
+                "localhost:8080"
+              ]
+            }
+          ]
         }
       ]
     }
