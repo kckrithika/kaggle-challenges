@@ -896,12 +896,13 @@ items:
               # || true to avoid failing script if pod has gone away.
               kcfw logs -c madkub-init $1 || true
               log_sub_heading "End $1 madkub-init Log"
-              foreach i in $(kcfw get $1 -o jsonpath='{.spec.containers[*].name}')
-                log_sub_heading "Begin container $i log in $1 Log"
-                # || true to avoid failing script if pod has gone away.
-                kcfw logs $1 $i || true
-                log_sub_heading "End container $i Log"
-              end
+              CONTAINER_NAME=""
+              for CONTAINER_NAME in $(kcfw get po/$1 -o jsonpath='{.spec.containers[*].name}'); do
+                  log_sub_heading "Begin container $CONTAINER_NAME Log in pod $1"
+                  # || true to avoid failing script if pod has gone away.
+                  kcfw logs -c $CONTAINER_NAME $1 || true
+                  log_sub_heading "End container $CONTAINER_NAME Log"
+              done;
               POD_LOGS_COLLECTED["$1"]="true"
           fi
       }
