@@ -87,10 +87,11 @@ system:
       function: gca-metrics-service
       slbEnabled: true
       ports:
-        - port: 80
+        - port: 443
           targetport: 5000
           lbtype: http
           tls: true
+
 
 
 #        - port: 443
