@@ -61,6 +61,23 @@ configs.deploymentBase("service-mesh") {
             ],
             env: [
               {
+                name: "FUNCTION_NAMESPACE",
+                valueFrom: {
+                  fieldRef: {
+                    apiVersion: "v1",
+                    fieldPath: "metadata.namespace",
+                  },
+                },
+              },
+              {
+                name: "SUPERPOD",
+                value: mcpIstioConfig.superpod,
+              },
+              {
+                name: "SFDC_SETTINGS_PATH",
+                value: "-.-." + configs.kingdom + ".-." + "istio-routing-webhook",
+              },
+              {
                 name: "ESTATE",
                 value: configs.estate,
               },
