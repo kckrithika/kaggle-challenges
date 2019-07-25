@@ -29,7 +29,7 @@ system:
   loadbalancers:
   - lbname: estatesservicelb
     function: estatesservice
-    slbenabled: false
+    slbenabled: true
     ports:
       - port: 443
         targetport: 7020
