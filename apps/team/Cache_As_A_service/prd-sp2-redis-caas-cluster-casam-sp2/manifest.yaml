@@ -4,6 +4,9 @@ system:
   functions:
   - name: na7-mist61-caas-prd
     count: 1
+    annotations:
+      sidecar.istio.io/inject: "true"
+      routing.mesh.sfdc.net/enabled: "true"
     containers:
     - name: caas-redis
       image: dva/caas/release/caas-redis-4.0.10:17
@@ -29,47 +32,6 @@ system:
       env:
        - name: PYTHONUNBUFFERED
          value: 1
-    - name: caas-redis-announcer
-      image: sfci/servicelibs/beacon:cec13ceb9fc5aed0ce462031a01b2dd5ef73d5ee
-      args:
-      - -endpoint
-      - caas/cluster/$(SFDC_POD):POD:12001
-      livenessProbe:
-        initialDelaySeconds: 5
-        exec:
-          command:
-            - "/home/scone/is-alive.sh"
-      env:
-       - name: SFDC_ENVIRONMENT
-         value: mist61
-       - name: NO_ENV_FOR_RESTART
-         value: 2
-       - name: SFDC_POD
-         value: caas-cluster-casam-sp2
-    - name: sherpa
-      image: sfci/servicelibs/sherpa-envoy:1.0.7
-      ports:
-      - containerPort: 15373
-      env:
-      - name: SFDC_ENVIRONMENT
-        value: mist61
-      volumeMounts:
-      - mountPath: /client-certs
-        name: tls-client-cert
-      - mountPath: /server-certs
-        name: tls-server-cert
-      livenessProbe:
-        exec:
-          command:
-          - ./bin/is-alive
-        initialDelaySeconds: 20
-        periodSeconds: 5
-      readinessProbe:
-        exec:
-          command:
-          - ./bin/is-ready
-        initialDelaySeconds: 15
-        periodSeconds: 5
     volumes:
     - name: logvol
       hostPath:
