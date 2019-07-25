@@ -5,7 +5,7 @@ system:
       count: 1
       containers:
       - name: testing
-        image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/user-emilio-kartono/testing:latest
+        image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/user-emilio.kartono/testing:latest
         ports:
         - containerPort: 8080
           name: ext-port
@@ -15,7 +15,7 @@ system:
           timeoutSeconds: 10
           failureThreshold: 5
           httpGet:
-            path: /manage/health
+            path: /
             port: 8080
             scheme: HTTP
   loadbalancers:
