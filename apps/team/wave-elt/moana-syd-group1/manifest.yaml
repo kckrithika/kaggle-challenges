@@ -7,7 +7,7 @@ apiVersion: v1
 system:
   functions:
   - containers:
-    - image: ops0-artifactrepo1-0-syd.data.sfdc.net/sfci/insights/moanaengine:release-1.1.17-870e583
+    - image: ops0-artifactrepo1-0-syd.data.sfdc.net/sfci/insights/moanaengine:release-1.1.18-207ad00
       livenessProbe:
         exec:
           command: [ls]
@@ -32,7 +32,7 @@ system:
       - {name: HANDLED_PODS_PATTERN, value: 'cs[0-9]+|moana-driver-group1'}
       - {name: HEALTHCHECK_SELF_INTERVAL, value: '60'}
       - {name: SPRING_MAIN_WEB_APPLICATION_TYPE, value: NONE}
-      image: sfci/insights/moana-driver:release-1.1.21-e05e243
+      image: sfci/insights/moana-driver:release-1.1.24-b0476a2
       livenessProbe:
         exec:
           command: [bash, -c, find /tmp -mmin -2 -name health | grep -q "."]
@@ -59,7 +59,7 @@ system:
       - {name: MANAGEMENT_SERVER_PORT, value: '-1'}
       - {name: LOGGING_JSON_STDOUT_LEVEL, value: ALL}
       - {name: LOGGING_STDERR_LEVEL, value: ALL}
-      - {name: MOANA_SPARK_ENGINE_IMAGE, value: 'ops0-artifactrepo1-0-syd.data.sfdc.net/sfci/insights/moanaengine:release-1.1.17-870e583'}
+      - {name: MOANA_SPARK_ENGINE_IMAGE, value: 'ops0-artifactrepo1-0-syd.data.sfdc.net/sfci/insights/moanaengine:release-1.1.18-207ad00'}
       - {name: KAFKA_GROUP_ID, value: moana-jobcontroller-group1}
       - {name: K8S_SPARK_OVERRIDES, value: '{"spark.eventLog.enabled": "false", "spark.executor.extraJavaOptions":
           "-XX:MaxDirectMemorySize=256M -XX:ReservedCodeCacheSize=128M -XX:MaxMetaspaceSize=128M
@@ -77,7 +77,7 @@ system:
       - {name: MAESTRO_ENDPOINT, value: 'https://insights1-iworker{{superPodIndex}}-0-${kingdom}.data.sfdc.net:8008'}
       - {name: HEALTHCHECK_SELF_INTERVAL, value: '60'}
       - {name: SPRING_MAIN_WEB_APPLICATION_TYPE, value: NONE}
-      image: sfci/insights/jobcontroller:release-1.1.18-f089900
+      image: sfci/insights/jobcontroller:release-1.1.21-836817e
       livenessProbe:
         exec:
           command: [bash, -c, find /tmp -mmin -2 -name health | grep -q "."]
