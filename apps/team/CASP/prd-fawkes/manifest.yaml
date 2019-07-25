@@ -1,0 +1,41 @@
+apiVersion: v1
+
+system:
+    notifications:
+      email:
+        - rpothana@salesforce.com
+        - sravanthi.konduru@salesforce.com
+    functions:
+    - name: fawkes-func
+      count: 1
+      strategy:
+        type: RollingUpdate
+        rollingUpdate:
+          maxSurge: 0
+          maxUnavailable: 1
+      containers:
+      - name: prd-fawkes
+        image: dva/casp/fawkes_strata:jenkins-CASP-fawkes-dev-8-itest
+        env:
+        - name: BRANCH
+          value: "eng_production"
+        volumeMounts:
+        - mountPath: /secrets/
+          name: argus.json
+          readOnly: true
+        - mountPath: /secrets/
+          name: splunk.json
+          readOnly: true
+        - mountPath: /secrets/
+          name: gus.json
+          readOnly: true
+      volumes:
+      - name: argus.json
+        k4aSecret:
+          secretName: fawkes-argus
+      - name: splunk.json
+        k4aSecret:
+          secretName: fawkes-splunk
+      - name: gus.json
+        k4aSecret:
+          secretName: fawkes-gus
