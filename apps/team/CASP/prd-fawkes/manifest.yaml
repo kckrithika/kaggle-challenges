@@ -20,22 +20,25 @@ system:
         - name: BRANCH
           value: "eng_production"
         volumeMounts:
-        - mountPath: /secrets/
-          name: argus.json
+        - mountPath: /fawkes/argus-secrets
+          name: argus
           readOnly: true
-        - mountPath: /secrets/
-          name: splunk.json
+        - mountPath: /fawkes/splunk-secrets
+          name: splunk
           readOnly: true
-        - mountPath: /secrets/
-          name: gus.json
+        - mountPath: /fawkes/gus-secrets
+          name: gus
           readOnly: true
+        livenessProbe:
+          exec:
+            command: ["/bin/true"]
       volumes:
-      - name: argus.json
+      - name: argus
         k4aSecret:
           secretName: fawkes-argus
-      - name: splunk.json
+      - name: splunk
         k4aSecret:
           secretName: fawkes-splunk
-      - name: gus.json
+      - name: gus
         k4aSecret:
           secretName: fawkes-gus
