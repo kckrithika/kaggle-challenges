@@ -9,7 +9,7 @@ system:
     count: 1
     containers:
     - name: expcandidate-service2
-      image: dva-registry.internal.salesforce.com/dva/csc-health/candidate-service:jenkins-csc-health-candidate-service-PR-60-3-itest
+      image: dva/csc-health/candidate-service:jenkins-csc-health-candidate-service-PR-60-3-itest
       ports:
       - containerPort: 8888
       volumeMounts:
