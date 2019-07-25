@@ -1,5 +1,7 @@
 apps:
 
+  caas-cluster-casam:
+    - prd/prd-sam_gater
   demo-geoip:
     - prd/prd-sam
 
