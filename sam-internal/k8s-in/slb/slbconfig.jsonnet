@@ -158,9 +158,13 @@
                 ],
                 "frf-sam": [
                   "10.214.36.129/32",  # kubernetes-api-flowsnake-frf.slb.sfdc.net
+                  "185.79.140.14/32",  # rsui-production-frf-lb.retail-rsui.frf-sam.frf.slb.sfdc.net
+                  "185.79.140.15/32",  # rsui-production-frf-test-lb.retail-rsui.frf-sam.frf.slb.sfdc.net
                 ],
                 "par-sam": [
                   "10.214.112.129/32",  # kubernetes-api-flowsnake-par.slb.sfdc.net
+                  "185.79.142.14/32", # rsui-production-par-lb.retail-rsui.par-sam.par.slb.sfdc.net
+                  "185.79.142.15/32", # rsui-production-par-test-lb.retail-rsui.par-sam.par.slb.sfdc.net
                 ],
                 "phx-sam": [
                   "10.208.208.144/32",  # sec0-magister1-0-phx.slb.sfdc.net.
@@ -193,6 +197,14 @@
                   "13.110.26.15/32",  # rsui-production-ord-test-lb.retail-rsui.ord-sam.ord.slb.sfdc.net
                 ],
                 # C360 -- end
+                "ukb-sam": [
+                  "161.71.146.14/32", # rsui-production-ukb-lb.retail-rsui.ukb-sam.ukb.slb.sfdc.net
+                  "161.71.146.15/32", # rsui-production-ukb-test-lb.retail-rsui.ukb-sam.ukb.slb.sfdc.net
+                ],
+                "hnd-sam": [
+                  "161.71.144.14/32", # rsui-production-hnd-lb.retail-rsui.hnd-sam.hnd.slb.sfdc.net
+                  "161.71.144.15/32", # rsui-production-hnd-test-lb.retail-rsui.hnd-sam.hnd.slb.sfdc.net
+                ],
                 "prd-samtwo": [
                   "136.146.214.8/32,96.43.157.8/32",  #na44-stmfa1-0-prd.slb.sfdc.net
                   "136.146.214.9/32,96.43.157.9/32",  #na44-stmfb1-0-prd.slb.sfdc.net
