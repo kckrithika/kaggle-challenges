@@ -12,12 +12,25 @@ system:
       app: switchboard
     containers:
     - name: switchboard
-      image: sfci/servicelibs/switchboard:73428fda23c9ce0e84eac7775b4853a442320e4b
+      image: sfci/servicelibs/switchboard:98471950537d76a57ccbf65d72f823d5724ef3bf
       args:
+      ############################## PRODUCTION CONFIGURATION ##########################################
+      # Any configuration that needs to go to production should be added here.
       - --clusters.external-clusters[0]=ajnafunneldirect:HTTP1
       - --clusters.external-clusters[1]=spaasmesh:HTTP2
+      - --clusters.zkScraper.scrapeTimeoutMs=120000
+      - --cluster.scraper.delayMs=120000
+      - --healthIndicator.maxThreadCount=1300
+      ############################# PRODUCTION CONFIGURATION - OVERRIDDEN VALUES ######################
+      # The following configuration exists in production manifests as well with different values. 
+      - --metrics.maxNumberOfCollectedMetrics=400000
+      - --metrics.funnelTimeOut=100000
+      ############################# PRD ONLY CONFIGURATION ############################################
+      # The following configuation is for features that are enabled only in PRD.
+      # Configuration for External Auth Service
       - --listeners.external-auth-enabled-clusters[0]=tictactoe-server-service-envoy.service-mesh
       - --listeners.external-auth-enabled-clusters[1]=shipping-rate-limited.service-mesh
+      # Configuration for Ratelimiting Service
       - --listeners.rate-limit-enabled-clusters[0]=shipping-rate-limited.service-mesh
       - --listeners.rate-limit-enabled-clusters[1]=dfs.retail-dfs
       - --listeners.rate-limit-enabled-clusters[2]=metadata-service.retail-mds
@@ -25,13 +38,11 @@ system:
       - --listeners.rate-limit-enabled-clusters[4]=retail-setup.retail-rsui
       - --listeners.rate-limit-enabled-clusters[5]=cloudatlas-prd-dev-service.cloudatlas
       - --listeners.rate-limit-enabled-clusters[6]=gid-runtime-service.global-identity
-      - --metrics.maxNumberOfCollectedMetrics=400000
-      - --metrics.funnelTimeOut=100000
-      - --healthIndicator.maxThreadCount=1300
+      # Authorization Service
       - --authz.dest=authz-svc.service-mesh.localhost.mesh.force.com:5443
-      # WIP cluster scrape timeout + delay while investigating W-6166785
-      - --clusters.zkScraper.scrapeTimeoutMs=120000
-      - --cluster.scraper.delayMs=120000
+
+      ############################ EXAMPLE CONFIGURATION ##############################################
+      # This section exists to show how some features can be configured.
       # External Mesh Service Configuration - Example
       # - --clusters.external-mesh-services[0]_name=ems.ajnafunnel
       # - --clusters.external-mesh-services[0]_cluster_type=HTTP1_TLS 
