@@ -3,7 +3,6 @@ system:
   notifications:
     email:
     - metadataservice@salesforce.com
-    - vivanov@salesforce.com
   functions:
   - name: metadata-service-prd-perf
     identity:
@@ -15,7 +14,7 @@ system:
       "routing.mesh.sfdc.net/enabled": "true"
     containers:
     - name: metadata-service
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/metadata-cannon/metadata-service:0.9.95
+      image: sfci/metadata-cannon/metadata-service:0.9.99
       ports:
       - containerPort: 9091
       - containerPort: 15523
