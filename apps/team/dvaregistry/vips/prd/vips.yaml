@@ -11,6 +11,7 @@
       lbtype: http
       tls: true
       reencrypt: true
+      lbalgorithm: leastconn
       healthprotocol: "tcp"
 - lbname: ops0-dvaregistry1-0-prd
   customlbname: ops0-dvaregistry1-0-prd
