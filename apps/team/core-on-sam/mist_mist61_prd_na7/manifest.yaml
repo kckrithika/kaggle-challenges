@@ -100,7 +100,7 @@ system:
     - env:
       - name: CASAM_SETTINGS_PATH
         value: mist.mist61.prd.na7.app
-      image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-sam/casam/coreapp_overrides:b7f076
+      image: sfci/casam/coreapp_overrides:b7f076
       livenessProbe:
         exec:
           command:
