@@ -16,8 +16,8 @@ env:
   region: prd
   subEnvName: mist61
 images:
-  coreApp: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/coreonsam/casam:release_220-patch_18011946
-  coreAppOverrides: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/jbratton/coreapp_overrides:jbratton
+  coreApp: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/coreonsam/casam:release_220-patch_18630605
+  coreAppOverrides: sfci/casam/coreapp_overrides:b7f076
   sequencer: sfci/casam/sequencer:06c5ff
 name: na7
 nonce: 1555807399529745000
