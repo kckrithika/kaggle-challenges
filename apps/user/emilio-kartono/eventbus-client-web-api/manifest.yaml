@@ -9,7 +9,7 @@ system:
             type: server
       containers:
       - name: eventbus-client-web-api
-        image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/messagingplatform/eventbus-client-web-api:1.0
+        image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/user-emilio-kartono/eventbus-client-web-api:1.1
         ports:
         - containerPort: 8080
           name: ext-port
@@ -31,7 +31,7 @@ system:
         type: RollingUpdate
         rollingUpdate:
           maxSurge: 1
-          maxUnavailable: 1
+          maxUnavailable: 0
   loadbalancers:
   - lbname: eventbus-client-web-api-lb
     function: eventbus-client-web-api
