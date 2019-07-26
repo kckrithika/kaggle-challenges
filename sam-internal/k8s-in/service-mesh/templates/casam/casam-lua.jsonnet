@@ -1,27 +1,27 @@
 {
-  "apiVersion": "networking.istio.io/v1alpha3",
-  "kind": "EnvoyFilter",
-  "metadata": {
-    "name": "casam-lua-filter", # currently adding to default namespace. 
-    "annotations": {
+  apiVersion: "networking.istio.io/v1alpha3",
+  kind: "EnvoyFilter",
+  metadata: {
+    name: "casam-lua-filter",  # currently adding to default namespace.
+    annotations: {
       "manifestctl.sam.data.sfdc.net/swagger": "disable",
     },
   },
-  "spec": {
-    "workloadLabels": {
-      "istio": "ingressgateway"
+  spec: {
+    workloadLabels: {
+      istio: "ingressgateway",
     },
-    "filters": [
+    filters: [
     {
-      "listenerMatch" : {
-        "portNumber" :  8085,
-        "listenerType" : "GATEWAY",
-        "listenerProtocol": "HTTP"
+      listenerMatch: {
+        portNumber: 8085,
+        listenerType: "GATEWAY",
+        listenerProtocol: "HTTP",
       },
-      "filterName" : "envoy.lua",
-       "filterType" : "HTTP",
-       "filterConfig" : {
-        "inlineCode" : |||
+      filterName: "envoy.lua",
+       filterType: "HTTP",
+       filterConfig: {
+        inlineCode: |||
             function envoy_on_request(request_handle)
                 -- Log all headers
                 for key, value in pairs(request_handle:headers()) do
@@ -35,9 +35,9 @@
                     request_handle:headers():add("CipherSuite", "https")
                 end
             end
-        |||
+        |||,
         },
     },
-    ]
-  }
+    ],
+  },
 }

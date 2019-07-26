@@ -1,4 +1,5 @@
 # Sidecar that applies to namespace `app` which is expected to be Core's ServiceEntry's namespace.
+local mcpIstioConfig = (import "service-mesh/istio-config.jsonnet");
 
 local ingress(port, protocol, name, endpoint) =
 {
@@ -20,9 +21,7 @@ local egress(port, protocol, name) =
     name: name,
   },
   captureMode: "NONE",
-  hosts: [
-    "*/*",
-  ],
+  hosts: mcpIstioConfig.sidecarEgressHosts,
 };
 
 {
