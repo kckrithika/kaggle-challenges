@@ -9,9 +9,10 @@ system:
       ports:
       - containerPort: 9090
       livenessProbe:
-        httpGet:
-          path: /
-          port: 9090
+        exec:
+          command:
+          - echo
+          - "OK"
   loadbalancers:
   - lbname: sam-c2c-jmh-perftestingapp-lb
     function: sam-c2c-jmh-perftestingapp
