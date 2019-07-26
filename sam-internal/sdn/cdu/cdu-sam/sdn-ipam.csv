@@ -4,9 +4,9 @@ shared0-samkubeapi1-2-cdu.ops.sfdc.net,10.221.150.135/28,10.169.49.128/27,NONE,c
 shared0-samkubeapi2-1-cdu.ops.sfdc.net,10.221.150.133/28,10.169.49.64/27,NONE,cdu-sam,65009
 shared0-samkubeapi2-2-cdu.ops.sfdc.net,10.221.150.136/28,10.169.49.96/27,NONE,cdu-sam,65009
 shared0-samkubeapi3-1-cdu.ops.sfdc.net,10.221.150.134/28,10.169.49.32/27,NONE,cdu-sam,65009
-shared0-samminiondatapool1-1-cdu.ops.sfdc.net,10.221.155.20/28,10.221.151.192/27,NONE,cdu-sam_datapool,65009
-shared0-samminiondatapool1-2-cdu.ops.sfdc.net,10.221.155.21/28,10.221.151.160/27,NONE,cdu-sam_datapool,65009
-shared0-samminiondatapool2-1-cdu.ops.sfdc.net,10.221.155.22/28,10.221.151.224/27,NONE,cdu-sam_datapool,65009
+shared0-samminiondatapool1-1-cdu.ops.sfdc.net,10.221.155.20/28,10.169.48.192/27,NONE,cdu-sam_datapool,65009
+shared0-samminiondatapool1-2-cdu.ops.sfdc.net,10.221.155.21/28,10.169.48.160/27,NONE,cdu-sam_datapool,65009
+shared0-samminiondatapool2-1-cdu.ops.sfdc.net,10.221.155.22/28,10.169.48.224/27,NONE,cdu-sam_datapool,65009
 shared0-samminiongater1-1-cdu.ops.sfdc.net,10.221.150.148/28,10.169.51.0/27,NONE,cdu-sam_gater,65009
 shared0-samminiongater1-2-cdu.ops.sfdc.net,10.221.150.149/28,10.169.50.96/27,NONE,cdu-sam_gater,65009
 shared0-samminiongater1-3-cdu.ops.sfdc.net,10.221.150.151/28,10.169.51.32/27,NONE,cdu-sam_gater,65009
