@@ -9,7 +9,7 @@ system:
     count: 1
     containers:
     - name: expcandidate-service2
-      image: dva/csc-health/candidate-service:jenkins-csc-health-candidate-service-PR-60-3-itest
+      image: dva/csc-health/candidate-service:jenkins-csc-health-candidate-service-cans2.0-6-itest
       ports:
       - containerPort: 8888
       volumeMounts:
