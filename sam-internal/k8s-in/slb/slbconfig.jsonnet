@@ -194,10 +194,10 @@
                 ],
                 # C360 -- end
                 "prd-samtwo": [
-                  "136.146.214.8/32,96.43.157.8/32", #na44-stmfa1-0-prd.slb.sfdc.net
-                  "136.146.214.9/32,96.43.157.9/32", #na44-stmfb1-0-prd.slb.sfdc.net
-                  "136.146.214.10/32,96.43.157.10/32", #na44-stmfc1-0-prd.slb.sfdc.net
-                ], 
+                  "136.146.214.8/32,96.43.157.8/32",  #na44-stmfa1-0-prd.slb.sfdc.net
+                  "136.146.214.9/32,96.43.157.9/32",  #na44-stmfb1-0-prd.slb.sfdc.net
+                  "136.146.214.10/32,96.43.157.10/32",  #na44-stmfc1-0-prd.slb.sfdc.net
+                ],
             },
 
         trustedProxies:
