@@ -9,7 +9,7 @@ system:
       ports:
       - containerPort: 9090
       livenessProbe:
-	exec:
+        exec:
           command:
           - echo
           - "OK"
