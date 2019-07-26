@@ -83,6 +83,9 @@ system:
         - name: sherpaservercert
           maddogCert:
             type: server
+        - name: logvol
+          hostPath:
+            path: /home/sfdc-mgmt/logs
 
   loadbalancers:
     - lbname: heap-dump-analyser-client

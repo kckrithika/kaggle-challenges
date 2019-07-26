@@ -89,6 +89,9 @@ system:
         - name: hdastorage
           hostPath:
             path: /home/sfdc-heap-dump-analyser/storedFiles
+        - name: logvol
+          hostPath:
+            path: /home/sfdc-mgmt/logs
 
   loadbalancers:
     - lbname: heap-dump-analyser
