@@ -9,7 +9,7 @@ configs.deploymentBase("service-mesh") {
     "route-update-service",
     "route-update-service.service-mesh",
     # SAM internal pipeline is generating SAN as service-mesh.route-update-service.sam.sfdc-role. So adding this explicitly.
-    "route-update-service.service-mesh.sfdc-role", 
+    "route-update-service.service-mesh.sfdc-role",
     "route-update-service.service-mesh.svc",
     "route-update-service.service-mesh.svc.%s" % configs.dnsdomain,
   ],
@@ -54,10 +54,10 @@ configs.deploymentBase("service-mesh") {
           disco_pod: "",
           disco_sp: "",
           disco_role: "route-update-service",
-          settings_path:  "mesh.-." + configs.kingdom + ".-." + "route-update-service",
+          settings_path: "mesh.-." + configs.kingdom + ".-." + "route-update-service",
           superpod: "NONE",
           sam_function: "route-update-service",
-        }
+        },
       },
       spec: configs.specWithMadDog {
         serviceAccountName: "route-update-service-service-account",
@@ -93,7 +93,7 @@ configs.deploymentBase("service-mesh") {
               timeoutSeconds: 5,
             },
           } + configs.ipAddressResourceRequest,
-          madkub.madkubRefreshContainer(certConfigs)
+          madkub.madkubRefreshContainer(certConfigs),
         ],
         nodeSelector: {
           pool: mcpIstioConfig.istioEstate,
@@ -121,8 +121,7 @@ configs.deploymentBase("service-mesh") {
           },
         ],
         volumes+: madkub.madkubSamCertVolumes(certConfigs) + madkub.madkubSamMadkubVolumes(),
-      }
-    }
+      },
+    },
   },
 }
-

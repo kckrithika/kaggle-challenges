@@ -39,7 +39,7 @@ configs.deploymentBase("service-mesh") {
           app: "istio-routing-webhook",
           // This name label is required for SAM's pod.* metrics to properly work: https://git.soma.salesforce.com/sam/sam/blob/master/pkg/watchdog/internal/checkers/kuberesourceschecker/internal/pod/podhealthchecker.go#L203
           name: "istio-routing-webhook",
-        }
+        },
       },
       spec: configs.specWithMadDog {
         serviceAccountName: "istio-routing-webhook-service-account",
@@ -97,9 +97,9 @@ configs.deploymentBase("service-mesh") {
               periodSeconds: 30,
               timeoutSeconds: 5,
             },
-            volumeMounts+: madkub.madkubSamCertVolumeMounts(certConfigs)
+            volumeMounts+: madkub.madkubSamCertVolumeMounts(certConfigs),
           },
-          madkub.madkubRefreshContainer(certConfigs)
+          madkub.madkubRefreshContainer(certConfigs),
         ],
         nodeSelector: {
           master: "true",
@@ -126,7 +126,7 @@ configs.deploymentBase("service-mesh") {
           },
         ],
         volumes+: madkub.madkubSamCertVolumes(certConfigs) + madkub.madkubSamMadkubVolumes(),
-      }
-    }
+      },
+    },
   },
 }
