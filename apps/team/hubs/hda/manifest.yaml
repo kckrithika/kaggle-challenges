@@ -40,7 +40,7 @@ system:
           # FUNCTION_NAMESPACE: The Kubernetes namespace in which the container is running.
           args:
             - -endpoint
-            - $(FUNCTION_NAMESPACE)/$(FUNCTION):DATACENTER_ALLENV:7443
+            - hubs/heap-dump-analyser:DATACENTER_ALLENV:5443
             - -logging.dir
             - /log
           livenessProbe:
