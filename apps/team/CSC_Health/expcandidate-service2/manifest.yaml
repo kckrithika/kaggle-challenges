@@ -58,7 +58,6 @@ system:
         export CHS_AJNA_DEVICE=wesley ;
         export CHS_GROK_ENDPOINT=dead-end ;
         export CHS_REPORTCOLLECTOR_ENDPOINT=https://reportcollector-${KINGDOM}.data.sfdc.net:18444 ;
-;
         export CHS_REPORTCOLLECTOR_WDPOLLPERIOD=120s ;
         export CHS_REPORTCOLLECTOR_OBSPOLLPERIOD=120s ;
 
