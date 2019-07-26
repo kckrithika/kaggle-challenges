@@ -58,6 +58,8 @@ system:
         value: --logging.level.zipkin=DEBUG --logging.level.zipkin2=DEBUG
       - name: ES_TIMEOUT
         value: 45000
+      - name: QUERY_LOOKBACK
+        value: 21600000
       resources:
          # forcing the pods to different hosts (each has 56 CPU)
         limits: { cpu: "30", memory: "12Gi" }
