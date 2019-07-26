@@ -29,6 +29,8 @@ system:
         - mountPath: /fawkes/gus-secrets
           name: gus
           readOnly: true
+        - mountPath: /var/log/st2
+          name: fawkes-logs-vol
         livenessProbe:
           exec:
             command: ["/bin/true"]
@@ -42,3 +44,6 @@ system:
       - name: gus
         k4aSecret:
           secretName: fawkes-gus
+      - name: fawkes-logs-vol
+        hostPath:
+          path: /data/fawkes-logs
