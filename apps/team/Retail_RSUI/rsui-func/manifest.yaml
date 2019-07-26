@@ -117,6 +117,8 @@ system:
         value: live
       - name: SCONE_SERVER_SECURITY_MUTUALAUTH
         value: true
+      - name: SHOW_INTERNAL_TRANSFORMATIONS
+        value: true
       - name: HP_PATH
         value: http://hub-persistence.retail-rsui.localhost.mesh.force.com:5442
       - name: JVM_ARGS
