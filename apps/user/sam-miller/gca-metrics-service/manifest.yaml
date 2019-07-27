@@ -8,7 +8,8 @@ system:
 
     containers:
     - name: gca-metrics-service
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/sam-miller/gca_metrics_service:test-07222019
+      #image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/sam-miller/gca_metrics_service:test-07222019
+      image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/gca_metrics_service:35
       # If your service doesn't serve HTTP traffic then you can remove the scone-http 8080 port.
       ports:
       - containerPort: 5000
@@ -31,48 +32,12 @@ system:
         value: "sam"
       - name: WAVE_ENV
         value: "dev"
-      - name: CONFIG_LOCATION
-        value: "/var/secrets/profile/user_profile.cfg"
+#      - name: CONFIG_LOCATION
+#        value: "/var/secrets/profile/user_profile.cfg"
       volumeMounts:
         - name: shared-tmp
           mountPath: /tmp
 
-    - name: gca-rq-service
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/sam-miller/gca_rq_service:test-07222019
-      # If your service doesn't serve HTTP traffic then you can remove the scone-http 8080 port.
-      ports:
-      - containerPort: 6379
-
-      livenessProbe:
-        initialDelaySeconds: 30
-        exec:
-          command:
-            - /metrics_service/redis_probe.sh
-      readinessProbe:
-        initialDelaySeconds: 30
-        exec:
-          command:
-            - /metrics_service/redis_probe.sh
-      imagePullPolicy: Always
-      env:
-      - name: HTTP_PROXY
-        value: public0-proxy1-0-prd.data.sfdc.net:8080
-      - name: HTTPS_PROXY
-        value: public0-proxy1-0-prd.data.sfdc.net:8080
-      - name: WAVE_USER
-        value: "sam"
-      - name: WAVE_ENV
-        value: "dev"
-      - name: LOCAL_MODE
-        value: "True"
-      - name: CONFIG_LOCATION
-        value: "/var/secrets/profile/user_profile.cfg"
-      volumeMounts:
-        - name: user-profile-test
-          mountPath: /var/secrets/profile
-          readOnly: true
-        - name: shared-tmp
-          mountPath: /tmp
 
     volumes:
     - name: user-profile-test
