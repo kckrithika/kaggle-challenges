@@ -31,11 +31,18 @@ system:
           name: maievclientcert
         - mountPath: /home/sfdc-casp/pki/server
           name: wardenservercert
+        - mountPath: /warden/secrets/
+          name: warden-secrets-conf
+        - mountPath: /warden-secrets/gus-secrets/
+          name: gus-credentials
+          readOnly: true
         livenessProbe:
           httpGet:
-            path: /manage/health
-            port: 15372
+            scheme: HTTPS
+            path: /page/index
+            port: 8888
           initialDelaySeconds: 120
+          timeoutSeconds: 1
       volumes:
       - name: log-vol
         hostPath:
@@ -46,6 +53,9 @@ system:
       - name: splunk-credentials
         k4aSecret:
           secretName: warden-secrets
+      - name: warden-secrets-conf
+        k4aSecret:
+          secretName: warden-secrets-conf
       - name: maievclientcert
         maddogCert:
           type: client
@@ -54,6 +64,9 @@ system:
           type: server
           lbnames:
           - wardenlb
+      - name: gus-credentials
+        k4aSecret:
+          secretName: gus-secrets
 
     loadbalancers:
     - lbname: wardenlb
