@@ -4,6 +4,10 @@ system:
   functions:
   - name: na7-mist61-caas-prd
     count: 1
+    labels:
+      app: na7-mist61-caas-prd
+      settings_path: stm.-.prd.-.na7-mist61-caas-prd
+      superpod: NONE
     annotations:
       sidecar.istio.io/inject: "true"
       routing.mesh.sfdc.net/enabled: "true"
