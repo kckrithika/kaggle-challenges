@@ -33,9 +33,6 @@ system:
           name: wardenservercert
         - mountPath: /warden/secrets/
           name: warden-secrets-conf
-        - mountPath: /warden-secrets/gus-secrets/
-          name: gus-credentials
-          readOnly: true
         livenessProbe:
           httpGet:
             scheme: HTTPS
@@ -64,9 +61,6 @@ system:
           type: server
           lbnames:
           - wardenlb
-      - name: gus-credentials
-        k4aSecret:
-          secretName: gus-secrets
 
     loadbalancers:
     - lbname: wardenlb
