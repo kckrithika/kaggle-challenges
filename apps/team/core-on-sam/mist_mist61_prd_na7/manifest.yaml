@@ -77,7 +77,6 @@ system:
       - containerPort: 12098
       - containerPort: 8443
       - containerPort: 2525
-      - containerPort: 12002
       readinessProbe:
         exec:
           command:
