@@ -32,7 +32,7 @@ system:
         initialDelaySeconds: 15
         timeoutSeconds: 10
       ports:
-      - containerPort: 12003
+      - containerPort: 12002
       env:
        - name: PYTHONUNBUFFERED
          value: 1
