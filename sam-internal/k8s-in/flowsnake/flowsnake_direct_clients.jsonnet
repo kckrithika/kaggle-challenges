@@ -86,7 +86,7 @@ local wave_elt_production = {
                 owner_name: "CRE",
                 namespace: "retail-cre",
                 pki_namespace: "retail-cre",
-                users: ["retail-cre.tteats"],
+                users: ["retail-cre.tteats", "retail-cre.yumrotkar"],
             },
         ],
 
