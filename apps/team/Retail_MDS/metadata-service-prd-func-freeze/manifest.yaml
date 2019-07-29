@@ -4,6 +4,7 @@ system:
     email:
     - ascheer@salesforce.com
     - kanchan.sannidhanam@salesforce.com
+    - metadataservice@salesforce.com
   functions:
   - name: metadata-service-prd-func-freeze
     identity:
