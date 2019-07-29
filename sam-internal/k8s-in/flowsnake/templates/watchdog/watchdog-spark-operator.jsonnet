@@ -106,7 +106,7 @@ else
                                     "-role=CLI",
                                     # Dial down these emails until false positives reduced.
                                     # "-emailFrequency=" + watchdog.watchdog_email_frequency,
-                                    "-emailFrequency=1h",
+                                    if flowsnakeconfig.is_test then "-emailFrequency=24h" else "-emailFrequency=1h",
                                     "-timeout=2s",
                                     "-funnelEndpoint=" + flowsnakeconfig.funnel_vip_and_port,
                                     "--config=/config/watchdog.json",
