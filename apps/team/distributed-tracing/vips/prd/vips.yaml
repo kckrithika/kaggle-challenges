@@ -52,6 +52,7 @@
      lbtype: tcp
 
 - lbname: zipkin-prod
+  customlbname: zipkin-prod
   cnames:
    - cname: zipkin.eng.sfdc.net
   servers:
