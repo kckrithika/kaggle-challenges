@@ -625,7 +625,7 @@
       hostname: "shared0-samminionwarden1-2-cdg.ops.sfdc.net",
       kingdom: "cdg",
       pod: "none",
-      rack: "f31-dh14",
+      rack: "f21-dh14",
       superpod: "none",
     },
     {
@@ -7621,7 +7621,7 @@
       hostname: "shared0-samminionwarden1-2-fra.ops.sfdc.net",
       kingdom: "fra",
       pod: "none",
-      rack: "c25-432",
+      rack: "c35-432",
       superpod: "none",
     },
     {
@@ -16971,7 +16971,7 @@
       hostname: "shared0-samminionwarden1-2-ia2.ops.sfdc.net",
       kingdom: "ia2",
       pod: "none",
-      rack: "p44-dh10",
+      rack: "r43-dh10",
       superpod: "none",
     },
     {
@@ -25166,7 +25166,7 @@
       hostname: "shared0-samminionwarden1-2-lo2.ops.sfdc.net",
       kingdom: "lo2",
       pod: "none",
-      rack: "b04-dh01",
+      rack: "b44-dh01",
       superpod: "none",
     },
     {
@@ -26068,7 +26068,7 @@
       hostname: "shared0-samminionwarden1-2-lo3.ops.sfdc.net",
       kingdom: "lo3",
       pod: "none",
-      rack: "a03-dh22",
+      rack: "a15-dh22",
       superpod: "none",
     },
     {
@@ -30875,7 +30875,7 @@
       hostname: "shared0-samminiondp1-2-ord.ops.sfdc.net",
       kingdom: "ord",
       pod: "none",
-      rack: "b08-cr09",
+      rack: "d12-cr09",
       superpod: "none",
     },
     {
