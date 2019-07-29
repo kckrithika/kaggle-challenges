@@ -14,7 +14,7 @@ system:
       "routing.mesh.sfdc.net/enabled": "true"
     containers:
     - name: metadata-service
-      image: docker-sfci-dev/sfci/metadata-cannon/metadata-service:0.8.71
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/metadata-cannon/metadata-service:0.10.2
       ports:
       - containerPort: 9091
       - containerPort: 15523
