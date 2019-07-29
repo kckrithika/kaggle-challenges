@@ -232,17 +232,25 @@ system:
     function: rsui-production-hnd
     slbEnabled: true
     ports:
-      - port: 7022
+      - port: 443
         targetport: 7022
+        tls: true
         lbtype: http
+        reencrypt: true
+        tlscertificate: secret_service:slbvip_hnd.salesforce-hub.com_1562892704:certificate
+        tlskey: secret_service:slbvip_hnd.salesforce-hub.com_1562892704:private_key
         
   - lbname: rsui-production-hnd-test-lb
     function: rsui-production-hnd
     slbEnabled: true
     ports:
-      - port: 7023
+      - port: 443
         targetport: 7023
+        tls: true
         lbtype: http
+        reencrypt: true
+        tlscertificate: secret_service:slbvip_hnd-test.salesforce-hub.com_1562891602:certificate
+        tlskey: secret_service:slbvip_hnd-test.salesforce-hub.com_1562891602:private_key
 
   - lbname: rsui-service-hnd-lb
     function: rsui-production-hnd
@@ -250,3 +258,4 @@ system:
     ports:
       - port: 7443
         targetport: 7443
+
