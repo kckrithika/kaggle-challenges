@@ -35,3 +35,4 @@ system:
       ports:
         - port: 80
           targetport: 8084
+          lbalgorithm: leastconn
