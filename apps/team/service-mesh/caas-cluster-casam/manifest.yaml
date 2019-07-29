@@ -18,7 +18,7 @@ system:
         limits: { memory: "100Mi" }
         requests: { memory: "100Mi" }
       args:
-        - --port=12002
+        - --port=15008
         - --maxMemoryMB=50
         - --noAuth
         - --disableProtectedMode
@@ -27,12 +27,12 @@ system:
         exec:
           command:
            - /opt/caas/redis/redis-livenessprobe.py
-           - --port=12002
+           - --port=15008
            - --noAuth
         initialDelaySeconds: 15
         timeoutSeconds: 10
       ports:
-      - containerPort: 12002
+      - containerPort: 15008
       env:
        - name: PYTHONUNBUFFERED
          value: 1
@@ -51,6 +51,6 @@ system:
     lbname: na7-mist61-caas-prd
     ports:
     - lbtype: dsr
-      port: 12002
-      targetport: 12002
+      port: 15008
+      targetport: 15008
       name: redis-caas
