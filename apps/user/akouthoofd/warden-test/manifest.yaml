@@ -28,13 +28,6 @@ system:
           name: log-vol
         - mountPath: /opt/warden/cantor
           name: cantor-vol
-        - mountPath: /wardenpki/
-          name: wardenpki
-          readOnly: true
-        - mountPath: /home/sfdc-casp/pki/client
-          name: maievclientcert
-        - mountPath: /home/sfdc-casp/pki/server
-          name: wardenservercert
         - mountPath: /warden-secrets/
           name: splunk-credentials
         - mountPath: /warden/secrets/
@@ -60,17 +53,6 @@ system:
       - name: cantor-vol
         hostPath:
           path: /home/sfdc-casp/cantor
-      - name: wardenpki
-        k4aSecret:
-          secretName: wardenpki
-      - name: maievclientcert
-        maddogCert:
-          type: client
-      - name: wardenservercert
-        maddogCert:
-          type: server
-          lbnames:
-          - wardenlb
       - name: splunk-credentials
         k4aSecret:
           secretName: warden-secrets
