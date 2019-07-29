@@ -22,6 +22,10 @@ spec:
           value: "true"
         - name: PILOT_ENABLE_REDIS_FILTER
           value: "true"
+        - name: PILOT_DEBOUNCE_AFTER
+          value: "1m"
+        - name: PILOT_DEBOUNCE_MAX
+          value: "3m"
         name: discovery
         ports:
         - containerPort: 15011

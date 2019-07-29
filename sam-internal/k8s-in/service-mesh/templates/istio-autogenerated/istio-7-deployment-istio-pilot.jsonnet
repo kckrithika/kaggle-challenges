@@ -137,6 +137,14 @@ local mcpIstioConfig = (import "service-mesh/istio-config.jsonnet");
                 value: "true",
               },
               {
+                name: "PILOT_DEBOUNCE_AFTER",
+                value: "1m",
+              },
+              {
+                name: "PILOT_DEBOUNCE_MAX",
+                value: "3m",
+              },
+              {
                 name: "POD_NAME",
                 valueFrom: {
                   fieldRef: {
