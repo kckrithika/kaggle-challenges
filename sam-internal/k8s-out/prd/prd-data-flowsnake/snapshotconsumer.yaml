@@ -43,9 +43,8 @@ spec:
         - mountPath: /config
           name: config
         - mountPath: /var/mysqlPwd
-          name: mysql
+          name: mysql-passwords
           readOnly: true
-      hostNetwork: true
       volumes:
       - configMap:
           name: sfdchosts
@@ -62,6 +61,7 @@ spec:
       - configMap:
           name: snapshotconsumer
         name: config
-      - name: mysql
+      - name: mysql-passwords
         secret:
-          secretName: mysql-pwd
+          defaultMode: 420
+          secretName: mysql-passwords

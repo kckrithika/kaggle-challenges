@@ -1,0 +1,241 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  labels:
+    app: dashboard
+  name: dashboard
+  namespace: flowsnake
+spec:
+  replicas: 3
+  template:
+    metadata:
+      labels:
+        app: dashboard
+      name: dashboard
+      namespace: flowsnake
+    spec:
+      containers:
+      - args:
+        - --logtostderr=true
+        - --apiserver-host=http://pseudo-kubeapi.flowsnake.svc.cluster.local:40001/dfw-flowsnake_prod
+        - --system-banner-webhook=http://pseudo-kubeapi.flowsnake.svc.cluster.local:40001/dfw-flowsnake_prod/dashboard-webhook
+        - --insecure-port=9190
+        image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/d.smith/dashboard:webhook
+        name: dashboard-dfw
+        ports:
+        - containerPort: 9190
+          hostPort: 9190
+        volumeMounts:
+        - mountPath: /tmp
+          name: temp
+      - args:
+        - --logtostderr=true
+        - --apiserver-host=http://pseudo-kubeapi.flowsnake.svc.cluster.local:40001/frf-flowsnake_prod
+        - --system-banner-webhook=http://pseudo-kubeapi.flowsnake.svc.cluster.local:40001/frf-flowsnake_prod/dashboard-webhook
+        - --insecure-port=9191
+        image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/d.smith/dashboard:webhook
+        name: dashboard-frf
+        ports:
+        - containerPort: 9191
+          hostPort: 9191
+        volumeMounts:
+        - mountPath: /tmp
+          name: temp
+      - args:
+        - --logtostderr=true
+        - --apiserver-host=http://pseudo-kubeapi.flowsnake.svc.cluster.local:40001/hnd-flowsnake_prod
+        - --system-banner-webhook=http://pseudo-kubeapi.flowsnake.svc.cluster.local:40001/hnd-flowsnake_prod/dashboard-webhook
+        - --insecure-port=9192
+        image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/d.smith/dashboard:webhook
+        name: dashboard-hnd
+        ports:
+        - containerPort: 9192
+          hostPort: 9192
+        volumeMounts:
+        - mountPath: /tmp
+          name: temp
+      - args:
+        - --logtostderr=true
+        - --apiserver-host=http://pseudo-kubeapi.flowsnake.svc.cluster.local:40001/iad-flowsnake_prod
+        - --system-banner-webhook=http://pseudo-kubeapi.flowsnake.svc.cluster.local:40001/iad-flowsnake_prod/dashboard-webhook
+        - --insecure-port=9193
+        image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/d.smith/dashboard:webhook
+        name: dashboard-iad
+        ports:
+        - containerPort: 9193
+          hostPort: 9193
+        volumeMounts:
+        - mountPath: /tmp
+          name: temp
+      - args:
+        - --logtostderr=true
+        - --apiserver-host=http://pseudo-kubeapi.flowsnake.svc.cluster.local:40001/ia2-flowsnake_prod
+        - --system-banner-webhook=http://pseudo-kubeapi.flowsnake.svc.cluster.local:40001/ia2-flowsnake_prod/dashboard-webhook
+        - --insecure-port=9194
+        image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/d.smith/dashboard:webhook
+        name: dashboard-ia2
+        ports:
+        - containerPort: 9194
+          hostPort: 9194
+        volumeMounts:
+        - mountPath: /tmp
+          name: temp
+      - args:
+        - --logtostderr=true
+        - --apiserver-host=http://pseudo-kubeapi.flowsnake.svc.cluster.local:40001/ord-flowsnake_prod
+        - --system-banner-webhook=http://pseudo-kubeapi.flowsnake.svc.cluster.local:40001/ord-flowsnake_prod/dashboard-webhook
+        - --insecure-port=9195
+        image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/d.smith/dashboard:webhook
+        name: dashboard-ord
+        ports:
+        - containerPort: 9195
+          hostPort: 9195
+        volumeMounts:
+        - mountPath: /tmp
+          name: temp
+      - args:
+        - --logtostderr=true
+        - --apiserver-host=http://pseudo-kubeapi.flowsnake.svc.cluster.local:40001/par-flowsnake_prod
+        - --system-banner-webhook=http://pseudo-kubeapi.flowsnake.svc.cluster.local:40001/par-flowsnake_prod/dashboard-webhook
+        - --insecure-port=9196
+        image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/d.smith/dashboard:webhook
+        name: dashboard-par
+        ports:
+        - containerPort: 9196
+          hostPort: 9196
+        volumeMounts:
+        - mountPath: /tmp
+          name: temp
+      - args:
+        - --logtostderr=true
+        - --apiserver-host=http://pseudo-kubeapi.flowsnake.svc.cluster.local:40001/phx-flowsnake_prod
+        - --system-banner-webhook=http://pseudo-kubeapi.flowsnake.svc.cluster.local:40001/phx-flowsnake_prod/dashboard-webhook
+        - --insecure-port=9197
+        image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/d.smith/dashboard:webhook
+        name: dashboard-phx
+        ports:
+        - containerPort: 9197
+          hostPort: 9197
+        volumeMounts:
+        - mountPath: /tmp
+          name: temp
+      - args:
+        - --logtostderr=true
+        - --apiserver-host=http://pseudo-kubeapi.flowsnake.svc.cluster.local:40001/ph2-flowsnake_prod
+        - --system-banner-webhook=http://pseudo-kubeapi.flowsnake.svc.cluster.local:40001/ph2-flowsnake_prod/dashboard-webhook
+        - --insecure-port=9198
+        image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/d.smith/dashboard:webhook
+        name: dashboard-ph2
+        ports:
+        - containerPort: 9198
+          hostPort: 9198
+        volumeMounts:
+        - mountPath: /tmp
+          name: temp
+      - args:
+        - --logtostderr=true
+        - --apiserver-host=http://pseudo-kubeapi.flowsnake.svc.cluster.local:40001/ukb-flowsnake_prod
+        - --system-banner-webhook=http://pseudo-kubeapi.flowsnake.svc.cluster.local:40001/ukb-flowsnake_prod/dashboard-webhook
+        - --insecure-port=9199
+        image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/d.smith/dashboard:webhook
+        name: dashboard-ukb
+        ports:
+        - containerPort: 9199
+          hostPort: 9199
+        volumeMounts:
+        - mountPath: /tmp
+          name: temp
+      - args:
+        - --logtostderr=true
+        - --apiserver-host=http://pseudo-kubeapi.flowsnake.svc.cluster.local:40001/cdu-flowsnake_prod
+        - --system-banner-webhook=http://pseudo-kubeapi.flowsnake.svc.cluster.local:40001/cdu-flowsnake_prod/dashboard-webhook
+        - --insecure-port=9200
+        image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/d.smith/dashboard:webhook
+        name: dashboard-cdu
+        ports:
+        - containerPort: 9200
+          hostPort: 9200
+        volumeMounts:
+        - mountPath: /tmp
+          name: temp
+      - args:
+        - --logtostderr=true
+        - --apiserver-host=http://pseudo-kubeapi.flowsnake.svc.cluster.local:40001/syd-flowsnake_prod
+        - --system-banner-webhook=http://pseudo-kubeapi.flowsnake.svc.cluster.local:40001/syd-flowsnake_prod/dashboard-webhook
+        - --insecure-port=9201
+        image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/d.smith/dashboard:webhook
+        name: dashboard-syd
+        ports:
+        - containerPort: 9201
+          hostPort: 9201
+        volumeMounts:
+        - mountPath: /tmp
+          name: temp
+      - args:
+        - --logtostderr=true
+        - --apiserver-host=http://pseudo-kubeapi.flowsnake.svc.cluster.local:40001/yhu-flowsnake_prod
+        - --system-banner-webhook=http://pseudo-kubeapi.flowsnake.svc.cluster.local:40001/yhu-flowsnake_prod/dashboard-webhook
+        - --insecure-port=9202
+        image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/d.smith/dashboard:webhook
+        name: dashboard-yhu
+        ports:
+        - containerPort: 9202
+          hostPort: 9202
+        volumeMounts:
+        - mountPath: /tmp
+          name: temp
+      - args:
+        - --logtostderr=true
+        - --apiserver-host=http://pseudo-kubeapi.flowsnake.svc.cluster.local:40001/yul-flowsnake_prod
+        - --system-banner-webhook=http://pseudo-kubeapi.flowsnake.svc.cluster.local:40001/yul-flowsnake_prod/dashboard-webhook
+        - --insecure-port=9203
+        image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/d.smith/dashboard:webhook
+        name: dashboard-yul
+        ports:
+        - containerPort: 9203
+          hostPort: 9203
+        volumeMounts:
+        - mountPath: /tmp
+          name: temp
+      - args:
+        - --logtostderr=true
+        - --apiserver-host=http://pseudo-kubeapi.flowsnake.svc.cluster.local:40001/prd-data-flowsnake
+        - --system-banner-webhook=http://pseudo-kubeapi.flowsnake.svc.cluster.local:40001/prd-data-flowsnake/dashboard-webhook
+        - --insecure-port=9204
+        image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/d.smith/dashboard:webhook
+        name: dashboard-prd-data
+        ports:
+        - containerPort: 9204
+          hostPort: 9204
+        volumeMounts:
+        - mountPath: /tmp
+          name: temp
+      - args:
+        - --logtostderr=true
+        - --apiserver-host=http://pseudo-kubeapi.flowsnake.svc.cluster.local:40001/prd-dev-flowsnake_iot_test
+        - --system-banner-webhook=http://pseudo-kubeapi.flowsnake.svc.cluster.local:40001/prd-dev-flowsnake_iot_test/dashboard-webhook
+        - --insecure-port=9205
+        image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/d.smith/dashboard:webhook
+        name: dashboard-prd-dev
+        ports:
+        - containerPort: 9205
+          hostPort: 9205
+        volumeMounts:
+        - mountPath: /tmp
+          name: temp
+      - args:
+        - --logtostderr=true
+        - --apiserver-host=http://pseudo-kubeapi.flowsnake.svc.cluster.local:40001/prd-data-flowsnake_test
+        - --system-banner-webhook=http://pseudo-kubeapi.flowsnake.svc.cluster.local:40001/prd-data-flowsnake_test/dashboard-webhook
+        - --insecure-port=9206
+        image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/d.smith/dashboard:webhook
+        name: dashboard-prd-data-test
+        ports:
+        - containerPort: 9206
+          hostPort: 9206
+        volumeMounts:
+        - mountPath: /tmp
+          name: temp
+      volumes:
+      - emptyDir: {}
+        name: temp

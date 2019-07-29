@@ -1,0 +1,292 @@
+apiVersion: v1
+items:
+- apiVersion: v1
+  kind: Service
+  metadata:
+    labels:
+      app: dashboard-dfw
+    name: dashboard-dfw
+    namespace: flowsnake
+  spec:
+    ports:
+    - name: tcp80
+      nodePort: 32101
+      port: 80
+      protocol: TCP
+      targetPort: 9190
+    selector:
+      app: dashboard
+    type: NodePort
+- apiVersion: v1
+  kind: Service
+  metadata:
+    labels:
+      app: dashboard-frf
+    name: dashboard-frf
+    namespace: flowsnake
+  spec:
+    ports:
+    - name: tcp80
+      nodePort: 32102
+      port: 80
+      protocol: TCP
+      targetPort: 9191
+    selector:
+      app: dashboard
+    type: NodePort
+- apiVersion: v1
+  kind: Service
+  metadata:
+    labels:
+      app: dashboard-hnd
+    name: dashboard-hnd
+    namespace: flowsnake
+  spec:
+    ports:
+    - name: tcp80
+      nodePort: 32103
+      port: 80
+      protocol: TCP
+      targetPort: 9192
+    selector:
+      app: dashboard
+    type: NodePort
+- apiVersion: v1
+  kind: Service
+  metadata:
+    labels:
+      app: dashboard-iad
+    name: dashboard-iad
+    namespace: flowsnake
+  spec:
+    ports:
+    - name: tcp80
+      nodePort: 32104
+      port: 80
+      protocol: TCP
+      targetPort: 9193
+    selector:
+      app: dashboard
+    type: NodePort
+- apiVersion: v1
+  kind: Service
+  metadata:
+    labels:
+      app: dashboard-ia2
+    name: dashboard-ia2
+    namespace: flowsnake
+  spec:
+    ports:
+    - name: tcp80
+      nodePort: 32105
+      port: 80
+      protocol: TCP
+      targetPort: 9194
+    selector:
+      app: dashboard
+    type: NodePort
+- apiVersion: v1
+  kind: Service
+  metadata:
+    labels:
+      app: dashboard-ord
+    name: dashboard-ord
+    namespace: flowsnake
+  spec:
+    ports:
+    - name: tcp80
+      nodePort: 32106
+      port: 80
+      protocol: TCP
+      targetPort: 9195
+    selector:
+      app: dashboard
+    type: NodePort
+- apiVersion: v1
+  kind: Service
+  metadata:
+    labels:
+      app: dashboard-par
+    name: dashboard-par
+    namespace: flowsnake
+  spec:
+    ports:
+    - name: tcp80
+      nodePort: 32107
+      port: 80
+      protocol: TCP
+      targetPort: 9196
+    selector:
+      app: dashboard
+    type: NodePort
+- apiVersion: v1
+  kind: Service
+  metadata:
+    labels:
+      app: dashboard-phx
+    name: dashboard-phx
+    namespace: flowsnake
+  spec:
+    ports:
+    - name: tcp80
+      nodePort: 32108
+      port: 80
+      protocol: TCP
+      targetPort: 9197
+    selector:
+      app: dashboard
+    type: NodePort
+- apiVersion: v1
+  kind: Service
+  metadata:
+    labels:
+      app: dashboard-ph2
+    name: dashboard-ph2
+    namespace: flowsnake
+  spec:
+    ports:
+    - name: tcp80
+      nodePort: 32109
+      port: 80
+      protocol: TCP
+      targetPort: 9198
+    selector:
+      app: dashboard
+    type: NodePort
+- apiVersion: v1
+  kind: Service
+  metadata:
+    labels:
+      app: dashboard-ukb
+    name: dashboard-ukb
+    namespace: flowsnake
+  spec:
+    ports:
+    - name: tcp80
+      nodePort: 32110
+      port: 80
+      protocol: TCP
+      targetPort: 9199
+    selector:
+      app: dashboard
+    type: NodePort
+- apiVersion: v1
+  kind: Service
+  metadata:
+    labels:
+      app: dashboard-cdu
+    name: dashboard-cdu
+    namespace: flowsnake
+  spec:
+    ports:
+    - name: tcp80
+      nodePort: 32111
+      port: 80
+      protocol: TCP
+      targetPort: 9200
+    selector:
+      app: dashboard
+    type: NodePort
+- apiVersion: v1
+  kind: Service
+  metadata:
+    labels:
+      app: dashboard-syd
+    name: dashboard-syd
+    namespace: flowsnake
+  spec:
+    ports:
+    - name: tcp80
+      nodePort: 32112
+      port: 80
+      protocol: TCP
+      targetPort: 9201
+    selector:
+      app: dashboard
+    type: NodePort
+- apiVersion: v1
+  kind: Service
+  metadata:
+    labels:
+      app: dashboard-yhu
+    name: dashboard-yhu
+    namespace: flowsnake
+  spec:
+    ports:
+    - name: tcp80
+      nodePort: 32113
+      port: 80
+      protocol: TCP
+      targetPort: 9202
+    selector:
+      app: dashboard
+    type: NodePort
+- apiVersion: v1
+  kind: Service
+  metadata:
+    labels:
+      app: dashboard-yul
+    name: dashboard-yul
+    namespace: flowsnake
+  spec:
+    ports:
+    - name: tcp80
+      nodePort: 32114
+      port: 80
+      protocol: TCP
+      targetPort: 9203
+    selector:
+      app: dashboard
+    type: NodePort
+- apiVersion: v1
+  kind: Service
+  metadata:
+    labels:
+      app: dashboard-prd-data
+    name: dashboard-prd-data
+    namespace: flowsnake
+  spec:
+    ports:
+    - name: tcp80
+      nodePort: 32115
+      port: 80
+      protocol: TCP
+      targetPort: 9204
+    selector:
+      app: dashboard
+    type: NodePort
+- apiVersion: v1
+  kind: Service
+  metadata:
+    labels:
+      app: dashboard-prd-dev
+    name: dashboard-prd-dev
+    namespace: flowsnake
+  spec:
+    ports:
+    - name: tcp80
+      nodePort: 32116
+      port: 80
+      protocol: TCP
+      targetPort: 9205
+    selector:
+      app: dashboard
+    type: NodePort
+- apiVersion: v1
+  kind: Service
+  metadata:
+    labels:
+      app: dashboard-prd-test
+    name: dashboard-prd-test
+    namespace: flowsnake
+  spec:
+    ports:
+    - name: tcp80
+      nodePort: 32117
+      port: 80
+      protocol: TCP
+      targetPort: 9206
+    selector:
+      app: dashboard
+    type: NodePort
+kind: List

@@ -264,6 +264,8 @@ local utils = import "util_functions.jsonnet";
     # Non-Flowsnake images
     snapshoter: imageFunc.do_override_based_on_tag($.overrides, "sam", "hypersam", $.per_phase[$.phase].image_tags.snapshoter_image_tag),
     snapshot_consumer: imageFunc.do_override_based_on_tag($.overrides, "sam", "hypersam", $.per_phase[$.phase].image_tags.snapshot_consumer_image_tag),
+    pseudo_kubeapi: imageFunc.do_override_for_non_pipeline_image($.overrides, "hypersam", "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/qcai/virtual-api:2019_08_06_26d0593"),
+    dashboard: imageFunc.do_override_for_non_pipeline_image($.overrides, "dashboard", "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/d.smith/dashboard:webhook"),
     deployer: imageFunc.do_override_based_on_tag($.overrides, "sam", "hypersam", $.per_phase[$.phase].image_tags.deployer_image_tag),
     watchdog: imageFunc.do_override_based_on_tag($.overrides, "sam", "hypersam", $.per_phase[$.phase].image_tags.watchdog_image_tag),
     node_controller: imageFunc.do_override_based_on_tag($.overrides, "sam", "hypersam", $.per_phase[$.phase].image_tags.node_controller_image_tag),
