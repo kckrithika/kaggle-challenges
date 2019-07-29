@@ -28,7 +28,7 @@ system:
       - name: JVM_ARGS
         value: -Xmx2G -Xms2G -XX:ParallelGCThreads=8
       - name: DATABASE_NAME
-        value: metadataserviceitest
+        value: mdsitest
         # An environment variable used to trigger containers redeployment without making other changes to the manifest
       - name: RESTART
         value: May-16-2019
