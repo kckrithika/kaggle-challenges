@@ -52,6 +52,9 @@
      lbtype: tcp
 
 - lbname: zipkin-prod
+  customlbname: zipkin-prod
+  cnames:
+   - cname: zipkin.data.sfdc.net
   servers:
    - shared0-samminionzipkin1-2-prd.eng.sfdc.net
    - shared0-samminionzipkin1-10-prd.eng.sfdc.net
