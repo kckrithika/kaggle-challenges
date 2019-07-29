@@ -29,12 +29,14 @@ system:
         secretName: solrcloudcli-keytab-prd
     containers:
     - name: universal-search
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/universal-search/universal-search:1.2.6
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/universal-search/universal-search:1.2.7
       ports:
       - name: service-port
         containerPort: 7020
       - name: admin-port
         containerPort: 15372
+      - name: http-port
+        containerPort: 7022
       resources:
         limits:
           cpu: "24"
@@ -51,6 +53,8 @@ system:
       # Monitor for schema changes every 5 minutes
       - name: CONTROLPLANE_MONITORING_FIXEDDELAYMS
         value: '300000'
+      - name: BACKUPMANAGER_CONTROLLER_ENABLE
+        value: 'true'
       volumeMounts:
       - name: client-cert-vol
         mountPath: /certs
@@ -276,6 +280,9 @@ system:
     - lbtype: http
       port: 15373
       targetport: 15373
+    - lbtype: http
+      port: 7022
+      targetport: 7022
     slbEnabled: true
   - function: universal-search-mock-index-workflow
     lbname: universal-search-mock-index-workflow-slb
