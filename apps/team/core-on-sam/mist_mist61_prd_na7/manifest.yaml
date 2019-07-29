@@ -47,7 +47,7 @@ system:
       - name: DISABLE_AUTH_RELEASE_CHECK
         value: true
       - name: CASAM_APP_COLOR
-        value: blue
+        value: green
       - name: CASAM_SETTINGS_PATH
         value: mist.mist61.prd.na7.app
       - name: CLUSTER_NAME
@@ -127,7 +127,7 @@ system:
       app: app
       settings_path: mist.mist61.prd.na7.app
       superpod: sp2
-      version: blue
+      version: green
     annotations:
       sidecar.istio.io/inject: "true"
       routing.mesh.sfdc.net/enabled: "true"
@@ -192,9 +192,9 @@ system:
       - name: PATCH_RELEASE_NUMBER
         value: 0
       - name: CURRENT_RELEASE_VERSION
-        value: green
-      - name: NEW_RELEASE_VERSION
         value: blue
+      - name: NEW_RELEASE_VERSION
+        value: green
       - name: READY_SERVER_COUNT
         value: 1
       - name: DB_SID
@@ -286,7 +286,7 @@ system:
       app: app
       settings_path: mist.mist61.prd.na7.app
       superpod: sp2
-      version: blue
+      version: green
     ports:
     - lbtype: dsr
       port: 8085
