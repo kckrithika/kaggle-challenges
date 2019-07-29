@@ -19,20 +19,34 @@ system:
         env:
         - name: BRANCH
           value: "eng_production"
+        - name: NODENAME
+          valueFrom:
+            fieldRef:
+              fieldPath: spec.nodeName
         volumeMounts:
         - mountPath: /home/sfdc-casp/logs
           name: log-vol
         - mountPath: /opt/warden/cantor
           name: cantor-vol
-        - mountPath: /warden-secrets/
-          name: splunk-credentials
+        - mountPath: /wardenpki/
+          name: wardenpki
           readOnly: true
         - mountPath: /home/sfdc-casp/pki/client
           name: maievclientcert
         - mountPath: /home/sfdc-casp/pki/server
           name: wardenservercert
+        - mountPath: /warden-secrets/
+          name: splunk-credentials
         - mountPath: /warden/secrets/
           name: warden-secrets-conf
+        - mountPath: /warden-secrets/argus-secrets/
+          name: argus-secrets
+        - mountPath: /mysql-secrets/
+          name: mysql-credentials
+          readOnly: true
+        - mountPath: /warden-secrets/gus-secrets/
+          name: gus-credentials
+          readOnly: true
         livenessProbe:
           httpGet:
             scheme: HTTPS
@@ -47,12 +61,9 @@ system:
       - name: cantor-vol
         hostPath:
           path: /home/sfdc-casp/cantor
-      - name: splunk-credentials
+      - name: wardenpki
         k4aSecret:
-          secretName: warden-secrets
-      - name: warden-secrets-conf
-        k4aSecret:
-          secretName: warden-secrets-conf
+          secretName: wardenpki
       - name: maievclientcert
         maddogCert:
           type: client
@@ -61,6 +72,21 @@ system:
           type: server
           lbnames:
           - wardenlb
+      - name: splunk-credentials
+        k4aSecret:
+          secretName: warden-secrets
+      - name: warden-secrets-conf
+        k4aSecret:
+          secretName: warden-secrets-conf
+      - name: argus-secrets
+        k4aSecret:
+          secretName: argus-secrets
+      - name: mysql-credentials
+        k4aSecret:
+          secretName: mysql-secrets
+      - name: gus-credentials
+        k4aSecret:
+          secretName: gus-secrets
 
     loadbalancers:
     - lbname: wardenlb
@@ -69,5 +95,7 @@ system:
       ports:
         - port: 80
           targetport: 8889
+          lbalgorithm: leastconn
         - port: 443
           targetport: 8443
+          lbalgorithm: leastconn
