@@ -18,6 +18,8 @@ system:
         - mountPath: /home/sfdc-csc-health/candidate-service
           name: logvol
       env:
+      - name: CHS_LOG_LEVEL
+        value: debug
       - name: CHS_AJNA_ENABLED
         value: true
       - name: CHS_AJNA_CERTPATH
