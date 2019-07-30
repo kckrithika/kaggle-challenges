@@ -107,12 +107,6 @@ system:
         providers+=,sandman ;
         providers+=,netmgt.sandman ;
         providers+=,mom ;
-        providers+=,app.infrastructure-watchdog-cpt ;
-        providers+=,cbatch.infrastructure-watchdog-cpt ;
-        providers+=,dapp.infrastructure-watchdog-cpt ;
-        providers+=,ffx.infrastructure-watchdog-cpt ;
-        providers+=,health.infrastructure-watchdog-cpt ;
-        providers+=,search.infrastructure-watchdog-cpt ;
         providers+=,*.infrastructure-watchdog-CP-health ;
 
         export CHS_REPORTCOLLECTOR_WHITELIST=${providers} ;
