@@ -16,7 +16,7 @@ system:
       args:
       ############################## PRODUCTION CONFIGURATION ##########################################
       # Any configuration that needs to go to production should be added here.
-      - --clusters.external-clusters[0]=ajnafunneldirect:HTTP1
+      - --clusters.external-clusters[0]=ajnafunneldirecttls.funnel:HTTP1
       - --clusters.external-clusters[1]=spaasmesh:HTTP2
       - --clusters.zkScraper.scrapeTimeoutMs=120000
       - --cluster.scraper.delayMs=120000
@@ -25,8 +25,9 @@ system:
       # The following configuration exists in production manifests as well with different values. 
       - --metrics.maxNumberOfCollectedMetrics=400000
       - --metrics.funnelTimeOut=100000
+      - --metrics.sherpaFunnelServiceURL=http://ajnafunneldirecttls.funnel.localhost.mesh.force.com:5442
       ############################# PRD ONLY CONFIGURATION ############################################
-      # The following configuation is for features that are enabled only in PRD.
+      # The following configuration is for features that are enabled only in PRD.
       # Configuration for External Auth Service
       - --listeners.external-auth-enabled-clusters[0]=tictactoe-server-service-envoy.service-mesh
       - --listeners.external-auth-enabled-clusters[1]=shipping-rate-limited.service-mesh
