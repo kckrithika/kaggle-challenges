@@ -6,7 +6,7 @@ system:
         - akouthoofd@salesforce.com
     functions:
     - name: cantor-http-server
-      count: 1
+      count: 3
       strategy:
         type: RollingUpdate
         rollingUpdate:
@@ -20,9 +20,11 @@ system:
           containerPort: 8084
           hostPort: 18084
         livenessProbe:
-          exec:
-            command:
-            - /usr/bin/true
+          httpGet:
+            scheme: HTTP
+            path: /
+            port: 8084
+          initialDelaySeconds: 120
         env:
         - name: SUBDOMAIN
           value: "eng"
