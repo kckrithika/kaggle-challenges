@@ -52,11 +52,16 @@ system:
         - mountPath: /warden-secrets/gus-secrets/
           name: gus-credentials
           readOnly: true
+        readinessProbe:
+          tcpSocket:
+            port: 8889
+          initialDelaySeconds: 5
+          periodSeconds: 10
         livenessProbe:
-          httpGet:
-            path: /page/index
-            port: 8888
-          initialDelaySeconds: 120
+          tcpSocket:
+            port: 8889
+          initialDelaySeconds: 15
+          periodSeconds: 20
       volumes:
       - name: staging-log-vol
         hostPath:
@@ -93,5 +98,7 @@ system:
       ports:
         - port: 80
           targetport: 8889
+          lbalgorithm: roundrobin
         - port: 443
           targetport: 8444
+          lbalgorithm: roundrobin
