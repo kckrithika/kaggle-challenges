@@ -5,5 +5,3 @@ apps:
   - prd/prd-sam
  prd-cantor-http-server:
   - prd/prd-sam
- warden-test:
-  - prd/prd-sam
