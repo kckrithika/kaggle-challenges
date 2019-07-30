@@ -4,6 +4,9 @@ system:
     email:
       - jiaqi.wu@salesforce.com
       - aditya.sureshkumar@salesforce.com
+      - gagan.gangothri@salesforce.com
+      - varun.kulkarni@salesforce.com
+      - aditya.rao@salesforce.com 
   functions:
   - name: zones-intake-backend-staging
     count: 1
