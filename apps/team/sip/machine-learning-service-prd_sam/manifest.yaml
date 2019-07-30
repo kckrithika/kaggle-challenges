@@ -21,7 +21,7 @@ system:
           - sip-mls-dev-slb
     containers:
     - name: sip-mls
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/rama.raman/sip-machine-learning-service:20190722T1523
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/rama.raman/sip-machine-learning-service:20190729
       livenessProbe:
         initialDelaySeconds: 30
         httpGet:
