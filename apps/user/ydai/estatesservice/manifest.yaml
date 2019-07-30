@@ -14,13 +14,14 @@ system:
         type: client
     containers:
     - name: estatesservice
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/ydai/estatesservice:ydai-201907231
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/ydai/estatesservice:ydai-20190729
       ports:
-      - containerPort: 7020
+      - containerPort: 9090
       livenessProbe:
-        exec:
-          command:
-            - /usr/bin/true
+        httpGet:
+          scheme: HTTPS
+          path: /info
+          port: 9090
       volumeMounts:
         - mountPath: /server-certs
           name: server-cert
@@ -32,4 +33,4 @@ system:
     slbenabled: true
     ports:
       - port: 443
-        targetport: 7020
+        targetport: 9090
