@@ -10,6 +10,7 @@ system:
       containers:
       - name: eventbus-client-web-api
         image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/messagingplatform/eventbus-client-web-api:1.1
+        imagePullPolicy: Always
         ports:
         - containerPort: 8080
           name: ext-port
