@@ -153,12 +153,12 @@ configs.deploymentBase("service-mesh") {
               {
                 name: "SFDC_METRICS_SERVICE_HOST",
                 // use `value: funnelEndpointHost,` if direct link to ajna is needed
-                value: "ajnafunneldirect.localhost.mesh.force.com",
+                value: "ajnafunneldirecttls.funnel.localhost.mesh.force.com",
               },
               {
                 name: "SFDC_METRICS_SERVICE_PORT",
                 // use `value: funnelEndpointPort,` if direct link to ajna is needed
-                value: "7013",
+                value: "5442",
               },
               {
                 name: "FAKE_REDEPLOY_VAR",
