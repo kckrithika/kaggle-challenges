@@ -25,6 +25,7 @@
     "hsuanyu.chen@salesforce.com",
     "nkatta@salesforce.com",
     "shravya.srinivas@salesforce.com",
+    "jiaqi.wu@salesforce.com",
     # Service-Mesh Team
     "npshenichnyy@salesforce.com",
     # DVA Team
