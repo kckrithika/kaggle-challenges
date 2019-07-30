@@ -8,7 +8,7 @@ system:
   - name: gater-mesh2
     count: 0
     containers:
-    - name: gater2
+    - name: gater-mesh2
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/sortiz/gater-sandbox:sortiz-20190712A
       args:
       - --server.port=9090
