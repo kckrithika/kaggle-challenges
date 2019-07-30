@@ -97,9 +97,9 @@ spec:
         - name: SFDC_SETTINGS_PATH
           value: mesh.-.prd.-.sherpa-injector
         - name: SFDC_METRICS_SERVICE_HOST
-          value: ajnafunneldirect.localhost.mesh.force.com
+          value: ajnafunneldirecttls.funnel.localhost.mesh.force.com
         - name: SFDC_METRICS_SERVICE_PORT
-          value: "7013"
+          value: "5442"
         - name: FAKE_REDEPLOY_VAR
           value: "1"
         image: ops0-artifactrepo2-0-prd.data.sfdc.net/sfci/servicelibs/sherpa-injector:fb94972c5eb38ce818ff5bd2d7287e4c379ebe3d
