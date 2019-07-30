@@ -1,13 +1,14 @@
 - lbname: ceodevopsci
   customlbname: ceodevopsci-prd
   servers:
-  - 10.252.202.54 
-  - 10.252.204.73
+  - devopsci01.dop.sfdc.net
+  - devopsci02.dop.sfdc.net
   ports:
   - port: 443
     targetport: 443
     lbtype: http
     tls: true
+    reencrypt: true
     healthport: 8080
     healthprotocol: http
     healthpath: /ha/health-check
