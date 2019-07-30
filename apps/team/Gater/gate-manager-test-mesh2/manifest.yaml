@@ -3,20 +3,20 @@ apiVersion: v1
 system:
   notifications:
     email:
-    - dmanoharan@salesforce.com
+    - sortiz@salesforce.com
   functions:
-  - name: gater-mesh-psc
+  - name: gater-mesh2
     count: 0
     containers:
     - name: gater2
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/dmanoharan/gater-psc:dmanoharan-20190626A
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/sortiz/gater-sandbox:sortiz-20190712A
       args:
       - --server.port=9090
       - --logging.evaluator.level=ERRORS_ONLY
       - --gater-service.thread.pool.max-size=0
-      - --gater.thrift.service.endpoint=gater-mesh
-      - --gater.thrift.metadata.endpoint=gater-mesh-metadata
-      - --gater.thrift.admin.endpoint=gater-mesh-admin
+      - --gater.thrift.service.endpoint=gater-mesh2
+      - --gater.thrift.metadata.endpoint=gater-mesh2-metadata
+      - --gater.thrift.admin.endpoint=gater-mesh2-admin
       - --metrics.collectionInterval=60
       ports:
       - containerPort: 7020
