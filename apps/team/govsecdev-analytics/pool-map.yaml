@@ -1,5 +1,2 @@
 version: v2
 apps:
-  gca-metrics-service:
-    - chx/chx-sam_gater
-    - wax/wax-sam_gater
