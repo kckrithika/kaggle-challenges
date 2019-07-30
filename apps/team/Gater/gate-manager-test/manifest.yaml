@@ -14,7 +14,7 @@ system:
     - name: gater1
       image: sfci/gater/gate-manager:1.15.0
       args:
-      - --server.port=-1
+      - --server.port=9090
       - --logging.level.com.zaxxer.hikari=debug
       - --spring.datasource.hikari.maximumPoolSize=6
       - --spring.datasource.hikari.minimumIdle=5
