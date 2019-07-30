@@ -1,0 +1,13 @@
+- lbname: ceodevopsci
+  customlbname: ceodevopsci-prd
+  servers:
+  - 10.252.202.54 
+  - 10.252.204.73
+  ports:
+  - port: 443
+    targetport: 443
+    lbtype: http
+    tls: true
+    healthport: 8080
+    healthprotocol: http
+    healthpath: /login
