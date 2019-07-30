@@ -77,6 +77,9 @@ subjects:
   name: shravya.srinivas@salesforce.com
 - apiGroup: rbac.authorization.k8s.io
   kind: User
+  name: jiaqi.wu@salesforce.com
+- apiGroup: rbac.authorization.k8s.io
+  kind: User
   name: npshenichnyy@salesforce.com
 - apiGroup: rbac.authorization.k8s.io
   kind: User
