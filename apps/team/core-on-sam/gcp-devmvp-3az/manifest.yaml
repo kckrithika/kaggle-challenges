@@ -176,7 +176,7 @@ system:
         initialDelaySeconds: 120
         periodSeconds: 5
         timeoutSeconds: 5
-        failureThreshold: 99999
+        failureThreshold: 99998
 
       ports:
         # Actually used by the container
