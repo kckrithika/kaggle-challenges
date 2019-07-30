@@ -178,7 +178,7 @@
                   "10.251.196.113/32",  # ops0-netlog1-0-prd.slb.sfdc.net - Zack Mady - https://computecloud.slack.com/archives/C42SAQVS9/p1556121900123900
                   "96.43.157.8/32",  #na44-stmfa1-0-prd.slb.sfdc.net
                   "96.43.157.9/32",  #na44-stmfb1-0-prd.slb.sfdc.net
-                  "96.43.157.10/32",  #na44-stmfc1-0-prd.slb.sfdc.net 
+                  "96.43.157.10/32",  #na44-stmfc1-0-prd.slb.sfdc.net
                 ],
                 # C360 -- start -- W-6124538
                 "iad-sam": [
