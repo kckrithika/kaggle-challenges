@@ -53,13 +53,15 @@ system:
           name: gus-credentials
           readOnly: true
         readinessProbe:
-          tcpSocket:
-            port: 8889
+          httpGet:
+            path: /manage/health
+            port: 15372
           initialDelaySeconds: 5
           periodSeconds: 10
         livenessProbe:
-          tcpSocket:
-            port: 8889
+          httpGet:
+            path: /manage/health
+            port: 15372
           initialDelaySeconds: 15
           periodSeconds: 20
       volumes:
