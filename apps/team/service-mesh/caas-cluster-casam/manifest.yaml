@@ -15,8 +15,8 @@ system:
     - name: caas-redis
       image: dva/caas/release/caas-redis-4.0.10:17
       resources:
-        limits: { memory: "100Mi" }
-        requests: { memory: "100Mi" }
+        limits: { memory: "500Mi" }
+        requests: { memory: "500Mi" }
       args:
         - --port=15008
         - --maxMemoryMB=50
