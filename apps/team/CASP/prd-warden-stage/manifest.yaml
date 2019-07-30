@@ -54,8 +54,9 @@ system:
           readOnly: true
         livenessProbe:
           httpGet:
-            path: /manage/health
-            port: 15372
+            scheme: HTTPS
+            path: /page/index
+            port: 8888
           initialDelaySeconds: 120
       volumes:
       - name: staging-log-vol
@@ -93,5 +94,7 @@ system:
       ports:
         - port: 80
           targetport: 8889
+          lbalgorithm: roundrobin
         - port: 443
           targetport: 8444
+          lbalgorithm: roundrobin
