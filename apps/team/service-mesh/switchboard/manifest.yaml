@@ -21,11 +21,11 @@ system:
       - --clusters.zkScraper.scrapeTimeoutMs=120000
       - --cluster.scraper.delayMs=120000
       - --healthIndicator.maxThreadCount=1300
+      - --metrics.sherpaFunnelServiceURL=http://ajnafunneldirecttls.funnel.localhost.mesh.force.com:5442
       ############################# PRODUCTION CONFIGURATION - OVERRIDDEN VALUES ######################
       # The following configuration exists in production manifests as well with different values. 
       - --metrics.maxNumberOfCollectedMetrics=400000
       - --metrics.funnelTimeOut=100000
-      - --metrics.sherpaFunnelServiceURL=http://ajnafunneldirecttls.funnel.localhost.mesh.force.com:5442
       ############################# PRD ONLY CONFIGURATION ############################################
       # The following configuration is for features that are enabled only in PRD.
       # Configuration for External Auth Service
