@@ -1,12 +1,11 @@
 apiVersion: v1
-# perf side car
 system:
   notifications:
     email:
-    - sortiz@salesforce.com
+    - gater@salesforce.com
   functions:
   - name: gater-mesh2
-    count: 0
+    count: 1
     containers:
     - name: gater-mesh2
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/sortiz/gater-sandbox:sortiz-20190712A
