@@ -8,7 +8,7 @@ system:
     count: 1
     containers:
     - name: ml-spaas
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/daeki.cho/ml-spaas:cho-20190403v2
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/daeki.cho/ml-spaas:cho-20190730v1
       ports:
       - containerPort: 7020
       livenessProbe:
@@ -22,7 +22,10 @@ system:
       - mountPath: /home/sfdc-ml-spaas-service/logs
         name: logvol
     - name: beacon
-      image: sfci/servicelibs/beacon:f6445b2b299f232eda1e0be9739b8242153478ea
+      image: sfci/services/sfdc-bazel/disco/beacon:d7f1640
+      resources:
+        limits: { cpu: "1", memory: "1Gi" }
+        requests: { cpu: "1", memory: "1Gi" }
       args:
       - -endpoint
       - samapp/$(FUNCTION):DATACENTER_ALLENV:HTTP2
@@ -37,7 +40,7 @@ system:
           - /home/scone/is-alive.sh
         initialDelaySeconds: 5
     - name: sherpa
-      image: sfci/servicelibs/sherpa-envoy:1.0.5
+      image: sfci/servicelibs/sherpa-envoy:1.0.8
       ports:
       - name: http2-in
         containerPort: 7012
@@ -45,6 +48,9 @@ system:
         containerPort: 7443
       - name: sherpa-adm
         containerPort: 15373
+      resources:
+        limits: { cpu: "1", memory: "1Gi" }
+        requests: { cpu: "1", memory: "1Gi" }
       volumeMounts:
       - mountPath: /client-certs
         name: tls-client-cert
