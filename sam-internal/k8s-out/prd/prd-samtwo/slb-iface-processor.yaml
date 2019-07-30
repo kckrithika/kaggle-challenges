@@ -38,7 +38,7 @@ spec:
         - --metricsEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80
         - --log_dir=/host/data/slb/logs/slb-iface-processor
         - --hostsConfigFile=/sfdchosts/hosts.json
-        - --subnet=10.254.252.0/22,136.146.214.0/23,96.43.157.0/24
+        - --subnet=10.254.252.0/22,136.146.214.0/23
         image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/slb/hyperslb:2210-e824af7ddb92556e8c766c6d27b332cbca850576
         name: slb-iface-processor
         securityContext:

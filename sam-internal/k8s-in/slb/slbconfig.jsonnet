@@ -94,7 +94,7 @@
             "prd-samdev": "",
             "prd-sam_storage": "",
             "prd-sam_storagedev": "",
-            "prd-sam": "",
+            "prd-sam": "96.43.157.0/24",
             "frf-sam": "185.79.140.0/23",
             "par-sam": "185.79.142.0/23",
             "phx-sam": "13.110.30.0/23",
@@ -110,7 +110,7 @@
             "lo3-sam": "161.71.46.0/23",
             "ia2-sam": "13.110.50.0/23",
             "ph2-sam": "13.110.52.0/23",
-            "prd-samtwo": "136.146.214.0/23,96.43.157.0/24",
+            "prd-samtwo": "136.146.214.0/23",
             vpod: "",
         },
 
@@ -176,6 +176,9 @@
                   "10.251.197.44/32",  # ops0-dvaregistryssl1-0-prd.slb.sfdc.net
                   "10.251.196.212/32",  # gatekeeper-dashboardlb.gatekeeper.prd-sam.prd.slb.sfdc.net - Peijun Wu - https://computecloud.slack.com/archives/C42SAQVS9/p1556063807120000?thread_ts=1556038442.093300&cid=C42SAQVS9
                   "10.251.196.113/32",  # ops0-netlog1-0-prd.slb.sfdc.net - Zack Mady - https://computecloud.slack.com/archives/C42SAQVS9/p1556121900123900
+                  "96.43.157.8/32",  #na44-stmfa1-0-prd.slb.sfdc.net
+                  "96.43.157.9/32",  #na44-stmfb1-0-prd.slb.sfdc.net
+                  "96.43.157.10/32",  #na44-stmfc1-0-prd.slb.sfdc.net
                 ],
                 # C360 -- start -- W-6124538
                 "iad-sam": [
@@ -204,11 +207,6 @@
                 "hnd-sam": [
                   "161.71.144.14/32",  # rsui-production-hnd-lb.retail-rsui.hnd-sam.hnd.slb.sfdc.net
                   "161.71.144.15/32",  # rsui-production-hnd-test-lb.retail-rsui.hnd-sam.hnd.slb.sfdc.net
-                ],
-                "prd-samtwo": [
-                  "136.146.214.8/32",  #na44-stmfa1-0-prd.slb.sfdc.net
-                  "136.146.214.9/32",  #na44-stmfb1-0-prd.slb.sfdc.net
-                  "136.146.214.10/32",  #na44-stmfc1-0-prd.slb.sfdc.net
                 ],
             },
 
