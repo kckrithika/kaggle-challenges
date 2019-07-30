@@ -21,11 +21,11 @@ local mcpIstioConfig = (import "service-mesh/istio-config.jsonnet");
           number: 15008,
           protocol: "Redis",
           name: "redis-caas",
-          hosts: [
-            "*/na7-mist61-caas-prd.service-mesh.svc.cluster.local",
-          ],
-          bind: "0.0.0.0", # We could choose to bind this to 127.1.2.3 or wildcard, wildcard aligns with how HTTP works.
         },
+        hosts: [
+            "*/na7-mist61-caas-prd.service-mesh.svc.cluster.local",
+        ],
+        bind: "0.0.0.0", # We could choose to bind this to 127.1.2.3 or wildcard, wildcard aligns with how HTTP works.
       },
     ],
   },

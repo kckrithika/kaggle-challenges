@@ -24,10 +24,10 @@ spec:
     - search-scale-safely/*
     - service-mesh/*
     - universal-search/*
-  - port:
-      bind: 0.0.0.0
-      hosts:
-      - '*/na7-mist61-caas-prd.service-mesh.svc.cluster.local'
+  - bind: 0.0.0.0
+    hosts:
+    - '*/na7-mist61-caas-prd.service-mesh.svc.cluster.local'
+    port:
       name: redis-caas
       number: 15008
       protocol: Redis
