@@ -1099,7 +1099,7 @@ items:
         - command:
           - /sam/watchdog
           - -role=CLI
-          - -emailFrequency=1h
+          - -emailFrequency=24h
           - -timeout=2s
           - -funnelEndpoint=ajna0-funnel1-0-dfw.data.sfdc.net:80
           - --config=/config/watchdog.json
