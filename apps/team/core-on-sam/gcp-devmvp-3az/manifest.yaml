@@ -67,7 +67,7 @@ system:
         - name: IP_DB
           value: na11-db1-1-mvp.core.test.us-central1.gcp.sfdc.net
         - name: SERVER_ID
-          value: 5
+          value: R
           
         - name: INTERNAL_ENV
           value: true
