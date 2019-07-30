@@ -10,4 +10,4 @@
     tls: true
     healthport: 8080
     healthprotocol: http
-    healthpath: /login
+    healthpath: /ha/health-check
