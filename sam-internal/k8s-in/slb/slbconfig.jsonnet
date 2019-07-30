@@ -160,11 +160,19 @@
                   "10.214.36.129/32",  # kubernetes-api-flowsnake-frf.slb.sfdc.net
                   "185.79.140.14/32",  # rsui-production-frf-lb.retail-rsui.frf-sam.frf.slb.sfdc.net
                   "185.79.140.15/32",  # rsui-production-frf-test-lb.retail-rsui.frf-sam.frf.slb.sfdc.net
+                  "10.214.36.14/32",  #cre-control-plane-lb.retail-cre.frf-sam.frf.slb.sfdc.net
+                  "10.214.36.140/32",  #cre-sp-lb.retail-cre.frf-sam.frf.slb.sfdc.net
+                  "10.214.36.141/32",  #dfs-production-lb.retail-dfs.frf-sam.frf.slb.sfdc.net
+                  "10.214.36.145/32",  #rsui-service-frf-lb.retail-rsui.frf-sam.frf.slb.sfdc.net
                 ],
                 "par-sam": [
                   "10.214.112.129/32",  # kubernetes-api-flowsnake-par.slb.sfdc.net
                   "185.79.142.14/32",  # rsui-production-par-lb.retail-rsui.par-sam.par.slb.sfdc.net
                   "185.79.142.15/32",  # rsui-production-par-test-lb.retail-rsui.par-sam.par.slb.sfdc.net
+                  "10.214.112.103/32",  #cre-control-plane-lb.retail-cre.par-sam.par.slb.sfdc.net
+                  "10.214.112.107/32",  #cre-sp-lb.retail-cre.par-sam.par.slb.sfdc.net
+                  "10.214.112.132/32",  #dfs-production-lb.retail-dfs.par-sam.par.slb.sfdc.net
+                  "10.214.112.135/32",  #rsui-service-par-lb.retail-rsui.par-sam.par.slb.sfdc.net
                 ],
                 "phx-sam": [
                   "10.208.208.144/32",  # sec0-magister1-0-phx.slb.sfdc.net.
@@ -189,6 +197,7 @@
                   "10.208.108.14/32",  # metadata-service-lb.retail-mds.iad-sam.iad.slb.sfdc.net
                   "13.110.24.14/32",  # rsui-production-iad-lb.retail-rsui.iad-sam.iad.slb.sfdc.net
                   "13.110.24.15/32",  # rsui-production-iad-test-lb.retail-rsui.iad-sam.iad.slb.sfdc.net
+                  "10.208.108.15/32",  #rsui-service-iad-lb.retail-rsui.iad-sam.iad.slb.sfdc.net
                 ],
                 "ord-sam": [
                   "10.208.148.0/32",  # cre-api-lb.retail-cre.ord-sam.ord.slb.sfdc.net
@@ -198,15 +207,24 @@
                   "10.208.148.147/32",  # metadata-service-lb.retail-mds.ord-sam.ord.slb.sfdc.net
                   "13.110.26.14/32",  # rsui-production-ord-lb.retail-rsui.ord-sam.ord.slb.sfdc.net
                   "13.110.26.15/32",  # rsui-production-ord-test-lb.retail-rsui.ord-sam.ord.slb.sfdc.net
+                  "10.208.148.109/32",  #rsui-service-ord-lb.retail-rsui.ord-sam.ord.slb.sfdc.net
                 ],
                 # C360 -- end
                 "ukb-sam": [
                   "161.71.146.14/32",  # rsui-production-ukb-lb.retail-rsui.ukb-sam.ukb.slb.sfdc.net
                   "161.71.146.15/32",  # rsui-production-ukb-test-lb.retail-rsui.ukb-sam.ukb.slb.sfdc.net
+                  "10.213.36.109/32",  #cre-control-plane-lb.retail-cre.ukb-sam.ukb.slb.sfdc.net
+                  "10.213.36.117/32",  #cre-sp-lb.retail-cre.ukb-sam.ukb.slb.sfdc.net
+                  "10.213.36.121/32",  #dfs-production-lb.retail-dfs.ukb-sam.ukb.slb.sfdc.net
+                  "10.213.36.122/32",  #rsui-service-ukb-lb.retail-rsui.ukb-sam.ukb.slb.sfdc.net
                 ],
                 "hnd-sam": [
                   "161.71.144.14/32",  # rsui-production-hnd-lb.retail-rsui.hnd-sam.hnd.slb.sfdc.net
                   "161.71.144.15/32",  # rsui-production-hnd-test-lb.retail-rsui.hnd-sam.hnd.slb.sfdc.net
+                  "10.213.100.136/32",  #cre-control-plane-lb.retail-cre.hnd-sam.hnd.slb.sfdc.net
+                  "10.213.100.137/32",  #cre-sp-lb.retail-cre.hnd-sam.hnd.slb.sfdc.net
+                  "10.213.100.138/32",  #dfs-production-lb.retail-dfs.hnd-sam.hnd.slb.sfdc.net
+                  "10.213.100.139/32",  #rsui-service-hnd-lb.retail-rsui.hnd-sam.hnd.slb.sfdc.net
                 ],
             },
 
