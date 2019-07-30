@@ -21,6 +21,7 @@
         "*.builder.stmda.stm.salesforce-communities.com",
         "*.preview.stmda.stm.salesforce-communities.com",
         "*.livepreview.stmda.stm.salesforce-communities.com",
+        "*.dop.sfdc.net",
         "*.stmda.stm.documentforce.com",
         "*.stmda.stm.visualforce.com",
         "*.lightning.stmda.stm.force.com",
