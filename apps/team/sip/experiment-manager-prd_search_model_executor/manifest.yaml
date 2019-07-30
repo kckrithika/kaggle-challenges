@@ -3,7 +3,7 @@ apiVersion: v1
 system:
   notifications:
     email:
-      - srinath.venkatesan@salesforce.com
+      - smarwaha@salesforce.com
   functions:
     - name: sip-em-prd
       count: 1
