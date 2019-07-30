@@ -54,7 +54,6 @@ system:
           readOnly: true
         livenessProbe:
           httpGet:
-            scheme: HTTPS
             path: /page/index
             port: 8888
           initialDelaySeconds: 120
