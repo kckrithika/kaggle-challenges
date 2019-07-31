@@ -56010,7 +56010,7 @@
       hostname: "shared0-samminionwarden1-2-xrd.eng.sfdc.net",
       kingdom: "xrd",
       pod: "none",
-      rack: "d18-cr02",
+      rack: "e13-cr02",
       superpod: "none",
     },
     {
