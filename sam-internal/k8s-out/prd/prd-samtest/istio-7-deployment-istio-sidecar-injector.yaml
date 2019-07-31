@@ -117,8 +117,12 @@ spec:
           initialDelaySeconds: 4
           periodSeconds: 4
         resources:
+          limits:
+            cpu: 1000m
+            memory: 256Mi
           requests:
-            cpu: 10m
+            cpu: 100m
+            memory: 128Mi
         volumeMounts:
         - mountPath: /etc/pki_service
           name: maddog-certs

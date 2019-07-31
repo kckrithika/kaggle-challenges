@@ -92,6 +92,16 @@ configs.deploymentBase("service-mesh") {
               periodSeconds: 30,
               timeoutSeconds: 5,
             },
+            resources: {
+              requests: {
+                cpu: "100m",
+                memory: "128Mi",
+              },
+              limits: {
+                cpu: "1000m",
+                memory: "256Mi",
+              },
+            },
           } + configs.ipAddressResourceRequest,
           madkub.madkubRefreshContainer(certConfigs),
         ],
