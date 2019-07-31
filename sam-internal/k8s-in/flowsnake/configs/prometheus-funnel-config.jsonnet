@@ -197,8 +197,6 @@ local flowsnake_images = (import "flowsnake_images.jsonnet") + { templateFilenam
               "ca_file": "/var/run/secrets/kubernetes.io/serviceaccount/ca.crt"
             }
         },
-    ] + (if std.objectHas(flowsnake_images.feature_flags, "etcd_cluster_metrics") then 
-    [
         {
             "job_name": "etcd",
             "static_configs": [
@@ -213,5 +211,5 @@ local flowsnake_images = (import "flowsnake_images.jsonnet") + { templateFilenam
                 "key_file": "/certs/client/keys/client-key.pem",
             }
         }
-    ] else []),
+    ]
 }
