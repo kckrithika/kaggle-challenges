@@ -1,0 +1,81 @@
+apiVersion: extensions/v1beta1
+kind: DaemonSet
+metadata:
+  labels:
+    name: watchdog-master
+    sam.data.sfdc.net/owner: sam
+  name: watchdog-master
+spec:
+  selector:
+    matchLabels:
+      app: watchdog-master
+      apptype: monitoring
+      daemonset: "true"
+      sam.data.sfdc.net/owner: sam
+  template:
+    metadata:
+      labels:
+        app: watchdog-master
+        apptype: monitoring
+        daemonset: "true"
+        sam.data.sfdc.net/owner: sam
+      namespace: sam-system
+    spec:
+      containers:
+      - command:
+        - /sam/watchdog
+        - -role=MASTER
+        - -watchdogFrequency=5s
+        - -alertThreshold=150s
+        - -watchDogKind=DaemonSet
+        - -funnelEndpoint=ajna0-funnel1-0-ia4.data.sfdc.net:80
+        - --config=/config/watchdog.json
+        - --hostsConfigFile=/sfdchosts/hosts.json
+        - -timeout=2s
+        - -emailFrequency=336h
+        env:
+        - name: KUBECONFIG
+          value: /kubeconfig/kubeconfig-platform
+        image: ops0-artifactrepo1-0-ia4.data.sfdc.net/dva/sam/hypersam:2755-f2d626475424807fceb6c047dbb5ae7271561131
+        name: watchdog
+        resources:
+          limits:
+            cpu: "0.5"
+            memory: 300Mi
+          requests:
+            cpu: "0.5"
+            memory: 300Mi
+        volumeMounts:
+        - mountPath: /etc/pki_service
+          name: maddog-certs
+        - mountPath: /kubeconfig
+          name: kubeconfig
+        - mountPath: /sfdchosts
+          name: sfdchosts
+        - mountPath: /config
+          name: config
+        - mountPath: /data/certs
+          name: certs
+      hostNetwork: true
+      nodeSelector:
+        master: "true"
+      volumes:
+      - hostPath:
+          path: /etc/pki_service
+        name: maddog-certs
+      - hostPath:
+          path: /etc/kubernetes
+        name: kubeconfig
+      - configMap:
+          name: sfdchosts
+        name: sfdchosts
+      - hostPath:
+          path: /data/certs
+        name: certs
+      - configMap:
+          name: watchdog
+        name: config
+  updateStrategy:
+    rollingUpdate:
+      maxUnavailable: 25%
+    type: RollingUpdate

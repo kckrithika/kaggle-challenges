@@ -1,0 +1,58 @@
+apiVersion: extensions/v1beta1
+kind: DaemonSet
+metadata:
+  labels:
+    name: sdn-bird
+  name: sdn-bird
+  namespace: sam-system
+spec:
+  minReadySeconds: 300
+  selector:
+    matchLabels:
+      apptype: control
+      daemonset: "true"
+      name: sdn-bird
+  template:
+    metadata:
+      labels:
+        apptype: control
+        daemonset: "true"
+        name: sdn-bird
+      namespace: sam-system
+    spec:
+      containers:
+      - env:
+        - name: BIRD_CONF
+          value: /usr/local/etc/bird.conf
+        - name: BIRD_SOCKET
+          value: /usr/local/var/run/bird.ctl
+        image: ops0-artifactrepo1-0-ia4.data.sfdc.net/dva/sdn/bird:503-94b968cf67a338280f71a5c932f0956d13e982bb
+        livenessProbe:
+          exec:
+            command:
+            - /bird/sdn-bird-watcher
+          initialDelaySeconds: 5
+          periodSeconds: 10
+        name: sdn-bird
+        volumeMounts:
+        - mountPath: /usr/local/etc
+          name: conf
+        - mountPath: /usr/local/var/run
+          name: socket
+        - mountPath: /var/logs/sdn/
+          name: sdnlogs
+      hostNetwork: true
+      volumes:
+      - hostPath:
+          path: /etc/kubernetes/sdn
+        name: conf
+      - hostPath:
+          path: /etc/kubernetes/sdn
+        name: socket
+      - hostPath:
+          path: /var/logs/sdn/
+        name: sdnlogs
+  updateStrategy:
+    rollingUpdate:
+      maxUnavailable: 15%
+    type: RollingUpdate

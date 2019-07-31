@@ -1,0 +1,48 @@
+apiVersion: extensions/v1beta1
+kind: DaemonSet
+metadata:
+  labels:
+    name: sdn-cleanup
+  name: sdn-cleanup
+  namespace: sam-system
+spec:
+  selector:
+    matchLabels:
+      apptype: control
+      daemonset: "true"
+      name: sdn-cleanup
+      sam.data.sfdc.net/owner: sdn
+  template:
+    metadata:
+      labels:
+        apptype: control
+        daemonset: "true"
+        name: sdn-cleanup
+        sam.data.sfdc.net/owner: sdn
+      namespace: sam-system
+    spec:
+      containers:
+      - command:
+        - /sdn/sdn-cleanup
+        - --period=1440m
+        - --logsMaxAge=48h
+        - --filesDirToCleanup=/var/logs/sdn/
+        - --shouldNotDeleteAllFiles=false
+        - --log_dir=/var/logs/sdn/
+        - --logtostderr=false
+        - --alsologtostderr=true
+        image: ops0-artifactrepo1-0-ia5.data.sfdc.net/dva/sdn/hypersdn:2138-419bfa61fefbbe25c3c629d44045585a3b29d644
+        name: sdn-cleanup
+        securityContext:
+          privileged: true
+        volumeMounts:
+        - mountPath: /var/logs/sdn/
+          name: sdnlogs
+      volumes:
+      - hostPath:
+          path: /var/logs/sdn/
+        name: sdnlogs
+  updateStrategy:
+    rollingUpdate:
+      maxUnavailable: 25%
+    type: RollingUpdate

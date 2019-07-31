@@ -1,0 +1,71 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  labels:
+    name: samcontrol
+    sam.data.sfdc.net/owner: sam
+  name: samcontrol
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      name: samcontrol
+  template:
+    metadata:
+      labels:
+        apptype: control
+        name: samcontrol
+        sam.data.sfdc.net/owner: sam
+      namespace: sam-system
+    spec:
+      containers:
+      - command:
+        - /sam/sam-controller
+        - --dockerregistry=ops0-artifactrepo1-0-ia4.data.sfdc.net
+        - --funnelEndpoint=ajna0-funnel1-0-ia4.data.sfdc.net:80
+        - --v=3
+        - --logtostderr=true
+        - --config=/config/samcontrol.json
+        - --hostsConfigFile=/sfdchosts/hosts.json
+        - -maddogMadkubEndpoint=https://$(MADKUBSERVER_SERVICE_HOST):32007
+        env:
+        - name: KUBECONFIG
+          value: /kubeconfig/kubeconfig-platform
+        image: ops0-artifactrepo1-0-ia4.data.sfdc.net/dva/sam/hypersam:2755-f2d626475424807fceb6c047dbb5ae7271561131
+        livenessProbe:
+          httpGet:
+            path: /healthz
+            port: 22545
+          initialDelaySeconds: 30
+          periodSeconds: 5
+        name: sam-controller
+        volumeMounts:
+        - mountPath: /etc/pki_service
+          name: maddog-certs
+        - mountPath: /kubeconfig
+          name: kubeconfig
+        - mountPath: /sfdchosts
+          name: sfdchosts
+        - mountPath: /config
+          name: config
+        - mountPath: /data/certs
+          name: certs
+      hostNetwork: true
+      nodeSelector:
+        pool: ia4-sam
+      volumes:
+      - hostPath:
+          path: /etc/pki_service
+        name: maddog-certs
+      - hostPath:
+          path: /etc/kubernetes
+        name: kubeconfig
+      - configMap:
+          name: sfdchosts
+        name: sfdchosts
+      - hostPath:
+          path: /data/certs
+        name: certs
+      - configMap:
+          name: samcontrol
+        name: config

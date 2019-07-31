@@ -1,0 +1,27 @@
+apiVersion: v1
+data:
+  samapp-controller-config.json: |-
+    {
+      "dnsEnabledPoolNamesRegex": ".*",
+      "dockerRegistry": "ops0-artifactrepo1-0-ia5.data.sfdc.net",
+      "enableDNS": true,
+      "enableIdentityEnvVar": false,
+      "enableMaddog": true,
+      "enableStatefulSet": true,
+      "funnelEndpoint": "ajna0-funnel1-0-ia5.data.sfdc.net:80",
+      "imagePullPolicy": "IfNotPresent",
+      "k4aInitContainerImage": "ops0-artifactrepo1-0-ia5.data.sfdc.net/tnrp/sam/hypersam:sam-0002447-69fdc914",
+      "maddogMaddogEndpoint": "https://all.pkicontroller.pki.blank.ia5.prod.non-estates.sfdcsd.net:8443",
+      "madkubImage": "ops0-artifactrepo1-0-ia5.data.sfdc.net/tnrp/sam/madkub:1.0.0-0000077-b1d3a629",
+      "namespaceHostSubList": [
+        "cloudatlas"
+      ],
+      "volPermissionInitContainerImage": "ops0-artifactrepo1-0-ia5.data.sfdc.net/tnrp/sam/hypersam:sam-1ebeb0ac-657"
+    }
+kind: ConfigMap
+metadata:
+  creationTimestamp: null
+  labels:
+    sam.data.sfdc.net/owner: sam
+  name: samapp-controller
+  namespace: sam-system

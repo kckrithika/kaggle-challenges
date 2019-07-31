@@ -1416,6 +1416,186 @@
       "access": [
         "team/CSC_Sam"
       ],
+      "controlEstate": "ia4-sam",
+      "estate": "ia4-sam",
+      "kingdom": "ia4",
+      "superPod": "None"
+    },
+    {
+      "namespaces": [
+        "emp-aqueduct"
+      ],
+      "access": [
+        "team/emp_aqueduct"
+      ],
+      "controlEstate": "ia4-sam",
+      "estate": "ia4-sam_eventbus",
+      "kingdom": "ia4",
+      "superPod": "None"
+    },
+    {
+      "namespaces": [
+        "gater",
+        "ccait",
+        "service-mesh",
+        "service-protection"
+      ],
+      "access": [
+        "team/Gater",
+        "team/CCAIT",
+        "team/service-mesh",
+        "team/Service_Protection"
+      ],
+      "controlEstate": "ia4-sam",
+      "estate": "ia4-sam_gater",
+      "kingdom": "ia4",
+      "superPod": "None"
+    },
+    {
+      "namespaces": [
+        "gateway"
+      ],
+      "access": [
+        "team/gateway"
+      ],
+      "controlEstate": "ia4-sam",
+      "estate": "ia4-sam_gatewayconfig",
+      "kingdom": "ia4",
+      "superPod": "None"
+    },
+    {
+      "namespaces": [
+        "cache-as-a-service"
+      ],
+      "access": [
+        "team/Cache_As_A_service"
+      ],
+      "controlEstate": "ia4-sam",
+      "estate": "ia4-sam_kingdom_caas",
+      "kingdom": "ia4",
+      "superPod": "None"
+    },
+    {
+      "namespaces": [
+        "csc-health"
+      ],
+      "access": [
+        "team/CSC_Health"
+      ],
+      "controlEstate": "ia4-sam",
+      "estate": "ia4-sam_report_collector",
+      "kingdom": "ia4",
+      "superPod": "None"
+    },
+    {
+      "namespaces": [
+        "cache-as-a-service-sp1"
+      ],
+      "access": [
+        "team/Cache_As_A_service"
+      ],
+      "controlEstate": "ia4-sam",
+      "estate": "ia4-sp1-sam_caas",
+      "kingdom": "ia4",
+      "superPod": "sp1"
+    },
+    {
+      "namespaces": [
+        "csc-sam"
+      ],
+      "access": [
+        "team/CSC_Sam"
+      ],
+      "controlEstate": "ia5-sam",
+      "estate": "ia5-sam",
+      "kingdom": "ia5",
+      "superPod": "None"
+    },
+    {
+      "namespaces": [
+        "emp-aqueduct"
+      ],
+      "access": [
+        "team/emp_aqueduct"
+      ],
+      "controlEstate": "ia5-sam",
+      "estate": "ia5-sam_eventbus",
+      "kingdom": "ia5",
+      "superPod": "None"
+    },
+    {
+      "namespaces": [
+        "gater",
+        "ccait",
+        "service-mesh",
+        "service-protection"
+      ],
+      "access": [
+        "team/Gater",
+        "team/CCAIT",
+        "team/service-mesh",
+        "team/Service_Protection"
+      ],
+      "controlEstate": "ia5-sam",
+      "estate": "ia5-sam_gater",
+      "kingdom": "ia5",
+      "superPod": "None"
+    },
+    {
+      "namespaces": [
+        "gateway"
+      ],
+      "access": [
+        "team/gateway"
+      ],
+      "controlEstate": "ia5-sam",
+      "estate": "ia5-sam_gatewayconfig",
+      "kingdom": "ia5",
+      "superPod": "None"
+    },
+    {
+      "namespaces": [
+        "cache-as-a-service"
+      ],
+      "access": [
+        "team/Cache_As_A_service"
+      ],
+      "controlEstate": "ia5-sam",
+      "estate": "ia5-sam_kingdom_caas",
+      "kingdom": "ia5",
+      "superPod": "None"
+    },
+    {
+      "namespaces": [
+        "csc-health"
+      ],
+      "access": [
+        "team/CSC_Health"
+      ],
+      "controlEstate": "ia5-sam",
+      "estate": "ia5-sam_report_collector",
+      "kingdom": "ia5",
+      "superPod": "None"
+    },
+    {
+      "namespaces": [
+        "cache-as-a-service-sp1"
+      ],
+      "access": [
+        "team/Cache_As_A_service"
+      ],
+      "controlEstate": "ia5-sam",
+      "estate": "ia5-sp1-sam_caas",
+      "kingdom": "ia5",
+      "superPod": "sp1"
+    },
+    {
+      "namespaces": [
+        "csc-sam"
+      ],
+      "access": [
+        "team/CSC_Sam"
+      ],
       "controlEstate": "iad-sam",
       "estate": "iad-sam",
       "kingdom": "iad",

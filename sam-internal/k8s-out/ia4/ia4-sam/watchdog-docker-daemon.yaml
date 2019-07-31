@@ -1,0 +1,84 @@
+apiVersion: extensions/v1beta1
+kind: DaemonSet
+metadata:
+  labels:
+    name: watchdog-docker-daemon
+    sam.data.sfdc.net/owner: sam
+  name: watchdog-docker-daemon
+  namespace: sam-system
+spec:
+  selector:
+    matchLabels:
+      app: watchdog-docker-daemon
+      apptype: monitoring
+      daemonset: "true"
+      sam.data.sfdc.net/owner: sam
+  template:
+    metadata:
+      labels:
+        app: watchdog-docker-daemon
+        apptype: monitoring
+        daemonset: "true"
+        sam.data.sfdc.net/owner: sam
+      namespace: sam-system
+    spec:
+      containers:
+      - command:
+        - /sam/watchdog
+        - -role=CLI
+        - -cliCheckerCommandTarget=DockerDaemon
+        - -alertThreshold=30m
+        - -watchDogKind=DaemonSet
+        - --recipient=
+        - -cliCheckerTimeout=5m
+        - -funnelEndpoint=ajna0-funnel1-0-ia4.data.sfdc.net:80
+        - --config=/config/watchdog.json
+        - --hostsConfigFile=/sfdchosts/hosts.json
+        - -timeout=2s
+        env:
+        - name: KUBECONFIG
+          value: /kubeconfig/kubeconfig-platform
+        image: ops0-artifactrepo1-0-ia4.data.sfdc.net/dva/docker-daemon-watchdog:jenkins-dva-transformation-flowsnake-platform-master-781-itest
+        name: watchdog-docker-daemon
+        resources:
+          limits:
+            cpu: "0.1"
+            memory: 100Mi
+          requests:
+            cpu: "0.1"
+            memory: 100Mi
+        volumeMounts:
+        - mountPath: /etc/pki_service
+          name: maddog-certs
+        - mountPath: /kubeconfig
+          name: kubeconfig
+        - mountPath: /docker.sock
+          name: docker-socket
+          readOnly: true
+        - mountPath: /sfdchosts
+          name: sfdchosts
+        - mountPath: /config
+          name: config
+        - mountPath: /data/certs
+          name: certs
+      hostNetwork: true
+      restartPolicy: Always
+      volumes:
+      - hostPath:
+          path: /etc/pki_service
+        name: maddog-certs
+      - hostPath:
+          path: /etc/kubernetes
+        name: kubeconfig
+      - hostPath:
+          path: /var/run/docker.sock
+        name: docker-socket
+      - configMap:
+          name: sfdchosts
+        name: sfdchosts
+      - hostPath:
+          path: /data/certs
+        name: certs
+      - configMap:
+          name: watchdog
+        name: config

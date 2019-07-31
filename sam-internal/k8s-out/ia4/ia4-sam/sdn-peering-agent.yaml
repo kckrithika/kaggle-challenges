@@ -1,0 +1,105 @@
+apiVersion: extensions/v1beta1
+kind: DaemonSet
+metadata:
+  labels:
+    name: sdn-peering-agent
+  name: sdn-peering-agent
+  namespace: sam-system
+spec:
+  selector:
+    matchLabels:
+      apptype: control
+      daemonset: "true"
+      name: sdn-peering-agent
+      sam.data.sfdc.net/owner: sdn
+  template:
+    metadata:
+      labels:
+        apptype: control
+        daemonset: "true"
+        name: sdn-peering-agent
+        sam.data.sfdc.net/owner: sdn
+      namespace: sam-system
+    spec:
+      containers:
+      - command:
+        - /sdn/sdn-peering-agent
+        - --birdsock=/usr/local/var/run/bird.ctl
+        - --birdconf=/usr/local/etc/bird.conf
+        - --funnelEndpoint=ajna0-funnel1-0-ia4.data.sfdc.net:80
+        - --archiveSvcEndpoint=https://ops0-piperepo1-0-ia4.data.sfdc.net/tnrp/content_repo/0/archive
+        - --keyfile=/etc/pki_service/platform/platform-client/keys/platform-client-key.pem
+        - --certfile=/etc/pki_service/platform/platform-client/certificates/platform-client.pem
+        - --bgpPasswordFile=/data/secrets/sambgppassword
+        - --livenessProbePort=9100
+        - --sdncServiceName=sdn-control-svc
+        - --sdncNamespace=sam-system
+        - --rootPath=/etc/pki_service
+        - --userName=kubernetes
+        - --pkiClientServiceName=k8s-client
+        - --hostsConfigFile=/sfdchosts/hosts.json
+        - --log_dir=/var/logs/sdn/
+        - --logtostderr=false
+        - --alsologtostderr=true
+        - --birdlogdir=/var/logs/sdn/
+        env:
+        - name: KUBECONFIG
+          value: /kubeconfig/kubeconfig-platform
+        image: ops0-artifactrepo1-0-ia4.data.sfdc.net/dva/sdn/hypersdn:2138-419bfa61fefbbe25c3c629d44045585a3b29d644
+        livenessProbe:
+          httpGet:
+            path: /liveness-probe
+            port: 9100
+          initialDelaySeconds: 5
+          periodSeconds: 20
+          timeoutSeconds: 5
+        name: sdn-peering-agent
+        volumeMounts:
+        - mountPath: /sfdchosts
+          name: sfdchosts
+        - mountPath: /etc/pki_service
+          name: maddog-certs
+        - mountPath: /usr/local/etc
+          name: conf
+        - mountPath: /usr/local/var/run
+          name: socket
+        - mountPath: /data/certs
+          name: certs
+        - mountPath: /data/secrets
+          name: secrets
+          readOnly: true
+        - mountPath: /kubeconfig
+          name: kubeconfig
+        - mountPath: /var/logs/sdn/
+          name: sdnlogs
+      hostNetwork: true
+      volumes:
+      - configMap:
+          name: sfdchosts
+        name: sfdchosts
+      - hostPath:
+          path: /etc/pki_service
+        name: maddog-certs
+      - hostPath:
+          path: /etc/kubernetes/sdn
+        name: conf
+      - hostPath:
+          path: /etc/kubernetes/sdn
+        name: socket
+      - hostPath:
+          path: /data/certs
+        name: certs
+      - name: secrets
+        secret:
+          defaultMode: 256
+          secretName: sdn
+      - hostPath:
+          path: /etc/kubernetes
+        name: kubeconfig
+      - hostPath:
+          path: /var/logs/sdn/
+        name: sdnlogs
+  updateStrategy:
+    rollingUpdate:
+      maxUnavailable: 25%
+    type: RollingUpdate
