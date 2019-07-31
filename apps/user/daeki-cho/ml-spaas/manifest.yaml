@@ -19,7 +19,7 @@ system:
       - name: SFDC_ENVIRONMENT
         value: sam
       volumeMounts:
-      - mountPath: /home/sfdc-ml-spaas-service/logs
+      - mountPath: /home/sfdc-ml-spaas/logs
         name: logvol
     - name: beacon
       image: sfci/services/sfdc-bazel/disco/beacon:d7f1640
@@ -78,7 +78,7 @@ system:
         type: server
     - name: logvol
       hostPath:
-        path: /home/sfdc-ml-spaas-service/logs
+        path: /home/sfdc-ml-spaas/logs
     - name: beacon-log-volume
       hostPath:
         path: /home/sfdc-beacon/logs
