@@ -95,13 +95,9 @@ system:
     loadbalancers:
     - lbname: warden-stage-node
       function: warden-stage-func
-      slbEnabled: true
+      nodeExposed: true
       ports:
-        - port: 80
+        - port: 8889
           targetport: 8889
-          lbalgorithm: roundrobin
-          lbtype: http
-        - port: 443
+        - port: 8444
           targetport: 8444
-          lbalgorithm: roundrobin
-          lbtype: http
