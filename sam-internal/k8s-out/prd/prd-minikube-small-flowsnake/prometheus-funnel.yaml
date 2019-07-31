@@ -13,6 +13,9 @@ spec:
       service: prometheus-scraper
   template:
     metadata:
+      annotations:
+        madkub.sam.sfdc.net/allcerts: '{"certreqs": [{"cert-type": "client", "kingdom":
+          "prd", "name": "prometheusscrapercerts", "role": "flowsnake_metrics"}]}'
       labels:
         apptype: monitoring
         flowsnakeOwner: dva-transform
@@ -42,6 +45,8 @@ spec:
           name: prometheus-storage-volume
         - mountPath: /etc/config
           name: prometheus-server-conf
+        - mountPath: /certs
+          name: datacerts
       - args:
         - --serviceName=flowsnake
         - --subserviceName=NONE
@@ -64,6 +69,111 @@ spec:
         volumeMounts:
         - mountPath: /prometheus-storage
           name: prometheus-storage-volume
+        - mountPath: /certs
+          name: datacerts
+      - args:
+        - /sam/madkub-client
+        - --madkub-endpoint
+        - https://madkubserver:32007
+        - --maddog-endpoint
+        - https://maddog-onebox:8443
+        - --maddog-server-ca
+        - /maddog-onebox/ca/security-ca.pem
+        - --madkub-server-ca
+        - /maddog-onebox/ca/ca.pem
+        - --token-folder
+        - /tokens
+        - --kingdom
+        - prd
+        - --superpod
+        - None
+        - --estate
+        - prd-minikube-small-flowsnake
+        - --refresher
+        - --run-init-for-refresher-mode
+        - --cert-folders
+        - prometheusscrapercerts:/certs
+        - --ca-folder
+        - /maddog-onebox/ca
+        - --log-level
+        - "7"
+        env:
+        - name: MADKUB_NODENAME
+          valueFrom:
+            fieldRef:
+              apiVersion: v1
+              fieldPath: spec.nodeName
+        - name: MADKUB_NAME
+          valueFrom:
+            fieldRef:
+              apiVersion: v1
+              fieldPath: metadata.name
+        - name: MADKUB_NAMESPACE
+          valueFrom:
+            fieldRef:
+              apiVersion: v1
+              fieldPath: metadata.namespace
+        image: minikube/madkub:minikube
+        name: sam-madkub-integration-refresher
+        resources: {}
+        volumeMounts:
+        - mountPath: /certs
+          name: datacerts
+        - mountPath: /tokens
+          name: tokens
+        - mountPath: /maddog-onebox
+          name: maddog-onebox-certs
+      initContainers:
+      - args:
+        - /sam/madkub-client
+        - --madkub-endpoint
+        - https://madkubserver:32007
+        - --maddog-endpoint
+        - https://maddog-onebox:8443
+        - --maddog-server-ca
+        - /maddog-onebox/ca/security-ca.pem
+        - --madkub-server-ca
+        - /maddog-onebox/ca/ca.pem
+        - --token-folder
+        - /tokens
+        - --kingdom
+        - prd
+        - --superpod
+        - None
+        - --estate
+        - prd-minikube-small-flowsnake
+        - --cert-folders
+        - prometheusscrapercerts:/certs
+        - --ca-folder
+        - /maddog-onebox/ca
+        - --log-level
+        - "7"
+        env:
+        - name: MADKUB_NODENAME
+          valueFrom:
+            fieldRef:
+              apiVersion: v1
+              fieldPath: spec.nodeName
+        - name: MADKUB_NAME
+          valueFrom:
+            fieldRef:
+              apiVersion: v1
+              fieldPath: metadata.name
+        - name: MADKUB_NAMESPACE
+          valueFrom:
+            fieldRef:
+              apiVersion: v1
+              fieldPath: metadata.namespace
+        image: minikube/madkub:minikube
+        name: sam-madkub-integration-init
+        resources: {}
+        volumeMounts:
+        - mountPath: /certs
+          name: datacerts
+        - mountPath: /tokens
+          name: tokens
+        - mountPath: /maddog-onebox
+          name: maddog-onebox-certs
       restartPolicy: Always
       serviceAccountName: prometheus-scraper
       volumes:
@@ -73,3 +183,9 @@ spec:
       - emptyDir:
           medium: Memory
         name: prometheus-storage-volume
+      - emptyDir:
+          medium: Memory
+        name: datacerts
+      - emptyDir:
+          medium: Memory
+        name: tokens

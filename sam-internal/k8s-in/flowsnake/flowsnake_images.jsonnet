@@ -158,7 +158,9 @@ local utils = import "util_functions.jsonnet";
                 # --- flag B (these comments ... ---
                 # --- flag C (and place only ... ---
                 # --- flag D (one flag between ... ---
+                prometheus_pki: "unverified",
                 # --- flag E (each pair. ... ---
+                etcd_cluster_metrics: "unverified",
                 # --- flag F (Their only purpose ... ---
                 next_analysis_script: "unverified",
                 # --- flag G (is to assist ... ---
