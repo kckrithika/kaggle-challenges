@@ -18,7 +18,7 @@ system:
           type: client
     containers:
     - name: zones-intake-backend
-      image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/sds-zonesui-backend:135
+      image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/sds-zonesui-backend:137
       #image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/jiaqi-wu/sds-zonesui-backend:mtls15
       ports:
       - containerPort: 7022
@@ -63,6 +63,9 @@ system:
         httpGet:
           path: /zones/v1/healthcheck
           port: 7022
+        initialDelaySeconds: 60
+        timeoutSeconds: 10
+        periodSeconds: 5
       volumeMounts:
       - name: servercert
         mountPath: /servercerts
