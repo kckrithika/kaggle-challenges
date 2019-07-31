@@ -92,7 +92,7 @@ name: eaas-client-cert`
 
 ##### #Enable a load balancer in PRD so we have a stable FQDN to hit from the dev desktops or anywhere without Sherpa/Zookeeper (PRD ONLY)
 ##### #Full FQDN template: {lbname}.{namespace}.{estate}.{kingdom}.slb.sfdc.net
-##### #Actual FQDN: emailinfra-eaas-lb.emailinfra.prd-sam.prd.slb.sfdc.net
+##### #Actual FQDN: emailinfra-eaas-lb.emailinfra-sp2.prd-sam.prd.slb.sfdc.net
 ` loadbalancers: - lbname: emailinfra-eaas-lb`
 
 ##NOTES - PROD
