@@ -17,7 +17,7 @@ system:
           type: client
     containers:
     - name: zones-ui
-      image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/zones-ui:21
+      image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/zones-ui:22
       #image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/zones-ui:5
       env:
       - name: ZONES_SERVER_TYPE
@@ -29,7 +29,7 @@ system:
       - name: ZONES_BASE_URL
         value: "https://gus--zonesintk.my.salesforce.com"
       - name: ZONES_SERVICE_URL
-        value: "zones-intake-backend-staging-secure.sds.xrd-sam.xrd.slb.sfdc.net:4443"
+        value: "https://zones-intake-backend-staging-secure.sds.xrd-sam.xrd.slb.sfdc.net:4443"
       - name: ZONES_SECRET_SERVICE_URL
         value: "https://secretservice.dmz.salesforce.com:8271/vaultczar/api/1.0/getSecretBySubscriber"
       ports:
