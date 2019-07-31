@@ -1,6 +1,7 @@
 apps:
   mgmt-hub:
     - xrd/xrd-sam_mgmt_hub
+    - prd/prd-sam
   hda:
     - prd/prd-sam
   hda-client:
