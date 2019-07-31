@@ -4,15 +4,6 @@ system:
   functions:
   - name: shipping-service
     count: 1
-    labels:
-      app: shipping-service
-    annotations:
-      # sherpa
-      "sherpa-injector.service-mesh/inject": "enabled"
-      # istio
-      # "sidecar.istio.io/inject": "true"
-      # both
-      "routing.mesh.sfdc.net/enabled": "true"
     containers:
     - name: shipping
       # Shipping App
@@ -25,13 +16,7 @@ system:
         value: sconex
       - name: JAVA_HEAP_OPTS
         value: -Xmx64m
-      # comment out JAVA_OPTS for sherpa
-      # istio
-      # - name: JAVA_OPTS
-      #   value: "-Dmesh.proxydomain=svc.mesh.sfdc.net -Dmesh.httpport=7014"
       ports:
-      - containerPort: 7443
-        name: grpc-sherpa
       - containerPort: 7020
         name: grpc-svc
       - containerPort: 15375
@@ -68,6 +53,37 @@ system:
       - mountPath: /log
         name: logvolbeacon
 
+    - name: sherpa
+      # https://sconelibci.dop.sfdc.net/job/servicelibs/job/sherpa-envoy/job/master/75
+      image: sfci/servicelibs/sherpa-envoy:7e40ce8be635a6ef46fbc64657af42ab9c39ea65
+      env:
+      - name: SFDC_ENVIRONMENT
+        value: sconex
+      ports:
+      - containerPort: 15373
+        name: sherpa-adm
+      - containerPort: 7443
+        name: h2-tls-in
+      - containerPort: 7012
+        name: grpc-in
+      livenessProbe:
+        exec:
+          command:
+          - ./bin/is-alive
+        initialDelaySeconds: 20
+      readinessProbe:
+        exec:
+          command:
+          - ./bin/is-ready
+        initialDelaySeconds: 15
+      volumeMounts:
+        - name: logvolbeacon
+          mountPath: /log
+        - name: tls-client-cert
+          mountPath: /client-certs
+        - name: tls-server-cert
+          mountPath: /server-certs
+
     # The volumes to mount for shipping logs to splunk and certs
     # General rule is to use path that satisfies the pattern: /home/sfdc-*/logs/**/*.json
     volumes:
@@ -80,11 +96,3 @@ system:
     - name: tls-server-cert
       maddogCert:
         type: server
-  loadbalancers:
-    - lbname: shipping-service
-      function: shipping-service
-      ports:
-        - lbtype: dsr
-          port: 7443
-          targetport: 7443
-          name: grpc-shipping
