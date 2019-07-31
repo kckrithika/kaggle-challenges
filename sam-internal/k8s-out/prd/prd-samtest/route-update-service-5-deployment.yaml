@@ -84,8 +84,12 @@ spec:
           timeoutSeconds: 5
         resources:
           limits:
+            cpu: 1000m
+            memory: 256Mi
             sam.sfdc.net/ip-address: "1"
           requests:
+            cpu: 100m
+            memory: 128Mi
             sam.sfdc.net/ip-address: "1"
         volumeMounts:
         - mountPath: /etc/pki_service

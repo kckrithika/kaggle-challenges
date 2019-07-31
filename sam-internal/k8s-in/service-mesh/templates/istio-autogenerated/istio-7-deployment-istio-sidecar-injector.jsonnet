@@ -160,8 +160,13 @@ local mcpIstioConfig = (import "service-mesh/istio-config.jsonnet");
               periodSeconds: 4,
             },
             resources: {
+              limits: {
+                cpu: "1000m",
+                memory: "256Mi",
+              },
               requests: {
-                cpu: "10m",
+                cpu: "100m",
+                memory: "128Mi",
               },
             },
             volumeMounts: [
