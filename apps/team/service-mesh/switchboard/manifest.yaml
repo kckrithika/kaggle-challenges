@@ -16,12 +16,11 @@ system:
       args:
       ############################## PRODUCTION CONFIGURATION ##########################################
       # Any configuration that needs to go to production should be added here.
-      - --clusters.external-clusters[0]=ajnafunneldirecttls.funnel:HTTP1_TLS
+      - --clusters.external-clusters[0]=ajnafunneldirect:HTTP1
       - --clusters.external-clusters[1]=spaasmesh:HTTP2
       - --clusters.zkScraper.scrapeTimeoutMs=120000
       - --cluster.scraper.delayMs=120000
       - --healthIndicator.maxThreadCount=1300
-      - --metrics.sherpaFunnelServiceURL=http://ajnafunneldirecttls.funnel.localhost.mesh.force.com:5442
       ############################# PRODUCTION CONFIGURATION - OVERRIDDEN VALUES ######################
       # The following configuration exists in production manifests as well with different values. 
       - --metrics.maxNumberOfCollectedMetrics=400000
