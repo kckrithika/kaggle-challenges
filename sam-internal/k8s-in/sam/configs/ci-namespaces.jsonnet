@@ -48,6 +48,7 @@ local orgs = [
     "retail-rsui",
     "retail-mds",
     "emailinfra",
+    "global-identity",
 ];
 
 {
