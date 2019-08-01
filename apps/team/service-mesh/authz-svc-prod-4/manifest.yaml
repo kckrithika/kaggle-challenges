@@ -9,7 +9,7 @@ system:
     count: 2
     containers:
     - name: authz-svc
-      image: dva/electron_sam:c5f022ac28bc4e391dae93f53416790c0c1eb8b7
+      image: dva/electron_sam:40
       env:
       - name: SFDC_ENVIRONMENT
         value: prod
@@ -26,12 +26,14 @@ system:
       livenessProbe:
         exec:
           command: ["/bin/true"]
-        initialDelaySeconds: 15
+        initialDelaySeconds: 20
       readinessProbe:
-        exec:
-          command: ["/bin/true"]
+        httpGet:
+          path: /v1/health
+          port: 7022
         initialDelaySeconds: 30
         periodSeconds: 5
+        timeoutSeconds: 4
     - name: sherpa
       image: sfci/servicelibs/sherpa-envoy:1.0.8
       ports:

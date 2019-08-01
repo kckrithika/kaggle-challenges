@@ -31,11 +31,12 @@ system:
       livenessProbe:
         exec:
           command: ["/bin/true"]
-        initialDelaySeconds: 30
+        initialDelaySeconds: 20
       readinessProbe:
         httpGet:
           path: /v1/health
           port: 7022
+        initialDelaySeconds: 30
         periodSeconds: 5
         timeoutSeconds: 4
     - name: demo-authz-grpc-client
