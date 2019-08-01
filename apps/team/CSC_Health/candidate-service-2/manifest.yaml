@@ -5,11 +5,41 @@ system:
     email:
       - cschealthcp@salesforce.com
   functions:
-  - name: expcandidate-service2
+  - name: candidate-service-2
     count: 1
     containers:
-    - name: expcandidate-service2
-      image: dva/csc-health/candidate-service:jenkins-csc-health-candidate-service-cans2.0-6-itest
+    - name: candidate-service-2-logrotator
+      image: dva/csc-health/candidate-service:14
+      volumeMounts:
+        - mountPath: /home/sfdc-csc-health/candidate-service
+          name: logvol
+      livenessProbe:
+        exec:
+          command:
+          - echo
+          - always_healthy
+        initialDelaySeconds: 5
+        periodSeconds: 30
+      command: ["/bin/sh", "-c"]
+      args: ['
+        printf "compress\n
+        /home/sfdc-csc-health/candidate-service/candidate-service.log {\n
+          rotate 30\n
+          daily\n
+          copytruncate\n
+          delaycompress\n
+        }" > /tmp/candidate-service-logrotate.conf;
+        status_file=/home/sfdc-csc-health/candidate-service/candidate-service-logrotate.status;
+        cmd="/usr/sbin/logrotate -v -s ${status_file} /tmp/candidate-service-logrotate.conf";
+        while true;
+        do
+          printf "\n`date`\n\n";
+          $cmd;
+          sleep 21600;
+        done
+      ']
+    - name: candidate-service-2
+      image: dva/csc-health/candidate-service:14
       ports:
       - containerPort: 8888
       volumeMounts:
@@ -40,6 +70,22 @@ system:
         value: /certs/ca.pem
       - name: CHS_HEALTH_PORT
         value: 8888
+      - name: CHS_LOG_FILE
+        value: /home/sfdc-csc-health/candidate-service/candidate-service.log
+      - name: CHS_SMOOTHINGCONFIG_ENABLED
+        value: true
+      - name: CHS_SMOOTHINGCONFIG_SIZE
+        value: 10
+      - name: CHS_SMOOTHINGCONFIG_OPINIONLOOKBACK
+        value: 10
+      - name: CHS_SMOOTHINGCONFIG_FLAPLOOKBACK
+        value: 10
+      - name: CHS_SMOOTHINGCONFIG_FLAPTHRESHHOLD
+        value: 7
+      - name: CHS_SMOOTHINGCONFIG_HEALTHYOPTHRESHOLD
+        value: 80.0
+      - name: CHS_SMOOTHINGCONFIG_PROBEXITLOOKBACK
+        value: 10
       - name: CHS_STALENESS_WHITELIST
         value: LOGICAL_HOST
       - name: CHS_REPORTCOLLECTOR_WDWHITELIST
@@ -50,6 +96,10 @@ system:
         value: netmgt.nhal_client,netmgt.sandman,sandman
       - name: CHS_REPORTCOLLECTOR_OBSWHITELISTUNTRUSTED
         value: infrastructure-observer.system
+      - name: CHS_REPORTCOLLECTOR_WDPOLLPERIOD
+        value: 60s
+      - name: CHS_REPORTCOLLECTOR_OBSPOLLPERIOD
+        value: 60s
       livenessProbe:
         httpGet:
           path: /healthz
@@ -59,10 +109,9 @@ system:
       args: ["
         export CHS_AJNA_FUNNELENDPOINT=http://${SFDC_METRICS_SERVICE_HOST}:${SFDC_METRICS_SERVICE_PORT} ;
         export CHS_AJNA_DATACENTER=${KINGDOM} ;
-        export CHS_AJNA_DEVICE=wesley ;
-        export CHS_GROK_ENDPOINT=dead-end ;
+        export CHS_AJNA_DEVICE=${ESTATE}.${FUNCTION_NAMESPACE}.${FUNCTION}.${FUNCTION_INSTANCE_NAME} ;
+        export CHS_GROK_ENDPOINT=https://ops0-grok1-0-${KINGDOM}.data.sfdc.net ;
         export CHS_REPORTCOLLECTOR_ENDPOINT=https://reportcollector-${KINGDOM}.data.sfdc.net:18444 ;
-        export CHS_REPORTCOLLECTOR_WDPOLLPERIOD=60s ;
 
         /candidateservice
       "]
@@ -75,8 +124,8 @@ system:
           path: /home/sfdc-csc-health/candidate-service
 
   loadbalancers:
-  - lbname: expcandidateservice2lb
-    function: expcandidate-service2
+  - lbname: candidateservicelb
+    function: candidate-service-2
     ports:
     - port: 80
       targetport: 8888
