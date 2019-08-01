@@ -94,7 +94,6 @@ apps:
     - lo2/lo2-sam_report_collector
     - lo3/lo3-sam_report_collector
   observation-service-watchdog:
-    - prd/prd-sam_report_collector
     - dfw/dfw-sam_report_collector
     - phx/phx-sam_report_collector
     - frf/frf-sam_report_collector
