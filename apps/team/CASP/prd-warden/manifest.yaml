@@ -22,6 +22,8 @@ system:
           hostPort: 18889
         - name: https
           containerPort: 8443
+        - name: health
+          containerPort: 15372
         env:
         - name: BRANCH
           value: "eng_production"
@@ -101,3 +103,5 @@ system:
           targetport: 8889
         - port: 443
           targetport: 8443
+        - port: 15372
+          targetport: 15372
