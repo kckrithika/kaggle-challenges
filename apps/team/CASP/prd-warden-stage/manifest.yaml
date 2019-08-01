@@ -22,6 +22,8 @@ system:
           containerPort: 8889
         - name: https
           containerPort: 8444
+        - name: actuator
+          containerPort: 15372
         env:
         - name: BRANCH
           value: "eng_production_staging"
@@ -96,3 +98,5 @@ system:
           targetport: 8889
         - port: 443
           targetport: 8444
+        - port: 15372
+          targetport: 15372
