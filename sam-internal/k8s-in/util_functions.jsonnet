@@ -21,7 +21,7 @@ local kingdom = std.extVar("kingdom");
 
     # This is for filtering PCL control estates with SDN enabled
     is_pcl_sdn_enabled(estate):: (
-        estate == "syd-sam" || estate == "cdu-sam"
+        estate == "cdu-sam" || estate == "syd-sam" || estate == "yhu-sam" || estate == "yul-sam"
     ),
 
     # This is for filtering GIA
