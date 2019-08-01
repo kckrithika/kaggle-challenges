@@ -4,8 +4,7 @@
       targetport: 9090
       lbtype: tcp
       healthport: 9090
-      healthprotocol: "http"
-      healthpath: "/ping.jsp"
+      healthprotocol: "tcp"
       lbalgorithm: roundrobin
   # Derived from estates:
   # grep 'worker.*\.sfdc\.net' kingdoms/prd/prd-data-flowsnake.yaml | sed -e 's/\(.*\([1-9]-[0-9]*\)-.*\)/\2-\1/' | sort -t- -k1n -k2n | sed -e 's/^[-0-9]*\s*/    /'
