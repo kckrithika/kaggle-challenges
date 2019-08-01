@@ -187,6 +187,86 @@ items:
   metadata:
     annotations:
       manifestctl.sam.data.sfdc.net/swagger: disable
+    name: flowsnake-client-ramya-spark-test-Role
+    namespace: ramya-spark-test
+  rules:
+  - apiGroups:
+    - '*'
+    resources:
+    - pods
+    - replicationcontrollers
+    - deployments
+    - jobs
+    - replicasets
+    - secrets
+    - configmaps
+    - statefulsets
+    - services
+    - ingresses
+    - persistentvolumes
+    - sparkapplications
+    verbs:
+    - '*'
+  - apiGroups:
+    - '*'
+    resources:
+    - '*'
+    verbs:
+    - get
+    - list
+- apiVersion: rbac.authorization.k8s.io/v1
+  kind: ClusterRoleBinding
+  metadata:
+    annotations:
+      manifestctl.sam.data.sfdc.net/swagger: disable
+    name: flowsnake-client-ramya-spark-test-ClusterRoleBinding
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: client-cluster-role
+  subjects:
+  - kind: User
+    name: flowsnake_test.rrajasekaran
+- apiVersion: rbac.authorization.k8s.io/v1
+  kind: RoleBinding
+  metadata:
+    annotations:
+      manifestctl.sam.data.sfdc.net/swagger: disable
+    name: flowsnake-client-ramya-spark-test-RoleBinding
+    namespace: ramya-spark-test
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: Role
+    name: flowsnake-client-ramya-spark-test-Role
+  subjects:
+  - kind: User
+    name: flowsnake_test.rrajasekaran
+- apiVersion: v1
+  automountServiceAccountToken: true
+  kind: ServiceAccount
+  metadata:
+    name: spark-driver-ramya-spark-test
+    namespace: ramya-spark-test
+- apiVersion: rbac.authorization.k8s.io/v1
+  kind: RoleBinding
+  metadata:
+    annotations:
+      manifestctl.sam.data.sfdc.net/swagger: disable
+    name: spark-driver-ramya-spark-test-RoleBinding
+    namespace: ramya-spark-test
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: Role
+    name: flowsnake-client-ramya-spark-test-Role
+  subjects:
+  - kind: ServiceAccount
+    name: spark-driver-ramya-spark-test
+    namespace: ramya-spark-test
+- apiVersion: rbac.authorization.k8s.io/v1
+  kind: Role
+  metadata:
+    annotations:
+      manifestctl.sam.data.sfdc.net/swagger: disable
     name: flowsnake-client-flowsnake-test-Role
     namespace: flowsnake-test
   rules:
