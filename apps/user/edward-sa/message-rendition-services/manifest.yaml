@@ -8,7 +8,8 @@ system:
     count: 1
     containers:
     - name: message-rendition-services-service
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/edward-sa/message-rendition-services:esa-20190711-5281555
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/edward-sa/message-rendition-services:esa-20190801-d27726d
+
       # If your service doesn't serve HTTP traffic then you can remove the scone-http 8080 port.
       ports:
       - containerPort: 8080
@@ -89,3 +90,4 @@ system:
     - name: sherpaservercert
       maddogCert:
         type: server
+
