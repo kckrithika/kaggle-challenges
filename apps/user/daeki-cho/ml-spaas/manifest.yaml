@@ -9,6 +9,9 @@ system:
     containers:
     - name: ml-spaas
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/daeki.cho/ml-spaas:cho-20190731v1
+      resources:
+        limits: { cpu: "1", memory: "4Gi" }
+        requests: { cpu: "1", memory: "4Gi" }
       ports:
       - containerPort: 7020
       livenessProbe:
@@ -31,9 +34,6 @@ system:
       - samapp/$(FUNCTION):DATACENTER_ALLENV:HTTP2
       - -endpoint
       - samapp/$(FUNCTION_NAMESPACE)/$(FUNCTION):DATACENTER_ALLENV:HTTP2_TLS
-      volumeMounts:
-      - mountPath: /home/scone/logs
-        name: beacon-log-volume
       livenessProbe:
         exec:
           command:
@@ -79,7 +79,3 @@ system:
     - name: logvol
       hostPath:
         path: /home/sfdc-ml-spaas/logs
-    - name: beacon-log-volume
-      hostPath:
-        path: /home/sfdc-beacon/logs
-    
