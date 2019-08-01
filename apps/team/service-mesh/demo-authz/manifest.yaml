@@ -35,7 +35,7 @@ system:
       readinessProbe:
         httpGet:
           path: /v1/health
-          port: 7442
+          port: 7022
         periodSeconds: 5
         timeoutSeconds: 4
     - name: demo-authz-grpc-client
