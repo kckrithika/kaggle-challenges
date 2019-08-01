@@ -124,7 +124,7 @@ system:
           path: /home/sfdc-csc-health/candidate-service
 
   loadbalancers:
-  - lbname: candidateservicelb
+  - lbname: candidateservice2lb
     function: candidate-service-2
     ports:
     - port: 80
