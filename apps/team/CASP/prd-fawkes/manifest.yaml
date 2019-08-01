@@ -19,6 +19,8 @@ system:
         env:
         - name: BRANCH
           value: "eng_production"
+        - name: HTTP_PROXY
+          value: "http://public0-proxy1-0-prd.data.sfdc.net:8080"
         volumeMounts:
         - mountPath: /fawkes/argus-secrets
           name: argus
