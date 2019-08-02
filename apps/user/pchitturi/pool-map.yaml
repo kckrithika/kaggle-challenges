@@ -3,7 +3,7 @@ apps:
 # - prd/prd-sam
   mgmt-server:
   - prd/prd-sam
-  mgmt-policydesigner:
-  - prd/prd-sam
+#  mgmt-policydesigner:
+#  - prd/prd-sam
   mgmt-ui:
   - prd/prd-sam
