@@ -10,6 +10,7 @@ system:
     labels:
       chaos.sfdc.net/podDelete: true
       chaos.sfdc.net/podDeletePeriod: 4h
+      test: test123
     annotations:
       "sherpa-injector.service-mesh/inject": "enabled"
     containers:
