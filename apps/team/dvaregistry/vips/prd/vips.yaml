@@ -45,3 +45,15 @@
       reencrypt: true
       lbalgorithm: leastconn
       healthprotocol: "tcp"
+- lbname: strata-sonarqube-canary2
+  customlbname: strata-sonarqube-canary2
+  servers:
+    - strata-sonarqube-canary2.eng.sfdc.net
+  ports:
+    - port: 443
+      targetport: 443
+      lbtype: http
+      tls: true
+      reencrypt: true
+      lbalgorithm: leastconn
+      healthprotocol: "tcp"
