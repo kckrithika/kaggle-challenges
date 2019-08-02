@@ -12,7 +12,7 @@ system:
             secretName: eventbus-client-web-ui-secrets
       containers:
       - name: eventbus-client-web-ui
-        image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/messagingplatform/eventbus-client-web-ui:1.1
+        image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/user-emilio-kartono/eventbus-client-web-ui:1.2
         imagePullPolicy: Always
         ports:
         - containerPort: 5000
