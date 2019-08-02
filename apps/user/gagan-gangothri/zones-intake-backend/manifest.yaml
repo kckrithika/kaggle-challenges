@@ -1,0 +1,87 @@
+apiVersion: v1
+system:
+  notifications:
+    email:
+      - jiaqi.wu@salesforce.com
+      - aditya.sureshkumar@salesforce.com
+  functions:
+  - name: zones-intake-backend
+    count: 1
+    volumes:
+      - name: servercert
+        maddogCert:
+          type: server
+          lbnames:
+            - zones-intake-backend-secure
+      - name: clientcert
+        maddogCert:
+          type: client
+    containers:
+    - name: zones-intake-backend
+      image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/sds-zonesui-backend:139
+      #image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/jiaqi-wu/sds-zonesui-backend:mtls13
+      ports:
+      - containerPort: 7022
+      - containerPort: 8443
+      env:
+      - name: HOST
+        value: "0.0.0.0"
+      - name: PORT
+        value: 7022
+      - name: TLS_HOST
+        value: "0.0.0.0"
+      - name: TLS_PORT
+        value: 8443
+      - name: TLS_CERTIFICATE
+        value: /servercerts/server/certificates/server.pem
+      - name: TLS_PRIVATE_KEY
+        value: /servercerts/server/keys/server-key.pem
+      - name: TLS_CA_CERTIFICATE
+        value: /clientcerts/ca.pem
+      - name: FRONTEND_MADDOG_ID
+        value: samapp.user-juppala.zones-ui
+      # config overrides
+      - name: ZI_ESTATESREPO_FORKREPOOWNER
+        value: tok-zones-intake
+      - name: ZI_ESTATESREPO_FORKREPONAME
+        value: estates-edl
+      - name: ZI_ESTATESREPO_FORKREPOBRANCH
+        value: master
+
+      - name: ZI_ESTATESREPO_UPSTREAMREPOOWNER
+        value: aditya-sureshkumar
+      - name: ZI_ESTATESREPO_UPSTREAMREPONAME
+        value: estates-edl
+      - name: ZI_ESTATESREPO_UPSTREAMREPOBRANCH
+        value: master
+
+      - name: ZI_VAULTNAME
+        value: zones-ui.dev
+      - name: ZI_PIPEREPOHOST
+        value: http://ops0-piperepo1-1-prd.eng.sfdc.net
+      livenessProbe:
+        httpGet:
+          path: /zones/v1/healthcheck
+          port: 7022
+      volumeMounts:
+      - name: servercert
+        mountPath: /servercerts
+      - name: clientcert
+        mountPath: /clientcerts
+
+  loadbalancers:
+  - lbname: zones-intake-backend-lb
+    function: zones-intake-backend
+    slbenabled: true
+    ports:
+      - port: 3000
+        targetport: 7022
+        lbtype: http
+        tls: false
+  - lbname: zones-intake-backend-secure
+    function: zones-intake-backend
+    slbenabled: true
+    ports:
+      - port: 4443
+        targetport: 8443
+        lbtype: tcp
