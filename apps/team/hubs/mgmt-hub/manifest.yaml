@@ -39,6 +39,8 @@ system:
         value: eng.sfdc.net
       - name: APP_JMX_PORT
         value: 8998
+      - name: JMX_RETRIEVE_PASSWORD_FROM_SECRET_SERVICE
+        value: true
       volumeMounts:
       - name: cert
         mountPath: /certs
@@ -90,6 +92,3 @@ system:
         lbtype: http
         #tls: true
         #reencrypt: true
-
-
- 
