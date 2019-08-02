@@ -63,3 +63,6 @@ apps:
   - phx/phx-sam_warden
  prod-warden-frf:
   - frf/frf-sam_warden
+ prod-cantor-grpc-server-fra:
+  - fra/fra-sam_warden
+
