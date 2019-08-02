@@ -1,3 +1,5 @@
 apps:
  beacon-go:
   - prd/prd-sam
+ istio-shipping-sboobna:
+  - prd/prd-samtest
