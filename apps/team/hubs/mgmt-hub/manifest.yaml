@@ -23,10 +23,10 @@ system:
     # Docker image(s) that make up one instance of the service
     containers:
     - name: mgmt-hub
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mgmt/mgmt-hub:mgmt-2019-08-01-11-55-08
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mgmt/mgmt-hub:mgmt-2019-08-02-11-30-11
       env:
       - name: KEYSTORE_CA_DIRECTORY
-        value: /certs
+        value: /certs/ca
       - name: KEYSTORE_CLIENT_DIRECTORY
         value: /certs/client
       - name: KPODS_COUNT
