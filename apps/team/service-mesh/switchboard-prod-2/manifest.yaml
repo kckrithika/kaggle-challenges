@@ -13,9 +13,11 @@ system:
       image: sfci/servicelibs/switchboard:73428fda23c9ce0e84eac7775b4853a442320e4b
       args:
       - --clusters.external-clusters[0]=ajnafunneldirect:HTTP1
-      - --clusters.external-clusters[1]=spaasmesh:HTTP2
+      - --clusters.external-clusters[1]=ajnafunneldirecttls.funnel:HTTP1_TLS
+      - --clusters.external-clusters[2]=spaasmesh:HTTP2
       - --metrics.maxNumberOfCollectedMetrics=150000
       - --metrics.funnelTimeOut=100000
+      - --metrics.sherpaFunnelServiceURL=http://ajnafunneldirecttls.funnel.localhost.mesh.force.com:5442
       - --healthIndicator.maxThreadCount=1300
       - --clusters.zkScraper.scrapeTimeoutMs=120000
       - --cluster.scraper.delayMs=120000
