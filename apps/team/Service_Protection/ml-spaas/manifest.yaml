@@ -8,7 +8,7 @@ system:
     count: 1
     containers:
     - name: ml-spaas
-      image: dva/ml-spaas-service-docker:5
+      image: dva/ml-spaas-service-docker:9
       ports:
       - containerPort: 7020
       livenessProbe:
@@ -19,25 +19,25 @@ system:
       - name: SFDC_ENVIRONMENT
         value: sam
       volumeMounts:
-      - mountPath: /home/sfdc-ml-spaas-service/logs
+      - mountPath: /home/sfdc-ml-spaas/logs
         name: logvol
     - name: beacon
-      image: sfci/servicelibs/beacon:f6445b2b299f232eda1e0be9739b8242153478ea
+      image: sfci/services/sfdc-bazel/disco/beacon:d7f1640
+      resources:
+        limits: { cpu: "1", memory: "4Gi" }
+        requests: { cpu: "1", memory: "4Gi" }
       args:
       - -endpoint
       - $(FUNCTION):DATACENTER_ALLENV:HTTP2
       - -endpoint
       - $(FUNCTION_NAMESPACE)/$(FUNCTION):DATACENTER_ALLENV:HTTP2_TLS
-      volumeMounts:
-      - mountPath: /home/scone/logs
-        name: beacon-log-volume
       livenessProbe:
         exec:
           command:
-          - /home/scone/is-alive.sh
+          - /opt/beacon/is-alive.sh
         initialDelaySeconds: 5
     - name: sherpa
-      image: sfci/servicelibs/sherpa-envoy:1.0.5
+      image: sfci/servicelibs/sherpa-envoy:1.0.8
       ports:
       - name: http2-in
         containerPort: 7012
@@ -45,6 +45,9 @@ system:
         containerPort: 7443
       - name: sherpa-adm
         containerPort: 15373
+      resources:
+        limits: { cpu: "1", memory: "1Gi" }
+        requests: { cpu: "1", memory: "1Gi" }
       volumeMounts:
       - mountPath: /client-certs
         name: tls-client-cert
@@ -72,7 +75,5 @@ system:
         type: server
     - name: logvol
       hostPath:
-        path: /home/sfdc-ml-spaas-service/logs
-    - name: beacon-log-volume
-      hostPath:
-        path: /home/sfdc-beacon/logs
+        path: /home/sfdc-ml-spaas/logs
+
