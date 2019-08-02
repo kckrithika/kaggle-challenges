@@ -28,7 +28,7 @@ system:
             - /usr/bin/true
         env:
         - name: SUBDOMAIN
-          value: "eng"
+          value: "ops"
         - name: NODENAME
           valueFrom:
             fieldRef:
