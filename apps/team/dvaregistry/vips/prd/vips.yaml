@@ -34,6 +34,7 @@
       lbalgorithm: roundrobin
       healthprotocol: "tcp"
 - lbname: strata-docker-registry-canary
+  customlbname: strata-docker-registry-canary
   servers:
     - strataregproxy-canary1-1-prd.eng.sfdc.net
   ports:
