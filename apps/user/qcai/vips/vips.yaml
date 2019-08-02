@@ -1,9 +1,9 @@
 - lbname: dashboard-dfw
   ports:
     - port: 80
-      targetport: 9090
+      targetport: 9190
       lbtype: tcp
-      healthport: 9090
+      healthport: 9190
       healthprotocol: "tcp"
       lbalgorithm: roundrobin
   # Derived from estates:
@@ -157,9 +157,9 @@
 - lbname: dashboard-frf
   ports:
     - port: 80
-      targetport: 9091
+      targetport: 9191
       lbtype: tcp
-      healthport: 9091
+      healthport: 9191
       healthprotocol: "tcp"
       lbalgorithm: roundrobin
   # Derived from estates:
@@ -313,9 +313,9 @@
 - lbname: dashboard-hnd
   ports:
     - port: 80
-      targetport: 9092
+      targetport: 9192
       lbtype: tcp
-      healthport: 9092
+      healthport: 9192
       healthprotocol: "tcp"
       lbalgorithm: roundrobin
   # Derived from estates:
@@ -469,9 +469,9 @@
 - lbname: dashboard-iad
   ports:
     - port: 80
-      targetport: 9093
+      targetport: 9193
       lbtype: tcp
-      healthport: 9093
+      healthport: 9193
       healthprotocol: "tcp"
       lbalgorithm: roundrobin
   # Derived from estates:
@@ -625,9 +625,9 @@
 - lbname: dashboard-ia2
   ports:
     - port: 80
-      targetport: 9094
+      targetport: 9194
       lbtype: tcp
-      healthport: 9094
+      healthport: 9194
       healthprotocol: "tcp"
       lbalgorithm: roundrobin
   # Derived from estates:
@@ -781,9 +781,9 @@
 - lbname: dashboard-ord
   ports:
     - port: 80
-      targetport: 9095
+      targetport: 9195
       lbtype: tcp
-      healthport: 9095
+      healthport: 9195
       healthprotocol: "tcp"
       lbalgorithm: roundrobin
   # Derived from estates:
@@ -937,9 +937,9 @@
 - lbname: dashboard-par
   ports:
     - port: 80
-      targetport: 9096
+      targetport: 9196
       lbtype: tcp
-      healthport: 9096
+      healthport: 9196
       healthprotocol: "tcp"
       lbalgorithm: roundrobin
   # Derived from estates:
@@ -1093,9 +1093,9 @@
 - lbname: dashboard-phx
   ports:
     - port: 80
-      targetport: 9097
+      targetport: 9197
       lbtype: tcp
-      healthport: 9097
+      healthport: 9197
       healthprotocol: "tcp"
       lbalgorithm: roundrobin
   # Derived from estates:
@@ -1249,9 +1249,9 @@
 - lbname: dashboard-ph2
   ports:
     - port: 80
-      targetport: 9098
+      targetport: 9198
       lbtype: tcp
-      healthport: 9098
+      healthport: 9198
       healthprotocol: "tcp"
       lbalgorithm: roundrobin
   # Derived from estates:
@@ -1405,9 +1405,9 @@
 - lbname: dashboard-ukb
   ports:
     - port: 80
-      targetport: 9099
+      targetport: 9199
       lbtype: tcp
-      healthport: 9099
+      healthport: 9199
       healthprotocol: "tcp"
       lbalgorithm: roundrobin
   # Derived from estates:
@@ -1561,9 +1561,9 @@
 - lbname: dashboard-cdu
   ports:
     - port: 80
-      targetport: 9100
+      targetport: 9200
       lbtype: tcp
-      healthport: 9100
+      healthport: 9200
       healthprotocol: "tcp"
       lbalgorithm: roundrobin
   # Derived from estates:
@@ -1717,9 +1717,9 @@
 - lbname: dashboard-syd
   ports:
     - port: 80
-      targetport: 9101
+      targetport: 9201
       lbtype: tcp
-      healthport: 9101
+      healthport: 9201
       healthprotocol: "tcp"
       lbalgorithm: roundrobin
   # Derived from estates:
@@ -1873,9 +1873,9 @@
 - lbname: dashboard-yhu
   ports:
     - port: 80
-      targetport: 9102
+      targetport: 9202
       lbtype: tcp
-      healthport: 9102
+      healthport: 9202
       healthprotocol: "tcp"
       lbalgorithm: roundrobin
   # Derived from estates:
@@ -2029,9 +2029,9 @@
 - lbname: dashboard-yul
   ports:
     - port: 80
-      targetport: 9103
+      targetport: 9203
       lbtype: tcp
-      healthport: 9103
+      healthport: 9203
       healthprotocol: "tcp"
       lbalgorithm: roundrobin
   # Derived from estates:
@@ -2185,9 +2185,9 @@
 - lbname: dashboard-prd-data
   ports:
     - port: 80
-      targetport: 9104
+      targetport: 9204
       lbtype: tcp
-      healthport: 9104
+      healthport: 9204
       healthprotocol: "tcp"
       lbalgorithm: roundrobin
   # Derived from estates:
@@ -2341,9 +2341,9 @@
 - lbname: dashboard-prd-dev
   ports:
     - port: 80
-      targetport: 9105
+      targetport: 9205
       lbtype: tcp
-      healthport: 9105
+      healthport: 9205
       healthprotocol: "tcp"
       lbalgorithm: roundrobin
   # Derived from estates:
@@ -2497,9 +2497,9 @@
 - lbname: dashboard-prd-test
   ports:
     - port: 80
-      targetport: 9106
+      targetport: 9206
       lbtype: tcp
-      healthport: 9106
+      healthport: 9206
       healthprotocol: "tcp"
       lbalgorithm: roundrobin
   # Derived from estates:
