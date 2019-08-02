@@ -20,7 +20,6 @@ system:
       livenessProbe:
         httpGet:
             path: /health
-
     - name: FalconSDBUpgrade
       image: dva-registry.internal.salesforce.com/dva/sdd/sdbupgrade:13
       livenessProbe:
