@@ -4,7 +4,3 @@ apps:
 
   eventbus-client-web-ui:
   - prd/prd-sam
-
-  testing:
-  - prd/prd-sam
-
