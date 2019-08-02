@@ -6,6 +6,8 @@ system:
       - rpragada@salesforce.com
   functions:
   - name: devmvp-caas-gcp
+    serviceAccountName: cache-as-a-servi-pm3g2ib5rfx3d
+    automountServiceAccountToken: true
     count: 3
     identity:
       serviceName: caas
