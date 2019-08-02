@@ -45,5 +45,3 @@
       reencrypt: true
       lbalgorithm: leastconn
       healthprotocol: "tcp"
-      tlscertificate: secret_service:strata-registry-canary:tlscertificate
-      tlskey: secret_service:strata-registry-canary:tlskey
