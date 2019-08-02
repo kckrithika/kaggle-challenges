@@ -12,7 +12,7 @@ data:
       "funnelEndpoint": "ajna0-funnel1-0-prd.data.sfdc.net:80",
       "imagePullPolicy": "Always",
       "ipAddressCapacityRequest": true,
-      "k4aInitContainerImage": "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/sam/hypersam:2756-390b9ce0b7507ad2135b0545050d88af77f24edd",
+      "k4aInitContainerImage": "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/sam/hypersam:2774-20fb2d0fd04d2e6d6274a1bde0c96f0ce6aab9bb",
       "maddogMaddogEndpoint": "https://all.pkicontroller.pki.blank.prd.prod.non-estates.sfdcsd.net:8443",
       "madkubImage": "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/madkub:1.0.0-0000082-3d5c21b4",
       "namespaceHostSubList": [
