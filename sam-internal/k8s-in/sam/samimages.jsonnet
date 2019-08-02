@@ -81,7 +81,10 @@ local samreleases = import "samreleases.json";
                 "sam-1ebeb0ac-657"
         ),
 
-        k4aInitContainerImage: (if $.phaseNum <= 2 then "2756-390b9ce0b7507ad2135b0545050d88af77f24edd" else "sam-0002447-69fdc914"),
+        k4aInitContainerImage: (
+            if $.phaseNum <= 2 then "2774-20fb2d0fd04d2e6d6274a1bde0c96f0ce6aab9bb"
+            else "sam-0002447-69fdc914"
+        ),
         local kubedns_image_tag = "1.14.9",
         local strata_registry = configs.registry + "/dva",
         kubedns: strata_registry + "/k8s-dns-kube-dns:" + kubedns_image_tag,
