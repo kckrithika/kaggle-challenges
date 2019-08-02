@@ -52,7 +52,7 @@ system:
         value: master
 
       - name: ZI_ESTATESREPO_UPSTREAMREPOOWNER
-        value: estates-edl
+        value: estates
       - name: ZI_ESTATESREPO_UPSTREAMREPONAME
         value: estates-edl
       - name: ZI_ESTATESREPO_UPSTREAMREPOBRANCH
