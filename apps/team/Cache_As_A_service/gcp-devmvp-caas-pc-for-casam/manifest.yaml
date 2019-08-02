@@ -71,7 +71,7 @@ system:
        - name: SFDC_ENVIRONMENT
          value: mesh
        - name: NO_ENV_FOR_RESTART
-         value: new9
+         value: new10
       resources:
         limits: { memory: "100M" }
         requests: { memory: "50M" }
