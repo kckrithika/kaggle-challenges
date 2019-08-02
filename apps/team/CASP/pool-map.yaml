@@ -42,6 +42,7 @@ apps:
   - ukb/ukb-sam_warden
   - phx/phx-sam_warden
   - frf/frf-sam_warden
+  - fra/fra-sam_warden
  prod-maiev-receiver:
   - dfw/dfw-sam_warden
   - iad/iad-sam_warden
@@ -50,6 +51,7 @@ apps:
   - ukb/ukb-sam_warden
   - phx/phx-sam_warden
   - frf/frf-sam_warden
+  - fra/fra-sam_warden
  prod-warden-dfw:
   - dfw/dfw-sam_warden
  prod-warden-iad:
@@ -64,6 +66,8 @@ apps:
   - phx/phx-sam_warden
  prod-warden-frf:
   - frf/frf-sam_warden
+ prod-warden-fra:
+  - fra/fra-sam_warden
  prod-cantor-grpc-server-fra:
   - fra/fra-sam_warden
 
