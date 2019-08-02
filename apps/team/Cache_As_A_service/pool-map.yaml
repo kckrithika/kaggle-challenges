@@ -298,8 +298,6 @@ apps:
   - name: mvp/gsf-core-devmvp-sam2-sam
  gcp-devmvp-caas-test-client:
   - name: mvp/gsf-core-devmvp-sam2-sam
- gcp-devmvp-caas-for-test:
-  - name: mvp/gsf-core-devmvp-sam2-sam
  gcp-devmvp-vagabond-mesh:
   - name: mvp/gsf-core-devmvp-sam2-sam
  gcp-devmvp-vagabond-test-client:
