@@ -277,7 +277,7 @@ system:
       image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-gcp/sfci/casam/coreapp_overrides:a08499
       env:
       - name: CASAM_SETTINGS_PATH
-        value: mesh.-.mvp.na3.app
+        value: prod.-.phx.na3.app
       livenessProbe:
         exec:
           command:
