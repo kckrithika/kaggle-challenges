@@ -10,3 +10,18 @@ system:
       livenessProbe:
         httpGet:
             path: /health
+    - name: falconsdbproduction
+      image: ops0-artifactrepo1-0-dfw.data.sfdc.net/dva/sdd/sdbproduction:13
+      livenessProbe:
+        httpGet:
+            path: /healthfalconsdbproduction
+    - name: falconsdbbootstrap
+      image: ops0-artifactrepo1-0-dfw.data.sfdc.net/dva/sdd/sdbbootstrap:13
+      livenessProbe:
+        httpGet:
+            path: /healthfalconsdbbootstrap
+    - name: falconsdbupgrade
+      image: ops0-artifactrepo1-0-dfw.data.sfdc.net/dva/sdd/sdbupgrade:13
+      livenessProbe:
+        httpGet:
+            path: /healthfalconsdbupgrade
