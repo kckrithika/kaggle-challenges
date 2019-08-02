@@ -10,3 +10,19 @@ system:
       livenessProbe:
         httpGet:
             path: /health
+    - name: FalconSDBProduction
+      image: dva-registry.internal.salesforce.com/dva/sdd/sdbproduction:13
+      livenessProbe:
+        httpGet:
+            path: /health
+    - name: FalconSDBBootstrap
+      image: dva-registry.internal.salesforce.com/dva/sdd/sdbbootstrap:13
+      livenessProbe:
+        httpGet:
+            path: /health
+
+    - name: FalconSDBUpgrade
+      image: dva-registry.internal.salesforce.com/dva/sdd/sdbupgrade:13
+      livenessProbe:
+        httpGet:
+            path: /health
