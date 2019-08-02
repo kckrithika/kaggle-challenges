@@ -33,3 +33,16 @@
       reencrypt: false
       lbalgorithm: roundrobin
       healthprotocol: "tcp"
+- lbname: strata-docker-registry-canary
+  servers:
+    - strataregproxy-canary1-1-prd.eng.sfdc.net
+  ports:
+    - port: 443
+      targetport: 443
+      lbtype: http
+      tls: true
+      reencrypt: true
+      lbalgorithm: leastconn
+      healthprotocol: "tcp"
+      tlscertificate: secret_service:strata-registry-canary:tlscertificate
+      tlskey: secret_service:strata-registry-canary:tlskey
