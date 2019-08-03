@@ -37,10 +37,9 @@ system:
         - mountPath: /home/sfdc-casp/pki/server
           name: wardenservercert
         livenessProbe:
-          httpGet:
-            path: /manage/health
-            port: 15372
-          initialDelaySeconds: 120
+          exec:
+            command:
+            - /usr/bin/true
       volumes:
       - name: log-vol
         hostPath:
