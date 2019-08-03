@@ -25,6 +25,8 @@ system:
           value: "ops_production"
         - name: JWT_ENABLED
           value: "true"
+        - name: DEBUG
+          value: "true"
         - name: NODENAME
           valueFrom:
             fieldRef:
