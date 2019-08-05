@@ -83,6 +83,12 @@ system:
     - name: shared-tmp
       emptyDir: {}
 
+    strategy:
+      type: RollingUpdate
+      rollingUpdate:
+        maxSurge: 0
+        maxUnavailable: 1
+
   loadbalancers:
     - lbname: gca-metrics-service
       function: gca-metrics-service
@@ -92,7 +98,6 @@ system:
           targetport: 5000
           lbtype: http
           tls: true
-
 #        - port: 443
 #          targetport: 8443
 #    - lbname: gca-rq-service
