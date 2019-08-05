@@ -7,7 +7,7 @@ system:
         - akouthoofd@salesforce.com
     functions:
     - name: warden-func
-      count: 3
+      count: 1
       strategy:
         type: RollingUpdate
         rollingUpdate:
