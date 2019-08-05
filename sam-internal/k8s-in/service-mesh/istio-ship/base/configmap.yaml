@@ -130,10 +130,10 @@ data:
       envoyMetricsServiceAddress: switchboard.service-mesh:15001
       #
       # Mutual TLS authentication between sidecars and istio control plane.
-      controlPlaneAuthPolicy: NONE
+      controlPlaneAuthPolicy: MUTUAL_TLS
       #
       # Address where istio Pilot service is running
-      discoveryAddress: istio-pilot.mesh-control-plane:15010
+      discoveryAddress: istio-pilot.mesh-control-plane:15011
   
   # Configuration file for the mesh networks to be used by the Split Horizon EDS.
   meshNetworks: |-

@@ -113,7 +113,7 @@ global:
   # Daily builds from prow are on gcr.io, and nightly builds from circle on docker.io/istionightly
   hub: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-sfci-dev/sfci/servicemesh/istio-packaging
   # Default tag for Istio images.
-  tag: 1fae9accd5177919f9767a466338b96933ccffd4
+  tag: c77b4595896eb2787488004d02b3a745681f4138
   # Comma-separated minimum per-scope logging level of messages to output, in the form of <scope>:<level>,<scope>:<level>
   # The control plane has different scopes depending on component, but can configure default log level across all components
   # If empty, default scope and level will be used as configured in code

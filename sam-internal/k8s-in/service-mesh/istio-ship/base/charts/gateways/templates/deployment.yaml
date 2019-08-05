@@ -32,7 +32,7 @@ spec:
       serviceAccountName: istio-ingressgateway-service-account
       containers:
         - name: istio-proxy
-          image: "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-sfci-dev/sfci/servicemesh/istio-packaging/proxy:1fae9accd5177919f9767a466338b96933ccffd4"
+          image: "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-sfci-dev/sfci/servicemesh/istio-packaging/proxy:c77b4595896eb2787488004d02b3a745681f4138"
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 15020
@@ -71,9 +71,9 @@ spec:
           - --statusPort
           - "15020"
           - --controlPlaneAuthPolicy
-          - NONE
+          - MUTUAL_TLS
           - --discoveryAddress
-          - istio-pilot:15010
+          - istio-pilot:15011
           readinessProbe:
             failureThreshold: 30
             httpGet:

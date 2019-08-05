@@ -4,6 +4,18 @@ local madkub = (import "service-mesh/istio-madkub-config.jsonnet") + { templateF
 
 local funnelEndpoint = std.split(configs.funnelVIP, ":");
 
+## Istio pilot madkub certificates.
+local pilotSans = [
+  "istio-pilot",
+  "istio-pilot.mesh-control-plane",
+  "istio-pilot.mesh-control-plane.svc",
+  "istio-pilot.mesh-control-plane.svc.%s" % configs.dnsdomain,
+  "istio-pilot.mesh-control-plane.sfdc-role",
+];
+local pilotServerCertConfig = madkub.serverCertConfig("tls-server-cert", "/server-cert", "istio-pilot", "mesh-control-plane", pilotSans);
+local pilotClientCertConfig = madkub.clientCertConfig("tls-client-cert", "/client-cert", "istio-pilot", "mesh-control-plane");
+local pilotCertConfigs = [pilotServerCertConfig, pilotClientCertConfig];
+
 ## Istio sidecar-injector madkub certificates.
 local sidecarInjectorSans = [
   "istio-sidecar-injector",
@@ -36,6 +48,17 @@ local ingressGatewayCertConfigs = [ingressGatewayClientCertConfig, ingressGatewa
   permissionInitContainer: samimages.permissionInitContainer,
 
   ## Istio Config Objects. Represented as `"mcpIstioConfig.<name>"` in template.
+
+  pilotMadkubAnnotations: std.manifestJsonEx(
+    {
+      certreqs:
+        [
+          certReq
+          for certReq in madkub.madkubSamCertsAnnotation(pilotCertConfigs).certreqs
+        ],
+    }, " "
+  ),
+
   sidecarInjectorMadkubAnnotations: std.manifestJsonEx(
     {
       certreqs:

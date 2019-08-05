@@ -42,9 +42,9 @@ spec:
         - --statusPort
         - "15020"
         - --controlPlaneAuthPolicy
-        - NONE
+        - MUTUAL_TLS
         - --discoveryAddress
-        - istio-pilot.mesh-control-plane:15010
+        - istio-pilot.mesh-control-plane:15011
         env:
         - name: ESTATE
           value: mcpIstioConfig.casamEstate

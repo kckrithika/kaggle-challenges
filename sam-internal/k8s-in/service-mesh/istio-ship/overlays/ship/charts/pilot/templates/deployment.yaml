@@ -11,6 +11,8 @@ spec:
       app: pilot
   template:
     metadata:
+      annotations:
+        madkub.sam.sfdc.net/allcerts: mcpIstioConfig.pilotMadkubAnnotations
       labels:
         name: istio-pilot
     spec:
@@ -27,11 +29,75 @@ spec:
         - name: PILOT_DEBOUNCE_MAX
           value: "3m"
         name: discovery
-        ports:
-        - containerPort: 15011
         volumeMounts:
         - $patch: delete
           mountPath: /etc/certs
+      - name: istio-proxy
+        volumeMounts:
+        - mountPath: /etc/certs/root-cert.pem
+          name: tls-server-cert
+          subPath: ca.pem
+        - mountPath: /etc/certs/cert-chain.pem
+          name: tls-server-cert
+          subPath: server/certificates/server.pem
+        - mountPath: /etc/certs/key.pem
+          name: tls-server-cert
+          subPath: server/keys/server-key.pem
+        - mountPath: /etc/certs/client.pem
+          name: tls-client-cert
+          subPath: client/certificates/client.pem
+        - mountPath: /etc/certs/client-key.pem
+          name: tls-client-cert
+          subPath: client/keys/client-key.pem
+        - mountPath: /client-cert
+          name: tls-client-cert
+        - mountPath: /server-cert
+          name: tls-server-cert
+        - $patch: delete
+          mountPath: /etc/certs
+      - args:
+        - /sam/madkub-client
+        - --madkub-endpoint=%(madkubEndpoint)s
+        - --maddog-endpoint=%(maddogEndpoint)s
+        - --maddog-server-ca=/maddog-certs/ca/security-ca.pem
+        - --madkub-server-ca=/maddog-certs/ca/cacerts.pem
+        - --cert-folders=tls-client-cert:/client-cert/
+        - --cert-folders=tls-server-cert:/server-cert/
+        - --token-folder=/tokens/
+        - --ca-folder=/maddog-certs/ca
+        - --refresher
+        - --run-init-for-refresher-mode
+        env:
+        - name: MADKUB_NODENAME
+          valueFrom:
+            fieldRef:
+              apiVersion: v1
+              fieldPath: spec.nodeName
+        - name: MADKUB_NAME
+          valueFrom:
+            fieldRef:
+              apiVersion: v1
+              fieldPath: metadata.name
+        - name: MADKUB_NAMESPACE
+          valueFrom:
+            fieldRef:
+              apiVersion: v1
+              fieldPath: metadata.namespace
+        - name: ESTATE
+          value: mcpIstioConfig.casamEstate  
+        image: mcpIstioConfig.madkubImage
+        imagePullPolicy: IfNotPresent
+        name: madkub-refresher
+        resources: {}
+        volumeMounts:
+        - mountPath: /client-cert
+          name: tls-client-cert
+        - mountPath: /server-cert
+          name: tls-server-cert
+        - mountPath: /maddog-certs/
+          name: maddog-certs
+        - mountPath: /tokens
+          name: tokens
       - args:
         - --debug-mode
         - "true"
@@ -61,10 +127,77 @@ spec:
           initialDelaySeconds: 5
           periodSeconds: 30
           timeoutSeconds: 5
-      - $patch: delete
-        name: istio-proxy
+      initContainers:
+      - args:
+        - /sam/madkub-client
+        - --madkub-endpoint=%(madkubEndpoint)s
+        - --maddog-endpoint=%(maddogEndpoint)s
+        - --maddog-server-ca=/maddog-certs/ca/security-ca.pem
+        - --madkub-server-ca=/maddog-certs/ca/cacerts.pem
+        - --cert-folders=tls-client-cert:/client-cert/
+        - --cert-folders=tls-server-cert:/server-cert/
+        - --token-folder=/tokens/
+        - --ca-folder=/maddog-certs/ca
+        env:
+        - name: MADKUB_NODENAME
+          valueFrom:
+            fieldRef:
+              apiVersion: v1
+              fieldPath: spec.nodeName
+        - name: MADKUB_NAME
+          valueFrom:
+            fieldRef:
+              apiVersion: v1
+              fieldPath: metadata.name
+        - name: MADKUB_NAMESPACE
+          valueFrom:
+            fieldRef:
+              apiVersion: v1
+              fieldPath: metadata.namespace
+        image: mcpIstioConfig.madkubImage
+        imagePullPolicy: IfNotPresent
+        name: madkub-init
+        volumeMounts:
+        - mountPath: /client-cert
+          name: tls-client-cert
+        - mountPath: /server-cert
+          name: tls-server-cert
+        - mountPath: /maddog-certs/
+          name: maddog-certs
+        - mountPath: /tokens
+          name: tokens
+      - command:
+        - bash
+        - -c
+        - |
+          set -ex
+          chmod 775 -R /client-cert && chown -R 7447:7447 /client-cert
+          chmod 775 -R /server-cert && chown -R 7447:7447 /server-cert
+        image: mcpIstioConfig.permissionInitContainer
+        imagePullPolicy: Always
+        name: permissionsetterinitcontainer
+        securityContext:
+          runAsNonRoot: false
+          runAsUser: 0
+        volumeMounts:
+        - mountPath: /client-cert
+          name: tls-client-cert
+        - mountPath: /server-cert
+          name: tls-server-cert
       nodeSelector:
         pool: mcpIstioConfig.istioEstate
       volumes:
+      - hostPath:
+          path: /etc/pki_service
+        name: maddog-certs
+      - emptyDir:
+          medium: Memory
+        name: tls-client-cert
+      - emptyDir:
+          medium: Memory
+        name: tls-server-cert
+      - emptyDir:
+          medium: Memory
+        name: tokens
       - $patch: delete
         name: istio-certs

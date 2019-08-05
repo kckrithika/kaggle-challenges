@@ -37,7 +37,7 @@ spec:
       serviceAccountName: istio-pilot-service-account
       containers:
         - name: discovery
-          image: "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-sfci-dev/sfci/servicemesh/istio-packaging/pilot:1fae9accd5177919f9767a466338b96933ccffd4"
+          image: "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-sfci-dev/sfci/servicemesh/istio-packaging/pilot:c77b4595896eb2787488004d02b3a745681f4138"
           imagePullPolicy: IfNotPresent
           args:
           - "discovery"
@@ -45,8 +45,6 @@ spec:
           - --log_output_level=default:warn
           - --domain
           - cluster.local
-          - --secureGrpcAddr
-          - ""
           - --keepaliveMaxServerConnectionAge
           - "30m"
           ports:
@@ -93,7 +91,7 @@ spec:
             mountPath: /etc/certs
             readOnly: true
         - name: istio-proxy
-          image: "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-sfci-dev/sfci/servicemesh/istio-packaging/proxy:1fae9accd5177919f9767a466338b96933ccffd4"
+          image: "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-sfci-dev/sfci/servicemesh/istio-packaging/proxy:c77b4595896eb2787488004d02b3a745681f4138"
           imagePullPolicy: IfNotPresent
           ports:
           - containerPort: 15003
@@ -109,7 +107,7 @@ spec:
           - --templateFile
           - /etc/istio/proxy/envoy_pilot.yaml.tmpl
           - --controlPlaneAuthPolicy
-          - NONE
+          - MUTUAL_TLS
           env:
           - name: POD_NAME
             valueFrom:
