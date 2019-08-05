@@ -9,6 +9,13 @@ local wave_elt_production = {
         users: ["wave-elt.datapool"],
 };
 
+local cre_production = {
+        owner_name: "CRE",
+        namespace: "retail-cre",
+        pki_namespace: "retail-cre",
+        users: ["retail-cre.cre-control-plane"],
+};
+
 {
     # add new Spark-on-kubernetes clients to this object.
     clients_per_estate: {
@@ -92,7 +99,17 @@ local wave_elt_production = {
                 owner_name: "CRE",
                 namespace: "retail-cre",
                 pki_namespace: "retail-cre",
-                users: ["retail-cre.kchaganti", "retail-cre.tteats", "retail-cre.yumrotkar"],
+                users: [
+                    "retail-cre.kchaganti",
+                    "retail-cre.tteats",
+                    "retail-cre.yumrotkar",
+                    "retail-cre.cre-control-plane",
+                    "retail-cre.cre-control-plane-func",
+                    "retail-cre.cre-control-plane-dev",
+                    "retail-cre.cre-control-plane-stage",
+                    "retail-cre.cre-control-plane-test",
+                    "retail-cre.cre-control-plane-perf",
+                ],
             },
         ],
 
@@ -119,12 +136,12 @@ local wave_elt_production = {
         # -------------------------------
         # ---------- IAD fleet ----------
         # -------------------------------
-        "iad-flowsnake_prod": [wave_elt_production],
+        "iad-flowsnake_prod": [wave_elt_production, cre_production],
 
         # -------------------------------
         # ---------- ORD fleet ----------
         # -------------------------------
-        "ord-flowsnake_prod": [wave_elt_production],
+        "ord-flowsnake_prod": [wave_elt_production, cre_production],
 
         # -------------------------------
         # ---------- PAR fleet ----------
