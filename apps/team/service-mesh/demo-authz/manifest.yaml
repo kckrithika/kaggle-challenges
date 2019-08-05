@@ -11,7 +11,7 @@ system:
       "sherpa-injector.service-mesh/inject": "enabled"
     containers:
     - name: demo-authz
-      image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/electron_sam:40
+      image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/electron_sam:44
       args:
       - --extra-authz-clients=dns=test-jwt.sfdc-role
       - --authz-paths=opt/identity/authz/test-internal/,opt/identity/authz/
@@ -40,7 +40,7 @@ system:
         periodSeconds: 5
         timeoutSeconds: 4
     - name: demo-authz-grpc-client
-      image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/electron_client:38
+      image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/electron_client:44
       args:
       - -endpoint=localhost:7020
       - -service=grpc
@@ -53,13 +53,14 @@ system:
           command: ["/bin/true"]
         initialDelaySeconds: 30
     - name: demo-authz-http-client
-      image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/electron_client:38
+      image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/electron_client:44
       args:
       - -endpoint=localhost:7022
       - -service=http
       - -https=false
       - -loopCount=-1
       - -loopDelayInSeconds=60
+      - -spoof-xfcc=DNS=test-jwt.sfdc-role
       livenessProbe:
         exec:
           command: ["/bin/true"]
