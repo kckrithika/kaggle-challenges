@@ -82,7 +82,7 @@ system:
     # C2C CA Docker
     #####################################################################################
     - name: c2c-ca-integration-test
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/c2c-pr/c2c-ca-docker:49be539
+      image: ops0-artifactrepo2-0-prd.data.sfdc.net/c2c-pr/c2c-ca-docker:49be539
       imagePullPolicy: Always
       env:
       - name: server_port
@@ -92,6 +92,7 @@ system:
       - name: login_vip_url
         value: https://gidruntimelb.global-identity.xrd-sam.xrd.slb.sfdc.net
       ports:
+      - containerPort: 7030
       - containerPort: 7022
       - containerPort: 15375
       livenessProbe:
