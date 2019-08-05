@@ -5,7 +5,7 @@ system:
     count: 1
     containers:
     - name: gater-perf2
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/gater/gater-perf:5cb6ceeea
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/gater/gater-perf:sortiz-1565033276
       args:
       - --gater.grpc.endpoint=gater-mesh2.gater.localhost.mesh.force.com
       - --gater.grpc.port=5443
