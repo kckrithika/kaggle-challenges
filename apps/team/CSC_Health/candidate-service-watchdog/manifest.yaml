@@ -47,6 +47,14 @@ system:
         export HEWD_AJNA_FUNNELENDPOINT=http://${SFDC_METRICS_SERVICE_HOST}:${SFDC_METRICS_SERVICE_PORT} ;
         export HEWD_AJNA_DATACENTER=${KINGDOM} ;
         export HEWD_AJNA_DEVICE=${ESTATE}.${FUNCTION_NAMESPACE}.${FUNCTION}.${FUNCTION_INSTANCE_NAME} ;
-        export HEWD_TARGET_ENDPOINT=http://${CANDIDATESERVICELB_SERVICE_HOST}:${CANDIDATESERVICELB_SERVICE_PORT} ;
+
+        cans2whitelist=prd ;
+        if [[ ${cans2whitelist} == *${KINGDOM}* ]]
+        then
+            export HEWD_TARGET_ENDPOINT=http://${CANDIDATESERVICE2LB_SERVICE_HOST}:${CANDIDATESERVICE2LB_SERVICE_PORT} ;
+        else
+            export HEWD_TARGET_ENDPOINT=http://${CANDIDATESERVICELB_SERVICE_HOST}:${CANDIDATESERVICELB_SERVICE_PORT} ;
+        fi;
+
         /health-endpoint-watchdog
       "]

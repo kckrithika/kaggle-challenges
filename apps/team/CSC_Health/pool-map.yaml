@@ -129,8 +129,6 @@ apps:
     - lo2/lo2-sam_report_collector
     - lo3/lo3-sam_report_collector
   expcandidate-service-watchdog:
-  candidate-service-2-watchdog:
-    - prd/prd-sam_report_collector
   candidate-service-watchdog:
     - prd/prd-sam_report_collector
     - dfw/dfw-sam_report_collector
