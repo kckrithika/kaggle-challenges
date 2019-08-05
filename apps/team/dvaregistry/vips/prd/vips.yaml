@@ -44,7 +44,8 @@
       tls: true
       reencrypt: true
       lbalgorithm: leastconn
-      healthprotocol: "tcp"
+      healthprotocol: http
+      healthpath: /strata_proxy_health
 - lbname: strata-sonarqube-canary2
   customlbname: strata-sonarqube-canary2
   servers:
