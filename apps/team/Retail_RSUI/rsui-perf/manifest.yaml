@@ -32,7 +32,7 @@ system:
 
     containers:
     - name: rsui-perf
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/retail/retail-setup:0.1.9.193
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/retail/retail-setup:0.1.9.197
       ports:
       - containerPort: 7022
         name: rsui-in-http1
