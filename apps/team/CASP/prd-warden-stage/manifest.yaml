@@ -16,7 +16,7 @@ system:
           maxUnavailable: 1
       containers:
       - name: prd-warden-stage
-        image: dva/casp/warden_strata:366
+        image: dva/casp/warden_strata:373
         ports:
         - name: http
           containerPort: 8889
@@ -96,7 +96,10 @@ system:
       ports:
         - port: 80
           targetport: 8889
+          lbalgorithm: roundrobin
         - port: 443
           targetport: 8444
+          lbalgorithm: roundrobin
         - port: 15372
           targetport: 15372
+          lbalgorithm: roundrobin
