@@ -5,7 +5,7 @@ system:
     count: 1
     containers:
     - name: gater-perf2
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/gater/gater-perf:sortiz-1565033276
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/gater/gater-perf:5cb6ceeea
       args:
       - --gater.grpc.endpoint=gater-mesh2.gater.localhost.mesh.force.com
       - --gater.grpc.port=5443
@@ -17,7 +17,7 @@ system:
       - --management.server.port=15375
       - --server.port=8081
       - --metrics.collectionInterval=60
-      - --gater.grpc.deadline-ms=300
+      - --gater.grpc.deadline-ms=40
       - --gater.timeout-in-millis=20
       - --gater.perf.should-log=true
       - --gater.client.log-opts=ALWAYS_LOG
