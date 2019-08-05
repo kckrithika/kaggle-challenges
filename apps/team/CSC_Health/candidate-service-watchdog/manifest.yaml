@@ -49,7 +49,7 @@ system:
         export HEWD_AJNA_DEVICE=${ESTATE}.${FUNCTION_NAMESPACE}.${FUNCTION}.${FUNCTION_INSTANCE_NAME} ;
 
         cans2whitelist=prd ;
-        if [[ ${cans2whitelist} == *${KINGDOM}* ]]
+        if [[ ${cans2whitelist} == *${KINGDOM}* ]] ;
         then
             export HEWD_TARGET_ENDPOINT=http://${CANDIDATESERVICE2LB_SERVICE_HOST}:${CANDIDATESERVICE2LB_SERVICE_PORT} ;
         else
