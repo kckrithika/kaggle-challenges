@@ -51,7 +51,7 @@ if sherpa_utils.is_sherpa_injector_prod_cluster(configs.estate) then
           ],
         },
       ],
-      failurePolicy: "Ignore",  //TODO: Set to "Fail", when the code/configs are stable
+      failurePolicy: "Fail",
       namespaceSelector: {
         matchLabels: {
           "sherpa-injection": "enabled",
