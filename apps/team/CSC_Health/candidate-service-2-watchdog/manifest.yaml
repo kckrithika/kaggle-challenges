@@ -1,0 +1,53 @@
+apiVersion: v1
+
+system:
+  notifications:
+    email:
+      - cschealthcp@salesforce.com
+  functions:
+  - name: candidate-service-2-watchdog
+    count: 1
+    volumes:
+    - name: client-cert
+      maddogCert:
+        type: client
+    containers:
+    - name: candidate-service-2-watchdog
+      image: dva/csc-health/health-endpoint-watchdog:1
+      resources:
+        limits: { cpu: "1", memory: "2Gi" }
+        requests: { cpu: "1", memory: "2Gi" }
+      livenessProbe:
+        exec:
+          command:
+          - echo
+          - always_healthy
+      volumeMounts:
+        - mountPath: /certs
+          name: client-cert
+      env:
+      - name: HEWD_AJNA_ENABLED
+        value: true
+      - name: HEWD_AJNA_SERVICE
+        value: candidate-service-2
+      - name: HEWD_AJNA_CERTPATH
+        value: /certs/client/certificates/client.pem
+      - name: HEWD_AJNA_KEYPATH
+        value: /certs/client/keys/client-key.pem
+      - name: HEWD_AJNA_CACERTPATH
+        value: /certs/ca.pem
+      - name: HEWD_TARGET_DISPLAYNAME
+        value: "Candidate Service 2"
+      - name: HEWD_PUBLISHPRODUCTIONAVAILABILITYMETRIC
+        value: true
+      - name: HEWD_LOGLEVEL
+        value: debug
+      command: ["/bin/sh", "-c"]
+      args: ["
+        export HEWD_AJNA_FUNNELENDPOINT=http://${SFDC_METRICS_SERVICE_HOST}:${SFDC_METRICS_SERVICE_PORT} ;
+        export HEWD_AJNA_DATACENTER=${KINGDOM} ;
+        export HEWD_AJNA_DEVICE=${ESTATE}.${FUNCTION_NAMESPACE}.${FUNCTION}.${FUNCTION_INSTANCE_NAME} ;
+        export HEWD_TARGET_ENDPOINT=http://${CANDIDATESERVICE2LB_SERVICE_HOST}:${CANDIDATESERVICE2LB_SERVICE_PORT} ;
+        /health-endpoint-watchdog
+      "]
+
