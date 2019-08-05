@@ -79,7 +79,6 @@ apps:
     - yul/yul-sam_report_collector
   expobservation-service:
   observation-service:
-    - prd/prd-sam_report_collector
     - dfw/dfw-sam_report_collector
     - phx/phx-sam_report_collector
     - frf/frf-sam_report_collector
@@ -95,7 +94,6 @@ apps:
     - lo2/lo2-sam_report_collector
     - lo3/lo3-sam_report_collector
   observation-service-watchdog:
-    - prd/prd-sam_report_collector
     - dfw/dfw-sam_report_collector
     - phx/phx-sam_report_collector
     - frf/frf-sam_report_collector
@@ -113,7 +111,6 @@ apps:
   candidate-service-2:
     - prd/prd-sam_report_collector
   candidate-service:
-    - prd/prd-sam_report_collector
     - dfw/dfw-sam_report_collector
     - phx/phx-sam_report_collector
     - frf/frf-sam_report_collector
