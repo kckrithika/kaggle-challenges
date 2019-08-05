@@ -25,6 +25,7 @@ apps:
   - ukb/ukb-sam_warden
   - phx/phx-sam_warden
   - frf/frf-sam_warden
+  - fra/fra-sam_warden
  prod-cantor:
   - dfw/dfw-sam_warden
   - iad/iad-sam_warden
@@ -65,5 +66,8 @@ apps:
   - frf/frf-sam_warden
  prod-warden-fra:
   - fra/fra-sam_warden
+ prod-cantor-fra:
+  - fra/fra-sam_warden
  prod-warden-cdg:
   - cdg/cdg-sam_warden
+  
