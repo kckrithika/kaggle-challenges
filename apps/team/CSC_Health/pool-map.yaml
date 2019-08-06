@@ -81,8 +81,6 @@ apps:
   observation-service:
     - dfw/dfw-sam_report_collector
     - phx/phx-sam_report_collector
-    - frf/frf-sam_report_collector
-    - par/par-sam_report_collector
     - ukb/ukb-sam_report_collector
     - iad/iad-sam_report_collector
     - ord/ord-sam_report_collector
@@ -96,8 +94,6 @@ apps:
   observation-service-watchdog:
     - dfw/dfw-sam_report_collector
     - phx/phx-sam_report_collector
-    - frf/frf-sam_report_collector
-    - par/par-sam_report_collector
     - ukb/ukb-sam_report_collector
     - iad/iad-sam_report_collector
     - ord/ord-sam_report_collector
@@ -110,11 +106,11 @@ apps:
     - lo3/lo3-sam_report_collector
   candidate-service-2:
     - prd/prd-sam_report_collector
+    - par/par-sam_report_collector
+    - frf/frf-sam_report_collector
   candidate-service:
     - dfw/dfw-sam_report_collector
     - phx/phx-sam_report_collector
-    - frf/frf-sam_report_collector
-    - par/par-sam_report_collector
     - ukb/ukb-sam_report_collector
     - iad/iad-sam_report_collector
     - ord/ord-sam_report_collector
