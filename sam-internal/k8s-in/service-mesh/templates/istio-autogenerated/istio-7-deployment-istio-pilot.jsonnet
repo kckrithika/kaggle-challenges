@@ -33,6 +33,7 @@ local mcpIstioConfig = (import "service-mesh/istio-config.jsonnet");
     template: {
       metadata: {
         annotations: {
+          "madkub.sam.sfdc.net/allcerts": mcpIstioConfig.pilotMadkubAnnotations,
           "sidecar.istio.io/inject": "false",
         },
         labels: {
@@ -118,8 +119,6 @@ local mcpIstioConfig = (import "service-mesh/istio-config.jsonnet");
               "--log_output_level=default:warn",
               "--domain",
               "cluster.local",
-              "--secureGrpcAddr",
-              "",
               "--keepaliveMaxServerConnectionAge",
               "30m",
             ],
@@ -179,13 +178,10 @@ local mcpIstioConfig = (import "service-mesh/istio-config.jsonnet");
                 value: "1",
               },
             ],
-            image: "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-sfci-dev/sfci/servicemesh/istio-packaging/pilot:1fae9accd5177919f9767a466338b96933ccffd4",
+            image: "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-sfci-dev/sfci/servicemesh/istio-packaging/pilot:c77b4595896eb2787488004d02b3a745681f4138",
             imagePullPolicy: "IfNotPresent",
             name: "discovery",
             ports: [
-              {
-                containerPort: 15011,
-              },
               {
                 containerPort: 8080,
               },
@@ -216,6 +212,180 @@ local mcpIstioConfig = (import "service-mesh/istio-config.jsonnet");
               {
                 mountPath: "/etc/istio/config",
                 name: "config-volume",
+              },
+            ],
+          },
+          {
+            args: [
+              "proxy",
+              "--domain",
+              "$(POD_NAMESPACE).svc.cluster.local",
+              "--serviceCluster",
+              "istio-pilot",
+              "--templateFile",
+              "/etc/istio/proxy/envoy_pilot.yaml.tmpl",
+              "--controlPlaneAuthPolicy",
+              "MUTUAL_TLS",
+            ],
+            env: [
+              {
+                name: "POD_NAME",
+                valueFrom: {
+                  fieldRef: {
+                    apiVersion: "v1",
+                    fieldPath: "metadata.name",
+                  },
+                },
+              },
+              {
+                name: "POD_NAMESPACE",
+                valueFrom: {
+                  fieldRef: {
+                    apiVersion: "v1",
+                    fieldPath: "metadata.namespace",
+                  },
+                },
+              },
+              {
+                name: "INSTANCE_IP",
+                valueFrom: {
+                  fieldRef: {
+                    apiVersion: "v1",
+                    fieldPath: "status.podIP",
+                  },
+                },
+              },
+            ],
+            image: "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-sfci-dev/sfci/servicemesh/istio-packaging/proxy:c77b4595896eb2787488004d02b3a745681f4138",
+            imagePullPolicy: "IfNotPresent",
+            name: "istio-proxy",
+            ports: [
+              {
+                containerPort: 15003,
+              },
+              {
+                containerPort: 15005,
+              },
+              {
+                containerPort: 15007,
+              },
+              {
+                containerPort: 15011,
+              },
+            ],
+            resources: {
+              limits: {
+                cpu: "2000m",
+                memory: "1024Mi",
+              },
+              requests: {
+                cpu: "100m",
+                memory: "128Mi",
+              },
+            },
+            volumeMounts: [
+              {
+                mountPath: "/etc/certs/root-cert.pem",
+                name: "tls-server-cert",
+                subPath: "ca.pem",
+              },
+              {
+                mountPath: "/etc/certs/cert-chain.pem",
+                name: "tls-server-cert",
+                subPath: "server/certificates/server.pem",
+              },
+              {
+                mountPath: "/etc/certs/key.pem",
+                name: "tls-server-cert",
+                subPath: "server/keys/server-key.pem",
+              },
+              {
+                mountPath: "/etc/certs/client.pem",
+                name: "tls-client-cert",
+                subPath: "client/certificates/client.pem",
+              },
+              {
+                mountPath: "/etc/certs/client-key.pem",
+                name: "tls-client-cert",
+                subPath: "client/keys/client-key.pem",
+              },
+              {
+                mountPath: "/client-cert",
+                name: "tls-client-cert",
+              },
+              {
+                mountPath: "/server-cert",
+                name: "tls-server-cert",
+              },
+            ],
+          },
+          {
+            args: [
+              "/sam/madkub-client",
+              "--madkub-endpoint=%(madkubEndpoint)s" % mcpIstioConfig,
+              "--maddog-endpoint=%(maddogEndpoint)s" % mcpIstioConfig,
+              "--maddog-server-ca=/maddog-certs/ca/security-ca.pem",
+              "--madkub-server-ca=/maddog-certs/ca/cacerts.pem",
+              "--cert-folders=tls-client-cert:/client-cert/",
+              "--cert-folders=tls-server-cert:/server-cert/",
+              "--token-folder=/tokens/",
+              "--ca-folder=/maddog-certs/ca",
+              "--refresher",
+              "--run-init-for-refresher-mode",
+            ],
+            env: [
+              {
+                name: "MADKUB_NODENAME",
+                valueFrom: {
+                  fieldRef: {
+                    apiVersion: "v1",
+                    fieldPath: "spec.nodeName",
+                  },
+                },
+              },
+              {
+                name: "MADKUB_NAME",
+                valueFrom: {
+                  fieldRef: {
+                    apiVersion: "v1",
+                    fieldPath: "metadata.name",
+                  },
+                },
+              },
+              {
+                name: "MADKUB_NAMESPACE",
+                valueFrom: {
+                  fieldRef: {
+                    apiVersion: "v1",
+                    fieldPath: "metadata.namespace",
+                  },
+                },
+              },
+              {
+                name: "ESTATE",
+                value: mcpIstioConfig.casamEstate,
+              },
+            ],
+            image: mcpIstioConfig.madkubImage,
+            imagePullPolicy: "IfNotPresent",
+            name: "madkub-refresher",
+            resources: {},
+            volumeMounts: [
+              {
+                mountPath: "/client-cert",
+                name: "tls-client-cert",
+              },
+              {
+                mountPath: "/server-cert",
+                name: "tls-server-cert",
+              },
+              {
+                mountPath: "/maddog-certs/",
+                name: "maddog-certs",
+              },
+              {
+                mountPath: "/tokens",
+                name: "tokens",
               },
             ],
           },
@@ -270,11 +440,124 @@ local mcpIstioConfig = (import "service-mesh/istio-config.jsonnet");
             },
           },
         ],
+        initContainers: [
+          {
+            args: [
+              "/sam/madkub-client",
+              "--madkub-endpoint=%(madkubEndpoint)s" % mcpIstioConfig,
+              "--maddog-endpoint=%(maddogEndpoint)s" % mcpIstioConfig,
+              "--maddog-server-ca=/maddog-certs/ca/security-ca.pem",
+              "--madkub-server-ca=/maddog-certs/ca/cacerts.pem",
+              "--cert-folders=tls-client-cert:/client-cert/",
+              "--cert-folders=tls-server-cert:/server-cert/",
+              "--token-folder=/tokens/",
+              "--ca-folder=/maddog-certs/ca",
+            ],
+            env: [
+              {
+                name: "MADKUB_NODENAME",
+                valueFrom: {
+                  fieldRef: {
+                    apiVersion: "v1",
+                    fieldPath: "spec.nodeName",
+                  },
+                },
+              },
+              {
+                name: "MADKUB_NAME",
+                valueFrom: {
+                  fieldRef: {
+                    apiVersion: "v1",
+                    fieldPath: "metadata.name",
+                  },
+                },
+              },
+              {
+                name: "MADKUB_NAMESPACE",
+                valueFrom: {
+                  fieldRef: {
+                    apiVersion: "v1",
+                    fieldPath: "metadata.namespace",
+                  },
+                },
+              },
+            ],
+            image: mcpIstioConfig.madkubImage,
+            imagePullPolicy: "IfNotPresent",
+            name: "madkub-init",
+            volumeMounts: [
+              {
+                mountPath: "/client-cert",
+                name: "tls-client-cert",
+              },
+              {
+                mountPath: "/server-cert",
+                name: "tls-server-cert",
+              },
+              {
+                mountPath: "/maddog-certs/",
+                name: "maddog-certs",
+              },
+              {
+                mountPath: "/tokens",
+                name: "tokens",
+              },
+            ],
+          },
+          {
+            command: [
+              "bash",
+              "-c",
+              "set -ex\nchmod 775 -R /client-cert \u0026\u0026 chown -R 7447:7447 /client-cert\nchmod 775 -R /server-cert \u0026\u0026 chown -R 7447:7447 /server-cert\n",
+            ],
+            image: mcpIstioConfig.permissionInitContainer,
+            imagePullPolicy: "Always",
+            name: "permissionsetterinitcontainer",
+            securityContext: {
+              runAsNonRoot: false,
+              runAsUser: 0,
+            },
+            volumeMounts: [
+              {
+                mountPath: "/client-cert",
+                name: "tls-client-cert",
+              },
+              {
+                mountPath: "/server-cert",
+                name: "tls-server-cert",
+              },
+            ],
+          },
+        ],
         nodeSelector: {
           pool: mcpIstioConfig.istioEstate,
         },
         serviceAccountName: "istio-pilot-service-account",
         volumes: [
+          {
+            hostPath: {
+              path: "/etc/pki_service",
+            },
+            name: "maddog-certs",
+          },
+          {
+            emptyDir: {
+              medium: "Memory",
+            },
+            name: "tls-client-cert",
+          },
+          {
+            emptyDir: {
+              medium: "Memory",
+            },
+            name: "tls-server-cert",
+          },
+          {
+            emptyDir: {
+              medium: "Memory",
+            },
+            name: "tokens",
+          },
           {
             configMap: {
               name: "istio",

@@ -130,9 +130,9 @@ local mcpIstioConfig = (import "service-mesh/istio-config.jsonnet");
               "--statusPort",
               "15020",
               "--controlPlaneAuthPolicy",
-              "NONE",
+              "MUTUAL_TLS",
               "--discoveryAddress",
-              "istio-pilot.mesh-control-plane:15010",
+              "istio-pilot.mesh-control-plane:15011",
             ],
             env: [
               {
@@ -234,7 +234,7 @@ local mcpIstioConfig = (import "service-mesh/istio-config.jsonnet");
                 value: "sni-dnat",
               },
             ],
-            image: "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-sfci-dev/sfci/servicemesh/istio-packaging/proxy:1fae9accd5177919f9767a466338b96933ccffd4",
+            image: "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-sfci-dev/sfci/servicemesh/istio-packaging/proxy:c77b4595896eb2787488004d02b3a745681f4138",
             imagePullPolicy: "IfNotPresent",
             name: "istio-proxy",
             ports: [
