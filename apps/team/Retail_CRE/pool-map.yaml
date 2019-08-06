@@ -87,7 +87,14 @@ apps:
   - name: iad/iad-sam_customerresolutionengine
   ord.Prod.cre_api:
   - name: ord/ord-sam_customerresolutionengine
-
+  ukb.Prod.cre_api:
+  - name: ukb/ukb-sam_customerresolutionengine
+  par.Prod.cre_api:
+  - name: par/par-sam_customerresolutionengine
+  hnd.Prod.cre_api:
+  - name: hnd/hnd-sam_customerresolutionengine
+  frf.Prod.cre_api:
+  - name: frf/frf-sam_customerresolutionengine
 
   # ====== CONTROL PLANE ====== #
   # ======= PRD ======== #
