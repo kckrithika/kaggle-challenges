@@ -44,17 +44,18 @@ system:
         httpGet:
           path: /manage/health
           port: 15372
-        initialDelaySeconds: 60
+        initialDelaySeconds: 60 
         timeoutSeconds: 10
       readinessProbe:
         httpGet:
           path: /manage/health
           port: 15372
-        initialDelaySeconds: 45
-        periodSeconds: 5
+        initialDelaySeconds: 60 
+        timeoutSeconds: 10
+        periodSeconds: 10
     - name: sherpa
       # latest release:  https://git.soma.salesforce.com/servicelibs/sherpa-envoy/releases
-      image: sfci/servicelibs/sherpa-envoy:1.0.6
+      image: sfci/servicelibs/sherpa-envoy:1.0.8
       ports:
       - name: http2-in
         containerPort: 7012
