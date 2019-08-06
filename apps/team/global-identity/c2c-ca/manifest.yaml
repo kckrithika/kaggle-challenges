@@ -95,10 +95,11 @@ system:
       - containerPort: 1636
       - containerPort: 7022
       - containerPort: 15372
+      - containerPort: 8090
       livenessProbe:
         httpGet:
-          path: /empire/cloudatlas
-          port: 7030
+          path: /scim
+          port: 8090
         initialDelaySeconds: 120
         periodSeconds: 60
     #####################################################################################
