@@ -52,7 +52,7 @@ spec:
         istio: ingressgateway
         name: istio-ingressgateway
         release: istio
-        settings_path: -.-.prd.-.istio-ingressgateway
+        settings_path: istio.-.prd.-.istio-ingressgateway
     spec:
       affinity:
         nodeAffinity:
@@ -121,7 +121,7 @@ spec:
         - name: SETTINGS_SUPERPOD
           value: '-'
         - name: SETTINGS_PATH
-          value: -.-.prd.-.istio-ingressgateway
+          value: istio.-.prd.-.istio-ingressgateway
         - name: ISTIO_META_hostname
           valueFrom:
             fieldRef:

@@ -267,7 +267,7 @@ spec:
         - name: SETTINGS_SUPERPOD
           value: '-'
         - name: SETTINGS_PATH
-          value: -.-.prd.-.istio-pilot
+          value: istio.-.prd.-.istio-pilot
         - name: SFDC_METRICS_SERVICE_HOST
           value: ajna0-funnel1-0-prd.data.sfdc.net
         - name: SFDC_METRICS_SERVICE_PORT
