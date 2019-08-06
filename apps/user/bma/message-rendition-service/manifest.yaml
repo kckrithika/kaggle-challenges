@@ -94,3 +94,4 @@ system:
   - lbname: message-rendition-services-lb
     function: message-rendition-services
     slbenabled: true
+    ports:
