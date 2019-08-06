@@ -851,7 +851,6 @@ spec:
         name: istio-ingressgateway
         release: istio
         settings_path: mcpIstioConfig.ingressGatewaySettingsPath
-        superpod: mcpIstioConfig.superpod
     spec:
       affinity:
         nodeAffinity:
