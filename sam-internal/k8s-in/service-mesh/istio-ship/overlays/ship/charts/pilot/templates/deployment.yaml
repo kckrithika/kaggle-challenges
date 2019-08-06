@@ -17,7 +17,16 @@ spec:
         name: istio-pilot
     spec:
       containers:
-      - env:
+      - args:
+        - discovery
+        - --monitoringAddr=:15014
+        - --log_output_level=default:warn
+        - --domain
+        - cluster.local
+        - --keepaliveMaxServerConnectionAge
+        - 30m
+        - --secureGrpcAddr=
+        env:
         - name: ESTATE
           value: mcpIstioConfig.istioEstate
         - name: PILOT_SIDECAR_USE_REMOTE_ADDRESS
