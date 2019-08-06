@@ -3,4 +3,5 @@ apps:
     - prd/prd-sam
     # - xrd/xrd-sampool
   c2c-ca-integration-test:
-    - prd/prd-sam
+    # - prd/prd-sam
+    - xrd/xrd-sampool
