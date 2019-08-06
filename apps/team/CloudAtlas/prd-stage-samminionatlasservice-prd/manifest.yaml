@@ -90,7 +90,7 @@ system:
         - name: management_server_port
           value: 15374
         - name: cloudatlas_http_server_port_servicemesh
-          value: 7022
+          value: 7080
       volumeMounts:
       - mountPath: /log
         name: logvol
@@ -104,7 +104,7 @@ system:
       ports:
       - containerPort: 7030
       - containerPort: 7032
-      - containerPort: 7022
+      - containerPort: 7080
       - containerPort: 15374
       livenessProbe:
         httpGet:
@@ -119,31 +119,31 @@ system:
         initialDelaySeconds: 60
         periodSeconds: 5
         failureThreshold: 120
-#    #####################################################################################
-#    # C2C service
-#    #####################################################################################
-#    - name: c2c-service
-#      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/gid/c2c-service:20190523133332-3fe3411
-#      imagePullPolicy: Always
-#      env:
-#        - name: server_port
-#          value: 8082
-#        - name: management_server_port
-#          value: 15372
-#        - name: c2c_common_gdotBasePath
-#          value: http://127.0.0.1:7030/scim
-#        - name: GDOT_URL
-#          value: http://127.0.0.1:7030/scim
-#      ports:
-#        - containerPort: 8082
-#        - containerPort: 15372
-#      livenessProbe:
-#        httpGet:
-#          path: /manage/info
-#          port: 15372
-#      volumeMounts:
-#        - name: server-cert
-#          mountPath: /certs
+    #####################################################################################
+    # C2C service
+    #####################################################################################
+    - name: c2c-service
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/gid/c2c-service:20190718035854-06c21b0
+      imagePullPolicy: Always
+      env:
+        - name: server_port
+          value: 8082
+        - name: management_server_port
+          value: 15372
+        - name: c2c_common_gdotBasePath
+          value: http://cloudatlas-prd-dev-service.cloudatlas.localhost.mesh.force.com:5442/scim
+        - name: GDOT_URL
+          value: http://cloudatlas-prd-dev-service.cloudatlas.localhost.mesh.force.com:5442/scim
+      ports:
+        - containerPort: 8082
+        - containerPort: 15372
+      livenessProbe:
+        httpGet:
+          path: /manage/info
+          port: 15372
+      volumeMounts:
+        - name: server-cert
+          mountPath: /certs
 #    #####################################################################################
 #    # GID service
 #    #####################################################################################
@@ -171,24 +171,24 @@ system:
 #      volumeMounts:
 #        - name: server-cert
 #          mountPath: /certs
-#    #####################################################################################
-#    # NGINX Rev Proxy
-#    #####################################################################################
-#    - name: nginx-rev-proxy
-#      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/gid/gid-nginx:7308665
-#      imagePullPolicy: Always
-#      ports:
-#        - containerPort: 7022
-#      livenessProbe:
-#        httpGet:
-#          path: /health
-#          port: 7022
-#        initialDelaySeconds: 15
-#        timeoutSeconds: 10
-#        periodSeconds: 30
-#      volumeMounts:
-#        - mountPath: /var/cache/nginx/client_temp
-#          name: cache-volume
+    #####################################################################################
+    # NGINX Rev Proxy
+    #####################################################################################
+    - name: nginx-rev-proxy
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/gid/gid-nginx:6d06296
+      imagePullPolicy: Always
+      ports:
+        - containerPort: 7022
+      livenessProbe:
+        httpGet:
+          path: /health
+          port: 7022
+        initialDelaySeconds: 15
+        timeoutSeconds: 10
+        periodSeconds: 30
+      volumeMounts:
+        - mountPath: /var/cache/nginx/client_temp
+          name: cache-volume
     #####################################################################################
     # Volumes Needed
     #####################################################################################
