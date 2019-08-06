@@ -82,7 +82,7 @@ system:
     # C2C CA Docker
     #####################################################################################
     - name: c2c-ca-integration-test
-      image: ops0-artifactrepo2-0-prd.data.sfdc.net/c2c-pr/c2c-ca-docker:49be539
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mbeig/c2c-ca-docker:0.1
       imagePullPolicy: Always
       env:
       - name: server_port
