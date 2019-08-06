@@ -121,6 +121,7 @@ local mcpIstioConfig = (import "service-mesh/istio-config.jsonnet");
               "cluster.local",
               "--keepaliveMaxServerConnectionAge",
               "30m",
+              "--secureGrpcAddr=",
             ],
             env: [
               {
@@ -178,7 +179,7 @@ local mcpIstioConfig = (import "service-mesh/istio-config.jsonnet");
                 value: "1",
               },
             ],
-            image: "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-sfci-dev/sfci/servicemesh/istio-packaging/pilot:c77b4595896eb2787488004d02b3a745681f4138",
+            image: "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-sfci-dev/sfci/servicemesh/istio-packaging/pilot:91747894065947d0217bdae7eab3e0a3dfbaa21e",
             imagePullPolicy: "IfNotPresent",
             name: "discovery",
             ports: [
@@ -256,7 +257,7 @@ local mcpIstioConfig = (import "service-mesh/istio-config.jsonnet");
                 },
               },
             ],
-            image: "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-sfci-dev/sfci/servicemesh/istio-packaging/proxy:c77b4595896eb2787488004d02b3a745681f4138",
+            image: "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-sfci-dev/sfci/servicemesh/istio-packaging/proxy:91747894065947d0217bdae7eab3e0a3dfbaa21e",
             imagePullPolicy: "IfNotPresent",
             name: "istio-proxy",
             ports: [
