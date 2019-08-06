@@ -91,12 +91,14 @@ system:
         value: 15372
       ports:
       - containerPort: 7030
+      - containerPort: 7032
+      - containerPort: 1636
       - containerPort: 7022
       - containerPort: 15372
       livenessProbe:
         httpGet:
-          path: /manage/info
-          port: 15372
+          path: /empire/cloudatlas
+          port: 7030
     #####################################################################################
     # Volumes Needed
     #####################################################################################
