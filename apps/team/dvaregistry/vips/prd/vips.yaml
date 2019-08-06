@@ -44,9 +44,9 @@
       tls: true
       reencrypt: true
       lbalgorithm: leastconn
-      # Disable health check till we can figure out how to fix
-      #healthprotocol: http
-      #healthpath: /strata_proxy_health
+      healthport: 443
+      healthprotocol: http
+      healthpath: /strata_proxy_health
 - lbname: strata-sonarqube-canary2
   customlbname: strata-sonarqube-canary2
   servers:
