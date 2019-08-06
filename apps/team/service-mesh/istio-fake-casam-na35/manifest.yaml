@@ -44,20 +44,6 @@ system:
           path: /manage/health
           port: 15372
 
-    - name: metrics-scraper
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/servicemesh/metrics-scraper:dev
-      imagePullPolicy: Always
-      args:
-        - --endpoint
-        - "http://localhost:15000/stats/prometheus"
-      livenessProbe:
-        exec:
-          command:
-            - /bin/true
-        initialDelaySeconds: 5
-        periodSeconds: 30
-        timeoutSeconds: 5
-
     # Volumes used by auto-injected istio-proxy.
     volumes:
     - name: tls-client-cert
