@@ -53,7 +53,6 @@ spec:
         name: istio-ingressgateway
         release: istio
         settings_path: -.-.prd.-.istio-ingressgateway
-        superpod: '-'
     spec:
       affinity:
         nodeAffinity:

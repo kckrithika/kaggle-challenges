@@ -17,7 +17,6 @@ spec:
       labels:
         name: istio-ingressgateway
         settings_path: mcpIstioConfig.ingressGatewaySettingsPath
-        superpod: mcpIstioConfig.superpod
     spec:
       containers:
       - args:
