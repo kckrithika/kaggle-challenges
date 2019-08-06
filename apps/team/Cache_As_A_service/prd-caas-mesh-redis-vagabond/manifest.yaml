@@ -1,0 +1,112 @@
+apiVersion: v1
+
+system:
+  notifications:
+    email:
+      - ababbar@salesforce.com
+  functions:
+  - name: prd-redis-mesh-vagabond
+    count: 4
+    identity:
+      serviceName: caas
+      pod: cs2
+    containers:
+    - name: caas-redis
+      image: dva/caas/release/caas-redis-4.0.10:17
+      resources:
+        limits: { memory: "8G" }
+        requests: { memory: "8G" }
+      args:
+        - --port=12007
+        - --maxMemoryMB=4096
+        - --noAuth
+        - --disableProtectedMode
+        - --bindToLoopback
+      livenessProbe:
+        exec:
+          command:
+           - /opt/caas/redis/redis-livenessprobe.py
+           - --port=12007
+           - --noAuth
+        initialDelaySeconds: 15
+        timeoutSeconds: 10
+      ports:
+      - containerPort: 12007
+      env:
+       - name: PYTHONUNBUFFERED
+         value: 1
+    - name: caas-redis-announcer
+      image: sfci/servicelibs/beacon:cec13ceb9fc5aed0ce462031a01b2dd5ef73d5ee
+      args:
+      - -endpoint
+      - caas/vagabond:POD:12006
+      livenessProbe:
+        initialDelaySeconds: 5
+        exec:
+          command:
+            - "/home/scone/is-alive.sh"
+      env:
+       - name: SFDC_ENVIRONMENT
+         value: stmfa
+       - name: NO_ENV_FOR_RESTART
+         value: 1
+      resources:
+        limits: { memory: "500M" }
+        requests: { memory: "500M" }
+    - name: caas-metrics-publisher
+      image: sfci/cache-as-a-service/caas-metrics-publisher:4211bcd3d65c1c17f6a05e4be07eee67237ac058
+      args:
+      - --publishMetricsViaMesh
+      - --clusterName=vagabond
+      - --redisPort=12007
+      livenessProbe:
+        initialDelaySeconds: 5
+        exec:
+          command:
+            - "/home/caas/is-alive.sh"
+      env:
+       - name: SFDC_ENVIRONMENT
+         value: stmfa
+       - name: NO_ENV_FOR_RESTART
+         value: new11
+      resources:
+        limits: { memory: "100M" }
+        requests: { memory: "50M" }
+    - name: sherpa
+      image: sfci/servicelibs/sherpa-envoy:1.0.7
+      ports:
+      - containerPort: 15373
+      env:
+      - name: SFDC_ENVIRONMENT
+        value: stmfa
+      resources:
+        limits:
+          cpu: "1"
+          memory: 1Gi
+        requests:
+          cpu: "1"
+          memory: 1Gi
+      volumeMounts:
+      - mountPath: /client-certs
+        name: tls-client-cert
+      - mountPath: /server-certs
+        name: tls-server-cert
+      livenessProbe:
+        exec:
+          command:
+          - ./bin/is-alive
+        initialDelaySeconds: 20
+        periodSeconds: 5
+      readinessProbe:
+        exec:
+          command:
+          - ./bin/is-ready
+        initialDelaySeconds: 15
+        periodSeconds: 5
+    volumes:
+    - name: tls-client-cert
+      maddogCert:
+        type: client
+    - name: tls-server-cert
+      maddogCert:
+        type: server
