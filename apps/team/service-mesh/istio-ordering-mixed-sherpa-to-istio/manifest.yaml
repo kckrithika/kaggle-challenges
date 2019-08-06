@@ -9,7 +9,7 @@ system:
     count: 1
     labels:
       app: istio-ordering-mixed-sherpa-to-istio
-      settings_path: stm.-.prd.-.istio-ordering
+      settings_path: stm.-.prd.-.istio-ordering-mixed-sherpa-to-istio
       superpod: NONE
       istio_app: test
     annotations:
