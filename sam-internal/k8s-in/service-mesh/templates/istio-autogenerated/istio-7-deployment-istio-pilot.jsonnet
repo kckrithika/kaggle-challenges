@@ -240,7 +240,7 @@ local mcpIstioConfig = (import "service-mesh/istio-config.jsonnet");
               },
               {
                 name: "SETTINGS_PATH",
-                value: mcpIstioConfig.settingsPath,
+                value: mcpIstioConfig.pilotSettingsPath,
               },
               {
                 name: "SFDC_METRICS_SERVICE_HOST",

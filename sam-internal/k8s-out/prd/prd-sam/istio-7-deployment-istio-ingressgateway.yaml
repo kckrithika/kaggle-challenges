@@ -117,6 +117,10 @@ spec:
         env:
         - name: ESTATE
           value: prd-sp2-sam_coreapp
+        - name: SETTINGS_SUPERPOD
+          value: '-'
+        - name: SETTINGS_PATH
+          value: -.-.prd.-.istio-ingressgateway
         - name: ISTIO_META_hostname
           valueFrom:
             fieldRef:

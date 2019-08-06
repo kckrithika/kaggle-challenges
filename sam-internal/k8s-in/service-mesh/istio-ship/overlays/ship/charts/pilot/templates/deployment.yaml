@@ -44,7 +44,7 @@ spec:
         - name: SETTINGS_SUPERPOD
           value: mcpIstioConfig.superpod
         - name: SETTINGS_PATH
-          value: mcpIstioConfig.settingsPath
+          value: mcpIstioConfig.pilotSettingsPath
         - name: SFDC_METRICS_SERVICE_HOST
           value: mcpIstioConfig.funnelHost
         - name: SFDC_METRICS_SERVICE_PORT

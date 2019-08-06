@@ -140,6 +140,14 @@ local mcpIstioConfig = (import "service-mesh/istio-config.jsonnet");
                 value: mcpIstioConfig.casamEstate,
               },
               {
+                name: "SETTINGS_SUPERPOD",
+                value: mcpIstioConfig.superpod,
+              },
+              {
+                name: "SETTINGS_PATH",
+                value: mcpIstioConfig.ingressGatewaySettingsPath,
+              },
+              {
                 name: "ISTIO_META_hostname",
                 valueFrom: {
                   fieldRef: {
