@@ -16,7 +16,7 @@ system:
           maxUnavailable: 1
       containers:
       - name: prd-warden-stage
-        image: dva/casp/warden_strata:376
+        image: dva/casp/warden_strata:jenkins-CASP-warden-alex-database-switch-1-itest
         ports:
         - name: http
           containerPort: 8889
@@ -58,6 +58,7 @@ system:
             path: /manage/health
             port: 15372
           initialDelaySeconds: 120
+          periodSeconds: 10
       volumes:
       - name: staging-log-vol
         hostPath:
