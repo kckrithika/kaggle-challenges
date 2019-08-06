@@ -85,7 +85,7 @@ system:
           value: maddog/maddog-client-truststore.json
           ## DBaaS
         - name: DATABASE_NAMESPACE
-          value: crecontrolplaneccpdeva
+          value: crecontrolplaneccpdev
         - name: DATABASE_DISCOVERY_PARAMS
           value: sslfactory=com.salesforce.sds.keystore.DynamicSSLSocketFactory&sslfactoryarg={"monitoredDirectory":"/client-certs/client","cadir":"/client-certs"}&dropDatabase=true
         - name: SPRING_DATASOURCE_URL
