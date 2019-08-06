@@ -27,12 +27,12 @@ system:
           - sip-em-dev-slb
     containers:
     - name: sip-em 
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/smarwaha/sip-experiment-manager:20190722T1048
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/smarwaha/sip-experiment-manager:20190806T1300
       livenessProbe:
         initialDelaySeconds: 30
         httpGet:
           path: /manage/health
-          port: 15372
+          port: 22222
       volumeMounts:
       - mountPath: /home/sfdc-search-sip/logs
         name: logvol
@@ -66,6 +66,6 @@ system:
         port: 7020
         targetport: 7020
       - lbtype: http
-        port: 15372
+        port: 22222
         targetport: 15372
     slbEnabled: true
