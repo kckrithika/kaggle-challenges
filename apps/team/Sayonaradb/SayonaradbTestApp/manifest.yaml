@@ -40,3 +40,8 @@ system:
       livenessProbe:
         httpGet:
             path: /healthfalconsdbupgradetest
+    - name: sdbperftools
+      image: ops0-artifactrepo1-0-dfw.data.sfdc.net/dva/sdbperftools/sdbperftools:3
+      livenessProbe:
+        httpGet:
+            path: /health
