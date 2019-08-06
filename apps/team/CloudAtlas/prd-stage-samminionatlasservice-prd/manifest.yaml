@@ -131,9 +131,9 @@ system:
         - name: management_server_port
           value: 15372
         - name: c2c_common_gdotBasePath
-          value: http://cloudatlas-prd-dev-service.cloudatlas.localhost.mesh.force.com:5442/scim
+          value: http://cloudatlas-prd-stage-service.cloudatlas.localhost.mesh.force.com:5442/scim
         - name: GDOT_URL
-          value: http://cloudatlas-prd-dev-service.cloudatlas.localhost.mesh.force.com:5442/scim
+          value: http://cloudatlas-prd-stage-service.cloudatlas.localhost.mesh.force.com:5442/scim
       ports:
         - containerPort: 8082
         - containerPort: 15372
