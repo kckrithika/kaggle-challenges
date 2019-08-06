@@ -104,5 +104,5 @@ system:
           lbtype: dsr
         - port: 15372
           targetport: 15372
-        lbtype: dsr    
+          lbtype: dsr    
 
