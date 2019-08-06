@@ -5,7 +5,7 @@ system:
     email:
       - gid_runtime@salesforce.com
   functions:
-  - name: c2c-ca-integration-test
+  - name: c2c-ca
     count: 1
     strategy:
       type: RollingUpdate
@@ -81,24 +81,22 @@ system:
     #####################################################################################
     # C2C CA Docker
     #####################################################################################
-    - name: c2c-ca-integration-test
+    - name: c2c-ca
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mbeig/c2c-ca-docker:0.1
       imagePullPolicy: Always
       env:
       - name: server_port
         value: 7022
       - name: management_server_port
-        value: 15375
-      - name: login_vip_url
-        value: https://gidruntimelb.global-identity.xrd-sam.xrd.slb.sfdc.net
+        value: 15372
       ports:
       - containerPort: 7030
       - containerPort: 7022
-      - containerPort: 15375
+      - containerPort: 15372
       livenessProbe:
         httpGet:
           path: /manage/info
-          port: 15375
+          port: 15372
     #####################################################################################
     # Volumes Needed
     #####################################################################################
@@ -120,7 +118,7 @@ system:
   #####################################################################################
   loadbalancers:
     - lbname: cadockerlb
-      function: c2c-ca-integration-test
+      function: c2c-ca
       slbEnabled: true
       ports:
         - port: 9090
