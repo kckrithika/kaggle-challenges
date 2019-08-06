@@ -8,7 +8,7 @@ system:
     count: 1
     containers:
     - name: gater-mesh2
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/sortiz/gater-sandbox:sortiz-20190712A
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/sortiz/gate-manager:sortiz-08062019_02
       args:
       - --server.port=9090
       - --logging.evaluator.level=ERRORS_ONLY
