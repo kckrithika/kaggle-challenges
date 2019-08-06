@@ -66,8 +66,10 @@ system:
         value: false
       - name: JWK_PROPERTIES_PATH
         value: /secrets/.jwttool.config
+      - name: STUB_CLOUD
+        value: core
       - name: JVM_ARGS
-        value: "-Dspring.profiles.active=dev,realC2C,grpcMDS,stubConnector
+        value: "-Dspring.profiles.active=prod,perf,stubConnector
                 -Djava.util.concurrent.ForkJoinPool.common.parallelism=100
                 -verbose:gc -XX:+PrintGCDateStamps -XX:+PrintHeapAtGC
                 -XX:+PrintPromotionFailure -XX:+PrintTenuringDistribution -XX:+PrintGCDetails
