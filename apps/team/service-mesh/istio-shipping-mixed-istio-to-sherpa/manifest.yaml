@@ -9,7 +9,7 @@ system:
     count: 1
     labels:
       app: istio-shipping-mixed-istio-to-sherpa
-      settings_path: stm.-.prd.-.istio-shipping
+      settings_path: stm.-.prd.-.istio-shipping-mixed-istio-to-sherpa
       superpod: NONE
       istio_app: test
     annotations:
