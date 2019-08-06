@@ -97,11 +97,19 @@ system:
       - containerPort: 15372
       - containerPort: 8090
       livenessProbe:
-        httpGet:
-          path: /scim
-          port: 8090
-        initialDelaySeconds: 300
-        periodSeconds: 60
+        exec:
+          command:
+          - /opt/pdm/pdm.customer/bin/is-alive.sh
+        initialDelaySeconds: 60
+        periodSeconds: 30
+      readinessProbe:
+        exec:
+          command:
+          - cat
+          - /tmp/ready
+        initialDelaySeconds: 60
+        periodSeconds: 5
+        failureThreshold: 120
     #####################################################################################
     # Volumes Needed
     #####################################################################################
