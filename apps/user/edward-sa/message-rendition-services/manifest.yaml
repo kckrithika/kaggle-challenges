@@ -90,4 +90,19 @@ system:
     - name: sherpaservercert
       maddogCert:
         type: server
+    
+  loadbalancers:
+  - lbname: message-rendition-services-lb
+    function: message-rendition-services
+    slbenabled: true
+    ports:
+      - port: 8080
+        targetport: 8080
+        lbtype: dsr
+      - port: 7020
+        targetport: 7020
+        lbtype: dsr
+      - port: 15372
+        targetport: 15372
+        lbtype: dsr
 
