@@ -9,7 +9,7 @@ system:
     hostnetwork: true
     containers:
     - name: gater1
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/sortiz/gater-sandbox:sortiz-20190712A
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/gater/gate-manager:dmachak-1565040321
       args:
       - --server.port=9090
       - --logging.evaluator.level=ERRORS_ONLY
@@ -18,7 +18,11 @@ system:
       - --gater.thrift.metadata.endpoint=gater-mesh-metadata
       - --gater.thrift.admin.endpoint=gater-mesh-admin
       - --metrics.collectionInterval=60
-      - --noop.arg=12345
+      - --synctask.host-affinity=false
+      - --logging.sfdc.stderr.level=OFF
+      - --logging.json.stdout.level=ALL
+      - --logging.sfdc.level=OFF
+      - --logging.json.level=OFF
       ports:
       - containerPort: 7020
       - containerPort: 9522
