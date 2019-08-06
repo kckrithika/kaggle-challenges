@@ -1,0 +1,38 @@
+apiVersion: v1
+
+system:
+  functions:
+  - name: topology-ui
+    count: 1
+    containers:
+    - name: topology-ui-service
+      image:  ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/alokjha/topology-ui:1
+      env:
+        - name: FALCONS
+          value: "https://topology.topology.foundation.rddev.aws.sfdc.cl:443"
+        - name: CA
+          value: "/client-certs/ca/cacerts.pem"
+        - name: CERT
+          value: "/client-certs/client/certificates/client.pem"
+        - name: KEY
+          value: "/client-certs/client/keys/client-key.pem"
+        - name: http_proxy
+          value: "http://public0-proxy1-0-prd.data.sfdc.net:8080"
+        - name: https_proxy
+          value: "http://public0-proxy1-0-prd.data.sfdc.net:8080"
+      ports:
+      - containerPort: 8080
+        name: http
+      livenessProbe:
+        initialDelaySeconds: 30
+        httpGet:
+          path: /
+          port: 8080
+  loadbalancers:
+  - lbname: topology-ui-lb
+    function: topology-ui
+    slbenabled: true
+    ports:
+      - port: 80
+        targetport: 8080
+        lbtype: tcp
