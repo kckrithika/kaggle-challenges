@@ -6,7 +6,12 @@ system:
     count: 0
     containers:
     - name: sdbdocker
-      image: ops0-artifactrepo1-0-dfw.data.sfdc.net/dva/sdbdocker/sdbdockerngupgrade:4
+      image: ops0-artifactrepo1-0-dfw.data.sfdc.net/dva/sdbdocker/sdbdocker:420
+      livenessProbe:
+        httpGet:
+            path: /health
+    - name: sdbngupgrade
+      image: ops0-artifactrepo1-0-dfw.data.sfdc.net/dva/sdbdocker/sdbdockerngupgrade:5
       livenessProbe:
         httpGet:
             path: /health
