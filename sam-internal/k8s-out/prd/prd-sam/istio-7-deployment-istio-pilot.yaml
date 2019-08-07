@@ -274,7 +274,7 @@ spec:
           value: "80"
         - name: ESTATE
           value: prd-sam_gater
-        image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/servicemesh/metrics-scraper:dev
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-sfci-dev/sfci/servicemesh/servicemesh/metrics-scraper:c194ab86111949b11fa0f7a271e3f967727a084c
         imagePullPolicy: Always
         name: metrics-scraper
         readinessProbe:
