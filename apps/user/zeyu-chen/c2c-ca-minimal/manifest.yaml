@@ -71,8 +71,8 @@ system:
   # SLB
   #####################################################################################
   loadbalancers:
-    - lbname: cadockerlb
-      function: c2c-ca
+    - lbname: cadocker-min-lb
+      function: c2c-ca-minimal
       slbEnabled: true
       ports:
         - port: 9090
