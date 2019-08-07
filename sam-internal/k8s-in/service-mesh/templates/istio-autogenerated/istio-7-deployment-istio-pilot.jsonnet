@@ -394,6 +394,8 @@ local mcpIstioConfig = (import "service-mesh/istio-config.jsonnet");
             args: [
               "--debug-mode",
               "true",
+              "--funnel-address",
+              mcpIstioConfig.funnelVIP,
             ],
             env: [
               {
