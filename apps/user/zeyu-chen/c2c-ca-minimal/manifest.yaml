@@ -25,7 +25,7 @@ system:
       - name: UBID_DEPLOYMENT_STAGE
         value: ALL
       - name: SITE
-        value: prd-gid-1
+        value: xrd-gid-1
       - name: server_port
         value: 7022
       - name: management_server_port
