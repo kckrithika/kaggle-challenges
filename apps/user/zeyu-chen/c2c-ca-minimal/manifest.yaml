@@ -22,8 +22,10 @@ system:
       command: ["/opt/pdm/pdm.customer/bin/entrypoint.sh"]
       imagePullPolicy: Always
       env:
-      - name: HOSTNAME
+      - name: UBID_HOSTNAME
         value: shared0-samminionatlasdir1-1-xrd.eng.sfdc.net
+      - name: UBID_SHOSTNAME
+        value: shared0-samminionatlasdir1-1-xrd
       - name: UBID_DEPLOYMENT_STAGE
         value: ALL
       - name: SITE
