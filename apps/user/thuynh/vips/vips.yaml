@@ -1,0 +1,13 @@
+- lbname: schema-change-qa
+  customlbname: schema-change-qa
+  servers:
+   - dmu-api1-qa-xrd.eng.sfdc.net
+  ports:
+   - port: 80
+     targetport: 80
+     lbtype: tcp
+     sticky: 86400
+   - port: 443
+     targetport: 443
+     lbtype: tcp
+     sticky: 86400
