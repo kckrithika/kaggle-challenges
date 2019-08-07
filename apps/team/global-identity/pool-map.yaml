@@ -1,7 +1,8 @@
 apps:
   gid-runtime-service:
     - prd/prd-sam
-    # - xrd/xrd-sampool
+  gid-runtime-service-xrd-staging:
+    - xrd/xrd-sampool
   c2c-ca:
     # - prd/prd-sam
     - xrd/xrd-sampool
