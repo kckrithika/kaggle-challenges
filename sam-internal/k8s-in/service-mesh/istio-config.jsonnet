@@ -43,7 +43,7 @@ local ingressGatewayCertConfigs = [ingressGatewayClientCertConfig, ingressGatewa
 {
   ## Images. Represented as `"mcpIstioConfig.<image>"` in template.
   ## Istio image tag needs to be updated in Helm values.
-  metricsScraperImage: "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/servicemesh/metrics-scraper:dev",
+  metricsScraperImage: "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/servicemesh/metrics-scraper:c194ab86111949b11fa0f7a271e3f967727a084c",
   madkubImage: samimages.madkub,
   permissionInitContainer: samimages.permissionInitContainer,
 
