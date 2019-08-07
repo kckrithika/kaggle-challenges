@@ -182,6 +182,42 @@ items:
 - apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: RoleBinding
   metadata:
+    name: retail-beaconator:lo3-sam_gater:rolebinding
+    namespace: retail-beaconator
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: minion:role
+  subjects:
+  - kind: User
+    name: shared0-samminiongater1-1-lo3.ops.sfdc.net
+  - kind: User
+    name: shared0-samminiongater1-2-lo3.ops.sfdc.net
+  - kind: User
+    name: shared0-samminiongater1-3-lo3.ops.sfdc.net
+  - kind: User
+    name: shared0-samminiongater1-4-lo3.ops.sfdc.net
+  - kind: User
+    name: shared0-samminiongater1-5-lo3.ops.sfdc.net
+  - kind: User
+    name: shared0-samminiongater1-6-lo3.ops.sfdc.net
+  - kind: User
+    name: shared0-samminiongater1-7-lo3.ops.sfdc.net
+  - kind: User
+    name: shared0-samminiongater2-1-lo3.ops.sfdc.net
+  - kind: User
+    name: shared0-samminiongater2-2-lo3.ops.sfdc.net
+  - kind: User
+    name: shared0-samminiongater2-3-lo3.ops.sfdc.net
+  - kind: User
+    name: shared0-samminiongater2-4-lo3.ops.sfdc.net
+  - kind: User
+    name: shared0-samminiongater2-5-lo3.ops.sfdc.net
+  - kind: User
+    name: shared0-samminiongater2-6-lo3.ops.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1beta1
+  kind: RoleBinding
+  metadata:
     name: service-mesh:lo3-sam_gater:rolebinding
     namespace: service-mesh
   roleRef:

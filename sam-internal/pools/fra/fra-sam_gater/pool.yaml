@@ -7,6 +7,7 @@ access:
   - 'team/Gater'
   - 'team/service-mesh'
   - 'team/Service_Protection'
+  - 'team/Retail_Beaconator'
   
 # Each pool is managed by a SAM control stack running in one estate
 # Name here is an exact match on a file under estates/estates repo

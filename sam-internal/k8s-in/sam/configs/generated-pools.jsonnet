@@ -110,13 +110,15 @@
         "gater",
         "ccait",
         "service-mesh",
-        "service-protection"
+        "service-protection",
+        "retail-beaconator"
       ],
       "access": [
         "team/Gater",
         "team/CCAIT",
         "team/service-mesh",
-        "team/Service_Protection"
+        "team/Service_Protection",
+        "team/Retail_Beaconator"
       ],
       "controlEstate": "cdg-sam",
       "estate": "cdg-sam_gater",
@@ -641,12 +643,14 @@
       "namespaces": [
         "gater",
         "service-mesh",
-        "service-protection"
+        "service-protection",
+        "retail-beaconator"
       ],
       "access": [
         "team/Gater",
         "team/service-mesh",
-        "team/Service_Protection"
+        "team/Service_Protection",
+        "team/Retail_Beaconator"
       ],
       "controlEstate": "fra-sam",
       "estate": "fra-sam_gater",
@@ -887,12 +891,14 @@
       "namespaces": [
         "gater",
         "service-mesh",
-        "service-protection"
+        "service-protection",
+        "retail-beaconator"
       ],
       "access": [
         "team/Gater",
         "team/service-mesh",
-        "team/Service_Protection"
+        "team/Service_Protection",
+        "team/Retail_Beaconator"
       ],
       "controlEstate": "frf-sam",
       "estate": "frf-sam_gater",
@@ -2016,13 +2022,15 @@
         "gater",
         "ccait",
         "service-mesh",
-        "service-protection"
+        "service-protection",
+        "retail-beaconator"
       ],
       "access": [
         "team/Gater",
         "team/CCAIT",
         "team/service-mesh",
-        "team/Service_Protection"
+        "team/Service_Protection",
+        "team/Retail_Beaconator"
       ],
       "controlEstate": "lo2-sam",
       "estate": "lo2-sam_gater",
@@ -2130,13 +2138,15 @@
         "gater",
         "ccait",
         "service-mesh",
-        "service-protection"
+        "service-protection",
+        "retail-beaconator"
       ],
       "access": [
         "team/Gater",
         "team/CCAIT",
         "team/service-mesh",
-        "team/Service_Protection"
+        "team/Service_Protection",
+        "team/Retail_Beaconator"
       ],
       "controlEstate": "lo3-sam",
       "estate": "lo3-sam_gater",
@@ -2781,12 +2791,14 @@
       "namespaces": [
         "gater",
         "ccait",
-        "service-mesh"
+        "service-mesh",
+        "retail-beaconator"
       ],
       "access": [
         "team/Gater",
         "team/CCAIT",
-        "team/service-mesh"
+        "team/service-mesh",
+        "team/Retail_Beaconator"
       ],
       "controlEstate": "par-sam",
       "estate": "par-sam_gater",
