@@ -47,7 +47,7 @@ system:
       - name: DISABLE_AUTH_RELEASE_CHECK
         value: true
       - name: CASAM_APP_COLOR
-        value: blue
+        value: green
       - name: SD_PORT_OVERRIDE
         value: 7442
       - name: CASAM_SETTINGS_PATH
@@ -205,9 +205,9 @@ system:
       - name: PATCH_RELEASE_NUMBER
         value: 0
       - name: CURRENT_RELEASE_VERSION
-        value: green
-      - name: NEW_RELEASE_VERSION
         value: blue
+      - name: NEW_RELEASE_VERSION
+        value: green
       - name: READY_SERVER_COUNT
         value: 1
       - name: DB_SID
@@ -375,6 +375,7 @@ system:
       - --metrics.maxNumberOfCollectedMetrics=100000
       - --metrics.funnelTimeOut=90000
       - --metrics.funnelEndPointURL=http://ajna0-funnel1-0-prd.data.sfdc.net:80
+      - --routeupdates.use.k8s=true
       env:
       - name: SFDC_ENVIRONMENT
         value: mist61
@@ -416,7 +417,7 @@ system:
       livenessProbe:
         exec:
           command:
-          - ./sfproxy/scripts/check-switchboard.sh
+          - ./bin/is-alive
         initialDelaySeconds: 20
         periodSeconds: 5
       name: envoy-sidecar
