@@ -41,6 +41,8 @@ apps:
   - prd/prd-sam_gater
  gate-manager-test-mesh2:
   - prd/prd-sam_gater
+ gate-manager-prd-canary:
+  - prd/prd-sam_gater
  gate-manager-prd-investigation:
   - prd/prd-sam_gater
  gate-manager-mvp:
