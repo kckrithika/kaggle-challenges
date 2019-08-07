@@ -27,9 +27,9 @@ system:
           - sip-em-dev-slb
     containers:
     - name: sip-em 
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/smarwaha/sip-experiment-manager:20190806T1300
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/smarwaha/sip-experiment-manager:20190807T1100
       livenessProbe:
-        initialDelaySeconds: 30
+        initialDelaySeconds: 60
         httpGet:
           path: /manage/health
           port: 15372
