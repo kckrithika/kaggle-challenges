@@ -29,7 +29,7 @@ system:
       - name: UBID_DEPLOYMENT_STAGE
         value: ALL
       - name: SITE
-        value: local-site
+        value: local-cluster
       - name: server_port
         value: 7022
       - name: management_server_port
