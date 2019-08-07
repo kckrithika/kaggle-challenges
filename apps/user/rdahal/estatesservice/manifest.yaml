@@ -7,9 +7,12 @@ system:
     - name: server-cert
       maddogCert:
         type: server
+    - name: client-cert
+      maddogCert:
+        type: client
     containers:
     - name: estatesservice
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/rdahal/estatesservice:rdahal-201908061
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/rdahal/estatesservice:rdahal-201908071
       ports:
       - containerPort: 9090
       livenessProbe:
@@ -18,8 +21,10 @@ system:
           path: /info
           port: 9090
       volumeMounts:
-        - mountPath: /certs
+        - mountPath: /server-certs
           name: server-cert
+	- mountPath: /client-certs
+	  name: client-cert
   loadbalancers:
   - lbname: estatesservicelb
     function: estatesservice
