@@ -36,7 +36,6 @@ local mcpIstioConfig = (import "service-mesh/istio-config.jsonnet");
           istio: "ingressgateway",
           name: "istio-ingressgateway",
           release: "istio",
-          settings_path: mcpIstioConfig.ingressGatewaySettingsPath,
         },
       },
       spec: {
@@ -141,11 +140,11 @@ local mcpIstioConfig = (import "service-mesh/istio-config.jsonnet");
                 value: mcpIstioConfig.casamEstate,
               },
               {
-                name: "SETTINGS_SUPERPOD",
+                name: "ISTIO_META_superpod",
                 value: mcpIstioConfig.superpod,
               },
               {
-                name: "SETTINGS_PATH",
+                name: "ISTIO_META_settings_path",
                 value: mcpIstioConfig.ingressGatewaySettingsPath,
               },
               {

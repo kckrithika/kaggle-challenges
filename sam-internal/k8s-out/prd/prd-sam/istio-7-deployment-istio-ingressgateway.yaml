@@ -52,7 +52,6 @@ spec:
         istio: ingressgateway
         name: istio-ingressgateway
         release: istio
-        settings_path: istio.-.prd.-.istio-ingressgateway
     spec:
       affinity:
         nodeAffinity:
@@ -118,9 +117,9 @@ spec:
         env:
         - name: ESTATE
           value: prd-sp2-sam_coreapp
-        - name: SETTINGS_SUPERPOD
+        - name: ISTIO_META_superpod
           value: '-'
-        - name: SETTINGS_PATH
+        - name: ISTIO_META_settings_path
           value: istio.-.prd.-.istio-ingressgateway
         - name: ISTIO_META_hostname
           valueFrom:
