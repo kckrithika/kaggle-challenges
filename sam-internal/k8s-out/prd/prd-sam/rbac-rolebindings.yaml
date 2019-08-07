@@ -837,6 +837,38 @@ items:
 - apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: RoleBinding
   metadata:
+    name: retail-beaconator:prd-sam_gater:rolebinding
+    namespace: retail-beaconator
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: minion:role
+  subjects:
+  - kind: User
+    name: shared0-samminiongater1-1-prd.eng.sfdc.net
+  - kind: User
+    name: shared0-samminiongater1-2-prd.eng.sfdc.net
+  - kind: User
+    name: shared0-samminiongater1-3-prd.eng.sfdc.net
+  - kind: User
+    name: shared0-samminiongater1-4-prd.eng.sfdc.net
+  - kind: User
+    name: shared0-samminiongater1-5-prd.eng.sfdc.net
+  - kind: User
+    name: shared0-samminiongater1-6-prd.eng.sfdc.net
+  - kind: User
+    name: shared0-samminiongater2-1-prd.eng.sfdc.net
+  - kind: User
+    name: shared0-samminiongater2-2-prd.eng.sfdc.net
+  - kind: User
+    name: shared0-samminiongater2-3-prd.eng.sfdc.net
+  - kind: User
+    name: shared0-samminiongater2-4-prd.eng.sfdc.net
+  - kind: User
+    name: shared0-samminiongater2-5-prd.eng.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1beta1
+  kind: RoleBinding
+  metadata:
     name: scone:prd-sam_gater:rolebinding
     namespace: scone
   roleRef:
