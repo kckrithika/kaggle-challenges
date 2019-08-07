@@ -23,8 +23,8 @@ system:
       volumeMounts:
         - mountPath: /server-certs
           name: server-cert
-	- mountPath: /client-certs
-	  name: client-cert
+        - mountPath: /client-certs
+          name: client-cert
   loadbalancers:
   - lbname: estatesservicelb
     function: estatesservice
