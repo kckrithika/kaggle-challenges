@@ -85,3 +85,4 @@ system:
         targetport: 5000
         lbtype: http
         tls: true
+        reencrypt: true
