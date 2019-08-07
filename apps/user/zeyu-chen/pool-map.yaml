@@ -1,11 +1,11 @@
 version: v2
 apps:
-  disable-http-xrd:
-   - name: xrd/xrd-sampool
-  disable-http-envoy:
-   - name: prd/prd-sam
-  gid-runtime-service:
-   - name: xrd/xrd-sampool
+    #  disable-http-xrd:
+    #   - name: xrd/xrd-sampool
+    #  disable-http-envoy:
+    #   - name: prd/prd-sam
+    #  gid-runtime-service:
+    #   - name: xrd/xrd-sampool
   c2c-ca:
    - name: xrd/xrd-sampool
 
