@@ -7,6 +7,5 @@ apps:
   gid-runtime-service:
    - name: xrd/xrd-sampool
   c2c-ca:
-    # - prd/prd-sam
-    - xrd/xrd-sampool
+   - name: xrd/xrd-sampool
 
