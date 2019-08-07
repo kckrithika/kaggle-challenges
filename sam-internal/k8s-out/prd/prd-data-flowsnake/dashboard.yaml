@@ -2,8 +2,8 @@ apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
   labels:
-    app: dashboard
-  name: dashboard
+    app: k8s-dashboard
+  name: k8s-dashboard
   namespace: flowsnake
 spec:
   replicas: 3

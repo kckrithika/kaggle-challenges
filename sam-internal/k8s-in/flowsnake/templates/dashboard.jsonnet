@@ -16,9 +16,9 @@ if estate == "prd-data-flowsnake" then ({
     kind: "Deployment",
     metadata: {
         labels: {
-            app: "dashboard",
+            app: "k8s-dashboard",
         },
-        name: "dashboard",
+        name: "k8s-dashboard",
         namespace: "flowsnake",
     },
     spec: {
@@ -34,244 +34,39 @@ if estate == "prd-data-flowsnake" then ({
             spec: {
                 containers: [
                     {
-                        name: "dashboard-dfw",
+                        name: item.name,
                         # From https://git.soma.salesforce.com/dva-transformation/sam/tree/support-replication-controllers
                         image: flowsnake_images.dashboard,
                         args: commonArgs + [
-                            "--apiserver-host=http://pseudo-kubeapi.flowsnake.svc.cluster.local:40001/dfw-flowsnake_prod",
-                            "--system-banner-webhook=http://pseudo-kubeapi.flowsnake.svc.cluster.local:40001/dfw-flowsnake_prod/dashboard-webhook",
-                            "--insecure-port=9190",
+                            "--apiserver-host=http://pseudo-kubeapi.flowsnake.svc.cluster.local:40001/" + item.estate,
+                            "--system-banner-webhook=http://pseudo-kubeapi.flowsnake.svc.cluster.local:40001/" + item.estate + "/dashboard-webhook",
+                            "--insecure-port=" + item.port,
                         ],
                         volumeMounts: volumeMounts,
                         ports: [{
-                            containerPort: 9190,
-                            hostPort: 9190,
+                            containerPort: item.port,
+                            hostPort: item.port,
                         }],
-                    },
-                    {
-                        name: "dashboard-frf",
-                        image: flowsnake_images.dashboard,
-                        args: commonArgs + [
-                            "--apiserver-host=http://pseudo-kubeapi.flowsnake.svc.cluster.local:40001/frf-flowsnake_prod",
-                            "--system-banner-webhook=http://pseudo-kubeapi.flowsnake.svc.cluster.local:40001/frf-flowsnake_prod/dashboard-webhook",
-                            "--insecure-port=9191",
-                        ],
-                        volumeMounts: volumeMounts,
-                        ports: [{
-                            containerPort: 9191,
-                            hostPort: 9191,
-                        }],
-                    },
-                    {
-                        name: "dashboard-hnd",
-                        image: flowsnake_images.dashboard,
-                        args: commonArgs + [
-                            "--apiserver-host=http://pseudo-kubeapi.flowsnake.svc.cluster.local:40001/hnd-flowsnake_prod",
-                            "--system-banner-webhook=http://pseudo-kubeapi.flowsnake.svc.cluster.local:40001/hnd-flowsnake_prod/dashboard-webhook",
-                            "--insecure-port=9192",
-                        ],
-                        volumeMounts: volumeMounts,
-                        ports: [{
-                            containerPort: 9192,
-                            hostPort: 9192,
-                        }],
-                    },
-                    {
-                        name: "dashboard-iad",
-                        image: flowsnake_images.dashboard,
-                        args: commonArgs + [
-                            "--apiserver-host=http://pseudo-kubeapi.flowsnake.svc.cluster.local:40001/iad-flowsnake_prod",
-                            "--system-banner-webhook=http://pseudo-kubeapi.flowsnake.svc.cluster.local:40001/iad-flowsnake_prod/dashboard-webhook",
-                            "--insecure-port=9193",
-                        ],
-                        volumeMounts: volumeMounts,
-                        ports: [{
-                            containerPort: 9193,
-                            hostPort: 9193,
-                        }],
-                    },
-                    {
-                        name: "dashboard-ia2",
-                        image: flowsnake_images.dashboard,
-                        args: commonArgs + [
-                            "--apiserver-host=http://pseudo-kubeapi.flowsnake.svc.cluster.local:40001/ia2-flowsnake_prod",
-                            "--system-banner-webhook=http://pseudo-kubeapi.flowsnake.svc.cluster.local:40001/ia2-flowsnake_prod/dashboard-webhook",
-                            "--insecure-port=9194",
-                        ],
-                        volumeMounts: volumeMounts,
-                        ports: [{
-                            containerPort: 9194,
-                            hostPort: 9194,
-                        }],
-                    },
-                    {
-                        name: "dashboard-ord",
-                        image: flowsnake_images.dashboard,
-                        args: commonArgs + [
-                            "--apiserver-host=http://pseudo-kubeapi.flowsnake.svc.cluster.local:40001/ord-flowsnake_prod",
-                            "--system-banner-webhook=http://pseudo-kubeapi.flowsnake.svc.cluster.local:40001/ord-flowsnake_prod/dashboard-webhook",
-                            "--insecure-port=9195",
-                        ],
-                        volumeMounts: volumeMounts,
-                        ports: [{
-                            containerPort: 9195,
-                            hostPort: 9195,
-                        }],
-                    },
-                    {
-                        name: "dashboard-par",
-                        image: flowsnake_images.dashboard,
-                        args: commonArgs + [
-                            "--apiserver-host=http://pseudo-kubeapi.flowsnake.svc.cluster.local:40001/par-flowsnake_prod",
-                            "--system-banner-webhook=http://pseudo-kubeapi.flowsnake.svc.cluster.local:40001/par-flowsnake_prod/dashboard-webhook",
-                            "--insecure-port=9196",
-                        ],
-                        volumeMounts: volumeMounts,
-                        ports: [{
-                            containerPort: 9196,
-                            hostPort: 9196,
-                        }],
-                    },
-                    {
-                        name: "dashboard-phx",
-                        image: flowsnake_images.dashboard,
-                        args: commonArgs + [
-                            "--apiserver-host=http://pseudo-kubeapi.flowsnake.svc.cluster.local:40001/phx-flowsnake_prod",
-                            "--system-banner-webhook=http://pseudo-kubeapi.flowsnake.svc.cluster.local:40001/phx-flowsnake_prod/dashboard-webhook",
-                            "--insecure-port=9197",
-                        ],
-                        volumeMounts: volumeMounts,
-                        ports: [{
-                            containerPort: 9197,
-                            hostPort: 9197,
-                        }],
-                    },
-                    {
-                        name: "dashboard-ph2",
-                        image: flowsnake_images.dashboard,
-                        args: commonArgs + [
-                            "--apiserver-host=http://pseudo-kubeapi.flowsnake.svc.cluster.local:40001/ph2-flowsnake_prod",
-                            "--system-banner-webhook=http://pseudo-kubeapi.flowsnake.svc.cluster.local:40001/ph2-flowsnake_prod/dashboard-webhook",
-                            "--insecure-port=9198",
-                        ],
-                        volumeMounts: volumeMounts,
-                        ports: [{
-                            containerPort: 9198,
-                            hostPort: 9198,
-                        }],
-                    },
-                    {
-                        name: "dashboard-ukb",
-                        image: flowsnake_images.dashboard,
-                        args: commonArgs + [
-                            "--apiserver-host=http://pseudo-kubeapi.flowsnake.svc.cluster.local:40001/ukb-flowsnake_prod",
-                            "--system-banner-webhook=http://pseudo-kubeapi.flowsnake.svc.cluster.local:40001/ukb-flowsnake_prod/dashboard-webhook",
-                            "--insecure-port=9199",
-                        ],
-                        volumeMounts: volumeMounts,
-                        ports: [{
-                            containerPort: 9199,
-                            hostPort: 9199,
-                        }],
-                    },
-                    {
-                        name: "dashboard-cdu",
-                        image: flowsnake_images.dashboard,
-                        args: commonArgs + [
-                            "--apiserver-host=http://pseudo-kubeapi.flowsnake.svc.cluster.local:40001/cdu-flowsnake_prod",
-                            "--system-banner-webhook=http://pseudo-kubeapi.flowsnake.svc.cluster.local:40001/cdu-flowsnake_prod/dashboard-webhook",
-                            "--insecure-port=9200",
-                        ],
-                        volumeMounts: volumeMounts,
-                        ports: [{
-                            containerPort: 9200,
-                            hostPort: 9200,
-                        }],
-                    },
-                    {
-                        name: "dashboard-syd",
-                        image: flowsnake_images.dashboard,
-                        args: commonArgs + [
-                            "--apiserver-host=http://pseudo-kubeapi.flowsnake.svc.cluster.local:40001/syd-flowsnake_prod",
-                            "--system-banner-webhook=http://pseudo-kubeapi.flowsnake.svc.cluster.local:40001/syd-flowsnake_prod/dashboard-webhook",
-                            "--insecure-port=9201",
-                        ],
-                        volumeMounts: volumeMounts,
-                        ports: [{
-                            containerPort: 9201,
-                            hostPort: 9201,
-                        }],
-                    },
-                    {
-                        name: "dashboard-yhu",
-                        image: flowsnake_images.dashboard,
-                        args: commonArgs + [
-                            "--apiserver-host=http://pseudo-kubeapi.flowsnake.svc.cluster.local:40001/yhu-flowsnake_prod",
-                            "--system-banner-webhook=http://pseudo-kubeapi.flowsnake.svc.cluster.local:40001/yhu-flowsnake_prod/dashboard-webhook",
-                            "--insecure-port=9202",
-                        ],
-                        volumeMounts: volumeMounts,
-                        ports: [{
-                            containerPort: 9202,
-                            hostPort: 9202,
-                        }],
-                    },
-                    {
-                        name: "dashboard-yul",
-                        image: flowsnake_images.dashboard,
-                        args: commonArgs + [
-                            "--apiserver-host=http://pseudo-kubeapi.flowsnake.svc.cluster.local:40001/yul-flowsnake_prod",
-                            "--system-banner-webhook=http://pseudo-kubeapi.flowsnake.svc.cluster.local:40001/yul-flowsnake_prod/dashboard-webhook",
-                            "--insecure-port=9203",
-                        ],
-                        volumeMounts: volumeMounts,
-                        ports: [{
-                            containerPort: 9203,
-                            hostPort: 9203,
-                        }],
-                    },
-                    {
-                        name: "dashboard-prd-data",
-                        image: flowsnake_images.dashboard,
-                        args: commonArgs + [
-                            "--apiserver-host=http://pseudo-kubeapi.flowsnake.svc.cluster.local:40001/prd-data-flowsnake",
-                            "--system-banner-webhook=http://pseudo-kubeapi.flowsnake.svc.cluster.local:40001/prd-data-flowsnake/dashboard-webhook",
-                            "--insecure-port=9204",
-                        ],
-                        volumeMounts: volumeMounts,
-                        ports: [{
-                            containerPort: 9204,
-                            hostPort: 9204,
-                        }],
-                    },
-                    {
-                        name: "dashboard-prd-dev",
-                        image: flowsnake_images.dashboard,
-                        args: commonArgs + [
-                            "--apiserver-host=http://pseudo-kubeapi.flowsnake.svc.cluster.local:40001/prd-dev-flowsnake_iot_test",
-                            "--system-banner-webhook=http://pseudo-kubeapi.flowsnake.svc.cluster.local:40001/prd-dev-flowsnake_iot_test/dashboard-webhook",
-                            "--insecure-port=9205",
-                        ],
-                        volumeMounts: volumeMounts,
-                        ports: [{
-                            containerPort: 9205,
-                            hostPort: 9205,
-                        }],
-                    },
-                    {
-                        name: "dashboard-prd-data-test",
-                        image: flowsnake_images.dashboard,
-                        args: commonArgs + [
-                            "--apiserver-host=http://pseudo-kubeapi.flowsnake.svc.cluster.local:40001/prd-data-flowsnake_test",
-                            "--system-banner-webhook=http://pseudo-kubeapi.flowsnake.svc.cluster.local:40001/prd-data-flowsnake_test/dashboard-webhook",
-                            "--insecure-port=9206",
-                        ],
-                        volumeMounts: volumeMounts,
-                        ports: [{
-                            containerPort: 9206,
-                            hostPort: 9206,
-                        }],
-                    },
+                    }
+                    for item in [
+                        { name: "dashboard-dfw", estate: "dfw-flowsnake_prod", port: 9190 },
+                        { name: "dashboard-frf", estate: "frf-flowsnake_prod", port: 9191 },
+                        { name: "dashboard-hnd", estate: "hnd-flowsnake_prod", port: 9192 },
+                        { name: "dashboard-iad", estate: "iad-flowsnake_prod", port: 9193 },
+                        { name: "dashboard-ia2", estate: "ia2-flowsnake_prod", port: 9194 },
+                        { name: "dashboard-ord", estate: "ord-flowsnake_prod", port: 9195 },
+                        { name: "dashboard-par", estate: "par-flowsnake_prod", port: 9196 },
+                        { name: "dashboard-phx", estate: "phx-flowsnake_prod", port: 9197 },
+                        { name: "dashboard-ph2", estate: "ph2-flowsnake_prod", port: 9198 },
+                        { name: "dashboard-ukb", estate: "ukb-flowsnake_prod", port: 9199 },
+                        { name: "dashboard-cdu", estate: "cdu-flowsnake_prod", port: 9200 },
+                        { name: "dashboard-syd", estate: "syd-flowsnake_prod", port: 9201 },
+                        { name: "dashboard-yhu", estate: "yhu-flowsnake_prod", port: 9202 },
+                        { name: "dashboard-yul", estate: "yul-flowsnake_prod", port: 9203 },
+                        { name: "dashboard-prd-data", estate: "prd-data-flowsnake", port: 9204 },
+                        { name: "dashboard-prd-dev", estate: "prd-dev-flowsnake_iot_test", port: 9205 },
+                        { name: "dashboard-prd-data-test", estate: "prd-data-flowsnake_test", port: 9206 },
+                    ]
                 ],
                 volumes: configs.filter_empty([
                     {
