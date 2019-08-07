@@ -82,7 +82,7 @@ system:
     # C2C CA Docker
     #####################################################################################
     - name: c2c-ca
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/gid/gid-gdot:0
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/gid/gid-gdot:0
       imagePullPolicy: Always
       env:
       - name: SITE
