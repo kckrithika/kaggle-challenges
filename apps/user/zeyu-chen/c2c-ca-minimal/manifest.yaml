@@ -23,13 +23,13 @@ system:
       imagePullPolicy: Always
       env:
       - name: UBID_HOSTNAME
-        value: shared0-samminionatlasdir1-1-xrd.eng.sfdc.net
+        value: samminionatlasdir1-1-localhost.localhost
       - name: UBID_SHOSTNAME
-        value: shared0-samminionatlasdir1-1-xrd
+        value: samminionatlasdir1-1-localhost
       - name: UBID_DEPLOYMENT_STAGE
         value: ALL
       - name: SITE
-        value: xrd-gid-1
+        value: local-cluster
       - name: server_port
         value: 7022
       - name: management_server_port
