@@ -51,6 +51,11 @@ system:
         cans2whitelist=prd ;
         cans2whitelist+=,par ;
         cans2whitelist+=,frf ;
+        cans2whitelist+=,phx ;
+        cans2whitelist+=,dfw ;
+        cans2whitelist+=,iad ;
+        cans2whitelist+=,ord ;
+        cans2whitelist+=,fra ;
         if [[ ${cans2whitelist} == *${KINGDOM}* ]] ;
         then
             export HEWD_TARGET_ENDPOINT=http://${CANDIDATESERVICE2LB_SERVICE_HOST}:${CANDIDATESERVICE2LB_SERVICE_PORT} ;
