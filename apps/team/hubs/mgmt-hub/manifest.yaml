@@ -23,7 +23,7 @@ system:
     # Docker image(s) that make up one instance of the service
     containers:
     - name: mgmt-hub
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mgmt/mgmt-hub:mgmt-2019-08-02-11-30-11
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mgmt/mgmt-hub:mgmt-2019-08-07-10-46-31
       env:
       - name: KEYSTORE_CA_DIRECTORY
         value: /certs/ca
@@ -39,6 +39,8 @@ system:
         value: eng.sfdc.net
       - name: APP_JMX_PORT
         value: 8998
+      - name: JMX_RETRIEVE_PASSWORD_FROM_SECRET_SERVICE
+        value: true
       volumeMounts:
       - name: cert
         mountPath: /certs
@@ -90,6 +92,3 @@ system:
         lbtype: http
         #tls: true
         #reencrypt: true
-
-
- 
