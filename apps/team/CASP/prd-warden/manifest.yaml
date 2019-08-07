@@ -15,7 +15,7 @@ system:
           maxUnavailable: 1
       containers:
       - name: prd-warden
-        image: dva/casp/warden_strata:376
+        image: dva/casp/warden_strata:381
         ports:
         - name: http
           containerPort: 8889
@@ -60,6 +60,7 @@ system:
             path: /manage/health
             port: 15372
           initialDelaySeconds: 120
+          periodSeconds: 10
       volumes:
       - name: log-vol
         hostPath:
@@ -101,7 +102,10 @@ system:
       ports:
         - port: 80
           targetport: 8889
+          lbalgorithm: roundrobin
         - port: 443
           targetport: 8443
+          lbalgorithm: roundrobin
         - port: 15372
           targetport: 15372
+          lbalgorithm: roundrobin
