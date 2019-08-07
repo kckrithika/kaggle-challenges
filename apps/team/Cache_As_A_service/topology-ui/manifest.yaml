@@ -20,6 +20,8 @@ system:
           value: "http://public0-proxy1-0-prd.data.sfdc.net:8080"
         - name: https_proxy
           value: "http://public0-proxy1-0-prd.data.sfdc.net:8080"
+        - name: TOPOSPHERES
+          value: "https://topology.foundation.rddev.aws.sfdc.cl,https://topology.foundationdev.aws.sfdc.cl"
       ports:
       - containerPort: 8080
         name: http
