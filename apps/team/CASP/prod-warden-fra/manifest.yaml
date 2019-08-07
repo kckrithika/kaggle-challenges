@@ -15,7 +15,7 @@ system:
           maxUnavailable: 1
       containers:
       - name: prod-warden-fra
-        image: dva/casp/warden_strata:376
+        image: dva/casp/warden_strata:jenkins-CASP-warden-dt-caiman-upgrade-2-itest
         ports:
         - name: warden
           containerPort: 8889
