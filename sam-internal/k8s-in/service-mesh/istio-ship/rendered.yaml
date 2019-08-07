@@ -1364,6 +1364,8 @@ spec:
       - args:
         - --debug-mode
         - "true"
+        - --funnel-address
+        - mcpIstioConfig.funnelVIP
         env:
         - name: FUNCTION_NAMESPACE
           valueFrom:

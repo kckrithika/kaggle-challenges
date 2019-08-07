@@ -97,6 +97,8 @@ local ingressGatewayCertConfigs = [ingressGatewayClientCertConfig, ingressGatewa
   pilotSettingsPath: "istio.-." + configs.kingdom + ".-." + "istio-pilot",
   ingressGatewaySettingsPath: "istio.-." + configs.kingdom + ".-." + "istio-ingressgateway",
 
+  funnelVIP: configs.funnelVIP,
+
   funnelHost: funnelEndpoint[0],
   funnelPort: funnelEndpoint[1],
 

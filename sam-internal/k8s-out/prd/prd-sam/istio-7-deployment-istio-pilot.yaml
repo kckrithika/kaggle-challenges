@@ -258,6 +258,8 @@ spec:
       - args:
         - --debug-mode
         - "true"
+        - --funnel-address
+        - ajna0-funnel1-0-prd.data.sfdc.net:80
         env:
         - name: FUNCTION_NAMESPACE
           valueFrom:
