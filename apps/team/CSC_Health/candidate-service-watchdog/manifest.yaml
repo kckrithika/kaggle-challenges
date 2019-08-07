@@ -48,20 +48,7 @@ system:
         export HEWD_AJNA_DATACENTER=${KINGDOM} ;
         export HEWD_AJNA_DEVICE=${ESTATE}.${FUNCTION_NAMESPACE}.${FUNCTION}.${FUNCTION_INSTANCE_NAME} ;
 
-        cans2whitelist=prd ;
-        cans2whitelist+=,par ;
-        cans2whitelist+=,frf ;
-        cans2whitelist+=,phx ;
-        cans2whitelist+=,dfw ;
-        cans2whitelist+=,iad ;
-        cans2whitelist+=,ord ;
-        cans2whitelist+=,fra ;
-        if [[ ${cans2whitelist} == *${KINGDOM}* ]] ;
-        then
-            export HEWD_TARGET_ENDPOINT=http://${CANDIDATESERVICE2LB_SERVICE_HOST}:${CANDIDATESERVICE2LB_SERVICE_PORT} ;
-        else
-            export HEWD_TARGET_ENDPOINT=http://${CANDIDATESERVICELB_SERVICE_HOST}:${CANDIDATESERVICELB_SERVICE_PORT} ;
-        fi;
+        export HEWD_TARGET_ENDPOINT=http://${CANDIDATESERVICE2LB_SERVICE_HOST}:${CANDIDATESERVICE2LB_SERVICE_PORT} ;
 
         /health-endpoint-watchdog
       "]

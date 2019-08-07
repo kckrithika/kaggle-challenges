@@ -79,45 +79,24 @@ apps:
     - yul/yul-sam_report_collector
   expobservation-service:
   observation-service:
-    - ukb/ukb-sam_report_collector
-    - hnd/hnd-sam_report_collector
-    - cdg/cdg-sam_report_collector
-    - ia2/ia2-sam_report_collector
-    - ph2/ph2-sam_report_collector
-    - lo2/lo2-sam_report_collector
-    - lo3/lo3-sam_report_collector
   observation-service-watchdog:
-    - ukb/ukb-sam_report_collector
-    - hnd/hnd-sam_report_collector
-    - cdg/cdg-sam_report_collector
-    - ia2/ia2-sam_report_collector
-    - ph2/ph2-sam_report_collector
-    - lo2/lo2-sam_report_collector
-    - lo3/lo3-sam_report_collector
   candidate-service-2:
     - prd/prd-sam_report_collector
-    - par/par-sam_report_collector
-    - frf/frf-sam_report_collector
+    - dfw/dfw-sam_report_collector
     - phx/phx-sam_report_collector
+    - frf/frf-sam_report_collector
+    - par/par-sam_report_collector
+    - ukb/ukb-sam_report_collector
     - iad/iad-sam_report_collector
     - ord/ord-sam_report_collector
-    - dfw/dfw-sam_report_collector
-    - fra/fra-sam_report_collector
-    - ukb/ukb-sam_report_collector
     - hnd/hnd-sam_report_collector
+    - fra/fra-sam_report_collector
     - cdg/cdg-sam_report_collector
     - ia2/ia2-sam_report_collector
     - ph2/ph2-sam_report_collector
     - lo2/lo2-sam_report_collector
     - lo3/lo3-sam_report_collector
   candidate-service:
-    - ukb/ukb-sam_report_collector
-    - hnd/hnd-sam_report_collector
-    - cdg/cdg-sam_report_collector
-    - ia2/ia2-sam_report_collector
-    - ph2/ph2-sam_report_collector
-    - lo2/lo2-sam_report_collector
-    - lo3/lo3-sam_report_collector
   expcandidate-service-watchdog:
   candidate-service-watchdog:
     - prd/prd-sam_report_collector
