@@ -22,9 +22,9 @@ system:
       command: ["/opt/pdm/pdm.customer/bin/entrypoint.sh"]
       imagePullPolicy: Always
       env:
-      - name: UBID_HOSTNAME
+      - name: UBID_HOST_OVERRIDE
         value: samminionatlasdir1-1-localhost.localhost
-      - name: UBID_SHOSTNAME
+      - name: UBID_SHOST_OVERRIDE
         value: samminionatlasdir1-1-localhost
       - name: UBID_DEPLOYMENT_STAGE
         value: ALL
