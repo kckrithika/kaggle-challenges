@@ -402,13 +402,15 @@
         "gater",
         "ccait",
         "service-mesh",
-        "service-protection"
+        "service-protection",
+        "retail-beaconator"
       ],
       "access": [
         "team/Gater",
         "team/CCAIT",
         "team/service-mesh",
-        "team/Service_Protection"
+        "team/Service_Protection",
+        "team/Retail_Beaconator"
       ],
       "controlEstate": "dfw-sam",
       "estate": "dfw-sam_gater",
@@ -1288,13 +1290,15 @@
         "gater",
         "ccait",
         "service-mesh",
-        "service-protection"
+        "service-protection",
+        "retail-beaconator"
       ],
       "access": [
         "team/Gater",
         "team/CCAIT",
         "team/service-mesh",
-        "team/Service_Protection"
+        "team/Service_Protection",
+        "team/Retail_Beaconator"
       ],
       "controlEstate": "ia2-sam",
       "estate": "ia2-sam_gater",
@@ -1715,12 +1719,14 @@
       "namespaces": [
         "gater",
         "service-mesh",
-        "service-protection"
+        "service-protection",
+        "retail-beaconator"
       ],
       "access": [
         "team/Gater",
         "team/service-mesh",
-        "team/Service_Protection"
+        "team/Service_Protection",
+        "team/Retail_Beaconator"
       ],
       "controlEstate": "iad-sam",
       "estate": "iad-sam_gater",
@@ -2349,12 +2355,14 @@
       "namespaces": [
         "gater",
         "service-mesh",
-        "service-protection"
+        "service-protection",
+        "retail-beaconator"
       ],
       "access": [
         "team/Gater",
         "team/service-mesh",
-        "team/Service_Protection"
+        "team/Service_Protection",
+        "team/Retail_Beaconator"
       ],
       "controlEstate": "ord-sam",
       "estate": "ord-sam_gater",
@@ -2836,13 +2844,15 @@
         "gater",
         "ccait",
         "service-mesh",
-        "service-protection"
+        "service-protection",
+        "retail-beaconator"
       ],
       "access": [
         "team/Gater",
         "team/CCAIT",
         "team/service-mesh",
-        "team/Service_Protection"
+        "team/Service_Protection",
+        "team/Retail_Beaconator"
       ],
       "controlEstate": "ph2-sam",
       "estate": "ph2-sam_gater",
@@ -3062,13 +3072,15 @@
         "gater",
         "ccait",
         "service-mesh",
-        "service-protection"
+        "service-protection",
+        "retail-beaconator"
       ],
       "access": [
         "team/Gater",
         "team/CCAIT",
         "team/service-mesh",
-        "team/Service_Protection"
+        "team/Service_Protection",
+        "team/Retail_Beaconator"
       ],
       "controlEstate": "phx-sam",
       "estate": "phx-sam_gater",
