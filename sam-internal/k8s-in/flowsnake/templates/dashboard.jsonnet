@@ -1,4 +1,5 @@
 local configs = import "config.jsonnet";
+local portconfigs = import "flowsnake_hostports.jsonnet";
 local flowsnake_config = import "flowsnake_config.jsonnet";
 local flowsnake_images = (import "flowsnake_images.jsonnet") + { templateFilename:: std.thisFile };
 local estate = std.extVar("estate");
@@ -49,23 +50,23 @@ if estate == "prd-data-flowsnake" then ({
                         }],
                     }
                     for item in [
-                        { name: "dashboard-dfw", estate: "dfw-flowsnake_prod", port: 9190 },
-                        { name: "dashboard-frf", estate: "frf-flowsnake_prod", port: 9191 },
-                        { name: "dashboard-hnd", estate: "hnd-flowsnake_prod", port: 9192 },
-                        { name: "dashboard-iad", estate: "iad-flowsnake_prod", port: 9193 },
-                        { name: "dashboard-ia2", estate: "ia2-flowsnake_prod", port: 9194 },
-                        { name: "dashboard-ord", estate: "ord-flowsnake_prod", port: 9195 },
-                        { name: "dashboard-par", estate: "par-flowsnake_prod", port: 9196 },
-                        { name: "dashboard-phx", estate: "phx-flowsnake_prod", port: 9197 },
-                        { name: "dashboard-ph2", estate: "ph2-flowsnake_prod", port: 9198 },
-                        { name: "dashboard-ukb", estate: "ukb-flowsnake_prod", port: 9199 },
-                        { name: "dashboard-cdu", estate: "cdu-flowsnake_prod", port: 9200 },
-                        { name: "dashboard-syd", estate: "syd-flowsnake_prod", port: 9201 },
-                        { name: "dashboard-yhu", estate: "yhu-flowsnake_prod", port: 9202 },
-                        { name: "dashboard-yul", estate: "yul-flowsnake_prod", port: 9203 },
-                        { name: "dashboard-prd-data", estate: "prd-data-flowsnake", port: 9204 },
-                        { name: "dashboard-prd-dev", estate: "prd-dev-flowsnake_iot_test", port: 9205 },
-                        { name: "dashboard-prd-data-test", estate: "prd-data-flowsnake_test", port: 9206 },
+                        { name: "dashboard-dfw", estate: "dfw-flowsnake_prod", port: portconfigs.dashboard_dfw },
+                        { name: "dashboard-frf", estate: "frf-flowsnake_prod", port: portconfigs.dashboard_frf },
+                        { name: "dashboard-hnd", estate: "hnd-flowsnake_prod", port: portconfigs.dashboard_hnd },
+                        { name: "dashboard-iad", estate: "iad-flowsnake_prod", port: portconfigs.dashboard_iad },
+                        { name: "dashboard-ia2", estate: "ia2-flowsnake_prod", port: portconfigs.dashboard_ia2 },
+                        { name: "dashboard-ord", estate: "ord-flowsnake_prod", port: portconfigs.dashboard_ord },
+                        { name: "dashboard-par", estate: "par-flowsnake_prod", port: portconfigs.dashboard_par },
+                        { name: "dashboard-phx", estate: "phx-flowsnake_prod", port: portconfigs.dashboard_phx },
+                        { name: "dashboard-ph2", estate: "ph2-flowsnake_prod", port: portconfigs.dashboard_ph2 },
+                        { name: "dashboard-ukb", estate: "ukb-flowsnake_prod", port: portconfigs.dashboard_ukb },
+                        { name: "dashboard-cdu", estate: "cdu-flowsnake_prod", port: portconfigs.dashboard_cdu },
+                        { name: "dashboard-syd", estate: "syd-flowsnake_prod", port: portconfigs.dashboard_syd },
+                        { name: "dashboard-yhu", estate: "yhu-flowsnake_prod", port: portconfigs.dashboard_yhu },
+                        { name: "dashboard-yul", estate: "yul-flowsnake_prod", port: portconfigs.dashboard_yul },
+                        { name: "dashboard-prd-data", estate: "prd-data-flowsnake", port: portconfigs.dashboard_prd_data },
+                        { name: "dashboard-prd-dev", estate: "prd-dev-flowsnake_iot_test", port: portconfigs.dashboard_prd_dev },
+                        { name: "dashboard-prd-data-test", estate: "prd-data-flowsnake_test", port: portconfigs.dashboard_prd_test },
                     ]
                 ],
                 volumes: configs.filter_empty([
