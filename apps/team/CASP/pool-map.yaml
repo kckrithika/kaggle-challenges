@@ -1,8 +1,6 @@
 apps:
  prd-mysql-shard-a:
   - prd/prd-sam_warden
- prd-mysql-shard-a-stage:
-  - prd/prd-sam_warden
  prd-cantor-grpc-server:
   - prd/prd-sam_warden
  prd-cantor-http-server:
