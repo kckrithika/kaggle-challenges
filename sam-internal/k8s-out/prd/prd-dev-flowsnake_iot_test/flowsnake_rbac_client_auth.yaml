@@ -148,6 +148,8 @@ items:
   - kind: User
     name: retail-cre.yumrotkar
   - kind: User
+    name: retail-cre.macton
+  - kind: User
     name: retail-cre.cre-control-plane
   - kind: User
     name: retail-cre.cre-control-plane-func
@@ -177,6 +179,8 @@ items:
     name: retail-cre.tteats
   - kind: User
     name: retail-cre.yumrotkar
+  - kind: User
+    name: retail-cre.macton
   - kind: User
     name: retail-cre.cre-control-plane
   - kind: User

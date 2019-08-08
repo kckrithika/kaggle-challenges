@@ -103,6 +103,7 @@ local cre_production = {
                     "retail-cre.kchaganti",
                     "retail-cre.tteats",
                     "retail-cre.yumrotkar",
+                    "retail-cre.macton",
                     "retail-cre.cre-control-plane",
                     "retail-cre.cre-control-plane-func",
                     "retail-cre.cre-control-plane-dev",
