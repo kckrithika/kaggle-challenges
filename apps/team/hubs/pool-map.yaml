@@ -6,5 +6,7 @@ apps:
     - prd/prd-sam
   hda-client:
     - prd/prd-sam
+  hda-core-mock:
+    - prd/prd-sam
   prod-debug:
     - xrd/xrd-sam_mgmt_hub
