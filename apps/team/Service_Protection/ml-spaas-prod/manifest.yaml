@@ -1,0 +1,82 @@
+apiVersion: v1
+system:
+  notifications:
+    email:
+    - daeki.cho@salesforce.com
+    email:
+    - fvalbuena@salesforce.com
+  functions:
+  # service name
+  - name: ml-spaas-prod
+    count: 1
+    containers:
+    - name: ml-spaas
+      image: dva/ml-spaas-service-docker:10
+      ports:
+      - containerPort: 7020
+      livenessProbe:
+        periodSeconds: 60
+        exec:
+          command: ["/bin/grpc_health_probe", "-addr=:7020", "-service=ml-spaas"]
+      env:
+      - name: SFDC_ENVIRONMENT
+        value: sam
+      volumeMounts:
+      - mountPath: /home/sfdc-ml-spaas/logs
+        name: logvol
+    - name: beacon
+      image: sfci/services/sfdc-bazel/disco/beacon:d7f1640
+      resources:
+        limits: { cpu: "1", memory: "4Gi" }
+        requests: { cpu: "1", memory: "4Gi" }
+      args:
+      - -endpoint
+      - $(FUNCTION):DATACENTER_ALLENV:HTTP2
+      - -endpoint
+      - $(FUNCTION_NAMESPACE)/$(FUNCTION):DATACENTER_ALLENV:HTTP2_TLS
+      livenessProbe:
+        exec:
+          command:
+          - /opt/beacon/is-alive.sh
+        initialDelaySeconds: 5
+    - name: sherpa
+      image: sfci/servicelibs/sherpa-envoy:1.0.8
+      ports:
+      - name: http2-in
+        containerPort: 7012
+      - name: http2-tls-in
+        containerPort: 7443
+      - name: sherpa-adm
+        containerPort: 15373
+      resources:
+        limits: { cpu: "1", memory: "1Gi" }
+        requests: { cpu: "1", memory: "1Gi" }
+      volumeMounts:
+      - mountPath: /client-certs
+        name: tls-client-cert
+      - mountPath: /server-certs
+        name: tls-server-cert
+      livenessProbe:
+        exec:
+          command:
+          - ./bin/is-alive
+        initialDelaySeconds: 20
+        periodSeconds: 5
+      readinessProbe:
+        exec:
+          command:
+          - ./bin/is-ready
+        initialDelaySeconds: 15
+        periodSeconds: 5
+      terminationMessagePolicy: FallbackToLogsOnError
+    volumes:
+    - name: tls-client-cert
+      maddogCert:
+        type: client
+    - name: tls-server-cert
+      maddogCert:
+        type: server
+    - name: logvol
+      hostPath:
+        path: /home/sfdc-ml-spaas/logs
+
