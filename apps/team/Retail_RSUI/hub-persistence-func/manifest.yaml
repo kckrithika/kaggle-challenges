@@ -103,7 +103,9 @@ system:
             exec:
               command:
                 - "/home/scone/is-alive.sh"
-
+  #
+  # SLB
+  #
   loadbalancers:
     - lbname: hub-persistence-func-lb
       function: hub-persistence-func
