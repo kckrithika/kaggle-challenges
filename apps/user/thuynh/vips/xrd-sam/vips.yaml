@@ -1,5 +1,5 @@
 - lbname: schema-change-qa
-  customlbname: schema-change-qa
+  customlbname: schema-change-qa-xrd
   servers:
    - dmu-api1-qa-xrd.eng.sfdc.net
   ports:
@@ -14,7 +14,7 @@
      tls: true
      reencrypt: true
 - lbname: schemachange-qa
-  customlbname: schemachange-qa
+  customlbname: schemachange-qa-xrd
   servers:
    - dmu-api1-qa-xrd.eng.sfdc.net
   ports:
@@ -25,7 +25,7 @@
      tls: true
      reencrypt: true
 - lbname: schemachange-qa80
-  customlbname: schemachange-qa80
+  customlbname: schemachange-qa80-xrd
   servers:
    - dmu-api1-qa-xrd.eng.sfdc.net
   ports:
@@ -34,7 +34,7 @@
      lbtype: http
      sticky: 300
 - lbname: schemachange-qa8443
-  customlbname: schemachange-qa8443
+  customlbname: schemachange-qa8443-xrd
   servers:
    - dmu-api1-qa-xrd.eng.sfdc.net
   ports:
@@ -45,7 +45,7 @@
      tls: true
      reencrypt: true
 - lbname: schemachange-qa22
-  customlbname: schemachange-qa22
+  customlbname: schemachange-qa22-xrd
   servers:
    - dmu-api1-qa-xrd.eng.sfdc.net
   ports:
