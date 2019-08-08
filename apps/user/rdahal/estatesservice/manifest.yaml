@@ -7,6 +7,8 @@ system:
     - name: server-cert
       maddogCert:
         type: server
+        lbnames:
+        - estatesservicelb
     - name: client-cert
       maddogCert:
         type: client
