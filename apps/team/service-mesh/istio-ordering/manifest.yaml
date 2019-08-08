@@ -36,13 +36,13 @@ system:
       ports:
       - containerPort: 7443
         name: grpc-svc
-      - containerPort: 15372
+      - containerPort: 15374
         name: scone-mgmt
       livenessProbe:
         initialDelaySeconds: 120
         httpGet:
           path: /manage/health
-          port: 15372
+          port: 15374
 
     # Volumes used by auto-injected istio-proxy.
     volumes:
