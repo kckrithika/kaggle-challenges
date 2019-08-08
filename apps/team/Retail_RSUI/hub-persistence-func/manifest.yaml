@@ -37,6 +37,8 @@ system:
               value: stmfa
             - name: JVM_ARGS
               value: -Xmx2G -Xms2G -XX:ParallelGCThreads=8
+            - name: DUMMY_VALUE
+              value: 0
           livenessProbe:
             httpGet:
               path: /manage/health
