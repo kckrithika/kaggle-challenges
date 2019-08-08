@@ -18,17 +18,15 @@ system:
     # C2C CA Docker
     #####################################################################################
     - name: c2c-ca
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/gid/gid-gdot:1
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/c2c/c2c-ca-docker:61196d7
       command: ["/opt/pdm/pdm.customer/bin/entrypoint.sh"]
       imagePullPolicy: Always
       env:
       - name: UBID_HOST_OVERRIDE
         value: samminionatlasdir1-1-localhost.localhost
-      - name: UBID_SHOST_OVERRIDE
-        value: samminionatlasdir1-1-localhost
       - name: UBID_DEPLOYMENT_STAGE
         value: ALL
-      - name: SITE
+      - name: SITE_OVERRIDE
         value: local-cluster
       - name: server_port
         value: 7022
