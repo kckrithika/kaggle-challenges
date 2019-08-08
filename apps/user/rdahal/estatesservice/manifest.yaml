@@ -22,6 +22,7 @@ system:
           scheme: HTTPS
           path: /info
           port: 9090
+        initialDelaySeconds: 300
       volumeMounts:
         - mountPath: /server-certs
           name: server-cert
