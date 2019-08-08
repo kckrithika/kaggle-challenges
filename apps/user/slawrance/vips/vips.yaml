@@ -43,12 +43,30 @@
     tlskey: kms:1:2:39511828A26F7F464E472A3E75E15C8D27B4A4558B8F7231704D844ACB28ABE2:778fa96b-1f70-4023-8606-c4a156ded2c1
     addheaders:
     - name: "X-Salesforce-VIP"
-      value: "FORCE"
+      value: "SLB"
+  - port: 8443
+    targetport: 8090
+    reencrypt: true
+    healthport: 8085
+    lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy
+    sticky: 86400
+    tls: true
+    mtls: true
+    tlscertificate: secret_service:BofA-Stmfa-VIP-Certs:encinoman2.stmfa.stm.my-salesforce.com.crt
+    tlskey: kms:1:2:39511828A26F7F464E472A3E75E15C8D27B4A4558B8F7231704D844ACB28ABE2:778fa96b-1f70-4023-8606-c4a156ded2c1
+    addheaders:
+    - name: "X-Salesforce-VIP"
+      value: "SLB"
   - port: 80
     targetport: 8085
     lbtype: http
     healthprotocol: http
     healthpath: /ping.jsp?allBusy
+    addheaders:
+    - name: "X-Salesforce-VIP"
+      value: "SLB"
 
 - lbname: encinoman3
   servers:
