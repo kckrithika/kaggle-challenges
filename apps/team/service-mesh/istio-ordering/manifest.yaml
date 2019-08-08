@@ -28,7 +28,7 @@ system:
       - name: GRPC_PORT
         value: 7443
       - name: JAVA_OPTS
-        value: "-Dscone.service.name=istio-ordering -Dmesh.proxydomain=svc.mesh.sfdc.net -Dmesh.httpport=7013"
+        value: "-Dscone.service.name=istio-ordering -Dmesh.proxydomain=svc.mesh.sfdc.net -Dmesh.httpport=7013 -Dmetrics.startPublisher=false"
       - name: JAVA_HEAP_OPTS
         value: -Xmx64m
       - name: SCONE_SHIPPING_DEST
