@@ -1,0 +1,88 @@
+apiVersion: v1
+system:
+  notifications:
+    email:
+      - aborra@salesforce.com
+      - rpothana@salesforce.com
+      - ggopalakrishnan@salesforce.com
+      - hmittal@salesforce.com
+  functions:
+  - name: sherlock-stage
+    count: 1
+    strategy:
+      type: Recreate
+    containers:
+    - name: sherlock-stage
+      image: dva/casp/sherlock_strata:jenkins-CASP-sherlock-feature-mysql_test-20-itest
+      ports:
+      - name: flower-http
+        containerPort: 5555
+      - name: sherlock-http
+        containerPort: 5000
+      env:
+        - name: BROKER_URL
+          value: 'mycroft-stage.cache-as-a-service-sp2.prd-samtwo.prd.slb.sfdc.net'
+        - name: SHARED0_SAMMINIONWARDEN1_1_PRD_KINGDOMS
+          value: 'dfw'
+        - name: SHARED0_SAMMINIONWARDEN1_2_PRD_KINGDOMS
+          value: 'ia2'
+        - name: SHARED0_SAMMINIONWARDEN2_1_PRD_KINGDOMS
+          value: 'ph2'
+        - name: CELERY_LOG_LEVEL
+          value: 'info'
+        - name: FLOWER_LOG_LEVEL
+          value: 'info'
+        - name: SHERLOCK_LOG_LEVEL
+          value: 'info'
+        - name: SHERLOCK_ENV
+          value: 'stage'
+        - name: CELERY_CONCURRECY
+          value: '10'
+        - name: MY_SAM_HOST_NAME
+          valueFrom:
+            fieldRef:
+              fieldPath: spec.nodeName
+      volumeMounts:
+        - mountPath: /opt/sherlock/data
+          name: sherlock-data-vol-stage
+        - mountPath: /opt/sherlock/logs
+          name: sherlock-logs-vol-stage
+        - mountPath: /argus-secrets
+          name: argus-secrets-vol
+        - mountPath: /certs
+          name: sherlock-stage-cert
+      livenessProbe:
+        exec:
+          command:
+            - /opt/sherlock/bin/ping.sh
+        failureThreshold: 60
+        periodSeconds: 10
+        timeoutSeconds: 10
+        initialDelaySeconds: 10
+    volumes:
+      - name: sherlock-data-vol-stage
+        hostPath:
+          path: /data/sherlock-stage
+      - name: sherlock-logs-vol-stage
+        hostPath:
+          path: /data/sherlock-logs-stage
+      - name: argus-secrets-vol
+        k4aSecret:
+          secretName: argus-secrets
+      - name: sherlock-stage-cert
+        maddogCert:
+          type: server
+          lbnames:
+          - sherlock-stage
+  loadbalancers:
+  - lbname: sherlock-stage
+    function: sherlock-stage
+    slbenabled: true
+    ports:
+      - port: 5555
+        targetport: 5555
+      - port: 443
+        targetport: 5000
+        lbtype: http
+        tls: true
+        reencrypt: true

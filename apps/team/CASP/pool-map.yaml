@@ -15,6 +15,8 @@ apps:
   - prd/prd-sam_warden
  prd-tunifai: 
   - prd/prd-sam_warden
+ prd-sherlock-stage:
+  - prd/prd-sam_warden
  prd-fawkes: 
   - prd/prd-sam_warden
  prod-mysql-shard-a:
