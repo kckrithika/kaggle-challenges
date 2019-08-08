@@ -24,11 +24,9 @@ system:
       env:
       - name: UBID_HOST_OVERRIDE
         value: samminionatlasdir1-1-localhost.localhost
-      - name: UBID_SHOST_OVERRIDE
-        value: samminionatlasdir1-1-localhost
       - name: UBID_DEPLOYMENT_STAGE
         value: ALL
-      - name: SITE
+      - name: SITE_OVERRIDE
         value: local-cluster
       - name: server_port
         value: 7022
