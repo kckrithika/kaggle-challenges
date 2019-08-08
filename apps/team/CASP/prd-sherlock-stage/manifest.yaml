@@ -23,11 +23,11 @@ system:
         - name: BROKER_URL
           value: 'mycroft-stage.cache-as-a-service-sp2.prd-samtwo.prd.slb.sfdc.net'
         - name: SHARED0_SAMMINIONWARDEN1_1_PRD_KINGDOMS
-          value: 'dfw,lo3,customer_orgs,model_caching1'
+          value: 'dfw'
         - name: SHARED0_SAMMINIONWARDEN1_2_PRD_KINGDOMS
-          value: 'ia2,lo2,customer_orgs,model_caching2'
+          value: 'ia2'
         - name: SHARED0_SAMMINIONWARDEN2_1_PRD_KINGDOMS
-          value: 'frf,cdg,customer_orgs,model_caching3'
+          value: 'ph2'
         - name: CELERY_LOG_LEVEL
           value: 'info'
         - name: FLOWER_LOG_LEVEL
