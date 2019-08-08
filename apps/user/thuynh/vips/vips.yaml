@@ -11,3 +11,44 @@
      targetport: 443
      lbtype: http
      sticky: 86400
+     tls: true
+     reencrypt: true
+- lbname: schemachange-qa
+  customlbname: schemachange-qa
+  servers:
+   - dmu-api1-qa-xrd.eng.sfdc.net
+  ports:
+   - port: 443
+     targetport: 443
+     lbtype: http
+     sticky: 300
+     tls: true
+     reencrypt: true
+- lbname: schemachange-qa80
+  customlbname: schemachange-qa80
+  servers:
+   - dmu-api1-qa-xrd.eng.sfdc.net
+  ports:
+   - port: 80
+     targetport: 80
+     lbtype: http
+     sticky: 300
+- lbname: schemachange-qa8443
+  customlbname: schemachange-qa8443
+  servers:
+   - dmu-api1-qa-xrd.eng.sfdc.net
+  ports:
+   - port: 8443
+     targetport: 8443
+     lbtype: http
+     sticky: 300
+     tls: true
+     reencrypt: true
+- lbname: schemachange-qa22
+  customlbname: schemachange-qa22
+  servers:
+   - dmu-api1-qa-xrd.eng.sfdc.net
+  ports:
+   - port: 22
+     targetport: 22
+     lbtype: tcp
