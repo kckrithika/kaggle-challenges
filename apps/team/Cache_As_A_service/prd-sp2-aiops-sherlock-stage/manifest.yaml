@@ -13,7 +13,7 @@ system:
       type: Recreate
     containers:
     - name: sherlock-stage
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/amal.surendran/sherlock-stage:080719-0500
+      image: dva/casp/sherlock_strata:jenkins-CASP-sherlock-PR-142-1-itest
       ports:
       - name: flower-http
         containerPort: 5555
