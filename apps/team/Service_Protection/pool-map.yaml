@@ -19,4 +19,5 @@ apps:
   - ia2/ia2-sam_gater
  ml-spaas:
   - prd/prd-sam_gater
-  
+ ml-spaas-prod:
+  - dfw/dfw-sam_gater
