@@ -150,15 +150,15 @@ items:
   - kind: User
     name: retail-cre.cre-control-plane
   - kind: User
-    name: retail-cre.cre-control-plane-ccp-func
+    name: retail-cre.cre-control-plane-func
   - kind: User
-    name: retail-cre.cre-control-plane-ccp-dev
+    name: retail-cre.cre-control-plane-dev
   - kind: User
-    name: retail-cre.cre-control-plane-ccp-stage
+    name: retail-cre.cre-control-plane-stage
   - kind: User
-    name: retail-cre.cre-control-plane-cre-test
+    name: retail-cre.cre-control-plane-test
   - kind: User
-    name: retail-cre.cre-control-plane-ccp-perf
+    name: retail-cre.cre-control-plane-perf
 - apiVersion: rbac.authorization.k8s.io/v1
   kind: RoleBinding
   metadata:
@@ -180,15 +180,15 @@ items:
   - kind: User
     name: retail-cre.cre-control-plane
   - kind: User
-    name: retail-cre.cre-control-plane-ccp-func
+    name: retail-cre.cre-control-plane-func
   - kind: User
-    name: retail-cre.cre-control-plane-ccp-dev
+    name: retail-cre.cre-control-plane-dev
   - kind: User
-    name: retail-cre.cre-control-plane-cpp-stage
+    name: retail-cre.cre-control-plane-stage
   - kind: User
-    name: retail-cre.cre-control-plane-cre-test
+    name: retail-cre.cre-control-plane-test
   - kind: User
-    name: retail-cre.cre-control-plane-ccp-perf
+    name: retail-cre.cre-control-plane-perf
 - apiVersion: v1
   automountServiceAccountToken: true
   kind: ServiceAccount
