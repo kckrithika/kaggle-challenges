@@ -10,6 +10,14 @@ apps:
   - name: prd/prd-sam_mc_consumer
   prd-qa3s2-event-notification-service:
   - name: prd/prd-sam_mc_consumer
+  prd-qa1s1-engagement-event-service:
+  - name: prd/prd-sam_mc_consumer
+  prd-qa2s2-engagement-event-service:
+  - name: prd/prd-sam_mc_consumer
+  prd-qa3s1-engagement-event-service:
+  - name: prd/prd-sam_mc_consumer
+  prd-qa3s2-engagement-event-service:
+  - name: prd/prd-sam_mc_consumer
   iad-event-notification-service:
   - name: iad/iad-sam_mc_consumer
   ord-event-notification-service:
@@ -18,8 +26,9 @@ apps:
   - name: cdg/cdg-sam_mc_consumer
   fra-event-notification-service:
   - name: fra/fra-sam_mc_consumer
-
   prd-dev-event-transfer-control-plane:
   - name: prd/prd-sam_mc_consumer
   prd-dev-event-transfer-service:
+  - name: prd/prd-sam_mc_consumer
+  prd-dev-engagement-event-service:
   - name: prd/prd-sam_mc_consumer

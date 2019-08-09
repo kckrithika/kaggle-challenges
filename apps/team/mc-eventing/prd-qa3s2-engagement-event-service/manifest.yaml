@@ -6,7 +6,7 @@ system:
     - mc-devbigdata@salesforce.com
     - MC-MessagingInboundTeam@salesforce.com
   functions:
-  - name: qa1s1-event-notification-service
+  - name: qa3s2-engagement-event-service
     identity:
       serviceName: wh-con
     count: 3
@@ -18,7 +18,7 @@ system:
       k4aSecret:
         secretName: eventbusajna-ens-v1
     containers:
-    - name: qa1s1-event-notification-service
+    - name: qa3s2-engagement-event-service
       image: sfci/mc-eventing/event-notification:1.0.13
       ports:
       - containerPort: 15372
@@ -28,11 +28,13 @@ system:
       - name: MANAGEMENT_PORT
         value: 15372
       - name: AJNA_NAMESPACE
-        value: mc.test.mceventbusqa1s1
+        value: mc.test.mceventbusqa3s2
       - name: EVENTCONSUMER_GROUP_ID
-        value: eventing-notification-qa1s1
+        value: eventing-notification-qa3s2
       - name: SESSION_TIMEOUT_MS
         value: 6000
+      - name: EVENTCONSUMER_TOPICNAME
+        value: mc.test.mceventbusqa3s2__prd.ajna_local__engagement_events
       livenessProbe:
         initialDelaySeconds: 60
         periodSeconds: 120
@@ -47,9 +49,9 @@ system:
         mountPath: /secrets/eventbusajna-ens-v1
         readOnly: true
   loadbalancers:
-  - lbname: qa1s1-event-notification-service-lb
-    function: qa1s1-event-notification-service
+  - lbname: qa3s2-engagement-event-service-lb
+    function: qa3s2-engagement-event-service
     nodeExposed: true
     ports:
-    - port: 15373
+    - port: 15380
       targetport: 15372
