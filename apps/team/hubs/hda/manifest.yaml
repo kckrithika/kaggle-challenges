@@ -41,6 +41,8 @@ system:
           args:
             - -endpoint
             - $(FUNCTION_NAMESPACE)/$(FUNCTION):DATACENTER_ALLENV:HTTP2_TLS
+            - -endpoint
+            - $(FUNCTION_NAMESPACE)/upload-$(FUNCTION):DATACENTER_ALLENV:HTTP1_TLS
             - -logging.dir
             - /log
           livenessProbe:
