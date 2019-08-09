@@ -2,8 +2,9 @@ apiVersion: v1
 system:
   notifications:
     email:
-    - sriram.srinivasan@salesforce.com
+    - smanohar@salesforce.com
     - nguyentoan@salesforce.com
+    - varun.kulkarni@salesforce.com
   functions:
   - name: soter
     count: 1
@@ -18,7 +19,7 @@ system:
           type: client
     containers:
     - name: soter
-      image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/soter:109
+      image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/soter:127
       ports:
       - containerPort: 8080
       - containerPort: 7090

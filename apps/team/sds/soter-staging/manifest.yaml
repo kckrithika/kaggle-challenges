@@ -3,7 +3,6 @@ system:
   notifications:
     email:
     - varun.kulkarni@salesforce.com
-    - sriram.srinivasan@salesforce.com
     - nguyentoan@salesforce.com
     - smanohar@salesforce.com
   functions:
@@ -20,7 +19,7 @@ system:
           type: client
     containers:
     - name: soter-staging
-      image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/soter:121
+      image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/soter:127
       ports:
       - containerPort: 8080
       - containerPort: 7090
