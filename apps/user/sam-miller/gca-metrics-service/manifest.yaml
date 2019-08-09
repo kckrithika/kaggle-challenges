@@ -35,6 +35,8 @@ system:
         value: "dev"
       - name: CONFIG_LOCATION
         value: "/var/secrets/profile/user_profile.cfg"
+      - name: IP_WHITELIST
+        value: "10.250.17.242,10.250.17.50,10.250.5.242,10.250.5.250"
       volumeMounts:
         - name: shared-tmp
           mountPath: /tmp
