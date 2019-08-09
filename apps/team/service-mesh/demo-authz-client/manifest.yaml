@@ -1,0 +1,54 @@
+apiVersion: v1
+
+system:
+  notifications:
+    email:
+    - electron@salesforce.com
+  functions:
+  - name: demo-authz-client
+    count: 1
+    annotations:
+      "sherpa-injector.service-mesh/inject": "enabled"
+    containers:
+    - name: demo-authz-grpc-client
+      image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/electron_client:52
+      args:
+      - -endpoint=demo-authz.service-mesh.localhost.mesh.force.com:5443
+      - -service=grpc
+      - -loopCount=-1
+      - -loopDelayInSeconds=60
+      livenessProbe:
+        exec:
+          command: ["/bin/true"]
+        initialDelaySeconds: 30
+    - name: demo-authz-http-client
+      image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/electron_client:52
+      args:
+      - -endpoint=demo-authz.service-mesh.localhost.mesh.force.com:5442
+      - -service=http
+      - -loopCount=-1
+      - -loopDelayInSeconds=60
+      livenessProbe:
+        exec:
+          command: ["/bin/true"]
+        initialDelaySeconds: 30
+    - name: beacon
+      # https://git.soma.salesforce.com/services/sfdc-bazel/tree/master/projects/sidecars/beacon#docker-image
+      image: sfci/services/sfdc-bazel/disco/beacon:d7f1640
+      args:
+      - -endpoint
+      - $(FUNCTION):DATACENTER_ALLENV:HTTP2
+      - -endpoint
+      - $(FUNCTION_NAMESPACE)/$(FUNCTION):DATACENTER_ALLENV:HTTP2_TLS
+      livenessProbe:
+        exec:
+          command:
+          - "/opt/beacon/is-alive.sh"
+        initialDelaySeconds: 10
+    volumes:
+    - name: tls-client-cert
+      maddogCert:
+        type: client
+    - name: tls-server-cert
+      maddogCert:
+        type: server
