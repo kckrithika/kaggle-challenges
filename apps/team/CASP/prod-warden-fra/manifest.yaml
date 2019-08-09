@@ -7,7 +7,7 @@ system:
         - akouthoofd@salesforce.com
     functions:
     - name: warden-func
-      count: 1
+      count: 3
       strategy:
         type: RollingUpdate
         rollingUpdate:
@@ -24,8 +24,6 @@ system:
         - name: BRANCH
           value: "ops_production"
         - name: JWT_ENABLED
-          value: "true"
-        - name: DEBUG
           value: "true"
         - name: NODENAME
           valueFrom:
