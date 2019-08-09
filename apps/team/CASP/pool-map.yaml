@@ -36,6 +36,7 @@ apps:
   - phx/phx-sam_warden
   - frf/frf-sam_warden
   - cdg/cdg-sam_warden
+  - fra/fra-sam_warden
  prod-cantor-http-server:
   - dfw/dfw-sam_warden
   - iad/iad-sam_warden
@@ -45,6 +46,7 @@ apps:
   - phx/phx-sam_warden
   - frf/frf-sam_warden
   - cdg/cdg-sam_warden
+  - fra/fra-sam_warden
  prod-maiev-receiver:
   - dfw/dfw-sam_warden
   - iad/iad-sam_warden
@@ -54,6 +56,7 @@ apps:
   - phx/phx-sam_warden
   - frf/frf-sam_warden
   - cdg/cdg-sam_warden
+  - fra/fra-sam_warden
  prod-warden-dfw:
   - dfw/dfw-sam_warden
  prod-warden-iad:
@@ -69,8 +72,6 @@ apps:
  prod-warden-frf:
   - frf/frf-sam_warden
  prod-warden-fra:
-  - fra/fra-sam_warden
- prod-cantor-fra:
   - fra/fra-sam_warden
  prod-warden-cdg:
   - cdg/cdg-sam_warden
