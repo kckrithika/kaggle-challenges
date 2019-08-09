@@ -11,3 +11,5 @@
    - port: 443
      targetport: 443
      lbtype: tcp
+     lbalgorithm: roundrobin
+
