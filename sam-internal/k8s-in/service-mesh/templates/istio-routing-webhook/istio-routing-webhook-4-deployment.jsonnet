@@ -46,7 +46,7 @@ configs.deploymentBase("service-mesh") {
         containers: [
           configs.containerWithMadDog {
             name: "istio-routing-webhook",
-            image: "ops0-artifactrepo2-0-prd.data.sfdc.net/sfci/servicemesh/servicemesh/istio-routing-webhook:c970d64cfb4967722f9139ff2bea5c9c13905373",
+            image: "ops0-artifactrepo2-0-prd.data.sfdc.net/sfci/servicemesh/servicemesh/istio-routing-webhook:daff1d8bb5b4d1de8c3b4f03764999e33b8b8ab6",
             imagePullPolicy: "IfNotPresent",
             args: [
               "server",
@@ -61,7 +61,7 @@ configs.deploymentBase("service-mesh") {
             ],
             env: [
               {
-                name: "SUPERPOD",
+                name: "SETTINGS_SUPERPOD",
                 value: mcpIstioConfig.superpod,
               },
               {

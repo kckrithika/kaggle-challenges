@@ -64,16 +64,26 @@ configs.deploymentBase("service-mesh") {
         containers: [
           configs.containerWithMadDog {
             name: "route-update-service",
-            image: "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-sfci-dev/sfci/servicemesh/servicemesh/route-update-service:18508c4772eeb58c1567190d686b2ee01f93c508",
+            image: "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-sfci-dev/sfci/servicemesh/servicemesh/route-update-service:daff1d8bb5b4d1de8c3b4f03764999e33b8b8ab6",
             imagePullPolicy: "IfNotPresent",
             args: [
               "-p",
               "7443",
+              "--funnel-address",
+              mcpIstioConfig.funnelLocalEndpoint,
             ],
             env: [
               {
                 name: "ESTATE",
                 value: mcpIstioConfig.istioEstate,
+              },
+              {
+                name: "SETTINGS_SUPERPOD",
+                value: mcpIstioConfig.superpod,
+              },
+              {
+                name: "SETTINGS_PATH",
+                value: "mesh.-." + configs.kingdom + ".-." + "route-update-service",
               },
             ],
             ports: [

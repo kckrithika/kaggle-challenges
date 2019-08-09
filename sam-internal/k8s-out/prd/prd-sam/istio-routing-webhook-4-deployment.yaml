@@ -47,13 +47,13 @@ spec:
         - --funnel-address
         - ajna0-funnel1-0-prd.data.sfdc.net:80
         env:
-        - name: SUPERPOD
+        - name: SETTINGS_SUPERPOD
           value: '-'
         - name: SETTINGS_PATH
           value: -.-.prd.-.istio-routing-webhook
         - name: ESTATE
           value: prd-sam
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/sfci/servicemesh/servicemesh/istio-routing-webhook:c970d64cfb4967722f9139ff2bea5c9c13905373
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/sfci/servicemesh/servicemesh/istio-routing-webhook:daff1d8bb5b4d1de8c3b4f03764999e33b8b8ab6
         imagePullPolicy: IfNotPresent
         name: istio-routing-webhook
         ports:
