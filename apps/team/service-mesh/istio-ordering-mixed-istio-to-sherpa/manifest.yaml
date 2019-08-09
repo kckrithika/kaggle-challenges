@@ -9,8 +9,7 @@ system:
     count: 1
     labels:
       app: istio-ordering-mixed-istio-to-sherpa
-      settings_path: stm.-.prd.-.istio-ordering-mixed-istio-to-sherpa
-      superpod: NONE
+      settings_path: istio.-.prd.-.istio-ordering-mixed-istio-to-sherpa
       istio_app: test
     annotations:
       sidecar.istio.io/inject: "true"
@@ -28,11 +27,9 @@ system:
       - name: GRPC_PORT
         value: 7443
       - name: JAVA_OPTS
-        value: "-Dscone.service.name=istio-ordering-mixed-istio-to-sherpa -Dshipping.dest=shipping-envoy-tls.service-mesh.svc.mesh.sfdc.net:7443 -Dmanagement.server.port=15372"
+        value: "-Dscone.service.name=istio-ordering-mixed-istio-to-sherpa -Dshipping.dest=istio-shipping-mixed-istio-to-sherpa.service-mesh.svc.mesh.sfdc.net:7443 -Dshipping.interval=5000 -Dmanagement.server.port=15372"
       - name: JAVA_HEAP_OPTS
         value: -Xmx64m
-      - name: SCONE_SHIPPING_DEST
-        value: shipping-envoy-tls.service-mesh.svc.mesh.sfdc.net:7443
       ports:
       - containerPort: 7443
         name: grpc-svc

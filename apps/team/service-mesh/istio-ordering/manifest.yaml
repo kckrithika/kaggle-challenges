@@ -9,8 +9,7 @@ system:
     count: 1
     labels:
       app: istio-ordering
-      settings_path: stm.-.prd.-.istio-ordering
-      superpod: NONE
+      settings_path: istio.-.prd.-.istio-ordering
       istio_app: test
     annotations:
       sidecar.istio.io/inject: "true"
@@ -28,21 +27,19 @@ system:
       - name: GRPC_PORT
         value: 7443
       - name: JAVA_OPTS
-        value: "-Dscone.service.name=istio-ordering -Dmesh.proxydomain=svc.mesh.sfdc.net -Dmesh.httpport=7013"
+        value: "-Dscone.service.name=istio-ordering -Dshipping.dest=istio-shipping.service-mesh.svc.mesh.sfdc.net:7443 -Dshipping.interval=5000 -Dmanagement.server.port=15372 -Dmesh.proxydomain=svc.mesh.sfdc.net -Dmesh.httpport=7013"
       - name: JAVA_HEAP_OPTS
         value: -Xmx64m
-      - name: SCONE_SHIPPING_DEST
-        value: istio-shipping.service-mesh.svc.mesh.sfdc.net:7443
       ports:
       - containerPort: 7443
         name: grpc-svc
-      - containerPort: 15374
+      - containerPort: 15372
         name: scone-mgmt
       livenessProbe:
         initialDelaySeconds: 120
         httpGet:
           path: /manage/health
-          port: 15374
+          port: 15372
 
     # Volumes used by auto-injected istio-proxy.
     volumes:
