@@ -39,7 +39,7 @@ system:
 
     containers:
     - name: retail-setup
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/retail/retail-setup:2.0.45
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/retail/retail-setup:2.0.59
       ports:
       # Jetty http1 ports for incoming public traffic via SLB
       - containerPort: 7022
@@ -119,8 +119,6 @@ system:
         value: true
       - name: SHOW_INTERNAL_TRANSFORMATIONS
         value: true
-      - name: HP_PATH
-        value: http://hub-persistence.retail-rsui.localhost.mesh.force.com:5442
       - name: JVM_ARGS
         value: "-Dspring.profiles.active=prod -Djava.util.concurrent.ForkJoinPool.common.parallelism=50
                 -verbose:gc -XX:+PrintGCDateStamps -XX:+PrintHeapAtGC
