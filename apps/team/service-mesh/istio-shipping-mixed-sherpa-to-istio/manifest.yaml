@@ -9,8 +9,7 @@ system:
     count: 1
     labels:
       app: istio-shipping-mixed-sherpa-to-istio
-      settings_path: stm.-.prd.-.istio-shipping-mixed-sherpa-to-istio
-      superpod: NONE
+      settings_path: istio.-.prd.-.istio-shipping-mixed-sherpa-to-istio
       istio_app: test
     annotations:
       sidecar.istio.io/inject: "true"

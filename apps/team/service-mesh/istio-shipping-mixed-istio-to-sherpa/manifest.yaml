@@ -9,8 +9,7 @@ system:
     count: 1
     labels:
       app: istio-shipping-mixed-istio-to-sherpa
-      settings_path: stm.-.prd.-.istio-shipping-mixed-istio-to-sherpa
-      superpod: NONE
+      settings_path: istio.-.prd.-.istio-shipping-mixed-istio-to-sherpa
       istio_app: test
     annotations:
       "sherpa-injector.service-mesh/inject": "enabled"
