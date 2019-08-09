@@ -32,7 +32,7 @@ spec:
         - -metrics-endpoint=/metrics
         - -metrics-port=10254
         - -enable-webhook=true
-        - -enable-resource-quota-enforcement=true
+        - -enable-resource-quota-enforcement=false
         - -webhook-svc-namespace=flowsnake
         - -webhook-port=8443
         - -webhook-fail-on-error=true
@@ -44,7 +44,7 @@ spec:
         - -webhook-namespace-selector=spark-operator-webhook=enabled
         command:
         - /usr/bin/spark-operator
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/kubernetes-spark-operator-2.4.0-sfdc-0.0.1:jenkins-dva-transformation-spark-on-k8s-operator-PR-25-2-itest
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/kubernetes-spark-operator-2.4.0-sfdc-0.0.1:jenkins-dva-transformation-spark-on-k8s-operator-PR-25-11-itest
         imagePullPolicy: Always
         name: spark-operator
         ports:
