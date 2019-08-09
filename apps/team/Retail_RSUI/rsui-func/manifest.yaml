@@ -119,6 +119,8 @@ system:
         value: true
       - name: SHOW_INTERNAL_TRANSFORMATIONS
         value: true
+      - name: HPS_TARGET
+        value: http://hub-persistence.retail-rsui.localhost.mesh.force.com:5442
       - name: JVM_ARGS
         value: "-Dspring.profiles.active=prod -Djava.util.concurrent.ForkJoinPool.common.parallelism=50
                 -verbose:gc -XX:+PrintGCDateStamps -XX:+PrintHeapAtGC
