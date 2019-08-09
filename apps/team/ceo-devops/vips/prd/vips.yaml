@@ -16,14 +16,16 @@
 - lbname: sfcikubeapi
   customlbname: sfcikubeapi-prd
   servers:
-  - kubemaster01.dop.sfdc.net
-  - kubemaster02.dop.sfdc.net
-  - kubemaster03.dop.sfdc.net
+  - sfci0ceo0-pkubemaster2-1-prd.dop.sfdc.net 
+  - sfci0ceo0-pkubemaster2-2-prd.dop.sfdc.net
+  - sfci0ceo0-pkubemaster2-3-prd.dop.sfdc.net
+  - sfci0ceo0-pkubemaster2-4-prd.dop.sfdc.net
+  - sfci0ceo0-pkubemaster2-5-prd.dop.sfdc.net
   ports:
   - port: 443
-    targetport: 8443
+    targetport: 6443
     lbtype: http
     tls: true
-    healthport: 8443
-    healthprotocol: http
-    healthpath: /
+    healthport: 6443
+    healthprotocol: https
+    healthpath: healthz
