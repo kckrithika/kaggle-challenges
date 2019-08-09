@@ -27,7 +27,6 @@ apps:
   - frf/frf-sam_warden
   - fra/fra-sam_warden
   - cdg/cdg-sam_warden
-  - fra/fra-sam_warden
  prod-cantor:
   - dfw/dfw-sam_warden
   - iad/iad-sam_warden
