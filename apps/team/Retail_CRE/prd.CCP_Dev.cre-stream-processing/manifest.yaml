@@ -60,7 +60,8 @@ system:
                   -Dcom.sun.management.jmxremote.ssl=false
                   -Dcom.sun.management.jmxremote.authenticate=false
                   -Dlogging.level.com.salesforce=INFO
-                  -Xmx4G -Xms4G -XX:ParallelGCThreads=8"
+                  -Xmx4G -Xms4G -XX:ParallelGCThreads=8
+                  -Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=6103"
       ports:
       - containerPort: 8080
       - containerPort: 7022
