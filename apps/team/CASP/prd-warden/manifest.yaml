@@ -3,8 +3,7 @@ apiVersion: v1
 system:
     notifications:
       email:
-        - paul.howden@salesforce.com
-        - akouthoofd@salesforce.com
+        - warden@salesforce.com
     functions:
     - name: warden-func
       count: 3
@@ -15,7 +14,7 @@ system:
           maxUnavailable: 1
       containers:
       - name: prd-warden
-        image: dva/casp/warden_strata:388
+        image: dva/casp/warden_strata:394
         ports:
         - name: http
           containerPort: 8889
@@ -52,7 +51,7 @@ system:
         - mountPath: /mysql-secrets/
           name: mysql-credentials
           readOnly: true
-        - mountPath: /warden-secrets/gus-secrets/
+        - mountPath: /warden/secrets/gus-secrets/
           name: gus-credentials
           readOnly: true
         livenessProbe:
