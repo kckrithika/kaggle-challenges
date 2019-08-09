@@ -13,7 +13,7 @@ system:
       "routing.mesh.sfdc.net/enabled": "true"
     containers:
     - name: cre-control-plane-ccp-dev
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cre-fusion/services/control-plane:1.2.0.1.PR-514.75e5add.2
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cre-fusion/services/control-plane:1.2.0.1.develop.b953e13.220
       env:
         ####################################################################################################
         ############################   ENGINE/DDS FLOWSNAKE ARTIFACTS ( Most frequently changed ) ##########
@@ -121,10 +121,17 @@ system:
       - containerPort: 7022
       - containerPort: 15372
       livenessProbe:
-        exec:
-          command:
-            - ls
+        httpGet:
+          path: /manage/health
+          port: 15372
+        initialDelaySeconds: 60
+        periodSeconds: 10
+      readinessProbe:
+        httpGet:
+          path: /manage/ready
+          port: 15372
         initialDelaySeconds: 30
+        periodSeconds: 10
       volumeMounts:
       - mountPath: /client-certs
         name: client-certs
