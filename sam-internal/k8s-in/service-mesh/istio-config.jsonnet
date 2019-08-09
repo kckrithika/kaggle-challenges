@@ -98,6 +98,7 @@ local ingressGatewayCertConfigs = [ingressGatewayClientCertConfig, ingressGatewa
   ingressGatewaySettingsPath: "istio.-." + configs.kingdom + ".-." + "istio-ingressgateway",
 
   funnelVIP: configs.funnelVIP,
+  funnelLocalEndpoint: "ajnafunnel-" + configs.kingdom + ".z9s-default.svc.mesh.sfdc.net:" + funnelEndpoint[1],
 
   funnelHost: funnelEndpoint[0],
   funnelPort: funnelEndpoint[1],
