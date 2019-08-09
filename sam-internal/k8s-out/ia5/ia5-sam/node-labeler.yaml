@@ -1,0 +1,55 @@
+apiVersion: extensions/v1beta1
+kind: DaemonSet
+metadata:
+  labels:
+    name: node-labeler
+    sam.data.sfdc.net/owner: sam
+  name: node-labeler
+  namespace: sam-system
+spec:
+  selector:
+    matchLabels:
+      app: node-labeler
+      apptype: monitoring
+      daemonset: "true"
+      sam.data.sfdc.net/owner: sam
+  template:
+    metadata:
+      labels:
+        app: node-labeler
+        apptype: monitoring
+        daemonset: "true"
+        sam.data.sfdc.net/owner: sam
+    spec:
+      containers:
+      - command:
+        - /sam/node-labeler
+        - --config=/config/node-labeler-config.json
+        image: ops0-artifactrepo1-0-ia5.data.sfdc.net/dva/sam/hypersam:2755-f2d626475424807fceb6c047dbb5ae7271561131
+        name: node-labeler
+        resources:
+          limits:
+            cpu: "0.5"
+            memory: 300Mi
+          requests:
+            cpu: "0.5"
+            memory: 300Mi
+        volumeMounts:
+        - mountPath: /config
+          name: config
+        - mountPath: /etc/sfdc-release
+          name: etc-data
+      hostNetwork: true
+      serviceAccount: node-labeler-sa
+      serviceAccountName: node-labeler-sa
+      volumes:
+      - configMap:
+          name: node-labeler
+        name: config
+      - hostPath:
+          path: /etc/sfdc-release
+        name: etc-data
+  updateStrategy:
+    rollingUpdate:
+      maxUnavailable: 25%
+    type: RollingUpdate

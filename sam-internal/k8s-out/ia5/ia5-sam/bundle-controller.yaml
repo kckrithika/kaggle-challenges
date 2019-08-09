@@ -1,0 +1,61 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  labels:
+    name: bundlecontroller
+    sam.data.sfdc.net/owner: sam
+  name: bundlecontroller
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      name: bundlecontroller
+  template:
+    metadata:
+      labels:
+        apptype: control
+        name: bundlecontroller
+        sam.data.sfdc.net/owner: sam
+      namespace: sam-system
+    spec:
+      containers:
+      - command:
+        - /sam/bundlecontroller
+        - --config=/config/bundle-controller-config.json
+        - --funnelEndpoint=ajna0-funnel1-0-ia5.data.sfdc.net:80
+        env:
+        - name: KUBECONFIG
+          value: /kubeconfig/kubeconfig-platform
+        image: ops0-artifactrepo1-0-ia5.data.sfdc.net/dva/sam/hypersam:2755-f2d626475424807fceb6c047dbb5ae7271561131
+        livenessProbe:
+          httpGet:
+            path: /healthz
+            port: 21546
+          initialDelaySeconds: 30
+          periodSeconds: 5
+        name: bundle-controller
+        volumeMounts:
+        - mountPath: /etc/pki_service
+          name: maddog-certs
+        - mountPath: /kubeconfig
+          name: kubeconfig
+        - mountPath: /data/certs
+          name: certs
+        - mountPath: /config
+          name: config
+      hostNetwork: true
+      nodeSelector:
+        pool: ia5-sam
+      volumes:
+      - hostPath:
+          path: /etc/pki_service
+        name: maddog-certs
+      - hostPath:
+          path: /etc/kubernetes
+        name: kubeconfig
+      - hostPath:
+          path: /data/certs
+        name: certs
+      - configMap:
+          name: bundle-controller
+        name: config

@@ -1,0 +1,69 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  labels:
+    name: watchdog-maddog
+    sam.data.sfdc.net/owner: sam
+  name: watchdog-maddog
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      name: watchdog-maddog
+  template:
+    metadata:
+      labels:
+        apptype: monitoring
+        name: watchdog-maddog
+        sam.data.sfdc.net/owner: sam
+      namespace: sam-system
+    spec:
+      containers:
+      - command:
+        - /sam/watchdog
+        - -role=MADDOG
+        - -watchdogFrequency=10s
+        - -alertThreshold=300s
+        - -madkub-endpoint=https://$(MADKUBSERVER_SERVICE_HOST):32007/healthz
+        - -maddog-endpoint=https://all.pkicontroller.pki.blank.ia4.prod.non-estates.sfdcsd.net:8443/sfdc/v1/ping
+        - -watchDogKind=Deployment
+        - -funnelEndpoint=ajna0-funnel1-0-ia4.data.sfdc.net:80
+        - --config=/config/watchdog.json
+        - --hostsConfigFile=/sfdchosts/hosts.json
+        - -timeout=2s
+        - -emailFrequency=336h
+        env:
+        - name: KUBECONFIG
+          value: /kubeconfig/kubeconfig-platform
+        image: ops0-artifactrepo1-0-ia4.data.sfdc.net/dva/sam/hypersam:2755-f2d626475424807fceb6c047dbb5ae7271561131
+        name: watchdog-maddog
+        volumeMounts:
+        - mountPath: /etc/pki_service
+          name: maddog-certs
+        - mountPath: /kubeconfig
+          name: kubeconfig
+        - mountPath: /sfdchosts
+          name: sfdchosts
+        - mountPath: /data/certs
+          name: certs
+        - mountPath: /config
+          name: config
+      hostNetwork: true
+      nodeSelector:
+        pool: ia4-sam
+      volumes:
+      - hostPath:
+          path: /etc/pki_service
+        name: maddog-certs
+      - hostPath:
+          path: /etc/kubernetes
+        name: kubeconfig
+      - configMap:
+          name: sfdchosts
+        name: sfdchosts
+      - hostPath:
+          path: /data/certs
+        name: certs
+      - configMap:
+          name: watchdog
+        name: config

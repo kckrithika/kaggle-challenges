@@ -1,0 +1,44 @@
+apiVersion: extensions/v1beta1
+kind: DaemonSet
+metadata:
+  labels:
+    name: sdn-hairpin-setter
+  name: sdn-hairpin-setter
+  namespace: sam-system
+spec:
+  selector:
+    matchLabels:
+      daemonset: "true"
+      name: sdn-hairpin-setter
+      sam.data.sfdc.net/owner: sdn
+  template:
+    metadata:
+      labels:
+        daemonset: "true"
+        name: sdn-hairpin-setter
+        sam.data.sfdc.net/owner: sdn
+      namespace: sam-system
+    spec:
+      containers:
+      - command:
+        - /sdn/sdn-hairpin-setter
+        - --log_dir=/var/logs/sdn/
+        - --logtostderr=false
+        - --alsologtostderr=true
+        image: ops0-artifactrepo1-0-ia4.data.sfdc.net/dva/sdn/hypersdn:2138-419bfa61fefbbe25c3c629d44045585a3b29d644
+        name: sdn-hairpin-setter
+        securityContext:
+          privileged: true
+        volumeMounts:
+        - mountPath: /sys/devices/virtual/net
+          name: sys-mount
+        - mountPath: /var/logs/sdn/
+          name: sdnlogs
+      hostNetwork: true
+      volumes:
+      - hostPath:
+          path: /sys/devices/virtual/net
+        name: sys-mount
+      - hostPath:
+          path: /var/logs/sdn/
+        name: sdnlogs

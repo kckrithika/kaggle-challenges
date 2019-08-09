@@ -1,0 +1,37 @@
+apiVersion: v1
+data:
+  sam-network-reporter.json: |-
+    {
+      "backoffJitterMax": "1h",
+      "backoffMin": "5s",
+      "delay": "5m",
+      "enabled": true,
+      "enablehttp": false,
+      "enabletcp": true,
+      "metricsBatchTimeout": "1m",
+      "metricsHttpTimeout": "5s",
+      "namespace": "sam-system",
+      "numWorkers": 5,
+      "port": "3333",
+      "refreshNodesMaxDelay": "24h",
+      "refreshNodesMinDelay": "1h",
+      "reportsEndpointEnabled": true,
+      "reportsPercentiles": "50,75,90,95,99",
+      "requestDataSizeMax": "1B",
+      "requestDataSizes": "1B",
+      "requestDelay": "10ms",
+      "requestsToMake": 105,
+      "requestsToSkip": 5,
+      "selectorLabelName": "sam-network-reporter",
+      "shouldBatchMetrics": true,
+      "tcpPort": "53353",
+      "testMode": false,
+      "timeout": "30s"
+    }
+kind: ConfigMap
+metadata:
+  creationTimestamp: null
+  labels:
+    sam.data.sfdc.net/owner: sam
+  name: sam-network-reporter
+  namespace: sam-system

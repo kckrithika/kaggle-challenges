@@ -1,0 +1,70 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  labels:
+    name: sdn-vault-agent
+    sam.data.sfdc.net/owner: sdn
+  name: sdn-vault-agent
+  namespace: sam-system
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      apptype: monitoring
+      name: sdn-vault-agent
+      sam.data.sfdc.net/owner: sdn
+  template:
+    metadata:
+      labels:
+        apptype: monitoring
+        name: sdn-vault-agent
+        sam.data.sfdc.net/owner: sdn
+      namespace: sam-system
+    spec:
+      containers:
+      - command:
+        - /sdn/sdn-vault-agent
+        - --funnelEndpoint=ajna0-funnel1-0-ia5.data.sfdc.net:80
+        - --archiveSvcEndpoint=https://ops0-piperepo1-0-ia5.data.sfdc.net/tnrp/content_repo/0/archive
+        - --keyfile=/etc/pki_service/platform/platform-client/keys/platform-client-key.pem
+        - --certfile=/etc/pki_service/platform/platform-client/certificates/platform-client.pem
+        - --cafile=/etc/pki_service/ca/cabundle.pem
+        - --livenessProbePort=9106
+        - --hostsConfigFile=/sfdchosts/hosts.json
+        - --log_dir=/var/logs/sdn/
+        - --logtostderr=false
+        - --alsologtostderr=true
+        image: ops0-artifactrepo1-0-ia5.data.sfdc.net/dva/sdn/hypersdn:2138-419bfa61fefbbe25c3c629d44045585a3b29d644
+        livenessProbe:
+          httpGet:
+            path: /liveness-probe
+            port: 9106
+          initialDelaySeconds: 5
+          periodSeconds: 20
+          timeoutSeconds: 5
+        name: sdn-vault-agent
+        volumeMounts:
+        - mountPath: /sfdchosts
+          name: sfdchosts
+        - mountPath: /etc/pki_service
+          name: maddog-certs
+        - mountPath: /data/certs
+          name: certs
+        - mountPath: /var/logs/sdn/
+          name: sdnlogs
+      hostNetwork: true
+      nodeSelector:
+        pool: ia5-sam
+      volumes:
+      - configMap:
+          name: sfdchosts
+        name: sfdchosts
+      - hostPath:
+          path: /etc/pki_service
+        name: maddog-certs
+      - hostPath:
+          path: /data/certs
+        name: certs
+      - hostPath:
+          path: /var/logs/sdn/
+        name: sdnlogs
