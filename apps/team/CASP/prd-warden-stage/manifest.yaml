@@ -97,16 +97,15 @@ system:
       ports:
         - port: 80
           targetport: 8889
-          lbalgorithm: roundrobin
           lbtype: http
           sticky: 600
+          tls: true
         - port: 443
           targetport: 8444
-          lbalgorithm: roundrobin
           lbtype: http
           sticky: 600
+          tls: true
         - port: 15372
           targetport: 15372
-          lbalgorithm: roundrobin
           lbtype: http
           sticky: 600
