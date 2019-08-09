@@ -241,6 +241,7 @@ system:
       - --metrics.funnelTimeOut=90000
       - --metrics.funnelEndPointURL=http://ajna0-funnel1-0-prd.data.sfdc.net:80
       - --routes.frontProxy.isTrueFrontProxy=true
+      - --routeupdates.use.k8s=true
       env:
       - name: SFDC_ENVIRONMENT
         value: mist61

@@ -363,6 +363,7 @@ system:
       - --clusters.external-clusters[1]=spaasmesh:HTTP2
       - --metrics.maxNumberOfCollectedMetrics=100000
       - --metrics.funnelTimeOut=90000
+      - --routeupdates.use.k8s=true
       env:
       - name: SFDC_ENVIRONMENT
         value: mist61
@@ -370,7 +371,7 @@ system:
         value: 7020
       - name: JVM_HEAP_MAX
         value: 4G
-      image: sfci/servicelibs/switchboard:26c3cdce981042262b9f0f26c226cab1841bf9fd
+      image: sfci/servicelibs/switchboard:385303575077b97b72f862b72b71034587cdb427
       livenessProbe:
         httpGet:
           path: /manage/health
