@@ -26,7 +26,6 @@
     targetport: 6443
     lbtype: http
     tls: true
-    reencrypt: true
     healthport: 6443
-    healthprotocol: https
+    healthprotocol: http
     healthpath: healthz
