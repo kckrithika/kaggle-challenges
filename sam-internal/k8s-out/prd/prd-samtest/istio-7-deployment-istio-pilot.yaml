@@ -260,6 +260,8 @@ spec:
         - "true"
         - --funnel-address
         - ajna0-funnel1-0-prd.data.sfdc.net:80
+        - alt-tags
+        - cluster=svccluster
         env:
         - name: FUNCTION_NAMESPACE
           valueFrom:
@@ -270,13 +272,9 @@ spec:
           value: '-'
         - name: SETTINGS_PATH
           value: istio.-.prd.-.istio-pilot
-        - name: SFDC_METRICS_SERVICE_HOST
-          value: ajna0-funnel1-0-prd.data.sfdc.net
-        - name: SFDC_METRICS_SERVICE_PORT
-          value: "80"
         - name: ESTATE
           value: prd-samtest
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-sfci-dev/sfci/servicemesh/servicemesh/metrics-scraper:ad023cf217e37f1acd40a0537390680b2d751b4d
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-sfci-dev/sfci/servicemesh/servicemesh/metrics-scraper:e0c2f0082b404ce6a3ecdb1a686731ef3bae5223
         imagePullPolicy: Always
         name: metrics-scraper
         readinessProbe:

@@ -396,6 +396,8 @@ local mcpIstioConfig = (import "service-mesh/istio-config.jsonnet");
               "true",
               "--funnel-address",
               mcpIstioConfig.funnelVIP,
+              "alt-tags",
+              "cluster=svccluster",
             ],
             env: [
               {
@@ -414,14 +416,6 @@ local mcpIstioConfig = (import "service-mesh/istio-config.jsonnet");
               {
                 name: "SETTINGS_PATH",
                 value: mcpIstioConfig.pilotSettingsPath,
-              },
-              {
-                name: "SFDC_METRICS_SERVICE_HOST",
-                value: mcpIstioConfig.funnelHost,
-              },
-              {
-                name: "SFDC_METRICS_SERVICE_PORT",
-                value: mcpIstioConfig.funnelPort,
               },
               {
                 name: "ESTATE",
