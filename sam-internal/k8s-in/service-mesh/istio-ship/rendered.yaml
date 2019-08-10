@@ -1364,7 +1364,7 @@ spec:
         - "true"
         - --funnel-address
         - mcpIstioConfig.funnelVIP
-        - alt-tags
+        - --alt-tags
         - cluster=svccluster
         env:
         - name: FUNCTION_NAMESPACE
