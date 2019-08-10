@@ -396,7 +396,7 @@ local mcpIstioConfig = (import "service-mesh/istio-config.jsonnet");
               "true",
               "--funnel-address",
               mcpIstioConfig.funnelVIP,
-              "alt-tags",
+              "--alt-tags",
               "cluster=svccluster",
             ],
             env: [
