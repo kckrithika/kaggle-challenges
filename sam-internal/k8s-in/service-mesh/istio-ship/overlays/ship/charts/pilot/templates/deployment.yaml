@@ -2,7 +2,11 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   annotations:
-    manifestctl.sam.data.sfdc.net/swagger: disable
+    checksum/config-volume: f8da08b6b8c170dde721efd680270b2901e750d4aa186ebb6c22bef5b78a43f9
+  labels:
+    app: pilot
+    istio: pilot
+    release: istio
   name: istio-pilot
   namespace: mesh-control-plane
 spec:
@@ -16,8 +20,33 @@ spec:
       labels:
         name: istio-pilot
     spec:
+      $setElementOrder/containers:
+      - name: discovery
+      - name: istio-proxy
+      - name: madkub-refresher
+      - name: metrics-scraper
+      $setElementOrder/volumes:
+      - name: maddog-certs
+      - name: tls-client-cert
+      - name: tls-server-cert
+      - name: tokens
+      - name: config-volume
       containers:
-      - args:
+      - $setElementOrder/env:
+        - name: ESTATE
+        - name: PILOT_SIDECAR_USE_REMOTE_ADDRESS
+        - name: PILOT_ENABLE_REDIS_FILTER
+        - name: PILOT_DEBOUNCE_AFTER
+        - name: PILOT_DEBOUNCE_MAX
+        - name: POD_NAME
+        - name: POD_NAMESPACE
+        - name: GODEBUG
+        - name: PILOT_PUSH_THROTTLE
+        - name: PILOT_TRACE_SAMPLING
+        - name: PILOT_DISABLE_XDS_MARSHALING_TO_ANY
+        $setElementOrder/volumeMounts:
+        - mountPath: /etc/istio/config
+        args:
         - discovery
         - --monitoringAddr=:15014
         - --log_output_level=default:warn
@@ -34,14 +63,22 @@ spec:
         - name: PILOT_ENABLE_REDIS_FILTER
           value: "true"
         - name: PILOT_DEBOUNCE_AFTER
-          value: "1m"
+          value: 1m
         - name: PILOT_DEBOUNCE_MAX
-          value: "3m"
+          value: 3m
         name: discovery
         volumeMounts:
         - $patch: delete
           mountPath: /etc/certs
-      - name: istio-proxy
+      - $setElementOrder/volumeMounts:
+        - mountPath: /etc/certs/root-cert.pem
+        - mountPath: /etc/certs/cert-chain.pem
+        - mountPath: /etc/certs/key.pem
+        - mountPath: /etc/certs/client.pem
+        - mountPath: /etc/certs/client-key.pem
+        - mountPath: /client-cert
+        - mountPath: /server-cert
+        name: istio-proxy
         volumeMounts:
         - mountPath: /etc/certs/root-cert.pem
           name: tls-server-cert
@@ -93,7 +130,7 @@ spec:
               apiVersion: v1
               fieldPath: metadata.namespace
         - name: ESTATE
-          value: mcpIstioConfig.casamEstate  
+          value: mcpIstioConfig.casamEstate
         image: mcpIstioConfig.madkubImage
         imagePullPolicy: IfNotPresent
         name: madkub-refresher
@@ -112,6 +149,8 @@ spec:
         - "true"
         - --funnel-address
         - mcpIstioConfig.funnelVIP
+        - alt-tags
+        - cluster=svccluster
         env:
         - name: FUNCTION_NAMESPACE
           valueFrom:
@@ -122,10 +161,6 @@ spec:
           value: mcpIstioConfig.superpod
         - name: SETTINGS_PATH
           value: mcpIstioConfig.pilotSettingsPath
-        - name: SFDC_METRICS_SERVICE_HOST
-          value: mcpIstioConfig.funnelHost
-        - name: SFDC_METRICS_SERVICE_PORT
-          value: mcpIstioConfig.funnelPort
         - name: ESTATE
           value: mcpIstioConfig.istioEstate
         image: mcpIstioConfig.metricsScraperImage
