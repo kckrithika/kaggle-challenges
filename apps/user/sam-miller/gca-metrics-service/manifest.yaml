@@ -10,7 +10,7 @@ system:
     - name: gca-metrics-service
       #image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/sam-miller/gca_metrics_service:test-07222019
       #image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/gca_metrics_service:35
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/sam-miller/gca_metrics_service:test-07222019
+      image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/gca_metrics_service_sam:45
       # If your service doesn't serve HTTP traffic then you can remove the scone-http 8080 port.
       ports:
       - containerPort: 5000
@@ -42,7 +42,7 @@ system:
           mountPath: /tmp
 
     - name: gca-rq-service
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/sam-miller/gca_rq_service:test-07222019
+      image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/gca_rq_service:45
       # If your service doesn't serve HTTP traffic then you can remove the scone-http 8080 port.
       ports:
       - containerPort: 6379
