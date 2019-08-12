@@ -3,7 +3,7 @@ apiVersion: v1
 system:
   notifications:
     email:
-      - srinath.venkatesan@salesforce.com
+      - search-sip-notify@salesforce.com
   functions:
   - name: sip-em-dev
     count: 1
@@ -29,7 +29,7 @@ system:
     - name: sip-em 
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/smarwaha/sip-experiment-manager:20190807T1100
       livenessProbe:
-        initialDelaySeconds: 60
+        initialDelaySeconds: 300
         httpGet:
           path: /manage/health
           port: 15372
