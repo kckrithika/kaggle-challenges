@@ -3372,7 +3372,8 @@
         "service-mesh",
         "scone",
         "service-protection",
-        "mesh-control-plane"
+        "mesh-control-plane",
+        "retail-beaconator"
       ],
       "access": [
         "team/Gater",
@@ -3380,7 +3381,8 @@
         "team/service-mesh",
         "team/Scone",
         "team/Service_Protection",
-        "team/mesh-control-plane"
+        "team/mesh-control-plane",
+        "team/Retail_Beaconator"
       ],
       "controlEstate": "prd-sam",
       "estate": "prd-sam_gater",
@@ -4259,12 +4261,14 @@
       "namespaces": [
         "gater",
         "ccait",
-        "service-mesh"
+        "service-mesh",
+        "retail-beaconator"
       ],
       "access": [
         "team/Gater",
         "team/CCAIT",
-        "team/service-mesh"
+        "team/service-mesh",
+        "team/Retail_Beaconator"
       ],
       "controlEstate": "xrd-sam",
       "estate": "xrd-sam_gater",
