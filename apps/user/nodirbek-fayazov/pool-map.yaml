@@ -1,5 +1,3 @@
 apps:
- gid-service-layer:
-  - prd/prd-sam
- logging:
+ nginx-proxy:
   - prd/prd-sam
