@@ -14,7 +14,7 @@ system:
     - name: demo-authz
       image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/electron_sam:61
       args:
-      - --extra-authz-clients=dns=test-jwt.sfdc-role
+      - --extra-authz-clients=dns=test-jwt.sfdc-role,dns=demo-authz-client.sfdc-role
       - --authz-paths=opt/identity/authz/test-internal/,opt/identity/authz/
       env:
       - name: SFDC_ENVIRONMENT
