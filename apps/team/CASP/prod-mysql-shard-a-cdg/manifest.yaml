@@ -1,0 +1,44 @@
+apiVersion: v1
+
+system:
+    notifications:
+      email:
+        - pteyer@salesforce.com
+        - paul.howden@salesforce.com
+        - dtupper@salesforce.com
+    functions:
+    - name: mysql-func-shard-a
+      count: 3
+      strategy:
+        type: RollingUpdate
+        rollingUpdate:
+          maxSurge: 0
+          maxUnavailable: 1
+      containers:
+      - name: prod-mysql-shard-a-cdg
+        image: dva/casp/mysql_strata:42
+        ports:
+        - name: mysql-shard-a
+          containerPort: 3306
+          hostPort: 7015
+        volumeMounts:
+        - mountPath: /home/sfdc/mysql/data
+          name: mysql-data-vol
+        - mountPath: /home/sfdc/mysql/backups
+          name: mysql-backups-vol
+        livenessProbe:
+          exec:
+            command:
+            - /usr/bin/true
+        env:
+        - name: NODENAME
+          valueFrom:
+            fieldRef:
+              fieldPath: spec.nodeName
+      volumes:
+      - name: mysql-data-vol
+        hostPath:
+          path: /fastdata/mysql-data/shard-a
+      - name: mysql-backups-vol
+        hostPath:
+          path: /data/mysql-backups/shard-a
