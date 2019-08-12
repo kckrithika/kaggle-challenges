@@ -14,7 +14,7 @@ system:
           maxUnavailable: 1
       containers:
       - name: prd-warden-stage
-        image: dva/casp/warden_strata:394
+        image: dva/casp/warden_strata:jenkins-CASP-warden-PR-2977-3-itest
         ports:
         - name: http
           containerPort: 8889
@@ -95,15 +95,10 @@ system:
       ports:
         - port: 80
           targetport: 8889
-          lbtype: http
-          sticky: 600
-          tls: true
+          lbalgorithm: roundrobin
         - port: 443
           targetport: 8444
-          lbtype: http
-          sticky: 600
-          tls: true
+          lbalgorithm: roundrobin
         - port: 15372
           targetport: 15372
-          lbtype: http
-          sticky: 600
+          lbalgorithm: roundrobin
