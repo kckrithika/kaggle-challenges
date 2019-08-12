@@ -25,7 +25,7 @@ system:
         secretName: solrcloudcli-keytab-prd
     containers:
     - name: universal-search
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/psalagnac/universal-search:scone6-1
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/psalagnac/universal-search:scone6-2
       ports:
       - name: service-port
         containerPort: 7020
