@@ -284,6 +284,13 @@ spec:
           initialDelaySeconds: 5
           periodSeconds: 30
           timeoutSeconds: 5
+        resources:
+          limits:
+            cpu: 2000m
+            memory: 2048Mi
+          requests:
+            cpu: 100m
+            memory: 512Mi
       initContainers:
       - args:
         - /sam/madkub-client
