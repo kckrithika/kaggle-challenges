@@ -18,7 +18,6 @@ system:
       - -loopCount=-1
       - -https=false
       - -mtls=false
-      - -callerName=demo-authz-client.service-mesh
       - -loopDelayInSeconds=60
       livenessProbe:
         exec:
