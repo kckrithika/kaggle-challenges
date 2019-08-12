@@ -26,6 +26,7 @@ apps:
   - phx/phx-sam_warden
   - frf/frf-sam_warden
   - fra/fra-sam_warden
+ prod-mysql-shard-a-cdg:
   - cdg/cdg-sam_warden
  prod-cantor:
   - dfw/dfw-sam_warden
@@ -75,4 +76,3 @@ apps:
   - fra/fra-sam_warden
  prod-warden-cdg:
   - cdg/cdg-sam_warden
-  
