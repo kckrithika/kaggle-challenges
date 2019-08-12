@@ -3,7 +3,5 @@ apps:
         - prd/prd-sam
     geoip-envoy-tls-sandbox:
         - prd/prd-sam
-    syncmaster:
-        - prd/prd-sam
-    syncmaster:
+    switchboard:
         - prd/prd-sam

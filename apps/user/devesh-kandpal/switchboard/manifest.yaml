@@ -1,0 +1,175 @@
+apiVersion: v1
+system:
+  notifications:
+    email:
+    - servicemesh@salesforce.com
+  functions:
+  - name: switchboard
+    count: 8
+    annotations:
+      routing.mesh.sfdc.net/enabled: "true"
+    labels:
+      app: switchboard
+    containers:
+    - name: switchboard
+      image: sfci/servicelibs/switchboard:97c8c46fc84aaaf3dd45cb7b7e2860657d1f55ef
+      args:
+      ############################## PRODUCTION CONFIGURATION ##########################################
+      # Any configuration that needs to go to production should be added here.
+      - --clusters.external-clusters[0]=ajnafunneldirect:HTTP1
+      - --clusters.external-clusters[1]=ajnafunneldirecttls.funnel:HTTP1_TLS
+      - --clusters.external-clusters[2]=spaasmesh:HTTP2
+      - --clusters.zkScraper.scrapeTimeoutMs=120000
+      - --cluster.scraper.delayMs=120000
+      - --healthIndicator.maxThreadCount=1300
+      - --metrics.sherpaFunnelServiceURL=http://ajnafunneldirecttls.funnel.localhost.mesh.force.com:5442
+      ############################# PRODUCTION CONFIGURATION - OVERRIDDEN VALUES ######################
+      # The following configuration exists in production manifests as well with different values. 
+      - --metrics.maxNumberOfCollectedMetrics=400000
+      - --metrics.funnelTimeOut=100000
+      ############################# PRD ONLY CONFIGURATION ############################################
+      # The following configuration is for features that are enabled only in PRD.
+      # Configuration for External Auth Service
+      - --listeners.external-auth-enabled-clusters[0]=tictactoe-server-service-envoy.service-mesh
+      - --listeners.external-auth-enabled-clusters[1]=shipping-rate-limited.service-mesh
+      # Configuration for Ratelimiting Service
+      - --listeners.rate-limit-enabled-clusters[0]=shipping-rate-limited.service-mesh
+      - --listeners.rate-limit-enabled-clusters[1]=dfs.retail-dfs
+      - --listeners.rate-limit-enabled-clusters[2]=metadata-service.retail-mds
+      - --listeners.rate-limit-enabled-clusters[3]=cre-api-ccp-perf.retail-cre
+      - --listeners.rate-limit-enabled-clusters[4]=retail-setup.retail-rsui
+      - --listeners.rate-limit-enabled-clusters[5]=cloudatlas-prd-dev-service.cloudatlas
+      - --listeners.rate-limit-enabled-clusters[6]=gid-runtime-service.global-identity
+      # Authorization Service
+      - --authz.dest=authz-svc.service-mesh.localhost.mesh.force.com:5443
+
+      ############################ EXAMPLE CONFIGURATION ##############################################
+      # This section exists to show how some features can be configured.
+      # External Mesh Service Configuration - Example
+      # - --clusters.external-mesh-services[0]_name=ems.ajnafunnel
+      # - --clusters.external-mesh-services[0]_cluster_type=HTTP1_TLS 
+      # - --clusters.external-mesh-services[0]_resolution=DNS 
+      # - --clusters.external-mesh-services[0]_port=443
+      # - --clusters.external-mesh-services[0]_endpoints[0]=funnel.ajnalocal1.foundation.rddev.aws.sfdc.cl
+      ports:
+      - containerPort: 15372
+      env:
+      - name: SFDC_ENVIRONMENT
+        value: stm
+      - name: GRPC_SERVER_BIND_ENDPOINT
+        value: tcp://127.0.0.1:7020
+      - name: JVM_HEAP_MAX
+        value: 4G
+      - name: FAKE_ENV_VAR_INCREMENT_TO_TRIGGER_SAM_DEPLOY
+        value: "1"
+      resources:
+        limits:
+          cpu: "8"
+          memory: 6Gi
+        requests:
+          cpu: "8"
+          memory: 6Gi
+      volumeMounts:
+      - mountPath: /home/sfdc-switchboard/sherpa-envoy-config-volume
+        name: envoy-config-volume
+      livenessProbe:
+        httpGet:
+          path: /manage/health
+          port: 15372
+        initialDelaySeconds: 20
+        periodSeconds: 5
+        timeoutSeconds: 4
+      readinessProbe:
+        httpGet:
+          path: /manage/ready
+          port: 15372
+        # Switchboard won't become Ready until there was a successful scrape.
+        # So we don't want to start touching the readiness probe until then.
+        # Using 60+ seconds here will also allow us to slow down the gradual rollout 
+        initialDelaySeconds: 60
+        periodSeconds: 5
+        timeoutSeconds: 4
+      terminationMessagePolicy: FallbackToLogsOnError
+    - name: sherpa
+      image: sfci/servicelibs/sherpa-envoy:c243594a5314dba38afe9e100b12f1fca00e046f
+      args:
+      - --template
+      - /switchboard-config/switchboard-sidecar.config.yaml.template
+      ports:
+      - containerPort: 15001
+      - containerPort: 15373
+      env:
+      - name: SFDC_ENVIRONMENT
+        value: mesh
+      resources:
+        limits:
+          cpu: "1"
+          memory: 1Gi
+        requests:
+          cpu: "1"
+          memory: 1Gi
+      volumeMounts:
+      - mountPath: /switchboard-config
+        name: envoy-config-volume
+      - mountPath: /client-certs
+        name: tls-client-cert
+      - mountPath: /server-certs
+        name: tls-server-cert
+      livenessProbe:
+        exec:
+          command:
+          - ./bin/is-alive
+        initialDelaySeconds: 20
+        periodSeconds: 5
+      readinessProbe:
+        exec:
+          command:
+          - ./bin/is-ready
+        initialDelaySeconds: 15
+        periodSeconds: 5
+      terminationMessagePolicy: FallbackToLogsOnError
+    volumes:
+    - name: envoy-config-volume
+      emptyDir: {}
+    - name: tls-client-cert
+      maddogCert:
+        type: client
+    - name: tls-server-cert
+      maddogCert:
+        type: server
+    # We consider a pod Ready when it was ready and healthy for at least 20 seconds
+    # This helps to slow down the rollout
+    minReadySeconds: 20
+    strategy:
+      rollingUpdate:
+        # We allow up to 1 pod over the desired count
+        maxSurge: 1
+        # We want 2 pods unavailable instead of 1, in order to overcome issues when 1 pod was scheduled on a node
+        # that is unhealthy and that stalled the deployment
+        maxUnavailable: 2
+  loadbalancers:
+  - lbname: switchboard
+    nodeExposed: true
+    function: switchboard
+    ports:
+    - lbtype: dsr
+      port: 15001
+      targetport: 15001
+      name: grpc-xds
+    - lbtype: dsr
+      port: 15370
+      targetport: 15372
+      name: http-app
+    - lbtype: dsr
+      port: 15374
+      targetport: 15373
+      name: http-envoy
+  - lbname: metrics-service # SLB VIP used by baremetal istio-proxy in bootstrap as metrics service socket address.
+    function: switchboard
+    slbEnabled: true
+    ports:
+    - lbtype: dsr
+      port: 15001
+      targetport: 15001
+      name: grpc-metrics
+
