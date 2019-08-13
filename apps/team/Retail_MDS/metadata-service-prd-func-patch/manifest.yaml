@@ -29,7 +29,7 @@ system:
         value: "15523"
       - name: JVM_ARGS
         value: -Ddatabase.name=metadataservice5
-          -Dmds.enable.references.validation=true
+          -Dmds.enable.references.validation=false
           -Djwt-validation.enablement-per-role.app=false
           -Xmx2G -Xms2G -XX:ParallelGCThreads=8
       resources:
