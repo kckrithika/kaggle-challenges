@@ -44,6 +44,7 @@ system:
         value: ${KINGDOM}
       - name: ESTATESSERVICE_SUBSERVICE
         value: ${FUNCTION_NAMESPACE}.${FUNCTION}.${FUNCTION_INSTANCE_NAME}
+      command: ["/estatesservice/estatesservice"]
       args: [
         "-port=9090",
         "-swaggerdir=/estatesservice/apidocs/",
