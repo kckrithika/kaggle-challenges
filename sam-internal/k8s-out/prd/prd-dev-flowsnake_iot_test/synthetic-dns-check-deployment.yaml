@@ -1,0 +1,46 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: synthetic-dns-check
+  namespace: flowsnake
+spec:
+  replicas: 20
+  selector:
+    matchLabels:
+      name: synthetic-dns-check
+  template:
+    metadata:
+      labels:
+        flowsnakeOwner: dva-transform
+        flowsnakeRole: FlowsnakeSyntheticDnsCheck
+        name: synthetic-dns-check
+    spec:
+      containers:
+      - command:
+        - /bin/sh
+        - /var/run/check-dns/check-dns.sh
+        - dig_kubedns
+        - "50"
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/sfdc_centos7_jdk8:33
+        name: dig-kubedns
+        volumeMounts:
+        - mountPath: /hostetc
+          name: etc
+          readOnly: true
+        - mountPath: /var/run/check-dns
+          name: check-dns
+          readOnly: true
+        - mountPath: /etc/yum.repos.d
+          name: yum-estates-repo-config-volume
+          readOnly: true
+      restartPolicy: Always
+      volumes:
+      - hostPath:
+          path: /etc
+        name: etc
+      - configMap:
+          name: synthetic-dns-check
+        name: check-dns
+      - hostPath:
+          path: /etc/yum.repos.d
+        name: yum-estates-repo-config-volume
