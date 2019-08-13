@@ -185,7 +185,7 @@ system:
       serviceName: sfproxy
     containers:
     - name: sfproxy-envoy
-      image: sfci/frontend-gateway/sfproxy:a290f27
+      image: sfci/frontend-gateway/sfproxy:efc0ce4
       args:
       - --template=/home/sfdc-sherpa/sfproxy/config/core-on-sam/sfproxy-public-cloud-rds.yaml.template
       - --switchboard=na5-switchboard-lb.core-on-sam-sp2.prd-sam.prd.slb.sfdc.net:8088
@@ -241,6 +241,7 @@ system:
       - --metrics.funnelTimeOut=90000
       - --metrics.funnelEndPointURL=http://ajna0-funnel1-0-prd.data.sfdc.net:80
       - --routes.frontProxy.isTrueFrontProxy=true
+      - --routeupdates.use.k8s=true
       env:
       - name: SFDC_ENVIRONMENT
         value: mist61
