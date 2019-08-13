@@ -260,6 +260,26 @@ local mcpIstioConfig = (import "service-mesh/istio-config.jsonnet");
                   },
                 },
               },
+              {
+                name: "ISTIO_META_hostname",
+                valueFrom: {
+                  fieldRef: {
+                    fieldPath: "metadata.name",
+                  },
+                },
+              },
+              {
+                name: "ISTIO_META_namespace",
+                valueFrom: {
+                  fieldRef: {
+                    fieldPath: "metadata.namespace",
+                  },
+                },
+              },
+              {
+                name: "ISTIO_METAJSON_METRICS_INCLUSIONS",
+                value: "{\"sidecar.istio.io/statsInclusionPrefixes\": \"access_log_file,cluster,cluster_manager,control_plane,http,http2,http_mixer_filter,listener,listener_manager,redis,runtime,server,stats,tcp,tcp_mixer_filter,tracing\"}",
+              },
             ],
             image: "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-sfci-dev/sfci/servicemesh/istio-packaging/proxy:dd76600c21f2505da00a8be366830e1b33676f63",
             imagePullPolicy: "IfNotPresent",
