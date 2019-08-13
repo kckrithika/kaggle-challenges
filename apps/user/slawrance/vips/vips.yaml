@@ -660,3 +660,129 @@
     lbtype: http
     healthprotocol: http
     healthpath: /ping.jsp?allBusy
+
+- lbname: vonage-mist51-na1
+  servers:
+   - mist51ice1-app1-1-prd.eng.sfdc.net
+  ports:
+  - port: 443
+    targetport: 8090
+    reencrypt: true
+    healthport: 8085
+    lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy
+    sticky: 86400
+    tls: true
+    tlscertificate: secret_service:Mist51-VIP-Certs:vonage.mist51.stm.my-salesforce.com.crt
+    tlskey: kms:1:2:39511828A26F7F464E472A3E75E15C8D27B4A4558B8F7231704D844ACB28ABE2:778fa96b-1f70-4023-8606-c4a156ded2c1
+    addheaders:
+    - name: "X-Salesforce-VIP"
+      value: "SLB"
+  - port: 8443
+    targetport: 8090
+    reencrypt: true
+    healthport: 8085
+    lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy
+    sticky: 86400
+    tls: true
+    mtls: true
+    tlscertificate: secret_service:Mist51-VIP-Certs:vonage.mist51.stm.my-salesforce.com.crt
+    tlskey: kms:1:2:39511828A26F7F464E472A3E75E15C8D27B4A4558B8F7231704D844ACB28ABE2:778fa96b-1f70-4023-8606-c4a156ded2c1
+    addheaders:
+    - name: "X-Salesforce-VIP"
+      value: "SLB"
+  - port: 80
+    targetport: 8085
+    lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy
+    addheaders:
+    - name: "X-Salesforce-VIP"
+      value: "SLB"
+
+- lbname: petco-mist51-na1
+  servers:
+   - mist51ice1-app1-1-prd.eng.sfdc.net
+  ports:
+  - port: 443
+    targetport: 8090
+    reencrypt: true
+    healthport: 8085
+    lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy
+    sticky: 86400
+    tls: true
+    tlscertificate: secret_service:Mist51-VIP-Certs:petco.mist51.stm.my-salesforce.com.crt
+    tlskey: kms:1:2:39511828A26F7F464E472A3E75E15C8D27B4A4558B8F7231704D844ACB28ABE2:778fa96b-1f70-4023-8606-c4a156ded2c1
+    addheaders:
+    - name: "X-Salesforce-VIP"
+      value: "SLB"
+  - port: 8443
+    targetport: 8090
+    reencrypt: true
+    healthport: 8085
+    lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy
+    sticky: 86400
+    tls: true
+    mtls: true
+    tlscertificate: secret_service:Mist51-VIP-Certs:petco.mist51.stm.my-salesforce.com.crt
+    tlskey: kms:1:2:39511828A26F7F464E472A3E75E15C8D27B4A4558B8F7231704D844ACB28ABE2:778fa96b-1f70-4023-8606-c4a156ded2c1
+    addheaders:
+    - name: "X-Salesforce-VIP"
+      value: "SLB"
+  - port: 80
+    targetport: 8085
+    lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy
+    addheaders:
+    - name: "X-Salesforce-VIP"
+      value: "SLB"
+
+- lbname: petco2-mist51-na1
+  servers:
+   - mist51ice1-app1-1-prd.eng.sfdc.net
+  ports:
+  - port: 443
+    targetport: 8090
+    reencrypt: true
+    healthport: 8085
+    lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy
+    sticky: 86400
+    tls: true
+    tlscertificate: secret_service:Mist51-VIP-Certs:petco2.mist51.stm.my-salesforce.com.crt
+    tlskey: kms:1:2:39511828A26F7F464E472A3E75E15C8D27B4A4558B8F7231704D844ACB28ABE2:778fa96b-1f70-4023-8606-c4a156ded2c1
+    addheaders:
+    - name: "X-Salesforce-VIP"
+      value: "SLB"
+  - port: 8443
+    targetport: 8090
+    reencrypt: true
+    healthport: 8085
+    lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy
+    sticky: 86400
+    tls: true
+    mtls: true
+    tlscertificate: secret_service:Mist51-VIP-Certs:petco2.mist51.stm.my-salesforce.com.crt
+    tlskey: kms:1:2:39511828A26F7F464E472A3E75E15C8D27B4A4558B8F7231704D844ACB28ABE2:778fa96b-1f70-4023-8606-c4a156ded2c1
+    addheaders:
+    - name: "X-Salesforce-VIP"
+      value: "SLB"
+  - port: 80
+    targetport: 8085
+    lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy
+    addheaders:
+    - name: "X-Salesforce-VIP"
+      value: "SLB"    
