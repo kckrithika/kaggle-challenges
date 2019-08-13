@@ -7,7 +7,7 @@ system:
         - pteyer@salesforce.com
         - akouthoofd@salesforce.com
     functions:
-    - name: maiev-receiver-func-cdg
+    - name: maiev-receiver-func
       count: 3
       strategy:
         type: RollingUpdate
