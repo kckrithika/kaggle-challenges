@@ -151,17 +151,6 @@ data:
           "controlestate": "dfw-sam",
           "devicerole": "samcompute",
           "estate": "dfw-sam_ceph",
-          "hostname": "shared0-samminionceph1-14-dfw.ops.sfdc.net",
-          "kingdom": "dfw",
-          "pod": "none",
-          "rack": "y04-dh2",
-          "superpod": "none"
-        },
-        {
-          "bomrolename": "sam_minion_ceph",
-          "controlestate": "dfw-sam",
-          "devicerole": "samcompute",
-          "estate": "dfw-sam_ceph",
           "hostname": "shared0-samminionceph1-15-dfw.ops.sfdc.net",
           "kingdom": "dfw",
           "pod": "none",
@@ -899,17 +888,6 @@ data:
           "controlestate": "dfw-sam",
           "devicerole": "samcompute",
           "estate": "dfw-sam_ceph",
-          "hostname": "shared0-samminionceph3-15-dfw.ops.sfdc.net",
-          "kingdom": "dfw",
-          "pod": "none",
-          "rack": "b21-dh2",
-          "superpod": "none"
-        },
-        {
-          "bomrolename": "sam_minion_ceph",
-          "controlestate": "dfw-sam",
-          "devicerole": "samcompute",
-          "estate": "dfw-sam_ceph",
           "hostname": "shared0-samminionceph3-16-dfw.ops.sfdc.net",
           "kingdom": "dfw",
           "pod": "none",
@@ -1064,17 +1042,6 @@ data:
           "controlestate": "dfw-sam",
           "devicerole": "samcompute",
           "estate": "dfw-sam_ceph",
-          "hostname": "shared0-samminionceph3-29-dfw.ops.sfdc.net",
-          "kingdom": "dfw",
-          "pod": "none",
-          "rack": "b21-dh2",
-          "superpod": "none"
-        },
-        {
-          "bomrolename": "sam_minion_ceph",
-          "controlestate": "dfw-sam",
-          "devicerole": "samcompute",
-          "estate": "dfw-sam_ceph",
           "hostname": "shared0-samminionceph3-3-dfw.ops.sfdc.net",
           "kingdom": "dfw",
           "pod": "none",
@@ -1123,17 +1090,6 @@ data:
           "kingdom": "dfw",
           "pod": "none",
           "rack": "y03-dh2",
-          "superpod": "none"
-        },
-        {
-          "bomrolename": "sam_minion_ceph",
-          "controlestate": "dfw-sam",
-          "devicerole": "samcompute",
-          "estate": "dfw-sam_ceph",
-          "hostname": "shared0-samminionceph3-4-dfw.ops.sfdc.net",
-          "kingdom": "dfw",
-          "pod": "none",
-          "rack": "b21-dh2",
           "superpod": "none"
         },
         {

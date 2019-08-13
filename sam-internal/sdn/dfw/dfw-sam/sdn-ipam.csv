@@ -126,7 +126,6 @@ shared0-samminionceph1-10-dfw.ops.sfdc.net,10.220.182.242/28,10.214.168.128/27,f
 shared0-samminionceph1-11-dfw.ops.sfdc.net,10.220.182.66/28,10.214.162.224/27,b04-01,dfw-sam_ceph,65009
 shared0-samminionceph1-12-dfw.ops.sfdc.net,10.220.182.67/28,10.214.163.0/27,b04-01,dfw-sam_ceph,65009
 shared0-samminionceph1-13-dfw.ops.sfdc.net,10.220.182.162/28,10.214.171.0/27,y02-01,dfw-sam_ceph,65009
-shared0-samminionceph1-14-dfw.ops.sfdc.net,10.220.183.194/28,10.214.172.0/27,y04-01,dfw-sam_ceph,65009
 shared0-samminionceph1-15-dfw.ops.sfdc.net,10.220.183.130/28,10.214.160.96/27,a03-01,dfw-sam_ceph,65009
 shared0-samminionceph1-16-dfw.ops.sfdc.net,10.220.182.19/28,10.214.166.128/27,c04-01,dfw-sam_ceph,65009
 shared0-samminionceph1-17-dfw.ops.sfdc.net,10.220.182.194/28,10.214.163.96/27,b20-01,dfw-sam_ceph,65009
@@ -194,7 +193,6 @@ shared0-samminionceph3-11-dfw.ops.sfdc.net,10.220.182.98/28,10.214.165.32/27,c01
 shared0-samminionceph3-12-dfw.ops.sfdc.net,10.220.183.146/28,10.214.172.96/27,z01-01,dfw-sam_ceph,65009
 shared0-samminionceph3-13-dfw.ops.sfdc.net,10.220.183.147/28,10.214.172.128/27,z01-01,dfw-sam_ceph,65009
 shared0-samminionceph3-14-dfw.ops.sfdc.net,10.220.183.227/28,10.214.173.64/27,z04-01,dfw-sam_ceph,65009
-shared0-samminionceph3-15-dfw.ops.sfdc.net,10.220.182.2/28,10.214.163.192/27,b21-01,dfw-sam_ceph,65009
 shared0-samminionceph3-16-dfw.ops.sfdc.net,10.220.183.34/28,10.214.169.192/27,n13-01,dfw-sam_ceph,65009
 shared0-samminionceph3-17-dfw.ops.sfdc.net,10.220.182.51/28,10.214.169.96/27,n12-02,dfw-sam_ceph,65009
 shared0-samminionceph3-18-dfw.ops.sfdc.net,10.220.183.178/28,10.214.164.64/27,b22-01,dfw-sam_ceph,65009
@@ -209,13 +207,11 @@ shared0-samminionceph3-25-dfw.ops.sfdc.net,10.220.183.98/28,10.214.162.32/27,b02
 shared0-samminionceph3-26-dfw.ops.sfdc.net,10.220.182.99/28,10.214.165.64/27,c01-01,dfw-sam_ceph,65009
 shared0-samminionceph3-27-dfw.ops.sfdc.net,10.220.182.147/28,10.214.171.160/27,y03-01,dfw-sam_ceph,65009
 shared0-samminionceph3-28-dfw.ops.sfdc.net,10.220.182.148/28,10.214.171.192/27,y03-01,dfw-sam_ceph,65009
-shared0-samminionceph3-29-dfw.ops.sfdc.net,10.220.182.3/28,10.214.163.224/27,b21-01,dfw-sam_ceph,65009
 shared0-samminionceph3-3-dfw.ops.sfdc.net,10.220.182.100/28,10.214.165.96/27,c01-01,dfw-sam_ceph,65009
 shared0-samminionceph3-30-dfw.ops.sfdc.net,10.220.183.99/28,10.214.162.64/27,b02-01,dfw-sam_ceph,65009
 shared0-samminionceph3-31-dfw.ops.sfdc.net,10.220.183.148/28,10.214.172.160/27,z01-01,dfw-sam_ceph,65009
 shared0-samminionceph3-32-dfw.ops.sfdc.net,10.220.183.67/28,10.214.170.64/27,x20-01,dfw-sam_ceph,65009
 shared0-samminionceph3-33-dfw.ops.sfdc.net,10.220.182.149/28,10.214.171.224/27,y03-01,dfw-sam_ceph,65009
-shared0-samminionceph3-4-dfw.ops.sfdc.net,10.220.182.4/28,10.214.164.0/27,b21-01,dfw-sam_ceph,65009
 shared0-samminionceph3-5-dfw.ops.sfdc.net,10.220.182.101/28,10.214.165.128/27,c01-01,dfw-sam_ceph,65009
 shared0-samminionceph3-6-dfw.ops.sfdc.net,10.220.183.180/28,10.214.164.128/27,b22-01,dfw-sam_ceph,65009
 shared0-samminionceph3-7-dfw.ops.sfdc.net,10.220.183.100/28,10.214.162.96/27,b02-01,dfw-sam_ceph,65009
