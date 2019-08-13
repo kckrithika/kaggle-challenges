@@ -6,20 +6,21 @@ system:
     - mc-devbigdata@salesforce.com
     - MC-MessagingInboundTeam@salesforce.com
   functions:
-  - name: qa1s1-event-notification-service
+  - name: dev-engagement-event-service
     identity:
       serviceName: wh-con
-    count: 3
+    count: 2
     volumes:
     - name: cert
       maddogCert:
         type: client
     - name: eventbusajna-ens-v1
       k4aSecret:
-        secretName: eventbusajna-ens-v1
+        secretName: dev-eventbusajna-ens-v1
     containers:
-    - name: qa1s1-event-notification-service
+    - name: dev-engagement-event-service
       image: sfci/mc-eventing/event-notification:1.0.13
+#      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mc-eventing/event-notification:W-6075635
       ports:
       - containerPort: 15372
       env:
@@ -28,11 +29,13 @@ system:
       - name: MANAGEMENT_PORT
         value: 15372
       - name: AJNA_NAMESPACE
-        value: mc.test.mceventbusqa1s1
-      - name: EVENTCONSUMER_GROUP_ID
-        value: eventing-notification-qa1s1
+        value: mc.test.mceventbusdev
+      - name: JAVA_OPTS
+        value: -Xms1G -Xmx3G -XX:+UseG1GC
       - name: SESSION_TIMEOUT_MS
         value: 6000
+      - name: EVENTCONSUMER_TOPICNAME
+        value: mc.test.mceventbusdev__prd.ajna_local__engagement_events
       livenessProbe:
         initialDelaySeconds: 60
         periodSeconds: 120
@@ -46,10 +49,13 @@ system:
       - name: eventbusajna-ens-v1
         mountPath: /secrets/eventbusajna-ens-v1
         readOnly: true
+      resources:
+        limits: { cpu: "2", memory: "4Gi" }
+        requests: { cpu: "2", memory: "2Gi" }
   loadbalancers:
-  - lbname: qa1s1-event-notification-service-lb
-    function: qa1s1-event-notification-service
+  - lbname: dev-engagement-event-service-lb
+    function: dev-engagement-event-service
     nodeExposed: true
     ports:
-    - port: 15373
+    - port: 15381
       targetport: 15372
