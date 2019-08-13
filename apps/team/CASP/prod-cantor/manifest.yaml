@@ -24,6 +24,9 @@ system:
         - name: cantor-http
           containerPort: 8084
           hostPort: 18084
+        volumeMounts:
+        - mountPath: /home/sfdc-cantor/logs
+          name: cantor-log-vol
         livenessProbe:
           exec:
             command:
@@ -35,6 +38,10 @@ system:
           valueFrom:
             fieldRef:
               fieldPath: spec.nodeName
+      volumes:
+      - name: cantor-log-vol
+        hostPath:
+          path: /home/sfdc-casp/logs
     loadbalancers:
     - lbname: cantor
       function: cantor-func
