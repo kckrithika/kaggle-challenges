@@ -112,6 +112,12 @@ local cre_production = {
                     "retail-cre.cre-control-plane-ccp-perf",
                 ],
             },
+            {
+                owner_name: "Hbase",
+                namespace: "hbase-flowsnake",
+                pki_namespace: "hbase-flowsnake",
+                users: ["NOTACERT"],
+            },
         ],
 
         # -------------------------------
