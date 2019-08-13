@@ -4,5 +4,6 @@ apps:
  disco-browser-frontend:
   - prd/prd-sam
  zoobernetes:
-  - prd/prd-samtest
   - prd/prd-sam
+ zoobernetes-test:
+  - prd/prd-samtest
