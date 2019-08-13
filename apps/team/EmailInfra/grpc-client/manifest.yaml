@@ -23,7 +23,7 @@ system:
         initialDelaySeconds: 5
         periodSeconds: 5
     - name: sherpa-eaas-grpc-client
-      image: sfci/servicelibs/sherpa-envoy:1.0.0
+      image: sfci/servicelibs/sherpa-envoy:1.0.11
       ports:
       - name: sherpa-eaas-in
         containerPort: 7012
