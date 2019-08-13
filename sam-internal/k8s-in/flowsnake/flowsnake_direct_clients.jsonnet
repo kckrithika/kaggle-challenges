@@ -16,13 +16,6 @@ local cre_production = {
         users: ["retail-cre.cre-control-plane"],
 };
 
-local hbase_production = {
-        owner_name: "Hbase",
-        namespace: "hbase",
-        pki_namespace: "hbase",
-        users: ["NOTACERT"],
-};
-
 {
     # add new Spark-on-kubernetes clients to this object.
     clients_per_estate: {
@@ -121,8 +114,8 @@ local hbase_production = {
             },
             {
                 owner_name: "Hbase",
-                namespace: "hbase",
-                pki_namespace: "hbase",
+                namespace: "hbase-flowsnake",
+                pki_namespace: "hbase-flowsnake",
                 users: ["NOTACERT"],
             },
         ],

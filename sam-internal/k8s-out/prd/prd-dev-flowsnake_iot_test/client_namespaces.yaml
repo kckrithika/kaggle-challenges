@@ -27,12 +27,12 @@ items:
   metadata:
     annotations:
       sfdc.net/flowsnake.owner_name: Hbase
-      sfdc.net/pki-namespace: hbase
+      sfdc.net/pki-namespace: hbase-flowsnake
     labels:
       madkub-injector: enabled
       service-mesh-injector: enabled
       spark-operator-webhook: enabled
-    name: hbase
+    name: hbase-flowsnake
 - apiVersion: v1
   kind: Namespace
   metadata:

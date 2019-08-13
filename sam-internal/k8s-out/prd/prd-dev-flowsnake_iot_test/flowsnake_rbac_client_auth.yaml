@@ -219,8 +219,8 @@ items:
   metadata:
     annotations:
       manifestctl.sam.data.sfdc.net/swagger: disable
-    name: flowsnake-client-hbase-Role
-    namespace: hbase
+    name: flowsnake-client-hbase-flowsnake-Role
+    namespace: hbase-flowsnake
   rules:
   - apiGroups:
     - '*'
@@ -251,7 +251,7 @@ items:
   metadata:
     annotations:
       manifestctl.sam.data.sfdc.net/swagger: disable
-    name: flowsnake-client-hbase-ClusterRoleBinding
+    name: flowsnake-client-hbase-flowsnake-ClusterRoleBinding
   roleRef:
     apiGroup: rbac.authorization.k8s.io
     kind: ClusterRole
@@ -264,12 +264,12 @@ items:
   metadata:
     annotations:
       manifestctl.sam.data.sfdc.net/swagger: disable
-    name: flowsnake-client-hbase-RoleBinding
-    namespace: hbase
+    name: flowsnake-client-hbase-flowsnake-RoleBinding
+    namespace: hbase-flowsnake
   roleRef:
     apiGroup: rbac.authorization.k8s.io
     kind: Role
-    name: flowsnake-client-hbase-Role
+    name: flowsnake-client-hbase-flowsnake-Role
   subjects:
   - kind: User
     name: NOTACERT
@@ -277,23 +277,23 @@ items:
   automountServiceAccountToken: true
   kind: ServiceAccount
   metadata:
-    name: spark-driver-hbase
-    namespace: hbase
+    name: spark-driver-hbase-flowsnake
+    namespace: hbase-flowsnake
 - apiVersion: rbac.authorization.k8s.io/v1
   kind: RoleBinding
   metadata:
     annotations:
       manifestctl.sam.data.sfdc.net/swagger: disable
-    name: spark-driver-hbase-RoleBinding
-    namespace: hbase
+    name: spark-driver-hbase-flowsnake-RoleBinding
+    namespace: hbase-flowsnake
   roleRef:
     apiGroup: rbac.authorization.k8s.io
     kind: Role
-    name: flowsnake-client-hbase-Role
+    name: flowsnake-client-hbase-flowsnake-Role
   subjects:
   - kind: ServiceAccount
-    name: spark-driver-hbase
-    namespace: hbase
+    name: spark-driver-hbase-flowsnake
+    namespace: hbase-flowsnake
 - apiVersion: rbac.authorization.k8s.io/v1
   kind: Role
   metadata:
