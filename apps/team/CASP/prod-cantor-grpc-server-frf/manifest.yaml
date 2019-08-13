@@ -1,0 +1,41 @@
+apiVersion: v1
+
+system:
+    notifications:
+      email:
+        - akouthoofd@salesforce.com
+    functions:
+    - name: cantor-grpc-server
+      count: 2
+      strategy:
+        type: RollingUpdate
+        rollingUpdate:
+          maxSurge: 0
+          maxUnavailable: 1
+      containers:
+      - name: prd-cantor-grpc-server-frf
+        image: dva/casp/cantor_strata:jenkins-CASP-cantor-alex-sharding-intelligence-1-itest
+        ports:
+        - name: cantor-grpc
+          containerPort: 7443
+          hostPort: 17443
+        livenessProbe:
+          exec:
+            command:
+            - /usr/bin/true
+        env:
+        - name: SUBDOMAIN
+          value: "ops"
+        - name: SHARD_BEST_EFFORT
+          value: true
+        - name: NODENAME
+          valueFrom:
+            fieldRef:
+              fieldPath: spec.nodeName
+    loadbalancers:
+    - lbname: cantor
+      function: cantor-grpc-server
+      slbEnabled: true
+      ports:
+        - port: 11983
+          targetport: 7443

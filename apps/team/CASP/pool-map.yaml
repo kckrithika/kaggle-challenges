@@ -35,9 +35,10 @@ apps:
   - par/par-sam_warden
   - ukb/ukb-sam_warden
   - phx/phx-sam_warden
-  - frf/frf-sam_warden
   - cdg/cdg-sam_warden
   - fra/fra-sam_warden
+ prod-cantor-grpc-server-frf:
+  - frf/frf-sam_warden
  prod-cantor-http-server:
   - dfw/dfw-sam_warden
   - iad/iad-sam_warden
