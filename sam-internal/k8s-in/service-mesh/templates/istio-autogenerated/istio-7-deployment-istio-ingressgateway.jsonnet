@@ -234,7 +234,7 @@ local mcpIstioConfig = (import "service-mesh/istio-config.jsonnet");
                 value: "sni-dnat",
               },
             ],
-            image: "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-sfci-dev/sfci/servicemesh/istio-packaging/proxy:78a63fd6c08ca7ac89fd8d11e4a7ef177d59003b",
+            image: "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-sfci-dev/sfci/servicemesh/istio-packaging/proxy:2834c56a6361ac9c73135204218a63f658fc815d",
             imagePullPolicy: "IfNotPresent",
             name: "istio-proxy",
             ports: [
