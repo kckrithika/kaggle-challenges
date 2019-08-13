@@ -14,7 +14,7 @@ system:
         type: client
     containers:
     - name: estatesservice
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/ydai/estatesservice:ydai-20190809
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/ydai/estatesservice:ydai-20190812
       ports:
       - containerPort: 9090
       livenessProbe:
@@ -28,6 +28,33 @@ system:
           name: server-cert
         - mountPath: /client-certs
           name: client-cert
+      env:
+      - name: ESTATESSERVICE_PORT
+        value: 9090
+      - name: ESTATESSERVICE_FUNNELENDPOINT
+        value: http://ajna0-funnel1-0-prd.data.sfdc.net
+      - name: ESTATESSERVICE_RPMURL
+        value: https://ops0-artifactrepo1-0-prd.data.sfdc.net/artifactory/rpm-prod/
+      - name: ESTATESSERVICE_SWAGGERUIDIR
+        value: /estatesservice/apidocs/
+      - name: ESTATESSERVICE_SERVERCERTFILEPATH
+        value: /server-certs/server/certificates/server.pem
+      - name: ESTATESSERVICE_SERVERKEYFILEPATH
+        value: /server-certs/server/keys/server-key.pem
+      - name: ESTATESSERVICE_DATACENTER
+        value: ${KINGDOM}
+      - name: ESTATESSERVICE_DEVICE
+        value: ${FUNCTION_NAMESPACE}.${FUNCTION}.${FUNCTION_INSTANCE_NAME}
+      command: ["/estatesservice/estatesservice"]
+      args: [
+        "-port=$(ESTATESSERVICE_PORT)",
+        "-swaggerdir=$(ESTATESSERVICE_SWAGGERUIDIR)",
+        "-cert=$(ESTATESSERVICE_SERVERCERTFILEPATH)",
+        "-key=$(ESTATESSERVICE_SERVERKEYFILEPATH)",
+        "-publishmetrics",
+        "-datacenter=$(ESTATESSERVICE_DATACENTER)",
+        "-subservice=$(ESTATESSERVICE_DEVICE)",
+      ]
   loadbalancers:
   - lbname: estatesservicelb
     function: estatesservice
