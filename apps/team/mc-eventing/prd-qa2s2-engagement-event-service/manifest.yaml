@@ -19,7 +19,7 @@ system:
         secretName: eventbusajna-ens-v1
     containers:
     - name: qa2s2-engagement-event-service
-      image: sfci/mc-eventing/event-notification:1.0.12
+      image: sfci/mc-eventing/event-notification:1.0.13
       ports:
       - containerPort: 15372
       env:
