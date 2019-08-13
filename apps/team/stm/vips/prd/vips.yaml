@@ -1,10 +1,13 @@
 - lbname: na44-stmfa1-0-prd
   customlbname: na44-stmfa1-0-prd
   servers:
-  - stmfana44ice1-app2-4-prd.eng.sfdc.net
-  - stmfana44ice1-app2-5-prd.eng.sfdc.net
-  - stmfana44ice1-app1-4-prd.eng.sfdc.net
   - stmfana44ice1-app1-5-prd.eng.sfdc.net
+  - stmfana44ice1-app1-2-prd.eng.sfdc.net
+  - stmfana44ice1-app1-1-prd.eng.sfdc.net
+  - stmfana44ice1-app2-5-prd.eng.sfdc.net
+  - stmfana44ice1-app2-4-prd.eng.sfdc.net
+  - stmfana44ice1-app2-1-prd.eng.sfdc.net
+  - stmfana44ice1-app2-2-prd.eng.sfdc.net
   ports:
   - port: 80
     targetport: 8085
@@ -49,8 +52,12 @@
   servers:
   - stmfbna44ice1-app1-4-prd.eng.sfdc.net
   - stmfbna44ice1-app1-5-prd.eng.sfdc.net
-  - stmfbna44ice1-app2-4-prd.eng.sfdc.net
+  - stmfbna44ice1-app1-1-prd.eng.sfdc.net
+  - stmfbna44ice1-app1-2-prd.eng.sfdc.net
   - stmfbna44ice1-app2-5-prd.eng.sfdc.net
+  - stmfbna44ice1-app2-4-prd.eng.sfdc.net
+  - stmfbna44ice1-app2-1-prd.eng.sfdc.net
+  - stmfbna44ice1-app2-2-prd.eng.sfdc.net
   ports:
   - port: 80
     targetport: 8085
