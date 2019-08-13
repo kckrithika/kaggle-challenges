@@ -21,7 +21,11 @@ local egress(port, protocol, name) =
     name: name,
   },
   captureMode: "NONE",
-  hosts: "*/*" // mcpIstioConfig.sidecarEgressHosts,
+  hosts: [
+    "gater/gater.gater.svc.cluster.local",
+    "ccait/geoip.ccait.svc.cluster.local",
+  ],
+  //hosts: mcpIstioConfig.sidecarEgressHosts,
 };
 
 {

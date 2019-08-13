@@ -9,7 +9,9 @@ spec:
   egress:
   - bind: 127.1.2.3
     captureMode: NONE
-    hosts: '*/*'
+    hosts:
+    - gater/gater.gater.svc.cluster.local
+    - ccait/geoip.ccait.svc.cluster.local
     port:
       name: grpc-egress
       number: 7443
