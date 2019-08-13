@@ -1,0 +1,37 @@
+apiVersion: v1
+
+system:
+  notifications:
+    email:
+      - rpothana@salesforce.com
+      - sravanthi.konduru@salesforce.com
+  functions:
+    - name: fawkes-mongo-rs-func
+      count: 3
+      strategy:
+        type: RollingUpdate
+        rollingUpdate:
+          maxSurge: 0
+          maxUnavailable: 1
+      containers:
+        - name: prd-fawkes-mongo-rs
+          image: dva/casp/mongodb_strata:jenkins-CASP-mongodb-rs-master-7-itest
+          ports:
+            - name: http
+              containerPort: 27017
+              hostPort: 27017
+          volumeMounts:
+            - mountPath: /data/db
+              name: fawkes-mongo-data
+            - mountPath: /var/log/monogodb
+              name: fawkes-mongo-logs
+          livenessProbe:
+            exec:
+              command: ["/bin/true"]
+      volumes:
+        - name: fawkes-mongo-data
+          hostPath:
+            path: /data/fawkes-db
+        - name: fawkes-mongo-logs
+          hostPath:
+            path: /data/fawkes-db-logs
