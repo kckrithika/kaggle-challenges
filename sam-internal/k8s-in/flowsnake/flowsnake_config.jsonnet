@@ -177,6 +177,10 @@ local flowsnake_all_kes = (import "flowsnakeEstates.json").kingdomEstates + ["pr
             replicas: 5,
             rate: 100,  # requests per second per replica
         },
+        "prd-dev-flowsnake_iot_test": {
+            replicas: 20,
+            rate: 50,  # requests per second per replica
+        },
         "iad-flowsnake_prod": {
             replicas: 20,
             rate: 50,  # requests per second per replica
