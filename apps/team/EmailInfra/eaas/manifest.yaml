@@ -76,7 +76,7 @@ system:
         initialDelaySeconds: 5
     - name: sherpa-eaas
       # updated based on https://gus.lightning.force.com/lightning/r/CollaborationGroup/0F9B0000000LejfKAC/view
-      image: sfci/servicelibs/sherpa-envoy:1.0.5
+      image: sfci/servicelibs/sherpa-envoy:1.0.11
       ports:
       # plain-text HTTP2 GRPC port
       - name: sherpa-eaas-in
