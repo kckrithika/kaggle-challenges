@@ -21,7 +21,7 @@ local egress(port, protocol, name) =
     name: name,
   },
   captureMode: "NONE",
-  hosts: mcpIstioConfig.sidecarEgressHosts,
+  hosts: "*/*" // mcpIstioConfig.sidecarEgressHosts,
 };
 
 {
@@ -40,9 +40,9 @@ local egress(port, protocol, name) =
     ],
     egress: [
       egress(7443, "GRPC", "grpc-egress"),
-      egress(7012, "GRPC", "grpc-egress2"),
-      egress(7442, "HTTP", "http-egress"),
-      egress(7014, "HTTP", "http-egress2"),
+//      egress(7012, "GRPC", "grpc-egress2"),
+//      egress(7442, "HTTP", "http-egress"),
+//      egress(7014, "HTTP", "http-egress2"),
     ],
   },
 }
