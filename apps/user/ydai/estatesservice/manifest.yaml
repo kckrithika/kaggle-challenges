@@ -53,7 +53,7 @@ system:
         "-key=$(ESTATESSERVICE_SERVERKEYFILEPATH)",
         "-publishmetrics",
         "-datacenter=$(ESTATESSERVICE_DATACENTER)",
-        "-subservice=$(ESTATESSERVICE_DEVICE)",
+        "-subservice=ydaitest",
       ]
   loadbalancers:
   - lbname: estatesservicelb
