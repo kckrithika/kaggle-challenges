@@ -1,0 +1,95 @@
+apiVersion: v1
+system:
+  functions:
+  - name: acs-mesh
+    count: 4
+    type: stateful-set
+    identity:
+      serviceName: acs
+      pod: devmvp
+    containers:
+    - name: acs  
+      image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/vagabond:6
+      args:
+        - --servers=$(FUNCTION)-0.$(FUNCTION_NAMESPACE).localhost.mesh.force.com:7013,$(FUNCTION)-1.$(FUNCTION_NAMESPACE).localhost.mesh.force.com:7013,$(FUNCTION)-2.$(FUNCTION_NAMESPACE).localhost.mesh.force.com:7013,$(FUNCTION)-3.$(FUNCTION_NAMESPACE).localhost.mesh.force.com:7013
+        - --dataroot=/home/sfdc-acs/data
+        - --servicePort=7022
+        - --mesh
+        - --settingsPath=$(SETTINGS_PATH)
+      ports:
+      - containerPort: 7022
+        name: http
+      - containerPort: 15372
+      env:
+       - name: TORESTART
+         value: 1
+      livenessProbe:
+        httpGet:
+          path: /apicursorfile/v/node/status
+          port: 7022
+        initialDelaySeconds: 240
+        timeoutSeconds: 15
+        periodSeconds: 10
+        failureThreshold: 1
+    - name: acs-announcer
+      image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/npshenichnyy/beacon:853c4db9f14805018be6f5e7607ffe65b5648822-201902081500
+      args:
+      - -endpoint
+      - $(FUNCTION_NAMESPACE)/$(FUNCTION_INSTANCE_NAME):POD:7014
+      - -zk
+      - 10.168.160.76
+      livenessProbe:
+        initialDelaySeconds: 5
+        exec:
+          command:
+            - "/home/scone/is-alive.sh"
+      env:
+       - name: SFDC_ENVIRONMENT
+         value: mesh
+       - name: NO_ENV_FOR_RESTART
+         value: new8
+      resources:
+        limits: { memory: "500M" }
+        requests: { memory: "500M" }
+    - name: sherpa
+      image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/npshenichnyy/sherpa-envoy:1.0.4-201902081120
+      args:
+      # 2018-02-08: Direct Connection to the switchboard for now
+      - --switchboard=switchboard.service-mesh.svc:15001
+      ports:
+      - containerPort: 15373
+      env:
+      - name: SFDC_ENVIRONMENT
+        value: mesh
+      resources:
+        limits:
+          cpu: "1"
+          memory: 1Gi
+        requests:
+          cpu: "1"
+          memory: 1Gi
+      volumeMounts:
+      - mountPath: /client-certs
+        name: tls-client-cert
+      - mountPath: /server-certs
+        name: tls-server-cert
+      livenessProbe:
+        exec:
+          command:
+          - ./bin/is-alive
+        initialDelaySeconds: 20
+        periodSeconds: 5
+      readinessProbe:
+        exec:
+          command:
+          - ./bin/is-ready
+        initialDelaySeconds: 15
+        periodSeconds: 5
+    lbname: acs-stateful-ilb
+    volumes:
+    - name: tls-client-cert
+      maddogCert:
+        type: client
+    - name: tls-server-cert
+      maddogCert:
+        type: server
