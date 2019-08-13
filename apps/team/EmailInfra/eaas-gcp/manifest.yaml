@@ -13,8 +13,6 @@ system:
       ports:
       - name: grpc
         containerPort: 7020
-      - name: chaos
-        containerPort: 7022
       env:
       - name: SFDC_ENVIRONMENT
         value: sam
@@ -82,12 +80,6 @@ system:
       # Namespaced, mTLS HTTP2 GRPC
       - -endpoint
       - emailinfra/eaas:DATACENTER_ALLENV:7443
-      # Non namespaced, plain-text HTTP2 GRPC
-      - -endpoint
-      - eaas:DATACENTER_ALLENV:7012
-      # Non namespaced, plain-text HTTP1 for Chaos endpoint
-      - -endpoint
-      - eaas-chaos:DATACENTER_ALLENV:7014
       volumeMounts:
       - mountPath: /home/scone/logs
         name: beacon-log-volume
@@ -103,12 +95,6 @@ system:
       # 2018-02-08: Direct Connection to the switchboard for now
       - --switchboard=switchboard.service-mesh.svc:15001
       ports:
-      # plain-text HTTP2 GRPC port
-      - name: sherpa-eaas-in
-        containerPort: 7012
-      # plain-text HTTP1 Jetty port
-      - name: sherpa-eaas-jet
-        containerPort: 7014
       # mTLS HTTP2 GRPC port
       - name: sherpa-eaas-tls
         containerPort: 7443
@@ -163,16 +149,3 @@ system:
         path: /home/sfdc-beacon/logs
     strategy:
       type: RollingUpdate
-  # Enable a load balancer in PRD so we have a stable FQDN to hit from the dev desktops or anywhere without Sherpa/Zookeeper
-  # Full FQDN template: {lbname}.{namespace}.{estate}.{kingdom}.slb.sfdc.net
-  loadbalancers:
-  - lbname: emailinfra-eaas-lb
-    function: eaas
-    slbEnabled: true
-    ports:
-    - lbtype: tcp
-      port: 7020
-      targetport: 7020
-    - lbtype: tcp
-      port: 7022
-      targetport: 7022
