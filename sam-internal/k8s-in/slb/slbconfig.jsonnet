@@ -192,7 +192,7 @@
                   "96.43.157.9/32",  #na44-stmfb1-0-prd.slb.sfdc.net
                   "96.43.157.10/32",  #na44-stmfc1-0-prd.slb.sfdc.net
                   "96.43.157.23/32",  #gidruntimelb.global-identity.prd-sam.prd.slb.sfdc.net
-                  "96.43.157.24/32",  #cabusinesslb-stage.cloudatlas.prd-sam.prd.slb.sfdc.net
+                  "96.43.157.22/32",  #cabusinesslb-stage.cloudatlas.prd-sam.prd.slb.sfdc.net
                 ],
                 # C360 -- start -- W-6124538
                 "iad-sam": [
@@ -238,7 +238,7 @@
                 ],
                 "xrd-sam": [
                   "136.146.48.23/32",  #gidruntimelb.global-identity.xrd-sam.xrd.slb.sfdc.net
-                  "136.146.48.24/32",  #cabusinesslb.cloudatlas.xrd-sam.xrd.slb.sfdc.net
+                  "136.146.48.22/32",  #cabusinesslb.cloudatlas.xrd-sam.xrd.slb.sfdc.net
                 ],
             },
 
