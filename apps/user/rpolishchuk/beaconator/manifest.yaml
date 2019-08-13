@@ -7,7 +7,7 @@ system:
 
   functions:
   - name: beaconator
-    count: 3
+    count: 1
 
     strategy:
       type: RollingUpdate
@@ -25,7 +25,7 @@ system:
       - beaconator-service:DATACENTER_ALLENV:7443
       env:
       - name: DUMMY_FORCE_PUSH 
-        value: 1 # increse value to force push without any other changes 
+        value: 2 # increse value to force push without any other changes 
       volumeMounts:
       - mountPath: /log
         name: logvolbeacon
