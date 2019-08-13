@@ -6,7 +6,7 @@ system:
     - rpolishchuk@salesforce.com
   functions:
   - name: grpc-ping-pong-server
-    count: 3
+    count: 1
     containers:
     - name: grpc-ping-pong-server
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/dmelanchenko/grpc-ping-pong:v0
