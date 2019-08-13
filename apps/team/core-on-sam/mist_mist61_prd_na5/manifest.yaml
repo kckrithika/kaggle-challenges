@@ -185,7 +185,7 @@ system:
       serviceName: sfproxy
     containers:
     - name: sfproxy-envoy
-      image: sfci/frontend-gateway/sfproxy:a290f27
+      image: sfci/frontend-gateway/sfproxy:efc0ce4
       args:
       - --template=/home/sfdc-sherpa/sfproxy/config/core-on-sam/sfproxy-public-cloud-rds.yaml.template
       - --switchboard=na5-switchboard-lb.core-on-sam-sp2.prd-sam.prd.slb.sfdc.net:8088
