@@ -13,8 +13,8 @@ system:
           maxSurge: 0
           maxUnavailable: 1
       containers:
-      - name: prd-cantor-grpc-server-frf
-        image: dva/casp/cantor_strata:jenkins-CASP-cantor-alex-sharding-intelligence-1-itest
+      - name: prod-cantor-grpc-server-frf
+        image: dva/casp/cantor_strata:jenkins-CASP-cantor-alex-shard-environement-1-itest
         ports:
         - name: cantor-grpc
           containerPort: 7443
@@ -26,8 +26,8 @@ system:
         env:
         - name: SUBDOMAIN
           value: "ops"
-        - name: SHARD_BEST_EFFORT
-          value: true
+        - name: MYSQL_SHARDS
+          value: "shared0-samminionwarden1-1-frf.frf.sfdc.net:7015;shared0-samminionwarden1-2-frf.frf.sfdc.net:7015"
         - name: NODENAME
           valueFrom:
             fieldRef:
