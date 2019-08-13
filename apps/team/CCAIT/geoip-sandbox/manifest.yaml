@@ -55,7 +55,7 @@ system:
           port: 15372
         initialDelaySeconds: 115
     - name: sherpa
-      image: sfci/servicelibs/sherpa-envoy:c243594a5314dba38afe9e100b12f1fca00e046f
+      image: sfci/servicelibs/sherpa-envoy:d20afbca82c0e116f897aa6d926f368f7e05255d
       ports:
       - name: http2-in
         containerPort: 7012
