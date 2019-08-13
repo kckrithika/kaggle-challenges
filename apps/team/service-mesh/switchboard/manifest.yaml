@@ -91,7 +91,7 @@ system:
         timeoutSeconds: 4
       terminationMessagePolicy: FallbackToLogsOnError
     - name: sherpa
-      image: sfci/servicelibs/sherpa-envoy:c243594a5314dba38afe9e100b12f1fca00e046f
+      image: sfci/servicelibs/sherpa-envoy:d20afbca82c0e116f897aa6d926f368f7e05255d
       args:
       - --template
       - /switchboard-config/switchboard-sidecar.config.yaml.template
