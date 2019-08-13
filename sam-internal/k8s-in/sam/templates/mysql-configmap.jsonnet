@@ -644,7 +644,7 @@ if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" || configs.
 |||,
 },
     kind: "ConfigMap",
-    metadata: if configs.estate == "prd-data-flowsnake" then {
+    metadata: if utils.is_flowsnake_cluster(configs.estate) then {
         labels: {
             app: "mysql",
                 },
