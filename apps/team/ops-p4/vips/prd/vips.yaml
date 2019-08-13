@@ -3,7 +3,7 @@
   customlbname: swarm-prd
   servers:
     - scm-swarm1-1-prd.eng.sfdc.net
-    - scm-swarm1-2-prd.eng.sfdc.net
+    - scm-pfourproxy4-6-prd.eng.sfdc.net
   ports:
     - port: 80
       targetport: 80
