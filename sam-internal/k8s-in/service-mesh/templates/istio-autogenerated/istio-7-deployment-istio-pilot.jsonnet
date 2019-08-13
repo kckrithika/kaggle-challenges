@@ -179,7 +179,7 @@ local mcpIstioConfig = (import "service-mesh/istio-config.jsonnet");
                 value: "1",
               },
             ],
-            image: "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-sfci-dev/sfci/servicemesh/istio-packaging/pilot:dd76600c21f2505da00a8be366830e1b33676f63",
+            image: "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-sfci-dev/sfci/servicemesh/istio-packaging/pilot:78a63fd6c08ca7ac89fd8d11e4a7ef177d59003b",
             imagePullPolicy: "IfNotPresent",
             name: "discovery",
             ports: [
@@ -281,7 +281,7 @@ local mcpIstioConfig = (import "service-mesh/istio-config.jsonnet");
                 value: "{\"sidecar.istio.io/statsInclusionPrefixes\": \"access_log_file,cluster,cluster_manager,control_plane,http,http2,http_mixer_filter,listener,listener_manager,redis,runtime,server,stats,tcp,tcp_mixer_filter,tracing\"}",
               },
             ],
-            image: "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-sfci-dev/sfci/servicemesh/istio-packaging/proxy:dd76600c21f2505da00a8be366830e1b33676f63",
+            image: "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-sfci-dev/sfci/servicemesh/istio-packaging/proxy:78a63fd6c08ca7ac89fd8d11e4a7ef177d59003b",
             imagePullPolicy: "IfNotPresent",
             name: "istio-proxy",
             ports: [
