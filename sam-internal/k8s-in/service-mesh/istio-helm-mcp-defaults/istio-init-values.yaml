@@ -5,7 +5,7 @@ global:
   hub: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-sfci-dev/sfci/servicemesh/istio-packaging
 
   # Default tag for Istio images.
-  tag: dd76600c21f2505da00a8be366830e1b33676f63
+  tag: 78a63fd6c08ca7ac89fd8d11e4a7ef177d59003b
 
   # imagePullPolicy is applied to istio control plane components.
   # local tests require IfNotPresent, to avoid uploading to dockerhub.
