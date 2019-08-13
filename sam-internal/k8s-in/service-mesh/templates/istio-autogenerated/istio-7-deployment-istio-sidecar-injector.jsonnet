@@ -127,7 +127,7 @@ local mcpIstioConfig = (import "service-mesh/istio-config.jsonnet");
                 value: mcpIstioConfig.istioEstate,
               },
             ],
-            image: "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-sfci-dev/sfci/servicemesh/istio-packaging/sidecar_injector:91747894065947d0217bdae7eab3e0a3dfbaa21e",
+            image: "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-sfci-dev/sfci/servicemesh/istio-packaging/sidecar_injector:dd76600c21f2505da00a8be366830e1b33676f63",
             imagePullPolicy: "IfNotPresent",
             livenessProbe: {
               exec: {

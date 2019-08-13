@@ -179,7 +179,7 @@ local mcpIstioConfig = (import "service-mesh/istio-config.jsonnet");
                 value: "1",
               },
             ],
-            image: "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-sfci-dev/sfci/servicemesh/istio-packaging/pilot:91747894065947d0217bdae7eab3e0a3dfbaa21e",
+            image: "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-sfci-dev/sfci/servicemesh/istio-packaging/pilot:dd76600c21f2505da00a8be366830e1b33676f63",
             imagePullPolicy: "IfNotPresent",
             name: "discovery",
             ports: [
@@ -227,6 +227,10 @@ local mcpIstioConfig = (import "service-mesh/istio-config.jsonnet");
               "/etc/istio/proxy/envoy_pilot.yaml.tmpl",
               "--controlPlaneAuthPolicy",
               "MUTUAL_TLS",
+              "--envoyMetricsServiceAddress",
+              "switchboard.service-mesh:15001",
+              "--proxyAdminPort",
+              "15373",
             ],
             env: [
               {
@@ -257,7 +261,7 @@ local mcpIstioConfig = (import "service-mesh/istio-config.jsonnet");
                 },
               },
             ],
-            image: "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-sfci-dev/sfci/servicemesh/istio-packaging/proxy:91747894065947d0217bdae7eab3e0a3dfbaa21e",
+            image: "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-sfci-dev/sfci/servicemesh/istio-packaging/proxy:dd76600c21f2505da00a8be366830e1b33676f63",
             imagePullPolicy: "IfNotPresent",
             name: "istio-proxy",
             ports: [

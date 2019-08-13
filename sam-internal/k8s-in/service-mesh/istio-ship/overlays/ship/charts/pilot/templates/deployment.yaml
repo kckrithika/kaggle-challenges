@@ -79,6 +79,20 @@ spec:
         - mountPath: /etc/certs/client-key.pem
         - mountPath: /client-cert
         - mountPath: /server-cert
+        args:
+        - proxy
+        - --domain
+        - $(POD_NAMESPACE).svc.cluster.local
+        - --serviceCluster
+        - istio-pilot
+        - --templateFile
+        - /etc/istio/proxy/envoy_pilot.yaml.tmpl
+        - --controlPlaneAuthPolicy
+        - MUTUAL_TLS
+        - --envoyMetricsServiceAddress
+        - switchboard.service-mesh:15001
+        - --proxyAdminPort
+        - "15373"
         name: istio-proxy
         volumeMounts:
         - mountPath: /etc/certs/root-cert.pem
