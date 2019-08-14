@@ -1,0 +1,61 @@
+- lbname: gs0
+  servers:
+    - gs0-app1-3-dfw
+    - gs0-app1-6-dfw
+    - gs0-app2-1-dfw
+    - gs0-app2-7-dfw
+    - gs0-app1-2-dfw
+    - gs0-app1-4-dfw
+    - gs0-app2-3-dfw
+    - gs0-app2-5-dfw
+    - gs0-app1-7-dfw
+    - gs0-app1-5-dfw
+    - gs0-app1-8-dfw
+    - gs0-app2-4-dfw
+    - gs0-app2-2-dfw
+    - gs0-app2-10-dfw
+    - gs0-app2-6-dfw
+    - gs0-app2-9-dfw
+    - gs0-app2-8-dfw
+    - gs0-app2-14-dfw
+    - gs0-app2-15-dfw
+    - gs0-app1-15-dfw
+    - gs0-app1-13-dfw
+    - gs0-app1-12-dfw
+    - gs0-app1-14-dfw
+    - gs0-app2-11-dfw
+    - gs0-app1-1-dfw
+    - gs0-app1-9-dfw
+    - gs0-app2-12-dfw
+    - gs0-app1-10-dfw
+    - gs0-app2-13-dfw  
+  ports:
+  - port: 443
+    targetport: 8090
+    healthport: 8085
+    lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy
+    sticky: 86400
+    tls: true
+    addheaders:
+    - name: "X-Salesforce-VIP"
+      value: "SLB"
+   - port: 8443
+    targetport: 8090
+    healthport: 8085
+    lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy
+    sticky: 86400
+    tls: true
+    mtls: true
+    addheaders:
+    - name: "X-Salesforce-VIP"
+      value: "SLB"   
+  - port: 80
+    targetport: 8085
+    lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy
+
