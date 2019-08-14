@@ -14,22 +14,27 @@ system:
       image: ops0-artifactrepo1-0-dfw.data.sfdc.net/dva/sdbdocker/sdbdockerngupgrade:5
       livenessProbe:
         httpGet:
-            path: /health
+            path: /healthngupgrade
     - name: falconsdbproduction
-      image: ops0-artifactrepo1-0-dfw.data.sfdc.net/dva/sdd/sdbproduction:12
+      image: ops0-artifactrepo1-0-dfw.data.sfdc.net/dva/sdd/sdbproduction:21
       livenessProbe:
         httpGet:
             path: /healthfalconsdbproduction
     - name: falconsdbbootstrap
-      image: ops0-artifactrepo1-0-dfw.data.sfdc.net/dva/sdd/sdbbootstrap:12
+      image: ops0-artifactrepo1-0-dfw.data.sfdc.net/dva/sdd/sdbbootstrap:21
       livenessProbe:
         httpGet:
             path: /healthfalconsdbbootstrap
     - name: falconsdbupgrade
-      image: ops0-artifactrepo1-0-dfw.data.sfdc.net/dva/sdd/sdbupgrade:12
+      image: ops0-artifactrepo1-0-dfw.data.sfdc.net/dva/sdd/sdbupgrade:21
       livenessProbe:
         httpGet:
             path: /healthfalconsdbupgrade
+    - name: falconsdbgenerationactivator
+      image: ops0-artifactrepo1-0-dfw.data.sfdc.net/dva/sdd/sdbgenerationactivator:21
+      livenessProbe:
+        httpGet:
+            path: /healthfalconsdbgenerationactivator
     - name: falconsdbproductiontest
       image: ops0-artifactrepo1-0-dfw.data.sfdc.net/dva/sdd/sdbproductiontest:2
       livenessProbe:
