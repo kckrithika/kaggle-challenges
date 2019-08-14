@@ -1,2 +1,7 @@
 version: v2
+
 apps:
+
+  c360-beaconator-prd:
+    - name: prd/prd-sam_gater
+    - name: xrd/xrd-sam_gater
