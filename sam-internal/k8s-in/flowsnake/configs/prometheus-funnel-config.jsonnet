@@ -2,6 +2,7 @@ local estate = std.extVar("estate");
 local kingdom = std.extVar("kingdom");
 local hosts = import "flowsnake_hosts.jsonnet";
 local flowsnake_images = (import "flowsnake_images.jsonnet") + { templateFilename:: std.thisFile };
+local flowsnake_config = import "flowsnake_config.jsonnet";
 
 {
     "global": {
@@ -211,5 +212,20 @@ local flowsnake_images = (import "flowsnake_images.jsonnet") + { templateFilenam
                 "key_file": "/certs/client/keys/client-key.pem",
             }
         }
-    ]
+    ] + (if flowsnake_config.is_test then [
+            {
+                "job_name": "kubernetes-apiserver",
+                "static_configs": [
+                    {
+                        "targets": [h.hostname + ":6443" for h in hosts.hosts if h.estate == estate && h.kingdom == kingdom && h.devicerole == "samkubeapi"],
+                    },
+                ],
+                "scheme": "https",
+                "tls_config": {
+                    "ca_file": "/certs/ca/cabundle.pem",
+                    "cert_file": "/certs/client/certificates/client.pem",
+                    "key_file": "/certs/client/keys/client-key.pem",
+                },
+            }
+        ] else []),
 }

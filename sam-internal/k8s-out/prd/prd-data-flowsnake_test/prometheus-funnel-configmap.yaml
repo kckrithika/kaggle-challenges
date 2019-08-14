@@ -230,6 +230,26 @@ data:
             "cert_file": "/certs/client/certificates/client.pem",
             "key_file": "/certs/client/keys/client-key.pem"
           }
+        },
+        {
+          "job_name": "kubernetes-apiserver",
+          "scheme": "https",
+          "static_configs": [
+            {
+              "targets": [
+                "fs1shared0-flowsnakemastertest1-1-prd.eng.sfdc.net:6443",
+                "fs1shared0-flowsnakemastertest1-2-prd.eng.sfdc.net:6443",
+                "fs1shared0-flowsnakemastertest1-3-prd.eng.sfdc.net:6443",
+                "fs1shared0-flowsnakemastertest2-1-prd.eng.sfdc.net:6443",
+                "fs1shared0-flowsnakemastertest2-2-prd.eng.sfdc.net:6443"
+              ]
+            }
+          ],
+          "tls_config": {
+            "ca_file": "/certs/ca/cabundle.pem",
+            "cert_file": "/certs/client/certificates/client.pem",
+            "key_file": "/certs/client/keys/client-key.pem"
+          }
         }
       ]
     }
