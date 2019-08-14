@@ -23,6 +23,8 @@ system:
       ports:
       - containerPort: 15372
       env:
+      - name: JAVA_OPTS
+        value: -Xms1G -Xmx3G -XX:+UseG1GC
       - name: SERVER_PORT
         value: 8080
       - name: MANAGEMENT_PORT
@@ -46,6 +48,9 @@ system:
       - name: eventbusajna-ens-v1
         mountPath: /secrets/eventbusajna-ens-v1
         readOnly: true
+      resources:
+        limits: { cpu: "2", memory: "4Gi" }
+        requests: { cpu: "2", memory: "2Gi" }
   loadbalancers:
   - lbname: qa1s1-event-notification-service-lb
     function: qa1s1-event-notification-service
