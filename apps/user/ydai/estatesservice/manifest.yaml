@@ -30,30 +30,29 @@ system:
       env:
       - name: ESTATESSERVICE_PORT
         value: 9090
-      - name: ESTATESSERVICE_FUNNELENDPOINT
+      - name: ESTATESSERVICE_FUNNEL_ENDPOINT
         value: ${SFDC_METRICS_SERVICE_HOST}
       - name: ESTATESSERVICE_RPMURL
         value: https://ops0-artifactrepo1-0-prd.data.sfdc.net/artifactory/rpm-prod/
-      - name: ESTATESSERVICE_SWAGGERUIDIR
+      - name: ESTATESSERVICE_SWAGGERUI_DIRECTORY
         value: /estatesservice/apidocs/
-      - name: ESTATESSERVICE_SERVERCERTFILEPATH
+      - name: ESTATESSERVICE_SERVER_CERT_FILEPATH
         value: /server-certs/server/certificates/server.pem
-      - name: ESTATESSERVICE_SERVERKEYFILEPATH
+      - name: ESTATESSERVICE_SERVER_KEY_FILEPATH
         value: /server-certs/server/keys/server-key.pem
-      - name: ESTATESSERVICE_DATACENTER
-        value: ${KINGDOM}
       - name: ESTATESSERVICE_SUBSERVICE
         value: ${FUNCTION_NAMESPACE}.${FUNCTION}.${FUNCTION_INSTANCE_NAME}
       command:
         - /estatesservice/estatesservice
         - -port=$(ESTATESSERVICE_PORT)
-        - -swaggerdir=/estatesservice/apidocs/
-        - -cert=/server-certs/server/certificates/server.pem
-        - -key=/server-certs/server/keys/server-key.pem
+        - -swaggerdir=$(ESTATESSERVICE_SWAGGERUI_DIRECTORY)
+        - -cert=$(ESTATESSERVICE_SERVER_CERT_FILEPATH)
+        - -key=$(ESTATESSERVICE_SERVER_KEY_FILEPATH)
         - -publishmetrics
-        - -datacenter=xrd
-        - -subservice=ydai-test
-        - -funnelendpoint=ajna0-funnel1-0-xrd.data.sfdc.net
+        - -datacenter=$(KINGDOM)
+        - -subservice=$(ESTATESSERVICE_SUBSERVICE)
+        - -funnelendpoint=$(ESTATESSERVICE_FUNNEL_ENDPOINT)
+        - -rpmurl=$(ESTATESSERVICE_RPMURL)
   loadbalancers:
   - lbname: estatesservicelb
     function: estatesservice
