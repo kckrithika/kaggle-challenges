@@ -25,5 +25,5 @@ images:
   switchboardEnvoy: sfci/frontend-gateway/sfproxy:bc7e1fa
 name: na10
 nonce: 1557813360197206000
-replicaCount: 4
+replicaCount: 1
 settingsSuperPod: sp2
