@@ -147,33 +147,33 @@ system:
       volumeMounts:
         - name: server-cert
           mountPath: /certs
-#    #####################################################################################
-#    # GID service
-#    #####################################################################################
-#    - name: gid-service
-#      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/gid/gid-service:5e51285
-#      imagePullPolicy: Always
-#      env:
-#        - name: server_port
-#          value: 8081
-#        - name: management_server_port
-#          value: 15371
-#        - name: ca_service_host
-#          value: 127.0.0.1
-#        - name: security_client_dynamickeystore_cadir
-#          value: /certs
-#        - name: security_client_dynamickeystore_monitoredDirectory
-#          value: /certs
-#      ports:
-#        - containerPort: 8081
-#        - containerPort: 15371
-#      livenessProbe:
-#        httpGet:
-#          path: /manage/health
-#          port: 15371
-#      volumeMounts:
-#        - name: server-cert
-#          mountPath: /certs
+    #####################################################################################
+    # GID Data service
+    #####################################################################################
+    - name: gid-service
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/gid/gid-service:463bf91
+      imagePullPolicy: Always
+      env:
+        - name: server_port
+          value: 8081
+        - name: management_server_port
+          value: 15371
+        - name: ca_service_host
+          value: 127.0.0.1
+        - name: security_client_dynamickeystore_cadir
+          value: /certs
+        - name: security_client_dynamickeystore_monitoredDirectory
+          value: /certs
+      ports:
+        - containerPort: 8081
+        - containerPort: 15371
+      livenessProbe:
+        httpGet:
+          path: /manage/health
+          port: 15371
+      volumeMounts:
+        - name: server-cert
+          mountPath: /certs
     #####################################################################################
     # NGINX Rev Proxy
     #####################################################################################
