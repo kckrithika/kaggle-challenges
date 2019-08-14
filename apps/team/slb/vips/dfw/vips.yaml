@@ -41,7 +41,7 @@
     addheaders:
     - name: "X-Salesforce-VIP"
       value: "SLB"
-   - port: 8443
+  - port: 8443
     targetport: 8090
     healthport: 8085
     lbtype: http
