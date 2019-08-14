@@ -16,7 +16,7 @@ system:
       "routing.mesh.sfdc.net/enabled": "true"
     containers:
     - name: metadata-service
-      image: sfci/metadata-cannon/metadata-service:0.9.107
+      image: sfci/metadata-cannon/metadata-service:0.9.108
       ports:
       - containerPort: 9091
       - containerPort: 15523
@@ -29,7 +29,6 @@ system:
         value: "15523"
       - name: JVM_ARGS
         value: -Ddatabase.name=metadataservice5
-          -Dmds.enable.references.validation=false
           -Djwt-validation.enablement-per-role.app=false
           -Xmx2G -Xms2G -XX:ParallelGCThreads=8
       resources:
