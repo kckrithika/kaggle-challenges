@@ -134,7 +134,7 @@ spec:
         env:
         - name: KINGDOM
           value: phx
-        image: ops0-artifactrepo1-0-phx.data.sfdc.net/dva/slb/nginx:127-c44f88ea0f5618b788d79270d9bed9318c263196
+        image: ops0-artifactrepo1-0-phx.data.sfdc.net/dva/slb/nginx:130-5f9b75b80431dae71e17b5c30f92ec7542d0c31d
         livenessProbe:
           httpGet:
             path: /
