@@ -1,2 +1,5 @@
-version: v2
 apps:
+  gca-metrics-service:
+    # - prd/prd-sam
+    - chx/chx-sam
+    - wax/wax-sam

@@ -273,10 +273,12 @@
     },
     {
       "namespaces": [
-        "csc-sam"
+        "csc-sam",
+        "govsecdev-analytics"
       ],
       "access": [
-        "team/CSC_Sam"
+        "team/CSC_Sam",
+        "team/govsecdev-analytics"
       ],
       "controlEstate": "chx-sam",
       "estate": "chx-sam",
@@ -4171,10 +4173,12 @@
     },
     {
       "namespaces": [
-        "csc-sam"
+        "csc-sam",
+        "govsecdev-analytics"
       ],
       "access": [
-        "team/CSC_Sam"
+        "team/CSC_Sam",
+        "team/govsecdev-analytics"
       ],
       "controlEstate": "wax-sam",
       "estate": "wax-sam",
