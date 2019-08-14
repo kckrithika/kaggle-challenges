@@ -2,7 +2,7 @@
   # this is necessary to keep the custom vip name of swarm-prd.slb.sfdc.net
   customlbname: swarm-prd
   servers:
-    - scm-swarm1-1-prd.eng.sfdc.net
+    - scm-pfourproxy3-6-prd.eng.sfdc.net
     - scm-pfourproxy4-6-prd.eng.sfdc.net
   ports:
     - port: 80
