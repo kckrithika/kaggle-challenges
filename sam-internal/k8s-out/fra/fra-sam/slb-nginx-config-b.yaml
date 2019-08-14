@@ -134,7 +134,7 @@ spec:
         env:
         - name: KINGDOM
           value: fra
-        image: ops0-artifactrepo1-0-fra.data.sfdc.net/dva/slb/nginx:123-e0e859c05184559e48728c6c3d8bd74634afefbc
+        image: ops0-artifactrepo1-0-fra.data.sfdc.net/dva/slb/nginx:127-c44f88ea0f5618b788d79270d9bed9318c263196
         livenessProbe:
           httpGet:
             path: /
