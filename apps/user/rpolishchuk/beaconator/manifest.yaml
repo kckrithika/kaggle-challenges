@@ -22,7 +22,7 @@ system:
       - -logging.dir
       - /log
       - -endpoint
-      - beaconator-service:DATACENTER_ALLENV:7443
+      - beaconator-service:DATACENTER_ALLENV:7443:metadata-service-prd-func-lb.retail-mds.prd-sam.prd.slb.sfdc.net
       env:
       - name: DUMMY_FORCE_PUSH 
         value: 3 # increse value to force push without any other changes 
