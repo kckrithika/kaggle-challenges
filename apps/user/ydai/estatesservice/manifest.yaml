@@ -31,7 +31,7 @@ system:
       - name: ESTATESSERVICE_PORT
         value: 9090
       - name: ESTATESSERVICE_FUNNEL_ENDPOINT
-        value: ${SFDC_METRICS_SERVICE_HOST}
+        value: $(SFDC_METRICS_SERVICE_HOST)
       - name: ESTATESSERVICE_RPMURL
         value: https://ops0-artifactrepo1-0-$(KINGDOM).data.sfdc.net/artifactory/rpm-prod/
       - name: ESTATESSERVICE_SWAGGERUI_DIRECTORY
