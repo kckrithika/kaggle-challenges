@@ -223,8 +223,8 @@ local flowsnake_config = import "flowsnake_config.jsonnet";
                 "scheme": "https",
                 "tls_config": {
                     "ca_file": "/certs/ca/cabundle.pem",
-                    "cert_file": "/certs/client/certificates/client.pem",
-                    "key_file": "/certs/client/keys/client-key.pem",
+                    "cert_file": "/etc/pki_service/kubernetes/k8s-client/certificates/k8s-client.pem",
+                    "key_file": "/etc/pki_service/kubernetes/k8s-client/keys/k8s-client-key.pem",
                 },
             }
         ] else []),

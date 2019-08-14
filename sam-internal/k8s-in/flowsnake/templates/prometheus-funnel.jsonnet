@@ -71,7 +71,11 @@ configs.deploymentBase("flowsnake") {
                 mountPath: "/etc/config",
                 name: "prometheus-server-conf",
               },
-            ] + madkub_common.cert_mounts(cert_name),
+            ] + (if flowsnake_config.is_test then [{
+                name: "certs-volume",
+                mountPath: "/etc/pki_service",
+            }] else [])
+            + madkub_common.cert_mounts(cert_name),
             livenessProbe: {
               httpGet: {
                 path: "/metrics",
@@ -131,7 +135,15 @@ configs.deploymentBase("flowsnake") {
               medium: "Memory",
             },
           },
-        ] + madkub_common.cert_volumes(cert_name),
+] + (if flowsnake_config.is_test then [
+                    {
+                      hostPath: {
+                          path: "/etc/pki_service",
+                      },
+                      name: "certs-volume",
+                    },
+          ] else [])
+         + madkub_common.cert_volumes(cert_name),
         initContainers: [madkub_common.init_container(cert_name)],
       },
     },
