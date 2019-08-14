@@ -8,10 +8,10 @@ system:
       count: 1
       containers:
         - name: heap-dump-analyser-service
-          image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/hubs/hda:hda-2019-08-13-08-53-17
+          image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/hubs/hda:hda-2019-08-14-10-14-21
           # If your service doesn't serve HTTP traffic then you can remove the scone-http 8080 port.
           ports:
-            - containerPort: 8080
+            - containerPort: 7022
               name: scone-http
             - containerPort: 7020
               name: grpc-svc
@@ -40,7 +40,7 @@ system:
           # FUNCTION_NAMESPACE: The Kubernetes namespace in which the container is running.
           args:
             - -endpoint
-            - $(FUNCTION_NAMESPACE)/$(FUNCTION):DATACENTER_ALLENV:HTTP2_TLS
+            - $(FUNCTION_NAMESPACE)/$(FUNCTION):DATACENTER_ALLENV:7442
             - -logging.dir
             - /log
           livenessProbe:
@@ -59,8 +59,8 @@ system:
           ports:
             - containerPort: 15373
               name: sherpa-adm
-            - containerPort: 7443
-              name: grpc-tls-in
+            - containerPort: 7442
+              name: http1-tls-in
           livenessProbe:
             exec:
               command:
@@ -99,8 +99,8 @@ system:
       nodeExposed: false
       slbenabled: true
       ports:
-        - port: 8080
-          targetport: 8080
+        - port: 7022
+          targetport: 7022
           lbtype: http # tcp|http|dsr
           #tls: true
           #reencrypt: true
@@ -114,9 +114,9 @@ system:
           lbtype: dsr
           #tls: true
           #reencrypt: true
-        - port: 7443
-          targetport: 7443
-          lbtype: dsr
+        - port: 7442
+          targetport: 7442
+          lbtype: http
           #tls: true
           #reencrypt: true
         - port: 15373
