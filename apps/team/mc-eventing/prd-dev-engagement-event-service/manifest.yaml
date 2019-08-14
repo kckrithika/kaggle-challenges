@@ -9,7 +9,7 @@ system:
   - name: dev-engagement-event-service
     identity:
       serviceName: wh-con
-    count: 2
+    count: 1
     volumes:
     - name: cert
       maddogCert:
@@ -24,14 +24,14 @@ system:
       ports:
       - containerPort: 15372
       env:
+      - name: JAVA_OPTS
+        value: -Xms1G -Xmx3G -XX:+UseG1GC
       - name: SERVER_PORT
         value: 8080
       - name: MANAGEMENT_PORT
         value: 15372
       - name: AJNA_NAMESPACE
         value: mc.test.mceventbusdev
-      - name: JAVA_OPTS
-        value: -Xms1G -Xmx3G -XX:+UseG1GC
       - name: SESSION_TIMEOUT_MS
         value: 6000
       - name: EVENTCONSUMER_TOPICNAME
