@@ -67,7 +67,7 @@ spec:
         - -p
         - "7443"
         - --funnel-address
-        - ajnafunnel-prd.z9s-default.svc.mesh.sfdc.net:80
+        - ajnafunneldirect.svc.mesh.sfdc.net:8080
         env:
         - name: ESTATE
           value: prd-sam_gater

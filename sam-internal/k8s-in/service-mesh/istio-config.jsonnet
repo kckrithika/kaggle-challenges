@@ -104,7 +104,7 @@ local istioTag = "91747894065947d0217bdae7eab3e0a3dfbaa21e";
   ingressGatewaySettingsPath: "istio.-." + configs.kingdom + ".-." + "istio-ingressgateway",
 
   funnelVIP: configs.funnelVIP,
-  funnelLocalEndpoint: "ajnafunnel-" + configs.kingdom + ".z9s-default.svc.mesh.sfdc.net:" + funnelEndpoint[1],
+  funnelIstioEndpoint: "ajnafunneldirect.svc.mesh.sfdc.net:8080",
 
   funnelHost: funnelEndpoint[0],
   funnelPort: funnelEndpoint[1],
