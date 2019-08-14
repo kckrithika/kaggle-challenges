@@ -9,7 +9,7 @@ system:
   - name: qa3s1-event-notification-service
     identity:
       serviceName: wh-con
-    count: 3
+    count: 1
     volumes:
     - name: cert
       maddogCert:
