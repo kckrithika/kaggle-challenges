@@ -1,0 +1,67 @@
+apiVersion: v1
+
+system:
+  notifications:
+    email:
+    - mc-devbigdata@salesforce.com
+    - MC-MessagingInboundTeam@salesforce.com
+  functions:
+  - name: event-notification-service
+    identity:
+      serviceName: wh-con
+    count: 5
+    volumes:
+    - name: cert
+      maddogCert:
+        type: client
+    - name: eventbusajna-ens-v1
+      k4aSecret:
+        secretName: eventbusajna-ens-v1
+    containers:
+    - name: event-notification-service
+      image: sfci/mc-eventing/event-notification:1.0.10
+      ports:
+      - containerPort: 15372
+      env:
+      - name: MANAGEMENT_PORT
+        value: 15372
+      - name: AJNA_NAMESPACE
+        value: mc.prod.mceventbusprod
+      - name: METRICS_FUNNELENDPOINTURL
+        value: http://ajna0-funnel1-0-dfw.data.sfdc.net
+      - name: EVENTCONSUMER_TOPICNAME
+        value: mc.prod.mceventbusprod__dfw.ajna_local__transactional_send_events
+      - name: SUBSCRIPTIONCONSUMER_TOPICNAME
+        value: mc.prod.mceventbusprod__dfw.ajna_local__eventnotification_subscriptions
+      - name: BOOTSTRAP_SERVERS
+        value: ajna0-broker1-0-dfw.data.sfdc.net:9093
+      - name: SECURITY_PROTOCOL
+        value: SSL
+      - name: EMITTER_PROXY_HOST
+        value: public0-proxy1-0-dfw.data.sfdc.net
+      - name: EMITTER_PROXY_PORT
+        value: 8080
+      - name: DECRYPTION_KEY_PATH
+        value: /secrets/eventbusajna-ens-v%d
+      - name: JOINER_NUMTHREADS
+        value: 1
+      livenessProbe:
+        initialDelaySeconds: 60
+        periodSeconds: 120
+        timeoutSeconds: 130
+        httpGet:
+          path: /manage/health
+          port: 15372
+      volumeMounts:
+      - name: cert
+        mountPath: /certs
+      - name: eventbusajna-ens-v1
+        mountPath: /secrets/eventbusajna-ens-v1
+        readOnly: true
+  loadbalancers:
+  - lbname: event-notification-service-lb
+    function: event-notification-service
+    nodeExposed: true
+    ports:
+    - port: 15373
+      targetport: 15372
