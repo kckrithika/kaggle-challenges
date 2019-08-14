@@ -7,7 +7,7 @@ apiVersion: v1
 system:
   functions:
   - containers:
-    - image: ops0-artifactrepo1-0-ia2.data.sfdc.net/sfci/insights/moanaengine:release-1.1.19-c4748d8
+    - image: ops0-artifactrepo1-0-ia2.data.sfdc.net/sfci/insights/moanaengine:release-2019.08.a.20-3d5d45b
       livenessProbe:
         exec:
           command: [ls]
@@ -31,7 +31,7 @@ system:
       - {name: DEPLOYMENT_ID, value: ia2-group2}
       - {name: HANDLED_PODS_PATTERN, value: 'cs[0-9]+|moana-driver-group1'}
       - {name: HANDLED_PODS_INVERT_MATCH, value: 'true'}
-      image: sfci/insights/moana-driver:release-1.1.24-b0476a2
+      image: sfci/insights/moana-driver:release-2019.08.a.25-4538c01
       livenessProbe:
         httpGet: {path: /manage/health, port: 15372}
         initialDelaySeconds: 30
@@ -59,14 +59,8 @@ system:
       - {name: MANAGEMENT_SERVER_PORT, value: '15372'}
       - {name: LOGGING_JSON_STDOUT_LEVEL, value: ALL}
       - {name: LOGGING_STDERR_LEVEL, value: ALL}
-      - {name: MOANA_SPARK_ENGINE_IMAGE, value: 'ops0-artifactrepo1-0-ia2.data.sfdc.net/sfci/insights/moanaengine:release-1.1.19-c4748d8'}
+      - {name: MOANA_SPARK_ENGINE_IMAGE, value: 'ops0-artifactrepo1-0-ia2.data.sfdc.net/sfci/insights/moanaengine:release-2019.08.a.20-3d5d45b'}
       - {name: KAFKA_GROUP_ID, value: moana-jobcontroller-group2}
-      - {name: K8S_SPARK_OVERRIDES, value: '{"spark.eventLog.enabled": "false", "spark.executor.extraJavaOptions":
-          "-XX:MaxDirectMemorySize=256M -XX:ReservedCodeCacheSize=128M -XX:MaxMetaspaceSize=128M
-          -XX:+UseG1GC -verbose:gc -XX:+PrintGCDateStamps -XX:+PrintGCDetails -XX:+UseCompressedOops
-          -Djdk.nio.maxCachedBufferSize=262144", "spark.shuffle.accurateBlockThreshold":
-          "1048576", "spark.shuffle.io.preferDirectBufs": "false", "spark.ui.enabled":
-          "false"}'}
       - {name: DEPLOYMENT_ID, value: ia2-group2}
       - {name: JAVA_OPTS, value: '-server -XX:MaxMetaspaceSize=512m -Xmx2048m -Xms2048m'}
       - {name: SIZING_MEMORY_OVERHEAD, value: '1024'}
@@ -74,7 +68,7 @@ system:
       - {name: STARTUP_JOB_ENABLED, value: 'false'}
       - {name: HANDLED_PODS_PATTERN, value: 'cs[0-9]+|moana-driver-group1'}
       - {name: HANDLED_PODS_INVERT_MATCH, value: 'true'}
-      image: sfci/insights/jobcontroller:release-1.1.22-113ad50
+      image: sfci/insights/jobcontroller:release-2019.08.a.23-72799bb
       livenessProbe:
         httpGet: {path: /manage/health, port: 15372}
         initialDelaySeconds: 90
