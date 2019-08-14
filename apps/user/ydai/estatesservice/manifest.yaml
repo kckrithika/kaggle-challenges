@@ -22,6 +22,7 @@ system:
           scheme: HTTPS
           path: /info
           port: 9090
+        initialDelaySeconds: 300
       volumeMounts:
         - mountPath: /server-certs
           name: server-cert
@@ -41,7 +42,7 @@ system:
       - name: ESTATESSERVICE_SERVER_KEY_FILEPATH
         value: /server-certs/server/keys/server-key.pem
       - name: ESTATESSERVICE_SUBSERVICE
-        value: $(FUNCTION_NAMESPACE).$(FUNCTION).$(FUNCTION_INSTANCE_NAME)
+        value: $(FUNCTION_NAMESPACE)-$(FUNCTION)-$(FUNCTION_INSTANCE_NAME)
       command:
         - /estatesservice/estatesservice
         - -port=$(ESTATESSERVICE_PORT)
