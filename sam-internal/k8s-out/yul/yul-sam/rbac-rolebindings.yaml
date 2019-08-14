@@ -214,6 +214,22 @@ items:
 - apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: RoleBinding
   metadata:
+    name: casp:yul-sam_warden:rolebinding
+    namespace: casp
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: minion:role
+  subjects:
+  - kind: User
+    name: shared0-samminionwarden1-1-yul.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionwarden2-1-yul.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionwarden3-1-yul.ops.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1beta1
+  kind: RoleBinding
+  metadata:
     name: sdn:yul-sdn_control:rolebinding
     namespace: sdn
   roleRef:

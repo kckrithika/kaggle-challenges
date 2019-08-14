@@ -273,6 +273,18 @@
     },
     {
       "namespaces": [
+        "casp"
+      ],
+      "access": [
+        "team/CASP"
+      ],
+      "controlEstate": "cdu-sam",
+      "estate": "cdu-sam_warden",
+      "kingdom": "cdu",
+      "superPod": "None"
+    },
+    {
+      "namespaces": [
         "csc-sam",
         "govsecdev-analytics"
       ],
@@ -3897,6 +3909,18 @@
     },
     {
       "namespaces": [
+        "casp"
+      ],
+      "access": [
+        "team/CASP"
+      ],
+      "controlEstate": "syd-sam",
+      "estate": "syd-sam_warden",
+      "kingdom": "syd",
+      "superPod": "None"
+    },
+    {
+      "namespaces": [
         "csc-sam"
       ],
       "access": [
@@ -4429,6 +4453,18 @@
     },
     {
       "namespaces": [
+        "casp"
+      ],
+      "access": [
+        "team/CASP"
+      ],
+      "controlEstate": "yhu-sam",
+      "estate": "yhu-sam_warden",
+      "kingdom": "yhu",
+      "superPod": "None"
+    },
+    {
+      "namespaces": [
         "csc-sam"
       ],
       "access": [
@@ -4498,6 +4534,18 @@
       ],
       "controlEstate": "yul-sam",
       "estate": "yul-sam_search",
+      "kingdom": "yul",
+      "superPod": "None"
+    },
+    {
+      "namespaces": [
+        "casp"
+      ],
+      "access": [
+        "team/CASP"
+      ],
+      "controlEstate": "yul-sam",
+      "estate": "yul-sam_warden",
       "kingdom": "yul",
       "superPod": "None"
     },
