@@ -23,6 +23,8 @@
     healthpath: /ping.jsp?allBusy
     sticky: 600
     tls: true
+    tlscertificate: secret_service:BofA-Stmfa-VIP-Certs:na44.stmfa.stm.salesforce.com.crt
+    tlskey: kms:1:2:B79A5F5D32C69C340DC39183EA315A164E1E7B3D76B680258E4EED91817177AE:971cfda7-66f1-47d7-a456-abf140531034
     addheaders:
     - name: "X-Salesforce-VIP"
       value: "FORCE"

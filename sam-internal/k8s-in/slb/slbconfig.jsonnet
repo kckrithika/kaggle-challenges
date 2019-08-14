@@ -397,6 +397,7 @@
                   "vonage-mist51-na1-slawrance-prd.slb.sfdc.net",
                   "petco-mist51-na1-slawrance-prd.slb.sfdc.net",
                   "petco2-mist51-na1-slawrance-prd.slb.sfdc.net",
+                  "na44-stmfa1-0-prd.slb.sfdc.net",
               ],
               "phx-sam": ["login-cloudforce-phx.slb.sfdc.net"],
               "dfw-sam": ["login-cloudforce-dfw.slb.sfdc.net"],
