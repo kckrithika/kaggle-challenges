@@ -58,8 +58,7 @@ configs.deploymentBase("service-mesh") {
               "--port",
               "10443",
               "--funnel-address",
-              // TODO: change the name to ajnafunnel.svc.mesh.sfdc.net once W-6449637 is done
-              "ajnafunnel-" + configs.kingdom + ".z9s-default.svc.mesh.sfdc.net:" + mcpIstioConfig.funnelPort,
+              mcpIstioConfig.funnelIstioEndpoint,
             ],
             env: [
               {
