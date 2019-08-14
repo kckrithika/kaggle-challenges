@@ -40,12 +40,18 @@ local ingressGatewayServerCertConfig = madkub.serverCertConfig("tls-server-cert"
 local ingressGatewayClientCertConfig = madkub.clientCertConfig("tls-client-cert", "/client-cert", "istio-ingressgateway", "core-on-sam-sp2");
 local ingressGatewayCertConfigs = [ingressGatewayClientCertConfig, ingressGatewayServerCertConfig];
 
+## Istio hub and tag for images
+local istioHub = "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-sfci-dev/sfci/servicemesh/istio-packaging/";
+local istioTag = "91747894065947d0217bdae7eab3e0a3dfbaa21e";
+
 {
   ## Images. Represented as `"mcpIstioConfig.<image>"` in template.
   ## Istio image tag needs to be updated in Helm values.
   metricsScraperImage: "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-sfci-dev/sfci/servicemesh/servicemesh/metrics-scraper:e0c2f0082b404ce6a3ecdb1a686731ef3bae5223",
   madkubImage: samimages.madkub,
   permissionInitContainer: samimages.permissionInitContainer,
+  proxyImage: istioHub + "proxy:" + istioTag,
+  proxyInitImage: istioHub + "proxy_init:" + istioTag,
 
   ## Istio Config Objects. Represented as `"mcpIstioConfig.<name>"` in template.
 
@@ -128,4 +134,12 @@ local ingressGatewayCertConfigs = [ingressGatewayClientCertConfig, ingressGatewa
     "universal-search/*",
   ],
 
+  istioEnvoyVolumes():: [
+    {
+      emptyDir: {
+        medium: "Memory",
+      },
+      name: "istio-envoy",
+    },
+  ],
 }
