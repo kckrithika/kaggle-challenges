@@ -33,7 +33,7 @@ system:
       - name: ESTATESSERVICE_FUNNEL_ENDPOINT
         value: ${SFDC_METRICS_SERVICE_HOST}
       - name: ESTATESSERVICE_RPMURL
-        value: https://ops0-artifactrepo1-0-${KINGDOM}.data.sfdc.net/artifactory/rpm-prod/
+        value: https://ops0-artifactrepo1-0-$(KINGDOM).data.sfdc.net/artifactory/rpm-prod/
       - name: ESTATESSERVICE_SWAGGERUI_DIRECTORY
         value: /estatesservice/apidocs/
       - name: ESTATESSERVICE_SERVER_CERT_FILEPATH
@@ -41,7 +41,7 @@ system:
       - name: ESTATESSERVICE_SERVER_KEY_FILEPATH
         value: /server-certs/server/keys/server-key.pem
       - name: ESTATESSERVICE_SUBSERVICE
-        value: ${FUNCTION_NAMESPACE}.${FUNCTION}.${FUNCTION_INSTANCE_NAME}
+        value: $(FUNCTION_NAMESPACE).$(FUNCTION).$(FUNCTION_INSTANCE_NAME)
       command:
         - /estatesservice/estatesservice
         - -port=$(ESTATESSERVICE_PORT)
