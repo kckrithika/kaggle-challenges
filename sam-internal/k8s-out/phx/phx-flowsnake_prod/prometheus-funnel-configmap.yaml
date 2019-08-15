@@ -230,6 +230,26 @@ data:
             "cert_file": "/certs/client/certificates/client.pem",
             "key_file": "/certs/client/keys/client-key.pem"
           }
+        },
+        {
+          "job_name": "kubernetes-apiserver",
+          "scheme": "https",
+          "static_configs": [
+            {
+              "targets": [
+                "shared0-flowsnakemasterprod1-1-phx.ops.sfdc.net:6443",
+                "shared0-flowsnakemasterprod1-2-phx.ops.sfdc.net:6443",
+                "shared0-flowsnakemasterprod1-3-phx.ops.sfdc.net:6443",
+                "shared0-flowsnakemasterprod1-4-phx.ops.sfdc.net:6443",
+                "shared0-flowsnakemasterprod1-5-phx.ops.sfdc.net:6443"
+              ]
+            }
+          ],
+          "tls_config": {
+            "ca_file": "/etc/pki_service/kubernetes/k8s-client/certificates/k8s-client.pem",
+            "cert_file": "/etc/pki_service/kubernetes/k8s-client/certificates/k8s-client.pem",
+            "key_file": "/etc/pki_service/kubernetes/k8s-client/keys/k8s-client-key.pem"
+          }
         }
       ]
     }
