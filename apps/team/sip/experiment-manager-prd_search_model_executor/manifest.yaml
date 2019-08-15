@@ -29,8 +29,10 @@ system:
         - name: sip-em
           image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/searchdev/sip-experiment-manager:1.2
           livenessProbe:
-            exec:
-              command: ["true"]
+            initialDelaySeconds: 300
+            httpGet:
+              path: /manage/health
+              port: 15372
           volumeMounts:
             - mountPath: /home/sfdc-search-sip/logs
               name: logvol
