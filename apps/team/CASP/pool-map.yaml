@@ -28,8 +28,12 @@ apps:
   - phx/phx-sam_warden
   - frf/frf-sam_warden
   - fra/fra-sam_warden
- prod-mysql-shard-a-cdg:
+ prod-mysql-shard-a-fast:
   - cdg/cdg-sam_warden
+  - cdu/cdu-sam_warden
+  - syd/syd-sam_warden
+  - yhu/yhu-sam_warden
+  - yul/yul-sam_warden
  prod-cantor:
   - dfw/dfw-sam_warden
   - iad/iad-sam_warden
