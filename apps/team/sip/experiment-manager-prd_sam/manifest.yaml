@@ -29,12 +29,12 @@ system:
     - name: sip-em 
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/smarwaha/sip-experiment-manager:20190807T1100
       livenessProbe:
-        initialDelaySeconds: 30
+        initialDelaySeconds: 90
         httpGet:
           path: /manage/health
           port: 15372
       readinessProbe:
-        initialDelaySeconds: 90
+        initialDelaySeconds: 30
         httpGet:
           path: /manage/health
           port: 15372
