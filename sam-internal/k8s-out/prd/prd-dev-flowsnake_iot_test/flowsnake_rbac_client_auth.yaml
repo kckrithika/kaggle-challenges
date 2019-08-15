@@ -142,13 +142,31 @@ items:
     name: client-cluster-role
   subjects:
   - kind: User
+    name: retail-cre.akrishna
+  - kind: User
+    name: retail-cre.blatorre
+  - kind: User
+    name: retail-cre.eantoun
+  - kind: User
     name: retail-cre.kchaganti
+  - kind: User
+    name: retail-cre.lripple
+  - kind: User
+    name: retail-cre.macton
+  - kind: User
+    name: retail-cre.nhalko
+  - kind: User
+    name: retail-cre.pselvanandan
+  - kind: User
+    name: retail-cre.sshi
+  - kind: User
+    name: retail-cre.sthalamati
+  - kind: User
+    name: retail-cre.sruthi.vasireddy
   - kind: User
     name: retail-cre.tteats
   - kind: User
     name: retail-cre.yumrotkar
-  - kind: User
-    name: retail-cre.macton
   - kind: User
     name: retail-cre.cre-control-plane
   - kind: User
@@ -174,13 +192,31 @@ items:
     name: flowsnake-client-retail-cre-Role
   subjects:
   - kind: User
+    name: retail-cre.akrishna
+  - kind: User
+    name: retail-cre.blatorre
+  - kind: User
+    name: retail-cre.eantoun
+  - kind: User
     name: retail-cre.kchaganti
+  - kind: User
+    name: retail-cre.lripple
+  - kind: User
+    name: retail-cre.macton
+  - kind: User
+    name: retail-cre.nhalko
+  - kind: User
+    name: retail-cre.pselvanandan
+  - kind: User
+    name: retail-cre.sshi
+  - kind: User
+    name: retail-cre.sthalamati
+  - kind: User
+    name: retail-cre.sruthi.vasireddy
   - kind: User
     name: retail-cre.tteats
   - kind: User
     name: retail-cre.yumrotkar
-  - kind: User
-    name: retail-cre.macton
   - kind: User
     name: retail-cre.cre-control-plane
   - kind: User
