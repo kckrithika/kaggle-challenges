@@ -41,7 +41,7 @@ system:
         httpGet:
             path: /healthfalconsdbproductiontest
     - name: falconsdbbootstraptest
-      image: ops0-artifactrepo1-0-dfw.data.sfdc.net/dva/sdd/sdbbootstraptest:7
+      image: ops0-artifactrepo1-0-dfw.data.sfdc.net/dva/sdd/sdbbootstraptest:8
       livenessProbe:
         httpGet:
             path: /healthfalconsdbbootstraptest
