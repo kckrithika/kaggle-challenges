@@ -2,21 +2,21 @@ version: v2
 apps:
   # XRD functional testing env
   aqueduct-func:
-    - name: xrd/xrd_sam_eventbus
-        hostSubList:
+    - name: xrd/xrd-sam_eventbus
+      hostSubList:
         - shared0-samminionaqueduct1-1-xrd.eng.sfdc.net
         - shared0-samminionaqueduct1-2-xrd.eng.sfdc.net
         - shared0-samminionaqueduct1-3-xrd.eng.sfdc.net
   # XRD integration testing env and canary env
   aqueduct-int:
-    - name: xrd/xrd_sam_eventbus
-        hostSubList:
+    - name: xrd/xrd-sam_eventbus
+      hostSubList:
         - shared0-samminionaqueduct1-1-xrd.eng.sfdc.net
         - shared0-samminionaqueduct1-2-xrd.eng.sfdc.net
         - shared0-samminionaqueduct1-3-xrd.eng.sfdc.net
   # XRD performance testing env
   aqueduct-perf:
-    - name: xrd/xrd_sam_eventbus
+    - name: xrd/xrd-sam_eventbus
       hostSubList:
         - shared0-samminionaqueduct1-4-xrd.eng.sfdc.net
         - shared0-samminionaqueduct2-1-xrd.eng.sfdc.net
