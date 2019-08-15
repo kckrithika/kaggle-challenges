@@ -10,7 +10,7 @@ system:
     terminationGracePeriodSeconds: 35
     containers:
     - name: eaas
-      image: sfci/eaas/emailservice:2.0.81-33a1fe88cfd1504ae6c23d3cbfba5a1bc237d1fb
+      image: sfci/eaas/emailservice:2.0.85-a35a2d2c9887a38d3989aba3e9382328e0f38301
       ports:
       - name: grpc
         containerPort: 7020
@@ -68,7 +68,7 @@ system:
 
     - name: sherpa-eaas
       # updated based on https://gus.lightning.force.com/lightning/r/CollaborationGroup/0F9B0000000LejfKAC/view
-      image: sfci/servicelibs/sherpa-envoy:1.0.5
+      image: sfci/servicelibs/sherpa-envoy:1.0.11
       ports:
       # mTLS HTTP2 GRPC port
       - name: sherpa-eaas-tls
