@@ -324,6 +324,7 @@ system:
     identity:
       pod: na10
       serviceName: switchboard
+    serviceAccountName: switchboard-service-account
     name: na10-mist61switchboard-prd
     volumes:
     - emptyDir: {}
