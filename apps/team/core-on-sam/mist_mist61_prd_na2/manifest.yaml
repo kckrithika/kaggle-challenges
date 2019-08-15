@@ -430,6 +430,7 @@ system:
       pod: na2
       serviceName: switchboard
     name: na2-mist61switchboard-prd
+    serviceAccountName: switchboard-service-account
     volumes:
     - emptyDir: {}
       name: envoy-config-volume
