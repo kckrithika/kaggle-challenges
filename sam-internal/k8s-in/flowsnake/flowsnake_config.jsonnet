@@ -155,6 +155,9 @@ local flowsnake_all_kes = (import "flowsnakeEstates.json").kingdomEstates + ["pr
     is_test: (
         estate == "prd-data-flowsnake_test"
     ),
+    is_phase2_fleet: (
+        estate == "prd-data-flowsnake" || estate == "prd-dev-flowsnake_iot_test" || kingdom == "frf" || kingdom == "cdu"
+    ),
     is_r_and_d: (
         kingdom == "prd"
     ),

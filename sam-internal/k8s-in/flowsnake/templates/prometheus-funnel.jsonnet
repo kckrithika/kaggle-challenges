@@ -71,7 +71,7 @@ configs.deploymentBase("flowsnake") {
                 mountPath: "/etc/config",
                 name: "prometheus-server-conf",
               },
-            ] + (if flowsnake_config.is_test then [{
+            ] + (if flowsnake_config.is_test || flowsnake_config.is_phase2_fleet then [{
                 name: "certs-volume",
                 mountPath: "/etc/pki_service",
             }] else [])
@@ -135,7 +135,7 @@ configs.deploymentBase("flowsnake") {
               medium: "Memory",
             },
           },
-] + (if flowsnake_config.is_test then [
+] + (if flowsnake_config.is_test || flowsnake_config.is_phase2_fleet then [
                     {
                       hostPath: {
                           path: "/etc/pki_service",
