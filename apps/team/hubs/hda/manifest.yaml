@@ -8,7 +8,7 @@ system:
       count: 1
       containers:
         - name: heap-dump-analyser-service
-          image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/hubs/hda:hda-2019-08-15-09-32-05
+          image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/hubs/hda:hda-2019-08-15-12-13-25
           # If your service doesn't serve HTTP traffic then you can remove the scone-http 8080 port.
           ports:
             - containerPort: 8080
@@ -40,7 +40,9 @@ system:
           # FUNCTION_NAMESPACE: The Kubernetes namespace in which the container is running.
           args:
             - -endpoint
-            - $(FUNCTION_NAMESPACE)/$(FUNCTION):DATACENTER_ALLENV:HTTP2_TLS
+            - $(FUNCTION_NAMESPACE)/$(FUNCTION):DATACENTER_ALLENV:HTTP2
+            - -endpoint
+            - $(FUNCTION_NAMESPACE)/$(FUNCTION):DATACENTER_ALLENV:HTTP1_TLS
             - -logging.dir
             - /log
           livenessProbe:
@@ -59,8 +61,10 @@ system:
           ports:
             - containerPort: 15373
               name: sherpa-adm
-            - containerPort: 7443
-              name: grpc-tls-in
+            - containerPort: 7012
+              name: grpc-in
+            - containerPort: 7442
+              name: http-tls-in
           livenessProbe:
             exec:
               command:
@@ -73,8 +77,6 @@ system:
               mountPath: /client-certs
             - name: sherpaservercert
               mountPath: /server-certs
-            - name: logvolsherpa
-              mountPath: /log
 
       # The volumes to mount for shipping logs to splunk
       # General rule is to use path that satisfies the pattern: /home/sfdc-*/logs/**/*.json
@@ -94,9 +96,6 @@ system:
         - name: logvol
           hostPath:
             path: /home/sfdc-mgmt/logs
-        - name: logvolsherpa
-          hostPath:
-            path: /home/sfdc-scone-heap-dump-analyser-sherpa/logs
 
   loadbalancers:
     - lbname: heap-dump-analyser
@@ -119,9 +118,16 @@ system:
           lbtype: dsr
           #tls: true
           #reencrypt: true
-        - port: 7443
-          targetport: 7443
+        - port: 7012
+          targetport: 7012
           lbtype: dsr
+          #tls: true
+          #reencrypt: true
+        - port: 7442
+          targetport: 7442
+          lbtype: dsr
+          #tls: true
+          #reencrypt: true
         - port: 15373
           targetport: 15373
           lbtype: http
