@@ -43,6 +43,10 @@ apps:
   - phx/phx-sam_warden
   - cdg/cdg-sam_warden
   - fra/fra-sam_warden
+  - cdu/cdu-sam_warden
+  - syd/syd-sam_warden
+  - yhu/yhu-sam_warden
+  - yul/yul-sam_warden
  prod-cantor-grpc-server-frf:
   - frf/frf-sam_warden
  prod-cantor-http-server:
@@ -64,6 +68,10 @@ apps:
   - phx/phx-sam_warden
   - frf/frf-sam_warden
   - fra/fra-sam_warden
+  - cdu/cdu-sam_warden
+  - syd/syd-sam_warden
+  - yhu/yhu-sam_warden
+  - yul/yul-sam_warden
  prod-maiev-receiver-cdg:
   - cdg/cdg-sam_warden  
  prod-warden-dfw:
