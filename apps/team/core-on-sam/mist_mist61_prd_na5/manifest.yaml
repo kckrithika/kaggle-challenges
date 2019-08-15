@@ -231,6 +231,7 @@ system:
     identity:
       pod: na5
       serviceName: sfproxy-switchboard
+    serviceAccountName: switchboard-service-account
     containers:
     - name: sfproxy-switchboard-server
       image: sfci/servicelibs/switchboard:98471950537d76a57ccbf65d72f823d5724ef3bf
