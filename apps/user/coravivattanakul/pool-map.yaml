@@ -4,5 +4,5 @@ apps:
   gidkms-prd:
     # prd/prd-sam
     - xrd/xrd-sampool
-  gidkms-xrd:
-    - xrd/xrd-sampool
+  #gidkms-xrd:
+   # - xrd/xrd-sampool
