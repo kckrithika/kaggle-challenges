@@ -112,14 +112,8 @@ system:
         export CHS_AJNA_DEVICE=${ESTATE}.${FUNCTION_NAMESPACE}.${FUNCTION}.${FUNCTION_INSTANCE_NAME} ;
         export CHS_GROK_ENDPOINT=https://ops0-grok1-0-${KINGDOM}.data.sfdc.net ;
         export CHS_REPORTCOLLECTOR_ENDPOINT=https://reportcollector-${KINGDOM}.data.sfdc.net:18444 ;
-
-        case ${KINGDOM} in
-          prd)
-            export CHS_AJNA_ENTITYHEALTH_ENABLED=true ;
-            ;;
-          *)
-        esac;
-
+	export CHS_AJNA_ENTITYHEALTH_ENABLED=true ;
+        
         /candidateservice
       "]
     volumes:
