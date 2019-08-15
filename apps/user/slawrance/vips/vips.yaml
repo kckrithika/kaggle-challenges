@@ -12,7 +12,7 @@
     - name: "X-Salesforce-VIP"
       value: "SLB"
     removeheaders:
-    - name: "CipherSuite"
+    - "CipherSuite"
   - port: 443
     targetport: 8090
     reencrypt: true
@@ -59,7 +59,7 @@
     - name: "X-Salesforce-VIP"
       value: "SLB"
     removeheaders:
-    - name: "CipherSuite"
+    - "CipherSuite"
   - port: 443
     targetport: 8090
     reencrypt: true
