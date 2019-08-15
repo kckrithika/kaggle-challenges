@@ -211,21 +211,20 @@ local flowsnake_config = import "flowsnake_config.jsonnet";
                 "cert_file": "/certs/client/certificates/client.pem",
                 "key_file": "/certs/client/keys/client-key.pem",
             }
-        }
-    ] + (if flowsnake_config.is_test || flowsnake_config.is_phase2_fleet then [
-            {
-                "job_name": "kubernetes-apiserver",
-                "static_configs": [
-                    {
-                        "targets": [h.hostname + ":6443" for h in hosts.hosts if h.estate == estate && h.kingdom == kingdom && h.devicerole == "samkubeapi"],
-                    },
-                ],
-                "scheme": "https",
-                "tls_config": {
-                    "ca_file": "/etc/pki_service/kubernetes/k8s-client/certificates/k8s-client.pem",
-                    "cert_file": "/etc/pki_service/kubernetes/k8s-client/certificates/k8s-client.pem",
-                    "key_file": "/etc/pki_service/kubernetes/k8s-client/keys/k8s-client-key.pem",
+        },
+        {
+            "job_name": "kubernetes-apiserver",
+            "static_configs": [
+                {
+                    "targets": [h.hostname + ":6443" for h in hosts.hosts if h.estate == estate && h.kingdom == kingdom && h.devicerole == "samkubeapi"],
                 },
-            }
-        ] else []),
+            ],
+            "scheme": "https",
+            "tls_config": {
+                "ca_file": "/etc/pki_service/kubernetes/k8s-client/certificates/k8s-client.pem",
+                "cert_file": "/etc/pki_service/kubernetes/k8s-client/certificates/k8s-client.pem",
+                "key_file": "/etc/pki_service/kubernetes/k8s-client/keys/k8s-client-key.pem",
+            },
+        },
+    ]
 }
