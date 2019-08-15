@@ -1,0 +1,7 @@
+apps:
+  #gid-runtime-service:
+  #  - prd/prd-sam
+  gidkms-prd:
+    - prd/prd-sam
+  gidkms-xrd:
+    - xrd/xrd-sampool
