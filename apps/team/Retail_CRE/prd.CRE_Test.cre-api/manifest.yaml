@@ -13,7 +13,7 @@ system:
       "routing.mesh.sfdc.net/enabled": "true"
     containers:
     - name: cre-api-cre-test
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cre/cre-api:1.8.0.0.release-1.8.dfdf869.1
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cre/cre-api:1.9-freeze-008.0.at-testing.da9083a.2
       env:
         - name: METRICS_KAFKA_TOPIC
           value: sfdc.prod.cre__prd.ajna_local__cre_metrics_CRE_Test
@@ -28,7 +28,7 @@ system:
         - name: MADDOG_CLIENT_TRUSTSTORE
           value: maddog/maddog-client-truststore.json
         - name: HBASE_NAMESPACE
-          value: CRE_TEST
+          value: CRE_STAGE
         - name: HBASE_ENVIRONMENT
           value: kingdom-test
         - name: HBASE_DATA_CENTER
