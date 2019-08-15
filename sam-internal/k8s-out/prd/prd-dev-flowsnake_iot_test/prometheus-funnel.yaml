@@ -45,6 +45,8 @@ spec:
           name: prometheus-storage-volume
         - mountPath: /etc/config
           name: prometheus-server-conf
+        - mountPath: /etc/pki_service
+          name: certs-volume
         - mountPath: /certs
           name: datacerts
       - args:
@@ -203,6 +205,9 @@ spec:
       - emptyDir:
           medium: Memory
         name: prometheus-storage-volume
+      - hostPath:
+          path: /etc/pki_service
+        name: certs-volume
       - emptyDir:
           medium: Memory
         name: datacerts

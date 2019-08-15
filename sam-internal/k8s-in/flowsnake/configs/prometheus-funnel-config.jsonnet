@@ -212,7 +212,7 @@ local flowsnake_config = import "flowsnake_config.jsonnet";
                 "key_file": "/certs/client/keys/client-key.pem",
             }
         }
-    ] + (if flowsnake_config.is_test then [
+    ] + (if flowsnake_config.is_test || flowsnake_config.is_phase2_fleet then [
             {
                 "job_name": "kubernetes-apiserver",
                 "static_configs": [
@@ -222,7 +222,7 @@ local flowsnake_config = import "flowsnake_config.jsonnet";
                 ],
                 "scheme": "https",
                 "tls_config": {
-                    "ca_file": "/certs/ca/cabundle.pem",
+                    "ca_file": "/etc/pki_service/kubernetes/k8s-client/certificates/k8s-client.pem",
                     "cert_file": "/etc/pki_service/kubernetes/k8s-client/certificates/k8s-client.pem",
                     "key_file": "/etc/pki_service/kubernetes/k8s-client/keys/k8s-client-key.pem",
                 },
