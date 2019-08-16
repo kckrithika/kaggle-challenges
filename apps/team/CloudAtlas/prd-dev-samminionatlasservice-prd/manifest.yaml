@@ -160,6 +160,8 @@ system:
           value: 15371
         - name: ca_service_host
           value: 127.0.0.1
+        - name: c2c_common_gdotBasePath
+          value: http://cloudatlas-prd-dev-service.cloudatlas.localhost.mesh.force.com:5442/scim
         - name: security_client_dynamickeystore_cadir
           value: /certs/ca
         - name: security_client_dynamickeystore_monitoredDirectory
