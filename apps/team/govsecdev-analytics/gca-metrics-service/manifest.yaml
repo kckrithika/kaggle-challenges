@@ -11,7 +11,7 @@ system:
 
     containers:
     - name: gca-metrics-service
-      image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/gca_metrics_service_sam:45
+      image: dva/gca_metrics_service_sam:45
       ports:
       - containerPort: 5000
         name: gca-http
@@ -48,7 +48,7 @@ system:
           mountPath: /tmp
 
     - name: gca-rq-service
-      image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/gca_rq_service:45
+      image: dva/gca_rq_service:45
       ports:
       - containerPort: 6379
 
