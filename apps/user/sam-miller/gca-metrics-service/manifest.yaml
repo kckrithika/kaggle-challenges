@@ -1,6 +1,9 @@
 apiVersion: v1
 
 system:
+  notifications:
+    email:
+      - sam.miller@salesforce.com
   functions:
   - name: gca-metrics-service
     count: 2
@@ -8,10 +11,7 @@ system:
 
     containers:
     - name: gca-metrics-service
-      #image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/sam-miller/gca_metrics_service:test-07222019
-      #image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/gca_metrics_service:35
-      image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/gca_metrics_service_sam:45
-      # If your service doesn't serve HTTP traffic then you can remove the scone-http 8080 port.
+      image: dva/gca_metrics_service_sam:45
       ports:
       - containerPort: 5000
         name: gca-http
@@ -30,20 +30,25 @@ system:
       - name: LOCAL_MODE
         value: "True"
       - name: WAVE_USER
-        value: "sam"
+        value: "govsecdevanalytics"
       - name: WAVE_ENV
-        value: "dev"
+        value: "org62"
       - name: CONFIG_LOCATION
         value: "/var/secrets/profile/user_profile.cfg"
-#      - name: IP_WHITELIST
-#        value: "10.250.17.242,10.250.17.50,10.250.5.242,10.250.5.250"
+      - name: IP_WHITELIST
+        value: "10.250.17.242,10.250.17.50,10.250.5.242,10.250.5.250"
+      - name: AJNA_SERVICE
+        value: "govcloudsecdev"
+      - name: AJNA_SUB_SERVICE
+        value: "alerttest2"
+      - name: AJNA_ORG_METRICS_STATUS
+        value: "status2"
       volumeMounts:
         - name: shared-tmp
           mountPath: /tmp
 
     - name: gca-rq-service
-      image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/gca_rq_service:45
-      # If your service doesn't serve HTTP traffic then you can remove the scone-http 8080 port.
+      image: dva/gca_rq_service:45
       ports:
       - containerPort: 6379
 
@@ -59,29 +64,31 @@ system:
             - /metrics_service/redis_probe.sh
       imagePullPolicy: Always
       env:
-      - name: HTTP_PROXY
-        value: public0-proxy1-0-prd.data.sfdc.net:8080
-      - name: HTTPS_PROXY
-        value: public0-proxy1-0-prd.data.sfdc.net:8080
       - name: WAVE_USER
-        value: "sam"
+        value: "govsecdevanalytics"
       - name: WAVE_ENV
-        value: "dev"
+        value: "org62"
       - name: LOCAL_MODE
         value: "True"
       - name: CONFIG_LOCATION
         value: "/var/secrets/profile/user_profile.cfg"
+      - name: AJNA_SERVICE
+        value: "govcloudsecdev"
+      - name: AJNA_SUB_SERVICE
+        value: "alerttest2"
+      - name: AJNA_ORG_METRICS_STATUS
+        value: "status2"
       volumeMounts:
-        - name: user-profile-test
+        - name: user-profile
           mountPath: /var/secrets/profile
           readOnly: true
         - name: shared-tmp
           mountPath: /tmp
 
     volumes:
-    - name: user-profile-test
+    - name: user-profile
       k4aSecret:
-        secretName: gca-metrics-service-user-profile-secret-test
+        secretName: gca-metrics-service-user-profile-secret
     - name: shared-tmp
       emptyDir: {}
 
@@ -100,11 +107,3 @@ system:
           targetport: 5000
           lbtype: http
           tls: true
-#        - port: 443
-#          targetport: 8443
-#    - lbname: gca-rq-service
-#      function: gca-rq-service
-#      nodeExposed: true
-#      ports:
-#        - port: 6378
-#          targetport: 6379
