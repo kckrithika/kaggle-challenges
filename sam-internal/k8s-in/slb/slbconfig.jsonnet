@@ -402,7 +402,10 @@
               ],
               "prd-samtwo": ["na44-stmfa1-0-prd.slb.sfdc.net"],
               "phx-sam": ["login-cloudforce-phx.slb.sfdc.net"],
-              "dfw-sam": ["login-cloudforce-dfw.slb.sfdc.net"],
+              "dfw-sam": [
+                  "login-cloudforce-dfw.slb.sfdc.net",
+                  "gs0-dfw.slb.sfdc.net",
+              ],
             },
 
         envoyEnabledVips:
