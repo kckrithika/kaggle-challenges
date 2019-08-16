@@ -27,7 +27,13 @@ system:
         httpGet:
           path: /manage/ready
           port: 15372
+      volumeMounts:
+      - name: cert
+        mountPath: /certs
 
     # The volumes to mount for shipping logs to splunk
     # General rule is to use path that satisfies the pattern: /home/sfdc-*/logs/**/*.json
     volumes:
+    - name: cert
+          maddogCert:
+            type: client
