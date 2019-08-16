@@ -335,6 +335,94 @@ items:
   metadata:
     annotations:
       manifestctl.sam.data.sfdc.net/swagger: disable
+    name: flowsnake-client-universal-search-Role
+    namespace: universal-search
+  rules:
+  - apiGroups:
+    - '*'
+    resources:
+    - pods
+    - replicationcontrollers
+    - deployments
+    - jobs
+    - replicasets
+    - secrets
+    - configmaps
+    - statefulsets
+    - services
+    - ingresses
+    - persistentvolumes
+    - sparkapplications
+    verbs:
+    - '*'
+  - apiGroups:
+    - '*'
+    resources:
+    - '*'
+    verbs:
+    - get
+    - list
+- apiVersion: rbac.authorization.k8s.io/v1
+  kind: ClusterRoleBinding
+  metadata:
+    annotations:
+      manifestctl.sam.data.sfdc.net/swagger: disable
+    name: flowsnake-client-universal-search-ClusterRoleBinding
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: client-cluster-role
+  subjects:
+  - kind: User
+    name: universal-search.universal-search
+  - kind: User
+    name: universal-search.athrogmorton
+  - kind: User
+    name: universal-search.irahim
+- apiVersion: rbac.authorization.k8s.io/v1
+  kind: RoleBinding
+  metadata:
+    annotations:
+      manifestctl.sam.data.sfdc.net/swagger: disable
+    name: flowsnake-client-universal-search-RoleBinding
+    namespace: universal-search
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: Role
+    name: flowsnake-client-universal-search-Role
+  subjects:
+  - kind: User
+    name: universal-search.universal-search
+  - kind: User
+    name: universal-search.athrogmorton
+  - kind: User
+    name: universal-search.irahim
+- apiVersion: v1
+  automountServiceAccountToken: true
+  kind: ServiceAccount
+  metadata:
+    name: spark-driver-universal-search
+    namespace: universal-search
+- apiVersion: rbac.authorization.k8s.io/v1
+  kind: RoleBinding
+  metadata:
+    annotations:
+      manifestctl.sam.data.sfdc.net/swagger: disable
+    name: spark-driver-universal-search-RoleBinding
+    namespace: universal-search
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: Role
+    name: flowsnake-client-universal-search-Role
+  subjects:
+  - kind: ServiceAccount
+    name: spark-driver-universal-search
+    namespace: universal-search
+- apiVersion: rbac.authorization.k8s.io/v1
+  kind: Role
+  metadata:
+    annotations:
+      manifestctl.sam.data.sfdc.net/swagger: disable
     name: flowsnake-client-flowsnake-test-Role
     namespace: flowsnake-test
   rules:

@@ -127,6 +127,16 @@ local cre_production = {
                 pki_namespace: "hbase-flowsnake",
                 users: ["NOTACERT"],
             },
+            {
+                owner_name: "Universal Search",
+                namespace: "universal-search",
+                pki_namespace: "universal-search",
+                users: [
+                    "universal-search.universal-search",
+                    "universal-search.athrogmorton",
+                    "universal-search.irahim",
+                ],
+            },
         ],
 
         # -------------------------------
