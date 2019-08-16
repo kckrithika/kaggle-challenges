@@ -1,91 +1,135 @@
-# created by scone-gen 769d1fd6f
+# created by scone-gen 3bd9a4697
 
 apiVersion: v1
 
 system:
   functions:
-  - name: heap-dump-analyser-client
-    count: 1
-    containers:
-    - name: heap-dump-analyser-client-service
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/kfoster/heap-dump-analyser-client:1
-      # If your service doesn't serve HTTP traffic then you can remove the scone-http 8080 port.
-      ports:
-      - containerPort: 8080
-        name: scone-http
-      - containerPort: 7020
-        name: grpc-svc
-      - containerPort: 15372
-        name: scone-mgmt
-      livenessProbe:
-        initialDelaySeconds: 30
-        httpGet:
-          path: /manage/health
-          port: 15372
-      readinessProbe:
-        timeoutSeconds: 10
-        httpGet:
-          path: /manage/ready
-          port: 15372
-    - name: beacon
-      # https://sconelibci.dop.sfdc.net/job/servicelibs/job/beacon/job/master/
-      image: sfci/servicelibs/beacon:cec13ceb9fc5aed0ce462031a01b2dd5ef73d5ee
-      # This announces your gRPC endpoint for HTTP2 traffic with mTLS
-      # See https://git.soma.salesforce.com/servicelibs/sherpa#ports
-      # The following are system defined variables injected by SAM:
-      # FUNCTION: This is the value listed in the manifest for the function key.
-      # FUNCTION_NAMESPACE: The Kubernetes namespace in which the container is running.
-      args:
-      - -endpoint
-      - $(FUNCTION_NAMESPACE)/$(FUNCTION):DATACENTER_ALLENV:7443
-      - -logging.dir
-      - /log
-      livenessProbe:
-        initialDelaySeconds: 5
-        exec:
-          command:
-            - "/home/scone/is-alive.sh"
-      # Need to mount to a volume so that logs can be shipped to splunk
-      volumeMounts:
-      - mountPath: /log
-        name: logvolbeacon
-    - name: sherpa
-      # https://git.soma.salesforce.com/servicelibs/sherpa-envoy/releases
-      image: sfci/servicelibs/sherpa-envoy:1.0.4
-      # See https://git.soma.salesforce.com/servicelibs/sherpa#ports
-      ports:
-      - containerPort: 15373
-        name: sherpa-adm
-      - containerPort: 7443
-        name: grpc-tls-in
-      livenessProbe:
-        exec:
-          command:
-          - "./bin/is-alive"
-        initialDelaySeconds: 120
-        periodSeconds: 5
-      readinessProbe:
-        exec:
-          command:
-          - "./bin/is-ready"
-        initialDelaySeconds: 110
-        periodSeconds: 5
-      # Mount volumes with certificates. The paths here match the defaults assumed by sherpa
-      volumeMounts:
-      - name: sherpaclientcert
-        mountPath: /client-certs
-      - name: sherpaservercert
-        mountPath: /server-certs
+    - name: heap-dump-analyser
+      count: 1
+      containers:
+        - name: heap-dump-analyser-service
+          image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/hubs/hda:hda-2019-08-15-12-13-25
+          # If your service doesn't serve HTTP traffic then you can remove the scone-http 8080 port.
+          ports:
+            - containerPort: 8080
+              name: scone-http
+            - containerPort: 7020
+              name: grpc-svc
+            - containerPort: 15372
+              name: scone-mgmt
+          livenessProbe:
+            initialDelaySeconds: 30
+            httpGet:
+              path: /manage/health
+              port: 15372
+          readinessProbe:
+            timeoutSeconds: 10
+            httpGet:
+              path: /manage/ready
+              port: 15372
+          volumeMounts:
+            - mountPath: /storedFiles
+              name: hdastorage
+        - name: beacon
+          # https://sconelibci.dop.sfdc.net/job/servicelibs/job/beacon/job/master/
+          image: sfci/servicelibs/beacon:cec13ceb9fc5aed0ce462031a01b2dd5ef73d5ee
+          # This announces your gRPC endpoint for HTTP2 traffic with mTLS
+          # See https://git.soma.salesforce.com/servicelibs/sherpa#ports
+          # The following are system defined variables injected by SAM:
+          # FUNCTION: This is the value listed in the manifest for the function key.
+          # FUNCTION_NAMESPACE: The Kubernetes namespace in which the container is running.
+          args:
+            - -endpoint
+            - $(FUNCTION_NAMESPACE)/$(FUNCTION):DATACENTER_ALLENV:HTTP2
+            - -endpoint
+            - $(FUNCTION_NAMESPACE)/$(FUNCTION):DATACENTER_ALLENV:HTTP1_TLS
+            - -logging.dir
+            - /log
+          livenessProbe:
+            initialDelaySeconds: 5
+            exec:
+              command:
+                - "/home/scone/is-alive.sh"
+          # Need to mount to a volume so that logs can be shipped to splunk
+          volumeMounts:
+            - mountPath: /log
+              name: logvolbeacon
+        - name: sherpa
+          # https://git.soma.salesforce.com/servicelibs/sherpa-envoy/releases
+          image: sfci/servicelibs/sherpa-envoy:1.0.4
+          # See https://git.soma.salesforce.com/servicelibs/sherpa#ports
+          ports:
+            - containerPort: 15373
+              name: sherpa-adm
+            - containerPort: 7012
+              name: grpc-in
+            - containerPort: 7442
+              name: http-tls-in
+          livenessProbe:
+            exec:
+              command:
+                - "./bin/is-alive"
+            initialDelaySeconds: 120
+            periodSeconds: 5
+          # Mount volumes with certificates. The paths here match the defaults assumed by sherpa
+          volumeMounts:
+            - name: sherpaclientcert
+              mountPath: /client-certs
+            - name: sherpaservercert
+              mountPath: /server-certs
 
-    # The volumes to mount for shipping logs to splunk
-    # General rule is to use path that satisfies the pattern: /home/sfdc-*/logs/**/*.json
-    volumes:
-    - name: logvolbeacon
-      hostPath:
-        path: /home/sfdc-scone-heap-dump-analyser-client-beacon/logs
-    - name: sherpaclientcert
-      maddogCert:
-        type: client
-    - name: sherpaservercert
-      maddogCert:
-        type: server
+      # The volumes to mount for shipping logs to splunk
+      # General rule is to use path that satisfies the pattern: /home/sfdc-*/logs/**/*.json
+      volumes:
+        - name: logvolbeacon
+          hostPath:
+            path: /home/sfdc-scone-heap-dump-analyser-beacon/logs
+        - name: sherpaclientcert
+          maddogCert:
+            type: client
+        - name: sherpaservercert
+          maddogCert:
+            type: server
+        - name: hdastorage
+          hostPath:
+            path: /home/sfdc-heap-dump-analyser/storedFiles
+        - name: logvol
+          hostPath:
+            path: /home/sfdc-mgmt/logs
+
+  loadbalancers:
+    - lbname: heap-dump-analyser
+      function: heap-dump-analyser
+      nodeExposed: false
+      slbenabled: true
+      ports:
+        - port: 8080
+          targetport: 8080
+          lbtype: http # tcp|http|dsr
+          #tls: true
+          #reencrypt: true
+        - port: 15372
+          targetport: 15372
+          lbtype: http
+          #tls: true
+          #reencrypt: true
+        - port: 7020
+          targetport: 7020
+          lbtype: dsr
+          #tls: true
+          #reencrypt: true
+        - port: 7012
+          targetport: 7012
+          lbtype: dsr
+          #tls: true
+          #reencrypt: true
+        - port: 7442
+          targetport: 7442
+          lbtype: dsr
+          #tls: true
+          #reencrypt: true
+        - port: 15373
+          targetport: 15373
+          lbtype: http
+          #tls: true
+          #reencrypt: true
