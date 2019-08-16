@@ -8,7 +8,7 @@ system:
     count: 1
     containers:
     - name: heap-dump-analyser-client-service
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/kfoster/heap-dump-analyser-client:1
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/kfoster/heap-dump-analyser-client:hda-client-2019-08-16-10-23-09
       # If your service doesn't serve HTTP traffic then you can remove the scone-http 8080 port.
       ports:
       - containerPort: 8080
