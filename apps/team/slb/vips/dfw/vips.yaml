@@ -1,48 +1,52 @@
 - lbname: gs0
   servers:
-    - gs0-app1-3-dfw
-    - gs0-app1-6-dfw
-    - gs0-app2-1-dfw
-    - gs0-app2-7-dfw
-    - gs0-app1-2-dfw
-    - gs0-app1-4-dfw
-    - gs0-app2-3-dfw
-    - gs0-app2-5-dfw
-    - gs0-app1-7-dfw
-    - gs0-app1-5-dfw
-    - gs0-app1-8-dfw
-    - gs0-app2-4-dfw
-    - gs0-app2-2-dfw
-    - gs0-app2-10-dfw
-    - gs0-app2-6-dfw
-    - gs0-app2-9-dfw
-    - gs0-app2-8-dfw
-    - gs0-app2-14-dfw
-    - gs0-app2-15-dfw
-    - gs0-app1-15-dfw
-    - gs0-app1-13-dfw
-    - gs0-app1-12-dfw
-    - gs0-app1-14-dfw
-    - gs0-app2-11-dfw
-    - gs0-app1-1-dfw
-    - gs0-app1-9-dfw
-    - gs0-app2-12-dfw
-    - gs0-app1-10-dfw
-    - gs0-app2-13-dfw  
+    - gs0-app1-3-dfw.ops.sfdc.net
+    - gs0-app1-6-dfw.ops.sfdc.net
+    - gs0-app2-1-dfw.ops.sfdc.net
+    - gs0-app2-7-dfw.ops.sfdc.net
+    - gs0-app1-2-dfw.ops.sfdc.net
+    - gs0-app1-4-dfw.ops.sfdc.net
+    - gs0-app2-3-dfw.ops.sfdc.net
+    - gs0-app2-5-dfw.ops.sfdc.net
+    - gs0-app1-7-dfw.ops.sfdc.net
+    - gs0-app1-5-dfw.ops.sfdc.net
+    - gs0-app1-8-dfw.ops.sfdc.net
+    - gs0-app2-4-dfw.ops.sfdc.net
+    - gs0-app2-2-dfw.ops.sfdc.net
+    - gs0-app2-10-dfw.ops.sfdc.net
+    - gs0-app2-6-dfw.ops.sfdc.net
+    - gs0-app2-9-dfw.ops.sfdc.net
+    - gs0-app2-8-dfw.ops.sfdc.net
+    - gs0-app2-14-dfw.ops.sfdc.net
+    - gs0-app2-15-dfw.ops.sfdc.net
+    - gs0-app1-15-dfw.ops.sfdc.net
+    - gs0-app1-13-dfw.ops.sfdc.net
+    - gs0-app1-12-dfw.ops.sfdc.net
+    - gs0-app1-14-dfw.ops.sfdc.net
+    - gs0-app2-11-dfw.ops.sfdc.net
+    - gs0-app1-1-dfw.ops.sfdc.net
+    - gs0-app1-9-dfw.ops.sfdc.net
+    - gs0-app2-12-dfw.ops.sfdc.net
+    - gs0-app1-10-dfw.ops.sfdc.net
+    - gs0-app2-13-dfw.ops.sfdc.net
   ports:
   - port: 443
     targetport: 8090
+    reencrypt: true
     healthport: 8085
     lbtype: http
     healthprotocol: http
     healthpath: /ping.jsp?allBusy
     sticky: 86400
     tls: true
+    tlscertificate: secret_service:BofA-Stmfa-VIP-Certs:gs0.force.com.crt
+    tlskey: kms:1:2:B79A5F5D32C69C340DC39183EA315A164E1E7B3D76B680258E4EED91817177AE:560806ef-7c5e-4529-a1ae-e5b5310b0191
     addheaders:
     - name: "X-Salesforce-VIP"
       value: "SLB"
   - port: 8443
     targetport: 8090
+    reencrypt: true
     healthport: 8085
     lbtype: http
     healthprotocol: http
@@ -50,6 +54,8 @@
     sticky: 86400
     tls: true
     mtls: true
+    tlscertificate: secret_service:BofA-Stmfa-VIP-Certs:gs0.force.com.crt
+    tlskey: kms:1:2:B79A5F5D32C69C340DC39183EA315A164E1E7B3D76B680258E4EED91817177AE:560806ef-7c5e-4529-a1ae-e5b5310b0191
     addheaders:
     - name: "X-Salesforce-VIP"
       value: "SLB"   
@@ -58,4 +64,8 @@
     lbtype: http
     healthprotocol: http
     healthpath: /ping.jsp?allBusy
-
+    removeheaders:
+    - "CipherSuite"
+    addheaders:
+    - name: "X-Salesforce-VIP"
+      value: "SLB"
