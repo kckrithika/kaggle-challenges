@@ -149,3 +149,6 @@ system:
         path: /home/sfdc-beacon/logs
     strategy:
       type: RollingUpdate
+      rollingUpdate:
+        maxSurge: 0
+        maxUnavailable: 1

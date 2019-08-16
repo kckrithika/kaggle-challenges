@@ -75,3 +75,6 @@ system:
         path: /home/sfdc-sherpa/logs
     strategy:
       type: RollingUpdate
+      rollingUpdate:
+        maxSurge: 0
+        maxUnavailable: 1
