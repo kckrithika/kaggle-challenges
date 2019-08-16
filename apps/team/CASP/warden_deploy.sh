@@ -3,33 +3,54 @@
 NEWVERSION=$1
 shift
 
-prd() {
-    sed -i "s/image: dva\/casp\/warden_strata:[0-9]*/image: dva\/casp\/warden_strata:$NEWVERSION/g" prd-warden/manifest.yaml
+warden_prd() {
+    perl -i -pe"s/image: dva\/casp\/warden_strata:[0-9]*/image: dva\/casp\/warden_strata:$NEWVERSION/g" prd-warden/manifest.yaml
+    perl -i -pe"s/image: dva\/casp\/warden_strata:[0-9]*/image: dva\/casp\/warden_strata:$NEWVERSION/g" prd-warden-stage/manifest.yaml
 }
 
-staging() {
-    sed -i "s/image: dva\/casp\/warden_strata:[0-9]*/image: dva\/casp\/warden_strata:$NEWVERSION/g" prd-warden-stage/manifest.yaml
+warden_prod() {
+    perl -i -pe"s/image: dva\/casp\/warden_strata:[0-9]*/image: dva\/casp\/warden_strata:$NEWVERSION/g" prod-warden/manifest.yaml
+    perl -i -pe"s/image: dva\/casp\/warden_strata:[0-9]*/image: dva\/casp\/warden_strata:$NEWVERSION/g" prod-warden-alternate/manifest.yaml
 }
 
-prod() {
-    sed -i "s/image: dva\/casp\/warden_strata:[0-9]*/image: dva\/casp\/warden_strata:$NEWVERSION/g" prod-warden-dfw/manifest.yaml
-    sed -i "s/image: dva\/casp\/warden_strata:[0-9]*/image: dva\/casp\/warden_strata:$NEWVERSION/g" prod-warden-phx/manifest.yaml
-    sed -i "s/image: dva\/casp\/warden_strata:[0-9]*/image: dva\/casp\/warden_strata:$NEWVERSION/g" prod-warden-iad/manifest.yaml
-    sed -i "s/image: dva\/casp\/warden_strata:[0-9]*/image: dva\/casp\/warden_strata:$NEWVERSION/g" prod-warden-ord/manifest.yaml
-    sed -i "s/image: dva\/casp\/warden_strata:[0-9]*/image: dva\/casp\/warden_strata:$NEWVERSION/g" prod-warden-ukb/manifest.yaml
-    sed -i "s/image: dva\/casp\/warden_strata:[0-9]*/image: dva\/casp\/warden_strata:$NEWVERSION/g" prod-warden-par/manifest.yaml
-    sed -i "s/image: dva\/casp\/warden_strata:[0-9]*/image: dva\/casp\/warden_strata:$NEWVERSION/g" prod-warden-frf/manifest.yaml
-    sed -i "s/image: dva\/casp\/warden_strata:[0-9]*/image: dva\/casp\/warden_strata:$NEWVERSION/g" prod-warden-fra/manifest.yaml
-    sed -i "s/image: dva\/casp\/warden_strata:[0-9]*/image: dva\/casp\/warden_strata:$NEWVERSION/g" prod-warden-cdg/manifest.yaml
+warden() {
+    warden_prd
+    warden_prod
+}
+
+maiev_prd() {
+    perl -i -pe"s/image: dva\/maiev-receiver:[0-9]*/image: dva\/maiev-receiver:$NEWVERSION/g" prd-maiev-receiver/manifest.yaml
+}
+
+maiev_prod() {
+    perl -i -pe"s/image: dva\/maiev-receiver:[0-9]*/image: dva\/maiev-receiver:$NEWVERSION/g" prod-maiev-receiver/manifest.yaml
+    perl -i -pe"s/image: dva\/maiev-receiver:[0-9]*/image: dva\/maiev-receiver:$NEWVERSION/g" prod-maiev-receiver-alternate/manifest.yaml
+}
+
+maiev() {
+    maiev_prd
+    maiev_prod
+}
+
+cantor_prd() {
+    perl -i -pe"s/image: dva\/casp\/cantor_strata:[0-9]*/image: dva\/casp\/cantor_strata:$NEWVERSION/g" prd-cantor-grpc-server/manifest.yaml
+}
+
+cantor_prod() {
+    perl -i -pe"s/image: dva\/casp\/cantor_strata:[0-9]*/image: dva\/casp\/cantor_strata:$NEWVERSION/g" prod-cantor-grpc-server/manifest.yaml
+    perl -i -pe"s/image: dva\/casp\/cantor_strata:[0-9]*/image: dva\/casp\/cantor_strata:$NEWVERSION/g" prod-cantor-grpc-server-frf/manifest.yaml
+}
+
+cantor() {
+    cantor_prd
+    cantor_prod
 }
 
 set -e
 
 if [ "$#" = 0 ]
 then
-    prd
-    staging
-    prod
+    warden
     exit
 fi
 
