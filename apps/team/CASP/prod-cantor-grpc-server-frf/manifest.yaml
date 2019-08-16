@@ -14,7 +14,7 @@ system:
           maxUnavailable: 1
       containers:
       - name: prod-cantor-grpc-server-frf
-        image: dva/casp/cantor_strata:jenkins-CASP-cantor-alex-shard-environement-1-itest
+        image: dva/casp/cantor_strata:jenkins-CASP-cantor-PR-439-4-itest
         ports:
         - name: cantor-grpc
           containerPort: 7443
