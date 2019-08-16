@@ -135,6 +135,9 @@ system:
         path: /home/sfdc-sherpa/logs
     strategy:
       type: RollingUpdate
+      rollingUpdate:
+        maxSurge: 0
+        maxUnavailable: 1
   # Enable a load balancer in PRD so we have a stable FQDN to hit from the dev desktops or anywhere without Sherpa/Zookeeper
   # Full FQDN template: {lbname}.{namespace}.{estate}.{kingdom}.slb.sfdc.net
   # Actual FQDN: emailinfra-eaas-lb.emailinfra-sp2.prd-sam.prd.slb.sfdc.net
