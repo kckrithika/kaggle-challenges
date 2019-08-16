@@ -14,7 +14,7 @@ system:
         type: client
     containers:
     - name: estatesservice
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/ydai/estatesservice:ydai-201908131
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/ydai/estatesservice:ydai-20190815
       ports:
       - containerPort: 9090
       livenessProbe:
@@ -32,7 +32,7 @@ system:
       - name: ESTATESSERVICE_PORT
         value: 9090
       - name: ESTATESSERVICE_FUNNEL_ENDPOINT
-        value: $(SFDC_METRICS_SERVICE_HOST)
+        value: http://$(SFDC_METRICS_SERVICE_HOST):$(SFDC_METRICS_SERVICE_PORT)
       - name: ESTATESSERVICE_RPMURL
         value: https://ops0-artifactrepo1-0-$(KINGDOM).data.sfdc.net/artifactory/rpm-prod/
       - name: ESTATESSERVICE_SWAGGERUI_DIRECTORY
