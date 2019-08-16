@@ -3,18 +3,17 @@ apiVersion: v1
 system:
     notifications:
       email:
-        - paul.howden@salesforce.com
-        - akouthoofd@salesforce.com
+        - warden@salesforce.com
     functions:
     - name: warden-func
-      count: 3
+      count: 2
       strategy:
         type: RollingUpdate
         rollingUpdate:
           maxSurge: 0
           maxUnavailable: 1
       containers:
-      - name: prod-warden-fra
+      - name: prod-warden-alternate
         image: dva/casp/warden_strata:400
         ports:
         - name: warden
@@ -40,7 +39,7 @@ system:
           httpGet:
             path: /manage/health
             port: 15372
-          initialDelaySeconds: 120
+          initialDelaySeconds: 180
       volumes:
       - name: log-vol
         hostPath:

@@ -3,9 +3,7 @@ apiVersion: v1
 system:
     notifications:
       email:
-        - pteyer@salesforce.com
-        - paul.howden@salesforce.com
-        - dtupper@salesforce.com
+        - warden@salesforce.com
     functions:
     - name: mysql-func-shard-a
       count: 3
