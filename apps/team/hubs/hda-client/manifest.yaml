@@ -56,8 +56,8 @@ system:
       ports:
       - containerPort: 15373
         name: sherpa-adm
-      - containerPort: 7443
-        name: grpc-tls-in
+      - containerPort: 7012
+        name: grpc-in
       livenessProbe:
         exec:
           command:
