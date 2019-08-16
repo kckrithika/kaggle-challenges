@@ -161,9 +161,9 @@ system:
         - name: ca_service_host
           value: 127.0.0.1
         - name: security_client_dynamickeystore_cadir
-          value: /certs
+          value: /certs/ca
         - name: security_client_dynamickeystore_monitoredDirectory
-          value: /certs
+          value: /certs/client
       ports:
         - containerPort: 8081
         - containerPort: 15371
@@ -172,7 +172,7 @@ system:
           path: /manage/health
           port: 15371
       volumeMounts:
-        - name: server-cert
+        - name: client-cert
           mountPath: /certs
     #####################################################################################
     # NGINX Rev Proxy
