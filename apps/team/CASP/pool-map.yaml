@@ -26,15 +26,16 @@ apps:
   - par/par-sam_warden
   - ukb/ukb-sam_warden
   - phx/phx-sam_warden
-  - frf/frf-sam_warden
   - fra/fra-sam_warden
+ prod-mysql-shard-a-alternate:
+  - frf/frf-sam_warden
  prod-mysql-shard-a-fast:
   - cdg/cdg-sam_warden
   - cdu/cdu-sam_warden
   - syd/syd-sam_warden
   - yhu/yhu-sam_warden
   - yul/yul-sam_warden
- prod-cantor:
+ prod-cantor-grpc-server:
   - dfw/dfw-sam_warden
   - iad/iad-sam_warden
   - ord/ord-sam_warden
@@ -66,29 +67,22 @@ apps:
   - par/par-sam_warden
   - ukb/ukb-sam_warden
   - phx/phx-sam_warden
-  - frf/frf-sam_warden
   - fra/fra-sam_warden
   - cdu/cdu-sam_warden
   - syd/syd-sam_warden
   - yhu/yhu-sam_warden
   - yul/yul-sam_warden
- prod-maiev-receiver-cdg:
-  - cdg/cdg-sam_warden  
- prod-warden-dfw:
-  - dfw/dfw-sam_warden
- prod-warden-iad:
-  - iad/iad-sam_warden
- prod-warden-ord:
-  - ord/ord-sam_warden
- prod-warden-par:
-  - par/par-sam_warden
- prod-warden-ukb:
-  - ukb/ukb-sam_warden
- prod-warden-phx:
-  - phx/phx-sam_warden
- prod-warden-frf:
-  - frf/frf-sam_warden
- prod-warden-fra:
-  - fra/fra-sam_warden
- prod-warden-cdg:
   - cdg/cdg-sam_warden
+ prod-maiev-receiver-alternate:
+  - frf/frf-sam_warden
+ prod-warden:
+  - dfw/dfw-sam_warden
+  - iad/iad-sam_warden
+  - ord/ord-sam_warden
+  - par/par-sam_warden
+  - ukb/ukb-sam_warden
+  - phx/phx-sam_warden
+  - fra/fra-sam_warden
+  - cdg/cdg-sam_warden
+ prod-warden-alternate:
+  - frf/frf-sam_warden

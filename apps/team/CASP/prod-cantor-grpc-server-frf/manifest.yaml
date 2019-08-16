@@ -3,7 +3,7 @@ apiVersion: v1
 system:
     notifications:
       email:
-        - akouthoofd@salesforce.com
+        - warden@salesforce.com
     functions:
     - name: cantor-grpc-server
       count: 2
@@ -14,7 +14,7 @@ system:
           maxUnavailable: 1
       containers:
       - name: prod-cantor-grpc-server-frf
-        image: dva/casp/cantor_strata:jenkins-CASP-cantor-PR-439-4-itest
+        image: dva/casp/cantor_strata:102
         ports:
         - name: cantor-grpc
           containerPort: 7443
