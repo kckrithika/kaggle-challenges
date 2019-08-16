@@ -82,7 +82,7 @@ system:
     # Global Identity Loing and Runtime Service
     #####################################################################################
     - name: gid-runtime-service
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/gid/gid-runtime-service:2e71d26
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/gid/gid-runtime-service:237cd0c
       imagePullPolicy: Always
       env:
       - name: server_use_forward_headers
@@ -91,8 +91,10 @@ system:
         value: 7022
       - name: management_server_port
         value: 15375
+      - name: login_public_url
+        value: https://test.next.login.salesforce.com
       - name: login_vip_url
-        value: https://gidruntimelb.global-identity.xrd-sam.xrd.slb.sfdc.net
+        value: https://gidruntime-internal.global-identity.prd-sam.prd.slb.sfdc.net        
       - name: kms_kingdom
         value: undefined
       - name: kms_role
@@ -134,7 +136,7 @@ system:
   # SLB
   #####################################################################################
   loadbalancers:
-    - lbname: gidruntimelb
+    - lbname: gidruntime-internal
       function: gid-runtime-service
       slbEnabled: true
       ports:
