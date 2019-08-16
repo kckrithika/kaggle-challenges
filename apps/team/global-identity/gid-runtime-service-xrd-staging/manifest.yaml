@@ -133,7 +133,7 @@ system:
   # SLB
   #####################################################################################
   loadbalancers:
-    - lbname: gidruntimelb
+    - lbname: gidruntime-internal
       function: gid-runtime-service
       slbEnabled: true
       ports:
