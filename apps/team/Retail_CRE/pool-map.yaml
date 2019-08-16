@@ -154,6 +154,14 @@ apps:
     - name: iad/iad-sam_customerresolutionengine
   ord.Prod.cre-dds:
     - name: ord/ord-sam_customerresolutionengine
+  hnd.Prod.cre-dds:
+    - name: hnd/hnd-sam_customerresolutionengine
+  ukb.Prod.cre-dds:
+    - name: ukb/ukb-sam_customerresolutionengine
+  par.Prod.cre-dds:
+    - name: par/par-sam_customerresolutionengine
+  frf.Prod.cre-dds:
+    - name: frf/frf-sam_customerresolutionengine
 
   # ======= Swagger ===== #
   prd.CCP_Dev.cre-swagger:
