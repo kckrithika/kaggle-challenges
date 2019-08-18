@@ -5,25 +5,19 @@ system:
     count: 1
     containers:
     - name: cloudatlas
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/c2c/c2c-ca-docker:61196d7
-      command: ["/local-kingdom-wrapper.sh"]
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/c2c/c2c-ca-docker:7a260e2
+      command: ["/opt/pdm/pdm.customer/bin/sam-entrypoint.sh"]
       imagePullPolicy: Always
       env:
-      - name: UBID_HOST_OVERRIDE
-        value: samminionatlasdir1-1-localhost.localhost
-      - name: UBID_DEPLOYMENT_STAGE
-        value: ALL
-      - name: SITE_OVERRIDE
-        value: local-cluster
       - name: server_port
-        value: 7022
+        value: 7030
       - name: management_server_port
         value: 15372
       ports:
       - containerPort: 7030
       - containerPort: 1636
       - containerPort: 1389
-      - containerPort: 8090
+      - containerPort: 8080
       livenessProbe:
         exec:
           command:
@@ -49,8 +43,8 @@ system:
       - port: 1636
         targetport: 1636
         lbtype: tcp
-      - port: 8090
-        targetport: 8090
+      - port: 80
+        targetport: 8080
         lbtype: tcp
       - port: 7030
         targetport: 7030
