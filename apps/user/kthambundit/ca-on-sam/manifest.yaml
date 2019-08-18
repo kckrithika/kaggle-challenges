@@ -34,7 +34,7 @@ system:
 
   loadbalancers:
   - lbname: ca-on-sam
-    function: default
+    function: ca-on-sam
     slbenabled: true
     ports:
       - port: 1389
