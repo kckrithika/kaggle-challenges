@@ -226,6 +226,7 @@ system:
       - containerPort: 2525
       - containerPort: 12060
       - containerPort: 15373
+      - containerPort: 18443
       readinessProbe:
         exec:
           command:
@@ -348,6 +349,8 @@ system:
       targetport: 12060
     - port: 8087
       targetport: 15373
+    - port: 8444
+      targetport: 18443
     slbEnabled: true
   - function: na10-mist61switchboard-prd
     lbname: na10-switchboard-lb
