@@ -5,16 +5,39 @@ system:
     count: 1
     containers:
     - name: cloudatlas
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/gid/ca-gid-sam:v001
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/c2c/c2c-ca-docker:61196d7
+      command: ["/local-kingdom-wrapper.sh"]
+      imagePullPolicy: Always
+      env:
+      - name: UBID_HOST_OVERRIDE
+        value: samminionatlasdir1-1-localhost.localhost
+      - name: UBID_DEPLOYMENT_STAGE
+        value: ALL
+      - name: SITE_OVERRIDE
+        value: local-cluster
+      - name: server_port
+        value: 7022
+      - name: management_server_port
+        value: 15372
       ports:
-      - containerPort: 1389
-      - containerPort: 1636
-      - containerPort: 8090
       - containerPort: 7030
+      - containerPort: 1636
+      - containerPort: 1389
+      - containerPort: 8090
       livenessProbe:
-        httpGet:
-          path: /
-          port: 9090
+        exec:
+          command:
+          - /bin/true
+        initialDelaySeconds: 60
+        periodSeconds: 30
+      readinessProbe:
+        exec:
+          command:
+          - /bin/true
+        initialDelaySeconds: 60
+        periodSeconds: 5
+        failureThreshold: 120
+
   loadbalancers:
   - lbname: ca-on-sam
     function: default
