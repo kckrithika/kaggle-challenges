@@ -1,7 +1,7 @@
 version: v2
 apps:
- my-sam-test:    # this must match the name of your application. It must be lower case.
-  - name: prd/prd-sam  # the SAM Sandbox uses the prd/prd-sam host cluster
-                 # you can also specify other pools
+ ca-on-sam:    
+  - name: xrd/xrd-sampool  
+                   
  gid-runtime-service:
   - name: xrd/xrd-sampool

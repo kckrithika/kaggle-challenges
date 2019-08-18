@@ -1,0 +1,34 @@
+apiVersion: v1
+system:
+  functions:
+  - name: default
+    count: 1
+    containers:
+    - name: cloudatlas
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/gid/ca-gid-sam:v001
+      ports:
+      - containerPort: 1389
+      - containerPort: 1636
+      - containerPort: 8090
+      - containerPort: 7030
+      livenessProbe:
+        httpGet:
+          path: /
+          port: 9090
+  loadbalancers:
+  - lbname: ca-on-sam
+    function: default
+    slbenabled: true
+    ports:
+      - port: 1389
+        targetport: 1389
+        lbtype: tcp
+      - port: 1636
+        targetport: 1636
+        lbtype: tcp
+      - port: 8090
+        targetport: 8090
+        lbtype: tcp
+      - port: 7030
+        targetport: 7030
+        lbtype: tcp
