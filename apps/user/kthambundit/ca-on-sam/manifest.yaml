@@ -1,7 +1,7 @@
 apiVersion: v1
 system:
   functions:
-  - name: default
+  - name: ca-on-sam
     count: 1
     containers:
     - name: cloudatlas
@@ -34,7 +34,7 @@ system:
 
   loadbalancers:
   - lbname: ca-on-sam
-    function: default
+    function: ca-on-sam
     slbenabled: true
     ports:
       - port: 1389
