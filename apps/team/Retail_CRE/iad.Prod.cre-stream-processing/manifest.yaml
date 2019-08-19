@@ -9,7 +9,7 @@ system:
     count: 1
     containers:
     - name: cre-sp
-      image: sfci/cre-fusion/services:1.8.0.3.master.41fede9.15
+      image: sfci/cre-fusion/services:stream-processor.1.9.0.4.master.09c2e64.16
       env:
         - name: PUBLISHING_TOPIC
           value: sfdc.prod.cre__iad.ajna_local__cre_outbound
@@ -41,6 +41,8 @@ system:
           value: production
         - name: OU_NAME
           value: retail-cre.cre-control-plane
+        - name: ENABLE_BATCH_ORPHAN_CHECKS
+          value: true
         - name: JVM_ARGS
           value: "-verbose:gc -XX:+PrintHeapAtGC
                   -XX:+PrintPromotionFailure -XX:+PrintTenuringDistribution -XX:+PrintGCDetails
