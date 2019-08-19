@@ -22,7 +22,6 @@ apps:
  prod-mysql-shard-a:
   - dfw/dfw-sam_warden
   - iad/iad-sam_warden
-  - ord/ord-sam_warden
   - ukb/ukb-sam_warden
   - phx/phx-sam_warden
   - fra/fra-sam_warden
@@ -30,6 +29,7 @@ apps:
   - frf/frf-sam_warden
  prod-mysql-shard-a-fast:
   - par/par-sam_warden
+  - ord/ord-sam_warden
   - cdg/cdg-sam_warden
   - cdu/cdu-sam_warden
   - syd/syd-sam_warden
@@ -61,6 +61,10 @@ apps:
   - frf/frf-sam_warden
   - cdg/cdg-sam_warden
   - fra/fra-sam_warden
+  - cdu/cdu-sam_warden
+  - syd/syd-sam_warden
+  - yhu/yhu-sam_warden
+  - yul/yul-sam_warden
  prod-maiev-receiver:
   - dfw/dfw-sam_warden
   - iad/iad-sam_warden
@@ -85,5 +89,9 @@ apps:
   - phx/phx-sam_warden
   - fra/fra-sam_warden
   - cdg/cdg-sam_warden
+  - cdu/cdu-sam_warden
+  - syd/syd-sam_warden
+  - yhu/yhu-sam_warden
+  - yul/yul-sam_warden
  prod-warden-alternate:
   - frf/frf-sam_warden
