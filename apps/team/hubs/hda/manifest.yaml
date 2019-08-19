@@ -40,9 +40,9 @@ system:
           # FUNCTION_NAMESPACE: The Kubernetes namespace in which the container is running.
           args:
             - -endpoint
-            - $(FUNCTION_NAMESPACE)/$(FUNCTION):DATACENTER_ALLENV:HTTP2
+            - $(FUNCTION_NAMESPACE)/$(FUNCTION):DATACENTER_ALLENV:HTTP2_TLS
             - -endpoint
-            - $(FUNCTION_NAMESPACE)/$(FUNCTION):DATACENTER_ALLENV:HTTP1_TLS
+            - $(FUNCTION_NAMESPACE)/$(FUNCTION):DATACENTER_ALLENV:HTTP1
             - -logging.dir
             - /log
           livenessProbe:
@@ -61,9 +61,9 @@ system:
           ports:
             - containerPort: 15373
               name: sherpa-adm
-            - containerPort: 7012
+            - containerPort: 7443
               name: grpc-in
-            - containerPort: 7442
+            - containerPort: 7014
               name: http-tls-in
           livenessProbe:
             exec:
@@ -118,14 +118,14 @@ system:
           lbtype: dsr
           #tls: true
           #reencrypt: true
-        - port: 7012
-          targetport: 7012
+        - port: 7443
+          targetport: 7443
           lbtype: dsr
           #tls: true
           #reencrypt: true
-        - port: 7442
-          targetport: 7442
-          lbtype: dsr
+        - port: 7014
+          targetport: 7014
+          lbtype: http
           #tls: true
           #reencrypt: true
         - port: 15373
