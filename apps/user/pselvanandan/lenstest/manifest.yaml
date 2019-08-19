@@ -1,0 +1,35 @@
+apiVersion: v1
+
+system:
+  functions:
+  - name: pselvanandan-lenstest
+    count: 1
+    containers:
+    - name: lensui 
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/cre/cre-lens-ui:fb3d223 
+
+      ports:
+      - containerPort: 3000 
+        name: lensui-port
+      livenessProbe:
+        initialDelaySeconds: 120
+        periodSeconds: 30
+        exec:
+          command:
+          - "ls"
+      readinessProbe:
+        exec:
+          command:
+          - "ls"
+        initialDelaySeconds: 110
+        periodSeconds: 5
+
+  loadbalancers:
+  - lbname: lens-ui-lb
+    function: pselvanandan-lenstest
+    slbEnabled: true
+    ports:
+      - port: 8080
+        targetport: 3000
+      - port: 443
+        targetport: 3000
