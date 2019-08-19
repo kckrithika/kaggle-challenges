@@ -31,10 +31,6 @@ system:
         volumeMounts:
         - mountPath: /home/sfdc-casp/logs
           name: log-vol
-        - mountPath: /home/sfdc-casp/pki/client
-          name: maievclientcert
-        - mountPath: /home/sfdc-casp/pki/server
-          name: wardenservercert
         livenessProbe:
           httpGet:
             path: /manage/health
