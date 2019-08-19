@@ -27,6 +27,12 @@ system:
         httpGet:
           path: /manage/ready
           port: 15372
+    # The volumes to mount for shipping logs to splunk
+    # General rule is to use path that satisfies the pattern: /home/sfdc-*/logs/**/*.json
+    volumes:
+      - name: cert
+        maddogCert:
+          type: client
   loadbalancers:
   - lbname: gusbot
     function: gusbot
@@ -43,10 +49,4 @@ system:
         lbtype: http
         #tls: true
         #reencrypt: true
-    # The volumes to mount for shipping logs to splunk
-    # General rule is to use path that satisfies the pattern: /home/sfdc-*/logs/**/*.json
-    volumes:
-      - name: cert
-        maddogCert:
-          type: client
 
