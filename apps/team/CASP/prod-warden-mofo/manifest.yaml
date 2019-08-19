@@ -1,0 +1,56 @@
+apiVersion: v1
+
+system:
+    notifications:
+      email:
+        - warden@salesforce.com
+    functions:
+    - name: warden-func
+      count: 3
+      strategy:
+        type: RollingUpdate
+        rollingUpdate:
+          maxSurge: 0
+          maxUnavailable: 1
+      containers:
+      - name: prod-warden
+        image: dva/casp/warden_strata:400
+        ports:
+        - name: warden
+          containerPort: 8889
+          hostPort: 18889
+        env:
+        - name: BRANCH
+          value: "ops_production"
+        - name: JWT_ENABLED
+          value: "true"
+        - name: NODENAME
+          valueFrom:
+            fieldRef:
+              fieldPath: spec.nodeName
+        volumeMounts:
+        - mountPath: /home/sfdc-casp/logs
+          name: log-vol
+        - mountPath: /home/sfdc-casp/pki/client
+          name: maievclientcert
+        - mountPath: /home/sfdc-casp/pki/server
+          name: wardenservercert
+        livenessProbe:
+          httpGet:
+            path: /manage/health
+            port: 15372
+          initialDelaySeconds: 120
+      volumes:
+      - name: log-vol
+        hostPath:
+          path: /home/sfdc-casp/logs
+
+    loadbalancers:
+    - lbname: warden
+      function: warden-func
+      slbEnabled: true
+      ports:
+        - port: 8889
+          targetport: 8889
+        - port: 80
+          targetport: 8889
