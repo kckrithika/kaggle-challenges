@@ -6,15 +6,15 @@ system:
         - warden@salesforce.com
     functions:
     - name: cantor-grpc-server
-      count: 3
+      count: 2
       strategy:
         type: RollingUpdate
         rollingUpdate:
           maxSurge: 0
           maxUnavailable: 1
       containers:
-      - name: prod-cantor-grpc-server-cdu
-        image: dva/casp/cantor_strata:103
+      - name: prod-cantor-grpc-server-alternate
+        image: dva/casp/cantor_strata:104
         ports:
         - name: cantor-grpc
           containerPort: 7443
