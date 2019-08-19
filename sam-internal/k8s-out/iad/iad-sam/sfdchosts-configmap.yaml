@@ -598,6 +598,39 @@ data:
           "superpod": "none"
         },
         {
+          "bomrolename": "sam_minion_dp",
+          "controlestate": "iad-sam",
+          "devicerole": "samcompute",
+          "estate": "iad-sam_dp",
+          "hostname": "shared0-samminiondp1-1-iad.ops.sfdc.net",
+          "kingdom": "iad",
+          "pod": "none",
+          "rack": "g08-9a",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sam_minion_dp",
+          "controlestate": "iad-sam",
+          "devicerole": "samcompute",
+          "estate": "iad-sam_dp",
+          "hostname": "shared0-samminiondp2-1-iad.ops.sfdc.net",
+          "kingdom": "iad",
+          "pod": "none",
+          "rack": "b10-9b",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sam_minion_dp",
+          "controlestate": "iad-sam",
+          "devicerole": "samcompute",
+          "estate": "iad-sam_dp",
+          "hostname": "shared0-samminiondp3-1-iad.ops.sfdc.net",
+          "kingdom": "iad",
+          "pod": "none",
+          "rack": "j10-9a",
+          "superpod": "none"
+        },
+        {
           "bomrolename": "sam_minion_aqueduct",
           "controlestate": "iad-sam",
           "devicerole": "samcompute",

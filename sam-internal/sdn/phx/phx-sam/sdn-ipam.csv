@@ -244,6 +244,9 @@ shared0-samminionchatbotrt2-9-phx.ops.sfdc.net,10.246.111.204/29,10.214.221.96/2
 shared0-samminiondatapool1-1-phx.ops.sfdc.net,10.220.120.10/29,10.214.232.64/27,q03-01,phx-sam_datapool,65009
 shared0-samminiondatapool1-2-phx.ops.sfdc.net,10.220.120.18/29,10.214.232.0/27,r05-01,phx-sam_datapool,65009
 shared0-samminiondatapool2-1-phx.ops.sfdc.net,10.220.120.2/29,10.214.232.32/27,s05-01,phx-sam_datapool,65009
+shared0-samminiondp1-1-phx.ops.sfdc.net,10.220.3.242/29,10.208.213.64/27,w10-01,phx-sam_dp,65009
+shared0-samminiondp2-1-phx.ops.sfdc.net,10.220.3.234/29,10.208.213.32/27,r05-01,phx-sam_dp,65009
+shared0-samminiondp3-1-phx.ops.sfdc.net,10.220.3.226/29,10.208.213.0/27,d53-01,phx-sam_dp,65009
 shared0-samminioneaas1-1-phx.ops.sfdc.net,10.220.77.2/29,10.208.212.64/27,d44-01,phx-sam_eaas,65009
 shared0-samminioneaas1-2-phx.ops.sfdc.net,10.220.77.10/29,10.208.212.32/27,aa41-02,phx-sam_eaas,65009
 shared0-samminioneaas1-3-phx.ops.sfdc.net,10.220.77.18/29,10.208.212.0/27,aa40-02,phx-sam_eaas,65009
