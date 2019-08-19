@@ -404,7 +404,7 @@
               "phx-sam": ["login-cloudforce-phx.slb.sfdc.net"],
               "dfw-sam": [
                   "login-cloudforce-dfw.slb.sfdc.net",
-                  "gs0-dfw.slb.sfdc.net",
+                  "gs0-bofa-dfw.slb.sfdc.net",
               ],
             },
 
