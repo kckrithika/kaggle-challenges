@@ -3285,10 +3285,12 @@
     },
     {
       "namespaces": [
-        "cloudatlas"
+        "cloudatlas",
+        "global-identity"
       ],
       "access": [
-        "team/CloudAtlas"
+        "team/CloudAtlas",
+        "team/global-identity"
       ],
       "controlEstate": "prd-sam",
       "estate": "prd-sam_cloudatlas",
