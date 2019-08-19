@@ -94,7 +94,7 @@ system:
       - name: login_public_url
         value: https://test.next.login.salesforce.com
       - name: login_vip_url
-        value: https://gidruntime-internal.global-identity.prd-sam.prd.slb.sfdc.net        
+        value: http://gidruntime-internal.global-identity.prd-sam.prd.slb.sfdc.net        
       - name: kms_kingdom
         value: undefined
       - name: kms_role
