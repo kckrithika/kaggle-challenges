@@ -1,0 +1,14 @@
+apiVersion: v1
+
+system:
+  functions:
+  - name: cre-dds
+    count: 0
+    containers:
+    - name: cre-dds
+      image: sfci/cre/cre-dds-spark:1.9.0.2.master.6fd7371.8
+      livenessProbe:
+        exec:
+            command:
+            - ls
+        initialDelaySeconds: 60
