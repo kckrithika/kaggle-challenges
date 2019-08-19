@@ -8,7 +8,7 @@ system:
     count: 1
     containers:
     - name: gusbot-service
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/itony/gusbot:gusbot-2019-08-19-23-11-35
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/itony/gusbot:gusbot-2019-08-19-23-37-38
       # If your service doesn't serve HTTP traffic then you can remove the scone-http 8080 port.
       ports:
       - containerPort: 8080
@@ -17,16 +17,17 @@ system:
         name: grpc-svc
       - containerPort: 15372
         name: scone-mgmt
-      # livenessProbe:
-      #   initialDelaySeconds: 30
-      #   httpGet:
-      #     path: /manage/health
-      #     port: 15372
-      # readinessProbe:
-      #   timeoutSeconds: 10
-      #   httpGet:
-      #     path: /manage/ready
-      #     port: 15372
+      livenessProbe:
+        initialDelaySeconds: 30
+        httpGet:
+          path: /manage/health
+          port: 15372
+      readinessProbe:
+        timeoutSeconds: 10
+        httpGet:
+          path: /manage/ready
+          port: 15372
+
     # The volumes to mount for shipping logs to splunk
     # General rule is to use path that satisfies the pattern: /home/sfdc-*/logs/**/*.json
     volumes:
@@ -34,19 +35,18 @@ system:
         maddogCert:
           type: client
   loadbalancers:
-  - lbname: gusbot
-    function: gusbot
-    nodeExposed: false
-    slbenabled: true
-    ports:
-      - port: 8080
-        targetport: 8080
-        lbtype: http
-        #tls: true
-        #reencrypt: true
-      - port: 15372 
-        targetport: 15372
-        lbtype: http
-        #tls: true
-        #reencrypt: true
-
+    - lbname: gusbot
+      function: gusbot
+      nodeExposed: false
+      slbenabled: true
+      ports:
+        - port: 8080
+          targetport: 8080
+          lbtype: http
+          #tls: true
+          #reencrypt: true
+        - port: 15372
+          targetport: 15372
+          lbtype: http
+          #tls: true
+          #reencrypt: true
