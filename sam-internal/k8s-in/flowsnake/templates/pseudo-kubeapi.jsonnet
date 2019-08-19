@@ -9,13 +9,13 @@ if estate == "prd-data-flowsnake" then ({
     kind: "Deployment",
     metadata: {
         labels: {
-            name: "snapshotconsumer",
+            name: "pseudo-kubeapi",
         },
-        name: "snapshotconsumer",
+        name: "pseudo-kubeapi",
         namespace: "flowsnake",
     },
     spec: {
-        replicas: 1,
+        replicas: 5,
         selector: {
             matchLabels: {
                 name: label_node.name,
@@ -26,45 +26,39 @@ if estate == "prd-data-flowsnake" then ({
             metadata: {
                 labels: {
                     apptype: "control",
-                    name: "snapshotconsumer",
-                    flowsnakeOwner: "dva-transform",
-                    flowsnakeRole: "SnapshotConsumer",
+                    name: "pseudo-kubeapi",
+                    app: "pseudo-kubeapi",
                 },
                 namespace: "flowsnake",
             },
             spec: {
                 containers: [{
-                    name: "snapshotconsumer",
-                    # From https://git.soma.salesforce.com/dva-transformation/sam/tree/support-replication-controllers
-                    image: flowsnake_images.snapshot_consumer,
+                    name: "virtual-api",
+                    image: flowsnake_images.pseudo_kubeapi,
                     command: [
-                        "/sam/snapshotconsumer",
-                        "--config=/config/snapshotconsumer.json",
-                        "--hostsConfigFile=/sfdchosts/hosts.json",
-                        "-v=3",
+                        "/sam/virtual-api",
+                        "--sql-db-host=mysql-service.flowsnake.svc.cluster.local",
+                        "--sql-db-port=3306",
+                        "--sql-db-name=sam_kube_resource",
+                        "--sql-db-pass-file=/var/secrets/pseudo-api",
+                        "--sql-db-user=pseudo-api",
+                        "--sql-db-resources-table=k8s_resource",
+                        "--v=4",
+                        "--alsologtostderr",
+                        "--insecure-port=7002",
+                        "--passthrough-api-server=k8sproxy.sam-system.prd-sam.prd.slb.sfdc.net:5000",
+                        "--passthrough-all-cluster=flowsnake",
+                        "--secret-passthrough-namespace=kube-system",
                     ],
                     volumeMounts: configs.filter_empty([
-                        configs.sfdchosts_volume_mount,
-                        configs.maddog_cert_volume_mount,
-                        configs.cert_volume_mount,
-                        configs.kube_config_volume_mount,
-                        configs.config_volume_mount,
                         {
-                            mountPath: "/var/mysqlPwd",
+                            mountPath: "/var/secrets",
                             name: "mysql-passwords",
                             readOnly: true,
                         },
                     ]),
-                    env: [
-                        configs.kube_config_env,
-                    ],
                 }],
                 volumes: configs.filter_empty([
-                    configs.sfdchosts_volume,
-                    configs.maddog_cert_volume,
-                    configs.cert_volume,
-                    configs.kube_config_volume,
-                    configs.config_volume("snapshotconsumer"),
                     {
                         secret: {
                             defaultMode: 420,

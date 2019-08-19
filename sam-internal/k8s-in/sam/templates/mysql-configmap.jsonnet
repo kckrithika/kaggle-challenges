@@ -644,12 +644,18 @@ if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" || configs.
 |||,
 },
     kind: "ConfigMap",
-    metadata: {
+    metadata: if utils.is_flowsnake_cluster(configs.estate) then {
+        labels: {
+            app: "mysql",
+                },
+        name: "mysql",
+        namespace: "flowsnake",
+    } else {
         labels: {
             app: "mysql-inmem",
         },
         name: "mysql-inmem",
-        namespace: if configs.estate == "prd-data-flowsnake" then "flowsnake" else "sam-system",
+        namespace: "sam-system",
     },
     apiVersion: "v1",
 } else "SKIP"

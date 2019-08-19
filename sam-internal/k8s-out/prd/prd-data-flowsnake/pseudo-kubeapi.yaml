@@ -1,0 +1,47 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  labels:
+    name: pseudo-kubeapi
+  name: pseudo-kubeapi
+  namespace: flowsnake
+spec:
+  replicas: 5
+  selector:
+    matchLabels:
+      apptype: control
+      name: pseudo-kubeapi
+  template:
+    metadata:
+      labels:
+        app: pseudo-kubeapi
+        apptype: control
+        name: pseudo-kubeapi
+      namespace: flowsnake
+    spec:
+      containers:
+      - command:
+        - /sam/virtual-api
+        - --sql-db-host=mysql-service.flowsnake.svc.cluster.local
+        - --sql-db-port=3306
+        - --sql-db-name=sam_kube_resource
+        - --sql-db-pass-file=/var/secrets/pseudo-api
+        - --sql-db-user=pseudo-api
+        - --sql-db-resources-table=k8s_resource
+        - --v=4
+        - --alsologtostderr
+        - --insecure-port=7002
+        - --passthrough-api-server=k8sproxy.sam-system.prd-sam.prd.slb.sfdc.net:5000
+        - --passthrough-all-cluster=flowsnake
+        - --secret-passthrough-namespace=kube-system
+        image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/qcai/virtual-api:2019_08_06_26d0593
+        name: virtual-api
+        volumeMounts:
+        - mountPath: /var/secrets
+          name: mysql-passwords
+          readOnly: true
+      volumes:
+      - name: mysql-passwords
+        secret:
+          defaultMode: 420
+          secretName: mysql-passwords

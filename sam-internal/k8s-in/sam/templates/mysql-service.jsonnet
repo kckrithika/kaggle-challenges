@@ -2,7 +2,7 @@ local configs = import "config.jsonnet";
 local samimages = (import "samimages.jsonnet") + { templateFilename:: std.thisFile };
 local utils = import "util_functions.jsonnet";
 
-if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" || configs.estate == "prd-sam" || configs.estate == "prd-samtwo" then
+if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" || configs.estate == "prd-sam" || configs.estate == "prd-samtwo" || configs.estate == "prd-data-flowsnake" then
 {
     apiVersion: "v1",
     items: [
@@ -18,7 +18,7 @@ if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" || configs.
                 labels: {
                     app: "mysql-pure-cache",
                 },
-                name: "mysql-inmem-read",
+                name: if configs.estate == "prd-data-flowsnake" then "mysql" else "mysql-inmem-read",
                 namespace: if configs.estate == "prd-data-flowsnake" then "flowsnake" else "sam-system",
             },
             spec: {
@@ -54,8 +54,8 @@ if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" || configs.
                     sam_function: "mysql-pure-cache",
                     sam_loadbalancer: "mysql-pure-cache",
                 },
-                name: "mysql-inmem-service",
-                namespace: "sam-system",
+                name: if configs.estate == "prd-data-flowsnake" then "mysql-service" else "mysql-inmem-service",
+                namespace: if configs.estate == "prd-data-flowsnake" then "flowsnake" else "sam-system",
             },
             spec: {
                 clusterIP: "None",

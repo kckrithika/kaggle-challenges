@@ -1,7 +1,7 @@
 local configs = import "config.jsonnet";
 local samimages = (import "samimages.jsonnet") + { templateFilename:: std.thisFile };
 local utils = import "util_functions.jsonnet";
-local madkub = (import "sammadkub.jsonnet") + { templateFilename:: std.thisFile };
+local madkub = (import "sam/sammadkub.jsonnet") + { templateFilename:: std.thisFile };
 
 local certDirs = ["cert1"];
 
@@ -338,7 +338,7 @@ if configs.estate == "prd-sam" || configs.estate == "prd-samdev" || configs.esta
                             {
                               configMap: {
                                   defaultMode: 420,
-                                  name: "mysql-inmem",
+                                  name: if configs.estate == "prd-data-flowsnake" then "mysql" else "mysql-inmem",
                                 },
                               name: "config-map",
                             },
