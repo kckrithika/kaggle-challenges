@@ -23,6 +23,7 @@ system:
       - --cluster.scraper.delayMs=120000
       - --healthIndicator.maxThreadCount=1300
       - --metrics.sherpaFunnelServiceURL=http://ajnafunneldirecttls.funnel.localhost.mesh.force.com:5442
+      - --authz.dest=authz-svc.service-mesh.localhost.mesh.force.com:5443
       ############################# PRODUCTION CONFIGURATION - OVERRIDDEN VALUES ######################
       # The following configuration exists in production manifests as well with different values. 
       - --metrics.maxNumberOfCollectedMetrics=400000
@@ -40,8 +41,6 @@ system:
       - --listeners.rate-limit-enabled-clusters[4]=retail-setup.retail-rsui
       - --listeners.rate-limit-enabled-clusters[5]=cloudatlas-prd-dev-service.cloudatlas
       - --listeners.rate-limit-enabled-clusters[6]=gid-runtime-service.global-identity
-      # Authorization Service
-      - --authz.dest=authz-svc.service-mesh.localhost.mesh.force.com:5443
 
       ############################ EXAMPLE CONFIGURATION ##############################################
       # This section exists to show how some features can be configured.
