@@ -6,6 +6,10 @@ system:
     count: 3
     identity:
       serviceName: retail-setup
+    labels:
+      app: retail-setup
+    annotations:
+      "routing.mesh.sfdc.net/enabled": "true"
     volumes:
     - name: sherpa-log-volume
       hostPath:
@@ -24,12 +28,6 @@ system:
     - name: logvol
       hostPath:
         path: /home/sfdc-retail/logs
-    - name: consumer-key
-      k4aSecret:
-        secretName: rsui-consumer-key
-    - name: consumer-secret
-      k4aSecret:
-        secretName: rsui-consumer-secret
     - name: oauth-keys
       k4aSecret: 
         secretName: rsui-oauth-keys
@@ -42,7 +40,7 @@ system:
 
     containers:
     - name: rsui-production-ukb
-      image: sfci/retail/retail-setup:0.1.8.104 # docker image
+      image: sfci/retail/retail-setup:0.1.9 # docker image
       ports:
       - containerPort: 7022
         name: rsui-in-http1
@@ -83,16 +81,8 @@ system:
         value: /servercerts/ca/cacerts.pem
       - name: SFDC_ENVIRONMENT
         value: prod
-      - name: TENANT_SOURCE_KEYS
-        value: core/prod/00De0000005WbtkEAC
-      - name: TENANT_SOURCE_NAMES
-        value: Service Org
       - name: TENANT_CANONICAL
         value: mds/prod/ST0000000000001
-      - name: TENANT_SUPER
-        value: core/prod/00De0000005WbtaEAC
-      - name: TENANT_SERVICE
-        value: core/prod/00De0000005WbtaEAC
       - name: CRE_SERVER_TARGET
         value: http://cre-api.retail-cre.localhost.mesh.force.com:5442
       - name: C2C_PATH
@@ -103,10 +93,6 @@ system:
         value: https://test.salesforce.com
       - name: RSUI_OAUTH_CALLBACK
         value: https://ukb.salesforce-hub.com/service/oauth/callback 
-      - name: OAUTH_CONSUMER_KEY_FILE_PATH
-        value: secrets/consumer-key/rsui-consumer-key.key
-      - name: OAUTH_CONSUMER_SECRET_FILE_PATH
-        value: secrets/consumer-secret/rsui-consumer-secret.key
       - name: OAUTH_SECRETS_FILE_PATH
         value: secrets/oauth-keys/rsui-oauth-keys.json
       - name: SECURITY_ENCRYPTION_KEY1_PATH
@@ -171,12 +157,6 @@ system:
       #mount splunk logs mount
       - name: logvol
         mountPath: /home/retail-setup/logs
-      - name: consumer-key
-        mountPath: /home/retail-setup/secrets/consumer-key
-        readOnly: true
-      - name: consumer-secret
-        mountPath: /home/retail-setup/secrets/consumer-secret
-        readOnly: true
       - name: oauth-keys
         mountPath: /home/retail-setup/secrets/oauth-keys
         readOnly: true
