@@ -15,7 +15,7 @@
      targetport: 443
      lbtype: http
      tls: true
-     reencrypt: false     
+     reencrypt: true     
 - lbname: coverage-pipeline-stratasonar
   servers:
    - strata-sonarqube.eng.sfdc.net
