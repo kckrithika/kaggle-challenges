@@ -576,6 +576,39 @@ data:
           "superpod": "none"
         },
         {
+          "bomrolename": "sam_minion_dp",
+          "controlestate": "ukb-sam",
+          "devicerole": "samcompute",
+          "estate": "ukb-sam_dp",
+          "hostname": "shared0-samminiondp1-1-ukb.ops.sfdc.net",
+          "kingdom": "ukb",
+          "pod": "none",
+          "rack": "p30-ks32",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sam_minion_dp",
+          "controlestate": "ukb-sam",
+          "devicerole": "samcompute",
+          "estate": "ukb-sam_dp",
+          "hostname": "shared0-samminiondp2-1-ukb.ops.sfdc.net",
+          "kingdom": "ukb",
+          "pod": "none",
+          "rack": "l28-ks32",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sam_minion_dp",
+          "controlestate": "ukb-sam",
+          "devicerole": "samcompute",
+          "estate": "ukb-sam_dp",
+          "hostname": "shared0-samminiondp3-1-ukb.ops.sfdc.net",
+          "kingdom": "ukb",
+          "pod": "none",
+          "rack": "m09-ks31",
+          "superpod": "none"
+        },
+        {
           "bomrolename": "sam_minion_aqueduct",
           "controlestate": "ukb-sam",
           "devicerole": "samcompute",

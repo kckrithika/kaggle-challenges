@@ -215,6 +215,9 @@ shared0-samminioncustomerresolutionengine3-5-iad.ops.sfdc.net,10.222.231.82/29,1
 shared0-samminiondatapool1-1-iad.ops.sfdc.net,10.222.128.162/29,10.208.64.32/27,h03-02,iad-sam_datapool,65009
 shared0-samminiondatapool1-2-iad.ops.sfdc.net,10.222.128.170/29,10.208.64.0/27,a12-02,iad-sam_datapool,65009
 shared0-samminiondatapool2-1-iad.ops.sfdc.net,10.222.128.178/29,10.208.64.64/27,j11-02,iad-sam_datapool,65009
+shared0-samminiondp1-1-iad.ops.sfdc.net,10.190.2.10/29,10.208.65.160/27,g08-02,iad-sam_dp,65009
+shared0-samminiondp2-1-iad.ops.sfdc.net,10.190.2.2/29,10.208.65.128/27,b10-01,iad-sam_dp,65009
+shared0-samminiondp3-1-iad.ops.sfdc.net,10.190.2.18/29,10.208.65.192/27,j10-02,iad-sam_dp,65009
 shared0-samminiongater1-1-iad.ops.sfdc.net,10.222.215.226/29,10.213.136.128/27,j06-02,iad-sam_gater,65009
 shared0-samminiongater1-2-iad.ops.sfdc.net,10.222.215.194/29,10.213.136.32/27,d12-02,iad-sam_gater,65009
 shared0-samminiongater1-3-iad.ops.sfdc.net,10.222.215.218/29,10.213.136.96/27,h14-02,iad-sam_gater,65009
