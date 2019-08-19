@@ -9,20 +9,22 @@ system:
       count: 0
       containers:
         - name: cre-control-plane
-          image: sfci/cre-fusion/services:1.8.1.1.master.be8a84d.22
+          image: sfci/cre-fusion/services:controlplane.1.9.0.4.master.09c2e64.16
           env:
             ####################################################################################################
             ############################   ENGINE/DDS FLOWSNAKE ARTIFACTS ( Most frequently changed ) ##########
             ####################################################################################################
-            - name: IMPORT_FLOWSNAKE_ARTIFACT
-              value: ops0-artifactrepo1-0-ord.data.sfdc.net/sfci/cre/cre-engine:1.8.0.4.master.7eb3a4f.7
+            - name: INGEST_FLOWSNAKE_ARTIFACT
+              value: ops0-artifactrepo1-0-ord.data.sfdc.net/sfci/cre/cre-engine:1.9.0.0.master.3718f20.10
             - name: SAVE_FLOWSNAKE_ARTIFACT
-              value: ops0-artifactrepo1-0-ord.data.sfdc.net/sfci/cre/cre-dds-spark:1.8.3.0.master.5773d45.5
+              value: ops0-artifactrepo1-0-ord.data.sfdc.net/sfci/cre/cre-dds-spark:1.9.0.2.master.6fd7371.8
             - name: EXPORT_FLOWSNAKE_ARTIFACT
-              value: ops0-artifactrepo1-0-ord.data.sfdc.net/sfci/cre/cre-dds-spark:1.8.3.0.master.5773d45.5
+              value: ops0-artifactrepo1-0-ord.data.sfdc.net/sfci/cre/cre-dds-spark:1.9.0.2.master.6fd7371.8
             ####################################################################################################
             ####################################### GLOBAL SHARED VALUES #######################################
             ####################################################################################################
+            - name: CONTROL_PLANE_ENDPOINT
+              value: http://cre-control-plane.retail-cre.localhost.mesh.force.com:5442
             - name: SFDC_ENVIRONMENT
               value: prod
             - name: METRICS_KAFKA_ENABLED
@@ -40,12 +42,14 @@ system:
             - name: MAX_FLOWSNAKE_ENVIRONMENTS
               value: 25
             ####################################################################################################
-            ####################################### IMPORT environment variables ###############################
+            ####################################### INGEST environment variables ###############################
             ####################################################################################################
-            - name: IMPORT_CRE_APPLICATION_NAME
+            - name: INGEST_CRE_APPLICATION_NAME
               value: cre-engine
-            - name: IMPORT_K4A_VAULT
+            - name: INGEST_K4A_VAULT
               value: cre-engine-na-1
+            - name: INGEST_ADDITIONAL_JVM_ARGS
+              value: "-Dfile.encoding=UTF-8 -Djars=/opt/cre/cre-engine.jar -XX:+UseG1GC -verbose:jni -Dscala.concurrent.context.numThreads=x4 -Dspark.task.maxFailures=16"
             ####################################################################################################
             ####################################### SAVE environment variables ###############################
             ####################################################################################################
@@ -55,11 +59,15 @@ system:
               value: cre-engine
             - name: SAVE_K4A_VAULT
               value: cre-dds-na-1
+            - name: SAVE_ADDITIONAL_JVM_ARGS
+              value: "-Dspark.sql.shuffle.partitions=500 -Dscala.concurrent.context.numThreads=x4 -Dspark.task.maxFailures=16"
             ####################################################################################################
             ####################################### EXPORT environment variables ###############################
             ####################################################################################################
             - name: EXPORT_CRE_APPLICATION_NAME
               value: cre-engine
+            - name: EXPORT_ADDITIONAL_JVM_ARGS
+              value: "-Dspark.sql.shuffle.partitions=500 -Dscala.concurrent.context.numThreads=x4 -Dspark.task.maxFailures=16"
             ####################################################################################################
             ##################################### APP Config environment variables #############################
             ####################################################################################################
@@ -79,13 +87,15 @@ system:
             - name: STREAM_PROCESSING_ENDPOINT
               value: cre-sp.retail-cre.localhost.mesh.force.com:5442
             - name: OU_NAME
-              value: app, retail-cre.cre-sp
+              value: app, retail-cre.cre-sp, retail-cre.cre-engine
             - name: GDOT_ENVIRONMENT
               value: production
             - name: GDOT_PRODUCTION
               value: false
             - name: GDOT_PROVISIONING_USER_NAME
               value: creprodprovisioner
+            - name: CRE_API_ENDPOINT
+              value: http://cre-api.retail-cre.localhost.mesh.force.com:5442
             ####################################################################################################
             ####################################### PERF environment variables #################################
             ####################################################################################################
