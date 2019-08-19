@@ -6,7 +6,7 @@ system:
     count: 1
     containers:
     - name: lensui 
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/cre/cre-lens-ui@sha256:7841d5e05bee033c03f9d26da7f0d23a0b5a9163db162187a82fe08089d2d8fc
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cre/cre-lens-ui:6883d25
       ports:
       - containerPort: 3000 
         name: lensui-port
