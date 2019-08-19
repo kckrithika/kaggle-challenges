@@ -7,7 +7,7 @@ apiVersion: v1
 system:
   functions:
   - containers:
-    - image: ops0-artifactrepo2-0-prd.data.sfdc.net/sfci/insights/moanaengine:master-2019.08.a.81-eb6ec67
+    - image: ops0-artifactrepo2-0-prd.data.sfdc.net/sfci/insights/moanaengine:master-2019.08.b.88-a3666a5
       livenessProbe:
         exec:
           command: [ls]
@@ -59,18 +59,8 @@ system:
       - {name: MANAGEMENT_SERVER_PORT, value: '15372'}
       - {name: LOGGING_JSON_STDOUT_LEVEL, value: ALL}
       - {name: LOGGING_STDERR_LEVEL, value: ALL}
-      - {name: MOANA_SPARK_ENGINE_IMAGE, value: 'ops0-artifactrepo2-0-prd.data.sfdc.net/sfci/insights/moanaengine:master-2019.08.a.81-eb6ec67'}
+      - {name: MOANA_SPARK_ENGINE_IMAGE, value: 'ops0-artifactrepo2-0-prd.data.sfdc.net/sfci/insights/moanaengine:master-2019.08.b.88-a3666a5'}
       - {name: KAFKA_GROUP_ID, value: moana-jobcontroller-master}
-      - {name: K8S_SPARK_OVERRIDES, value: '{"spark.eventLog.dir": "s3a://moana-spark-history//",
-          "spark.eventLog.enabled": "true", "spark.executor.extraJavaOptions": "-XX:MaxDirectMemorySize=256M
-          -XX:ReservedCodeCacheSize=128M -XX:MaxMetaspaceSize=128M -XX:+UseG1GC -verbose:gc
-          -XX:+PrintGCDateStamps -XX:+PrintGCDetails -XX:+UseCompressedOops -Djdk.nio.maxCachedBufferSize=262144",
-          "spark.hadoop.fs.s3a.connection.ssl.enabled": "true", "spark.hadoop.fs.s3a.endpoint":
-          "s3-us-west-2.amazonaws.com", "spark.hadoop.fs.s3a.proxy.host": "public0-proxy1-0-prd.data.sfdc.net",
-          "spark.hadoop.fs.s3a.proxy.port": "8080", "spark.hadoop.fs.s3a.server-side-encryption-algorithm":
-          "SSE-KMS", "spark.hadoop.fs.s3a.server-side-encryption.key": "ea96b117-8eee-4314-b214-8a125eb5242e",
-          "spark.shuffle.accurateBlockThreshold": "1048576", "spark.shuffle.io.preferDirectBufs":
-          "false", "spark.ui.enabled": "false"}'}
       - {name: DEPLOYMENT_ID, value: prd-master}
       - {name: JAVA_OPTS, value: '-server -XX:MaxMetaspaceSize=512m -Xmx2048m -Xms2048m'}
       - {name: SIZING_MEMORY_OVERHEAD, value: '1024'}
