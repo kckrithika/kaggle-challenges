@@ -14,9 +14,6 @@ system:
     - name: cert
       maddogCert:
         type: client
-    - name: secretvol
-      k4aSecret:
-        secretName: coreappjmx
     - name: logvol
       hostPath:
         path: /home/sfdc-mgmt/logs
@@ -44,9 +41,6 @@ system:
       volumeMounts:
       - name: cert
         mountPath: /certs
-      - name: secretvol
-        mountPath: /secrets/service-config/secure/
-        readOnly: true
       ports:
         - containerPort: 8080
           name: scone-http
