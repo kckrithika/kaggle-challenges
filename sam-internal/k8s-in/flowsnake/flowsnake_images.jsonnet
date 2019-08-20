@@ -62,7 +62,9 @@ local utils = import "util_functions.jsonnet";
                 # --- flag C (and place only ... ---
                 # --- flag D (one flag between ... ---
                 # --- flag E (each pair. ... ---
+                next_analysis_script: "",
                 # --- flag F (Their only purpose ... ---
+                watchdog_spark_operator_image_tag: "jenkins-dva-transformation-spark-on-k8s-sample-apps-hbae-watchdog-1-itest",
                 # --- flag G (is to assist ... ---
                 # --- flag H (git's diff logic ... ---
                 # --- flag I (to reduce the ---

@@ -24,6 +24,8 @@ data:
           "DockerDaemon": "/test-docker.sh"
         },
         "SparkOperatorTest": {
+          "HbasePhoenixSparkKingdomPerfTest": "/watchdog-spark-scripts/analysis.py --hostname $NODENAME --metrics --sfdchosts /sfdchosts/hosts.json --watchdog-config /config/watchdog.json --command /watchdog-spark-scripts/check-spark-operator.sh --hbase-cluster kingdom-perf /strata-test-specs-in/hbase-integration.jsonnet",
+          "HbasePhoenixSparkKingdomTestTest": "/watchdog-spark-scripts/analysis.py --hostname $NODENAME --metrics --sfdchosts /sfdchosts/hosts.json --watchdog-config /config/watchdog.json --command /watchdog-spark-scripts/check-spark-operator.sh --hbase-cluster kingdom-test /strata-test-specs-in/hbase-integration.jsonnet",
           "ImpersonationProxyMinimalTest": "/watchdog-spark-scripts/check-impersonation.sh /watchdog-spark-scripts/kubeconfig-impersonation-proxy",
           "ImpersonationProxySparkTest": "/watchdog-spark-scripts/analysis.py --hostname $NODENAME --metrics --sfdchosts /sfdchosts/hosts.json --watchdog-config /config/watchdog.json --command /watchdog-spark-scripts/check-spark-operator.sh --kubeconfig /watchdog-spark-scripts/kubeconfig-impersonation-proxy /strata-test-specs-in/basic-spark-impersonation.jsonnet",
           "SparkOperatorTest": "/watchdog-spark-scripts/analysis.py --hostname $NODENAME --metrics --sfdchosts /sfdchosts/hosts.json --watchdog-config /config/watchdog.json --command /watchdog-spark-scripts/check-spark-operator.sh /strata-test-specs-in/basic-spark-pi.jsonnet"
