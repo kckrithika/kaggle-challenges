@@ -1,0 +1,26 @@
+## ##
+## This VIP definition creates a VIP named predict-relmgt-tools-gcp-xrd.slb.sfdc.net
+- lbname: predict
+# servers specifies the pool members for the VIP
+  servers:
+   - predictor-01.eng.sfdc.net
+   - predictor-02.eng.sfdc.net
+   - predictor-03.eng.sfdc.net
+  ports:
+   - port: 80
+     targetport: 80
+     lbtype: http
+     healthport: 80
+     healthpath: /hello
+     healthprotocol: http
+     # tls indicates if the connection between the client and the VIP should be encrypted.
+     tls: false
+     # reencrypt indicates if the connection between the load balancer and the backend should be 
+     # encrypted. For end-to-end encryption, both tls and reencrypt should be set to true.
+     #reencrypt: false
+     # vipmaxrps indicates the total requests per second that the VIP will serve.
+     vipmaxrps: 100
+     # clientmaxrps specifies the total requests per second that a given client IP may issue.
+     clientmaxrps: 2
+     # responserate, in MB per second, limits the rate of response transmission to a client.
+     responserate: 100
