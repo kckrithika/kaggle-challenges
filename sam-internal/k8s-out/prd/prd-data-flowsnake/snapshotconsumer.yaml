@@ -29,7 +29,7 @@ spec:
         env:
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig-platform
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/hypersam:sam-0002052-bc0d9ea5
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/sam/hypersam:2782-642a31c27d65c41109e7abe97ab07c984fe6385a
         name: snapshotconsumer
         volumeMounts:
         - mountPath: /sfdchosts
