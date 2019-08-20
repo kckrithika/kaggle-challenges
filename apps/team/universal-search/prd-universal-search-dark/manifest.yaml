@@ -102,9 +102,9 @@ system:
       image: sfci/servicelibs/beacon:853c4db9f14805018be6f5e7607ffe65b5648822
       args:
       - -endpoint
-      - universal-search/universal-search-dark:DATACENTER_ALLENV:7442
+      - universal-search/universal-search-dark:DATACENTER_ALLENV:7443
       - -endpoint
-      - universal-search/universal-search-dark-notls:DATACENTER_ALLENV:7014
+      - universal-search/universal-search-dark-notls:DATACENTER_ALLENV:7012
       livenessProbe:
         initialDelaySeconds: 5
         exec:
