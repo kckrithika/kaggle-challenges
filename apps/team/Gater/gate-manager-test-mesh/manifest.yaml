@@ -23,10 +23,6 @@ system:
       - --logging.json.stdout.level=ALL
       - --logging.sfdc.level=OFF
       - --logging.json.level=OFF
-      - --metrics.serviceName=gater-mesh
-      - --metrics.container=gater-mesh
-      - --metrics.domain=gater-mesh
-      - --scone.detectsidecars=true
       ports:
       - containerPort: 7020
       - containerPort: 9522
