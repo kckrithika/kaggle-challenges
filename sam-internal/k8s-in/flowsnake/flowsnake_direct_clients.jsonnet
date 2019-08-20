@@ -100,6 +100,8 @@ local cre_production = {
                 namespace: "retail-cre",
                 pki_namespace: "retail-cre",
                 users: [
+                    "retail-cre.pmadisetti",
+                    "retail-cre.lbackstrom",
                     "retail-cre.akrishna",
                     "retail-cre.blatorre",
                     "retail-cre.eantoun",

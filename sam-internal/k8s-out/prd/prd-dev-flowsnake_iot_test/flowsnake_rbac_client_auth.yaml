@@ -142,6 +142,10 @@ items:
     name: client-cluster-role
   subjects:
   - kind: User
+    name: retail-cre.pmadisetti
+  - kind: User
+    name: retail-cre.lbackstrom
+  - kind: User
     name: retail-cre.akrishna
   - kind: User
     name: retail-cre.blatorre
@@ -191,6 +195,10 @@ items:
     kind: Role
     name: flowsnake-client-retail-cre-Role
   subjects:
+  - kind: User
+    name: retail-cre.pmadisetti
+  - kind: User
+    name: retail-cre.lbackstrom
   - kind: User
     name: retail-cre.akrishna
   - kind: User
