@@ -195,9 +195,7 @@ system:
   loadbalancers:
     - lbname: cre-control-plane-lb
       function: cre-control-plane
-      nodeExposed: true
       slbEnabled: true
       ports:
-        - port: 8094
-          targetport: 8080
-
+        - port: 7442
+          targetport: 7442
