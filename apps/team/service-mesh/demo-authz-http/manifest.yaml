@@ -1,0 +1,88 @@
+apiVersion: v1
+
+system:
+  notifications:
+    email:
+    - electron@salesforce.com
+    - aman.gulati@salesforce.com
+  functions:
+  - name: demo-authz-http
+    count: 1
+    annotations:
+      "sherpa-injector.service-mesh/inject": "enabled"
+    containers:
+    - name: demo-authz-http
+      image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/electron_sam:72
+      args:
+      - --extra-authz-clients=dns=test-jwt.sfdc-role,uri=spiffe://salesforce.com/ns/service-mesh/sa/demo-authz-client
+      - --authz-paths=opt/identity/authz/test-internal/,opt/identity/authz/
+      env:
+      - name: SFDC_ENVIRONMENT
+        value: mesh
+      - name: FAKE_ENV_VAR_INCREMENT_TO_TRIGGER_SAM_DEPLOY
+        value: "1"        
+      resources:
+        limits: { cpu: "1", memory: "2Gi" }
+        requests: { cpu: "1", memory: "2Gi" }
+      ports:
+      - containerPort: 7020
+        name: grpc-svc
+      - containerPort: 7022
+        name: http-svc
+      livenessProbe:
+        exec:
+          command: ["/bin/true"]
+        initialDelaySeconds: 20
+      readinessProbe:
+        httpGet:
+          path: /v1/health
+          port: 7022
+        initialDelaySeconds: 30
+        periodSeconds: 5
+        timeoutSeconds: 4
+    - name: demo-authz-grpc-client
+      image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/electron_client:72
+      args:
+      - -endpoint=localhost:7020
+      - -service=grpc
+      - -https=false
+      - -loopCount=-1
+      - -loopDelayInSeconds=60
+      - -spoof-xfcc=DNS=test-jwt.sfdc-role
+      livenessProbe:
+        exec:
+          command: ["/bin/true"]
+        initialDelaySeconds: 30
+    - name: demo-authz-http-client
+      image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/electron_client:72
+      args:
+      - -endpoint=localhost:7022
+      - -service=http
+      - -https=false
+      - -loopCount=-1
+      - -loopDelayInSeconds=60
+      - -spoof-xfcc=DNS=test-jwt.sfdc-role
+      livenessProbe:
+        exec:
+          command: ["/bin/true"]
+        initialDelaySeconds: 30
+    - name: beacon
+      # https://git.soma.salesforce.com/services/sfdc-bazel/tree/master/projects/sidecars/beacon#docker-image
+      image: sfci/services/sfdc-bazel/disco/beacon:d7f1640
+      args:
+      - -endpoint
+      - $(FUNCTION):DATACENTER_ALLENV:HTTP1
+      - -endpoint
+      - $(FUNCTION_NAMESPACE)/$(FUNCTION):DATACENTER_ALLENV:HTTP1_TLS
+      livenessProbe:
+        exec:
+          command:
+          - "/opt/beacon/is-alive.sh"
+        initialDelaySeconds: 10
+    volumes:
+    - name: tls-client-cert
+      maddogCert:
+        type: client
+    - name: tls-server-cert
+      maddogCert:
+        type: server

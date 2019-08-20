@@ -26,7 +26,7 @@ system:
     - name: demo-authz-http-client
       image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/electron_client:72
       args:
-      - -endpoint=demo-authz.service-mesh.localhost.mesh.force.com:5442
+      - -endpoint=demo-authz-http.service-mesh.localhost.mesh.force.com:5442
       - -service=http
       - -loopCount=-1
       - -https=false
