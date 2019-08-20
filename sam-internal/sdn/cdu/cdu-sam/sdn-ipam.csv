@@ -21,9 +21,9 @@ shared0-samminiongater2-5-cdu.ops.sfdc.net,10.221.150.158/28,10.169.50.32/27,NON
 shared0-samminionreportcollector1-1-cdu.ops.sfdc.net,10.221.149.100/28,10.169.48.96/27,NONE,cdu-sam_report_collector,65009
 shared0-samminionreportcollector2-1-cdu.ops.sfdc.net,10.221.149.101/28,10.169.48.32/27,NONE,cdu-sam_report_collector,65009
 shared0-samminionreportcollector3-1-cdu.ops.sfdc.net,10.221.149.102/28,10.169.48.64/27,NONE,cdu-sam_report_collector,65009
-shared0-samminionwarden1-1-cdu.ops.sfdc.net,10.221.150.244/28,10.221.151.160/27,NONE,cdu-sam_warden,65009
-shared0-samminionwarden2-1-cdu.ops.sfdc.net,10.221.150.245/28,10.221.151.192/27,NONE,cdu-sam_warden,65009
-shared0-samminionwarden3-1-cdu.ops.sfdc.net,10.221.150.246/28,10.221.151.224/27,NONE,cdu-sam_warden,65009
+shared0-samminionwarden1-1-cdu.ops.sfdc.net,10.221.150.244/28,10.169.52.32/27,NONE,cdu-sam_warden,65009
+shared0-samminionwarden2-1-cdu.ops.sfdc.net,10.221.150.245/28,10.169.52.64/27,NONE,cdu-sam_warden,65009
+shared0-samminionwarden3-1-cdu.ops.sfdc.net,10.221.150.246/28,10.169.52.96/27,NONE,cdu-sam_warden,65009
 shared0-sdncontrol1-1-cdu.ops.sfdc.net,10.221.151.68/28,10.221.154.64/27,NONE,cdu-sdn_control,65009
 shared0-sdncontrol1-2-cdu.ops.sfdc.net,10.221.151.69/28,10.221.154.32/27,NONE,cdu-sdn_control,65009
 shared0-sdncontrol1-3-cdu.ops.sfdc.net,10.221.151.70/28,10.221.154.96/27,NONE,cdu-sdn_control,65009
