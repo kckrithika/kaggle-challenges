@@ -6,6 +6,10 @@ system:
     count: 3
     identity:
       serviceName: retail-setup
+    labels:
+      app: retail-setup
+    annotations:
+      "routing.mesh.sfdc.net/enabled": "true"
     volumes:
     - name: sherpa-log-volume
       hostPath:
@@ -24,22 +28,19 @@ system:
     - name: logvol
       hostPath:
         path: /home/sfdc-retail/logs
-    - name: consumer-key
-      k4aSecret:
-        secretName: rsui-consumer-key
-    - name: consumer-secret
-      k4aSecret:
-        secretName: rsui-consumer-secret
+    - name: oauth-keys
+      k4aSecret: 
+        secretName: rsui-oauth-keys
     - name: encryption-key1
       k4aSecret:
-        secretName: rsui-encryption-key3
+        secretName: rsui-encryption-key4
     - name: encryption-key2
       k4aSecret:
-        secretName: rsui-encryption-key1
+        secretName: rsui-encryption-key3
 
     containers:
     - name: rsui-production-par
-      image: sfci/retail/retail-setup:0.1.8.104 # docker image
+      image: sfci/retail/retail-setup:0.1.9 # docker image
       ports:
       - containerPort: 7022
         name: rsui-in-http1
@@ -80,16 +81,8 @@ system:
         value: /servercerts/ca/cacerts.pem
       - name: SFDC_ENVIRONMENT
         value: prod
-      - name: TENANT_SOURCE_KEYS
-        value: core/prod/00De0000005WbtkEAC
-      - name: TENANT_SOURCE_NAMES
-        value: Service Org
       - name: TENANT_CANONICAL
         value: mds/prod/ST0000000000001
-      - name: TENANT_SUPER
-        value: core/prod/00De0000005WbtaEAC
-      - name: TENANT_SERVICE
-        value: core/prod/00De0000005WbtaEAC
       - name: CRE_SERVER_TARGET
         value: http://cre-api.retail-cre.localhost.mesh.force.com:5442
       - name: C2C_PATH
@@ -100,20 +93,20 @@ system:
         value: https://test.salesforce.com
       - name: RSUI_OAUTH_CALLBACK
         value: https://par.salesforce-hub.com/service/oauth/callback 
-      - name: OAUTH_CONSUMER_KEY_FILE_PATH
-        value: secrets/consumer-key/rsui-consumer-key.key
-      - name: OAUTH_CONSUMER_SECRET_FILE_PATH
-        value: secrets/consumer-secret/rsui-consumer-secret.key
+      - name: OAUTH_SECRETS_FILE_PATH
+        value: secrets/oauth-keys/rsui-oauth-keys.json
       - name: SECURITY_ENCRYPTION_KEY1_PATH
-        value: secrets/encryption-key1/rsui-encryption-key3.key
+        value: secrets/encryption-key1/rsui-encryption-key4.key
       - name: SECURITY_ENCRYPTION_KEY2_PATH
-        value: secrets/encryption-key2/rsui-encryption-key1.key
+        value: secrets/encryption-key2/rsui-encryption-key3.key
       - name: RSUI_HOST
         value: salesforce-hub.com
       - name: GATER_EMBEDDED_MODE
         value: false
       - name: TRANSFORMATIONLIB_MDS_MODE
         value: live
+      - name: SCONE_SERVER_SECURITY_MUTUALAUTH
+        value: true
       - name: JVM_ARGS
         value: "-Dspring.profiles.active=prod -Djava.util.concurrent.ForkJoinPool.common.parallelism=50
                 -verbose:gc -XX:+PrintGCDateStamps -XX:+PrintHeapAtGC
@@ -166,11 +159,8 @@ system:
       #mount splunk logs mount
       - name: logvol
         mountPath: /home/retail-setup/logs
-      - name: consumer-key
-        mountPath: /home/retail-setup/secrets/consumer-key
-        readOnly: true
-      - name: consumer-secret
-        mountPath: /home/retail-setup/secrets/consumer-secret
+      - name: oauth-keys
+        mountPath: /home/retail-setup/secrets/oauth-keys
         readOnly: true
       - name: encryption-key1
         mountPath: /home/retail-setup/secrets/encryption-key1
