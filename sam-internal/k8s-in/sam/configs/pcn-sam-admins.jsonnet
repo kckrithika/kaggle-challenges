@@ -26,6 +26,7 @@
     "nkatta@salesforce.com",
     "shravya.srinivas@salesforce.com",
     "jiaqi.wu@salesforce.com",
+    "victor.li@salesforce.com",
     # Service-Mesh Team
     "npshenichnyy@salesforce.com",
     # DVA Team
