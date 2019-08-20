@@ -7,7 +7,7 @@ system:
   - name: gater-mesh
     count: 1
     labels:
-      app: gater
+      app: gater-mesh
     annotations:
       "routing.mesh.sfdc.net/enabled": "true"
     hostnetwork: true
