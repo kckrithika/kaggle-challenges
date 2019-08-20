@@ -155,6 +155,7 @@
             + {
                 "dfw-sam": [
                   "10.214.188.141/32",  # sec0-magister1-0-dfw.slb.sfdc.net
+                  "13.110.28.11/32",  # gs0-bofa-dfw.slb.sfdc.net
                 ],
                 "frf-sam": [
                   "10.214.36.129/32",  # kubernetes-api-flowsnake-frf.slb.sfdc.net
