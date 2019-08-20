@@ -106,7 +106,7 @@ system:
         initialDelaySeconds: 5
         exec:
           command:
-          - "./is-alive.sh"
+          - "/opt/beacon/is-alive.sh"
 
   loadbalancers:
   - lbname: event-transfer-control-plane-lb
