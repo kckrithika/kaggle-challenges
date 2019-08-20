@@ -233,4 +233,9 @@ local flowsnake_all_kes = (import "flowsnakeEstates.json").kingdomEstates + ["pr
         else error "Unknown fields in kingdom/estate map: " + std.join(" ", bad_keys)
     ),
 
+    # estate that has hbase connections & have watchdog runnign on
+    hbase_enabled_estates: [
+        "prd-dev-flowsnake_iot_test",
+    ],
+    hbase_enabled: std.count(self.hbase_enabled_estates, estate) > 0,
 }
