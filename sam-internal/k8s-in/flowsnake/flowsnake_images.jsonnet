@@ -144,7 +144,7 @@ local utils = import "util_functions.jsonnet";
                 service_injector_image_tag: "jenkins-dva-transformation-service-mesh-injector-webhook-PR-1-23-itest",
                 node_controller_image_tag: "sam-0001970-a296421d",
                 nodeMonitor_image_tag: "jenkins-dva-transformation-flowsnake-platform-master-781-itest",
-                snapshot_consumer_image_tag: "sam-0002052-bc0d9ea5",
+                snapshot_consumer_image_tag: "2782-642a31c27d65c41109e7abe97ab07c984fe6385a",
                 snapshoter_image_tag: "sam-0002052-bc0d9ea5",
                 watchdog_image_tag: "2687-6c147b04d2d506c9fd591d50f400bd86c485b155",  # Add stdout/stderr to watchdog report email for cli-checker
             },

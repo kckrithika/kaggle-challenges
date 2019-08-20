@@ -24,12 +24,17 @@ if estate == "prd-data-flowsnake" then ({
     },
     spec: {
         replicas: 3,
+        selector: {
+            matchLabels: {
+                app: "k8s-dashboard",
+            },
+        },
         template: {
             metadata: {
                 labels: {
-                    app: "dashboard",
+                    app: "k8s-dashboard",
                 },
-                name: "dashboard",
+                name: "k8s-dashboard",
                 namespace: "flowsnake",
             },
             spec: {

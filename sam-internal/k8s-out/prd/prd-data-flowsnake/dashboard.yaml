@@ -7,11 +7,14 @@ metadata:
   namespace: flowsnake
 spec:
   replicas: 3
+  selector:
+    matchLabels:
+      app: k8s-dashboard
   template:
     metadata:
       labels:
-        app: dashboard
-      name: dashboard
+        app: k8s-dashboard
+      name: k8s-dashboard
       namespace: flowsnake
     spec:
       containers:
