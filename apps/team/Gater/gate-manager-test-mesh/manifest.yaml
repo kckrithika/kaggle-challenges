@@ -28,6 +28,8 @@ system:
       - --logging.sfdc.level=OFF
       - --logging.json.level=OFF
       - --metrics.serviceName=gater-mesh
+      - --metrics.container=gater-mesh
+      - --metrics.domain=gater-mesh
       ports:
       - containerPort: 7020
       - containerPort: 9522
