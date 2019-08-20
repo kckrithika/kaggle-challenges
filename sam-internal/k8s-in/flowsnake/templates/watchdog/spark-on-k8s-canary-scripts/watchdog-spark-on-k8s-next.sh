@@ -42,6 +42,12 @@ case $key in
     shift # past argument
     shift # past value
     ;;
+    --hbase-cluster)
+    # Specify number of attempts for individual kubectl invocations (default is 3)
+    export HBASE_CLUSTER="$2"
+    shift # past argument
+    shift # past value
+    ;;
     *)    # unknown option
     POSITIONAL+=("$1") # save it in an array for later
     shift # past argument
@@ -57,7 +63,7 @@ if [[ ".jsonnet" == "${1: -8}" ]] ; then
     SPEC_INPUT=$(basename "$1")
     # Replace .jsonnet with -<ID>.json to get output filename
     SPEC_PATH=/strata-test-specs-out/${SPEC_INPUT%%.*}-${TEST_RUNNER_ID}.json
-    jsonnet -V imageRegistry=${DOCKER_REGISTRY} -V jenkinsId=${TEST_RUNNER_ID} -V dockerTag=${DOCKER_TAG} -V s3ProxyHost=${S3_PROXY_HOST} -V driverServiceAccount=${DRIVER_SERVICE_ACCOUNT} ${1} | \
+    jsonnet -V imageRegistry=${DOCKER_REGISTRY} -V jenkinsId=${TEST_RUNNER_ID} -V dockerTag=${DOCKER_TAG} -V s3ProxyHost=${S3_PROXY_HOST} -V driverServiceAccount=${DRIVER_SERVICE_ACCOUNT} -V kingdom=${KINGDOM} -V estate=${ESTATE} -V hbaseCluster=${HBASE_CLUSTER} ${1} | \
     python -c 'import json,sys; j=json.load(sys.stdin); j_clean=j if len(j.keys())>1 else j[j.keys()[0]]; print json.dumps(j_clean, indent=4)' > ${SPEC_PATH}
     if [ -f "${SPEC_PATH}" ]; then
         SPEC="${SPEC_PATH}"

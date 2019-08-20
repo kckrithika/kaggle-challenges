@@ -159,7 +159,10 @@ else
                                             fieldPath: "spec.nodeName" }
                                         }
                                     },
-                                ]
+                                ] + if std.objectHas(flowsnake_images.feature_flags, "next_analysis_script") then [
+                                    { name: "KINGDOM", value: kingdom },
+                                    { name: "ESTATE", value: estate },
+                                ] else []
                             },
                             # Watchdogs run as user sfdc (7337) per https://git.soma.salesforce.com/sam/sam/blob/master/docker/hypersam/Dockerfile
                             madkub_common.refresher_container(cert_name, user=7337)

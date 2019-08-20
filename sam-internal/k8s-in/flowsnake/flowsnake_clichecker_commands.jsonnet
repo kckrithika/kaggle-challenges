@@ -1,5 +1,5 @@
 local flowsnake_images = (import "flowsnake_images.jsonnet") + { templateFilename:: std.thisFile };
-local flowsnake_config = import "flowsnake_config.jsonnet";
+local flowsnakeconfig = import "flowsnake_config.jsonnet";
 local estate = std.extVar("estate");
 local image_renames_and_canary_build_tags = std.objectHas(flowsnake_images.feature_flags, "image_renames_and_canary_build_tags");
 
@@ -7,7 +7,7 @@ local image_renames_and_canary_build_tags = std.objectHas(flowsnake_images.featu
 local set_test_target = " -Dintegration.test.target=canary";
 
 ## Sets the vip that the canary should exercise against. Currently canaries will only monitor their own fleets
-local set_vip = " -Dflowsnake.api.host=" + flowsnake_config.fleet_vips[estate];
+local set_vip = " -Dflowsnake.api.host=" + flowsnakeconfig.fleet_vips[estate];
 
 ## Sets the environment version to be validated by the canary tests
 local set_environment_version(version) = " -Dflowsnake.project.version=" + version;
@@ -82,7 +82,11 @@ local build_spark_operator_test_commands = {
     ImpersonationProxyMinimalTest: "/watchdog-spark-scripts/check-impersonation.sh /watchdog-spark-scripts/kubeconfig-impersonation-proxy",
     # Run a Spark Application via the impersonation proxy
     ImpersonationProxySparkTest: "/watchdog-spark-scripts/analysis.py --hostname $NODENAME --metrics --sfdchosts /sfdchosts/hosts.json --watchdog-config /config/watchdog.json --command /watchdog-spark-scripts/check-spark-operator.sh --kubeconfig /watchdog-spark-scripts/kubeconfig-impersonation-proxy /strata-test-specs-in/basic-spark-impersonation.jsonnet",
-  },
+  } + if flowsnakeconfig.hbase_enabled && std.objectHas(flowsnake_images.feature_flags, "next_analysis_script") then {
+    # Run a Hbase integration test
+    HbasePhoenixSparkKingdomTestTest: "/watchdog-spark-scripts/analysis.py --hostname $NODENAME --metrics --sfdchosts /sfdchosts/hosts.json --watchdog-config /config/watchdog.json --command /watchdog-spark-scripts/check-spark-operator.sh --hbase-cluster kingdom-test /strata-test-specs-in/hbase-integration.jsonnet",
+    HbasePhoenixSparkKingdomPerfTest: "/watchdog-spark-scripts/analysis.py --hostname $NODENAME --metrics --sfdchosts /sfdchosts/hosts.json --watchdog-config /config/watchdog.json --command /watchdog-spark-scripts/check-spark-operator.sh --hbase-cluster kingdom-perf /strata-test-specs-in/hbase-integration.jsonnet",
+  } else {},
 };
 {
     command_sets:: build_canary_commands + build_docker_test_commands + build_btrfs_test_commands + build_spark_operator_test_commands,
