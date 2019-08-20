@@ -79,19 +79,6 @@ system:
           command:
           - "/opt/beacon/is-alive.sh"
         initialDelaySeconds: 10
-    - name: beacon-http
-      # https://git.soma.salesforce.com/services/sfdc-bazel/tree/master/projects/sidecars/beacon#docker-image
-      image: sfci/services/sfdc-bazel/disco/beacon:d7f1640
-      args:
-      - -endpoint
-      - $(FUNCTION):DATACENTER_ALLENV:HTTP1
-      - -endpoint
-      - $(FUNCTION_NAMESPACE)/$(FUNCTION):DATACENTER_ALLENV:HTTP1_TLS
-      livenessProbe:
-        exec:
-          command:
-          - "/opt/beacon/is-alive.sh"
-        initialDelaySeconds: 10
     volumes:
     - name: tls-client-cert
       maddogCert:
