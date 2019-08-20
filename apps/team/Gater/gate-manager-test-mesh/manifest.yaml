@@ -6,10 +6,6 @@ system:
   functions:
   - name: gater-mesh
     count: 1
-    labels:
-      app: gater-mesh
-    annotations:
-      "routing.mesh.sfdc.net/enabled": "true"
     hostnetwork: true
     containers:
     - name: gater1
@@ -30,6 +26,7 @@ system:
       - --metrics.serviceName=gater-mesh
       - --metrics.container=gater-mesh
       - --metrics.domain=gater-mesh
+      - --scone.detectsidecars=true
       ports:
       - containerPort: 7020
       - containerPort: 9522
