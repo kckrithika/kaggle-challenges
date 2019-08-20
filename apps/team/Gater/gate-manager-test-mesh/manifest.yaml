@@ -6,6 +6,10 @@ system:
   functions:
   - name: gater-mesh
     count: 1
+    labels:
+      app: gater
+    annotations:
+      "routing.mesh.sfdc.net/enabled": "true"
     hostnetwork: true
     containers:
     - name: gater1
