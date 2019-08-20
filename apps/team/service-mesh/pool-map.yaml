@@ -140,6 +140,8 @@ apps:
     - prd/prd-sam_gater
   demo-authz:
     - prd/prd-sam_gater
+  demo-authz-http:
+    - prd/prd-sam_gater
   demo-authz-client:
     - prd/prd-sam_gater
   authz-svc-mvp:
