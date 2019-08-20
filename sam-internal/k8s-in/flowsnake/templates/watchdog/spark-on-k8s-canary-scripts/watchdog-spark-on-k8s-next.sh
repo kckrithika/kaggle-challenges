@@ -10,6 +10,7 @@ NAMESPACE=flowsnake-watchdog
 KUBECTL_TIMEOUT_SECS=10
 # Give kubeapi 1 minute to recover. 10 second timeout, 7th request begins 60s after 1st.
 KUBECTL_ATTEMPTS=7
+HBASE_CLUSTER=kingdom-test
 
 # Parse command line arguments. https://stackoverflow.com/a/14203146
 POSITIONAL=()
