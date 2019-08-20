@@ -70,6 +70,8 @@ system:
           name: sherpa-h2-plain
         - containerPort: 7443
           name: sherpa-h2-tls
+        - containerPort: 7442
+          name: sherpa-h1-tls
         - containerPort: 15373
       volumeMounts:
         - name: sherpa-log-volume
