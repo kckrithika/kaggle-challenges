@@ -107,9 +107,9 @@ system:
                   -XX:+PrintPromotionFailure -XX:+PrintTenuringDistribution -XX:+PrintGCDetails
                   -XX:+PrintGCDateStamps -XX:+PrintGCApplicationStoppedTime
                   -XX:+PrintGCApplicationConcurrentTime -XX:+PrintGCCause -XX:+DisableExplicitGC
-                  -Xloggc:/opt/cre/cre-control-plane-prod/verbosegc_$(FUNCTION_INSTANCE_NAME).log
+                  -Xloggc:/opt/cre/cre-control-plane/verbosegc_$(FUNCTION_INSTANCE_NAME).log
                   -XX:+UseGCLogFileRotation -XX:NumberOfGCLogFiles=5 -XX:GCLogFileSize=20M
-                  -XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=/opt/cre/cre-control-plane-prod
+                  -XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=/opt/cre/cre-control-plane
                   -Xmx4G -Xms4G -XX:ParallelGCThreads=8"
           resources:
             limits: { cpu: "2", memory: "6Gi" }
@@ -128,7 +128,7 @@ system:
               name: client-certs
             - mountPath: /server-certs
               name: server-certs
-            - mountPath: /opt/cre/cre-control-plane-prod
+            - mountPath: /opt/cre/cre-control-plane
               name: logvol
         - name: sherpa-cre-control-plane
           # Each commit to master for https://git.soma.salesforce.com/servicelibs/sherpa-envoy/commits/master has an image created.
@@ -180,7 +180,7 @@ system:
       volumes:
         - name: logvol
           hostPath:
-            path: /home/sfdc-cre/logs/cre-control-plane-prod
+            path: /home/sfdc-cre/logs/cre-control-plane
         - name: client-certs
           maddogCert:
             type: client
