@@ -16,14 +16,16 @@ system:
       routing.mesh.sfdc.net/enabled: "true"
     containers:
     - name: ordering
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/scone/ordering-service:bazel-monorepo
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/scone/ordering-service:scone-6.0.5
       env:
       - name: SFDC_ENVIRONMENT
         value: istio
+      - name: SCONE_SHIPPING_DEST
+        value: istio-shipping-mixed-sherpa-to-istio.service-mesh.${mesh.proxydomain}:${mesh.grpctlsport}
       - name: GRPC_PORT
         value: 7020
       - name: JAVA_OPTS
-        value: "-Dscone.service.name=istio-ordering-mixed-sherpa-to-istio -Dshipping.dest=istio-shipping-mixed-sherpa-to-istio.service-mesh.localhost.mesh.force.com:5443 -Dshipping.interval=5000 -Dmanagement.server.port=15372"
+        value: "-Dscone.service.name=istio-ordering-mixed-sherpa-to-istio -Dshipping.interval=5000 -Dmanagement.server.port=15372"
       - name: JAVA_HEAP_OPTS
         value: -Xmx256m
       ports:
