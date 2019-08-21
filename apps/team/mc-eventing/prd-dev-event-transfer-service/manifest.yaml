@@ -47,6 +47,10 @@ system:
           value: 15382
         - name: JVM_ARGS
           value: "-Xmx3G -Xms512m"
+        - name: identity
+          value: mc.test.mceventbusqa1s1
+        - name: topic.environment
+          value: prd.ajna_local
       livenessProbe:
         initialDelaySeconds: 60
         periodSeconds: 60
