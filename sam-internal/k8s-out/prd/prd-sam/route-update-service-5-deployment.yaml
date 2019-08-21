@@ -75,7 +75,7 @@ spec:
           value: '-'
         - name: SETTINGS_PATH
           value: mesh.-.prd.-.route-update-service
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-sfci-dev/sfci/servicemesh/servicemesh/route-update-service:daff1d8bb5b4d1de8c3b4f03764999e33b8b8ab6
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-sfci-dev/sfci/servicemesh/servicemesh/route-update-service:471d47c97c33ee61a77bd024f20d80603363db75
         imagePullPolicy: IfNotPresent
         name: route-update-service
         ports:
