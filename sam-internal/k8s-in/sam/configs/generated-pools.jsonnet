@@ -247,10 +247,12 @@
     },
     {
       "namespaces": [
+        "ccait",
         "gater",
         "service-mesh"
       ],
       "access": [
+        "team/CCAIT",
         "team/Gater",
         "team/service-mesh"
       ],
@@ -3939,10 +3941,12 @@
     },
     {
       "namespaces": [
+        "ccait",
         "gater",
         "service-mesh"
       ],
       "access": [
+        "team/CCAIT",
         "team/Gater",
         "team/service-mesh"
       ],
@@ -4485,10 +4489,12 @@
     },
     {
       "namespaces": [
+        "ccait",
         "gater",
         "service-mesh"
       ],
       "access": [
+        "team/CCAIT",
         "team/Gater",
         "team/service-mesh"
       ],
@@ -4571,10 +4577,12 @@
     },
     {
       "namespaces": [
+        "ccait",
         "gater",
         "service-mesh"
       ],
       "access": [
+        "team/CCAIT",
         "team/Gater",
         "team/service-mesh"
       ],
