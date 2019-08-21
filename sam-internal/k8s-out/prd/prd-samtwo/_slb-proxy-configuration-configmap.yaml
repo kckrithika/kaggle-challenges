@@ -22,6 +22,7 @@ data:
           "proxyname": "slb-hsm-nginx",
           "vips": [
             "na44-stmfa1-0-prd.slb.sfdc.net",
+            "na44-stmfb1-0-prd.slb.sfdc.net",
             "slb-canary-hsm.sam-system.prd-samtwo.prd.slb.sfdc.net"
           ]
         }
