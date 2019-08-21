@@ -41,27 +41,27 @@ system:
         httpGet:
             path: /health
     - name: edge-rptc
-      image: ops0-artifactrepo1-0-par.data.sfdc.net/dva/edge/rptc:288
+      image: ops0-artifactrepo1-0-par.data.sfdc.net/dva/edge/rptc:304
       livenessProbe:
         httpGet:
             path: /health
     - name: edge-config-agent
-      image: ops0-artifactrepo1-0-par.data.sfdc.net/dva/edge/configagent:288
+      image: ops0-artifactrepo1-0-par.data.sfdc.net/dva/edge/configagent:304
       livenessProbe:
         httpGet:
             path: /health
     - name: edge-rptc-stunnel-client
-      image: ops0-artifactrepo1-0-par.data.sfdc.net/dva/edge/rptc_stunnel_client:288
+      image: ops0-artifactrepo1-0-par.data.sfdc.net/dva/edge/rptc_stunnel_client:304
       livenessProbe:
         httpGet:
             path: /health
     - name: edge-cfgagent-stunnel-client
-      image: ops0-artifactrepo1-0-par.data.sfdc.net/dva/edge/cfgagent_stunnel_client:288
+      image: ops0-artifactrepo1-0-par.data.sfdc.net/dva/edge/cfgagent_stunnel_client:304
       livenessProbe:
         httpGet:
             path: /health
     - name: edge-redis
-      image: ops0-artifactrepo1-0-par.data.sfdc.net/dva/edge/redis:270
+      image: ops0-artifactrepo1-0-par.data.sfdc.net/dva/edge/redis:304
       livenessProbe:
         httpGet:
             path: /health
