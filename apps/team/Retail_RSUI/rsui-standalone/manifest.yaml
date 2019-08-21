@@ -39,7 +39,7 @@ system:
 
     containers:
     - name: retail-setup
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/retail/retail-setup:2.0.43
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/retail/retail-setup:2.0.107
       ports:
       # Jetty http1 ports for incoming public traffic via SLB
       - containerPort: 7022
@@ -127,7 +127,7 @@ system:
                 -XX:+PrintGCApplicationConcurrentTime -XX:+PrintGCCause -XX:+DisableExplicitGC
                 -Xloggc:/home/scone/logs/retail-setup/verbosegc_$(FUNCTION_INSTANCE_NAME).log
                 -XX:+HeapDumpOnOutOfMemoryError  -XX:HeapDumpPath=/home/scone/logs/retail-setup
-                -Xmx2G -Xms2G -XX:ParallelGCThreads=8 -Daura.production=true
+                -Xmx4G -Xms4G -XX:ParallelGCThreads=8 -Daura.production=true
                 -Dopen-context.enforce=false"
       - name: LOGGING_JSON_STDOUT_LEVEL
         value: ALL
