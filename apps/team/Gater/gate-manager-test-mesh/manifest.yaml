@@ -23,6 +23,7 @@ system:
       - --logging.json.stdout.level=ALL
       - --logging.sfdc.level=OFF
       - --logging.json.level=OFF
+      - --metrics.domain=gater-mesh
       ports:
       - containerPort: 7020
       - containerPort: 9522
