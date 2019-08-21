@@ -4,6 +4,7 @@
 # https://git.soma.salesforce.com/sam/manifests/blob/master/apps/team/README.md
 # Run k8s-in/build.sh after updating pools
 access:
+  - 'team/CCAIT'
   - 'team/Gater'
   - 'team/service-mesh'
   
