@@ -147,7 +147,15 @@ apps:
   iad.Prod.cre-engine:
     - name: iad/iad-sam_customerresolutionengine
   ord.Prod.cre-engine:
-      - name: ord/ord-sam_customerresolutionengine
+    - name: ord/ord-sam_customerresolutionengine
+  frf.Prod.cre-engine:
+    - name: frf/frf-sam_customerresolutionengine
+  hnd.Prod.cre-engine:
+    - name: hnd/hnd-sam_customerresolutionengine
+  par.Prod.cre-engine:
+    - name: par/par-sam_customerresolutionengine
+  ukb.Prod.cre-engine:
+    - name: ukb/ukb-sam_customerresolutionengine
 
   # ======= DDS ======== #
   iad.Prod.cre-dds:
