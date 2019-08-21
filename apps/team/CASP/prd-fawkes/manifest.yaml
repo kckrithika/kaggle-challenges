@@ -24,7 +24,7 @@ system:
         - name: HTTPS_PROXY
           value: "https://public0-proxy1-0-prd.data.sfdc.net:8080"
         - name: NO_PROXY
-          value: "warden.sfdc.net"
+          value: "warden.sfdc.net,127.0.0.1,localhost"
         volumeMounts:
         - mountPath: /fawkes/argus-secrets
           name: argus
