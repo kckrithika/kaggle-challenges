@@ -20,14 +20,14 @@ system:
       #    https://git.soma.salesforce.com/services/sfdc-bazel/tree/master/projects/services/ordering/ordering-scone
       # Ordering Config
       #    https://git.soma.salesforce.com/services/sfdc-bazel/blob/master/projects/services/ordering/ordering-scone/src/main/resources/config/application.properties
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/scone/ordering-service:bazel-monorepo
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/scone/ordering-service:scone-6.0.5
       env:
       - name: SFDC_ENVIRONMENT
         value: istio
       - name: GRPC_PORT
         value: 7443
       - name: JAVA_OPTS
-        value: "-Dmesh.istio-mode=true -Dscone.service.name=istio-ordering -Dshipping.dest=istio-shipping.service-mesh.svc.mesh.sfdc.net:7443 -Dshipping.interval=5000 -Dmanagement.server.port=15372 -Dmetrics.sherpaFunnelServiceURL=http://ajnafunneldirect-prd.z9s-default.svc.mesh.sfdc.net:8080"
+        value: "-Dmesh.istio-mode=true -Dscone.service.name=istio-ordering -Dshipping.dest=istio-shipping.service-mesh.svc.mesh.sfdc.net:7443 -Dshipping.interval=5000 -Dmanagement.server.port=15372"
       - name: JAVA_HEAP_OPTS
         value: -Xmx64m
       ports:
