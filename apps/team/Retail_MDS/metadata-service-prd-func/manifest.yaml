@@ -24,8 +24,7 @@ system:
       - name: MANAGEMENT_PORT
         value: "15523"
       - name: JVM_ARGS
-        # dml override flag to enable saving Repository objects for tenants missing them 
-        value: -Xmx2G -Xms2G -XX:ParallelGCThreads=8 -Dmds.enable.dml.override=true
+        value: -Xmx2G -Xms2G -XX:ParallelGCThreads=8
         # An environment variable used to trigger containers redeployment without making other changes to the manifest
       - name: RESTART
         value: May-16-2019
