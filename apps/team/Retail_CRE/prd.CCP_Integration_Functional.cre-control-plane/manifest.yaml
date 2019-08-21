@@ -13,7 +13,7 @@ system:
       "routing.mesh.sfdc.net/enabled": "true"
     containers:
     - name: cre-control-plane-ccp-func
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cre-fusion/services/control-plane:2.0.1.yu-so-1.ff8b723.7
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cre-fusion/services/control-plane:2.0.1.yu-so-1.3c0edb9.4
       env:
         ####################################################################################################
         ############################   ENGINE/DDS FLOWSNAKE ARTIFACTS ( Most frequently changed ) ##########
@@ -24,6 +24,9 @@ system:
           value: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cre/cre-dds-spark:1.9-freeze-016.0.release-1.9.1d192d1.24
         - name: EXPORT_FLOWSNAKE_ARTIFACT
           value: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cre/cre-dds-spark:1.9-freeze-016.0.release-1.9.1d192d1.24
+        #### K8 #### migration is done delete ALL references to FLOWSNAKE_ARTIFACT.
+        - name: INGEST_SPEC_IMAGE
+          value: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cre/cre-engine:1.9.0.0.kc-k8s-spark.e690daa.3
         ####################################################################################################
         ####################################### GLOBAL SHARED VALUES #######################################
         ####################################################################################################
@@ -54,6 +57,9 @@ system:
         ####################################### INGEST environment variables ###############################
         ####################################################################################################
         - name: INGEST_CRE_APPLICATION_NAME
+          value: cre-engine-ccp-func
+        #### K8 #### migration is done delete ALL CRE_APPLICATION_NAME.
+        - name: INGEST_ANNOTATIONS_PKI_NAME
           value: cre-engine-ccp-func
         - name: INGEST_K4A_VAULT
           value: cre-engine-dev
