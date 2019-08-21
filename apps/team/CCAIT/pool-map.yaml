@@ -4,6 +4,10 @@ apps:
     - phx/phx-sam_gater
     - lo2/lo2-sam_gater
     - lo3/lo3-sam_gater
+    - yul/yul-sam_gater
+    - yhu/yhu-sam_gater
+    - syd/syd-sam_gater
+    - cdu/cdu-sam_gater
   geoip-prod-canary:
     - par/par-sam_gater
   geoip-sandbox:
