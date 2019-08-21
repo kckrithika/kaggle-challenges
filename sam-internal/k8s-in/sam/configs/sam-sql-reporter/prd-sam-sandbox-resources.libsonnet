@@ -4,7 +4,7 @@
       multisql: [
         {
           name: "Unscheduled Pods Except csc-sam",
-          sql: "select Name, Namespace, Payload->>'$.status.conditions[0].message' as Message, Payload
+          sql: "select Name, Namespace, Payload->>'$.status.conditions[0].message' as Message
 from k8s_resource
 where Payload->>'$.status.conditions[0].reason' = 'Unschedulable'
 and controlEstate = 'prd-sam'
@@ -13,7 +13,7 @@ and Namespace != 'csc-sam'",
         },
         {
           name: "Unscheduled Pods csc-sam (many of these are missed tombstones)",
-          sql: "select Name, Namespace, Payload->>'$.status.conditions[0].message' as Message, Payload
+          sql: "select Name, Namespace, Payload->>'$.status.conditions[0].message' as Message
 from k8s_resource
 where Payload->>'$.status.conditions[0].reason' = 'Unschedulable'
 and controlEstate = 'prd-sam'
