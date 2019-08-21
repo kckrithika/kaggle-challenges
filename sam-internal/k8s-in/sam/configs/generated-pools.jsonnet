@@ -887,6 +887,20 @@
     },
     {
       "namespaces": [
+        "cache-as-a-service",
+        "gateway"
+      ],
+      "access": [
+        "team/Cache_As_A_service",
+        "team/gateway"
+      ],
+      "controlEstate": "frf-sam",
+      "estate": "frf-sam_kingdom_caas",
+      "kingdom": "frf",
+      "superPod": "None"
+    },
+    {
+      "namespaces": [
         "communities"
       ],
       "access": [
@@ -1158,6 +1172,20 @@
       ],
       "controlEstate": "hnd-sam",
       "estate": "hnd-sam_gater",
+      "kingdom": "hnd",
+      "superPod": "None"
+    },
+    {
+      "namespaces": [
+        "cache-as-a-service",
+        "gateway"
+      ],
+      "access": [
+        "team/Cache_As_A_service",
+        "team/gateway"
+      ],
+      "controlEstate": "hnd-sam",
+      "estate": "hnd-sam_kingdom_caas",
       "kingdom": "hnd",
       "superPod": "None"
     },
@@ -2717,6 +2745,20 @@
     },
     {
       "namespaces": [
+        "cache-as-a-service",
+        "gateway"
+      ],
+      "access": [
+        "team/Cache_As_A_service",
+        "team/gateway"
+      ],
+      "controlEstate": "par-sam",
+      "estate": "par-sam_kingdom_caas",
+      "kingdom": "par",
+      "superPod": "None"
+    },
+    {
+      "namespaces": [
         "communities"
       ],
       "access": [
@@ -4118,6 +4160,20 @@
       ],
       "controlEstate": "ukb-sam",
       "estate": "ukb-sam_gater",
+      "kingdom": "ukb",
+      "superPod": "None"
+    },
+    {
+      "namespaces": [
+        "cache-as-a-service",
+        "gateway"
+      ],
+      "access": [
+        "team/Cache_As_A_service",
+        "team/gateway"
+      ],
+      "controlEstate": "ukb-sam",
+      "estate": "ukb-sam_kingdom_caas",
       "kingdom": "ukb",
       "superPod": "None"
     },

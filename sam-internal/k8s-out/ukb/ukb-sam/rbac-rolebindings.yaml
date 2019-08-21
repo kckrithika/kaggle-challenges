@@ -556,6 +556,42 @@ items:
 - apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: RoleBinding
   metadata:
+    name: cache-as-a-service:ukb-sam_kingdom_caas:rolebinding
+    namespace: cache-as-a-service
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: minion:role
+  subjects:
+  - kind: User
+    name: samkingdomcaas0-caasminion1-1-ukb.ops.sfdc.net
+  - kind: User
+    name: samkingdomcaas0-caasminion1-2-ukb.ops.sfdc.net
+  - kind: User
+    name: samkingdomcaas0-caasminion2-1-ukb.ops.sfdc.net
+  - kind: User
+    name: samkingdomcaas0-caasminion3-1-ukb.ops.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1beta1
+  kind: RoleBinding
+  metadata:
+    name: gateway:ukb-sam_kingdom_caas:rolebinding
+    namespace: gateway
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: minion:role
+  subjects:
+  - kind: User
+    name: samkingdomcaas0-caasminion1-1-ukb.ops.sfdc.net
+  - kind: User
+    name: samkingdomcaas0-caasminion1-2-ukb.ops.sfdc.net
+  - kind: User
+    name: samkingdomcaas0-caasminion2-1-ukb.ops.sfdc.net
+  - kind: User
+    name: samkingdomcaas0-caasminion3-1-ukb.ops.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1beta1
+  kind: RoleBinding
+  metadata:
     name: communities:ukb-sam_moderation_einstein:rolebinding
     namespace: communities
   roleRef:
