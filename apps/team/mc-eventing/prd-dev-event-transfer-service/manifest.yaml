@@ -29,7 +29,7 @@ system:
         path: /home/sfdc-ets/logs
     containers:
     - name: event-transfer-service
-      image: sfci/ets/event-transfer-service:0.0.25
+      image: sfci/ets/event-transfer-service:0.0.26
       ports:
         - containerPort: 8080
         - containerPort: 15382
@@ -47,10 +47,6 @@ system:
           value: 15382
         - name: JVM_ARGS
           value: "-Xmx3G -Xms512m"
-        - name: identity
-          value: mc.test.mceventbusqa1s1
-        - name: topic.environment
-          value: prd.ajna_local
       livenessProbe:
         initialDelaySeconds: 60
         periodSeconds: 60
