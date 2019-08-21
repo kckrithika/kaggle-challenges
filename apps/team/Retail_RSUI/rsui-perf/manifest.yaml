@@ -6,13 +6,12 @@ system:
     count: 2
     labels:
       app: retail-setup
+      chaos.sfdc.net/podDelete: false
+      chaos.sfdc.net/podDeletePeriod: 30m
     annotations:
       "routing.mesh.sfdc.net/enabled": "true"
     identity:
      serviceName: retail-setup
-    labels:
-      chaos.sfdc.net/podDelete: false
-      chaos.sfdc.net/podDeletePeriod: 30m
     volumes:
     - name: sherpa-log-volume
       hostPath:
