@@ -12,3 +12,6 @@
      targetport: 443
      lbtype: tcp
      lbalgorithm: roundrobin
+     healthport: 80
+     healthpath: /v1/monitor/ping
+     healthprotocol: http
