@@ -1007,6 +1007,28 @@ data:
         {
           "name": "NodeEnpoint-failure-detail",
           "sql": "select \n                TRIM('connectivitylabelerchecker-' FROM name) as HostName,\n                Payload-\u003e\u003e'$.status.report.Target' as Target, \n                Payload-\u003e\u003e'$.status.report.Success' as Connectivity, \n                TIMESTAMPDIFF(MINUTE, STR_TO_DATE(Payload-\u003e\u003e'$.status.report.ReportCreatedAt', '%Y-%m-%dT%H:%i:%s.'), UTC_TIMESTAMP()) as ReportAgeInMinutes,\n                Payload-\u003e\u003e'$.status.report.ErrorMessage' as ErrorMsg\n        from \n                k8s_resource \n        where \n                apikind = 'watchdog' and \n                name like 'connectivitylabelerchecker-%' and \n                Payload-\u003e\u003e'$.status.report.Success' = 'false'"
+        },
+        {
+          "multisql": [
+            {
+              "name": "Unscheduled Pods Except csc-sam",
+              "sql": "select Name, Namespace, Payload-\u003e\u003e'$.status.conditions[0].message' as Message, Payload\nfrom k8s_resource\nwhere Payload-\u003e\u003e'$.status.conditions[0].reason' = 'Unschedulable'\nand controlEstate = 'prd-sam'\nand Payload-\u003e\u003e'$.spec.affinity.nodeAffinity.requiredDuringSchedulingIgnoredDuringExecution.nodeSelectorTerms[0].matchExpressions[0].values[0]' = 'prd-sam'\nand Namespace != 'csc-sam'"
+            },
+            {
+              "name": "Unscheduled Pods csc-sam (many of these are missed tombstones)",
+              "sql": "select Name, Namespace, Payload-\u003e\u003e'$.status.conditions[0].message' as Message, Payload\nfrom k8s_resource\nwhere Payload-\u003e\u003e'$.status.conditions[0].reason' = 'Unschedulable'\nand controlEstate = 'prd-sam'\nand Payload-\u003e\u003e'$.spec.affinity.nodeAffinity.requiredDuringSchedulingIgnoredDuringExecution.nodeSelectorTerms[0].matchExpressions[0].values[0]' = 'prd-sam'\nand Namespace = 'csc-sam'"
+            },
+            {
+              "name": "Nodes",
+              "sql": "select name, MinionPool, OutOfDisk, MemoryPressure, DiskPressure, Ready\nfrom nodeDetailView\nwhere controlEstate = 'prd-sam' and MinionPool = 'prd-sam'\norder by Ready, OutOfDisk"
+            },
+            {
+              "name": "IPs used by namespace",
+              "sql": "select namespace, sum(ipCount) as ips, group_concat(samAppName, '', '') as AppNames\nfrom (\nselect\n  namespace,\n  Payload-\u003e\u003e'$.spec.controlMap.app' as samAppName,  \n  case when Payload-\u003e\u003e'$.spec.customerApp.system.functions[0].count' is not null then Payload-\u003e\u003e'$.spec.customerApp.system.functions[0].count' else 0 end +\n  case when Payload-\u003e\u003e'$.spec.customerApp.system.functions[1].count' is not null then Payload-\u003e\u003e'$.spec.customerApp.system.functions[1].count' else 0 end +\n  case when Payload-\u003e\u003e'$.spec.customerApp.system.functions[2].count' is not null then Payload-\u003e\u003e'$.spec.customerApp.system.functions[2].count' else 0 end as ipCount\nfrom\n  k8s_resource\nwhere\n  apiKind = 'SamApp'\n  and\n  Payload-\u003e\u003e'$.spec.controlMap.pool' = 'prd/prd-sam'\n  and Payload-\u003e\u003e'$.spec.customerApp.system.functions[0].hostnetwork' != 'true'\n) as ss\ngroup by namespace\norder by sum(ipCount) desc"
+            }
+          ],
+          "name": "Prd Sam Sandbox Unscheduled Pods",
+          "note": "Queries to help debug scheduler issues"
         }
       ]
     }

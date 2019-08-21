@@ -100,5 +100,6 @@ local bedhealth = (import "sam-sql-reporter/bedhealth.libsonnet").bedhealth;
     (import "sam-sql-reporter/prd-sam-ip-capacity.libsonnet"),
     (import "sam-sql-reporter/etcd-node-overview.libsonnet"),
     (import "sam-sql-reporter/nodeEndpoint-failure-detail.libsonnet"),
+    (import "sam-sql-reporter/prd-sam-sandbox-resources.libsonnet"),
   ],
 }
