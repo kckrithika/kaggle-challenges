@@ -1012,11 +1012,11 @@ data:
           "multisql": [
             {
               "name": "Unscheduled Pods Except csc-sam",
-              "sql": "select Name, Namespace, Payload-\u003e\u003e'$.status.conditions[0].message' as Message, Payload\nfrom k8s_resource\nwhere Payload-\u003e\u003e'$.status.conditions[0].reason' = 'Unschedulable'\nand controlEstate = 'prd-sam'\nand Payload-\u003e\u003e'$.spec.affinity.nodeAffinity.requiredDuringSchedulingIgnoredDuringExecution.nodeSelectorTerms[0].matchExpressions[0].values[0]' = 'prd-sam'\nand Namespace != 'csc-sam'"
+              "sql": "select Name, Namespace, Payload-\u003e\u003e'$.status.conditions[0].message' as Message\nfrom k8s_resource\nwhere Payload-\u003e\u003e'$.status.conditions[0].reason' = 'Unschedulable'\nand controlEstate = 'prd-sam'\nand Payload-\u003e\u003e'$.spec.affinity.nodeAffinity.requiredDuringSchedulingIgnoredDuringExecution.nodeSelectorTerms[0].matchExpressions[0].values[0]' = 'prd-sam'\nand Namespace != 'csc-sam'"
             },
             {
               "name": "Unscheduled Pods csc-sam (many of these are missed tombstones)",
-              "sql": "select Name, Namespace, Payload-\u003e\u003e'$.status.conditions[0].message' as Message, Payload\nfrom k8s_resource\nwhere Payload-\u003e\u003e'$.status.conditions[0].reason' = 'Unschedulable'\nand controlEstate = 'prd-sam'\nand Payload-\u003e\u003e'$.spec.affinity.nodeAffinity.requiredDuringSchedulingIgnoredDuringExecution.nodeSelectorTerms[0].matchExpressions[0].values[0]' = 'prd-sam'\nand Namespace = 'csc-sam'"
+              "sql": "select Name, Namespace, Payload-\u003e\u003e'$.status.conditions[0].message' as Message\nfrom k8s_resource\nwhere Payload-\u003e\u003e'$.status.conditions[0].reason' = 'Unschedulable'\nand controlEstate = 'prd-sam'\nand Payload-\u003e\u003e'$.spec.affinity.nodeAffinity.requiredDuringSchedulingIgnoredDuringExecution.nodeSelectorTerms[0].matchExpressions[0].values[0]' = 'prd-sam'\nand Namespace = 'csc-sam'"
             },
             {
               "name": "Nodes",
