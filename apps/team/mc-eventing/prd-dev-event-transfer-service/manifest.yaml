@@ -13,7 +13,7 @@ system:
   - name: eventtransferservice
     identity:
       serviceName: wh-con
-    count: 2
+    count: 1
     volumes:
     - name: eventbusajna-ens-v1
       k4aSecret:
@@ -37,8 +37,6 @@ system:
         limits: { cpu: "2", memory: "5Gi" }
         requests: { cpu: "2", memory: "5Gi" }
       env:
-        - name: GREASY
-          value: "GREASETRAP"
         - name: SFDC_ENVIRONMENT
           value: prod
         - name: SERVER_PORT
