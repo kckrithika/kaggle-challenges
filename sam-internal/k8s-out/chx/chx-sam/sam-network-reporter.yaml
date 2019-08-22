@@ -23,7 +23,6 @@ spec:
       - command:
         - /sam/sam-network-reporter
         - --funnelEndpoint=mandm-funnel-chx.data.sfdc.net:8080
-        - --logtostderr=true
         - --config=/config/sam-network-reporter.json
         - --hostsConfigFile=/sfdchosts/hosts.json
         env:

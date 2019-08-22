@@ -12,7 +12,7 @@ configs.daemonSetBase("sam") {
                         command: [
                             "/sam/sam-network-reporter",
                             "--funnelEndpoint=" + configs.funnelVIP,
-                            "--logtostderr=true",
+#                           "--logtostderr=true", # Logging is disabled because splunk team was complaining about too much traffic.
                             "--config=/config/sam-network-reporter.json",
                             "--hostsConfigFile=/sfdchosts/hosts.json",
                         ],
