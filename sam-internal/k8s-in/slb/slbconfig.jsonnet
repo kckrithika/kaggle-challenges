@@ -374,6 +374,10 @@
             "prd-samtwo",
             "prd-sdc",
             "xrd-sam",
+            "iad-sam",
+            "ord-sam",
+            "ph2-sam",
+            "ia2-sam",
         ]),
 
         # The set of VIPs which are served on the hsm pipeline. This is in addition to any VIPs specified in
