@@ -1,7 +1,7 @@
 version: v2
 apps:
  ca-on-sam:    
-  - name: prd/prd-sam
+  - name: xrd/xrd-sampool
 
  gid-runtime-service:
   - name: xrd/xrd-sampool
