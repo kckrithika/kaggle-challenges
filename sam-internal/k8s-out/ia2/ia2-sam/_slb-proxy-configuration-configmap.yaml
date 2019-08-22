@@ -20,7 +20,9 @@ data:
       "proxyvipmappings": [
         {
           "proxyname": "slb-hsm-nginx",
-          "vips": []
+          "vips": [
+            "slb-canary-hsm.sam-system.ia2-sam.ia2.slb.sfdc.net"
+          ]
         }
       ]
     }
