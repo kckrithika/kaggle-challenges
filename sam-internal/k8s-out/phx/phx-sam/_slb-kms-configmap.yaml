@@ -6,7 +6,7 @@ data:
       "ClientCertPath": "/cert2/client/certificates/client.pem",
       "ClientCertPrivateKeyPath": "/cert2/client/keys/client-key.pem",
       "FileName": "/tmp/kms_client.log",
-      "LogLevel": "10",
+      "LogLevel": "90",
       "LogMode": "2",
       "MetricConnectionType": "udp",
       "MetricPort": "8125",
