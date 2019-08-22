@@ -11,7 +11,7 @@ system:
       "sherpa-injector.service-mesh/inject": "enabled"
     containers:
     - name: demo-authz-grpc-client
-      image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/electron_client:75
+      image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/electron_client:79
       args:
       - -endpoint=demo-authz.service-mesh.localhost.mesh.force.com:5443
       - -service=grpc
@@ -24,7 +24,7 @@ system:
           command: ["/bin/true"]
         initialDelaySeconds: 30
     - name: demo-authz-http-client
-      image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/electron_client:75
+      image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/electron_client:79
       args:
       - -endpoint=demo-authz-http.service-mesh.localhost.mesh.force.com:5442
       - -service=http
