@@ -14,8 +14,6 @@ system:
       env:
       - name: SFDC_ENVIRONMENT
         value: sconex
-      - name: JAVA_HEAP_OPTS
-        value: -Xmx64m
       ports:
       - containerPort: 7020
         name: grpc-svc
