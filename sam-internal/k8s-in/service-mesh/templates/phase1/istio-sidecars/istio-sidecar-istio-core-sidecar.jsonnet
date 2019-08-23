@@ -1,5 +1,6 @@
 # Sidecar that applies to namespace `app` which is expected to be Core's ServiceEntry's namespace.
 local mcpIstioConfig = (import "service-mesh/istio-config.jsonnet");
+local istioPhases = (import "service-mesh/istio-phases.jsonnet");
 
 local ingress(port, protocol, name, endpoint) =
 {
@@ -28,6 +29,7 @@ local egress(port, protocol, name) =
   //hosts: mcpIstioConfig.sidecarEgressHosts,
 };
 
+if istioPhases.is_phase1(mcpIstioConfig.controlEstate) then
 {
   apiVersion: "networking.istio.io/v1alpha3",
   kind: "Sidecar",
@@ -50,3 +52,4 @@ local egress(port, protocol, name) =
     ],
   },
 }
+else "SKIP"

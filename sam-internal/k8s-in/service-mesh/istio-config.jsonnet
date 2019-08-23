@@ -98,6 +98,7 @@ local istioTag = "91747894065947d0217bdae7eab3e0a3dfbaa21e";
     else
       "prd-sp2-sam_coreapp"
   ),
+  controlEstate: configs.estate,
 
   superpod: "-",
   pilotSettingsPath: "istio.-." + configs.kingdom + ".-." + "istio-pilot",

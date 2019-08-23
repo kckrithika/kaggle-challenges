@@ -1,5 +1,8 @@
 # Auto-generated file. Do not modify manually. Check README.md.
 local mcpIstioConfig = (import "service-mesh/istio-config.jsonnet");
+local istioPhases = (import "service-mesh/istio-phases.jsonnet");
+
+if istioPhases.is_phase1(mcpIstioConfig.controlEstate) then
 {
   apiVersion: "batch/v1",
   kind: "Job",
@@ -52,3 +55,4 @@ local mcpIstioConfig = (import "service-mesh/istio-config.jsonnet");
     },
   },
 }
+else "SKIP"

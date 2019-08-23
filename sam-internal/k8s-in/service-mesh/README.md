@@ -67,3 +67,5 @@ istio-shipping-mixed-sherpa-to-istio-64f799c4dd-qt9bl   5/5       Running       
 ```
 
 The app definitions can be found in the [service-mesh team manifests](https://git.soma.salesforce.com/sam/manifests/tree/master/apps/team/service-mesh).
+
+### Phased Deployments

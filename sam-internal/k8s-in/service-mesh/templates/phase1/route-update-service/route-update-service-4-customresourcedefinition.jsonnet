@@ -1,3 +1,7 @@
+local mcpIstioConfig = (import "service-mesh/istio-config.jsonnet");
+local istioPhases = (import "service-mesh/istio-phases.jsonnet");
+
+if istioPhases.is_phase1(mcpIstioConfig.controlEstate) then
 {
   apiVersion: "apiextensions.k8s.io/v1beta1",
   kind: "CustomResourceDefinition",
@@ -27,3 +31,4 @@
     version: "v1",
   },
 }
+else "SKIP"

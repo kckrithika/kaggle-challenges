@@ -2,7 +2,9 @@ local configs = import "config.jsonnet";
 local madkub = (import "service-mesh/istio-madkub-config.jsonnet") + { templateFilename:: std.thisFile };
 local samimages = (import "sam/samimages.jsonnet") + { templateFilename:: std.thisFile };
 local mcpIstioConfig = (import "service-mesh/istio-config.jsonnet");
+local istioPhases = (import "service-mesh/istio-phases.jsonnet");
 
+if istioPhases.is_phase1(mcpIstioConfig.controlEstate) then
 configs.deploymentBase("service-mesh") {
   local serverCertSans = [
     "istio-routing-webhook",
@@ -103,7 +105,7 @@ configs.deploymentBase("service-mesh") {
           },
           madkub.madkubRefreshContainer(certConfigs),
           {
-            "args": [
+            args: [
               "proxy",
               "sidecar",
               "--domain",
@@ -138,147 +140,147 @@ configs.deploymentBase("service-mesh") {
               "--controlPlaneAuthPolicy",
               "NONE",
               "--statusPort",
-              "15020"
+              "15020",
             ],
-            "env": [
+            env: [
               {
-                "name": "POD_NAME",
-                "valueFrom": {
-                  "fieldRef": {
-                    "apiVersion": "v1",
-                    "fieldPath": "metadata.name"
-                  }
-                }
+                name: "POD_NAME",
+                valueFrom: {
+                  fieldRef: {
+                    apiVersion: "v1",
+                    fieldPath: "metadata.name",
+                  },
+                },
               },
               {
-                "name": "POD_NAMESPACE",
-                "valueFrom": {
-                  "fieldRef": {
-                    "apiVersion": "v1",
-                    "fieldPath": "metadata.namespace"
-                  }
-                }
+                name: "POD_NAMESPACE",
+                valueFrom: {
+                  fieldRef: {
+                    apiVersion: "v1",
+                    fieldPath: "metadata.namespace",
+                  },
+                },
               },
               {
-                "name": "INSTANCE_IP",
-                "valueFrom": {
-                  "fieldRef": {
-                    "apiVersion": "v1",
-                    "fieldPath": "status.podIP"
-                  }
-                }
+                name: "INSTANCE_IP",
+                valueFrom: {
+                  fieldRef: {
+                    apiVersion: "v1",
+                    fieldPath: "status.podIP",
+                  },
+                },
               },
               {
-                "name": "ISTIO_META_POD_NAME",
-                "valueFrom": {
-                  "fieldRef": {
-                    "apiVersion": "v1",
-                    "fieldPath": "metadata.name"
-                  }
-                }
+                name: "ISTIO_META_POD_NAME",
+                valueFrom: {
+                  fieldRef: {
+                    apiVersion: "v1",
+                    fieldPath: "metadata.name",
+                  },
+                },
               },
               {
-                "name": "ISTIO_META_CONFIG_NAMESPACE",
-                "valueFrom": {
-                  "fieldRef": {
-                    "apiVersion": "v1",
-                    "fieldPath": "metadata.namespace"
-                  }
-                }
+                name: "ISTIO_META_CONFIG_NAMESPACE",
+                valueFrom: {
+                  fieldRef: {
+                    apiVersion: "v1",
+                    fieldPath: "metadata.namespace",
+                  },
+                },
               },
               {
-                "name": "ISTIO_META_INTERCEPTION_MODE",
-                "value": "REDIRECT"
+                name: "ISTIO_META_INTERCEPTION_MODE",
+                value: "REDIRECT",
               },
               {
-                "name": "ISTIO_META_hostname",
-                "valueFrom": {
-                  "fieldRef": {
-                    "apiVersion": "v1",
-                    "fieldPath": "metadata.name"
-                  }
-                }
+                name: "ISTIO_META_hostname",
+                valueFrom: {
+                  fieldRef: {
+                    apiVersion: "v1",
+                    fieldPath: "metadata.name",
+                  },
+                },
               },
               {
-                "name": "ISTIO_META_namespace",
-                "valueFrom": {
-                  "fieldRef": {
-                    "apiVersion": "v1",
-                    "fieldPath": "metadata.namespace"
-                  }
-                }
-              }
+                name: "ISTIO_META_namespace",
+                valueFrom: {
+                  fieldRef: {
+                    apiVersion: "v1",
+                    fieldPath: "metadata.namespace",
+                  },
+                },
+              },
             ],
-            "image": mcpIstioConfig.proxyImage,
-            "imagePullPolicy": "IfNotPresent",
-            "name": "istio-proxy",
-            "ports": [
+            image: mcpIstioConfig.proxyImage,
+            imagePullPolicy: "IfNotPresent",
+            name: "istio-proxy",
+            ports: [
               {
-                "containerPort": 15090,
-                "name": "http-envoy-prom",
-                "protocol": "TCP"
-              }
+                containerPort: 15090,
+                name: "http-envoy-prom",
+                protocol: "TCP",
+              },
             ],
-            "readinessProbe": {
-              "failureThreshold": 30,
-              "httpGet": {
-                "path": "/healthz/ready",
-                "port": 15020,
-                "scheme": "HTTP"
+            readinessProbe: {
+              failureThreshold: 30,
+              httpGet: {
+                path: "/healthz/ready",
+                port: 15020,
+                scheme: "HTTP",
               },
-              "initialDelaySeconds": 1,
-              "periodSeconds": 2,
-              "successThreshold": 1,
-              "timeoutSeconds": 1
+              initialDelaySeconds: 1,
+              periodSeconds: 2,
+              successThreshold: 1,
+              timeoutSeconds: 1,
             },
-            "resources": {
-              "limits": {
-                "cpu": "2",
-                "memory": "1Gi"
+            resources: {
+              limits: {
+                cpu: "2",
+                memory: "1Gi",
               },
-              "requests": {
-                "cpu": "100m",
-                "memory": "128Mi"
-              }
+              requests: {
+                cpu: "100m",
+                memory: "128Mi",
+              },
             },
-            "securityContext": {
-              "readOnlyRootFilesystem": true,
-              "runAsUser": 7447
+            securityContext: {
+              readOnlyRootFilesystem: true,
+              runAsUser: 7447,
             },
-            "terminationMessagePath": "/dev/termination-log",
-            "terminationMessagePolicy": "File",
-            "volumeMounts": [
+            terminationMessagePath: "/dev/termination-log",
+            terminationMessagePolicy: "File",
+            volumeMounts: [
               {
-                "mountPath": "/etc/istio/proxy",
-                "name": "istio-envoy"
+                mountPath: "/etc/istio/proxy",
+                name: "istio-envoy",
               },
               {
-                "mountPath": "/etc/certs/root-cert.pem",
-                "name": "server-cert",
-                "subPath": "ca.pem"
+                mountPath: "/etc/certs/root-cert.pem",
+                name: "server-cert",
+                subPath: "ca.pem",
               },
               {
-                "mountPath": "/etc/certs/cert-chain.pem",
-                "name": "server-cert",
-                "subPath": "server/certificates/server.pem"
+                mountPath: "/etc/certs/cert-chain.pem",
+                name: "server-cert",
+                subPath: "server/certificates/server.pem",
               },
               {
-                "mountPath": "/etc/certs/key.pem",
-                "name": "server-cert",
-                "subPath": "server/keys/server-key.pem"
+                mountPath: "/etc/certs/key.pem",
+                name: "server-cert",
+                subPath: "server/keys/server-key.pem",
               },
               {
-                "mountPath": "/etc/certs/client.pem",
-                "name": "client-cert",
-                "subPath": "client/certificates/client.pem"
+                mountPath: "/etc/certs/client.pem",
+                name: "client-cert",
+                subPath: "client/certificates/client.pem",
               },
               {
-                "mountPath": "/etc/certs/client-key.pem",
-                "name": "client-cert",
-                "subPath": "client/keys/client-key.pem"
-              }
-            ]
-          }
+                mountPath: "/etc/certs/client-key.pem",
+                name: "client-cert",
+                subPath: "client/keys/client-key.pem",
+              },
+            ],
+          },
         ],
         nodeSelector: {
           master: "true",
@@ -305,7 +307,7 @@ configs.deploymentBase("service-mesh") {
             volumeMounts+: madkub.madkubSamCertVolumeMounts(certConfigs),
           },
           {
-            "args": [
+            args: [
               "-p",
               "15006",
               "-u",
@@ -319,36 +321,37 @@ configs.deploymentBase("service-mesh") {
               "-b",
               "",
               "-d",
-              "15020,10443"
+              "15020,10443",
             ],
-            "image": mcpIstioConfig.proxyInitImage,
-            "imagePullPolicy": "IfNotPresent",
-            "name": "istio-init",
-            "resources": {
-              "limits": {
-                "cpu": "100m",
-                "memory": "50Mi"
+            image: mcpIstioConfig.proxyInitImage,
+            imagePullPolicy: "IfNotPresent",
+            name: "istio-init",
+            resources: {
+              limits: {
+                cpu: "100m",
+                memory: "50Mi",
               },
-              "requests": {
-                "cpu": "10m",
-                "memory": "10Mi"
-              }
-            },
-            "securityContext": {
-              "capabilities": {
-                "add": [
-                  "NET_ADMIN"
-                ]
+              requests: {
+                cpu: "10m",
+                memory: "10Mi",
               },
-              "runAsNonRoot": false,
-              "runAsUser": 0
             },
-            "terminationMessagePath": "/dev/termination-log",
-            "terminationMessagePolicy": "File"
-          }
+            securityContext: {
+              capabilities: {
+                add: [
+                  "NET_ADMIN",
+                ],
+              },
+              runAsNonRoot: false,
+              runAsUser: 0,
+            },
+            terminationMessagePath: "/dev/termination-log",
+            terminationMessagePolicy: "File",
+          },
         ],
         volumes+: madkub.madkubSamCertVolumes(certConfigs) + madkub.madkubSamMadkubVolumes() + mcpIstioConfig.istioEnvoyVolumes(),
       },
     },
   },
 }
+else "SKIP"

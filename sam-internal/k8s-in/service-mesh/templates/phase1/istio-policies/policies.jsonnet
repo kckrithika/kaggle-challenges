@@ -1,5 +1,8 @@
 local mesh_namespaces = ["app", "service-mesh", "gater", "mesh-control-plane", "ccait", "core-on-sam-sp2", "core-on-sam"];
+local mcpIstioConfig = (import "service-mesh/istio-config.jsonnet");
+local istioPhases = (import "service-mesh/istio-phases.jsonnet");
 
+if istioPhases.is_phase1(mcpIstioConfig.controlEstate) then
 {
   apiVersion: "v1",
   items: [
@@ -26,3 +29,4 @@ local mesh_namespaces = ["app", "service-mesh", "gater", "mesh-control-plane", "
   ],
   kind: "List",
 }
+else "SKIP"

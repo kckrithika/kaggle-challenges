@@ -1,5 +1,8 @@
 # Auto-generated file. Do not modify manually. Check README.md.
 local mcpIstioConfig = (import "service-mesh/istio-config.jsonnet");
+local istioPhases = (import "service-mesh/istio-phases.jsonnet");
+
+if istioPhases.is_phase1(mcpIstioConfig.controlEstate) then
 {
   apiVersion: "rbac.authorization.k8s.io/v1",
   kind: "ClusterRole",
@@ -43,3 +46,4 @@ local mcpIstioConfig = (import "service-mesh/istio-config.jsonnet");
     },
   ],
 }
+else "SKIP"

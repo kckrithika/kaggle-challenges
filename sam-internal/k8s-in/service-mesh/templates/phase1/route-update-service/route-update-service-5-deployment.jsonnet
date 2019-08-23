@@ -1,8 +1,10 @@
 local configs = import "config.jsonnet";
-local mcpIstioConfig = import "service-mesh/istio-config.jsonnet";
+local mcpIstioConfig = (import "service-mesh/istio-config.jsonnet");
+local istioPhases = (import "service-mesh/istio-phases.jsonnet");
 local madkub = (import "service-mesh/istio-madkub-config.jsonnet") + { templateFilename:: std.thisFile };
 local samimages = (import "sam/samimages.jsonnet") + { templateFilename:: std.thisFile };
 
+if istioPhases.is_phase1(mcpIstioConfig.controlEstate) then
 configs.deploymentBase("service-mesh") {
 
   local serverCertSans = [
@@ -145,3 +147,4 @@ configs.deploymentBase("service-mesh") {
     },
   },
 }
+else "SKIP"
