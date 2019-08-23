@@ -200,7 +200,7 @@ spec:
             fieldRef:
               apiVersion: v1
               fieldPath: metadata.namespace
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-sfci-dev/sfci/servicemesh/istio-packaging/proxy:91747894065947d0217bdae7eab3e0a3dfbaa21e
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/sfci/servicemesh/istio-packagingproxy:f0874ef16fa0c5ea948623884329fe1e0d20e7d5
         imagePullPolicy: IfNotPresent
         name: istio-proxy
         ports:
@@ -319,7 +319,7 @@ spec:
         - ""
         - -d
         - 15020,10443
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-sfci-dev/sfci/servicemesh/istio-packaging/proxy_init:91747894065947d0217bdae7eab3e0a3dfbaa21e
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/sfci/servicemesh/istio-packagingproxy_init:f0874ef16fa0c5ea948623884329fe1e0d20e7d5
         imagePullPolicy: IfNotPresent
         name: istio-init
         resources:

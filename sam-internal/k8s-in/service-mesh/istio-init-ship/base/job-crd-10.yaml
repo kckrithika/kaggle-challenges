@@ -1,30 +1,28 @@
+---
+# Source: istio-init/templates/job-crd-10.yaml
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: istio-init-crd-10
   namespace: mesh-control-plane
+  name: istio-init-crd-10
 spec:
   template:
     metadata:
       annotations:
         sidecar.istio.io/inject: "false"
     spec:
-      containers:
-      - command:
-        - kubectl
-        - apply
-        - -f
-        - /etc/istio/crd-10/crd-10.yaml
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-sfci-dev/sfci/servicemesh/istio-packaging/kubectl:e41f79547a0806e1a3e69f21d3a52074f1cccc3a
-        imagePullPolicy: IfNotPresent
-        name: istio-init-crd-10
-        volumeMounts:
-        - mountPath: /etc/istio/crd-10
-          name: crd-10
-          readOnly: true
-      restartPolicy: OnFailure
       serviceAccountName: istio-init-service-account
+      containers:
+      - name: istio-init-crd-10
+        image: "%(istioHub)s/kubectl:%(istioTag)s"
+        imagePullPolicy: IfNotPresent
+        volumeMounts:
+        - name: crd-10
+          mountPath: /etc/istio/crd-10
+          readOnly: true
+        command: ["kubectl",  "apply", "-f", "/etc/istio/crd-10/crd-10.yaml"]
       volumes:
-      - configMap:
+      - name: crd-10
+        configMap:
           name: istio-crd-10
-        name: crd-10
+      restartPolicy: OnFailure

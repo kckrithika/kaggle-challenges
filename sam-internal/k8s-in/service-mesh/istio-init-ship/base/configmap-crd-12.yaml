@@ -1,4 +1,10 @@
+---
+# Source: istio-init/templates/configmap-crd-12.yaml
 apiVersion: v1
+kind: ConfigMap
+metadata:
+  namespace: mesh-control-plane
+  name: istio-crd-12
 data:
   crd-12.yaml: |-
     kind: CustomResourceDefinition
@@ -22,7 +28,4 @@ data:
       scope: Namespaced
       version: v1alpha1
     ---
-kind: ConfigMap
-metadata:
-  name: istio-crd-12
-  namespace: mesh-control-plane
+    

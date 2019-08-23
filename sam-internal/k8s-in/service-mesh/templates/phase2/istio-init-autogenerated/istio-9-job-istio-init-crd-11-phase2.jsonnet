@@ -26,7 +26,7 @@ if istioPhases.is_phase2(mcpIstioConfig.controlEstate) then
               "-f",
               "/etc/istio/crd-11/crd-11.yaml",
             ],
-            image: "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-sfci-dev/sfci/servicemesh/istio-packaging/kubectl:e41f79547a0806e1a3e69f21d3a52074f1cccc3a",
+            image: "%(istioHub)s/kubectl:%(istioTag)s" % mcpIstioConfig,
             imagePullPolicy: "IfNotPresent",
             name: "istio-init-crd-11",
             volumeMounts: [
@@ -55,4 +55,5 @@ if istioPhases.is_phase2(mcpIstioConfig.controlEstate) then
     },
   },
 }
+
 else "SKIP"

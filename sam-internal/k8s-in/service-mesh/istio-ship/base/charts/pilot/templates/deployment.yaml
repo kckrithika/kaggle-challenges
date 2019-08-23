@@ -37,7 +37,7 @@ spec:
       serviceAccountName: istio-pilot-service-account
       containers:
         - name: discovery
-          image: "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-sfci-dev/sfci/servicemesh/istio-packaging/pilot:f0874ef16fa0c5ea948623884329fe1e0d20e7d5"
+          image: "%(istioHub)s/pilot:%(istioTag)s"
           imagePullPolicy: IfNotPresent
           args:
           - "discovery"
@@ -91,7 +91,7 @@ spec:
             mountPath: /etc/certs
             readOnly: true
         - name: istio-proxy
-          image: "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-sfci-dev/sfci/servicemesh/istio-packaging/proxy:f0874ef16fa0c5ea948623884329fe1e0d20e7d5"
+          image: "%(istioHub)s/proxy:%(istioTag)s"
           imagePullPolicy: IfNotPresent
           ports:
           - containerPort: 15003

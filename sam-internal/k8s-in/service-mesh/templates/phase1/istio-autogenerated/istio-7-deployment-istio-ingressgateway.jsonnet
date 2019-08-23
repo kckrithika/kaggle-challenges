@@ -237,7 +237,7 @@ if istioPhases.is_phase1(mcpIstioConfig.controlEstate) then
                 value: "sni-dnat",
               },
             ],
-            image: "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-sfci-dev/sfci/servicemesh/istio-packaging/proxy:f0874ef16fa0c5ea948623884329fe1e0d20e7d5",
+            image: "%(istioHub)s/proxy:%(istioTag)s" % mcpIstioConfig,
             imagePullPolicy: "IfNotPresent",
             name: "istio-proxy",
             ports: [

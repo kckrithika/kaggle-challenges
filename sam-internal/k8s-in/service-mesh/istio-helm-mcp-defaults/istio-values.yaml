@@ -13,15 +13,14 @@
 #
 gateways:
   enabled: true
+  #
+  # sidecar-injector webhook configuration, refer to the
+  # charts/sidecarInjectorWebhook/values.yaml for detailed configuration
+  #
   istio-ingressgateway:
     enabled: true
     autoscaleEnabled: false
     replicaCount: 1
-
-#
-# sidecar-injector webhook configuration, refer to the
-# charts/sidecarInjectorWebhook/values.yaml for detailed configuration
-#
 sidecarInjectorWebhook:
   enabled: true
 #
@@ -35,7 +34,6 @@ galley:
 #
 # @see charts/mixer/values.yaml, it takes precedence
 mixer:
-  enabled: false
   policy:
     # if policy is enabled the global.disablePolicyChecks has affect.
     enabled: false
@@ -45,8 +43,12 @@ mixer:
   # pilot configuration
   #
   # @see charts/pilot/values.yaml
+  enabled: false
 pilot:
   enabled: true
+  #
+  # security configuration
+  #
   resources:
     limits:
       cpu: 2000m
@@ -56,12 +58,9 @@ pilot:
       memory: 2048Mi
   autoscaleEnabled: false
   replicaCount: 3
+  sidecar: true
   env:
     PILOT_PUSH_THROTTLE: 10
-
-#
-# security configuration
-#
 security:
   enabled: false
 #
@@ -111,14 +110,14 @@ global:
   # Default hub for Istio images.
   # Releases are published to docker hub under 'istio' project.
   # Daily builds from prow are on gcr.io, and nightly builds from circle on docker.io/istionightly
-  hub: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-sfci-dev/sfci/servicemesh/istio-packaging
+  hub: "%(istioHub)s"
   # Default tag for Istio images.
-  tag: f0874ef16fa0c5ea948623884329fe1e0d20e7d5
+  tag: "%(istioTag)s"
   # Comma-separated minimum per-scope logging level of messages to output, in the form of <scope>:<level>,<scope>:<level>
   # The control plane has different scopes depending on component, but can configure default log level across all components
   # If empty, default scope and level will be used as configured in code
   logging:
-    level: "default:warn"
+    level: default:warn
 
   # monitoring port used by mixer, pilot, galley
   monitoringPort: 15014
@@ -137,7 +136,7 @@ global:
   proxy:
     image: proxy
     # cluster domain. Default value is "cluster.local".
-    clusterDomain: "cluster.local"
+    clusterDomain: cluster.local
 
     # Resources for the sidecar.
     resources:
@@ -164,7 +163,7 @@ global:
     accessLogEncoding: TEXT
     # Log level for proxy, applies to gateways and sidecars.  If left empty, "warning" is used.
     # Expected values are: trace|debug|info|warning|error|critical|off
-    logLevel: "info"
+    logLevel: info
 
     # Per Component log level for proxy, applies to gateways and sidecars. If a component level is
     # not set, then the global "logLevel" will be used. If left empty, "misc:error" is used.
@@ -190,7 +189,7 @@ global:
     # example: includeIPRanges: "172.30.0.0/16,172.20.0.0/16"
     # would only capture egress traffic on those two IP Ranges, all other outbound traffic would
     # be allowed by the sidecar
-    includeIPRanges: "127.1.2.3/32"
+    includeIPRanges: 127.1.2.3/32
     excludeIPRanges: ""
     excludeOutboundPorts: ""
 
@@ -202,7 +201,7 @@ global:
     #     Redirect no inbound traffic to Envoy:    --includeInboundPorts=""
     #     Redirect all inbound traffic to Envoy:   --includeInboundPorts="*"
     #     Redirect only selected ports:            --includeInboundPorts="80,8080"
-    includeInboundPorts: "*"
+    includeInboundPorts: '*'
     excludeInboundPorts: ""
 
     # This controls the 'policy' in the sidecar injector.
@@ -214,25 +213,13 @@ global:
     envoyStatsd:
       # If enabled is set to true, host and port must also be provided. Istio no longer provides a statsd collector.
       enabled: false
-      host: # example: statsd-svc.istio-system
-      port: # example: 9125
-
-    # Sets the Envoy Metrics Service address, used to push Envoy metrics to an external collector
-    # via the Metrics Service gRPC API. This contains detailed stats information emitted directly
-    # by Envoy and should not be confused with the the Istio telemetry. The Envoy stats are also
-    # available to scrape via the Envoy admin port at either /stats or /stats/prometheus.
-    #
-    # See https://www.envoyproxy.io/docs/envoy/latest/api-v2/config/metrics/v2/metrics_service.proto
-    # for details about Envoy's Metrics Service API.
-    #
-    # Disabled by default.
+      host: null
+      port: null
     envoyMetricsService:
       enabled: true
       host: switchboard.service-mesh
       port: 15001
-
-    # Specify which tracer to use. One of: lightstep, zipkin, datadog
-    tracer: "zipkin"
+    tracer: zipkin
 
   proxy_init:
     # Base name for the proxy_init container, used to configure iptables.
@@ -243,7 +230,7 @@ global:
   imagePullPolicy: IfNotPresent
   # controlPlaneSecurityEnabled enabled. Will result in delays starting the pods while secrets are
   # propagated, not recommended for tests.
-  controlPlaneSecurityEnabled: false
+  controlPlaneSecurityEnabled: true
   # disablePolicyChecks disables mixer policy checks.
   # if mixer.policy.enabled==true then disablePolicyChecks has affect.
   # Will set the value with same name in istio config map - pilot needs to be restarted to take effect.
@@ -279,7 +266,7 @@ global:
       address: ""
     datadog:
       # Host:Port for submitting traces to the Datadog agent.
-      address: "$(HOST_IP):8126"
+      address: $(HOST_IP):8126
 
   # Default mtls policy. If true, mtls between services will be enabled by default.
   mtls:
@@ -291,14 +278,7 @@ global:
   # For components that don't use ServiceAccounts (i.e. grafana, servicegraph, tracing)
   # ImagePullSecrets will be added to the corresponding Deployment(StatefulSet) objects.
   # Must be set for any cluster configured with private docker registry.
-  imagePullSecrets:
-  # - private-registry-key
-
-  # Specify pod scheduling arch(amd64, ppc64le, s390x) and weight as follows:
-  #   0 - Never scheduled
-  #   1 - Least preferred
-  #   2 - No preference
-  #   3 - Most preferred
+  imagePullSecrets: null
   arch:
     amd64: 2
     s390x: 2
@@ -353,14 +333,18 @@ global:
   # block in the relevant section below and setting the desired resources values.
   defaultResources:
     requests:
-      cpu: 10m
-    #   memory: 128Mi
-    # limits:
-    #   cpu: 100m
-    #   memory: 128Mi
+      cpu: 100m
+      #   memory: 128Mi
+      # limits:
+      #   cpu: 100m
+      #   memory: 128Mi
 
-  # enable pod distruption budget for the control plane, which is used to
-  # ensure Istio control plane components are gradually upgraded or recovered.
+      # enable pod distruption budget for the control plane, which is used to
+      # ensure Istio control plane components are gradually upgraded or recovered.
+      memory: 128Mi
+    limits:
+      cpu: 1000m
+      memory: 256Mi
   defaultPodDisruptionBudget:
     enabled: false
     # The values aren't mutable due to a current PodDisruptionBudget limitation
