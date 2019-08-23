@@ -42,7 +42,7 @@ if slbconfigs.isSlbEstate then configs.deploymentBase("slb") {
                                  ] + (
                                      if slbimages.hyperslb_build >= 2216 then
                                      [
-                                        "--monitorFrequency=5",
+                                        "--monitorFrequency=5s",
                                      ] else []
                                  ),
 
