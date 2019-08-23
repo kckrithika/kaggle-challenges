@@ -187,6 +187,18 @@
     },
     {
       "namespaces": [
+        "search-scale-safely"
+      ],
+      "access": [
+        "team/Search_Scale_Safely"
+      ],
+      "controlEstate": "cdg-sam",
+      "estate": "cdg-search_model_executor",
+      "kingdom": "cdg",
+      "superPod": "None"
+    },
+    {
+      "namespaces": [
         "cache-as-a-service-sp1"
       ],
       "access": [
@@ -700,6 +712,18 @@
       ],
       "controlEstate": "fra-sam",
       "estate": "fra-sam_warden",
+      "kingdom": "fra",
+      "superPod": "None"
+    },
+    {
+      "namespaces": [
+        "search-scale-safely"
+      ],
+      "access": [
+        "team/Search_Scale_Safely"
+      ],
+      "controlEstate": "fra-sam",
+      "estate": "fra-search_model_executor",
       "kingdom": "fra",
       "superPod": "None"
     },
@@ -1397,6 +1421,18 @@
     },
     {
       "namespaces": [
+        "search-scale-safely"
+      ],
+      "access": [
+        "team/Search_Scale_Safely"
+      ],
+      "controlEstate": "ia2-sam",
+      "estate": "ia2-search_model_executor",
+      "kingdom": "ia2",
+      "superPod": "None"
+    },
+    {
+      "namespaces": [
         "cache-as-a-service-sp1"
       ],
       "access": [
@@ -2031,6 +2067,18 @@
     },
     {
       "namespaces": [
+        "search-scale-safely"
+      ],
+      "access": [
+        "team/Search_Scale_Safely"
+      ],
+      "controlEstate": "lo2-sam",
+      "estate": "lo2-search_model_executor",
+      "kingdom": "lo2",
+      "superPod": "None"
+    },
+    {
+      "namespaces": [
         "cache-as-a-service-sp1"
       ],
       "access": [
@@ -2128,6 +2176,18 @@
       ],
       "controlEstate": "lo3-sam",
       "estate": "lo3-sam_warden",
+      "kingdom": "lo3",
+      "superPod": "None"
+    },
+    {
+      "namespaces": [
+        "search-scale-safely"
+      ],
+      "access": [
+        "team/Search_Scale_Safely"
+      ],
+      "controlEstate": "lo3-sam",
+      "estate": "lo3-search_model_executor",
       "kingdom": "lo3",
       "superPod": "None"
     },
@@ -2960,6 +3020,18 @@
       ],
       "controlEstate": "ph2-sam",
       "estate": "ph2-sam_warden",
+      "kingdom": "ph2",
+      "superPod": "None"
+    },
+    {
+      "namespaces": [
+        "search-scale-safely"
+      ],
+      "access": [
+        "team/Search_Scale_Safely"
+      ],
+      "controlEstate": "ph2-sam",
+      "estate": "ph2-search_model_executor",
       "kingdom": "ph2",
       "superPod": "None"
     },
