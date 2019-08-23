@@ -1,7 +1,7 @@
 # istio-inject: enabled enables both the webhooks - istio-sidecar-injector & istio-routing-webhook
 local utils = import "util_functions.jsonnet";
 local configs = import "config.jsonnet";
-local mesh_namespaces = ["app", "service-mesh", "gater", "ccait", "core-on-sam-sp2", "core-on-sam", "casam", "emailinfra", "universal-search", "search-scale-safely", "retail-cre", "retail-dfs", "retail-dss", "cloudatlas", "retail-eventlistener", "retail-mds", "retail-rrps", "retail-rsui", "retail-setup", "scone"];
+local mesh_namespaces = ["app", "service-mesh", "funnel", "gater", "ccait", "core-on-sam-sp2", "core-on-sam", "casam", "emailinfra", "universal-search", "search-scale-safely", "retail-cre", "retail-dfs", "retail-dss", "cloudatlas", "retail-eventlistener", "retail-mds", "retail-rrps", "retail-rsui", "retail-setup", "scone"];
 {
   apiVersion: "v1",
   metadata: {

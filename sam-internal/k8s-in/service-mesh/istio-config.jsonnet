@@ -123,6 +123,7 @@ local istioTag = "91747894065947d0217bdae7eab3e0a3dfbaa21e";
     "ccait/*",
     "core-on-sam-sp2/*",
     "emailinfra/*",
+    "funnel/*",
     "gater/*",
     "retail-cre/*",
     "retail-dfs/*",
