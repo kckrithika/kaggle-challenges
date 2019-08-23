@@ -37,8 +37,6 @@ system:
         limits: { cpu: "2", memory: "5Gi" }
         requests: { cpu: "2", memory: "5Gi" }
       env:
-        - name: GREASY
-          value: "GREASETRAP"
         - name: SFDC_ENVIRONMENT
           value: prod
         - name: SERVER_PORT
