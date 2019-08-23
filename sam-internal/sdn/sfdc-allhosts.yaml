@@ -10491,7 +10491,7 @@ hosts:
   hostname: shared0-samminiondp2-1-hnd.ops.sfdc.net
   kingdom: hnd
   pod: none
-  rack: a11-2g
+  rack: a09-2g
   superpod: none
 - bomrolename: sam_minion_dp
   controlestate: hnd-sam
@@ -27798,7 +27798,7 @@ hosts:
   hostname: shared0-samminiondp2-1-par.ops.sfdc.net
   kingdom: par
   pod: none
-  rack: j11-1r113
+  rack: j16-1r113
   superpod: none
 - bomrolename: sam_minion_dp
   controlestate: par-sam
@@ -27807,7 +27807,70 @@ hosts:
   hostname: shared0-samminiondp3-1-par.ops.sfdc.net
   kingdom: par
   pod: none
+  rack: c11-1r113
+  superpod: none
+- bomrolename: sam_minion_aqueduct
+  controlestate: par-sam
+  devicerole: samcompute
+  estate: par-sam_eventbus
+  hostname: shared0-samminionaqueduct1-1-par.ops.sfdc.net
+  kingdom: par
+  pod: none
+  rack: f17-1r113
+  superpod: none
+- bomrolename: sam_minion_aqueduct
+  controlestate: par-sam
+  devicerole: samcompute
+  estate: par-sam_eventbus
+  hostname: shared0-samminionaqueduct1-2-par.ops.sfdc.net
+  kingdom: par
+  pod: none
+  rack: f17-1r113
+  superpod: none
+- bomrolename: sam_minion_aqueduct
+  controlestate: par-sam
+  devicerole: samcompute
+  estate: par-sam_eventbus
+  hostname: shared0-samminionaqueduct1-3-par.ops.sfdc.net
+  kingdom: par
+  pod: none
+  rack: f17-1r113
+  superpod: none
+- bomrolename: sam_minion_aqueduct
+  controlestate: par-sam
+  devicerole: samcompute
+  estate: par-sam_eventbus
+  hostname: shared0-samminionaqueduct2-1-par.ops.sfdc.net
+  kingdom: par
+  pod: none
+  rack: j11-1r113
+  superpod: none
+- bomrolename: sam_minion_aqueduct
+  controlestate: par-sam
+  devicerole: samcompute
+  estate: par-sam_eventbus
+  hostname: shared0-samminionaqueduct2-2-par.ops.sfdc.net
+  kingdom: par
+  pod: none
   rack: e17-1r113
+  superpod: none
+- bomrolename: sam_minion_aqueduct
+  controlestate: par-sam
+  devicerole: samcompute
+  estate: par-sam_eventbus
+  hostname: shared0-samminionaqueduct3-1-par.ops.sfdc.net
+  kingdom: par
+  pod: none
+  rack: j16-1r113
+  superpod: none
+- bomrolename: sam_minion_aqueduct
+  controlestate: par-sam
+  devicerole: samcompute
+  estate: par-sam_eventbus
+  hostname: shared0-samminionaqueduct3-2-par.ops.sfdc.net
+  kingdom: par
+  pod: none
+  rack: j16-1r113
   superpod: none
 - bomrolename: sam_minion_gater
   controlestate: par-sam
