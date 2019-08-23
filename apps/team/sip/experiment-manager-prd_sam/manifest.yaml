@@ -3,7 +3,7 @@ apiVersion: v1
 system:
   notifications:
     email:
-      - search-sip-notify@salesforce.com
+      - srinath.venkatesan@salesforce.com
   functions:
   - name: sip-em-dev
     count: 1
