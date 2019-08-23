@@ -32,7 +32,6 @@ system:
           -XX:+HeapDumpOnOutOfMemoryError  -XX:HeapDumpPath=/home/scone/logs/dfs -Dcom.sun.management.jmxremote.port=8898
           -Dcom.sun.management.jmxremote.rmi.port=8898 -Dcom.sun.management.jmxremote.ssl=false
           -Dcom.sun.management.jmxremote.authenticate=false -Xmx2G -Xms2G -XX:ParallelGCThreads=8
-          -Dmds.enable.dml.override=true
       # An environment variable used to trigger containers redeployment without making other changes to the manifest
       - name: RESTART
         value: May-16-2019
