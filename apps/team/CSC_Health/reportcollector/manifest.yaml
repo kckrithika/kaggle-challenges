@@ -148,6 +148,9 @@ system:
         tcpSocket:
           port: 6379
         initialDelaySeconds: 5
+      env:
+      - name: DUMMY_UNUSED_ENV_VAR_FOR_POD_BOUNCE
+        value: 0
 
   loadbalancers:
   - lbname: reportcollectorlb
