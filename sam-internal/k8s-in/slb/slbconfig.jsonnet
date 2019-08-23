@@ -407,7 +407,8 @@
                   "petco2-mist51-na1-slawrance-prd.slb.sfdc.net",
               ],
               "prd-samtwo": [
-                             "na44-stmfb1-0-prd.slb.sfdc.net",
+                  "na44-stmfa1-0-prd.slb.sfdc.net",
+                  "na44-stmfb1-0-prd.slb.sfdc.net",
               ],
               "phx-sam": ["login-cloudforce-phx.slb.sfdc.net"],
               "dfw-sam": [
