@@ -18,6 +18,12 @@ items:
   metadata:
     labels:
       istio-injection: enabled
+    name: funnel
+- apiVersion: v1
+  kind: Namespace
+  metadata:
+    labels:
+      istio-injection: enabled
     name: gater
 - apiVersion: v1
   kind: Namespace
