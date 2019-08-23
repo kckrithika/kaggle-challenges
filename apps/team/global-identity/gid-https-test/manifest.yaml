@@ -98,7 +98,7 @@ system:
       - name: kms_kingdom
         value: undefined
       - name: kms_role
-        value: global-identity.gid-runtime-service
+        value: global-identity.gid-https-test
       - name: kms_caPath
         value: /client-certs/ca/cacerts.pem
       - name: kms_monitoredDirectory
