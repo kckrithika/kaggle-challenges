@@ -54,7 +54,7 @@ spec:
         - --vipLimit=198
         - --client.socketDir=/host/data/slb/config/slb-dns-register
         - --client.dialSocket=true
-        image: ops0-artifactrepo1-0-iad.data.sfdc.net/dva/slb/hyperslb:2210-e824af7ddb92556e8c766c6d27b332cbca850576
+        image: ops0-artifactrepo1-0-iad.data.sfdc.net/dva/slb/hyperslb:2218-013a11045be01c8755e74b8ee7cf575c08735462
         name: slb-dns-register
         volumeMounts:
         - mountPath: /etc/pki_service
@@ -97,7 +97,7 @@ spec:
           valueFrom:
             fieldRef:
               fieldPath: spec.nodeName
-        image: ops0-artifactrepo1-0-iad.data.sfdc.net/dva/slb/hyperslb:2210-e824af7ddb92556e8c766c6d27b332cbca850576
+        image: ops0-artifactrepo1-0-iad.data.sfdc.net/dva/slb/hyperslb:2218-013a11045be01c8755e74b8ee7cf575c08735462
         livenessProbe:
           httpGet:
             path: /liveness-probe
@@ -136,7 +136,7 @@ spec:
         - --shouldSkipSlbBlock=true
         - --skipFilesWithSuffix=.sock
         - --maxDeleteFileCount=20
-        image: ops0-artifactrepo1-0-iad.data.sfdc.net/dva/slb/hyperslb:2210-e824af7ddb92556e8c766c6d27b332cbca850576
+        image: ops0-artifactrepo1-0-iad.data.sfdc.net/dva/slb/hyperslb:2218-013a11045be01c8755e74b8ee7cf575c08735462
         name: slb-cleanup-config-processor
         securityContext:
           privileged: true
@@ -158,7 +158,7 @@ spec:
         env:
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig-platform
-        image: ops0-artifactrepo1-0-iad.data.sfdc.net/dva/slb/hyperslb:2210-e824af7ddb92556e8c766c6d27b332cbca850576
+        image: ops0-artifactrepo1-0-iad.data.sfdc.net/dva/slb/hyperslb:2218-013a11045be01c8755e74b8ee7cf575c08735462
         name: slb-cleanup
         securityContext:
           privileged: true
@@ -186,7 +186,7 @@ spec:
         - --readOnly=false
         - --checkMwSentinel=true
         - --control.manifestWatcherSentinel=/host/data/slb/config/slb-dns-register/slb-manifest-watcher.sentinel
-        image: ops0-artifactrepo1-0-iad.data.sfdc.net/dva/slb/hyperslb:2210-e824af7ddb92556e8c766c6d27b332cbca850576
+        image: ops0-artifactrepo1-0-iad.data.sfdc.net/dva/slb/hyperslb:2218-013a11045be01c8755e74b8ee7cf575c08735462
         name: slb-node-api
         volumeMounts:
         - mountPath: /host/data/slb
@@ -254,7 +254,7 @@ spec:
           valueFrom:
             fieldRef:
               fieldPath: spec.nodeName
-        image: ops0-artifactrepo1-0-iad.data.sfdc.net/dva/slb/hyperslb:2210-e824af7ddb92556e8c766c6d27b332cbca850576
+        image: ops0-artifactrepo1-0-iad.data.sfdc.net/dva/slb/hyperslb:2218-013a11045be01c8755e74b8ee7cf575c08735462
         name: slb-manifest-watcher
         securityContext:
           privileged: true
@@ -286,7 +286,7 @@ spec:
           valueFrom:
             fieldRef:
               fieldPath: spec.nodeName
-        image: ops0-artifactrepo1-0-iad.data.sfdc.net/dva/slb/hyperslb:2210-e824af7ddb92556e8c766c6d27b332cbca850576
+        image: ops0-artifactrepo1-0-iad.data.sfdc.net/dva/slb/hyperslb:2218-013a11045be01c8755e74b8ee7cf575c08735462
         name: slb-cname-register
         volumeMounts:
         - mountPath: /etc/pki_service
