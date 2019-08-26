@@ -4453,6 +4453,18 @@
     },
     {
       "namespaces": [
+        "search-scale-safely"
+      ],
+      "access": [
+        "team/Search_Scale_Safely"
+      ],
+      "controlEstate": "xrd-sam",
+      "estate": "xrd-search_model_executor",
+      "kingdom": "xrd",
+      "superPod": "None"
+    },
+    {
+      "namespaces": [
         "csc-sam"
       ],
       "access": [
