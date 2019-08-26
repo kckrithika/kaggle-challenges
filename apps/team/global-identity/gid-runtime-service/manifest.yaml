@@ -138,12 +138,13 @@ system:
   # SLB
   #####################################################################################
   loadbalancers:
-    - lbname: gidruntime-internal
+    - lbname: gid-runtime-demo
       function: gid-runtime-service
       slbEnabled: true
       ports:
-        - port: 80
+        - port: 443
           targetport: 7022
           lbtype: http
-          tls: false
+          tls: true
           reencrypt: false
+

@@ -1,8 +1,6 @@
 apps:
   gid-runtime-service:
     - prd/prd-sam_cloudatlas
-  gid-https-test:
-    - prd/prd-sam_cloudatlas
   gid-runtime-service-xrd-staging:
     - xrd/xrd-sampool
   cloudatlas-gid:
