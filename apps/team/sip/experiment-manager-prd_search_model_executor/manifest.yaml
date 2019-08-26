@@ -3,7 +3,7 @@ apiVersion: v1
 system:
   notifications:
     email:
-      - smarwaha@salesforce.com
+      - search-sip-notify@salesforce.com
   functions:
     - name: sip-em-prd
       count: 1
