@@ -53,6 +53,11 @@ system:
   loadbalancers:
     - lbname: istio-shipping
       function: istio-shipping
+      annotations:
+        routing.mesh.sfdc.net/enabled: "true"
+      labels:
+        app: istio-shipping
+        settings_path: istio.-.prd.-.istio-shipping
       ports:
         - lbtype: dsr
           port: 7443

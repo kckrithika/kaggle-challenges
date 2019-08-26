@@ -55,6 +55,11 @@ system:
   loadbalancers:
     - lbname: istio-ordering
       function: istio-ordering
+      annotations:
+        routing.mesh.sfdc.net/enabled: "true"
+      labels:
+        app: istio-ordering
+        settings_path: istio.-.prd.-.istio-ordering
       ports:
         - lbtype: dsr
           port: 7443
