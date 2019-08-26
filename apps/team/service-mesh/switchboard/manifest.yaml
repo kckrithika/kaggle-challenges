@@ -48,7 +48,7 @@ system:
       - --clusters.external-mesh-services[3]_resolution=DNS
       - --clusters.external-mesh-services[3]_port=443
       - --clusters.external-mesh-services[3]_endpoints[0]=random.funnel.ajnalocal1.foundation.rddev.aws.sfdc.cl
-      - --clusters.external-mesh-services[3]_*identity*=testajnaidentity
+      - --clusters.external-mesh-services[3]_identity=testajnaidentity
 
       ############################ EXAMPLE CONFIGURATION ##############################################
       # This section exists to show how some features can be configured.
