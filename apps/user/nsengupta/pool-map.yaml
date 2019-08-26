@@ -1,6 +1,8 @@
 apps:
   content-jmagick:
-    - prd/prd-sam
+# Stale app disabled by automation.  See https://sfdc.co/samsandbox
+#    - prd/prd-sam
 
   content-broker-service:
-    - prd/prd-sam
+# Stale app disabled by automation.  See https://sfdc.co/samsandbox
+#    - prd/prd-sam
