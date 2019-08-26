@@ -1,9 +1,13 @@
 apps:
     geoip-envoy-tls-sandbox:
-        - prd/prd-sam
+# Stale app disabled by automation.  See https://sfdc.co/samsandbox
+#        - prd/prd-sam
     dlr-metrics-emitter:
-        - prd/prd-sam
+# Stale app disabled by automation.  See https://sfdc.co/samsandbox
+#        - prd/prd-sam
     shipping-server-go-big:
-        - prd/prd-sam
+# Stale app disabled by automation.  See https://sfdc.co/samsandbox
+#        - prd/prd-sam
     shipping-client-go-big:
-        - prd/prd-sam
+# Stale app disabled by automation.  See https://sfdc.co/samsandbox
+#        - prd/prd-sam
