@@ -24,6 +24,6 @@ images:
   switchboard: sfci/servicelibs/switchboard:26c3cdce981042262b9f0f26c226cab1841bf9fd
   switchboardEnvoy: sfci/frontend-gateway/sfproxy:bc7e1fa
 name: na45
-nonce: 1566434529606882244
+nonce: 1566833006171671657
 replicaCount: 1
 settingsSuperPod: sp2
