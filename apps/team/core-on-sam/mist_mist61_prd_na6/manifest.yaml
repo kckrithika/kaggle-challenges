@@ -381,7 +381,7 @@ system:
       name: tls-server-cert
   loadbalancers:
   - function: na6-mist61sfproxy-prd
-    lbname: us5-sfproxy-lb
+    lbname: na6-sfproxy-lb
     nodeExposed: false
     ports:
     - port: 2525
