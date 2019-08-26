@@ -1,12 +1,15 @@
 apps:
  my-sam-test:    # this must match the name of your application. It must be lower case.
-  - prd/prd-sam  # the SAM Sandbox uses the prd/prd-sam host cluster
+# Stale app disabled by automation.  See https://sfdc.co/samsandbox
+#  - prd/prd-sam  # the SAM Sandbox uses the prd/prd-sam host cluster
                  # you can also specify other pools
  opportunity-ms:
-  - prd/prd-sam
+# Stale app disabled by automation.  See https://sfdc.co/samsandbox
+#  - prd/prd-sam
 
  product-ms:
-  - prd/prd-sam
+# Stale app disabled by automation.  See https://sfdc.co/samsandbox
+#  - prd/prd-sam
 
  ladybug:
   - prd/prd-sam
