@@ -43,13 +43,12 @@ system:
       - --listeners.rate-limit-enabled-clusters[6]=gid-runtime-service.global-identity
 
       #Temporary test configuration to test W-6465251
-      - --clusters.external-mesh-services[3]_name=testajnafunneldirecttls.funnel
-      - --clusters.external-mesh-services[3]_cluster_type=HTTP1_TLS
-      - --clusters.external-mesh-services[3]_resolution=DNS
-      - --clusters.external-mesh-services[3]_port=443
-      - --clusters.external-mesh-services[3]_endpoints[0]=random.funnel.ajnalocal1.foundation.rddev.aws.sfdc.cl
-      - --clusters.external-mesh-services[3]_identity=testajnaidentity
-
+      - --clusters.external-mesh-services[0]_name=testajnafunneldirecttls.funnel
+      - --clusters.external-mesh-services[0]_cluster_type=HTTP1_TLS
+      - --clusters.external-mesh-services[0]_resolution=DNS
+      - --clusters.external-mesh-services[0]_port=443
+      - --clusters.external-mesh-services[0]_endpoints[0]=random.funnel.ajnalocal1.foundation.rddev.aws.sfdc.cl
+      - --clusters.external-mesh-services[0]_identity=testajnaidentity
       ############################ EXAMPLE CONFIGURATION ##############################################
       # This section exists to show how some features can be configured.
       # External Mesh Service Configuration - Example
