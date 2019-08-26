@@ -1,5 +1,7 @@
 apps:
     sam-test:
-        - prd/prd-sam
+# Stale app disabled by automation.  See https://sfdc.co/samsandbox
+#        - prd/prd-sam
     warden-test:
-        - prd/prd-sam
+# Stale app disabled by automation.  See https://sfdc.co/samsandbox
+#        - prd/prd-sam

@@ -1,5 +1,6 @@
 apps:
  universal-search:
-  - prd/prd-sam
+# Stale app disabled by automation.  See https://sfdc.co/samsandbox
+#  - prd/prd-sam
  # test-sherpa-client:
  #  - prd/prd-sam

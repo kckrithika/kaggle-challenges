@@ -1,3 +1,4 @@
 apps:
     trace-me:
-        - prd/prd-sam
+# Stale app disabled by automation.  See https://sfdc.co/samsandbox
+#        - prd/prd-sam
