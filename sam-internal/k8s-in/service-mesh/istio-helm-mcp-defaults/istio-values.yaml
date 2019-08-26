@@ -13,14 +13,15 @@
 #
 gateways:
   enabled: true
-  #
-  # sidecar-injector webhook configuration, refer to the
-  # charts/sidecarInjectorWebhook/values.yaml for detailed configuration
-  #
   istio-ingressgateway:
     enabled: true
     autoscaleEnabled: false
     replicaCount: 1
+
+#
+# sidecar-injector webhook configuration, refer to the
+# charts/sidecarInjectorWebhook/values.yaml for detailed configuration
+#
 sidecarInjectorWebhook:
   enabled: true
 #
@@ -34,6 +35,7 @@ galley:
 #
 # @see charts/mixer/values.yaml, it takes precedence
 mixer:
+  enabled: false
   policy:
     # if policy is enabled the global.disablePolicyChecks has affect.
     enabled: false
@@ -43,12 +45,8 @@ mixer:
   # pilot configuration
   #
   # @see charts/pilot/values.yaml
-  enabled: false
 pilot:
   enabled: true
-  #
-  # security configuration
-  #
   resources:
     limits:
       cpu: 2000m
@@ -61,6 +59,10 @@ pilot:
   sidecar: true
   env:
     PILOT_PUSH_THROTTLE: 10
+
+#
+# security configuration
+#
 security:
   enabled: false
 #
@@ -117,7 +119,7 @@ global:
   # The control plane has different scopes depending on component, but can configure default log level across all components
   # If empty, default scope and level will be used as configured in code
   logging:
-    level: default:warn
+    level: "default:warn"
 
   # monitoring port used by mixer, pilot, galley
   monitoringPort: 15014
@@ -136,7 +138,7 @@ global:
   proxy:
     image: proxy
     # cluster domain. Default value is "cluster.local".
-    clusterDomain: cluster.local
+    clusterDomain: "cluster.local"
 
     # Resources for the sidecar.
     resources:
@@ -163,7 +165,7 @@ global:
     accessLogEncoding: TEXT
     # Log level for proxy, applies to gateways and sidecars.  If left empty, "warning" is used.
     # Expected values are: trace|debug|info|warning|error|critical|off
-    logLevel: info
+    logLevel: "info"
 
     # Per Component log level for proxy, applies to gateways and sidecars. If a component level is
     # not set, then the global "logLevel" will be used. If left empty, "misc:error" is used.
@@ -189,7 +191,7 @@ global:
     # example: includeIPRanges: "172.30.0.0/16,172.20.0.0/16"
     # would only capture egress traffic on those two IP Ranges, all other outbound traffic would
     # be allowed by the sidecar
-    includeIPRanges: 127.1.2.3/32
+    includeIPRanges: "127.1.2.3/32"
     excludeIPRanges: ""
     excludeOutboundPorts: ""
 
@@ -201,7 +203,7 @@ global:
     #     Redirect no inbound traffic to Envoy:    --includeInboundPorts=""
     #     Redirect all inbound traffic to Envoy:   --includeInboundPorts="*"
     #     Redirect only selected ports:            --includeInboundPorts="80,8080"
-    includeInboundPorts: '*'
+    includeInboundPorts: "*"
     excludeInboundPorts: ""
 
     # This controls the 'policy' in the sidecar injector.
@@ -213,13 +215,25 @@ global:
     envoyStatsd:
       # If enabled is set to true, host and port must also be provided. Istio no longer provides a statsd collector.
       enabled: false
-      host: null
-      port: null
+      host: # example: statsd-svc.istio-system
+      port: # example: 9125
+
+    # Sets the Envoy Metrics Service address, used to push Envoy metrics to an external collector
+    # via the Metrics Service gRPC API. This contains detailed stats information emitted directly
+    # by Envoy and should not be confused with the the Istio telemetry. The Envoy stats are also
+    # available to scrape via the Envoy admin port at either /stats or /stats/prometheus.
+    #
+    # See https://www.envoyproxy.io/docs/envoy/latest/api-v2/config/metrics/v2/metrics_service.proto
+    # for details about Envoy's Metrics Service API.
+    #
+    # Disabled by default.
     envoyMetricsService:
       enabled: true
       host: switchboard.service-mesh
       port: 15001
-    tracer: zipkin
+
+    # Specify which tracer to use. One of: lightstep, zipkin, datadog
+    tracer: "zipkin"
 
   proxy_init:
     # Base name for the proxy_init container, used to configure iptables.
@@ -266,7 +280,7 @@ global:
       address: ""
     datadog:
       # Host:Port for submitting traces to the Datadog agent.
-      address: $(HOST_IP):8126
+      address: "$(HOST_IP):8126"
 
   # Default mtls policy. If true, mtls between services will be enabled by default.
   mtls:
@@ -278,7 +292,14 @@ global:
   # For components that don't use ServiceAccounts (i.e. grafana, servicegraph, tracing)
   # ImagePullSecrets will be added to the corresponding Deployment(StatefulSet) objects.
   # Must be set for any cluster configured with private docker registry.
-  imagePullSecrets: null
+  imagePullSecrets:
+  # - private-registry-key
+
+  # Specify pod scheduling arch(amd64, ppc64le, s390x) and weight as follows:
+  #   0 - Never scheduled
+  #   1 - Least preferred
+  #   2 - No preference
+  #   3 - Most preferred
   arch:
     amd64: 2
     s390x: 2
