@@ -244,3 +244,165 @@ system:
       - maddogCert:
           type: server
         name: tls-server-cert
+  - name: na5-mist61sfproxy-prd
+    count: 1
+    identity:
+      pod: na5
+      serviceName: sfproxy
+    containers:
+    - name: sfproxy-envoy
+      image: sfci/frontend-gateway/sfproxy:13deb61
+      args:
+      - --template=/home/sfdc-sherpa/sfproxy/config/core-on-sam/sfproxy-public-cloud-rds.yaml.template
+      - --switchboard=na5-switchboard-lb.core-on-sam-sp2.prd-sam.prd.slb.sfdc.net:8088
+      - --log-level=trace
+      env:
+      - name: ENVOY_DEBUG_OPTIONS
+        value: --log-path /home/sfdc-sherpa/envoy.log
+      - name: SFDC_ENVIRONMENT
+        value: mist61
+      livenessProbe:
+        exec:
+          command:
+          - ./bin/is-alive
+        initialDelaySeconds: 20
+        periodSeconds: 5
+      ports:
+      - containerPort: 2525
+      - containerPort: 12060
+      - containerPort: 15373
+      - containerPort: 18443
+      readinessProbe:
+        exec:
+          command:
+          - ./bin/is-ready
+        initialDelaySeconds: 15
+        periodSeconds: 5
+      volumeMounts:
+      - mountPath: /client-certs
+        name: tls-client-cert
+      - mountPath: /server-certs
+        name: tls-server-cert
+    volumes:
+    - maddogCert:
+        type: client
+      name: tls-client-cert
+    - maddogCert:
+        lbnames:
+        - us5-sfproxy-lb
+        type: server
+      name: tls-server-cert
+  - name: na5-mist61switchboard-prd
+    count: 1
+    identity:
+      pod: na6
+      serviceName: sfproxy-switchboard
+    serviceAccountName: switchboard-service-account
+    containers:
+    - name: sfproxy-switchboard-server
+      image: sfci/servicelibs/switchboard:e8e1aeb8119549598103f1a2071878e0ff3920dd
+      args:
+      - --clusters.external-clusters[0]=ajnafunneldirect:HTTP1
+      - --clusters.external-clusters[1]=spaasmesh:HTTP2
+      - --metrics.maxNumberOfCollectedMetrics=100000
+      - --metrics.funnelTimeOut=90000
+      - --metrics.funnelEndPointURL=http://ajna0-funnel1-0-prd.data.sfdc.net:80
+      - --routes.frontProxy.isTrueFrontProxy=true
+      - --routeupdates.use.k8s=true
+      env:
+      - name: SFDC_ENVIRONMENT
+        value: mist61
+      - name: GRPC_SERVER_PORT
+        value: 7020
+      - name: JVM_HEAP_MAX
+        value: 4G
+      livenessProbe:
+        httpGet:
+          path: /manage/health
+          port: 15372
+        initialDelaySeconds: 20
+        periodSeconds: 5
+      ports:
+      - containerPort: 7020
+      - containerPort: 15372
+      readinessProbe:
+        httpGet:
+          path: /manage/health
+          port: 15372
+        initialDelaySeconds: 15
+        periodSeconds: 5
+      volumeMounts:
+      - mountPath: /home/sfdc-switchboard/sherpa-envoy-config-volume
+        name: envoy-config-volume
+    - name: sfproxy-switchboard-sherpa
+      image: sfci/frontend-gateway/sfproxy:13deb61
+      ports:
+      - containerPort: 15001
+      - containerPort: 15373
+      args:
+      - --template
+      - /home/sfdc-sherpa/sfproxy/config/switchboard-sidecar/sfproxy-switchboard-sidecar.config.yaml.template
+      - --log-level
+      - trace
+      env:
+      - name: SFDC_ENVIRONMENT
+        value: mist61
+      - name: ENVOY_DEBUG_OPTIONS
+        value: --log-path /home/sfdc-sherpa/envoy.log
+      livenessProbe:
+        exec:
+          command:
+          - ./sfproxy/scripts/check-switchboard.sh
+        initialDelaySeconds: 20
+        periodSeconds: 5
+      readinessProbe:
+        exec:
+          command:
+          - ./bin/is-ready
+        initialDelaySeconds: 15
+        periodSeconds: 5
+      volumeMounts:
+      - mountPath: /switchboard-config
+        name: envoy-config-volume
+      - mountPath: /client-certs
+        name: tls-client-cert
+      - mountPath: /server-certs
+        name: tls-server-cert
+    volumes:
+    - emptyDir: {}
+      name: envoy-config-volume
+    - maddogCert:
+        type: client
+      name: tls-client-cert
+    - maddogCert:
+        lbnames:
+        - na5-switchboard-lb
+        type: server
+      name: tls-server-cert
+  loadbalancers:
+  - function: na5-mist61sfproxy-prd
+    lbname: us5-sfproxy-lb
+    nodeExposed: false
+    ports:
+    - port: 2525
+      targetport: 2525
+    - port: 8443
+      targetport: 12060
+    - port: 8087
+      targetport: 15373
+    - port: 8444
+      targetport: 18443
+    slbEnabled: true
+  - function: na5-mist61switchboard-prd
+    lbname: na5-switchboard-lb
+    nodeExposed: false
+    ports:
+    - port: 8088
+      targetport: 15001
+    - port: 8089
+      targetport: 15372
+    - port: 8090
+      targetport: 15373
+    - port: 8888
+      targetport: 7020
+    slbEnabled: true
