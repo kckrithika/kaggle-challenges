@@ -1360,7 +1360,7 @@ spec:
               apiVersion: v1
               fieldPath: metadata.namespace
         - name: ESTATE
-          value: mcpIstioConfig.casamEstate
+          value: mcpIstioConfig.istioEstate
         image: mcpIstioConfig.madkubImage
         imagePullPolicy: IfNotPresent
         name: madkub-refresher
