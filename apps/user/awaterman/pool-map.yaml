@@ -2,8 +2,10 @@ apps:
   eaas:
     - prd/prd-sam
   email-service-example:
-    - prd/prd-sam
+# Stale app disabled by automation.  See https://sfdc.co/samsandbox
+#    - prd/prd-sam
   grpc-client:
-    - prd/prd-sam
+# Stale app disabled by automation.  See https://sfdc.co/samsandbox
+#    - prd/prd-sam
   mta:
     - prd/prd-sam
