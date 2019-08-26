@@ -49,7 +49,6 @@ system:
       - --clusters.external-mesh-services[0]_port=443
       - --clusters.external-mesh-services[0]_endpoints[0]=random.funnel.ajnalocal1.foundation.rddev.aws.sfdc.cl
       - --clusters.external-mesh-services[0]_identity=testajnaidentity
-
       ############################ EXAMPLE CONFIGURATION ##############################################
       # This section exists to show how some features can be configured.
       # External Mesh Service Configuration - Example
