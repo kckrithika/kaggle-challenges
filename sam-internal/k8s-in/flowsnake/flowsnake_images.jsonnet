@@ -62,7 +62,6 @@ local utils = import "util_functions.jsonnet";
                 # --- flag C (and place only ... ---
                 # --- flag D (one flag between ... ---
                 # --- flag E (each pair. ... ---
-                next_analysis_script: "",
                 # --- flag F (Their only purpose ... ---
                 # --- flag G (is to assist ... ---
                 # --- flag H (git's diff logic ... ---
@@ -79,6 +78,7 @@ local utils = import "util_functions.jsonnet";
             feature_flags+: {
                 # Note: the *value* of the flags is ignored. jsonnet lacks array search, so we use a an object.
                 btrfs_watchdog_hard_reset: "",  # Was promoted to prd-dev before phasing refactor
+                next_analysis_script: "",
             },
             # prd-dev offers legacy version mappings. Phase 2 does not, so cannot inherit from there.
             # Start with 3-iad-ord (which also have legacy version mappings),
@@ -90,6 +90,7 @@ local utils = import "util_functions.jsonnet";
         "2-prd-data": self["2"] {
             feature_flags+: {
                 # Note: the *value* of the flags is ignored. jsonnet lacks array search, so we use a an object.
+                /* next_analysis_script: "", */
             },
             # prd-data offers legacy version mappings. Phase 2 does not, so cannot inherit from there.
             # Start with 3-iad-ord (which also have legacy version mappings),
@@ -99,9 +100,17 @@ local utils = import "util_functions.jsonnet";
         },
         # frf: Exceptions vs. the rest of phase 2 only
         "2-frf": self["2"] {
+            feature_flags+: {
+                # Note: the *value* of the flags is ignored. jsonnet lacks array search, so we use a an object.
+                /* next_analysis_script: "", */
+            },
         },
         # cdu: Exceptions vs. the rest of phase 2 only
         "2-cdu": self["2"] {
+            feature_flags+: {
+                # Note: the *value* of the flags is ignored. jsonnet lacks array search, so we use a an object.
+                /* next_analysis_script: "", */
+            },
             version_mapping: {},  # No legacy Flowsnake in Public Cloud; therefore force empty verson_mapping
         },
         # Phase 3: Remaining production fleets.
