@@ -1,0 +1,358 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: istio-routing-webhook
+  namespace: mesh-control-plane
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: istio-routing-webhook
+      name: istio-routing-webhook
+  template:
+    metadata:
+      annotations:
+        madkub.sam.sfdc.net/allcerts: |-
+          {
+           "certreqs": [
+            {
+             "cert-type": "server",
+             "kingdom": "par",
+             "name": "server-cert",
+             "role": "istio-routing-webhook.mesh-control-plane",
+             "san": [
+              "istio-routing-webhook",
+              "istio-routing-webhook.mesh-control-plane",
+              "istio-routing-webhook.mesh-control-plane.svc",
+              "istio-routing-webhook.mesh-control-plane.svc.par-sam.par.sam.sfdc.net"
+             ]
+            },
+            {
+             "cert-type": "client",
+             "kingdom": "par",
+             "name": "client-cert",
+             "role": "istio-routing-webhook.mesh-control-plane"
+            }
+           ]
+          }
+        scheduler.alpha.kubernetes.io/critical-pod: ""
+        sidecar.istio.io/inject: "false"
+      labels:
+        app: istio-routing-webhook
+        name: istio-routing-webhook
+    spec:
+      containers:
+      - args:
+        - server
+        - --cert
+        - /server-cert/server/certificates/server.pem
+        - --key
+        - /server-cert/server/keys/server-key.pem
+        - --port
+        - "10443"
+        - --funnel-address
+        - ajnafunneldirect.svc.mesh.sfdc.net:8080
+        env:
+        - name: SETTINGS_SUPERPOD
+          value: '-'
+        - name: SETTINGS_PATH
+          value: -.-.par.-.istio-routing-webhook
+        - name: ESTATE
+          value: par-sam
+        image: ops0-artifactrepo1-0-par.data.sfdc.net/sfci/servicemesh/servicemesh/istio-routing-webhook:471d47c97c33ee61a77bd024f20d80603363db75
+        imagePullPolicy: IfNotPresent
+        name: istio-routing-webhook
+        ports:
+        - containerPort: 10443
+        readinessProbe:
+          exec:
+            command:
+            - /bin/true
+          initialDelaySeconds: 5
+          periodSeconds: 30
+          timeoutSeconds: 5
+        resources:
+          limits:
+            cpu: 1000m
+            memory: 256Mi
+          requests:
+            cpu: 100m
+            memory: 128Mi
+        volumeMounts:
+        - mountPath: /etc/pki_service
+          name: maddog-certs
+        - mountPath: /server-cert
+          name: server-cert
+        - mountPath: /client-cert
+          name: client-cert
+      - args:
+        - /sam/madkub-client
+        - --madkub-endpoint=https://10.254.208.254:32007
+        - --maddog-endpoint=https://all.pkicontroller.pki.blank.par.prod.non-estates.sfdcsd.net:8443
+        - --maddog-server-ca=/maddog-certs/ca/security-ca.pem
+        - --madkub-server-ca=/maddog-certs/ca/cacerts.pem
+        - --cert-folders=server-cert:/server-cert/
+        - --cert-folders=client-cert:/client-cert/
+        - --token-folder=/tokens/
+        - --ca-folder=/maddog-certs/ca
+        - --refresher
+        - --run-init-for-refresher-mode
+        env:
+        - name: MADKUB_NODENAME
+          valueFrom:
+            fieldRef:
+              apiVersion: v1
+              fieldPath: spec.nodeName
+        - name: MADKUB_NAME
+          valueFrom:
+            fieldRef:
+              apiVersion: v1
+              fieldPath: metadata.name
+        - name: MADKUB_NAMESPACE
+          valueFrom:
+            fieldRef:
+              apiVersion: v1
+              fieldPath: metadata.namespace
+        image: ops0-artifactrepo1-0-par.data.sfdc.net/tnrp/sam/madkub:1.0.0-0000081-ddcaa288
+        imagePullPolicy: IfNotPresent
+        name: madkub-refresher
+        resources: {}
+        volumeMounts:
+        - mountPath: /server-cert
+          name: server-cert
+        - mountPath: /client-cert
+          name: client-cert
+        - mountPath: /maddog-certs/
+          name: maddog-certs
+        - mountPath: /tokens
+          name: tokens
+      - args:
+        - proxy
+        - sidecar
+        - --domain
+        - $(POD_NAMESPACE).svc.cluster.local
+        - --log_output_level
+        - default:info
+        - --configPath
+        - /etc/istio/proxy
+        - --binaryPath
+        - /usr/local/bin/envoy
+        - --serviceCluster
+        - istio-routing-webhook.$(POD_NAMESPACE)
+        - --drainDuration
+        - 45s
+        - --parentShutdownDuration
+        - 1m0s
+        - --discoveryAddress
+        - istio-pilot.mesh-control-plane:15010
+        - --zipkinAddress
+        - zipkin.service-mesh:9411
+        - --proxyLogLevel=info
+        - --dnsRefreshRate
+        - 300s
+        - --connectTimeout
+        - 10s
+        - --envoyMetricsServiceAddress
+        - switchboard.service-mesh:15001
+        - --proxyAdminPort
+        - "15373"
+        - --concurrency
+        - "2"
+        - --controlPlaneAuthPolicy
+        - NONE
+        - --statusPort
+        - "15020"
+        env:
+        - name: POD_NAME
+          valueFrom:
+            fieldRef:
+              apiVersion: v1
+              fieldPath: metadata.name
+        - name: POD_NAMESPACE
+          valueFrom:
+            fieldRef:
+              apiVersion: v1
+              fieldPath: metadata.namespace
+        - name: INSTANCE_IP
+          valueFrom:
+            fieldRef:
+              apiVersion: v1
+              fieldPath: status.podIP
+        - name: ISTIO_META_POD_NAME
+          valueFrom:
+            fieldRef:
+              apiVersion: v1
+              fieldPath: metadata.name
+        - name: ISTIO_META_CONFIG_NAMESPACE
+          valueFrom:
+            fieldRef:
+              apiVersion: v1
+              fieldPath: metadata.namespace
+        - name: ISTIO_META_INTERCEPTION_MODE
+          value: REDIRECT
+        - name: ISTIO_META_hostname
+          valueFrom:
+            fieldRef:
+              apiVersion: v1
+              fieldPath: metadata.name
+        - name: ISTIO_META_namespace
+          valueFrom:
+            fieldRef:
+              apiVersion: v1
+              fieldPath: metadata.namespace
+        image: ops0-artifactrepo1-0-par.data.sfdc.net/sfci/servicemesh/istio-packaging/proxy:f0874ef16fa0c5ea948623884329fe1e0d20e7d5
+        imagePullPolicy: IfNotPresent
+        name: istio-proxy
+        ports:
+        - containerPort: 15090
+          name: http-envoy-prom
+          protocol: TCP
+        readinessProbe:
+          failureThreshold: 30
+          httpGet:
+            path: /healthz/ready
+            port: 15020
+            scheme: HTTP
+          initialDelaySeconds: 1
+          periodSeconds: 2
+          successThreshold: 1
+          timeoutSeconds: 1
+        resources:
+          limits:
+            cpu: "2"
+            memory: 1Gi
+          requests:
+            cpu: 100m
+            memory: 128Mi
+        securityContext:
+          readOnlyRootFilesystem: true
+          runAsUser: 7447
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+        volumeMounts:
+        - mountPath: /etc/istio/proxy
+          name: istio-envoy
+        - mountPath: /etc/certs/root-cert.pem
+          name: server-cert
+          subPath: ca.pem
+        - mountPath: /etc/certs/cert-chain.pem
+          name: server-cert
+          subPath: server/certificates/server.pem
+        - mountPath: /etc/certs/key.pem
+          name: server-cert
+          subPath: server/keys/server-key.pem
+        - mountPath: /etc/certs/client.pem
+          name: client-cert
+          subPath: client/certificates/client.pem
+        - mountPath: /etc/certs/client-key.pem
+          name: client-cert
+          subPath: client/keys/client-key.pem
+      initContainers:
+      - args:
+        - /sam/madkub-client
+        - --madkub-endpoint=https://10.254.208.254:32007
+        - --maddog-endpoint=https://all.pkicontroller.pki.blank.par.prod.non-estates.sfdcsd.net:8443
+        - --maddog-server-ca=/maddog-certs/ca/security-ca.pem
+        - --madkub-server-ca=/maddog-certs/ca/cacerts.pem
+        - --cert-folders=server-cert:/server-cert/
+        - --cert-folders=client-cert:/client-cert/
+        - --token-folder=/tokens/
+        - --ca-folder=/maddog-certs/ca
+        env:
+        - name: MADKUB_NODENAME
+          valueFrom:
+            fieldRef:
+              apiVersion: v1
+              fieldPath: spec.nodeName
+        - name: MADKUB_NAME
+          valueFrom:
+            fieldRef:
+              apiVersion: v1
+              fieldPath: metadata.name
+        - name: MADKUB_NAMESPACE
+          valueFrom:
+            fieldRef:
+              apiVersion: v1
+              fieldPath: metadata.namespace
+        image: ops0-artifactrepo1-0-par.data.sfdc.net/tnrp/sam/madkub:1.0.0-0000081-ddcaa288
+        imagePullPolicy: IfNotPresent
+        name: madkub-init
+        volumeMounts:
+        - mountPath: /server-cert
+          name: server-cert
+        - mountPath: /client-cert
+          name: client-cert
+        - mountPath: /maddog-certs/
+          name: maddog-certs
+        - mountPath: /tokens
+          name: tokens
+      - command:
+        - bash
+        - -c
+        - |
+          set -ex
+          chmod 775 -R /server-cert && chown -R 7447:7447 /server-cert
+          chmod 775 -R /client-cert && chown -R 7447:7447 /client-cert
+        image: ops0-artifactrepo1-0-par.data.sfdc.net/tnrp/sam/hypersam:sam-1ebeb0ac-657
+        imagePullPolicy: Always
+        name: permissionsetterinitcontainer
+        securityContext:
+          runAsNonRoot: false
+          runAsUser: 0
+        volumeMounts:
+        - mountPath: /server-cert
+          name: server-cert
+        - mountPath: /client-cert
+          name: client-cert
+      - args:
+        - -p
+        - "15006"
+        - -u
+        - "7447"
+        - -m
+        - REDIRECT
+        - -i
+        - 127.1.2.3/32
+        - -x
+        - ""
+        - -b
+        - ""
+        - -d
+        - 15020,10443
+        image: ops0-artifactrepo1-0-par.data.sfdc.net/sfci/servicemesh/istio-packaging/proxy_init:f0874ef16fa0c5ea948623884329fe1e0d20e7d5
+        imagePullPolicy: IfNotPresent
+        name: istio-init
+        resources:
+          limits:
+            cpu: 100m
+            memory: 50Mi
+          requests:
+            cpu: 10m
+            memory: 10Mi
+        securityContext:
+          capabilities:
+            add:
+            - NET_ADMIN
+          runAsNonRoot: false
+          runAsUser: 0
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+      nodeSelector:
+        master: "true"
+      serviceAccountName: istio-routing-webhook-service-account
+      volumes:
+      - hostPath:
+          path: /etc/pki_service
+        name: maddog-certs
+      - emptyDir:
+          medium: Memory
+        name: server-cert
+      - emptyDir:
+          medium: Memory
+        name: client-cert
+      - emptyDir:
+          medium: Memory
+        name: tokens
+      - emptyDir:
+          medium: Memory
+        name: istio-envoy
