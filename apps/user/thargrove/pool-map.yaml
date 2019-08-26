@@ -1,7 +1,6 @@
 apps:
  TnrpWatchdog:
-# Stale app disabled by automation.  See https://sfdc.co/samsandbox
-#  - prd/prd-sam
+  - prd/prd-sam
  history:
 # Stale app disabled by automation.  See https://sfdc.co/samsandbox
 #  - prd/prd-sam
