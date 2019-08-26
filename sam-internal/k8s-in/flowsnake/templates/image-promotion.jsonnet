@@ -50,7 +50,7 @@ local extra_images_to_promote =
     ]
 else []);
 
-if util.is_production(kingdom) || flowsnakeconfig.is_phase2_fleet then
+if util.is_production(kingdom) then
 {
   apiVersion: "extensions/v1beta1",
   kind: "Deployment",

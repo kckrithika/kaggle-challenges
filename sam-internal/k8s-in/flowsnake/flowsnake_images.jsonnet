@@ -24,7 +24,7 @@ local utils = import "util_functions.jsonnet";
         "1": self["2"] {
             image_tags+: {
                 watchdog_image_tag: "2722-a1231485debac6b17dfa76e7a1af01750e0f4f8b",  # 05/2019 image
-                integration_test_tag: "jenkins-dva-transformation-spark-on-k8s-sample-apps-PR-33-10-itest",
+                integration_test_tag: "15",
             },
             feature_flags+: {
                 # Note: the *value* of the flags is ignored. jsonnet lacks array search, so we use a an object.
@@ -75,7 +75,7 @@ local utils = import "util_functions.jsonnet";
         # prd-dev: Exceptions vs the rest of phase 2 only
         "2-prd-dev": self["2"] {
             image_tags+: {
-                integration_test_tag: "jenkins-dva-transformation-spark-on-k8s-sample-apps-PR-33-10-itest",
+                integration_test_tag: "15",
             },
             feature_flags+: {
                 # Note: the *value* of the flags is ignored. jsonnet lacks array search, so we use a an object.
@@ -92,7 +92,6 @@ local utils = import "util_functions.jsonnet";
         "2-prd-data": self["2"] {
             feature_flags+: {
                 # Note: the *value* of the flags is ignored. jsonnet lacks array search, so we use a an object.
-                /* next_analysis_script: "", */
             },
             # prd-data offers legacy version mappings. Phase 2 does not, so cannot inherit from there.
             # Start with 3-iad-ord (which also have legacy version mappings),
@@ -102,17 +101,9 @@ local utils = import "util_functions.jsonnet";
         },
         # frf: Exceptions vs. the rest of phase 2 only
         "2-frf": self["2"] {
-            feature_flags+: {
-                # Note: the *value* of the flags is ignored. jsonnet lacks array search, so we use a an object.
-                /* next_analysis_script: "", */
-            },
         },
         # cdu: Exceptions vs. the rest of phase 2 only
         "2-cdu": self["2"] {
-            feature_flags+: {
-                # Note: the *value* of the flags is ignored. jsonnet lacks array search, so we use a an object.
-                /* next_analysis_script: "", */
-            },
             version_mapping: {},  # No legacy Flowsnake in Public Cloud; therefore force empty verson_mapping
         },
         # Phase 3: Remaining production fleets.
