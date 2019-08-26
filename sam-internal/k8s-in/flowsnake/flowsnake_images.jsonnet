@@ -54,7 +54,6 @@ local utils = import "util_functions.jsonnet";
         # Only include new things not yet promoted to next phase. To promote, move line items to next phase.
         "2": self["3"] {
             image_tags+: {
-                integration_test_tag: "jenkins-dva-transformation-spark-on-k8s-sample-apps-PR-33-10-itest",
             },
             feature_flags+: {
                 # --- flag A (Do not edit ... ---
@@ -75,6 +74,9 @@ local utils = import "util_functions.jsonnet";
         },
         # prd-dev: Exceptions vs the rest of phase 2 only
         "2-prd-dev": self["2"] {
+            image_tags+: {
+                integration_test_tag: "jenkins-dva-transformation-spark-on-k8s-sample-apps-PR-33-10-itest",
+            },
             feature_flags+: {
                 # Note: the *value* of the flags is ignored. jsonnet lacks array search, so we use a an object.
                 btrfs_watchdog_hard_reset: "",  # Was promoted to prd-dev before phasing refactor

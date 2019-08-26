@@ -2167,7 +2167,7 @@ items:
           - -includeCommandOutput=true
           env:
           - name: DOCKER_TAG
-            value: jenkins-dva-transformation-spark-on-k8s-sample-apps-PR-33-10-itest
+            value: "4"
           - name: S3_PROXY_HOST
             value: public0-proxy1-0-prd.data.sfdc.net
           - name: DRIVER_SERVICE_ACCOUNT
@@ -2179,7 +2179,7 @@ items:
               fieldRef:
                 apiVersion: v1
                 fieldPath: spec.nodeName
-          image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/flowsnake-spark-on-k8s-integration-test-runner:jenkins-dva-transformation-spark-on-k8s-sample-apps-PR-33-10-itest
+          image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/flowsnake-spark-on-k8s-integration-test-runner:4
           imagePullPolicy: IfNotPresent
           name: watchdog
           resources:
