@@ -1,0 +1,47 @@
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    slb.sfdc.net/name: istio-ingressgateway
+    slb.sfdc.net/portconfigurations: |-
+      [
+       {
+        "lbtype": "dsr",
+        "port": 15008,
+        "targetport": 15008
+       },
+       {
+        "lbtype": "dsr",
+        "port": 15009,
+        "targetport": 15009
+       },
+       {
+        "lbtype": "dsr",
+        "port": 8085,
+        "targetport": 8085
+       },
+       {
+        "lbtype": "dsr",
+        "port": 8443,
+        "targetport": 8443
+       }
+      ]
+  labels:
+    app: istio-ingressgateway
+    istio: ingressgateway
+    release: istio
+  name: istio-ingressgateway
+  namespace: core-on-sam-sp2
+spec:
+  ports:
+  - name: https-coreapp
+    port: 8443
+  - name: https-istio-coreapp
+    port: 8085
+  - name: tcp-coreapp
+    port: 2525
+  selector:
+    app: istio-ingressgateway
+    istio: ingressgateway
+    release: istio
+  type: LoadBalancer

@@ -1,0 +1,34 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: Sidecar
+metadata:
+  annotations:
+    manifestctl.sam.data.sfdc.net/swagger: disable
+  name: casam-na7-sidecar
+  namespace: core-on-sam-sp2
+spec:
+  egress:
+  - hosts:
+    - mesh-control-plane/*
+    - z9s-default/*
+    - app/*
+    - casam/*
+    - ccait/*
+    - core-on-sam-sp2/*
+    - emailinfra/*
+    - funnel/*
+    - gater/*
+    - retail-cre/*
+    - retail-dfs/*
+    - retail-mds/*
+    - retail-rsui/*
+    - scone/*
+    - search-scale-safely/*
+    - service-mesh/*
+    - universal-search/*
+  - bind: 0.0.0.0
+    hosts:
+    - '*/na7-mist61-caas-prd.service-mesh.svc.cluster.local'
+    port:
+      name: redis-caas
+      number: 15008
+      protocol: Redis
