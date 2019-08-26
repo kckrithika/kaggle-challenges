@@ -8,10 +8,12 @@ apps:
   - prd/prd-samdev
  sfci-test:
   - prd/prd-samtest
-  - prd/prd-sam
+# Stale app disabled by automation.  See https://sfdc.co/samsandbox
+#  - prd/prd-sam
  test-secret-app:
   - prd/prd-samdev
-  - prd/prd-sam
+# Stale app disabled by automation.  See https://sfdc.co/samsandbox
+#  - prd/prd-sam
  stateful-no-ceph:
   - prd/prd-samdev
 
