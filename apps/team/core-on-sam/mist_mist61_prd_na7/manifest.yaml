@@ -123,14 +123,14 @@ system:
     identity:
       pod: na7
       serviceName: app
+    annotations:
+      sidecar.istio.io/inject: "true"
+      routing.mesh.sfdc.net/enabled: "true"
     labels:
       app: app
       settings_path: mist.mist61.prd.na7.app
       superpod: sp2
       version: blue
-    annotations:
-      sidecar.istio.io/inject: "true"
-      routing.mesh.sfdc.net/enabled: "true"
     name: na7-mist61app-prd
     progressDeadlineSeconds: 300
     strategy:
@@ -263,6 +263,11 @@ system:
     annotations:
       sidecar.istio.io/inject: "true"
       routing.mesh.sfdc.net/enabled: "true"
+    labels:
+      app: sequencer
+      settings_path: mist.mist61.prd.na7.sequencer
+      superpod: sp2
+      version: blue
     name: na7-mist61sequencer-prd
     progressDeadlineSeconds: 300
     terminationGracePeriodSeconds: 60
