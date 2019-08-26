@@ -25,7 +25,7 @@ spec:
       - command:
         - /sam/node-labeler
         - --config=/config/node-labeler-config.json
-        image: ops0-artifactrepo1-0-cdu.data.sfdc.net/dva/sam/hypersam:2755-f2d626475424807fceb6c047dbb5ae7271561131
+        image: ops0-artifactrepo1-0-cdu.data.sfdc.net/dva/sam/hypersam:2782-642a31c27d65c41109e7abe97ab07c984fe6385a
         name: node-labeler
         resources:
           limits:
