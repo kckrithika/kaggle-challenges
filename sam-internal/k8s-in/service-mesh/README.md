@@ -79,6 +79,6 @@ Example:
 ``` 
 It generates the phase directory under [templates](./templates) if required and auto-populates the jsonnets with the required phase filter. 
 
-1. The phase filter is defined in [istio-phases.jsonnet](./istio-phases.jsonnet). 
+2. The phase filter is defined in [istio-phases.jsonnet](./istio-phases.jsonnet). 
 
-1. Once the script successfully completes, run [build.sh](../build.sh).
+3. Once the script successfully completes, run [build.sh](../build.sh).
