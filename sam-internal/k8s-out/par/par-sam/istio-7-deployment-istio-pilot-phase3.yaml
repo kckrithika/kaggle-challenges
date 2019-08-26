@@ -255,7 +255,7 @@ spec:
               apiVersion: v1
               fieldPath: metadata.namespace
         - name: ESTATE
-          value: prd-sp2-sam_coreapp
+          value: par-sam_gater
         image: ops0-artifactrepo1-0-par.data.sfdc.net/tnrp/sam/madkub:1.0.0-0000081-ddcaa288
         imagePullPolicy: IfNotPresent
         name: madkub-refresher
