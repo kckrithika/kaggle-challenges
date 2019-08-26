@@ -13,13 +13,13 @@ system:
       "routing.mesh.sfdc.net/enabled": "true"
     containers:
     - name: cre-control-plane-ccp-dev
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cre-fusion/services/control-plane:2.0.1.develop.c8c5cca.280
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cre-fusion/services/control-plane:2.0.1.develop.c7c7f7a.302
       env:
         ####################################################################################################
         ############################   ENGINE/DDS FLOWSNAKE ARTIFACTS ( Most frequently changed ) ##########
         ####################################################################################################
         - name: INGEST_FLOWSNAKE_ARTIFACT
-          value: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cre/cre-engine:1.9.0.0.develop.a57824a.110
+          value: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cre/cre-engine:2.0.0.0.PR-1056.f2692ac.31
         - name: SAVE_FLOWSNAKE_ARTIFACT
           value: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cre/cre-dds-spark:1.9-freeze-016.0.release-1.9.1d192d1.24
         - name: EXPORT_FLOWSNAKE_ARTIFACT
