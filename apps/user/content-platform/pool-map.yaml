@@ -1,5 +1,6 @@
 apps:
   content-platform-jmagick:
-    - prd/prd-sam
+# Stale app disabled by automation.  See https://sfdc.co/samsandbox
+#    - prd/prd-sam
   cbatch-svc:
     - prd/prd-sam
