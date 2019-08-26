@@ -36,17 +36,17 @@ system:
         httpGet:
             path: /healthfalconsdbgenerationactivator
     - name: falconsdbproductiontest
-      image: ops0-artifactrepo1-0-dfw.data.sfdc.net/dva/sdd/sdbproductiontest:11
+      image: ops0-artifactrepo1-0-dfw.data.sfdc.net/dva/sdd/sdbproductiontest:12
       livenessProbe:
         httpGet:
             path: /healthfalconsdbproductiontest
     - name: falconsdbbootstraptest
-      image: ops0-artifactrepo1-0-dfw.data.sfdc.net/dva/sdd/sdbbootstraptest:11
+      image: ops0-artifactrepo1-0-dfw.data.sfdc.net/dva/sdd/sdbbootstraptest:12
       livenessProbe:
         httpGet:
             path: /healthfalconsdbbootstraptest
     - name: falconsdbupgradetest
-      image: ops0-artifactrepo1-0-dfw.data.sfdc.net/dva/sdd/sdbupgradetest:11
+      image: ops0-artifactrepo1-0-dfw.data.sfdc.net/dva/sdd/sdbupgradetest:12
       livenessProbe:
         httpGet:
             path: /healthfalconsdbupgradetest
