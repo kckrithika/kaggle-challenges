@@ -183,7 +183,6 @@
                   "10.208.208.144/32",  # sec0-magister1-0-phx.slb.sfdc.net.
                 ],
                 "prd-sam": [
-                  "10.251.196.91/32",  # jtuley-rsui-lb.user-jtuley.prd-sam.prd.slb.sfdc.net
                   "10.251.196.42/32",  # rsui-func-lb.retail-rsui.prd-sam.prd.slb.sfdc.net
                   "10.251.196.44/32",  # rsui-perf-lb.retail-rsui.prd-sam.prd.slb.sfdc.net
                   "10.251.197.44/32",  # ops0-dvaregistryssl1-0-prd.slb.sfdc.net
