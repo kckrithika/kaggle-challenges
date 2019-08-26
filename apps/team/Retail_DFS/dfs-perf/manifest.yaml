@@ -81,10 +81,11 @@ system:
                 -Dcom.sun.management.jmxremote.rmi.port=8898
                 -Dcom.sun.management.jmxremote.ssl=false
                 -Dcom.sun.management.jmxremote.authenticate=false
+                -Dlogging.json.stdout.level=OFF 
                 -Xmx2G -Xms2G -XX:ParallelGCThreads=8"
       resources:
-        limits: { cpu: "4", memory: "4Gi" }
-        requests: { cpu: "4", memory: "3Gi" }
+        limits: { cpu: "6", memory: "4Gi" }
+        requests: { cpu: "6", memory: "3Gi" }
       ports:
       - containerPort: 7022
       - containerPort: 15372
