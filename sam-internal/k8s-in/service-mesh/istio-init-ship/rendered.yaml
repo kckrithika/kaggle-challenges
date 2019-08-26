@@ -706,7 +706,7 @@ spec:
         - apply
         - -f
         - /etc/istio/crd-10/crd-10.yaml
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-sfci-dev/sfci/servicemesh/istio-packaging/kubectl:e41f79547a0806e1a3e69f21d3a52074f1cccc3a
+        image: '%(istioHub)s/kubectl:%(istioTag)s'
         imagePullPolicy: IfNotPresent
         name: istio-init-crd-10
         volumeMounts:
@@ -739,7 +739,7 @@ spec:
         - apply
         - -f
         - /etc/istio/crd-11/crd-11.yaml
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-sfci-dev/sfci/servicemesh/istio-packaging/kubectl:e41f79547a0806e1a3e69f21d3a52074f1cccc3a
+        image: '%(istioHub)s/kubectl:%(istioTag)s'
         imagePullPolicy: IfNotPresent
         name: istio-init-crd-11
         volumeMounts:
@@ -772,7 +772,7 @@ spec:
         - apply
         - -f
         - /etc/istio/crd-12/crd-12.yaml
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-sfci-dev/sfci/servicemesh/istio-packaging/kubectl:e41f79547a0806e1a3e69f21d3a52074f1cccc3a
+        image: '%(istioHub)s/kubectl:%(istioTag)s'
         imagePullPolicy: IfNotPresent
         name: istio-init-crd-12
         volumeMounts:

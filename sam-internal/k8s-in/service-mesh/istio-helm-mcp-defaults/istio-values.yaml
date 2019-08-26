@@ -56,6 +56,7 @@ pilot:
       memory: 2048Mi
   autoscaleEnabled: false
   replicaCount: 3
+  sidecar: true
   env:
     PILOT_PUSH_THROTTLE: 10
 
@@ -111,9 +112,9 @@ global:
   # Default hub for Istio images.
   # Releases are published to docker hub under 'istio' project.
   # Daily builds from prow are on gcr.io, and nightly builds from circle on docker.io/istionightly
-  hub: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-sfci-dev/sfci/servicemesh/istio-packaging
+  hub: "%(istioHub)s"
   # Default tag for Istio images.
-  tag: f0874ef16fa0c5ea948623884329fe1e0d20e7d5
+  tag: "%(istioTag)s"
   # Comma-separated minimum per-scope logging level of messages to output, in the form of <scope>:<level>,<scope>:<level>
   # The control plane has different scopes depending on component, but can configure default log level across all components
   # If empty, default scope and level will be used as configured in code
@@ -243,7 +244,7 @@ global:
   imagePullPolicy: IfNotPresent
   # controlPlaneSecurityEnabled enabled. Will result in delays starting the pods while secrets are
   # propagated, not recommended for tests.
-  controlPlaneSecurityEnabled: false
+  controlPlaneSecurityEnabled: true
   # disablePolicyChecks disables mixer policy checks.
   # if mixer.policy.enabled==true then disablePolicyChecks has affect.
   # Will set the value with same name in istio config map - pilot needs to be restarted to take effect.
@@ -353,14 +354,18 @@ global:
   # block in the relevant section below and setting the desired resources values.
   defaultResources:
     requests:
-      cpu: 10m
-    #   memory: 128Mi
-    # limits:
-    #   cpu: 100m
-    #   memory: 128Mi
+      cpu: 100m
+      #   memory: 128Mi
+      # limits:
+      #   cpu: 100m
+      #   memory: 128Mi
 
-  # enable pod distruption budget for the control plane, which is used to
-  # ensure Istio control plane components are gradually upgraded or recovered.
+      # enable pod distruption budget for the control plane, which is used to
+      # ensure Istio control plane components are gradually upgraded or recovered.
+      memory: 128Mi
+    limits:
+      cpu: 1000m
+      memory: 256Mi
   defaultPodDisruptionBudget:
     enabled: false
     # The values aren't mutable due to a current PodDisruptionBudget limitation

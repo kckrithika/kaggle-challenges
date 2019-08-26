@@ -8,4 +8,4 @@ patchesStrategicMerge:
 - job-crd-12.yaml
 - serviceaccount.yaml
 bases:
-- ../../base
+- ../defaults
