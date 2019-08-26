@@ -1,4 +1,4 @@
-local mesh_namespaces = ["app", "service-mesh", "gater", "mesh-control-plane", "ccait", "core-on-sam-sp2", "core-on-sam"];
+local mesh_namespaces = ["app", "service-mesh", "gater", "mesh-control-plane", "ccait"];
 local mcpIstioConfig = (import "service-mesh/istio-config.jsonnet");
 local istioPhases = (import "service-mesh/istio-phases.jsonnet");
 
