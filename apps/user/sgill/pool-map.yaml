@@ -1,5 +1,7 @@
 apps:
   scan-client-demo:
-    - prd/prd-sam
+# Stale app disabled by automation.  See https://sfdc.co/samsandbox
+#    - prd/prd-sam
   scanner-sgill-sandbox:
-    - prd/prd-sam
+# Stale app disabled by automation.  See https://sfdc.co/samsandbox
+#    - prd/prd-sam

@@ -1,5 +1,7 @@
 apps:
  keytabservice-server6:
-  - prd/prd-sam 
+# Stale app disabled by automation.  See https://sfdc.co/samsandbox
+#  - prd/prd-sam 
  scone-basic-rest-pki:
-  - prd/prd-sam 
+# Stale app disabled by automation.  See https://sfdc.co/samsandbox
+#  - prd/prd-sam 
