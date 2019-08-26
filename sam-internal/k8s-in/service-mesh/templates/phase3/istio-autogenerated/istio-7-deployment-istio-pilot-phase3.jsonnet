@@ -391,7 +391,7 @@ if istioPhases.is_phase3(mcpIstioConfig.controlEstate) then
               },
               {
                 name: "ESTATE",
-                value: mcpIstioConfig.casamEstate,
+                value: mcpIstioConfig.istioEstate,
               },
             ],
             image: mcpIstioConfig.madkubImage,
