@@ -1,5 +1,7 @@
 apps:
   mock-metadata-service:
-    - prd/prd-sam
+# Stale app disabled by automation.  See https://sfdc.co/samsandbox
+#    - prd/prd-sam
   rsui:
-    - prd/prd-sam
+# Stale app disabled by automation.  See https://sfdc.co/samsandbox
+#    - prd/prd-sam

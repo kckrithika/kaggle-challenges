@@ -1,7 +1,10 @@
 apps:
  e2c-appstore-reviews:
-  - prd/prd-sam
+# Stale app disabled by automation.  See https://sfdc.co/samsandbox
+#  - prd/prd-sam
  appcatalog-lite:
-  - prd/prd-sam
+# Stale app disabled by automation.  See https://sfdc.co/samsandbox
+#  - prd/prd-sam
  harverify:
-  - prd/prd-sam
+# Stale app disabled by automation.  See https://sfdc.co/samsandbox
+#  - prd/prd-sam

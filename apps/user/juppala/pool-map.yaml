@@ -6,7 +6,8 @@ apps:
   - prd/prd-sam  # 
                  # 
  amp-ui:         # 
-  - prd/prd-sam  # 
+# Stale app disabled by automation.  See https://sfdc.co/samsandbox
+#  - prd/prd-sam  # 
                  # 
  astcx-ui:       # 
   - prd/prd-sam  # 

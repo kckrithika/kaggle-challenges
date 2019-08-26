@@ -1,7 +1,8 @@
 apps:
  search-model-executor-xlt:
 # - prd/prd-sam
-  - prd/prd-sam
+# Stale app disabled by automation.  See https://sfdc.co/samsandbox
+#  - prd/prd-sam
 # universal-search:
 #  - prd/prd-sam
  universal-search-xlt:

@@ -1,9 +1,12 @@
 apps:
  samhello:    # this must match the name of your application. It must be lower case.
-  - prd/prd-sam  # the SAM Sandbox uses the prd/prd-sam host cluster
+# Stale app disabled by automation.  See https://sfdc.co/samsandbox
+#  - prd/prd-sam  # the SAM Sandbox uses the prd/prd-sam host cluster
                  # you can also specify other pools
  idea2test-jmehta:
-  - prd/prd-sam
+# Stale app disabled by automation.  See https://sfdc.co/samsandbox
+#  - prd/prd-sam
 
  idea2test-androidbuild-jmehta:
-  - prd/prd-sam
+# Stale app disabled by automation.  See https://sfdc.co/samsandbox
+#  - prd/prd-sam
