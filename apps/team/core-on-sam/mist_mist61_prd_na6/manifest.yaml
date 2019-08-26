@@ -244,17 +244,17 @@ system:
       - maddogCert:
           type: server
         name: tls-server-cert
-  - name: na5-mist61sfproxy-prd
+  - name: na6-mist61sfproxy-prd
     count: 1
     identity:
-      pod: na5
+      pod: na6
       serviceName: sfproxy
     containers:
     - name: sfproxy-envoy
       image: sfci/frontend-gateway/sfproxy:13deb61
       args:
       - --template=/home/sfdc-sherpa/sfproxy/config/core-on-sam/sfproxy-public-cloud-rds.yaml.template
-      - --switchboard=na5-switchboard-lb.core-on-sam-sp2.prd-sam.prd.slb.sfdc.net:8088
+      - --switchboard=na6-switchboard-lb.core-on-sam-sp2.prd-sam.prd.slb.sfdc.net:8088
       - --log-level=trace
       env:
       - name: ENVOY_DEBUG_OPTIONS
@@ -292,7 +292,7 @@ system:
         - us5-sfproxy-lb
         type: server
       name: tls-server-cert
-  - name: na5-mist61switchboard-prd
+  - name: na6-mist61switchboard-prd
     count: 1
     identity:
       pod: na6
@@ -376,11 +376,11 @@ system:
       name: tls-client-cert
     - maddogCert:
         lbnames:
-        - na5-switchboard-lb
+        - na6-switchboard-lb
         type: server
       name: tls-server-cert
   loadbalancers:
-  - function: na5-mist61sfproxy-prd
+  - function: na6-mist61sfproxy-prd
     lbname: us5-sfproxy-lb
     nodeExposed: false
     ports:
@@ -393,8 +393,8 @@ system:
     - port: 8444
       targetport: 18443
     slbEnabled: true
-  - function: na5-mist61switchboard-prd
-    lbname: na5-switchboard-lb
+  - function: na6-mist61switchboard-prd
+    lbname: na6-switchboard-lb
     nodeExposed: false
     ports:
     - port: 8088
