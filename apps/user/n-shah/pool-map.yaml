@@ -1,4 +1,5 @@
 apps:
  secure-salesforce-slack:    # this must match the name of your application (the folder you created above). It is case sensitive
-  - prd/prd-sam  # the SAM Sandbox uses the prd/prd-sam host cluster
+# Stale app disabled by automation.  See https://sfdc.co/samsandbox
+#  - prd/prd-sam  # the SAM Sandbox uses the prd/prd-sam host cluster
  
