@@ -366,6 +366,26 @@ items:
 - apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: RoleBinding
   metadata:
+    name: search-scale-safely:cdg-search_model_executor:rolebinding
+    namespace: search-scale-safely
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: minion:role
+  subjects:
+  - kind: User
+    name: shared0-samminionsme1-1-cdg.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionsme1-2-cdg.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionsme1-3-cdg.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionsme2-1-cdg.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionsme2-2-cdg.ops.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1beta1
+  kind: RoleBinding
+  metadata:
     name: cache-as-a-service-sp1:cdg-sp1-sam_caas:rolebinding
     namespace: cache-as-a-service-sp1
   roleRef:
