@@ -25,10 +25,10 @@ if istioPhases.is_phase1(mcpIstioConfig.controlEstate) then
       },
       rules: [
         {
-          operations: ["CREATE", "UPDATE"],
+          operations: ["CREATE"],
           apiGroups: [""],
           apiVersions: ["v1"],
-          resources: ["services"],
+          resources: ["pods"],
         },
         {
           operations: ["CREATE", "UPDATE"],
