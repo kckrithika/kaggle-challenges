@@ -21,6 +21,7 @@ system:
       - --healthIndicator.maxThreadCount=1300
       - --clusters.zkScraper.scrapeTimeoutMs=120000
       - --cluster.scraper.delayMs=120000
+      - --authz.dest=authz-svc.service-mesh.localhost.mesh.force.com:5443      
       ports:
       - containerPort: 15372
       env:
