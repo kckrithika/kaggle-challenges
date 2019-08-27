@@ -2,7 +2,7 @@ apiVersion: v1
 system:
   functions:
   - name: default
-    count: 2
+    count: 1
     containers:
     - name: sam-lenstest
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cre/cre-lens-ui:6883d25
@@ -17,6 +17,5 @@ system:
     function: default
     slbenabled: true
     ports:
-      - port: 3000
+      - port: 80
         targetport: 3000
-        lbtype: tcp
