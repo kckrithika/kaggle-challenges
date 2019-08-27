@@ -13,7 +13,7 @@ system:
       "routing.mesh.sfdc.net/enabled": "true"
     containers:
     - name: cre-control-plane-ccp-dev
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cre-fusion/services/control-plane:2.0.1.PR-633.56be4ba.4
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cre-fusion/services/control-plane:2.0.1.PR-635.fd5b3dd.2
       env:
         ####################################################################################################
         ############################   ENGINE/DDS FLOWSNAKE ARTIFACTS ( Most frequently changed ) ##########
@@ -211,8 +211,10 @@ system:
     nodeExposed: true
     slbEnabled: true
     ports:
-      - port: 8091
+      - port: 7022
         targetport: 7022
+      - port: 15372
+        targetport: 15372  
   - lbname: cre-control-plane-ccp-dev
     function: cre-control-plane-ccp-dev
     ports:
