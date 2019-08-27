@@ -6,7 +6,7 @@ data:
       "dockerRegistry": "ops-artifactrepo1-0-chx.data.sfdc.net",
       "enableDNS": true,
       "enableIdentityEnvVar": false,
-      "enableMaddog": false,
+      "enableMaddog": true,
       "enableStatefulSet": true,
       "funnelEndpoint": "mandm-funnel-chx.data.sfdc.net:8080",
       "imagePullPolicy": "IfNotPresent",

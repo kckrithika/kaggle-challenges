@@ -2,43 +2,41 @@ apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
   labels:
-    name: samcontrol
+    name: watchdog-maddog
     sam.data.sfdc.net/owner: sam
-  name: samcontrol
+  name: watchdog-maddog
 spec:
   replicas: 1
   selector:
     matchLabels:
-      name: samcontrol
+      name: watchdog-maddog
   template:
     metadata:
       labels:
-        apptype: control
-        name: samcontrol
+        apptype: monitoring
+        name: watchdog-maddog
         sam.data.sfdc.net/owner: sam
       namespace: sam-system
     spec:
       containers:
       - command:
-        - /sam/sam-controller
-        - --dockerregistry=ops-artifactrepo1-0-chx.data.sfdc.net
-        - --funnelEndpoint=mandm-funnel-chx.data.sfdc.net:8080
-        - --v=3
-        - --logtostderr=true
-        - --config=/config/samcontrol.json
+        - /sam/watchdog
+        - -role=MADDOG
+        - -watchdogFrequency=10s
+        - -alertThreshold=300s
+        - -madkub-endpoint=https://$(MADKUBSERVER_SERVICE_HOST):32007/healthz
+        - -maddog-endpoint=https://all.pkicontroller.pki.blank.chx.prod.non-estates.sfdcsd.net:8443/sfdc/v1/ping
+        - -watchDogKind=Deployment
+        - -funnelEndpoint=mandm-funnel-chx.data.sfdc.net:8080
+        - --config=/config/watchdog.json
         - --hostsConfigFile=/sfdchosts/hosts.json
-        - -maddogMadkubEndpoint=https://$(MADKUBSERVER_SERVICE_HOST):32007
+        - -timeout=2s
+        - -emailFrequency=336h
         env:
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig-platform
         image: ops-artifactrepo1-0-chx.data.sfdc.net/dva/sam/hypersam:2755-f2d626475424807fceb6c047dbb5ae7271561131
-        livenessProbe:
-          httpGet:
-            path: /healthz
-            port: 22545
-          initialDelaySeconds: 30
-          periodSeconds: 5
-        name: sam-controller
+        name: watchdog-maddog
         volumeMounts:
         - mountPath: /etc/pki_service
           name: maddog-certs
@@ -46,10 +44,10 @@ spec:
           name: kubeconfig
         - mountPath: /sfdchosts
           name: sfdchosts
-        - mountPath: /config
-          name: config
         - mountPath: /data/certs
           name: certs
+        - mountPath: /config
+          name: config
       hostNetwork: true
       nodeSelector:
         pool: chx-sam
@@ -67,5 +65,5 @@ spec:
           path: /data/certs
         name: certs
       - configMap:
-          name: samcontrol
+          name: watchdog
         name: config
