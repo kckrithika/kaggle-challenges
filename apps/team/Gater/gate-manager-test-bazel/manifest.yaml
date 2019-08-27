@@ -98,21 +98,3 @@ system:
       type: RollingUpdate
       rollingUpdate:
         maxUnavailable: 1
-  loadbalancers:
-  - lbname: gate-manager
-    function: gater
-    slbEnabled: true
-    ports:
-      - port: 9090
-        targetport: 9090
-        lbtype: tcp
-      - port: 15372
-        targetport: 15372
-        lbtype: tcp
-  - lbname: gater
-    function: gater
-    ports:
-      - lbtype: dsr
-        port: 7443
-        targetport: 7443
-        name: grpc-gater
