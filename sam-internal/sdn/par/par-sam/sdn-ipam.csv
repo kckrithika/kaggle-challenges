@@ -141,6 +141,9 @@ shared0-samminioncustomerresolutionengine3-5-par.ops.sfdc.net,10.249.183.140/29,
 shared0-samminiondatapool1-1-par.ops.sfdc.net,10.249.240.99/29,10.214.82.0/27,a12-02,par-sam_datapool,65009
 shared0-samminiondatapool1-2-par.ops.sfdc.net,10.249.240.106/29,10.214.82.64/27,b07-02,par-sam_datapool,65009
 shared0-samminiondatapool2-1-par.ops.sfdc.net,10.249.240.98/29,10.214.82.32/27,a12-02,par-sam_datapool,65009
+shared0-samminiondp1-1-par.ops.sfdc.net,10.249.164.74/29,10.214.84.32/27,f17-01,par-sam_dp,65009
+shared0-samminiondp2-1-par.ops.sfdc.net,10.249.164.82/29,10.214.84.64/27,j16-01,par-sam_dp,65009
+shared0-samminiondp3-1-par.ops.sfdc.net,10.249.164.66/29,10.214.84.0/27,c11-01,par-sam_dp,65009
 shared0-samminiongater1-1-par.ops.sfdc.net,10.249.162.26/29,10.214.66.32/27,e16-01,par-sam_gater,65009
 shared0-samminiongater1-2-par.ops.sfdc.net,10.249.162.10/29,10.214.66.128/27,k01-01,par-sam_gater,65009
 shared0-samminiongater1-3-par.ops.sfdc.net,10.249.162.34/29,10.214.66.96/27,j16-01,par-sam_gater,65009
