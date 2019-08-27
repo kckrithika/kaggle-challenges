@@ -1378,7 +1378,7 @@ spec:
         - --debug-mode
         - "true"
         - --funnel-address
-        - mcpIstioConfig.funnelIstioEndpoint
+        - mcpIstioConfig.funnelVIP
         - --alt-tags
         - cluster=svccluster
         env:

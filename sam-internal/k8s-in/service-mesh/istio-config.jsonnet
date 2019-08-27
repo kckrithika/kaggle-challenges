@@ -2,6 +2,8 @@ local configs = import "config.jsonnet";
 local samimages = (import "sam/samimages.jsonnet") + { templateFilename:: std.thisFile };
 local madkub = (import "service-mesh/istio-madkub-config.jsonnet") + { templateFilename:: std.thisFile };
 
+local funnelEndpoint = std.split(configs.funnelVIP, ":");
+
 ## Istio pilot madkub certificates.
 local pilotSans = [
   "istio-pilot",
@@ -109,7 +111,10 @@ local ingressGatewayCertConfigs = [ingressGatewayClientCertConfig, ingressGatewa
   ingressGatewaySettingsPath: "istio.-." + configs.kingdom + ".-." + "istio-ingressgateway",
 
   funnelVIP: configs.funnelVIP,
-  funnelIstioEndpoint: "ajnafunneldirecttls-" + configs.kingdom + ".funnel.svc.mesh.sfdc.net:7442",
+  funnelIstioEndpoint: "ajnafunneldirect.svc.mesh.sfdc.net:8080",
+
+  funnelHost: funnelEndpoint[0],
+  funnelPort: funnelEndpoint[1],
 
   madkubEndpoint: "https://10.254.208.254:32007",  // Check madkubserver-service.jsonnet for why IP
   maddogEndpoint: configs.maddogEndpoint,
