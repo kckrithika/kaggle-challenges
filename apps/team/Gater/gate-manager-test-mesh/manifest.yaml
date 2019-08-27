@@ -20,9 +20,9 @@ system:
       - --metrics.collectionInterval=60
       - --synctask.host-affinity=false
       - --logging.sfdc.stderr.level=OFF
-      - --logging.json.stdout.level=ALL
+      - --logging.json.stdout.level=OFF
       - --logging.sfdc.level=OFF
-      - --logging.json.level=OFF
+      - --logging.json.level=ALL
       - --metrics.container=gater-mesh
       ports:
       - containerPort: 7020
