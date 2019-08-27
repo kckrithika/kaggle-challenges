@@ -7,7 +7,7 @@ apps:
       - test1shared0-samminionatlasdir1-1-prd.eng.sfdc.net
 
   # PRD-Stage DS Nodes
-  test1shared0-samminionatlasdir-prd:
+  prd-stage-samminionatlasdir-prd:
     - name: prd/prd-sam_cloudatlas_dir
       hostSubList:
       - test1shared0-samminionatlasdir2-1-prd.eng.sfdc.net
