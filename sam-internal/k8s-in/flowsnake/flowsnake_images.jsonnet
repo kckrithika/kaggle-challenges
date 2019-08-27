@@ -24,6 +24,7 @@ local utils = import "util_functions.jsonnet";
         "1": self["2"] {
             image_tags+: {
                 watchdog_image_tag: "2722-a1231485debac6b17dfa76e7a1af01750e0f4f8b",  # 05/2019 image
+                integration_test_tag: "15",
             },
             feature_flags+: {
                 # Note: the *value* of the flags is ignored. jsonnet lacks array search, so we use a an object.
@@ -37,7 +38,6 @@ local utils = import "util_functions.jsonnet";
                 # --- flag E (each pair. ... ---
                 next_analysis_script: "",
                 # --- flag F (Their only purpose ... ---
-                integration_test_tag: "jenkins-dva-transformation-spark-on-k8s-sample-apps-hbae-watchdog-1-itest",
                 # --- flag G (is to assist ... ---
                 # --- flag H (git's diff logic ... ---
                 # --- flag I (to reduce the ---
@@ -74,9 +74,13 @@ local utils = import "util_functions.jsonnet";
         },
         # prd-dev: Exceptions vs the rest of phase 2 only
         "2-prd-dev": self["2"] {
+            image_tags+: {
+                integration_test_tag: "15",
+            },
             feature_flags+: {
                 # Note: the *value* of the flags is ignored. jsonnet lacks array search, so we use a an object.
                 btrfs_watchdog_hard_reset: "",  # Was promoted to prd-dev before phasing refactor
+                next_analysis_script: "",
             },
             # prd-dev offers legacy version mappings. Phase 2 does not, so cannot inherit from there.
             # Start with 3-iad-ord (which also have legacy version mappings),
