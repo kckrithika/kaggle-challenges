@@ -15,7 +15,7 @@ local utils = import "util_functions.jsonnet";
     rbacwd: !utils.is_gia(configs.kingdom) && !utils.is_flowsnake_cluster(configs.estate) && configs.estate != "prd-sdc",
 
     # MadDog
-    maddogforsamapps: !(configs.kingdom == "wax" || configs.kingdom == "chx"),
+    maddogforsamapps: true,
 
     # EstatesSvc gets an rpm from estates but that does not have data for GIA or public cloud
     # NodeController uses estatesSvc.

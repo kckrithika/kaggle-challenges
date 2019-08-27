@@ -17,7 +17,7 @@ data:
       "dockerregistry": "ops-artifactrepo1-0-chx.data.sfdc.net",
       "enableDNS": true,
       "enableIdentityEnvVar": false,
-      "enableMaddog": false,
+      "enableMaddog": true,
       "httpsDisableCertsCheck": true,
       "imageCheckV2": true,
       "k4aInitContainerImage": "ops-artifactrepo1-0-chx.data.sfdc.net/tnrp/sam/hypersam:sam-0002447-69fdc914",
