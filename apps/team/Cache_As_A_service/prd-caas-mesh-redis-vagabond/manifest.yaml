@@ -9,7 +9,7 @@ system:
     count: 4
     identity:
       serviceName: caas
-      pod: cs2
+      pod: na44
     containers:
     - name: caas-redis
       image: dva/caas/release/caas-redis-4.0.10:17
