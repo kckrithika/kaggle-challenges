@@ -8,8 +8,6 @@ system:
     count: 3
     labels:
       app: geoip
-    annotations:
-      "routing.mesh.sfdc.net/enabled": "true"
     containers:
     - name: geoip-database
       image: tnrp/ccait/geoip2-database:20170918
@@ -106,6 +104,10 @@ system:
   loadbalancers:
   - lbname: geoip
     function: geoip
+    labels:
+      app: geoip
+    annotations:
+      "routing.mesh.sfdc.net/enabled": "true"
     ports:
       - lbtype: dsr
         port: 7443
