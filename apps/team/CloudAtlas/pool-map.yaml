@@ -1,7 +1,7 @@
 version: v2
 apps:
   # PRD-Stage Topomaster
-  test1shared0-samminionatlasdir1-1-prd:
+  prd-stage-samminionatlasdir1-1-prd:
     - name: prd/prd-sam_cloudatlas_dir
       hostSubList:
       - test1shared0-samminionatlasdir1-1-prd.eng.sfdc.net
