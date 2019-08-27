@@ -251,7 +251,7 @@ system:
       serviceName: sfproxy
     containers:
     - name: sfproxy-envoy
-      image: sfci/frontend-gateway/sfproxy:13deb61
+      image: sfci/frontend-gateway/sfproxy:c4d4721
       args:
       - --template=/home/sfdc-sherpa/sfproxy/config/core-on-sam/sfproxy-public-cloud-rds.yaml.template
       - --switchboard=na6-switchboard-lb.core-on-sam-sp2.prd-sam.prd.slb.sfdc.net:8088
@@ -335,7 +335,7 @@ system:
       - mountPath: /home/sfdc-switchboard/sherpa-envoy-config-volume
         name: envoy-config-volume
     - name: sfproxy-switchboard-sherpa
-      image: sfci/frontend-gateway/sfproxy:13deb61
+      image: sfci/frontend-gateway/sfproxy:c4d4721
       ports:
       - containerPort: 15001
       - containerPort: 15373
