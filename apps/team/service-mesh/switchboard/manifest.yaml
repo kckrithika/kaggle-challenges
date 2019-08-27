@@ -12,7 +12,7 @@ system:
       app: switchboard
     containers:
     - name: switchboard
-      image: sfci/servicelibs/switchboard:edc265ae4ee99f120d416b8d5208a4f05fbf96d5
+      image: sfci/servicelibs/switchboard:66f707279fde28702e8c3a7c25203263ea4d1183
       args:
       ############################## PRODUCTION CONFIGURATION ##########################################
       # Any configuration that needs to go to production should be added here.
@@ -97,7 +97,7 @@ system:
         timeoutSeconds: 4
       terminationMessagePolicy: FallbackToLogsOnError
     - name: sherpa
-      image: sfci/servicelibs/sherpa-envoy:d20afbca82c0e116f897aa6d926f368f7e05255d
+      image: sfci/servicelibs/sherpa-envoy:1.0.12
       args:
       - --template
       - /switchboard-config/switchboard-sidecar.config.yaml.template
