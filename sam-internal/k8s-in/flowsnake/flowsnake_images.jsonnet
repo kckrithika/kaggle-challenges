@@ -42,6 +42,7 @@ local utils = import "util_functions.jsonnet";
                 integration_test_tag: "jenkins-dva-transformation-spark-on-k8s-sample-apps-hbae-watchdog-1-itest",
                 # --- flag G (is to assist ... ---
                 # --- flag H (git's diff logic ... ---
+                kubeapi_monitor_setup: "",
                 # --- flag I (to reduce the ---
                 # --- flag J (likelihood of merge conflicts.) ---
                 central_prometheus_forwarder: "試行中",
