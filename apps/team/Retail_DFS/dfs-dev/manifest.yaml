@@ -40,7 +40,7 @@ system:
       - name: SCONE_SERVER_SECURITY_MUTUALAUTH
         value: true
       - name: GDOT_BASEPATHOVERRIDE
-        value: https://na48.stmfa.stm.salesforce.com/empire/cloudatlas/scim
+        value: https://login.stmfa.stm.salesforce.com/empire/cloudatlas/scim
       - name: SCONE_SERVER_SECURITY_MUTUALAUTH
         value: false
       - name: INCLUDE_ALL_STACK_TRACES
