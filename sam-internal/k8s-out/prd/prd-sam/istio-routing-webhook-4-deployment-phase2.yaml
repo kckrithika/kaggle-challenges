@@ -51,7 +51,7 @@ spec:
         - --port
         - "10443"
         - --funnel-address
-        - ajnafunneldirect.svc.mesh.sfdc.net:8080
+        - ajnafunneldirecttls-prd.funnel.svc.mesh.sfdc.net:7442
         env:
         - name: SETTINGS_SUPERPOD
           value: '-'

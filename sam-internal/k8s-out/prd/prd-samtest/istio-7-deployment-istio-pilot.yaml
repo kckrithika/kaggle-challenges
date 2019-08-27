@@ -273,7 +273,7 @@ spec:
         - --debug-mode
         - "true"
         - --funnel-address
-        - ajna0-funnel1-0-prd.data.sfdc.net:80
+        - ajnafunneldirecttls-prd.funnel.svc.mesh.sfdc.net:7442
         - --alt-tags
         - cluster=svccluster
         env:
