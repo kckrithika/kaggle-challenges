@@ -36,8 +36,6 @@ system:
       args:
       - -endpoint
       - $(FUNCTION_NAMESPACE)/$(FUNCTION_INSTANCE_NAME):POD:7014
-      - -zk
-      - 10.168.160.76
       livenessProbe:
         initialDelaySeconds: 5
         exec:
