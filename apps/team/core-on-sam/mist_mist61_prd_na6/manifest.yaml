@@ -379,6 +379,180 @@ system:
         - na6-switchboard-lb
         type: server
       name: tls-server-cert
+  - name: na6-mist61app-prd
+    count: 1
+    identity:
+      pod: na6
+      serviceName: app
+    containers:
+    - name: coreapp
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/coreonsam/casam:release_main_18424849
+      ports:
+      - containerPort: 8998
+      - containerPort: 8085
+      - containerPort: 11211
+      - containerPort: 12098
+      - containerPort: 8443
+      env:
+      - name: DB_SID
+        value: mist61a222utf
+      - name: DB_INSTANCE_NAME
+        value: mist61a222utf-1
+      - name: DB_USER
+        value: doc
+      - name: DB_STATS_USER
+        value: snowwhite
+      - name: DB_CONN_NUM
+        value: 20
+      - name: IP_DB
+        value: mist61ice1-db1-1-prd.eng.sfdc.net
+      - name: DB_PASSWORD
+        value: rotate
+      - name: DB_STATS_PASSWORD
+        value: rotate
+      - name: IP_MNDS1
+        value: 127.0.0.1
+      - name: OFFLINE
+        value: true
+      - name: SERVER_ID
+        value: x
+      - name: PUBLIC_PORT
+        value: 8443
+      - name: PUBLIC_PORT_IS_SECURE
+        value: true
+      - name: PUBLIC_HOST_NAME
+        value: us5-sfproxy-lb.core-on-sam-sp2.prd-sam.prd.slb.sfdc.net
+      - name: SFPROXY_VIP
+        value: https://us5-sfproxy-lb.core-on-sam-sp2.prd-sam.prd.slb.sfdc.net:8443
+      - name: HTTP_PORT
+        value: 7022
+      - name: SPORT
+        value: 8443
+      - name: S2PORT
+        value: 12098
+      - name: PLSQL_UPDATE_RUNSTATS
+        value: false
+      - name: DISABLE_AUTH_RELEASE_CHECK
+        value: true
+      - name: CASAM_APP_COLOR
+        value: blue
+      - name: SD_PORT_OVERRIDE
+        value: 7442
+      - name: CASAM_SETTINGS_PATH
+        value: mist.mist61.prd.na6.app
+      - name: CLUSTER_NAME
+        value: na6
+      - name: DEPLOYMENT
+        value: B
+      - name: CASAM_HOST_NAME
+        valueFrom:
+          fieldRef:
+            fieldPath: spec.nodeName
+      livenessProbe:
+        exec:
+          command:
+          - /home/sfdc/salesforce/casam/bin/live_probe.sh
+        failureThreshold: 99999
+        initialDelaySeconds: 120
+        periodSeconds: 5
+        timeoutSeconds: 5
+      readinessProbe:
+        exec:
+          command:
+          - /home/sfdc/salesforce/casam/bin/ready_probe.sh
+        failureThreshold: 99999
+        initialDelaySeconds: 120
+        periodSeconds: 5
+        timeoutSeconds: 5
+      volumeMounts:
+      - mountPath: /home/sfdc/logs/sfdc
+        name: log-volume-sfdc
+      - mountPath: /home/sfdc/logs/jvm
+        name: log-volume-jvm
+      - mountPath: /etc/pki_service
+        name: tls-client-cert
+      - mountPath: /certs/cert-server
+        name: tls-server-cert
+      - mountPath: /home/sfdc/salesforce/casam
+        name: coreapp-casam-volume
+      - mountPath: /home/sfdc/salesforce/config/settings/overrides/caas-cluster-casam-sp2
+        name: secretvol
+        readOnly: true
+    - name: casam-sidecar
+      image: sfci/casam/coreapp_overrides:685d9c
+      env:
+      - name: CASAM_SETTINGS_PATH
+        value: mist.mist61.prd.na6.app
+      livenessProbe:
+        exec:
+          command:
+          - cat
+          - /tmp/live
+        initialDelaySeconds: 10
+        periodSeconds: 5
+      readinessProbe:
+        exec:
+          command:
+          - cat
+          - /tmp/ready
+        initialDelaySeconds: 10
+        periodSeconds: 5
+      volumeMounts:
+      - mountPath: /home/sfdc/salesforce/casam
+        name: coreapp-casam-volume
+    - name: sherpa-envoy
+      # Use the latest release version from https://git.soma.salesforce.com/servicelibs/sherpa-envoy/releases
+      image: sfci/servicelibs/sherpa-envoy:33101eda4a3280cf3b4b8458da27a9494b0aa9ae
+      # See https://git.soma.salesforce.com/servicelibs/sherpa#ports
+      ports:
+      - containerPort: 7442
+        name: http1-tls-in
+      - containerPort: 15373
+        name: sherpa-adm
+      livenessProbe:
+        exec:
+          command:
+          - ./bin/is-alive
+        initialDelaySeconds: 60
+        periodSeconds: 5
+      readinessProbe:
+        exec:
+          command:
+          - ./bin/is-ready
+        initialDelaySeconds: 50
+        periodSeconds: 5
+      volumeMounts:
+      - name: tls-client-cert
+        mountPath: /client-certs
+      - name: tls-server-cert
+        mountPath: /server-certs
+    progressDeadlineSeconds: 300
+    strategy:
+      rollingUpdate:
+        maxSurge: 200%
+        maxUnavailable: 0
+      type: RollingUpdate
+    terminationGracePeriodSeconds: 500
+    volumes:
+    - emptyDir: {}
+      name: envoy-config-volume
+    - emptyDir: {}
+      name: coreapp-casam-volume
+    - maddogCert:
+        type: client
+      name: tls-client-cert
+    - maddogCert:
+        type: server
+      name: tls-server-cert
+    - hostPath:
+        path: /data/logs/sfdc
+      name: log-volume-sfdc
+    - hostPath:
+        path: /data/logs/jvm
+      name: log-volume-jvm
+    - k4aSecret:
+        secretName: caas-k4a-secret-prd
+      name: secretvol
   loadbalancers:
   - function: na6-mist61sfproxy-prd
     lbname: us6-sfproxy-lb
