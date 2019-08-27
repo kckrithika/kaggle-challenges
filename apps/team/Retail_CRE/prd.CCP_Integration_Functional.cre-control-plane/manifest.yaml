@@ -13,7 +13,7 @@ system:
       "routing.mesh.sfdc.net/enabled": "true"
     containers:
     - name: cre-control-plane-ccp-func
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cre-fusion/services/control-plane:2.0.1.yu-so1.ed9eb78.7
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cre-fusion/services/control-plane:2.0.1.develop.0f4f401.272
       env:
         ####################################################################################################
         ############################   ENGINE/DDS FLOWSNAKE ARTIFACTS ( Most frequently changed ) ##########
@@ -57,8 +57,6 @@ system:
           value: cre-engine-ccp-func
         - name: INGEST_K4A_VAULT
           value: cre-engine-dev
-        - name: INGEST_ANNOTATIONS_PKI_NAME
-          value: cre-engine-ccp-func
         ####################################################################################################
         ####################################### SAVE environment variables ###############################
         ####################################################################################################
@@ -68,8 +66,6 @@ system:
           value: cre-engine-ccp-func
         - name: SAVE_K4A_VAULT
           value: cre-dds-dev
-        - name: SAVE_ANNOTATIONS_PKI_NAME
-          value: cre-engine-ccp-func
         ####################################################################################################
         ####################################### EXPORT environment variables ###############################
         ####################################################################################################
