@@ -213,8 +213,6 @@ system:
     ports:
       - port: 7022
         targetport: 7022
-      - port: 8080
-        targetport: 8080
       - port: 15372
         targetport: 15372  
   - lbname: cre-control-plane-ccp-dev
