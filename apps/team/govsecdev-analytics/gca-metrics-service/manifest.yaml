@@ -7,6 +7,7 @@ system:
   functions:
   - name: gca-metrics-service
     count: 2
+    hostnetwork: true
     type: deployment
 
     containers:
