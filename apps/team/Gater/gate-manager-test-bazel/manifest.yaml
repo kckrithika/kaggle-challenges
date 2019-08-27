@@ -75,7 +75,7 @@ system:
       image: sfci/servicelibs/beacon:cec13ceb9fc5aed0ce462031a01b2dd5ef73d5ee
       args:
       - -endpoint
-      - $(FUNCTION_NAMESPACE)/$(FUNCTION):DATACENTER_ALLENV:HTTP2_TLS
+      - $(FUNCTION_NAMESPACE)/gater:DATACENTER_ALLENV:HTTP2_TLS
       livenessProbe:
         exec:
           command:
