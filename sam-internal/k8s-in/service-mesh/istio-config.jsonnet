@@ -2,6 +2,8 @@ local configs = import "config.jsonnet";
 local samimages = (import "sam/samimages.jsonnet") + { templateFilename:: std.thisFile };
 local madkub = (import "service-mesh/istio-madkub-config.jsonnet") + { templateFilename:: std.thisFile };
 
+local funnelEndpoint = std.split(configs.funnelVIP, ":");
+
 ## Istio pilot madkub certificates.
 local pilotSans = [
   "istio-pilot",
@@ -46,7 +48,7 @@ local ingressGatewayCertConfigs = [ingressGatewayClientCertConfig, ingressGatewa
   istioTag: "f0874ef16fa0c5ea948623884329fe1e0d20e7d5",
 
   serviceMeshHub: configs.registry + "/sfci/servicemesh/servicemesh",
-  serviceMeshTag: "6de698dd1935317ebf1ba9d8b5d92207ba8479a6",
+  serviceMeshTag: "471d47c97c33ee61a77bd024f20d80603363db75",
 
   routingWebhookImage: $.serviceMeshHub + "/istio-routing-webhook:" + $.serviceMeshTag,
   routeUpdateSvcImage: $.serviceMeshHub + "/route-update-service:" + $.serviceMeshTag,
@@ -109,7 +111,10 @@ local ingressGatewayCertConfigs = [ingressGatewayClientCertConfig, ingressGatewa
   ingressGatewaySettingsPath: "istio.-." + configs.kingdom + ".-." + "istio-ingressgateway",
 
   funnelVIP: configs.funnelVIP,
-  funnelIstioEndpoint: "ajnafunneldirecttls-" + configs.kingdom + ".funnel.svc.mesh.sfdc.net:7442",
+  funnelIstioEndpoint: "ajnafunneldirect.svc.mesh.sfdc.net:8080",
+
+  funnelHost: funnelEndpoint[0],
+  funnelPort: funnelEndpoint[1],
 
   madkubEndpoint: "https://10.254.208.254:32007",  // Check madkubserver-service.jsonnet for why IP
   maddogEndpoint: configs.maddogEndpoint,
