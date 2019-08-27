@@ -9,7 +9,7 @@ system:
       pod: devmvp
     containers:
     - name: acs  
-      image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/vagabond:6
+      image: sfci/vagabond/vagabond:5cba1ad848e63176b0413af0e785505697b5ead1
       args:
         - --servers=$(FUNCTION)-0.$(FUNCTION_NAMESPACE).localhost.mesh.force.com:7013,$(FUNCTION)-1.$(FUNCTION_NAMESPACE).localhost.mesh.force.com:7013,$(FUNCTION)-2.$(FUNCTION_NAMESPACE).localhost.mesh.force.com:7013,$(FUNCTION)-3.$(FUNCTION_NAMESPACE).localhost.mesh.force.com:7013
         - --dataroot=/home/sfdc-acs/data
@@ -32,7 +32,7 @@ system:
         periodSeconds: 10
         failureThreshold: 1
     - name: acs-announcer
-      image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/npshenichnyy/beacon:853c4db9f14805018be6f5e7607ffe65b5648822-201902081500
+      image: sfci/services/sfdc-bazel/disco/beacon:d7f1640
       args:
       - -endpoint
       - $(FUNCTION_NAMESPACE)/$(FUNCTION_INSTANCE_NAME):POD:7014
@@ -52,7 +52,7 @@ system:
         limits: { memory: "500M" }
         requests: { memory: "500M" }
     - name: sherpa
-      image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/npshenichnyy/sherpa-envoy:1.0.4-201902081120
+      image: sfci/servicelibs/sherpa-envoy:d20afbca82c0e116f897aa6d926f368f7e05255d
       args:
       # 2018-02-08: Direct Connection to the switchboard for now
       - --switchboard=switchboard.service-mesh.svc:15001
