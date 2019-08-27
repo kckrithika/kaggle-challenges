@@ -75,7 +75,7 @@ local utils = import "util_functions.jsonnet";
         # prd-dev: Exceptions vs the rest of phase 2 only
         "2-prd-dev": self["2"] {
             image_tags+: {
-                integration_test_tag: "15",
+                integration_test_tag: "16",
             },
             feature_flags+: {
                 # Note: the *value* of the flags is ignored. jsonnet lacks array search, so we use a an object.
