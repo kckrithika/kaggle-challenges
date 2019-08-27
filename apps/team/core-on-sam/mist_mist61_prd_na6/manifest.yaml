@@ -39,9 +39,9 @@ system:
       - name: PUBLIC_PORT_IS_SECURE
         value: true
       - name: PUBLIC_HOST_NAME
-        value: us5-sfproxy-lb.core-on-sam-sp2.prd-sam.prd.slb.sfdc.net
+        value: na6-sfproxy-lb.core-on-sam-sp2.prd-sam.prd.slb.sfdc.net
       - name: SFPROXY_VIP
-        value: https://us5-sfproxy-lb.core-on-sam-sp2.prd-sam.prd.slb.sfdc.net:8443
+        value: https://na6-sfproxy-lb.core-on-sam-sp2.prd-sam.prd.slb.sfdc.net:8443
       - name: HTTP_PORT
         value: 7022
       - name: SPORT
@@ -289,7 +289,7 @@ system:
       name: tls-client-cert
     - maddogCert:
         lbnames:
-        - us5-sfproxy-lb
+        - na6-sfproxy-lb
         type: server
       name: tls-server-cert
   - name: na6-mist61switchboard-prd
