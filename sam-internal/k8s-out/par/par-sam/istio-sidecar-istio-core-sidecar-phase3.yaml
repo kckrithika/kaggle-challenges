@@ -1,0 +1,25 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: Sidecar
+metadata:
+  annotations:
+    manifestctl.sam.data.sfdc.net/swagger: disable
+  name: istio-core-sidecar
+  namespace: app
+spec:
+  egress:
+  - bind: 127.1.2.3
+    captureMode: NONE
+    hosts:
+    - gater/gater.gater.svc.cluster.local
+    - ccait/geoip.ccait.svc.cluster.local
+    port:
+      name: grpc-egress
+      number: 7443
+      protocol: GRPC
+  ingress:
+  - captureMode: NONE
+    defaultEndpoint: 127.0.0.1:7020
+    port:
+      name: grpc-core
+      number: 7443
+      protocol: GRPC
