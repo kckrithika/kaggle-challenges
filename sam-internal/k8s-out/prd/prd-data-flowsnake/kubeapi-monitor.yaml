@@ -1,0 +1,117 @@
+apiVersion: v1
+items:
+- apiVersion: v1
+  data:
+    check-kubeapi.sh: |
+      #!/bin/bash
+
+      set -x
+
+      TIMEOUT_PERIOD=10
+
+      timeout ${TIMEOUT_PERIOD} curl -s -ik ${KUBE_API_ADDRESS}/version && echo
+      STATUS_API=$?
+
+      if [ ${STATUS_API} -eq 0 ]; then
+          METRIC_VALUE=1
+      else
+          METRIC_VALUE=0
+          # When timed out, exit code is 124
+          echo "Failed to reach to the api server - command exit code ${STATUS_API}"
+      fi
+
+      echo "Publishing the result ${METRIC_RESULT} to the Funnel endpoint..."
+
+      METRICS_PUBLISH_PATH=${FUNNEL_ENDPOINT}${METRICS_URL_PATH}?${METRICS_PUBLISH_KEY}=${METRICS_SCHEMA_FINGERPRINT}
+      METRIC_SERVICE=flowsnake
+      METRIC_SUBSERVICE=kubeapi-monitor
+      METRIC_NAME=${ESTATE}.KubeApiserver.Success
+      METRIC_TIMESTAMP=$(date +%s)
+
+      METRIC='[{"service":"'${METRIC_SERVICE}'","subservice":"'${METRIC_SUBSERVICE}'","tags":{"datacenter":"'${KINGDOM}'","superpod":"none","node":"'${NODE_NAME}'"},"metricName":["'${METRIC_NAME}'"],"metricValue":'${METRIC_VALUE}',"timestamp":'${METRIC_TIMESTAMP}'}]'
+
+      timeout ${TIMEOUT_PERIOD} curl -s -X POST -H Content-Type:application/json ${METRICS_PUBLISH_PATH} -d ${METRIC} && echo
+      STATUS_FUNNEL=$?
+
+      if [ ${STATUS_FUNNEL} -ne 0 ]; then
+          echo "Failed to publish metric to the Funnel endpoint - exit code ${STATUS_FUNNEL}"
+          echo "Quitting with exit code ${STATUS_FUNNEL}..."
+          exit ${STATUS_FUNNEL}
+      fi
+    repeat-check.sh: |
+      #!/bin/bash
+
+      set -x
+
+      REPEAT_PERIOD=30
+
+      while true; do
+          /kubeapi-monitor-scripts/check-kubeapi.sh &
+          sleep ${REPEAT_PERIOD}
+      done
+  kind: ConfigMap
+  metadata:
+    name: kubeapi-monitor-scripts
+    namespace: flowsnake
+- apiVersion: extensions/v1beta1
+  kind: DaemonSet
+  metadata:
+    name: kubeapi-monitor
+    namespace: flowsnake
+  spec:
+    selector:
+      matchLabels:
+        app: kubeapi-monitor
+        apptype: monitoring
+    template:
+      metadata:
+        labels:
+          app: kubeapi-monitor
+          apptype: monitoring
+          flowsnakeOwner: dva-transform
+          flowsnakeRole: KubeapiMonitor
+      spec:
+        containers:
+        - command:
+          - /kubeapi-monitor-scripts/repeat-check.sh
+          env:
+          - name: FUNNEL_ENDPOINT
+            value: http://ajna0-funnel1-0-prd.data.sfdc.net:80
+          - name: METRICS_URL_PATH
+            value: /funnel/v1/publishBatch
+          - name: METRICS_PUBLISH_KEY
+            value: avroSchemaFingerprint
+          - name: METRICS_SCHEMA_FINGERPRINT
+            value: AVG7NnlcHNdk4t_zn2JBnQ
+          - name: KUBE_API_ADDRESS
+            value: https://kubernetes.default.svc.cluster.local
+          - name: ESTATE
+            value: prd-data-flowsnake
+          - name: KINGDOM
+            value: prd
+          - name: NODE_NAME
+            valueFrom:
+              fieldRef:
+                fieldPath: spec.nodeName
+          image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/sfdc_centos7
+          imagePullPolicy: IfNotPresent
+          name: kubeapi-monitor
+          resources:
+            limits:
+              cpu: "0.1"
+              memory: 100Mi
+            requests:
+              cpu: "0.1"
+              memory: 100Mi
+          volumeMounts:
+          - mountPath: /kubeapi-monitor-scripts
+            name: kubeapi-monitor-scripts
+        hostNetwork: false
+        restartPolicy: Always
+        volumes:
+        - configMap:
+            defaultMode: 493
+            name: kubeapi-monitor-scripts
+          name: kubeapi-monitor-scripts
+kind: List
+metadata: {}
