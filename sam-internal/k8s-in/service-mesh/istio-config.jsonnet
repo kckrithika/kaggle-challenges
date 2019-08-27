@@ -48,7 +48,7 @@ local ingressGatewayCertConfigs = [ingressGatewayClientCertConfig, ingressGatewa
   istioTag: "f0874ef16fa0c5ea948623884329fe1e0d20e7d5",
 
   serviceMeshHub: configs.registry + "/sfci/servicemesh/servicemesh",
-  serviceMeshTag: "471d47c97c33ee61a77bd024f20d80603363db75",
+  serviceMeshTag: "6de698dd1935317ebf1ba9d8b5d92207ba8479a6",
 
   routingWebhookImage: $.serviceMeshHub + "/istio-routing-webhook:" + $.serviceMeshTag,
   routeUpdateSvcImage: $.serviceMeshHub + "/route-update-service:" + $.serviceMeshTag,
