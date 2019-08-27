@@ -13,7 +13,7 @@ system:
     hostnetwork: true
     containers:
     - name: gater1
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/gater/gate-manager:sortiz-1566928556
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/gater/gate-manager:sortiz-1566940683
       args:
         - --server.port=9090
         - --gater-service.thread.pool.max-size=0
