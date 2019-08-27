@@ -1,0 +1,820 @@
+- lbname: org-test-cs8
+  servers:
+    - cs8-app2-3-iad.ops.sfdc.net
+    - cs8-app2-2-iad.ops.sfdc.net
+    - cs8-app2-4-iad.ops.sfdc.net
+    - cs8-app2-5-iad.ops.sfdc.net
+    - cs8-app1-1-iad.ops.sfdc.net
+    - cs8-app1-2-iad.ops.sfdc.net
+    - cs8-app1-3-iad.ops.sfdc.net
+    - cs8-app1-5-iad.ops.sfdc.net
+    - cs8-app2-1-iad.ops.sfdc.net
+    - cs8-app1-4-iad.ops.sfdc.net  
+  ports:
+  - port: 443
+    targetport: 8085
+    lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy
+    sticky: 86400
+    addheaders:
+    - name: "X-Salesforce-VIP"
+      value: "SLB"
+  - port: 8443
+    targetport: 8085
+    lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy
+    sticky: 86400
+    addheaders:
+    - name: "X-Salesforce-VIP"
+      value: "SLB"   
+  - port: 80
+    targetport: 8085
+    lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy
+    removeheaders:
+    - "CipherSuite"
+    addheaders:
+    - name: "X-Salesforce-VIP"
+      value: "SLB"
+- lbname: org-test-cs14
+  servers:
+    - cs14-app1-5-iad.ops.sfdc.net
+    - cs14-app1-1-iad.ops.sfdc.net
+    - cs14-app2-3-iad.ops.sfdc.net
+    - cs14-app1-2-iad.ops.sfdc.net
+    - cs14-app1-4-iad.ops.sfdc.net
+    - cs14-app2-2-iad.ops.sfdc.net
+    - cs14-app1-3-iad.ops.sfdc.net
+    - cs14-app2-5-iad.ops.sfdc.net
+    - cs14-app2-4-iad.ops.sfdc.net
+    - cs14-app2-1-iad.ops.sfdc.net  
+  ports:
+  - port: 443
+    targetport: 8085
+    lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy
+    sticky: 86400
+    addheaders:
+    - name: "X-Salesforce-VIP"
+      value: "SLB"
+  - port: 8443
+    targetport: 8085
+    lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy
+    sticky: 86400
+    addheaders:
+    - name: "X-Salesforce-VIP"
+      value: "SLB"   
+  - port: 80
+    targetport: 8085
+    lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy
+    removeheaders:
+    - "CipherSuite"
+    addheaders:
+    - name: "X-Salesforce-VIP"
+      value: "SLB"
+- lbname: org-test-cs15
+  servers:
+    - cs15-app1-2-iad.ops.sfdc.net
+    - cs15-app1-3-iad.ops.sfdc.net
+    - cs15-app1-4-iad.ops.sfdc.net
+    - cs15-app2-5-iad.ops.sfdc.net
+    - cs15-app1-1-iad.ops.sfdc.net
+    - cs15-app2-3-iad.ops.sfdc.net
+    - cs15-app1-5-iad.ops.sfdc.net
+    - cs15-app2-4-iad.ops.sfdc.net
+    - cs15-app2-1-iad.ops.sfdc.net
+    - cs15-app2-2-iad.ops.sfdc.net  
+  ports:
+  - port: 443
+    targetport: 8085
+    lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy
+    sticky: 86400
+    addheaders:
+    - name: "X-Salesforce-VIP"
+      value: "SLB"
+  - port: 8443
+    targetport: 8085
+    lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy
+    sticky: 86400
+    addheaders:
+    - name: "X-Salesforce-VIP"
+      value: "SLB"   
+  - port: 80
+    targetport: 8085
+    lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy
+    removeheaders:
+    - "CipherSuite"
+    addheaders:
+    - name: "X-Salesforce-VIP"
+      value: "SLB"
+- lbname: org-test-cs16
+  servers:
+    - cs16-app1-2-iad.ops.sfdc.net
+    - cs16-app1-3-iad.ops.sfdc.net
+    - cs16-app2-2-iad.ops.sfdc.net
+    - cs16-app2-3-iad.ops.sfdc.net
+    - cs16-app1-5-iad.ops.sfdc.net
+    - cs16-app2-5-iad.ops.sfdc.net
+    - cs16-app1-4-iad.ops.sfdc.net
+    - cs16-app2-4-iad.ops.sfdc.net
+    - cs16-app1-1-iad.ops.sfdc.net
+    - cs16-app2-1-iad.ops.sfdc.net  
+  ports:
+  - port: 443
+    targetport: 8085
+    lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy
+    sticky: 86400
+    addheaders:
+    - name: "X-Salesforce-VIP"
+      value: "SLB"
+  - port: 8443
+    targetport: 8085
+    lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy
+    sticky: 86400
+    addheaders:
+    - name: "X-Salesforce-VIP"
+      value: "SLB"   
+  - port: 80
+    targetport: 8085
+    lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy
+    removeheaders:
+    - "CipherSuite"
+    addheaders:
+    - name: "X-Salesforce-VIP"
+      value: "SLB"
+- lbname: org-test-cs17
+  servers:
+    - cs17-app1-1-iad.ops.sfdc.net
+    - cs17-app1-4-iad.ops.sfdc.net
+    - cs17-app2-1-iad.ops.sfdc.net
+    - cs17-app2-3-iad.ops.sfdc.net
+    - cs17-app2-2-iad.ops.sfdc.net
+    - cs17-app1-5-iad.ops.sfdc.net
+    - cs17-app2-4-iad.ops.sfdc.net
+    - cs17-app2-5-iad.ops.sfdc.net
+    - cs17-app1-2-iad.ops.sfdc.net
+    - cs17-app1-3-iad.ops.sfdc.net  
+  ports:
+  - port: 443
+    targetport: 8085
+    lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy
+    sticky: 86400
+    addheaders:
+    - name: "X-Salesforce-VIP"
+      value: "SLB"
+  - port: 8443
+    targetport: 8085
+    lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy
+    sticky: 86400
+    addheaders:
+    - name: "X-Salesforce-VIP"
+      value: "SLB"   
+  - port: 80
+    targetport: 8085
+    lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy
+    removeheaders:
+    - "CipherSuite"
+    addheaders:
+    - name: "X-Salesforce-VIP"
+      value: "SLB"
+- lbname: org-test-cs18
+  servers:
+    - cs18-app1-1-iad.ops.sfdc.net
+    - cs18-app2-4-iad.ops.sfdc.net
+    - cs18-app2-5-iad.ops.sfdc.net
+    - cs18-app1-4-iad.ops.sfdc.net
+    - cs18-app2-1-iad.ops.sfdc.net
+    - cs18-app1-5-iad.ops.sfdc.net
+    - cs18-app2-2-iad.ops.sfdc.net
+    - cs18-app1-2-iad.ops.sfdc.net
+    - cs18-app1-3-iad.ops.sfdc.net
+    - cs18-app2-3-iad.ops.sfdc.net  
+  ports:
+  - port: 443
+    targetport: 8085
+    lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy
+    sticky: 86400
+    addheaders:
+    - name: "X-Salesforce-VIP"
+      value: "SLB"
+  - port: 8443
+    targetport: 8085
+    lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy
+    sticky: 86400
+    addheaders:
+    - name: "X-Salesforce-VIP"
+      value: "SLB"   
+  - port: 80
+    targetport: 8085
+    lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy
+    removeheaders:
+    - "CipherSuite"
+    addheaders:
+    - name: "X-Salesforce-VIP"
+      value: "SLB"
+- lbname: org-test-cs47
+  servers:
+    - cs47-app2-4-iad.ops.sfdc.net
+    - cs47-app2-3-iad.ops.sfdc.net
+    - cs47-app1-1-iad.ops.sfdc.net
+    - cs47-app1-3-iad.ops.sfdc.net
+    - cs47-app1-5-iad.ops.sfdc.net
+    - cs47-app2-2-iad.ops.sfdc.net
+    - cs47-app2-1-iad.ops.sfdc.net
+    - cs47-app1-2-iad.ops.sfdc.net
+    - cs47-app1-4-iad.ops.sfdc.net
+    - cs47-app2-5-iad.ops.sfdc.net  
+  ports:
+  - port: 443
+    targetport: 8085
+    lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy
+    sticky: 86400
+    addheaders:
+    - name: "X-Salesforce-VIP"
+      value: "SLB"
+  - port: 8443
+    targetport: 8085
+    lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy
+    sticky: 86400
+    addheaders:
+    - name: "X-Salesforce-VIP"
+      value: "SLB"   
+  - port: 80
+    targetport: 8085
+    lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy
+    removeheaders:
+    - "CipherSuite"
+    addheaders:
+    - name: "X-Salesforce-VIP"
+      value: "SLB"
+- lbname: org-test-cs64
+  servers:
+    - cs64-app1-4-iad.ops.sfdc.net
+    - cs64-app2-1-iad.ops.sfdc.net
+    - cs64-app1-2-iad.ops.sfdc.net
+    - cs64-app1-3-iad.ops.sfdc.net
+    - cs64-app2-3-iad.ops.sfdc.net
+    - cs64-app2-2-iad.ops.sfdc.net
+    - cs64-app1-5-iad.ops.sfdc.net
+    - cs64-app2-5-iad.ops.sfdc.net
+    - cs64-app1-1-iad.ops.sfdc.net
+    - cs64-app2-4-iad.ops.sfdc.net  
+  ports:
+  - port: 443
+    targetport: 8085
+    lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy
+    sticky: 86400
+    addheaders:
+    - name: "X-Salesforce-VIP"
+      value: "SLB"
+  - port: 8443
+    targetport: 8085
+    lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy
+    sticky: 86400
+    addheaders:
+    - name: "X-Salesforce-VIP"
+      value: "SLB"   
+  - port: 80
+    targetport: 8085
+    lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy
+    removeheaders:
+    - "CipherSuite"
+    addheaders:
+    - name: "X-Salesforce-VIP"
+      value: "SLB"
+- lbname: org-test-cs65
+  servers:
+    - cs65-app2-1-iad.ops.sfdc.net
+    - cs65-app2-2-iad.ops.sfdc.net
+    - cs65-app1-1-iad.ops.sfdc.net
+    - cs65-app1-5-iad.ops.sfdc.net
+    - cs65-app1-4-iad.ops.sfdc.net
+    - cs65-app2-5-iad.ops.sfdc.net
+    - cs65-app2-3-iad.ops.sfdc.net
+    - cs65-app1-3-iad.ops.sfdc.net
+    - cs65-app1-2-iad.ops.sfdc.net
+    - cs65-app2-4-iad.ops.sfdc.net  
+  ports:
+  - port: 443
+    targetport: 8085
+    lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy
+    sticky: 86400
+    addheaders:
+    - name: "X-Salesforce-VIP"
+      value: "SLB"
+  - port: 8443
+    targetport: 8085
+    lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy
+    sticky: 86400
+    addheaders:
+    - name: "X-Salesforce-VIP"
+      value: "SLB"   
+  - port: 80
+    targetport: 8085
+    lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy
+    removeheaders:
+    - "CipherSuite"
+    addheaders:
+    - name: "X-Salesforce-VIP"
+      value: "SLB"
+- lbname: org-test-cs66
+  servers:
+    - cs66-app1-1-iad.ops.sfdc.net
+    - cs66-app1-3-iad.ops.sfdc.net
+    - cs66-app1-4-iad.ops.sfdc.net
+    - cs66-app2-1-iad.ops.sfdc.net
+    - cs66-app2-4-iad.ops.sfdc.net
+    - cs66-app1-5-iad.ops.sfdc.net
+    - cs66-app2-3-iad.ops.sfdc.net
+    - cs66-app2-5-iad.ops.sfdc.net
+    - cs66-app1-2-iad.ops.sfdc.net
+    - cs66-app2-2-iad.ops.sfdc.net  
+  ports:
+  - port: 443
+    targetport: 8085
+    lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy
+    sticky: 86400
+    addheaders:
+    - name: "X-Salesforce-VIP"
+      value: "SLB"
+  - port: 8443
+    targetport: 8085
+    lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy
+    sticky: 86400
+    addheaders:
+    - name: "X-Salesforce-VIP"
+      value: "SLB"   
+  - port: 80
+    targetport: 8085
+    lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy
+    removeheaders:
+    - "CipherSuite"
+    addheaders:
+    - name: "X-Salesforce-VIP"
+      value: "SLB"
+- lbname: org-test-cs67
+  servers:
+    - cs67-app2-1-iad.ops.sfdc.net
+    - cs67-app2-5-iad.ops.sfdc.net
+    - cs67-app2-4-iad.ops.sfdc.net
+    - cs67-app1-1-iad.ops.sfdc.net
+    - cs67-app1-2-iad.ops.sfdc.net
+    - cs67-app1-3-iad.ops.sfdc.net
+    - cs67-app2-2-iad.ops.sfdc.net
+    - cs67-app1-5-iad.ops.sfdc.net
+    - cs67-app2-3-iad.ops.sfdc.net
+    - cs67-app1-4-iad.ops.sfdc.net  
+  ports:
+  - port: 443
+    targetport: 8085
+    lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy
+    sticky: 86400
+    addheaders:
+    - name: "X-Salesforce-VIP"
+      value: "SLB"
+  - port: 8443
+    targetport: 8085
+    lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy
+    sticky: 86400
+    addheaders:
+    - name: "X-Salesforce-VIP"
+      value: "SLB"   
+  - port: 80
+    targetport: 8085
+    lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy
+    removeheaders:
+    - "CipherSuite"
+    addheaders:
+    - name: "X-Salesforce-VIP"
+      value: "SLB"
+- lbname: org-test-cs77
+  servers:
+    - cs77-app2-3-iad.ops.sfdc.net
+    - cs77-app2-5-iad.ops.sfdc.net
+    - cs77-app1-1-iad.ops.sfdc.net
+    - cs77-app1-5-iad.ops.sfdc.net
+    - cs77-app1-2-iad.ops.sfdc.net
+    - cs77-app1-4-iad.ops.sfdc.net
+    - cs77-app2-4-iad.ops.sfdc.net
+    - cs77-app2-2-iad.ops.sfdc.net
+    - cs77-app2-1-iad.ops.sfdc.net
+    - cs77-app1-3-iad.ops.sfdc.net  
+  ports:
+  - port: 443
+    targetport: 8085
+    lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy
+    sticky: 86400
+    addheaders:
+    - name: "X-Salesforce-VIP"
+      value: "SLB"
+  - port: 8443
+    targetport: 8085
+    lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy
+    sticky: 86400
+    addheaders:
+    - name: "X-Salesforce-VIP"
+      value: "SLB"   
+  - port: 80
+    targetport: 8085
+    lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy
+    removeheaders:
+    - "CipherSuite"
+    addheaders:
+    - name: "X-Salesforce-VIP"
+      value: "SLB"
+- lbname: org-test-cs78
+  servers:
+    - cs78-app2-3-iad.ops.sfdc.net
+    - cs78-app1-1-iad.ops.sfdc.net
+    - cs78-app1-4-iad.ops.sfdc.net
+    - cs78-app1-2-iad.ops.sfdc.net
+    - cs78-app2-4-iad.ops.sfdc.net
+    - cs78-app2-5-iad.ops.sfdc.net
+    - cs78-app2-2-iad.ops.sfdc.net
+    - cs78-app2-1-iad.ops.sfdc.net
+    - cs78-app1-5-iad.ops.sfdc.net
+    - cs78-app1-3-iad.ops.sfdc.net  
+  ports:
+  - port: 443
+    targetport: 8085
+    lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy
+    sticky: 86400
+    addheaders:
+    - name: "X-Salesforce-VIP"
+      value: "SLB"
+  - port: 8443
+    targetport: 8085
+    lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy
+    sticky: 86400
+    addheaders:
+    - name: "X-Salesforce-VIP"
+      value: "SLB"   
+  - port: 80
+    targetport: 8085
+    lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy
+    removeheaders:
+    - "CipherSuite"
+    addheaders:
+    - name: "X-Salesforce-VIP"
+      value: "SLB"
+- lbname: org-test-cs79
+  servers:
+    - cs79-app1-4-iad.ops.sfdc.net
+    - cs79-app1-3-iad.ops.sfdc.net
+    - cs79-app1-5-iad.ops.sfdc.net
+    - cs79-app2-4-iad.ops.sfdc.net
+    - cs79-app2-1-iad.ops.sfdc.net
+    - cs79-app2-5-iad.ops.sfdc.net
+    - cs79-app1-1-iad.ops.sfdc.net
+    - cs79-app2-2-iad.ops.sfdc.net
+    - cs79-app1-2-iad.ops.sfdc.net
+    - cs79-app2-3-iad.ops.sfdc.net  
+  ports:
+  - port: 443
+    targetport: 8085
+    lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy
+    sticky: 86400
+    addheaders:
+    - name: "X-Salesforce-VIP"
+      value: "SLB"
+  - port: 8443
+    targetport: 8085
+    lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy
+    sticky: 86400
+    addheaders:
+    - name: "X-Salesforce-VIP"
+      value: "SLB"   
+  - port: 80
+    targetport: 8085
+    lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy
+    removeheaders:
+    - "CipherSuite"
+    addheaders:
+    - name: "X-Salesforce-VIP"
+      value: "SLB"
+- lbname: org-test-cs92
+  servers:
+    - cs92-app2-1-iad.ops.sfdc.net
+    - cs92-app2-5-iad.ops.sfdc.net
+    - cs92-app2-3-iad.ops.sfdc.net
+    - cs92-app2-4-iad.ops.sfdc.net
+    - cs92-app1-4-iad.ops.sfdc.net
+    - cs92-app1-3-iad.ops.sfdc.net
+    - cs92-app1-1-iad.ops.sfdc.net
+    - cs92-app1-2-iad.ops.sfdc.net
+    - cs92-app2-2-iad.ops.sfdc.net
+    - cs92-app1-5-iad.ops.sfdc.net  
+  ports:
+  - port: 443
+    targetport: 8085
+    lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy
+    sticky: 86400
+    addheaders:
+    - name: "X-Salesforce-VIP"
+      value: "SLB"
+  - port: 8443
+    targetport: 8085
+    lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy
+    sticky: 86400
+    addheaders:
+    - name: "X-Salesforce-VIP"
+      value: "SLB"   
+  - port: 80
+    targetport: 8085
+    lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy
+    removeheaders:
+    - "CipherSuite"
+    addheaders:
+    - name: "X-Salesforce-VIP"
+      value: "SLB"
+- lbname: org-test-cs93
+  servers:
+    - cs93-app1-3-iad.ops.sfdc.net
+    - cs93-app1-2-iad.ops.sfdc.net
+    - cs93-app2-5-iad.ops.sfdc.net
+    - cs93-app2-1-iad.ops.sfdc.net
+    - cs93-app2-2-iad.ops.sfdc.net
+    - cs93-app2-4-iad.ops.sfdc.net
+    - cs93-app1-5-iad.ops.sfdc.net
+    - cs93-app1-1-iad.ops.sfdc.net
+    - cs93-app2-3-iad.ops.sfdc.net
+    - cs93-app1-4-iad.ops.sfdc.net  
+  ports:
+  - port: 443
+    targetport: 8085
+    lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy
+    sticky: 86400
+    addheaders:
+    - name: "X-Salesforce-VIP"
+      value: "SLB"
+  - port: 8443
+    targetport: 8085
+    lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy
+    sticky: 86400
+    addheaders:
+    - name: "X-Salesforce-VIP"
+      value: "SLB"   
+  - port: 80
+    targetport: 8085
+    lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy
+    removeheaders:
+    - "CipherSuite"
+    addheaders:
+    - name: "X-Salesforce-VIP"
+      value: "SLB"
+- lbname: org-test-cs94
+  servers:
+    - cs94-app2-4-iad.ops.sfdc.net
+    - cs94-app1-4-iad.ops.sfdc.net
+    - cs94-app1-1-iad.ops.sfdc.net
+    - cs94-app2-5-iad.ops.sfdc.net
+    - cs94-app1-3-iad.ops.sfdc.net
+    - cs94-app2-2-iad.ops.sfdc.net
+    - cs94-app2-1-iad.ops.sfdc.net
+    - cs94-app1-2-iad.ops.sfdc.net
+    - cs94-app1-5-iad.ops.sfdc.net
+    - cs94-app2-3-iad.ops.sfdc.net  
+  ports:
+  - port: 443
+    targetport: 8085
+    lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy
+    sticky: 86400
+    addheaders:
+    - name: "X-Salesforce-VIP"
+      value: "SLB"
+  - port: 8443
+    targetport: 8085
+    lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy
+    sticky: 86400
+    addheaders:
+    - name: "X-Salesforce-VIP"
+      value: "SLB"   
+  - port: 80
+    targetport: 8085
+    lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy
+    removeheaders:
+    - "CipherSuite"
+    addheaders:
+    - name: "X-Salesforce-VIP"
+      value: "SLB"
+- lbname: org-test-cs95
+  servers:
+    - cs95-app1-3-iad.ops.sfdc.net
+    - cs95-app2-2-iad.ops.sfdc.net
+    - cs95-app1-2-iad.ops.sfdc.net
+    - cs95-app2-3-iad.ops.sfdc.net
+    - cs95-app1-5-iad.ops.sfdc.net
+    - cs95-app1-4-iad.ops.sfdc.net
+    - cs95-app2-1-iad.ops.sfdc.net
+    - cs95-app1-1-iad.ops.sfdc.net
+    - cs95-app2-5-iad.ops.sfdc.net
+    - cs95-app2-4-iad.ops.sfdc.net  
+  ports:
+  - port: 443
+    targetport: 8085
+    lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy
+    sticky: 86400
+    addheaders:
+    - name: "X-Salesforce-VIP"
+      value: "SLB"
+  - port: 8443
+    targetport: 8085
+    lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy
+    sticky: 86400
+    addheaders:
+    - name: "X-Salesforce-VIP"
+      value: "SLB"   
+  - port: 80
+    targetport: 8085
+    lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy
+    removeheaders:
+    - "CipherSuite"
+    addheaders:
+    - name: "X-Salesforce-VIP"
+      value: "SLB"
+- lbname: org-test-cs96
+  servers:
+    - cs96-app1-3-iad.ops.sfdc.net
+    - cs96-app2-1-iad.ops.sfdc.net
+    - cs96-app2-3-iad.ops.sfdc.net
+    - cs96-app1-1-iad.ops.sfdc.net
+    - cs96-app1-5-iad.ops.sfdc.net
+    - cs96-app2-2-iad.ops.sfdc.net
+    - cs96-app1-4-iad.ops.sfdc.net
+    - cs96-app2-5-iad.ops.sfdc.net
+    - cs96-app1-2-iad.ops.sfdc.net
+    - cs96-app2-4-iad.ops.sfdc.net  
+  ports:
+  - port: 443
+    targetport: 8085
+    lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy
+    sticky: 86400
+    addheaders:
+    - name: "X-Salesforce-VIP"
+      value: "SLB"
+  - port: 8443
+    targetport: 8085
+    lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy
+    sticky: 86400
+    addheaders:
+    - name: "X-Salesforce-VIP"
+      value: "SLB"   
+  - port: 80
+    targetport: 8085
+    lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy
+    removeheaders:
+    - "CipherSuite"
+    addheaders:
+    - name: "X-Salesforce-VIP"
+      value: "SLB"
+- lbname: org-test-cs97
+  servers:
+    - cs97-app2-5-iad.ops.sfdc.net
+    - cs97-app2-4-iad.ops.sfdc.net
+    - cs97-app1-3-iad.ops.sfdc.net
+    - cs97-app2-3-iad.ops.sfdc.net
+    - cs97-app1-4-iad.ops.sfdc.net
+    - cs97-app1-5-iad.ops.sfdc.net
+    - cs97-app2-2-iad.ops.sfdc.net
+    - cs97-app2-1-iad.ops.sfdc.net
+    - cs97-app1-1-iad.ops.sfdc.net
+    - cs97-app1-2-iad.ops.sfdc.net  
+  ports:
+  - port: 443
+    targetport: 8085
+    lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy
+    sticky: 86400
+    addheaders:
+    - name: "X-Salesforce-VIP"
+      value: "SLB"
+  - port: 8443
+    targetport: 8085
+    lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy
+    sticky: 86400
+    addheaders:
+    - name: "X-Salesforce-VIP"
+      value: "SLB"   
+  - port: 80
+    targetport: 8085
+    lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy
+    removeheaders:
+    - "CipherSuite"
+    addheaders:
+    - name: "X-Salesforce-VIP"
+      value: "SLB"
