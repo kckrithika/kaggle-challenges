@@ -96,7 +96,7 @@ system:
             - name: login_vip_url
               value: http://gidruntime-internal.global-identity.xrd-sam.xrd.slb.sfdc.net              
             - name: kms_kingdom
-              value: undefined
+              value: xrd
             - name: kms_role
               value: global-identity.gid-runtime-service
             - name: kms_caPath
