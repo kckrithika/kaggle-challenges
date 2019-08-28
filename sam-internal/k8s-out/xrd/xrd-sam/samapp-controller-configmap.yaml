@@ -10,7 +10,7 @@ data:
       "enableStatefulSet": true,
       "funnelEndpoint": "ajna0-funnel1-0-xrd.data.sfdc.net:80",
       "imagePullPolicy": "IfNotPresent",
-      "k4aInitContainerImage": "ops0-artifactrepo1-0-xrd.data.sfdc.net/tnrp/sam/hypersam:sam-0002447-69fdc914",
+      "k4aInitContainerImage": "ops0-artifactrepo1-0-xrd.data.sfdc.net/dva/sam/hypersam:2778-29ee2fa3a4532165211b8adae39ecf04c451a410",
       "maddogMaddogEndpoint": "https://all.pkicontroller.pki.blank.xrd.prod.non-estates.sfdcsd.net:8443",
       "madkubImage": "ops0-artifactrepo1-0-xrd.data.sfdc.net/tnrp/sam/madkub:1.0.0-0000082-3d5c21b4",
       "namespaceHostSubList": [
