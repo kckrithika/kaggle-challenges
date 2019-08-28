@@ -35,6 +35,10 @@ apps:
   - syd/syd-sam_warden
   - yhu/yhu-sam_warden
   - yul/yul-sam_warden
+  - ia2/ia2-sam_warden
+  - ph2/ph2-sam_warden
+  - lo2/lo2-sam_warden
+  - lo3/lo3-sam_warden
  prod-cantor-grpc-server:
   - dfw/dfw-sam_warden
   - iad/iad-sam_warden
@@ -44,6 +48,10 @@ apps:
   - phx/phx-sam_warden
   - cdg/cdg-sam_warden
   - fra/fra-sam_warden
+  - ia2/ia2-sam_warden
+  - ph2/ph2-sam_warden
+  - lo2/lo2-sam_warden
+  - lo3/lo3-sam_warden
  prod-cantor-grpc-server-frf:
   - frf/frf-sam_warden
  prod-cantor-grpc-server-alternate:
