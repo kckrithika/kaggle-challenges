@@ -422,7 +422,7 @@ if istioPhases.is_phase1(mcpIstioConfig.controlEstate) then
               "--debug-mode",
               "true",
               "--funnel-address",
-              mcpIstioConfig.funnelVIP,
+              mcpIstioConfig.funnelIstioEndpoint,
               "--alt-tags",
               "cluster=svccluster",
             ],

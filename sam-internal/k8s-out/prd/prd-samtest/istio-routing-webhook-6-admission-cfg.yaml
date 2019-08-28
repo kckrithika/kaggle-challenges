@@ -24,8 +24,9 @@ webhooks:
     - v1
     operations:
     - CREATE
+    - UPDATE
     resources:
-    - pods
+    - services
   - apiGroups:
     - mesh.sfdc.net
     apiVersions:

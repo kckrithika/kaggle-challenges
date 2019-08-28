@@ -81,4 +81,6 @@ It generates the phase directory under [templates](./templates) if required and 
 
 2. The phase filter is defined in [istio-phases.jsonnet](./istio-phases.jsonnet). 
 
-3. Once the script successfully completes, run [build.sh](../build.sh).
+3. Once the script successfully completes, run [build.sh](../build.sh). 
+*Important:* If you do not run `./build.sh` for all estates but for specific estates like `./build.sh prd/prd-samtest,prd/prd-sam,par/par-sam`, 
+please ensure that you include all the estates that have jsonnet templates. Without it there is a risk of the jsonnet variables affecting other phase templates inadvertently. 

@@ -3,8 +3,6 @@ local samimages = (import "sam/samimages.jsonnet") + { templateFilename:: std.th
 local madkub = (import "service-mesh/istio-madkub-config.jsonnet") + { templateFilename:: std.thisFile };
 local istioPhases = (import "service-mesh/istio-phases.jsonnet");
 
-local funnelEndpoint = std.split(configs.funnelVIP, ":");
-
 ## Istio pilot madkub certificates.
 local pilotSans = [
   "istio-pilot",
@@ -46,22 +44,10 @@ local ingressGatewayCertConfigs = [ingressGatewayClientCertConfig, ingressGatewa
 
   # Istio hub and tag is used in Helm values. Represented as "%(istioHub)s" and "%(istioTag)s" respectively.
   istioHub: configs.registry + "/sfci/servicemesh/istio-packaging",
-  istioTag: (
-    if istioPhases.is_phase1($.controlEstate) then "f0874ef16fa0c5ea948623884329fe1e0d20e7d5"
-    else if istioPhases.is_phase2($.controlEstate) then "f0874ef16fa0c5ea948623884329fe1e0d20e7d5"
-    else if istioPhases.is_phase3($.controlEstate) then "f0874ef16fa0c5ea948623884329fe1e0d20e7d5"
-    else if istioPhases.is_phase4($.controlEstate) then "f0874ef16fa0c5ea948623884329fe1e0d20e7d5"
-    else if istioPhases.is_phase5($.controlEstate) then "f0874ef16fa0c5ea948623884329fe1e0d20e7d5"
-  ),
+  istioTag: istioPhases.get_istio_tag($.controlEstate),
 
   serviceMeshHub: configs.registry + "/sfci/servicemesh/servicemesh",
-  serviceMeshTag: (
-    if istioPhases.is_phase1($.controlEstate) then "471d47c97c33ee61a77bd024f20d80603363db75"
-    else if istioPhases.is_phase2($.controlEstate) then "471d47c97c33ee61a77bd024f20d80603363db75"
-    else if istioPhases.is_phase3($.controlEstate) then "471d47c97c33ee61a77bd024f20d80603363db75"
-    else if istioPhases.is_phase4($.controlEstate) then "471d47c97c33ee61a77bd024f20d80603363db75"
-    else if istioPhases.is_phase5($.controlEstate) then "471d47c97c33ee61a77bd024f20d80603363db75"
-  ),
+  serviceMeshTag: istioPhases.get_service_mesh_tag($.controlEstate),
 
   routingWebhookImage: $.serviceMeshHub + "/istio-routing-webhook:" + $.serviceMeshTag,
   routeUpdateSvcImage: $.serviceMeshHub + "/route-update-service:" + $.serviceMeshTag,
@@ -124,10 +110,7 @@ local ingressGatewayCertConfigs = [ingressGatewayClientCertConfig, ingressGatewa
   ingressGatewaySettingsPath: "istio.-." + configs.kingdom + ".-." + "istio-ingressgateway",
 
   funnelVIP: configs.funnelVIP,
-  funnelIstioEndpoint: "ajnafunneldirect.svc.mesh.sfdc.net:8080",
-
-  funnelHost: funnelEndpoint[0],
-  funnelPort: funnelEndpoint[1],
+  funnelIstioEndpoint: "ajnafunneldirecttls-" + configs.kingdom + ".funnel.svc.mesh.sfdc.net:7442",
 
   madkubEndpoint: "https://10.254.208.254:32007",  // Check madkubserver-service.jsonnet for why IP
   maddogEndpoint: configs.maddogEndpoint,
