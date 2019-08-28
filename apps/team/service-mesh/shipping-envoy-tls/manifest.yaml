@@ -13,10 +13,8 @@ system:
     containers:
 
     - name: shipping
-      #image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/scone/shipping-service:bazel-monorepo
-      # Version of Shipping service build from the 6.0.3 tag of the monorepo and pushed manually to Artifactory
-      #image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/scone/shipping-service:niko-6.0.3
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/scone/shipping-service:bazel-monorepo
+      # https://sfcirelease.dop.sfdc.net/job/services/job/sfdc-bazel_projects_services_examples_shipping/job/sfdc-bazel/job/master/5
+      image: sfci/services/sfdc-bazel/scone/shipping:685f3d3e5
       env:
       - name: SFDC_ENVIRONMENT
         value: mesh
