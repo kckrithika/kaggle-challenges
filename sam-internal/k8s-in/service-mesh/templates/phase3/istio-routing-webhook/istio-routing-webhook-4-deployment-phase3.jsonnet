@@ -60,7 +60,7 @@ configs.deploymentBase("service-mesh") {
               "--port",
               "10443",
               "--funnel-address",
-              mcpIstioConfig.funnelIstioEndpoint,
+              "ajnafunneldirect.svc.mesh.sfdc.net:8080",
             ],
             env: [
               {

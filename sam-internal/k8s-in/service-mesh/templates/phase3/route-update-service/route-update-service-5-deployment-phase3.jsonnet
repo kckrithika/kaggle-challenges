@@ -72,7 +72,7 @@ configs.deploymentBase("service-mesh") {
               "-p",
               "7443",
               "--funnel-address",
-              mcpIstioConfig.funnelIstioEndpoint,
+              "ajnafunneldirect.svc.mesh.sfdc.net:8080",
             ],
             env: [
               {
