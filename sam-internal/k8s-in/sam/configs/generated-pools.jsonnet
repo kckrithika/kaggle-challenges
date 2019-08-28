@@ -2796,12 +2796,14 @@
         "gater",
         "ccait",
         "service-mesh",
+        "mesh-control-plane",
         "retail-beaconator"
       ],
       "access": [
         "team/Gater",
         "team/CCAIT",
         "team/service-mesh",
+        "team/mesh-control-plane",
         "team/Retail_Beaconator"
       ],
       "controlEstate": "par-sam",
