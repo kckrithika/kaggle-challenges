@@ -220,7 +220,7 @@ system:
   # SLB
   #####################################################################################
   loadbalancers:
-    - lbname: cabusinesslb-stage
+    - lbname: cabusinesslb-stage-internal
       function: cloudatlas-prd-stage-service
       slbEnabled: true
       ports:
