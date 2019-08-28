@@ -22,6 +22,7 @@ data:
           "proxyname": "slb-hsm-nginx",
           "vips": [
             "login-cloudforce-phx.slb.sfdc.net",
+            "gs0-bofa-phx.slb.sfdc.net",
             "slb-canary-hsm.sam-system.phx-sam.phx.slb.sfdc.net"
           ]
         }
