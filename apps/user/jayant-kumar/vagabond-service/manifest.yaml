@@ -40,7 +40,7 @@ system:
         initialDelaySeconds: 5
         exec:
           command:
-            - "/home/scone/is-alive.sh"
+            - "/opt/beacon/is-alive.sh"
       env:
        - name: SFDC_ENVIRONMENT
          value: mesh
