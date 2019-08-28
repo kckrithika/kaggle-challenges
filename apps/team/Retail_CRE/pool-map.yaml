@@ -171,6 +171,11 @@ apps:
   frf.Prod.cre-dds:
     - name: frf/frf-sam_customerresolutionengine
 
+  # ======= LENS UI ===== #
+  # ======= MASTER ======== #  
+  prd.CCP_Stage.cre-lens-ui:
+  - name: prd/prd-sam_customerresolutionengine
+
   # ======= Swagger ===== #
   prd.CCP_Dev.cre-swagger:
   - name: prd/prd-sam_customerresolutionengine
