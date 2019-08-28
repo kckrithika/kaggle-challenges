@@ -1,6 +1,7 @@
 local configs = import "config.jsonnet";
 local samimages = (import "sam/samimages.jsonnet") + { templateFilename:: std.thisFile };
 local madkub = (import "service-mesh/istio-madkub-config.jsonnet") + { templateFilename:: std.thisFile };
+local istioPhases = (import "service-mesh/istio-phases.jsonnet");
 
 local funnelEndpoint = std.split(configs.funnelVIP, ":");
 
@@ -45,10 +46,22 @@ local ingressGatewayCertConfigs = [ingressGatewayClientCertConfig, ingressGatewa
 
   # Istio hub and tag is used in Helm values. Represented as "%(istioHub)s" and "%(istioTag)s" respectively.
   istioHub: configs.registry + "/sfci/servicemesh/istio-packaging",
-  istioTag: "f0874ef16fa0c5ea948623884329fe1e0d20e7d5",
+  istioTag: (
+    if istioPhases.is_phase1($.controlEstate) then "f0874ef16fa0c5ea948623884329fe1e0d20e7d5"
+    else if istioPhases.is_phase2($.controlEstate) then "f0874ef16fa0c5ea948623884329fe1e0d20e7d5"
+    else if istioPhases.is_phase3($.controlEstate) then "f0874ef16fa0c5ea948623884329fe1e0d20e7d5"
+    else if istioPhases.is_phase4($.controlEstate) then "f0874ef16fa0c5ea948623884329fe1e0d20e7d5"
+    else if istioPhases.is_phase5($.controlEstate) then "f0874ef16fa0c5ea948623884329fe1e0d20e7d5"
+  ),
 
   serviceMeshHub: configs.registry + "/sfci/servicemesh/servicemesh",
-  serviceMeshTag: "471d47c97c33ee61a77bd024f20d80603363db75",
+  serviceMeshTag: (
+    if istioPhases.is_phase1($.controlEstate) then "471d47c97c33ee61a77bd024f20d80603363db75"
+    else if istioPhases.is_phase2($.controlEstate) then "471d47c97c33ee61a77bd024f20d80603363db75"
+    else if istioPhases.is_phase3($.controlEstate) then "471d47c97c33ee61a77bd024f20d80603363db75"
+    else if istioPhases.is_phase4($.controlEstate) then "471d47c97c33ee61a77bd024f20d80603363db75"
+    else if istioPhases.is_phase5($.controlEstate) then "471d47c97c33ee61a77bd024f20d80603363db75"
+  ),
 
   routingWebhookImage: $.serviceMeshHub + "/istio-routing-webhook:" + $.serviceMeshTag,
   routeUpdateSvcImage: $.serviceMeshHub + "/route-update-service:" + $.serviceMeshTag,
