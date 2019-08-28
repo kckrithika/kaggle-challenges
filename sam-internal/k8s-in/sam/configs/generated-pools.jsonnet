@@ -263,12 +263,14 @@
       "namespaces": [
         "ccait",
         "gater",
-        "service-mesh"
+        "service-mesh",
+        "retail-beaconator"
       ],
       "access": [
         "team/CCAIT",
         "team/Gater",
-        "team/service-mesh"
+        "team/service-mesh",
+        "team/Retail_Beaconator"
       ],
       "controlEstate": "cdu-sam",
       "estate": "cdu-sam_gater",
@@ -1195,12 +1197,14 @@
       "namespaces": [
         "gater",
         "service-mesh",
-        "service-protection"
+        "service-protection",
+        "retail-beaconator"
       ],
       "access": [
         "team/Gater",
         "team/service-mesh",
-        "team/Service_Protection"
+        "team/Service_Protection",
+        "team/Retail_Beaconator"
       ],
       "controlEstate": "hnd-sam",
       "estate": "hnd-sam_gater",
@@ -4027,12 +4031,14 @@
       "namespaces": [
         "ccait",
         "gater",
-        "service-mesh"
+        "service-mesh",
+        "retail-beaconator"
       ],
       "access": [
         "team/CCAIT",
         "team/Gater",
-        "team/service-mesh"
+        "team/service-mesh",
+        "team/Retail_Beaconator"
       ],
       "controlEstate": "syd-sam",
       "estate": "syd-sam_gater",
@@ -4239,12 +4245,14 @@
       "namespaces": [
         "gater",
         "service-mesh",
-        "service-protection"
+        "service-protection",
+        "retail-beaconator"
       ],
       "access": [
         "team/Gater",
         "team/service-mesh",
-        "team/Service_Protection"
+        "team/Service_Protection",
+        "team/Retail_Beaconator"
       ],
       "controlEstate": "ukb-sam",
       "estate": "ukb-sam_gater",
