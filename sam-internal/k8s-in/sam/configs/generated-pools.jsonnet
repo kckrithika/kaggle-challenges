@@ -1035,6 +1035,18 @@
     },
     {
       "namespaces": [
+        "dataprotection"
+      ],
+      "access": [
+        "team/dataprotection"
+      ],
+      "controlEstate": "hio-sam",
+      "estate": "hio-sam_dp",
+      "kingdom": "hio",
+      "superPod": "None"
+    },
+    {
+      "namespaces": [
         "gater",
         "service-mesh",
         "service-protection"
@@ -1046,6 +1058,30 @@
       ],
       "controlEstate": "hio-sam",
       "estate": "hio-sam_gater",
+      "kingdom": "hio",
+      "superPod": "None"
+    },
+    {
+      "namespaces": [
+        "cache-as-a-service"
+      ],
+      "access": [
+        "team/Cache_As_A_service"
+      ],
+      "controlEstate": "hio-sam",
+      "estate": "hio-sam_kingdom_caas",
+      "kingdom": "hio",
+      "superPod": "None"
+    },
+    {
+      "namespaces": [
+        "casp"
+      ],
+      "access": [
+        "team/CASP"
+      ],
+      "controlEstate": "hio-sam",
+      "estate": "hio-sam_warden",
       "kingdom": "hio",
       "superPod": "None"
     },
@@ -4085,6 +4121,18 @@
     },
     {
       "namespaces": [
+        "dataprotection"
+      ],
+      "access": [
+        "team/dataprotection"
+      ],
+      "controlEstate": "ttd-sam",
+      "estate": "ttd-sam_dp",
+      "kingdom": "ttd",
+      "superPod": "None"
+    },
+    {
+      "namespaces": [
         "gater",
         "service-mesh",
         "service-protection"
@@ -4096,6 +4144,30 @@
       ],
       "controlEstate": "ttd-sam",
       "estate": "ttd-sam_gater",
+      "kingdom": "ttd",
+      "superPod": "None"
+    },
+    {
+      "namespaces": [
+        "cache-as-a-service"
+      ],
+      "access": [
+        "team/Cache_As_A_service"
+      ],
+      "controlEstate": "ttd-sam",
+      "estate": "ttd-sam_kingdom_caas",
+      "kingdom": "ttd",
+      "superPod": "None"
+    },
+    {
+      "namespaces": [
+        "casp"
+      ],
+      "access": [
+        "team/CASP"
+      ],
+      "controlEstate": "ttd-sam",
+      "estate": "ttd-sam_warden",
       "kingdom": "ttd",
       "superPod": "None"
     },
