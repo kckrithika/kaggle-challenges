@@ -50,6 +50,11 @@ system:
       livenessProbe:
         httpGet:
             path: /healthfalconsdbupgradetest
+    - name: falconsdbgenerationactivatortest
+      image: ops0-artifactrepo1-0-dfw.data.sfdc.net/dva/sdd/sdbgenerationactivatortest:15
+      livenessProbe:
+        httpGet:
+            path: /healthfalconsdbbootstraptest
     - name: sdbperftools
       image: ops0-artifactrepo1-0-dfw.data.sfdc.net/dva/sdbperftools/sdbperftools:4
       livenessProbe:
