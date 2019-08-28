@@ -73,6 +73,10 @@ apps:
   - syd/syd-sam_warden
   - yhu/yhu-sam_warden
   - yul/yul-sam_warden
+  - ia2/ia2-sam_warden
+  - ph2/ph2-sam_warden
+  - lo2/lo2-sam_warden
+  - lo3/lo3-sam_warden
  prod-maiev-receiver:
   - dfw/dfw-sam_warden
   - iad/iad-sam_warden
@@ -86,6 +90,10 @@ apps:
   - yhu/yhu-sam_warden
   - yul/yul-sam_warden
   - cdg/cdg-sam_warden
+  - ia2/ia2-sam_warden
+  - ph2/ph2-sam_warden
+  - lo2/lo2-sam_warden
+  - lo3/lo3-sam_warden
  prod-maiev-receiver-alternate:
   - frf/frf-sam_warden
  prod-warden:
@@ -97,6 +105,10 @@ apps:
   - phx/phx-sam_warden
   - fra/fra-sam_warden
   - cdg/cdg-sam_warden
+  - ia2/ia2-sam_warden
+  - ph2/ph2-sam_warden
+  - lo2/lo2-sam_warden
+  - lo3/lo3-sam_warden
  prod-warden-mofo:
   - cdu/cdu-sam_warden
   - syd/syd-sam_warden
