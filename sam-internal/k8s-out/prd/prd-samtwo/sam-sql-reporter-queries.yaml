@@ -1029,6 +1029,20 @@ data:
           ],
           "name": "Prd Sam Sandbox Unscheduled Pods",
           "note": "Queries to help debug scheduler issues"
+        },
+        {
+          "multisql": [
+            {
+              "name": "ProductionDcsAndHosts",
+              "sql": "select  kingdom, count(name) as nodeCount\n          from nodeDetailView\n          group by kingdom\n"
+            },
+            {
+              "name": "NamespacesAndDeploymentCountInProduction",
+              "sql": "select namespace, count(name) as payloadcount\n            from deploymentDetailView\n            where (\n              namespace not rlike 'csc-sam' and\n              namespace not rlike 'sam-watchdog' and\n              namespace not rlike 'sam-system' and\n              namespace not rlike 'legostore' and\n              namespace not rlike 'ceph' and\n              namespace not rlike 'slb' and \n              namespace not rlike 'user-' and\n              control_estate not rlike 'prd' and\n              control_estate not rlike 'xrd')\n            group by namespace order by namespace\n          "
+            }
+          ],
+          "name": "ProductionStatistics",
+          "note": "This shows statistics for SAM in Production"
         }
       ]
     }
