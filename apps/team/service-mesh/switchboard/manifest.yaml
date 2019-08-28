@@ -12,7 +12,7 @@ system:
       app: switchboard
     containers:
     - name: switchboard
-      image: sfci/servicelibs/switchboard:66f707279fde28702e8c3a7c25203263ea4d1183
+      image: sfci/servicelibs/switchboard:b60630e133304980ca030581a85f90ca3e1bbe15
       args:
       ############################## PRODUCTION CONFIGURATION ##########################################
       # Any configuration that needs to go to production should be added here.
@@ -41,14 +41,6 @@ system:
       - --listeners.rate-limit-enabled-clusters[4]=retail-setup.retail-rsui
       - --listeners.rate-limit-enabled-clusters[5]=cloudatlas-prd-dev-service.cloudatlas
       - --listeners.rate-limit-enabled-clusters[6]=gid-runtime-service.global-identity
-
-      #Temporary test configuration to test W-6465251
-      - --clusters.external-mesh-services[0]_name=testajnafunneldirecttls.funnel
-      - --clusters.external-mesh-services[0]_cluster_type=HTTP1_TLS
-      - --clusters.external-mesh-services[0]_resolution=DNS
-      - --clusters.external-mesh-services[0]_port=443
-      - --clusters.external-mesh-services[0]_endpoints[0]=random.funnel.ajnalocal1.foundation.rddev.aws.sfdc.cl
-      - --clusters.external-mesh-services[0]_identity=testajnaidentity
       ############################ EXAMPLE CONFIGURATION ##############################################
       # This section exists to show how some features can be configured.
       # External Mesh Service Configuration - Example
