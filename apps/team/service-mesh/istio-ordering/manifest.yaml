@@ -13,7 +13,6 @@ system:
       istio_app: test
     annotations:
       sidecar.istio.io/inject: "true"
-      routing.mesh.sfdc.net/enabled: "true"
     containers:
     - name: ordering
       # Ordering App
@@ -37,6 +36,9 @@ system:
         name: grpc-svc
       - containerPort: 15372
         name: scone-mgmt
+      resources:
+        limits: { cpu: "1", memory: "1Gi" }
+        requests: { cpu: "1", memory: "1Gi" }
       livenessProbe:
         initialDelaySeconds: 120
         httpGet:
