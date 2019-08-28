@@ -5,7 +5,6 @@ system:
     count: 4
     type: stateful-set
     identity:
-      serviceName: acs
       pod: devmvp
     containers:
     - name: acs  
