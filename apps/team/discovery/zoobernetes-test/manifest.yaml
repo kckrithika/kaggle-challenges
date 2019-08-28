@@ -19,6 +19,14 @@ system:
       - containerPort: 15372
         name: scone-mgmt
 
+      resources:
+        limits:
+          cpu: 4000m
+          memory: 4Gi
+        requests:
+          cpu: 2000m
+          memory: 2Gi
+
       livenessProbe:
         initialDelaySeconds: 60
         httpGet:
