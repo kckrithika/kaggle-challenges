@@ -1,26 +1,15 @@
 local configs = import "config.jsonnet";
-local utils = import "util_functions.jsonnet";
 
-# Add your estates here
-local featureFlag = (configs.estate == "prd-samtest");
-
-local name = "apiserver-metrics-exporter";
-local namespace = "sam-system";
-
-local configMapName = "apiserver-metrics-exporter-cm";
-local configTemplate = importstr "configs/ocagent/opencensus.apiserver-metrics-exporter.yaml.erb";
+local collectionUtils = import "collection-agent-utils.jsonnet";
 
 local funnelEndpointHost = std.split(configs.funnelVIP, ":")[0];
 local funnelEndpointPort = std.split(configs.funnelVIP, ":")[1];
-
-local configGenImage = "%s/dva/collection-erb-config-gen:19-70c45ccd33d3772cd6519e1f7dfe2cf5c2bc7b0e" % configs.registry;
-local opencensusImage = "%s/dva/opencensus-service:13-75d5d20e22eec757a5399028a945fa0851bab367" % configs.registry;
 
 local volumes = [
     {
         name: "opencensus-conf-tpl",
         configMap: {
-            name: configMapName,
+            name: collectionUtils.apiserver.configMapName,
         },
     },
     {
@@ -29,17 +18,6 @@ local volumes = [
     },
 ];
 
-local configMap = {
-    kind: "ConfigMap",
-    apiVersion: "v1",
-    metadata: {
-        name: configMapName,
-        namespace: namespace,
-    },
-    data: {
-        "opencensus.cluster-metrics-exporter.yaml.erb": configTemplate,
-    },
-};
 
 local initVolumeMounts = [
     {
@@ -59,88 +37,38 @@ local volumeMounts = [
     },
 ];
 
-local serviceAccount = {
-    apiVersion: "v1",
-    kind: "ServiceAccount",
-    metadata: {
-        name: name,
-        namespace: namespace,
-    },
-    automountServiceAccountToken: true,
-};
-
-local clusterRole = {
-    apiVersion: "rbac.authorization.k8s.io/v1beta1",
-    kind: "ClusterRole",
-    metadata: {
-        name: name,
-        namespace: namespace,
-    },
-    rules: [
-        {
-            nonResourceURLs: [
-                "/metrics",
-            ],
-            verbs: [
-                "get",
-            ],
-        },
-    ],
-};
-
-local clusterRoleBinding = {
-    apiVersion: "rbac.authorization.k8s.io/v1beta1",
-    kind: "ClusterRoleBinding",
-    metadata: {
-        name: name,
-        namespace: namespace,
-    },
-    roleRef: {
-        apiGroup: "rbac.authorization.k8s.io",
-        kind: "ClusterRole",
-        name: name,
-    },
-    subjects: [
-        {
-            kind: "ServiceAccount",
-            name: name,
-            namespace: namespace,
-        },
-    ],
-};
-
-local deployment = {
+if collectionUtils.apiserver.featureFlag then {
     apiVersion: "apps/v1beta1",
     kind: "Deployment",
     metadata: {
-        name: name,
-        namespace: namespace,
+        name: collectionUtils.apiserver.name,
+        namespace: collectionUtils.apiserver.namespace,
         labels: {
-            app: name,
+            app: collectionUtils.apiserver.name,
         },
     },
     spec: {
         selector: {
             matchLabels: {
-                app: name,
+                app: collectionUtils.apiserver.name,
             },
         },
         replicas: 1,
         template: {
             metadata: {
                 labels: {
-                    app: name,
+                    app: collectionUtils.apiserver.name,
                 },
             },
             spec: {
-                serviceAccountName: name,
+                serviceAccountName: collectionUtils.apiserver.name,
                 automountServiceAccountToken: true,
                 volumes+: []
                     + volumes,
                 initContainers: [
                     {
                         name: "prom-to-argus-init",
-                        image: configGenImage,
+                        image: collectionUtils.apiserver.configGenImage,
                         imagePullPolicy: "Always",
                         env: [
                             {
@@ -188,7 +116,7 @@ local deployment = {
                 containers: [
                     {
                         name: "prom-to-argus",
-                        image: opencensusImage,
+                        image: collectionUtils.apiserver.opencensusImage,
                         imagePullPolicy: "Always",
                         command: [
                             "ocagent",
@@ -218,16 +146,4 @@ local deployment = {
             },
         },
     },
-};
-
-if featureFlag then {
-    apiVersion: "v1",
-    kind: "List",
-    items: [
-        serviceAccount,
-        clusterRole,
-        clusterRoleBinding,
-        configMap,
-        deployment,
-    ],
 } else "SKIP"
