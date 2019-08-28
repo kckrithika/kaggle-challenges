@@ -34,7 +34,7 @@ system:
       image: sfci/services/sfdc-bazel/disco/beacon:d7f1640
       args:
       - -endpoint
-      - $(FUNCTION_NAMESPACE)/$(FUNCTION_INSTANCE_NAME):POD:7442
+      - samapp/$(FUNCTION_NAMESPACE)/$(FUNCTION_INSTANCE_NAME):POD:7442
       livenessProbe:
         initialDelaySeconds: 5
         exec:
