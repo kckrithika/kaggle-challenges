@@ -62,6 +62,22 @@ items:
 - apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: RoleBinding
   metadata:
+    name: dataprotection:ttd-sam_dp:rolebinding
+    namespace: dataprotection
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: minion:role
+  subjects:
+  - kind: User
+    name: shared0-samminiondp1-1-ttd.ops.sfdc.net
+  - kind: User
+    name: shared0-samminiondp2-1-ttd.ops.sfdc.net
+  - kind: User
+    name: shared0-samminiondp3-1-ttd.ops.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1beta1
+  kind: RoleBinding
+  metadata:
     name: gater:ttd-sam_gater:rolebinding
     namespace: gater
   roleRef:
@@ -119,5 +135,39 @@ items:
     name: shared0-samminiongater2-1-ttd.ops.sfdc.net
   - kind: User
     name: shared0-samminiongater2-2-ttd.ops.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1beta1
+  kind: RoleBinding
+  metadata:
+    name: cache-as-a-service:ttd-sam_kingdom_caas:rolebinding
+    namespace: cache-as-a-service
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: minion:role
+  subjects:
+  - kind: User
+    name: samkingdomcaas0-caasminion1-1-ttd.ops.sfdc.net
+  - kind: User
+    name: samkingdomcaas0-caasminion1-2-ttd.ops.sfdc.net
+  - kind: User
+    name: samkingdomcaas0-caasminion2-1-ttd.ops.sfdc.net
+  - kind: User
+    name: samkingdomcaas0-caasminion3-1-ttd.ops.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1beta1
+  kind: RoleBinding
+  metadata:
+    name: casp:ttd-sam_warden:rolebinding
+    namespace: casp
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: minion:role
+  subjects:
+  - kind: User
+    name: shared0-samminionwarden1-1-ttd.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionwarden2-1-ttd.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionwarden3-1-ttd.ops.sfdc.net
 kind: List
 metadata: {}
