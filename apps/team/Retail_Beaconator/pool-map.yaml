@@ -14,6 +14,7 @@ apps:
 
   c360-beaconator-eu:
     - name: cdg/cdg-sam_gater
+    - name: fra/fra-sam_gater
 
   c360-beaconator-ap:
     - name: cdu/cdu-sam_gater
