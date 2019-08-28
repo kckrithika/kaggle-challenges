@@ -55,7 +55,7 @@ local ingressGatewayCertConfigs = [ingressGatewayClientCertConfig, ingressGatewa
   serviceMeshHub: configs.registry + "/sfci/servicemesh/servicemesh",
   serviceMeshTag: (
     if istioPhases.is_phase1($.controlEstate) then "6de698dd1935317ebf1ba9d8b5d92207ba8479a6"
-    else if istioPhases.is_phase2($.controlEstate) then "471d47c97c33ee61a77bd024f20d80603363db75"
+    else if istioPhases.is_phase2($.controlEstate) then "6de698dd1935317ebf1ba9d8b5d92207ba8479a6"
     else if istioPhases.is_phase3($.controlEstate) then "471d47c97c33ee61a77bd024f20d80603363db75"
     else if istioPhases.is_phase4($.controlEstate) then "471d47c97c33ee61a77bd024f20d80603363db75"
     else if istioPhases.is_phase5($.controlEstate) then "471d47c97c33ee61a77bd024f20d80603363db75"
