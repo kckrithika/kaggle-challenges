@@ -12,11 +12,3 @@ system:
         httpGet:
           path: /
           port: 9900
-  loadbalancers:
-  - lbname: no-victim-lb
-    function: no-victim
-    slbenabled: true
-    ports:
-      - port: 9901
-        targetport: 9900
-        lbtype: tcp

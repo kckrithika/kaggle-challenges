@@ -46,25 +46,3 @@ system:
         httpGet:
           path: /
           port: 9900
-  loadbalancers:
-  - lbname: victim-pd-slow-lb
-    function: victim-pd-slow
-    slbenabled: true
-    ports:
-      - port: 9900
-        targetport: 9900
-        lbtype: tcp
-  - lbname: victim-pd-slow-min-cnt-lb
-    function: victim-pd-slow-min-cnt
-    slbenabled: true
-    ports:
-      - port: 9900
-        targetport: 9900
-        lbtype: tcp
-  - lbname: victim-pd-slow-min-pct-lb
-    function: victim-pd-slow-min-pct
-    slbenabled: true
-    ports:
-      - port: 9900
-        targetport: 9900
-        lbtype: tcp
