@@ -20,7 +20,9 @@ system:
       #    https://git.soma.salesforce.com/services/sfdc-bazel/tree/master/projects/services/ordering/ordering-scone
       # Ordering Config
       #    https://git.soma.salesforce.com/services/sfdc-bazel/blob/master/projects/services/ordering/ordering-scone/src/main/resources/config/application.properties
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/scone/ordering-service:scone-6.0.5
+      # Image build:
+      # https://sfcirelease.dop.sfdc.net/job/services/job/sfdc-bazel_projects_services_examples_ordering/job/sfdc-bazel/job/scone_nexusrelease_scone_6.0.x/3/
+      image: sfci/services/sfdc-bazel/scone/ordering:8c7a32bef
       env:
       - name: SFDC_ENVIRONMENT
         value: istio
