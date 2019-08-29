@@ -51,6 +51,7 @@ system:
             cpu: 48
             memory: 90Gi
   loadbalancers:
+  # CName aqueduct-perf-xrd.slb.sfdc.net added as SLB cert doesn't have SLB VIP name in SAN
   - lbname: aqueduct-perf
     function: aqueduct-perf
     slbenabled: true

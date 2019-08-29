@@ -29,8 +29,6 @@ system:
         ports:
         - containerPort: 8080
           name: ext-port
-        - containerPort: 8082
-          name: inter-port
         - containerPort: 15372
           name: manage-port
         livenessProbe:
@@ -57,12 +55,8 @@ system:
     function: aqueduct
     slbenabled: true
     ports:
-      - port: 8080
+      - port: 443
         targetport: 8080
         lbtype: http
-      - port: 443
-        targetport: 8082
-        lbtype: http
-      - port: 15372
-        targetport: 15372
-        lbtype: http
+        tls: true
+        sticky: 300
