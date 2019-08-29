@@ -17,7 +17,7 @@ system:
       - name: myservercert
         maddogCert:
           type: server
-          lbname:
+          lbnames:
             - aqueduct-func
       containers:
       - name: aqueduct
@@ -49,7 +49,7 @@ system:
           - name: kafkaclientcerts
             mountPath: /etc/pki_service/sfdc-aqueduct
           - name: myservercert
-            mountPath: /etc/pki_service/sfdc-aqueduct
+            mountPath: /certs
         resources:
           limits:
             cpu: 24
