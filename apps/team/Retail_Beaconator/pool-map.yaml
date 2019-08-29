@@ -17,3 +17,4 @@ apps:
 
   c360-beaconator-ap:
     - name: cdu/cdu-sam_gater
+    - name: syd/syd-sam_gater
