@@ -46,7 +46,7 @@ else
                                 image: flowsnake_config.strata_registry + "/sfdc_centos7",  # FIXME: need specific tag or just use "latest"?
                                 imagePullPolicy: flowsnake_config.default_image_pull_policy,
                                 command: [
-                                    "/kubeapi-monitor-scripts/repeat-check.sh",
+                                    "/kubeapi-monitor-scripts/check-kubeapi.sh",
                                 ],
                                 name: "kubeapi-monitor",
                                 resources: {
@@ -70,22 +70,6 @@ else
                                     {
                                         name: "FUNNEL_ENDPOINT",
                                         value: flowsnake_config.funnel_endpoint,
-                                    },
-                                    {
-                                        name: "METRICS_URL_PATH",
-                                        value: "/funnel/v1/publishBatch",
-                                    },
-                                    {
-                                        name: "METRICS_PUBLISH_KEY",
-                                        value: "avroSchemaFingerprint",
-                                    },
-                                    {
-                                        name: "METRICS_SCHEMA_FINGERPRINT",
-                                        value: "AVG7NnlcHNdk4t_zn2JBnQ",
-                                    },
-                                    {
-                                        name: "KUBE_API_ADDRESS",
-                                        value: "https://kubernetes.default.svc.cluster.local",
                                     },
                                     {
                                         name: "ESTATE",
