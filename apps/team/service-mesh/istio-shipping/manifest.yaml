@@ -59,6 +59,7 @@ system:
         settings_path: istio.-.prd.-.istio-shipping
       ports:
         - lbtype: dsr
+          nodeExposed: false
           port: 7443
           targetport: 7443
           name: grpc-shipping
