@@ -8,7 +8,7 @@ system:
       serviceName: sfcd-onboarding
     containers:
     - name: sfcd-onboarding-app
-      image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/sfcd-onboarding:202
+      image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/sfcd-onboarding:204
       command: [ "/etc/sfcd-onboarding/run_app.sh" ]
       ports:
       - containerPort: 7000
@@ -34,7 +34,7 @@ system:
         - name: client-certs
           mountPath: /certs
     - name: sfcd-onboarding-nginx
-      image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/sfcd-onboarding-nginx:202
+      image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/sfcd-onboarding-nginx:204
       command: [ "nginx" ]
       ports:
       - containerPort: 5000
