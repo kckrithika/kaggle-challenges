@@ -77,9 +77,6 @@ system:
         initialDelaySeconds: 50
         periodSeconds: 5
       terminationMessagePolicy: FallbackToLogsOnError
-      env:
-        - name: ENVOY_DEBUG_OPTIONS
-          value: --concurrency 10
     volumes:
     - name: logvolservice
       hostPath:

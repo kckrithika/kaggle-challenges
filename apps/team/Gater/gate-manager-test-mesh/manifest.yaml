@@ -82,9 +82,6 @@ system:
         initialDelaySeconds: 50
         periodSeconds: 5
       terminationMessagePolicy: FallbackToLogsOnError
-      env:
-        - name: ENVOY_DEBUG_OPTIONS
-          value: --concurrency 10
 
     - name: beacon
       image: sfci/servicelibs/beacon:cec13ceb9fc5aed0ce462031a01b2dd5ef73d5ee
