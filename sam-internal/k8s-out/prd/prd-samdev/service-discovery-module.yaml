@@ -28,7 +28,7 @@ spec:
         env:
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig-platform
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/sam/hypersam:2788-030f6b7fccd4b0552b1c48a01f799ed4b6ec9515
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/sam/hypersam:2790-34bb99ff2a7ce7692b0673f2fa671fdd1522c576
         name: service-discovery-module
         resources:
           limits:
