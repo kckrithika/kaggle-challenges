@@ -4,5 +4,9 @@ apps:
     - prd/prd-sam
   no-victim:
     - prd/prd-samtest
-# Stale app disabled by automation.  See https://sfdc.co/samsandbox
-#    - prd/prd-sam
+  victim-pd-fast:
+    - prd/prd-samtest
+    - prd/prd-sam
+  victim-pd-default:
+    - prd/prd-samtest
+    - prd/prd-sam
