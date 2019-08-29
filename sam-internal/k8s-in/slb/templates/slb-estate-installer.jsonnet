@@ -36,6 +36,12 @@ if slbconfigs.isSlbEstate then configs.daemonSetBase("slb") {
                         },
                     },
                     {
+                        name: "yum-gpg-config-volume",
+                        hostPath: {
+                            path: "/etc/pki/rpm-gpg",
+                        },
+                    },
+                    {
                         name: "yum-estates-repo-volume",
                         hostPath: {
                             path: "/opt/estates",
@@ -73,6 +79,10 @@ if slbconfigs.isSlbEstate then configs.daemonSetBase("slb") {
                             {
                                 name: "yum-estates-repo-config-volume",
                                 mountPath: "/etc/yum.repos.d",
+                            },
+                            {
+                                name: "yum-gpg-config-volume",
+                                mountPath: "/etc/pki/rpm-gpg",
                             },
                             {
                                 name: "yum-estates-repo-volume",

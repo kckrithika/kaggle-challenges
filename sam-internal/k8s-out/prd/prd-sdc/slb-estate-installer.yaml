@@ -47,6 +47,8 @@ spec:
         volumeMounts:
         - mountPath: /etc/yum.repos.d
           name: yum-estates-repo-config-volume
+        - mountPath: /etc/pki/rpm-gpg
+          name: yum-gpg-config-volume
         - mountPath: /opt/estates
           name: yum-estates-repo-volume
         - mountPath: /host/data/slb
@@ -60,6 +62,9 @@ spec:
       - hostPath:
           path: /etc/yum.repos.d
         name: yum-estates-repo-config-volume
+      - hostPath:
+          path: /etc/pki/rpm-gpg
+        name: yum-gpg-config-volume
       - hostPath:
           path: /opt/estates
         name: yum-estates-repo-volume
