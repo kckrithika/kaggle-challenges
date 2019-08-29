@@ -14,7 +14,7 @@ system:
         maxUnavailable: 25%
     containers:
     - name: search-query-service
-      image: sfci/searchdev/search-query-execution-platform:6.1
+      image: sfci/searchdev/search-query-execution-platform:6.0
       ports:
       - name: service-port
         containerPort: 7020
@@ -38,7 +38,7 @@ system:
       - mountPath: /home/sfdc-search-query-service/logs
         name: logvol
     - name: beacon
-      image: sfci/services/sfdc-bazel/disco/beacon:d1180ea4b
+      image: sfci/services/sfdc-bazel/disco/beacon:127b56475
       args:
       - -endpoint
       - search-scale-safely/search-query-service:DATACENTER_ALLENV:7443
@@ -51,7 +51,7 @@ system:
           command:
           - /opt/beacon/is-alive.sh
     - name: sherpa-b
-      image: sfci/servicelibs/sherpa-envoy:1.0.12
+      image: sfci/servicelibs/sherpa-envoy:1.0.11
       env:
       - name: SFDC_ENVIRONMENT
         value: sam
