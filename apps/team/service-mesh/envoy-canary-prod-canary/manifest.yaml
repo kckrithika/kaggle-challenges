@@ -26,8 +26,8 @@ system:
             - "/home/scone/is-alive.sh"
 
     - name: sherpa
-      # https://git.soma.salesforce.com/servicelibs/sherpa-envoy/releases/tag/sfci-1.0.5
-      image: sfci/servicelibs/sherpa-envoy:1.0.6
+      # https://git.soma.salesforce.com/servicelibs/sherpa-envoy/releases/tag/sfci-1.0.12
+      image: sfci/servicelibs/sherpa-envoy:1.0.12
       env:
       - name: SFDC_ENVIRONMENT
         value: prod
