@@ -8,7 +8,7 @@ system:
     count: 2
     containers:
     - name: expression-evaluator-service
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/gater/expression-evaluator:f4d204e1d
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/gater/expression-evaluator:d1180ea4b
       args:
       - --noop.arg=123
       # If your service doesn't serve HTTP traffic then you can remove the scone-http 8080 port.
