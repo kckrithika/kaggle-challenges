@@ -14,11 +14,6 @@ system:
       - name: kafkaclientcerts
         maddogCert:
           type: client
-      - name: myservercert
-        maddogCert:
-          type: server
-          lbnames:
-            - aqueduct-func
       containers:
       - name: aqueduct
         image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/yzhao/aqueduct:2019.07.11.16.00.17
@@ -48,8 +43,6 @@ system:
         volumeMounts:
           - name: kafkaclientcerts
             mountPath: /etc/pki_service/sfdc-aqueduct
-          - name: myservercert
-            mountPath: /certs
         resources:
           limits:
             cpu: 24
@@ -66,3 +59,4 @@ system:
         targetport: 8080
         lbtype: http
         tls: true
+        sticky: 300
