@@ -13,4 +13,7 @@ apps:
     - name: dfw/dfw-sam_gater
 
   c360-beaconator-eu:
-    - name: cdg/cdg-sam_gater 
+    - name: cdg/cdg-sam_gater
+
+  c360-beaconator-ap:
+    - name: cdu/cdu-sam_gater
