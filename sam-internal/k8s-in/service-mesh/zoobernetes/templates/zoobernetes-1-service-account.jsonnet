@@ -1,5 +1,4 @@
-local configs = import "config.jsonnet";
-if configs.estate == "prd-sam" || configs.estate == "prd-samtest" then {
+{
   apiVersion: "v1",
   kind: "ServiceAccount",
   metadata: {
@@ -9,4 +8,4 @@ if configs.estate == "prd-sam" || configs.estate == "prd-samtest" then {
       app: "zoobernetes",
     },
   },
-} else "SKIP"
+}
