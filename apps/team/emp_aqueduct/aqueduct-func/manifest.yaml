@@ -55,7 +55,7 @@ system:
     function: aqueduct-func
     slbenabled: true
     ports:
-      - port: 443
+      - port: 8080
         targetport: 8080
         lbtype: http
       - port: 15372
