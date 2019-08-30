@@ -190,7 +190,7 @@
                   "10.251.196.113/32",  # ops0-netlog1-0-prd.slb.sfdc.net - Zack Mady - https://computecloud.slack.com/archives/C42SAQVS9/p1556121900123900
                   "10.251.196.117/32",  # codecov.moe.prd-sam.prd.slb.sfdc.net
                   "96.43.157.23/32",  #gidruntimelb.global-identity.prd-sam.prd.slb.sfdc.net
-                  "96.43.157.22/32",  #cabusinesslb-stage.cloudatlas.prd-sam.prd.slb.sfdc.net
+                  "96.43.157.22/32",  #cabusinesslb-test.cloudatlas.prd-sam.prd.slb.sfdc.net
                 ],
                 "prd-samtwo": [
                   "136.146.214.8/32",  #na44-stmfa1-0-prd.slb.sfdc.net
