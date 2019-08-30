@@ -15,12 +15,6 @@ apps:
     - prd/prd-sam_zipkin
     zipkin-collector1:
     - prd/prd-sam_zipkin
-    elasticsearch-test:
-    - prd/prd-sam_zipkin
-    elasticsearch:
-    - prd/prd-sam_zipkin
-    elasticsearch1:
-    - prd/prd-sam_zipkin
     zipkin-spark-beta:
     - prd/prd-sam_zipkin    
     zipkin-kafka-proxy-test:
