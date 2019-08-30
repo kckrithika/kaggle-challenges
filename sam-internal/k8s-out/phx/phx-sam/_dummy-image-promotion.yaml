@@ -23,5 +23,5 @@ spec:
       namespace: sam-system
     spec:
       containers:
-      - image: 2778-29ee2fa3a4532165211b8adae39ecf04c451a410
-        name: image-promotiuon
+      - image: ops0-artifactrepo1-0-phx.data.sfdc.net/dva/sam/hypersam:2778-29ee2fa3a4532165211b8adae39ecf04c451a410
+        name: image-promotion

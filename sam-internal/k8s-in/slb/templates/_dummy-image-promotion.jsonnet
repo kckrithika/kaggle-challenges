@@ -29,7 +29,7 @@ if configs.estate == "phx-sam" then configs.deploymentBase("slb") {
                 containers: [
                     {
                         name: "image-promotion",
-                        image: imageFunc.do_override_based_on_tag($.overrides, "sam", "hypersam", "2778-29ee2fa3a4532165211b8adae39ecf04c451a410"),
+                        image: imageFunc.do_override_based_on_tag({}, "sam", "hypersam", "2778-29ee2fa3a4532165211b8adae39ecf04c451a410"),
                     },
                 ],
             },
