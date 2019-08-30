@@ -3,7 +3,7 @@ system:
     email:
       - distributedtracing@salesforce.com
   functions: 
-   - name: zipkin-es-curator
+  - name: zipkin-es-curator
     count: 1
     strategy:
         type: RollingUpdate
