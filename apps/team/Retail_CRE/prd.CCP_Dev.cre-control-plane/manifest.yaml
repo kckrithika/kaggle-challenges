@@ -27,6 +27,10 @@ system:
          #### K8 #### migration is done delete ALL references to FLOWSNAKE_ARTIFACT.
         - name: INGEST_SPEC_IMAGE
           value: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cre/cre-engine:2.0.0.0.PR-1074.30f5ea8.9
+        - name: EXPORT_SPEC_IMAGE
+          value: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cre/cre-dds-spark:1.8.2.1.pz-cpstatus-jenkins.5c4d3b8.2
+        - name: SAVE_SPEC_IMAGE
+          value: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cre/cre-dds-spark:1.8.2.1.pz-cpstatus-jenkins.5c4d3b8.2
         ####################################################################################################
         ####################################### GLOBAL SHARED VALUES #######################################
         ####################################################################################################
