@@ -102,9 +102,13 @@ apps:
   istio-ordering:
     - prd/prd-sam_gater
     - prd/prd-samtest
+  istio-ordering-prod:
+    - par/par-sam_gater
   istio-shipping:
     - prd/prd-sam_gater
     - prd/prd-samtest
+  istio-shipping-prod:
+    - par/par-sam_gater
 
   # Mixed Mode: Sherpa -> Istio apps
   istio-ordering-mixed-sherpa-to-istio:
