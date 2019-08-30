@@ -3,45 +3,7 @@ system:
     email:
       - distributedtracing@salesforce.com
   functions: 
-  - name: elasticsearch
-    count: 0
-    type: stateful-set
-    containers:
-    - name: elasticsearch
-      image: docker-dva-rc/dva/elasticsearch-server:23
-      env:
-      - name: ES_JAVA_OPTS
-        value: '-Xms30g -Xmx30g'
-      volumeMounts:
-      - mountPath: /var/lib/elasticsearch
-        name: elasticsearch-persistent-storage
-      #- mountPath: /certs
-      #  name: certs
-      #- mountPath: /secrets
-      #  name: es-pass
-      #  readOnly: true
-
-      ports:
-      - containerPort: 9200
-        name: es-rest
-      - containerPort: 9300
-        name: es-transport
-
-      livenessProbe:
-        tcpSocket:
-          port: 9200
-        initialDelaySeconds: 15
-        periodSeconds: 10
-        failureThreshold: 100
-    volumes:
-    - name: elasticsearch-persistent-storage
-      hostPath:
-          path: /data/elasticsearchProd
-    terminationGracePeriodSeconds: 20
-
-    lbname: elasticsearch-stateful-lb  
-
-  - name: zipkin-es-curator
+   - name: zipkin-es-curator
     count: 1
     strategy:
         type: RollingUpdate
@@ -95,17 +57,3 @@ system:
       #- mountPath: /secrets
       #  name: es-pass
       #  readOnly: true
-
-  loadbalancers:
-  - lbname: es-rest
-    function: elasticsearch
-    slbEnabled: true
-    ports:
-      - port: 9200
-        targetport: 9200
-  - lbname: es-transport
-    function: elasticsearch
-    slbEnabled: true
-    ports:
-      - port: 9300
-        targetport: 9300
