@@ -1,10 +1,10 @@
 apiVersion: v1
 system:
   functions:
-    - name: victim-pd-default
+    - name: victim-rm-default
       labels:
-        chaos.sfdc.net/podDelete: true
-        chaos.sfdc.net/podDeletePeriodSpeed: 15m
+        chaos.sfdc.net/podKill: true
+        chaos.sfdc.net/podKillPeriodSpeed: 15m
         chaos.sfdc.net/podMustBeGood: false
         chaos.sfdc.net/deploymentMustBeGood: false
       count: 3
@@ -17,11 +17,11 @@ system:
             httpGet:
               path: /
               port: 9900
-    - name: victim-pd-default-min-cnt
+    - name: victim-rm-default-min-cnt
       labels:
-        chaos.sfdc.net/podDelete: true
-        chaos.sfdc.net/podDeletePeriodSpeed: 15m
-        chaos.sfdc.net/PodDeleteMinCount: 2
+        chaos.sfdc.net/podKill: true
+        chaos.sfdc.net/podKillPeriodSpeed: 15m
+        chaos.sfdc.net/PodKillMinCount: 2
         chaos.sfdc.net/podMustBeGood: false
         chaos.sfdc.net/deploymentMustBeGood: false
       count: 3
@@ -34,11 +34,11 @@ system:
             httpGet:
               path: /
               port: 9900
-    - name: victim-pd-default-min-pct
+    - name: victim-rm-default-min-pct
       labels:
-        chaos.sfdc.net/podDelete: true
-        chaos.sfdc.net/podDeletePeriodSpeed: 15m
-        chaos.sfdc.net/PodDeleteMinPct: 0.6
+        chaos.sfdc.net/podKill: true
+        chaos.sfdc.net/podKillPeriodSpeed: 15m
+        chaos.sfdc.net/PodKillMinPct: 0.3
         chaos.sfdc.net/podMustBeGood: false
         chaos.sfdc.net/deploymentMustBeGood: false
       count: 3
@@ -51,11 +51,11 @@ system:
             httpGet:
               path: /
               port: 9900
-    - name: victim-pd-default-min-uptime
+    - name: victim-rm-default-min-uptime
       labels:
-        chaos.sfdc.net/podDelete: true
-        chaos.sfdc.net/podDeletePeriodSpeed: 15m
-        chaos.sfdc.net/PodDeleteMinUptime: 20m
+        chaos.sfdc.net/podKill: true
+        chaos.sfdc.net/podKillPeriodSpeed: 15m
+        chaos.sfdc.net/PodKillMinUptime: 20m
         chaos.sfdc.net/podMustBeGood: false
         chaos.sfdc.net/deploymentMustBeGood: false
       count: 3
