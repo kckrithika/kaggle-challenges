@@ -1,0 +1,27 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  labels:
+    name: dummy-image-promotion
+  name: dummy-image-promotion
+  namespace: sam-system
+spec:
+  minReadySeconds: 30
+  replicas: 0
+  selector:
+    matchLabels:
+      name: dummy-image-promotion
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        name: dummy-image-promotion
+      namespace: sam-system
+    spec:
+      containers:
+      - image: 2778-29ee2fa3a4532165211b8adae39ecf04c451a410
+        name: image-promotiuon

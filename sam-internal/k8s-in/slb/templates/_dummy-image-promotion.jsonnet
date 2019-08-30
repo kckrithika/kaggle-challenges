@@ -32,7 +32,7 @@ if configs.estate == "phx-sam" then configs.deploymentBase("slb") {
                         image: "2778-29ee2fa3a4532165211b8adae39ecf04c451a410",
                     },
                 ],
-            }
+            },
         },
         strategy: {
             type: "RollingUpdate",
