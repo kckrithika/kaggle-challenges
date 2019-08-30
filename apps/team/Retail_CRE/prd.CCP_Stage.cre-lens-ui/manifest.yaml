@@ -4,7 +4,7 @@ system:
   - name: default
     count: 1
     containers:
-    - name: sam-lens-ui
+    - name: sam-lensui
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cre/cre-lens-ui:6883d25
       ports:
       - containerPort: 3000
@@ -13,7 +13,7 @@ system:
           path: /
           port: 3000
   loadbalancers:
-  - lbname: lens-ui
+  - lbname: sam-lensui-lb
     function: default
     slbenabled: true
     ports:
