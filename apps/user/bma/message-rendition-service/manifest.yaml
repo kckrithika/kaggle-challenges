@@ -8,7 +8,7 @@ system:
     count: 2
     containers:
     - name: message-rendition-services-service
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/bma/message-rendition-services:bma-20190830-5c091d6
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/bma/message-rendition-services:bma-20190830-0a3b0e0
       ports:
       - containerPort: 7020
         name: grpc-svc
