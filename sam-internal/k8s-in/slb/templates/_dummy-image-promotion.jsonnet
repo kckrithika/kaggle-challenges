@@ -28,8 +28,8 @@ if configs.estate == "phx-sam" then configs.deploymentBase("slb") {
             spec: {
                 containers: [
                     {
-                        name: "image-promotiuon",
-                        image: "2778-29ee2fa3a4532165211b8adae39ecf04c451a410",
+                        name: "image-promotion",
+                        image: imageFunc.do_override_based_on_tag({}, "sam", "hypersam", "2778-29ee2fa3a4532165211b8adae39ecf04c451a410"),
                     },
                 ],
             },
@@ -43,5 +43,14 @@ if configs.estate == "phx-sam" then configs.deploymentBase("slb") {
         },
         minReadySeconds: 30,
       },
+
+    # image_functions needs to know the filename of the template we are processing
+    # Each template must set this at time of importing this file, for example:
+    #
+    # "local someteamimages = (import "someteamimages.jsonnet")  + { templateFilename:: std.thisFile };"
+    #
+    # Then we pass this again into image_functions at time of import.
+    templateFilename:: std.thisFile,
+    local imageFunc = (import "image_functions.libsonnet") + { templateFilename:: $.templateFilename },
 } else
     "SKIP"
