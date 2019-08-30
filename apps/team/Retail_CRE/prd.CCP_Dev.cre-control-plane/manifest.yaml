@@ -73,7 +73,7 @@ system:
         - name: SAVE_CRE_APPLICATION_NAME
           value: cre-engine-ccp-func
         - name: SAVE_ANNOTATIONS_PKI_NAME
-          value: cre-engine-ccp-dev
+          value: cre-engine-ccp-func
         - name: SAVE_K4A_VAULT
           value: cre-dds-dev
         ####################################################################################################
