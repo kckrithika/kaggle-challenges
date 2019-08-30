@@ -11,7 +11,7 @@ data:
       "enableStatefulSet": true,
       "funnelEndpoint": "funnel.ajnalocal1.vip.core.test.us-central1.gcp.sfdc.net:443",
       "imagePullPolicy": "IfNotPresent",
-      "k4aInitContainerImage": "791719295754.dkr.ecr.us-east-2.amazonaws.com/tnrp/sam/hypersam:sam-0002447-69fdc914",
+      "k4aInitContainerImage": "791719295754.dkr.ecr.us-east-2.amazonaws.com/dva/sam/hypersam:2778-29ee2fa3a4532165211b8adae39ecf04c451a410",
       "maddogMaddogEndpoint": "https://10.168.192.190:8443",
       "madkubImage": "791719295754.dkr.ecr.us-east-2.amazonaws.com/tnrp/sam/madkub:1.0.0-0000077-b1d3a629",
       "namespaceHostSubList": [
