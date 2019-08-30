@@ -123,7 +123,7 @@ system:
     # C2C service
     #####################################################################################
     - name: c2c-service
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/gid/c2c-service:20190718035854-06c21b0
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/gid/c2c-service:20190830130743-67bb0a0
       imagePullPolicy: Always
       env:
         - name: server_port
