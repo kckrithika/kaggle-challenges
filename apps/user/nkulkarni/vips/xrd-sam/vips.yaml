@@ -1,0 +1,9 @@
+- lbname: loganalytics-huron-minio-dev
+  servers:
+   - shared1-arguscache1-13-xrd.eng.sfdc.net
+   - shared1-arguscache1-18-xrd.eng.sfdc.net
+   - shared1-arguscache1-16-xrd.eng.sfdc.net
+  ports:
+   - port: 12777
+     targetport: 12777
+     lbtype: tcp
