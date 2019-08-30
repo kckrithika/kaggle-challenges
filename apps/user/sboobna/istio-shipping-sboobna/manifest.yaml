@@ -10,7 +10,6 @@ system:
     labels:
       app: istio-shipping-sboobna
       settings_path: test.-.prd.-.istio-shipping-sboobna
-      superpod: NONE
       istio_app: test
     annotations:
       sidecar.istio.io/inject: "true"

@@ -7,7 +7,6 @@ system:
       labels:
         app: istio-basic-rest-service
         settings_path: istio.-.prd.-.istio-basic-rest-service
-        superpod: NONE
         istio_app: test
       annotations:
         sidecar.istio.io/inject: "true"
