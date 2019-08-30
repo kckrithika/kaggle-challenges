@@ -104,7 +104,7 @@ system:
       - -endpoint
       - metadata-service:DATACENTER:7012
       - -endpoint
-      - retail-mds/metadata-service:DATACENTER:7443
+      - retail-mds/metadata-service:DATACENTER:7443:metadata-service-prd-perf-lb.retail-mds.prd-sam.prd.slb.sfdc.net
       env:
       - name: SFDC_ENVIRONMENT
         value: mist
@@ -143,6 +143,9 @@ system:
     function: metadata-service-prd-perf
     slbEnabled: true
     ports:
+    - port: 7443
+      targetport: 7443
+      name: mds-perf
       # A plain-text HTTP port that serves REST API and developer utilities. Must not be exposed in production.
     - port: 9092
       targetport: 9091
