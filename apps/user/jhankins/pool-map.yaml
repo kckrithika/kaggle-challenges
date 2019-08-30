@@ -10,3 +10,6 @@ apps:
   victim-pd-default:
     - prd/prd-samtest
     - prd/prd-sam
+  victim-rm-default:
+    - prd/prd-samtest
+    - prd/prd-sam

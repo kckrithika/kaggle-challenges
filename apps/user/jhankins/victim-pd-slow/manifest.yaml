@@ -4,9 +4,10 @@ system:
   - name: victim-pd-slow
     labels:
       chaos.sfdc.net/podDeleteSpeed30s: true
-      chaos.sfdc.net/podDeletePeriodSpeed30s: 5m
-      chaos.sfdc.net/podDeleteMinUptimeSpeed30s: 3m
-    count: 1
+      chaos.sfdc.net/podDeletePeriodSpeed30s: 15m
+      chaos.sfdc.net/podMustBeGood: false
+      chaos.sfdc.net/deploymentMustBeGood: false
+    count: 3
     containers:
     - name: echo
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/jhankins/echo32:8152018-002 # golang app
@@ -19,8 +20,10 @@ system:
   - name: victim-pd-slow-min-cnt
     labels:
       chaos.sfdc.net/podDeleteSpeed30s: true
-      chaos.sfdc.net/podDeletePeriodSpeed30s: 5m
-      chaos.sfdc.net/podDeleteMinDeploymentCountSpeed30s: 2
+      chaos.sfdc.net/podDeletePeriodSpeed30s: 15m
+      chaos.sfdc.net/PodDeleteMinCount: 2
+      chaos.sfdc.net/podMustBeGood: false
+      chaos.sfdc.net/deploymentMustBeGood: false
     count: 3
     containers:
     - name: echo
@@ -34,8 +37,10 @@ system:
   - name: victim-pd-slow-min-pct
     labels:
       chaos.sfdc.net/podDeleteSpeed30s: true
-      chaos.sfdc.net/podDeletePeriodSpeed30s: 5m
-      chaos.sfdc.net/podDeleteMinDeploymentPctSpeed30s: 0.6
+      chaos.sfdc.net/podDeletePeriodSpeed30s: 15m
+      chaos.sfdc.net/PodDeleteMinPct: 0.6
+      chaos.sfdc.net/podMustBeGood: false
+      chaos.sfdc.net/deploymentMustBeGood: false
     count: 3
     containers:
     - name: echo
@@ -46,3 +51,20 @@ system:
         httpGet:
           path: /
           port: 9900
+  - name: victim-pd-slow-min-uptime
+    labels:
+      chaos.sfdc.net/podDeleteSpeed30s: true
+      chaos.sfdc.net/podDeletePeriodSpeed30s: 15m
+      chaos.sfdc.net/PodDeleteMinUptime: 20m
+      chaos.sfdc.net/podMustBeGood: false
+      chaos.sfdc.net/deploymentMustBeGood: false
+    count: 3
+    containers:
+      - name: echo
+        image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/jhankins/echo32:8152018-002 # golang app
+        ports:
+          - containerPort: 9900
+        livenessProbe:
+          httpGet:
+            path: /
+            port: 9900
