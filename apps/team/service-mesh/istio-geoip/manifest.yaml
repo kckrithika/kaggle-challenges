@@ -7,7 +7,6 @@ system:
     labels:
       app: istio-geoip
       settings_path: stm.-.prd.-.istio-geoip
-      superpod: NONE
       istio_app: test
     annotations:
       sidecar.istio.io/inject: "true"
