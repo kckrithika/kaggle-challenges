@@ -6,7 +6,7 @@ system:
     - mc-devbigdata@salesforce.com
     - MC-MessagingInboundTeam@salesforce.com
   functions:
-  - name: event-notification-service
+  - name: engagement-event-service
     identity:
       serviceName: wh-con
     count: 5
@@ -18,7 +18,7 @@ system:
       k4aSecret:
         secretName: eventbusajna-ens-v1
     containers:
-    - name: event-notification-service
+    - name: engagement-event-service
       image: sfci/mc-eventing/event-notification:1.0.14
       ports:
       - containerPort: 15372
@@ -30,7 +30,7 @@ system:
       - name: METRICS_FUNNELENDPOINTURL
         value: http://ajna0-funnel1-0-dfw.data.sfdc.net
       - name: EVENTCONSUMER_TOPICNAME
-        value: mc.prod.mceventbusprod__dfw.ajna_local__transactional_send_events
+        value: mc.prod.mceventbusprod__dfw.ajna_local__engagement_events
       - name: SUBSCRIPTIONCONSUMER_TOPICNAME
         value: mc.prod.mceventbusprod__dfw.ajna_local__eventnotification_subscriptions
       - name: BOOTSTRAP_SERVERS
@@ -59,9 +59,9 @@ system:
         mountPath: /secrets/eventbusajna-ens-v1
         readOnly: true
   loadbalancers:
-  - lbname: event-notification-service-lb
-    function: event-notification-service
+  - lbname: engagement-event-service-lb
+    function: engagement-event-service
     nodeExposed: true
     ports:
-    - port: 15373
+    - port: 15374
       targetport: 15372

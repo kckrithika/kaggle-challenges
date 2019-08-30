@@ -28,6 +28,16 @@ apps:
   - name: cdg/cdg-sam_mc_consumer
   fra-event-notification-service:
   - name: fra/fra-sam_mc_consumer
+  dfw-engagement-event-service:
+    - name: dfw/dfw-sam_mc_consumer
+  iad-engagement-event-service:
+    - name: iad/iad-sam_mc_consumer
+  ord-engagement-event-service:
+    - name: ord/ord-sam_mc_consumer
+  cdg-engagement-event-service:
+    - name: cdg/cdg-sam_mc_consumer
+  fra-engagement-event-service:
+    - name: fra/fra-sam_mc_consumer
   prd-dev-event-transfer-control-plane:
   - name: prd/prd-sam_mc_consumer
   prd-dev-event-transfer-service:
