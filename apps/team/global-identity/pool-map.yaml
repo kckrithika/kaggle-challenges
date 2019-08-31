@@ -8,3 +8,5 @@ apps:
   c2c-ca:
     # - prd/prd-sam
     - xrd/xrd-sampool
+  gid-runtime-service-prd-itest:
+    - prd/prd-sam
