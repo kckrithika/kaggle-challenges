@@ -11,7 +11,7 @@ system:
       serviceName: app
     containers:
     - name: coreapp
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/coreonsam/casam:release_main_18424849
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/coreonsam/casam:release_222-patch_18991967
       ports:
       - containerPort: 8998
       - containerPort: 8085
