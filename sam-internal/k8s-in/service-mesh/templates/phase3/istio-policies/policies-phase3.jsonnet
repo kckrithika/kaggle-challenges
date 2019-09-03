@@ -2,7 +2,7 @@ local mesh_namespaces = ["app", "service-mesh", "gater", "mesh-control-plane", "
 local mcpIstioConfig = (import "service-mesh/istio-config.jsonnet");
 local istioPhases = (import "service-mesh/istio-phases.jsonnet");
 
-if istioPhases.is_phase3(mcpIstioConfig.controlEstate) then
+if (istioPhases.phaseNum == 3) then
 {
   apiVersion: "v1",
   items: [

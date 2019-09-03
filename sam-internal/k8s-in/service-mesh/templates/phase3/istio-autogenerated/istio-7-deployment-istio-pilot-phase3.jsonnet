@@ -2,7 +2,7 @@
 local mcpIstioConfig = (import "service-mesh/istio-config.jsonnet");
 local istioPhases = (import "service-mesh/istio-phases.jsonnet");
 
-if istioPhases.is_phase3(mcpIstioConfig.controlEstate) then
+if (istioPhases.phaseNum == 3) then
 {
   apiVersion: "apps/v1",
   kind: "Deployment",
@@ -422,7 +422,7 @@ if istioPhases.is_phase3(mcpIstioConfig.controlEstate) then
               "--debug-mode",
               "true",
               "--funnel-address",
-              mcpIstioConfig.funnelVIP,
+              mcpIstioConfig.funnelEndpoint,
               "--alt-tags",
               "cluster=svccluster",
             ],

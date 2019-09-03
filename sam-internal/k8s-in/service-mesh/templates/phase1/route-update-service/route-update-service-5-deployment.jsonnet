@@ -71,7 +71,7 @@ configs.deploymentBase("service-mesh") {
               "-p",
               "7443",
               "--funnel-address",
-              mcpIstioConfig.funnelIstioEndpoint,
+              mcpIstioConfig.funnelEndpoint,
             ],
             env: [
               {

@@ -59,9 +59,7 @@ for path in ${BASH_SOURCE%/*}/templates/phase$1/*; do
     fi
 
     # Replace phase name in file name if it exists.
-    echo $file
     newFilename=${file/phase$1/phase$2}
-    echo $newFilename
 
     # If copying from phase 1, add suffix.
     if (( $1 == 1)); then

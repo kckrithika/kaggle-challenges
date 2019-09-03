@@ -60,7 +60,7 @@ configs.deploymentBase("service-mesh") {
               "--port",
               "10443",
               "--funnel-address",
-              mcpIstioConfig.funnelIstioEndpoint,
+              mcpIstioConfig.funnelEndpoint,
             ],
             env: [
               {
