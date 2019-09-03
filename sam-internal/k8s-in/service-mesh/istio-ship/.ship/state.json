@@ -11,7 +11,7 @@
       "sequence": 0,
       "icon": "https://istio.io/favicons/android-192x192.png",
       "name": "istio",
-      "releaseNotes": "",
+      "releaseNotes": "set nodeagent updateStrategy to RollingUpdate (#15079) (#15129)\n\n(cherry picked from commit 2f664591785e0ed7d534a5184bd4662c79800c41)",
       "version": "1.1.0",
       "license": {
         "id": "",

@@ -4,7 +4,7 @@ local istioPhases = (import "service-mesh/istio-phases.jsonnet");
 local madkub = (import "service-mesh/istio-madkub-config.jsonnet") + { templateFilename:: std.thisFile };
 local samimages = (import "sam/samimages.jsonnet") + { templateFilename:: std.thisFile };
 
-if istioPhases.is_phase1(mcpIstioConfig.controlEstate) then
+if (istioPhases.phaseNum == 1) then
 configs.deploymentBase("service-mesh") {
 
   local serverCertSans = [
@@ -71,7 +71,7 @@ configs.deploymentBase("service-mesh") {
               "-p",
               "7443",
               "--funnel-address",
-              mcpIstioConfig.funnelIstioEndpoint,
+              mcpIstioConfig.funnelEndpoint,
             ],
             env: [
               {

@@ -4,7 +4,7 @@ local samimages = (import "sam/samimages.jsonnet") + { templateFilename:: std.th
 local mcpIstioConfig = (import "service-mesh/istio-config.jsonnet");
 local istioPhases = (import "service-mesh/istio-phases.jsonnet");
 
-if istioPhases.is_phase2(mcpIstioConfig.controlEstate) then
+if (istioPhases.phaseNum == 2) then
 configs.deploymentBase("service-mesh") {
   local serverCertSans = [
     "istio-routing-webhook",
@@ -60,7 +60,7 @@ configs.deploymentBase("service-mesh") {
               "--port",
               "10443",
               "--funnel-address",
-              mcpIstioConfig.funnelIstioEndpoint,
+              mcpIstioConfig.funnelEndpoint,
             ],
             env: [
               {

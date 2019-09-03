@@ -2,7 +2,7 @@
 local mcpIstioConfig = (import "service-mesh/istio-config.jsonnet");
 local istioPhases = (import "service-mesh/istio-phases.jsonnet");
 
-if istioPhases.is_phase2(mcpIstioConfig.controlEstate) then
+if (istioPhases.phaseNum == 2) then
 {
   apiVersion: "networking.istio.io/v1alpha3",
   kind: "Sidecar",

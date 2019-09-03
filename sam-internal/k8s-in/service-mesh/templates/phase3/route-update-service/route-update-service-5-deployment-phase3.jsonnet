@@ -4,7 +4,7 @@ local istioPhases = (import "service-mesh/istio-phases.jsonnet");
 local madkub = (import "service-mesh/istio-madkub-config.jsonnet") + { templateFilename:: std.thisFile };
 local samimages = (import "sam/samimages.jsonnet") + { templateFilename:: std.thisFile };
 
-if istioPhases.is_phase3(mcpIstioConfig.controlEstate) then
+if (istioPhases.phaseNum == 3) then
 configs.deploymentBase("service-mesh") {
 
   local serverCertSans = [
