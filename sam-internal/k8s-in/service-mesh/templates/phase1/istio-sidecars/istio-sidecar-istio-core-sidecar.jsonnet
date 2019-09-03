@@ -29,7 +29,7 @@ local egress(port, protocol, name) =
   //hosts: mcpIstioConfig.sidecarEgressHosts,
 };
 
-if istioPhases.is_phase1(mcpIstioConfig.controlEstate) then
+if (istioPhases.phaseNum == 1) then
 {
   apiVersion: "networking.istio.io/v1alpha3",
   kind: "Sidecar",

@@ -1,7 +1,8 @@
 local configs = import "config.jsonnet";
 local samimages = (import "sam/samimages.jsonnet") + { templateFilename:: std.thisFile };
 local madkub = (import "service-mesh/istio-madkub-config.jsonnet") + { templateFilename:: std.thisFile };
-local istioPhases = (import "service-mesh/istio-phases.jsonnet");
+local istioPhases = import "service-mesh/istio-phases.jsonnet";
+local istioReleases = import "service-mesh/istio-releases.json";
 
 ## Istio pilot madkub certificates.
 local pilotSans = [
@@ -44,10 +45,10 @@ local ingressGatewayCertConfigs = [ingressGatewayClientCertConfig, ingressGatewa
 
   # Istio hub and tag is used in Helm values. Represented as "%(istioHub)s" and "%(istioTag)s" respectively.
   istioHub: configs.registry + "/sfci/servicemesh/istio-packaging",
-  istioTag: istioPhases.get_istio_tag($.controlEstate),
+  istioTag: istioReleases[istioPhases.phase].istioTag,
 
   serviceMeshHub: configs.registry + "/sfci/servicemesh/servicemesh",
-  serviceMeshTag: istioPhases.get_service_mesh_tag($.controlEstate),
+  serviceMeshTag: istioReleases[istioPhases.phase].serviceMeshTag,
 
   routingWebhookImage: $.serviceMeshHub + "/istio-routing-webhook:" + $.serviceMeshTag,
   routeUpdateSvcImage: $.serviceMeshHub + "/route-update-service:" + $.serviceMeshTag,
@@ -109,8 +110,7 @@ local ingressGatewayCertConfigs = [ingressGatewayClientCertConfig, ingressGatewa
   pilotSettingsPath: "istio.-." + configs.kingdom + ".-." + "istio-pilot",
   ingressGatewaySettingsPath: "istio.-." + configs.kingdom + ".-." + "istio-ingressgateway",
 
-  funnelVIP: configs.funnelVIP,
-  funnelIstioEndpoint: "ajnafunneldirecttls-" + configs.kingdom + ".funnel.svc.mesh.sfdc.net:7442",
+  funnelEndpoint: istioPhases.funnelEndpoint,
 
   madkubEndpoint: "https://10.254.208.254:32007",  // Check madkubserver-service.jsonnet for why IP
   maddogEndpoint: configs.maddogEndpoint,

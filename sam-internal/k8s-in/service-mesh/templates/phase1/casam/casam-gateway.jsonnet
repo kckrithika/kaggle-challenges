@@ -1,7 +1,7 @@
 local mcpIstioConfig = (import "service-mesh/istio-config.jsonnet");
 local istioPhases = (import "service-mesh/istio-phases.jsonnet");
 
-if istioPhases.is_phase1(mcpIstioConfig.controlEstate) then
+if (istioPhases.phaseNum == 1) then
 {
   apiVersion: "networking.istio.io/v1alpha3",
   kind: "Gateway",
