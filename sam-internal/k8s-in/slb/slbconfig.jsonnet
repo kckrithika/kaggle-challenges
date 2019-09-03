@@ -189,8 +189,6 @@
                   "10.251.196.212/32",  # gatekeeper-dashboardlb.gatekeeper.prd-sam.prd.slb.sfdc.net - Peijun Wu - https://computecloud.slack.com/archives/C42SAQVS9/p1556063807120000?thread_ts=1556038442.093300&cid=C42SAQVS9
                   "10.251.196.113/32",  # ops0-netlog1-0-prd.slb.sfdc.net - Zack Mady - https://computecloud.slack.com/archives/C42SAQVS9/p1556121900123900
                   "10.251.196.117/32",  # codecov.moe.prd-sam.prd.slb.sfdc.net
-                  "96.43.157.23/32",  #gidruntimelb.global-identity.prd-sam.prd.slb.sfdc.net
-                  "96.43.157.22/32",  #cabusinesslb-test.cloudatlas.prd-sam.prd.slb.sfdc.net
                 ],
                 "prd-samtwo": [
                   "136.146.214.8/32",  #na44-stmfa1-0-prd.slb.sfdc.net
@@ -238,10 +236,6 @@
                   "10.213.100.140/32",  #metadata-service-lb.retail-mds.hnd-sam.hnd.slb.sfdc.net
                   "10.213.100.138/32",  #dfs-production-lb.retail-dfs.hnd-sam.hnd.slb.sfdc.net
                   "10.213.100.139/32",  #rsui-service-hnd-lb.retail-rsui.hnd-sam.hnd.slb.sfdc.net
-                ],
-                "xrd-sam": [
-                  "136.146.48.23/32",  #gidruntimelb.global-identity.xrd-sam.xrd.slb.sfdc.net
-                  "136.146.48.22/32",  #cabusinesslb.cloudatlas.xrd-sam.xrd.slb.sfdc.net
                 ],
             },
 
