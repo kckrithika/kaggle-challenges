@@ -35,7 +35,6 @@ system:
     loadbalancers:
     - lbname: cantor
       function: cantor-grpc-server
-      slbEnabled: true
       ports:
         - port: 11983
           targetport: 7443
