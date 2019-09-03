@@ -32,11 +32,10 @@ system:
           valueFrom:
             fieldRef:
               fieldPath: spec.nodeName
-        - name: test
-          value: "test"
     loadbalancers:
-    - lbname: cantor-mofo
+    - lbname: cantor
       function: cantor-grpc-server
+      slbEnabled: true
       ports:
         - port: 11983
           targetport: 7443
