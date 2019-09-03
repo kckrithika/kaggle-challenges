@@ -369,6 +369,26 @@ system:
         type: server
       name: tls-server-cert
   - containers:
+    - command: ['bash']
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/victor.li/hyperslb:victor.li-201908300948
+      livenessProbe:
+        exec:
+          command:
+          - ls ./slb-proxy-latency
+        initialDelaySeconds: 20
+        periodSeconds: 5
+      name: sfproxy-latency
+      readinessProbe:
+        exec:
+          command:
+          - ls ./slb-proxy-latency
+        initialDelaySeconds: 15
+        periodSeconds: 5
+    count: 1
+    identity:
+      pod: na9
+    name: na9-mist61sfproxy-latency-prd
+  - containers:
     - args:
       - --clusters.external-clusters[0]=ajnafunneldirect:HTTP1
       - --clusters.external-clusters[1]=spaasmesh:HTTP2
