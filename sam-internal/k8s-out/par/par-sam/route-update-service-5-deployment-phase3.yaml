@@ -20,7 +20,6 @@ spec:
       disco_subenv: ""
       sam_function: route-update-service
       settings_path: mesh.-.par.-.route-update-service
-      superpod: NONE
   template:
     metadata:
       annotations:
@@ -60,14 +59,13 @@ spec:
         disco_subenv: ""
         sam_function: route-update-service
         settings_path: mesh.-.par.-.route-update-service
-        superpod: NONE
     spec:
       containers:
       - args:
         - -p
         - "7443"
         - --funnel-address
-        - ajnafunneldirect.svc.mesh.sfdc.net:8080
+        - mandm-funnel-par1.data.sfdc.net:8080
         env:
         - name: ESTATE
           value: par-sam_gater
@@ -75,7 +73,7 @@ spec:
           value: '-'
         - name: SETTINGS_PATH
           value: mesh.-.par.-.route-update-service
-        image: ops0-artifactrepo1-0-par.data.sfdc.net/sfci/servicemesh/servicemesh/route-update-service:471d47c97c33ee61a77bd024f20d80603363db75
+        image: ops0-artifactrepo1-0-par.data.sfdc.net/sfci/servicemesh/servicemesh/route-update-service:6de698dd1935317ebf1ba9d8b5d92207ba8479a6
         imagePullPolicy: IfNotPresent
         name: route-update-service
         ports:
