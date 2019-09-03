@@ -116,6 +116,7 @@ local cre_production = {
                     "retail-cre.tteats",
                     "retail-cre.yumrotkar",
                     "retail-cre.dvolkov",
+                    "retail-cre.dkardach",
                     "retail-cre.cre-control-plane",
                     "retail-cre.cre-control-plane-ccp-func",
                     "retail-cre.cre-control-plane-ccp-dev",
