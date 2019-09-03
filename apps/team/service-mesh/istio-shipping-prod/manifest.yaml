@@ -9,7 +9,7 @@ system:
     count: 1
     labels:
       app: istio-shipping
-      settings_path: istio.-.par.-.istio-shipping
+      settings_path: prod.-.par.-.istio-shipping
       istio_app: test
     annotations:
       sidecar.istio.io/inject: "true"
@@ -58,7 +58,7 @@ system:
         routing.mesh.sfdc.net/enabled: "true"
       labels:
         app: istio-shipping
-        settings_path: istio.-.par.-.istio-shipping
+        settings_path: prod.-.par.-.istio-shipping
       ports:
         - lbtype: dsr
           nodeExposed: false

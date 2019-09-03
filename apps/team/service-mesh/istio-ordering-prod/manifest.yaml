@@ -9,7 +9,7 @@ system:
     count: 1
     labels:
       app: istio-ordering
-      settings_path: istio.-.par.-.istio-ordering
+      settings_path: prod.-.par.-.istio-ordering
       istio_app: test
     annotations:
       sidecar.istio.io/inject: "true"
@@ -60,7 +60,7 @@ system:
         routing.mesh.sfdc.net/enabled: "true"
       labels:
         app: istio-ordering
-        settings_path: istio.-.par.-.istio-ordering
+        settings_path: prod.-.par.-.istio-ordering
       ports:
         - lbtype: dsr
           port: 7443
