@@ -8,13 +8,13 @@ local configs = import "config.jsonnet";
     else if (estate == "prd-sam") then "2"
     else if (estate == "par-sam") then "3"
     else if (estate == "phx-sam") then "4"
-    else "5" # Deploy to all DCs
+    else "5"  # Deploy to all DCs
   ),
 
   phaseNum: std.parseInt($.phase),
 
   funnelEndpoint: (
-    if (phaseNum > 2) then
+    if ($.phaseNum > 2) then
       configs.funnelVIP
     else
       "ajnafunneldirecttls-" + configs.kingdom + ".funnel.svc.mesh.sfdc.net:7442"
