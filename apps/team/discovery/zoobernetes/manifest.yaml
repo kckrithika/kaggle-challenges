@@ -6,7 +6,13 @@ system:
 
     containers:
     - name: zoobernetes
-      image: sfci/services/sfdc-bazel/disco/zoobernetes:46dd5b88b
+      image: sfci/services/sfdc-bazel/disco/zoobernetes:64b657205
+      args:
+      - >- #Multiline argument
+        --z9s.whitelisted.services=app:stmfa-cs1,stmfa-na43,app;
+        casam:green,blue;
+        default:ajnafunnel,ajnafunneldirect,zipkin;
+        funnel:ajnafunneldirecttls
 
       #Used to trigger redeploy
       env:
