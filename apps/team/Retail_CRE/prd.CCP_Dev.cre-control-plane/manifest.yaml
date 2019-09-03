@@ -18,13 +18,6 @@ system:
         ####################################################################################################
         ############################   ENGINE/DDS FLOWSNAKE ARTIFACTS ( Most frequently changed ) ##########
         ####################################################################################################
-        - name: INGEST_FLOWSNAKE_ARTIFACT
-          value: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cre/cre-engine:2.0.0.0.PR-1075.deea4a6.2
-        - name: SAVE_FLOWSNAKE_ARTIFACT
-          value: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cre/cre-dds-spark:1.9-freeze-016.0.release-1.9.1d192d1.24
-        - name: EXPORT_FLOWSNAKE_ARTIFACT
-          value: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cre/cre-dds-spark:1.9-freeze-016.0.release-1.9.1d192d1.24
-         #### K8 #### migration is done delete ALL references to FLOWSNAKE_ARTIFACT.
         - name: INGEST_SPEC_IMAGE
           value: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cre/cre-engine:2.0.0.0.kc-jobExecId.6ae26c7.7
         - name: EXPORT_SPEC_IMAGE
@@ -52,9 +45,6 @@ system:
           value: CRE
         - name: HBASE_DATACENTER
           value: prd
-          ## FLOWSNAKE
-        - name: MAX_FLOWSNAKE_ENVIRONMENTS
-          value: 30
         - name: DISABLE_AUTO_TERMINATE_FLOWSNAKE
           value: true
         - name: EXECUTE_NEW_PROVISIONING_FLOW
@@ -62,11 +52,8 @@ system:
         ####################################################################################################
         ####################################### IMPORT environment variables ###############################
         ####################################################################################################
-        - name: INGEST_CRE_APPLICATION_NAME
-          value: cre-engine-ccp-func
-          #### K8 #### when migration is done delete ALL CRE_APPLICATION_NAME.
         - name: INGEST_ANNOTATIONS_PKI_NAME
-          value: cre-engine-ccp-dev
+          value: cre-engine-ccp-func
         - name: INGEST_K4A_VAULT
           value: cre-engine-dev
         ####################################################################################################
@@ -74,8 +61,6 @@ system:
         ####################################################################################################
         - name: CRE_DDS_ENV
           value: Prd
-        - name: SAVE_CRE_APPLICATION_NAME
-          value: cre-engine-ccp-func
         - name: SAVE_ANNOTATIONS_PKI_NAME
           value: cre-engine-ccp-func
         - name: SAVE_K4A_VAULT
@@ -83,16 +68,14 @@ system:
         ####################################################################################################
         ####################################### EXPORT environment variables ###############################
         ####################################################################################################
-        - name: EXPORT_CRE_APPLICATION_NAME
+        - name: EXPORT_ANNOTATIONS_PKI_NAME
           value: cre-engine-ccp-func
         - name: EXPORT_K4A_VAULT
           value: cre-dds-dev
         ####################################################################################################
         ##################################### APP Config environment variables #############################
         ####################################################################################################
-        - name: FLOWSNAKE_ENDPOINT
-          value: https://dev0shared0-flowsnakeiottest1-0-prd.data.sfdc.net
-          ## MADDOG (MAD DOG)
+        ## MADDOG (MAD DOG)
         - name: MADDOG_CLIENT_KEYSTORE
           value: maddog/maddog-client-keystore.json
         - name: MADDOG_CLIENT_TRUSTSTORE
