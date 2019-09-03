@@ -57,7 +57,6 @@ configs.deploymentBase("service-mesh") {
           disco_sp: "",
           disco_role: "route-update-service",
           settings_path: "mesh.-." + configs.kingdom + ".-." + "route-update-service",
-          superpod: "NONE",
           sam_function: "route-update-service",
         },
       },
@@ -72,7 +71,7 @@ configs.deploymentBase("service-mesh") {
               "-p",
               "7443",
               "--funnel-address",
-              "ajnafunneldirect.svc.mesh.sfdc.net:8080",
+              mcpIstioConfig.funnelEndpoint,
             ],
             env: [
               {

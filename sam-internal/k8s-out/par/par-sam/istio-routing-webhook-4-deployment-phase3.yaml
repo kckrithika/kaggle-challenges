@@ -51,7 +51,7 @@ spec:
         - --port
         - "10443"
         - --funnel-address
-        - ajnafunneldirect.svc.mesh.sfdc.net:8080
+        - mandm-funnel-par1.data.sfdc.net:8080
         env:
         - name: SETTINGS_SUPERPOD
           value: '-'
@@ -59,7 +59,7 @@ spec:
           value: -.-.par.-.istio-routing-webhook
         - name: ESTATE
           value: par-sam
-        image: ops0-artifactrepo1-0-par.data.sfdc.net/sfci/servicemesh/servicemesh/istio-routing-webhook:471d47c97c33ee61a77bd024f20d80603363db75
+        image: ops0-artifactrepo1-0-par.data.sfdc.net/sfci/servicemesh/servicemesh/istio-routing-webhook:6de698dd1935317ebf1ba9d8b5d92207ba8479a6
         imagePullPolicy: IfNotPresent
         name: istio-routing-webhook
         ports:
@@ -200,7 +200,7 @@ spec:
             fieldRef:
               apiVersion: v1
               fieldPath: metadata.namespace
-        image: ops0-artifactrepo1-0-par.data.sfdc.net/sfci/servicemesh/istio-packaging/proxy:f0874ef16fa0c5ea948623884329fe1e0d20e7d5
+        image: ops0-artifactrepo1-0-par.data.sfdc.net/sfci/servicemesh/istio-packaging/proxy:55a0daec53d372a76b261c917a7f06597db1ed2d
         imagePullPolicy: IfNotPresent
         name: istio-proxy
         ports:
@@ -319,7 +319,7 @@ spec:
         - ""
         - -d
         - 15020,10443
-        image: ops0-artifactrepo1-0-par.data.sfdc.net/sfci/servicemesh/istio-packaging/proxy_init:f0874ef16fa0c5ea948623884329fe1e0d20e7d5
+        image: ops0-artifactrepo1-0-par.data.sfdc.net/sfci/servicemesh/istio-packaging/proxy_init:55a0daec53d372a76b261c917a7f06597db1ed2d
         imagePullPolicy: IfNotPresent
         name: istio-init
         resources:
