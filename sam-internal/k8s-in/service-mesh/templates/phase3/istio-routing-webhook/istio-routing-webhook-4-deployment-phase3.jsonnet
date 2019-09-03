@@ -87,7 +87,7 @@ configs.deploymentBase("service-mesh") {
                   "/bin/true",
                 ],
               },
-              initialDelaySeconds: 5,
+              initialDelaySeconds: 6,
               periodSeconds: 30,
               timeoutSeconds: 5,
             },
