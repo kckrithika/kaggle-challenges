@@ -21,15 +21,21 @@ system:
               - sip-mls-prd-slb
       containers:
         - name: sip-mls
-          image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/searchdev/sip-machine-learning-service:1.0
+          image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/searchdev/sip-machine-learning-service:1.1
           livenessProbe:
-            exec:
-              command: ["true"]
-#          livenessProbe:
-#            initialDelaySeconds: 30
-#            httpGet:
-#              path: /manage/health
-#              port: 15372
+            initialDelaySeconds: 180
+            periodSeconds: 60
+            timeoutSeconds: 10
+            httpGet:
+              path: /manage/health
+              port: 15372
+          readinessProbe:
+            initialDelaySeconds: 30
+            periodSeconds: 60
+            timeoutSeconds: 10
+            httpGet:
+              path: /manage/health
+              port: 15372
           volumeMounts:
             - mountPath: /home/sfdc-search-sip/logs
               name: logvol
