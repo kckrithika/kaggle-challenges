@@ -11,6 +11,7 @@ warden_prd() {
 warden_prod() {
     perl -i -pe"s/image: dva\/casp\/warden_strata:[0-9]*/image: dva\/casp\/warden_strata:$NEWVERSION/g" prod-warden/manifest.yaml
     perl -i -pe"s/image: dva\/casp\/warden_strata:[0-9]*/image: dva\/casp\/warden_strata:$NEWVERSION/g" prod-warden-alternate/manifest.yaml
+    perl -i -pe"s/image: dva\/casp\/warden_strata:[0-9]*/image: dva\/casp\/warden_strata:$NEWVERSION/g" prod-warden-mofo/manifest.yaml
 }
 
 warden() {
