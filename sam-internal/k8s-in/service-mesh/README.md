@@ -70,16 +70,21 @@ The app definitions can be found in the [service-mesh team manifests](https://gi
 
 ### Phased Deployments
 1. All auto-generated and manually created/edited jsonnets should go into a sub-directory in [phase1](./templates/phase1) directory only. 
-All subsequent phases are auto-created by the script [deploy-istio-to-phase.sh](./deploy-istio-to-phase.sh). 
-This script accepts a phase number as input argument. 
+All subsequent phases are auto-created by the script [promote-istio-templates.sh](./promote-istio-templates.sh). 
+This script accepts 'from' phase and 'to' phase as input arguments. 
 It can be executed from any directory using relative path. 
 Example:
 ```
-./deploy-istio-to-phase.sh 2
+# To promote istio templates from phase 1 to 2, run:
+./promote-istio-templates.sh 1 2
+
+# To promote istio templates from phase 2 to 3, run:
+./promote-istio-templates.sh 2 3
+
 ``` 
 It generates the phase directory under [templates](./templates) if required and auto-populates the jsonnets with the required phase filter. 
 
-2. The phase filter is defined in [istio-phases.jsonnet](./istio-phases.jsonnet). 
+2. The phase filter is defined in [istio-phases.jsonnet](./istio-phases.jsonnet). The corresponding release image tags are defined in [istio-releases.json](./istio-releases.json) 
 
 3. Once the script successfully completes, run [build.sh](../build.sh). 
 *Important:* If you do not run `./build.sh` for all estates but for specific estates like `./build.sh prd/prd-samtest,prd/prd-sam,par/par-sam`, 
