@@ -47,7 +47,7 @@ for path in ${BASH_SOURCE%/*}/templates/phase$1/*; do
   cp -r ${BASH_SOURCE%/*}/templates/phase$1/$dirname ${BASH_SOURCE%/*}/templates/phase$2
 
   # Rename files with phase suffix. This is required as build.sh checks for duplicate file names.
-  for file in ${BASH_SOURCE%/*}/templates/phase$1/$dirname/*; do
+  for file in ${BASH_SOURCE%/*}/templates/phase$2/$dirname/*; do
     # Template phase string to replace.
     currentPhase="if (istioPhases.phaseNum == $1) then"
     nextPhase="if (istioPhases.phaseNum == $2) then"
@@ -58,10 +58,19 @@ for path in ${BASH_SOURCE%/*}/templates/phase$1/*; do
       rm "$file.bak"
     fi
 
-    # Add suffix for the phase file to avoid "Duplicate field" error in multifile-temp stage when running build.sh.
-    filename=$(basename -- "$file")
-    extension="${filename##*.}"
-    filename="${filename%.*}"
-    mv $file ${BASH_SOURCE%/*}/templates/phase$2/$dirname/$filename-phase$2.$extension
+    # Replace phase name in file name if it exists.
+    echo $file
+    newFilename=${file/phase$1/phase$2}
+    echo $newFilename
+
+    # If copying from phase 1, add suffix.
+    if (( $1 == 1)); then
+      # Add suffix for the phase file to avoid "Duplicate field" error in multifile-temp stage when running build.sh.
+      filename=$(basename -- "$file")
+      extension="${filename##*.}"
+      filename="${filename%.*}"
+      newFilename=${BASH_SOURCE%/*}/templates/phase$2/$dirname/$filename-phase$2.$extension
+    fi
+    mv $file $newFilename
   done
 done
