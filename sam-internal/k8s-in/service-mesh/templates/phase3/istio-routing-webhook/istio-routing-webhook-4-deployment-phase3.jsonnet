@@ -87,7 +87,7 @@ configs.deploymentBase("service-mesh") {
                   "/bin/true",
                 ],
               },
-              initialDelaySeconds: 6,
+              initialDelaySeconds: 5,
               periodSeconds: 30,
               timeoutSeconds: 5,
             },
@@ -282,6 +282,19 @@ configs.deploymentBase("service-mesh") {
             ],
           },
         ],
+        affinity: {
+          nodeAffinity: {
+            requiredDuringSchedulingIgnoredDuringExecution: [{
+              nodeSelectorTerms: {
+                matchExpressions: [{
+                  key: "kubernetes.io/hostname",
+                  operator: "NotIn",
+                  values: ["shared0-samkubeapi3-1-par.ops.sfdc.net"],
+                }],
+              },
+            }],
+          },
+        },
         nodeSelector: {
           master: "true",
         },
