@@ -12,7 +12,7 @@ KUBE_API_ADDRESS=https://kubernetes.default.svc.cluster.local
 
 while true; do
     {
-        timeout ${TIMEOUT_PERIOD} curl -s -ik ${KUBE_API_ADDRESS}/version && echo
+        timeout ${TIMEOUT_PERIOD} curl -s -i ${KUBE_API_ADDRESS}/version && echo
         STATUS_API=$?
 
         if [ ${STATUS_API} -eq 0 ]; then

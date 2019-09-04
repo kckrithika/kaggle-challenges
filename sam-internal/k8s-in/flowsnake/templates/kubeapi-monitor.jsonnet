@@ -43,9 +43,7 @@ else
                         hostNetwork: false,
                         containers: [
                             {
-                                image: if std.objectHas(flowsnake_images.feature_flags, "kubeapi_monitor_revise")
-                                    then flowsnake_images.jdk8_base
-                                    else flowsnake_config.strata_registry + "/sfdc_centos7",  # FIXME: need specific tag or just use "latest"?
+                                image: flowsnake_images.jdk8_base,
                                 imagePullPolicy: flowsnake_config.default_image_pull_policy,
                                 command: [
                                     "/kubeapi-monitor-scripts/check-kubeapi.sh",
