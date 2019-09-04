@@ -3,7 +3,9 @@ apps:
   - prd/prd-sam
  disco-browser-frontend:
   - prd/prd-sam
- zoobernetes:
+ zoobernetes-prd:
   - prd/prd-sam
  zoobernetes-test:
   - prd/prd-samtest
+# zoobernetes-prod:
+#  - par/par-sam_gater
