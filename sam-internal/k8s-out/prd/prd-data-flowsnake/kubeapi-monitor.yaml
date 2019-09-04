@@ -17,7 +17,7 @@ items:
 
       while true; do
           {
-              timeout ${TIMEOUT_PERIOD} curl -s -ik ${KUBE_API_ADDRESS}/version && echo
+              timeout ${TIMEOUT_PERIOD} curl -s -i ${KUBE_API_ADDRESS}/version && echo
               STATUS_API=$?
 
               if [ ${STATUS_API} -eq 0 ]; then
@@ -85,7 +85,7 @@ items:
             valueFrom:
               fieldRef:
                 fieldPath: spec.nodeName
-          image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/sfdc_centos7
+          image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/sfdc_centos7_jdk8:33
           imagePullPolicy: IfNotPresent
           name: kubeapi-monitor
           resources:

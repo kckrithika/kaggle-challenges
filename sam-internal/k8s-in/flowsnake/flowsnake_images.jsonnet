@@ -42,7 +42,6 @@ local utils = import "util_functions.jsonnet";
                 # --- flag G (is to assist ... ---
                 # --- flag H (git's diff logic ... ---
                 # --- flag I (to reduce the ---
-                kubeapi_monitor_revise: "",
                 # --- flag J (likelihood of merge conflicts.) ---
                 central_prometheus_forwarder: "試行中",
             },
