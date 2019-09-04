@@ -23,10 +23,12 @@
     "mgrass@salesforce.com",
     "vyjayanthi.raja@salesforce.com",
     "hsuanyu.chen@salesforce.com",
+    "amushtaq@salesforce.com",
     "nkatta@salesforce.com",
     "shravya.srinivas@salesforce.com",
     "jiaqi.wu@salesforce.com",
     "victor.li@salesforce.com",
+    "hammondpang@salesforce.com",
     # Service-Mesh Team
     "npshenichnyy@salesforce.com",
     # DVA Team
