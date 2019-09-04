@@ -1,4 +1,3 @@
-local flowsnake_images = import "flowsnake_images.jsonnet";
 local configmap_data = {
     "check-kubeapi.sh": importstr "kubeapi-monitor-scripts/check-kubeapi.sh",
 };

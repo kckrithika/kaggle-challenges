@@ -4,9 +4,6 @@ local flowsnake_images = import "flowsnake_images.jsonnet";
 local configs = import "config.jsonnet";
 local flowsnake_config = import "flowsnake_config.jsonnet";
 
-if !std.objectHas(flowsnake_images.feature_flags, "kubeapi_monitor_setup") then
-"SKIP"
-else
 {
     apiVersion: "v1",
     kind: "List",
