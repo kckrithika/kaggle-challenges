@@ -44,8 +44,8 @@ spec:
       affinity:
         nodeAffinity:
           requiredDuringSchedulingIgnoredDuringExecution:
-          - nodeSelectorTerms:
-              matchExpressions:
+            nodeSelectorTerms:
+            - matchExpressions:
               - key: kubernetes.io/hostname
                 operator: NotIn
                 values:

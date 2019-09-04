@@ -284,15 +284,15 @@ configs.deploymentBase("service-mesh") {
         ],
         affinity: {
           nodeAffinity: {
-            requiredDuringSchedulingIgnoredDuringExecution: [{
-              nodeSelectorTerms: {
+            requiredDuringSchedulingIgnoredDuringExecution: {
+              nodeSelectorTerms: [{
                 matchExpressions: [{
                   key: "kubernetes.io/hostname",
                   operator: "NotIn",
                   values: ["shared0-samkubeapi3-1-par.ops.sfdc.net"],
                 }],
-              },
-            }],
+              }],
+            },
           },
         },
         nodeSelector: {
