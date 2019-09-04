@@ -369,19 +369,21 @@ system:
         type: server
       name: tls-server-cert
   - containers:
-    - command: ['bash']
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/victor.li/hyperslb:victor.li-201909031718
+    - command: ['/sdn/slb-proxy-latency', '-c', '0']
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/victor.li/hyperslb:victor.li-201909041547
       livenessProbe:
-        exec:
-          command:
-          - ls ./slb-proxy-latency
+        httpGet:
+          path: /readyz
+          port: 8000
         initialDelaySeconds: 20
         periodSeconds: 5
       name: sfproxy-latency
+      ports:
+      - containerPort: 8000
       readinessProbe:
-        exec:
-          command:
-          - ls ./slb-proxy-latency
+        httpGet:
+          path: /readyz
+          port: 8000
         initialDelaySeconds: 15
         periodSeconds: 5
     count: 1
