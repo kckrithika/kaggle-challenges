@@ -41,6 +41,15 @@ spec:
         app: istio-routing-webhook
         name: istio-routing-webhook
     spec:
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+            - matchExpressions:
+              - key: kubernetes.io/hostname
+                operator: NotIn
+                values:
+                - shared0-samkubeapi3-1-par.ops.sfdc.net
       containers:
       - args:
         - server
