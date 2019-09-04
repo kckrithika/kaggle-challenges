@@ -7,7 +7,7 @@
       metadata: {
         labels: {
           "istio-injection": "disabled",
-          "sherpa-injector.service-mesh/inject": "disabled",
+          "sherpa-injection": "disabled",
         },
         name: "mesh-control-plane",
       },
