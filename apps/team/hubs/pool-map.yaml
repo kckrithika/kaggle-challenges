@@ -5,6 +5,7 @@ apps:
     - phx/phx-sam_mgmt_hub
   hda:
     - prd/prd-sam
+    - phx/phx-sam_mgmt_hub
   hda-client:
     - prd/prd-sam
   hda-core-mock:
