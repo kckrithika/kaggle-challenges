@@ -24,7 +24,7 @@ local utils = import "util_functions.jsonnet";
         "1": self["2"] {
             image_tags+: {
                 watchdog_image_tag: "2722-a1231485debac6b17dfa76e7a1af01750e0f4f8b",  # 05/2019 image
-                integration_test_tag: "16",
+                integration_test_tag: "18",
                 spark_operator_image_tag: "jenkins-dva-transformation-spark-on-k8s-operator-PR-16-7-itest",
             },
             feature_flags+: {
@@ -56,6 +56,7 @@ local utils = import "util_functions.jsonnet";
         "2": self["3"] {
             image_tags+: {
                 spark_operator_image_tag: "jenkins-dva-transformation-spark-on-k8s-operator-PR-16-7-itest",
+                integration_test_tag: "18",
             },
             feature_flags+: {
                 # --- flag A (Do not edit ... ---
@@ -63,6 +64,7 @@ local utils = import "util_functions.jsonnet";
                 # --- flag C (and place only ... ---
                 # --- flag D (one flag between ... ---
                 # --- flag E (each pair. ... ---
+                next_analysis_script: "",
                 # --- flag F (Their only purpose ... ---
                 # --- flag G (is to assist ... ---
                 # --- flag H (git's diff logic ... ---
@@ -77,12 +79,10 @@ local utils = import "util_functions.jsonnet";
         # prd-dev: Exceptions vs the rest of phase 2 only
         "2-prd-dev": self["2"] {
             image_tags+: {
-                integration_test_tag: "16",
             },
             feature_flags+: {
                 # Note: the *value* of the flags is ignored. jsonnet lacks array search, so we use a an object.
                 btrfs_watchdog_hard_reset: "",  # Was promoted to prd-dev before phasing refactor
-                next_analysis_script: "",
             },
             # prd-dev offers legacy version mappings. Phase 2 does not, so cannot inherit from there.
             # Start with 3-iad-ord (which also have legacy version mappings),
