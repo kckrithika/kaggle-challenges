@@ -114,6 +114,26 @@ items:
 - apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: RoleBinding
   metadata:
+    name: mesh-control-plane:chx-sam_gater:rolebinding
+    namespace: mesh-control-plane
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: minion:role
+  subjects:
+  - kind: User
+    name: shared0-samminiongater1-1-chx.ops.sfdc.net
+  - kind: User
+    name: shared0-samminiongater1-2-chx.ops.sfdc.net
+  - kind: User
+    name: shared0-samminiongater1-3-chx.ops.sfdc.net
+  - kind: User
+    name: shared0-samminiongater2-1-chx.ops.sfdc.net
+  - kind: User
+    name: shared0-samminiongater2-2-chx.ops.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1beta1
+  kind: RoleBinding
+  metadata:
     name: service-mesh:chx-sam_gater:rolebinding
     namespace: service-mesh
   roleRef:

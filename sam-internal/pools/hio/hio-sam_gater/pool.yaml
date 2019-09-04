@@ -6,6 +6,7 @@
 access:
   - 'team/Gater'
   - 'team/service-mesh'
+  - 'team/mesh-control-plane'
   - 'team/Service_Protection'
   
 # Each pool is managed by a SAM control stack running in one estate

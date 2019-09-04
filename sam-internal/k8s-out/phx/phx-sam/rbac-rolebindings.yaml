@@ -232,6 +232,42 @@ items:
 - apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: RoleBinding
   metadata:
+    name: mesh-control-plane:phx-sam_gater:rolebinding
+    namespace: mesh-control-plane
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: minion:role
+  subjects:
+  - kind: User
+    name: shared0-samminiongater1-1-phx.ops.sfdc.net
+  - kind: User
+    name: shared0-samminiongater1-2-phx.ops.sfdc.net
+  - kind: User
+    name: shared0-samminiongater1-3-phx.ops.sfdc.net
+  - kind: User
+    name: shared0-samminiongater1-4-phx.ops.sfdc.net
+  - kind: User
+    name: shared0-samminiongater1-5-phx.ops.sfdc.net
+  - kind: User
+    name: shared0-samminiongater1-6-phx.ops.sfdc.net
+  - kind: User
+    name: shared0-samminiongater1-7-phx.ops.sfdc.net
+  - kind: User
+    name: shared0-samminiongater2-1-phx.ops.sfdc.net
+  - kind: User
+    name: shared0-samminiongater2-2-phx.ops.sfdc.net
+  - kind: User
+    name: shared0-samminiongater2-3-phx.ops.sfdc.net
+  - kind: User
+    name: shared0-samminiongater2-4-phx.ops.sfdc.net
+  - kind: User
+    name: shared0-samminiongater2-5-phx.ops.sfdc.net
+  - kind: User
+    name: shared0-samminiongater2-6-phx.ops.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1beta1
+  kind: RoleBinding
+  metadata:
     name: retail-beaconator:phx-sam_gater:rolebinding
     namespace: retail-beaconator
   roleRef:
