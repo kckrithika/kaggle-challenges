@@ -1,0 +1,14 @@
+- lbname: huron-minio-poc
+  servers:
+   - shared1-arguscache1-13-xrd.eng.sfdc.net
+   - shared1-arguscache1-18-xrd.eng.sfdc.net
+   - shared1-arguscache1-16-xrd.eng.sfdc.net
+   - shared1-arguscache2-1-xrd.eng.sfdc.net
+   - shared1-arguscache1-2-xrd.eng.sfdc.net
+   - shared1-arguscache1-9-xrd.eng.sfdc.net
+   - shared1-arguscache1-20-xrd.eng.sfdc.net
+   - shared1-arguscache1-19-xrd.eng.sfdc.net
+  ports:
+   - port: 12777
+     targetport: 12777
+     lbtype: tcp
