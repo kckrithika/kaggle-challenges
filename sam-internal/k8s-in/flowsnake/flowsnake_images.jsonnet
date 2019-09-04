@@ -66,7 +66,6 @@ local utils = import "util_functions.jsonnet";
                 # --- flag F (Their only purpose ... ---
                 # --- flag G (is to assist ... ---
                 # --- flag H (git's diff logic ... ---
-                kubeapi_monitor_setup: "",
                 # --- flag I (to reduce the ---
                 # --- flag J (likelihood of merge conflicts.) ---
                 upcase_pki_kingdom: "",
@@ -165,6 +164,7 @@ local utils = import "util_functions.jsonnet";
                 # --- flag F (Their only purpose ... ---
                 # --- flag G (is to assist ... ---
                 # --- flag H (git's diff logic ... ---
+                kubeapi_monitor_setup: "",
                 # --- flag I (to reduce the ---
                 # --- flag J (likelihood of merge conflicts.) ---
             },
