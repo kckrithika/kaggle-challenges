@@ -34032,7 +34032,7 @@
       hostname: "shared0-samminionaqueduct2-1-par.ops.sfdc.net",
       kingdom: "par",
       pod: "none",
-      rack: "j11-1r113",
+      rack: "j15-1r113",
       superpod: "none",
     },
     {
@@ -34043,7 +34043,7 @@
       hostname: "shared0-samminionaqueduct2-2-par.ops.sfdc.net",
       kingdom: "par",
       pod: "none",
-      rack: "e17-1r113",
+      rack: "f03-1r113",
       superpod: "none",
     },
     {
