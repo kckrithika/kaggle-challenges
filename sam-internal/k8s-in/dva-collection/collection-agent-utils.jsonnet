@@ -3,6 +3,14 @@ local utils = import "util_functions.jsonnet";
 local images = (import "collection-agent-images.libsonnet") + { templateFilename:: std.thisFile };
 
 {
+    apiserver: {
+        featureFlag: (configs.estate == "prd-samtest"),
+        name: "apiserver-metrics-exporter",
+        namespace: "sam-system",
+        configMapName: "apiserver-metrics-exporter-cm",
+        configGenImage: "%s/dva/collection-erb-config-gen:19-70c45ccd33d3772cd6519e1f7dfe2cf5c2bc7b0e" % configs.registry,
+        opencensusImage: "%s/dva/opencensus-service:13-75d5d20e22eec757a5399028a945fa0851bab367" % configs.registry,
+    },
     baseEnv: [
         {
             name: "BROKER_VIP",
