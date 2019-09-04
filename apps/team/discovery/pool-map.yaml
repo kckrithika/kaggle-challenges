@@ -7,5 +7,5 @@ apps:
   - prd/prd-sam
  zoobernetes-test:
   - prd/prd-samtest
-# zoobernetes-prod:
-#  - par/par-sam_gater
+ zoobernetes-prod:
+  - par/par-sam_gater
