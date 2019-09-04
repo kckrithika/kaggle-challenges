@@ -110,6 +110,7 @@
         "gater",
         "ccait",
         "service-mesh",
+        "mesh-control-plane",
         "service-protection",
         "retail-beaconator"
       ],
@@ -117,6 +118,7 @@
         "team/Gater",
         "team/CCAIT",
         "team/service-mesh",
+        "team/mesh-control-plane",
         "team/Service_Protection",
         "team/Retail_Beaconator"
       ],
@@ -264,12 +266,14 @@
         "ccait",
         "gater",
         "service-mesh",
+        "mesh-control-plane",
         "retail-beaconator"
       ],
       "access": [
         "team/CCAIT",
         "team/Gater",
         "team/service-mesh",
+        "team/mesh-control-plane",
         "team/Retail_Beaconator"
       ],
       "controlEstate": "cdu-sam",
@@ -318,11 +322,13 @@
     {
       "namespaces": [
         "gater",
-        "service-mesh"
+        "service-mesh",
+        "mesh-control-plane"
       ],
       "access": [
         "team/Gater",
-        "team/service-mesh"
+        "team/service-mesh",
+        "team/mesh-control-plane"
       ],
       "controlEstate": "chx-sam",
       "estate": "chx-sam_gater",
@@ -432,6 +438,7 @@
         "gater",
         "ccait",
         "service-mesh",
+        "mesh-control-plane",
         "service-protection",
         "retail-beaconator"
       ],
@@ -439,6 +446,7 @@
         "team/Gater",
         "team/CCAIT",
         "team/service-mesh",
+        "team/mesh-control-plane",
         "team/Service_Protection",
         "team/Retail_Beaconator"
       ],
@@ -645,12 +653,14 @@
       "namespaces": [
         "gater",
         "service-mesh",
+        "mesh-control-plane",
         "service-protection",
         "retail-beaconator"
       ],
       "access": [
         "team/Gater",
         "team/service-mesh",
+        "team/mesh-control-plane",
         "team/Service_Protection",
         "team/Retail_Beaconator"
       ],
@@ -893,12 +903,14 @@
       "namespaces": [
         "gater",
         "service-mesh",
+        "mesh-control-plane",
         "service-protection",
         "retail-beaconator"
       ],
       "access": [
         "team/Gater",
         "team/service-mesh",
+        "team/mesh-control-plane",
         "team/Service_Protection",
         "team/Retail_Beaconator"
       ],
@@ -1049,11 +1061,13 @@
       "namespaces": [
         "gater",
         "service-mesh",
+        "mesh-control-plane",
         "service-protection"
       ],
       "access": [
         "team/Gater",
         "team/service-mesh",
+        "team/mesh-control-plane",
         "team/Service_Protection"
       ],
       "controlEstate": "hio-sam",
@@ -1233,12 +1247,14 @@
       "namespaces": [
         "gater",
         "service-mesh",
+        "mesh-control-plane",
         "service-protection",
         "retail-beaconator"
       ],
       "access": [
         "team/Gater",
         "team/service-mesh",
+        "team/mesh-control-plane",
         "team/Service_Protection",
         "team/Retail_Beaconator"
       ],
@@ -1402,6 +1418,7 @@
         "gater",
         "ccait",
         "service-mesh",
+        "mesh-control-plane",
         "service-protection",
         "retail-beaconator"
       ],
@@ -1409,6 +1426,7 @@
         "team/Gater",
         "team/CCAIT",
         "team/service-mesh",
+        "team/mesh-control-plane",
         "team/Service_Protection",
         "team/Retail_Beaconator"
       ],
@@ -1568,12 +1586,14 @@
         "gater",
         "ccait",
         "service-mesh",
+        "mesh-control-plane",
         "service-protection"
       ],
       "access": [
         "team/Gater",
         "team/CCAIT",
         "team/service-mesh",
+        "team/mesh-control-plane",
         "team/Service_Protection"
       ],
       "controlEstate": "ia4-sam",
@@ -1658,12 +1678,14 @@
         "gater",
         "ccait",
         "service-mesh",
+        "mesh-control-plane",
         "service-protection"
       ],
       "access": [
         "team/Gater",
         "team/CCAIT",
         "team/service-mesh",
+        "team/mesh-control-plane",
         "team/Service_Protection"
       ],
       "controlEstate": "ia5-sam",
@@ -1843,12 +1865,14 @@
       "namespaces": [
         "gater",
         "service-mesh",
+        "mesh-control-plane",
         "service-protection",
         "retail-beaconator"
       ],
       "access": [
         "team/Gater",
         "team/service-mesh",
+        "team/mesh-control-plane",
         "team/Service_Protection",
         "team/Retail_Beaconator"
       ],
@@ -2062,6 +2086,7 @@
         "gater",
         "ccait",
         "service-mesh",
+        "mesh-control-plane",
         "service-protection",
         "retail-beaconator"
       ],
@@ -2069,6 +2094,7 @@
         "team/Gater",
         "team/CCAIT",
         "team/service-mesh",
+        "team/mesh-control-plane",
         "team/Service_Protection",
         "team/Retail_Beaconator"
       ],
@@ -2178,6 +2204,7 @@
         "gater",
         "ccait",
         "service-mesh",
+        "mesh-control-plane",
         "service-protection",
         "retail-beaconator"
       ],
@@ -2185,6 +2212,7 @@
         "team/Gater",
         "team/CCAIT",
         "team/service-mesh",
+        "team/mesh-control-plane",
         "team/Service_Protection",
         "team/Retail_Beaconator"
       ],
@@ -2278,6 +2306,7 @@
         "retail-rsui",
         "search-scale-safely",
         "service-mesh",
+        "mesh-control-plane",
         "service-protection",
         "slb",
         "universal-search",
@@ -2319,6 +2348,7 @@
         "team/Retail_RSUI",
         "team/Search_Scale_Safely",
         "team/service-mesh",
+        "team/mesh-control-plane",
         "team/Service_Protection",
         "team/slb",
         "team/universal-search",
@@ -2346,13 +2376,15 @@
         "csc-sam",
         "dva-collection",
         "slb",
-        "service-mesh"
+        "service-mesh",
+        "mesh-control-plane"
       ],
       "access": [
         "team/CSC_Sam",
         "team/dva-collection",
         "team/slb",
-        "team/service-mesh"
+        "team/service-mesh",
+        "team/mesh-control-plane"
       ],
       "controlEstate": "gsf-core-devmvp-sam2-samtest",
       "estate": "gsf-core-devmvp-sam2-samtest",
@@ -2507,12 +2539,14 @@
       "namespaces": [
         "gater",
         "service-mesh",
+        "mesh-control-plane",
         "service-protection",
         "retail-beaconator"
       ],
       "access": [
         "team/Gater",
         "team/service-mesh",
+        "team/mesh-control-plane",
         "team/Service_Protection",
         "team/Retail_Beaconator"
       ],
@@ -3014,6 +3048,7 @@
         "gater",
         "ccait",
         "service-mesh",
+        "mesh-control-plane",
         "service-protection",
         "retail-beaconator"
       ],
@@ -3021,6 +3056,7 @@
         "team/Gater",
         "team/CCAIT",
         "team/service-mesh",
+        "team/mesh-control-plane",
         "team/Service_Protection",
         "team/Retail_Beaconator"
       ],
@@ -3254,6 +3290,7 @@
         "gater",
         "ccait",
         "service-mesh",
+        "mesh-control-plane",
         "service-protection",
         "retail-beaconator"
       ],
@@ -3261,6 +3298,7 @@
         "team/Gater",
         "team/CCAIT",
         "team/service-mesh",
+        "team/mesh-control-plane",
         "team/Service_Protection",
         "team/Retail_Beaconator"
       ],
@@ -4070,12 +4108,14 @@
         "ccait",
         "gater",
         "service-mesh",
+        "mesh-control-plane",
         "retail-beaconator"
       ],
       "access": [
         "team/CCAIT",
         "team/Gater",
         "team/service-mesh",
+        "team/mesh-control-plane",
         "team/Retail_Beaconator"
       ],
       "controlEstate": "syd-sam",
@@ -4135,11 +4175,13 @@
       "namespaces": [
         "gater",
         "service-mesh",
+        "mesh-control-plane",
         "service-protection"
       ],
       "access": [
         "team/Gater",
         "team/service-mesh",
+        "team/mesh-control-plane",
         "team/Service_Protection"
       ],
       "controlEstate": "ttd-sam",
@@ -4319,12 +4361,14 @@
       "namespaces": [
         "gater",
         "service-mesh",
+        "mesh-control-plane",
         "service-protection",
         "retail-beaconator"
       ],
       "access": [
         "team/Gater",
         "team/service-mesh",
+        "team/mesh-control-plane",
         "team/Service_Protection",
         "team/Retail_Beaconator"
       ],
@@ -4452,11 +4496,13 @@
     {
       "namespaces": [
         "gater",
-        "service-mesh"
+        "service-mesh",
+        "mesh-control-plane"
       ],
       "access": [
         "team/Gater",
-        "team/service-mesh"
+        "team/service-mesh",
+        "team/mesh-control-plane"
       ],
       "controlEstate": "wax-sam",
       "estate": "wax-sam_gater",
@@ -4530,12 +4576,14 @@
         "gater",
         "ccait",
         "service-mesh",
+        "mesh-control-plane",
         "retail-beaconator"
       ],
       "access": [
         "team/Gater",
         "team/CCAIT",
         "team/service-mesh",
+        "team/mesh-control-plane",
         "team/Retail_Beaconator"
       ],
       "controlEstate": "xrd-sam",
@@ -4669,12 +4717,14 @@
       "namespaces": [
         "ccait",
         "gater",
-        "service-mesh"
+        "service-mesh",
+        "mesh-control-plane"
       ],
       "access": [
         "team/CCAIT",
         "team/Gater",
-        "team/service-mesh"
+        "team/service-mesh",
+        "team/mesh-control-plane"
       ],
       "controlEstate": "yhu-sam",
       "estate": "yhu-sam_gater",
@@ -4757,12 +4807,14 @@
       "namespaces": [
         "ccait",
         "gater",
-        "service-mesh"
+        "service-mesh",
+        "mesh-control-plane"
       ],
       "access": [
         "team/CCAIT",
         "team/Gater",
-        "team/service-mesh"
+        "team/service-mesh",
+        "team/mesh-control-plane"
       ],
       "controlEstate": "yul-sam",
       "estate": "yul-sam_gater",
