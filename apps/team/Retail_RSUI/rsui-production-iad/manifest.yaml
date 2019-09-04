@@ -30,7 +30,7 @@ system:
         path: /home/sfdc-retail/logs
     - name: oauth-keys
       k4aSecret: 
-        secretName: rsui-oauth-keys
+        secretName: rsui-oauth-keys1
     - name: encryption-key1
       k4aSecret:
         secretName: rsui-encryption-key4
@@ -94,7 +94,7 @@ system:
       - name: RSUI_OAUTH_CALLBACK
         value: https://iad.salesforce-hub.com/service/oauth/callback 
       - name: OAUTH_SECRETS_FILE_PATH
-        value: secrets/oauth-keys/rsui-oauth-keys.json
+        value: secrets/oauth-keys/rsui-oauth-keys1.json
       - name: SECURITY_ENCRYPTION_KEY1_PATH
         value: secrets/encryption-key1/rsui-encryption-key4.key
       - name: SECURITY_ENCRYPTION_KEY2_PATH
@@ -115,7 +115,7 @@ system:
                 -XX:+PrintGCApplicationConcurrentTime -XX:+PrintGCCause -XX:+DisableExplicitGC
                 -Xloggc:/home/scone/logs/retail-setup/verbosegc_$(FUNCTION_INSTANCE_NAME).log
                 -XX:+HeapDumpOnOutOfMemoryError  -XX:HeapDumpPath=/home/scone/logs/retail-setup
-                -Xmx2G -Xms2G -XX:ParallelGCThreads=8 -Daura.production=true"
+                -Xmx6G -Xms6G -XX:ParallelGCThreads=8 -Daura.production=true"
       - name: LOGGING_JSON_STDOUT_LEVEL
         value: ALL
       # Disable all management endpoints except for health
