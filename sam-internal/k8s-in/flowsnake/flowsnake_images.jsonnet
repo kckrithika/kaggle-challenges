@@ -132,7 +132,7 @@ local utils = import "util_functions.jsonnet";
                 impersonation_proxy_image_tag: "8-9ced7803391be70dd7dc41cd3211800cda818f50",  # exec's nginx for signal propagation
                 spark_operator_image_tag: "jenkins-dva-transformation-spark-on-k8s-operator-PR-12-2-itest",  # 06/24 image with the augmented operator instrumentation
                 watchdog_spark_operator_image_tag: "jenkins-dva-transformation-spark-on-k8s-sample-apps-PR-2-1-itest",
-                integration_test_tag: "4",
+                integration_test_tag: "18",
                 kube_state_metrics_image_tag: "3",
                 prometheus_funnel_image_tag: "35",
                 spark_worker_23_hadoop_292_image_tag: "jenkins-dva-transformation-flowsnake-sample-apps-cre-hadoop-292-5-itest",
@@ -162,6 +162,7 @@ local utils = import "util_functions.jsonnet";
                 # --- flag C (and place only ... ---
                 # --- flag D (one flag between ... ---
                 # --- flag E (each pair. ... ---
+                next_analysis_script: "",
                 # --- flag F (Their only purpose ... ---
                 # --- flag G (is to assist ... ---
                 # --- flag H (git's diff logic ... ---

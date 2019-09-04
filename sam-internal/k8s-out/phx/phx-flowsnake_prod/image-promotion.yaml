@@ -106,11 +106,11 @@ spec:
         name: extra-image-0
       - image: ops0-artifactrepo1-0-phx.data.sfdc.net/dva/flowsnake-spark-on-k8s-sample-apps:jenkins-dva-transformation-spark-on-k8s-sample-apps-PR-2-1-itest
         name: extra-image-1
-      - image: ops0-artifactrepo1-0-phx.data.sfdc.net/dva/flowsnake-spark-on-k8s-integration-test-runner:4
+      - image: ops0-artifactrepo1-0-phx.data.sfdc.net/dva/flowsnake-spark-on-k8s-integration-test-runner:18
         name: extra-image-2
       - image: ops0-artifactrepo1-0-phx.data.sfdc.net/dva/sam/hypersam:2687-6c147b04d2d506c9fd591d50f400bd86c485b155
         name: extra-image-3
-      - image: ops0-artifactrepo1-0-phx.data.sfdc.net/dva/flowsnake-spark-on-k8s-sample-apps:4
+      - image: ops0-artifactrepo1-0-phx.data.sfdc.net/dva/flowsnake-spark-on-k8s-sample-apps:18
         name: extra-image-4
       - image: ops0-artifactrepo1-0-phx.data.sfdc.net/dva/kube-state-metrics-sfdc-0.0.1:3
         name: extra-image-5
