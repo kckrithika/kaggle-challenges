@@ -370,7 +370,7 @@ system:
       name: tls-server-cert
   - containers:
     - command: ['bash']
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/victor.li/hyperslb:victor.li-201908300948
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/victor.li/hyperslb:victor.li-201909031718
       livenessProbe:
         exec:
           command:
