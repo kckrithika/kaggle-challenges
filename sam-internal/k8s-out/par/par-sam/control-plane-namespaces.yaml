@@ -7,8 +7,4 @@ items:
       istio-injection: disabled
       sherpa-injection: disabled
     name: mesh-control-plane
-- apiVersion: v1
-  kind: Namespace
-  metadata:
-    name: mesh-control-plane-temp
 kind: List
