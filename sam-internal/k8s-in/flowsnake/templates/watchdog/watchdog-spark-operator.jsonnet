@@ -244,7 +244,7 @@ else
                                     "-timeout=2s",
                                     "-funnelEndpoint=" + flowsnakeconfig.funnel_vip_and_port,
                                     "--config=/config/watchdog.json",
-                                    "-cliCheckerCommandTarget=SparkHbaseOperatorTest",
+                                    "-cliCheckerCommandTarget=SparkHbaseIntegrationTest",
                                     "--hostsConfigFile=/sfdchosts/hosts.json",
                                     # Delay between runs. We want to more or less run continuously.
                                     "-watchdogFrequency=1m",
