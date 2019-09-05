@@ -370,7 +370,7 @@ system:
       name: tls-server-cert
   - containers:
     - command: ['/sdn/slb-proxy-latency', '-d', 'true']
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/victor.li/hyperslb:victor.li-201909051148
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/victor.li/hyperslb:victor.li-201909051615
       livenessProbe:
         httpGet:
           path: /readyz
