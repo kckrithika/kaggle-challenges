@@ -5,6 +5,7 @@ system:
       email:
         - rpothana@salesforce.com
         - sravanthi.konduru@salesforce.com
+        - aborra@salesforce.com
     functions:
     - name: fawkes-func
       count: 1
@@ -15,7 +16,7 @@ system:
           maxUnavailable: 1
       containers:
       - name: prd-fawkes
-        image: dva/casp/fawkes_strata:jenkins-CASP-fawkes-master-25-itest
+        image: dva/casp/fawkes_strata:jenkins-CASP-fawkes-master-26-itest
         env:
         - name: BRANCH
           value: "eng_production"
