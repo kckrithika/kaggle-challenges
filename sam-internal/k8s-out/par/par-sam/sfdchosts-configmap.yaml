@@ -107,6 +107,17 @@ data:
           "controlestate": "par-sam",
           "devicerole": "samcompute",
           "estate": "par-sam_cloudatlas",
+          "hostname": "shared0-samminionatlasfe1-2-par.ops.sfdc.net",
+          "kingdom": "par",
+          "pod": "none",
+          "rack": "f06-1r113",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sam_minion_cloudatlas_fe",
+          "controlestate": "par-sam",
+          "devicerole": "samcompute",
+          "estate": "par-sam_cloudatlas",
           "hostname": "shared0-samminionatlasfe2-1-par.ops.sfdc.net",
           "kingdom": "par",
           "pod": "none",
@@ -144,6 +155,17 @@ data:
           "kingdom": "par",
           "pod": "none",
           "rack": "e17-1r113",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sam_minion_cloudatlas_dir",
+          "controlestate": "par-sam",
+          "devicerole": "samcompute",
+          "estate": "par-sam_cloudatlas_dir",
+          "hostname": "shared0-samminionatlasdir2-2-par.ops.sfdc.net",
+          "kingdom": "par",
+          "pod": "none",
+          "rack": "j16-1r113",
           "superpod": "none"
         },
         {

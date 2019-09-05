@@ -91,6 +91,8 @@ items:
     name: shared0-samminiondatapool1-2-ia2.ops.sfdc.net
   - kind: User
     name: shared0-samminiondatapool2-1-ia2.ops.sfdc.net
+  - kind: User
+    name: shared0-samminiondatapool2-2-ia2.ops.sfdc.net
 - apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: RoleBinding
   metadata:
@@ -378,6 +380,8 @@ items:
   - kind: User
     name: shared0-samminiongwc1-2-ia2.ops.sfdc.net
   - kind: User
+    name: shared0-samminiongwc1-3-ia2.ops.sfdc.net
+  - kind: User
     name: shared0-samminiongwc2-1-ia2.ops.sfdc.net
   - kind: User
     name: shared0-samminiongwc2-2-ia2.ops.sfdc.net
@@ -399,6 +403,8 @@ items:
     name: samkingdomcaas0-caasminion1-3-ia2.ops.sfdc.net
   - kind: User
     name: samkingdomcaas0-caasminion2-1-ia2.ops.sfdc.net
+  - kind: User
+    name: samkingdomcaas0-caasminion2-2-ia2.ops.sfdc.net
 - apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: RoleBinding
   metadata:
@@ -411,6 +417,8 @@ items:
   subjects:
   - kind: User
     name: shared0-samminionreportcollector1-1-ia2.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionreportcollector1-2-ia2.ops.sfdc.net
   - kind: User
     name: shared0-samminionreportcollector2-1-ia2.ops.sfdc.net
   - kind: User
@@ -477,6 +485,14 @@ items:
     name: samcaas1-caasminion1-7-ia2.ops.sfdc.net
   - kind: User
     name: samcaas1-caasminion1-8-ia2.ops.sfdc.net
+  - kind: User
+    name: samcaas1-caasminion2-1-ia2.ops.sfdc.net
+  - kind: User
+    name: samcaas1-caasminion2-2-ia2.ops.sfdc.net
+  - kind: User
+    name: samcaas1-caasminion2-3-ia2.ops.sfdc.net
+  - kind: User
+    name: samcaas1-caasminion2-4-ia2.ops.sfdc.net
 - apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: RoleBinding
   metadata:

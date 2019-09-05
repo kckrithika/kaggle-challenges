@@ -458,6 +458,8 @@ items:
   - kind: User
     name: shared0-samminionatlasfe1-1-ord.ops.sfdc.net
   - kind: User
+    name: shared0-samminionatlasfe1-2-ord.ops.sfdc.net
+  - kind: User
     name: shared0-samminionatlasfe2-1-ord.ops.sfdc.net
 - apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: RoleBinding
@@ -694,6 +696,8 @@ items:
   - kind: User
     name: shared0-samminioncustomerresolutionengine1-5-ord.ops.sfdc.net
   - kind: User
+    name: shared0-samminioncustomerresolutionengine1-6-ord.ops.sfdc.net
+  - kind: User
     name: shared0-samminioncustomerresolutionengine2-1-ord.ops.sfdc.net
   - kind: User
     name: shared0-samminioncustomerresolutionengine2-2-ord.ops.sfdc.net
@@ -733,6 +737,8 @@ items:
     name: shared0-samminioncustomerresolutionengine1-4-ord.ops.sfdc.net
   - kind: User
     name: shared0-samminioncustomerresolutionengine1-5-ord.ops.sfdc.net
+  - kind: User
+    name: shared0-samminioncustomerresolutionengine1-6-ord.ops.sfdc.net
   - kind: User
     name: shared0-samminioncustomerresolutionengine2-1-ord.ops.sfdc.net
   - kind: User

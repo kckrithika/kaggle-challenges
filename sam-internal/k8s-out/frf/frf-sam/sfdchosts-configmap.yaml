@@ -107,6 +107,17 @@ data:
           "controlestate": "frf-sam",
           "devicerole": "samcompute",
           "estate": "frf-sam_cloudatlas",
+          "hostname": "shared0-samminionatlasfe1-2-frf.ops.sfdc.net",
+          "kingdom": "frf",
+          "pod": "none",
+          "rack": "a18-m306",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sam_minion_cloudatlas_fe",
+          "controlestate": "frf-sam",
+          "devicerole": "samcompute",
+          "estate": "frf-sam_cloudatlas",
           "hostname": "shared0-samminionatlasfe2-1-frf.ops.sfdc.net",
           "kingdom": "frf",
           "pod": "none",

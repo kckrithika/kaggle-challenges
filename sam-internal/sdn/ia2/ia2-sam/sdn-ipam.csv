@@ -7,6 +7,10 @@ samcaas1-caasminion1-5-ia2.ops.sfdc.net,10.227.151.197/28,10.163.27.32/27,m44-01
 samcaas1-caasminion1-6-ia2.ops.sfdc.net,10.227.151.198/28,10.163.27.64/27,m44-01,ia2-sp1-sam_caas,4203031207
 samcaas1-caasminion1-7-ia2.ops.sfdc.net,10.227.151.199/28,10.163.27.96/27,m44-01,ia2-sp1-sam_caas,4203031207
 samcaas1-caasminion1-8-ia2.ops.sfdc.net,10.227.151.200/28,10.163.27.128/27,m44-01,ia2-sp1-sam_caas,4203031207
+samcaas1-caasminion2-1-ia2.ops.sfdc.net,10.227.151.218/29,10.163.24.64/27,p55-01,ia2-sp1-sam_caas,4203131227
+samcaas1-caasminion2-2-ia2.ops.sfdc.net,10.227.151.219/29,10.163.24.96/27,p55-01,ia2-sp1-sam_caas,4203131227
+samcaas1-caasminion2-3-ia2.ops.sfdc.net,10.227.151.210/29,10.163.24.0/27,p44-01,ia2-sp1-sam_caas,4203131207
+samcaas1-caasminion2-4-ia2.ops.sfdc.net,10.227.151.211/29,10.163.24.32/27,p44-01,ia2-sp1-sam_caas,4203131207
 samcaas2-caasminion1-1-ia2.ops.sfdc.net,10.227.173.44/29,10.163.21.192/27,l44-01,ia2-sp2-sam_caas,4203031208
 samcaas2-caasminion1-2-ia2.ops.sfdc.net,10.227.173.42/29,10.163.22.0/27,l44-01,ia2-sp2-sam_caas,4203031208
 samcaas2-caasminion1-3-ia2.ops.sfdc.net,10.227.173.2/29,10.163.20.0/27,l45-01,ia2-sp2-sam_caas,4203031210
@@ -35,6 +39,7 @@ samkingdomcaas0-caasminion1-1-ia2.ops.sfdc.net,10.227.151.34/29,10.163.16.0/27,g
 samkingdomcaas0-caasminion1-2-ia2.ops.sfdc.net,10.227.151.35/29,10.163.16.32/27,g55-01,ia2-sam_kingdom_caas,4203071228
 samkingdomcaas0-caasminion1-3-ia2.ops.sfdc.net,10.227.151.36/29,10.163.16.64/27,g55-01,ia2-sam_kingdom_caas,4203071228
 samkingdomcaas0-caasminion2-1-ia2.ops.sfdc.net,10.227.151.42/29,10.163.16.160/27,g06-01,ia2-sam_kingdom_caas,4203081212
+samkingdomcaas0-caasminion2-2-ia2.ops.sfdc.net,10.227.151.50/29,10.163.16.96/27,g44-01,ia2-sam_kingdom_caas,4203071208
 shared0-samcompute1-1-ia2.ops.sfdc.net,10.227.135.2/29,10.163.0.0/27,k02-01,ia2-sam,4203051203
 shared0-samcompute1-2-ia2.ops.sfdc.net,10.227.135.3/29,10.163.0.32/27,k02-01,ia2-sam,4203051203
 shared0-samcompute2-1-ia2.ops.sfdc.net,10.227.135.10/29,10.163.0.192/27,l42-01,ia2-sam,4203031204
@@ -62,6 +67,7 @@ shared0-samminionaqueduct3-5-ia2.ops.sfdc.net,10.176.28.181/29,10.163.42.128/27,
 shared0-samminiondatapool1-1-ia2.ops.sfdc.net,10.227.149.10/29,10.163.6.0/27,l05-01,ia2-sam_datapool,4203041210
 shared0-samminiondatapool1-2-ia2.ops.sfdc.net,10.227.149.2/29,10.163.6.32/27,w44-01,ia2-sam_datapool,4203151208
 shared0-samminiondatapool2-1-ia2.ops.sfdc.net,10.227.149.3/29,10.163.6.64/27,w44-01,ia2-sam_datapool,4203151208
+shared0-samminiondatapool2-2-ia2.ops.sfdc.net,10.227.149.11/29,10.163.6.96/27,l05-01,ia2-sam_datapool,4203041210
 shared0-samminiondp1-1-ia2.ops.sfdc.net,10.176.28.18/29,10.163.36.64/27,x46-01,ia2-sam_dp,4203151211
 shared0-samminiondp1-2-ia2.ops.sfdc.net,10.176.28.10/29,10.163.36.32/27,l15-01,ia2-sam_dp,4203041228
 shared0-samminiondp2-1-ia2.ops.sfdc.net,10.176.28.2/29,10.163.36.0/27,e15-01,ia2-sam_dp,4203091228
@@ -80,6 +86,7 @@ shared0-samminiongater2-5-ia2.ops.sfdc.net,10.227.137.148/29,10.163.39.96/27,z44
 shared0-samminiongater2-6-ia2.ops.sfdc.net,10.227.137.149/29,10.163.39.128/27,z44-01,ia2-sam_gater,4203141207
 shared0-samminiongwc1-1-ia2.ops.sfdc.net,10.227.149.18/29,10.163.7.0/27,m43-01,ia2-sam_gatewayconfig,4203031205
 shared0-samminiongwc1-2-ia2.ops.sfdc.net,10.227.149.26/29,10.163.7.64/27,m44-01,ia2-sam_gatewayconfig,4203031207
+shared0-samminiongwc1-3-ia2.ops.sfdc.net,10.176.29.66/29,10.163.7.128/27,m05-01,ia2-sam_gatewayconfig,4203041209
 shared0-samminiongwc2-1-ia2.ops.sfdc.net,10.227.149.27/29,10.163.7.96/27,m44-01,ia2-sam_gatewayconfig,4203031207
 shared0-samminiongwc2-2-ia2.ops.sfdc.net,10.227.149.19/29,10.163.7.32/27,m43-01,ia2-sam_gatewayconfig,4203031205
 shared0-samminioniot1-1-ia2.ops.sfdc.net,10.227.149.106/29,10.163.12.128/27,h46-01,ia2-sam_iot,4203071211
@@ -108,6 +115,7 @@ shared0-samminionpubdnsa2-1-ia2.ops.sfdc.net,10.227.147.146/29,10.163.5.128/27,m
 shared0-samminionpubdnsa2-2-ia2.ops.sfdc.net,10.227.147.154/29,10.163.5.64/27,l49-01,ia2-sam_pubdnsa,4203031216
 shared0-samminionpubdnsa3-1-ia2.ops.sfdc.net,10.227.147.162/29,10.163.5.0/27,k02-01,ia2-sam_pubdnsa,4203051203
 shared0-samminionreportcollector1-1-ia2.ops.sfdc.net,10.227.153.42/29,10.163.4.64/27,g55-01,ia2-sam_report_collector,4203071228
+shared0-samminionreportcollector1-2-ia2.ops.sfdc.net,10.227.153.36/29,10.163.4.96/27,g44-01,ia2-sam_report_collector,4203071208
 shared0-samminionreportcollector2-1-ia2.ops.sfdc.net,10.227.153.34/29,10.163.4.0/27,g44-01,ia2-sam_report_collector,4203071208
 shared0-samminionreportcollector3-1-ia2.ops.sfdc.net,10.227.153.35/29,10.163.4.32/27,g44-01,ia2-sam_report_collector,4203071208
 shared0-samminionsme1-1-ia2.ops.sfdc.net,10.176.28.130/29,10.163.40.32/27,x44-01,ia2-search_model_executor,4203151207
