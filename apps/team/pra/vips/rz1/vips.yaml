@@ -1,0 +1,73 @@
+- lbname: pra-mariadb-rz1
+  customlbname: pra-mariadb-rz1
+  servers:
+  - ops0-praccn1-1-rz1.ops.sfdc.net
+  - ops0-praccn2-1-rz1.ops.sfdc.net
+  - ops0-praccn1-2-rz1.ops.sfdc.net
+  ports:
+  - port: 3306
+    targetport: 3306
+    lbtype: tcp
+    healthport: 80
+    healthprotocol: tcp
+- lbname: pra-neutron-rz1
+  customlbname: pra-neutron-rz1
+  servers:
+  - ops0-praccn1-1-rz1.ops.sfdc.net
+  - ops0-praccn2-1-rz1.ops.sfdc.net
+  - ops0-praccn1-2-rz1.ops.sfdc.net
+  ports:
+  - port: 9696
+    targetport: 9696
+    lbtype: tcp
+    healthport: 80
+    healthprotocol: tcp
+- lbname: pra-keystone-apache-rz1
+  customlbname: pra-keystone-apache-rz1
+  servers:
+  - ops0-praccn1-1-rz1.ops.sfdc.net
+  - ops0-praccn2-1-rz1.ops.sfdc.net
+  - ops0-praccn1-2-rz1.ops.sfdc.net
+  ports:
+  - port: 5000
+    targetport: 5000
+    lbtype: tcp
+    healthport: 80
+    healthprotocol: tcp
+- lbname: pra-keystone-admin-rz1
+  customlbname: pra-keystone-admin-rz1
+  servers:
+  - ops0-praccn1-1-rz1.ops.sfdc.net
+  - ops0-praccn2-1-rz1.ops.sfdc.net
+  - ops0-praccn1-2-rz1.ops.sfdc.net
+  ports:
+  - port: 35357
+    targetport: 35357
+    lbtype: tcp
+    healthport: 80
+    healthprotocol: tcp
+- lbname: pra-glance-api-rz1
+  customlbname: pra-glance-api-rz1
+  servers:
+  - ops0-praccn1-1-rz1.ops.sfdc.net
+  - ops0-praccn2-1-rz1.ops.sfdc.net
+  - ops0-praccn1-2-rz1.ops.sfdc.net
+  ports:
+  - port: 9292
+    targetport: 9292
+    lbtype: tcp
+    healthport: 80
+    healthprotocol: tcp
+- lbname: pra-nova-rz1
+  customlbname: pra-nova-rz1
+  servers:
+  - ops0-praccn1-1-rz1.ops.sfdc.net
+  - ops0-praccn2-1-rz1.ops.sfdc.net
+  - ops0-praccn1-2-rz1.ops.sfdc.net
+  ports:
+  - port: 8774
+    targetport: 8774
+    lbtype: tcp
+    healthport: 80
+    healthprotocol: tcp
+
