@@ -1343,7 +1343,7 @@ items:
           - -timeout=2s
           - -funnelEndpoint=ajna0-funnel1-0-iad.data.sfdc.net:80
           - --config=/config/watchdog.json
-          - -cliCheckerCommandTarget=SparkHbaseOperatorTest
+          - -cliCheckerCommandTarget=SparkHbaseIntegrationTest
           - --hostsConfigFile=/sfdchosts/hosts.json
           - -watchdogFrequency=1m
           - -alertThreshold=1m
