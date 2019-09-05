@@ -303,7 +303,7 @@ system:
       livenessProbe:
         exec:
           command:
-          - ./sfproxy/scripts/check-switchboard.sh
+          - ./bin/is-alive
         initialDelaySeconds: 20
         periodSeconds: 5
       name: envoy-sidecar
