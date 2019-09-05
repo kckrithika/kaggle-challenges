@@ -1,0 +1,8 @@
+{
+    "filename_rules": [{
+      "path": "apps",
+      "block_files_matching_any": ["^pool.*map.ya?ml$"],
+      "files_pass_through": ["^pool-map.yaml$"],
+      "err_msg": "file name for pool-map.yaml is not valid"
+    }]
+}

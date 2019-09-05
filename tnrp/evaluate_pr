@@ -117,6 +117,7 @@ $SAMBINDIR/evaluate-pr \
 --MoratoriumAccessDisabledMessage="Emergency moratorium is in effect.  See https://gus.lightning.force.com/lightning/r/0D5B000000sMOn6KAG/view  During the moratorium prod PRs require approval by an admin, and admins are required to ensure that changes properly follow the moratorium guidelines. For more information see http://sfdc.co/sam-admins." \
 --timeout=10m \
 --disableDedupFlag=false \
+--filenameRulePath=$PWD/sam-internal/k8s-in/sam/configs/filename-rules.json \
 
 # Validate vips.yaml files for SLB, this does not copy any files to output
 /opt/slb/slb-manifest-builder -root $PWD -output $PWD -validate --vcioptions.strict -v=1
