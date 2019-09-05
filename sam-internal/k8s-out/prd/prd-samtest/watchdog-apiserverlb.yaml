@@ -32,7 +32,7 @@ spec:
         env:
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig-platform
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/sam/hypersam:2793-5eb10923bdfc732f6272a7dbb384aca1b446542b
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/sam/hypersam:2794-13ba51834c29f3023f47f0131082aab88c0c0f87
         name: watchdog-apiserverlb
         volumeMounts:
         - mountPath: /etc/pki_service
