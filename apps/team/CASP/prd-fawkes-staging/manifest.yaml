@@ -15,7 +15,7 @@ system:
           maxUnavailable: 1
       containers:
       - name: prd-fawkes-staging
-        image: dva/casp/fawkes_strata:jenkins-CASP-fawkes-dev-38-itest
+        image: dva/casp/fawkes_strata:jenkins-CASP-fawkes-dev-39-itest
         env:
         - name: STAGING_FAWKES
           value: "True"
