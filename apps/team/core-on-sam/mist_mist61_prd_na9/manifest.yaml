@@ -331,7 +331,7 @@ system:
         value: --log-path /home/sfdc-sherpa/envoy.log
       - name: SFDC_ENVIRONMENT
         value: mist61
-      image: sfci/frontend-gateway/sfproxy:33e43ab
+      image: sfci/frontend-gateway/sfproxy:a290f27
       livenessProbe:
         exec:
           command:
@@ -383,7 +383,7 @@ system:
         value: 7020
       - name: JVM_HEAP_MAX
         value: 4G
-      image: sfci/servicelibs/switchboard:db4c69eded9a83a094ddc8a851a61bee177f52e9
+      image: sfci/servicelibs/switchboard:98471950537d76a57ccbf65d72f823d5724ef3bf
       livenessProbe:
         httpGet:
           path: /manage/health
@@ -441,6 +441,7 @@ system:
     identity:
       pod: na9
       serviceName: switchboard
+    serviceAccountName: switchboard-service-account
     name: na9-mist61switchboard-prd
     volumes:
     - emptyDir: {}
