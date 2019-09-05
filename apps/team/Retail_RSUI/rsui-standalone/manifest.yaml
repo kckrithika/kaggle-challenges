@@ -39,7 +39,7 @@ system:
 
     containers:
     - name: retail-setup
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/retail/retail-setup:2.0.107
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/retail/retail-setup:2.0.186
       ports:
       # Jetty http1 ports for incoming public traffic via SLB
       - containerPort: 7022
@@ -98,7 +98,7 @@ system:
       - name: CRE_MODE
         value: cre-stub
       - name: C2C_PATH
-        value: https://na48.stmfa.stm.salesforce.com/empire/cloudatlas/scim
+        value: https://login.stmfa.stm.salesforce.com/empire/cloudatlas/scim
       - name: CORE_OAUTH_URL
         value: https://login.stmfa.stm.salesforce.com
       - name: CORE_OAUTH_SANDBOXURL
