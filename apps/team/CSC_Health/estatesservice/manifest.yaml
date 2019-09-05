@@ -1,0 +1,66 @@
+apiVersion: v1
+system:
+  notifications:
+    email:
+      - estates@salesforce.com
+  functions:
+  - name: estatesservice
+    count: 2
+    volumes:
+    - name: server-cert
+      maddogCert:
+        type: server
+        lbnames:
+        - estatesservicelb
+    - name: client-cert
+      maddogCert:
+        type: client
+    containers:
+    - name: estatesservice
+      image: dva/estates/estatesservice:44
+      ports:
+      - containerPort: 9090
+      livenessProbe:
+        httpGet:
+          scheme: HTTPS
+          path: /info
+          port: 9090
+        initialDelaySeconds: 500
+      volumeMounts:
+        - mountPath: /server-certs
+          name: server-cert
+        - mountPath: /client-certs
+          name: client-cert
+      env:
+      - name: ESTATESSERVICE_PORT
+        value: 9090
+      - name: ESTATESSERVICE_FUNNEL_ENDPOINT
+        value: http://$(SFDC_METRICS_SERVICE_HOST):$(SFDC_METRICS_SERVICE_PORT)
+      - name: ESTATESSERVICE_RPMURL
+        value: https://ops0-artifactrepo1-0-$(KINGDOM).data.sfdc.net/artifactory/rpm-prod/
+      - name: ESTATESSERVICE_SWAGGERUI_DIRECTORY
+        value: /estatesservice/apidocs/
+      - name: ESTATESSERVICE_SERVER_CERT_FILEPATH
+        value: /server-certs/server/certificates/server.pem
+      - name: ESTATESSERVICE_SERVER_KEY_FILEPATH
+        value: /server-certs/server/keys/server-key.pem
+      - name: ESTATESSERVICE_SUBSERVICE
+        value: $(FUNCTION_NAMESPACE)-$(FUNCTION)-$(FUNCTION_INSTANCE_NAME)
+      command:
+        - /estatesservice/estatesservice
+        - -port=$(ESTATESSERVICE_PORT)
+        - -swaggerdir=$(ESTATESSERVICE_SWAGGERUI_DIRECTORY)
+        - -cert=$(ESTATESSERVICE_SERVER_CERT_FILEPATH)
+        - -key=$(ESTATESSERVICE_SERVER_KEY_FILEPATH)
+        - -publishmetrics
+        - -datacenter=$(KINGDOM)
+        - -subservice=$(ESTATESSERVICE_SUBSERVICE)
+        - -funnelendpoint=$(ESTATESSERVICE_FUNNEL_ENDPOINT)
+        - -rpmurl=$(ESTATESSERVICE_RPMURL)
+  loadbalancers:
+  - lbname: estatesservicelb
+    function: estatesservice
+    slbenabled: true
+    ports:
+      - port: 443
+        targetport: 9090

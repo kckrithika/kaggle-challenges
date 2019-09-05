@@ -154,3 +154,5 @@ apps:
     - ph2/ph2-sam_report_collector
     - lo2/lo2-sam_report_collector
     - lo3/lo3-sam_report_collector
+  estatesservice:
+    - prd/prd-sam_report_collector
