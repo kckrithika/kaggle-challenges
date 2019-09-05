@@ -13,7 +13,7 @@ system:
       "routing.mesh.sfdc.net/enabled": "true"
     containers:
     - name: cre-control-plane-ccp-dev
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cre-fusion/services:controlplane.2.0.1.PR-689.e1f515e.2
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cre-fusion/services:controlplane.2.0.1.develop.c047b44.342
       env:
         ####################################################################################################
         ############################   ENGINE/DDS FLOWSNAKE ARTIFACTS ( Most frequently changed ) ##########
@@ -21,9 +21,9 @@ system:
         - name: INGEST_SPEC_IMAGE
           value: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cre/cre-engine:2.0.0.0.kc-jobExecId.6ae26c7.7
         - name: EXPORT_SPEC_IMAGE
-          value: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cre/cre-dds-spark:2.0.1.develop.5087f9f.42
+          value: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cre/cre-dds-spark:2.0.1.pz-removeMasterUrl.a4257ff.2
         - name: SAVE_SPEC_IMAGE
-          value: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cre/cre-dds-spark:2.0.1.develop.5087f9f.42
+          value: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cre/cre-dds-spark:2.0.1.pz-removeMasterUrl.a4257ff.2
         ####################################################################################################
         ####################################### GLOBAL SHARED VALUES #######################################
         ####################################################################################################
@@ -84,7 +84,7 @@ system:
         - name: DATABASE_NAMESPACE
           value: crecontrolplaneccpdevb
         - name: SPRING_DATASOURCE_URL
-          value: jdbc:discover://dbaas0-minionapp1-1-prd.eng.sfdc.net:1511/${database.namespace}?${database.discovery.params}
+          value: jdbc:discover://dbaas0-minionapp1-1-prd.eng.sfdc.net:1511/${database.namespace}?${database.discovery.params}&dropDatabase=true
           ## Stream Processor
         - name: STREAM_PROCESSING_ENDPOINT
           value: cre-sp-ccp-dev.retail-cre.localhost.mesh.force.com:5442
