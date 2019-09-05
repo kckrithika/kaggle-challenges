@@ -243,6 +243,25 @@ local flowsnake_all_kes = (import "flowsnakeEstates.json").kingdomEstates + ["pr
     # estate that has hbase connections & have watchdog runnign on
     hbase_enabled_estates: [
         "prd-dev-flowsnake_iot_test",
+        "iad-flowsnake_prod",
+        "ord-flowsnake_prod",
+        "frf-flowsnake_prod",
+        "par-flowsnake_prod",
+        "hnd-flowsnake_prod",
+        "ukb-flowsnake_prod",
+    ],
+    hbase_dev_estates: [
+        "prd-dev-flowsnake_iot_test",
+    ],
+    hbase_prod_estates: [
+        "iad-flowsnake_prod",
+        "ord-flowsnake_prod",
+        "frf-flowsnake_prod",
+        "par-flowsnake_prod",
+        "hnd-flowsnake_prod",
+        "ukb-flowsnake_prod",
     ],
     hbase_enabled: std.count(self.hbase_enabled_estates, estate) > 0,
+    hbase_dev_watchdog_enabled: std.count(self.hbase_dev_estates, estate) > 0,
+    hbase_prod_watchdog_enabled: std.count(self.hbase_prod_estates, estate) > 0,
 }

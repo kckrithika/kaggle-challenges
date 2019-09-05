@@ -23,7 +23,7 @@ data:
         "DockerDaemon": {
           "DockerDaemon": "/test-docker.sh"
         },
-        "SparkHbaseOperatorTest": {
+        "SparkHbaseIntegrationTest": {
           "HbasePhoenixSparkKingdomPerfTest": "/watchdog-spark-scripts/analysis.py --hostname $NODENAME --metrics --sfdchosts /sfdchosts/hosts.json --watchdog-config /config/watchdog.json --command /watchdog-spark-scripts/check-spark-operator.sh --timeout-mins 10 /strata-test-specs-in/hbase-integration-kingdom-perf.jsonnet",
           "HbasePhoenixSparkKingdomTestTest": "/watchdog-spark-scripts/analysis.py --hostname $NODENAME --metrics --sfdchosts /sfdchosts/hosts.json --watchdog-config /config/watchdog.json --command /watchdog-spark-scripts/check-spark-operator.sh --timeout-mins 10 /strata-test-specs-in/hbase-integration-kingdom-test.jsonnet"
         },
