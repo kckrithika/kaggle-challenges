@@ -45,6 +45,8 @@ local utils = import "util_functions.jsonnet";
                 # --- flag I (to reduce the ---
                 deployment_strategy: "",
                 # --- flag J (likelihood of merge conflicts.) ---
+                central_prometheus_forwarder: "試行中",
+                prometheus_ha: "unverified",
             },
             # prd-test offers legacy version mappings. Phase 2 does not, so cannot inherit from there.
             # Start with 2-prd-dev (which also have legacy version mappings),
