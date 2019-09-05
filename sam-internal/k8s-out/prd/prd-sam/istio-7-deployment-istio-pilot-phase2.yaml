@@ -288,7 +288,7 @@ spec:
           value: istio.-.prd.-.istio-pilot
         - name: ESTATE
           value: prd-sam_gater
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/sfci/servicemesh/servicemesh/metrics-scraper:a1b27efb43d5cad37bc2f25b960c7d4f55f30ffc
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/sfci/servicemesh/servicemesh/metrics-scraper:81d72e12b34d3789989c34812b9ad97df2f6cf8c
         imagePullPolicy: Always
         name: metrics-scraper
         readinessProbe:
