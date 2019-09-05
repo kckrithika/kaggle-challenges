@@ -17,7 +17,7 @@ local configs = import "config.jsonnet";
     if ($.phaseNum > 2) then
       configs.funnelVIP
     else
-      "ajnafunneldirecttls-" + configs.kingdom + ".funnel.svc.mesh.sfdc.net:7442"
+      "ajnafunneldirecttls.funnel.svc.mesh.sfdc.net:7442"
   ),
 
 }
