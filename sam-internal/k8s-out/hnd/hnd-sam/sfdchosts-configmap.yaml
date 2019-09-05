@@ -129,6 +129,17 @@ data:
           "controlestate": "hnd-sam",
           "devicerole": "samcompute",
           "estate": "hnd-sam_cloudatlas",
+          "hostname": "shared0-samminionatlasfe1-2-hnd.ops.sfdc.net",
+          "kingdom": "hnd",
+          "pod": "none",
+          "rack": "a09-2g",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sam_minion_cloudatlas_fe",
+          "controlestate": "hnd-sam",
+          "devicerole": "samcompute",
+          "estate": "hnd-sam_cloudatlas",
           "hostname": "shared0-samminionatlasfe2-1-hnd.ops.sfdc.net",
           "kingdom": "hnd",
           "pod": "none",
@@ -584,6 +595,17 @@ data:
           "kingdom": "hnd",
           "pod": "none",
           "rack": "d03-3g",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sam_minion_datapool",
+          "controlestate": "hnd-sam",
+          "devicerole": "samcompute",
+          "estate": "hnd-sam_datapool",
+          "hostname": "shared0-samminiondatapool2-2-hnd.ops.sfdc.net",
+          "kingdom": "hnd",
+          "pod": "none",
+          "rack": "g08-3g",
           "superpod": "none"
         },
         {

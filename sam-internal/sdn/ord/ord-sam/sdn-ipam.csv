@@ -94,6 +94,7 @@ shared0-samminionatlasdir1-1-ord.ops.sfdc.net,10.223.223.34/29,10.213.206.64/27,
 shared0-samminionatlasdir1-2-ord.ops.sfdc.net,10.223.223.42/29,10.213.206.32/27,h15-03,ord-sam_cloudatlas_dir,65009
 shared0-samminionatlasdir2-1-ord.ops.sfdc.net,10.223.223.50/29,10.213.206.0/27,c18-01,ord-sam_cloudatlas_dir,65009
 shared0-samminionatlasfe1-1-ord.ops.sfdc.net,10.223.223.2/29,10.213.204.0/27,f15-02,ord-sam_cloudatlas,65009
+shared0-samminionatlasfe1-2-ord.ops.sfdc.net,10.223.223.11/29,10.213.204.64/27,g11-02,ord-sam_cloudatlas,65009
 shared0-samminionatlasfe2-1-ord.ops.sfdc.net,10.223.223.10/29,10.213.204.32/27,g11-02,ord-sam_cloudatlas,65009
 shared0-samminionceph1-1-ord.ops.sfdc.net,10.223.250.10/29,10.213.247.128/27,j11-02,ord-sam_ceph,65009
 shared0-samminionceph1-10-ord.ops.sfdc.net,10.223.250.42/29,10.213.243.192/27,c02-02,ord-sam_ceph,65009
@@ -218,6 +219,7 @@ shared0-samminioncustomerresolutionengine1-2-ord.ops.sfdc.net,10.223.248.74/29,1
 shared0-samminioncustomerresolutionengine1-3-ord.ops.sfdc.net,10.223.248.34/29,10.208.140.32/27,c02-02,ord-sam_customerresolutionengine,65009
 shared0-samminioncustomerresolutionengine1-4-ord.ops.sfdc.net,10.223.248.26/29,10.208.140.0/27,b13-02,ord-sam_customerresolutionengine,65009
 shared0-samminioncustomerresolutionengine1-5-ord.ops.sfdc.net,10.223.248.66/29,10.208.141.128/27,l05-03,ord-sam_customerresolutionengine,65009
+shared0-samminioncustomerresolutionengine1-6-ord.ops.sfdc.net,10.223.248.76/29,10.208.141.224/27,k16-03,ord-sam_customerresolutionengine,65009
 shared0-samminioncustomerresolutionengine2-1-ord.ops.sfdc.net,10.223.248.10/29,10.208.140.192/27,n12-01,ord-sam_customerresolutionengine,65009
 shared0-samminioncustomerresolutionengine2-2-ord.ops.sfdc.net,10.223.248.35/29,10.208.141.32/27,c02-02,ord-sam_customerresolutionengine,65009
 shared0-samminioncustomerresolutionengine2-3-ord.ops.sfdc.net,10.223.248.42/29,10.208.140.128/27,j10-02,ord-sam_customerresolutionengine,65009

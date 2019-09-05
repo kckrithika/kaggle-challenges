@@ -120,6 +120,7 @@ shared0-samminionatlasdir1-1-dfw.ops.sfdc.net,10.247.178.50/29,10.214.152.0/27,g
 shared0-samminionatlasdir1-2-dfw.ops.sfdc.net,10.247.178.34/29,10.214.152.32/27,l03-02,dfw-sam_cloudatlas_dir,65009
 shared0-samminionatlasdir2-1-dfw.ops.sfdc.net,10.247.178.42/29,10.214.152.64/27,l09-01,dfw-sam_cloudatlas_dir,65009
 shared0-samminionatlasfe1-1-dfw.ops.sfdc.net,10.247.122.130/29,10.214.134.32/27,v31-01,dfw-sam_cloudatlas,65009
+shared0-samminionatlasfe1-2-dfw.ops.sfdc.net,10.247.122.139/29,10.214.134.64/27,j32-02,dfw-sam_cloudatlas,65009
 shared0-samminionatlasfe2-1-dfw.ops.sfdc.net,10.247.122.138/29,10.214.134.0/27,j32-02,dfw-sam_cloudatlas,65009
 shared0-samminionceph3-10-dfw.ops.sfdc.net,10.220.183.226/28,10.214.173.32/27,z04-01,dfw-sam_ceph,65009
 shared0-samminioncephtwogroupstwo1-1-dfw.ops.sfdc.net,10.220.141.194/29,10.214.161.32/27,g16-01,dfw-sam_ceph,65009
@@ -153,9 +154,11 @@ shared0-samminionchatbotrt2-9-dfw.ops.sfdc.net,10.247.196.251/29,10.214.156.32/2
 shared0-samminiondatapool1-1-dfw.ops.sfdc.net,10.220.240.162/29,10.165.131.0/27,a01-01,dfw-sam_datapool,65009
 shared0-samminiondatapool1-2-dfw.ops.sfdc.net,10.220.240.170/29,10.165.131.64/27,n26-02,dfw-sam_datapool,65009
 shared0-samminiondatapool2-1-dfw.ops.sfdc.net,10.220.240.163/29,10.165.131.32/27,a01-01,dfw-sam_datapool,65009
+shared0-samminiondatapool2-2-dfw.ops.sfdc.net,10.220.130.114/29,10.165.131.96/27,j34-02,dfw-sam_datapool,65009
 shared0-samminiondp1-1-dfw.ops.sfdc.net,10.220.131.114/29,10.165.136.32/27,z02-01,dfw-sam_dp,65009
 shared0-samminiondp1-2-dfw.ops.sfdc.net,10.220.131.122/29,10.165.136.0/27,f33-02,dfw-sam_dp,65009
 shared0-samminiondp2-1-dfw.ops.sfdc.net,10.220.131.115/29,10.165.136.64/27,z02-01,dfw-sam_dp,65009
+shared0-samminiondp2-2-dfw.ops.sfdc.net,10.220.131.123/29,10.165.136.96/27,f33-02,dfw-sam_dp,65009
 shared0-samminioneaas1-1-dfw.ops.sfdc.net,10.220.202.2/29,10.214.182.96/27,g30-02,dfw-sam_eaas,65009
 shared0-samminioneaas1-2-dfw.ops.sfdc.net,10.220.202.10/29,10.214.182.64/27,d22-01,dfw-sam_eaas,65009
 shared0-samminioneaas1-3-dfw.ops.sfdc.net,10.220.202.18/29,10.214.182.32/27,c02-01,dfw-sam_eaas,65009

@@ -206,6 +206,17 @@ data:
           "controlestate": "dfw-sam",
           "devicerole": "samcompute",
           "estate": "dfw-sam_cloudatlas",
+          "hostname": "shared0-samminionatlasfe1-2-dfw.ops.sfdc.net",
+          "kingdom": "dfw",
+          "pod": "none",
+          "rack": "j32-dh4",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sam_minion_cloudatlas_fe",
+          "controlestate": "dfw-sam",
+          "devicerole": "samcompute",
+          "estate": "dfw-sam_cloudatlas",
           "hostname": "shared0-samminionatlasfe2-1-dfw.ops.sfdc.net",
           "kingdom": "dfw",
           "pod": "none",
@@ -279,6 +290,17 @@ data:
           "superpod": "none"
         },
         {
+          "bomrolename": "sam_minion_datapool",
+          "controlestate": "dfw-sam",
+          "devicerole": "samcompute",
+          "estate": "dfw-sam_datapool",
+          "hostname": "shared0-samminiondatapool2-2-dfw.ops.sfdc.net",
+          "kingdom": "dfw",
+          "pod": "none",
+          "rack": "j34-dh4",
+          "superpod": "none"
+        },
+        {
           "bomrolename": "sam_minion_dp",
           "controlestate": "dfw-sam",
           "devicerole": "samcompute",
@@ -309,6 +331,17 @@ data:
           "kingdom": "dfw",
           "pod": "none",
           "rack": "z02-dh2",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sam_minion_dp",
+          "controlestate": "dfw-sam",
+          "devicerole": "samcompute",
+          "estate": "dfw-sam_dp",
+          "hostname": "shared0-samminiondp2-2-dfw.ops.sfdc.net",
+          "kingdom": "dfw",
+          "pod": "none",
+          "rack": "f33-dh4",
           "superpod": "none"
         },
         {

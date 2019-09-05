@@ -1152,6 +1152,17 @@ data:
           "controlestate": "ord-sam",
           "devicerole": "samcompute",
           "estate": "ord-sam_cloudatlas",
+          "hostname": "shared0-samminionatlasfe1-2-ord.ops.sfdc.net",
+          "kingdom": "ord",
+          "pod": "none",
+          "rack": "g11-cr09",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sam_minion_cloudatlas_fe",
+          "controlestate": "ord-sam",
+          "devicerole": "samcompute",
+          "estate": "ord-sam_cloudatlas",
           "hostname": "shared0-samminionatlasfe2-1-ord.ops.sfdc.net",
           "kingdom": "ord",
           "pod": "none",
@@ -1497,6 +1508,17 @@ data:
           "kingdom": "ord",
           "pod": "none",
           "rack": "l05-cr10",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sam_minion_customerresolutionengine",
+          "controlestate": "ord-sam",
+          "devicerole": "samcompute",
+          "estate": "ord-sam_customerresolutionengine",
+          "hostname": "shared0-samminioncustomerresolutionengine1-6-ord.ops.sfdc.net",
+          "kingdom": "ord",
+          "pod": "none",
+          "rack": "k16-cr10",
           "superpod": "none"
         },
         {
