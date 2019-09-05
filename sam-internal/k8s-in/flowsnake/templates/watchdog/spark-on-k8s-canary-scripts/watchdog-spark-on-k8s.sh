@@ -11,6 +11,9 @@ KUBECTL_TIMEOUT_SECS=10
 # Give kubeapi 1 minute to recover. 10 second timeout, 7th request begins 60s after 1st.
 KUBECTL_ATTEMPTS=7
 
+# default test timeout minutes
+TIMEOUT_MINS=5
+
 # Parse command line arguments. https://stackoverflow.com/a/14203146
 POSITIONAL=()
 while [[ $# -gt 0 ]]
@@ -42,6 +45,12 @@ case $key in
     shift # past argument
     shift # past value
     ;;
+    --timeout-mins)
+    # Specify a longer timeout for long running integration test (default is 5)
+    export TIMEOUT_MINS="$2"
+    shift # past argument
+    shift # past value
+    ;;
     *)    # unknown option
     POSITIONAL+=("$1") # save it in an array for later
     shift # past argument
@@ -57,7 +66,7 @@ if [[ ".jsonnet" == "${1: -8}" ]] ; then
     SPEC_INPUT=$(basename "$1")
     # Replace .jsonnet with -<ID>.json to get output filename
     SPEC_PATH=/strata-test-specs-out/${SPEC_INPUT%%.*}-${TEST_RUNNER_ID}.json
-    jsonnet -V imageRegistry=${DOCKER_REGISTRY} -V jenkinsId=${TEST_RUNNER_ID} -V dockerTag=${DOCKER_TAG} -V s3ProxyHost=${S3_PROXY_HOST} -V driverServiceAccount=${DRIVER_SERVICE_ACCOUNT} ${1} | \
+    jsonnet -V imageRegistry=${DOCKER_REGISTRY} -V jenkinsId=${TEST_RUNNER_ID} -V dockerTag=${DOCKER_TAG} -V s3ProxyHost=${S3_PROXY_HOST} -V driverServiceAccount=${DRIVER_SERVICE_ACCOUNT} -V kingdom=${KINGDOM} -V estate=${ESTATE} ${1} | \
     python -c 'import json,sys; j=json.load(sys.stdin); j_clean=j if len(j.keys())>1 else j[j.keys()[0]]; print json.dumps(j_clean, indent=4)' > ${SPEC_PATH}
     if [ -f "${SPEC_PATH}" ]; then
         SPEC="${SPEC_PATH}"
@@ -73,7 +82,7 @@ fi
 APP_NAME=$(python -c 'import json,sys; print json.load(sys.stdin)["metadata"]["name"]' < $SPEC)
 SELECTOR="sparkoperator.k8s.io/app-name=$APP_NAME"
 # Exit after 5 minutes to ensure we exit before cliChecker kills us (10 mins) so that all output can be logged.
-TIMEOUT_SECS=$((60*5))
+TIMEOUT_SECS=$((60*$TIMEOUT_MINS))
 
 # output Unix time to stdout
 epoch() {
@@ -260,7 +269,7 @@ report_pod_changes() {
             PREVIOUS_POD_REPORTS["$POD_NAME"]="${NEW_REPORT}"
             if [[ "${NEW_REPORT%% *}" == "Completed" ]] || [[ "${NEW_REPORT%% *}" == "Error" ]] || [[ "${NEW_REPORT%% *}" == "Terminating" ]]; then
                 # Grab the logs now rather than waiting until the end of the script; the pod might be deleted by then.
-                pod_log ${POD_NAME}
+                pod_log po/${POD_NAME}
             fi
         fi
     done;
