@@ -2867,14 +2867,16 @@
         "ccait",
         "service-mesh",
         "mesh-control-plane",
-        "retail-beaconator"
+        "retail-beaconator",
+        "discovery"
       ],
       "access": [
         "team/Gater",
         "team/CCAIT",
         "team/service-mesh",
         "team/mesh-control-plane",
-        "team/Retail_Beaconator"
+        "team/Retail_Beaconator",
+        "team/discovery"
       ],
       "controlEstate": "par-sam",
       "estate": "par-sam_gater",
