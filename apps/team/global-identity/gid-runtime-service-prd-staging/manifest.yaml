@@ -94,7 +94,7 @@ system:
       - name: login_public_url
         value: https://test.next.login.salesforce.com
       - name: login_vip_url
-        value: https://gid-runtime-staging.global-identity.prd-sam.prd.slb.sfdc.net
+        value: https://gid-runtime-prd-staging.global-identity.prd-sam.prd.slb.sfdc.net
       - name: kms_kingdom
         value: prd
       - name: kms_role
@@ -142,7 +142,7 @@ system:
       function: gid-runtime-service-prd-staging
       slbEnabled: true
       ports:
-        - port: 443
+        - port: 9090
           targetport: 7022
           lbtype: http
           tls: false
