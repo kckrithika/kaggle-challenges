@@ -2,13 +2,22 @@ apiVersion: v1
 
 system:
   functions:
-  - name: ea-redis-fn
+  - name: redis
     count: 2
+    hostnetwork: true
     type: stateful-set
     lbname: ea-redis-lb
+    terminationGracePeriodSeconds: 30
     containers:
     - name: redis
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/pmantha/redis:5.0.5
+      resources:
+        requests:
+          memory: "1Gi"
+          cpu: "1"
+        limits:
+          memory: "16Gi"
+          cpu: "2"
       ports:
       - containerPort: 6379
       readinessProbe:
@@ -19,5 +28,15 @@ system:
       livenessProbe:
         tcpSocket:
           port: 6379
-        initialDelaySeconds: 10
-        periodSeconds: 10          
+        failureThreshold: 3
+        initialDelaySeconds: 5
+        periodSeconds: 60 
+  loadbalancers: 
+  - lbname: redis
+    function: redis
+    slbEnabled: true
+    ports:
+    - port: 6379
+      targetport: 6379
+      lbtype: tcp
+
