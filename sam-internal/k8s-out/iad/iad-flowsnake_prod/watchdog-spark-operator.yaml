@@ -720,6 +720,9 @@ items:
       # Give kubeapi 1 minute to recover. 10 second timeout, 7th request begins 60s after 1st.
       KUBECTL_ATTEMPTS=7
 
+      # default test timeout minutes
+      TIMEOUT_MINS=5
+
       # Parse command line arguments. https://stackoverflow.com/a/14203146
       POSITIONAL=()
       while [[ $# -gt 0 ]]
@@ -751,6 +754,12 @@ items:
           shift # past argument
           shift # past value
           ;;
+          --timeout-mins)
+          # Specify a longer timeout for long running integration test (default is 5)
+          export TIMEOUT_MINS="$2"
+          shift # past argument
+          shift # past value
+          ;;
           *)    # unknown option
           POSITIONAL+=("$1") # save it in an array for later
           shift # past argument
@@ -766,7 +775,7 @@ items:
           SPEC_INPUT=$(basename "$1")
           # Replace .jsonnet with -<ID>.json to get output filename
           SPEC_PATH=/strata-test-specs-out/${SPEC_INPUT%%.*}-${TEST_RUNNER_ID}.json
-          jsonnet -V imageRegistry=${DOCKER_REGISTRY} -V jenkinsId=${TEST_RUNNER_ID} -V dockerTag=${DOCKER_TAG} -V s3ProxyHost=${S3_PROXY_HOST} -V driverServiceAccount=${DRIVER_SERVICE_ACCOUNT} ${1} | \
+          jsonnet -V imageRegistry=${DOCKER_REGISTRY} -V jenkinsId=${TEST_RUNNER_ID} -V dockerTag=${DOCKER_TAG} -V s3ProxyHost=${S3_PROXY_HOST} -V driverServiceAccount=${DRIVER_SERVICE_ACCOUNT} -V kingdom=${KINGDOM} -V estate=${ESTATE} ${1} | \
           python -c 'import json,sys; j=json.load(sys.stdin); j_clean=j if len(j.keys())>1 else j[j.keys()[0]]; print json.dumps(j_clean, indent=4)' > ${SPEC_PATH}
           if [ -f "${SPEC_PATH}" ]; then
               SPEC="${SPEC_PATH}"
@@ -782,7 +791,7 @@ items:
       APP_NAME=$(python -c 'import json,sys; print json.load(sys.stdin)["metadata"]["name"]' < $SPEC)
       SELECTOR="sparkoperator.k8s.io/app-name=$APP_NAME"
       # Exit after 5 minutes to ensure we exit before cliChecker kills us (10 mins) so that all output can be logged.
-      TIMEOUT_SECS=$((60*5))
+      TIMEOUT_SECS=$((60*$TIMEOUT_MINS))
 
       # output Unix time to stdout
       epoch() {
@@ -969,7 +978,7 @@ items:
                   PREVIOUS_POD_REPORTS["$POD_NAME"]="${NEW_REPORT}"
                   if [[ "${NEW_REPORT%% *}" == "Completed" ]] || [[ "${NEW_REPORT%% *}" == "Error" ]] || [[ "${NEW_REPORT%% *}" == "Terminating" ]]; then
                       # Grab the logs now rather than waiting until the end of the script; the pod might be deleted by then.
-                      pod_log ${POD_NAME}
+                      pod_log po/${POD_NAME}
                   fi
               fi
           done;
@@ -1114,7 +1123,7 @@ items:
           - -includeCommandOutput=true
           env:
           - name: DOCKER_TAG
-            value: "4"
+            value: "18"
           - name: S3_PROXY_HOST
             value: public0-proxy1-0-iad.data.sfdc.net
           - name: DRIVER_SERVICE_ACCOUNT
@@ -1126,7 +1135,239 @@ items:
               fieldRef:
                 apiVersion: v1
                 fieldPath: spec.nodeName
-          image: ops0-artifactrepo1-0-iad.data.sfdc.net/dva/flowsnake-spark-on-k8s-integration-test-runner:4
+          - name: KINGDOM
+            value: iad
+          - name: ESTATE
+            value: iad-flowsnake_prod
+          image: ops0-artifactrepo1-0-iad.data.sfdc.net/dva/flowsnake-spark-on-k8s-integration-test-runner:18
+          imagePullPolicy: IfNotPresent
+          name: watchdog
+          resources:
+            limits:
+              cpu: "1"
+              memory: 1Gi
+            requests:
+              cpu: "1"
+              memory: 1Gi
+          volumeMounts:
+          - mountPath: /config
+            name: config
+          - mountPath: /sfdchosts
+            name: sfdchosts
+          - mountPath: /watchdog-spark-scripts
+            name: watchdog-spark-scripts
+          - mountPath: /certs
+            name: datacerts
+        - args:
+          - /sam/madkub-client
+          - --madkub-endpoint
+          - https://10.254.208.254:32007
+          - --maddog-endpoint
+          - https://all.pkicontroller.pki.blank.iad.prod.non-estates.sfdcsd.net:8443
+          - --maddog-server-ca
+          - /etc/pki_service/ca/security-ca.pem
+          - --madkub-server-ca
+          - /etc/pki_service/ca/cacerts.pem
+          - --token-folder
+          - /tokens
+          - --kingdom
+          - iad
+          - --superpod
+          - None
+          - --estate
+          - iad-flowsnake_prod
+          - --refresher
+          - --run-init-for-refresher-mode
+          - --cert-folders
+          - watchdogsparkoperator:/certs
+          - --ca-folder
+          - /etc/pki_service/ca
+          - --funnel-endpoint
+          - http://ajna0-funnel1-0-iad.data.sfdc.net:80
+          env:
+          - name: MADKUB_NODENAME
+            valueFrom:
+              fieldRef:
+                apiVersion: v1
+                fieldPath: spec.nodeName
+          - name: MADKUB_NAME
+            valueFrom:
+              fieldRef:
+                apiVersion: v1
+                fieldPath: metadata.name
+          - name: MADKUB_NAMESPACE
+            valueFrom:
+              fieldRef:
+                apiVersion: v1
+                fieldPath: metadata.namespace
+          image: ops0-artifactrepo1-0-iad.data.sfdc.net/tnrp/sam/madkub:1.0.0-0000084-9f4a6ca6
+          name: sam-madkub-integration-refresher
+          resources: {}
+          securityContext:
+            runAsNonRoot: true
+            runAsUser: 7337
+          volumeMounts:
+          - mountPath: /certs
+            name: datacerts
+          - mountPath: /tokens
+            name: tokens
+          - mountPath: /etc/pki_service/ca
+            name: certificate-authority
+            readOnly: true
+          - mountPath: /etc/pki_service/platform/platform-client/certificates
+            name: client-certificate
+            readOnly: true
+          - mountPath: /etc/pki_service/platform/platform-client/keys
+            name: client-key
+            readOnly: true
+        hostNetwork: true
+        initContainers:
+        - args:
+          - /sam/madkub-client
+          - --madkub-endpoint
+          - https://10.254.208.254:32007
+          - --maddog-endpoint
+          - https://all.pkicontroller.pki.blank.iad.prod.non-estates.sfdcsd.net:8443
+          - --maddog-server-ca
+          - /etc/pki_service/ca/security-ca.pem
+          - --madkub-server-ca
+          - /etc/pki_service/ca/cacerts.pem
+          - --token-folder
+          - /tokens
+          - --kingdom
+          - iad
+          - --superpod
+          - None
+          - --estate
+          - iad-flowsnake_prod
+          - --cert-folders
+          - watchdogsparkoperator:/certs
+          - --ca-folder
+          - /etc/pki_service/ca
+          - --funnel-endpoint
+          - http://ajna0-funnel1-0-iad.data.sfdc.net:80
+          env:
+          - name: MADKUB_NODENAME
+            valueFrom:
+              fieldRef:
+                apiVersion: v1
+                fieldPath: spec.nodeName
+          - name: MADKUB_NAME
+            valueFrom:
+              fieldRef:
+                apiVersion: v1
+                fieldPath: metadata.name
+          - name: MADKUB_NAMESPACE
+            valueFrom:
+              fieldRef:
+                apiVersion: v1
+                fieldPath: metadata.namespace
+          image: ops0-artifactrepo1-0-iad.data.sfdc.net/tnrp/sam/madkub:1.0.0-0000084-9f4a6ca6
+          name: sam-madkub-integration-init
+          resources: {}
+          securityContext:
+            runAsNonRoot: true
+            runAsUser: 7337
+          volumeMounts:
+          - mountPath: /certs
+            name: datacerts
+          - mountPath: /tokens
+            name: tokens
+          - mountPath: /etc/pki_service/ca
+            name: certificate-authority
+            readOnly: true
+          - mountPath: /etc/pki_service/platform/platform-client/certificates
+            name: client-certificate
+            readOnly: true
+          - mountPath: /etc/pki_service/platform/platform-client/keys
+            name: client-key
+            readOnly: true
+        restartPolicy: Always
+        serviceAccount: watchdog-spark-operator-serviceaccount
+        serviceAccountName: watchdog-spark-operator-serviceaccount
+        volumes:
+        - configMap:
+            name: watchdog
+          name: config
+        - configMap:
+            defaultMode: 493
+            name: watchdog-spark-on-k8s-script-configmap
+          name: watchdog-spark-scripts
+        - configMap:
+            name: sfdchosts
+          name: sfdchosts
+        - emptyDir:
+            medium: Memory
+          name: datacerts
+        - emptyDir:
+            medium: Memory
+          name: tokens
+        - hostPath:
+            path: /etc/pki_service/ca
+          name: certificate-authority
+        - hostPath:
+            path: /etc/pki_service/platform/platform-client/certificates
+          name: client-certificate
+        - hostPath:
+            path: /etc/pki_service/platform/platform-client/keys
+          name: client-key
+- apiVersion: extensions/v1beta1
+  kind: Deployment
+  metadata:
+    labels:
+      name: watchdog-spark-operator-hbase
+    name: watchdog-spark-operator-hbase
+    namespace: flowsnake
+  spec:
+    replicas: 1
+    selector:
+      matchLabels:
+        app: watchdog-spark-operator-hbase
+        apptype: monitoring
+    template:
+      metadata:
+        annotations:
+          madkub.sam.sfdc.net/allcerts: '{"certreqs": [{"cert-type": "client", "kingdom":
+            "iad", "name": "watchdogsparkoperator", "role": "flowsnake_test.flowsnake-watchdog"}]}'
+        labels:
+          app: watchdog-spark-operator-hbase
+          apptype: monitoring
+          flowsnakeOwner: dva-transform
+          flowsnakeRole: WatchdogSparkOperator
+      spec:
+        containers:
+        - command:
+          - /sam/watchdog
+          - -role=CLI
+          - -emailFrequency=24h
+          - -timeout=2s
+          - -funnelEndpoint=ajna0-funnel1-0-iad.data.sfdc.net:80
+          - --config=/config/watchdog.json
+          - -cliCheckerCommandTarget=SparkHbaseOperatorTest
+          - --hostsConfigFile=/sfdchosts/hosts.json
+          - -watchdogFrequency=1m
+          - -alertThreshold=1m
+          - -cliCheckerTimeout=20m
+          - -includeCommandOutput=true
+          env:
+          - name: DOCKER_TAG
+            value: "18"
+          - name: S3_PROXY_HOST
+            value: public0-proxy1-0-iad.data.sfdc.net
+          - name: DRIVER_SERVICE_ACCOUNT
+            value: spark-driver-flowsnake-watchdog
+          - name: DOCKER_REGISTRY
+            value: ops0-artifactrepo1-0-iad.data.sfdc.net
+          - name: NODENAME
+            valueFrom:
+              fieldRef:
+                apiVersion: v1
+                fieldPath: spec.nodeName
+          - name: KINGDOM
+            value: iad
+          - name: ESTATE
+            value: iad-flowsnake_prod
+          image: ops0-artifactrepo1-0-iad.data.sfdc.net/dva/flowsnake-spark-on-k8s-integration-test-runner:18
           imagePullPolicy: IfNotPresent
           name: watchdog
           resources:

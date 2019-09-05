@@ -20,6 +20,9 @@ data:
         "DockerDaemon": {
           "DockerDaemon": "/test-docker.sh"
         },
+        "SparkHbaseIntegrationTest": {
+          "HbasePhoenixSparkProdTest": "/watchdog-spark-scripts/analysis.py --hostname $NODENAME --metrics --sfdchosts /sfdchosts/hosts.json --watchdog-config /config/watchdog.json --command /watchdog-spark-scripts/check-spark-operator.sh --timeout-mins 10 /strata-test-specs-in/hbase-integration-prod.jsonnet"
+        },
         "SparkOperatorTest": {
           "ImpersonationProxyMinimalTest": "/watchdog-spark-scripts/check-impersonation.sh /watchdog-spark-scripts/kubeconfig-impersonation-proxy",
           "ImpersonationProxySparkTest": "/watchdog-spark-scripts/analysis.py --hostname $NODENAME --metrics --sfdchosts /sfdchosts/hosts.json --watchdog-config /config/watchdog.json --command /watchdog-spark-scripts/check-spark-operator.sh --kubeconfig /watchdog-spark-scripts/kubeconfig-impersonation-proxy /strata-test-specs-in/basic-spark-impersonation.jsonnet",

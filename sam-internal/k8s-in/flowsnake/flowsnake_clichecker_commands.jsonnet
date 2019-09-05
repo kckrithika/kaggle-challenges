@@ -83,11 +83,16 @@ local build_spark_operator_test_commands = {
     # Run a Spark Application via the impersonation proxy
     ImpersonationProxySparkTest: "/watchdog-spark-scripts/analysis.py --hostname $NODENAME --metrics --sfdchosts /sfdchosts/hosts.json --watchdog-config /config/watchdog.json --command /watchdog-spark-scripts/check-spark-operator.sh --kubeconfig /watchdog-spark-scripts/kubeconfig-impersonation-proxy /strata-test-specs-in/basic-spark-impersonation.jsonnet",
   },
-} + if flowsnakeconfig.hbase_enabled && std.objectHas(flowsnake_images.feature_flags, "next_analysis_script") then {
-    SparkHbaseOperatorTest: {
+} + if flowsnakeconfig.hbase_dev_watchdog_enabled && std.objectHas(flowsnake_images.feature_flags, "next_analysis_script") then {
+    SparkHbaseIntegrationTest: {
       # Run a Hbase integration test
       HbasePhoenixSparkKingdomTestTest: "/watchdog-spark-scripts/analysis.py --hostname $NODENAME --metrics --sfdchosts /sfdchosts/hosts.json --watchdog-config /config/watchdog.json --command /watchdog-spark-scripts/check-spark-operator.sh --timeout-mins 10 /strata-test-specs-in/hbase-integration-kingdom-test.jsonnet",
       HbasePhoenixSparkKingdomPerfTest: "/watchdog-spark-scripts/analysis.py --hostname $NODENAME --metrics --sfdchosts /sfdchosts/hosts.json --watchdog-config /config/watchdog.json --command /watchdog-spark-scripts/check-spark-operator.sh --timeout-mins 10 /strata-test-specs-in/hbase-integration-kingdom-perf.jsonnet",
+    },
+  } else if flowsnakeconfig.hbase_prod_watchdog_enabled && std.objectHas(flowsnake_images.feature_flags, "next_analysis_script") then {
+    SparkHbaseIntegrationTest: {
+      # Run a Hbase integration test
+      HbasePhoenixSparkProdTest: "/watchdog-spark-scripts/analysis.py --hostname $NODENAME --metrics --sfdchosts /sfdchosts/hosts.json --watchdog-config /config/watchdog.json --command /watchdog-spark-scripts/check-spark-operator.sh --timeout-mins 10 /strata-test-specs-in/hbase-integration-prod.jsonnet",
     },
   } else {};
 {
