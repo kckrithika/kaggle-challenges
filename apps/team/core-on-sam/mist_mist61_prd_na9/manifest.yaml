@@ -386,10 +386,17 @@ system:
           port: 8000
         initialDelaySeconds: 15
         periodSeconds: 5
+      volumeMounts:
+      - mountPath: /client-certs
+        name: tls-client-cert
     count: 1
     identity:
       pod: na9
     name: na9-mist61sfproxy-latency-prd
+    volumes:
+    - maddogCert:
+        type: client
+      name: tls-client-cert
   - containers:
     - args:
       - --clusters.external-clusters[0]=ajnafunneldirect:HTTP1
