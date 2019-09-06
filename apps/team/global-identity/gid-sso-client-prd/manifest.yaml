@@ -15,7 +15,7 @@ system:
       - name: c2c_common_gdotBasePath
         value: http://10.233.180.195:8090/scim
       - name: gid_baseUrl
-        value: http://localhost:8091
+        value: http://gid-runtime-prd-staging.global-identity.prd-sam.prd.slb.sfdc.net:9090
       - name: gid_oidcIssuer
         value: https://test.next.login.salesforce.com
       - name: client_cloudName
@@ -28,7 +28,7 @@ system:
         httpGet:
           path: /manage/info
           port: 15372
-          
+
   loadbalancers:
   - lbname: gid-sso-client
     function: gid-sso-client-prd
