@@ -154,7 +154,7 @@
             + set_value_to_all_in_list([], $.prodEstates)
             + {
                 "cdg-sam":[
-                  "85.222.142.5/32" # slb-canary-proxy-http-ext.sam-system.cdg-sam.cdg.slb.sfdc.net
+                  "85.222.142.5/32", # slb-canary-proxy-http-ext.sam-system.cdg-sam.cdg.slb.sfdc.net
                 ],
                 "dfw-sam": [
                   "10.214.188.141/32",  # sec0-magister1-0-dfw.slb.sfdc.net
