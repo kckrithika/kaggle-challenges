@@ -7,12 +7,12 @@ system:
       containers:
         - name: mock-maestro
           resources:
-            limits: {cpu: 4, memory: 4G}
-            requests: {cpu: 2, memory: 4G}
+            limits: {cpu: 16, memory: 4G}
+            requests: {cpu: 4, memory: 4G}
           env:
           - {name: JAVA_OPTS, value: '-server -XX:MaxMetaspaceSize=512m -Xmx2048m -Xms2048m'}
-
-          image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/insights/mock-maestro-gateway:master-5-fbb57e3
+          - {name: FILE_MANAGER_UNCOMPRESSED, value: false}
+          image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/insights/mock-maestro-gateway:master-11-1debe9f
           ports:
             - containerPort: 15372
               name: manage
