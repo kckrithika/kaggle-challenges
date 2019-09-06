@@ -45,6 +45,13 @@
     addheaders:
     - name: "X-Salesforce-VIP"
       value: "SLB"
+    removeheaders:
+    - "X-Forwarded-Proto"
+    - "X-Forwarded-For"
+    - "X-Client-Verify"
+    - "X-Real-IP"
+    - "X-Client-Cert"
+    - "X-Client-Fingerprint"
   - port: 8443
     targetport: 8090
     reencrypt: true
@@ -59,7 +66,14 @@
     tlskey: kms:1:2:B79A5F5D32C69C340DC39183EA315A164E1E7B3D76B680258E4EED91817177AE:e0a43697-24af-4872-bd87-7a81c4a5979b
     addheaders:
     - name: "X-Salesforce-VIP"
-      value: "SLB"   
+      value: "SLB"
+    removeheaders:
+    - "X-Forwarded-Proto"
+    - "X-Forwarded-For"
+    - "X-Client-Verify"
+    - "X-Real-IP"
+    - "X-Client-Cert"
+    - "X-Client-Fingerprint"
   - port: 80
     targetport: 8085
     lbtype: http
@@ -67,6 +81,9 @@
     healthpath: /ping.jsp?allBusy
     removeheaders:
     - "CipherSuite"
+    - "X-Forwarded-Proto"
+    - "X-Forwarded-For"
+    - "X-Real-IP"
     addheaders:
     - name: "X-Salesforce-VIP"
       value: "SLB"
