@@ -1,0 +1,39 @@
+apiVersion: v1
+system:
+  functions:
+  - name: gid-sso-client-prd
+    count: 1
+    containers:
+    - name: gid-sso-client
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/gid/gid-sso-client:835a57b      
+      imagePullPolicy: Always
+      env:
+      - name: server_port
+        value: 7032
+      - name: management_server_port
+        value: 15372
+      - name: c2c_common_gdotBasePath
+        value: http://10.233.180.195:8090/scim
+      - name: gid_baseUrl
+        value: http://localhost:8091
+      - name: gid_oidcIssuer
+        value: https://test.next.login.salesforce.com
+      - name: client_cloudName
+        value: gid-sso-client
+      - name: client_baseUrl
+        value: http://localhost:${server.port}
+      ports:
+      - containerPort: 7032
+      livenessProbe:
+        httpGet:
+          path: /manage/info
+          port: 15372
+          
+  loadbalancers:
+  - lbname: gid-sso-client
+    function: gid-sso-client-prd
+    slbenabled: true
+    ports:
+      - port: 7032
+        targetport: 7032
+        lbtype: tcp
