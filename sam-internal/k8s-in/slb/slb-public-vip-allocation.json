@@ -1,77 +1,95 @@
 {
-  "cdg": {
+  "cdg-sam": {
     "slb.slb-canary-proxy-http-ext-service": 5
   },
-  "dfw": {
+  "dfw-sam": {
     "cloudforce.login-cloudforce-dfw": 12,
     "edge.sledge-dfw": 13,
     "gus.gs0-bofa-dfw": 11,
     "slb.slb-canary-proxy-http-ext-service": 5
   },
-  "fra": {
+  "fra-sam": {
     "casam.cs103app-force-lb": 17,
     "casam.cs103app-lb": 16,
     "casam.cs103app-my-lb": 18
   },
-  "frf": {
+  "frf-sam": {
     "edge.sledge-frf": 13,
     "rsui.rsui-production-frf-lb": 14,
     "rsui.rsui-production-frf-test-lb": 15,
     "slb.slb-canary-proxy-http-ext-service": 5
   },
-  "hnd": {
+  "hnd-sam": {
     "edge.sledge-hnd": 13,
     "rsui.rsui-production-hnd-lb": 14,
     "rsui.rsui-production-hnd-test-lb": 15,
     "slb.slb-canary-proxy-http-ext-service": 5
   },
-  "ia2": {
+  "ia2-sam": {
 
   },
-  "iad": {
+  "iad-sam": {
     "edge.sledge-iad": 13,
     "rsui.rsui-production-iad-lb": 14,
     "rsui.rsui-production-iad-test-lb": 15,
     "slb.slb-canary-proxy-http-ext-service": 5
   },
-  "lo2": {
+  "lo2-sam": {
 
   },
-  "lo3": {
+  "lo3-sam": {
 
   },
-  "ord": {
+  "ord-sam": {
     "edge.sledge-ord": 13,
     "rsui.rsui-production-ord-lb": 14,
     "rsui.rsui-production-ord-test-lb": 15,
     "slb.slb-canary-proxy-http-ext-service": 5
   },
-  "par": {
+  "par-sam": {
     "edge.sledge-par": 13,
     "rsui.rsui-production-par-lb": 14,
     "rsui.rsui-production-par-test-lb": 15
   },
-  "ph2": {
+  "ph2-sam": {
     "slb.slb-canary-proxy-http-ext-service": 5
   },
-  "phx": {
+  "phx-sam": {
     "cloudforce.login-cloudforce-phx": 12,
     "edge.sledge-phx": 13,
     "gus.gs0-bofa-phx": 11,
     "slb.slb-canary-proxy-http-ext-service": 5
   },
-  "prd": {
+  "prd-sam": {
+
+  },
+  "prd-sam_storage": {
+
+  },
+  "prd-sam_storagedev": {
+
+  },
+  "prd-samdev": {
+
+  },
+  "prd-samtest": {
+
+  },
+  "prd-samtwo": {
     "slb.slb-canary-proxy-http-ext-service": 5,
     "stm.na44-stmfa1-0-prd": 8,
     "stm.na44-stmfb1-0-prd": 9,
     "stm.na44-stmfc1-0-prd": 10
   },
-  "ukb": {
+  "prd-sdc": {
+
+  },
+  "ukb-sam": {
     "edge.sledge-ukb": 13,
     "rsui.rsui-production-ukb-lb": 14,
     "rsui.rsui-production-ukb-test-lb": 15
   },
-  "xrd": {
+  "xrd-sam": {
     "edge.sledge-xrd": 13,
     "gid.smsapi1-0-xrd": 23,
     "slb.slb-canary-proxy-http-ext-service": 1
