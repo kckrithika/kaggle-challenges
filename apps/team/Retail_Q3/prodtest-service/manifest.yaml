@@ -1,0 +1,59 @@
+# created by scone-gen e4d02613
+
+apiVersion: v1
+
+system:
+  functions:
+  - name: prodtest
+    count: 2
+    containers:
+    - name: prodtest-service
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/ynagata/prodtest:ynagata-20190906-8fd9c9a
+      ports:
+      - containerPort: 8080
+        name: scone-http
+      - containerPort: 15372
+        name: scone-mgmt
+      env:
+        - name: IMAGE_NAME
+          value: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/ynagata/prodtest:ynagata-20190906-8fd9c9a
+        - name: MANIFEST_VERSION
+          value: v1.1
+        - name: WEBDRIVER_HOST
+          value: ${FUNCTION_INSTANCE_IP}
+        - name: SERVICE_JVM_OPTIONS
+          value: -Dtimeout=600
+      livenessProbe:
+        initialDelaySeconds: 30
+        httpGet:
+          path: /manage/health
+          port: 15372
+      volumeMounts:
+      - mountPath: /home/scone/logs
+        name: logvolservice
+
+    - name: webdriver
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/ynagata/standalone-chrome:3.141.59
+      ports:
+        - containerPort: 4444
+      livenessProbe:
+        httpGet:
+          path: /wd/hub/static/resource/hub.html
+          port: 4444
+
+    # The volumes to mount for shipping logs to splunk
+    # General rule is to use path that satisfies the pattern: /home/sfdc-*/logs/**/*.json
+    volumes:
+    - name: logvolservice
+      hostPath:
+        path: /home/sfdc-scone-prodtest/logs
+
+  loadbalancers:
+    - lbname: prodtest-lb
+      function: prodtest
+      slbenabled: true
+      ports:
+        - port: 8080
+          targetport: 8080
+        - port: 4444
+          targetport: 4444
