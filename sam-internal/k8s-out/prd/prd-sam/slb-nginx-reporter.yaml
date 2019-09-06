@@ -35,6 +35,7 @@ spec:
         - --k8sApiServer=
         - --namespace=sam-system
         - --log_dir=/host/data/slb/logs/slb-nginx-reporter
+        - --enableHsmMetric=true
         env:
         - name: NODE_NAME
           valueFrom:
