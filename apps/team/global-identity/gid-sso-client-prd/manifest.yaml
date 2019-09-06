@@ -9,11 +9,11 @@ system:
       imagePullPolicy: Always
       env:
       - name: server_port
-        value: 7032
+        value: 80
       - name: management_server_port
         value: 15372
       - name: c2c_common_gdotBasePath
-        value: http://10.233.180.195:8090/scim
+        value: http://cloudatlas-gid.global-identity.prd-sam.prd.slb.sfdc.net/scim
       - name: gid_baseUrl
         value: http://gid-runtime-prd-staging.global-identity.prd-sam.prd.slb.sfdc.net:9090
       - name: gid_oidcIssuer
@@ -23,7 +23,7 @@ system:
       - name: client_baseUrl
         value: http://localhost:${server.port}
       ports:
-      - containerPort: 7032
+      - containerPort: 80
       livenessProbe:
         httpGet:
           path: /manage/info
@@ -34,6 +34,6 @@ system:
     function: gid-sso-client-prd
     slbenabled: true
     ports:
-      - port: 7032
-        targetport: 7032
+      - port: 80
+        targetport: 80
         lbtype: tcp
