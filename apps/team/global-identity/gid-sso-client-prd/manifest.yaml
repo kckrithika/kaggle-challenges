@@ -9,7 +9,7 @@ system:
       imagePullPolicy: Always
       env:
       - name: server_port
-        value: 80
+        value: 8080
       - name: management_server_port
         value: 15372
       - name: c2c_common_gdotBasePath
@@ -23,7 +23,7 @@ system:
       - name: client_baseUrl
         value: http://localhost:${server.port}
       ports:
-      - containerPort: 80
+      - containerPort: 8080
       livenessProbe:
         httpGet:
           path: /manage/info
@@ -35,5 +35,5 @@ system:
     slbenabled: true
     ports:
       - port: 80
-        targetport: 80
+        targetport: 8080
         lbtype: tcp
