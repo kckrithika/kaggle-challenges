@@ -1,0 +1,33 @@
+~                                                                                                                                                                                      
+apiVersion: v1
+
+system:
+  functions:
+  - name: poetry-gen
+    count: 1
+    containers:
+    - name: poetry-gen-service
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/akash.verma/poetry-gen:akash.verma-20190906-91943af
+      # If your service doesn't serve HTTP traffic then you can remove the scone-http 8080 port.
+      ports:
+      - containerPort: 8080
+        name: scone-http
+      - containerPort: 7020
+        name: grpc-svc
+      - containerPort: 15372
+        name: scone-mgmt
+      livenessProbe:
+        initialDelaySeconds: 30
+        httpGet:
+          path: /manage/health
+          port: 15372
+      readinessProbe:
+        timeoutSeconds: 10
+        httpGet:
+          path: /manage/ready
+          port: 15372
+
+    # The volumes to mount for shipping logs to splunk
+    # General rule is to use path that satisfies the pattern: /home/sfdc-*/logs/**/*.json
+    volumes:
+                                                                                                                                                                                                                                      ~                                                                                                                                                                                                                                      ~                                                                                                                                                                                                                                      ~                                                                                                                                                                                                                                      ~                                                                                                                                                                                                                                      ~                                                                                                                                                                                                                                      ~                                                                                                                                                                                                                                      ~                                                                                                                                                                                                                                      ~                                                                                                                                                                                                                                      ~                                                                                                                                                                                                                                      ~                                                                                                                                                                                                                                      ~                                                                                                                                                                                                                      
