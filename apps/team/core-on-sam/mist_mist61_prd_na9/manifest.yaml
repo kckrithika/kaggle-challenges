@@ -374,6 +374,7 @@ system:
       - -d=true
       - -i=5m
       - -n=5
+      - -a=http://10.254.232.202:7022/ping.jsp
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/victor.li/hyperslb:victor.li-201909051615
       livenessProbe:
         httpGet:
