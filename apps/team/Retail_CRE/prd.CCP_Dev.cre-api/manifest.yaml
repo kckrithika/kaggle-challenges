@@ -13,14 +13,16 @@ system:
       "routing.mesh.sfdc.net/enabled": "true"
     containers:
     - name: cre-api-ccp-dev
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cre/cre-api:2.0.1.at-flushjobs.993afd3.4
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cre/cre-api:2.0.1.develop.d6af850.67
       env:
         - name: DOMAIN_ID
           value: cre
         - name: SCHEMA_ID
+          value: records
+        - name: SCHEMA_ID_BACKUP
           value: profiles
         - name: SCHEMA_VERSION
-          value: 0.0.8
+          value: 0.1.3
         - name: UNIVERSAL_SEARCH_DESTINATION
           value: universal-search.universal-search.localhost.mesh.force.com:5443
         - name: METRICS_KAFKA_TOPIC
