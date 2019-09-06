@@ -1,6 +1,3 @@
-apps:
- my-sam-test:    # this must match the name of your application. It must be lower case.
-  - prd/prd-sam  # the SAM Sandbox uses the prd/prd-sam host cluster
-                 # you can also specify other pools
+apps:  # the SAM Sandbox uses the prd/prd-sam hos                 # you can also specify other pools
  poetry-gen:
   - prd/prd-sam
