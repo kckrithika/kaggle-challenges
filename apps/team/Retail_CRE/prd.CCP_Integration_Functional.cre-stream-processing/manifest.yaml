@@ -13,7 +13,7 @@ system:
       "routing.mesh.sfdc.net/enabled": "true"
     containers:
     - name: cre-sp-ccp-func
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cre-fusion/services/control-plane/stream-processor:2.0.1.develop.68d0bcb.255
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cre-fusion/services:stream-processor.2.0.1.develop.30c6011.373
       env:
         - name: PUBLISHING_TOPIC
           value: sfdc.prod.cre__prd.ajna_local__cre_outbound_CCP_Integration_Functional
@@ -41,6 +41,12 @@ system:
           value: http://ajna0-funnel1-0-prd.data.sfdc.net
         - name: CONTROLPLANE_ENDPOINT
           value: http://cre-control-plane-ccp-func.retail-cre.localhost.mesh.force.com:5442
+        - name: CONTROLPLANE_REST_TESTING_ENABLED		
+          value: true		
+        - name: CONTROLPLANE_REST_ENDPOINT		
+          value: http://cre-control-plane-ccp-func.retail-cre.localhost.mesh.force.com:5442		
+        - name: ENABLE_BATCH_ORPHAN_CHECKS		
+          value: true
         - name: JVM_ARGS
           value: "-verbose:gc -XX:+PrintGCDateStamps -XX:+PrintHeapAtGC
                   -XX:+PrintPromotionFailure -XX:+PrintTenuringDistribution -XX:+PrintGCDetails
