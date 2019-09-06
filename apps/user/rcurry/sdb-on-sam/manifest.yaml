@@ -1,0 +1,23 @@
+apiVersion: v1
+system:
+  functions:
+  - name: sdb-on-sam
+    count: 1
+    containers:
+    - name: sdb
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/hub-persistence/sdb:0.0.2
+      ports:
+      - containerPort: 5432
+      livenessProbe:
+        exec:
+          command: ["psql", "-w", "-U", "sdb", "-d", "hps", "-c", "SELECT 1"]
+        initialDelaySeconds: 45
+        timeoutSeconds: 45
+  loadbalancers:
+  - lbname: gidruntimelb
+    function: sdb-on-sam
+    slbenabled: true
+    ports:
+      - port: 5432
+        targetport: 5432
+        lbtype: tcp
