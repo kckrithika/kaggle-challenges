@@ -27,7 +27,7 @@ system:
         secretName: mds-gdot-secrets-prod3
     containers:
     - name: metadata-service
-      image: sfci/metadata-cannon/metadata-service:0.9.108
+      image: sfci/metadata-cannon/metadata-service:0.9.109
       ports:
       - containerPort: 15523
       env:
@@ -37,8 +37,6 @@ system:
         value: 9091
       - name: MANAGEMENT_PORT
         value: 15523
-      - name: JVM_ARGS
-        value: -Dmds.enable.request.body.logging=true
         # An environment variable used to trigger containers redeployment without making other changes to the manifest
       - name: RESTART
         value: May-16-2019
