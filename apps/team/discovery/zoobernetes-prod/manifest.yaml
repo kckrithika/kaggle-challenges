@@ -1,7 +1,7 @@
 apiVersion: v1
 system:
   functions:
-  - name: zoobernetes-prod
+  - name: zoobernetes
     count: 1
 
     containers:
