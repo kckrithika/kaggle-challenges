@@ -34,7 +34,7 @@ spec:
               fieldPath: spec.nodeName
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig-platform
-        image: ops0-artifactrepo1-0-iad.data.sfdc.net/dva/slb/hyperslb:2221-067073e06134911ee33fe0f90b253cde4aee0ef2
+        image: ops0-artifactrepo1-0-iad.data.sfdc.net/dva/slb/hyperslb:2222-8600372e196bae83a5960f9976ffc36f02f8366a
         name: slb-iwd-health
         volumeMounts:
         - mountPath: /etc/pki_service
