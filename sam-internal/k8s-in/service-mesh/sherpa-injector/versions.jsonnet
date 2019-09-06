@@ -28,7 +28,7 @@ local utils = import "util_functions.jsonnet";
     canaryInjectorImage: (
         // need to use a full image path. relative paths like 'sfci/servicelibs/sherpa-injector' won't work here.
         // https://sfcirelease.dop.sfdc.net/job/servicelibs/job/servicelibs-sherpa-injector/job/sherpa-injector/job/master/125
-        "%s/sfci/servicelibs/sherpa-injector:9a2a032114e67e40831de6e744c26c85e1607b0e" % 
+        "%s/sfci/servicelibs/sherpa-injector:e59735b86d61eece37d79cc8228025f4e6bb2fdf" %
         if utils.is_pcn(configs.kingdom) then configs.registry + "/docker-gcp" else configs.registry
     ),
     injectorImage: (
@@ -36,9 +36,9 @@ local utils = import "util_functions.jsonnet";
 
         if utils.is_pcn(configs.kingdom) then 
             // https://sfcirelease.dop.sfdc.net/job/servicelibs/job/servicelibs-sherpa-injector/job/sherpa-injector/job/master/125
-            "%s/docker-gcp/sfci/servicelibs/sherpa-injector:9a2a032114e67e40831de6e744c26c85e1607b0e" % configs.registry
+            "%s/docker-gcp/sfci/servicelibs/sherpa-injector:e59735b86d61eece37d79cc8228025f4e6bb2fdf" % configs.registry
         else
             // https://sfcirelease.dop.sfdc.net/job/servicelibs/job/servicelibs-sherpa-injector/job/sherpa-injector/job/master/125
-            "%s/sfci/servicelibs/sherpa-injector:9a2a032114e67e40831de6e744c26c85e1607b0e" % configs.registry
+            "%s/sfci/servicelibs/sherpa-injector:e59735b86d61eece37d79cc8228025f4e6bb2fdf" % configs.registry
     ),
 }
