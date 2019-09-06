@@ -61,7 +61,7 @@ spec:
         - --port=17442
         - --cert=/server-certs/server/certificates/server.pem
         - --key=/server-certs/server/keys/server-key.pem
-        - --canary-image=ops0-artifactrepo2-0-prd.data.sfdc.net/sfci/servicelibs/sherpa-envoy:1.0.12
+        - --canary-image=ops0-artifactrepo2-0-prd.data.sfdc.net/sfci/servicelibs/sherpa-envoy:705933b05813f73691ccacd03f6bc388de08d272
         env:
         - name: SFDC_ENVIRONMENT
           value: mesh

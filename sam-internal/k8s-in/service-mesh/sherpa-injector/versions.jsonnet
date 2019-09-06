@@ -12,7 +12,7 @@ local utils = import "util_functions.jsonnet";
     // ======
     canarySherpaImage: (
         // https://git.soma.salesforce.com/servicelibs/sherpa-envoy/commits/master
-        "%s/sfci/servicelibs/sherpa-envoy:1.0.12" %
+        "%s/sfci/servicelibs/sherpa-envoy:705933b05813f73691ccacd03f6bc388de08d272" %
         if utils.is_pcn(configs.kingdom) then configs.registry + "/docker-gcp" else configs.registry
     ),
     sherpaImage: (
