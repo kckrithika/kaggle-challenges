@@ -198,7 +198,7 @@ system:
     ports:
       - port: 8094
         targetport: 7022
-      - port: 15372
+      - port: 9094
         targetport: 15372
   - lbname: cre-control-plane-ccp-func
     function: cre-control-plane-ccp-func
