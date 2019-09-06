@@ -9,6 +9,7 @@
     "slb.slb-canary-proxy-http-ext-service": 5
   },
   "fra-sam": {
+    "slb.slb-canary-proxy-http-ext-service": 5,
     "casam.cs103app-force-lb": 17,
     "casam.cs103app-lb": 16,
     "casam.cs103app-my-lb": 18
