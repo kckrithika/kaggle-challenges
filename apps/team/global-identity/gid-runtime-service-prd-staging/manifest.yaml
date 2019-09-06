@@ -107,6 +107,8 @@ system:
         value: https://smsapi1-0-prd.data.sfdc.net
       - name: c2c_common_gdotBasePath
         value: http://cloudatlas-gid.global-identity.prd-sam.prd.slb.sfdc.net/scim
+      - name: vaas_baseUrl
+        value: http://gid-sso-client.global-identity.prd-sam.prd.slb.sfdc.net:7032
 
       volumeMounts:
       - name: client-cert
