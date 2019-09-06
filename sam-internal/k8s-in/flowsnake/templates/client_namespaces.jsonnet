@@ -25,9 +25,30 @@ if std.length(flowsnake_clients.clients) > 0 then (
                     { "service-mesh-injector": "enabled" }
                 else {}),
             },
+
         }
         for client in flowsnake_clients.clients
-    ] + std.join([], [(if std.objectHas(client, "quota") then
+    ]
+    + std.join(
+[], [(if std.objectHas(client, "prometheus_config") then
+            [{
+               apiVersion: "v1",
+               kind: "ConfigMap",
+               metadata: {
+                   name: "prometheus-server-conf" + client.namespace,
+                   labels: {
+                       name: "prometheus-server-conf" + client.namespace,
+                   },
+                   namespace: client.namespace,
+               },
+               data: {
+                   "prometheus.json": client.prometheus_config,
+               },
+            }]
+            else []) for client in flowsnake_clients.clients],
+    )
+    + std.join(
+[], [(if std.objectHas(client, "quota") then
             [{
                 kind: "ResourceQuota",
                 apiVersion: "v1",
@@ -39,6 +60,7 @@ if std.length(flowsnake_clients.clients) > 0 then (
                     hard: client.quota,
                 },
             }]
-         else []) for client in flowsnake_clients.clients]),
+         else []) for client in flowsnake_clients.clients],
+    ),
 }
 ) else "SKIP"

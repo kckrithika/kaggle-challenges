@@ -267,6 +267,90 @@ items:
   metadata:
     annotations:
       manifestctl.sam.data.sfdc.net/swagger: disable
+    name: flowsnake-client-vaishnavi-spark-test-Role
+    namespace: vaishnavi-spark-test
+  rules:
+  - apiGroups:
+    - '*'
+    resources:
+    - pods
+    - replicationcontrollers
+    - deployments
+    - jobs
+    - replicasets
+    - secrets
+    - configmaps
+    - statefulsets
+    - services
+    - ingresses
+    - persistentvolumes
+    - sparkapplications
+    verbs:
+    - '*'
+  - apiGroups:
+    - '*'
+    resources:
+    - '*'
+    verbs:
+    - get
+    - list
+- apiVersion: rbac.authorization.k8s.io/v1
+  kind: ClusterRoleBinding
+  metadata:
+    annotations:
+      manifestctl.sam.data.sfdc.net/swagger: disable
+    name: flowsnake-client-vaishnavi-spark-test-ClusterRoleBinding
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: client-cluster-role
+  subjects:
+  - kind: User
+    name: vgiridaran-ltm2.internal.salesforce.com
+  - kind: User
+    name: flowsnake_test.vgiridaran
+- apiVersion: rbac.authorization.k8s.io/v1
+  kind: RoleBinding
+  metadata:
+    annotations:
+      manifestctl.sam.data.sfdc.net/swagger: disable
+    name: flowsnake-client-vaishnavi-spark-test-RoleBinding
+    namespace: vaishnavi-spark-test
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: Role
+    name: flowsnake-client-vaishnavi-spark-test-Role
+  subjects:
+  - kind: User
+    name: vgiridaran-ltm2.internal.salesforce.com
+  - kind: User
+    name: flowsnake_test.vgiridaran
+- apiVersion: v1
+  automountServiceAccountToken: true
+  kind: ServiceAccount
+  metadata:
+    name: spark-driver-vaishnavi-spark-test
+    namespace: vaishnavi-spark-test
+- apiVersion: rbac.authorization.k8s.io/v1
+  kind: RoleBinding
+  metadata:
+    annotations:
+      manifestctl.sam.data.sfdc.net/swagger: disable
+    name: spark-driver-vaishnavi-spark-test-RoleBinding
+    namespace: vaishnavi-spark-test
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: Role
+    name: flowsnake-client-vaishnavi-spark-test-Role
+  subjects:
+  - kind: ServiceAccount
+    name: spark-driver-vaishnavi-spark-test
+    namespace: vaishnavi-spark-test
+- apiVersion: rbac.authorization.k8s.io/v1
+  kind: Role
+  metadata:
+    annotations:
+      manifestctl.sam.data.sfdc.net/swagger: disable
     name: flowsnake-client-flowsnake-test-Role
     namespace: flowsnake-test
   rules:
