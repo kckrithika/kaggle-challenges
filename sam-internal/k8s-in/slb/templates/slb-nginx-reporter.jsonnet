@@ -41,7 +41,11 @@ if slbconfigs.isSlbEstate then configs.deploymentBase("slb") {
                             "--k8sApiServer=",
                             "--namespace=sam-system",
                             "--log_dir=" + slbconfigs.logsDir,
-                            ],
+                        ] + if slbconfigs.hsmNginxEnabledEstate then [
+                            "--enableHsmMetric=true",
+                        ] else [
+                            "--enableHsmMetric=false",
+                        ],
                         volumeMounts: configs.filter_empty([
                         configs.maddog_cert_volume_mount,
                         slbconfigs.slb_volume_mount,
