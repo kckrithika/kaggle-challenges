@@ -19,11 +19,13 @@ system:
       - --clusters.external-clusters[0]=ajnafunneldirect:HTTP1
       - --clusters.external-clusters[1]=ajnafunneldirecttls.funnel:HTTP1_TLS
       - --clusters.external-clusters[2]=spaasmesh:HTTP2
+      - --clusters.external-clusters[3]=opa.service-mesh:HTTP2
       - --clusters.zkScraper.scrapeTimeoutMs=120000
       - --cluster.scraper.delayMs=120000
       - --healthIndicator.maxThreadCount=1300
       - --metrics.sherpaFunnelServiceURL=http://ajnafunneldirecttls.funnel.localhost.mesh.force.com:5442
       - --authz.dest=authz-svc.service-mesh.localhost.mesh.force.com:5443
+      - --listeners.external-auth-cluster=opa.service-mesh
       ############################# PRODUCTION CONFIGURATION - OVERRIDDEN VALUES ######################
       # The following configuration exists in production manifests as well with different values. 
       - --metrics.maxNumberOfCollectedMetrics=400000
