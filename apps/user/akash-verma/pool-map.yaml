@@ -1,0 +1,3 @@
+apps:  # the SAM Sandbox uses the prd/prd-sam hos                 # you can also specify other pools
+ poetry-gen:
+  - prd/prd-sam
