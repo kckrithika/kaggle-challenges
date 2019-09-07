@@ -5,7 +5,7 @@ system:
     email:
       - gid_runtime@salesforce.com
   functions:
-  - name: gid-runtime-service-prd-staging
+  - name: gid-runtime-service
     count: 1
     strategy:
       type: RollingUpdate
@@ -141,7 +141,7 @@ system:
   #####################################################################################
   loadbalancers:
     - lbname: gid-runtime-prd-staging
-      function: gid-runtime-service-prd-staging
+      function: gid-runtime-service
       slbEnabled: true
       ports:
         - port: 9090
