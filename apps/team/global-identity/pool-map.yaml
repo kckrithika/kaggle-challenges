@@ -12,5 +12,5 @@ apps:
     - xrd/xrd-sampool
   gid-runtime-service-prd-staging:
     - prd/prd-sam
-  gid-runtime-service-prd-perf-example:
-    - prd/prd-sam
+  # gid-runtime-service-prd-perf-example:
+  #   - prd/prd-sam
