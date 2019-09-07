@@ -19,13 +19,11 @@ system:
       - --clusters.external-clusters[0]=ajnafunneldirect:HTTP1
       - --clusters.external-clusters[1]=ajnafunneldirecttls.funnel:HTTP1_TLS
       - --clusters.external-clusters[2]=spaasmesh:HTTP2
-      - --clusters.external-clusters[3]=opa.service-mesh:HTTP2
       - --clusters.zkScraper.scrapeTimeoutMs=120000
       - --cluster.scraper.delayMs=120000
       - --healthIndicator.maxThreadCount=1300
       - --metrics.sherpaFunnelServiceURL=http://ajnafunneldirecttls.funnel.localhost.mesh.force.com:5442
       - --authz.dest=authz-svc.service-mesh.localhost.mesh.force.com:5443
-      - --listeners.external-auth-cluster=opa.service-mesh
       ############################# PRODUCTION CONFIGURATION - OVERRIDDEN VALUES ######################
       # The following configuration exists in production manifests as well with different values. 
       - --metrics.maxNumberOfCollectedMetrics=400000
@@ -43,6 +41,14 @@ system:
       - --listeners.rate-limit-enabled-clusters[4]=retail-setup.retail-rsui
       - --listeners.rate-limit-enabled-clusters[5]=cloudatlas-prd-dev-service.cloudatlas
       - --listeners.rate-limit-enabled-clusters[6]=gid-runtime-service.global-identity
+      - --listeners.external-auth-cluster=external-auth.opa-sidecar
+      # External Auth Sidecar cluster
+      - --clusters.external-mesh-services[0]_name=external-auth.opa-sidecar
+      - --clusters.external-mesh-services[0]_cluster_type=HTTP2 
+      - --clusters.external-mesh-services[0]_resolution=STATIC 
+      - --clusters.external-mesh-services[0]_port=9191
+      - --clusters.external-mesh-services[0]_endpoints[0]=127.0.0.1
+
       ############################ EXAMPLE CONFIGURATION ##############################################
       # This section exists to show how some features can be configured.
       # External Mesh Service Configuration - Example
