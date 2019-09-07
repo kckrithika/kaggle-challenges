@@ -76,7 +76,7 @@ spec:
         - --netInterfaceName=eth0
         - --metricsEndpoint=ajna0-funnel1-0-ord.data.sfdc.net:80
         - --log_dir=/host/data/slb/logs/slb-hsm-nginx
-        - --maxDeleteServiceCount=10
+        - --maxDeleteServiceCount=100
         - --hostsConfigFile=/sfdchosts/hosts.json
         - --client.serverInterface=lo
         - --hostnameOverride=$(NODE_NAME)
@@ -445,7 +445,7 @@ spec:
         - --nginxPodMode=true
         - --client.socketDir=/host/data/slb/config/slb-hsm-nginx
         - --client.dialSocket=true
-        - --maxDeleteVipCount=10
+        - --maxDeleteVipCount=100
         image: ops0-artifactrepo1-0-ord.data.sfdc.net/dva/slb/hyperslb:2222-8600372e196bae83a5960f9976ffc36f02f8366a
         name: slb-realsvrcfg
         securityContext:
@@ -494,7 +494,7 @@ spec:
         - --hostsConfigFile=/sfdchosts/hosts.json
         - --client.socketDir=/host/data/slb/config/slb-hsm-nginx
         - --client.dialSocket=true
-        - --maxDeleteLimit=10
+        - --maxDeleteLimit=100
         - --isRoleUsed=true
         - --metricsEndpoint=ajna0-funnel1-0-ord.data.sfdc.net:80
         - --vcioptions.strict=true

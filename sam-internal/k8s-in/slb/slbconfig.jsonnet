@@ -24,7 +24,7 @@
     testEstates: ['prd-sdc', 'prd-samdev', 'prd-samtest', 'prd-sam_storage'],
     slbEstates: $.prodEstates + $.testEstates,
     samrole: "samapp.slb",
-    maxDeleteDefault: 10,
+    maxDeleteDefault: 100,
     trustedProxyDefault: "0.0.0.0/0",
 
     // These are deployment names.
