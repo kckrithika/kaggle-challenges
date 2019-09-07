@@ -43,6 +43,8 @@ system:
         name: dbvol
       - mountPath: /home/sfdc/automation
         name: perf-automation-volume
+      - mountPath: /home/sfdc-java/Snapshots
+        name: logvol
       livenessProbe:
         httpGet:
           path: /manage/health
