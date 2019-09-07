@@ -5,7 +5,7 @@ system:
     email:
       - gid_runtime@salesforce.com
   functions:
-  - name: gid-runtime-service
+  - name: gid-runtime-service-prd-staging
     count: 1
     strategy:
       type: RollingUpdate
@@ -98,7 +98,7 @@ system:
       - name: kms_kingdom
         value: prd
       - name: kms_role
-        value: global-identity.gid-runtime-service
+        value: global-identity.gid-runtime-service-prd-staging
       - name: kms_caPath
         value: /client-certs/ca/cacerts.pem
       - name: kms_monitoredDirectory
@@ -141,7 +141,7 @@ system:
   #####################################################################################
   loadbalancers:
     - lbname: gid-runtime-prd-staging
-      function: gid-runtime-service
+      function: gid-runtime-service-prd-staging
       slbEnabled: true
       ports:
         - port: 9090
