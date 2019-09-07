@@ -1,34 +1,59 @@
-- lbname: org-test-cs8
+- lbname: org-cce2e-cs8
   servers:
-    - cs8-app2-3-iad.ops.sfdc.net
-    - cs8-app2-2-iad.ops.sfdc.net
-    - cs8-app2-4-iad.ops.sfdc.net
     - cs8-app2-5-iad.ops.sfdc.net
-    - cs8-app1-1-iad.ops.sfdc.net
     - cs8-app1-2-iad.ops.sfdc.net
-    - cs8-app1-3-iad.ops.sfdc.net
+    - cs8-app1-1-iad.ops.sfdc.net
     - cs8-app1-5-iad.ops.sfdc.net
     - cs8-app2-1-iad.ops.sfdc.net
-    - cs8-app1-4-iad.ops.sfdc.net  
+    - cs8-app1-3-iad.ops.sfdc.net
+    - cs8-app1-4-iad.ops.sfdc.net
+    - cs8-app2-2-iad.ops.sfdc.net
+    - cs8-app2-3-iad.ops.sfdc.net
+    - cs8-app2-4-iad.ops.sfdc.net  
   ports:
   - port: 443
-    targetport: 8085
+    targetport: 8090
+    reencrypt: true
+    healthport: 8085
     lbtype: http
     healthprotocol: http
     healthpath: /ping.jsp?allBusy
     sticky: 86400
+    tls: true
+    tlscertificate: secret_service:BofA-Stmfa-VIP-Certs:iad.cce2e.my-salesforce.com.crt
+    tlskey: kms:1:2:B79A5F5D32C69C340DC39183EA315A164E1E7B3D76B680258E4EED91817177AE:9c00f694-4d6d-4b44-90f4-5503c6d2712a
     addheaders:
     - name: "X-Salesforce-VIP"
       value: "SLB"
+    removeheaders:
+    - "X-Forwarded-Proto"
+    - "X-Forwarded-For"
+    - "X-Client-Verify"
+    - "X-Real-IP"
+    - "X-Client-Cert"
+    - "X-Client-Fingerprint" 
   - port: 8443
-    targetport: 8085
+    targetport: 8090
+    reencrypt: true
+    healthport: 8085
     lbtype: http
     healthprotocol: http
     healthpath: /ping.jsp?allBusy
     sticky: 86400
+    tls: true
+    mtls: true
+    tlscertificate: secret_service:BofA-Stmfa-VIP-Certs:iad.cce2e.my-salesforce.com.crt
+    tlskey: kms:1:2:B79A5F5D32C69C340DC39183EA315A164E1E7B3D76B680258E4EED91817177AE:9c00f694-4d6d-4b44-90f4-5503c6d2712a
     addheaders:
     - name: "X-Salesforce-VIP"
-      value: "SLB"   
+      value: "SLB"
+    removeheaders:
+    - "X-Forwarded-Proto"
+    - "X-Forwarded-For"
+    - "X-Client-Verify"
+    - "X-Real-IP"
+    - "X-Client-Cert"
+    - "X-Client-Fingerprint"   
   - port: 80
     targetport: 8085
     lbtype: http
@@ -36,40 +61,69 @@
     healthpath: /ping.jsp?allBusy
     removeheaders:
     - "CipherSuite"
+    - "X-Forwarded-Proto" 
+    - "X-Forwarded-For" 
+    - "X-Real-IP"
     addheaders:
     - name: "X-Salesforce-VIP"
       value: "SLB"
-- lbname: org-test-cs14
+
+- lbname: org-cce2e-cs14
   servers:
-    - cs14-app1-5-iad.ops.sfdc.net
-    - cs14-app1-1-iad.ops.sfdc.net
-    - cs14-app2-3-iad.ops.sfdc.net
-    - cs14-app1-2-iad.ops.sfdc.net
     - cs14-app1-4-iad.ops.sfdc.net
-    - cs14-app2-2-iad.ops.sfdc.net
+    - cs14-app1-5-iad.ops.sfdc.net
+    - cs14-app2-3-iad.ops.sfdc.net
+    - cs14-app1-1-iad.ops.sfdc.net
+    - cs14-app1-2-iad.ops.sfdc.net
     - cs14-app1-3-iad.ops.sfdc.net
+    - cs14-app2-2-iad.ops.sfdc.net
     - cs14-app2-5-iad.ops.sfdc.net
     - cs14-app2-4-iad.ops.sfdc.net
     - cs14-app2-1-iad.ops.sfdc.net  
   ports:
   - port: 443
-    targetport: 8085
+    targetport: 8090
+    reencrypt: true
+    healthport: 8085
     lbtype: http
     healthprotocol: http
     healthpath: /ping.jsp?allBusy
     sticky: 86400
+    tls: true
+    tlscertificate: secret_service:BofA-Stmfa-VIP-Certs:iad.cce2e.my-salesforce.com.crt
+    tlskey: kms:1:2:B79A5F5D32C69C340DC39183EA315A164E1E7B3D76B680258E4EED91817177AE:9c00f694-4d6d-4b44-90f4-5503c6d2712a
     addheaders:
     - name: "X-Salesforce-VIP"
       value: "SLB"
+    removeheaders:
+    - "X-Forwarded-Proto"
+    - "X-Forwarded-For"
+    - "X-Client-Verify"
+    - "X-Real-IP"
+    - "X-Client-Cert"
+    - "X-Client-Fingerprint" 
   - port: 8443
-    targetport: 8085
+    targetport: 8090
+    reencrypt: true
+    healthport: 8085
     lbtype: http
     healthprotocol: http
     healthpath: /ping.jsp?allBusy
     sticky: 86400
+    tls: true
+    mtls: true
+    tlscertificate: secret_service:BofA-Stmfa-VIP-Certs:iad.cce2e.my-salesforce.com.crt
+    tlskey: kms:1:2:B79A5F5D32C69C340DC39183EA315A164E1E7B3D76B680258E4EED91817177AE:9c00f694-4d6d-4b44-90f4-5503c6d2712a
     addheaders:
     - name: "X-Salesforce-VIP"
-      value: "SLB"   
+      value: "SLB"
+    removeheaders:
+    - "X-Forwarded-Proto"
+    - "X-Forwarded-For"
+    - "X-Client-Verify"
+    - "X-Real-IP"
+    - "X-Client-Cert"
+    - "X-Client-Fingerprint"   
   - port: 80
     targetport: 8085
     lbtype: http
@@ -77,40 +131,69 @@
     healthpath: /ping.jsp?allBusy
     removeheaders:
     - "CipherSuite"
+    - "X-Forwarded-Proto" 
+    - "X-Forwarded-For" 
+    - "X-Real-IP"
     addheaders:
     - name: "X-Salesforce-VIP"
       value: "SLB"
-- lbname: org-test-cs15
+
+- lbname: org-cce2e-cs15
   servers:
-    - cs15-app1-2-iad.ops.sfdc.net
-    - cs15-app1-3-iad.ops.sfdc.net
-    - cs15-app1-4-iad.ops.sfdc.net
-    - cs15-app2-5-iad.ops.sfdc.net
     - cs15-app1-1-iad.ops.sfdc.net
-    - cs15-app2-3-iad.ops.sfdc.net
+    - cs15-app2-5-iad.ops.sfdc.net
     - cs15-app1-5-iad.ops.sfdc.net
+    - cs15-app2-2-iad.ops.sfdc.net
     - cs15-app2-4-iad.ops.sfdc.net
-    - cs15-app2-1-iad.ops.sfdc.net
-    - cs15-app2-2-iad.ops.sfdc.net  
+    - cs15-app1-3-iad.ops.sfdc.net
+    - cs15-app2-3-iad.ops.sfdc.net
+    - cs15-app1-4-iad.ops.sfdc.net
+    - cs15-app1-2-iad.ops.sfdc.net
+    - cs15-app2-1-iad.ops.sfdc.net  
   ports:
   - port: 443
-    targetport: 8085
+    targetport: 8090
+    reencrypt: true
+    healthport: 8085
     lbtype: http
     healthprotocol: http
     healthpath: /ping.jsp?allBusy
     sticky: 86400
+    tls: true
+    tlscertificate: secret_service:BofA-Stmfa-VIP-Certs:iad.cce2e.my-salesforce.com.crt
+    tlskey: kms:1:2:B79A5F5D32C69C340DC39183EA315A164E1E7B3D76B680258E4EED91817177AE:9c00f694-4d6d-4b44-90f4-5503c6d2712a
     addheaders:
     - name: "X-Salesforce-VIP"
       value: "SLB"
+    removeheaders:
+    - "X-Forwarded-Proto"
+    - "X-Forwarded-For"
+    - "X-Client-Verify"
+    - "X-Real-IP"
+    - "X-Client-Cert"
+    - "X-Client-Fingerprint" 
   - port: 8443
-    targetport: 8085
+    targetport: 8090
+    reencrypt: true
+    healthport: 8085
     lbtype: http
     healthprotocol: http
     healthpath: /ping.jsp?allBusy
     sticky: 86400
+    tls: true
+    mtls: true
+    tlscertificate: secret_service:BofA-Stmfa-VIP-Certs:iad.cce2e.my-salesforce.com.crt
+    tlskey: kms:1:2:B79A5F5D32C69C340DC39183EA315A164E1E7B3D76B680258E4EED91817177AE:9c00f694-4d6d-4b44-90f4-5503c6d2712a
     addheaders:
     - name: "X-Salesforce-VIP"
-      value: "SLB"   
+      value: "SLB"
+    removeheaders:
+    - "X-Forwarded-Proto"
+    - "X-Forwarded-For"
+    - "X-Client-Verify"
+    - "X-Real-IP"
+    - "X-Client-Cert"
+    - "X-Client-Fingerprint"   
   - port: 80
     targetport: 8085
     lbtype: http
@@ -118,40 +201,69 @@
     healthpath: /ping.jsp?allBusy
     removeheaders:
     - "CipherSuite"
+    - "X-Forwarded-Proto" 
+    - "X-Forwarded-For" 
+    - "X-Real-IP"
     addheaders:
     - name: "X-Salesforce-VIP"
       value: "SLB"
-- lbname: org-test-cs16
+
+- lbname: org-cce2e-cs16
   servers:
-    - cs16-app1-2-iad.ops.sfdc.net
+    - cs16-app1-4-iad.ops.sfdc.net
+    - cs16-app2-5-iad.ops.sfdc.net
     - cs16-app1-3-iad.ops.sfdc.net
-    - cs16-app2-2-iad.ops.sfdc.net
     - cs16-app2-3-iad.ops.sfdc.net
     - cs16-app1-5-iad.ops.sfdc.net
-    - cs16-app2-5-iad.ops.sfdc.net
-    - cs16-app1-4-iad.ops.sfdc.net
+    - cs16-app2-2-iad.ops.sfdc.net
     - cs16-app2-4-iad.ops.sfdc.net
+    - cs16-app1-2-iad.ops.sfdc.net
     - cs16-app1-1-iad.ops.sfdc.net
     - cs16-app2-1-iad.ops.sfdc.net  
   ports:
   - port: 443
-    targetport: 8085
+    targetport: 8090
+    reencrypt: true
+    healthport: 8085
     lbtype: http
     healthprotocol: http
     healthpath: /ping.jsp?allBusy
     sticky: 86400
+    tls: true
+    tlscertificate: secret_service:BofA-Stmfa-VIP-Certs:iad.cce2e.my-salesforce.com.crt
+    tlskey: kms:1:2:B79A5F5D32C69C340DC39183EA315A164E1E7B3D76B680258E4EED91817177AE:9c00f694-4d6d-4b44-90f4-5503c6d2712a
     addheaders:
     - name: "X-Salesforce-VIP"
       value: "SLB"
+    removeheaders:
+    - "X-Forwarded-Proto"
+    - "X-Forwarded-For"
+    - "X-Client-Verify"
+    - "X-Real-IP"
+    - "X-Client-Cert"
+    - "X-Client-Fingerprint" 
   - port: 8443
-    targetport: 8085
+    targetport: 8090
+    reencrypt: true
+    healthport: 8085
     lbtype: http
     healthprotocol: http
     healthpath: /ping.jsp?allBusy
     sticky: 86400
+    tls: true
+    mtls: true
+    tlscertificate: secret_service:BofA-Stmfa-VIP-Certs:iad.cce2e.my-salesforce.com.crt
+    tlskey: kms:1:2:B79A5F5D32C69C340DC39183EA315A164E1E7B3D76B680258E4EED91817177AE:9c00f694-4d6d-4b44-90f4-5503c6d2712a
     addheaders:
     - name: "X-Salesforce-VIP"
-      value: "SLB"   
+      value: "SLB"
+    removeheaders:
+    - "X-Forwarded-Proto"
+    - "X-Forwarded-For"
+    - "X-Client-Verify"
+    - "X-Real-IP"
+    - "X-Client-Cert"
+    - "X-Client-Fingerprint"   
   - port: 80
     targetport: 8085
     lbtype: http
@@ -159,40 +271,69 @@
     healthpath: /ping.jsp?allBusy
     removeheaders:
     - "CipherSuite"
+    - "X-Forwarded-Proto" 
+    - "X-Forwarded-For" 
+    - "X-Real-IP"
     addheaders:
     - name: "X-Salesforce-VIP"
       value: "SLB"
-- lbname: org-test-cs17
+
+- lbname: org-cce2e-cs17
   servers:
-    - cs17-app1-1-iad.ops.sfdc.net
     - cs17-app1-4-iad.ops.sfdc.net
-    - cs17-app2-1-iad.ops.sfdc.net
-    - cs17-app2-3-iad.ops.sfdc.net
-    - cs17-app2-2-iad.ops.sfdc.net
-    - cs17-app1-5-iad.ops.sfdc.net
-    - cs17-app2-4-iad.ops.sfdc.net
     - cs17-app2-5-iad.ops.sfdc.net
+    - cs17-app2-2-iad.ops.sfdc.net
+    - cs17-app1-1-iad.ops.sfdc.net
+    - cs17-app2-1-iad.ops.sfdc.net
+    - cs17-app1-5-iad.ops.sfdc.net
     - cs17-app1-2-iad.ops.sfdc.net
+    - cs17-app2-4-iad.ops.sfdc.net
+    - cs17-app2-3-iad.ops.sfdc.net
     - cs17-app1-3-iad.ops.sfdc.net  
   ports:
   - port: 443
-    targetport: 8085
+    targetport: 8090
+    reencrypt: true
+    healthport: 8085
     lbtype: http
     healthprotocol: http
     healthpath: /ping.jsp?allBusy
     sticky: 86400
+    tls: true
+    tlscertificate: secret_service:BofA-Stmfa-VIP-Certs:iad.cce2e.my-salesforce.com.crt
+    tlskey: kms:1:2:B79A5F5D32C69C340DC39183EA315A164E1E7B3D76B680258E4EED91817177AE:9c00f694-4d6d-4b44-90f4-5503c6d2712a
     addheaders:
     - name: "X-Salesforce-VIP"
       value: "SLB"
+    removeheaders:
+    - "X-Forwarded-Proto"
+    - "X-Forwarded-For"
+    - "X-Client-Verify"
+    - "X-Real-IP"
+    - "X-Client-Cert"
+    - "X-Client-Fingerprint" 
   - port: 8443
-    targetport: 8085
+    targetport: 8090
+    reencrypt: true
+    healthport: 8085
     lbtype: http
     healthprotocol: http
     healthpath: /ping.jsp?allBusy
     sticky: 86400
+    tls: true
+    mtls: true
+    tlscertificate: secret_service:BofA-Stmfa-VIP-Certs:iad.cce2e.my-salesforce.com.crt
+    tlskey: kms:1:2:B79A5F5D32C69C340DC39183EA315A164E1E7B3D76B680258E4EED91817177AE:9c00f694-4d6d-4b44-90f4-5503c6d2712a
     addheaders:
     - name: "X-Salesforce-VIP"
-      value: "SLB"   
+      value: "SLB"
+    removeheaders:
+    - "X-Forwarded-Proto"
+    - "X-Forwarded-For"
+    - "X-Client-Verify"
+    - "X-Real-IP"
+    - "X-Client-Cert"
+    - "X-Client-Fingerprint"   
   - port: 80
     targetport: 8085
     lbtype: http
@@ -200,40 +341,69 @@
     healthpath: /ping.jsp?allBusy
     removeheaders:
     - "CipherSuite"
+    - "X-Forwarded-Proto" 
+    - "X-Forwarded-For" 
+    - "X-Real-IP"
     addheaders:
     - name: "X-Salesforce-VIP"
       value: "SLB"
-- lbname: org-test-cs18
+
+- lbname: org-cce2e-cs18
   servers:
-    - cs18-app1-1-iad.ops.sfdc.net
-    - cs18-app2-4-iad.ops.sfdc.net
-    - cs18-app2-5-iad.ops.sfdc.net
-    - cs18-app1-4-iad.ops.sfdc.net
-    - cs18-app2-1-iad.ops.sfdc.net
-    - cs18-app1-5-iad.ops.sfdc.net
-    - cs18-app2-2-iad.ops.sfdc.net
     - cs18-app1-2-iad.ops.sfdc.net
+    - cs18-app2-4-iad.ops.sfdc.net
+    - cs18-app1-1-iad.ops.sfdc.net
+    - cs18-app2-2-iad.ops.sfdc.net
+    - cs18-app1-4-iad.ops.sfdc.net
     - cs18-app1-3-iad.ops.sfdc.net
-    - cs18-app2-3-iad.ops.sfdc.net  
+    - cs18-app2-5-iad.ops.sfdc.net
+    - cs18-app1-5-iad.ops.sfdc.net
+    - cs18-app2-3-iad.ops.sfdc.net
+    - cs18-app2-1-iad.ops.sfdc.net  
   ports:
   - port: 443
-    targetport: 8085
+    targetport: 8090
+    reencrypt: true
+    healthport: 8085
     lbtype: http
     healthprotocol: http
     healthpath: /ping.jsp?allBusy
     sticky: 86400
+    tls: true
+    tlscertificate: secret_service:BofA-Stmfa-VIP-Certs:iad.cce2e.my-salesforce.com.crt
+    tlskey: kms:1:2:B79A5F5D32C69C340DC39183EA315A164E1E7B3D76B680258E4EED91817177AE:9c00f694-4d6d-4b44-90f4-5503c6d2712a
     addheaders:
     - name: "X-Salesforce-VIP"
       value: "SLB"
+    removeheaders:
+    - "X-Forwarded-Proto"
+    - "X-Forwarded-For"
+    - "X-Client-Verify"
+    - "X-Real-IP"
+    - "X-Client-Cert"
+    - "X-Client-Fingerprint" 
   - port: 8443
-    targetport: 8085
+    targetport: 8090
+    reencrypt: true
+    healthport: 8085
     lbtype: http
     healthprotocol: http
     healthpath: /ping.jsp?allBusy
     sticky: 86400
+    tls: true
+    mtls: true
+    tlscertificate: secret_service:BofA-Stmfa-VIP-Certs:iad.cce2e.my-salesforce.com.crt
+    tlskey: kms:1:2:B79A5F5D32C69C340DC39183EA315A164E1E7B3D76B680258E4EED91817177AE:9c00f694-4d6d-4b44-90f4-5503c6d2712a
     addheaders:
     - name: "X-Salesforce-VIP"
-      value: "SLB"   
+      value: "SLB"
+    removeheaders:
+    - "X-Forwarded-Proto"
+    - "X-Forwarded-For"
+    - "X-Client-Verify"
+    - "X-Real-IP"
+    - "X-Client-Cert"
+    - "X-Client-Fingerprint"   
   - port: 80
     targetport: 8085
     lbtype: http
@@ -241,40 +411,69 @@
     healthpath: /ping.jsp?allBusy
     removeheaders:
     - "CipherSuite"
+    - "X-Forwarded-Proto" 
+    - "X-Forwarded-For" 
+    - "X-Real-IP"
     addheaders:
     - name: "X-Salesforce-VIP"
       value: "SLB"
-- lbname: org-test-cs47
+
+- lbname: org-cce2e-cs47
   servers:
-    - cs47-app2-4-iad.ops.sfdc.net
     - cs47-app2-3-iad.ops.sfdc.net
     - cs47-app1-1-iad.ops.sfdc.net
-    - cs47-app1-3-iad.ops.sfdc.net
-    - cs47-app1-5-iad.ops.sfdc.net
-    - cs47-app2-2-iad.ops.sfdc.net
-    - cs47-app2-1-iad.ops.sfdc.net
-    - cs47-app1-2-iad.ops.sfdc.net
     - cs47-app1-4-iad.ops.sfdc.net
+    - cs47-app2-4-iad.ops.sfdc.net
+    - cs47-app1-2-iad.ops.sfdc.net
+    - cs47-app1-5-iad.ops.sfdc.net
+    - cs47-app2-1-iad.ops.sfdc.net
+    - cs47-app2-2-iad.ops.sfdc.net
+    - cs47-app1-3-iad.ops.sfdc.net
     - cs47-app2-5-iad.ops.sfdc.net  
   ports:
   - port: 443
-    targetport: 8085
+    targetport: 8090
+    reencrypt: true
+    healthport: 8085
     lbtype: http
     healthprotocol: http
     healthpath: /ping.jsp?allBusy
     sticky: 86400
+    tls: true
+    tlscertificate: secret_service:BofA-Stmfa-VIP-Certs:iad.cce2e.my-salesforce.com.crt
+    tlskey: kms:1:2:B79A5F5D32C69C340DC39183EA315A164E1E7B3D76B680258E4EED91817177AE:9c00f694-4d6d-4b44-90f4-5503c6d2712a
     addheaders:
     - name: "X-Salesforce-VIP"
       value: "SLB"
+    removeheaders:
+    - "X-Forwarded-Proto"
+    - "X-Forwarded-For"
+    - "X-Client-Verify"
+    - "X-Real-IP"
+    - "X-Client-Cert"
+    - "X-Client-Fingerprint" 
   - port: 8443
-    targetport: 8085
+    targetport: 8090
+    reencrypt: true
+    healthport: 8085
     lbtype: http
     healthprotocol: http
     healthpath: /ping.jsp?allBusy
     sticky: 86400
+    tls: true
+    mtls: true
+    tlscertificate: secret_service:BofA-Stmfa-VIP-Certs:iad.cce2e.my-salesforce.com.crt
+    tlskey: kms:1:2:B79A5F5D32C69C340DC39183EA315A164E1E7B3D76B680258E4EED91817177AE:9c00f694-4d6d-4b44-90f4-5503c6d2712a
     addheaders:
     - name: "X-Salesforce-VIP"
-      value: "SLB"   
+      value: "SLB"
+    removeheaders:
+    - "X-Forwarded-Proto"
+    - "X-Forwarded-For"
+    - "X-Client-Verify"
+    - "X-Real-IP"
+    - "X-Client-Cert"
+    - "X-Client-Fingerprint"   
   - port: 80
     targetport: 8085
     lbtype: http
@@ -282,40 +481,69 @@
     healthpath: /ping.jsp?allBusy
     removeheaders:
     - "CipherSuite"
+    - "X-Forwarded-Proto" 
+    - "X-Forwarded-For" 
+    - "X-Real-IP"
     addheaders:
     - name: "X-Salesforce-VIP"
       value: "SLB"
-- lbname: org-test-cs64
+
+- lbname: org-cce2e-cs64
   servers:
-    - cs64-app1-4-iad.ops.sfdc.net
-    - cs64-app2-1-iad.ops.sfdc.net
     - cs64-app1-2-iad.ops.sfdc.net
-    - cs64-app1-3-iad.ops.sfdc.net
-    - cs64-app2-3-iad.ops.sfdc.net
-    - cs64-app2-2-iad.ops.sfdc.net
-    - cs64-app1-5-iad.ops.sfdc.net
+    - cs64-app1-4-iad.ops.sfdc.net
+    - cs64-app2-4-iad.ops.sfdc.net
     - cs64-app2-5-iad.ops.sfdc.net
+    - cs64-app2-2-iad.ops.sfdc.net
+    - cs64-app2-1-iad.ops.sfdc.net
+    - cs64-app2-3-iad.ops.sfdc.net
     - cs64-app1-1-iad.ops.sfdc.net
-    - cs64-app2-4-iad.ops.sfdc.net  
+    - cs64-app1-3-iad.ops.sfdc.net
+    - cs64-app1-5-iad.ops.sfdc.net  
   ports:
   - port: 443
-    targetport: 8085
+    targetport: 8090
+    reencrypt: true
+    healthport: 8085
     lbtype: http
     healthprotocol: http
     healthpath: /ping.jsp?allBusy
     sticky: 86400
+    tls: true
+    tlscertificate: secret_service:BofA-Stmfa-VIP-Certs:iad.cce2e.my-salesforce.com.crt
+    tlskey: kms:1:2:B79A5F5D32C69C340DC39183EA315A164E1E7B3D76B680258E4EED91817177AE:9c00f694-4d6d-4b44-90f4-5503c6d2712a
     addheaders:
     - name: "X-Salesforce-VIP"
       value: "SLB"
+    removeheaders:
+    - "X-Forwarded-Proto"
+    - "X-Forwarded-For"
+    - "X-Client-Verify"
+    - "X-Real-IP"
+    - "X-Client-Cert"
+    - "X-Client-Fingerprint" 
   - port: 8443
-    targetport: 8085
+    targetport: 8090
+    reencrypt: true
+    healthport: 8085
     lbtype: http
     healthprotocol: http
     healthpath: /ping.jsp?allBusy
     sticky: 86400
+    tls: true
+    mtls: true
+    tlscertificate: secret_service:BofA-Stmfa-VIP-Certs:iad.cce2e.my-salesforce.com.crt
+    tlskey: kms:1:2:B79A5F5D32C69C340DC39183EA315A164E1E7B3D76B680258E4EED91817177AE:9c00f694-4d6d-4b44-90f4-5503c6d2712a
     addheaders:
     - name: "X-Salesforce-VIP"
-      value: "SLB"   
+      value: "SLB"
+    removeheaders:
+    - "X-Forwarded-Proto"
+    - "X-Forwarded-For"
+    - "X-Client-Verify"
+    - "X-Real-IP"
+    - "X-Client-Cert"
+    - "X-Client-Fingerprint"   
   - port: 80
     targetport: 8085
     lbtype: http
@@ -323,40 +551,69 @@
     healthpath: /ping.jsp?allBusy
     removeheaders:
     - "CipherSuite"
+    - "X-Forwarded-Proto" 
+    - "X-Forwarded-For" 
+    - "X-Real-IP"
     addheaders:
     - name: "X-Salesforce-VIP"
       value: "SLB"
-- lbname: org-test-cs65
+
+- lbname: org-cce2e-cs65
   servers:
-    - cs65-app2-1-iad.ops.sfdc.net
-    - cs65-app2-2-iad.ops.sfdc.net
-    - cs65-app1-1-iad.ops.sfdc.net
-    - cs65-app1-5-iad.ops.sfdc.net
     - cs65-app1-4-iad.ops.sfdc.net
-    - cs65-app2-5-iad.ops.sfdc.net
-    - cs65-app2-3-iad.ops.sfdc.net
     - cs65-app1-3-iad.ops.sfdc.net
+    - cs65-app2-3-iad.ops.sfdc.net
     - cs65-app1-2-iad.ops.sfdc.net
+    - cs65-app1-5-iad.ops.sfdc.net
+    - cs65-app1-1-iad.ops.sfdc.net
+    - cs65-app2-2-iad.ops.sfdc.net
+    - cs65-app2-5-iad.ops.sfdc.net
+    - cs65-app2-1-iad.ops.sfdc.net
     - cs65-app2-4-iad.ops.sfdc.net  
   ports:
   - port: 443
-    targetport: 8085
+    targetport: 8090
+    reencrypt: true
+    healthport: 8085
     lbtype: http
     healthprotocol: http
     healthpath: /ping.jsp?allBusy
     sticky: 86400
+    tls: true
+    tlscertificate: secret_service:BofA-Stmfa-VIP-Certs:iad.cce2e.my-salesforce.com.crt
+    tlskey: kms:1:2:B79A5F5D32C69C340DC39183EA315A164E1E7B3D76B680258E4EED91817177AE:9c00f694-4d6d-4b44-90f4-5503c6d2712a
     addheaders:
     - name: "X-Salesforce-VIP"
       value: "SLB"
+    removeheaders:
+    - "X-Forwarded-Proto"
+    - "X-Forwarded-For"
+    - "X-Client-Verify"
+    - "X-Real-IP"
+    - "X-Client-Cert"
+    - "X-Client-Fingerprint" 
   - port: 8443
-    targetport: 8085
+    targetport: 8090
+    reencrypt: true
+    healthport: 8085
     lbtype: http
     healthprotocol: http
     healthpath: /ping.jsp?allBusy
     sticky: 86400
+    tls: true
+    mtls: true
+    tlscertificate: secret_service:BofA-Stmfa-VIP-Certs:iad.cce2e.my-salesforce.com.crt
+    tlskey: kms:1:2:B79A5F5D32C69C340DC39183EA315A164E1E7B3D76B680258E4EED91817177AE:9c00f694-4d6d-4b44-90f4-5503c6d2712a
     addheaders:
     - name: "X-Salesforce-VIP"
-      value: "SLB"   
+      value: "SLB"
+    removeheaders:
+    - "X-Forwarded-Proto"
+    - "X-Forwarded-For"
+    - "X-Client-Verify"
+    - "X-Real-IP"
+    - "X-Client-Cert"
+    - "X-Client-Fingerprint"   
   - port: 80
     targetport: 8085
     lbtype: http
@@ -364,40 +621,69 @@
     healthpath: /ping.jsp?allBusy
     removeheaders:
     - "CipherSuite"
+    - "X-Forwarded-Proto" 
+    - "X-Forwarded-For" 
+    - "X-Real-IP"
     addheaders:
     - name: "X-Salesforce-VIP"
       value: "SLB"
-- lbname: org-test-cs66
+
+- lbname: org-cce2e-cs66
   servers:
-    - cs66-app1-1-iad.ops.sfdc.net
-    - cs66-app1-3-iad.ops.sfdc.net
-    - cs66-app1-4-iad.ops.sfdc.net
-    - cs66-app2-1-iad.ops.sfdc.net
+    - cs66-app2-5-iad.ops.sfdc.net
     - cs66-app2-4-iad.ops.sfdc.net
     - cs66-app1-5-iad.ops.sfdc.net
+    - cs66-app1-3-iad.ops.sfdc.net
+    - cs66-app2-1-iad.ops.sfdc.net
+    - cs66-app1-4-iad.ops.sfdc.net
     - cs66-app2-3-iad.ops.sfdc.net
-    - cs66-app2-5-iad.ops.sfdc.net
+    - cs66-app1-1-iad.ops.sfdc.net
     - cs66-app1-2-iad.ops.sfdc.net
     - cs66-app2-2-iad.ops.sfdc.net  
   ports:
   - port: 443
-    targetport: 8085
+    targetport: 8090
+    reencrypt: true
+    healthport: 8085
     lbtype: http
     healthprotocol: http
     healthpath: /ping.jsp?allBusy
     sticky: 86400
+    tls: true
+    tlscertificate: secret_service:BofA-Stmfa-VIP-Certs:iad.cce2e.my-salesforce.com.crt
+    tlskey: kms:1:2:B79A5F5D32C69C340DC39183EA315A164E1E7B3D76B680258E4EED91817177AE:9c00f694-4d6d-4b44-90f4-5503c6d2712a
     addheaders:
     - name: "X-Salesforce-VIP"
       value: "SLB"
+    removeheaders:
+    - "X-Forwarded-Proto"
+    - "X-Forwarded-For"
+    - "X-Client-Verify"
+    - "X-Real-IP"
+    - "X-Client-Cert"
+    - "X-Client-Fingerprint" 
   - port: 8443
-    targetport: 8085
+    targetport: 8090
+    reencrypt: true
+    healthport: 8085
     lbtype: http
     healthprotocol: http
     healthpath: /ping.jsp?allBusy
     sticky: 86400
+    tls: true
+    mtls: true
+    tlscertificate: secret_service:BofA-Stmfa-VIP-Certs:iad.cce2e.my-salesforce.com.crt
+    tlskey: kms:1:2:B79A5F5D32C69C340DC39183EA315A164E1E7B3D76B680258E4EED91817177AE:9c00f694-4d6d-4b44-90f4-5503c6d2712a
     addheaders:
     - name: "X-Salesforce-VIP"
-      value: "SLB"   
+      value: "SLB"
+    removeheaders:
+    - "X-Forwarded-Proto"
+    - "X-Forwarded-For"
+    - "X-Client-Verify"
+    - "X-Real-IP"
+    - "X-Client-Cert"
+    - "X-Client-Fingerprint"   
   - port: 80
     targetport: 8085
     lbtype: http
@@ -405,40 +691,69 @@
     healthpath: /ping.jsp?allBusy
     removeheaders:
     - "CipherSuite"
+    - "X-Forwarded-Proto" 
+    - "X-Forwarded-For" 
+    - "X-Real-IP"
     addheaders:
     - name: "X-Salesforce-VIP"
       value: "SLB"
-- lbname: org-test-cs67
+
+- lbname: org-cce2e-cs67
   servers:
-    - cs67-app2-1-iad.ops.sfdc.net
-    - cs67-app2-5-iad.ops.sfdc.net
-    - cs67-app2-4-iad.ops.sfdc.net
-    - cs67-app1-1-iad.ops.sfdc.net
-    - cs67-app1-2-iad.ops.sfdc.net
-    - cs67-app1-3-iad.ops.sfdc.net
     - cs67-app2-2-iad.ops.sfdc.net
+    - cs67-app2-4-iad.ops.sfdc.net
     - cs67-app1-5-iad.ops.sfdc.net
     - cs67-app2-3-iad.ops.sfdc.net
+    - cs67-app2-5-iad.ops.sfdc.net
+    - cs67-app2-1-iad.ops.sfdc.net
+    - cs67-app1-2-iad.ops.sfdc.net
+    - cs67-app1-3-iad.ops.sfdc.net
+    - cs67-app1-1-iad.ops.sfdc.net
     - cs67-app1-4-iad.ops.sfdc.net  
   ports:
   - port: 443
-    targetport: 8085
+    targetport: 8090
+    reencrypt: true
+    healthport: 8085
     lbtype: http
     healthprotocol: http
     healthpath: /ping.jsp?allBusy
     sticky: 86400
+    tls: true
+    tlscertificate: secret_service:BofA-Stmfa-VIP-Certs:iad.cce2e.my-salesforce.com.crt
+    tlskey: kms:1:2:B79A5F5D32C69C340DC39183EA315A164E1E7B3D76B680258E4EED91817177AE:9c00f694-4d6d-4b44-90f4-5503c6d2712a
     addheaders:
     - name: "X-Salesforce-VIP"
       value: "SLB"
+    removeheaders:
+    - "X-Forwarded-Proto"
+    - "X-Forwarded-For"
+    - "X-Client-Verify"
+    - "X-Real-IP"
+    - "X-Client-Cert"
+    - "X-Client-Fingerprint" 
   - port: 8443
-    targetport: 8085
+    targetport: 8090
+    reencrypt: true
+    healthport: 8085
     lbtype: http
     healthprotocol: http
     healthpath: /ping.jsp?allBusy
     sticky: 86400
+    tls: true
+    mtls: true
+    tlscertificate: secret_service:BofA-Stmfa-VIP-Certs:iad.cce2e.my-salesforce.com.crt
+    tlskey: kms:1:2:B79A5F5D32C69C340DC39183EA315A164E1E7B3D76B680258E4EED91817177AE:9c00f694-4d6d-4b44-90f4-5503c6d2712a
     addheaders:
     - name: "X-Salesforce-VIP"
-      value: "SLB"   
+      value: "SLB"
+    removeheaders:
+    - "X-Forwarded-Proto"
+    - "X-Forwarded-For"
+    - "X-Client-Verify"
+    - "X-Real-IP"
+    - "X-Client-Cert"
+    - "X-Client-Fingerprint"   
   - port: 80
     targetport: 8085
     lbtype: http
@@ -446,40 +761,69 @@
     healthpath: /ping.jsp?allBusy
     removeheaders:
     - "CipherSuite"
+    - "X-Forwarded-Proto" 
+    - "X-Forwarded-For" 
+    - "X-Real-IP"
     addheaders:
     - name: "X-Salesforce-VIP"
       value: "SLB"
-- lbname: org-test-cs77
+
+- lbname: org-cce2e-cs77
   servers:
-    - cs77-app2-3-iad.ops.sfdc.net
-    - cs77-app2-5-iad.ops.sfdc.net
     - cs77-app1-1-iad.ops.sfdc.net
-    - cs77-app1-5-iad.ops.sfdc.net
     - cs77-app1-2-iad.ops.sfdc.net
     - cs77-app1-4-iad.ops.sfdc.net
-    - cs77-app2-4-iad.ops.sfdc.net
-    - cs77-app2-2-iad.ops.sfdc.net
     - cs77-app2-1-iad.ops.sfdc.net
-    - cs77-app1-3-iad.ops.sfdc.net  
+    - cs77-app2-4-iad.ops.sfdc.net
+    - cs77-app1-3-iad.ops.sfdc.net
+    - cs77-app2-2-iad.ops.sfdc.net
+    - cs77-app2-5-iad.ops.sfdc.net
+    - cs77-app2-3-iad.ops.sfdc.net
+    - cs77-app1-5-iad.ops.sfdc.net  
   ports:
   - port: 443
-    targetport: 8085
+    targetport: 8090
+    reencrypt: true
+    healthport: 8085
     lbtype: http
     healthprotocol: http
     healthpath: /ping.jsp?allBusy
     sticky: 86400
+    tls: true
+    tlscertificate: secret_service:BofA-Stmfa-VIP-Certs:iad.cce2e.my-salesforce.com.crt
+    tlskey: kms:1:2:B79A5F5D32C69C340DC39183EA315A164E1E7B3D76B680258E4EED91817177AE:9c00f694-4d6d-4b44-90f4-5503c6d2712a
     addheaders:
     - name: "X-Salesforce-VIP"
       value: "SLB"
+    removeheaders:
+    - "X-Forwarded-Proto"
+    - "X-Forwarded-For"
+    - "X-Client-Verify"
+    - "X-Real-IP"
+    - "X-Client-Cert"
+    - "X-Client-Fingerprint" 
   - port: 8443
-    targetport: 8085
+    targetport: 8090
+    reencrypt: true
+    healthport: 8085
     lbtype: http
     healthprotocol: http
     healthpath: /ping.jsp?allBusy
     sticky: 86400
+    tls: true
+    mtls: true
+    tlscertificate: secret_service:BofA-Stmfa-VIP-Certs:iad.cce2e.my-salesforce.com.crt
+    tlskey: kms:1:2:B79A5F5D32C69C340DC39183EA315A164E1E7B3D76B680258E4EED91817177AE:9c00f694-4d6d-4b44-90f4-5503c6d2712a
     addheaders:
     - name: "X-Salesforce-VIP"
-      value: "SLB"   
+      value: "SLB"
+    removeheaders:
+    - "X-Forwarded-Proto"
+    - "X-Forwarded-For"
+    - "X-Client-Verify"
+    - "X-Real-IP"
+    - "X-Client-Cert"
+    - "X-Client-Fingerprint"   
   - port: 80
     targetport: 8085
     lbtype: http
@@ -487,40 +831,69 @@
     healthpath: /ping.jsp?allBusy
     removeheaders:
     - "CipherSuite"
+    - "X-Forwarded-Proto" 
+    - "X-Forwarded-For" 
+    - "X-Real-IP"
     addheaders:
     - name: "X-Salesforce-VIP"
       value: "SLB"
-- lbname: org-test-cs78
+
+- lbname: org-cce2e-cs78
   servers:
+    - cs78-app1-3-iad.ops.sfdc.net
     - cs78-app2-3-iad.ops.sfdc.net
+    - cs78-app2-1-iad.ops.sfdc.net
     - cs78-app1-1-iad.ops.sfdc.net
     - cs78-app1-4-iad.ops.sfdc.net
-    - cs78-app1-2-iad.ops.sfdc.net
-    - cs78-app2-4-iad.ops.sfdc.net
-    - cs78-app2-5-iad.ops.sfdc.net
-    - cs78-app2-2-iad.ops.sfdc.net
-    - cs78-app2-1-iad.ops.sfdc.net
     - cs78-app1-5-iad.ops.sfdc.net
-    - cs78-app1-3-iad.ops.sfdc.net  
+    - cs78-app2-5-iad.ops.sfdc.net
+    - cs78-app1-2-iad.ops.sfdc.net
+    - cs78-app2-2-iad.ops.sfdc.net
+    - cs78-app2-4-iad.ops.sfdc.net  
   ports:
   - port: 443
-    targetport: 8085
+    targetport: 8090
+    reencrypt: true
+    healthport: 8085
     lbtype: http
     healthprotocol: http
     healthpath: /ping.jsp?allBusy
     sticky: 86400
+    tls: true
+    tlscertificate: secret_service:BofA-Stmfa-VIP-Certs:iad.cce2e.my-salesforce.com.crt
+    tlskey: kms:1:2:B79A5F5D32C69C340DC39183EA315A164E1E7B3D76B680258E4EED91817177AE:9c00f694-4d6d-4b44-90f4-5503c6d2712a
     addheaders:
     - name: "X-Salesforce-VIP"
       value: "SLB"
+    removeheaders:
+    - "X-Forwarded-Proto"
+    - "X-Forwarded-For"
+    - "X-Client-Verify"
+    - "X-Real-IP"
+    - "X-Client-Cert"
+    - "X-Client-Fingerprint" 
   - port: 8443
-    targetport: 8085
+    targetport: 8090
+    reencrypt: true
+    healthport: 8085
     lbtype: http
     healthprotocol: http
     healthpath: /ping.jsp?allBusy
     sticky: 86400
+    tls: true
+    mtls: true
+    tlscertificate: secret_service:BofA-Stmfa-VIP-Certs:iad.cce2e.my-salesforce.com.crt
+    tlskey: kms:1:2:B79A5F5D32C69C340DC39183EA315A164E1E7B3D76B680258E4EED91817177AE:9c00f694-4d6d-4b44-90f4-5503c6d2712a
     addheaders:
     - name: "X-Salesforce-VIP"
-      value: "SLB"   
+      value: "SLB"
+    removeheaders:
+    - "X-Forwarded-Proto"
+    - "X-Forwarded-For"
+    - "X-Client-Verify"
+    - "X-Real-IP"
+    - "X-Client-Cert"
+    - "X-Client-Fingerprint"   
   - port: 80
     targetport: 8085
     lbtype: http
@@ -528,40 +901,69 @@
     healthpath: /ping.jsp?allBusy
     removeheaders:
     - "CipherSuite"
+    - "X-Forwarded-Proto" 
+    - "X-Forwarded-For" 
+    - "X-Real-IP"
     addheaders:
     - name: "X-Salesforce-VIP"
       value: "SLB"
-- lbname: org-test-cs79
+
+- lbname: org-cce2e-cs79
   servers:
-    - cs79-app1-4-iad.ops.sfdc.net
-    - cs79-app1-3-iad.ops.sfdc.net
     - cs79-app1-5-iad.ops.sfdc.net
+    - cs79-app1-4-iad.ops.sfdc.net
     - cs79-app2-4-iad.ops.sfdc.net
+    - cs79-app1-2-iad.ops.sfdc.net
     - cs79-app2-1-iad.ops.sfdc.net
+    - cs79-app1-3-iad.ops.sfdc.net
     - cs79-app2-5-iad.ops.sfdc.net
     - cs79-app1-1-iad.ops.sfdc.net
     - cs79-app2-2-iad.ops.sfdc.net
-    - cs79-app1-2-iad.ops.sfdc.net
     - cs79-app2-3-iad.ops.sfdc.net  
   ports:
   - port: 443
-    targetport: 8085
+    targetport: 8090
+    reencrypt: true
+    healthport: 8085
     lbtype: http
     healthprotocol: http
     healthpath: /ping.jsp?allBusy
     sticky: 86400
+    tls: true
+    tlscertificate: secret_service:BofA-Stmfa-VIP-Certs:iad.cce2e.my-salesforce.com.crt
+    tlskey: kms:1:2:B79A5F5D32C69C340DC39183EA315A164E1E7B3D76B680258E4EED91817177AE:9c00f694-4d6d-4b44-90f4-5503c6d2712a
     addheaders:
     - name: "X-Salesforce-VIP"
       value: "SLB"
+    removeheaders:
+    - "X-Forwarded-Proto"
+    - "X-Forwarded-For"
+    - "X-Client-Verify"
+    - "X-Real-IP"
+    - "X-Client-Cert"
+    - "X-Client-Fingerprint" 
   - port: 8443
-    targetport: 8085
+    targetport: 8090
+    reencrypt: true
+    healthport: 8085
     lbtype: http
     healthprotocol: http
     healthpath: /ping.jsp?allBusy
     sticky: 86400
+    tls: true
+    mtls: true
+    tlscertificate: secret_service:BofA-Stmfa-VIP-Certs:iad.cce2e.my-salesforce.com.crt
+    tlskey: kms:1:2:B79A5F5D32C69C340DC39183EA315A164E1E7B3D76B680258E4EED91817177AE:9c00f694-4d6d-4b44-90f4-5503c6d2712a
     addheaders:
     - name: "X-Salesforce-VIP"
-      value: "SLB"   
+      value: "SLB"
+    removeheaders:
+    - "X-Forwarded-Proto"
+    - "X-Forwarded-For"
+    - "X-Client-Verify"
+    - "X-Real-IP"
+    - "X-Client-Cert"
+    - "X-Client-Fingerprint"   
   - port: 80
     targetport: 8085
     lbtype: http
@@ -569,40 +971,69 @@
     healthpath: /ping.jsp?allBusy
     removeheaders:
     - "CipherSuite"
+    - "X-Forwarded-Proto" 
+    - "X-Forwarded-For" 
+    - "X-Real-IP"
     addheaders:
     - name: "X-Salesforce-VIP"
       value: "SLB"
-- lbname: org-test-cs92
+
+- lbname: org-cce2e-cs92
   servers:
-    - cs92-app2-1-iad.ops.sfdc.net
-    - cs92-app2-5-iad.ops.sfdc.net
-    - cs92-app2-3-iad.ops.sfdc.net
-    - cs92-app2-4-iad.ops.sfdc.net
-    - cs92-app1-4-iad.ops.sfdc.net
-    - cs92-app1-3-iad.ops.sfdc.net
-    - cs92-app1-1-iad.ops.sfdc.net
     - cs92-app1-2-iad.ops.sfdc.net
+    - cs92-app2-4-iad.ops.sfdc.net
+    - cs92-app1-1-iad.ops.sfdc.net
+    - cs92-app2-1-iad.ops.sfdc.net
+    - cs92-app1-3-iad.ops.sfdc.net
+    - cs92-app2-3-iad.ops.sfdc.net
+    - cs92-app1-4-iad.ops.sfdc.net
     - cs92-app2-2-iad.ops.sfdc.net
+    - cs92-app2-5-iad.ops.sfdc.net
     - cs92-app1-5-iad.ops.sfdc.net  
   ports:
   - port: 443
-    targetport: 8085
+    targetport: 8090
+    reencrypt: true
+    healthport: 8085
     lbtype: http
     healthprotocol: http
     healthpath: /ping.jsp?allBusy
     sticky: 86400
+    tls: true
+    tlscertificate: secret_service:BofA-Stmfa-VIP-Certs:iad.cce2e.my-salesforce.com.crt
+    tlskey: kms:1:2:B79A5F5D32C69C340DC39183EA315A164E1E7B3D76B680258E4EED91817177AE:9c00f694-4d6d-4b44-90f4-5503c6d2712a
     addheaders:
     - name: "X-Salesforce-VIP"
       value: "SLB"
+    removeheaders:
+    - "X-Forwarded-Proto"
+    - "X-Forwarded-For"
+    - "X-Client-Verify"
+    - "X-Real-IP"
+    - "X-Client-Cert"
+    - "X-Client-Fingerprint" 
   - port: 8443
-    targetport: 8085
+    targetport: 8090
+    reencrypt: true
+    healthport: 8085
     lbtype: http
     healthprotocol: http
     healthpath: /ping.jsp?allBusy
     sticky: 86400
+    tls: true
+    mtls: true
+    tlscertificate: secret_service:BofA-Stmfa-VIP-Certs:iad.cce2e.my-salesforce.com.crt
+    tlskey: kms:1:2:B79A5F5D32C69C340DC39183EA315A164E1E7B3D76B680258E4EED91817177AE:9c00f694-4d6d-4b44-90f4-5503c6d2712a
     addheaders:
     - name: "X-Salesforce-VIP"
-      value: "SLB"   
+      value: "SLB"
+    removeheaders:
+    - "X-Forwarded-Proto"
+    - "X-Forwarded-For"
+    - "X-Client-Verify"
+    - "X-Real-IP"
+    - "X-Client-Cert"
+    - "X-Client-Fingerprint"   
   - port: 80
     targetport: 8085
     lbtype: http
@@ -610,40 +1041,69 @@
     healthpath: /ping.jsp?allBusy
     removeheaders:
     - "CipherSuite"
+    - "X-Forwarded-Proto" 
+    - "X-Forwarded-For" 
+    - "X-Real-IP"
     addheaders:
     - name: "X-Salesforce-VIP"
       value: "SLB"
-- lbname: org-test-cs93
+
+- lbname: org-cce2e-cs93
   servers:
-    - cs93-app1-3-iad.ops.sfdc.net
-    - cs93-app1-2-iad.ops.sfdc.net
-    - cs93-app2-5-iad.ops.sfdc.net
+    - cs93-app1-1-iad.ops.sfdc.net
+    - cs93-app1-5-iad.ops.sfdc.net
     - cs93-app2-1-iad.ops.sfdc.net
     - cs93-app2-2-iad.ops.sfdc.net
     - cs93-app2-4-iad.ops.sfdc.net
-    - cs93-app1-5-iad.ops.sfdc.net
-    - cs93-app1-1-iad.ops.sfdc.net
     - cs93-app2-3-iad.ops.sfdc.net
+    - cs93-app2-5-iad.ops.sfdc.net
+    - cs93-app1-2-iad.ops.sfdc.net
+    - cs93-app1-3-iad.ops.sfdc.net
     - cs93-app1-4-iad.ops.sfdc.net  
   ports:
   - port: 443
-    targetport: 8085
+    targetport: 8090
+    reencrypt: true
+    healthport: 8085
     lbtype: http
     healthprotocol: http
     healthpath: /ping.jsp?allBusy
     sticky: 86400
+    tls: true
+    tlscertificate: secret_service:BofA-Stmfa-VIP-Certs:iad.cce2e.my-salesforce.com.crt
+    tlskey: kms:1:2:B79A5F5D32C69C340DC39183EA315A164E1E7B3D76B680258E4EED91817177AE:9c00f694-4d6d-4b44-90f4-5503c6d2712a
     addheaders:
     - name: "X-Salesforce-VIP"
       value: "SLB"
+    removeheaders:
+    - "X-Forwarded-Proto"
+    - "X-Forwarded-For"
+    - "X-Client-Verify"
+    - "X-Real-IP"
+    - "X-Client-Cert"
+    - "X-Client-Fingerprint" 
   - port: 8443
-    targetport: 8085
+    targetport: 8090
+    reencrypt: true
+    healthport: 8085
     lbtype: http
     healthprotocol: http
     healthpath: /ping.jsp?allBusy
     sticky: 86400
+    tls: true
+    mtls: true
+    tlscertificate: secret_service:BofA-Stmfa-VIP-Certs:iad.cce2e.my-salesforce.com.crt
+    tlskey: kms:1:2:B79A5F5D32C69C340DC39183EA315A164E1E7B3D76B680258E4EED91817177AE:9c00f694-4d6d-4b44-90f4-5503c6d2712a
     addheaders:
     - name: "X-Salesforce-VIP"
-      value: "SLB"   
+      value: "SLB"
+    removeheaders:
+    - "X-Forwarded-Proto"
+    - "X-Forwarded-For"
+    - "X-Client-Verify"
+    - "X-Real-IP"
+    - "X-Client-Cert"
+    - "X-Client-Fingerprint"   
   - port: 80
     targetport: 8085
     lbtype: http
@@ -651,40 +1111,69 @@
     healthpath: /ping.jsp?allBusy
     removeheaders:
     - "CipherSuite"
+    - "X-Forwarded-Proto" 
+    - "X-Forwarded-For" 
+    - "X-Real-IP"
     addheaders:
     - name: "X-Salesforce-VIP"
       value: "SLB"
-- lbname: org-test-cs94
+
+- lbname: org-cce2e-cs94
   servers:
-    - cs94-app2-4-iad.ops.sfdc.net
     - cs94-app1-4-iad.ops.sfdc.net
-    - cs94-app1-1-iad.ops.sfdc.net
-    - cs94-app2-5-iad.ops.sfdc.net
-    - cs94-app1-3-iad.ops.sfdc.net
-    - cs94-app2-2-iad.ops.sfdc.net
-    - cs94-app2-1-iad.ops.sfdc.net
-    - cs94-app1-2-iad.ops.sfdc.net
     - cs94-app1-5-iad.ops.sfdc.net
-    - cs94-app2-3-iad.ops.sfdc.net  
+    - cs94-app1-1-iad.ops.sfdc.net
+    - cs94-app1-2-iad.ops.sfdc.net
+    - cs94-app2-4-iad.ops.sfdc.net
+    - cs94-app2-2-iad.ops.sfdc.net
+    - cs94-app1-3-iad.ops.sfdc.net
+    - cs94-app2-3-iad.ops.sfdc.net
+    - cs94-app2-1-iad.ops.sfdc.net
+    - cs94-app2-5-iad.ops.sfdc.net  
   ports:
   - port: 443
-    targetport: 8085
+    targetport: 8090
+    reencrypt: true
+    healthport: 8085
     lbtype: http
     healthprotocol: http
     healthpath: /ping.jsp?allBusy
     sticky: 86400
+    tls: true
+    tlscertificate: secret_service:BofA-Stmfa-VIP-Certs:iad.cce2e.my-salesforce.com.crt
+    tlskey: kms:1:2:B79A5F5D32C69C340DC39183EA315A164E1E7B3D76B680258E4EED91817177AE:9c00f694-4d6d-4b44-90f4-5503c6d2712a
     addheaders:
     - name: "X-Salesforce-VIP"
       value: "SLB"
+    removeheaders:
+    - "X-Forwarded-Proto"
+    - "X-Forwarded-For"
+    - "X-Client-Verify"
+    - "X-Real-IP"
+    - "X-Client-Cert"
+    - "X-Client-Fingerprint" 
   - port: 8443
-    targetport: 8085
+    targetport: 8090
+    reencrypt: true
+    healthport: 8085
     lbtype: http
     healthprotocol: http
     healthpath: /ping.jsp?allBusy
     sticky: 86400
+    tls: true
+    mtls: true
+    tlscertificate: secret_service:BofA-Stmfa-VIP-Certs:iad.cce2e.my-salesforce.com.crt
+    tlskey: kms:1:2:B79A5F5D32C69C340DC39183EA315A164E1E7B3D76B680258E4EED91817177AE:9c00f694-4d6d-4b44-90f4-5503c6d2712a
     addheaders:
     - name: "X-Salesforce-VIP"
-      value: "SLB"   
+      value: "SLB"
+    removeheaders:
+    - "X-Forwarded-Proto"
+    - "X-Forwarded-For"
+    - "X-Client-Verify"
+    - "X-Real-IP"
+    - "X-Client-Cert"
+    - "X-Client-Fingerprint"   
   - port: 80
     targetport: 8085
     lbtype: http
@@ -692,40 +1181,69 @@
     healthpath: /ping.jsp?allBusy
     removeheaders:
     - "CipherSuite"
+    - "X-Forwarded-Proto" 
+    - "X-Forwarded-For" 
+    - "X-Real-IP"
     addheaders:
     - name: "X-Salesforce-VIP"
       value: "SLB"
-- lbname: org-test-cs95
+
+- lbname: org-cce2e-cs95
   servers:
     - cs95-app1-3-iad.ops.sfdc.net
-    - cs95-app2-2-iad.ops.sfdc.net
-    - cs95-app1-2-iad.ops.sfdc.net
+    - cs95-app2-1-iad.ops.sfdc.net
     - cs95-app2-3-iad.ops.sfdc.net
+    - cs95-app1-1-iad.ops.sfdc.net
+    - cs95-app1-2-iad.ops.sfdc.net
+    - cs95-app2-5-iad.ops.sfdc.net
     - cs95-app1-5-iad.ops.sfdc.net
     - cs95-app1-4-iad.ops.sfdc.net
-    - cs95-app2-1-iad.ops.sfdc.net
-    - cs95-app1-1-iad.ops.sfdc.net
-    - cs95-app2-5-iad.ops.sfdc.net
-    - cs95-app2-4-iad.ops.sfdc.net  
+    - cs95-app2-4-iad.ops.sfdc.net
+    - cs95-app2-2-iad.ops.sfdc.net  
   ports:
   - port: 443
-    targetport: 8085
+    targetport: 8090
+    reencrypt: true
+    healthport: 8085
     lbtype: http
     healthprotocol: http
     healthpath: /ping.jsp?allBusy
     sticky: 86400
+    tls: true
+    tlscertificate: secret_service:BofA-Stmfa-VIP-Certs:iad.cce2e.my-salesforce.com.crt
+    tlskey: kms:1:2:B79A5F5D32C69C340DC39183EA315A164E1E7B3D76B680258E4EED91817177AE:9c00f694-4d6d-4b44-90f4-5503c6d2712a
     addheaders:
     - name: "X-Salesforce-VIP"
       value: "SLB"
+    removeheaders:
+    - "X-Forwarded-Proto"
+    - "X-Forwarded-For"
+    - "X-Client-Verify"
+    - "X-Real-IP"
+    - "X-Client-Cert"
+    - "X-Client-Fingerprint" 
   - port: 8443
-    targetport: 8085
+    targetport: 8090
+    reencrypt: true
+    healthport: 8085
     lbtype: http
     healthprotocol: http
     healthpath: /ping.jsp?allBusy
     sticky: 86400
+    tls: true
+    mtls: true
+    tlscertificate: secret_service:BofA-Stmfa-VIP-Certs:iad.cce2e.my-salesforce.com.crt
+    tlskey: kms:1:2:B79A5F5D32C69C340DC39183EA315A164E1E7B3D76B680258E4EED91817177AE:9c00f694-4d6d-4b44-90f4-5503c6d2712a
     addheaders:
     - name: "X-Salesforce-VIP"
-      value: "SLB"   
+      value: "SLB"
+    removeheaders:
+    - "X-Forwarded-Proto"
+    - "X-Forwarded-For"
+    - "X-Client-Verify"
+    - "X-Real-IP"
+    - "X-Client-Cert"
+    - "X-Client-Fingerprint"   
   - port: 80
     targetport: 8085
     lbtype: http
@@ -733,40 +1251,69 @@
     healthpath: /ping.jsp?allBusy
     removeheaders:
     - "CipherSuite"
+    - "X-Forwarded-Proto" 
+    - "X-Forwarded-For" 
+    - "X-Real-IP"
     addheaders:
     - name: "X-Salesforce-VIP"
       value: "SLB"
-- lbname: org-test-cs96
+
+- lbname: org-cce2e-cs96
   servers:
-    - cs96-app1-3-iad.ops.sfdc.net
+    - cs96-app2-4-iad.ops.sfdc.net
     - cs96-app2-1-iad.ops.sfdc.net
     - cs96-app2-3-iad.ops.sfdc.net
-    - cs96-app1-1-iad.ops.sfdc.net
-    - cs96-app1-5-iad.ops.sfdc.net
-    - cs96-app2-2-iad.ops.sfdc.net
-    - cs96-app1-4-iad.ops.sfdc.net
     - cs96-app2-5-iad.ops.sfdc.net
     - cs96-app1-2-iad.ops.sfdc.net
-    - cs96-app2-4-iad.ops.sfdc.net  
+    - cs96-app1-1-iad.ops.sfdc.net
+    - cs96-app1-3-iad.ops.sfdc.net
+    - cs96-app2-2-iad.ops.sfdc.net
+    - cs96-app1-4-iad.ops.sfdc.net
+    - cs96-app1-5-iad.ops.sfdc.net  
   ports:
   - port: 443
-    targetport: 8085
+    targetport: 8090
+    reencrypt: true
+    healthport: 8085
     lbtype: http
     healthprotocol: http
     healthpath: /ping.jsp?allBusy
     sticky: 86400
+    tls: true
+    tlscertificate: secret_service:BofA-Stmfa-VIP-Certs:iad.cce2e.my-salesforce.com.crt
+    tlskey: kms:1:2:B79A5F5D32C69C340DC39183EA315A164E1E7B3D76B680258E4EED91817177AE:9c00f694-4d6d-4b44-90f4-5503c6d2712a
     addheaders:
     - name: "X-Salesforce-VIP"
       value: "SLB"
+    removeheaders:
+    - "X-Forwarded-Proto"
+    - "X-Forwarded-For"
+    - "X-Client-Verify"
+    - "X-Real-IP"
+    - "X-Client-Cert"
+    - "X-Client-Fingerprint" 
   - port: 8443
-    targetport: 8085
+    targetport: 8090
+    reencrypt: true
+    healthport: 8085
     lbtype: http
     healthprotocol: http
     healthpath: /ping.jsp?allBusy
     sticky: 86400
+    tls: true
+    mtls: true
+    tlscertificate: secret_service:BofA-Stmfa-VIP-Certs:iad.cce2e.my-salesforce.com.crt
+    tlskey: kms:1:2:B79A5F5D32C69C340DC39183EA315A164E1E7B3D76B680258E4EED91817177AE:9c00f694-4d6d-4b44-90f4-5503c6d2712a
     addheaders:
     - name: "X-Salesforce-VIP"
-      value: "SLB"   
+      value: "SLB"
+    removeheaders:
+    - "X-Forwarded-Proto"
+    - "X-Forwarded-For"
+    - "X-Client-Verify"
+    - "X-Real-IP"
+    - "X-Client-Cert"
+    - "X-Client-Fingerprint"   
   - port: 80
     targetport: 8085
     lbtype: http
@@ -774,40 +1321,69 @@
     healthpath: /ping.jsp?allBusy
     removeheaders:
     - "CipherSuite"
+    - "X-Forwarded-Proto" 
+    - "X-Forwarded-For" 
+    - "X-Real-IP"
     addheaders:
     - name: "X-Salesforce-VIP"
       value: "SLB"
-- lbname: org-test-cs97
+
+- lbname: org-cce2e-cs97
   servers:
-    - cs97-app2-5-iad.ops.sfdc.net
-    - cs97-app2-4-iad.ops.sfdc.net
-    - cs97-app1-3-iad.ops.sfdc.net
-    - cs97-app2-3-iad.ops.sfdc.net
     - cs97-app1-4-iad.ops.sfdc.net
     - cs97-app1-5-iad.ops.sfdc.net
-    - cs97-app2-2-iad.ops.sfdc.net
+    - cs97-app2-3-iad.ops.sfdc.net
+    - cs97-app2-4-iad.ops.sfdc.net
+    - cs97-app1-3-iad.ops.sfdc.net
     - cs97-app2-1-iad.ops.sfdc.net
+    - cs97-app2-5-iad.ops.sfdc.net
+    - cs97-app2-2-iad.ops.sfdc.net
     - cs97-app1-1-iad.ops.sfdc.net
     - cs97-app1-2-iad.ops.sfdc.net  
   ports:
   - port: 443
-    targetport: 8085
+    targetport: 8090
+    reencrypt: true
+    healthport: 8085
     lbtype: http
     healthprotocol: http
     healthpath: /ping.jsp?allBusy
     sticky: 86400
+    tls: true
+    tlscertificate: secret_service:BofA-Stmfa-VIP-Certs:iad.cce2e.my-salesforce.com.crt
+    tlskey: kms:1:2:B79A5F5D32C69C340DC39183EA315A164E1E7B3D76B680258E4EED91817177AE:9c00f694-4d6d-4b44-90f4-5503c6d2712a
     addheaders:
     - name: "X-Salesforce-VIP"
       value: "SLB"
+    removeheaders:
+    - "X-Forwarded-Proto"
+    - "X-Forwarded-For"
+    - "X-Client-Verify"
+    - "X-Real-IP"
+    - "X-Client-Cert"
+    - "X-Client-Fingerprint" 
   - port: 8443
-    targetport: 8085
+    targetport: 8090
+    reencrypt: true
+    healthport: 8085
     lbtype: http
     healthprotocol: http
     healthpath: /ping.jsp?allBusy
     sticky: 86400
+    tls: true
+    mtls: true
+    tlscertificate: secret_service:BofA-Stmfa-VIP-Certs:iad.cce2e.my-salesforce.com.crt
+    tlskey: kms:1:2:B79A5F5D32C69C340DC39183EA315A164E1E7B3D76B680258E4EED91817177AE:9c00f694-4d6d-4b44-90f4-5503c6d2712a
     addheaders:
     - name: "X-Salesforce-VIP"
-      value: "SLB"   
+      value: "SLB"
+    removeheaders:
+    - "X-Forwarded-Proto"
+    - "X-Forwarded-For"
+    - "X-Client-Verify"
+    - "X-Real-IP"
+    - "X-Client-Cert"
+    - "X-Client-Fingerprint"   
   - port: 80
     targetport: 8085
     lbtype: http
@@ -815,6 +1391,9 @@
     healthpath: /ping.jsp?allBusy
     removeheaders:
     - "CipherSuite"
+    - "X-Forwarded-Proto" 
+    - "X-Forwarded-For" 
+    - "X-Real-IP"
     addheaders:
     - name: "X-Salesforce-VIP"
       value: "SLB"
