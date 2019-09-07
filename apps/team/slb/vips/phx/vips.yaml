@@ -1,34 +1,59 @@
-- lbname: org-test-cs3
+- lbname: org-cce2e-cs3
   servers:
-    - cs3-app1-1-phx.ops.sfdc.net
-    - cs3-app1-4-phx.ops.sfdc.net
-    - cs3-app2-4-phx.ops.sfdc.net
+    - cs3-app1-3-phx.ops.sfdc.net
     - cs3-app2-2-phx.ops.sfdc.net
-    - cs3-app2-5-phx.ops.sfdc.net
-    - cs3-app2-3-phx.ops.sfdc.net
     - cs3-app1-5-phx.ops.sfdc.net
-    - cs3-app1-2-phx.ops.sfdc.net
+    - cs3-app2-4-phx.ops.sfdc.net
+    - cs3-app1-4-phx.ops.sfdc.net
+    - cs3-app2-5-phx.ops.sfdc.net
+    - cs3-app1-1-phx.ops.sfdc.net
     - cs3-app2-1-phx.ops.sfdc.net
-    - cs3-app1-3-phx.ops.sfdc.net  
+    - cs3-app1-2-phx.ops.sfdc.net
+    - cs3-app2-3-phx.ops.sfdc.net  
   ports:
   - port: 443
-    targetport: 8085
+    targetport: 8090
+    reencrypt: true
+    healthport: 8085
     lbtype: http
     healthprotocol: http
     healthpath: /ping.jsp?allBusy
     sticky: 86400
+    tls: true
+    tlscertificate: secret_service:BofA-Stmfa-VIP-Certs:phx.cce2e.my-salesforce.com.crt
+    tlskey: kms:1:2:B79A5F5D32C69C340DC39183EA315A164E1E7B3D76B680258E4EED91817177AE:19a65fc9-ce76-42ed-8077-398b1fcccc24
     addheaders:
     - name: "X-Salesforce-VIP"
       value: "SLB"
+    removeheaders:
+    - "X-Forwarded-Proto"
+    - "X-Forwarded-For"
+    - "X-Client-Verify"
+    - "X-Real-IP"
+    - "X-Client-Cert"
+    - "X-Client-Fingerprint" 
   - port: 8443
-    targetport: 8085
+    targetport: 8090
+    reencrypt: true
+    healthport: 8085
     lbtype: http
     healthprotocol: http
     healthpath: /ping.jsp?allBusy
     sticky: 86400
+    tls: true
+    mtls: true
+    tlscertificate: secret_service:BofA-Stmfa-VIP-Certs:phx.cce2e.my-salesforce.com.crt
+    tlskey: kms:1:2:B79A5F5D32C69C340DC39183EA315A164E1E7B3D76B680258E4EED91817177AE:19a65fc9-ce76-42ed-8077-398b1fcccc24
     addheaders:
     - name: "X-Salesforce-VIP"
-      value: "SLB"   
+      value: "SLB"
+    removeheaders:
+    - "X-Forwarded-Proto"
+    - "X-Forwarded-For"
+    - "X-Client-Verify"
+    - "X-Real-IP"
+    - "X-Client-Cert"
+    - "X-Client-Fingerprint"   
   - port: 80
     targetport: 8085
     lbtype: http
@@ -36,40 +61,69 @@
     healthpath: /ping.jsp?allBusy
     removeheaders:
     - "CipherSuite"
+    - "X-Forwarded-Proto" 
+    - "X-Forwarded-For" 
+    - "X-Real-IP"
     addheaders:
     - name: "X-Salesforce-VIP"
       value: "SLB"
-- lbname: org-test-cs7
+
+- lbname: org-cce2e-cs7
   servers:
     - cs7-app2-3-phx.ops.sfdc.net
-    - cs7-app2-2-phx.ops.sfdc.net
     - cs7-app1-2-phx.ops.sfdc.net
-    - cs7-app1-4-phx.ops.sfdc.net
-    - cs7-app2-4-phx.ops.sfdc.net
-    - cs7-app1-3-phx.ops.sfdc.net
-    - cs7-app1-5-phx.ops.sfdc.net
     - cs7-app2-5-phx.ops.sfdc.net
+    - cs7-app1-1-phx.ops.sfdc.net
+    - cs7-app2-2-phx.ops.sfdc.net
+    - cs7-app1-3-phx.ops.sfdc.net
     - cs7-app2-1-phx.ops.sfdc.net
-    - cs7-app1-1-phx.ops.sfdc.net  
+    - cs7-app1-4-phx.ops.sfdc.net
+    - cs7-app1-5-phx.ops.sfdc.net
+    - cs7-app2-4-phx.ops.sfdc.net  
   ports:
   - port: 443
-    targetport: 8085
+    targetport: 8090
+    reencrypt: true
+    healthport: 8085
     lbtype: http
     healthprotocol: http
     healthpath: /ping.jsp?allBusy
     sticky: 86400
+    tls: true
+    tlscertificate: secret_service:BofA-Stmfa-VIP-Certs:phx.cce2e.my-salesforce.com.crt
+    tlskey: kms:1:2:B79A5F5D32C69C340DC39183EA315A164E1E7B3D76B680258E4EED91817177AE:19a65fc9-ce76-42ed-8077-398b1fcccc24
     addheaders:
     - name: "X-Salesforce-VIP"
       value: "SLB"
+    removeheaders:
+    - "X-Forwarded-Proto"
+    - "X-Forwarded-For"
+    - "X-Client-Verify"
+    - "X-Real-IP"
+    - "X-Client-Cert"
+    - "X-Client-Fingerprint" 
   - port: 8443
-    targetport: 8085
+    targetport: 8090
+    reencrypt: true
+    healthport: 8085
     lbtype: http
     healthprotocol: http
     healthpath: /ping.jsp?allBusy
     sticky: 86400
+    tls: true
+    mtls: true
+    tlscertificate: secret_service:BofA-Stmfa-VIP-Certs:phx.cce2e.my-salesforce.com.crt
+    tlskey: kms:1:2:B79A5F5D32C69C340DC39183EA315A164E1E7B3D76B680258E4EED91817177AE:19a65fc9-ce76-42ed-8077-398b1fcccc24
     addheaders:
     - name: "X-Salesforce-VIP"
-      value: "SLB"   
+      value: "SLB"
+    removeheaders:
+    - "X-Forwarded-Proto"
+    - "X-Forwarded-For"
+    - "X-Client-Verify"
+    - "X-Real-IP"
+    - "X-Client-Cert"
+    - "X-Client-Fingerprint"   
   - port: 80
     targetport: 8085
     lbtype: http
@@ -77,40 +131,69 @@
     healthpath: /ping.jsp?allBusy
     removeheaders:
     - "CipherSuite"
+    - "X-Forwarded-Proto" 
+    - "X-Forwarded-For" 
+    - "X-Real-IP"
     addheaders:
     - name: "X-Salesforce-VIP"
       value: "SLB"
-- lbname: org-test-cs9
+
+- lbname: org-cce2e-cs9
   servers:
-    - cs9-app2-3-phx.ops.sfdc.net
-    - cs9-app2-5-phx.ops.sfdc.net
-    - cs9-app2-1-phx.ops.sfdc.net
-    - cs9-app1-1-phx.ops.sfdc.net
-    - cs9-app1-5-phx.ops.sfdc.net
-    - cs9-app2-2-phx.ops.sfdc.net
     - cs9-app1-3-phx.ops.sfdc.net
-    - cs9-app2-4-phx.ops.sfdc.net
+    - cs9-app1-5-phx.ops.sfdc.net
+    - cs9-app2-5-phx.ops.sfdc.net
     - cs9-app1-2-phx.ops.sfdc.net
+    - cs9-app2-1-phx.ops.sfdc.net
+    - cs9-app2-2-phx.ops.sfdc.net
+    - cs9-app1-1-phx.ops.sfdc.net
+    - cs9-app2-4-phx.ops.sfdc.net
+    - cs9-app2-3-phx.ops.sfdc.net
     - cs9-app1-4-phx.ops.sfdc.net  
   ports:
   - port: 443
-    targetport: 8085
+    targetport: 8090
+    reencrypt: true
+    healthport: 8085
     lbtype: http
     healthprotocol: http
     healthpath: /ping.jsp?allBusy
     sticky: 86400
+    tls: true
+    tlscertificate: secret_service:BofA-Stmfa-VIP-Certs:phx.cce2e.my-salesforce.com.crt
+    tlskey: kms:1:2:B79A5F5D32C69C340DC39183EA315A164E1E7B3D76B680258E4EED91817177AE:19a65fc9-ce76-42ed-8077-398b1fcccc24
     addheaders:
     - name: "X-Salesforce-VIP"
       value: "SLB"
+    removeheaders:
+    - "X-Forwarded-Proto"
+    - "X-Forwarded-For"
+    - "X-Client-Verify"
+    - "X-Real-IP"
+    - "X-Client-Cert"
+    - "X-Client-Fingerprint" 
   - port: 8443
-    targetport: 8085
+    targetport: 8090
+    reencrypt: true
+    healthport: 8085
     lbtype: http
     healthprotocol: http
     healthpath: /ping.jsp?allBusy
     sticky: 86400
+    tls: true
+    mtls: true
+    tlscertificate: secret_service:BofA-Stmfa-VIP-Certs:phx.cce2e.my-salesforce.com.crt
+    tlskey: kms:1:2:B79A5F5D32C69C340DC39183EA315A164E1E7B3D76B680258E4EED91817177AE:19a65fc9-ce76-42ed-8077-398b1fcccc24
     addheaders:
     - name: "X-Salesforce-VIP"
-      value: "SLB"   
+      value: "SLB"
+    removeheaders:
+    - "X-Forwarded-Proto"
+    - "X-Forwarded-For"
+    - "X-Client-Verify"
+    - "X-Real-IP"
+    - "X-Client-Cert"
+    - "X-Client-Fingerprint"   
   - port: 80
     targetport: 8085
     lbtype: http
@@ -118,39 +201,68 @@
     healthpath: /ping.jsp?allBusy
     removeheaders:
     - "CipherSuite"
+    - "X-Forwarded-Proto" 
+    - "X-Forwarded-For" 
+    - "X-Real-IP"
     addheaders:
     - name: "X-Salesforce-VIP"
       value: "SLB"
-- lbname: org-test-cs10
+
+- lbname: org-cce2e-cs10
   servers:
-    - cs10-app1-2-phx.ops.sfdc.net
     - cs10-app1-1-phx.ops.sfdc.net
+    - cs10-app2-1-phx.ops.sfdc.net
+    - cs10-app2-4-phx.ops.sfdc.net
+    - cs10-app1-3-phx.ops.sfdc.net
+    - cs10-app1-2-phx.ops.sfdc.net
     - cs10-app1-5-phx.ops.sfdc.net
     - cs10-app2-2-phx.ops.sfdc.net
-    - cs10-app1-3-phx.ops.sfdc.net
-    - cs10-app2-4-phx.ops.sfdc.net
     - cs10-app2-3-phx.ops.sfdc.net
-    - cs10-app2-1-phx.ops.sfdc.net
     - cs10-app2-5-phx.ops.sfdc.net  
   ports:
   - port: 443
-    targetport: 8085
+    targetport: 8090
+    reencrypt: true
+    healthport: 8085
     lbtype: http
     healthprotocol: http
     healthpath: /ping.jsp?allBusy
     sticky: 86400
+    tls: true
+    tlscertificate: secret_service:BofA-Stmfa-VIP-Certs:phx.cce2e.my-salesforce.com.crt
+    tlskey: kms:1:2:B79A5F5D32C69C340DC39183EA315A164E1E7B3D76B680258E4EED91817177AE:19a65fc9-ce76-42ed-8077-398b1fcccc24
     addheaders:
     - name: "X-Salesforce-VIP"
       value: "SLB"
+    removeheaders:
+    - "X-Forwarded-Proto"
+    - "X-Forwarded-For"
+    - "X-Client-Verify"
+    - "X-Real-IP"
+    - "X-Client-Cert"
+    - "X-Client-Fingerprint" 
   - port: 8443
-    targetport: 8085
+    targetport: 8090
+    reencrypt: true
+    healthport: 8085
     lbtype: http
     healthprotocol: http
     healthpath: /ping.jsp?allBusy
     sticky: 86400
+    tls: true
+    mtls: true
+    tlscertificate: secret_service:BofA-Stmfa-VIP-Certs:phx.cce2e.my-salesforce.com.crt
+    tlskey: kms:1:2:B79A5F5D32C69C340DC39183EA315A164E1E7B3D76B680258E4EED91817177AE:19a65fc9-ce76-42ed-8077-398b1fcccc24
     addheaders:
     - name: "X-Salesforce-VIP"
-      value: "SLB"   
+      value: "SLB"
+    removeheaders:
+    - "X-Forwarded-Proto"
+    - "X-Forwarded-For"
+    - "X-Client-Verify"
+    - "X-Real-IP"
+    - "X-Client-Cert"
+    - "X-Client-Fingerprint"   
   - port: 80
     targetport: 8085
     lbtype: http
@@ -158,40 +270,69 @@
     healthpath: /ping.jsp?allBusy
     removeheaders:
     - "CipherSuite"
+    - "X-Forwarded-Proto" 
+    - "X-Forwarded-For" 
+    - "X-Real-IP"
     addheaders:
     - name: "X-Salesforce-VIP"
       value: "SLB"
-- lbname: org-test-cs11
+
+- lbname: org-cce2e-cs11
   servers:
-    - cs11-app2-3-phx.ops.sfdc.net
-    - cs11-app1-4-phx.ops.sfdc.net
-    - cs11-app2-4-phx.ops.sfdc.net
-    - cs11-app1-5-phx.ops.sfdc.net
-    - cs11-app1-3-phx.ops.sfdc.net
     - cs11-app1-2-phx.ops.sfdc.net
-    - cs11-app2-2-phx.ops.sfdc.net
-    - cs11-app2-5-phx.ops.sfdc.net
     - cs11-app1-1-phx.ops.sfdc.net
+    - cs11-app2-3-phx.ops.sfdc.net
+    - cs11-app2-5-phx.ops.sfdc.net
+    - cs11-app1-3-phx.ops.sfdc.net
+    - cs11-app1-4-phx.ops.sfdc.net
+    - cs11-app1-5-phx.ops.sfdc.net
+    - cs11-app2-4-phx.ops.sfdc.net
+    - cs11-app2-2-phx.ops.sfdc.net
     - cs11-app2-1-phx.ops.sfdc.net  
   ports:
   - port: 443
-    targetport: 8085
+    targetport: 8090
+    reencrypt: true
+    healthport: 8085
     lbtype: http
     healthprotocol: http
     healthpath: /ping.jsp?allBusy
     sticky: 86400
+    tls: true
+    tlscertificate: secret_service:BofA-Stmfa-VIP-Certs:phx.cce2e.my-salesforce.com.crt
+    tlskey: kms:1:2:B79A5F5D32C69C340DC39183EA315A164E1E7B3D76B680258E4EED91817177AE:19a65fc9-ce76-42ed-8077-398b1fcccc24
     addheaders:
     - name: "X-Salesforce-VIP"
       value: "SLB"
+    removeheaders:
+    - "X-Forwarded-Proto"
+    - "X-Forwarded-For"
+    - "X-Client-Verify"
+    - "X-Real-IP"
+    - "X-Client-Cert"
+    - "X-Client-Fingerprint" 
   - port: 8443
-    targetport: 8085
+    targetport: 8090
+    reencrypt: true
+    healthport: 8085
     lbtype: http
     healthprotocol: http
     healthpath: /ping.jsp?allBusy
     sticky: 86400
+    tls: true
+    mtls: true
+    tlscertificate: secret_service:BofA-Stmfa-VIP-Certs:phx.cce2e.my-salesforce.com.crt
+    tlskey: kms:1:2:B79A5F5D32C69C340DC39183EA315A164E1E7B3D76B680258E4EED91817177AE:19a65fc9-ce76-42ed-8077-398b1fcccc24
     addheaders:
     - name: "X-Salesforce-VIP"
-      value: "SLB"   
+      value: "SLB"
+    removeheaders:
+    - "X-Forwarded-Proto"
+    - "X-Forwarded-For"
+    - "X-Client-Verify"
+    - "X-Real-IP"
+    - "X-Client-Cert"
+    - "X-Client-Fingerprint"   
   - port: 80
     targetport: 8085
     lbtype: http
@@ -199,39 +340,68 @@
     healthpath: /ping.jsp?allBusy
     removeheaders:
     - "CipherSuite"
+    - "X-Forwarded-Proto" 
+    - "X-Forwarded-For" 
+    - "X-Real-IP"
     addheaders:
     - name: "X-Salesforce-VIP"
       value: "SLB"
-- lbname: org-test-cs12
+
+- lbname: org-cce2e-cs12
   servers:
-    - cs12-app1-2-phx.ops.sfdc.net
-    - cs12-app2-1-phx.ops.sfdc.net
     - cs12-app1-4-phx.ops.sfdc.net
-    - cs12-app1-3-phx.ops.sfdc.net
     - cs12-app2-2-phx.ops.sfdc.net
+    - cs12-app2-1-phx.ops.sfdc.net
+    - cs12-app1-2-phx.ops.sfdc.net
     - cs12-app2-5-phx.ops.sfdc.net
-    - cs12-app2-4-phx.ops.sfdc.net
+    - cs12-app1-3-phx.ops.sfdc.net
     - cs12-app1-5-phx.ops.sfdc.net
+    - cs12-app2-4-phx.ops.sfdc.net
     - cs12-app1-1-phx.ops.sfdc.net  
   ports:
   - port: 443
-    targetport: 8085
+    targetport: 8090
+    reencrypt: true
+    healthport: 8085
     lbtype: http
     healthprotocol: http
     healthpath: /ping.jsp?allBusy
     sticky: 86400
+    tls: true
+    tlscertificate: secret_service:BofA-Stmfa-VIP-Certs:phx.cce2e.my-salesforce.com.crt
+    tlskey: kms:1:2:B79A5F5D32C69C340DC39183EA315A164E1E7B3D76B680258E4EED91817177AE:19a65fc9-ce76-42ed-8077-398b1fcccc24
     addheaders:
     - name: "X-Salesforce-VIP"
       value: "SLB"
+    removeheaders:
+    - "X-Forwarded-Proto"
+    - "X-Forwarded-For"
+    - "X-Client-Verify"
+    - "X-Real-IP"
+    - "X-Client-Cert"
+    - "X-Client-Fingerprint" 
   - port: 8443
-    targetport: 8085
+    targetport: 8090
+    reencrypt: true
+    healthport: 8085
     lbtype: http
     healthprotocol: http
     healthpath: /ping.jsp?allBusy
     sticky: 86400
+    tls: true
+    mtls: true
+    tlscertificate: secret_service:BofA-Stmfa-VIP-Certs:phx.cce2e.my-salesforce.com.crt
+    tlskey: kms:1:2:B79A5F5D32C69C340DC39183EA315A164E1E7B3D76B680258E4EED91817177AE:19a65fc9-ce76-42ed-8077-398b1fcccc24
     addheaders:
     - name: "X-Salesforce-VIP"
-      value: "SLB"   
+      value: "SLB"
+    removeheaders:
+    - "X-Forwarded-Proto"
+    - "X-Forwarded-For"
+    - "X-Client-Verify"
+    - "X-Real-IP"
+    - "X-Client-Cert"
+    - "X-Client-Fingerprint"   
   - port: 80
     targetport: 8085
     lbtype: http
@@ -239,40 +409,69 @@
     healthpath: /ping.jsp?allBusy
     removeheaders:
     - "CipherSuite"
+    - "X-Forwarded-Proto" 
+    - "X-Forwarded-For" 
+    - "X-Real-IP"
     addheaders:
     - name: "X-Salesforce-VIP"
       value: "SLB"
-- lbname: org-test-cs13
+
+- lbname: org-cce2e-cs13
   servers:
-    - cs13-app1-4-phx.ops.sfdc.net
-    - cs13-app1-3-phx.ops.sfdc.net
-    - cs13-app2-4-phx.ops.sfdc.net
-    - cs13-app1-1-phx.ops.sfdc.net
     - cs13-app1-2-phx.ops.sfdc.net
     - cs13-app1-5-phx.ops.sfdc.net
-    - cs13-app2-2-phx.ops.sfdc.net
-    - cs13-app2-5-phx.ops.sfdc.net
+    - cs13-app1-3-phx.ops.sfdc.net
+    - cs13-app1-4-phx.ops.sfdc.net
+    - cs13-app2-3-phx.ops.sfdc.net
     - cs13-app2-1-phx.ops.sfdc.net
-    - cs13-app2-3-phx.ops.sfdc.net  
+    - cs13-app2-2-phx.ops.sfdc.net
+    - cs13-app2-4-phx.ops.sfdc.net
+    - cs13-app2-5-phx.ops.sfdc.net
+    - cs13-app1-1-phx.ops.sfdc.net  
   ports:
   - port: 443
-    targetport: 8085
+    targetport: 8090
+    reencrypt: true
+    healthport: 8085
     lbtype: http
     healthprotocol: http
     healthpath: /ping.jsp?allBusy
     sticky: 86400
+    tls: true
+    tlscertificate: secret_service:BofA-Stmfa-VIP-Certs:phx.cce2e.my-salesforce.com.crt
+    tlskey: kms:1:2:B79A5F5D32C69C340DC39183EA315A164E1E7B3D76B680258E4EED91817177AE:19a65fc9-ce76-42ed-8077-398b1fcccc24
     addheaders:
     - name: "X-Salesforce-VIP"
       value: "SLB"
+    removeheaders:
+    - "X-Forwarded-Proto"
+    - "X-Forwarded-For"
+    - "X-Client-Verify"
+    - "X-Real-IP"
+    - "X-Client-Cert"
+    - "X-Client-Fingerprint" 
   - port: 8443
-    targetport: 8085
+    targetport: 8090
+    reencrypt: true
+    healthport: 8085
     lbtype: http
     healthprotocol: http
     healthpath: /ping.jsp?allBusy
     sticky: 86400
+    tls: true
+    mtls: true
+    tlscertificate: secret_service:BofA-Stmfa-VIP-Certs:phx.cce2e.my-salesforce.com.crt
+    tlskey: kms:1:2:B79A5F5D32C69C340DC39183EA315A164E1E7B3D76B680258E4EED91817177AE:19a65fc9-ce76-42ed-8077-398b1fcccc24
     addheaders:
     - name: "X-Salesforce-VIP"
-      value: "SLB"   
+      value: "SLB"
+    removeheaders:
+    - "X-Forwarded-Proto"
+    - "X-Forwarded-For"
+    - "X-Client-Verify"
+    - "X-Real-IP"
+    - "X-Client-Cert"
+    - "X-Client-Fingerprint"   
   - port: 80
     targetport: 8085
     lbtype: http
@@ -280,40 +479,69 @@
     healthpath: /ping.jsp?allBusy
     removeheaders:
     - "CipherSuite"
+    - "X-Forwarded-Proto" 
+    - "X-Forwarded-For" 
+    - "X-Real-IP"
     addheaders:
     - name: "X-Salesforce-VIP"
       value: "SLB"
-- lbname: org-test-cs19
+
+- lbname: org-cce2e-cs19
   servers:
-    - cs19-app2-1-phx.ops.sfdc.net
-    - cs19-app2-4-phx.ops.sfdc.net
-    - cs19-app2-2-phx.ops.sfdc.net
-    - cs19-app1-1-phx.ops.sfdc.net
     - cs19-app1-2-phx.ops.sfdc.net
-    - cs19-app1-3-phx.ops.sfdc.net
-    - cs19-app2-5-phx.ops.sfdc.net
+    - cs19-app2-4-phx.ops.sfdc.net
     - cs19-app2-3-phx.ops.sfdc.net
+    - cs19-app2-5-phx.ops.sfdc.net
+    - cs19-app1-1-phx.ops.sfdc.net
+    - cs19-app1-3-phx.ops.sfdc.net
     - cs19-app1-4-phx.ops.sfdc.net
+    - cs19-app2-1-phx.ops.sfdc.net
+    - cs19-app2-2-phx.ops.sfdc.net
     - cs19-app1-5-phx.ops.sfdc.net  
   ports:
   - port: 443
-    targetport: 8085
+    targetport: 8090
+    reencrypt: true
+    healthport: 8085
     lbtype: http
     healthprotocol: http
     healthpath: /ping.jsp?allBusy
     sticky: 86400
+    tls: true
+    tlscertificate: secret_service:BofA-Stmfa-VIP-Certs:phx.cce2e.my-salesforce.com.crt
+    tlskey: kms:1:2:B79A5F5D32C69C340DC39183EA315A164E1E7B3D76B680258E4EED91817177AE:19a65fc9-ce76-42ed-8077-398b1fcccc24
     addheaders:
     - name: "X-Salesforce-VIP"
       value: "SLB"
+    removeheaders:
+    - "X-Forwarded-Proto"
+    - "X-Forwarded-For"
+    - "X-Client-Verify"
+    - "X-Real-IP"
+    - "X-Client-Cert"
+    - "X-Client-Fingerprint" 
   - port: 8443
-    targetport: 8085
+    targetport: 8090
+    reencrypt: true
+    healthport: 8085
     lbtype: http
     healthprotocol: http
     healthpath: /ping.jsp?allBusy
     sticky: 86400
+    tls: true
+    mtls: true
+    tlscertificate: secret_service:BofA-Stmfa-VIP-Certs:phx.cce2e.my-salesforce.com.crt
+    tlskey: kms:1:2:B79A5F5D32C69C340DC39183EA315A164E1E7B3D76B680258E4EED91817177AE:19a65fc9-ce76-42ed-8077-398b1fcccc24
     addheaders:
     - name: "X-Salesforce-VIP"
-      value: "SLB"   
+      value: "SLB"
+    removeheaders:
+    - "X-Forwarded-Proto"
+    - "X-Forwarded-For"
+    - "X-Client-Verify"
+    - "X-Real-IP"
+    - "X-Client-Cert"
+    - "X-Client-Fingerprint"   
   - port: 80
     targetport: 8085
     lbtype: http
@@ -321,40 +549,69 @@
     healthpath: /ping.jsp?allBusy
     removeheaders:
     - "CipherSuite"
+    - "X-Forwarded-Proto" 
+    - "X-Forwarded-For" 
+    - "X-Real-IP"
     addheaders:
     - name: "X-Salesforce-VIP"
       value: "SLB"
-- lbname: org-test-cs20
+
+- lbname: org-cce2e-cs20
   servers:
-    - cs20-app2-1-phx.ops.sfdc.net
-    - cs20-app2-4-phx.ops.sfdc.net
-    - cs20-app1-4-phx.ops.sfdc.net
-    - cs20-app1-3-phx.ops.sfdc.net
-    - cs20-app1-1-phx.ops.sfdc.net
-    - cs20-app2-3-phx.ops.sfdc.net
-    - cs20-app1-5-phx.ops.sfdc.net
     - cs20-app1-2-phx.ops.sfdc.net
+    - cs20-app1-5-phx.ops.sfdc.net
+    - cs20-app2-1-phx.ops.sfdc.net
     - cs20-app2-2-phx.ops.sfdc.net
-    - cs20-app2-5-phx.ops.sfdc.net  
+    - cs20-app2-4-phx.ops.sfdc.net
+    - cs20-app2-5-phx.ops.sfdc.net
+    - cs20-app1-3-phx.ops.sfdc.net
+    - cs20-app1-4-phx.ops.sfdc.net
+    - cs20-app2-3-phx.ops.sfdc.net
+    - cs20-app1-1-phx.ops.sfdc.net  
   ports:
   - port: 443
-    targetport: 8085
+    targetport: 8090
+    reencrypt: true
+    healthport: 8085
     lbtype: http
     healthprotocol: http
     healthpath: /ping.jsp?allBusy
     sticky: 86400
+    tls: true
+    tlscertificate: secret_service:BofA-Stmfa-VIP-Certs:phx.cce2e.my-salesforce.com.crt
+    tlskey: kms:1:2:B79A5F5D32C69C340DC39183EA315A164E1E7B3D76B680258E4EED91817177AE:19a65fc9-ce76-42ed-8077-398b1fcccc24
     addheaders:
     - name: "X-Salesforce-VIP"
       value: "SLB"
+    removeheaders:
+    - "X-Forwarded-Proto"
+    - "X-Forwarded-For"
+    - "X-Client-Verify"
+    - "X-Real-IP"
+    - "X-Client-Cert"
+    - "X-Client-Fingerprint" 
   - port: 8443
-    targetport: 8085
+    targetport: 8090
+    reencrypt: true
+    healthport: 8085
     lbtype: http
     healthprotocol: http
     healthpath: /ping.jsp?allBusy
     sticky: 86400
+    tls: true
+    mtls: true
+    tlscertificate: secret_service:BofA-Stmfa-VIP-Certs:phx.cce2e.my-salesforce.com.crt
+    tlskey: kms:1:2:B79A5F5D32C69C340DC39183EA315A164E1E7B3D76B680258E4EED91817177AE:19a65fc9-ce76-42ed-8077-398b1fcccc24
     addheaders:
     - name: "X-Salesforce-VIP"
-      value: "SLB"   
+      value: "SLB"
+    removeheaders:
+    - "X-Forwarded-Proto"
+    - "X-Forwarded-For"
+    - "X-Client-Verify"
+    - "X-Real-IP"
+    - "X-Client-Cert"
+    - "X-Client-Fingerprint"   
   - port: 80
     targetport: 8085
     lbtype: http
@@ -362,40 +619,69 @@
     healthpath: /ping.jsp?allBusy
     removeheaders:
     - "CipherSuite"
+    - "X-Forwarded-Proto" 
+    - "X-Forwarded-For" 
+    - "X-Real-IP"
     addheaders:
     - name: "X-Salesforce-VIP"
       value: "SLB"
-- lbname: org-test-cs21
+
+- lbname: org-cce2e-cs21
   servers:
+    - cs21-app1-5-phx.ops.sfdc.net
+    - cs21-app2-2-phx.ops.sfdc.net
+    - cs21-app2-4-phx.ops.sfdc.net
+    - cs21-app1-4-phx.ops.sfdc.net
+    - cs21-app2-5-phx.ops.sfdc.net
     - cs21-app1-2-phx.ops.sfdc.net
     - cs21-app2-1-phx.ops.sfdc.net
-    - cs21-app1-1-phx.ops.sfdc.net
-    - cs21-app1-4-phx.ops.sfdc.net
-    - cs21-app2-2-phx.ops.sfdc.net
     - cs21-app1-3-phx.ops.sfdc.net
-    - cs21-app2-5-phx.ops.sfdc.net
-    - cs21-app2-3-phx.ops.sfdc.net
-    - cs21-app1-5-phx.ops.sfdc.net
-    - cs21-app2-4-phx.ops.sfdc.net  
+    - cs21-app1-1-phx.ops.sfdc.net
+    - cs21-app2-3-phx.ops.sfdc.net  
   ports:
   - port: 443
-    targetport: 8085
+    targetport: 8090
+    reencrypt: true
+    healthport: 8085
     lbtype: http
     healthprotocol: http
     healthpath: /ping.jsp?allBusy
     sticky: 86400
+    tls: true
+    tlscertificate: secret_service:BofA-Stmfa-VIP-Certs:phx.cce2e.my-salesforce.com.crt
+    tlskey: kms:1:2:B79A5F5D32C69C340DC39183EA315A164E1E7B3D76B680258E4EED91817177AE:19a65fc9-ce76-42ed-8077-398b1fcccc24
     addheaders:
     - name: "X-Salesforce-VIP"
       value: "SLB"
+    removeheaders:
+    - "X-Forwarded-Proto"
+    - "X-Forwarded-For"
+    - "X-Client-Verify"
+    - "X-Real-IP"
+    - "X-Client-Cert"
+    - "X-Client-Fingerprint" 
   - port: 8443
-    targetport: 8085
+    targetport: 8090
+    reencrypt: true
+    healthport: 8085
     lbtype: http
     healthprotocol: http
     healthpath: /ping.jsp?allBusy
     sticky: 86400
+    tls: true
+    mtls: true
+    tlscertificate: secret_service:BofA-Stmfa-VIP-Certs:phx.cce2e.my-salesforce.com.crt
+    tlskey: kms:1:2:B79A5F5D32C69C340DC39183EA315A164E1E7B3D76B680258E4EED91817177AE:19a65fc9-ce76-42ed-8077-398b1fcccc24
     addheaders:
     - name: "X-Salesforce-VIP"
-      value: "SLB"   
+      value: "SLB"
+    removeheaders:
+    - "X-Forwarded-Proto"
+    - "X-Forwarded-For"
+    - "X-Client-Verify"
+    - "X-Real-IP"
+    - "X-Client-Cert"
+    - "X-Client-Fingerprint"   
   - port: 80
     targetport: 8085
     lbtype: http
@@ -403,40 +689,69 @@
     healthpath: /ping.jsp?allBusy
     removeheaders:
     - "CipherSuite"
+    - "X-Forwarded-Proto" 
+    - "X-Forwarded-For" 
+    - "X-Real-IP"
     addheaders:
     - name: "X-Salesforce-VIP"
       value: "SLB"
-- lbname: org-test-cs23
+
+- lbname: org-cce2e-cs23
   servers:
-    - cs23-app2-3-phx.ops.sfdc.net
-    - cs23-app2-2-phx.ops.sfdc.net
-    - cs23-app1-4-phx.ops.sfdc.net
     - cs23-app2-5-phx.ops.sfdc.net
-    - cs23-app1-1-phx.ops.sfdc.net
-    - cs23-app1-2-phx.ops.sfdc.net
+    - cs23-app2-1-phx.ops.sfdc.net
     - cs23-app2-4-phx.ops.sfdc.net
     - cs23-app1-5-phx.ops.sfdc.net
-    - cs23-app2-1-phx.ops.sfdc.net
-    - cs23-app1-3-phx.ops.sfdc.net  
+    - cs23-app2-3-phx.ops.sfdc.net
+    - cs23-app1-1-phx.ops.sfdc.net
+    - cs23-app2-2-phx.ops.sfdc.net
+    - cs23-app1-3-phx.ops.sfdc.net
+    - cs23-app1-4-phx.ops.sfdc.net
+    - cs23-app1-2-phx.ops.sfdc.net  
   ports:
   - port: 443
-    targetport: 8085
+    targetport: 8090
+    reencrypt: true
+    healthport: 8085
     lbtype: http
     healthprotocol: http
     healthpath: /ping.jsp?allBusy
     sticky: 86400
+    tls: true
+    tlscertificate: secret_service:BofA-Stmfa-VIP-Certs:phx.cce2e.my-salesforce.com.crt
+    tlskey: kms:1:2:B79A5F5D32C69C340DC39183EA315A164E1E7B3D76B680258E4EED91817177AE:19a65fc9-ce76-42ed-8077-398b1fcccc24
     addheaders:
     - name: "X-Salesforce-VIP"
       value: "SLB"
+    removeheaders:
+    - "X-Forwarded-Proto"
+    - "X-Forwarded-For"
+    - "X-Client-Verify"
+    - "X-Real-IP"
+    - "X-Client-Cert"
+    - "X-Client-Fingerprint" 
   - port: 8443
-    targetport: 8085
+    targetport: 8090
+    reencrypt: true
+    healthport: 8085
     lbtype: http
     healthprotocol: http
     healthpath: /ping.jsp?allBusy
     sticky: 86400
+    tls: true
+    mtls: true
+    tlscertificate: secret_service:BofA-Stmfa-VIP-Certs:phx.cce2e.my-salesforce.com.crt
+    tlskey: kms:1:2:B79A5F5D32C69C340DC39183EA315A164E1E7B3D76B680258E4EED91817177AE:19a65fc9-ce76-42ed-8077-398b1fcccc24
     addheaders:
     - name: "X-Salesforce-VIP"
-      value: "SLB"   
+      value: "SLB"
+    removeheaders:
+    - "X-Forwarded-Proto"
+    - "X-Forwarded-For"
+    - "X-Client-Verify"
+    - "X-Real-IP"
+    - "X-Client-Cert"
+    - "X-Client-Fingerprint"   
   - port: 80
     targetport: 8085
     lbtype: http
@@ -444,40 +759,69 @@
     healthpath: /ping.jsp?allBusy
     removeheaders:
     - "CipherSuite"
+    - "X-Forwarded-Proto" 
+    - "X-Forwarded-For" 
+    - "X-Real-IP"
     addheaders:
     - name: "X-Salesforce-VIP"
       value: "SLB"
-- lbname: org-test-cs25
+
+- lbname: org-cce2e-cs25
   servers:
+    - cs25-app2-3-phx.ops.sfdc.net
+    - cs25-app2-2-phx.ops.sfdc.net
     - cs25-app2-5-phx.ops.sfdc.net
+    - cs25-app1-1-phx.ops.sfdc.net
+    - cs25-app1-4-phx.ops.sfdc.net
     - cs25-app2-1-phx.ops.sfdc.net
+    - cs25-app1-3-phx.ops.sfdc.net
     - cs25-app1-5-phx.ops.sfdc.net
     - cs25-app2-4-phx.ops.sfdc.net
-    - cs25-app1-1-phx.ops.sfdc.net
-    - cs25-app1-2-phx.ops.sfdc.net
-    - cs25-app1-4-phx.ops.sfdc.net
-    - cs25-app2-2-phx.ops.sfdc.net
-    - cs25-app2-3-phx.ops.sfdc.net
-    - cs25-app1-3-phx.ops.sfdc.net  
+    - cs25-app1-2-phx.ops.sfdc.net  
   ports:
   - port: 443
-    targetport: 8085
+    targetport: 8090
+    reencrypt: true
+    healthport: 8085
     lbtype: http
     healthprotocol: http
     healthpath: /ping.jsp?allBusy
     sticky: 86400
+    tls: true
+    tlscertificate: secret_service:BofA-Stmfa-VIP-Certs:phx.cce2e.my-salesforce.com.crt
+    tlskey: kms:1:2:B79A5F5D32C69C340DC39183EA315A164E1E7B3D76B680258E4EED91817177AE:19a65fc9-ce76-42ed-8077-398b1fcccc24
     addheaders:
     - name: "X-Salesforce-VIP"
       value: "SLB"
+    removeheaders:
+    - "X-Forwarded-Proto"
+    - "X-Forwarded-For"
+    - "X-Client-Verify"
+    - "X-Real-IP"
+    - "X-Client-Cert"
+    - "X-Client-Fingerprint" 
   - port: 8443
-    targetport: 8085
+    targetport: 8090
+    reencrypt: true
+    healthport: 8085
     lbtype: http
     healthprotocol: http
     healthpath: /ping.jsp?allBusy
     sticky: 86400
+    tls: true
+    mtls: true
+    tlscertificate: secret_service:BofA-Stmfa-VIP-Certs:phx.cce2e.my-salesforce.com.crt
+    tlskey: kms:1:2:B79A5F5D32C69C340DC39183EA315A164E1E7B3D76B680258E4EED91817177AE:19a65fc9-ce76-42ed-8077-398b1fcccc24
     addheaders:
     - name: "X-Salesforce-VIP"
-      value: "SLB"   
+      value: "SLB"
+    removeheaders:
+    - "X-Forwarded-Proto"
+    - "X-Forwarded-For"
+    - "X-Client-Verify"
+    - "X-Real-IP"
+    - "X-Client-Cert"
+    - "X-Client-Fingerprint"   
   - port: 80
     targetport: 8085
     lbtype: http
@@ -485,40 +829,69 @@
     healthpath: /ping.jsp?allBusy
     removeheaders:
     - "CipherSuite"
+    - "X-Forwarded-Proto" 
+    - "X-Forwarded-For" 
+    - "X-Real-IP"
     addheaders:
     - name: "X-Salesforce-VIP"
       value: "SLB"
-- lbname: org-test-cs26
+
+- lbname: org-cce2e-cs26
   servers:
-    - cs26-app2-5-phx.ops.sfdc.net
-    - cs26-app2-3-phx.ops.sfdc.net
-    - cs26-app1-3-phx.ops.sfdc.net
-    - cs26-app1-1-phx.ops.sfdc.net
+    - cs26-app2-4-phx.ops.sfdc.net
     - cs26-app1-5-phx.ops.sfdc.net
+    - cs26-app2-1-phx.ops.sfdc.net
     - cs26-app1-2-phx.ops.sfdc.net
     - cs26-app1-4-phx.ops.sfdc.net
+    - cs26-app2-5-phx.ops.sfdc.net
     - cs26-app2-2-phx.ops.sfdc.net
-    - cs26-app2-1-phx.ops.sfdc.net
-    - cs26-app2-4-phx.ops.sfdc.net  
+    - cs26-app1-3-phx.ops.sfdc.net
+    - cs26-app1-1-phx.ops.sfdc.net
+    - cs26-app2-3-phx.ops.sfdc.net  
   ports:
   - port: 443
-    targetport: 8085
+    targetport: 8090
+    reencrypt: true
+    healthport: 8085
     lbtype: http
     healthprotocol: http
     healthpath: /ping.jsp?allBusy
     sticky: 86400
+    tls: true
+    tlscertificate: secret_service:BofA-Stmfa-VIP-Certs:phx.cce2e.my-salesforce.com.crt
+    tlskey: kms:1:2:B79A5F5D32C69C340DC39183EA315A164E1E7B3D76B680258E4EED91817177AE:19a65fc9-ce76-42ed-8077-398b1fcccc24
     addheaders:
     - name: "X-Salesforce-VIP"
       value: "SLB"
+    removeheaders:
+    - "X-Forwarded-Proto"
+    - "X-Forwarded-For"
+    - "X-Client-Verify"
+    - "X-Real-IP"
+    - "X-Client-Cert"
+    - "X-Client-Fingerprint" 
   - port: 8443
-    targetport: 8085
+    targetport: 8090
+    reencrypt: true
+    healthport: 8085
     lbtype: http
     healthprotocol: http
     healthpath: /ping.jsp?allBusy
     sticky: 86400
+    tls: true
+    mtls: true
+    tlscertificate: secret_service:BofA-Stmfa-VIP-Certs:phx.cce2e.my-salesforce.com.crt
+    tlskey: kms:1:2:B79A5F5D32C69C340DC39183EA315A164E1E7B3D76B680258E4EED91817177AE:19a65fc9-ce76-42ed-8077-398b1fcccc24
     addheaders:
     - name: "X-Salesforce-VIP"
-      value: "SLB"   
+      value: "SLB"
+    removeheaders:
+    - "X-Forwarded-Proto"
+    - "X-Forwarded-For"
+    - "X-Client-Verify"
+    - "X-Real-IP"
+    - "X-Client-Cert"
+    - "X-Client-Fingerprint"   
   - port: 80
     targetport: 8085
     lbtype: http
@@ -526,40 +899,69 @@
     healthpath: /ping.jsp?allBusy
     removeheaders:
     - "CipherSuite"
+    - "X-Forwarded-Proto" 
+    - "X-Forwarded-For" 
+    - "X-Real-IP"
     addheaders:
     - name: "X-Salesforce-VIP"
       value: "SLB"
-- lbname: org-test-cs30
+
+- lbname: org-cce2e-cs30
   servers:
-    - cs30-app1-1-phx.ops.sfdc.net
-    - cs30-app2-3-phx.ops.sfdc.net
-    - cs30-app1-5-phx.ops.sfdc.net
-    - cs30-app2-1-phx.ops.sfdc.net
-    - cs30-app1-4-phx.ops.sfdc.net
     - cs30-app2-2-phx.ops.sfdc.net
-    - cs30-app2-5-phx.ops.sfdc.net
-    - cs30-app1-2-phx.ops.sfdc.net
+    - cs30-app2-4-phx.ops.sfdc.net
     - cs30-app1-3-phx.ops.sfdc.net
-    - cs30-app2-4-phx.ops.sfdc.net  
+    - cs30-app2-5-phx.ops.sfdc.net
+    - cs30-app1-4-phx.ops.sfdc.net
+    - cs30-app1-5-phx.ops.sfdc.net
+    - cs30-app1-1-phx.ops.sfdc.net
+    - cs30-app1-2-phx.ops.sfdc.net
+    - cs30-app2-1-phx.ops.sfdc.net
+    - cs30-app2-3-phx.ops.sfdc.net  
   ports:
   - port: 443
-    targetport: 8085
+    targetport: 8090
+    reencrypt: true
+    healthport: 8085
     lbtype: http
     healthprotocol: http
     healthpath: /ping.jsp?allBusy
     sticky: 86400
+    tls: true
+    tlscertificate: secret_service:BofA-Stmfa-VIP-Certs:phx.cce2e.my-salesforce.com.crt
+    tlskey: kms:1:2:B79A5F5D32C69C340DC39183EA315A164E1E7B3D76B680258E4EED91817177AE:19a65fc9-ce76-42ed-8077-398b1fcccc24
     addheaders:
     - name: "X-Salesforce-VIP"
       value: "SLB"
+    removeheaders:
+    - "X-Forwarded-Proto"
+    - "X-Forwarded-For"
+    - "X-Client-Verify"
+    - "X-Real-IP"
+    - "X-Client-Cert"
+    - "X-Client-Fingerprint" 
   - port: 8443
-    targetport: 8085
+    targetport: 8090
+    reencrypt: true
+    healthport: 8085
     lbtype: http
     healthprotocol: http
     healthpath: /ping.jsp?allBusy
     sticky: 86400
+    tls: true
+    mtls: true
+    tlscertificate: secret_service:BofA-Stmfa-VIP-Certs:phx.cce2e.my-salesforce.com.crt
+    tlskey: kms:1:2:B79A5F5D32C69C340DC39183EA315A164E1E7B3D76B680258E4EED91817177AE:19a65fc9-ce76-42ed-8077-398b1fcccc24
     addheaders:
     - name: "X-Salesforce-VIP"
-      value: "SLB"   
+      value: "SLB"
+    removeheaders:
+    - "X-Forwarded-Proto"
+    - "X-Forwarded-For"
+    - "X-Client-Verify"
+    - "X-Real-IP"
+    - "X-Client-Cert"
+    - "X-Client-Fingerprint"   
   - port: 80
     targetport: 8085
     lbtype: http
@@ -567,40 +969,69 @@
     healthpath: /ping.jsp?allBusy
     removeheaders:
     - "CipherSuite"
+    - "X-Forwarded-Proto" 
+    - "X-Forwarded-For" 
+    - "X-Real-IP"
     addheaders:
     - name: "X-Salesforce-VIP"
       value: "SLB"
-- lbname: org-test-cs50
+
+- lbname: org-cce2e-cs50
   servers:
-    - cs50-app2-1-phx.ops.sfdc.net
-    - cs50-app1-3-phx.ops.sfdc.net
-    - cs50-app1-4-phx.ops.sfdc.net
-    - cs50-app1-1-phx.ops.sfdc.net
-    - cs50-app1-5-phx.ops.sfdc.net
-    - cs50-app2-2-phx.ops.sfdc.net
     - cs50-app2-3-phx.ops.sfdc.net
+    - cs50-app1-1-phx.ops.sfdc.net
+    - cs50-app2-5-phx.ops.sfdc.net
+    - cs50-app1-5-phx.ops.sfdc.net
+    - cs50-app2-1-phx.ops.sfdc.net
     - cs50-app2-4-phx.ops.sfdc.net
     - cs50-app1-2-phx.ops.sfdc.net
-    - cs50-app2-5-phx.ops.sfdc.net  
+    - cs50-app1-4-phx.ops.sfdc.net
+    - cs50-app2-2-phx.ops.sfdc.net
+    - cs50-app1-3-phx.ops.sfdc.net  
   ports:
   - port: 443
-    targetport: 8085
+    targetport: 8090
+    reencrypt: true
+    healthport: 8085
     lbtype: http
     healthprotocol: http
     healthpath: /ping.jsp?allBusy
     sticky: 86400
+    tls: true
+    tlscertificate: secret_service:BofA-Stmfa-VIP-Certs:phx.cce2e.my-salesforce.com.crt
+    tlskey: kms:1:2:B79A5F5D32C69C340DC39183EA315A164E1E7B3D76B680258E4EED91817177AE:19a65fc9-ce76-42ed-8077-398b1fcccc24
     addheaders:
     - name: "X-Salesforce-VIP"
       value: "SLB"
+    removeheaders:
+    - "X-Forwarded-Proto"
+    - "X-Forwarded-For"
+    - "X-Client-Verify"
+    - "X-Real-IP"
+    - "X-Client-Cert"
+    - "X-Client-Fingerprint" 
   - port: 8443
-    targetport: 8085
+    targetport: 8090
+    reencrypt: true
+    healthport: 8085
     lbtype: http
     healthprotocol: http
     healthpath: /ping.jsp?allBusy
     sticky: 86400
+    tls: true
+    mtls: true
+    tlscertificate: secret_service:BofA-Stmfa-VIP-Certs:phx.cce2e.my-salesforce.com.crt
+    tlskey: kms:1:2:B79A5F5D32C69C340DC39183EA315A164E1E7B3D76B680258E4EED91817177AE:19a65fc9-ce76-42ed-8077-398b1fcccc24
     addheaders:
     - name: "X-Salesforce-VIP"
-      value: "SLB"   
+      value: "SLB"
+    removeheaders:
+    - "X-Forwarded-Proto"
+    - "X-Forwarded-For"
+    - "X-Client-Verify"
+    - "X-Real-IP"
+    - "X-Client-Cert"
+    - "X-Client-Fingerprint"   
   - port: 80
     targetport: 8085
     lbtype: http
@@ -608,40 +1039,69 @@
     healthpath: /ping.jsp?allBusy
     removeheaders:
     - "CipherSuite"
+    - "X-Forwarded-Proto" 
+    - "X-Forwarded-For" 
+    - "X-Real-IP"
     addheaders:
     - name: "X-Salesforce-VIP"
       value: "SLB"
-- lbname: org-test-cs51
+
+- lbname: org-cce2e-cs51
   servers:
-    - cs51-app1-4-phx.ops.sfdc.net
-    - cs51-app1-5-phx.ops.sfdc.net
-    - cs51-app2-3-phx.ops.sfdc.net
-    - cs51-app2-2-phx.ops.sfdc.net
-    - cs51-app2-4-phx.ops.sfdc.net
-    - cs51-app1-1-phx.ops.sfdc.net
-    - cs51-app2-1-phx.ops.sfdc.net
-    - cs51-app2-5-phx.ops.sfdc.net
     - cs51-app1-2-phx.ops.sfdc.net
-    - cs51-app1-3-phx.ops.sfdc.net  
+    - cs51-app2-2-phx.ops.sfdc.net
+    - cs51-app1-4-phx.ops.sfdc.net
+    - cs51-app2-4-phx.ops.sfdc.net
+    - cs51-app1-3-phx.ops.sfdc.net
+    - cs51-app1-5-phx.ops.sfdc.net
+    - cs51-app2-1-phx.ops.sfdc.net
+    - cs51-app1-1-phx.ops.sfdc.net
+    - cs51-app2-3-phx.ops.sfdc.net
+    - cs51-app2-5-phx.ops.sfdc.net  
   ports:
   - port: 443
-    targetport: 8085
+    targetport: 8090
+    reencrypt: true
+    healthport: 8085
     lbtype: http
     healthprotocol: http
     healthpath: /ping.jsp?allBusy
     sticky: 86400
+    tls: true
+    tlscertificate: secret_service:BofA-Stmfa-VIP-Certs:phx.cce2e.my-salesforce.com.crt
+    tlskey: kms:1:2:B79A5F5D32C69C340DC39183EA315A164E1E7B3D76B680258E4EED91817177AE:19a65fc9-ce76-42ed-8077-398b1fcccc24
     addheaders:
     - name: "X-Salesforce-VIP"
       value: "SLB"
+    removeheaders:
+    - "X-Forwarded-Proto"
+    - "X-Forwarded-For"
+    - "X-Client-Verify"
+    - "X-Real-IP"
+    - "X-Client-Cert"
+    - "X-Client-Fingerprint" 
   - port: 8443
-    targetport: 8085
+    targetport: 8090
+    reencrypt: true
+    healthport: 8085
     lbtype: http
     healthprotocol: http
     healthpath: /ping.jsp?allBusy
     sticky: 86400
+    tls: true
+    mtls: true
+    tlscertificate: secret_service:BofA-Stmfa-VIP-Certs:phx.cce2e.my-salesforce.com.crt
+    tlskey: kms:1:2:B79A5F5D32C69C340DC39183EA315A164E1E7B3D76B680258E4EED91817177AE:19a65fc9-ce76-42ed-8077-398b1fcccc24
     addheaders:
     - name: "X-Salesforce-VIP"
-      value: "SLB"   
+      value: "SLB"
+    removeheaders:
+    - "X-Forwarded-Proto"
+    - "X-Forwarded-For"
+    - "X-Client-Verify"
+    - "X-Real-IP"
+    - "X-Client-Cert"
+    - "X-Client-Fingerprint"   
   - port: 80
     targetport: 8085
     lbtype: http
@@ -649,40 +1109,69 @@
     healthpath: /ping.jsp?allBusy
     removeheaders:
     - "CipherSuite"
+    - "X-Forwarded-Proto" 
+    - "X-Forwarded-For" 
+    - "X-Real-IP"
     addheaders:
     - name: "X-Salesforce-VIP"
       value: "SLB"
-- lbname: org-test-cs52
+
+- lbname: org-cce2e-cs52
   servers:
-    - cs52-app1-5-phx.ops.sfdc.net
+    - cs52-app2-3-phx.ops.sfdc.net
+    - cs52-app1-4-phx.ops.sfdc.net
+    - cs52-app2-2-phx.ops.sfdc.net
+    - cs52-app2-4-phx.ops.sfdc.net
     - cs52-app1-1-phx.ops.sfdc.net
-    - cs52-app2-5-phx.ops.sfdc.net
+    - cs52-app1-5-phx.ops.sfdc.net
     - cs52-app1-2-phx.ops.sfdc.net
     - cs52-app2-1-phx.ops.sfdc.net
-    - cs52-app2-4-phx.ops.sfdc.net
-    - cs52-app2-2-phx.ops.sfdc.net
-    - cs52-app2-3-phx.ops.sfdc.net
     - cs52-app1-3-phx.ops.sfdc.net
-    - cs52-app1-4-phx.ops.sfdc.net  
+    - cs52-app2-5-phx.ops.sfdc.net  
   ports:
   - port: 443
-    targetport: 8085
+    targetport: 8090
+    reencrypt: true
+    healthport: 8085
     lbtype: http
     healthprotocol: http
     healthpath: /ping.jsp?allBusy
     sticky: 86400
+    tls: true
+    tlscertificate: secret_service:BofA-Stmfa-VIP-Certs:phx.cce2e.my-salesforce.com.crt
+    tlskey: kms:1:2:B79A5F5D32C69C340DC39183EA315A164E1E7B3D76B680258E4EED91817177AE:19a65fc9-ce76-42ed-8077-398b1fcccc24
     addheaders:
     - name: "X-Salesforce-VIP"
       value: "SLB"
+    removeheaders:
+    - "X-Forwarded-Proto"
+    - "X-Forwarded-For"
+    - "X-Client-Verify"
+    - "X-Real-IP"
+    - "X-Client-Cert"
+    - "X-Client-Fingerprint" 
   - port: 8443
-    targetport: 8085
+    targetport: 8090
+    reencrypt: true
+    healthport: 8085
     lbtype: http
     healthprotocol: http
     healthpath: /ping.jsp?allBusy
     sticky: 86400
+    tls: true
+    mtls: true
+    tlscertificate: secret_service:BofA-Stmfa-VIP-Certs:phx.cce2e.my-salesforce.com.crt
+    tlskey: kms:1:2:B79A5F5D32C69C340DC39183EA315A164E1E7B3D76B680258E4EED91817177AE:19a65fc9-ce76-42ed-8077-398b1fcccc24
     addheaders:
     - name: "X-Salesforce-VIP"
-      value: "SLB"   
+      value: "SLB"
+    removeheaders:
+    - "X-Forwarded-Proto"
+    - "X-Forwarded-For"
+    - "X-Client-Verify"
+    - "X-Real-IP"
+    - "X-Client-Cert"
+    - "X-Client-Fingerprint"   
   - port: 80
     targetport: 8085
     lbtype: http
@@ -690,40 +1179,69 @@
     healthpath: /ping.jsp?allBusy
     removeheaders:
     - "CipherSuite"
+    - "X-Forwarded-Proto" 
+    - "X-Forwarded-For" 
+    - "X-Real-IP"
     addheaders:
     - name: "X-Salesforce-VIP"
       value: "SLB"
-- lbname: org-test-cs53
+
+- lbname: org-cce2e-cs53
   servers:
-    - cs53-app2-3-phx.ops.sfdc.net
+    - cs53-app2-4-phx.ops.sfdc.net
+    - cs53-app2-2-phx.ops.sfdc.net
+    - cs53-app1-2-phx.ops.sfdc.net
+    - cs53-app1-4-phx.ops.sfdc.net
     - cs53-app2-1-phx.ops.sfdc.net
     - cs53-app1-1-phx.ops.sfdc.net
-    - cs53-app1-2-phx.ops.sfdc.net
-    - cs53-app2-4-phx.ops.sfdc.net
-    - cs53-app1-5-phx.ops.sfdc.net
-    - cs53-app1-4-phx.ops.sfdc.net
-    - cs53-app2-2-phx.ops.sfdc.net
     - cs53-app1-3-phx.ops.sfdc.net
-    - cs53-app2-5-phx.ops.sfdc.net  
+    - cs53-app1-5-phx.ops.sfdc.net
+    - cs53-app2-5-phx.ops.sfdc.net
+    - cs53-app2-3-phx.ops.sfdc.net  
   ports:
   - port: 443
-    targetport: 8085
+    targetport: 8090
+    reencrypt: true
+    healthport: 8085
     lbtype: http
     healthprotocol: http
     healthpath: /ping.jsp?allBusy
     sticky: 86400
+    tls: true
+    tlscertificate: secret_service:BofA-Stmfa-VIP-Certs:phx.cce2e.my-salesforce.com.crt
+    tlskey: kms:1:2:B79A5F5D32C69C340DC39183EA315A164E1E7B3D76B680258E4EED91817177AE:19a65fc9-ce76-42ed-8077-398b1fcccc24
     addheaders:
     - name: "X-Salesforce-VIP"
       value: "SLB"
+    removeheaders:
+    - "X-Forwarded-Proto"
+    - "X-Forwarded-For"
+    - "X-Client-Verify"
+    - "X-Real-IP"
+    - "X-Client-Cert"
+    - "X-Client-Fingerprint" 
   - port: 8443
-    targetport: 8085
+    targetport: 8090
+    reencrypt: true
+    healthport: 8085
     lbtype: http
     healthprotocol: http
     healthpath: /ping.jsp?allBusy
     sticky: 86400
+    tls: true
+    mtls: true
+    tlscertificate: secret_service:BofA-Stmfa-VIP-Certs:phx.cce2e.my-salesforce.com.crt
+    tlskey: kms:1:2:B79A5F5D32C69C340DC39183EA315A164E1E7B3D76B680258E4EED91817177AE:19a65fc9-ce76-42ed-8077-398b1fcccc24
     addheaders:
     - name: "X-Salesforce-VIP"
-      value: "SLB"   
+      value: "SLB"
+    removeheaders:
+    - "X-Forwarded-Proto"
+    - "X-Forwarded-For"
+    - "X-Client-Verify"
+    - "X-Real-IP"
+    - "X-Client-Cert"
+    - "X-Client-Fingerprint"   
   - port: 80
     targetport: 8085
     lbtype: http
@@ -731,40 +1249,69 @@
     healthpath: /ping.jsp?allBusy
     removeheaders:
     - "CipherSuite"
+    - "X-Forwarded-Proto" 
+    - "X-Forwarded-For" 
+    - "X-Real-IP"
     addheaders:
     - name: "X-Salesforce-VIP"
       value: "SLB"
-- lbname: org-test-cs54
+
+- lbname: org-cce2e-cs54
   servers:
+    - cs54-app1-1-phx.ops.sfdc.net
+    - cs54-app2-2-phx.ops.sfdc.net
+    - cs54-app1-2-phx.ops.sfdc.net
+    - cs54-app2-5-phx.ops.sfdc.net
+    - cs54-app1-3-phx.ops.sfdc.net
     - cs54-app2-1-phx.ops.sfdc.net
-    - cs54-app1-5-phx.ops.sfdc.net
+    - cs54-app1-4-phx.ops.sfdc.net
     - cs54-app2-3-phx.ops.sfdc.net
     - cs54-app2-4-phx.ops.sfdc.net
-    - cs54-app1-3-phx.ops.sfdc.net
-    - cs54-app1-4-phx.ops.sfdc.net
-    - cs54-app1-2-phx.ops.sfdc.net
-    - cs54-app2-2-phx.ops.sfdc.net
-    - cs54-app2-5-phx.ops.sfdc.net
-    - cs54-app1-1-phx.ops.sfdc.net  
+    - cs54-app1-5-phx.ops.sfdc.net  
   ports:
   - port: 443
-    targetport: 8085
+    targetport: 8090
+    reencrypt: true
+    healthport: 8085
     lbtype: http
     healthprotocol: http
     healthpath: /ping.jsp?allBusy
     sticky: 86400
+    tls: true
+    tlscertificate: secret_service:BofA-Stmfa-VIP-Certs:phx.cce2e.my-salesforce.com.crt
+    tlskey: kms:1:2:B79A5F5D32C69C340DC39183EA315A164E1E7B3D76B680258E4EED91817177AE:19a65fc9-ce76-42ed-8077-398b1fcccc24
     addheaders:
     - name: "X-Salesforce-VIP"
       value: "SLB"
+    removeheaders:
+    - "X-Forwarded-Proto"
+    - "X-Forwarded-For"
+    - "X-Client-Verify"
+    - "X-Real-IP"
+    - "X-Client-Cert"
+    - "X-Client-Fingerprint" 
   - port: 8443
-    targetport: 8085
+    targetport: 8090
+    reencrypt: true
+    healthport: 8085
     lbtype: http
     healthprotocol: http
     healthpath: /ping.jsp?allBusy
     sticky: 86400
+    tls: true
+    mtls: true
+    tlscertificate: secret_service:BofA-Stmfa-VIP-Certs:phx.cce2e.my-salesforce.com.crt
+    tlskey: kms:1:2:B79A5F5D32C69C340DC39183EA315A164E1E7B3D76B680258E4EED91817177AE:19a65fc9-ce76-42ed-8077-398b1fcccc24
     addheaders:
     - name: "X-Salesforce-VIP"
-      value: "SLB"   
+      value: "SLB"
+    removeheaders:
+    - "X-Forwarded-Proto"
+    - "X-Forwarded-For"
+    - "X-Client-Verify"
+    - "X-Real-IP"
+    - "X-Client-Cert"
+    - "X-Client-Fingerprint"   
   - port: 80
     targetport: 8085
     lbtype: http
@@ -772,40 +1319,69 @@
     healthpath: /ping.jsp?allBusy
     removeheaders:
     - "CipherSuite"
+    - "X-Forwarded-Proto" 
+    - "X-Forwarded-For" 
+    - "X-Real-IP"
     addheaders:
     - name: "X-Salesforce-VIP"
       value: "SLB"
-- lbname: org-test-cs59
+
+- lbname: org-cce2e-cs59
   servers:
     - cs59-app2-3-phx.ops.sfdc.net
-    - cs59-app1-2-phx.ops.sfdc.net
-    - cs59-app1-3-phx.ops.sfdc.net
-    - cs59-app2-1-phx.ops.sfdc.net
-    - cs59-app2-4-phx.ops.sfdc.net
-    - cs59-app1-5-phx.ops.sfdc.net
-    - cs59-app1-4-phx.ops.sfdc.net
     - cs59-app2-5-phx.ops.sfdc.net
     - cs59-app1-1-phx.ops.sfdc.net
+    - cs59-app1-2-phx.ops.sfdc.net
+    - cs59-app1-3-phx.ops.sfdc.net
+    - cs59-app1-4-phx.ops.sfdc.net
+    - cs59-app2-4-phx.ops.sfdc.net
+    - cs59-app1-5-phx.ops.sfdc.net
+    - cs59-app2-1-phx.ops.sfdc.net
     - cs59-app2-2-phx.ops.sfdc.net  
   ports:
   - port: 443
-    targetport: 8085
+    targetport: 8090
+    reencrypt: true
+    healthport: 8085
     lbtype: http
     healthprotocol: http
     healthpath: /ping.jsp?allBusy
     sticky: 86400
+    tls: true
+    tlscertificate: secret_service:BofA-Stmfa-VIP-Certs:phx.cce2e.my-salesforce.com.crt
+    tlskey: kms:1:2:B79A5F5D32C69C340DC39183EA315A164E1E7B3D76B680258E4EED91817177AE:19a65fc9-ce76-42ed-8077-398b1fcccc24
     addheaders:
     - name: "X-Salesforce-VIP"
       value: "SLB"
+    removeheaders:
+    - "X-Forwarded-Proto"
+    - "X-Forwarded-For"
+    - "X-Client-Verify"
+    - "X-Real-IP"
+    - "X-Client-Cert"
+    - "X-Client-Fingerprint" 
   - port: 8443
-    targetport: 8085
+    targetport: 8090
+    reencrypt: true
+    healthport: 8085
     lbtype: http
     healthprotocol: http
     healthpath: /ping.jsp?allBusy
     sticky: 86400
+    tls: true
+    mtls: true
+    tlscertificate: secret_service:BofA-Stmfa-VIP-Certs:phx.cce2e.my-salesforce.com.crt
+    tlskey: kms:1:2:B79A5F5D32C69C340DC39183EA315A164E1E7B3D76B680258E4EED91817177AE:19a65fc9-ce76-42ed-8077-398b1fcccc24
     addheaders:
     - name: "X-Salesforce-VIP"
-      value: "SLB"   
+      value: "SLB"
+    removeheaders:
+    - "X-Forwarded-Proto"
+    - "X-Forwarded-For"
+    - "X-Client-Verify"
+    - "X-Real-IP"
+    - "X-Client-Cert"
+    - "X-Client-Fingerprint"   
   - port: 80
     targetport: 8085
     lbtype: http
@@ -813,40 +1389,69 @@
     healthpath: /ping.jsp?allBusy
     removeheaders:
     - "CipherSuite"
+    - "X-Forwarded-Proto" 
+    - "X-Forwarded-For" 
+    - "X-Real-IP"
     addheaders:
     - name: "X-Salesforce-VIP"
       value: "SLB"
-- lbname: org-test-cs60
+
+- lbname: org-cce2e-cs60
   servers:
-    - cs60-app1-4-phx.ops.sfdc.net
-    - cs60-app2-4-phx.ops.sfdc.net
-    - cs60-app1-1-phx.ops.sfdc.net
-    - cs60-app2-2-phx.ops.sfdc.net
-    - cs60-app2-3-phx.ops.sfdc.net
-    - cs60-app1-3-phx.ops.sfdc.net
     - cs60-app1-2-phx.ops.sfdc.net
-    - cs60-app1-5-phx.ops.sfdc.net
+    - cs60-app2-2-phx.ops.sfdc.net
+    - cs60-app1-3-phx.ops.sfdc.net
     - cs60-app2-5-phx.ops.sfdc.net
+    - cs60-app1-1-phx.ops.sfdc.net
+    - cs60-app1-4-phx.ops.sfdc.net
+    - cs60-app1-5-phx.ops.sfdc.net
+    - cs60-app2-3-phx.ops.sfdc.net
+    - cs60-app2-4-phx.ops.sfdc.net
     - cs60-app2-1-phx.ops.sfdc.net  
   ports:
   - port: 443
-    targetport: 8085
+    targetport: 8090
+    reencrypt: true
+    healthport: 8085
     lbtype: http
     healthprotocol: http
     healthpath: /ping.jsp?allBusy
     sticky: 86400
+    tls: true
+    tlscertificate: secret_service:BofA-Stmfa-VIP-Certs:phx.cce2e.my-salesforce.com.crt
+    tlskey: kms:1:2:B79A5F5D32C69C340DC39183EA315A164E1E7B3D76B680258E4EED91817177AE:19a65fc9-ce76-42ed-8077-398b1fcccc24
     addheaders:
     - name: "X-Salesforce-VIP"
       value: "SLB"
+    removeheaders:
+    - "X-Forwarded-Proto"
+    - "X-Forwarded-For"
+    - "X-Client-Verify"
+    - "X-Real-IP"
+    - "X-Client-Cert"
+    - "X-Client-Fingerprint" 
   - port: 8443
-    targetport: 8085
+    targetport: 8090
+    reencrypt: true
+    healthport: 8085
     lbtype: http
     healthprotocol: http
     healthpath: /ping.jsp?allBusy
     sticky: 86400
+    tls: true
+    mtls: true
+    tlscertificate: secret_service:BofA-Stmfa-VIP-Certs:phx.cce2e.my-salesforce.com.crt
+    tlskey: kms:1:2:B79A5F5D32C69C340DC39183EA315A164E1E7B3D76B680258E4EED91817177AE:19a65fc9-ce76-42ed-8077-398b1fcccc24
     addheaders:
     - name: "X-Salesforce-VIP"
-      value: "SLB"   
+      value: "SLB"
+    removeheaders:
+    - "X-Forwarded-Proto"
+    - "X-Forwarded-For"
+    - "X-Client-Verify"
+    - "X-Real-IP"
+    - "X-Client-Cert"
+    - "X-Client-Fingerprint"   
   - port: 80
     targetport: 8085
     lbtype: http
@@ -854,40 +1459,69 @@
     healthpath: /ping.jsp?allBusy
     removeheaders:
     - "CipherSuite"
+    - "X-Forwarded-Proto" 
+    - "X-Forwarded-For" 
+    - "X-Real-IP"
     addheaders:
     - name: "X-Salesforce-VIP"
       value: "SLB"
-- lbname: org-test-cs61
+
+- lbname: org-cce2e-cs61
   servers:
     - cs61-app1-2-phx.ops.sfdc.net
     - cs61-app2-5-phx.ops.sfdc.net
+    - cs61-app1-1-phx.ops.sfdc.net
     - cs61-app1-4-phx.ops.sfdc.net
-    - cs61-app1-5-phx.ops.sfdc.net
-    - cs61-app2-2-phx.ops.sfdc.net
-    - cs61-app2-4-phx.ops.sfdc.net
-    - cs61-app2-1-phx.ops.sfdc.net
     - cs61-app2-3-phx.ops.sfdc.net
     - cs61-app1-3-phx.ops.sfdc.net
-    - cs61-app1-1-phx.ops.sfdc.net  
+    - cs61-app2-1-phx.ops.sfdc.net
+    - cs61-app2-2-phx.ops.sfdc.net
+    - cs61-app1-5-phx.ops.sfdc.net
+    - cs61-app2-4-phx.ops.sfdc.net  
   ports:
   - port: 443
-    targetport: 8085
+    targetport: 8090
+    reencrypt: true
+    healthport: 8085
     lbtype: http
     healthprotocol: http
     healthpath: /ping.jsp?allBusy
     sticky: 86400
+    tls: true
+    tlscertificate: secret_service:BofA-Stmfa-VIP-Certs:phx.cce2e.my-salesforce.com.crt
+    tlskey: kms:1:2:B79A5F5D32C69C340DC39183EA315A164E1E7B3D76B680258E4EED91817177AE:19a65fc9-ce76-42ed-8077-398b1fcccc24
     addheaders:
     - name: "X-Salesforce-VIP"
       value: "SLB"
+    removeheaders:
+    - "X-Forwarded-Proto"
+    - "X-Forwarded-For"
+    - "X-Client-Verify"
+    - "X-Real-IP"
+    - "X-Client-Cert"
+    - "X-Client-Fingerprint" 
   - port: 8443
-    targetport: 8085
+    targetport: 8090
+    reencrypt: true
+    healthport: 8085
     lbtype: http
     healthprotocol: http
     healthpath: /ping.jsp?allBusy
     sticky: 86400
+    tls: true
+    mtls: true
+    tlscertificate: secret_service:BofA-Stmfa-VIP-Certs:phx.cce2e.my-salesforce.com.crt
+    tlskey: kms:1:2:B79A5F5D32C69C340DC39183EA315A164E1E7B3D76B680258E4EED91817177AE:19a65fc9-ce76-42ed-8077-398b1fcccc24
     addheaders:
     - name: "X-Salesforce-VIP"
-      value: "SLB"   
+      value: "SLB"
+    removeheaders:
+    - "X-Forwarded-Proto"
+    - "X-Forwarded-For"
+    - "X-Client-Verify"
+    - "X-Real-IP"
+    - "X-Client-Cert"
+    - "X-Client-Fingerprint"   
   - port: 80
     targetport: 8085
     lbtype: http
@@ -895,40 +1529,69 @@
     healthpath: /ping.jsp?allBusy
     removeheaders:
     - "CipherSuite"
+    - "X-Forwarded-Proto" 
+    - "X-Forwarded-For" 
+    - "X-Real-IP"
     addheaders:
     - name: "X-Salesforce-VIP"
       value: "SLB"
-- lbname: org-test-cs62
+
+- lbname: org-cce2e-cs62
   servers:
-    - cs62-app1-4-phx.ops.sfdc.net
+    - cs62-app2-2-phx.ops.sfdc.net
     - cs62-app2-4-phx.ops.sfdc.net
     - cs62-app1-3-phx.ops.sfdc.net
     - cs62-app1-5-phx.ops.sfdc.net
-    - cs62-app1-1-phx.ops.sfdc.net
-    - cs62-app1-2-phx.ops.sfdc.net
     - cs62-app2-1-phx.ops.sfdc.net
     - cs62-app2-3-phx.ops.sfdc.net
-    - cs62-app2-2-phx.ops.sfdc.net
-    - cs62-app2-5-phx.ops.sfdc.net  
+    - cs62-app1-2-phx.ops.sfdc.net
+    - cs62-app1-4-phx.ops.sfdc.net
+    - cs62-app2-5-phx.ops.sfdc.net
+    - cs62-app1-1-phx.ops.sfdc.net  
   ports:
   - port: 443
-    targetport: 8085
+    targetport: 8090
+    reencrypt: true
+    healthport: 8085
     lbtype: http
     healthprotocol: http
     healthpath: /ping.jsp?allBusy
     sticky: 86400
+    tls: true
+    tlscertificate: secret_service:BofA-Stmfa-VIP-Certs:phx.cce2e.my-salesforce.com.crt
+    tlskey: kms:1:2:B79A5F5D32C69C340DC39183EA315A164E1E7B3D76B680258E4EED91817177AE:19a65fc9-ce76-42ed-8077-398b1fcccc24
     addheaders:
     - name: "X-Salesforce-VIP"
       value: "SLB"
+    removeheaders:
+    - "X-Forwarded-Proto"
+    - "X-Forwarded-For"
+    - "X-Client-Verify"
+    - "X-Real-IP"
+    - "X-Client-Cert"
+    - "X-Client-Fingerprint" 
   - port: 8443
-    targetport: 8085
+    targetport: 8090
+    reencrypt: true
+    healthport: 8085
     lbtype: http
     healthprotocol: http
     healthpath: /ping.jsp?allBusy
     sticky: 86400
+    tls: true
+    mtls: true
+    tlscertificate: secret_service:BofA-Stmfa-VIP-Certs:phx.cce2e.my-salesforce.com.crt
+    tlskey: kms:1:2:B79A5F5D32C69C340DC39183EA315A164E1E7B3D76B680258E4EED91817177AE:19a65fc9-ce76-42ed-8077-398b1fcccc24
     addheaders:
     - name: "X-Salesforce-VIP"
-      value: "SLB"   
+      value: "SLB"
+    removeheaders:
+    - "X-Forwarded-Proto"
+    - "X-Forwarded-For"
+    - "X-Client-Verify"
+    - "X-Real-IP"
+    - "X-Client-Cert"
+    - "X-Client-Fingerprint"   
   - port: 80
     targetport: 8085
     lbtype: http
@@ -936,40 +1599,69 @@
     healthpath: /ping.jsp?allBusy
     removeheaders:
     - "CipherSuite"
+    - "X-Forwarded-Proto" 
+    - "X-Forwarded-For" 
+    - "X-Real-IP"
     addheaders:
     - name: "X-Salesforce-VIP"
       value: "SLB"
-- lbname: org-test-cs63
+
+- lbname: org-cce2e-cs63
   servers:
-    - cs63-app1-4-phx.ops.sfdc.net
     - cs63-app1-1-phx.ops.sfdc.net
-    - cs63-app1-3-phx.ops.sfdc.net
-    - cs63-app2-4-phx.ops.sfdc.net
+    - cs63-app1-4-phx.ops.sfdc.net
+    - cs63-app2-5-phx.ops.sfdc.net
+    - cs63-app1-2-phx.ops.sfdc.net
+    - cs63-app2-1-phx.ops.sfdc.net
     - cs63-app2-2-phx.ops.sfdc.net
     - cs63-app2-3-phx.ops.sfdc.net
-    - cs63-app2-5-phx.ops.sfdc.net
-    - cs63-app2-1-phx.ops.sfdc.net
-    - cs63-app1-2-phx.ops.sfdc.net
+    - cs63-app2-4-phx.ops.sfdc.net
+    - cs63-app1-3-phx.ops.sfdc.net
     - cs63-app1-5-phx.ops.sfdc.net  
   ports:
   - port: 443
-    targetport: 8085
+    targetport: 8090
+    reencrypt: true
+    healthport: 8085
     lbtype: http
     healthprotocol: http
     healthpath: /ping.jsp?allBusy
     sticky: 86400
+    tls: true
+    tlscertificate: secret_service:BofA-Stmfa-VIP-Certs:phx.cce2e.my-salesforce.com.crt
+    tlskey: kms:1:2:B79A5F5D32C69C340DC39183EA315A164E1E7B3D76B680258E4EED91817177AE:19a65fc9-ce76-42ed-8077-398b1fcccc24
     addheaders:
     - name: "X-Salesforce-VIP"
       value: "SLB"
+    removeheaders:
+    - "X-Forwarded-Proto"
+    - "X-Forwarded-For"
+    - "X-Client-Verify"
+    - "X-Real-IP"
+    - "X-Client-Cert"
+    - "X-Client-Fingerprint" 
   - port: 8443
-    targetport: 8085
+    targetport: 8090
+    reencrypt: true
+    healthport: 8085
     lbtype: http
     healthprotocol: http
     healthpath: /ping.jsp?allBusy
     sticky: 86400
+    tls: true
+    mtls: true
+    tlscertificate: secret_service:BofA-Stmfa-VIP-Certs:phx.cce2e.my-salesforce.com.crt
+    tlskey: kms:1:2:B79A5F5D32C69C340DC39183EA315A164E1E7B3D76B680258E4EED91817177AE:19a65fc9-ce76-42ed-8077-398b1fcccc24
     addheaders:
     - name: "X-Salesforce-VIP"
-      value: "SLB"   
+      value: "SLB"
+    removeheaders:
+    - "X-Forwarded-Proto"
+    - "X-Forwarded-For"
+    - "X-Client-Verify"
+    - "X-Real-IP"
+    - "X-Client-Cert"
+    - "X-Client-Fingerprint"   
   - port: 80
     targetport: 8085
     lbtype: http
@@ -977,40 +1669,69 @@
     healthpath: /ping.jsp?allBusy
     removeheaders:
     - "CipherSuite"
+    - "X-Forwarded-Proto" 
+    - "X-Forwarded-For" 
+    - "X-Real-IP"
     addheaders:
     - name: "X-Salesforce-VIP"
       value: "SLB"
-- lbname: org-test-cs68
+
+- lbname: org-cce2e-cs68
   servers:
+    - cs68-app2-2-phx.ops.sfdc.net
+    - cs68-app1-2-phx.ops.sfdc.net
     - cs68-app1-1-phx.ops.sfdc.net
     - cs68-app2-1-phx.ops.sfdc.net
     - cs68-app2-5-phx.ops.sfdc.net
-    - cs68-app1-2-phx.ops.sfdc.net
-    - cs68-app2-2-phx.ops.sfdc.net
-    - cs68-app2-4-phx.ops.sfdc.net
     - cs68-app1-3-phx.ops.sfdc.net
     - cs68-app1-5-phx.ops.sfdc.net
+    - cs68-app2-3-phx.ops.sfdc.net
     - cs68-app1-4-phx.ops.sfdc.net
-    - cs68-app2-3-phx.ops.sfdc.net  
+    - cs68-app2-4-phx.ops.sfdc.net  
   ports:
   - port: 443
-    targetport: 8085
+    targetport: 8090
+    reencrypt: true
+    healthport: 8085
     lbtype: http
     healthprotocol: http
     healthpath: /ping.jsp?allBusy
     sticky: 86400
+    tls: true
+    tlscertificate: secret_service:BofA-Stmfa-VIP-Certs:phx.cce2e.my-salesforce.com.crt
+    tlskey: kms:1:2:B79A5F5D32C69C340DC39183EA315A164E1E7B3D76B680258E4EED91817177AE:19a65fc9-ce76-42ed-8077-398b1fcccc24
     addheaders:
     - name: "X-Salesforce-VIP"
       value: "SLB"
+    removeheaders:
+    - "X-Forwarded-Proto"
+    - "X-Forwarded-For"
+    - "X-Client-Verify"
+    - "X-Real-IP"
+    - "X-Client-Cert"
+    - "X-Client-Fingerprint" 
   - port: 8443
-    targetport: 8085
+    targetport: 8090
+    reencrypt: true
+    healthport: 8085
     lbtype: http
     healthprotocol: http
     healthpath: /ping.jsp?allBusy
     sticky: 86400
+    tls: true
+    mtls: true
+    tlscertificate: secret_service:BofA-Stmfa-VIP-Certs:phx.cce2e.my-salesforce.com.crt
+    tlskey: kms:1:2:B79A5F5D32C69C340DC39183EA315A164E1E7B3D76B680258E4EED91817177AE:19a65fc9-ce76-42ed-8077-398b1fcccc24
     addheaders:
     - name: "X-Salesforce-VIP"
-      value: "SLB"   
+      value: "SLB"
+    removeheaders:
+    - "X-Forwarded-Proto"
+    - "X-Forwarded-For"
+    - "X-Client-Verify"
+    - "X-Real-IP"
+    - "X-Client-Cert"
+    - "X-Client-Fingerprint"   
   - port: 80
     targetport: 8085
     lbtype: http
@@ -1018,40 +1739,69 @@
     healthpath: /ping.jsp?allBusy
     removeheaders:
     - "CipherSuite"
+    - "X-Forwarded-Proto" 
+    - "X-Forwarded-For" 
+    - "X-Real-IP"
     addheaders:
     - name: "X-Salesforce-VIP"
       value: "SLB"
-- lbname: org-test-cs69
+
+- lbname: org-cce2e-cs69
   servers:
-    - cs69-app1-1-phx.ops.sfdc.net
-    - cs69-app1-3-phx.ops.sfdc.net
-    - cs69-app2-5-phx.ops.sfdc.net
-    - cs69-app1-2-phx.ops.sfdc.net
-    - cs69-app1-5-phx.ops.sfdc.net
-    - cs69-app2-3-phx.ops.sfdc.net
-    - cs69-app2-4-phx.ops.sfdc.net
     - cs69-app1-4-phx.ops.sfdc.net
     - cs69-app2-1-phx.ops.sfdc.net
-    - cs69-app2-2-phx.ops.sfdc.net  
+    - cs69-app2-4-phx.ops.sfdc.net
+    - cs69-app1-5-phx.ops.sfdc.net
+    - cs69-app2-3-phx.ops.sfdc.net
+    - cs69-app1-1-phx.ops.sfdc.net
+    - cs69-app2-2-phx.ops.sfdc.net
+    - cs69-app2-5-phx.ops.sfdc.net
+    - cs69-app1-2-phx.ops.sfdc.net
+    - cs69-app1-3-phx.ops.sfdc.net  
   ports:
   - port: 443
-    targetport: 8085
+    targetport: 8090
+    reencrypt: true
+    healthport: 8085
     lbtype: http
     healthprotocol: http
     healthpath: /ping.jsp?allBusy
     sticky: 86400
+    tls: true
+    tlscertificate: secret_service:BofA-Stmfa-VIP-Certs:phx.cce2e.my-salesforce.com.crt
+    tlskey: kms:1:2:B79A5F5D32C69C340DC39183EA315A164E1E7B3D76B680258E4EED91817177AE:19a65fc9-ce76-42ed-8077-398b1fcccc24
     addheaders:
     - name: "X-Salesforce-VIP"
       value: "SLB"
+    removeheaders:
+    - "X-Forwarded-Proto"
+    - "X-Forwarded-For"
+    - "X-Client-Verify"
+    - "X-Real-IP"
+    - "X-Client-Cert"
+    - "X-Client-Fingerprint" 
   - port: 8443
-    targetport: 8085
+    targetport: 8090
+    reencrypt: true
+    healthport: 8085
     lbtype: http
     healthprotocol: http
     healthpath: /ping.jsp?allBusy
     sticky: 86400
+    tls: true
+    mtls: true
+    tlscertificate: secret_service:BofA-Stmfa-VIP-Certs:phx.cce2e.my-salesforce.com.crt
+    tlskey: kms:1:2:B79A5F5D32C69C340DC39183EA315A164E1E7B3D76B680258E4EED91817177AE:19a65fc9-ce76-42ed-8077-398b1fcccc24
     addheaders:
     - name: "X-Salesforce-VIP"
-      value: "SLB"   
+      value: "SLB"
+    removeheaders:
+    - "X-Forwarded-Proto"
+    - "X-Forwarded-For"
+    - "X-Client-Verify"
+    - "X-Real-IP"
+    - "X-Client-Cert"
+    - "X-Client-Fingerprint"   
   - port: 80
     targetport: 8085
     lbtype: http
@@ -1059,40 +1809,69 @@
     healthpath: /ping.jsp?allBusy
     removeheaders:
     - "CipherSuite"
+    - "X-Forwarded-Proto" 
+    - "X-Forwarded-For" 
+    - "X-Real-IP"
     addheaders:
     - name: "X-Salesforce-VIP"
       value: "SLB"
-- lbname: org-test-cs70
+
+- lbname: org-cce2e-cs70
   servers:
-    - cs70-app1-5-phx.ops.sfdc.net
-    - cs70-app2-2-phx.ops.sfdc.net
-    - cs70-app1-3-phx.ops.sfdc.net
-    - cs70-app1-2-phx.ops.sfdc.net
-    - cs70-app1-4-phx.ops.sfdc.net
-    - cs70-app2-4-phx.ops.sfdc.net
     - cs70-app1-1-phx.ops.sfdc.net
+    - cs70-app1-3-phx.ops.sfdc.net
     - cs70-app2-1-phx.ops.sfdc.net
+    - cs70-app2-5-phx.ops.sfdc.net
+    - cs70-app1-5-phx.ops.sfdc.net
     - cs70-app2-3-phx.ops.sfdc.net
-    - cs70-app2-5-phx.ops.sfdc.net  
+    - cs70-app2-4-phx.ops.sfdc.net
+    - cs70-app1-2-phx.ops.sfdc.net
+    - cs70-app2-2-phx.ops.sfdc.net
+    - cs70-app1-4-phx.ops.sfdc.net  
   ports:
   - port: 443
-    targetport: 8085
+    targetport: 8090
+    reencrypt: true
+    healthport: 8085
     lbtype: http
     healthprotocol: http
     healthpath: /ping.jsp?allBusy
     sticky: 86400
+    tls: true
+    tlscertificate: secret_service:BofA-Stmfa-VIP-Certs:phx.cce2e.my-salesforce.com.crt
+    tlskey: kms:1:2:B79A5F5D32C69C340DC39183EA315A164E1E7B3D76B680258E4EED91817177AE:19a65fc9-ce76-42ed-8077-398b1fcccc24
     addheaders:
     - name: "X-Salesforce-VIP"
       value: "SLB"
+    removeheaders:
+    - "X-Forwarded-Proto"
+    - "X-Forwarded-For"
+    - "X-Client-Verify"
+    - "X-Real-IP"
+    - "X-Client-Cert"
+    - "X-Client-Fingerprint" 
   - port: 8443
-    targetport: 8085
+    targetport: 8090
+    reencrypt: true
+    healthport: 8085
     lbtype: http
     healthprotocol: http
     healthpath: /ping.jsp?allBusy
     sticky: 86400
+    tls: true
+    mtls: true
+    tlscertificate: secret_service:BofA-Stmfa-VIP-Certs:phx.cce2e.my-salesforce.com.crt
+    tlskey: kms:1:2:B79A5F5D32C69C340DC39183EA315A164E1E7B3D76B680258E4EED91817177AE:19a65fc9-ce76-42ed-8077-398b1fcccc24
     addheaders:
     - name: "X-Salesforce-VIP"
-      value: "SLB"   
+      value: "SLB"
+    removeheaders:
+    - "X-Forwarded-Proto"
+    - "X-Forwarded-For"
+    - "X-Client-Verify"
+    - "X-Real-IP"
+    - "X-Client-Cert"
+    - "X-Client-Fingerprint"   
   - port: 80
     targetport: 8085
     lbtype: http
@@ -1100,40 +1879,69 @@
     healthpath: /ping.jsp?allBusy
     removeheaders:
     - "CipherSuite"
+    - "X-Forwarded-Proto" 
+    - "X-Forwarded-For" 
+    - "X-Real-IP"
     addheaders:
     - name: "X-Salesforce-VIP"
       value: "SLB"
-- lbname: org-test-cs71
+
+- lbname: org-cce2e-cs71
   servers:
-    - cs71-app1-3-phx.ops.sfdc.net
-    - cs71-app1-2-phx.ops.sfdc.net
-    - cs71-app1-5-phx.ops.sfdc.net
-    - cs71-app1-1-phx.ops.sfdc.net
     - cs71-app2-3-phx.ops.sfdc.net
-    - cs71-app2-4-phx.ops.sfdc.net
-    - cs71-app2-1-phx.ops.sfdc.net
+    - cs71-app1-1-phx.ops.sfdc.net
     - cs71-app2-2-phx.ops.sfdc.net
     - cs71-app1-4-phx.ops.sfdc.net
-    - cs71-app2-5-phx.ops.sfdc.net  
+    - cs71-app1-2-phx.ops.sfdc.net
+    - cs71-app2-1-phx.ops.sfdc.net
+    - cs71-app2-4-phx.ops.sfdc.net
+    - cs71-app2-5-phx.ops.sfdc.net
+    - cs71-app1-3-phx.ops.sfdc.net
+    - cs71-app1-5-phx.ops.sfdc.net  
   ports:
   - port: 443
-    targetport: 8085
+    targetport: 8090
+    reencrypt: true
+    healthport: 8085
     lbtype: http
     healthprotocol: http
     healthpath: /ping.jsp?allBusy
     sticky: 86400
+    tls: true
+    tlscertificate: secret_service:BofA-Stmfa-VIP-Certs:phx.cce2e.my-salesforce.com.crt
+    tlskey: kms:1:2:B79A5F5D32C69C340DC39183EA315A164E1E7B3D76B680258E4EED91817177AE:19a65fc9-ce76-42ed-8077-398b1fcccc24
     addheaders:
     - name: "X-Salesforce-VIP"
       value: "SLB"
+    removeheaders:
+    - "X-Forwarded-Proto"
+    - "X-Forwarded-For"
+    - "X-Client-Verify"
+    - "X-Real-IP"
+    - "X-Client-Cert"
+    - "X-Client-Fingerprint" 
   - port: 8443
-    targetport: 8085
+    targetport: 8090
+    reencrypt: true
+    healthport: 8085
     lbtype: http
     healthprotocol: http
     healthpath: /ping.jsp?allBusy
     sticky: 86400
+    tls: true
+    mtls: true
+    tlscertificate: secret_service:BofA-Stmfa-VIP-Certs:phx.cce2e.my-salesforce.com.crt
+    tlskey: kms:1:2:B79A5F5D32C69C340DC39183EA315A164E1E7B3D76B680258E4EED91817177AE:19a65fc9-ce76-42ed-8077-398b1fcccc24
     addheaders:
     - name: "X-Salesforce-VIP"
-      value: "SLB"   
+      value: "SLB"
+    removeheaders:
+    - "X-Forwarded-Proto"
+    - "X-Forwarded-For"
+    - "X-Client-Verify"
+    - "X-Real-IP"
+    - "X-Client-Cert"
+    - "X-Client-Fingerprint"   
   - port: 80
     targetport: 8085
     lbtype: http
@@ -1141,40 +1949,69 @@
     healthpath: /ping.jsp?allBusy
     removeheaders:
     - "CipherSuite"
+    - "X-Forwarded-Proto" 
+    - "X-Forwarded-For" 
+    - "X-Real-IP"
     addheaders:
     - name: "X-Salesforce-VIP"
       value: "SLB"
-- lbname: org-test-cs90
+
+- lbname: org-cce2e-cs90
   servers:
-    - cs90-app2-5-phx.ops.sfdc.net
-    - cs90-app1-5-phx.ops.sfdc.net
-    - cs90-app1-1-phx.ops.sfdc.net
+    - cs90-app1-3-phx.ops.sfdc.net
     - cs90-app2-3-phx.ops.sfdc.net
     - cs90-app2-4-phx.ops.sfdc.net
+    - cs90-app1-1-phx.ops.sfdc.net
+    - cs90-app1-5-phx.ops.sfdc.net
+    - cs90-app2-5-phx.ops.sfdc.net
     - cs90-app1-2-phx.ops.sfdc.net
-    - cs90-app1-3-phx.ops.sfdc.net
-    - cs90-app2-2-phx.ops.sfdc.net
+    - cs90-app2-1-phx.ops.sfdc.net
     - cs90-app1-4-phx.ops.sfdc.net
-    - cs90-app2-1-phx.ops.sfdc.net  
+    - cs90-app2-2-phx.ops.sfdc.net  
   ports:
   - port: 443
-    targetport: 8085
+    targetport: 8090
+    reencrypt: true
+    healthport: 8085
     lbtype: http
     healthprotocol: http
     healthpath: /ping.jsp?allBusy
     sticky: 86400
+    tls: true
+    tlscertificate: secret_service:BofA-Stmfa-VIP-Certs:phx.cce2e.my-salesforce.com.crt
+    tlskey: kms:1:2:B79A5F5D32C69C340DC39183EA315A164E1E7B3D76B680258E4EED91817177AE:19a65fc9-ce76-42ed-8077-398b1fcccc24
     addheaders:
     - name: "X-Salesforce-VIP"
       value: "SLB"
+    removeheaders:
+    - "X-Forwarded-Proto"
+    - "X-Forwarded-For"
+    - "X-Client-Verify"
+    - "X-Real-IP"
+    - "X-Client-Cert"
+    - "X-Client-Fingerprint" 
   - port: 8443
-    targetport: 8085
+    targetport: 8090
+    reencrypt: true
+    healthport: 8085
     lbtype: http
     healthprotocol: http
     healthpath: /ping.jsp?allBusy
     sticky: 86400
+    tls: true
+    mtls: true
+    tlscertificate: secret_service:BofA-Stmfa-VIP-Certs:phx.cce2e.my-salesforce.com.crt
+    tlskey: kms:1:2:B79A5F5D32C69C340DC39183EA315A164E1E7B3D76B680258E4EED91817177AE:19a65fc9-ce76-42ed-8077-398b1fcccc24
     addheaders:
     - name: "X-Salesforce-VIP"
-      value: "SLB"   
+      value: "SLB"
+    removeheaders:
+    - "X-Forwarded-Proto"
+    - "X-Forwarded-For"
+    - "X-Client-Verify"
+    - "X-Real-IP"
+    - "X-Client-Cert"
+    - "X-Client-Fingerprint"   
   - port: 80
     targetport: 8085
     lbtype: http
@@ -1182,40 +2019,69 @@
     healthpath: /ping.jsp?allBusy
     removeheaders:
     - "CipherSuite"
+    - "X-Forwarded-Proto" 
+    - "X-Forwarded-For" 
+    - "X-Real-IP"
     addheaders:
     - name: "X-Salesforce-VIP"
       value: "SLB"
-- lbname: org-test-cs91
+
+- lbname: org-cce2e-cs91
   servers:
-    - cs91-app1-3-phx.ops.sfdc.net
-    - cs91-app1-5-phx.ops.sfdc.net
-    - cs91-app2-2-phx.ops.sfdc.net
-    - cs91-app2-4-phx.ops.sfdc.net
     - cs91-app2-5-phx.ops.sfdc.net
-    - cs91-app2-3-phx.ops.sfdc.net
+    - cs91-app2-2-phx.ops.sfdc.net
+    - cs91-app1-3-phx.ops.sfdc.net
+    - cs91-app2-1-phx.ops.sfdc.net
     - cs91-app1-1-phx.ops.sfdc.net
     - cs91-app1-2-phx.ops.sfdc.net
-    - cs91-app2-1-phx.ops.sfdc.net
+    - cs91-app2-4-phx.ops.sfdc.net
+    - cs91-app1-5-phx.ops.sfdc.net
+    - cs91-app2-3-phx.ops.sfdc.net
     - cs91-app1-4-phx.ops.sfdc.net  
   ports:
   - port: 443
-    targetport: 8085
+    targetport: 8090
+    reencrypt: true
+    healthport: 8085
     lbtype: http
     healthprotocol: http
     healthpath: /ping.jsp?allBusy
     sticky: 86400
+    tls: true
+    tlscertificate: secret_service:BofA-Stmfa-VIP-Certs:phx.cce2e.my-salesforce.com.crt
+    tlskey: kms:1:2:B79A5F5D32C69C340DC39183EA315A164E1E7B3D76B680258E4EED91817177AE:19a65fc9-ce76-42ed-8077-398b1fcccc24
     addheaders:
     - name: "X-Salesforce-VIP"
       value: "SLB"
+    removeheaders:
+    - "X-Forwarded-Proto"
+    - "X-Forwarded-For"
+    - "X-Client-Verify"
+    - "X-Real-IP"
+    - "X-Client-Cert"
+    - "X-Client-Fingerprint" 
   - port: 8443
-    targetport: 8085
+    targetport: 8090
+    reencrypt: true
+    healthport: 8085
     lbtype: http
     healthprotocol: http
     healthpath: /ping.jsp?allBusy
     sticky: 86400
+    tls: true
+    mtls: true
+    tlscertificate: secret_service:BofA-Stmfa-VIP-Certs:phx.cce2e.my-salesforce.com.crt
+    tlskey: kms:1:2:B79A5F5D32C69C340DC39183EA315A164E1E7B3D76B680258E4EED91817177AE:19a65fc9-ce76-42ed-8077-398b1fcccc24
     addheaders:
     - name: "X-Salesforce-VIP"
-      value: "SLB"   
+      value: "SLB"
+    removeheaders:
+    - "X-Forwarded-Proto"
+    - "X-Forwarded-For"
+    - "X-Client-Verify"
+    - "X-Real-IP"
+    - "X-Client-Cert"
+    - "X-Client-Fingerprint"   
   - port: 80
     targetport: 8085
     lbtype: http
@@ -1223,36 +2089,65 @@
     healthpath: /ping.jsp?allBusy
     removeheaders:
     - "CipherSuite"
+    - "X-Forwarded-Proto" 
+    - "X-Forwarded-For" 
+    - "X-Real-IP"
     addheaders:
     - name: "X-Salesforce-VIP"
       value: "SLB"
-- lbname: org-test-cs999
+
+- lbname: org-cce2e-cs999
   servers:
-    - cs999-app1-1-phx.ops.sfdc.net
-    - cs999-app1-3-phx.ops.sfdc.net
     - cs999-app2-1-phx.ops.sfdc.net
     - cs999-app1-2-phx.ops.sfdc.net
-    - cs999-app2-2-phx.ops.sfdc.net
-    - cs999-app2-3-phx.ops.sfdc.net  
+    - cs999-app2-3-phx.ops.sfdc.net
+    - cs999-app1-1-phx.ops.sfdc.net
+    - cs999-app1-3-phx.ops.sfdc.net
+    - cs999-app2-2-phx.ops.sfdc.net  
   ports:
   - port: 443
-    targetport: 8085
+    targetport: 8090
+    reencrypt: true
+    healthport: 8085
     lbtype: http
     healthprotocol: http
     healthpath: /ping.jsp?allBusy
     sticky: 86400
+    tls: true
+    tlscertificate: secret_service:BofA-Stmfa-VIP-Certs:phx.cce2e.my-salesforce.com.crt
+    tlskey: kms:1:2:B79A5F5D32C69C340DC39183EA315A164E1E7B3D76B680258E4EED91817177AE:19a65fc9-ce76-42ed-8077-398b1fcccc24
     addheaders:
     - name: "X-Salesforce-VIP"
       value: "SLB"
+    removeheaders:
+    - "X-Forwarded-Proto"
+    - "X-Forwarded-For"
+    - "X-Client-Verify"
+    - "X-Real-IP"
+    - "X-Client-Cert"
+    - "X-Client-Fingerprint" 
   - port: 8443
-    targetport: 8085
+    targetport: 8090
+    reencrypt: true
+    healthport: 8085
     lbtype: http
     healthprotocol: http
     healthpath: /ping.jsp?allBusy
     sticky: 86400
+    tls: true
+    mtls: true
+    tlscertificate: secret_service:BofA-Stmfa-VIP-Certs:phx.cce2e.my-salesforce.com.crt
+    tlskey: kms:1:2:B79A5F5D32C69C340DC39183EA315A164E1E7B3D76B680258E4EED91817177AE:19a65fc9-ce76-42ed-8077-398b1fcccc24
     addheaders:
     - name: "X-Salesforce-VIP"
-      value: "SLB"   
+      value: "SLB"
+    removeheaders:
+    - "X-Forwarded-Proto"
+    - "X-Forwarded-For"
+    - "X-Client-Verify"
+    - "X-Real-IP"
+    - "X-Client-Cert"
+    - "X-Client-Fingerprint"   
   - port: 80
     targetport: 8085
     lbtype: http
@@ -1260,6 +2155,9 @@
     healthpath: /ping.jsp?allBusy
     removeheaders:
     - "CipherSuite"
+    - "X-Forwarded-Proto" 
+    - "X-Forwarded-For" 
+    - "X-Real-IP"
     addheaders:
     - name: "X-Salesforce-VIP"
       value: "SLB"
