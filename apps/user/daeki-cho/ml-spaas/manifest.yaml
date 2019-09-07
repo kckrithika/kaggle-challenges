@@ -8,7 +8,7 @@ system:
     count: 1
     containers:
     - name: ml-spaas
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/daeki.cho/ml-spaas:cho-20190731v1
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/daeki.cho/mlspaas:mlspaas-09062019
       resources:
         limits: { cpu: "1", memory: "1Gi" }
         requests: { cpu: "1", memory: "1Gi" }
