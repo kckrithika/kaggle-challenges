@@ -45,21 +45,6 @@ system:
           command:
           - "/opt/beacon/is-alive.sh"
 
-    - name: beacon-opa
-      # https://git.soma.salesforce.com/services/sfdc-bazel/tree/master/projects/sidecars/beacon#docker-image
-      image: sfci/services/sfdc-bazel/disco/beacon:d7f1640
-      env:
-      - name: SFDC_ENVIRONMENT
-        value: mesh
-      args:
-      - -endpoint
-      - service-mesh/opa:DATACENTER:9191     
-      livenessProbe:
-        initialDelaySeconds: 5
-        exec:
-          command:
-          - "/opt/beacon/is-alive.sh"
-
     - name: opa-agent
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/openpolicyagent/opa:0.13.2-istio-with-config-2
       livenessProbe:
