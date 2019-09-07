@@ -80,7 +80,7 @@ spec:
         - --marker=/host/data/slb/ipvs.marker
         - --period=5s
         - --log_dir=/host/data/slb/logs/slb-ipvs
-        - --maximumDeleteCount=10
+        - --maximumDeleteCount=100
         - --hostsConfigFile=/sfdchosts/hosts.json
         - --client.serverPort=12081
         - --client.serverInterface=lo
@@ -340,7 +340,7 @@ spec:
         - --hostsConfigFile=/sfdchosts/hosts.json
         - --client.socketDir=/host/data/slb/config/slb-ipvs
         - --client.dialSocket=true
-        - --maxDeleteLimit=10
+        - --maxDeleteLimit=100
         - --isRoleUsed=true
         - --metricsEndpoint=ajna0-funnel1-0-lo2.data.sfdc.net:80
         - --vcioptions.strict=true

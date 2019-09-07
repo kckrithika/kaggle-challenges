@@ -220,7 +220,7 @@ spec:
         - --hostsConfigFile=/sfdchosts/hosts.json
         - --client.socketDir=/host/data/slb/config/slb-vip-watchdog
         - --client.dialSocket=true
-        - --maxDeleteLimit=10
+        - --maxDeleteLimit=100
         - --isRoleUsed=true
         - --metricsEndpoint=ajna0-funnel1-0-phx.data.sfdc.net:80
         - --vcioptions.strict=true

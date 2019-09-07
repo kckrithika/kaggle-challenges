@@ -50,7 +50,7 @@ spec:
         - --client.serverPort=12088
         - --client.serverInterface=lo
         - --restrictedSubnets=161.71.144.0/23,161.71.144.14/32,161.71.144.15/32,10.213.100.136/32,10.213.100.137/32,10.213.100.14/32,10.213.100.140/32,10.213.100.138/32,10.213.100.139/32,161.71.144.5/32,161.71.144.13/32
-        - --maxDeleteEntries=10
+        - --maxDeleteEntries=100
         - --vipLimit=198
         - --client.socketDir=/host/data/slb/config/slb-dns-register
         - --client.dialSocket=true
@@ -241,7 +241,7 @@ spec:
         - --hostsConfigFile=/sfdchosts/hosts.json
         - --client.socketDir=/host/data/slb/config/slb-dns-register
         - --client.dialSocket=true
-        - --maxDeleteLimit=10
+        - --maxDeleteLimit=100
         - --isRoleUsed=true
         - --metricsEndpoint=ajna0-funnel1-0-hnd.data.sfdc.net:80
         - --vcioptions.strict=true
