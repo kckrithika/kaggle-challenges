@@ -39,12 +39,12 @@ system:
             path: /data/ea/redis/data
           name: datavol-redis
 
-  - name: cassandra
+  - name: insights-cassandra
     type: stateful-set
     count: 3
-    lbname: ea-cassandra-lb
+    lbname: ea-insights-cassandra-lb
     containers:
-    - name: cassandra
+    - name: insights-cassandra
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/pmantha/cassandra:v13
       imagePullPolicy: Always
       ports:
@@ -69,7 +69,7 @@ system:
         - name: HEAP_NEWSIZE
           value: 100M
         - name: CASSANDRA_SEEDS
-          value: "cassandra-0.cassandra.default.svc.cluster.local"
+          value: "insights-cassandra-0.cassandra.default.svc.cluster.local"
         - name: CASSANDRA_CLUSTER_NAME
           value: "K8Demo"
         - name: CASSANDRA_DC
@@ -112,8 +112,8 @@ system:
     - port: 6379
       targetport: 6379
       lbtype: tcp
-  - lbname: cassandra
-    function: cassandra
+  - lbname: insights-cassandra
+    function: insights-cassandra
     slbenabled: true
     ports:
       - port: 9042
