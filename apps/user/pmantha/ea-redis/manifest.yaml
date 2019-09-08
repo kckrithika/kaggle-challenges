@@ -38,7 +38,7 @@ system:
             path: /data/ea/redis/data
           name: datavol-redis
 
-  - name: cassandra
+  - name: insights-cassandra
     type: stateful-set
     count: 3
     lbname: insights-cassandra
