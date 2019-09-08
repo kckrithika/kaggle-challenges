@@ -63,7 +63,12 @@ if slbconfigs.isSlbEstate then configs.deploymentBase("slb") {
                                                        "--subnet=" + slbconfigs.subnet,
                                                        "--client.serverPort=" + portconfigs.slb.slbNodeApiDnsOverridePort,
                                                        "--client.serverInterface=lo",
-                                                       "--restrictedSubnets=" + slbconfigs.publicSubnet + "," + slbconfigs.reservedIps,
+                                                       (
+                                                            if std.length(slbconfigs.reservedIps) > 0 then
+                                                                "--restrictedSubnets=" + slbconfigs.publicSubnet + "," + slbconfigs.reservedIps
+                                                            else
+                                                                "--restrictedSubnets=" + slbconfigs.publicSubnet
+                                                       ),
                                                        "--maxDeleteEntries=" + slbconfigs.perCluster.maxDeleteCount[configs.estate],
                                                        // We can't use the full prefix limit space because sdn can also advertise IPs for docker. We subtract 2 as a safety margin.
                                                        "--vipLimit=" + (slbconfigs.perCluster.prefixLimit[configs.estate] - 2),
