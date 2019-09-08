@@ -49,7 +49,7 @@ spec:
         - --subnet=10.177.12.0/22
         - --client.serverPort=12088
         - --client.serverInterface=lo
-        - --restrictedSubnets=161.71.44.0/23,
+        - --restrictedSubnets=161.71.44.0/23
         - --maxDeleteEntries=100
         - --vipLimit=998
         - --client.socketDir=/host/data/slb/config/slb-dns-register
