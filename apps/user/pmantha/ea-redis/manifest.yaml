@@ -45,7 +45,7 @@ system:
     lbname: ea-cassandra-lb
     containers:
     - name: cassandra
-      image: gcr.io/google-samples/cassandra:v13
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/pmantha/cassandra:v13
       imagePullPolicy: Always
       ports:
       - containerPort: 7000
