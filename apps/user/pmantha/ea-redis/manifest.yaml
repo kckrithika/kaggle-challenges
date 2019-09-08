@@ -45,7 +45,7 @@ system:
     lbname: ea-insights-cassandra-lb
     containers:
     - name: insights-cassandra
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/pmantha/cassandra:v13
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/pmantha/insights-cassandra:3.0.13
       imagePullPolicy: Always
       ports:
       - containerPort: 7000
@@ -59,47 +59,27 @@ system:
       resources:
         limits:
           cpu: "500m"
-          memory: 1Gi
+          memory: 4Gi
         requests:
           cpu: "500m"
-          memory: 1Gi
-      env:
-        - name: MAX_HEAP_SIZE
-          value: 512M
-        - name: HEAP_NEWSIZE
-          value: 100M
-        - name: CASSANDRA_SEEDS
-          value: "insights-cassandra-0.insights-cassandra.default.svc.cluster.local"
-        - name: CASSANDRA_CLUSTER_NAME
-          value: "K8Demo"
-        - name: CASSANDRA_DC
-          value: "DC1-K8Demo"
-        - name: CASSANDRA_RACK
-          value: "Rack1-K8Demo"
-        - name: POD_IP
-          valueFrom:
-            fieldRef:
-              fieldPath: status.podIP
+          memory: 4Gi
       livenessProbe:
         tcpSocket:
           port: 9042
         failureThreshold: 3
-        initialDelaySeconds: 15
-        periodSeconds: 15        
+        initialDelaySeconds: 150
+        periodSeconds: 150
       readinessProbe:
-        exec:
-          command:
-          - /bin/bash
-          - -c
-          - /ready-probe.sh
-        initialDelaySeconds: 15
-        timeoutSeconds: 5
+        tcpSocket:
+          port: 9042
+        initialDelaySeconds: 150
+        periodSeconds: 150
       # These volume mounts are persistent. They are like inline claims,
       # but not exactly because the names need to match exactly one of
       # the stateful pod volumes.
       volumeMounts:
       - name: datavol-cassandra
-        mountPath: /cassandra_data      
+        mountPath: /data
     volumes: 
         - hostPath: 
             path: /data/ea/cassandra/data
