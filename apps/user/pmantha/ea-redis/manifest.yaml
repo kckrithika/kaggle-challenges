@@ -69,7 +69,7 @@ system:
         - name: HEAP_NEWSIZE
           value: 100M
         - name: CASSANDRA_SEEDS
-          value: "insights-cassandra-0.cassandra.default.svc.cluster.local"
+          value: "insights-cassandra-0.insights-cassandra.default.svc.cluster.local"
         - name: CASSANDRA_CLUSTER_NAME
           value: "K8Demo"
         - name: CASSANDRA_DC
