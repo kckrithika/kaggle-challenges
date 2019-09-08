@@ -616,7 +616,7 @@
 
     subnet: self.perCluster.subnet[estate],
     publicSubnet: self.perCluster.publicSubnet[estate],
-    reservedIps: std.join(",", slbreservedips.reservedIps[estate]),
+    reservedIps: std.join(",", slbreservedips.privateReservedIps[estate]),
     serviceList: self.perCluster.serviceList[estate],
     namespace: self.perCluster.namespace[estate],
     ddiService: self.perCluster.ddiService[kingdom],
