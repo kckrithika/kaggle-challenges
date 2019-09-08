@@ -41,13 +41,13 @@ system:
   - name: insights-cassandra
     type: stateful-set
     count: 3
-    lbname: ea-insights-cassandra-lb
+    lbname: insights-cassandra
     containers:
     - name: insights-cassandra
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/pmantha/insights-cassandra:3.0.13.1
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/pmantha/insights-cassandra:3.0.13.2
       imagePullPolicy: Always
-      command: ["/bin/sh"]
-      args: ["-c", "while :; do  sleep 1; done"]      
+      # command: ["/bin/sh"]
+      # args: ["-c", "while :; do  sleep 1; done"]      
       ports:
       - containerPort: 7000
         name: intra-node
@@ -93,11 +93,3 @@ system:
     - port: 6379
       targetport: 6379
       lbtype: tcp
-  - lbname: insights-cassandra
-    function: insights-cassandra
-    slbenabled: true
-    ports:
-      - port: 9042
-        targetport: 9042
-        lbtype: tcp
-
