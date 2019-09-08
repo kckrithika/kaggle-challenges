@@ -39,12 +39,12 @@ system:
             path: /data/ea/redis/data
           name: datavol-redis
 
-  - name: cassandra
+  - name: insights-cassandra
     type: stateful-set
     count: 3
     lbname: ea-cassandra-lb
     containers:
-    - name: cassandra      
+    - name: insights-cassandra      
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/marco-helmich/cassandra_replication:marco_is_testing
       imagePullPolicy: Always
       ports:
@@ -63,7 +63,7 @@ system:
         - name: HEAP_NEWSIZE
           value: 2048M
         - name: CASSANDRA_SEEDS
-          value: "cassandra-0.cassandra,cassandra-1.cassandra,cassandra-2.cassandra"
+          value: "insights-cassandra-0.insights-cassandra,insights-cassandra-1.insights-cassandra,insights-cassandra-2.insights-cassandra"
         - name: CASSANDRA_CLUSTER_NAME
           value: "ReplicationCassandra"
         - name: CASSANDRA_DC
@@ -93,8 +93,8 @@ system:
     - port: 6379
       targetport: 6379
       lbtype: tcp
-  - lbname: cassandra
-    function: cassandra
+  - lbname: insights-cassandra
+    function: insights-cassandra
     slbenabled: true
     ports:
       - port: 9042
