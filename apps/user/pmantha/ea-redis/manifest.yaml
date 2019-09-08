@@ -39,48 +39,67 @@ system:
             path: /data/ea/redis/data
           name: datavol-redis
 
-  - name: insights-cassandra
+  - name: cassandra
     type: stateful-set
     count: 3
     lbname: ea-cassandra-lb
     containers:
-    - name: insights-cassandra      
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/marco-helmich/cassandra_replication:marco_is_testing
+    - name: cassandra
+      image: gcr.io/google-samples/cassandra:v13
       imagePullPolicy: Always
       ports:
       - containerPort: 7000
         name: intra-node
       - containerPort: 7001
         name: tls-intra-node
+      - containerPort: 7199
+        name: jmx
       - containerPort: 9042
         name: cql
-      volumeMounts:
-        - name: datavol-cassandra
-          mountPath: /data        
+      resources:
+        limits:
+          cpu: "500m"
+          memory: 1Gi
+        requests:
+          cpu: "500m"
+          memory: 1Gi
       env:
         - name: MAX_HEAP_SIZE
-          value: 2048M
+          value: 512M
         - name: HEAP_NEWSIZE
-          value: 2048M
+          value: 100M
         - name: CASSANDRA_SEEDS
-          value: "insights-cassandra-0.insights-cassandra,insights-cassandra-1.insights-cassandra,insights-cassandra-2.insights-cassandra"
+          value: "cassandra-0.cassandra.default.svc.cluster.local"
         - name: CASSANDRA_CLUSTER_NAME
-          value: "ReplicationCassandra"
+          value: "K8Demo"
         - name: CASSANDRA_DC
-          value: "DC1"
+          value: "DC1-K8Demo"
         - name: CASSANDRA_RACK
-          value: "Rack1"
-        - name: CASSANDRA_AUTO_BOOTSTRAP
-          value: "false"
+          value: "Rack1-K8Demo"
         - name: POD_IP
           valueFrom:
             fieldRef:
               fieldPath: status.podIP
       livenessProbe:
-        exec:
-          command: ["/bin/bash", "-c", "/workdir/cassandra-ready-probe.sh"]
+        tcpSocket:
+          port: 9042
+        failureThreshold: 3
         initialDelaySeconds: 15
-        timeoutSeconds: 5    
+        periodSeconds: 15        
+      readinessProbe:
+        exec:
+          command:
+          - /bin/bash
+          - -c
+          - /ready-probe.sh
+        initialDelaySeconds: 15
+        timeoutSeconds: 5
+      # These volume mounts are persistent. They are like inline claims,
+      # but not exactly because the names need to match exactly one of
+      # the stateful pod volumes.
+      volumeMounts:
+      - name: datavol-cassandra
+        mountPath: /cassandra_data      
     volumes: 
         - hostPath: 
             path: /data/ea/cassandra/data
@@ -93,8 +112,8 @@ system:
     - port: 6379
       targetport: 6379
       lbtype: tcp
-  - lbname: insights-cassandra
-    function: insights-cassandra
+  - lbname: cassandra
+    function: cassandra
     slbenabled: true
     ports:
       - port: 9042
