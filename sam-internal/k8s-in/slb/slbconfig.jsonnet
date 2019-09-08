@@ -6,6 +6,7 @@
     local configs = import "config.jsonnet",
     local slbvipwdconfig = import "slb-vip-watchdog-config.libsonnet",
     local slbflights = import "slbflights.jsonnet",
+    local slbhsmvips = import "slb-hsm-vips.jsonnet",
     local set_value_to_all_in_list(value, list) = { [item]: value for item in list },
     local set_value_to_all_in_list_skip(value, list, skip) = { [item]: value for item in list if item != skip },
 
@@ -283,46 +284,6 @@
             "ph2-sam",
             "ia2-sam",
         ]),
-
-        # The set of VIPs which are served on the hsm pipeline. This is in addition to any VIPs specified in
-        # hsmDefaultEnabledVips below.
-        hsmEnabledVips:
-            set_value_to_all_in_list([], $.testEstates)
-            + set_value_to_all_in_list([], $.prodEstates)
-            + {
-              "prd-sam": [
-                  "mist51-app-hsm-prd.slb.sfdc.net",
-                  "mist51-app-prd.slb.sfdc.net",
-                  # Steven Lawrance (@slawrance) KMS testing in PRD 2019/06/03
-                  "encinoman1-slawrance-prd.slb.sfdc.net",
-                  "encinoman2-slawrance-prd.slb.sfdc.net",
-                  "encinoman3-slawrance-prd.slb.sfdc.net",
-                  "encinoman4-slawrance-prd.slb.sfdc.net",
-                  "encinoman5-slawrance-prd.slb.sfdc.net",
-                  "encinoman6-slawrance-prd.slb.sfdc.net",
-                  "encinoman1-cs2-slawrance-prd.slb.sfdc.net",
-                  "encinoman2-cs2-slawrance-prd.slb.sfdc.net",
-                  "encinoman3-cs2-slawrance-prd.slb.sfdc.net",
-                  "encinoman4-cs2-slawrance-prd.slb.sfdc.net",
-                  "encinoman5-cs2-slawrance-prd.slb.sfdc.net",
-                  "encinoman6-cs2-slawrance-prd.slb.sfdc.net",
-                  "vonage-mist51-na1-slawrance-prd.slb.sfdc.net",
-                  "petco-mist51-na1-slawrance-prd.slb.sfdc.net",
-                  "petco2-mist51-na1-slawrance-prd.slb.sfdc.net",
-              ],
-              "prd-samtwo": [
-                  "na44-stmfa1-0-prd.slb.sfdc.net",
-                  "na44-stmfb1-0-prd.slb.sfdc.net",
-              ],
-              "phx-sam": [
-                  "login-cloudforce-phx.slb.sfdc.net",
-                  "gs0-bofa-phx.slb.sfdc.net",
-              ],
-              "dfw-sam": [
-                  "login-cloudforce-dfw.slb.sfdc.net",
-                  "gs0-bofa-dfw.slb.sfdc.net",
-              ],
-            },
 
         envoyEnabledVips:
             set_value_to_all_in_list(["service-mesh-ingress.sam-system." + configs.estate + "." + configs.kingdom + ".slb.sfdc.net"], $.slbEstates),
@@ -681,7 +642,7 @@
         # Enable the canary hsm VIP by default for all hsm-enabled estates.
         "slb-canary-hsm.sam-system.%(estate)s.%(kingdom)s.slb.sfdc.net" % configs,
     ] else [],
-    hsmEnabledVips: self.perCluster.hsmEnabledVips[estate] + self.hsmDefaultEnabledVips,
+    hsmEnabledVips: slbhsmvips.hsmEnabledVips[estate] + self.hsmDefaultEnabledVips,
     envoyEnabledVips: self.perCluster.envoyEnabledVips[estate],
     envoyProxyEnabledVips: self.perCluster.envoyProxyEnabledVips[estate],
     vipsToAcl: self.perCluster.vipsToAcl[estate],
