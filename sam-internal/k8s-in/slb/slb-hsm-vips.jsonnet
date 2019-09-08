@@ -7,8 +7,8 @@
   prodEstates: [k + '-sam' for k in $.slbKingdoms] + ['prd-samtwo'],
   testEstates: ['prd-sdc', 'prd-samdev', 'prd-samtest', 'prd-sam_storage'],
 
-  // The set of VIPs which are served on the hsm pipeline. This is in addition to any VIPs specified in
-  // hsmDefaultEnabledVips below.
+  # The set of VIPs which are served on the hsm pipeline. This is in addition to any VIPs specified in
+  # hsmDefaultEnabledVips below.
   hsmEnabledVips:
     set_value_to_all_in_list([], $.testEstates)
     + set_value_to_all_in_list([], $.prodEstates)
@@ -16,7 +16,7 @@
       'prd-sam': [
         'mist51-app-hsm-prd.slb.sfdc.net',
         'mist51-app-prd.slb.sfdc.net',
-        // Steven Lawrance (@slawrance) KMS testing in PRD 2019/06/03
+         # Steven Lawrance (@slawrance) KMS testing in PRD 2019/06/03
         'encinoman1-slawrance-prd.slb.sfdc.net',
         'encinoman2-slawrance-prd.slb.sfdc.net',
         'encinoman3-slawrance-prd.slb.sfdc.net',
