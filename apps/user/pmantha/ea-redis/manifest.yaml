@@ -41,7 +41,7 @@ system:
 
   - name: cassandra
     type: stateful-set
-    count: 4
+    count: 3
     lbname: ea-cassandra-lb
     containers:
     - name: cassandra
