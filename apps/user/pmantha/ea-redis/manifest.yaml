@@ -39,7 +39,7 @@ system:
             path: /data/ea/redis/data
           name: datavol-redis
 
-  - name: cassandra
+  - name: insights-cassandra
     type: stateful-set
     count: 3
     lbname: ea-insights-cassandra-lb
@@ -93,7 +93,7 @@ system:
       targetport: 6379
       lbtype: tcp
   - lbname: insights-cassandra
-    function: cassandra
+    function: insights-cassandra
     slbenabled: true
     ports:
       - port: 9042
