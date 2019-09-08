@@ -7,7 +7,7 @@
     prodEstates: [k + "-sam" for k in $.slbKingdoms] + ['prd-samtwo'],
     testEstates: ['prd-sdc', 'prd-samdev', 'prd-samtest', 'prd-sam_storage'],
 
-    The set of VIPs which are served on the hsm pipeline. This is in addition to any VIPs specified in
+    #The set of VIPs which are served on the hsm pipeline. This is in addition to any VIPs specified in
     # hsmDefaultEnabledVips below.
     hsmEnabledVips:
         set_value_to_all_in_list([], $.testEstates)
