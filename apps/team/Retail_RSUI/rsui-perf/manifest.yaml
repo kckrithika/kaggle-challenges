@@ -150,6 +150,8 @@ system:
         value: 5
       - name: MULTIPART_CONFIG_LOCATION
         value: /home/retail-setup/files
+      - name: MULTIPART_CONFIG_MAXFILE
+        value: 500MB
       livenessProbe:
         initialDelaySeconds: 120
         periodSeconds: 30
