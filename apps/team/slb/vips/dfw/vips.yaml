@@ -17,6 +17,7 @@
     lbtype: http
     healthprotocol: http
     healthpath: /ping.jsp?allBusy
+    healthport: 8085
     sticky: 86400
     tls: true
     tlscertificate: secret_service:BofA-Stmfa-VIP-Certs:dfw.cce2e.my-salesforce.com.crt
@@ -37,6 +38,7 @@
     lbtype: http
     healthprotocol: http
     healthpath: /ping.jsp?allBusy
+    healthport: 8085
     sticky: 86400
     tls: true
     mtls: true
