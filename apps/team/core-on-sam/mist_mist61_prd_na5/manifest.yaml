@@ -104,7 +104,7 @@ system:
         name: secretvol
         readOnly: true
     - name: casam-sidecar
-      image: sfci/casam/coreapp_overrides:685d9c
+      image: sfci/casam/coreapp_overrides:4bcada
       env:
       - name: CASAM_SETTINGS_PATH
         value: mist.mist61.prd.na5.app
