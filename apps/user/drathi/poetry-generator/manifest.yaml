@@ -6,7 +6,7 @@ system:
     count: 1
     containers:
     - name: poetry-gen-service
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/drathi/poetry-gen:drathi-20190909-d3bf1e7
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/drathi/poetry-gen:drathi-20190909-394776a
       # If your service doesn't serve HTTP traffic then you can remove the scone-http 8080 port.
       ports:
       - containerPort: 8080
