@@ -263,6 +263,24 @@ items:
 - apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: RoleBinding
   metadata:
+    name: ci-global-identity:prd-sam_cloudatlas:rolebinding
+    namespace: ci-global-identity
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: minion:role
+  subjects:
+  - kind: User
+    name: test0shared0-samminionatlasfe1-1-prd.eng.sfdc.net
+  - kind: User
+    name: test0shared0-samminionatlasfe2-1-prd.eng.sfdc.net
+  - kind: User
+    name: test1shared0-samminionatlasfe1-1-prd.eng.sfdc.net
+  - kind: User
+    name: test1shared0-samminionatlasfe2-1-prd.eng.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1beta1
+  kind: RoleBinding
+  metadata:
     name: cloudatlas:prd-sam_cloudatlas:rolebinding
     namespace: cloudatlas
   roleRef:

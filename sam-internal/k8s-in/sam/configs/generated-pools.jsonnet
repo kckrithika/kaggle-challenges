@@ -3496,11 +3496,13 @@
     {
       "namespaces": [
         "cloudatlas",
-        "global-identity"
+        "global-identity",
+        "ci-global-identity"
       ],
       "access": [
         "team/CloudAtlas",
-        "team/global-identity"
+        "team/global-identity",
+        "team/ci-global-identity"
       ],
       "controlEstate": "prd-sam",
       "estate": "prd-sam_cloudatlas",
