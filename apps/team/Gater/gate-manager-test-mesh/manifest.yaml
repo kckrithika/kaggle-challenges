@@ -25,8 +25,8 @@ system:
       - --logging.json.level=OFF
       - --metrics.container=gater-mesh
       - --gater.grpc.use_direct_executor=false
+      - --gater.grpc.threadpool.size=112
       - --gater.test.grpc.short-circuit=false
-      - --gater-service.thread.pool.max-size=-1
       ports:
       - containerPort: 7020
       - containerPort: 9522
