@@ -13,8 +13,8 @@ system:
         value: 7032
       - name: management_server_port
         value: 15372
-      - name: SPRING_APPLICATION_JSON
-        value: {"scone.srpc.announcing-enabled":"false"}
+      - name: scone_srpc_announcingEnabled
+        value: false
 
       ports:
       - containerPort: 7032
