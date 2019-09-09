@@ -2,6 +2,13 @@
 local utils = import "util_functions.jsonnet";
 local configs = import "config.jsonnet";
 local mesh_namespaces = ["app", "service-mesh", "funnel", "gater", "ccait", "core-on-sam-sp2", "core-on-sam", "casam", "emailinfra", "universal-search", "search-scale-safely", "retail-cre", "retail-dfs", "retail-dss", "cloudatlas", "retail-eventlistener", "retail-mds", "retail-rrps", "retail-rsui", "retail-setup", "scone"];
+
+local istioSvcNamespaces = {
+  prd: mesh_namespaces,
+  mvp: mesh_namespaces,
+  par: ["service-mesh"],
+};
+
 {
   apiVersion: "v1",
   metadata: {
@@ -16,7 +23,7 @@ local mesh_namespaces = ["app", "service-mesh", "funnel", "gater", "ccait", "cor
       metadata: {
         labels: {
           "istio-injection": "enabled",
-        } + (if namespace == "service-mesh" then
+        } + (if namespace == "service-mesh" && (configs.kingdom == "prd" || configs.kingdom == "mvp") then
           { "sherpa-injection": "enabled" } else {})
         +
         // samlabelfilter.json requires this label to be present on GCP deployments
@@ -24,7 +31,7 @@ local mesh_namespaces = ["app", "service-mesh", "funnel", "gater", "ccait", "cor
         name: namespace,
       },
     }
-    for namespace in mesh_namespaces
+    for namespace in istioSvcNamespaces[configs.kingdom]
   ],
   kind: "List",
 }
