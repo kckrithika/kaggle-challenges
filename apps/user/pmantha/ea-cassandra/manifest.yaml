@@ -1,0 +1,59 @@
+apiVersion: v1
+
+system:
+  functions:
+  - name: insights-cassandra
+    type: stateful-set
+    count: 3
+    lbname: insights-cassandra
+    containers:
+    - name: insights-cassandra
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/pmantha/insights-cassandra:3.0.13.4
+      imagePullPolicy: Always
+      # command: ["/bin/sh"]
+      # args: ["-c", "while :; do  sleep 1; done"]      
+      ports:
+      - containerPort: 7000
+        name: intra-node
+      - containerPort: 7001
+        name: tls-intra-node
+      - containerPort: 7199
+        name: jmx
+      - containerPort: 9042
+        name: cql
+      resources:
+        limits:
+          cpu: "500m"
+          memory: 4Gi
+        requests:
+          cpu: "500m"
+          memory: 4Gi
+      livenessProbe:
+        tcpSocket:
+          port: 9042
+        failureThreshold: 3
+        initialDelaySeconds: 150
+        periodSeconds: 150
+      readinessProbe:
+        tcpSocket:
+          port: 9042
+        initialDelaySeconds: 150
+        periodSeconds: 150
+      # These volume mounts are persistent. They are like inline claims,
+      # but not exactly because the names need to match exactly one of
+      # the stateful pod volumes.
+      volumeMounts:
+      - name: datavol-cassandra
+        mountPath: /data
+    volumes: 
+        - hostPath: 
+            path: /data/ea/cassandra/data
+          name: datavol-cassandra
+  loadbalancers: 
+  - lbname: cassandra
+    function: insights-cassandra
+    slbEnabled: true
+    ports:
+    - port: 9042
+      targetport: 9042
+      lbtype: tcp          
