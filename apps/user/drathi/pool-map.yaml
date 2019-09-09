@@ -1,3 +1,5 @@
 apps:
  my-sam-test:
    - prd/prd-sam
+ poetry-generator:
+   - prd/prd-sam
