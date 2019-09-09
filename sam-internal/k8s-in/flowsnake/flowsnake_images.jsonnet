@@ -24,8 +24,6 @@ local utils = import "util_functions.jsonnet";
         "1": self["2"] {
             image_tags+: {
                 watchdog_image_tag: "2722-a1231485debac6b17dfa76e7a1af01750e0f4f8b",  # 05/2019 image
-                integration_test_tag: "18",
-                spark_operator_image_tag: "jenkins-dva-transformation-spark-on-k8s-operator-PR-16-7-itest",
             },
             feature_flags+: {
                 # Note: the *value* of the flags is ignored. jsonnet lacks array search, so we use a an object.
@@ -37,7 +35,6 @@ local utils = import "util_functions.jsonnet";
                 slb_ingress: "unverified",
                 # --- flag D (one flag between ... ---
                 # --- flag E (each pair. ... ---
-                next_analysis_script: "",
                 # --- flag F (Their only purpose ... ---
                 # --- flag G (is to assist ... ---
                 # --- flag H (git's diff logic ... ---
@@ -55,8 +52,6 @@ local utils = import "util_functions.jsonnet";
         # Only include new things not yet promoted to next phase. To promote, move line items to next phase.
         "2": self["3"] {
             image_tags+: {
-                spark_operator_image_tag: "jenkins-dva-transformation-spark-on-k8s-operator-PR-16-7-itest",
-                integration_test_tag: "18",
             },
             feature_flags+: {
                 # --- flag A (Do not edit ... ---
@@ -64,7 +59,6 @@ local utils = import "util_functions.jsonnet";
                 # --- flag C (and place only ... ---
                 # --- flag D (one flag between ... ---
                 # --- flag E (each pair. ... ---
-                next_analysis_script: "",
                 # --- flag F (Their only purpose ... ---
                 # --- flag G (is to assist ... ---
                 # --- flag H (git's diff logic ... ---
@@ -161,7 +155,6 @@ local utils = import "util_functions.jsonnet";
                 # --- flag C (and place only ... ---
                 # --- flag D (one flag between ... ---
                 # --- flag E (each pair. ... ---
-                next_analysis_script: "",
                 # --- flag F (Their only purpose ... ---
                 # --- flag G (is to assist ... ---
                 # --- flag H (git's diff logic ... ---
