@@ -28,7 +28,10 @@ system:
     - name: logvol
       hostPath:
         path: /home/sfdc-retail/logs
-
+    # maps the files volume mount to a directory on the host machine
+    - name: filesvol
+      hostPath:
+        path: /home/sfdc-retail/files
     containers:
     - name: rsui-perf
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/retail/retail-setup:0.1.9.202
@@ -145,6 +148,8 @@ system:
         value: false
       - name: CORE_GRPC_RETRY_LIMIT
         value: 5
+      - name: MULTIPART_CONFIG_LOCATION
+        value: /home/retail-setup/files
       livenessProbe:
         initialDelaySeconds: 120
         periodSeconds: 30
@@ -161,7 +166,9 @@ system:
       #mount splunk logs mount
       - name: logvol
         mountPath: /home/retail-setup/logs
-
+      #files mount
+      - name: filesvol
+        mountPath: /home/retail-setup/files
     - name: sherpa-rsui-perf
        # Each commit to master for https://git.soma.salesforce.com/servicelibs/sherpa-envoy/commits/master has an image created.
       # Use the full git SHA as the docker image tag.
