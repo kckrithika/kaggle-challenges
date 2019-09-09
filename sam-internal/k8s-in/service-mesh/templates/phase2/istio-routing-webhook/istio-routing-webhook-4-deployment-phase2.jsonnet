@@ -214,6 +214,10 @@ configs.deploymentBase("service-mesh") {
                 name: "ISTIO_METAJSON_METRICS_INCLUSIONS",
                 value: "{\"sidecar.istio.io/statsInclusionPrefixes\": \"access_log_file,cluster,cluster_manager,control_plane,http,http2,http_mixer_filter,listener,listener_manager,redis,runtime,server,stats,tcp,tcp_mixer_filter,tracing\"}",
               },
+              {
+                name: "ISTIO_METAJSON_LABELS",
+                value: "{\"settings_path\": \"-.-." + configs.kingdom + ".-.istio-routing-webhook\", \"superpod\":" + "\"" + mcpIstioConfig.superpod + "\"}",
+              },
             ],
             image: mcpIstioConfig.proxyImage,
             imagePullPolicy: "IfNotPresent",
