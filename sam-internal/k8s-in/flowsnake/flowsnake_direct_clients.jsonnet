@@ -124,6 +124,7 @@ local cre_production = {
                     "retail-cre.sonia.wu",
                     "retail-cre.mariusz.tycz",
                     "retail-cre.kdaszkowski",
+                    "retail-cre.dkardach",
                     "retail-cre.pkashyap",
                     "retail-cre.apandya",
                     "retail-cre.j.yang",
