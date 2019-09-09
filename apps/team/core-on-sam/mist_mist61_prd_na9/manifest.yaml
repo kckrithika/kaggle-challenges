@@ -374,8 +374,17 @@ system:
       - -d=true
       - -i=5m
       - -n=5
-      - -a=http://10.254.232.202:7022/ping.jsp
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/victor.li/hyperslb:victor.li-201909051615
+      - -p=${SFPROXY_VIP}/ping.jsp
+      - -a=http://10.254.232.67:7022/ping.jsp
+      - -h=${NODE_NAME}
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/victor.li/hyperslb:victor.li-201909091607
+      env:
+      - name: SFPROXY_VIP
+        value: https://us9-sfproxy-lb.core-on-sam-sp2.prd-sam.prd.slb.sfdc.net:8443
+      - name: NODE_NAME
+        valueFrom:
+          fieldRef:
+            fieldPath: spec.nodeName
       livenessProbe:
         httpGet:
           path: /readyz
