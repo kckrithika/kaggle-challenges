@@ -2,7 +2,7 @@ local mesh_namespaces = ["app", "service-mesh", "gater", "mesh-control-plane", "
 local mcpIstioConfig = (import "service-mesh/istio-config.jsonnet");
 local istioPhases = (import "service-mesh/istio-phases.jsonnet");
 
-if (istioPhases.phaseNum == 2) then
+if (istioPhases.phaseNum == 1) then
 {
   apiVersion: "v1",
   items: [
@@ -28,5 +28,6 @@ if (istioPhases.phaseNum == 2) then
     for namespace in mesh_namespaces
   ],
   kind: "List",
+  metadata: {},
 }
 else "SKIP"
