@@ -44,6 +44,7 @@
       'dfw-sam': [
         'login-cloudforce-dfw.slb.sfdc.net',
         'gs0-bofa-dfw.slb.sfdc.net',
+        'org-cce2e-cs3-slb-dfw.slb.sfdc.net',
       ],
     },
 }
