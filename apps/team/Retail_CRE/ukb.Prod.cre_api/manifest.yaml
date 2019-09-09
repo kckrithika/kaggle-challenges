@@ -131,8 +131,7 @@ system:
   loadbalancers:
   - lbname: cre-api-lb
     function: cre-api
-    nodeExposed: true
     slbenabled: true
     ports:
-      - port: 8086
-        targetport: 8080
+      - port: 7442
+        targetport: 7442
