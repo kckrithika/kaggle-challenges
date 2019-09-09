@@ -58,6 +58,9 @@ system:
       - name: eventbusajna-ens-v1
         mountPath: /secrets/eventbusajna-ens-v1
         readOnly: true
+      resources:
+        limits: { cpu: "4", memory: "8Gi" }
+        requests: { cpu: "2", memory: "2Gi" }
   loadbalancers:
   - lbname: event-notification-service-lb
     function: event-notification-service
