@@ -10,6 +10,7 @@
 local flowsnake_images = (import "flowsnake_images.jsonnet") + { templateFilename:: std.thisFile };
 local flowsnake_config = import "flowsnake_config.jsonnet";
 local kingdom = std.extVar("kingdom");
+local estate = std.extVar("estate");
 local runner_image = flowsnake_config.strata_registry  + "/flowsnake-spark-on-k8s-integration-test-runner";
 
 {
@@ -57,6 +58,8 @@ local runner_image = flowsnake_config.strata_registry  + "/flowsnake-spark-on-k8
                     { name: "S3_PROXY_HOST", value: flowsnake_config.s3_public_proxy_host },
                     { name: "DRIVER_SERVICE_ACCOUNT", value: "spark-driver-flowsnake-ci-tests" },
                     { name: "DOCKER_REGISTRY", value: flowsnake_config.registry },
+                    { name: "KINGDOM", value: kingdom },
+                    { name: "ESTATE", value: estate }
                 ],
                 securityContext: {
                     runAsUser: 0,   # root

@@ -114,7 +114,8 @@ items:
       "/scripts/runalltests.sh"], "env": [{"name": "DOCKER_TAG", "value": "{{TAG}}"},
       {"name": "TEST_RUNNER_ID", "value": "{{NAME}}"}, {"name": "S3_PROXY_HOST", "value":
       "public0-proxy1-0-prd.data.sfdc.net"}, {"name": "DRIVER_SERVICE_ACCOUNT", "value":
-      "spark-driver-flowsnake-ci-tests"}, {"name": "DOCKER_REGISTRY", "value": "ops0-artifactrepo2-0-prd.data.sfdc.net"}],
+      "spark-driver-flowsnake-ci-tests"}, {"name": "DOCKER_REGISTRY", "value": "ops0-artifactrepo2-0-prd.data.sfdc.net"},
+      {"name": "KINGDOM", "value": "prd"}, {"name": "ESTATE", "value": "prd-data-flowsnake"}],
       "image": "ops0-artifactrepo2-0-prd.data.sfdc.net/dva/flowsnake-spark-on-k8s-integration-test-runner:{{TAG}}",
       "imagePullPolicy": "Always", "name": "{{NAME}}", "resources": {"limits": {"cpu":
       "1", "memory": "500Mi"}, "requests": {"cpu": "1", "memory": "500Mi"}}, "securityContext":
