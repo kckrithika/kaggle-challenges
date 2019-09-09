@@ -8,7 +8,7 @@
      healthport: 8801
      healthpath: "/?ping"
      healthprotocol: "http"
-- lbname: c360
+- lbname: c360-dev
   servers:
     - sayonara1b-mnds2-13-xrd.eng.sfdc.net
   ports:
@@ -18,9 +18,28 @@
       healthport: 9900
       healthpath: "/"
       healthprotocol: "http"
-- lbname: c360-api
+- lbname: c360-api-dev
   servers:
     - sayonara1b-mnds2-13-xrd.eng.sfdc.net
+  ports:
+    - port: 443
+      targetport: 9443
+      lbtype: tcp
+- lbname: c360
+  servers:
+    - sayonara1b-mnds1-25-xrd.eng.sfdc.net
+    - sayonara1b-mnds1-1-xrd.eng.sfdc.net
+  ports:
+    - port: 80
+      targetport: 9900
+      lbtype: http
+      healthport: 9900
+      healthpath: "/"
+      healthprotocol: "http"
+- lbname: c360-api
+  servers:
+    - sayonara1b-mnds1-25-xrd.eng.sfdc.net
+    - sayonara1b-mnds1-1-xrd.eng.sfdc.net
   ports:
     - port: 443
       targetport: 9443
