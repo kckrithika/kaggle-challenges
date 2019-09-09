@@ -211,6 +211,8 @@ spec:
               fieldPath: metadata.namespace
         - name: ISTIO_METAJSON_METRICS_INCLUSIONS
           value: '{"sidecar.istio.io/statsInclusionPrefixes": "access_log_file,cluster,cluster_manager,control_plane,http,http2,http_mixer_filter,listener,listener_manager,redis,runtime,server,stats,tcp,tcp_mixer_filter,tracing"}'
+        - name: ISTIO_METAJSON_LABELS
+          value: '{"settings_path": "-.-.prd.-.istio-routing-webhook", "superpod":"-"}'
         image: ops0-artifactrepo2-0-prd.data.sfdc.net/sfci/servicemesh/istio-packaging/proxy:55a0daec53d372a76b261c917a7f06597db1ed2d
         imagePullPolicy: IfNotPresent
         name: istio-proxy
