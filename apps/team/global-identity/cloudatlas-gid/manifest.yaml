@@ -13,6 +13,9 @@ system:
         value: 7032
       - name: management_server_port
         value: 15372
+      - name: scone_srpc_announcing-enabled
+        value: false
+        
       ports:
       - containerPort: 7032
       - containerPort: 1636
