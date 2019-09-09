@@ -21,6 +21,7 @@ system:
       - --gater.timeout-in-millis=1000
       - --gater.perf.should-log=false
       - --gater.client.log-opts=NEVER_LOG
+      - --gater-service.thread.pool.max-size=-1
       ports:
       - containerPort: 8081
       - containerPort: 15375
