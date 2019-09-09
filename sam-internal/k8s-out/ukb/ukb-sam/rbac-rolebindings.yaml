@@ -112,6 +112,8 @@ items:
   - kind: User
     name: shared0-samminionatlasfe1-1-ukb.ops.sfdc.net
   - kind: User
+    name: shared0-samminionatlasfe1-2-ukb.ops.sfdc.net
+  - kind: User
     name: shared0-samminionatlasfe2-1-ukb.ops.sfdc.net
 - apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: RoleBinding
@@ -129,6 +131,8 @@ items:
     name: shared0-samminionatlasdir1-2-ukb.ops.sfdc.net
   - kind: User
     name: shared0-samminionatlasdir2-1-ukb.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionatlasdir2-2-ukb.ops.sfdc.net
 - apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: RoleBinding
   metadata:

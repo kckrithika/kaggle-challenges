@@ -107,6 +107,17 @@ data:
           "controlestate": "iad-sam",
           "devicerole": "samcompute",
           "estate": "iad-sam_cloudatlas",
+          "hostname": "shared0-samminionatlasfe1-2-iad.ops.sfdc.net",
+          "kingdom": "iad",
+          "pod": "none",
+          "rack": "j10-10b",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sam_minion_cloudatlas_fe",
+          "controlestate": "iad-sam",
+          "devicerole": "samcompute",
+          "estate": "iad-sam_cloudatlas",
           "hostname": "shared0-samminionatlasfe2-1-iad.ops.sfdc.net",
           "kingdom": "iad",
           "pod": "none",

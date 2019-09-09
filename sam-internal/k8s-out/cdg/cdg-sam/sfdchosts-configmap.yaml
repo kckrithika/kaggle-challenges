@@ -415,6 +415,17 @@ data:
           "controlestate": "cdg-sam",
           "devicerole": "samcompute",
           "estate": "cdg-sam_gatewayconfig",
+          "hostname": "shared0-samminiongwc1-3-cdg.ops.sfdc.net",
+          "kingdom": "cdg",
+          "pod": "none",
+          "rack": "f21-dh14",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sam_minion_gatewayconfig",
+          "controlestate": "cdg-sam",
+          "devicerole": "samcompute",
+          "estate": "cdg-sam_gatewayconfig",
           "hostname": "shared0-samminiongwc2-1-cdg.ops.sfdc.net",
           "kingdom": "cdg",
           "pod": "none",
@@ -591,10 +602,32 @@ data:
           "controlestate": "cdg-sam",
           "devicerole": "samcompute",
           "estate": "cdg-sam_report_collector",
+          "hostname": "shared0-samminionreportcollector1-2-cdg.ops.sfdc.net",
+          "kingdom": "cdg",
+          "pod": "none",
+          "rack": "e34-dh14",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sam_minion_report_collector",
+          "controlestate": "cdg-sam",
+          "devicerole": "samcompute",
+          "estate": "cdg-sam_report_collector",
           "hostname": "shared0-samminionreportcollector2-1-cdg.ops.sfdc.net",
           "kingdom": "cdg",
           "pod": "none",
           "rack": "b53-dh14",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sam_minion_report_collector",
+          "controlestate": "cdg-sam",
+          "devicerole": "samcompute",
+          "estate": "cdg-sam_report_collector",
+          "hostname": "shared0-samminionreportcollector2-2-cdg.ops.sfdc.net",
+          "kingdom": "cdg",
+          "pod": "none",
+          "rack": "e34-dh14",
           "superpod": "none"
         },
         {

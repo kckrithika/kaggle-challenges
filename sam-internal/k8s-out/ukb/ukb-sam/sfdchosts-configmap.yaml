@@ -118,6 +118,17 @@ data:
           "controlestate": "ukb-sam",
           "devicerole": "samcompute",
           "estate": "ukb-sam_cloudatlas",
+          "hostname": "shared0-samminionatlasfe1-2-ukb.ops.sfdc.net",
+          "kingdom": "ukb",
+          "pod": "none",
+          "rack": "j01-ks42",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sam_minion_cloudatlas_fe",
+          "controlestate": "ukb-sam",
+          "devicerole": "samcompute",
+          "estate": "ukb-sam_cloudatlas",
           "hostname": "shared0-samminionatlasfe2-1-ukb.ops.sfdc.net",
           "kingdom": "ukb",
           "pod": "none",
@@ -155,6 +166,17 @@ data:
           "kingdom": "ukb",
           "pod": "none",
           "rack": "l28-ks32",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sam_minion_cloudatlas_dir",
+          "controlestate": "ukb-sam",
+          "devicerole": "samcompute",
+          "estate": "ukb-sam_cloudatlas_dir",
+          "hostname": "shared0-samminionatlasdir2-2-ukb.ops.sfdc.net",
+          "kingdom": "ukb",
+          "pod": "none",
+          "rack": "h09-ks42",
           "superpod": "none"
         },
         {
