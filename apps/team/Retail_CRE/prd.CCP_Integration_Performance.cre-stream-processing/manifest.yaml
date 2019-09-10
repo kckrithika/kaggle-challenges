@@ -13,7 +13,7 @@ system:
       "routing.mesh.sfdc.net/enabled": "true"
     containers:
     - name: cre-sp-ccp-perf
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cre-fusion/services/control-plane/stream-processor:1.9.0.0.release-1.9.8bf1c43.6
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cre-fusion/services:stream-processor.2.0.1.develop.cc5258c.411
       env:
         - name: PUBLISHING_TOPIC
           value: sfdc.prod.cre__prd.ajna_local__cre_outbound_CCP_Integration_Performance
@@ -41,8 +41,12 @@ system:
           value: http://ajna0-funnel1-0-prd.data.sfdc.net
         - name: CONTROLPLANE_ENDPOINT
           value: http://cre-control-plane-ccp-perf.retail-cre.localhost.mesh.force.com:5442
+        - name: CONTROLPLANE_REST_TESTING_ENABLED
+          value: true
+        - name: CONTROLPLANE_REST_ENDPOINT
+          value: http://cre-control-plane-ccp-func.retail-cre.localhost.mesh.force.com:5442
         - name: ENABLE_BATCH_ORPHAN_CHECKS
-          value: true          
+          value: true
         - name: JVM_ARGS_PERF
           value: "-Xloggc:/opt/cre/$(FUNCTION)/verbosegc_$(FUNCTION_INSTANCE_NAME).log
                   -XX:HeapDumpPath=/opt/cre/$(FUNCTION)
@@ -150,7 +154,7 @@ system:
       - port: 8085
         targetport: 7022
   - lbname: cre-sp-ccp-perf
-    function: cre-sp-ccp-perf 
+    function: cre-sp-ccp-perf
     ports:
       - lbtype: dsr
         port: 7442
