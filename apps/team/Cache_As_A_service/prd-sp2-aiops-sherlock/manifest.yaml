@@ -13,7 +13,7 @@ system:
       type: Recreate
     containers:
     - name: sherlock
-      image: dva/casp/sherlock_strata:jenkins-CASP-sherlock-dev-3-itest
+      image: dva/casp/sherlock_strata:jenkins-CASP-sherlock-master-31-itest
       ports:
       - name: flower-http
         containerPort: 5555
@@ -50,6 +50,8 @@ system:
           name: sherlock-logs-vol
         - mountPath: /argus-secrets
           name: argus-secrets-vol
+        - mountPath: /certs
+          name: sherlock-cert
       livenessProbe:
         exec:
           command:
@@ -68,6 +70,11 @@ system:
       - name: argus-secrets-vol
         k4aSecret:
           secretName: argus-secrets
+      - name: sherlock-cert
+        maddogCert:
+          type: server
+          lbnames:
+          - sherlock
   loadbalancers:
   - lbname: sherlock
     function: sherlock
@@ -79,3 +86,4 @@ system:
         targetport: 5000
         lbtype: http
         tls: true
+        reencrypt: true
