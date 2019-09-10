@@ -7,6 +7,8 @@ apps:
     - prd/prd-universalsearch_svc
   prd-universal-search-dark:
     - prd/prd-universalsearch_svc
+  prd-universal-search-perf-xlt:
+    - prd/prd-universalsearch_svc
   par-universal-search:
     - par/par-universalsearch_svc
   frf-universal-search:
