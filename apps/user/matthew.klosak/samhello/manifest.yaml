@@ -22,9 +22,9 @@ system:
             limits: { cpu: "1", memory: "1Gi" }
             requests: { cpu: "1", memory: "1Gi" }
           volumeMounts:
-            - name: client-cert
+            - name: tls-client-cert
               mountPath: /client-certs
-            - name: server-cert
+            - name: tls-server-cert
               mountPath: /server-certs
           ports:
             - containerPort: 7012
