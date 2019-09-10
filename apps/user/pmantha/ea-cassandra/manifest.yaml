@@ -50,7 +50,7 @@ system:
             path: /data/ea/cassandra/data
           name: datavol-cassandra
   loadbalancers: 
-  - lbname: cassandra
+  - lbname: ea-cassandra-lb
     function: insights-cassandra
     slbEnabled: true
     ports:
