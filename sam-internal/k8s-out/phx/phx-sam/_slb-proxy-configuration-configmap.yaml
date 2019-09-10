@@ -23,6 +23,7 @@ data:
           "vips": [
             "login-cloudforce-phx.slb.sfdc.net",
             "gs0-bofa-phx.slb.sfdc.net",
+            "org-cce2e-cs9-slb-phx.slb.sfdc.net",
             "slb-canary-hsm.sam-system.phx-sam.phx.slb.sfdc.net"
           ]
         }
