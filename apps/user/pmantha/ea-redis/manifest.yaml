@@ -5,10 +5,10 @@ system:
   - name: insights-redis
     count: 2
     type: stateful-set
-    lbname: ea-insights-redis-lb
+    lbname: insights-redis
     terminationGracePeriodSeconds: 30
     containers:
-    - name: redis
+    - name: insights-redis
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/pmantha/redis:5.0.5
       resources:
         requests:
@@ -38,7 +38,7 @@ system:
             path: /data/ea/insights-redis/data
           name: datavol-redis
   loadbalancers: 
-  - lbname: insights-redis
+  - lbname: ea-insights-redis-lb
     function: insights-redis
     slbEnabled: true
     ports:

@@ -5,7 +5,7 @@ system:
   - name: insights-iworker
     count: 2
     type: stateful-set
-    lbname: ea-insights-iworker-lb
+    lbname: insights-iworker
     terminationGracePeriodSeconds: 30
     containers:
     - name: insights-iworker
@@ -38,7 +38,7 @@ system:
             path: /data/ea/insights-iworker/data
           name: datavol-insights-iworker
   loadbalancers: 
-  - lbname: insights-iworker
+  - lbname: ea-insights-iworker-lb
     function: insights-iworker
     slbEnabled: true
     ports:
