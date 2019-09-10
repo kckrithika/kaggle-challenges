@@ -9,7 +9,7 @@ local watchdog = import "watchdog.jsonnet";
 local cert_name = "watchdogsparkoperator";
 local std_new = import "stdlib_0.12.1.jsonnet";
 
-if !flowsnakeconfig.hbase_enabled then
+if !std.objectHas(flowsnake_images.feature_flags, "hbase-watchdog-split") then
 "SKIP"
 else
 configs.deploymentBase("flowsnake") {
