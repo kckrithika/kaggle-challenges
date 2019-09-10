@@ -44,7 +44,7 @@ system:
         - name: CONTROLPLANE_REST_TESTING_ENABLED
           value: true
         - name: CONTROLPLANE_REST_ENDPOINT
-          value: http://cre-control-plane-ccp-func.retail-cre.localhost.mesh.force.com:5442
+          value: http://cre-control-plane-ccp-perf.retail-cre.localhost.mesh.force.com:5442
         - name: ENABLE_BATCH_ORPHAN_CHECKS
           value: true
         - name: JVM_ARGS_PERF
