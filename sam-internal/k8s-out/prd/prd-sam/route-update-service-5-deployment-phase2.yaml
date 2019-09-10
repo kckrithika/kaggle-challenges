@@ -12,6 +12,7 @@ spec:
   selector:
     matchLabels:
       app: route-update-service
+      cluster: prd-sam_gater
       disco_dc: prd
       disco_env: ""
       disco_pod: ""
@@ -51,6 +52,7 @@ spec:
         sidecar.istio.io/inject: "true"
       labels:
         app: route-update-service
+        cluster: prd-sam_gater
         disco_dc: prd
         disco_env: ""
         disco_pod: ""
