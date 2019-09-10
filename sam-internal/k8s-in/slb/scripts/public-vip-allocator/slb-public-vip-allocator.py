@@ -2,17 +2,24 @@ import ast
 import json
 import re
 import sys
+import os
+import yaml
 
+DEFAULT_CLUSTER = "sam"
 MAX_OCTET_VALUE = 255
 PUBLIC_RESERVED_IPS_FIELD_NAME = "publicReservedIps"
 PUBLIC_SUBNET_FIELD_NAME = "publicSubnet"
+VIPS_YAML_FILE_NAME = "vips.yaml"
+VIPS_YAML_PUBLIC_FIELD_NAME = "public"
+
+vips_file_path_regex = re.compile(r".*team/([a-zA-Z0-9-_]+)/vips/([a-z][a-z0-9]{2,})/(?:([a-zA-Z0-9-_]+)/)?vips\.yaml")
 
 
 def get_first_three_octets(config_file_path, cluster):
     with open(config_file_path, 'r') as jsonnet_file:
         config_text = jsonnet_file.read()
 
-    # Finds the public reserved IPs field's text
+    # Finds public subnet field's text
     public_subnet_regex = re.compile(r"" + PUBLIC_SUBNET_FIELD_NAME + ":[^{]*{[^}]*}", re.M)
     public_subnet_regex_search_results = public_subnet_regex.search(config_text)
     if public_subnet_regex_search_results is None:
@@ -29,6 +36,7 @@ def get_first_three_octets(config_file_path, cluster):
     octets = subnet.split(".")
     return ".".join(octets[:3])
 
+
 def get_next_fourth_octet(public_vip_file_path, minimum_octet, cluster):
     with open(public_vip_file_path) as public_vip_file:
         public_vip_data = json.loads(public_vip_file.read())
@@ -40,6 +48,11 @@ def get_next_fourth_octet(public_vip_file_path, minimum_octet, cluster):
             return i
 
     raise Exception('There are no more free public IPs in: {}'.format(cluster))
+
+
+def get_new_ip(config_file_path, cluster, public_vip_allocation_file_path, minimum_octet):
+    return get_first_three_octets(config_file_path, cluster) + "." +\
+           str(get_next_fourth_octet(public_vip_allocation_file_path, minimum_octet, cluster)) + "/32"
 
 
 def update_reserved_ips(reserved_ips_file_path, cluster, new_ip):
@@ -60,7 +73,7 @@ def update_reserved_ips(reserved_ips_file_path, cluster, new_ip):
 
     # The cluster was not found
     if cluster_reserved_ips_search_results is None:
-        print("Cluster was not found, adding it")
+        print("Cluster {} was not found, adding it to {}".format(cluster, PUBLIC_RESERVED_IPS_FIELD_NAME))
         # The text for a new cluster with no IPs
         cluster_reserved_ips_text = '"' + cluster + '": [\n            ],'
         # Add this new cluster into the public reserved IP field's text
@@ -82,3 +95,30 @@ def update_reserved_ips(reserved_ips_file_path, cluster, new_ip):
             # Replace the public reserved IP text with the new one and write it
             jsonnet_file.write(public_reserved_ips_regex.sub(new_public_reserved_ip_text, reserved_ip_text))
 
+
+def reserve_for_all_vips_yamls(root_path, config_file_path, reserved_ips_file_path, public_vip_allocation_file_path, minimum_octet):
+    for root, dirs, files in os.walk(root_path):
+        for file_name in files:
+            full_path = os.path.join(root, file_name)
+            if file_name == VIPS_YAML_FILE_NAME:
+                process_vip_file(full_path, config_file_path, reserved_ips_file_path, public_vip_allocation_file_path, minimum_octet)
+
+
+def process_vip_file(vip_file_path, config_file_path, reserved_ips_file_path, public_vip_allocation_file_path, minimum_octet):
+    with open(vip_file_path, 'r') as file:
+        try:
+            vip_data = yaml.safe_load(file)
+            for vip in vip_data:
+                public = False if VIPS_YAML_PUBLIC_FIELD_NAME not in vip else vip[VIPS_YAML_PUBLIC_FIELD_NAME]
+                if public:
+                    results = vips_file_path_regex.search(vip_file_path)
+                    team_name = results.group(1)
+                    kingdom = results.group(2)
+                    cluster = results.group(3)
+                    if cluster is None:
+                        cluster = kingdom + "-" + DEFAULT_CLUSTER
+
+                    new_ip = get_new_ip(config_file_path, cluster, public_vip_allocation_file_path, minimum_octet)
+                    update_reserved_ips(reserved_ips_file_path, cluster, new_ip)
+        except yaml.YAMLError as exc:
+            print("Failed to parse {}: {}", vip_file_path, exc)
