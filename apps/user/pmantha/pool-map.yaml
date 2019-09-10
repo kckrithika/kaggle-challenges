@@ -3,4 +3,6 @@ apps:
   - prd/prd-sam  # the SAM Sandbox uses the prd/prd-sam host cluster
  ea-cassandra:    # this must match the name of your application. It must be lower case.
   - prd/prd-sam  # the SAM Sandbox uses the prd/prd-sam host cluster
-                 # you can also specify other pools
+ ea-worker:    # this must match the name of your application. It must be lower case.
+  - prd/prd-sam  # the SAM Sandbox uses the prd/prd-sam host cluster
+                 # you can also specify other pools                 # you can also specify other pools

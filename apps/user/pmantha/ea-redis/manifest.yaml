@@ -2,10 +2,10 @@ apiVersion: v1
 
 system:
   functions:
-  - name: redis
+  - name: insights-redis
     count: 2
     type: stateful-set
-    lbname: ea-redis-lb
+    lbname: ea-insights-redis-lb
     terminationGracePeriodSeconds: 30
     containers:
     - name: redis
@@ -35,11 +35,11 @@ system:
           mountPath: /data
     volumes: 
         - hostPath: 
-            path: /data/ea/redis/data
+            path: /data/ea/insights-redis/data
           name: datavol-redis
   loadbalancers: 
-  - lbname: redis
-    function: redis
+  - lbname: insights-redis
+    function: insights-redis
     slbEnabled: true
     ports:
     - port: 6379
