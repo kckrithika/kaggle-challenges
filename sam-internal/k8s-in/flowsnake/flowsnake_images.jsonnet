@@ -130,6 +130,7 @@ local utils = import "util_functions.jsonnet";
                 spark_operator_image_tag: "jenkins-dva-transformation-spark-on-k8s-operator-PR-16-7-itest",  # 06/24 image with the augmented operator instrumentation
                 watchdog_spark_operator_image_tag: "jenkins-dva-transformation-spark-on-k8s-sample-apps-PR-2-1-itest",
                 integration_test_tag: "18",
+                hbase_integration_test_tag: "18",
                 kube_state_metrics_image_tag: "3",
                 prometheus_funnel_image_tag: "36",
                 spark_worker_23_hadoop_292_image_tag: "jenkins-dva-transformation-flowsnake-sample-apps-cre-hadoop-292-5-itest",
@@ -255,6 +256,7 @@ local utils = import "util_functions.jsonnet";
     service_mesh_injector: flowsnakeconfig.strata_registry + "/flowsnake-service-mesh-injector-webhook:" + $.per_phase[$.phase].image_tags.service_injector_image_tag,
     spark_operator: flowsnakeconfig.strata_registry + "/kubernetes-spark-operator-2.4.0-sfdc-0.0.1:" + $.per_phase[$.phase].image_tags.spark_operator_image_tag,
     spark_operator_watchdog_canary: flowsnakeconfig.strata_registry + "/flowsnake-spark-on-k8s-integration-test-runner:" + $.per_phase[$.phase].image_tags.integration_test_tag,
+    hbase_watchdog_canary: flowsnakeconfig.strata_registry + "/flowsnake-spark-on-k8s-integration-test-runner:" + $.per_phase[$.phase].image_tags.integration_test_tag,
     spark_on_k8s_sample_apps: flowsnakeconfig.strata_registry + "/flowsnake-spark-on-k8s-sample-apps:" + $.per_phase[$.phase].image_tags.integration_test_tag,
     kube_state_metrics: flowsnakeconfig.strata_registry + "/kube-state-metrics-sfdc-0.0.1:" + $.per_phase[$.phase].image_tags.kube_state_metrics_image_tag,
     spark_worker_23_hadoop_292: flowsnakeconfig.strata_registry + "/flowsnake-spark-worker_2.3.0-hadoop_2.9.2-cre:" + $.per_phase[$.phase].image_tags.spark_worker_23_hadoop_292_image_tag,

@@ -56,7 +56,7 @@ configs.deploymentBase("flowsnake") {
                 hostNetwork: if flowsnakeconfig.is_public_cloud then false else true,
                 containers: [
                     {
-                        image: flowsnake_images.spark_operator_watchdog_canary,
+                        image: flowsnake_images.hbase_watchdog_canary,
                         imagePullPolicy: flowsnakeconfig.default_image_pull_policy,
                         command: [
                             "/sam/watchdog",
