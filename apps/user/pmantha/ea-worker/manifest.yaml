@@ -2,7 +2,7 @@ apiVersion: v1
 
 system:
   functions:
-  - name: insights-iworker
+  - name: insights-iworker-1
     count: 2
     type: stateful-set
     lbname: insights-iworker
@@ -39,7 +39,7 @@ system:
           name: datavol-insights-iworker
   loadbalancers: 
   - lbname: ea-insights-iworker-lb
-    function: insights-iworker
+    function: insights-iworker-1
     slbEnabled: true
     ports:
     - port: 8008

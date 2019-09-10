@@ -2,7 +2,7 @@ apiVersion: v1
 
 system:
   functions:
-  - name: insights-redis
+  - name: insights-redis-1
     count: 2
     type: stateful-set
     lbname: insights-redis
@@ -39,7 +39,7 @@ system:
           name: datavol-redis
   loadbalancers: 
   - lbname: ea-insights-redis-lb
-    function: insights-redis
+    function: insights-redis-1
     slbEnabled: true
     ports:
     - port: 6379
