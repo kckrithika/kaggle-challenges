@@ -219,12 +219,22 @@ local flowsnake_config = import "flowsnake_config.jsonnet";
                     "targets": [h.hostname + ":6443" for h in hosts.hosts if h.estate == estate && h.kingdom == kingdom && h.devicerole == "samkubeapi"],
                 },
             ],
-            "scheme": "https",
-            "tls_config": {
-                "ca_file": "/etc/pki_service/kubernetes/k8s-client/certificates/k8s-client.pem",
-                "cert_file": "/etc/pki_service/kubernetes/k8s-client/certificates/k8s-client.pem",
-                "key_file": "/etc/pki_service/kubernetes/k8s-client/keys/k8s-client-key.pem",
-            },
-        },
+            "scheme": "https"
+        } + (if "prometheus_use_sa_for_kubeapi" in flowsnake_images.feature_flags then
+            {
+                "bearer_token_file": "/var/run/secrets/kubernetes.io/serviceaccount/token",
+                "tls_config": {
+                    "ca_file": "/certs/ca/cabundle.pem"
+                }
+            }
+            else
+            {
+                "tls_config": {
+                    "ca_file": "/etc/pki_service/kubernetes/k8s-client/certificates/k8s-client.pem",
+                    "cert_file": "/etc/pki_service/kubernetes/k8s-client/certificates/k8s-client.pem",
+                    "key_file": "/etc/pki_service/kubernetes/k8s-client/keys/k8s-client-key.pem",
+                },            
+            }
+        )
     ]
 }
