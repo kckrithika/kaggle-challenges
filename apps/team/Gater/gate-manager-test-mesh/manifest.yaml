@@ -25,7 +25,7 @@ system:
       - --logging.json.level=OFF
       - --metrics.container=gater-mesh
       - --gater.grpc.use_direct_executor=true
-      - --gater.grpc.threadpool.size=32
+      - --gater.grpc.threadpool.size=16
       - --gater.test.grpc.short-circuit=false
       ports:
       - containerPort: 7020
@@ -39,10 +39,10 @@ system:
         value: blitz
       resources:
         limits:
-          cpu: "16"
+          cpu: "8"
           memory: 8Gi
         requests:
-          cpu: "16"
+          cpu: "8"
           memory: 8Gi
       volumeMounts:
       - mountPath: /log
