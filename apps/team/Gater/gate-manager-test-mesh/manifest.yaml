@@ -24,8 +24,8 @@ system:
       - --logging.sfdc.level=OFF
       - --logging.json.level=OFF
       - --metrics.container=gater-mesh
-      - --gater.grpc.use_direct_executor=true
-      - --gater.grpc.threadpool.size=112
+      - --gater.grpc.use_direct_executor=false
+      - --gater.grpc.threadpool.size=20
       - --gater.test.grpc.short-circuit=false
       ports:
       - containerPort: 7020
