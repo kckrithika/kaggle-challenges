@@ -232,6 +232,7 @@ data:
           }
         },
         {
+          "bearer_token_file": "/var/run/secrets/kubernetes.io/serviceaccount/token",
           "job_name": "kubernetes-apiserver",
           "scheme": "https",
           "static_configs": [
@@ -246,9 +247,7 @@ data:
             }
           ],
           "tls_config": {
-            "ca_file": "/etc/pki_service/kubernetes/k8s-client/certificates/k8s-client.pem",
-            "cert_file": "/etc/pki_service/kubernetes/k8s-client/certificates/k8s-client.pem",
-            "key_file": "/etc/pki_service/kubernetes/k8s-client/keys/k8s-client-key.pem"
+            "ca_file": "/certs/ca/cabundle.pem"
           }
         }
       ]
