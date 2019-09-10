@@ -145,6 +145,7 @@ system:
       slbEnabled: true
       ports:
         - port: 9090
+          name: public
           targetport: 7022
           lbtype: http
           tls: false
