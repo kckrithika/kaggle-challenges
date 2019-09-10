@@ -18,7 +18,7 @@ system:
             type: client
       containers:
         - name: metadata-service
-          image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/vivanov/metadata-service:dbaas01
+          image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/vivanov/metadata-service:dbaas02
           ports:
             - containerPort: 9091
             - containerPort: 15523
@@ -38,7 +38,7 @@ system:
               value: 15523
             - name: JVM_ARGS
               value: -Dsettings.path=dev.mydev.landmark.-.metadata-service
-                     -Dspring.datasource.url = jdbc:p6spy:discover://dbaas0-minionapp1-1-prd.eng.sfdc.net:1511,dbaas0-minionapp2-1-prd.eng.sfdc.net:1511/vladtest01?sslfactory=com.salesforce.sds.keystore.DynamicSSLSocketFactory&sslfactoryarg={"monitoredDirectory":"/client-certs/client","cadir":"/client-certs"}
+                     -Dspring.datasource.url=jdbc:p6spy:discover://dbaas0-minionapp1-1-prd.eng.sfdc.net:1511,dbaas0-minionapp2-1-prd.eng.sfdc.net:1511/vladtest01?sslfactory=com.salesforce.sds.keystore.DynamicSSLSocketFactory&sslfactoryarg={"monitoredDirectory":"/client-certs/client","cadir":"/client-certs"}
           volumeMounts:
             - mountPath: /home/sfdc-mds/logs
               name: logvol
