@@ -13,7 +13,7 @@ system:
       ports:
       - containerPort: 8080
         name: scone-http
-      - containerPort: 7021
+      - containerPort: 7020
         name: grpc-svc
       - containerPort: 15372
         name: scone-mgmt
