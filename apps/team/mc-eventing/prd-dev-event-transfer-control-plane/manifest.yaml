@@ -55,6 +55,8 @@ system:
       volumeMounts:
       - name: clientcert
         mountPath: /client-certs
+      - name: servercert
+        mountPath: /server-certs
       - name: logvol
         mountPath: /home/sfdc-ets/logs
 
