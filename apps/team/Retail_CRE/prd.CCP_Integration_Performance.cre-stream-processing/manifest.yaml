@@ -50,7 +50,6 @@ system:
         - name: JVM_ARGS_PERF
           value: "-Xloggc:/opt/cre/$(FUNCTION)/verbosegc_$(FUNCTION_INSTANCE_NAME).log
                   -XX:HeapDumpPath=/opt/cre/$(FUNCTION)
-                  -XX:+UnlockCommercialFeatures -XX:+FlightRecorder
                   -Dcom.sun.management.jmxremote.port=8898
                   -Dcom.sun.management.jmxremote.rmi.port=8898
                   -Dcom.sun.management.jmxremote.ssl=false
@@ -72,10 +71,17 @@ system:
         limits: { cpu: "2", memory: "6Gi" }
         requests: { cpu: "2", memory: "5Gi" }
       livenessProbe:
-        exec:
-            command:
-            - ls
+        httpGet:
+          path: /manage/health
+          port: 15372
+        initialDelaySeconds: 60
+        periodSeconds: 10
+      readinessProbe:
+        httpGet:
+          path: /manage/ready
+          port: 15372
         initialDelaySeconds: 30
+        periodSeconds: 10
       volumeMounts:
       - mountPath: /client-certs
         name: client-certs
@@ -153,6 +159,8 @@ system:
     ports:
       - port: 8085
         targetport: 7022
+      - port: 15372
+        targetport: 15372        
   - lbname: cre-sp-ccp-perf
     function: cre-sp-ccp-perf
     ports:
