@@ -28,7 +28,7 @@ system:
 
     containers:
     - name: eventtransfercontrolplane
-      image: sfci/ets/event-transfer-control-plane:0.0.39
+      image: sfci/ets/event-transfer-control-plane:0.0.40
       ports:
         - containerPort: 7020
         - containerPort: 7022
@@ -116,6 +116,6 @@ system:
     slbEnabled: true
     ports:
     - port: 443
-      targetport: 7014
+      targetport: 7022
     - port: 15485
       targetport: 15385
