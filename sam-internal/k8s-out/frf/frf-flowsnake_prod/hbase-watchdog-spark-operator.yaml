@@ -2,75 +2,75 @@ apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
   labels:
-    service: prometheus-scraper
-  name: prometheus-scraper
+    name: watchdog-spark-operator-hbase
+  name: watchdog-spark-operator-hbase
   namespace: flowsnake
 spec:
-  minReadySeconds: 15
   replicas: 1
   selector:
     matchLabels:
-      service: prometheus-scraper
+      app: watchdog-spark-operator-hbase
+      apptype: monitoring
   template:
     metadata:
       annotations:
         madkub.sam.sfdc.net/allcerts: '{"certreqs": [{"cert-type": "client", "kingdom":
-          "prd", "name": "prometheusscrapercerts", "role": "flowsnake_metrics"}]}'
+          "frf", "name": "watchdogsparkoperator", "role": "flowsnake_test.flowsnake-watchdog"}]}'
       labels:
+        app: watchdog-spark-operator-hbase
         apptype: monitoring
         flowsnakeOwner: dva-transform
-        flowsnakeRole: PrometheusScraper
-        name: prometheus-scraper
-        service: prometheus-scraper
+        flowsnakeRole: WatchdogSparkOperator
     spec:
       containers:
-      - args:
-        - --config.file=/etc/config/prometheus.json
-        - --storage.tsdb.path=/prometheus-storage
-        - --web.external-url=http://localhost/
-        - --web.enable-lifecycle
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/prome_for_k8s:36
-        livenessProbe:
-          httpGet:
-            path: /metrics
-            port: 9090
-            scheme: HTTP
-          initialDelaySeconds: 30
-          periodSeconds: 10
-        name: prometheus
-        ports:
-        - containerPort: 9090
+      - command:
+        - /sam/watchdog
+        - -role=CLI
+        - -emailFrequency=24h
+        - -timeout=2s
+        - -funnelEndpoint=ajna0-funnel1-0-frf.data.sfdc.net:80
+        - --config=/config/watchdog.json
+        - -cliCheckerCommandTarget=SparkHbaseIntegrationTest
+        - --hostsConfigFile=/sfdchosts/hosts.json
+        - -watchdogFrequency=1m
+        - -alertThreshold=1m
+        - -cliCheckerTimeout=20m
+        - -includeCommandOutput=true
+        env:
+        - name: DOCKER_TAG
+          value: "18"
+        - name: S3_PROXY_HOST
+          value: public0-proxy1-0-frf.data.sfdc.net
+        - name: DRIVER_SERVICE_ACCOUNT
+          value: spark-driver-flowsnake-watchdog
+        - name: DOCKER_REGISTRY
+          value: ops0-artifactrepo1-0-frf.data.sfdc.net
+        - name: NODENAME
+          valueFrom:
+            fieldRef:
+              apiVersion: v1
+              fieldPath: spec.nodeName
+        - name: KINGDOM
+          value: frf
+        - name: ESTATE
+          value: frf-flowsnake_prod
+        image: ops0-artifactrepo1-0-frf.data.sfdc.net/dva/flowsnake-spark-on-k8s-integration-test-runner:18
+        imagePullPolicy: IfNotPresent
+        name: watchdog
+        resources:
+          limits:
+            cpu: "1"
+            memory: 1Gi
+          requests:
+            cpu: "1"
+            memory: 1Gi
         volumeMounts:
-        - mountPath: /prometheus-storage
-          name: prometheus-storage-volume
-        - mountPath: /etc/config
-          name: prometheus-server-conf
-        - mountPath: /etc/pki_service
-          name: certs-volume
-        - mountPath: /certs
-          name: datacerts
-      - args:
-        - --serviceName=flowsnake
-        - --subserviceName=NONE
-        - --tagDefault=superpod:NONE
-        - --tagDefault=datacenter:prd
-        - --tagDefault=estate:prd-data-flowsnake_test
-        - --batchSize=512
-        - --funnelUrl=http://ajna0-funnel1-0-prd.data.sfdc.net:80
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/funnel_writer:36
-        livenessProbe:
-          httpGet:
-            path: /
-            port: 8000
-            scheme: HTTP
-          initialDelaySeconds: 30
-          periodSeconds: 10
-        name: funnel-writer
-        ports:
-        - containerPort: 8000
-        volumeMounts:
-        - mountPath: /prometheus-storage
-          name: prometheus-storage-volume
+        - mountPath: /config
+          name: config
+        - mountPath: /sfdchosts
+          name: sfdchosts
+        - mountPath: /watchdog-spark-scripts
+          name: watchdog-spark-scripts
         - mountPath: /certs
           name: datacerts
       - args:
@@ -78,7 +78,7 @@ spec:
         - --madkub-endpoint
         - https://10.254.208.254:32007
         - --maddog-endpoint
-        - https://all.pkicontroller.pki.blank.prd.prod.non-estates.sfdcsd.net:8443
+        - https://all.pkicontroller.pki.blank.frf.prod.non-estates.sfdcsd.net:8443
         - --maddog-server-ca
         - /etc/pki_service/ca/security-ca.pem
         - --madkub-server-ca
@@ -86,19 +86,19 @@ spec:
         - --token-folder
         - /tokens
         - --kingdom
-        - prd
+        - frf
         - --superpod
         - None
         - --estate
-        - prd-data-flowsnake_test
+        - frf-flowsnake_prod
         - --refresher
         - --run-init-for-refresher-mode
         - --cert-folders
-        - prometheusscrapercerts:/certs
+        - watchdogsparkoperator:/certs
         - --ca-folder
         - /etc/pki_service/ca
         - --funnel-endpoint
-        - http://ajna0-funnel1-0-prd.data.sfdc.net:80
+        - http://ajna0-funnel1-0-frf.data.sfdc.net:80
         env:
         - name: MADKUB_NODENAME
           valueFrom:
@@ -115,9 +115,12 @@ spec:
             fieldRef:
               apiVersion: v1
               fieldPath: metadata.namespace
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/madkub:1.0.0-0000084-9f4a6ca6
+        image: ops0-artifactrepo1-0-frf.data.sfdc.net/tnrp/sam/madkub:1.0.0-0000084-9f4a6ca6
         name: sam-madkub-integration-refresher
         resources: {}
+        securityContext:
+          runAsNonRoot: true
+          runAsUser: 7337
         volumeMounts:
         - mountPath: /certs
           name: datacerts
@@ -132,13 +135,14 @@ spec:
         - mountPath: /etc/pki_service/platform/platform-client/keys
           name: client-key
           readOnly: true
+      hostNetwork: true
       initContainers:
       - args:
         - /sam/madkub-client
         - --madkub-endpoint
         - https://10.254.208.254:32007
         - --maddog-endpoint
-        - https://all.pkicontroller.pki.blank.prd.prod.non-estates.sfdcsd.net:8443
+        - https://all.pkicontroller.pki.blank.frf.prod.non-estates.sfdcsd.net:8443
         - --maddog-server-ca
         - /etc/pki_service/ca/security-ca.pem
         - --madkub-server-ca
@@ -146,17 +150,17 @@ spec:
         - --token-folder
         - /tokens
         - --kingdom
-        - prd
+        - frf
         - --superpod
         - None
         - --estate
-        - prd-data-flowsnake_test
+        - frf-flowsnake_prod
         - --cert-folders
-        - prometheusscrapercerts:/certs
+        - watchdogsparkoperator:/certs
         - --ca-folder
         - /etc/pki_service/ca
         - --funnel-endpoint
-        - http://ajna0-funnel1-0-prd.data.sfdc.net:80
+        - http://ajna0-funnel1-0-frf.data.sfdc.net:80
         env:
         - name: MADKUB_NODENAME
           valueFrom:
@@ -173,9 +177,12 @@ spec:
             fieldRef:
               apiVersion: v1
               fieldPath: metadata.namespace
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/madkub:1.0.0-0000084-9f4a6ca6
+        image: ops0-artifactrepo1-0-frf.data.sfdc.net/tnrp/sam/madkub:1.0.0-0000084-9f4a6ca6
         name: sam-madkub-integration-init
         resources: {}
+        securityContext:
+          runAsNonRoot: true
+          runAsUser: 7337
         volumeMounts:
         - mountPath: /certs
           name: datacerts
@@ -191,17 +198,19 @@ spec:
           name: client-key
           readOnly: true
       restartPolicy: Always
-      serviceAccountName: prometheus-scraper
+      serviceAccount: watchdog-spark-operator-serviceaccount
+      serviceAccountName: watchdog-spark-operator-serviceaccount
       volumes:
       - configMap:
-          name: prometheus-server-conf
-        name: prometheus-server-conf
-      - emptyDir:
-          medium: Memory
-        name: prometheus-storage-volume
-      - hostPath:
-          path: /etc/pki_service
-        name: certs-volume
+          name: watchdog
+        name: config
+      - configMap:
+          defaultMode: 493
+          name: watchdog-spark-on-k8s-script-configmap
+        name: watchdog-spark-scripts
+      - configMap:
+          name: sfdchosts
+        name: sfdchosts
       - emptyDir:
           medium: Memory
         name: datacerts
