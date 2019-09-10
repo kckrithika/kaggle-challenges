@@ -107,5 +107,8 @@
         'org-cce2e-cs91-slb-dfw.slb.sfdc.net',
         'org-cce2e-cs999-slb-dfw.slb.sfdc.net',
       ],
+      'iad-sam': [
+        'org-cce2e-cs14-slb-iad.slb.sfdc.net',
+      ],
     },
 }
