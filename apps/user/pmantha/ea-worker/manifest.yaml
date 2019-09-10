@@ -1,0 +1,50 @@
+apiVersion: v1
+
+system:
+  functions:
+  - name: insights-iworker
+    count: 2
+    type: stateful-set
+    lbname: ea-insights-iworker-lb
+    terminationGracePeriodSeconds: 30
+    containers:
+    - name: insights-iworker
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/pmantha/insights-iworker:1
+      ports:
+      - containerPort: 9000
+        name: maestro
+      - containerPort: 9090
+        name: maestro-thrift        
+      - containerPort: 8008
+        name: m3
+      - containerPort: 8009
+        name: m3-health
+      readinessProbe:
+        tcpSocket:
+          port: 9000
+        initialDelaySeconds: 5
+        periodSeconds: 10
+      livenessProbe:
+        tcpSocket:
+          port: 9000
+        failureThreshold: 3
+        initialDelaySeconds: 5
+        periodSeconds: 60
+      volumeMounts:
+        - name: datavol-insights-iworker
+          mountPath: /data
+    volumes: 
+        - hostPath: 
+            path: /data/ea/insights-iworker/data
+          name: datavol-insights-iworker
+  loadbalancers: 
+  - lbname: insights-iworker
+    function: insights-iworker
+    slbEnabled: true
+    ports:
+    - port: 8008
+      targetport: 8008
+      lbtype: tcp
+    - port: 8009
+      targetport: 8009
+      lbtype: http      
