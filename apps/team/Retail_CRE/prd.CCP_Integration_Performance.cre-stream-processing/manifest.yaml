@@ -159,7 +159,7 @@ system:
     ports:
       - port: 8085
         targetport: 7022
-      - port: 15372
+      - port: 15373
         targetport: 15372        
   - lbname: cre-sp-ccp-perf
     function: cre-sp-ccp-perf
