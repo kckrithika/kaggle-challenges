@@ -193,7 +193,7 @@ else
               },
             } else {}
         }
-    ] + (if flowsnakeconfig.hbase_enabled && !std.objectHas(flowsnake_images.feature_flags, "hbase-watchdog-split") then [
+    ] + (if flowsnakeconfig.hbase_enabled && !std.objectHas(flowsnake_images.feature_flags, "hbase_watchdog_split") then [
         configs.deploymentBase("flowsnake") {
             local label_node = self.spec.template.metadata.labels,
             metadata: {

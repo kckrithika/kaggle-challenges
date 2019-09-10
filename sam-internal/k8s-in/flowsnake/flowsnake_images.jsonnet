@@ -34,6 +34,7 @@ local utils = import "util_functions.jsonnet";
                 # --- flag C (and place only ... ---
                 slb_ingress: "unverified",
                 # --- flag D (one flag between ... ---
+                hbase_watchdog_split: "",
                 # --- flag E (each pair. ... ---
                 # --- flag F (Their only purpose ... ---
                 # --- flag G (is to assist ... ---
