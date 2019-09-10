@@ -76,7 +76,38 @@
               "13.110.30.11/32",  # gs0-bofa-phx.slb.sfdc.net
               "13.110.30.12/32",  # login-cloudforce-phx.slb.sfdc.net
               "13.110.30.13/32",  # sledge-phx.slb.sfdc.net
-            ],
+              "13.110.30.102/32",  # org-cce2e-cs7-slb-phx.slb.sfdc.net
+              "13.110.30.121/32",  # org-cce2e-cs60-slb-phx.slb.sfdc.net
+              "13.110.30.115/32",  # org-cce2e-cs50-slb-phx.slb.sfdc.net
+              "13.110.30.129/32",  # org-cce2e-cs90-slb-phx.slb.sfdc.net
+              "13.110.30.106/32",  # org-cce2e-cs12-slb-phx.slb.sfdc.net
+              "13.110.30.107/32",  # org-cce2e-cs13-slb-phx.slb.sfdc.net
+              "13.110.30.109/32",  # org-cce2e-cs20-slb-phx.slb.sfdc.net
+              "13.110.30.103/32",  # org-cce2e-cs9-slb-phx.slb.sfdc.net
+              "13.110.30.130/32",  # org-cce2e-cs91-slb-phx.slb.sfdc.net
+              "13.110.30.124/32",  # org-cce2e-cs63-slb-phx.slb.sfdc.net
+              "13.110.30.104/32",  # org-cce2e-cs10-slb-phx.slb.sfdc.net
+              "13.110.30.120/32",  # org-cce2e-cs59-slb-phx.slb.sfdc.net
+              "13.110.30.105/32",  # org-cce2e-cs11-slb-phx.slb.sfdc.net
+              "13.110.30.122/32",  # org-cce2e-cs61-slb-phx.slb.sfdc.net
+              "13.110.30.119/32",  # org-cce2e-cs54-slb-phx.slb.sfdc.net
+              "13.110.30.128/32",  # org-cce2e-cs71-slb-phx.slb.sfdc.net
+              "13.110.30.118/32",  # org-cce2e-cs53-slb-phx.slb.sfdc.net
+              "13.110.30.108/32",  # org-cce2e-cs19-slb-phx.slb.sfdc.net
+              "13.110.30.111/32",  # org-cce2e-cs23-slb-phx.slb.sfdc.net
+              "13.110.30.126/32",  # org-cce2e-cs69-slb-phx.slb.sfdc.net
+              "13.110.30.110/32",  # org-cce2e-cs21-slb-phx.slb.sfdc.net
+              "13.110.30.113/32",  # org-cce2e-cs26-slb-phx.slb.sfdc.net
+              "13.110.30.125/32",  # org-cce2e-cs68-slb-phx.slb.sfdc.net
+              "13.110.30.127/32",  # org-cce2e-cs70-slb-phx.slb.sfdc.net
+              "13.110.30.117/32",  # org-cce2e-cs52-slb-phx.slb.sfdc.net
+              "13.110.30.123/32",  # org-cce2e-cs62-slb-phx.slb.sfdc.net
+              "13.110.30.112/32",  # org-cce2e-cs25-slb-phx.slb.sfdc.net
+              "13.110.30.116/32",  # org-cce2e-cs51-slb-phx.slb.sfdc.net
+              "13.110.30.114/32",  # org-cce2e-cs30-slb-phx.slb.sfdc.net
+              "13.110.30.131/32",  # org-cce2e-cs999-slb-phx.slb.sfdc.net
+              "13.110.30.101/32",  # org-cce2e-cs3-slb-phx.slb.sfdc.net
+             ],
             "prd-samtwo": [
               "136.146.214.8/32",  #na44-stmfa1-0-prd.slb.sfdc.net
               "136.146.214.9/32",  #na44-stmfb1-0-prd.slb.sfdc.net

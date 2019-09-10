@@ -40,6 +40,7 @@
       'phx-sam': [
         'login-cloudforce-phx.slb.sfdc.net',
         'gs0-bofa-phx.slb.sfdc.net',
+        'org-cce2e-cs9-slb-phx.slb.sfdc.net',
       ],
       'dfw-sam': [
         'login-cloudforce-dfw.slb.sfdc.net',
