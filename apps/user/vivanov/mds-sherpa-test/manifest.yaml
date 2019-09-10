@@ -6,21 +6,19 @@ system:
       - vivanov@salesforce.com
   functions:
     - name: metadata-service
-      count: 3
+      count: 1
+      labels:
+        app: metadata-service
       volumes:
         - name: logvol
           hostPath:
             path: /home/sfdc-mds/logs
+        - name: mds-client-cert
+          maddogCert:
+            type: client
       containers:
         - name: metadata-service
-          image: sfci/metadata-cannon/metadata-service:0.8.70
-          resources:
-            limits:
-              cpu: "4"
-              memory: 3Gi
-            requests:
-              cpu: "4"
-              memory: 3Gi
+          image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/vivanov/metadata-service:dbaas01
           ports:
             - containerPort: 9091
             - containerPort: 15523
@@ -39,10 +37,14 @@ system:
             - name: MANAGEMENT_PORT
               value: 15523
             - name: JVM_ARGS
-              value: -Dsettings.path=dev.mydev.landmark.-.metadata-service -Dmds.enable.rest.endpoints = false
+              value: -Dsettings.path=dev.mydev.landmark.-.metadata-service
+                     -Dspring.datasource.url = jdbc:p6spy:discover://dbaas0-minionapp1-1-prd.eng.sfdc.net:1511,dbaas0-minionapp2-1-prd.eng.sfdc.net:1511/vladtest01?sslfactory=com.salesforce.sds.keystore.DynamicSSLSocketFactory&sslfactoryarg={"monitoredDirectory":"/client-certs/client","cadir":"/client-certs"}
           volumeMounts:
             - mountPath: /home/sfdc-mds/logs
               name: logvol
+            - mountPath: /client-certs
+              name: mds-client-cert
+
   loadbalancers:
     - lbname: metadata-servicelb
       function: metadata-service
@@ -50,3 +52,5 @@ system:
       ports:
         - port: 9091
           targetport: 9091
+        - port: 15523
+          targetport: 15523
