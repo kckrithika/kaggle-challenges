@@ -41,7 +41,7 @@ local utils = import "util_functions.jsonnet";
                 # --- flag H (git's diff logic ... ---
                 # --- flag I (to reduce the ---
                 # --- flag J (likelihood of merge conflicts.) ---
-                prometheus_use_sa_for_kubeapi: "MEANINGLESS VALUE!",
+                prometheus_new_conf: "MEANINGLESS VALUE!",
             },
             # prd-test offers legacy version mappings. Phase 2 does not, so cannot inherit from there.
             # Start with 2-prd-dev (which also have legacy version mappings),
