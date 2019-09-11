@@ -110,5 +110,8 @@
       'iad-sam': [
         'org-cce2e-cs14-slb-iad.slb.sfdc.net',
       ],
+      'ord-sam': [
+        'org-cce2e-cs8-slb-ord.slb.sfdc.net',
+      ],
     },
 }
