@@ -90,7 +90,6 @@ def reserve_for_all_vips_yamls(root_path, config_file_path, reserved_ips_file_pa
 
 
 def process_vip_file(vip_file_path, config_file_path, reserved_ips_file_path, public_vip_allocation_file_path, minimum_octet):
-    print("Checking: " + vip_file_path)
     with open(vip_file_path, "r") as file:
         yaml_text = file.read().replace("\t", TAB_TO_SPACE)
         try:
