@@ -19,7 +19,7 @@ if (istioPhases.phaseNum == 2) then
     namespace: "mesh-control-plane",
   },
   spec: {
-    replicas: 1,
+    replicas: 3,
     selector: {
       matchLabels: {
         istio: "sidecar-injector",
