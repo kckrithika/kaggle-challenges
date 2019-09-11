@@ -218,6 +218,30 @@ configs.deploymentBase("service-mesh") {
                 name: "ISTIO_METAJSON_LABELS",
                 value: "{\"settings_path\": \"-.-." + configs.kingdom + ".-.istio-routing-webhook\", \"superpod\":" + "\"" + mcpIstioConfig.superpod + "\"}",
               },
+              {
+                name: "ISTIO_META_TLS_CLIENT_CERT_CHAIN",
+                value: "/client-certs/client/certificates/client.pem",
+              },
+              {
+                name: "ISTIO_META_TLS_CLIENT_KEY",
+                value: "/client-certs/client/keys/client-key.pem",
+              },
+              {
+                name: "ISTIO_META_TLS_CLIENT_ROOT_CERT",
+                value: "/client-certs/ca.pem",
+              },
+              {
+                name: "ISTIO_META_TLS_SERVER_CERT_CHAIN",
+                value: "/server-certs/server/certificates/server.pem",
+              },
+              {
+                name: "ISTIO_META_TLS_SERVER_KEY",
+                value: "/server-certs/server/keys/server-key.pem",
+              },
+              {
+                name: "ISTIO_META_TLS_SERVER_ROOT_CERT",
+                value: "/server-certs/ca.pem",
+              },
             ],
             image: mcpIstioConfig.proxyImage,
             imagePullPolicy: "IfNotPresent",
@@ -263,29 +287,12 @@ configs.deploymentBase("service-mesh") {
                 name: "istio-envoy",
               },
               {
-                mountPath: "/etc/certs/root-cert.pem",
-                name: "server-cert",
-                subPath: "ca.pem",
-              },
-              {
-                mountPath: "/etc/certs/cert-chain.pem",
-                name: "server-cert",
-                subPath: "server/certificates/server.pem",
-              },
-              {
-                mountPath: "/etc/certs/key.pem",
-                name: "server-cert",
-                subPath: "server/keys/server-key.pem",
-              },
-              {
-                mountPath: "/etc/certs/client.pem",
+                mountPath: "/client-certs",
                 name: "client-cert",
-                subPath: "client/certificates/client.pem",
               },
               {
-                mountPath: "/etc/certs/client-key.pem",
-                name: "client-cert",
-                subPath: "client/keys/client-key.pem",
+                mountPath: "/server-certs",
+                name: "server-cert",
               },
             ],
           },
