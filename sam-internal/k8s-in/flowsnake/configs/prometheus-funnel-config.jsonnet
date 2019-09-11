@@ -215,7 +215,7 @@ local flowsnake_config = import "flowsnake_config.jsonnet";
                 {
                     "source_labels": [ "instance" ],
                     "target_label": "device",
-                    "regex": "([a-zA-z0-9.-_]+)__[0-9]+",
+                    "regex": "([^:]+):[0-9]+",
                     "replacement": "$1",
                 },
                 {
@@ -245,7 +245,7 @@ local flowsnake_config = import "flowsnake_config.jsonnet";
                     {
                         "source_labels": [ "instance" ],
                         "target_label": "device",
-                        "regex": "([a-zA-z0-9.-_]+)__[0-9]+",
+                        "regex": "([^:]+):[0-9]+",
                         "replacement": "$1",
                     },
                     {
