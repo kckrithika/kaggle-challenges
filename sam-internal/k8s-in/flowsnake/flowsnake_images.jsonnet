@@ -24,7 +24,6 @@ local utils = import "util_functions.jsonnet";
         "1": self["2"] {
             image_tags+: {
                 watchdog_image_tag: "2722-a1231485debac6b17dfa76e7a1af01750e0f4f8b",  # 05/2019 image
-                prometheus_funnel_image_tag: "36",
             },
             feature_flags+: {
                 # Note: the *value* of the flags is ignored. jsonnet lacks array search, so we use a an object.
@@ -41,7 +40,6 @@ local utils = import "util_functions.jsonnet";
                 # --- flag H (git's diff logic ... ---
                 # --- flag I (to reduce the ---
                 # --- flag J (likelihood of merge conflicts.) ---
-                prometheus_new_conf: "MEANINGLESS VALUE!",
             },
             # prd-test offers legacy version mappings. Phase 2 does not, so cannot inherit from there.
             # Start with 2-prd-dev (which also have legacy version mappings),
@@ -53,9 +51,11 @@ local utils = import "util_functions.jsonnet";
         # Only include new things not yet promoted to next phase. To promote, move line items to next phase.
         "2": self["3"] {
             image_tags+: {
+                prometheus_funnel_image_tag: "36",
             },
             feature_flags+: {
                 # --- flag A (Do not edit ... ---
+                prometheus_new_conf: "MEANINGLESS VALUE!",
                 # --- flag B (these comments ... ---
                 # --- flag C (and place only ... ---
                 # --- flag D (one flag between ... ---
