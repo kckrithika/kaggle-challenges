@@ -26,6 +26,3 @@ system:
     - lbname: hub-persistence-test-lb
       function: hub-persistence-test
       slbEnabled: true
-      ports:
-      - port: 443
-        targetport: 7442
