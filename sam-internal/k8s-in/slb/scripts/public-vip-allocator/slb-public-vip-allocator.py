@@ -39,24 +39,6 @@ def get_first_three_octets(config_file_path, cluster):
     return ".".join(octets[:3])
 
 
-def get_next_fourth_octet(public_vip_file_path, minimum_octet, cluster):
-    with open(public_vip_file_path) as public_vip_file:
-        public_vip_data = json.loads(public_vip_file.read())
-
-    fourth_octet_values = public_vip_data[cluster].values()
-
-    for i in range(minimum_octet, MAX_OCTET_VALUE + 1):
-        if i not in fourth_octet_values:
-            return i
-
-    raise Exception('There are no more free public IPs in: {}'.format(cluster))
-
-
-def get_new_ip(config_file_path, cluster, public_vip_allocation_file_path, minimum_octet):
-    return get_first_three_octets(config_file_path, cluster) + "." +\
-           str(get_next_fourth_octet(public_vip_allocation_file_path, minimum_octet, cluster)) + "/32"
-
-
 def update_reserved_ips(reserved_ips_file_path, cluster, new_ip):
     with open(reserved_ips_file_path, 'r') as jsonnet_file:
         reserved_ip_text = jsonnet_file.read()
@@ -134,6 +116,10 @@ def create_new_public_vip(public_vip_entry_name, config_file_path,
                           reserved_ips_file_path, minimum_octet):
     with open(public_vip_allocation_file_path, "r") as public_vip_file:
         public_vip_data = json.loads(public_vip_file.read())
+
+    if cluster not in public_vip_data:
+        public_vip_data[cluster] = {}
+
     cluster_public_vip_data = public_vip_data[cluster]
     if public_vip_entry_name in cluster_public_vip_data:
         print("{} already has a public IP reserved".format(public_vip_entry_name))
