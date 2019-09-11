@@ -10,6 +10,8 @@ MAX_OCTET_VALUE = 255
 PUBLIC_RESERVED_IPS_FIELD_NAME = "publicReservedIps"
 PUBLIC_SUBNET_FIELD_NAME = "publicSubnet"
 VIPS_YAML_FILE_NAME = "vips.yaml"
+VIPS_YAML_LBNAME_FIELD_NAME = "lbname"
+VIPS_YAML_CUSTOM_LBNAME_FIELD_NAME = "customlbname"
 VIPS_YAML_PUBLIC_FIELD_NAME = "public"
 
 vips_file_path_regex = re.compile(r".*team/([a-zA-Z0-9-_]+)/vips/([a-z][a-z0-9]{2,})/(?:([a-zA-Z0-9-_]+)/)?vips\.yaml")
@@ -118,7 +120,40 @@ def process_vip_file(vip_file_path, config_file_path, reserved_ips_file_path, pu
                     if cluster is None:
                         cluster = kingdom + "-" + DEFAULT_CLUSTER
 
-                    new_ip = get_new_ip(config_file_path, cluster, public_vip_allocation_file_path, minimum_octet)
-                    update_reserved_ips(reserved_ips_file_path, cluster, new_ip)
+                    lbname = vip[VIPS_YAML_CUSTOM_LBNAME_FIELD_NAME] if VIPS_YAML_CUSTOM_LBNAME_FIELD_NAME in vip else vip[VIPS_YAML_LBNAME_FIELD_NAME]
+
+                    create_new_public_vip(team_name + "." + lbname, config_file_path,
+                                                                cluster, public_vip_allocation_file_path,
+                                                                reserved_ips_file_path, minimum_octet)
         except yaml.YAMLError as exc:
             print("Failed to parse {}: {}", vip_file_path, exc)
+
+
+def create_new_public_vip(public_vip_entry_name, config_file_path,
+                          cluster, public_vip_allocation_file_path,
+                          reserved_ips_file_path, minimum_octet):
+    with open(public_vip_allocation_file_path, "r") as public_vip_file:
+        public_vip_data = json.loads(public_vip_file.read())
+    cluster_public_vip_data = public_vip_data[cluster]
+    if public_vip_entry_name in cluster_public_vip_data:
+        print("{} already has a public IP reserved".format(public_vip_entry_name))
+        return
+
+    fourth_octet_values = cluster_public_vip_data.values()
+
+    new_ip_fourth_octet_value = -1
+    for i in range(minimum_octet, MAX_OCTET_VALUE + 1):
+        if i not in fourth_octet_values:
+            new_ip_fourth_octet_value = i
+            break
+
+    if new_ip_fourth_octet_value == -1:
+        raise Exception('There are no more free public IPs in: {}'.format(cluster))
+
+    public_vip_data[cluster][public_vip_entry_name] = new_ip_fourth_octet_value
+    with open(public_vip_allocation_file_path, "w") as public_vip_file:
+        json.dump(public_vip_data, public_vip_file, indent=2, sort_keys=True)
+
+    new_ip = get_first_three_octets(config_file_path, cluster) + "." + str(new_ip_fourth_octet_value) + "/32"
+    update_reserved_ips(reserved_ips_file_path, cluster, new_ip)
+    print("Added {} for {}".format(new_ip, public_vip_entry_name))
