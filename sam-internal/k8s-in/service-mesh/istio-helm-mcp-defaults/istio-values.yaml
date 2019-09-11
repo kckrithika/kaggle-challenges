@@ -24,6 +24,7 @@ gateways:
 #
 sidecarInjectorWebhook:
   enabled: true
+  replicaCount: 3
 #
 # galley configuration, refer to charts/galley/values.yaml
 # for detailed configuration
