@@ -9,7 +9,7 @@ system:
     count: 2
     containers:
     - name: servicemesh-resiliency-beacon
-      image: sfci/servicelibs/beacon:5e23ee8ac04c37cf229792a67c2422876239d51a
+      image: sfci/services/sfdc-bazel/disco/beacon:d7f1640
       resources:
         limits: { cpu: "1", memory: "1Gi" }
         requests: { cpu: "1", memory: "1Gi" }
@@ -59,7 +59,7 @@ system:
         periodSeconds: 5
       terminationMessagePolicy: FallbackToLogsOnError
     - name: servicemesh-resiliency
-      image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dev/servicemesh/servicemesh-resiliency:0facd871f3105f8cb48f5f4d7390036d89eb51fa
+      image: ops0-artifactrepo2-0-prd.slb.sfdc.net/docker-dev/servicemesh/servicemesh-resiliency:0facd871f3105f8cb48f5f4d7390036d89eb51fa
       env:
       - name: MODE
         value: server
