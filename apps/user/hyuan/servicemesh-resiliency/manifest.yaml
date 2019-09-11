@@ -59,7 +59,7 @@ system:
         periodSeconds: 5
       terminationMessagePolicy: FallbackToLogsOnError
     - name: servicemesh-resiliency
-      image: docker-all/servicemesh/servicemesh-resiliency:0facd871f3105f8cb48f5f4d7390036d89eb51fa
+      image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-all/servicemesh/servicemesh-resiliency:0facd871f3105f8cb48f5f4d7390036d89eb51fa
       env:
       - name: MODE
         value: server
