@@ -10,7 +10,7 @@ metadata:
   name: istio-sidecar-injector
   namespace: mesh-control-plane
 spec:
-  replicas: 1
+  replicas: 3
   selector:
     matchLabels:
       istio: sidecar-injector
