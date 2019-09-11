@@ -1,0 +1,31 @@
+apiVersion: v1
+
+system:
+  functions:
+    - name: hub-persistence-test
+      identity:
+        serviceName: hub-persistence
+      count: 3
+      volumes:
+        - name: sherpa-log-volume
+          hostPath:
+            path: /home/sfdc-hub-persistence/logs
+        - name: hp-server-cert
+          maddogCert:
+            type: server
+            lbnames:
+              - hub-persistence-test-lb
+        - name: hp-client-cert
+          maddogCert:
+            type: client
+
+  #
+  # SLB
+  #
+  loadbalancers:
+    - lbname: hub-persistence-test-lb
+      function: hub-persistence-test
+      slbEnabled: true
+      ports:
+      - port: 443
+        targetport: 7442
