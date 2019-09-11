@@ -15,6 +15,8 @@ system:
     - name: cre-api-ccp-perf
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cre/cre-api:1.9-freeze-008.0.release-1.9.59d7cf0.9
       env:
+        - name: HBASE_SUPER_TENANT_IDS_FLUSH
+          value: cre4000000002g9
         - name: METRICS_KAFKA_TOPIC
           value: sfdc.prod.cre__prd.ajna_local__cre_metrics_CCP_Integration_Performance
         - name: METRICS_KAFKA_SERVER
