@@ -40,6 +40,7 @@ local utils = import "util_functions.jsonnet";
                 # --- flag G (is to assist ... ---
                 # --- flag H (git's diff logic ... ---
                 # --- flag I (to reduce the ---
+                deployment_strategy: "",
                 # --- flag J (likelihood of merge conflicts.) ---
                 prometheus_new_conf: "MEANINGLESS VALUE!",
             },

@@ -254,5 +254,13 @@ configs.deploymentBase("flowsnake") {
         ),
       },
     },
-  },
+  } + if std.objectHas(flowsnake_images.feature_flags, "deployment_strategy") then {
+    strategy: {
+        type: "RollingUpdate",
+        rollingUpdate: {
+            maxUnavailable: 1,
+            maxSurge: 1,
+        },
+    },
+  } else {},
 } else "SKIP"
