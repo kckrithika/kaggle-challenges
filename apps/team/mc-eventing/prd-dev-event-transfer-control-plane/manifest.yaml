@@ -52,6 +52,7 @@ system:
         httpGet:
           path: /manage/health
           port: 15385
+          scheme: HTTPS
       volumeMounts:
       - name: clientcert
         mountPath: /client-certs
