@@ -6,8 +6,8 @@ apps:
     #   - name: prd/prd-sam
     #  gid-runtime-service:
     #   - name: xrd/xrd-sampool
-  c2c-ca:
-   - name: prd/prd-sam
-  c2c-ca-minimal:
-   - name: xrd/xrd-sampool
+    # c2c-ca:
+    # - name: prd/prd-sam
+    # c2c-ca-minimal:
+    # - name: xrd/xrd-sampool
 
