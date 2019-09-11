@@ -19,10 +19,12 @@ system:
         secretName: eventbusajna-ens-v1
     containers:
     - name: event-notification-service
-      image: sfci/mc-eventing/event-notification:1.0.10
+      image: sfci/mc-eventing/event-notification:1.0.14
       ports:
       - containerPort: 15372
       env:
+      - name: JAVA_OPTS
+        value: -Xms1G -Xmx6G -XX:+UseG1GC
       - name: MANAGEMENT_PORT
         value: 15372
       - name: AJNA_NAMESPACE
@@ -58,6 +60,9 @@ system:
       - name: eventbusajna-ens-v1
         mountPath: /secrets/eventbusajna-ens-v1
         readOnly: true
+      resources:
+        limits: { cpu: "4", memory: "8Gi" }
+        requests: { cpu: "2", memory: "2Gi" }
   loadbalancers:
   - lbname: event-notification-service-lb
     function: event-notification-service
