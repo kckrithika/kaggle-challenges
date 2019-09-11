@@ -81,6 +81,19 @@ items:
 - apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
+    name: role:shared0-samminiondatapool2-2-fra.ops.sfdc.net
+  rules:
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-samminiondatapool2-2-fra.ops.sfdc.net
+    resources:
+    - nodes/status
+    verbs:
+    - '*'
+- apiVersion: rbac.authorization.k8s.io/v1beta1
+  kind: ClusterRole
+  metadata:
     name: role:shared0-samminiondp1-1-fra.ops.sfdc.net
   rules:
   - apiGroups:
@@ -406,6 +419,19 @@ items:
 - apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
+    name: role:shared0-samminiongwc1-3-fra.ops.sfdc.net
+  rules:
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-samminiongwc1-3-fra.ops.sfdc.net
+    resources:
+    - nodes/status
+    verbs:
+    - '*'
+- apiVersion: rbac.authorization.k8s.io/v1beta1
+  kind: ClusterRole
+  metadata:
     name: role:shared0-samminiongwc2-1-fra.ops.sfdc.net
   rules:
   - apiGroups:
@@ -614,12 +640,38 @@ items:
 - apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
+    name: role:shared0-samminionreportcollector1-2-fra.ops.sfdc.net
+  rules:
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-samminionreportcollector1-2-fra.ops.sfdc.net
+    resources:
+    - nodes/status
+    verbs:
+    - '*'
+- apiVersion: rbac.authorization.k8s.io/v1beta1
+  kind: ClusterRole
+  metadata:
     name: role:shared0-samminionreportcollector2-1-fra.ops.sfdc.net
   rules:
   - apiGroups:
     - '*'
     resourceNames:
     - shared0-samminionreportcollector2-1-fra.ops.sfdc.net
+    resources:
+    - nodes/status
+    verbs:
+    - '*'
+- apiVersion: rbac.authorization.k8s.io/v1beta1
+  kind: ClusterRole
+  metadata:
+    name: role:shared0-samminionreportcollector2-2-fra.ops.sfdc.net
+  rules:
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-samminionreportcollector2-2-fra.ops.sfdc.net
     resources:
     - nodes/status
     verbs:
@@ -2071,6 +2123,17 @@ items:
 - apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRoleBinding
   metadata:
+    name: rolebinding:shared0-samminiondatapool2-2-fra.ops.sfdc.net
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: role:shared0-samminiondatapool2-2-fra.ops.sfdc.net
+  subjects:
+  - kind: User
+    name: shared0-samminiondatapool2-2-fra.ops.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1beta1
+  kind: ClusterRoleBinding
+  metadata:
     name: rolebinding:shared0-samminiondp1-1-fra.ops.sfdc.net
   roleRef:
     apiGroup: rbac.authorization.k8s.io
@@ -2346,6 +2409,17 @@ items:
 - apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRoleBinding
   metadata:
+    name: rolebinding:shared0-samminiongwc1-3-fra.ops.sfdc.net
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: role:shared0-samminiongwc1-3-fra.ops.sfdc.net
+  subjects:
+  - kind: User
+    name: shared0-samminiongwc1-3-fra.ops.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1beta1
+  kind: ClusterRoleBinding
+  metadata:
     name: rolebinding:shared0-samminiongwc2-1-fra.ops.sfdc.net
   roleRef:
     apiGroup: rbac.authorization.k8s.io
@@ -2522,6 +2596,17 @@ items:
 - apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRoleBinding
   metadata:
+    name: rolebinding:shared0-samminionreportcollector1-2-fra.ops.sfdc.net
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: role:shared0-samminionreportcollector1-2-fra.ops.sfdc.net
+  subjects:
+  - kind: User
+    name: shared0-samminionreportcollector1-2-fra.ops.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1beta1
+  kind: ClusterRoleBinding
+  metadata:
     name: rolebinding:shared0-samminionreportcollector2-1-fra.ops.sfdc.net
   roleRef:
     apiGroup: rbac.authorization.k8s.io
@@ -2530,6 +2615,17 @@ items:
   subjects:
   - kind: User
     name: shared0-samminionreportcollector2-1-fra.ops.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1beta1
+  kind: ClusterRoleBinding
+  metadata:
+    name: rolebinding:shared0-samminionreportcollector2-2-fra.ops.sfdc.net
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: role:shared0-samminionreportcollector2-2-fra.ops.sfdc.net
+  subjects:
+  - kind: User
+    name: shared0-samminionreportcollector2-2-fra.ops.sfdc.net
 - apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRoleBinding
   metadata:

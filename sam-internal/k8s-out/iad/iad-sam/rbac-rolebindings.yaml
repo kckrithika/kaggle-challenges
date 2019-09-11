@@ -88,6 +88,8 @@ items:
   - kind: User
     name: shared0-samminionatlasfe1-1-iad.ops.sfdc.net
   - kind: User
+    name: shared0-samminionatlasfe1-2-iad.ops.sfdc.net
+  - kind: User
     name: shared0-samminionatlasfe2-1-iad.ops.sfdc.net
 - apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: RoleBinding

@@ -64,6 +64,7 @@ shared0-samminionaqueduct3-2-fra.ops.sfdc.net,10.212.167.235/29,10.160.32.160/27
 shared0-samminiondatapool1-1-fra.ops.sfdc.net,10.212.229.66/29,10.160.14.0/27,d29-01,fra-sam_datapool,4203031215
 shared0-samminiondatapool1-2-fra.ops.sfdc.net,10.212.229.74/29,10.160.14.64/27,e22-01,fra-sam_datapool,4203061204
 shared0-samminiondatapool2-1-fra.ops.sfdc.net,10.212.229.67/29,10.160.14.32/27,d29-01,fra-sam_datapool,4203031215
+shared0-samminiondatapool2-2-fra.ops.sfdc.net,10.212.185.130/29,10.160.14.96/27,d26-02,fra-sam_datapool,4203081211
 shared0-samminiondp1-1-fra.ops.sfdc.net,10.212.167.194/29,10.160.23.32/27,e06-01,fra-sam_dp,4203051212
 shared0-samminiondp1-2-fra.ops.sfdc.net,10.212.167.195/29,10.160.23.64/27,e06-01,fra-sam_dp,4203051212
 shared0-samminiondp2-1-fra.ops.sfdc.net,10.212.167.202/29,10.160.23.0/27,d35-02,fra-sam_dp,4203081227
@@ -82,6 +83,7 @@ shared0-samminiongater2-5-fra.ops.sfdc.net,10.212.230.14/29,10.160.22.96/27,f21-
 shared0-samminiongater2-6-fra.ops.sfdc.net,10.212.230.18/29,10.160.22.0/27,f21-01,fra-sam_gater,4203061201
 shared0-samminiongwc1-1-fra.ops.sfdc.net,10.212.159.123/29,10.160.15.0/27,d03-01,fra-sam_gatewayconfig,4203041205
 shared0-samminiongwc1-2-fra.ops.sfdc.net,10.212.159.115/29,10.160.15.64/27,d24-01,fra-sam_gatewayconfig,4203031207
+shared0-samminiongwc1-3-fra.ops.sfdc.net,10.212.185.138/29,10.160.15.128/27,f26-01,fra-sam_gatewayconfig,4203061211
 shared0-samminiongwc2-1-fra.ops.sfdc.net,10.212.159.114/29,10.160.15.96/27,d24-01,fra-sam_gatewayconfig,4203031207
 shared0-samminiongwc2-2-fra.ops.sfdc.net,10.212.159.122/29,10.160.15.32/27,d03-01,fra-sam_gatewayconfig,4203041205
 shared0-samminionmcconsumer1-1-fra.ops.sfdc.net,10.212.165.130/29,10.160.20.96/27,d05-01,fra-sam_mc_consumer,4203041209
@@ -90,6 +92,7 @@ shared0-samminionmcconsumer2-1-fra.ops.sfdc.net,10.212.165.131/29,10.160.20.128/
 shared0-samminionmcconsumer2-2-fra.ops.sfdc.net,10.212.165.139/29,10.160.20.32/27,c04-01,fra-sam_mc_consumer,4203041208
 shared0-samminionmcconsumer3-1-fra.ops.sfdc.net,10.212.165.146/29,10.160.20.64/27,c25-02,fra-sam_mc_consumer,4203081210
 shared0-samminionreportcollector1-1-fra.ops.sfdc.net,10.212.148.228/29,10.160.1.128/27,f03-01,fra-sam_report_collector,4203051205
+shared0-samminionreportcollector1-2-fra.ops.sfdc.net,10.212.185.146/29,10.160.1.224/27,c22-02,fra-sam_report_collector,4203081204
 shared0-samminionreportcollector2-1-fra.ops.sfdc.net,10.212.148.227/29,10.160.1.160/27,f03-01,fra-sam_report_collector,4203051205
 shared0-samminionreportcollector3-1-fra.ops.sfdc.net,10.212.148.226/29,10.160.1.192/27,f03-01,fra-sam_report_collector,4203051205
 shared0-samminionsme1-1-fra.ops.sfdc.net,10.212.168.34/29,10.160.34.64/27,d35-02,fra-search_model_executor,4203081227

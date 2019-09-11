@@ -136,6 +136,17 @@ data:
           "superpod": "none"
         },
         {
+          "bomrolename": "sam_minion_datapool",
+          "controlestate": "fra-sam",
+          "devicerole": "samcompute",
+          "estate": "fra-sam_datapool",
+          "hostname": "shared0-samminiondatapool2-2-fra.ops.sfdc.net",
+          "kingdom": "fra",
+          "pod": "none",
+          "rack": "d26-432",
+          "superpod": "none"
+        },
+        {
           "bomrolename": "sam_minion_dp",
           "controlestate": "fra-sam",
           "devicerole": "samcompute",
@@ -415,6 +426,17 @@ data:
           "controlestate": "fra-sam",
           "devicerole": "samcompute",
           "estate": "fra-sam_gatewayconfig",
+          "hostname": "shared0-samminiongwc1-3-fra.ops.sfdc.net",
+          "kingdom": "fra",
+          "pod": "none",
+          "rack": "f26-332",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sam_minion_gatewayconfig",
+          "controlestate": "fra-sam",
+          "devicerole": "samcompute",
+          "estate": "fra-sam_gatewayconfig",
           "hostname": "shared0-samminiongwc2-1-fra.ops.sfdc.net",
           "kingdom": "fra",
           "pod": "none",
@@ -591,10 +613,32 @@ data:
           "controlestate": "fra-sam",
           "devicerole": "samcompute",
           "estate": "fra-sam_report_collector",
+          "hostname": "shared0-samminionreportcollector1-2-fra.ops.sfdc.net",
+          "kingdom": "fra",
+          "pod": "none",
+          "rack": "c22-432",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sam_minion_report_collector",
+          "controlestate": "fra-sam",
+          "devicerole": "samcompute",
+          "estate": "fra-sam_report_collector",
           "hostname": "shared0-samminionreportcollector2-1-fra.ops.sfdc.net",
           "kingdom": "fra",
           "pod": "none",
           "rack": "f03-332",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sam_minion_report_collector",
+          "controlestate": "fra-sam",
+          "devicerole": "samcompute",
+          "estate": "fra-sam_report_collector",
+          "hostname": "shared0-samminionreportcollector2-2-fra.ops.sfdc.net",
+          "kingdom": "fra",
+          "pod": "none",
+          "rack": "c22-432",
           "superpod": "none"
         },
         {
