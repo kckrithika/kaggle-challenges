@@ -13,7 +13,7 @@ system:
       "routing.mesh.sfdc.net/enabled": "true"
     containers:
     - name: cre-sp-ccp-func
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cre-fusion/services:stream-processor.2.0.1.develop.c766c26.396
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cre-fusion/services:stream-processor.2.0.1.develop.3040e43.412
       env:
         - name: PUBLISHING_TOPIC
           value: sfdc.prod.cre__prd.ajna_local__cre_outbound_CCP_Integration_Functional
@@ -41,11 +41,11 @@ system:
           value: http://ajna0-funnel1-0-prd.data.sfdc.net
         - name: CONTROLPLANE_ENDPOINT
           value: http://cre-control-plane-ccp-func.retail-cre.localhost.mesh.force.com:5442
-        - name: CONTROLPLANE_REST_TESTING_ENABLED		
-          value: true		
-        - name: CONTROLPLANE_REST_ENDPOINT		
-          value: http://cre-control-plane-ccp-func.retail-cre.localhost.mesh.force.com:5442		
-        - name: ENABLE_BATCH_ORPHAN_CHECKS		
+        - name: CONTROLPLANE_REST_TESTING_ENABLED
+          value: true
+        - name: CONTROLPLANE_REST_ENDPOINT
+          value: http://cre-control-plane-ccp-func.retail-cre.localhost.mesh.force.com:5442
+        - name: ENABLE_BATCH_ORPHAN_CHECKS
           value: true
         - name: JVM_ARGS
           value: "-verbose:gc -XX:+PrintGCDateStamps -XX:+PrintHeapAtGC
@@ -68,10 +68,17 @@ system:
         limits: { cpu: "2", memory: "6Gi" }
         requests: { cpu: "2", memory: "5Gi" }
       livenessProbe:
-        exec:
-            command:
-            - ls
+        httpGet:
+          path: /manage/health
+          port: 15372
+        initialDelaySeconds: 60
+        periodSeconds: 10
+      readinessProbe:
+        httpGet:
+          path: /manage/ready
+          port: 15372
         initialDelaySeconds: 30
+        periodSeconds: 10
       volumeMounts:
       - mountPath: /client-certs
         name: client-certs
@@ -148,7 +155,9 @@ system:
     slbenabled: true
     ports:
       - port: 8083
-        targetport: 8080
+        targetport: 7022
+      - port: 15371
+        targetport: 15372
   - lbname: cre-sp-ccp-func
     function: cre-sp-ccp-func
     ports:
