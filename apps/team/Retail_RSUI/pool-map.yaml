@@ -39,3 +39,5 @@ apps:
   - name: hnd/hnd-sam_crosscloudsetup
   hub-persistence-func:
   - name: prd/prd-sam_crosscloudplatform
+  hub-persistence-test:
+  - name: prd/prd-sam_crosscloudplatform
