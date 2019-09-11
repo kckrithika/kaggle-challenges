@@ -33,7 +33,7 @@ system:
       - name: APP_REMOTE_HOST
         value: cs3-app1-1-dfw
       - name: APP_DOMAIN
-        value: eng.sfdc.net
+        value: ops.sfdc.net
       - name: APP_JMX_PORT
         value: 8998
       - name: JMX_RETRIEVE_PASSWORD_FROM_SECRET_SERVICE
