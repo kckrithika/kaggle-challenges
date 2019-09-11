@@ -215,7 +215,7 @@ data:
           "job_name": "etcd",
           "metric_relabel_configs": [
             {
-              "regex": "([a-zA-z0-9.-_]+)__[0-9]+",
+              "regex": "([^:]+):[0-9]+",
               "replacement": "$1",
               "source_labels": [
                 "instance"
@@ -254,7 +254,7 @@ data:
           "job_name": "kubernetes-apiserver",
           "metric_relabel_configs": [
             {
-              "regex": "([a-zA-z0-9.-_]+)__[0-9]+",
+              "regex": "([^:]+):[0-9]+",
               "replacement": "$1",
               "source_labels": [
                 "instance"
