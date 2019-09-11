@@ -14,7 +14,7 @@ system:
           maxUnavailable: 1
       containers:
       - name: prod-warden
-        image: dva/casp/warden_strata:428
+        image: dva/casp/warden_strata:423
         ports:
         - name: warden
           containerPort: 8889
