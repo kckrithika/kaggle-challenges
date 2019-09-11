@@ -9,6 +9,7 @@ DEFAULT_CLUSTER = "sam"
 MAX_OCTET_VALUE = 255
 PUBLIC_RESERVED_IPS_FIELD_NAME = "publicReservedIps"
 PUBLIC_SUBNET_FIELD_NAME = "publicSubnet"
+TAB_TO_SPACE = "  "
 VIPS_YAML_FILE_NAME = "vips.yaml"
 VIPS_YAML_LBNAME_FIELD_NAME = "lbname"
 VIPS_YAML_CUSTOM_LBNAME_FIELD_NAME = "customlbname"
@@ -18,7 +19,7 @@ vips_file_path_regex = re.compile(r".*team/([a-zA-Z0-9-_]+)/vips/([a-z][a-z0-9]{
 
 
 def get_first_three_octets(config_file_path, cluster):
-    with open(config_file_path, 'r') as jsonnet_file:
+    with open(config_file_path, "r") as jsonnet_file:
         config_text = jsonnet_file.read()
 
     # Finds public subnet field's text
@@ -40,7 +41,7 @@ def get_first_three_octets(config_file_path, cluster):
 
 
 def update_reserved_ips(reserved_ips_file_path, cluster, new_ip):
-    with open(reserved_ips_file_path, 'r') as jsonnet_file:
+    with open(reserved_ips_file_path, "r") as jsonnet_file:
         reserved_ip_text = jsonnet_file.read()
 
     # Finds the public reserved IPs field's text
@@ -68,14 +69,14 @@ def update_reserved_ips(reserved_ips_file_path, cluster, new_ip):
         cluster_reserved_ips_text = cluster_reserved_ips_search_results.group(0)
 
     # Convert the cluster's array from text form to array form
-    cluster_reserved_ips = ast.literal_eval('{' + cluster_reserved_ips_text + '}')[cluster]
+    cluster_reserved_ips = ast.literal_eval("{" + cluster_reserved_ips_text + "}")[cluster]
     if new_ip in cluster_reserved_ips:
         print("{} is already in {}".format(new_ip, cluster))
     else:
         # Adds the new IP into the cluster's text
         new_public_reserved_ip_text = cluster_reserved_ips_regex.sub(r'\1  "' + new_ip + '",\n            ]',
                                                                      public_reserved_ips_text)
-        with open(reserved_ips_file_path, 'w') as jsonnet_file:
+        with open(reserved_ips_file_path, "w") as jsonnet_file:
             # Replace the public reserved IP text with the new one and write it
             jsonnet_file.write(public_reserved_ips_regex.sub(new_public_reserved_ip_text, reserved_ip_text))
 
@@ -89,9 +90,11 @@ def reserve_for_all_vips_yamls(root_path, config_file_path, reserved_ips_file_pa
 
 
 def process_vip_file(vip_file_path, config_file_path, reserved_ips_file_path, public_vip_allocation_file_path, minimum_octet):
-    with open(vip_file_path, 'r') as file:
+    print("Checking: " + vip_file_path)
+    with open(vip_file_path, "r") as file:
+        yaml_text = file.read().replace("\t", TAB_TO_SPACE)
         try:
-            vip_data = yaml.safe_load(file)
+            vip_data = yaml.safe_load(yaml_text)
             for vip in vip_data:
                 public = False if VIPS_YAML_PUBLIC_FIELD_NAME not in vip else vip[VIPS_YAML_PUBLIC_FIELD_NAME]
                 if public:
@@ -134,7 +137,7 @@ def create_new_public_vip(public_vip_entry_name, config_file_path,
             break
 
     if new_ip_fourth_octet_value == -1:
-        raise Exception('There are no more free public IPs in: {}'.format(cluster))
+        raise Exception("There are no more free public IPs in: {}".format(cluster))
 
     public_vip_data[cluster][public_vip_entry_name] = new_ip_fourth_octet_value
     with open(public_vip_allocation_file_path, "w") as public_vip_file:
