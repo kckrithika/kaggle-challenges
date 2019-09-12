@@ -15,7 +15,7 @@ system:
     hostnetwork: true
     containers:
     - name: cloudatlas-pdm-install
-      image: sfci/cloud-atlas/cloudatlas:3.3rc1
+      image: sfci/cloud-atlas/cloudatlas/cloudatlas-pdm:3.4rc1
       command: ["/opt/pdm/pdm.customer/bin/entrypoint.sh"]
       env:
       - name: UBID_DEPLOYMENT_STAGE
@@ -71,9 +71,3 @@ system:
     - name: k4a-secrets
       k4asecret:
         secretName: ca-secrets
-    - name: logvolsherpa
-      hostPath:
-        path: /home/sfdc-scone-hellodiscovery-sherpa/logs
-    - name: logvolbeacon
-      hostPath:
-        path: /home/sfdc-scone-hellodiscovery-beacon/logs
