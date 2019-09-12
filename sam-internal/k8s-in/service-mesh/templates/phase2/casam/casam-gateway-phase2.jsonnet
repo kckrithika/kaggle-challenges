@@ -28,8 +28,9 @@ if (istioPhases.phaseNum == 2) then
         },
         tls: {
           mode: "SIMPLE",
-          privateKey: "/etc/certs/key.pem",
-          serverCertificate: "/etc/certs/cert-chain.pem",
+          privateKey: "/server-certs/server/keys/server-key.pem",
+          serverCertificate: "/server-certs/server/certificates/server.pem",
+          caCertificates: "/server-certs/ca.pem",
         },
       },
       {
@@ -43,8 +44,9 @@ if (istioPhases.phaseNum == 2) then
         },
         tls: {
           mode: "SIMPLE",
-          privateKey: "/etc/certs/key.pem",
-          serverCertificate: "/etc/certs/cert-chain.pem",
+          privateKey: "/server-certs/server/keys/server-key.pem",
+          serverCertificate: "/server-certs/server/certificates/server.pem",
+          caCertificates: "/server-certs/ca.pem",
         },
       },
       {
@@ -58,8 +60,9 @@ if (istioPhases.phaseNum == 2) then
         },
         tls: {
           mode: "SIMPLE",
-          privateKey: "/etc/certs/key.pem",
-          serverCertificate: "/etc/certs/cert-chain.pem",
+          privateKey: "/server-certs/server/keys/server-key.pem",
+          serverCertificate: "/server-certs/server/certificates/server.pem",
+          caCertificates: "/server-certs/ca.pem",
         },
       },
     ],

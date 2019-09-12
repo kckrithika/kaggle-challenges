@@ -16,9 +16,10 @@ spec:
       number: 8085
       protocol: HTTPS
     tls:
+      caCertificates: /server-certs/ca.pem
       mode: SIMPLE
-      privateKey: /etc/certs/key.pem
-      serverCertificate: /etc/certs/cert-chain.pem
+      privateKey: /server-certs/server/keys/server-key.pem
+      serverCertificate: /server-certs/server/certificates/server.pem
   - hosts:
     - '*'
     port:
@@ -26,9 +27,10 @@ spec:
       number: 8443
       protocol: HTTPS
     tls:
+      caCertificates: /server-certs/ca.pem
       mode: SIMPLE
-      privateKey: /etc/certs/key.pem
-      serverCertificate: /etc/certs/cert-chain.pem
+      privateKey: /server-certs/server/keys/server-key.pem
+      serverCertificate: /server-certs/server/certificates/server.pem
   - hosts:
     - '*'
     port:
@@ -36,6 +38,7 @@ spec:
       number: 2525
       protocol: TCP
     tls:
+      caCertificates: /server-certs/ca.pem
       mode: SIMPLE
-      privateKey: /etc/certs/key.pem
-      serverCertificate: /etc/certs/cert-chain.pem
+      privateKey: /server-certs/server/keys/server-key.pem
+      serverCertificate: /server-certs/server/certificates/server.pem
