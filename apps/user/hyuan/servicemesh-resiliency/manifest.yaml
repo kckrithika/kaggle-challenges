@@ -20,8 +20,6 @@ system:
       - -endpoint
       - $(FUNCTION):DATACENTER_ALLENV:HTTP1
       - -endpoint
-      - $(FUNCTION_NAMESPACE)/$(FUNCTION):DATACENTER_ALLENV:HTTP1_TLS
-      - -endpoint
       - $(FUNCTION):DATACENTER_ALLENV:HTTP2
       - -endpoint
       - $(FUNCTION_NAMESPACE)/$(FUNCTION):DATACENTER_ALLENV:HTTP2_TLS
