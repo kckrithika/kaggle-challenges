@@ -1,0 +1,89 @@
+apiVersion: v1
+
+system:
+  notifications:
+    email:
+      - hyuan@salesforce.com
+  functions:
+  - name: servicemesh-resiliency
+    count: 2
+    containers:
+    - name: servicemesh-resiliency-beacon
+      image: sfci/services/sfdc-bazel/disco/beacon:d7f1640
+      resources:
+        limits: { cpu: "1", memory: "1Gi" }
+        requests: { cpu: "1", memory: "1Gi" }
+      args:
+      - -endpoint
+      - $(FUNCTION_NAMESPACE)/$(FUNCTION):DATACENTER_ALLENV:HTTP1
+      - -endpoint
+      - $(FUNCTION_NAMESPACE)/$(FUNCTION):DATACENTER_ALLENV:HTTP1_TLS
+      - -endpoint
+      - $(FUNCTION_NAMESPACE)/$(FUNCTION):DATACENTER_ALLENV:HTTP2
+      - -endpoint
+      - $(FUNCTION_NAMESPACE)/$(FUNCTION):DATACENTER_ALLENV:HTTP1_TLS
+      livenessProbe:
+        initialDelaySeconds: 5
+        exec:
+          command:
+            - "/home/scone/is-alive.sh"
+    - name: sherpa
+      image: sfci/servicelibs/sherpa-envoy:705933b05813f73691ccacd03f6bc388de08d272
+      args:
+      - --template
+      - /switchboard-config/switchboard-sidecar.config.yaml.template
+      ports:
+      - containerPort: 15001
+      - containerPort: 15373
+      env:
+      - name: SFDC_ENVIRONMENT
+        value: mesh
+      resources:
+        limits:
+          cpu: "1"
+          memory: 1Gi
+        requests:
+          cpu: "1"
+          memory: 1Gi
+      livenessProbe:
+        exec:
+          command:
+          - ./bin/is-alive
+        initialDelaySeconds: 20
+        periodSeconds: 5
+      readinessProbe:
+        exec:
+          command:
+          - ./bin/is-ready
+        initialDelaySeconds: 15
+        periodSeconds: 5
+      terminationMessagePolicy: FallbackToLogsOnError
+    - name: servicemesh-resiliency
+      image: sfci/servicelibs/servicemesh-resiliency:1624ddd7206ac7ec3ab542ac355e0da4c3ecb459
+      env:
+      - name: MODE
+        value: server
+      resources:
+        limits: { cpu: "1", memory: "1Gi" }
+        requests: { cpu: "1", memory: "1Gi" }
+      ports:
+      - containerPort: 7020
+      - containerPort: 7022
+      readinessProbe:
+        tcpSocket:
+          port: 7020
+        initialDelaySeconds: 5
+        periodSeconds: 5
+      livenessProbe:
+        tcpSocket:
+          port: 7020
+        initialDelaySeconds: 5
+        periodSeconds: 5
+      terminationMessagePolicy: FallbackToLogsOnError
+    volumes:
+    - name: tls-client-cert
+      maddogCert:
+        type: client
+    - name: tls-server-cert
+      maddogCert:
+        type: server
