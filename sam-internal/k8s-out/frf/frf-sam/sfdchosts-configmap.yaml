@@ -110,7 +110,7 @@ data:
           "hostname": "shared0-samminionatlasfe1-2-frf.ops.sfdc.net",
           "kingdom": "frf",
           "pod": "none",
-          "rack": "a18-m306",
+          "rack": "d19-m306",
           "superpod": "none"
         },
         {
@@ -606,6 +606,39 @@ data:
           "kingdom": "frf",
           "pod": "none",
           "rack": "d01-m316",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sam_minion_dp",
+          "controlestate": "frf-sam",
+          "devicerole": "samcompute",
+          "estate": "frf-sam_dp",
+          "hostname": "shared0-samminiondp1-1-frf.ops.sfdc.net",
+          "kingdom": "frf",
+          "pod": "none",
+          "rack": "d16-m306",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sam_minion_dp",
+          "controlestate": "frf-sam",
+          "devicerole": "samcompute",
+          "estate": "frf-sam_dp",
+          "hostname": "shared0-samminiondp1-2-frf.ops.sfdc.net",
+          "kingdom": "frf",
+          "pod": "none",
+          "rack": "d16-m306",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sam_minion_dp",
+          "controlestate": "frf-sam",
+          "devicerole": "samcompute",
+          "estate": "frf-sam_dp",
+          "hostname": "shared0-samminiondp2-1-frf.ops.sfdc.net",
+          "kingdom": "frf",
+          "pod": "none",
+          "rack": "d04-m305",
           "superpod": "none"
         },
         {
