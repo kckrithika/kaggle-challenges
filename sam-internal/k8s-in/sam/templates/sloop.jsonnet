@@ -35,8 +35,10 @@ if configs.estate == "prd-sam" then configs.deploymentBase("sam") {
                         args: [
                             "-web-files-path=/webfiles/",
                             "--alsologtostderr",
-                            "--ext-link1 Splunk=https://splunk-web.crz.salesforce.com/en-US/app/search/search?earliest=-60m&latest=now&q=search%20%60from_index_microapps%60%20%28kubernetes-container%3Anamespace%3D{{.Namespace}}%29%20%28rsyslog-base%3Adc%3Dprd%29%20%28kubernetes-container%3Apod%3D{{.Name}}%29%20%7C%20table%20_time%2C%20message%20%7C%20sort%20-%20_time;",
-                            "--ext-link2 KubeDashboard=http://dashboard-prd-sam.csc-sam.prd-sam.prd.slb.sfdc.net/#!/pod/{{.Namespace}}/{{.Name}}?namespace={{.Namespace}}",
+                            "--ext-link1",
+                            "Splunk=https://splunk-web.crz.salesforce.com/en-US/app/search/search?earliest=-60m&latest=now&q=search%20%60from_index_microapps%60%20%28kubernetes-container%3Anamespace%3D{{.Namespace}}%29%20%28rsyslog-base%3Adc%3Dprd%29%20%28kubernetes-container%3Apod%3D{{.Name}}%29%20%7C%20table%20_time%2C%20message%20%7C%20sort%20-%20_time;",
+                            "--ext-link2",
+                            "KubeDashboard=http://dashboard-prd-sam.csc-sam.prd-sam.prd.slb.sfdc.net/#!/pod/{{.Namespace}}/{{.Name}}?namespace={{.Namespace}}",
                         ],
                         command: [
                             "/bin/sloop",
