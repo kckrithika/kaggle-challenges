@@ -121,9 +121,6 @@ system:
     # Volumes Needed
     #####################################################################################
     volumes:
-    - name: hosthomevol
-      hostPath:
-        path: /data/ca-cluster-a
     - name: logvol
       hostPath:
         path: /home/sfdc-atlas/logs
@@ -133,9 +130,6 @@ system:
     - name: client-cert
       maddogCert:
         type: client
-    - name: secretsvol
-      secret:
-        secretName: passwd
     - name: k4a-secrets
       k4asecret:
         secretName: ca-secrets
