@@ -103,7 +103,7 @@ spec:
           value: "5442"
         - name: FAKE_REDEPLOY_VAR
           value: "1"
-        image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-gcp/dva/electron-opa-injection-webhook:10
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/electron-opa-injection-webhook/10-d7c1c6a9a4f53bee9b7e932973e69ddcb779fdfd
         imagePullPolicy: IfNotPresent
         livenessProbe:
           exec:
@@ -243,7 +243,7 @@ spec:
         - mountPath: /cert2
           name: cert2
       nodeSelector:
-        master: "true"
+        pool: prd-samtest
       volumes:
       - hostPath:
           path: /etc/pki_service
