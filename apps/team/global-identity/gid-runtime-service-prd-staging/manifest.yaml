@@ -140,7 +140,7 @@ system:
   # SLB
   #####################################################################################
   loadbalancers:
-    - lbname: gid-runtime-prd-staging
+    - lbname: gid-runtime-staging
       function: gid-runtime-service-prd-staging
       slbEnabled: true
       ports:
