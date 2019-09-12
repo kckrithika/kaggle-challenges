@@ -133,6 +133,8 @@ local cre_production = {
                     "retail-cre.ahersans",
                     "retail-cre.ebishop",
                     "retail-cre.jboard",
+                    "retail-cre.kdaszkowski",
+                    "retail-cre.mariusz.tycz",
                     "retail-cre.cre-control-plane",
                     "retail-cre.cre-control-plane-ccp-func",
                     "retail-cre.cre-control-plane-ccp-dev",
