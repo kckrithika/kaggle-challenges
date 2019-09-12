@@ -9,7 +9,7 @@ system:
         secretName: argfocus.json
     containers:
     - name: argfocus
-      image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/argfocus:11
+      image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/argfocus:14
       livenessProbe:
         exec:
           command: ["/bin/true"]
