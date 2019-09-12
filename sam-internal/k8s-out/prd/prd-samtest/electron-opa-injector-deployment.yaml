@@ -29,7 +29,7 @@ spec:
               "electron-opa-injector.authz-injector",
               "electron-opa-injector.authz-injector.svc",
               "electron-opa-injector.authz-injector.svc.cluster.local",
-              "electron-opa-injector.authz-injector.svc.prd-samdev.prd.sam.sfdc.net"
+              "electron-opa-injector.authz-injector.svc.prd-samtest.prd.sam.sfdc.net"
              ]
             },
             {
@@ -42,7 +42,7 @@ spec:
               "electron-opa-injector.authz-injector",
               "electron-opa-injector.authz-injector.svc",
               "electron-opa-injector.authz-injector.svc.cluster.local",
-              "electron-opa-injector.authz-injector.svc.prd-samdev.prd.sam.sfdc.net"
+              "electron-opa-injector.authz-injector.svc.prd-samtest.prd.sam.sfdc.net"
              ]
             }
            ]
@@ -88,7 +88,7 @@ spec:
         - name: KINGDOM
           value: prd
         - name: ESTATE
-          value: prd-samdev
+          value: prd-samtest
         - name: SUPERPOD
           value: '-'
         - name: SETTINGS_SUPERPOD
@@ -170,7 +170,7 @@ spec:
               apiVersion: v1
               fieldPath: metadata.namespace
         - name: ESTATE
-          value: prd-samdev
+          value: prd-samtest
         image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/madkub:1.0.0-0000082-3d5c21b4
         imagePullPolicy: IfNotPresent
         name: madkub-refresher
@@ -211,7 +211,7 @@ spec:
               apiVersion: v1
               fieldPath: metadata.namespace
         - name: ESTATE
-          value: prd-samdev
+          value: prd-samtest
         image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/madkub:1.0.0-0000082-3d5c21b4
         imagePullPolicy: IfNotPresent
         name: madkub-init
