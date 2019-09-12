@@ -9,5 +9,5 @@ done
 
 # expand service templates
 for kingdom in dfw phx iad ord frf par ukb hnd; do
-        m4 -D__MANIFEST_FUNCTION_NAME__=cloudatlas-${kingdom}-dir -D__COUNT__=3 < manifest-service.yaml > ../shared0-samminionatlasservice-${kingdom}/manifest.yaml
+        m4 -D__MANIFEST_FUNCTION_NAME__=cloudatlas-${kingdom}-service -D__COUNT__=3 < manifest-service.yaml > ../shared0-samminionatlasservice-${kingdom}/manifest.yaml
 done
