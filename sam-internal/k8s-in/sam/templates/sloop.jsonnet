@@ -43,7 +43,7 @@ if configs.estate == "prd-sam" then configs.deploymentBase("sam") {
                         command: [
                             "/bin/sloop",
                         ],
-                        image: "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/thargrove/sloop:thargrove-20190912_120805-d45812e",
+                        image: "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/thargrove/sloop:thargrove-20190912_151118-bc7d301",
                         volumeMounts: [
                             {
                                 name: "sloop-data",
