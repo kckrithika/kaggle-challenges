@@ -1,15 +1,15 @@
 apps:
   victim-pd-slow:
-    - prd/prd-samtest
+#    - prd/prd-samtest
     - prd/prd-sam
   no-victim:
-    - prd/prd-samtest
+#   - prd/prd-samtest
   victim-pd-fast:
-    - prd/prd-samtest
+#    - prd/prd-samtest
     - prd/prd-sam
   victim-pd-default:
-    - prd/prd-samtest
+#   - prd/prd-samtest
     - prd/prd-sam
   victim-rm-default:
-    - prd/prd-samtest
+#    - prd/prd-samtest
     - prd/prd-sam
