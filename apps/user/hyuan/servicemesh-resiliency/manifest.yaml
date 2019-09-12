@@ -13,20 +13,23 @@ system:
       resources:
         limits: { cpu: "1", memory: "1Gi" }
         requests: { cpu: "1", memory: "1Gi" }
+      env:
+      - name: SFDC_ENVIRONMENT
+        value: mesh
       args:
       - -endpoint
-      - $(FUNCTION_NAMESPACE)/$(FUNCTION):DATACENTER_ALLENV:HTTP1
+      - $(FUNCTION):DATACENTER_ALLENV:HTTP1
       - -endpoint
       - $(FUNCTION_NAMESPACE)/$(FUNCTION):DATACENTER_ALLENV:HTTP1_TLS
       - -endpoint
-      - $(FUNCTION_NAMESPACE)/$(FUNCTION):DATACENTER_ALLENV:HTTP2
+      - $(FUNCTION):DATACENTER_ALLENV:HTTP2
       - -endpoint
-      - $(FUNCTION_NAMESPACE)/$(FUNCTION):DATACENTER_ALLENV:HTTP1_TLS
+      - $(FUNCTION_NAMESPACE)/$(FUNCTION):DATACENTER_ALLENV:HTTP2_TLS
       livenessProbe:
         initialDelaySeconds: 5
         exec:
           command:
-            - "/home/scone/is-alive.sh"
+          - "/opt/beacon/is-alive.sh"
     - name: sherpa
       image: sfci/servicelibs/sherpa-envoy:705933b05813f73691ccacd03f6bc388de08d272
       ports:
