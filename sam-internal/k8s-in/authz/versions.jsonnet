@@ -28,6 +28,6 @@ local utils = import "util_functions.jsonnet";
     // =========
     injectorImage: (
         // need to use a full image path. relative paths like 'dva/electron-opa-injector' won't work here.
-        "ops0-artifactrepo1-0-prd.data.sfdc.net/dva/electron-opa-injection-webhook:8"
+        "ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-gcp/dva/electron-opa-injection-webhook:10"
     ),
 }
