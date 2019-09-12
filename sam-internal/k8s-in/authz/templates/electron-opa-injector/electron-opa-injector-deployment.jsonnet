@@ -216,8 +216,6 @@ configs.deploymentBase("authz-injector") {
           } + configs.ipAddressResourceRequest,
           maddogRefresher.madkubRefresherContainer,
         ],
-        # In PRD only kubeapi (master) nodes get cluster-admin permission
-        # In production, SAM control estate nodes get cluster-admin permission
         nodeSelector: {
           pool: configs.estate,
         },
