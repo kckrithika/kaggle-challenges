@@ -23,7 +23,7 @@ system:
       livenessProbe:
         httpGet:
           scheme: HTTPS
-          path: /info
+          path: /v1.0/info
           port: 9090
         initialDelaySeconds: 500
       volumeMounts:
