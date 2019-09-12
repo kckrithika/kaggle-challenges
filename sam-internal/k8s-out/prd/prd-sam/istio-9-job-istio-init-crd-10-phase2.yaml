@@ -15,7 +15,7 @@ spec:
         - apply
         - -f
         - /etc/istio/crd-10/crd-10.yaml
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/sfci/servicemesh/istio-packaging/kubectl:1124a381608076c7b478d2cf169f49b26c178986
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/sfci/servicemesh/istio-packaging/kubectl:f7bf3551572ef4653b9d68a8cf722b278d175fe1
         imagePullPolicy: IfNotPresent
         name: istio-init-crd-10
         volumeMounts:
