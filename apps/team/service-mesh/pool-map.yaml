@@ -113,18 +113,14 @@ apps:
   # Mixed Mode: Sherpa -> Istio apps
   istio-ordering-mixed-sherpa-to-istio:
     - prd/prd-sam_gater
-    - prd/prd-samtest
   istio-shipping-mixed-sherpa-to-istio:
     - prd/prd-sam_gater
-    - prd/prd-samtest
 
   # Mixed Mode: Istio -> Sherpa apps
   istio-ordering-mixed-istio-to-sherpa:
     - prd/prd-sam_gater
-    - prd/prd-samtest
   istio-shipping-mixed-istio-to-sherpa:
     - prd/prd-sam_gater
-    - prd/prd-samtest
 #  istio-fake-casam:
 #    - prd/prd-sam_gater
 #  istio-fake-casam-na35:
