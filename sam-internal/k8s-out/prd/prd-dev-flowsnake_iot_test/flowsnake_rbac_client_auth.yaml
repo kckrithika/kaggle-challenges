@@ -208,6 +208,10 @@ items:
   - kind: User
     name: retail-cre.jboard
   - kind: User
+    name: retail-cre.kdaszkowski
+  - kind: User
+    name: retail-cre.mariusz.tycz
+  - kind: User
     name: retail-cre.cre-control-plane
   - kind: User
     name: retail-cre.cre-control-plane-ccp-func
@@ -297,6 +301,10 @@ items:
     name: retail-cre.ebishop
   - kind: User
     name: retail-cre.jboard
+  - kind: User
+    name: retail-cre.kdaszkowski
+  - kind: User
+    name: retail-cre.mariusz.tycz
   - kind: User
     name: retail-cre.cre-control-plane
   - kind: User
