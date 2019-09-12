@@ -1,0 +1,25 @@
+apiVersion: v1
+data:
+  config.yaml: |-
+    services:
+      - name: electron
+        url: http://demo-authz-http.service-mesh.localhost.mesh.force.com:5442
+        allow_insecure_tls: true
+    bundle:
+      name: authzpolicy
+      prefix: v1
+      service: electron
+      polling:
+        min_delay_seconds: 300
+        max_delay_seconds: 360
+    plugins:
+      envoy_ext_authz_grpc:
+        addr: :9191
+        query: data.istio.authz.allow
+kind: ConfigMap
+metadata:
+  creationTimestamp: null
+  labels:
+    app: electron-opa-injector
+  name: electron-opa-injector-configs-opa-istio-config
+  namespace: authz-injector
