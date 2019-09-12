@@ -5,18 +5,21 @@ system:
     - gater@salesforce.com
   functions:
   - name: gater
-    count: 5
+    count: 10
     labels:
       app: gater
     annotations:
       "routing.mesh.sfdc.net/enabled": "true"
-    hostnetwork: true
+    hostnetwork: false
     containers:
     - name: gater1
       image: sfci/services/sfdc-bazel/gater/gate-manager:cbf8ea0d1
       args:
         - --server.port=9090
         - --gater-service.thread.pool.max-size=0
+        - --synctask.host-affinity=false
+        - --logging.sfdc.stderr.level=OFF
+        - --logging.json.stdout.level=INFO
       volumeMounts:
       - mountPath: /log
         name: logvol
@@ -40,6 +43,13 @@ system:
       - containerPort: 9523 
       - containerPort: 9090
       - containerPort: 15372
+      resources:
+        limits:
+          cpu: "8"
+          memory: 8Gi
+        requests:
+          cpu: "8"
+          memory: 8Gi
       env:
       - name: SFDC_ENVIRONMENT
         value: blitz
