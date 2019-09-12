@@ -111,6 +111,7 @@ local ingressGatewayCertConfigs = [ingressGatewayClientCertConfig, ingressGatewa
   ingressGatewaySettingsPath: "istio.-." + configs.kingdom + ".-." + "istio-ingressgateway",
 
   funnelEndpoint: istioPhases.funnelEndpoint,
+  funnelVIP: configs.funnelVIP,
 
   madkubEndpoint: "https://10.254.208.254:32007",  // Check madkubserver-service.jsonnet for why IP
   maddogEndpoint: configs.maddogEndpoint,

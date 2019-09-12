@@ -421,7 +421,7 @@ if (istioPhases.phaseNum == 2) then
               "--debug-mode",
               "true",
               "--funnel-address",
-              mcpIstioConfig.funnelEndpoint,
+              mcpIstioConfig.funnelVIP,
               "--alt-tags",
               "cluster=svccluster",
             ],
