@@ -6,7 +6,7 @@ system:
       - hyuan@salesforce.com
   functions:
   - name: servicemesh-resiliency
-    count: 2
+    count: 3
     containers:
     - name: servicemesh-resiliency-beacon
       image: sfci/services/sfdc-bazel/disco/beacon:d7f1640
@@ -29,12 +29,17 @@ system:
             - "/home/scone/is-alive.sh"
     - name: sherpa
       image: sfci/servicelibs/sherpa-envoy:705933b05813f73691ccacd03f6bc388de08d272
-      args:
-      - --template
-      - /switchboard-config/switchboard-sidecar.config.yaml.template
       ports:
-      - containerPort: 15001
-      - containerPort: 15373
+      - name: http1-in
+        containerPort: 7014
+      - name: http1-tls-in
+        containerPort: 7442
+      - name: http2-in
+        containerPort: 7012
+      - name: http2-tls-in
+        containerPort: 7443
+      - name: sherpa-adm
+        containerPort: 15373
       env:
       - name: SFDC_ENVIRONMENT
         value: mesh
