@@ -5,9 +5,9 @@ apps:
 #  - prd/prd-samtest
 #  - prd/prd-sam
  deployment-latency-reporter:
-  - prd/prd-samdev
+#  - prd/prd-samdev
  sfci-test:
-  - prd/prd-samtest
+#  - prd/prd-samtest
 # Stale app disabled by automation.  See https://sfdc.co/samsandbox
 #  - prd/prd-sam
  test-secret-app:
@@ -15,6 +15,6 @@ apps:
 # Stale app disabled by automation.  See https://sfdc.co/samsandbox
 #  - prd/prd-sam
  stateful-no-ceph:
-  - prd/prd-samdev
+ # - prd/prd-samdev
 
 
