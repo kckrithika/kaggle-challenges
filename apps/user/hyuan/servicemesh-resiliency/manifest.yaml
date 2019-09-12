@@ -59,7 +59,7 @@ system:
         periodSeconds: 5
       terminationMessagePolicy: FallbackToLogsOnError
     - name: servicemesh-resiliency
-      image: sfci/servicemesh/servicemesh-resiliency:bf13443649938eeb28cd16a85642b85f08e383c3
+      image: sfci/servicelibs/servicemesh-resiliency:1624ddd7206ac7ec3ab542ac355e0da4c3ecb459
       env:
       - name: MODE
         value: server
