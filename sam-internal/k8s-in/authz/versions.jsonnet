@@ -30,4 +30,5 @@ local utils = import "util_functions.jsonnet";
         // need to use a full image path. relative paths like 'dva/electron-opa-injector' won't work here.
         "%s/dva/electron-opa-injection-webhook:10-d7c1c6a9a4f53bee9b7e932973e69ddcb779fdfd" % configs.registry
     ),
+    
 }
