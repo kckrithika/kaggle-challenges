@@ -13,6 +13,11 @@ spec:
     matchLabels:
       apptype: control
       name: impersonation-proxy
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+    type: RollingUpdate
   template:
     metadata:
       annotations:
