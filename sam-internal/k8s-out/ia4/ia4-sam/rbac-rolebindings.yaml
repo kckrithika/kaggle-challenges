@@ -106,6 +106,26 @@ items:
 - apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: RoleBinding
   metadata:
+    name: discovery:ia4-sam_gater:rolebinding
+    namespace: discovery
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: minion:role
+  subjects:
+  - kind: User
+    name: shared0-samminiongater1-1-ia4.ops.sfdc.net
+  - kind: User
+    name: shared0-samminiongater1-2-ia4.ops.sfdc.net
+  - kind: User
+    name: shared0-samminiongater2-1-ia4.ops.sfdc.net
+  - kind: User
+    name: shared0-samminiongater2-2-ia4.ops.sfdc.net
+  - kind: User
+    name: shared0-samminiongater3-1-ia4.ops.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1beta1
+  kind: RoleBinding
+  metadata:
     name: gater:ia4-sam_gater:rolebinding
     namespace: gater
   roleRef:

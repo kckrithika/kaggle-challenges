@@ -258,6 +258,42 @@ items:
 - apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: RoleBinding
   metadata:
+    name: discovery:dfw-sam_gater:rolebinding
+    namespace: discovery
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: minion:role
+  subjects:
+  - kind: User
+    name: shared0-samminiongater1-1-dfw.ops.sfdc.net
+  - kind: User
+    name: shared0-samminiongater1-2-dfw.ops.sfdc.net
+  - kind: User
+    name: shared0-samminiongater1-3-dfw.ops.sfdc.net
+  - kind: User
+    name: shared0-samminiongater1-4-dfw.ops.sfdc.net
+  - kind: User
+    name: shared0-samminiongater1-5-dfw.ops.sfdc.net
+  - kind: User
+    name: shared0-samminiongater1-6-dfw.ops.sfdc.net
+  - kind: User
+    name: shared0-samminiongater1-7-dfw.ops.sfdc.net
+  - kind: User
+    name: shared0-samminiongater2-1-dfw.ops.sfdc.net
+  - kind: User
+    name: shared0-samminiongater2-2-dfw.ops.sfdc.net
+  - kind: User
+    name: shared0-samminiongater2-3-dfw.ops.sfdc.net
+  - kind: User
+    name: shared0-samminiongater2-4-dfw.ops.sfdc.net
+  - kind: User
+    name: shared0-samminiongater2-5-dfw.ops.sfdc.net
+  - kind: User
+    name: shared0-samminiongater2-6-dfw.ops.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1beta1
+  kind: RoleBinding
+  metadata:
     name: gater:dfw-sam_gater:rolebinding
     namespace: gater
   roleRef:

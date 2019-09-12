@@ -112,7 +112,8 @@
         "service-mesh",
         "mesh-control-plane",
         "service-protection",
-        "retail-beaconator"
+        "retail-beaconator",
+        "discovery"
       ],
       "access": [
         "team/Gater",
@@ -120,7 +121,8 @@
         "team/service-mesh",
         "team/mesh-control-plane",
         "team/Service_Protection",
-        "team/Retail_Beaconator"
+        "team/Retail_Beaconator",
+        "team/discovery"
       ],
       "controlEstate": "cdg-sam",
       "estate": "cdg-sam_gater",
@@ -267,14 +269,16 @@
         "gater",
         "service-mesh",
         "mesh-control-plane",
-        "retail-beaconator"
+        "retail-beaconator",
+        "discovery"
       ],
       "access": [
         "team/CCAIT",
         "team/Gater",
         "team/service-mesh",
         "team/mesh-control-plane",
-        "team/Retail_Beaconator"
+        "team/Retail_Beaconator",
+        "team/discovery"
       ],
       "controlEstate": "cdu-sam",
       "estate": "cdu-sam_gater",
@@ -323,12 +327,14 @@
       "namespaces": [
         "gater",
         "service-mesh",
-        "mesh-control-plane"
+        "mesh-control-plane",
+        "discovery"
       ],
       "access": [
         "team/Gater",
         "team/service-mesh",
-        "team/mesh-control-plane"
+        "team/mesh-control-plane",
+        "team/discovery"
       ],
       "controlEstate": "chx-sam",
       "estate": "chx-sam_gater",
@@ -440,7 +446,8 @@
         "service-mesh",
         "mesh-control-plane",
         "service-protection",
-        "retail-beaconator"
+        "retail-beaconator",
+        "discovery"
       ],
       "access": [
         "team/Gater",
@@ -448,7 +455,8 @@
         "team/service-mesh",
         "team/mesh-control-plane",
         "team/Service_Protection",
-        "team/Retail_Beaconator"
+        "team/Retail_Beaconator",
+        "team/discovery"
       ],
       "controlEstate": "dfw-sam",
       "estate": "dfw-sam_gater",
@@ -655,14 +663,16 @@
         "service-mesh",
         "mesh-control-plane",
         "service-protection",
-        "retail-beaconator"
+        "retail-beaconator",
+        "discovery"
       ],
       "access": [
         "team/Gater",
         "team/service-mesh",
         "team/mesh-control-plane",
         "team/Service_Protection",
-        "team/Retail_Beaconator"
+        "team/Retail_Beaconator",
+        "team/discovery"
       ],
       "controlEstate": "fra-sam",
       "estate": "fra-sam_gater",
@@ -905,14 +915,16 @@
         "service-mesh",
         "mesh-control-plane",
         "service-protection",
-        "retail-beaconator"
+        "retail-beaconator",
+        "discovery"
       ],
       "access": [
         "team/Gater",
         "team/service-mesh",
         "team/mesh-control-plane",
         "team/Service_Protection",
-        "team/Retail_Beaconator"
+        "team/Retail_Beaconator",
+        "team/discovery"
       ],
       "controlEstate": "frf-sam",
       "estate": "frf-sam_gater",
@@ -1062,13 +1074,15 @@
         "gater",
         "service-mesh",
         "mesh-control-plane",
-        "service-protection"
+        "service-protection",
+        "discovery"
       ],
       "access": [
         "team/Gater",
         "team/service-mesh",
         "team/mesh-control-plane",
-        "team/Service_Protection"
+        "team/Service_Protection",
+        "team/discovery"
       ],
       "controlEstate": "hio-sam",
       "estate": "hio-sam_gater",
@@ -1249,14 +1263,16 @@
         "service-mesh",
         "mesh-control-plane",
         "service-protection",
-        "retail-beaconator"
+        "retail-beaconator",
+        "discovery"
       ],
       "access": [
         "team/Gater",
         "team/service-mesh",
         "team/mesh-control-plane",
         "team/Service_Protection",
-        "team/Retail_Beaconator"
+        "team/Retail_Beaconator",
+        "team/discovery"
       ],
       "controlEstate": "hnd-sam",
       "estate": "hnd-sam_gater",
@@ -1420,7 +1436,8 @@
         "service-mesh",
         "mesh-control-plane",
         "service-protection",
-        "retail-beaconator"
+        "retail-beaconator",
+        "discovery"
       ],
       "access": [
         "team/Gater",
@@ -1428,7 +1445,8 @@
         "team/service-mesh",
         "team/mesh-control-plane",
         "team/Service_Protection",
-        "team/Retail_Beaconator"
+        "team/Retail_Beaconator",
+        "team/discovery"
       ],
       "controlEstate": "ia2-sam",
       "estate": "ia2-sam_gater",
@@ -1587,14 +1605,16 @@
         "ccait",
         "service-mesh",
         "mesh-control-plane",
-        "service-protection"
+        "service-protection",
+        "discovery"
       ],
       "access": [
         "team/Gater",
         "team/CCAIT",
         "team/service-mesh",
         "team/mesh-control-plane",
-        "team/Service_Protection"
+        "team/Service_Protection",
+        "team/discovery"
       ],
       "controlEstate": "ia4-sam",
       "estate": "ia4-sam_gater",
@@ -1679,14 +1699,16 @@
         "ccait",
         "service-mesh",
         "mesh-control-plane",
-        "service-protection"
+        "service-protection",
+        "discovery"
       ],
       "access": [
         "team/Gater",
         "team/CCAIT",
         "team/service-mesh",
         "team/mesh-control-plane",
-        "team/Service_Protection"
+        "team/Service_Protection",
+        "team/discovery"
       ],
       "controlEstate": "ia5-sam",
       "estate": "ia5-sam_gater",
@@ -1867,14 +1889,16 @@
         "service-mesh",
         "mesh-control-plane",
         "service-protection",
-        "retail-beaconator"
+        "retail-beaconator",
+        "discovery"
       ],
       "access": [
         "team/Gater",
         "team/service-mesh",
         "team/mesh-control-plane",
         "team/Service_Protection",
-        "team/Retail_Beaconator"
+        "team/Retail_Beaconator",
+        "team/discovery"
       ],
       "controlEstate": "iad-sam",
       "estate": "iad-sam_gater",
@@ -2088,7 +2112,8 @@
         "service-mesh",
         "mesh-control-plane",
         "service-protection",
-        "retail-beaconator"
+        "retail-beaconator",
+        "discovery"
       ],
       "access": [
         "team/Gater",
@@ -2096,7 +2121,8 @@
         "team/service-mesh",
         "team/mesh-control-plane",
         "team/Service_Protection",
-        "team/Retail_Beaconator"
+        "team/Retail_Beaconator",
+        "team/discovery"
       ],
       "controlEstate": "lo2-sam",
       "estate": "lo2-sam_gater",
@@ -2206,7 +2232,8 @@
         "service-mesh",
         "mesh-control-plane",
         "service-protection",
-        "retail-beaconator"
+        "retail-beaconator",
+        "discovery"
       ],
       "access": [
         "team/Gater",
@@ -2214,7 +2241,8 @@
         "team/service-mesh",
         "team/mesh-control-plane",
         "team/Service_Protection",
-        "team/Retail_Beaconator"
+        "team/Retail_Beaconator",
+        "team/discovery"
       ],
       "controlEstate": "lo3-sam",
       "estate": "lo3-sam_gater",
@@ -2541,14 +2569,16 @@
         "service-mesh",
         "mesh-control-plane",
         "service-protection",
-        "retail-beaconator"
+        "retail-beaconator",
+        "discovery"
       ],
       "access": [
         "team/Gater",
         "team/service-mesh",
         "team/mesh-control-plane",
         "team/Service_Protection",
-        "team/Retail_Beaconator"
+        "team/Retail_Beaconator",
+        "team/discovery"
       ],
       "controlEstate": "ord-sam",
       "estate": "ord-sam_gater",
@@ -3052,7 +3082,8 @@
         "service-mesh",
         "mesh-control-plane",
         "service-protection",
-        "retail-beaconator"
+        "retail-beaconator",
+        "discovery"
       ],
       "access": [
         "team/Gater",
@@ -3060,7 +3091,8 @@
         "team/service-mesh",
         "team/mesh-control-plane",
         "team/Service_Protection",
-        "team/Retail_Beaconator"
+        "team/Retail_Beaconator",
+        "team/discovery"
       ],
       "controlEstate": "ph2-sam",
       "estate": "ph2-sam_gater",
@@ -3294,7 +3326,8 @@
         "service-mesh",
         "mesh-control-plane",
         "service-protection",
-        "retail-beaconator"
+        "retail-beaconator",
+        "discovery"
       ],
       "access": [
         "team/Gater",
@@ -3302,7 +3335,8 @@
         "team/service-mesh",
         "team/mesh-control-plane",
         "team/Service_Protection",
-        "team/Retail_Beaconator"
+        "team/Retail_Beaconator",
+        "team/discovery"
       ],
       "controlEstate": "phx-sam",
       "estate": "phx-sam_gater",
@@ -3613,7 +3647,8 @@
         "scone",
         "service-protection",
         "mesh-control-plane",
-        "retail-beaconator"
+        "retail-beaconator",
+        "discovery"
       ],
       "access": [
         "team/Gater",
@@ -3622,7 +3657,8 @@
         "team/Scone",
         "team/Service_Protection",
         "team/mesh-control-plane",
-        "team/Retail_Beaconator"
+        "team/Retail_Beaconator",
+        "team/discovery"
       ],
       "controlEstate": "prd-sam",
       "estate": "prd-sam_gater",
@@ -4113,14 +4149,16 @@
         "gater",
         "service-mesh",
         "mesh-control-plane",
-        "retail-beaconator"
+        "retail-beaconator",
+        "discovery"
       ],
       "access": [
         "team/CCAIT",
         "team/Gater",
         "team/service-mesh",
         "team/mesh-control-plane",
-        "team/Retail_Beaconator"
+        "team/Retail_Beaconator",
+        "team/discovery"
       ],
       "controlEstate": "syd-sam",
       "estate": "syd-sam_gater",
@@ -4180,13 +4218,15 @@
         "gater",
         "service-mesh",
         "mesh-control-plane",
-        "service-protection"
+        "service-protection",
+        "discovery"
       ],
       "access": [
         "team/Gater",
         "team/service-mesh",
         "team/mesh-control-plane",
-        "team/Service_Protection"
+        "team/Service_Protection",
+        "team/discovery"
       ],
       "controlEstate": "ttd-sam",
       "estate": "ttd-sam_gater",
@@ -4367,14 +4407,16 @@
         "service-mesh",
         "mesh-control-plane",
         "service-protection",
-        "retail-beaconator"
+        "retail-beaconator",
+        "discovery"
       ],
       "access": [
         "team/Gater",
         "team/service-mesh",
         "team/mesh-control-plane",
         "team/Service_Protection",
-        "team/Retail_Beaconator"
+        "team/Retail_Beaconator",
+        "team/discovery"
       ],
       "controlEstate": "ukb-sam",
       "estate": "ukb-sam_gater",
@@ -4501,12 +4543,14 @@
       "namespaces": [
         "gater",
         "service-mesh",
-        "mesh-control-plane"
+        "mesh-control-plane",
+        "discovery"
       ],
       "access": [
         "team/Gater",
         "team/service-mesh",
-        "team/mesh-control-plane"
+        "team/mesh-control-plane",
+        "team/discovery"
       ],
       "controlEstate": "wax-sam",
       "estate": "wax-sam_gater",
@@ -4581,14 +4625,16 @@
         "ccait",
         "service-mesh",
         "mesh-control-plane",
-        "retail-beaconator"
+        "retail-beaconator",
+        "discovery"
       ],
       "access": [
         "team/Gater",
         "team/CCAIT",
         "team/service-mesh",
         "team/mesh-control-plane",
-        "team/Retail_Beaconator"
+        "team/Retail_Beaconator",
+        "team/discovery"
       ],
       "controlEstate": "xrd-sam",
       "estate": "xrd-sam_gater",
@@ -4722,13 +4768,15 @@
         "ccait",
         "gater",
         "service-mesh",
-        "mesh-control-plane"
+        "mesh-control-plane",
+        "discovery"
       ],
       "access": [
         "team/CCAIT",
         "team/Gater",
         "team/service-mesh",
-        "team/mesh-control-plane"
+        "team/mesh-control-plane",
+        "team/discovery"
       ],
       "controlEstate": "yhu-sam",
       "estate": "yhu-sam_gater",
@@ -4812,13 +4860,15 @@
         "ccait",
         "gater",
         "service-mesh",
-        "mesh-control-plane"
+        "mesh-control-plane",
+        "discovery"
       ],
       "access": [
         "team/CCAIT",
         "team/Gater",
         "team/service-mesh",
-        "team/mesh-control-plane"
+        "team/mesh-control-plane",
+        "team/discovery"
       ],
       "controlEstate": "yul-sam",
       "estate": "yul-sam_gater",
