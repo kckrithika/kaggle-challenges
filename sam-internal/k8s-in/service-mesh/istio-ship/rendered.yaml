@@ -522,7 +522,7 @@ data:
         - name: ISTIO_META_kubernetes_cluster_name
           valueFrom:
             fieldRef:
-              fieldPath: fieldPath: metadata.labels['cluster']
+              fieldPath: metadata.labels['cluster']
         ###
         # End metadata fields used by switchboard for building metric tags.
         ###
