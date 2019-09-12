@@ -35,7 +35,7 @@ spec:
         - --logtostderr=false
         - --alsologtostderr=true
         - --pclKingdom
-        image: ops0-artifactrepo1-0-yhu.data.sfdc.net/dva/sdn/hypersdn:2207-e7b9ccab27934205f59fc594c324e42ad8b03ebc
+        image: ops0-artifactrepo1-0-yhu.data.sfdc.net/dva/sdn/hypersdn:2226-6dda908308d304291cda5b03425632020bc3bfd3
         livenessProbe:
           httpGet:
             path: /liveness-probe

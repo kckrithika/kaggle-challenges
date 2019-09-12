@@ -12,11 +12,11 @@ local kingdom = std.extVar("kingdom");
         #   "prd,prd-sam,samcontrol,hypersam": "sam-0000123-deadbeef",
         #
         # override in minimal prod estate to get image into prod for PCL canary testing.
-        "cdu,cdu-sam,sdn-vault-agent,hypersdn": "2207-e7b9ccab27934205f59fc594c324e42ad8b03ebc",
-        "frf,frf-sam,sdn-vault-agent,hypersdn": "2207-e7b9ccab27934205f59fc594c324e42ad8b03ebc",
-        "syd,syd-sam,sdn-vault-agent,hypersdn": "2207-e7b9ccab27934205f59fc594c324e42ad8b03ebc",
-        "yhu,yhu-sam,sdn-vault-agent,hypersdn": "2207-e7b9ccab27934205f59fc594c324e42ad8b03ebc",
-        "yul,yul-sam,sdn-vault-agent,hypersdn": "2207-e7b9ccab27934205f59fc594c324e42ad8b03ebc",
+        "cdu,cdu-sam,sdn-vault-agent,hypersdn": "2226-6dda908308d304291cda5b03425632020bc3bfd3",
+        "frf,frf-sam,sdn-vault-agent,hypersdn": "2226-6dda908308d304291cda5b03425632020bc3bfd3",
+        "syd,syd-sam,sdn-vault-agent,hypersdn": "2226-6dda908308d304291cda5b03425632020bc3bfd3",
+        "yhu,yhu-sam,sdn-vault-agent,hypersdn": "2226-6dda908308d304291cda5b03425632020bc3bfd3",
+        "yul,yul-sam,sdn-vault-agent,hypersdn": "2226-6dda908308d304291cda5b03425632020bc3bfd3",
     },
 
     ### Per-phase image tags
