@@ -211,7 +211,7 @@ local flowsnake_config = import "flowsnake_config.jsonnet";
                 "cert_file": "/certs/client/certificates/client.pem",
                 "key_file": "/certs/client/keys/client-key.pem",
             },
-            [if "prometheus_new_conf" in flowsnake_images.feature_flags then "metric_relabel_configs"]: [
+            "metric_relabel_configs": [
                 {
                     "source_labels": [ "instance" ],
                     "target_label": "device",
@@ -228,51 +228,34 @@ local flowsnake_config = import "flowsnake_config.jsonnet";
                 }
             ]
         },
-        (if "prometheus_new_conf" in flowsnake_images.feature_flags then
-            {
-                "job_name": "kubernetes-apiserver",
-                "static_configs": [
-                    {
-                        "targets": [h.hostname + ":6443" for h in hosts.hosts if h.estate == estate && h.kingdom == kingdom && h.devicerole == "samkubeapi"],
-                    },
-                ],
-                "scheme": "https",
-                "bearer_token_file": "/var/run/secrets/kubernetes.io/serviceaccount/token",
-                "tls_config": {
-                    "ca_file": "/certs/ca/cabundle.pem"
+        {
+            "job_name": "kubernetes-apiserver",
+            "static_configs": [
+                {
+                    "targets": [h.hostname + ":6443" for h in hosts.hosts if h.estate == estate && h.kingdom == kingdom && h.devicerole == "samkubeapi"],
                 },
-                "metric_relabel_configs": [
-                    {
-                        "source_labels": [ "instance" ],
-                        "target_label": "device",
-                        "regex": "([^:]+):[0-9]+",
-                        "replacement": "$1",
-                    },
-                    {
-                        "regex": "instance",
-                        "action": "labeldrop",
-                    },
-                    {
-                        "target_label": "subservice",
-                        "replacement": "kube-apiserver",
-                    }
-               ],
-            }
-        else
-            {
-                "job_name": "kubernetes-apiserver",
-                "static_configs": [
-                    {
-                        "targets": [h.hostname + ":6443" for h in hosts.hosts if h.estate == estate && h.kingdom == kingdom && h.devicerole == "samkubeapi"],
-                    },
-                ],
-                "scheme": "https",
-                "tls_config": {
-                    "ca_file": "/etc/pki_service/kubernetes/k8s-client/certificates/k8s-client.pem",
-                    "cert_file": "/etc/pki_service/kubernetes/k8s-client/certificates/k8s-client.pem",
-                    "key_file": "/etc/pki_service/kubernetes/k8s-client/keys/k8s-client-key.pem",
-                },            
-            }
-        )
+            ],
+            "scheme": "https",
+            "bearer_token_file": "/var/run/secrets/kubernetes.io/serviceaccount/token",
+            "tls_config": {
+                "ca_file": "/certs/ca/cabundle.pem"
+            },
+            "metric_relabel_configs": [
+                {
+                    "source_labels": [ "instance" ],
+                    "target_label": "device",
+                    "regex": "([^:]+):[0-9]+",
+                    "replacement": "$1",
+                },
+                {
+                    "regex": "instance",
+                    "action": "labeldrop",
+                },
+                {
+                    "target_label": "subservice",
+                    "replacement": "kube-apiserver",
+                }
+           ],
+        }
     ]
 }
