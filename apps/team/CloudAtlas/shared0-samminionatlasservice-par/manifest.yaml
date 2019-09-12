@@ -1,5 +1,5 @@
 apiVersion: v1
- 
+
 system:
   notifications:
     email:
@@ -69,7 +69,7 @@ system:
         requests: { cpu: "1", memory: "1Gi" }
       args:
         - -endpoint
-        - $(FUNCTION_NAMESPACE)/cloudatlas-par-service:DATACENTER_ALLENV:7442
+        - $(FUNCTION_NAMESPACE)/$(FUNCTION):DATACENTER_ALLENV:7442
       livenessProbe:
         exec:
           command:
@@ -121,9 +121,6 @@ system:
     # Volumes Needed
     #####################################################################################
     volumes:
-    - name: hosthomevol
-      hostPath:
-        path: /data/ca-cluster-a
     - name: logvol
       hostPath:
         path: /home/sfdc-atlas/logs
@@ -133,9 +130,6 @@ system:
     - name: client-cert
       maddogCert:
         type: client
-    - name: secretsvol
-      secret:
-        secretName: passwd
     - name: k4a-secrets
       k4asecret:
         secretName: ca-secrets
