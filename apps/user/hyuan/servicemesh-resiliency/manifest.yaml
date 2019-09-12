@@ -8,7 +8,7 @@ system:
   - name: servicemesh-resiliency
     count: 3
     containers:
-    - name: servicemesh-resiliency-beacon
+    - name: beacon
       image: sfci/services/sfdc-bazel/disco/beacon:d7f1640
       resources:
         limits: { cpu: "1", memory: "1Gi" }
@@ -40,16 +40,14 @@ system:
         containerPort: 7443
       - name: sherpa-adm
         containerPort: 15373
-      env:
-      - name: SFDC_ENVIRONMENT
-        value: mesh
       resources:
-        limits:
-          cpu: "1"
-          memory: 1Gi
-        requests:
-          cpu: "1"
-          memory: 1Gi
+        limits: { cpu: "1", memory: "1Gi" }
+        requests: { cpu: "1", memory: "1Gi" }
+      volumeMounts:
+      - mountPath: /client-certs
+        name: tls-client-cert
+      - mountPath: /server-certs
+        name: tls-server-cert
       livenessProbe:
         exec:
           command:
