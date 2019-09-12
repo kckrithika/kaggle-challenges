@@ -3,49 +3,135 @@
     "slb.slb-canary-proxy-http-ext-service": 5
   },
   "dfw-sam": {
+    "slb.slb-canary-proxy-http-ext-service": 5,
+    "gus.gs0-bofa-dfw": 11,
     "cloudforce.login-cloudforce-dfw": 12,
     "edge.sledge-dfw": 13,
-    "gus.gs0-bofa-dfw": 11,
-    "slb.slb-canary-proxy-http-ext-service": 5
+    "slb.org-cce2e-cs3": 101,
+    "slb.org-cce2e-cs7": 102,
+    "slb.org-cce2e-cs9": 103,
+    "slb.org-cce2e-cs10": 104,
+    "slb.org-cce2e-cs11": 105,
+    "slb.org-cce2e-cs12": 106,
+    "slb.org-cce2e-cs13": 107,
+    "slb.org-cce2e-cs19": 108,
+    "slb.org-cce2e-cs20": 109,
+    "slb.org-cce2e-cs21": 110,
+    "slb.org-cce2e-cs23": 111,
+    "slb.org-cce2e-cs25": 112,
+    "slb.org-cce2e-cs26": 113,
+    "slb.org-cce2e-cs30": 114,
+    "slb.org-cce2e-cs50": 115,
+    "slb.org-cce2e-cs51": 116,
+    "slb.org-cce2e-cs52": 117,
+    "slb.org-cce2e-cs53": 118,
+    "slb.org-cce2e-cs54": 119,
+    "slb.org-cce2e-cs59": 120,
+    "slb.org-cce2e-cs60": 121,
+    "slb.org-cce2e-cs61": 122,
+    "slb.org-cce2e-cs62": 123,
+    "slb.org-cce2e-cs63": 124,
+    "slb.org-cce2e-cs68": 125,
+    "slb.org-cce2e-cs69": 126,
+    "slb.org-cce2e-cs70": 127,
+    "slb.org-cce2e-cs71": 128,
+    "slb.org-cce2e-cs90": 129,
+    "slb.org-cce2e-cs91": 130,
+    "slb.org-cce2e-cs999": 131
   },
   "fra-sam": {
     "slb.slb-canary-proxy-http-ext-service": 5,
-    "casam.cs103app-force-lb": 17,
     "casam.cs103app-lb": 16,
+    "casam.cs103app-force-lb": 17,
     "casam.cs103app-my-lb": 18
   },
   "frf-sam": {
+    "slb.slb-canary-proxy-http-ext-service": 5,
     "edge.sledge-frf": 13,
     "rsui.rsui-production-frf-lb": 14,
-    "rsui.rsui-production-frf-test-lb": 15,
-    "slb.slb-canary-proxy-http-ext-service": 5
+    "rsui.rsui-production-frf-test-lb": 15
   },
   "hnd-sam": {
+    "slb.slb-canary-proxy-http-ext-service": 5,
     "edge.sledge-hnd": 13,
     "rsui.rsui-production-hnd-lb": 14,
-    "rsui.rsui-production-hnd-test-lb": 15,
-    "slb.slb-canary-proxy-http-ext-service": 5
+    "rsui.rsui-production-hnd-test-lb": 15
   },
   "ia2-sam": {
-
+    "slb.org-cce2e-cs1": 101,
+    "slb.org-cce2e-cs2": 102,
+    "slb.org-cce2e-cs4": 103,
+    "slb.org-cce2e-cs22": 104,
+    "slb.org-cce2e-cs24": 105,
+    "slb.org-cce2e-cs27": 106,
+    "slb.org-cce2e-cs28": 107,
+    "slb.org-cce2e-cs29": 108,
+    "slb.org-cce2e-cs34": 109,
+    "slb.org-cce2e-cs35": 110,
+    "slb.org-cce2e-cs36": 111,
+    "slb.org-cce2e-cs37": 112,
+    "slb.org-cce2e-cs40": 113,
+    "slb.org-cce2e-cs41": 114,
+    "slb.org-cce2e-cs42": 115,
+    "slb.org-cce2e-cs43": 116,
+    "slb.org-cce2e-cs44": 117,
+    "slb.org-cce2e-cs45": 118,
+    "slb.org-cce2e-cs46": 119,
+    "slb.org-cce2e-cs49": 120
   },
   "iad-sam": {
+    "slb.slb-canary-proxy-http-ext-service": 5,
     "edge.sledge-iad": 13,
     "rsui.rsui-production-iad-lb": 14,
     "rsui.rsui-production-iad-test-lb": 15,
-    "slb.slb-canary-proxy-http-ext-service": 5
+    "slb.org-cce2e-cs8": 101,
+    "slb.org-cce2e-cs14": 102,
+    "slb.org-cce2e-cs15": 103,
+    "slb.org-cce2e-cs16": 104,
+    "slb.org-cce2e-cs17": 105,
+    "slb.org-cce2e-cs18": 106,
+    "slb.org-cce2e-cs47": 107,
+    "slb.org-cce2e-cs64": 108,
+    "slb.org-cce2e-cs65": 109,
+    "slb.org-cce2e-cs66": 110,
+    "slb.org-cce2e-cs67": 111,
+    "slb.org-cce2e-cs77": 112,
+    "slb.org-cce2e-cs78": 113,
+    "slb.org-cce2e-cs79": 114,
+    "slb.org-cce2e-cs92": 115,
+    "slb.org-cce2e-cs93": 116,
+    "slb.org-cce2e-cs94": 117,
+    "slb.org-cce2e-cs95": 118,
+    "slb.org-cce2e-cs96": 119,
+    "slb.org-cce2e-cs97": 120
   },
-  "lo2-sam": {
-
-  },
-  "lo3-sam": {
-
-  },
+  "lo2-sam": {},
+  "lo3-sam": {},
   "ord-sam": {
+    "slb.slb-canary-proxy-http-ext-service": 5,
     "edge.sledge-ord": 13,
     "rsui.rsui-production-ord-lb": 14,
     "rsui.rsui-production-ord-test-lb": 15,
-    "slb.slb-canary-proxy-http-ext-service": 5
+    "slb.org-cce2e-cs8": 101,
+    "slb.org-cce2e-cs14": 102,
+    "slb.org-cce2e-cs15": 103,
+    "slb.org-cce2e-cs16": 104,
+    "slb.org-cce2e-cs17": 105,
+    "slb.org-cce2e-cs18": 106,
+    "slb.org-cce2e-cs47": 107,
+    "slb.org-cce2e-cs64": 108,
+    "slb.org-cce2e-cs65": 109,
+    "slb.org-cce2e-cs66": 110,
+    "slb.org-cce2e-cs67": 111,
+    "slb.org-cce2e-cs77": 112,
+    "slb.org-cce2e-cs78": 113,
+    "slb.org-cce2e-cs79": 114,
+    "slb.org-cce2e-cs92": 115,
+    "slb.org-cce2e-cs93": 116,
+    "slb.org-cce2e-cs94": 117,
+    "slb.org-cce2e-cs95": 118,
+    "slb.org-cce2e-cs96": 119,
+    "slb.org-cce2e-cs97": 120
   },
   "par-sam": {
     "edge.sledge-par": 13,
@@ -53,46 +139,85 @@
     "rsui.rsui-production-par-test-lb": 15
   },
   "ph2-sam": {
-    "slb.slb-canary-proxy-http-ext-service": 5
+    "slb.slb-canary-proxy-http-ext-service": 5,
+    "slb.org-cce2e-cs1": 101,
+    "slb.org-cce2e-cs2": 102,
+    "slb.org-cce2e-cs4": 103,
+    "slb.org-cce2e-cs22": 104,
+    "slb.org-cce2e-cs24": 105,
+    "slb.org-cce2e-cs27": 106,
+    "slb.org-cce2e-cs28": 107,
+    "slb.org-cce2e-cs29": 108,
+    "slb.org-cce2e-cs34": 109,
+    "slb.org-cce2e-cs35": 110,
+    "slb.org-cce2e-cs36": 111,
+    "slb.org-cce2e-cs37": 112,
+    "slb.org-cce2e-cs40": 113,
+    "slb.org-cce2e-cs41": 114,
+    "slb.org-cce2e-cs42": 115,
+    "slb.org-cce2e-cs43": 116,
+    "slb.org-cce2e-cs44": 117,
+    "slb.org-cce2e-cs45": 118,
+    "slb.org-cce2e-cs46": 119,
+    "slb.org-cce2e-cs49": 120
   },
   "phx-sam": {
+    "slb.slb-canary-proxy-http-ext-service": 5,
+    "gus.gs0-bofa-phx": 11,
     "cloudforce.login-cloudforce-phx": 12,
     "edge.sledge-phx": 13,
-    "gus.gs0-bofa-phx": 11,
-    "slb.slb-canary-proxy-http-ext-service": 5
+    "slb.org-cce2e-cs3": 101,
+    "slb.org-cce2e-cs7": 102,
+    "slb.org-cce2e-cs9": 103,
+    "slb.org-cce2e-cs10": 104,
+    "slb.org-cce2e-cs11": 105,
+    "slb.org-cce2e-cs12": 106,
+    "slb.org-cce2e-cs13": 107,
+    "slb.org-cce2e-cs19": 108,
+    "slb.org-cce2e-cs20": 109,
+    "slb.org-cce2e-cs21": 110,
+    "slb.org-cce2e-cs23": 111,
+    "slb.org-cce2e-cs25": 112,
+    "slb.org-cce2e-cs26": 113,
+    "slb.org-cce2e-cs30": 114,
+    "slb.org-cce2e-cs50": 115,
+    "slb.org-cce2e-cs51": 116,
+    "slb.org-cce2e-cs52": 117,
+    "slb.org-cce2e-cs53": 118,
+    "slb.org-cce2e-cs54": 119,
+    "slb.org-cce2e-cs59": 120,
+    "slb.org-cce2e-cs60": 121,
+    "slb.org-cce2e-cs61": 122,
+    "slb.org-cce2e-cs62": 123,
+    "slb.org-cce2e-cs63": 124,
+    "slb.org-cce2e-cs68": 125,
+    "slb.org-cce2e-cs69": 126,
+    "slb.org-cce2e-cs70": 127,
+    "slb.org-cce2e-cs71": 128,
+    "slb.org-cce2e-cs90": 129,
+    "slb.org-cce2e-cs91": 130,
+    "slb.org-cce2e-cs999": 131
   },
-  "prd-sam": {
-
-  },
-  "prd-sam_storage": {
-
-  },
-  "prd-sam_storagedev": {
-
-  },
-  "prd-samdev": {
-
-  },
-  "prd-samtest": {
-
-  },
+  "prd-sam": {},
+  "prd-sam_storage": {},
+  "prd-sam_storagedev": {},
+  "prd-samdev": {},
+  "prd-samtest": {},
   "prd-samtwo": {
     "slb.slb-canary-proxy-http-ext-service": 5,
     "stm.na44-stmfa1-0-prd": 8,
     "stm.na44-stmfb1-0-prd": 9,
     "stm.na44-stmfc1-0-prd": 10
   },
-  "prd-sdc": {
-
-  },
+  "prd-sdc": {},
   "ukb-sam": {
     "edge.sledge-ukb": 13,
     "rsui.rsui-production-ukb-lb": 14,
     "rsui.rsui-production-ukb-test-lb": 15
   },
   "xrd-sam": {
+    "slb.slb-canary-proxy-http-ext-service": 1,
     "edge.sledge-xrd": 13,
-    "gid.smsapi1-0-xrd": 23,
-    "slb.slb-canary-proxy-http-ext-service": 1
+    "gid.smsapi1-0-xrd": 23
   }
 }
