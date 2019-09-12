@@ -22,6 +22,8 @@ system:
       env:
       - name: UBID_DEPLOYMENT_STAGE
         value: ALL
+      - name: AWS_BACKUP_S3_BUCKET
+        value: cloud-atlas-dev-backup-us-east-1
       volumeMounts:
       - mountPath: /home/sfdc-atlas
         name: hosthomevol
