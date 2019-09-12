@@ -52,11 +52,9 @@ local utils = import "util_functions.jsonnet";
         # Only include new things not yet promoted to next phase. To promote, move line items to next phase.
         "2": self["3"] {
             image_tags+: {
-                prometheus_funnel_image_tag: "36",
             },
             feature_flags+: {
                 # --- flag A (Do not edit ... ---
-                prometheus_new_conf: "MEANINGLESS VALUE!",
                 # --- flag B (these comments ... ---
                 # --- flag C (and place only ... ---
                 # --- flag D (one flag between ... ---
@@ -130,7 +128,7 @@ local utils = import "util_functions.jsonnet";
                 watchdog_spark_operator_image_tag: "jenkins-dva-transformation-spark-on-k8s-sample-apps-PR-2-1-itest",
                 integration_test_tag: "18",
                 kube_state_metrics_image_tag: "3",
-                prometheus_funnel_image_tag: "35",
+                prometheus_funnel_image_tag: "36",
                 spark_worker_23_hadoop_292_image_tag: "jenkins-dva-transformation-flowsnake-sample-apps-cre-hadoop-292-5-itest",
 
                 # Fleet components including SAM components
