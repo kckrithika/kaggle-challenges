@@ -16,7 +16,7 @@ system:
           type: client
       containers:
       - name: aqueduct
-        image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/varun.vyas/aqueduct:healthChecker2
+        image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/judy.lin/aqueduct:healthChecker2
         env:
         - name: SFDC_ENVIRONMENT
           value: "prod" # Use whatever environment your kpod uses
