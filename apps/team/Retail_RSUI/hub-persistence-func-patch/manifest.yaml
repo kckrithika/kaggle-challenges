@@ -2,7 +2,7 @@ apiVersion: v1
 
 system:
   functions:
-    - name: hub-persistence-func
+    - name: hub-persistence-func-patch
       identity:
         serviceName: hub-persistence
       count: 3
@@ -14,14 +14,14 @@ system:
           maddogCert:
             type: server
             lbnames:
-              - hub-persistence-func-lb
+              - hub-persistence-func-patch-lb
         - name: hp-client-cert
           maddogCert:
             type: client
 
       containers:
         - name: hub-persistence
-          image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/retail/hub-persistence:0.2.0
+          image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/retail/hub-persistence:0.1.18
           ports:
             # Jetty http1 ports for incoming public traffic via SLB
             - containerPort: 7022
@@ -34,7 +34,7 @@ system:
             - name: SERVER_PORT
               value: 7022
             - name: SFDC_ENVIRONMENT
-              value: stmfa
+              value: stmfb
             - name: JVM_ARGS
               value: -Xmx2G -Xms2G -XX:ParallelGCThreads=8
             - name: DUMMY_VALUE
@@ -53,14 +53,14 @@ system:
             - name: hp-client-cert
               mountPath: /client-certs
 
-        - name: sherpa-hub-persistence-func
+        - name: sherpa-hub-persistence-func-patch
           image: sfci/servicelibs/sherpa-envoy:1.0.5
           args:
             - --server-ca
             - /server-certs/ca_test/cacerts.pem
           env:
             - name: SFDC_ENVIRONMENT
-              value: stmfa
+              value: stmfb
           resources:
             limits: { cpu: "1", memory: "1Gi" }
             requests: { cpu: "1", memory: "1Gi" }
@@ -89,11 +89,11 @@ system:
             initialDelaySeconds: 110
             periodSeconds: 5
 
-        - name: beacon-hub-persistence-func
+        - name: beacon-hub-persistence-func-patch
           image: sfci/servicelibs/beacon:ce3b9722faf59dc7550a1df2905ecff794fbb2e3
           env:
             - name: SFDC_ENVIRONMENT
-              value: stmfa
+              value: stmfb
           resources:
             limits: { cpu: "1", memory: "1Gi" }
             requests: { cpu: "1", memory: "1Gi" }
@@ -109,14 +109,11 @@ system:
   # SLB
   #
   loadbalancers:
-    - lbname: hub-persistence-func-lb
-      function: hub-persistence-func
+    - lbname: hub-persistence-func-patch-lb
+      function: hub-persistence-func-patch
       slbEnabled: true
       ports:
       - port: 443
         targetport: 7442
-      # Do not deploy 80 to production
-      - port: 80
-        targetport: 7022
       - port: 15372
         targetport: 15372
