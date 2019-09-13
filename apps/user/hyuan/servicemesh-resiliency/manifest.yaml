@@ -22,7 +22,7 @@ system:
       - -endpoint
       - $(FUNCTION):DATACENTER_ALLENV:HTTP2
       - -endpoint
-      - $(FUNCTION_NAMESPACE)/$(FUNCTION):DATACENTER_ALLENV:HTTP2_TLS
+      - samapp/$(FUNCTION_NAMESPACE)/$(FUNCTION):DATACENTER_ALLENV:HTTP2_TLS
       livenessProbe:
         initialDelaySeconds: 5
         exec:
