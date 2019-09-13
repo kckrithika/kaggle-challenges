@@ -226,7 +226,7 @@ spec:
           value: /server-certs/server/keys/server-key.pem
         - name: ISTIO_META_TLS_SERVER_ROOT_CERT
           value: /server-certs/ca.pem
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/sfci/servicemesh/istio-packaging/proxy:f7bf3551572ef4653b9d68a8cf722b278d175fe1
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/sfci/servicemesh/istio-packaging/proxy:89200d8169bd3fc38d4e92ecc3ae614ac52ada6d
         imagePullPolicy: IfNotPresent
         name: istio-proxy
         ports:
@@ -334,7 +334,7 @@ spec:
         - ""
         - -d
         - 15020,10443
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/sfci/servicemesh/istio-packaging/proxy_init:f7bf3551572ef4653b9d68a8cf722b278d175fe1
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/sfci/servicemesh/istio-packaging/proxy_init:89200d8169bd3fc38d4e92ecc3ae614ac52ada6d
         imagePullPolicy: IfNotPresent
         name: istio-init
         resources:
