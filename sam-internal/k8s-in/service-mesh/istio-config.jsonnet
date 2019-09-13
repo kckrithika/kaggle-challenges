@@ -105,7 +105,7 @@ local ingressGatewayCertConfigs = [ingressGatewayClientCertConfig, ingressGatewa
       "prd-sp2-sam_coreapp"
   ),
   controlEstate: configs.estate,
-
+  kingdom: configs.kingdom,
   superpod: "-",
   pilotSettingsPath: "istio.-." + configs.kingdom + ".-." + "istio-pilot",
   ingressGatewaySettingsPath: "istio.-." + configs.kingdom + ".-." + "istio-ingressgateway",
