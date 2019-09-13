@@ -40,6 +40,9 @@ system:
       terminationMessagePolicy: FallbackToLogsOnError
     - name: client
       image: sfci/servicelibs/servicemesh-resiliency:1624ddd7206ac7ec3ab542ac355e0da4c3ecb459
+      env:
+      - name: MODE
+        value: client
       resources:
         limits: { cpu: "2", memory: "1Gi" }
         requests: { cpu: "2", memory: "1Gi" }
