@@ -16,6 +16,7 @@ local kingdom = std.extVar("kingdom");
         "frf,frf-sam,sdn-vault-agent,hypersdn": "2226-6dda908308d304291cda5b03425632020bc3bfd3",
         "syd,syd-sam,sdn-vault-agent,hypersdn": "2226-6dda908308d304291cda5b03425632020bc3bfd3",
         "yhu,yhu-sam,sdn-vault-agent,hypersdn": "2226-6dda908308d304291cda5b03425632020bc3bfd3",
+        "yhu,yhu-sam,sdn-aws-controller,hypersdn": "2226-6dda908308d304291cda5b03425632020bc3bfd3",
         "yul,yul-sam,sdn-vault-agent,hypersdn": "2226-6dda908308d304291cda5b03425632020bc3bfd3",
     },
 
