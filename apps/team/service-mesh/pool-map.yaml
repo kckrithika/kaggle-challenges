@@ -168,3 +168,5 @@ apps:
     - phx/phx-sam_gater
     - ph2/ph2-sam_gater
     - ia2/ia2-sam_gater
+  authz-injector-test:
+    - prd/prd-samtest
