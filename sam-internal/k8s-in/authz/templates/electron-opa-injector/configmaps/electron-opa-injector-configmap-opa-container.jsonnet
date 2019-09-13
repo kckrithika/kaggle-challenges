@@ -48,9 +48,6 @@ data: {
     ports:
     - name: http
       containerPort: 8181
-    volumeMounts:
-    - mountPath: /config
-      name: opa-config
     livenessProbe:
       httpGet:
         scheme: HTTP
