@@ -6,6 +6,7 @@ import os
 import yaml
 
 DEFAULT_CLUSTER = "sam"
+FQDN_SUFFIX = ".slb.sfdc.net"
 MAX_OCTET_VALUE = 255
 PUBLIC_RESERVED_IPS_FIELD_NAME = "publicReservedIps"
 PUBLIC_SUBNET_FIELD_NAME = "publicSubnet"
@@ -40,7 +41,7 @@ def get_first_three_octets(config_file_path, cluster):
     return ".".join(octets[:3])
 
 
-def update_reserved_ips(reserved_ips_file_path, cluster, new_ip):
+def update_reserved_ips(reserved_ips_file_path, cluster, new_ip, fqdn):
     with open(reserved_ips_file_path, "r") as jsonnet_file:
         reserved_ip_text = jsonnet_file.read()
 
@@ -74,7 +75,7 @@ def update_reserved_ips(reserved_ips_file_path, cluster, new_ip):
         print("{} is already in {}".format(new_ip, cluster))
     else:
         # Adds the new IP into the cluster's text
-        new_public_reserved_ip_text = cluster_reserved_ips_regex.sub(r'\1  "' + new_ip + '",\n            ]',
+        new_public_reserved_ip_text = cluster_reserved_ips_regex.sub(r'\1  "' + new_ip + '",  # '+ fqdn + '\n            ]',
                                                                      public_reserved_ips_text)
         with open(reserved_ips_file_path, "w") as jsonnet_file:
             # Replace the public reserved IP text with the new one and write it
@@ -105,17 +106,21 @@ def process_vip_file(vip_file_path, config_file_path, reserved_ips_file_path, pu
                         cluster = kingdom + "-" + DEFAULT_CLUSTER
 
                     lbname = vip[VIPS_YAML_CUSTOM_LBNAME_FIELD_NAME] if VIPS_YAML_CUSTOM_LBNAME_FIELD_NAME in vip else vip[VIPS_YAML_LBNAME_FIELD_NAME]
-
-                    create_new_public_vip(team_name + "." + lbname, config_file_path,
-                                                                cluster, public_vip_allocation_file_path,
-                                                                reserved_ips_file_path, minimum_octet)
+                    fqdn = lbname + FQDN_SUFFIX
+                    create_new_public_vip(team_name + "." + lbname,
+                                          config_file_path,
+                                          cluster,
+                                          public_vip_allocation_file_path,
+                                          reserved_ips_file_path,
+                                          minimum_octet,
+                                          fqdn)
         except yaml.YAMLError as exc:
             print("Failed to parse {}: {}", vip_file_path, exc)
 
 
 def create_new_public_vip(public_vip_entry_name, config_file_path,
                           cluster, public_vip_allocation_file_path,
-                          reserved_ips_file_path, minimum_octet):
+                          reserved_ips_file_path, minimum_octet, fqdn):
     with open(public_vip_allocation_file_path, "r") as public_vip_file:
         public_vip_data = json.loads(public_vip_file.read())
 
@@ -143,7 +148,7 @@ def create_new_public_vip(public_vip_entry_name, config_file_path,
         json.dump(public_vip_data, public_vip_file, indent=2, sort_keys=True)
 
     new_ip = get_first_three_octets(config_file_path, cluster) + "." + str(new_ip_fourth_octet_value) + "/32"
-    update_reserved_ips(reserved_ips_file_path, cluster, new_ip)
+    update_reserved_ips(reserved_ips_file_path, cluster, new_ip, fqdn)
     print("Added {} for {}".format(new_ip, public_vip_entry_name))
 
 
