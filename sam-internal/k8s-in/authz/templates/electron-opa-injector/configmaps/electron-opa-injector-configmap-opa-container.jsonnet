@@ -23,7 +23,14 @@ data: {
     args:
       - run
       - --server
-      - --config-file=/config/config.yaml
+      - --log-level=debug
+      - --set "services.electron.url=http://demo-authz-http.service-mesh.localhost.mesh.force.com:5442"
+      - --set "services.electron.allow_insecure_tls=true"
+      - --set "bundle.name=authz"
+      - --set "bundle.prefix=v1"
+      - --set "bundle.service=electron"
+      - --set "bundle.polling.min_delay_seconds=300"
+      - --set "bundle.polling.max_delay_seconds=360"
     {{- if .EnvironmentVars}}
     env:
     {{- range $key, $val := .EnvironmentVars}}
@@ -57,10 +64,6 @@ data: {
         port: 8181
       initialDelaySeconds: 5
       periodSeconds: 5
-    terminationMessagePolicy: FallbackToLogsOnError
-volumes:
-  - name: opa-config
-    configMap:
-      name: electron-opa-injector-configs-opa-config',
+    terminationMessagePolicy: FallbackToLogsOnError',
 },
 }
