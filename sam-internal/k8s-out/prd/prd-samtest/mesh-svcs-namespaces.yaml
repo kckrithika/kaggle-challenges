@@ -10,6 +10,7 @@ items:
   kind: Namespace
   metadata:
     labels:
+      electron-opa-injection: enabled
       istio-injection: enabled
       sherpa-injection: enabled
     name: service-mesh
