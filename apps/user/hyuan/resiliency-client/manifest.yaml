@@ -38,11 +38,21 @@ system:
         initialDelaySeconds: 15
         periodSeconds: 5
       terminationMessagePolicy: FallbackToLogsOnError
-    - name: servicemesh-resiliency
+    - name: client
       image: sfci/servicelibs/servicemesh-resiliency:1624ddd7206ac7ec3ab542ac355e0da4c3ecb459
       resources:
         limits: { cpu: "2", memory: "1Gi" }
         requests: { cpu: "2", memory: "1Gi" }
+      livenessProbe:
+        exec:
+          command:
+          - touch
+          - /tmp/healthy
+      readinessProbe:
+        exec:
+          command:
+          - touch
+          - /tmp/healthy
       terminationMessagePolicy: FallbackToLogsOnError
     volumes:
     - name: tls-client-cert
