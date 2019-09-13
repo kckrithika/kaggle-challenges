@@ -82,7 +82,7 @@ configs.deploymentBase("authz-injector") {
             terminationMessagePolicy: "FallbackToLogsOnError",
             args: [
               "--opa-template=%s" % "/config-opa/electron-opa-container.yaml.template",  // This is the template that we have stored in a ConfigMap in k8s
-              "--opa-istio-template=%s" % "/config-opa-istio/electron-opa-container.yaml.template",  // This is the template that we have stored in a ConfigMap in k8s
+              "--opa-istio-template=%s" % "/config-opa-istio/electron-opa-istio-container.yaml.template",  // This is the template that we have stored in a ConfigMap in k8s
               "--opa-image=%s" % versions.opaImage,
               "--opa-istio-image=%s" % versions.opaIstioImage,
               "--log-level=debug",
@@ -189,7 +189,7 @@ configs.deploymentBase("authz-injector") {
             livenessProbe: {
               exec: {
                 command: [
-                  "./is-alive.sh",
+                  "./tools/is-alive.sh",
                   "17442",
                   // Pass the certificates folder for the liveness probe to use TLS
                   "/client-certs/client/certificates/client.pem",
@@ -202,7 +202,7 @@ configs.deploymentBase("authz-injector") {
             readinessProbe: {
               exec: {
                 command: [
-                  "./is-ready.sh",
+                  "./tools/is-ready.sh",
                   "17442",
                   // Pass certificates for the readiness probe to use with TLS
                   "/client-certs/client/certificates/client.pem",
@@ -216,9 +216,14 @@ configs.deploymentBase("authz-injector") {
           } + configs.ipAddressResourceRequest,
           maddogRefresher.madkubRefresherContainer,
         ],
-        nodeSelector: {
-          pool: configs.estate,
-        },
+        # In PRD only kubeapi (master) nodes get cluster-admin permission
+        # In production, SAM control estate nodes get cluster-admin permission
+        nodeSelector: {} +
+          if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" || configs.estate == "prd-sam" then {
+              master: "true",
+          } else {
+              pool: configs.estate,
+          },
         volumes+: [
           {
             emptyDir: {
