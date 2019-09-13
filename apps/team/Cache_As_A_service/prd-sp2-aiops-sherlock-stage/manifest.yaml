@@ -13,7 +13,7 @@ system:
       type: Recreate
     containers:
     - name: sherlock-stage
-      image: dva/casp/sherlock_strata:jenkins-CASP-sherlock-dev-20-itest
+      image: dva/casp/sherlock_strata:jenkins-CASP-sherlock-db_perfswat-8-itest
       ports:
       - name: flower-http
         containerPort: 5555
@@ -23,11 +23,11 @@ system:
         - name: BROKER_URL
           value: 'mycroft-stage.cache-as-a-service-sp2.prd-samtwo.prd.slb.sfdc.net'
         - name: SAMCAAS2_CAASMINION2_1_PRD_KINGDOMS
-          value: 'wax,lo3,customer_orgs,model_caching1'
+          value: 'wax,lo3,customer_orgs,model_caching1,dbperfswat'
         - name: SAMCAAS2_CAASMINION2_2_PRD_KINGDOMS
-          value: 'fra,lo2,customer_orgs,model_caching2'
+          value: 'fra,lo2,customer_orgs,model_caching2,dbperfswat'
         - name: SAMCAAS2_CAASMINION3_6_PRD_KINGDOMS
-          value: 'frf,cdg,customer_orgs,model_caching3'
+          value: 'frf,cdg,customer_orgs,model_caching3,dbperfswat'
         - name: CELERY_LOG_LEVEL
           value: 'info'
         - name: FLOWER_LOG_LEVEL
