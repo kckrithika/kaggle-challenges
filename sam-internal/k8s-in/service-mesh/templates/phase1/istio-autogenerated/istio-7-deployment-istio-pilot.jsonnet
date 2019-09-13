@@ -42,6 +42,7 @@ if (istioPhases.phaseNum == 1) then
         labels: {
           app: "pilot",
           chart: "pilot",
+          cluster: mcpIstioConfig.istioEstate,
           heritage: "Tiller",
           istio: "pilot",
           name: "istio-pilot",

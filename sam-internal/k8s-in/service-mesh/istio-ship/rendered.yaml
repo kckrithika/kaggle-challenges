@@ -1162,6 +1162,7 @@ spec:
       labels:
         app: pilot
         chart: pilot
+        cluster: mcpIstioConfig.istioEstate
         heritage: Tiller
         istio: pilot
         name: istio-pilot
@@ -1518,6 +1519,7 @@ spec:
       labels:
         app: sidecarInjectorWebhook
         chart: sidecarInjectorWebhook
+        cluster: mcpIstioConfig.istioEstate
         heritage: Tiller
         istio: sidecar-injector
         name: istio-sidecar-injector

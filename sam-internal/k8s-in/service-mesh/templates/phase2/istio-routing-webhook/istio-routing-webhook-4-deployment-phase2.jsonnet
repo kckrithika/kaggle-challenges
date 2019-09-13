@@ -42,6 +42,7 @@ configs.deploymentBase("service-mesh") {
           app: "istio-routing-webhook",
           // This name label is required for SAM's pod.* metrics to properly work: https://git.soma.salesforce.com/sam/sam/blob/master/pkg/watchdog/internal/checkers/kuberesourceschecker/internal/pod/podhealthchecker.go#L203
           name: "istio-routing-webhook",
+          cluster: mcpIstioConfig.istioEstate,
         },
       },
       spec: configs.specWithMadDog {
