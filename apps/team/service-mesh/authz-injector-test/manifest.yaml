@@ -32,3 +32,10 @@ system:
           command:
           - "/opt/beacon/is-alive.sh"
         initialDelaySeconds: 10
+    volumes:
+      - name: tls-client-cert
+        maddogCert:
+          type: client
+      - name: tls-server-cert
+        maddogCert:
+          type: server
