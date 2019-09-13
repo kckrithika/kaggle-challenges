@@ -98,12 +98,12 @@ spec:
         - name: SFDC_SETTINGS_PATH
           value: mesh.-.prd.-.electron-opa-injector
         - name: SFDC_METRICS_SERVICE_HOST
-          value: ajna0-funnel1-0-prd.data.sfdc.net:80
+          value: ajna0-funnel1-0-prd.data.sfdc.net
         - name: SFDC_METRICS_SERVICE_PORT
-          value: "5442"
+          value: "80"
         - name: FAKE_REDEPLOY_VAR
           value: "1"
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/electron-opa-injection-webhook:10-d7c1c6a9a4f53bee9b7e932973e69ddcb779fdfd
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/electron-opa-injection-webhook:13-9f0086286a437162b1c276134c1b6c12f627a1a6
         imagePullPolicy: IfNotPresent
         livenessProbe:
           exec:

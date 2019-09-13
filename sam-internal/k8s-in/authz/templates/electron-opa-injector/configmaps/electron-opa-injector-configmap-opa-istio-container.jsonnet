@@ -24,7 +24,16 @@ data: {
       - --plugin-dir=.
       - run
       - --server
-      - --config-file=/config/config.yaml
+      - --log-level=debug
+      - --set "services.electron.url=http://demo-authz-http.service-mesh.localhost.mesh.force.com:5442"
+      - --set "services.electron.allow_insecure_tls=true"
+      - --set "bundle.name=authz"
+      - --set "bundle.prefix=v1"
+      - --set "bundle.service=electron"
+      - --set "bundle.polling.min_delay_seconds=300"
+      - --set "bundle.polling.max_delay_seconds=360"
+      - --set "plugins.envoy_ext_authz_grpc.addr=:9191"
+      - --set "plugins.envoy_ext_authz_grpc.query=data.istio.authz.allow"
     {{- if .EnvironmentVars}}
     env:
     {{- range $key, $val := .EnvironmentVars}}
@@ -58,10 +67,6 @@ data: {
         port: 8181
       initialDelaySeconds: 5
       periodSeconds: 5
-    terminationMessagePolicy: FallbackToLogsOnError
-volumes:
-  - name: opa-istio-config
-    configMap:
-      name: electron-opa-injector-configs-opa-istio-config',
+    terminationMessagePolicy: FallbackToLogsOnError',
 },
 }

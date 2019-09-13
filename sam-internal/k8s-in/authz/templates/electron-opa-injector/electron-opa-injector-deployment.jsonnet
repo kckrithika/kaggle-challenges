@@ -151,12 +151,12 @@ configs.deploymentBase("authz-injector") {
               {
                 name: "SFDC_METRICS_SERVICE_HOST",
                 // use `value: funnelEndpointHost,` if direct link to ajna is needed
-                value: configs.funnelVIP,
+                value: funnelEndpointHost,
               },
               {
                 name: "SFDC_METRICS_SERVICE_PORT",
                 // use `value: funnelEndpointPort,` if direct link to ajna is needed
-                value: "5442",
+                value: funnelEndpointPort,
               },
               {
                 name: "FAKE_REDEPLOY_VAR",
