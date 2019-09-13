@@ -152,5 +152,5 @@ if __name__ == "__main__":
                                sys.argv[2],
                                sys.argv[3],
                                sys.argv[4],
-                               sys.argv[5])
+                               int(sys.argv[5]))
     print("Run successfully")
