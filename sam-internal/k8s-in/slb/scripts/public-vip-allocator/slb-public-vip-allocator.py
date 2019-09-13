@@ -145,3 +145,12 @@ def create_new_public_vip(public_vip_entry_name, config_file_path,
     new_ip = get_first_three_octets(config_file_path, cluster) + "." + str(new_ip_fourth_octet_value) + "/32"
     update_reserved_ips(reserved_ips_file_path, cluster, new_ip)
     print("Added {} for {}".format(new_ip, public_vip_entry_name))
+
+
+if __name__ == "__main__":
+    reserve_for_all_vips_yamls(sys.argv[1],
+                               sys.argv[2],
+                               sys.argv[3],
+                               sys.argv[4],
+                               sys.argv[5])
+    print("Run successfully")
