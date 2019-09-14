@@ -1,5 +1,7 @@
 - lbname: horizon-xrd
   customlbname: horizon-xrd
+  cnames:
+    - cname: horizon.slb.sfdc.net
   servers:
     - shared0-infinsightapi1-1-xrd.eng.sfdc.net
     - shared0-infinsightapi1-2-xrd.eng.sfdc.net
