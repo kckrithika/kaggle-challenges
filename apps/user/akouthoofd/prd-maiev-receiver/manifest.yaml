@@ -19,6 +19,8 @@ system:
         - name: receiver-grpc
           containerPort: 7442
           hostPort: 17444
+        - name: receiver-http
+          containerPort: 8085
         livenessProbe:
           exec:
             command:
@@ -39,3 +41,5 @@ system:
       ports:
         - port: 7442
           targetport: 7442
+        - port: 80
+          targetport: 8085
