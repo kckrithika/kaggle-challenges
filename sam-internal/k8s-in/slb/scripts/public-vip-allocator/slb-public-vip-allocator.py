@@ -158,6 +158,7 @@ def process_vip_files(root_path, public_vip_data, public_subnet_text, public_res
 
     return public_reserved_ips_text
 
+
 def parse_vips(vip_file_path):
     with open(vip_file_path, "r") as file:
         yaml_text = file.read().replace("\t", TAB_TO_SPACE)
