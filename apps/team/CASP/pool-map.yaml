@@ -44,7 +44,6 @@ apps:
  prod-cantor-grpc-server:
   - dfw/dfw-sam_warden
   - iad/iad-sam_warden
-  - ord/ord-sam_warden
   - par/par-sam_warden
   - ukb/ukb-sam_warden
   - phx/phx-sam_warden
@@ -56,6 +55,8 @@ apps:
   - lo3/lo3-sam_warden
  prod-cantor-grpc-server-frf:
   - frf/frf-sam_warden
+ prod-cantor-grpc-server-ord:
+  - ord/ord-sam_warden
  prod-cantor-grpc-server-alternate:
   - cdu/cdu-sam_warden
   - syd/syd-sam_warden
