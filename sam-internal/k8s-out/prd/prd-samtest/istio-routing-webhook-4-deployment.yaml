@@ -8,7 +8,6 @@ spec:
   selector:
     matchLabels:
       app: istio-routing-webhook
-      cluster: prd-samtest
       name: istio-routing-webhook
   template:
     metadata:
@@ -40,7 +39,6 @@ spec:
         sidecar.istio.io/inject: "false"
       labels:
         app: istio-routing-webhook
-        cluster: prd-samtest
         name: istio-routing-webhook
     spec:
       affinity:
