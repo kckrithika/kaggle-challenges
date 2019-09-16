@@ -10,5 +10,6 @@ if configs.estate == "prd-sam" then {
     },
     data: {
         "prometheus.json": std.toString(import "configs/sloop-prometheus.jsonnet"),
+        "sloop.yaml": (importstr "configs/sloop.yaml"),
     },
 } else "SKIP"

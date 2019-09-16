@@ -1,0 +1,41 @@
+defaultNamespace: "csc-sam"
+defaultKind: "Pod"
+defaultLookback: "1h"
+leftBarLinks:
+  - text: "Source Code"
+    urlTemplate: "https://git.soma.salesforce.com/sam/sloop"
+  - text: "Prometheus"
+    urlTemplate: "http://sloop.sam-system.prd-sam.prd.slb.sfdc.net:9090/"
+  - text: "Chatter"
+    urlTemplate: "https://gus.lightning.force.com/lightning/r/CollaborationGroup/0F9B0000000TWo3KAG/view"
+resourceLinks:
+  - text: "kubeDashboard"
+    urlTemplate: "http://dashboard-prd-sam.csc-sam.prd-sam.prd.slb.sfdc.net/#!/{{.Kind | ToLower}}{{if (ne .Namespace \"\")}}/{{.Namespace}}{{end}}/{{.Name}}?namespace={{.Namespace}}"
+  - text: "Pod Logs (Splunk)"
+    urlTemplate: ""
+    kinds:
+      - "Pod"
+  - text: "Deployment Availability Pct (Argus)"
+    urlTemplate: "https://argus-ui.data.sfdc.net/argus/#/viewmetrics?expression=-24h:sam.PRD.NONE.*:deployment.AvailabilityPct%7BNamespace%2FDeploymentName%3D{{.Namespace}}%2F{{.Name}}%7D:avg:5m-avg"
+    kinds:
+      - "Deployment"
+  - text: "Node Uptime (Argus)"
+    urlTemplate: "https://argus-ui.data.sfdc.net/argus/#/viewmetrics?expression=-24h:system.PRD.NONE.*:uptime.uptime%7Bdevice%3D{{.Name}}%7D:avg:5m-avg"
+    kinds:
+      - "Node"
+  - text: "Node Kubelet Uptime (Argus)"
+    urlTemplate: "https://argus-ui.data.sfdc.net/argus/#/viewmetrics?expression=-24h:sam.watchdog.PRD.NONE.*:age.kubelet%7Bdevice%3D{{.Name}}%7D:avg:5m-avg"
+    kinds:
+      - "Node"
+  - text: "Node Idle CPU (Argus)"
+    urlTemplate: "https://argus-ui.data.sfdc.net/argus/#/viewmetrics?expression=-24h:system.PRD.NONE.*:CpuPerc.cpu.idle%7Bdevice%3D{{.Name}}%7D:avg:1m-avg"
+    kinds:
+      - "Node"
+  - text: "Node Memory Used (Argus)"
+    urlTemplate: "https://argus-ui.data.sfdc.net/argus/#/viewmetrics?expression=-24h:system.PRD.NONE.*:memory.memory.used%7Bdevice%3D{{.Name}}%7D:avg:1m-avg"
+    kinds:
+      - "Node"
+  - text: "Node Puppet ConfigVersion (Argus)"
+    urlTemplate: "https://argus-ui.data.sfdc.net/argus/#/viewmetrics?expression=-24h:sam.watchdog.PRD.NONE.*:puppet.configVersion%7Bdevice%3D{{.Name}}%7D:avg:1m-avg"
+    kinds:
+      - "Node"
