@@ -52,6 +52,11 @@
     - "X-Real-IP"
     - "X-Client-Cert"
     - "X-Client-Fingerprint"
+    - "SSL_CLIENT_S_DN"
+    - "SSL_CLIENT_M_SERIAL"
+    - "SSL_CLIENT_I_DN"
+    - "SSL_SHA1_HASH"
+    - "SSL_CLIENT_V_REMAIN" 
   - port: 8443
     targetport: 8090
     reencrypt: true
@@ -73,7 +78,8 @@
     - "X-Client-Verify"
     - "X-Real-IP"
     - "X-Client-Cert"
-    - "X-Client-Fingerprint"   
+    - "X-Client-Fingerprint" 
+    - "SSL_CLIENT_V_REMAIN"  
   - port: 80
     targetport: 8085
     lbtype: http
@@ -84,6 +90,11 @@
     - "X-Forwarded-Proto"	
     - "X-Forwarded-For"	
     - "X-Real-IP"
+    - "SSL_CLIENT_S_DN"
+    - "SSL_CLIENT_M_SERIAL"
+    - "SSL_CLIENT_I_DN"
+    - "SSL_SHA1_HASH"
+    - "SSL_CLIENT_V_REMAIN" 
     addheaders:
     - name: "X-Salesforce-VIP"
       value: "SLB"
