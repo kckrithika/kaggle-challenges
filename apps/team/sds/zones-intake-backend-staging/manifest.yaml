@@ -22,7 +22,7 @@ system:
     containers:
     - name: zones-intake-backend
       #image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/sds-zonesui-backend:142
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/gagan.gangothri/gshivana:reorder2
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/gagan.gangothri/gshivana:iplist
       ports:
       - containerPort: 7022
       - containerPort: 8443
