@@ -420,6 +420,48 @@ items:
 - apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: RoleBinding
   metadata:
+    name: discovery:iad-sam_gater:rolebinding
+    namespace: discovery
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: minion:role
+  subjects:
+  - kind: User
+    name: shared0-samminiongater1-1-iad.ops.sfdc.net
+  - kind: User
+    name: shared0-samminiongater1-2-iad.ops.sfdc.net
+  - kind: User
+    name: shared0-samminiongater1-3-iad.ops.sfdc.net
+  - kind: User
+    name: shared0-samminiongater1-4-iad.ops.sfdc.net
+  - kind: User
+    name: shared0-samminiongater1-5-iad.ops.sfdc.net
+  - kind: User
+    name: shared0-samminiongater1-6-iad.ops.sfdc.net
+  - kind: User
+    name: shared0-samminiongater1-7-iad.ops.sfdc.net
+  - kind: User
+    name: shared0-samminiongater1-8-iad.ops.sfdc.net
+  - kind: User
+    name: shared0-samminiongater2-1-iad.ops.sfdc.net
+  - kind: User
+    name: shared0-samminiongater2-2-iad.ops.sfdc.net
+  - kind: User
+    name: shared0-samminiongater2-3-iad.ops.sfdc.net
+  - kind: User
+    name: shared0-samminiongater2-4-iad.ops.sfdc.net
+  - kind: User
+    name: shared0-samminiongater2-5-iad.ops.sfdc.net
+  - kind: User
+    name: shared0-samminiongater2-6-iad.ops.sfdc.net
+  - kind: User
+    name: shared0-samminiongater2-7-iad.ops.sfdc.net
+  - kind: User
+    name: shared0-samminiongater2-8-iad.ops.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1beta1
+  kind: RoleBinding
+  metadata:
     name: gater:iad-sam_gater:rolebinding
     namespace: gater
   roleRef:
