@@ -3,13 +3,14 @@ apiVersion: v1
 system:
   notifications:
     email:
-    - electron@salesforce.com
+    - aman.gulati@salesforce.com
+    - matthew.klosak@salesforce.com
   functions:
   - name: authz-svc
     count: 2
     containers:
     - name: authz-svc
-      image: dva/electron_sam:89
+      image: dva/electron_sam:97
       env:
       - name: SFDC_ENVIRONMENT
         value: prod
@@ -35,7 +36,7 @@ system:
         periodSeconds: 5
         timeoutSeconds: 4
     - name: sherpa
-      image: sfci/servicelibs/sherpa-envoy:1.0.8
+      image: sfci/servicelibs/sherpa-envoy:1.0.13
       ports:
       - containerPort: 7443
         name: sherpa-grpc-tls
