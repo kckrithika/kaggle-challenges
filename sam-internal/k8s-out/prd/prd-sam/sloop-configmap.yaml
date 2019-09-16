@@ -22,7 +22,7 @@ data:
         }
       ]
     }
-  sloop.yaml: |-
+  sloop.yaml: |
     defaultNamespace: "csc-sam"
     defaultKind: "Pod"
     defaultLookback: "1h"
