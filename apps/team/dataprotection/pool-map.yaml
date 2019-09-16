@@ -4,4 +4,5 @@ apps:
   - dfw/dfw-sam_dp
   archival-worker:
   - dfw/dfw-sam_dp
-
+  dbaas-backup:
+  - prd/prd-sam
