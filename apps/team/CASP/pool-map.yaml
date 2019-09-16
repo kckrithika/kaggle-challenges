@@ -22,13 +22,13 @@ apps:
  prd-fawkes-mongo-rs:
   - prd/prd-sam_warden
  prod-mysql-shard-a:
+  - ord/ord-sam_warden
   - iad/iad-sam_warden
   - ukb/ukb-sam_warden
   - phx/phx-sam_warden
   - fra/fra-sam_warden
  prod-mysql-shard-a-alternate:
   - dfw/dfw-sam_warden
-  - ord/ord-sam_warden
   - frf/frf-sam_warden
  prod-mysql-shard-a-fast:
   - par/par-sam_warden
@@ -42,6 +42,7 @@ apps:
   - lo2/lo2-sam_warden
   - lo3/lo3-sam_warden
  prod-cantor-grpc-server:
+  - ord/ord-sam_warden
   - iad/iad-sam_warden
   - par/par-sam_warden
   - ukb/ukb-sam_warden
@@ -56,7 +57,6 @@ apps:
   - frf/frf-sam_warden
  prod-cantor-grpc-server-drop-1-1:
   - dfw/dfw-sam_warden
-  - ord/ord-sam_warden
  prod-cantor-grpc-server-alternate:
   - cdu/cdu-sam_warden
   - syd/syd-sam_warden
@@ -81,6 +81,7 @@ apps:
   - lo2/lo2-sam_warden
   - lo3/lo3-sam_warden
  prod-maiev-receiver:
+  - ord/ord-sam_warden
   - iad/iad-sam_warden
   - par/par-sam_warden
   - ukb/ukb-sam_warden
@@ -97,9 +98,9 @@ apps:
   - lo3/lo3-sam_warden
  prod-maiev-receiver-alternate:
   - dfw/dfw-sam_warden
-  - ord/ord-sam_warden
   - frf/frf-sam_warden
  prod-warden:
+  - ord/ord-sam_warden
   - iad/iad-sam_warden
   - par/par-sam_warden
   - ukb/ukb-sam_warden
@@ -117,5 +118,4 @@ apps:
   - yul/yul-sam_warden
  prod-warden-alternate:
   - dfw/dfw-sam_warden
-  - ord/ord-sam_warden
   - frf/frf-sam_warden
