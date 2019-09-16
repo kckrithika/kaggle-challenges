@@ -223,6 +223,8 @@ items:
     name: retail-cre.cre-control-plane-cre-test
   - kind: User
     name: retail-cre.cre-control-plane-ccp-perf
+  - kind: User
+    name: hbase-flowsnake.xyan
 - apiVersion: rbac.authorization.k8s.io/v1
   kind: RoleBinding
   metadata:
@@ -317,6 +319,8 @@ items:
     name: retail-cre.cre-control-plane-cre-test
   - kind: User
     name: retail-cre.cre-control-plane-ccp-perf
+  - kind: User
+    name: hbase-flowsnake.xyan
 - apiVersion: v1
   automountServiceAccountToken: true
   kind: ServiceAccount
