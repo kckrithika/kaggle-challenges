@@ -1,6 +1,6 @@
 defaultNamespace: "csc-sam"
 defaultKind: "Pod"
-defaultLookback: "1hr"
+defaultLookback: "1h"
 leftBarLinks:
   - text: "Source Code"
     urlTemplate: "https://git.soma.salesforce.com/sam/sloop"
