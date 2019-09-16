@@ -10,7 +10,7 @@ system:
       routing.mesh.sfdc.net/enabled: "true"
     containers:
     - name: switchboard
-      image: sfci/servicelibs/switchboard:73428fda23c9ce0e84eac7775b4853a442320e4b
+      image: sfci/servicelibs/switchboard:e705d6d727762043d2f86284b40873a0cf6f8dbc
       args:
       - --clusters.external-clusters[0]=ajnafunneldirect:HTTP1
       - --clusters.external-clusters[1]=ajnafunneldirecttls.funnel:HTTP1_TLS
@@ -62,7 +62,7 @@ system:
         timeoutSeconds: 4
       terminationMessagePolicy: FallbackToLogsOnError
     - name: sherpa
-      image: sfci/servicelibs/sherpa-envoy:1.0.9
+      image: sfci/servicelibs/sherpa-envoy:1.0.13
       args:
       - --template
       - /switchboard-config/switchboard-sidecar.config.yaml.template
