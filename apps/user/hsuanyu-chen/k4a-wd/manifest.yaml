@@ -6,7 +6,7 @@ system:
     count: 1
     containers:
     - name: k4a-watchdog
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/hsuanyu-chen/caiman-watchdog/k4a-20190916/latest
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/hsuanyu-chen/caiman-watchdog/k4a-20190916:latest
       livenessProbe:
         exec:
           command: ["ls", "/"]
