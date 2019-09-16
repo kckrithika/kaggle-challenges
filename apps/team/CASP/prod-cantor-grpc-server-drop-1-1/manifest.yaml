@@ -13,7 +13,7 @@ system:
           maxSurge: 0
           maxUnavailable: 1
       containers:
-      - name: prod-cantor-grpc-server-ord
+      - name: prod-cantor-grpc-server-drop-1-1
         image: dva/casp/cantor_strata:104
         ports:
         - name: cantor-grpc
