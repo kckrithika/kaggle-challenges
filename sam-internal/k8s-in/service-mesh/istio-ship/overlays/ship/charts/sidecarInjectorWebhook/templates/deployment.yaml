@@ -15,7 +15,6 @@ spec:
         madkub.sam.sfdc.net/allcerts: mcpIstioConfig.sidecarInjectorMadkubAnnotations
       labels:
         name: istio-sidecar-injector
-        cluster: mcpIstioConfig.istioEstate
     spec:
       containers:
       - args:

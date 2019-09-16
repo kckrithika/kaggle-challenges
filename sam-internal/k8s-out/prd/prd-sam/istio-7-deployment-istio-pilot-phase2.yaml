@@ -51,7 +51,6 @@ spec:
       labels:
         app: pilot
         chart: pilot
-        cluster: prd-sam_gater
         heritage: Tiller
         istio: pilot
         name: istio-pilot
