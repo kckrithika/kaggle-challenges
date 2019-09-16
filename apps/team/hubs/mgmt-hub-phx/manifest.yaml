@@ -31,7 +31,7 @@ system:
       - name: SPRING_PROFILES_ACTIVE
         value: dev
       - name: APP_REMOTE_HOST
-        value: cs11-app2-5-phx
+        value: cs11-dapp1-1-phx
       - name: APP_DOMAIN
         value: ops.sfdc.net
       - name: APP_JMX_PORT
@@ -69,3 +69,20 @@ system:
       volumeMounts:
         - name: cert
           mountPath: /client-certs
+
+  loadbalancers:
+  - lbname: mgmt-hub
+    function: mgmt-hub
+    nodeExposed: false
+    slbenabled: true
+    ports:
+      - port: 8080
+        targetport: 8080
+        lbtype: http
+        #tls: true
+        #reencrypt: true
+      - port: 15372 
+        targetport: 15372
+        lbtype: http
+        #tls: true
+        #reencrypt: true
