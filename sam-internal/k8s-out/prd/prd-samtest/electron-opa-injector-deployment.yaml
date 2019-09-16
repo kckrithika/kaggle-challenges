@@ -57,8 +57,8 @@ spec:
       - args:
         - --opa-template=/config-opa/electron-opa-container.yaml.template
         - --opa-istio-template=/config-opa-istio/electron-opa-istio-container.yaml.template
-        - --opa-image=ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/openpolicyagent/opa:0.11.0
-        - --opa-istio-image=ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/openpolicyagent/opa:0.13.2-istio-with-config-2
+        - --opa-image=ops0-artifactrepo2-0-prd.data.sfdc.net/dva/electron_opa:5-abe14d5cf848440ecc9d517baf63a77cdc2efd4a
+        - --opa-istio-image=ops0-artifactrepo2-0-prd.data.sfdc.net/dva/electron_opa_istio:5-abe14d5cf848440ecc9d517baf63a77cdc2efd4a
         - --log-level=debug
         - --port=17442
         - --cert=/server-certs/server/certificates/server.pem
