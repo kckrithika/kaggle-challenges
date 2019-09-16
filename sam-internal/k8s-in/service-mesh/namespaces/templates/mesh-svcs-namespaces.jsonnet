@@ -6,7 +6,7 @@ local mesh_namespaces = ["app", "service-mesh", "funnel", "gater", "ccait", "cor
 local istioSvcNamespaces = {
   prd: mesh_namespaces,
   mvp: mesh_namespaces,
-  par: ["service-mesh"],
+  par: ["app", "funnel", "service-mesh"],
 };
 
 {

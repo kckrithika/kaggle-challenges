@@ -14,9 +14,6 @@ local configs = import "config.jsonnet";
   phaseNum: std.parseInt($.phase),
 
   funnelEndpoint: (
-    if ($.phaseNum > 2) then
-      configs.funnelVIP
-    else
       "ajnafunneldirecttls.funnel.svc.mesh.sfdc.net:7442"
   ),
 
