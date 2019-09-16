@@ -3,8 +3,8 @@ apiVersion: v1
 system:
   notifications:
     email:
-    - electron@salesforce.com
     - aman.gulati@salesforce.com
+    - matthew.klosak@salesforce.com
   functions:
   - name: demo-authz
     count: 1
