@@ -11,8 +11,6 @@ system:
       - qkong@salesforce.com
   functions:
   - name: eventtransferservice
-    identity:
-      serviceName: wh-con
     count: 1
     volumes:
     - name: eventbusajna-ens-v1
