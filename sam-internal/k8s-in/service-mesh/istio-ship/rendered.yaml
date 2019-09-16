@@ -696,7 +696,7 @@ data:
     accessLogFormat: ""
     accessLogEncoding: 'TEXT'
     ingressService: istio-ingressgateway
-    dnsRefreshRate: 5s
+    dnsRefreshRate: 300s
     sdsUdsPath:
     enableSdsTokenMount: false
     sdsUseK8sSaJwt: false
