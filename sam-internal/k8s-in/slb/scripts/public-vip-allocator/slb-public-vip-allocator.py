@@ -115,6 +115,7 @@ def reserve_for_all_vips_yamls(root_path,
                                                  public_reserved_ips_text,
                                                  minimum_octet)
 
+    # Sorts each kingdom's data by fourth octet value
     for kingdom, data in public_vip_data.items():
         public_vip_data[kingdom] = OrderedDict(sorted(data.items(), key=lambda item: item[1]))
 
@@ -140,6 +141,7 @@ def process_vip_files(root_path, public_vip_data, public_subnet_text, public_res
                     else:
                         vips_to_delete.append(VipMetadata(vip, full_path))
 
+    # Delete happens first in order to allow for IP reuse
     for vip_meta_data in vips_to_delete:
         public_reserved_ips_text = delete_public_vip(public_vip_data,
                                                      vip_meta_data.public_vip_entry_name,
