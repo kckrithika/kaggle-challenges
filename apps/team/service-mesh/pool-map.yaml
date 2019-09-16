@@ -95,7 +95,14 @@ apps:
   shipping-authz-policy:
     - prd/prd-sam_gater
 
-  # Regular Mode: Istio -> Istio apps
+# Service mesh test harness for rolling upgrade resiliency tests
+# https://git.soma.salesforce.com/servicelibs/servicemesh-resiliency
+  resiliency-server:
+    - prd/prd-sam_gater
+  resiliency-client:
+    - prd/prd-sam_gater
+
+# Regular Mode: Istio -> Istio apps
 #  istio-geoip: # Enable as required.
 #    - prd/prd-sam_gater
 #    - prd/prd-samtest
