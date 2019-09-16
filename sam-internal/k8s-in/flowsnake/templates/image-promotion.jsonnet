@@ -43,8 +43,10 @@ local extra_images_to_promote =
     flowsnake_images.watchdog_canary,
     flowsnake_images.watchdog_spark_operator,
     flowsnake_images.spark_operator_watchdog_canary,
+    flowsnake_images.hbase_watchdog_canary,
     flowsnake_images.watchdog,
     flowsnake_images.spark_on_k8s_sample_apps,
+    flowsnake_images.hbase_spark_on_k8s_sample_apps,
     flowsnake_images.kube_state_metrics,
     flowsnake_images.spark_worker_23_hadoop_292,
     ]
