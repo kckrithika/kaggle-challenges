@@ -86,17 +86,12 @@ local pki_kingdom = (if "upcase_pki_kingdom" in flowsnake_images.feature_flags t
                 initContainers: [madkub_common.init_container(cert_name)],
             } ,
         },
-    } + if std.objectHas(flowsnake_images.feature_flags, "deployment_strategy") then {
-      strategy: {
-          type: "RollingUpdate",
-          rollingUpdate: {
-              maxUnavailable: 1,
-              maxSurge: 1,
-          },
-      },
-    } else {
-      strategy: {	
-            type: "Recreate",	
-      },
+        strategy: {
+            type: "RollingUpdate",
+            rollingUpdate: {
+                maxUnavailable: 1,
+                maxSurge: 1,
+            },
+        },
     },
 }
