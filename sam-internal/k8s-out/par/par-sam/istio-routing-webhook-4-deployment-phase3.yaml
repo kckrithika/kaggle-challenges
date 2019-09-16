@@ -59,7 +59,7 @@ spec:
           value: -.-.par.-.istio-routing-webhook
         - name: ESTATE
           value: par-sam
-        image: ops0-artifactrepo1-0-par.data.sfdc.net/sfci/servicemesh/servicemesh/istio-routing-webhook:6de698dd1935317ebf1ba9d8b5d92207ba8479a6
+        image: ops0-artifactrepo1-0-par.data.sfdc.net/sfci/servicemesh/servicemesh/istio-routing-webhook:c6bf0490ff3eeb066a1627e861173928a4be7b22
         imagePullPolicy: IfNotPresent
         name: istio-routing-webhook
         ports:
@@ -216,7 +216,7 @@ spec:
           value: /server-certs/server/keys/server-key.pem
         - name: ISTIO_META_TLS_SERVER_ROOT_CERT
           value: /server-certs/ca.pem
-        image: ops0-artifactrepo1-0-par.data.sfdc.net/sfci/servicemesh/istio-packaging/proxy:55a0daec53d372a76b261c917a7f06597db1ed2d
+        image: ops0-artifactrepo1-0-par.data.sfdc.net/sfci/servicemesh/istio-packaging/proxy:89200d8169bd3fc38d4e92ecc3ae614ac52ada6d
         imagePullPolicy: IfNotPresent
         name: istio-proxy
         ports:
@@ -324,7 +324,7 @@ spec:
         - ""
         - -d
         - 15020,10443
-        image: ops0-artifactrepo1-0-par.data.sfdc.net/sfci/servicemesh/istio-packaging/proxy_init:55a0daec53d372a76b261c917a7f06597db1ed2d
+        image: ops0-artifactrepo1-0-par.data.sfdc.net/sfci/servicemesh/istio-packaging/proxy_init:89200d8169bd3fc38d4e92ecc3ae614ac52ada6d
         imagePullPolicy: IfNotPresent
         name: istio-init
         resources:

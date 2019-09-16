@@ -93,7 +93,7 @@ spec:
         env:
         - name: ESTATE
           value: par-sam_gater
-        image: ops0-artifactrepo1-0-par.data.sfdc.net/sfci/servicemesh/istio-packaging/sidecar_injector:55a0daec53d372a76b261c917a7f06597db1ed2d
+        image: ops0-artifactrepo1-0-par.data.sfdc.net/sfci/servicemesh/istio-packaging/sidecar_injector:89200d8169bd3fc38d4e92ecc3ae614ac52ada6d
         imagePullPolicy: IfNotPresent
         livenessProbe:
           exec:
