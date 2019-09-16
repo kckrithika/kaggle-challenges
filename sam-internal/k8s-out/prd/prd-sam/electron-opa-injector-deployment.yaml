@@ -6,7 +6,7 @@ metadata:
   name: electron-opa-injector
   namespace: authz-injector
 spec:
-  replicas: 1
+  replicas: 3
   selector:
     matchLabels:
       app: electron-opa-injector
@@ -29,7 +29,7 @@ spec:
               "electron-opa-injector.authz-injector",
               "electron-opa-injector.authz-injector.svc",
               "electron-opa-injector.authz-injector.svc.cluster.local",
-              "electron-opa-injector.authz-injector.svc.prd-samtest.prd.sam.sfdc.net"
+              "electron-opa-injector.authz-injector.svc.prd-sam.prd.sam.sfdc.net"
              ]
             },
             {
@@ -42,7 +42,7 @@ spec:
               "electron-opa-injector.authz-injector",
               "electron-opa-injector.authz-injector.svc",
               "electron-opa-injector.authz-injector.svc.cluster.local",
-              "electron-opa-injector.authz-injector.svc.prd-samtest.prd.sam.sfdc.net"
+              "electron-opa-injector.authz-injector.svc.prd-sam.prd.sam.sfdc.net"
              ]
             }
            ]
@@ -58,7 +58,7 @@ spec:
         - --opa-template=/config-opa/electron-opa-container.yaml.template
         - --opa-istio-template=/config-opa-istio/electron-opa-istio-container.yaml.template
         - --opa-image=ops0-artifactrepo2-0-prd.data.sfdc.net/dva/electron_opa:5-abe14d5cf848440ecc9d517baf63a77cdc2efd4a
-        - --opa-istio-image=ops0-artifactrepo2-0-prd.data.sfdc.net/dva/electron_opa_istio:5-abe14d5cf848440ecc9d517baf63a77cdc2efd4a
+        - --opa-istio-image=ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/openpolicyagent/opa:0.13.2-istio-with-config-2
         - --log-level=debug
         - --port=17442
         - --cert=/server-certs/server/certificates/server.pem
@@ -88,7 +88,7 @@ spec:
         - name: KINGDOM
           value: prd
         - name: ESTATE
-          value: prd-samtest
+          value: prd-sam
         - name: SUPERPOD
           value: '-'
         - name: SETTINGS_SUPERPOD
@@ -170,7 +170,7 @@ spec:
               apiVersion: v1
               fieldPath: metadata.namespace
         - name: ESTATE
-          value: prd-samtest
+          value: prd-sam
         image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/madkub:1.0.0-0000082-3d5c21b4
         imagePullPolicy: IfNotPresent
         name: madkub-refresher
@@ -211,7 +211,7 @@ spec:
               apiVersion: v1
               fieldPath: metadata.namespace
         - name: ESTATE
-          value: prd-samtest
+          value: prd-sam
         image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/madkub:1.0.0-0000082-3d5c21b4
         imagePullPolicy: IfNotPresent
         name: madkub-init

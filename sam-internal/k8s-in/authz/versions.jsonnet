@@ -20,7 +20,7 @@ local utils = import "util_functions.jsonnet";
     // =========
     opaIstioImage: (
         // need to use a full image path. relative paths like 'dva/electron_opa_istio' won't work here.
-        "%s/dva/electron_opa_istio:5-abe14d5cf848440ecc9d517baf63a77cdc2efd4a" % configs.registry
+        "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/openpolicyagent/opa:0.13.2-istio-with-config-2"
     ),
 
     // =========
