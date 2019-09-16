@@ -1,0 +1,22 @@
+apiVersion: v1
+
+system:
+  functions:
+   - name: k4a-watchdog-prd
+      count: 1
+      containers:
+      - name: k4a-watchdog
+        image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/hsuanyu-chen/caiman-watchdog:k4a-20190916
+        livenessProbe:
+          exec:
+            command: ["ls", "/"]
+          failureThreshold: 3
+          initialDelaySeconds: 5
+          periodSeconds: 60
+        volumeMounts:
+        - mountPath: /clientcert
+          name: cert
+      volumes:
+      - name: cert
+        maddogCert:
+          type: client

@@ -3,3 +3,5 @@ apps:
 # Stale app disabled by automation.  See https://sfdc.co/samsandbox
 #  - prd/prd-sam  # the SAM Sandbox uses the prd/prd-sam host cluster
                  # you can also specify other pools
+ k4a-wd:
+  - prd/prd-sam
