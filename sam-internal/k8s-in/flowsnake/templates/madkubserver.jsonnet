@@ -254,7 +254,6 @@ configs.deploymentBase("flowsnake") {
         ),
       },
     },
-  } + if std.objectHas(flowsnake_images.feature_flags, "deployment_strategy") then {
     strategy: {
         type: "RollingUpdate",
         rollingUpdate: {
@@ -262,5 +261,5 @@ configs.deploymentBase("flowsnake") {
             maxSurge: 1,
         },
     },
-  } else {},
+  },
 } else "SKIP"

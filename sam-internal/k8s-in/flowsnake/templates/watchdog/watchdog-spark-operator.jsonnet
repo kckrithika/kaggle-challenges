@@ -182,16 +182,15 @@ else
                         ]
                         + madkub_common.cert_volumes(cert_name),
                     },
-                }
-            } + if std.objectHas(flowsnake_images.feature_flags, "deployment_strategy") then {
-              strategy: {
-                  type: "RollingUpdate",
-                  rollingUpdate: {
-                      maxUnavailable: 1,
-                      maxSurge: 1,
-                  },
-              },
-            } else {}
+                },
+                strategy: {
+                    type: "RollingUpdate",
+                    rollingUpdate: {
+                        maxUnavailable: 1,
+                        maxSurge: 1,
+                    },
+                },
+            }
         }
     ] + (if flowsnakeconfig.hbase_enabled && !std.objectHas(flowsnake_images.feature_flags, "hbase_watchdog_split") then [
         configs.deploymentBase("flowsnake") {
