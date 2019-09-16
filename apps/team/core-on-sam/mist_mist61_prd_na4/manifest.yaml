@@ -103,7 +103,7 @@ system:
     - env:
       - name: CASAM_SETTINGS_PATH
         value: mist.mist61.prd.na4.app
-      image: sfci/casam/coreapp_overrides:996aa4
+      image: sfci/casam/coreapp_overrides:43048d
       livenessProbe:
         exec:
           command:
