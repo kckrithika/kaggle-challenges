@@ -4,7 +4,7 @@ local images = (import "collection-agent-images.libsonnet") + { templateFilename
 
 {
     apiserver: {
-        featureFlag: (configs.estate == "prd-samtest"),
+        featureFlag: (configs.estate == "prd-samtest" || configs.estate == "prd-samdev"),
         name: "apiserver-metrics-exporter",
         namespace: "sam-system",
         configMapName: "apiserver-metrics-exporter-cm",
