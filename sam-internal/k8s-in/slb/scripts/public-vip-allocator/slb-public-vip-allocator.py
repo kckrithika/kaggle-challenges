@@ -11,7 +11,7 @@ FQDN_SUFFIX = ".slb.sfdc.net"
 MAX_OCTET_VALUE = 255
 PUBLIC_RESERVED_IPS_FIELD_NAME = "publicReservedIps"
 PUBLIC_SUBNET_FIELD_NAME = "publicSubnet"
-TAB_TO_SPACE = "  "
+SPACES_IN_TAB = "  "
 VIPS_YAML_FILE_NAME = "vips.yaml"
 VIPS_YAML_LBNAME_FIELD_NAME = "lbname"
 VIPS_YAML_CUSTOM_LBNAME_FIELD_NAME = "customlbname"
@@ -51,7 +51,7 @@ def get_first_three_octets(public_subnet_text, cluster):
     return ".".join(octets[:3])
 
 
-def update_reserved_ips(public_reserved_ips_text, cluster, new_ip, fqdn):
+def add_reserved_ip(public_reserved_ips_text, cluster, new_ip, fqdn):
     # Finds the cluster's text
     cluster_reserved_ips_regex = re.compile(r'("' + cluster + '": \[[^\]]+)\]')
     cluster_reserved_ips_search_results = cluster_reserved_ips_regex.search(public_reserved_ips_text)
@@ -74,23 +74,25 @@ def update_reserved_ips(public_reserved_ips_text, cluster, new_ip, fqdn):
         print("{} is already in {}".format(new_ip, cluster))
     else:
         # Adds the new IP into the cluster's text
-        public_reserved_ips_text = cluster_reserved_ips_regex.sub(r'\1  "' + new_ip + '",  # '+ fqdn + '\n            ]',
+        public_reserved_ips_text = cluster_reserved_ips_regex.sub(r'\1  "' + new_ip + '",  # ' +
+                                                                  fqdn +
+                                                                  '\n            ]',
                                                                   public_reserved_ips_text)
     return public_reserved_ips_text
 
 
-def reserve_for_all_vips_yamls(root_path,
-                               config_file_path,
-                               reserved_ips_file_path,
-                               public_vip_allocation_file_path,
-                               minimum_octet):
+def process_all_vips_yamls(root_vip_yaml_path,
+                           config_file_path,
+                           reserved_ips_file_path,
+                           public_vip_allocation_file_path,
+                           minimum_octet):
     # Read slb-public-vip-allocation.json
     with open(public_vip_allocation_file_path, "r") as public_vip_file:
         public_vip_data = json.loads(public_vip_file.read())
 
     # Read slb-reserved-ips.jsonnet
-    with open(reserved_ips_file_path, "r") as jsonnet_file:
-        reserved_ip_text = jsonnet_file.read()
+    with open(reserved_ips_file_path, "r") as reserved_ips_file:
+        reserved_ip_text = reserved_ips_file.read()
 
     # Finds the public reserved IPs field's text
     public_reserved_ips_search_results = public_reserved_ips_regex.search(reserved_ip_text)
@@ -100,8 +102,8 @@ def reserve_for_all_vips_yamls(root_path,
     public_reserved_ips_text = public_reserved_ips_search_results.group(0)
 
     # Read slbconfig.jsonnet
-    with open(config_file_path, "r") as jsonnet_file:
-        config_text = jsonnet_file.read()
+    with open(config_file_path, "r") as slbconfig_file:
+        config_text = slbconfig_file.read()
 
     # Finds public subnet field's text
     public_subnet_regex = re.compile(r"" + PUBLIC_SUBNET_FIELD_NAME + ":[^{]*{[^}]*}", re.M)
@@ -109,7 +111,7 @@ def reserve_for_all_vips_yamls(root_path,
     if public_subnet_regex_search_results is None:
         raise Exception('{} was not found'.format(PUBLIC_SUBNET_FIELD_NAME))
 
-    public_reserved_ips_text = process_vip_files(root_path,
+    public_reserved_ips_text = process_vip_files(root_vip_yaml_path,
                                                  public_vip_data,
                                                  public_subnet_regex_search_results.group(0),
                                                  public_reserved_ips_text,
@@ -122,17 +124,17 @@ def reserve_for_all_vips_yamls(root_path,
     with open(public_vip_allocation_file_path, "w") as public_vip_file:
         json.dump(public_vip_data, public_vip_file, indent=2)
 
-    with open(reserved_ips_file_path, "w") as jsonnet_file:
+    with open(reserved_ips_file_path, "w") as reserved_ips_file:
         # Replace the public reserved IP text with the new one and write it
-        jsonnet_file.write(public_reserved_ips_regex.sub(public_reserved_ips_text, reserved_ip_text))
+        reserved_ips_file.write(public_reserved_ips_regex.sub(public_reserved_ips_text, reserved_ip_text))
 
 
-def process_vip_files(root_path, public_vip_data, public_subnet_text, public_reserved_ips_text, minimum_octet):
+def process_vip_files(root_vip_yaml_path, public_vip_data, public_subnet_text, public_reserved_ips_text, minimum_octet):
     vips_to_delete = []
     vips_to_add = []
-    for root, dirs, files in os.walk(root_path):
-        for file_name in files:
-            full_path = os.path.join(root, file_name)
+    for file_location, _, file_names_in_dir in os.walk(root_vip_yaml_path):
+        for file_name in file_names_in_dir:
+            full_path = os.path.join(file_location, file_name)
             if file_name == VIPS_YAML_FILE_NAME:
                 vips = parse_vips(full_path)
                 for vip in vips:
@@ -163,13 +165,12 @@ def process_vip_files(root_path, public_vip_data, public_subnet_text, public_res
 
 def parse_vips(vip_file_path):
     with open(vip_file_path, "r") as file:
-        yaml_text = file.read().replace("\t", TAB_TO_SPACE)
+        yaml_text = file.read().replace("\t", SPACES_IN_TAB)
         try:
             vip_data = yaml.safe_load(yaml_text)
             return vip_data
         except yaml.YAMLError as exc:
             print("Failed to parse {}: {}", vip_file_path, exc)
-
         return []
 
 
@@ -189,9 +190,13 @@ def delete_public_vip(public_vip_data, public_vip_entry_name, cluster, public_re
     return public_reserved_ips_text
 
 
-def create_new_public_vip(public_vip_entry_name, public_subnet_text,
-                          cluster, public_vip_data,
-                          public_reserved_ips_text, minimum_octet, fqdn):
+def create_new_public_vip(public_vip_entry_name,
+                          public_subnet_text,
+                          cluster,
+                          public_vip_data,
+                          public_reserved_ips_text,
+                          minimum_octet,
+                          fqdn):
     if cluster not in public_vip_data:
         public_vip_data[cluster] = {}
 
@@ -201,7 +206,6 @@ def create_new_public_vip(public_vip_entry_name, public_subnet_text,
         return public_reserved_ips_text
 
     fourth_octet_values = cluster_public_vip_data.values()
-
     new_ip_fourth_octet_value = -1
     for i in range(minimum_octet, MAX_OCTET_VALUE + 1):
         if i not in fourth_octet_values:
@@ -216,13 +220,13 @@ def create_new_public_vip(public_vip_entry_name, public_subnet_text,
     new_ip = get_first_three_octets(public_subnet_text, cluster) + "." + str(new_ip_fourth_octet_value) + "/32"
     print("Adding {} for {}".format(new_ip, public_vip_entry_name))
 
-    return update_reserved_ips(public_reserved_ips_text, cluster, new_ip, fqdn)
+    return add_reserved_ip(public_reserved_ips_text, cluster, new_ip, fqdn)
 
 
 if __name__ == "__main__":
-    reserve_for_all_vips_yamls(sys.argv[1],
-                               sys.argv[2],
-                               sys.argv[3],
-                               sys.argv[4],
-                               int(sys.argv[5]))
+    process_all_vips_yamls(sys.argv[1],
+                           sys.argv[2],
+                           sys.argv[3],
+                           sys.argv[4],
+                           int(sys.argv[5]))
     print("Run successfully")
