@@ -16,6 +16,7 @@ apps:
     - ph2/ph2-sam_report_collector
     - lo2/lo2-sam_report_collector
     - lo3/lo3-sam_report_collector
+    - xrd/xrd-sam_report_collector
   locust:
   reportcollectorha:
   reportcollector:
@@ -140,6 +141,7 @@ apps:
     - ph2/ph2-sam_report_collector
     - lo2/lo2-sam_report_collector
     - lo3/lo3-sam_report_collector
+    - xrd/xrd-sam_report_collector
   cname-repcollavailwd-pc:
     - yhu/yhu-sam_report_collector
     - yul/yul-sam_report_collector
