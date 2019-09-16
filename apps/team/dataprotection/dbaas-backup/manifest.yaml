@@ -9,7 +9,7 @@ system:
       env:
       - name: SFDC_ENVIRONMENT
         #value: prod # for prod dc except for prd (DBaaS config)
-        value: -
+        value: "-"
       - name: DC
         value: $(KINGDOM)
       - name: SPRING_PROFILES_ACTIVE 
