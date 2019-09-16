@@ -28,7 +28,7 @@ system:
 
     containers:
     - name: eventtransfercontrolplane
-      image: sfci/ets/event-transfer-control-plane:0.0.47
+      image: sfci/ets/event-transfer-control-plane:0.0.48
       ports:
         - containerPort: 7020
         - containerPort: 7022
