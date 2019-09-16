@@ -375,8 +375,9 @@ system:
       - -p=$(SFPROXY_VIP)/ping.jsp
       - -z=$(APP_NAMESPACE)
       - -l=$(APP_FUNCTION_LABEL)
+      - -m=$(SFDC_METRICS_SERVICE_HOST):$(SFDC_METRICS_SERVICE_PORT)
       - -h=$(NODE_NAME)
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/victor.li/hyperslb:victor.li-201909111515
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/victor.li/hyperslb:victor.li-201909131002
       env:
       - name: SFPROXY_VIP
         value: https://us9-sfproxy-lb.core-on-sam-sp2.prd-sam.prd.slb.sfdc.net:8443
