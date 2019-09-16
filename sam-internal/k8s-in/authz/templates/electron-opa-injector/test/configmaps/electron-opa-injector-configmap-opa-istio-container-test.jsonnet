@@ -3,11 +3,12 @@ local versions = import "authz/versions.jsonnet";
 local electron_opa_utils = import "authz/electron_opa_utils.jsonnet";
 local utils = import "util_functions.jsonnet";
 
+if electron_opa_utils.is_electron_opa_injector_test_cluster(configs.estate) then
 {
 apiVersion: "v1",
 kind: "ConfigMap",
 metadata: {
-  name: "electron-opa-injector-configs-opa-container",
+  name: "electron-opa-injector-configs-opa-istio-container",
   namespace: versions.injectorNamespace,
   labels: {
     app: "electron-opa-injector",
@@ -16,9 +17,9 @@ metadata: {
   if utils.is_pcn(configs.kingdom) then configs.pcnEnableLabel else {},
 },
 data: {
-  "electron-opa-container.yaml.template":
+  "electron-opa-istio-container.yaml.template":
 'containers:
-  - name: electron-opa
+  - name: electron-opa-istio
     image: {{ .Image }}
     {{- if .EnvironmentVars}}
     env:
@@ -52,4 +53,4 @@ data: {
       periodSeconds: 5
     terminationMessagePolicy: FallbackToLogsOnError',
 },
-}
+} else "SKIP"
