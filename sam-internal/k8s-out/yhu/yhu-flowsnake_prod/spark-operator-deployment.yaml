@@ -13,7 +13,10 @@ spec:
       app.kubernetes.io/name: spark-operator
       app.kubernetes.io/version: v2.4.0-v1beta1
   strategy:
-    type: Recreate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+    type: RollingUpdate
   template:
     metadata:
       annotations:

@@ -11,6 +11,11 @@ spec:
   selector:
     matchLabels:
       service: madkubserver
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+    type: RollingUpdate
   template:
     metadata:
       labels:
