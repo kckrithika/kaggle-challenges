@@ -3,9 +3,7 @@ apiVersion: v1
 system:
     notifications:
       email:
-        - paul.howden@salesforce.com
-        - pteyer@salesforce.com
-        - akouthoofd@salesforce.com
+        - warden@salesforce.com
     functions:
     - name: maiev-receiver-func
       count: 3
@@ -16,11 +14,13 @@ system:
           maxUnavailable: 1
       containers:
       - name: prd-maiev-receiver
-        image: dva/maiev-receiver:39
+        image: dva/maiev-receiver:41
         ports:
         - name: receiver-grpc
           containerPort: 7442
           hostPort: 17444
+        - name: receiver-http
+          containerPort: 8085
         livenessProbe:
           exec:
             command:
@@ -30,6 +30,10 @@ system:
           value: "7442"
         - name: CANTOR_GRPC_TARGET
           value: "cantor.casp.$KINGDOM-sam.$KINGDOM.slb.sfdc.net:11983"
+        - name: HTTP_PORT
+          value: "8085"
+        - name: BASE_PATH
+          value: "/api"
     loadbalancers:
     - lbname: maiev-receiver
       function: maiev-receiver-func
@@ -37,4 +41,6 @@ system:
       ports:
         - port: 7442
           targetport: 7442
+        - port: 80
+          targetport: 8085
 
