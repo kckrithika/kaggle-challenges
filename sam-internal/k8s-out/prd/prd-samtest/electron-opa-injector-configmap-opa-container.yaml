@@ -4,17 +4,6 @@ data:
     containers:
       - name: electron-opa
         image: {{ .Image }}
-        args:
-          - run
-          - --server
-          - --log-level=debug
-          - --set "services.electron.url=http://demo-authz-http.service-mesh.localhost.mesh.force.com:5442"
-          - --set "services.electron.allow_insecure_tls=true"
-          - --set "bundle.name=authz"
-          - --set "bundle.prefix=v1"
-          - --set "bundle.service=electron"
-          - --set "bundle.polling.min_delay_seconds=300"
-          - --set "bundle.polling.max_delay_seconds=360"
         {{- if .EnvironmentVars}}
         env:
         {{- range $key, $val := .EnvironmentVars}}
