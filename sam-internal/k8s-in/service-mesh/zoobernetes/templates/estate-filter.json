@@ -3,6 +3,32 @@
         "prd/prd-samtest",
         "prd/prd-samdev",
         "prd/prd-sam",
-        "par/par-sam"
+
+        "par/par-sam",
+
+        "cdg/cdg-sam",
+        "cdu/cdu-sam",
+        "chx/chx-sam",
+        "dfw/dfw-sam",
+        "fra/fra-sam",
+        "frf/frf-sam",
+        "hio/hio-sam",
+        "hnd/hnd-sam",
+        "ia2/ia2-sam",
+        "ia4/ia4-sam",
+        "ia5/ia5-sam",
+        "iad/iad-sam",
+        "lo2/lo2-sam",
+        "lo3/lo3-sam",
+        "ord/ord-sam",
+        "ph2/ph2-sam",
+        "phx/phx-sam",
+        "syd/syd-sam",
+        "ttd/ttd-sam",
+        "ukb/ukb-sam",
+        "wax/wax-sam",
+        "xrd/xrd-sam",
+        "yhu/yhu-sam",
+        "yul/yul-sam"
     ]
 }
