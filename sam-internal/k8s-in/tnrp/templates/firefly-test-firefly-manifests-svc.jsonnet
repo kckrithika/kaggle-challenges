@@ -7,9 +7,7 @@ local promotionsvc = import "firefly-promotion-svc.jsonnet.TEMPLATE";
 if configs.estate == "prd-sam" then
 {
   local package = packagesvc {
-      serviceConf:: super.serviceConf {
-          repoName: "tfm",
-      },
+      serviceName:: "firefly-package-tfm",
       env:: super.env + [
           {
               name: "INSTANCE_TYPE",
@@ -30,9 +28,7 @@ if configs.estate == "prd-sam" then
      ],
   },
   local packagesingleton = packagesvcsingleton {
-      serviceConf:: super.serviceConf {
-          repoName: "tfm",
-      },
+      serviceName:: "firefly-package-singleton-tfm",
       env:: super.env + [
           {
               name: "INSTANCE_TYPE",
@@ -53,9 +49,7 @@ if configs.estate == "prd-sam" then
      ],
   },
   local pullrequest = pullrequestsvc {
-      serviceConf:: super.serviceConf {
-          repoName: "tfm",
-      },
+      serviceName:: "firefly-pullrequest-tfm",
       env:: super.env + [
           {
               name: "INSTANCE_TYPE",
@@ -68,9 +62,7 @@ if configs.estate == "prd-sam" then
      ],
   },
   local promotion = promotionsvc {
-      serviceConf:: super.serviceConf {
-          repoName: "tfm",
-      },
+      serviceName:: "firefly-promotion-tfm",
       env:: super.env + [
           {
               name: "INSTANCE_TYPE",

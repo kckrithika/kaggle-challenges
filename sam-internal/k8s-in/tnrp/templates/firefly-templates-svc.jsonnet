@@ -5,9 +5,9 @@ local packageConfig = import "configs/firefly-package.jsonnet";
 if configs.estate == "prd-samtwo" then
 {
   local package = packagesvc {
+      serviceName:: "firefly-package-templates",
       serviceConf:: super.serviceConf {
           dindEnabled: false,
-          repoName: "templates",
       },
       env:: super.env + [
           {

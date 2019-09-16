@@ -97,7 +97,7 @@ local envConfig = import "configs/firefly_service_conf.jsonnet";
     apiVersion: 'v1',
     kind: 'ConfigMap',
     metadata: {
-      name: std.join("-", [$.serviceName] + [if "repoName" in $.serviceConf then $.serviceConf.repoName] + ['configmap']),
+      name: $.serviceName + '-configmap',
       namespace: 'firefly',
       labels: {} + configs.ownerLabel.tnrp,
     },
@@ -108,15 +108,22 @@ local envConfig = import "configs/firefly_service_conf.jsonnet";
     kind: 'Service',
     apiVersion: 'v1',
     metadata: {
-      name: std.join("-", [$.serviceName] + [if "repoName" in $.serviceConf then $.serviceConf.repoName] + ['service']),
+      name: $.serviceName + '-service',
       namespace: 'firefly',
       labels: {
         app: $.serviceName,
       } + configs.ownerLabel.tnrp,
       [if firefly_feature_flags.is_slb_enabled then "annotations"]: {
+        "slb.sfdc.net/cnames": std.toString(
+          std.manifestJsonEx(
+            // Example of cname: firefly-intake-prd-sam.slb.sfcd.net
+            [{"cname": std.format("%s-%s.%s", [$.serviceName, configs.estate, "slb.sfdc.net"])}],
+            "  "
+          )
+        ),
         "slb.sfdc.net/name": $.serviceName,
         "slb.sfdc.net/portconfigurations": std.toString(
-            $.portAnnotations,
+          std.manifestJsonEx($.portAnnotations, "  "),
         ),
       },
     },
@@ -131,7 +138,7 @@ local envConfig = import "configs/firefly_service_conf.jsonnet";
 
   local deployment = configs.deploymentBase("tnrp") {
     metadata: {
-      name: std.join("-", [$.serviceName] + [if "repoName" in $.serviceConf then $.serviceConf.repoName] + ['deployment']),
+      name: $.serviceName + '-deployment',
       namespace: "firefly",
       labels: {
         name: $.serviceName,
@@ -142,7 +149,7 @@ local envConfig = import "configs/firefly_service_conf.jsonnet";
       template: {
         metadata: {
           namespace: "firefly",
-          name: std.join("-", [$.serviceName] + [if "repoName" in $.serviceConf then $.serviceConf.repoName] + ['deployment']),
+          name: $.serviceName + '-deployment',
           labels: {
             name: $.serviceName,
           } + configs.ownerLabel.tnrp,
@@ -393,7 +400,7 @@ local envConfig = import "configs/firefly_service_conf.jsonnet";
                 sources: [
                   {
                     configMap: {
-                      name: std.join("-", [$.serviceName] + [if "repoName" in $.serviceConf then $.serviceConf.repoName] + ['configmap']),
+                      name: $.serviceName + '-configmap',
                       items: [
                         {
                           key: 'application.yml',

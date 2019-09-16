@@ -176,12 +176,40 @@ items:
   kind: Service
   metadata:
     annotations:
+      slb.sfdc.net/cnames: |-
+        [
+          {
+            "cname": "firefly-intake-fcp-prd-samtwo.slb.sfdc.net"
+          }
+        ]
       slb.sfdc.net/name: firefly-intake-fcp
-      slb.sfdc.net/portconfigurations: '[{"lbtype": "http", "port": 8081, "reencrypt":
-        false, "sticky": 0, "targetPort": 8081, "tls": false}, {"lbtype": "http",
-        "port": 8080, "reencrypt": false, "sticky": 0, "targetPort": 8080, "tls":
-        false}, {"lbtype": "http", "port": 8443, "reencrypt": false, "sticky": 0,
-        "targetPort": 8080, "tls": true}]'
+      slb.sfdc.net/portconfigurations: |-
+        [
+          {
+            "lbtype": "http",
+            "port": 8081,
+            "reencrypt": false,
+            "sticky": 0,
+            "targetPort": 8081,
+            "tls": true
+          },
+          {
+            "lbtype": "http",
+            "port": 8080,
+            "reencrypt": false,
+            "sticky": 0,
+            "targetPort": 8080,
+            "tls": false
+          },
+          {
+            "lbtype": "http",
+            "port": 8443,
+            "reencrypt": false,
+            "sticky": 0,
+            "targetPort": 8080,
+            "tls": true
+          }
+        ]
     labels:
       app: firefly-intake-fcp
       sam.data.sfdc.net/owner: tnrp

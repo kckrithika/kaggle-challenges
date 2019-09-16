@@ -18,12 +18,12 @@ serviceDeployment {
     dockerImage:: images.fireflypackage,
     portAnnotations:: [
         {
-               port: portConfig.firefly.package_mgmt,
-               targetPort: portConfig.firefly.package_mgmt,
-               lbtype: "http",
-               tls: false,
-               reencrypt: false,
-               sticky: 0,
+             port: portConfig.firefly.package_mgmt,
+             targetPort: portConfig.firefly.package_mgmt,
+             lbtype: "http",
+             tls: true,
+             reencrypt: false,
+             sticky: 0,
         },
     ],
     portConfigs:: [portConfig.service_health_port('package_mgmt_nodeport')],

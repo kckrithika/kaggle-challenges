@@ -8,9 +8,7 @@ local promotionsvc = import "firefly-promotion-svc.jsonnet.TEMPLATE";
 if configs.estate == "prd-sam" then
 {
   local package = packagesvc {
-    serviceConf:: super.serviceConf {
-      repoName: "tsm",
-    },
+    serviceName:: "firefly-package-tsm",
     replicas:: 1,
     env:: super.env + [
       {
@@ -32,9 +30,7 @@ if configs.estate == "prd-sam" then
    ],
   },
   local packagesingleton = packagesvcsingleton {
-     serviceConf:: super.serviceConf {
-       repoName: "tsm",
-     },
+     serviceName:: "firefly-package-singleton-tsm",
      replicas:: 1,
      env:: super.env + [
        {
@@ -56,9 +52,7 @@ if configs.estate == "prd-sam" then
     ],
   },
   local pullrequest = pullrequestsvc {
-    serviceConf:: super.serviceConf {
-      repoName: "tsm",
-    },
+    serviceName:: "firefly-pullrequest-tsm",
     replicas:: 1,
     env:: super.env + [
       {
@@ -72,9 +66,7 @@ if configs.estate == "prd-sam" then
    ],
   },
   local promotion = promotionsvc {
-    serviceConf:: super.serviceConf {
-      repoName: "tsm",
-    },
+    serviceName:: "firefly-promotion-tsm",
     replicas:: 1,
     env:: super.env + [
       {

@@ -194,9 +194,24 @@ items:
   kind: Service
   metadata:
     annotations:
+      slb.sfdc.net/cnames: |-
+        [
+          {
+            "cname": "firefly-package-mdp-prd-sam.slb.sfdc.net"
+          }
+        ]
       slb.sfdc.net/name: firefly-package-mdp
-      slb.sfdc.net/portconfigurations: '[{"lbtype": "http", "port": 8081, "reencrypt":
-        false, "sticky": 0, "targetPort": 8081, "tls": false}]'
+      slb.sfdc.net/portconfigurations: |-
+        [
+          {
+            "lbtype": "http",
+            "port": 8081,
+            "reencrypt": false,
+            "sticky": 0,
+            "targetPort": 8081,
+            "tls": true
+          }
+        ]
     labels:
       app: firefly-package-mdp
       sam.data.sfdc.net/owner: tnrp
@@ -654,9 +669,24 @@ items:
   kind: Service
   metadata:
     annotations:
+      slb.sfdc.net/cnames: |-
+        [
+          {
+            "cname": "firefly-pullrequest-mdp-prd-sam.slb.sfdc.net"
+          }
+        ]
       slb.sfdc.net/name: firefly-pullrequest-mdp
-      slb.sfdc.net/portconfigurations: '[{"lbtype": "http", "port": 8081, "reencrypt":
-        false, "sticky": 0, "targetPort": 8081, "tls": false}]'
+      slb.sfdc.net/portconfigurations: |-
+        [
+          {
+            "lbtype": "http",
+            "port": 8081,
+            "reencrypt": false,
+            "sticky": 0,
+            "targetPort": 8081,
+            "tls": false
+          }
+        ]
     labels:
       app: firefly-pullrequest-mdp
       sam.data.sfdc.net/owner: tnrp
@@ -1104,9 +1134,24 @@ items:
   kind: Service
   metadata:
     annotations:
+      slb.sfdc.net/cnames: |-
+        [
+          {
+            "cname": "firefly-promotion-mdp-prd-sam.slb.sfdc.net"
+          }
+        ]
       slb.sfdc.net/name: firefly-promotion-mdp
-      slb.sfdc.net/portconfigurations: '[{"lbtype": "http", "port": 8081, "reencrypt":
-        false, "sticky": 0, "targetPort": 8081, "tls": false}]'
+      slb.sfdc.net/portconfigurations: |-
+        [
+          {
+            "lbtype": "http",
+            "port": 8081,
+            "reencrypt": false,
+            "sticky": 0,
+            "targetPort": 8081,
+            "tls": false
+          }
+        ]
     labels:
       app: firefly-promotion-mdp
       sam.data.sfdc.net/owner: tnrp

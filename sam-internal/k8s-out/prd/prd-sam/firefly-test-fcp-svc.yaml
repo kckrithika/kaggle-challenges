@@ -194,9 +194,24 @@ items:
   kind: Service
   metadata:
     annotations:
+      slb.sfdc.net/cnames: |-
+        [
+          {
+            "cname": "firefly-package-fcp-prd-sam.slb.sfdc.net"
+          }
+        ]
       slb.sfdc.net/name: firefly-package-fcp
-      slb.sfdc.net/portconfigurations: '[{"lbtype": "http", "port": 8081, "reencrypt":
-        false, "sticky": 0, "targetPort": 8081, "tls": false}]'
+      slb.sfdc.net/portconfigurations: |-
+        [
+          {
+            "lbtype": "http",
+            "port": 8081,
+            "reencrypt": false,
+            "sticky": 0,
+            "targetPort": 8081,
+            "tls": true
+          }
+        ]
     labels:
       app: firefly-package-fcp
       sam.data.sfdc.net/owner: tnrp
@@ -703,9 +718,24 @@ items:
   kind: Service
   metadata:
     annotations:
+      slb.sfdc.net/cnames: |-
+        [
+          {
+            "cname": "firefly-package-singleton-fcp-prd-sam.slb.sfdc.net"
+          }
+        ]
       slb.sfdc.net/name: firefly-package-singleton-fcp
-      slb.sfdc.net/portconfigurations: '[{"lbtype": "http", "port": 8081, "reencrypt":
-        false, "sticky": 0, "targetPort": 8081, "tls": false}]'
+      slb.sfdc.net/portconfigurations: |-
+        [
+          {
+            "lbtype": "http",
+            "port": 8081,
+            "reencrypt": false,
+            "sticky": 0,
+            "targetPort": 8081,
+            "tls": true
+          }
+        ]
     labels:
       app: firefly-package-singleton-fcp
       sam.data.sfdc.net/owner: tnrp
@@ -1129,9 +1159,24 @@ items:
   kind: Service
   metadata:
     annotations:
+      slb.sfdc.net/cnames: |-
+        [
+          {
+            "cname": "firefly-pullrequest-fcp-prd-sam.slb.sfdc.net"
+          }
+        ]
       slb.sfdc.net/name: firefly-pullrequest-fcp
-      slb.sfdc.net/portconfigurations: '[{"lbtype": "http", "port": 8081, "reencrypt":
-        false, "sticky": 0, "targetPort": 8081, "tls": false}]'
+      slb.sfdc.net/portconfigurations: |-
+        [
+          {
+            "lbtype": "http",
+            "port": 8081,
+            "reencrypt": false,
+            "sticky": 0,
+            "targetPort": 8081,
+            "tls": false
+          }
+        ]
     labels:
       app: firefly-pullrequest-fcp
       sam.data.sfdc.net/owner: tnrp

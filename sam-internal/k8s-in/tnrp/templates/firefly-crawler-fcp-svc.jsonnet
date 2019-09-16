@@ -24,7 +24,7 @@ if firefly_feature_flags.is_firefly_svc_enabled then
          port: portConfig.firefly.crawler_mgmt,
          targetPort: portConfig.firefly.crawler_mgmt,
          lbtype: "http",
-         tls: false,
+         tls: true,
          reencrypt: false,
          sticky: 0,
       },
