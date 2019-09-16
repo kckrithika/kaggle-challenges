@@ -3,7 +3,7 @@ apiVersion: v1
 system:
   notifications:
     email:
-      - hyuan@salesforce.com
+      - servicemesh@salesforce.com
   functions:
   - name: resiliency-client
     count: 1
