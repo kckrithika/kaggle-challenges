@@ -84,6 +84,8 @@ system:
         value: mds/stmfb/ST0000000000001
       - name: CRE_SERVER_TARGET
         value: http://cre-api-ccp-stage.retail-cre.localhost.mesh.force.com:5442
+      - name: CRE_CP_SERVER_TARGET
+        value: http://cre-control-plane-ccp-stage.retail-cre.localhost.mesh.force.com:5442
       - name: C2C_PATH
         value: https://login.stmfa.stm.salesforce.com/empire/cloudatlas/scim
       - name: CORE_OAUTH_URL

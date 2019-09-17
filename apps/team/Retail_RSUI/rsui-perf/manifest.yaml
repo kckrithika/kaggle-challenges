@@ -82,6 +82,8 @@ system:
         value: core/mist60ice1/00Dx00000005SuREAU
       - name: CRE_SERVER_TARGET
         value: http://cre-api-ccp-perf.retail-cre.localhost.mesh.force.com:5442
+      - name: CRE_CP_SERVER_TARGET
+        value: http://cre-control-plane-ccp-perf.retail-cre.localhost.mesh.force.com:5442
       - name: C2C_PATH
         value: https://login.stmfa.stm.salesforce.com/empire/cloudatlas/scim
       - name: OAUTH_SHADOW_CONSUMERKEY
