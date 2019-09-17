@@ -244,6 +244,46 @@ items:
 - apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: RoleBinding
   metadata:
+    name: retail-rsui:hnd-sam_crosscloudplatform:rolebinding
+    namespace: retail-rsui
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: minion:role
+  subjects:
+  - kind: User
+    name: shared0-samminioncrosscloudplatform1-1-hnd.ops.sfdc.net
+  - kind: User
+    name: shared0-samminioncrosscloudplatform1-2-hnd.ops.sfdc.net
+  - kind: User
+    name: shared0-samminioncrosscloudplatform1-3-hnd.ops.sfdc.net
+  - kind: User
+    name: shared0-samminioncrosscloudplatform1-4-hnd.ops.sfdc.net
+  - kind: User
+    name: shared0-samminioncrosscloudplatform1-5-hnd.ops.sfdc.net
+  - kind: User
+    name: shared0-samminioncrosscloudplatform2-1-hnd.ops.sfdc.net
+  - kind: User
+    name: shared0-samminioncrosscloudplatform2-2-hnd.ops.sfdc.net
+  - kind: User
+    name: shared0-samminioncrosscloudplatform2-3-hnd.ops.sfdc.net
+  - kind: User
+    name: shared0-samminioncrosscloudplatform2-4-hnd.ops.sfdc.net
+  - kind: User
+    name: shared0-samminioncrosscloudplatform2-5-hnd.ops.sfdc.net
+  - kind: User
+    name: shared0-samminioncrosscloudplatform3-1-hnd.ops.sfdc.net
+  - kind: User
+    name: shared0-samminioncrosscloudplatform3-2-hnd.ops.sfdc.net
+  - kind: User
+    name: shared0-samminioncrosscloudplatform3-3-hnd.ops.sfdc.net
+  - kind: User
+    name: shared0-samminioncrosscloudplatform3-4-hnd.ops.sfdc.net
+  - kind: User
+    name: shared0-samminioncrosscloudplatform3-5-hnd.ops.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1beta1
+  kind: RoleBinding
+  metadata:
     name: retail-eventlistener:hnd-sam_crosscloudsetup:rolebinding
     namespace: retail-eventlistener
   roleRef:
