@@ -27,7 +27,7 @@ system:
           - sip-em-dev-slb
     containers:
     - name: sip-em 
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mgoralczyk/em/sip:sip-em-20190905T1900
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/searchdev/sip-experiment-manager-staging:1.6-RC.0
       livenessProbe:
         initialDelaySeconds: 180
         periodSeconds: 60
