@@ -32,11 +32,15 @@ class VipMetadata:
         if self.cluster is None:
             self.cluster = kingdom + "-" + DEFAULT_CLUSTER
 
-        lbname = vip[VIPS_YAML_CUSTOM_LBNAME_FIELD_NAME] if VIPS_YAML_CUSTOM_LBNAME_FIELD_NAME in vip \
-            else vip[VIPS_YAML_LBNAME_FIELD_NAME]
+        customlbname_used = VIPS_YAML_CUSTOM_LBNAME_FIELD_NAME in vip
+        final_lbname = vip[VIPS_YAML_CUSTOM_LBNAME_FIELD_NAME] if customlbname_used else vip[VIPS_YAML_LBNAME_FIELD_NAME]
 
-        self.public_vip_entry_name = team_name + "." + lbname
-        self.fqdn = lbname + FQDN_SUFFIX
+        self.public_vip_entry_name = team_name + "." + final_lbname
+        self.fqdn = final_lbname
+        if not customlbname_used:
+            self.fqdn += "-" + team_name + "-" + kingdom
+
+        self.fqdn += FQDN_SUFFIX
 
 
 def get_first_three_octets(public_subnet_text, cluster):
