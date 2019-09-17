@@ -120,7 +120,7 @@ system:
         httpGet:
           path: /manage/ready
           port: 15372
-        initialDelaySeconds: 30
+        initialDelaySeconds: 60
         periodSeconds: 10
       volumeMounts:
       - mountPath: /client-certs
