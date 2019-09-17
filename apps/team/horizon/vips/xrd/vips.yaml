@@ -29,6 +29,7 @@
   cnames:
    - cname: es-horizon.data.sfdc.net
   servers: 
+    - shared0-infinsightapi2-2-xrd.eng.sfdc.net
     - shared0-infinsightapi2-3-xrd.eng.sfdc.net
   ports:
     - port: 80
