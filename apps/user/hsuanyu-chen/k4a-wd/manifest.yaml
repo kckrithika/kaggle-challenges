@@ -15,7 +15,9 @@ system:
       - "-secretsFile"
       - "/caiman-watchdog/classes/samapp.user-hsuanyu-chen.k4a-watchdog-prd.zip"
       - "-certPath"
-      - "/clientcert/"
+      - "/clientcert"
+      - "-sleepTime"
+      - "5"
       livenessProbe:
         exec:
           command: ["ls", "/"]
