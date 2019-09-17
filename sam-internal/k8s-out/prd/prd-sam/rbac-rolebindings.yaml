@@ -349,6 +349,8 @@ items:
   - kind: User
     name: shared0-samminionatlastwofe1-1-prd.eng.sfdc.net
   - kind: User
+    name: shared0-samminionatlastwofe1-2-prd.eng.sfdc.net
+  - kind: User
     name: shared0-samminionatlastwofe2-1-prd.eng.sfdc.net
 - apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: RoleBinding

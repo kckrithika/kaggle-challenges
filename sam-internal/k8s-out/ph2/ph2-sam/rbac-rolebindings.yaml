@@ -91,6 +91,8 @@ items:
     name: shared0-samminiondatapool1-2-ph2.ops.sfdc.net
   - kind: User
     name: shared0-samminiondatapool2-1-ph2.ops.sfdc.net
+  - kind: User
+    name: shared0-samminiondatapool2-2-ph2.ops.sfdc.net
 - apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: RoleBinding
   metadata:

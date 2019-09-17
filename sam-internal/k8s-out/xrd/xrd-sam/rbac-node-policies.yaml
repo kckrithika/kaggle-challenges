@@ -1212,6 +1212,19 @@ items:
 - apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
+    name: role:shared0-samminionatlasfe1-2-xrd.eng.sfdc.net
+  rules:
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-samminionatlasfe1-2-xrd.eng.sfdc.net
+    resources:
+    - nodes/status
+    verbs:
+    - '*'
+- apiVersion: rbac.authorization.k8s.io/v1beta1
+  kind: ClusterRole
+  metadata:
     name: role:shared0-samminionatlasfe2-1-xrd.eng.sfdc.net
   rules:
   - apiGroups:
@@ -1628,6 +1641,19 @@ items:
 - apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
+    name: role:shared0-sammminionmgmthub1-2-xrd.eng.sfdc.net
+  rules:
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-sammminionmgmthub1-2-xrd.eng.sfdc.net
+    resources:
+    - nodes/status
+    verbs:
+    - '*'
+- apiVersion: rbac.authorization.k8s.io/v1beta1
+  kind: ClusterRole
+  metadata:
     name: role:shared0-sammminionmgmthub2-1-xrd.eng.sfdc.net
   rules:
   - apiGroups:
@@ -1673,6 +1699,19 @@ items:
     - '*'
     resourceNames:
     - shared0-samminionpubdnsa2-1-xrd.eng.sfdc.net
+    resources:
+    - nodes/status
+    verbs:
+    - '*'
+- apiVersion: rbac.authorization.k8s.io/v1beta1
+  kind: ClusterRole
+  metadata:
+    name: role:shared0-samminionpubdnsa3-1-xrd.eng.sfdc.net
+  rules:
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-samminionpubdnsa3-1-xrd.eng.sfdc.net
     resources:
     - nodes/status
     verbs:
@@ -5511,6 +5550,17 @@ items:
 - apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRoleBinding
   metadata:
+    name: rolebinding:shared0-samminionatlasfe1-2-xrd.eng.sfdc.net
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: role:shared0-samminionatlasfe1-2-xrd.eng.sfdc.net
+  subjects:
+  - kind: User
+    name: shared0-samminionatlasfe1-2-xrd.eng.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1beta1
+  kind: ClusterRoleBinding
+  metadata:
     name: rolebinding:shared0-samminionatlasfe2-1-xrd.eng.sfdc.net
   roleRef:
     apiGroup: rbac.authorization.k8s.io
@@ -5863,6 +5913,17 @@ items:
 - apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRoleBinding
   metadata:
+    name: rolebinding:shared0-sammminionmgmthub1-2-xrd.eng.sfdc.net
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: role:shared0-sammminionmgmthub1-2-xrd.eng.sfdc.net
+  subjects:
+  - kind: User
+    name: shared0-sammminionmgmthub1-2-xrd.eng.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1beta1
+  kind: ClusterRoleBinding
+  metadata:
     name: rolebinding:shared0-sammminionmgmthub2-1-xrd.eng.sfdc.net
   roleRef:
     apiGroup: rbac.authorization.k8s.io
@@ -5904,6 +5965,17 @@ items:
   subjects:
   - kind: User
     name: shared0-samminionpubdnsa2-1-xrd.eng.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1beta1
+  kind: ClusterRoleBinding
+  metadata:
+    name: rolebinding:shared0-samminionpubdnsa3-1-xrd.eng.sfdc.net
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: role:shared0-samminionpubdnsa3-1-xrd.eng.sfdc.net
+  subjects:
+  - kind: User
+    name: shared0-samminionpubdnsa3-1-xrd.eng.sfdc.net
 - apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRoleBinding
   metadata:
