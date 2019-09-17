@@ -24,3 +24,14 @@
     - port: 22
       targetport: 5432
       lbtype: tcp
+
+- lbname: horizon-es-xrd
+  cnames:
+   - cname: es-horizon.data.sfdc.net
+  servers: 
+    - shared0-infinsightapi2-2-xrd.eng.sfdc.net
+    - shared0-infinsightapi2-3-xrd.eng.sfdc.net
+  ports:
+    - port: 80
+      targetport: 80
+      lbtype: tcp
