@@ -37,6 +37,7 @@ local utils = import "util_functions.jsonnet";
                 # --- flag D (one flag between ... ---
                 hbase_watchdog_split: "",
                 # --- flag E (each pair. ... ---
+                                v1beta1_original: "",
                 # --- flag F (Their only purpose ... ---
                 # --- flag G (is to assist ... ---
                 # --- flag H (git's diff logic ... ---
