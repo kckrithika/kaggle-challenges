@@ -18,12 +18,12 @@ serviceDeployment {
     dockerImage:: images.fireflypromotion,
     portAnnotations:: [
         {
-               port: portConfig.firefly.promotion_mgmt,
-               targetPort: portConfig.firefly.promotion_mgmt,
-               lbtype: "http",
-               tls: false,
-               reencrypt: false,
-               sticky: 0,
+             port: portConfig.firefly.promotion_mgmt,
+             targetPort: portConfig.firefly.promotion_mgmt,
+             lbtype: "http",
+             tls: true,
+             reencrypt: false,
+             sticky: 0,
         },
     ],
     portConfigs:: [portConfig.service_health_port('promotion_mgmt_nodeport')],

@@ -7,9 +7,7 @@ local configs = import "config.jsonnet";
 if configs.estate == "prd-samtwo" then
 {
     local package = packagesvc {
-        serviceConf:: super.serviceConf {
-            repoName: "test-manifests",
-        },
+        serviceName:: "firefly-package-test-manifests",
         replicas:: 1,
         env:: super.env + [
             {
@@ -76,9 +74,7 @@ if configs.estate == "prd-samtwo" then
         },
     },
     local packagesingleton = packagesvcsingleton {
-        serviceConf:: super.serviceConf {
-            repoName: "test-manifests",
-        },
+        serviceName:: "firefly-package-singleton-test-manifests",
         replicas:: 1,
         env:: super.env + [
             {
@@ -100,9 +96,7 @@ if configs.estate == "prd-samtwo" then
        ],
     },
     local pullrequest = pullrequestsvc {
-        serviceConf:: super.serviceConf {
-            repoName: "test-manifests",
-        },
+        serviceName:: "firefly-pullrequest-test-manifests",
         replicas:: 1,
         env:: super.env + [
             {

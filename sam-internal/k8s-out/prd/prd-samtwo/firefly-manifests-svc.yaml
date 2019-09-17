@@ -205,11 +205,26 @@ items:
   kind: Service
   metadata:
     annotations:
-      slb.sfdc.net/name: firefly-package
-      slb.sfdc.net/portconfigurations: '[{"lbtype": "http", "port": 8081, "reencrypt":
-        false, "sticky": 0, "targetPort": 8081, "tls": false}]'
+      slb.sfdc.net/cnames: |-
+        [
+          {
+            "cname": "firefly-package-manifests-prd-samtwo.slb.sfdc.net"
+          }
+        ]
+      slb.sfdc.net/name: firefly-package-manifests
+      slb.sfdc.net/portconfigurations: |-
+        [
+          {
+            "lbtype": "http",
+            "port": 8081,
+            "reencrypt": false,
+            "sticky": 0,
+            "targetPort": 8081,
+            "tls": true
+          }
+        ]
     labels:
-      app: firefly-package
+      app: firefly-package-manifests
       sam.data.sfdc.net/owner: tnrp
     name: firefly-package-manifests-service
     namespace: firefly
@@ -220,13 +235,13 @@ items:
       protocol: TCP
       targetPort: 8081
     selector:
-      name: firefly-package
+      name: firefly-package-manifests
     type: NodePort
 - apiVersion: extensions/v1beta1
   kind: Deployment
   metadata:
     labels:
-      name: firefly-package
+      name: firefly-package-manifests
       sam.data.sfdc.net/owner: tnrp
     name: firefly-package-manifests-deployment
     namespace: firefly
@@ -234,7 +249,7 @@ items:
     replicas: 2
     selector:
       matchLabels:
-        name: firefly-package
+        name: firefly-package-manifests
         sam.data.sfdc.net/owner: tnrp
     strategy:
       rollingUpdate:
@@ -256,7 +271,7 @@ items:
                 ]
             }
         labels:
-          name: firefly-package
+          name: firefly-package-manifests
           sam.data.sfdc.net/owner: tnrp
         name: firefly-package-manifests-deployment
         namespace: firefly
@@ -362,7 +377,7 @@ items:
             periodSeconds: 30
             successThreshold: 1
             timeoutSeconds: 30
-          name: firefly-package
+          name: firefly-package-manifests
           ports:
           - containerPort: 8081
             name: admin-port
@@ -665,11 +680,26 @@ items:
   kind: Service
   metadata:
     annotations:
-      slb.sfdc.net/name: firefly-package-singleton
-      slb.sfdc.net/portconfigurations: '[{"lbtype": "http", "port": 8081, "reencrypt":
-        false, "sticky": 0, "targetPort": 8081, "tls": false}]'
+      slb.sfdc.net/cnames: |-
+        [
+          {
+            "cname": "firefly-package-singleton-manifests-prd-samtwo.slb.sfdc.net"
+          }
+        ]
+      slb.sfdc.net/name: firefly-package-singleton-manifests
+      slb.sfdc.net/portconfigurations: |-
+        [
+          {
+            "lbtype": "http",
+            "port": 8081,
+            "reencrypt": false,
+            "sticky": 0,
+            "targetPort": 8081,
+            "tls": true
+          }
+        ]
     labels:
-      app: firefly-package-singleton
+      app: firefly-package-singleton-manifests
       sam.data.sfdc.net/owner: tnrp
     name: firefly-package-singleton-manifests-service
     namespace: firefly
@@ -680,13 +710,13 @@ items:
       protocol: TCP
       targetPort: 8081
     selector:
-      name: firefly-package-singleton
+      name: firefly-package-singleton-manifests
     type: NodePort
 - apiVersion: extensions/v1beta1
   kind: Deployment
   metadata:
     labels:
-      name: firefly-package-singleton
+      name: firefly-package-singleton-manifests
       sam.data.sfdc.net/owner: tnrp
     name: firefly-package-singleton-manifests-deployment
     namespace: firefly
@@ -694,7 +724,7 @@ items:
     replicas: 2
     selector:
       matchLabels:
-        name: firefly-package-singleton
+        name: firefly-package-singleton-manifests
         sam.data.sfdc.net/owner: tnrp
     strategy:
       rollingUpdate:
@@ -716,7 +746,7 @@ items:
                 ]
             }
         labels:
-          name: firefly-package-singleton
+          name: firefly-package-singleton-manifests
           sam.data.sfdc.net/owner: tnrp
         name: firefly-package-singleton-manifests-deployment
         namespace: firefly
@@ -822,7 +852,7 @@ items:
             periodSeconds: 30
             successThreshold: 1
             timeoutSeconds: 30
-          name: firefly-package-singleton
+          name: firefly-package-singleton-manifests
           ports:
           - containerPort: 8081
             name: admin-port
@@ -1088,11 +1118,26 @@ items:
   kind: Service
   metadata:
     annotations:
-      slb.sfdc.net/name: firefly-pullrequest
-      slb.sfdc.net/portconfigurations: '[{"lbtype": "http", "port": 8081, "reencrypt":
-        false, "sticky": 0, "targetPort": 8081, "tls": false}]'
+      slb.sfdc.net/cnames: |-
+        [
+          {
+            "cname": "firefly-pullrequest-manifests-prd-samtwo.slb.sfdc.net"
+          }
+        ]
+      slb.sfdc.net/name: firefly-pullrequest-manifests
+      slb.sfdc.net/portconfigurations: |-
+        [
+          {
+            "lbtype": "http",
+            "port": 8081,
+            "reencrypt": false,
+            "sticky": 0,
+            "targetPort": 8081,
+            "tls": true
+          }
+        ]
     labels:
-      app: firefly-pullrequest
+      app: firefly-pullrequest-manifests
       sam.data.sfdc.net/owner: tnrp
     name: firefly-pullrequest-manifests-service
     namespace: firefly
@@ -1103,13 +1148,13 @@ items:
       protocol: TCP
       targetPort: 8081
     selector:
-      name: firefly-pullrequest
+      name: firefly-pullrequest-manifests
     type: NodePort
 - apiVersion: extensions/v1beta1
   kind: Deployment
   metadata:
     labels:
-      name: firefly-pullrequest
+      name: firefly-pullrequest-manifests
       sam.data.sfdc.net/owner: tnrp
     name: firefly-pullrequest-manifests-deployment
     namespace: firefly
@@ -1117,7 +1162,7 @@ items:
     replicas: 2
     selector:
       matchLabels:
-        name: firefly-pullrequest
+        name: firefly-pullrequest-manifests
         sam.data.sfdc.net/owner: tnrp
     strategy:
       rollingUpdate:
@@ -1139,7 +1184,7 @@ items:
                 ]
             }
         labels:
-          name: firefly-pullrequest
+          name: firefly-pullrequest-manifests
           sam.data.sfdc.net/owner: tnrp
         name: firefly-pullrequest-manifests-deployment
         namespace: firefly
@@ -1239,7 +1284,7 @@ items:
             periodSeconds: 30
             successThreshold: 1
             timeoutSeconds: 30
-          name: firefly-pullrequest
+          name: firefly-pullrequest-manifests
           ports:
           - containerPort: 8081
             name: admin-port
@@ -1514,11 +1559,26 @@ items:
   kind: Service
   metadata:
     annotations:
-      slb.sfdc.net/name: firefly-promotion
-      slb.sfdc.net/portconfigurations: '[{"lbtype": "http", "port": 8081, "reencrypt":
-        false, "sticky": 0, "targetPort": 8081, "tls": false}]'
+      slb.sfdc.net/cnames: |-
+        [
+          {
+            "cname": "firefly-promotion-manifests-prd-samtwo.slb.sfdc.net"
+          }
+        ]
+      slb.sfdc.net/name: firefly-promotion-manifests
+      slb.sfdc.net/portconfigurations: |-
+        [
+          {
+            "lbtype": "http",
+            "port": 8081,
+            "reencrypt": false,
+            "sticky": 0,
+            "targetPort": 8081,
+            "tls": true
+          }
+        ]
     labels:
-      app: firefly-promotion
+      app: firefly-promotion-manifests
       sam.data.sfdc.net/owner: tnrp
     name: firefly-promotion-manifests-service
     namespace: firefly
@@ -1529,13 +1589,13 @@ items:
       protocol: TCP
       targetPort: 8081
     selector:
-      name: firefly-promotion
+      name: firefly-promotion-manifests
     type: NodePort
 - apiVersion: extensions/v1beta1
   kind: Deployment
   metadata:
     labels:
-      name: firefly-promotion
+      name: firefly-promotion-manifests
       sam.data.sfdc.net/owner: tnrp
     name: firefly-promotion-manifests-deployment
     namespace: firefly
@@ -1543,7 +1603,7 @@ items:
     replicas: 2
     selector:
       matchLabels:
-        name: firefly-promotion
+        name: firefly-promotion-manifests
         sam.data.sfdc.net/owner: tnrp
     strategy:
       rollingUpdate:
@@ -1565,7 +1625,7 @@ items:
                 ]
             }
         labels:
-          name: firefly-promotion
+          name: firefly-promotion-manifests
           sam.data.sfdc.net/owner: tnrp
         name: firefly-promotion-manifests-deployment
         namespace: firefly
@@ -1665,7 +1725,7 @@ items:
             periodSeconds: 30
             successThreshold: 1
             timeoutSeconds: 30
-          name: firefly-promotion
+          name: firefly-promotion-manifests
           ports:
           - containerPort: 8081
             name: admin-port

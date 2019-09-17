@@ -18,14 +18,14 @@ serviceDeployment {
     dockerImage:: images.fireflypullrequest,
     portAnnotations::
     [
-      {
+        {
              port: portConfig.firefly.pullrequest_mgmt,
              targetPort: portConfig.firefly.pullrequest_mgmt,
              lbtype: "http",
-             tls: false,
+             tls: true,
              reencrypt: false,
              sticky: 0,
-      },
+        },
     ],
     portConfigs:: [portConfig.service_health_port('pullrequest_mgmt_nodeport')],
     replicas:: 1,

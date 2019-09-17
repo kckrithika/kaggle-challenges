@@ -127,9 +127,24 @@ items:
   kind: Service
   metadata:
     annotations:
+      slb.sfdc.net/cnames: |-
+        [
+          {
+            "cname": "firefly-crawler-mdp-prd-samtwo.slb.sfdc.net"
+          }
+        ]
       slb.sfdc.net/name: firefly-crawler-mdp
-      slb.sfdc.net/portconfigurations: '[{"lbtype": "http", "port": 8081, "reencrypt":
-        false, "sticky": 0, "targetPort": 8081, "tls": false}]'
+      slb.sfdc.net/portconfigurations: |-
+        [
+          {
+            "lbtype": "http",
+            "port": 8081,
+            "reencrypt": false,
+            "sticky": 0,
+            "targetPort": 8081,
+            "tls": true
+          }
+        ]
     labels:
       app: firefly-crawler-mdp
       sam.data.sfdc.net/owner: tnrp

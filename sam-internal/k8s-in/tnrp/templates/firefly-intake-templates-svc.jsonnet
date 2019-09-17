@@ -29,11 +29,12 @@ if firefly_feature_flags.is_firefly_svc_enabled then
          port: portConfig.firefly.intake_mgmt,
          targetPort: portConfig.firefly.intake_mgmt,
          lbtype: "http",
-         tls: false,
+         tls: true,
          reencrypt: false,
          sticky: 0,
       },
       {
+         // TODO: Remove once all customers have migrated to tls endpoint as part of W-5562772
          port: portConfig.firefly.intake_http,
          targetPort: portConfig.firefly.intake_http,
          lbtype: "http",
