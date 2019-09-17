@@ -16,7 +16,7 @@ system:
       "routing.mesh.sfdc.net/enabled": "true"
     containers:
     - name: metadata-service
-      image: sfci/metadata-cannon/metadata-service:0.9.109
+      image: sfci/metadata-cannon/metadata-service:0.10.78
       ports:
       - containerPort: 9091
       - containerPort: 15523
@@ -54,7 +54,7 @@ system:
         periodSeconds: 60
         timeoutSeconds: 90
     - name: sherpa-mds
-      image: sfci/servicelibs/sherpa-envoy:1.0.3
+      image: sfci/servicelibs/sherpa-envoy:1.0.8
       args:
       - --server-ca
       - /server-certs/ca_test/cacerts.pem
