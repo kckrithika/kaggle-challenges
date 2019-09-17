@@ -52,4 +52,7 @@ local utils = import "util_functions.jsonnet";
 
      kafkaConsumer:
        configs.estate == "prd-sam" || configs.estate == "prd-samtwo",
+
+     sloop:
+       configs.estate == "prd-sam",
 }

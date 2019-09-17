@@ -1,6 +1,7 @@
 local configs = import "config.jsonnet";
+local samfeatureflags = import "sam-feature-flags.jsonnet";
 
-if configs.estate == "prd-sam" then {
+if samfeatureflags.sloop then {
     kind: "ConfigMap",
     apiVersion: "v1",
     metadata: {

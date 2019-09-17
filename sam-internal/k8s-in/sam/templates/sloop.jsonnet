@@ -1,9 +1,8 @@
 local configs = import "config.jsonnet";
 local samimages = (import "samimages.jsonnet") + { templateFilename:: std.thisFile };
-local utils = import "util_functions.jsonnet";
-local mysql = import "sammysqlconfig.jsonnet";
+local samfeatureflags = import "sam-feature-flags.jsonnet";
 
-if configs.estate == "prd-sam" then configs.deploymentBase("sam") {
+if (samfeatureflags.sloop) then configs.deploymentBase("sam") {
     metadata+: {
         labels: {
             name: "sloop",
@@ -29,6 +28,7 @@ if configs.estate == "prd-sam" then configs.deploymentBase("sam") {
                 nodeSelector: {
                     pool: configs.estate,
                 },
+                serviceAccountName: "sloop",
                 containers: [
                     {
                         name: "sloop",
@@ -103,7 +103,7 @@ if configs.estate == "prd-sam" then configs.deploymentBase("sam") {
                         name: "sloopconfig",
                     },
                 ],
-            } + configs.serviceAccount,
+            },
         },
     },
 } else "SKIP"
