@@ -41,7 +41,7 @@ if samfeatureflags.sloop then {
         "daemonsets",
         "deployments",
         "replicasets",
-        "",
+        "statefulsets",
       ],
       verbs: ["list", "watch"],
     },
