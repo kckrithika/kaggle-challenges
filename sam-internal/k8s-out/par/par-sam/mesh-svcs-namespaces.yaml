@@ -5,6 +5,18 @@ items:
   metadata:
     labels:
       istio-injection: enabled
+    name: app
+- apiVersion: v1
+  kind: Namespace
+  metadata:
+    labels:
+      istio-injection: enabled
+    name: funnel
+- apiVersion: v1
+  kind: Namespace
+  metadata:
+    labels:
+      istio-injection: enabled
     name: service-mesh
 kind: List
 metadata:

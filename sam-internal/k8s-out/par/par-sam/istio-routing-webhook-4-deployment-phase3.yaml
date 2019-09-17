@@ -41,15 +41,6 @@ spec:
         app: istio-routing-webhook
         name: istio-routing-webhook
     spec:
-      affinity:
-        nodeAffinity:
-          requiredDuringSchedulingIgnoredDuringExecution:
-            nodeSelectorTerms:
-            - matchExpressions:
-              - key: kubernetes.io/hostname
-                operator: NotIn
-                values:
-                - shared0-samkubeapi3-1-par.ops.sfdc.net
       containers:
       - args:
         - server
@@ -60,7 +51,7 @@ spec:
         - --port
         - "10443"
         - --funnel-address
-        - mandm-funnel-par1.data.sfdc.net:8080
+        - ajnafunneldirecttls.funnel.svc.mesh.sfdc.net:7442
         env:
         - name: SETTINGS_SUPERPOD
           value: '-'
@@ -68,7 +59,7 @@ spec:
           value: -.-.par.-.istio-routing-webhook
         - name: ESTATE
           value: par-sam
-        image: ops0-artifactrepo1-0-par.data.sfdc.net/sfci/servicemesh/servicemesh/istio-routing-webhook:6de698dd1935317ebf1ba9d8b5d92207ba8479a6
+        image: ops0-artifactrepo1-0-par.data.sfdc.net/sfci/servicemesh/servicemesh/istio-routing-webhook:21b05ffaaf87dd1f7da1f5ea8f130138a89e50bc
         imagePullPolicy: IfNotPresent
         name: istio-routing-webhook
         ports:
@@ -209,7 +200,23 @@ spec:
             fieldRef:
               apiVersion: v1
               fieldPath: metadata.namespace
-        image: ops0-artifactrepo1-0-par.data.sfdc.net/sfci/servicemesh/istio-packaging/proxy:55a0daec53d372a76b261c917a7f06597db1ed2d
+        - name: ISTIO_METAJSON_METRICS_INCLUSIONS
+          value: '{"sidecar.istio.io/statsInclusionPrefixes": "access_log_file,cluster,cluster_manager,control_plane,http,http2,http_mixer_filter,listener,listener_manager,redis,runtime,server,stats,tcp,tcp_mixer_filter,tracing"}'
+        - name: ISTIO_METAJSON_LABELS
+          value: '{"settings_path": "-.-.par.-.istio-routing-webhook", "superpod":"-"}'
+        - name: ISTIO_META_TLS_CLIENT_CERT_CHAIN
+          value: /client-certs/client/certificates/client.pem
+        - name: ISTIO_META_TLS_CLIENT_KEY
+          value: /client-certs/client/keys/client-key.pem
+        - name: ISTIO_META_TLS_CLIENT_ROOT_CERT
+          value: /client-certs/ca.pem
+        - name: ISTIO_META_TLS_SERVER_CERT_CHAIN
+          value: /server-certs/server/certificates/server.pem
+        - name: ISTIO_META_TLS_SERVER_KEY
+          value: /server-certs/server/keys/server-key.pem
+        - name: ISTIO_META_TLS_SERVER_ROOT_CERT
+          value: /server-certs/ca.pem
+        image: ops0-artifactrepo1-0-par.data.sfdc.net/sfci/servicemesh/istio-packaging/proxy:10908bb690d01d7100444da5d8ac58960cb22d7c
         imagePullPolicy: IfNotPresent
         name: istio-proxy
         ports:
@@ -241,21 +248,10 @@ spec:
         volumeMounts:
         - mountPath: /etc/istio/proxy
           name: istio-envoy
-        - mountPath: /etc/certs/root-cert.pem
-          name: server-cert
-          subPath: ca.pem
-        - mountPath: /etc/certs/cert-chain.pem
-          name: server-cert
-          subPath: server/certificates/server.pem
-        - mountPath: /etc/certs/key.pem
-          name: server-cert
-          subPath: server/keys/server-key.pem
-        - mountPath: /etc/certs/client.pem
+        - mountPath: /client-certs
           name: client-cert
-          subPath: client/certificates/client.pem
-        - mountPath: /etc/certs/client-key.pem
-          name: client-cert
-          subPath: client/keys/client-key.pem
+        - mountPath: /server-certs
+          name: server-cert
       initContainers:
       - args:
         - /sam/madkub-client
@@ -328,7 +324,7 @@ spec:
         - ""
         - -d
         - 15020,10443
-        image: ops0-artifactrepo1-0-par.data.sfdc.net/sfci/servicemesh/istio-packaging/proxy_init:55a0daec53d372a76b261c917a7f06597db1ed2d
+        image: ops0-artifactrepo1-0-par.data.sfdc.net/sfci/servicemesh/istio-packaging/proxy_init:10908bb690d01d7100444da5d8ac58960cb22d7c
         imagePullPolicy: IfNotPresent
         name: istio-init
         resources:

@@ -12,6 +12,7 @@ spec:
   selector:
     matchLabels:
       app: route-update-service
+      cluster: par-sam_gater
       disco_dc: par
       disco_env: ""
       disco_pod: ""
@@ -51,6 +52,7 @@ spec:
         sidecar.istio.io/inject: "true"
       labels:
         app: route-update-service
+        cluster: par-sam_gater
         disco_dc: par
         disco_env: ""
         disco_pod: ""
@@ -65,7 +67,7 @@ spec:
         - -p
         - "7443"
         - --funnel-address
-        - mandm-funnel-par1.data.sfdc.net:8080
+        - ajnafunneldirecttls.funnel.svc.mesh.sfdc.net:7442
         env:
         - name: ESTATE
           value: par-sam_gater
@@ -73,7 +75,7 @@ spec:
           value: '-'
         - name: SETTINGS_PATH
           value: mesh.-.par.-.route-update-service
-        image: ops0-artifactrepo1-0-par.data.sfdc.net/sfci/servicemesh/servicemesh/route-update-service:6de698dd1935317ebf1ba9d8b5d92207ba8479a6
+        image: ops0-artifactrepo1-0-par.data.sfdc.net/sfci/servicemesh/servicemesh/route-update-service:21b05ffaaf87dd1f7da1f5ea8f130138a89e50bc
         imagePullPolicy: IfNotPresent
         name: route-update-service
         ports:
