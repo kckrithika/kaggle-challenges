@@ -49,6 +49,8 @@ local orgs = [
     "retail-mds",
     "emailinfra",
     "global-identity",
+    "cloudatlas",
+    "cast",
 ];
 
 {
