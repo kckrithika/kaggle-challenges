@@ -12,7 +12,7 @@ system:
           env:
           - {name: JAVA_OPTS, value: '-server -XX:MaxMetaspaceSize=512m -Xmx2048m -Xms2048m'}
           - {name: FILE_MANAGER_UNCOMPRESSED, value: '0'}
-          image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/insights/mock-maestro-gateway:master-13-3503da7
+          image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/insights/mock-maestro-gateway:master-12-d68f1ab
           ports:
             - containerPort: 15372
               name: manage
