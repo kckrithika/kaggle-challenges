@@ -5,7 +5,7 @@ system:
     count: 1
     containers:
     - name: dbaas-backup-test
-      image: dva/threeeyedraven:c36c911a495befb743716850cd3643b035e9a71e
+      image: dva/threeeyedraven:39d2787f1292c4fa432a63769f2a84958828618e
       env:
       - name: SFDC_ENVIRONMENT
         #value: prod # for prod dc except for prd (DBaaS config)
@@ -25,16 +25,16 @@ system:
         name: http
       - containerPort: 15372
         name: management
-      #livenessProbe:
-      #  httpGet:
-      #    path: /manage/health
-      #    port: 15372
-      #  initialDelaySeconds: 130
-      #readinessProbe:
-      #  httpGet:
-      #    path: /manage/health
-      #    port: 15372
-      #  initialDelaySeconds: 115
+      livenessProbe:
+        httpGet:
+          path: /manage/health
+          port: 15372
+        initialDelaySeconds: 130
+      readinessProbe:
+        httpGet:
+          path: /manage/health
+          port: 15372
+        initialDelaySeconds: 115
 
       volumeMounts:
         - name: tls-client-cert
