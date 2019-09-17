@@ -197,9 +197,9 @@ system:
     nodeExposed: true
     slbEnabled: true
     ports:
-      - port: 8094
+      - port: 8098
         targetport: 7022
-      - port: 9094
+      - port: 9085
         targetport: 15372
   - lbname: cre-control-plane-ccp-stage
     function: cre-control-plane-ccp-stage

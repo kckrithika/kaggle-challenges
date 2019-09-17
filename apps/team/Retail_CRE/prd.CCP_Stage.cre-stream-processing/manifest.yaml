@@ -156,7 +156,7 @@ system:
     ports:
       - port: 8097
         targetport: 7022
-      - port: 15371
+      - port: 15381
         targetport: 15372
   - lbname: cre-sp-ccp-stage
     function: cre-sp-ccp-stage
