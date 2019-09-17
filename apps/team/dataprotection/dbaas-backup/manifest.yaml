@@ -25,16 +25,16 @@ system:
         name: http
       - containerPort: 15372
         name: management
-      livenessProbe:
-        httpGet:
-          path: /manage/health
-          port: 15372
-        initialDelaySeconds: 130
-      readinessProbe:
-        httpGet:
-          path: /manage/health
-          port: 15372
-        initialDelaySeconds: 115
+      #livenessProbe:
+      #  httpGet:
+      #    path: /manage/health
+      #    port: 15372
+      #  initialDelaySeconds: 130
+      #readinessProbe:
+      #  httpGet:
+      #    path: /manage/health
+      #    port: 15372
+      #  initialDelaySeconds: 115
 
       volumeMounts:
         - name: tls-client-cert

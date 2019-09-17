@@ -1,10 +1,10 @@
 apiVersion: v1
 system:
   functions:
-  - name: dbaas-backup
+  - name: dbaas-backup-test
     count: 1
     containers:
-    - name: dbaas-backup
+    - name: dbaas-backup-test
       image: dva/threeeyedraven:c36c911a495befb743716850cd3643b035e9a71e
       env:
       - name: SFDC_ENVIRONMENT
