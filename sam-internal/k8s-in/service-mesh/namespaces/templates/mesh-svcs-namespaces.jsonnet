@@ -25,7 +25,7 @@ local istioSvcNamespaces = {
           "istio-injection": "enabled",
         } + (if namespace == "service-mesh" && (configs.kingdom == "prd" || configs.kingdom == "mvp") then
           { "sherpa-injection": "enabled" } else {}) +
-          (if namespace == "service-mesh" && configs.estate == "prd-samtest" then
+          (if namespace == "service-mesh" && configs.kingdom == "prd" then
           { "electron-opa-injection": "enabled" } else {})
         +
         // samlabelfilter.json requires this label to be present on GCP deployments
