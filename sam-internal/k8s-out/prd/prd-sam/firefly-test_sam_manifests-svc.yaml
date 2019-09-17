@@ -1121,7 +1121,7 @@ items:
             "reencrypt": false,
             "sticky": 0,
             "targetPort": 8081,
-            "tls": false
+            "tls": true
           }
         ]
     labels:
@@ -1567,7 +1567,7 @@ items:
             "reencrypt": false,
             "sticky": 0,
             "targetPort": 8081,
-            "tls": false
+            "tls": true
           }
         ]
     labels:
