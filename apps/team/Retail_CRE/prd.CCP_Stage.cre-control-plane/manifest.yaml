@@ -13,17 +13,17 @@ system:
       "routing.mesh.sfdc.net/enabled": "true"
     containers:
     - name: cre-control-plane-ccp-stage
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cre-fusion/services:controlplane.1.9.0.5.PR-671.b7918d9.2
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cre-fusion/services:controlplane.2.0.1.release-2.0.c53f669.3
       env:
         ####################################################################################################
         ############################   ENGINE/DDS FLOWSNAKE ARTIFACTS ( Most frequently changed ) ##########
         ####################################################################################################
-        - name: INGEST_FLOWSNAKE_ARTIFACT
+        - name: INGEST_SPEC_IMAGE
           value: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sfci-dev/sfci/cre/cre-engine:2.0.0.0.master.917a5ff.20
-        - name: SAVE_FLOWSNAKE_ARTIFACT
-          value: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cre/cre-dds-spark:1.9-freeze-016.0.release-1.9.1d192d1.24
-        - name: EXPORT_FLOWSNAKE_ARTIFACT
-          value: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cre/cre-dds-spark:1.9-freeze-016.0.release-1.9.1d192d1.24
+        - name: EXPORT_SPEC_IMAGE
+          value: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cre/cre-dds-spark:2.0-freeze-001.0.release-2.0.b5db72f.2
+        - name: SAVE_SPEC_IMAGE
+          value: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cre/cre-dds-spark:2.0-freeze-001.0.release-2.0.b5db72f.2
         ####################################################################################################
         ####################################### GLOBAL SHARED VALUES #######################################
         ####################################################################################################
@@ -45,15 +45,12 @@ system:
           value: CRE_STAGE
         - name: HBASE_DATACENTER
           value: prd
-          ## FLOWSNAKE
-        - name: MAX_FLOWSNAKE_ENVIRONMENTS
-          value: 30
         - name: DISABLE_AUTO_TERMINATE_FLOWSNAKE
-          value: true                  
+          value: true
         ####################################################################################################
         ####################################### INGEST environment variables ###############################
         ####################################################################################################
-        - name: INGEST_CRE_APPLICATION_NAME
+        - name: INGEST_ANNOTATIONS_PKI_NAME
           value: cre-engine-ccp-stage
         - name: INGEST_K4A_VAULT
           value: cre-engine-dev
@@ -62,20 +59,18 @@ system:
         ####################################################################################################
         - name: CRE_DDS_ENV
           value: Prd
-        - name: SAVE_CRE_APPLICATION_NAME
+        - name: SAVE_ANNOTATIONS_PKI_NAME
           value: cre-engine-ccp-stage
         - name: SAVE_K4A_VAULT
           value: cre-dds-dev
         ####################################################################################################
         ####################################### EXPORT environment variables ###############################
         ####################################################################################################
-        - name: EXPORT_CRE_APPLICATION_NAME
+        - name: EXPORT_ANNOTATIONS_PKI_NAME
           value: cre-engine-ccp-stage
         ####################################################################################################
         ##################################### APP Config environment variables #############################
         ####################################################################################################
-        - name: FLOWSNAKE_ENDPOINT
-          value: https://dev0shared0-flowsnakeiottest1-0-prd.data.sfdc.net
           ## MADDOG (MAD DOG)
         - name: MADDOG_CLIENT_KEYSTORE
           value: maddog/maddog-client-keystore.json
@@ -116,10 +111,17 @@ system:
       - containerPort: 7022
       - containerPort: 15372
       livenessProbe:
-        exec:
-          command:
-            - ls
+        httpGet:
+          path: /manage/health
+          port: 15372
+        initialDelaySeconds: 60
+        periodSeconds: 10
+      readinessProbe:
+        httpGet:
+          path: /manage/ready
+          port: 15372
         initialDelaySeconds: 30
+        periodSeconds: 10
       volumeMounts:
       - mountPath: /client-certs
         name: client-certs
@@ -195,8 +197,10 @@ system:
     nodeExposed: true
     slbEnabled: true
     ports:
-      - port: 8098
+      - port: 8094
         targetport: 7022
+      - port: 9094
+        targetport: 15372
   - lbname: cre-control-plane-ccp-stage
     function: cre-control-plane-ccp-stage
     ports:
