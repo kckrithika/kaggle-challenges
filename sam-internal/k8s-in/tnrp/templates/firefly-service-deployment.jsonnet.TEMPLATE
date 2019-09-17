@@ -131,7 +131,7 @@ local envConfig = import "configs/firefly_service_conf.jsonnet";
       type: if firefly_feature_flags.is_slb_enabled then 'NodePort' else 'LoadBalancer',
       ports: $.portConfigs,
       selector: {
-         name: $.serviceName,
+         name: if 'selectorName' in $ then $.selectorName else $.serviceName,
       },
     },
   },
@@ -141,7 +141,7 @@ local envConfig = import "configs/firefly_service_conf.jsonnet";
       name: $.serviceName + '-deployment',
       namespace: "firefly",
       labels: {
-        name: $.serviceName,
+        name: if 'selectorName' in $ then $.selectorName else $.serviceName,
       } + configs.ownerLabel.tnrp,
     },
     spec+: {
@@ -151,7 +151,7 @@ local envConfig = import "configs/firefly_service_conf.jsonnet";
           namespace: "firefly",
           name: $.serviceName + '-deployment',
           labels: {
-            name: $.serviceName,
+            name: if 'selectorName' in $ then $.selectorName else $.serviceName,
           } + configs.ownerLabel.tnrp,
           local certReqs = [
             {"name": "certs", "cert-type":"client", "kingdom":"prd", "role": $.role},
