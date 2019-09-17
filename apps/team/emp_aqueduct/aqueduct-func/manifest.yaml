@@ -16,7 +16,7 @@ system:
           type: client
       containers:
       - name: aqueduct
-        image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/vmukkavilli/aqueduct:logvalidate
+        image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/vmukkavilli/aqueduct:log-sfdc
         env:
         - name: SFDC_ENVIRONMENT
           value: "prod" # Use whatever environment your kpod uses
