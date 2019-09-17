@@ -104,6 +104,7 @@ apps:
     - ph2/ph2-sam_report_collector
     - lo2/lo2-sam_report_collector
     - lo3/lo3-sam_report_collector
+    - xrd/xrd-sam_report_collector
   candidate-service:
   expcandidate-service-watchdog:
   candidate-service-watchdog:
@@ -122,6 +123,7 @@ apps:
     - ph2/ph2-sam_report_collector
     - lo2/lo2-sam_report_collector
     - lo3/lo3-sam_report_collector
+    - xrd/xrd-sam_report_collector
   expreportcollectorha:
   exprepcollavailwd:
   expcname-repcollavailwd:
