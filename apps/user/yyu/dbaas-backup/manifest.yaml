@@ -1,0 +1,104 @@
+apiVersion: v1
+system:
+  functions:
+  - name: dbaas-backup
+    count: 1
+    containers:
+    - name: dbaas-backup
+      image: dva/threeeyedraven:c36c911a495befb743716850cd3643b035e9a71e
+      env:
+      - name: SFDC_ENVIRONMENT
+        #value: prod # for prod dc except for prd (DBaaS config)
+        value: "-"
+      - name: DC
+        value: $(KINGDOM)
+      - name: SPRING_PROFILES_ACTIVE 
+        value: dc.$(KINGDOM),sdb
+      - name: SDB_UCMD_CERT
+        value: /client-certs/certificates/client.pem
+      - name: SDB_UCMD_KEY
+        value: /client-certs/keys/client-key.pem
+      - name: SDB_UCMD_CA
+        value: /client-certs/cacerts.pem
+      ports:
+      - containerPort: 8080
+        name: http
+      - containerPort: 15372
+        name: management
+      #livenessProbe:
+      #  httpGet:
+      #    path: /manage/health
+      #    port: 15372
+      #  initialDelaySeconds: 130
+      #readinessProbe:
+      #  httpGet:
+      #    path: /manage/health
+      #    port: 15372
+      #  initialDelaySeconds: 115
+
+      volumeMounts:
+        - name: tls-client-cert
+          mountPath: /client-certs
+
+    - name: sherpa
+      image: sfci/servicelibs/sherpa-envoy:1.0.8
+      ports:
+      - containerPort: 7443
+        name: http2-tls-in
+      - containerPort: 15373
+        name: sherpa-adm
+      resources:
+        limits: { cpu: "1", memory: "1Gi" }
+        requests: { cpu: "1", memory: "1Gi" }
+      livenessProbe:
+        exec:
+          command:
+          - ./bin/is-alive
+        initialDelaySeconds: 60
+        periodSeconds: 5
+      readinessProbe:
+        exec:
+          command:
+          - ./bin/is-ready
+        initialDelaySeconds: 60
+        periodSeconds: 5
+      terminationMessagePolicy: FallbackToLogsOnError
+      volumeMounts:
+        - name: tls-client-cert
+          mountPath: /client-certs
+        - name: tls-server-cert
+          mountPath: /server-certs
+
+     # Announces services
+    - name: beacon
+      image: sfci/services/sfdc-bazel/disco/beacon:d7f1640
+      resources:
+        limits: { cpu: "1", memory: "1Gi" }
+        requests: { cpu: "1", memory: "1Gi" }
+      args:
+      - -endpoint
+      - $(FUNCTION_NAMESPACE)/$(FUNCTION):DATACENTER_ALLENV:HTTP2_TLS
+      livenessProbe:
+        exec:
+          command:
+          - /opt/beacon/is-alive.sh
+        initialDelaySeconds: 60
+
+    # Add MadDog certificate volumes
+    volumes:
+    - name: tls-client-cert
+      maddogCert:
+        type: client
+    - name: tls-server-cert
+      maddogCert:
+        type: server
+
+  loadbalancers:
+  - lbname: dbaas-backup-test-lb
+    function: dbaas-backup-test
+    slbEnabled: true
+    ports:
+      - port: 8080
+        targetport: 8080
+      - port: 15372
+        targetport: 15372
