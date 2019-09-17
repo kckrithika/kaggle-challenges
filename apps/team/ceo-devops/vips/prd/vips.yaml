@@ -45,7 +45,7 @@
     healthpath: /ha/health-check
 
 - lbname: devopssfcislbcn
-  customlbname: devopssfcislbin-prd
+  customlbname: devopssfcislbcn-prd
   servers:
   - cjemaster47a.dop.sfdc.net
   - cjemaster47b.dop.sfdc.net
@@ -62,7 +62,7 @@
 - lbname: sfci-splunknginx
   customlbname: sfci-splunknginx-prd
   servers:
-  - sfci0ceo0-sphec1-2-prd.dop.sfdc.net
+  - sfci0ceo0-sphec1-1-prd.dop.sfdc.net
   - sfci0ceo0-sphec1-2-prd.dop.sfdc.net
   ports:
   - port: 8088
