@@ -8,6 +8,7 @@ if configs.estate == "prd-samtwo" then
 {
     local package = packagesvc {
         serviceName:: "firefly-package-test-manifests",
+        selectorName:: "firefly-package",
         replicas:: 1,
         env:: super.env + [
             {
@@ -75,6 +76,7 @@ if configs.estate == "prd-samtwo" then
     },
     local packagesingleton = packagesvcsingleton {
         serviceName:: "firefly-package-singleton-test-manifests",
+        selectorName:: "firefly-package-singleton",
         replicas:: 1,
         env:: super.env + [
             {
@@ -97,6 +99,7 @@ if configs.estate == "prd-samtwo" then
     },
     local pullrequest = pullrequestsvc {
         serviceName:: "firefly-pullrequest-test-manifests",
+        selectorName:: "firefly-pullrequest",
         replicas:: 1,
         env:: super.env + [
             {
