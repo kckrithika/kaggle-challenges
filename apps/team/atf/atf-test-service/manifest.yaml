@@ -9,7 +9,7 @@ system:
     hostnetwork: true
     containers:
     - name: atf-test-service-con
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/atf/atf-test-service:a352029
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/atf/atf-test-service:f5885ed
       ports:
       - name: service-port
         containerPort: 10080
