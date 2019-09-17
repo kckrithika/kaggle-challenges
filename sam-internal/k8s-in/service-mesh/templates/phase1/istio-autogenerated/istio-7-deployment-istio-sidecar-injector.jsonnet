@@ -40,6 +40,7 @@ if (istioPhases.phaseNum == 1) then
         labels: {
           app: "sidecarInjectorWebhook",
           chart: "sidecarInjectorWebhook",
+          cluster: mcpIstioConfig.istioEstate,
           heritage: "Tiller",
           istio: "sidecar-injector",
           name: "istio-sidecar-injector",

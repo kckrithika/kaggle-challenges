@@ -519,6 +519,10 @@ data:
           valueFrom:
             fieldRef:
               fieldPath: metadata.namespace
+        - name: ISTIO_META_kubernetes_cluster_name
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.labels['cluster']
         ###
         # End metadata fields used by switchboard for building metric tags.
         ###
@@ -1158,6 +1162,7 @@ spec:
       labels:
         app: pilot
         chart: pilot
+        cluster: mcpIstioConfig.istioEstate
         heritage: Tiller
         istio: pilot
         name: istio-pilot
@@ -1514,6 +1519,7 @@ spec:
       labels:
         app: sidecarInjectorWebhook
         chart: sidecarInjectorWebhook
+        cluster: mcpIstioConfig.istioEstate
         heritage: Tiller
         istio: sidecar-injector
         name: istio-sidecar-injector

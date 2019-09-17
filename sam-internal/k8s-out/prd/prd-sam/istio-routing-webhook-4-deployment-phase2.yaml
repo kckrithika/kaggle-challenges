@@ -39,6 +39,7 @@ spec:
         sidecar.istio.io/inject: "false"
       labels:
         app: istio-routing-webhook
+        cluster: prd-sam_gater
         name: istio-routing-webhook
     spec:
       containers:

@@ -20,6 +20,7 @@ spec:
         madkub.sam.sfdc.net/allcerts: mcpIstioConfig.pilotMadkubAnnotations
       labels:
         name: istio-pilot
+        cluster: mcpIstioConfig.istioEstate
     spec:
       $setElementOrder/containers:
       - name: discovery
