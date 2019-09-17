@@ -55,6 +55,7 @@ spec:
           name: sloopconfig
       nodeSelector:
         pool: prd-sam
+      serviceAccountName: sloop
       volumes:
       - emptyDir:
           sizeLimit: 12Gi
