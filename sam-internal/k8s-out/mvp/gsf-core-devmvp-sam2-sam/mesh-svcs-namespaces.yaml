@@ -10,7 +10,6 @@ items:
   kind: Namespace
   metadata:
     labels:
-      electron-opa-injection: enabled
       istio-injection: enabled
       pcn: deploy
       sherpa-injection: enabled
