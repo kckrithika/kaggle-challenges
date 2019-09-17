@@ -40,6 +40,7 @@ cantor_prd() {
 cantor_prod() {
     perl -i -pe"s/image: dva\/casp\/cantor_strata:[0-9]*/image: dva\/casp\/cantor_strata:$NEWVERSION/g" prod-cantor-grpc-server/manifest.yaml
     perl -i -pe"s/image: dva\/casp\/cantor_strata:[0-9]*/image: dva\/casp\/cantor_strata:$NEWVERSION/g" prod-cantor-grpc-server-frf/manifest.yaml
+    perl -i -pe"s/image: dva\/casp\/cantor_strata:[0-9]*/image: dva\/casp\/cantor_strata:$NEWVERSION/g" prod-cantor-grpc-server-drop-1-1/manifest.yaml
 }
 
 cantor() {

@@ -3,8 +3,7 @@ apiVersion: v1
 system:
     notifications:
       email:
-        - pteyer@salesforce.com
-        - akouthoofd@salesforce.com
+        - warden@salesforce.com
     functions:
     - name: cantor-http-server
       count: 1
@@ -15,7 +14,7 @@ system:
           maxUnavailable: 1
       containers:
       - name: prd-cantor-http-server
-        image: dva/casp/cantor_http_strata:17
+        image: dva/casp/cantor_http_strata:20
         ports:
         - name: cantor-http
           containerPort: 8084
