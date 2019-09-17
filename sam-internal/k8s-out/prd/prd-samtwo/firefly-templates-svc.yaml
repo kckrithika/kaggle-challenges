@@ -234,13 +234,13 @@ items:
       protocol: TCP
       targetPort: 8081
     selector:
-      name: firefly-package-templates
+      name: firefly-package
     type: NodePort
 - apiVersion: extensions/v1beta1
   kind: Deployment
   metadata:
     labels:
-      name: firefly-package-templates
+      name: firefly-package
       sam.data.sfdc.net/owner: tnrp
     name: firefly-package-templates-deployment
     namespace: firefly
@@ -248,7 +248,7 @@ items:
     replicas: 1
     selector:
       matchLabels:
-        name: firefly-package-templates
+        name: firefly-package
         sam.data.sfdc.net/owner: tnrp
     strategy:
       rollingUpdate:
@@ -270,7 +270,7 @@ items:
                 ]
             }
         labels:
-          name: firefly-package-templates
+          name: firefly-package
           sam.data.sfdc.net/owner: tnrp
         name: firefly-package-templates-deployment
         namespace: firefly

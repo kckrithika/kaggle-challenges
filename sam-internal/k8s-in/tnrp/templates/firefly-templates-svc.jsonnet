@@ -6,6 +6,7 @@ if configs.estate == "prd-samtwo" then
 {
   local package = packagesvc {
       serviceName:: "firefly-package-templates",
+      selectorName:: "firefly-package",
       serviceConf:: super.serviceConf {
           dindEnabled: false,
       },
