@@ -9,6 +9,7 @@ configs.deploymentBase("mesh-control-plane") {
     namespace: "mesh-control-plane",
   },
   spec+: {
+    // This is a HACK (fake deployment) to trick SAM/Packager to promote the Proxy-Init image to production Artifactories
     replicas: 0,
     template: {
       metadata: {
