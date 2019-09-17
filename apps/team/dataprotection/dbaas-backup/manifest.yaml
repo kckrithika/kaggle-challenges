@@ -5,7 +5,7 @@ system:
     count: 1
     containers:
     - name: dbaas-backup
-      image: dva/threeeyedraven:c36c911a495befb743716850cd3643b035e9a71e
+      image: dva/threeeyedraven:39d2787f1292c4fa432a63769f2a84958828618e
       env:
       - name: SFDC_ENVIRONMENT
         #value: prod # for prod dc except for prd (DBaaS config)
