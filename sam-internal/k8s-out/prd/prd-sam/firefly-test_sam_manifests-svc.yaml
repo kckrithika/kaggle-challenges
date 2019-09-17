@@ -224,13 +224,13 @@ items:
       protocol: TCP
       targetPort: 8081
     selector:
-      name: firefly-package-tsm
+      name: firefly-package
     type: NodePort
 - apiVersion: extensions/v1beta1
   kind: Deployment
   metadata:
     labels:
-      name: firefly-package-tsm
+      name: firefly-package
       sam.data.sfdc.net/owner: tnrp
     name: firefly-package-tsm-deployment
     namespace: firefly
@@ -238,7 +238,7 @@ items:
     replicas: 1
     selector:
       matchLabels:
-        name: firefly-package-tsm
+        name: firefly-package
         sam.data.sfdc.net/owner: tnrp
     strategy:
       rollingUpdate:
@@ -260,7 +260,7 @@ items:
                 ]
             }
         labels:
-          name: firefly-package-tsm
+          name: firefly-package
           sam.data.sfdc.net/owner: tnrp
         name: firefly-package-tsm-deployment
         namespace: firefly
@@ -693,13 +693,13 @@ items:
       protocol: TCP
       targetPort: 8081
     selector:
-      name: firefly-package-singleton-tsm
+      name: firefly-package-singleton
     type: NodePort
 - apiVersion: extensions/v1beta1
   kind: Deployment
   metadata:
     labels:
-      name: firefly-package-singleton-tsm
+      name: firefly-package-singleton
       sam.data.sfdc.net/owner: tnrp
     name: firefly-package-singleton-tsm-deployment
     namespace: firefly
@@ -707,7 +707,7 @@ items:
     replicas: 1
     selector:
       matchLabels:
-        name: firefly-package-singleton-tsm
+        name: firefly-package-singleton
         sam.data.sfdc.net/owner: tnrp
     strategy:
       rollingUpdate:
@@ -729,7 +729,7 @@ items:
                 ]
             }
         labels:
-          name: firefly-package-singleton-tsm
+          name: firefly-package-singleton
           sam.data.sfdc.net/owner: tnrp
         name: firefly-package-singleton-tsm-deployment
         namespace: firefly
@@ -1136,13 +1136,13 @@ items:
       protocol: TCP
       targetPort: 8081
     selector:
-      name: firefly-pullrequest-tsm
+      name: firefly-pullrequest
     type: NodePort
 - apiVersion: extensions/v1beta1
   kind: Deployment
   metadata:
     labels:
-      name: firefly-pullrequest-tsm
+      name: firefly-pullrequest
       sam.data.sfdc.net/owner: tnrp
     name: firefly-pullrequest-tsm-deployment
     namespace: firefly
@@ -1150,7 +1150,7 @@ items:
     replicas: 1
     selector:
       matchLabels:
-        name: firefly-pullrequest-tsm
+        name: firefly-pullrequest
         sam.data.sfdc.net/owner: tnrp
     strategy:
       rollingUpdate:
@@ -1172,7 +1172,7 @@ items:
                 ]
             }
         labels:
-          name: firefly-pullrequest-tsm
+          name: firefly-pullrequest
           sam.data.sfdc.net/owner: tnrp
         name: firefly-pullrequest-tsm-deployment
         namespace: firefly
@@ -1582,13 +1582,13 @@ items:
       protocol: TCP
       targetPort: 8081
     selector:
-      name: firefly-promotion-tsm
+      name: firefly-promotion
     type: NodePort
 - apiVersion: extensions/v1beta1
   kind: Deployment
   metadata:
     labels:
-      name: firefly-promotion-tsm
+      name: firefly-promotion
       sam.data.sfdc.net/owner: tnrp
     name: firefly-promotion-tsm-deployment
     namespace: firefly
@@ -1596,7 +1596,7 @@ items:
     replicas: 1
     selector:
       matchLabels:
-        name: firefly-promotion-tsm
+        name: firefly-promotion
         sam.data.sfdc.net/owner: tnrp
     strategy:
       rollingUpdate:
@@ -1618,7 +1618,7 @@ items:
                 ]
             }
         labels:
-          name: firefly-promotion-tsm
+          name: firefly-promotion
           sam.data.sfdc.net/owner: tnrp
         name: firefly-promotion-tsm-deployment
         namespace: firefly
