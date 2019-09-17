@@ -128,7 +128,7 @@ spec:
           value: "1"
         - name: PILOT_DISABLE_XDS_MARSHALING_TO_ANY
           value: "1"
-        image: ops0-artifactrepo1-0-par.data.sfdc.net/sfci/servicemesh/istio-packaging/pilot:89200d8169bd3fc38d4e92ecc3ae614ac52ada6d
+        image: ops0-artifactrepo1-0-par.data.sfdc.net/sfci/servicemesh/istio-packaging/pilot:10908bb690d01d7100444da5d8ac58960cb22d7c
         imagePullPolicy: IfNotPresent
         name: discovery
         ports:
@@ -158,7 +158,7 @@ spec:
         - --serviceCluster
         - istio-pilot
         - --templateFile
-        - /etc/istio/proxy/envoy_pilot.yaml.tmpl
+        - /etc/istio/proxy/envoy_pilot_par.yaml.tmpl
         - --controlPlaneAuthPolicy
         - MUTUAL_TLS
         - --envoyMetricsServiceAddress
@@ -203,7 +203,7 @@ spec:
           value: /server-certs/server/keys/server-key.pem
         - name: ISTIO_META_TLS_SERVER_ROOT_CERT
           value: /server-certs/ca.pem
-        image: ops0-artifactrepo1-0-par.data.sfdc.net/sfci/servicemesh/istio-packaging/proxy:89200d8169bd3fc38d4e92ecc3ae614ac52ada6d
+        image: ops0-artifactrepo1-0-par.data.sfdc.net/sfci/servicemesh/istio-packaging/proxy:10908bb690d01d7100444da5d8ac58960cb22d7c
         imagePullPolicy: IfNotPresent
         name: istio-proxy
         ports:
@@ -285,7 +285,7 @@ spec:
           value: istio.-.par.-.istio-pilot
         - name: ESTATE
           value: par-sam_gater
-        image: ops0-artifactrepo1-0-par.data.sfdc.net/sfci/servicemesh/servicemesh/metrics-scraper:c6bf0490ff3eeb066a1627e861173928a4be7b22
+        image: ops0-artifactrepo1-0-par.data.sfdc.net/sfci/servicemesh/servicemesh/metrics-scraper:21b05ffaaf87dd1f7da1f5ea8f130138a89e50bc
         imagePullPolicy: Always
         name: metrics-scraper
         readinessProbe:

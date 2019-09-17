@@ -75,7 +75,7 @@ spec:
           value: '-'
         - name: SETTINGS_PATH
           value: mesh.-.par.-.route-update-service
-        image: ops0-artifactrepo1-0-par.data.sfdc.net/sfci/servicemesh/servicemesh/route-update-service:c6bf0490ff3eeb066a1627e861173928a4be7b22
+        image: ops0-artifactrepo1-0-par.data.sfdc.net/sfci/servicemesh/servicemesh/route-update-service:21b05ffaaf87dd1f7da1f5ea8f130138a89e50bc
         imagePullPolicy: IfNotPresent
         name: route-update-service
         ports:
