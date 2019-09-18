@@ -11,9 +11,9 @@ system:
       - name: DB_INSTANCE_NAME
         value: mist61a222utf-1
       - name: DB_USER
-        value: sleepy
+        value: doc
       - name: DB_STATS_USER
-        value: snowwhite
+        value: happy
       - name: DB_CONN_NUM
         value: 25
       - name: IP_DB
