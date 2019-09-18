@@ -38,8 +38,8 @@ apps:
     - prd/prd-sam
 
   # Istio Sample TCP stateful service
-  istio-tcp-stateful:
-    - prd/prd-sam
+  #istio-tcp-stateful:
+  #  - prd/prd-sam
 
   envoy-canary-mvp:
     - mvp/gsf-core-devmvp-sam2-sam
