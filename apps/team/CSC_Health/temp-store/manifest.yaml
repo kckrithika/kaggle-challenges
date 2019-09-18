@@ -145,6 +145,9 @@ system:
                 "maxDelay": 5000 },
               { "filter": { "providerId": "csc-health.repcollavailwd", "trusted": true },
                 "minDelay": 5000,
+                "maxDelay": 5000 },
+              { "filter": { "providerId": "health.report-collector-availability-watchdog", "trusted": true },
+                "minDelay": 5000,
                 "maxDelay": 5000 }
              ]
 
