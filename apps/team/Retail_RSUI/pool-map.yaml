@@ -41,5 +41,8 @@ apps:
   - name: prd/prd-sam_crosscloudplatform
   hub-persistence-func-patch:
   - name: prd/prd-sam_crosscloudplatform
+  hub-persistence-prod:
+  - name: iad/iad-sam_crosscloudplatform
+  - name: ord/ord-sam_crosscloudplatform
   hub-persistence-perf:
   - name: prd/prd-sam_crosscloudplatform
