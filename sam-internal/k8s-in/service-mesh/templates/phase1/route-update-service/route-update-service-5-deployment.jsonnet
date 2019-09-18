@@ -64,6 +64,7 @@ configs.deploymentBase("service-mesh") {
           disco_role: "route-update-service",
           settings_path: "mesh.-." + configs.kingdom + ".-." + "route-update-service",
           sam_function: "route-update-service",
+          cluster: mcpIstioConfig.istioEstate,
         },
       },
       spec: configs.specWithMadDog {

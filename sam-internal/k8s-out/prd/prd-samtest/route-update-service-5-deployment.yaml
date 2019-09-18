@@ -44,6 +44,7 @@ spec:
         sidecar.istio.io/inject: "true"
       labels:
         app: route-update-service
+        cluster: prd-samtest
         disco_dc: prd
         disco_env: ""
         disco_pod: ""
