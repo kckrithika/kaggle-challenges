@@ -7,6 +7,7 @@ system:
     annotations:
       "sherpa-injector.service-mesh/inject": "enabled"      
       "sherpa-injector.service-mesh/canary": "enabled"
+      "electron-opa-istio-injector.authz/inject": "enabled"
     containers:
 
     - name: shipping
@@ -44,13 +45,6 @@ system:
         exec:
           command:
           - "/opt/beacon/is-alive.sh"
-
-    - name: opa-agent
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/openpolicyagent/opa:0.13.2-istio-with-config-2
-      livenessProbe:
-        initialDelaySeconds: 5
-        tcpSocket:
-          port: 8181
 
     volumes:
     - name: tls-client-cert
