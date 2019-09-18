@@ -82,6 +82,8 @@ apps:
     - lo2/lo2-sam_report_collector
     - lo3/lo3-sam_report_collector
     - xrd/xrd-sam_report_collector
+    - ia4/ia4-sam_report_collector
+    - ia5/ia5-sam_report_collector
   repcollavailwd-pc:
     - yhu/yhu-sam_report_collector
     - yul/yul-sam_report_collector
