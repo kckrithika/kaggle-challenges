@@ -27,8 +27,8 @@ if (istioPhases.phaseNum == 1) then
     },
     strategy: {
       rollingUpdate: {
-        maxSurge: 1,
-        maxUnavailable: 0,
+        maxSurge: 3,
+        maxUnavailable: 1,
       },
     },
     template: {

@@ -5,7 +5,7 @@ patchesStrategicMerge:
 - clusterrolebinding.yaml
 - job-crd-10.yaml
 - job-crd-11.yaml
-- job-crd-12.yaml
+- job-crd-14.yaml
 - serviceaccount.yaml
 bases:
 - ../defaults

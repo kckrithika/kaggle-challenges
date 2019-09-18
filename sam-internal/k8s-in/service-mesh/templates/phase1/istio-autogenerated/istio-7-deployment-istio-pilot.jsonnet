@@ -29,8 +29,8 @@ if (istioPhases.phaseNum == 1) then
     },
     strategy: {
       rollingUpdate: {
-        maxSurge: 1,
-        maxUnavailable: 0,
+        maxSurge: 3,
+        maxUnavailable: 1,
       },
     },
     template: {
@@ -167,10 +167,6 @@ if (istioPhases.phaseNum == 1) then
                 },
               },
               {
-                name: "GODEBUG",
-                value: "gctrace=1",
-              },
-              {
                 name: "PILOT_PUSH_THROTTLE",
                 value: "10",
               },
@@ -179,8 +175,12 @@ if (istioPhases.phaseNum == 1) then
                 value: "1",
               },
               {
-                name: "PILOT_DISABLE_XDS_MARSHALING_TO_ANY",
-                value: "1",
+                name: "PILOT_ENABLE_PROTOCOL_SNIFFING_FOR_OUTBOUND",
+                value: "true",
+              },
+              {
+                name: "PILOT_ENABLE_PROTOCOL_SNIFFING_FOR_INBOUND",
+                value: "false",
               },
             ],
             image: "%(istioHub)s/pilot:%(istioTag)s" % mcpIstioConfig,
@@ -315,6 +315,10 @@ if (istioPhases.phaseNum == 1) then
                     fieldPath: "metadata.labels['cluster']",
                   },
                 },
+              },
+              {
+                name: "SDS_ENABLED",
+                value: "false",
               },
             ],
             image: "%(istioHub)s/proxy:%(istioTag)s" % mcpIstioConfig,

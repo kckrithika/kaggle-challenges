@@ -34,7 +34,8 @@ data:
       tracing:
         zipkin:
           address: zipkin.service-mesh:9411
-      envoyMetricsServiceAddress: switchboard.service-mesh:15001
+      envoyMetricsService:
+        address: switchboard.service-mesh:15001
       controlPlaneAuthPolicy: MUTUAL_TLS
       discoveryAddress: istio-pilot.mesh-control-plane:15011
   meshNetworks: |-
