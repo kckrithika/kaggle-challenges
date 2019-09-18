@@ -371,13 +371,13 @@ system:
   - containers:
     - command: ['/sdn/slb-proxy-latency']
       args:
-      - -d=true
-      - -p=$(SFPROXY_VIP)/ping.jsp
-      - -z=$(APP_NAMESPACE)
-      - -l=$(APP_FUNCTION_LABEL)
-      - -m=$(SFDC_METRICS_SERVICE_HOST):$(SFDC_METRICS_SERVICE_PORT)
-      - -h=$(NODE_NAME)
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/victor.li/hyperslb:victor.li-201909131002
+      - --daemonMode=true
+      - --sfproxyURL=$(SFPROXY_VIP)/ping.jsp
+      - --appNamespace=$(APP_NAMESPACE)
+      - --appFunctionLabel=$(APP_FUNCTION_LABEL)
+      - --metricsEndpoint=$(SFDC_METRICS_SERVICE_HOST):$(SFDC_METRICS_SERVICE_PORT)
+      - --hostnameOverride=$(NODE_NAME)
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/victor.li/hyperslb:victor.li-201909181103
       env:
       - name: SFPROXY_VIP
         value: https://us9-sfproxy-lb.core-on-sam-sp2.prd-sam.prd.slb.sfdc.net:8443
