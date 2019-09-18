@@ -49,7 +49,7 @@ system:
       - {name: MANAGEMENT_SERVER_PORT, value: '15372'}
       - {name: LOGGING_JSON_STDOUT_LEVEL, value: ALL}
       - {name: LOGGING_STDERR_LEVEL, value: ALL}
-      - {name: MOANA_SPARK_ENGINE_IMAGE, value: 'ops0-artifactrepo1-0-frf.data.sfdc.net/sfci/insights/moanaengine:release-2019.08.b.21-359b0a7'}
+      - {name: MOANA_SPARK_ENGINE_IMAGE, value: 'ops0-artifactrepo1-0-frf.data.sfdc.net/sfci/insights/moanaengine:release-2019.08.c.22-3e66661'}
       - {name: KAFKA_GROUP_ID, value: moana-jobcontroller-group1}
       - {name: DEPLOYMENT_ID, value: fra-group1}
       - {name: JAVA_OPTS, value: '-server -XX:MaxMetaspaceSize=512m -Xmx2048m -Xms2048m'}
@@ -59,7 +59,7 @@ system:
       - {name: HANDLED_PODS_PATTERN, value: 'cs[0-9]+|moana-driver-group1'}
       - {name: K8S_API_ENDPOINT, value: 'https://kubernetes-api-flowsnake-frf.slb.sfdc.net'}
       - {name: ARGUS_ENDPOINT, value: 'http://ajna0-funnel1-0-frf.data.sfdc.net:8080'}
-      image: sfci/insights/jobcontroller:release-2019.08.b.27-87ce63f
+      image: sfci/insights/jobcontroller:release-2019.08.c.28-5197207
       livenessProbe:
         httpGet: {path: /manage/health, port: 15372}
         initialDelaySeconds: 90
