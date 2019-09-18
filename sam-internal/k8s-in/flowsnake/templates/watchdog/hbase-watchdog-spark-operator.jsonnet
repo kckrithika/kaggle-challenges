@@ -9,7 +9,7 @@ local watchdog = import "watchdog.jsonnet";
 local cert_name = "watchdogsparkoperator";
 local std_new = import "stdlib_0.12.1.jsonnet";
 
-if std.objectHas(flowsnake_images.feature_flags, "hbase_watchdog_split") && flowsnakeconfig.hbase_enabled then
+if flowsnakeconfig.hbase_enabled then
 configs.deploymentBase("flowsnake") {
     local label_node = self.spec.template.metadata.labels,
     metadata: {
