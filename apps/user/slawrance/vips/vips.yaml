@@ -305,6 +305,8 @@
     lbtype: http
     healthprotocol: http
     healthpath: /ping.jsp?allBusy
+    removeheaders:
+    - "CipherSuite"
 
 - lbname: encinoman5-cs2
   servers:
@@ -332,6 +334,8 @@
     lbtype: http
     healthprotocol: http
     healthpath: /ping.jsp?allBusy
+    removeheaders:
+    - "CipherSuite"
 
 - lbname: encinoman6-cs2
   servers:
@@ -359,6 +363,8 @@
     lbtype: http
     healthprotocol: http
     healthpath: /ping.jsp?allBusy
+    removeheaders:
+    - "CipherSuite"
 
 - lbname: cuttingedge1
   servers:
@@ -384,6 +390,8 @@
     lbtype: http
     healthprotocol: http
     healthpath: /ping.jsp?allBusy
+    removeheaders:
+    - "CipherSuite"
 
 - lbname: cuttingedge2
   servers:
@@ -411,6 +419,8 @@
     lbtype: http
     healthprotocol: http
     healthpath: /ping.jsp?allBusy
+    removeheaders:
+    - "CipherSuite"
 
 - lbname: cuttingedge3
   servers:
@@ -438,6 +448,8 @@
     lbtype: http
     healthprotocol: http
     healthpath: /ping.jsp?allBusy
+    removeheaders:
+    - "CipherSuite"
 
 - lbname: cuttingedge4
   servers:
@@ -465,6 +477,8 @@
     lbtype: http
     healthprotocol: http
     healthpath: /ping.jsp?allBusy
+    removeheaders:
+    - "CipherSuite"
 
 - lbname: cuttingedge5
   servers:
@@ -492,6 +506,8 @@
     lbtype: http
     healthprotocol: http
     healthpath: /ping.jsp?allBusy
+    removeheaders:
+    - "CipherSuite"
 
 - lbname: cuttingedge6
   servers:
@@ -519,7 +535,8 @@
     lbtype: http
     healthprotocol: http
     healthpath: /ping.jsp?allBusy
-
+    removeheaders:
+    - "CipherSuite"
 
 - lbname: cuttingedge1-cs2
   servers:
@@ -547,6 +564,8 @@
     lbtype: http
     healthprotocol: http
     healthpath: /ping.jsp?allBusy
+    removeheaders:
+    - "CipherSuite"
 
 - lbname: cuttingedge2-cs2
   servers:
@@ -574,6 +593,8 @@
     lbtype: http
     healthprotocol: http
     healthpath: /ping.jsp?allBusy
+    removeheaders:
+    - "CipherSuite"
 
 - lbname: cuttingedge3-cs2
   servers:
@@ -601,6 +622,8 @@
     lbtype: http
     healthprotocol: http
     healthpath: /ping.jsp?allBusy
+    removeheaders:
+    - "CipherSuite"
 
 - lbname: cuttingedge4-cs2
   servers:
@@ -628,6 +651,8 @@
     lbtype: http
     healthprotocol: http
     healthpath: /ping.jsp?allBusy
+    removeheaders:
+    - "CipherSuite"
 
 - lbname: cuttingedge5-cs2
   servers:
@@ -655,6 +680,8 @@
     lbtype: http
     healthprotocol: http
     healthpath: /ping.jsp?allBusy
+    removeheaders:
+    - "CipherSuite"
 
 - lbname: cuttingedge6-cs2
   servers:
@@ -682,10 +709,74 @@
     lbtype: http
     healthprotocol: http
     healthpath: /ping.jsp?allBusy
+    removeheaders:
+    - "CipherSuite"
+
+- lbname: na1-mist51
+  servers:
+   - mist51ice1-app1-1-prd.eng.sfdc.net
+   - mist51ice1-app1-2-prd.eng.sfdc.net
+   - mist51ice1-app1-3-prd.eng.sfdc.net
+   - mist51ice1-app1-4-prd.eng.sfdc.net
+   - mist51ice1-app1-5-prd.eng.sfdc.net
+   - mist51ice1-app2-1-prd.eng.sfdc.net
+   - mist51ice1-app2-2-prd.eng.sfdc.net
+   - mist51ice1-app2-3-prd.eng.sfdc.net
+   - mist51ice1-app2-4-prd.eng.sfdc.net
+   - mist51ice1-app2-5-prd.eng.sfdc.net
+  ports:
+  - port: 443
+    targetport: 8090
+    reencrypt: true
+    healthport: 8085
+    lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy
+    sticky: 86400
+    tls: true
+    tlscertificate: secret_service:Mist51-VIP-Certs:na1.mist51.stm.salesforce.com.crt
+    tlskey: secret_service:Mist51-VIP-Certs:na1.mist51.stm.salesforce.com.key
+    addheaders:
+    - name: "X-Salesforce-VIP"
+      value: "SLB"
+  - port: 8443
+    targetport: 8090
+    reencrypt: true
+    healthport: 8085
+    lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy
+    sticky: 86400
+    tls: true
+    mtls: true
+    tlscertificate: secret_service:Mist51-VIP-Certs:na1.mist51.stm.salesforce.com.crt
+    tlskey: secret_service:Mist51-VIP-Certs:na1.mist51.stm.salesforce.com.key
+    addheaders:
+    - name: "X-Salesforce-VIP"
+      value: "SLB"
+  - port: 80
+    targetport: 8085
+    lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy
+    addheaders:
+    - name: "X-Salesforce-VIP"
+      value: "SLB"
+    removeheaders:
+    - "CipherSuite"
 
 - lbname: vonage-mist51-na1
   servers:
    - mist51ice1-app1-1-prd.eng.sfdc.net
+   - mist51ice1-app1-2-prd.eng.sfdc.net
+   - mist51ice1-app1-3-prd.eng.sfdc.net
+   - mist51ice1-app1-4-prd.eng.sfdc.net
+   - mist51ice1-app1-5-prd.eng.sfdc.net
+   - mist51ice1-app2-1-prd.eng.sfdc.net
+   - mist51ice1-app2-2-prd.eng.sfdc.net
+   - mist51ice1-app2-3-prd.eng.sfdc.net
+   - mist51ice1-app2-4-prd.eng.sfdc.net
+   - mist51ice1-app2-5-prd.eng.sfdc.net
   ports:
   - port: 443
     targetport: 8090
@@ -724,10 +815,21 @@
     addheaders:
     - name: "X-Salesforce-VIP"
       value: "SLB"
+    removeheaders:
+    - "CipherSuite"
 
 - lbname: petco-mist51-na1
   servers:
    - mist51ice1-app1-1-prd.eng.sfdc.net
+   - mist51ice1-app1-2-prd.eng.sfdc.net
+   - mist51ice1-app1-3-prd.eng.sfdc.net
+   - mist51ice1-app1-4-prd.eng.sfdc.net
+   - mist51ice1-app1-5-prd.eng.sfdc.net
+   - mist51ice1-app2-1-prd.eng.sfdc.net
+   - mist51ice1-app2-2-prd.eng.sfdc.net
+   - mist51ice1-app2-3-prd.eng.sfdc.net
+   - mist51ice1-app2-4-prd.eng.sfdc.net
+   - mist51ice1-app2-5-prd.eng.sfdc.net
   ports:
   - port: 443
     targetport: 8090
@@ -766,10 +868,21 @@
     addheaders:
     - name: "X-Salesforce-VIP"
       value: "SLB"
+    removeheaders:
+    - "CipherSuite"
 
 - lbname: petco2-mist51-na1
   servers:
    - mist51ice1-app1-1-prd.eng.sfdc.net
+   - mist51ice1-app1-2-prd.eng.sfdc.net
+   - mist51ice1-app1-3-prd.eng.sfdc.net
+   - mist51ice1-app1-4-prd.eng.sfdc.net
+   - mist51ice1-app1-5-prd.eng.sfdc.net
+   - mist51ice1-app2-1-prd.eng.sfdc.net
+   - mist51ice1-app2-2-prd.eng.sfdc.net
+   - mist51ice1-app2-3-prd.eng.sfdc.net
+   - mist51ice1-app2-4-prd.eng.sfdc.net
+   - mist51ice1-app2-5-prd.eng.sfdc.net
   ports:
   - port: 443
     targetport: 8090
@@ -808,3 +921,5 @@
     addheaders:
     - name: "X-Salesforce-VIP"
       value: "SLB"    
+    removeheaders:
+    - "CipherSuite"
