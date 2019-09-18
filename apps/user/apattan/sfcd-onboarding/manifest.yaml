@@ -20,7 +20,7 @@ system:
         exec:
           command:
           - "true"
-        initialDelaySeconds: 4
+        initialDelaySeconds: 3
         # Keeping this high due to latencies accessing Spinnaker from SAMTWO
         periodSeconds: 20
       volumeMounts:
