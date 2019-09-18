@@ -132,6 +132,7 @@ local cre_production = {
                     "retail-cre.aadhavan.ramesh",
                     "retail-cre.ahersans",
                     "retail-cre.ebishop",
+                    "retail-cre.ewulf",
                     "retail-cre.jboard",
                     "retail-cre.cre-control-plane",
                     "retail-cre.cre-control-plane-ccp-func",
