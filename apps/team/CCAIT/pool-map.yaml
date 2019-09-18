@@ -1,13 +1,22 @@
 apps:
   geoip-prod:
-    - dfw/dfw-sam_gater
-    - phx/phx-sam_gater
+    - cdu/cdu-sam_gater
+    - frf/frf-sam_gater
     - lo2/lo2-sam_gater
+    - syd/syd-sam_gater
+    - ukb/ukb-sam_gater
+    - fra/fra-sam_gater
+    - hnd/hnd-sam_gater
     - lo3/lo3-sam_gater
     - yul/yul-sam_gater
     - yhu/yhu-sam_gater
-    - syd/syd-sam_gater
-    - cdu/cdu-sam_gater
+    - iad/iad-sam_gater
+    - ord/ord-sam_gater
+    - dfw/dfw-sam_gater
+    - cdg/cdg-sam_gater
+    - phx/phx-sam_gater
+    - ph2/ph2-sam_gater
+    - ia2/ia2-sam_gater
   geoip-prod-canary:
     - par/par-sam_gater
   geoip-sandbox:
