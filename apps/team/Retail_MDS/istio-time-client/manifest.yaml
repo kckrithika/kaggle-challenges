@@ -1,0 +1,52 @@
+# This app runs with istio-proxy getting configs from Istio Pilot. Note the annotation "sidecar.istio.io/inject".
+# TimeClient (istio-proxy) -> Core App NA43 (istio-proxy).
+
+apiVersion: v1
+
+system:
+  notifications:
+    email:
+    - meshcontrol@salesforce.com
+  functions:
+  - name: istio-time-client
+    count: 1
+    labels:
+      app: istio-time-client
+      settings_path: istio.-.prd.-.istio-time-client
+      istio_app: test
+    annotations:
+      sidecar.istio.io/inject: "true"
+    containers:
+    - name: time
+      # TODO:NIKO: Release jenikins link 
+      #image: sfci/services/sfdc-bazel/scone/ordering:8c7a32bef
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/jbratton/time:dev
+      args:
+      - ForeverClient
+      - time.service-mesh.svc.mesh.sfdc.net
+      - 5000
+      env:
+      - name: SFDC_ENVIRONMENT
+        value: istio
+      livenessProbe:
+        initialDelaySeconds: 20
+        exec:
+          command: ["/bin/true"]
+
+    # Volumes used by auto-injected istio-proxy.
+    volumes:
+    - name: tls-client-cert
+      maddogCert:
+        type: client
+    - name: tls-server-cert
+      maddogCert:
+        type: server
+
+  loadbalancers:
+    - lbname: istio-time-client
+      function: istio-time-client
+      annotations:
+        routing.mesh.sfdc.net/enabled: "true"
+      labels:
+        app: istio-time-client
+        settings_path: istio.-.prd.-.istio-time-client
