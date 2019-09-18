@@ -85,10 +85,6 @@ apps:
   - ukb/ukb-sam_warden
   - phx/phx-sam_warden
   - fra/fra-sam_warden
-  - cdu/cdu-sam_warden
-  - syd/syd-sam_warden
-  - yhu/yhu-sam_warden
-  - yul/yul-sam_warden
   - cdg/cdg-sam_warden
   - ia2/ia2-sam_warden
   - ph2/ph2-sam_warden
@@ -96,6 +92,11 @@ apps:
   - lo3/lo3-sam_warden
  prod-maiev-receiver-alternate:
   - frf/frf-sam_warden
+ prod-maiev-receiver-mofo:
+  - cdu/cdu-sam_warden
+  - syd/syd-sam_warden
+  - yhu/yhu-sam_warden
+  - yul/yul-sam_warden
  prod-warden:
   - dfw/dfw-sam_warden
   - iad/iad-sam_warden

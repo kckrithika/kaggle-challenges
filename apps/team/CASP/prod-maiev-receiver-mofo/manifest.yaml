@@ -1,0 +1,38 @@
+apiVersion: v1
+
+system:
+    notifications:
+      email:
+        - warden@salesforce.com
+    functions:
+    - name: maiev-receiver-func
+      count: 3
+      strategy:
+        type: RollingUpdate
+        rollingUpdate:
+          maxSurge: 0
+          maxUnavailable: 1
+      containers:
+      - name: prod-maiev-receiver
+        image: dva/maiev-receiver:39
+        ports:
+        - name: receiver-grpc
+          containerPort: 7442
+          hostPort: 17444
+        livenessProbe:
+          exec:
+            command:
+            - /usr/bin/true
+        env:
+        - name: MASTER_GRPC_PORT
+          value: "7442"
+        - name: CANTOR_GRPC_TARGET
+          value: "shared0-samminionwarden1-1-$KINGDOM.ops.sfdc.net:17443"
+    loadbalancers:
+    - lbname: maiev-receiver
+      function: maiev-receiver-func
+      slbEnabled: true
+      nodeExposed: true
+      ports:
+        - port: 7442
+          targetport: 7442
