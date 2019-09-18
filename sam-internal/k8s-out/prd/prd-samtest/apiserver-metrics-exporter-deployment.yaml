@@ -71,6 +71,8 @@ spec:
           name: opencensus-conf-tpl
         - mountPath: /generated
           name: opencensus-conf-gen
+      nodeSelector:
+        pool: prd-samtest
       serviceAccountName: apiserver-metrics-exporter
       volumes:
       - configMap:
