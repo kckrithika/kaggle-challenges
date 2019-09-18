@@ -5,6 +5,7 @@
 # Run k8s-in/build.sh after updating pools
 access:
   - 'team/Gater'
+  - 'team/CCAIT'
   - 'team/service-mesh'
   - 'team/mesh-control-plane'
   - 'team/discovery'

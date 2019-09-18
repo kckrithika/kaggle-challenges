@@ -326,12 +326,14 @@
     {
       "namespaces": [
         "gater",
+        "ccait",
         "service-mesh",
         "mesh-control-plane",
         "discovery"
       ],
       "access": [
         "team/Gater",
+        "team/CCAIT",
         "team/service-mesh",
         "team/mesh-control-plane",
         "team/discovery"
@@ -660,6 +662,7 @@
     {
       "namespaces": [
         "gater",
+        "ccait",
         "service-mesh",
         "mesh-control-plane",
         "service-protection",
@@ -668,6 +671,7 @@
       ],
       "access": [
         "team/Gater",
+        "team/CCAIT",
         "team/service-mesh",
         "team/mesh-control-plane",
         "team/Service_Protection",
@@ -912,6 +916,7 @@
     {
       "namespaces": [
         "gater",
+        "ccait",
         "service-mesh",
         "mesh-control-plane",
         "service-protection",
@@ -920,6 +925,7 @@
       ],
       "access": [
         "team/Gater",
+        "team/CCAIT",
         "team/service-mesh",
         "team/mesh-control-plane",
         "team/Service_Protection",
@@ -1072,6 +1078,7 @@
     {
       "namespaces": [
         "gater",
+        "ccait",
         "service-mesh",
         "mesh-control-plane",
         "service-protection",
@@ -1079,6 +1086,7 @@
       ],
       "access": [
         "team/Gater",
+        "team/CCAIT",
         "team/service-mesh",
         "team/mesh-control-plane",
         "team/Service_Protection",
@@ -1260,6 +1268,7 @@
     {
       "namespaces": [
         "gater",
+        "ccait",
         "service-mesh",
         "mesh-control-plane",
         "service-protection",
@@ -1268,6 +1277,7 @@
       ],
       "access": [
         "team/Gater",
+        "team/CCAIT",
         "team/service-mesh",
         "team/mesh-control-plane",
         "team/Service_Protection",
@@ -1886,6 +1896,7 @@
     {
       "namespaces": [
         "gater",
+        "ccait",
         "service-mesh",
         "mesh-control-plane",
         "service-protection",
@@ -1894,6 +1905,7 @@
       ],
       "access": [
         "team/Gater",
+        "team/CCAIT",
         "team/service-mesh",
         "team/mesh-control-plane",
         "team/Service_Protection",
@@ -2566,6 +2578,7 @@
     {
       "namespaces": [
         "gater",
+        "ccait",
         "service-mesh",
         "mesh-control-plane",
         "service-protection",
@@ -2574,6 +2587,7 @@
       ],
       "access": [
         "team/Gater",
+        "team/CCAIT",
         "team/service-mesh",
         "team/mesh-control-plane",
         "team/Service_Protection",
@@ -4216,6 +4230,7 @@
     {
       "namespaces": [
         "gater",
+        "ccait",
         "service-mesh",
         "mesh-control-plane",
         "service-protection",
@@ -4223,6 +4238,7 @@
       ],
       "access": [
         "team/Gater",
+        "team/CCAIT",
         "team/service-mesh",
         "team/mesh-control-plane",
         "team/Service_Protection",
@@ -4404,6 +4420,7 @@
     {
       "namespaces": [
         "gater",
+        "ccait",
         "service-mesh",
         "mesh-control-plane",
         "service-protection",
@@ -4412,6 +4429,7 @@
       ],
       "access": [
         "team/Gater",
+        "team/CCAIT",
         "team/service-mesh",
         "team/mesh-control-plane",
         "team/Service_Protection",
@@ -4542,12 +4560,14 @@
     {
       "namespaces": [
         "gater",
+        "ccait",
         "service-mesh",
         "mesh-control-plane",
         "discovery"
       ],
       "access": [
         "team/Gater",
+        "team/CCAIT",
         "team/service-mesh",
         "team/mesh-control-plane",
         "team/discovery"
