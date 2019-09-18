@@ -25,7 +25,6 @@ configs.deploymentBase("service-mesh") {
     selector: {
       matchLabels: {
         app: "istio-routing-webhook",
-        name: "istio-routing-webhook",
       },
     },
     template: {

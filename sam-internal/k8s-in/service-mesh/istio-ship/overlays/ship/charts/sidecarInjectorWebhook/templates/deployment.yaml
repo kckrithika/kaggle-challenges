@@ -8,12 +8,13 @@ metadata:
 spec:
   selector:
     matchLabels:
-      istio: sidecar-injector
+      app: sidecarInjectorWebhook
   template:
     metadata:
       annotations:
         madkub.sam.sfdc.net/allcerts: mcpIstioConfig.sidecarInjectorMadkubAnnotations
       labels:
+        app: sidecarInjectorWebhook
         name: istio-sidecar-injector
         cluster: mcpIstioConfig.istioEstate
     spec:

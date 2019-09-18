@@ -22,6 +22,7 @@ if (istioPhases.phaseNum == 2) then
     replicas: 3,
     selector: {
       matchLabels: {
+        app: "sidecarInjectorWebhook",
         istio: "sidecar-injector",
       },
     },

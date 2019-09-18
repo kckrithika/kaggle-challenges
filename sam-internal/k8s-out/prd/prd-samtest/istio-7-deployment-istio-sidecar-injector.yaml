@@ -13,6 +13,7 @@ spec:
   replicas: 3
   selector:
     matchLabels:
+      app: sidecarInjectorWebhook
       istio: sidecar-injector
   strategy:
     rollingUpdate:

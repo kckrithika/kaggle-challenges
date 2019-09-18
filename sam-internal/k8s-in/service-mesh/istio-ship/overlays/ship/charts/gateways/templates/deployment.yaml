@@ -9,12 +9,12 @@ spec:
   selector:
     matchLabels:
       app: istio-ingressgateway
-      istio: ingressgateway
   template:
     metadata:
       annotations:
         madkub.sam.sfdc.net/allcerts: mcpIstioConfig.ingressGatewayMadkubAnnotations
       labels:
+        app: istio-ingressgateway
         name: istio-ingressgateway
     spec:
       containers:

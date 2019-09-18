@@ -35,7 +35,6 @@ configs.deploymentBase("service-mesh") {
     selector: {
       matchLabels: {
           app: "route-update-service",
-          sam_function: "route-update-service",
       },
     },
     template: {
