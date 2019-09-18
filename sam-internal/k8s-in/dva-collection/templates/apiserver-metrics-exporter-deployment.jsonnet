@@ -143,6 +143,13 @@ if collectionUtils.apiserver.featureFlag then {
                         volumeMounts: volumeMounts,
                     },
                 ],
+                # Ensure scheduling in the same pool as the master/apiserver nodes so that they are reachable.
+                # Master nodes in prd-sam do not have the "pool=<estate> label,
+                # so this will only schedule on compute which should be satisfactory.
+                # Everywhere else this includes master + compute nodes.
+                nodeSelector: {
+                    pool: configs.estate,
+                },
             },
         },
     },
