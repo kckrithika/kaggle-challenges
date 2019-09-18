@@ -38,7 +38,7 @@ local environment_images_to_promote = std.uniq(std.sort(std.flattenArrays(
 
 # SAM won't pick up images if they're deployed via k8s List files, so add those here.
 local extra_images_to_promote =
-(if watchdog.watchdog_enabled then
+(if watchdog.watchdog_enabled && !std.objectHas(flowsnake_images.feature_flags, "watchdog_refactoring") then
 [
     flowsnake_images.watchdog_canary,
     flowsnake_images.watchdog_spark_operator,
@@ -50,7 +50,16 @@ local extra_images_to_promote =
     flowsnake_images.kube_state_metrics,
     flowsnake_images.spark_worker_23_hadoop_292,
     ]
-else []);
+else [
+    flowsnake_images.watchdog_canary,
+    flowsnake_images.spark_operator_watchdog_canary,
+    flowsnake_images.hbase_watchdog_canary,
+    flowsnake_images.watchdog,
+    flowsnake_images.basic_operator_integration,
+    flowsnake_images.phoenix_spark_hbase_integration,
+    flowsnake_images.kube_state_metrics,
+    flowsnake_images.spark_worker_23_hadoop_292,
+]);
 
 if util.is_production(kingdom) then
 {
