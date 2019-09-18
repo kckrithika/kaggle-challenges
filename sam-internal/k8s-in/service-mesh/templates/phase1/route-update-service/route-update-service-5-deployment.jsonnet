@@ -32,6 +32,12 @@ configs.deploymentBase("service-mesh") {
   spec+: {
     progressDeadlineSeconds: 600,
     replicas: 1,
+    selector: {
+      matchLabels: {
+          app: "route-update-service",
+          sam_function: "route-update-service",
+      },
+    },
     template: {
       metadata: {
         annotations+: {
