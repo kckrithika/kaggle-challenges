@@ -32,6 +32,11 @@
     - shared0-infinsightapi2-2-xrd.eng.sfdc.net
     - shared0-infinsightapi2-3-xrd.eng.sfdc.net
   ports:
-    - port: 80
-      targetport: 80
-      lbtype: tcp
+    - port: 443
+      targetport: 443
+      lbtype: http
+      tls: true
+      reencrypt: true
+      healthport: 80
+      healthpath: /
+      healthprotocol: http      
