@@ -102,7 +102,7 @@ if slbconfigs.isSlbEstate then configs.deploymentBase("slb") {
                                                        "--commonoptions.hostname=$(NODE_NAME)",
                                                      ]
                                                      + (
-                                                            if slbimages.phase == "1" then
+                                                            if slbimages.phase == "1" || slbimages.phase == "2" then
                                                                 ["--deletelimits.maxDeleteLimit=20"]
                                                             else
                                                                 []
