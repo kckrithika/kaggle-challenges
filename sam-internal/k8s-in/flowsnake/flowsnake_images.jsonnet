@@ -56,6 +56,8 @@ local utils = import "util_functions.jsonnet";
         # Only include new things not yet promoted to next phase. To promote, move line items to next phase.
         "2": self["3"] {
             image_tags+: {
+                integration_test_tag: "21",
+                hbase_integration_test_tag: "21",
             },
             feature_flags+: {
                 # --- flag A (Do not edit ... ---
@@ -64,6 +66,7 @@ local utils = import "util_functions.jsonnet";
                 # --- flag D (one flag between ... ---
                 # --- flag E (each pair. ... ---
                 # --- flag F (Their only purpose ... ---
+                watchdog_refactoring: "",
                 # --- flag G (is to assist ... ---
                 # --- flag H (git's diff logic ... ---
                 # --- flag I (to reduce the ---
