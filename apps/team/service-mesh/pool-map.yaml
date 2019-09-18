@@ -139,6 +139,10 @@ apps:
 #  geoipnk:
 #    - prd/prd-sam_gater
 
+  # Nikolay: Testing Time client (temporary app)
+  istio-time-client:
+    - prd/prd-sam_gater
+
   authz-svc:
     - prd/prd-sam_gater
   demo-authz:
