@@ -15,7 +15,33 @@ system:
       - "-secretsFile"
       - "/caiman-watchdog/classes/samapp.user-hsuanyu-chen.k4a-watchdog-prd.zip"
       - "-certPath"
-      - "/clientcert/"
+      - "/clientcert"
+      - "-sleepTime"
+      - "5"
+      livenessProbe:
+        exec:
+          command: ["ls", "/"]
+        failureThreshold: 3
+        initialDelaySeconds: 5
+        periodSeconds: 60
+      volumeMounts:
+      - mountPath: /clientcert
+        name: cert
+    - name: k4a-watchdog-crd
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/hsuanyu-chen/caiman-watchdog/k4a-20190916:latest
+      command:
+      - "java"
+      - "-Duser.home=/tmp"
+      - "-jar"
+      - "/caiman-watchdog/caiman-watchdog-0.0.15-SNAPSHOT.jar"
+      - "-secretsFile"
+      - "/caiman-watchdog/classes/samapp.user-hsuanyu-chen.k4a-watchdog-prd.zip"
+      - "-certPath"
+      - "/clientcert"
+      - "-sleepTime"
+      - "5"
+      - "-url"
+      - "https://sec0-kfora1-2-crd.eng.sfdc.net:8443"
       livenessProbe:
         exec:
           command: ["ls", "/"]
