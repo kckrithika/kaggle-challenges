@@ -39,5 +39,5 @@
       tls: true
       reencrypt: true
       healthport: 80
-      healthpath: /
+      healthpath: /ping.jsp
       healthprotocol: http      
