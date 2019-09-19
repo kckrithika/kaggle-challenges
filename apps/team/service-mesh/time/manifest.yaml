@@ -27,7 +27,7 @@ system:
         value: mesh
       args:
       - -endpoint
-      - time:DATACENTER:7012
+      - time:DATACENTER_ALLENV:7012
       livenessProbe:
         initialDelaySeconds: 5
         exec:
