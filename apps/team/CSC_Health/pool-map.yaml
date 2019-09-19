@@ -41,6 +41,7 @@ apps:
     - xrd/xrd-sam_report_collector
     - ia4/ia4-sam_report_collector
     - ia5/ia5-sam_report_collector
+    - syd/syd-sam_report_collector
   temp-store:
     - prd/prd-sdc
     - prd/prd-sam_report_collector
@@ -61,11 +62,11 @@ apps:
     - xrd/xrd-sam_report_collector
     - ia4/ia4-sam_report_collector
     - ia5/ia5-sam_report_collector
+    - syd/syd-sam_report_collector
   reportcollector-pc:
     - yhu/yhu-sam_report_collector
     - yul/yul-sam_report_collector
   reportcollector-hostnet:
-    - syd/syd-sam_report_collector
   repcollavailwd:
     - prd/prd-sam_report_collector
     - dfw/dfw-sam_report_collector
