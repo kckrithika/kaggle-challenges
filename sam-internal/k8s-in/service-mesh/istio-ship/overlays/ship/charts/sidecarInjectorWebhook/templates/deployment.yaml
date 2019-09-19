@@ -8,7 +8,6 @@ metadata:
 spec:
   selector:
     matchLabels:
-      app: sidecarInjectorWebhook
       istio: sidecar-injector
   template:
     metadata:
