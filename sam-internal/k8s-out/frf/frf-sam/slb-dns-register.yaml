@@ -278,6 +278,7 @@ spec:
         - --client.dialSocket=true
         - --commonoptions.metricsendpoint=mandm-funnel-frf1.data.sfdc.net:8080
         - --commonoptions.hostname=$(NODE_NAME)
+        - --deletelimits.maxDeleteLimit=20
         - --keyfile=/cert3/client/keys/client-key.pem
         - --certfile=/cert3/client/certificates/client.pem
         - --cafile=/cert3/ca/cabundle.pem

@@ -100,13 +100,8 @@ if slbconfigs.isSlbEstate then configs.deploymentBase("slb") {
                                                        "--client.dialSocket=true",
                                                        "--commonoptions.metricsendpoint=" + configs.funnelVIP,
                                                        "--commonoptions.hostname=$(NODE_NAME)",
+                                                       "--deletelimits.maxDeleteLimit=20",
                                                      ]
-                                                     + (
-                                                            if slbimages.phase == "1" || slbimages.phase == "2" then
-                                                                ["--deletelimits.maxDeleteLimit=20"]
-                                                            else
-                                                                []
-                                                       )
                                                      + roleBasedSecretArgs,
                                            volumeMounts: configs.filter_empty([
                                                configs.maddog_cert_volume_mount,
