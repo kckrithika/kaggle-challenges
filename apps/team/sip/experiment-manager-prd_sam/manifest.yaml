@@ -8,9 +8,6 @@ system:
   - name: sip-em-dev
     count: 1
     volumes:
-    - name: logvol
-      hostPath:
-        path: /home/sfdc-search-sip/logs
     - name: blacktab-secret
       k4asecret:
         secretName: blacktab-credentials
@@ -43,8 +40,6 @@ system:
           path: /manage/health
           port: 15372
       volumeMounts:
-      - mountPath: /home/sfdc-search-sip/logs
-        name: logvol
       - mountPath: /secrets/blacktab/
         name: blacktab-secret
         readOnly: true
