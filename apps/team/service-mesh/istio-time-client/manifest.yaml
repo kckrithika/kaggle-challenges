@@ -27,6 +27,8 @@ system:
       env:
       - name: SFDC_ENVIRONMENT
         value: istio
+      - name: "FAKE_REDEPLOY_VAR"
+        value: "1"
       livenessProbe:
         initialDelaySeconds: 20
         exec:
