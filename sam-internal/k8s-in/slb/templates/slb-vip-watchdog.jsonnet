@@ -143,7 +143,8 @@ if slbconfigs.isSlbEstate then configs.deploymentBase("slb") {
                 namespace: "sam-system",
             }
             +
-            (if slbimages.phase == "1" then
+            (
+if slbimages.phase == "1" then
             {
                 annotations: {
                     "madkub.sam.sfdc.net/allcerts": std.manifestJsonEx(madkub.madkubSlbCertsAnnotation(certDirs), " "),
