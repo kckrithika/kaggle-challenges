@@ -4,7 +4,7 @@ system:
   - name: dbaas-backup-test
     count: 1
     containers:
-    - name: dbaas-backup-test
+    - name: ops0-nbmaster3-1-prd
       image: dva/threeeyedraven:39d2787f1292c4fa432a63769f2a84958828618e
       env:
       - name: SFDC_ENVIRONMENT
@@ -15,11 +15,11 @@ system:
       - name: SPRING_PROFILES_ACTIVE 
         value: dc.$(KINGDOM),sdb
       - name: SDB_UCMD_CERT
-        value: /client-certs/certificates/client.pem
+        value: /client-certs/client/certificates/client.pem
       - name: SDB_UCMD_KEY
-        value: /client-certs/keys/client-key.pem
+        value: /client-certs/client/keys/client-key.pem
       - name: SDB_UCMD_CA
-        value: /client-certs/cacerts.pem
+        value: /client-certs/ca/cacerts.pem
       ports:
       - containerPort: 8080
         name: http
