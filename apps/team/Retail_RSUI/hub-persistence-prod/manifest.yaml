@@ -21,7 +21,7 @@ system:
 
       containers:
         - name: hub-persistence
-          image: sfci/retail/hub-persistence:0.1
+          image: sfci/retail/hub-persistence:0.1.19
           ports:
             # Jetty http1 ports for incoming public traffic via SLB
             - containerPort: 7022
