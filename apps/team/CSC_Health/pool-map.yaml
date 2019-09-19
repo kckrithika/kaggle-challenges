@@ -156,6 +156,7 @@ apps:
     - xrd/xrd-sam_report_collector
     - ia4/ia4-sam_report_collector
     - ia5/ia5-sam_report_collector
+    - syd/syd-sam_report_collector
   cname-repcollavailwd-pc:
     - yhu/yhu-sam_report_collector
     - yul/yul-sam_report_collector
