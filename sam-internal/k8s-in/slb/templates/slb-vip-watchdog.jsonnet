@@ -90,7 +90,7 @@ if slbconfigs.isSlbEstate then configs.deploymentBase("slb") {
                           slbconfigs.cleanup_logs_volume,
                           slbconfigs.proxyconfig_volume,
                       ] + (if slbimages.phase == "1" then
-                            madkub.madkubSlbCertVolumes(certDirs)
+                            madkub.madkubSlbCertVolumes(certDirs) + madkub.madkubSlbMadkubVolumes()
                            else [])),
                       containers: [
                           {
@@ -141,7 +141,18 @@ if slbconfigs.isSlbEstate then configs.deploymentBase("slb") {
                     apptype: "monitoring",
                 } + configs.ownerLabel.slb,
                 namespace: "sam-system",
-            },
+            }
+            +
+            (
+if slbimages.phase == "1" then
+            {
+                annotations: {
+                    "madkub.sam.sfdc.net/allcerts": std.manifestJsonEx(madkub.madkubSlbCertsAnnotation(certDirs), " "),
+                },
+            }
+            else
+                {}
+            ),
         },
         strategy: {
             type: "RollingUpdate",
