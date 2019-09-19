@@ -12,6 +12,10 @@ system:
         value: "-"
       - name: SETTINGS_PATH
         value: "-.-.prd.dbaas0.3ER"
+      - name: SETTINGS_POD
+        value: dbaas0
+      - name: POD
+        value: dbaas0
       - name: DC
         value: $(KINGDOM)
       - name: SPRING_PROFILES_ACTIVE 
