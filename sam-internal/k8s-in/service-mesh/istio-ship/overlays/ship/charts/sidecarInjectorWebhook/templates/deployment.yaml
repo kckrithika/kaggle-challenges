@@ -9,12 +9,14 @@ spec:
   selector:
     matchLabels:
       app: sidecarInjectorWebhook
+      istio: sidecar-injector
   template:
     metadata:
       annotations:
         madkub.sam.sfdc.net/allcerts: mcpIstioConfig.sidecarInjectorMadkubAnnotations
       labels:
         app: sidecarInjectorWebhook
+        istio: sidecar-injector
         name: istio-sidecar-injector
         cluster: mcpIstioConfig.istioEstate
     spec:
