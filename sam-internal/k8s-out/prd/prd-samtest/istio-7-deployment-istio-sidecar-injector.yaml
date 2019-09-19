@@ -42,6 +42,7 @@ spec:
       labels:
         app: sidecarInjectorWebhook
         chart: sidecarInjectorWebhook
+        cluster: prd-samtest
         heritage: Tiller
         istio: sidecar-injector
         name: istio-sidecar-injector

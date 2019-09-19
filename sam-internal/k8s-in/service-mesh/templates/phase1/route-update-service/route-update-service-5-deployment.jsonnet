@@ -32,6 +32,11 @@ configs.deploymentBase("service-mesh") {
   spec+: {
     progressDeadlineSeconds: 600,
     replicas: 1,
+    selector: {
+      matchLabels: {
+          app: "route-update-service",
+      },
+    },
     template: {
       metadata: {
         annotations+: {
@@ -58,6 +63,7 @@ configs.deploymentBase("service-mesh") {
           disco_role: "route-update-service",
           settings_path: "mesh.-." + configs.kingdom + ".-." + "route-update-service",
           sam_function: "route-update-service",
+          cluster: mcpIstioConfig.istioEstate,
         },
       },
       spec: configs.specWithMadDog {

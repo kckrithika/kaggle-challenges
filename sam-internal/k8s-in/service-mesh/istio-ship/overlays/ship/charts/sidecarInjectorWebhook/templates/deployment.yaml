@@ -14,7 +14,10 @@ spec:
       annotations:
         madkub.sam.sfdc.net/allcerts: mcpIstioConfig.sidecarInjectorMadkubAnnotations
       labels:
+        app: sidecarInjectorWebhook
+        istio: sidecar-injector
         name: istio-sidecar-injector
+        cluster: mcpIstioConfig.istioEstate
     spec:
       containers:
       - args:
