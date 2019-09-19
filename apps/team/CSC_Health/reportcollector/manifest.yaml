@@ -19,7 +19,7 @@ system:
           path: /var/log/report-collector
     containers:
     - name: report-collectorha
-      image: dva/report-collector:10
+      image: dva/report-collector:12
       ports:
       - name: admin
         containerPort: 8082
