@@ -1,4 +1,5 @@
 apps:
   nights-watch-gus:
-# Stale app disabled by automation.  See https://sfdc.co/samsandbox
-#    - prd/prd-sam
+    - prd/prd-sam
+  dbaas-backup:
+    - prd/prd-sam
