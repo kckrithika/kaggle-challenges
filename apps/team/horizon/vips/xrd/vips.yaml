@@ -38,6 +38,6 @@
       lbtype: http
       tls: true
       reencrypt: true
-      healthport: 443
+      healthport: 80
       healthpath: /ping.jsp
-      healthprotocol: https     
+      healthprotocol: http
