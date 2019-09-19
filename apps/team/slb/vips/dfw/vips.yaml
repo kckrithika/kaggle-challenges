@@ -1,15 +1,15 @@
 - lbname: org-cce2e-cs3
   servers:
-    - cs3-app2-3-dfw.ops.sfdc.net
-    - cs3-app1-4-dfw.ops.sfdc.net
     - cs3-app1-1-dfw.ops.sfdc.net
-    - cs3-app1-2-dfw.ops.sfdc.net
     - cs3-app1-3-dfw.ops.sfdc.net
     - cs3-app2-1-dfw.ops.sfdc.net
-    - cs3-app2-4-dfw.ops.sfdc.net
     - cs3-app2-5-dfw.ops.sfdc.net
+    - cs3-app1-5-dfw.ops.sfdc.net
+    - cs3-app1-2-dfw.ops.sfdc.net
     - cs3-app2-2-dfw.ops.sfdc.net
-    - cs3-app1-5-dfw.ops.sfdc.net  
+    - cs3-app2-4-dfw.ops.sfdc.net
+    - cs3-app1-4-dfw.ops.sfdc.net
+    - cs3-app2-3-dfw.ops.sfdc.net  
   ports:
   - port: 443
     targetport: 8090
@@ -32,6 +32,11 @@
     - "X-Real-IP"
     - "X-Client-Cert"
     - "X-Client-Fingerprint" 
+    - "SSL_CLIENT_S_DN"
+    - "SSL_CLIENT_M_SERIAL"
+    - "SSL_CLIENT_I_DN"
+    - "SSL_SHA1_HASH"
+    - "SSL_CLIENT_V_REMAIN" 
   - port: 8443
     targetport: 8090
     reencrypt: true
@@ -53,7 +58,8 @@
     - "X-Client-Verify"
     - "X-Real-IP"
     - "X-Client-Cert"
-    - "X-Client-Fingerprint"   
+    - "X-Client-Fingerprint"  
+    - "SSL_CLIENT_V_REMAIN"   
   - port: 80
     targetport: 8085
     lbtype: http
@@ -64,6 +70,11 @@
     - "X-Forwarded-Proto" 
     - "X-Forwarded-For" 
     - "X-Real-IP"
+    - "SSL_CLIENT_S_DN"
+    - "SSL_CLIENT_M_SERIAL"
+    - "SSL_CLIENT_I_DN"
+    - "SSL_SHA1_HASH"
+    - "SSL_CLIENT_V_REMAIN" 
     addheaders:
     - name: "X-Salesforce-VIP"
       value: "SLB"
@@ -71,16 +82,16 @@
 
 - lbname: org-cce2e-cs7
   servers:
-    - cs7-app1-5-dfw.ops.sfdc.net
-    - cs7-app2-3-dfw.ops.sfdc.net
-    - cs7-app1-4-dfw.ops.sfdc.net
-    - cs7-app2-2-dfw.ops.sfdc.net
-    - cs7-app1-3-dfw.ops.sfdc.net
-    - cs7-app2-5-dfw.ops.sfdc.net
     - cs7-app1-1-dfw.ops.sfdc.net
+    - cs7-app2-5-dfw.ops.sfdc.net
+    - cs7-app2-3-dfw.ops.sfdc.net
+    - cs7-app1-3-dfw.ops.sfdc.net
+    - cs7-app1-5-dfw.ops.sfdc.net
+    - cs7-app2-2-dfw.ops.sfdc.net
+    - cs7-app1-4-dfw.ops.sfdc.net
+    - cs7-app2-1-dfw.ops.sfdc.net
     - cs7-app2-4-dfw.ops.sfdc.net
-    - cs7-app1-2-dfw.ops.sfdc.net
-    - cs7-app2-1-dfw.ops.sfdc.net  
+    - cs7-app1-2-dfw.ops.sfdc.net  
   ports:
   - port: 443
     targetport: 8090
@@ -103,6 +114,11 @@
     - "X-Real-IP"
     - "X-Client-Cert"
     - "X-Client-Fingerprint" 
+    - "SSL_CLIENT_S_DN"
+    - "SSL_CLIENT_M_SERIAL"
+    - "SSL_CLIENT_I_DN"
+    - "SSL_SHA1_HASH"
+    - "SSL_CLIENT_V_REMAIN" 
   - port: 8443
     targetport: 8090
     reencrypt: true
@@ -124,7 +140,8 @@
     - "X-Client-Verify"
     - "X-Real-IP"
     - "X-Client-Cert"
-    - "X-Client-Fingerprint"   
+    - "X-Client-Fingerprint"  
+    - "SSL_CLIENT_V_REMAIN"   
   - port: 80
     targetport: 8085
     lbtype: http
@@ -135,6 +152,11 @@
     - "X-Forwarded-Proto" 
     - "X-Forwarded-For" 
     - "X-Real-IP"
+    - "SSL_CLIENT_S_DN"
+    - "SSL_CLIENT_M_SERIAL"
+    - "SSL_CLIENT_I_DN"
+    - "SSL_SHA1_HASH"
+    - "SSL_CLIENT_V_REMAIN" 
     addheaders:
     - name: "X-Salesforce-VIP"
       value: "SLB"
@@ -142,16 +164,16 @@
 
 - lbname: org-cce2e-cs9
   servers:
-    - cs9-app1-5-dfw.ops.sfdc.net
-    - cs9-app1-1-dfw.ops.sfdc.net
-    - cs9-app2-3-dfw.ops.sfdc.net
+    - cs9-app2-2-dfw.ops.sfdc.net
     - cs9-app1-3-dfw.ops.sfdc.net
+    - cs9-app2-3-dfw.ops.sfdc.net
+    - cs9-app1-5-dfw.ops.sfdc.net
+    - cs9-app2-4-dfw.ops.sfdc.net
     - cs9-app2-5-dfw.ops.sfdc.net
     - cs9-app2-1-dfw.ops.sfdc.net
-    - cs9-app2-2-dfw.ops.sfdc.net
     - cs9-app1-2-dfw.ops.sfdc.net
-    - cs9-app1-4-dfw.ops.sfdc.net
-    - cs9-app2-4-dfw.ops.sfdc.net  
+    - cs9-app1-1-dfw.ops.sfdc.net
+    - cs9-app1-4-dfw.ops.sfdc.net  
   ports:
   - port: 443
     targetport: 8090
@@ -174,6 +196,11 @@
     - "X-Real-IP"
     - "X-Client-Cert"
     - "X-Client-Fingerprint" 
+    - "SSL_CLIENT_S_DN"
+    - "SSL_CLIENT_M_SERIAL"
+    - "SSL_CLIENT_I_DN"
+    - "SSL_SHA1_HASH"
+    - "SSL_CLIENT_V_REMAIN" 
   - port: 8443
     targetport: 8090
     reencrypt: true
@@ -195,7 +222,8 @@
     - "X-Client-Verify"
     - "X-Real-IP"
     - "X-Client-Cert"
-    - "X-Client-Fingerprint"   
+    - "X-Client-Fingerprint"  
+    - "SSL_CLIENT_V_REMAIN"   
   - port: 80
     targetport: 8085
     lbtype: http
@@ -206,6 +234,11 @@
     - "X-Forwarded-Proto" 
     - "X-Forwarded-For" 
     - "X-Real-IP"
+    - "SSL_CLIENT_S_DN"
+    - "SSL_CLIENT_M_SERIAL"
+    - "SSL_CLIENT_I_DN"
+    - "SSL_SHA1_HASH"
+    - "SSL_CLIENT_V_REMAIN" 
     addheaders:
     - name: "X-Salesforce-VIP"
       value: "SLB"
@@ -213,15 +246,15 @@
 
 - lbname: org-cce2e-cs10
   servers:
-    - cs10-app2-5-dfw.ops.sfdc.net
-    - cs10-app1-2-dfw.ops.sfdc.net
-    - cs10-app1-1-dfw.ops.sfdc.net
     - cs10-app1-3-dfw.ops.sfdc.net
+    - cs10-app1-2-dfw.ops.sfdc.net
+    - cs10-app1-5-dfw.ops.sfdc.net
+    - cs10-app1-1-dfw.ops.sfdc.net
     - cs10-app2-1-dfw.ops.sfdc.net
     - cs10-app2-3-dfw.ops.sfdc.net
-    - cs10-app2-2-dfw.ops.sfdc.net
     - cs10-app2-4-dfw.ops.sfdc.net
-    - cs10-app1-5-dfw.ops.sfdc.net  
+    - cs10-app2-2-dfw.ops.sfdc.net
+    - cs10-app2-5-dfw.ops.sfdc.net  
   ports:
   - port: 443
     targetport: 8090
@@ -244,6 +277,11 @@
     - "X-Real-IP"
     - "X-Client-Cert"
     - "X-Client-Fingerprint" 
+    - "SSL_CLIENT_S_DN"
+    - "SSL_CLIENT_M_SERIAL"
+    - "SSL_CLIENT_I_DN"
+    - "SSL_SHA1_HASH"
+    - "SSL_CLIENT_V_REMAIN" 
   - port: 8443
     targetport: 8090
     reencrypt: true
@@ -265,7 +303,8 @@
     - "X-Client-Verify"
     - "X-Real-IP"
     - "X-Client-Cert"
-    - "X-Client-Fingerprint"   
+    - "X-Client-Fingerprint"  
+    - "SSL_CLIENT_V_REMAIN"   
   - port: 80
     targetport: 8085
     lbtype: http
@@ -276,6 +315,11 @@
     - "X-Forwarded-Proto" 
     - "X-Forwarded-For" 
     - "X-Real-IP"
+    - "SSL_CLIENT_S_DN"
+    - "SSL_CLIENT_M_SERIAL"
+    - "SSL_CLIENT_I_DN"
+    - "SSL_SHA1_HASH"
+    - "SSL_CLIENT_V_REMAIN" 
     addheaders:
     - name: "X-Salesforce-VIP"
       value: "SLB"
@@ -283,15 +327,15 @@
 
 - lbname: org-cce2e-cs11
   servers:
-    - cs11-app2-2-dfw.ops.sfdc.net
-    - cs11-app2-3-dfw.ops.sfdc.net
-    - cs11-app1-4-dfw.ops.sfdc.net
-    - cs11-app2-5-dfw.ops.sfdc.net
-    - cs11-app1-5-dfw.ops.sfdc.net
-    - cs11-app2-4-dfw.ops.sfdc.net
-    - cs11-app1-3-dfw.ops.sfdc.net
     - cs11-app1-1-dfw.ops.sfdc.net
     - cs11-app1-2-dfw.ops.sfdc.net
+    - cs11-app2-5-dfw.ops.sfdc.net
+    - cs11-app1-3-dfw.ops.sfdc.net
+    - cs11-app1-4-dfw.ops.sfdc.net
+    - cs11-app2-4-dfw.ops.sfdc.net
+    - cs11-app1-5-dfw.ops.sfdc.net
+    - cs11-app2-2-dfw.ops.sfdc.net
+    - cs11-app2-3-dfw.ops.sfdc.net
     - cs11-app2-1-dfw.ops.sfdc.net  
   ports:
   - port: 443
@@ -315,6 +359,11 @@
     - "X-Real-IP"
     - "X-Client-Cert"
     - "X-Client-Fingerprint" 
+    - "SSL_CLIENT_S_DN"
+    - "SSL_CLIENT_M_SERIAL"
+    - "SSL_CLIENT_I_DN"
+    - "SSL_SHA1_HASH"
+    - "SSL_CLIENT_V_REMAIN" 
   - port: 8443
     targetport: 8090
     reencrypt: true
@@ -336,7 +385,8 @@
     - "X-Client-Verify"
     - "X-Real-IP"
     - "X-Client-Cert"
-    - "X-Client-Fingerprint"   
+    - "X-Client-Fingerprint"  
+    - "SSL_CLIENT_V_REMAIN"   
   - port: 80
     targetport: 8085
     lbtype: http
@@ -347,6 +397,11 @@
     - "X-Forwarded-Proto" 
     - "X-Forwarded-For" 
     - "X-Real-IP"
+    - "SSL_CLIENT_S_DN"
+    - "SSL_CLIENT_M_SERIAL"
+    - "SSL_CLIENT_I_DN"
+    - "SSL_SHA1_HASH"
+    - "SSL_CLIENT_V_REMAIN" 
     addheaders:
     - name: "X-Salesforce-VIP"
       value: "SLB"
@@ -356,12 +411,12 @@
   servers:
     - cs12-app1-2-dfw.ops.sfdc.net
     - cs12-app1-4-dfw.ops.sfdc.net
+    - cs12-app2-5-dfw.ops.sfdc.net
     - cs12-app1-3-dfw.ops.sfdc.net
+    - cs12-app2-4-dfw.ops.sfdc.net
+    - cs12-app2-1-dfw.ops.sfdc.net
     - cs12-app1-5-dfw.ops.sfdc.net
     - cs12-app2-2-dfw.ops.sfdc.net
-    - cs12-app2-1-dfw.ops.sfdc.net
-    - cs12-app2-5-dfw.ops.sfdc.net
-    - cs12-app2-4-dfw.ops.sfdc.net
     - cs12-app1-1-dfw.ops.sfdc.net  
   ports:
   - port: 443
@@ -385,6 +440,11 @@
     - "X-Real-IP"
     - "X-Client-Cert"
     - "X-Client-Fingerprint" 
+    - "SSL_CLIENT_S_DN"
+    - "SSL_CLIENT_M_SERIAL"
+    - "SSL_CLIENT_I_DN"
+    - "SSL_SHA1_HASH"
+    - "SSL_CLIENT_V_REMAIN" 
   - port: 8443
     targetport: 8090
     reencrypt: true
@@ -406,7 +466,8 @@
     - "X-Client-Verify"
     - "X-Real-IP"
     - "X-Client-Cert"
-    - "X-Client-Fingerprint"   
+    - "X-Client-Fingerprint"  
+    - "SSL_CLIENT_V_REMAIN"   
   - port: 80
     targetport: 8085
     lbtype: http
@@ -417,6 +478,11 @@
     - "X-Forwarded-Proto" 
     - "X-Forwarded-For" 
     - "X-Real-IP"
+    - "SSL_CLIENT_S_DN"
+    - "SSL_CLIENT_M_SERIAL"
+    - "SSL_CLIENT_I_DN"
+    - "SSL_SHA1_HASH"
+    - "SSL_CLIENT_V_REMAIN" 
     addheaders:
     - name: "X-Salesforce-VIP"
       value: "SLB"
@@ -424,16 +490,16 @@
 
 - lbname: org-cce2e-cs13
   servers:
-    - cs13-app1-1-dfw.ops.sfdc.net
-    - cs13-app2-2-dfw.ops.sfdc.net
-    - cs13-app2-3-dfw.ops.sfdc.net
-    - cs13-app2-4-dfw.ops.sfdc.net
-    - cs13-app1-3-dfw.ops.sfdc.net
+    - cs13-app2-1-dfw.ops.sfdc.net
     - cs13-app1-4-dfw.ops.sfdc.net
     - cs13-app1-5-dfw.ops.sfdc.net
+    - cs13-app2-2-dfw.ops.sfdc.net
     - cs13-app2-5-dfw.ops.sfdc.net
-    - cs13-app1-2-dfw.ops.sfdc.net
-    - cs13-app2-1-dfw.ops.sfdc.net  
+    - cs13-app1-3-dfw.ops.sfdc.net
+    - cs13-app2-3-dfw.ops.sfdc.net
+    - cs13-app2-4-dfw.ops.sfdc.net
+    - cs13-app1-1-dfw.ops.sfdc.net
+    - cs13-app1-2-dfw.ops.sfdc.net  
   ports:
   - port: 443
     targetport: 8090
@@ -456,6 +522,11 @@
     - "X-Real-IP"
     - "X-Client-Cert"
     - "X-Client-Fingerprint" 
+    - "SSL_CLIENT_S_DN"
+    - "SSL_CLIENT_M_SERIAL"
+    - "SSL_CLIENT_I_DN"
+    - "SSL_SHA1_HASH"
+    - "SSL_CLIENT_V_REMAIN" 
   - port: 8443
     targetport: 8090
     reencrypt: true
@@ -477,7 +548,8 @@
     - "X-Client-Verify"
     - "X-Real-IP"
     - "X-Client-Cert"
-    - "X-Client-Fingerprint"   
+    - "X-Client-Fingerprint"  
+    - "SSL_CLIENT_V_REMAIN"   
   - port: 80
     targetport: 8085
     lbtype: http
@@ -488,6 +560,11 @@
     - "X-Forwarded-Proto" 
     - "X-Forwarded-For" 
     - "X-Real-IP"
+    - "SSL_CLIENT_S_DN"
+    - "SSL_CLIENT_M_SERIAL"
+    - "SSL_CLIENT_I_DN"
+    - "SSL_SHA1_HASH"
+    - "SSL_CLIENT_V_REMAIN" 
     addheaders:
     - name: "X-Salesforce-VIP"
       value: "SLB"
@@ -495,15 +572,15 @@
 
 - lbname: org-cce2e-cs19
   servers:
+    - cs19-app1-1-dfw.ops.sfdc.net
+    - cs19-app1-3-dfw.ops.sfdc.net
+    - cs19-app2-5-dfw.ops.sfdc.net
+    - cs19-app1-2-dfw.ops.sfdc.net
     - cs19-app2-1-dfw.ops.sfdc.net
     - cs19-app2-2-dfw.ops.sfdc.net
-    - cs19-app1-3-dfw.ops.sfdc.net
-    - cs19-app2-4-dfw.ops.sfdc.net
     - cs19-app2-3-dfw.ops.sfdc.net
-    - cs19-app2-5-dfw.ops.sfdc.net
+    - cs19-app2-4-dfw.ops.sfdc.net
     - cs19-app1-4-dfw.ops.sfdc.net
-    - cs19-app1-2-dfw.ops.sfdc.net
-    - cs19-app1-1-dfw.ops.sfdc.net
     - cs19-app1-5-dfw.ops.sfdc.net  
   ports:
   - port: 443
@@ -527,6 +604,11 @@
     - "X-Real-IP"
     - "X-Client-Cert"
     - "X-Client-Fingerprint" 
+    - "SSL_CLIENT_S_DN"
+    - "SSL_CLIENT_M_SERIAL"
+    - "SSL_CLIENT_I_DN"
+    - "SSL_SHA1_HASH"
+    - "SSL_CLIENT_V_REMAIN" 
   - port: 8443
     targetport: 8090
     reencrypt: true
@@ -548,7 +630,8 @@
     - "X-Client-Verify"
     - "X-Real-IP"
     - "X-Client-Cert"
-    - "X-Client-Fingerprint"   
+    - "X-Client-Fingerprint"  
+    - "SSL_CLIENT_V_REMAIN"   
   - port: 80
     targetport: 8085
     lbtype: http
@@ -559,6 +642,11 @@
     - "X-Forwarded-Proto" 
     - "X-Forwarded-For" 
     - "X-Real-IP"
+    - "SSL_CLIENT_S_DN"
+    - "SSL_CLIENT_M_SERIAL"
+    - "SSL_CLIENT_I_DN"
+    - "SSL_SHA1_HASH"
+    - "SSL_CLIENT_V_REMAIN" 
     addheaders:
     - name: "X-Salesforce-VIP"
       value: "SLB"
@@ -566,16 +654,16 @@
 
 - lbname: org-cce2e-cs20
   servers:
-    - cs20-app2-3-dfw.ops.sfdc.net
-    - cs20-app2-1-dfw.ops.sfdc.net
     - cs20-app2-4-dfw.ops.sfdc.net
-    - cs20-app2-5-dfw.ops.sfdc.net
+    - cs20-app2-1-dfw.ops.sfdc.net
     - cs20-app1-3-dfw.ops.sfdc.net
-    - cs20-app1-1-dfw.ops.sfdc.net
     - cs20-app1-5-dfw.ops.sfdc.net
-    - cs20-app2-2-dfw.ops.sfdc.net
     - cs20-app1-2-dfw.ops.sfdc.net
-    - cs20-app1-4-dfw.ops.sfdc.net  
+    - cs20-app1-4-dfw.ops.sfdc.net
+    - cs20-app2-2-dfw.ops.sfdc.net
+    - cs20-app2-5-dfw.ops.sfdc.net
+    - cs20-app1-1-dfw.ops.sfdc.net
+    - cs20-app2-3-dfw.ops.sfdc.net  
   ports:
   - port: 443
     targetport: 8090
@@ -598,6 +686,11 @@
     - "X-Real-IP"
     - "X-Client-Cert"
     - "X-Client-Fingerprint" 
+    - "SSL_CLIENT_S_DN"
+    - "SSL_CLIENT_M_SERIAL"
+    - "SSL_CLIENT_I_DN"
+    - "SSL_SHA1_HASH"
+    - "SSL_CLIENT_V_REMAIN" 
   - port: 8443
     targetport: 8090
     reencrypt: true
@@ -619,7 +712,8 @@
     - "X-Client-Verify"
     - "X-Real-IP"
     - "X-Client-Cert"
-    - "X-Client-Fingerprint"   
+    - "X-Client-Fingerprint"  
+    - "SSL_CLIENT_V_REMAIN"   
   - port: 80
     targetport: 8085
     lbtype: http
@@ -630,6 +724,11 @@
     - "X-Forwarded-Proto" 
     - "X-Forwarded-For" 
     - "X-Real-IP"
+    - "SSL_CLIENT_S_DN"
+    - "SSL_CLIENT_M_SERIAL"
+    - "SSL_CLIENT_I_DN"
+    - "SSL_SHA1_HASH"
+    - "SSL_CLIENT_V_REMAIN" 
     addheaders:
     - name: "X-Salesforce-VIP"
       value: "SLB"
@@ -637,15 +736,15 @@
 
 - lbname: org-cce2e-cs21
   servers:
-    - cs21-app2-2-dfw.ops.sfdc.net
-    - cs21-app2-3-dfw.ops.sfdc.net
-    - cs21-app2-4-dfw.ops.sfdc.net
-    - cs21-app1-5-dfw.ops.sfdc.net
-    - cs21-app2-1-dfw.ops.sfdc.net
     - cs21-app1-1-dfw.ops.sfdc.net
-    - cs21-app1-2-dfw.ops.sfdc.net
+    - cs21-app2-4-dfw.ops.sfdc.net
+    - cs21-app2-3-dfw.ops.sfdc.net
+    - cs21-app2-1-dfw.ops.sfdc.net
     - cs21-app1-3-dfw.ops.sfdc.net
     - cs21-app1-4-dfw.ops.sfdc.net
+    - cs21-app1-2-dfw.ops.sfdc.net
+    - cs21-app1-5-dfw.ops.sfdc.net
+    - cs21-app2-2-dfw.ops.sfdc.net
     - cs21-app2-5-dfw.ops.sfdc.net  
   ports:
   - port: 443
@@ -669,6 +768,11 @@
     - "X-Real-IP"
     - "X-Client-Cert"
     - "X-Client-Fingerprint" 
+    - "SSL_CLIENT_S_DN"
+    - "SSL_CLIENT_M_SERIAL"
+    - "SSL_CLIENT_I_DN"
+    - "SSL_SHA1_HASH"
+    - "SSL_CLIENT_V_REMAIN" 
   - port: 8443
     targetport: 8090
     reencrypt: true
@@ -690,7 +794,8 @@
     - "X-Client-Verify"
     - "X-Real-IP"
     - "X-Client-Cert"
-    - "X-Client-Fingerprint"   
+    - "X-Client-Fingerprint"  
+    - "SSL_CLIENT_V_REMAIN"   
   - port: 80
     targetport: 8085
     lbtype: http
@@ -701,6 +806,11 @@
     - "X-Forwarded-Proto" 
     - "X-Forwarded-For" 
     - "X-Real-IP"
+    - "SSL_CLIENT_S_DN"
+    - "SSL_CLIENT_M_SERIAL"
+    - "SSL_CLIENT_I_DN"
+    - "SSL_SHA1_HASH"
+    - "SSL_CLIENT_V_REMAIN" 
     addheaders:
     - name: "X-Salesforce-VIP"
       value: "SLB"
@@ -708,16 +818,16 @@
 
 - lbname: org-cce2e-cs23
   servers:
+    - cs23-app2-3-dfw.ops.sfdc.net
+    - cs23-app2-5-dfw.ops.sfdc.net
+    - cs23-app1-4-dfw.ops.sfdc.net
+    - cs23-app2-2-dfw.ops.sfdc.net
+    - cs23-app2-1-dfw.ops.sfdc.net
     - cs23-app1-1-dfw.ops.sfdc.net
+    - cs23-app1-5-dfw.ops.sfdc.net
     - cs23-app1-2-dfw.ops.sfdc.net
     - cs23-app1-3-dfw.ops.sfdc.net
-    - cs23-app2-4-dfw.ops.sfdc.net
-    - cs23-app1-5-dfw.ops.sfdc.net
-    - cs23-app2-3-dfw.ops.sfdc.net
-    - cs23-app1-4-dfw.ops.sfdc.net
-    - cs23-app2-1-dfw.ops.sfdc.net
-    - cs23-app2-5-dfw.ops.sfdc.net
-    - cs23-app2-2-dfw.ops.sfdc.net  
+    - cs23-app2-4-dfw.ops.sfdc.net  
   ports:
   - port: 443
     targetport: 8090
@@ -740,6 +850,11 @@
     - "X-Real-IP"
     - "X-Client-Cert"
     - "X-Client-Fingerprint" 
+    - "SSL_CLIENT_S_DN"
+    - "SSL_CLIENT_M_SERIAL"
+    - "SSL_CLIENT_I_DN"
+    - "SSL_SHA1_HASH"
+    - "SSL_CLIENT_V_REMAIN" 
   - port: 8443
     targetport: 8090
     reencrypt: true
@@ -761,7 +876,8 @@
     - "X-Client-Verify"
     - "X-Real-IP"
     - "X-Client-Cert"
-    - "X-Client-Fingerprint"   
+    - "X-Client-Fingerprint"  
+    - "SSL_CLIENT_V_REMAIN"   
   - port: 80
     targetport: 8085
     lbtype: http
@@ -772,6 +888,11 @@
     - "X-Forwarded-Proto" 
     - "X-Forwarded-For" 
     - "X-Real-IP"
+    - "SSL_CLIENT_S_DN"
+    - "SSL_CLIENT_M_SERIAL"
+    - "SSL_CLIENT_I_DN"
+    - "SSL_SHA1_HASH"
+    - "SSL_CLIENT_V_REMAIN" 
     addheaders:
     - name: "X-Salesforce-VIP"
       value: "SLB"
@@ -779,16 +900,16 @@
 
 - lbname: org-cce2e-cs25
   servers:
+    - cs25-app1-1-dfw.ops.sfdc.net
     - cs25-app1-3-dfw.ops.sfdc.net
     - cs25-app2-5-dfw.ops.sfdc.net
-    - cs25-app2-2-dfw.ops.sfdc.net
-    - cs25-app1-5-dfw.ops.sfdc.net
-    - cs25-app2-3-dfw.ops.sfdc.net
-    - cs25-app1-2-dfw.ops.sfdc.net
-    - cs25-app2-1-dfw.ops.sfdc.net
     - cs25-app1-4-dfw.ops.sfdc.net
+    - cs25-app1-5-dfw.ops.sfdc.net
+    - cs25-app1-2-dfw.ops.sfdc.net
     - cs25-app2-4-dfw.ops.sfdc.net
-    - cs25-app1-1-dfw.ops.sfdc.net  
+    - cs25-app2-3-dfw.ops.sfdc.net
+    - cs25-app2-2-dfw.ops.sfdc.net
+    - cs25-app2-1-dfw.ops.sfdc.net  
   ports:
   - port: 443
     targetport: 8090
@@ -811,6 +932,11 @@
     - "X-Real-IP"
     - "X-Client-Cert"
     - "X-Client-Fingerprint" 
+    - "SSL_CLIENT_S_DN"
+    - "SSL_CLIENT_M_SERIAL"
+    - "SSL_CLIENT_I_DN"
+    - "SSL_SHA1_HASH"
+    - "SSL_CLIENT_V_REMAIN" 
   - port: 8443
     targetport: 8090
     reencrypt: true
@@ -832,7 +958,8 @@
     - "X-Client-Verify"
     - "X-Real-IP"
     - "X-Client-Cert"
-    - "X-Client-Fingerprint"   
+    - "X-Client-Fingerprint"  
+    - "SSL_CLIENT_V_REMAIN"   
   - port: 80
     targetport: 8085
     lbtype: http
@@ -843,6 +970,11 @@
     - "X-Forwarded-Proto" 
     - "X-Forwarded-For" 
     - "X-Real-IP"
+    - "SSL_CLIENT_S_DN"
+    - "SSL_CLIENT_M_SERIAL"
+    - "SSL_CLIENT_I_DN"
+    - "SSL_SHA1_HASH"
+    - "SSL_CLIENT_V_REMAIN" 
     addheaders:
     - name: "X-Salesforce-VIP"
       value: "SLB"
@@ -850,16 +982,16 @@
 
 - lbname: org-cce2e-cs26
   servers:
-    - cs26-app1-3-dfw.ops.sfdc.net
-    - cs26-app2-2-dfw.ops.sfdc.net
-    - cs26-app2-5-dfw.ops.sfdc.net
     - cs26-app1-2-dfw.ops.sfdc.net
-    - cs26-app1-4-dfw.ops.sfdc.net
-    - cs26-app1-1-dfw.ops.sfdc.net
     - cs26-app1-5-dfw.ops.sfdc.net
-    - cs26-app2-4-dfw.ops.sfdc.net
+    - cs26-app1-1-dfw.ops.sfdc.net
     - cs26-app2-1-dfw.ops.sfdc.net
-    - cs26-app2-3-dfw.ops.sfdc.net  
+    - cs26-app1-4-dfw.ops.sfdc.net
+    - cs26-app1-3-dfw.ops.sfdc.net
+    - cs26-app2-3-dfw.ops.sfdc.net
+    - cs26-app2-4-dfw.ops.sfdc.net
+    - cs26-app2-2-dfw.ops.sfdc.net
+    - cs26-app2-5-dfw.ops.sfdc.net  
   ports:
   - port: 443
     targetport: 8090
@@ -882,6 +1014,11 @@
     - "X-Real-IP"
     - "X-Client-Cert"
     - "X-Client-Fingerprint" 
+    - "SSL_CLIENT_S_DN"
+    - "SSL_CLIENT_M_SERIAL"
+    - "SSL_CLIENT_I_DN"
+    - "SSL_SHA1_HASH"
+    - "SSL_CLIENT_V_REMAIN" 
   - port: 8443
     targetport: 8090
     reencrypt: true
@@ -903,7 +1040,8 @@
     - "X-Client-Verify"
     - "X-Real-IP"
     - "X-Client-Cert"
-    - "X-Client-Fingerprint"   
+    - "X-Client-Fingerprint"  
+    - "SSL_CLIENT_V_REMAIN"   
   - port: 80
     targetport: 8085
     lbtype: http
@@ -914,6 +1052,11 @@
     - "X-Forwarded-Proto" 
     - "X-Forwarded-For" 
     - "X-Real-IP"
+    - "SSL_CLIENT_S_DN"
+    - "SSL_CLIENT_M_SERIAL"
+    - "SSL_CLIENT_I_DN"
+    - "SSL_SHA1_HASH"
+    - "SSL_CLIENT_V_REMAIN" 
     addheaders:
     - name: "X-Salesforce-VIP"
       value: "SLB"
@@ -921,15 +1064,15 @@
 
 - lbname: org-cce2e-cs30
   servers:
-    - cs30-app2-3-dfw.ops.sfdc.net
-    - cs30-app1-3-dfw.ops.sfdc.net
-    - cs30-app1-4-dfw.ops.sfdc.net
-    - cs30-app2-4-dfw.ops.sfdc.net
-    - cs30-app1-1-dfw.ops.sfdc.net
-    - cs30-app1-5-dfw.ops.sfdc.net
-    - cs30-app2-2-dfw.ops.sfdc.net
-    - cs30-app2-5-dfw.ops.sfdc.net
     - cs30-app1-2-dfw.ops.sfdc.net
+    - cs30-app1-3-dfw.ops.sfdc.net
+    - cs30-app2-3-dfw.ops.sfdc.net
+    - cs30-app1-1-dfw.ops.sfdc.net
+    - cs30-app2-2-dfw.ops.sfdc.net
+    - cs30-app1-4-dfw.ops.sfdc.net
+    - cs30-app2-5-dfw.ops.sfdc.net
+    - cs30-app1-5-dfw.ops.sfdc.net
+    - cs30-app2-4-dfw.ops.sfdc.net
     - cs30-app2-1-dfw.ops.sfdc.net  
   ports:
   - port: 443
@@ -953,6 +1096,11 @@
     - "X-Real-IP"
     - "X-Client-Cert"
     - "X-Client-Fingerprint" 
+    - "SSL_CLIENT_S_DN"
+    - "SSL_CLIENT_M_SERIAL"
+    - "SSL_CLIENT_I_DN"
+    - "SSL_SHA1_HASH"
+    - "SSL_CLIENT_V_REMAIN" 
   - port: 8443
     targetport: 8090
     reencrypt: true
@@ -974,7 +1122,8 @@
     - "X-Client-Verify"
     - "X-Real-IP"
     - "X-Client-Cert"
-    - "X-Client-Fingerprint"   
+    - "X-Client-Fingerprint"  
+    - "SSL_CLIENT_V_REMAIN"   
   - port: 80
     targetport: 8085
     lbtype: http
@@ -985,6 +1134,11 @@
     - "X-Forwarded-Proto" 
     - "X-Forwarded-For" 
     - "X-Real-IP"
+    - "SSL_CLIENT_S_DN"
+    - "SSL_CLIENT_M_SERIAL"
+    - "SSL_CLIENT_I_DN"
+    - "SSL_SHA1_HASH"
+    - "SSL_CLIENT_V_REMAIN" 
     addheaders:
     - name: "X-Salesforce-VIP"
       value: "SLB"
@@ -992,16 +1146,16 @@
 
 - lbname: org-cce2e-cs50
   servers:
-    - cs50-app1-3-dfw.ops.sfdc.net
-    - cs50-app2-2-dfw.ops.sfdc.net
     - cs50-app2-3-dfw.ops.sfdc.net
-    - cs50-app1-5-dfw.ops.sfdc.net
-    - cs50-app2-4-dfw.ops.sfdc.net
-    - cs50-app1-1-dfw.ops.sfdc.net
     - cs50-app2-1-dfw.ops.sfdc.net
+    - cs50-app1-5-dfw.ops.sfdc.net
     - cs50-app2-5-dfw.ops.sfdc.net
+    - cs50-app1-1-dfw.ops.sfdc.net
+    - cs50-app1-4-dfw.ops.sfdc.net
+    - cs50-app2-2-dfw.ops.sfdc.net
+    - cs50-app2-4-dfw.ops.sfdc.net
     - cs50-app1-2-dfw.ops.sfdc.net
-    - cs50-app1-4-dfw.ops.sfdc.net  
+    - cs50-app1-3-dfw.ops.sfdc.net  
   ports:
   - port: 443
     targetport: 8090
@@ -1024,6 +1178,11 @@
     - "X-Real-IP"
     - "X-Client-Cert"
     - "X-Client-Fingerprint" 
+    - "SSL_CLIENT_S_DN"
+    - "SSL_CLIENT_M_SERIAL"
+    - "SSL_CLIENT_I_DN"
+    - "SSL_SHA1_HASH"
+    - "SSL_CLIENT_V_REMAIN" 
   - port: 8443
     targetport: 8090
     reencrypt: true
@@ -1045,7 +1204,8 @@
     - "X-Client-Verify"
     - "X-Real-IP"
     - "X-Client-Cert"
-    - "X-Client-Fingerprint"   
+    - "X-Client-Fingerprint"  
+    - "SSL_CLIENT_V_REMAIN"   
   - port: 80
     targetport: 8085
     lbtype: http
@@ -1056,6 +1216,11 @@
     - "X-Forwarded-Proto" 
     - "X-Forwarded-For" 
     - "X-Real-IP"
+    - "SSL_CLIENT_S_DN"
+    - "SSL_CLIENT_M_SERIAL"
+    - "SSL_CLIENT_I_DN"
+    - "SSL_SHA1_HASH"
+    - "SSL_CLIENT_V_REMAIN" 
     addheaders:
     - name: "X-Salesforce-VIP"
       value: "SLB"
@@ -1064,15 +1229,15 @@
 - lbname: org-cce2e-cs51
   servers:
     - cs51-app1-3-dfw.ops.sfdc.net
-    - cs51-app2-4-dfw.ops.sfdc.net
-    - cs51-app2-1-dfw.ops.sfdc.net
-    - cs51-app2-3-dfw.ops.sfdc.net
-    - cs51-app1-2-dfw.ops.sfdc.net
-    - cs51-app1-5-dfw.ops.sfdc.net
-    - cs51-app2-2-dfw.ops.sfdc.net
+    - cs51-app1-4-dfw.ops.sfdc.net
     - cs51-app2-5-dfw.ops.sfdc.net
+    - cs51-app2-3-dfw.ops.sfdc.net
     - cs51-app1-1-dfw.ops.sfdc.net
-    - cs51-app1-4-dfw.ops.sfdc.net  
+    - cs51-app1-2-dfw.ops.sfdc.net
+    - cs51-app2-2-dfw.ops.sfdc.net
+    - cs51-app1-5-dfw.ops.sfdc.net
+    - cs51-app2-1-dfw.ops.sfdc.net
+    - cs51-app2-4-dfw.ops.sfdc.net  
   ports:
   - port: 443
     targetport: 8090
@@ -1095,6 +1260,11 @@
     - "X-Real-IP"
     - "X-Client-Cert"
     - "X-Client-Fingerprint" 
+    - "SSL_CLIENT_S_DN"
+    - "SSL_CLIENT_M_SERIAL"
+    - "SSL_CLIENT_I_DN"
+    - "SSL_SHA1_HASH"
+    - "SSL_CLIENT_V_REMAIN" 
   - port: 8443
     targetport: 8090
     reencrypt: true
@@ -1116,7 +1286,8 @@
     - "X-Client-Verify"
     - "X-Real-IP"
     - "X-Client-Cert"
-    - "X-Client-Fingerprint"   
+    - "X-Client-Fingerprint"  
+    - "SSL_CLIENT_V_REMAIN"   
   - port: 80
     targetport: 8085
     lbtype: http
@@ -1127,6 +1298,11 @@
     - "X-Forwarded-Proto" 
     - "X-Forwarded-For" 
     - "X-Real-IP"
+    - "SSL_CLIENT_S_DN"
+    - "SSL_CLIENT_M_SERIAL"
+    - "SSL_CLIENT_I_DN"
+    - "SSL_SHA1_HASH"
+    - "SSL_CLIENT_V_REMAIN" 
     addheaders:
     - name: "X-Salesforce-VIP"
       value: "SLB"
@@ -1134,16 +1310,16 @@
 
 - lbname: org-cce2e-cs52
   servers:
-    - cs52-app1-3-dfw.ops.sfdc.net
-    - cs52-app1-5-dfw.ops.sfdc.net
-    - cs52-app2-3-dfw.ops.sfdc.net
     - cs52-app1-1-dfw.ops.sfdc.net
     - cs52-app1-2-dfw.ops.sfdc.net
     - cs52-app2-2-dfw.ops.sfdc.net
-    - cs52-app2-4-dfw.ops.sfdc.net
-    - cs52-app1-4-dfw.ops.sfdc.net
+    - cs52-app2-3-dfw.ops.sfdc.net
+    - cs52-app1-5-dfw.ops.sfdc.net
+    - cs52-app2-1-dfw.ops.sfdc.net
     - cs52-app2-5-dfw.ops.sfdc.net
-    - cs52-app2-1-dfw.ops.sfdc.net  
+    - cs52-app1-3-dfw.ops.sfdc.net
+    - cs52-app2-4-dfw.ops.sfdc.net
+    - cs52-app1-4-dfw.ops.sfdc.net  
   ports:
   - port: 443
     targetport: 8090
@@ -1166,6 +1342,11 @@
     - "X-Real-IP"
     - "X-Client-Cert"
     - "X-Client-Fingerprint" 
+    - "SSL_CLIENT_S_DN"
+    - "SSL_CLIENT_M_SERIAL"
+    - "SSL_CLIENT_I_DN"
+    - "SSL_SHA1_HASH"
+    - "SSL_CLIENT_V_REMAIN" 
   - port: 8443
     targetport: 8090
     reencrypt: true
@@ -1187,7 +1368,8 @@
     - "X-Client-Verify"
     - "X-Real-IP"
     - "X-Client-Cert"
-    - "X-Client-Fingerprint"   
+    - "X-Client-Fingerprint"  
+    - "SSL_CLIENT_V_REMAIN"   
   - port: 80
     targetport: 8085
     lbtype: http
@@ -1198,6 +1380,11 @@
     - "X-Forwarded-Proto" 
     - "X-Forwarded-For" 
     - "X-Real-IP"
+    - "SSL_CLIENT_S_DN"
+    - "SSL_CLIENT_M_SERIAL"
+    - "SSL_CLIENT_I_DN"
+    - "SSL_SHA1_HASH"
+    - "SSL_CLIENT_V_REMAIN" 
     addheaders:
     - name: "X-Salesforce-VIP"
       value: "SLB"
@@ -1206,14 +1393,14 @@
 - lbname: org-cce2e-cs53
   servers:
     - cs53-app2-5-dfw.ops.sfdc.net
-    - cs53-app1-2-dfw.ops.sfdc.net
+    - cs53-app2-1-dfw.ops.sfdc.net
     - cs53-app1-4-dfw.ops.sfdc.net
     - cs53-app1-1-dfw.ops.sfdc.net
     - cs53-app1-3-dfw.ops.sfdc.net
-    - cs53-app2-1-dfw.ops.sfdc.net
+    - cs53-app1-5-dfw.ops.sfdc.net
+    - cs53-app1-2-dfw.ops.sfdc.net
     - cs53-app2-4-dfw.ops.sfdc.net
     - cs53-app2-2-dfw.ops.sfdc.net
-    - cs53-app1-5-dfw.ops.sfdc.net
     - cs53-app2-3-dfw.ops.sfdc.net  
   ports:
   - port: 443
@@ -1237,6 +1424,11 @@
     - "X-Real-IP"
     - "X-Client-Cert"
     - "X-Client-Fingerprint" 
+    - "SSL_CLIENT_S_DN"
+    - "SSL_CLIENT_M_SERIAL"
+    - "SSL_CLIENT_I_DN"
+    - "SSL_SHA1_HASH"
+    - "SSL_CLIENT_V_REMAIN" 
   - port: 8443
     targetport: 8090
     reencrypt: true
@@ -1258,7 +1450,8 @@
     - "X-Client-Verify"
     - "X-Real-IP"
     - "X-Client-Cert"
-    - "X-Client-Fingerprint"   
+    - "X-Client-Fingerprint"  
+    - "SSL_CLIENT_V_REMAIN"   
   - port: 80
     targetport: 8085
     lbtype: http
@@ -1269,6 +1462,11 @@
     - "X-Forwarded-Proto" 
     - "X-Forwarded-For" 
     - "X-Real-IP"
+    - "SSL_CLIENT_S_DN"
+    - "SSL_CLIENT_M_SERIAL"
+    - "SSL_CLIENT_I_DN"
+    - "SSL_SHA1_HASH"
+    - "SSL_CLIENT_V_REMAIN" 
     addheaders:
     - name: "X-Salesforce-VIP"
       value: "SLB"
@@ -1277,15 +1475,15 @@
 - lbname: org-cce2e-cs54
   servers:
     - cs54-app1-1-dfw.ops.sfdc.net
-    - cs54-app2-5-dfw.ops.sfdc.net
-    - cs54-app1-2-dfw.ops.sfdc.net
-    - cs54-app1-4-dfw.ops.sfdc.net
+    - cs54-app2-1-dfw.ops.sfdc.net
     - cs54-app1-5-dfw.ops.sfdc.net
+    - cs54-app1-2-dfw.ops.sfdc.net
+    - cs54-app2-5-dfw.ops.sfdc.net
+    - cs54-app1-4-dfw.ops.sfdc.net
     - cs54-app2-2-dfw.ops.sfdc.net
     - cs54-app2-3-dfw.ops.sfdc.net
-    - cs54-app2-4-dfw.ops.sfdc.net
     - cs54-app1-3-dfw.ops.sfdc.net
-    - cs54-app2-1-dfw.ops.sfdc.net  
+    - cs54-app2-4-dfw.ops.sfdc.net  
   ports:
   - port: 443
     targetport: 8090
@@ -1308,6 +1506,11 @@
     - "X-Real-IP"
     - "X-Client-Cert"
     - "X-Client-Fingerprint" 
+    - "SSL_CLIENT_S_DN"
+    - "SSL_CLIENT_M_SERIAL"
+    - "SSL_CLIENT_I_DN"
+    - "SSL_SHA1_HASH"
+    - "SSL_CLIENT_V_REMAIN" 
   - port: 8443
     targetport: 8090
     reencrypt: true
@@ -1329,7 +1532,8 @@
     - "X-Client-Verify"
     - "X-Real-IP"
     - "X-Client-Cert"
-    - "X-Client-Fingerprint"   
+    - "X-Client-Fingerprint"  
+    - "SSL_CLIENT_V_REMAIN"   
   - port: 80
     targetport: 8085
     lbtype: http
@@ -1340,6 +1544,11 @@
     - "X-Forwarded-Proto" 
     - "X-Forwarded-For" 
     - "X-Real-IP"
+    - "SSL_CLIENT_S_DN"
+    - "SSL_CLIENT_M_SERIAL"
+    - "SSL_CLIENT_I_DN"
+    - "SSL_SHA1_HASH"
+    - "SSL_CLIENT_V_REMAIN" 
     addheaders:
     - name: "X-Salesforce-VIP"
       value: "SLB"
@@ -1347,16 +1556,16 @@
 
 - lbname: org-cce2e-cs59
   servers:
-    - cs59-app1-2-dfw.ops.sfdc.net
-    - cs59-app2-5-dfw.ops.sfdc.net
-    - cs59-app2-3-dfw.ops.sfdc.net
     - cs59-app1-4-dfw.ops.sfdc.net
     - cs59-app1-5-dfw.ops.sfdc.net
-    - cs59-app2-2-dfw.ops.sfdc.net
     - cs59-app1-1-dfw.ops.sfdc.net
+    - cs59-app1-2-dfw.ops.sfdc.net
     - cs59-app1-3-dfw.ops.sfdc.net
     - cs59-app2-1-dfw.ops.sfdc.net
-    - cs59-app2-4-dfw.ops.sfdc.net  
+    - cs59-app2-3-dfw.ops.sfdc.net
+    - cs59-app2-2-dfw.ops.sfdc.net
+    - cs59-app2-4-dfw.ops.sfdc.net
+    - cs59-app2-5-dfw.ops.sfdc.net  
   ports:
   - port: 443
     targetport: 8090
@@ -1379,6 +1588,11 @@
     - "X-Real-IP"
     - "X-Client-Cert"
     - "X-Client-Fingerprint" 
+    - "SSL_CLIENT_S_DN"
+    - "SSL_CLIENT_M_SERIAL"
+    - "SSL_CLIENT_I_DN"
+    - "SSL_SHA1_HASH"
+    - "SSL_CLIENT_V_REMAIN" 
   - port: 8443
     targetport: 8090
     reencrypt: true
@@ -1400,7 +1614,8 @@
     - "X-Client-Verify"
     - "X-Real-IP"
     - "X-Client-Cert"
-    - "X-Client-Fingerprint"   
+    - "X-Client-Fingerprint"  
+    - "SSL_CLIENT_V_REMAIN"   
   - port: 80
     targetport: 8085
     lbtype: http
@@ -1411,6 +1626,11 @@
     - "X-Forwarded-Proto" 
     - "X-Forwarded-For" 
     - "X-Real-IP"
+    - "SSL_CLIENT_S_DN"
+    - "SSL_CLIENT_M_SERIAL"
+    - "SSL_CLIENT_I_DN"
+    - "SSL_SHA1_HASH"
+    - "SSL_CLIENT_V_REMAIN" 
     addheaders:
     - name: "X-Salesforce-VIP"
       value: "SLB"
@@ -1418,15 +1638,15 @@
 
 - lbname: org-cce2e-cs60
   servers:
+    - cs60-app1-4-dfw.ops.sfdc.net
+    - cs60-app1-2-dfw.ops.sfdc.net
     - cs60-app2-1-dfw.ops.sfdc.net
     - cs60-app1-3-dfw.ops.sfdc.net
-    - cs60-app1-4-dfw.ops.sfdc.net
-    - cs60-app1-1-dfw.ops.sfdc.net
-    - cs60-app1-2-dfw.ops.sfdc.net
-    - cs60-app2-3-dfw.ops.sfdc.net
-    - cs60-app2-4-dfw.ops.sfdc.net
-    - cs60-app1-5-dfw.ops.sfdc.net
     - cs60-app2-5-dfw.ops.sfdc.net
+    - cs60-app2-3-dfw.ops.sfdc.net
+    - cs60-app1-5-dfw.ops.sfdc.net
+    - cs60-app1-1-dfw.ops.sfdc.net
+    - cs60-app2-4-dfw.ops.sfdc.net
     - cs60-app2-2-dfw.ops.sfdc.net  
   ports:
   - port: 443
@@ -1450,6 +1670,11 @@
     - "X-Real-IP"
     - "X-Client-Cert"
     - "X-Client-Fingerprint" 
+    - "SSL_CLIENT_S_DN"
+    - "SSL_CLIENT_M_SERIAL"
+    - "SSL_CLIENT_I_DN"
+    - "SSL_SHA1_HASH"
+    - "SSL_CLIENT_V_REMAIN" 
   - port: 8443
     targetport: 8090
     reencrypt: true
@@ -1471,7 +1696,8 @@
     - "X-Client-Verify"
     - "X-Real-IP"
     - "X-Client-Cert"
-    - "X-Client-Fingerprint"   
+    - "X-Client-Fingerprint"  
+    - "SSL_CLIENT_V_REMAIN"   
   - port: 80
     targetport: 8085
     lbtype: http
@@ -1482,6 +1708,11 @@
     - "X-Forwarded-Proto" 
     - "X-Forwarded-For" 
     - "X-Real-IP"
+    - "SSL_CLIENT_S_DN"
+    - "SSL_CLIENT_M_SERIAL"
+    - "SSL_CLIENT_I_DN"
+    - "SSL_SHA1_HASH"
+    - "SSL_CLIENT_V_REMAIN" 
     addheaders:
     - name: "X-Salesforce-VIP"
       value: "SLB"
@@ -1489,15 +1720,15 @@
 
 - lbname: org-cce2e-cs61
   servers:
-    - cs61-app2-3-dfw.ops.sfdc.net
-    - cs61-app1-5-dfw.ops.sfdc.net
-    - cs61-app2-2-dfw.ops.sfdc.net
     - cs61-app1-1-dfw.ops.sfdc.net
     - cs61-app1-3-dfw.ops.sfdc.net
-    - cs61-app2-1-dfw.ops.sfdc.net
+    - cs61-app1-4-dfw.ops.sfdc.net
+    - cs61-app1-5-dfw.ops.sfdc.net
+    - cs61-app2-3-dfw.ops.sfdc.net
     - cs61-app2-5-dfw.ops.sfdc.net
     - cs61-app1-2-dfw.ops.sfdc.net
-    - cs61-app1-4-dfw.ops.sfdc.net
+    - cs61-app2-2-dfw.ops.sfdc.net
+    - cs61-app2-1-dfw.ops.sfdc.net
     - cs61-app2-4-dfw.ops.sfdc.net  
   ports:
   - port: 443
@@ -1521,6 +1752,11 @@
     - "X-Real-IP"
     - "X-Client-Cert"
     - "X-Client-Fingerprint" 
+    - "SSL_CLIENT_S_DN"
+    - "SSL_CLIENT_M_SERIAL"
+    - "SSL_CLIENT_I_DN"
+    - "SSL_SHA1_HASH"
+    - "SSL_CLIENT_V_REMAIN" 
   - port: 8443
     targetport: 8090
     reencrypt: true
@@ -1542,7 +1778,8 @@
     - "X-Client-Verify"
     - "X-Real-IP"
     - "X-Client-Cert"
-    - "X-Client-Fingerprint"   
+    - "X-Client-Fingerprint"  
+    - "SSL_CLIENT_V_REMAIN"   
   - port: 80
     targetport: 8085
     lbtype: http
@@ -1553,6 +1790,11 @@
     - "X-Forwarded-Proto" 
     - "X-Forwarded-For" 
     - "X-Real-IP"
+    - "SSL_CLIENT_S_DN"
+    - "SSL_CLIENT_M_SERIAL"
+    - "SSL_CLIENT_I_DN"
+    - "SSL_SHA1_HASH"
+    - "SSL_CLIENT_V_REMAIN" 
     addheaders:
     - name: "X-Salesforce-VIP"
       value: "SLB"
@@ -1560,16 +1802,16 @@
 
 - lbname: org-cce2e-cs62
   servers:
-    - cs62-app1-3-dfw.ops.sfdc.net
-    - cs62-app2-1-dfw.ops.sfdc.net
-    - cs62-app2-3-dfw.ops.sfdc.net
-    - cs62-app1-4-dfw.ops.sfdc.net
-    - cs62-app1-1-dfw.ops.sfdc.net
-    - cs62-app2-2-dfw.ops.sfdc.net
-    - cs62-app2-4-dfw.ops.sfdc.net
     - cs62-app1-2-dfw.ops.sfdc.net
+    - cs62-app1-3-dfw.ops.sfdc.net
+    - cs62-app1-1-dfw.ops.sfdc.net
+    - cs62-app1-4-dfw.ops.sfdc.net
     - cs62-app1-5-dfw.ops.sfdc.net
-    - cs62-app2-5-dfw.ops.sfdc.net  
+    - cs62-app2-1-dfw.ops.sfdc.net
+    - cs62-app2-2-dfw.ops.sfdc.net
+    - cs62-app2-3-dfw.ops.sfdc.net
+    - cs62-app2-5-dfw.ops.sfdc.net
+    - cs62-app2-4-dfw.ops.sfdc.net  
   ports:
   - port: 443
     targetport: 8090
@@ -1592,6 +1834,11 @@
     - "X-Real-IP"
     - "X-Client-Cert"
     - "X-Client-Fingerprint" 
+    - "SSL_CLIENT_S_DN"
+    - "SSL_CLIENT_M_SERIAL"
+    - "SSL_CLIENT_I_DN"
+    - "SSL_SHA1_HASH"
+    - "SSL_CLIENT_V_REMAIN" 
   - port: 8443
     targetport: 8090
     reencrypt: true
@@ -1613,7 +1860,8 @@
     - "X-Client-Verify"
     - "X-Real-IP"
     - "X-Client-Cert"
-    - "X-Client-Fingerprint"   
+    - "X-Client-Fingerprint"  
+    - "SSL_CLIENT_V_REMAIN"   
   - port: 80
     targetport: 8085
     lbtype: http
@@ -1624,6 +1872,11 @@
     - "X-Forwarded-Proto" 
     - "X-Forwarded-For" 
     - "X-Real-IP"
+    - "SSL_CLIENT_S_DN"
+    - "SSL_CLIENT_M_SERIAL"
+    - "SSL_CLIENT_I_DN"
+    - "SSL_SHA1_HASH"
+    - "SSL_CLIENT_V_REMAIN" 
     addheaders:
     - name: "X-Salesforce-VIP"
       value: "SLB"
@@ -1631,15 +1884,15 @@
 
 - lbname: org-cce2e-cs63
   servers:
-    - cs63-app1-2-dfw.ops.sfdc.net
-    - cs63-app1-3-dfw.ops.sfdc.net
-    - cs63-app1-4-dfw.ops.sfdc.net
-    - cs63-app2-3-dfw.ops.sfdc.net
-    - cs63-app2-4-dfw.ops.sfdc.net
-    - cs63-app2-5-dfw.ops.sfdc.net
     - cs63-app1-1-dfw.ops.sfdc.net
-    - cs63-app2-2-dfw.ops.sfdc.net
     - cs63-app2-1-dfw.ops.sfdc.net
+    - cs63-app1-4-dfw.ops.sfdc.net
+    - cs63-app2-4-dfw.ops.sfdc.net
+    - cs63-app1-3-dfw.ops.sfdc.net
+    - cs63-app1-2-dfw.ops.sfdc.net
+    - cs63-app2-5-dfw.ops.sfdc.net
+    - cs63-app2-3-dfw.ops.sfdc.net
+    - cs63-app2-2-dfw.ops.sfdc.net
     - cs63-app1-5-dfw.ops.sfdc.net  
   ports:
   - port: 443
@@ -1663,6 +1916,11 @@
     - "X-Real-IP"
     - "X-Client-Cert"
     - "X-Client-Fingerprint" 
+    - "SSL_CLIENT_S_DN"
+    - "SSL_CLIENT_M_SERIAL"
+    - "SSL_CLIENT_I_DN"
+    - "SSL_SHA1_HASH"
+    - "SSL_CLIENT_V_REMAIN" 
   - port: 8443
     targetport: 8090
     reencrypt: true
@@ -1684,7 +1942,8 @@
     - "X-Client-Verify"
     - "X-Real-IP"
     - "X-Client-Cert"
-    - "X-Client-Fingerprint"   
+    - "X-Client-Fingerprint"  
+    - "SSL_CLIENT_V_REMAIN"   
   - port: 80
     targetport: 8085
     lbtype: http
@@ -1695,6 +1954,11 @@
     - "X-Forwarded-Proto" 
     - "X-Forwarded-For" 
     - "X-Real-IP"
+    - "SSL_CLIENT_S_DN"
+    - "SSL_CLIENT_M_SERIAL"
+    - "SSL_CLIENT_I_DN"
+    - "SSL_SHA1_HASH"
+    - "SSL_CLIENT_V_REMAIN" 
     addheaders:
     - name: "X-Salesforce-VIP"
       value: "SLB"
@@ -1702,16 +1966,16 @@
 
 - lbname: org-cce2e-cs68
   servers:
-    - cs68-app1-5-dfw.ops.sfdc.net
     - cs68-app1-2-dfw.ops.sfdc.net
-    - cs68-app2-5-dfw.ops.sfdc.net
     - cs68-app1-3-dfw.ops.sfdc.net
     - cs68-app1-4-dfw.ops.sfdc.net
-    - cs68-app2-3-dfw.ops.sfdc.net
-    - cs68-app2-4-dfw.ops.sfdc.net
+    - cs68-app1-5-dfw.ops.sfdc.net
     - cs68-app2-1-dfw.ops.sfdc.net
+    - cs68-app1-1-dfw.ops.sfdc.net
+    - cs68-app2-4-dfw.ops.sfdc.net
+    - cs68-app2-3-dfw.ops.sfdc.net
     - cs68-app2-2-dfw.ops.sfdc.net
-    - cs68-app1-1-dfw.ops.sfdc.net  
+    - cs68-app2-5-dfw.ops.sfdc.net  
   ports:
   - port: 443
     targetport: 8090
@@ -1734,6 +1998,11 @@
     - "X-Real-IP"
     - "X-Client-Cert"
     - "X-Client-Fingerprint" 
+    - "SSL_CLIENT_S_DN"
+    - "SSL_CLIENT_M_SERIAL"
+    - "SSL_CLIENT_I_DN"
+    - "SSL_SHA1_HASH"
+    - "SSL_CLIENT_V_REMAIN" 
   - port: 8443
     targetport: 8090
     reencrypt: true
@@ -1755,7 +2024,8 @@
     - "X-Client-Verify"
     - "X-Real-IP"
     - "X-Client-Cert"
-    - "X-Client-Fingerprint"   
+    - "X-Client-Fingerprint"  
+    - "SSL_CLIENT_V_REMAIN"   
   - port: 80
     targetport: 8085
     lbtype: http
@@ -1766,6 +2036,11 @@
     - "X-Forwarded-Proto" 
     - "X-Forwarded-For" 
     - "X-Real-IP"
+    - "SSL_CLIENT_S_DN"
+    - "SSL_CLIENT_M_SERIAL"
+    - "SSL_CLIENT_I_DN"
+    - "SSL_SHA1_HASH"
+    - "SSL_CLIENT_V_REMAIN" 
     addheaders:
     - name: "X-Salesforce-VIP"
       value: "SLB"
@@ -1773,16 +2048,16 @@
 
 - lbname: org-cce2e-cs69
   servers:
-    - cs69-app2-1-dfw.ops.sfdc.net
-    - cs69-app1-1-dfw.ops.sfdc.net
-    - cs69-app1-3-dfw.ops.sfdc.net
-    - cs69-app2-3-dfw.ops.sfdc.net
-    - cs69-app1-4-dfw.ops.sfdc.net
-    - cs69-app1-5-dfw.ops.sfdc.net
-    - cs69-app2-5-dfw.ops.sfdc.net
     - cs69-app1-2-dfw.ops.sfdc.net
+    - cs69-app1-4-dfw.ops.sfdc.net
+    - cs69-app2-3-dfw.ops.sfdc.net
+    - cs69-app1-5-dfw.ops.sfdc.net
     - cs69-app2-2-dfw.ops.sfdc.net
-    - cs69-app2-4-dfw.ops.sfdc.net  
+    - cs69-app2-1-dfw.ops.sfdc.net
+    - cs69-app1-3-dfw.ops.sfdc.net
+    - cs69-app2-4-dfw.ops.sfdc.net
+    - cs69-app2-5-dfw.ops.sfdc.net
+    - cs69-app1-1-dfw.ops.sfdc.net  
   ports:
   - port: 443
     targetport: 8090
@@ -1805,6 +2080,11 @@
     - "X-Real-IP"
     - "X-Client-Cert"
     - "X-Client-Fingerprint" 
+    - "SSL_CLIENT_S_DN"
+    - "SSL_CLIENT_M_SERIAL"
+    - "SSL_CLIENT_I_DN"
+    - "SSL_SHA1_HASH"
+    - "SSL_CLIENT_V_REMAIN" 
   - port: 8443
     targetport: 8090
     reencrypt: true
@@ -1826,7 +2106,8 @@
     - "X-Client-Verify"
     - "X-Real-IP"
     - "X-Client-Cert"
-    - "X-Client-Fingerprint"   
+    - "X-Client-Fingerprint"  
+    - "SSL_CLIENT_V_REMAIN"   
   - port: 80
     targetport: 8085
     lbtype: http
@@ -1837,6 +2118,11 @@
     - "X-Forwarded-Proto" 
     - "X-Forwarded-For" 
     - "X-Real-IP"
+    - "SSL_CLIENT_S_DN"
+    - "SSL_CLIENT_M_SERIAL"
+    - "SSL_CLIENT_I_DN"
+    - "SSL_SHA1_HASH"
+    - "SSL_CLIENT_V_REMAIN" 
     addheaders:
     - name: "X-Salesforce-VIP"
       value: "SLB"
@@ -1844,16 +2130,16 @@
 
 - lbname: org-cce2e-cs70
   servers:
-    - cs70-app1-4-dfw.ops.sfdc.net
-    - cs70-app2-1-dfw.ops.sfdc.net
-    - cs70-app1-3-dfw.ops.sfdc.net
     - cs70-app1-1-dfw.ops.sfdc.net
-    - cs70-app2-3-dfw.ops.sfdc.net
-    - cs70-app2-4-dfw.ops.sfdc.net
-    - cs70-app2-2-dfw.ops.sfdc.net
     - cs70-app1-2-dfw.ops.sfdc.net
     - cs70-app2-5-dfw.ops.sfdc.net
-    - cs70-app1-5-dfw.ops.sfdc.net  
+    - cs70-app1-3-dfw.ops.sfdc.net
+    - cs70-app1-5-dfw.ops.sfdc.net
+    - cs70-app2-4-dfw.ops.sfdc.net
+    - cs70-app1-4-dfw.ops.sfdc.net
+    - cs70-app2-1-dfw.ops.sfdc.net
+    - cs70-app2-2-dfw.ops.sfdc.net
+    - cs70-app2-3-dfw.ops.sfdc.net  
   ports:
   - port: 443
     targetport: 8090
@@ -1876,6 +2162,11 @@
     - "X-Real-IP"
     - "X-Client-Cert"
     - "X-Client-Fingerprint" 
+    - "SSL_CLIENT_S_DN"
+    - "SSL_CLIENT_M_SERIAL"
+    - "SSL_CLIENT_I_DN"
+    - "SSL_SHA1_HASH"
+    - "SSL_CLIENT_V_REMAIN" 
   - port: 8443
     targetport: 8090
     reencrypt: true
@@ -1897,7 +2188,8 @@
     - "X-Client-Verify"
     - "X-Real-IP"
     - "X-Client-Cert"
-    - "X-Client-Fingerprint"   
+    - "X-Client-Fingerprint"  
+    - "SSL_CLIENT_V_REMAIN"   
   - port: 80
     targetport: 8085
     lbtype: http
@@ -1908,6 +2200,11 @@
     - "X-Forwarded-Proto" 
     - "X-Forwarded-For" 
     - "X-Real-IP"
+    - "SSL_CLIENT_S_DN"
+    - "SSL_CLIENT_M_SERIAL"
+    - "SSL_CLIENT_I_DN"
+    - "SSL_SHA1_HASH"
+    - "SSL_CLIENT_V_REMAIN" 
     addheaders:
     - name: "X-Salesforce-VIP"
       value: "SLB"
@@ -1915,15 +2212,15 @@
 
 - lbname: org-cce2e-cs71
   servers:
-    - cs71-app2-3-dfw.ops.sfdc.net
-    - cs71-app1-3-dfw.ops.sfdc.net
-    - cs71-app1-2-dfw.ops.sfdc.net
+    - cs71-app1-4-dfw.ops.sfdc.net
     - cs71-app1-5-dfw.ops.sfdc.net
     - cs71-app2-1-dfw.ops.sfdc.net
-    - cs71-app2-4-dfw.ops.sfdc.net
-    - cs71-app2-5-dfw.ops.sfdc.net
+    - cs71-app1-2-dfw.ops.sfdc.net
     - cs71-app1-1-dfw.ops.sfdc.net
-    - cs71-app1-4-dfw.ops.sfdc.net
+    - cs71-app2-5-dfw.ops.sfdc.net
+    - cs71-app1-3-dfw.ops.sfdc.net
+    - cs71-app2-3-dfw.ops.sfdc.net
+    - cs71-app2-4-dfw.ops.sfdc.net
     - cs71-app2-2-dfw.ops.sfdc.net  
   ports:
   - port: 443
@@ -1947,6 +2244,11 @@
     - "X-Real-IP"
     - "X-Client-Cert"
     - "X-Client-Fingerprint" 
+    - "SSL_CLIENT_S_DN"
+    - "SSL_CLIENT_M_SERIAL"
+    - "SSL_CLIENT_I_DN"
+    - "SSL_SHA1_HASH"
+    - "SSL_CLIENT_V_REMAIN" 
   - port: 8443
     targetport: 8090
     reencrypt: true
@@ -1968,7 +2270,8 @@
     - "X-Client-Verify"
     - "X-Real-IP"
     - "X-Client-Cert"
-    - "X-Client-Fingerprint"   
+    - "X-Client-Fingerprint"  
+    - "SSL_CLIENT_V_REMAIN"   
   - port: 80
     targetport: 8085
     lbtype: http
@@ -1979,6 +2282,11 @@
     - "X-Forwarded-Proto" 
     - "X-Forwarded-For" 
     - "X-Real-IP"
+    - "SSL_CLIENT_S_DN"
+    - "SSL_CLIENT_M_SERIAL"
+    - "SSL_CLIENT_I_DN"
+    - "SSL_SHA1_HASH"
+    - "SSL_CLIENT_V_REMAIN" 
     addheaders:
     - name: "X-Salesforce-VIP"
       value: "SLB"
@@ -1986,16 +2294,16 @@
 
 - lbname: org-cce2e-cs90
   servers:
-    - cs90-app1-5-dfw.ops.sfdc.net
-    - cs90-app2-4-dfw.ops.sfdc.net
-    - cs90-app1-1-dfw.ops.sfdc.net
-    - cs90-app2-1-dfw.ops.sfdc.net
     - cs90-app2-5-dfw.ops.sfdc.net
-    - cs90-app1-2-dfw.ops.sfdc.net
-    - cs90-app2-2-dfw.ops.sfdc.net
-    - cs90-app2-3-dfw.ops.sfdc.net
     - cs90-app1-3-dfw.ops.sfdc.net
-    - cs90-app1-4-dfw.ops.sfdc.net  
+    - cs90-app1-2-dfw.ops.sfdc.net
+    - cs90-app1-4-dfw.ops.sfdc.net
+    - cs90-app2-3-dfw.ops.sfdc.net
+    - cs90-app1-1-dfw.ops.sfdc.net
+    - cs90-app2-2-dfw.ops.sfdc.net
+    - cs90-app1-5-dfw.ops.sfdc.net
+    - cs90-app2-1-dfw.ops.sfdc.net
+    - cs90-app2-4-dfw.ops.sfdc.net  
   ports:
   - port: 443
     targetport: 8090
@@ -2018,6 +2326,11 @@
     - "X-Real-IP"
     - "X-Client-Cert"
     - "X-Client-Fingerprint" 
+    - "SSL_CLIENT_S_DN"
+    - "SSL_CLIENT_M_SERIAL"
+    - "SSL_CLIENT_I_DN"
+    - "SSL_SHA1_HASH"
+    - "SSL_CLIENT_V_REMAIN" 
   - port: 8443
     targetport: 8090
     reencrypt: true
@@ -2039,7 +2352,8 @@
     - "X-Client-Verify"
     - "X-Real-IP"
     - "X-Client-Cert"
-    - "X-Client-Fingerprint"   
+    - "X-Client-Fingerprint"  
+    - "SSL_CLIENT_V_REMAIN"   
   - port: 80
     targetport: 8085
     lbtype: http
@@ -2050,6 +2364,11 @@
     - "X-Forwarded-Proto" 
     - "X-Forwarded-For" 
     - "X-Real-IP"
+    - "SSL_CLIENT_S_DN"
+    - "SSL_CLIENT_M_SERIAL"
+    - "SSL_CLIENT_I_DN"
+    - "SSL_SHA1_HASH"
+    - "SSL_CLIENT_V_REMAIN" 
     addheaders:
     - name: "X-Salesforce-VIP"
       value: "SLB"
@@ -2057,15 +2376,15 @@
 
 - lbname: org-cce2e-cs91
   servers:
-    - cs91-app2-3-dfw.ops.sfdc.net
-    - cs91-app2-2-dfw.ops.sfdc.net
-    - cs91-app1-1-dfw.ops.sfdc.net
-    - cs91-app1-2-dfw.ops.sfdc.net
-    - cs91-app1-5-dfw.ops.sfdc.net
-    - cs91-app2-4-dfw.ops.sfdc.net
     - cs91-app1-3-dfw.ops.sfdc.net
-    - cs91-app2-5-dfw.ops.sfdc.net
+    - cs91-app1-5-dfw.ops.sfdc.net
     - cs91-app2-1-dfw.ops.sfdc.net
+    - cs91-app2-3-dfw.ops.sfdc.net
+    - cs91-app1-2-dfw.ops.sfdc.net
+    - cs91-app1-1-dfw.ops.sfdc.net
+    - cs91-app2-2-dfw.ops.sfdc.net
+    - cs91-app2-4-dfw.ops.sfdc.net
+    - cs91-app2-5-dfw.ops.sfdc.net
     - cs91-app1-4-dfw.ops.sfdc.net  
   ports:
   - port: 443
@@ -2089,6 +2408,11 @@
     - "X-Real-IP"
     - "X-Client-Cert"
     - "X-Client-Fingerprint" 
+    - "SSL_CLIENT_S_DN"
+    - "SSL_CLIENT_M_SERIAL"
+    - "SSL_CLIENT_I_DN"
+    - "SSL_SHA1_HASH"
+    - "SSL_CLIENT_V_REMAIN" 
   - port: 8443
     targetport: 8090
     reencrypt: true
@@ -2110,7 +2434,8 @@
     - "X-Client-Verify"
     - "X-Real-IP"
     - "X-Client-Cert"
-    - "X-Client-Fingerprint"   
+    - "X-Client-Fingerprint"  
+    - "SSL_CLIENT_V_REMAIN"   
   - port: 80
     targetport: 8085
     lbtype: http
@@ -2121,6 +2446,11 @@
     - "X-Forwarded-Proto" 
     - "X-Forwarded-For" 
     - "X-Real-IP"
+    - "SSL_CLIENT_S_DN"
+    - "SSL_CLIENT_M_SERIAL"
+    - "SSL_CLIENT_I_DN"
+    - "SSL_SHA1_HASH"
+    - "SSL_CLIENT_V_REMAIN" 
     addheaders:
     - name: "X-Salesforce-VIP"
       value: "SLB"
@@ -2128,12 +2458,12 @@
 
 - lbname: org-cce2e-cs999
   servers:
-    - cs999-app1-3-dfw.ops.sfdc.net
-    - cs999-app2-3-dfw.ops.sfdc.net
+    - cs999-app1-2-dfw.ops.sfdc.net
     - cs999-app2-2-dfw.ops.sfdc.net
     - cs999-app2-1-dfw.ops.sfdc.net
+    - cs999-app2-3-dfw.ops.sfdc.net
     - cs999-app1-1-dfw.ops.sfdc.net
-    - cs999-app1-2-dfw.ops.sfdc.net  
+    - cs999-app1-3-dfw.ops.sfdc.net  
   ports:
   - port: 443
     targetport: 8090
@@ -2156,6 +2486,11 @@
     - "X-Real-IP"
     - "X-Client-Cert"
     - "X-Client-Fingerprint" 
+    - "SSL_CLIENT_S_DN"
+    - "SSL_CLIENT_M_SERIAL"
+    - "SSL_CLIENT_I_DN"
+    - "SSL_SHA1_HASH"
+    - "SSL_CLIENT_V_REMAIN" 
   - port: 8443
     targetport: 8090
     reencrypt: true
@@ -2177,7 +2512,8 @@
     - "X-Client-Verify"
     - "X-Real-IP"
     - "X-Client-Cert"
-    - "X-Client-Fingerprint"   
+    - "X-Client-Fingerprint"  
+    - "SSL_CLIENT_V_REMAIN"   
   - port: 80
     targetport: 8085
     lbtype: http
@@ -2188,6 +2524,11 @@
     - "X-Forwarded-Proto" 
     - "X-Forwarded-For" 
     - "X-Real-IP"
+    - "SSL_CLIENT_S_DN"
+    - "SSL_CLIENT_M_SERIAL"
+    - "SSL_CLIENT_I_DN"
+    - "SSL_SHA1_HASH"
+    - "SSL_CLIENT_V_REMAIN" 
     addheaders:
     - name: "X-Salesforce-VIP"
       value: "SLB"
