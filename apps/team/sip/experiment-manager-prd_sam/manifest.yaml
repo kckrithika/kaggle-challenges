@@ -24,7 +24,7 @@ system:
           - sip-em-dev-slb
     containers:
     - name: sip-em 
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/smarwaha/sip-experiment-manager:20190919T1436
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/srinath.venkatesan/em/sip:sip-em-20190919T1600
       livenessProbe:
         initialDelaySeconds: 180
         periodSeconds: 60
@@ -62,6 +62,8 @@ system:
       env:
         - name: GRPC_HOST
           value: sip-em-dev-slb.sip.prd-sam.prd.slb.sfdc.net:7020
+        - name: SIP_EM_ENVIRONMENT
+          value: staging
   loadbalancers:
   - function: sip-em-dev
     lbname: sip-em-dev-slb
