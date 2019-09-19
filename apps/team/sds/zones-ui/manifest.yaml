@@ -17,7 +17,7 @@ system:
           type: client
     containers:
     - name: zones-ui
-      image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/zones-ui:23
+      image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/zones-ui:25
       env:
       - name: ZONES_SERVER_TYPE
         value: "cron"
