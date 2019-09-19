@@ -91,7 +91,7 @@ if slbconfigs.isSlbEstate then configs.deploymentBase("slb") {
                           slbconfigs.proxyconfig_volume,
                       ] + (if slbimages.phase == "1" then
                             madkub.madkubSlbCertVolumeMounts(certDirs)
-                          ),
+                          )),
                       containers: [
                           {
                               name: "slb-vip-watchdog",
@@ -119,7 +119,7 @@ if slbconfigs.isSlbEstate then configs.deploymentBase("slb") {
                               ] +
                               (if slbimages.phase == "1" then
                                 madkub.madkubSlbCertVolumeMounts(certDirs)
-                              ),
+                              )),
                               env: [
                                   slbconfigs.node_name_env,
                                   slbconfigs.function_namespace_env,
