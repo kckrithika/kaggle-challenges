@@ -3,6 +3,12 @@ system:
   functions:
   - name: dbaas-backup-test
     count: 1
+    strategy:
+      type: recreate
+      #type: RollingUpdate
+      #rollingUpdate:
+      #  maxSurge: 0
+      #  maxUnavailable: 1
     containers:
     - name: ops0-nbmaster3-1-prd
       image: dva/threeeyedraven:39d2787f1292c4fa432a63769f2a84958828618e
