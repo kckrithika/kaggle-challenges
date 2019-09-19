@@ -67,8 +67,7 @@
   ports:
   - port: 8088
     targetport: 8088
-    lbtype: http
-    tls: true
+    lbtype: tcp
     reencrypt: false
     healthport: 8088
     healthprotocol: tcp
