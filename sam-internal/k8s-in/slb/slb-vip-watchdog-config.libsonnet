@@ -167,6 +167,8 @@ local vipwdConfig = {
       "horizon-xrd*",
       // 2019/07/25 nkatta: Taking sledge VIPs out because the backends are unstable due to patching.
       "sledge-xrd*",
+      //2019/09/18 shravya-srinivas: Flappy upstreams timing out requests make VIP watchdog sad.
+      "aqueduct-func.emp-aqueduct.xrd-sam.xrd*",
     ],
     vivips:
     [
