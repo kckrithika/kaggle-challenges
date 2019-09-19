@@ -92,6 +92,10 @@ configs.deploymentBase("service-mesh") {
                 name: "SETTINGS_PATH",
                 value: "mesh.-." + configs.kingdom + ".-." + "route-update-service",
               },
+              {
+                name: "FAKE_RESTART_VAR",
+                value: "1",
+              },
             ],
             ports: [
               {
