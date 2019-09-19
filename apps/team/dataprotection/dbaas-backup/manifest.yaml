@@ -4,7 +4,7 @@ system:
   - name: dbaas-backup
     count: 1
     containers:
-    - name: ops0-nbmaster3-1-prd.ops.sfdc.net
+    - name: ops0-nbmaster3-1-prd
       image: dva/threeeyedraven:39d2787f1292c4fa432a63769f2a84958828618e
       env:
       - name: SFDC_ENVIRONMENT
