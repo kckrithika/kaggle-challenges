@@ -19,6 +19,18 @@ spec:
     type: RollingUpdate
   template:
     metadata:
+      annotations:
+        madkub.sam.sfdc.net/allcerts: |-
+          {
+           "certreqs": [
+            {
+             "cert-type": "client",
+             "kingdom": "prd",
+             "name": "cert3",
+             "role": "slb.internal"
+            }
+           ]
+          }
       labels:
         apptype: monitoring
         name: slb-vip-watchdog
@@ -305,3 +317,6 @@ spec:
       - emptyDir:
           medium: Memory
         name: cert3
+      - emptyDir:
+          medium: Memory
+        name: tokens
