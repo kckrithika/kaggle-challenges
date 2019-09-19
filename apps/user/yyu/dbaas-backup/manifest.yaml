@@ -16,6 +16,8 @@ system:
       - name: SFDC_ENVIRONMENT
         #value: prod # for prod dc except for prd (DBaaS config)
         value: "-"
+      - name: SFDC_SETTINGS_PATH
+        value: "-.-.prd.dbaas0.3ER"
       - name: SETTINGS_PATH
         value: "-.-.prd.dbaas0.3ER"
       - name: SETTINGS_POD
