@@ -10,6 +10,8 @@ system:
       - name: SFDC_ENVIRONMENT
         #value: prod # for prod dc except for prd (DBaaS config)
         value: "-"
+      - name: SETTINGS_PATH
+        value: "-.-.prd.dbaas0.3ER"
       - name: DC
         value: $(KINGDOM)
       - name: SPRING_PROFILES_ACTIVE 
