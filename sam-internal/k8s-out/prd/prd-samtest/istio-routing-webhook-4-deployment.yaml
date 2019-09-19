@@ -8,6 +8,7 @@ spec:
   selector:
     matchLabels:
       app: istio-routing-webhook
+      name: istio-routing-webhook
   template:
     metadata:
       annotations:
