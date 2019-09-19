@@ -62,6 +62,6 @@ system:
         settings_path: mesh.-.prd.-.time
       ports:
         - lbtype: dsr
-          port: 7012
-          targetport: 7012
-          name: grpc-time
+          port: 7443
+          targetport: 7443
+          name: grpc-tls
