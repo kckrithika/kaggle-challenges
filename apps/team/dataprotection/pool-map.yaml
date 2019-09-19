@@ -6,3 +6,4 @@ apps:
   - dfw/dfw-sam_dp
   dbaas-backup:
   - prd/prd-sam
+  - par/par-sam_dp
