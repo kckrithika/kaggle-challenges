@@ -249,6 +249,15 @@ configs.deploymentBase("service-mesh") {
                 name: "ISTIO_META_TLS_SERVER_ROOT_CERT",
                 value: "/server-certs/ca.pem",
               },
+              {
+                name: "ISTIO_META_kubernetes_cluster_name",
+                valueFrom: {
+                  fieldRef: {
+                    fieldPath: "metadata.labels['cluster']",
+                  },
+                },
+              },
+
             ],
             image: mcpIstioConfig.proxyImage,
             imagePullPolicy: "IfNotPresent",
