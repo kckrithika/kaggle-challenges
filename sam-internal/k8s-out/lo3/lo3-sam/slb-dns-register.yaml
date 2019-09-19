@@ -278,6 +278,7 @@ spec:
         - --client.dialSocket=true
         - --commonoptions.metricsendpoint=ajna0-funnel1-0-lo3.data.sfdc.net:80
         - --commonoptions.hostname=$(NODE_NAME)
+        - --deletelimits.maxDeleteLimit=20
         - --keyfile=/cert3/client/keys/client-key.pem
         - --certfile=/cert3/client/certificates/client.pem
         - --cafile=/cert3/ca/cabundle.pem
