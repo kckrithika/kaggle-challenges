@@ -46,6 +46,11 @@ system:
   loadbalancers:
     - lbname: istio-basic-rest-service-tls
       function: istio-basic-rest-service-tls
+      labels:
+        app: istio-basic-rest-service-tls
+        settings_path: istio.-.prd.-.istio-basic-rest-service-tls
+      annotations:
+        routing.mesh.sfdc.net/enabled: "true"
       ports:
         - lbtype: dsr
           port: 7442
