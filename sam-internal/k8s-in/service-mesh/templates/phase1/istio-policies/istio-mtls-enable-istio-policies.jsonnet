@@ -13,6 +13,9 @@ if (istioPhases.phaseNum == 1) then
         annotations: {
           "manifestctl.sam.data.sfdc.net/swagger": "disable",
         },
+        label: {
+          test: "test",
+        },
         name: "istio-mtls-enable",
         namespace: namespace,
       },
