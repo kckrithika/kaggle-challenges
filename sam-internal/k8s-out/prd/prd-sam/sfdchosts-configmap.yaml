@@ -987,6 +987,17 @@ data:
           "controlestate": "prd-sam",
           "devicerole": "samcompute",
           "estate": "prd-sam_cloudatlastwo",
+          "hostname": "shared0-samminionatlastwofe1-2-prd.eng.sfdc.net",
+          "kingdom": "prd",
+          "pod": "none",
+          "rack": "d11-45",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sam_minion_cloudatlastwo_fe",
+          "controlestate": "prd-sam",
+          "devicerole": "samcompute",
+          "estate": "prd-sam_cloudatlastwo",
           "hostname": "shared0-samminionatlastwofe2-1-prd.eng.sfdc.net",
           "kingdom": "prd",
           "pod": "none",

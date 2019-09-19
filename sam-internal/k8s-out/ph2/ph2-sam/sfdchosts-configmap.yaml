@@ -136,6 +136,17 @@ data:
           "superpod": "none"
         },
         {
+          "bomrolename": "sam_minion_datapool",
+          "controlestate": "ph2-sam",
+          "devicerole": "samcompute",
+          "estate": "ph2-sam_datapool",
+          "hostname": "shared0-samminiondatapool2-2-ph2.ops.sfdc.net",
+          "kingdom": "ph2",
+          "pod": "none",
+          "rack": "a44-dh10",
+          "superpod": "none"
+        },
+        {
           "bomrolename": "sam_minion_dp",
           "controlestate": "ph2-sam",
           "devicerole": "samcompute",

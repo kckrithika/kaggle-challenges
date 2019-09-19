@@ -463,6 +463,8 @@ items:
   - kind: User
     name: shared0-samminionatlasfe1-1-xrd.eng.sfdc.net
   - kind: User
+    name: shared0-samminionatlasfe1-2-xrd.eng.sfdc.net
+  - kind: User
     name: shared0-samminionatlasfe2-1-xrd.eng.sfdc.net
 - apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: RoleBinding
@@ -738,6 +740,8 @@ items:
   subjects:
   - kind: User
     name: shared0-sammminionmgmthub1-1-xrd.eng.sfdc.net
+  - kind: User
+    name: shared0-sammminionmgmthub1-2-xrd.eng.sfdc.net
   - kind: User
     name: shared0-sammminionmgmthub2-1-xrd.eng.sfdc.net
   - kind: User
