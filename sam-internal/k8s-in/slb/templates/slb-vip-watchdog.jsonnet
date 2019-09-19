@@ -4,6 +4,10 @@ local slbimages = (import "slbimages.jsonnet") + { templateFilename:: std.thisFi
 local slbshared = (import "slbsharedservices.jsonnet") + { dirSuffix:: "slb-vip-watchdog" };
 local slbports = import "slbports.jsonnet";
 local slbflights = (import "slbflights.jsonnet") + { dirSuffix:: "slb-vip-watchdog" };
+local slbdnsregisterconfig = import "slb-dns-register.jsonnet";
+
+local certDirs = ["cert3"];
+local madkub = (import "slbmadkub.jsonnet") + { templateFileName:: std.thisFile, dirSuffix:: "slb-nginx-config-b" };
 
 if slbconfigs.isSlbEstate then configs.deploymentBase("slb") {
     metadata: {
@@ -85,7 +89,9 @@ if slbconfigs.isSlbEstate then configs.deploymentBase("slb") {
                           configs.kube_config_volume,
                           slbconfigs.cleanup_logs_volume,
                           slbconfigs.proxyconfig_volume,
-                      ]),
+                      ] + (if slbimages.phase == "1" then
+                            madkub.madkubSlbCertVolumes(certDirs)
+                           else [])),
                       containers: [
                           {
                               name: "slb-vip-watchdog",
@@ -110,7 +116,10 @@ if slbconfigs.isSlbEstate then configs.deploymentBase("slb") {
                                   slbconfigs.slb_volume_mount,
                                   slbconfigs.logs_volume_mount,
                                   configs.sfdchosts_volume_mount,
-                              ]),
+                              ] +
+                              (if slbimages.phase == "1" then
+                                madkub.madkubSlbCertVolumeMounts(certDirs)
+                              else [])),
                               env: [
                                   slbconfigs.node_name_env,
                                   slbconfigs.function_namespace_env,
