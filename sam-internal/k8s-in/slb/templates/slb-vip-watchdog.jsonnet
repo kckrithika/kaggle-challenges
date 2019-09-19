@@ -90,7 +90,7 @@ if slbconfigs.isSlbEstate then configs.deploymentBase("slb") {
                           slbconfigs.cleanup_logs_volume,
                           slbconfigs.proxyconfig_volume,
                       ] + (if slbimages.phase == "1" then
-                            madkub.madkubSlbCertVolumeMounts(certDirs)
+                            madkub.madkubSlbCertVolumes(certDirs)
                            else [])),
                       containers: [
                           {
