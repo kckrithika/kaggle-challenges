@@ -25,6 +25,8 @@ system:
       env:
       - name: SFDC_ENVIRONMENT
         value: mesh
+      - name: FAKE_REDEPLOY_VAR
+        value: "1"
       args:
       - -endpoint
       - time:DATACENTER_ALLENV:7012
