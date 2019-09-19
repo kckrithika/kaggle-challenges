@@ -26,6 +26,7 @@
       lbtype: tcp
 
 - lbname: horizon-es-xrd
+  customlbname: horizon-es-xrd
   cnames:
    - cname: es-horizon.data.sfdc.net
   servers: 
@@ -38,5 +39,5 @@
       tls: true
       reencrypt: true
       healthport: 80
-      healthpath: /
-      healthprotocol: http      
+      healthpath: /ping.jsp
+      healthprotocol: http
