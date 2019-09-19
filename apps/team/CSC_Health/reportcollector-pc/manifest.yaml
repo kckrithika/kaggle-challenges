@@ -102,7 +102,7 @@ system:
         -jar ${JAR_PATH}
       "]
     - name: csc-health-stale-log-cleaner
-      image: dva/report-collector:10
+      image: dva/report-collector:12
       volumeMounts:
         - mountPath: /var/log/report-collector
           name: logvol
