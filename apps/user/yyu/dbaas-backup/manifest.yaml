@@ -4,7 +4,7 @@ system:
   - name: dbaas-backup-test
     count: 1
     strategy:
-      type: recreate
+      type: Recreate
       #type: RollingUpdate
       #rollingUpdate:
       #  maxSurge: 0
