@@ -5,9 +5,12 @@ system:
   - name: time
     count: 1
     annotations:
-      "sherpa-injector.service-mesh/inject": "enabled"      
+      "sherpa-injector.service-mesh/inject": "enabled"
+      routing.mesh.sfdc.net/enabled: "true"
+    labels:
+      app: time
+      settings_path: mesh.-.prd.-.time
     containers:
-
     - name: time
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/jbratton/time:dev
       env:
