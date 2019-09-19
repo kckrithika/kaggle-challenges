@@ -15,6 +15,11 @@ system:
         value: mesh
       - name: FAKE_ENV_VAR_INCREMENT_TO_TRIGGER_SAM_DEPLOY
         value: "1"
+      ports:
+      - containerPort: 7443
+        name: grpc-tls-svc
+      - containerPort: 7012
+        name: grpc-svc
       livenessProbe:
         exec:
           command: ["/bin/true"]
@@ -30,6 +35,8 @@ system:
       args:
       - -endpoint
       - time:DATACENTER_ALLENV:7012
+      - -endpoint
+      - service-mesh/time:DATACENTER_ALLENV:7443      
       livenessProbe:
         initialDelaySeconds: 5
         exec:
@@ -43,3 +50,12 @@ system:
     - name: tls-server-cert
       maddogCert:
         type: server
+
+  loadbalancers:
+    - lbname: time
+      function: time
+      ports:
+        - lbtype: dsr
+          port: 7012
+          targetport: 7012
+          name: grpc-time
