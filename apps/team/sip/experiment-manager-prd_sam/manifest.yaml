@@ -3,7 +3,7 @@ apiVersion: v1
 system:
   notifications:
     email:
-      - smarwaha@salesforce.com
+      - search-sip-notify@salesforce.com
   functions:
   - name: sip-em-dev
     count: 1
@@ -24,7 +24,7 @@ system:
           - sip-em-dev-slb
     containers:
     - name: sip-em 
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/srinath.venkatesan/em/sip:sip-em-20190919T1600
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/srinath.venkatesan/em/sip:sip-em-20190919T1700
       livenessProbe:
         initialDelaySeconds: 180
         periodSeconds: 60
