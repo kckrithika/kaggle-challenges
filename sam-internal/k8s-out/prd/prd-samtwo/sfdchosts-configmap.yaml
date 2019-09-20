@@ -426,6 +426,17 @@ data:
           "controlestate": "prd-samtwo",
           "devicerole": "samcompute",
           "estate": "prd-sam_zipkin",
+          "hostname": "shared0-samminionzipkin1-33-prd.eng.sfdc.net",
+          "kingdom": "prd",
+          "pod": "none",
+          "rack": "d10-45",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sam_minion_zipkin",
+          "controlestate": "prd-samtwo",
+          "devicerole": "samcompute",
+          "estate": "prd-sam_zipkin",
           "hostname": "shared0-samminionzipkin1-4-prd.eng.sfdc.net",
           "kingdom": "prd",
           "pod": "none",
