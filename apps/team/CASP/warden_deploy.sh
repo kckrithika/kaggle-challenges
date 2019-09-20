@@ -26,6 +26,7 @@ maiev_prd() {
 maiev_prod() {
     perl -i -pe"s/image: dva\/maiev-receiver:[0-9]*/image: dva\/maiev-receiver:$NEWVERSION/g" prod-maiev-receiver/manifest.yaml
     perl -i -pe"s/image: dva\/maiev-receiver:[0-9]*/image: dva\/maiev-receiver:$NEWVERSION/g" prod-maiev-receiver-alternate/manifest.yaml
+    perl -i -pe"s/image: dva\/maiev-receiver:[0-9]*/image: dva\/maiev-receiver:$NEWVERSION/g" prod-maiev-receiver-mofo/manifest.yaml
 }
 
 maiev() {
