@@ -109,6 +109,12 @@ system:
                   -Dcom.sun.management.jmxremote.authenticate=false
                   -Xmx4G -Xms4G -XX:ParallelGCThreads=8
                   -Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=6103"
+        - name: SAVE_EXECUTOR_INSTANCES
+          value: 4
+        - name: SAVE_SPARK_DEFAULT_PARALLELISM
+          value: 60
+        - name: SAVE_SPARK_SQL_SHUFFLE_PARTITIONS
+          value: 60
       resources:
         limits: { cpu: "2", memory: "6Gi" }
         requests: { cpu: "2", memory: "5Gi" }
