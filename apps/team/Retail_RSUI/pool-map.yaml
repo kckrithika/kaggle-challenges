@@ -41,8 +41,15 @@ apps:
   - name: prd/prd-sam_crosscloudplatform
   hub-persistence-func-patch:
   - name: prd/prd-sam_crosscloudplatform
-  hub-persistence-prod:
+# hub-persistence-prod-[na,apac,emea] should be the same manifest file. They're broken out into 3 to allow for staggered releases across regions
+  hub-persistence-prod-na:
   - name: iad/iad-sam_crosscloudplatform
   - name: ord/ord-sam_crosscloudplatform
+  hub-persistence-prod-apac:
+  - name: ukb/ukb-sam_crosscloudplatform
+  - name: hnd/hnd-sam_crosscloudplatform
+  hub-persistence-prod-emea:
+  - name: par/par-sam_crosscloudplatform
+  - name: frf/frf-sam_crosscloudplatform
   hub-persistence-perf:
   - name: prd/prd-sam_crosscloudplatform
