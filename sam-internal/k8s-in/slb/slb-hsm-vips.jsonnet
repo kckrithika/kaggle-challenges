@@ -108,6 +108,8 @@
         'org-cce2e-cs91-slb-dfw.slb.sfdc.net',
         'org-cce2e-cs999-slb-dfw.slb.sfdc.net',
         'org-orgcerttest-gs0-slb-dfw.slb.sfdc.net',
+        'org-orgcerttest-cs997-slb-dfw.slb.sfdc.net',
+        'org-cce2e-na47-slb-dfw.slb.sfdc.net',
       ],
       'iad-sam': [
         'org-cce2e-cs8-slb-iad.slb.sfdc.net',
