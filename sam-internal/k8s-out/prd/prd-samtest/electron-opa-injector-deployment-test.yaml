@@ -105,7 +105,7 @@ spec:
         livenessProbe:
           httpGet:
             path: /healthz
-            port: "8443"
+            port: 8443
             scheme: HTTPS
           initialDelaySeconds: 2
           periodSeconds: 10
@@ -115,7 +115,7 @@ spec:
         readinessProbe:
           httpGet:
             path: /healthz
-            port: "8443"
+            port: 8443
             scheme: HTTPS
           initialDelaySeconds: 5
           periodSeconds: 10
