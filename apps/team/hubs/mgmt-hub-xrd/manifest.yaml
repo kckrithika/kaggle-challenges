@@ -20,7 +20,7 @@ system:
     # Docker image(s) that make up one instance of the service
     containers:
     - name: mgmt-hub
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mgmt/mgmt-hub:mgmt-2019-09-20-15-22-39
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mgmt/mgmt-hub:mgmt-2019-09-17-17-10-03
       env:
       - name: KEYSTORE_CA_DIRECTORY
         value: /certs/ca
@@ -29,7 +29,7 @@ system:
       - name: KPODS_COUNT
         value: 1
       - name: SPRING_PROFILES_ACTIVE
-        value: first-party
+        value: dev
       - name: APP_REMOTE_HOST
         value: stmfana44ice1-app1-4-prd
       - name: APP_DOMAIN
