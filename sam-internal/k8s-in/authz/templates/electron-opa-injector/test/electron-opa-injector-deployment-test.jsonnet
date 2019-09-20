@@ -78,18 +78,15 @@ configs.deploymentBase("authz-injector") {
         containers: [
           {
             name: "injector",
-            image: versions.injectorImage,
+            image: "ops0-artifactrepo1-0-prd.data.sfdc.net/dva/mutating-webhook:120",
             imagePullPolicy: "IfNotPresent",
             terminationMessagePolicy: "FallbackToLogsOnError",
             args: [
-              "--opa-template=%s" % "/config-opa/electron-opa-container.yaml.template",  // This is the template that we have stored in a ConfigMap in k8s
-              "--opa-istio-template=%s" % "/config-opa-istio/electron-opa-istio-container.yaml.template",  // This is the template that we have stored in a ConfigMap in k8s
-              "--opa-image=%s" % versions.opaImage,
-              "--opa-istio-image=%s" % versions.opaIstioImage,
-              "--log-level=debug",
-              "--port=17442",
-              "--cert=/server-certs/server/certificates/server.pem",
-              "--key=/server-certs/server/keys/server-key.pem",
+              "/mutating-webhook/mutating-webhook",
+              "--sidecar-config-file=/etc/webhook/config/sidecarconfig.yaml",
+              "--mutation-config-file=/etc/webhook/config/mutationconfig.yaml",
+              "--cert-file-path=/server-certs/server/certificates/server.pem",
+              "--key-file-path=/server-certs/server/keys/server-key.pem",
             ],
             env+: [
               {
@@ -174,12 +171,8 @@ configs.deploymentBase("authz-injector") {
                 mountPath: "/client-certs",
               },
               {
-                name: "electron-opa-injector-configs-data-volume-opa",
-                mountPath: "/config-opa",
-              },
-              {
-                name: "electron-opa-injector-configs-data-volume-opa-istio",
-                mountPath: "/config-opa-istio",
+                name: "electron-opa-injector-config",
+                mountPath: "/config",
               },
             ],
             ports+: [
@@ -188,30 +181,22 @@ configs.deploymentBase("authz-injector") {
               },
             ],
             livenessProbe: {
-              exec: {
-                command: [
-                  "./tools/is-alive.sh",
-                  "17442",
-                  // Pass the certificates folder for the liveness probe to use TLS
-                  "/client-certs/client/certificates/client.pem",
-                  "/client-certs/client/keys/client-key.pem",
-                ],
+              httpGet: {
+                scheme: "HTTPS",
+                path: "/healthz",
+                port: "8443",
               },
               initialDelaySeconds: 2,
-              periodSeconds: 3,
+              periodSeconds: 10,
             },
             readinessProbe: {
-              exec: {
-                command: [
-                  "./tools/is-ready.sh",
-                  "17442",
-                  // Pass certificates for the readiness probe to use with TLS
-                  "/client-certs/client/certificates/client.pem",
-                  "/client-certs/client/keys/client-key.pem",
-                ],
+              httpGet: {
+                scheme: "HTTPS",
+                path: "/healthz",
+                port: "8443",
               },
-              initialDelaySeconds: 4,
-              periodSeconds: 3,
+              initialDelaySeconds: 5,
+              periodSeconds: 10,
             },
             resources: {},
           } + configs.ipAddressResourceRequest,
@@ -246,15 +231,9 @@ configs.deploymentBase("authz-injector") {
           },
           {
             configMap: {
-              name: "electron-opa-injector-configs-opa-container",
+              name: "electron-opa-injector-config",
             },
-            name: "electron-opa-injector-configs-data-volume-opa",
-          },
-          {
-            configMap: {
-              name: "electron-opa-injector-configs-opa-istio-container",
-            },
-            name: "electron-opa-injector-configs-data-volume-opa-istio",
+            name: "electron-opa-injector-config",
           },
         ] +
         if utils.is_pcn(configs.kingdom) then
