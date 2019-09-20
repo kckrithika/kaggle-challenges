@@ -78,7 +78,7 @@ configs.deploymentBase("authz-injector") {
         containers: [
           {
             name: "injector",
-            image: "ops0-artifactrepo1-0-prd.data.sfdc.net/dva/mutating-webhook:120-198f5792279c9a1ca1e490c0281590bb1efd275c",
+            image: "ops0-artifactrepo2-0-prd.data.sfdc.net/dva/mutating-webhook:120-198f5792279c9a1ca1e490c0281590bb1efd275c",
             imagePullPolicy: "IfNotPresent",
             terminationMessagePolicy: "FallbackToLogsOnError",
             args: [
