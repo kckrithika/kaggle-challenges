@@ -135,7 +135,7 @@ if slbconfigs.isSlbEstate then configs.deploymentBase("slb") {
                       dnsPolicy: "Default",
                   } + slbconfigs.getGracePeriod()
                   + slbconfigs.slbEstateNodeSelector
-                  + (if slbimages.phase == "1" then                        {
+                  + (if slbimages.phase == "1" then {
                             initContainers: [
                                 madkub.madkubInitContainer(certDirs),
                             ],
