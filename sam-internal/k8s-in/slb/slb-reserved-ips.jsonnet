@@ -50,6 +50,9 @@
               "13.110.28.129/32",  # org-cce2e-cs90-slb-dfw.slb.sfdc.net
               "13.110.28.130/32",  # org-cce2e-cs91-slb-dfw.slb.sfdc.net
               "13.110.28.131/32",  # org-cce2e-cs999-slb-dfw.slb.sfdc.net
+              "13.110.28.132/32",  # org-cce2e-na47-slb-dfw.slb.sfdc.net
+              "13.110.28.133/32",  # org-certtest-gs0-slb-dfw.slb.sfdc.net
+              "13.110.28.134/32",  # org-certtest-cs997-slb-dfw.slb.sfdc.net
             ],
             "fra-sam": [
               "85.222.140.16/32",  # cs103app-lb.core-on-sam-sp1.fra-sam.fra.slb.sfdc.net
@@ -127,6 +130,8 @@
               "13.110.30.129/32",  # org-cce2e-cs90-slb-phx.slb.sfdc.net
               "13.110.30.130/32",  # org-cce2e-cs91-slb-phx.slb.sfdc.net
               "13.110.30.131/32",  # org-cce2e-cs999-slb-phx.slb.sfdc.net
+              "13.110.30.132/32",  # org-cce2e-na47-slb-phx.slb.sfdc.net
+              "13.110.30.133/32",  # org-certtest-gs0-slb-phx.slb.sfdc.net
             ],
             "prd-samtwo": [
               "136.146.214.8/32",  #na44-stmfa1-0-prd.slb.sfdc.net
