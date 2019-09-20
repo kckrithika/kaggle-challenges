@@ -11,7 +11,7 @@ system:
         #  maxUnavailable: 1
       containers:
         - name: dbaas-backup
-          image: dva/threeeyedraven:38cd5794f936162634ed3ffb1121fb6ab346309c
+          image: dva/threeeyedraven:06a18e3af8d343ff6191b2b5de3178a469518b1d
           env:
             - name: SFDC_ENVIRONMENT
               #value: prod # for prod dc except for prd (DBaaS config)
@@ -23,7 +23,7 @@ system:
             - name: DC
               value: $(KINGDOM)
             - name: SPRING_PROFILES_ACTIVE
-              value: dc.$(KINGDOM)
+              value: sdb,dc.$(KINGDOM)
             - name: SDB_UCMD_CERT
               value: /client-certs/client/certificates/client.pem
             - name: SDB_UCMD_KEY
