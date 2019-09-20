@@ -14,11 +14,14 @@ system:
           maxUnavailable: 1
       containers:
       - name: prod-maiev-receiver
-        image: dva/maiev-receiver:39
+        image: dva/maiev-receiver:43
         ports:
         - name: receiver-grpc
           containerPort: 7442
           hostPort: 17444
+        - name: receiver-http
+          containerPort: 8085
+          hostPort: 18085
         livenessProbe:
           exec:
             command:
@@ -28,6 +31,10 @@ system:
           value: "7442"
         - name: CANTOR_GRPC_TARGET
           value: "shared0-samminionwarden1-1-$KINGDOM.ops.sfdc.net:17443"
+        - name: HTTP_PORT
+          value: "8085"
+        - name: BASE_PATH
+          value: "/v1"
     loadbalancers:
     - lbname: maiev-receiver
       function: maiev-receiver-func
