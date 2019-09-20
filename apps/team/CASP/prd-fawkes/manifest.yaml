@@ -26,6 +26,8 @@ system:
           value: "https://public0-proxy1-0-prd.data.sfdc.net:8080"
         - name: NO_PROXY
           value: "warden.sfdc.net,127.0.0.1,localhost"
+        - name: DUMMY_VAR
+          value: "the_answer_to_life_is_42"
         volumeMounts:
         - mountPath: /fawkes/argus-secrets
           name: argus
