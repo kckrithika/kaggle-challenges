@@ -71,6 +71,7 @@
         'org-cce2e-cs90-slb-phx.slb.sfdc.net',
         'org-cce2e-cs91-slb-phx.slb.sfdc.net',
         'org-cce2e-cs999-slb-phx.slb.sfdc.net',
+        'org-orgcerttest-gs0-slb-phx.slb.sfdc.net',
       ],
       'dfw-sam': [
         'login-cloudforce-dfw.slb.sfdc.net',
