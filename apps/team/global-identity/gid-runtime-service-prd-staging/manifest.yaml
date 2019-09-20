@@ -78,6 +78,31 @@ system:
           - "/home/scone/is-alive.sh"
         initialDelaySeconds: 5
         periodSeconds: 5
+
+    #####################################################################################
+    # Service Protection
+    #####################################################################################
+    - name: service-protection
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/gid/service-protection:bb2076e
+      imagePullPolicy: Always
+      env:
+      - name: server_use_forward_headers
+        value: true
+      - name: server_port
+        value: 7022
+      - name: management_server_port
+        value: 15376
+      - name: proxy_target
+        value: http://localhost:8080
+
+      ports:
+      - containerPort: 7022
+      - containerPort: 15376
+      livenessProbe:
+        httpGet:
+          path: /manage/health
+          port: 15376
+
     #####################################################################################
     # Global Identity Loing and Runtime Service
     #####################################################################################
@@ -88,7 +113,7 @@ system:
       - name: server_use_forward_headers
         value: true
       - name: server_port
-        value: 7022
+        value: 8080
       - name: management_server_port
         value: 15375
       - name: login_public_url
@@ -114,7 +139,7 @@ system:
       - name: client-cert
         mountPath: /client-certs
       ports:
-      - containerPort: 7022
+      - containerPort: 8080
       - containerPort: 15375
       livenessProbe:
         httpGet:
@@ -144,7 +169,7 @@ system:
       function: gid-runtime-service-prd-staging
       slbEnabled: true
       ports:
-        - port: 9090
+        - port: 80
           name: public
           targetport: 7022
           lbtype: http
