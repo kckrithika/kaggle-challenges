@@ -51,7 +51,7 @@ system:
       - name: SCONE_SERVER_SECURITY_MUTUALAUTH
         value: true
       - name: GDOT_BASEPATHOVERRIDE
-        value: https://login.stmfa.stm.salesforce.com/empire/cloudatlas/scim
+        value: http://cloudatlas-prd-stage-service.cloudatlas.localhost.mesh.force.com:5442/scim
       - name: INCLUDE_ALL_STACK_TRACES
         value: true
       - name: QUERY_LIMIT
