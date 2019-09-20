@@ -63,6 +63,12 @@ system:
           value: cre-engine-ccp-func
         - name: SAVE_K4A_VAULT
           value: cre-dds-dev
+        - name: SAVE_EXECUTOR_INSTANCES
+          value: 4
+        - name: SAVE_SPARK_DEFAULT_PARALLELISM
+          value: 60
+        - name: SAVE_SPARK_SQL_SHUFFLE_PARTITIONS
+          value: 60
         ####################################################################################################
         ####################################### EXPORT environment variables ###############################
         ####################################################################################################
@@ -102,12 +108,6 @@ system:
                   -Dcom.sun.management.jmxremote.ssl=false
                   -Dcom.sun.management.jmxremote.authenticate=false
                   -Xmx4G -Xms4G -XX:ParallelGCThreads=8"
-        - name: SAVE_EXECUTOR_INSTANCES
-          value: 4
-        - name: SAVE_SPARK_DEFAULT_PARALLELISM
-          value: 60
-        - name: SAVE_SPARK_SQL_SHUFFLE_PARTITIONS
-          value: 60
       resources:
         limits: { cpu: "2", memory: "6Gi" }
         requests: { cpu: "2", memory: "5Gi" }
