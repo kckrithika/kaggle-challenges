@@ -21,7 +21,7 @@ system:
       image: sfci/servicelibs/timeservice:b3c3a1327b0f33ff1fe541bcc7ed2e9f37c962ad
       args:
       - ForeverClient
-      - app-prd-stmfb-na43.app.svc.mesh.sfdc.net:5443
+      - app-prd-stmfa-na43.app.svc.mesh.sfdc.net:7443
       - 5000
       env:
       - name: SFDC_ENVIRONMENT
