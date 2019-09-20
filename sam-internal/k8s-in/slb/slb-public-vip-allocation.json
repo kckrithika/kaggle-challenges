@@ -37,7 +37,10 @@
     "org-cce2e-cs71-slb-dfw.slb.sfdc.net": 128,
     "org-cce2e-cs90-slb-dfw.slb.sfdc.net": 129,
     "org-cce2e-cs91-slb-dfw.slb.sfdc.net": 130,
-    "org-cce2e-cs999-slb-dfw.slb.sfdc.net": 131
+    "org-cce2e-cs999-slb-dfw.slb.sfdc.net": 131,
+    "org-cce2e-na47-slb-dfw.slb.sfdc.net": 132,
+    "org-orgcerttest-gs0-slb-dfw.slb.sfdc.net": 133,
+    "org-orgcerttest-cs997-slb-dfw.slb.sfdc.net": 134
   },
   "fra-sam": {
     "slb-canary-proxy-http-ext.sam-system.fra-sam.fra.slb.sfdc.net": 5,
@@ -196,7 +199,9 @@
     "org-cce2e-cs71-slb-phx.slb.sfdc.net": 128,
     "org-cce2e-cs90-slb-phx.slb.sfdc.net": 129,
     "org-cce2e-cs91-slb-phx.slb.sfdc.net": 130,
-    "org-cce2e-cs999-slb-phx.slb.sfdc.net": 131
+    "org-cce2e-cs999-slb-phx.slb.sfdc.net": 131,
+    "org-cce2e-na47-slb-phx.slb.sfdc.net": 132,
+    "org-orgcerttest-gs0-slb-phx.slb.sfdc.net": 133
   },
   "prd-sam": {},
   "prd-sam_storage": {},
