@@ -184,7 +184,7 @@ configs.deploymentBase("authz-injector") {
               httpGet: {
                 scheme: "HTTPS",
                 path: "/healthz",
-                port: "8443",
+                port: 8443,
               },
               initialDelaySeconds: 2,
               periodSeconds: 10,
@@ -193,7 +193,7 @@ configs.deploymentBase("authz-injector") {
               httpGet: {
                 scheme: "HTTPS",
                 path: "/healthz",
-                port: "8443",
+                port: 8443,
               },
               initialDelaySeconds: 5,
               periodSeconds: 10,
