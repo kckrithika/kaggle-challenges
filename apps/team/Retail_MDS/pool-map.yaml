@@ -37,3 +37,9 @@ apps:
     - name: hnd/hnd-sam_crosscloudplatform
     - name: par/par-sam_crosscloudplatform
     - name: frf/frf-sam_crosscloudplatform
+
+
+    istio-time-client:    # istio-time-client; owned by the mesh-control-plane team
+    - name: prd/prd-sam_crosscloudplatform
+      hostSubList:
+        - shared0-samminioncrosscloudplatform2-3-prd.eng.sfdc.net
