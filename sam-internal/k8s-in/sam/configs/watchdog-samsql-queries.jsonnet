@@ -18,6 +18,7 @@
 
   sql_alerts: [
     (import "watchdog-samsql-alerts/sqlsladepl.libsonnet"),
+    (import "watchdog-samsql-alerts/connectivitychecker.libsonnet"),
     (import "watchdog-samsql-alerts/customerpodswithimagepullerrors.libsonnet"),
     (import "watchdog-samsql-alerts/sqlslanode.libsonnet"),
     (import "watchdog-samsql-alerts/sqlsamcontrol.libsonnet"),

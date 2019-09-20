@@ -297,7 +297,18 @@ data:
     NOT\n                             (controlestate like ''frf-sam'' AND namespace
     like ''casp'' AND now() < STR_TO_DATE(''2019-03-21'', ''%Y-%m-%d''))", "watchdogFrequency":
     "10m"}, {"alertAction": "businesshours_pagerduty", "alertFrequency": "336h", "alertProfile":
-    "sam", "alertThreshold": "5m", "name": "SqlCustomerAppsWithImagePullErrorsProd",
+    "sam", "alertThreshold": "5m", "name": "SqlConnectivityChecker", "sql": "select\n                           TRIM(''connectivitylabelerchecker-''
+    FROM name) as HostName,\n                           controlestate,\n                           Payload->>''$.status.report.Target''
+    as Target,\n                           Payload->>''$.status.report.Success'' as
+    Connectivity,\n                           TIMESTAMPDIFF(MINUTE, STR_TO_DATE(Payload->>''$.status.report.ReportCreatedAt'',
+    ''%Y-%m-%dT%H:%i:%s.''), UTC_TIMESTAMP()) as ReportAgeInMinutes,\n                           Payload->>''$.status.report.ErrorMessage''
+    as ErrorMsg\n                   from\n                           k8s_resource\n                   where\n                           apikind
+    = ''watchdog'' and\n                           TIMESTAMPDIFF(MINUTE, STR_TO_DATE(Payload->>''$.status.report.ReportCreatedAt'',
+    ''%Y-%m-%dT%H:%i:%s.''), UTC_TIMESTAMP()) < 10 and\n                           NOT
+    ControlEstate LIKE ''prd-%'' and\n                           name like ''connectivitylabelerchecker-%''
+    and\n                           Payload->>''$.status.report.Success'' = ''false''",
+    "watchdogFrequency": "5m"}, {"alertAction": "businesshours_pagerduty", "alertFrequency":
+    "336h", "alertProfile": "sam", "alertThreshold": "5m", "name": "SqlCustomerAppsWithImagePullErrorsProd",
     "sql": "select \n  controlEstate,\n  namespace,\n  name,\n  nodename,\n  phase,\n  Payload->>''$.status.containerStatuses[*].state.waiting.reason''
     as reason,\n  Payload->>''$.status.containerStatuses[*].state.waiting.message''
     as message\nfrom podDetailView where \n  JSON_SEARCH(Payload->>''$.status.containerStatuses[*].state.waiting.reason'',
