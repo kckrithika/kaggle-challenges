@@ -131,10 +131,16 @@ if slbconfigs.isSlbEstate then configs.deploymentBase("slb") {
                           slbshared.slbNodeApi(slbports.slb.slbNodeApiPort, true),
                           slbshared.slbLogCleanup,
                           slbshared.slbManifestWatcher(),
-                      ],
+                      ] + (if slbimages.phase == "1" then [madkub.madkubRefreshContainer(certDirs)] else []),
                       dnsPolicy: "Default",
                   } + slbconfigs.getGracePeriod()
-                  + slbconfigs.slbEstateNodeSelector,
+                  + slbconfigs.slbEstateNodeSelector
+                  + (if slbimages.phase == "1" then {
+                            initContainers: [
+                                madkub.madkubInitContainer(certDirs),
+                            ],
+                        }
+                    else {}),
             metadata: {
                 labels: {
                     name: "slb-vip-watchdog",
