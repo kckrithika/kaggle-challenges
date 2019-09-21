@@ -243,6 +243,7 @@
                   "10.214.36.146/32",  #metadata-service-lb.retail-mds.frf-sam.frf.slb.sfdc.net
                   "10.214.36.141/32",  #dfs-production-lb.retail-dfs.frf-sam.frf.slb.sfdc.net
                   "10.214.36.145/32",  #rsui-service-frf-lb.retail-rsui.frf-sam.frf.slb.sfdc.net
+                  "10.214.36.147/32",  #hub-persistence-lb.retail-rsui.frf-sam.frf.slb.sfdc.net
                 ],
                 "par-sam": [
                   "10.214.112.129/32",  # kubernetes-api-flowsnake-par.slb.sfdc.net
@@ -252,6 +253,7 @@
                   "10.214.112.131/32",  #metadata-service-lb.retail-mds.par-sam.par.slb.sfdc.net
                   "10.214.112.132/32",  #dfs-production-lb.retail-dfs.par-sam.par.slb.sfdc.net
                   "10.214.112.135/32",  #rsui-service-par-lb.retail-rsui.par-sam.par.slb.sfdc.net
+                  "10.214.112.14/32",  #hub-persistence-lb.retail-rsui.par-sam.par.slb.sfdc.net
                 ],
                 "phx-sam": [
                   "10.208.208.144/32",  # sec0-magister1-0-phx.slb.sfdc.net.
@@ -272,6 +274,7 @@
                   "10.208.108.148/32",  # dfs-production-lb.retail-dfs.iad-sam.iad.slb.sfdc.net
                   "10.208.108.14/32",  # metadata-service-lb.retail-mds.iad-sam.iad.slb.sfdc.net
                   "10.208.108.15/32",  #rsui-service-iad-lb.retail-rsui.iad-sam.iad.slb.sfdc.net
+                  "10.208.108.152/32",  #hub-persistence-lb.retail-rsui.iad-sam.iad.slb.sfdc.net
                 ],
                 "ord-sam": [
                   "10.208.148.0/32",  # cre-api-lb.retail-cre.ord-sam.ord.slb.sfdc.net
@@ -280,6 +283,7 @@
                   "10.208.148.148/32",  # dfs-production-lb.retail-dfs.ord-sam.ord.slb.sfdc.net
                   "10.208.148.147/32",  # metadata-service-lb.retail-mds.ord-sam.ord.slb.sfdc.net
                   "10.208.148.109/32",  #rsui-service-ord-lb.retail-rsui.ord-sam.ord.slb.sfdc.net
+                  "10.208.148.116/32",  #hub-persistence-lb.retail-rsui.ord-sam.ord.slb.sfdc.net
                 ],
                 # C360 -- end
                 "ukb-sam": [
@@ -289,6 +293,7 @@
                   "10.213.36.126/32",  #metadata-service-lb.retail-mds.ukb-sam.ukb.slb.sfdc.net
                   "10.213.36.121/32",  #dfs-production-lb.retail-dfs.ukb-sam.ukb.slb.sfdc.net
                   "10.213.36.122/32",  #rsui-service-ukb-lb.retail-rsui.ukb-sam.ukb.slb.sfdc.net
+                  "10.213.36.127/32",  #hub-persistence-lb.retail-rsui.ukb-sam.ukb.slb.sfdc.net
                 ],
                 "hnd-sam": [
                   "10.213.100.136/32",  #cre-control-plane-lb.retail-cre.hnd-sam.hnd.slb.sfdc.net
@@ -297,6 +302,7 @@
                   "10.213.100.140/32",  #metadata-service-lb.retail-mds.hnd-sam.hnd.slb.sfdc.net
                   "10.213.100.138/32",  #dfs-production-lb.retail-dfs.hnd-sam.hnd.slb.sfdc.net
                   "10.213.100.139/32",  #rsui-service-hnd-lb.retail-rsui.hnd-sam.hnd.slb.sfdc.net
+                  "10.213.100.141/32",  #hub-persistence-lb.retail-rsui.hnd-sam.hnd.slb.sfdc.net
                 ],
             },
 }
