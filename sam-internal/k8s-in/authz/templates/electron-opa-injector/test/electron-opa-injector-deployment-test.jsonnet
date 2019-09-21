@@ -21,7 +21,7 @@ configs.deploymentBase("authz-injector") {
     if utils.is_pcn(configs.kingdom) then configs.pcnEnableLabel else {},
   },
   spec+: {
-    replicas: 3,
+    replicas: 0,
     template: {
       metadata: {
         labels: {
