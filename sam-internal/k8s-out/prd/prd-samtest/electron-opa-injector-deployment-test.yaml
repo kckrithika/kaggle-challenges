@@ -56,6 +56,7 @@ spec:
       containers:
       - args:
         - /mutating-webhook/mutating-webhook
+        - --port=8443
         - --sidecar-config-file=/config/sidecarconfig.yaml
         - --mutation-config-file=/config/mutationconfig.yaml
         - --cert-file-path=/server-certs/server/certificates/server.pem
@@ -111,7 +112,7 @@ spec:
           periodSeconds: 10
         name: injector
         ports:
-        - containerPort: 17442
+        - containerPort: 8443
         readinessProbe:
           httpGet:
             path: /healthz
