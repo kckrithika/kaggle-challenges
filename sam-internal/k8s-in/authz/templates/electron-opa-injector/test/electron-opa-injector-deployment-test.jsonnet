@@ -83,8 +83,8 @@ configs.deploymentBase("authz-injector") {
             terminationMessagePolicy: "FallbackToLogsOnError",
             args: [
               "/mutating-webhook/mutating-webhook",
-              "--sidecar-config-file=/etc/webhook/config/sidecarconfig.yaml",
-              "--mutation-config-file=/etc/webhook/config/mutationconfig.yaml",
+              "--sidecar-config-file=/config/sidecarconfig.yaml",
+              "--mutation-config-file=/config/mutationconfig.yaml",
               "--cert-file-path=/server-certs/server/certificates/server.pem",
               "--key-file-path=/server-certs/server/keys/server-key.pem",
             ],
