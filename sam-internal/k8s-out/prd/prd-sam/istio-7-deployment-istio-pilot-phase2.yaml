@@ -129,7 +129,7 @@ spec:
           value: "1"
         - name: PILOT_DISABLE_XDS_MARSHALING_TO_ANY
           value: "1"
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/sfci/servicemesh/istio-packaging/pilot:10908bb690d01d7100444da5d8ac58960cb22d7c
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/sfci/servicemesh/istio-packaging/pilot:4de41d320b3106aa3bec44b04697f2f9b88b46d1
         imagePullPolicy: IfNotPresent
         name: discovery
         ports:
@@ -204,7 +204,7 @@ spec:
           value: /server-certs/server/keys/server-key.pem
         - name: ISTIO_META_TLS_SERVER_ROOT_CERT
           value: /server-certs/ca.pem
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/sfci/servicemesh/istio-packaging/proxy:10908bb690d01d7100444da5d8ac58960cb22d7c
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/sfci/servicemesh/istio-packaging/proxy:4de41d320b3106aa3bec44b04697f2f9b88b46d1
         imagePullPolicy: IfNotPresent
         name: istio-proxy
         ports:
@@ -271,7 +271,7 @@ spec:
         - --debug-mode
         - "true"
         - --funnel-address
-        - ajna0-funnel1-0-prd.data.sfdc.net:80
+        - ajnafunneldirecttls.funnel.svc.mesh.sfdc.net:7442
         - --alt-tags
         - cluster=svccluster
         env:
@@ -360,6 +360,39 @@ spec:
           name: tls-client-cert
         - mountPath: /server-cert
           name: tls-server-cert
+      - args:
+        - -p
+        - "15006"
+        - -u
+        - "7447"
+        - -m
+        - REDIRECT
+        - -i
+        - 127.1.2.3/32
+        - -x
+        - ""
+        - -b
+        - ""
+        - -d
+        - 15010,15011
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/sfci/servicemesh/istio-packaging/proxy_init:4de41d320b3106aa3bec44b04697f2f9b88b46d1
+        imagePullPolicy: IfNotPresent
+        name: istio-init
+        resources:
+          limits:
+            cpu: 100m
+            memory: 50Mi
+          requests:
+            cpu: 10m
+            memory: 10Mi
+        securityContext:
+          capabilities:
+            add:
+            - NET_ADMIN
+          runAsNonRoot: false
+          runAsUser: 0
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
       nodeSelector:
         pool: prd-sam_gater
       serviceAccountName: istio-pilot-service-account
