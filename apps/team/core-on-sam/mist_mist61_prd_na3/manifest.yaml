@@ -58,6 +58,8 @@ system:
         value: B
       - name: ZDT
         value: true
+      - name: CASAM_DEPLOYMENT_ID
+        value: 12345
       - name: CASAM_HOST_NAME
         valueFrom:
           fieldRef:
