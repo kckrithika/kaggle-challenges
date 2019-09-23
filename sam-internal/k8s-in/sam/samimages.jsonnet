@@ -48,6 +48,9 @@ local samreleases = import "samreleases.json";
         "wax,wax-sam,sam-network-reporter,hypersam": "2754-365539f3b19f1f92f8ee7f1778f157769fae2a07",
         "yhu,yhu-sam,sam-network-reporter,hypersam": "2754-365539f3b19f1f92f8ee7f1778f157769fae2a07",
         "yul,yul-sam,sam-network-reporter,hypersam": "2754-365539f3b19f1f92f8ee7f1778f157769fae2a07",
+
+        # To test dynamic discovery of unknown resources.
+        "prd,prd-samtest,samcontrol-deployer,hypersam": "2800-21853f384167161544d4890632ee48fe2076d124",
         },
 
     ### Per-phase image tags have been moved to samreleases.json
