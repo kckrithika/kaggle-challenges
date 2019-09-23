@@ -145,6 +145,8 @@ apps:
 
   authz-svc:
     - prd/prd-sam_gater
+  authz-svc-opa:
+    - prd/prd-sam_gater
   demo-authz:
     - prd/prd-sam_gater
   demo-authz-http:
@@ -166,6 +168,28 @@ apps:
     - hnd/hnd-sam_gater
     - lo3/lo3-sam_gater
   authz-svc-prod-4:
+    - yul/yul-sam_gater
+    - yhu/yhu-sam_gater
+    - iad/iad-sam_gater
+    - ord/ord-sam_gater
+    - dfw/dfw-sam_gater
+    - cdg/cdg-sam_gater
+    - phx/phx-sam_gater
+    - ph2/ph2-sam_gater
+    - ia2/ia2-sam_gater
+  authz-svc-prod-opa-1:
+    - par/par-sam_gater
+  authz-svc-prod-opa-2:
+    - cdu/cdu-sam_gater
+    - frf/frf-sam_gater
+    - lo2/lo2-sam_gater
+  authz-svc-prod-opa-3:
+    - syd/syd-sam_gater
+    - ukb/ukb-sam_gater
+    - fra/fra-sam_gater
+    - hnd/hnd-sam_gater
+    - lo3/lo3-sam_gater
+  authz-svc-prod-opa-4:
     - yul/yul-sam_gater
     - yhu/yhu-sam_gater
     - iad/iad-sam_gater
