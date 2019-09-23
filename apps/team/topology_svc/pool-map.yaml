@@ -2,7 +2,7 @@ apps:
   consul:
   topology-data-ingest:
   topology-svc:
-    - mvp/gsf-core-devmvp-sam2-sam
+#    - mvp/gsf-core-devmvp-sam2-sam
   topology-svc-client:
   consul-dev:
     - prd/prd-sam

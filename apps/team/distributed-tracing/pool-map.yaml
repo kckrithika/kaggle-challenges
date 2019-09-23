@@ -24,6 +24,6 @@ apps:
     - iad/iad-sam_report_collector
     - ord/ord-sam_report_collector
     zipkin-kafka-proxy-devmvp:
-    - mvp/gsf-core-devmvp-sam2-sam
+#    - mvp/gsf-core-devmvp-sam2-sam
     test-app-devmvp:
-    - mvp/gsf-core-devmvp-sam2-sam
+#    - mvp/gsf-core-devmvp-sam2-sam

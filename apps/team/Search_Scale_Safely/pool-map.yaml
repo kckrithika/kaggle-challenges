@@ -2,7 +2,7 @@ apps:
  prd-search-query-service:
   - prd/prd-search_model_executor
  gcp-search-query-service:
-  - mvp/gsf-core-devmvp-sam2-sam
+#  - mvp/gsf-core-devmvp-sam2-sam
  prod-search-query-service-canary:
   - ord/ord-search_model_executor
  prod-search-query-service:

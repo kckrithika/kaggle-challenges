@@ -50,7 +50,7 @@ apps:
  gate-manager-prd-investigation:
   - prd/prd-sam_gater
  gate-manager-mvp:
-  - mvp/gsf-core-devmvp-sam2-sam
+#  - mvp/gsf-core-devmvp-sam2-sam
  gater-client-demo:
   - prd/prd-sam_gater
  gate-analyzer:

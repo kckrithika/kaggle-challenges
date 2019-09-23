@@ -1,7 +1,7 @@
 apps:
   jcoordinator:
     - prd/prd-sam
-    - mvp/gsf-core-devmvp-sam2-sam
+#    - mvp/gsf-core-devmvp-sam2-sam
   jstatus_reporter:
     - prd/prd-sam
-    - mvp/gsf-core-devmvp-sam2-sam
+#    - mvp/gsf-core-devmvp-sam2-sam

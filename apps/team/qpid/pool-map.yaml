@@ -1,5 +1,5 @@
 apps:
   gcp-devmvp-qpid:
-    - mvp/gsf-core-devmvp-sam2-sam
+#    - mvp/gsf-core-devmvp-sam2-sam
   stmfa-prd-na47-qpid:
     - prd/prd-sam

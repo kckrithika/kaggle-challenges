@@ -1,9 +1,9 @@
 apps:
  gcp-test-ilb-app:
-  - mvp/gsf-core-devmvp-sam2-samtest
+#  - mvp/gsf-core-devmvp-sam2-samtest
  gcp-pets-app:
-  - mvp/gsf-core-devmvp-sam2-samtest
+#  - mvp/gsf-core-devmvp-sam2-samtest
  gcp-pets2-app:
-  - mvp/gsf-core-devmvp-sam2-samtest
+#  - mvp/gsf-core-devmvp-sam2-samtest
  gcp-test-app:
-  - mvp/gsf-core-devmvp-sam2-samtest
+#  - mvp/gsf-core-devmvp-sam2-samtest

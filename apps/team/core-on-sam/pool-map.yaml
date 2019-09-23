@@ -146,13 +146,13 @@ apps:
 
 # GCP Alpha
  gcp-devmvp:
-  - name: mvp/gsf-core-devmvp-sam2-sam
+#  - name: mvp/gsf-core-devmvp-sam2-sam
  gcp-devmvp-sdb:
-  - name: mvp/gsf-core-devmvp-sam2-sam
+#  - name: mvp/gsf-core-devmvp-sam2-sam
  gcp-devmvp-proxy:
-  - name: mvp/gsf-core-devmvp-sam2-sam
+#  - name: mvp/gsf-core-devmvp-sam2-sam
  gcp-devmvp-3az:
-  - name: mvp/gsf-core-devmvp-sam2-sam
+#  - name: mvp/gsf-core-devmvp-sam2-sam
  gcp-devmvp-pkitest:
-  - name: mvp/gsf-core-devmvp-sam2-sam
+#  - name: mvp/gsf-core-devmvp-sam2-sam
 

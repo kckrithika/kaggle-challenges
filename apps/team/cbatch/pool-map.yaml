@@ -2,4 +2,4 @@ apps:
   content-jmagick:
     - prd/prd-sam
   svc-gcp-devmvp:
-    - mvp/gsf-core-devmvp-sam2-sam
+#    - mvp/gsf-core-devmvp-sam2-sam
