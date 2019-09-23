@@ -55,14 +55,12 @@ spec:
     spec:
       containers:
       - args:
-        - --opa-template=/config-opa/electron-opa-container.yaml.template
-        - --opa-istio-template=/config-opa-istio/electron-opa-istio-container.yaml.template
-        - --opa-image=ops0-artifactrepo2-0-prd.data.sfdc.net/dva/electron_opa:5-abe14d5cf848440ecc9d517baf63a77cdc2efd4a
-        - --opa-istio-image=ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/openpolicyagent/opa:0.13.2-istio-with-config-2
-        - --log-level=debug
+        - /mutating-webhook/mutating-webhook
         - --port=17442
-        - --cert=/server-certs/server/certificates/server.pem
-        - --key=/server-certs/server/keys/server-key.pem
+        - --sidecar-config-file=/config/sidecarconfig.yaml
+        - --mutation-config-file=/config/mutationconfig.yaml
+        - --cert-file-path=/server-certs/server/certificates/server.pem
+        - --key-file-path=/server-certs/server/keys/server-key.pem
         env:
         - name: SFDC_ENVIRONMENT
           value: mesh
@@ -103,29 +101,25 @@ spec:
           value: "80"
         - name: FAKE_REDEPLOY_VAR
           value: "1"
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/electron-opa-injection-webhook:13-9f0086286a437162b1c276134c1b6c12f627a1a6
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/mutating-webhook:120-198f5792279c9a1ca1e490c0281590bb1efd275c
         imagePullPolicy: IfNotPresent
         livenessProbe:
-          exec:
-            command:
-            - ./tools/is-alive.sh
-            - "17442"
-            - /client-certs/client/certificates/client.pem
-            - /client-certs/client/keys/client-key.pem
+          httpGet:
+            path: /healthz
+            port: 17442
+            scheme: HTTPS
           initialDelaySeconds: 2
-          periodSeconds: 3
+          periodSeconds: 10
         name: injector
         ports:
         - containerPort: 17442
         readinessProbe:
-          exec:
-            command:
-            - ./tools/is-ready.sh
-            - "17442"
-            - /client-certs/client/certificates/client.pem
-            - /client-certs/client/keys/client-key.pem
-          initialDelaySeconds: 4
-          periodSeconds: 3
+          httpGet:
+            path: /healthz
+            port: 17442
+            scheme: HTTPS
+          initialDelaySeconds: 5
+          periodSeconds: 10
         resources:
           limits:
             sam.sfdc.net/ip-address: "1"
@@ -137,10 +131,8 @@ spec:
           name: cert1
         - mountPath: /client-certs
           name: cert2
-        - mountPath: /config-opa
-          name: electron-opa-injector-configs-data-volume-opa
-        - mountPath: /config-opa-istio
-          name: electron-opa-injector-configs-data-volume-opa-istio
+        - mountPath: /config
+          name: electron-opa-injector-config
       - args:
         - /sam/madkub-client
         - --madkub-endpoint=https://10.254.208.254:32007
@@ -261,8 +253,5 @@ spec:
           medium: Memory
         name: tokens
       - configMap:
-          name: electron-opa-injector-configs-opa-container
-        name: electron-opa-injector-configs-data-volume-opa
-      - configMap:
-          name: electron-opa-injector-configs-opa-istio-container
-        name: electron-opa-injector-configs-data-volume-opa-istio
+          name: electron-opa-injector-config
+        name: electron-opa-injector-config
