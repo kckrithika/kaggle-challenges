@@ -64,7 +64,6 @@ system:
         periodSeconds: 5
       volumeMounts:
       - {mountPath: /client-certs, name: tls-client-certs}
-      - null
     count: 3
     hostnetwork: false
     identity: {serviceName: moana-driver}
