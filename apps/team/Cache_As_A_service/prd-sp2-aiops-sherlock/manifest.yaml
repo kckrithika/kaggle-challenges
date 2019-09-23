@@ -43,6 +43,8 @@ system:
           valueFrom:
             fieldRef:
               fieldPath: spec.nodeName
+        - name: RELEASE_VAR
+          value: 'release_42'
       volumeMounts:
         - mountPath: /opt/sherlock/data
           name: sherlock-data-vol
