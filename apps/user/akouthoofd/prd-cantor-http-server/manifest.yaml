@@ -33,8 +33,9 @@ system:
     loadbalancers:
     - lbname: cantor-service
       function: cantor-http-server
+      nodeExposed: true
       slbEnabled: true
       ports:
-        - port: 80
+        - port: 8084
           targetport: 8084
           lbalgorithm: roundrobin
