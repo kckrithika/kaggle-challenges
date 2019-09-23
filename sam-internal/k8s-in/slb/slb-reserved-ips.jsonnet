@@ -266,9 +266,6 @@
                   "10.251.196.113/32",  # ops0-netlog1-0-prd.slb.sfdc.net - Zack Mady - https://computecloud.slack.com/archives/C42SAQVS9/p1556121900123900
                   "10.251.196.117/32",  # codecov.moe.prd-sam.prd.slb.sfdc.net
                 ],
-                "prd-samtwo": [
-                  "10.254.252.151/32",  # slb-bravo-svc.sam-system.prd-samtwo.prd.slb.sfdc.net 10.254.252.151
-                ],
                 # C360 -- start -- W-6124538
                 "iad-sam": [
                   "10.208.108.100/32",  # cre-api-lb.retail-cre.iad-sam.iad.slb.sfdc.net
