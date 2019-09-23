@@ -129,7 +129,7 @@ spec:
           value: "1"
         - name: PILOT_DISABLE_XDS_MARSHALING_TO_ANY
           value: "1"
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/sfci/servicemesh/istio-packaging/pilot:4de41d320b3106aa3bec44b04697f2f9b88b46d1
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/sfci/servicemesh/istio-packaging/pilot:308ac353588fa42a7887acbfdaccc19459ce553e
         imagePullPolicy: IfNotPresent
         name: discovery
         ports:
@@ -208,7 +208,7 @@ spec:
           valueFrom:
             fieldRef:
               fieldPath: metadata.labels['cluster']
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/sfci/servicemesh/istio-packaging/proxy:4de41d320b3106aa3bec44b04697f2f9b88b46d1
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/sfci/servicemesh/istio-packaging/proxy:308ac353588fa42a7887acbfdaccc19459ce553e
         imagePullPolicy: IfNotPresent
         name: istio-proxy
         ports:
@@ -379,7 +379,7 @@ spec:
         - ""
         - -d
         - 15010,15011
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/sfci/servicemesh/istio-packaging/proxy_init:4de41d320b3106aa3bec44b04697f2f9b88b46d1
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/sfci/servicemesh/istio-packaging/proxy_init:308ac353588fa42a7887acbfdaccc19459ce553e
         imagePullPolicy: IfNotPresent
         name: istio-init
         resources:
