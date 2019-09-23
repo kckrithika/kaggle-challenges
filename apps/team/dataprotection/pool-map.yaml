@@ -7,3 +7,4 @@ apps:
   dbaas-backup:
   - prd/prd-sam
   - par/par-sam_dp
+  - hnd/hnd-sam_dp
