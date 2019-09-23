@@ -2,9 +2,16 @@ local configs = import "config.jsonnet";
 local utils = import "util_functions.jsonnet";
 local images = (import "collection-agent-images.libsonnet") + { templateFilename:: std.thisFile };
 
+local apiserverEstates = {
+    "prd-samtest": true,
+    "prd-samdev": true,
+    "prd-sam": true,
+    "par-sam": false,
+};
+
 {
     apiserver: {
-        featureFlag: (configs.estate == "prd-samtest" || configs.estate == "prd-samdev"),
+        featureFlag: (std.objectHas(apiserverEstates, configs.estate) && apiserverEstates[configs.estate]),
         name: "apiserver-metrics-exporter",
         namespace: "sam-system",
         configMapName: "apiserver-metrics-exporter-cm",
