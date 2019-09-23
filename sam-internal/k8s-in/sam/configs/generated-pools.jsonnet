@@ -917,6 +917,18 @@
     },
     {
       "namespaces": [
+        "emp-aqueduct"
+      ],
+      "access": [
+        "team/emp_aqueduct"
+      ],
+      "controlEstate": "frf-sam",
+      "estate": "frf-sam_eventbus",
+      "kingdom": "frf",
+      "superPod": "None"
+    },
+    {
+      "namespaces": [
         "gater",
         "ccait",
         "service-mesh",
