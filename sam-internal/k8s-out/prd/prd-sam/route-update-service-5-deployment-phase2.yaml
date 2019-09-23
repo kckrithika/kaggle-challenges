@@ -44,12 +44,6 @@ spec:
       labels:
         app: route-update-service
         cluster: prd-sam_gater
-        disco_dc: prd
-        disco_env: ""
-        disco_pod: ""
-        disco_role: route-update-service
-        disco_sp: ""
-        disco_subenv: ""
         sam_function: route-update-service
         settings_path: mesh.-.prd.-.route-update-service
     spec:
