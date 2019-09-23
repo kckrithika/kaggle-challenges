@@ -308,6 +308,14 @@ if (istioPhases.phaseNum == 2) then
                 name: "ISTIO_META_TLS_SERVER_ROOT_CERT",
                 value: "/server-certs/ca.pem",
               },
+              {
+                name: "ISTIO_META_kubernetes_cluster_name",
+                valueFrom: {
+                  fieldRef: {
+                    fieldPath: "metadata.labels['cluster']",
+                  },
+                },
+              },
             ],
             image: "%(istioHub)s/proxy:%(istioTag)s" % mcpIstioConfig,
             imagePullPolicy: "IfNotPresent",
