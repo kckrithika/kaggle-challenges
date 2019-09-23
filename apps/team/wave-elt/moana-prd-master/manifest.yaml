@@ -30,6 +30,8 @@ system:
       - {name: TESTRECIPE_MAESTROPINGTEST, value: 'true'}
       - {name: DEPLOYMENT_ID, value: prd-master}
       - {name: HANDLED_PODS_PATTERN, value: stmfa\..*|moana-driver-master}
+      - {name: GRPC_HOST, value: jobcontroller-master.wave-elt.localhost.mesh.force.com}
+      - {name: GRPC_PORT, value: 5443}
       image: sfci/insights/moana-driver:master-2019.09.a.49-f1426ff
       livenessProbe:
         httpGet: {path: /manage/health, port: 15372}
@@ -45,6 +47,23 @@ system:
         requests: {cpu: 1, memory: 2G}
       volumeMounts:
       - {mountPath: /home/scone/client-certs, name: tls-client-certs}
+    - image: sfci/servicelibs/sherpa-envoy:1.0.13
+      livenessProbe:
+        exec:
+          command: [./bin/is-alive]
+        initialDelaySeconds: 60
+        periodSeconds: 5
+      name: sherpa
+      ports:
+      - {containerPort: 7443, name: http2-tls-in}
+      - {containerPort: 15373, name: sherpa-adm}
+      readinessProbe:
+        exec:
+          command: [./bin/is-ready]
+        initialDelaySeconds: 50
+        periodSeconds: 5
+      volumeMounts:
+      - {mountPath: /client-certs, name: tls-client-certs}
     count: 3
     hostnetwork: false
     identity: {serviceName: moana-driver}
