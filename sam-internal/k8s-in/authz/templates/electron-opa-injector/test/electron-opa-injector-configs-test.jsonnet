@@ -17,31 +17,31 @@ if electron_opa_utils.is_electron_opa_injector_test_cluster(configs.estate) then
     if utils.is_pcn(configs.kingdom) then configs.pcnEnableLabel else {},
   },
   data: {
-    "sidecarconfig.yaml":
-      'containers:
-        - name: electron-opa
-          image: ' + versions.opaImage + '
-        - name: electron-opa-istio
-          image: ' + versions.opaIstioImage,
-    "mutationconfig.yaml":
-      'mutationConfigs:
-        - name: "electron-opa"
-          annotationNamespace: "electron-opa-injector.authz"
-          annotationTrigger: "inject"
-          initcontainers: []
-          containers: ["electron-opa"]
-          volumes: []
-          volumeMounts: []
-          ignoreNamespaces: []
-          whitelistNamespaces: []
-        - name: "electron-opa-istio"
-          annotationNamespace: "electron-opa-istio-injector.authz"
-          annotationTrigger: "inject"
-          initcontainers: []
-          containers: ["electron-opa-istio"]
-          volumes: []
-          volumeMounts: []
-          ignoreNamespaces: []
-          whitelistNamespaces: []'
+"sidecarconfig.yaml":
+  'containers:
+    - name: electron-opa
+      image: ' + versions.opaImage + '
+    - name: electron-opa-istio
+      image: ' + versions.opaIstioImage,
+"mutationconfig.yaml":
+  'mutationConfigs:
+    - name: "electron-opa"
+      annotationNamespace: "electron-opa-injector.authz"
+      annotationTrigger: "inject"
+      initcontainers: []
+      containers: ["electron-opa"]
+      volumes: []
+      volumeMounts: []
+      ignoreNamespaces: []
+      whitelistNamespaces: []
+    - name: "electron-opa-istio"
+      annotationNamespace: "electron-opa-istio-injector.authz"
+      annotationTrigger: "inject"
+      initcontainers: []
+      containers: ["electron-opa-istio"]
+      volumes: []
+      volumeMounts: []
+      ignoreNamespaces: []
+      whitelistNamespaces: []'
   }
 } else "SKIP"

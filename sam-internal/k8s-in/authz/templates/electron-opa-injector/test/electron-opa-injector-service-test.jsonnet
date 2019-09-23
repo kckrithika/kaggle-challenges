@@ -20,8 +20,8 @@ if electron_opa_utils.is_electron_opa_injector_test_cluster(configs.estate) then
     ports: [
       {
         name: "h1-tls-in-port",
-        port: 443,
-        targetPort: 8443,
+        port: if utils.is_pcn(configs.kingdom) then 443 else 17442,
+        targetPort: 17442,
       },
     ],
     selector: {
