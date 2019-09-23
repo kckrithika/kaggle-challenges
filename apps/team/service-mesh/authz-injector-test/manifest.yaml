@@ -15,7 +15,7 @@ system:
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/matthew.klosak/samhello:20190910 # golang app
       env:
         - name: FAKE_ENV_VAR_INCREMENT_TO_TRIGGER_SAM_DEPLOY
-          value: "0"
+          value: "1"
       ports:
         - containerPort: 9090
       livenessProbe:
