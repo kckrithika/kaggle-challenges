@@ -83,7 +83,7 @@ configs.deploymentBase("authz-injector") {
             terminationMessagePolicy: "FallbackToLogsOnError",
             args: [
               "/mutating-webhook/mutating-webhook",
-              "--port=8443",
+              "--port=17442",
               "--sidecar-config-file=/config/sidecarconfig.yaml",
               "--mutation-config-file=/config/mutationconfig.yaml",
               "--cert-file-path=/server-certs/server/certificates/server.pem",
@@ -178,14 +178,14 @@ configs.deploymentBase("authz-injector") {
             ],
             ports+: [
               {
-                containerPort: 8443,
+                containerPort: 17442,
               },
             ],
             livenessProbe: {
               httpGet: {
                 scheme: "HTTPS",
                 path: "/healthz",
-                port: 8443,
+                port: 17442,
               },
               initialDelaySeconds: 2,
               periodSeconds: 10,
@@ -194,7 +194,7 @@ configs.deploymentBase("authz-injector") {
               httpGet: {
                 scheme: "HTTPS",
                 path: "/healthz",
-                port: 8443,
+                port: 17442,
               },
               initialDelaySeconds: 5,
               periodSeconds: 10,
