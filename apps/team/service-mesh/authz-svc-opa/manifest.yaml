@@ -6,12 +6,12 @@ system:
     - electron@salesforce.com
     - aman.gulati@salesforce.com
   functions:
-  - name: authz-svc
+  - name: authz-svc-opa
     count: 2
     annotations:
       "sherpa-injector.service-mesh/inject": "enabled"
     containers:
-    - name: authz-svc
+    - name: authz-svc-opa
       image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/electron_sam:101
       env:
       - name: SFDC_ENVIRONMENT
@@ -43,9 +43,9 @@ system:
       image: sfci/services/sfdc-bazel/disco/beacon:d7f1640
       args:
       - -endpoint
-      - $(FUNCTION):DATACENTER_ALLENV:HTTP2
+      - $(FUNCTION):DATACENTER_ALLENV:HTTP1
       - -endpoint
-      - $(FUNCTION_NAMESPACE)/$(FUNCTION):DATACENTER_ALLENV:HTTP2_TLS
+      - $(FUNCTION_NAMESPACE)/$(FUNCTION):DATACENTER_ALLENV:HTTP1_TLS
       livenessProbe:
         exec:
           command:
