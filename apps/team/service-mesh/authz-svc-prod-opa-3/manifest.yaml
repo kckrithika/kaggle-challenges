@@ -25,9 +25,10 @@ system:
       - containerPort: 7022
         name: http-svc
       livenessProbe:
-        exec:
-          command: ["/bin/true"]
-        initialDelaySeconds: 20
+        tcpSocket:
+          port: 7022
+        initialDelaySeconds: 5
+        periodSeconds: 5
       readinessProbe:
         httpGet:
           path: /v1/health
