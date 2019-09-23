@@ -67,6 +67,8 @@ system:
           env:
             - name: GRPC_HOST
               value: sip-em-prd-slb.sip.prd-sam.prd.slb.sfdc.net:7020
+            - name: SIP_EM_ENVIRONMENT
+              value: production
   loadbalancers:
     - function: sip-em-prd
       lbname: sip-em-prd-slb
