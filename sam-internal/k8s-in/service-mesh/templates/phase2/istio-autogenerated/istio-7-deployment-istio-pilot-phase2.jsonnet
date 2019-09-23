@@ -422,7 +422,7 @@ if (istioPhases.phaseNum == 2) then
               "--debug-mode",
               "true",
               "--funnel-address",
-              mcpIstioConfig.funnelVIP,
+              mcpIstioConfig.funnelEndpoint,
               "--alt-tags",
               "cluster=svccluster",
             ],
@@ -561,6 +561,48 @@ if (istioPhases.phaseNum == 2) then
                 name: "tls-server-cert",
               },
             ],
+          },
+          {
+            args: [
+              "-p",
+              "15006",
+              "-u",
+              "7447",
+              "-m",
+              "REDIRECT",
+              "-i",
+              "127.1.2.3/32",
+              "-x",
+              "",
+              "-b",
+              "",
+              "-d",
+              "15010,15011",
+            ],
+            image: mcpIstioConfig.proxyInitImage,
+            imagePullPolicy: "IfNotPresent",
+            name: "istio-init",
+            resources: {
+              limits: {
+                cpu: "100m",
+                memory: "50Mi",
+              },
+              requests: {
+                cpu: "10m",
+                memory: "10Mi",
+              },
+            },
+            securityContext: {
+              capabilities: {
+                add: [
+                  "NET_ADMIN",
+                ],
+              },
+              runAsNonRoot: false,
+              runAsUser: 0,
+            },
+            terminationMessagePath: "/dev/termination-log",
+            terminationMessagePolicy: "File",
           },
         ],
         nodeSelector: {
