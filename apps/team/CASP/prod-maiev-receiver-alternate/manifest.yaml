@@ -6,7 +6,7 @@ system:
         - warden@salesforce.com
     functions:
     - name: maiev-receiver-func
-      count: 2
+      count: 1
       strategy:
         type: RollingUpdate
         rollingUpdate:

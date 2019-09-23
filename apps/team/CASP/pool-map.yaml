@@ -22,13 +22,13 @@ apps:
  prd-fawkes-mongo-rs:
   - prd/prd-sam_warden
  prod-mysql-shard-a:
-  - ord/ord-sam_warden
   - iad/iad-sam_warden
   - ukb/ukb-sam_warden
   - phx/phx-sam_warden
   - fra/fra-sam_warden
  prod-mysql-shard-a-alternate:
   - dfw/dfw-sam_warden
+  - ord/ord-sam_warden
   - frf/frf-sam_warden
  prod-mysql-shard-a-fast:
   - par/par-sam_warden
@@ -81,7 +81,6 @@ apps:
   - lo2/lo2-sam_warden
   - lo3/lo3-sam_warden
  prod-maiev-receiver:
-  - ord/ord-sam_warden
   - iad/iad-sam_warden
   - par/par-sam_warden
   - ukb/ukb-sam_warden
@@ -93,6 +92,7 @@ apps:
   - lo2/lo2-sam_warden
   - lo3/lo3-sam_warden
  prod-maiev-receiver-alternate:
+  - ord/ord-sam_warden
   - dfw/dfw-sam_warden
   - frf/frf-sam_warden
  prod-maiev-receiver-mofo:
@@ -101,7 +101,6 @@ apps:
   - yhu/yhu-sam_warden
   - yul/yul-sam_warden
  prod-warden:
-  - ord/ord-sam_warden
   - iad/iad-sam_warden
   - par/par-sam_warden
   - ukb/ukb-sam_warden
@@ -118,5 +117,6 @@ apps:
   - yhu/yhu-sam_warden
   - yul/yul-sam_warden
  prod-warden-alternate:
+  - ord/ord-sam_warden
   - dfw/dfw-sam_warden
   - frf/frf-sam_warden
