@@ -94,7 +94,7 @@ spec:
         env:
         - name: ESTATE
           value: prd-samtest
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/sfci/servicemesh/istio-packaging/sidecar_injector:10908bb690d01d7100444da5d8ac58960cb22d7c
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/sfci/servicemesh/istio-packaging/sidecar_injector:4de41d320b3106aa3bec44b04697f2f9b88b46d1
         imagePullPolicy: IfNotPresent
         livenessProbe:
           exec:
