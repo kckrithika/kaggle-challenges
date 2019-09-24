@@ -87,11 +87,11 @@ apps:
   - phx/phx-sam_warden
   - fra/fra-sam_warden
   - cdg/cdg-sam_warden
-  - ia2/ia2-sam_warden
   - ph2/ph2-sam_warden
   - lo2/lo2-sam_warden
   - lo3/lo3-sam_warden
  prod-maiev-receiver-alternate:
+  - ia2/ia2-sam_warden
   - ord/ord-sam_warden
   - dfw/dfw-sam_warden
   - frf/frf-sam_warden
