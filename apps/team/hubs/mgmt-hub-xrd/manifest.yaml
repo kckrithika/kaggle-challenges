@@ -47,10 +47,11 @@ system:
         - containerPort: 15372
           name: scone-mgmt
       livenessProbe:
-        initialDelaySeconds: 60
+        initialDelaySeconds: 30
         httpGet:
           path: /manage/health
           port: 15372
+
     - name: sherpa
       # https://git.soma.salesforce.com/servicelibs/sherpa-envoy/releases
       image: sfci/servicelibs/sherpa-envoy:1.0.4
