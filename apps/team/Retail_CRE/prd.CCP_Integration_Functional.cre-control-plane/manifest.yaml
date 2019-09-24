@@ -21,9 +21,9 @@ system:
         - name: INGEST_SPEC_IMAGE
           value: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-sfci-dev/sfci/cre/cre-engine:2.0.0.0.master.917a5ff.20
         - name: EXPORT_SPEC_IMAGE
-          value: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cre/cre-dds-spark:2.0-freeze-004.0.release-2.0.850f679.7
+          value: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cre/cre-dds-spark:2.0-freeze-005.0.release-2.0.64a465d.8
         - name: SAVE_SPEC_IMAGE
-          value: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cre/cre-dds-spark:2.0-freeze-004.0.release-2.0.850f679.7
+          value: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cre/cre-dds-spark:2.0-freeze-005.0.release-2.0.64a465d.8
         ####################################################################################################
         ####################################### GLOBAL SHARED VALUES #######################################
         ####################################################################################################
@@ -74,6 +74,18 @@ system:
         ####################################################################################################
         - name: EXPORT_ANNOTATIONS_PKI_NAME
           value: cre-engine-ccp-func
+        - name: EXPORT_DRIVER_CORES
+          value: 16
+        - name: EXPORT_EXECUTOR_CORES
+          value: 15
+        - name: EXPORT_EXECUTOR_INSTANCES
+          value: 4
+        - name: EXPORT_DRIVER_MEMORY
+          value: 16g
+        - name: EXPORT_SPARK_DEFAULT_PARALLELISM
+          value: 60
+        - name: EXPORT_SPARK_SQL_SHUFFLE_PARTITIONS
+          value: 60
         ####################################################################################################
         ##################################### APP Config environment variables #############################
         ####################################################################################################
