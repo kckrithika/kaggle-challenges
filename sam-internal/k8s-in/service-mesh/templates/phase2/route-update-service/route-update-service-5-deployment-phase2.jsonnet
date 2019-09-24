@@ -88,7 +88,7 @@ configs.deploymentBase("service-mesh") {
               },
               {
                 name: "FAKE_RESTART_VAR",
-                value: "1",
+                value: "2",
               },
             ],
             ports: [
