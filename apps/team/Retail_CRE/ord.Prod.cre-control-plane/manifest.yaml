@@ -17,9 +17,9 @@ system:
             - name: INGEST_FLOWSNAKE_ARTIFACT
               value: ops0-artifactrepo1-0-ord.data.sfdc.net/sfci/cre/cre-engine:1.9.0.0.master.3718f20.10
             - name: SAVE_FLOWSNAKE_ARTIFACT
-              value: ops0-artifactrepo1-0-ord.data.sfdc.net/sfci/cre/cre-dds-spark:1.9.1.6.master.9c1df61.17
+              value: ops0-artifactrepo1-0-iad.data.sfdc.net/sfci/cre/cre-dds-spark:2.0.1.master.c5ad758.18
             - name: EXPORT_FLOWSNAKE_ARTIFACT
-              value: ops0-artifactrepo1-0-ord.data.sfdc.net/sfci/cre/cre-dds-spark:1.9.1.6.master.9c1df61.17
+              value: ops0-artifactrepo1-0-iad.data.sfdc.net/sfci/cre/cre-dds-spark:2.0.1.master.c5ad758.18
             ####################################################################################################
             ####################################### GLOBAL SHARED VALUES #######################################
             ####################################################################################################
