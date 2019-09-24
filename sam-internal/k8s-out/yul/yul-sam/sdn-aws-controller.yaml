@@ -39,7 +39,7 @@ spec:
         - --ddi=https://ddi-api-crz.data.sfdc.net/
         - --keyfile=/etc/pki_service/platform/platform-client/keys/platform-client-key.pem
         - --certfile=/etc/pki_service/platform/platform-client/certificates/platform-client.pem
-        - --cafile=/etc/pki_service/ca/cabundle.pem
+        - --cafile=/etc/pki_service/ca/cacerts.pem
         - --hostsConfigFile=/sfdchosts/hosts.json
         - --log_dir=/var/logs/sdn/
         - --logtostderr=false

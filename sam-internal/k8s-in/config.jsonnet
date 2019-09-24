@@ -345,7 +345,10 @@ local utils = import "util_functions.jsonnet",
     caFile: (
         "/etc/pki_service/ca/cabundle.pem"
     ),
-    keyFile: (
+    caCertsFile: (
+        "/etc/pki_service/ca/cacerts.pem"
+    ),
+keyFile: (
         "/etc/pki_service/platform/platform-client/keys/platform-client-key.pem"
     ),
     certFile: (
