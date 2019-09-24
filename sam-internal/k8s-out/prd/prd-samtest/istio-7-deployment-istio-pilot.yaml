@@ -260,7 +260,7 @@ spec:
               fieldPath: metadata.namespace
         - name: ESTATE
           value: prd-samtest
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/madkub:1.0.0-0000082-3d5c21b4
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/madkub:1.0.0-0000084-9f4a6ca6
         imagePullPolicy: IfNotPresent
         name: madkub-refresher
         resources: {}
@@ -336,7 +336,7 @@ spec:
             fieldRef:
               apiVersion: v1
               fieldPath: metadata.namespace
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/madkub:1.0.0-0000082-3d5c21b4
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/madkub:1.0.0-0000084-9f4a6ca6
         imagePullPolicy: IfNotPresent
         name: madkub-init
         volumeMounts:
