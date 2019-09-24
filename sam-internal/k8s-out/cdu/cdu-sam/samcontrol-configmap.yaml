@@ -25,7 +25,7 @@ data:
       "keyFile": "/etc/pki_service/platform/platform-client/keys/platform-client-key.pem",
       "livenessProbePort": "22545",
       "maddogMaddogEndpoint": "https://all.pkicontroller.pki.blank.cdu.prod.non-estates.sfdcsd.net:8443",
-      "maddogMadkubImage": "ops0-artifactrepo1-0-cdu.data.sfdc.net/tnrp/sam/madkub:1.0.0-0000081-ddcaa288",
+      "maddogMadkubImage": "ops0-artifactrepo1-0-cdu.data.sfdc.net/tnrp/sam/madkub:1.0.0-0000082-3d5c21b4",
       "slbConfigInAnnotations": false,
       "slbConfigInLabels": false,
       "statefulAppEnabled": true,

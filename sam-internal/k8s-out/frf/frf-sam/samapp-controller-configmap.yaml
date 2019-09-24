@@ -12,7 +12,7 @@ data:
       "imagePullPolicy": "IfNotPresent",
       "k4aInitContainerImage": "ops0-artifactrepo1-0-frf.data.sfdc.net/dva/sam/hypersam:2778-29ee2fa3a4532165211b8adae39ecf04c451a410",
       "maddogMaddogEndpoint": "https://all.pkicontroller.pki.blank.frf.prod.non-estates.sfdcsd.net:8443",
-      "madkubImage": "ops0-artifactrepo1-0-frf.data.sfdc.net/tnrp/sam/madkub:1.0.0-0000081-ddcaa288",
+      "madkubImage": "ops0-artifactrepo1-0-frf.data.sfdc.net/tnrp/sam/madkub:1.0.0-0000082-3d5c21b4",
       "namespaceHostSubList": [
         "cloudatlas"
       ],
