@@ -14,7 +14,7 @@ data:
       "ipAddressCapacityRequest": true,
       "k4aInitContainerImage": "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/sam/hypersam:2778-29ee2fa3a4532165211b8adae39ecf04c451a410",
       "maddogMaddogEndpoint": "https://all.pkicontroller.pki.blank.prd.prod.non-estates.sfdcsd.net:8443",
-      "madkubImage": "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/madkub:1.0.0-0000082-3d5c21b4",
+      "madkubImage": "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/madkub:1.0.0-0000084-9f4a6ca6",
       "namespaceHostSubList": [
         ".*"
       ],
