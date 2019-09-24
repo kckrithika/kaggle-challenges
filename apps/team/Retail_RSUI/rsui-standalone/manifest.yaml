@@ -166,7 +166,6 @@ system:
         httpGet:
           path: /manage/health
           port: 15372
-          scheme: HTTPS
       volumeMounts:
       - name: retailservercert
         mountPath: /servercerts
