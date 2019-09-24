@@ -6,7 +6,7 @@ local apiserverEstates = {
     "prd-samtest": true,
     "prd-samdev": true,
     "prd-sam": true,
-    "par-sam": false,
+    "par-sam": true,
 };
 
 {

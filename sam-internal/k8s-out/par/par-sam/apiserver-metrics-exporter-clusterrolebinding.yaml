@@ -1,0 +1,13 @@
+apiVersion: rbac.authorization.k8s.io/v1beta1
+kind: ClusterRoleBinding
+metadata:
+  name: apiserver-metrics-exporter
+  namespace: sam-system
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: apiserver-metrics-exporter
+subjects:
+- kind: ServiceAccount
+  name: apiserver-metrics-exporter
+  namespace: sam-system
