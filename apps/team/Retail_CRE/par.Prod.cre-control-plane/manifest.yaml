@@ -6,7 +6,7 @@ system:
       - cre@salesforce.com
   functions:
     - name: cre-control-plane
-      count: 1
+      count: 3
       containers:
         - name: cre-control-plane
           image: sfci/cre-fusion/services:controlplane.v2.0.1.master.ddb2e93.17
