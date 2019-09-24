@@ -61,7 +61,7 @@ spec:
         - name: SETTINGS_PATH
           value: mesh.-.prd.-.route-update-service
         - name: FAKE_RESTART_VAR
-          value: "1"
+          value: "2"
         image: ops0-artifactrepo2-0-prd.data.sfdc.net/sfci/servicemesh/servicemesh/route-update-service:21b05ffaaf87dd1f7da1f5ea8f130138a89e50bc
         imagePullPolicy: IfNotPresent
         name: route-update-service
