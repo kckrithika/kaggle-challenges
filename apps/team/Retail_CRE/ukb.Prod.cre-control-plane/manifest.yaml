@@ -11,6 +11,8 @@ system:
         - name: cre-control-plane
           image: sfci/cre-fusion/services:controlplane.1.9.0.4.master.09c2e64.16
           env:
+            - name: K8S_API_ENDPOINT
+              value: https://kubernetes-api-flowsnake-ukb.slb.sfdc.net
             ####################################################################################################
             ############################   ENGINE/DDS FLOWSNAKE ARTIFACTS ( Most frequently changed ) ##########
             ####################################################################################################
