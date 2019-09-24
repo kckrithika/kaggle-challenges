@@ -3,8 +3,10 @@ system:
   notifications:
     email:
       - kbotha@salesforce.com
-      - gateway@salesforce.com
+      - egcp@salesforce.com
       - yangyangliu@salesforce.com
+      - mnagarajan@salesforce.com
+      - satish.raghunath@salesforce.com
   functions:
   - name: gateway-service
     count: 3
@@ -58,9 +60,6 @@ system:
       livenessProbe:
         initialDelaySeconds: 21
         periodSeconds: 15
-        #exec:
-        #  command:
-        #  - "/bin/true"
         httpGet:
           path: /manage/health
           port: 15372
