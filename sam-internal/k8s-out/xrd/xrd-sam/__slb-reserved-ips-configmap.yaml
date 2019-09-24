@@ -1,6 +1,10 @@
 apiVersion: v1
 data:
-  slb-reserved-ips-xrd.json: '{}'
+  slb-reserved-ips-xrd.json: |-
+    {
+      "check-slb-xrd.slb.sfdc.net": "10.229.32.128",
+      "ssh-to-somewhere-slb-xrd.slb.sfdc.net": "10.229.32.129"
+    }
 kind: ConfigMap
 metadata:
   creationTimestamp: null
