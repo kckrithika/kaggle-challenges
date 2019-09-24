@@ -1,7 +1,7 @@
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: istio-init-crd-10
+  name: istio-init-crd-10-%(istioTag)s
   namespace: mesh-control-plane
 spec:
   template:

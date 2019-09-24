@@ -26,6 +26,12 @@ if (istioPhases.phaseNum == 1) then
         istio: "ingressgateway",
       },
     },
+    strategy: {
+      rollingUpdate: {
+        maxSurge: 1,
+        maxUnavailable: 0,
+      },
+    },
     template: {
       metadata: {
         annotations: {
@@ -240,6 +246,14 @@ if (istioPhases.phaseNum == 1) then
                 },
               },
               {
+                name: "SERVICE_ACCOUNT",
+                valueFrom: {
+                  fieldRef: {
+                    fieldPath: "spec.serviceAccountName",
+                  },
+                },
+              },
+              {
                 name: "ISTIO_META_POD_NAME",
                 valueFrom: {
                   fieldRef: {
@@ -255,6 +269,26 @@ if (istioPhases.phaseNum == 1) then
                     fieldPath: "metadata.namespace",
                   },
                 },
+              },
+              {
+                name: "ISTIO_METAJSON_LABELS",
+                value: "{\"app\":\"istio-ingressgateway\",\"chart\":\"gateways\",\"heritage\":\"Tiller\",\"istio\":\"ingressgateway\",\"release\":\"istio\"}\n",
+              },
+              {
+                name: "ISTIO_META_CLUSTER_ID",
+                value: "Kubernetes",
+              },
+              {
+                name: "SDS_ENABLED",
+                value: "false",
+              },
+              {
+                name: "ISTIO_META_WORKLOAD_NAME",
+                value: "istio-ingressgateway",
+              },
+              {
+                name: "ISTIO_META_OWNER",
+                value: "kubernetes://api/apps/v1/namespaces/mesh-control-plane/deployments/istio-ingressgateway",
               },
               {
                 name: "ISTIO_META_ROUTER_MODE",

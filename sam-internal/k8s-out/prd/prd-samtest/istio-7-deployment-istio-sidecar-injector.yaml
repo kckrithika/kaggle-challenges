@@ -16,8 +16,8 @@ spec:
       istio: sidecar-injector
   strategy:
     rollingUpdate:
-      maxSurge: 1
-      maxUnavailable: 0
+      maxSurge: 3
+      maxUnavailable: 1
   template:
     metadata:
       annotations:
@@ -94,7 +94,7 @@ spec:
         env:
         - name: ESTATE
           value: prd-samtest
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/sfci/servicemesh/istio-packaging/sidecar_injector:308ac353588fa42a7887acbfdaccc19459ce553e
+        image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/servicemesh/istio-packaging/sidecar_injector:dev
         imagePullPolicy: IfNotPresent
         livenessProbe:
           exec:

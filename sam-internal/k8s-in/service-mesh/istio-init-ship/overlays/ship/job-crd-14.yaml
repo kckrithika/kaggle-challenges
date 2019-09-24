@@ -1,0 +1,10 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: istio-init-crd-14-%(istioTag)s
+  namespace: mesh-control-plane
+spec:
+  template:
+    spec:
+      nodeSelector:
+        pool: mcpIstioConfig.istioEstate

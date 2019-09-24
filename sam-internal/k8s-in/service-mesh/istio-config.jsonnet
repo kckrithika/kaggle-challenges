@@ -44,7 +44,7 @@ local ingressGatewayCertConfigs = [ingressGatewayClientCertConfig, ingressGatewa
   ## Images. Represented as `"mcpIstioConfig.<image>"` in template.
 
   # Istio hub and tag is used in Helm values. Represented as "%(istioHub)s" and "%(istioTag)s" respectively.
-  istioHub: configs.registry + "/sfci/servicemesh/istio-packaging",
+  istioHub: if std.objectHas(istioReleases[istioPhases.phase], 'istioHub') then istioReleases[istioPhases.phase].istioHub else configs.registry + "/sfci/servicemesh/istio-packaging",
   istioTag: istioReleases[istioPhases.phase].istioTag,
 
   serviceMeshHub: configs.registry + "/sfci/servicemesh/servicemesh",

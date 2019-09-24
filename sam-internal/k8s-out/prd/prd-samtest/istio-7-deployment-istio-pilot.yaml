@@ -18,8 +18,8 @@ spec:
       istio: pilot
   strategy:
     rollingUpdate:
-      maxSurge: 1
-      maxUnavailable: 0
+      maxSurge: 3
+      maxUnavailable: 1
   template:
     metadata:
       annotations:
@@ -121,15 +121,15 @@ spec:
             fieldRef:
               apiVersion: v1
               fieldPath: metadata.namespace
-        - name: GODEBUG
-          value: gctrace=1
         - name: PILOT_PUSH_THROTTLE
           value: "10"
         - name: PILOT_TRACE_SAMPLING
           value: "1"
-        - name: PILOT_DISABLE_XDS_MARSHALING_TO_ANY
-          value: "1"
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/sfci/servicemesh/istio-packaging/pilot:308ac353588fa42a7887acbfdaccc19459ce553e
+        - name: PILOT_ENABLE_PROTOCOL_SNIFFING_FOR_OUTBOUND
+          value: "true"
+        - name: PILOT_ENABLE_PROTOCOL_SNIFFING_FOR_INBOUND
+          value: "false"
+        image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/servicemesh/istio-packaging/pilot:dev
         imagePullPolicy: IfNotPresent
         name: discovery
         ports:
@@ -208,7 +208,9 @@ spec:
           valueFrom:
             fieldRef:
               fieldPath: metadata.labels['cluster']
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/sfci/servicemesh/istio-packaging/proxy:308ac353588fa42a7887acbfdaccc19459ce553e
+        - name: SDS_ENABLED
+          value: "false"
+        image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/servicemesh/istio-packaging/proxy:dev
         imagePullPolicy: IfNotPresent
         name: istio-proxy
         ports:
@@ -379,7 +381,7 @@ spec:
         - ""
         - -d
         - 15010,15011
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/sfci/servicemesh/istio-packaging/proxy_init:308ac353588fa42a7887acbfdaccc19459ce553e
+        image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/servicemesh/istio-packaging/proxy_init:dev
         imagePullPolicy: IfNotPresent
         name: istio-init
         resources:

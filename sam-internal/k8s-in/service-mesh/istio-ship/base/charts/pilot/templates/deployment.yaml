@@ -12,14 +12,12 @@ metadata:
     heritage: Tiller
     release: istio
     istio: pilot
-  annotations:
-    checksum/config-volume: f8da08b6b8c170dde721efd680270b2901e750d4aa186ebb6c22bef5b78a43f9
 spec:
   replicas: 3
   strategy:
     rollingUpdate:
-      maxSurge: 1
-      maxUnavailable: 0
+      maxSurge: 3
+      maxUnavailable: 1
   selector:
     matchLabels:
       istio: pilot
@@ -45,6 +43,8 @@ spec:
           - --log_output_level=default:warn
           - --domain
           - cluster.local
+          - --secureGrpcAddr
+          - ""
           - --keepaliveMaxServerConnectionAge
           - "30m"
           ports:
@@ -68,14 +68,14 @@ spec:
               fieldRef:
                 apiVersion: v1
                 fieldPath: metadata.namespace
-          - name: GODEBUG
-            value: "gctrace=1"
           - name: PILOT_PUSH_THROTTLE
             value: "10"
           - name: PILOT_TRACE_SAMPLING
             value: "1"
-          - name: PILOT_DISABLE_XDS_MARSHALING_TO_ANY
-            value: "1"
+          - name: PILOT_ENABLE_PROTOCOL_SNIFFING_FOR_OUTBOUND
+            value: "true"
+          - name: PILOT_ENABLE_PROTOCOL_SNIFFING_FOR_INBOUND
+            value: "false"
           resources:
             limits:
               cpu: 2000m
@@ -124,6 +124,8 @@ spec:
               fieldRef:
                 apiVersion: v1
                 fieldPath: status.podIP
+          - name: SDS_ENABLED
+            value: "false"
           resources:
             limits:
               cpu: 2000m
@@ -152,9 +154,9 @@ spec:
               - key: beta.kubernetes.io/arch
                 operator: In
                 values:
-                - amd64
-                - ppc64le
-                - s390x
+                - "amd64"
+                - "ppc64le"
+                - "s390x"
           preferredDuringSchedulingIgnoredDuringExecution:
           - weight: 2
             preference:
@@ -162,18 +164,18 @@ spec:
               - key: beta.kubernetes.io/arch
                 operator: In
                 values:
-                - amd64
+                - "amd64"
           - weight: 2
             preference:
               matchExpressions:
               - key: beta.kubernetes.io/arch
                 operator: In
                 values:
-                - ppc64le
+                - "ppc64le"
           - weight: 2
             preference:
               matchExpressions:
               - key: beta.kubernetes.io/arch
                 operator: In
                 values:
-                - s390x      
+                - "s390x"      
