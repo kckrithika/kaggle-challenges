@@ -30,7 +30,7 @@ system:
         path: /home/sfdc-ets/logs
     containers:
     - name: event-transfer-service
-      image: sfci/ets/event-transfer-service:0.0.30
+      image: sfci/ets/event-transfer-service:0.0.31
       ports:
         - containerPort: 8080
         - containerPort: 15382
