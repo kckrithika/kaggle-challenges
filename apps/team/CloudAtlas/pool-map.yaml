@@ -104,6 +104,9 @@ apps:
   shared0-samminionatlasservice-iad:
     - name: iad/iad-sam_cloudatlas_dir
       hostSubList:
+      - shared0-samminionatlasdir1-1-iad.ops.sfdc.net
+      - shared0-samminionatlasdir1-2-iad.ops.sfdc.net
+      - shared0-samminionatlasdir2-1-iad.ops.sfdc.net
 
   # FRF DS Nodes
   shared0-samminionatlasdir-frf:
