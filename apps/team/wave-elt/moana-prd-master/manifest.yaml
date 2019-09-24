@@ -64,7 +64,7 @@ system:
         periodSeconds: 5
       volumeMounts:
       - {mountPath: /client-certs, name: tls-client-certs}
-    count: 3
+    count: 1
     hostnetwork: false
     identity: {serviceName: moana-driver}
     name: moana-driver-master
@@ -126,7 +126,7 @@ system:
           command: [/opt/beacon/is-alive.sh]
         initialDelaySeconds: 5
       name: beacon
-    count: 3
+    count: 1
     hostnetwork: false
     identity: {serviceName: datapool}
     name: jobcontroller-master
