@@ -39,7 +39,8 @@ system:
     - lbname: maiev-receiver
       function: maiev-receiver-func
       slbEnabled: true
-      nodeExposed: true
       ports:
         - port: 7442
           targetport: 7442
+        - port: 80
+          targetport: 8085
