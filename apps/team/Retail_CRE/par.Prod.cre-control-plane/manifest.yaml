@@ -14,12 +14,12 @@ system:
             ####################################################################################################
             ############################   ENGINE/DDS FLOWSNAKE ARTIFACTS ( Most frequently changed ) ##########
             ####################################################################################################
-            - name: INGEST_FLOWSNAKE_ARTIFACT
-              value: ops0-artifactrepo1-0-par.data.sfdc.net/sfci/cre/cre-engine:1.9.0.0.master.3718f20.10
-            - name: SAVE_FLOWSNAKE_ARTIFACT
-              value: ops0-artifactrepo1-0-par.data.sfdc.net/sfci/cre/cre-dds-spark:1.9.1.6.master.9c1df61.17
-            - name: EXPORT_FLOWSNAKE_ARTIFACT
-              value: ops0-artifactrepo1-0-par.data.sfdc.net/sfci/cre/cre-dds-spark:1.9.1.6.master.9c1df61.17
+            - name: INGEST_SPEC_IMAGE
+              value: ops0-artifactrepo1-0-par.data.sfdc.net/sfci/cre/cre-engine:2.0.0.1.master.c637511.21
+            - name: EXPORT_SPEC_IMAGE
+              value: ops0-artifactrepo1-0-par.data.sfdc.net/sfci/cre/cre-dds-spark:2.0.1.master.c5ad758.18
+            - name: SAVE_SPEC_IMAGE
+              value: ops0-artifactrepo1-0-par.data.sfdc.net/sfci/cre/cre-dds-spark:2.0.1.master.c5ad758.18
             ####################################################################################################
             ####################################### GLOBAL SHARED VALUES #######################################
             ####################################################################################################
@@ -44,7 +44,7 @@ system:
             ####################################################################################################
             ####################################### INGEST environment variables ###############################
             ####################################################################################################
-            - name: INGEST_CRE_APPLICATION_NAME
+            - name: INGEST_ANNOTATIONS_PKI_NAME
               value: cre-engine
             - name: INGEST_K4A_VAULT
               value: cre-engine-na-1
@@ -55,19 +55,33 @@ system:
             ####################################################################################################
             - name: CRE_DDS_ENV
               value: Prod
-            - name: SAVE_CRE_APPLICATION_NAME
+            - name: SAVE_ANNOTATIONS_PKI_NAME
               value: cre-engine
             - name: SAVE_K4A_VAULT
               value: cre-dds-na-1
-            - name: SAVE_ADDITIONAL_JVM_ARGS
-              value: "-Dspark.sql.shuffle.partitions=500 -Dscala.concurrent.context.numThreads=x4 -Dspark.task.maxFailures=16"
+            - name: SAVE_EXECUTOR_INSTANCES
+              value: 4
+            - name: SAVE_SPARK_DEFAULT_PARALLELISM
+              value: 60
+            - name: SAVE_SPARK_SQL_SHUFFLE_PARTITIONS
+              value: 60
             ####################################################################################################
             ####################################### EXPORT environment variables ###############################
             ####################################################################################################
-            - name: EXPORT_CRE_APPLICATION_NAME
+            - name: EXPORT_ANNOTATIONS_PKI_NAME
               value: cre-engine
-            - name: EXPORT_ADDITIONAL_JVM_ARGS
-              value: "-Dspark.sql.shuffle.partitions=500 -Dscala.concurrent.context.numThreads=x4 -Dspark.task.maxFailures=16"
+            - name: EXPORT_DRIVER_CORES
+              value: 16
+            - name: EXPORT_EXECUTOR_CORES
+              value: 15
+            - name: EXPORT_EXECUTOR_INSTANCES
+              value: 4
+            - name: EXPORT_DRIVER_MEMORY
+              value: 16g
+            - name: EXPORT_SPARK_DEFAULT_PARALLELISM
+              value: 60
+            - name: EXPORT_SPARK_SQL_SHUFFLE_PARTITIONS
+              value: 60
             ####################################################################################################
             ##################################### APP Config environment variables #############################
             ####################################################################################################
