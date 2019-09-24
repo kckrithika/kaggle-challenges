@@ -51,7 +51,6 @@ system:
         httpGet:
           path: /manage/health
           port: 15372
-
     - name: sherpa
       # https://git.soma.salesforce.com/servicelibs/sherpa-envoy/releases
       image: sfci/servicelibs/sherpa-envoy:1.0.4
@@ -79,10 +78,10 @@ system:
       - port: 8080
         targetport: 8080
         lbtype: http
-        #tls: true
+        tls: true
         #reencrypt: true
       - port: 15372 
         targetport: 15372
         lbtype: http
-        #tls: true
+        tls: true
         #reencrypt: true
