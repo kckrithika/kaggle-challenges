@@ -6,6 +6,7 @@
 apiVersion: v1
 system:
   functions:
+
   - containers:
     - image: ops0-artifactrepo2-0-prd.data.sfdc.net/sfci/insights/moanaengine:master-2019.09.a.108-89d55b2
       livenessProbe:
@@ -65,6 +66,8 @@ system:
       volumeMounts:
       - {mountPath: /client-certs, name: tls-client-certs}
     count: 1
+    annotations:
+      routing.mesh.sfdc.net/enabled: "true"
     hostnetwork: false
     identity: {serviceName: moana-driver}
     name: moana-driver-master
@@ -127,6 +130,8 @@ system:
         initialDelaySeconds: 5
       name: beacon
     count: 1
+    annotations:
+      routing.mesh.sfdc.net/enabled: "true"
     hostnetwork: false
     identity: {serviceName: datapool}
     name: jobcontroller-master
