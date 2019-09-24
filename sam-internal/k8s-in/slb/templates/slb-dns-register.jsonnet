@@ -50,7 +50,7 @@ if slbconfigs.isSlbEstate then configs.deploymentBase("slb") {
                       containers: [
                                       {
                                           name: "slb-dns-register",
-                                          image: slbimages.hyperslb,
+                                          image: (if configs.estate == "prd-sam" then "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/hammondpang/hyperslb:hammondpang" else slbimages.hyperslb),
                                           command: [
                                                        "/sdn/slb-dns-register",
                                                        "--path=" + slbconfigs.configDir,
