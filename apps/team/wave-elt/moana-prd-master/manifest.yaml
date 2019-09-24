@@ -98,6 +98,7 @@ system:
       name: jobcontroller
       ports:
       - {containerPort: 15372, name: mgmt}
+      - {containerPort: 7020, name: grpc}
       resources:
         limits: {cpu: 2, memory: 4G}
         requests: {cpu: 2, memory: 4G}
