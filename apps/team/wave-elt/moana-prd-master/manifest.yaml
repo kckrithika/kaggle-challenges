@@ -113,6 +113,7 @@ system:
         periodSeconds: 5
       name: sherpa
       ports:
+      - {containerPort: 7012, name: http2-in}
       - {containerPort: 7443, name: http2-tls-in}
       - {containerPort: 15373, name: sherpa-adm}
       readinessProbe:
@@ -123,7 +124,11 @@ system:
       volumeMounts:
       - {mountPath: /client-certs, name: tls-client-certs}
       - {mountPath: /server-certs, name: tls-server-certs}
-    - args: [-endpoint, '$(FUNCTION_NAMESPACE)/$(FUNCTION):DATACENTER_ALLENV:HTTP2_TLS']
+      args:
+      - -endpoint
+      - $(FUNCTION):DATACENTER_ALLENV:HTTP2
+      - -endpoint
+      - $(FUNCTION_NAMESPACE)/$(FUNCTION):DATACENTER_ALLENV:HTTP2_TLS
       image: sfci/services/sfdc-bazel/disco/beacon:d7f1640
       livenessProbe:
         exec:
