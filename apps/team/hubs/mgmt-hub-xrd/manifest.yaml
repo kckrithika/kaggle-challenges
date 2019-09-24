@@ -46,9 +46,6 @@ system:
           name: scone-http
         - containerPort: 15372
           name: scone-mgmt
-      resources:
-        limits: { cpu: "0.5", memory: "500Mi" }
-        requests: { cpu: "0.5", memory: "500Mi" }
       livenessProbe:
         initialDelaySeconds: 60
         httpGet:
