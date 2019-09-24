@@ -15,6 +15,9 @@ system:
         name: grpc-svc
       - containerPort: 15372
         name: scone-mgmt
+      resources:
+        limits: { cpu: "1", memory: "1Gi" }
+        requests: { cpu: "1", memory: "1Gi" }
       livenessProbe:
         initialDelaySeconds: 30
         httpGet:
