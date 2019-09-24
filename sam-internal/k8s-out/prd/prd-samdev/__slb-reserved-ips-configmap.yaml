@@ -1,0 +1,10 @@
+apiVersion: v1
+data:
+  slb-reserved-ips-prd.json: '{}'
+kind: ConfigMap
+metadata:
+  creationTimestamp: null
+  labels:
+    sam.data.sfdc.net/owner: slb
+  name: slb-reserved-ips
+  namespace: sam-system

@@ -45,7 +45,8 @@ if slbconfigs.isSlbEstate then configs.deploymentBase("slb") {
                           configs.kube_config_volume,
                           slbconfigs.cleanup_logs_volume,
                           slbconfigs.proxyconfig_volume,
-                      ] + madkub.madkubSlbCertVolumes(certDirs) + madkub.madkubSlbMadkubVolumes()),
+                      ] + madkub.madkubSlbCertVolumes(certDirs) + madkub.madkubSlbMadkubVolumes())
+                      + (if slbimages.phase == "1" || slbimages.phase == "2" then [slbconfigs.reservedips_volume] else []),
                       containers: [
                                       {
                                           name: "slb-dns-register",
@@ -80,7 +81,8 @@ if slbconfigs.isSlbEstate then configs.deploymentBase("slb") {
                                               slbconfigs.slb_config_volume_mount,
                                               slbconfigs.logs_volume_mount,
                                               configs.sfdchosts_volume_mount,
-                                          ] + madkub.madkubSlbCertVolumeMounts(certDirs)),
+                                          ] + madkub.madkubSlbCertVolumeMounts(certDirs))
+                                          + (if slbimages.phase == "1" || slbimages.phase == "2" then [slbconfigs.reservedips_volume_mount] else []),
                                       } + configs.ipAddressResourceRequest,
                                       slbshared.slbConfigProcessor(portconfigs.slb.slbConfigProcessorDnsLivenessProbeOverridePort),
                                       slbshared.slbCleanupConfig,
