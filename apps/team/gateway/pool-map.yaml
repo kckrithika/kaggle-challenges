@@ -15,4 +15,5 @@ apps:
    - par/par-sam_kingdom_caas
    - iad/iad-sam_kingdom_caas
  gatewayconfig-gcp:
-   - mvp/gsf-core-devmvp-sam2-sam
+#   - mvp/gsf-core-devmvp-sam2-sam
+

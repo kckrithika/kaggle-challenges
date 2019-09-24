@@ -32,5 +32,5 @@ apps:
     - prd/prd-sam_gater
 
   geoip-mvp:
-    - mvp/gsf-core-devmvp-sam2-sam
+#    - mvp/gsf-core-devmvp-sam2-sam
     

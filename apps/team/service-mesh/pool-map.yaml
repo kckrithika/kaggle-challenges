@@ -6,9 +6,9 @@ apps:
     - prd/prd-sam
 
   switchboard-mvp:
-    - mvp/gsf-core-devmvp-sam2-sam
+#    - mvp/gsf-core-devmvp-sam2-sam
   switchboard-mvp-samtest:
-    - mvp/gsf-core-devmvp-sam2-samtest
+#    - mvp/gsf-core-devmvp-sam2-samtest
   switchboard:
     - prd/prd-sam_gater
   switchboard-prod-1:
@@ -38,8 +38,8 @@ apps:
     - prd/prd-sam
 
   envoy-canary-mvp:
-    - mvp/gsf-core-devmvp-sam2-sam
-    - mvp/gsf-core-devmvp-sam2-samtest
+#    - mvp/gsf-core-devmvp-sam2-sam
+#    - mvp/gsf-core-devmvp-sam2-samtest
   envoy-canary:
     - prd/prd-sam_gater
     # Deploy envoy-canary to prd-samtest and prd-samdev to test the injector there
@@ -71,9 +71,9 @@ apps:
     - prd/prd-sam_gater
 
   ordering-mvp:
-    - mvp/gsf-core-devmvp-sam2-sam
+#    - mvp/gsf-core-devmvp-sam2-sam
   shipping-mvp:
-    - mvp/gsf-core-devmvp-sam2-sam
+#    - mvp/gsf-core-devmvp-sam2-sam
 
 
   ordering-envoy-tls:
@@ -154,7 +154,7 @@ apps:
   demo-authz-client:
     - prd/prd-sam_gater
   authz-svc-mvp:
-    - mvp/gsf-core-devmvp-sam2-sam
+#    - mvp/gsf-core-devmvp-sam2-sam
   authz-svc-prod-1:
     - par/par-sam_gater
   authz-svc-prod-2:

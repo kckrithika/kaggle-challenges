@@ -15,14 +15,10 @@
     },
     {
       "namespaces": [
-        "csc-sam",
-        "core-on-sam",
-        "solr-service"
+        "csc-sam"
       ],
       "access": [
-        "team/CSC_Sam",
-        "team/core-on-sam",
-        "team/solr-service"
+        "team/CSC_Sam"
       ],
       "controlEstate": "aws-us-west-2-casam",
       "estate": "aws-us-west-2-casam",
@@ -31,14 +27,10 @@
     },
     {
       "namespaces": [
-        "csc-sam",
-        "caffeine",
-        "jarvis"
+        "csc-sam"
       ],
       "access": [
-        "team/CSC_Sam",
-        "team/caffeine",
-        "team/jarvis"
+        "team/CSC_Sam"
       ],
       "controlEstate": "aws-us-west-2-processing",
       "estate": "aws-us-west-2-processing",
@@ -2365,88 +2357,10 @@
     },
     {
       "namespaces": [
-        "csc-sam",
-        "cache-as-a-service",
-        "casp",
-        "cbatch",
-        "ccait",
-        "cloudatlas",
-        "communities",
-        "core-on-sam",
-        "csc-health",
-        "distributed-tracing",
-        "dva-collection",
-        "emailinfra",
-        "gater",
-        "gateway",
-        "jarvis",
-        "mc-eventing",
-        "retail-cre",
-        "retail-dfs",
-        "retail-eventlistener",
-        "retail-mds",
-        "retail-rsui",
-        "search-scale-safely",
-        "service-mesh",
-        "mesh-control-plane",
-        "service-protection",
-        "slb",
-        "universal-search",
-        "wave-elt",
-        "solr-service",
-        "topology-svc",
-        "qpid",
-        "einstein-analytics",
-        "vagabond",
-        "pbsgeo",
-        "pbsmatch",
-        "care",
-        "sdb-dataengineering",
-        "dbprovision",
-        "industries-loyalty",
-        "dataprotection"
+        "csc-sam"
       ],
       "access": [
-        "team/CSC_Sam",
-        "team/Cache_As_A_service",
-        "team/CASP",
-        "team/cbatch",
-        "team/CCAIT",
-        "team/CloudAtlas",
-        "team/communities",
-        "team/core-on-sam",
-        "team/CSC_Health",
-        "team/distributed-tracing",
-        "team/dva-collection",
-        "team/EmailInfra",
-        "team/Gater",
-        "team/gateway",
-        "team/jarvis",
-        "team/mc-eventing",
-        "team/Retail_CRE",
-        "team/Retail_DFS",
-        "team/Retail_EventListener",
-        "team/Retail_MDS",
-        "team/Retail_RSUI",
-        "team/Search_Scale_Safely",
-        "team/service-mesh",
-        "team/mesh-control-plane",
-        "team/Service_Protection",
-        "team/slb",
-        "team/universal-search",
-        "team/wave-elt",
-        "team/solr-service",
-        "team/topology_svc",
-        "team/qpid",
-        "team/einstein-analytics",
-        "team/Vagabond",
-        "team/pbsgeo",
-        "team/pbsmatch",
-        "team/care",
-        "team/sdb-dataengineering",
-        "team/dbprovision",
-        "team/industries-loyalty",
-        "team/dataprotection"
+        "team/CSC_Sam"
       ],
       "controlEstate": "gsf-core-devmvp-sam2-sam",
       "estate": "gsf-core-devmvp-sam2-sam",
@@ -2455,18 +2369,10 @@
     },
     {
       "namespaces": [
-        "csc-sam",
-        "dva-collection",
-        "slb",
-        "service-mesh",
-        "mesh-control-plane"
+        "csc-sam"
       ],
       "access": [
-        "team/CSC_Sam",
-        "team/dva-collection",
-        "team/slb",
-        "team/service-mesh",
-        "team/mesh-control-plane"
+        "team/CSC_Sam"
       ],
       "controlEstate": "gsf-core-devmvp-sam2-samtest",
       "estate": "gsf-core-devmvp-sam2-samtest",

@@ -304,12 +304,12 @@ apps:
 
 # GCP Alpha
  gcp-devmvp-caas-for-casam:
-  - name: mvp/gsf-core-devmvp-sam2-sam
+#  - name: mvp/gsf-core-devmvp-sam2-sam
  gcp-devmvp-caas-test-client:
-  - name: mvp/gsf-core-devmvp-sam2-sam
+#  - name: mvp/gsf-core-devmvp-sam2-sam
  gcp-devmvp-vagabond-mesh:
-  - name: mvp/gsf-core-devmvp-sam2-sam
+#  - name: mvp/gsf-core-devmvp-sam2-sam
  gcp-devmvp-vagabond-test-client:
-  - name: mvp/gsf-core-devmvp-sam2-sam
+#  - name: mvp/gsf-core-devmvp-sam2-sam
  gcp-devmvp-caas-pc-for-casam:
-  - name: mvp/gsf-core-devmvp-sam2-sam
+#  - name: mvp/gsf-core-devmvp-sam2-sam
