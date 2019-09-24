@@ -77,6 +77,8 @@ spec:
           name: sfdchosts
         - mountPath: /cert3
           name: cert3
+        - mountPath: /host/data/slb/reserved-ips
+          name: slbreservedips
       - command:
         - /sdn/slb-config-processor
         - --configDir=/host/data/slb/config/slb-dns-register
@@ -385,3 +387,6 @@ spec:
       - emptyDir:
           medium: Memory
         name: tokens
+      - configMap:
+          name: slb-reserved-ips
+        name: slbreservedips

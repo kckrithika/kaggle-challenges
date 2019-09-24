@@ -453,6 +453,18 @@
         mountPath: "/etc/kms.conf.d/",
     },
 
+   reservedips_volume: {
+        name: "slbreservedips",
+        configMap: {
+            name: "slb-reserved-ips",
+        },
+    },
+
+    reservedips_volume_mount: {
+        name: "slbreservedips",
+        mountPath: $.slbDir + "/reserved-ips",
+    },
+
     nginx: {
           certDirs: ["cert1", "cert2"],
           customerCertsPath: "/customerCerts",
@@ -622,7 +634,8 @@
 
     subnet: self.perCluster.subnet[estate],
     publicSubnet: self.perCluster.publicSubnet[estate],
-    reservedIps: std.join(",", slbreservedips.privateReservedIps[estate]),
+    privateReservedIps: ["%s/32" % [slbreservedips.privateReservedIps[estate][key]] for key in std.objectFieldsAll(slbreservedips.privateReservedIps[estate])],
+    reservedIps: std.join(",", std.sort($.privateReservedIps)),
     serviceList: self.perCluster.serviceList[estate],
     namespace: self.perCluster.namespace[estate],
     ddiService: self.perCluster.ddiService[kingdom],
