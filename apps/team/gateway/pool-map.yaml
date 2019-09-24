@@ -9,11 +9,10 @@ apps:
    - ph2/ph2-sam_gatewayconfig
    - ia2/ia2-sam_gatewayconfig
    - ord/ord-sam_gatewayconfig
-   - iad/iad-sam_kingdom_caas
    - frf/frf-sam_kingdom_caas
    - hnd/hnd-sam_kingdom_caas
    - ukb/ukb-sam_kingdom_caas
    - par/par-sam_kingdom_caas
+   - iad/iad-sam_kingdom_caas
  gatewayconfig-gcp:
    - mvp/gsf-core-devmvp-sam2-sam
-
