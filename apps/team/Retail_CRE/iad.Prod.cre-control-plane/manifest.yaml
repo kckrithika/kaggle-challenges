@@ -55,12 +55,10 @@ system:
             ####################################################################################################
             - name: CRE_DDS_ENV
               value: Prod
-            - name: SAVE_CRE_APPLICATION_NAME
+            - name: SAVE_ANNOTATIONS_PKI_NAME
               value: cre-engine
             - name: SAVE_K4A_VAULT
               value: cre-dds-na-1
-            - name: SAVE_ADDITIONAL_JVM_ARGS
-              value: "-Dspark.sql.shuffle.partitions=500 -Dscala.concurrent.context.numThreads=x4 -Dspark.task.maxFailures=16"
             - name: SAVE_EXECUTOR_INSTANCES
               value: 4
             - name: SAVE_SPARK_DEFAULT_PARALLELISM
@@ -70,10 +68,8 @@ system:
             ####################################################################################################
             ####################################### EXPORT environment variables ###############################
             ####################################################################################################
-            - name: EXPORT_CRE_APPLICATION_NAME
+            - name: EXPORT_ANNOTATIONS_PKI_NAME
               value: cre-engine
-            - name: EXPORT_ADDITIONAL_JVM_ARGS
-              value: "-Dspark.sql.shuffle.partitions=500 -Dscala.concurrent.context.numThreads=x4 -Dspark.task.maxFailures=16"
             - name: EXPORT_DRIVER_CORES
               value: 16
             - name: EXPORT_EXECUTOR_CORES
