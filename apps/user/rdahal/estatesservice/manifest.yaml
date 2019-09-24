@@ -14,7 +14,7 @@ system:
         type: client
     containers:
     - name: estatesservice
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/rdahal/estatesservice:rdahal-201909191
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/rdahal/estatesservice:rdahal-201909241
       ports:
       - containerPort: 9090
       livenessProbe:
