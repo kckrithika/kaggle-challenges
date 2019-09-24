@@ -941,6 +941,18 @@
     },
     {
       "namespaces": [
+        "gateway"
+      ],
+      "access": [
+        "team/gateway"
+      ],
+      "controlEstate": "frf-sam",
+      "estate": "frf-sam_gatewayconfig",
+      "kingdom": "frf",
+      "superPod": "None"
+    },
+    {
+      "namespaces": [
         "iot"
       ],
       "access": [
@@ -1290,6 +1302,18 @@
       ],
       "controlEstate": "hnd-sam",
       "estate": "hnd-sam_gater",
+      "kingdom": "hnd",
+      "superPod": "None"
+    },
+    {
+      "namespaces": [
+        "gateway"
+      ],
+      "access": [
+        "team/gateway"
+      ],
+      "controlEstate": "hnd-sam",
+      "estate": "hnd-sam_gatewayconfig",
       "kingdom": "hnd",
       "superPod": "None"
     },
@@ -2939,6 +2963,18 @@
     },
     {
       "namespaces": [
+        "gateway"
+      ],
+      "access": [
+        "team/gateway"
+      ],
+      "controlEstate": "par-sam",
+      "estate": "par-sam_gatewayconfig",
+      "kingdom": "par",
+      "superPod": "None"
+    },
+    {
+      "namespaces": [
         "iot"
       ],
       "access": [
@@ -4452,6 +4488,18 @@
       ],
       "controlEstate": "ukb-sam",
       "estate": "ukb-sam_gater",
+      "kingdom": "ukb",
+      "superPod": "None"
+    },
+    {
+      "namespaces": [
+        "gateway"
+      ],
+      "access": [
+        "team/gateway"
+      ],
+      "controlEstate": "ukb-sam",
+      "estate": "ukb-sam_gatewayconfig",
       "kingdom": "ukb",
       "superPod": "None"
     },
