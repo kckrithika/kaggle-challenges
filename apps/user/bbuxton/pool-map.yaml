@@ -3,6 +3,5 @@ apps:
 #   - prd/prd-sam
 #  perf-shipping-test:
 #   - prd/prd-sam
- poetry-gen:
-# Stale app disabled by automation.  See https://sfdc.co/samsandbox
-#  - prd/prd-sam
+  poetry-gen:
+    - prd/prd-sam
