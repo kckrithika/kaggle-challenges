@@ -2,7 +2,7 @@ local configs = import "config.jsonnet";
 local slbimages = (import "slbimages.jsonnet") + { templateFilename:: std.thisFile };
 local slbreservedips = import "slb-reserved-ips.jsonnet";
 
-if (slbimages.phase == "1" || slbimages.phase == "2") && (configs.estate in slbreservedips.publicReservedIps || configs.estate in slbreservedips.privateReservedIps) then {
+if configs.estate in slbreservedips.publicReservedIps || configs.estate in slbreservedips.privateReservedIps then {
     kind: "ConfigMap",
     apiVersion: "v1",
     metadata: {

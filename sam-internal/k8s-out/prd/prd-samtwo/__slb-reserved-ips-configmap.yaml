@@ -1,0 +1,14 @@
+apiVersion: v1
+data:
+  slb-reserved-ips-prd.json: |-
+    {
+      "na44-stmfa1-0-prd.slb.sfdc.net": "136.146.214.8",
+      "na44-stmfb1-0-prd.slb.sfdc.net": "136.146.214.9",
+      "na44-stmfc1-0-prd.slb.sfdc.net": "136.146.214.10",
+      "slb-canary-proxy-http-ext.sam-system.prd-samtwo.prd.slb.sfdc.net": "136.146.214.5"
+    }
+kind: ConfigMap
+metadata:
+  creationTimestamp: null
+  name: slb-reserved-ips
+  namespace: sam-system

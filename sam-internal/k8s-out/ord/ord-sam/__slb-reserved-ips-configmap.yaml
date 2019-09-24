@@ -1,0 +1,41 @@
+apiVersion: v1
+data:
+  slb-reserved-ips-ord.json: |-
+    {
+      "cre-api-lb.retail-cre.ord-sam.ord.slb.sfdc.net": "10.208.148.0",
+      "cre-control-plane-lb.retail-cre.ord-sam.ord.slb.sfdc.net": "10.208.148.11",
+      "cre-sp-lb.retail-cre.ord-sam.ord.slb.sfdc.net": "10.208.148.110",
+      "dfs-production-lb.retail-dfs.ord-sam.ord.slb.sfdc.net": "10.208.148.148",
+      "hub-persistence-lb.retail-rsui.ord-sam.ord.slb.sfdc.net": "10.208.148.116",
+      "metadata-service-lb.retail-mds.ord-sam.ord.slb.sfdc.net": "10.208.148.147",
+      "org-cce2e-cs14-slb-ord.slb.sfdc.net": "13.110.26.102",
+      "org-cce2e-cs15-slb-ord.slb.sfdc.net": "13.110.26.103",
+      "org-cce2e-cs16-slb-ord.slb.sfdc.net": "13.110.26.104",
+      "org-cce2e-cs17-slb-ord.slb.sfdc.net": "13.110.26.105",
+      "org-cce2e-cs18-slb-ord.slb.sfdc.net": "13.110.26.106",
+      "org-cce2e-cs47-slb-ord.slb.sfdc.net": "13.110.26.107",
+      "org-cce2e-cs64-slb-ord.slb.sfdc.net": "13.110.26.108",
+      "org-cce2e-cs65-slb-ord.slb.sfdc.net": "13.110.26.109",
+      "org-cce2e-cs66-slb-ord.slb.sfdc.net": "13.110.26.110",
+      "org-cce2e-cs67-slb-ord.slb.sfdc.net": "13.110.26.111",
+      "org-cce2e-cs77-slb-ord.slb.sfdc.net": "13.110.26.112",
+      "org-cce2e-cs78-slb-ord.slb.sfdc.net": "13.110.26.113",
+      "org-cce2e-cs79-slb-ord.slb.sfdc.net": "13.110.26.114",
+      "org-cce2e-cs8-slb-ord.slb.sfdc.net": "13.110.26.101",
+      "org-cce2e-cs92-slb-ord.slb.sfdc.net": "13.110.26.115",
+      "org-cce2e-cs93-slb-ord.slb.sfdc.net": "13.110.26.116",
+      "org-cce2e-cs94-slb-ord.slb.sfdc.net": "13.110.26.117",
+      "org-cce2e-cs95-slb-ord.slb.sfdc.net": "13.110.26.118",
+      "org-cce2e-cs96-slb-ord.slb.sfdc.net": "13.110.26.119",
+      "org-cce2e-cs97-slb-ord.slb.sfdc.net": "13.110.26.120",
+      "rsui-production-ord-lb.retail-rsui.ord-sam.ord.slb.sfdc.net": "13.110.26.14",
+      "rsui-production-ord-test-lb.retail-rsui.ord-sam.ord.slb.sfdc.net": "13.110.26.15",
+      "rsui-service-ord-lb.retail-rsui.ord-sam.ord.slb.sfdc.net": "10.208.148.109",
+      "slb-canary-proxy-http-ext.sam-system.iad-sam.iad.slb.sfdc.net": "13.110.26.5",
+      "sledge-iad.slb.sfdc.net": "13.110.26.13"
+    }
+kind: ConfigMap
+metadata:
+  creationTimestamp: null
+  name: slb-reserved-ips
+  namespace: sam-system

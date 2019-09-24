@@ -1,0 +1,30 @@
+apiVersion: v1
+data:
+  slb-reserved-ips-ia2.json: |-
+    {
+      "org-cce2e-cs1-slb-ia2.slb.sfdc.net": "13.110.50.101",
+      "org-cce2e-cs2-slb-ia2.slb.sfdc.net": "13.110.50.102",
+      "org-cce2e-cs22-slb-ia2.slb.sfdc.net": "13.110.50.104",
+      "org-cce2e-cs24-slb-ia2.slb.sfdc.net": "13.110.50.105",
+      "org-cce2e-cs27-slb-ia2.slb.sfdc.net": "13.110.50.106",
+      "org-cce2e-cs28-slb-ia2.slb.sfdc.net": "13.110.50.107",
+      "org-cce2e-cs29-slb-ia2.slb.sfdc.net": "13.110.50.108",
+      "org-cce2e-cs34-slb-ia2.slb.sfdc.net": "13.110.50.109",
+      "org-cce2e-cs35-slb-ia2.slb.sfdc.net": "13.110.50.110",
+      "org-cce2e-cs36-slb-ia2.slb.sfdc.net": "13.110.50.111",
+      "org-cce2e-cs37-slb-ia2.slb.sfdc.net": "13.110.50.112",
+      "org-cce2e-cs4-slb-ia2.slb.sfdc.net": "13.110.50.103",
+      "org-cce2e-cs40-slb-ia2.slb.sfdc.net": "13.110.50.113",
+      "org-cce2e-cs41-slb-ia2.slb.sfdc.net": "13.110.50.114",
+      "org-cce2e-cs42-slb-ia2.slb.sfdc.net": "13.110.50.115",
+      "org-cce2e-cs43-slb-ia2.slb.sfdc.net": "13.110.50.116",
+      "org-cce2e-cs44-slb-ia2.slb.sfdc.net": "13.110.50.117",
+      "org-cce2e-cs45-slb-ia2.slb.sfdc.net": "13.110.50.118",
+      "org-cce2e-cs46-slb-ia2.slb.sfdc.net": "13.110.50.119",
+      "org-cce2e-cs49-slb-ia2.slb.sfdc.net": "13.110.50.120"
+    }
+kind: ConfigMap
+metadata:
+  creationTimestamp: null
+  name: slb-reserved-ips
+  namespace: sam-system

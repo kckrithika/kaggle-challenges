@@ -1,0 +1,49 @@
+apiVersion: v1
+data:
+  slb-reserved-ips-dfw.json: |-
+    {
+      "gs0-bofa-dfw.slb.sfdc.net": "13.110.28.11",
+      "login-cloudforce-dfw.slb.sfdc.net": "13.110.28.12",
+      "org-cce2e-cs10-slb-dfw.slb.sfdc.net": "13.110.28.104",
+      "org-cce2e-cs11-slb-dfw.slb.sfdc.net": "13.110.28.105",
+      "org-cce2e-cs12-slb-dfw.slb.sfdc.net": "13.110.28.106",
+      "org-cce2e-cs13-slb-dfw.slb.sfdc.net": "13.110.28.107",
+      "org-cce2e-cs19-slb-dfw.slb.sfdc.net": "13.110.28.108",
+      "org-cce2e-cs20-slb-dfw.slb.sfdc.net": "13.110.28.109",
+      "org-cce2e-cs21-slb-dfw.slb.sfdc.net": "13.110.28.110",
+      "org-cce2e-cs23-slb-dfw.slb.sfdc.net": "13.110.28.111",
+      "org-cce2e-cs25-slb-dfw.slb.sfdc.net": "13.110.28.112",
+      "org-cce2e-cs26-slb-dfw.slb.sfdc.net": "13.110.28.113",
+      "org-cce2e-cs3-slb-dfw.slb.sfdc.net": "13.110.28.101",
+      "org-cce2e-cs30-slb-dfw.slb.sfdc.net": "13.110.28.114",
+      "org-cce2e-cs50-slb-dfw.slb.sfdc.net": "13.110.28.115",
+      "org-cce2e-cs51-slb-dfw.slb.sfdc.net": "13.110.28.116",
+      "org-cce2e-cs52-slb-dfw.slb.sfdc.net": "13.110.28.117",
+      "org-cce2e-cs53-slb-dfw.slb.sfdc.net": "13.110.28.118",
+      "org-cce2e-cs54-slb-dfw.slb.sfdc.net": "13.110.28.119",
+      "org-cce2e-cs59-slb-dfw.slb.sfdc.net": "13.110.28.120",
+      "org-cce2e-cs60-slb-dfw.slb.sfdc.net": "13.110.28.121",
+      "org-cce2e-cs61-slb-dfw.slb.sfdc.net": "13.110.28.122",
+      "org-cce2e-cs62-slb-dfw.slb.sfdc.net": "13.110.28.123",
+      "org-cce2e-cs63-slb-dfw.slb.sfdc.net": "13.110.28.124",
+      "org-cce2e-cs68-slb-dfw.slb.sfdc.net": "13.110.28.125",
+      "org-cce2e-cs69-slb-dfw.slb.sfdc.net": "13.110.28.126",
+      "org-cce2e-cs7-slb-dfw.slb.sfdc.net": "13.110.28.102",
+      "org-cce2e-cs70-slb-dfw.slb.sfdc.net": "13.110.28.127",
+      "org-cce2e-cs71-slb-dfw.slb.sfdc.net": "13.110.28.128",
+      "org-cce2e-cs9-slb-dfw.slb.sfdc.net": "13.110.28.103",
+      "org-cce2e-cs90-slb-dfw.slb.sfdc.net": "13.110.28.129",
+      "org-cce2e-cs91-slb-dfw.slb.sfdc.net": "13.110.28.130",
+      "org-cce2e-cs999-slb-dfw.slb.sfdc.net": "13.110.28.131",
+      "org-cce2e-na47-slb-dfw.slb.sfdc.net": "13.110.28.132",
+      "org-certtest-cs997-slb-dfw.slb.sfdc.net": "13.110.28.134",
+      "org-certtest-gs0-slb-dfw.slb.sfdc.net": "13.110.28.133",
+      "sec0-magister1-0-dfw.slb.sfdc.net": "10.214.188.141",
+      "slb-canary-proxy-http-ext.sam-system.dfw-sam.dfw.slb.sfdc.net": "13.110.28.5",
+      "sledge-dfw.slb.sfdc.net": "13.110.28.13"
+    }
+kind: ConfigMap
+metadata:
+  creationTimestamp: null
+  name: slb-reserved-ips
+  namespace: sam-system

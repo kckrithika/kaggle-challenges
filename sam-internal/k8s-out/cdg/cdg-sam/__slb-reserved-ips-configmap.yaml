@@ -1,0 +1,11 @@
+apiVersion: v1
+data:
+  slb-reserved-ips-cdg.json: |-
+    {
+      "slb-canary-proxy-http-ext.sam-system.cdg-sam.cdg.slb.sfdc.net": "85.222.142.5"
+    }
+kind: ConfigMap
+metadata:
+  creationTimestamp: null
+  name: slb-reserved-ips
+  namespace: sam-system

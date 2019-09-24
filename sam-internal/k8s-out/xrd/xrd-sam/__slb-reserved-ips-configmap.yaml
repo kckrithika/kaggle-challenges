@@ -1,0 +1,8 @@
+apiVersion: v1
+data:
+  slb-reserved-ips-xrd.json: '{}'
+kind: ConfigMap
+metadata:
+  creationTimestamp: null
+  name: slb-reserved-ips
+  namespace: sam-system
