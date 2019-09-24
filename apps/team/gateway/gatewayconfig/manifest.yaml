@@ -60,9 +60,6 @@ system:
       livenessProbe:
         initialDelaySeconds: 21
         periodSeconds: 15
-        #exec:
-        #  command:
-        #  - "/bin/true"
         httpGet:
           path: /manage/health
           port: 15372
