@@ -304,5 +304,9 @@
                   "rsui-service-hnd-lb.retail-rsui.hnd-sam.hnd.slb.sfdc.net": "10.213.100.139",
                   "hub-persistence-lb.retail-rsui.hnd-sam.hnd.slb.sfdc.net": "10.213.100.141",
                 },
+                "xrd-sam": {
+                  "ssh-to-somewhere-slb-xrd.slb.sfdc.net": "10.229.32.129",
+                  "check-slb-xrd.slb.sfdc.net": "10.229.32.128",
+                },
             },
 }
