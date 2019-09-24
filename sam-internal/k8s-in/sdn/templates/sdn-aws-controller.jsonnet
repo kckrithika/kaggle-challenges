@@ -47,7 +47,7 @@ if configs.estate == "cdu-sam" || configs.estate == "syd-sam" || configs.estate 
                             "--ddi=" + sdnconfigs.ddiService,
                             "--keyfile=" + configs.keyFile,
                             "--certfile=" + configs.certFile,
-                            "--cafile=" + configs.caFile,
+                            "--cafile=" + configs.caCertsFile,
                             configs.sfdchosts_arg,
                             sdnconfigs.logDirArg,
                             sdnconfigs.logToStdErrArg,
