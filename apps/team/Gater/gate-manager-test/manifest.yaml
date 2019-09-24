@@ -13,7 +13,7 @@ system:
     hostnetwork: false
     containers:
     - name: gater1
-      image: sfci/services/sfdc-bazel/gater/gate-manager:e97fcb49a
+      image: sfci/services/sfdc-bazel/gater/gate-manager:1.16.0
       args:
         - --server.port=9090
         - --gater-service.thread.pool.max-size=0
