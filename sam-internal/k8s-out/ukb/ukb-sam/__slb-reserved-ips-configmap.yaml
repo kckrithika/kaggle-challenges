@@ -1,0 +1,20 @@
+apiVersion: v1
+data:
+  slb-reserved-ips-ukb.json: |-
+    {
+      "cre-api-lb.retail-cre.par-sam.ukb.slb.sfdc.net": "10.213.36.125",
+      "cre-control-plane-lb.retail-cre.ukb-sam.ukb.slb.sfdc.net": "10.213.36.109",
+      "cre-sp-lb.retail-cre.ukb-sam.ukb.slb.sfdc.net": "10.213.36.117",
+      "dfs-production-lb.retail-dfs.ukb-sam.ukb.slb.sfdc.net": "10.213.36.121",
+      "hub-persistence-lb.retail-rsui.ukb-sam.ukb.slb.sfdc.net": "10.213.36.127",
+      "metadata-service-lb.retail-mds.ukb-sam.ukb.slb.sfdc.net": "10.213.36.126",
+      "rsui-production-ukb-lb.retail-rsui.ukb-sam.ukb.slb.sfdc.net": "161.71.146.14",
+      "rsui-production-ukb-test-lb.retail-rsui.ukb-sam.ukb.slb.sfdc.net": "161.71.146.15",
+      "rsui-service-ukb-lb.retail-rsui.ukb-sam.ukb.slb.sfdc.net": "10.213.36.122",
+      "sledge-ukb.slb.sfdc.net": "161.71.146.13"
+    }
+kind: ConfigMap
+metadata:
+  creationTimestamp: null
+  name: slb-reserved-ips
+  namespace: sam-system

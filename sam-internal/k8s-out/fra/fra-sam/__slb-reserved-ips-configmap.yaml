@@ -1,0 +1,14 @@
+apiVersion: v1
+data:
+  slb-reserved-ips-fra.json: |-
+    {
+      "cs103app-force-lb.core-on-sam-sp1.fra-sam.fra.slb.sfdc.net": "85.222.140.17",
+      "cs103app-lb.core-on-sam-sp1.fra-sam.fra.slb.sfdc.net": "85.222.140.16",
+      "cs103app-my-lb.core-on-sam-sp1.fra-sam.fra.slb.sfdc.net": "85.222.140.18",
+      "slb-canary-proxy-http-ext.sam-system.fra-sam.fra.slb.sfdc.net": "85.222.140.5"
+    }
+kind: ConfigMap
+metadata:
+  creationTimestamp: null
+  name: slb-reserved-ips
+  namespace: sam-system

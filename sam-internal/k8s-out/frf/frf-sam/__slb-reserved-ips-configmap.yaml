@@ -1,0 +1,22 @@
+apiVersion: v1
+data:
+  slb-reserved-ips-frf.json: |-
+    {
+      "cre-api-lb.retail-cre.par-sam.frf.slb.sfdc.net": "10.214.36.144",
+      "cre-control-plane-lb.retail-cre.frf-sam.frf.slb.sfdc.net": "10.214.36.14",
+      "cre-sp-lb.retail-cre.frf-sam.frf.slb.sfdc.net": "10.214.36.140",
+      "dfs-production-lb.retail-dfs.frf-sam.frf.slb.sfdc.net": "10.214.36.141",
+      "hub-persistence-lb.retail-rsui.frf-sam.frf.slb.sfdc.net": "10.214.36.147",
+      "kubernetes-api-flowsnake-frf.slb.sfdc.net": "10.214.36.129",
+      "metadata-service-lb.retail-mds.frf-sam.frf.slb.sfdc.net": "10.214.36.146",
+      "rsui-production-frf-lb.retail-rsui.frf-sam.frf.slb.sfdc.net": "185.79.140.14",
+      "rsui-production-frf-test-lb.retail-rsui.frf-sam.frf.slb.sfdc.net": "185.79.140.15",
+      "rsui-service-frf-lb.retail-rsui.frf-sam.frf.slb.sfdc.net": "10.214.36.145",
+      "slb-canary-proxy-http-ext.sam-system.frf-sam.frf.slb.sfdc.net": "185.79.140.5",
+      "sledge-frf.slb.sfdc.net": "185.79.140.13"
+    }
+kind: ConfigMap
+metadata:
+  creationTimestamp: null
+  name: slb-reserved-ips
+  namespace: sam-system

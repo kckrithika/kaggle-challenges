@@ -1,0 +1,48 @@
+apiVersion: v1
+data:
+  slb-reserved-ips-phx.json: |-
+    {
+      "gs0-bofa-phx.slb.sfdc.net": "13.110.30.11",
+      "login-cloudforce-phx.slb.sfdc.net": "13.110.30.12",
+      "org-cce2e-cs10-slb-phx.slb.sfdc.net": "13.110.30.104",
+      "org-cce2e-cs11-slb-phx.slb.sfdc.net": "13.110.30.105",
+      "org-cce2e-cs12-slb-phx.slb.sfdc.net": "13.110.30.106",
+      "org-cce2e-cs13-slb-phx.slb.sfdc.net": "13.110.30.107",
+      "org-cce2e-cs19-slb-phx.slb.sfdc.net": "13.110.30.108",
+      "org-cce2e-cs20-slb-phx.slb.sfdc.net": "13.110.30.109",
+      "org-cce2e-cs21-slb-phx.slb.sfdc.net": "13.110.30.110",
+      "org-cce2e-cs23-slb-phx.slb.sfdc.net": "13.110.30.111",
+      "org-cce2e-cs25-slb-phx.slb.sfdc.net": "13.110.30.112",
+      "org-cce2e-cs26-slb-phx.slb.sfdc.net": "13.110.30.113",
+      "org-cce2e-cs3-slb-phx.slb.sfdc.net": "13.110.30.101",
+      "org-cce2e-cs30-slb-phx.slb.sfdc.net": "13.110.30.114",
+      "org-cce2e-cs50-slb-phx.slb.sfdc.net": "13.110.30.115",
+      "org-cce2e-cs51-slb-phx.slb.sfdc.net": "13.110.30.116",
+      "org-cce2e-cs52-slb-phx.slb.sfdc.net": "13.110.30.117",
+      "org-cce2e-cs53-slb-phx.slb.sfdc.net": "13.110.30.118",
+      "org-cce2e-cs54-slb-phx.slb.sfdc.net": "13.110.30.119",
+      "org-cce2e-cs59-slb-phx.slb.sfdc.net": "13.110.30.120",
+      "org-cce2e-cs60-slb-phx.slb.sfdc.net": "13.110.30.121",
+      "org-cce2e-cs61-slb-phx.slb.sfdc.net": "13.110.30.122",
+      "org-cce2e-cs62-slb-phx.slb.sfdc.net": "13.110.30.123",
+      "org-cce2e-cs63-slb-phx.slb.sfdc.net": "13.110.30.124",
+      "org-cce2e-cs68-slb-phx.slb.sfdc.net": "13.110.30.125",
+      "org-cce2e-cs69-slb-phx.slb.sfdc.net": "13.110.30.126",
+      "org-cce2e-cs7-slb-phx.slb.sfdc.net": "13.110.30.102",
+      "org-cce2e-cs70-slb-phx.slb.sfdc.net": "13.110.30.127",
+      "org-cce2e-cs71-slb-phx.slb.sfdc.net": "13.110.30.128",
+      "org-cce2e-cs9-slb-phx.slb.sfdc.net": "13.110.30.103",
+      "org-cce2e-cs90-slb-phx.slb.sfdc.net": "13.110.30.129",
+      "org-cce2e-cs91-slb-phx.slb.sfdc.net": "13.110.30.130",
+      "org-cce2e-cs999-slb-phx.slb.sfdc.net": "13.110.30.131",
+      "org-cce2e-na47-slb-phx.slb.sfdc.net": "13.110.30.132",
+      "org-certtest-gs0-slb-phx.slb.sfdc.net": "13.110.30.133",
+      "sec0-magister1-0-phx.slb.sfdc.net.": "10.208.208.144",
+      "slb-canary-proxy-http-ext.sam-system.phx-sam.phx.slb.sfdc.net": "13.110.30.5",
+      "sledge-phx.slb.sfdc.net": "13.110.30.13"
+    }
+kind: ConfigMap
+metadata:
+  creationTimestamp: null
+  name: slb-reserved-ips
+  namespace: sam-system

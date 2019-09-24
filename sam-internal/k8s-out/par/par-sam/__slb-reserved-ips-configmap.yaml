@@ -1,0 +1,21 @@
+apiVersion: v1
+data:
+  slb-reserved-ips-par.json: |-
+    {
+      "cre-api-lb.retail-cre.par-sam.par.slb.sfdc.net": "10.214.112.124",
+      "cre-control-plane-lb.retail-cre.par-sam.par.slb.sfdc.net": "10.214.112.103",
+      "cre-sp-lb.retail-cre.par-sam.par.slb.sfdc.net": "10.214.112.107",
+      "dfs-production-lb.retail-dfs.par-sam.par.slb.sfdc.net": "10.214.112.132",
+      "hub-persistence-lb.retail-rsui.par-sam.par.slb.sfdc.net": "10.214.112.14",
+      "kubernetes-api-flowsnake-par.slb.sfdc.net": "10.214.112.129",
+      "metadata-service-lb.retail-mds.par-sam.par.slb.sfdc.net": "10.214.112.131",
+      "rsui-production-par-lb.retail-rsui.par-sam.par.slb.sfdc.net": "185.79.142.14",
+      "rsui-production-par-test-lb.retail-rsui.par-sam.par.slb.sfdc.net": "185.79.142.15",
+      "rsui-service-par-lb.retail-rsui.par-sam.par.slb.sfdc.net": "10.214.112.135",
+      "sledge-par.slb.sfdc.net": "185.79.142.13"
+    }
+kind: ConfigMap
+metadata:
+  creationTimestamp: null
+  name: slb-reserved-ips
+  namespace: sam-system

@@ -75,10 +75,10 @@ spec:
           name: var-logs-volume
         - mountPath: /sfdchosts
           name: sfdchosts
-        - mountPath: /cert3
-          name: cert3
         - mountPath: /host/data/slb/reserved-ips
           name: slbreservedips
+        - mountPath: /cert3
+          name: cert3
       - command:
         - /sdn/slb-config-processor
         - --configDir=/host/data/slb/config/slb-dns-register
@@ -381,12 +381,12 @@ spec:
       - configMap:
           name: slb-proxy-configuration
         name: proxyconfig
+      - configMap:
+          name: slb-reserved-ips
+        name: slbreservedips
       - emptyDir:
           medium: Memory
         name: cert3
       - emptyDir:
           medium: Memory
         name: tokens
-      - configMap:
-          name: slb-reserved-ips
-        name: slbreservedips

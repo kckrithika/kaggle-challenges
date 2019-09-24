@@ -305,6 +305,4 @@
                   "hub-persistence-lb.retail-rsui.hnd-sam.hnd.slb.sfdc.net": "10.213.100.141",
                 },
             },
-
-    reservedIps: $.publicReservedIps + $.privateReservedIps,
 }
