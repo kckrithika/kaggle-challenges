@@ -32,7 +32,7 @@ spec:
         env:
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig-platform
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/sam/hypersam:2790-34bb99ff2a7ce7692b0673f2fa671fdd1522c576
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/sam/hypersam:2801-ff61cebf50eda57c0b7c429d7e6739095e16856c
         livenessProbe:
           httpGet:
             path: /healthz
