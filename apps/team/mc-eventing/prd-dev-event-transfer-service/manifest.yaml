@@ -13,6 +13,9 @@ system:
   - name: eventtransferservice
     count: 1
     volumes:
+    - name: credsvol
+      k4aSecret:
+        secretName: eventtransferservice
     - name: eventbusajna-ens-v1
       k4aSecret:
         secretName: eventbusajna-ens-v1
@@ -58,6 +61,9 @@ system:
         readOnly: true
       - name: logvol
         mountPath: /home/sfdc-ets/logs
+      - name: credsvol
+        mountPath: /secrets/creds
+        readOnly: true
 
     - name: sherpa-event-transfer-service
       image: sfci/servicelibs/sherpa-envoy:213d5137f0015e81c59afe6f93f6ab775dc4798b
