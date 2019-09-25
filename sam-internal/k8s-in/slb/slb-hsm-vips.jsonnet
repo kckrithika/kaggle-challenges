@@ -29,13 +29,13 @@
         'encinoman4-cs2-slawrance-prd.slb.sfdc.net',
         'encinoman5-cs2-slawrance-prd.slb.sfdc.net',
         'encinoman6-cs2-slawrance-prd.slb.sfdc.net',
-        'vonage-mist51-na1-slawrance-prd.slb.sfdc.net',
         'petco-mist51-na1-slawrance-prd.slb.sfdc.net',
         'petco2-mist51-na1-slawrance-prd.slb.sfdc.net',
       ],
       'prd-samtwo': [
         'na44-stmfa1-0-prd.slb.sfdc.net',
         'na44-stmfb1-0-prd.slb.sfdc.net',
+        'vonage-mist51-na1-slawrance-prd.slb.sfdc.net',
       ],
       'phx-sam': [
         'login-cloudforce-phx.slb.sfdc.net',
