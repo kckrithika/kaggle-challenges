@@ -228,7 +228,7 @@ if (istioPhases.phaseNum == 2) then
               "--serviceCluster",
               "istio-pilot",
               "--templateFile",
-              "/etc/istio/proxy/envoy_pilot_%(kingdom)s.yaml.tmpl" % mcpIstioConfig,
+              "/etc/istio/proxy/envoy_pilot.yaml.tmpl" % mcpIstioConfig,
               "--controlPlaneAuthPolicy",
               "MUTUAL_TLS",
               "--envoyMetricsServiceAddress",

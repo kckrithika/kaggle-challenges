@@ -159,7 +159,7 @@ spec:
         - --serviceCluster
         - istio-pilot
         - --templateFile
-        - /etc/istio/proxy/envoy_pilot_prd.yaml.tmpl
+        - /etc/istio/proxy/envoy_pilot.yaml.tmpl
         - --controlPlaneAuthPolicy
         - MUTUAL_TLS
         - --envoyMetricsServiceAddress
