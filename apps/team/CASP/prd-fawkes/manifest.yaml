@@ -26,8 +26,8 @@ system:
           value: "https://public0-proxy1-0-prd.data.sfdc.net:8080"
         - name: NO_PROXY
           value: "warden.sfdc.net,127.0.0.1,localhost"
-        - name: DUMMY_VAR
-          value: "the_answer_to_life_is_42"
+        - name: RELEASE_VAR
+          value: "26.0.0"
         volumeMounts:
         - mountPath: /fawkes/argus-secrets
           name: argus
@@ -37,6 +37,12 @@ system:
           readOnly: true
         - mountPath: /fawkes/gus-secrets
           name: gus
+          readOnly: true
+        - mountPath: /fawkes/mongo-secrets
+          name: mongo
+          readOnly: true
+        - mountPath: /fawkes/mongo-admin-secrets
+          name: mongo-admin
           readOnly: true
         - mountPath: /var/log/st2
           name: fawkes-logs-vol
@@ -50,6 +56,12 @@ system:
       - name: splunk
         k4aSecret:
           secretName: fawkes-splunk
+      - name: mongo
+        k4aSecret:
+          secretName: fawkes-mongo
+      - name: mongo-admin
+        k4aSecret:
+          secretName: fawkes-mongo-admin
       - name: gus
         k4aSecret:
           secretName: fawkes-gus
