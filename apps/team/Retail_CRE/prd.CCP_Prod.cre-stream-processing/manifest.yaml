@@ -1,0 +1,167 @@
+apiVersion: v1
+
+system:
+  notifications:
+    email:
+      - cre@salesforce.com
+  functions:
+  - name: cre-sp-ccp-prod
+    count: 1
+    labels:
+      app: cre-sp-ccp-prod
+    annotations:
+      "routing.mesh.sfdc.net/enabled": "true"
+    containers:
+    - name: cre-sp-ccp-prod
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cre-fusion/services:stream-processor.2.0.1.release-2.0.d47b635.5
+      env:
+        - name: PUBLISHING_TOPIC
+          value: sfdc.prod.cre__prd.ajna_local__cre_outbound_CCP_Prod
+        - name: PUBLISHING_GROUP_ID
+          value: cre_outbound_group_id_ccp_prod
+        - name: PUBLISHING_KAFKA_SERVER
+          value: ajna0-broker1-0-prd.data.sfdc.net:9093
+        - name: BUFFER_IN_TOPIC
+          value: sfdc.prod.cre__prd.ajna_local__cre_inbound_CCP_Prod
+        - name: METRICS_KAFKA_TOPIC
+          value: sfdc.prod.cre__prd.ajna_local__cre_metrics_CCP_Prod
+        - name: METRICS_KAFKA_SERVER
+          value: ajna0-broker1-0-prd.data.sfdc.net:9093
+        - name: METRICS_KAFKA_GROUP_ID
+          value: cre-sp-ccp-prod
+        - name: SFDC_ENVIRONMENT
+          value: ccp-prod
+        - name: METRICS_KAFKA_ENABLED
+          value: true
+        - name: MADDOG_CLIENT_KEYSTORE
+          value: maddog/maddog-client-keystore.json
+        - name: MADDOG_CLIENT_TRUSTSTORE
+          value: maddog/maddog-client-truststore.json
+        - name: METRICS_FUNNEL_URI
+          value: http://ajna0-funnel1-0-prd.data.sfdc.net
+        - name: CONTROLPLANE_ENDPOINT
+          value: http://cre-control-plane-ccp-prod.retail-cre.localhost.mesh.force.com:5442
+        - name: CONTROLPLANE_REST_TESTING_ENABLED
+          value: true
+        - name: CONTROLPLANE_REST_ENDPOINT
+          value: http://cre-control-plane-ccp-prod.retail-cre.localhost.mesh.force.com:5442
+        - name: ENABLE_BATCH_ORPHAN_CHECKS
+          value: true
+        - name: JVM_ARGS
+          value: "-verbose:gc -XX:+PrintGCDateStamps -XX:+PrintHeapAtGC
+                  -XX:+PrintPromotionFailure -XX:+PrintTenuringDistribution -XX:+PrintGCDetails
+                  -XX:+PrintGCDateStamps -XX:+PrintGCApplicationStoppedTime
+                  -XX:+PrintGCApplicationConcurrentTime -XX:+PrintGCCause -XX:+DisableExplicitGC
+                  -Xloggc:/opt/cre/cre-sp-ccp-prod/verbosegc_$(FUNCTION_INSTANCE_NAME).log
+                  -XX:+UseGCLogFileRotation -XX:NumberOfGCLogFiles=5 -XX:GCLogFileSize=20M
+                  -XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=/opt/cre/cre-sp-ccp-prod
+                  -Dcom.sun.management.jmxremote.port=8898
+                  -Dcom.sun.management.jmxremote.rmi.port=8898
+                  -Dcom.sun.management.jmxremote.ssl=false
+                  -Dcom.sun.management.jmxremote.authenticate=false
+                  -Xmx2G -Xms2G -XX:ParallelGCThreads=8"
+      ports:
+      - containerPort: 8080
+      - containerPort: 7022
+      - containerPort: 15372
+      resources:
+        limits: { cpu: "2", memory: "4Gi" }
+        requests: { cpu: "2", memory: "3Gi" }
+      livenessProbe:
+        httpGet:
+          path: /manage/health
+          port: 15372
+        initialDelaySeconds: 60
+        periodSeconds: 10
+      readinessProbe:
+        httpGet:
+          path: /manage/ready
+          port: 15372
+        initialDelaySeconds: 30
+        periodSeconds: 10
+      volumeMounts:
+      - mountPath: /client-certs
+        name: client-certs
+      - mountPath: /server-certs
+        name: server-certs
+      - mountPath: /opt/cre/cre-sp-ccp-prod
+        name: logvol
+    - name: sherpa-cre-stream-processing
+      # Each commit to master for https://git.soma.salesforce.com/servicelibs/sherpa-envoy/commits/master has an image created.
+      # Use the full git SHA as the docker image tag.
+      image: sfci/servicelibs/sherpa-envoy:213d5137f0015e81c59afe6f93f6ab775dc4798b
+      volumeMounts:
+      - mountPath: /log
+        name: sherpa-log-volume
+      - mountPath: /client-certs
+        name: client-certs
+      - mountPath: /server-certs
+        name: server-certs
+      env:
+        - name: SFDC_ENVIRONMENT
+          value: stmfa
+      resources:
+        limits: { cpu: "1", memory: "1Gi" }
+        requests: { cpu: "1", memory: "1Gi" }
+      ports:
+      - containerPort: 7442
+        name: sh-in-http1-tls
+      - containerPort: 15373 # Sherpa admin port. This can be handy when debugging issues.
+        name: sherpa-in-admin
+      livenessProbe:
+        exec:
+          command:
+          - "/home/sfdc-sherpa/bin/is-alive"
+        initialDelaySeconds: 120
+        periodSeconds: 5
+      readinessProbe:
+        exec:
+          command:
+          - "/home/sfdc-sherpa/bin/is-ready"
+        initialDelaySeconds: 110
+        periodSeconds: 5
+    - name: beacon
+      image: sfci/servicelibs/beacon:f6445b2b299f232eda1e0be9739b8242153478ea
+      args:
+      - -endpoint
+      - retail-cre/cre-sp-ccp-prod:DATACENTER_ALLENV:7442
+      resources:
+        limits: { cpu: "1", memory: "1Gi" }
+        requests: { cpu: "1", memory: "1Gi" }
+      livenessProbe:
+        initialDelaySeconds: 5
+        exec:
+          command:
+          - "/home/scone/is-alive.sh"
+    volumes:
+    - name: logvol
+      hostPath:
+        path: /home/sfdc-cre/logs/cre-sp-ccp-prod
+    - name: client-certs
+      maddogCert:
+        type: client
+    - name: server-certs
+      maddogCert:
+        type: server
+        lbnames:
+          - cre-sp-ccp-prod-lb
+    - name: sherpa-log-volume
+      hostPath:
+        path: /home/sfdc-sherpa/logs
+  loadbalancers:
+  - lbname: cre-sp-ccp-prod-lb
+    function: cre-sp-ccp-prod
+    nodeExposed: true
+    slbenabled: true
+    ports:
+      - port: 8062
+        targetport: 7022
+      - port: 9062
+        targetport: 15372
+  - lbname: cre-sp-ccp-prod
+    function: cre-sp-ccp-prod
+    ports:
+      - lbtype: dsr
+        port: 7442
+        targetport: 7442
+        name: https-cre

@@ -1,0 +1,228 @@
+apiVersion: v1
+
+system:
+  notifications:
+    email:
+      - cre@salesforce.com
+  functions:
+  - name: cre-control-plane-ccp-prod
+    count: 3
+    labels:
+      app: cre-control-plane-ccp-prod
+    annotations:
+      "routing.mesh.sfdc.net/enabled": "true"
+    containers:
+    - name: cre-control-plane-ccp-prod
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cre-fusion/services:controlplane.2.0.1.release-2.0.044d483.7
+      env:
+        ####################################################################################################
+        ############################   ENGINE/DDS FLOWSNAKE ARTIFACTS ( Most frequently changed ) ##########
+        ####################################################################################################
+        - name: INGEST_SPEC_IMAGE
+          value: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-sfci-dev/sfci/cre/cre-engine:2.0.0.0.master.917a5ff.20
+        - name: EXPORT_SPEC_IMAGE
+          value: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cre/cre-dds-spark:2.0-freeze-005.0.release-2.0.64a465d.8
+        - name: SAVE_SPEC_IMAGE
+          value: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cre/cre-dds-spark:2.0-freeze-005.0.release-2.0.64a465d.8
+        ####################################################################################################
+        ####################################### GLOBAL SHARED VALUES #######################################
+        ####################################################################################################
+        - name: CONTROL_PLANE_ENDPOINT
+          value: http://cre-control-plane-ccp-prod.retail-cre.localhost.mesh.force.com:5442
+        - name: SFDC_ENVIRONMENT
+          value: ccp-prod
+          ## KAFKA
+        - name: METRICS_KAFKA_ENABLED
+          value: true
+        - name: METRICS_KAFKA_TOPIC
+          value: sfdc.prod.cre__prd.ajna_local__cre_metrics_CCP_Prod
+        - name: METRICS_KAFKA_SERVER
+          value: ajna0-broker1-0-prd.data.sfdc.net:9093
+          ## HBASE
+        - name: HBASE_ENVIRONMENT
+          value: kingdom-test
+        - name: HBASE_NAMESPACE
+          value: CRE_PROD
+        - name: HBASE_DATACENTER
+          value: prd
+        - name: DISABLE_AUTO_TERMINATE_FLOWSNAKE
+          value: true
+        ####################################################################################################
+        ####################################### INGEST environment variables ###############################
+        ####################################################################################################
+        - name: INGEST_ANNOTATIONS_PKI_NAME
+          value: cre-engine-ccp-prod
+        - name: INGEST_K4A_VAULT
+          value: cre-engine-dev
+        ####################################################################################################
+        ####################################### SAVE environment variables ###############################
+        ####################################################################################################
+        - name: CRE_DDS_ENV
+          value: Prd
+        - name: SAVE_ANNOTATIONS_PKI_NAME
+          value: cre-engine-ccp-prod
+        - name: SAVE_K4A_VAULT
+          value: cre-dds-dev
+        - name: SAVE_EXECUTOR_INSTANCES
+          value: 4
+        - name: SAVE_SPARK_DEFAULT_PARALLELISM
+          value: 60
+        - name: SAVE_SPARK_SQL_SHUFFLE_PARTITIONS
+          value: 60
+        ####################################################################################################
+        ####################################### EXPORT environment variables ###############################
+        ####################################################################################################
+        - name: EXPORT_ANNOTATIONS_PKI_NAME
+          value: cre-engine-ccp-prod
+        - name: EXPORT_DRIVER_CORES
+          value: 16
+        - name: EXPORT_EXECUTOR_CORES
+          value: 15
+        - name: EXPORT_EXECUTOR_INSTANCES
+          value: 4
+        - name: EXPORT_DRIVER_MEMORY
+          value: 16g
+        - name: EXPORT_SPARK_DEFAULT_PARALLELISM
+          value: 60
+        - name: EXPORT_SPARK_SQL_SHUFFLE_PARTITIONS
+          value: 60
+        ####################################################################################################
+        ##################################### APP Config environment variables #############################
+        ####################################################################################################
+          ## MADDOG (MAD DOG)
+        - name: MADDOG_CLIENT_KEYSTORE
+          value: maddog/maddog-client-keystore.json
+        - name: MADDOG_CLIENT_TRUSTSTORE
+          value: maddog/maddog-client-truststore.json
+          ## DBaaS
+        - name: DATABASE_NAMESPACE
+          value: crecontrolplaneccpprod
+        - name: SPRING_DATASOURCE_URL
+          value: jdbc:discover://dbaas0-minionapp1-1-prd.eng.sfdc.net:1511,dbaas0-minionapp2-1-prd.eng.sfdc.net:1511,dbaas0-minionapp3-1-prd.eng.sfdc.net:1511/${database.namespace}?${database.discovery.params}
+          ## Stream Processor
+        - name: STREAM_PROCESSING_ENDPOINT
+          value: cre-sp-ccp-prod.retail-cre.localhost.mesh.force.com:5442
+        - name: CRE_API_ENDPOINT
+          value: cre-api-ccp-prod.retail-cre.localhost.mesh.force.com:5442
+        ####################################################################################################
+        ####################################### PERF environment variables #################################
+        ####################################################################################################
+        - name: JVM_ARGS
+          value: "-Djava.util.concurrent.ForkJoinPool.common.parallelism=8
+                  -verbose:gc -XX:+PrintGCDateStamps -XX:+PrintHeapAtGC
+                  -XX:+PrintPromotionFailure -XX:+PrintTenuringDistribution -XX:+PrintGCDetails
+                  -XX:+PrintGCDateStamps -XX:+PrintGCApplicationStoppedTime
+                  -XX:+PrintGCApplicationConcurrentTime -XX:+PrintGCCause -XX:+DisableExplicitGC
+                  -Xloggc:/opt/cre/cre-control-plane-ccp-prod/verbosegc_$(FUNCTION_INSTANCE_NAME).log
+                  -XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=/opt/cre/cre-control-plane-ccp-prod
+                  -Dcom.sun.management.jmxremote.port=8898
+                  -Dcom.sun.management.jmxremote.rmi.port=8898
+                  -Dcom.sun.management.jmxremote.ssl=false
+                  -Dcom.sun.management.jmxremote.authenticate=false
+                  -Xmx4G -Xms4G -XX:ParallelGCThreads=8
+                  -Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=6103"
+      resources:
+        limits: { cpu: "2", memory: "6Gi" }
+        requests: { cpu: "2", memory: "5Gi" }
+      ports:
+      - containerPort: 8080
+      - containerPort: 7022
+      - containerPort: 15372
+      livenessProbe:
+        httpGet:
+          path: /manage/health
+          port: 15372
+        initialDelaySeconds: 60
+        periodSeconds: 10
+      readinessProbe:
+        httpGet:
+          path: /manage/ready
+          port: 15372
+        initialDelaySeconds: 60
+        periodSeconds: 10
+      volumeMounts:
+      - mountPath: /client-certs
+        name: client-certs
+      - mountPath: /server-certs
+        name: server-certs
+      - mountPath: /opt/cre/cre-control-plane-ccp-prod
+        name: logvol
+    - name: sherpa-cre-control-plane
+      # Each commit to master for https://git.soma.salesforce.com/servicelibs/sherpa-envoy/commits/master has an image created.
+      # Use the full git SHA as the docker image tag.
+      image: sfci/servicelibs/sherpa-envoy:213d5137f0015e81c59afe6f93f6ab775dc4798b
+      volumeMounts:
+      - mountPath: /log
+        name: sherpa-log-volume
+      - mountPath: /client-certs
+        name: client-certs
+      - mountPath: /server-certs
+        name: server-certs
+      env:
+        - name: SFDC_ENVIRONMENT
+          value: ccp-prod
+      resources:
+        limits: { cpu: "1", memory: "1Gi" }
+        requests: { cpu: "1", memory: "1Gi" }
+      ports:
+      - containerPort: 7442
+        name: sh-in-http1-tls
+      - containerPort: 15373 # Sherpa admin port. This can be handy when debugging issues.
+        name: sherpa-in-admin
+      livenessProbe:
+        exec:
+          command:
+          - "./bin/is-alive"
+        initialDelaySeconds: 120
+        periodSeconds: 5
+      readinessProbe:
+        exec:
+          command:
+          - "./bin/is-ready"
+        initialDelaySeconds: 110
+        periodSeconds: 5
+    - name: beacon
+      image: sfci/servicelibs/beacon:f6445b2b299f232eda1e0be9739b8242153478ea
+      args:
+      - -endpoint
+      - retail-cre/cre-control-plane-ccp-prod:DATACENTER_ALLENV:7442
+      resources:
+        limits: { cpu: "1", memory: "1Gi" }
+        requests: { cpu: "1", memory: "1Gi" }
+      livenessProbe:
+        initialDelaySeconds: 5
+        exec:
+          command:
+          - "/home/scone/is-alive.sh"
+    volumes:
+    - name: logvol
+      hostPath:
+        path: /home/sfdc-cre/logs/cre-control-plane-ccp-prod
+    - name: client-certs
+      maddogCert:
+        type: client
+    - name: server-certs
+      maddogCert:
+        type: server
+        lbnames:
+          - cre-control-plane-ccp-prod-lb
+    - name: sherpa-log-volume
+      hostPath:
+        path: /home/sfdc-sherpa/logs
+  loadbalancers:
+  - lbname: cre-control-plane-ccp-prod-lb
+    function: cre-control-plane-ccp-prod
+    nodeExposed: true
+    slbEnabled: true
+    ports:
+      - port: 8060
+        targetport: 7022
+      - port: 9060
+        targetport: 15372
+  - lbname: cre-control-plane-ccp-prod
+    function: cre-control-plane-ccp-prod
+    ports:
+      - lbtype: dsr
+        port: 7442
+        targetport: 7442
+        name: https-cre
