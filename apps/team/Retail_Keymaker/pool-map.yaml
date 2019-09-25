@@ -1,0 +1,7 @@
+version: v2
+
+apps:
+
+  retail-keymaker-prd:
+    - name: prd/prd-sam_crosscloudsetup
+    
