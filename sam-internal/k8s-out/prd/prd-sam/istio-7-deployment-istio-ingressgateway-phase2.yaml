@@ -179,7 +179,7 @@ spec:
               fieldPath: metadata.namespace
         - name: ISTIO_META_ROUTER_MODE
           value: sni-dnat
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/sfci/servicemesh/istio-packaging/proxy:308ac353588fa42a7887acbfdaccc19459ce553e
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/sfci/servicemesh/istio-packaging/proxy:fb6120f9c7c32bfcea8d7ab5cef2e6c001baaabc
         imagePullPolicy: IfNotPresent
         name: istio-proxy
         ports:

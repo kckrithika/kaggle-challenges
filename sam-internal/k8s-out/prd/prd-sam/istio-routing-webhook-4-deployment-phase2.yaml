@@ -221,7 +221,7 @@ spec:
           valueFrom:
             fieldRef:
               fieldPath: metadata.labels['cluster']
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/sfci/servicemesh/istio-packaging/proxy:308ac353588fa42a7887acbfdaccc19459ce553e
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/sfci/servicemesh/istio-packaging/proxy:fb6120f9c7c32bfcea8d7ab5cef2e6c001baaabc
         imagePullPolicy: IfNotPresent
         name: istio-proxy
         ports:
@@ -329,7 +329,7 @@ spec:
         - ""
         - -d
         - 15020,10443
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/sfci/servicemesh/istio-packaging/proxy_init:308ac353588fa42a7887acbfdaccc19459ce553e
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/sfci/servicemesh/istio-packaging/proxy_init:fb6120f9c7c32bfcea8d7ab5cef2e6c001baaabc
         imagePullPolicy: IfNotPresent
         name: istio-init
         resources:

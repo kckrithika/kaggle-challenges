@@ -129,7 +129,7 @@ spec:
           value: "1"
         - name: PILOT_DISABLE_XDS_MARSHALING_TO_ANY
           value: "1"
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/sfci/servicemesh/istio-packaging/pilot:308ac353588fa42a7887acbfdaccc19459ce553e
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/sfci/servicemesh/istio-packaging/pilot:fb6120f9c7c32bfcea8d7ab5cef2e6c001baaabc
         imagePullPolicy: IfNotPresent
         name: discovery
         ports:
@@ -167,6 +167,10 @@ spec:
         - --proxyAdminPort
         - "15373"
         env:
+        - name: ESTATE
+          value: prd-sam_gater
+        - name: KINGDOM
+          value: prd
         - name: POD_NAME
           valueFrom:
             fieldRef:
@@ -208,7 +212,7 @@ spec:
           valueFrom:
             fieldRef:
               fieldPath: metadata.labels['cluster']
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/sfci/servicemesh/istio-packaging/proxy:308ac353588fa42a7887acbfdaccc19459ce553e
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/sfci/servicemesh/istio-packaging/proxy:fb6120f9c7c32bfcea8d7ab5cef2e6c001baaabc
         imagePullPolicy: IfNotPresent
         name: istio-proxy
         ports:
@@ -379,7 +383,7 @@ spec:
         - ""
         - -d
         - 15010,15011
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/sfci/servicemesh/istio-packaging/proxy_init:308ac353588fa42a7887acbfdaccc19459ce553e
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/sfci/servicemesh/istio-packaging/proxy_init:fb6120f9c7c32bfcea8d7ab5cef2e6c001baaabc
         imagePullPolicy: IfNotPresent
         name: istio-init
         resources:
