@@ -1,0 +1,82 @@
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  labels:
+    app: apiserver-metrics-exporter
+  name: apiserver-metrics-exporter
+  namespace: sam-system
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: apiserver-metrics-exporter
+  template:
+    metadata:
+      labels:
+        app: apiserver-metrics-exporter
+    spec:
+      automountServiceAccountToken: true
+      containers:
+      - command:
+        - ocagent
+        - --config=/config/opencensus.yaml
+        image: ops0-artifactrepo1-0-par.data.sfdc.net/dva/opencensus-service:13-75d5d20e22eec757a5399028a945fa0851bab367
+        imagePullPolicy: Always
+        livenessProbe:
+          httpGet:
+            path: /debug/rpcz
+            port: 55679
+          initialDelaySeconds: 15
+          periodSeconds: 120
+        name: prom-to-argus
+        resources:
+          limits:
+            cpu: 300m
+          requests:
+            cpu: 150m
+            memory: 100Mi
+        volumeMounts:
+        - mountPath: /config
+          name: opencensus-conf-gen
+      initContainers:
+      - command:
+        - /app/config_gen.rb
+        - -t
+        - /templates/opencensus.cluster-metrics-exporter.yaml.erb
+        - -o
+        - /generated/opencensus.yaml
+        env:
+        - name: KINGDOM
+          value: par
+        - name: ESTATE
+          value: par-sam
+        - name: SUPERPOD
+          value: '-'
+        - name: POD
+          value: '-'
+        - name: FUNCTION_INSTANCE_NAME
+          valueFrom:
+            fieldRef:
+              apiVersion: v1
+              fieldPath: metadata.name
+        - name: SFDC_METRICS_SERVICE_HOST
+          value: mandm-funnel-par1.data.sfdc.net
+        - name: SFDC_METRICS_SERVICE_PORT
+          value: "8080"
+        image: ops0-artifactrepo1-0-par.data.sfdc.net/dva/collection-erb-config-gen:19-70c45ccd33d3772cd6519e1f7dfe2cf5c2bc7b0e
+        imagePullPolicy: Always
+        name: prom-to-argus-init
+        volumeMounts:
+        - mountPath: /templates
+          name: opencensus-conf-tpl
+        - mountPath: /generated
+          name: opencensus-conf-gen
+      nodeSelector:
+        pool: par-sam
+      serviceAccountName: apiserver-metrics-exporter
+      volumes:
+      - configMap:
+          name: apiserver-metrics-exporter-cm
+        name: opencensus-conf-tpl
+      - emptyDir: {}
+        name: opencensus-conf-gen
