@@ -3,13 +3,13 @@
     "config": null,
     "releaseName": "istio",
     "namespace": "mesh-control-plane",
-    "upstream": "https://github.com/istio/istio/tree/c42fd349de1068325ee4b9fab816d0bf871e0cb9/install/kubernetes/helm/istio",
+    "upstream": "https://github.com/istio/istio/tree/18c24b514203f46ef3c1ad0146504b3046d4016b/install/kubernetes/helm/istio",
     "metadata": {
       "applicationType": "helm",
       "sequence": 0,
       "icon": "https://istio.io/favicons/android-192x192.png",
       "name": "istio",
-      "releaseNotes": "Update the monitoring/telemetry code and settings for the new config pipeline. (#17155)\n\n* Remove galley_source_kube_dynamic_converter_success_total.\n\n* Add detailed metric monitoring code.\n\n* Fix MCP Metric reporter case and align debounce timings with the old pipeline.\n\n* Filter out galley_runtime_strategy_timer_max_time_reached_total.",
+      "releaseNotes": "Correct CoreDNS config and prevent race condition (#17291)",
       "version": "1.1.0",
       "license": {
         "id": "",
@@ -21,7 +21,7 @@
     },
     "shipVersion": {
       "version": "0.51.0",
-      "buildTime": "2019-08-30T01:34:10Z",
+      "buildTime": "2019-08-30T01:31:21Z",
       "dependencies": {
         "helm": "v2.14.1",
         "kustomize": "v2.0.3",
@@ -34,7 +34,7 @@
         "arch": "amd64"
       }
     },
-    "contentSHA": "ac459d305ba0f8e62967e39a2d8b1c253612bfbf42936266e1d58d9d71080f87",
+    "contentSHA": "ca529e988bbd0e69d44638adba7eca08a7cfe706d48f5fab98e042ecbbc154ce",
     "lifecycle": {
       "stepsCompleted": {
         "intro": true,
