@@ -1,0 +1,431 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  labels:
+    name: slb-ipvs
+  name: slb-ipvs
+  namespace: sam-system
+spec:
+  minReadySeconds: 60
+  replicas: 3
+  selector:
+    matchLabels:
+      name: slb-ipvs
+  strategy:
+    rollingUpdate:
+      maxSurge: 0
+      maxUnavailable: 1
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        name: slb-ipvs
+      namespace: sam-system
+    spec:
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+            - matchExpressions:
+              - key: slb-service
+                operator: In
+                values:
+                - slb-ipvs
+        podAntiAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+          - labelSelector:
+              matchExpressions:
+              - key: name
+                operator: In
+                values:
+                - slb-ipvs
+            topologyKey: kubernetes.io/hostname
+      containers:
+      - command:
+        - /sdn/slb-ipvs-installer
+        - --modules=/sdn
+        - --host=/host
+        - --period=5s
+        - --metricsEndpoint=ajna0-funnel1-0-ia5.data.sfdc.net:80
+        - --log_dir=/host/data/slb/logs/slb-ipvs
+        - --IpvsPath=20190114
+        - --hostsConfigFile=/sfdchosts/hosts.json
+        - --ipvsConnTabBits=20
+        image: ops0-artifactrepo1-0-ia5.data.sfdc.net/dva/slb/hyperslb:2223-e4a2929d6ff93ed22cb6e3a3b3155a6a86537b8b
+        name: slb-ipvs-installer
+        securityContext:
+          capabilities:
+            add:
+            - ALL
+          privileged: true
+        volumeMounts:
+        - mountPath: /dev
+          name: dev-volume
+        - mountPath: /lib/modules
+          name: lib-modules-volume
+        - mountPath: /host/tmp
+          name: tmp-volume
+        - mountPath: /host/lib/modules
+          name: lib-modules-volume
+        - mountPath: /host/usr/sbin
+          name: usr-sbin-volume
+        - mountPath: /host/data/slb
+          name: var-slb-volume
+        - mountPath: /host/data/slb/logs/slb-ipvs
+          name: var-logs-volume
+        - mountPath: /sfdchosts
+          name: sfdchosts
+      - command:
+        - /sdn/slb-ipvs-processor
+        - --marker=/host/data/slb/ipvs.marker
+        - --period=5s
+        - --log_dir=/host/data/slb/logs/slb-ipvs
+        - --maximumDeleteCount=100
+        - --hostsConfigFile=/sfdchosts/hosts.json
+        - --client.serverPort=12081
+        - --client.serverInterface=lo
+        - --metricsEndpoint=ajna0-funnel1-0-ia5.data.sfdc.net:80
+        - --httpTimeout=1s
+        - --enableOnlyRunningStateProxy=true
+        - --client.socketDir=/host/data/slb/config/slb-ipvs
+        - --client.dialSocket=true
+        - --healthcheck.riseCount=5
+        - --healthcheck.fallCount=2
+        - --healthcheck.healthchecktimeout=3s
+        env:
+        - name: KUBECONFIG
+          value: /kubeconfig/kubeconfig-platform
+        - name: FUNCTION_NAMESPACE
+          valueFrom:
+            fieldRef:
+              apiVersion: v1
+              fieldPath: metadata.namespace
+        - name: FUNCTION_INSTANCE_NAME
+          valueFrom:
+            fieldRef:
+              apiVersion: v1
+              fieldPath: metadata.name
+        image: ops0-artifactrepo1-0-ia5.data.sfdc.net/dva/slb/hyperslb:2223-e4a2929d6ff93ed22cb6e3a3b3155a6a86537b8b
+        name: slb-ipvs-processor
+        securityContext:
+          privileged: true
+        volumeMounts:
+        - mountPath: /host/data/slb
+          name: var-slb-volume
+        - mountPath: /host/data/slb/config/slb-ipvs
+          name: var-config-volume
+        - mountPath: /host/data/slb/logs/slb-ipvs
+          name: var-logs-volume
+        - mountPath: /host/usr/sbin
+          name: usr-sbin-volume
+        - mountPath: /sfdchosts
+          name: sfdchosts
+        - mountPath: /proxyconfig
+          name: proxyconfig
+        - mountPath: /kubeconfig
+          name: kubeconfig
+        - mountPath: /etc/pki_service
+          name: maddog-certs
+      - command:
+        - /sdn/slb-ipvs-data
+        - --connPort=9107
+        - --log_dir=/host/data/slb/logs/slb-ipvs
+        - --hostsConfigFile=/sfdchosts/hosts.json
+        image: ops0-artifactrepo1-0-ia5.data.sfdc.net/dva/slb/hyperslb:2223-e4a2929d6ff93ed22cb6e3a3b3155a6a86537b8b
+        livenessProbe:
+          httpGet:
+            path: /
+            port: 9107
+          initialDelaySeconds: 5
+          periodSeconds: 3
+        name: slb-ipvs-data
+        ports:
+        - containerPort: 32149
+        securityContext:
+          privileged: true
+        volumeMounts:
+        - mountPath: /host/data/slb
+          name: var-slb-volume
+        - mountPath: /host/data/slb/logs/slb-ipvs
+          name: var-logs-volume
+        - mountPath: /host/usr/sbin
+          name: usr-sbin-volume
+        - mountPath: /sfdchosts
+          name: sfdchosts
+      - command:
+        - /sdn/slb-ipvs-conntrack
+        - --log_dir=/host/data/slb/logs/slb-ipvs
+        - --client.serverPort=12081
+        - --client.serverInterface=lo
+        - --enableAcl=true
+        - --enableConntrack=false
+        - --enableCheckAntiDdos=true
+        - --dropEntry=1
+        - --dropPacket=1
+        - --metricsEndpoint=ajna0-funnel1-0-ia5.data.sfdc.net:80
+        - --iprange.InternalIpRange=10.182.162.64/26,10.184.136.0/22
+        - --client.socketDir=/host/data/slb/config/slb-ipvs
+        - --client.dialSocket=true
+        image: ops0-artifactrepo1-0-ia5.data.sfdc.net/dva/slb/hyperslb:2223-e4a2929d6ff93ed22cb6e3a3b3155a6a86537b8b
+        name: slb-ipvs-conntrack
+        securityContext:
+          privileged: true
+        volumeMounts:
+        - mountPath: /host/data/slb
+          name: var-slb-volume
+        - mountPath: /host/data/slb/config/slb-ipvs
+          name: var-config-volume
+        - mountPath: /host/data/slb/logs/slb-ipvs
+          name: var-logs-volume
+        - mountPath: /host/usr/sbin
+          name: usr-sbin-volume
+        - mountPath: /sfdchosts
+          name: sfdchosts
+        - mountPath: /host/sbin
+          name: sbin-volume
+      - command:
+        - /sdn/slb-config-processor
+        - --configDir=/host/data/slb/config/slb-ipvs
+        - --period=1800s
+        - --vipsToAcl=
+        - --podPhaseCheck=true
+        - --namespace=
+        - --podstatus=running
+        - --subnet=10.184.140.0/22
+        - --k8sapiserver=
+        - --serviceList=
+        - --useVipLabelToSelectSvcs=true
+        - --metricsEndpoint=ajna0-funnel1-0-ia5.data.sfdc.net:80
+        - --log_dir=/host/data/slb/logs/slb-ipvs
+        - --sleepTime=100ms
+        - --livenessProbePort=12082
+        - --shouldRemoveConfig=true
+        - --hostsConfigFile=/sfdchosts/hosts.json
+        - --proxySelectorLabelValue=slb-nginx-config-b
+        - --hostnameOverride=$(NODE_NAME)
+        - --control.configProcSentinel=/host/data/slb/config/slb-ipvs/slb-config-proc.sentinel
+        env:
+        - name: KUBECONFIG
+          value: /kubeconfig/kubeconfig-platform
+        - name: NODE_NAME
+          valueFrom:
+            fieldRef:
+              fieldPath: spec.nodeName
+        image: ops0-artifactrepo1-0-ia5.data.sfdc.net/dva/slb/hyperslb:2223-e4a2929d6ff93ed22cb6e3a3b3155a6a86537b8b
+        livenessProbe:
+          httpGet:
+            path: /liveness-probe
+            port: 12082
+          initialDelaySeconds: 600
+          periodSeconds: 30
+          timeoutSeconds: 5
+        name: slb-config-processor
+        securityContext:
+          privileged: true
+        volumeMounts:
+        - mountPath: /etc/pki_service
+          name: maddog-certs
+        - mountPath: /host/data/slb
+          name: var-slb-volume
+        - mountPath: /host/data/slb/config/slb-ipvs
+          name: var-config-volume
+        - mountPath: /host/data/slb/logs/slb-ipvs
+          name: var-logs-volume
+        - mountPath: /data/certs
+          name: certs
+        - mountPath: /kubeconfig
+          name: kubeconfig
+        - mountPath: /sfdchosts
+          name: sfdchosts
+        - mountPath: /proxyconfig
+          name: proxyconfig
+      - command:
+        - /sdn/slb-cleanup
+        - --period=1800s
+        - --logsMaxAge=1h
+        - --filesDirToCleanup=/host/data/slb/config/slb-ipvs
+        - --shouldSkipServiceRecords=true
+        - --shouldNotDeleteAllFiles=true
+        - --log_dir=/host/data/slb/logs/slb-ipvs
+        - --shouldSkipSlbBlock=true
+        - --skipFilesWithSuffix=.sock
+        - --maxDeleteFileCount=20
+        image: ops0-artifactrepo1-0-ia5.data.sfdc.net/dva/slb/hyperslb:2223-e4a2929d6ff93ed22cb6e3a3b3155a6a86537b8b
+        name: slb-cleanup-config-processor
+        securityContext:
+          privileged: true
+        volumeMounts:
+        - mountPath: /host/data/slb
+          name: var-slb-volume
+        - mountPath: /host/data/slb/config/slb-ipvs
+          name: var-config-volume
+        - mountPath: /host/data/slb/logs/slb-ipvs
+          name: var-logs-volume
+      - command:
+        - /sdn/slb-node-api
+        - --port=12081
+        - --configDir=/host/data/slb/config/slb-ipvs
+        - --log_dir=/host/data/slb/logs/slb-ipvs
+        - --netInterface=lo
+        - --checkSentinel=true
+        - --control.configProcSentinel=/host/data/slb/config/slb-ipvs/slb-config-proc.sentinel
+        - --control.sentinelExpiration=1800s
+        - --listenOnSocket=true
+        - --readOnly=false
+        - --checkMwSentinel=true
+        - --control.manifestWatcherSentinel=/host/data/slb/config/slb-ipvs/slb-manifest-watcher.sentinel
+        image: ops0-artifactrepo1-0-ia5.data.sfdc.net/dva/slb/hyperslb:2223-e4a2929d6ff93ed22cb6e3a3b3155a6a86537b8b
+        name: slb-node-api
+        volumeMounts:
+        - mountPath: /host/data/slb
+          name: var-slb-volume
+        - mountPath: /host/data/slb/logs/slb-ipvs
+          name: var-logs-volume
+      - command:
+        - /sdn/slb-iface-processor
+        - --configDir=/host/data/slb/config/slb-ipvs
+        - --control.sentinelExpiration=300s
+        - --period=5s
+        - --metricsEndpoint=ajna0-funnel1-0-ia5.data.sfdc.net:80
+        - --log_dir=/host/data/slb/logs/slb-ipvs
+        - --hostsConfigFile=/sfdchosts/hosts.json
+        - --subnet=10.184.140.0/22,
+        image: ops0-artifactrepo1-0-ia5.data.sfdc.net/dva/slb/hyperslb:2223-e4a2929d6ff93ed22cb6e3a3b3155a6a86537b8b
+        name: slb-iface-processor
+        securityContext:
+          privileged: true
+        volumeMounts:
+        - mountPath: /host/data/slb
+          name: var-slb-volume
+        - mountPath: /host/data/slb/config/slb-ipvs
+          name: var-config-volume
+        - mountPath: /host/data/slb/logs/slb-ipvs
+          name: var-logs-volume
+        - mountPath: /sfdchosts
+          name: sfdchosts
+        - mountPath: /host/sbin
+          name: sbin-volume
+      - command:
+        - /sdn/slb-cleanup
+        - --period=1800s
+        - --logsMaxAge=48h
+        - --log_dir=/host/data/slb/logs/slb-ipvs/cleanup
+        - --filesDirToCleanup=/host/data/slb/logs/slb-ipvs
+        - --shouldSkipServiceRecords=false
+        - --shouldNotDeleteAllFiles=false
+        env:
+        - name: KUBECONFIG
+          value: /kubeconfig/kubeconfig-platform
+        image: ops0-artifactrepo1-0-ia5.data.sfdc.net/dva/slb/hyperslb:2223-e4a2929d6ff93ed22cb6e3a3b3155a6a86537b8b
+        name: slb-cleanup
+        securityContext:
+          privileged: true
+        volumeMounts:
+        - mountPath: /host/data/slb
+          name: var-slb-volume
+        - mountPath: /host/data/slb/config/slb-ipvs
+          name: var-config-volume
+        - mountPath: /host/data/slb/logs/slb-ipvs
+          name: var-logs-volume
+        - mountPath: /sfdchosts
+          name: sfdchosts
+        - mountPath: /host/data/slb/logs/slb-ipvs/cleanup
+          name: var-cleanup-logs-volume
+      - command:
+        - /sdn/slb-manifest-watcher
+        - --manifestOutputDir=/host/data/slb/manifests/slb-ipvs
+        - --tnrpEndpoint=https://ops0-piperepo1-0-ia5.data.sfdc.net/
+        - --hostnameOverride=$(NODE_NAME)
+        - --log_dir=/host/data/slb/logs/slb-ipvs
+        - --hostsConfigFile=/sfdchosts/hosts.json
+        - --client.socketDir=/host/data/slb/config/slb-ipvs
+        - --client.dialSocket=true
+        - --maxDeleteLimit=100
+        - --isRoleUsed=true
+        - --metricsEndpoint=ajna0-funnel1-0-ia5.data.sfdc.net:80
+        - --vcioptions.strict=true
+        - --client.allowStale=true
+        - --control.manifestWatcherSentinel=/host/data/slb/config/slb-ipvs/slb-manifest-watcher.sentinel
+        env:
+        - name: KUBECONFIG
+          value: /kubeconfig/kubeconfig-platform
+        - name: NODE_NAME
+          valueFrom:
+            fieldRef:
+              fieldPath: spec.nodeName
+        image: ops0-artifactrepo1-0-ia5.data.sfdc.net/dva/slb/hyperslb:2223-e4a2929d6ff93ed22cb6e3a3b3155a6a86537b8b
+        name: slb-manifest-watcher
+        securityContext:
+          privileged: true
+        volumeMounts:
+        - mountPath: /host/data/slb
+          name: var-slb-volume
+        - mountPath: /sfdchosts
+          name: sfdchosts
+        - mountPath: /kubeconfig
+          name: kubeconfig
+        - mountPath: /etc/pki_service
+          name: maddog-certs
+        - mountPath: /proxyconfig
+          name: proxyconfig
+      - command:
+        - /bin/bash
+        - /sdn/slb-cleanup-log.sh
+        - /var/log/kern.*
+        - "3600"
+        image: ops0-artifactrepo1-0-ia5.data.sfdc.net/dva/slb/hyperslb:2223-e4a2929d6ff93ed22cb6e3a3b3155a6a86537b8b
+        name: slb-cleanup-kern-logs
+        volumeMounts:
+        - mountPath: /var/log
+          name: var-kern-log-volume
+      dnsPolicy: Default
+      hostNetwork: true
+      nodeSelector:
+        slb-service: slb-ipvs
+      terminationGracePeriodSeconds: 5
+      volumes:
+      - hostPath:
+          path: /data/slb
+        name: var-slb-volume
+      - hostPath:
+          path: /data/slb/config/slb-ipvs
+        name: var-config-volume
+      - hostPath:
+          path: /dev
+        name: dev-volume
+      - hostPath:
+          path: /lib/modules
+        name: lib-modules-volume
+      - hostPath:
+          path: /tmp
+        name: tmp-volume
+      - hostPath:
+          path: /usr/sbin
+        name: usr-sbin-volume
+      - hostPath:
+          path: /data/slb/logs/slb-ipvs
+        name: var-logs-volume
+      - configMap:
+          name: sfdchosts
+        name: sfdchosts
+      - hostPath:
+          path: /etc/pki_service
+        name: maddog-certs
+      - hostPath:
+          path: /data/certs
+        name: certs
+      - hostPath:
+          path: /etc/kubernetes
+        name: kubeconfig
+      - hostPath:
+          path: /sbin
+        name: sbin-volume
+      - hostPath:
+          path: /data/slb/logs/slb-ipvs/cleanup
+        name: var-cleanup-logs-volume
+      - configMap:
+          name: slb-proxy-configuration
+        name: proxyconfig
+      - hostPath:
+          path: /var/log
+        name: var-kern-log-volume

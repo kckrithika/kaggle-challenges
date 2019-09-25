@@ -1,0 +1,58 @@
+apiVersion: extensions/v1beta1
+kind: DaemonSet
+metadata:
+  labels:
+    name: slb-ipvs-artifactory-bootstrap
+  name: slb-ipvs-artifactory-bootstrap
+  namespace: sam-system
+spec:
+  selector:
+    matchLabels:
+      daemonset: "true"
+      name: slb-ipvs-artifactory-bootstrap
+  template:
+    metadata:
+      labels:
+        daemonset: "true"
+        name: slb-ipvs-artifactory-bootstrap
+    spec:
+      containers:
+      - command:
+        - /bin/bash
+        - /config/slb-hosts-updater.sh
+        - ops0-artifactrepo1-0-ia4.data.sfdc.net
+        - ops0-artifactrepo1-0-ia4.ia4.r.data.sfdc.net
+        - "60"
+        env:
+        - name: IMMUTABLE_DEPLOYMENTS_ARE_GOOD
+          value: "1"
+        image: ops0-artifactrepo1-0-ia4.data.sfdc.net/tnrp/sdn/hypersdn:v-0001443-9c651010
+        name: slb-ipvs-artifactory-bootstrap
+        resources:
+          limits:
+            cpu: "0.5"
+            memory: 300Mi
+          requests:
+            cpu: "0.5"
+            memory: 300Mi
+        volumeMounts:
+        - mountPath: /host-etc
+          name: host-etc-volume
+        - mountPath: /config
+          name: config
+      dnsPolicy: Default
+      hostNetwork: true
+      nodeSelector:
+        slb-service: slb-ipvs
+      terminationGracePeriodSeconds: 5
+      volumes:
+      - hostPath:
+          path: /etc
+        name: host-etc-volume
+      - configMap:
+          name: slb-ipvs-artifactory-bootstrap
+        name: config
+  updateStrategy:
+    rollingUpdate:
+      maxUnavailable: 25%
+    type: RollingUpdate

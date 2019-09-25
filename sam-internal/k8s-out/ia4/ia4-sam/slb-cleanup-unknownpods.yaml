@@ -1,0 +1,112 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  labels:
+    name: slb-cleanup-unknownpods
+  name: slb-cleanup-unknownpods
+  namespace: sam-system
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      apptype: monitoring
+      name: slb-cleanup-unknownpods
+  template:
+    metadata:
+      labels:
+        apptype: monitoring
+        name: slb-cleanup-unknownpods
+      namespace: sam-system
+    spec:
+      containers:
+      - command:
+        - /bin/bash
+        - /sdn/slb-cleanup-stuckpods.sh
+        env:
+        - name: NODE_NAME
+          valueFrom:
+            fieldRef:
+              fieldPath: spec.nodeName
+        - name: KUBECONFIG
+          value: /kubeconfig/kubeconfig-platform
+        image: ops0-artifactrepo1-0-ia4.data.sfdc.net/dva/slb/hyperslb:2223-e4a2929d6ff93ed22cb6e3a3b3155a6a86537b8b
+        name: slb-cleanup-unknownpods
+        volumeMounts:
+        - mountPath: /etc/pki_service
+          name: maddog-certs
+        - mountPath: /host/data/slb
+          name: var-slb-volume
+        - mountPath: /host/data/slb/config/
+          name: var-config-volume
+        - mountPath: /host/data/slb/logs/
+          name: var-logs-volume
+        - mountPath: /data/certs
+          name: certs
+        - mountPath: /slb
+          name: slblogs
+        - mountPath: /kubeconfig
+          name: kubeconfig
+        - mountPath: /usr/bin/kubectl
+          name: kubectl
+      - command:
+        - /bin/bash
+        - /sdn/slb-cleanup-stuckpods.sh
+        - slb-canary
+        env:
+        - name: NODE_NAME
+          valueFrom:
+            fieldRef:
+              fieldPath: spec.nodeName
+        - name: KUBECONFIG
+          value: /kubeconfig/kubeconfig-platform
+        image: ops0-artifactrepo1-0-ia4.data.sfdc.net/dva/slb/hyperslb:2223-e4a2929d6ff93ed22cb6e3a3b3155a6a86537b8b
+        name: slb-cleanup-unknownpodscanary
+        volumeMounts:
+        - mountPath: /etc/pki_service
+          name: maddog-certs
+        - mountPath: /host/data/slb
+          name: var-slb-volume
+        - mountPath: /host/data/slb/config/
+          name: var-config-volume
+        - mountPath: /host/data/slb/logs/
+          name: var-logs-volume
+        - mountPath: /data/certs
+          name: certs
+        - mountPath: /slb
+          name: slblogs
+        - mountPath: /kubeconfig
+          name: kubeconfig
+        - mountPath: /usr/bin/kubectl
+          name: kubectl
+      dnsPolicy: Default
+      hostNetwork: true
+      nodeSelector:
+        master: "true"
+      securityContext:
+        fsGroup: 0
+        runAsUser: 0
+      volumes:
+      - hostPath:
+          path: /etc/pki_service
+        name: maddog-certs
+      - hostPath:
+          path: /data/slb
+        name: var-slb-volume
+      - hostPath:
+          path: /data/slb/config/
+        name: var-config-volume
+      - hostPath:
+          path: /data/slb/logs/
+        name: var-logs-volume
+      - hostPath:
+          path: /data/certs
+        name: certs
+      - hostPath:
+          path: /var/slb/logs
+        name: slblogs
+      - hostPath:
+          path: /etc/kubernetes
+        name: kubeconfig
+      - hostPath:
+          path: /usr/bin/kubectl
+        name: kubectl

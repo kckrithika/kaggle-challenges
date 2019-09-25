@@ -1,0 +1,27 @@
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    slb.sfdc.net/name: slb-canary-pt-tls
+    slb.sfdc.net/portconfigurations: |-
+      [
+       {
+        "healthpath": "/health",
+        "lbtype": "dsr",
+        "port": 9114,
+        "targetport": 9114
+       }
+      ]
+  labels:
+    app: slb-canary-passthrough-tls-service
+  name: slb-canary-passthrough-tls-service
+  namespace: sam-system
+spec:
+  ports:
+  - name: slb-canary-passthrough-tls-port
+    port: 9114
+    protocol: TCP
+    targetPort: 9114
+  selector:
+    name: slb-canary-passthrough-tls
+  type: NodePort

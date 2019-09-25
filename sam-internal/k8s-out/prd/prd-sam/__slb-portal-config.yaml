@@ -64,6 +64,14 @@ data:
           "name": "lo3"
         },
         {
+          "href": "https://slb-portal-ia4.slb.sfdc.net",
+          "name": "ia4"
+        },
+        {
+          "href": "https://slb-portal-ia5.slb.sfdc.net",
+          "name": "ia5"
+        },
+        {
           "href": "http://slb-portal-service.sam-system.prd-sam.prd.slb.sfdc.net:9112/",
           "name": "prd-sam"
         },

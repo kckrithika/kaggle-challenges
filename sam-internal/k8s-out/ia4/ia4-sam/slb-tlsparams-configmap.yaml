@@ -1,0 +1,16 @@
+apiVersion: v1
+data:
+  dhparams.pem: |
+    -----BEGIN DH PARAMETERS-----
+    MIIBCAKCAQEAv3LaM6x41OTYywKWvngbdxHpAGQ6kNK+26P7MyVJMrvswHBgkj44
+    25pOUZjtX+8wIAa3gpPmIPB/X7oii8lILI6Wst/vtPU3BOW10tDoF9z5o+TKP2Qu
+    y5U1nM5ullmvZhaV9l69/K2i2uWskQbWBj6t7DKegNvf20FlMIzzuzuMf5SJbw2o
+    C8s6bThRCyZ/0F2yq8wKqPOiTpY2ov3z69nEjcEjFOMsVySAEW0j0BaNB9RfVQeT
+    l6Y6l6T2QRsmL7pnF0jMAhy+fazzBSbZorVLbeM2p8Yp3GVRg9+ArFL6ByoSDDuq
+    yunKU1RdmmRI0OD2bvfpd+G+dmptXV5ZSwIBAg==
+    -----END DH PARAMETERS-----
+kind: ConfigMap
+metadata:
+  creationTimestamp: null
+  name: slb-tlsparams
+  namespace: sam-system

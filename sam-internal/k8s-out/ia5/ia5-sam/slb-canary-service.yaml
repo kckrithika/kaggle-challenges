@@ -1,0 +1,39 @@
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    slb.sfdc.net/name: slb-canary-service
+    slb.sfdc.net/portconfigurations: |-
+      [
+       {
+        "healthpath": "/health",
+        "lbtype": "dsr",
+        "port": 9111,
+        "targetport": 9111
+       },
+       {
+        "healthpath": "/health",
+        "lbtype": "dsr",
+        "port": 9443,
+        "targetport": 9443
+       }
+      ]
+  labels:
+    app: slb-canary-service
+  name: slb-canary-service
+  namespace: sam-system
+spec:
+  ports:
+  - name: slb-canary-port
+    nodePort: 32136
+    port: 9111
+    protocol: TCP
+    targetPort: 9111
+  - name: slb-canary-tls
+    nodePort: 32135
+    port: 9443
+    protocol: TCP
+    targetPort: 9443
+  selector:
+    name: slb-canary
+  type: NodePort

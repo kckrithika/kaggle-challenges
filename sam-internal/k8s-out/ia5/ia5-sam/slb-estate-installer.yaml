@@ -1,0 +1,79 @@
+apiVersion: extensions/v1beta1
+kind: DaemonSet
+metadata:
+  labels:
+    name: slb-estate-installer
+  name: slb-estate-installer
+  namespace: sam-system
+spec:
+  minReadySeconds: 30
+  selector:
+    matchLabels:
+      apptype: control
+      daemonset: "true"
+      name: slb-estate-installer
+  template:
+    metadata:
+      labels:
+        apptype: control
+        daemonset: "true"
+        name: slb-estate-installer
+      namespace: sam-system
+    spec:
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+            - matchExpressions:
+              - key: pool
+                operator: In
+                values:
+                - ia5-slb
+      containers:
+      - command:
+        - /sdn/slb-estate-installer
+        - --log_dir=/host/data/slb/logs/slb-estate-installer
+        env:
+        - name: KUBECONFIG
+          value: /kubeconfig/kubeconfig-platform
+        - name: NODE_NAME
+          valueFrom:
+            fieldRef:
+              fieldPath: spec.nodeName
+        image: ops0-artifactrepo1-0-ia5.data.sfdc.net/dva/slb/hyperslb:2223-e4a2929d6ff93ed22cb6e3a3b3155a6a86537b8b
+        name: slb-estate-installer
+        securityContext:
+          privileged: true
+        volumeMounts:
+        - mountPath: /etc/yum.repos.d
+          name: yum-estates-repo-config-volume
+        - mountPath: /etc/pki/rpm-gpg
+          name: yum-gpg-config-volume
+        - mountPath: /opt/estates
+          name: yum-estates-repo-volume
+        - mountPath: /host/data/slb
+          name: var-slb-volume
+        - mountPath: /host/data/slb/logs/slb-estate-installer
+          name: var-logs-volume
+      dnsPolicy: Default
+      terminationGracePeriodSeconds: 5
+      volumes:
+      - hostPath:
+          path: /etc/yum.repos.d
+        name: yum-estates-repo-config-volume
+      - hostPath:
+          path: /etc/pki/rpm-gpg
+        name: yum-gpg-config-volume
+      - hostPath:
+          path: /opt/estates
+        name: yum-estates-repo-volume
+      - hostPath:
+          path: /data/slb
+        name: var-slb-volume
+      - hostPath:
+          path: /data/slb/logs/slb-estate-installer
+        name: var-logs-volume
+  updateStrategy:
+    rollingUpdate:
+      maxUnavailable: 1
+    type: RollingUpdate
