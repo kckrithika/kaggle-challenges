@@ -10,6 +10,8 @@ system:
     - name: poetry-gen-service
       # latest image to trigger a new build
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/bbuxton/poetry-gen:bbuxton-20190322-latest
+      command: ["/bin/sh"]
+      args: ["-c", "sleep 10 && echo Sleep expired"]
       terminationMessagePolicy: "FallbackToLogsOnError"
       # If your service doesn't serve HTTP traffic then you can remove the scone-http 8080 port.
       ports:
