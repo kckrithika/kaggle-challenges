@@ -11,6 +11,8 @@ system:
     - name: cre-sp
       image: sfci/cre-fusion/services:stream-processor.v2.0.1.master.ddb2e93.17
       env:
+        - name: DUMMY_RESTART_VAR
+          value: 1
         - name: PUBLISHING_TOPIC
           value: sfdc.prod.cre__ukb.ajna_local__cre_outbound
         - name: PUBLISHING_GROUP_ID
