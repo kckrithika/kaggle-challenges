@@ -1,11 +1,11 @@
 apiVersion: v1
 system:
   functions:
-  - name: sam-c2c-jmh-perftestingapp-pri-test
+  - name: sam-c2c-jmh-perftestingapp-c2cservice-coreproxy
     count: 1
     containers:
-    - name: sam-c2c-jmh-perftestingapp-pri-test
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/pbarlota/sam-c2c-jmh-perftestingapp-pri-test:latest-3
+    - name: sam-c2c-jmh-perftestingapp-c2cservice-coreproxy
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/pbarlota/sam-c2c-jmh-perftestingapp-c2cservice-coreproxy:latest
       ports:
       - containerPort: 9090
       volumeMounts:
@@ -59,8 +59,8 @@ system:
       maddogCert:
         type: client
   loadbalancers:
-  - lbname: sam-c2c-jmh-perftestingapp-pri-test-lb
-    function: sam-c2c-jmh-perftestingapp-pri-test
+  - lbname: sam-c2c-jmh-perftestingapp-c2cservice-coreproxy-lb
+    function: sam-c2c-jmh-perftestingapp-c2cservice-coreproxy
     slbenabled: true
     ports:
       - port: 9090
