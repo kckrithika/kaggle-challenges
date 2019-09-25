@@ -1,0 +1,106 @@
+- lbname: vonage-mist51-na1-nokms
+  servers:
+   - mist51ice1-app1-1-prd.eng.sfdc.net
+   - mist51ice1-app1-2-prd.eng.sfdc.net
+   - mist51ice1-app1-3-prd.eng.sfdc.net
+   - mist51ice1-app1-4-prd.eng.sfdc.net
+   - mist51ice1-app1-5-prd.eng.sfdc.net
+   - mist51ice1-app2-1-prd.eng.sfdc.net
+   - mist51ice1-app2-2-prd.eng.sfdc.net
+   - mist51ice1-app2-3-prd.eng.sfdc.net
+   - mist51ice1-app2-4-prd.eng.sfdc.net
+   - mist51ice1-app2-5-prd.eng.sfdc.net
+  ports:
+  - port: 443
+    targetport: 8085
+    reencrypt: false
+    healthport: 8085
+    lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy
+    sticky: 86400
+    tls: true
+    tlscertificate: secret_service:Mist51-VIP-Certs:vonage.mist51.stm.my-salesforce.com2.crt
+    tlskey: secret_service:Mist51-VIP-Certs:vonage.mist51.stm.my-salesforce.com2.key
+    addheaders:
+    - name: "X-Salesforce-VIP"
+      value: "SLB"
+  - port: 8443
+    targetport: 8090
+    reencrypt: true
+    healthport: 8085
+    lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy
+    sticky: 86400
+    tls: true
+    mtls: true
+    tlscertificate: secret_service:Mist51-VIP-Certs:vonage.mist51.stm.my-salesforce.com2.crt
+    tlskey: secret_service:Mist51-VIP-Certs:vonage.mist51.stm.my-salesforce.com2.key
+    addheaders:
+    - name: "X-Salesforce-VIP"
+      value: "SLB"
+  - port: 80
+    targetport: 8085
+    lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy
+    addheaders:
+    - name: "X-Salesforce-VIP"
+      value: "SLB"
+    removeheaders:
+    - "CipherSuite"
+
+- lbname: vonage-mist51-na1
+  servers:
+   - mist51ice1-app1-1-prd.eng.sfdc.net
+   - mist51ice1-app1-2-prd.eng.sfdc.net
+   - mist51ice1-app1-3-prd.eng.sfdc.net
+   - mist51ice1-app1-4-prd.eng.sfdc.net
+   - mist51ice1-app1-5-prd.eng.sfdc.net
+   - mist51ice1-app2-1-prd.eng.sfdc.net
+   - mist51ice1-app2-2-prd.eng.sfdc.net
+   - mist51ice1-app2-3-prd.eng.sfdc.net
+   - mist51ice1-app2-4-prd.eng.sfdc.net
+   - mist51ice1-app2-5-prd.eng.sfdc.net
+  ports:
+  - port: 443
+    targetport: 8085
+    reencrypt: false
+    healthport: 8085
+    lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy
+    sticky: 86400
+    tls: true
+    tlscertificate: secret_service:Mist51-VIP-Certs:vonage.mist51.stm.my-salesforce.com.crt
+    tlskey: kms:1:2:39511828A26F7F464E472A3E75E15C8D27B4A4558B8F7231704D844ACB28ABE2:02cf64ca-0084-4d32-b003-e2688547b3b7
+    addheaders:
+    - name: "X-Salesforce-VIP"
+      value: "SLB"
+  - port: 8443
+    targetport: 8090
+    reencrypt: true
+    healthport: 8085
+    lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy
+    sticky: 86400
+    tls: true
+    mtls: true
+    tlscertificate: secret_service:Mist51-VIP-Certs:vonage.mist51.stm.my-salesforce.com.crt
+    tlskey: kms:1:2:39511828A26F7F464E472A3E75E15C8D27B4A4558B8F7231704D844ACB28ABE2:02cf64ca-0084-4d32-b003-e2688547b3b7
+    addheaders:
+    - name: "X-Salesforce-VIP"
+      value: "SLB"
+  - port: 80
+    targetport: 8085
+    lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy
+    addheaders:
+    - name: "X-Salesforce-VIP"
+      value: "SLB"
+    removeheaders:
+    - "CipherSuite"
+
