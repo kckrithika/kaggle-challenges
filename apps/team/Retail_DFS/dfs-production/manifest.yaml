@@ -23,8 +23,7 @@ system:
 
     containers:
     - name: dfs
-      # Please update https://salesforce.quip.com/A9HVAFytGaqG with any changes.
-      image: sfci/dfs/sfdc-platform-dfs:0.23.10
+      image: sfci/dfs/sfdc-platform-dfs:0.24.8
       # associate the log directory to a logical volume.
       volumeMounts:
       - name: logvol
