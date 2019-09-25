@@ -15,7 +15,7 @@ system:
           maxUnavailable: 1
       containers:
         - name: prd-fawkes-mongo-rs
-          image: dva/casp/mongodb_strata:jenkins-CASP-mongodb-rs-master-7-itest
+          image: dva/casp/mongodb_strata:jenkins-CASP-mongodb-rs-master-8-itest
           ports:
             - name: http
               containerPort: 27017
