@@ -111,7 +111,7 @@ system:
             - name: GDOT_PROVISIONING_USER_NAME
               value: creprodprovisioner
             - name: CRE_API_ENDPOINT
-              value: http://cre-api.retail-cre.localhost.mesh.force.com:5442
+              value: cre-api.retail-cre.localhost.mesh.force.com:5442
             ####################################################################################################
             ####################################### PERF environment variables #################################
             ####################################################################################################
