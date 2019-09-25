@@ -133,10 +133,17 @@ system:
             - containerPort: 7022
             - containerPort: 15372
           livenessProbe:
-            exec:
-              command:
-                - ls
-            initialDelaySeconds: 30
+            httpGet:
+              path: /manage/health
+              port: 15372
+            initialDelaySeconds: 60
+            periodSeconds: 10
+          readinessProbe:
+            httpGet:
+              path: /manage/ready
+              port: 15372
+            initialDelaySeconds: 60
+            periodSeconds: 10
           volumeMounts:
             - mountPath: /client-certs
               name: client-certs
