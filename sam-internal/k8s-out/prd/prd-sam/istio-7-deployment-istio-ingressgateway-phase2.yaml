@@ -48,6 +48,7 @@ spec:
       labels:
         app: istio-ingressgateway
         chart: gateways
+        cluster: prd-sam_gater
         heritage: Tiller
         istio: ingressgateway
         name: istio-ingressgateway
@@ -179,6 +180,10 @@ spec:
               fieldPath: metadata.namespace
         - name: ISTIO_META_ROUTER_MODE
           value: sni-dnat
+        - name: ISTIO_META_kubernetes_cluster_name
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.labels['cluster']
         image: ops0-artifactrepo2-0-prd.data.sfdc.net/sfci/servicemesh/istio-packaging/proxy:fb6120f9c7c32bfcea8d7ab5cef2e6c001baaabc
         imagePullPolicy: IfNotPresent
         name: istio-proxy
