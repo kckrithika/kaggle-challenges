@@ -21,7 +21,7 @@ system:
           hostPort: 17444
         - name: receiver-http
           containerPort: 8085
-          hostPort: 18085
+          hostPort: 7022
         livenessProbe:
           exec:
             command:
@@ -38,7 +38,6 @@ system:
     loadbalancers:
     - lbname: maiev-receiver
       function: maiev-receiver-func
-      slbEnabled: true
       nodeExposed: true
       ports:
         - port: 7442
