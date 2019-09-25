@@ -281,6 +281,18 @@ global:
       enabled: true
       host: switchboard.service-mesh
       port: 15001
+      tlsSettings:
+        mode: MUTUAL
+        clientCertificate: /client-certs/client/certificates/client.pem
+        privateKey: /client-certs/client/keys/client-key.pem
+        caCertificates: /client-certs/ca.pem
+        sni:               # example: ms.somedomain
+        subjectAltNames: []
+        # - ms.somedomain
+      tcpKeepalive:
+        probes: 3
+        time: 10s
+        interval: 10s
     tracer: zipkin
 
   proxy_init:
