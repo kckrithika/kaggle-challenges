@@ -201,3 +201,4 @@ apps:
     - ia2/ia2-sam_gater
   authz-injector-test:
     - prd/prd-sam_gater
+    - prd/prd-samtest
