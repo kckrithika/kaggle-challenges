@@ -16,7 +16,7 @@ system:
           maxUnavailable: 1
       containers:
       - name: prd-fawkes
-        image: dva/casp/fawkes_strata:jenkins-CASP-fawkes-master-26-itest
+        image: dva/casp/fawkes_strata:jenkins-CASP-fawkes-master-28-itest
         env:
         - name: BRANCH
           value: "eng_production"
