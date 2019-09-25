@@ -1402,6 +1402,10 @@ spec:
           valueFrom:
             fieldRef:
               fieldPath: metadata.labels['cluster']
+        - name: ESTATE
+          value: mcpIstioConfig.istioEstate
+        - name: KINGDOM
+          value: mcpIstioConfig.kingdom
         - name: SDS_ENABLED
           value: "false"
         image: '%(istioHub)s/proxy:%(istioTag)s'

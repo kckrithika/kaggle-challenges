@@ -317,6 +317,14 @@ if (istioPhases.phaseNum == 1) then
                 },
               },
               {
+                name: "ESTATE",
+                value: mcpIstioConfig.istioEstate,
+              },
+              {
+                name: "KINGDOM",
+                value: mcpIstioConfig.kingdom,
+              },
+              {
                 name: "SDS_ENABLED",
                 value: "false",
               },

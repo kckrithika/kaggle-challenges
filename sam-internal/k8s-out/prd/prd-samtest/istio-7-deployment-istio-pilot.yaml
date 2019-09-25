@@ -208,6 +208,10 @@ spec:
           valueFrom:
             fieldRef:
               fieldPath: metadata.labels['cluster']
+        - name: ESTATE
+          value: prd-samtest
+        - name: KINGDOM
+          value: prd
         - name: SDS_ENABLED
           value: "false"
         image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/servicemesh/istio-packaging/proxy:dev
