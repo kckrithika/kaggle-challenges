@@ -16,7 +16,7 @@ system:
           maxUnavailable: 1
       containers:
         - name: prd-fawkes-mongo-rs
-          image: dva/casp/mongodb_strata:jenkins-CASP-mongodb-rs-master-7-itest
+          image: dva/casp/mongodb_strata:jenkins-CASP-mongodb-rs-master-9-itest
           env: 
           - name: RELEASE_VAR
             value: "7.0.0"
