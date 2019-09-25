@@ -16,7 +16,7 @@ system:
           maxUnavailable: 1
       containers:
       - name: prd-fawkes
-        image: dva/casp/fawkes_strata:jenkins-CASP-fawkes-master-28-itest
+        image: dva/casp/fawkes_strata:jenkins-CASP-fawkes-master-29-itest
         env:
         - name: BRANCH
           value: "eng_production"
@@ -27,7 +27,7 @@ system:
         - name: NO_PROXY
           value: "warden.sfdc.net,127.0.0.1,localhost"
         - name: RELEASE_VAR
-          value: "28.0.0"
+          value: "29.0.0"
         volumeMounts:
         - mountPath: /fawkes/argus-secrets
           name: argus
