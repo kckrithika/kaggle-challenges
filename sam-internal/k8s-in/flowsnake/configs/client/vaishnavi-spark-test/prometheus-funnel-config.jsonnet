@@ -17,5 +17,6 @@ local flowsnake_config = import "flowsnake_config.jsonnet";
         },
     ],
     "scrape_configs": [
+    # To be added by client.
     ]
 }
