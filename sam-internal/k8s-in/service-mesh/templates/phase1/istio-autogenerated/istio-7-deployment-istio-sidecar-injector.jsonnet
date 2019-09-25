@@ -132,7 +132,7 @@ if (istioPhases.phaseNum == 1) then
               },
             ],
             image: "%(istioHub)s/sidecar_injector:%(istioTag)s" % mcpIstioConfig,
-            imagePullPolicy: "IfNotPresent",
+            imagePullPolicy: "Always",
             livenessProbe: {
               exec: {
                 command: [

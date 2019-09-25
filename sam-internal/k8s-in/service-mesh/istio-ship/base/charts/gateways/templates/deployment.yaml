@@ -39,7 +39,7 @@ spec:
       containers:
         - name: istio-proxy
           image: "%(istioHub)s/proxy:%(istioTag)s"
-          imagePullPolicy: IfNotPresent
+          imagePullPolicy: Always
           ports:
             - containerPort: 15020
             - containerPort: 80

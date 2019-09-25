@@ -199,7 +199,7 @@ spec:
         - name: ISTIO_META_ROUTER_MODE
           value: sni-dnat
         image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/servicemesh/istio-packaging/proxy:dev
-        imagePullPolicy: IfNotPresent
+        imagePullPolicy: Always
         name: istio-proxy
         ports:
         - containerPort: 8085

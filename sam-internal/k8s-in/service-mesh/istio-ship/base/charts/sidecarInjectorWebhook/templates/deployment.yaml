@@ -35,7 +35,7 @@ spec:
       containers:
         - name: sidecar-injector-webhook
           image: "%(istioHub)s/sidecar_injector:%(istioTag)s"
-          imagePullPolicy: IfNotPresent
+          imagePullPolicy: Always
           args:
             - --caCertFile=/etc/istio/certs/root-cert.pem
             - --tlsCertFile=/etc/istio/certs/cert-chain.pem
