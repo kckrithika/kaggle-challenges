@@ -3,13 +3,13 @@
     "config": null,
     "releaseName": "istio-init",
     "namespace": "mesh-control-plane",
-    "upstream": "https://github.com/istio/istio/tree/c42fd349de1068325ee4b9fab816d0bf871e0cb9/install/kubernetes/helm/istio-init",
+    "upstream": "https://github.com/istio/istio/tree/18c24b514203f46ef3c1ad0146504b3046d4016b/install/kubernetes/helm/istio-init",
     "metadata": {
       "applicationType": "helm",
       "sequence": 0,
       "icon": "https://istio.io/favicons/android-192x192.png",
       "name": "istio-init",
-      "releaseNotes": "",
+      "releaseNotes": "Add a lint_modern target to start switchinng over to the build container (#17091)\n\n- Fix a batch of lint warnings.",
       "version": "1.1.0",
       "license": {
         "id": "",
