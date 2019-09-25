@@ -11,7 +11,7 @@ system:
         httpGet:
             path: /health
     - name: sdbngupgrade
-      image: ops0-artifactrepo1-0-dfw.data.sfdc.net/dva/sdbdocker/sdbdockerngupgrade:6
+      image: ops0-artifactrepo1-0-dfw.data.sfdc.net/dva/sdbdocker/sdbdockerngupgrade:8
       livenessProbe:
         httpGet:
             path: /healthngupgrade
