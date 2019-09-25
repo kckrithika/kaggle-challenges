@@ -63,7 +63,7 @@ spec:
           valueFrom:
             fieldRef:
               fieldPath: spec.nodeName
-        image: ops0-artifactrepo1-0-dfw.data.sfdc.net/dva/slb/hyperslb:2223-e4a2929d6ff93ed22cb6e3a3b3155a6a86537b8b
+        image: ops0-artifactrepo1-0-dfw.data.sfdc.net/dva/slb/hyperslb:2230-170ef3b717f66fbd61615eeb02a8ab4b37cb3bed
         livenessProbe:
           httpGet:
             path: /healthz
@@ -111,7 +111,7 @@ spec:
           valueFrom:
             fieldRef:
               fieldPath: spec.nodeName
-        image: ops0-artifactrepo1-0-dfw.data.sfdc.net/dva/slb/hyperslb:2223-e4a2929d6ff93ed22cb6e3a3b3155a6a86537b8b
+        image: ops0-artifactrepo1-0-dfw.data.sfdc.net/dva/slb/hyperslb:2230-170ef3b717f66fbd61615eeb02a8ab4b37cb3bed
         livenessProbe:
           httpGet:
             path: /liveness-probe
@@ -150,7 +150,7 @@ spec:
         - --shouldSkipSlbBlock=true
         - --skipFilesWithSuffix=.sock
         - --maxDeleteFileCount=20
-        image: ops0-artifactrepo1-0-dfw.data.sfdc.net/dva/slb/hyperslb:2223-e4a2929d6ff93ed22cb6e3a3b3155a6a86537b8b
+        image: ops0-artifactrepo1-0-dfw.data.sfdc.net/dva/slb/hyperslb:2230-170ef3b717f66fbd61615eeb02a8ab4b37cb3bed
         name: slb-cleanup-config-processor
         securityContext:
           privileged: true
@@ -174,7 +174,7 @@ spec:
         - --readOnly=false
         - --checkMwSentinel=true
         - --control.manifestWatcherSentinel=/host/data/slb/config/slb-portal/slb-manifest-watcher.sentinel
-        image: ops0-artifactrepo1-0-dfw.data.sfdc.net/dva/slb/hyperslb:2223-e4a2929d6ff93ed22cb6e3a3b3155a6a86537b8b
+        image: ops0-artifactrepo1-0-dfw.data.sfdc.net/dva/slb/hyperslb:2230-170ef3b717f66fbd61615eeb02a8ab4b37cb3bed
         name: slb-node-api
         volumeMounts:
         - mountPath: /host/data/slb
@@ -192,7 +192,7 @@ spec:
         env:
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig-platform
-        image: ops0-artifactrepo1-0-dfw.data.sfdc.net/dva/slb/hyperslb:2223-e4a2929d6ff93ed22cb6e3a3b3155a6a86537b8b
+        image: ops0-artifactrepo1-0-dfw.data.sfdc.net/dva/slb/hyperslb:2230-170ef3b717f66fbd61615eeb02a8ab4b37cb3bed
         name: slb-cleanup
         securityContext:
           privileged: true
@@ -268,7 +268,7 @@ spec:
           valueFrom:
             fieldRef:
               fieldPath: spec.nodeName
-        image: ops0-artifactrepo1-0-dfw.data.sfdc.net/dva/slb/hyperslb:2223-e4a2929d6ff93ed22cb6e3a3b3155a6a86537b8b
+        image: ops0-artifactrepo1-0-dfw.data.sfdc.net/dva/slb/hyperslb:2230-170ef3b717f66fbd61615eeb02a8ab4b37cb3bed
         name: slb-manifest-watcher
         securityContext:
           privileged: true
