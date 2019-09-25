@@ -266,8 +266,9 @@
                   "ops0-netlog1-0-prd.slb.sfdc.net": "10.251.196.113",  #  - Zack Mady - https://computecloud.slack.com/archives/C42SAQVS9/p1556121900123900
                   "codecov.moe.prd-sam.prd.slb.sfdc.net": "10.251.196.117",
                   "helloselfservice-vyjayanthi-raja-prd.slb.sfdc.net": "10.251.197.129",
-                  "hammond-alpha-prd.slb.sfdc.net": "10.251.198.210",
-                  "hammond-beta-prd.slb.sfdc.net": "10.251.198.198",
+                  "hammond-alpha-slb-prd.slb.sfdc.net": "10.251.198.210",
+                  "hammond-beta-slb-prd.slb.sfdc.net": "10.251.198.198",
+                  "hammond-charlie-slb-prd.slb.sfdc.net": "10.251.196.76",
                 },
                 # C360 -- start -- W-6124538
                 "iad-sam": {
