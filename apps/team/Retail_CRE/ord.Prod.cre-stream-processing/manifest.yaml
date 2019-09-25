@@ -36,7 +36,7 @@ system:
         - name: METRICS_FUNNEL_URI
           value: http://ajna0-funnel1-0-ord.data.sfdc.net
         - name: CONTROLPLANE_ENDPOINT
-          value: cre-control-plane.retail-cre.localhost.mesh.force.com:5443
+          value: cre-control-plane.retail-cre.localhost.mesh.force.com:5442
         - name: GDOT_ENVIRONMENT
           value: production
         - name: OU_NAME
@@ -48,9 +48,9 @@ system:
                   -XX:+PrintPromotionFailure -XX:+PrintTenuringDistribution -XX:+PrintGCDetails
                   -XX:+PrintGCDateStamps -XX:+PrintGCApplicationStoppedTime
                   -XX:+PrintGCApplicationConcurrentTime -XX:+PrintGCCause -XX:+DisableExplicitGC
-                  -Xloggc:/opt/cre/cre-sp-prod/verbosegc_$(FUNCTION_INSTANCE_NAME).log
+                  -Xloggc:/opt/cre/cre-sp/verbosegc_$(FUNCTION_INSTANCE_NAME).log
                   -XX:+UseGCLogFileRotation -XX:NumberOfGCLogFiles=5 -XX:GCLogFileSize=20M
-                  -XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=/opt/cre/cre-sp-prod
+                  -XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=/opt/cre/cre-sp
                   -Xmx4G -Xms4G -XX:ParallelGCThreads=8"
       ports:
       - containerPort: 8080
@@ -76,7 +76,7 @@ system:
         name: client-certs
       - mountPath: /server-certs
         name: server-certs
-      - mountPath: /opt/cre/cre-sp-prod
+      - mountPath: /opt/cre/cre-sp
         name: logvol
     - name: sherpa-cre-stream-processing
       # Each commit to master for https://git.soma.salesforce.com/servicelibs/sherpa-envoy/commits/master has an image created.
@@ -128,7 +128,7 @@ system:
     volumes:
     - name: logvol
       hostPath:
-        path: /home/sfdc-cre/logs/cre-sp-prod
+        path: /home/sfdc-cre/logs/cre-sp
     - name: client-certs
       maddogCert:
         type: client
