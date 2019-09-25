@@ -5,7 +5,7 @@ system:
     count: 1
     containers:
     - name: gid-sso-client
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/gid/gid-sso-client:71312ef      
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/gid/gid-sso-client:e5348e4      
       imagePullPolicy: Always
       env:
       - name: server_port
