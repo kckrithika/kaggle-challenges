@@ -229,6 +229,7 @@
             "prd-sam": {
               "helloselfservice-vyjayanthi-raja-prd.slb.sfdc.net": "96.43.157.1",
               "hammond-alpha-slb-prd.slb.sfdc.net": "96.43.157.2",
+              "hammond-beta-slb-prd.slb.sfdc.net": "96.43.157.100",
             },
         },
 
@@ -269,7 +270,6 @@
                   "gatekeeper-dashboardlb.gatekeeper.prd-sam.prd.slb.sfdc.net": "10.251.196.212",  #  - Peijun Wu - https://computecloud.slack.com/archives/C42SAQVS9/p1556063807120000?thread_ts=1556038442.093300&cid=C42SAQVS9
                   "ops0-netlog1-0-prd.slb.sfdc.net": "10.251.196.113",  #  - Zack Mady - https://computecloud.slack.com/archives/C42SAQVS9/p1556121900123900
                   "codecov.moe.prd-sam.prd.slb.sfdc.net": "10.251.196.117",
-                  "hammond-beta-slb-prd.slb.sfdc.net": "10.251.198.198",
                   "hammond-charlie-slb-prd.slb.sfdc.net": "10.251.196.76",
                 },
                 # C360 -- start -- W-6124538
