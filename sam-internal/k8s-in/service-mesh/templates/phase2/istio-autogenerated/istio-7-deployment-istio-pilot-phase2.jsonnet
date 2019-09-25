@@ -238,6 +238,14 @@ if (istioPhases.phaseNum == 2) then
             ],
             env: [
               {
+                name: "ESTATE",
+                value: mcpIstioConfig.istioEstate,
+              },
+              {
+                name: "KINGDOM",
+                value: mcpIstioConfig.kingdom,
+              },
+              {
                 name: "POD_NAME",
                 valueFrom: {
                   fieldRef: {
