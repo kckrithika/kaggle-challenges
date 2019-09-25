@@ -31,7 +31,7 @@ system:
       - {name: TESTRECIPE_MAESTROPINGTEST, value: 'true'}
       - {name: DEPLOYMENT_ID, value: prd-master}
       - {name: HANDLED_PODS_PATTERN, value: stmfa\..*|moana-driver-master}
-      - {name: GRPC_HOST, value: jobcontroller-master.wave-elt.localhost.mesh.force.com}
+      - {name: GRPC_HOST, value: jobcontroller-master.localhost.mesh.force.com}
       - {name: GRPC_PORT, value: 7011}
       image: sfci/insights/moana-driver:master-2019.09.a.51-db58358
       livenessProbe:
