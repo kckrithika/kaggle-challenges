@@ -49,6 +49,22 @@ cantor() {
     cantor_prod
 }
 
+mysql_prd() {
+    perl -i -pe"s/image: dva\/casp\/mysql_strata:[0-9]*/image: dva\/casp\/mysql_strata:$NEWVERSION/g" prd-mysql-shard-a/manifest.yaml
+    perl -i -pe"s/image: dva\/casp\/mysql_strata:[0-9]*/image: dva\/casp\/mysql_strata:$NEWVERSION/g" prd-mysql-shard-a-stage/manifest.yaml
+}
+
+mysql_prod() {
+    perl -i -pe"s/image: dva\/casp\/mysql_strata:[0-9]*/image: dva\/casp\/mysql_strata:$NEWVERSION/g" prod-mysql-shard-a/manifest.yaml
+    perl -i -pe"s/image: dva\/casp\/mysql_strata:[0-9]*/image: dva\/casp\/mysql_strata:$NEWVERSION/g" prod-mysql-shard-a-alternate/manifest.yaml
+    perl -i -pe"s/image: dva\/casp\/mysql_strata:[0-9]*/image: dva\/casp\/mysql_strata:$NEWVERSION/g" prod-mysql-shard-a-fast/manifest.yaml
+}
+
+mysql() {
+    mysql_prd
+    mysql_prod
+}
+
 set -e
 
 if [ "$#" = 0 ]
