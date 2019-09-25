@@ -125,7 +125,7 @@ system:
       volumeMounts:
       - {mountPath: /client-certs, name: tls-client-certs}
       - {mountPath: /server-certs, name: tls-server-certs}
-     - args: [-endpoint, '$(FUNCTION_NAMESPACE)/$(FUNCTION):DATACENTER_ALLENV:HTTP2_TLS']
+    - args: [-endpoint, '$(FUNCTION_NAMESPACE)/$(FUNCTION):DATACENTER_ALLENV:HTTP2_TLS', -endpoint, '$(FUNCTION):DATACENTER_ALLENV:HTTP2']
       image: sfci/services/sfdc-bazel/disco/beacon:d7f1640
       livenessProbe:
         exec:
