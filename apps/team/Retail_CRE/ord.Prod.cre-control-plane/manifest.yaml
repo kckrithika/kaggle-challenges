@@ -149,7 +149,7 @@ system:
               name: client-certs
             - mountPath: /server-certs
               name: server-certs
-            - mountPath: /opt/cre/cre-control-plane-prod
+            - mountPath: /opt/cre/cre-control-plane
               name: logvol
         - name: sherpa-cre-control-plane
           # Each commit to master for https://git.soma.salesforce.com/servicelibs/sherpa-envoy/commits/master has an image created.
@@ -201,7 +201,7 @@ system:
       volumes:
         - name: logvol
           hostPath:
-            path: /home/sfdc-cre/logs/cre-control-plane-prod
+            path: /home/sfdc-cre/logs/cre-control-plane
         - name: client-certs
           maddogCert:
             type: client
