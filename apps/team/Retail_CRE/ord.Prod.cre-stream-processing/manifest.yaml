@@ -54,16 +54,23 @@ system:
                   -Xmx4G -Xms4G -XX:ParallelGCThreads=8"
       ports:
       - containerPort: 8080
-      - containerPort: 7020
+      - containerPort: 7022
       - containerPort: 15372
       resources:
         limits: { cpu: "2", memory: "6Gi" }
         requests: { cpu: "2", memory: "5Gi" }
       livenessProbe:
-        exec:
-            command:
-            - ls
+        httpGet:
+          path: /manage/health
+          port: 15372
+        initialDelaySeconds: 60
+        periodSeconds: 10
+      readinessProbe:
+        httpGet:
+          path: /manage/ready
+          port: 15372
         initialDelaySeconds: 30
+        periodSeconds: 10
       volumeMounts:
       - mountPath: /client-certs
         name: client-certs
@@ -89,7 +96,7 @@ system:
         limits: { cpu: "1", memory: "1Gi" }
         requests: { cpu: "1", memory: "1Gi" }
       ports:
-      - containerPort: 7443
+      - containerPort: 7442
         name: sh-in-http1-tls
       - containerPort: 15373 # Sherpa admin port. This can be handy when debugging issues.
         name: sherpa-in-admin
@@ -109,7 +116,7 @@ system:
       image: sfci/servicelibs/beacon:f6445b2b299f232eda1e0be9739b8242153478ea
       args:
       - -endpoint
-      - retail-cre/cre-sp:DATACENTER_ALLENV:7443
+      - retail-cre/cre-sp:DATACENTER_ALLENV:7442
       resources:
         limits: { cpu: "1", memory: "1Gi" }
         requests: { cpu: "1", memory: "1Gi" }
