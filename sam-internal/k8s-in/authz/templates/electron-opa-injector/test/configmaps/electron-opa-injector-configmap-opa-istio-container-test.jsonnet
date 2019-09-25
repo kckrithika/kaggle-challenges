@@ -30,6 +30,10 @@ data: {
              electron:
                url: http://demo-authz-http.service-mesh.localhost.mesh.force.com:5442
                allow_insecure_tls: true
+               credentials:
+                 client_tls:
+                   cert: /client-certs/client/certificates/client.pem
+                   private_key: /client-certs/client/keys/client-key.pem
 
            bundles:
              authz:
@@ -78,6 +82,8 @@ containers:
     volumeMounts:
       - name: config
         mountPath: /config
+      - name: tls-client-cert
+        mountPath: /client-certs
     livenessProbe:
       httpGet:
         scheme: HTTP
