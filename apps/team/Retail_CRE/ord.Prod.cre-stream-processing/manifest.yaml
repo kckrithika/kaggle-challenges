@@ -36,7 +36,7 @@ system:
         - name: METRICS_FUNNEL_URI
           value: http://ajna0-funnel1-0-ord.data.sfdc.net
         - name: CONTROLPLANE_ENDPOINT
-          value: cre-control-plane.retail-cre.localhost.mesh.force.com:5442
+          value: http://cre-control-plane.retail-cre.localhost.mesh.force.com:5442
         - name: GDOT_ENVIRONMENT
           value: production
         - name: OU_NAME
