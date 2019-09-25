@@ -32,7 +32,7 @@ system:
       - {name: DEPLOYMENT_ID, value: prd-master}
       - {name: HANDLED_PODS_PATTERN, value: stmfa\..*|moana-driver-master}
       - {name: GRPC_HOST, value: jobcontroller-master.localhost.mesh.force.com}
-      - {name: GRPC_PORT, value: 7011}
+      - {name: GRPC_PORT, value: 5443}
       image: sfci/insights/moana-driver:master-2019.09.a.52-7a62252
       livenessProbe:
         httpGet: {path: /manage/health, port: 15372}
@@ -125,7 +125,7 @@ system:
       volumeMounts:
       - {mountPath: /client-certs, name: tls-client-certs}
       - {mountPath: /server-certs, name: tls-server-certs}
-    - args: [-endpoint, '$(FUNCTION_NAMESPACE)/$(FUNCTION):DATACENTER_ALLENV:HTTP2_TLS', -endpoint, '$(FUNCTION):DATACENTER_ALLENV:HTTP2']
+    - args: [-endpoint, '$(FUNCTION):DATACENTER_ALLENV:HTTP2_TLS', -endpoint, '$(FUNCTION):DATACENTER_ALLENV:HTTP2']
       image: sfci/services/sfdc-bazel/disco/beacon:d7f1640
       livenessProbe:
         exec:
