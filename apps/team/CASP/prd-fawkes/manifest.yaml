@@ -27,7 +27,7 @@ system:
         - name: NO_PROXY
           value: "warden.sfdc.net,127.0.0.1,localhost"
         - name: RELEASE_VAR
-          value: "26.0.0"
+          value: "28.0.0"
         volumeMounts:
         - mountPath: /fawkes/argus-secrets
           name: argus
