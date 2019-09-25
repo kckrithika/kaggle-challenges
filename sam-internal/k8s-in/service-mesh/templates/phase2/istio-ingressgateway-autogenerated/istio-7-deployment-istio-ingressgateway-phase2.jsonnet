@@ -39,6 +39,7 @@ if (istioPhases.phaseNum == 2) then
           istio: "ingressgateway",
           name: "istio-ingressgateway",
           release: "istio",
+          cluster: mcpIstioConfig.istioEstate,
         },
       },
       spec: {
@@ -260,6 +261,14 @@ if (istioPhases.phaseNum == 2) then
                 name: "ISTIO_META_ROUTER_MODE",
                 value: "sni-dnat",
               },
+              {
+                name: "ISTIO_META_kubernetes_cluster_name",
+                valueFrom: {
+                  fieldRef: {
+                    fieldPath: "metadata.labels['cluster']",
+                  },
+                },
+              },              
             ],
             image: "%(istioHub)s/proxy:%(istioTag)s" % mcpIstioConfig,
             imagePullPolicy: "IfNotPresent",
