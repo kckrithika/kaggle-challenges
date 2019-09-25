@@ -1,0 +1,134 @@
+- lbname: mist51-app
+  customlbname: mist51-app-prd
+  servers:
+  - 10.231.82.167
+  - 10.231.83.102
+  - 10.231.83.103
+  - 10.231.83.116
+  - 10.231.83.117
+  - 10.231.83.52
+  - 10.231.83.53
+  - 10.231.83.68
+  - 10.231.83.69
+  - 10.231.83.83
+  ports:
+  - port: 80
+    targetport: 8085
+    lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy
+  - port: 443
+    targetport: 8085
+    lbtype: http
+    tls: true
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy
+    removeheaders:
+    - "CipherSuite"
+- lbname: mist51-hsm
+  customlbname: mist51-app-hsm-prd
+  servers:
+  - 10.231.82.167
+  - 10.231.83.102
+  - 10.231.83.103
+  - 10.231.83.116
+  - 10.231.83.117
+  - 10.231.83.52
+  - 10.231.83.53
+  - 10.231.83.68
+  - 10.231.83.69
+  - 10.231.83.83
+  ports:
+  - port: 80
+    targetport: 8085
+    lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy
+  - port: 443
+    targetport: 8085
+    lbtype: http
+    tls: true
+    tlscertificate: secret_service:slbTest:kmscert-prd-20181102-signed
+    tlskey: kms:1:2:4A4C6C75332A0547BB81D5263A9D2F939FB4590FF9AF15C5403A656F8BB913D2:85cbe09f-790c-43a8-aecc-eb4376ef6a45
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy
+    removeheaders:
+    - "CipherSuite"
+- lbname: hammond-alpha
+  servers:
+    - 10.231.82.167
+    - 10.231.83.102
+    - 10.231.83.103
+    - 10.231.83.116
+    - 10.231.83.117
+    - 10.231.83.52
+    - 10.231.83.53
+    - 10.231.83.68
+    - 10.231.83.69
+    - 10.231.83.83
+  ports:
+    - port: 80
+      targetport: 8085
+      lbtype: http
+      healthprotocol: http
+      healthpath: /ping.jsp?allBusy
+    - port: 443
+      targetport: 8085
+      lbtype: http
+      tls: true
+      healthprotocol: http
+      healthpath: /ping.jsp?allBusy
+      removeheaders:
+        - "CipherSuite"
+- lbname: hammond-beta
+  servers:
+    - 10.231.82.167
+    - 10.231.83.102
+    - 10.231.83.103
+    - 10.231.83.116
+    - 10.231.83.117
+    - 10.231.83.52
+    - 10.231.83.53
+    - 10.231.83.68
+    - 10.231.83.69
+    - 10.231.83.83
+  ports:
+    - port: 80
+      targetport: 8085
+      lbtype: http
+      healthprotocol: http
+      healthpath: /ping.jsp?allBusy
+    - port: 443
+      targetport: 8085
+      lbtype: http
+      tls: true
+      healthprotocol: http
+      healthpath: /ping.jsp?allBusy
+      removeheaders:
+        - "CipherSuite"
+- lbname: hammond-charlie
+  servers:
+    - 10.231.82.167
+    - 10.231.83.102
+    - 10.231.83.103
+    - 10.231.83.116
+    - 10.231.83.117
+    - 10.231.83.52
+    - 10.231.83.53
+    - 10.231.83.68
+    - 10.231.83.69
+    - 10.231.83.83
+  ports:
+    - port: 80
+      targetport: 8085
+      lbtype: http
+      healthprotocol: http
+      healthpath: /ping.jsp?allBusy
+    - port: 443
+      targetport: 8085
+      lbtype: http
+      tls: true
+      healthprotocol: http
+      healthpath: /ping.jsp?allBusy
+      removeheaders:
+        - "CipherSuite"
