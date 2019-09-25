@@ -22,8 +22,6 @@ system:
       # Image build:
       # https://sfcirelease.dop.sfdc.net/job/services/job/sfdc-bazel_projects_services_examples_ordering/job/sfdc-bazel/job/scone_nexusrelease_scone_6.0.x/3/
       image: sfci/services/sfdc-bazel/scone/ordering:8c7a32bef
-      args:
-      - --metrics.funnelEndPointURL=http://niko-ajnafunneldirect.svc.mesh.sfdc.net:8080
       env:
       - name: SFDC_ENVIRONMENT
         value: istio
