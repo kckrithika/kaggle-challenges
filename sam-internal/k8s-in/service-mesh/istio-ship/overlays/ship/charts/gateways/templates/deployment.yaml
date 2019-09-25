@@ -18,6 +18,7 @@ spec:
         app: istio-ingressgateway
         istio: ingressgateway
         name: istio-ingressgateway
+        cluster: mcpIstioConfig.istioEstate
     spec:
       containers:
       - args:
@@ -76,6 +77,10 @@ spec:
           value: /server-certs/server/keys/server-key.pem
         - name: ISTIO_META_TLS_SERVER_ROOT_CERT
           value: /server-certs/ca.pem
+        - name: ISTIO_META_kubernetes_cluster_name
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.labels['cluster']
         name: istio-proxy
         ports:
         # coreapp https
