@@ -18,7 +18,7 @@ system:
         ports:
         - name: cantor-http
           containerPort: 8084
-          hostPort: 18084
+          hostPort: 7021
         livenessProbe:
           exec:
             command:

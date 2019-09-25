@@ -21,6 +21,7 @@ system:
           hostPort: 17444
         - name: receiver-http
           containerPort: 8085
+          hostPort: 7022
         livenessProbe:
           exec:
             command:
