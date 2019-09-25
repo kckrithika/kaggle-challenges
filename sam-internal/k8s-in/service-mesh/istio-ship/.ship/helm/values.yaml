@@ -13,10 +13,6 @@
 #
 gateways:
   enabled: true
-#
-# sidecar-injector webhook configuration, refer to the
-# charts/sidecarInjectorWebhook/values.yaml for detailed configuration
-#
   istio-ingressgateway:
     enabled: true
     autoscaleEnabled: false
@@ -29,15 +25,21 @@ gateways:
   istio-ilbgateway:
     rollingMaxSurge: 1
     rollingMaxUnavailable: 0
+
+#
+# sidecar-injector webhook configuration, refer to the
+# charts/sidecarInjectorWebhook/values.yaml for detailed configuration
+#
 sidecarInjectorWebhook:
   enabled: true
+  replicaCount: 3
+  rollingMaxSurge: 3
+  rollingMaxUnavailable: 1
+
 #
 # galley configuration, refer to charts/galley/values.yaml
 # for detailed configuration
 #
-  replicaCount: 3
-  rollingMaxSurge: 3
-  rollingMaxUnavailable: 1
 galley:
   enabled: false
 #
@@ -53,19 +55,17 @@ mixer:
     rollingMaxUnavailable: 1
   telemetry:
     enabled: false
-#
-# pilot configuration
-#
-# @see charts/pilot/values.yaml
     replicaCount: 3
     rollingMaxSurge: 3
     rollingMaxUnavailable: 1
   enabled: false
+
+#
+# pilot configuration
+#
+# @see charts/pilot/values.yaml
 pilot:
   enabled: true
-#
-# security configuration
-#
   resources:
     limits:
       cpu: 2000m
@@ -80,6 +80,10 @@ pilot:
   sidecar: true
   env:
     PILOT_PUSH_THROTTLE: 10
+
+#
+# security configuration
+#
 security:
   enabled: false
 #
@@ -282,8 +286,9 @@ global:
         clientCertificate: /client-certs/client/certificates/client.pem
         privateKey: /client-certs/client/keys/client-key.pem
         caCertificates: /client-certs/ca.pem
-        sni: null
+        sni:               # example: ms.somedomain
         subjectAltNames: []
+        # - ms.somedomain
       tcpKeepalive:
         probes: 3
         time: 10s
@@ -415,17 +420,13 @@ global:
   defaultResources:
     requests:
       cpu: 100m
-    #   memory: 128Mi
-    # limits:
-    #   cpu: 100m
-    #   memory: 128Mi
-
-  # enable pod distruption budget for the control plane, which is used to
-  # ensure Istio control plane components are gradually upgraded or recovered.
       memory: 128Mi
     limits:
       cpu: 1000m
       memory: 256Mi
+
+  # enable pod distruption budget for the control plane, which is used to
+  # ensure Istio control plane components are gradually upgraded or recovered.
   defaultPodDisruptionBudget:
     enabled: false
     # The values aren't mutable due to a current PodDisruptionBudget limitation
@@ -505,6 +506,7 @@ global:
     # JWT is intended for the CA.
     token:
       aud: istio-ca
+
   # Configure the mesh networks to be used by the Split Horizon EDS.
   #
   # The following example defines two networks with different endpoints association methods.
@@ -557,6 +559,7 @@ global:
   #     to: us-east
   localityLbSetting:
     enabled: true
+
   # Specifies whether helm test is enabled or not.
   # This field is set to false by default, so 'helm template ...'
   # will ignore the helm test yaml files when generating the template
