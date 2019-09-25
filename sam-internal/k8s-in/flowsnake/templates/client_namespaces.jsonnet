@@ -35,9 +35,9 @@ if std.length(flowsnake_clients.clients) > 0 then (
                apiVersion: "v1",
                kind: "ConfigMap",
                metadata: {
-                   name: "prometheus-server-conf" + client.namespace,
+                   name: "prometheus-server-conf-" + client.namespace,
                    labels: {
-                       name: "prometheus-server-conf" + client.namespace,
+                       name: "prometheus-server-conf-" + client.namespace,
                    },
                    namespace: client.namespace,
                },
