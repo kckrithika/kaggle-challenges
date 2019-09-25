@@ -11,6 +11,8 @@ system:
         - name: cre-control-plane
           image: sfci/cre-fusion/services:controlplane.v2.0.1.master.ddb2e93.17
           env:
+            - name: DUMMY_RESTART_VAR
+              value: 1
             - name: K8S_API_ENDPOINT
               value: https://kubernetes-api-flowsnake-ukb.slb.sfdc.net
             ####################################################################################################
