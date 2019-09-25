@@ -1,0 +1,27 @@
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    slb.sfdc.net/name: slb-upstream-status
+    slb.sfdc.net/portconfigurations: |-
+      [
+       {
+        "healthpath": "/",
+        "lbtype": "http",
+        "port": 80,
+        "targetport": 12080
+       }
+      ]
+  labels:
+    app: slb-upstream-status-service
+  name: slb-upstream-status-service
+  namespace: sam-system
+spec:
+  ports:
+  - name: slb-upstream-status-http-port
+    port: 80
+    protocol: TCP
+    targetPort: 12080
+  selector:
+    name: slb-nginx-config-b
+  type: NodePort

@@ -660,5 +660,93 @@ items:
     selector:
       name: slb-portal-lo3
     type: NodePort
+- apiVersion: v1
+  kind: Service
+  metadata:
+    annotations:
+      slb.sfdc.net/cnames: |-
+        [
+         {
+          "cname": "slb-portal-ia4.slb.sfdc.net"
+         }
+        ]
+      slb.sfdc.net/name: slb-portal-ia4-service
+      slb.sfdc.net/portconfigurations: |-
+        [
+         {
+          "httpsredirectport": 443,
+          "lbtype": "http",
+          "port": 80,
+          "targetport": 0
+         },
+         {
+          "lbtype": "http",
+          "port": 443,
+          "targetport": 9112,
+          "tls": true
+         }
+        ]
+    labels:
+      app: slb-portal-ia4-service
+      sam.data.sfdc.net/owner: slb
+    name: slb-portal-ia4-service
+    namespace: sam-system
+  spec:
+    ports:
+    - name: slb-portal-port
+      port: 80
+      protocol: TCP
+      targetPort: 0
+    - name: slb-portal-https-port
+      port: 443
+      protocol: TCP
+      targetPort: 9112
+    selector:
+      name: slb-portal-ia4
+    type: NodePort
+- apiVersion: v1
+  kind: Service
+  metadata:
+    annotations:
+      slb.sfdc.net/cnames: |-
+        [
+         {
+          "cname": "slb-portal-ia5.slb.sfdc.net"
+         }
+        ]
+      slb.sfdc.net/name: slb-portal-ia5-service
+      slb.sfdc.net/portconfigurations: |-
+        [
+         {
+          "httpsredirectport": 443,
+          "lbtype": "http",
+          "port": 80,
+          "targetport": 0
+         },
+         {
+          "lbtype": "http",
+          "port": 443,
+          "targetport": 9112,
+          "tls": true
+         }
+        ]
+    labels:
+      app: slb-portal-ia5-service
+      sam.data.sfdc.net/owner: slb
+    name: slb-portal-ia5-service
+    namespace: sam-system
+  spec:
+    ports:
+    - name: slb-portal-port
+      port: 80
+      protocol: TCP
+      targetPort: 0
+    - name: slb-portal-https-port
+      port: 443
+      protocol: TCP
+      targetPort: 9112
+    selector:
+      name: slb-portal-ia5
+    type: NodePort
 kind: List
 metadata: {}

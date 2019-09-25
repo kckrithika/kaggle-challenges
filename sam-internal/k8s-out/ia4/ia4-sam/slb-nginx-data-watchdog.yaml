@@ -1,0 +1,114 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  labels:
+    name: slb-nginx-data-watchdog
+  name: slb-nginx-data-watchdog
+  namespace: sam-system
+spec:
+  minReadySeconds: 30
+  replicas: 1
+  selector:
+    matchLabels:
+      apptype: monitoring
+      name: slb-nginx-data-watchdog
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        apptype: monitoring
+        name: slb-nginx-data-watchdog
+      namespace: sam-system
+    spec:
+      containers:
+      - command:
+        - /sdn/slb-nginx-data-watchdog
+        - --namespace=sam-system
+        - --hostsConfigFile=/sfdchosts/hosts.json
+        - --k8sapiserver=
+        - --connPort=9125
+        - --monitorFrequency=10s
+        - --nginxWDmetricsEndpoint=ajna0-funnel1-0-ia4.data.sfdc.net:80
+        - --nginxWDhostnameOverride=$(NODE_NAME)
+        - --log_dir=/host/data/slb/logs/slb-nginx-data-watchdog
+        env:
+        - name: NODE_NAME
+          valueFrom:
+            fieldRef:
+              fieldPath: spec.nodeName
+        - name: KUBECONFIG
+          value: /kubeconfig/kubeconfig-platform
+        image: ops0-artifactrepo1-0-ia4.data.sfdc.net/dva/slb/hyperslb:2223-e4a2929d6ff93ed22cb6e3a3b3155a6a86537b8b
+        name: slb-nginx-data-watchdog
+        volumeMounts:
+        - mountPath: /etc/pki_service
+          name: maddog-certs
+        - mountPath: /host/data/slb
+          name: var-slb-volume
+        - mountPath: /host/data/slb/logs/slb-nginx-data-watchdog
+          name: var-logs-volume
+        - mountPath: /data/certs
+          name: certs
+        - mountPath: /kubeconfig
+          name: kubeconfig
+        - mountPath: /sfdchosts
+          name: sfdchosts
+      - command:
+        - /sdn/slb-cleanup
+        - --period=1800s
+        - --logsMaxAge=48h
+        - --log_dir=/host/data/slb/logs/slb-nginx-data-watchdog/cleanup
+        - --filesDirToCleanup=/host/data/slb/logs/slb-nginx-data-watchdog
+        - --shouldSkipServiceRecords=false
+        - --shouldNotDeleteAllFiles=false
+        env:
+        - name: KUBECONFIG
+          value: /kubeconfig/kubeconfig-platform
+        image: ops0-artifactrepo1-0-ia4.data.sfdc.net/dva/slb/hyperslb:2223-e4a2929d6ff93ed22cb6e3a3b3155a6a86537b8b
+        name: slb-cleanup
+        securityContext:
+          privileged: true
+        volumeMounts:
+        - mountPath: /host/data/slb
+          name: var-slb-volume
+        - mountPath: /host/data/slb/config/slb-nginx-data-watchdog
+          name: var-config-volume
+        - mountPath: /host/data/slb/logs/slb-nginx-data-watchdog
+          name: var-logs-volume
+        - mountPath: /sfdchosts
+          name: sfdchosts
+        - mountPath: /host/data/slb/logs/slb-nginx-data-watchdog/cleanup
+          name: var-cleanup-logs-volume
+      dnsPolicy: Default
+      nodeSelector:
+        pool: ia4-slb
+      terminationGracePeriodSeconds: 5
+      volumes:
+      - hostPath:
+          path: /etc/pki_service
+        name: maddog-certs
+      - hostPath:
+          path: /data/slb
+        name: var-slb-volume
+      - hostPath:
+          path: /data/slb/logs/slb-nginx-data-watchdog
+        name: var-logs-volume
+      - hostPath:
+          path: /data/certs
+        name: certs
+      - hostPath:
+          path: /etc/kubernetes
+        name: kubeconfig
+      - configMap:
+          name: sfdchosts
+        name: sfdchosts
+      - hostPath:
+          path: /data/slb/config/slb-nginx-data-watchdog
+        name: var-config-volume
+      - hostPath:
+          path: /data/slb/logs/slb-nginx-data-watchdog/cleanup
+        name: var-cleanup-logs-volume

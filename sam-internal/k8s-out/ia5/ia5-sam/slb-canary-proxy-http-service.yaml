@@ -1,0 +1,41 @@
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    slb.sfdc.net/name: slb-canary-proxy-http
+    slb.sfdc.net/portconfigurations: |-
+      [
+       {
+        "lbtype": "http",
+        "port": 9116,
+        "targetport": 9116
+       },
+       {
+        "hEaLtHpath": "/health",
+        "healthport": 9116,
+        "lbtype": "http",
+        "port": 443,
+        "reencrypt": true,
+        "sticky": 300,
+        "targetport": 443,
+        "tls": true
+       }
+      ]
+  labels:
+    app: slb-canary-proxy-http-service
+  name: slb-canary-proxy-http-service
+  namespace: sam-system
+spec:
+  ports:
+  - name: slb-canary-proxy-http-port
+    nodePort: 32145
+    port: 9116
+    protocol: TCP
+    targetPort: 9116
+  - name: slb-canary-proxy-https-port
+    port: 443
+    protocol: TCP
+    targetPort: 443
+  selector:
+    name: slb-canary-proxy-http
+  type: NodePort

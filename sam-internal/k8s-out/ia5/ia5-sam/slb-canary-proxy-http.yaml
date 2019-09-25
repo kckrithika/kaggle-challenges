@@ -1,0 +1,145 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  labels:
+    name: slb-canary-proxy-http
+  name: slb-canary-proxy-http
+  namespace: sam-system
+spec:
+  minReadySeconds: 30
+  replicas: 2
+  selector:
+    matchLabels:
+      name: slb-canary-proxy-http
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+    type: RollingUpdate
+  template:
+    metadata:
+      annotations:
+        madkub.sam.sfdc.net/allcerts: |-
+          {
+           "certreqs": [
+            {
+             "cert-type": "server",
+             "kingdom": "ia5",
+             "name": "canarycert",
+             "role": "slb.canary"
+            }
+           ]
+          }
+      labels:
+        name: slb-canary-proxy-http
+      namespace: sam-system
+    spec:
+      containers:
+      - command:
+        - /sdn/slb-canary-service
+        - --serviceName=slb-canary-proxy-http
+        - --log_dir=/host/data/slb/logs/
+        - --ports=9116
+        - --tlsPorts=443
+        - --privateKey=/canarycert/server/keys/server-key.pem
+        - --publicKey=/canarycert/server/certificates/server.pem
+        - --verbose=false
+        image: ops0-artifactrepo1-0-ia5.data.sfdc.net/dva/slb/hyperslb:2223-e4a2929d6ff93ed22cb6e3a3b3155a6a86537b8b
+        name: slb-canary-proxy-http
+        volumeMounts:
+        - mountPath: /host/data/slb/logs/
+          name: var-logs-volume
+        - mountPath: /canarycert
+          name: canarycert
+      - args:
+        - /sam/madkub-client
+        - --madkub-endpoint=https://$(MADKUBSERVER_SERVICE_HOST):32007
+        - --maddog-endpoint=https://all.pkicontroller.pki.blank.ia5.prod.non-estates.sfdcsd.net:8443
+        - --maddog-server-ca=/maddog-certs/ca/security-ca.pem
+        - --madkub-server-ca=/maddog-certs/ca/cacerts.pem
+        - --cert-folders=canarycert:/canarycert/
+        - --token-folder=/tokens/
+        - --requested-cert-type=client
+        - --ca-folder=/maddog-certs/ca
+        - --refresher
+        - --run-init-for-refresher-mode
+        env:
+        - name: MADKUB_NODENAME
+          valueFrom:
+            fieldRef:
+              apiVersion: v1
+              fieldPath: spec.nodeName
+        - name: MADKUB_NAME
+          valueFrom:
+            fieldRef:
+              apiVersion: v1
+              fieldPath: metadata.name
+        - name: MADKUB_NAMESPACE
+          valueFrom:
+            fieldRef:
+              apiVersion: v1
+              fieldPath: metadata.namespace
+        image: ops0-artifactrepo1-0-ia5.data.sfdc.net/tnrp/sam/madkub:1.0.0-0000081-ddcaa288
+        imagePullPolicy: IfNotPresent
+        name: madkub-refresher
+        volumeMounts:
+        - mountPath: /canarycert
+          name: canarycert
+        - mountPath: /maddog-certs/
+          name: maddog-certs
+        - mountPath: /tokens
+          name: tokens
+      dnsPolicy: Default
+      initContainers:
+      - args:
+        - /sam/madkub-client
+        - --madkub-endpoint=https://$(MADKUBSERVER_SERVICE_HOST):32007
+        - --maddog-endpoint=https://all.pkicontroller.pki.blank.ia5.prod.non-estates.sfdcsd.net:8443
+        - --maddog-server-ca=/maddog-certs/ca/security-ca.pem
+        - --madkub-server-ca=/maddog-certs/ca/cacerts.pem
+        - --cert-folders=canarycert:/canarycert/
+        - --token-folder=/tokens/
+        - --requested-cert-type=client
+        - --ca-folder=/maddog-certs/ca
+        env:
+        - name: MADKUB_NODENAME
+          valueFrom:
+            fieldRef:
+              apiVersion: v1
+              fieldPath: spec.nodeName
+        - name: MADKUB_NAME
+          valueFrom:
+            fieldRef:
+              apiVersion: v1
+              fieldPath: metadata.name
+        - name: MADKUB_NAMESPACE
+          valueFrom:
+            fieldRef:
+              apiVersion: v1
+              fieldPath: metadata.namespace
+        image: ops0-artifactrepo1-0-ia5.data.sfdc.net/tnrp/sam/madkub:1.0.0-0000081-ddcaa288
+        imagePullPolicy: IfNotPresent
+        name: madkub-init
+        volumeMounts:
+        - mountPath: /canarycert
+          name: canarycert
+        - mountPath: /maddog-certs/
+          name: maddog-certs
+        - mountPath: /tokens
+          name: tokens
+      nodeSelector:
+        pool: ia5-sam
+      terminationGracePeriodSeconds: 5
+      volumes:
+      - hostPath:
+          path: /data/slb/logs/
+        name: var-logs-volume
+      - emptyDir:
+          medium: Memory
+        name: canarycert
+      - emptyDir:
+          medium: Memory
+        name: tokens
+      - hostPath:
+          path: /etc/pki_service
+        name: maddog-certs

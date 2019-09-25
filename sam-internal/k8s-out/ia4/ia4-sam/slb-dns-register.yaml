@@ -1,0 +1,384 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  labels:
+    name: slb-dns-register
+  name: slb-dns-register
+  namespace: sam-system
+spec:
+  minReadySeconds: 30
+  replicas: 1
+  selector:
+    matchLabels:
+      name: slb-dns-register
+  strategy:
+    rollingUpdate:
+      maxSurge: 0
+      maxUnavailable: 1
+    type: RollingUpdate
+  template:
+    metadata:
+      annotations:
+        madkub.sam.sfdc.net/allcerts: |-
+          {
+           "certreqs": [
+            {
+             "cert-type": "client",
+             "kingdom": "ia4",
+             "name": "cert3",
+             "role": "slb.internal"
+            }
+           ]
+          }
+      labels:
+        name: slb-dns-register
+      namespace: sam-system
+    spec:
+      containers:
+      - command:
+        - /sdn/slb-dns-register
+        - --path=/host/data/slb/config/slb-dns-register
+        - --ddi=https://ddi-api-ia4.data.sfdc.net
+        - --keyfile=/cert3/client/keys/client-key.pem
+        - --certfile=/cert3/client/certificates/client.pem
+        - --cafile=/cert3/ca/cabundle.pem
+        - --commonoptions.hostname=$(NODE_NAME)
+        - --commonoptions.metricsendpoint=ajna0-funnel1-0-ia4.data.sfdc.net:80
+        - --log_dir=/host/data/slb/logs/slb-dns-register
+        - --hostsConfigFile=/sfdchosts/hosts.json
+        - --subnet=10.184.12.0/22
+        - --client.serverPort=12088
+        - --client.serverInterface=lo
+        - --restrictedSubnets=
+        - --maxDeleteEntries=100
+        - --vipLimit=198
+        - --client.socketDir=/host/data/slb/config/slb-dns-register
+        - --client.dialSocket=true
+        image: ops0-artifactrepo1-0-ia4.data.sfdc.net/dva/slb/hyperslb:2223-e4a2929d6ff93ed22cb6e3a3b3155a6a86537b8b
+        name: slb-dns-register
+        volumeMounts:
+        - mountPath: /etc/pki_service
+          name: maddog-certs
+        - mountPath: /data/certs
+          name: certs
+        - mountPath: /host/data/slb/config/slb-dns-register
+          name: var-config-volume
+        - mountPath: /host/data/slb/logs/slb-dns-register
+          name: var-logs-volume
+        - mountPath: /sfdchosts
+          name: sfdchosts
+        - mountPath: /host/data/slb/reserved-ips
+          name: slbreservedips
+        - mountPath: /cert3
+          name: cert3
+      - command:
+        - /sdn/slb-config-processor
+        - --configDir=/host/data/slb/config/slb-dns-register
+        - --period=1800s
+        - --vipsToAcl=
+        - --podPhaseCheck=true
+        - --namespace=
+        - --podstatus=running
+        - --subnet=10.184.12.0/22
+        - --k8sapiserver=
+        - --serviceList=
+        - --useVipLabelToSelectSvcs=true
+        - --metricsEndpoint=ajna0-funnel1-0-ia4.data.sfdc.net:80
+        - --log_dir=/host/data/slb/logs/slb-dns-register
+        - --sleepTime=100ms
+        - --livenessProbePort=12083
+        - --shouldRemoveConfig=true
+        - --hostsConfigFile=/sfdchosts/hosts.json
+        - --proxySelectorLabelValue=slb-nginx-config-b
+        - --hostnameOverride=$(NODE_NAME)
+        - --control.configProcSentinel=/host/data/slb/config/slb-dns-register/slb-config-proc.sentinel
+        env:
+        - name: KUBECONFIG
+          value: /kubeconfig/kubeconfig-platform
+        - name: NODE_NAME
+          valueFrom:
+            fieldRef:
+              fieldPath: spec.nodeName
+        image: ops0-artifactrepo1-0-ia4.data.sfdc.net/dva/slb/hyperslb:2223-e4a2929d6ff93ed22cb6e3a3b3155a6a86537b8b
+        livenessProbe:
+          httpGet:
+            path: /liveness-probe
+            port: 12083
+          initialDelaySeconds: 600
+          periodSeconds: 30
+          timeoutSeconds: 5
+        name: slb-config-processor
+        securityContext:
+          privileged: true
+        volumeMounts:
+        - mountPath: /etc/pki_service
+          name: maddog-certs
+        - mountPath: /host/data/slb
+          name: var-slb-volume
+        - mountPath: /host/data/slb/config/slb-dns-register
+          name: var-config-volume
+        - mountPath: /host/data/slb/logs/slb-dns-register
+          name: var-logs-volume
+        - mountPath: /data/certs
+          name: certs
+        - mountPath: /kubeconfig
+          name: kubeconfig
+        - mountPath: /sfdchosts
+          name: sfdchosts
+        - mountPath: /proxyconfig
+          name: proxyconfig
+      - command:
+        - /sdn/slb-cleanup
+        - --period=1800s
+        - --logsMaxAge=1h
+        - --filesDirToCleanup=/host/data/slb/config/slb-dns-register
+        - --shouldSkipServiceRecords=true
+        - --shouldNotDeleteAllFiles=true
+        - --log_dir=/host/data/slb/logs/slb-dns-register
+        - --shouldSkipSlbBlock=true
+        - --skipFilesWithSuffix=.sock
+        - --maxDeleteFileCount=20
+        image: ops0-artifactrepo1-0-ia4.data.sfdc.net/dva/slb/hyperslb:2223-e4a2929d6ff93ed22cb6e3a3b3155a6a86537b8b
+        name: slb-cleanup-config-processor
+        securityContext:
+          privileged: true
+        volumeMounts:
+        - mountPath: /host/data/slb
+          name: var-slb-volume
+        - mountPath: /host/data/slb/config/slb-dns-register
+          name: var-config-volume
+        - mountPath: /host/data/slb/logs/slb-dns-register
+          name: var-logs-volume
+      - command:
+        - /sdn/slb-cleanup
+        - --period=1800s
+        - --logsMaxAge=48h
+        - --log_dir=/host/data/slb/logs/slb-dns-register/cleanup
+        - --filesDirToCleanup=/host/data/slb/logs/slb-dns-register
+        - --shouldSkipServiceRecords=false
+        - --shouldNotDeleteAllFiles=false
+        env:
+        - name: KUBECONFIG
+          value: /kubeconfig/kubeconfig-platform
+        image: ops0-artifactrepo1-0-ia4.data.sfdc.net/dva/slb/hyperslb:2223-e4a2929d6ff93ed22cb6e3a3b3155a6a86537b8b
+        name: slb-cleanup
+        securityContext:
+          privileged: true
+        volumeMounts:
+        - mountPath: /host/data/slb
+          name: var-slb-volume
+        - mountPath: /host/data/slb/config/slb-dns-register
+          name: var-config-volume
+        - mountPath: /host/data/slb/logs/slb-dns-register
+          name: var-logs-volume
+        - mountPath: /sfdchosts
+          name: sfdchosts
+        - mountPath: /host/data/slb/logs/slb-dns-register/cleanup
+          name: var-cleanup-logs-volume
+      - command:
+        - /sdn/slb-node-api
+        - --port=12088
+        - --configDir=/host/data/slb/config/slb-dns-register
+        - --log_dir=/host/data/slb/logs/slb-dns-register
+        - --netInterface=lo
+        - --checkSentinel=true
+        - --control.configProcSentinel=/host/data/slb/config/slb-dns-register/slb-config-proc.sentinel
+        - --control.sentinelExpiration=1800s
+        - --listenOnSocket=true
+        - --readOnly=false
+        - --checkMwSentinel=true
+        - --control.manifestWatcherSentinel=/host/data/slb/config/slb-dns-register/slb-manifest-watcher.sentinel
+        image: ops0-artifactrepo1-0-ia4.data.sfdc.net/dva/slb/hyperslb:2223-e4a2929d6ff93ed22cb6e3a3b3155a6a86537b8b
+        name: slb-node-api
+        volumeMounts:
+        - mountPath: /host/data/slb
+          name: var-slb-volume
+        - mountPath: /host/data/slb/logs/slb-dns-register
+          name: var-logs-volume
+      - args:
+        - /sam/madkub-client
+        - --madkub-endpoint=https://$(MADKUBSERVER_SERVICE_HOST):32007
+        - --maddog-endpoint=https://all.pkicontroller.pki.blank.ia4.prod.non-estates.sfdcsd.net:8443
+        - --maddog-server-ca=/maddog-certs/ca/security-ca.pem
+        - --madkub-server-ca=/maddog-certs/ca/cacerts.pem
+        - --cert-folders=cert3:/cert3/
+        - --token-folder=/tokens/
+        - --requested-cert-type=client
+        - --ca-folder=/maddog-certs/ca
+        - --refresher
+        - --run-init-for-refresher-mode
+        env:
+        - name: MADKUB_NODENAME
+          valueFrom:
+            fieldRef:
+              apiVersion: v1
+              fieldPath: spec.nodeName
+        - name: MADKUB_NAME
+          valueFrom:
+            fieldRef:
+              apiVersion: v1
+              fieldPath: metadata.name
+        - name: MADKUB_NAMESPACE
+          valueFrom:
+            fieldRef:
+              apiVersion: v1
+              fieldPath: metadata.namespace
+        image: ops0-artifactrepo1-0-ia4.data.sfdc.net/tnrp/sam/madkub:1.0.0-0000081-ddcaa288
+        imagePullPolicy: IfNotPresent
+        name: madkub-refresher
+        resources: {}
+        volumeMounts:
+        - mountPath: /cert3
+          name: cert3
+        - mountPath: /maddog-certs/
+          name: maddog-certs
+        - mountPath: /tokens
+          name: tokens
+      - command:
+        - /sdn/slb-manifest-watcher
+        - --manifestOutputDir=/host/data/slb/manifests/slb-dns-register
+        - --tnrpEndpoint=https://ops0-piperepo1-0-ia4.data.sfdc.net/
+        - --hostnameOverride=$(NODE_NAME)
+        - --log_dir=/host/data/slb/logs/slb-dns-register
+        - --hostsConfigFile=/sfdchosts/hosts.json
+        - --client.socketDir=/host/data/slb/config/slb-dns-register
+        - --client.dialSocket=true
+        - --maxDeleteLimit=100
+        - --isRoleUsed=true
+        - --metricsEndpoint=ajna0-funnel1-0-ia4.data.sfdc.net:80
+        - --vcioptions.strict=true
+        - --client.allowStale=true
+        - --control.manifestWatcherSentinel=/host/data/slb/config/slb-dns-register/slb-manifest-watcher.sentinel
+        env:
+        - name: KUBECONFIG
+          value: /kubeconfig/kubeconfig-platform
+        - name: NODE_NAME
+          valueFrom:
+            fieldRef:
+              fieldPath: spec.nodeName
+        image: ops0-artifactrepo1-0-ia4.data.sfdc.net/dva/slb/hyperslb:2223-e4a2929d6ff93ed22cb6e3a3b3155a6a86537b8b
+        name: slb-manifest-watcher
+        securityContext:
+          privileged: true
+        volumeMounts:
+        - mountPath: /host/data/slb
+          name: var-slb-volume
+        - mountPath: /sfdchosts
+          name: sfdchosts
+        - mountPath: /kubeconfig
+          name: kubeconfig
+        - mountPath: /etc/pki_service
+          name: maddog-certs
+        - mountPath: /proxyconfig
+          name: proxyconfig
+      - command:
+        - /sdn/slb-cname-register
+        - --ddi=https://ddi-api-ia4.data.sfdc.net
+        - --log_dir=/host/data/slb/logs/slb-dns-register
+        - --hostsConfigFile=/sfdchosts/hosts.json
+        - --client.socketDir=/host/data/slb/config/slb-dns-register
+        - --client.dialSocket=true
+        - --commonoptions.metricsendpoint=ajna0-funnel1-0-ia4.data.sfdc.net:80
+        - --commonoptions.hostname=$(NODE_NAME)
+        - --deletelimits.maxDeleteLimit=20
+        - --keyfile=/cert3/client/keys/client-key.pem
+        - --certfile=/cert3/client/certificates/client.pem
+        - --cafile=/cert3/ca/cabundle.pem
+        env:
+        - name: NODE_NAME
+          valueFrom:
+            fieldRef:
+              fieldPath: spec.nodeName
+        image: ops0-artifactrepo1-0-ia4.data.sfdc.net/dva/slb/hyperslb:2223-e4a2929d6ff93ed22cb6e3a3b3155a6a86537b8b
+        name: slb-cname-register
+        volumeMounts:
+        - mountPath: /etc/pki_service
+          name: maddog-certs
+        - mountPath: /data/certs
+          name: certs
+        - mountPath: /host/data/slb/config/slb-dns-register
+          name: var-config-volume
+        - mountPath: /host/data/slb/logs/slb-dns-register
+          name: var-logs-volume
+        - mountPath: /sfdchosts
+          name: sfdchosts
+        - mountPath: /cert3
+          name: cert3
+      dnsPolicy: Default
+      initContainers:
+      - args:
+        - /sam/madkub-client
+        - --madkub-endpoint=https://$(MADKUBSERVER_SERVICE_HOST):32007
+        - --maddog-endpoint=https://all.pkicontroller.pki.blank.ia4.prod.non-estates.sfdcsd.net:8443
+        - --maddog-server-ca=/maddog-certs/ca/security-ca.pem
+        - --madkub-server-ca=/maddog-certs/ca/cacerts.pem
+        - --cert-folders=cert3:/cert3/
+        - --token-folder=/tokens/
+        - --requested-cert-type=client
+        - --ca-folder=/maddog-certs/ca
+        env:
+        - name: MADKUB_NODENAME
+          valueFrom:
+            fieldRef:
+              apiVersion: v1
+              fieldPath: spec.nodeName
+        - name: MADKUB_NAME
+          valueFrom:
+            fieldRef:
+              apiVersion: v1
+              fieldPath: metadata.name
+        - name: MADKUB_NAMESPACE
+          valueFrom:
+            fieldRef:
+              apiVersion: v1
+              fieldPath: metadata.namespace
+        image: ops0-artifactrepo1-0-ia4.data.sfdc.net/tnrp/sam/madkub:1.0.0-0000081-ddcaa288
+        imagePullPolicy: IfNotPresent
+        name: madkub-init
+        volumeMounts:
+        - mountPath: /cert3
+          name: cert3
+        - mountPath: /maddog-certs/
+          name: maddog-certs
+        - mountPath: /tokens
+          name: tokens
+      nodeSelector:
+        pool: ia4-slb
+      terminationGracePeriodSeconds: 5
+      volumes:
+      - hostPath:
+          path: /etc/pki_service
+        name: maddog-certs
+      - hostPath:
+          path: /data/certs
+        name: certs
+      - hostPath:
+          path: /data/slb/config/slb-dns-register
+        name: var-config-volume
+      - hostPath:
+          path: /data/slb/logs/slb-dns-register
+        name: var-logs-volume
+      - configMap:
+          name: sfdchosts
+        name: sfdchosts
+      - hostPath:
+          path: /data/slb
+        name: var-slb-volume
+      - hostPath:
+          path: /etc/kubernetes
+        name: kubeconfig
+      - hostPath:
+          path: /data/slb/logs/slb-dns-register/cleanup
+        name: var-cleanup-logs-volume
+      - configMap:
+          name: slb-proxy-configuration
+        name: proxyconfig
+      - configMap:
+          name: slb-reserved-ips
+        name: slbreservedips
+      - emptyDir:
+          medium: Memory
+        name: cert3
+      - emptyDir:
+          medium: Memory
+        name: tokens

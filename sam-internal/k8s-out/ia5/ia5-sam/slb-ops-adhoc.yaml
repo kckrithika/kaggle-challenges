@@ -1,0 +1,63 @@
+apiVersion: extensions/v1beta1
+kind: DaemonSet
+metadata:
+  labels:
+    name: slb-ops-adhoc
+  name: slb-ops-adhoc
+  namespace: sam-system
+spec:
+  selector:
+    matchLabels:
+      app: slb-ops-adhoc
+      daemonset: "true"
+      sam.data.sfdc.net/owner: sam
+  template:
+    metadata:
+      labels:
+        app: slb-ops-adhoc
+        daemonset: "true"
+        sam.data.sfdc.net/owner: sam
+    spec:
+      containers:
+      - command:
+        - /bin/bash
+        - /config/slb-journald-killer-journald-hash.sh
+        env:
+        - name: IMMUTABLE_DEPLOYMENTS_ARE_GOOD
+          value: "true"
+        image: ops0-artifactrepo1-0-ia5.data.sfdc.net/dva/slb/hyperslb:2223-e4a2929d6ff93ed22cb6e3a3b3155a6a86537b8b
+        name: slb-ops-adhoc
+        resources:
+          limits:
+            cpu: "0.5"
+            memory: 300Mi
+          requests:
+            cpu: "0.5"
+            memory: 300Mi
+        volumeMounts:
+        - mountPath: /hostetc
+          name: host-etc-volume
+        - mountPath: /config
+          name: config
+        - mountPath: /host-systemd
+          name: host-systemd-volume
+      dnsPolicy: Default
+      hostNetwork: true
+      hostPID: true
+      nodeSelector:
+        pool: ia5-slb
+      terminationGracePeriodSeconds: 5
+      volumes:
+      - hostPath:
+          path: /etc
+        name: host-etc-volume
+      - configMap:
+          name: slb-ops-adhoc
+        name: config
+      - hostPath:
+          path: /usr/lib/systemd
+        name: host-systemd-volume
+  updateStrategy:
+    rollingUpdate:
+      maxUnavailable: 25%
+    type: RollingUpdate
