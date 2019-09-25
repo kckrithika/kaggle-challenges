@@ -57,6 +57,11 @@ system:
   loadbalancers:
     - lbname: istio-ordering-mixed-istio-to-sherpa
       function: istio-ordering-mixed-istio-to-sherpa
+      annotations:
+        routing.mesh.sfdc.net/enabled: "true"
+      labels:
+        app: istio-ordering-mixed-istio-to-sherpa
+        settings_path: istio.-.prd.-.istio-ordering-mixed-istio-to-sherpa
       ports:
         - lbtype: dsr
           port: 7443

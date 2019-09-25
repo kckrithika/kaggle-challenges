@@ -72,6 +72,11 @@ system:
   loadbalancers:
     - lbname: istio-shipping-mixed-sherpa-to-istio
       function: istio-shipping-mixed-sherpa-to-istio
+      annotations:
+        routing.mesh.sfdc.net/enabled: "true"
+      labels:
+        app: istio-shipping-mixed-sherpa-to-istio
+        settings_path: istio.-.prd.-.istio-shipping-mixed-sherpa-to-istio
       ports:
         - lbtype: dsr
           port: 7443
