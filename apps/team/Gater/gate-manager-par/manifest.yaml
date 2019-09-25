@@ -19,6 +19,8 @@ system:
       args:
         - --server.port=9090
         - --gater-service.thread.pool.max-size=0
+        - --logging.sfdc.stderr.level=OFF
+        - --logging.json.stdout.level=INFO
       # associate the /log directory to a logical volume. logging.dir is set to this in the startup script args above,
       # and this volume mount is mapped to a host directory below in the volumes section. Underneath this directory
       # we will end up with the following sub-directories: gater/app, gater/jvm, gater/json. 
