@@ -3,6 +3,7 @@ system:
   notifications:
     email:
       - juppala@salesforce.com
+      - astcx-dev@salesforce.com
   functions:
   - name: astcx-ui
     count: 1
