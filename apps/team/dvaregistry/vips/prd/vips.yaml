@@ -59,3 +59,20 @@
       reencrypt: true
       lbalgorithm: leastconn
       healthprotocol: "tcp"
+- lbname: goproxy
+  customlbname: goproxy
+  servers:
+    - go-athens-1.eng.sfdc.net
+    - go-athens-2.eng.sfdc.net
+    - go-athens-3.eng.sfdc.net
+    - go-athens-4.eng.sfdc.net
+  ports:
+    - port: 443
+      targetport: 443
+      lbtype: http
+      tls: true
+      reencrypt: true
+      lbalgorithm: leastconn
+      healthport: 8080
+      healthprotocol: http
+      healthpath: /ping
