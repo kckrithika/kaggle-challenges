@@ -39,7 +39,7 @@ system:
 
     containers:
     - name: retail-setup
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/retail/retail-setup:2.1.39
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/retail/retail-setup:f00c611
       ports:
       # Jetty http1 ports for incoming public traffic via SLB
       - containerPort: 7022
@@ -69,16 +69,8 @@ system:
         value: /clientcerts/client
       - name: SECURITY_CLIENT_DYNAMICKEYSTORE_CADIR
         value: /clientcerts/ca
-      - name: PKI_CA_DIR
-        value: /servercerts
-      - name: PKI_MONITORDIR
-        value: /servercerts/server
-      - name: SECURITY_SERVER_DYNAMICKEYSTORE_MONITOREDDIRECTORY
-        value: /servercerts/server
-      - name: SECURITY_SERVER_DYNAMICKEYSTORE_CADIR
-        value: /servercerts/ca
-      - name: SECURITY_SERVER_DYNAMICKEYSTORE_CAFILE
-        value: /servercerts/ca/cacerts.pem
+      - name: SECURITY_SERVER_DYNAMICKEYSTORE_ENABLED
+        value: false
       - name: SFDC_ENVIRONMENT
         value: stmfa
       - name: TENANT_SOURCE_KEYS
@@ -164,7 +156,6 @@ system:
         httpGet:
           path: /manage/health
           port: 15372
-          scheme: HTTPS
       volumeMounts:
       - name: retailservercert
         mountPath: /servercerts
@@ -203,6 +194,8 @@ system:
       ports:
       - containerPort: 7014 # http1 in port non tls
         name: sherpa-in-http1
+      - containerPort: 7442 # http1 in port tls
+        name: sher-in-htp1tls
       - containerPort: 7012 # http2 in port for grpc
         name: sherpa-in-http2
       - containerPort: 7443 # http2 in port for grpc
@@ -243,7 +236,7 @@ system:
     slbEnabled: true
     ports:
       - port: 443
-        targetport: 7022
+        targetport: 7442
         tls: true
         lbtype: http
         reencrypt: true
