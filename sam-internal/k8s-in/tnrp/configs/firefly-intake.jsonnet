@@ -61,7 +61,7 @@ local gheConfig = import "configs/firefly-ghe.jsonnet";
             'webhook-secret-token': 'feature_not_enabled',
           },
         },
-        'enable-webhook-secret': 'false'
+        'enable-webhook-secret': false
       },
       'dark-launch': '${DARKLAUNCH}',
       rabbitmq: {

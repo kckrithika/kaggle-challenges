@@ -12,7 +12,7 @@ items:
                   "webhook-secret-token-validation": false
               },
               "intake": {
-                  "enable-webhook-secret": "true",
+                  "enable-webhook-secret": true,
                   "instance-type": "firefly-fcp",
                   "repo-config-map": {
                       "manifests": {
