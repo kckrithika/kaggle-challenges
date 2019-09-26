@@ -24,7 +24,7 @@ items:
                "cert-type": "client",
                "kingdom": "prd",
                "name": "client-certs",
-               "role": "secrets.secretservice-watchdog-crz11"
+               "role": "secrets.secretservice-watchdog"
               }
              ]
             }
@@ -38,8 +38,8 @@ items:
           - -ssEndpoint=ops-vaultczar1-1-crz.ops.sfdc.net
           - -ssWritePort=8271
           - -wdKingdom=CRZ
-          - -vaultName=ss-canary-vault-crz11
-          - -role=sam.secrets.secretservice-watchdog-crz11
+          - -vaultName=ss-watchdog-vault-crz11
+          - -role=sam.secrets.secretservice-watchdog
           - -metricsEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80
           - -logtostderr=true
           command:
@@ -186,7 +186,7 @@ items:
                "cert-type": "client",
                "kingdom": "prd",
                "name": "client-certs",
-               "role": "secrets.secretservice-watchdog-crz12"
+               "role": "secrets.secretservice-watchdog"
               }
              ]
             }
@@ -200,8 +200,8 @@ items:
           - -ssEndpoint=ops-vaultczar1-2-crz.ops.sfdc.net
           - -ssWritePort=8271
           - -wdKingdom=CRZ
-          - -vaultName=ss-canary-vault-crz12
-          - -role=sam.secrets.secretservice-watchdog-crz12
+          - -vaultName=ss-watchdog-vault-crz12
+          - -role=sam.secrets.secretservice-watchdog
           - -metricsEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80
           - -logtostderr=true
           command:
@@ -348,7 +348,7 @@ items:
                "cert-type": "client",
                "kingdom": "prd",
                "name": "client-certs",
-               "role": "secrets.secretservice-watchdog-crz21"
+               "role": "secrets.secretservice-watchdog"
               }
              ]
             }
@@ -362,8 +362,8 @@ items:
           - -ssEndpoint=ops-vaultczar2-1-crz.ops.sfdc.net
           - -ssWritePort=8271
           - -wdKingdom=CRZ
-          - -vaultName=ss-canary-vault-crz21
-          - -role=sam.secrets.secretservice-watchdog-crz21
+          - -vaultName=ss-watchdog-vault-crz21
+          - -role=sam.secrets.secretservice-watchdog
           - -metricsEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80
           - -logtostderr=true
           command:
@@ -510,7 +510,7 @@ items:
                "cert-type": "client",
                "kingdom": "prd",
                "name": "client-certs",
-               "role": "secrets.secretservice-watchdog-crz22"
+               "role": "secrets.secretservice-watchdog"
               }
              ]
             }
@@ -524,8 +524,8 @@ items:
           - -ssEndpoint=ops-vaultczar2-2-crz.ops.sfdc.net
           - -ssWritePort=8271
           - -wdKingdom=CRZ
-          - -vaultName=ss-canary-vault-crz22
-          - -role=sam.secrets.secretservice-watchdog-crz22
+          - -vaultName=ss-watchdog-vault-crz22
+          - -role=sam.secrets.secretservice-watchdog
           - -metricsEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80
           - -logtostderr=true
           command:

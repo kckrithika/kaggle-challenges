@@ -74,7 +74,6 @@ once confidence is gained in the sam-internals deployments above.
     xrd: {
       endpoint: "secretservice-xrd.data.sfdc.net",
       wdKingdom: "XRD",
-      role: "sam.secrets.secretservice-watchdog",
       extraArgs: [
         "-enableLifecycleTest=true",
       ],
@@ -87,7 +86,6 @@ once confidence is gained in the sam-internals deployments above.
     "infrasec1test-xrd": {
       endpoint: "secretservice-infrasec1-xrd.data.sfdc.net",
       wdKingdom: "XRD",
-      vaultName: "ss-canary-is1-xrd",
       canary: true,
       extraArgs: [
         "-enableLifecycleTest=true",
