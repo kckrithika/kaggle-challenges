@@ -81,7 +81,7 @@ std.prune({
   # This is special as in only  RDI Ceph Is supported
   # This will goaway slowly
   storageClassName: (if configs.estate == "prd-samdev" then "standard"),
-  enableK4aChecks: (if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" || configs.estate == "prd-sam" || configs.kingdom == "phx" || configs.kingdom == "dfw" then true),
+  enableK4aChecks: (if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" || configs.estate == "prd-sam" || configs.kingdom == "xrd" || configs.kingdom == "phx" || configs.kingdom == "dfw" then true),
   enableMaddogCertChecks: (if samfeatureflags.maddogforsamapps && !utils.is_running_flannel(configs.kingdom) && !utils.is_pcn(configs.kingdom) then true else false),
   deleteSyntheticDeployment: false,
   filesystemCheckDirs: [
