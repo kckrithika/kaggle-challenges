@@ -16,9 +16,6 @@ if (istioPhases.phaseNum == 1) then
   spec: {
     egress: [
       {
-        hosts: mcpIstioConfig.sidecarEgressHosts,
-      },
-      {
         port: {
           number: 15008,
           protocol: "Redis",
@@ -28,6 +25,9 @@ if (istioPhases.phaseNum == 1) then
             "*/na7-mist61-caas-prd.service-mesh.svc.cluster.local",
         ],
         bind: "0.0.0.0",  # We could choose to bind this to 127.1.2.3 or wildcard, wildcard aligns with how HTTP works.
+      },
+      {
+        hosts: mcpIstioConfig.sidecarEgressHosts,
       },
     ],
   },
