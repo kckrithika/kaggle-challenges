@@ -21,8 +21,8 @@ system:
       # Ordering Config
       #    https://git.soma.salesforce.com/services/sfdc-bazel/blob/master/projects/services/ordering/ordering-scone/src/main/resources/config/application.properties
       # Image build:
-      # https://sfcirelease.dop.sfdc.net/job/services/job/sfdc-bazel_projects_services_examples_ordering/job/sfdc-bazel/job/scone_nexusrelease_scone_6.0.x/3/
-      image: sfci/services/sfdc-bazel/scone/ordering:8c7a32bef
+      # https://sfcirelease.dop.sfdc.net/job/services/job/sfdc-bazel_projects_services_examples_ordering/job/sfdc-bazel/job/master/75/
+      image: sfci/services/sfdc-bazel/scone/ordering:b51d7f786
       env:
       - name: SFDC_ENVIRONMENT
         value: istio
