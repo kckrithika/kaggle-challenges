@@ -1,0 +1,39 @@
+## ##
+- lbname: ssh-to-somewhere
+# servers specifies the pool members for the VIP
+  servers:
+   - shared0-slbminion1-1-ia4.eng.sfdc.net
+  # port specifies the port upon which the VIP listens. targetport specifies
+  # the port on the backend pool member that actually receives the traffic.
+  # Packets sent to lbname:port will be sent to server:targetport
+  # lbtype specifies the style of load balancing. For L7 functionality (default
+  # for an http VIP), specify a value of http. For L4 passthrough, specify tcp.
+  ports:
+   - port: 22
+     targetport: 22
+     lbtype: tcp
+# Note the healthport, healthpath, and healthprotocol. Each backend has an http endpoint listening on healthport
+# and returns 200 OK on the specified healthpath if the backend is elibible to receive traffic.
+     healthport: 12087
+     healthpath: "/liveness-probe"
+     healthprotocol: "http"
+
+## ##
+- lbname: check
+# servers specifies the pool members for the VIP
+  servers:
+   - shared0-slbminion1-1-ia4.eng.sfdc.nett
+  # port specifies the port upon which the VIP listens. targetport specifies
+  # the port on the backend pool member that actually receives the traffic.
+  # Packets sent to lbname:port will be sent to server:targetport
+  # lbtype specifies the style of load balancing. For L7 functionality (default
+  # for an http VIP), specify a value of http. For L4 passthrough, specify tcp.
+  ports:
+   - port: 80
+     targetport: 12087
+     lbtype: http
+# Note the healthport and healthpath. Each backend has an http endpoint listening on healthport
+# and returns 200 OK on the specified healthpath if the backend is elibible to receive traffic.
+     healthport: 12087
+     healthpath: "/liveness-probe"
+     healthprotocol: "http"
