@@ -88,22 +88,10 @@ def add_reserved_ip(public_reserved_ips_text, cluster, new_ip, fqdn):
 def process_all_vips_yamls(root_vip_yaml_path,
                            config_file_path,
                            reserved_ips_file_path,
-                           public_vip_allocation_file_path,
                            minimum_octet):
-    # Read slb-public-vip-allocation.json
-    with open(public_vip_allocation_file_path, "r") as public_vip_file:
-        public_vip_data = json.loads(public_vip_file.read())
-
     # Read slb-reserved-ips.jsonnet
     with open(reserved_ips_file_path, "r") as reserved_ips_file:
-        reserved_ip_text = reserved_ips_file.read()
-
-    # Finds the public reserved IPs field's text
-    public_reserved_ips_search_results = public_reserved_ips_regex.search(reserved_ip_text)
-    if public_reserved_ips_search_results is None:
-        raise Exception('{} was not found'.format(PUBLIC_RESERVED_IPS_FIELD_NAME))
-
-    public_reserved_ips_text = public_reserved_ips_search_results.group(0)
+        public_reserved_ips = json.load(reserved_ips_file_path)[PUBLIC_RESERVED_IPS_FIELD_NAME]
 
     # Read slbconfig.jsonnet
     with open(config_file_path, "r") as slbconfig_file:
