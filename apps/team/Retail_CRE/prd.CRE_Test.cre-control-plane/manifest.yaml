@@ -6,7 +6,7 @@ system:
       - cre@salesforce.com
   functions:
   - name: cre-control-plane-cre-test
-    count: 1
+    count: 3
     labels:
       app: cre-control-plane-cre-test
     annotations:
