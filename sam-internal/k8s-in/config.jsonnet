@@ -137,6 +137,9 @@ local utils = import "util_functions.jsonnet",
         tnrp: {
             "sam.data.sfdc.net/owner": "tnrp",
         },
+        secrets: {
+            "sam.data.sfdc.net/owner": "secrets",
+        },
     },
 
     # === KUBERNETES PARTIAL STRUCTS ===

@@ -80,7 +80,7 @@ fi
 
 
 # Format input jsonnet files.  TODO: Auto-compute these directories
-for jdir in . sam sam/configs sam/templates sam/templates/rbac sdn sdn/templates slb slb/templates flowsnake flowsnake/templates tnrp tnrp/templates service-mesh service-mesh/templates service-mesh/namespaces/templates service-mesh/sherpa-injector/templates service-mesh/switchboard/templates service-mesh/zoobernetes/templates dva-collection dva-collection/templates topology-svc/templates authz/templates; do
+for jdir in . sam sam/configs sam/templates sam/templates/rbac sdn sdn/templates secrets secrets/templates slb slb/templates flowsnake flowsnake/templates tnrp tnrp/templates service-mesh service-mesh/templates service-mesh/namespaces/templates service-mesh/sherpa-injector/templates service-mesh/switchboard/templates service-mesh/zoobernetes/templates dva-collection dva-collection/templates topology-svc/templates authz/templates; do
   # We want to format both *.jsonnet and *.libsonnet.  Doing this with a wildcard is a little ugly, but we cant do it with 2 commands because the command will fail if any directory has one type of file but not the other
   jsonnet/jsonnet fmt -i $jdir/*.*sonnet
 done
@@ -91,7 +91,7 @@ else
   ${SAMBINDIR}/manifestctl generate-pool-list --in ../pools/ --out  ../k8s-in/sam/configs/generated-pools.jsonnet
 fi
 
-./parallel_build.py --src=sam/templates/,sdn/templates/,slb/templates/,tnrp/templates,dva-collection/templates,topology-svc/templates,service-mesh/templates,service-mesh/namespaces/templates,service-mesh/sherpa-injector/templates,service-mesh/switchboard/templates,service-mesh/zoobernetes/templates,casam/templates,authz/templates  --out=../k8s-out/ --pools=../pools/ --estatefilter=$1 --labelfilterfile=samlabelfilter.json
+./parallel_build.py --src=sam/templates/,sdn/templates/,secrets/templates/,slb/templates/,tnrp/templates,dva-collection/templates,topology-svc/templates,service-mesh/templates,service-mesh/namespaces/templates,service-mesh/sherpa-injector/templates,service-mesh/switchboard/templates,service-mesh/zoobernetes/templates,casam/templates,authz/templates  --out=../k8s-out/ --pools=../pools/ --estatefilter=$1 --labelfilterfile=samlabelfilter.json
 
 ./parallel_build.py --src=flowsnake/templates,sdn/templates --out=../k8s-out/ --pools=flowsnake/flowsnakeEstates.json --estatefilter=$1
 # Skip SDN templates for Minikube
