@@ -7,7 +7,7 @@ system:
 
   functions:
   - name: beaconator
-    count: 1
+    count: 3
 
     strategy:
       type: RollingUpdate
