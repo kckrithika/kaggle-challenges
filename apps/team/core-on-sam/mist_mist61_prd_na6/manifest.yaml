@@ -386,7 +386,7 @@ system:
       serviceName: app
     containers:
     - name: coreapp
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/coreonsam/casam:release_main_18424849
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/coreonsam/casam:release_222-patch_19057694
       ports:
       - containerPort: 8998
       - containerPort: 8085
@@ -479,7 +479,7 @@ system:
         name: secretvol
         readOnly: true
     - name: casam-sidecar
-      image: sfci/casam/coreapp_overrides:685d9c
+      image: sfci/casam/coreapp_overrides:a9470f
       env:
       - name: CASAM_SETTINGS_PATH
         value: mist.mist61.prd.na6.app
