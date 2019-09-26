@@ -77,5 +77,85 @@ items:
       name: prometheus-server-conf-vaishnavi-spark-test
     name: prometheus-server-conf-vaishnavi-spark-test
     namespace: vaishnavi-spark-test
+- apiVersion: extensions/v1beta1
+  kind: Deployment
+  metadata:
+    labels:
+      service: prometheus-scraper-vaishnavi-spark-test
+    name: prometheus-scraper-vaishnavi-spark-test
+    namespace: vaishnavi-spark-test
+  spec:
+    minReadySeconds: 15
+    replicas: 2
+    selector:
+      matchLabels:
+        service: prometheus-scraper-vaishnavi-spark-test
+    spec:
+      containers:
+      - args:
+        - --config.file=/etc/config/prometheus.json
+        - --storage.tsdb.path=/prometheus-storage
+        - --web.external-url=http://localhost/
+        - --web.enable-lifecycle
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/prome_for_k8s:36
+        livenessProbe:
+          httpGet:
+            path: /metrics
+            port: 9090
+            scheme: HTTP
+          initialDelaySeconds: 30
+          periodSeconds: 10
+        name: prometheus
+        ports:
+        - containerPort: 9090
+        volumeMounts:
+        - mountPath: /prometheus-storage
+          name: prometheus-storage-volume
+        - mountPath: /etc/config
+          name: prometheus-server-conf
+        - mountPath: /etc/pki_service
+          name: certs-volume
+      - args:
+        - --serviceName=flowsnake
+        - --subserviceName=NONE
+        - --tagDefault=superpod:NONE
+        - --tagDefault=datacenter:prd
+        - --tagDefault=estate:prd-data-flowsnake_test
+        - --batchSize=512
+        - --funnelUrl=http://ajna0-funnel1-0-prd.data.sfdc.net:80
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/funnel_writer:36
+        livenessProbe:
+          httpGet:
+            path: /
+            port: 8000
+            scheme: HTTP
+          initialDelaySeconds: 30
+          periodSeconds: 10
+        name: funnel-writer
+        ports:
+        - containerPort: 8000
+        volumeMounts:
+        - mountPath: /prometheus-storage
+          name: prometheus-storage-volume
+      restartPolicy: Always
+      serviceAccountName: prometheus-scraper
+      volumes:
+      - configMap:
+          name: prometheus-server-conf
+        name: prometheus-server-conf
+      - emptyDir:
+          medium: Memory
+        name: prometheus-storage-volume
+      - hostPath:
+          path: /etc/pki_service
+        name: certs-volume
+    template:
+      metadata:
+        labels:
+          apptype: monitoring
+          flowsnakeOwner: dva-transform
+          flowsnakeRole: PrometheusScraper
+          name: prometheus-scraper
+          service: prometheus-scraper
 kind: List
 metadata: {}
