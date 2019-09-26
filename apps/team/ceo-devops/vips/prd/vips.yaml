@@ -72,3 +72,17 @@
     healthport: 8088
     healthprotocol: tcp
     lbalgorithm: roundrobin
+
+- lbname: deaddrophec
+  customlbname: deaddrophec-prd
+  servers:
+  - splunkhec01.dop.sfdc.net 
+  - splunkhec02.dop.sfdc.net 
+  ports:
+  - port: 8088
+    targetport: 8088
+    lbtype: tcp
+    reencrypt: false
+    healthport: 8088
+    healthprotocol: tcp
+    lbalgorithm: roundrobin
