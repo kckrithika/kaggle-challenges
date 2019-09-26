@@ -11,6 +11,7 @@
    "spec": {
       "ports": [
          {
+            "name": "h1-tls-in-port",
             "port": 17772,
             "targetPort": 17772
          }

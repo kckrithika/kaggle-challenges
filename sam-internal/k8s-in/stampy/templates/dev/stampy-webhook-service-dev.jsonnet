@@ -3,7 +3,7 @@ local versions = import "stampy/versions.jsonnet";
 local stampy_utils = import "stampy/stampy_utils.jsonnet";
 local utils = import "util_functions.jsonnet";
 
-if stampy_utils.is_stampy_webhook_test_cluster(configs.estate) then
+if stampy_utils.is_stampy_webhook_dev_cluster(configs.estate) then
 {
   apiVersion: "v1",
   kind: "Service",
@@ -19,6 +19,7 @@ if stampy_utils.is_stampy_webhook_test_cluster(configs.estate) then
   spec: {
     ports: [
       {
+        name: "h1-tls-in-port",
         port: if utils.is_pcn(configs.kingdom) then 443 else 17772,
         targetPort: 17772,
       },

@@ -13,47 +13,50 @@
       "selector": {
          "matchLabels": {
             "app": "stampy-webhook",
-            "name": "stampy-webhook"
+            "name": "stampy-webhook",
+            "stampy-webhook/disable": "true"
          }
       },
       "template": {
          "metadata": {
             "annotations": {
-               "madkub.sam.sfdc.net/allcerts": "{\n \"certreqs\": [\n  {\n   \"cert-type\": \"server\",\n   \"kingdom\": \"prd\",\n   \"name\": \"cert1\",\n   \"role\": \"stampy-webhook\",\n   \"san\": [\n    \"stampy-webhook\",\n    \"stampy-webhook.stampy-webhook\",\n    \"stampy-webhook.stampy-webhook.svc\",\n    \"stampy-webhook.stampy-webhook.svc.cluster.local\",\n    \"stampy-webhook.stampy-webhook.svc.prd-samtest.prd.sam.sfdc.net\"\n   ]\n  },\n  {\n   \"cert-type\": \"client\",\n   \"kingdom\": \"prd\",\n   \"name\": \"cert2\",\n   \"role\": \"stampy-webhook\",\n   \"san\": [\n    \"stampy-webhook\",\n    \"stampy-webhook.stampy-webhook\",\n    \"stampy-webhook.stampy-webhook.svc\",\n    \"stampy-webhook.stampy-webhook.svc.cluster.local\",\n    \"stampy-webhook.stampy-webhook.svc.prd-samtest.prd.sam.sfdc.net\"\n   ]\n  }\n ]\n}",
-               "scheduler.alpha.kubernetes.io/critical-pod": ""
+               "madkub.sam.sfdc.net/allcerts": "{\n \"certreqs\": [\n  {\n   \"cert-type\": \"server\",\n   \"kingdom\": \"prd\",\n   \"name\": \"cert1\",\n   \"role\": \"stampy-webhook\",\n   \"san\": [\n    \"stampy-webhook\",\n    \"stampy-webhook.stampy-webhook\",\n    \"stampy-webhook.stampy-webhook.svc\",\n    \"stampy-webhook.stampy-webhook.svc.cluster.local\",\n    \"stampy-webhook.stampy-webhook.svc.prd-samdev.prd.sam.sfdc.net\"\n   ]\n  },\n  {\n   \"cert-type\": \"client\",\n   \"kingdom\": \"prd\",\n   \"name\": \"cert2\",\n   \"role\": \"stampy-webhook\",\n   \"san\": [\n    \"stampy-webhook\",\n    \"stampy-webhook.stampy-webhook\",\n    \"stampy-webhook.stampy-webhook.svc\",\n    \"stampy-webhook.stampy-webhook.svc.cluster.local\",\n    \"stampy-webhook.stampy-webhook.svc.prd-samdev.prd.sam.sfdc.net\"\n   ]\n  }\n ]\n}",
+               "scheduler.alpha.kubernetes.io/critical-pod": "",
+               "stampy-webhook/disable": "true"
             },
             "labels": {
                "app": "stampy-webhook",
-               "name": "stampy-webhook"
+               "name": "stampy-webhook",
+               "stampy-webhook/disable": "true"
             }
          },
          "spec": {
             "containers": [
                {
                   "args": [
-                     "-log-level=debug",
                      "-tls-port=17772",
                      "-http-port=17773",
                      "-cert-file-path=/server-certs/server/certificates/server.pem",
-                     "-key-file-path=/server-certs/server/keys/server-key.pem"
+                     "-key-file-path=/server-certs/server/keys/server-key.pem",
+                     "-allow-if-error=true",
+                     "-log-level=debug"
                   ],
                   "env": [
                      {
-                        "name": "SFDC_ENVIRONMENT",
-                        "value": "stampy"
+                        "name": "KINGDOM",
+                        "value": "prd"
                      },
                      {
-                        "name": "SETTINGS_SERVICENAME",
-                        "value": "stampy-webhook"
+                        "name": "ESTATE",
+                        "value": "prd-samdev"
                      },
                      {
-                        "name": "FUNCTION_NAMESPACE",
-                        "valueFrom": {
-                           "fieldRef": {
-                              "apiVersion": "v1",
-                              "fieldPath": "metadata.namespace"
-                           }
-                        }
+                        "name": "SUPERPOD",
+                        "value": "-"
+                     },
+                     {
+                        "name": "POD",
+                        "value": "-"
                      },
                      {
                         "name": "FUNCTION_INSTANCE_NAME",
@@ -74,86 +77,26 @@
                         }
                      },
                      {
-                        "name": "FUNCTION",
-                        "value": "stampy-webhook"
-                     },
-                     {
-                        "name": "KINGDOM",
-                        "value": "prd"
-                     },
-                     {
-                        "name": "ESTATE",
-                        "value": "prd-samtest"
-                     },
-                     {
-                        "name": "SUPERPOD",
-                        "value": "-"
-                     },
-                     {
-                        "name": "SETTINGS_SUPERPOD",
-                        "value": "-"
-                     },
-                     {
-                        "name": "SETTINGS_PATH",
-                        "value": "stampy.-.prd.-.stampy-webhook"
-                     },
-                     {
                         "name": "SFDC_SETTINGS_PATH",
                         "value": "stampy.-.prd.-.stampy-webhook"
                      },
                      {
                         "name": "SFDC_METRICS_SERVICE_HOST",
-                        "value": "ajnafunneldirecttls.funnel.localhost.mesh.force.com"
+                        "value": "ajna0-funnel1-0-prd.data.sfdc.net"
                      },
                      {
                         "name": "SFDC_METRICS_SERVICE_PORT",
-                        "value": "5442"
-                     },
-                     {
-                        "name": "FAKE_REDEPLOY_VAR",
-                        "value": "1"
+                        "value": "80"
                      }
                   ],
-                  "image": "ops0-artifactrepo2-0-prd.data.sfdc.net/dva/stampy-webhook-admission-controller-1p:3",
+                  "image": "ops0-artifactrepo2-0-prd.data.sfdc.net/dva/stampy-webhook-admission-controller-1p:12",
                   "imagePullPolicy": "Always",
-                  "livenessProbe": {
-                     "exec": {
-                        "command": [
-                           "./is-alive.sh",
-                           "17442",
-                           "/client-certs/client/certificates/client.pem",
-                           "/client-certs/client/keys/client-key.pem"
-                        ]
-                     },
-                     "initialDelaySeconds": 2,
-                     "periodSeconds": 3
-                  },
-                  "name": "injector",
+                  "name": "stampy-webhook",
                   "ports": [
                      {
-                        "containerPort": 17442
+                        "containerPort": 17772
                      }
                   ],
-                  "readinessProbe": {
-                     "exec": {
-                        "command": [
-                           "./is-ready.sh",
-                           "17442",
-                           "/client-certs/client/certificates/client.pem",
-                           "/client-certs/client/keys/client-key.pem"
-                        ]
-                     },
-                     "initialDelaySeconds": 4,
-                     "periodSeconds": 3
-                  },
-                  "resources": {
-                     "limits": {
-                        "sam.sfdc.net/ip-address": "1"
-                     },
-                     "requests": {
-                        "sam.sfdc.net/ip-address": "1"
-                     }
-                  },
                   "terminationMessagePolicy": "FallbackToLogsOnError",
                   "volumeMounts": [
                      {
@@ -210,7 +153,7 @@
                      },
                      {
                         "name": "ESTATE",
-                        "value": "prd-samtest"
+                        "value": "prd-samdev"
                      }
                   ],
                   "image": "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/madkub:1.0.0-0000082-3d5c21b4",
@@ -279,7 +222,7 @@
                      },
                      {
                         "name": "ESTATE",
-                        "value": "prd-samtest"
+                        "value": "prd-samdev"
                      }
                   ],
                   "image": "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/madkub:1.0.0-0000082-3d5c21b4",
@@ -362,12 +305,6 @@
                      "medium": "Memory"
                   },
                   "name": "tokens"
-               },
-               {
-                  "configMap": {
-                     "name": "stampy-webhook-configs-data"
-                  },
-                  "name": "stampy-webhook-configs-data-volume"
                }
             ]
          }

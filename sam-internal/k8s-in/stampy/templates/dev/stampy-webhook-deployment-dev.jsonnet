@@ -9,7 +9,7 @@ local utils = import "util_functions.jsonnet";
 local funnelEndpointHost = std.split(configs.funnelVIP, ":")[0];
 local funnelEndpointPort = std.split(configs.funnelVIP, ":")[1];
 
-if stampy_utils.is_stampy_webhook_test_cluster(configs.estate) then
+if stampy_utils.is_stampy_webhook_dev_cluster(configs.estate) then
 configs.deploymentBase("stampy") {
   metadata+: {
     name: "stampy-webhook-deployment",
@@ -27,8 +27,10 @@ configs.deploymentBase("stampy") {
         labels: {
           app: "stampy-webhook",
           name: "stampy-webhook",
+          "stampy-webhook/disable": "true",
         },
         annotations: {
+          "stampy-webhook/disable": "true",
           "scheduler.alpha.kubernetes.io/critical-pod": "",
           "madkub.sam.sfdc.net/allcerts":
           std.manifestJsonEx(
@@ -75,89 +77,61 @@ configs.deploymentBase("stampy") {
       spec: configs.specWithKubeConfigAndMadDog {
         containers: [
           {
-            name: "injector",
+            name: "stampy-webhook",
             image: versions.stampyWebhookImage,
             imagePullPolicy: "Always",
             terminationMessagePolicy: "FallbackToLogsOnError",
             args: [
-              "-log-level=debug",
               "-tls-port=17772",
               "-http-port=17773",
               "-cert-file-path=/server-certs/server/certificates/server.pem",
-              "-key-file-path=/server-certs/server/keys/server-key.pem"
+              "-key-file-path=/server-certs/server/keys/server-key.pem",
+              "-allow-if-error=true",
+              "-log-level=debug"
             ],
-            env+: [
-              {
-                name: "SFDC_ENVIRONMENT",
-                value: "stampy",
-              },
-              {
-                name: "SETTINGS_SERVICENAME",
-                value: "stampy-webhook",
-              },
-              {
-                name: "FUNCTION_NAMESPACE",
-                valueFrom:
-                  {
-                    fieldRef: { fieldPath: "metadata.namespace", apiVersion: "v1" },
-                  },
-              },
-              {
-                name: "FUNCTION_INSTANCE_NAME",
-                valueFrom:
-                  {
-                    fieldRef: { fieldPath: "metadata.name", apiVersion: "v1" },
-                  },
-              },
-              {
-                name: "FUNCTION_INSTANCE_IP",
-                valueFrom:
-                  {
-                    fieldRef: { fieldPath: "status.podIP", apiVersion: "v1" },
-                  },
-              },
-              {
-                name: "FUNCTION",
-                value: "stampy-webhook",
-              },
-              {
-                name: "KINGDOM",
-                value: configs.kingdom,
-              },
-              {
-                name: "ESTATE",
-                value: configs.estate,
-              },
-              {
-                name: "SUPERPOD",
-                value: "-",
-              },
-              {
-                name: "SETTINGS_SUPERPOD",
-                value: "-",
-              },
-              {
-                name: "SETTINGS_PATH",
-                value: "stampy.-." + configs.kingdom + ".-.stampy-webhook",
-              },
-              {
-                name: "SFDC_SETTINGS_PATH",
-                value: "stampy.-." + configs.kingdom + ".-.stampy-webhook",
-              },
-              {
-                name: "SFDC_METRICS_SERVICE_HOST",
-                // use `value: funnelEndpointHost,` if direct link to ajna is needed
-                value: "ajnafunneldirecttls.funnel.localhost.mesh.force.com",
-              },
-              {
-                name: "SFDC_METRICS_SERVICE_PORT",
-                // use `value: funnelEndpointPort,` if direct link to ajna is needed
-                value: "5442",
-              },
-              {
-                name: "FAKE_REDEPLOY_VAR",
-                value: "1",
-              },
+            env+:[
+                {
+                    name: "KINGDOM",
+                    value: configs.kingdom,
+                },
+                {
+                    name: "ESTATE",
+                    value: configs.estate,
+                },
+                {
+                    name: "SUPERPOD",
+                    value: "-",
+                },
+                {
+                    name: "POD",
+                    value: "-",
+                },
+                {
+                    name: "FUNCTION_INSTANCE_NAME",
+                    valueFrom:
+                    {
+                        fieldRef: { fieldPath: "metadata.name", apiVersion: "v1" },
+                    },
+                },
+                {
+                  name: "FUNCTION_INSTANCE_IP",
+                  valueFrom:
+                    {
+                      fieldRef: { fieldPath: "status.podIP", apiVersion: "v1" },
+                    },
+                },
+                {
+                  name: "SFDC_SETTINGS_PATH",
+                  value: "stampy.-." + configs.kingdom + ".-.stampy-webhook",
+                },
+                {
+                    name: "SFDC_METRICS_SERVICE_HOST",
+                    value: funnelEndpointHost,
+                },
+                {
+                    name: "SFDC_METRICS_SERVICE_PORT",
+                    value: funnelEndpointPort,
+                },
             ],
             volumeMounts+: [
               {
@@ -171,37 +145,10 @@ configs.deploymentBase("stampy") {
             ],
             ports+: [
               {
-                containerPort: 17442,
+                containerPort: 17772,
               },
             ],
-            livenessProbe: {
-              exec: {
-                command: [
-                  "./is-alive.sh",
-                  "17442",
-                  // Pass the certificates folder for the liveness probe to use TLS
-                  "/client-certs/client/certificates/client.pem",
-                  "/client-certs/client/keys/client-key.pem",
-                ],
-              },
-              initialDelaySeconds: 2,
-              periodSeconds: 3,
-            },
-            readinessProbe: {
-              exec: {
-                command: [
-                  "./is-ready.sh",
-                  "17442",
-                  // Pass certificates for the readiness probe to use with TLS
-                  "/client-certs/client/certificates/client.pem",
-                  "/client-certs/client/keys/client-key.pem",
-                ],
-              },
-              initialDelaySeconds: 4,
-              periodSeconds: 3,
-            },
-            resources: {},
-          } + configs.ipAddressResourceRequest,
+          },
           maddogRefresher.madkubRefresherContainer,
         ],
         # In PRD only kubeapi (master) nodes get cluster-admin permission
@@ -230,12 +177,6 @@ configs.deploymentBase("stampy") {
               medium: "Memory",
             },
             name: "tokens",
-          },
-          {
-            configMap: {
-              name: "stampy-webhook-configs-data",
-            },
-            name: "stampy-webhook-configs-data-volume",
           },
         ] +
         if utils.is_pcn(configs.kingdom) then
