@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: stampy-tool
+  namespace: stampy-webhook2
+spec:
+  containers:
+  - name: stampy-tool
+    image: dva-registry.internal.salesforce.com/dva/stampy-tool:latest
