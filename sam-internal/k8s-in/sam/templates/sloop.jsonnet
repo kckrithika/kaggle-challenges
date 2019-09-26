@@ -33,8 +33,6 @@ if (samfeatureflags.sloop) then configs.deploymentBase("sam") {
                     {
                         name: "sloop",
                         args: [
-                            "-web-files-path=/webfiles/",
-                            "--alsologtostderr",
                             "--config=/sloopconfig/sloop.yaml",
                         ],
                         command: [
