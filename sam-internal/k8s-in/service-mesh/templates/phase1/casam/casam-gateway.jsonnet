@@ -8,6 +8,7 @@ if (istioPhases.phaseNum == 1) then
   metadata: {
     annotations: {
       "manifestctl.sam.data.sfdc.net/swagger": "disable",
+      "niko/fake.change.for.redeploy": "feel free to override this",
     },
     name: "ingressgateway",
     namespace: "core-on-sam-sp2",
