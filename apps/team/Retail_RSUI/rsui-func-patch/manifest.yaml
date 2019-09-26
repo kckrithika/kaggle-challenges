@@ -36,7 +36,7 @@ system:
 
     containers:
     - name: retail-setup
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/retail/retail-setup:2.0.235
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/retail/retail-setup:2.0.236
       ports:
       # Jetty http1 ports for incoming public traffic via SLB
       - containerPort: 7022
