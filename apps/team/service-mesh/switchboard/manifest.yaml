@@ -41,7 +41,6 @@ system:
       - --listeners.rate-limit-enabled-clusters[4]=retail-setup.retail-rsui
       - --listeners.rate-limit-enabled-clusters[5]=cloudatlas-prd-dev-service.cloudatlas
       - --listeners.rate-limit-enabled-clusters[6]=gid-runtime-service.global-identity
-      - --listeners.rate-limit-enabled-clusters[7]=universal-search.universal-search
       - --listeners.external-auth-cluster=external-auth.opa-sidecar
       # External Auth Sidecar cluster
       - --clusters.external-mesh-services[0]_name=external-auth.opa-sidecar
