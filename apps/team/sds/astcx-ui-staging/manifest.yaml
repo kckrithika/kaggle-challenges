@@ -4,7 +4,7 @@ system:
     email:
       - juppala@salesforce.com
   functions:
-  - name: astcx-ui
+  - name: astcx-ui-staging
     count: 1
     volumes:
       - name: uiservercert
@@ -23,11 +23,11 @@ system:
       - name: AST_CX_SERVER_TYPE
         value: "cron"
       - name: AST_CX_ENVIRONMENT
-        value: "prod"
+        value: "dev"
       - name: AST_CX_HTTPS_PROXY
         value: "http://public0-proxy1-0-xrd.data.sfdc.net:8080"
       - name: AST_CX_BASE_URL
-        value: "https://gus.my.salesforce.com"
+        value: "https://gus--zonesintk.my.salesforce.com"
       - name: AST_CX_SERVICE_URL
         value: "https://dev.sdssca.com"
       - name: AST_CRED_SERVICE_URL
@@ -48,7 +48,7 @@ system:
         mountPath: /clientcerts
   loadbalancers:
   - lbname: astcx
-    function: astcx-ui
+    function: astcx-ui-staging
     slbenabled: true
     ports:
       - port: 443
@@ -56,7 +56,7 @@ system:
         lbtype: tcp
         tls: false
   - lbname: astcred
-    function: astcx-ui
+    function: astcx-ui-staging
     slbenabled: true
     ports:
       - port: 443

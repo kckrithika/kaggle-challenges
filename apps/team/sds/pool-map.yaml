@@ -13,5 +13,7 @@ apps:
   - xrd/xrd-sdstoolsdev
   soter-xrd:
   - xrd/xrd-sdstools
+  astcx-ui-staging:
+  - xrd/xrd-sdstoolsdev
   astcx-ui:
   - xrd/xrd-sdstools
