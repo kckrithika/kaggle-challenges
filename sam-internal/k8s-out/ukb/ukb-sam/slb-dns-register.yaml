@@ -54,6 +54,11 @@ spec:
         - --vipLimit=198
         - --client.socketDir=/host/data/slb/config/slb-dns-register
         - --client.dialSocket=true
+        env:
+        - name: NODE_NAME
+          valueFrom:
+            fieldRef:
+              fieldPath: spec.nodeName
         image: ops0-artifactrepo1-0-ukb.data.sfdc.net/dva/slb/hyperslb:2230-170ef3b717f66fbd61615eeb02a8ab4b37cb3bed
         name: slb-dns-register
         volumeMounts:

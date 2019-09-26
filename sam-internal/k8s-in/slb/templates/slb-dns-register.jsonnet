@@ -83,8 +83,10 @@ if slbconfigs.isSlbEstate then configs.deploymentBase("slb") {
                                               configs.sfdchosts_volume_mount,
                                               slbconfigs.reservedips_volume_mount,
                                           ] + madkub.madkubSlbCertVolumeMounts(certDirs)),
+                                          env: [
+                                              slbconfigs.node_name_env,
+                                          ],
                                       }
-                                      + (if slbimages.phase == "1" || slbimages.phase == "2" then { env: [slbconfigs.node_name_env] } else {})
                                       + configs.ipAddressResourceRequest,
                                       slbshared.slbConfigProcessor(portconfigs.slb.slbConfigProcessorDnsLivenessProbeOverridePort),
                                       slbshared.slbCleanupConfig,
