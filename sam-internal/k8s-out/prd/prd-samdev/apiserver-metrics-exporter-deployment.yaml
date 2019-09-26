@@ -18,6 +18,12 @@ spec:
       automountServiceAccountToken: true
       containers:
       - command:
+        - sleep
+        - infinity
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/collection-erb-config-gen:19-70c45ccd33d3772cd6519e1f7dfe2cf5c2bc7b0e
+        imagePullPolicy: Always
+        name: dummy-image-promoter
+      - command:
         - ocagent
         - --config=/config/opencensus.yaml
         image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/opencensus-service:13-75d5d20e22eec757a5399028a945fa0851bab367
