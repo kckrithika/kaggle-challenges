@@ -1,0 +1,68 @@
+apiVersion: v1
+system:
+  functions:
+  - name: sam-c2c-jmh-perftestingapp-c2cservice-sme-servicemesh
+    count: 1
+    containers:
+    - name: sam-c2c-jmh-perftestingapp-c2cservice-sme-servicemesh
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/pbarlota/sam-c2c-jmh-perftestingapp-c2cservice-sme-servicemesh:latest-1
+      ports:
+      - containerPort: 9090
+      volumeMounts:
+      - name: client-cert
+        mountPath: /client-certs
+      - name: server-cert
+        mountPath: /server-certs
+      livenessProbe:
+        exec:
+          command:
+          - echo
+          - "OK"
+    #####################################################################################
+    # Service Mesh / Envoy / Sherpa
+    #####################################################################################
+    - name: sherpa-c2c-client
+      image: sfci/servicelibs/sherpa-envoy:1.0.7
+      env:
+      - name: SFDC_ENVIRONMENT
+        value: "stmfa"
+      resources:
+        limits: { cpu: "1", memory: "1Gi" }
+        requests: { cpu: "1", memory: "1Gi" }
+      volumeMounts:
+      - name: client-cert
+        mountPath: /client-certs
+      - name: server-cert
+        mountPath: /server-certs
+      ports:
+      - containerPort: 7442
+        name: http1-tls-in
+      - containerPort: 15373
+        name: sherpa-adm
+      livenessProbe:
+        exec:
+          command:
+          - "./bin/is-alive"
+        initialDelaySeconds: 120
+        periodSeconds: 5
+      readinessProbe:
+        exec:
+          command:
+          - "./bin/is-ready"
+        initialDelaySeconds: 110
+        periodSeconds: 5
+    volumes:
+    - name: server-cert
+      maddogCert:
+        type: server
+    - name: client-cert
+      maddogCert:
+        type: client
+  loadbalancers:
+  - lbname: sam-c2c-jmh-perftestingapp-c2cservice-sme-servicemesh-lb
+    function: sam-c2c-jmh-perftestingapp-c2cservice-sme-servicemesh
+    slbenabled: true
+    ports:
+      - port: 9090
+        targetport: 9090
+        lbtype: tcp
