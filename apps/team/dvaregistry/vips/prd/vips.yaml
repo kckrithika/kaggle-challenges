@@ -61,6 +61,8 @@
       healthprotocol: "tcp"
 - lbname: goproxy
   customlbname: goproxy
+  cnames:
+    - cname: sparta.slb.sfdc.net
   servers:
     - go-athens-1.eng.sfdc.net
     - go-athens-2.eng.sfdc.net
