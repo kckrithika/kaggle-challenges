@@ -121,6 +121,10 @@ system:
         lbtype: tcp
   - lbname: gater
     function: gater
+    labels:
+      app: gater
+    annotations:
+      "routing.mesh.sfdc.net/enabled": "true"
     ports:
       - lbtype: dsr
         port: 7443
