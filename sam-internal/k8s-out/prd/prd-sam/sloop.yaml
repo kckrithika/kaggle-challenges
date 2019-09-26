@@ -20,8 +20,6 @@ spec:
     spec:
       containers:
       - args:
-        - -web-files-path=/webfiles/
-        - --alsologtostderr
         - --config=/sloopconfig/sloop.yaml
         command:
         - /bin/sloop
