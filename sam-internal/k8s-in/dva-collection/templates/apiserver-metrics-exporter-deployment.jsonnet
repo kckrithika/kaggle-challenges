@@ -114,6 +114,18 @@ if collectionUtils.apiserver.featureFlag then {
                     },
                 ],
                 containers: [
+                    # Dummy sidecar to force Image promotion for the initContainer Image.
+                    # Currently, only Images used in containers are promomoted.
+                    # W-6651242 is the story for the fix.
+                    {
+                        name: "dummy-image-promoter",
+                        image: collectionUtils.apiserver.configGenImage,
+                        imagePullPolicy: "Always",
+                        command: [
+                            "sleep",
+                            "infinity",
+                        ],
+                    },
                     {
                         name: "prom-to-argus",
                         image: collectionUtils.apiserver.opencensusImage,
