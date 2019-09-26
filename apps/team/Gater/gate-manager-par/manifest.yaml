@@ -54,10 +54,10 @@ system:
       resources:
         limits:
           cpu: "8"
-          memory: 8Gi
+          memory: 10Gi
         requests:
           cpu: "8"
-          memory: 8Gi
+          memory: 10Gi
       env:
       - name: SFDC_ENVIRONMENT
         value: prod
