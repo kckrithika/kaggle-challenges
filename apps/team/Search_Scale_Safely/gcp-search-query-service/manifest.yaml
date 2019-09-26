@@ -5,7 +5,7 @@ system:
     count: 2
     containers:
     - name: search-query-service
-      image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-gcp/sfci/searchdev/search-query-execution-platform:6.1.0
+      image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-gcp/sfci/searchdev/search-query-execution-platform:6.3
       command: ["java", "-Xdebug", "-Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=8955", "-jar", "service.jar"]
       args:
       - --modelstore.repo.models=model_repository_root/models
@@ -42,7 +42,7 @@ system:
         initialDelaySeconds: 110
         timeoutSeconds: 10
     - name: beacon
-      image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-gcp/sfci/services/sfdc-bazel/disco/beacon:d1180ea4b
+      image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-gcp/sfci/services/sfdc-bazel/disco/beacon:e46413a2b
       args:
       - -endpoint
       - search-scale-safely/search-query-service:DATACENTER_ALLENV:7443
@@ -52,7 +52,7 @@ system:
           command:
           - /opt/beacon/is-alive.sh
     - name: sherpa-b
-      image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-gcp/sfci/servicelibs/sherpa-envoy:1.0.12
+      image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-gcp/sfci/servicelibs/sherpa-envoy:1.0.13
       args:
       - --switchboard=switchboard.service-mesh.svc:15001
       ports:
