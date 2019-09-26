@@ -102,16 +102,28 @@ local getInstanceDataWithDefaults(instanceTag) = (
   local instanceData = instanceMap[configs.kingdom][instanceTag];
   # The instance name (unless provided) is formed as "secretservice-watchdog-<instanceTag>".
   local name = (if std.objectHas(instanceData, "name") then instanceData.name else "secretservice-watchdog-" + instanceTag);
-  # Return the object from the instance map with some defaulting applied.
-  instanceData {
+
+  # defaultInstanceData supplies the schema and default values for instanceData.
+  local defaultInstanceData = {
+    # name is the name of the container for the instance.
     name: name,
-    [if !(std.objectHas(instanceData, "role")) then "role"]: "secrets." + name,
-    [if !(std.objectHas(instanceData, "canary")) then "canary"]: false,
-    [if !(std.objectHas(instanceData, "vaultName")) then "vaultName"]: "ss-canary-vault-" + instanceTag,
-    [if !(std.objectHas(instanceData, "wdKingdom")) then "wdKingdom"]: "CRZ",
-    [if !(std.objectHas(instanceData, "writePort")) then "writePort"]: 8272,
-    [if !(std.objectHas(instanceData, "extraArgs")) then "extraArgs"]: [],
-  }
+    # vaultName is the name of the secret service vault that is accessed by the canary instance.
+    vaultName: "ss-watchdog-vault-" + instanceTag,
+    # role indicates the maddog role that is requested for the client certs and allowed access to the named vault.
+    role: "secrets.secretservice-watchdog",
+    # wdKingdom indicates the kingdom hosting the target secret service that this watchdog is intended to monitor.
+    wdKingdom: "CRZ",
+    # writePort supplies the target port for "write" operations performed by this watchdog.
+    writePort: 8272,
+    # extraArgs supplies any additional command line parameters that should be provided for this instance.
+    extraArgs: [],
+    # canary indicates whether this instance should be considered a "canary" instance. Such instances are targeted
+    # first for new deployments.
+    canary: false,
+  };
+
+  # Override the default instance data with any defined values from instanceData.
+  defaultInstanceData + instanceData
 );
 
 local ssWatchdogDeployment(instanceTag) = configs.deploymentBase("secrets") {
