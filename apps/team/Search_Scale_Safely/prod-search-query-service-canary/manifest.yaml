@@ -14,7 +14,7 @@ system:
         maxUnavailable: 25%
     containers:
     - name: search-query-service
-      image: sfci/searchdev/search-query-execution-platform:6.1.0
+      image: sfci/searchdev/search-query-execution-platform:6.3
       ports:
       - name: service-port
         containerPort: 7020
@@ -34,24 +34,18 @@ system:
           command: ["./runcheck.sh", "5"]
         initialDelaySeconds: 110
         timeoutSeconds: 10
-      volumeMounts:
-      - mountPath: /home/sfdc-search-query-service/logs
-        name: logvol
     - name: beacon
-      image: sfci/services/sfdc-bazel/disco/beacon:d1180ea4b
+      image: sfci/services/sfdc-bazel/disco/beacon:e46413a2b
       args:
       - -endpoint
       - search-scale-safely/search-query-service:DATACENTER_ALLENV:7443
-      volumeMounts:
-      - mountPath: /home/scone/logs
-        name: beacon-log-volume
       livenessProbe:
         initialDelaySeconds: 5
         exec:
           command:
           - /opt/beacon/is-alive.sh
     - name: sherpa-b
-      image: sfci/servicelibs/sherpa-envoy:1.0.12
+      image: sfci/servicelibs/sherpa-envoy:1.0.13
       env:
       - name: SFDC_ENVIRONMENT
         value: sam
@@ -70,23 +64,11 @@ system:
           command: ["./bin/is-ready"]
         initialDelaySeconds: 120
         periodSeconds: 5
-      volumeMounts:
-      - name: sherpa-log-volume
-        mountPath: /log
       - name: tls-server-cert
         mountPath: /server-certs
       - name: tls-client-cert
         mountPath: /client-certs
     volumes:
-    - name: logvol
-      hostpath:
-        path: /home/sfdc-search-query-service/logs
-    - name: sherpa-log-volume
-      hostpath:
-        path: /home/sfdc-sherpa/logs
-    - name: beacon-log-volume
-      hostpath:
-        path: /home/sfdc-beacon/logs
     - name: tls-client-cert
       maddogCert:
         type: client
