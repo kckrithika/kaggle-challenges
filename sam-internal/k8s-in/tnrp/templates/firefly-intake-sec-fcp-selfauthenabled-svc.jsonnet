@@ -3,10 +3,10 @@ local images = import "fireflyimages.jsonnet";
 local portConfig = import "portconfig.jsonnet";
 local configs = import "config.jsonnet";
 local firefly_feature_flags = import "firefly_feature_flags.jsonnet";
-local intakeConfig = import "configs/firefly-intake-sec.jsonnet";
+local intakeConfig = import "configs/firefly-intake.jsonnet";
 local fireflyConfigs = import "fireflyconfigs.jsonnet";
 
-if firefly_feature_flags.is_firefly_svc_enabled then
+if configs.estate == "prd-samtwo" then
 {
   local intakeservice = serviceDeployment {
     serviceConf:: {
@@ -21,20 +21,19 @@ if firefly_feature_flags.is_firefly_svc_enabled then
         },
       ],
     },
-    serviceName:: "firefly-intake",
+    serviceName:: "firefly-intake-sec-fcp-test",
     role:: "firefly",
-    dockerImage:: images.fireflyintake,
+    dockerImage:: images.fireflysecintake,
     portAnnotations:: [
       {
          port: portConfig.firefly.intake_mgmt,
          targetPort: portConfig.firefly.intake_mgmt,
          lbtype: "http",
-         tls: true,
+         tls: false,
          reencrypt: false,
          sticky: 0,
       },
       {
-         // TODO: Remove once all customers have migrated to tls endpoint as part of W-5562772
          port: portConfig.firefly.intake_http,
          targetPort: portConfig.firefly.intake_http,
          lbtype: "http",
@@ -88,7 +87,17 @@ if firefly_feature_flags.is_firefly_svc_enabled then
     ],
     volumeMounts:: super.commonVolMounts,
     data:: {
-      "application.yml": std.manifestJson(intakeConfig.config("firefly-intake")),
+      local appConfig = intakeConfig.config("firefly-intake") + {
+        firefly+: {
+          intake+: {
+            "instance-type": "firefly-fcp-test",
+          },
+          rabbitmq+: {
+            "routing-key-format": "%s.%s",
+          },
+        },
+      },
+      "application.yml": std.manifestJson(appConfig),
     },
   },
 

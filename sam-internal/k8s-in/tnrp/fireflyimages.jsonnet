@@ -52,11 +52,20 @@ local configs = import "config.jsonnet";
 
         ### Release Phase 2 - prd-sam (Canary)
         "2": $.per_phase["3"] {
+<<<<<<< HEAD
              fireflyintake: "439",
              fireflycrawler: "439",
              fireflypackage: "439",
              fireflypromotion: "439",
              fireflypullrequest: "439",
+=======
+             fireflyintake: "432",
+             fireflysecintake: "438",
+             fireflycrawler: "432",
+             fireflypackage: "432",
+             fireflypromotion: "432",
+             fireflypullrequest: "432",
+>>>>>>> support webhook secret validation
              fireflyevalresultmonitor: "327",
              fireflydind: "238",
              rabbitmq: "140",
@@ -66,6 +75,7 @@ local configs = import "config.jsonnet";
         ### Release Phase 3 - prd-samtwo (production)
         "3": $.per_phase["4"] {
              fireflyintake: "432",
+             fireflysecintake: "438",
              fireflycrawler: "432",
              fireflypackage: "432",
              fireflypromotion: "432",
@@ -110,6 +120,7 @@ local configs = import "config.jsonnet";
     rabbitmq: configs.registry + "/dva/firefly-rabbitmq:" + $.per_phase[$.phase].rabbitmq,
     rabbitmq_monitord: configs.registry + "/dva/firefly-rabbitmq-monitord:" + $.per_phase[$.phase].rabbitmqmonitord,
     fireflyintake: configs.registry + "/dva/firefly-intake:" + $.per_phase[$.phase].fireflyintake,
+    fireflysecintake: configs.registry + "/dva/firefly-intake:" + $.per_phase[$.phase].fireflysecintake,
     fireflycrawler: configs.registry + "/dva/firefly-crawler:" + $.per_phase[$.phase].fireflycrawler,
     fireflypullrequest: configs.registry + "/dva/firefly-pullrequest:" + $.per_phase[$.phase].fireflypullrequest,
     fireflypackage: configs.registry + "/dva/firefly-package:" + $.per_phase[$.phase].fireflypackage,

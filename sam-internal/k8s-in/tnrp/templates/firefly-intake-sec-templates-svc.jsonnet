@@ -21,20 +21,19 @@ if firefly_feature_flags.is_firefly_svc_enabled then
         },
       ],
     },
-    serviceName:: "firefly-intake",
+    serviceName:: "firefly-intake-sec-templates",
     role:: "firefly",
-    dockerImage:: images.fireflyintake,
+    dockerImage:: images.fireflysecintake,
     portAnnotations:: [
       {
          port: portConfig.firefly.intake_mgmt,
          targetPort: portConfig.firefly.intake_mgmt,
          lbtype: "http",
-         tls: true,
+         tls: false,
          reencrypt: false,
          sticky: 0,
       },
       {
-         // TODO: Remove once all customers have migrated to tls endpoint as part of W-5562772
          port: portConfig.firefly.intake_http,
          targetPort: portConfig.firefly.intake_http,
          lbtype: "http",
@@ -88,7 +87,18 @@ if firefly_feature_flags.is_firefly_svc_enabled then
     ],
     volumeMounts:: super.commonVolMounts,
     data:: {
-      "application.yml": std.manifestJson(intakeConfig.config("firefly-intake")),
+      local appConfig = intakeConfig.config("firefly-intake") + {
+        firefly+: {
+          intake+: {
+            disable2fa: true,
+            "instance-type": "firefly-templates",
+          },
+          rabbitmq+: {
+            "routing-key-format": "%s.%s",
+          },
+        },
+      },
+      "application.yml": std.manifestJson(appConfig),
     },
   },
 

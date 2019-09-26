@@ -12,8 +12,9 @@ items:
                   "webhook-secret-token-validation": false
               },
               "intake": {
-                  "enable-webhook-secret": "false",
-                  "instance-type": "firefly-mdp",
+                  "disable2fa": true,
+                  "enable-webhook-secret": "true",
+                  "instance-type": "firefly-templates",
                   "repo-config-map": {
                       "manifests": {
                           "handle-only-latest-commit": true,
@@ -171,7 +172,7 @@ items:
   metadata:
     labels:
       sam.data.sfdc.net/owner: tnrp
-    name: firefly-intake-mdp-configmap
+    name: firefly-intake-sec-templates-configmap
     namespace: firefly
 - apiVersion: v1
   kind: Service
@@ -180,10 +181,10 @@ items:
       slb.sfdc.net/cnames: |-
         [
           {
-            "cname": "firefly-intake-mdp-prd-sam.slb.sfdc.net"
+            "cname": "firefly-intake-sec-templates-prd-sam.slb.sfdc.net"
           }
         ]
-      slb.sfdc.net/name: firefly-intake-mdp
+      slb.sfdc.net/name: firefly-intake-sec-templates
       slb.sfdc.net/portconfigurations: |-
         [
           {
@@ -192,7 +193,7 @@ items:
             "reencrypt": false,
             "sticky": 0,
             "targetPort": 8081,
-            "tls": true
+            "tls": false
           },
           {
             "lbtype": "http",
@@ -212,9 +213,9 @@ items:
           }
         ]
     labels:
-      app: firefly-intake-mdp
+      app: firefly-intake-sec-templates
       sam.data.sfdc.net/owner: tnrp
-    name: firefly-intake-mdp-service
+    name: firefly-intake-sec-templates-service
     namespace: firefly
   spec:
     ports:
@@ -231,21 +232,21 @@ items:
       protocol: TCP
       targetPort: 8081
     selector:
-      name: firefly-intake-mdp
+      name: firefly-intake-sec-templates
     type: NodePort
 - apiVersion: extensions/v1beta1
   kind: Deployment
   metadata:
     labels:
-      name: firefly-intake-mdp
+      name: firefly-intake-sec-templates
       sam.data.sfdc.net/owner: tnrp
-    name: firefly-intake-mdp-deployment
+    name: firefly-intake-sec-templates-deployment
     namespace: firefly
   spec:
     replicas: 1
     selector:
       matchLabels:
-        name: firefly-intake-mdp
+        name: firefly-intake-sec-templates
         sam.data.sfdc.net/owner: tnrp
     strategy:
       rollingUpdate:
@@ -267,9 +268,9 @@ items:
                 ]
             }
         labels:
-          name: firefly-intake-mdp
+          name: firefly-intake-sec-templates
           sam.data.sfdc.net/owner: tnrp
-        name: firefly-intake-mdp-deployment
+        name: firefly-intake-sec-templates-deployment
         namespace: firefly
       spec:
         containers:
@@ -352,7 +353,7 @@ items:
             value: "24"
           - name: DARKLAUNCH
             value: "false"
-          image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-intake:439
+          image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-intake:438
           imagePullPolicy: Always
           livenessProbe:
             failureThreshold: 10
@@ -363,7 +364,7 @@ items:
             periodSeconds: 30
             successThreshold: 1
             timeoutSeconds: 30
-          name: firefly-intake-mdp
+          name: firefly-intake-sec-templates
           ports:
           - containerPort: 8081
             name: admin-port
@@ -439,7 +440,7 @@ items:
                 items:
                 - key: application.yml
                   path: application.yml
-                name: firefly-intake-mdp-configmap
+                name: firefly-intake-sec-templates-configmap
         - emptyDir: {}
           name: docker-build-dir
         - emptyDir: {}
