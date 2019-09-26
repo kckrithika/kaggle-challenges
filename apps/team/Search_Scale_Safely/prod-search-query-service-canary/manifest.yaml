@@ -64,6 +64,7 @@ system:
           command: ["./bin/is-ready"]
         initialDelaySeconds: 120
         periodSeconds: 5
+      volumeMounts:
       - name: tls-server-cert
         mountPath: /server-certs
       - name: tls-client-cert
