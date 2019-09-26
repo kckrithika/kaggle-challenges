@@ -109,6 +109,12 @@ apps:
   - name: prd/prd-sp2-sam_caas
     hostSubList:
     - samcaas2-caasminion1-5-prd.eng.sfdc.net
+ prd-sp2-cron-cs77-12097:
+  - name: prd/prd-sp2-sam_caas
+    hostSubList:
+    - samcaas2-caasminion3-2-prd.eng.sfdc.net
+    - samcaas2-caasminion3-5-prd.eng.sfdc.net
+    - samcaas2-caasminion3-7-prd.eng.sfdc.net
  prd-caas-redis-12098:
   - name: prd/prd-sp2-sam_caas
     hostSubList:

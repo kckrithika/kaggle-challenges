@@ -1,0 +1,232 @@
+apiVersion: v1
+
+system:
+  notifications:
+    email:
+      - vijay.kota@salesforce.com
+  functions:
+    - name: cs77-app
+      count: 2
+      identity:
+        serviceName: app
+        pod: cs77
+      containers:
+        - name: app
+          image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/vijay-kota/myenvoy:10Jul19
+          command: ["/usr/bin/python"]
+          args: ["/home/sfdc-sherpa/myscripts/myapp.py"]
+          ports:
+            - containerPort: 12345
+              name: client-port
+          env:
+            - name: CLIENT_PORT
+              value: 12345
+          resources:
+            limits: { cpu: "1", memory: "1Gi" }
+            requests: { cpu: "1", memory: "1Gi" }
+          livenessProbe:
+            exec:
+              command: ["/bin/true"]
+            initialDelaySeconds: 10
+            timeoutSeconds: 10
+            periodSeconds: 60
+          readinessProbe:
+            exec:
+              command: ["/bin/true"]
+            initialDelaySeconds: 10
+            timeoutSeconds: 10
+          volumeMounts:
+            - mountPath: /var/log/app
+              name: logvol
+
+        # name: sherpa-app
+        # # https://sconelibci.dop.sfdc.net/job/servicelibs/job/sherpa-envoy/job/master/73
+        # image: sfci/servicelibs/sherpa-envoy:1.0.7
+        # # See https://git.soma.salesforce.com/servicelibs/sherpa#ports
+        # ports:
+        # - containerPort: 15373
+        #   name: sherpa-adm
+        # resources:
+        #   limits: { cpu: "1", memory: "1Gi" }
+        #   requests: { cpu: "1", memory: "1Gi" }
+        # env:
+        #   - name: SFDC_ENVIRONMENT
+        #     value: mesh
+        #   - name: ENVOY_DEBUG_OPTIONS
+        #     value: --log-level trace --log-path /home/sfdc-sherpa/envoy.log
+        # livenessProbe:
+        #   exec:
+        #     command:
+        #     - "./bin/is-alive"
+        #   initialDelaySeconds: 120
+        #   periodSeconds: 5
+        # readinessProbe:
+        #   exec:
+        #     command:
+        #     - "./bin/is-ready"
+        #   initialDelaySeconds: 110
+        #   periodSeconds: 5
+        # # Mount volumes with certificates. The paths here match the defaults assumed by sherpa
+        # volumeMounts:
+        # - name: sherpaclientcert
+        #   mountPath: /client-certs
+        # - name: sherpaservercert
+        #   mountPath: /server-certs
+        # - name: sherpa-log-volume
+        #   mountPath: /log
+
+      volumes:
+        - name: logvol
+          hostpath:
+            path: /var/log/app
+        - name: sherpaclientcert
+          maddogCert:
+            type: client
+        - name: sherpaservercert
+          maddogCert:
+            type: server
+        - name: sherpa-log-volume
+          hostPath:
+            path: /home/sfdc-sherpa/logs
+        - name: beacon-log-volume
+          hostPath:
+            path: /home/sfdc-beacon/logs
+
+    - name: cs77-cron
+      count: 2
+      identity:
+        serviceName: cron
+        pod: cs77
+      containers:
+        - name: cron-service
+          image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/vijay-kota/myenvoy:10Jul19
+          command: ["/bin/sh"]
+          args: ["-c", "export AMQP_PORT=$HTTP_PORT ; /usr/bin/python /home/sfdc-sherpa/myscripts/myqpid.py"]
+          ports:
+            - name: http-port
+              containerPort: 12097
+            # containerPort: 7022
+          env:
+            - name: HTTP_PORT
+              value: 12097
+          resources:
+            limits: { cpu: "1", memory: "1Gi" }
+            requests: { cpu: "1", memory: "1Gi" }
+          livenessProbe:
+            exec:
+              command: ["/bin/true"]
+            initialDelaySeconds: 10
+            timeoutSeconds: 10
+            periodSeconds: 60
+          readinessProbe:
+            exec:
+              command: ["/bin/true"]
+            initialDelaySeconds: 10
+            timeoutSeconds: 10
+          volumeMounts:
+            - mountPath: /var/log/cron
+              name: logvol
+
+        # name: beacon-cron
+        # image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/servicemesh/beacon:1.0.0
+        # command: ["/bin/sh"]
+        # args: ["-c", "if [[ $FUNCTION_INSTANCE_NAME = *-0 ]]; then export port=$SHERPA0 ; else export port=$SHERPA1 ; fi; /usr/bin/java -jar /home/scone/service.jar -endpoint qpid/mq-cluster9-cs77-${port}:POD:${port}"]
+        #   # -endpoint
+        #   # samapp/$(FUNCTION_NAMESPACE)/$(FUNCTION)-http:DATACENTER_ALLENV:7014
+        #   # samapp/$(FUNCTION_NAMESPACE)/$(FUNCTION)-https:DATACENTER_ALLENV:7442
+        #   # -endpoint
+        #   # samapp/$(FUNCTION_NAMESPACE)/$(FUNCTION):DATACENTER_ALLENV:12030
+        # env:
+        #   - name: SFDC_ENVIRONMENT
+        #     value: mesh
+        #   - name: SHERPA0
+        #     value: 12030
+        #   - name: SHERPA1
+        #     value: 12033
+        # livenessProbe:
+        #   initialDelaySeconds: 5
+        #   exec:
+        #     command:
+        #       # "/home/scone/is-alive.sh"
+        #       - "/bin/true"
+        # resources:
+        #   limits: { cpu: "1", memory: "1Gi" }
+        #   requests: { cpu: "1", memory: "1Gi" }
+        # volumeMounts:
+        #   - mountPath: /home/scone/logs
+        #     name: beacon-log-volume
+
+        # name: sherpa-qpid
+        # # https://sconelibci.dop.sfdc.net/job/servicelibs/job/sherpa-envoy/job/master/73
+        # image: sfci/servicelibs/sherpa-envoy:1.0.7
+        # # See https://git.soma.salesforce.com/servicelibs/sherpa#ports
+        # ports:
+        # - containerPort: 15373
+        #   name: sherpa-adm
+        # - containerPort: 12030
+        # - containerPort: 12033
+        # # containerPort: 7014
+        # # name: http1-in
+        # # containerPort: 7442
+        # # name: http1-tls-in
+        # resources:
+        #   limits: { cpu: "1", memory: "1Gi" }
+        #   requests: { cpu: "1", memory: "1Gi" }
+        # env:
+        #   - name: SFDC_ENVIRONMENT
+        #     value: mesh
+        #   - name: ENVOY_DEBUG_OPTIONS
+        #     value: --log-level trace --log-path /home/sfdc-sherpa/envoy.log
+        # livenessProbe:
+        #   exec:
+        #     command:
+        #     - "./bin/is-alive"
+        #   initialDelaySeconds: 120
+        #   periodSeconds: 5
+        # readinessProbe:
+        #   exec:
+        #     command:
+        #     - "./bin/is-ready"
+        #   initialDelaySeconds: 110
+        #   periodSeconds: 5
+        # # Mount volumes with certificates. The paths here match the defaults assumed by sherpa
+        # volumeMounts:
+        # - name: sherpaclientcert
+        #   mountPath: /client-certs
+        # - name: sherpaservercert
+        #   mountPath: /server-certs
+        # - name: sherpa-log-volume
+        #   mountPath: /log
+
+      volumes:
+        - name: logvol
+          hostpath:
+            path: /var/log/qpid
+        - name: sherpaclientcert
+          maddogCert:
+            type: client
+        - name: sherpaservercert
+          maddogCert:
+            type: server
+        - name: sherpa-log-volume
+          hostPath:
+            path: /home/sfdc-sherpa/logs
+        - name: beacon-log-volume
+          hostPath:
+            path: /home/sfdc-beacon/logs
+
+  loadbalancers:
+  - lbname: cronsvc-cs77
+    function: cs77-cron
+    slbenabled: true
+    ports:
+      - port: 12097
+        targetport: 12097
+        lbtype: http
+  - lbname: cronapp-cs77
+    function: cs77-app
+    slbenabled: true
+    ports:
+      - port: 12345
+        targetport: 12345
+        lbtype: http
