@@ -13,8 +13,10 @@ system:
       containers:
         - name: app
           image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/vijay-kota/myenvoy:10Jul19
-          command: ["/usr/bin/python"]
-          args: ["/home/sfdc-sherpa/myscripts/myapp.py"]
+          #ommand: ["/usr/bin/python"]
+          #rgs: ["/home/sfdc-sherpa/myscripts/myapp.py"]
+          command: ["/bin/sh"]
+          args: ["-c", "export AMQP_PORT=$CLIENT_PORT ; /usr/bin/python /home/sfdc-sherpa/myscripts/myqpid.py"]
           ports:
             - containerPort: 12345
               name: client-port
