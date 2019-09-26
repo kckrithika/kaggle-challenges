@@ -1,0 +1,10 @@
+# Add an ID for each person who is to be authorized to work on apps
+# in your team namespace. These folks can approve PRS. One name per line.
+# Use the corp user name instead of the git user id. For example
+# johann.dev instead of johann-dev
+users:
+  - ygrignon
+  - bdamania
+  - tvaishnav
+  - rravikumar
+  - virag.shah
