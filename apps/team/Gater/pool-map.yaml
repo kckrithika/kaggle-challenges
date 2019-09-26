@@ -12,10 +12,9 @@ apps:
  gate-manager-eu:
   - cdg/cdg-sam_gater
   - fra/fra-sam_gater
+  - frf/frf-sam_gater
   - lo2/lo2-sam_gater
   - lo3/lo3-sam_gater
- gate-manager-eu-5:
-  - frf/frf-sam_gater
  gate-manager-na:
   - dfw/dfw-sam_gater
   - iad/iad-sam_gater
