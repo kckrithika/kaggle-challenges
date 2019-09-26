@@ -102,7 +102,7 @@ system:
         - name: DATABASE_NAMESPACE
           value: crecontrolplaneccpdev
         - name: SPRING_DATASOURCE_URL
-          value: jdbc:discover://dbaas0-minionapp1-1-prd.eng.sfdc.net:1511/${database.namespace}?${database.discovery.params}
+          value: jdbc:discover://dbaas0-minionapp1-1-prd.eng.sfdc.net:1511/${database.namespace}?${database.discovery.params}&dropDatabase=true
           ## Stream Processor
         - name: STREAM_PROCESSING_ENDPOINT
           value: cre-sp-ccp-dev.retail-cre.localhost.mesh.force.com:5442
