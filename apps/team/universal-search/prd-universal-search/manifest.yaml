@@ -29,7 +29,7 @@ system:
         secretName: solrcloudcli-keytab-prd
     containers:
     - name: universal-search
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/universal-search/universal-search:1.4.3
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/universal-search/universal-search:1.5.0
       ports:
       - name: service-port
         containerPort: 7020
@@ -72,7 +72,7 @@ system:
         periodSeconds: 120
         failureThreshold: 1
     - name: sherpa
-      image: sfci/servicelibs/sherpa-envoy:1.0.12
+      image: sfci/servicelibs/sherpa-envoy:1.0.13
       ports:
       # HTTP port for exposing to SLB for IoT
       - containerPort: 7012
@@ -177,7 +177,7 @@ system:
         periodSeconds: 900
         failureThreshold: 1
     - name: sherpa
-      image: sfci/servicelibs/sherpa-envoy:1.0.12
+      image: sfci/servicelibs/sherpa-envoy:1.0.13
       ports:
       - containerPort: 15373
         name: sherpa-adm
