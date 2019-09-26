@@ -83,6 +83,13 @@ local cre_production = {
                 pki_namespace: "flowsnake_test",
                 users: ["flowsnake_test.rrajasekaran"],
             },
+            {
+                owner_name: "Vaishnavi - Testing",
+                namespace: "vaishnavi-spark-test",
+                pki_namespace: "flowsnake_test",
+                users: ["vgiridaran-ltm2.internal.salesforce.com", "flowsnake_test.vgiridaran"],
+                prometheus_config: std.toString(import "configs/client/vaishnavi-spark-test/prometheus-funnel-config.jsonnet"),
+            },
         ],
 
         # ------------------------------------

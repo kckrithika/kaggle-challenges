@@ -37,6 +37,17 @@ items:
   kind: Namespace
   metadata:
     annotations:
+      sfdc.net/flowsnake.owner_name: Vaishnavi - Testing
+      sfdc.net/pki-namespace: flowsnake_test
+    labels:
+      madkub-injector: enabled
+      service-mesh-injector: enabled
+      spark-operator-webhook: enabled
+    name: vaishnavi-spark-test
+- apiVersion: v1
+  kind: Namespace
+  metadata:
+    annotations:
       sfdc.net/flowsnake.owner_name: Flowsnake
       sfdc.net/pki-namespace: flowsnake_test
     labels:
@@ -55,5 +66,16 @@ items:
       service-mesh-injector: enabled
       spark-operator-webhook: enabled
     name: flowsnake-watchdog
+- apiVersion: v1
+  data:
+    prometheus.json: '{"global": {"scrape_interval": "60s"}, "remote_write": [{"queue_config":
+      {"capacity": 100000}, "url": "http://localhost:8000"}], "scrape_configs": [
+      ]}'
+  kind: ConfigMap
+  metadata:
+    labels:
+      name: prometheus-server-conf-vaishnavi-spark-test
+    name: prometheus-server-conf-vaishnavi-spark-test
+    namespace: vaishnavi-spark-test
 kind: List
 metadata: {}
