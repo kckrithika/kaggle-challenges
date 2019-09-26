@@ -115,10 +115,6 @@ system:
       - universal-search/universal-search:DATACENTER_ALLENV:7443
       - -endpoint
       - universal-search-notls/universal-search:DATACENTER_ALLENV:7012
-      - -endpoint
-      - universal-search-http1/universal-search:DATACENTER_ALLENV:7442
-      - -endpoint
-      - universal-search-http1-notls/universal-search:DATACENTER_ALLENV:7014
       livenessProbe:
         initialDelaySeconds: 5
         exec:
