@@ -14,6 +14,14 @@ local kmsconfig = {
     MetricPort: "8125",
 };
 
+
+local testkmsconfig = {
+    Url: "https://smsapi1-0-" + configs.kingdom + ".data.sfdc.net",
+    CAPath: "/cert2/ca.pem",
+    ClientCertPath: "/cert2/client/certificates/client.pem",
+    ClientCertPrivateKeyPath: "/cert2/client/keys/client-key.pem",
+};
+
 if slbconfigs.isSlbEstate && slbconfigs.hsmNginxEnabledEstate then {
     kind: "ConfigMap",
     apiVersion: "v1",
@@ -23,6 +31,6 @@ if slbconfigs.isSlbEstate && slbconfigs.hsmNginxEnabledEstate then {
         labels: {} + configs.ownerLabel.slb,
     },
     data: {
-        [configs.kingdom + ".json"]: std.manifestJsonEx(kmsconfig, " "),
+        [configs.kingdom + ".json"]: std.manifestJsonEx(if configs.estate == "prd-sdc" then testkmsconfig else kmsconfig, " "),
     },
 } else "SKIP"
