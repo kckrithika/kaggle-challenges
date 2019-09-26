@@ -6,7 +6,7 @@ system:
     count: 1
     containers:
     - name: k4a-watchdog
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/hsuanyu-chen/caiman-watchdog/k4a-20190916:latest
+      image: dva/k4a-caiman-watchdog:178-bd80fdec17e2c21732f10003bb08e1a117a1fb7b
       command:
       - "java"
       - "-Duser.home=/tmp"
@@ -18,6 +18,15 @@ system:
       - "/clientcert"
       - "-sleepTime"
       - "5"
+      - "-datacenter"
+      - "PRD"
+      - "-hostname"
+      - $(NODE_NAME)
+      env:
+      - name: NODE_NAME
+        valueFrom:
+          fieldRef:
+            fieldPath: spec.nodeName
       livenessProbe:
         exec:
           command: ["ls", "/"]
@@ -28,7 +37,7 @@ system:
       - mountPath: /clientcert
         name: cert
     - name: k4a-watchdog-crd
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/hsuanyu-chen/caiman-watchdog/k4a-20190916:latest
+      image: dva/k4a-caiman-watchdog:178-bd80fdec17e2c21732f10003bb08e1a117a1fb7b
       command:
       - "java"
       - "-Duser.home=/tmp"
@@ -42,6 +51,15 @@ system:
       - "5"
       - "-url"
       - "https://sec0-kfora1-2-crd.eng.sfdc.net:8443"
+      - "-datacenter"
+      - "PRD"
+      - "-hostname"
+      - $(NODE_NAME)
+      env:
+      - name: NODE_NAME
+        valueFrom:
+          fieldRef:
+            fieldPath: spec.nodeName
       livenessProbe:
         exec:
           command: ["ls", "/"]
