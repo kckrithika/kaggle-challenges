@@ -20,7 +20,7 @@ data:
       mode: ALLOW_ANY
     rootNamespace: mesh-control-plane
     proxyListenPort: 15006
-    proxyHttpPort: -1 # Negative value to disable http proxy listener for interceptionMode NONE.
+    proxyHttpPort: 0
     defaultConfig:
       connectTimeout: 10s
       configPath: "/etc/istio/proxy"
