@@ -22,7 +22,7 @@ if (istioPhases.phaseNum == 1) then
           "*",
         ],
         port: {
-          name: "https",
+          name: "https-8085",
           number: 8085,
           protocol: "HTTPS",
         },
@@ -38,7 +38,7 @@ if (istioPhases.phaseNum == 1) then
           "*",
         ],
         port: {
-          name: "https",
+          name: "https-8443",
           number: 8443,
           protocol: "HTTPS",
         },
@@ -54,7 +54,7 @@ if (istioPhases.phaseNum == 1) then
           "*",
         ],
         port: {
-          name: "tcp-secure",
+          name: "tcp-secure-2525",
           number: 2525,
           protocol: "TCP",
         },
