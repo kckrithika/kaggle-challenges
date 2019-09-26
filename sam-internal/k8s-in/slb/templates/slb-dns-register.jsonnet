@@ -84,7 +84,7 @@ if slbconfigs.isSlbEstate then configs.deploymentBase("slb") {
                                               slbconfigs.reservedips_volume_mount,
                                           ] + madkub.madkubSlbCertVolumeMounts(certDirs)),
                                       }
-                                      + (if slbimages.phase == "1" || slbimages.phase == "2" then { env: [slbconfigs.node_name_env] } else {})
+                                      + (if slbimages.phase == "1" || slbimages.phase == "2" || slbimages.phase == "3" || slbimages.phase == "4" then { env: [slbconfigs.node_name_env] } else {})
                                       + configs.ipAddressResourceRequest,
                                       slbshared.slbConfigProcessor(portconfigs.slb.slbConfigProcessorDnsLivenessProbeOverridePort),
                                       slbshared.slbCleanupConfig,
