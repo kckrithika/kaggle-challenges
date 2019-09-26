@@ -228,7 +228,7 @@
             },
             "prd-sam": {
               "helloselfservice-vyjayanthi-raja-prd.slb.sfdc.net": "96.43.157.1",
-              "hammond-charlie-slb-prd.slb.sfdc.net": "96.43.157.150",
+              "hammond-charlie-slb-prd.slb.sfdc.net": "96.43.157.123",
             },
         },
 
