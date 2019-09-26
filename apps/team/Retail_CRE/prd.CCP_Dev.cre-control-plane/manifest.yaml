@@ -100,7 +100,7 @@ system:
           value: maddog/maddog-client-truststore.json
           ## DBaaS
         - name: DATABASE_NAMESPACE
-          value: crecontrolplaneccpdevb
+          value: crecontrolplaneccpdev
         - name: SPRING_DATASOURCE_URL
           value: jdbc:discover://dbaas0-minionapp1-1-prd.eng.sfdc.net:1511/${database.namespace}?${database.discovery.params}
           ## Stream Processor
