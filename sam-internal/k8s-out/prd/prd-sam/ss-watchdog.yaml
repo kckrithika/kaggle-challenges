@@ -1,0 +1,652 @@
+apiVersion: v1
+items:
+- apiVersion: extensions/v1beta1
+  kind: Deployment
+  metadata:
+    labels:
+      name: secretservice-watchdog-crz11
+      sam.data.sfdc.net/owner: secrets
+    name: secretservice-watchdog-crz11
+    namespace: sam-system
+  spec:
+    replicas: 1
+    selector:
+      matchLabels:
+        name: secretservice-watchdog-crz11
+        sam.data.sfdc.net/owner: secrets
+    template:
+      metadata:
+        annotations:
+          madkub.sam.sfdc.net/allcerts: |-
+            {
+             "certreqs": [
+              {
+               "cert-type": "client",
+               "kingdom": "prd",
+               "name": "client-certs",
+               "role": "secrets.secretservice-watchdog-crz11"
+              }
+             ]
+            }
+        labels:
+          name: secretservice-watchdog-crz11
+          sam.data.sfdc.net/owner: secrets
+        namespace: sam-system
+      spec:
+        containers:
+        - args:
+          - -ssEndpoint=ops-vaultczar1-1-crz.ops.sfdc.net
+          - -ssWritePort=8271
+          - -wdKingdom=CRZ
+          - -vaultName=ss-canary-vault-crz11
+          - -role=sam.secrets.secretservice-watchdog-crz11
+          - -metricsEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80
+          - -logtostderr=true
+          command:
+          - /secretservice/secretservice-watchdog
+          env:
+          - name: FUNCTION_INSTANCE_NAME
+            valueFrom:
+              fieldRef:
+                apiVersion: v1
+                fieldPath: metadata.name
+          - name: FUNCTION_NAMESPACE
+            valueFrom:
+              fieldRef:
+                apiVersion: v1
+                fieldPath: metadata.namespace
+          - name: SFDCLOC_NODE_NAME
+            valueFrom:
+              fieldRef:
+                fieldPath: spec.nodeName
+          image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/secretservice-watchdog:107-62ab4da10c572948b5914cb8a1b629412a191b8d
+          name: watchdog
+          resources:
+            limits:
+              sam.sfdc.net/ip-address: "1"
+            requests:
+              sam.sfdc.net/ip-address: "1"
+          volumeMounts:
+          - mountPath: /clientcert
+            name: client-certs
+        - args:
+          - /sam/madkub-client
+          - --madkub-endpoint=https://$(MADKUBSERVER_SERVICE_HOST):32007
+          - --maddog-endpoint=https://all.pkicontroller.pki.blank.prd.prod.non-estates.sfdcsd.net:8443
+          - --maddog-server-ca=/maddog-certs/ca/security-ca.pem
+          - --madkub-server-ca=/maddog-certs/ca/cacerts.pem
+          - --ca-folder=/maddog-certs/ca
+          - --token-folder=/tokens
+          - --funnel-endpoint=ajna0-funnel1-0-prd.data.sfdc.net:80
+          - --kingdom=prd
+          - --superpod=None
+          - --estate=prd-sam
+          - --testca-folder=/maddog-certs/ca_test
+          - --cert-folders=client-certs:/clientcert
+          - --refresher
+          - --run-init-for-refresher-mode
+          env:
+          - name: MADKUB_NODENAME
+            valueFrom:
+              fieldRef:
+                fieldPath: spec.nodeName
+          - name: MADKUB_NAME
+            valueFrom:
+              fieldRef:
+                fieldPath: metadata.name
+          - name: MADKUB_NAMESPACE
+            valueFrom:
+              fieldRef:
+                fieldPath: metadata.namespace
+          image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/madkub:1.0.0-0000082-3d5c21b4
+          imagePullPolicy: IfNotPresent
+          name: madkub-refresher
+          volumeMounts:
+          - mountPath: /clientcert
+            name: client-certs
+          - mountPath: /maddog-certs/
+            name: maddog-certs
+          - mountPath: /tokens
+            name: sam-maddog-token
+        initContainers:
+        - args:
+          - /sam/madkub-client
+          - --madkub-endpoint=https://$(MADKUBSERVER_SERVICE_HOST):32007
+          - --maddog-endpoint=https://all.pkicontroller.pki.blank.prd.prod.non-estates.sfdcsd.net:8443
+          - --maddog-server-ca=/maddog-certs/ca/security-ca.pem
+          - --madkub-server-ca=/maddog-certs/ca/cacerts.pem
+          - --ca-folder=/maddog-certs/ca
+          - --token-folder=/tokens
+          - --funnel-endpoint=ajna0-funnel1-0-prd.data.sfdc.net:80
+          - --kingdom=prd
+          - --superpod=None
+          - --estate=prd-sam
+          - --testca-folder=/maddog-certs/ca_test
+          - --cert-folders=client-certs:/clientcert
+          env:
+          - name: MADKUB_NODENAME
+            valueFrom:
+              fieldRef:
+                fieldPath: spec.nodeName
+          - name: MADKUB_NAME
+            valueFrom:
+              fieldRef:
+                fieldPath: metadata.name
+          - name: MADKUB_NAMESPACE
+            valueFrom:
+              fieldRef:
+                fieldPath: metadata.namespace
+          image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/madkub:1.0.0-0000082-3d5c21b4
+          imagePullPolicy: IfNotPresent
+          name: madkub-init
+          volumeMounts:
+          - mountPath: /clientcert
+            name: client-certs
+          - mountPath: /maddog-certs/
+            name: maddog-certs
+          - mountPath: /tokens
+            name: sam-maddog-token
+        nodeSelector:
+          master: "true"
+        securityContext:
+          fsGroup: 7447
+          runAsNonRoot: true
+          runAsUser: 7447
+        volumes:
+        - emptyDir:
+            medium: Memory
+          name: sam-maddog-token
+        - hostPath:
+            path: /etc/pki_service
+          name: maddog-certs
+        - emptyDir:
+            medium: Memory
+          name: client-certs
+- apiVersion: extensions/v1beta1
+  kind: Deployment
+  metadata:
+    labels:
+      name: secretservice-watchdog-crz12
+      sam.data.sfdc.net/owner: secrets
+    name: secretservice-watchdog-crz12
+    namespace: sam-system
+  spec:
+    replicas: 1
+    selector:
+      matchLabels:
+        name: secretservice-watchdog-crz12
+        sam.data.sfdc.net/owner: secrets
+    template:
+      metadata:
+        annotations:
+          madkub.sam.sfdc.net/allcerts: |-
+            {
+             "certreqs": [
+              {
+               "cert-type": "client",
+               "kingdom": "prd",
+               "name": "client-certs",
+               "role": "secrets.secretservice-watchdog-crz12"
+              }
+             ]
+            }
+        labels:
+          name: secretservice-watchdog-crz12
+          sam.data.sfdc.net/owner: secrets
+        namespace: sam-system
+      spec:
+        containers:
+        - args:
+          - -ssEndpoint=ops-vaultczar1-2-crz.ops.sfdc.net
+          - -ssWritePort=8271
+          - -wdKingdom=CRZ
+          - -vaultName=ss-canary-vault-crz12
+          - -role=sam.secrets.secretservice-watchdog-crz12
+          - -metricsEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80
+          - -logtostderr=true
+          command:
+          - /secretservice/secretservice-watchdog
+          env:
+          - name: FUNCTION_INSTANCE_NAME
+            valueFrom:
+              fieldRef:
+                apiVersion: v1
+                fieldPath: metadata.name
+          - name: FUNCTION_NAMESPACE
+            valueFrom:
+              fieldRef:
+                apiVersion: v1
+                fieldPath: metadata.namespace
+          - name: SFDCLOC_NODE_NAME
+            valueFrom:
+              fieldRef:
+                fieldPath: spec.nodeName
+          image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/secretservice-watchdog:107-62ab4da10c572948b5914cb8a1b629412a191b8d
+          name: watchdog
+          resources:
+            limits:
+              sam.sfdc.net/ip-address: "1"
+            requests:
+              sam.sfdc.net/ip-address: "1"
+          volumeMounts:
+          - mountPath: /clientcert
+            name: client-certs
+        - args:
+          - /sam/madkub-client
+          - --madkub-endpoint=https://$(MADKUBSERVER_SERVICE_HOST):32007
+          - --maddog-endpoint=https://all.pkicontroller.pki.blank.prd.prod.non-estates.sfdcsd.net:8443
+          - --maddog-server-ca=/maddog-certs/ca/security-ca.pem
+          - --madkub-server-ca=/maddog-certs/ca/cacerts.pem
+          - --ca-folder=/maddog-certs/ca
+          - --token-folder=/tokens
+          - --funnel-endpoint=ajna0-funnel1-0-prd.data.sfdc.net:80
+          - --kingdom=prd
+          - --superpod=None
+          - --estate=prd-sam
+          - --testca-folder=/maddog-certs/ca_test
+          - --cert-folders=client-certs:/clientcert
+          - --refresher
+          - --run-init-for-refresher-mode
+          env:
+          - name: MADKUB_NODENAME
+            valueFrom:
+              fieldRef:
+                fieldPath: spec.nodeName
+          - name: MADKUB_NAME
+            valueFrom:
+              fieldRef:
+                fieldPath: metadata.name
+          - name: MADKUB_NAMESPACE
+            valueFrom:
+              fieldRef:
+                fieldPath: metadata.namespace
+          image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/madkub:1.0.0-0000082-3d5c21b4
+          imagePullPolicy: IfNotPresent
+          name: madkub-refresher
+          volumeMounts:
+          - mountPath: /clientcert
+            name: client-certs
+          - mountPath: /maddog-certs/
+            name: maddog-certs
+          - mountPath: /tokens
+            name: sam-maddog-token
+        initContainers:
+        - args:
+          - /sam/madkub-client
+          - --madkub-endpoint=https://$(MADKUBSERVER_SERVICE_HOST):32007
+          - --maddog-endpoint=https://all.pkicontroller.pki.blank.prd.prod.non-estates.sfdcsd.net:8443
+          - --maddog-server-ca=/maddog-certs/ca/security-ca.pem
+          - --madkub-server-ca=/maddog-certs/ca/cacerts.pem
+          - --ca-folder=/maddog-certs/ca
+          - --token-folder=/tokens
+          - --funnel-endpoint=ajna0-funnel1-0-prd.data.sfdc.net:80
+          - --kingdom=prd
+          - --superpod=None
+          - --estate=prd-sam
+          - --testca-folder=/maddog-certs/ca_test
+          - --cert-folders=client-certs:/clientcert
+          env:
+          - name: MADKUB_NODENAME
+            valueFrom:
+              fieldRef:
+                fieldPath: spec.nodeName
+          - name: MADKUB_NAME
+            valueFrom:
+              fieldRef:
+                fieldPath: metadata.name
+          - name: MADKUB_NAMESPACE
+            valueFrom:
+              fieldRef:
+                fieldPath: metadata.namespace
+          image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/madkub:1.0.0-0000082-3d5c21b4
+          imagePullPolicy: IfNotPresent
+          name: madkub-init
+          volumeMounts:
+          - mountPath: /clientcert
+            name: client-certs
+          - mountPath: /maddog-certs/
+            name: maddog-certs
+          - mountPath: /tokens
+            name: sam-maddog-token
+        nodeSelector:
+          master: "true"
+        securityContext:
+          fsGroup: 7447
+          runAsNonRoot: true
+          runAsUser: 7447
+        volumes:
+        - emptyDir:
+            medium: Memory
+          name: sam-maddog-token
+        - hostPath:
+            path: /etc/pki_service
+          name: maddog-certs
+        - emptyDir:
+            medium: Memory
+          name: client-certs
+- apiVersion: extensions/v1beta1
+  kind: Deployment
+  metadata:
+    labels:
+      name: secretservice-watchdog-crz21
+      sam.data.sfdc.net/owner: secrets
+    name: secretservice-watchdog-crz21
+    namespace: sam-system
+  spec:
+    replicas: 1
+    selector:
+      matchLabels:
+        name: secretservice-watchdog-crz21
+        sam.data.sfdc.net/owner: secrets
+    template:
+      metadata:
+        annotations:
+          madkub.sam.sfdc.net/allcerts: |-
+            {
+             "certreqs": [
+              {
+               "cert-type": "client",
+               "kingdom": "prd",
+               "name": "client-certs",
+               "role": "secrets.secretservice-watchdog-crz21"
+              }
+             ]
+            }
+        labels:
+          name: secretservice-watchdog-crz21
+          sam.data.sfdc.net/owner: secrets
+        namespace: sam-system
+      spec:
+        containers:
+        - args:
+          - -ssEndpoint=ops-vaultczar2-1-crz.ops.sfdc.net
+          - -ssWritePort=8271
+          - -wdKingdom=CRZ
+          - -vaultName=ss-canary-vault-crz21
+          - -role=sam.secrets.secretservice-watchdog-crz21
+          - -metricsEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80
+          - -logtostderr=true
+          command:
+          - /secretservice/secretservice-watchdog
+          env:
+          - name: FUNCTION_INSTANCE_NAME
+            valueFrom:
+              fieldRef:
+                apiVersion: v1
+                fieldPath: metadata.name
+          - name: FUNCTION_NAMESPACE
+            valueFrom:
+              fieldRef:
+                apiVersion: v1
+                fieldPath: metadata.namespace
+          - name: SFDCLOC_NODE_NAME
+            valueFrom:
+              fieldRef:
+                fieldPath: spec.nodeName
+          image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/secretservice-watchdog:107-62ab4da10c572948b5914cb8a1b629412a191b8d
+          name: watchdog
+          resources:
+            limits:
+              sam.sfdc.net/ip-address: "1"
+            requests:
+              sam.sfdc.net/ip-address: "1"
+          volumeMounts:
+          - mountPath: /clientcert
+            name: client-certs
+        - args:
+          - /sam/madkub-client
+          - --madkub-endpoint=https://$(MADKUBSERVER_SERVICE_HOST):32007
+          - --maddog-endpoint=https://all.pkicontroller.pki.blank.prd.prod.non-estates.sfdcsd.net:8443
+          - --maddog-server-ca=/maddog-certs/ca/security-ca.pem
+          - --madkub-server-ca=/maddog-certs/ca/cacerts.pem
+          - --ca-folder=/maddog-certs/ca
+          - --token-folder=/tokens
+          - --funnel-endpoint=ajna0-funnel1-0-prd.data.sfdc.net:80
+          - --kingdom=prd
+          - --superpod=None
+          - --estate=prd-sam
+          - --testca-folder=/maddog-certs/ca_test
+          - --cert-folders=client-certs:/clientcert
+          - --refresher
+          - --run-init-for-refresher-mode
+          env:
+          - name: MADKUB_NODENAME
+            valueFrom:
+              fieldRef:
+                fieldPath: spec.nodeName
+          - name: MADKUB_NAME
+            valueFrom:
+              fieldRef:
+                fieldPath: metadata.name
+          - name: MADKUB_NAMESPACE
+            valueFrom:
+              fieldRef:
+                fieldPath: metadata.namespace
+          image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/madkub:1.0.0-0000082-3d5c21b4
+          imagePullPolicy: IfNotPresent
+          name: madkub-refresher
+          volumeMounts:
+          - mountPath: /clientcert
+            name: client-certs
+          - mountPath: /maddog-certs/
+            name: maddog-certs
+          - mountPath: /tokens
+            name: sam-maddog-token
+        initContainers:
+        - args:
+          - /sam/madkub-client
+          - --madkub-endpoint=https://$(MADKUBSERVER_SERVICE_HOST):32007
+          - --maddog-endpoint=https://all.pkicontroller.pki.blank.prd.prod.non-estates.sfdcsd.net:8443
+          - --maddog-server-ca=/maddog-certs/ca/security-ca.pem
+          - --madkub-server-ca=/maddog-certs/ca/cacerts.pem
+          - --ca-folder=/maddog-certs/ca
+          - --token-folder=/tokens
+          - --funnel-endpoint=ajna0-funnel1-0-prd.data.sfdc.net:80
+          - --kingdom=prd
+          - --superpod=None
+          - --estate=prd-sam
+          - --testca-folder=/maddog-certs/ca_test
+          - --cert-folders=client-certs:/clientcert
+          env:
+          - name: MADKUB_NODENAME
+            valueFrom:
+              fieldRef:
+                fieldPath: spec.nodeName
+          - name: MADKUB_NAME
+            valueFrom:
+              fieldRef:
+                fieldPath: metadata.name
+          - name: MADKUB_NAMESPACE
+            valueFrom:
+              fieldRef:
+                fieldPath: metadata.namespace
+          image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/madkub:1.0.0-0000082-3d5c21b4
+          imagePullPolicy: IfNotPresent
+          name: madkub-init
+          volumeMounts:
+          - mountPath: /clientcert
+            name: client-certs
+          - mountPath: /maddog-certs/
+            name: maddog-certs
+          - mountPath: /tokens
+            name: sam-maddog-token
+        nodeSelector:
+          master: "true"
+        securityContext:
+          fsGroup: 7447
+          runAsNonRoot: true
+          runAsUser: 7447
+        volumes:
+        - emptyDir:
+            medium: Memory
+          name: sam-maddog-token
+        - hostPath:
+            path: /etc/pki_service
+          name: maddog-certs
+        - emptyDir:
+            medium: Memory
+          name: client-certs
+- apiVersion: extensions/v1beta1
+  kind: Deployment
+  metadata:
+    labels:
+      name: secretservice-watchdog-crz22
+      sam.data.sfdc.net/owner: secrets
+    name: secretservice-watchdog-crz22
+    namespace: sam-system
+  spec:
+    replicas: 1
+    selector:
+      matchLabels:
+        name: secretservice-watchdog-crz22
+        sam.data.sfdc.net/owner: secrets
+    template:
+      metadata:
+        annotations:
+          madkub.sam.sfdc.net/allcerts: |-
+            {
+             "certreqs": [
+              {
+               "cert-type": "client",
+               "kingdom": "prd",
+               "name": "client-certs",
+               "role": "secrets.secretservice-watchdog-crz22"
+              }
+             ]
+            }
+        labels:
+          name: secretservice-watchdog-crz22
+          sam.data.sfdc.net/owner: secrets
+        namespace: sam-system
+      spec:
+        containers:
+        - args:
+          - -ssEndpoint=ops-vaultczar2-2-crz.ops.sfdc.net
+          - -ssWritePort=8271
+          - -wdKingdom=CRZ
+          - -vaultName=ss-canary-vault-crz22
+          - -role=sam.secrets.secretservice-watchdog-crz22
+          - -metricsEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80
+          - -logtostderr=true
+          command:
+          - /secretservice/secretservice-watchdog
+          env:
+          - name: FUNCTION_INSTANCE_NAME
+            valueFrom:
+              fieldRef:
+                apiVersion: v1
+                fieldPath: metadata.name
+          - name: FUNCTION_NAMESPACE
+            valueFrom:
+              fieldRef:
+                apiVersion: v1
+                fieldPath: metadata.namespace
+          - name: SFDCLOC_NODE_NAME
+            valueFrom:
+              fieldRef:
+                fieldPath: spec.nodeName
+          image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/secretservice-watchdog:107-62ab4da10c572948b5914cb8a1b629412a191b8d
+          name: watchdog
+          resources:
+            limits:
+              sam.sfdc.net/ip-address: "1"
+            requests:
+              sam.sfdc.net/ip-address: "1"
+          volumeMounts:
+          - mountPath: /clientcert
+            name: client-certs
+        - args:
+          - /sam/madkub-client
+          - --madkub-endpoint=https://$(MADKUBSERVER_SERVICE_HOST):32007
+          - --maddog-endpoint=https://all.pkicontroller.pki.blank.prd.prod.non-estates.sfdcsd.net:8443
+          - --maddog-server-ca=/maddog-certs/ca/security-ca.pem
+          - --madkub-server-ca=/maddog-certs/ca/cacerts.pem
+          - --ca-folder=/maddog-certs/ca
+          - --token-folder=/tokens
+          - --funnel-endpoint=ajna0-funnel1-0-prd.data.sfdc.net:80
+          - --kingdom=prd
+          - --superpod=None
+          - --estate=prd-sam
+          - --testca-folder=/maddog-certs/ca_test
+          - --cert-folders=client-certs:/clientcert
+          - --refresher
+          - --run-init-for-refresher-mode
+          env:
+          - name: MADKUB_NODENAME
+            valueFrom:
+              fieldRef:
+                fieldPath: spec.nodeName
+          - name: MADKUB_NAME
+            valueFrom:
+              fieldRef:
+                fieldPath: metadata.name
+          - name: MADKUB_NAMESPACE
+            valueFrom:
+              fieldRef:
+                fieldPath: metadata.namespace
+          image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/madkub:1.0.0-0000082-3d5c21b4
+          imagePullPolicy: IfNotPresent
+          name: madkub-refresher
+          volumeMounts:
+          - mountPath: /clientcert
+            name: client-certs
+          - mountPath: /maddog-certs/
+            name: maddog-certs
+          - mountPath: /tokens
+            name: sam-maddog-token
+        initContainers:
+        - args:
+          - /sam/madkub-client
+          - --madkub-endpoint=https://$(MADKUBSERVER_SERVICE_HOST):32007
+          - --maddog-endpoint=https://all.pkicontroller.pki.blank.prd.prod.non-estates.sfdcsd.net:8443
+          - --maddog-server-ca=/maddog-certs/ca/security-ca.pem
+          - --madkub-server-ca=/maddog-certs/ca/cacerts.pem
+          - --ca-folder=/maddog-certs/ca
+          - --token-folder=/tokens
+          - --funnel-endpoint=ajna0-funnel1-0-prd.data.sfdc.net:80
+          - --kingdom=prd
+          - --superpod=None
+          - --estate=prd-sam
+          - --testca-folder=/maddog-certs/ca_test
+          - --cert-folders=client-certs:/clientcert
+          env:
+          - name: MADKUB_NODENAME
+            valueFrom:
+              fieldRef:
+                fieldPath: spec.nodeName
+          - name: MADKUB_NAME
+            valueFrom:
+              fieldRef:
+                fieldPath: metadata.name
+          - name: MADKUB_NAMESPACE
+            valueFrom:
+              fieldRef:
+                fieldPath: metadata.namespace
+          image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/madkub:1.0.0-0000082-3d5c21b4
+          imagePullPolicy: IfNotPresent
+          name: madkub-init
+          volumeMounts:
+          - mountPath: /clientcert
+            name: client-certs
+          - mountPath: /maddog-certs/
+            name: maddog-certs
+          - mountPath: /tokens
+            name: sam-maddog-token
+        nodeSelector:
+          master: "true"
+        securityContext:
+          fsGroup: 7447
+          runAsNonRoot: true
+          runAsUser: 7447
+        volumes:
+        - emptyDir:
+            medium: Memory
+          name: sam-maddog-token
+        - hostPath:
+            path: /etc/pki_service
+          name: maddog-certs
+        - emptyDir:
+            medium: Memory
+          name: client-certs
+kind: List
+metadata: {}
