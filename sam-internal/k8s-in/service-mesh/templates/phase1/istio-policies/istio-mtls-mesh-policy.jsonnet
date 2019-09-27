@@ -9,7 +9,7 @@ if (istioPhases.phaseNum == 1) then
   metadata: {
     annotations: {
       "manifestctl.sam.data.sfdc.net/swagger": "disable",
-      "niko/fake.change.for.redeploy": "1",
+      "niko/fake.change.for.redeploy": "2",
     },
     name: "default",
   },
