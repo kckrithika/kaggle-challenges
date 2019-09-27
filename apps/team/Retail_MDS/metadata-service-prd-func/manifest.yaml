@@ -12,7 +12,7 @@ system:
       "routing.mesh.sfdc.net/enabled": "true"
     containers:
     - name: metadata-service
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/metadata-cannon/metadata-service:0.11.21
+      image: sfci/metadata-cannon/metadata-service:0.10.80
       ports:
       - containerPort: 9091
       - containerPort: 15523
@@ -24,7 +24,7 @@ system:
       - name: MANAGEMENT_PORT
         value: "15523"
       - name: JVM_ARGS
-        value: -Xmx2G -Xms2G -XX:ParallelGCThreads=8 -Dpki.caDirectory=/client-certs
+        value: -Xmx2G -Xms2G -XX:ParallelGCThreads=8
         # An environment variable used to trigger containers redeployment without making other changes to the manifest
       - name: RESTART
         value: May-16-2019
