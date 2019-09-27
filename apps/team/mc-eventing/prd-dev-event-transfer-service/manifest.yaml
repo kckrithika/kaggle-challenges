@@ -9,6 +9,7 @@ system:
       - jcormier@salesforce.com
       - dkilgore@salesforce.com
       - qkong@salesforce.com
+      - qkong@salesforce.com
   functions:
   - name: eventtransferservice
     identity:
