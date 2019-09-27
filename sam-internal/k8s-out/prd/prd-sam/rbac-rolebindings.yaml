@@ -753,6 +753,40 @@ items:
 - apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: RoleBinding
   metadata:
+    name: retail-keymaker:prd-sam_customerresolutionengine:rolebinding
+    namespace: retail-keymaker
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: minion:role
+  subjects:
+  - kind: User
+    name: shared0-samminioncustomerresolutionengine1-1-prd.eng.sfdc.net
+  - kind: User
+    name: shared0-samminioncustomerresolutionengine1-2-prd.eng.sfdc.net
+  - kind: User
+    name: shared0-samminioncustomerresolutionengine1-3-prd.eng.sfdc.net
+  - kind: User
+    name: shared0-samminioncustomerresolutionengine1-4-prd.eng.sfdc.net
+  - kind: User
+    name: shared0-samminioncustomerresolutionengine2-1-prd.eng.sfdc.net
+  - kind: User
+    name: shared0-samminioncustomerresolutionengine2-2-prd.eng.sfdc.net
+  - kind: User
+    name: shared0-samminioncustomerresolutionengine2-3-prd.eng.sfdc.net
+  - kind: User
+    name: shared0-samminioncustomerresolutionengine2-4-prd.eng.sfdc.net
+  - kind: User
+    name: shared0-samminioncustomerresolutionengine3-1-prd.eng.sfdc.net
+  - kind: User
+    name: shared0-samminioncustomerresolutionengine3-2-prd.eng.sfdc.net
+  - kind: User
+    name: shared0-samminioncustomerresolutionengine3-3-prd.eng.sfdc.net
+  - kind: User
+    name: shared0-samminioncustomerresolutionengine3-4-prd.eng.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1beta1
+  kind: RoleBinding
+  metadata:
     name: ci-retail-cre:prd-sam_customerresolutionengine:rolebinding
     namespace: ci-retail-cre
   roleRef:
