@@ -339,6 +339,28 @@ items:
 - apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: RoleBinding
   metadata:
+    name: ci-cast:prd-sam_cloudatlas_dir:rolebinding
+    namespace: ci-cast
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: minion:role
+  subjects:
+  - kind: User
+    name: test0shared0-samminionatlasdir1-1-prd.eng.sfdc.net
+  - kind: User
+    name: test0shared0-samminionatlasdir1-2-prd.eng.sfdc.net
+  - kind: User
+    name: test0shared0-samminionatlasdir2-1-prd.eng.sfdc.net
+  - kind: User
+    name: test1shared0-samminionatlasdir1-1-prd.eng.sfdc.net
+  - kind: User
+    name: test1shared0-samminionatlasdir1-2-prd.eng.sfdc.net
+  - kind: User
+    name: test1shared0-samminionatlasdir2-1-prd.eng.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1beta1
+  kind: RoleBinding
+  metadata:
     name: cloudatlas:prd-sam_cloudatlas_dir:rolebinding
     namespace: cloudatlas
   roleRef:
