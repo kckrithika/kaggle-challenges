@@ -151,32 +151,32 @@ system:
     #####################################################################################
     # GID Data service
     #####################################################################################
-    - name: gid-service
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/gid/gid-service:179c76a
-      imagePullPolicy: Always
-      env:
-        - name: server_port
-          value: 8081
-        - name: management_server_port
-          value: 15371
-        - name: ca_service_host
-          value: 127.0.0.1
-        - name: c2c_common_gdotBasePath
-          value: http://cloudatlas-prd-dev-service.cloudatlas.localhost.mesh.force.com:5442/scim
-        - name: security_client_dynamickeystore_cadir
-          value: /certs/ca
-        - name: security_client_dynamickeystore_monitoredDirectory
-          value: /certs/client
-      ports:
-        - containerPort: 8081
-        - containerPort: 15371
-      livenessProbe:
-        httpGet:
-          path: /manage/health
-          port: 15371
-      volumeMounts:
-        - name: client-cert
-          mountPath: /certs
+    #- name: gid-service
+    #  image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/gid/gid-service:179c76a
+    #  imagePullPolicy: Always
+    #  env:
+    #    - name: server_port
+    #      value: 8081
+    #    - name: management_server_port
+    #      value: 15371
+    #    - name: ca_service_host
+    #      value: 127.0.0.1
+    #    - name: c2c_common_gdotBasePath
+    #      value: http://cloudatlas-prd-dev-service.cloudatlas.localhost.mesh.force.com:5442/scim
+    #    - name: security_client_dynamickeystore_cadir
+    #      value: /certs/ca
+    #    - name: security_client_dynamickeystore_monitoredDirectory
+    #      value: /certs/client
+    #  ports:
+    #    - containerPort: 8081
+    #    - containerPort: 15371
+    #  livenessProbe:
+    #    httpGet:
+    #      path: /manage/health
+    #      port: 15371
+    #  volumeMounts:
+    #    - name: client-cert
+    #      mountPath: /certs
     #####################################################################################
     # NGINX Rev Proxy
     #####################################################################################
