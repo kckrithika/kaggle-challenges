@@ -9,7 +9,7 @@ if (istioPhases.phaseNum == 1) then
   metadata: {
     annotations: {
       "manifestctl.sam.data.sfdc.net/swagger": "disable",
-      "niko/fake.change.for.redeploy": "2",
+      "niko/fake.change.for.redeploy": "3",
     },
     name: "mesh-default",
     namespace: "mesh-control-plane",
