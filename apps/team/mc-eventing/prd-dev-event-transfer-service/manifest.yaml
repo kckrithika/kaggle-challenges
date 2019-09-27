@@ -9,7 +9,6 @@ system:
       - jcormier@salesforce.com
       - dkilgore@salesforce.com
       - qkong@salesforce.com
-      - qkong@salesforce.com
   functions:
   - name: eventtransferservice
     identity:
@@ -49,6 +48,8 @@ system:
           value: 15382
         - name: JVM_ARGS
           value: "-Xmx3G -Xms512m"
+        - name: TEST
+          value: "HELLOWORLD"
       livenessProbe:
         initialDelaySeconds: 60
         periodSeconds: 60
