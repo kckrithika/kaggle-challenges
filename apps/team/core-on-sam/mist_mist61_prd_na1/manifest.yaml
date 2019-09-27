@@ -7,9 +7,9 @@ system:
   - containers:
     - env:
       - name: DB_SID
-        value: mist61b218utf
+        value: mist61b224utf
       - name: DB_INSTANCE_NAME
-        value: mist61b218utf-1
+        value: mist61b224utf-1
       - name: DB_USER
         value: bashful
       - name: DB_STATS_USER
@@ -47,7 +47,7 @@ system:
       - name: DISABLE_AUTH_RELEASE_CHECK
         value: true
       - name: CASAM_APP_COLOR
-        value: green
+        value: blue
       - name: SD_PORT_OVERRIDE
         value: 7442
       - name: CASAM_SETTINGS_PATH
@@ -62,11 +62,12 @@ system:
         valueFrom:
           fieldRef:
             fieldPath: spec.nodeName
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/coreonsam/casam:release_218-patch_17562818
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/coreonsam/casam:release_main_19195167
       livenessProbe:
         exec:
           command:
-          - /home/sfdc/salesforce/casam/bin/live_probe.sh
+          - echo
+          - HEALTHY
         failureThreshold: 99999
         initialDelaySeconds: 120
         periodSeconds: 5
@@ -81,7 +82,7 @@ system:
       readinessProbe:
         exec:
           command:
-          - /home/sfdc/salesforce/casam/bin/ready_probe.sh
+          - /home/sfdc/salesforce/casam/bin/live_probe.sh
         failureThreshold: 99999
         initialDelaySeconds: 120
         periodSeconds: 5
@@ -156,11 +157,8 @@ system:
     name: na1-mist61app-prd
     progressDeadlineSeconds: 300
     strategy:
-      rollingUpdate:
-        maxSurge: 200%
-        maxUnavailable: 0
-      type: RollingUpdate
-    terminationGracePeriodSeconds: 120
+      type: Recreate
+    terminationGracePeriodSeconds: 10
     volumes:
     - emptyDir: {}
       name: envoy-config-volume
@@ -181,147 +179,7 @@ system:
     - k4aSecret:
         secretName: caas-k4a-secret-prd
       name: secretvol
-  - containers:
-    - env:
-      - name: NONCE
-        value: 1555875562200037881
-      - name: DRY_RUN
-        value: 0
-      - name: CHATTER_GROUP_NAME
-        value: casam-alpha
-      - name: SFPROXY_VIP
-        value: https://us1-sfproxy-lb.core-on-sam-sp2.prd-sam.prd.slb.sfdc.net:8443
-      - name: SWITCH_BOARD_ADDRESS
-        value: na1-switchboard-lb.core-on-sam-sp2.prd-sam.prd.slb.sfdc.net:8088
-      - name: RELEASE_VESION
-        value: ""
-      - name: RELEASE_TYPE
-        value: MINOR
-      - name: MAJOR_RELEASE_NUMBER
-        value: 218
-      - name: MINOR_RELEASE_NUMBER
-        value: 0
-      - name: PATCH_RELEASE_NUMBER
-        value: 0
-      - name: CURRENT_RELEASE_VERSION
-        value: blue
-      - name: NEW_RELEASE_VERSION
-        value: green
-      - name: READY_SERVER_COUNT
-        value: 1
-      - name: DB_SID
-        value: mist61b218utf
-      - name: DB_VENDOR
-        value: oracle
-      - name: DB_HOST
-        value: mist61ice1-db1-1-prd.eng.sfdc.net
-      - name: DB_PORT
-        value: 1521
-      - name: DB_EDITION
-        value: 218
-      - name: ENABLE_DB_SCHEMA_UPGRADE
-        value: 0
-      - name: OLD_DWARF
-        value: sneezy
-      - name: KILL_DWARF
-        value: 0
-      - name: LOCK_DWARF
-        value: 0
-      - name: TRIGGER_CAFFEINE
-        value: 0
-      - name: UNLOCK_DWARF
-        value: 0
-      - name: SNOWWHITE_PWD
-        value: rotate
-      - name: MADDOG_CLIENT
-        value: /certs
-      - name: SFPROXY_SETTINGS_PATH
-        value: mist61.-.prd.na1.sfproxy
-      - name: CASAM_SUPERPOD
-        value: sp2
-      - name: HTTP_PROXY
-        value: public0-proxy1-0-prd.data.sfdc.net:8080
-      - name: SKIP_KAIJU
-        value: 1
-      - name: ZDT
-        value: false
-      - name: KAIJU_REFOCUS_GETRESULT_URL
-        value: https://refocus.internal.salesforce.com/v1/samples/
-      - name: KAIJU_RUNTIME_TIMEOUT_MS
-        value: 360000
-      - name: ENABLE_HEALTH_CHECK_TLS
-        value: false
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/casam/sequencer:068d3d
-      livenessProbe:
-        exec:
-          command:
-          - /usr/local/bin/ready_probe.sh
-        failureThreshold: 10
-        initialDelaySeconds: 60
-        periodSeconds: 1
-      name: sequencer
-      ports:
-      - containerPort: 12062
-      readinessProbe:
-        exec:
-          command:
-          - /usr/local/bin/ready_probe.sh
-        failureThreshold: 10
-        initialDelaySeconds: 60
-        periodSeconds: 1
-      volumeMounts:
-      - mountPath: /certs
-        name: client-cert
-      - mountPath: /secrets/
-        name: secretvol
-        readOnly: true
-      - mountPath: /kaiju-secrets/
-        name: kaiju-secret-vol
-        readOnly: true
-    - name: sherpa
-      # Use the latest release version from https://git.soma.salesforce.com/servicelibs/sherpa-envoy/releases
-      image: sfci/servicelibs/sherpa-envoy:1.0.6
-      # See https://git.soma.salesforce.com/servicelibs/sherpa#ports
-      ports:
-      - containerPort: 15373
-        name: sherpa-adm
-      livenessProbe:
-        exec:
-          command:
-          - ./bin/is-alive
-        initialDelaySeconds: 60
-        periodSeconds: 5
-      readinessProbe:
-        exec:
-          command:
-          - ./bin/is-ready
-        initialDelaySeconds: 50
-        periodSeconds: 5
-      volumeMounts:
-      - name: client-cert
-        mountPath: /client-certs
-      - name: server-cert
-        mountPath: /server-certs
-    count: 1
-    identity:
-      pod: na1
-      serviceName: sequencer
-    name: na1-mist61sequencer-prd
-    progressDeadlineSeconds: 300
-    terminationGracePeriodSeconds: 60
-    volumes:
-    - maddogCert:
-        type: client
-      name: client-cert
-    - maddogCert:
-        type: server
-      name: server-cert
-    - k4aSecret:
-        secretName: sequencer-gus
-      name: secretvol
-    - k4aSecret:
-        secretName: sequencer-kaiju
-      name: kaiju-secret-vol
+
   - containers:
     - args:
       - --template=/home/sfdc-sherpa/sfproxy/config/core-on-sam/sfproxy-public-cloud-rds.yaml.template
