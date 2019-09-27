@@ -15,8 +15,6 @@ system:
           image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/vijay-kota/myenvoy:10Jul19
           command: ["/usr/bin/python"]
           args: ["/home/sfdc-sherpa/myscripts/myapp.py"]
-          #ommand: ["/bin/sh"]
-          #rgs: ["-c", "export AMQP_PORT=$CLIENT_PORT ; /usr/bin/python /home/sfdc-sherpa/myscripts/myqpid.py"]
           ports:
             - name: http-port
               containerPort: 7022
@@ -215,6 +213,112 @@ system:
           hostPath:
             path: /home/sfdc-beacon/logs
 
+    - name: cs77-mc
+      count: 1
+      identity:
+        serviceName: cron
+        pod: cs77
+      containers:
+        - name: cron-service
+          image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/vijay-kota/myenvoy:10Jul19
+          command: ["/bin/sh"]
+          args: ["-c", "export AMQP_PORT=$HTTP_PORT ; /usr/bin/python /home/sfdc-sherpa/myscripts/myqpid.py"]
+          ports:
+            - name: http-port
+              containerPort: 7022
+          env:
+            - name: SFDC_ENVIRONMENT
+              value: mesh
+            - name: HTTP_PORT
+              value: 7022
+          resources:
+            limits: { cpu: "1", memory: "1Gi" }
+            requests: { cpu: "1", memory: "1Gi" }
+          livenessProbe:
+            exec:
+              command: ["/bin/true"]
+            initialDelaySeconds: 10
+            timeoutSeconds: 10
+            periodSeconds: 60
+          readinessProbe:
+            exec:
+              command: ["/bin/true"]
+            initialDelaySeconds: 10
+            timeoutSeconds: 10
+          volumeMounts:
+            - mountPath: /var/log/web
+              name: logvol
+
+      volumes:
+        - name: logvol
+          hostpath:
+            path: /var/log/web
+        - name: sherpaclientcert
+          maddogCert:
+            type: client
+        - name: sherpaservercert
+          maddogCert:
+            type: server
+        - name: sherpa-log-volume
+          hostPath:
+            path: /home/sfdc-sherpa/logs
+        - name: beacon-log-volume
+          hostPath:
+            path: /home/sfdc-beacon/logs
+
+    - name: cs77-sdb
+      count: 1
+      identity:
+        serviceName: cron
+        pod: cs77
+      containers:
+        - name: cron-service
+          image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/vijay-kota/myenvoy:10Jul19
+          command: ["/bin/sh"]
+          args: ["-c", "export AMQP_PORT=$HTTP_PORT ; /usr/bin/python /home/sfdc-sherpa/myscripts/myqpid.py"]
+          ports:
+            - name: http-port
+              containerPort: 7022
+          env:
+            - name: SFDC_ENVIRONMENT
+              value: mesh
+            - name: HTTP_PORT
+              value: 7022
+          resources:
+            limits: { cpu: "1", memory: "1Gi" }
+            requests: { cpu: "1", memory: "1Gi" }
+          livenessProbe:
+            exec:
+              command: ["/bin/true"]
+            initialDelaySeconds: 10
+            timeoutSeconds: 10
+            periodSeconds: 60
+          readinessProbe:
+            exec:
+              command: ["/bin/true"]
+            initialDelaySeconds: 10
+            timeoutSeconds: 10
+          volumeMounts:
+            - mountPath: /var/log/web
+              name: logvol
+
+      volumes:
+        - name: logvol
+          hostpath:
+            path: /var/log/sdb
+        - name: sherpaclientcert
+          maddogCert:
+            type: client
+        - name: sherpaservercert
+          maddogCert:
+            type: server
+        - name: sherpa-log-volume
+          hostPath:
+            path: /home/sfdc-sherpa/logs
+        - name: beacon-log-volume
+          hostPath:
+            path: /home/sfdc-beacon/logs
+
   loadbalancers:
   - lbname: cronsvc-cs77
     function: cs77-cron
@@ -236,3 +340,15 @@ system:
         targetport: 7022
       - port: 15373
         targetport: 15373
+  - lbname: mcapp-cs77
+    function: cs77-mc
+    slbenabled: true
+    ports:
+      - port: 7022
+        targetport: 7022
+  - lbname: cronsdb-cs77
+    function: cs77-sdb
+    slbenabled: true
+    ports:
+      - port: 7022
+        targetport: 7022
