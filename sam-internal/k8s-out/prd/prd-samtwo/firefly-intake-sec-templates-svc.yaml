@@ -193,15 +193,7 @@ items:
             "reencrypt": false,
             "sticky": 0,
             "targetPort": 8081,
-            "tls": false
-          },
-          {
-            "lbtype": "http",
-            "port": 8080,
-            "reencrypt": false,
-            "sticky": 0,
-            "targetPort": 8080,
-            "tls": false
+            "tls": true
           },
           {
             "lbtype": "http",
