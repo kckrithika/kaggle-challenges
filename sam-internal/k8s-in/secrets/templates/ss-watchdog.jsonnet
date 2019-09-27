@@ -45,6 +45,35 @@ local instanceMap = {
       endpoint: "ops-vaultczar2-2-crz.ops.sfdc.net",
       writePort: 8271,
     },
+    # Watchdog monitoring the PRD SecretService vips.
+    prd: {
+      endpoint: "secretservice-prd.data.sfdc.net",
+      wdKingdom: "PRD",
+      extraArgs: [
+        "-enableLifecycleTest=true",
+      ],
+      canary: true,
+    },
+  },
+  xrd: {
+    # WD monitoring staging SS.
+    "infrasec1test-xrd": {
+      endpoint: "secretservice-infrasec1-xrd.data.sfdc.net",
+      wdKingdom: "XRD",
+      extraArgs: [
+        "-enableLifecycleTest=true",
+      ],
+      canary: true,
+    },
+    # Watchdog monitoring XRD SecretService.
+    xrd: {
+      endpoint: "secretservice-xrd.data.sfdc.net",
+      wdKingdom: "XRD",
+      extraArgs: [
+        "-enableLifecycleTest=true",
+      ],
+      canary: true,
+    },
   },
 
 /*
@@ -55,41 +84,15 @@ These will be swapped in (replacing the old sam app instances)
 once confidence is gained in the sam-internals deployments above.
 ------------------------------------------------------------------
 
-    # Watchdog monitoring the PRD SecretService vips.
-    prd: {
-      endpoint: "secretservice-prd.data.sfdc.net",
-      wdKingdom: "PRD",
-      extraArgs: [
-        "-enableLifecycleTest=true",
-      ],
-      canary: true,
-    },
     # WD monitoring production DMZ SecretService
     "crz-from-prd": {
       endpoint: "secretservice.dmz.salesforce.com",
     },
   },
   xrd: {
-    # Watchdog monitoring XRD SecretService.
-    xrd: {
-      endpoint: "secretservice-xrd.data.sfdc.net",
-      wdKingdom: "XRD",
-      extraArgs: [
-        "-enableLifecycleTest=true",
-      ],
-    },
     # WD monitoring production DMZ SecretService
     "crz-from-xrd": {
       endpoint: "secretservice.dmz.salesforce.com",
-    },
-    # WD monitoring staging SS.
-    "infrasec1test-xrd": {
-      endpoint: "secretservice-infrasec1-xrd.data.sfdc.net",
-      wdKingdom: "XRD",
-      canary: true,
-      extraArgs: [
-        "-enableLifecycleTest=true",
-      ],
     },
   },
 
