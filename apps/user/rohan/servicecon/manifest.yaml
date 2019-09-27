@@ -58,6 +58,8 @@ system:
         name: sherpa-adm
       - containerPort: 7011
         name: http2-out
+      - containerPort: 7012
+        name: http2-out
       livenessProbe:
         exec:
           command:
