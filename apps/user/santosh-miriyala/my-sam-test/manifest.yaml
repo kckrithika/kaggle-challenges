@@ -1,0 +1,17 @@
+apiVersion: v1
+system:
+  notifications:
+    email:
+      - santosh.miriyala@salesforce.com
+  functions:
+  - name: gadget-sam-test
+    count: 1
+    containers:
+    - name: gadget-sam-test-service
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/santosh-miriyala/gadget/gadget-core:latest
+      ports:
+      - containerPort: 10001
+      livenessProbe:
+        httpGet:
+          path: /
+          port: 10001
