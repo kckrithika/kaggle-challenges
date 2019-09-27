@@ -47,7 +47,7 @@ system:
       - name: DISABLE_AUTH_RELEASE_CHECK
         value: true
       - name: CASAM_APP_COLOR
-        value: blue
+        value: GREEN
       - name: SD_PORT_OVERRIDE
         value: 7442
       - name: CASAM_SETTINGS_PATH
