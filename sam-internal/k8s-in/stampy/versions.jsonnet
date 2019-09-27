@@ -14,8 +14,8 @@ local utils = import "util_functions.jsonnet";
         // need to use a full image path. relative paths like 'dva/stampy-webhook-admission-controller-1p' won't work here.
 
         if utils.is_pcn(configs.kingdom) then 
-            "%s/docker-gcp/stampy-webhook-admission-controller-1p:12" % configs.registry
+            "%s/docker-gcp/stampy-webhook-admission-controller-1p:13" % configs.registry
         else
-            "%s/dva/stampy-webhook-admission-controller-1p:12" % configs.registry
+            "%s/dva/stampy-webhook-admission-controller-1p:13" % configs.registry
     ),
 }
