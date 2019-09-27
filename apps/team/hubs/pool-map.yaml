@@ -5,8 +5,6 @@ apps:
     - phx/phx-sam_mgmt_hub
   mgmt-hub-dfw:
     - dfw/dfw-sam_mgmt_hub
-  mgmt-hub-prd:
-    - prd/prd-sam
   hda:
     - prd/prd-sam
   hda-client:
