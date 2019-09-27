@@ -83,7 +83,7 @@ system:
     # Service Protection
     #####################################################################################
     - name: service-protection
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/gid/service-protection:5ccc34f
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/gid/service-protection:038118b
       imagePullPolicy: Always
       env:
       - name: server_use_forward_headers
