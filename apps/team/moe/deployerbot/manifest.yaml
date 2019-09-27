@@ -330,9 +330,9 @@ system:
     - name: moe-gpg-signing-key
       k4aSecret:
         secretName: moe-gpg-signing-key
-    - name: sam-slack-notification
+    - name: slb-private-slack-notification
       k4aSecret:
-        secretName: sam-slack-notification
+        secretName: slb-private-slack-notification
   loadbalancers:
   - lbname: deployerbot
     function: deployerbot
