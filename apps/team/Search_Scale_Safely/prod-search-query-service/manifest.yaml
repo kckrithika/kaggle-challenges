@@ -70,8 +70,6 @@ system:
       - name: tls-client-cert
         mountPath: /client-certs
     volumes:
-      hostpath:
-        path: /home/sfdc-beacon/logs
     - name: tls-client-cert
       maddogCert:
         type: client
