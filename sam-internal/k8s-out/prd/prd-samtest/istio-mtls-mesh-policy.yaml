@@ -6,5 +6,6 @@ metadata:
     niko/fake.change.for.redeploy: "2"
   name: default
 spec:
+  peer_is_optional: true
   peers:
   - mtls: {}

@@ -14,6 +14,7 @@ if (istioPhases.phaseNum == 1) then
     name: "default",
   },
   spec: {
+    peer_is_optional: true,  # SPIFFE URI check is skipped.
     peers: [
       {
         mtls: {},
