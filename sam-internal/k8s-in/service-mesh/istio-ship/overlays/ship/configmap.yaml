@@ -30,7 +30,9 @@ data:
       parentShutdownDuration: 1m0s
       interceptionMode: REDIRECT
       proxyAdminPort: 15373
-      concurrency: 2
+      concurrency: 0
+      inboundClusterStatName: local_service.%SERVICE_PORT%
+      outboundClusterStatName: %SERVICE%.%SERVICE_PORT%
       tracing:
         zipkin:
           address: zipkin.service-mesh:9411
