@@ -18,7 +18,7 @@ system:
     # Docker image(s) that make up one instance of the service
     containers:
     - name: spaas
-      image: sfci/service-protection/sps:0.6.12
+      image: sfci/service-protection/sps:0.7.9
       # set container environment variables
       env:
       - name: SFDC_ENVIRONMENT
@@ -40,7 +40,7 @@ system:
       - name: grpc-mtls-port 
         containerPort: 7033
       resources:
-        limits: { cpu: "2", memory: "4Gi" }
+        limits: { cpu: "4", memory: "4Gi" }
         requests: { cpu: "1", memory: "1Gi" }
       # standard ports https://salesforce.quip.com/uHeqAb3s9qsR
 
@@ -79,7 +79,7 @@ system:
       - name: SFDC_ENVIRONMENT
         value: mesh
       resources:
-        limits: { cpu: "4", memory: "4Gi" }
+        limits: { cpu: "1", memory: "1Gi" }
         requests: { cpu: "1", memory: "1Gi" }
       volumeMounts:
       - mountPath: /client-certs
