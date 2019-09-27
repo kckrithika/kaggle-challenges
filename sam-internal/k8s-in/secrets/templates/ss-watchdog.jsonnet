@@ -54,6 +54,10 @@ local instanceMap = {
       ],
       canary: true,
     },
+    # WD monitoring production DMZ SecretService
+    "crz-from-prd": {
+      endpoint: "secretservice.dmz.salesforce.com",
+    },
   },
   xrd: {
     # WD monitoring staging SS.
@@ -74,29 +78,11 @@ local instanceMap = {
       ],
       canary: true,
     },
-  },
-
-/*
-
-------------------------------------------------------------------
-Future instance definitions included here for reference.
-These will be swapped in (replacing the old sam app instances)
-once confidence is gained in the sam-internals deployments above.
-------------------------------------------------------------------
-
-    # WD monitoring production DMZ SecretService
-    "crz-from-prd": {
-      endpoint: "secretservice.dmz.salesforce.com",
-    },
-  },
-  xrd: {
     # WD monitoring production DMZ SecretService
     "crz-from-xrd": {
       endpoint: "secretservice.dmz.salesforce.com",
     },
   },
-
-*/
 };
 
 local getInstanceDataWithDefaults(instanceTag) = (
