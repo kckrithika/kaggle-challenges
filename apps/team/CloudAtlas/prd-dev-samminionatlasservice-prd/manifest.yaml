@@ -82,7 +82,7 @@ system:
     # Entity API
     #####################################################################################
     - name: cloudatlas-service
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cloud-atlas/cloudatlas/cloudatlas-service:e7e8f04
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cloud-atlas/cloudatlas/cloudatlas-service:d59aed0
       command: ["java", "-jar", "cloudatlas-service.jar"]
       env:
         - name: server_port
