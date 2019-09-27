@@ -22,7 +22,7 @@ system:
 
     containers:
     - name: dfs-dev
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/dfs/service:dfs-0.24.11
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/dfs/service:dfs-0.24.12
       volumeMounts:
       - name: logvol
         mountPath: /home/scone/logs
