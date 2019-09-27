@@ -26,6 +26,12 @@ if (istioPhases.phaseNum == 2) then
         istio: "ingressgateway",
       },
     },
+    strategy: {
+      rollingUpdate: {
+        maxSurge: 1,
+        maxUnavailable: 0,
+      },
+    },
     template: {
       metadata: {
         annotations: {
@@ -35,11 +41,11 @@ if (istioPhases.phaseNum == 2) then
         labels: {
           app: "istio-ingressgateway",
           chart: "gateways",
+          cluster: mcpIstioConfig.istioEstate,
           heritage: "Tiller",
           istio: "ingressgateway",
           name: "istio-ingressgateway",
           release: "istio",
-          cluster: mcpIstioConfig.istioEstate,
         },
       },
       spec: {
@@ -196,6 +202,14 @@ if (istioPhases.phaseNum == 2) then
                 value: "/server-certs/ca.pem",
               },
               {
+                name: "ISTIO_META_kubernetes_cluster_name",
+                valueFrom: {
+                  fieldRef: {
+                    fieldPath: "metadata.labels['cluster']",
+                  },
+                },
+              },
+              {
                 name: "NODE_NAME",
                 valueFrom: {
                   fieldRef: {
@@ -241,6 +255,14 @@ if (istioPhases.phaseNum == 2) then
                 },
               },
               {
+                name: "SERVICE_ACCOUNT",
+                valueFrom: {
+                  fieldRef: {
+                    fieldPath: "spec.serviceAccountName",
+                  },
+                },
+              },
+              {
                 name: "ISTIO_META_POD_NAME",
                 valueFrom: {
                   fieldRef: {
@@ -258,20 +280,32 @@ if (istioPhases.phaseNum == 2) then
                 },
               },
               {
+                name: "ISTIO_METAJSON_LABELS",
+                value: "{\"app\":\"istio-ingressgateway\",\"chart\":\"gateways\",\"heritage\":\"Tiller\",\"istio\":\"ingressgateway\",\"release\":\"istio\"}\n",
+              },
+              {
+                name: "ISTIO_META_CLUSTER_ID",
+                value: "Kubernetes",
+              },
+              {
+                name: "SDS_ENABLED",
+                value: "false",
+              },
+              {
+                name: "ISTIO_META_WORKLOAD_NAME",
+                value: "istio-ingressgateway",
+              },
+              {
+                name: "ISTIO_META_OWNER",
+                value: "kubernetes://api/apps/v1/namespaces/mesh-control-plane/deployments/istio-ingressgateway",
+              },
+              {
                 name: "ISTIO_META_ROUTER_MODE",
                 value: "sni-dnat",
               },
-              {
-                name: "ISTIO_META_kubernetes_cluster_name",
-                valueFrom: {
-                  fieldRef: {
-                    fieldPath: "metadata.labels['cluster']",
-                  },
-                },
-              },              
             ],
             image: "%(istioHub)s/proxy:%(istioTag)s" % mcpIstioConfig,
-            imagePullPolicy: "IfNotPresent",
+            imagePullPolicy: "Always",
             name: "istio-proxy",
             ports: [
               {

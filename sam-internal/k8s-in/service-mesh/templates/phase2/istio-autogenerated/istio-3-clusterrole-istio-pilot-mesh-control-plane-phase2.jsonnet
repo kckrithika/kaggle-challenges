@@ -43,6 +43,19 @@ if (istioPhases.phaseNum == 2) then
     },
     {
       apiGroups: [
+        "security.istio.io",
+      ],
+      resources: [
+        "*",
+      ],
+      verbs: [
+        "get",
+        "watch",
+        "list",
+      ],
+    },
+    {
+      apiGroups: [
         "networking.istio.io",
       ],
       resources: [

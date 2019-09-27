@@ -18,8 +18,8 @@ spec:
       istio: pilot
   strategy:
     rollingUpdate:
-      maxSurge: 1
-      maxUnavailable: 0
+      maxSurge: 3
+      maxUnavailable: 1
   template:
     metadata:
       annotations:
@@ -121,16 +121,16 @@ spec:
             fieldRef:
               apiVersion: v1
               fieldPath: metadata.namespace
-        - name: GODEBUG
-          value: gctrace=1
         - name: PILOT_PUSH_THROTTLE
           value: "10"
         - name: PILOT_TRACE_SAMPLING
           value: "1"
-        - name: PILOT_DISABLE_XDS_MARSHALING_TO_ANY
-          value: "1"
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/sfci/servicemesh/istio-packaging/pilot:fb6120f9c7c32bfcea8d7ab5cef2e6c001baaabc
-        imagePullPolicy: IfNotPresent
+        - name: PILOT_ENABLE_PROTOCOL_SNIFFING_FOR_OUTBOUND
+          value: "true"
+        - name: PILOT_ENABLE_PROTOCOL_SNIFFING_FOR_INBOUND
+          value: "false"
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/sfci/servicemesh/istio-packaging/pilot:473ba8c3598e14900243d8a2c68b55546d695e05
+        imagePullPolicy: Always
         name: discovery
         ports:
         - containerPort: 8080
@@ -167,10 +167,6 @@ spec:
         - --proxyAdminPort
         - "15373"
         env:
-        - name: ESTATE
-          value: prd-sam_gater
-        - name: KINGDOM
-          value: prd
         - name: POD_NAME
           valueFrom:
             fieldRef:
@@ -212,8 +208,14 @@ spec:
           valueFrom:
             fieldRef:
               fieldPath: metadata.labels['cluster']
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/sfci/servicemesh/istio-packaging/proxy:fb6120f9c7c32bfcea8d7ab5cef2e6c001baaabc
-        imagePullPolicy: IfNotPresent
+        - name: ESTATE
+          value: prd-sam_gater
+        - name: KINGDOM
+          value: prd
+        - name: SDS_ENABLED
+          value: "false"
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/sfci/servicemesh/istio-packaging/proxy:473ba8c3598e14900243d8a2c68b55546d695e05
+        imagePullPolicy: Always
         name: istio-proxy
         ports:
         - containerPort: 15003
@@ -383,7 +385,7 @@ spec:
         - ""
         - -d
         - 15010,15011
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/sfci/servicemesh/istio-packaging/proxy_init:fb6120f9c7c32bfcea8d7ab5cef2e6c001baaabc
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/sfci/servicemesh/istio-packaging/proxy_init:473ba8c3598e14900243d8a2c68b55546d695e05
         imagePullPolicy: IfNotPresent
         name: istio-init
         resources:

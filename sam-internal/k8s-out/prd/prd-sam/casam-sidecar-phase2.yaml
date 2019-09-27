@@ -7,6 +7,13 @@ metadata:
   namespace: core-on-sam-sp2
 spec:
   egress:
+  - bind: 0.0.0.0
+    hosts:
+    - '*/na7-mist61-caas-prd.service-mesh.svc.cluster.local'
+    port:
+      name: redis-caas
+      number: 15008
+      protocol: Redis
   - hosts:
     - mesh-control-plane/*
     - z9s-default/*
@@ -25,10 +32,3 @@ spec:
     - search-scale-safely/*
     - service-mesh/*
     - universal-search/*
-  - bind: 0.0.0.0
-    hosts:
-    - '*/na7-mist61-caas-prd.service-mesh.svc.cluster.local'
-    port:
-      name: redis-caas
-      number: 15008
-      protocol: Redis

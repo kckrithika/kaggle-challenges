@@ -1,11 +1,10 @@
 {
   "1": {
-    "istioHub": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/servicemesh/istio-packaging",
-    "istioTag": "dev",
+    "istioTag": "473ba8c3598e14900243d8a2c68b55546d695e05",
     "serviceMeshTag": "21b05ffaaf87dd1f7da1f5ea8f130138a89e50bc"
   },
   "2": {
-    "istioTag": "fb6120f9c7c32bfcea8d7ab5cef2e6c001baaabc",
+    "istioTag": "473ba8c3598e14900243d8a2c68b55546d695e05",
     "serviceMeshTag": "21b05ffaaf87dd1f7da1f5ea8f130138a89e50bc"
   },
   "3": {
