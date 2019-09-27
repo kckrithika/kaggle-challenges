@@ -24,7 +24,7 @@ system:
       - name: MANAGEMENT_PORT
         value: "15523"
       - name: JVM_ARGS
-        value: -Xmx2G -Xms2G -XX:ParallelGCThreads=8
+        value: -Xmx2G -Xms2G -XX:ParallelGCThreads=8 -Dpki.caDirectory=/client-certs
         # An environment variable used to trigger containers redeployment without making other changes to the manifest
       - name: RESTART
         value: May-16-2019
