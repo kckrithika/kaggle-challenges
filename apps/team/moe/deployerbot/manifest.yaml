@@ -261,6 +261,78 @@ system:
     - name: sam-slack-notification
       k4aSecret:
         secretName: sam-slack-notification
+  - name: deployerbot-secrets
+    count: 1
+    containers:
+    - name: deployerbot
+      image: dva/moe/deployerbot:2213-5b6ccd836718c3759fd8e98dfe977d7e9eeed9c0
+      env:
+      - name: GO_PIPELINE_LABEL
+        value: 1
+      command: ["/moe/deployerbot"]
+      args:
+      - "-gheTokenPath=/secrets/ghe_pat"
+      - "-pgpkeypath=/gpgsecrets/moe-signing-key.asc"
+      - "-samInternalTeamName=Secrets"
+      - "-slackWebhookURL=@/slack-secrets/slb-private-slack-notification.url"
+      - "-slackChannelToNotify=#infrasec-secrets"
+      - "-releaseFile=sam-internal/k8s-in/secrets/secretsreleases.json"
+      - "-promotion.image="
+      - "-promotion.intervalTime=1h"
+      - "-promotion.minBakeTime=1h"
+      - "-promotion.singlephase=false"
+      - "-heartbeat.defaultdecayduration=10m"
+      ports:
+      - containerPort: 8080
+      livenessProbe:
+        httpGet:
+          path: /healthz
+          port: 8080
+        initialDelaySeconds: 600
+        periodSeconds: 60
+      volumeMounts:
+      - mountPath: /secrets
+        name: deployerbot-ghe-pat
+        readOnly: true
+      - mountPath: /gpgsecrets
+        name: moe-gpg-signing-key
+        readOnly: true
+      - mountPath: /slack-secrets
+        name: slb-private-slack-notification
+        readOnly: true
+    - name: imagedeployer-ss-watchdog
+      image: dva/moe/deployerbot:2213-5b6ccd836718c3759fd8e98dfe977d7e9eeed9c0
+      command: ["/moe/imagedeployer"]
+      args:
+      - "-deployerbotServiceEndpoint=http://localhost:8080/deploy"
+      - "-interval=10m"
+      - "-image=secretservice-watchdog"
+      - "-imageKey=sswatchdog" # The name of the object to update in samreleases.json.
+      - "-owner="
+      - "-samInternalTeamName=Secrets"
+      - "-targetPhaseNumber=1"
+      - "-imageRegistryEndpoint=ops0-artifactrepo2-0-prd.data.sfdc.net"
+      - "-imageRegistryImageSource=dva"
+      - "-heartbeat.defaultdecayduration=15m"
+      - "-livenessProbePort=8081"
+      ports:
+      - containerPort: 8081
+      livenessProbe:
+        httpGet:
+          path: /liveness-probe
+          port: 8081
+        initialDelaySeconds: 180
+        periodSeconds: 60
+    volumes:
+    - name: deployerbot-ghe-pat
+      k4aSecret:
+        secretName: speedometer-ghe-pat
+    - name: moe-gpg-signing-key
+      k4aSecret:
+        secretName: moe-gpg-signing-key
+    - name: slb-private-slack-notification
+      k4aSecret:
+        secretName: slb-private-slack-notification
   loadbalancers:
   - lbname: deployerbot
     function: deployerbot
@@ -275,6 +347,17 @@ system:
         tls: true
   - lbname: deployerbot-sam
     function: deployerbot-sam
+    slbenabled: true
+    ports:
+      - port: 80
+        targetport: 8080
+        lbtype: http
+      - port: 443
+        targetport: 8080
+        lbtype: http
+        tls: true
+  - lbname: deployerbot-secrets
+    function: deployerbot-secrets
     slbenabled: true
     ports:
       - port: 80
