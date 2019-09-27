@@ -36,7 +36,7 @@ spec:
       containers:
         - name: discovery
           image: "%(istioHub)s/pilot:%(istioTag)s"
-          imagePullPolicy: Always
+          imagePullPolicy: IfNotPresent
           args:
           - "discovery"
           - --monitoringAddr=:15014
@@ -92,7 +92,7 @@ spec:
             readOnly: true
         - name: istio-proxy
           image: "%(istioHub)s/proxy:%(istioTag)s"
-          imagePullPolicy: Always
+          imagePullPolicy: IfNotPresent
           ports:
           - containerPort: 15003
           - containerPort: 15005

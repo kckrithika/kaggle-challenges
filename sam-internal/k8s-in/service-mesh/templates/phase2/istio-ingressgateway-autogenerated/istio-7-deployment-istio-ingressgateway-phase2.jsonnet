@@ -305,7 +305,7 @@ if (istioPhases.phaseNum == 2) then
               },
             ],
             image: "%(istioHub)s/proxy:%(istioTag)s" % mcpIstioConfig,
-            imagePullPolicy: "Always",
+            imagePullPolicy: "IfNotPresent",
             name: "istio-proxy",
             ports: [
               {

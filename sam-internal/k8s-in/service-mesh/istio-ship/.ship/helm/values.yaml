@@ -142,8 +142,6 @@ global:
   logging:
     level: default:warn
 
-  imagePullPolicy: Always
-
   # monitoring port used by mixer, pilot, galley and sidecar injector
   monitoringPort: 15014
   k8sIngress:
