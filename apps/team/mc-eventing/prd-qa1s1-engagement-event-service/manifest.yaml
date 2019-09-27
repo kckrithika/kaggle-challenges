@@ -9,7 +9,7 @@ system:
   - name: qa1s1-engagement-event-service
     identity:
       serviceName: wh-con
-    count: 1
+    count: 3 
     volumes:
     - name: cert
       maddogCert:
