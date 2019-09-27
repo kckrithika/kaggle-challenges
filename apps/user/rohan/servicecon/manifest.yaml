@@ -8,7 +8,7 @@ system:
     count: 1
     containers:
     - name: servicecon-service
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/rohan.seth/servicecon:rohan.seth-20190926-ebb74a830a
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/rohan.seth/servicecon:rohan.seth-20190927-83d8bd5d96
       # If your service doesn't serve HTTP traffic then you can remove the scone-http 8080 port.
       ports:
       - containerPort: 8080
@@ -56,8 +56,10 @@ system:
       ports:
       - containerPort: 15373
         name: sherpa-adm
-      - containerPort: 7443
-        name: grpc-tls-in
+      - containerPort: 7011
+        name: http2-out
+      - containerPort: 7012
+        name: http2-out
       livenessProbe:
         exec:
           command:
