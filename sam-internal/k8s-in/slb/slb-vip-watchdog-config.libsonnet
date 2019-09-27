@@ -264,6 +264,11 @@ local vipwdConfig = {
       // 2019/09/23 - shravya-srinivas
       // Investigating ia2 ACLs
       "org-cce2e-cs22-slb-ia2.slb.sfdc.net:*",
+      "org-cce2e-cs2-slb-ia2.slb.sfdc.net:*",
+      "org-cce2e-cs4-slb-ia2.slb.sfdc.net:*",
+      "org-cce2e-cs41-slb-ia2.slb.sfdc.net:*",
+      "org-cce2e-cs44-slb-ia2.slb.sfdc.net:*",
+      "org-cce2e-cs46-slb-ia2.slb.sfdc.net:*",
     ],
     vivips:
     [
