@@ -18,13 +18,13 @@ system:
           #ommand: ["/bin/sh"]
           #rgs: ["-c", "export AMQP_PORT=$CLIENT_PORT ; /usr/bin/python /home/sfdc-sherpa/myscripts/myqpid.py"]
           ports:
-            - containerPort: 12345
-              name: client-port
+            - name: http-port
+              containerPort: 7022
           env:
             - name: SFDC_ENVIRONMENT
               value: mesh
             - name: CLIENT_PORT
-              value: 12345
+              value: 7022
           resources:
             limits: { cpu: "1", memory: "1Gi" }
             requests: { cpu: "1", memory: "1Gi" }
@@ -43,41 +43,43 @@ system:
             - mountPath: /var/log/app
               name: logvol
 
-        # name: sherpa-app
-        # # https://sconelibci.dop.sfdc.net/job/servicelibs/job/sherpa-envoy/job/master/73
-        # image: sfci/servicelibs/sherpa-envoy:1.0.7
-        # # See https://git.soma.salesforce.com/servicelibs/sherpa#ports
-        # ports:
-        # - containerPort: 15373
-        #   name: sherpa-adm
-        # resources:
-        #   limits: { cpu: "1", memory: "1Gi" }
-        #   requests: { cpu: "1", memory: "1Gi" }
-        # env:
-        #   - name: SFDC_ENVIRONMENT
-        #     value: mesh
-        #   - name: ENVOY_DEBUG_OPTIONS
-        #     value: --log-level trace --log-path /home/sfdc-sherpa/envoy.log
-        # livenessProbe:
-        #   exec:
-        #     command:
-        #     - "./bin/is-alive"
-        #   initialDelaySeconds: 120
-        #   periodSeconds: 5
-        # readinessProbe:
-        #   exec:
-        #     command:
-        #     - "./bin/is-ready"
-        #   initialDelaySeconds: 110
-        #   periodSeconds: 5
-        # # Mount volumes with certificates. The paths here match the defaults assumed by sherpa
-        # volumeMounts:
-        # - name: sherpaclientcert
-        #   mountPath: /client-certs
-        # - name: sherpaservercert
-        #   mountPath: /server-certs
-        # - name: sherpa-log-volume
-        #   mountPath: /log
+        - name: sherpa-app
+          # https://sconelibci.dop.sfdc.net/job/servicelibs/job/sherpa-envoy/job/master/73
+          image: sfci/servicelibs/sherpa-envoy:1.0.7
+          # See https://git.soma.salesforce.com/servicelibs/sherpa#ports
+          ports:
+          - containerPort: 7014
+            name: http1-in
+          - containerPort: 15373
+            name: sherpa-adm
+          resources:
+            limits: { cpu: "1", memory: "1Gi" }
+            requests: { cpu: "1", memory: "1Gi" }
+          env:
+            - name: SFDC_ENVIRONMENT
+              value: mesh
+            - name: ENVOY_DEBUG_OPTIONS
+              value: --log-level trace --log-path /home/sfdc-sherpa/envoy.log
+          livenessProbe:
+            exec:
+              command:
+              - "./bin/is-alive"
+            initialDelaySeconds: 120
+            periodSeconds: 5
+          readinessProbe:
+            exec:
+              command:
+              - "./bin/is-ready"
+            initialDelaySeconds: 110
+            periodSeconds: 5
+          # Mount volumes with certificates. The paths here match the defaults assumed by sherpa
+          volumeMounts:
+          - name: sherpaclientcert
+            mountPath: /client-certs
+          - name: sherpaservercert
+            mountPath: /server-certs
+          - name: sherpa-log-volume
+            mountPath: /log
 
       volumes:
         - name: logvol
@@ -228,5 +230,9 @@ system:
     function: cs77-app
     slbenabled: true
     ports:
-      - port: 12345
-        targetport: 12345
+      - port: 7014
+        targetport: 7014
+      - port: 7022
+        targetport: 7022
+      - port: 15373
+        targetport: 15373
