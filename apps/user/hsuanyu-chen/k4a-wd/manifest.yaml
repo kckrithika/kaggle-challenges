@@ -6,7 +6,7 @@ system:
     count: 1
     containers:
     - name: k4a-watchdog
-      image: dva/k4a-caiman-watchdog:178-bd80fdec17e2c21732f10003bb08e1a117a1fb7b
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/hsuanyu-chen/caiman-watchdog/k4a-20190916:latest
       command:
       - "java"
       - "-Duser.home=/tmp"
@@ -37,7 +37,7 @@ system:
       - mountPath: /clientcert
         name: cert
     - name: k4a-watchdog-crd
-      image: dva/k4a-caiman-watchdog:178-bd80fdec17e2c21732f10003bb08e1a117a1fb7b
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/hsuanyu-chen/caiman-watchdog/k4a-20190916:latest
       command:
       - "java"
       - "-Duser.home=/tmp"
