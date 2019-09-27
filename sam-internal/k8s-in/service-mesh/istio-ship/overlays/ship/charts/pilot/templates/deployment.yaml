@@ -81,7 +81,7 @@ spec:
         - --serviceCluster
         - istio-pilot
         - --templateFile
-        - /etc/istio/proxy/envoy_pilot_%(kingdom)s.yaml.tmpl
+        - /etc/istio/proxy/envoy_pilot.yaml.tmpl
         - --controlPlaneAuthPolicy
         - MUTUAL_TLS
         - --envoyMetricsServiceAddress
@@ -130,6 +130,10 @@ spec:
           valueFrom:
             fieldRef:
               fieldPath: metadata.labels['cluster']
+        - name: ESTATE
+          value: mcpIstioConfig.istioEstate
+        - name: KINGDOM
+          value: mcpIstioConfig.kingdom
         name: istio-proxy
         volumeMounts:
         - mountPath: /client-certs

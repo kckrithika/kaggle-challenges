@@ -41,6 +41,7 @@ if (istioPhases.phaseNum == 1) then
         labels: {
           app: "istio-ingressgateway",
           chart: "gateways",
+          cluster: mcpIstioConfig.istioEstate,
           heritage: "Tiller",
           istio: "ingressgateway",
           name: "istio-ingressgateway",
@@ -199,6 +200,14 @@ if (istioPhases.phaseNum == 1) then
               {
                 name: "ISTIO_META_TLS_SERVER_ROOT_CERT",
                 value: "/server-certs/ca.pem",
+              },
+              {
+                name: "ISTIO_META_kubernetes_cluster_name",
+                valueFrom: {
+                  fieldRef: {
+                    fieldPath: "metadata.labels['cluster']",
+                  },
+                },
               },
               {
                 name: "NODE_NAME",
