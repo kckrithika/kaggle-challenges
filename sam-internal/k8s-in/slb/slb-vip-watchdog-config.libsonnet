@@ -269,6 +269,7 @@ local vipwdConfig = {
       "org-cce2e-cs41-slb-ia2.slb.sfdc.net:*",
       "org-cce2e-cs44-slb-ia2.slb.sfdc.net:*",
       "org-cce2e-cs46-slb-ia2.slb.sfdc.net:*",
+      "org-cce2e-*:*",
     ],
     vivips:
     [
