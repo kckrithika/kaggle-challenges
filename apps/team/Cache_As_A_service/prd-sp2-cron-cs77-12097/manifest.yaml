@@ -13,10 +13,10 @@ system:
       containers:
         - name: app
           image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/vijay-kota/myenvoy:10Jul19
-          #ommand: ["/usr/bin/python"]
-          #rgs: ["/home/sfdc-sherpa/myscripts/myapp.py"]
-          command: ["/bin/sh"]
-          args: ["-c", "export AMQP_PORT=$CLIENT_PORT ; /usr/bin/python /home/sfdc-sherpa/myscripts/myqpid.py"]
+          command: ["/usr/bin/python"]
+          args: ["/home/sfdc-sherpa/myscripts/myapp.py"]
+          #ommand: ["/bin/sh"]
+          #rgs: ["-c", "export AMQP_PORT=$CLIENT_PORT ; /usr/bin/python /home/sfdc-sherpa/myscripts/myqpid.py"]
           ports:
             - containerPort: 12345
               name: client-port
@@ -224,11 +224,9 @@ system:
     ports:
       - port: 12097
         targetport: 12097
-        lbtype: http
   - lbname: cronapp-cs77
     function: cs77-app
     slbenabled: true
     ports:
       - port: 12345
         targetport: 12345
-        lbtype: http
