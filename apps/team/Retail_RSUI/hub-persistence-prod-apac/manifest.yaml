@@ -21,7 +21,7 @@ system:
 
       containers:
         - name: hub-persistence
-          image: sfci/retail/hub-persistence:0.1.19
+          image: sfci/retail/hub-persistence:0.2.4
           ports:
             # Jetty http1 ports for incoming public traffic via SLB
             - containerPort: 7022
@@ -37,6 +37,31 @@ system:
               value: prod
             - name: JVM_ARGS
               value: -Xmx2G -Xms2G -XX:ParallelGCThreads=8
+            # Disable all management endpoints except for health
+            - name: ENDPOINTS_HEALTH_ENABLED
+              value: true
+            - name: ENDPOINTS_INFO_ENABLED
+              value: false
+            - name: ENDPOINTS_DUMP_ENABLED
+              value: false
+            - name: ENDPOINTS_APPMETRICS_ENABLED
+              value: false
+            - name: ENDPOINTS_LINT_ENABLED
+              value: false
+            - name: ENDPOINTS_CONFIGPROPS_ENABLED
+              value: false
+            - name: ENDPOINTS_ENV_ENABLED
+              value: false
+            - name: ENDPOINTS_SHUTDOWN_ENABLED
+              value: false
+            - name: ENDPOINTS_SHUTDOWN_SENSITIVE
+              value: false
+            - name: ENDPOINTS_BINDINGS_ENABLED
+              value: false
+            - name: ENDPOINTS_DTABS_ENABLED
+              value: false
+            - name: ENDPOINTS_JVM_ENABLED
+              value: false
           livenessProbe:
             httpGet:
               path: /manage/health
