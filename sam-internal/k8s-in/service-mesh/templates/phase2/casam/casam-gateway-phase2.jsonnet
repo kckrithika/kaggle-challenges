@@ -8,6 +8,7 @@ if (istioPhases.phaseNum == 2) then
   metadata: {
     annotations: {
       "manifestctl.sam.data.sfdc.net/swagger": "disable",
+      "niko/fake.change.for.redeploy": "2",
     },
     name: "ingressgateway",
     namespace: "core-on-sam-sp2",
@@ -22,7 +23,7 @@ if (istioPhases.phaseNum == 2) then
           "*",
         ],
         port: {
-          name: "https",
+          name: "https-8085",
           number: 8085,
           protocol: "HTTPS",
         },
@@ -38,7 +39,7 @@ if (istioPhases.phaseNum == 2) then
           "*",
         ],
         port: {
-          name: "https",
+          name: "https-8443",
           number: 8443,
           protocol: "HTTPS",
         },
@@ -54,7 +55,7 @@ if (istioPhases.phaseNum == 2) then
           "*",
         ],
         port: {
-          name: "tcp-secure",
+          name: "tcp-secure-2525",
           number: 2525,
           protocol: "TCP",
         },

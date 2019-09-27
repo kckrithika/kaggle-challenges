@@ -29,8 +29,8 @@ if (istioPhases.phaseNum == 2) then
     },
     strategy: {
       rollingUpdate: {
-        maxSurge: 1,
-        maxUnavailable: 0,
+        maxSurge: 3,
+        maxUnavailable: 1,
       },
     },
     template: {
@@ -167,10 +167,6 @@ if (istioPhases.phaseNum == 2) then
                 },
               },
               {
-                name: "GODEBUG",
-                value: "gctrace=1",
-              },
-              {
                 name: "PILOT_PUSH_THROTTLE",
                 value: "10",
               },
@@ -179,12 +175,16 @@ if (istioPhases.phaseNum == 2) then
                 value: "1",
               },
               {
-                name: "PILOT_DISABLE_XDS_MARSHALING_TO_ANY",
-                value: "1",
+                name: "PILOT_ENABLE_PROTOCOL_SNIFFING_FOR_OUTBOUND",
+                value: "true",
+              },
+              {
+                name: "PILOT_ENABLE_PROTOCOL_SNIFFING_FOR_INBOUND",
+                value: "false",
               },
             ],
             image: "%(istioHub)s/pilot:%(istioTag)s" % mcpIstioConfig,
-            imagePullPolicy: "IfNotPresent",
+            imagePullPolicy: "Always",
             name: "discovery",
             ports: [
               {
@@ -228,7 +228,7 @@ if (istioPhases.phaseNum == 2) then
               "--serviceCluster",
               "istio-pilot",
               "--templateFile",
-              "/etc/istio/proxy/envoy_pilot.yaml.tmpl" % mcpIstioConfig,
+              "/etc/istio/proxy/envoy_pilot.yaml.tmpl",
               "--controlPlaneAuthPolicy",
               "MUTUAL_TLS",
               "--envoyMetricsServiceAddress",
@@ -237,14 +237,6 @@ if (istioPhases.phaseNum == 2) then
               "15373",
             ],
             env: [
-              {
-                name: "ESTATE",
-                value: mcpIstioConfig.istioEstate,
-              },
-              {
-                name: "KINGDOM",
-                value: mcpIstioConfig.kingdom,
-              },
               {
                 name: "POD_NAME",
                 valueFrom: {
@@ -324,9 +316,21 @@ if (istioPhases.phaseNum == 2) then
                   },
                 },
               },
+              {
+                name: "ESTATE",
+                value: mcpIstioConfig.istioEstate,
+              },
+              {
+                name: "KINGDOM",
+                value: mcpIstioConfig.kingdom,
+              },
+              {
+                name: "SDS_ENABLED",
+                value: "false",
+              },
             ],
             image: "%(istioHub)s/proxy:%(istioTag)s" % mcpIstioConfig,
-            imagePullPolicy: "IfNotPresent",
+            imagePullPolicy: "Always",
             name: "istio-proxy",
             ports: [
               {

@@ -203,7 +203,7 @@ spec:
           value: kubernetes://api/apps/v1/namespaces/mesh-control-plane/deployments/istio-ingressgateway
         - name: ISTIO_META_ROUTER_MODE
           value: sni-dnat
-        image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/servicemesh/istio-packaging/proxy:dev
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/sfci/servicemesh/istio-packaging/proxy:473ba8c3598e14900243d8a2c68b55546d695e05
         imagePullPolicy: Always
         name: istio-proxy
         ports:

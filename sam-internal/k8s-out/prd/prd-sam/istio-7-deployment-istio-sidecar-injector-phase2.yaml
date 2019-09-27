@@ -16,8 +16,8 @@ spec:
       istio: sidecar-injector
   strategy:
     rollingUpdate:
-      maxSurge: 1
-      maxUnavailable: 0
+      maxSurge: 3
+      maxUnavailable: 1
   template:
     metadata:
       annotations:
@@ -94,8 +94,8 @@ spec:
         env:
         - name: ESTATE
           value: prd-sam_gater
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/sfci/servicemesh/istio-packaging/sidecar_injector:fb6120f9c7c32bfcea8d7ab5cef2e6c001baaabc
-        imagePullPolicy: IfNotPresent
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/sfci/servicemesh/istio-packaging/sidecar_injector:473ba8c3598e14900243d8a2c68b55546d695e05
+        imagePullPolicy: Always
         livenessProbe:
           exec:
             command:

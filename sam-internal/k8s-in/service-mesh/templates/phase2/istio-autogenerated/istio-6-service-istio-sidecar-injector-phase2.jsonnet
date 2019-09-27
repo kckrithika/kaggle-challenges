@@ -22,6 +22,10 @@ if (istioPhases.phaseNum == 2) then
         port: 443,
         targetPort: 15009,
       },
+      {
+        name: "http-monitoring",
+        port: 15014,
+      },
     ],
     selector: {
       istio: "sidecar-injector",

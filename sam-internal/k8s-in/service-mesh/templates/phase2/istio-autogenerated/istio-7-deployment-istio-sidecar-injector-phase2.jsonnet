@@ -27,8 +27,8 @@ if (istioPhases.phaseNum == 2) then
     },
     strategy: {
       rollingUpdate: {
-        maxSurge: 1,
-        maxUnavailable: 0,
+        maxSurge: 3,
+        maxUnavailable: 1,
       },
     },
     template: {
@@ -132,7 +132,7 @@ if (istioPhases.phaseNum == 2) then
               },
             ],
             image: "%(istioHub)s/sidecar_injector:%(istioTag)s" % mcpIstioConfig,
-            imagePullPolicy: "IfNotPresent",
+            imagePullPolicy: "Always",
             livenessProbe: {
               exec: {
                 command: [

@@ -16,7 +16,7 @@ spec:
         name: proxy-init
     spec:
       containers:
-      - image: ops0-artifactrepo2-0-prd.data.sfdc.net/sfci/servicemesh/istio-packaging/proxy_init:fb6120f9c7c32bfcea8d7ab5cef2e6c001baaabc
+      - image: ops0-artifactrepo2-0-prd.data.sfdc.net/sfci/servicemesh/istio-packaging/proxy_init:473ba8c3598e14900243d8a2c68b55546d695e05
         imagePullPolicy: IfNotPresent
         name: proxy-init
         resources:

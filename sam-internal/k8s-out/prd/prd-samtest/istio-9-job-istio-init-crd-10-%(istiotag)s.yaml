@@ -1,7 +1,7 @@
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: istio-init-crd-10-dev
+  name: istio-init-crd-10-473ba8c3598e14900243d8a2c68b55546d695e05
   namespace: mesh-control-plane
 spec:
   template:
@@ -15,7 +15,7 @@ spec:
         - apply
         - -f
         - /etc/istio/crd-10/crd-10.yaml
-        image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/servicemesh/istio-packaging/kubectl:dev
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/sfci/servicemesh/istio-packaging/kubectl:473ba8c3598e14900243d8a2c68b55546d695e05
         imagePullPolicy: IfNotPresent
         name: istio-init-crd-10
         volumeMounts:

@@ -23,7 +23,7 @@ spec:
           name: crd-14
           readOnly: true
       nodeSelector:
-        pool: prd-samtest
+        pool: prd-sam_gater
       restartPolicy: OnFailure
       serviceAccountName: istio-init-service-account
       volumes:

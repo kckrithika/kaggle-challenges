@@ -7,7 +7,7 @@ if (istioPhases.phaseNum == 2) then
   apiVersion: "batch/v1",
   kind: "Job",
   metadata: {
-    name: "istio-init-crd-12",
+    name: "istio-init-crd-11-%(istioTag)s" % mcpIstioConfig,
     namespace: "mesh-control-plane",
   },
   spec: {
@@ -24,15 +24,15 @@ if (istioPhases.phaseNum == 2) then
               "kubectl",
               "apply",
               "-f",
-              "/etc/istio/crd-12/crd-12.yaml",
+              "/etc/istio/crd-11/crd-11.yaml",
             ],
             image: "%(istioHub)s/kubectl:%(istioTag)s" % mcpIstioConfig,
             imagePullPolicy: "IfNotPresent",
-            name: "istio-init-crd-12",
+            name: "istio-init-crd-11",
             volumeMounts: [
               {
-                mountPath: "/etc/istio/crd-12",
-                name: "crd-12",
+                mountPath: "/etc/istio/crd-11",
+                name: "crd-11",
                 readOnly: true,
               },
             ],
@@ -46,9 +46,9 @@ if (istioPhases.phaseNum == 2) then
         volumes: [
           {
             configMap: {
-              name: "istio-crd-12",
+              name: "istio-crd-11",
             },
-            name: "crd-12",
+            name: "crd-11",
           },
         ],
       },
