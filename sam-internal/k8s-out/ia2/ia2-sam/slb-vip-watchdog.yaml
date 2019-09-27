@@ -60,7 +60,7 @@ spec:
         - --client.serverInterface=lo
         - --metricsBatchTimeout=30s
         - --veryImportantVips=ops0-artifactrepo1-0-ia2.slb.sfdc.net:443,kubernetes-api-flowsnake-ia2.slb.sfdc.net:443,ingress-flowsnake-ia2.slb.sfdc.net:443
-        - --slaOptOutVips=org-cce2e-cs22-slb-ia2.slb.sfdc.net:*,org-cce2e-cs2-slb-ia2.slb.sfdc.net:*,org-cce2e-cs4-slb-ia2.slb.sfdc.net:*,org-cce2e-cs41-slb-ia2.slb.sfdc.net:*,org-cce2e-cs44-slb-ia2.slb.sfdc.net:*,org-cce2e-cs46-slb-ia2.slb.sfdc.net:*,*slb-portal-service*
+        - --slaOptOutVips=org-cce2e-cs22-slb-ia2.slb.sfdc.net:*,org-cce2e-cs2-slb-ia2.slb.sfdc.net:*,org-cce2e-cs4-slb-ia2.slb.sfdc.net:*,org-cce2e-cs41-slb-ia2.slb.sfdc.net:*,org-cce2e-cs44-slb-ia2.slb.sfdc.net:*,org-cce2e-cs46-slb-ia2.slb.sfdc.net:*,org-cce2e-*:*,*slb-portal-service*
         - --client.socketDir=/host/data/slb/config/slb-vip-watchdog
         - --client.dialSocket=true
         env:
