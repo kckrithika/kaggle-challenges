@@ -55,8 +55,6 @@ system:
             ####################################################################################################
             ####################################### SAVE environment variables ###############################
             ####################################################################################################
-            - name: CRE_DDS_ENV
-              value: Prod
             - name: SAVE_ANNOTATIONS_PKI_NAME
               value: cre-engine
             - name: SAVE_K4A_VAULT
@@ -72,6 +70,8 @@ system:
             ####################################################################################################
             - name: EXPORT_ANNOTATIONS_PKI_NAME
               value: cre-engine
+            - name: EXPORT_K4A_VAULT
+              value: cre-dds-na-1
             - name: EXPORT_DRIVER_CORES
               value: 16
             - name: EXPORT_EXECUTOR_CORES

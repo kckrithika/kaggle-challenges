@@ -49,18 +49,16 @@ system:
             - name: INGEST_ANNOTATIONS_PKI_NAME
               value: cre-engine
             - name: INGEST_K4A_VAULT
-              value: cre-engine-na-1
+              value: cre-engine-ap-1
             - name: INGEST_ADDITIONAL_JVM_ARGS
               value: "-Dfile.encoding=UTF-8 -Djars=/opt/cre/cre-engine.jar -XX:+UseG1GC -verbose:jni -Dscala.concurrent.context.numThreads=x4 -Dspark.task.maxFailures=16"
             ####################################################################################################
             ####################################### SAVE environment variables ###############################
             ####################################################################################################
-            - name: CRE_DDS_ENV
-              value: Prod
             - name: SAVE_ANNOTATIONS_PKI_NAME
               value: cre-engine
             - name: SAVE_K4A_VAULT
-              value: cre-dds-na-1
+              value: cre-dds-ap-1
             - name: SAVE_EXECUTOR_INSTANCES
               value: 4
             - name: SAVE_SPARK_DEFAULT_PARALLELISM
@@ -72,6 +70,8 @@ system:
             ####################################################################################################
             - name: EXPORT_ANNOTATIONS_PKI_NAME
               value: cre-engine
+            - name: EXPORT_K4A_VAULT
+              value: cre-dds-ap-1
             - name: EXPORT_DRIVER_CORES
               value: 16
             - name: EXPORT_EXECUTOR_CORES
