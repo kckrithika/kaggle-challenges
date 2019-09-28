@@ -202,8 +202,8 @@ if (istioPhases.phaseNum == 1) then
               "--maddog-server-ca=/maddog-certs/ca/security-ca.pem",
               "--madkub-server-ca=/maddog-certs/ca/cacerts.pem",
               "--cert-folders=tls-server-cert:/server-cert/",
+              "--cert-folders=tls-client-cert:/client-cert/",
               "--token-folder=/tokens/",
-              "--requested-cert-type=client",
               "--ca-folder=/maddog-certs/ca",
               "--refresher",
               "--run-init-for-refresher-mode",
@@ -249,6 +249,10 @@ if (istioPhases.phaseNum == 1) then
               {
                 mountPath: "/server-cert",
                 name: "tls-server-cert",
+              },
+              {
+                mountPath: "/client-cert",
+                name: "tls-client-cert",
               },
               {
                 mountPath: "/maddog-certs/",
@@ -350,7 +354,7 @@ if (istioPhases.phaseNum == 1) then
               "--concurrency",
               "2",
               "--controlPlaneAuthPolicy",
-              "MUTUAL_TLS",
+              "NONE",
               "--statusPort",
               "15020",
             ],
@@ -469,7 +473,44 @@ if (istioPhases.phaseNum == 1) then
                 value: mcpIstioConfig.kingdom,
               },
             ],
+            image: mcpIstioConfig.proxyImage,
+            imagePullPolicy: "IfNotPresent",
             name: "istio-proxy",
+            ports: [
+              {
+                containerPort: 15090,
+                name: "http-envoy-prom",
+                protocol: "TCP",
+              },
+            ],
+            readinessProbe: {
+              failureThreshold: 30,
+              httpGet: {
+                path: "/healthz/ready",
+                port: 15020,
+                scheme: "HTTP",
+              },
+              initialDelaySeconds: 1,
+              periodSeconds: 2,
+              successThreshold: 1,
+              timeoutSeconds: 1,
+            },
+            resources: {
+              limits: {
+                cpu: "2",
+                memory: "1Gi",
+              },
+              requests: {
+                cpu: "100m",
+                memory: "128Mi",
+              },
+            },
+            securityContext: {
+              readOnlyRootFilesystem: true,
+              runAsUser: 7447,
+            },
+            terminationMessagePath: "/dev/termination-log",
+            terminationMessagePolicy: "File",
             volumeMounts: [
               {
                 mountPath: "/client-certs",
@@ -495,6 +536,7 @@ if (istioPhases.phaseNum == 1) then
               "--maddog-server-ca=/maddog-certs/ca/security-ca.pem",
               "--madkub-server-ca=/maddog-certs/ca/cacerts.pem",
               "--cert-folders=tls-server-cert:/server-cert/",
+              "--cert-folders=tls-client-cert:/client-cert/",
               "--token-folder=/tokens/",
               "--requested-cert-type=client",
               "--ca-folder=/maddog-certs/ca",
@@ -535,6 +577,10 @@ if (istioPhases.phaseNum == 1) then
               {
                 mountPath: "/server-cert",
                 name: "tls-server-cert",
+              },
+              {
+                mountPath: "/client-cert",
+                name: "tls-client-cert",
               },
               {
                 mountPath: "/maddog-certs/",
@@ -641,6 +687,12 @@ if (istioPhases.phaseNum == 1) then
               medium: "Memory",
             },
             name: "tokens",
+          },
+          {
+            emptyDir: {
+              medium: "Memory",
+            },
+            name: "istio-envoy",
           },
           {
             configMap: {

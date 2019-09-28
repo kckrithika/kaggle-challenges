@@ -24,7 +24,8 @@ local sidecarInjectorSans = [
   "istio-sidecar-injector.mesh-control-plane.svc.%s" % configs.dnsdomain,
 ];
 local sidecarInjectorServerCertConfig = madkub.serverCertConfig("tls-server-cert", "/server-cert", "istio-sidecar-injector", "mesh-control-plane", sidecarInjectorSans);
-local sidecarInjectorCertConfigs = [sidecarInjectorServerCertConfig];
+local sidecarInjectorClientCertConfig = madkub.clientCertConfig("tls-client-cert", "/client-cert", "istio-sidecar-injector", "mesh-control-plane");
+local sidecarInjectorCertConfigs = [sidecarInjectorServerCertConfig, sidecarInjectorClientCertConfig];
 
 ## Istio ingressGateway madkub certificates.
 local ingressGatewayServerCertSans = [
