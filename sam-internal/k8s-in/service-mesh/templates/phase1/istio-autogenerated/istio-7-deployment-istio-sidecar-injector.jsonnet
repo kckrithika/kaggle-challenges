@@ -124,6 +124,7 @@ if (istioPhases.phaseNum == 1) then
               "--healthCheckInterval=2s",
               "--healthCheckFile=/health",
               "--port=15009",
+              "--monitoringPort=8080",
             ],
             env: [
               {
@@ -266,6 +267,8 @@ if (istioPhases.phaseNum == 1) then
           },
           {
             args: [
+              "--endpoint",
+              "http://localhost:8080/metrics",
               "--debug-mode",
               "true",
               "--funnel-address",

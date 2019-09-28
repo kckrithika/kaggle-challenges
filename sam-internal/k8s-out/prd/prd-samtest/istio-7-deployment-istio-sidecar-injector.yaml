@@ -97,6 +97,7 @@ spec:
         - --healthCheckInterval=2s
         - --healthCheckFile=/health
         - --port=15009
+        - --monitoringPort=8080
         env:
         - name: ESTATE
           value: prd-samtest
@@ -185,6 +186,8 @@ spec:
         - mountPath: /tokens
           name: tokens
       - args:
+        - --endpoint
+        - http://localhost:8080/metrics
         - --debug-mode
         - "true"
         - --funnel-address
