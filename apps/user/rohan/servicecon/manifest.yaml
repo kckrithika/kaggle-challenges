@@ -8,7 +8,7 @@ system:
     count: 1
     containers:
     - name: servicecon-service
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/rohan.seth/servicecon:rohan.seth-20190927-83d8bd5d96
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/rohan.seth/servicecon:rohan.seth-20190927-5640cd13ca
       # If your service doesn't serve HTTP traffic then you can remove the scone-http 8080 port.
       ports:
       - containerPort: 8080
