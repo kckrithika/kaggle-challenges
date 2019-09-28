@@ -3524,11 +3524,13 @@
     {
       "namespaces": [
         "cloudatlas",
-        "cast"
+        "cast",
+        "ci-cast"
       ],
       "access": [
         "team/CloudAtlas",
-        "team/cast"
+        "team/cast",
+        "team/ci-cast"
       ],
       "controlEstate": "prd-sam",
       "estate": "prd-sam_cloudatlas_dir",
