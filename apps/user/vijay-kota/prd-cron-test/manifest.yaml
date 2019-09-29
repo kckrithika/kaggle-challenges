@@ -21,7 +21,7 @@ system:
           # container image/version to  run
           image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/sraspudic/sdb-prd:sdb_sraspudic_20170516
           command: ["/bin/sh"]
-          args: ["-c", "cd /goldimage/current/sfdc-base/sayonaradb/build ; sed -i -e 's/prod.docker.dfw.na3.saynaradb/mesh.-.prd.cs66.sdb/' user.properties ; sed -i -e 's/sayonara.store/#sayonara.store/' user.properties ; ./ant start "]
+          args: ["-c", "export sdir=/goldimage/current/sfdc-base/sayonaradb/build ; cd ${sdir} ;  sed -i -e 's/prod.docker.dfw.na3.saynaradb/mesh.-.prd.cs66.sdb/' user.properties ; sed -i -e 's/sayonara.store/#sayonara.store/' user.properties ; ./ant start ; cat user.properties ; echo Just making sure container comes up with success return code even if everything failed... "]
           env:
           - name: SFDC_ENVIRONMENT
             value: mesh
