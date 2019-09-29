@@ -29,15 +29,7 @@ system:
       - name: KPODS_COUNT
         value: 1
       - name: SPRING_PROFILES_ACTIVE
-        value: dev
-      - name: APP_REMOTE_HOST
-        value: stmfana44ice1-app1-4-prd
-      - name: APP_DOMAIN
-        value: eng.sfdc.net
-      - name: APP_JMX_PORT
-        value: 8998
-      - name: JMX_RETRIEVE_PASSWORD_FROM_SECRET_SERVICE
-        value: true
+        value: prod
       volumeMounts:
       - name: cert
         mountPath: /certs
