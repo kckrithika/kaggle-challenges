@@ -33,7 +33,7 @@ system:
       - name: APP_REMOTE_HOST
         value: 10.254.233.39
       - name: APP_DOMAIN
-        value:
+        value: 
       - name: APP_JMX_PORT
         value: 8998
       - name: JMX_SECURE_WITH_PKI
