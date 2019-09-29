@@ -31,12 +31,12 @@ system:
       - name: SPRING_PROFILES_ACTIVE
         value: dev
       - name: APP_REMOTE_HOST
-        value: stmfana44ice1-app1-4-prd
+        value: 10.254.233.39
       - name: APP_DOMAIN
-        value: eng.sfdc.net
+        value: 
       - name: APP_JMX_PORT
         value: 8998
-      - name: JMX_RETRIEVE_PASSWORD_FROM_SECRET_SERVICE
+      - name: JMX_SECURE_WITH_PKI
         value: true
       volumeMounts:
       - name: cert
