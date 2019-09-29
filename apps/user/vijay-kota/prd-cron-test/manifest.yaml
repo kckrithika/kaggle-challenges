@@ -5,11 +5,11 @@ system:
     email:
       - vijay.kota@salesforce.com
   functions:
-    - name: cs88-sdb
+    - name: cs66-sdb
       count: 1
       identity:
         serviceName: sdb
-        pod: cs88
+        pod: cs66
       #trategy:
       #  type: Recreate
       #ostnetwork: true
@@ -20,6 +20,8 @@ system:
             mountPath: /sdb/sdblogs
           # container image/version to  run
           image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/sraspudic/sdb-prd:sdb_sraspudic_20170516
+          command: ["/bin/sh"]
+          args: ["-c", "cd /goldimage/current/sfdc-base/sayonaradb/build ; sed -i -e 's/prod.docker.dfw.na3.saynaradb/mesh.-.prd.cs66.sdb/' user.properties ; sed -i -e 's/sayonara.store/#sayonara.store/' user.properties ; ./ant start "]
           env:
           - name: SFDC_ENVIRONMENT
             value: mesh
@@ -33,8 +35,8 @@ system:
             value: "samsdb1"
           - name: SDBROOT
             value: "/sdb"
-          - name: SDBSTORE
-            value: "sfstore://localhost:5555"
+          # name: SDBSTORE
+          # value: "sfstore://localhost:5555"
           - name: SDBUUID
             value: "468b1cc4-fec8-668b-a510-90a6100a3511"
           - name: SDBCLUUID
@@ -62,8 +64,8 @@ system:
           emptyDir: {}
 
   loadbalancers:
-  - lbname: cs88-sdb-lb
-    function: cs88-sdb
+  - lbname: cs66-sdb-lb
+    function: cs66-sdb
     slbenabled: true
     ports:
       - port: 1521
