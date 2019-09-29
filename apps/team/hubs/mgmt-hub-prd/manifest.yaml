@@ -1,0 +1,88 @@
+apiVersion: v1
+
+system:
+  notifications:
+         email:
+            - hubs@salesforce.com
+  functions:
+  # service name
+  - name: mgmt-hub
+    #type: stateful-set
+    # number of instances ("kpods") to deploy and run
+    count: 1
+    volumes:
+    - name: cert
+      maddogCert:
+        type: client
+    - name: logvol
+      hostPath:
+        path: /home/sfdc-mgmt/logs
+    # Docker image(s) that make up one instance of the service
+    containers:
+    - name: mgmt-hub
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mgmt/mgmt-hub:mgmt-2019-09-17-17-10-03
+      env:
+      - name: KEYSTORE_CA_DIRECTORY
+        value: /certs/ca
+      - name: KEYSTORE_CLIENT_DIRECTORY
+        value: /certs/client
+      - name: KPODS_COUNT
+        value: 1
+      - name: SPRING_PROFILES_ACTIVE
+        value: dev
+      - name: APP_REMOTE_HOST
+        value: stmfana44ice1-app1-4-prd
+      - name: APP_DOMAIN
+        value: eng.sfdc.net
+      - name: APP_JMX_PORT
+        value: 8998
+      - name: JMX_RETRIEVE_PASSWORD_FROM_SECRET_SERVICE
+        value: true
+      volumeMounts:
+      - name: cert
+        mountPath: /certs
+      ports:
+        - containerPort: 8080
+          name: scone-http
+        - containerPort: 15372
+          name: scone-mgmt
+      livenessProbe:
+        initialDelaySeconds: 30
+        httpGet:
+          path: /manage/health
+          port: 15372
+
+    - name: sherpa
+      # https://git.soma.salesforce.com/servicelibs/sherpa-envoy/releases
+      image: sfci/servicelibs/sherpa-envoy:1.0.4
+      # See https://git.soma.salesforce.com/servicelibs/sherpa#ports
+      ports:
+        - containerPort: 15373
+          name: sherpa-adm
+      livenessProbe:
+        exec:
+          command:
+            - "./bin/is-alive"
+        initialDelaySeconds: 120
+        periodSeconds: 5
+      # Mount volumes with certificates. The paths here match the defaults assumed by sherpa
+      volumeMounts:
+        - name: cert
+          mountPath: /client-certs
+
+  loadbalancers:
+  - lbname: mgmt-hub
+    function: mgmt-hub
+    nodeExposed: false
+    slbenabled: true
+    ports:
+      - port: 8080
+        targetport: 8080
+        lbtype: http
+        #tls: true
+        #reencrypt: true
+      - port: 15372 
+        targetport: 15372
+        lbtype: http
+        #tls: true
+        #reencrypt: true
