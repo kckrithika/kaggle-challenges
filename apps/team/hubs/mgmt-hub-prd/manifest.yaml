@@ -20,7 +20,7 @@ system:
     # Docker image(s) that make up one instance of the service
     containers:
     - name: mgmt-hub
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mgmt/mgmt-hub:mgmt-2019-09-29-17-53-17
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mgmt/mgmt-hub:mgmt-2019-09-17-17-10-03
       env:
       - name: KEYSTORE_CA_DIRECTORY
         value: /certs/ca
@@ -29,11 +29,15 @@ system:
       - name: KPODS_COUNT
         value: 1
       - name: SPRING_PROFILES_ACTIVE
-        value: prod
-      - name: POD_DISCOVERY_USE_REMOTE_API
-        value: false
-      - name: POD_DISCOVERY_REMOTE_API_URL
-        value: http://shared0-samkubeapi1-1-prd.eng.sfdc.net:40000
+        value: dev
+      - name: APP_REMOTE_HOST
+        value: 10.254.233.39
+      - name: APP_DOMAIN
+        value:
+      - name: APP_JMX_PORT
+        value: 8998
+      - name: JMX_SECURE_WITH_PKI
+        value: true
       volumeMounts:
       - name: cert
         mountPath: /certs
