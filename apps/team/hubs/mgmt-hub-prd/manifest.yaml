@@ -30,6 +30,10 @@ system:
         value: 1
       - name: SPRING_PROFILES_ACTIVE
         value: prod
+      - name: POD_DISCOVERY_USE_REMOTE_API
+        value: false
+      - name: POD_DISCOVERY_REMOTE_API_URL
+        value: http://shared0-samkubeapi1-1-prd.eng.sfdc.net:40000
       volumeMounts:
       - name: cert
         mountPath: /certs
