@@ -1,0 +1,20 @@
+apiVersion: v1
+data:
+  watchdog.json: |-
+    {
+      "caFile": "/etc/pki_service/ca/cabundle.pem",
+      "certFile": "/etc/pki_service/platform/platform-client/certificates/platform-client.pem",
+      "enableK4aChecks": true,
+      "enableStatelessChecks": false,
+      "funnelEndpoint": "ajna0-funnel1-0-prd.data.sfdc.net:80",
+      "imageName": "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/hypersam:109-1650a4a73bc20fdee9948c8b69b3d721ff5129cf",
+      "keyFile": "/etc/pki_service/platform/platform-client/keys/platform-client-key.pem",
+      "smtpServer": "smtpops-prd-sp1.data.sfdc.net:25"
+    }
+kind: ConfigMap
+metadata:
+  creationTimestamp: null
+  labels:
+    sam.data.sfdc.net/owner: secrets
+  name: k4a-sam-watchdog
+  namespace: sam-system

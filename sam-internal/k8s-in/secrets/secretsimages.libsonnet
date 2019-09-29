@@ -30,9 +30,23 @@ local secretsreleases = import "secretsreleases.json";
             "4"
         ),
 
+    k4aSamWatchdogPhase: (
+        if (estate == "prd-samtest") then
+            "1"
+        else if (estate == "prd-sam" || estate == "xrd-sam") then
+            "2"
+        else if (estate == "phx-sam" || estate == "dfw-sam") then
+            "3"
+        else
+            "4"
+    ),
+
     # These are the images used by the templates
     sswatchdog(canary=false): imageFunc.do_override_for_pipeline_image($.overrides, null, "secretservice-watchdog", secretsreleases[$.sswatchdogPhase(canary)].sswatchdog.label),
     sswatchdog_build(canary=false): imageFunc.build_info_from_tag(secretsreleases[$.sswatchdogPhase(canary)].sswatchdog.label).buildNumber,
+
+    k4aSamWatchdog: imageFunc.do_override_for_pipeline_image($.overrides, null, "hypersam", secretsreleases[$.k4aSamWatchdogPhase].sswatchdog.label),
+    k4aSamWatchdog_build: imageFunc.build_info_from_tag(secretsreleases[$.k4aSamWatchdogPhase].k4asamwatchdog.label).buildNumber,
 
     # image_functions needs to know the filename of the template we are processing
     # Each template must set this at time of importing this file, for example:

@@ -1,0 +1,78 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  labels:
+    name: k4a-sam-watchdog
+    sam.data.sfdc.net/owner: secrets
+  name: k4a-sam-watchdog
+  namespace: sam-system
+spec:
+  replicas: 1
+  revisionHistoryLimit: 2
+  selector:
+    matchLabels:
+      name: k4a-sam-watchdog
+  template:
+    metadata:
+      labels:
+        apptype: monitoring
+        name: k4a-sam-watchdog
+        sam.data.sfdc.net/owner: secrets
+    spec:
+      containers:
+      - command:
+        - /sam/watchdog
+        - -role=SYNTHETIC
+        - -watchdogFrequency=180s
+        - -alertThreshold=1h
+        - -emailFrequency=336h
+        - -funnelEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80
+        - --config=/config/watchdog.json
+        - --hostsConfigFile=/sfdchosts/hosts.json
+        - -timeout=2s
+        env:
+        - name: KUBECONFIG
+          value: /kubeconfig/kubeconfig-platform
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/hypersam:109-1650a4a73bc20fdee9948c8b69b3d721ff5129cf
+        name: k4a-sam-watchdog
+        volumeMounts:
+        - mountPath: /etc/pki_service
+          name: maddog-certs
+        - mountPath: /kubeconfig
+          name: kubeconfig
+        - mountPath: /sfdchosts
+          name: sfdchosts
+        - mountPath: /test
+          name: test
+        - mountPath: /_output
+          name: output
+        - mountPath: /data/certs
+          name: certs
+        - mountPath: /config
+          name: config
+      hostNetwork: true
+      nodeSelector:
+        master: "true"
+      volumes:
+      - hostPath:
+          path: /etc/pki_service
+        name: maddog-certs
+      - hostPath:
+          path: /etc/kubernetes
+        name: kubeconfig
+      - configMap:
+          name: sfdchosts
+        name: sfdchosts
+      - hostPath:
+          path: /data/certs
+        name: certs
+      - hostPath:
+          path: /manifests
+        name: sfdc-volume
+      - emptyDir: {}
+        name: test
+      - emptyDir: {}
+        name: output
+      - configMap:
+          name: k4a-sam-watchdog
+        name: config
