@@ -54,10 +54,10 @@ system:
       image: sfci/servicelibs/sherpa-envoy:1.0.4
       # See https://git.soma.salesforce.com/servicelibs/sherpa#ports
       ports:
-      - containerPort: 15373
-        name: sherpa-adm
-      - containerPort: 7012
-        name: http2-in
+        - containerPort: 15373
+          name: sherpa-adm
+        - containerPort: 7012
+          name: http2-in
       livenessProbe:
         exec:
           command:
