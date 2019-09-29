@@ -1,0 +1,70 @@
+apiVersion: v1
+
+system:
+  notifications:
+    email:
+      - vijay.kota@salesforce.com
+  functions:
+    - name: cs88-sdb
+      count: 1
+      identity:
+        serviceName: sdb
+        pod: cs88
+      #trategy:
+      #  type: Recreate
+      #ostnetwork: true
+      containers:
+        - name: sdbmaster
+          volumeMounts:
+          - name: sdblogs
+            mountPath: /sdb/sdblogs
+          # container image/version to  run
+          image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/sraspudic/sdb-prd:sdb_sraspudic_20170516
+          env:
+          - name: SFDC_ENVIRONMENT
+            value: mesh
+          - name: ZK_ENSEMBLE
+            value: sayonara1a-mnds1-1-prd.eng.sfdc.net:2181,sayonara1a-mnds1-2-prd.eng.sfdc.net:2181,sayonara1a-mnds1-3-prd.eng.sfdc.net:2181
+          - name: SDBUSER
+            value: "sam"
+          - name: SDBPORT
+            value: "1521"
+          - name: SDBDBNAME
+            value: "samsdb1"
+          - name: SDBROOT
+            value: "/sdb"
+          - name: SDBSTORE
+            value: "sfstore://localhost:5555"
+          - name: SDBUUID
+            value: "468b1cc4-fec8-668b-a510-90a6100a3511"
+          - name: SDBCLUUID
+            value: "468b1cc4-fec8-668b-a510-90a6100a3511"
+          - name: SDBCLUSTERNAME
+            value: "468b1cc4-fec8-668b-a510-90a6100a3511"
+          - name: CFG
+            value: "singlesku"
+          ports:
+          # expose sdb port outside the container
+          - containerPort: 1521
+            name: sdb-port
+            #ostPort: 1521
+          livenessProbe:
+               #cpSocket:
+               # port: 1521
+               #nitialDelaySeconds: 180
+               exec:
+                 command: ["/bin/true"]
+               initialDelaySeconds: 10
+               timeoutSeconds: 10
+               periodSeconds: 60
+      volumes:
+        - name: sdblogs
+          emptyDir: {}
+
+  loadbalancers:
+  - lbname: cs88-sdb-lb
+    function: cs88-sdb
+    slbenabled: true
+    ports:
+      - port: 1521
+        targetport: 1521
