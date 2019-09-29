@@ -31,12 +31,12 @@ system:
       - name: SPRING_PROFILES_ACTIVE
         value: dev
       - name: APP_REMOTE_HOST
-        value: 10.254.233.39
+        value: stmfana44ice1-app1-4-prd
       - name: APP_DOMAIN
-        value: ''
+        value: eng.sfdc.net
       - name: APP_JMX_PORT
         value: 8998
-      - name: JMX_SECURE_WITH_PKI
+      - name: JMX_RETRIEVE_PASSWORD_FROM_SECRET_SERVICE
         value: true
       volumeMounts:
       - name: cert
@@ -47,7 +47,7 @@ system:
         - containerPort: 15372
           name: scone-mgmt
       livenessProbe:
-        initialDelaySeconds: 30
+        initialDelaySeconds: 60
         httpGet:
           path: /manage/health
           port: 15372
