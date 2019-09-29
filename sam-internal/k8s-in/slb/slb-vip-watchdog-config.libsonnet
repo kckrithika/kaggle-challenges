@@ -169,6 +169,9 @@ local vipwdConfig = {
       "sledge-xrd*",
       //2019/09/18 shravya-srinivas: Flappy upstreams timing out requests make VIP watchdog sad.
       "aqueduct-func.emp-aqueduct.xrd-sam.xrd*",
+      // 2019/04/27 - shravya-srinivas: The backends for this VIP are throwing 502s, confusing our monitoring.
+      // Opting this VIP out of SLA eligibility for now.
+      "vir502-1-0-xrd*",
     ],
     vivips:
     [
