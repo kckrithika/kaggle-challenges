@@ -36,7 +36,7 @@ system:
         value: ""
       - name: APP_JMX_PORT
         value: 8998
-      - name: JMX_SECURE_WITH_PKI
+      - name: JMX_SECURE_WITH_P_K_I
         value: true
       volumeMounts:
       - name: cert
