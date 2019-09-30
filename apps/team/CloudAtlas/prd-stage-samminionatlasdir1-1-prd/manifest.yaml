@@ -17,13 +17,17 @@ system:
     hostnetwork: true
     containers:
     - name: cloudatlas-pdm-install
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cloud-atlas/cloudatlas/cloudatlas-pdm:e7e8f04
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cloud-atlas/cloudatlas/cloudatlas-pdm:8531fe8
       command: ["/opt/pdm/pdm.customer/bin/entrypoint.sh"]
       env:
       - name: UBID_DEPLOYMENT_STAGE
         value: ALL
       - name: AWS_BACKUP_S3_BUCKET
         value: cloud-atlas-dev-backup-us-east-1
+      - name: PUBLIC_PROXY_URL
+        value: public0-proxy1-0-prd.data.sfdc.net:8080
+      - name: ANNOUNCE_FUNCTION
+        value: cloudatlas-ds
       volumeMounts:
       - mountPath: /home/sfdc-atlas
         name: hosthomevol
