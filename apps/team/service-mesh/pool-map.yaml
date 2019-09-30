@@ -33,6 +33,8 @@ apps:
     - phx/phx-sam_gater
     - ph2/ph2-sam_gater
     - ia2/ia2-sam_gater
+    - ia4/ia4-sam_gater
+    - ia5/ia5-sam_gater
 
   time:
     - prd/prd-sam
