@@ -9,7 +9,7 @@ system:
   - name: mgmthub
     #type: stateful-set
     # number of instances ("kpods") to deploy and run
-    count: 3
+    count: 1
     volumes:
     - name: cert
       maddogCert:
@@ -27,7 +27,7 @@ system:
       - name: KEYSTORE_CLIENT_DIRECTORY
         value: /certs/client
       - name: KPODS_COUNT
-        value: 3
+        value: 1
       - name: SPRING_PROFILES_ACTIVE
         value: dev
       - name: APP_REMOTE_HOST
@@ -47,8 +47,8 @@ system:
         - containerPort: 15372
           name: scone-mgmt
       resources:
-        limits: { cpu: ".5", memory: "10Gi" }
-        requests: { cpu: ".5", memory: "10Gi" }
+        limits: { cpu: ".5", memory: "5Gi" }
+        requests: { cpu: ".5", memory: "5Gi" }
       livenessProbe:
         initialDelaySeconds: 120
         httpGet:
