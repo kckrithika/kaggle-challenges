@@ -20,7 +20,7 @@ system:
     # Docker image(s) that make up one instance of the service
     containers:
     - name: mgmthub
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/hubs/hda-client:hda-client-2019-08-21-13-58-09
+      image: dva/mgmt-hub:latest
       env:
       - name: KEYSTORE_CA_DIRECTORY
         value: /certs/ca
