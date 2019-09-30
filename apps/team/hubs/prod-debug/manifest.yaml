@@ -10,6 +10,9 @@ system:
         image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/hubs/prod-debug:prod-debug-2019-07-29-17-58-50
         ports:
           - containerPort: 2022
+        resources:
+          limits: { cpu: ".5", memory: "5Gi" }
+          requests: { cpu: ".5", memory: "5Gi" }
         livenessProbe:
           exec:
             command:
