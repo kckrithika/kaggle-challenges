@@ -60,7 +60,7 @@ local configs = import "config.jsonnet";
              fireflypullrequest: "439",
 =======
              fireflyintake: "432",
-             fireflysecintake: "438",
+             fireflysecintake: "440",
              fireflycrawler: "432",
              fireflypackage: "432",
              fireflypromotion: "432",
@@ -75,7 +75,7 @@ local configs = import "config.jsonnet";
         ### Release Phase 3 - prd-samtwo (production)
         "3": $.per_phase["4"] {
              fireflyintake: "432",
-             fireflysecintake: "438",
+             fireflysecintake: "440",
              fireflycrawler: "432",
              fireflypackage: "432",
              fireflypromotion: "432",
