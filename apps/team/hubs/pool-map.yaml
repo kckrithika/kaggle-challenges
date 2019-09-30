@@ -1,8 +1,6 @@
 apps:
   mgmt-hub-xrd:
     - xrd/xrd-sam_mgmt_hub
-  mgmt-hub-xrd2:
-    - xrd/xrd-sam_mgmt_hub
   mgmt-hub-phx:
     - phx/phx-sam_mgmt_hub
   mgmt-hub-dfw:
