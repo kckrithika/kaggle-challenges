@@ -25,7 +25,8 @@ local sidecarInjectorSans = [
 ];
 local sidecarInjectorServerCertConfig = madkub.serverCertConfig("tls-server-cert", "/server-cert", "istio-sidecar-injector", "mesh-control-plane", sidecarInjectorSans);
 local sidecarInjectorClientCertConfig = madkub.clientCertConfig("tls-client-cert", "/client-cert", "istio-sidecar-injector", "mesh-control-plane");
-local sidecarInjectorCertConfigs = [sidecarInjectorServerCertConfig, sidecarInjectorClientCertConfig];
+// TODO: We will need to remove the considion here before releasing to PAR!
+local sidecarInjectorCertConfigs = [sidecarInjectorServerCertConfig] + if configs.kingdom == "prd" then [sidecarInjectorClientCertConfig] else [];
 
 ## Istio ingressGateway madkub certificates.
 local ingressGatewayServerCertSans = [
