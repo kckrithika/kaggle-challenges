@@ -78,9 +78,6 @@ system:
 
         - name: sherpa-hub-persistence
           image: sfci/servicelibs/sherpa-envoy:1.0.5
-          args:
-            - --server-ca
-            - /server-certs/ca_test/cacerts.pem
           env:
             - name: SFDC_ENVIRONMENT
               value: prod
