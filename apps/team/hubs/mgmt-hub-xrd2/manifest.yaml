@@ -38,6 +38,13 @@ system:
         value: 8998
       - name: JMX_RETRIEVE_PASSWORD_FROM_SECRET_SERVICE
         value: true
+      resources:
+        requests:
+          memory: "20Gi"
+          cpu: "0.5"
+        limits:
+          memory: "20Gi"
+          cpu: "0.5"
       volumeMounts:
       - name: cert
         mountPath: /certs
@@ -46,32 +53,29 @@ system:
           name: scone-http
         - containerPort: 15372
           name: scone-mgmt
-      resources:
-        limits: { cpu: "0.5", memory: "20Gi" }
-        requests: { cpu: "0.5", memory: "20Gi" }
       livenessProbe:
         initialDelaySeconds: 30
         httpGet:
           path: /manage/health
           port: 15372
 
-    - name: sherpa
+    #- name: sherpa
       # https://git.soma.salesforce.com/servicelibs/sherpa-envoy/releases
-      image: sfci/servicelibs/sherpa-envoy:1.0.4
+    #  image: sfci/servicelibs/sherpa-envoy:1.0.4
       # See https://git.soma.salesforce.com/servicelibs/sherpa#ports
-      ports:
-        - containerPort: 15373
-          name: sherpa-adm
-      livenessProbe:
-        exec:
-          command:
-            - "./bin/is-alive"
-        initialDelaySeconds: 120
-        periodSeconds: 5
+    #  ports:
+    #    - containerPort: 15373
+    #      name: sherpa-adm
+    #  livenessProbe:
+    #    exec:
+    #      command:
+    #        - "./bin/is-alive"
+    #    initialDelaySeconds: 120
+    #    periodSeconds: 5
       # Mount volumes with certificates. The paths here match the defaults assumed by sherpa
-      volumeMounts:
-        - name: cert
-          mountPath: /client-certs
+    #  volumeMounts:
+    #    - name: cert
+    #      mountPath: /client-certs
 
   loadbalancers:
   - lbname: mgmt-hub2
