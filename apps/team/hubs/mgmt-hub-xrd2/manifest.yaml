@@ -49,18 +49,18 @@ system:
           name: scone-http
         - containerPort: 15372
           name: scone-mgmt
-#      livenessProbe:
-#        initialDelaySeconds: 60
-#        httpGet:
-#          path: /manage/health
-#          port: 15372
       livenessProbe:
-          exec:
-            command:
-            - cat
-            - /home/sfdc-mgmt/service.jar
-          initialDelaySeconds: 10
-          periodSeconds: 5
+        initialDelaySeconds: 60
+        httpGet:
+          path: /manage/health
+          port: 15372
+#      livenessProbe:
+#          exec:
+#            command:
+#            - cat
+#            - /home/sfdc-mgmt/service.jar
+#          initialDelaySeconds: 10
+#          periodSeconds: 5
 
     #- name: sherpa
       # https://git.soma.salesforce.com/servicelibs/sherpa-envoy/releases
