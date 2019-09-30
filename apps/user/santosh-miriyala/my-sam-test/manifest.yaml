@@ -7,7 +7,7 @@ system:
   - name: gadget-sam-test
     count: 1
     volumes:
-    - name: cert
+    - name: my-cert
       maddogCert:
         type: client
     containers:
@@ -16,7 +16,7 @@ system:
       ports:
       - containerPort: 10001
       volumeMounts:
-      - name: cert
+      - name: my-cert
         mountPath: /certs
       livenessProbe:
         httpGet:
