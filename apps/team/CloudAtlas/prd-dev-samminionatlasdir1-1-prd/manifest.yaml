@@ -27,7 +27,7 @@ system:
       - name: PUBLIC_PROXY_URL
         value: public0-proxy1-0-prd.data.sfdc.net:8080
       - name: ANNOUNCE_FUNCTION
-        value: /s/cloudatlas/cloudatlas-ds
+        value: cloudatlas/cloudatlas-ds
       volumeMounts:
       - mountPath: /home/sfdc-atlas
         name: hosthomevol
