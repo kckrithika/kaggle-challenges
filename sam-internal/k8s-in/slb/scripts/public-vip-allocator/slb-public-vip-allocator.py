@@ -179,7 +179,7 @@ def delete_ip(fqdn, cluster, public_reserved_ips):
         print("Deleted {} from {}".format(fqdn, cluster))
 
 
-def get_next_ip(cluster, public_reserved_ips, public_subnets, minimum_octet):
+def get_next_public_ip(cluster, public_reserved_ips, public_subnets, minimum_octet):
     existing_ips = public_reserved_ips[cluster].values()
     subnets = public_subnets[cluster].split(",")
     for subnet in subnets:
@@ -217,7 +217,7 @@ def add_public_ip(fqdn,
     else:
         public_reserved_ips[cluster] = {}
 
-    new_ip = get_next_ip(cluster, public_reserved_ips, public_subnets, minimum_octet)
+    new_ip = get_next_public_ip(cluster, public_reserved_ips, public_subnets, minimum_octet)
     public_reserved_ips[cluster][fqdn] = new_ip
     print("Added {} to {} with public IP {}".format(fqdn, cluster, new_ip))
 
