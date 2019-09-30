@@ -66,5 +66,16 @@ items:
       service-mesh-injector: enabled
       spark-operator-webhook: enabled
     name: flowsnake-watchdog
+- apiVersion: v1
+  kind: Namespace
+  metadata:
+    annotations:
+      sfdc.net/flowsnake.owner_name: Flowsnake Team - Strata CI Integration
+      sfdc.net/pki-namespace: flowsnake_test
+    labels:
+      madkub-injector: enabled
+      service-mesh-injector: enabled
+      spark-operator-webhook: enabled
+    name: flowsnake-ci-tests
 kind: List
 metadata: {}

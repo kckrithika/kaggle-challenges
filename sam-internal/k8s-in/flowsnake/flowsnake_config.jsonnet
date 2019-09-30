@@ -218,7 +218,7 @@ local flowsnake_all_kes = (import "flowsnakeEstates.json").kingdomEstates + ["pr
 
     # Whether this is the fleet used for CI testing in Strata builds
     ci_resources_enabled: (
-        estate == "prd-data-flowsnake" && self.kubernetes_create_user_auth
+        (estate == "prd-data-flowsnake" || estate == "prd-dev-flowsnake_iot_test") && self.kubernetes_create_user_auth
     ),
 
     s3_public_proxy_host: ("public0-proxy1-0-" + kingdom + ".data.sfdc.net"),
