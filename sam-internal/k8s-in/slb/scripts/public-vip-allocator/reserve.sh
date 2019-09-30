@@ -10,4 +10,4 @@ docker run -u 0 --rm -it \
      -v ${PWD}/../../../../..:/manifests\
      -w /manifests \
      centos/python-36-centos7 \
-     sh -c "pip -q --cache-dir=${PIP_DOWNLOAD_CACHE} install --upgrade pip && pip -q --cache-dir=${PIP_DOWNLOAD_CACHE} install pyyaml && python /manifests/sam-internal/k8s-in/slb/scripts/public-vip-allocator/slb-public-vip-allocator.py /manifests/apps/team /manifests/sam-internal/k8s-in/slb/slbpublicsubnets.json /manifests/sam-internal/k8s-in/slb/slbreservedips.json 1"
+     sh -c "pip -q --cache-dir=${PIP_DOWNLOAD_CACHE} install --upgrade pip && pip -q --cache-dir=${PIP_DOWNLOAD_CACHE} install pyyaml lxml && python /manifests/sam-internal/k8s-in/slb/scripts/public-vip-allocator/slb-public-vip-allocator.py /manifests/apps/team /manifests/sam-internal/k8s-in/slb/slbpublicsubnets.json /manifests/sam-internal/k8s-in/slb/slbreservedips.json 1"
