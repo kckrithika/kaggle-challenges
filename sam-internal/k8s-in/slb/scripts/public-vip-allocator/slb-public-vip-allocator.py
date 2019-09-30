@@ -64,12 +64,12 @@ def get_ip_from_portal(kingdom, fqdn):
     ssl._create_default_https_context = ssl._create_unverified_context
 
     conn = urllib.request.urlopen(get_portal_url(kingdom))
-    byteResponse = conn.read()
+    byte_response = conn.read()
 
-    strResponse = byteResponse.decode("utf8")
+    str_response = byte_response.decode("utf8")
     conn.close()
 
-    tree = etree.parse(StringIO(strResponse), etree.HTMLParser())
+    tree = etree.parse(StringIO(str_response), etree.HTMLParser())
 
     root = tree.getroot()
     results = root.xpath('//tr/td[position() = 2]/a|//tr/td[position() = 3]')
