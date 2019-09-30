@@ -59,7 +59,7 @@ items:
             valueFrom:
               fieldRef:
                 fieldPath: spec.nodeName
-          image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/secretservice-watchdog:107-62ab4da10c572948b5914cb8a1b629412a191b8d
+          image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/secretservice-watchdog:118-b2454bdccc5c610abf0501ffb66f0ad875610dc5
           name: watchdog
           resources:
             limits:
@@ -221,7 +221,7 @@ items:
             valueFrom:
               fieldRef:
                 fieldPath: spec.nodeName
-          image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/secretservice-watchdog:107-62ab4da10c572948b5914cb8a1b629412a191b8d
+          image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/secretservice-watchdog:118-b2454bdccc5c610abf0501ffb66f0ad875610dc5
           name: watchdog
           resources:
             limits:
@@ -383,7 +383,7 @@ items:
             valueFrom:
               fieldRef:
                 fieldPath: spec.nodeName
-          image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/secretservice-watchdog:107-62ab4da10c572948b5914cb8a1b629412a191b8d
+          image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/secretservice-watchdog:118-b2454bdccc5c610abf0501ffb66f0ad875610dc5
           name: watchdog
           resources:
             limits:
@@ -545,7 +545,7 @@ items:
             valueFrom:
               fieldRef:
                 fieldPath: spec.nodeName
-          image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/secretservice-watchdog:107-62ab4da10c572948b5914cb8a1b629412a191b8d
+          image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/secretservice-watchdog:118-b2454bdccc5c610abf0501ffb66f0ad875610dc5
           name: watchdog
           resources:
             limits:
@@ -707,7 +707,7 @@ items:
             valueFrom:
               fieldRef:
                 fieldPath: spec.nodeName
-          image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/secretservice-watchdog:107-62ab4da10c572948b5914cb8a1b629412a191b8d
+          image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/secretservice-watchdog:118-b2454bdccc5c610abf0501ffb66f0ad875610dc5
           name: watchdog
           resources:
             limits:
