@@ -8,6 +8,8 @@ local configs = import "config.jsonnet";
   secretsEstates: std.set([
     "prd-sam",
     "xrd-sam",
+    "hio-sam",
+    "ttd-sam",
   ]),
   isSecretsEstate: std.setMember(estate, $.secretsEstates),
 

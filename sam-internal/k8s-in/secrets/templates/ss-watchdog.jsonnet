@@ -83,6 +83,20 @@ local instanceMap = {
       endpoint: "secretservice.dmz.salesforce.com",
     },
   },
+  hio: {
+    # Watchdog monitoring HIO SecretService.
+    hio: {
+      endpoint: "secretservice-hio.data.sfdc.net",
+      wdKingdom: "HIO",
+    },
+  },
+  ttd: {
+    # Watchdog monitoring TTD SecretService.
+    ttd: {
+      endpoint: "secretservice-ttd.data.sfdc.net",
+      wdKingdom: "TTD",
+    },
+  },
 };
 
 local getInstanceDataWithDefaults(instanceTag) = (
