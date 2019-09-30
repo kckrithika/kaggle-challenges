@@ -12,6 +12,6 @@ system:
       ports:
       - containerPort: 10001
       livenessProbe:
-        httpGet:
-          path: /
-          port: 10001
+        exec:
+           command:
+           - /usr/bin/true
