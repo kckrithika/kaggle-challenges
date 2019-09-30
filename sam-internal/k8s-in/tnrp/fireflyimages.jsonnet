@@ -7,7 +7,7 @@ local configs = import "config.jsonnet";
     # ================== Firefly RELEASE ====================
     # Releases should follow the order below unless there are special circumstances.  Each phase should use the
     # image from the previous stage after a 24 hour bake time with no issues (check that all watchdogs are healthy)
-    ##
+    ###
 
     ### Global overrides - Anything here will override anything below
     overrides: {
