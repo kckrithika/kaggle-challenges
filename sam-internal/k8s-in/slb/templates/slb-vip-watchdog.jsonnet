@@ -90,7 +90,7 @@ if slbconfigs.isSlbEstate then configs.deploymentBase("slb") {
                           slbconfigs.cleanup_logs_volume,
                           slbconfigs.proxyconfig_volume,
                       ] + (if slbimages.phase == "1" then
-                            madkub.madkubSlbCertVolumes(certDirs) + madkub.madkubSlbMadkubVolumes()
+                            madkub.madkubSlbCertVolumes(certDirs) + madkub.madkubSlbMadkubVolumes() + [slbconfigs.reservedips_volume]
                            else [])),
                       containers: [
                           {
@@ -119,6 +119,7 @@ if slbconfigs.isSlbEstate then configs.deploymentBase("slb") {
                               ] +
                               (if slbimages.phase == "1" then
                                 madkub.madkubSlbCertVolumeMounts(certDirs)
+                                + [slbconfigs.reservedips_volume_mount]
                               else [])),
                               env: [
                                   slbconfigs.node_name_env,
