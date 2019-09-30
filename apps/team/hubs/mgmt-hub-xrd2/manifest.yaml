@@ -39,12 +39,8 @@ system:
       - name: JMX_RETRIEVE_PASSWORD_FROM_SECRET_SERVICE
         value: true
       resources:
-        requests:
-          memory: 10Gi
-          cpu: 100m
-        limits:
-          memory: 15Gi
-          cpu: 250m
+        limits: { cpu: "20", memory: "40Gi" }
+        requests: { cpu: "20", memory: "40Gi" }
       volumeMounts:
       - name: cert
         mountPath: /certs
@@ -54,7 +50,7 @@ system:
         - containerPort: 15372
           name: scone-mgmt
       livenessProbe:
-        initialDelaySeconds: 30
+        initialDelaySeconds: 60
         httpGet:
           path: /manage/health
           port: 15372
