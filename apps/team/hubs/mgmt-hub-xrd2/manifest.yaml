@@ -16,7 +16,7 @@ system:
         type: client
     - name: logvol
       hostPath:
-        path: /home/sfdc-mgmt2/logs
+        path: /home/sfdc-mgmt/logs
     # Docker image(s) that make up one instance of the service
     containers:
     - name: mgmt-hub2
