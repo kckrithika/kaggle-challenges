@@ -1,0 +1,5 @@
+apps:
+    demo:
+        - prd/prd-sam
+    servicecon:
+        - prd/prd-sam
