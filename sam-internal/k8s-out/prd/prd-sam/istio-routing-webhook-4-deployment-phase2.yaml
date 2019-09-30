@@ -153,8 +153,8 @@ spec:
         - 300s
         - --connectTimeout
         - 10s
-        - --envoyMetricsServiceAddress
-        - switchboard.service-mesh:15001
+        - --envoyMetricsService
+        - '{"address":"switchboard.service-mesh:15001","tlsSettings":{"caCertificates":"/client-certs/ca.pem","clientCertificate":"/client-certs/client/certificates/client.pem","mode":"MUTUAL","privateKey":"/client-certs/client/keys/client-key.pem","sni":null,"subjectAltNames":[]},"tcpKeepalive":{"interval":"10s","probes":3,"time":"10s"}}'
         - --proxyAdminPort
         - "15373"
         - --concurrency
