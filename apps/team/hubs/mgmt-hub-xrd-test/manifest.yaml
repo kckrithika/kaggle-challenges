@@ -9,7 +9,7 @@ system:
   - name: mgmthub
     #type: stateful-set
     # number of instances ("kpods") to deploy and run
-    count: 1
+    count: 2
     volumes:
     - name: cert
       maddogCert:
@@ -46,6 +46,9 @@ system:
           name: scone-http
         - containerPort: 15372
           name: scone-mgmt
+      resources:
+        limits: { cpu: ".5", memory: "10Gi" }
+        requests: { cpu: ".5", memory: "10Gi" }
       livenessProbe:
         initialDelaySeconds: 120
         httpGet:
