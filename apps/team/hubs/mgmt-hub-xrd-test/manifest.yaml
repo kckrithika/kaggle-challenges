@@ -20,7 +20,7 @@ system:
     # Docker image(s) that make up one instance of the service
     containers:
     - name: mgmthub
-      image: dva/mgmt-hub:4
+      image: dva/mgmt-hub:a19f5579b9845ac4b815ce85837f89fb023a9227
       env:
       - name: KEYSTORE_CA_DIRECTORY
         value: /certs/ca
