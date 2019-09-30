@@ -162,7 +162,7 @@ configs.deploymentBase("service-mesh") {
               },
               {
                 name: "FAKE_REDEPLOY_VAR",
-                value: "1",
+                value: "2",
               },
             ],
             volumeMounts+: [
