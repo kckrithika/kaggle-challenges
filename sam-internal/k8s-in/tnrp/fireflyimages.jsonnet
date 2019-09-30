@@ -52,29 +52,12 @@ local configs = import "config.jsonnet";
 
         ### Release Phase 2 - prd-sam (Canary)
         "2": $.per_phase["3"] {
-<<<<<<< HEAD
-<<<<<<< HEAD
-             fireflyintake: "439",
-             fireflycrawler: "439",
-             fireflypackage: "439",
-             fireflypromotion: "439",
-             fireflypullrequest: "439",
-=======
-             fireflyintake: "432",
-             fireflysecintake: "440",
-             fireflycrawler: "432",
-             fireflypackage: "432",
-             fireflypromotion: "432",
-             fireflypullrequest: "432",
->>>>>>> support webhook secret validation
-=======
              fireflyintake: "440",
              fireflysecintake: "440",
              fireflycrawler: "440",
              fireflypackage: "440",
              fireflypromotion: "440",
              fireflypullrequest: "440",
->>>>>>> upgrade all images
              fireflyevalresultmonitor: "327",
              fireflydind: "238",
              rabbitmq: "140",
