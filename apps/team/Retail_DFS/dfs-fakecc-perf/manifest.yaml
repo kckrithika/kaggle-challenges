@@ -15,7 +15,7 @@ system:
 
     containers:
     - name: fakecc
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/hpresnall/fakecc:20190925_171020
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/hpresnall/fakecc:20190926_162418
       # associate the log directory to a logical volume.
       volumeMounts:
       - name: server-cert
@@ -75,7 +75,7 @@ system:
         requests: { cpu: "1", memory: "1Gi" }
       args:
       - -endpoint
-      - retail-dfs/dfs-fakecc-perf:DATACENTER:7014
+      - retail-dfs/dfs-fakecc-perf:DATACENTER:7442
       livenessProbe:
         initialDelaySeconds: 5
         exec:
