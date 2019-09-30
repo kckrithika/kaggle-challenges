@@ -17,8 +17,6 @@ apps:
   - prd/prd-sam_warden
  prd-fawkes: 
   - prd/prd-sam_warden
- xrd-fawkes-staging:
-  - xrd/xrd-sam_warden
  prd-fawkes-mongo-rs:
   - prd/prd-sam_warden
  prod-mysql-shard-a:
