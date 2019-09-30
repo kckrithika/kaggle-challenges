@@ -32,7 +32,7 @@ spec:
           valueFrom:
             fieldRef:
               fieldPath: spec.nodeName
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/sam/hypersam:2804-c460314472e4e33e62ec16d2ee1512d0274d63e3
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/sam/hypersam:2806-21b02aaa76e1150dcbe5caceb5e06e03a64c7d43
         name: node-controller
         volumeMounts:
         - mountPath: /etc/pki_service
