@@ -40,11 +40,11 @@ system:
         value: true
       resources:
         requests:
-          memory: "20Gi"
-          cpu: "0.5"
+          memory: 10Gi
+          cpu: 100m
         limits:
-          memory: "20Gi"
-          cpu: "0.5"
+          memory: 15Gi
+          cpu: 250m
       volumeMounts:
       - name: cert
         mountPath: /certs
