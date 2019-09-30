@@ -363,7 +363,7 @@ items:
             value: firefly-templates.package
           - name: LATEST_FILE_QUEUE
             value: firefly-templates.latestfile
-          image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-package:432
+          image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-package:440
           imagePullPolicy: Always
           livenessProbe:
             failureThreshold: 10
