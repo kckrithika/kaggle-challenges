@@ -1,0 +1,89 @@
+# created by scone-gen d7d873b42
+
+apiVersion: v1
+
+system:
+  functions:
+  - name: servicecon
+    count: 1
+    containers:
+    - name: servicecon-service
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/rohan.seth/servicecon:rohan.seth-20190930-f03192f0e9
+      # If your service doesn't serve HTTP traffic then you can remove the scone-http 8080 port.
+      ports:
+      - containerPort: 8080
+        name: scone-http
+      - containerPort: 7020
+        name: grpc-svc
+      - containerPort: 15372
+        name: scone-mgmt
+      livenessProbe:
+        initialDelaySeconds: 30
+        httpGet:
+          path: /manage/health
+          port: 15372
+      readinessProbe:
+        timeoutSeconds: 10
+        httpGet:
+          path: /manage/ready
+          port: 15372
+    - name: beacon
+      # https://sconelibci.dop.sfdc.net/job/servicelibs/job/beacon/job/master/
+      image: sfci/servicelibs/beacon:cec13ceb9fc5aed0ce462031a01b2dd5ef73d5ee
+      # This announces your gRPC endpoint for HTTP2 traffic with mTLS
+      # See https://git.soma.salesforce.com/servicelibs/sherpa#ports
+      # The following are system defined variables injected by SAM:
+      # FUNCTION: This is the value listed in the manifest for the function key.
+      # FUNCTION_NAMESPACE: The Kubernetes namespace in which the container is running.
+      args:
+      - -endpoint
+      - servicecon-rohan:DATACENTER_ALLENV:7012
+      livenessProbe:
+        initialDelaySeconds: 5
+        exec:
+          command:
+            - "/home/scone/is-alive.sh"
+      # Need to mount to a volume so that logs can be shipped to splunk
+      volumeMounts:
+      - mountPath: /log
+        name: logvolbeacon
+    - name: sherpa
+      # https://git.soma.salesforce.com/servicelibs/sherpa-envoy/releases
+      image: sfci/servicelibs/sherpa-envoy:1.0.4
+      # See https://git.soma.salesforce.com/servicelibs/sherpa#ports
+      ports:
+        - containerPort: 15373
+          name: sherpa-adm
+        - containerPort: 7012
+          name: sherpa-in
+      livenessProbe:
+        exec:
+          command:
+          - "./bin/is-alive"
+        initialDelaySeconds: 120
+        periodSeconds: 5
+      readinessProbe:
+        exec:
+          command:
+          - "./bin/is-ready"
+        initialDelaySeconds: 110
+        periodSeconds: 5
+      # Mount volumes with certificates. The paths here match the defaults assumed by sherpa
+      volumeMounts:
+      - name: sherpaclientcert
+        mountPath: /client-certs
+      - name: sherpaservercert
+        mountPath: /server-certs
+
+    # The volumes to mount for shipping logs to splunk
+    # General rule is to use path that satisfies the pattern: /home/sfdc-*/logs/**/*.json
+    volumes:
+    - name: logvolbeacon
+      hostPath:
+        path: /home/sfdc-scone-servicecon-beacon/logs
+    - name: sherpaclientcert
+      maddogCert:
+        type: client
+    - name: sherpaservercert
+      maddogCert:
+        type: server
