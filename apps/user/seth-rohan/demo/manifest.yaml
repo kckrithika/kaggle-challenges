@@ -8,7 +8,7 @@ system:
     count: 1
     containers:
     - name: demo-service
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/rohan.seth/demo:rohan.seth-20190929-047a8c9daf
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/rohan.seth/demo:rohan.seth-20190930-948fe8a217
       # If your service  doesn't serve HTTP traffic then you can remove the scone-http 8080 port.
       ports:
       - containerPort: 8080
@@ -37,9 +37,7 @@ system:
       # FUNCTION_NAMESPACE: The Kubernetes namespace in which the container is running.
       args:
       - -endpoint
-      - $(FUNCTION_NAMESPACE)/$(FUNCTION):DATACENTER_ALLENV:7012
-      - -logging.dir
-      - /log
+      - demo-rohan:DATACENTER_ALLENV:7012
       livenessProbe:
         initialDelaySeconds: 5
         exec:
@@ -57,7 +55,7 @@ system:
         - containerPort: 15373
           name: sherpa-adm
         - containerPort: 7012
-          name: grpc-in
+          name: sherpa-in
       livenessProbe:
         exec:
           command:
