@@ -1,0 +1,56 @@
+apiVersion: v1
+
+system:
+    notifications:
+      email:
+        - rpothana@salesforce.com
+        - sravanthi.konduru@salesforce.com
+        - aborra@salesforce.com
+    functions:
+    - name: fawkes-stage-func
+      count: 1
+      strategy:
+        type: RollingUpdate
+        rollingUpdate:
+          maxSurge: 0
+          maxUnavailable: 1
+      containers:
+      - name: fawkes-stage-func
+        image: dva/casp/fawkes_strata:jenkins-CASP-fawkes-master-26-itest
+        env:
+        - name: STAGING_FAWKES
+          value: "True"
+        - name: HTTP_PROXY
+          value: "http://public0-proxy1-0-prd.data.sfdc.net:8080"
+        - name: HTTPS_PROXY
+          value: "https://public0-proxy1-0-prd.data.sfdc.net:8080"
+        - name: NO_PROXY
+          value: "warden.sfdc.net,127.0.0.1,localhost"
+        volumeMounts:
+        - mountPath: /fawkes/argus-secrets
+          name: argus
+          readOnly: true
+        - mountPath: /fawkes/splunk-secrets
+          name: splunk
+          readOnly: true
+        - mountPath: /fawkes/gus-secrets
+          name: gus
+          readOnly: true
+        - mountPath: /var/log/st2
+          name: fawkes-staging-logs-vol
+        livenessProbe:
+          exec:
+            command: ["/bin/true"]
+      volumes:
+      - name: argus
+        k4aSecret:
+          secretName: fawkes-argus
+      - name: splunk
+        k4aSecret:
+          secretName: fawkes-splunk
+      - name: gus
+        k4aSecret:
+          secretName: fawkes-gus
+      - name: fawkes-staging-logs-vol
+        hostPath:
+          path: /data/fawkes-staging-logs

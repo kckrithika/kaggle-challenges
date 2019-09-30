@@ -176,6 +176,12 @@ apps:
     hostSubList:
     - samcaas2-caasminion1-5-prd.eng.sfdc.net
     - samcaas2-caasminion3-1-prd.eng.sfdc.net
+ prd-sp2-aiops-fawkes-stage: 
+   - name: prd/prd-sp2-sam_caas
+     hostSublist:
+     - samcaas2-caasminion2-1-prd.eng.sfdc.net
+     - samcaas2-caasminion2-2-prd.eng.sfdc.net
+     - samcaas2-caasminion3-6-prd.eng.sfdc.net
  prd-sp2-aiops-sherlock:
    - name: prd/prd-sp2-sam_caas
      hostSublist:
