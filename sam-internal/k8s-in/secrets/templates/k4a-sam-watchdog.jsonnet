@@ -38,7 +38,7 @@ if secretsconfigs.k4aSamWdEnabled then {
                                      "-alertThreshold=1h",
                                      "-emailFrequency=336h",
                                      "-funnelEndpoint=" + configs.funnelVIP,
-                                     "--config=/config/watchdog.json",
+                                     "-config=/config/watchdog.json",
                                      configs.sfdchosts_arg,
                                      "-timeout=2s",
                                  ],

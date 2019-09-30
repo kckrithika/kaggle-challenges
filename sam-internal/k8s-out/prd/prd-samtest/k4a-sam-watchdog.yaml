@@ -27,13 +27,13 @@ spec:
         - -alertThreshold=1h
         - -emailFrequency=336h
         - -funnelEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80
-        - --config=/config/watchdog.json
+        - -config=/config/watchdog.json
         - --hostsConfigFile=/sfdchosts/hosts.json
         - -timeout=2s
         env:
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig-platform
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/hypersam:109-1650a4a73bc20fdee9948c8b69b3d721ff5129cf
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/hypersam:2806-21b02aaa76e1150dcbe5caceb5e06e03a64c7d43
         name: k4a-sam-watchdog
         volumeMounts:
         - mountPath: /etc/pki_service
