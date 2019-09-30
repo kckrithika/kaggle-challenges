@@ -53,8 +53,12 @@ if stampy_utils.is_stampy_webhook_dev_cluster(configs.estate) then
       ],
       failurePolicy: "Ignore",  // TODO: Set to "Fail" when the code/configs are stable
       namespaceSelector: {
-        matchLabels: {
-          "stampy-injection": "enabled",
+        matchExpressions: {
+          "key": "stampy-injection",
+          "operator": "NotIn",
+          "values": [
+            "disabled",
+          ],
         },
       },
     },

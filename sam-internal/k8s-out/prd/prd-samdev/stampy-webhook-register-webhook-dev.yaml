@@ -14,8 +14,11 @@ webhooks:
   failurePolicy: Ignore
   name: zstampy-webhook.stampy-webhook.svc
   namespaceSelector:
-    matchLabels:
-      stampy-injection: enabled
+    matchExpressions:
+      key: stampy-injection
+      operator: NotIn
+      values:
+      - disabled
   rules:
   - apiGroups:
     - apps
