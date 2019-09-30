@@ -6,7 +6,7 @@ system:
       - cre@salesforce.com
   functions:
   - name: cre-sp
-    count: 0
+    count: 1
     containers:
     - name: cre-sp
       image: sfci/cre-fusion/services:stream-processor.v2.0.1.master.ddb2e93.17
