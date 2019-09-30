@@ -5,9 +5,6 @@ apps:
  sam-c2c-jmh-perftestingapp-coreproxy:    # this must match the name of your application. It must be lower case.
   - prd/prd-sam  # the SAM Sandbox uses the prd/prd-sam host cluster
                  # you can also specify other pools
- sam-c2c-jmh-perftestingapp-c2cservice-servicemesh:    # this must match the name of your application. It must be lower case.
-  - prd/prd-sam  # the SAM Sandbox uses the prd/prd-sam host cluster
-                 # you can also specify other pools
  sam-c2c-jmh-perftestingapp-c2cservice-coreproxy:    # this must match the name of your application. It must be lower case.
   - prd/prd-sam  # the SAM Sandbox uses the prd/prd-sam host cluster
                  # you can also specify other pools
