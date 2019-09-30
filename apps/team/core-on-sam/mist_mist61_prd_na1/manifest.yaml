@@ -47,7 +47,7 @@ system:
       - name: DISABLE_AUTH_RELEASE_CHECK
         value: true
       - name: CASAM_APP_COLOR
-        value: GREEN
+        value: BLUE
       - name: SD_PORT_OVERRIDE
         value: 7442
       - name: CASAM_SETTINGS_PATH
@@ -190,7 +190,7 @@ system:
         value: --log-path /home/sfdc-sherpa/envoy.log
       - name: SFDC_ENVIRONMENT
         value: mist61
-      image: sfci/frontend-gateway/sfproxy:a290f27
+      image: sfci/frontend-gateway/sfproxy:33e43ab
       livenessProbe:
         exec:
           command:
@@ -234,7 +234,7 @@ system:
       - --metrics.maxNumberOfCollectedMetrics=100000
       - --metrics.funnelTimeOut=90000
       - --metrics.funnelEndPointURL=http://ajna0-funnel1-0-prd.data.sfdc.net:80
-      - --routeupdates.use.k8s=true
+      - --routeupdates.use.k8s=false
       env:
       - name: SFDC_ENVIRONMENT
         value: mist61
