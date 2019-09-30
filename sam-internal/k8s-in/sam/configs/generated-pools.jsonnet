@@ -8,66 +8,6 @@
       "access": [
         "team/CSC_Sam"
       ],
-      "controlEstate": "aws-us-east-2-samtest",
-      "estate": "aws-us-east-2-samtest",
-      "kingdom": "aws-us-east-2",
-      "superPod": "None"
-    },
-    {
-      "namespaces": [
-        "csc-sam"
-      ],
-      "access": [
-        "team/CSC_Sam"
-      ],
-      "controlEstate": "aws-us-west-2-casam",
-      "estate": "aws-us-west-2-casam",
-      "kingdom": "aws-us-west-2",
-      "superPod": "None"
-    },
-    {
-      "namespaces": [
-        "csc-sam"
-      ],
-      "access": [
-        "team/CSC_Sam"
-      ],
-      "controlEstate": "aws-us-west-2-processing",
-      "estate": "aws-us-west-2-processing",
-      "kingdom": "aws-us-west-2",
-      "superPod": "None"
-    },
-    {
-      "namespaces": [
-        "csc-sam"
-      ],
-      "access": [
-        "team/CSC_Sam"
-      ],
-      "controlEstate": "aws-us-west-2-samtest",
-      "estate": "aws-us-west-2-samtest",
-      "kingdom": "aws-us-west-2",
-      "superPod": "None"
-    },
-    {
-      "namespaces": [
-        "csc-sam"
-      ],
-      "access": [
-        "team/CSC_Sam"
-      ],
-      "controlEstate": "aws-us-west-2-search",
-      "estate": "aws-us-west-2-search",
-      "kingdom": "aws-us-west-2",
-      "superPod": "None"
-    },
-    {
-      "namespaces": [
-        "csc-sam"
-      ],
-      "access": [
-        "team/CSC_Sam"
-      ],
       "controlEstate": "cdg-sam",
       "estate": "cdg-sam",
       "kingdom": "cdg",
@@ -2354,30 +2294,6 @@
       "estate": "lo3-sp1-sam_caas",
       "kingdom": "lo3",
       "superPod": "sp1"
-    },
-    {
-      "namespaces": [
-        "csc-sam"
-      ],
-      "access": [
-        "team/CSC_Sam"
-      ],
-      "controlEstate": "gsf-core-devmvp-sam2-sam",
-      "estate": "gsf-core-devmvp-sam2-sam",
-      "kingdom": "mvp",
-      "superPod": "None"
-    },
-    {
-      "namespaces": [
-        "csc-sam"
-      ],
-      "access": [
-        "team/CSC_Sam"
-      ],
-      "controlEstate": "gsf-core-devmvp-sam2-samtest",
-      "estate": "gsf-core-devmvp-sam2-samtest",
-      "kingdom": "mvp",
-      "superPod": "None"
     },
     {
       "namespaces": [
