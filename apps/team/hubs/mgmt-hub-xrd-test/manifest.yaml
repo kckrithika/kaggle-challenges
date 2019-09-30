@@ -20,7 +20,7 @@ system:
     # Docker image(s) that make up one instance of the service
     containers:
     - name: mgmthub
-      image: dva/mgmt-hub:3-49c8b54aa4304b79c6f98f0825ba7b3e5e990e05
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mgmt/mgmt-hub:mgmt-2019-09-17-17-10-03
       env:
       - name: KEYSTORE_CA_DIRECTORY
         value: /certs/ca
@@ -47,7 +47,7 @@ system:
         - containerPort: 15372
           name: scone-mgmt
       livenessProbe:
-        initialDelaySeconds: 120
+        initialDelaySeconds: 240
         httpGet:
           path: /manage/health
           port: 15372
