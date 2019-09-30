@@ -38,7 +38,7 @@ spec:
         - -includeCommandOutput=true
         env:
         - name: DOCKER_TAG
-          value: "21"
+          value: "22"
         - name: S3_PROXY_HOST
           value: public0-proxy1-0-frf.data.sfdc.net
         - name: DRIVER_SERVICE_ACCOUNT
@@ -54,7 +54,7 @@ spec:
           value: frf
         - name: ESTATE
           value: frf-flowsnake_prod
-        image: ops0-artifactrepo1-0-frf.data.sfdc.net/dva/flowsnake-spark-on-k8s-integration-test-runner:21
+        image: ops0-artifactrepo1-0-frf.data.sfdc.net/dva/flowsnake-spark-on-k8s-integration-test-runner:22
         imagePullPolicy: IfNotPresent
         name: watchdog
         resources:

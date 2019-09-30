@@ -53,13 +53,14 @@ local extra_images_to_promote =
 else [
     flowsnake_images.watchdog_canary,
     flowsnake_images.spark_operator_watchdog_canary,
-    flowsnake_images.hbase_watchdog_canary,
     flowsnake_images.watchdog,
     flowsnake_images.basic_operator_integration,
-    flowsnake_images.phoenix_spark_hbase_integration,
     flowsnake_images.kube_state_metrics,
     flowsnake_images.spark_worker_23_hadoop_292,
-]);
+] + if flowsnakeconfig.hbase_enabled then [
+    flowsnake_images.hbase_watchdog_canary,
+    flowsnake_images.phoenix_spark_hbase_integration,
+] else []);
 
 if util.is_production(kingdom) then
 {

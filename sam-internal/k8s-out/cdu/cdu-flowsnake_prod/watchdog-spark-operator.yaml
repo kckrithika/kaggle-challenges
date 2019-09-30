@@ -1130,7 +1130,7 @@ items:
           - -estate=cdu-flowsnake_prod
           env:
           - name: DOCKER_TAG
-            value: "21"
+            value: "22"
           - name: S3_PROXY_HOST
             value: public0-proxy1-0-cdu.data.sfdc.net
           - name: DRIVER_SERVICE_ACCOUNT
@@ -1146,7 +1146,7 @@ items:
             value: cdu
           - name: ESTATE
             value: cdu-flowsnake_prod
-          image: ops0-artifactrepo1-0-cdu.data.sfdc.net/dva/flowsnake-spark-on-k8s-integration-test-runner:21
+          image: ops0-artifactrepo1-0-cdu.data.sfdc.net/dva/flowsnake-spark-on-k8s-integration-test-runner:22
           imagePullPolicy: IfNotPresent
           name: watchdog
           resources:
