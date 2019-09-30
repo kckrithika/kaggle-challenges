@@ -15,10 +15,3 @@ system:
         exec:
            command:
            - /usr/bin/true
-  loadbalancers:
-  - lbname: lb124
-    nodeExposed: true
-    function: gadget-test
-    ports:
-      - port: 10001
-        targetport: 10001
