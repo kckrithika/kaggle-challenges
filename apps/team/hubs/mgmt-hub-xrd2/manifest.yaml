@@ -47,7 +47,7 @@ system:
         - containerPort: 15372
           name: scone-mgmt
       livenessProbe:
-        initialDelaySeconds: 30
+        initialDelaySeconds: 60
         httpGet:
           path: /manage/health
           port: 15372
