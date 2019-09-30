@@ -92,7 +92,7 @@ system:
         value: 7022
       - name: management_server_port
         value: 15376
-      - name: proxy_target
+      - name: proxy_routes_0_target
         value: http://localhost:8080
       - name: spe_ratelimit_limit
         value: 1250
