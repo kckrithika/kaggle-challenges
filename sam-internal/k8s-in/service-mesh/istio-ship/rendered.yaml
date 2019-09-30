@@ -1701,6 +1701,7 @@ spec:
         - --healthCheckInterval=2s
         - --healthCheckFile=/health
         - --port=15009
+        - --monitoringPort=8080
         env:
         - name: ESTATE
           value: mcpIstioConfig.istioEstate
@@ -1752,8 +1753,8 @@ spec:
         - --maddog-server-ca=/maddog-certs/ca/security-ca.pem
         - --madkub-server-ca=/maddog-certs/ca/cacerts.pem
         - --cert-folders=tls-server-cert:/server-cert/
+        - --cert-folders=tls-client-cert:/client-cert/
         - --token-folder=/tokens/
-        - --requested-cert-type=client
         - --ca-folder=/maddog-certs/ca
         - --refresher
         - --run-init-for-refresher-mode
@@ -1782,10 +1783,182 @@ spec:
         volumeMounts:
         - mountPath: /server-cert
           name: tls-server-cert
+        - mountPath: /client-cert
+          name: tls-client-cert
         - mountPath: /maddog-certs/
           name: maddog-certs
         - mountPath: /tokens
           name: tokens
+      - args:
+        - --endpoint
+        - http://localhost:8080/metrics
+        - --debug-mode
+        - "true"
+        - --funnel-address
+        - mcpIstioConfig.funnelEndpoint
+        - --alt-tags
+        - cluster=svccluster
+        env:
+        - name: FUNCTION_NAMESPACE
+          valueFrom:
+            fieldRef:
+              apiVersion: v1
+              fieldPath: metadata.namespace
+        - name: SETTINGS_SUPERPOD
+          value: mcpIstioConfig.superpod
+        - name: SETTINGS_PATH
+          value: -.-.%(kingdom)s.-.istio-sidecar-injector
+        - name: ESTATE
+          value: mcpIstioConfig.istioEstate
+        image: mcpIstioConfig.metricsScraperImage
+        imagePullPolicy: Always
+        name: metrics-scraper
+        readinessProbe:
+          exec:
+            command:
+            - /bin/true
+          initialDelaySeconds: 5
+          periodSeconds: 30
+          timeoutSeconds: 5
+        resources:
+          limits:
+            cpu: 2000m
+            memory: 2048Mi
+          requests:
+            cpu: 100m
+            memory: 512Mi
+      - args:
+        - proxy
+        - sidecar
+        - --domain
+        - $(POD_NAMESPACE).svc.cluster.local
+        - --log_output_level
+        - default:info
+        - --configPath
+        - /etc/istio/proxy
+        - --binaryPath
+        - /usr/local/bin/envoy
+        - --serviceCluster
+        - istio-sidecar-injector.$(POD_NAMESPACE)
+        - --drainDuration
+        - 45s
+        - --parentShutdownDuration
+        - 1m0s
+        - --discoveryAddress
+        - istio-pilot.mesh-control-plane:15010
+        - --zipkinAddress
+        - zipkin.service-mesh:9411
+        - --proxyLogLevel=info
+        - --dnsRefreshRate
+        - 300s
+        - --connectTimeout
+        - 10s
+        - --envoyMetricsService
+        - '{"address":"switchboard.service-mesh:15001","tls_settings":{"mode":2,"client_certificate":"/client-certs/client/certificates/client.pem","private_key":"/client-certs/client/keys/client-key.pem","ca_certificates":"/client-certs/ca.pem"},"tcp_keepalive":{"probes":3,"time":{"seconds":10},"interval":{"seconds":10}}}'
+        - --proxyAdminPort
+        - "15373"
+        - --concurrency
+        - "2"
+        - --controlPlaneAuthPolicy
+        - NONE
+        - --statusPort
+        - "15020"
+        env:
+        - name: POD_NAME
+          valueFrom:
+            fieldRef:
+              apiVersion: v1
+              fieldPath: metadata.name
+        - name: POD_NAMESPACE
+          valueFrom:
+            fieldRef:
+              apiVersion: v1
+              fieldPath: metadata.namespace
+        - name: INSTANCE_IP
+          valueFrom:
+            fieldRef:
+              apiVersion: v1
+              fieldPath: status.podIP
+        - name: ISTIO_META_POD_NAME
+          valueFrom:
+            fieldRef:
+              apiVersion: v1
+              fieldPath: metadata.name
+        - name: ISTIO_META_CONFIG_NAMESPACE
+          valueFrom:
+            fieldRef:
+              apiVersion: v1
+              fieldPath: metadata.namespace
+        - name: ISTIO_META_INTERCEPTION_MODE
+          value: REDIRECT
+        - name: ISTIO_META_hostname
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.name
+        - name: ISTIO_META_namespace
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.namespace
+        - name: ISTIO_METAJSON_METRICS_INCLUSIONS
+          value: '{"sidecar.istio.io/statsInclusionPrefixes": "access_log_file,cluster,cluster_manager,control_plane,http,http2,http_mixer_filter,listener,listener_manager,redis,runtime,server,stats,tcp,tcp_mixer_filter,tracing"}'
+        - name: ISTIO_METAJSON_LABELS
+          value: '{"settings_path": "-.-.%(kingdom)s.-.istio-sidecar-injector", "superpod":"%(superpod)s"}'
+        - name: ISTIO_META_TLS_CLIENT_CERT_CHAIN
+          value: /client-certs/client/certificates/client.pem
+        - name: ISTIO_META_TLS_CLIENT_KEY
+          value: /client-certs/client/keys/client-key.pem
+        - name: ISTIO_META_TLS_CLIENT_ROOT_CERT
+          value: /client-certs/ca.pem
+        - name: ISTIO_META_TLS_SERVER_CERT_CHAIN
+          value: /server-certs/server/certificates/server.pem
+        - name: ISTIO_META_TLS_SERVER_KEY
+          value: /server-certs/server/keys/server-key.pem
+        - name: ISTIO_META_TLS_SERVER_ROOT_CERT
+          value: /server-certs/ca.pem
+        - name: ISTIO_META_kubernetes_cluster_name
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.labels['cluster']
+        - name: ESTATE
+          value: mcpIstioConfig.istioEstate
+        - name: KINGDOM
+          value: mcpIstioConfig.kingdom
+        image: mcpIstioConfig.proxyImage
+        imagePullPolicy: IfNotPresent
+        name: istio-proxy
+        ports:
+        - containerPort: 15090
+          name: http-envoy-prom
+          protocol: TCP
+        readinessProbe:
+          failureThreshold: 30
+          httpGet:
+            path: /healthz/ready
+            port: 15020
+            scheme: HTTP
+          initialDelaySeconds: 1
+          periodSeconds: 2
+          successThreshold: 1
+          timeoutSeconds: 1
+        resources:
+          limits:
+            cpu: "2"
+            memory: 1Gi
+          requests:
+            cpu: 100m
+            memory: 128Mi
+        securityContext:
+          readOnlyRootFilesystem: true
+          runAsUser: 7447
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+        volumeMounts:
+        - mountPath: /client-certs
+          name: tls-client-cert
+        - mountPath: /server-certs
+          name: tls-server-cert
+        - mountPath: /etc/istio/proxy
+          name: istio-envoy
       initContainers:
       - args:
         - /sam/madkub-client
@@ -1794,6 +1967,7 @@ spec:
         - --maddog-server-ca=/maddog-certs/ca/security-ca.pem
         - --madkub-server-ca=/maddog-certs/ca/cacerts.pem
         - --cert-folders=tls-server-cert:/server-cert/
+        - --cert-folders=tls-client-cert:/client-cert/
         - --token-folder=/tokens/
         - --requested-cert-type=client
         - --ca-folder=/maddog-certs/ca
@@ -1819,6 +1993,8 @@ spec:
         volumeMounts:
         - mountPath: /server-cert
           name: tls-server-cert
+        - mountPath: /client-cert
+          name: tls-client-cert
         - mountPath: /maddog-certs/
           name: maddog-certs
         - mountPath: /tokens
@@ -1841,6 +2017,39 @@ spec:
           name: tls-client-cert
         - mountPath: /server-cert
           name: tls-server-cert
+      - args:
+        - -p
+        - "15006"
+        - -u
+        - "7447"
+        - -m
+        - REDIRECT
+        - -i
+        - 127.1.2.3/32
+        - -x
+        - ""
+        - -b
+        - ""
+        - -d
+        - ""
+        image: mcpIstioConfig.proxyInitImage
+        imagePullPolicy: IfNotPresent
+        name: istio-init
+        resources:
+          limits:
+            cpu: 100m
+            memory: 50Mi
+          requests:
+            cpu: 10m
+            memory: 10Mi
+        securityContext:
+          capabilities:
+            add:
+            - NET_ADMIN
+          runAsNonRoot: false
+          runAsUser: 0
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
       nodeSelector:
         master: "true"
       serviceAccountName: istio-sidecar-injector-service-account
@@ -1857,6 +2066,9 @@ spec:
       - emptyDir:
           medium: Memory
         name: tokens
+      - emptyDir:
+          medium: Memory
+        name: istio-envoy
       - configMap:
           name: istio
         name: config-volume
