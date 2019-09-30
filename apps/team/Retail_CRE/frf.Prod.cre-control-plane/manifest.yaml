@@ -9,7 +9,7 @@ system:
       count: 3
       containers:
         - name: cre-control-plane
-          image: sfci/cre-fusion/services:controlplane.v2.0.1.master.ddb2e93.17
+          image: sfci/cre-fusion/services:controlplane.v2.0.2.master.2db8e12.18
           env:
             - name: K8S_API_ENDPOINT
               value: https://kubernetes-api-flowsnake-frf.slb.sfdc.net
@@ -17,7 +17,7 @@ system:
             ############################   ENGINE/DDS FLOWSNAKE ARTIFACTS ( Most frequently changed ) ##########
             ####################################################################################################
             - name: INGEST_SPEC_IMAGE
-              value: ops0-artifactrepo1-0-frf.data.sfdc.net/sfci/cre/cre-engine:2.0.0.1.master.c637511.21
+              value: ops0-artifactrepo1-0-frf.data.sfdc.net/sfci/cre/cre-engine:2.0.0.2.master.9cddaf3.22
             - name: EXPORT_SPEC_IMAGE
               value: ops0-artifactrepo1-0-frf.data.sfdc.net/sfci/cre/cre-dds-spark:2.0.1.master.c5ad758.18
             - name: SAVE_SPEC_IMAGE
