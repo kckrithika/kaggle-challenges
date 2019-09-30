@@ -52,7 +52,6 @@ spec:
         - --cert-folders=tls-server-cert:/server-cert/
         - --cert-folders=tls-client-cert:/client-cert/
         - --token-folder=/tokens/
-        #- --requested-cert-type=client
         - --ca-folder=/maddog-certs/ca
         - --refresher
         - --run-init-for-refresher-mode
@@ -89,7 +88,7 @@ spec:
           name: tokens
       - args:
         - --endpoint
-        # This is also a default in the code of the scraper
+        # Sidecar Injector webhook exposes metrics on this endpoint
         - "http://localhost:8080/metrics"
         - --debug-mode
         - "true"
