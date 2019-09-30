@@ -5,11 +5,6 @@ data:
       "CAPath": "/cert2/ca.pem",
       "ClientCertPath": "/cert2/client/certificates/client.pem",
       "ClientCertPrivateKeyPath": "/cert2/client/keys/client-key.pem",
-      "FileName": "/tmp/kms_client.log",
-      "LogLevel": "90",
-      "LogMode": "2",
-      "MetricConnectionType": "udp",
-      "MetricPort": "8125",
       "Url": "https://smsapi1-0-dfw.data.sfdc.net"
     }
 kind: ConfigMap

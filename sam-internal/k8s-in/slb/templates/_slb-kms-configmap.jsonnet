@@ -7,19 +7,6 @@ local kmsconfig = {
     CAPath: "/cert2/ca.pem",
     ClientCertPath: "/cert2/client/certificates/client.pem",
     ClientCertPrivateKeyPath: "/cert2/client/keys/client-key.pem",
-    LogLevel: "90",
-    LogMode: "2",
-    FileName: "/tmp/kms_client.log",
-    MetricConnectionType: "udp",
-    MetricPort: "8125",
-};
-
-
-local testkmsconfig = {
-    Url: "https://smsapi1-0-" + configs.kingdom + ".data.sfdc.net",
-    CAPath: "/cert2/ca.pem",
-    ClientCertPath: "/cert2/client/certificates/client.pem",
-    ClientCertPrivateKeyPath: "/cert2/client/keys/client-key.pem",
 };
 
 if slbconfigs.isSlbEstate && slbconfigs.hsmNginxEnabledEstate then {
@@ -31,6 +18,6 @@ if slbconfigs.isSlbEstate && slbconfigs.hsmNginxEnabledEstate then {
         labels: {} + configs.ownerLabel.slb,
     },
     data: {
-        [configs.kingdom + ".json"]: std.manifestJsonEx(if configs.estate == "prd-sdc" then testkmsconfig else kmsconfig, " "),
+        [configs.kingdom + ".json"]: std.manifestJsonEx(kmsconfig, " "),
     },
 } else "SKIP"
