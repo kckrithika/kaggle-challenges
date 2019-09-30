@@ -1,10 +1,12 @@
 apps:
   mgmt-hub-xrd:
     - xrd/xrd-sam_mgmt_hub
-  mgmt-hub-prd:
-    - prd/prd-sam
+  test-mgmt-hub-xrd:
+    - xrd/xrd-sam_mgmt_hub
   mgmt-hub-xrd-test:
     - xrd/xrd-sam_mgmt_hub
+  mgmt-hub-prd:
+    - prd/prd-sam
   mgmt-hub-phx:
     - phx/phx-sam_mgmt_hub
   mgmt-hub-dfw:
