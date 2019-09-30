@@ -44,13 +44,6 @@ if firefly_feature_flags.is_firefly_svc_enabled then
     ],
     portConfigs:: [
       {
-        name: 'intake-http',
-        protocol: 'TCP',
-        port: portConfig.firefly.intake_http,
-        targetPort: portConfig.firefly.intake_http,
-        [if !firefly_feature_flags.is_slb_enabled then "nodePort"]: portConfig.firefly.intake_http_nodeport,
-      },
-      {
         name: 'intake-https',
         protocol: 'TCP',
         port: portConfig.firefly.intake_https,

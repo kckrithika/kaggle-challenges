@@ -211,10 +211,6 @@ items:
     namespace: firefly
   spec:
     ports:
-    - name: intake-http
-      port: 8080
-      protocol: TCP
-      targetPort: 8080
     - name: intake-https
       port: 8443
       protocol: TCP
@@ -345,7 +341,7 @@ items:
             value: "15"
           - name: DARKLAUNCH
             value: "false"
-          image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-intake:438
+          image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-intake:440
           imagePullPolicy: Always
           livenessProbe:
             failureThreshold: 10
