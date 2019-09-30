@@ -6,18 +6,11 @@ system:
   functions:
   - name: gadget-sam-test
     count: 1
-    volumes:
-    - name: my-cert
-      maddogCert:
-        type: client
     containers:
     - name: gadget-sam-test-service
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/santosh-miriyala/gadget/gadget-core:latest
       ports:
       - containerPort: 10001
-      volumeMounts:
-      - name: my-cert
-        mountPath: /certs
       livenessProbe:
         httpGet:
           path: /
