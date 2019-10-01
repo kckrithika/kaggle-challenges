@@ -13,5 +13,5 @@ apps:
     - prd/prd-sam
   mgmt-hub-prd:
     - prd/prd-sam
-  prod-debug-prd:
-    - prd/prd-sam
+  prod-debug-xrd-test:
+    - xrd/xrd-sam_mgmt_hub
