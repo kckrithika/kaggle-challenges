@@ -19,7 +19,7 @@ system:
         path: /home/sfdc-mgmt/logs
     # Docker image(s) that make up one instance of the service
     containers:
-    - name: mgmt-hub
+    - name: mgmt-hub-test
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mgmt/mgmt-hub:mgmt-2019-09-30-22-42-58
       env:
       - name: KEYSTORE_CA_DIRECTORY
