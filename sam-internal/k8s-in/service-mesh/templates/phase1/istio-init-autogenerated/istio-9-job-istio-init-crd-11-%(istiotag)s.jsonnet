@@ -9,6 +9,9 @@ if (istioPhases.phaseNum == 1) then
   metadata: {
     name: "istio-init-crd-11-%(istioTag)s" % mcpIstioConfig,
     namespace: "mesh-control-plane",
+    annotations: {
+      "fake.deploy": "1",
+    },
   },
   spec: {
     template: {

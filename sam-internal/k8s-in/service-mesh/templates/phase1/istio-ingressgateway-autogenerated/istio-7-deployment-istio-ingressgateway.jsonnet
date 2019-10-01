@@ -9,6 +9,7 @@ if (istioPhases.phaseNum == 1) then
   metadata: {
     annotations: {
       "manifestctl.sam.data.sfdc.net/swagger": "disable",
+      "fake.deploy": "1",
     },
     labels: {
       app: "istio-ingressgateway",
