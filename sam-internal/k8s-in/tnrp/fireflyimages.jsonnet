@@ -7,7 +7,7 @@ local configs = import "config.jsonnet";
     # ================== Firefly RELEASE ====================
     # Releases should follow the order below unless there are special circumstances.  Each phase should use the
     # image from the previous stage after a 24 hour bake time with no issues (check that all watchdogs are healthy)
-    ##
+    ###
 
     ### Global overrides - Anything here will override anything below
     overrides: {
@@ -52,11 +52,12 @@ local configs = import "config.jsonnet";
 
         ### Release Phase 2 - prd-sam (Canary)
         "2": $.per_phase["3"] {
-             fireflyintake: "439",
-             fireflycrawler: "439",
-             fireflypackage: "439",
-             fireflypromotion: "439",
-             fireflypullrequest: "439",
+             fireflyintake: "440",
+             fireflysecintake: "440",
+             fireflycrawler: "440",
+             fireflypackage: "440",
+             fireflypromotion: "440",
+             fireflypullrequest: "440",
              fireflyevalresultmonitor: "327",
              fireflydind: "238",
              rabbitmq: "140",
@@ -65,11 +66,12 @@ local configs = import "config.jsonnet";
 
         ### Release Phase 3 - prd-samtwo (production)
         "3": $.per_phase["4"] {
-             fireflyintake: "432",
-             fireflycrawler: "432",
-             fireflypackage: "432",
-             fireflypromotion: "432",
-             fireflypullrequest: "432",
+             fireflyintake: "440",
+             fireflysecintake: "440",
+             fireflycrawler: "440",
+             fireflypackage: "440",
+             fireflypromotion: "440",
+             fireflypullrequest: "440",
              fireflyevalresultmonitor: "325",
              fireflydind: "238",
              rabbitmq: "140",
@@ -110,6 +112,7 @@ local configs = import "config.jsonnet";
     rabbitmq: configs.registry + "/dva/firefly-rabbitmq:" + $.per_phase[$.phase].rabbitmq,
     rabbitmq_monitord: configs.registry + "/dva/firefly-rabbitmq-monitord:" + $.per_phase[$.phase].rabbitmqmonitord,
     fireflyintake: configs.registry + "/dva/firefly-intake:" + $.per_phase[$.phase].fireflyintake,
+    fireflysecintake: configs.registry + "/dva/firefly-intake:" + $.per_phase[$.phase].fireflysecintake,
     fireflycrawler: configs.registry + "/dva/firefly-crawler:" + $.per_phase[$.phase].fireflycrawler,
     fireflypullrequest: configs.registry + "/dva/firefly-pullrequest:" + $.per_phase[$.phase].fireflypullrequest,
     fireflypackage: configs.registry + "/dva/firefly-package:" + $.per_phase[$.phase].fireflypackage,

@@ -12,6 +12,7 @@ items:
                   "webhook-secret-token-validation": false
               },
               "intake": {
+                  "enable-webhook-secret": false,
                   "repo-config-map": {
                       "manifests": {
                           "handle-only-latest-commit": true,
@@ -350,7 +351,7 @@ items:
             value: "24"
           - name: DARKLAUNCH
             value: "false"
-          image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-intake:439
+          image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-intake:440
           imagePullPolicy: Always
           livenessProbe:
             failureThreshold: 10

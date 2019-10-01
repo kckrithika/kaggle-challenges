@@ -12,6 +12,7 @@ items:
                   "webhook-secret-token-validation": false
               },
               "intake": {
+                  "enable-webhook-secret": false,
                   "instance-type": "firefly-mdp",
                   "repo-config-map": {
                       "manifests": {
@@ -351,7 +352,7 @@ items:
             value: "15"
           - name: DARKLAUNCH
             value: "false"
-          image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-intake:432
+          image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-intake:440
           imagePullPolicy: Always
           livenessProbe:
             failureThreshold: 10

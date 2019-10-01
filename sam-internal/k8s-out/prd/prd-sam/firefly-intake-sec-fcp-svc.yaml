@@ -5,27 +5,45 @@ items:
     application.yml: |-
       {
           "firefly": {
-              "crawler": {
-                  "ghe-context-prefix": "",
-                  "job-interval-in-milliseconds": 300000,
-                  "max-commit-retry": 3,
-                  "max-prr-retry": 3,
-                  "repositories": "tnrpfirefly/test_manifest_driven_promotions",
-                  "since-commit-time-in-minutes": 45,
-                  "since-prr-time-in-minutes": 45,
-                  "until-commit-status-time-in-minutes": 15,
-                  "until-commit-time-in-minutes": 15,
-                  "until-prr-status-time-in-minutes": 15,
-                  "until-prr-time-in-minutes": 15
+              "dark-launch": "${DARKLAUNCH}",
+              "ghe": {
+                  "commit-signing": false,
+                  "context-prefix": "",
+                  "webhook-secret-token-validation": false
               },
               "intake": {
-                  "api-url": "http://firefly-intake-mdp.firefly.prd-sam.prd.slb.sfdc.net:8080",
-                  "connect-timeout": "10000ms",
-                  "http-logging-interceptor-level": "NONE",
-                  "keep-alive-duration": "5m",
-                  "max-idle-connections": 10,
-                  "read-timeout": "10000ms",
-                  "write-timeout": "10000ms"
+                  "enable-webhook-secret": true,
+                  "instance-type": "firefly-fcp",
+                  "repo-config-map": {
+                      "manifests": {
+                          "handle-only-latest-commit": true,
+                          "webhook-secret-token": "feature_not_enabled"
+                      },
+                      "sam-test-firefly-manifests": {
+                          "handle-only-latest-commit": true,
+                          "webhook-secret-token": "feature_not_enabled"
+                      },
+                      "sam-test-manifests": {
+                          "handle-only-latest-commit": true,
+                          "webhook-secret-token": "feature_not_enabled"
+                      },
+                      "test-manifests": {
+                          "handle-only-latest-commit": true,
+                          "webhook-secret-token": "feature_not_enabled"
+                      },
+                      "tnrp_manifest_driven_promotions": {
+                          "handle-only-latest-commit": false,
+                          "webhook-secret-token": "feature_not_enabled"
+                      },
+                      "tnrpfirefly-test_manifest_driven_promotions": {
+                          "handle-only-latest-commit": false,
+                          "webhook-secret-token": "feature_not_enabled"
+                      },
+                      "tnrpfirefly-test_sam_manifests": {
+                          "handle-only-latest-commit": true,
+                          "webhook-secret-token": "feature_not_enabled"
+                      }
+                  }
               },
               "monitoring": {
                   "enable-funnel-publisher": true,
@@ -48,23 +66,28 @@ items:
                           "k8.node.name": "${MY_NODE_NAME}"
                       },
                       "datacenter": "prd",
-                      "pod": "firefly-crawler-mdp",
+                      "pod": "firefly-intake",
                       "service": "firefly",
                       "subservice": "${MY_APP_NAME}",
                       "superpod": "prd-sam"
                   },
                   "report-frequency": 1,
                   "system-exception-threshold": 5
+              },
+              "rabbitmq": {
+                  "exchange-name": "firefly.delivery",
+                  "routing-key-format": "%s.%s"
               }
           },
           "logging": {
               "level": {
+                  "com.salesforce": "INFO",
                   "com.salesforce.firefly": "DEBUG",
                   "com.salesforce.firefly.metrics": "INFO",
                   "org": "INFO"
               },
               "pattern": {
-                  "console": "%d{yyyy-MM-dd HH:mm:ss} - %C:%L[%thread] %-5level - details=[%msg]  %n"
+                  "console": "%d{yyyy-MM-dd HH:mm:ss} - %C:%L[%thread gua=%X{userAgent} ghd=%X{gitHubDelivery}] %-5level - e=%X{eventType} sha=%X{sha} repo=%X{repo} pr=%X{pr} c=%X{committer} - details=[%msg]  %n"
               }
           },
           "management": {
@@ -107,13 +130,40 @@ items:
               }
           },
           "server": {
-              "port": -1
+              "port": 8080
           },
           "spring": {
-              "quartz": {
-                  "properties": {
-                      "org.quartz.threadPool.threadCount": 100
-                  }
+              "rabbitmq": {
+                  "connection-timeout": "10000ms",
+                  "host": "firefly-rabbitmq.firefly.prd-sam.prd.slb.sfdc.net",
+                  "listener": {
+                      "simple": {
+                          "retry": {
+                              "enabled": true,
+                              "initial-interval": "1000ms",
+                              "max-attempts": 3,
+                              "max-interval": "10000ms",
+                              "multiplier": 2,
+                              "stateless": true
+                          }
+                      }
+                  },
+                  "password": "${rabbitMqAdmin#FromSecretService}",
+                  "port": "5672",
+                  "publisher-confirms": true,
+                  "publisher-returns": true,
+                  "template": {
+                      "mandatory": true,
+                      "reply-timeout": "60000ms",
+                      "retry": {
+                          "enabled": true,
+                          "initial-interval": "1000ms",
+                          "max-attempts": 10,
+                          "max-interval": "10000ms",
+                          "multiplier": 2
+                      }
+                  },
+                  "username": "rabbitmq-admin"
               }
           }
       }
@@ -121,7 +171,7 @@ items:
   metadata:
     labels:
       sam.data.sfdc.net/owner: tnrp
-    name: firefly-crawler-mdp-configmap
+    name: firefly-intake-sec-fcp-configmap
     namespace: firefly
 - apiVersion: v1
   kind: Service
@@ -130,10 +180,10 @@ items:
       slb.sfdc.net/cnames: |-
         [
           {
-            "cname": "firefly-crawler-mdp-prd-sam.slb.sfdc.net"
+            "cname": "firefly-intake-sec-fcp-prd-sam.slb.sfdc.net"
           }
         ]
-      slb.sfdc.net/name: firefly-crawler-mdp
+      slb.sfdc.net/name: firefly-intake-sec-fcp
       slb.sfdc.net/portconfigurations: |-
         [
           {
@@ -143,35 +193,47 @@ items:
             "sticky": 0,
             "targetPort": 8081,
             "tls": true
+          },
+          {
+            "lbtype": "http",
+            "port": 8443,
+            "reencrypt": false,
+            "sticky": 0,
+            "targetPort": 8080,
+            "tls": true
           }
         ]
     labels:
-      app: firefly-crawler-mdp
+      app: firefly-intake-sec-fcp
       sam.data.sfdc.net/owner: tnrp
-    name: firefly-crawler-mdp-service
+    name: firefly-intake-sec-fcp-service
     namespace: firefly
   spec:
     ports:
+    - name: intake-https
+      port: 8443
+      protocol: TCP
+      targetPort: 8080
     - name: admin-port
       port: 8081
       protocol: TCP
       targetPort: 8081
     selector:
-      name: firefly-crawler-mdp
+      name: firefly-intake-sec-fcp
     type: NodePort
 - apiVersion: extensions/v1beta1
   kind: Deployment
   metadata:
     labels:
-      name: firefly-crawler-mdp
+      name: firefly-intake-sec-fcp
       sam.data.sfdc.net/owner: tnrp
-    name: firefly-crawler-mdp-deployment
+    name: firefly-intake-sec-fcp-deployment
     namespace: firefly
   spec:
     replicas: 1
     selector:
       matchLabels:
-        name: firefly-crawler-mdp
+        name: firefly-intake-sec-fcp
         sam.data.sfdc.net/owner: tnrp
     strategy:
       rollingUpdate:
@@ -193,9 +255,9 @@ items:
                 ]
             }
         labels:
-          name: firefly-crawler-mdp
+          name: firefly-intake-sec-fcp
           sam.data.sfdc.net/owner: tnrp
-        name: firefly-crawler-mdp-deployment
+        name: firefly-intake-sec-fcp-deployment
         namespace: firefly
       spec:
         containers:
@@ -245,7 +307,7 @@ items:
         - command:
           - java
           - -jar
-          - /crawler-svc.jar
+          - /intake-svc.jar
           - --spring.profiles.active=prd-sam
           - --spring.config.location=/etc/firefly/config/
           env:
@@ -275,10 +337,10 @@ items:
                 apiVersion: v1
                 fieldPath: metadata.labels['name']
           - name: CONFIG_VERSION
-            value: "20"
+            value: "24"
           - name: DARKLAUNCH
             value: "false"
-          image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-crawler:440
+          image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-intake:440
           imagePullPolicy: Always
           livenessProbe:
             failureThreshold: 10
@@ -289,10 +351,13 @@ items:
             periodSeconds: 30
             successThreshold: 1
             timeoutSeconds: 30
-          name: firefly-crawler-mdp
+          name: firefly-intake-sec-fcp
           ports:
           - containerPort: 8081
             name: admin-port
+            protocol: TCP
+          - containerPort: 8080
+            name: intake-http
             protocol: TCP
           resources:
             limits:
@@ -362,7 +427,7 @@ items:
                 items:
                 - key: application.yml
                   path: application.yml
-                name: firefly-crawler-mdp-configmap
+                name: firefly-intake-sec-fcp-configmap
         - emptyDir: {}
           name: docker-build-dir
         - emptyDir: {}

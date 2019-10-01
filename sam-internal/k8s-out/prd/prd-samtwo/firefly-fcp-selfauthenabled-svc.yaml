@@ -384,7 +384,7 @@ items:
             value: firefly-fcp-test.package
           - name: LATEST_FILE_QUEUE
             value: firefly-fcp-test.latestfile
-          image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-package:432
+          image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-package:440
           imagePullPolicy: Always
           livenessProbe:
             failureThreshold: 10
@@ -875,7 +875,7 @@ items:
             value: firefly-fcp-test.package
           - name: LATEST_FILE_QUEUE
             value: firefly-fcp-test.latestfile
-          image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-package:432
+          image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-package:440
           imagePullPolicy: Always
           livenessProbe:
             failureThreshold: 10
@@ -1327,7 +1327,7 @@ items:
             value: firefly-fcp-test
           - name: RABBIT_MQ_QUEUE_NAME
             value: firefly-fcp-test.pr
-          image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-pullrequest:432
+          image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-pullrequest:440
           imagePullPolicy: Always
           livenessProbe:
             failureThreshold: 10
