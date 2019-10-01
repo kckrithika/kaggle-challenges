@@ -47,7 +47,7 @@ system:
       - name: DISABLE_AUTH_RELEASE_CHECK
         value: true
       - name: CASAM_APP_COLOR
-        value: blue
+        value: green
       - name: CASAM_SETTINGS_PATH
         value: mist.mist61.prd.na7.app
       - name: CLUSTER_NAME
@@ -130,7 +130,7 @@ system:
       app: app
       settings_path: mist.mist61.prd.na7.app
       superpod: sp2
-      version: blue
+      version: green
     name: na7-mist61app-prd
     progressDeadlineSeconds: 300
     strategy:
@@ -192,9 +192,9 @@ system:
       - name: PATCH_RELEASE_NUMBER
         value: 0
       - name: CURRENT_RELEASE_VERSION
-        value: green
-      - name: NEW_RELEASE_VERSION
         value: blue
+      - name: NEW_RELEASE_VERSION
+        value: green
       - name: READY_SERVER_COUNT
         value: 1
       - name: DB_SID
@@ -267,7 +267,7 @@ system:
       app: sequencer
       settings_path: mist.mist61.prd.na7.sequencer
       superpod: sp2
-      version: blue
+      version: green
     name: na7-mist61sequencer-prd
     progressDeadlineSeconds: 300
     terminationGracePeriodSeconds: 60
@@ -291,7 +291,7 @@ system:
       app: app
       settings_path: mist.mist61.prd.na7.app
       superpod: sp2
-      version: blue
+      version: green
     ports:
     - lbtype: dsr
       port: 8085
