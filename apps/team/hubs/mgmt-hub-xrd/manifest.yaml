@@ -39,8 +39,8 @@ system:
       - name: JMX_RETRIEVE_PASSWORD_FROM_SECRET_SERVICE
         value: true
       resources:
-        limits: { cpu: ".5", memory: "15Gi" }
-        requests: { cpu: ".5", memory: "15Gi" }
+        limits: { cpu: ".5", memory: "50Gi" }
+        requests: { cpu: ".5", memory: "50Gi" }
       volumeMounts:
       - name: cert
         mountPath: /certs
