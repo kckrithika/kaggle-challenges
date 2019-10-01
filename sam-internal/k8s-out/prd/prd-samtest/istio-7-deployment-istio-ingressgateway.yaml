@@ -2,7 +2,6 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   annotations:
-    fake.deploy: "1"
     manifestctl.sam.data.sfdc.net/swagger: disable
   labels:
     app: istio-ingressgateway

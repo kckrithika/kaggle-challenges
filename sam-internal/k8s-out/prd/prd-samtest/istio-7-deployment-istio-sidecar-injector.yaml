@@ -2,7 +2,6 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   annotations:
-    fake.deploy: "1"
     manifestctl.sam.data.sfdc.net/swagger: disable
   labels:
     app: sidecarInjectorWebhook
@@ -416,6 +415,8 @@ spec:
           name: tls-server-cert
       - args:
         - -p
+        - "15002"
+        - -z
         - "15006"
         - -u
         - "7447"

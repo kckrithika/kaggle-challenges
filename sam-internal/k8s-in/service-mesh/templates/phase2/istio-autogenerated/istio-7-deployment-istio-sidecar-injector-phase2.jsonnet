@@ -622,6 +622,8 @@ if (istioPhases.phaseNum == 2) then
           {
             args: [
               "-p",
+              "15002",
+              "-z",
               "15006",
               "-u",
               "7447",

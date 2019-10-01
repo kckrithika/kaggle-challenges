@@ -1,8 +1,6 @@
 apiVersion: batch/v1
 kind: Job
 metadata:
-  annotations:
-    fake.deploy: "1"
   name: istio-init-crd-10-473ba8c3598e14900243d8a2c68b55546d695e05
   namespace: mesh-control-plane
 spec:
