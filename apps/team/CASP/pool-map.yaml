@@ -23,7 +23,6 @@ apps:
   - iad/iad-sam_warden
   - ukb/ukb-sam_warden
   - phx/phx-sam_warden
-  - fra/fra-sam_warden
  prod-mysql-shard-a-alternate:
   - dfw/dfw-sam_warden
   - ord/ord-sam_warden
@@ -31,6 +30,7 @@ apps:
  prod-mysql-shard-a-fast:
   - par/par-sam_warden
   - cdg/cdg-sam_warden
+  - fra/fra-sam_warden
   - cdu/cdu-sam_warden
   - syd/syd-sam_warden
   - yhu/yhu-sam_warden
