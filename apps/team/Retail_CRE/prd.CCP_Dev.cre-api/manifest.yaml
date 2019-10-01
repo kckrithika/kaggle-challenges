@@ -64,6 +64,16 @@ system:
                   -Dcom.sun.management.jmxremote.ssl=false
                   -Dcom.sun.management.jmxremote.authenticate=false
                   -Xmx4G -Xms4G -XX:ParallelGCThreads=8"
+        - name: K4A_VAULT
+          value: c360-dvd-user-manager-dev
+        - name: BUCKET_NAME
+          value: c360-dvd-dev-dvd-poc-us-east-1
+        - name: ARRAY_OF_IP
+          value: '["62.17.146.144/32","204.14.239.82/32","204.14.239.58/32","204.14.239.18/32","204.14.239.17/32","204.14.239.13/32","204.14.239.107/32","204.14.239.106/32","204.14.239.105/32","204.14.239.0/24","204.14.236.215/32","204.14.236.153/32","204.14.236.152/32","204.14.236.150/32","202.95.77.83/32","158.75.202.2/32","136.146.95.8/32"]'
+        - name: BUCKET_KEY
+          value: arn:aws:kms:us-east-1:748405220275:key/141d089c-022d-4bf3-9510-5a558db4b2e9
+        - name: PERMISSIONS_BONDARY_ARN
+          value: arn:aws:iam::748405220275:policy/PCSKPermissionsBoundary
       resources:
         limits: { cpu: "8", memory: "6Gi" }
         requests: { cpu: "8", memory: "5Gi" }
