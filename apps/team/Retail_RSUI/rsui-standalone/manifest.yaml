@@ -14,12 +14,6 @@ system:
     - name: sherpa-log-volume
       hostPath:
         path: /home/sfdc-sherpa/logs
-    - name: retailservercert
-      maddogCert:
-        type: server
-        lbnames:
-        - rsui-standalone-lb
-        - rsui-standalone-test-lb
     - name: retailclientcert
       maddogCert:
         type: client
@@ -44,8 +38,6 @@ system:
       # Jetty http1 ports for incoming public traffic via SLB
       - containerPort: 7022
         name: rsui-in-http1
-      - containerPort: 7023
-        name: rsui-test-http3
       # Inbound http2 port for incoming gRPC service mesh calls
       - containerPort: 7020
         name: rsui-in-http2
@@ -63,8 +55,6 @@ system:
         value: 7022
       - name: GRPC_SERVICE_PORT
         value: 7020
-      - name: SERVER_ADDITIONALPORTS_SANDBOXLOGIN
-        value: 7023
       - name: SECURITY_CLIENT_DYNAMICKEYSTORE_MONITOREDDIRECTORY
         value: /clientcerts/client
       - name: SECURITY_CLIENT_DYNAMICKEYSTORE_CADIR
@@ -157,8 +147,6 @@ system:
           path: /manage/health
           port: 15372
       volumeMounts:
-      - name: retailservercert
-        mountPath: /servercerts
       - name: retailclientcert
         mountPath: /clientcerts
       #mount splunk logs mount
@@ -189,8 +177,6 @@ system:
         mountPath: /log
       - name: retailclientcert
         mountPath: /client-certs
-      - name: retailservercert
-        mountPath: /server-certs
       ports:
       - containerPort: 7014 # http1 in port non tls
         name: sherpa-in-http1
@@ -237,15 +223,6 @@ system:
     ports:
       - port: 443
         targetport: 7442
-        tls: true
-        lbtype: http
-        reencrypt: true
-  - lbname: rsui-standalone-test-lb
-    function: rsui-standalone
-    slbEnabled: true
-    ports:
-      - port: 443
-        targetport: 7023
         tls: true
         lbtype: http
         reencrypt: true
