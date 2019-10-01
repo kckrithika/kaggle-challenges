@@ -72,7 +72,7 @@
 - lbname: zipkin-test
   customlbname: zipkin-test
   cnames:
-   - cname: zipkin.data.sfdc.net
+   - cname: zipkin_test.data.sfdc.net
   servers:
    - shared0-samminionzipkin1-3-prd.eng.sfdc.net
    - shared0-samminionzipkin1-15-prd.eng.sfdc.net
