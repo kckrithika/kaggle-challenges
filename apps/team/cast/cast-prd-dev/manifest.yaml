@@ -99,9 +99,6 @@ system:
         name: server-cert
       - mountPath: /clientcerts
         name: client-cert
-      - mountPath: /secrets
-        name: secretsvol
-        readOnly: true
       ports:
       - containerPort: 7030
       - containerPort: 7032
