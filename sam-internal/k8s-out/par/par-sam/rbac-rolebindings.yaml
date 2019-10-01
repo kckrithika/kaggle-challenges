@@ -430,6 +430,46 @@ items:
 - apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: RoleBinding
   metadata:
+    name: retail-keymaker:par-sam_customerresolutionengine:rolebinding
+    namespace: retail-keymaker
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: minion:role
+  subjects:
+  - kind: User
+    name: shared0-samminioncustomerresolutionengine1-1-par.ops.sfdc.net
+  - kind: User
+    name: shared0-samminioncustomerresolutionengine1-2-par.ops.sfdc.net
+  - kind: User
+    name: shared0-samminioncustomerresolutionengine1-3-par.ops.sfdc.net
+  - kind: User
+    name: shared0-samminioncustomerresolutionengine1-4-par.ops.sfdc.net
+  - kind: User
+    name: shared0-samminioncustomerresolutionengine1-5-par.ops.sfdc.net
+  - kind: User
+    name: shared0-samminioncustomerresolutionengine2-1-par.ops.sfdc.net
+  - kind: User
+    name: shared0-samminioncustomerresolutionengine2-2-par.ops.sfdc.net
+  - kind: User
+    name: shared0-samminioncustomerresolutionengine2-3-par.ops.sfdc.net
+  - kind: User
+    name: shared0-samminioncustomerresolutionengine2-4-par.ops.sfdc.net
+  - kind: User
+    name: shared0-samminioncustomerresolutionengine2-5-par.ops.sfdc.net
+  - kind: User
+    name: shared0-samminioncustomerresolutionengine3-1-par.ops.sfdc.net
+  - kind: User
+    name: shared0-samminioncustomerresolutionengine3-2-par.ops.sfdc.net
+  - kind: User
+    name: shared0-samminioncustomerresolutionengine3-3-par.ops.sfdc.net
+  - kind: User
+    name: shared0-samminioncustomerresolutionengine3-4-par.ops.sfdc.net
+  - kind: User
+    name: shared0-samminioncustomerresolutionengine3-5-par.ops.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1beta1
+  kind: RoleBinding
+  metadata:
     name: wave-elt:par-sam_datapool:rolebinding
     namespace: wave-elt
   roleRef:

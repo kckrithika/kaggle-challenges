@@ -812,11 +812,13 @@
     {
       "namespaces": [
         "retail-cre",
-        "retail-credata"
+        "retail-credata",
+        "retail-keymaker"
       ],
       "access": [
         "team/Retail_CRE",
-        "team/Retail_CREDATA"
+        "team/Retail_CREDATA",
+        "team/retail-keymaker"
       ],
       "controlEstate": "frf-sam",
       "estate": "frf-sam_customerresolutionengine",
@@ -2738,11 +2740,13 @@
     {
       "namespaces": [
         "retail-cre",
-        "retail-credata"
+        "retail-credata",
+        "retail-keymaker"
       ],
       "access": [
         "team/Retail_CRE",
-        "team/Retail_CREDATA"
+        "team/Retail_CREDATA",
+        "team/retail-keymaker"
       ],
       "controlEstate": "par-sam",
       "estate": "par-sam_customerresolutionengine",
@@ -3514,11 +3518,13 @@
     {
       "namespaces": [
         "retail-cre",
-        "retail-credata"
+        "retail-credata",
+        "retail-keymaker"
       ],
       "access": [
         "team/Retail_CRE",
-        "team/Retail_CREDATA"
+        "team/Retail_CREDATA",
+        "team/retail-keymaker"
       ],
       "controlEstate": "prd-sam",
       "estate": "prd-sam_customerresolutionengine",
