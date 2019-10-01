@@ -52,23 +52,23 @@ system:
           path: /manage/health
           port: 15372
 
-    - name: sherpa
+#    - name: sherpa
       # https://git.soma.salesforce.com/servicelibs/sherpa-envoy/releases
-      image: sfci/servicelibs/sherpa-envoy:1.0.4
+#      image: sfci/servicelibs/sherpa-envoy:1.0.4
       # See https://git.soma.salesforce.com/servicelibs/sherpa#ports
-      ports:
-        - containerPort: 15373
-          name: sherpa-adm
-      livenessProbe:
-        exec:
-          command:
-            - "./bin/is-alive"
-        initialDelaySeconds: 120
-        periodSeconds: 5
+#      ports:
+#        - containerPort: 15373
+#          name: sherpa-adm
+#      livenessProbe:
+#        exec:
+#          command:
+#            - "./bin/is-alive"
+#        initialDelaySeconds: 120
+#        periodSeconds: 5
       # Mount volumes with certificates. The paths here match the defaults assumed by sherpa
-      volumeMounts:
-        - name: cert
-          mountPath: /client-certs
+#      volumeMounts:
+#        - name: cert
+#          mountPath: /client-certs
 
   loadbalancers:
   - lbname: mgmt-hub
