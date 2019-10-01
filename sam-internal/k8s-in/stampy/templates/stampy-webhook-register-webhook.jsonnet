@@ -3,8 +3,7 @@ local versions = import "stampy/versions.jsonnet";
 local stampy_utils = import "stampy/stampy_utils.jsonnet";
 local utils = import "util_functions.jsonnet";
 
-if stampy_utils.is_stampy_webhook_dev_cluster(configs.estate) then
-{
+if stampy_utils.apiserver.featureFlag then {
   apiVersion: "admissionregistration.k8s.io/v1beta1",
   kind: "MutatingWebhookConfiguration",
   metadata: {
@@ -55,9 +54,9 @@ if stampy_utils.is_stampy_webhook_dev_cluster(configs.estate) then
       namespaceSelector: {
         matchExpressions: [
           {
-            "key": "stampy-injection",
-            "operator": "NotIn",
-            "values": [
+            key: "stampy-injection",
+            operator: "NotIn",
+            values: [
               "disabled",
             ],
           },
