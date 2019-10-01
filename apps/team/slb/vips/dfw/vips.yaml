@@ -2708,6 +2708,80 @@
       value: "SLB"
 
 
+- lbname: org-orgcerttest-cs997-nokms
+  servers:
+    - cs997-app2-1-dfw.ops.sfdc.net
+    - cs997-app1-1-dfw.ops.sfdc.net
+  ports:
+  - port: 443
+    targetport: 8090
+    reencrypt: true
+    healthport: 8085
+    lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy
+    sticky: 86400
+    tls: true
+    tlscertificate: secret_service:BofA-Stmfa-VIP-Certs:dfw.orgcerttest.my-salesforce.com-no-kms.crt
+    tlskey: secret_service:BofA-Stmfa-VIP-Certs:dfw.orgcerttest.my-salesforce.com-no-kms.key
+    addheaders:
+    - name: "X-Salesforce-VIP"
+      value: "SLB"
+    removeheaders:
+    - "X-Forwarded-Proto"
+    - "X-Forwarded-For"
+    - "X-Client-Verify"
+    - "X-Real-IP"
+    - "X-Client-Cert"
+    - "X-Client-Fingerprint" 
+    - "SSL_CLIENT_S_DN"
+    - "SSL_CLIENT_M_SERIAL"
+    - "SSL_CLIENT_I_DN"
+    - "SSL_SHA1_HASH"
+    - "SSL_CLIENT_V_REMAIN" 
+  - port: 8443
+    targetport: 8090
+    reencrypt: true
+    healthport: 8085
+    lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy
+    sticky: 86400
+    tls: true
+    mtls: true
+    tlscertificate: secret_service:BofA-Stmfa-VIP-Certs:dfw.orgcerttest.my-salesforce.com-no-kms.crt
+    tlskey: secret_service:BofA-Stmfa-VIP-Certs:dfw.orgcerttest.my-salesforce.com-no-kms.key
+    addheaders:
+    - name: "X-Salesforce-VIP"
+      value: "SLB"
+    removeheaders:
+    - "X-Forwarded-Proto"
+    - "X-Forwarded-For"
+    - "X-Client-Verify"
+    - "X-Real-IP"
+    - "X-Client-Cert"
+    - "X-Client-Fingerprint"  
+    - "SSL_CLIENT_V_REMAIN"   
+  - port: 80
+    targetport: 8085
+    lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy
+    removeheaders:
+    - "CipherSuite"
+    - "X-Forwarded-Proto" 
+    - "X-Forwarded-For" 
+    - "X-Real-IP"
+    - "SSL_CLIENT_S_DN"
+    - "SSL_CLIENT_M_SERIAL"
+    - "SSL_CLIENT_I_DN"
+    - "SSL_SHA1_HASH"
+    - "SSL_CLIENT_V_REMAIN" 
+    addheaders:
+    - name: "X-Salesforce-VIP"
+      value: "SLB"
+
+
 - lbname: org-cce2e-na47
   servers:
     - na47-app1-14-dfw.ops.sfdc.net
