@@ -20,24 +20,12 @@ system:
     # Docker image(s) that make up one instance of the service
     containers:
     - name: mgmt-hub
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mgmt/mgmt-hub:mgmt-2019-09-30-22-42-58
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mgmt/mgmt-hub:mgmt-2019-10-01-02-18-59
       env:
-      - name: KEYSTORE_CA_DIRECTORY
-        value: /certs/ca
-      - name: KEYSTORE_CLIENT_DIRECTORY
-        value: /certs/client
       - name: KPODS_COUNT
         value: 1
       - name: SPRING_PROFILES_ACTIVE
         value: dev
-      - name: APP_REMOTE_HOST
-        value: 10.254.233.100
-      - name: APP_DOMAIN
-        value: ""
-      - name: APP_JMX_PORT
-        value: 8998
-      - name: JMX_SECURE_WITH_P_K_I
-        value: true
       volumeMounts:
       - name: cert
         mountPath: /certs
