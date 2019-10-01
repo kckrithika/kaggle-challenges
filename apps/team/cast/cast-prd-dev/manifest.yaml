@@ -102,9 +102,6 @@ system:
       - mountPath: /secrets
         name: secretsvol
         readOnly: true
-      - mountPath: /k4asecrets
-        name: k4a-secrets
-        readOnly: true
       ports:
       - containerPort: 7030
       - containerPort: 7032
@@ -227,9 +224,6 @@ system:
     - name: secretsvol
       secret:
         secretName: passwd
-    - name: k4a-secrets
-      k4asecret:
-        secretName: ca-secrets
     - name: logvol
       hostPath:
         path: /home/sfdc-atlas/logs
