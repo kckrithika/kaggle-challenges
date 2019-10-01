@@ -2,8 +2,8 @@ apiVersion: v1
 
 system:
   notifications:
-    email:
-    - hubs@salesforce.com
+         email:
+            - hubs@salesforce.com
   functions:
   # service name
   - name: mgmthub
@@ -20,7 +20,7 @@ system:
     # Docker image(s) that make up one instance of the service
     containers:
     - name: mgmthub
-      image: dva/mgmt-hub:4
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mgmt/mgmt-hub:mgmt-2019-09-17-17-10-03
       env:
       - name: KEYSTORE_CA_DIRECTORY
         value: /certs/ca
@@ -46,14 +46,30 @@ system:
           name: scone-http
         - containerPort: 15372
           name: scone-mgmt
-      resources:
-        limits: { cpu: ".5", memory: "5Gi" }
-        requests: { cpu: ".5", memory: "5Gi" }
       livenessProbe:
-        initialDelaySeconds: 120
+        initialDelaySeconds: 30
         httpGet:
           path: /manage/health
           port: 15372
+
+    - name: sherpa
+      # https://git.soma.salesforce.com/servicelibs/sherpa-envoy/releases
+      image: sfci/servicelibs/sherpa-envoy:1.0.4
+      # See https://git.soma.salesforce.com/servicelibs/sherpa#ports
+      ports:
+        - containerPort: 15373
+          name: sherpa-adm
+      livenessProbe:
+        exec:
+          command:
+            - "./bin/is-alive"
+        initialDelaySeconds: 120
+        periodSeconds: 5
+      # Mount volumes with certificates. The paths here match the defaults assumed by sherpa
+      volumeMounts:
+        - name: cert
+          mountPath: /client-certs
+
   loadbalancers:
   - lbname: mgmthub
     function: mgmthub
