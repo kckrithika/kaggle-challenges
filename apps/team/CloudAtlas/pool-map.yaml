@@ -18,6 +18,8 @@ apps:
     - name: prd/prd-sam_cloudatlas_dir
       hostSubList:
         - test1shared0-samminionatlasdir1-1-prd.eng.sfdc.net
+        - test1shared0-samminionatlasdir1-2-prd.eng.sfdc.net
+        - test1shared0-samminionatlasdir2-1-prd.eng.sfdc.net
 
   # PRD-Dev Topomaster
   prd-dev-samminionatlasdir1-1-prd:
