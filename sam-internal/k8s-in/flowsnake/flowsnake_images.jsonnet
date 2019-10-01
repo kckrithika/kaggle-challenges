@@ -46,7 +46,7 @@ local utils = import "util_functions.jsonnet";
                 deployment_strategy: "",
                 # --- flag J (likelihood of merge conflicts.) ---
                 central_prometheus_forwarder: "試行中",
-                prometheus_ha: "unverified",
+                prometheus_ha: "verified",
             },
             # prd-test offers legacy version mappings. Phase 2 does not, so cannot inherit from there.
             # Start with 2-prd-dev (which also have legacy version mappings),
@@ -72,7 +72,7 @@ local utils = import "util_functions.jsonnet";
                 deployment_strategy: "",
                 # --- flag J (likelihood of merge conflicts.) ---
                 upcase_pki_kingdom: "",
-
+                prometheus_ha: "unverified",
             },
             version_mapping+: {
             },
