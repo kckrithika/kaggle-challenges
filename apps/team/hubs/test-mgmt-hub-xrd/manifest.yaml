@@ -72,7 +72,7 @@ system:
 
   loadbalancers:
   - lbname: mgmt-hub
-    function: mgmt-hub
+    function: mgmt-hub-test
     nodeExposed: false
     slbenabled: true
     ports:
