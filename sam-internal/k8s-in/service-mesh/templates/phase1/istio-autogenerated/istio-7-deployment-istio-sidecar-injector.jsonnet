@@ -9,7 +9,6 @@ if (istioPhases.phaseNum == 1) then
   metadata: {
     annotations: {
       "manifestctl.sam.data.sfdc.net/swagger": "disable",
-      "fake.deploy": "1",
     },
     labels: {
       app: "sidecarInjectorWebhook",
@@ -623,6 +622,8 @@ if (istioPhases.phaseNum == 1) then
           {
             args: [
               "-p",
+              "15002",
+              "-z",
               "15006",
               "-u",
               "7447",

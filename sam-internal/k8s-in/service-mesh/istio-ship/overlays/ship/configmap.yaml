@@ -19,7 +19,7 @@ data:
     outboundTrafficPolicy:
       mode: ALLOW_ANY
     rootNamespace: mesh-control-plane
-    proxyListenPort: 15006
+    proxyListenPort: 15002
     proxyHttpPort: 0
     concurrency: 0
     inboundClusterStatName: "local_service.%SERVICE_PORT%"

@@ -10,7 +10,6 @@ if (istioPhases.phaseNum == 1) then
     annotations: {
       "checksum/config-volume": "f8da08b6b8c170dde721efd680270b2901e750d4aa186ebb6c22bef5b78a43f9",
       "manifestctl.sam.data.sfdc.net/swagger": "disable",
-      "fake.deploy": "1",
     },
     labels: {
       app: "pilot",
@@ -586,6 +585,8 @@ if (istioPhases.phaseNum == 1) then
           {
             args: [
               "-p",
+              "15002",
+              "-z",
               "15006",
               "-u",
               "7447",

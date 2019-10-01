@@ -340,6 +340,8 @@ configs.deploymentBase("service-mesh") {
           {
             args: [
               "-p",
+              "15002",
+              "-z",
               "15006",
               "-u",
               "7447",
