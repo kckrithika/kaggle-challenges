@@ -20,12 +20,16 @@ system:
     # Docker image(s) that make up one instance of the service
     containers:
     - name: mgmt-hub
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mgmt/mgmt-hub:mgmt-2019-10-01-02-18-59
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mgmt/mgmt-hub:mgmt-2019-10-01-02-32-35
       env:
       - name: KPODS_COUNT
         value: 1
       - name: SPRING_PROFILES_ACTIVE
         value: dev
+      - name: KEYSTORE_CA_DIRECTORY
+        value: /certs/ca
+      - name: KEYSTORE_CLIENT_DIRECTORY
+        value: /certs/client
       volumeMounts:
       - name: cert
         mountPath: /certs
