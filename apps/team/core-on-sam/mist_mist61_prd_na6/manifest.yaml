@@ -62,6 +62,8 @@ system:
         value: na6
       - name: DEPLOYMENT
         value: B
+      - name: CASAM_DEPLOYMENT_ID
+        value: 12345
       - name: ZDT
         value: true
       - name: ENABLE_APP_DEBUG_MODE
