@@ -82,47 +82,47 @@ system:
     #####################################################################################
     # Entity API
     #####################################################################################
-    #- name: cloudatlas-service
-    #  image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cloud-atlas/cloudatlas/cloudatlas-service:e7e8f04
-    #  command: ["java", "-jar", "cloudatlas-service.jar"]
-    #  env:
-    #    - name: server_port
-    #      value: 7032
-    #    - name: management_server_port
-    #      value: 15374
-    #    - name: cloudatlas_http_server_port_servicemesh
-    #      value: 7080
-    #  volumeMounts:
-    #  - mountPath: /log
-    #    name: logvol
-    #  - mountPath: /certs
-    #    name: server-cert
-    #  - mountPath: /clientcerts
-    #    name: client-cert
-    #  - mountPath: /secrets
-    #    name: secretsvol
-    #    readOnly: true
-    #  - mountPath: /k4asecrets
-    #    name: k4a-secrets
-    #    readOnly: true
-    #  ports:
-    #  - containerPort: 7030
-    #  - containerPort: 7032
-    #  - containerPort: 7080
-    #  - containerPort: 15374
-    #  livenessProbe:
-    #    httpGet:
-    #      path: /manage/health
-    #      port: 15374
-    #    initialDelaySeconds: 60
-    #    periodSeconds: 30
-    #  readinessProbe:
-    #    httpGet:
-    #      path: /manage/health
-    #      port: 15374
-    #    initialDelaySeconds: 60
-    #    periodSeconds: 5
-    #    failureThreshold: 120
+    - name: cast-service
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cloud-atlas/cloudatlas/cloudatlas-service:e7e8f04
+      command: ["java", "-jar", "cloudatlas-service.jar"]
+      env:
+        - name: server_port
+          value: 7032
+        - name: management_server_port
+          value: 15374
+        - name: cloudatlas_http_server_port_servicemesh
+          value: 7080
+      volumeMounts:
+      - mountPath: /log
+        name: logvol
+      - mountPath: /certs
+        name: server-cert
+      - mountPath: /clientcerts
+        name: client-cert
+      - mountPath: /secrets
+        name: secretsvol
+        readOnly: true
+      - mountPath: /k4asecrets
+        name: k4a-secrets
+        readOnly: true
+      ports:
+      - containerPort: 7030
+      - containerPort: 7032
+      - containerPort: 7080
+      - containerPort: 15374
+      livenessProbe:
+        httpGet:
+          path: /manage/health
+          port: 15374
+        initialDelaySeconds: 60
+        periodSeconds: 30
+      readinessProbe:
+        httpGet:
+          path: /manage/health
+          port: 15374
+        initialDelaySeconds: 60
+        periodSeconds: 5
+        failureThreshold: 120
     #####################################################################################
     # C2C service
     #####################################################################################
@@ -224,6 +224,15 @@ system:
         path: /home/sfdc-scone-hellodiscovery-beacon/logs
     - name: cache-volume
       emptyDir: {}
+    - name: secretsvol
+      secret:
+        secretName: passwd
+    - name: k4a-secrets
+      k4asecret:
+        secretName: ca-secrets
+    - name: logvol
+      hostPath:
+        path: /home/sfdc-atlas/logs
   #####################################################################################
   # SLB
   #####################################################################################
