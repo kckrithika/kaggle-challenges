@@ -9,7 +9,7 @@ system:
       image: sfci/services/sfdc-bazel/disco/zoobernetes:6e59764a8
       args:
       - >- #Multiline argument
-        --z9s.whitelisted.services=app:app;
+        --z9s.whitelisted.services=
         casam:green,blue;
         service-mesh:ajnafunneldirect;
         funnel:ajnafunneldirecttls,zipkindirecttls
