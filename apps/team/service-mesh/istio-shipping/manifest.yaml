@@ -11,6 +11,8 @@ system:
       app: istio-shipping
       settings_path: istio.-.prd.-.istio-shipping
       istio_app: test
+      chaos.sfdc.net/podDelete: true
+      chaos.sfdc.net/podDeletePeriod: 4h
     annotations:
       sidecar.istio.io/inject: "true"
     containers:
