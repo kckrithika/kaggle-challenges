@@ -878,7 +878,7 @@
       "access": [
         "team/Retail_CRE",
         "team/Retail_CREDATA",
-        "team/Retail_Keymaker"
+        "team/retail-keymaker"
       ],
       "controlEstate": "frf-sam",
       "estate": "frf-sam_customerresolutionengine",
@@ -2830,7 +2830,7 @@
       "access": [
         "team/Retail_CRE",
         "team/Retail_CREDATA",
-        "team/Retail_Keymaker"
+        "team/retail-keymaker"
       ],
       "controlEstate": "par-sam",
       "estate": "par-sam_customerresolutionengine",
@@ -3606,7 +3606,7 @@
       "access": [
         "team/Retail_CRE",
         "team/Retail_CREDATA",
-        "team/Retail_Keymaker"
+        "team/retail-keymaker"
       ],
       "controlEstate": "prd-sam",
       "estate": "prd-sam_customerresolutionengine",

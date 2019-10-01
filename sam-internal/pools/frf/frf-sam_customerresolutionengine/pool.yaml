@@ -6,7 +6,7 @@
 access:
   - 'team/Retail_CRE'
   - 'team/Retail_CREDATA'
-  - 'team/Retail_Keymaker'
+  - 'team/retail-keymaker'
 
 # Each pool is managed by a SAM control stack running in one estate
 # Name here is an exact match on a file under estates/estates repo
