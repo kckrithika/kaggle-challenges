@@ -13,7 +13,7 @@ system:
   - name: eventtransferservice
     identity:
       serviceName: wh-con
-    count: 1
+    count: 3
     volumes:
     - name: credsvol
       k4aSecret:
@@ -32,7 +32,7 @@ system:
         path: /home/sfdc-ets/logs
     containers:
     - name: event-transfer-service
-      image: sfci/ets/event-transfer-service:0.0.36
+      image: sfci/ets/event-transfer-service:0.0.37
       ports:
         - containerPort: 8080
         - containerPort: 15382
@@ -48,8 +48,14 @@ system:
           value: 15382
         - name: JVM_ARGS
           value: "-Xmx3G -Xms512m"
-        - name: TEST
-          value: "HELLOWORLD"
+        - name: IDENTITY
+          value: mc.test.mceventbusqa1s1
+        - name: TOPIC_ENVIRONMENT
+          value: prd.ajna_local
+        - name: DECRYPTION_KEY_EXPIRE_MS
+          value: 600000
+        - name: DECRYPTION_KEY_PATH
+          value: /secrets/eventbusajna-ens-v1/dev-eventbusajna-ens-v1
       livenessProbe:
         initialDelaySeconds: 60
         periodSeconds: 60
