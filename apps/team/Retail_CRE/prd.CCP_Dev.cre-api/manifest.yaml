@@ -13,7 +13,7 @@ system:
       "routing.mesh.sfdc.net/enabled": "true"
     containers:
     - name: cre-api-ccp-dev
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cre/cre-api:2.1.1.develop.4af5acc.100
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cre/cre-api:2.1.1.develop.a3df1c4.101
       env:
         - name: DOMAIN_ID
           value: cre
