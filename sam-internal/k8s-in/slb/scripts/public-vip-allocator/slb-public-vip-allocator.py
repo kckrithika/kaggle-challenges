@@ -15,7 +15,10 @@ MAX_OCTET_VALUE = 255
 PRD_KINGDOM_NAME = "prd"
 PRIVATE_RESERVED_IPS_FIELD_NAME = "privateReservedIps"
 PUBLIC_RESERVED_IPS_FIELD_NAME = "publicReservedIps"
+
 SLB_PORTAL_URL = "http://slb-portal-{}.slb.sfdc.net"
+SLB_PORTAL_PRD_PORT = "9112"
+
 SPACES_IN_TAB = "  "
 
 VIPS_YAML_FILE_NAME = "vips.yaml"
@@ -53,17 +56,18 @@ def get_first_three_octets(subnet):
     return ".".join(octets[:3])
 
 
-def get_portal_url(kingdom):
+def get_portal_url(kingdom, cluster):
     if kingdom == PRD_KINGDOM_NAME:
-        return SLB_PORTAL_URL.format("service.sam-system.prd-sam.prd") + ":9112"
+        namespace_with_cluster_name = "service.sam-system.{}.prd".format(cluster)
+        return SLB_PORTAL_URL.format(namespace_with_cluster_name) + ":" + SLB_PORTAL_PRD_PORT
 
     return SLB_PORTAL_URL.format(kingdom)
 
 
-def get_ip_from_portal(kingdom, fqdn):
+def get_ip_from_portal(kingdom, cluster, fqdn):
     ssl._create_default_https_context = ssl._create_unverified_context
 
-    conn = urllib.request.urlopen(get_portal_url(kingdom))
+    conn = urllib.request.urlopen(get_portal_url(kingdom, cluster))
     byte_response = conn.read()
 
     str_response = byte_response.decode("utf8")
@@ -140,7 +144,7 @@ def process_vip_files(root_vip_yaml_path, public_reserved_ips, private_reserved_
                     elif VIPS_YAML_RESERVED_FIELD_NAME in vip:
                         vip_metadata = VipMetadata(vip, full_path)
                         if vip[VIPS_YAML_RESERVED_FIELD_NAME]:
-                            ip = get_ip_from_portal(vip_metadata.kingdom, vip_metadata.fqdn)
+                            ip = get_ip_from_portal(vip_metadata.kingdom, vip_metadata.cluster, vip_metadata.fqdn)
                             add_private_ip(vip_metadata.cluster, vip_metadata.fqdn, ip, private_reserved_ips)
                         else:
                             delete_ip(vip_metadata.fqdn, vip_metadata.cluster, private_reserved_ips)
