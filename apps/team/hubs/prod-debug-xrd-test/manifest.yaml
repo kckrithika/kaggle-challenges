@@ -2,7 +2,7 @@ apiVersion: v1
 
 system:
   functions:
-  - name: prod-debug
+  - name: prod-debug-xrd-test
     count: 1
 
     containers:
