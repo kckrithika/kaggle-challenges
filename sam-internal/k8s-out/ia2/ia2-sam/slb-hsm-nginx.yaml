@@ -136,7 +136,7 @@ spec:
           value: ia2
         - name: PROXY_FLAVOR
           value: hsm
-        image: ops0-artifactrepo1-0-ia2.data.sfdc.net/dva/slb/nginx-kms:130-5f9b75b80431dae71e17b5c30f92ec7542d0c31d
+        image: ops0-artifactrepo1-0-ia2.data.sfdc.net/dva/slb/nginx-kms:133-22ad031d4bff61129dac9f52fc25759a73cf00f3
         livenessProbe:
           httpGet:
             path: /
