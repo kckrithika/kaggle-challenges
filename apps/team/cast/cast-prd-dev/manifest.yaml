@@ -218,9 +218,6 @@ system:
         path: /home/sfdc-scone-hellodiscovery-beacon/logs
     - name: cache-volume
       emptyDir: {}
-    - name: secretsvol
-      secret:
-        secretName: passwd
     - name: logvol
       hostPath:
         path: /home/sfdc-atlas/logs
