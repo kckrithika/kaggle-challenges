@@ -21,10 +21,10 @@ apps:
   - ia2/ia2-sam_gater
   - ord/ord-sam_gater
   - ph2/ph2-sam_gater
+  - phx/phx-sam_gater
  gate-manager-na-5:
   - ia4/ia4-sam_gater
   - ia5/ia5-sam_gater
-  - phx/phx-sam_gater
  gate-manager-na-pc:
   - yhu/yhu-sam_gater
   - yul/yul-sam_gater
