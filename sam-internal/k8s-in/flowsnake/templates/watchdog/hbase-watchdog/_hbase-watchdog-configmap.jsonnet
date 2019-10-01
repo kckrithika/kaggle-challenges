@@ -7,7 +7,7 @@ if watchdog.watchdog_enabled && std.objectHas(flowsnake_images.feature_flags, "w
     kind: "ConfigMap",
     apiVersion: "v1",
     metadata: {
-      name: "watchdog",
+      name: "hbase-watchdog",
       namespace: "flowsnake",
     },
     data: {

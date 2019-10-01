@@ -122,5 +122,5 @@ data:
 kind: ConfigMap
 metadata:
   creationTimestamp: null
-  name: watchdog
+  name: hbase-watchdog
   namespace: flowsnake

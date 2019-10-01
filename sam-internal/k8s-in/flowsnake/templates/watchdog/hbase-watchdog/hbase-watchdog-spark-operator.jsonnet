@@ -126,7 +126,7 @@ configs.deploymentBase("flowsnake") {
                 serviceAccount: "watchdog-spark-operator-serviceaccount",
                 serviceAccountName: "watchdog-spark-operator-serviceaccount",
                 volumes: [
-                    configs.config_volume("watchdog"),
+                    configs.config_volume(if std.objectHas(flowsnake_images.feature_flags, "watchdog_refactoring") then "hbase-watchdog" else "watchdog"),
                     {
                         configMap: {
                             name: "watchdog-spark-on-k8s-script-configmap",

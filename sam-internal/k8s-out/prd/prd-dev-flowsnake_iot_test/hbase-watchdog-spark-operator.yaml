@@ -208,7 +208,7 @@ spec:
       serviceAccountName: watchdog-spark-operator-serviceaccount
       volumes:
       - configMap:
-          name: watchdog
+          name: hbase-watchdog
         name: config
       - configMap:
           defaultMode: 493
