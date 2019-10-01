@@ -10,14 +10,14 @@ system:
       serviceName: dapp
     containers:
     - name: coreapp
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/coreonsam/casam:release_main_18435895
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/coreonsam/casam:release_main_19195167
       env:
       - name: DB_SID
-        value: mist61a222utf
+        value: mist61b224utf
       - name: DB_INSTANCE_NAME
-        value: mist61a222utf-1
+        value: mist61b224utf-1
       - name: DB_USER
-        value: doc
+        value: bashful
       - name: DB_STATS_USER
         value: snowwhite
       - name: DB_CONN_NUM
@@ -110,7 +110,7 @@ system:
         name: secretvol
         readOnly: true
     - name: casam-sidecar
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/casam/coreapp_overrides:5e6abc
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/casam/coreapp_overrides:619b72
       env:
       - name: CASAM_SETTINGS_PATH
         value: mist.mist61.prd.na6.dapp
@@ -386,7 +386,7 @@ system:
       serviceName: app
     containers:
     - name: coreapp
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/coreonsam/casam:release_222-patch_19057694
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/coreonsam/casam:release_main_19195167
       ports:
       - containerPort: 8998
       - containerPort: 8085
@@ -395,11 +395,11 @@ system:
       - containerPort: 8443
       env:
       - name: DB_SID
-        value: mist61a222utf
+        value: mist61b224utf
       - name: DB_INSTANCE_NAME
-        value: mist61a222utf-1
+        value: mist61b224utf-1
       - name: DB_USER
-        value: doc
+        value: bashful
       - name: DB_STATS_USER
         value: snowwhite
       - name: DB_CONN_NUM
@@ -481,7 +481,7 @@ system:
         name: secretvol
         readOnly: true
     - name: casam-sidecar
-      image: sfci/casam/coreapp_overrides:a9470f
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/casam/coreapp_overrides:619b72
       env:
       - name: CASAM_SETTINGS_PATH
         value: mist.mist61.prd.na6.app
