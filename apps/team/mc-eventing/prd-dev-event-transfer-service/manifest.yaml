@@ -13,7 +13,7 @@ system:
   - name: eventtransferservice
     identity:
       serviceName: wh-con
-    count: 2
+    count: 1
     volumes:
     - name: credsvol
       k4aSecret:
