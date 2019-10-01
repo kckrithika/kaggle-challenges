@@ -6,7 +6,7 @@ system:
     - universalsearch@salesforce.com
   functions:
   - name: xlt-agent
-    count: 2
+    count: 5
     volumes:
     - name: client-cert-vol
       maddogCert:
@@ -99,69 +99,69 @@ system:
 #        initialDelaySeconds: 30
 #        exec:
 #          command: ["true"]
-#  - name: xlt-master
-#    count: 1
-#    volumes:
-#    - name: test
-#      hostpath:
-#        path: /data/test
-#    - name: test-results
-#      hostpath:
-#        path: /data/test-results
-#    - name: client-cert-vol
-#      maddogCert:
-#        type: client
-#    - name: secret-vol
-#      k4aSecret:
-#        secretName: solrcloudcli-keytab-prd
-#    containers:
-#    - name: master-xlt-controller
-#      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/irahim/master-xlt-controller:irahim-20180906-fe3e4da
-#      args: ["-d"]
-#      livenessProbe:
-#        initialDelaySeconds: 30
-#        exec:
-#          command: ["true"]
-#      volumeMounts:
-#      - name: test-results
-#        mountPath: /data/test-results
-#      - name: test
-#        mountPath: /data/test
-#      - name: client-cert-vol
-#        mountPath: /certs
-#      - name: secret-vol
-#        mountPath: /secrets/
-#        readOnly: true
-#    - name: universal-search-perf-report-server
-#      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/irahim/universal-search-perf-report-server:irahim-20180820-73716f1
-#      # If your service doesn't serve HTTP traffic then you can remove the scone-http 8080 port.
-#      ports:
-#      - containerPort: 8080
-#        name: report-http
-#      livenessProbe:
-#        initialDelaySeconds: 30
-#        httpGet:
-#          path: /
-#          port: 8080
-#      volumeMounts:
-#      - name: test-results
-#        mountPath: /data/test-results
-#        readOnly: true
-#    - name: perf-universal-search-xlt
-#      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/irahim/perf-universal-search-xlt:irahim-20180906-608512d
-#      args: ["-d"]
-#      livenessProbe:
-#        initialDelaySeconds: 30
-#        exec:
-#          command: ["true"]
-#      volumeMounts:
-#      - name: test
-#        mountPath: /data/test
-#  loadbalancers:
-#  - function: xlt-master
-#    lbname: xlt
-#    ports:
-#    - lbtype: http
-#      port: 8080
-#      targetport: 8080
-#    slbEnabled: true
+  - name: xlt-master
+    count: 1
+    volumes:
+    - name: test
+      hostpath:
+        path: /data/test
+    - name: test-results
+      hostpath:
+        path: /data/test-results
+    - name: client-cert-vol
+      maddogCert:
+        type: client
+    - name: secret-vol
+      k4aSecret:
+        secretName: solrcloudcli-keytab-prd
+    containers:
+    - name: master-xlt-controller
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/irahim/master-xlt-controller:irahim-20180906-fe3e4da
+      args: ["-d"]
+      livenessProbe:
+        initialDelaySeconds: 30
+        exec:
+          command: ["true"]
+      volumeMounts:
+      - name: test-results
+        mountPath: /data/test-results
+      - name: test
+        mountPath: /data/test
+      - name: client-cert-vol
+        mountPath: /certs
+      - name: secret-vol
+        mountPath: /secrets/
+        readOnly: true
+    - name: universal-search-perf-report-server
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/irahim/universal-search-perf-report-server:irahim-20180820-73716f1
+      # If your service doesn't serve HTTP traffic then you can remove the scone-http 8080 port.
+      ports:
+      - containerPort: 8080
+        name: report-http
+      livenessProbe:
+        initialDelaySeconds: 30
+        httpGet:
+          path: /
+          port: 8080
+      volumeMounts:
+      - name: test-results
+        mountPath: /data/test-results
+        readOnly: true
+    - name: perf-universal-search-xlt
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/irahim/perf-universal-search-xlt:irahim-20180906-608512d
+      args: ["-d"]
+      livenessProbe:
+        initialDelaySeconds: 30
+        exec:
+          command: ["true"]
+      volumeMounts:
+      - name: test
+        mountPath: /data/test
+  loadbalancers:
+  - function: xlt-master
+    lbname: xlt
+    ports:
+    - lbtype: http
+      port: 8080
+      targetport: 8080
+    slbEnabled: true
