@@ -35,7 +35,7 @@ local secretsreleases = import "secretsreleases.json";
             "1"
         else if (estate == "prd-sam" || estate == "xrd-sam") then
             "2"
-        else if (estate == "phx-sam" || estate == "dfw-sam") then
+        else if (estate == "phx-sam" || estate == "frf-sam") then
             "3"
         else
             "4"
