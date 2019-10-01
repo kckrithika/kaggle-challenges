@@ -124,7 +124,7 @@ data:
       #
       # Set concurrency to a specific number to control the number of Proxy worker threads.
       # If set to 0 (default), then start worker thread for each CPU thread/core.
-      concurrency: 2
+      concurrency: 0
       #
       tracing:
         zipkin:
