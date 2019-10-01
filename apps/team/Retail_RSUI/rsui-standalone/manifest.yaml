@@ -14,6 +14,11 @@ system:
     - name: sherpa-log-volume
       hostPath:
         path: /home/sfdc-sherpa/logs
+    - name: retailservercert
+      maddogCert:
+        type: server
+        lbnames:
+        - rsui-standalone-lb
     - name: retailclientcert
       maddogCert:
         type: client
@@ -177,6 +182,8 @@ system:
         mountPath: /log
       - name: retailclientcert
         mountPath: /client-certs
+      - name: retailservercert
+        mountPath: /server-certs
       ports:
       - containerPort: 7014 # http1 in port non tls
         name: sherpa-in-http1
