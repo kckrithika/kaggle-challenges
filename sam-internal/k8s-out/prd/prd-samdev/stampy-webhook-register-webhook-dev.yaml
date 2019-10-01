@@ -15,7 +15,7 @@ webhooks:
   name: zstampy-webhook.stampy-webhook.svc
   namespaceSelector:
     matchExpressions:
-      key: stampy-injection
+    - key: stampy-injection
       operator: NotIn
       values:
       - disabled
