@@ -29,7 +29,7 @@ system:
       - name: GRPC_PORT
         value: 7443
       - name: JAVA_OPTS
-        value: "-Dmesh.istio-mode=true -Dscone.service.name=istio-shipping-mixed-sherpa-to-istio -Dmanagement.server.port=15372"
+        value: "-Dtracing.report=false -Dmesh.istio-mode=true -Dscone.service.name=istio-shipping-mixed-sherpa-to-istio -Dmanagement.server.port=15372"
       - name: JAVA_HEAP_OPTS
         value: -Xmx64m
       ports:

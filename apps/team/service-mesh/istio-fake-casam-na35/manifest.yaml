@@ -30,7 +30,7 @@ system:
       - name: GRPC_PORT
         value: 7443
       - name: JAVA_OPTS
-        value: "-Dscone.service.name=istio-shipping -Dmanagement.server.port=15372"
+        value: "-Dtracing.report=false -Dscone.service.name=istio-shipping -Dmanagement.server.port=15372"
       - name: JAVA_HEAP_OPTS
         value: -Xmx64m
       ports:
