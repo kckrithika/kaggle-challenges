@@ -49,6 +49,8 @@ local samreleases = import "samreleases.json";
         "yhu,yhu-sam,sam-network-reporter,hypersam": "2754-365539f3b19f1f92f8ee7f1778f157769fae2a07",
         "yul,yul-sam,sam-network-reporter,hypersam": "2754-365539f3b19f1f92f8ee7f1778f157769fae2a07",
 
+        # Added this override to get unknown resource discovery in prd-sam
+        "prd,prd-sam,samcontrol-deployer,hypersam": "2806-21b02aaa76e1150dcbe5caceb5e06e03a64c7d43",
         },
 
     ### Per-phase image tags have been moved to samreleases.json
