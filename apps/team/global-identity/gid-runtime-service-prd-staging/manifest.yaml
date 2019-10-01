@@ -175,9 +175,9 @@ system:
       function: gid-runtime-service-prd-staging
       slbEnabled: true
       ports:
-        - port: 80
+        - port: 443
           name: public
           targetport: 7022
           lbtype: http
-          tls: false
+          tls: true
           reencrypt: false
