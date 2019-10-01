@@ -71,7 +71,7 @@ system:
           mountPath: /client-certs
 
   loadbalancers:
-  - lbname: mgmt-hub
+  - lbname: mgmt-hub-test
     function: mgmt-hub-test
     nodeExposed: false
     slbenabled: true
