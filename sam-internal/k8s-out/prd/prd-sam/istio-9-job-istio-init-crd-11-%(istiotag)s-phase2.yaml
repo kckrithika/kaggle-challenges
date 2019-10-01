@@ -1,7 +1,7 @@
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: istio-init-crd-11-473ba8c3598e14900243d8a2c68b55546d695e05
+  name: istio-init-crd-11-06d7e920e444235b08ac3926e6480302a3cf947a
   namespace: mesh-control-plane
 spec:
   template:
@@ -15,7 +15,7 @@ spec:
         - apply
         - -f
         - /etc/istio/crd-11/crd-11.yaml
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/sfci/servicemesh/istio-packaging/kubectl:473ba8c3598e14900243d8a2c68b55546d695e05
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/sfci/servicemesh/istio-packaging/kubectl:06d7e920e444235b08ac3926e6480302a3cf947a
         imagePullPolicy: IfNotPresent
         name: istio-init-crd-11
         volumeMounts:
