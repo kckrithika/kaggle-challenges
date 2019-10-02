@@ -136,7 +136,7 @@ local k4aWatchdogDeployment(instanceTag) = configs.deploymentBase("secrets") {
         containers: [
           {
             name: "watchdog",
-            image: secretsimages.k4acaimanwatchdog(),
+            image: secretsimages.k4aCaimanWatchdog(),
             args: [
               "java",
               "-Duser.home=/tmp",

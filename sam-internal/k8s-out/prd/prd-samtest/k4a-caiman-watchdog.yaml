@@ -4,15 +4,15 @@ items:
   kind: Deployment
   metadata:
     labels:
-      name: k4a-watchdog-xrd11
+      name: k4a-caiman-watchdog-prd11
       sam.data.sfdc.net/owner: secrets
-    name: k4a-watchdog-xrd11
+    name: k4a-caiman-watchdog-prd11
     namespace: sam-system
   spec:
     replicas: 1
     selector:
       matchLabels:
-        name: k4a-watchdog-xrd11
+        name: k4a-caiman-watchdog-prd11
         sam.data.sfdc.net/owner: secrets
     template:
       metadata:
@@ -22,14 +22,14 @@ items:
              "certreqs": [
               {
                "cert-type": "client",
-               "kingdom": "xrd",
+               "kingdom": "prd",
                "name": "client-certs",
                "role": "secrets.k4a-watchdog"
               }
              ]
             }
         labels:
-          name: k4a-watchdog-xrd11
+          name: k4a-caiman-watchdog-prd11
           sam.data.sfdc.net/owner: secrets
         namespace: sam-system
       spec:
@@ -44,13 +44,13 @@ items:
           - -certPath
           - /clientcert
           - -datacenter
-          - xrd
+          - prd
           - -hostname
           - SFDCLOC_NODE_NAME
           - -argusUrl
-          - ajna0-funnel1-0-xrd.data.sfdc.net:80
+          - ajna0-funnel1-0-prd.data.sfdc.net:80
           - -url
-          - https://sec0-kfora1-1-xrd.eng.sfdc.net:8443
+          - https://sec0-kfora1-1-prd.eng.sfdc.net:8443
           env:
           - name: FUNCTION_INSTANCE_NAME
             valueFrom:
@@ -66,23 +66,28 @@ items:
             valueFrom:
               fieldRef:
                 fieldPath: spec.nodeName
-          image: ops0-artifactrepo1-0-xrd.data.sfdc.net/dva/k4a-caiman-watchdog:181-13977db8e0215f424452cadc8da15c5c402ec950
+          image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/k4a-caiman-watchdog:181-13977db8e0215f424452cadc8da15c5c402ec950
           name: watchdog
+          resources:
+            limits:
+              sam.sfdc.net/ip-address: "1"
+            requests:
+              sam.sfdc.net/ip-address: "1"
           volumeMounts:
           - mountPath: /clientcert
             name: client-certs
         - args:
           - /sam/madkub-client
           - --madkub-endpoint=https://$(MADKUBSERVER_SERVICE_HOST):32007
-          - --maddog-endpoint=https://all.pkicontroller.pki.blank.xrd.prod.non-estates.sfdcsd.net:8443
+          - --maddog-endpoint=https://all.pkicontroller.pki.blank.prd.prod.non-estates.sfdcsd.net:8443
           - --maddog-server-ca=/maddog-certs/ca/security-ca.pem
           - --madkub-server-ca=/maddog-certs/ca/cacerts.pem
           - --ca-folder=/maddog-certs/ca
           - --token-folder=/tokens
-          - --funnel-endpoint=ajna0-funnel1-0-xrd.data.sfdc.net:80
-          - --kingdom=xrd
+          - --funnel-endpoint=ajna0-funnel1-0-prd.data.sfdc.net:80
+          - --kingdom=prd
           - --superpod=None
-          - --estate=xrd-sam
+          - --estate=prd-samtest
           - --testca-folder=/maddog-certs/ca_test
           - --cert-folders=client-certs:/clientcert
           - --refresher
@@ -100,7 +105,7 @@ items:
             valueFrom:
               fieldRef:
                 fieldPath: metadata.namespace
-          image: ops0-artifactrepo1-0-xrd.data.sfdc.net/tnrp/sam/madkub:1.0.0-0000082-3d5c21b4
+          image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/madkub:1.0.0-0000084-9f4a6ca6
           imagePullPolicy: IfNotPresent
           name: madkub-refresher
           volumeMounts:
@@ -114,15 +119,15 @@ items:
         - args:
           - /sam/madkub-client
           - --madkub-endpoint=https://$(MADKUBSERVER_SERVICE_HOST):32007
-          - --maddog-endpoint=https://all.pkicontroller.pki.blank.xrd.prod.non-estates.sfdcsd.net:8443
+          - --maddog-endpoint=https://all.pkicontroller.pki.blank.prd.prod.non-estates.sfdcsd.net:8443
           - --maddog-server-ca=/maddog-certs/ca/security-ca.pem
           - --madkub-server-ca=/maddog-certs/ca/cacerts.pem
           - --ca-folder=/maddog-certs/ca
           - --token-folder=/tokens
-          - --funnel-endpoint=ajna0-funnel1-0-xrd.data.sfdc.net:80
-          - --kingdom=xrd
+          - --funnel-endpoint=ajna0-funnel1-0-prd.data.sfdc.net:80
+          - --kingdom=prd
           - --superpod=None
-          - --estate=xrd-sam
+          - --estate=prd-samtest
           - --testca-folder=/maddog-certs/ca_test
           - --cert-folders=client-certs:/clientcert
           env:
@@ -138,7 +143,7 @@ items:
             valueFrom:
               fieldRef:
                 fieldPath: metadata.namespace
-          image: ops0-artifactrepo1-0-xrd.data.sfdc.net/tnrp/sam/madkub:1.0.0-0000082-3d5c21b4
+          image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/madkub:1.0.0-0000084-9f4a6ca6
           imagePullPolicy: IfNotPresent
           name: madkub-init
           volumeMounts:
@@ -168,15 +173,15 @@ items:
   kind: Deployment
   metadata:
     labels:
-      name: k4a-watchdog-xrd12
+      name: k4a-caiman-watchdog-prd12
       sam.data.sfdc.net/owner: secrets
-    name: k4a-watchdog-xrd12
+    name: k4a-caiman-watchdog-prd12
     namespace: sam-system
   spec:
     replicas: 1
     selector:
       matchLabels:
-        name: k4a-watchdog-xrd12
+        name: k4a-caiman-watchdog-prd12
         sam.data.sfdc.net/owner: secrets
     template:
       metadata:
@@ -186,14 +191,14 @@ items:
              "certreqs": [
               {
                "cert-type": "client",
-               "kingdom": "xrd",
+               "kingdom": "prd",
                "name": "client-certs",
                "role": "secrets.k4a-watchdog"
               }
              ]
             }
         labels:
-          name: k4a-watchdog-xrd12
+          name: k4a-caiman-watchdog-prd12
           sam.data.sfdc.net/owner: secrets
         namespace: sam-system
       spec:
@@ -208,13 +213,13 @@ items:
           - -certPath
           - /clientcert
           - -datacenter
-          - xrd
+          - prd
           - -hostname
           - SFDCLOC_NODE_NAME
           - -argusUrl
-          - ajna0-funnel1-0-xrd.data.sfdc.net:80
+          - ajna0-funnel1-0-prd.data.sfdc.net:80
           - -url
-          - https://sec0-kfora1-2-xrd.eng.sfdc.net:8443
+          - https://sec0-kfora1-2-prd.eng.sfdc.net:8443
           env:
           - name: FUNCTION_INSTANCE_NAME
             valueFrom:
@@ -230,23 +235,28 @@ items:
             valueFrom:
               fieldRef:
                 fieldPath: spec.nodeName
-          image: ops0-artifactrepo1-0-xrd.data.sfdc.net/dva/k4a-caiman-watchdog:181-13977db8e0215f424452cadc8da15c5c402ec950
+          image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/k4a-caiman-watchdog:181-13977db8e0215f424452cadc8da15c5c402ec950
           name: watchdog
+          resources:
+            limits:
+              sam.sfdc.net/ip-address: "1"
+            requests:
+              sam.sfdc.net/ip-address: "1"
           volumeMounts:
           - mountPath: /clientcert
             name: client-certs
         - args:
           - /sam/madkub-client
           - --madkub-endpoint=https://$(MADKUBSERVER_SERVICE_HOST):32007
-          - --maddog-endpoint=https://all.pkicontroller.pki.blank.xrd.prod.non-estates.sfdcsd.net:8443
+          - --maddog-endpoint=https://all.pkicontroller.pki.blank.prd.prod.non-estates.sfdcsd.net:8443
           - --maddog-server-ca=/maddog-certs/ca/security-ca.pem
           - --madkub-server-ca=/maddog-certs/ca/cacerts.pem
           - --ca-folder=/maddog-certs/ca
           - --token-folder=/tokens
-          - --funnel-endpoint=ajna0-funnel1-0-xrd.data.sfdc.net:80
-          - --kingdom=xrd
+          - --funnel-endpoint=ajna0-funnel1-0-prd.data.sfdc.net:80
+          - --kingdom=prd
           - --superpod=None
-          - --estate=xrd-sam
+          - --estate=prd-samtest
           - --testca-folder=/maddog-certs/ca_test
           - --cert-folders=client-certs:/clientcert
           - --refresher
@@ -264,7 +274,7 @@ items:
             valueFrom:
               fieldRef:
                 fieldPath: metadata.namespace
-          image: ops0-artifactrepo1-0-xrd.data.sfdc.net/tnrp/sam/madkub:1.0.0-0000082-3d5c21b4
+          image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/madkub:1.0.0-0000084-9f4a6ca6
           imagePullPolicy: IfNotPresent
           name: madkub-refresher
           volumeMounts:
@@ -278,15 +288,15 @@ items:
         - args:
           - /sam/madkub-client
           - --madkub-endpoint=https://$(MADKUBSERVER_SERVICE_HOST):32007
-          - --maddog-endpoint=https://all.pkicontroller.pki.blank.xrd.prod.non-estates.sfdcsd.net:8443
+          - --maddog-endpoint=https://all.pkicontroller.pki.blank.prd.prod.non-estates.sfdcsd.net:8443
           - --maddog-server-ca=/maddog-certs/ca/security-ca.pem
           - --madkub-server-ca=/maddog-certs/ca/cacerts.pem
           - --ca-folder=/maddog-certs/ca
           - --token-folder=/tokens
-          - --funnel-endpoint=ajna0-funnel1-0-xrd.data.sfdc.net:80
-          - --kingdom=xrd
+          - --funnel-endpoint=ajna0-funnel1-0-prd.data.sfdc.net:80
+          - --kingdom=prd
           - --superpod=None
-          - --estate=xrd-sam
+          - --estate=prd-samtest
           - --testca-folder=/maddog-certs/ca_test
           - --cert-folders=client-certs:/clientcert
           env:
@@ -302,7 +312,7 @@ items:
             valueFrom:
               fieldRef:
                 fieldPath: metadata.namespace
-          image: ops0-artifactrepo1-0-xrd.data.sfdc.net/tnrp/sam/madkub:1.0.0-0000082-3d5c21b4
+          image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/madkub:1.0.0-0000084-9f4a6ca6
           imagePullPolicy: IfNotPresent
           name: madkub-init
           volumeMounts:
@@ -332,15 +342,15 @@ items:
   kind: Deployment
   metadata:
     labels:
-      name: k4a-watchdog-xrd21
+      name: k4a-caiman-watchdog-prd21
       sam.data.sfdc.net/owner: secrets
-    name: k4a-watchdog-xrd21
+    name: k4a-caiman-watchdog-prd21
     namespace: sam-system
   spec:
     replicas: 1
     selector:
       matchLabels:
-        name: k4a-watchdog-xrd21
+        name: k4a-caiman-watchdog-prd21
         sam.data.sfdc.net/owner: secrets
     template:
       metadata:
@@ -350,14 +360,14 @@ items:
              "certreqs": [
               {
                "cert-type": "client",
-               "kingdom": "xrd",
+               "kingdom": "prd",
                "name": "client-certs",
                "role": "secrets.k4a-watchdog"
               }
              ]
             }
         labels:
-          name: k4a-watchdog-xrd21
+          name: k4a-caiman-watchdog-prd21
           sam.data.sfdc.net/owner: secrets
         namespace: sam-system
       spec:
@@ -372,13 +382,13 @@ items:
           - -certPath
           - /clientcert
           - -datacenter
-          - xrd
+          - prd
           - -hostname
           - SFDCLOC_NODE_NAME
           - -argusUrl
-          - ajna0-funnel1-0-xrd.data.sfdc.net:80
+          - ajna0-funnel1-0-prd.data.sfdc.net:80
           - -url
-          - https://sec0-kfora2-1-xrd.eng.sfdc.net:8443
+          - https://sec0-kfora2-1-prd.eng.sfdc.net:8443
           env:
           - name: FUNCTION_INSTANCE_NAME
             valueFrom:
@@ -394,23 +404,28 @@ items:
             valueFrom:
               fieldRef:
                 fieldPath: spec.nodeName
-          image: ops0-artifactrepo1-0-xrd.data.sfdc.net/dva/k4a-caiman-watchdog:181-13977db8e0215f424452cadc8da15c5c402ec950
+          image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/k4a-caiman-watchdog:181-13977db8e0215f424452cadc8da15c5c402ec950
           name: watchdog
+          resources:
+            limits:
+              sam.sfdc.net/ip-address: "1"
+            requests:
+              sam.sfdc.net/ip-address: "1"
           volumeMounts:
           - mountPath: /clientcert
             name: client-certs
         - args:
           - /sam/madkub-client
           - --madkub-endpoint=https://$(MADKUBSERVER_SERVICE_HOST):32007
-          - --maddog-endpoint=https://all.pkicontroller.pki.blank.xrd.prod.non-estates.sfdcsd.net:8443
+          - --maddog-endpoint=https://all.pkicontroller.pki.blank.prd.prod.non-estates.sfdcsd.net:8443
           - --maddog-server-ca=/maddog-certs/ca/security-ca.pem
           - --madkub-server-ca=/maddog-certs/ca/cacerts.pem
           - --ca-folder=/maddog-certs/ca
           - --token-folder=/tokens
-          - --funnel-endpoint=ajna0-funnel1-0-xrd.data.sfdc.net:80
-          - --kingdom=xrd
+          - --funnel-endpoint=ajna0-funnel1-0-prd.data.sfdc.net:80
+          - --kingdom=prd
           - --superpod=None
-          - --estate=xrd-sam
+          - --estate=prd-samtest
           - --testca-folder=/maddog-certs/ca_test
           - --cert-folders=client-certs:/clientcert
           - --refresher
@@ -428,7 +443,7 @@ items:
             valueFrom:
               fieldRef:
                 fieldPath: metadata.namespace
-          image: ops0-artifactrepo1-0-xrd.data.sfdc.net/tnrp/sam/madkub:1.0.0-0000082-3d5c21b4
+          image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/madkub:1.0.0-0000084-9f4a6ca6
           imagePullPolicy: IfNotPresent
           name: madkub-refresher
           volumeMounts:
@@ -442,15 +457,15 @@ items:
         - args:
           - /sam/madkub-client
           - --madkub-endpoint=https://$(MADKUBSERVER_SERVICE_HOST):32007
-          - --maddog-endpoint=https://all.pkicontroller.pki.blank.xrd.prod.non-estates.sfdcsd.net:8443
+          - --maddog-endpoint=https://all.pkicontroller.pki.blank.prd.prod.non-estates.sfdcsd.net:8443
           - --maddog-server-ca=/maddog-certs/ca/security-ca.pem
           - --madkub-server-ca=/maddog-certs/ca/cacerts.pem
           - --ca-folder=/maddog-certs/ca
           - --token-folder=/tokens
-          - --funnel-endpoint=ajna0-funnel1-0-xrd.data.sfdc.net:80
-          - --kingdom=xrd
+          - --funnel-endpoint=ajna0-funnel1-0-prd.data.sfdc.net:80
+          - --kingdom=prd
           - --superpod=None
-          - --estate=xrd-sam
+          - --estate=prd-samtest
           - --testca-folder=/maddog-certs/ca_test
           - --cert-folders=client-certs:/clientcert
           env:
@@ -466,7 +481,7 @@ items:
             valueFrom:
               fieldRef:
                 fieldPath: metadata.namespace
-          image: ops0-artifactrepo1-0-xrd.data.sfdc.net/tnrp/sam/madkub:1.0.0-0000082-3d5c21b4
+          image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/madkub:1.0.0-0000084-9f4a6ca6
           imagePullPolicy: IfNotPresent
           name: madkub-init
           volumeMounts:
@@ -496,15 +511,15 @@ items:
   kind: Deployment
   metadata:
     labels:
-      name: k4a-watchdog-xrd22
+      name: k4a-caiman-watchdog-prd22
       sam.data.sfdc.net/owner: secrets
-    name: k4a-watchdog-xrd22
+    name: k4a-caiman-watchdog-prd22
     namespace: sam-system
   spec:
     replicas: 1
     selector:
       matchLabels:
-        name: k4a-watchdog-xrd22
+        name: k4a-caiman-watchdog-prd22
         sam.data.sfdc.net/owner: secrets
     template:
       metadata:
@@ -514,14 +529,14 @@ items:
              "certreqs": [
               {
                "cert-type": "client",
-               "kingdom": "xrd",
+               "kingdom": "prd",
                "name": "client-certs",
                "role": "secrets.k4a-watchdog"
               }
              ]
             }
         labels:
-          name: k4a-watchdog-xrd22
+          name: k4a-caiman-watchdog-prd22
           sam.data.sfdc.net/owner: secrets
         namespace: sam-system
       spec:
@@ -536,13 +551,13 @@ items:
           - -certPath
           - /clientcert
           - -datacenter
-          - xrd
+          - prd
           - -hostname
           - SFDCLOC_NODE_NAME
           - -argusUrl
-          - ajna0-funnel1-0-xrd.data.sfdc.net:80
+          - ajna0-funnel1-0-prd.data.sfdc.net:80
           - -url
-          - https://sec0-kfora2-2-xrd.eng.sfdc.net:8443
+          - https://sec0-kfora2-2-prd.eng.sfdc.net:8443
           env:
           - name: FUNCTION_INSTANCE_NAME
             valueFrom:
@@ -558,23 +573,28 @@ items:
             valueFrom:
               fieldRef:
                 fieldPath: spec.nodeName
-          image: ops0-artifactrepo1-0-xrd.data.sfdc.net/dva/k4a-caiman-watchdog:181-13977db8e0215f424452cadc8da15c5c402ec950
+          image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/k4a-caiman-watchdog:181-13977db8e0215f424452cadc8da15c5c402ec950
           name: watchdog
+          resources:
+            limits:
+              sam.sfdc.net/ip-address: "1"
+            requests:
+              sam.sfdc.net/ip-address: "1"
           volumeMounts:
           - mountPath: /clientcert
             name: client-certs
         - args:
           - /sam/madkub-client
           - --madkub-endpoint=https://$(MADKUBSERVER_SERVICE_HOST):32007
-          - --maddog-endpoint=https://all.pkicontroller.pki.blank.xrd.prod.non-estates.sfdcsd.net:8443
+          - --maddog-endpoint=https://all.pkicontroller.pki.blank.prd.prod.non-estates.sfdcsd.net:8443
           - --maddog-server-ca=/maddog-certs/ca/security-ca.pem
           - --madkub-server-ca=/maddog-certs/ca/cacerts.pem
           - --ca-folder=/maddog-certs/ca
           - --token-folder=/tokens
-          - --funnel-endpoint=ajna0-funnel1-0-xrd.data.sfdc.net:80
-          - --kingdom=xrd
+          - --funnel-endpoint=ajna0-funnel1-0-prd.data.sfdc.net:80
+          - --kingdom=prd
           - --superpod=None
-          - --estate=xrd-sam
+          - --estate=prd-samtest
           - --testca-folder=/maddog-certs/ca_test
           - --cert-folders=client-certs:/clientcert
           - --refresher
@@ -592,7 +612,7 @@ items:
             valueFrom:
               fieldRef:
                 fieldPath: metadata.namespace
-          image: ops0-artifactrepo1-0-xrd.data.sfdc.net/tnrp/sam/madkub:1.0.0-0000082-3d5c21b4
+          image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/madkub:1.0.0-0000084-9f4a6ca6
           imagePullPolicy: IfNotPresent
           name: madkub-refresher
           volumeMounts:
@@ -606,15 +626,15 @@ items:
         - args:
           - /sam/madkub-client
           - --madkub-endpoint=https://$(MADKUBSERVER_SERVICE_HOST):32007
-          - --maddog-endpoint=https://all.pkicontroller.pki.blank.xrd.prod.non-estates.sfdcsd.net:8443
+          - --maddog-endpoint=https://all.pkicontroller.pki.blank.prd.prod.non-estates.sfdcsd.net:8443
           - --maddog-server-ca=/maddog-certs/ca/security-ca.pem
           - --madkub-server-ca=/maddog-certs/ca/cacerts.pem
           - --ca-folder=/maddog-certs/ca
           - --token-folder=/tokens
-          - --funnel-endpoint=ajna0-funnel1-0-xrd.data.sfdc.net:80
-          - --kingdom=xrd
+          - --funnel-endpoint=ajna0-funnel1-0-prd.data.sfdc.net:80
+          - --kingdom=prd
           - --superpod=None
-          - --estate=xrd-sam
+          - --estate=prd-samtest
           - --testca-folder=/maddog-certs/ca_test
           - --cert-folders=client-certs:/clientcert
           env:
@@ -630,7 +650,7 @@ items:
             valueFrom:
               fieldRef:
                 fieldPath: metadata.namespace
-          image: ops0-artifactrepo1-0-xrd.data.sfdc.net/tnrp/sam/madkub:1.0.0-0000082-3d5c21b4
+          image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/madkub:1.0.0-0000084-9f4a6ca6
           imagePullPolicy: IfNotPresent
           name: madkub-init
           volumeMounts:
@@ -660,15 +680,15 @@ items:
   kind: Deployment
   metadata:
     labels:
-      name: k4a-watchdog-xrdfailover
+      name: k4a-caiman-watchdog-prdfailover
       sam.data.sfdc.net/owner: secrets
-    name: k4a-watchdog-xrdfailover
+    name: k4a-caiman-watchdog-prdfailover
     namespace: sam-system
   spec:
     replicas: 1
     selector:
       matchLabels:
-        name: k4a-watchdog-xrdfailover
+        name: k4a-caiman-watchdog-prdfailover
         sam.data.sfdc.net/owner: secrets
     template:
       metadata:
@@ -678,14 +698,14 @@ items:
              "certreqs": [
               {
                "cert-type": "client",
-               "kingdom": "xrd",
+               "kingdom": "prd",
                "name": "client-certs",
                "role": "secrets.k4a-watchdog"
               }
              ]
             }
         labels:
-          name: k4a-watchdog-xrdfailover
+          name: k4a-caiman-watchdog-prdfailover
           sam.data.sfdc.net/owner: secrets
         namespace: sam-system
       spec:
@@ -700,11 +720,11 @@ items:
           - -certPath
           - /clientcert
           - -datacenter
-          - xrd
+          - prd
           - -hostname
           - SFDCLOC_NODE_NAME
           - -argusUrl
-          - ajna0-funnel1-0-xrd.data.sfdc.net:80
+          - ajna0-funnel1-0-prd.data.sfdc.net:80
           env:
           - name: FUNCTION_INSTANCE_NAME
             valueFrom:
@@ -720,23 +740,28 @@ items:
             valueFrom:
               fieldRef:
                 fieldPath: spec.nodeName
-          image: ops0-artifactrepo1-0-xrd.data.sfdc.net/dva/k4a-caiman-watchdog:181-13977db8e0215f424452cadc8da15c5c402ec950
+          image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/k4a-caiman-watchdog:181-13977db8e0215f424452cadc8da15c5c402ec950
           name: watchdog
+          resources:
+            limits:
+              sam.sfdc.net/ip-address: "1"
+            requests:
+              sam.sfdc.net/ip-address: "1"
           volumeMounts:
           - mountPath: /clientcert
             name: client-certs
         - args:
           - /sam/madkub-client
           - --madkub-endpoint=https://$(MADKUBSERVER_SERVICE_HOST):32007
-          - --maddog-endpoint=https://all.pkicontroller.pki.blank.xrd.prod.non-estates.sfdcsd.net:8443
+          - --maddog-endpoint=https://all.pkicontroller.pki.blank.prd.prod.non-estates.sfdcsd.net:8443
           - --maddog-server-ca=/maddog-certs/ca/security-ca.pem
           - --madkub-server-ca=/maddog-certs/ca/cacerts.pem
           - --ca-folder=/maddog-certs/ca
           - --token-folder=/tokens
-          - --funnel-endpoint=ajna0-funnel1-0-xrd.data.sfdc.net:80
-          - --kingdom=xrd
+          - --funnel-endpoint=ajna0-funnel1-0-prd.data.sfdc.net:80
+          - --kingdom=prd
           - --superpod=None
-          - --estate=xrd-sam
+          - --estate=prd-samtest
           - --testca-folder=/maddog-certs/ca_test
           - --cert-folders=client-certs:/clientcert
           - --refresher
@@ -754,7 +779,7 @@ items:
             valueFrom:
               fieldRef:
                 fieldPath: metadata.namespace
-          image: ops0-artifactrepo1-0-xrd.data.sfdc.net/tnrp/sam/madkub:1.0.0-0000082-3d5c21b4
+          image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/madkub:1.0.0-0000084-9f4a6ca6
           imagePullPolicy: IfNotPresent
           name: madkub-refresher
           volumeMounts:
@@ -768,15 +793,15 @@ items:
         - args:
           - /sam/madkub-client
           - --madkub-endpoint=https://$(MADKUBSERVER_SERVICE_HOST):32007
-          - --maddog-endpoint=https://all.pkicontroller.pki.blank.xrd.prod.non-estates.sfdcsd.net:8443
+          - --maddog-endpoint=https://all.pkicontroller.pki.blank.prd.prod.non-estates.sfdcsd.net:8443
           - --maddog-server-ca=/maddog-certs/ca/security-ca.pem
           - --madkub-server-ca=/maddog-certs/ca/cacerts.pem
           - --ca-folder=/maddog-certs/ca
           - --token-folder=/tokens
-          - --funnel-endpoint=ajna0-funnel1-0-xrd.data.sfdc.net:80
-          - --kingdom=xrd
+          - --funnel-endpoint=ajna0-funnel1-0-prd.data.sfdc.net:80
+          - --kingdom=prd
           - --superpod=None
-          - --estate=xrd-sam
+          - --estate=prd-samtest
           - --testca-folder=/maddog-certs/ca_test
           - --cert-folders=client-certs:/clientcert
           env:
@@ -792,7 +817,7 @@ items:
             valueFrom:
               fieldRef:
                 fieldPath: metadata.namespace
-          image: ops0-artifactrepo1-0-xrd.data.sfdc.net/tnrp/sam/madkub:1.0.0-0000082-3d5c21b4
+          image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/madkub:1.0.0-0000084-9f4a6ca6
           imagePullPolicy: IfNotPresent
           name: madkub-init
           volumeMounts:
