@@ -9,8 +9,6 @@ import yaml
 DEFAULT_CLUSTER = "sam"
 FQDN_SUFFIX = ".slb.sfdc.net"
 
-KINGDOMS = ["prd-sam", "prd-samtwo", "frf", "phx", "iad", "ord", "dfw", "hnd", "xrd", "cdg", "fra", "ia2", "ph2", "par", "ukb", "lo2", "lo3"]
-
 MANIFEST_YAML_FILE_NAME = "manifest.yaml"
 MANIFEST_YAML_KINGDOMS_FIELD_NAME = "kingdoms"
 MANIFEST_YAML_LOAD_BALANCERS_FIELD_NAME = "loadbalancers"
@@ -67,11 +65,10 @@ def get_fqdn(vip, kingdom, team_name):
     return fqdn
 
 
-def get_fqdn_from_portal(lbname):
-    for kingdom in KINGDOMS:
-        portal_entry = portal_query.get_portal_entry_from_portal(kingdom, lambda entry: entry.lbname, lbname)
-        if portal_entry is not None:
-            return portal_entry.fqdn
+def get_fqdn_from_portal(kingdom, lbname):
+    portal_entry = portal_query.get_portal_entry_from_portal(kingdom, lambda entry: entry.lbname, lbname)
+    if portal_entry is not None:
+        return portal_entry.fqdn
 
     raise Exception("Could not find fqdn for {}".format(lbname))
 
@@ -148,7 +145,7 @@ def get_vip_metadatas(file_name, path):
                     kingdom = kingdom.split("-")[0]
 
                 lbname = lb[VIPS_YAML_LBNAME_FIELD_NAME]
-                vip_metadatas.append(VipMetadata(kingdom, cluster, get_fqdn_from_portal(lbname), reserved, public))
+                vip_metadatas.append(VipMetadata(kingdom, cluster, get_fqdn_from_portal(kingdom, lbname), reserved, public))
         return vip_metadatas
 
     elif file_name == VIPS_YAML_FILE_NAME:
