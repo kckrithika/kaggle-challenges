@@ -149,7 +149,7 @@ local k4aWatchdogDeployment(instanceTag) = configs.deploymentBase("secrets") {
               "-datacenter",
               configs.kingdom,
               "-hostname",
-              secretconfigs.sfdcloc_node_name_env.valueFrom,
+              secretconfigs.sfdcloc_node_name_env.name,
               "-argusUrl",
               "%(funnelVIP)s" % configs,
             ] + instanceData.extraArgs,
