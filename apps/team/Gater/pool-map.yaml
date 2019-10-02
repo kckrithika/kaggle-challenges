@@ -16,7 +16,6 @@ apps:
   - lo2/lo2-sam_gater
   - lo3/lo3-sam_gater
  gate-manager-na:
-  - iad/iad-sam_gater
   - ia2/ia2-sam_gater
   - ord/ord-sam_gater
   - phx/phx-sam_gater
