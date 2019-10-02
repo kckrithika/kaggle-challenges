@@ -32,7 +32,7 @@ system:
       - name: GRPC_PORT
         value: 7443
       - name: JAVA_OPTS
-        value: "-Dtracing.report=false -Dmesh.istio-mode=true -Dscone.service.name=istio-ordering-pn -Dshipping.interval=5000 -Dmanagement.server.port=15372 -Dmetrics.funnelEndPointURL=http://newajnafunneldirecttls.funnel.localhost.mesh.force.com:5442"
+        value: "-Dtracing.report=false -Dmesh.istio-mode=true -Dscone.service.name=istio-ordering-pn -Dshipping.interval=5000 -Dmanagement.server.port=15372 -Dmetrics.funnelEndPointURL=http://newajnafunneldirecttls.funnel.localhost.mesh.force.com:7442"
       - name: JAVA_HEAP_OPTS
         value: -Xmx64m
       ports:
