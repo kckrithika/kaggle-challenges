@@ -319,7 +319,7 @@ data:
         - "-p"
         - "15002"
         - "-z"
-        - "15006"
+        - "15002"
         - "-u"
         - 7447
         - "-m"
@@ -758,7 +758,7 @@ data:
     outboundTrafficPolicy:
       mode: ALLOW_ANY
     rootNamespace: mesh-control-plane
-    proxyListenPort: 15006
+    proxyListenPort: 15002
     proxyHttpPort: 0
     concurrency: 0
     inboundClusterStatName: "local_service.%SERVICE_PORT%"
@@ -1575,7 +1575,7 @@ spec:
         - -p
         - "15002"
         - -z
-        - "15006"
+        - "15002"
         - -u
         - "7447"
         - -m
@@ -2023,7 +2023,7 @@ spec:
         - -p
         - "15002"
         - -z
-        - "15006"
+        - "15002"
         - -u
         - "7447"
         - -m
