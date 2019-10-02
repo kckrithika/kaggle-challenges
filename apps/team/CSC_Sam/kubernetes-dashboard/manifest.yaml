@@ -442,7 +442,7 @@ system:
       args:
         - --logtostderr=true
         - --apiserver-host=http://pseudo-kubeapi.csc-sam.prd-sam.prd.slb.sfdc.net:40001/ia4-sam
-        - --insecure-port=9090
+        - --insecure-port=9119
         - --system-banner-webhook=http://pseudo-kubeapi.csc-sam.prd-sam.prd.slb.sfdc.net:40001/ia4-sam/dashboard-webhook
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/d.smith/dashboard:webhook
       ports:
