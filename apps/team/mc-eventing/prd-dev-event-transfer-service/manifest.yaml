@@ -55,7 +55,7 @@ system:
         - name: DECRYPTION_KEY_EXPIRE_MS
           value: 600000
         - name: DECRYPTION_KEY_PATH
-          value: /secrets/eventbusajna-ens-v1/dev-eventbusajna-ens-v1
+          value: /secrets/eventbusajna-ens-v1/eventbusajna-ens-v1
       livenessProbe:
         initialDelaySeconds: 60
         periodSeconds: 60
