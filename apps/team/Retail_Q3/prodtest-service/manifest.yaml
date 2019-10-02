@@ -8,7 +8,7 @@ system:
     count: 2
     containers:
     - name: prodtest-service
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/ynagata/prodtest:ynagata-20190906-8fd9c9a
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/ynagata/prodtest:ynagata-20191002-cdbecc7
       ports:
       - containerPort: 8080
         name: scone-http
@@ -16,7 +16,7 @@ system:
         name: scone-mgmt
       env:
         - name: IMAGE_NAME
-          value: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/ynagata/prodtest:ynagata-20190906-8fd9c9a
+          value: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/ynagata/prodtest:ynagata-20191002-cdbecc7
         - name: MANIFEST_VERSION
           value: v1.1
         - name: WEBDRIVER_HOST
