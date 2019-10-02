@@ -179,9 +179,9 @@ def process_vip_files(root_vip_yaml_path, public_reserved_ips, private_reserved_
                 # If the VIP is private
                 if vip_metadata.public is None or not vip_metadata.public:
                     if reserved:
+                        public_vips_to_delete.append(vip_metadata)
                         add_private_ip(vip_metadata.kingdom, vip_metadata.cluster, vip_metadata.fqdn, private_reserved_ips)
                     else:
-                        public_vips_to_delete.append(vip_metadata)
                         delete_ip(vip_metadata.fqdn, vip_metadata.cluster, private_reserved_ips)
                 else:
                     if reserved:
