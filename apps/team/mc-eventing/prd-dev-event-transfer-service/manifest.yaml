@@ -13,7 +13,7 @@ system:
   - name: eventtransferservice
     identity:
       serviceName: wh-con
-    count: 3
+    count: 1
     volumes:
     - name: credsvol
       k4aSecret:
@@ -32,7 +32,7 @@ system:
         path: /home/sfdc-ets/logs
     containers:
     - name: event-transfer-service
-      image: sfci/ets/event-transfer-service:0.0.37
+      image: sfci/ets/event-transfer-service:0.0.38
       ports:
         - containerPort: 8080
         - containerPort: 15382
