@@ -16,9 +16,6 @@ apps:
   - lo2/lo2-sam_gater
   - lo3/lo3-sam_gater
  gate-manager-na:
-  - ia2/ia2-sam_gater
-  - ord/ord-sam_gater
-  - phx/phx-sam_gater
  gate-manager-na-5:
   - ia4/ia4-sam_gater
   - ia5/ia5-sam_gater
@@ -29,6 +26,9 @@ apps:
   - iad/iad-sam_gater
   - dfw/dfw-sam_gater
   - ph2/ph2-sam_gater
+  - ia2/ia2-sam_gater
+  - ord/ord-sam_gater
+  - phx/phx-sam_gater
  gate-manager-gia:
   - chx/chx-sam_gater
   - wax/wax-sam_gater
