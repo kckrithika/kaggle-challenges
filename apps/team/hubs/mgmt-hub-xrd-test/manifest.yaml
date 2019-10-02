@@ -6,7 +6,7 @@ system:
             - hubs@salesforce.com
   functions:
   # service name
-  - name: mgmthub
+  - name: mgmt-hub
     #type: stateful-set
     # number of instances ("kpods") to deploy and run
     count: 1
@@ -19,7 +19,7 @@ system:
         path: /home/sfdc-mgmt/logs
     # Docker image(s) that make up one instance of the service
     containers:
-    - name: mgmthub
+    - name: mgmt-hub
       image: dva/mgmt-hub:4
       env:
       - name: KEYSTORE_CA_DIRECTORY
@@ -72,7 +72,7 @@ system:
 
   loadbalancers:
   - lbname: mgmthub
-    function: mgmthub
+    function: mgmt-hub
     nodeExposed: false
     slbenabled: true
     ports:
