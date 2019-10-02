@@ -11,7 +11,7 @@ system:
     containers:
     - name: gate-manager
       # container image/version to run. published separately.
-      image: sfci/services/sfdc-bazel/gater/gate-manager:1.16.0
+      image: sfci/gater/gate-manager:1.15.0
       args:
         - --server.port=9090
         - --gater-service.thread.pool.max-size=0
