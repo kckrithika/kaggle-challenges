@@ -8,7 +8,7 @@ apps:
 
   c360-beaconator-na:
     - name: ia2/ia2-sam_gater
-      #    - name: phx/phx-sam_gater
+    - name: phx/phx-sam_gater
     - name: ph2/ph2-sam_gater
     - name: dfw/dfw-sam_gater
 
