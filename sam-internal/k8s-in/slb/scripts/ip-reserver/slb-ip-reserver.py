@@ -173,18 +173,16 @@ def process_vip_files(root_vip_yaml_path, public_reserved_ips, private_reserved_
 
                 reserved = vip_metadata.reserved
 
-                # If the VIP is private
-                if vip_metadata.public is None or not vip_metadata.public:
-                    if reserved:
-                        public_vips_to_delete.append(vip_metadata)
-                        add_private_ip(vip_metadata.kingdom, vip_metadata.cluster, vip_metadata.fqdn, private_reserved_ips)
-                    else:
-                        delete_ip(vip_metadata.fqdn, vip_metadata.cluster, private_reserved_ips)
+                # Ignores the public field when reserved is false in case the public field is set improperly
+                # The script will delete the reserved IP wherever it is
+                if not reserved:
+                    public_vips_to_delete.append(vip_metadata)
+                    delete_ip(vip_metadata.fqdn, vip_metadata.cluster, private_reserved_ips)
+                elif vip_metadata.public is None or not vip_metadata.public:
+                    public_vips_to_delete.append(vip_metadata)
+                    add_private_ip(vip_metadata.kingdom, vip_metadata.cluster, vip_metadata.fqdn, private_reserved_ips)
                 else:
-                    if reserved:
-                        public_vips_to_add.append(vip_metadata)
-                    else:
-                        public_vips_to_delete.append(vip_metadata)
+                    public_vips_to_add.append(vip_metadata)
 
     # Delete happens first in order to allow for IP reuse
     for vip_metadata in public_vips_to_delete:
