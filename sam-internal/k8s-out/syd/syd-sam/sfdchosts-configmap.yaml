@@ -554,6 +554,61 @@ data:
           "superpod": "none"
         },
         {
+          "bomrolename": "sam_minion_sme",
+          "controlestate": "syd-sam",
+          "devicerole": "samcompute",
+          "estate": "syd-search_model_executor",
+          "hostname": "shared0-samminionsme1-1-syd.ops.sfdc.net",
+          "kingdom": "syd",
+          "pod": "none",
+          "rack": "",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sam_minion_sme",
+          "controlestate": "syd-sam",
+          "devicerole": "samcompute",
+          "estate": "syd-search_model_executor",
+          "hostname": "shared0-samminionsme1-2-syd.ops.sfdc.net",
+          "kingdom": "syd",
+          "pod": "none",
+          "rack": "",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sam_minion_sme",
+          "controlestate": "syd-sam",
+          "devicerole": "samcompute",
+          "estate": "syd-search_model_executor",
+          "hostname": "shared0-samminionsme2-1-syd.ops.sfdc.net",
+          "kingdom": "syd",
+          "pod": "none",
+          "rack": "",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sam_minion_sme",
+          "controlestate": "syd-sam",
+          "devicerole": "samcompute",
+          "estate": "syd-search_model_executor",
+          "hostname": "shared0-samminionsme2-2-syd.ops.sfdc.net",
+          "kingdom": "syd",
+          "pod": "none",
+          "rack": "",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sam_minion_sme",
+          "controlestate": "syd-sam",
+          "devicerole": "samcompute",
+          "estate": "syd-search_model_executor",
+          "hostname": "shared0-samminionsme3-1-syd.ops.sfdc.net",
+          "kingdom": "syd",
+          "pod": "none",
+          "rack": "",
+          "superpod": "none"
+        },
+        {
           "bomrolename": "slb_minion",
           "controlestate": "syd-sam",
           "devicerole": "samcompute",
