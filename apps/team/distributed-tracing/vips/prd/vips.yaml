@@ -69,3 +69,19 @@
      # encrypted. For end-to-end encryption, both tls and reencrypt should be set to true.
      reencrypt: true
 
+- lbname: zipkin-test
+  customlbname: zipkin-test
+  cnames:
+   - cname: zipkintest.data.sfdc.net
+  servers:
+   - shared0-samminionzipkin1-3-prd.eng.sfdc.net
+   - shared0-samminionzipkin1-15-prd.eng.sfdc.net
+  ports:
+   - port: 443
+     targetport: 9422
+     lbtype: http
+     # tls indicates if the connection between the client and the VIP should be encrypted.
+     tls: true
+     # reencrypt indicates if the connection between the load balancer and the backend should be
+     # encrypted. For end-to-end encryption, both tls and reencrypt should be set to true.
+     reencrypt: true
