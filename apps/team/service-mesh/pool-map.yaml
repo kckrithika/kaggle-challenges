@@ -109,6 +109,8 @@ apps:
     - prd/prd-samtest
   istio-ordering-prod:
     - par/par-sam_gater
+  istio-ordering-pn: # Pratima's test
+    - prd/prd-sam_gater
   istio-shipping:
     - prd/prd-sam_gater
     - prd/prd-samtest

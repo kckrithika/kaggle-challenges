@@ -1,0 +1,70 @@
+# This app runs with istio-proxy getting configs from Istio Pilot. Note the annotation "sidecar.istio.io/inject".
+# Ordering (istio-proxy) -> Shipping (istio-proxy).
+
+apiVersion: v1
+
+system:
+  functions:
+  - name: istio-ordering-pn
+    count: 1
+    labels:
+      app: istio-ordering-pn
+      settings_path: istio.-.prd.-.istio-ordering-pn
+      istio_app: test
+      chaos.sfdc.net/podDelete: true
+      chaos.sfdc.net/podDeletePeriod: 4h
+    annotations:
+      sidecar.istio.io/inject: "true"
+    containers:
+    - name: ordering
+      # Ordering App
+      #    https://git.soma.salesforce.com/services/sfdc-bazel/tree/master/projects/services/ordering/ordering-scone
+      # Ordering Config
+      #    https://git.soma.salesforce.com/services/sfdc-bazel/blob/master/projects/services/ordering/ordering-scone/src/main/resources/config/application.properties
+      # Image build:
+      # https://sfcirelease.dop.sfdc.net/job/services/job/sfdc-bazel_projects_services_examples_ordering/job/sfdc-bazel/job/master/75/
+      image: sfci/services/sfdc-bazel/scone/ordering:b51d7f786
+      env:
+      - name: SFDC_ENVIRONMENT
+        value: istio
+      - name: SCONE_SHIPPING_DEST
+        value: istio-shipping.service-mesh.${mesh.proxydomain}:${mesh.grpctlsport}
+      - name: GRPC_PORT
+        value: 7443
+      - name: JAVA_OPTS
+        value: "-Dtracing.report=false -Dmesh.istio-mode=true -Dscone.service.name=istio-ordering-pn -Dshipping.interval=5000 -Dmanagement.server.port=15372 -Dmetrics.funnelEndPointURL=http://newajnafunneldirecttls.funnel.localhost.mesh.force.com:5442"
+      - name: JAVA_HEAP_OPTS
+        value: -Xmx64m
+      ports:
+      - containerPort: 7443
+        name: grpc-svc
+      - containerPort: 15372
+        name: scone-mgmt
+      livenessProbe:
+        initialDelaySeconds: 120
+        httpGet:
+          path: /manage/health
+          port: 15372
+
+    # Volumes used by auto-injected istio-proxy.
+    volumes:
+    - name: tls-client-cert
+      maddogCert:
+        type: client
+    - name: tls-server-cert
+      maddogCert:
+        type: server
+
+  loadbalancers:
+    - lbname: istio-ordering-pn
+      function: istio-ordering-pn
+      annotations:
+        routing.mesh.sfdc.net/enabled: "true"
+      labels:
+        app: istio-ordering-pn
+        settings_path: istio.-.prd.-.istio-ordering-pn
+      ports:
+        - lbtype: dsr
+          port: 7443
+          targetport: 7443
+          name: grpc-ordering
