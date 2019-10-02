@@ -13,7 +13,7 @@ system:
       "routing.mesh.sfdc.net/enabled": "true"
     containers:
     - name: cre-control-plane-ccp-func
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cre-fusion/services:controlplane.2.1.0.0.PR-833.2b1bbe2.1
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cre-fusion/services:controlplane.2.1.0.0.develop.3954ef9.468
       env:
         ####################################################################################################
         ############################   ENGINE/DDS FLOWSNAKE ARTIFACTS ( Most frequently changed ) ##########
