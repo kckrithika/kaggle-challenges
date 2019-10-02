@@ -354,8 +354,6 @@ if (istioPhases.phaseNum == 1) then
               "{\"address\":\"switchboard.service-mesh:15001\",\"tls_settings\":{\"mode\":2,\"client_certificate\":\"/client-certs/client/certificates/client.pem\",\"private_key\":\"/client-certs/client/keys/client-key.pem\",\"ca_certificates\":\"/client-certs/ca.pem\"},\"tcp_keepalive\":{\"probes\":3,\"time\":{\"seconds\":10},\"interval\":{\"seconds\":10}}}",
               "--proxyAdminPort",
               "15373",
-              "--concurrency",
-              "2",
               "--controlPlaneAuthPolicy",
               "NONE",
               "--statusPort",
