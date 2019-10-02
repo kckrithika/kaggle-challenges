@@ -6,14 +6,14 @@ system:
       - cre@salesforce.com
   functions:
   - name: cre-control-plane-ccp-func
-    count: 1
+    count: 3
     labels:
       app: cre-control-plane-ccp-func
     annotations:
       "routing.mesh.sfdc.net/enabled": "true"
     containers:
     - name: cre-control-plane-ccp-func
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cre-fusion/services:controlplane.2.1.0.0.develop.0519978.463
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cre-fusion/services:controlplane.2.1.0.0.PR-833.2b1bbe2.1
       env:
         ####################################################################################################
         ############################   ENGINE/DDS FLOWSNAKE ARTIFACTS ( Most frequently changed ) ##########
