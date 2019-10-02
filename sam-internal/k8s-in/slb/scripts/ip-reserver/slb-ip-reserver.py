@@ -180,6 +180,7 @@ def process_vip_files(root_vip_yaml_path, public_reserved_ips, private_reserved_
                     public_vips_to_delete.append(vip_metadata)
                     add_private_ip(vip_metadata.kingdom, vip_metadata.cluster, vip_metadata.fqdn, private_reserved_ips)
                 else:
+                    delete_ip(vip_metadata.fqdn, vip_metadata.cluster, private_reserved_ips)
                     public_vips_to_add.append(vip_metadata)
 
     # Delete happens first in order to allow for IP reuse
@@ -189,7 +190,6 @@ def process_vip_files(root_vip_yaml_path, public_reserved_ips, private_reserved_
                   public_reserved_ips)
 
     for vip_metadata in public_vips_to_add:
-        delete_ip(vip_metadata.fqdn, vip_metadata.cluster, private_reserved_ips)
         add_public_ip(vip_metadata.fqdn,
                           vip_metadata.cluster,
                           public_reserved_ips,
