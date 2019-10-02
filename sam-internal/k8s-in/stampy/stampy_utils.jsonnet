@@ -1,14 +1,12 @@
+local configs = import "config.jsonnet";
+
+local apiserverEstates = {
+    "prd-samtest": true,
+    "prd-samdev": true,
+};
+
 {
-  is_stampy_webhook_dev_cluster(estate):: (
-    estate == "prd-samdev"
-  ),
-
-  is_stampy_webhook_test_cluster(estate):: (
-    estate == "prd-samtest"
-  ),
-
-  is_stampy_webhook_prod_cluster(estate):: (
-    estate != "prd-samdev" &&
-    estate != "prd-samtest"
-  ),
+  apiserver: {
+      featureFlag: (std.objectHas(apiserverEstates, configs.estate) && apiserverEstates[configs.estate]),
+  },
 }

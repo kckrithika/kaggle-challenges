@@ -9,7 +9,7 @@ local utils = import "util_functions.jsonnet";
 local funnelEndpointHost = std.split(configs.funnelVIP, ":")[0];
 local funnelEndpointPort = std.split(configs.funnelVIP, ":")[1];
 
-if stampy_utils.is_stampy_webhook_dev_cluster(configs.estate) then
+if stampy_utils.apiserver.featureFlag then
 configs.deploymentBase("stampy") {
   metadata+: {
     name: "stampy-webhook-deployment",
@@ -87,9 +87,9 @@ configs.deploymentBase("stampy") {
               "-cert-file-path=/server-certs/server/certificates/server.pem",
               "-key-file-path=/server-certs/server/keys/server-key.pem",
               "-allow-if-error=true",
-              "-log-level=debug"
+              "-log-level=debug",
             ],
-            env+:[
+            env+: [
                 {
                     name: "KINGDOM",
                     value: configs.kingdom,
