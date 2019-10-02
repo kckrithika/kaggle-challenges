@@ -26,7 +26,8 @@ apps:
  gate-manager-na-pc:
   - yhu/yhu-sam_gater
   - yul/yul-sam_gater
- gate-manager-na-ph2:
+ gate-manager-na-revert:
+  - iad/iad-sam_gater
   - dfw/dfw-sam_gater
   - ph2/ph2-sam_gater
  gate-manager-gia:
