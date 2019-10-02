@@ -1,8 +1,8 @@
 local configs = import "config.jsonnet";
 local secretsconfigs = import "secretsconfig.libsonnet";
-local secretsflights = import "secretsflights.libsonnet";
 local secretsimages = (import "secretsimages.libsonnet") + { templateFilename:: std.thisFile };
 local madkub = (import "secretsmadkub.libsonnet") + { templateFileName:: std.thisFile };
+local utils = import "util_functions.jsonnet";
 
 local certDirs = ["client-certs"];
 
@@ -127,6 +127,14 @@ local getInstanceDataWithDefaults(instanceTag) = (
   defaultInstanceData + instanceData
 );
 
+# When requesting maddog certs for the watchdog in hio/ttd, madkubserver enforces that the request's
+# IP address matches the IP address of the requesting pod. However, for non-host network pods, there's
+# currently an issue where the request is proxied by the host, so madkubserver ends up seeing the host's
+# IP address instead of the pod's IP address and fails the request.
+# As a workaround, use host network for the pod in gia. This ensures the pod's IP address matches the
+# host's IP address, and madkubserver thus allows the request.
+local hostNetworkIfGia = if utils.is_gia(configs.kingdom) then { hostNetwork: true } else {};
+
 local ssWatchdogDeployment(instanceTag) = configs.deploymentBase("secrets") {
   local instanceData = getInstanceDataWithDefaults(instanceTag),
   metadata: {
@@ -179,12 +187,22 @@ local ssWatchdogDeployment(instanceTag) = configs.deploymentBase("secrets") {
         volumes: madkub.volumes + madkub.certVolumes,
       }
       + configs.nodeSelector
-      + secretsconfigs.samPodSecurityContext,
+      + secretsconfigs.samPodSecurityContext
+      + hostNetworkIfGia,
     },
   },
 };
 
-if secretsconfigs.isSecretsEstate && std.objectHas(instanceMap, configs.kingdom) then {
+local instanceTagsForKingdom = if std.objectHas(instanceMap, configs.kingdom) then std.objectFields(instanceMap[configs.kingdom]);
+# If there's only a single instance defined for a datacenter (as there will be for most datacenters),
+# don't use the k8s List abstraction; the SAM infrastructure isn't fully aware of the List abstraction,
+# so some things break in surprising ways (like image promotion -- new images within a List aren't
+# automatically promoted by Firefly, so unless promoted through some side channel the ss-watchdog
+# images weren't ending up in prod when encapsulated in a List).
+local manifestSpec =
+  if !secretsconfigs.isSecretsEstate || instanceTagsForKingdom == null || std.length(instanceTagsForKingdom) == 0 then "SKIP"
+  else if std.length(instanceTagsForKingdom) == 1 then ssWatchdogDeployment(instanceTagsForKingdom[0])
+  else {
   apiVersion: "v1",
   kind: "List",
   metadata: {},
@@ -192,4 +210,6 @@ if secretsconfigs.isSecretsEstate && std.objectHas(instanceMap, configs.kingdom)
     ssWatchdogDeployment(instanceTag)
     for instanceTag in std.objectFields(instanceMap[configs.kingdom])
   ],
-} else "SKIP"
+};
+
+manifestSpec

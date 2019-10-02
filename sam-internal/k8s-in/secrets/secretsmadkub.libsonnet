@@ -67,7 +67,6 @@ local secretsimages = import "secretsimages.libsonnet";
       "--kingdom=" + configs.kingdom,
       "--superpod=None",
       "--estate=" + configs.estate,
-      "--testca-folder=/maddog-certs/ca_test",
       "--cert-folders=client-certs:/clientcert",
     ],
     name: "madkub-init",
