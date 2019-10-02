@@ -31,6 +31,8 @@ system:
       - retail-mds/metadata-service:DATACENTER_ALLENV:7443:metadata-service-lb.retail-mds.na01.cre.slb.sfdc.net
       - -endpoint
       - retail-rsui/retail-setup:DATACENTER_ALLENV:7443:rsui-service-lb.retail-rsui.na01.cre.slb.sfdc.net
+      - -endpoint
+      - retail-rsui/hub-persistence:DATACENTER_ALLENV:7442:hub-persistence-lb.retail-rsui.na01.cre.slb.sfdc.net
       env:
       - name: DUMMY_FORCE_PUSH 
         value: 1 # increse value to force push without any other changes 
