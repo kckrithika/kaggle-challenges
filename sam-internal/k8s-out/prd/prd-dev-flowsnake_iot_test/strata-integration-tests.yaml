@@ -1,0 +1,398 @@
+apiVersion: v1
+items:
+- apiVersion: rbac.authorization.k8s.io/v1
+  kind: Role
+  metadata:
+    annotations:
+      manifestctl.sam.data.sfdc.net/swagger: disable
+    name: strata-test-submitter-role
+    namespace: flowsnake-ci-tests
+  rules:
+  - apiGroups:
+    - ""
+    resourceNames:
+    - ci-test-requests
+    resources:
+    - configmaps
+    verbs:
+    - get
+    - list
+    - patch
+  - apiGroups:
+    - ""
+    resources:
+    - pods
+    - pods/status
+    - pods/log
+    verbs:
+    - get
+    - list
+    - watch
+  - apiGroups:
+    - sparkoperator.k8s.io
+    resources:
+    - sparkapplications
+    verbs:
+    - get
+    - list
+- apiVersion: rbac.authorization.k8s.io/v1
+  kind: RoleBinding
+  metadata:
+    annotations:
+      manifestctl.sam.data.sfdc.net/swagger: disable
+    name: strata-test-submitter-rolebinding
+    namespace: flowsnake-ci-tests
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: Role
+    name: strata-test-submitter-role
+  subjects:
+  - apiGroup: rbac.authorization.k8s.io
+    kind: Group
+    name: system:authenticated
+  - apiGroup: rbac.authorization.k8s.io
+    kind: Group
+    name: system:unauthenticated
+- apiVersion: v1
+  data:
+    k8scommon.py: |2
+
+      # Some common functions for making http calls against the Kubernetes API server from within a pod.
+      # Requires service accounts.
+
+      import os
+      import ssl
+      import httplib
+
+      # Constants
+      k8s_api_host = "kubernetes.default.svc.cluster.local"
+      k8s_api_port = 443
+
+      _ca_file_location = os.environ.get("KUBERNETES_CA_FILE") or "/certs/ca/cabundle.pem"
+
+
+      def _fetch_sa_token():
+          with open("/var/run/secrets/kubernetes.io/serviceaccount/token", "r") as tokenfile:
+              return "".join(tokenfile.readlines())
+
+      def k8s_apiserver_url():
+          return "https://%s:%s" % (k8s_api_host, k8s_api_port)
+
+      def k8s_request(path, verb="GET", data=None, content_type="application/json"):
+          """
+          Makes a generic k8s request using the SA credentials.
+          :param path: K8s API path.
+          :param verb: HTTP verb to use on the request; defaults to GET.
+          :param data: Data to pass in the request.
+          :param content_type: If passing data, value of the Content-Type header. Defaults to application/json.
+          :return: (int, str) pair of response status + response body
+          """
+
+          sslc = ssl.create_default_context(cafile=_ca_file_location)
+          sslc.check_hostname = False
+
+          extra_headers = {
+              "Authorization": "Bearer " + _fetch_sa_token(),
+              "Accept": "application/json"
+          }
+
+          if data:
+              extra_headers["Content-Type"] = content_type
+
+          conn = httplib.HTTPSConnection(host=k8s_api_host, port=k8s_api_port, context=sslc)
+          try:
+              conn.request(verb, path, body=data, headers=extra_headers)
+              resp = conn.getresponse(buffering=True)
+              return (resp.status, resp.read())
+          finally:
+              conn.close()
+    runner_spec_template.json: '{"apiVersion": "v1", "kind": "Pod", "metadata": {"annotations":
+      {"sfdc.net/itest-tag": "{{TAG}}", "sfdc.net/pki-client-name-suffix": "flowsnake-ci-test"},
+      "labels": {"app": "flowsnake-strata-test-runner", "apptype": "testing", "flowsnakeOwner":
+      "dva-transform", "flowsnakeRole": "StrataTestRunner"}, "name": "{{NAME}}", "namespace":
+      "flowsnake-ci-tests"}, "spec": {"containers": [{"command": ["/bin/sh", "-c",
+      "/scripts/runalltests.sh"], "env": [{"name": "DOCKER_TAG", "value": "{{TAG}}"},
+      {"name": "TEST_RUNNER_ID", "value": "{{NAME}}"}, {"name": "S3_PROXY_HOST", "value":
+      "public0-proxy1-0-prd.data.sfdc.net"}, {"name": "DRIVER_SERVICE_ACCOUNT", "value":
+      "spark-driver-flowsnake-ci-tests"}, {"name": "DOCKER_REGISTRY", "value": "ops0-artifactrepo2-0-prd.data.sfdc.net"},
+      {"name": "KINGDOM", "value": "prd"}, {"name": "ESTATE", "value": "prd-dev-flowsnake_iot_test"}],
+      "image": "ops0-artifactrepo2-0-prd.data.sfdc.net/dva/flowsnake-spark-on-k8s-integration-test-runner:{{TAG}}",
+      "imagePullPolicy": "Always", "name": "{{NAME}}", "resources": {"limits": {"cpu":
+      "1", "memory": "500Mi"}, "requests": {"cpu": "1", "memory": "500Mi"}}, "securityContext":
+      {"runAsUser": 0}, "volumeMounts": [{"mountPath": "/watchdog-spark-scripts",
+      "name": "watchdog-spark-scripts", "readOnly": true}]}], "hostNetwork": false,
+      "initContainers": [ ], "restartPolicy": "Never", "serviceAccountName": "spark-driver-flowsnake-ci-tests",
+      "volumes": [{"configMap": {"defaultMode": 493, "name": "strata-test-spark-on-k8s-script-configmap"},
+      "name": "watchdog-spark-scripts"}]}}'
+    strata-test-agent.py: |+
+      #! /usr/bin/env python
+
+      # Strata test agent script.  Polls configmap for new images to test and starts test runner pods
+      # when it finds them.  Accesses Kubernetes using a service account.
+
+      import sys
+      import time
+      import os
+      from k8scommon import k8s_request, k8s_apiserver_url
+      from httplib import HTTPException
+      import json
+      import logging
+
+      # Overridable by env
+      requests_configmap = os.environ.get("CI_REQUESTS_CONFIGMAP") or "ci-test-requests"
+      my_namespace = os.environ.get("KUBERNETES_NAMESPACE") or "flowsnake-ci-tests"
+      runner_spec_template = os.environ.get("CI_RUNNER_TEMPLATE") or os.path.join(os.path.dirname(__file__), "runner_spec_template.json")
+      poll_interval_sec = os.environ.get("POLL_INTERVAL_SEC") or 60
+
+      # Globals derived from the above
+      configmap_api_path = "/api/v1/namespaces/%s/configmaps/%s" % (my_namespace, requests_configmap)
+
+
+      logging.basicConfig(level=logging.INFO)
+
+
+      def print_http_error(task, verb, reqpath, status, body):
+          """
+          When a request to k8s results in an unexpected error status, prints the error with some context
+          """
+          logging.error("Kubernetes API server returned unexpected error while performing action: %s.\n%s %s%s\nResponse Status: %d, Response Body:\n%s\n",
+                 task, verb, k8s_apiserver_url(), reqpath, status, body)
+
+
+      def create_requests_configmap():
+          """
+          Used when the tag polling call finds that the map doesn't exist at all.
+          """
+
+          logging.info("Configmap %s does not exist; creating.", requests_configmap)
+
+          reqpath = "/api/v1/namespaces/%s/configmaps" % my_namespace
+          s, b = k8s_request(reqpath, verb="POST", data=json.dumps({
+              "apiVersion": "v1",
+              "kind": "ConfigMap",
+              "data": {},
+              "metadata": { "name": requests_configmap, "namespace": my_namespace }
+          }))
+
+          if s >= 400:
+              print_http_error("creating test requests configmap", "POST", reqpath, s, b)
+              sys.exit(1)
+
+      def get_requests():
+          """
+          Fetches the list of names/tags pending testing from the configmap.  If the configmap does not exist,
+          creates it and returns an empty list.
+          :return: List of (name, tag)s needing testing
+          """
+          s, b = k8s_request(configmap_api_path)
+          if s == 404:
+              create_requests_configmap()
+              return []
+          elif s != 200:
+              print_http_error("retrieving test requests configmap", "GET", configmap_api_path, s, b)
+              sys.exit(1)
+
+          configmap_response = json.loads(b)
+          configmap_data = configmap_response.get("data") or {}
+          return configmap_data.items()
+
+
+      def remove_request(name):
+          """
+          Removes one reqest name from the requests configmap.
+          """
+          patch_req = [{"op": "remove", "path": "/data/%s" % name}]
+          try:
+              s, b = k8s_request(configmap_api_path, verb="PATCH", data=json.dumps(patch_req), content_type="application/json-patch+json")
+              if s >= 300:
+                  logging.warn("Warning: could not delete entry for runner name %s", name)
+                  print_http_error("removing tag from configmap", "PATCH (json-patch)", configmap_api_path, s, b)
+          except HTTPException:
+              logging.error("Warning: could not delete entry for runner name %s; exception contacting server", name, exc_info=True)
+
+      def runner_podspec(name, tag):
+          with open(runner_spec_template) as template_file:
+              raw_template = "".join(template_file.readlines())
+              return raw_template.replace("{{TAG}}", tag).replace("{{NAME}}", name)
+
+      def check_k8s_status(status_string, **kwargs):
+          try:
+              parsed_status = json.loads(status_string)
+              for k, v in kwargs.items():
+                  if unicode(parsed_status[unicode(k)]) != unicode(v):
+                      return False
+              return True
+          except ValueError:  # JSON parse error
+              return False
+          except KeyError:  # Key/Value not in map
+              return False
+
+      def schedule_pod(name, tag):
+          """
+          Schedule a runner pod for a name/tag.
+          Returns whether the pod was successfully scheduled (either by this call or a previous one)
+          """
+          podspec = runner_podspec(name, tag)
+
+          pod_path = "/api/v1/namespaces/%s/pods" % my_namespace
+          try:
+              s, b = k8s_request(pod_path, verb="POST", data=podspec)
+              if s < 300:
+                  return True
+              elif check_k8s_status(b, code=409, reason="AlreadyExists"):
+                  logging.warn("Warning: scheduling pod %s returned status: AlreadyExists.", name)
+                  return True
+              else:
+                  print_http_error("scheduling test runner pod %s for tag %s" % (name, tag), "POST", pod_path, s, b)
+                  return False
+          except HTTPException:
+              logging.error("Error communicating with kubernetes API server while scheduling pod", exc_info=True)
+              return False
+
+
+      ########## MAIN METHOD ###########
+
+      logging.info("Starting Strata test runner agent.\nNamespace:\t%s\nConfigmap:\t%s\nPolling for requests every %s seconds\n",
+             my_namespace, requests_configmap, poll_interval_sec)
+
+      while True:
+          tags_to_process = get_requests()
+          for name, tag in tags_to_process:
+              logging.info("Submitting runner \"%s\" for tag %s...", name, tag)
+              if schedule_pod(name, tag):
+                  remove_request(name)
+          time.sleep(float(poll_interval_sec))
+
+    strata-test-janitor.py: |
+      #! /usr/bin/env python
+
+      # Periodically polls kubernetes to find leftover resources that need to be deleted in the CI testing namespace.
+      # Resources will be deleted when they reach a maximum age, regardless of their running/stopped state at the time.
+      # Resources handled by this script are:
+      #   - test runner pods started by strata-test-agent.py, as determined by label
+      #   - any sparkapplication objects from any source
+
+      import os
+      from time import sleep
+      import json
+      from datetime import datetime, timedelta
+      from k8scommon import k8s_request
+      from httplib import HTTPException
+      import logging
+
+      # Some configuration parameters
+      poll_interval_minutes = int(os.environ.get("POLL_INTERVAL_MIN")) or 60
+      max_age_minutes = int(os.environ.get("MAX_AGE_MIN")) or 180
+      k8s_namespace = os.environ.get("KUBERNETES_NAMESPACE") or "flowsnake-ci-tests"
+
+      # derived value
+
+      logging.basicConfig(level=logging.INFO)
+
+
+      def get_old_resources(reqpath, list_kind, friendly_name):
+          """
+          Returns Kubernetes resources created before the max-age cutoff point.
+
+          :param reqpath: K8s API path that will return the resources when GET'ed.
+          :param list_kind: The expected "kind" of the returned k8s object from the api server call.
+          :param friendly_name: A user-facing name of the resource being retrieved, exclusively used for logging.
+          :return: list[str] of names of old resources of the requested type
+          """
+
+          try:
+              s, b = k8s_request(reqpath)
+
+              if s != 200:
+                  logging.warn("Error fetching %s in namespace %s. Status code %d, server returned: %s",
+                                friendly_name, k8s_namespace, s, b)
+                  return []
+
+              resource_list = json.loads(b)
+          except HTTPException:
+              logging.error("Error contacting API server while fetching list of %s in namespace %s", friendly_name, k8s_namespace, exc_info=True)
+              return []
+          except ValueError:
+              logging.warn("Error fetching %s in namespace %s. Server returned invalid json: %s",
+                           friendly_name, k8s_namespace, b, exc_info=True)
+              return []
+
+          if resource_list.get(u"kind") != unicode(list_kind):
+              logging.warn("Error fetching %s in namespace %s. Expected kind %s but server returned %s",
+                           friendly_name, k8s_namespace, list_kind, resource_list)
+
+          old_resources = []
+
+          max_age_timedelta = timedelta(minutes=max_age_minutes)
+          now = datetime.utcnow()
+
+          # This json parsing is fragile, but if it breaks it means the k8s server returned an object that doesn't
+          # match its own specifications for list kinds.
+          for rsc in resource_list[u"items"]:
+              ts_str = str(rsc[u"metadata"][u"creationTimestamp"])
+              try:
+                  ts = datetime.strptime(ts_str, "%Y-%m-%dT%H:%M:%SZ")
+                  if (now - ts) > max_age_timedelta:
+                      old_resources.append(str(rsc[u"metadata"][u"name"]))
+              except ValueError:
+                  logging.warn("Found %s %s with unparseable creation timestamp \"%s\"",
+                  list_kind[:-4], rsc[u"metadata"].get(u"name"), ts_str, exc_info=True)
+
+          return old_resources
+
+
+      def get_old_sparkapplications():
+          res = get_old_resources("/apis/sparkoperator.k8s.io/v1beta1/namespaces/%s/sparkapplications" % k8s_namespace,
+                                   "SparkApplicationList", "sparkapplications")
+          if len(res) > 0:
+              logging.info("Found %d old spark applications", len(res))
+          return res
+
+      def get_old_runner_pods():
+          res = get_old_resources("/api/v1/namespaces/%s/pods?labelSelector=app=flowsnake-strata-test-runner" % k8s_namespace,
+                                   "PodList", "runner pods")
+          if len(res) > 0:
+              logging.info("Found %d old runner pods", len(res))
+          return res
+
+      def delete_sparkapplication(sa_name):
+          logging.info("Deleting old sparkapplication %s" % sa_name)
+          reqpath = "/apis/sparkoperator.k8s.io/v1beta1/namespaces/%s/sparkapplications/%s" % (k8s_namespace, sa_name)
+          try:
+              s, b = k8s_request(reqpath, verb="DELETE")
+              if s >= 300:
+                  logging.warn("Error deleting sparkapplication %s in namespace %s; server returned status %d, message: %s",
+                               sa_name, k8s_namespace, s, b)
+          except HTTPException:
+              logging.warn("Error contacting API server when deleting sparkapplication %s in namespace %s",
+                           sa_name, k8s_namespace, exc_info=True)
+
+      def delete_pod(pod_name):
+          logging.info("Deleting old runner pod %s", pod_name)
+          reqpath = "/api/v1/namespaces/%s/pods/%s" % (k8s_namespace, pod_name)
+          try:
+              s, b = k8s_request(reqpath, verb="DELETE")
+              if s >= 300:
+                  logging.warn("Error deleting pod %s in namespace %s; server returned status %d, message: %s",
+                               pod_name, k8s_namespace, s, b)
+          except HTTPException:
+              logging.warn("Error contacting API server when deleting pod %s in namespace %s",
+                           pod_name, k8s_namespace, exc_info=True)
+
+      ############### Main Script ##################
+
+      logging.info("\nStarting Strata test resource cleanup.\nNamespace: %s\nPolling every %d minutes.",
+                   k8s_namespace, poll_interval_minutes)
+
+      while True:
+          for sa_name in get_old_sparkapplications():
+              delete_sparkapplication(sa_name)
+          for pod_name in get_old_runner_pods():
+              delete_pod(pod_name)
+          sleep(float(poll_interval_minutes) * 60)
+  kind: ConfigMap
+  metadata:
+    name: strata-test-agent-scripts
+    namespace: flowsnake-ci-tests
+kind: List
+metadata: {}
