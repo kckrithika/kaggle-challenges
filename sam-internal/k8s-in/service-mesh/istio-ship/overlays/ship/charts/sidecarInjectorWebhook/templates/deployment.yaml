@@ -143,7 +143,7 @@ spec:
         - --parentShutdownDuration
         - 1m0s
         - --discoveryAddress
-        - istio-pilot.mesh-control-plane:15010
+        - istio-pilot.mesh-control-plane:15011
         - --zipkinAddress
         - zipkin.service-mesh:9411
         - --proxyLogLevel=info
@@ -156,7 +156,7 @@ spec:
         - --proxyAdminPort
         - "15373"
         - --controlPlaneAuthPolicy
-        - NONE
+        - MUTUAL_TLS
         - --statusPort
         - "15020"
         env:
