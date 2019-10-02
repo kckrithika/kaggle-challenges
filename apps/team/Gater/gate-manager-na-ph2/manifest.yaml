@@ -1,0 +1,124 @@
+apiVersion: v1
+
+system:
+  notifications:
+    email:
+      - gater@salesforce.com
+  functions:
+  - name: gater
+    count: 10
+    labels:
+      app: gater
+    annotations:
+      "routing.mesh.sfdc.net/enabled": "true"
+    hostnetwork: true
+    containers:
+    - name: gate-manager
+      # container image/version to run. published separately.
+      image: sfci/services/sfdc-bazel/gater/gate-manager:1.16.0
+      args:
+        - --server.port=9090
+        - --gater-service.thread.pool.max-size=0
+        - --logging.sfdc.stderr.level=OFF
+        - --logging.json.stdout.level=INFO
+      # associate the /log directory to a logical volume. logging.dir is set to this in the startup script args above,
+      # and this volume mount is mapped to a host directory below in the volumes section. Underneath this directory
+      # we will end up with the following sub-directories: gater/app, gater/jvm, gater/json. 
+      volumeMounts:
+      - mountPath: /log
+        name: logvol
+      - mountPath: /fastdata/gater
+        name: dbvol
+      # Specify a liveness probe pod will be restarted if this returns a status outside the range of 200-399
+      livenessProbe:
+        httpGet:
+          path: /manage/health
+          port: 15372
+        initialDelaySeconds: 60 
+        timeoutSeconds: 10
+      readinessProbe:
+        httpGet:
+          path: /manage/health
+          port: 15372
+        initialDelaySeconds: 60 
+        timeoutSeconds: 10
+      # expose gater outside the container. Note that the host is already exposing port 8080, so we need to
+      # change this to a different port for instances running in SAM. Note server.port above reflects this.
+      # The ports listed here are exposed at the host network level. This is controlled by the hostnetwork setting above.
+      ports:
+      - containerPort: 7020
+      - containerPort: 9522
+      - containerPort: 9523 
+      - containerPort: 9090
+      - containerPort: 15372
+      env:
+      - name: SFDC_ENVIRONMENT
+        value: prod
+      terminationMessagePolicy: FallbackToLogsOnError
+    - name: sherpa
+      image: sfci/servicelibs/sherpa-envoy:1.0.8
+      ports:
+      - name: http2-in
+        containerPort: 7012
+      - name: http2-tls-in
+        containerPort: 7443
+      - name: sherpa-adm
+        containerPort: 15373
+      volumeMounts:
+      - mountPath: /client-certs
+        name: tls-client-cert
+      - mountPath: /server-certs
+        name: tls-server-cert
+      livenessProbe:
+        exec:
+          command:
+          - ./bin/is-alive
+        initialDelaySeconds: 20
+        periodSeconds: 5
+      readinessProbe:
+        exec:
+          command:
+          - ./bin/is-ready
+        initialDelaySeconds: 15
+        periodSeconds: 5
+      terminationMessagePolicy: FallbackToLogsOnError
+    - name: beacon
+      image: sfci/servicelibs/beacon:cec13ceb9fc5aed0ce462031a01b2dd5ef73d5ee
+      args:
+      - -endpoint
+      - $(FUNCTION_NAMESPACE)/$(FUNCTION):DATACENTER_ALLENV:HTTP2_TLS
+      livenessProbe:
+        exec:
+          command:
+          - /home/scone/is-alive.sh
+        initialDelaySeconds: 5
+    # maps the logval volumnMount to a directory on the host machine. Logs in this directory will be available
+    # for a shart time after a docker image is shut down. The SAM splunk forwarders will handle the logs being
+    # written to this directory.
+    # TBD: SAM is still implementing the splunk forwarding functionality. This location may change.
+    volumes:
+    - name: logvol
+      hostPath:
+        path: /home/sfdc-gater/logs
+    - name: dbvol
+      hostPath:
+        path: /home/sfdc-gater/db
+    - name: tls-client-cert
+      maddogCert:
+        type: client
+    - name: tls-server-cert
+      maddogCert:
+        type: server
+    strategy:
+      type: RollingUpdate
+      rollingUpdate:
+        maxSurge: 1
+        maxUnavailable: 1
+  loadbalancers:
+  - lbname: gater
+    function: gater
+    ports:
+      - lbtype: dsr
+        port: 7443
+        targetport: 7443
+        name: grpc-gater
