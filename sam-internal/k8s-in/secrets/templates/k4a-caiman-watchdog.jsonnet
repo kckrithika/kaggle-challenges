@@ -1,10 +1,12 @@
 local configs = import "config.jsonnet";
-local secretconfigs = import "secretsconfig.libsonnet";
-local secretsflights = import "secretsflights.libsonnet";
+local secretsconfigs = import "secretsconfig.libsonnet";
 local secretsimages = (import "secretsimages.libsonnet") + { templateFilename:: std.thisFile };
 local madkub = (import "secretsmadkub.libsonnet") + { templateFileName:: std.thisFile };
+local utils = import "util_functions.jsonnet";
 
 local certDirs = ["client-certs"];
+local urlHead = "https://sec0-kfora";
+local urlTail = ".eng.sfdc.net:8443";
 
 # instanceMap defines the set of watchdog instances that should exist within each kingdom.
 # Most kingdoms will just have a single watchdog instance.
@@ -30,28 +32,16 @@ local instanceMap = {
   prd: {
     # Watchdogs monitoring individual k4a servers.
     prd11: {
-      extraArgs: [
-        "-url",
-        "https://sec0-kfora1-1-prd.eng.sfdc.net:8443",
-      ],
+      url: urlHead + "1-1-prd" + urlTail,
     },
     prd12: {
-      extraArgs: [
-        "-url",
-        "https://sec0-kfora1-2-prd.eng.sfdc.net:8443",
-      ],
+      url: urlHead + "1-2-prd" + urlTail,
     },
     prd21: {
-      extraArgs: [
-        "-url",
-        "https://sec0-kfora2-1-prd.eng.sfdc.net:8443",
-      ],
+      url: urlHead + "2-1-prd" + urlTail,
     },
     prd22: {
-      extraArgs: [
-        "-url",
-        "https://sec0-kfora2-2-prd.eng.sfdc.net:8443",
-      ],
+      url: urlHead + "2-2-prd" + urlTail,
     },
     prdfailover: {
     },
@@ -59,28 +49,16 @@ local instanceMap = {
   xrd: {
     # Watchdogs monitoring individual k4a servers.
     xrd11: {
-      extraArgs: [
-        "-url",
-        "https://sec0-kfora1-1-xrd.eng.sfdc.net:8443",
-      ],
+      url: urlHead + "1-1-xrd" + urlTail,
     },
     xrd12: {
-      extraArgs: [
-        "-url",
-        "https://sec0-kfora1-2-xrd.eng.sfdc.net:8443",
-      ],
+      url: urlHead + "1-2-xrd" + urlTail,
     },
     xrd21: {
-      extraArgs: [
-        "-url",
-        "https://sec0-kfora2-1-xrd.eng.sfdc.net:8443",
-      ],
+      url: urlHead + "2-1-xrd" + urlTail,
     },
     xrd22: {
-      extraArgs: [
-        "-url",
-        "https://sec0-kfora2-2-xrd.eng.sfdc.net:8443",
-      ],
+      url: urlHead + "2-2-xrd" + urlTail,
     },
     xrdfailover: {
     },
@@ -89,7 +67,7 @@ local instanceMap = {
 
 local getInstanceDataWithDefaults(instanceTag) = (
   local instanceData = instanceMap[configs.kingdom][instanceTag];
-  # The instance name (unless provided) is formed as "secretservice-watchdog-<instanceTag>".
+  # The instance name (unless provided) is formed as "k4a-caiman-watchdog-<instanceTag>".
   local name = (if std.objectHas(instanceData, "name") then instanceData.name else "k4a-caiman-watchdog-" + instanceTag);
 
   # defaultInstanceData supplies the schema and default values for instanceData.
@@ -103,14 +81,25 @@ local getInstanceDataWithDefaults(instanceTag) = (
     # certPath is the location of the mounted Maddog cert
     certPath: "/clientcert",
     # url: is the url of the k4a server
-    url: "https://sec0-kfora1-1-crd.eng.sfdc.net:8443",
+    url: null,
     # extraArgs supplies any additional command line parameters that should be provided for this instance.
     extraArgs: [],
+    # canary indicates whether this instance should be considered a "canary" instance. Such instances are targeted
+    # first for new deployments.
+    canary: false,
   };
 
   # Override the default instance data with any defined values from instanceData.
   defaultInstanceData + instanceData
 );
+
+# When requesting maddog certs for the watchdog in hio/ttd, madkubserver enforces that the request's
+# IP address matches the IP address of the requesting pod. However, for non-host network pods, there's
+# currently an issue where the request is proxied by the host, so madkubserver ends up seeing the host's
+# IP address instead of the pod's IP address and fails the request.
+# As a workaround, use host network for the pod in gia. This ensures the pod's IP address matches the
+# host's IP address, and madkubserver thus allows the request.
+local hostNetworkIfGia = if utils.is_gia(configs.kingdom) then { hostNetwork: true } else {};
 
 local k4aWatchdogDeployment(instanceTag) = configs.deploymentBase("secrets") {
   local instanceData = getInstanceDataWithDefaults(instanceTag),
@@ -136,7 +125,7 @@ local k4aWatchdogDeployment(instanceTag) = configs.deploymentBase("secrets") {
         containers: [
           {
             name: "watchdog",
-            image: secretsimages.k4aCaimanWatchdog(),
+            image: secretsimages.k4aCaimanWatchdog(instanceData.canary),
             args: [
               "java",
               "-Duser.home=/tmp",
@@ -149,14 +138,18 @@ local k4aWatchdogDeployment(instanceTag) = configs.deploymentBase("secrets") {
               "-datacenter",
               configs.kingdom,
               "-hostname",
-              secretconfigs.sfdcloc_node_name_env.name,
+              "$(" + secretsconfigs.sfdcloc_node_name_env.name + ")",
               "-argusUrl",
               "%(funnelVIP)s" % configs,
-            ] + instanceData.extraArgs,
+            ] + (if instanceData.url != null then
+            [
+              "-url",
+              "%(url)s" % instanceData,
+            ] else []) + instanceData.extraArgs,
             env: [
-              secretconfigs.function_instance_name_env,
-              secretconfigs.function_namespace_env,
-              secretconfigs.sfdcloc_node_name_env,
+              secretsconfigs.function_instance_name_env,
+              secretsconfigs.function_namespace_env,
+              secretsconfigs.sfdcloc_node_name_env,
             ],
             volumeMounts: madkub.certVolumeMounts,
           } + configs.ipAddressResourceRequest,
@@ -168,12 +161,22 @@ local k4aWatchdogDeployment(instanceTag) = configs.deploymentBase("secrets") {
         volumes: madkub.volumes + madkub.certVolumes,
       }
       + configs.nodeSelector
-      + secretconfigs.samPodSecurityContext,
+      + secretsconfigs.samPodSecurityContext
+      + hostNetworkIfGia,
     },
   },
 };
 
-if secretconfigs.k4aCaimanWdEnabled && std.objectHas(instanceMap, configs.kingdom) then {
+local instanceTagsForKingdom = if std.objectHas(instanceMap, configs.kingdom) then std.objectFields(instanceMap[configs.kingdom]);
+# If there's only a single instance defined for a datacenter (as there will be for most datacenters),
+# don't use the k8s List abstraction; the SAM infrastructure isn't fully aware of the List abstraction,
+# so some things break in surprising ways (like image promotion -- new images within a List aren't
+# automatically promoted by Firefly, so unless promoted through some side channel the ss-watchdog
+# images weren't ending up in prod when encapsulated in a List).
+local manifestSpec =
+  if !secretsconfigs.k4aCaimanWdEnabled || instanceTagsForKingdom == null || std.length(instanceTagsForKingdom) == 0 then "SKIP"
+  else if std.length(instanceTagsForKingdom) == 1 then k4aWatchdogDeployment(instanceTagsForKingdom[0])
+  else {
   apiVersion: "v1",
   kind: "List",
   metadata: {},
@@ -181,4 +184,6 @@ if secretconfigs.k4aCaimanWdEnabled && std.objectHas(instanceMap, configs.kingdo
     k4aWatchdogDeployment(instanceTag)
     for instanceTag in std.objectFields(instanceMap[configs.kingdom])
   ],
-} else "SKIP"
+};
+
+manifestSpec
