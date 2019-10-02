@@ -20,7 +20,6 @@ apps:
   - iad/iad-sam_gater
   - ia2/ia2-sam_gater
   - ord/ord-sam_gater
-  - ph2/ph2-sam_gater
   - phx/phx-sam_gater
  gate-manager-na-5:
   - ia4/ia4-sam_gater
@@ -28,6 +27,8 @@ apps:
  gate-manager-na-pc:
   - yhu/yhu-sam_gater
   - yul/yul-sam_gater
+ gate-manager-na-ph2:
+  - ph2/ph2-sam_gater
  gate-manager-gia:
   - chx/chx-sam_gater
   - wax/wax-sam_gater
