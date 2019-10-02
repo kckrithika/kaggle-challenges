@@ -81,7 +81,6 @@ items:
           - --kingdom=prd
           - --superpod=None
           - --estate=prd-sam
-          - --testca-folder=/maddog-certs/ca_test
           - --cert-folders=client-certs:/clientcert
           - --refresher
           - --run-init-for-refresher-mode
@@ -121,7 +120,6 @@ items:
           - --kingdom=prd
           - --superpod=None
           - --estate=prd-sam
-          - --testca-folder=/maddog-certs/ca_test
           - --cert-folders=client-certs:/clientcert
           env:
           - name: MADKUB_NODENAME
@@ -243,7 +241,6 @@ items:
           - --kingdom=prd
           - --superpod=None
           - --estate=prd-sam
-          - --testca-folder=/maddog-certs/ca_test
           - --cert-folders=client-certs:/clientcert
           - --refresher
           - --run-init-for-refresher-mode
@@ -283,7 +280,6 @@ items:
           - --kingdom=prd
           - --superpod=None
           - --estate=prd-sam
-          - --testca-folder=/maddog-certs/ca_test
           - --cert-folders=client-certs:/clientcert
           env:
           - name: MADKUB_NODENAME
@@ -405,7 +401,6 @@ items:
           - --kingdom=prd
           - --superpod=None
           - --estate=prd-sam
-          - --testca-folder=/maddog-certs/ca_test
           - --cert-folders=client-certs:/clientcert
           - --refresher
           - --run-init-for-refresher-mode
@@ -445,7 +440,6 @@ items:
           - --kingdom=prd
           - --superpod=None
           - --estate=prd-sam
-          - --testca-folder=/maddog-certs/ca_test
           - --cert-folders=client-certs:/clientcert
           env:
           - name: MADKUB_NODENAME
@@ -567,7 +561,6 @@ items:
           - --kingdom=prd
           - --superpod=None
           - --estate=prd-sam
-          - --testca-folder=/maddog-certs/ca_test
           - --cert-folders=client-certs:/clientcert
           - --refresher
           - --run-init-for-refresher-mode
@@ -607,7 +600,6 @@ items:
           - --kingdom=prd
           - --superpod=None
           - --estate=prd-sam
-          - --testca-folder=/maddog-certs/ca_test
           - --cert-folders=client-certs:/clientcert
           env:
           - name: MADKUB_NODENAME
@@ -729,7 +721,6 @@ items:
           - --kingdom=prd
           - --superpod=None
           - --estate=prd-sam
-          - --testca-folder=/maddog-certs/ca_test
           - --cert-folders=client-certs:/clientcert
           - --refresher
           - --run-init-for-refresher-mode
@@ -769,7 +760,6 @@ items:
           - --kingdom=prd
           - --superpod=None
           - --estate=prd-sam
-          - --testca-folder=/maddog-certs/ca_test
           - --cert-folders=client-certs:/clientcert
           env:
           - name: MADKUB_NODENAME
@@ -892,7 +882,6 @@ items:
           - --kingdom=prd
           - --superpod=None
           - --estate=prd-sam
-          - --testca-folder=/maddog-certs/ca_test
           - --cert-folders=client-certs:/clientcert
           - --refresher
           - --run-init-for-refresher-mode
@@ -932,7 +921,6 @@ items:
           - --kingdom=prd
           - --superpod=None
           - --estate=prd-sam
-          - --testca-folder=/maddog-certs/ca_test
           - --cert-folders=client-certs:/clientcert
           env:
           - name: MADKUB_NODENAME
