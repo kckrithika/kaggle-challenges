@@ -191,10 +191,10 @@ def process_vip_files(root_vip_yaml_path, public_reserved_ips, private_reserved_
 
     for vip_metadata in public_vips_to_add:
         add_public_ip(vip_metadata.fqdn,
-                          vip_metadata.cluster,
-                          public_reserved_ips,
-                          public_subnets,
-                          minimum_octet)
+                      vip_metadata.cluster,
+                      public_reserved_ips,
+                      public_subnets,
+                      minimum_octet)
 
 
 def parse_yaml(yaml_file_path):
