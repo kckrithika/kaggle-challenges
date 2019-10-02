@@ -194,6 +194,11 @@ local ssWatchdogDeployment(instanceTag) = configs.deploymentBase("secrets") {
 };
 
 local instanceTagsForKingdom = if std.objectHas(instanceMap, configs.kingdom) then std.objectFields(instanceMap[configs.kingdom]);
+# If there's only a single instance defined for a datacenter (as there will be for most datacenters), 
+# don't use the k8s List abstraction; the SAM infrastructure isn't fully aware of the List abstraction,
+# so some things break in surprising ways (like image promotion -- new images within a List aren't 
+# automatically promoted by Firefly, so unless promoted through some side channel the ss-watchdog
+# images weren't ending up in prod when encapsulated in a List).
 local manifestSpec =
   if !secretsconfigs.isSecretsEstate || instanceTagsForKingdom == null || std.length(instanceTagsForKingdom) == 0 then "SKIP"
   else if std.length(instanceTagsForKingdom) == 1 then ssWatchdogDeployment(instanceTagsForKingdom[0])
