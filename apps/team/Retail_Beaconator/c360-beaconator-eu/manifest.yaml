@@ -30,8 +30,6 @@ system:
       - -endpoint
       - retail-mds/metadata-service:DATACENTER_ALLENV:7443:metadata-service-lb.retail-mds.eu01.cre.slb.sfdc.net
       - -endpoint
-      - retail-rsui/hub-persistence:DATACENTER_ALLENV:7442:hub-persistence-lb.retail-rsui.ap01.cre.slb.sfdc.net
-      - -endpoint
       - retail-rsui/retail-setup:DATACENTER_ALLENV:7443:rsui-service-lb.retail-rsui.eu01.cre.slb.sfdc.net
       env:
       - name: DUMMY_FORCE_PUSH 
