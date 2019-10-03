@@ -129,7 +129,7 @@ system:
       - name: kms_kingdom
         value: prd
       - name: kms_role
-        value: global-identity.gid-runtime-service-prd-staging
+        value: global-identity.gid-runtime-service-staging
       - name: kms_caPath
         value: /client-certs/ca/cacerts.pem
       - name: kms_monitoredDirectory
