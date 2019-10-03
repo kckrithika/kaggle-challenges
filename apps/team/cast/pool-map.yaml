@@ -16,10 +16,10 @@ apps:
         - test1shared0-samminionatlasdir2-1-prd.eng.sfdc.net
         - test1shared0-samminionatlasdir1-2-prd.eng.sfdc.net
 
-  # PRD-dev cast service for MIT testing
-  cast-prd-dev-mit:
+  # PRD-stage cast service for MIT testing
+  cast-prd-stage-mit:
     - name: prd/prd-sam_cloudatlas_dir
       hostSubList:
-        - test0shared0-samminionatlasdir1-1-prd.eng.sfdc.net
-        - test0shared0-samminionatlasdir1-2-prd.eng.sfdc.net
-        - test0shared0-samminionatlasdir2-1-prd.eng.sfdc.net
+        - test1shared0-samminionatlasdir1-1-prd.eng.sfdc.net
+        - test1shared0-samminionatlasdir2-1-prd.eng.sfdc.net
+        - test1shared0-samminionatlasdir1-2-prd.eng.sfdc.net
