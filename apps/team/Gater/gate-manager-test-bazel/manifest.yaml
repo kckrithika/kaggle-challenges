@@ -43,6 +43,8 @@ system:
       env:
       - name: SFDC_ENVIRONMENT
         value: blitz
+      - name: SCONE_SERVICE_NAME
+        value: gater-bazel
       terminationMessagePolicy: FallbackToLogsOnError
     - name: sherpa
       image: sfci/servicelibs/sherpa-envoy:1.0.8
