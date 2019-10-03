@@ -140,7 +140,7 @@ local k4aWatchdogDeployment(instanceTag) = configs.deploymentBase("secrets") {
               "-hostname",
               "$(" + secretsconfigs.sfdcloc_node_name_env.name + ")",
               "-argusUrl",
-              "%(funnelVIP)s" % configs,
+              "http://%(funnelVIP)s" % configs,
             ] + (if instanceData.url != null then
             [
               "-url",

@@ -48,7 +48,7 @@ items:
           - -hostname
           - $(SFDCLOC_NODE_NAME)
           - -argusUrl
-          - ajna0-funnel1-0-prd.data.sfdc.net:80
+          - http://ajna0-funnel1-0-prd.data.sfdc.net:80
           - -url
           - https://sec0-kfora1-1-prd.eng.sfdc.net:8443
           env:
@@ -215,7 +215,7 @@ items:
           - -hostname
           - $(SFDCLOC_NODE_NAME)
           - -argusUrl
-          - ajna0-funnel1-0-prd.data.sfdc.net:80
+          - http://ajna0-funnel1-0-prd.data.sfdc.net:80
           - -url
           - https://sec0-kfora1-2-prd.eng.sfdc.net:8443
           env:
@@ -382,7 +382,7 @@ items:
           - -hostname
           - $(SFDCLOC_NODE_NAME)
           - -argusUrl
-          - ajna0-funnel1-0-prd.data.sfdc.net:80
+          - http://ajna0-funnel1-0-prd.data.sfdc.net:80
           - -url
           - https://sec0-kfora2-1-prd.eng.sfdc.net:8443
           env:
@@ -549,7 +549,7 @@ items:
           - -hostname
           - $(SFDCLOC_NODE_NAME)
           - -argusUrl
-          - ajna0-funnel1-0-prd.data.sfdc.net:80
+          - http://ajna0-funnel1-0-prd.data.sfdc.net:80
           - -url
           - https://sec0-kfora2-2-prd.eng.sfdc.net:8443
           env:
@@ -716,7 +716,7 @@ items:
           - -hostname
           - $(SFDCLOC_NODE_NAME)
           - -argusUrl
-          - ajna0-funnel1-0-prd.data.sfdc.net:80
+          - http://ajna0-funnel1-0-prd.data.sfdc.net:80
           env:
           - name: FUNCTION_INSTANCE_NAME
             valueFrom:
