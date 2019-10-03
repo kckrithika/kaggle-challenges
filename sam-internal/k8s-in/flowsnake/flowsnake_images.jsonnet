@@ -75,7 +75,7 @@ local utils = import "util_functions.jsonnet";
                 deployment_strategy: "",
                 # --- flag J (likelihood of merge conflicts.) ---
                 upcase_pki_kingdom: "",
-                prometheus_ha: "unverified",
+                prometheus_ha: "verified",
             },
             version_mapping+: {
             },
@@ -173,6 +173,7 @@ local utils = import "util_functions.jsonnet";
                 # --- flag I (to reduce the ---
                 deployment_strategy: "",
                 # --- flag J (likelihood of merge conflicts.) ---
+                prometheus_ha: "verified",
             },
             version_mapping: {
                 "0.12.5": "jenkins-dva-transformation-flowsnake-platform-master-781-itest",  # jenkins-dva-transformation-flowsnake-platform-master-781-itest contains MoFo estates and Kevin's 5xx fixes
