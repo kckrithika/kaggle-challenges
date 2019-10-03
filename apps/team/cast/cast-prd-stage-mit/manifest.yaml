@@ -5,9 +5,9 @@ system:
     email:
       - rbhat@salesforce.com
   functions:
-  - name: cast-prd-dev-mit
+  - name: cast-prd-stage-mit
     identity:
-      serviceName: cast-prd-dev-mit
+      serviceName: cast-prd-stage-mit
     count: 1
     strategy:
       type: RollingUpdate
@@ -71,7 +71,7 @@ system:
         requests: { cpu: "1", memory: "1Gi" }
       args:
         - -endpoint
-        - $(FUNCTION_NAMESPACE)/cast-prd-dev-mit:DATACENTER_ALLENV:7442
+        - $(FUNCTION_NAMESPACE)/cast-prd-stage-mit:DATACENTER_ALLENV:7442
       livenessProbe:
         exec:
           command:
@@ -129,14 +129,18 @@ system:
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/gid/c2c-service:20191001122339-f3adebb
       imagePullPolicy: Always
       env:
+        - name: directory_server_host
+          valueFrom:
+           fieldRef:
+            fieldPath: spec.nodeName
         - name: server_port
           value: 8082
         - name: management_server_port
           value: 15372
         - name: c2c_common_gdotBasePath
-          value: http://cloudatlas-prd-dev-service.cloudatlas.localhost.mesh.force.com:5442/scim
+          value: http://${directory_server_host}:8080/scim
         - name: GDOT_URL
-          value: http://cloudatlas-prd-dev-service.cloudatlas.localhost.mesh.force.com:5442/scim
+          value: http://${directory_server_host}:8080/scim
       ports:
         - containerPort: 8082
         - containerPort: 15372
@@ -222,8 +226,8 @@ system:
   # SLB
   #####################################################################################
   loadbalancers:
-    - lbname: cast-prd-dev-mit
-      function: cast-prd-dev-mit
+    - lbname: cast-prd-stage-mit
+      function: cast-prd-stage-mit
       slbEnabled: true
       ports:
         - port: 9090
