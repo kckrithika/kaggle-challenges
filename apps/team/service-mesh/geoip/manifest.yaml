@@ -1,0 +1,88 @@
+# This is an Istio-based version of GeoIp
+apiVersion: v1
+system:
+  notifications:
+    email:
+    - meshcontrol@salesforce.com
+  functions:
+  - name: geoip
+    count: 3
+    labels:
+      app: geoip
+      settings_path: istio.-.prd.-.geoip
+    annotations:
+      sidecar.istio.io/inject: "true"
+    containers:
+    - name: geoip-database
+      image: tnrp/ccait/geoip2-database:20170918
+      args:
+      - -d
+      volumeMounts:
+      - mountPath: /database
+        name: maxmind-volume
+      livenessProbe:
+        exec:
+          command:
+          - ls
+          - /database/GeoIP2-City.mmdb
+        initialDelaySeconds: 10
+        periodSeconds: 5
+    - name: geoip
+      image: sfci/services/sfdc-bazel/service-mesh/geoip:a2ceb37b2 # monorepo build
+      env:
+      - name: JAVA_OPTS
+        value: -Xms1g -Xmx1g
+      - name: COM_MAXMIND_DATABASE_FILE
+        value: /dw/data/GeoIP2-City.mmdb
+      - name: FAKE_ENV_VAR_INCREMENT_TO_TRIGGER_SAM_DEPLOY
+        value: "2"
+      ports:
+      - containerPort: 7443
+        name: grpc-svc
+      - containerPort: 15372
+        name: scone-mgmt
+      resources:
+        limits:
+          cpu: "4"
+          memory: 10Gi
+        requests:
+          cpu: "4"
+          memory: 10Gi
+      volumeMounts:
+      - mountPath: /dw/data
+        name: maxmind-volume
+      livenessProbe:
+        httpGet:
+          path: /manage/health
+          port: 15372
+        initialDelaySeconds: 140
+      readinessProbe:
+        httpGet:
+          path: /manage/health
+          port: 15372
+        initialDelaySeconds: 115
+      
+    volumes:
+    - name: maxmind-volume
+      emptyDir: {}
+    - name: tls-client-cert
+      maddogCert:
+        type: client
+    - name: tls-server-cert
+      maddogCert:
+        type: server
+
+  loadbalancers:
+  - lbname: geoip
+    function: geoip
+    annotations:
+      routing.mesh.sfdc.net/enabled: "true"
+    labels:
+      app: geoip
+      settings_path: istio.-.prd.-.geoip
+    ports:
+      - lbtype: dsr
+        nodeExposed: false
+        port: 7443
+        targetport: 7443
+        name: grpc-geoip

@@ -139,13 +139,14 @@ apps:
 #  istio-basic-rest-service:
 #    - prd/prd-sam_gater
 
+  # Istio-powered version of Geoip
+  geoip:
+    - prd/prd-sam_gater
+
+
 # Enable as needed:
 #  geoipnk:
 #    - prd/prd-sam_gater
-
-  # Nikolay: Testing Time client (temporary app)
-  istio-time-client:
-    - prd/prd-sam_gater
 
   authz-svc:
     - prd/prd-sam_gater
