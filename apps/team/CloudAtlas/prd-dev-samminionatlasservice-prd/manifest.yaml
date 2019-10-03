@@ -142,7 +142,7 @@ system:
         - containerPort: 15372
       livenessProbe:
         httpGet:
-          path: /manage/health
+          path: /manage/info
           port: 15372
       volumeMounts:
         - name: server-cert
