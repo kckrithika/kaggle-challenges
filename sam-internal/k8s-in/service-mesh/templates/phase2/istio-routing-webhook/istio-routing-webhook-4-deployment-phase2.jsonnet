@@ -293,7 +293,7 @@ configs.deploymentBase("service-mesh") {
             },
             securityContext: {
               readOnlyRootFilesystem: true,
-              runAsUser: 7557,
+              runAsUser: 7447,
             },
             terminationMessagePath: "/dev/termination-log",
             terminationMessagePolicy: "File",
@@ -342,9 +342,9 @@ configs.deploymentBase("service-mesh") {
               "-p",
               "15002",
               "-z",
-              "15006",
+              "15002",
               "-u",
-              "7557",
+              "7447",
               "-m",
               "REDIRECT",
               "-i",
@@ -355,12 +355,6 @@ configs.deploymentBase("service-mesh") {
               "",
               "-d",
               "15020,10443",
-            ],
-            env: [
-              {
-                name: "DISABLE_REDIRECTION_ON_LOCAL_LOOPBACK",
-                value: "1",
-              },
             ],
             image: mcpIstioConfig.proxyInitImage,
             imagePullPolicy: "IfNotPresent",

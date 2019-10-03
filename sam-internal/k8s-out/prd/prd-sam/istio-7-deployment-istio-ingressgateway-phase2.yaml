@@ -225,9 +225,6 @@ spec:
           requests:
             cpu: 100m
             memory: 1024Mi
-        securityContext:
-          readOnlyRootFilesystem: true
-          runAsUser: 7557
         volumeMounts:
         - mountPath: /client-certs
           name: tls-client-cert
