@@ -12,7 +12,7 @@ system:
         type: client
     containers:
     - name: gadget-service
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/santosh-miriyala/gadget/gadget-core:latest
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/santosh-miriyala/gadget/gadget-core:secretkeychanges
       ports:
       - containerPort: 10001
       livenessProbe:
