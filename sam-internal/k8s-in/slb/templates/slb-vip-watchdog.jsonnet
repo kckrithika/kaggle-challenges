@@ -104,10 +104,15 @@ if slbconfigs.isSlbEstate then configs.deploymentBase("slb") {
                                            "--metricsEndpoint=" + configs.funnelVIP,
                                            "--httpTimeout=3s",
                                            "--vipLoop=1",
-                                           "--monitorFrequency=10s",
+                                           (
+                                                if configs.estate == "dfw-sam" then
+                                                "--monitorFrequency=600s"
+                                                else
+                                                "--monitorFrequency=10s"
+                                            ),
                                            "--client.serverInterface=lo",
                                            "--metricsBatchTimeout=30s",
-                                       ] + (if slbflights.alertOnlyOnProxyErrorCode then [
+                                        ] + (if slbflights.alertOnlyOnProxyErrorCode then [
                                            "--featureFlagAlertOnlyOnProxyErrorCode=true",
                                        ] else [])
                                        + slbconfigs.vipwdConfigOptions
