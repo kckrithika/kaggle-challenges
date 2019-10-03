@@ -96,9 +96,9 @@ apps:
 # Service mesh test harness for rolling upgrade resiliency tests
 # https://git.soma.salesforce.com/servicelibs/servicemesh-resiliency
   resiliency-server:
-    - prd/prd-sam_gater
+    - prd/prd-samtest
   resiliency-client:
-    - prd/prd-sam_gater
+    - prd/prd-samtest
 
 # Regular Mode: Istio -> Istio apps
 #  istio-geoip: # Enable as required.
