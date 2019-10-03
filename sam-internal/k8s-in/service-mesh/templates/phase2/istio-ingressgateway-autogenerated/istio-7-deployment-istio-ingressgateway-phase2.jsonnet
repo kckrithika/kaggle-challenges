@@ -334,6 +334,10 @@ if (istioPhases.phaseNum == 2) then
                 memory: "1024Mi",
               },
             },
+            securityContext: {
+              readOnlyRootFilesystem: true,
+              runAsUser: 7557,
+            },
             volumeMounts: [
               {
                 mountPath: "/client-certs",
