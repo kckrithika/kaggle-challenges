@@ -342,7 +342,7 @@ configs.deploymentBase("service-mesh") {
               "-p",
               "15002",
               "-z",
-              "15002",
+              "15006",
               "-u",
               "7557",
               "-m",
