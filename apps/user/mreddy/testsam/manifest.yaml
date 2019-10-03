@@ -6,6 +6,10 @@ system:
   functions:
   - name: testsam
     count: 1
+    volumes:
+    - name: cert
+      maddogCert:
+        type: client
     containers:
     - name: gadget-service
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/santosh-miriyala/gadget/gadget-core:latest
@@ -15,3 +19,6 @@ system:
         exec:
            command:
            - /usr/bin/true
+      volumeMounts:
+      - name: cert
+        mountPath: /certs
