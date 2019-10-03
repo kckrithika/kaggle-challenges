@@ -8,7 +8,7 @@ system:
     - name: cs77-app
       count: 2
       identity:
-        serviceName: app
+        serviceName: cronapp
         pod: cs77
       containers:
         - name: app
@@ -216,7 +216,7 @@ system:
     - name: cs77-mc
       count: 1
       identity:
-        serviceName: cron
+        serviceName: cronmc
         pod: cs77
       containers:
         - name: cron-service
@@ -269,21 +269,19 @@ system:
     - name: cs77-sdb
       count: 1
       identity:
-        serviceName: cron
+        serviceName: cronsdb
         pod: cs77
       containers:
-        - name: cron-service
-          image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/vijay-kota/myenvoy:10Jul19
-          command: ["/bin/sh"]
-          args: ["-c", "export AMQP_PORT=$HTTP_PORT ; /usr/bin/python /home/sfdc-sherpa/myscripts/myqpid.py"]
-          ports:
-            - name: http-port
-              containerPort: 7022
+        - name: sdbgo
+          image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/vijay-kota/mysdb:03Oct19
           env:
             - name: SFDC_ENVIRONMENT
               value: mesh
-            - name: HTTP_PORT
-              value: 7022
+            # name: PGPORT
+            # value: "1521"
+          ports:
+            - containerPort: 1521
+              name: sdb-port
           resources:
             limits: { cpu: "1", memory: "1Gi" }
             requests: { cpu: "1", memory: "1Gi" }
@@ -299,13 +297,12 @@ system:
             initialDelaySeconds: 10
             timeoutSeconds: 10
           volumeMounts:
-            - mountPath: /var/log/web
+            - mountPath: /var/log/sdb
               name: logvol
 
       volumes:
         - name: logvol
-          hostpath:
-            path: /var/log/sdb
+          emptyDir: {}
         - name: sherpaclientcert
           maddogCert:
             type: client
@@ -340,7 +337,7 @@ system:
         targetport: 7022
       - port: 15373
         targetport: 15373
-  - lbname: mcapp-cs77
+  - lbname: cronmc-cs77
     function: cs77-mc
     slbenabled: true
     ports:
@@ -350,5 +347,5 @@ system:
     function: cs77-sdb
     slbenabled: true
     ports:
-      - port: 7022
-        targetport: 7022
+      - port: 1521
+        targetport: 1521
