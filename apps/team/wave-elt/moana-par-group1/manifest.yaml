@@ -30,7 +30,7 @@ system:
       - {name: TESTRECIPE_MAESTROPINGTEST, value: 'true'}
       - {name: DEPLOYMENT_ID, value: par-group1}
       - {name: HANDLED_PODS_PATTERN, value: 'cs[0-9]+|moana-driver-group1'}
-      image: sfci/insights/moana-driver:release-2019.08.b.26-00b2424
+      image: sfci/insights/moana-driver:release-2019.09.a.27-78c6ef1
       livenessProbe:
         httpGet: {path: /manage/health, port: 15372}
         initialDelaySeconds: 30
