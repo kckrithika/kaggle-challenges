@@ -32,7 +32,7 @@ system:
       - {name: HANDLED_PODS_PATTERN, value: 'cs[0-9]+|moana-driver-group1'}
       - {name: HEALTHCHECK_SELF_INTERVAL, value: '60'}
       - {name: SPRING_MAIN_WEB_APPLICATION_TYPE, value: NONE}
-      image: sfci/insights/moana-driver:release-2019.08.b.26-00b2424
+      image: sfci/insights/moana-driver:release-2019.09.a.27-78c6ef1
       livenessProbe:
         exec:
           command: [bash, -c, find /tmp -mmin -2 -name health | grep -q "."]
