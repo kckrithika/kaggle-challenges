@@ -23,6 +23,8 @@ apps:
   - frf/frf-sam
   - hio/hio-sam
   - ttd/ttd-sam
+  - ia4/ia4-sam
+  - ia5/ia5-sam
  SamTestAppMaddog:
   - prd/prd-sam
   - prd/prd-samtest
