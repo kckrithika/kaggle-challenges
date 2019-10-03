@@ -181,6 +181,8 @@ apps:
     - phx/phx-sam_gater
     - ph2/ph2-sam_gater
     - ia2/ia2-sam_gater
+    - ia4/ia4-sam_gater
+    - ia5/ia5-sam_gater
   authz-svc-prod-opa-1:
     - par/par-sam_gater
   authz-svc-prod-opa-2:
@@ -203,6 +205,8 @@ apps:
     - phx/phx-sam_gater
     - ph2/ph2-sam_gater
     - ia2/ia2-sam_gater
+    - ia4/ia4-sam_gater
+    - ia5/ia5-sam_gater
   authz-injector-test:
     - prd/prd-sam_gater
     - prd/prd-samtest
