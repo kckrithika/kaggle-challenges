@@ -1,0 +1,19 @@
+apiVersion: v1
+system:
+  notifications:
+    email:
+      - santosh.miriyala@salesforce.com
+  functions:
+  - name: gadget-sam-db-test
+    count: 1
+    containers:
+    - name: gadget-sam-db-test-container
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/santosh-miriyala/gadget/gadget-db:latest
+      ports:
+        - name: postgresdb-port
+          containerPort: 5432
+          hostPort: 54320
+      livenessProbe:
+        exec:
+          command:
+          - /usr/bin/true

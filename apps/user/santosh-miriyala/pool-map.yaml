@@ -1,4 +1,5 @@
 apps:
  my-sam-test:    # this must match the name of your application. It must be lower case.
   - prd/prd-sam  # the SAM Sandbox uses the prd/prd-sam host cluster
-                 # you can also specify other pools
+ my-sam-db-test:                # you can also specify other pools
+  - prd/prd-sam
