@@ -12,7 +12,7 @@ system:
         pod: cs66
       containers:
         - name: sdbgo
-          image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/vijay-kota/mysdb:03Oct19
+          image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/vijay-kota/mysdb:04Oct19
           env:
           - name: SFDC_ENVIRONMENT
             value: mesh
