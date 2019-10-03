@@ -508,7 +508,7 @@ if (istioPhases.phaseNum == 2) then
             },
             securityContext: {
               readOnlyRootFilesystem: true,
-              runAsUser: 7557,
+              runAsUser: 7447,
             },
             terminationMessagePath: "/dev/termination-log",
             terminationMessagePolicy: "File",
@@ -622,9 +622,9 @@ if (istioPhases.phaseNum == 2) then
               "-p",
               "15002",
               "-z",
-              "15006",
+              "15002",
               "-u",
-              "7557",
+              "7447",
               "-m",
               "REDIRECT",
               "-i",
@@ -635,12 +635,6 @@ if (istioPhases.phaseNum == 2) then
               "",
               "-d",
               "",
-            ],
-            env: [
-              {
-                name: "DISABLE_REDIRECTION_ON_LOCAL_LOOPBACK",
-                value: "1",
-              },
             ],
             image: mcpIstioConfig.proxyInitImage,
             imagePullPolicy: "IfNotPresent",

@@ -229,9 +229,6 @@ spec:
           requests:
             cpu: 100m
             memory: 128Mi
-        securityContext:
-          readOnlyRootFilesystem: true
-          runAsUser: 7557
         volumeMounts:
         - mountPath: /client-certs
           name: tls-client-cert
@@ -377,9 +374,9 @@ spec:
         - -p
         - "15002"
         - -z
-        - "15006"
+        - "15002"
         - -u
-        - "7557"
+        - "7447"
         - -m
         - REDIRECT
         - -i
@@ -390,9 +387,6 @@ spec:
         - ""
         - -d
         - 15010,15011
-        env:
-        - name: DISABLE_REDIRECTION_ON_LOCAL_LOOPBACK
-          value: "1"
         image: ops0-artifactrepo2-0-prd.data.sfdc.net/sfci/servicemesh/istio-packaging/proxy_init:1b5020ef8aae46df33ee82ba23efa8bbf8e7a1f8
         imagePullPolicy: IfNotPresent
         name: istio-init
