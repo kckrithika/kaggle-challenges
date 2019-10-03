@@ -356,6 +356,10 @@ if (istioPhases.phaseNum == 1) then
                 memory: "128Mi",
               },
             },
+            securityContext: {
+              readOnlyRootFilesystem: true,
+              runAsUser: 7557,
+            },
             volumeMounts: [
               {
                 mountPath: "/client-certs",
@@ -589,7 +593,7 @@ if (istioPhases.phaseNum == 1) then
               "-z",
               "15002",
               "-u",
-              "7447",
+              "7557",
               "-m",
               "REDIRECT",
               "-i",
@@ -600,6 +604,12 @@ if (istioPhases.phaseNum == 1) then
               "",
               "-d",
               "15010,15011",
+            ],
+            env: [
+              {
+                name: "DISABLE_REDIRECTION_ON_LOCAL_LOOPBACK",
+                value: "1",
+              },
             ],
             image: mcpIstioConfig.proxyInitImage,
             imagePullPolicy: "IfNotPresent",

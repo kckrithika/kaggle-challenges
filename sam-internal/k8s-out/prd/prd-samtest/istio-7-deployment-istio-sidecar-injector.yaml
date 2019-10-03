@@ -101,7 +101,7 @@ spec:
         env:
         - name: ESTATE
           value: prd-samtest
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/sfci/servicemesh/istio-packaging/sidecar_injector:1b5020ef8aae46df33ee82ba23efa8bbf8e7a1f8
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/sfci/servicemesh/istio-packaging/sidecar_injector:ba071fdd8d98c63ba91caf4141978e8f33f35900
         imagePullPolicy: IfNotPresent
         livenessProbe:
           exec:
@@ -317,7 +317,7 @@ spec:
           value: prd-samtest
         - name: KINGDOM
           value: prd
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/sfci/servicemesh/istio-packaging/proxy:1b5020ef8aae46df33ee82ba23efa8bbf8e7a1f8
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/sfci/servicemesh/istio-packaging/proxy:ba071fdd8d98c63ba91caf4141978e8f33f35900
         imagePullPolicy: IfNotPresent
         name: istio-proxy
         ports:
@@ -343,7 +343,7 @@ spec:
             memory: 128Mi
         securityContext:
           readOnlyRootFilesystem: true
-          runAsUser: 7447
+          runAsUser: 7557
         terminationMessagePath: /dev/termination-log
         terminationMessagePolicy: File
         volumeMounts:
@@ -417,7 +417,7 @@ spec:
         - -z
         - "15002"
         - -u
-        - "7447"
+        - "7557"
         - -m
         - REDIRECT
         - -i
@@ -428,7 +428,10 @@ spec:
         - ""
         - -d
         - ""
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/sfci/servicemesh/istio-packaging/proxy_init:1b5020ef8aae46df33ee82ba23efa8bbf8e7a1f8
+        env:
+        - name: DISABLE_REDIRECTION_ON_LOCAL_LOOPBACK
+          value: "1"
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/sfci/servicemesh/istio-packaging/proxy_init:ba071fdd8d98c63ba91caf4141978e8f33f35900
         imagePullPolicy: IfNotPresent
         name: istio-init
         resources:
