@@ -9,7 +9,7 @@ system:
   - name: metadata-service-prd-func-patch
     identity:
       serviceName: metadata-service
-    count: 1
+    count: 3
     labels:
       app: metadata-service
     annotations:
