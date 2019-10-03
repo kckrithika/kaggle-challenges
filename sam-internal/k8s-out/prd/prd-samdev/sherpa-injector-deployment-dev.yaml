@@ -309,7 +309,7 @@ spec:
         - mountPath: /cert2
           name: cert2
       nodeSelector:
-        master: "true"
+        pool: prd-samdev
       volumes:
       - hostPath:
           path: /etc/pki_service
