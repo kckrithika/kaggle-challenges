@@ -13,7 +13,14 @@ system:
         - name: postgresdb-port
           containerPort: 5432
           hostPort: 54320
+      volumeMounts:
+        - mountPath: /var/lib/postgresql/data
+          name: postgres-data-vol-test
       livenessProbe:
         exec:
           command:
           - /usr/bin/true
+    volumes:
+    - name: postgres-data-vol-test
+      hostPath:
+        path: /data/my_dbdata
