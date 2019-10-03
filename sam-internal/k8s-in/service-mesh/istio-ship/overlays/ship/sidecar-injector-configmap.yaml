@@ -24,7 +24,7 @@ data:
         - "-z"
         - "15002"
         - "-u"
-        - 7447
+        - 7557
         - "-m"
         - "{{ annotation .ObjectMeta `sidecar.istio.io/interceptionMode` .ProxyConfig.InterceptionMode }}"
         - "-i"
@@ -43,6 +43,9 @@ data:
         - "-k"
         - "{{ index .ObjectMeta.Annotations `traffic.sidecar.istio.io/kubevirtInterfaces` }}"
         {{ end -}}
+        env:
+        - name: DISABLE_REDIRECTION_ON_LOCAL_LOOPBACK
+          value: "1"
         imagePullPolicy: "{{ .Values.global.imagePullPolicy }}"
         resources:
           requests:
@@ -322,12 +325,12 @@ data:
           capabilities:
             add:
             - NET_ADMIN
-          runAsGroup: 7447
+          runAsGroup: 7557
           {{ else -}}
           {{ if and .Values.global.sds.enabled .Values.global.sds.useTrustworthyJwt }}
-          runAsGroup: 7447
+          runAsGroup: 7557
           {{- end }}
-          runAsUser: 7447
+          runAsUser: 7557
           {{- end }}
         resources:
           {{ if or (isset .ObjectMeta.Annotations `sidecar.istio.io/proxyCPU`) (isset .ObjectMeta.Annotations `sidecar.istio.io/proxyMemory`) -}}

@@ -321,7 +321,7 @@ data:
         - "-z"
         - "15002"
         - "-u"
-        - 7447
+        - 7557
         - "-m"
         - "{{ annotation .ObjectMeta `sidecar.istio.io/interceptionMode` .ProxyConfig.InterceptionMode }}"
         - "-i"
@@ -340,6 +340,9 @@ data:
         - "-k"
         - "{{ index .ObjectMeta.Annotations `traffic.sidecar.istio.io/kubevirtInterfaces` }}"
         {{ end -}}
+        env:
+        - name: DISABLE_REDIRECTION_ON_LOCAL_LOOPBACK
+          value: "1"
         imagePullPolicy: "{{ .Values.global.imagePullPolicy }}"
         resources:
           requests:
@@ -619,12 +622,12 @@ data:
           capabilities:
             add:
             - NET_ADMIN
-          runAsGroup: 7447
+          runAsGroup: 7557
           {{ else -}}
           {{ if and .Values.global.sds.enabled .Values.global.sds.useTrustworthyJwt }}
-          runAsGroup: 7447
+          runAsGroup: 7557
           {{- end }}
-          runAsUser: 7447
+          runAsUser: 7557
           {{- end }}
         resources:
           {{ if or (isset .ObjectMeta.Annotations `sidecar.istio.io/proxyCPU`) (isset .ObjectMeta.Annotations `sidecar.istio.io/proxyMemory`) -}}
@@ -1100,6 +1103,9 @@ spec:
           requests:
             cpu: 100m
             memory: 1024Mi
+        securityContext:
+          readOnlyRootFilesystem: true
+          runAsUser: 7557
         volumeMounts:
         - mountPath: /client-certs
           name: tls-client-cert
@@ -1430,6 +1436,9 @@ spec:
           requests:
             cpu: 100m
             memory: 128Mi
+        securityContext:
+          readOnlyRootFilesystem: true
+          runAsUser: 7557
         volumeMounts:
         - mountPath: /client-certs
           name: tls-client-cert
@@ -1577,7 +1586,7 @@ spec:
         - -z
         - "15002"
         - -u
-        - "7447"
+        - "7557"
         - -m
         - REDIRECT
         - -i
@@ -1588,6 +1597,9 @@ spec:
         - ""
         - -d
         - 15010,15011
+        env:
+        - name: DISABLE_REDIRECTION_ON_LOCAL_LOOPBACK
+          value: "1"
         image: mcpIstioConfig.proxyInitImage
         imagePullPolicy: IfNotPresent
         name: istio-init
@@ -1949,7 +1961,7 @@ spec:
             memory: 128Mi
         securityContext:
           readOnlyRootFilesystem: true
-          runAsUser: 7447
+          runAsUser: 7557
         terminationMessagePath: /dev/termination-log
         terminationMessagePolicy: File
         volumeMounts:
@@ -2023,7 +2035,7 @@ spec:
         - -z
         - "15002"
         - -u
-        - "7447"
+        - "7557"
         - -m
         - REDIRECT
         - -i
@@ -2034,6 +2046,9 @@ spec:
         - ""
         - -d
         - ""
+        env:
+        - name: DISABLE_REDIRECTION_ON_LOCAL_LOOPBACK
+          value: "1"
         image: mcpIstioConfig.proxyInitImage
         imagePullPolicy: IfNotPresent
         name: istio-init
