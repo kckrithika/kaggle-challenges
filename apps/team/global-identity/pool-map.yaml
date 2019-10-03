@@ -10,7 +10,7 @@ apps:
   c2c-ca:
     # - prd/prd-sam
     - xrd/xrd-sampool
-  gid-runtime-service-prd-staging:
+  gid-runtime-service-staging:
     - prd/prd-sam_cloudatlas
   gid-runtime-service-mit:
     - prd/prd-sam_cloudatlas
