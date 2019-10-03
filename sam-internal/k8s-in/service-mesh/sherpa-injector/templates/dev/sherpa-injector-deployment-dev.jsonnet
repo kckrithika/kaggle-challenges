@@ -338,7 +338,7 @@ configs.deploymentBase("service-mesh") {
         # In PRD only kubeapi (master) nodes get cluster-admin permission
         # In production, SAM control estate nodes get cluster-admin permission
         nodeSelector: {} +
-          if configs.estate == "prd-samtest" || configs.estate == "prd-sam" then {
+          if  configs.estate == "prd-sam" then {
               master: "true",
           } else {
               pool: configs.estate,
