@@ -1,12 +1,12 @@
 version: v2
 apps:
-  gid-runtime-service:
-    - name: xrd/xrd-sampool
+  # gid-runtime-service:
+  #   - name: xrd/xrd-sampool
   # with-custom-sherpa:
   #  - name: prd/prd-sam
   # with-nginx-only:
   #  - name: prd/prd-sam
-  with-nginx:
-    - name: prd/prd-sam
+  # with-nginx:
+  #   - name: prd/prd-sam
   # without-nginx:
   #   - name: prd/prd-sam
