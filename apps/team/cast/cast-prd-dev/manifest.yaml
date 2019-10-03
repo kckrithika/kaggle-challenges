@@ -86,6 +86,10 @@ system:
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cloud-atlas/cloudatlas/cloudatlas-service:5774b48
       command: ["java", "-jar", "cloudatlas-service.jar"]
       env:
+        - name: DIRECTORY_SERVER_HOST
+          valueFrom:
+           fieldRef:
+            fieldPath: spec.nodeName
         - name: server_port
           value: 7032
         - name: management_server_port
