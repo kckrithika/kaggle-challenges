@@ -6,9 +6,36 @@ system:
       - vijay.kota@salesforce.com
   functions:
     - name: cs66-sdb
-      count: 3
+      count: 1
       identity:
         serviceName: sdb
+        pod: cs66
+      containers:
+        - name: sdbgo
+          image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/vijay-kota/mysdb:03Oct19
+          env:
+          - name: SFDC_ENVIRONMENT
+            value: mesh
+          # name: PGPORT
+          # value: "1521"
+          ports:
+          # expose sdb port outside the container
+          - containerPort: 1521
+            name: sdb-port
+          livenessProbe:
+               exec:
+                 command: ["/bin/true"]
+               initialDelaySeconds: 10
+               timeoutSeconds: 10
+               periodSeconds: 60
+      volumes:
+        - name: sdblogs
+          emptyDir: {}
+
+    - name: cs66-sdbha
+      count: 1
+      identity:
+        serviceName: sdbha
         pod: cs66
       #trategy:
       #  type: Recreate

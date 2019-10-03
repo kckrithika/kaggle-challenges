@@ -1,0 +1,9 @@
+FROM ops0-artifactrepo1-0-prd.data.sfdc.net/docker-dev/tnrp/sdbdocker/sdbgo:v1
+
+WORKDIR /home/sdb
+RUN mkdir -p mydir
+COPY --chown=1359:7033 deploy.324.10.1.ssl.tar.bz2 ./mydir
+COPY --chown=1359:7033 19252256.sdbdata.tar.bz2 ./mydir
+COPY --chown=1359:7033 myinstall.sh ./mydir/myinstall.sh
+
+ENTRYPOINT ["/home/sdb/mydir/myinstall.sh"]
