@@ -66,7 +66,7 @@ configs.deploymentBase("flowsnake") {
                             "-emailFrequency=24h",
                             "-timeout=2s",
                             "-funnelEndpoint=" + flowsnakeconfig.funnel_vip_and_port,
-                            "--config=/config/watchdog.json",
+                            "--config=/config/"+ (if std.objectHas(flowsnake_images.feature_flags, "watchdog_refactoring") then "hbase-watchdog.json" else "watchdog.json") ,
                             "-cliCheckerCommandTarget=SparkHbaseIntegrationTest",
                             "--hostsConfigFile=/sfdchosts/hosts.json",
                             # Delay between runs. We want to more or less run continuously.
@@ -126,7 +126,7 @@ configs.deploymentBase("flowsnake") {
                 serviceAccount: "watchdog-spark-operator-serviceaccount",
                 serviceAccountName: "watchdog-spark-operator-serviceaccount",
                 volumes: [
-                    configs.config_volume("watchdog"),
+                    configs.config_volume(if std.objectHas(flowsnake_images.feature_flags, "watchdog_refactoring") then "hbase-watchdog" else "watchdog"),
                     {
                         configMap: {
                             name: "watchdog-spark-on-k8s-script-configmap",
