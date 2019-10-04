@@ -13,8 +13,8 @@ system:
       containers:
         - name: sdbgo
           image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/vijay-kota/mysdb:05Oct19
-          command: ["/bin/sleep"]
-          args: ["701000"]
+          #ommand: ["/bin/sleep"]
+          #rgs: ["701000"]
           env:
           - name: SFDC_ENVIRONMENT
             value: mesh
