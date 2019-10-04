@@ -7,7 +7,7 @@ system:
   - name: testsam
     count: 1
     volumes:
-    - name: cert
+    - name: mycert
       maddogCert:
         type: client
     containers:
@@ -20,6 +20,6 @@ system:
            command:
            - /usr/bin/true
       volumeMounts:
-      - name: cert
-        mountPath: /certs
+      - name: mycert
+        mountPath: /gadgetcerts
 
