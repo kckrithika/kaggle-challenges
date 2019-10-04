@@ -28,10 +28,6 @@ def __get_portal_url(kingdom, cluster):
     return SLB_PORTAL_URL.format(kingdom)
 
 
-def get_cluster_portal_info(kingdom, cluster):
-    return __get_portal_info(__get_portal_url(kingdom, cluster))
-
-
 def __get_portal_info(url):
     if url in portal_info_cache:
         return portal_info_cache[url]
