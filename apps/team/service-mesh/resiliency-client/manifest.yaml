@@ -30,6 +30,7 @@ system:
         initialDelaySeconds: 5
         periodSeconds: 5
       terminationMessagePolicy: FallbackToLogsOnError
+    serviceAccountName: servicemeshresiliency
     volumes:
     - name: tls-client-cert
       maddogCert:
