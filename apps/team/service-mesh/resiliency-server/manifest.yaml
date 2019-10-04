@@ -7,6 +7,9 @@ system:
   functions:
   - name: resiliency-server
     count: 3
+    annotations:
+      "sherpa-injector.service-mesh/inject": "enabled"
+      "sherpa-injector.service-mesh/canary": "enabled"
     containers:
     - name: beacon
       image: sfci/services/sfdc-bazel/disco/beacon:d7f1640
@@ -28,38 +31,6 @@ system:
         exec:
           command:
           - "/opt/beacon/is-alive.sh"
-    - name: sherpa
-      image: sfci/servicelibs/sherpa-envoy:1.0.13
-      ports:
-      - name: http1-in
-        containerPort: 7014
-      - name: http2-in
-        containerPort: 7012
-      - name: http2-tls-in
-        containerPort: 7443
-      - name: sherpa-adm
-        containerPort: 15373
-      resources:
-        limits: { cpu: "1", memory: "1Gi" }
-        requests: { cpu: "1", memory: "1Gi" }
-      volumeMounts:
-      - mountPath: /client-certs
-        name: tls-client-cert
-      - mountPath: /server-certs
-        name: tls-server-cert
-      livenessProbe:
-        exec:
-          command:
-          - ./bin/is-alive
-        initialDelaySeconds: 20
-        periodSeconds: 5
-      readinessProbe:
-        exec:
-          command:
-          - ./bin/is-ready
-        initialDelaySeconds: 15
-        periodSeconds: 5
-      terminationMessagePolicy: FallbackToLogsOnError
     - name: server
       image: sfci/servicelibs/servicemesh-resiliency:6fa9c769f6384634fb63da82062bed3d638b3d53
       env:
