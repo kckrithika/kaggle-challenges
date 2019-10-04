@@ -4,15 +4,15 @@ items:
   kind: Deployment
   metadata:
     labels:
-      name: secretservice-watchdog-crz-from-xrd
+      name: secretservice-watchdog-dmz-from-xrd
       sam.data.sfdc.net/owner: secrets
-    name: secretservice-watchdog-crz-from-xrd
+    name: secretservice-watchdog-dmz-from-xrd
     namespace: sam-system
   spec:
     replicas: 1
     selector:
       matchLabels:
-        name: secretservice-watchdog-crz-from-xrd
+        name: secretservice-watchdog-dmz-from-xrd
         sam.data.sfdc.net/owner: secrets
     template:
       metadata:
@@ -29,7 +29,7 @@ items:
              ]
             }
         labels:
-          name: secretservice-watchdog-crz-from-xrd
+          name: secretservice-watchdog-dmz-from-xrd
           sam.data.sfdc.net/owner: secrets
         namespace: sam-system
       spec:
@@ -38,7 +38,7 @@ items:
           - -ssEndpoint=secretservice.dmz.salesforce.com
           - -ssWritePort=8272
           - -wdKingdom=CRZ
-          - -vaultName=ss-watchdog-vault-crz-from-xrd
+          - -vaultName=ss-watchdog-vault-dmz-from-xrd
           - -role=sam.secrets.secretservice-watchdog
           - -metricsEndpoint=ajna0-funnel1-0-xrd.data.sfdc.net:80
           - -logtostderr=true

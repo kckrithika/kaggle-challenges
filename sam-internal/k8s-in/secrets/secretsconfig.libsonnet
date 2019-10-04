@@ -10,6 +10,8 @@ local configs = import "config.jsonnet";
     "xrd-sam",
     "hio-sam",
     "ttd-sam",
+    "phx-sam",
+    "dfw-sam",
   ]),
   isSecretsEstate: std.setMember(estate, $.secretsEstates),
 
@@ -23,6 +25,8 @@ local configs = import "config.jsonnet";
   k4aCaimanWdEstates: std.set([
     "prd-sam",
     "xrd-sam",
+    "phx-sam",
+    "dfw-sam",
   ]),
   k4aCaimanWdEnabled: std.setMember(estate, $.k4aCaimanWdEstates),
 
