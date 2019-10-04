@@ -6,7 +6,7 @@ system:
     - universalsearch@salesforce.com
   functions:
   - name: xlt-agent
-    count: 10
+    count: 6
     volumes:
     - name: client-cert-vol
       maddogCert:
