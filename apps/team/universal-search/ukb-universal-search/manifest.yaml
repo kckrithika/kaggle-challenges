@@ -112,7 +112,7 @@ system:
       hostpath:
         path: /home/sfdc-sherpa/logs
     containers:
-    - name: universal-search-synthetics-shared
+    - name: universal-search-synthetics-cre
       image: sfci/searchdev/universal-search-synthetics:0.1.2
       volumeMounts:
         - name: synthetics-log-vol
@@ -125,12 +125,54 @@ system:
           command:
           - "/home/sfdc-usmt/run.sh"
           - "--domain"
-          - "synthetics-shared"
+          - "synthetics-cre"
         initialDelaySeconds: 120
         timeoutSeconds: 30
         periodSeconds: 900
         failureThreshold: 1
-    - name: universal-search-synthetics-cre
+    - name: sherpa
+      image: sfci/servicelibs/sherpa-envoy:1.0.8
+      ports:
+      - containerPort: 15373
+        name: sherpa-adm
+      env:
+      - name: SFDC_ENVIRONMENT
+        value: "sam"
+      resources:
+        limits:
+          cpu: "1"
+          memory: "1Gi"
+      volumeMounts:
+      - name: client-cert-vol
+        mountPath: /client-certs
+      - name: sherpa-log-vol
+        mountPath: /log
+      livenessProbe:
+        exec:
+          command:
+          - "./bin/is-alive"
+        initialDelaySeconds: 60
+        periodSeconds: 5
+      readinessProbe:
+        exec:
+          command:
+          - "./bin/is-ready"
+        initialDelaySeconds: 50
+        periodSeconds: 5
+  - name: universal-search-synthetics-shared
+    count: 4
+    volumes:
+    - name: synthetics-log-vol
+      hostpath:
+        path: /home/sfdc-usmt/logs
+    - name: client-cert-vol
+      maddogCert:
+        type: client
+    - name: sherpa-log-vol
+      hostpath:
+        path: /home/sfdc-sherpa/logs
+    containers:
+    - name: universal-search-synthetics-shared
       image: sfci/searchdev/universal-search-synthetics:0.1.2
       volumeMounts:
         - name: synthetics-log-vol
