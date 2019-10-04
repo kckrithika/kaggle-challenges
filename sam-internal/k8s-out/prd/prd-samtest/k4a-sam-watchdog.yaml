@@ -24,12 +24,16 @@ spec:
         - /sam/watchdog
         - -role=SYNTHETIC
         - -watchdogFrequency=180s
-        - -alertThreshold=1h
-        - -emailFrequency=336h
         - -funnelEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80
         - -config=/config/watchdog.json
         - --hostsConfigFile=/sfdchosts/hosts.json
         - -timeout=2s
+        - -caFile=/etc/pki_service/ca/cabundle.pem
+        - -keyFile=/etc/pki_service/platform/platform-client/keys/platform-client-key.pem
+        - -certFile=/etc/pki_service/platform/platform-client/certificates/platform-client.pem
+        - -imageName=ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/sam/hypersam:2808-84948e8fc1118dfdaed0d1b415efc1822499665a
+        - -enableStatelessChecks=false
+        - -enableK4aChecks=true
         env:
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig-platform
@@ -48,8 +52,6 @@ spec:
           name: output
         - mountPath: /data/certs
           name: certs
-        - mountPath: /config
-          name: config
       hostNetwork: true
       nodeSelector:
         master: "true"
@@ -69,10 +71,5 @@ spec:
       - hostPath:
           path: /manifests
         name: sfdc-volume
-      - emptyDir: {}
-        name: test
-      - emptyDir: {}
-        name: output
-      - configMap:
-          name: k4a-sam-watchdog
-        name: config
+      - name: test
+      - name: output

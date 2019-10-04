@@ -35,12 +35,16 @@ if secretsconfigs.k4aSamWdEnabled then {
                                      "/sam/watchdog",
                                      "-role=SYNTHETIC",
                                      "-watchdogFrequency=180s",
-                                     "-alertThreshold=1h",
-                                     "-emailFrequency=336h",
                                      "-funnelEndpoint=" + configs.funnelVIP,
                                      "-config=/config/watchdog.json",
                                      configs.sfdchosts_arg,
                                      "-timeout=2s",
+                                     "-caFile=" + configs.caFile,
+                                     "-keyFile=" + configs.keyFile,
+                                     "-certFile=" + configs.certFile,
+                                     "-imageName=" + secretsimages.k4aSamWatchdog,
+                                     "-enableStatelessChecks=false",
+                                     "-enableK4aChecks=true",
                                  ],
                         image: secretsimages.k4aSamWatchdog,
                         name: "k4a-sam-watchdog",
@@ -55,7 +59,6 @@ if secretsconfigs.k4aSamWdEnabled then {
                                 name: "output",
                             },
                             configs.cert_volume_mount,
-                            configs.config_volume_mount,
                         ]),
                     },
                 ],
@@ -68,7 +71,7 @@ if secretsconfigs.k4aSamWdEnabled then {
                                   pool: configs.estate,
                               },
 
-                volumes+: configs.filter_empty([
+                volumes+: std.prune([
                     configs.sfdchosts_volume,
                     configs.cert_volume,
                     {
@@ -85,7 +88,6 @@ if secretsconfigs.k4aSamWdEnabled then {
                         emptyDir: {},
                         name: "output",
                     },
-                    configs.config_volume("k4a-sam-watchdog"),
                 ]),
             },
         },
