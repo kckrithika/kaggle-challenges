@@ -15,10 +15,11 @@ system:
         - name: postgres-sam-test
           mountPath: /var/lib/postgresql/data
       livenessProbe:
-        exec:
-          command:
-          - /usr/bin/true
-   
+        tcpSocket:
+          port: 5432
+        initialDelaySeconds: 15
+        periodSeconds: 10
+        failureThreshold: 100
     volumes:
     - name: postgres-sam-test
       hostPath:
