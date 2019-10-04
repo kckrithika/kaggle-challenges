@@ -84,6 +84,7 @@ local utils = import "util_functions.jsonnet";
         # prd-dev: Exceptions vs the rest of phase 2 only
         "2-prd-dev": self["2"] {
             image_tags+: {
+                spark_operator_image_tag: "jenkins-dva-transformation-spark-on-k8s-operator-PR-40-5-itest",  # 10/2 image that bumps up client throttle
             },
             feature_flags+: {
                 # Note: the *value* of the flags is ignored. jsonnet lacks array search, so we use a an object.
@@ -97,6 +98,9 @@ local utils = import "util_functions.jsonnet";
         },
         # prd-data: Exceptions vs. the rest of phase 2 only
         "2-prd-data": self["2"] {
+            image_tags+: {
+                spark_operator_image_tag: "jenkins-dva-transformation-spark-on-k8s-operator-PR-40-5-itest",  # 10/2 image that bumps up client throttle
+            },
             feature_flags+: {
                 # Note: the *value* of the flags is ignored. jsonnet lacks array search, so we use a an object.
             },
