@@ -35,6 +35,10 @@ system:
           value: "8085"
         - name: BASE_PATH
           value: "/v1"
+        - name: NODENAME
+          valueFrom:
+            fieldRef:
+              fieldPath: spec.nodeName
     loadbalancers:
     - lbname: maiev-receiver
       function: maiev-receiver-func
