@@ -68,36 +68,10 @@ local instanceMap = {
     },
   },
   phx: {
-   # Watchdogs monitoring individual k4a servers.
-    phx11: {
-      url: build_server_url("1-1-phx"),
-    },
-    phx12: {
-      url: build_server_url("1-2-phx"),
-    },
-    phx21: {
-      url: build_server_url("2-1-phx"),
-    },
-    phx22: {
-      url: build_server_url("2-2-phx"),
-    },
     phxfailover: {
     },
   },
   dfw: {
-      # Watchdogs monitoring individual k4a servers.
-      dfw11: {
-        url: build_server_url("1-1-dfw"),
-      },
-      dfw12: {
-        url: build_server_url("1-2-dfw"),
-      },
-      dfw21: {
-        url: build_server_url("2-1-dfw"),
-      },
-      dfw22: {
-        url: build_server_url("2-2-dfw"),
-      },
       dfwfailover: {
       },
     },
