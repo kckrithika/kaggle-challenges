@@ -35,3 +35,6 @@ system:
     - name: tls-client-cert
       maddogCert:
         type: client
+    - name: tls-server-cert
+      maddogCert:
+        type: server
