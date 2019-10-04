@@ -118,6 +118,8 @@ local ingressGatewayCertConfigs = [ingressGatewayClientCertConfig, ingressGatewa
   madkubEndpoint: "https://10.254.208.254:32007",  // Check madkubserver-service.jsonnet for why IP
   maddogEndpoint: configs.maddogEndpoint,
 
+  accessLogFile: if configs.kingdom == "prd" then "/dev/stdout" else "",
+
   sidecarEgressHosts: [
     // System namespaces
     "mesh-control-plane/*",

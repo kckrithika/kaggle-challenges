@@ -7,7 +7,7 @@ data:
   mesh: |-
     disablePolicyChecks: false
     enableTracing: true
-    accessLogFile: "/dev/stdout"
+    accessLogFile: "%(accessLogFile)s"
     accessLogFormat: ""
     accessLogEncoding: 'TEXT'
     ingressService: istio-ingressgateway
@@ -21,8 +21,8 @@ data:
     rootNamespace: mesh-control-plane
     proxyListenPort: 15002
     proxyHttpPort: 0
-    inboundClusterStatName: "local_service.%SERVICE_PORT%"
-    outboundClusterStatName: "%SERVICE%.%SERVICE_PORT%"
+    inboundClusterStatName: "local_service.%%SERVICE_PORT%%"
+    outboundClusterStatName: "%%SERVICE%%.%%SERVICE_PORT%%"
     defaultConfig:
       concurrency: 0
       connectTimeout: 10s
