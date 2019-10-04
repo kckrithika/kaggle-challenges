@@ -2,15 +2,15 @@ apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
   labels:
-    name: secretservice-watchdog-crz-from-phx
+    name: secretservice-watchdog-dmz-from-phx
     sam.data.sfdc.net/owner: secrets
-  name: secretservice-watchdog-crz-from-phx
+  name: secretservice-watchdog-dmz-from-phx
   namespace: sam-system
 spec:
   replicas: 1
   selector:
     matchLabels:
-      name: secretservice-watchdog-crz-from-phx
+      name: secretservice-watchdog-dmz-from-phx
       sam.data.sfdc.net/owner: secrets
   template:
     metadata:
@@ -27,7 +27,7 @@ spec:
            ]
           }
       labels:
-        name: secretservice-watchdog-crz-from-phx
+        name: secretservice-watchdog-dmz-from-phx
         sam.data.sfdc.net/owner: secrets
       namespace: sam-system
     spec:
@@ -36,7 +36,7 @@ spec:
         - -ssEndpoint=secretservice.dmz.salesforce.com
         - -ssWritePort=8272
         - -wdKingdom=CRZ
-        - -vaultName=ss-watchdog-vault-crz-from-phx
+        - -vaultName=ss-watchdog-vault-dmz-from-phx
         - -role=sam.secrets.secretservice-watchdog
         - -metricsEndpoint=ajna0-funnel1-0-phx.data.sfdc.net:80
         - -logtostderr=true

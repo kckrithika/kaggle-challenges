@@ -55,7 +55,7 @@ local instanceMap = {
       canary: true,
     },
     # WD monitoring production DMZ SecretService.
-    "crz-from-prd": {
+    "dmz-from-prd": {
       endpoint: "secretservice.dmz.salesforce.com",
     },
   },
@@ -79,7 +79,7 @@ local instanceMap = {
       canary: true,
     },
     # WD monitoring production DMZ SecretService
-    "crz-from-xrd": {
+    "dmz-from-xrd": {
       endpoint: "secretservice.dmz.salesforce.com",
     },
   },
@@ -99,13 +99,13 @@ local instanceMap = {
   },
   phx: {
     # WD monitoring production DMZ SecretService.
-    "crz-from-phx": {
+    "dmz-from-phx": {
       endpoint: "secretservice.dmz.salesforce.com",
     },
   },
   dfw: {
     # WD monitoring production DMZ SecretService.
-    "crz-from-dfw": {
+    "dmz-from-dfw": {
       endpoint: "secretservice.dmz.salesforce.com",
     },
   },

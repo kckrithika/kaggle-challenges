@@ -5,9 +5,12 @@ local madkub = (import "secretsmadkub.libsonnet") + { templateFileName:: std.thi
 local utils = import "util_functions.jsonnet";
 
 local certDirs = ["client-certs"];
-local urlHead = "https://sec0-kfora";
-local urlTestTail = ".eng.sfdc.net:8443";
-local urlurlProductionTail = ".ops.sfdc.net:8443";
+
+local build_server_url(tag) = (
+    local urlHead = "https://sec0-kfora";
+    local urlTail = if utils.is_test_cluster(configs.estate) then ".eng.sfdc.net:8443" else ".ops.sfdc.net:8443";
+    urlHead + tag + urlTail
+);
 
 # instanceMap defines the set of watchdog instances that should exist within each kingdom.
 # Most kingdoms will just have a single watchdog instance.
@@ -33,16 +36,16 @@ local instanceMap = {
   prd: {
     # Watchdogs monitoring individual k4a servers.
     prd11: {
-      url: urlHead + "1-1-prd" + urlTestTail,
+      url: build_server_url("1-1-prd"),
     },
     prd12: {
-      url: urlHead + "1-2-prd" + urlTestTail,
+      url: build_server_url("1-2-prd"),
     },
     prd21: {
-      url: urlHead + "2-1-prd" + urlTestTail,
+      url: build_server_url("2-1-prd"),
     },
     prd22: {
-      url: urlHead + "2-2-prd" + urlTestTail,
+      url: build_server_url("2-2-prd"),
     },
     prdfailover: {
     },
@@ -50,16 +53,16 @@ local instanceMap = {
   xrd: {
     # Watchdogs monitoring individual k4a servers.
     xrd11: {
-      url: urlHead + "1-1-xrd" + urlTestTail,
+      url: build_server_url("1-1-xrd"),
     },
     xrd12: {
-      url: urlHead + "1-2-xrd" + urlTestTail,
+      url: build_server_url("1-2-xrd"),
     },
     xrd21: {
-      url: urlHead + "2-1-xrd" + urlTestTail,
+      url: build_server_url("2-1-xrd"),
     },
     xrd22: {
-      url: urlHead + "2-2-xrd" + urlTestTail,
+      url: build_server_url("2-2-xrd"),
     },
     xrdfailover: {
     },
@@ -67,16 +70,16 @@ local instanceMap = {
   phx: {
    # Watchdogs monitoring individual k4a servers.
     phx11: {
-      url: urlHead + "1-1-phx" + urlurlProductionTail,
+      url: build_server_url("1-1-phx"),
     },
     phx12: {
-      url: urlHead + "1-2-phx" + urlurlProductionTail,
+      url: build_server_url("1-2-phx"),
     },
     phx21: {
-      url: urlHead + "2-1-phx" + urlurlProductionTail,
+      url: build_server_url("2-1-phx"),
     },
     phx22: {
-      url: urlHead + "2-2-phx" + urlurlProductionTail,
+      url: build_server_url("2-2-phx"),
     },
     phxfailover: {
     },
@@ -84,16 +87,16 @@ local instanceMap = {
   dfw: {
       # Watchdogs monitoring individual k4a servers.
       dfw11: {
-        url: urlHead + "1-1-dfw" + urlurlProductionTail,
+        url: build_server_url("1-1-dfw"),
       },
       dfw12: {
-        url: urlHead + "1-2-dfw" + urlurlProductionTail,
+        url: build_server_url("1-2-dfw"),
       },
       dfw21: {
-        url: urlHead + "2-1-dfw" + urlurlProductionTail,
+        url: build_server_url("2-1-dfw"),
       },
       dfw22: {
-        url: urlHead + "2-2-dfw" + urlurlProductionTail,
+        url: build_server_url("2-2-dfw"),
       },
       dfwfailover: {
       },
