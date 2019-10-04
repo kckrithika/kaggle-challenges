@@ -460,7 +460,7 @@ system:
         value: mist61
       - name: ENVOY_DEBUG_OPTIONS
         value: --log-path /home/sfdc-sherpa/envoy.log
-      image: sfci/frontend-gateway/sfproxy:33e43ab
+      image: sfci/frontend-gateway/sfproxy:df4e0da
       livenessProbe:
         exec:
           command:
