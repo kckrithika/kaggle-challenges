@@ -14,7 +14,7 @@ system:
           maxUnavailable: 1
       containers:
       - name: prod-maiev-receiver-alternate
-        image: dva/maiev-receiver:jenkins-CASP-maiev-dt-hardcode-threads-1-itest
+        image: dva/maiev-receiver:jenkins-CASP-maiev-PR-612-5-itest
         ports:
         - name: receiver-grpc
           containerPort: 7442
@@ -35,6 +35,10 @@ system:
           value: "8085"
         - name: BASE_PATH
           value: "/v1"
+        - name: NODENAME
+          valueFrom:
+            fieldRef:
+              fieldPath: spec.nodeName
     loadbalancers:
     - lbname: maiev-receiver
       function: maiev-receiver-func
