@@ -6,21 +6,32 @@ system:
   functions:
   - name: gadget-sam-db-test
     count: 1
+    type: stateful-set
     containers:
     - name: gadget-sam-db-test-container
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/santosh-miriyala/gadget/gadget-db:latest
       ports:
-        - name: postgresdb-port
-          containerPort: 5432
-          hostPort: 54320
+        - containerPort: 5432
       volumeMounts:
         - mountPath: /var/lib/postgresql/data
-          name: postgres-data-vol-test
+          name: postgres-persistent-storage-test
       livenessProbe:
         exec:
           command:
           - /usr/bin/true
-    volumes:
-    - name: postgres-data-vol-test
-      hostPath:
-        path: /data/my-postgres-data/gadget-db-data
+    lbname: mypostgres-stateful-lb
+
+    # Give containers a bit of time to shut down, as they might be syncing
+    # state into the PV on shutdown.
+    terminationGracePeriodSeconds: 30
+    volumeClaimTemplates:
+      - name: postgres-persistent-storage-test
+        storageClassName: standard
+        storageSizeRequest: 100Gi
+  loadbalancers:
+  - lbname: postgres-db-test
+    function: gadget-sam-db-test
+    slbEnabled: true
+    ports:
+      - port: 5432
+        targetport: 5432
