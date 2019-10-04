@@ -27,7 +27,7 @@ VIPS_YAML_CUSTOM_LBNAME_FIELD_NAME = "customlbname"
 VIPS_YAML_PUBLIC_FIELD_NAME = "public"
 VIPS_YAML_RESERVED_FIELD_NAME = "reserved"
 
-vips_file_path_regex = re.compile(r".*team/([a-zA-Z0-9-_]+)/vips/([a-z][a-z0-9]{2,})/(?:([a-zA-Z0-9-_]+)/)?vips\.yaml")
+vips_file_path_regex = re.compile(r".*team/([a-zA-Z0-9-_]+)/vips/([a-z][a-z0-9]{2,})/(([a-zA-Z0-9-_]+)/)?vips\.yaml")
 
 
 class VipMetadata:
@@ -43,7 +43,8 @@ def get_vip_metadata_from_vip_yaml(vip, vip_file_path):
     results = vips_file_path_regex.search(vip_file_path)
     team_name = results.group(1)
     kingdom = results.group(2)
-    cluster = results.group(3)
+    cluster = results.group(4)
+
     if cluster is None:
         cluster = kingdom + "-" + DEFAULT_CLUSTER
 
@@ -65,8 +66,8 @@ def get_fqdn(vip, kingdom, team_name):
     return fqdn
 
 
-def get_fqdn_from_portal(kingdom, lbname):
-    portal_entry = portal_query.get_portal_entry_from_portal(kingdom, lambda entry: entry.lbname, lbname)
+def get_fqdn_from_portal(kingdom, cluster, lbname):
+    portal_entry = portal_query.get_portal_entry_from_portal(kingdom, cluster, lambda entry: entry.lbname, lbname)
     if portal_entry is not None:
         return portal_entry.fqdn
 
@@ -145,7 +146,7 @@ def get_vip_metadatas(file_name, path):
                     kingdom = kingdom.split("-")[0]
 
                 lbname = lb[VIPS_YAML_LBNAME_FIELD_NAME]
-                vip_metadatas.append(VipMetadata(kingdom, cluster, get_fqdn_from_portal(kingdom, lbname), reserved, public))
+                vip_metadatas.append(VipMetadata(kingdom, cluster, get_fqdn_from_portal(kingdom, cluster, lbname), reserved, public))
         return vip_metadatas
 
     elif file_name == VIPS_YAML_FILE_NAME:
@@ -237,7 +238,7 @@ def add_private_ip(kingdom, cluster, fqdn, private_reserved_ips):
     else:
         private_reserved_ips[cluster] = {}
 
-    matching_portal_entry = portal_query.get_portal_entry_from_portal(kingdom, lambda entry: entry.fqdn, fqdn)
+    matching_portal_entry = portal_query.get_portal_entry_from_portal(kingdom, cluster, lambda entry: entry.fqdn, fqdn)
     if matching_portal_entry is None:
         raise Exception("Could not find IP for {}".format(fqdn))
 

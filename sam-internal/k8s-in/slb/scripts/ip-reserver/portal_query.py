@@ -20,19 +20,16 @@ class PortalEntry:
         self.ip = ip
 
 
-def __get_portal_url(kingdom):
-    if kingdom.startswith(PRD_KINGDOM_NAME):
-        if "-" not in kingdom:
-            kingdom += "-" + DEFAULT_CLUSTER
-
-        namespace_with_cluster_name = "service.sam-system.{}.prd".format(kingdom)
+def __get_portal_url(kingdom, cluster):
+    if kingdom == PRD_KINGDOM_NAME:
+        namespace_with_cluster_name = "service.sam-system.{}.prd".format(cluster)
         return SLB_PORTAL_URL.format(namespace_with_cluster_name) + ":" + SLB_PORTAL_PRD_PORT
 
     return SLB_PORTAL_URL.format(kingdom)
 
 
-def get_kingdom_portal_info(kingdom):
-    return __get_portal_info(__get_portal_url(kingdom))
+def get_cluster_portal_info(kingdom, cluster):
+    return __get_portal_info(__get_portal_url(kingdom, cluster))
 
 
 def __get_portal_info(url):
@@ -64,8 +61,8 @@ def __get_portal_info(url):
     return portal_entries
 
 
-def get_portal_entry_from_portal(kingdom, evaluator, value):
-    portal_entries = __get_portal_info(__get_portal_url(kingdom))
+def get_portal_entry_from_portal(kingdom, cluster, evaluator, value):
+    portal_entries = __get_portal_info(__get_portal_url(kingdom, cluster))
     for portal_entry in portal_entries:
         if value == evaluator(portal_entry):
             return portal_entry
