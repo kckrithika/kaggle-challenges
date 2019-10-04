@@ -7,37 +7,10 @@ system:
   functions:
   - name: resiliency-client
     count: 1
+    annotations:
+      "sherpa-injector.service-mesh/inject": "enabled"
+      "sherpa-injector.service-mesh/canary": "enabled"
     containers:
-    - name: sherpa
-      image: sfci/servicelibs/sherpa-envoy:1.0.13
-      ports:
-      - name: http1-out
-        containerPort: 7013
-      - name: http2-out
-        containerPort: 7011
-      - name: http2-tls-out
-        containerPort: 5443
-      - name: sherpa-adm
-        containerPort: 15373
-      resources:
-        limits: { cpu: "2", memory: "1Gi" }
-        requests: { cpu: "2", memory: "1Gi" }
-      volumeMounts:
-      - mountPath: /client-certs
-        name: tls-client-cert
-      livenessProbe:
-        exec:
-          command:
-          - ./bin/is-alive
-        initialDelaySeconds: 20
-        periodSeconds: 5
-      readinessProbe:
-        exec:
-          command:
-          - ./bin/is-ready
-        initialDelaySeconds: 15
-        periodSeconds: 5
-      terminationMessagePolicy: FallbackToLogsOnError
     - name: client
       image: sfci/servicelibs/servicemesh-resiliency:6fa9c769f6384634fb63da82062bed3d638b3d53
       resources:
