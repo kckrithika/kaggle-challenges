@@ -25,7 +25,6 @@ spec:
         - -role=SYNTHETIC
         - -watchdogFrequency=180s
         - -funnelEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80
-        - -config=/config/watchdog.json
         - --hostsConfigFile=/sfdchosts/hosts.json
         - -timeout=2s
         - -caFile=/etc/pki_service/ca/cabundle.pem
