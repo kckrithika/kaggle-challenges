@@ -17,7 +17,7 @@ system:
            - /usr/bin/true
   loadbalancers:
   - lbname: lb124
-    nodeExposed: true
+    slbEnabled: true
     function: gadget-sam-test
     ports:
       - port: 10001
