@@ -6,7 +6,8 @@ local utils = import "util_functions.jsonnet";
 
 local certDirs = ["client-certs"];
 local urlHead = "https://sec0-kfora";
-local urlTail = ".eng.sfdc.net:8443";
+local urlTestTail = ".eng.sfdc.net:8443";
+local urlurlProductionTail = ".ops.sfdc.net:8443";
 
 # instanceMap defines the set of watchdog instances that should exist within each kingdom.
 # Most kingdoms will just have a single watchdog instance.
@@ -32,16 +33,16 @@ local instanceMap = {
   prd: {
     # Watchdogs monitoring individual k4a servers.
     prd11: {
-      url: urlHead + "1-1-prd" + urlTail,
+      url: urlHead + "1-1-prd" + urlTestTail,
     },
     prd12: {
-      url: urlHead + "1-2-prd" + urlTail,
+      url: urlHead + "1-2-prd" + urlTestTail,
     },
     prd21: {
-      url: urlHead + "2-1-prd" + urlTail,
+      url: urlHead + "2-1-prd" + urlTestTail,
     },
     prd22: {
-      url: urlHead + "2-2-prd" + urlTail,
+      url: urlHead + "2-2-prd" + urlTestTail,
     },
     prdfailover: {
     },
@@ -49,20 +50,54 @@ local instanceMap = {
   xrd: {
     # Watchdogs monitoring individual k4a servers.
     xrd11: {
-      url: urlHead + "1-1-xrd" + urlTail,
+      url: urlHead + "1-1-xrd" + urlTestTail,
     },
     xrd12: {
-      url: urlHead + "1-2-xrd" + urlTail,
+      url: urlHead + "1-2-xrd" + urlTestTail,
     },
     xrd21: {
-      url: urlHead + "2-1-xrd" + urlTail,
+      url: urlHead + "2-1-xrd" + urlTestTail,
     },
     xrd22: {
-      url: urlHead + "2-2-xrd" + urlTail,
+      url: urlHead + "2-2-xrd" + urlTestTail,
     },
     xrdfailover: {
     },
   },
+  phx: {
+   # Watchdogs monitoring individual k4a servers.
+    phx11: {
+      url: urlHead + "1-1-phx" + urlurlProductionTail,
+    },
+    phx12: {
+      url: urlHead + "1-2-phx" + urlurlProductionTail,
+    },
+    phx21: {
+      url: urlHead + "2-1-phx" + urlurlProductionTail,
+    },
+    phx22: {
+      url: urlHead + "2-2-phx" + urlurlProductionTail,
+    },
+    phxfailover: {
+    },
+  },
+  dfw: {
+      # Watchdogs monitoring individual k4a servers.
+      dfw11: {
+        url: urlHead + "1-1-dfw" + urlurlProductionTail,
+      },
+      dfw12: {
+        url: urlHead + "1-2-dfw" + urlurlProductionTail,
+      },
+      dfw21: {
+        url: urlHead + "2-1-dfw" + urlurlProductionTail,
+      },
+      dfw22: {
+        url: urlHead + "2-2-dfw" + urlurlProductionTail,
+      },
+      dfwfailover: {
+      },
+    },
 };
 
 local getInstanceDataWithDefaults(instanceTag) = (
