@@ -12,8 +12,8 @@
    - mist51ice1-app2-5-prd.eng.sfdc.net
   ports:
   - port: 443
-    targetport: 8090
-    reencrypt: true
+    targetport: 8085
+    reencrypt: false
     healthport: 8085
     lbtype: http
     healthprotocol: http
@@ -65,8 +65,8 @@
    - mist51ice1-app2-5-prd.eng.sfdc.net
   ports:
   - port: 443
-    targetport: 8090
-    reencrypt: true
+    targetport: 8085
+    reencrypt: false
     healthport: 8085
     lbtype: http
     healthprotocol: http
