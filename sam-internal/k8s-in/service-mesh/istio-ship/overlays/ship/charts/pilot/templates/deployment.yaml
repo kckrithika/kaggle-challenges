@@ -35,7 +35,6 @@ spec:
       - name: tls-server-cert
       - name: tokens
       - name: config-volume
-      - name: istio-envoy
       containers:
       - $setElementOrder/env:
         - name: ESTATE
@@ -137,15 +136,12 @@ spec:
           value: mcpIstioConfig.kingdom
         name: istio-proxy
         securityContext:
-          readOnlyRootFilesystem: true
           runAsUser: 7557
         volumeMounts:
         - mountPath: /client-certs
           name: tls-client-cert
         - mountPath: /server-certs
           name: tls-server-cert
-        - mountPath: /etc/istio/proxy
-          name: istio-envoy
         - $patch: delete
           mountPath: /etc/certs
       - args:
@@ -337,8 +333,5 @@ spec:
       - emptyDir:
           medium: Memory
         name: tokens
-      - emptyDir:
-          medium: Memory
-        name: istio-envoy
       - $patch: delete
         name: istio-certs
