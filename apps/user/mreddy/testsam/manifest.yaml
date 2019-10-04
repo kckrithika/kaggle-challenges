@@ -21,5 +21,5 @@ system:
            - /usr/bin/true
       volumeMounts:
       - name: mycert
-        mountPath: /gadgetcerts
+        mountPath: /certs-cert
 
