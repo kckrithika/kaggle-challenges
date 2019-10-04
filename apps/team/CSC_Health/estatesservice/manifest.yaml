@@ -17,7 +17,7 @@ system:
         type: client
     containers:
     - name: estatesservice
-      image: dva/estates/estatesservice:52
+      image: dva/estates/estatesservice:60
       ports:
       - containerPort: 9090
       livenessProbe:
