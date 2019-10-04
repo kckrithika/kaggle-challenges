@@ -6,7 +6,7 @@ system:
     - universalsearch@salesforce.com
   functions:
   - name: universal-search
-    count: 11
+    count: 12
     volumes:
     - name: client-cert-vol
       maddogCert:
@@ -25,7 +25,7 @@ system:
         secretName: solrcloudcli-keytab-private
     containers:
     - name: universal-search
-      image: sfci/searchdev/universal-search:1.4.3
+      image: sfci/searchdev/universal-search:1.5.3
       ports:
       - name: service-port
         containerPort: 7020
