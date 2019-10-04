@@ -21,10 +21,10 @@ data:
     rootNamespace: mesh-control-plane
     proxyListenPort: 15002
     proxyHttpPort: 0
-    concurrency: 0
     inboundClusterStatName: "local_service.%SERVICE_PORT%"
     outboundClusterStatName: "%SERVICE%.%SERVICE_PORT%"
     defaultConfig:
+      concurrency: 0
       connectTimeout: 10s
       configPath: "/etc/istio/proxy"
       binaryPath: "/usr/local/bin/envoy"
