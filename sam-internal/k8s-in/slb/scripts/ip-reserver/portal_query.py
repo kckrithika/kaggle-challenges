@@ -10,6 +10,8 @@ PRD_KINGDOM_NAME = "prd"
 SLB_PORTAL_URL = "http://slb-portal-{}.slb.sfdc.net"
 SLB_PORTAL_PRD_PORT = "9112"
 
+# Stores information from the SLB portal for reuse
+# Key: URL, Value: []PortalEntry
 portal_info_cache = {}
 
 
