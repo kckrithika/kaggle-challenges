@@ -3,5 +3,5 @@ apps:
 #   - prd/prd-sam
 #  perf-shipping-test:
 #   - prd/prd-sam
-#  poetry-gen:
-#    - prd/prd-sam
+  poetry-gen:
+    - prd/prd-sam
