@@ -1444,15 +1444,12 @@ spec:
             cpu: 100m
             memory: 128Mi
         securityContext:
-          readOnlyRootFilesystem: true
           runAsUser: 7557
         volumeMounts:
         - mountPath: /client-certs
           name: tls-client-cert
         - mountPath: /server-certs
           name: tls-server-cert
-        - mountPath: /etc/istio/proxy
-          name: istio-envoy
       - args:
         - /sam/madkub-client
         - --madkub-endpoint=%(madkubEndpoint)s
@@ -1646,9 +1643,6 @@ spec:
       - configMap:
           name: istio
         name: config-volume
-      - emptyDir:
-          medium: Memory
-        name: istio-envoy
 ---
 apiVersion: apps/v1
 kind: Deployment

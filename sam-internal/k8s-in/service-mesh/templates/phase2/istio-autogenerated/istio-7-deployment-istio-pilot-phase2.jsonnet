@@ -357,7 +357,6 @@ if (istioPhases.phaseNum == 2) then
               },
             },
             securityContext: {
-              readOnlyRootFilesystem: true,
               runAsUser: 7557,
             },
             volumeMounts: [
@@ -368,10 +367,6 @@ if (istioPhases.phaseNum == 2) then
               {
                 mountPath: "/server-certs",
                 name: "tls-server-cert",
-              },
-              {
-                mountPath: "/etc/istio/proxy",
-                name: "istio-envoy",
               },
             ],
           },
@@ -675,12 +670,6 @@ if (istioPhases.phaseNum == 2) then
               name: "istio",
             },
             name: "config-volume",
-          },
-          {
-            emptyDir: {
-              medium: "Memory",
-            },
-            name: "istio-envoy",
           },
         ],
       },
