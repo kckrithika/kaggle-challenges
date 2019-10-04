@@ -24,9 +24,6 @@ system:
       - {name: PKI_TRUSTSTORE_DIR, value: /home/scone/client-certs}
       - {name: PKI_KEYSTORE_DIR, value: /home/scone/client-certs/client}
       - {name: JAVA_OPTS, value: '-server -XX:MaxMetaspaceSize=256m -Xmx1024m -Xms1024m'}
-      - {name: TESTRECIPE_INTERVAL, value: 300s}
-      - {name: TESTRECIPE_TIMEOUT, value: 240s}
-      - {name: TESTRECIPE_LASTSUCCESSTARGET, value: 360s}
       - {name: TESTRECIPE_MAESTROPINGTEST, value: 'true'}
       - {name: DEPLOYMENT_ID, value: prd-master}
       - {name: GRPC_HOST, value: datapool.wave-elt.localhost.mesh.force.com}
