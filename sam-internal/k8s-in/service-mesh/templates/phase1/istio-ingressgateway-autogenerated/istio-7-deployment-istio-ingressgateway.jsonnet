@@ -347,6 +347,10 @@ if (istioPhases.phaseNum == 1) then
                 mountPath: "/server-certs",
                 name: "tls-server-cert",
               },
+              {
+                mountPath: "/etc/istio/proxy",
+                name: "istio-envoy",
+              },
             ],
           },
           {
@@ -537,6 +541,12 @@ if (istioPhases.phaseNum == 1) then
               medium: "Memory",
             },
             name: "tokens",
+          },
+          {
+            emptyDir: {
+              medium: "Memory",
+            },
+            name: "istio-envoy",
           },
         ],
       },

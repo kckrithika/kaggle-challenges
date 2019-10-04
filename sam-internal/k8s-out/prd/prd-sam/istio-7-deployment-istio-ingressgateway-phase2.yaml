@@ -225,11 +225,16 @@ spec:
           requests:
             cpu: 100m
             memory: 1024Mi
+        securityContext:
+          readOnlyRootFilesystem: true
+          runAsUser: 7557
         volumeMounts:
         - mountPath: /client-certs
           name: tls-client-cert
         - mountPath: /server-certs
           name: tls-server-cert
+        - mountPath: /etc/istio/proxy
+          name: istio-envoy
       - args:
         - /sam/madkub-client
         - --madkub-endpoint=https://10.254.208.254:32007
@@ -346,3 +351,6 @@ spec:
       - emptyDir:
           medium: Memory
         name: tokens
+      - emptyDir:
+          medium: Memory
+        name: istio-envoy
