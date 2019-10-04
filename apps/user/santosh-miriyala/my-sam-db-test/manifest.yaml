@@ -23,4 +23,4 @@ system:
     volumes:
     - name: postgres-data-vol-test
       hostPath:
-        path: /data/my_dbdata
+        path: /data/my-postgres-data/gadgert-db-data
