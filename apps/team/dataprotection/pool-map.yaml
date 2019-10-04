@@ -8,3 +8,7 @@ apps:
   - prd/prd-sam
   - par/par-sam_dp
   - hnd/hnd-sam_dp
+  ds3:
+  - prd/prd-sam
+  - par/par-sam_dp
+  - hnd/hnd-sam_dp
