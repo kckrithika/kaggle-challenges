@@ -55,11 +55,11 @@ def get_vip_metadata_from_vip_yaml(vip, vip_file_path):
 
 
 def get_fqdn(vip, kingdom, team_name):
-    customlbname_used = VIPS_YAML_CUSTOM_LBNAME_FIELD_NAME in vip
-    final_lbname = vip[VIPS_YAML_CUSTOM_LBNAME_FIELD_NAME] if customlbname_used else vip[VIPS_YAML_LBNAME_FIELD_NAME]
+    is_customlbname_used = VIPS_YAML_CUSTOM_LBNAME_FIELD_NAME in vip
+    final_lbname = vip[VIPS_YAML_CUSTOM_LBNAME_FIELD_NAME] if is_customlbname_used else vip[VIPS_YAML_LBNAME_FIELD_NAME]
 
     fqdn = final_lbname
-    if not customlbname_used:
+    if not is_customlbname_used:
         fqdn += "-" + team_name + "-" + kingdom
 
     fqdn += FQDN_SUFFIX
