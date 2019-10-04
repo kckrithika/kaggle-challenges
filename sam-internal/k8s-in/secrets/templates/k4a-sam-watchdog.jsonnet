@@ -36,7 +36,6 @@ if secretsconfigs.k4aSamWdEnabled then {
                                      "-role=SYNTHETIC",
                                      "-watchdogFrequency=180s",
                                      "-funnelEndpoint=" + configs.funnelVIP,
-                                     "-config=/config/watchdog.json",
                                      configs.sfdchosts_arg,
                                      "-timeout=2s",
                                      "-caFile=" + configs.caFile,

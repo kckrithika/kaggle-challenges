@@ -17,8 +17,6 @@ local configs = import "config.jsonnet";
 
   k4aSamWdEstates: std.set([
     "prd-samtest",
-    "prd-sam",
-    "xrd-sam",
   ]),
   k4aSamWdEnabled: std.setMember(estate, $.k4aSamWdEstates),
 
