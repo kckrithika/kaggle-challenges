@@ -14,7 +14,7 @@ system:
           maxUnavailable: 1
       containers:
       - name: prd-warden
-        image: dva/casp/warden_strata:448
+        image: dva/casp/warden_strata:449
         ports:
         - name: http
           containerPort: 8889
