@@ -356,6 +356,10 @@ if (istioPhases.phaseNum == 2) then
                 memory: "128Mi",
               },
             },
+            securityContext: {
+              readOnlyRootFilesystem: true,
+              runAsUser: 7557,
+            },
             volumeMounts: [
               {
                 mountPath: "/client-certs",
@@ -364,6 +368,10 @@ if (istioPhases.phaseNum == 2) then
               {
                 mountPath: "/server-certs",
                 name: "tls-server-cert",
+              },
+              {
+                mountPath: "/etc/istio/proxy",
+                name: "istio-envoy",
               },
             ],
           },
@@ -587,9 +595,9 @@ if (istioPhases.phaseNum == 2) then
               "-p",
               "15002",
               "-z",
-              "15002",
+              "15006",
               "-u",
-              "7447",
+              "7557",
               "-m",
               "REDIRECT",
               "-i",
@@ -600,6 +608,12 @@ if (istioPhases.phaseNum == 2) then
               "",
               "-d",
               "15010,15011",
+            ],
+            env: [
+              {
+                name: "DISABLE_REDIRECTION_ON_LOCAL_LOOPBACK",
+                value: "1",
+              },
             ],
             image: mcpIstioConfig.proxyInitImage,
             imagePullPolicy: "IfNotPresent",
@@ -661,6 +675,12 @@ if (istioPhases.phaseNum == 2) then
               name: "istio",
             },
             name: "config-volume",
+          },
+          {
+            emptyDir: {
+              medium: "Memory",
+            },
+            name: "istio-envoy",
           },
         ],
       },

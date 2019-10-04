@@ -334,6 +334,10 @@ if (istioPhases.phaseNum == 2) then
                 memory: "1024Mi",
               },
             },
+            securityContext: {
+              readOnlyRootFilesystem: true,
+              runAsUser: 7557,
+            },
             volumeMounts: [
               {
                 mountPath: "/client-certs",
@@ -342,6 +346,10 @@ if (istioPhases.phaseNum == 2) then
               {
                 mountPath: "/server-certs",
                 name: "tls-server-cert",
+              },
+              {
+                mountPath: "/etc/istio/proxy",
+                name: "istio-envoy",
               },
             ],
           },
@@ -533,6 +541,12 @@ if (istioPhases.phaseNum == 2) then
               medium: "Memory",
             },
             name: "tokens",
+          },
+          {
+            emptyDir: {
+              medium: "Memory",
+            },
+            name: "istio-envoy",
           },
         ],
       },

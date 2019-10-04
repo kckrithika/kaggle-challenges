@@ -99,6 +99,8 @@ spec:
           name: tls-client-cert
         - mountPath: /server-certs
           name: tls-server-cert
+        - mountPath: /etc/istio/proxy
+          name: istio-envoy
         - $patch: delete
           mountPath: /etc/certs
         - $patch: delete
@@ -220,6 +222,9 @@ spec:
       - emptyDir:
           medium: Memory
         name: tokens
+      - emptyDir:
+          medium: Memory
+        name: istio-envoy
       - $patch: delete
         name: ingressgateway-ca-certs
       - $patch: delete
