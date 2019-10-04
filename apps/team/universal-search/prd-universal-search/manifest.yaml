@@ -179,7 +179,7 @@ system:
         initialDelaySeconds: 50
         periodSeconds: 5
   - name: universal-search-synthetics-shared
-    count: 4
+    count: 2
     volumes:
     - name: synthetics-log-vol
       hostpath:
