@@ -6,7 +6,7 @@ system:
     count: 1
     containers:
     - name: topology-ui-service
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/alokjha/topology-ui:13
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/alokjha/topology-ui:15
       env:
         - name: FALCONS
           value: "https://topology.topology.foundation.rddev.aws.sfdc.cl:443"
