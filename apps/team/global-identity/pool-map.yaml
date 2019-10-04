@@ -5,6 +5,8 @@ apps:
     - xrd/xrd-sampool
   cloudatlas-gid:
     - prd/prd-sam_cloudatlas
+  cloudatlas-gidv2:
+    - prd/prd-sam_cloudatlas
   gid-sso-client-prd:
     - prd/prd-sam_cloudatlas
   c2c-ca:

@@ -1,0 +1,54 @@
+apiVersion: v1
+system:
+  functions:
+  - name: cloudatlasv2
+    count: 1
+    containers:
+    - name: cloudatlas
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/c2c/c2c-ca-docker:69840a3
+      command: ["/opt/pdm/pdm.customer/bin/sam-entrypoint.sh"]
+      imagePullPolicy: Always
+      env:
+      - name: server_port
+        value: 7032
+      - name: management_server_port
+        value: 15372
+      - name: scone_srpc_announcingEnabled
+        value: false
+
+      ports:
+      - containerPort: 7032
+      - containerPort: 1636
+      - containerPort: 1389
+      - containerPort: 8080
+      livenessProbe:
+        exec:
+          command:
+          - /bin/true
+        initialDelaySeconds: 60
+        periodSeconds: 30
+      readinessProbe:
+        exec:
+          command:
+          - /bin/true
+        initialDelaySeconds: 60
+        periodSeconds: 5
+        failureThreshold: 120
+
+  loadbalancers:
+  - lbname: cloudatlas-gidv2
+    function: cloudatlasv2
+    slbenabled: true
+    ports:
+      - port: 1389
+        targetport: 1389
+        lbtype: tcp
+      - port: 1636
+        targetport: 1636
+        lbtype: tcp
+      - port: 80
+        targetport: 8080
+        lbtype: tcp
+      - port: 7032
+        targetport: 7032
+        lbtype: tcp
