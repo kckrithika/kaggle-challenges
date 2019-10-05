@@ -50,8 +50,20 @@ system:
               value: cre-engine
             - name: INGEST_K4A_VAULT
               value: cre-engine-ap-1
-            - name: INGEST_ADDITIONAL_JVM_ARGS
-              value: "-Dfile.encoding=UTF-8 -Djars=/opt/cre/cre-engine.jar -XX:+UseG1GC -verbose:jni -Dscala.concurrent.context.numThreads=x4 -Dspark.task.maxFailures=16"
+            - name: INGEST_JAVA_OPTIONS
+              value: "-Dfile.encoding=UTF-8 -Djars=/opt/cre/cre-engine.jar -XX:+UseParallelGC -verbose:jni"
+            - name: INGEST_DRIVER_CORES
+              value: 2
+            - name: INGEST_DRIVER_MEMORY
+              value: 8g
+            - name: INGEST_DRIVER_MEMORY_OVERHEAD
+              value: 4g
+            - name: INGEST_EXECUTOR_MEMORY
+              value: 36g
+            - name: INGEST_EXECUTOR_MEMORY_OVERHEAD
+              value: 4g
+            - name: INGEST_EXECUTOR_CORE_REQUESTS
+              value: 10
             ####################################################################################################
             ####################################### SAVE environment variables ###############################
             ####################################################################################################
