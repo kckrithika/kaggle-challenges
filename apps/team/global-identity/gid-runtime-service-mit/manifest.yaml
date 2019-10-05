@@ -109,7 +109,7 @@ system:
     # Global Identity Loing and Runtime Service
     #####################################################################################
     - name: gid-runtime-service
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/gid/gid-runtime-service:4ae0fc1
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/gid/gid-runtime-service:acb6696
       imagePullPolicy: Always
       env:
       - name: server_use_forward_headers
