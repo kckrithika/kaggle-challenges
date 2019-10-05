@@ -8,7 +8,7 @@ system:
   functions:
   - name: cast-prd-stage
     identity:
-      serviceName: cast-prd-stage
+      serviceName: c2c-service-stage
     count: 3
     strategy:
       type: RollingUpdate
@@ -72,7 +72,7 @@ system:
         requests: { cpu: "1", memory: "1Gi" }
       args:
         - -endpoint
-        - $(FUNCTION_NAMESPACE)/cast-prd-stage:DATACENTER_ALLENV:7442
+        - $(FUNCTION_NAMESPACE)/c2c-service-stage:DATACENTER_ALLENV:7442
       livenessProbe:
         exec:
           command:
