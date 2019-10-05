@@ -50,6 +50,20 @@ system:
           value: cre-engine-ccp-perf
         - name: INGEST_K4A_VAULT
           value: cre-engine-dev
+        - name: INGEST_JAVA_OPTIONS
+          value: "-Dfile.encoding=UTF-8 -Djars=/opt/cre/cre-engine.jar -XX:+UseParallelGC -verbose:jni"
+        - name: INGEST_DRIVER_CORES
+          value: 2
+        - name: INGEST_DRIVER_MEMORY
+          value: 8g
+        - name: INGEST_DRIVER_MEMORY_OVERHEAD
+          value: 4g
+        - name: INGEST_EXECUTOR_MEMORY
+          value: 36g
+        - name: INGEST_EXECUTOR_MEMORY_OVERHEAD
+          value: 4g
+        - name: INGEST_EXECUTOR_CORE_REQUESTS
+          value: 10
         ####################################################################################################
         ####################################### SAVE environment variables ###############################
         ####################################################################################################
