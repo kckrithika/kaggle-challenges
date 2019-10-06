@@ -13,6 +13,10 @@
 #
 gateways:
   enabled: true
+#
+# sidecar-injector webhook configuration, refer to the
+# charts/sidecarInjectorWebhook/values.yaml for detailed configuration
+#
   istio-ingressgateway:
     enabled: true
     autoscaleEnabled: false
@@ -25,21 +29,15 @@ gateways:
   istio-ilbgateway:
     rollingMaxSurge: 1
     rollingMaxUnavailable: 0
-
-#
-# sidecar-injector webhook configuration, refer to the
-# charts/sidecarInjectorWebhook/values.yaml for detailed configuration
-#
 sidecarInjectorWebhook:
   enabled: true
-  replicaCount: 3
-  rollingMaxSurge: 3
-  rollingMaxUnavailable: 1
-
 #
 # galley configuration, refer to charts/galley/values.yaml
 # for detailed configuration
 #
+  replicaCount: 3
+  rollingMaxSurge: 3
+  rollingMaxUnavailable: 1
 galley:
   enabled: false
 #
@@ -55,17 +53,19 @@ mixer:
     rollingMaxUnavailable: 1
   telemetry:
     enabled: false
-    replicaCount: 3
-    rollingMaxSurge: 3
-    rollingMaxUnavailable: 1
-  enabled: false
-
 #
 # pilot configuration
 #
 # @see charts/pilot/values.yaml
+    replicaCount: 3
+    rollingMaxSurge: 3
+    rollingMaxUnavailable: 1
+  enabled: false
 pilot:
   enabled: true
+#
+# security configuration
+#
   resources:
     limits:
       cpu: 2000m
@@ -80,10 +80,6 @@ pilot:
   sidecar: true
   env:
     PILOT_PUSH_THROTTLE: 10
-
-#
-# security configuration
-#
 security:
   enabled: false
 #
@@ -283,16 +279,19 @@ global:
       port: 15001
       tlsSettings:
         mode: MUTUAL
+                      # DISABLE, SIMPLE, MUTUAL, ISTIO_MUTUAL
         clientCertificate: /client-certs/client/certificates/client.pem
         privateKey: /client-certs/client/keys/client-key.pem
         caCertificates: /client-certs/ca.pem
-        sni:               # example: ms.somedomain 
+        sni: null
         subjectAltNames: []
         # - ms.somedomain 
       tcpKeepalive:
         probes: 3
         time: 10s
         interval: 10s
+    # Specify which tracer to use. One of: zipkin, lightstep, datadog, stackdriver.
+    # If using stackdriver tracer outside GCP, set env GOOGLE_APPLICATION_CREDENTIALS to the GCP credential file.
     tracer: zipkin
 
   proxy_init:
@@ -420,12 +419,17 @@ global:
   defaultResources:
     requests:
       cpu: 100m
+    #   memory: 128Mi
+    # limits:
+    #   cpu: 100m
+    #   memory: 128Mi
+
+  # enable pod distruption budget for the control plane, which is used to
+  # ensure Istio control plane components are gradually upgraded or recovered.
       memory: 128Mi
     limits:
       cpu: 1000m
       memory: 256Mi
-  # enable pod distruption budget for the control plane, which is used to
-  # ensure Istio control plane components are gradually upgraded or recovered.
   defaultPodDisruptionBudget:
     enabled: false
     # The values aren't mutable due to a current PodDisruptionBudget limitation
