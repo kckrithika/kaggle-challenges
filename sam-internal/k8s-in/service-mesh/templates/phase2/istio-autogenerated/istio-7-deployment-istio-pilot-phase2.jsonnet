@@ -142,11 +142,11 @@ if (istioPhases.phaseNum == 2) then
               },
               {
                 name: "PILOT_DEBOUNCE_AFTER",
-                value: "1m",
+                value: "100ms",
               },
               {
                 name: "PILOT_DEBOUNCE_MAX",
-                value: "3m",
+                value: "10s",
               },
               {
                 name: "POD_NAME",
@@ -168,7 +168,7 @@ if (istioPhases.phaseNum == 2) then
               },
               {
                 name: "PILOT_PUSH_THROTTLE",
-                value: "10",
+                value: "100",
               },
               {
                 name: "PILOT_TRACE_SAMPLING",
