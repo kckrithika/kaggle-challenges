@@ -6,7 +6,7 @@ system:
       - servicemesh@salesforce.com
   functions:
   - name: resiliency-server
-    count: 3
+    count: 1
     annotations:
       "sherpa-injector.service-mesh/inject": "enabled"
       "sherpa-injector.service-mesh/canary": "enabled"
