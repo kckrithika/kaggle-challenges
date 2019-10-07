@@ -14,7 +14,7 @@ system:
           maxUnavailable: 1
       containers:
       - name: prd-mysql-shard-a-stage
-        image: dva/casp/mysql_strata:47
+        image: dva/casp/mysql_strata:49
         ports:
         - name: mysql-stage
           containerPort: 3306
