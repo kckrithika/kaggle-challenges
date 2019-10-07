@@ -120,14 +120,13 @@ spec:
       - command:
         - /sdn/slb-cleanup
         - --period=1800s
-        - --logsMaxAge=1h
+        - --logsMaxAge=1d
         - --filesDirToCleanup=/host/data/slb/config/slb-realsvrcfg
         - --shouldSkipServiceRecords=true
-        - --shouldNotDeleteAllFiles=true
+        - --shouldNotDeleteAllFiles=false
         - --log_dir=/host/data/slb/logs/slb-realsvrcfg
         - --shouldSkipSlbBlock=true
         - --skipFilesWithSuffix=.sock
-        - --maxDeleteFileCount=20
         image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/slb/hyperslb:2231-52da9b0acfb44a4b6f4a360926b6ea47d98feccf
         name: slb-cleanup-config-processor
         securityContext:
