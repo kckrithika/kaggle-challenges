@@ -134,6 +134,20 @@
     healthprotocol: http
     healthpath: /ha/health-check
 
+- lbname: devciaawci
+  customlbname: devciaawci
+  servers:
+  - devciaawci01.dop.sfdc.net
+  ports:
+  - port: 443
+    targetport: 8080
+    lbtype: http
+    tls: true
+    reencrypt: false
+    healthport: 8080
+    healthprotocol: http
+    healthpath: /ha/health-check
+
 - lbname: devcjemaster01
   customlbname: devcjemaster01
   servers:
