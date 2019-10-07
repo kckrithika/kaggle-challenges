@@ -42,6 +42,7 @@ items:
           - -role=sam.secrets.secretservice-watchdog
           - -metricsEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80
           - -logtostderr=true
+          - --hostsConfigFile=/sfdchosts/hosts.json
           command:
           - /secretservice/secretservice-watchdog
           env:
@@ -67,6 +68,8 @@ items:
             requests:
               sam.sfdc.net/ip-address: "1"
           volumeMounts:
+          - mountPath: /sfdchosts
+            name: sfdchosts
           - mountPath: /clientcert
             name: client-certs
         - args:
@@ -151,6 +154,9 @@ items:
           runAsNonRoot: true
           runAsUser: 7447
         volumes:
+        - configMap:
+            name: sfdchosts
+          name: sfdchosts
         - emptyDir:
             medium: Memory
           name: sam-maddog-token
@@ -202,6 +208,7 @@ items:
           - -role=sam.secrets.secretservice-watchdog
           - -metricsEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80
           - -logtostderr=true
+          - --hostsConfigFile=/sfdchosts/hosts.json
           command:
           - /secretservice/secretservice-watchdog
           env:
@@ -227,6 +234,8 @@ items:
             requests:
               sam.sfdc.net/ip-address: "1"
           volumeMounts:
+          - mountPath: /sfdchosts
+            name: sfdchosts
           - mountPath: /clientcert
             name: client-certs
         - args:
@@ -311,6 +320,9 @@ items:
           runAsNonRoot: true
           runAsUser: 7447
         volumes:
+        - configMap:
+            name: sfdchosts
+          name: sfdchosts
         - emptyDir:
             medium: Memory
           name: sam-maddog-token
@@ -362,6 +374,7 @@ items:
           - -role=sam.secrets.secretservice-watchdog
           - -metricsEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80
           - -logtostderr=true
+          - --hostsConfigFile=/sfdchosts/hosts.json
           command:
           - /secretservice/secretservice-watchdog
           env:
@@ -387,6 +400,8 @@ items:
             requests:
               sam.sfdc.net/ip-address: "1"
           volumeMounts:
+          - mountPath: /sfdchosts
+            name: sfdchosts
           - mountPath: /clientcert
             name: client-certs
         - args:
@@ -471,6 +486,9 @@ items:
           runAsNonRoot: true
           runAsUser: 7447
         volumes:
+        - configMap:
+            name: sfdchosts
+          name: sfdchosts
         - emptyDir:
             medium: Memory
           name: sam-maddog-token
@@ -522,6 +540,7 @@ items:
           - -role=sam.secrets.secretservice-watchdog
           - -metricsEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80
           - -logtostderr=true
+          - --hostsConfigFile=/sfdchosts/hosts.json
           command:
           - /secretservice/secretservice-watchdog
           env:
@@ -547,6 +566,8 @@ items:
             requests:
               sam.sfdc.net/ip-address: "1"
           volumeMounts:
+          - mountPath: /sfdchosts
+            name: sfdchosts
           - mountPath: /clientcert
             name: client-certs
         - args:
@@ -631,6 +652,9 @@ items:
           runAsNonRoot: true
           runAsUser: 7447
         volumes:
+        - configMap:
+            name: sfdchosts
+          name: sfdchosts
         - emptyDir:
             medium: Memory
           name: sam-maddog-token
@@ -682,6 +706,7 @@ items:
           - -role=sam.secrets.secretservice-watchdog
           - -metricsEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80
           - -logtostderr=true
+          - --hostsConfigFile=/sfdchosts/hosts.json
           command:
           - /secretservice/secretservice-watchdog
           env:
@@ -707,6 +732,8 @@ items:
             requests:
               sam.sfdc.net/ip-address: "1"
           volumeMounts:
+          - mountPath: /sfdchosts
+            name: sfdchosts
           - mountPath: /clientcert
             name: client-certs
         - args:
@@ -791,6 +818,9 @@ items:
           runAsNonRoot: true
           runAsUser: 7447
         volumes:
+        - configMap:
+            name: sfdchosts
+          name: sfdchosts
         - emptyDir:
             medium: Memory
           name: sam-maddog-token
@@ -842,6 +872,7 @@ items:
           - -role=sam.secrets.secretservice-watchdog
           - -metricsEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80
           - -logtostderr=true
+          - --hostsConfigFile=/sfdchosts/hosts.json
           - -enableLifecycleTest=true
           command:
           - /secretservice/secretservice-watchdog
@@ -868,6 +899,8 @@ items:
             requests:
               sam.sfdc.net/ip-address: "1"
           volumeMounts:
+          - mountPath: /sfdchosts
+            name: sfdchosts
           - mountPath: /clientcert
             name: client-certs
         - args:
@@ -952,6 +985,9 @@ items:
           runAsNonRoot: true
           runAsUser: 7447
         volumes:
+        - configMap:
+            name: sfdchosts
+          name: sfdchosts
         - emptyDir:
             medium: Memory
           name: sam-maddog-token

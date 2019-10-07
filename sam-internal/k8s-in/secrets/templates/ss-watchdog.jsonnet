@@ -180,6 +180,7 @@ local ssWatchdogDeployment(instanceTag) = configs.deploymentBase("secrets") {
               "-role=sam.%(role)s" % instanceData,
               "-metricsEndpoint=%(funnelVIP)s" % configs,
               "-logtostderr=true",
+              configs.sfdchosts_arg,
             ] + instanceData.extraArgs,
             command: [
               "/secretservice/secretservice-watchdog",
@@ -189,14 +190,18 @@ local ssWatchdogDeployment(instanceTag) = configs.deploymentBase("secrets") {
               secretsconfigs.function_namespace_env,
               secretsconfigs.sfdcloc_node_name_env,
             ],
-            volumeMounts: madkub.certVolumeMounts,
+            volumeMounts: [
+              configs.sfdchosts_volume_mount,
+            ] + madkub.certVolumeMounts,
           } + configs.ipAddressResourceRequest,
           madkub.refreshContainer,
         ],
         initContainers: [
           madkub.initContainer,
         ],
-        volumes: madkub.volumes + madkub.certVolumes,
+        volumes: [
+          configs.sfdchosts_volume,
+        ] + madkub.volumes + madkub.certVolumes,
       }
       + configs.nodeSelector
       + secretsconfigs.samPodSecurityContext
