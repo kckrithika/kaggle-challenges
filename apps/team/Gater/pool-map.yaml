@@ -37,6 +37,8 @@ apps:
   - ttd/ttd-sam_gater
  gate-manager-test:
   - prd/prd-sam_gater
+ gate-manager-test-canary:
+  - prd/prd-sam_gater
  gate-manager-test-tnrp:
   - prd/prd-sam_gater
  gate-manager-test-mesh:
