@@ -215,7 +215,7 @@ items:
             valueFrom:
               fieldRef:
                 fieldPath: spec.nodeName
-          image: ops0-artifactrepo1-0-xrd.data.sfdc.net/dva/secretservice-watchdog:125-e3cf1abf3a6e653d0d7b862671e287edd966c3c5
+          image: ops0-artifactrepo1-0-xrd.data.sfdc.net/dva/secretservice-watchdog:128-98127c47173cb46cd2e2f31875382db8f7661533
           name: watchdog
           volumeMounts:
           - mountPath: /clientcert
@@ -371,7 +371,7 @@ items:
             valueFrom:
               fieldRef:
                 fieldPath: spec.nodeName
-          image: ops0-artifactrepo1-0-xrd.data.sfdc.net/dva/secretservice-watchdog:125-e3cf1abf3a6e653d0d7b862671e287edd966c3c5
+          image: ops0-artifactrepo1-0-xrd.data.sfdc.net/dva/secretservice-watchdog:128-98127c47173cb46cd2e2f31875382db8f7661533
           name: watchdog
           volumeMounts:
           - mountPath: /clientcert
