@@ -138,56 +138,6 @@ items:
 - apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: RoleBinding
   metadata:
-    name: chatbot:ord-sam_chatbot_kingdom:rolebinding
-    namespace: chatbot
-  roleRef:
-    apiGroup: rbac.authorization.k8s.io
-    kind: ClusterRole
-    name: minion:role
-  subjects:
-  - kind: User
-    name: shared0-samminionchatbotrt1-1-ord.ops.sfdc.net
-  - kind: User
-    name: shared0-samminionchatbotrt1-10-ord.ops.sfdc.net
-  - kind: User
-    name: shared0-samminionchatbotrt1-2-ord.ops.sfdc.net
-  - kind: User
-    name: shared0-samminionchatbotrt1-3-ord.ops.sfdc.net
-  - kind: User
-    name: shared0-samminionchatbotrt1-4-ord.ops.sfdc.net
-  - kind: User
-    name: shared0-samminionchatbotrt1-5-ord.ops.sfdc.net
-  - kind: User
-    name: shared0-samminionchatbotrt1-6-ord.ops.sfdc.net
-  - kind: User
-    name: shared0-samminionchatbotrt1-7-ord.ops.sfdc.net
-  - kind: User
-    name: shared0-samminionchatbotrt1-8-ord.ops.sfdc.net
-  - kind: User
-    name: shared0-samminionchatbotrt1-9-ord.ops.sfdc.net
-  - kind: User
-    name: shared0-samminionchatbotrt2-1-ord.ops.sfdc.net
-  - kind: User
-    name: shared0-samminionchatbotrt2-10-ord.ops.sfdc.net
-  - kind: User
-    name: shared0-samminionchatbotrt2-2-ord.ops.sfdc.net
-  - kind: User
-    name: shared0-samminionchatbotrt2-3-ord.ops.sfdc.net
-  - kind: User
-    name: shared0-samminionchatbotrt2-4-ord.ops.sfdc.net
-  - kind: User
-    name: shared0-samminionchatbotrt2-5-ord.ops.sfdc.net
-  - kind: User
-    name: shared0-samminionchatbotrt2-6-ord.ops.sfdc.net
-  - kind: User
-    name: shared0-samminionchatbotrt2-7-ord.ops.sfdc.net
-  - kind: User
-    name: shared0-samminionchatbotrt2-8-ord.ops.sfdc.net
-  - kind: User
-    name: shared0-samminionchatbotrt2-9-ord.ops.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1beta1
-  kind: RoleBinding
-  metadata:
     name: cloudatlas:ord-sam_cloudatlas:rolebinding
     namespace: cloudatlas
   roleRef:
@@ -1148,17 +1098,9 @@ items:
     name: minion:role
   subjects:
   - kind: User
-    name: shared0-samminionsfstore1-1-ord.ops.sfdc.net
-  - kind: User
     name: shared0-samminionsfstore1-2-ord.ops.sfdc.net
   - kind: User
     name: shared0-samminionsfstore2-1-ord.ops.sfdc.net
-  - kind: User
-    name: shared0-samminionsfstore2-2-ord.ops.sfdc.net
-  - kind: User
-    name: shared0-samminionsfstore3-1-ord.ops.sfdc.net
-  - kind: User
-    name: shared0-samminionsfstore3-2-ord.ops.sfdc.net
 - apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: RoleBinding
   metadata:
@@ -1170,17 +1112,9 @@ items:
     name: minion:role
   subjects:
   - kind: User
-    name: shared0-samminionsfstore1-1-ord.ops.sfdc.net
-  - kind: User
     name: shared0-samminionsfstore1-2-ord.ops.sfdc.net
   - kind: User
     name: shared0-samminionsfstore2-1-ord.ops.sfdc.net
-  - kind: User
-    name: shared0-samminionsfstore2-2-ord.ops.sfdc.net
-  - kind: User
-    name: shared0-samminionsfstore3-1-ord.ops.sfdc.net
-  - kind: User
-    name: shared0-samminionsfstore3-2-ord.ops.sfdc.net
 - apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: RoleBinding
   metadata:

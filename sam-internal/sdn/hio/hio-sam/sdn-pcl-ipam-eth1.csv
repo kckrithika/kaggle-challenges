@@ -1,4 +1,4 @@
-Hostname,Eth1IP
-shared0-samminionwarden1-1-hio.ops.sfdc.net,10.160.152.133
-shared0-samminionwarden2-1-hio.ops.sfdc.net,10.160.152.131
-shared0-samminionwarden3-1-hio.ops.sfdc.net,10.160.152.132
+Hostname,Eth1IP,Eth1Gw
+shared0-samminionwarden1-1-hio.ops.sfdc.net,10.160.152.133,10.160.152.129
+shared0-samminionwarden2-1-hio.ops.sfdc.net,10.160.152.131,10.160.152.129
+shared0-samminionwarden3-1-hio.ops.sfdc.net,10.160.152.132,10.160.152.129
