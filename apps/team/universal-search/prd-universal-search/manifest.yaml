@@ -88,7 +88,7 @@ system:
       resources:
         limits:
           cpu: "2"
-          memory: "32Gi"
+          memory: "16Gi"
       volumeMounts:
       - name: server-cert-vol
         mountPath: /server-certs
