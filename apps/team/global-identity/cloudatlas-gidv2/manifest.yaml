@@ -14,12 +14,10 @@ system:
       - name: management_server_port
         value: 15372
       - name: scone_srpc_announcingEnabled
-        value: false
-     
-     volumeMounts:
+        value: false     
+      volumeMounts:
       - mountPath: /home/sfdc-atlas/data/servers/dsv2
-        name: hostdatavol
-     
+        name: hostdatavol     
       ports:
       - containerPort: 7032
       - containerPort: 1636
