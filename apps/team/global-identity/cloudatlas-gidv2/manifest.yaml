@@ -5,7 +5,7 @@ system:
     count: 1
     containers:
     - name: cloudatlas
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/c2c/c2c-ca-docker:8cbd7f2
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/c2c/c2c-ca-docker:cf775cd
       command: ["/opt/pdm/pdm.customer/bin/sam-entrypoint.sh"]
       imagePullPolicy: Always
       env:
@@ -16,7 +16,7 @@ system:
       - name: scone_srpc_announcingEnabled
         value: false     
       volumeMounts:
-      - mountPath: /home/sfdc-atlas/data/servers/dsv2
+      - mountPath: /home/sfdc-atlas/data/servers/ds
         name: hostdatavol     
       ports:
       - containerPort: 7032

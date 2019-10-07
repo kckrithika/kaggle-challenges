@@ -1,18 +1,23 @@
+version: v2
 apps:
   gid-runtime-service:
-    - prd/prd-sam_cloudatlas
+    - name: prd/prd-sam_cloudatlas
   gid-runtime-service-xrd-staging:
-    - xrd/xrd-sampool
+    - name: xrd/xrd-sampool
   cloudatlas-gid:
-    - prd/prd-sam_cloudatlas
+    - name: prd/prd-sam_cloudatlas
+
   cloudatlas-gidv2:
-    - prd/prd-sam_cloudatlas
+    - name: prd/prd-sam_cloudatlas
+      hostSubList:
+      - test0shared0-samminionatlasfe1-1-prd.eng.sfdc.net
+
   gid-sso-client-prd:
-    - prd/prd-sam_cloudatlas
+    - name: prd/prd-sam_cloudatlas
   c2c-ca:
     # - prd/prd-sam
-    - xrd/xrd-sampool
+    - name: xrd/xrd-sampool
   gid-runtime-service-staging:
-    - prd/prd-sam_cloudatlas
+    - name: prd/prd-sam_cloudatlas
   gid-runtime-service-mit:
-    - prd/prd-sam_cloudatlas
+    - name: prd/prd-sam_cloudatlas
