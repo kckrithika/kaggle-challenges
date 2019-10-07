@@ -116,18 +116,6 @@
     name: "slb-cleanup-config-processor",
     image: slbimages.hyperslb,
     command:
-    (if slbimages.phaseNum <= 1 then
-    [
-       "/sdn/slb-cleanup",
-       "--period=1800s",
-       "--logsMaxAge=1d",
-       "--filesDirToCleanup=" + slbconfigs.configDir,
-       "--shouldSkipServiceRecords=true",
-       "--shouldNotDeleteAllFiles=false",
-       "--log_dir=" + slbconfigs.logsDir,
-       "--shouldSkipSlbBlock=true",
-       "--skipFilesWithSuffix=.sock",
-    ] else
     [
       "/sdn/slb-cleanup",
       "--period=1800s",
@@ -139,7 +127,7 @@
       "--shouldSkipSlbBlock=true",
       "--skipFilesWithSuffix=.sock",
       "--maxDeleteFileCount=20",
-    ]),
+    ],
     volumeMounts: std.prune([
       slbconfigs.slb_volume_mount,
       slbconfigs.slb_config_volume_mount,
