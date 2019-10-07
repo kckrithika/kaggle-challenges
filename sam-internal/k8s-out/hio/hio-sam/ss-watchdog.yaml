@@ -40,6 +40,7 @@ spec:
         - -role=sam.secrets.secretservice-watchdog
         - -metricsEndpoint=ajna0-funnel1-0-hio.data.sfdc.net:80
         - -logtostderr=true
+        - --hostsConfigFile=/sfdchosts/hosts.json
         command:
         - /secretservice/secretservice-watchdog
         env:
@@ -60,6 +61,8 @@ spec:
         image: ops0-artifactrepo1-0-hio.data.sfdc.net/dva/secretservice-watchdog:123-f7fbd517940afa4d3f21e06f4cac9790d318db18
         name: watchdog
         volumeMounts:
+        - mountPath: /sfdchosts
+          name: sfdchosts
         - mountPath: /clientcert
           name: client-certs
       - args:
@@ -145,6 +148,9 @@ spec:
         runAsNonRoot: true
         runAsUser: 7447
       volumes:
+      - configMap:
+          name: sfdchosts
+        name: sfdchosts
       - emptyDir:
           medium: Memory
         name: sam-maddog-token

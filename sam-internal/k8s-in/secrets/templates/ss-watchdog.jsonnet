@@ -191,7 +191,7 @@ local ssWatchdogDeployment(instanceTag) = configs.deploymentBase("secrets") {
               secretsconfigs.sfdcloc_node_name_env,
             ],
             volumeMounts: [
-              configs.sfdchosts_volume_mount
+              configs.sfdchosts_volume_mount,
             ] + madkub.certVolumeMounts,
           } + configs.ipAddressResourceRequest,
           madkub.refreshContainer,
