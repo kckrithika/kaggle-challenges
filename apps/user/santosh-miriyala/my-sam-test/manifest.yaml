@@ -16,7 +16,7 @@ system:
            command:
            - /usr/bin/true
   loadbalancers:
-  - lbname: lb124
+  - lbname: gadget-core-sam-poc
     slbEnabled: true
     function: gadget-sam-test
     ports:

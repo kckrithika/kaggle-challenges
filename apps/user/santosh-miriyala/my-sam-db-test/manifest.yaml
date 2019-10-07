@@ -25,7 +25,7 @@ system:
       hostPath:
         path: /data/my-pg-data/gadget-db-data
   loadbalancers:
-  - lbname: postgres-db-test
+  - lbname: postgres-db-sam-test
     function: gadget-sam-db-test
     slbEnabled: true
     ports:
