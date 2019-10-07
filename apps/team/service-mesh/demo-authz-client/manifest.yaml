@@ -12,7 +12,7 @@ system:
       "sherpa-injector.service-mesh/inject": "enabled"
     containers:
     - name: demo-authz-grpc-client
-      image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/electron_client:101
+      image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/electron_client:106
       args:
       - -endpoint=demo-authz.service-mesh.localhost.mesh.force.com:5443
       - -service=grpc
