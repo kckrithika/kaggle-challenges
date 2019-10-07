@@ -8,7 +8,7 @@ system:
       type: stateful-set
       identity:
         emptyServiceName: true
-        namespace: emp_aqueduct
+        namespace: aqueduct
       lbname: aqueduct-func-lb
       volumes:
       - name: kafkaclientcerts
