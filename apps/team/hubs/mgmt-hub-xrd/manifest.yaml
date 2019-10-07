@@ -76,7 +76,7 @@ system:
         targetport: 8080
         lbtype: http
         tls: true
-        #reencrypt: true
+        reencrypt: true
       - port: 15372 
         targetport: 15372
         lbtype: http
