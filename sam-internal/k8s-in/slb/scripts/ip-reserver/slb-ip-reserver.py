@@ -214,8 +214,9 @@ def delete_ip(fqdn, cluster, public_reserved_ips):
         return
 
     if fqdn in public_reserved_ips[cluster]:
+        ip = public_reserved_ips[cluster][fqdn]
         del public_reserved_ips[cluster][fqdn]
-        print("Deleted {} from {}".format(fqdn, cluster))
+        print("Deleted {}'s reserved IP of {} from {}".format(fqdn, ip, cluster))
 
 
 def get_next_public_ip(cluster, public_reserved_ips, public_subnets, minimum_octet):
