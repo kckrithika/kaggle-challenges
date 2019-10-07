@@ -38,6 +38,7 @@ if configs.estate == "cdu-sam" || configs.estate == "syd-sam" || configs.estate 
                             "--livenessProbePort=" + portconfigs.sdn.sdn_aws_controller,
                             "--ipamPullInterval=30s",
                             "--archiveSvcPullInterval=30s",
+                            "--awsConfigInterval=10m",
                             "--rootPath=/etc/pki_service",
                             "--userName=kubernetes",
                             "--pkiServerServiceName=k8s-server",

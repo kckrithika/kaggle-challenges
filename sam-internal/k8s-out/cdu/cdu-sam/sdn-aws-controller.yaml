@@ -30,6 +30,7 @@ spec:
         - --livenessProbePort=9122
         - --ipamPullInterval=30s
         - --archiveSvcPullInterval=30s
+        - --awsConfigInterval=10m
         - --rootPath=/etc/pki_service
         - --userName=kubernetes
         - --pkiServerServiceName=k8s-server
