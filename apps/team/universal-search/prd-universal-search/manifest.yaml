@@ -87,8 +87,8 @@ system:
         name: sherpa-adm
       resources:
         limits:
-          cpu: "1"
-          memory: "1Gi"
+          cpu: "2"
+          memory: "32Gi"
       volumeMounts:
       - name: server-cert-vol
         mountPath: /server-certs
