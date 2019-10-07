@@ -10,8 +10,23 @@ spec:
   - bind: 127.1.2.3
     captureMode: NONE
     hosts:
-    - gater/gater.gater.svc.cluster.local
-    - ccait/geoip.ccait.svc.cluster.local
+    - mesh-control-plane/*
+    - z9s-default/*
+    - app/*
+    - casam/*
+    - ccait/*
+    - core-on-sam-sp2/*
+    - emailinfra/*
+    - funnel/*
+    - gater/*
+    - retail-cre/*
+    - retail-dfs/*
+    - retail-mds/*
+    - retail-rsui/*
+    - scone/*
+    - search-scale-safely/*
+    - service-mesh/*
+    - universal-search/*
     port:
       name: grpc-egress
       number: 7443

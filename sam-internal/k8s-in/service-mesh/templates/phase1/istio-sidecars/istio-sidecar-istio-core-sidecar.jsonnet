@@ -22,11 +22,7 @@ local egress(port, protocol, name) =
     name: name,
   },
   captureMode: "NONE",
-  hosts: [
-    "gater/gater.gater.svc.cluster.local",
-    "ccait/geoip.ccait.svc.cluster.local",
-  ],
-  //hosts: mcpIstioConfig.sidecarEgressHosts,
+  hosts: mcpIstioConfig.sidecarEgressHosts,
 };
 
 if (istioPhases.phaseNum == 1) then
