@@ -19,7 +19,7 @@ system:
           type: client
     containers:
     - name: soter-xrd
-      image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/soter:148
+      image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/soter:150
       ports:
       - containerPort: 8080
       - containerPort: 7090
