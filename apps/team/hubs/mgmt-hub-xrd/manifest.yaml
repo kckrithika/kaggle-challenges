@@ -5,10 +5,7 @@ system:
          email:
             - hubs@salesforce.com
   functions:
-  # service name
   - name: mgmt-hub
-    #type: stateful-set
-    # number of instances ("kpods") to deploy and run
     count: 1
     volumes:
     - name: cert
@@ -17,7 +14,6 @@ system:
     - name: logvol
       hostPath:
         path: /home/sfdc-mgmt/logs
-    # Docker image(s) that make up one instance of the service
     containers:
     - name: mgmt-hub
       image: dva/mgmt-hub:4
@@ -79,7 +75,7 @@ system:
       - port: 8080
         targetport: 8080
         lbtype: http
-        #tls: true
+        tls: true
         #reencrypt: true
       - port: 15372 
         targetport: 15372
