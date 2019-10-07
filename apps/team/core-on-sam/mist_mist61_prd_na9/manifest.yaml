@@ -331,7 +331,7 @@ system:
         value: --log-path /home/sfdc-sherpa/envoy.log
       - name: SFDC_ENVIRONMENT
         value: mist61
-      image: sfci/frontend-gateway/sfproxy:6651219
+      image: sfci/frontend-gateway/sfproxy:a290f27
       livenessProbe:
         exec:
           command:
