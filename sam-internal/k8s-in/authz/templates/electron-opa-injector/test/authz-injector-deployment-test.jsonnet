@@ -27,10 +27,8 @@ configs.deploymentBase("authz-injector") {
         labels: {
           app: "electron-opa-injector",
           name: "electron-opa-injector",
-          "electron-opa-injector.authz/inject": "disabled",
         },
         annotations: {
-          "electron-opa-injector.authz/inject": "disabled",
           "scheduler.alpha.kubernetes.io/critical-pod": "",
           "madkub.sam.sfdc.net/allcerts":
           std.manifestJsonEx(
@@ -78,14 +76,14 @@ configs.deploymentBase("authz-injector") {
         containers: [
           {
             name: "injector",
-            image: "ops0-artifactrepo2-0-prd.data.sfdc.net/dva/electron-opa-injection-webhook:16-966577dffa7a484e0c862bbac6013a9b4b57831e",
+            image: "ops0-artifactrepo2-0-prd.data.sfdc.net/dva/electron-opa-injection-webhook:18-f5a35ecc641b6cf83c12ef4de716b98a37b4344e",
             imagePullPolicy: "IfNotPresent",
             terminationMessagePolicy: "FallbackToLogsOnError",
             args: [
-              "--opa-template=%s" % "/config-opa/electron-opa-container.yaml.template",  // This is the template that we have stored in a ConfigMap in k8s
-              "--opa-istio-template=%s" % "/config-opa-istio/electron-opa-istio-container.yaml.template",  // This is the template that we have stored in a ConfigMap in k8s
-              "--opa-image=ops0-artifactrepo2-0-prd.data.sfdc.net/dva/electron_opa:7-1e63897bdf79986f258231d5b7ffaa83df03158a",
-              "--opa-istio-image=%s" % versions.opaIstioImage,
+              "--opa-template=%s" % "/config/electron-opa-container.yaml.template",  // This is the template that we have stored in a ConfigMap in k8s
+              "--opa-istio-template=%s" % "/config/electron-opa-istio-container.yaml.template",  // This is the template that we have stored in a ConfigMap in k8s
+              "--opa-image=ops0-artifactrepo2-0-prd.data.sfdc.net/dva/electron_opa:9-406399d98e8627a11303098578e595b3d84ab4ed",
+              "--opa-istio-image=ops0-artifactrepo2-0-prd.data.sfdc.net/dva/electron_opa_istio:9-406399d98e8627a11303098578e595b3d84ab4ed",
               "--log-level=debug",
               "--port=17442",
               "--cert=/server-certs/server/certificates/server.pem",
@@ -174,12 +172,20 @@ configs.deploymentBase("authz-injector") {
                 mountPath: "/client-certs",
               },
               {
-                name: "electron-opa-injector-configs-data-volume-opa",
-                mountPath: "/config-opa",
+                name: "electron-opa-sherpa-container",
+                mountPath: "/config",
               },
               {
-                name: "electron-opa-injector-configs-data-volume-opa-istio",
-                mountPath: "/config-opa-istio",
+                name: "electron-opa-istio-sherpa-container",
+                mountPath: "/config",
+              },
+              {
+                name: "electron-opa-no-sherpa-container",
+                mountPath: "/config",
+              },
+              {
+                name: "electron-opa-istio-no-sherpa-container",
+                mountPath: "/config",
               },
             ],
             ports+: [
@@ -246,15 +252,27 @@ configs.deploymentBase("authz-injector") {
           },
           {
             configMap: {
-              name: "electron-opa-injector-configs-opa-container",
+              name: "electron-opa-sherpa-container",
             },
-            name: "electron-opa-injector-configs-data-volume-opa",
+            name: "electron-opa-sherpa-container",
           },
           {
             configMap: {
-              name: "electron-opa-injector-configs-opa-istio-container",
+              name: "electron-opa-istio-sherpa-container",
             },
-            name: "electron-opa-injector-configs-data-volume-opa-istio",
+            name: "electron-opa-istio-sherpa-container",
+          },
+          {
+            configMap: {
+              name: "electron-opa-no-sherpa-container",
+            },
+            name: "electron-opa-no-sherpa-container",
+          },
+          {
+            configMap: {
+              name: "electron-opa-istio-no-sherpa-container",
+            },
+            name: "electron-opa-istio-no-sherpa-container",
           },
         ] +
         if utils.is_pcn(configs.kingdom) then
