@@ -12,7 +12,7 @@ system:
       "sherpa-injector.service-mesh/inject": "enabled"
     containers:
     - name: demo-authz-http
-      image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/electron_sam:101
+      image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/electron_sam:106
       args:
       - --extra-authz-clients=dns=test-jwt.sfdc-role,uri=spiffe://salesforce.com/ns/service-mesh/sa/demo-authz-client
       - --authz-paths=opt/identity/authz/test-internal/,opt/identity/authz/opa-policies/,opt/identity/authz/
