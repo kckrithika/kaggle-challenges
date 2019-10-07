@@ -4,6 +4,8 @@ apps:
 
   c360-beaconator-prd:
     - name: prd/prd-sam_gater
+
+  c360-beaconator-xrd:
     - name: xrd/xrd-sam_gater
 
   c360-beaconator-na:
