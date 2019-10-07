@@ -27,7 +27,7 @@ system:
     containers:
     - name: dfs-func
       # Please update https://salesforce.quip.com/A9HVAFytGaqG with any changes.
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/dfs/service:dfs-0.25.1
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/dfs/service:dfs-0.24.14
       volumeMounts:
       - name: logvol
         mountPath: /home/scone/logs
