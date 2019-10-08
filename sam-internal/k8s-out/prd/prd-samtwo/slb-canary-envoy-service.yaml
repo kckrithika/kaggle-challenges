@@ -1,0 +1,118 @@
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    slb.sfdc.net/cnames: |-
+      [
+       {
+        "cname": "canary-envoy-prd-samtwo.slb.sfdc.net"
+       }
+      ]
+    slb.sfdc.net/name: slb-canary-envoy-svc
+    slb.sfdc.net/portconfigurations: |-
+      [
+       {
+        "httpsredirectport": 443,
+        "lbtype": "http",
+        "port": 80,
+        "targetport": 0
+       },
+       {
+        "addheaders": [
+         {
+          "name": "here-be-headers",
+          "value": "arggh"
+         }
+        ],
+        "lbalgorithm": "roundrobin",
+        "lbtype": "http",
+        "port": 443,
+        "reencrypt": true,
+        "targetport": 9443,
+        "tls": true
+       },
+       {
+        "addheaders": [
+         {
+          "name": "here-be-mtls-headers",
+          "value": "arggh"
+         }
+        ],
+        "lbalgorithm": "leastconn",
+        "lbtype": "http",
+        "mtls": true,
+        "port": 8443,
+        "reencrypt": true,
+        "targetport": 9443,
+        "tls": true
+       },
+       {
+        "allow": [
+         "8.8.8.8/32",
+         "10.3.0.0/16"
+        ],
+        "deny": [
+         "10.3.2.27/32"
+        ],
+        "lbalgorithm": "leastconn",
+        "lbtype": "tcp",
+        "port": 9090,
+        "targetport": 9090
+       },
+       {
+        "healthpath": "/",
+        "healthport": 9091,
+        "healthprotocol": "http",
+        "lbtype": "http",
+        "port": 9091,
+        "sticky": 300,
+        "targetport": 9091
+       },
+       {
+        "lbtype": "dsr",
+        "port": 9092,
+        "targetport": 9092
+       },
+       {
+        "lbtype": "dsr",
+        "port": 9443,
+        "targetport": 9443
+       }
+      ]
+  labels:
+    app: slb-canary-envoy-svc
+  name: slb-canary-envoy-svc
+  namespace: sam-system
+spec:
+  ports:
+  - name: http
+    port: 80
+    protocol: TCP
+    targetPort: 0
+  - name: https
+    port: 443
+    protocol: TCP
+    targetPort: 9443
+  - name: mtls
+    port: 8443
+    protocol: TCP
+    targetPort: 9443
+  - name: slb-canary-envoy-port
+    port: 9090
+    protocol: TCP
+    targetPort: 9090
+  - name: slb-canary-envoy-port-1
+    port: 9091
+    protocol: TCP
+    targetPort: 9091
+  - name: slb-canary-envoy-2
+    port: 9092
+    protocol: TCP
+    targetPort: 9092
+  - name: slb-canary-envoy-port-3
+    port: 9443
+    protocol: TCP
+    targetPort: 9443
+  selector:
+    name: slb-canary-envoy
+  type: NodePort

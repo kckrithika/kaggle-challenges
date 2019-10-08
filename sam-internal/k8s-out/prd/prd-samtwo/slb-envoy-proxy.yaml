@@ -29,12 +29,12 @@ spec:
              "name": "server-certs",
              "role": "samapp.slb",
              "san": [
-              "*.sam-system.prd-sdc.prd.slb.sfdc.net",
+              "*.sam-system.prd-samtwo.prd.slb.sfdc.net",
               "*.slb.sfdc.net",
               "*.soma.salesforce.com",
               "*.data.sfdc.net",
               "*.kms.slb.sfdc.net",
-              "*.moe.prd-sdc.prd.slb.sfdc.net",
+              "*.moe.prd-samtwo.prd.slb.sfdc.net",
               "*.internal.salesforce.com"
              ]
             },
@@ -84,7 +84,7 @@ spec:
         - --envoyNodeID=slb-envoy-proxy.$(FUNCTION_NAMESPACE).$(FUNCTION_INSTANCE_NAME)
         - --envoyNodeNamespace=$(FUNCTION_NAMESPACE)
         - --heartbeat.defaultdecayduration=5m
-        - --iprange.InternalIpRange=10.253.152.128/26,10.251.128.0/23
+        - --iprange.InternalIpRange=10.240.134.64/26,10.254.248.0/23
         - --livenessProbePort=8080
         - --log_dir=/host/data/slb/logs/slb-envoy-proxy
         - --netInterfaceName=eth0
@@ -120,11 +120,6 @@ spec:
           value: /kubeconfig/kubeconfig-platform
         image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/slb/hyperslb:2234-a6e898bd89b108a3d1eeefaceb405cca5f18610d
         name: slb-envoy-config
-        resources:
-          limits:
-            sam.sfdc.net/ip-address: "1"
-          requests:
-            sam.sfdc.net/ip-address: "1"
         volumeMounts:
         - mountPath: /host/data/slb/slb-envoy-proxy/config
           name: var-target-config-volume
@@ -201,7 +196,7 @@ spec:
             fieldRef:
               apiVersion: v1
               fieldPath: metadata.namespace
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/madkub:1.0.0-0000082-3d5c21b4
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/madkub:1.0.0-0000081-ddcaa288
         imagePullPolicy: IfNotPresent
         name: madkub-refresher
         resources: {}
@@ -299,12 +294,12 @@ spec:
       - command:
         - /sdn/slb-config-processor
         - --configDir=/host/data/slb/config/slb-envoy-proxy
-        - --period=1200s
+        - --period=1800s
         - --vipsToAcl=
         - --podPhaseCheck=true
         - --namespace=
         - --podstatus=running
-        - --subnet=10.254.247.0/24
+        - --subnet=10.254.252.0/22
         - --k8sapiserver=
         - --serviceList=
         - --useVipLabelToSelectSvcs=true
@@ -409,7 +404,7 @@ spec:
         - --nginxPodMode=true
         - --client.socketDir=/host/data/slb/config/slb-envoy-proxy
         - --client.dialSocket=true
-        - --maxDeleteVipCount=100
+        - --maxDeleteVipCount=50
         image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/slb/hyperslb:2234-a6e898bd89b108a3d1eeefaceb405cca5f18610d
         name: slb-realsvrcfg
         securityContext:
@@ -435,13 +430,6 @@ spec:
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig-platform
         image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/slb/hyperslb:2234-a6e898bd89b108a3d1eeefaceb405cca5f18610d
-        livenessProbe:
-          exec:
-            command:
-            - test
-            - '`find /slb-cleanup-heartbeat -mmin -.5`'
-          initialDelaySeconds: 15
-          periodSeconds: 15
         name: slb-cleanup
         securityContext:
           privileged: true
@@ -465,7 +453,7 @@ spec:
         - --hostsConfigFile=/sfdchosts/hosts.json
         - --client.socketDir=/host/data/slb/config/slb-envoy-proxy
         - --client.dialSocket=true
-        - --maxDeleteLimit=100
+        - --maxDeleteLimit=50
         - --isRoleUsed=true
         - --metricsEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80
         - --vcioptions.strict=true
@@ -523,7 +511,7 @@ spec:
             fieldRef:
               apiVersion: v1
               fieldPath: metadata.namespace
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/madkub:1.0.0-0000082-3d5c21b4
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/madkub:1.0.0-0000081-ddcaa288
         imagePullPolicy: IfNotPresent
         name: madkub-init
         volumeMounts:
@@ -545,7 +533,7 @@ spec:
         - mountPath: /host/data/slb/slb-envoy-proxy/config
           name: var-target-config-volume
       nodeSelector:
-        pool: prd-sdc
+        pool: prd-slbtwo
       securityContext:
         fsGroup: 7447
       volumes:

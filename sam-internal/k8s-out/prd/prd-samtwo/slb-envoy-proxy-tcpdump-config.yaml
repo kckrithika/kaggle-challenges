@@ -1,0 +1,17 @@
+apiVersion: v1
+data:
+  tcpdumpcommand.json: |-
+    {
+      "tcpdumpcommands": [
+        {
+          "command": "-i tunl0",
+          "duration": "1m",
+          "packetcapture": false
+        }
+      ]
+    }
+kind: ConfigMap
+metadata:
+  creationTimestamp: null
+  name: slb-envoy-proxy-tcpdump
+  namespace: sam-system

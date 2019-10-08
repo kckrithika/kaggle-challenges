@@ -2,15 +2,15 @@ apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
   labels:
-    name: slb-george
-  name: slb-george
+    name: slb-nginx-accesslogs
+  name: slb-nginx-accesslogs
   namespace: sam-system
 spec:
   minReadySeconds: 30
   replicas: 1
   selector:
     matchLabels:
-      name: slb-george
+      name: slb-nginx-accesslogs
   strategy:
     rollingUpdate:
       maxSurge: 1
@@ -19,49 +19,49 @@ spec:
   template:
     metadata:
       labels:
-        name: slb-george
+        name: slb-nginx-accesslogs
       namespace: sam-system
     spec:
-      affinity:
-        nodeAffinity:
-          requiredDuringSchedulingIgnoredDuringExecution:
-            nodeSelectorTerms:
-            - matchExpressions:
-              - key: slb-service
-                operator: NotIn
-                values:
-                - slb-ipvs
       containers:
       - command:
-        - /sdn/slb-george
+        - /sdn/slb-nginx-accesslogs
         - --log_dir=/host/data/slb/logs/
-        - --commonoptions.metricsendpoint=ajna0-funnel1-0-prd.data.sfdc.net:80
-        - --commonoptions.hostname=$(NODE_NAME)
-        - --vipName=slb-canary-proxy-http.sam-system.prd-sdc.prd.slb.sfdc.net
-        - --port=9116
-        - --downloadSize=1
-        - --uploadSize=1
-        - --monitorFrequency=5s
+        - --httpTimeout=5m
         env:
-        - name: SFDCLOC_NODE_NAME
+        - name: NODE_NAME
           valueFrom:
             fieldRef:
               fieldPath: spec.nodeName
+        - name: KUBECONFIG
+          value: /kubeconfig/kubeconfig-platform
         image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/slb/hyperslb:2234-a6e898bd89b108a3d1eeefaceb405cca5f18610d
-        name: slb-george
+        name: slb-nginx-accesslogs
         resources:
           limits:
-            sam.sfdc.net/ip-address: "1"
-          requests:
-            sam.sfdc.net/ip-address: "1"
+            memory: 1Gi
         volumeMounts:
         - mountPath: /host/data/slb/logs/
           name: var-logs-volume
+        - mountPath: /kubeconfig
+          name: kubeconfig
+        - mountPath: /data/certs
+          name: certs
+        - mountPath: /etc/pki_service
+          name: maddog-certs
       dnsPolicy: Default
       nodeSelector:
-        pool: prd-sdc
+        pool: prd-slbtwo
       terminationGracePeriodSeconds: 5
       volumes:
       - hostPath:
           path: /data/slb/logs/
         name: var-logs-volume
+      - hostPath:
+          path: /etc/kubernetes
+        name: kubeconfig
+      - hostPath:
+          path: /data/certs
+        name: certs
+      - hostPath:
+          path: /etc/pki_service
+        name: maddog-certs

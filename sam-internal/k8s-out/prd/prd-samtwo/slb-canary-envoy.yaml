@@ -2,15 +2,15 @@ apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
   labels:
-    name: slb-canary-proxy-http
-  name: slb-canary-proxy-http
+    name: slb-canary-envoy
+  name: slb-canary-envoy
   namespace: sam-system
 spec:
   minReadySeconds: 30
   replicas: 2
   selector:
     matchLabels:
-      name: slb-canary-proxy-http
+      name: slb-canary-envoy
   strategy:
     rollingUpdate:
       maxSurge: 1
@@ -31,52 +31,20 @@ spec:
            ]
           }
       labels:
-        name: slb-canary-proxy-http
+        name: slb-canary-envoy
       namespace: sam-system
     spec:
-      affinity:
-        nodeAffinity:
-          requiredDuringSchedulingIgnoredDuringExecution:
-            nodeSelectorTerms:
-            - matchExpressions:
-              - key: slb-service
-                operator: NotIn
-                values:
-                - slb-ipvs
-        podAntiAffinity:
-          requiredDuringSchedulingIgnoredDuringExecution:
-          - labelSelector:
-              matchExpressions:
-              - key: name
-                operator: In
-                values:
-                - slb-ipvs
-                - slb-ipvs-a
-                - slb-ipvs-b
-                - slb-vip-watchdog
-            topologyKey: kubernetes.io/hostname
       containers:
       - command:
         - /sdn/slb-canary-service
-        - --serviceName=slb-canary-proxy-http
+        - --serviceName=slb-canary-envoy
         - --log_dir=/host/data/slb/logs/
-        - --ports=9116
-        - --tlsPorts=443
+        - --ports=9090,9091,9092
+        - --tlsPorts=9443
         - --privateKey=/canarycert/server/keys/server-key.pem
         - --publicKey=/canarycert/server/certificates/server.pem
         image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/slb/hyperslb:2234-a6e898bd89b108a3d1eeefaceb405cca5f18610d
-        livenessProbe:
-          httpGet:
-            path: /
-            port: 9116
-          initialDelaySeconds: 15
-          periodSeconds: 10
-        name: slb-canary-proxy-http
-        resources:
-          limits:
-            sam.sfdc.net/ip-address: "1"
-          requests:
-            sam.sfdc.net/ip-address: "1"
+        name: slb-canary-envoy
         volumeMounts:
         - mountPath: /host/data/slb/logs/
           name: var-logs-volume
@@ -110,7 +78,7 @@ spec:
             fieldRef:
               apiVersion: v1
               fieldPath: metadata.namespace
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/madkub:1.0.0-0000082-3d5c21b4
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/madkub:1.0.0-0000081-ddcaa288
         imagePullPolicy: IfNotPresent
         name: madkub-refresher
         volumeMounts:
@@ -148,7 +116,7 @@ spec:
             fieldRef:
               apiVersion: v1
               fieldPath: metadata.namespace
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/madkub:1.0.0-0000082-3d5c21b4
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/madkub:1.0.0-0000081-ddcaa288
         imagePullPolicy: IfNotPresent
         name: madkub-init
         volumeMounts:
@@ -159,7 +127,7 @@ spec:
         - mountPath: /tokens
           name: tokens
       nodeSelector:
-        pool: prd-sdc
+        pool: prd-samtwo
       terminationGracePeriodSeconds: 5
       volumes:
       - hostPath:

@@ -12,6 +12,11 @@ data:
           "healthpath": "/",
           "healthport": 12080,
           "name": "slb-hsm-nginx"
+        },
+        {
+          "healthpath": "/liveness-probe",
+          "healthport": 8080,
+          "name": "slb-envoy-proxy"
         }
       ]
     }
@@ -25,6 +30,12 @@ data:
             "na44-stmfb1-0-prd.slb.sfdc.net",
             "vonage-mist51-na1-slb-prd.slb.sfdc.net",
             "slb-canary-hsm.sam-system.prd-samtwo.prd.slb.sfdc.net"
+          ]
+        },
+        {
+          "proxyname": "slb-envoy-proxy",
+          "vips": [
+            "slb-canary-envoy-svc.sam-system.prd-samtwo.prd.slb.sfdc.net"
           ]
         }
       ]
