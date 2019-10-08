@@ -72,9 +72,7 @@ system:
         requests: { cpu: "1", memory: "1Gi" }
       args:
         - -endpoint
-        - $(FUNCTION_NAMESPACE)/c2c-service-dev:DATACENTER_ALLENV:7442
-        - -endpoint
-        - $(FUNCTION_NAMESPACE)/cloudatlas-service-dev:DATACENTER_ALLENV:7442
+        - $(FUNCTION_NAMESPACE)/ccast-prd-dev:DATACENTER_ALLENV:7442
       livenessProbe:
         exec:
           command:
