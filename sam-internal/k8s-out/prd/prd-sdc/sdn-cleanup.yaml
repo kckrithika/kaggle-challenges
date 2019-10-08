@@ -29,7 +29,7 @@ spec:
         - --log_dir=/var/logs/sdn/
         - --logtostderr=false
         - --alsologtostderr=true
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/sdn/hypersdn:2193-c7bbd5f5bd258931c4fb59483721648ba3db5ae5
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/sdn/hypersdn:2235-f72e41190116a32729ba81003ba6754f4f4796c8
         name: sdn-cleanup
         securityContext:
           privileged: true
