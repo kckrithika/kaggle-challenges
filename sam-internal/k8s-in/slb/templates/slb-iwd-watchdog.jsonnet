@@ -59,6 +59,9 @@ if slbconfigs.isSlbEstate && slbflights.enableIWDHealth then configs.daemonSetBa
                         ],
                     } + configs.ipAddressResourceRequest,
                 ],
+                nodeSelector: {
+                    pool: slbconfigs.slbEstate,
+                },
             } + slbconfigs.getGracePeriod()
             + slbconfigs.getDnsPolicy(),
         },
