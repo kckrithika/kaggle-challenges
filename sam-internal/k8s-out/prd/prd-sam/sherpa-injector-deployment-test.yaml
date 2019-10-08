@@ -6,7 +6,7 @@ metadata:
   name: sherpa-injector
   namespace: mesh-control-plane
 spec:
-  replicas: 1
+  replicas: 3
   selector:
     matchLabels:
       app: sherpa-injector
@@ -28,7 +28,7 @@ spec:
               "sherpa-injector.mesh-control-plane",
               "sherpa-injector.mesh-control-plane.svc",
               "sherpa-injector.mesh-control-plane.svc.cluster.local",
-              "sherpa-injector.mesh-control-plane.svc.prd-samtest.prd.sam.sfdc.net"
+              "sherpa-injector.mesh-control-plane.svc.prd-sam.prd.sam.sfdc.net"
              ]
             },
             {
@@ -41,7 +41,7 @@ spec:
               "sherpa-injector.mesh-control-plane",
               "sherpa-injector.mesh-control-plane.svc",
               "sherpa-injector.mesh-control-plane.svc.cluster.local",
-              "sherpa-injector.mesh-control-plane.svc.prd-samtest.prd.sam.sfdc.net"
+              "sherpa-injector.mesh-control-plane.svc.prd-sam.prd.sam.sfdc.net"
              ]
             }
            ]
@@ -87,7 +87,7 @@ spec:
         - name: KINGDOM
           value: prd
         - name: ESTATE
-          value: prd-samtest
+          value: prd-sam
         - name: SUPERPOD
           value: '-'
         - name: SETTINGS_SUPERPOD
@@ -102,7 +102,7 @@ spec:
           value: "5442"
         - name: FAKE_REDEPLOY_VAR
           value: "1"
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/sfci/servicelibs/sherpa-injector:06c30fed9507bafec35f097b327683342bd7b0a1
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/sfci/servicelibs/sherpa-injector:9a2a032114e67e40831de6e744c26c85e1607b0e
         imagePullPolicy: IfNotPresent
         livenessProbe:
           exec:
@@ -167,8 +167,8 @@ spec:
               apiVersion: v1
               fieldPath: metadata.namespace
         - name: ESTATE
-          value: prd-samtest
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/madkub:1.0.0-0000084-9f4a6ca6
+          value: prd-sam
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/madkub:1.0.0-0000082-3d5c21b4
         imagePullPolicy: IfNotPresent
         name: madkub-refresher
         volumeMounts:
@@ -206,7 +206,7 @@ spec:
         - name: KINGDOM
           value: prd
         - name: ESTATE
-          value: prd-samtest
+          value: prd-sam
         - name: SUPERPOD
           value: '-'
         - name: SETTINGS_SUPERPOD
@@ -277,8 +277,8 @@ spec:
               apiVersion: v1
               fieldPath: metadata.namespace
         - name: ESTATE
-          value: prd-samtest
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/madkub:1.0.0-0000084-9f4a6ca6
+          value: prd-sam
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/madkub:1.0.0-0000082-3d5c21b4
         imagePullPolicy: IfNotPresent
         name: madkub-init
         volumeMounts:
@@ -309,7 +309,7 @@ spec:
         - mountPath: /cert2
           name: cert2
       nodeSelector:
-        pool: prd-samtest
+        pool: prd-sam
       volumes:
       - hostPath:
           path: /etc/pki_service

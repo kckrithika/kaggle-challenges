@@ -95,7 +95,7 @@ configs.deploymentBase("service-mesh") {
             env+: [
               {
                 name: "SFDC_ENVIRONMENT",
-                value: "mesh",
+                value: "prod",
               },
               {
                 name: "SETTINGS_SERVICENAME",
@@ -144,11 +144,11 @@ configs.deploymentBase("service-mesh") {
               },
               {
                 name: "SETTINGS_PATH",
-                value: "mesh.-." + configs.kingdom + ".-.sherpa-injector",
+                value: "prod.-." + configs.kingdom + ".-.sherpa-injector",
               },
               {
                 name: "SFDC_SETTINGS_PATH",
-                value: "mesh.-." + configs.kingdom + ".-.sherpa-injector",
+                value: "prod.-." + configs.kingdom + ".-.sherpa-injector",
               },
               {
                 name: "SFDC_METRICS_SERVICE_HOST",
@@ -272,11 +272,11 @@ configs.deploymentBase("service-mesh") {
               },
               {
                 name: "SETTINGS_PATH",
-                value: "mesh.-." + configs.kingdom + ".-.sherpa-injector",
+                value: "prod.-." + configs.kingdom + ".-.sherpa-injector",
               },
               {
                 name: "SFDC_SETTINGS_PATH",
-                value: "mesh.-." + configs.kingdom + ".-.sherpa-injector",
+                value: "prod.-." + configs.kingdom + ".-.sherpa-injector",
               },
               {
                 name: "SFDC_METRICS_SERVICE_HOST",

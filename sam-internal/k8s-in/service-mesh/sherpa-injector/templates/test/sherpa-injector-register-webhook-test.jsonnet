@@ -9,7 +9,6 @@ if sherpa_utils.is_sherpa_injector_test_cluster(configs.estate) then
   kind: "MutatingWebhookConfiguration",
   metadata: {
     name: "sherpa-injector-cfg",
-    namespace: versions.injectorNamespace,
     labels: {
       app: "sherpa-injector",
     } +
