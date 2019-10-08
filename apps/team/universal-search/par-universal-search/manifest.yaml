@@ -25,7 +25,7 @@ system:
         secretName: solrcloudcli-keytab-private
     containers:
     - name: universal-search
-      image: sfci/searchdev/universal-search:1.4.3
+      image: sfci/searchdev/universal-search:1.5.5
       ports:
       - name: service-port
         containerPort: 7020
