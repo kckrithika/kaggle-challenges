@@ -25,7 +25,7 @@ spec:
         - /sdn/slb-iwd-health
         - --metricsEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80
         - --k8sAPIServer=
-        - --deploymentsToMonitor=slb-ipvs=3,slb-nginx-config-b=6
+        - --deploymentsToMonitor=slb-ipvs=2,slb-nginx-config-b=3
         - --minPercentHealthy=1
         env:
         - name: NODE_NAME
@@ -34,13 +34,8 @@ spec:
               fieldPath: spec.nodeName
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig-platform
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/slb/hyperslb:2234-a6e898bd89b108a3d1eeefaceb405cca5f18610d
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/slb/hyperslb:2231-52da9b0acfb44a4b6f4a360926b6ea47d98feccf
         name: slb-iwd-health
-        resources:
-          limits:
-            sam.sfdc.net/ip-address: "1"
-          requests:
-            sam.sfdc.net/ip-address: "1"
         volumeMounts:
         - mountPath: /etc/pki_service
           name: maddog-certs
