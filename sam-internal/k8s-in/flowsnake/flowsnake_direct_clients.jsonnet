@@ -6,7 +6,7 @@ local wave_elt_production = {
         owner_name: "Wave ELT",
         namespace: "wave-elt",
         pki_namespace: "wave-elt",
-        users: ["wave-elt.datapool", "wave-elt.jobcontroller-group1", "wave-elt.jobcontroller-group2"],
+        users: ["wave-elt.datapool"],
 };
 
 local cre_production = {
