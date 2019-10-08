@@ -1,10 +1,10 @@
 Hostname,HostIP/MaskLength,DockerSubnet/MaskLength,RackName,Estate,RemoteAs
 shared0-sdcsamcompute1-10-prd.eng.sfdc.net,10.253.152.170/29,10.251.129.32/28,p31-02,prd-sdc,65009
-shared0-sdcsamcompute1-11-prd.eng.sfdc.net,10.253.152.172/29,10.251.128.224/28,p31-02,prd-sdc,65009
-shared0-sdcsamcompute1-3-prd.eng.sfdc.net,10.253.152.132/29,10.251.129.192/28,n41-02,prd-sdc,65009
+shared0-sdcsamcompute1-11-prd.eng.sfdc.net,10.253.152.172/29,10.251.128.96/28,p31-02,prd-sdc,65009
+shared0-sdcsamcompute1-3-prd.eng.sfdc.net,10.253.152.132/29,10.251.128.32/28,n41-02,prd-sdc,65009
 shared0-sdcsamcompute1-5-prd.eng.sfdc.net,10.253.152.188/29,10.251.129.48/28,c41-02,prd-sdc,65009
 shared0-sdcsamcompute1-6-prd.eng.sfdc.net,10.253.152.133/29,10.251.129.128/28,n41-02,prd-sdc,65009
-shared0-sdcsamcompute1-7-prd.eng.sfdc.net,10.253.152.171/29,10.251.129.112/28,p31-02,prd-sdc,65009
+shared0-sdcsamcompute1-7-prd.eng.sfdc.net,10.253.152.171/29,10.251.128.48/28,p31-02,prd-sdc,65009
 shared0-sdcsamcompute2-1-prd.eng.sfdc.net,10.253.152.154/29,10.251.128.208/28,k10-02,prd-sdc,65009
 shared0-sdcsamcompute2-10-prd.eng.sfdc.net,10.253.152.178/29,10.251.128.80/28,c40-02,prd-sdc,65009
 shared0-sdcsamcompute2-11-prd.eng.sfdc.net,10.253.152.162/29,10.251.129.64/28,n40-02,prd-sdc,65009
@@ -12,4 +12,4 @@ shared0-sdcsamcompute2-2-prd.eng.sfdc.net,10.253.152.163/29,10.251.129.144/28,n4
 shared0-sdcsamcompute2-3-prd.eng.sfdc.net,10.253.152.156/29,10.251.129.176/28,k10-02,prd-sdc,65009
 shared0-sdcsamkubeapi1-1-prd.eng.sfdc.net,10.253.152.173/29,10.251.129.160/28,p31-02,prd-sdc,65009
 shared0-sdcsamkubeapi1-2-prd.eng.sfdc.net,10.253.152.134/29,10.251.128.176/28,n41-02,prd-sdc,65009
-shared0-sdcsamkubeapi3-1-prd.eng.sfdc.net,10.253.152.181/29,10.251.128.64/28,c40-02,prd-sdc,65009
+shared0-sdcsamkubeapi3-1-prd.eng.sfdc.net,10.253.152.181/29,10.251.128.160/28,c40-02,prd-sdc,65009

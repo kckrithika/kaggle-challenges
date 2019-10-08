@@ -1,13 +1,13 @@
 Hostname,Eth1IP,Eth1Gw
 shared0-samkubeapi1-1-syd.ops.sfdc.net,10.169.33.6,10.169.33.1
-shared0-samkubeapi1-2-syd.ops.sfdc.net,10.169.33.3,10.169.33.1
+shared0-samkubeapi1-2-syd.ops.sfdc.net,10.169.33.8,10.169.33.1
 shared0-samkubeapi2-1-syd.ops.sfdc.net,10.169.33.5,10.169.33.1
 shared0-samkubeapi2-2-syd.ops.sfdc.net,10.169.33.4,10.169.33.1
 shared0-samkubeapi3-1-syd.ops.sfdc.net,10.169.33.7,10.169.33.1
-shared0-samminiondatapool1-1-syd.ops.sfdc.net,10.169.32.3,10.169.32.1
+shared0-samminiondatapool1-1-syd.ops.sfdc.net,10.169.32.6,10.169.32.1
 shared0-samminiondatapool1-2-syd.ops.sfdc.net,10.169.32.4,10.169.32.1
 shared0-samminiondatapool2-1-syd.ops.sfdc.net,10.169.32.5,10.169.32.1
-shared0-samminiongater1-1-syd.ops.sfdc.net,10.169.34.3,10.169.34.1
+shared0-samminiongater1-1-syd.ops.sfdc.net,10.169.34.14,10.169.34.1
 shared0-samminiongater1-2-syd.ops.sfdc.net,10.169.34.7,10.169.34.1
 shared0-samminiongater1-3-syd.ops.sfdc.net,10.169.34.6,10.169.34.1
 shared0-samminiongater1-4-syd.ops.sfdc.net,10.169.34.8,10.169.34.1
@@ -20,7 +20,7 @@ shared0-samminiongater2-4-syd.ops.sfdc.net,10.169.34.9,10.169.34.1
 shared0-samminiongater2-5-syd.ops.sfdc.net,10.169.34.10,10.169.34.1
 shared0-samminionreportcollector1-1-syd.ops.sfdc.net,10.221.127.133,10.221.127.129
 shared0-samminionreportcollector2-1-syd.ops.sfdc.net,10.221.127.132,10.221.127.129
-shared0-samminionreportcollector3-1-syd.ops.sfdc.net,10.221.127.131,10.221.127.129
+shared0-samminionreportcollector3-1-syd.ops.sfdc.net,10.221.127.134,10.221.127.129
 shared0-samminionwarden1-1-syd.ops.sfdc.net,10.169.32.133,10.169.32.129
-shared0-samminionwarden2-1-syd.ops.sfdc.net,10.169.32.131,10.169.32.129
+shared0-samminionwarden2-1-syd.ops.sfdc.net,10.169.32.134,10.169.32.129
 shared0-samminionwarden3-1-syd.ops.sfdc.net,10.169.32.132,10.169.32.129
