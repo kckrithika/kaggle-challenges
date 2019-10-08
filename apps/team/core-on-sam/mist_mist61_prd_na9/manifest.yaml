@@ -7,11 +7,11 @@ system:
   - containers:
     - env:
       - name: DB_SID
-        value: mist61a222utf
+        value: mist61b224utf
       - name: DB_INSTANCE_NAME
-        value: mist61a222utf-1
+        value: mist61b224utf-1
       - name: DB_USER
-        value: sleepy
+        value: bashful
       - name: DB_STATS_USER
         value: snowwhite
       - name: DB_CONN_NUM
@@ -48,6 +48,14 @@ system:
         value: true
       - name: CASAM_APP_COLOR
         value: blue
+      - name: CASAM_DEPLOYMENT_ID
+        value: na1-blue
+      - name: USE_K8S_COLOR_PERSISTENCE
+        value: 0
+      - name: dns_override_enabled
+        value: true
+      - name: dns_override
+        value: switchboard.core-on-sam.sfdc-role
       - name: SD_PORT_OVERRIDE
         value: 7442
       - name: CASAM_SETTINGS_PATH
@@ -64,7 +72,7 @@ system:
         valueFrom:
           fieldRef:
             fieldPath: spec.nodeName
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/coreonsam/casam:release_222-patch_19134048
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/coreonsam/casam:release_main_19195167
       livenessProbe:
         exec:
           command:
@@ -211,6 +219,10 @@ system:
         value: green
       - name: NEW_RELEASE_VERSION
         value: blue
+      - name: CASAM_DEPLOYMENT_ID
+        value: na1-blue
+      - name: USE_K8S_COLOR_PERSISTENCE
+        value: 0
       - name: READY_SERVER_COUNT
         value: 1
       - name: DB_SID
@@ -253,7 +265,7 @@ system:
         value: oracle
       - name: SQLMX_PASSWD
         value: test1234
-      image: sfci/casam/sequencer:b2126f
+      image: sfci/casam/sequencer:24451e
       livenessProbe:
         exec:
           command:
