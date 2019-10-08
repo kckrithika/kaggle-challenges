@@ -28,7 +28,7 @@ system:
 
     containers:
     - name: dfs
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/dfs/service:dfs-0.24.12
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/dfs/service:dfs-0.25.1
       # associate the log directory to a logical volume.
       volumeMounts:
       - name: logvol
@@ -80,7 +80,6 @@ system:
                 -Dcom.sun.management.jmxremote.rmi.port=8898
                 -Dcom.sun.management.jmxremote.ssl=false
                 -Dcom.sun.management.jmxremote.authenticate=false
-                -Dlogging.level.org.apache.http.impl.nio=DEBUG
                 -Xmx2G -Xms2G -XX:ParallelGCThreads=8"
       resources:
         limits: { cpu: "6", memory: "4Gi" }
