@@ -253,7 +253,7 @@ system:
       - name: SKIP_KAIJU
         value: 1
       - name: ZDT
-        value: false
+        value: true
       - name: KAIJU_REFOCUS_GETRESULT_URL
         value: https://refocus.internal.salesforce.com/v1/samples/
       - name: KAIJU_RUNTIME_TIMEOUT_MS
@@ -278,6 +278,10 @@ system:
         value: /certs/client/keys/client-key.pkcs8
       - name: client_cert
         value: /certs/client/certificates/client.pem
+      - name: DISABLE_GUS
+        value: 1
+      - name: DISABLE_ARGUS
+        value: 1
       image: sfci/casam/sequencer:24451e
       livenessProbe:
         exec:
