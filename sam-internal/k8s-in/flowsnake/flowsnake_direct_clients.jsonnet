@@ -178,12 +178,12 @@ local cre_production = {
         # -------------------------------
         # ---------- FRF fleet ----------
         # -------------------------------
-        "frf-flowsnake_prod": [wave_elt_production],
+        "frf-flowsnake_prod": [wave_elt_production, cre_production],
 
         # -------------------------------
         # ---------- HND fleet ----------
         # -------------------------------
-        "hnd-flowsnake_prod": [wave_elt_production],
+        "hnd-flowsnake_prod": [wave_elt_production, cre_production],
 
         # -------------------------------
         # ---------- IA2 fleet ----------
@@ -203,7 +203,7 @@ local cre_production = {
         # -------------------------------
         # ---------- PAR fleet ----------
         # -------------------------------
-        "par-flowsnake_prod": [wave_elt_production],
+        "par-flowsnake_prod": [wave_elt_production, cre_production],
 
         # -------------------------------
         # ---------- PH2 fleet ----------
@@ -218,7 +218,7 @@ local cre_production = {
         # -------------------------------
         # ---------- UKB fleet ----------
         # -------------------------------
-        "ukb-flowsnake_prod": [wave_elt_production],
+        "ukb-flowsnake_prod": [wave_elt_production, cre_production],
 
         # -------------------------------
         # ---------- YUL fleet (PCL) ----
