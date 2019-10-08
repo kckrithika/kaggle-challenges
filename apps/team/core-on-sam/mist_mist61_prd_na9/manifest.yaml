@@ -459,8 +459,8 @@ system:
       env:
       - name: SFDC_ENVIRONMENT
         value: mist61
-      - name: GRPC_SERVER_PORT
-        value: 7020
+      - name: GRPC_SERVER_BIND_ENDPOINT
+        value: "tcp://0.0.0.0:7020"
       - name: JVM_HEAP_MAX
         value: 4G
       image: sfci/servicelibs/switchboard:e705d6d727762043d2f86284b40873a0cf6f8dbc
