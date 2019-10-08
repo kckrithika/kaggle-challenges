@@ -40,7 +40,7 @@ system:
       resources:
         limits:
           cpu: "24"
-          memory: "16Gi"
+          memory: "24Gi"
       env:
       - name: KRB5_CONF
         value: /home/sfdc-usmt/krb-config/krb5_searchzk_prd.conf
@@ -87,8 +87,8 @@ system:
         name: sherpa-adm
       resources:
         limits:
-          cpu: "4"
-          memory: "16Gi"
+          cpu: "2"
+          memory: "8Gi"
       volumeMounts:
       - name: server-cert-vol
         mountPath: /server-certs
