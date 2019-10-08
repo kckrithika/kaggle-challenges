@@ -307,7 +307,7 @@ system:
       - "-deployerbotServiceEndpoint=http://localhost:8080/deploy"
       - "-interval=10m"
       - "-image=secretservice-watchdog"
-      - "-imageKey=sswatchdog" # The name of the object to update in samreleases.json.
+      - "-imageKey=sswatchdog" # The name of the object to update in secretsreleases.json.
       - "-owner="
       - "-samInternalTeamName=Secrets"
       - "-targetPhaseNumber=1"
@@ -321,6 +321,52 @@ system:
         httpGet:
           path: /liveness-probe
           port: 8081
+        initialDelaySeconds: 180
+        periodSeconds: 60
+    - name: imagedeployer-k4a-caiman-watchdog
+      image: dva/moe/deployerbot:2232-52c6f2bd1d8c35367afea1f4dbed660fd2e8454f
+      command: ["/moe/imagedeployer"]
+      args:
+      - "-deployerbotServiceEndpoint=http://localhost:8080/deploy"
+      - "-interval=10m"
+      - "-image=k4a-caiman-watchdog"
+      - "-imageKey=k4acaimanwatchdog" # The name of the object to update in secretsreleases.json.
+      - "-owner="
+      - "-samInternalTeamName=Secrets"
+      - "-targetPhaseNumber=1"
+      - "-imageRegistryEndpoint=ops0-artifactrepo2-0-prd.data.sfdc.net"
+      - "-imageRegistryImageSource=dva"
+      - "-heartbeat.defaultdecayduration=15m"
+      - "-livenessProbePort=8082"
+      ports:
+      - containerPort: 8082
+      livenessProbe:
+        httpGet:
+          path: /liveness-probe
+          port: 8082
+        initialDelaySeconds: 180
+        periodSeconds: 60
+    - name: imagedeployer-k4a-sam-watchdog
+      image: dva/moe/deployerbot:2232-52c6f2bd1d8c35367afea1f4dbed660fd2e8454f
+      command: ["/moe/imagedeployer"]
+      args:
+      - "-deployerbotServiceEndpoint=http://localhost:8080/deploy"
+      - "-interval=10m"
+      - "-image=hypersam"
+      - "-imageKey=k4asamwatchdog" # The name of the object to update in secretsreleases.json.
+      - "-owner=sam"
+      - "-samInternalTeamName=Secrets"
+      - "-targetPhaseNumber=1"
+      - "-imageRegistryEndpoint=ops0-artifactrepo2-0-prd.data.sfdc.net"
+      - "-imageRegistryImageSource=dva"
+      - "-heartbeat.defaultdecayduration=15m"
+      - "-livenessProbePort=8083"
+      ports:
+      - containerPort: 8083
+      livenessProbe:
+        httpGet:
+          path: /liveness-probe
+          port: 8083
         initialDelaySeconds: 180
         periodSeconds: 60
     volumes:
