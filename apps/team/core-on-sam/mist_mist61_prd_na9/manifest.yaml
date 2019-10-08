@@ -287,7 +287,6 @@ system:
         initialDelaySeconds: 60
         periodSeconds: 1
       name: sequencer
-      serviceAccountName: casamserviceaccount
       ports:
       - containerPort: 12062
       readinessProbe:
@@ -335,6 +334,7 @@ system:
       pod: na9
       serviceName: sequencer
     name: na9-mist61sequencer-prd
+    serviceAccountName: casamserviceaccount
     progressDeadlineSeconds: 300
     terminationGracePeriodSeconds: 60
     volumes:
