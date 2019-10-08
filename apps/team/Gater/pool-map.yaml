@@ -29,6 +29,8 @@ apps:
   - ia2/ia2-sam_gater
   - ord/ord-sam_gater
   - phx/phx-sam_gater
+ gate-manager-prod-canary:
+  - iad/iad-sam_gater 
  gate-manager-gia:
   - chx/chx-sam_gater
   - wax/wax-sam_gater
