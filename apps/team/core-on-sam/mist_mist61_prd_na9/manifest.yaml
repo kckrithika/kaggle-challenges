@@ -49,7 +49,7 @@ system:
       - name: CASAM_APP_COLOR
         value: blue
       - name: CASAM_DEPLOYMENT_ID
-        value: na1-blue
+        value: na9-blue
       - name: USE_K8S_COLOR_PERSISTENCE
         value: 0
       - name: SD_PORT_OVERRIDE
@@ -160,6 +160,9 @@ system:
       pod: na9
       serviceName: app
     name: na9-mist61app-prd
+    labels:
+      settings-path: mist.mist61.prd.na9.app
+      casam-deployment-id: na9-blue
     progressDeadlineSeconds: 300
     strategy:
       rollingUpdate:
@@ -216,7 +219,7 @@ system:
       - name: NEW_RELEASE_VERSION
         value: blue
       - name: CASAM_DEPLOYMENT_ID
-        value: na1-blue
+        value: na9-blue
       - name: USE_K8S_COLOR_PERSISTENCE
         value: 0
       - name: READY_SERVER_COUNT
