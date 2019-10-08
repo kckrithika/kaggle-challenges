@@ -463,7 +463,7 @@ system:
         value: 7020
       - name: JVM_HEAP_MAX
         value: 4G
-      image: sfci/servicelibs/switchboard:98471950537d76a57ccbf65d72f823d5724ef3bf
+      image: sfci/servicelibs/switchboard:e705d6d727762043d2f86284b40873a0cf6f8dbc
       livenessProbe:
         httpGet:
           path: /manage/health
@@ -485,15 +485,15 @@ system:
         name: envoy-config-volume
     - args:
       - --template
-      - /home/sfdc-sherpa/sfproxy/config/switchboard-sidecar/sfproxy-switchboard-sidecar.config.yaml.template
-      - --log-level
-      - trace
+      - /switchboard-config/switchboard-sidecar.config.yaml.template
+      # - --log-level
+      # - trace
       env:
       - name: SFDC_ENVIRONMENT
         value: mist61
-      - name: ENVOY_DEBUG_OPTIONS
-        value: --log-path /home/sfdc-sherpa/envoy.log
-      image: sfci/frontend-gateway/sfproxy:6651219
+      # - name: ENVOY_DEBUG_OPTIONS
+      #   value: --log-path /home/sfdc-sherpa/envoy.log
+      image: sfci/servicelibs/sherpa-envoy:705933b05813f73691ccacd03f6bc388de08d272
       livenessProbe:
         exec:
           command:
