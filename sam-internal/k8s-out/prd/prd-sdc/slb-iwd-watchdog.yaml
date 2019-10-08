@@ -58,6 +58,8 @@ spec:
           name: sfdchosts
       dnsPolicy: Default
       hostNetwork: true
+      nodeSelector:
+        pool: prd-sdc
       terminationGracePeriodSeconds: 5
       volumes:
       - hostPath:
