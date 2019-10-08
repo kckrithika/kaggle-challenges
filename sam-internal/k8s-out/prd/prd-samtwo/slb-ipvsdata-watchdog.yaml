@@ -50,7 +50,7 @@ spec:
         - --hostsConfigFile=/sfdchosts/hosts.json
         - --k8sapiserver=
         - --connPort=9107
-        - --monitorFrequency=10s
+        - --monitorFrequency=180s
         - --metricsEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80
         - --hostnameOverride=$(NODE_NAME)
         - --ignoreWeightsInConsistencyCheck=true
