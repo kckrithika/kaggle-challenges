@@ -49,13 +49,9 @@ system:
       - name: CASAM_APP_COLOR
         value: blue
       - name: CASAM_DEPLOYMENT_ID
-        value: na1-blue
+        value: na9-blue
       - name: USE_K8S_COLOR_PERSISTENCE
         value: 0
-      - name: dns_override_enabled
-        value: true
-      - name: dns_override
-        value: switchboard.core-on-sam.sfdc-role
       - name: SD_PORT_OVERRIDE
         value: 7442
       - name: CASAM_SETTINGS_PATH
@@ -164,6 +160,9 @@ system:
       pod: na9
       serviceName: app
     name: na9-mist61app-prd
+    labels:
+      settings-path: mist.mist61.prd.na9.app
+      casam-deployment-id: na9-blue
     progressDeadlineSeconds: 300
     strategy:
       rollingUpdate:
@@ -220,7 +219,7 @@ system:
       - name: NEW_RELEASE_VERSION
         value: blue
       - name: CASAM_DEPLOYMENT_ID
-        value: na1-blue
+        value: na9-blue
       - name: USE_K8S_COLOR_PERSISTENCE
         value: 0
       - name: READY_SERVER_COUNT
@@ -267,6 +266,16 @@ system:
         value: test1234
       - name: COREAPP_SETTINGS_PATH
         value: mist.mist61.prd.na9.app
+      - name: dns_override_enabled
+        value: true
+      - name: dns_override
+        value: switchboard.core-on-sam.sfdc-role
+      - name: ca_cert
+        value: /certs/ca/cacerts.pem
+      - name: client_key
+        value: /certs/client/keys/client-key.pkcs8
+      - name: client_cert
+        value: /certs/client/certificates/client.pem
       image: sfci/casam/sequencer:24451e
       livenessProbe:
         exec:
