@@ -11,5 +11,5 @@ local utils = import "util_functions.jsonnet";
 
 {
      servicemeshResiliency:
-       configs.estate == "prd-samtest",
+       configs.estate == "prd-sam",
 }
