@@ -86,7 +86,7 @@ spec:
           value: ajna0-funnel1-0-prd.data.sfdc.net
         - name: SFDC_METRICS_SERVICE_PORT
           value: "80"
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/stampy-webhook-admission-controller-1p:18
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/stampy-webhook-admission-controller-1p:19
         imagePullPolicy: Always
         name: stampy-webhook
         ports:
