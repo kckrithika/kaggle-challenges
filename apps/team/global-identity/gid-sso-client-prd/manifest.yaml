@@ -5,7 +5,7 @@ system:
     count: 1
     containers:
     - name: gid-sso-client
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/gid/gid-sso-client:e5348e4      
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/gid/gid-sso-client:e6d8a14     
       imagePullPolicy: Always
       env:
       - name: server_port
@@ -14,6 +14,8 @@ system:
         value: 15372
       - name: c2c_common_gdotBasePath
         value: http://cloudatlas-gid.global-identity.prd-sam.prd.slb.sfdc.net/scim
+      - name: gid_default_idp_url
+        value: https://gid-runtime-staging-prd.slb.sfdc.net
       ports:
       - containerPort: 8080
       livenessProbe:
