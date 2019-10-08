@@ -50,7 +50,7 @@ if electron_opa_utils.is_electron_opa_injector_test_cluster(configs.estate) then
           ],
         },
       ],
-      failurePolicy: "Ignore",  // TODO: Set to "Fail" when the code/configs are stable
+      failurePolicy: "Fail",  // Set to "Fail" on test estates to catch issues before promotion to production
       namespaceSelector: {
         matchLabels: {
           "electron-opa-injection": "enabled",

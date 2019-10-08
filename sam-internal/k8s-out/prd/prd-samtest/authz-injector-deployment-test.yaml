@@ -10,12 +10,10 @@ spec:
   selector:
     matchLabels:
       app: electron-opa-injector
-      electron-opa-injector.authz/inject: disabled
       name: electron-opa-injector
   template:
     metadata:
       annotations:
-        electron-opa-injector.authz/inject: disabled
         madkub.sam.sfdc.net/allcerts: |-
           {
            "certreqs": [
@@ -50,15 +48,14 @@ spec:
         scheduler.alpha.kubernetes.io/critical-pod: ""
       labels:
         app: electron-opa-injector
-        electron-opa-injector.authz/inject: disabled
         name: electron-opa-injector
     spec:
       containers:
       - args:
-        - --opa-template=/config-opa/electron-opa-container.yaml.template
-        - --opa-istio-template=/config-opa-istio/electron-opa-istio-container.yaml.template
-        - --opa-image=ops0-artifactrepo2-0-prd.data.sfdc.net/dva/electron_opa:7-1e63897bdf79986f258231d5b7ffaa83df03158a
-        - --opa-istio-image=ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/openpolicyagent/opa:0.13.2-istio-with-config-2
+        - --opa-template=/config/electron-opa-container.yaml.template
+        - --opa-istio-template=/config/electron-opa-istio-container.yaml.template
+        - --opa-image=ops0-artifactrepo2-0-prd.data.sfdc.net/dva/electron_opa:9-406399d98e8627a11303098578e595b3d84ab4ed
+        - --opa-istio-image=ops0-artifactrepo2-0-prd.data.sfdc.net/dva/electron_opa_istio:9-406399d98e8627a11303098578e595b3d84ab4ed
         - --log-level=debug
         - --port=17442
         - --cert=/server-certs/server/certificates/server.pem
@@ -103,7 +100,7 @@ spec:
           value: "80"
         - name: FAKE_REDEPLOY_VAR
           value: "0"
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/electron-opa-injection-webhook:16-966577dffa7a484e0c862bbac6013a9b4b57831e
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/electron-opa-injection-webhook:18-f5a35ecc641b6cf83c12ef4de716b98a37b4344e
         imagePullPolicy: IfNotPresent
         livenessProbe:
           exec:
@@ -137,10 +134,14 @@ spec:
           name: cert1
         - mountPath: /client-certs
           name: cert2
-        - mountPath: /config-opa
-          name: electron-opa-injector-configs-data-volume-opa
-        - mountPath: /config-opa-istio
-          name: electron-opa-injector-configs-data-volume-opa-istio
+        - mountPath: /config/electron-opa-container.yaml.template
+          name: electron-opa-sherpa-container
+        - mountPath: /config/electron-opa-istio-container.yaml.template
+          name: electron-opa-istio-sherpa-container
+        - mountPath: /config/electron-opa-no-sherpa-container.yaml.template
+          name: electron-opa-no-sherpa-container
+        - mountPath: /config/electron-opa-istio-no-sherpa-container.yaml.template
+          name: electron-opa-istio-no-sherpa-container
       - args:
         - /sam/madkub-client
         - --madkub-endpoint=https://10.254.208.254:32007
@@ -261,8 +262,14 @@ spec:
           medium: Memory
         name: tokens
       - configMap:
-          name: electron-opa-injector-configs-opa-container
-        name: electron-opa-injector-configs-data-volume-opa
+          name: electron-opa-sherpa-container
+        name: electron-opa-sherpa-container
       - configMap:
-          name: electron-opa-injector-configs-opa-istio-container
-        name: electron-opa-injector-configs-data-volume-opa-istio
+          name: electron-opa-istio-sherpa-container
+        name: electron-opa-istio-sherpa-container
+      - configMap:
+          name: electron-opa-no-sherpa-container
+        name: electron-opa-no-sherpa-container
+      - configMap:
+          name: electron-opa-istio-no-sherpa-container
+        name: electron-opa-istio-no-sherpa-container

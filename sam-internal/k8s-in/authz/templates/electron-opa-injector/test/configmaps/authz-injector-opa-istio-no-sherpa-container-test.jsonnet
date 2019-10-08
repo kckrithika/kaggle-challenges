@@ -8,7 +8,7 @@ if electron_opa_utils.is_electron_opa_injector_test_cluster(configs.estate) then
 apiVersion: "v1",
 kind: "ConfigMap",
 metadata: {
-  name: "electron-opa-injector-configs-opa-istio-container",
+  name: "electron-opa-istio-no-sherpa-container",
   namespace: versions.injectorNamespace,
   labels: {
     app: "electron-opa-injector",
@@ -17,7 +17,7 @@ metadata: {
   if utils.is_pcn(configs.kingdom) then configs.pcnEnableLabel else {},
 },
 data: {
-  "electron-opa-istio-container.yaml.template":
+  "electron-opa-istio-no-sherpa-container.yaml.template":
 'initContainers:
    - name: authz-config-gen
      image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/collection-erb-config-gen:19
@@ -28,13 +28,12 @@ data: {
          value: |
            services:
              electron:
-               url: http://demo-authz-http.service-mesh.localhost.mesh.force.com:5442
+               url: https://demo-authz-http.service-mesh.localhost.mesh.force.com:7442
                allow_insecure_tls: true
                credentials:
                  client_tls:
                    cert: /client-certs/client/certificates/client.pem
                    private_key: /client-certs/client/keys/client-key.pem
-
            bundles:
              authz:
                resource: v1/authzpolicy
@@ -42,7 +41,6 @@ data: {
                polling:
                  min_delay_seconds: 300
                  max_delay_seconds: 360
-
            plugins:
              envoy_ext_authz_grpc:
                addr: :9191
@@ -58,7 +56,6 @@ containers:
   - name: electron-opa-istio
     image: {{ .Image }}
     args:
-      - --plugin-dir=.
       - run
       - --server
       - --config-file=/config/opa_istio_config.yaml
