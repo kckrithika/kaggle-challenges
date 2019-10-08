@@ -5,7 +5,7 @@ system:
     count: 1
     containers:
     - name: sam-lensui
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cre/cre-lens-ui:1d595a8
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cre/cre-lens-ui:ffd4d50
       ports:
       - containerPort: 3000
       livenessProbe:
