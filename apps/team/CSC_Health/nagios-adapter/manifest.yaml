@@ -10,7 +10,7 @@ system:
         secretName: csc-nagios-auth
     containers:
     - name: nagios-adapter
-      image: dva/csc-health/nagios-adapter:45
+      image: dva/csc-health/nagios-adapter:46
       volumeMounts:
       - mountPath: /var/secrets/nagios-auth
         name: nagiosauthvol
