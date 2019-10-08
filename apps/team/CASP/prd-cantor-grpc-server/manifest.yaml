@@ -16,7 +16,7 @@ system:
           maxUnavailable: 1
       containers:
       - name: prd-cantor-grpc-server
-        image: dva/casp/cantor_strata:110
+        image: dva/casp/cantor_strata:112
         ports:
         - name: cantor-grpc
           containerPort: 7443

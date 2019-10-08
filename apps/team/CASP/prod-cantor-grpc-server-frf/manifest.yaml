@@ -14,7 +14,7 @@ system:
           maxUnavailable: 1
       containers:
       - name: prod-cantor-grpc-server-frf
-        image: dva/casp/cantor_strata:110
+        image: dva/casp/cantor_strata:112
         ports:
         - name: cantor-grpc
           containerPort: 7443
