@@ -271,7 +271,7 @@ system:
         value: /certs/ca/cacerts.pem
       - name: client_key
         value: /certs/client/keys/client-key.pkcs8
-      - name: client-cert
+      - name: client_cert
         value: /certs/client/certificates/client.pem
       image: sfci/casam/sequencer:24451e
       livenessProbe:
