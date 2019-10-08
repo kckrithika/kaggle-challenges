@@ -24,7 +24,7 @@ apps:
         - shared0-samminioncrosscloudplatform2-3-prd.eng.sfdc.net
         - shared0-samminioncrosscloudplatform2-4-prd.eng.sfdc.net
 
-    metadata-service-prd-perf:    # performance testing
+    metadata-service-prd-perf2:    # performance testing
     - name: prd/prd-sam_crosscloudplatform
       hostSubList:
         - shared0-samminioncrosscloudplatform3-3-prd.eng.sfdc.net
