@@ -433,7 +433,7 @@ system:
         value: 7020
       - name: JVM_HEAP_MAX
         value: 4G
-      image: sfci/servicelibs/switchboard:2d8189e3fa84fab3672869b29009e416870906bc
+      image: sfci/servicelibs/switchboard:98471950537d76a57ccbf65d72f823d5724ef3bf
       livenessProbe:
         httpGet:
           path: /manage/health
