@@ -14,7 +14,7 @@ system:
           maxUnavailable: 1
       containers:
       - name: prod-maiev-receiver-alternate
-        image: dva/maiev-receiver:jenkins-CASP-maiev-PR-612-5-itest
+        image: dva/maiev-receiver:52
         ports:
         - name: receiver-grpc
           containerPort: 7442
