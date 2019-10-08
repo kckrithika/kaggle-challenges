@@ -15,7 +15,7 @@ system:
   loadbalancers:
   - lbname: sam-lensui-lb
     function: default
-    slbenabled: true
+    slbEnabled: true
     ports:
       - port: 80
         targetport: 3000
