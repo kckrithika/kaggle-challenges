@@ -222,6 +222,8 @@ system:
         value: na9-blue
       - name: USE_K8S_COLOR_PERSISTENCE
         value: 0
+      - name: USE_K8_SERVICE_DISCOVERY
+        value: 1
       - name: READY_SERVER_COUNT
         value: 1
       - name: DB_SID
@@ -285,6 +287,7 @@ system:
         initialDelaySeconds: 60
         periodSeconds: 1
       name: sequencer
+      serviceAccountName: casamserviceaccount
       ports:
       - containerPort: 12062
       readinessProbe:
