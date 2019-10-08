@@ -30,12 +30,22 @@ apps:
         - shared0-samminioncrosscloudplatform3-3-prd.eng.sfdc.net
         - shared0-samminioncrosscloudplatform3-4-prd.eng.sfdc.net
     
-    metadata-service-prod:        # production
+    metadata-service-iad:        # production iad
     - name: iad/iad-sam_crosscloudplatform
+
+    metadata-service-ord:        # production ord
     - name: ord/ord-sam_crosscloudplatform
+
+    metadata-service-ukb:        # production ukb
     - name: ukb/ukb-sam_crosscloudplatform
+
+    metadata-service-hnd:        # production hnd
     - name: hnd/hnd-sam_crosscloudplatform
+
+    metadata-service-par:        # production par
     - name: par/par-sam_crosscloudplatform
+
+    metadata-service-frf:        # production frf
     - name: frf/frf-sam_crosscloudplatform
 
 
