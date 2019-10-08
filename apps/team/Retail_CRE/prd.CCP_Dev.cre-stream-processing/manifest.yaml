@@ -13,7 +13,7 @@ system:
       "routing.mesh.sfdc.net/enabled": "true"
     containers:
     - name: cre-sp-ccp-dev
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cre-fusion/services:stream-processor.2.1.0.0.PR-857.5e3e5db.2
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cre-fusion/services:stream-processor.2.1.0.0.PR-857.632d3c0.3
       env:
         - name: PUBLISHING_TOPIC
           value: sfdc.prod.cre__prd.ajna_local__cre_outbound_CCP_Shared_Dev
