@@ -15,9 +15,10 @@ MANIFEST_YAML_LOAD_BALANCERS_FIELD_NAME = "loadbalancers"
 MANIFEST_YAML_SYSTEM_FIELD_NAME = "system"
 
 MAX_OCTET_VALUE = 255
+
+PRIVATE_IP_PREFIX = "10."
 PRIVATE_RESERVED_IPS_FIELD_NAME = "privateReservedIps"
 PUBLIC_RESERVED_IPS_FIELD_NAME = "publicReservedIps"
-
 
 SPACES_IN_TAB = "  "
 
@@ -154,6 +155,7 @@ def process_vip_files(root_vip_yaml_path, public_reserved_ips, private_reserved_
 
     for vip_metadata in public_vips_to_add:
         add_public_ip(vip_metadata.fqdn,
+                      vip_metadata.kingdom,
                       vip_metadata.cluster,
                       public_reserved_ips,
                       public_subnets,
@@ -181,8 +183,18 @@ def delete_ip(fqdn, cluster, public_reserved_ips):
         print("Deleted {}'s reserved IP of {} from {}".format(fqdn, ip, cluster))
 
 
-def get_next_public_ip(cluster, public_reserved_ips, public_subnets, minimum_octet):
-    existing_ips = public_reserved_ips[cluster].values()
+def get_existing_public_ips_from_portal(kingdom, cluster):
+    ips = set()
+    portal_entries = portal_query.get_all_portal_entries(kingdom, cluster)
+    for portal_entry in portal_entries:
+        if not portal_entry.ip.startswith(PRIVATE_IP_PREFIX):
+            ips.add(portal_entry.ip)
+    return ips
+
+
+def get_next_public_ip(kingdom, cluster, public_reserved_ips, public_subnets, minimum_octet):
+    existing_ips = set(public_reserved_ips[cluster].values()).union(get_existing_public_ips_from_portal(kingdom, cluster))
+
     subnets = public_subnets[cluster].split(",")
     for subnet in subnets:
         first_three_octets = get_first_three_octets(subnet)
@@ -214,6 +226,7 @@ def get_reserved_inactive_fqdn(fqdn):
 
 
 def add_public_ip(fqdn,
+                  kingdom,
                   cluster,
                   public_reserved_ips,
                   public_subnets,
@@ -235,7 +248,7 @@ def add_public_ip(fqdn,
     else:
         public_reserved_ips[cluster] = {}
 
-    new_ip = get_next_public_ip(cluster, public_reserved_ips, public_subnets, minimum_octet)
+    new_ip = get_next_public_ip(kingdom, cluster, public_reserved_ips, public_subnets, minimum_octet)
     public_reserved_ips[cluster][fqdn] = new_ip
     print("Added {} to {} with public IP {}".format(fqdn, cluster, new_ip))
 
@@ -272,7 +285,7 @@ if __name__ == "__main__":
             fqdns.append(get_fqdn_from_portal(kingdom, cluster, lbname))
 
         for fqdn in fqdns:
-            add_public_ip(get_reserved_inactive_fqdn(fqdn), cluster, public_reserved_ips, public_subnets, minimum_octet)
+            add_public_ip(get_reserved_inactive_fqdn(fqdn), kingdom, cluster, public_reserved_ips, public_subnets, minimum_octet)
     else:
         process_vip_files(root_vip_yaml_path,
                           public_reserved_ips,

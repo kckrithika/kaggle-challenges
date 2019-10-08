@@ -64,6 +64,9 @@ def get_portal_entry_from_portal(kingdom, cluster, evaluator, value):
     for portal_entry in portal_entries:
         if value == evaluator(portal_entry):
             return portal_entry
-
     return None
+
+
+def get_all_portal_entries(kingdom, cluster):
+    return __get_portal_info(__get_portal_url(kingdom, cluster))
 
