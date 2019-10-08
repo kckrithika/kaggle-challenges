@@ -3,14 +3,14 @@ local meshfeatureflags = import "mesh-feature-flags.jsonnet";
 
 if meshfeatureflags.servicemeshResiliency then {
   apiVersion: "rbac.authorization.k8s.io/v1beta1",
-  kind: "RoleBinding",
+  kind: "ClusterRoleBinding",
   metadata: {
     name: "servicemeshresiliency",
     namespace: "service-mesh",
   },
   roleRef: {
     apiGroup: "rbac.authorization.k8s.io",
-    kind: "Role",
+    kind: "ClusterRole",
     name: "servicemeshresiliency",
   },
   subjects: [
