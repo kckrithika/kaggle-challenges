@@ -11,7 +11,6 @@ if sherpa_utils.is_sherpa_injector_prod_cluster(configs.estate) then
     name: "sherpa-injector-cfg",
     labels: {
       app: "sherpa-injector",
-      test: "test2",
     } +
     // samlabelfilter.json requires this label to be present on GCP deployments
     if utils.is_pcn(configs.kingdom) then configs.pcnEnableLabel else {},
