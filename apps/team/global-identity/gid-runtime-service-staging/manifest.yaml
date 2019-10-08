@@ -113,7 +113,7 @@ system:
     # Global Identity Loing and Runtime Service
     #####################################################################################
     - name: gid-runtime-service
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/gid/gid-runtime-service:9c104b1
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/gid/gid-runtime-service:b8638d8
       imagePullPolicy: Always
       env:
       - name: server_use_forward_headers
@@ -137,7 +137,7 @@ system:
       - name: kms_serverUrl
         value: https://smsapi1-0-prd.data.sfdc.net
       - name: c2c_common_gdotBasePath
-        value: http://cloudatlas-gid.global-identity.prd-sam.prd.slb.sfdc.net/scim
+        value: http://cloudatlas-gidv2.global-identity.prd-sam.prd.slb.sfdc.net/scim
       - name: vaas_baseUrl
         value: https://vaas-distributed-staging.herokuapp.com
 
