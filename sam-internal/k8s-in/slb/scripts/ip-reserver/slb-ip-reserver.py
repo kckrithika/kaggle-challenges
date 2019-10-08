@@ -79,44 +79,6 @@ def get_first_three_octets(subnet):
     return ".".join(octets[:3])
 
 
-def process_all_vips_yamls(root_vip_yaml_path,
-                           config_file_path,
-                           reserved_ips_file_path,
-                           minimum_octet):
-    # Read slb-reserved-ips.jsonnet
-    with open(reserved_ips_file_path, "r") as reserved_ips_file:
-        reserved_ips = json.load(reserved_ips_file)
-        public_reserved_ips = reserved_ips[PUBLIC_RESERVED_IPS_FIELD_NAME]
-        private_reserved_ips = reserved_ips[PRIVATE_RESERVED_IPS_FIELD_NAME]
-
-    # Read slbconfig.jsonnet
-    with open(config_file_path, "r") as slbconfig_file:
-        public_subnets = json.load(slbconfig_file)
-
-    process_vip_files(root_vip_yaml_path,
-                      public_reserved_ips,
-                      private_reserved_ips,
-                      public_subnets,
-                      minimum_octet)
-
-    # Sorts each kingdom's data by fourth octet value
-    for kingdom, data in public_reserved_ips.items():
-        public_reserved_ips[kingdom] = OrderedDict(sorted(data.items(), key=lambda item: item[1]))
-
-    public_reserved_ips = OrderedDict(sorted(public_reserved_ips.items()))
-    reserved_ips[PUBLIC_RESERVED_IPS_FIELD_NAME] = public_reserved_ips
-
-    # Sorts each kingdom's data by fourth octet value
-    for kingdom, data in private_reserved_ips.items():
-        private_reserved_ips[kingdom] = OrderedDict(sorted(data.items(), key=lambda item: item[1]))
-
-    private_reserved_ips = OrderedDict(sorted(private_reserved_ips.items()))
-    reserved_ips[PRIVATE_RESERVED_IPS_FIELD_NAME] = private_reserved_ips
-
-    with open(reserved_ips_file_path, "w") as reserved_ips_file:
-        json.dump(reserved_ips, reserved_ips_file, indent=2)
-
-
 def get_vip_metadatas(file_name, path):
     if file_name == MANIFEST_YAML_FILE_NAME:
         manifest = parse_yaml(path)
@@ -247,6 +209,10 @@ def add_private_ip(kingdom, cluster, fqdn, private_reserved_ips):
     print("Added {} to {} with private IP {}".format(fqdn, cluster, matching_portal_entry.ip))
 
 
+def get_reserved_inactive_fqdn(fqdn):
+    return "_" + fqdn
+
+
 def add_public_ip(fqdn,
                   cluster,
                   public_reserved_ips,
@@ -258,6 +224,14 @@ def add_public_ip(fqdn,
     if cluster in public_reserved_ips:
         if fqdn in public_reserved_ips[cluster]:
             return
+
+        reserved_inactive_fqdn = get_reserved_inactive_fqdn(fqdn)
+        if reserved_inactive_fqdn in public_reserved_ips[cluster]:
+            new_ip = public_reserved_ips[cluster][reserved_inactive_fqdn]
+            public_reserved_ips[cluster][fqdn] = new_ip
+            print("Added {} to {} with previously reserved public IP {}".format(fqdn, cluster, new_ip))
+            del public_reserved_ips[cluster][reserved_inactive_fqdn]
+            return
     else:
         public_reserved_ips[cluster] = {}
 
@@ -267,8 +241,60 @@ def add_public_ip(fqdn,
 
 
 if __name__ == "__main__":
-    process_all_vips_yamls(sys.argv[1],
-                           sys.argv[2],
-                           sys.argv[3],
-                           int(sys.argv[4]))
+    root_vip_yaml_path = sys.argv[1]
+    config_file_path = sys.argv[2]
+    reserved_ips_file_path = sys.argv[3]
+    minimum_octet = int(sys.argv[4])
+
+    # Read slb-reserved-ips.jsonnet
+    with open(reserved_ips_file_path, "r") as reserved_ips_file:
+        reserved_ips = json.load(reserved_ips_file)
+        public_reserved_ips = reserved_ips[PUBLIC_RESERVED_IPS_FIELD_NAME]
+        private_reserved_ips = reserved_ips[PRIVATE_RESERVED_IPS_FIELD_NAME]
+
+    # Read slbconfig.jsonnet
+    with open(config_file_path, "r") as slbconfig_file:
+        public_subnets = json.load(slbconfig_file)
+
+    if len(sys.argv) == 6:
+        kingdom_lbname_data = sys.argv[5].split(":")
+
+        kingdom = kingdom_lbname_data[0]
+        cluster = kingdom + "-" + DEFAULT_CLUSTER
+        if "-" in kingdom:
+            cluster = kingdom
+            kingdom = kingdom.split("-")[0]
+
+        lbnames = kingdom_lbname_data[1].split(",")
+
+        fqdns = []
+        for lbname in lbnames:
+            fqdns.append(get_fqdn_from_portal(kingdom, cluster, lbname))
+
+        for fqdn in fqdns:
+            add_public_ip(get_reserved_inactive_fqdn(fqdn), cluster, public_reserved_ips, public_subnets, minimum_octet)
+    else:
+        process_vip_files(root_vip_yaml_path,
+                          public_reserved_ips,
+                          private_reserved_ips,
+                          public_subnets,
+                          minimum_octet)
+
+    # Sorts each kingdom's data by fourth octet value
+    for kingdom, data in public_reserved_ips.items():
+        public_reserved_ips[kingdom] = OrderedDict(sorted(data.items(), key=lambda item: item[1]))
+
+    public_reserved_ips = OrderedDict(sorted(public_reserved_ips.items()))
+    reserved_ips[PUBLIC_RESERVED_IPS_FIELD_NAME] = public_reserved_ips
+
+    # Sorts each kingdom's data by fourth octet value
+    for kingdom, data in private_reserved_ips.items():
+        private_reserved_ips[kingdom] = OrderedDict(sorted(data.items(), key=lambda item: item[1]))
+
+    private_reserved_ips = OrderedDict(sorted(private_reserved_ips.items()))
+    reserved_ips[PRIVATE_RESERVED_IPS_FIELD_NAME] = private_reserved_ips
+
+    with open(reserved_ips_file_path, "w") as reserved_ips_file:
+        json.dump(reserved_ips, reserved_ips_file, indent=2)
+
     print("Run successfully")
