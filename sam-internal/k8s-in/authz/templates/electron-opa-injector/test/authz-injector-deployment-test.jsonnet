@@ -173,19 +173,19 @@ configs.deploymentBase("authz-injector") {
               },
               {
                 name: "electron-opa-sherpa-container",
-                mountPath: "/config",
+                mountPath: "/config/electron-opa-container.yaml.template",
               },
               {
                 name: "electron-opa-istio-sherpa-container",
-                mountPath: "/config",
+                mountPath: "/config/electron-opa-istio-container.yaml.template",
               },
               {
                 name: "electron-opa-no-sherpa-container",
-                mountPath: "/config",
+                mountPath: "/config/electron-opa-no-sherpa-container.yaml.template",
               },
               {
                 name: "electron-opa-istio-no-sherpa-container",
-                mountPath: "/config",
+                mountPath: "/config/electron-opa-istio-no-sherpa-container.yaml.template",
               },
             ],
             ports+: [
