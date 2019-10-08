@@ -70,5 +70,5 @@ if (configs.estate != "prd-samtest" && configs.estate != "prd-samdev") then
             name: "manifest-watcher",
         } + configs.ownerLabel.sam,
         name: "manifest-watcher",
-        },
+    },
 } else "SKIP"
