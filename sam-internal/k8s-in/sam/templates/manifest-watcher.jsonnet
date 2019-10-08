@@ -2,6 +2,7 @@ local configs = import "config.jsonnet";
 local samimages = (import "samimages.jsonnet") + { templateFilename:: std.thisFile };
 local utils = import "util_functions.jsonnet";
 
+if (configs.estate != "prd-samtest" && configs.estate != "prd-samdev") then
 {
 
     kind: "Deployment",
@@ -69,5 +70,5 @@ local utils = import "util_functions.jsonnet";
             name: "manifest-watcher",
         } + configs.ownerLabel.sam,
         name: "manifest-watcher",
-    },
-}
+        },
+} else "SKIP"
