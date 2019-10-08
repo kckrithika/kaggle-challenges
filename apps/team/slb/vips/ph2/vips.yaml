@@ -736,7 +736,7 @@
     addheaders:
     - name: "X-Salesforce-VIP"
       value: "SLB"
-- lbname: org-cce2e-cs46
+- lbname: org-orgcerttest-cs46
   servers:
     - cs46-app1-5-ph2.ops.sfdc.net
     - cs46-app2-4-ph2.ops.sfdc.net
@@ -777,7 +777,7 @@
     addheaders:
     - name: "X-Salesforce-VIP"
       value: "SLB"
-- lbname: org-cce2e-cs49
+- lbname: org-orgcerttest-cs49
   servers:
     - cs49-app1-1-ph2.ops.sfdc.net
     - cs49-app2-3-ph2.ops.sfdc.net
