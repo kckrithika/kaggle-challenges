@@ -10,9 +10,9 @@ if meshfeatureflags.servicemeshResiliency then {
   },
   rules: [
     {
-      apiGroups: ["apiextensions.k8s.io"],
+      apiGroups: ["extensions"],
       resources: [
-        "customresourcedefinitions",
+        "deployments",
       ],
       verbs: ["get", "list", "watch", "create", "update", "patch", "delete"],
     },
