@@ -10,10 +10,12 @@ spec:
   selector:
     matchLabels:
       app: electron-opa-injector
+      electron-opa-injector.authz/inject: disabled
       name: electron-opa-injector
   template:
     metadata:
       annotations:
+        electron-opa-injector.authz/inject: disabled
         madkub.sam.sfdc.net/allcerts: |-
           {
            "certreqs": [
@@ -48,6 +50,7 @@ spec:
         scheduler.alpha.kubernetes.io/critical-pod: ""
       labels:
         app: electron-opa-injector
+        electron-opa-injector.authz/inject: disabled
         name: electron-opa-injector
     spec:
       containers:

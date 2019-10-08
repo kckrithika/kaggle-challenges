@@ -27,8 +27,10 @@ configs.deploymentBase("authz-injector") {
         labels: {
           app: "electron-opa-injector",
           name: "electron-opa-injector",
+          "electron-opa-injector.authz/inject": "disabled",
         },
         annotations: {
+          "electron-opa-injector.authz/inject": "disabled",
           "scheduler.alpha.kubernetes.io/critical-pod": "",
           "madkub.sam.sfdc.net/allcerts":
           std.manifestJsonEx(
