@@ -205,11 +205,11 @@ if (istioPhases.phaseNum == 2) then
             },
             resources: {
               limits: {
-                cpu: "2000m",
+                cpu: "4000m",
                 memory: "4096Mi",
               },
               requests: {
-                cpu: "500m",
+                cpu: "1000m",
                 memory: "2048Mi",
               },
             },
