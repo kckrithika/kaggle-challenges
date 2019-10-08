@@ -20,8 +20,8 @@ data:
       "org-cce2e-cs43-slb-ia2.slb.sfdc.net": "13.110.50.116",
       "org-cce2e-cs44-slb-ia2.slb.sfdc.net": "13.110.50.117",
       "org-cce2e-cs45-slb-ia2.slb.sfdc.net": "13.110.50.118",
-      "org-cce2e-cs46-slb-ia2.slb.sfdc.net": "13.110.50.119",
-      "org-cce2e-cs49-slb-ia2.slb.sfdc.net": "13.110.50.120"
+      "org-orgcerttest-cs46-slb-ia2.slb.sfdc.net": "13.110.50.119",
+      "org-orgcerttest-cs49-slb-ia2.slb.sfdc.net": "13.110.50.120"
     }
 kind: ConfigMap
 metadata:
