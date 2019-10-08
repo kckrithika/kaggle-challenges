@@ -14,7 +14,7 @@ system:
           maxUnavailable: 1
       containers:
       - name: prd-mysql-shard-a-stage
-        image: dva/casp/mysql_strata:jenkins-CASP-mysql-alex-backups-smart-2-itest
+        image: dva/casp/mysql_strata:jenkins-CASP-mysql-alex-backups-smart-4-itest
         ports:
         - name: mysql-stage
           containerPort: 3306
