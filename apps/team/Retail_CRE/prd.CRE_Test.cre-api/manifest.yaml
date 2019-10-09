@@ -13,8 +13,16 @@ system:
       "routing.mesh.sfdc.net/enabled": "true"
     containers:
     - name: cre-api-cre-test
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cre/cre-api:2.0.1.develop.41fcaef.56
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cre/cre-api:2.1.1.develop.7438048.109
       env:
+        - name: DOMAIN_ID
+          value: cre
+        - name: SCHEMA_IDS
+          value: records
+        - name: SCHEMA_VERSIONS
+          value: 0.1.4
+        - name: UNIVERSAL_SEARCH_DESTINATION
+          value: universal-search.universal-search.localhost.mesh.force.com:5443
         - name: SPRING_PROFILES_ACTIVE
           value: dev
         - name: METRICS_KAFKA_TOPIC
@@ -41,8 +49,6 @@ system:
           value: true
         - name: C2C_TENANT_GROUP_ONLY
           value: false
-        - name: DUMMY_VAR
-          value: helloworld
         - name: JVM_ARGS
           value: "-Djava.util.concurrent.ForkJoinPool.common.parallelism=8
                   -verbose:gc -XX:+PrintGCDateStamps -XX:+PrintHeapAtGC
