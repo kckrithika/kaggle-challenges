@@ -122,7 +122,7 @@ items:
     namespace: vaishnavi-spark-test
   spec:
     minReadySeconds: 15
-    replicas: 1
+    replicas: 2
     selector:
       matchLabels:
         service: prometheus-scraper

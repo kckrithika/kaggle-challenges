@@ -112,7 +112,7 @@ if std.length(flowsnake_clients.clients) > 0 then (
                 namespace: client.namespace,
             },
             spec+: {
-                replicas: if std.objectHas(flowsnake_images.feature_flags, "prometheus_ha") then 2 else 1,
+                replicas: 2,
                 minReadySeconds: 15,
                 selector: {
                     matchLabels: {
