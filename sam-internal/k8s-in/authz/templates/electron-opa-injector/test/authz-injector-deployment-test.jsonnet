@@ -78,7 +78,7 @@ configs.deploymentBase("authz-injector") {
         containers: [
           {
             name: "injector",
-            image: "ops0-artifactrepo2-0-prd.data.sfdc.net/dva/electron-opa-injection-webhook:18-f5a35ecc641b6cf83c12ef4de716b98a37b4344e",
+            image: "ops0-artifactrepo2-0-prd.data.sfdc.net/dva/electron-opa-injection-webhook:22-57dec549a0dc3d87277a1e782492dc20b4968411",
             imagePullPolicy: "IfNotPresent",
             terminationMessagePolicy: "FallbackToLogsOnError",
             args: [
@@ -176,18 +176,22 @@ configs.deploymentBase("authz-injector") {
               {
                 name: "electron-opa-sherpa-container",
                 mountPath: "/config/electron-opa-container.yaml.template",
+                subPath: "electron-opa-container.yaml.template"
               },
               {
                 name: "electron-opa-istio-sherpa-container",
                 mountPath: "/config/electron-opa-istio-container.yaml.template",
+                subPath: "electron-opa-istio-container.yaml.template"
               },
               {
                 name: "electron-opa-no-sherpa-container",
                 mountPath: "/config/electron-opa-no-sherpa-container.yaml.template",
+                subPath: "electron-opa-no-sherpa-container.yaml.template"
               },
               {
                 name: "electron-opa-istio-no-sherpa-container",
                 mountPath: "/config/electron-opa-istio-no-sherpa-container.yaml.template",
+                subPath: "electron-opa-istio-no-sherpa-container.yaml.template"
               },
             ],
             ports+: [
