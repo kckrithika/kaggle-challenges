@@ -89,9 +89,8 @@ if slbconfigs.isSlbEstate then configs.deploymentBase("slb") {
                           configs.kube_config_volume,
                           slbconfigs.cleanup_logs_volume,
                           slbconfigs.proxyconfig_volume,
-                      ] + (if slbimages.phase == "1" then
-                            madkub.madkubSlbCertVolumes(certDirs) + madkub.madkubSlbMadkubVolumes() + [slbconfigs.reservedips_volume]
-                           else [])),
+                          slbconfigs.reservedips_volume,
+                      ] + madkub.madkubSlbCertVolumes(certDirs) + madkub.madkubSlbMadkubVolumes()),
                       containers: [
                           {
                               name: "slb-vip-watchdog",
@@ -121,11 +120,9 @@ if slbconfigs.isSlbEstate then configs.deploymentBase("slb") {
                                   slbconfigs.slb_volume_mount,
                                   slbconfigs.logs_volume_mount,
                                   configs.sfdchosts_volume_mount,
+                                  slbconfigs.reservedips_volume_mount,
                               ] +
-                              (if slbimages.phase == "1" then
-                                madkub.madkubSlbCertVolumeMounts(certDirs)
-                                + [slbconfigs.reservedips_volume_mount]
-                              else [])),
+                              madkub.madkubSlbCertVolumeMounts(certDirs)),
                               env: [
                                   slbconfigs.node_name_env,
                                   slbconfigs.function_namespace_env,
@@ -137,34 +134,24 @@ if slbconfigs.isSlbEstate then configs.deploymentBase("slb") {
                           slbshared.slbNodeApi(slbports.slb.slbNodeApiPort, true),
                           slbshared.slbLogCleanup,
                           slbshared.slbManifestWatcher(),
-                      ] + (if slbimages.phase == "1" then [madkub.madkubRefreshContainer(certDirs)] else []),
+                          madkub.madkubRefreshContainer(certDirs),
+                      ],
                       dnsPolicy: "Default",
+                      initContainers: [
+                          madkub.madkubInitContainer(certDirs),
+                      ],
                   } + slbconfigs.getGracePeriod()
-                  + slbconfigs.slbEstateNodeSelector
-                  + (if slbimages.phase == "1" then {
-                            initContainers: [
-                                madkub.madkubInitContainer(certDirs),
-                            ],
-                        }
-                    else {}),
+                  + slbconfigs.slbEstateNodeSelector,
             metadata: {
                 labels: {
                     name: "slb-vip-watchdog",
                     apptype: "monitoring",
                 } + configs.ownerLabel.slb,
                 namespace: "sam-system",
-            }
-            +
-            (
-if slbimages.phase == "1" then
-            {
                 annotations: {
                     "madkub.sam.sfdc.net/allcerts": std.manifestJsonEx(madkub.madkubSlbCertsAnnotation(certDirs), " "),
                 },
-            }
-            else
-                {}
-            ),
+            },
         },
         strategy: {
             type: "RollingUpdate",
