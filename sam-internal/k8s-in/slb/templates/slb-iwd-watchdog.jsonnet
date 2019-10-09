@@ -1,4 +1,5 @@
 local configs = import "config.jsonnet";
+local kingdom = std.extVar("kingdom");
 local slbflights = import "slbflights.jsonnet";
 local slbimages = (import "slbimages.jsonnet") + { templateFilename:: std.thisFile };
 local slbconfigs = (import "slbconfig.jsonnet") + { dirSuffix:: "slb-iwd-health" };
@@ -59,10 +60,16 @@ if slbconfigs.isSlbEstate && slbflights.enableIWDHealth then configs.daemonSetBa
                         ],
                     } + configs.ipAddressResourceRequest,
                 ],
-                nodeSelector: {
-                    pool: slbconfigs.slbEstate,
-                },
-            } + slbconfigs.getGracePeriod()
+                }
+                +
+                (if kingdom == "prd" then
+                {
+                    nodeSelector: {
+                        pool: slbconfigs.slbEstate,
+                    },
+                }
+                else {})
+            + slbconfigs.getGracePeriod()
             + slbconfigs.getDnsPolicy(),
         },
         updateStrategy: {
