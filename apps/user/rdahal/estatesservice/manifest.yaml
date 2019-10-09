@@ -16,12 +16,12 @@ system:
     - name: estatesservice
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/rdahal/estatesservice:rdahal-201909241
       ports:
-      - containerPort: 9090
+      - containerPort: 8443
       livenessProbe:
         httpGet:
           scheme: HTTPS
           path: /v1.0/info
-          port: 9090
+          port: 8443
         initialDelaySeconds: 500
       volumeMounts:
         - mountPath: /server-certs
@@ -30,7 +30,7 @@ system:
           name: client-cert
       env:
       - name: ESTATESSERVICE_PORT
-        value: 9090
+        value: 8443
       - name: ESTATESSERVICE_FUNNEL_ENDPOINT
         value: http://$(SFDC_METRICS_SERVICE_HOST):$(SFDC_METRICS_SERVICE_PORT)
       - name: ESTATESSERVICE_RPMURL
@@ -60,4 +60,4 @@ system:
     slbenabled: true
     ports:
       - port: 443
-        targetport: 9090
+        targetport: 8443
