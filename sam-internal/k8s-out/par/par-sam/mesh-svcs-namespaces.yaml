@@ -17,6 +17,7 @@ items:
   metadata:
     labels:
       istio-injection: enabled
+      sherpa-injection: enabled
     name: service-mesh
 kind: List
 metadata:
