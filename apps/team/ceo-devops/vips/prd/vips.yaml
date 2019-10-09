@@ -371,3 +371,20 @@
     healthport: 8080
     healthprotocol: http
     healthpath: /ha/health-check
+
+- lbname: cjemaster227
+  customlbname: cjemaster227
+  cnames:
+  - cname: adoptionappspkgingci.slb.sfdc.net
+  servers:
+  - cjemaster227-1-prd.dop.sfdc.net
+  - cjemaster227-2-prd.dop.sfdc.net
+  ports:
+  - port: 443
+    targetport: 8080
+    lbtype: http
+    tls: true
+    reencrypt: false
+    healthport: 8080
+    healthprotocol: http
+    healthpath: /ha/health-check
