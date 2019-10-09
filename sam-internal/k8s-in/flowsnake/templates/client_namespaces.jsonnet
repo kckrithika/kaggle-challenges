@@ -57,7 +57,7 @@ if std.length(flowsnake_clients.clients) > 0 then (
             automountServiceAccountToken: true,
             metadata: {
                 namespace: client.namespace,
-                name: "prometheus-scraper-" + client.namespace + "-ServiceAccount",
+                name: "prometheus-scraper-" + client.namespace + "-serviceaccount",
             },
         },
         {
@@ -98,20 +98,6 @@ if std.length(flowsnake_clients.clients) > 0 then (
                     resources: ["pods"],
                     verbs: ["get", "list", "watch"],
                 },
-                {
-                    apiGroups: ["apiextensions.k8s.io"],
-                    resources: ["customresourcedefinitions"],
-                    verbs: ["get", "list", "watch"],
-                },
-                {
-                    apiGroups: ["sparkoperator.k8s.io"],
-                    resources: ["sparkapplications", "scheduledsparkapplications"],
-                    verbs: ["get", "list", "watch"],
-                },
-                {
-                    nonResourceURLs: ["/metrics", "/metrics/cadvisor"],
-                    verbs: ["get"],
-                },
             ],
         },
     ] +
@@ -138,13 +124,13 @@ if std.length(flowsnake_clients.clients) > 0 then (
                         labels: {
                             apptype: "monitoring",
                             service: "prometheus-scraper",
-                            flowsnakeOwner: client.owner_name,
+                            flowsnakeOwner: client.namespace,
                             flowsnakeRole: "PrometheusScraper",
                             name: "prometheus-scraper",
                         },
                     },
                     spec: {
-                        serviceAccountName: "prometheus-scraper-" + client.namespace + "-ServiceAccount",
+                        serviceAccountName: "prometheus-scraper-" + client.namespace + "-serviceaccount",
                         containers: [
                             {
                                 args: [
@@ -167,11 +153,7 @@ if std.length(flowsnake_clients.clients) > 0 then (
                                   },
                                   {
                                     mountPath: "/etc/config",
-                                    name: "prometheus-server-conf",
-                                  },
-                                  {
-                                    mountPath: "/etc/pki_service",
-                                    name: "certs-volume",
+                                    name: "prometheus-server-conf-" + client.namespace,
                                   },
                                 ],
                                 livenessProbe: {
