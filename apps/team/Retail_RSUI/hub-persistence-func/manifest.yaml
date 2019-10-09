@@ -21,7 +21,7 @@ system:
 
       containers:
         - name: hub-persistence
-          image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/retail/hub-persistence:0.3.4
+          image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/retail/hub-persistence:0.3.6
           ports:
             # Jetty http1 ports for incoming public traffic via SLB
             - containerPort: 7022
