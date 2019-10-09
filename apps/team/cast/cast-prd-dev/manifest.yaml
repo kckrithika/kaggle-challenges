@@ -9,7 +9,7 @@ system:
   - name: cast-prd-dev
     identity:
       serviceName: cast-prd-dev
-    count: 3
+    count: 1
     strategy:
       type: RollingUpdate
       rollingUpdate:
