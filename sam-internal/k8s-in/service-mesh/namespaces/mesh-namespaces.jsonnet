@@ -18,6 +18,8 @@ local istioSvcNamespaces = {
 
 {
   allNs: mesh_namespaces,
+
+  shouldDeployToKingdom(namespaceName, kingdom):: std.count(istioSvcNamespaces[kingdom], namespaceName) > 0,
   
   newMeshNamespace(NamespaceName):: {
     apiVersion: "v1",

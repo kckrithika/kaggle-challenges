@@ -3,6 +3,6 @@
 
 local nsbase = import "namespaces/mesh-namespaces.jsonnet";
 local configs = import "config.jsonnet";
-if ((configs.estate == "prd-samdev") || (configs.estate == "prd-samtest")) then
+if (nsbase.shouldDeployToKingdom("search-scale-safely", configs.kingdom)) then
         nsbase.newMeshNamespace("search-scale-safely")
 else "SKIP"
