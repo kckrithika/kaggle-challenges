@@ -11,12 +11,14 @@ system:
     containers:
     - name: gate-manager
       # container image/version to run. published separately.
-      image: sfci/gater/gate-manager:1.15.0
+      image: sfci/services/sfdc-bazel/gater/gate-manager:1.16.2
       args:
         - --server.port=-1
-        - --gater-service.thread.pool.max-size=0
+        - --gater-service.thread.pool.max-size=16
+        - --gater.grpc.threadpool.size=16
         - --logging.sfdc.stderr.level=OFF
         - --logging.json.stdout.level=INFO
+        - --publish-specific-metrics=CONDITIONAL
       # associate the /log directory to a logical volume. logging.dir is set to this in the startup script args above,
       # and this volume mount is mapped to a host directory below in the volumes section. Underneath this directory
       # we will end up with the following sub-directories: gater/app, gater/jvm, gater/json. 
@@ -27,6 +29,12 @@ system:
         name: dbvol
       # Specify a liveness probe pod will be restarted if this returns a status outside the range of 200-399
       livenessProbe:
+        httpGet:
+          path: /manage/health
+          port: 15372
+        initialDelaySeconds: 60 
+        timeoutSeconds: 10
+      readinessProbe:
         httpGet:
           path: /manage/health
           port: 15372
