@@ -484,16 +484,14 @@ system:
       - mountPath: /home/sfdc-switchboard/sherpa-envoy-config-volume
         name: envoy-config-volume
     - args:
-      - --template
-      - /switchboard-config/switchboard-sidecar.config.yaml.template
-      # - --log-level
-      # - trace
+      - --template /home/sfdc-sherpa/sfproxy/config/switchboard-sidecar/sfproxy-switchboard-sidecar.config.yaml.template
+      - --log-level trace
       env:
       - name: SFDC_ENVIRONMENT
         value: mist61
-      # - name: ENVOY_DEBUG_OPTIONS
-      #   value: --log-path /home/sfdc-sherpa/envoy.log
-      image: sfci/servicelibs/sherpa-envoy:705933b05813f73691ccacd03f6bc388de08d272
+      - name: ENVOY_DEBUG_OPTIONS
+        value: --log-path /home/sfdc-sherpa/envoy.log
+      image: sfci/frontend-gateway/sfproxy:11db4fc
       livenessProbe:
         exec:
           command:
