@@ -120,28 +120,7 @@ local ingressGatewayCertConfigs = [ingressGatewayClientCertConfig, ingressGatewa
 
   accessLogFile: if configs.kingdom == "prd" then "/dev/stdout" else "",
 
-  sidecarEgressHosts: [
-    // System namespaces
-    "mesh-control-plane/*",
-    "z9s-default/*",
-
-    // App namespaces
-    "app/*",
-    "casam/*",
-    "ccait/*",
-    "core-on-sam-sp2/*",
-    "emailinfra/*",
-    "funnel/*",
-    "gater/*",
-    "retail-cre/*",
-    "retail-dfs/*",
-    "retail-mds/*",
-    "retail-rsui/*",
-    "scone/*",
-    "search-scale-safely/*",
-    "service-mesh/*",
-    "universal-search/*",
-  ],
+  sidecarEgressHosts: istioPhases.sidecarEgressHosts,
 
   istioEnvoyVolumes():: [
     {
