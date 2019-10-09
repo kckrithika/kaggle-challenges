@@ -12,9 +12,12 @@ local utils = import "util_functions.jsonnet";
     // ========
     stampyWebhookImage: (
         // need to use a full image path. relative paths like 'dva/stampy-webhook-admission-controller-1p' won't work here.
-
-        if utils.is_pcn(configs.kingdom) then 
-            "%s/docker-gcp/stampy-webhook-admission-controller-1p:19" % configs.registry
+        if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" then 
+            "%s/dva/stampy-webhook-admission-controller-1p:20" % configs.registry
+        else if configs.estate == "prd-sam" then
+            "%s/dva/stampy-webhook-admission-controller-1p:19" % configs.registry
+        else if configs.estate == "xrd-sam" then
+            "%s/dva/stampy-webhook-admission-controller-1p:19" % configs.registry
         else
             "%s/dva/stampy-webhook-admission-controller-1p:19" % configs.registry
     ),
