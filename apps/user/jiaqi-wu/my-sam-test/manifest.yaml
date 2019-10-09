@@ -1,3 +1,4 @@
+---
 apiVersion: v1
 system:
   functions:
@@ -17,7 +18,31 @@ system:
     function: samhello
     slbenabled: true
     ports:
-      - port: 9090
+      - port: 80
         targetport: 9090
         lbtype: tcp
 
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: Gateway
+metadata:
+  annotations:
+    manifestctl.sam.data.sfdc.net/swagger: disable
+    niko/fake.change.for.redeploy: "3"
+  name: ingressgateway
+  namespace: user-jiaqi-wu
+spec:
+  selector:
+    istio: ingressgateway
+  servers:
+  - hosts:
+    - 'samhellolb.user-jiaqi-wu.prd-sam.prd.slb.sfdc.net'
+    port:
+      name: http
+      number: 80
+      protocol: HTTP
+    # tls:
+    #   caCertificates: /server-certs/ca.pem
+    #   mode: SIMPLE
+    #   privateKey: /server-certs/server/keys/server-key.pem
+    #   serverCertificate: /server-certs/server/certificates/server.pem
