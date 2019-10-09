@@ -16,7 +16,6 @@ local configs = import "config.jsonnet";
   isSecretsEstate: std.setMember(estate, $.secretsEstates),
 
   k4aSamWdEstates: std.set([
-    "prd-samtest",
   ]),
   k4aSamWdEnabled: std.setMember(estate, $.k4aSamWdEstates),
 
