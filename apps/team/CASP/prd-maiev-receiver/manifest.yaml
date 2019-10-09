@@ -34,7 +34,7 @@ system:
         - name: HTTP_PORT
           value: "8085"
         - name: BASE_PATH
-          value: "/v1"
+          value: "/v1/*"
         - name: NODENAME
           valueFrom:
             fieldRef:
