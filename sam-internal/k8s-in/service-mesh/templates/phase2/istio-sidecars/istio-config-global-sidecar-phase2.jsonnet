@@ -20,7 +20,7 @@ if (istioPhases.phaseNum == 2) then
         port: {
             number: 7443,
             protocol: "GRPC",
-            name: "http2-tls",
+            name: "grpc-tls",
         },
         hosts: mcpIstioConfig.sidecarEgressHosts,
       },
@@ -28,7 +28,7 @@ if (istioPhases.phaseNum == 2) then
         port: {
             number: 7442,
             protocol: "HTTP",
-            name: "http1-tls",
+            name: "http-tls",
         },
         hosts: mcpIstioConfig.sidecarEgressHosts,
       },
@@ -36,7 +36,7 @@ if (istioPhases.phaseNum == 2) then
         port: {
             number: 7014,
             protocol: "HTTP",
-            name: "http1-plain",
+            name: "http-plain",
         },
         hosts: mcpIstioConfig.sidecarEgressHosts,
       },

@@ -27,7 +27,7 @@ spec:
     - service-mesh/*
     - universal-search/*
     port:
-      name: http2-tls
+      name: grpc-tls
       number: 7443
       protocol: GRPC
   - hosts:
@@ -49,7 +49,7 @@ spec:
     - service-mesh/*
     - universal-search/*
     port:
-      name: http1-tls
+      name: http-tls
       number: 7442
       protocol: HTTP
   - hosts:
@@ -71,7 +71,7 @@ spec:
     - service-mesh/*
     - universal-search/*
     port:
-      name: http1-plain
+      name: http-plain
       number: 7014
       protocol: HTTP
   - hosts:
