@@ -82,7 +82,7 @@ system:
     # Service Protection
     #####################################################################################
     - name: service-protection
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/gid/service-protection:038118b
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/gid/service-protection:4b7a846
       imagePullPolicy: Always
       env:
       - name: server_use_forward_headers
@@ -94,7 +94,7 @@ system:
       - name: proxy_target
         value: http://localhost:8080
       - name: spe_ratelimit_limit
-        value: 10
+        value: 1250
       - name: spe_ratelimit_timeWindow
         value: 5
 
