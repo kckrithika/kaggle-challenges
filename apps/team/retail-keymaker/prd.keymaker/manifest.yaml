@@ -4,7 +4,7 @@ system:
     count: 1
     containers:
     - name: keymaker
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/keymaker/key-maker:1.0.11
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/ccp/keymaker:a76bdc6
       command: ["/opt/keymaker/sbin/keymaker-samtest.sh"]
       livenessProbe:
         exec:
