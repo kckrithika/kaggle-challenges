@@ -18,7 +18,7 @@ system:
           type: client
     containers:
     - name: astcx-ui
-      image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/ast-portal:6
+      image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/ast-portal:7
       env:
       - name: AST_CX_SERVER_TYPE
         value: "cron"
