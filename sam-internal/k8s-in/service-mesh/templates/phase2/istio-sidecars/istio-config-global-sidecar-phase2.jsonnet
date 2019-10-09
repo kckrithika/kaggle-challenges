@@ -17,6 +17,35 @@ if (istioPhases.phaseNum == 2) then
   spec: {
     egress: [
       {
+        port: {
+            number: 7443,
+            protocol: "GRPC",
+            name: "http2-tls",
+        },
+        hosts: mcpIstioConfig.sidecarEgressHosts,
+      },
+      {
+        port: {
+            number: 7442,
+            protocol: "HTTP",
+            name: "http1-tls",
+        },
+        hosts: mcpIstioConfig.sidecarEgressHosts,
+      },
+      {
+        port: {
+            number: 7014,
+            protocol: "HTTP",
+            name: "http1-plain",
+        },
+        hosts: mcpIstioConfig.sidecarEgressHosts,
+      },
+      {
+        port: {
+            number: 7012,
+            protocol: "GRPC",
+            name: "grpc-plain",
+        },
         hosts: mcpIstioConfig.sidecarEgressHosts,
       },
     ],
