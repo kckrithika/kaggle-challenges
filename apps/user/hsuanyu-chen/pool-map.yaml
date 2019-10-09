@@ -5,3 +5,6 @@ apps:
                  # you can also specify other pools
  k4a-wd:
   - prd/prd-sam
+
+ java-test:
+  - prd/prd-sam
