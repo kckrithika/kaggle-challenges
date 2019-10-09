@@ -103,7 +103,7 @@ spec:
           value: "80"
         - name: FAKE_REDEPLOY_VAR
           value: "0"
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/electron-opa-injection-webhook:18-f5a35ecc641b6cf83c12ef4de716b98a37b4344e
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/electron-opa-injection-webhook:22-57dec549a0dc3d87277a1e782492dc20b4968411
         imagePullPolicy: IfNotPresent
         livenessProbe:
           exec:
@@ -139,12 +139,16 @@ spec:
           name: cert2
         - mountPath: /config/electron-opa-container.yaml.template
           name: electron-opa-sherpa-container
+          subPath: electron-opa-container.yaml.template
         - mountPath: /config/electron-opa-istio-container.yaml.template
           name: electron-opa-istio-sherpa-container
+          subPath: electron-opa-istio-container.yaml.template
         - mountPath: /config/electron-opa-no-sherpa-container.yaml.template
           name: electron-opa-no-sherpa-container
+          subPath: electron-opa-no-sherpa-container.yaml.template
         - mountPath: /config/electron-opa-istio-no-sherpa-container.yaml.template
           name: electron-opa-istio-no-sherpa-container
+          subPath: electron-opa-istio-no-sherpa-container.yaml.template
       - args:
         - /sam/madkub-client
         - --madkub-endpoint=https://10.254.208.254:32007
