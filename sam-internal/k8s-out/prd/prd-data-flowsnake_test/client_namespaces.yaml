@@ -96,7 +96,7 @@ items:
     name: prometheus-scraper-role
   subjects:
   - kind: ServiceAccount
-    name: prometheus-scraper
+    name: prometheus-scraper-vaishnavi-spark-test-serviceaccount
     namespace: vaishnavi-spark-test
 - apiVersion: rbac.authorization.k8s.io/v1
   kind: Role

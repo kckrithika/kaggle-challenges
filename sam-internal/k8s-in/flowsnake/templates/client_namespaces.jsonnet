@@ -78,7 +78,7 @@ if std.length(flowsnake_clients.clients) > 0 then (
                 subjects: [
                     {
                         kind: "ServiceAccount",
-                        name: "prometheus-scraper",
+                        name: "prometheus-scraper-" + client.namespace + "-serviceaccount",
                         namespace: client.namespace,
                     },
                 ],
