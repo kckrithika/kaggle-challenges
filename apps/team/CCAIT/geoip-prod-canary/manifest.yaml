@@ -30,6 +30,8 @@ system:
         value: prod
       - name: COM_MAXMIND_DATABASE_FILE
         value: "/dw/data/GeoIP2-City.mmdb"
+      - name: FAKE_ENV_VAR_INCREMENT_TO_TRIGGER_SAM_DEPLOY
+        value: "0"
       resources:
         limits:
           cpu: "4"
