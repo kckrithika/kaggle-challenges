@@ -18,5 +18,5 @@
   from k8s_resource
   where ApiKind = 'Pod'
   group by controlEstate, namespace
-) as ss having podCount > (15*nodeCount) and podCount > 1000",
+) as ss having podCount > (30*nodeCount) and podCount > 1000",
     }

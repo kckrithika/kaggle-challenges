@@ -509,7 +509,7 @@ data:
     = ''Pending'' then 1 else 0 end) as podPendingCount,\n    sum(case when Payload->>''$.status.phase''
     = ''Running'' then 1 else 0 end) as podRunningCount,\n    left(group_concat(Payload->>''$.status.message''),
     1024) as sampleMessages\n  from k8s_resource\n  where ApiKind = ''Pod''\n  group
-    by controlEstate, namespace\n) as ss having podCount > (15*nodeCount) and podCount
+    by controlEstate, namespace\n) as ss having podCount > (30*nodeCount) and podCount
     > 1000", "watchdogFrequency": "5m"}]}'
 kind: ConfigMap
 metadata:
