@@ -13,7 +13,7 @@ system:
       "routing.mesh.sfdc.net/enabled": "true"
     containers:
     - name: cre-api-ccp-stage
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cre/cre-api:2.0.0-TEST.0.develop-at-test.d02deb6.47
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cre/cre-api:2.0.0-TEST.0.develop-at-test.09daa77.49
       env:
         - name: DOMAIN_ID
           value: cre
@@ -30,7 +30,7 @@ system:
         - name: SFDC_ENVIRONMENT
           value: ccp-stage
         - name: METRICS_KAFKA_ENABLED
-          value: true
+          value: false
         - name: MADDOG_CLIENT_KEYSTORE
           value: maddog/maddog-client-keystore.json
         - name: MADDOG_CLIENT_TRUSTSTORE
