@@ -155,8 +155,24 @@ local flowsnake_all_kes = (import "flowsnakeEstates.json").kingdomEstates + ["pr
     is_test: (
         estate == "prd-data-flowsnake_test"
     ),
+    is_prod_fleet: (
+        kingdom == "dfw" ||
+        kingdom == "iad" ||
+        kingdom == "ia2" ||
+        kingdom == "ord" ||
+        kingdom == "phx" ||
+        kingdom == "ph2" ||
+        kingdom == "yhu" ||
+        kingdom == "yul" ||
+        kingdom == "frf" ||
+        kingdom == "par" ||
+        kingdom == "hnd" ||
+        kingdom == "ukb" ||
+        kingdom == "cdu" ||
+        kingdom == "syd"
+    ),
     is_phase2_fleet: (
-        estate == "prd-data-flowsnake" || estate == "prd-dev-flowsnake_iot_test" || kingdom == "frf" || kingdom == "cdu"
+        estate == "prd-data-flowsnake" || estate == "prd-dev-flowsnake_iot_test"
     ),
     is_r_and_d: (
         kingdom == "prd"
