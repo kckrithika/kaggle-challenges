@@ -14,9 +14,15 @@ system:
       - name: kafkaclientcerts
         maddogCert:
           type: client
+      - name: client-cert
+        maddogCert:
+          type: client
+      - name: server-cert
+        maddogCert:
+          type: server
       containers:
       - name: aqueduct
-        image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/vmukkavilli/aqueduct:log-sfdc
+        image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/messagingplatform/aqueduct:14bc2fb
         env:
         - name: SFDC_ENVIRONMENT
           value: "prod" # Use whatever environment your kpod uses
@@ -50,6 +56,34 @@ system:
           requests:
             cpu: 24
             memory: 45Gi
+      - name: sherpa
+      # Use the latest release version from https://git.soma.salesforce.com/servicelibs/sherpa-envoy/releases
+        image: sfci/servicelibs/sherpa-envoy:1.0.13
+      # See https://git.soma.salesforce.com/servicelibs/sherpa#ports
+        ports:
+        - containerPort: 7443
+          name: http2-tls-in
+        - containerPort: 15373
+          name: sherpa-adm
+        livenessProbe:
+          exec:
+            command:
+            - ./bin/is-alive
+          initialDelaySeconds: 60
+          periodSeconds: 5
+        readinessProbe:
+          exec:
+            command:
+            - ./bin/is-ready
+          initialDelaySeconds: 50
+          periodSeconds: 5
+      # The cert names should match whatever you choose below in your volumes section.
+      # The mount paths match the defaults assumed by sherpa. Changing the paths requires a corresponding manual override in sherpa.
+        volumeMounts:
+        - name: client-cert
+          mountPath: /client-certs
+        - name: server-cert
+          mountPath: /server-certs
   loadbalancers:
   # CName aqueduct-func-xrd.slb.sfdc.net added as SLB cert doesn't have SLB VIP name in SAN
   - lbname: aqueduct-func
