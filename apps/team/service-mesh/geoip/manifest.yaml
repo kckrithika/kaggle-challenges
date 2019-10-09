@@ -61,6 +61,20 @@ system:
           path: /manage/health
           port: 15372
         initialDelaySeconds: 115
+    - name: beacon
+      # https://git.soma.salesforce.com/services/sfdc-bazel/tree/master/projects/sidecars/beacon#docker-image
+      image: sfci/services/sfdc-bazel/disco/beacon:d7f1640
+      env:
+        - name: SFDC_ENVIRONMENT
+          value: istio
+      args:
+        - -endpoint
+        - $(FUNCTION_NAMESPACE)/$(FUNCTION):DATACENTER_ALLENV:HTTP2_TLS
+      livenessProbe:
+        initialDelaySeconds: 5
+        exec:
+          command:
+            - "/opt/beacon/is-alive.sh"
       
     volumes:
     - name: maxmind-volume
