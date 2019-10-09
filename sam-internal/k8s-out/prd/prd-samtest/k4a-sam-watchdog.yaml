@@ -30,13 +30,13 @@ spec:
         - -caFile=/etc/pki_service/ca/cabundle.pem
         - -keyFile=/etc/pki_service/platform/platform-client/keys/platform-client-key.pem
         - -certFile=/etc/pki_service/platform/platform-client/certificates/platform-client.pem
-        - -imageName=ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/sam/hypersam:2808-84948e8fc1118dfdaed0d1b415efc1822499665a
+        - -imageName=ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/sam/hypersam:2812-38944eb3a2b2445a5e9f6a76d927cad3eaacfc17
         - -enableStatelessChecks=false
         - -enableK4aChecks=true
         env:
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig-platform
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/sam/hypersam:2808-84948e8fc1118dfdaed0d1b415efc1822499665a
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/sam/hypersam:2812-38944eb3a2b2445a5e9f6a76d927cad3eaacfc17
         name: k4a-sam-watchdog
         volumeMounts:
         - mountPath: /etc/pki_service
