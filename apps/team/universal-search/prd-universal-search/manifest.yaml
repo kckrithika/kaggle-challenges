@@ -42,6 +42,8 @@ system:
           cpu: "24"
           memory: "24Gi"
       env:
+      - name: SERVICE_THREADCOUNT
+        value: '250'
       - name: KRB5_CONF
         value: /home/sfdc-usmt/krb-config/krb5_searchzk_prd.conf
       - name: JAAS_CONF
