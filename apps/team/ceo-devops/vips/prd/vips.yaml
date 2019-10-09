@@ -107,6 +107,8 @@
 
 - lbname: devsalesforceci-prd
   customlbname: devsalesforceci-prd
+  cnames:
+  - cname: devsalesforceci.slb.sfdc.net
   servers:
   - devsalesforceci01.dop.sfdc.net
   - devsalesforceci02.dop.sfdc.net
@@ -122,6 +124,8 @@
 
 - lbname: devdopci-prd
   customlbname: devdopci-prd
+  cnames:
+  - cname: devsalesforceci.slb.sfdc.net
   servers:
   - devdopci01.dop.sfdc.net
   ports:
@@ -134,8 +138,8 @@
     healthprotocol: http
     healthpath: /ha/health-check
 
-- lbname: devciaawci-prd
-  customlbname: devciaawci-prd
+- lbname: devciaawci
+  customlbname: devciaawci
   servers:
   - devciaawci01.dop.sfdc.net
   ports:
@@ -151,7 +155,7 @@
 - lbname: devcjemaster01-prd
   customlbname: devcjemaster01-prd
   cnames:
-  - cname: devindustriesci.slb.sfdc.net
+  - cname: devrepurpose1ci.slb.sfdc.net
   servers:
   - devcjemaster01a.dop.sfdc.net
   ports:
@@ -166,6 +170,8 @@
 
 - lbname: devcjemaster02-prd
   customlbname: devcjemaster02-prd
+  cnames:
+  - cname: devsetici.slb.sfdc.net
   servers:
   - devcjemaster02b.dop.sfdc.net
   ports:
@@ -180,6 +186,8 @@
 
 - lbname: devcjemaster03-prd
   customlbname: devcjemaster03-prd
+  cnames:
+  - cname: dev-sfcimetricsci.slb.sfdc.net
   servers:
   - devcjemaster03a.dop.sfdc.net
   ports:
@@ -194,6 +202,8 @@
 
 - lbname: devcjemaster04-prd
   customlbname: devcjemaster04-prd
+  cnames:
+  - cname: chatbot-staging.slb.sfdc.net
   servers:
   - devcjemaster04b.dop.sfdc.net
   ports:
@@ -208,6 +218,8 @@
 
 - lbname: devcjemaster05-prd
   customlbname: devcjemaster05-prd
+  cnames:
+  - cname: devciaawci-mirror.slb.sfdc.net
   servers:
   - devcjemaster05a.dop.sfdc.net
   ports:
@@ -222,6 +234,8 @@
 
 - lbname: devcjemaster06-prd
   customlbname: devcjemaster06-prd
+  cnames:
+  - cname: devautomatedcheckinci.slb.sfdc.net
   servers:
   - devcjemaster06b.dop.sfdc.net
   ports:
@@ -236,6 +250,8 @@
 
 - lbname: devcjemaster07-prd
   customlbname: devcjemaster07-prd
+  cnames:
+  - cname: devciaawci-new.slb.sfdc.net
   servers:
   - devcjemaster07a.dop.sfdc.net
   ports:
@@ -264,6 +280,8 @@
 
 - lbname: devcjemaster09-prd
   customlbname: devcjemaster09-prd
+  cnames:
+  - cname: devsfcirelease.slb.sfdc.net
   servers:
   - devcjemaster09a.dop.sfdc.net
   ports:
@@ -278,6 +296,8 @@
 
 - lbname: devcjemaster10-prd
   customlbname: devcjemaster10-prd
+  cnames:
+  - cname: livemessage-staging.slb.sfdc.net
   servers:
   - devcjemaster10b.dop.sfdc.net
   ports:
@@ -290,8 +310,10 @@
     healthprotocol: http
     healthpath: /ha/health-check
 
-- lbname: devcjemaster11-prd
-  customlbname: devcjemaster11-prd
+- lbname: devcjemaster11
+  customlbname: devcjemaster11
+  cnames:
+  - cname: devciaawci-old.slb.sfdc.net
   servers:
   - devcjemaster11a.dop.sfdc.net
   ports:
