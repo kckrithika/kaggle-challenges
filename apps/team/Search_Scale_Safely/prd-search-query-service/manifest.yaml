@@ -9,7 +9,7 @@ system:
       "routing.mesh.sfdc.net/enabled": "true"
     containers:
     - name: search-query-service
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/searchdev/smt-search-query-service:3393058
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/searchdev/smt-search-query-service:e940c84
       command:
       - java
       - -Xdebug
