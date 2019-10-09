@@ -5,7 +5,7 @@ system:
     count: 1
     containers:
     - name: gate-analyzer
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/gater/gate-analyzer:sortiz-1570648246
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/gater/gate-analyzer:sortiz-1570652729
       args:
         - --server.port=9191
         - --management.server.port=15373
