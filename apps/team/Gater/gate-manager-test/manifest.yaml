@@ -13,13 +13,15 @@ system:
     hostnetwork: false
     containers:
     - name: gater1
-      image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-sfci-dev/sfci/services/sfdc-bazel/gater/gate-manager:ae652e075
+      image: sfci/services/sfdc-bazel/gater/gate-manager:1.16.2
       args:
         - --server.port=9090
-        - --gater-service.thread.pool.max-size=0
+        - --gater-service.thread.pool.max-size=16
+        - --gater.grpc.threadpool.size=16
         - --synctask.host-affinity=false
         - --logging.sfdc.stderr.level=OFF
         - --logging.json.stdout.level=INFO
+        - --publish-specific-metrics=CONDITIONAL
       volumeMounts:
       - mountPath: /log
         name: logvol
@@ -46,10 +48,10 @@ system:
       resources:
         limits:
           cpu: "8"
-          memory: 8Gi
+          memory: 18Gi
         requests:
           cpu: "8"
-          memory: 8Gi
+          memory: 18Gi
       env:
       - name: SFDC_ENVIRONMENT
         value: blitz
