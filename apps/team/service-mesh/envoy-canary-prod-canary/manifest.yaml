@@ -7,6 +7,9 @@ system:
   functions:
   - name: envoy-canary
     count: 1
+    annotations:
+      "sherpa-injector.service-mesh/inject": "enabled"
+      "sherpa-injector.service-mesh/canary": "enabled"
     containers:
     - name: envoy-canary-beacon
       image: sfci/servicelibs/beacon:853c4db9f14805018be6f5e7607ffe65b5648822
@@ -24,31 +27,6 @@ system:
         exec:
           command:
             - "/home/scone/is-alive.sh"
-
-    - name: sherpa
-      image: sfci/servicelibs/sherpa-envoy:1.0.13
-      env:
-      - name: SFDC_ENVIRONMENT
-        value: prod
-      resources:
-        limits: { cpu: "1", memory: "1Gi" }
-        requests: { cpu: "1", memory: "1Gi" }
-      livenessProbe:
-        exec:
-          command:
-          - ./bin/is-alive
-        initialDelaySeconds: 20
-        periodSeconds: 5
-      readinessProbe:
-        exec:
-          command:
-          - ./bin/is-ready
-        initialDelaySeconds: 15
-        periodSeconds: 5
-      volumeMounts:
-        - name: tls-client-cert
-          mountPath: /client-certs
-
     volumes:
       - name: tls-client-cert
         maddogCert:
