@@ -11,8 +11,8 @@ system:
       "sherpa-injector.service-mesh/inject": "enabled"
       "sherpa-injector.service-mesh/canary": "enabled"
     containers:
-    - name: envoy-canary-beacon
-      image: sfci/servicelibs/beacon:853c4db9f14805018be6f5e7607ffe65b5648822
+    - name: beacon
+      image: sfci/services/sfdc-bazel/disco/beacon:d7f1640
       env:
       - name: SFDC_ENVIRONMENT
         value: prod
@@ -26,8 +26,11 @@ system:
         initialDelaySeconds: 5
         exec:
           command:
-            - "/home/scone/is-alive.sh"
+            - "/opt/beacon/is-alive.sh"
     volumes:
       - name: tls-client-cert
         maddogCert:
           type: client
+      - name: tls-server-cert
+        maddogCert:
+          type: server
