@@ -25,6 +25,7 @@ system:
         value: "15523"
       - name: JVM_ARGS
         value: -Xmx2G -Xms2G -XX:ParallelGCThreads=8 -Dc2c.group.cache.enabled=false
+               -Dspring.datasource.url=jdbc:p6spy:discover://dbaas0-minionapp1-1-prd.eng.sfdc.net:1511,google.com:8080/metadataservice3?sslfactory=com.salesforce.sds.keystore.DynamicSSLSocketFactory&sslfactoryarg={"monitoredDirectory":"/client-certs/client","cadir":"/client-certs/ca"}
         # An environment variable used to trigger containers redeployment without making other changes to the manifest
       - name: RESTART
         value: May-16-2019
