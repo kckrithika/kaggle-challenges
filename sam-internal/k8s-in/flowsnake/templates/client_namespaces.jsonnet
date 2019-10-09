@@ -57,20 +57,21 @@ if std.length(flowsnake_clients.clients) > 0 then (
             automountServiceAccountToken: true,
             metadata: {
                 namespace: client.namespace,
-                name: "prometheus-scraper",
+                name: "prometheus-scraper-" + client.namespace + "-ServiceAccount",
             },
         },
         {
-            kind: "ClusterRoleBinding",
+            kind: "RoleBinding",
             apiVersion: "rbac.authorization.k8s.io/v1",
             metadata: {
                 name: "prometheus-scraper-binding",
+                namespace: client.namespace,
                 annotations: {
                      "manifestctl.sam.data.sfdc.net/swagger": "disable",
                 },
             },
                 roleRef: {
-                    kind: "ClusterRole",
+                    kind: "Role",
                     name: "prometheus-scraper-role",
                     apiGroup: "rbac.authorization.k8s.io",
                 },
@@ -84,7 +85,7 @@ if std.length(flowsnake_clients.clients) > 0 then (
         },
         {
             apiVersion: "rbac.authorization.k8s.io/v1",
-            kind: "ClusterRole",
+            kind: "Role",
             metadata: {
                 name: "prometheus-scraper-role",
                 annotations: {
@@ -94,7 +95,7 @@ if std.length(flowsnake_clients.clients) > 0 then (
             rules: [
                 {
                     apiGroups: [""],
-                    resources: ["pods", "nodes", "nodes/proxy", "services", "customresourcedefinitions"],
+                    resources: ["pods"],
                     verbs: ["get", "list", "watch"],
                 },
                 {
@@ -137,13 +138,13 @@ if std.length(flowsnake_clients.clients) > 0 then (
                         labels: {
                             apptype: "monitoring",
                             service: "prometheus-scraper",
-                            flowsnakeOwner: "dva-transform",
+                            flowsnakeOwner: client.owner_name,
                             flowsnakeRole: "PrometheusScraper",
                             name: "prometheus-scraper",
                         },
                     },
                     spec: {
-                        serviceAccountName: "prometheus-scraper",
+                        serviceAccountName: "prometheus-scraper-" + client.namespace + "-ServiceAccount",
                         containers: [
                             {
                                 args: [
@@ -185,7 +186,7 @@ if std.length(flowsnake_clients.clients) > 0 then (
                             },
                             {
                                 args: [
-                                  "--serviceName=flowsnake",
+                                  "--serviceName=" + client.namespace,
                                   "--subserviceName=NONE",
                                   "--tagDefault=superpod:NONE",
                                   "--tagDefault=datacenter:" + kingdom,
@@ -230,12 +231,6 @@ if std.length(flowsnake_clients.clients) > 0 then (
                                 emptyDir: {
                                   medium: "Memory",
                                 },
-                              },
-                              {
-                                hostPath: {
-                                    path: "/etc/pki_service",
-                                },
-                                name: "certs-volume",
                               },
                         ],
                     },

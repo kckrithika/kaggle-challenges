@@ -81,24 +81,25 @@ items:
   automountServiceAccountToken: true
   kind: ServiceAccount
   metadata:
-    name: prometheus-scraper
+    name: prometheus-scraper-vaishnavi-spark-test-ServiceAccount
     namespace: vaishnavi-spark-test
 - apiVersion: rbac.authorization.k8s.io/v1
-  kind: ClusterRoleBinding
+  kind: RoleBinding
   metadata:
     annotations:
       manifestctl.sam.data.sfdc.net/swagger: disable
     name: prometheus-scraper-binding
+    namespace: vaishnavi-spark-test
   roleRef:
     apiGroup: rbac.authorization.k8s.io
-    kind: ClusterRole
+    kind: Role
     name: prometheus-scraper-role
   subjects:
   - kind: ServiceAccount
     name: prometheus-scraper
     namespace: vaishnavi-spark-test
 - apiVersion: rbac.authorization.k8s.io/v1
-  kind: ClusterRole
+  kind: Role
   metadata:
     annotations:
       manifestctl.sam.data.sfdc.net/swagger: disable
@@ -108,10 +109,6 @@ items:
     - ""
     resources:
     - pods
-    - nodes
-    - nodes/proxy
-    - services
-    - customresourcedefinitions
     verbs:
     - get
     - list
@@ -155,7 +152,7 @@ items:
       metadata:
         labels:
           apptype: monitoring
-          flowsnakeOwner: dva-transform
+          flowsnakeOwner: Vaishnavi - Testing
           flowsnakeRole: PrometheusScraper
           name: prometheus-scraper
           service: prometheus-scraper
@@ -185,7 +182,7 @@ items:
           - mountPath: /etc/pki_service
             name: certs-volume
         - args:
-          - --serviceName=flowsnake
+          - --serviceName=vaishnavi-spark-test
           - --subserviceName=NONE
           - --tagDefault=superpod:NONE
           - --tagDefault=datacenter:prd
@@ -207,7 +204,7 @@ items:
           - mountPath: /prometheus-storage
             name: prometheus-storage-volume
         restartPolicy: Always
-        serviceAccountName: prometheus-scraper
+        serviceAccountName: prometheus-scraper-vaishnavi-spark-test-ServiceAccount
         volumes:
         - configMap:
             name: prometheus-server-conf-vaishnavi-spark-test
@@ -215,8 +212,5 @@ items:
         - emptyDir:
             medium: Memory
           name: prometheus-storage-volume
-        - hostPath:
-            path: /etc/pki_service
-          name: certs-volume
 kind: List
 metadata: {}
