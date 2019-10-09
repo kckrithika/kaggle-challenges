@@ -85,7 +85,7 @@ system:
         - name: server-cert
           mountPath: /server-certs
       - name: beacon
-        image: sfci/servicelibs/beacon:{latest git sha. See https://git.soma.salesforce.com/services/sfdc-bazel/tree/master/projects/sidecars/beacon#docker-image}
+        image: sfci/servicelibs/beacon:be0423a
         args:
         - -endpoint
       # Namespaced announcement for TLS http2/grpc at the DATACENTER_ALLENV level for a service in a team's namespace
