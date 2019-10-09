@@ -227,6 +227,20 @@ items:
     name: retail-cre.cre-control-plane-ccp-perf
   - kind: User
     name: hbase-flowsnake.xyan
+  - kind: User
+    name: hbase-flowsnake.daniel.wong
+  - kind: User
+    name: hbase-flowsnake.ckulkarni
+  - kind: User
+    name: hbase-flowsnake.jisaac
+  - kind: User
+    name: hbase-flowsnake.neha.gupta
+  - kind: User
+    name: hbase-flowsnake.nmaheshwari
+  - kind: User
+    name: hbase-flowsnake.christine.feng
+  - kind: User
+    name: hbase-flowsnake.uttam.kumar
 - apiVersion: rbac.authorization.k8s.io/v1
   kind: RoleBinding
   metadata:
@@ -325,6 +339,20 @@ items:
     name: retail-cre.cre-control-plane-ccp-perf
   - kind: User
     name: hbase-flowsnake.xyan
+  - kind: User
+    name: hbase-flowsnake.daniel.wong
+  - kind: User
+    name: hbase-flowsnake.ckulkarni
+  - kind: User
+    name: hbase-flowsnake.jisaac
+  - kind: User
+    name: hbase-flowsnake.neha.gupta
+  - kind: User
+    name: hbase-flowsnake.nmaheshwari
+  - kind: User
+    name: hbase-flowsnake.christine.feng
+  - kind: User
+    name: hbase-flowsnake.uttam.kumar
 - apiVersion: v1
   automountServiceAccountToken: true
   kind: ServiceAccount
@@ -390,7 +418,21 @@ items:
     name: client-cluster-role
   subjects:
   - kind: User
-    name: NOTACERT
+    name: hbase-flowsnake.xyan
+  - kind: User
+    name: hbase-flowsnake.daniel.wong
+  - kind: User
+    name: hbase-flowsnake.ckulkarni
+  - kind: User
+    name: hbase-flowsnake.jisaac
+  - kind: User
+    name: hbase-flowsnake.neha.gupta
+  - kind: User
+    name: hbase-flowsnake.nmaheshwari
+  - kind: User
+    name: hbase-flowsnake.christine.feng
+  - kind: User
+    name: hbase-flowsnake.uttam.kumar
 - apiVersion: rbac.authorization.k8s.io/v1
   kind: RoleBinding
   metadata:
@@ -404,7 +446,21 @@ items:
     name: flowsnake-client-hbase-flowsnake-Role
   subjects:
   - kind: User
-    name: NOTACERT
+    name: hbase-flowsnake.xyan
+  - kind: User
+    name: hbase-flowsnake.daniel.wong
+  - kind: User
+    name: hbase-flowsnake.ckulkarni
+  - kind: User
+    name: hbase-flowsnake.jisaac
+  - kind: User
+    name: hbase-flowsnake.neha.gupta
+  - kind: User
+    name: hbase-flowsnake.nmaheshwari
+  - kind: User
+    name: hbase-flowsnake.christine.feng
+  - kind: User
+    name: hbase-flowsnake.uttam.kumar
 - apiVersion: v1
   automountServiceAccountToken: true
   kind: ServiceAccount
