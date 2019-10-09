@@ -58,6 +58,7 @@ system:
       function: istio-shipping
       annotations:
         routing.mesh.sfdc.net/enabled: "true"
+        fake.deploy: 1
       labels:
         app: istio-shipping
         settings_path: istio.-.prd.-.istio-shipping
