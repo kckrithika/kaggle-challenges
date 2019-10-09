@@ -38,6 +38,8 @@ system:
           value: 'stage'
         - name: CELERY_CONCURRECY
           value: '10'
+        - name: REL_VERSION
+          value: '1'   
         - name: MY_SAM_HOST_NAME
           valueFrom:
             fieldRef:
