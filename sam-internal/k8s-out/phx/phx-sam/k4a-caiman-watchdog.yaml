@@ -40,7 +40,7 @@ items:
           - -jar
           - /caiman-watchdog/caiman-watchdog-0.0.15-SNAPSHOT.jar
           - -secretsFile
-          - /caiman-watchdog/classes/sam.secrets.k4a-watchdog.zip
+          - /caiman-watchdog/classes/sam.secrets.k4a-watchdog-prod.zip
           - -certPath
           - /clientcert
           - -datacenter
@@ -202,7 +202,7 @@ items:
           - -jar
           - /caiman-watchdog/caiman-watchdog-0.0.15-SNAPSHOT.jar
           - -secretsFile
-          - /caiman-watchdog/classes/sam.secrets.k4a-watchdog.zip
+          - /caiman-watchdog/classes/sam.secrets.k4a-watchdog-prod.zip
           - -certPath
           - /clientcert
           - -datacenter
@@ -364,7 +364,7 @@ items:
           - -jar
           - /caiman-watchdog/caiman-watchdog-0.0.15-SNAPSHOT.jar
           - -secretsFile
-          - /caiman-watchdog/classes/sam.secrets.k4a-watchdog.zip
+          - /caiman-watchdog/classes/sam.secrets.k4a-watchdog-prod.zip
           - -certPath
           - /clientcert
           - -datacenter
@@ -526,7 +526,7 @@ items:
           - -jar
           - /caiman-watchdog/caiman-watchdog-0.0.15-SNAPSHOT.jar
           - -secretsFile
-          - /caiman-watchdog/classes/sam.secrets.k4a-watchdog.zip
+          - /caiman-watchdog/classes/sam.secrets.k4a-watchdog-prod.zip
           - -certPath
           - /clientcert
           - -datacenter
@@ -688,7 +688,7 @@ items:
           - -jar
           - /caiman-watchdog/caiman-watchdog-0.0.15-SNAPSHOT.jar
           - -secretsFile
-          - /caiman-watchdog/classes/sam.secrets.k4a-watchdog.zip
+          - /caiman-watchdog/classes/sam.secrets.k4a-watchdog-prod.zip
           - -certPath
           - /clientcert
           - -datacenter
