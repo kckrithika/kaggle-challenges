@@ -90,8 +90,8 @@
 #######################
 #  SFCI Dev           #
 #######################
-- lbname: devkubemasterci-prd
-  customlbname: devkubemasterci-prd
+- lbname: devkubemasterci
+  customlbname: devkubemasterci
   servers:
   - devkubemaster01.dop.sfdc.net 
   - devkubemaster02.dop.sfdc.net
@@ -105,10 +105,8 @@
     healthprotocol: http
     healthpath: /
 
-- lbname: devsalesforceci-prd
-  customlbname: devsalesforceci-prd
-  cnames:
-  - cname: devsalesforceci.slb.sfdc.net
+- lbname: devsalesforceci
+  customlbname: devsalesforceci
   servers:
   - devsalesforceci01.dop.sfdc.net
   - devsalesforceci02.dop.sfdc.net
@@ -122,10 +120,8 @@
     healthprotocol: http
     healthpath: /ha/health-check
 
-- lbname: devdopci-prd
-  customlbname: devdopci-prd
-  cnames:
-  - cname: devsalesforceci.slb.sfdc.net
+- lbname: devdopci
+  customlbname: devdopci
   servers:
   - devdopci01.dop.sfdc.net
   ports:
@@ -152,8 +148,8 @@
     healthprotocol: http
     healthpath: /ha/health-check
 
-- lbname: devcjemaster01-prd
-  customlbname: devcjemaster01-prd
+- lbname: devcjemaster01
+  customlbname: devcjemaster01
   cnames:
   - cname: devrepurpose1ci.slb.sfdc.net
   servers:
@@ -168,8 +164,8 @@
     healthprotocol: http
     healthpath: /ha/health-check
 
-- lbname: devcjemaster02-prd
-  customlbname: devcjemaster02-prd
+- lbname: devcjemaster02
+  customlbname: devcjemaster02
   cnames:
   - cname: devsetici.slb.sfdc.net
   servers:
@@ -184,8 +180,8 @@
     healthprotocol: http
     healthpath: /ha/health-check
 
-- lbname: devcjemaster03-prd
-  customlbname: devcjemaster03-prd
+- lbname: devcjemaster03
+  customlbname: devcjemaster03
   cnames:
   - cname: dev-sfcimetricsci.slb.sfdc.net
   servers:
@@ -200,8 +196,8 @@
     healthprotocol: http
     healthpath: /ha/health-check
 
-- lbname: devcjemaster04-prd
-  customlbname: devcjemaster04-prd
+- lbname: devcjemaster04
+  customlbname: devcjemaster04
   cnames:
   - cname: chatbot-staging.slb.sfdc.net
   servers:
@@ -216,8 +212,8 @@
     healthprotocol: http
     healthpath: /ha/health-check
 
-- lbname: devcjemaster05-prd
-  customlbname: devcjemaster05-prd
+- lbname: devcjemaster05
+  customlbname: devcjemaster05
   cnames:
   - cname: devciaawci-mirror.slb.sfdc.net
   servers:
@@ -232,8 +228,8 @@
     healthprotocol: http
     healthpath: /ha/health-check
 
-- lbname: devcjemaster06-prd
-  customlbname: devcjemaster06-prd
+- lbname: devcjemaster06
+  customlbname: devcjemaster06
   cnames:
   - cname: devautomatedcheckinci.slb.sfdc.net
   servers:
@@ -248,8 +244,8 @@
     healthprotocol: http
     healthpath: /ha/health-check
 
-- lbname: devcjemaster07-prd
-  customlbname: devcjemaster07-prd
+- lbname: devcjemaster07
+  customlbname: devcjemaster07
   cnames:
   - cname: devciaawci-new.slb.sfdc.net
   servers:
@@ -264,8 +260,8 @@
     healthprotocol: http
     healthpath: /ha/health-check
 
-- lbname: devcjemaster08-prd
-  customlbname: devcjemaster08-prd
+- lbname: devcjemaster08
+  customlbname: devcjemaster08
   servers:
   - devcjemaster08b.dop.sfdc.net
   ports:
@@ -278,8 +274,8 @@
     healthprotocol: http
     healthpath: /ha/health-check
 
-- lbname: devcjemaster09-prd
-  customlbname: devcjemaster09-prd
+- lbname: devcjemaster09
+  customlbname: devcjemaster09
   cnames:
   - cname: devsfcirelease.slb.sfdc.net
   servers:
@@ -294,8 +290,8 @@
     healthprotocol: http
     healthpath: /ha/health-check
 
-- lbname: devcjemaster10-prd
-  customlbname: devcjemaster10-prd
+- lbname: devcjemaster10
+  customlbname: devcjemaster10
   cnames:
   - cname: livemessage-staging.slb.sfdc.net
   servers:
@@ -326,8 +322,8 @@
     healthprotocol: http
     healthpath: /ha/health-check
 
-- lbname: devcjemaster12-prd
-  customlbname: devcjemaster12-prd
+- lbname: devcjemaster12
+  customlbname: devcjemaster12
   servers:
   - devcjemaster12b.dop.sfdc.net
   ports:
@@ -340,3 +336,38 @@
     healthprotocol: http
     healthpath: /ha/health-check
 
+#######################
+#  SFCI Prod          #
+#######################
+- lbname: sfcigrafana
+  customlbname: sfcigrafana
+  servers:
+  - sfci0ceo0-pkubemaster2-1-prd.dop.sfdc.net
+  - sfci0ceo0-pkubemaster2-2-prd.dop.sfdc.net
+  - sfci0ceo0-pkubemaster2-3-prd.dop.sfdc.net
+  - sfci0ceo0-pkubemaster2-4-prd.dop.sfdc.net
+  - sfci0ceo0-pkubemaster2-5-prd.dop.sfdc.net
+  ports:
+  - port: 443
+    targetport: 30001
+    lbtype: http
+    tls: true
+    reencrypt: false
+    healthport: 30001
+    healthprotocol: http
+    healthpath: /
+
+- lbname: devopsci
+  customlbname: devopsci
+  servers:
+  - devopsci01.dop.sfdc.net
+  - devopsci02.dop.sfdc.net
+  ports:
+  - port: 443
+    targetport: 8080
+    lbtype: http
+    tls: true
+    reencrypt: false
+    healthport: 8080
+    healthprotocol: http
+    healthpath: /ha/health-check
