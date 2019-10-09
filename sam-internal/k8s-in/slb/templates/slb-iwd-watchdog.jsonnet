@@ -62,7 +62,7 @@ if slbconfigs.isSlbEstate && slbflights.enableIWDHealth then configs.daemonSetBa
                 ],
                 }
                 +
-                (if kingdom == "prd" then
+                (if slbimages.phaseNum <= 4 then
                 {
                     nodeSelector: {
                         pool: slbconfigs.slbEstate,

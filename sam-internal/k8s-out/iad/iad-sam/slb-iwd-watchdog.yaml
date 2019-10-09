@@ -53,6 +53,8 @@ spec:
           name: sfdchosts
       dnsPolicy: Default
       hostNetwork: true
+      nodeSelector:
+        pool: iad-slb
       terminationGracePeriodSeconds: 5
       volumes:
       - hostPath:
