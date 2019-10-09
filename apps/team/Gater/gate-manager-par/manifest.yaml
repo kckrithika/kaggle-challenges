@@ -20,7 +20,6 @@ system:
         - --server.port=9090
         - --gater-service.thread.pool.max-size=16
         - --gater.grpc.threadpool.size=16
-        - --synctask.host-affinity=false
         - --logging.sfdc.stderr.level=OFF
         - --logging.json.stdout.level=INFO
         - --publish-specific-metrics=CONDITIONAL
