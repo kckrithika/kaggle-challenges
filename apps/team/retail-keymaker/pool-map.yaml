@@ -1,4 +1,9 @@
 version: v2
-
 apps:
-    
+  # ======= PRD ======== #
+  prd.keymaker:
+  - name: prd/prd-sam_customerresolutionengine
+    hostSubList:
+        - shared0-samminioncustomerresolutionengine1-1-prd.eng.sfdc.net
+        - shared0-samminioncustomerresolutionengine1-2-prd.eng.sfdc.net
+
