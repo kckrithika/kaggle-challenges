@@ -114,7 +114,8 @@ local getInstanceDataWithDefaults(instanceTag) = (
     # name is the name of the container for the instance.
     name: name,
     # secretsFile is the file path to the encrypted file
-    secretsFile: "/caiman-watchdog/classes/sam.secrets.k4a-watchdog.zip",
+    secretsFile: if utils.is_test_cluster(configs.estate) then "/caiman-watchdog/classes/sam.secrets.k4a-watchdog.zip"
+    else "/caiman-watchdog/classes/sam.secrets.k4a-watchdog-prod.zip",
     # certPath is the location of the mounted Maddog cert
     certPath: "/clientcert",
     # url: is the url of the k4a server
