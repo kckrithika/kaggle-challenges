@@ -46,6 +46,8 @@ system:
         value: false
       - name: DISABLE_AUTH_RELEASE_CHECK
         value: true
+      - name: SKIP_READY_RELEASE_CHECK
+        value: true
       - name: CASAM_APP_COLOR
         value: blue
       - name: SD_PORT_OVERRIDE
