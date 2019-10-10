@@ -32,7 +32,7 @@ data:
       "rsui-production-ord-test-lb.retail-rsui.ord-sam.ord.slb.sfdc.net": "13.110.26.15",
       "rsui-service-ord-lb.retail-rsui.ord-sam.ord.slb.sfdc.net": "10.208.148.109",
       "slb-canary-proxy-http-ext.sam-system.iad-sam.iad.slb.sfdc.net": "13.110.26.5",
-      "sledge-iad.slb.sfdc.net": "13.110.26.13"
+      "sledge-ord.slb.sfdc.net": "13.110.26.13"
     }
 kind: ConfigMap
 metadata:
