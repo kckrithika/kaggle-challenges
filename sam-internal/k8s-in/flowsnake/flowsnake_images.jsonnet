@@ -175,17 +175,20 @@ local utils = import "util_functions.jsonnet";
             },
         },
         # EMEA (Europe Middle East Africa): FRF, PAR
-        # off-peak: 1pm-9pm
+        # off-peak: 1pm-9pm PDT
         "prod-emea": self.prod {
+            image_tags+: {
+                            spark_operator_image_tag: "jenkins-dva-transformation-spark-on-k8s-operator-PR-40-5-itest",  # 10/2 image that bumps up client throttle
+                        },
         },
 
         # NA (North America): DFW, IAD, IA2, ORD, PHX, PH2, YHU, YUL
-        # off-peak: 6pm-4am
+        # off-peak: 6pm-4am PDT
         "prod-na": self.prod {
         },
 
         # APAC (Asia Pacific): HND, UKB, CDU, SYD
-        # off-peak: 6am-1pm
+        # off-peak: 6am-1pm PDT
         "prod-apac": self.prod {
         },
 
