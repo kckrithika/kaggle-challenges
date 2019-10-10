@@ -509,7 +509,7 @@ if (istioPhases.phaseNum == 1) then
             },
             securityContext: {
               readOnlyRootFilesystem: true,
-              runAsUser: 7557,
+              runAsUser: 1337,
             },
             terminationMessagePath: "/dev/termination-log",
             terminationMessagePolicy: "File",
@@ -626,7 +626,7 @@ if (istioPhases.phaseNum == 1) then
               "-z",
               "15006",
               "-u",
-              "7557",
+              "1337",
               "-m",
               "REDIRECT",
               "-i",

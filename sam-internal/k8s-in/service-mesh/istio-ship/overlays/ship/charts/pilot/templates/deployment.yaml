@@ -141,7 +141,7 @@ spec:
           value: mcpIstioConfig.kingdom
         name: istio-proxy
         securityContext:
-          runAsUser: 7557
+          runAsUser: 1337
         volumeMounts:
         - mountPath: /client-certs
           name: tls-client-cert
@@ -292,7 +292,7 @@ spec:
         - -z
         - "15006"
         - -u
-        - "7557"
+        - "1337"
         - -m
         - REDIRECT
         - -i

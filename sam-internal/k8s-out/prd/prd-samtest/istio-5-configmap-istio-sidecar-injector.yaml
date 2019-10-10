@@ -25,7 +25,7 @@ data:
         - "-z"
         - "15006"
         - "-u"
-        - 7557
+        - 1337
         - "-m"
         - "{{ annotation .ObjectMeta `sidecar.istio.io/interceptionMode` .ProxyConfig.InterceptionMode }}"
         - "-i"
@@ -328,12 +328,12 @@ data:
           capabilities:
             add:
             - NET_ADMIN
-          runAsGroup: 7557
+          runAsGroup: 1337
           {{ else -}}
           {{ if and .Values.global.sds.enabled .Values.global.sds.useTrustworthyJwt }}
-          runAsGroup: 7557
+          runAsGroup: 1337
           {{- end }}
-          runAsUser: 7557
+          runAsUser: 1337
           {{- end }}
         resources:
           {{ if or (isset .ObjectMeta.Annotations `sidecar.istio.io/proxyCPU`) (isset .ObjectMeta.Annotations `sidecar.istio.io/proxyMemory`) -}}

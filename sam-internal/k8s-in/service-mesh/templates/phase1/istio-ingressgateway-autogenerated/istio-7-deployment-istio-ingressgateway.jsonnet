@@ -336,7 +336,7 @@ if (istioPhases.phaseNum == 1) then
             },
             securityContext: {
               readOnlyRootFilesystem: true,
-              runAsUser: 7557,
+              runAsUser: 1337,
             },
             volumeMounts: [
               {

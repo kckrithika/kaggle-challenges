@@ -293,7 +293,7 @@ configs.deploymentBase("service-mesh") {
             },
             securityContext: {
               readOnlyRootFilesystem: true,
-              runAsUser: 7557,
+              runAsUser: 1337,
             },
             terminationMessagePath: "/dev/termination-log",
             terminationMessagePolicy: "File",
@@ -344,7 +344,7 @@ configs.deploymentBase("service-mesh") {
               "-z",
               "15006",
               "-u",
-              "7557",
+              "1337",
               "-m",
               "REDIRECT",
               "-i",
