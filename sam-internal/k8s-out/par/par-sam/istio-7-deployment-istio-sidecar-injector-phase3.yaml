@@ -25,6 +25,12 @@ spec:
           {
            "certreqs": [
             {
+             "cert-type": "client",
+             "kingdom": "par",
+             "name": "tls-client-cert",
+             "role": "istio-sidecar-injector.mesh-control-plane"
+            },
+            {
              "cert-type": "server",
              "kingdom": "par",
              "name": "tls-server-cert",
