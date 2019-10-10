@@ -12,6 +12,14 @@ local build_server_url(tag) = (
     urlHead + tag + urlTail
 );
 
+local getKingdomDefaultInstances() = {
+    [configs.kingdom + "11"]: { url: build_server_url("1-1-" + configs.kingdom) },
+    [configs.kingdom + "12"]: { url: build_server_url("1-2-" + configs.kingdom) },
+    [configs.kingdom + "21"]: { url: build_server_url("2-1-" + configs.kingdom) },
+    [configs.kingdom + "22"]: { url: build_server_url("2-2-" + configs.kingdom) },
+    [configs.kingdom + "failover"]: {},
+};
+
 # instanceMap defines the set of watchdog instances that should exist within each kingdom.
 # Most kingdoms will just have a single watchdog instance.
 # Watchdog instances are deployed to the "<kingdom>-sam" estate for each kingdom where one or
@@ -103,7 +111,7 @@ local instanceMap = {
 };
 
 local getInstanceDataWithDefaults(instanceTag) = (
-  local instanceData = instanceMap[configs.kingdom][instanceTag];
+  local instanceData = getKingdomDefaultInstances;
   # The instance name (unless provided) is formed as "k4a-caiman-watchdog-<instanceTag>".
   local name = (if std.objectHas(instanceData, "name") then instanceData.name else "k4a-caiman-watchdog-" + instanceTag);
 
@@ -212,7 +220,7 @@ local instanceTagsForKingdom = if std.objectHas(instanceMap, configs.kingdom) th
 # automatically promoted by Firefly, so unless promoted through some side channel the ss-watchdog
 # images weren't ending up in prod when encapsulated in a List).
 local manifestSpec =
-  if !secretsconfigs.k4aCaimanWdEnabled || instanceTagsForKingdom == null || std.length(instanceTagsForKingdom) == 0 then "SKIP"
+  if instanceTagsForKingdom == null || std.length(instanceTagsForKingdom) == 0 then "SKIP"
   else if std.length(instanceTagsForKingdom) == 1 then k4aWatchdogDeployment(instanceTagsForKingdom[0])
   else {
   apiVersion: "v1",
