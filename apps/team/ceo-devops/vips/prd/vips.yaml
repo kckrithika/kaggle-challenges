@@ -396,10 +396,3 @@
     healthport: 80
     healthprotocol: http
     healthpath: /
-  - port: 49187
-    targetport: 49187
-    lbtype: tcp
-    reencrypt: false
-    healthport: 8080
-    healthprotocol: http
-    healthpath: /ha/health-check
