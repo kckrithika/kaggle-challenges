@@ -12,8 +12,11 @@ local utils = import "util_functions.jsonnet";
     // ======
     canarySherpaImage: (
         // https://git.soma.salesforce.com/servicelibs/sherpa-envoy/commits/master
-        "%s/sfci/servicelibs/sherpa-envoy:1.0.13" %
-        if utils.is_pcn(configs.kingdom) then configs.registry + "/docker-gcp" else configs.registry
+        // Use canary for PRD only for now. other DCs will have canary image matching the prod image
+        if configs.kingdom == "prd" then
+            "%s/sfci/servicelibs/sherpa-envoy:10531b7a1fce5897d7b1b71a42788edee56e9590" % if utils.is_pcn(configs.kingdom) then configs.registry + "/docker-gcp" else configs.registry
+        else 
+            self.sherpaImage
     ),
     sherpaImage: (
         // need to use a full image path. relative paths like 'sfci/servicelibs/sherpa-injector' won't work here.
