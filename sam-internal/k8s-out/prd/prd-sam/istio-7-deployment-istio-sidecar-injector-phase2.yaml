@@ -25,6 +25,12 @@ spec:
           {
            "certreqs": [
             {
+             "cert-type": "client",
+             "kingdom": "prd",
+             "name": "tls-client-cert",
+             "role": "istio-sidecar-injector.mesh-control-plane"
+            },
+            {
              "cert-type": "server",
              "kingdom": "prd",
              "name": "tls-server-cert",
@@ -35,12 +41,6 @@ spec:
               "istio-sidecar-injector.mesh-control-plane.svc",
               "istio-sidecar-injector.mesh-control-plane.svc.prd-sam.prd.sam.sfdc.net"
              ]
-            },
-            {
-             "cert-type": "client",
-             "kingdom": "prd",
-             "name": "tls-client-cert",
-             "role": "istio-sidecar-injector.mesh-control-plane"
             }
            ]
           }
