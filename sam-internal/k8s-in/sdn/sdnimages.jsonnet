@@ -12,12 +12,6 @@ local kingdom = std.extVar("kingdom");
         #   "prd,prd-sam,samcontrol,hypersam": "sam-0000123-deadbeef",
         #
         # override in minimal prod estate to get image into prod for PCL canary testing.
-        "cdu,cdu-sam,sdn-vault-agent,hypersdn": "2235-f72e41190116a32729ba81003ba6754f4f4796c8",
-        "frf,frf-sam,sdn-vault-agent,hypersdn": "2235-f72e41190116a32729ba81003ba6754f4f4796c8",
-        "syd,syd-sam,sdn-vault-agent,hypersdn": "2235-f72e41190116a32729ba81003ba6754f4f4796c8",
-        "yhu,yhu-sam,sdn-vault-agent,hypersdn": "2235-f72e41190116a32729ba81003ba6754f4f4796c8",
-        "yhu,yhu-sam,sdn-aws-controller,hypersdn": "2235-f72e41190116a32729ba81003ba6754f4f4796c8",
-        "yul,yul-sam,sdn-vault-agent,hypersdn": "2235-f72e41190116a32729ba81003ba6754f4f4796c8",
     },
 
     ### Per-phase image tags
@@ -54,7 +48,7 @@ local kingdom = std.extVar("kingdom");
 
         ### Release Phase 5 - All Prod
         "5": {
-            hypersdn: "2138-419bfa61fefbbe25c3c629d44045585a3b29d644",
+            hypersdn: "2235-f72e41190116a32729ba81003ba6754f4f4796c8",
             bird: "503-94b968cf67a338280f71a5c932f0956d13e982bb",
             hyperelk: "v-0000102-91c9122c",
             },
