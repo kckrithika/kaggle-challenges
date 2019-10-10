@@ -119,6 +119,7 @@ if (istioPhases.phaseNum == 1) then
           {
             args: [
               "discovery",
+              "--registries=Kubernetes",
               "--monitoringAddr=:15014",
               "--log_output_level=default:warn",
               "--domain",
@@ -231,6 +232,8 @@ if (istioPhases.phaseNum == 1) then
               "/etc/istio/proxy/envoy_pilot.yaml.tmpl",
               "--controlPlaneAuthPolicy",
               "MUTUAL_TLS",
+              "--proxyLogLevel=info",
+              "--log_output_level=default:warn",
               "--envoyMetricsService",
               "{\"address\":\"switchboard.service-mesh:15001\",\"tls_settings\":{\"mode\":2,\"client_certificate\":\"/client-certs/client/certificates/client.pem\",\"private_key\":\"/client-certs/client/keys/client-key.pem\",\"ca_certificates\":\"/client-certs/ca.pem\"},\"tcp_keepalive\":{\"probes\":3,\"time\":{\"seconds\":10},\"interval\":{\"seconds\":10}}}",
               "--proxyAdminPort",
@@ -586,7 +589,8 @@ if (istioPhases.phaseNum == 1) then
             ],
           },
           {
-            args: [
+            command: [
+              "istio-iptables",
               "-p",
               "15002",
               "-z",
