@@ -25,7 +25,7 @@ system:
         secretName: solrcloudcli-keytab-private
     containers:
     - name: universal-search
-      image: sfci/searchdev/universal-search:1.5.5
+      image: sfci/searchdev/universal-search:1.6.0
       ports:
       - name: service-port
         containerPort: 7020
@@ -33,9 +33,11 @@ system:
         containerPort: 15372
       resources:
         limits:
-          cpu: "20"
-          memory: "16Gi"
+          cpu: "24"
+          memory: "24Gi"
       env:
+      - name: JVM_OPTS
+        value: '-Xms16g -Xmx16g'
       - name: KRB5_CONF
         value: /home/sfdc-usmt/krb-config/krb5_searchzk_par.conf
       - name: JAAS_CONF
@@ -68,8 +70,8 @@ system:
         value: "sam"
       resources:
         limits:
-          cpu: "1"
-          memory: "1Gi"
+          cpu: "2"
+          memory: "4Gi"
       volumeMounts:
         - name: server-cert-vol
           mountPath: /server-certs
