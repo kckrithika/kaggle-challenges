@@ -221,7 +221,8 @@
       "hammond-charlie-slb-prd.slb.sfdc.net": "96.43.157.123"
     },
     "xrd-sam": {
-      "_sledgeapi-xrd.slb.sfdc.net": "136.146.48.1"
+      "_sledgeapi-xrd.slb.sfdc.net": "136.146.48.1",
+      "sledge-xrd.slb.sfdc.net": "136.146.67.13"
     }
   },
   "privateReservedIps": {

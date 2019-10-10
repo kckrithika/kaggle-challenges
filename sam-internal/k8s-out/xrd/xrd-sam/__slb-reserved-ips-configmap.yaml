@@ -3,6 +3,7 @@ data:
   slb-reserved-ips-xrd.json: |-
     {
       "_sledgeapi-xrd.slb.sfdc.net": "136.146.48.1",
+      "sledge-xrd.slb.sfdc.net": "136.146.67.13",
       "check-slb-xrd.slb.sfdc.net": "10.229.32.128",
       "ssh-to-somewhere-slb-xrd.slb.sfdc.net": "10.229.32.129"
     }
