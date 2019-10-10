@@ -83,7 +83,7 @@ system:
     # Entity API
     #####################################################################################
     - name: cloudatlas-service
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cloud-atlas/cloudatlas/cloudatlas-service:e7e8f04
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cloud-atlas/cloudatlas/cloudatlas-service:8531fe8
       command: ["java", "-jar", "cloudatlas-service.jar"]
       env:
         - name: DIRECTORY_SERVER_HOST
@@ -103,9 +103,6 @@ system:
         name: server-cert
       - mountPath: /clientcerts
         name: client-cert
-      - mountPath: /k4asecrets
-        name: k4a-secrets
-        readOnly: true
       ports:
       - containerPort: 7030
       - containerPort: 7032
@@ -202,6 +199,12 @@ system:
     # Volumes Needed
     #####################################################################################
     volumes:
+    - name: logvol
+      hostPath:
+        path: /home/sfdc-atlas/logs
+    - name: hosthomevol
+      hostPath:
+        path: /data/ca-cluster-a
     - name: server-cert
       maddogCert:
         type: server
