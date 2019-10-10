@@ -21,9 +21,7 @@ system:
       command: ["/opt/pdm/pdm.customer/bin/entrypoint.sh"]
       env:
       - name: UBID_DEPLOYMENT_STAGE
-        value: NONE
-      - name: UBID_REMOVE_EXISTING
-        value: TRUE
+        value: ALL
       - name: AWS_BACKUP_S3_BUCKET
         value: cloud-atlas-dev-backup-us-east-1
       - name: PUBLIC_PROXY_URL
