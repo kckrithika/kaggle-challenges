@@ -199,12 +199,6 @@ system:
     # Volumes Needed
     #####################################################################################
     volumes:
-    - name: logvol
-      hostPath:
-        path: /home/sfdc-atlas/logs
-    - name: hosthomevol
-      hostPath:
-        path: /data/ca-cluster-a
     - name: server-cert
       maddogCert:
         type: server
@@ -219,6 +213,9 @@ system:
         path: /home/sfdc-scone-hellodiscovery-beacon/logs
     - name: cache-volume
       emptyDir: {}
+    - name: logvol
+      hostPath:
+        path: /home/sfdc-atlas/logs-cast
   #####################################################################################
   # SLB
   #####################################################################################
