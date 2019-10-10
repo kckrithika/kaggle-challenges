@@ -40,7 +40,7 @@ local cre_production = {
                 owner_name: "Wave ELT",
                 namespace: "wave-elt",
                 pki_namespace: "wave-elt",
-                users: ["wave-elt.datapool", "wave-elt.datapool-test", "wave-elt.spark-engine"],
+                users: ["wave-elt.datapool", "wave-elt.datapool-test", "wave-elt.spark-engine", "wave-elt.jobcontroller-master", "wave-elt.jobcontroller-release"],
                 # --------
                 # Don't use quota until we get to k8s 1.14
                 # quota: {

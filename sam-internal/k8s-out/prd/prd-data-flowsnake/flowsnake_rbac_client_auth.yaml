@@ -63,6 +63,10 @@ items:
     name: wave-elt.datapool-test
   - kind: User
     name: wave-elt.spark-engine
+  - kind: User
+    name: wave-elt.jobcontroller-master
+  - kind: User
+    name: wave-elt.jobcontroller-release
 - apiVersion: rbac.authorization.k8s.io/v1
   kind: RoleBinding
   metadata:
@@ -81,6 +85,10 @@ items:
     name: wave-elt.datapool-test
   - kind: User
     name: wave-elt.spark-engine
+  - kind: User
+    name: wave-elt.jobcontroller-master
+  - kind: User
+    name: wave-elt.jobcontroller-release
 - apiVersion: v1
   automountServiceAccountToken: true
   kind: ServiceAccount
