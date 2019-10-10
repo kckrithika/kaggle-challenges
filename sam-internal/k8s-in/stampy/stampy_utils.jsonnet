@@ -3,7 +3,8 @@ local configs = import "config.jsonnet";
 local apiserverEstates = {
     "prd-samtest": true,
     "prd-samdev": true,
-    "prd-sam": true
+    "prd-sam": true,
+    "xrd-sam": true
 };
 
 {
