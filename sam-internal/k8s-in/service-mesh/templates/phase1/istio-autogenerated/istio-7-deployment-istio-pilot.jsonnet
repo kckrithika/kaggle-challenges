@@ -360,7 +360,7 @@ if (istioPhases.phaseNum == 1) then
               },
             },
             securityContext: {
-              runAsUser: 7557,
+              runAsUser: 1337,
             },
             volumeMounts: [
               {
@@ -596,7 +596,7 @@ if (istioPhases.phaseNum == 1) then
               "-z",
               "15006",
               "-u",
-              "7557",
+              "1337",
               "-m",
               "REDIRECT",
               "-i",

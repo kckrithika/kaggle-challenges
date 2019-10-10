@@ -246,7 +246,7 @@ spec:
             memory: "128Mi"
         securityContext: 
           readOnlyRootFilesystem: true
-          runAsUser: 7557
+          runAsUser: 1337
         terminationMessagePath: "/dev/termination-log"
         terminationMessagePolicy: "File"
         volumeMounts:
@@ -321,7 +321,7 @@ spec:
         - -z
         - "15006"
         - -u
-        - "7557"
+        - "1337"
         - -m
         - REDIRECT
         - -i
