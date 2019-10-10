@@ -36,7 +36,7 @@ local containerspec = {
         successThreshold: 1,
         timeoutSeconds: 1
     },
-    resources: (if flowsnake_config.sherpa_resources then flowsnake_config.sherpa_resources else {
+    resources: (if estate in flowsnake_config.sherpa_resources then flowsnake_config.sherpa_resources[estate] else {
         requests: {
             cpu: "1m",
             memory: "1Mi"
