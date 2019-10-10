@@ -9,7 +9,7 @@ system:
     count: 1
     annotations:
       "sherpa-injector.service-mesh/inject": "enabled"
-      "electron-opa-istio-injector.authz/inject": "enabled"
+      "electron-opa-istio-sherpa-injector.authz/inject": "enabled"
     containers:
     - name: samhello
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/matthew.klosak/samhello:20190910 # golang app
