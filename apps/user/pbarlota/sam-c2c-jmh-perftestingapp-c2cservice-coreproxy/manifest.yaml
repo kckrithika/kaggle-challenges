@@ -5,7 +5,7 @@ system:
     count: 1
     containers:
     - name: sam-c2c-jmh-perftestingapp-c2cservice-coreproxy
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/pbarlota/sam-c2c-jmh-perftestingapp-c2cservice-coreproxy:latest
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/pbarlota/sam-c2c-jmh-perftestingapp-c2cservice-coreproxy:latest-1
       ports:
       - containerPort: 9090
       volumeMounts:
