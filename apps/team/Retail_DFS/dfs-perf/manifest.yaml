@@ -66,7 +66,7 @@ system:
       - name: JWK_PROPERTIES_PATH
         value: /secrets/.jwttool.config
       - name: STUB_CLOUD
-        value: core
+        value: cre
       - name: JVM_ARGS
         value: "-Dspring.profiles.active=prod,perf,stubConnector
                 -Djava.util.concurrent.ForkJoinPool.common.parallelism=100
