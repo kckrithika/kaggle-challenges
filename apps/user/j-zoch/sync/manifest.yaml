@@ -7,20 +7,14 @@ system:
     - name: sync
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/j-zoch/winterfell-sync:develop
       env:
+      - name: SFDC_ENVIRONMENT
+        value: prod
+      - name: SPRING_CONFIG_NAME
+        value: prod
       - name: DC
         value: $(KINGDOM)
       - name: SPRING_PROFILES_ACTIVE 
-        value: h2,ssbypass,sam
-      - name: GRPC_TLS
-        value: false 
-      - name: PATH_HOSTCERT
-        value: /client-certs/client/certificates/client.pem
-      - name: PATH_HOSTKEY
-        value: /client-certs/client/keys/client-key.pem
-      - name: GRPC_SERVERPORT
-        value: 7020
-      - name: SERVER_PORT
-        value: 7022
+        value: dc.$(KINGDOM),sam,ssbypass
       - name: DISCOVERY_NAMESPACE
         value: user-j-zoch.samapp
 

@@ -5,7 +5,7 @@ system:
     count: 1
     containers:
     - name: syncmaster
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/j-zoch/winterfell-syncmaster:add-indexes
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/j-zoch/winterfell-syncmaster:find-stale-tickets
       env:
       - name: SFDC_ENVIRONMENT
         value: prod
@@ -40,7 +40,7 @@ system:
         - name: tls-server-cert
           mountPath: /server-certs
     - name: db
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/j-zoch/postgres:9.6
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/j-zoch/postgres:11
       env:
       - name: POSTGRES_PASSWORD
         value: docker
