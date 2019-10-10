@@ -25,7 +25,7 @@ system:
         secretName: solrcloudcli-keytab-prd
     containers:
     - name: universal-search
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/universal-search/universal-search:1.5.4
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/irahim/universal-search-parrot:irahim-201910101520
       ports:
       - name: service-port
         containerPort: 7020
