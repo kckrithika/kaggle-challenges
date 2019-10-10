@@ -400,5 +400,6 @@
     targetport: 49187
     lbtype: tcp
     reencrypt: false
-    healthport: 49187
-    healthprotocol: tcp
+    healthport: 8080
+    healthprotocol: http
+    healthpath: /ha/health-check
