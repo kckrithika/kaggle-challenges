@@ -366,7 +366,7 @@ system:
         value: --log-path /home/sfdc-sherpa/envoy.log
       - name: SFDC_ENVIRONMENT
         value: mist61
-      image: sfci/frontend-gateway/sfproxy:33e43ab
+      image: sfci/frontend-gateway/sfproxy:b2665c9
       livenessProbe:
         exec:
           command:
@@ -493,7 +493,7 @@ system:
         value: mist61
       - name: ENVOY_DEBUG_OPTIONS
         value: --log-path /home/sfdc-sherpa/envoy.log
-      image: sfci/frontend-gateway/sfproxy:11db4fc
+      image: sfci/frontend-gateway/sfproxy:b2665c9
       livenessProbe:
         exec:
           command:
