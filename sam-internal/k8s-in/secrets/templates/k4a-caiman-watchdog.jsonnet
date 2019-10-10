@@ -110,7 +110,7 @@ local getInstanceDataWithDefaults(instanceTag) = (
   # defaultInstanceData supplies the schema and default values for instanceData.
   local defaultInstanceData = {
     # role indicates the maddog role that is requested for the client certs and allowed access to the named vault.
-    role: "secrets.k4a-watchdog",
+    role: if utils.is_test_cluster(configs.estate) then "secrets.k4a-watchdog" else "secrets.k4a-watchdog-prod",
     # name is the name of the container for the instance.
     name: name,
     # secretsFile is the file path to the encrypted file
