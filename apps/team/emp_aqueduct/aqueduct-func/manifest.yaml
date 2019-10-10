@@ -85,7 +85,7 @@ system:
         - name: server-cert
           mountPath: /server-certs
       - name: beacon
-        image: sfci/servicelibs/beacon:1bbf22e7
+        image: sfci/services/sfdc-bazel/disco/beacon:be0423a5b
         args:
         - -endpoint
       # Namespaced announcement for TLS http2/grpc at the DATACENTER_ALLENV level for a service in a team's namespace
