@@ -3,3 +3,5 @@ apps:
   - prd/prd-sam  # the SAM Sandbox uses the prd/prd-sam host cluster
  my-sam-db-test:                # you can also specify other pools
   - prd/prd-sam
+ my-sam-gadget-ui-test:
+  - prd/prd-sam
