@@ -335,7 +335,7 @@ spec:
         env:
         - name: DISABLE_REDIRECTION_ON_LOCAL_LOOPBACK
           value: "1"
-        image: mcpIstioConfig.proxyInitImage
+        image: mcpIstioConfig.proxyImage
         imagePullPolicy: IfNotPresent
         name: istio-init
         resources:

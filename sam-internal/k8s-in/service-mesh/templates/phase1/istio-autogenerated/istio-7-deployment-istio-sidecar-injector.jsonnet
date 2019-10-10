@@ -644,7 +644,7 @@ if (istioPhases.phaseNum == 1) then
                 value: "1",
               },
             ],
-            image: mcpIstioConfig.proxyInitImage,
+            image: mcpIstioConfig.proxyImage,
             imagePullPolicy: "IfNotPresent",
             name: "istio-init",
             resources: {
