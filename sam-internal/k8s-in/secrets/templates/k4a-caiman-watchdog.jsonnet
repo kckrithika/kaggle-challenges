@@ -12,7 +12,7 @@ local build_server_url(tag) = (
     urlHead + tag + urlTail
 );
 
-local getKingdomDefaultInstances() = {
+local getKingdomDefaultInstances = {
     [configs.kingdom + "11"]: { url: build_server_url("1-1-" + configs.kingdom) },
     [configs.kingdom + "12"]: { url: build_server_url("1-2-" + configs.kingdom) },
     [configs.kingdom + "21"]: { url: build_server_url("2-1-" + configs.kingdom) },
@@ -20,98 +20,8 @@ local getKingdomDefaultInstances() = {
     [configs.kingdom + "failover"]: {},
 };
 
-# instanceMap defines the set of watchdog instances that should exist within each kingdom.
-# Most kingdoms will just have a single watchdog instance.
-# Watchdog instances are deployed to the "<kingdom>-sam" estate for each kingdom where one or
-# more watchdog instances should exist.
-# This helps deduplicate many of the common boilerplate specs for a watchdog instance, while
-# still allowing specialization of specific parameters between watchdog instances in the same
-# datacenter.
-# The schema is:
-# {
-#   <kingdomName>: {
-#     <instanceTag>: {
-#       ... instance data ...
-#     },
-#     ... additional instances ...
-#   },
-#   ... additional kingdoms ...
-#
-# For each instance, the instance data object supplies parameters relevant to the construction
-# of that specific instance. Many parameters are defaulted by getInstanceDataWithDefaults
-# below. which also serves to roughly outline the schema for the instance data.
-local instanceMap = {
-  prd: {
-    # Watchdogs monitoring individual k4a servers.
-    prd11: {
-      url: build_server_url("1-1-prd"),
-    },
-    prd12: {
-      url: build_server_url("1-2-prd"),
-    },
-    prd21: {
-      url: build_server_url("2-1-prd"),
-    },
-    prd22: {
-      url: build_server_url("2-2-prd"),
-    },
-    prdfailover: {
-    },
-  },
-  xrd: {
-    # Watchdogs monitoring individual k4a servers.
-    xrd11: {
-      url: build_server_url("1-1-xrd"),
-    },
-    xrd12: {
-      url: build_server_url("1-2-xrd"),
-    },
-    xrd21: {
-      url: build_server_url("2-1-xrd"),
-    },
-    xrd22: {
-      url: build_server_url("2-2-xrd"),
-    },
-    xrdfailover: {
-    },
-  },
-  phx: {
-    # Watchdogs monitoring individual k4a servers.
-    phx11: {
-      url: build_server_url("1-1-phx"),
-    },
-    phx12: {
-      url: build_server_url("1-2-phx"),
-    },
-    phx21: {
-      url: build_server_url("2-1-phx"),
-    },
-    phx22: {
-      url: build_server_url("2-2-phx"),
-    },
-    phxfailover: {
-    },
-  },
-  dfw: {
-    dfw11: {
-      url: build_server_url("1-1-dfw"),
-    },
-    dfw12: {
-      url: build_server_url("1-2-dfw"),
-    },
-    dfw21: {
-      url: build_server_url("2-1-dfw"),
-    },
-    dfw22: {
-      url: build_server_url("2-2-dfw"),
-    },
-    dfwfailover: {
-    },
-  },
-};
-
 local getInstanceDataWithDefaults(instanceTag) = (
-  local instanceData = getKingdomDefaultInstances;
+  local instanceData = getKingdomDefaultInstances[instanceTag];
   # The instance name (unless provided) is formed as "k4a-caiman-watchdog-<instanceTag>".
   local name = (if std.objectHas(instanceData, "name") then instanceData.name else "k4a-caiman-watchdog-" + instanceTag);
 
@@ -213,22 +123,18 @@ local k4aWatchdogDeployment(instanceTag) = configs.deploymentBase("secrets") {
   },
 };
 
-local instanceTagsForKingdom = if std.objectHas(instanceMap, configs.kingdom) then std.objectFields(instanceMap[configs.kingdom]);
 # If there's only a single instance defined for a datacenter (as there will be for most datacenters),
 # don't use the k8s List abstraction; the SAM infrastructure isn't fully aware of the List abstraction,
 # so some things break in surprising ways (like image promotion -- new images within a List aren't
 # automatically promoted by Firefly, so unless promoted through some side channel the ss-watchdog
 # images weren't ending up in prod when encapsulated in a List).
-local manifestSpec =
-  if instanceTagsForKingdom == null || std.length(instanceTagsForKingdom) == 0 then "SKIP"
-  else if std.length(instanceTagsForKingdom) == 1 then k4aWatchdogDeployment(instanceTagsForKingdom[0])
-  else {
+local manifestSpec = {
   apiVersion: "v1",
   kind: "List",
   metadata: {},
   items: [
     k4aWatchdogDeployment(instanceTag)
-    for instanceTag in std.objectFields(instanceMap[configs.kingdom])
+    for instanceTag in std.objectFields(getKingdomDefaultInstances)
   ],
 };
 
