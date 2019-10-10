@@ -84,6 +84,20 @@ system:
           mountPath: /client-certs
         - name: server-cert
           mountPath: /server-certs
+      - name: beacon
+        image: sfci/services/sfdc-bazel/disco/beacon:be0423a5b
+        args:
+        - -endpoint
+      # Namespaced announcement for TLS http2/grpc at the DATACENTER_ALLENV level for a service in a team's namespace
+      # Note: If your service is in a user's personal namespace, a `samapp` namespace will need to be added. ie. `samapp/user-<USER>/<SAM function name>:DATACENTER:7443`
+      # For detailed info on other announcement types, see https://confluence.internal.salesforce.com/display/SERVMESH/Service+Mesh+Announcements and
+      # https://confluence.internal.salesforce.com/x/Ym2XAw
+        - $(FUNCTION_NAMESPACE)/$(FUNCTION):DATACENTER_ALLENV:HTTP2_TLS
+        livenessProbe:
+          initialDelaySeconds: 5
+          exec:
+            command:
+            - /opt/beacon/is-alive.sh
   loadbalancers:
   # CName aqueduct-func-xrd.slb.sfdc.net added as SLB cert doesn't have SLB VIP name in SAN
   - lbname: aqueduct-func
