@@ -28,6 +28,7 @@ spec:
         - --meshConfig=/etc/istio/config/mesh
         - --healthCheckInterval=2s
         - --healthCheckFile=/health
+        - --reconcileWebhookConfig=true
         - --port=15009
         - --monitoringPort=8080
         env:
@@ -313,7 +314,8 @@ spec:
           name: tls-client-cert
         - mountPath: /server-cert
           name: tls-server-cert
-      - args:
+      - command:
+        - istio-iptables
         - -p
         - "15002"
         - -z
