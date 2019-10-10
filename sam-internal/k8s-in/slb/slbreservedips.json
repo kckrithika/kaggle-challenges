@@ -160,7 +160,7 @@
       "rsui-production-ord-lb.retail-rsui.ord-sam.ord.slb.sfdc.net": "13.110.26.14",
       "rsui-production-ord-test-lb.retail-rsui.ord-sam.ord.slb.sfdc.net": "13.110.26.15",
       "slb-canary-proxy-http-ext.sam-system.iad-sam.iad.slb.sfdc.net": "13.110.26.5",
-      "sledge-iad.slb.sfdc.net": "13.110.26.13",
+      "sledge-ord.slb.sfdc.net": "13.110.26.13",
       "org-cce2e-cs8-slb-ord.slb.sfdc.net": "13.110.26.101",
       "org-cce2e-cs14-slb-ord.slb.sfdc.net": "13.110.26.102",
       "org-cce2e-cs15-slb-ord.slb.sfdc.net": "13.110.26.103",
