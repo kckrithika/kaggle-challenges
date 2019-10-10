@@ -9,7 +9,7 @@ data:
     1, "timeoutSeconds": 1}, "name": "<replaced>", "readinessProbe": {"exec": {"command":
     ["./bin/is-ready"]}, "failureThreshold": 3, "initialDelaySeconds": 110, "periodSeconds":
     5, "successThreshold": 1, "timeoutSeconds": 1}, "resources": {"limits": {"cpu":
-    "1.0", "memory": "1Gi"}, "requests": {"cpu": "1m", "memory": "1Mi"}}, "terminationMessagePath":
+    "2.0", "memory": "4Gi"}, "requests": {"cpu": "2.0", "memory": "4Gi"}}, "terminationMessagePath":
     "/dev/termination-log", "terminationMessagePolicy": "File"}'
 kind: ConfigMap
 metadata:

@@ -265,17 +265,16 @@ local flowsnake_all_kes = (import "flowsnakeEstates.json").kingdomEstates + ["pr
     hbase_dev_watchdog_enabled: std.count(self.hbase_dev_estates, estate) > 0,
     hbase_prod_watchdog_enabled: std.count(self.hbase_prod_estates, estate) > 0,
 
-    sherpa_resources: (
-if estate != "prd-flowsnake_iot_test" then false else
-        {
-            requests: {
-                cpu: "2.0",
-                memory: "4Gi",
+    sherpa_resources: {
+       "prd-dev-flowsnake_iot_test": {
+                requests: {
+                    cpu: "2.0",
+                    memory: "4Gi",
+                },
+                limits: {
+                    cpu: "2.0",
+                    memory: "4Gi",
+                },
             },
-            limits: {
-                cpu: "2.0",
-                memory: "4Gi",
-            },
-        }
-    ),
+    },
 }
