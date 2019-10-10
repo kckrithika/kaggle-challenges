@@ -15,7 +15,7 @@ system:
       # https://sfcirelease.dop.sfdc.net/job/services/job/sfdc-bazel_projects_services_examples_ordering/job/sfdc-bazel/job/master/5
       image: sfci/services/sfdc-bazel/scone/ordering:685f3d3e5
       args:
-      - --tracing.zipkinServer=zipkindirecttls.funnel.localhost.mesh.force.com:5442
+      - --tracing.zipkinServer=http://zipkindirecttls.funnel.localhost.mesh.force.com:5442/api/v2/spans
       env:
       - name: SFDC_ENVIRONMENT
         value: mesh
