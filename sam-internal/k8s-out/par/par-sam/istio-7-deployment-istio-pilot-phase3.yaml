@@ -18,8 +18,8 @@ spec:
       istio: pilot
   strategy:
     rollingUpdate:
-      maxSurge: 1
-      maxUnavailable: 0
+      maxSurge: 3
+      maxUnavailable: 1
   template:
     metadata:
       annotations:
@@ -51,6 +51,7 @@ spec:
       labels:
         app: pilot
         chart: pilot
+        cluster: par-sam_gater
         heritage: Tiller
         istio: pilot
         name: istio-pilot
@@ -107,9 +108,9 @@ spec:
         - name: PILOT_ENABLE_REDIS_FILTER
           value: "true"
         - name: PILOT_DEBOUNCE_AFTER
-          value: 1m
+          value: 100ms
         - name: PILOT_DEBOUNCE_MAX
-          value: 3m
+          value: 10s
         - name: POD_NAME
           valueFrom:
             fieldRef:
@@ -120,14 +121,14 @@ spec:
             fieldRef:
               apiVersion: v1
               fieldPath: metadata.namespace
-        - name: GODEBUG
-          value: gctrace=1
         - name: PILOT_PUSH_THROTTLE
-          value: "10"
+          value: "100"
         - name: PILOT_TRACE_SAMPLING
           value: "1"
-        - name: PILOT_DISABLE_XDS_MARSHALING_TO_ANY
-          value: "1"
+        - name: PILOT_ENABLE_PROTOCOL_SNIFFING_FOR_OUTBOUND
+          value: "true"
+        - name: PILOT_ENABLE_PROTOCOL_SNIFFING_FOR_INBOUND
+          value: "false"
         image: ops0-artifactrepo1-0-par.data.sfdc.net/sfci/servicemesh/istio-packaging/pilot:10908bb690d01d7100444da5d8ac58960cb22d7c
         imagePullPolicy: IfNotPresent
         name: discovery
@@ -143,10 +144,10 @@ spec:
           timeoutSeconds: 5
         resources:
           limits:
-            cpu: 2000m
+            cpu: 4000m
             memory: 4096Mi
           requests:
-            cpu: 500m
+            cpu: 1000m
             memory: 2048Mi
         volumeMounts:
         - mountPath: /etc/istio/config
@@ -158,11 +159,11 @@ spec:
         - --serviceCluster
         - istio-pilot
         - --templateFile
-        - /etc/istio/proxy/envoy_pilot_par.yaml.tmpl
+        - /etc/istio/proxy/envoy_pilot.yaml.tmpl
         - --controlPlaneAuthPolicy
         - MUTUAL_TLS
-        - --envoyMetricsServiceAddress
-        - switchboard.service-mesh:15001
+        - --envoyMetricsService
+        - '{"address":"switchboard.service-mesh:15001","tls_settings":{"mode":2,"client_certificate":"/client-certs/client/certificates/client.pem","private_key":"/client-certs/client/keys/client-key.pem","ca_certificates":"/client-certs/ca.pem"},"tcp_keepalive":{"probes":3,"time":{"seconds":10},"interval":{"seconds":10}}}'
         - --proxyAdminPort
         - "15373"
         env:
@@ -203,6 +204,16 @@ spec:
           value: /server-certs/server/keys/server-key.pem
         - name: ISTIO_META_TLS_SERVER_ROOT_CERT
           value: /server-certs/ca.pem
+        - name: ISTIO_META_kubernetes_cluster_name
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.labels['cluster']
+        - name: ESTATE
+          value: par-sam_gater
+        - name: KINGDOM
+          value: par
+        - name: SDS_ENABLED
+          value: "false"
         image: ops0-artifactrepo1-0-par.data.sfdc.net/sfci/servicemesh/istio-packaging/proxy:10908bb690d01d7100444da5d8ac58960cb22d7c
         imagePullPolicy: IfNotPresent
         name: istio-proxy
@@ -218,6 +229,8 @@ spec:
           requests:
             cpu: 100m
             memory: 128Mi
+        securityContext:
+          runAsUser: 7557
         volumeMounts:
         - mountPath: /client-certs
           name: tls-client-cert
@@ -270,7 +283,7 @@ spec:
         - --debug-mode
         - "true"
         - --funnel-address
-        - mandm-funnel-par1.data.sfdc.net:8080
+        - ajnafunneldirecttls.funnel.svc.mesh.sfdc.net:7442
         - --alt-tags
         - cluster=svccluster
         env:
@@ -359,6 +372,44 @@ spec:
           name: tls-client-cert
         - mountPath: /server-cert
           name: tls-server-cert
+      - args:
+        - -p
+        - "15002"
+        - -z
+        - "15006"
+        - -u
+        - "7557"
+        - -m
+        - REDIRECT
+        - -i
+        - 127.1.2.3/32
+        - -x
+        - ""
+        - -b
+        - ""
+        - -d
+        - 15010,15011
+        env:
+        - name: DISABLE_REDIRECTION_ON_LOCAL_LOOPBACK
+          value: "1"
+        image: ops0-artifactrepo1-0-par.data.sfdc.net/sfci/servicemesh/istio-packaging/proxy_init:10908bb690d01d7100444da5d8ac58960cb22d7c
+        imagePullPolicy: IfNotPresent
+        name: istio-init
+        resources:
+          limits:
+            cpu: 100m
+            memory: 50Mi
+          requests:
+            cpu: 10m
+            memory: 10Mi
+        securityContext:
+          capabilities:
+            add:
+            - NET_ADMIN
+          runAsNonRoot: false
+          runAsUser: 0
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
       nodeSelector:
         pool: par-sam_gater
       serviceAccountName: istio-pilot-service-account

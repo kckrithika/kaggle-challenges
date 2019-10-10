@@ -2,6 +2,7 @@ apiVersion: admissionregistration.k8s.io/v1beta1
 kind: ValidatingWebhookConfiguration
 metadata:
   annotations:
+    fake.deploy: "4"
     manifestctl.sam.data.sfdc.net/swagger: disable
   name: istio-routing-webhook
   namespace: mesh-control-plane

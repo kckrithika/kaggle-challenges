@@ -9,6 +9,7 @@ if (istioPhases.phaseNum == 3) then
   metadata: {
     annotations: {
       "manifestctl.sam.data.sfdc.net/swagger": "disable",
+      "niko/fake.change.for.redeploy": "3",
     },
     name: "mesh-default",
     namespace: "mesh-control-plane",
@@ -16,6 +17,35 @@ if (istioPhases.phaseNum == 3) then
   spec: {
     egress: [
       {
+        port: {
+            number: 7443,
+            protocol: "GRPC",
+            name: "grpc-tls",
+        },
+        hosts: mcpIstioConfig.sidecarEgressHosts,
+      },
+      {
+        port: {
+            number: 7442,
+            protocol: "HTTP",
+            name: "http-tls",
+        },
+        hosts: mcpIstioConfig.sidecarEgressHosts,
+      },
+      {
+        port: {
+            number: 7014,
+            protocol: "HTTP",
+            name: "http-plain",
+        },
+        hosts: mcpIstioConfig.sidecarEgressHosts,
+      },
+      {
+        port: {
+            number: 7012,
+            protocol: "GRPC",
+            name: "grpc-plain",
+        },
         hosts: mcpIstioConfig.sidecarEgressHosts,
       },
     ],

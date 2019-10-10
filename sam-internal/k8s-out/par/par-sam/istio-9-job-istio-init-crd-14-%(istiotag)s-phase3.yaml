@@ -1,0 +1,32 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: istio-init-crd-14-10908bb690d01d7100444da5d8ac58960cb22d7c
+  namespace: mesh-control-plane
+spec:
+  template:
+    metadata:
+      annotations:
+        sidecar.istio.io/inject: "false"
+    spec:
+      containers:
+      - command:
+        - kubectl
+        - apply
+        - -f
+        - /etc/istio/crd-14/crd-14.yaml
+        image: ops0-artifactrepo1-0-par.data.sfdc.net/sfci/servicemesh/istio-packaging/kubectl:10908bb690d01d7100444da5d8ac58960cb22d7c
+        imagePullPolicy: IfNotPresent
+        name: istio-init-crd-14
+        volumeMounts:
+        - mountPath: /etc/istio/crd-14
+          name: crd-14
+          readOnly: true
+      nodeSelector:
+        pool: par-sam_gater
+      restartPolicy: OnFailure
+      serviceAccountName: istio-init-service-account
+      volumes:
+      - configMap:
+          name: istio-crd-14
+        name: crd-14

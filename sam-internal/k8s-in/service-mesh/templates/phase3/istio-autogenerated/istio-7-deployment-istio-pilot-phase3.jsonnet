@@ -29,8 +29,8 @@ if (istioPhases.phaseNum == 3) then
     },
     strategy: {
       rollingUpdate: {
-        maxSurge: 1,
-        maxUnavailable: 0,
+        maxSurge: 3,
+        maxUnavailable: 1,
       },
     },
     template: {
@@ -42,6 +42,7 @@ if (istioPhases.phaseNum == 3) then
         labels: {
           app: "pilot",
           chart: "pilot",
+          cluster: mcpIstioConfig.istioEstate,
           heritage: "Tiller",
           istio: "pilot",
           name: "istio-pilot",
@@ -141,11 +142,11 @@ if (istioPhases.phaseNum == 3) then
               },
               {
                 name: "PILOT_DEBOUNCE_AFTER",
-                value: "1m",
+                value: "100ms",
               },
               {
                 name: "PILOT_DEBOUNCE_MAX",
-                value: "3m",
+                value: "10s",
               },
               {
                 name: "POD_NAME",
@@ -166,20 +167,20 @@ if (istioPhases.phaseNum == 3) then
                 },
               },
               {
-                name: "GODEBUG",
-                value: "gctrace=1",
-              },
-              {
                 name: "PILOT_PUSH_THROTTLE",
-                value: "10",
+                value: "100",
               },
               {
                 name: "PILOT_TRACE_SAMPLING",
                 value: "1",
               },
               {
-                name: "PILOT_DISABLE_XDS_MARSHALING_TO_ANY",
-                value: "1",
+                name: "PILOT_ENABLE_PROTOCOL_SNIFFING_FOR_OUTBOUND",
+                value: "true",
+              },
+              {
+                name: "PILOT_ENABLE_PROTOCOL_SNIFFING_FOR_INBOUND",
+                value: "false",
               },
             ],
             image: "%(istioHub)s/pilot:%(istioTag)s" % mcpIstioConfig,
@@ -204,11 +205,11 @@ if (istioPhases.phaseNum == 3) then
             },
             resources: {
               limits: {
-                cpu: "2000m",
+                cpu: "4000m",
                 memory: "4096Mi",
               },
               requests: {
-                cpu: "500m",
+                cpu: "1000m",
                 memory: "2048Mi",
               },
             },
@@ -227,11 +228,11 @@ if (istioPhases.phaseNum == 3) then
               "--serviceCluster",
               "istio-pilot",
               "--templateFile",
-              "/etc/istio/proxy/envoy_pilot_%(kingdom)s.yaml.tmpl" % mcpIstioConfig,
+              "/etc/istio/proxy/envoy_pilot.yaml.tmpl",
               "--controlPlaneAuthPolicy",
               "MUTUAL_TLS",
-              "--envoyMetricsServiceAddress",
-              "switchboard.service-mesh:15001",
+              "--envoyMetricsService",
+              "{\"address\":\"switchboard.service-mesh:15001\",\"tls_settings\":{\"mode\":2,\"client_certificate\":\"/client-certs/client/certificates/client.pem\",\"private_key\":\"/client-certs/client/keys/client-key.pem\",\"ca_certificates\":\"/client-certs/ca.pem\"},\"tcp_keepalive\":{\"probes\":3,\"time\":{\"seconds\":10},\"interval\":{\"seconds\":10}}}",
               "--proxyAdminPort",
               "15373",
             ],
@@ -307,6 +308,26 @@ if (istioPhases.phaseNum == 3) then
                 name: "ISTIO_META_TLS_SERVER_ROOT_CERT",
                 value: "/server-certs/ca.pem",
               },
+              {
+                name: "ISTIO_META_kubernetes_cluster_name",
+                valueFrom: {
+                  fieldRef: {
+                    fieldPath: "metadata.labels['cluster']",
+                  },
+                },
+              },
+              {
+                name: "ESTATE",
+                value: mcpIstioConfig.istioEstate,
+              },
+              {
+                name: "KINGDOM",
+                value: mcpIstioConfig.kingdom,
+              },
+              {
+                name: "SDS_ENABLED",
+                value: "false",
+              },
             ],
             image: "%(istioHub)s/proxy:%(istioTag)s" % mcpIstioConfig,
             imagePullPolicy: "IfNotPresent",
@@ -334,6 +355,9 @@ if (istioPhases.phaseNum == 3) then
                 cpu: "100m",
                 memory: "128Mi",
               },
+            },
+            securityContext: {
+              runAsUser: 7557,
             },
             volumeMounts: [
               {
@@ -421,7 +445,7 @@ if (istioPhases.phaseNum == 3) then
               "--debug-mode",
               "true",
               "--funnel-address",
-              mcpIstioConfig.funnelVIP,
+              mcpIstioConfig.funnelEndpoint,
               "--alt-tags",
               "cluster=svccluster",
             ],
@@ -560,6 +584,56 @@ if (istioPhases.phaseNum == 3) then
                 name: "tls-server-cert",
               },
             ],
+          },
+          {
+            args: [
+              "-p",
+              "15002",
+              "-z",
+              "15006",
+              "-u",
+              "7557",
+              "-m",
+              "REDIRECT",
+              "-i",
+              "127.1.2.3/32",
+              "-x",
+              "",
+              "-b",
+              "",
+              "-d",
+              "15010,15011",
+            ],
+            env: [
+              {
+                name: "DISABLE_REDIRECTION_ON_LOCAL_LOOPBACK",
+                value: "1",
+              },
+            ],
+            image: mcpIstioConfig.proxyInitImage,
+            imagePullPolicy: "IfNotPresent",
+            name: "istio-init",
+            resources: {
+              limits: {
+                cpu: "100m",
+                memory: "50Mi",
+              },
+              requests: {
+                cpu: "10m",
+                memory: "10Mi",
+              },
+            },
+            securityContext: {
+              capabilities: {
+                add: [
+                  "NET_ADMIN",
+                ],
+              },
+              runAsNonRoot: false,
+              runAsUser: 0,
+            },
+            terminationMessagePath: "/dev/termination-log",
+            terminationMessagePolicy: "File",
           },
         ],
         nodeSelector: {

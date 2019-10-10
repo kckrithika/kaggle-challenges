@@ -22,6 +22,12 @@ configs.deploymentBase("service-mesh") {
   },
   spec+: {
     replicas: 3,
+    selector: {
+      matchLabels: {
+        app: "istio-routing-webhook",
+        name: "istio-routing-webhook",
+      },
+    },
     template: {
       metadata: {
         annotations+: {
@@ -42,6 +48,7 @@ configs.deploymentBase("service-mesh") {
           app: "istio-routing-webhook",
           // This name label is required for SAM's pod.* metrics to properly work: https://git.soma.salesforce.com/sam/sam/blob/master/pkg/watchdog/internal/checkers/kuberesourceschecker/internal/pod/podhealthchecker.go#L203
           name: "istio-routing-webhook",
+          cluster: mcpIstioConfig.istioEstate,
         },
       },
       spec: configs.specWithMadDog {
@@ -123,7 +130,7 @@ configs.deploymentBase("service-mesh") {
               "--parentShutdownDuration",
               "1m0s",
               "--discoveryAddress",
-              "istio-pilot.mesh-control-plane:15010",
+              "istio-pilot.mesh-control-plane:15011",
               "--zipkinAddress",
               "zipkin.service-mesh:9411",
               "--proxyLogLevel=info",
@@ -131,14 +138,14 @@ configs.deploymentBase("service-mesh") {
               "300s",
               "--connectTimeout",
               "10s",
-              "--envoyMetricsServiceAddress",
-              "switchboard.service-mesh:15001",
+              "--envoyMetricsService",
+              '{"address":"switchboard.service-mesh:15001","tls_settings":{"mode":2,"client_certificate":"/client-certs/client/certificates/client.pem","private_key":"/client-certs/client/keys/client-key.pem","ca_certificates":"/client-certs/ca.pem"},"tcp_keepalive":{"probes":3,"time":{"seconds":10},"interval":{"seconds":10}}}',
               "--proxyAdminPort",
               "15373",
               "--concurrency",
               "2",
               "--controlPlaneAuthPolicy",
-              "NONE",
+              "MUTUAL_TLS",
               "--statusPort",
               "15020",
             ],
@@ -242,6 +249,15 @@ configs.deploymentBase("service-mesh") {
                 name: "ISTIO_META_TLS_SERVER_ROOT_CERT",
                 value: "/server-certs/ca.pem",
               },
+              {
+                name: "ISTIO_META_kubernetes_cluster_name",
+                valueFrom: {
+                  fieldRef: {
+                    fieldPath: "metadata.labels['cluster']",
+                  },
+                },
+              },
+
             ],
             image: mcpIstioConfig.proxyImage,
             imagePullPolicy: "IfNotPresent",
@@ -277,7 +293,7 @@ configs.deploymentBase("service-mesh") {
             },
             securityContext: {
               readOnlyRootFilesystem: true,
-              runAsUser: 7447,
+              runAsUser: 7557,
             },
             terminationMessagePath: "/dev/termination-log",
             terminationMessagePolicy: "File",
@@ -324,9 +340,11 @@ configs.deploymentBase("service-mesh") {
           {
             args: [
               "-p",
+              "15002",
+              "-z",
               "15006",
               "-u",
-              "7447",
+              "7557",
               "-m",
               "REDIRECT",
               "-i",
@@ -337,6 +355,12 @@ configs.deploymentBase("service-mesh") {
               "",
               "-d",
               "15020,10443",
+            ],
+            env: [
+              {
+                name: "DISABLE_REDIRECTION_ON_LOCAL_LOOPBACK",
+                value: "1",
+              },
             ],
             image: mcpIstioConfig.proxyInitImage,
             imagePullPolicy: "IfNotPresent",
