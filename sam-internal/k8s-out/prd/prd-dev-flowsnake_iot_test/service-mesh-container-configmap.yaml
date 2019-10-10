@@ -3,7 +3,7 @@ data:
   spec.jaysawn: '{"env": [{"name": "SETTINGS_PATH", "value": "-.-.prd.-."}, {"name":
     "SETTINGS_SUPERPOD", "value": "-"}, {"name": "SFDC_SETTINGS_PATH", "value": "-.-.prd.-."},
     {"name": "SFDC_SETTINGS_SUPERPOD", "value": "-"}, {"name": "JVM_HEAP_MAX", "value":
-    "1024M"}], "image": "ops0-artifactrepo2-0-prd.data.sfdc.net/sfci/servicelibs/sherpa-envoy:1.0.5",
+    "1024M"}], "image": "ops0-artifactrepo2-0-prd.data.sfdc.net/sfci/servicelibs/sherpa-envoy:1.0.13",
     "imagePullPolicy": "IfNotPresent", "livenessProbe": {"exec": {"command": ["./bin/is-alive"]},
     "failureThreshold": 3, "initialDelaySeconds": 120, "periodSeconds": 5, "successThreshold":
     1, "timeoutSeconds": 1}, "name": "<replaced>", "readinessProbe": {"exec": {"command":
