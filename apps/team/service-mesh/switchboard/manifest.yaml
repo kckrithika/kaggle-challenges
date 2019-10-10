@@ -68,7 +68,7 @@ system:
       - name: JVM_HEAP_MAX
         value: 4G
       - name: FAKE_ENV_VAR_INCREMENT_TO_TRIGGER_SAM_DEPLOY
-        value: "1"
+        value: "0"
       resources:
         limits:
           cpu: "8"
