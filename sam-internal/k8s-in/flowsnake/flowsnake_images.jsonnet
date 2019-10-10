@@ -44,7 +44,6 @@ local utils = import "util_functions.jsonnet";
                 # --- flag G (is to assist ... ---
                 # --- flag H (git's diff logic ... ---
                 # --- flag I (to reduce the ---
-                deployment_strategy: "",
                 # --- flag J (likelihood of merge conflicts.) ---
                 central_prometheus_forwarder: "試行中",
             },
@@ -56,7 +55,7 @@ local utils = import "util_functions.jsonnet";
         },
         # Phase 2: Remaining PRD fleets and production canary fleets.
         # Only include new things not yet promoted to next phase. To promote, move line items to next phase.
-        "2": self["3"] {
+        "2": self.prod {
             image_tags+: {
                 integration_test_tag: "22",
                 hbase_integration_test_tag: "22",
@@ -72,7 +71,6 @@ local utils = import "util_functions.jsonnet";
                 # --- flag G (is to assist ... ---
                 # --- flag H (git's diff logic ... ---
                 # --- flag I (to reduce the ---
-                deployment_strategy: "",
                 # --- flag J (likelihood of merge conflicts.) ---
                 upcase_pki_kingdom: "",
             },
@@ -90,9 +88,9 @@ local utils = import "util_functions.jsonnet";
                 btrfs_watchdog_hard_reset: "",  # Was promoted to prd-dev before phasing refactor
             },
             # prd-dev offers legacy version mappings. Phase 2 does not, so cannot inherit from there.
-            # Start with 4-iad-ord (which also have legacy version mappings),
+            # Start with iad-ord (which also have legacy version mappings),
             # then apply overrides from generic phase 2, and then any customizations just for this fleet.
-            version_mapping: $.per_phase["4-iad-ord"].version_mapping + super.version_mapping + {
+            version_mapping: $.per_phase["iad-ord"].version_mapping + super.version_mapping + {
             },
         },
         # prd-data: Exceptions vs. the rest of phase 2 only
@@ -104,46 +102,15 @@ local utils = import "util_functions.jsonnet";
                 # Note: the *value* of the flags is ignored. jsonnet lacks array search, so we use a an object.
             },
             # prd-data offers legacy version mappings. Phase 2 does not, so cannot inherit from there.
-            # Start with 4-iad-ord (which also have legacy version mappings),
+            # Start with iad-ord (which also have legacy version mappings),
             # then apply overrides from generic phase 2, and then any cusomizations just for this fleet.
-            version_mapping: $.per_phase["4-iad-ord"].version_mapping + super.version_mapping + {
+            version_mapping: $.per_phase["iad-ord"].version_mapping + super.version_mapping + {
             },
         },
-        # Phase 3: Remaining PRD fleets and production canary fleets.
-        # Only include new things not yet promoted to next phase. To promote, move line items to next phase.
-        "3": self["4"] {
-            image_tags+: {
-                integration_test_tag: "22",
-                hbase_integration_test_tag: "22",
-            },
-            feature_flags+: {
-                # --- flag A (Do not edit ... ---
-                # --- flag B (these comments ... ---
-                # --- flag C (and place only ... ---
-                # --- flag D (one flag between ... ---
-                # --- flag E (each pair. ... ---
-                # --- flag F (Their only purpose ... ---
-                watchdog_refactoring: "",
-                # --- flag G (is to assist ... ---
-                # --- flag H (git's diff logic ... ---
-                # --- flag I (to reduce the ---
-                deployment_strategy: "",
-                # --- flag J (likelihood of merge conflicts.) ---
-                upcase_pki_kingdom: "",
-            },
-            version_mapping+: {
-            },
-        },
-        # frf: Exceptions vs. the rest of phase 3 only
-        "3-frf": self["3"] {
-        },
-        # cdu: Exceptions vs. the rest of phase 3 only
-        "3-cdu": self["3"] {
-            version_mapping: {},  # No legacy Flowsnake in Public Cloud; therefore force empty verson_mapping
-        },
-        # Phase 4: Remaining production fleets.
+
+        # Phase prod: Remaining production fleets.
         # This is the defacto "default" set of items.
-        "4": {
+        prod: {
             image_tags: {
                 # Flowsnake v1 images
                 beacon_image_tag: "853c4db9f14805018be6f5e7607ffe65b5648822",
@@ -200,7 +167,6 @@ local utils = import "util_functions.jsonnet";
                 # --- flag G (is to assist ... ---
                 # --- flag H (git's diff logic ... ---
                 # --- flag I (to reduce the ---
-                deployment_strategy: "",
                 # --- flag J (likelihood of merge conflicts.) ---
             },
             version_mapping: {
@@ -208,13 +174,100 @@ local utils = import "util_functions.jsonnet";
                 "0.12.5-hbase": "jenkins-dva-transformation-flowsnake-platform-hbase-init-fix-1-itest",
             },
         },
-        # Public Cloud ("MoFo") exceptions to the rest of phase 4.
-        "4-pcl": self["4"] {
-            version_mapping: {},  # No legacy Flowsnake in Public Cloud; therefore force empty verson_mapping
+        # EMEA (Europe Middle East Africa): FRF, PAR
+        # off-peak: 1pm-9pm
+        "prod-emea": self.prod {
         },
+
+        # NA (North America): DFW, IAD, IA2, ORD, PHX, PH2, YHU, YUL
+        # off-peak: 6pm-4am
+        "prod-na": self.prod {
+        },
+
+        # APAC (Asia Pacific): HND, UKB, CDU, SYD
+        # off-peak: 6am-1pm
+        "prod-apac": self.prod {
+        },
+
+
+        iad: self["prod-na"] {
+          version_mapping+: $.per_phase["iad-ord"].version_mapping {
+          },
+        },
+        ord: self["prod-na"] {
+          version_mapping+: $.per_phase["iad-ord"].version_mapping {
+          },
+        },
+        dfw: self["prod-na"] {
+        },
+        ia2: self["prod-na"] {
+        },
+        phx: self["prod-na"] {
+        },
+        ph2: self["prod-na"] {
+        },
+        yhu: self["prod-na"] {
+          version_mapping: {},  # No legacy Flowsnake in Public Cloud; therefore force empty verson_mapping
+        },
+        yul: self["prod-na"] {
+          version_mapping: {},  # No legacy Flowsnake in Public Cloud; therefore force empty verson_mapping
+        },
+
+        frf: self["prod-emea"] {
+          image_tags+: {
+              integration_test_tag: "22",
+              hbase_integration_test_tag: "22",
+          },
+          feature_flags+: {
+              # --- flag A (Do not edit ... ---
+              # --- flag B (these comments ... ---
+              # --- flag C (and place only ... ---
+              # --- flag D (one flag between ... ---
+              # --- flag E (each pair. ... ---
+              # --- flag F (Their only purpose ... ---
+              watchdog_refactoring: "",
+              # --- flag G (is to assist ... ---
+              # --- flag H (git's diff logic ... ---
+              # --- flag I (to reduce the ---
+              # --- flag J (likelihood of merge conflicts.) ---
+              upcase_pki_kingdom: "",
+          },
+        },
+        par: self["prod-emea"] {
+        },
+
+        hnd: self["prod-apac"] {
+        },
+        ukb: self["prod-apac"] {
+        },
+        cdu: self["prod-apac"] {
+          image_tags+: {
+              integration_test_tag: "22",
+              hbase_integration_test_tag: "22",
+          },
+          feature_flags+: {
+              # --- flag A (Do not edit ... ---
+              # --- flag B (these comments ... ---
+              # --- flag C (and place only ... ---
+              # --- flag D (one flag between ... ---
+              # --- flag E (each pair. ... ---
+              # --- flag F (Their only purpose ... ---
+              watchdog_refactoring: "",
+              # --- flag G (is to assist ... ---
+              # --- flag H (git's diff logic ... ---
+              # --- flag I (to reduce the ---
+              # --- flag J (likelihood of merge conflicts.) ---
+              upcase_pki_kingdom: "",
+          },
+          version_mapping: {},  # No legacy Flowsnake in Public Cloud; therefore force empty verson_mapping
+        },
+        syd: self["prod-apac"] {
+          version_mapping: {},  # No legacy Flowsnake in Public Cloud; therefore force empty verson_mapping
+        },
+
         ### Preserves access to old versions used by CRE. Also inherited by prd-data and prd-dev fleets.
         ### TODO: Remove when CRE is migrated to 0.12.2+ or Spark Operator
-        "4-iad-ord": self["4"] {
+        "iad-ord": self["prod-na"] {
             version_mapping+: {
                 "0.10.0": 662,
                 "0.12.0": 696,
@@ -224,7 +277,7 @@ local utils = import "util_functions.jsonnet";
         },
 
         ### Release Phase minikube
-        minikube: self["4"] {
+        minikube: self.prod {
             image_tags+: {
                 cert_secretizer_image_tag: "minikube",
                 es_image_tag: "minikube",
@@ -258,16 +311,10 @@ local utils = import "util_functions.jsonnet";
             "2-prd-dev"
         else if estate == "prd-data-flowsnake" then
             "2-prd-data"
-        else if kingdom == "frf" then
-            "3-frf"
-        else if kingdom == "cdu" then
-            "3-cdu"
-        else if (kingdom == "iad" || kingdom == "ord") then
-            "4-iad-ord"
-        else if flowsnakeconfig.is_public_cloud then
-            "4-pcl"
+        else if flowsnakeconfig.is_prod_fleet then
+            kingdom
         else
-            "4"
+            "prod"
         ),
 
     # These are the images used by the templates
