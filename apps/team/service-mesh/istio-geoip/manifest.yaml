@@ -1,71 +1,81 @@
+# This is an Istio-based version of GeoIp
 apiVersion: v1
-
 system:
+  notifications:
+    email:
+    - meshcontrol@salesforce.com
   functions:
   - name: istio-geoip
-    count: 1
+    count: 3
     labels:
       app: istio-geoip
-      settings_path: stm.-.prd.-.istio-geoip
-      istio_app: test
+      settings_path: istio.-.prd.-.istio-geoip
     annotations:
       sidecar.istio.io/inject: "true"
-      routing.mesh.sfdc.net/enabled: "true"
     containers:
     - name: geoip-database
       image: tnrp/ccait/geoip2-database:20170918
       args:
-        - -d
+      - -d
       volumeMounts:
-        - mountPath: /database
-          name: maxmind-volume
+      - mountPath: /database
+        name: maxmind-volume
       livenessProbe:
         exec:
           command:
-            - ls
-            - /database/GeoIP2-City.mmdb
+          - ls
+          - /database/GeoIP2-City.mmdb
         initialDelaySeconds: 10
         periodSeconds: 5
     - name: geoip
-      image: sfci/services/sfdc-bazel/geoip:51e8676 # monorepo build
+      image: sfci/services/sfdc-bazel/service-mesh/geoip:a2ceb37b2 # monorepo build
       env:
+      - name: JAVA_OPTS
+        value: -Xms1g -Xmx1g
       - name: COM_MAXMIND_DATABASE_FILE
         value: /dw/data/GeoIP2-City.mmdb
-      - name: SFDC_ENVIRONMENT
-        value: istio
-      - name: GRPC_SERVER_PORT
-        value: 7443
-      - name: JAVA_OPTS
-        value: "-Dtracing.report=false -Dscone.service.name=istio-geoip -Dmanagement.server.port=15372"
-      - name: JAVA_HEAP_OPTS
-        value: -Xms1g -Xmx1g
-      resources:
-        limits:
-          cpu: "4"
-          memory: 2Gi
-        requests:
-          cpu: "4"
-          memory: 2Gi
-      volumeMounts:
-        - mountPath: /dw/data
-          name: maxmind-volume
+      - name: FAKE_ENV_VAR_INCREMENT_TO_TRIGGER_SAM_DEPLOY
+        value: "0"
       ports:
       - containerPort: 7443
         name: grpc-svc
       - containerPort: 15372
         name: scone-mgmt
+      resources:
+        limits:
+          cpu: "4"
+          memory: 10Gi
+        requests:
+          cpu: "4"
+          memory: 10Gi
+      volumeMounts:
+      - mountPath: /dw/data
+        name: maxmind-volume
       livenessProbe:
         httpGet:
           path: /manage/health
           port: 15372
-        initialDelaySeconds: 130
+        initialDelaySeconds: 140
       readinessProbe:
         httpGet:
           path: /manage/health
           port: 15372
         initialDelaySeconds: 115
-
-    # Volumes used by auto-injected istio-proxy.
+    - name: beacon
+      # https://git.soma.salesforce.com/services/sfdc-bazel/tree/master/projects/sidecars/beacon#docker-image
+      image: sfci/services/sfdc-bazel/disco/beacon:d7f1640
+      env:
+        - name: SFDC_ENVIRONMENT
+          value: istio
+      args:
+        - -endpoint
+        - $(FUNCTION_NAMESPACE)/$(FUNCTION):DATACENTER_ALLENV:HTTP2_TLS
+      livenessProbe:
+        initialDelaySeconds: 5
+        exec:
+          command:
+            - "/opt/beacon/is-alive.sh"
+      
     volumes:
     - name: maxmind-volume
       emptyDir: {}
@@ -77,10 +87,16 @@ system:
         type: server
 
   loadbalancers:
-    - lbname: istio-geoip
-      function: istio-geoip
-      ports:
-        - lbtype: dsr
-          port: 7443
-          targetport: 7443
-          name: grpc-geoip
+  - lbname: istio-geoip
+    function: istio-geoip
+    annotations:
+      routing.mesh.sfdc.net/enabled: "true"
+    labels:
+      app: istio-geoip
+      settings_path: istio.-.prd.-.istio-geoip
+    ports:
+      - lbtype: dsr
+        nodeExposed: false
+        port: 7443
+        targetport: 7443
+        name: grpc-geoip

@@ -142,6 +142,8 @@ apps:
   # Istio-powered version of Geoip
   geoip:
     - prd/prd-sam_gater
+  istio-geoip:
+    - prd/prd-sam_gater
 
 
 # Enable as needed:
