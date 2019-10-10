@@ -16,11 +16,13 @@ system:
     hostnetwork: true
     containers:
     - name: cloudatlas-pdm-install
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cloud-atlas/cloudatlas/cloudatlas-pdm:8531fe8
+      image: sfci/cloud-atlas/cloudatlas/cloudatlas-pdm:3.4rc1
       command: ["/opt/pdm/pdm.customer/bin/entrypoint.sh"]
       env:
       - name: UBID_DEPLOYMENT_STAGE
-        value: ALL
+        value: NONE
+      - name: UBID_REMOVE_EXISTING
+        value: TRUE
       - name: AWS_BACKUP_S3_BUCKET
         value: cloud-atlas-dev-backup-us-east-1
       - name: PUBLIC_PROXY_URL
