@@ -3,7 +3,7 @@ data:
   mesh: |-
     disablePolicyChecks: false
     enableTracing: true
-    accessLogFile: "/dev/stdout"
+    accessLogFile: ""
     accessLogFormat: ""
     accessLogEncoding: 'TEXT'
     ingressService: istio-ingressgateway
@@ -15,9 +15,12 @@ data:
     outboundTrafficPolicy:
       mode: ALLOW_ANY
     rootNamespace: mesh-control-plane
-    proxyListenPort: 15006
-    proxyHttpPort: -1 # Negative value to disable http proxy listener for interceptionMode NONE.
+    proxyListenPort: 15002
+    proxyHttpPort: 0
+    inboundClusterStatName: "local_service.%SERVICE_PORT%"
+    outboundClusterStatName: "%SERVICE%.%SERVICE_PORT%"
     defaultConfig:
+      concurrency: 0
       connectTimeout: 10s
       configPath: "/etc/istio/proxy"
       binaryPath: "/usr/local/bin/envoy"
@@ -26,11 +29,22 @@ data:
       parentShutdownDuration: 1m0s
       interceptionMode: REDIRECT
       proxyAdminPort: 15373
-      concurrency: 2
       tracing:
         zipkin:
           address: zipkin.service-mesh:9411
-      envoyMetricsServiceAddress: switchboard.service-mesh:15001
+      envoyMetricsService:
+        address: switchboard.service-mesh:15001
+        tlsSettings:
+          caCertificates: /client-certs/ca.pem
+          clientCertificate: /client-certs/client/certificates/client.pem
+          mode: MUTUAL
+          privateKey: /client-certs/client/keys/client-key.pem
+          sni: null
+          subjectAltNames: []
+        tcpKeepalive:
+          interval: 10s
+          probes: 3
+          time: 10s
       controlPlaneAuthPolicy: MUTUAL_TLS
       discoveryAddress: istio-pilot.mesh-control-plane:15011
   meshNetworks: 'networks: {}'

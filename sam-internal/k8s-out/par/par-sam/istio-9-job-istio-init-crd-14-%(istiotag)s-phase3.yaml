@@ -1,7 +1,7 @@
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: istio-init-crd-10
+  name: istio-init-crd-14-10908bb690d01d7100444da5d8ac58960cb22d7c
   namespace: mesh-control-plane
 spec:
   template:
@@ -14,13 +14,13 @@ spec:
         - kubectl
         - apply
         - -f
-        - /etc/istio/crd-10/crd-10.yaml
+        - /etc/istio/crd-14/crd-14.yaml
         image: ops0-artifactrepo1-0-par.data.sfdc.net/sfci/servicemesh/istio-packaging/kubectl:10908bb690d01d7100444da5d8ac58960cb22d7c
         imagePullPolicy: IfNotPresent
-        name: istio-init-crd-10
+        name: istio-init-crd-14
         volumeMounts:
-        - mountPath: /etc/istio/crd-10
-          name: crd-10
+        - mountPath: /etc/istio/crd-14
+          name: crd-14
           readOnly: true
       nodeSelector:
         pool: par-sam_gater
@@ -28,5 +28,5 @@ spec:
       serviceAccountName: istio-init-service-account
       volumes:
       - configMap:
-          name: istio-crd-10
-        name: crd-10
+          name: istio-crd-14
+        name: crd-14

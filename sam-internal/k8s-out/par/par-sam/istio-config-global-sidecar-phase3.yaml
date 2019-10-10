@@ -3,6 +3,7 @@ kind: Sidecar
 metadata:
   annotations:
     manifestctl.sam.data.sfdc.net/swagger: disable
+    niko/fake.change.for.redeploy: "3"
   name: mesh-default
   namespace: mesh-control-plane
 spec:
@@ -17,11 +18,65 @@ spec:
     - emailinfra/*
     - funnel/*
     - gater/*
-    - retail-cre/*
-    - retail-dfs/*
-    - retail-mds/*
-    - retail-rsui/*
     - scone/*
     - search-scale-safely/*
     - service-mesh/*
     - universal-search/*
+    port:
+      name: grpc-tls
+      number: 7443
+      protocol: GRPC
+  - hosts:
+    - mesh-control-plane/*
+    - z9s-default/*
+    - app/*
+    - casam/*
+    - ccait/*
+    - core-on-sam-sp2/*
+    - emailinfra/*
+    - funnel/*
+    - gater/*
+    - scone/*
+    - search-scale-safely/*
+    - service-mesh/*
+    - universal-search/*
+    port:
+      name: http-tls
+      number: 7442
+      protocol: HTTP
+  - hosts:
+    - mesh-control-plane/*
+    - z9s-default/*
+    - app/*
+    - casam/*
+    - ccait/*
+    - core-on-sam-sp2/*
+    - emailinfra/*
+    - funnel/*
+    - gater/*
+    - scone/*
+    - search-scale-safely/*
+    - service-mesh/*
+    - universal-search/*
+    port:
+      name: http-plain
+      number: 7014
+      protocol: HTTP
+  - hosts:
+    - mesh-control-plane/*
+    - z9s-default/*
+    - app/*
+    - casam/*
+    - ccait/*
+    - core-on-sam-sp2/*
+    - emailinfra/*
+    - funnel/*
+    - gater/*
+    - scone/*
+    - search-scale-safely/*
+    - service-mesh/*
+    - universal-search/*
+    port:
+      name: grpc-plain
+      number: 7012
+      protocol: GRPC

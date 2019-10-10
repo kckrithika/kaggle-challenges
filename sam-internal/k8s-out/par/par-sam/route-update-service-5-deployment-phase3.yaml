@@ -12,14 +12,6 @@ spec:
   selector:
     matchLabels:
       app: route-update-service
-      disco_dc: par
-      disco_env: ""
-      disco_pod: ""
-      disco_role: route-update-service
-      disco_sp: ""
-      disco_subenv: ""
-      sam_function: route-update-service
-      settings_path: mesh.-.par.-.route-update-service
   template:
     metadata:
       annotations:
@@ -51,12 +43,7 @@ spec:
         sidecar.istio.io/inject: "true"
       labels:
         app: route-update-service
-        disco_dc: par
-        disco_env: ""
-        disco_pod: ""
-        disco_role: route-update-service
-        disco_sp: ""
-        disco_subenv: ""
+        cluster: par-sam_gater
         sam_function: route-update-service
         settings_path: mesh.-.par.-.route-update-service
     spec:
@@ -73,6 +60,8 @@ spec:
           value: '-'
         - name: SETTINGS_PATH
           value: mesh.-.par.-.route-update-service
+        - name: FAKE_RESTART_VAR
+          value: "2"
         image: ops0-artifactrepo1-0-par.data.sfdc.net/sfci/servicemesh/servicemesh/route-update-service:21b05ffaaf87dd1f7da1f5ea8f130138a89e50bc
         imagePullPolicy: IfNotPresent
         name: route-update-service

@@ -18,51 +18,27 @@ local configs = import "config.jsonnet";
   ),
 
   sidecarEgressHosts: (
-  if ($.phaseNum < 3) then
     [
-    // System namespaces
-    "mesh-control-plane/*",
-    "z9s-default/*",
+      // System namespaces
+      "mesh-control-plane/*",
+      "z9s-default/*",
 
-    // App namespaces
-    "app/*",
-    "casam/*",
-    "ccait/*",
-    "core-on-sam-sp2/*",
-    "emailinfra/*",
-    "funnel/*",
-    "gater/*",
-    //"retail-cre/*",
-    //"retail-dfs/*",
-    //"retail-mds/*",
-    //"retail-rsui/*",
-    "scone/*",
-    "search-scale-safely/*",
-    "service-mesh/*",
-    "universal-search/*",
-   ]
-   else
-    [
-    // System namespaces
-    "mesh-control-plane/*",
-    "z9s-default/*",
-
-    // App namespaces
-    "app/*",
-    "casam/*",
-    "ccait/*",
-    "core-on-sam-sp2/*",
-    "emailinfra/*",
-    "funnel/*",
-    "gater/*",
-    "retail-cre/*",
-    "retail-dfs/*",
-    "retail-mds/*",
-    "retail-rsui/*",
-    "scone/*",
-    "search-scale-safely/*",
-    "service-mesh/*",
-    "universal-search/*",
+      // App namespaces
+      "app/*",
+      "casam/*",
+      "ccait/*",
+      "core-on-sam-sp2/*",
+      "emailinfra/*",
+      "funnel/*",
+      "gater/*",
+      //"retail-cre/*",
+      //"retail-dfs/*",
+      //"retail-mds/*",
+      //"retail-rsui/*",
+      "scone/*",
+      "search-scale-safely/*",
+      "service-mesh/*",
+      "universal-search/*",
     ]
   ),
 }

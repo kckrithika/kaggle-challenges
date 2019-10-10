@@ -10,6 +10,7 @@ if (istioPhases.phaseNum == 3) then
     namespace: "mesh-control-plane",
     annotations: {
       "manifestctl.sam.data.sfdc.net/swagger": "disable",
+      "fake.deploy": "4",
     },
   },
   webhooks: [

@@ -39,6 +39,7 @@ spec:
         sidecar.istio.io/inject: "false"
       labels:
         app: istio-routing-webhook
+        cluster: par-sam_gater
         name: istio-routing-webhook
     spec:
       containers:
@@ -144,7 +145,7 @@ spec:
         - --parentShutdownDuration
         - 1m0s
         - --discoveryAddress
-        - istio-pilot.mesh-control-plane:15010
+        - istio-pilot.mesh-control-plane:15011
         - --zipkinAddress
         - zipkin.service-mesh:9411
         - --proxyLogLevel=info
@@ -152,14 +153,14 @@ spec:
         - 300s
         - --connectTimeout
         - 10s
-        - --envoyMetricsServiceAddress
-        - switchboard.service-mesh:15001
+        - --envoyMetricsService
+        - '{"address":"switchboard.service-mesh:15001","tls_settings":{"mode":2,"client_certificate":"/client-certs/client/certificates/client.pem","private_key":"/client-certs/client/keys/client-key.pem","ca_certificates":"/client-certs/ca.pem"},"tcp_keepalive":{"probes":3,"time":{"seconds":10},"interval":{"seconds":10}}}'
         - --proxyAdminPort
         - "15373"
         - --concurrency
         - "2"
         - --controlPlaneAuthPolicy
-        - NONE
+        - MUTUAL_TLS
         - --statusPort
         - "15020"
         env:
@@ -216,6 +217,10 @@ spec:
           value: /server-certs/server/keys/server-key.pem
         - name: ISTIO_META_TLS_SERVER_ROOT_CERT
           value: /server-certs/ca.pem
+        - name: ISTIO_META_kubernetes_cluster_name
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.labels['cluster']
         image: ops0-artifactrepo1-0-par.data.sfdc.net/sfci/servicemesh/istio-packaging/proxy:10908bb690d01d7100444da5d8ac58960cb22d7c
         imagePullPolicy: IfNotPresent
         name: istio-proxy
@@ -242,7 +247,7 @@ spec:
             memory: 128Mi
         securityContext:
           readOnlyRootFilesystem: true
-          runAsUser: 7447
+          runAsUser: 7557
         terminationMessagePath: /dev/termination-log
         terminationMessagePolicy: File
         volumeMounts:
@@ -311,9 +316,11 @@ spec:
           name: client-cert
       - args:
         - -p
+        - "15002"
+        - -z
         - "15006"
         - -u
-        - "7447"
+        - "7557"
         - -m
         - REDIRECT
         - -i
@@ -324,6 +331,9 @@ spec:
         - ""
         - -d
         - 15020,10443
+        env:
+        - name: DISABLE_REDIRECTION_ON_LOCAL_LOOPBACK
+          value: "1"
         image: ops0-artifactrepo1-0-par.data.sfdc.net/sfci/servicemesh/istio-packaging/proxy_init:10908bb690d01d7100444da5d8ac58960cb22d7c
         imagePullPolicy: IfNotPresent
         name: istio-init
