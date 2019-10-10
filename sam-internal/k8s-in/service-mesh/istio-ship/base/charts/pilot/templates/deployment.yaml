@@ -39,6 +39,7 @@ spec:
           imagePullPolicy: IfNotPresent
           args:
           - "discovery"
+          - --registries=Kubernetes
           - --monitoringAddr=:15014
           - --log_output_level=default:warn
           - --domain
@@ -108,6 +109,8 @@ spec:
           - /etc/istio/proxy/envoy_pilot.yaml.tmpl
           - --controlPlaneAuthPolicy
           - MUTUAL_TLS
+          - --proxyLogLevel=info
+          - --log_output_level=default:warn
           env:
           - name: POD_NAME
             valueFrom:

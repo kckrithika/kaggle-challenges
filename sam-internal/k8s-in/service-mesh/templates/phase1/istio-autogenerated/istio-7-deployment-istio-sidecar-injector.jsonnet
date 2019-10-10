@@ -123,6 +123,7 @@ if (istioPhases.phaseNum == 1) then
               "--meshConfig=/etc/istio/config/mesh",
               "--healthCheckInterval=2s",
               "--healthCheckFile=/health",
+              "--reconcileWebhookConfig=true",
               "--port=15009",
               "--monitoringPort=8080",
             ],
@@ -618,7 +619,8 @@ if (istioPhases.phaseNum == 1) then
             ],
           },
           {
-            args: [
+            command: [
+              "istio-iptables",
               "-p",
               "15002",
               "-z",
@@ -642,7 +644,7 @@ if (istioPhases.phaseNum == 1) then
                 value: "1",
               },
             ],
-            image: mcpIstioConfig.proxyInitImage,
+            image: mcpIstioConfig.proxyImage,
             imagePullPolicy: "IfNotPresent",
             name: "istio-init",
             resources: {

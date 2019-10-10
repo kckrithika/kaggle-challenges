@@ -52,6 +52,7 @@ spec:
         - mountPath: /etc/istio/config
         args:
         - discovery
+        - --registries=Kubernetes
         - --monitoringAddr=:15014
         - --log_output_level=default:warn
         - --domain
@@ -86,6 +87,8 @@ spec:
         - /etc/istio/proxy/envoy_pilot.yaml.tmpl
         - --controlPlaneAuthPolicy
         - MUTUAL_TLS
+        - --proxyLogLevel=info
+        - --log_output_level=default:warn
         - --envoyMetricsService
         - '{"address":"switchboard.service-mesh:15001","tls_settings":{"mode":2,"client_certificate":"/client-certs/client/certificates/client.pem","private_key":"/client-certs/client/keys/client-key.pem","ca_certificates":"/client-certs/ca.pem"},"tcp_keepalive":{"probes":3,"time":{"seconds":10},"interval":{"seconds":10}}}'
         - --proxyAdminPort
@@ -282,7 +285,8 @@ spec:
           name: tls-client-cert
         - mountPath: /server-cert
           name: tls-server-cert
-      - args:
+      - command:
+        - istio-iptables
         - -p
         - "15002"
         - -z
@@ -302,7 +306,7 @@ spec:
         env:
         - name: DISABLE_REDIRECTION_ON_LOCAL_LOOPBACK
           value: "1"
-        image: mcpIstioConfig.proxyInitImage
+        image: mcpIstioConfig.proxyImage
         imagePullPolicy: IfNotPresent
         name: istio-init
         resources:

@@ -75,6 +75,8 @@ data:
         - istio-io
         - networking-istio-io
       scope: Namespaced
+      subresources:
+        status: {}
       versions:
         - name: v1alpha3
           served: true
@@ -120,6 +122,8 @@ data:
         - istio-io
         - networking-istio-io
       scope: Namespaced
+      subresources:
+        status: {}
       versions:
         - name: v1alpha3
           served: true
@@ -161,6 +165,8 @@ data:
         - istio-io
         - networking-istio-io
       scope: Namespaced
+      subresources:
+        status: {}
       versions:
         - name: v1alpha3
           served: true
@@ -209,6 +215,8 @@ data:
         - istio-io
         - networking-istio-io
       scope: Namespaced
+      subresources:
+        status: {}
       versions:
         - name: v1alpha3
           served: true
@@ -235,6 +243,8 @@ data:
         - istio-io
         - networking-istio-io
       scope: Namespaced
+      subresources:
+        status: {}
       versions:
         - name: v1alpha3
           served: true
@@ -261,6 +271,8 @@ data:
         - istio-io
         - rbac-istio-io
       scope: Cluster
+      subresources:
+        status: {}
       versions:
         - name: v1alpha1
           served: true
@@ -287,6 +299,8 @@ data:
         - istio-io
         - authentication-istio-io
       scope: Namespaced
+      subresources:
+        status: {}
       versions:
         - name: v1alpha1
           served: true
@@ -314,6 +328,8 @@ data:
         - istio-io
         - authentication-istio-io
       scope: Cluster
+      subresources:
+        status: {}
       versions:
         - name: v1alpha1
           served: true
@@ -340,6 +356,8 @@ data:
         - istio-io
         - apim-istio-io
       scope: Namespaced
+      subresources:
+        status: {}
       versions:
         - name: v1alpha2
           served: true
@@ -366,6 +384,8 @@ data:
         - istio-io
         - apim-istio-io
       scope: Namespaced
+      subresources:
+        status: {}
       versions:
         - name: v1alpha2
           served: true
@@ -392,6 +412,8 @@ data:
         - istio-io
         - apim-istio-io
       scope: Namespaced
+      subresources:
+        status: {}
       versions:
         - name: v1alpha2
           served: true
@@ -418,6 +440,8 @@ data:
         - istio-io
         - apim-istio-io
       scope: Namespaced
+      subresources:
+        status: {}
       versions:
         - name: v1alpha2
           served: true
@@ -446,6 +470,8 @@ data:
         - istio-io
         - policy-istio-io
       scope: Namespaced
+      subresources:
+        status: {}
       versions:
         - name: v1alpha2
           served: true
@@ -474,6 +500,8 @@ data:
         - istio-io
         - policy-istio-io
       scope: Namespaced
+      subresources:
+        status: {}
       versions:
         - name: v1alpha2
           served: true
@@ -502,6 +530,8 @@ data:
         - istio-io
         - rbac-istio-io
       scope: Namespaced
+      subresources:
+        status: {}
       versions:
         - name: v1alpha1
           served: true
@@ -530,6 +560,8 @@ data:
         - istio-io
         - rbac-istio-io
       scope: Namespaced
+      subresources:
+        status: {}
       versions:
         - name: v1alpha1
           served: true
@@ -558,6 +590,8 @@ data:
         - istio-io
         - rbac-istio-io
       scope: Namespaced
+      subresources:
+        status: {}
       versions:
         - name: v1alpha1
           served: true
@@ -598,6 +632,8 @@ data:
         - istio-io
         - policy-istio-io
       scope: Namespaced
+      subresources:
+        status: {}
       versions:
         - name: v1alpha2
           served: true
@@ -626,6 +662,8 @@ data:
         - istio-io
         - policy-istio-io
       scope: Namespaced
+      subresources:
+        status: {}
       versions:
         - name: v1alpha2
           served: true
@@ -654,6 +692,8 @@ data:
         - istio-io
         - policy-istio-io
       scope: Namespaced
+      subresources:
+        status: {}
       versions:
         - name: v1alpha2
           served: true
@@ -682,6 +722,8 @@ data:
         - istio-io
         - policy-istio-io
       scope: Namespaced
+      subresources:
+        status: {}
       versions:
         - name: v1alpha2
           served: true
@@ -716,6 +758,8 @@ data:
         - istio-io
         - networking-istio-io
       scope: Namespaced
+      subresources:
+        status: {}
       versions:
         - name: v1alpha3
           served: true
@@ -748,6 +792,8 @@ data:
           - istio-io
           - security-istio-io
       scope: Namespaced
+      subresources:
+        status: {}
       versions:
         - name: v1beta1
           served: true
@@ -778,6 +824,13 @@ spec:
         image: '%(istioHub)s/kubectl:%(istioTag)s'
         imagePullPolicy: IfNotPresent
         name: istio-init-crd-10
+        resources:
+          limits:
+            cpu: 100m
+            memory: 200Mi
+          requests:
+            cpu: 10m
+            memory: 50Mi
         volumeMounts:
         - mountPath: /etc/istio/crd-10
           name: crd-10
@@ -811,6 +864,13 @@ spec:
         image: '%(istioHub)s/kubectl:%(istioTag)s'
         imagePullPolicy: IfNotPresent
         name: istio-init-crd-11
+        resources:
+          limits:
+            cpu: 100m
+            memory: 200Mi
+          requests:
+            cpu: 10m
+            memory: 50Mi
         volumeMounts:
         - mountPath: /etc/istio/crd-11
           name: crd-11
@@ -844,6 +904,13 @@ spec:
         image: '%(istioHub)s/kubectl:%(istioTag)s'
         imagePullPolicy: IfNotPresent
         name: istio-init-crd-14
+        resources:
+          limits:
+            cpu: 100m
+            memory: 200Mi
+          requests:
+            cpu: 10m
+            memory: 50Mi
         volumeMounts:
         - mountPath: /etc/istio/crd-14
           name: crd-14

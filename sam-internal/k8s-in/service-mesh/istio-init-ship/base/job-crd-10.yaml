@@ -16,6 +16,14 @@ spec:
       - name: istio-init-crd-10
         image: "%(istioHub)s/kubectl:%(istioTag)s"
         imagePullPolicy: IfNotPresent
+        resources:
+          limits:
+            cpu: 100m
+            memory: 200Mi
+          requests:
+            cpu: 10m
+            memory: 50Mi
+          
         volumeMounts:
         - name: crd-10
           mountPath: /etc/istio/crd-10

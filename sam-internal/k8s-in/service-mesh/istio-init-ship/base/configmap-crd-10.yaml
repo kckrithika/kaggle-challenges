@@ -31,6 +31,8 @@ data:
         - istio-io
         - networking-istio-io
       scope: Namespaced
+      subresources:
+        status: {}
       versions:
         - name: v1alpha3
           served: true
@@ -76,6 +78,8 @@ data:
         - istio-io
         - networking-istio-io
       scope: Namespaced
+      subresources:
+        status: {}
       versions:
         - name: v1alpha3
           served: true
@@ -117,6 +121,8 @@ data:
         - istio-io
         - networking-istio-io
       scope: Namespaced
+      subresources:
+        status: {}
       versions:
         - name: v1alpha3
           served: true
@@ -165,6 +171,8 @@ data:
         - istio-io
         - networking-istio-io
       scope: Namespaced
+      subresources:
+        status: {}
       versions:
         - name: v1alpha3
           served: true
@@ -191,6 +199,8 @@ data:
         - istio-io
         - networking-istio-io
       scope: Namespaced
+      subresources:
+        status: {}
       versions:
         - name: v1alpha3
           served: true
@@ -217,6 +227,8 @@ data:
         - istio-io
         - rbac-istio-io
       scope: Cluster
+      subresources:
+        status: {}
       versions:
         - name: v1alpha1
           served: true
@@ -243,6 +255,8 @@ data:
         - istio-io
         - authentication-istio-io
       scope: Namespaced
+      subresources:
+        status: {}
       versions:
         - name: v1alpha1
           served: true
@@ -270,6 +284,8 @@ data:
         - istio-io
         - authentication-istio-io
       scope: Cluster
+      subresources:
+        status: {}
       versions:
         - name: v1alpha1
           served: true
@@ -296,6 +312,8 @@ data:
         - istio-io
         - apim-istio-io
       scope: Namespaced
+      subresources:
+        status: {}
       versions:
         - name: v1alpha2
           served: true
@@ -322,6 +340,8 @@ data:
         - istio-io
         - apim-istio-io
       scope: Namespaced
+      subresources:
+        status: {}
       versions:
         - name: v1alpha2
           served: true
@@ -348,6 +368,8 @@ data:
         - istio-io
         - apim-istio-io
       scope: Namespaced
+      subresources:
+        status: {}
       versions:
         - name: v1alpha2
           served: true
@@ -374,6 +396,8 @@ data:
         - istio-io
         - apim-istio-io
       scope: Namespaced
+      subresources:
+        status: {}
       versions:
         - name: v1alpha2
           served: true
@@ -402,6 +426,8 @@ data:
         - istio-io
         - policy-istio-io
       scope: Namespaced
+      subresources:
+        status: {}
       versions:
         - name: v1alpha2
           served: true
@@ -430,6 +456,8 @@ data:
         - istio-io
         - policy-istio-io
       scope: Namespaced
+      subresources:
+        status: {}
       versions:
         - name: v1alpha2
           served: true
@@ -458,6 +486,8 @@ data:
         - istio-io
         - rbac-istio-io
       scope: Namespaced
+      subresources:
+        status: {}
       versions:
         - name: v1alpha1
           served: true
@@ -486,6 +516,8 @@ data:
         - istio-io
         - rbac-istio-io
       scope: Namespaced
+      subresources:
+        status: {}
       versions:
         - name: v1alpha1
           served: true
@@ -514,6 +546,8 @@ data:
         - istio-io
         - rbac-istio-io
       scope: Namespaced
+      subresources:
+        status: {}
       versions:
         - name: v1alpha1
           served: true
@@ -554,6 +588,8 @@ data:
         - istio-io
         - policy-istio-io
       scope: Namespaced
+      subresources:
+        status: {}
       versions:
         - name: v1alpha2
           served: true
@@ -582,6 +618,8 @@ data:
         - istio-io
         - policy-istio-io
       scope: Namespaced
+      subresources:
+        status: {}
       versions:
         - name: v1alpha2
           served: true
@@ -610,6 +648,8 @@ data:
         - istio-io
         - policy-istio-io
       scope: Namespaced
+      subresources:
+        status: {}
       versions:
         - name: v1alpha2
           served: true
@@ -638,6 +678,8 @@ data:
         - istio-io
         - policy-istio-io
       scope: Namespaced
+      subresources:
+        status: {}
       versions:
         - name: v1alpha2
           served: true

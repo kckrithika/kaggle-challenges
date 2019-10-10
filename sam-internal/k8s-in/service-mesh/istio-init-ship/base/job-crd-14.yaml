@@ -13,14 +13,22 @@ spec:
     spec:
       serviceAccountName: istio-init-service-account
       containers:
-        - name: istio-init-crd-14
-          image: "%(istioHub)s/kubectl:%(istioTag)s"
-          imagePullPolicy: IfNotPresent
-          volumeMounts:
-            - name: crd-14
-              mountPath: /etc/istio/crd-14
-              readOnly: true
-          command: ["kubectl",  "apply", "-f", "/etc/istio/crd-14/crd-14.yaml"]
+      - name: istio-init-crd-14
+        image: "%(istioHub)s/kubectl:%(istioTag)s"
+        imagePullPolicy: IfNotPresent
+        resources:
+          limits:
+            cpu: 100m
+            memory: 200Mi
+          requests:
+            cpu: 10m
+            memory: 50Mi
+          
+        volumeMounts:
+          - name: crd-14
+            mountPath: /etc/istio/crd-14
+            readOnly: true
+        command: ["kubectl",  "apply", "-f", "/etc/istio/crd-14/crd-14.yaml"]
       volumes:
         - name: crd-14
           configMap:

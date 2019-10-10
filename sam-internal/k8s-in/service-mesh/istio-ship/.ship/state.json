@@ -3,13 +3,13 @@
     "config": null,
     "releaseName": "istio",
     "namespace": "mesh-control-plane",
-    "upstream": "https://github.com/istio/istio/tree/18c24b514203f46ef3c1ad0146504b3046d4016b/install/kubernetes/helm/istio",
+    "upstream": "https://github.com/istio/istio/tree/cae30f7ab8efae3fe943be30ee437d7b08bd68a1/install/kubernetes/helm/istio",
     "metadata": {
       "applicationType": "helm",
       "sequence": 0,
       "icon": "https://istio.io/favicons/android-192x192.png",
       "name": "istio",
-      "releaseNotes": "Correct CoreDNS config and prevent race condition (#17291)",
+      "releaseNotes": "Allow to configure service registries via helm (#16853)\n\n* Allow to configure service registries via helm\n\n* Fix Consul spelling",
       "version": "1.1.0",
       "license": {
         "id": "",
@@ -21,7 +21,7 @@
     },
     "shipVersion": {
       "version": "0.51.0",
-      "buildTime": "2019-08-30T01:34:10Z",
+      "buildTime": "2019-08-30T01:31:21Z",
       "dependencies": {
         "helm": "v2.14.1",
         "kustomize": "v2.0.3",
@@ -34,7 +34,7 @@
         "arch": "amd64"
       }
     },
-    "contentSHA": "ca529e988bbd0e69d44638adba7eca08a7cfe706d48f5fab98e042ecbbc154ce",
+    "contentSHA": "110597b502dd55bfe500177e83f09ab96bb20338de7d928fdde559867bfd3035",
     "lifecycle": {
       "stepsCompleted": {
         "intro": true,

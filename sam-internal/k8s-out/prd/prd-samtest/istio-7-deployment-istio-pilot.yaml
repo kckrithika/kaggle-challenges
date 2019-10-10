@@ -93,6 +93,7 @@ spec:
       containers:
       - args:
         - discovery
+        - --registries=Kubernetes
         - --monitoringAddr=:15014
         - --log_output_level=default:warn
         - --domain
@@ -129,7 +130,7 @@ spec:
           value: "true"
         - name: PILOT_ENABLE_PROTOCOL_SNIFFING_FOR_INBOUND
           value: "false"
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/sfci/servicemesh/istio-packaging/pilot:ba071fdd8d98c63ba91caf4141978e8f33f35900
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/sfci/servicemesh/istio-packaging/pilot:5e0666bfbf255ea8945d40d4b04a5ee3f02c855c
         imagePullPolicy: IfNotPresent
         name: discovery
         ports:
@@ -162,6 +163,8 @@ spec:
         - /etc/istio/proxy/envoy_pilot.yaml.tmpl
         - --controlPlaneAuthPolicy
         - MUTUAL_TLS
+        - --proxyLogLevel=info
+        - --log_output_level=default:warn
         - --envoyMetricsService
         - '{"address":"switchboard.service-mesh:15001","tls_settings":{"mode":2,"client_certificate":"/client-certs/client/certificates/client.pem","private_key":"/client-certs/client/keys/client-key.pem","ca_certificates":"/client-certs/ca.pem"},"tcp_keepalive":{"probes":3,"time":{"seconds":10},"interval":{"seconds":10}}}'
         - --proxyAdminPort
@@ -214,7 +217,7 @@ spec:
           value: prd
         - name: SDS_ENABLED
           value: "false"
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/sfci/servicemesh/istio-packaging/proxy:ba071fdd8d98c63ba91caf4141978e8f33f35900
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/sfci/servicemesh/istio-packaging/proxy:5e0666bfbf255ea8945d40d4b04a5ee3f02c855c
         imagePullPolicy: IfNotPresent
         name: istio-proxy
         ports:
@@ -372,7 +375,8 @@ spec:
           name: tls-client-cert
         - mountPath: /server-cert
           name: tls-server-cert
-      - args:
+      - command:
+        - istio-iptables
         - -p
         - "15002"
         - -z
@@ -392,7 +396,7 @@ spec:
         env:
         - name: DISABLE_REDIRECTION_ON_LOCAL_LOOPBACK
           value: "1"
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/sfci/servicemesh/istio-packaging/proxy_init:ba071fdd8d98c63ba91caf4141978e8f33f35900
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/sfci/servicemesh/istio-packaging/proxy:5e0666bfbf255ea8945d40d4b04a5ee3f02c855c
         imagePullPolicy: IfNotPresent
         name: istio-init
         resources:
