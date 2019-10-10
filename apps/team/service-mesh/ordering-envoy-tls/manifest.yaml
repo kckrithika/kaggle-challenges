@@ -8,9 +8,43 @@ system:
       app: ordering-envoy-tls
       prat-test: true
     annotations:
-      "sherpa-injector.service-mesh/inject": "enabled"
-      "sherpa-injector.service-mesh/canary": "enabled"
+      "sherpa-injector.service-mesh/inject": "disabled"
+      "sherpa-injector.service-mesh/canary": "disabled"
     containers:
+    - name: sherpa
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/npshenichnyy/sherpa:dev-20191010-1040
+      ports:
+      - containerPort: 7443
+        name: sherpa-grpc-tls
+      - containerPort: 7442
+        name: sherpa-http-tls
+      - containerPort: 15373
+        name: sherpa-adm
+      env:
+      - name: SFDC_ENVIRONMENT
+        value: mesh
+      resources:
+        limits:
+          cpu: "1"
+          memory: "1Gi"
+      volumeMounts:
+      - mountPath: /client-certs
+        name: tls-client-cert
+      - mountPath: /server-certs
+        name: tls-server-cert
+      livenessProbe:
+        exec:
+          command:
+          - "./bin/is-alive"
+        initialDelaySeconds: 60
+        periodSeconds: 5
+      readinessProbe:
+        exec:
+          command:
+          - "./bin/is-ready"
+        initialDelaySeconds: 50
+        periodSeconds: 5
+
     - name: ordering
       # https://sfcirelease.dop.sfdc.net/job/services/job/sfdc-bazel_projects_services_examples_ordering/job/sfdc-bazel/job/master/5
       image: sfci/services/sfdc-bazel/scone/ordering:685f3d3e5
