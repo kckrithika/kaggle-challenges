@@ -5,6 +5,7 @@ system:
     email:
       - cloudatlas-dev@salesforce.com
       - cloudtocloud@salesforce.com
+      - gid_setup@salesforce.com
   functions:
   - name: cast-prd-stage
     identity:
@@ -82,50 +83,49 @@ system:
     #####################################################################################
     # Entity API
     #####################################################################################
-    - name: cloudatlas-service
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cloud-atlas/cloudatlas/cloudatlas-service:5774b48
-      command: ["java", "-jar", "cloudatlas-service.jar"]
-      env:
-        - name: DIRECTORY_SERVER_HOST
-          valueFrom:
-           fieldRef:
-            fieldPath: spec.nodeName
-        - name: server_port
-          value: 7032
-        - name: management_server_port
-          value: 15374
-        - name: cloudatlas_http_server_port_servicemesh
-          value: 7080
-      volumeMounts:
-      - mountPath: /log
-        name: logvol
-      - mountPath: /certs
-        name: server-cert
-      - mountPath: /clientcerts
-        name: client-cert
-      ports:
-      - containerPort: 7030
-      - containerPort: 7032
-      - containerPort: 7080
-      - containerPort: 15374
-      livenessProbe:
-        httpGet:
-          path: /manage/health
-          port: 15374
-        initialDelaySeconds: 60
-        periodSeconds: 30
-      readinessProbe:
-        httpGet:
-          path: /manage/health
-          port: 15374
-        initialDelaySeconds: 60
-        periodSeconds: 5
-        failureThreshold: 120
+    #- name: cloudatlas-service
+    #  image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cloud-atlas/cloudatlas/cloudatlas-service:e7e8f04
+    #  command: ["java", "-jar", "cloudatlas-service.jar"]
+    #  env:
+    #    - name: server_port
+    #      value: 7032
+    #    - name: management_server_port
+    #      value: 15374
+    #    - name: cloudatlas_http_server_port_servicemesh
+    #      value: 7080
+    #  volumeMounts:
+    #  - mountPath: /log
+    #    name: logvol
+    #  - mountPath: /certs
+    #    name: server-cert
+    #  - mountPath: /clientcerts
+    #    name: client-cert
+    #  - mountPath: /k4asecrets
+    #    name: k4a-secrets
+    #    readOnly: true
+    #  ports:
+    #  - containerPort: 7030
+    #  - containerPort: 7032
+    #  - containerPort: 7080
+    #  - containerPort: 15374
+    #  livenessProbe:
+    #    httpGet:
+    #      path: /manage/health
+    #      port: 15374
+    #    initialDelaySeconds: 60
+    #    periodSeconds: 30
+    #  readinessProbe:
+    #    httpGet:
+    #      path: /manage/health
+    #      port: 15374
+    #    initialDelaySeconds: 60
+    #    periodSeconds: 5
+    #    failureThreshold: 120
     #####################################################################################
     # C2C service
     #####################################################################################
     - name: c2c-service
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/gid/c2c-service:20191008173906-6755dab
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/gid/c2c-service:20190924145701-9909712
       imagePullPolicy: Always
       env:
         - name: directory_server_host
@@ -151,18 +151,24 @@ system:
         - name: server-cert
           mountPath: /certs
 #    #####################################################################################
-#    # GID service
+#    # GID Data service
 #    #####################################################################################
 #    - name: gid-service
-#      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/gid/gid-service:5e51285
+#      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/gid/gid-service:179c76a
 #      imagePullPolicy: Always
 #      env:
+#        - name: directory_server_host
+#          valueFrom:
+#           fieldRef:
+#            fieldPath: spec.nodeName
 #        - name: server_port
 #          value: 8081
 #        - name: management_server_port
 #          value: 15371
 #        - name: ca_service_host
 #          value: 127.0.0.1
+#        - name: c2c_common_gdotBasePath
+#          value: http://${directory_server_host}:8080/scim
 #        - name: security_client_dynamickeystore_cadir
 #          value: /certs
 #        - name: security_client_dynamickeystore_monitoredDirectory
@@ -177,6 +183,8 @@ system:
 #      volumeMounts:
 #        - name: server-cert
 #          mountPath: /certs
+#        - mountPath: /clientcerts
+#          name: client-cert
     #####################################################################################
     # NGINX Rev Proxy
     #####################################################################################
@@ -213,9 +221,6 @@ system:
         path: /home/sfdc-scone-hellodiscovery-beacon/logs
     - name: cache-volume
       emptyDir: {}
-    - name: logvol
-      hostPath:
-        path: /home/sfdc-atlas/logs-cast
   #####################################################################################
   # SLB
   #####################################################################################
