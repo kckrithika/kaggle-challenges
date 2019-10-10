@@ -64,8 +64,16 @@ system:
         value: /clientcerts/client
       - name: SECURITY_CLIENT_DYNAMICKEYSTORE_CADIR
         value: /clientcerts/ca
-      - name: SECURITY_SERVER_DYNAMICKEYSTORE_ENABLED
-        value: false
+      - name: PKI_CA_DIR
+        value: /servercerts
+      - name: PKI_MONITORDIR
+        value: /servercerts/server
+      - name: SECURITY_SERVER_DYNAMICKEYSTORE_MONITOREDDIRECTORY
+        value: /servercerts/server
+      - name: SECURITY_SERVER_DYNAMICKEYSTORE_CADIR
+        value: /servercerts/ca
+      - name: SECURITY_SERVER_DYNAMICKEYSTORE_CAFILE
+        value: /servercerts/ca/cacerts.pem
       - name: SFDC_ENVIRONMENT
         value: stmfa
       - name: TENANT_SOURCE_KEYS
@@ -151,7 +159,10 @@ system:
         httpGet:
           path: /manage/health
           port: 15372
+          scheme: HTTPS
       volumeMounts:
+      - name: retailservercert
+        mountPath: /servercerts
       - name: retailclientcert
         mountPath: /clientcerts
       #mount splunk logs mount
@@ -183,8 +194,6 @@ system:
       - name: retailservercert
         mountPath: /server-certs
       ports:
-      - containerPort: 7442 # http1 in port tls
-        name: sher-in-htp1tls
       - containerPort: 7443 # http2 in port for grpc
         name: sher-in-htp2tls
       livenessProbe:
@@ -223,7 +232,7 @@ system:
     slbEnabled: true
     ports:
       - port: 443
-        targetport: 7442
+        targetport: 7022
         tls: true
         lbtype: http
         reencrypt: true
