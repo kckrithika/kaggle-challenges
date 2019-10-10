@@ -100,10 +100,6 @@ apps:
   resiliency-client:
     - prd/prd-sam_gater
 
-# Regular Mode: Istio -> Istio apps
-#  istio-geoip: # Enable as required.
-#    - prd/prd-sam_gater
-#    - prd/prd-samtest
   istio-ordering:
     - prd/prd-sam_gater
     - prd/prd-samtest
