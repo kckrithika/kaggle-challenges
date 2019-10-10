@@ -41,7 +41,6 @@ system:
       - --listeners.rate-limit-enabled-clusters[4]=retail-setup.retail-rsui
       - --listeners.rate-limit-enabled-clusters[5]=cloudatlas-prd-dev-service.cloudatlas
       - --listeners.rate-limit-enabled-clusters[6]=gid-runtime-service.global-identity
-      # - --listeners.rate-limit-enabled-clusters[7]=universal-search.universal-search
       - --listeners.rate-limit-enabled-clusters[7]=universal-search-dark.universal-search
       - --listeners.external-auth-cluster=external-auth.opa-sidecar
       # External Auth Sidecar cluster
@@ -69,7 +68,7 @@ system:
       - name: JVM_HEAP_MAX
         value: 4G
       - name: FAKE_ENV_VAR_INCREMENT_TO_TRIGGER_SAM_DEPLOY
-        value: "1"
+        value: "0"
       resources:
         limits:
           cpu: "8"
