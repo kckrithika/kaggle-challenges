@@ -22,13 +22,10 @@ system:
       readinessProbe:
           exec:
             command:
-            - sleep
-            - 5
-      livenessProbe:
-          exec:
-            command:
-            - sleep
-            - 5
+            - /bin/true
+          initialDelaySeconds: 10
+          periodSeconds: 30
+          timeoutSeconds: 5
       terminationMessagePolicy: FallbackToLogsOnError
     serviceAccountName: servicemeshresiliency
     volumes:
