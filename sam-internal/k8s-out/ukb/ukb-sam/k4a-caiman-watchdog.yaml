@@ -1,0 +1,812 @@
+apiVersion: v1
+items:
+- apiVersion: extensions/v1beta1
+  kind: Deployment
+  metadata:
+    labels:
+      name: k4a-caiman-watchdog-ukb11
+      sam.data.sfdc.net/owner: secrets
+    name: k4a-caiman-watchdog-ukb11
+    namespace: sam-system
+  spec:
+    replicas: 1
+    selector:
+      matchLabels:
+        name: k4a-caiman-watchdog-ukb11
+        sam.data.sfdc.net/owner: secrets
+    template:
+      metadata:
+        annotations:
+          madkub.sam.sfdc.net/allcerts: |-
+            {
+             "certreqs": [
+              {
+               "cert-type": "client",
+               "kingdom": "ukb",
+               "name": "client-certs",
+               "role": "secrets.k4a-watchdog-prod"
+              }
+             ]
+            }
+        labels:
+          name: k4a-caiman-watchdog-ukb11
+          sam.data.sfdc.net/owner: secrets
+        namespace: sam-system
+      spec:
+        containers:
+        - args:
+          - java
+          - -Duser.home=/tmp
+          - -jar
+          - /caiman-watchdog/caiman-watchdog-0.0.15-SNAPSHOT.jar
+          - -secretsFile
+          - /caiman-watchdog/classes/sam.secrets.k4a-watchdog-prod.zip
+          - -certPath
+          - /clientcert
+          - -datacenter
+          - ukb
+          - -hostname
+          - $(SFDCLOC_NODE_NAME)
+          - -argusUrl
+          - http://ajna0-funnel1-0-ukb.data.sfdc.net:80
+          - -url
+          - https://sec0-kfora1-1-ukb.ops.sfdc.net:8443
+          env:
+          - name: FUNCTION_INSTANCE_NAME
+            valueFrom:
+              fieldRef:
+                apiVersion: v1
+                fieldPath: metadata.name
+          - name: FUNCTION_NAMESPACE
+            valueFrom:
+              fieldRef:
+                apiVersion: v1
+                fieldPath: metadata.namespace
+          - name: SFDCLOC_NODE_NAME
+            valueFrom:
+              fieldRef:
+                fieldPath: spec.nodeName
+          image: ops0-artifactrepo1-0-ukb.data.sfdc.net/dva/k4a-caiman-watchdog:181-13977db8e0215f424452cadc8da15c5c402ec950
+          name: watchdog
+          volumeMounts:
+          - mountPath: /clientcert
+            name: client-certs
+        - args:
+          - /sam/madkub-client
+          - --madkub-endpoint=https://$(MADKUBSERVER_SERVICE_HOST):32007
+          - --maddog-endpoint=https://all.pkicontroller.pki.blank.ukb.prod.non-estates.sfdcsd.net:8443
+          - --maddog-server-ca=/maddog-certs/ca/security-ca.pem
+          - --madkub-server-ca=/maddog-certs/ca/cacerts.pem
+          - --ca-folder=/maddog-certs/ca
+          - --token-folder=/tokens
+          - --funnel-endpoint=ajna0-funnel1-0-ukb.data.sfdc.net:80
+          - --kingdom=ukb
+          - --superpod=None
+          - --estate=ukb-sam
+          - --cert-folders=client-certs:/clientcert
+          - --refresher
+          - --run-init-for-refresher-mode
+          env:
+          - name: MADKUB_NODENAME
+            valueFrom:
+              fieldRef:
+                fieldPath: spec.nodeName
+          - name: MADKUB_NAME
+            valueFrom:
+              fieldRef:
+                fieldPath: metadata.name
+          - name: MADKUB_NAMESPACE
+            valueFrom:
+              fieldRef:
+                fieldPath: metadata.namespace
+          image: ops0-artifactrepo1-0-ukb.data.sfdc.net/tnrp/sam/madkub:1.0.0-0000081-ddcaa288
+          imagePullPolicy: IfNotPresent
+          name: madkub-refresher
+          volumeMounts:
+          - mountPath: /clientcert
+            name: client-certs
+          - mountPath: /maddog-certs/
+            name: maddog-certs
+          - mountPath: /tokens
+            name: sam-maddog-token
+        initContainers:
+        - args:
+          - /sam/madkub-client
+          - --madkub-endpoint=https://$(MADKUBSERVER_SERVICE_HOST):32007
+          - --maddog-endpoint=https://all.pkicontroller.pki.blank.ukb.prod.non-estates.sfdcsd.net:8443
+          - --maddog-server-ca=/maddog-certs/ca/security-ca.pem
+          - --madkub-server-ca=/maddog-certs/ca/cacerts.pem
+          - --ca-folder=/maddog-certs/ca
+          - --token-folder=/tokens
+          - --funnel-endpoint=ajna0-funnel1-0-ukb.data.sfdc.net:80
+          - --kingdom=ukb
+          - --superpod=None
+          - --estate=ukb-sam
+          - --cert-folders=client-certs:/clientcert
+          env:
+          - name: MADKUB_NODENAME
+            valueFrom:
+              fieldRef:
+                fieldPath: spec.nodeName
+          - name: MADKUB_NAME
+            valueFrom:
+              fieldRef:
+                fieldPath: metadata.name
+          - name: MADKUB_NAMESPACE
+            valueFrom:
+              fieldRef:
+                fieldPath: metadata.namespace
+          image: ops0-artifactrepo1-0-ukb.data.sfdc.net/tnrp/sam/madkub:1.0.0-0000081-ddcaa288
+          imagePullPolicy: IfNotPresent
+          name: madkub-init
+          volumeMounts:
+          - mountPath: /clientcert
+            name: client-certs
+          - mountPath: /maddog-certs/
+            name: maddog-certs
+          - mountPath: /tokens
+            name: sam-maddog-token
+        nodeSelector:
+          pool: ukb-sam
+        securityContext:
+          fsGroup: 7447
+          runAsNonRoot: true
+          runAsUser: 7447
+        volumes:
+        - emptyDir:
+            medium: Memory
+          name: sam-maddog-token
+        - hostPath:
+            path: /etc/pki_service
+          name: maddog-certs
+        - emptyDir:
+            medium: Memory
+          name: client-certs
+- apiVersion: extensions/v1beta1
+  kind: Deployment
+  metadata:
+    labels:
+      name: k4a-caiman-watchdog-ukb12
+      sam.data.sfdc.net/owner: secrets
+    name: k4a-caiman-watchdog-ukb12
+    namespace: sam-system
+  spec:
+    replicas: 1
+    selector:
+      matchLabels:
+        name: k4a-caiman-watchdog-ukb12
+        sam.data.sfdc.net/owner: secrets
+    template:
+      metadata:
+        annotations:
+          madkub.sam.sfdc.net/allcerts: |-
+            {
+             "certreqs": [
+              {
+               "cert-type": "client",
+               "kingdom": "ukb",
+               "name": "client-certs",
+               "role": "secrets.k4a-watchdog-prod"
+              }
+             ]
+            }
+        labels:
+          name: k4a-caiman-watchdog-ukb12
+          sam.data.sfdc.net/owner: secrets
+        namespace: sam-system
+      spec:
+        containers:
+        - args:
+          - java
+          - -Duser.home=/tmp
+          - -jar
+          - /caiman-watchdog/caiman-watchdog-0.0.15-SNAPSHOT.jar
+          - -secretsFile
+          - /caiman-watchdog/classes/sam.secrets.k4a-watchdog-prod.zip
+          - -certPath
+          - /clientcert
+          - -datacenter
+          - ukb
+          - -hostname
+          - $(SFDCLOC_NODE_NAME)
+          - -argusUrl
+          - http://ajna0-funnel1-0-ukb.data.sfdc.net:80
+          - -url
+          - https://sec0-kfora1-2-ukb.ops.sfdc.net:8443
+          env:
+          - name: FUNCTION_INSTANCE_NAME
+            valueFrom:
+              fieldRef:
+                apiVersion: v1
+                fieldPath: metadata.name
+          - name: FUNCTION_NAMESPACE
+            valueFrom:
+              fieldRef:
+                apiVersion: v1
+                fieldPath: metadata.namespace
+          - name: SFDCLOC_NODE_NAME
+            valueFrom:
+              fieldRef:
+                fieldPath: spec.nodeName
+          image: ops0-artifactrepo1-0-ukb.data.sfdc.net/dva/k4a-caiman-watchdog:181-13977db8e0215f424452cadc8da15c5c402ec950
+          name: watchdog
+          volumeMounts:
+          - mountPath: /clientcert
+            name: client-certs
+        - args:
+          - /sam/madkub-client
+          - --madkub-endpoint=https://$(MADKUBSERVER_SERVICE_HOST):32007
+          - --maddog-endpoint=https://all.pkicontroller.pki.blank.ukb.prod.non-estates.sfdcsd.net:8443
+          - --maddog-server-ca=/maddog-certs/ca/security-ca.pem
+          - --madkub-server-ca=/maddog-certs/ca/cacerts.pem
+          - --ca-folder=/maddog-certs/ca
+          - --token-folder=/tokens
+          - --funnel-endpoint=ajna0-funnel1-0-ukb.data.sfdc.net:80
+          - --kingdom=ukb
+          - --superpod=None
+          - --estate=ukb-sam
+          - --cert-folders=client-certs:/clientcert
+          - --refresher
+          - --run-init-for-refresher-mode
+          env:
+          - name: MADKUB_NODENAME
+            valueFrom:
+              fieldRef:
+                fieldPath: spec.nodeName
+          - name: MADKUB_NAME
+            valueFrom:
+              fieldRef:
+                fieldPath: metadata.name
+          - name: MADKUB_NAMESPACE
+            valueFrom:
+              fieldRef:
+                fieldPath: metadata.namespace
+          image: ops0-artifactrepo1-0-ukb.data.sfdc.net/tnrp/sam/madkub:1.0.0-0000081-ddcaa288
+          imagePullPolicy: IfNotPresent
+          name: madkub-refresher
+          volumeMounts:
+          - mountPath: /clientcert
+            name: client-certs
+          - mountPath: /maddog-certs/
+            name: maddog-certs
+          - mountPath: /tokens
+            name: sam-maddog-token
+        initContainers:
+        - args:
+          - /sam/madkub-client
+          - --madkub-endpoint=https://$(MADKUBSERVER_SERVICE_HOST):32007
+          - --maddog-endpoint=https://all.pkicontroller.pki.blank.ukb.prod.non-estates.sfdcsd.net:8443
+          - --maddog-server-ca=/maddog-certs/ca/security-ca.pem
+          - --madkub-server-ca=/maddog-certs/ca/cacerts.pem
+          - --ca-folder=/maddog-certs/ca
+          - --token-folder=/tokens
+          - --funnel-endpoint=ajna0-funnel1-0-ukb.data.sfdc.net:80
+          - --kingdom=ukb
+          - --superpod=None
+          - --estate=ukb-sam
+          - --cert-folders=client-certs:/clientcert
+          env:
+          - name: MADKUB_NODENAME
+            valueFrom:
+              fieldRef:
+                fieldPath: spec.nodeName
+          - name: MADKUB_NAME
+            valueFrom:
+              fieldRef:
+                fieldPath: metadata.name
+          - name: MADKUB_NAMESPACE
+            valueFrom:
+              fieldRef:
+                fieldPath: metadata.namespace
+          image: ops0-artifactrepo1-0-ukb.data.sfdc.net/tnrp/sam/madkub:1.0.0-0000081-ddcaa288
+          imagePullPolicy: IfNotPresent
+          name: madkub-init
+          volumeMounts:
+          - mountPath: /clientcert
+            name: client-certs
+          - mountPath: /maddog-certs/
+            name: maddog-certs
+          - mountPath: /tokens
+            name: sam-maddog-token
+        nodeSelector:
+          pool: ukb-sam
+        securityContext:
+          fsGroup: 7447
+          runAsNonRoot: true
+          runAsUser: 7447
+        volumes:
+        - emptyDir:
+            medium: Memory
+          name: sam-maddog-token
+        - hostPath:
+            path: /etc/pki_service
+          name: maddog-certs
+        - emptyDir:
+            medium: Memory
+          name: client-certs
+- apiVersion: extensions/v1beta1
+  kind: Deployment
+  metadata:
+    labels:
+      name: k4a-caiman-watchdog-ukb21
+      sam.data.sfdc.net/owner: secrets
+    name: k4a-caiman-watchdog-ukb21
+    namespace: sam-system
+  spec:
+    replicas: 1
+    selector:
+      matchLabels:
+        name: k4a-caiman-watchdog-ukb21
+        sam.data.sfdc.net/owner: secrets
+    template:
+      metadata:
+        annotations:
+          madkub.sam.sfdc.net/allcerts: |-
+            {
+             "certreqs": [
+              {
+               "cert-type": "client",
+               "kingdom": "ukb",
+               "name": "client-certs",
+               "role": "secrets.k4a-watchdog-prod"
+              }
+             ]
+            }
+        labels:
+          name: k4a-caiman-watchdog-ukb21
+          sam.data.sfdc.net/owner: secrets
+        namespace: sam-system
+      spec:
+        containers:
+        - args:
+          - java
+          - -Duser.home=/tmp
+          - -jar
+          - /caiman-watchdog/caiman-watchdog-0.0.15-SNAPSHOT.jar
+          - -secretsFile
+          - /caiman-watchdog/classes/sam.secrets.k4a-watchdog-prod.zip
+          - -certPath
+          - /clientcert
+          - -datacenter
+          - ukb
+          - -hostname
+          - $(SFDCLOC_NODE_NAME)
+          - -argusUrl
+          - http://ajna0-funnel1-0-ukb.data.sfdc.net:80
+          - -url
+          - https://sec0-kfora2-1-ukb.ops.sfdc.net:8443
+          env:
+          - name: FUNCTION_INSTANCE_NAME
+            valueFrom:
+              fieldRef:
+                apiVersion: v1
+                fieldPath: metadata.name
+          - name: FUNCTION_NAMESPACE
+            valueFrom:
+              fieldRef:
+                apiVersion: v1
+                fieldPath: metadata.namespace
+          - name: SFDCLOC_NODE_NAME
+            valueFrom:
+              fieldRef:
+                fieldPath: spec.nodeName
+          image: ops0-artifactrepo1-0-ukb.data.sfdc.net/dva/k4a-caiman-watchdog:181-13977db8e0215f424452cadc8da15c5c402ec950
+          name: watchdog
+          volumeMounts:
+          - mountPath: /clientcert
+            name: client-certs
+        - args:
+          - /sam/madkub-client
+          - --madkub-endpoint=https://$(MADKUBSERVER_SERVICE_HOST):32007
+          - --maddog-endpoint=https://all.pkicontroller.pki.blank.ukb.prod.non-estates.sfdcsd.net:8443
+          - --maddog-server-ca=/maddog-certs/ca/security-ca.pem
+          - --madkub-server-ca=/maddog-certs/ca/cacerts.pem
+          - --ca-folder=/maddog-certs/ca
+          - --token-folder=/tokens
+          - --funnel-endpoint=ajna0-funnel1-0-ukb.data.sfdc.net:80
+          - --kingdom=ukb
+          - --superpod=None
+          - --estate=ukb-sam
+          - --cert-folders=client-certs:/clientcert
+          - --refresher
+          - --run-init-for-refresher-mode
+          env:
+          - name: MADKUB_NODENAME
+            valueFrom:
+              fieldRef:
+                fieldPath: spec.nodeName
+          - name: MADKUB_NAME
+            valueFrom:
+              fieldRef:
+                fieldPath: metadata.name
+          - name: MADKUB_NAMESPACE
+            valueFrom:
+              fieldRef:
+                fieldPath: metadata.namespace
+          image: ops0-artifactrepo1-0-ukb.data.sfdc.net/tnrp/sam/madkub:1.0.0-0000081-ddcaa288
+          imagePullPolicy: IfNotPresent
+          name: madkub-refresher
+          volumeMounts:
+          - mountPath: /clientcert
+            name: client-certs
+          - mountPath: /maddog-certs/
+            name: maddog-certs
+          - mountPath: /tokens
+            name: sam-maddog-token
+        initContainers:
+        - args:
+          - /sam/madkub-client
+          - --madkub-endpoint=https://$(MADKUBSERVER_SERVICE_HOST):32007
+          - --maddog-endpoint=https://all.pkicontroller.pki.blank.ukb.prod.non-estates.sfdcsd.net:8443
+          - --maddog-server-ca=/maddog-certs/ca/security-ca.pem
+          - --madkub-server-ca=/maddog-certs/ca/cacerts.pem
+          - --ca-folder=/maddog-certs/ca
+          - --token-folder=/tokens
+          - --funnel-endpoint=ajna0-funnel1-0-ukb.data.sfdc.net:80
+          - --kingdom=ukb
+          - --superpod=None
+          - --estate=ukb-sam
+          - --cert-folders=client-certs:/clientcert
+          env:
+          - name: MADKUB_NODENAME
+            valueFrom:
+              fieldRef:
+                fieldPath: spec.nodeName
+          - name: MADKUB_NAME
+            valueFrom:
+              fieldRef:
+                fieldPath: metadata.name
+          - name: MADKUB_NAMESPACE
+            valueFrom:
+              fieldRef:
+                fieldPath: metadata.namespace
+          image: ops0-artifactrepo1-0-ukb.data.sfdc.net/tnrp/sam/madkub:1.0.0-0000081-ddcaa288
+          imagePullPolicy: IfNotPresent
+          name: madkub-init
+          volumeMounts:
+          - mountPath: /clientcert
+            name: client-certs
+          - mountPath: /maddog-certs/
+            name: maddog-certs
+          - mountPath: /tokens
+            name: sam-maddog-token
+        nodeSelector:
+          pool: ukb-sam
+        securityContext:
+          fsGroup: 7447
+          runAsNonRoot: true
+          runAsUser: 7447
+        volumes:
+        - emptyDir:
+            medium: Memory
+          name: sam-maddog-token
+        - hostPath:
+            path: /etc/pki_service
+          name: maddog-certs
+        - emptyDir:
+            medium: Memory
+          name: client-certs
+- apiVersion: extensions/v1beta1
+  kind: Deployment
+  metadata:
+    labels:
+      name: k4a-caiman-watchdog-ukb22
+      sam.data.sfdc.net/owner: secrets
+    name: k4a-caiman-watchdog-ukb22
+    namespace: sam-system
+  spec:
+    replicas: 1
+    selector:
+      matchLabels:
+        name: k4a-caiman-watchdog-ukb22
+        sam.data.sfdc.net/owner: secrets
+    template:
+      metadata:
+        annotations:
+          madkub.sam.sfdc.net/allcerts: |-
+            {
+             "certreqs": [
+              {
+               "cert-type": "client",
+               "kingdom": "ukb",
+               "name": "client-certs",
+               "role": "secrets.k4a-watchdog-prod"
+              }
+             ]
+            }
+        labels:
+          name: k4a-caiman-watchdog-ukb22
+          sam.data.sfdc.net/owner: secrets
+        namespace: sam-system
+      spec:
+        containers:
+        - args:
+          - java
+          - -Duser.home=/tmp
+          - -jar
+          - /caiman-watchdog/caiman-watchdog-0.0.15-SNAPSHOT.jar
+          - -secretsFile
+          - /caiman-watchdog/classes/sam.secrets.k4a-watchdog-prod.zip
+          - -certPath
+          - /clientcert
+          - -datacenter
+          - ukb
+          - -hostname
+          - $(SFDCLOC_NODE_NAME)
+          - -argusUrl
+          - http://ajna0-funnel1-0-ukb.data.sfdc.net:80
+          - -url
+          - https://sec0-kfora2-2-ukb.ops.sfdc.net:8443
+          env:
+          - name: FUNCTION_INSTANCE_NAME
+            valueFrom:
+              fieldRef:
+                apiVersion: v1
+                fieldPath: metadata.name
+          - name: FUNCTION_NAMESPACE
+            valueFrom:
+              fieldRef:
+                apiVersion: v1
+                fieldPath: metadata.namespace
+          - name: SFDCLOC_NODE_NAME
+            valueFrom:
+              fieldRef:
+                fieldPath: spec.nodeName
+          image: ops0-artifactrepo1-0-ukb.data.sfdc.net/dva/k4a-caiman-watchdog:181-13977db8e0215f424452cadc8da15c5c402ec950
+          name: watchdog
+          volumeMounts:
+          - mountPath: /clientcert
+            name: client-certs
+        - args:
+          - /sam/madkub-client
+          - --madkub-endpoint=https://$(MADKUBSERVER_SERVICE_HOST):32007
+          - --maddog-endpoint=https://all.pkicontroller.pki.blank.ukb.prod.non-estates.sfdcsd.net:8443
+          - --maddog-server-ca=/maddog-certs/ca/security-ca.pem
+          - --madkub-server-ca=/maddog-certs/ca/cacerts.pem
+          - --ca-folder=/maddog-certs/ca
+          - --token-folder=/tokens
+          - --funnel-endpoint=ajna0-funnel1-0-ukb.data.sfdc.net:80
+          - --kingdom=ukb
+          - --superpod=None
+          - --estate=ukb-sam
+          - --cert-folders=client-certs:/clientcert
+          - --refresher
+          - --run-init-for-refresher-mode
+          env:
+          - name: MADKUB_NODENAME
+            valueFrom:
+              fieldRef:
+                fieldPath: spec.nodeName
+          - name: MADKUB_NAME
+            valueFrom:
+              fieldRef:
+                fieldPath: metadata.name
+          - name: MADKUB_NAMESPACE
+            valueFrom:
+              fieldRef:
+                fieldPath: metadata.namespace
+          image: ops0-artifactrepo1-0-ukb.data.sfdc.net/tnrp/sam/madkub:1.0.0-0000081-ddcaa288
+          imagePullPolicy: IfNotPresent
+          name: madkub-refresher
+          volumeMounts:
+          - mountPath: /clientcert
+            name: client-certs
+          - mountPath: /maddog-certs/
+            name: maddog-certs
+          - mountPath: /tokens
+            name: sam-maddog-token
+        initContainers:
+        - args:
+          - /sam/madkub-client
+          - --madkub-endpoint=https://$(MADKUBSERVER_SERVICE_HOST):32007
+          - --maddog-endpoint=https://all.pkicontroller.pki.blank.ukb.prod.non-estates.sfdcsd.net:8443
+          - --maddog-server-ca=/maddog-certs/ca/security-ca.pem
+          - --madkub-server-ca=/maddog-certs/ca/cacerts.pem
+          - --ca-folder=/maddog-certs/ca
+          - --token-folder=/tokens
+          - --funnel-endpoint=ajna0-funnel1-0-ukb.data.sfdc.net:80
+          - --kingdom=ukb
+          - --superpod=None
+          - --estate=ukb-sam
+          - --cert-folders=client-certs:/clientcert
+          env:
+          - name: MADKUB_NODENAME
+            valueFrom:
+              fieldRef:
+                fieldPath: spec.nodeName
+          - name: MADKUB_NAME
+            valueFrom:
+              fieldRef:
+                fieldPath: metadata.name
+          - name: MADKUB_NAMESPACE
+            valueFrom:
+              fieldRef:
+                fieldPath: metadata.namespace
+          image: ops0-artifactrepo1-0-ukb.data.sfdc.net/tnrp/sam/madkub:1.0.0-0000081-ddcaa288
+          imagePullPolicy: IfNotPresent
+          name: madkub-init
+          volumeMounts:
+          - mountPath: /clientcert
+            name: client-certs
+          - mountPath: /maddog-certs/
+            name: maddog-certs
+          - mountPath: /tokens
+            name: sam-maddog-token
+        nodeSelector:
+          pool: ukb-sam
+        securityContext:
+          fsGroup: 7447
+          runAsNonRoot: true
+          runAsUser: 7447
+        volumes:
+        - emptyDir:
+            medium: Memory
+          name: sam-maddog-token
+        - hostPath:
+            path: /etc/pki_service
+          name: maddog-certs
+        - emptyDir:
+            medium: Memory
+          name: client-certs
+- apiVersion: extensions/v1beta1
+  kind: Deployment
+  metadata:
+    labels:
+      name: k4a-caiman-watchdog-ukbfailover
+      sam.data.sfdc.net/owner: secrets
+    name: k4a-caiman-watchdog-ukbfailover
+    namespace: sam-system
+  spec:
+    replicas: 1
+    selector:
+      matchLabels:
+        name: k4a-caiman-watchdog-ukbfailover
+        sam.data.sfdc.net/owner: secrets
+    template:
+      metadata:
+        annotations:
+          madkub.sam.sfdc.net/allcerts: |-
+            {
+             "certreqs": [
+              {
+               "cert-type": "client",
+               "kingdom": "ukb",
+               "name": "client-certs",
+               "role": "secrets.k4a-watchdog-prod"
+              }
+             ]
+            }
+        labels:
+          name: k4a-caiman-watchdog-ukbfailover
+          sam.data.sfdc.net/owner: secrets
+        namespace: sam-system
+      spec:
+        containers:
+        - args:
+          - java
+          - -Duser.home=/tmp
+          - -jar
+          - /caiman-watchdog/caiman-watchdog-0.0.15-SNAPSHOT.jar
+          - -secretsFile
+          - /caiman-watchdog/classes/sam.secrets.k4a-watchdog-prod.zip
+          - -certPath
+          - /clientcert
+          - -datacenter
+          - ukb
+          - -hostname
+          - $(SFDCLOC_NODE_NAME)
+          - -argusUrl
+          - http://ajna0-funnel1-0-ukb.data.sfdc.net:80
+          env:
+          - name: FUNCTION_INSTANCE_NAME
+            valueFrom:
+              fieldRef:
+                apiVersion: v1
+                fieldPath: metadata.name
+          - name: FUNCTION_NAMESPACE
+            valueFrom:
+              fieldRef:
+                apiVersion: v1
+                fieldPath: metadata.namespace
+          - name: SFDCLOC_NODE_NAME
+            valueFrom:
+              fieldRef:
+                fieldPath: spec.nodeName
+          image: ops0-artifactrepo1-0-ukb.data.sfdc.net/dva/k4a-caiman-watchdog:181-13977db8e0215f424452cadc8da15c5c402ec950
+          name: watchdog
+          volumeMounts:
+          - mountPath: /clientcert
+            name: client-certs
+        - args:
+          - /sam/madkub-client
+          - --madkub-endpoint=https://$(MADKUBSERVER_SERVICE_HOST):32007
+          - --maddog-endpoint=https://all.pkicontroller.pki.blank.ukb.prod.non-estates.sfdcsd.net:8443
+          - --maddog-server-ca=/maddog-certs/ca/security-ca.pem
+          - --madkub-server-ca=/maddog-certs/ca/cacerts.pem
+          - --ca-folder=/maddog-certs/ca
+          - --token-folder=/tokens
+          - --funnel-endpoint=ajna0-funnel1-0-ukb.data.sfdc.net:80
+          - --kingdom=ukb
+          - --superpod=None
+          - --estate=ukb-sam
+          - --cert-folders=client-certs:/clientcert
+          - --refresher
+          - --run-init-for-refresher-mode
+          env:
+          - name: MADKUB_NODENAME
+            valueFrom:
+              fieldRef:
+                fieldPath: spec.nodeName
+          - name: MADKUB_NAME
+            valueFrom:
+              fieldRef:
+                fieldPath: metadata.name
+          - name: MADKUB_NAMESPACE
+            valueFrom:
+              fieldRef:
+                fieldPath: metadata.namespace
+          image: ops0-artifactrepo1-0-ukb.data.sfdc.net/tnrp/sam/madkub:1.0.0-0000081-ddcaa288
+          imagePullPolicy: IfNotPresent
+          name: madkub-refresher
+          volumeMounts:
+          - mountPath: /clientcert
+            name: client-certs
+          - mountPath: /maddog-certs/
+            name: maddog-certs
+          - mountPath: /tokens
+            name: sam-maddog-token
+        initContainers:
+        - args:
+          - /sam/madkub-client
+          - --madkub-endpoint=https://$(MADKUBSERVER_SERVICE_HOST):32007
+          - --maddog-endpoint=https://all.pkicontroller.pki.blank.ukb.prod.non-estates.sfdcsd.net:8443
+          - --maddog-server-ca=/maddog-certs/ca/security-ca.pem
+          - --madkub-server-ca=/maddog-certs/ca/cacerts.pem
+          - --ca-folder=/maddog-certs/ca
+          - --token-folder=/tokens
+          - --funnel-endpoint=ajna0-funnel1-0-ukb.data.sfdc.net:80
+          - --kingdom=ukb
+          - --superpod=None
+          - --estate=ukb-sam
+          - --cert-folders=client-certs:/clientcert
+          env:
+          - name: MADKUB_NODENAME
+            valueFrom:
+              fieldRef:
+                fieldPath: spec.nodeName
+          - name: MADKUB_NAME
+            valueFrom:
+              fieldRef:
+                fieldPath: metadata.name
+          - name: MADKUB_NAMESPACE
+            valueFrom:
+              fieldRef:
+                fieldPath: metadata.namespace
+          image: ops0-artifactrepo1-0-ukb.data.sfdc.net/tnrp/sam/madkub:1.0.0-0000081-ddcaa288
+          imagePullPolicy: IfNotPresent
+          name: madkub-init
+          volumeMounts:
+          - mountPath: /clientcert
+            name: client-certs
+          - mountPath: /maddog-certs/
+            name: maddog-certs
+          - mountPath: /tokens
+            name: sam-maddog-token
+        nodeSelector:
+          pool: ukb-sam
+        securityContext:
+          fsGroup: 7447
+          runAsNonRoot: true
+          runAsUser: 7447
+        volumes:
+        - emptyDir:
+            medium: Memory
+          name: sam-maddog-token
+        - hostPath:
+            path: /etc/pki_service
+          name: maddog-certs
+        - emptyDir:
+            medium: Memory
+          name: client-certs
+kind: List
+metadata: {}

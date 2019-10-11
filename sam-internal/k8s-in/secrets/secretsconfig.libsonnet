@@ -19,14 +19,6 @@ local configs = import "config.jsonnet";
   ]),
   k4aSamWdEnabled: std.setMember(estate, $.k4aSamWdEstates),
 
-  k4aCaimanWdEstates: std.set([
-    "prd-sam",
-    "xrd-sam",
-    "phx-sam",
-    "dfw-sam",
-  ]),
-  k4aCaimanWdEnabled: std.setMember(estate, $.k4aCaimanWdEstates),
-
   samPodSecurityContext: {
     securityContext: {
       fsGroup: 7447,
