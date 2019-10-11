@@ -13,9 +13,9 @@ system:
     containers:
     - name: ordering
       # https://sfcirelease.dop.sfdc.net/job/services/job/sfdc-bazel_projects_services_examples_ordering/job/sfdc-bazel/job/master/5
-      image: sfci/services/sfdc-bazel/scone/ordering:685f3d3e5
-      args:
-      - --tracing.zipkinServer=http://zipkindirecttls.funnel.localhost.mesh.force.com:5442/api/v2/spans
+      #image: sfci/services/sfdc-bazel/scone/ordering:685f3d3e5
+      # Temporary image to test out TLS Zipkin
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/scone/ordering-service:bazel-monorepo-stoens-1570775204
       env:
       - name: SFDC_ENVIRONMENT
         value: mesh
