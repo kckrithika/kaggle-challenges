@@ -9,6 +9,8 @@ local istioSvcNamespaces = {
   par: ["app", "funnel", "service-mesh"],
 };
 
+## Preserve this old way of generating namespaces for everything but samdev & samtest
+if ((configs.estate != "prd-samdev") && (configs.estate != "prd-samtest")) then
 {
   apiVersion: "v1",
   metadata: {
@@ -37,3 +39,4 @@ local istioSvcNamespaces = {
   ],
   kind: "List",
 }
+else "SKIP"
