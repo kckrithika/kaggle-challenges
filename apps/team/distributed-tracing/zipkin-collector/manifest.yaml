@@ -6,7 +6,7 @@ system:
       - zipkin-scrum-team@salesforce.com
   functions:
   - name: zipkin-collector
-    count: 2
+    count: 0
     strategy:
       type: RollingUpdate
       rollingUpdate:
