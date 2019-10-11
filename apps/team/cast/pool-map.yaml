@@ -2,7 +2,9 @@ version: v2
 apps:
   # PRD-Dev Cloud Atlas Service
   cast-prd-dev:
-    - name: prd/prd-sam
+    - name: prd/prd-sam_cloudatlas_dir
+      hostSubList:
+        - test0shared0-samminionatlasdir2-1-prd.eng.sfdc.net
 
   # PRD-Stage Cloud Atlas Service
   cast-prd-stage:
