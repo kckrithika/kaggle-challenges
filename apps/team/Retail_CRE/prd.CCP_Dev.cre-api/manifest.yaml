@@ -15,6 +15,8 @@ system:
     - name: cre-api-ccp-dev
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cre/cre-api:2.1.1.develop.37e7810.113
       env:
+        - name: SPRING_PROFILES_ACTIVE
+          value: dev
         - name: DOMAIN_ID
           value: cre
         - name: SCHEMA_IDS
