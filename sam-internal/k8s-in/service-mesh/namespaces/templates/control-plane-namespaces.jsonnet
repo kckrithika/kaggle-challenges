@@ -1,6 +1,9 @@
 local configs = import "config.jsonnet";
 ## Preserve this old way of generating namespaces for everything but samdev & samtest
-if ((configs.estate != "prd-samdev") && (configs.estate != "prd-samtest")) then
+##
+## TODO:NIKO: Remove the List version completely, when releasing to PAR
+##
+if (configs.kingdom != "prd") then
 {
   apiVersion: "v1",
   items: [
