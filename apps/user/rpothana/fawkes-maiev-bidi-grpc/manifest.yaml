@@ -1,0 +1,35 @@
+apiVersion: v1
+system:
+  functions:
+  - name: fawkes-maiev-bidi-grpc-func
+    count: 1
+    containers:
+    - name: fawkes-maiev-bidi-grpc
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/rpothana/fawkes-maiev-bidi-grpc:latest 
+      ports:
+      - containerPort: 7442
+      livenessProbe:
+        exec:
+          command:
+            - /usr/bin/true
+      env:
+      - name: MASTER_GRPC_PORT
+        value: "7442"
+      - name: CANTOR_GRPC_TARGET
+        value: "cantor.casp.$KINGDOM-sam.$KINGDOM.slb.sfdc.net:11983"
+      - name: HTTP_PORT
+        value: "8085"
+      - name: BASE_PATH
+        value: "/v1/*"
+      - name: NODENAME
+        valueFrom:
+          fieldRef:
+            fieldPath: spec.nodeName
+  loadbalancers:
+  - lbname: fawkes-maiev
+    function: fawkes-maiev-bidi-grpc-func
+    slbenabled: true
+    ports:
+      - port: 7442
+        targetport: 7442
+        lbtype: tcp
