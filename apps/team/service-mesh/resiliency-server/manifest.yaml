@@ -32,7 +32,7 @@ system:
           command:
           - "/opt/beacon/is-alive.sh"
     - name: server
-      image: sfci/servicelibs/servicemesh-resiliency:e3be8da1f02b6a40e334230c7c64768bd6ce65cc
+      image: sfci/servicelibs/servicemesh-resiliency:6110ea8ee948f5c9784edf510219438d13eb9c47
       env:
       - name: PAYLOAD
         value: 20480
