@@ -9,10 +9,10 @@ system:
       image: sfci/services/sfdc-bazel/disco/zoobernetes:4e735c525
       args:
       - >- #Multiline argument
-        --z9s.whitelisted.services=app:app,eu14,cs88,cs89;
+        --z9s.whitelisted.services=app:app
         casam:green,blue;
-        service-mesh:ajnafunnel,ajnafunneldirect,zipkin;
-        funnel:ajnafunneldirecttls
+        service-mesh:ajnafunnel,ajnafunneldirect
+        funnel:ajnafunneldirecttls,zipkindirecttls
 
       #Used to trigger redeploy
       env:
