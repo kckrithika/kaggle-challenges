@@ -16,7 +16,7 @@ system:
       rollingUpdate:
         maxSurge: 0
         maxUnavailable: 1
-    hostnetwork: true
+    hostnetwork: false
     containers:
     #####################################################################################
     # Service Mesh / Envoy / Sherpa
