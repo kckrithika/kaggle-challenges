@@ -171,9 +171,9 @@ system:
         - name: c2c_common_gdotBasePath
           value: http://${directory_server_host}:8080/scim
         - name: security_client_dynamickeystore_cadir
-          value: /certs
+          value: /certs/ca
         - name: security_client_dynamickeystore_monitoredDirectory
-          value: /certs
+          value: /clientcerts
         - name: c2c_common_callerContext
           value: giddataservice-cast-prd-dev
         - name: c2c_service_id
