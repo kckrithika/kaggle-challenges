@@ -45,7 +45,7 @@ system:
       - name: SERVICE_THREADCOUNT
         value: '250'
       - name: JVM_OPTS
-        value: '-Xms4g -Xmx16g'
+        value: '-Xms16g -Xmx16g'
       - name: KRB5_CONF
         value: /home/sfdc-usmt/krb-config/krb5_searchzk_prd.conf
       - name: JAAS_CONF
@@ -92,7 +92,7 @@ system:
       resources:
         limits:
           cpu: "2"
-          memory: "8Gi"
+          memory: "4Gi"
       volumeMounts:
       - name: server-cert-vol
         mountPath: /server-certs
