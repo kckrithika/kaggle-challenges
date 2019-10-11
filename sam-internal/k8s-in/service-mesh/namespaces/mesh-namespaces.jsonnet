@@ -32,7 +32,7 @@ local istioSvcNamespaces = {
     metadata: {
       labels: {
         "istio-injection": "enabled",
-      } + (if namespaceName == "service-mesh" && (configs.kingdom == "prd" || configs.kingdom == "mvp") then
+      } + (if namespaceName == "service-mesh" && (configs.kingdom == "prd" || configs.kingdom == "mvp" || configs.kingdom == "par") then
         { "sherpa-injection": "enabled" } else {}) +
         (if namespaceName == "service-mesh" && configs.kingdom == "prd" then
         { "electron-opa-injection": "enabled" } else {})
