@@ -151,7 +151,7 @@ items:
           - --storage.tsdb.path=/prometheus-storage
           - --web.external-url=http://localhost/
           - --web.enable-lifecycle
-          image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/prome_for_k8s:36
+          image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/prome_for_k8s:jenkins-dva-transformation-prometheus-funnel-PR-23-4-itest
           livenessProbe:
             httpGet:
               path: /metrics
@@ -175,7 +175,8 @@ items:
           - --tagDefault=estate:prd-data-flowsnake_test
           - --batchSize=512
           - --funnelUrl=http://ajna0-funnel1-0-prd.data.sfdc.net:80
-          image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/funnel_writer:36
+          - --v=2
+          image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/funnel_writer:jenkins-dva-transformation-prometheus-funnel-PR-23-4-itest
           livenessProbe:
             httpGet:
               path: /
@@ -273,7 +274,7 @@ items:
           - --storage.tsdb.path=/prometheus-storage
           - --web.external-url=http://localhost/
           - --web.enable-lifecycle
-          image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/prome_for_k8s:36
+          image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/prome_for_k8s:jenkins-dva-transformation-prometheus-funnel-PR-23-4-itest
           livenessProbe:
             httpGet:
               path: /metrics
@@ -297,7 +298,8 @@ items:
           - --tagDefault=estate:prd-data-flowsnake_test
           - --batchSize=512
           - --funnelUrl=http://ajna0-funnel1-0-prd.data.sfdc.net:80
-          image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/funnel_writer:36
+          - --v=2
+          image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/funnel_writer:jenkins-dva-transformation-prometheus-funnel-PR-23-4-itest
           livenessProbe:
             httpGet:
               path: /
