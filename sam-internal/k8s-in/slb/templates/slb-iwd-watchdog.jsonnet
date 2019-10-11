@@ -60,15 +60,10 @@ if slbconfigs.isSlbEstate && slbflights.enableIWDHealth then configs.daemonSetBa
                         ],
                     } + configs.ipAddressResourceRequest,
                 ],
-                }
-                +
-                (if slbimages.phaseNum <= 4 then
-                {
-                    nodeSelector: {
-                        pool: slbconfigs.slbEstate,
-                    },
-                }
-                else {})
+                nodeSelector: {
+                    pool: slbconfigs.slbEstate,
+                },
+            }
             + slbconfigs.getGracePeriod()
             + slbconfigs.getDnsPolicy(),
         },
