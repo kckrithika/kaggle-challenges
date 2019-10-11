@@ -20,11 +20,14 @@ local istioSvcNamespaces = {
   // Returns a list of all possible NS variations to iterate over and create individual files for each NS
   allNs: mesh_namespaces,
 
+
+
   // Determines if an NS in an individual file should be deployed to a Kingdom
-  // TODO: for now we use this for samtest and samdev only
+  //
+  // TODO:NIKO: Remove the "prd only" part from this condition, when releasing to PAR
+  //
   shouldDeployToKingdom(namespaceName, kingdom):: 
-  ((configs.estate == "prd-samdev" || configs.estate == "prd-samtest")
-    && (std.count(istioSvcNamespaces[kingdom], namespaceName) > 0)),
+    ((configs.kingdom == "prd") && (std.count(istioSvcNamespaces[kingdom], namespaceName) > 0)),
   
   newMeshNamespace(namespaceName):: {
     apiVersion: "v1",

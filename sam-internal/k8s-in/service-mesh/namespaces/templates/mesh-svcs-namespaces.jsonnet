@@ -1,3 +1,8 @@
+##
+## TODO:NIKO: Remove this file completely, when releasing to PAR
+##
+
+
 # istio-inject: enabled enables both the webhooks - istio-sidecar-injector & istio-routing-webhook
 local utils = import "util_functions.jsonnet";
 local configs = import "config.jsonnet";
@@ -10,7 +15,7 @@ local istioSvcNamespaces = {
 };
 
 ## Preserve this old way of generating namespaces for everything but samdev & samtest
-if ((configs.estate != "prd-samdev") && (configs.estate != "prd-samtest")) then
+if (configs.kingdom != "prd") then
 {
   apiVersion: "v1",
   metadata: {
