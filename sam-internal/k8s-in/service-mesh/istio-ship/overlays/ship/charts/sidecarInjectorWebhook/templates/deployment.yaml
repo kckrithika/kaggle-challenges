@@ -160,6 +160,7 @@ spec:
         - MUTUAL_TLS
         - --statusPort
         - "15020"
+        - --controlPlaneBootstrap=false
         env:
         - name: POD_NAME
           valueFrom:

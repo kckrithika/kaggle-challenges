@@ -468,6 +468,7 @@ data:
       {{- if .Values.global.trustDomain }}
         - --trust-domain={{ .Values.global.trustDomain }}
       {{- end }}
+        - --controlPlaneBootstrap=false
         env:
         - name: POD_NAME
           valueFrom:
@@ -1000,6 +1001,7 @@ spec:
         - MUTUAL_TLS
         - --discoveryAddress
         - istio-pilot.mesh-control-plane:15011
+        - --controlPlaneBootstrap=false
         env:
         - name: ESTATE
           value: mcpIstioConfig.casamEstate
@@ -1887,6 +1889,7 @@ spec:
         - MUTUAL_TLS
         - --statusPort
         - "15020"
+        - --controlPlaneBootstrap=false
         env:
         - name: POD_NAME
           valueFrom:

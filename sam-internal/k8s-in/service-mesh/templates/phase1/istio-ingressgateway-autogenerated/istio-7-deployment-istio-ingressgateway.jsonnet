@@ -143,6 +143,7 @@ if (istioPhases.phaseNum == 1) then
               "MUTUAL_TLS",
               "--discoveryAddress",
               "istio-pilot.mesh-control-plane:15011",
+              "--controlPlaneBootstrap=false",
             ],
             env: [
               {
