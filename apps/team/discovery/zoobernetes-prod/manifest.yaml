@@ -11,7 +11,7 @@ system:
       - >- #Multiline argument
         --z9s.whitelisted.services=app:app;
         casam:green,blue;
-        service-mesh:ajnafunnel,ajnafunneldirect
+        service-mesh:ajnafunnel,ajnafunneldirect;
         funnel:ajnafunneldirecttls,zipkindirecttls
 
       #Used to trigger redeploy
