@@ -20,8 +20,25 @@ local getKingdomDefaultInstances = {
     [configs.kingdom + "failover"]: {},
 };
 
+local getKingdomAdditionalInstances(kingdom=configs.kingdom) = {
+    [kingdom + "11"]: { url: build_server_url("1-1-" + kingdom) },
+    [kingdom + "12"]: { url: build_server_url("1-2-" + kingdom) },
+    [kingdom + "21"]: { url: build_server_url("2-1-" + kingdom) },
+    [kingdom + "22"]: { url: build_server_url("2-2-" + kingdom) },
+    [configs.kingdom + "11"]: { url: build_server_url("1-1-" + configs.kingdom) },
+    [configs.kingdom + "12"]: { url: build_server_url("1-2-" + configs.kingdom) },
+    [configs.kingdom + "21"]: { url: build_server_url("2-1-" + configs.kingdom) },
+    [configs.kingdom + "22"]: { url: build_server_url("2-2-" + configs.kingdom) },
+    [configs.kingdom + "failover"]: {},
+};
+
+
 local getInstanceDataWithDefaults(instanceTag) = (
-  local instanceData = getKingdomDefaultInstances[instanceTag];
+  local instanceData = if configs.kingdom == "phx" then getKingdomAdditionalInstances("chi")[instanceTag]
+  else if configs.kingdom == "frf" then getKingdomAdditionalInstances("lon")[instanceTag]
+  else if configs.kingdom == "prd" then getKingdomAdditionalInstances("crd")[instanceTag]
+  else getKingdomDefaultInstances[instanceTag];
+
   # The instance name (unless provided) is formed as "k4a-caiman-watchdog-<instanceTag>".
   local name = (if std.objectHas(instanceData, "name") then instanceData.name else "k4a-caiman-watchdog-" + instanceTag);
 
@@ -128,14 +145,19 @@ local k4aWatchdogDeployment(instanceTag) = configs.deploymentBase("secrets") {
 # so some things break in surprising ways (like image promotion -- new images within a List aren't
 # automatically promoted by Firefly, so unless promoted through some side channel the ss-watchdog
 # images weren't ending up in prod when encapsulated in a List).
-local manifestSpec = {
+local manifestSpec =
+  if configs.estate == "prd-samtwo" then "SKIP"
+  else if configs.estate == "prd-sam" || configs.estate == "xrd-sam" || !utils.is_test_cluster(configs.estate) then {
   apiVersion: "v1",
   kind: "List",
   metadata: {},
   items: [
     k4aWatchdogDeployment(instanceTag)
-    for instanceTag in std.objectFields(getKingdomDefaultInstances)
-  ],
-};
+    for instanceTag in std.objectFields(if configs.kingdom == "phx" then getKingdomAdditionalInstances("chi")
+    else if configs.kingdom == "frf" then getKingdomAdditionalInstances("lon")
+    else if configs.kingdom == "prd" then getKingdomAdditionalInstances("crd")
+    else getKingdomDefaultInstances)
+    ],
+ } else "SKIP";
 
 manifestSpec
