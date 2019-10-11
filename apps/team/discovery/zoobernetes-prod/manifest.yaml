@@ -6,7 +6,7 @@ system:
 
     containers:
     - name: zoobernetes
-      image: sfci/services/sfdc-bazel/disco/zoobernetes:48d57bd9d
+      image: sfci/services/sfdc-bazel/disco/zoobernetes:4e735c525
       args:
       - >- #Multiline argument
         --z9s.whitelisted.services=app:app,eu14,cs88,cs89;
