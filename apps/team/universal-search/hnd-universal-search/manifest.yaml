@@ -36,6 +36,8 @@ system:
           cpu: "24"
           memory: "24Gi"
       env:
+      - name: JVM_OPTS
+        value: '-Xms16g -Xmx16g'
       - name: KRB5_CONF
         value: /home/sfdc-usmt/krb-config/krb5_searchzk_hnd.conf
       - name: JAAS_CONF
