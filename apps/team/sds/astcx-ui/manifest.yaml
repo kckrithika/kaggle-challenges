@@ -32,7 +32,7 @@ system:
       - name: AST_CX_SERVICE_URL
         value: "https://dev.sdssca.com"
       - name: AST_CRED_SERVICE_URL
-        value: "http://10.233.249.11:8085"
+        value: "http://10.233.249.20:8085"
       - name: AST_CX_SECRET_SERVICE_URL
         value: "https://secretservice.dmz.salesforce.com:8271/vaultczar/api/1.0/getSecretBySubscriber"
       ports:
