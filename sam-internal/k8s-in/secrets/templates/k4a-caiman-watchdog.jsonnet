@@ -12,32 +12,34 @@ local build_server_url(tag) = (
     urlHead + tag + urlTail
 );
 
-local getKingdomDefaultInstances = {
-    [configs.kingdom + "11"]: { url: build_server_url("1-1-" + configs.kingdom) },
-    [configs.kingdom + "12"]: { url: build_server_url("1-2-" + configs.kingdom) },
-    [configs.kingdom + "21"]: { url: build_server_url("2-1-" + configs.kingdom) },
-    [configs.kingdom + "22"]: { url: build_server_url("2-2-" + configs.kingdom) },
-    [configs.kingdom + "failover"]: {},
-};
-
-local getKingdomAdditionalInstances(kingdom=configs.kingdom) = {
+local getKingdomServerSpecificInstances(kingdom=configs.kingdom) = {
     [kingdom + "11"]: { url: build_server_url("1-1-" + kingdom) },
     [kingdom + "12"]: { url: build_server_url("1-2-" + kingdom) },
     [kingdom + "21"]: { url: build_server_url("2-1-" + kingdom) },
     [kingdom + "22"]: { url: build_server_url("2-2-" + kingdom) },
-    [configs.kingdom + "11"]: { url: build_server_url("1-1-" + configs.kingdom) },
-    [configs.kingdom + "12"]: { url: build_server_url("1-2-" + configs.kingdom) },
-    [configs.kingdom + "21"]: { url: build_server_url("2-1-" + configs.kingdom) },
-    [configs.kingdom + "22"]: { url: build_server_url("2-2-" + configs.kingdom) },
-    [configs.kingdom + "failover"]: {},
 };
+
+# Some legacy (non-Jackson) datacenters have K4A, but do not have a SAM presence.
+# We still want to monitor K4A in those datacenters; we will do so from one of the sites
+# listed as a failover site in the Caiman `config.json` (https://git.soma.salesforce.com/GRaCE/caiman/blob/master/caiman-vault/src/main/resources/config.json):
+local getServerSpecificInstancesForLegacyFailoverSites() = (
+    # Monitor chi from phx.
+    if configs.kingdom == "phx" then getKingdomServerSpecificInstances("chi")
+    # Monitor lon from frf.
+    else if configs.kingdom == "frf" then getKingdomServerSpecificInstances("lon")
+    # Monitor crd from prd.
+    else if configs.kingdom == "prd" then getKingdomServerSpecificInstances("crd")
+    else {}
+);
+
+local getKingdomDefaultInstances = {
+    [configs.kingdom + "failover"]: {},
+} + getKingdomServerSpecificInstances(configs.kingdom)
+   + getServerSpecificInstancesForLegacyFailoverSites();
 
 
 local getInstanceDataWithDefaults(instanceTag) = (
-  local instanceData = if configs.kingdom == "phx" then getKingdomAdditionalInstances("chi")[instanceTag]
-  else if configs.kingdom == "frf" then getKingdomAdditionalInstances("lon")[instanceTag]
-  else if configs.kingdom == "prd" then getKingdomAdditionalInstances("crd")[instanceTag]
-  else getKingdomDefaultInstances[instanceTag];
+  local instanceData = getKingdomDefaultInstances[instanceTag];
 
   # The instance name (unless provided) is formed as "k4a-caiman-watchdog-<instanceTag>".
   local name = (if std.objectHas(instanceData, "name") then instanceData.name else "k4a-caiman-watchdog-" + instanceTag);
@@ -153,10 +155,7 @@ local manifestSpec =
   metadata: {},
   items: [
     k4aWatchdogDeployment(instanceTag)
-    for instanceTag in std.objectFields(if configs.kingdom == "phx" then getKingdomAdditionalInstances("chi")
-    else if configs.kingdom == "frf" then getKingdomAdditionalInstances("lon")
-    else if configs.kingdom == "prd" then getKingdomAdditionalInstances("crd")
-    else getKingdomDefaultInstances)
+    for instanceTag in std.objectFields(getKingdomDefaultInstances)
     ],
  } else "SKIP";
 
