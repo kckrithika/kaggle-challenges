@@ -23,7 +23,14 @@ system:
           exec:
             command:
             - /bin/true
-          initialDelaySeconds: 10
+          initialDelaySeconds: 5
+          periodSeconds: 30
+          timeoutSeconds: 5
+      livenessProbe:
+          exec:
+            command:
+            - /bin/true
+          initialDelaySeconds: 5
           periodSeconds: 30
           timeoutSeconds: 5
       terminationMessagePolicy: FallbackToLogsOnError
