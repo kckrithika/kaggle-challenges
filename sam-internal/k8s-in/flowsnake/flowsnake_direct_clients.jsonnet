@@ -70,6 +70,7 @@ local cre_production = {
                 namespace: "carl-spark-test",
                 pki_namespace: "flowsnake_test",
                 users: ["cmeister-ltm.internal.salesforce.com", "flowsnake_test.cmeister"],
+                prometheus_config: import "configs/client/carl-spark-test/prometheus-config.jsonnet",
             },
             {
                 owner_name: "Kevin - Testing",
@@ -88,7 +89,7 @@ local cre_production = {
                 namespace: "vaishnavi-spark-test",
                 pki_namespace: "flowsnake_test",
                 users: ["vgiridaran-ltm2.internal.salesforce.com", "flowsnake_test.vgiridaran"],
-                prometheus_config: std.toString(import "configs/client/vaishnavi-spark-test/prometheus-funnel-config.jsonnet"),
+                prometheus_config: import "configs/client/vaishnavi-spark-test/prometheus-funnel-config.jsonnet",
             },
         ],
 

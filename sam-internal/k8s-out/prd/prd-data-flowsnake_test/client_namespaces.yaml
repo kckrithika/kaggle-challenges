@@ -68,6 +68,138 @@ items:
     name: flowsnake-watchdog
 - apiVersion: v1
   data:
+    prometheus.json: '{"global": {"scrape_interval": "60s"}, "remote_write": {"queue_config":
+      {"capacity": 100000}, "url": "http://localhost:8000"}, "scrape_configs": [{"job_name":
+      "spark_pods", "kubernetes_sd_configs": [{"namespaces": {"names": ["carl-spark-test"]},
+      "role": "pod"}], "metric_relabel_configs": [{"action": "labeldrop", "regex":
+      "job"}, {"action": "labeldrop", "regex": "instance"}, {"action": "drop", "regex":
+      "jvm_.*", "source_labels": ["__name__"]}], "relabel_configs": [{"action": "keep",
+      "regex": "true;[0-9]+", "source_labels": ["__meta_kubernetes_pod_annotation_prometheus_io_scrape",
+      "__meta_kubernetes_pod_annotation_prometheus_io_port"]}, {"action": "replace",
+      "regex": "([0-9]+);(.*):.*", "replacement": "${2}:${1}", "source_labels": ["__meta_kubernetes_pod_annotation_prometheus_io_port",
+      "__address__"], "target_label": "__address__"}, {"source_labels": ["__meta_kubernetes_pod_node_name"],
+      "target_label": "device"}, {"source_labels": ["__meta_kubernetes_namespace"],
+      "target_label": "subservice"}, {"source_labels": ["__meta_kubernetes_pod_label_spark_role"],
+      "target_label": "spark_role"}]}]}'
+  kind: ConfigMap
+  metadata:
+    labels:
+      name: prometheus-server-conf-carl-spark-test
+    name: prometheus-server-conf-carl-spark-test
+    namespace: carl-spark-test
+- apiVersion: v1
+  automountServiceAccountToken: true
+  kind: ServiceAccount
+  metadata:
+    name: prometheus-scraper-carl-spark-test-serviceaccount
+    namespace: carl-spark-test
+- apiVersion: rbac.authorization.k8s.io/v1
+  kind: RoleBinding
+  metadata:
+    annotations:
+      manifestctl.sam.data.sfdc.net/swagger: disable
+    name: prometheus-scraper-binding-carl-spark-test
+    namespace: carl-spark-test
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: Role
+    name: prometheus-scraper-role-carl-spark-test
+  subjects:
+  - kind: ServiceAccount
+    name: prometheus-scraper-carl-spark-test-serviceaccount
+    namespace: carl-spark-test
+- apiVersion: rbac.authorization.k8s.io/v1
+  kind: Role
+  metadata:
+    annotations:
+      manifestctl.sam.data.sfdc.net/swagger: disable
+    name: prometheus-scraper-role-carl-spark-test
+  rules:
+  - apiGroups:
+    - ""
+    resources:
+    - pods
+    verbs:
+    - get
+    - list
+    - watch
+- apiVersion: extensions/v1beta1
+  kind: Deployment
+  metadata:
+    labels:
+      service: prometheus-scraper-carl-spark-test
+    name: prometheus-scraper-carl-spark-test
+    namespace: carl-spark-test
+  spec:
+    minReadySeconds: 15
+    replicas: 2
+    selector:
+      matchLabels:
+        service: prometheus-scraper
+    template:
+      metadata:
+        labels:
+          apptype: monitoring
+          flowsnakeOwner: carl-spark-test
+          flowsnakeRole: PrometheusScraper
+          name: prometheus-scraper
+          service: prometheus-scraper
+      spec:
+        containers:
+        - args:
+          - --config.file=/etc/config/prometheus.json
+          - --storage.tsdb.path=/prometheus-storage
+          - --web.external-url=http://localhost/
+          - --web.enable-lifecycle
+          image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/prome_for_k8s:36
+          livenessProbe:
+            httpGet:
+              path: /metrics
+              port: 9090
+              scheme: HTTP
+            initialDelaySeconds: 30
+            periodSeconds: 10
+          name: prometheus
+          ports:
+          - containerPort: 9090
+          volumeMounts:
+          - mountPath: /prometheus-storage
+            name: prometheus-storage-volume
+          - mountPath: /etc/config
+            name: prometheus-server-conf-carl-spark-test
+        - args:
+          - --serviceName=flowsnake
+          - --subserviceName=carl-spark-test
+          - --tagDefault=superpod:NONE
+          - --tagDefault=datacenter:prd
+          - --tagDefault=estate:prd-data-flowsnake_test
+          - --batchSize=512
+          - --funnelUrl=http://ajna0-funnel1-0-prd.data.sfdc.net:80
+          image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/funnel_writer:36
+          livenessProbe:
+            httpGet:
+              path: /
+              port: 8000
+              scheme: HTTP
+            initialDelaySeconds: 30
+            periodSeconds: 10
+          name: funnel-writer
+          ports:
+          - containerPort: 8000
+          volumeMounts:
+          - mountPath: /prometheus-storage
+            name: prometheus-storage-volume
+        restartPolicy: Always
+        serviceAccountName: prometheus-scraper-carl-spark-test-serviceaccount
+        volumes:
+        - configMap:
+            name: prometheus-server-conf-carl-spark-test
+          name: prometheus-server-conf-carl-spark-test
+        - emptyDir:
+            medium: Memory
+          name: prometheus-storage-volume
+- apiVersion: v1
+  data:
     prometheus.json: '{"global": {"scrape_interval": "60s"}, "remote_write": [{"queue_config":
       {"capacity": 100000}, "url": "http://localhost:8000"}], "scrape_configs": [
       ]}'
@@ -88,12 +220,12 @@ items:
   metadata:
     annotations:
       manifestctl.sam.data.sfdc.net/swagger: disable
-    name: prometheus-scraper-binding
+    name: prometheus-scraper-binding-vaishnavi-spark-test
     namespace: vaishnavi-spark-test
   roleRef:
     apiGroup: rbac.authorization.k8s.io
     kind: Role
-    name: prometheus-scraper-role
+    name: prometheus-scraper-role-vaishnavi-spark-test
   subjects:
   - kind: ServiceAccount
     name: prometheus-scraper-vaishnavi-spark-test-serviceaccount
@@ -103,7 +235,7 @@ items:
   metadata:
     annotations:
       manifestctl.sam.data.sfdc.net/swagger: disable
-    name: prometheus-scraper-role
+    name: prometheus-scraper-role-vaishnavi-spark-test
   rules:
   - apiGroups:
     - ""
@@ -158,8 +290,8 @@ items:
           - mountPath: /etc/config
             name: prometheus-server-conf-vaishnavi-spark-test
         - args:
-          - --serviceName=vaishnavi-spark-test
-          - --subserviceName=NONE
+          - --serviceName=flowsnake
+          - --subserviceName=vaishnavi-spark-test
           - --tagDefault=superpod:NONE
           - --tagDefault=datacenter:prd
           - --tagDefault=estate:prd-data-flowsnake_test

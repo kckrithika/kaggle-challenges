@@ -47,7 +47,7 @@ if std.length(flowsnake_clients.clients) > 0 then (
                 namespace: client.namespace,
             },
             data: {
-                "prometheus.json": client.prometheus_config,
+                "prometheus.json": std.toString(client.prometheus_config),
             },
         },
         # Service accounts needed by Prometheus in client namespace
@@ -64,7 +64,7 @@ if std.length(flowsnake_clients.clients) > 0 then (
             kind: "RoleBinding",
             apiVersion: "rbac.authorization.k8s.io/v1",
             metadata: {
-                name: "prometheus-scraper-binding",
+                name: "prometheus-scraper-binding-" + client.namespace,
                 namespace: client.namespace,
                 annotations: {
                      "manifestctl.sam.data.sfdc.net/swagger": "disable",
@@ -72,7 +72,7 @@ if std.length(flowsnake_clients.clients) > 0 then (
             },
                 roleRef: {
                     kind: "Role",
-                    name: "prometheus-scraper-role",
+                    name: "prometheus-scraper-role-" + client.namespace,
                     apiGroup: "rbac.authorization.k8s.io",
                 },
                 subjects: [
@@ -87,7 +87,7 @@ if std.length(flowsnake_clients.clients) > 0 then (
             apiVersion: "rbac.authorization.k8s.io/v1",
             kind: "Role",
             metadata: {
-                name: "prometheus-scraper-role",
+                name: "prometheus-scraper-role-" + client.namespace,
                 annotations: {
                      "manifestctl.sam.data.sfdc.net/swagger": "disable",
                 },
@@ -168,8 +168,8 @@ if std.length(flowsnake_clients.clients) > 0 then (
                             },
                             {
                                 args: [
-                                  "--serviceName=" + client.namespace,
-                                  "--subserviceName=NONE",
+                                  "--serviceName=flowsnake",
+                                  "--subserviceName=" + client.namespace,
                                   "--tagDefault=superpod:NONE",
                                   "--tagDefault=datacenter:" + kingdom,
                                   "--tagDefault=estate:" + estate,
