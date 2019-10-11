@@ -14,7 +14,7 @@ system:
           maxUnavailable: 1
       containers:
       - name: prod-mysql-shard-a
-        image: dva/casp/mysql_strata:49
+        image: dva/casp/mysql_strata:53
         ports:
         - name: mysql-shard-a
           containerPort: 3306
@@ -24,6 +24,8 @@ system:
           name: mysql-data-vol
         - mountPath: /home/sfdc/mysql/backups
           name: mysql-backups-vol
+        - mountPath: /home/sfdc/mysql/logs
+          name: mysql-logs-vol
         livenessProbe:
           exec:
             command:
@@ -40,3 +42,6 @@ system:
       - name: mysql-backups-vol
         hostPath:
           path: /data/mysql-backups/shard-a
+      - name: mysql-logs-vol
+        hostPath:
+          path: /data/mysql-logs/shard-a
