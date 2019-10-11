@@ -44,6 +44,10 @@ system:
       env:
       - name: SERVICE_THREADCOUNT
         value: '250'
+      - name: CLIENT_MAXCONNPERROUTE
+        value: '500000'
+      - name: CLIENT_MAXCONNCOUNT
+        value: '500000'
       - name: JVM_OPTS
         value: '-Xms16g -Xmx16g'
       - name: KRB5_CONF
