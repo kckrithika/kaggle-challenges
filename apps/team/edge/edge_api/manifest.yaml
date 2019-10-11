@@ -6,62 +6,62 @@ system:
     count: 0
     containers:
     - name: edge-api-server
-      image: ops0-artifactrepo1-0-par.data.sfdc.net/dva/edge/api:172
+      image: ops0-artifactrepo1-0-par.data.sfdc.net/dva/edge/api:208
       livenessProbe:
         httpGet:
             path: /health
     - name: edge-api-stunnel
-      image: ops0-artifactrepo1-0-par.data.sfdc.net/dva/edge/stunnel:172
+      image: ops0-artifactrepo1-0-par.data.sfdc.net/dva/edge/stunnel:208
       livenessProbe:
         httpGet:
             path: /health
     - name: edge-api-rsyncd
-      image: ops0-artifactrepo1-0-par.data.sfdc.net/dva/edge/rsyncd:172
+      image: ops0-artifactrepo1-0-par.data.sfdc.net/dva/edge/rsyncd:208
       livenessProbe:
         httpGet:
             path: /health
     - name: edge-api-backup
-      image: ops0-artifactrepo1-0-par.data.sfdc.net/dva/edge/backup:172
+      image: ops0-artifactrepo1-0-par.data.sfdc.net/dva/edge/backup:208
       livenessProbe:
         httpGet:
             path: /health
     - name: edge-api-background
-      image: ops0-artifactrepo1-0-par.data.sfdc.net/dva/edge/background:172
+      image: ops0-artifactrepo1-0-par.data.sfdc.net/dva/edge/background:208
       livenessProbe:
         httpGet:
             path: /health
     - name: edge-api-config
-      image: ops0-artifactrepo1-0-par.data.sfdc.net/dva/edge/edge_config:172
+      image: ops0-artifactrepo1-0-par.data.sfdc.net/dva/edge/edge_config:208
       livenessProbe:
         httpGet:
             path: /health
     - name: edge-api-etcd
-      image: ops0-artifactrepo1-0-par.data.sfdc.net/dva/edge/etcd:172
+      image: ops0-artifactrepo1-0-par.data.sfdc.net/dva/edge/etcd:208
       livenessProbe:
         httpGet:
             path: /health
     - name: edge-rptc
-      image: ops0-artifactrepo1-0-par.data.sfdc.net/dva/edge/rptc:318
+      image: ops0-artifactrepo1-0-par.data.sfdc.net/dva/edge/rptc:353
       livenessProbe:
         httpGet:
             path: /health
     - name: edge-config-agent
-      image: ops0-artifactrepo1-0-par.data.sfdc.net/dva/edge/configagent:318
+      image: ops0-artifactrepo1-0-par.data.sfdc.net/dva/edge/configagent:353
       livenessProbe:
         httpGet:
             path: /health
     - name: edge-rptc-stunnel-client
-      image: ops0-artifactrepo1-0-par.data.sfdc.net/dva/edge/rptc_stunnel_client:318
+      image: ops0-artifactrepo1-0-par.data.sfdc.net/dva/edge/rptc_stunnel_client:353
       livenessProbe:
         httpGet:
             path: /health
     - name: edge-cfgagent-stunnel-client
-      image: ops0-artifactrepo1-0-par.data.sfdc.net/dva/edge/cfgagent_stunnel_client:318
+      image: ops0-artifactrepo1-0-par.data.sfdc.net/dva/edge/cfgagent_stunnel_client:353
       livenessProbe:
         httpGet:
             path: /health
     - name: edge-redis
-      image: ops0-artifactrepo1-0-par.data.sfdc.net/dva/edge/redis:318
+      image: ops0-artifactrepo1-0-par.data.sfdc.net/dva/edge/redis:353
       livenessProbe:
         httpGet:
             path: /health
