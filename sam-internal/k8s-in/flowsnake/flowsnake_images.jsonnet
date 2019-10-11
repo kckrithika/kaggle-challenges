@@ -27,6 +27,7 @@ local utils = import "util_functions.jsonnet";
                 integration_test_tag: "22",
                 hbase_integration_test_tag: "22",
                 spark_operator_image_tag: "jenkins-dva-transformation-spark-on-k8s-operator-PR-40-5-itest",  # 10/2 image that bumps up client throttle
+                prometheus_funnel_image_tag: "jenkins-dva-transformation-prometheus-funnel-PR-23-4-itest",
             },
             feature_flags+: {
                 # Note: the *value* of the flags is ignored. jsonnet lacks array search, so we use a an object.
@@ -42,6 +43,7 @@ local utils = import "util_functions.jsonnet";
                 # --- flag F (Their only purpose ... ---
                 watchdog_refactoring: "",
                 # --- flag G (is to assist ... ---
+                prometheus_funnel_update: "",
                 # --- flag H (git's diff logic ... ---
                 # --- flag I (to reduce the ---
                 # --- flag J (likelihood of merge conflicts.) ---

@@ -175,7 +175,9 @@ if std.length(flowsnake_clients.clients) > 0 then (
                                   "--tagDefault=estate:" + estate,
                                   "--batchSize=512",
                                   "--funnelUrl=" + flowsnake_config.funnel_endpoint,
-                                ],
+                                ] + if std.objectHas(flowsnake_images.feature_flags, "prometheus_funnel_update") then [
+                                    "--v=2",
+                                ] else [],
                                 image: flowsnake_images.funnel_writer,
                                 name: "funnel-writer",
                                 ports: [
