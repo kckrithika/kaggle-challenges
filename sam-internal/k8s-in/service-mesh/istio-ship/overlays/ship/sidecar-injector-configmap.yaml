@@ -171,6 +171,7 @@ data:
       {{- if .Values.global.trustDomain }}
         - --trust-domain={{ .Values.global.trustDomain }}
       {{- end }}
+        - --controlPlaneBootstrap=false
         env:
         - name: POD_NAME
           valueFrom:

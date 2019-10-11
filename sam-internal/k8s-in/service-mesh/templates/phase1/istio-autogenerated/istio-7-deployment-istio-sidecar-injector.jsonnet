@@ -359,6 +359,7 @@ if (istioPhases.phaseNum == 1) then
               "MUTUAL_TLS",
               "--statusPort",
               "15020",
+              "--controlPlaneBootstrap=false",
             ],
             env: [
               {

@@ -119,6 +119,7 @@ spec:
         - MUTUAL_TLS
         - --discoveryAddress
         - istio-pilot.mesh-control-plane:15011
+        - --controlPlaneBootstrap=false
         env:
         - name: ESTATE
           value: prd-samtest
@@ -203,7 +204,7 @@ spec:
           value: kubernetes://api/apps/v1/namespaces/mesh-control-plane/deployments/istio-ingressgateway
         - name: ISTIO_META_ROUTER_MODE
           value: sni-dnat
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/sfci/servicemesh/istio-packaging/proxy:5e0666bfbf255ea8945d40d4b04a5ee3f02c855c
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/sfci/servicemesh/istio-packaging/proxy:6d20b8281ccd6ffaddfae194b37979f93bd7674d
         imagePullPolicy: IfNotPresent
         name: istio-proxy
         ports:
