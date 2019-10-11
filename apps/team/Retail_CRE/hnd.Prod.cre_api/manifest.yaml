@@ -9,7 +9,7 @@ system:
     count: 1
     containers:
     - name: cre-api
-      image: sfci/cre/cre-api:2.0.1.master.007f3a1.4
+      image: sfci/cre/cre-api:2.0.2.master.21e74a5.5
       env:
         - name: DOMAIN_ID
           value: cre
