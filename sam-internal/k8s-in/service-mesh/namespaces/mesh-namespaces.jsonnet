@@ -26,20 +26,20 @@ local istioSvcNamespaces = {
   ((configs.estate == "prd-samdev" || configs.estate == "prd-samtest")
     && (std.count(istioSvcNamespaces[kingdom], namespaceName) > 0)),
   
-  newMeshNamespace(NamespaceName):: {
+  newMeshNamespace(namespaceName):: {
     apiVersion: "v1",
     kind: "Namespace",
     metadata: {
       labels: {
         "istio-injection": "enabled",
-      } + (if NamespaceName == "service-mesh" && (configs.kingdom == "prd" || configs.kingdom == "mvp") then
+      } + (if namespaceName == "service-mesh" && (configs.kingdom == "prd" || configs.kingdom == "mvp") then
         { "sherpa-injection": "enabled" } else {}) +
-        (if NamespaceName == "service-mesh" && configs.kingdom == "prd" then
+        (if namespaceName == "service-mesh" && configs.kingdom == "prd" then
         { "electron-opa-injection": "enabled" } else {})
       +
       // samlabelfilter.json requires this label to be present on GCP deployments
-      if utils.is_pcn(configs.kingdom) && NamespaceName == "service-mesh" then configs.pcnEnableLabel else {},
-      name: NamespaceName,
+      if utils.is_pcn(configs.kingdom) && namespaceName == "service-mesh" then configs.pcnEnableLabel else {},
+      name: namespaceName,
     },
   },
 }
