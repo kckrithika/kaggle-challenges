@@ -26,7 +26,7 @@ system:
         - name: SFDC_ENVIRONMENT
           value: prod
         - name: METRICS_KAFKA_ENABLED
-          value: true
+          value: false
         - name: MADDOG_CLIENT_KEYSTORE
           value: maddog/maddog-client-keystore.json
         - name: MADDOG_CLIENT_TRUSTSTORE
