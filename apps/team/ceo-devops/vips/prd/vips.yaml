@@ -1,64 +1,3 @@
-- lbname: ceodevopsci
-  customlbname: ceodevopsci-prd
-  servers:
-  - devopsci01.dop.sfdc.net
-  - devopsci02.dop.sfdc.net
-  ports:
-  - port: 443
-    targetport: 443
-    lbtype: http
-    tls: true
-    reencrypt: true
-    healthport: 8080
-    healthprotocol: http
-    healthpath: /ha/health-check
-
-- lbname: sfcikubeapi
-  customlbname: sfcikubeapi-prd
-  servers:
-  - sfci0ceo0-pkubemaster2-1-prd.dop.sfdc.net 
-  - sfci0ceo0-pkubemaster2-2-prd.dop.sfdc.net
-  - sfci0ceo0-pkubemaster2-3-prd.dop.sfdc.net
-  - sfci0ceo0-pkubemaster2-4-prd.dop.sfdc.net
-  - sfci0ceo0-pkubemaster2-5-prd.dop.sfdc.net
-  ports:
-  - port: 443
-    targetport: 6443
-    lbtype: http
-    tls: true
-    healthport: 6443
-    healthprotocol: http
-    healthpath: healthz
-
-- lbname: devopssfcislbin
-  customlbname: devopssfcislbin-prd
-  servers:
-  - cjemaster46.dop.sfdc.net
-  ports:
-  - port: 443
-    targetport: 8080
-    lbtype: http
-    tls: true
-    reencrypt: false
-    healthport: 8080
-    healthprotocol: http
-    healthpath: /ha/health-check
-
-- lbname: devopssfcislbcn
-  customlbname: devopssfcislbcn-prd
-  servers:
-  - cjemaster47a.dop.sfdc.net
-  - cjemaster47b.dop.sfdc.net
-  ports:
-  - port: 443
-    targetport: 8080
-    lbtype: http
-    tls: true
-    reencrypt: false
-    healthport: 8080
-    healthprotocol: http
-    healthpath: /ha/health-check
-
 - lbname: sfci-splunknginx
   customlbname: sfci-splunknginx-prd
   servers:
@@ -90,21 +29,6 @@
 #######################
 #  SFCI Dev           #
 #######################
-- lbname: devkubemasterci
-  customlbname: devkubemasterci
-  servers:
-  - devkubemaster01.dop.sfdc.net 
-  - devkubemaster02.dop.sfdc.net
-  - devkubemaster03.dop.sfdc.net
-  ports:
-  - port: 443
-    targetport: 6443
-    lbtype: http
-    tls: true
-    healthport: 6443
-    healthprotocol: http
-    healthpath: /
-
 - lbname: devsalesforceci
   customlbname: devsalesforceci
   servers:
@@ -119,6 +43,14 @@
     healthport: 8888
     healthprotocol: http
     healthpath: /ha/health-check
+  - port: 80
+    targetport: 80
+    lbtype: http
+    tls: false
+    reencrypt: false
+    healthport: 80
+    healthprotocol: http
+    healthpath: /
 
 - lbname: devdopci
   customlbname: devdopci
@@ -133,6 +65,14 @@
     healthport: 8080
     healthprotocol: http
     healthpath: /ha/health-check
+  - port: 80
+    targetport: 80
+    lbtype: http
+    tls: false
+    reencrypt: false
+    healthport: 80
+    healthprotocol: http
+    healthpath: /
 
 - lbname: devciaawci
   customlbname: devciaawci
@@ -147,6 +87,36 @@
     healthport: 8080
     healthprotocol: http
     healthpath: /ha/health-check
+  - port: 80
+    targetport: 80
+    lbtype: http
+    tls: false
+    reencrypt: false
+    healthport: 80
+    healthprotocol: http
+    healthpath: /
+
+- lbname: devlightningperfci
+  customlbname: devlightningperfci
+  servers:
+  - devlightningperfci01.dop.sfdc.net
+  ports:
+  - port: 443
+    targetport: 8080
+    lbtype: http
+    tls: true
+    reencrypt: false
+    healthport: 8080
+    healthprotocol: http
+    healthpath: /ha/health-check
+  - port: 80
+    targetport: 80
+    lbtype: http
+    tls: false
+    reencrypt: false
+    healthport: 80
+    healthprotocol: http
+    healthpath: /
 
 - lbname: devcjemaster01
   customlbname: devcjemaster01
@@ -163,6 +133,14 @@
     healthport: 8080
     healthprotocol: http
     healthpath: /ha/health-check
+  - port: 80
+    targetport: 80
+    lbtype: http
+    tls: false
+    reencrypt: false
+    healthport: 80
+    healthprotocol: http
+    healthpath: /
 
 - lbname: devcjemaster02
   customlbname: devcjemaster02
@@ -179,6 +157,14 @@
     healthport: 8080
     healthprotocol: http
     healthpath: /ha/health-check
+  - port: 80
+    targetport: 80
+    lbtype: http
+    tls: false
+    reencrypt: false
+    healthport: 80
+    healthprotocol: http
+    healthpath: /
 
 - lbname: devcjemaster03
   customlbname: devcjemaster03
@@ -195,6 +181,14 @@
     healthport: 8080
     healthprotocol: http
     healthpath: /ha/health-check
+  - port: 80
+    targetport: 80
+    lbtype: http
+    tls: false
+    reencrypt: false
+    healthport: 80
+    healthprotocol: http
+    healthpath: /
 
 - lbname: devcjemaster04
   customlbname: devcjemaster04
@@ -211,6 +205,14 @@
     healthport: 8080
     healthprotocol: http
     healthpath: /ha/health-check
+  - port: 80
+    targetport: 80
+    lbtype: http
+    tls: false
+    reencrypt: false
+    healthport: 80
+    healthprotocol: http
+    healthpath: /
 
 - lbname: devcjemaster05
   customlbname: devcjemaster05
@@ -227,6 +229,14 @@
     healthport: 8080
     healthprotocol: http
     healthpath: /ha/health-check
+  - port: 80
+    targetport: 80
+    lbtype: http
+    tls: false
+    reencrypt: false
+    healthport: 80
+    healthprotocol: http
+    healthpath: /
 
 - lbname: devcjemaster06
   customlbname: devcjemaster06
@@ -243,6 +253,14 @@
     healthport: 8080
     healthprotocol: http
     healthpath: /ha/health-check
+  - port: 80
+    targetport: 80
+    lbtype: http
+    tls: false
+    reencrypt: false
+    healthport: 80
+    healthprotocol: http
+    healthpath: /
 
 - lbname: devcjemaster07
   customlbname: devcjemaster07
@@ -259,6 +277,14 @@
     healthport: 8080
     healthprotocol: http
     healthpath: /ha/health-check
+  - port: 80
+    targetport: 80
+    lbtype: http
+    tls: false
+    reencrypt: false
+    healthport: 80
+    healthprotocol: http
+    healthpath: /
 
 - lbname: devcjemaster08
   customlbname: devcjemaster08
@@ -273,6 +299,14 @@
     healthport: 8080
     healthprotocol: http
     healthpath: /ha/health-check
+  - port: 80
+    targetport: 80
+    lbtype: http
+    tls: false
+    reencrypt: false
+    healthport: 80
+    healthprotocol: http
+    healthpath: /
 
 - lbname: devcjemaster09
   customlbname: devcjemaster09
@@ -289,6 +323,14 @@
     healthport: 8080
     healthprotocol: http
     healthpath: /ha/health-check
+  - port: 80
+    targetport: 80
+    lbtype: http
+    tls: false
+    reencrypt: false
+    healthport: 80
+    healthprotocol: http
+    healthpath: /
 
 - lbname: devcjemaster10
   customlbname: devcjemaster10
@@ -305,6 +347,14 @@
     healthport: 8080
     healthprotocol: http
     healthpath: /ha/health-check
+  - port: 80
+    targetport: 80
+    lbtype: http
+    tls: false
+    reencrypt: false
+    healthport: 80
+    healthprotocol: http
+    healthpath: /
 
 - lbname: devcjemaster11
   customlbname: devcjemaster11
@@ -321,6 +371,14 @@
     healthport: 8080
     healthprotocol: http
     healthpath: /ha/health-check
+  - port: 80
+    targetport: 80
+    lbtype: http
+    tls: false
+    reencrypt: false
+    healthport: 80
+    healthprotocol: http
+    healthpath: /
 
 - lbname: devcjemaster12
   customlbname: devcjemaster12
@@ -335,6 +393,14 @@
     healthport: 8080
     healthprotocol: http
     healthpath: /ha/health-check
+  - port: 80
+    targetport: 80
+    lbtype: http
+    tls: false
+    reencrypt: false
+    healthport: 80
+    healthprotocol: http
+    healthpath: /
 
 #######################
 #  SFCI Prod          #
@@ -371,6 +437,14 @@
     healthport: 8080
     healthprotocol: http
     healthpath: /ha/health-check
+  - port: 80
+    targetport: 80
+    lbtype: http
+    tls: false
+    reencrypt: false
+    healthport: 80
+    healthprotocol: http
+    healthpath: /
 
 - lbname: cjemaster227
   customlbname: cjemaster227
