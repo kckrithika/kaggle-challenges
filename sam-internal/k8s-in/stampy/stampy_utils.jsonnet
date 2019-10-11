@@ -5,8 +5,13 @@ local apiserverEstates = {
     "prd-samdev": true,
     "prd-sam": true,
     "xrd-sam": true,
+    "cdg-sam": true,
+    "cdu-sam": true,
     "chx-sam": true,
-    "ttd-sam": true
+    "dfw-sam": true,
+    "hio-sam": true,
+    "ttd-sam": true,
+    "wax-sam": true
 };
 
 {
