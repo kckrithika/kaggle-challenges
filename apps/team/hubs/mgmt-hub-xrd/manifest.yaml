@@ -16,7 +16,7 @@ system:
         path: /home/sfdc-mgmt/logs
     containers:
     - name: mgmt-hub
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mgmt/mgmt-hub:mgmt-2019-10-11-13-59-11
+      image: dva/mgmt-hub:4
       env:
       - name: KEYSTORE_CA_DIRECTORY
         value: /certs/ca
@@ -25,15 +25,15 @@ system:
       - name: KPODS_COUNT
         value: 1
       - name: SPRING_PROFILES_ACTIVE
-        value: sam
+        value: dev
       - name: APP_REMOTE_HOST
         value: stmfana44ice1-app1-4-prd
       - name: APP_DOMAIN
         value: eng.sfdc.net
       - name: APP_JMX_PORT
         value: 8998
-      - name: SETTINGS_PATH
-        value: -.-.prd.-.mgmt-hub
+      - name: JMX_RETRIEVE_PASSWORD_FROM_SECRET_SERVICE
+        value: true
       volumeMounts:
       - name: cert
         mountPath: /certs
