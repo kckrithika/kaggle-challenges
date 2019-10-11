@@ -10,7 +10,7 @@ display_usage() {
   echo ''
   echo 'Example: ./add-secret.sh -n=mysecret -o=team/CSC_SAM -k=prd -f=$(pwd)/token.txt'
   echo 'This will create a K8S secret called "mysecret" which will contain a key "token.txt" with value from the file'
-  echo 'See https://confluence.internal.salesforce.com/display/SAM/Using+K4A+for+your+SAM+Secrets'
+  echo https://confluence.internal.salesforce.com/display/SAM/Using+K4A+for+SAM+Secrets
 }
 
 # if no argument supplied, display usage
