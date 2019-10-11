@@ -95,8 +95,7 @@ apps:
 
 # Service mesh test harness for rolling upgrade resiliency tests
 # https://git.soma.salesforce.com/servicelibs/servicemesh-resiliency
-  resiliency-server:
-    - prd/prd-sam_gater
+# Note that resiliency-server and resiliency-server2 are created by resiliency-client.
   resiliency-client:
     - prd/prd-sam_gater
 
