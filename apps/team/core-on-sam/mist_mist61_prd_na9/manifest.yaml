@@ -360,6 +360,7 @@ system:
     - args:
       - --template=/home/sfdc-sherpa/sfproxy/config/core-on-sam/sfproxy-public-cloud-rds.yaml.template
       - --switchboard=na9-switchboard-lb.core-on-sam-sp2.prd-sam.prd.slb.sfdc.net:8088
+      - --log-level=debug
       env:
       - name: SFDC_ENVIRONMENT
         value: mist61
@@ -484,6 +485,7 @@ system:
         name: envoy-config-volume
     - args:
       - --template /home/sfdc-sherpa/sfproxy/config/switchboard-sidecar/sfproxy-switchboard-sidecar.config.yaml.template
+      - --log-level=debug
       env:
       - name: SFDC_ENVIRONMENT
         value: mist61
