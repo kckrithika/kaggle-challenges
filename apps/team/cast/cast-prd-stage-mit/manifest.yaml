@@ -151,6 +151,8 @@ system:
       volumeMounts:
         - name: server-cert
           mountPath: /certs
+        - name: client-cert
+          mountPath: /certs/client
     # #####################################################################################
     # # GID Data service
     # #####################################################################################
