@@ -4,7 +4,7 @@ local slbflights = import "slbflights.jsonnet";
 local slbimages = (import "slbimages.jsonnet") + { templateFilename:: std.thisFile };
 local slbports = import "slbports.jsonnet";
 
-if slbconfigs.isSlbEstate then configs.deploymentBase("slb") {
+if slbconfigs.isSlbEstate && configs.estate != "prd-samtest" then configs.deploymentBase("slb") {
 
       metadata: {
           labels: {
