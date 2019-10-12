@@ -68,8 +68,8 @@ items:
     name: flowsnake-watchdog
 - apiVersion: v1
   data:
-    prometheus.json: '{"global": {"scrape_interval": "60s"}, "remote_write": {"queue_config":
-      {"capacity": 100000}, "url": "http://localhost:8000"}, "scrape_configs": [{"job_name":
+    prometheus.json: '{"global": {"scrape_interval": "60s"}, "remote_write": [{"queue_config":
+      {"capacity": 100000}, "url": "http://localhost:8000"}], "scrape_configs": [{"job_name":
       "spark_pods", "kubernetes_sd_configs": [{"namespaces": {"names": ["carl-spark-test"]},
       "role": "pod"}], "metric_relabel_configs": [{"action": "labeldrop", "regex":
       "job"}, {"action": "labeldrop", "regex": "instance"}, {"action": "drop", "regex":

@@ -6,12 +6,14 @@
   
   # This section configures posting to the Prometheus-Funnel bridge available
   # in the Flowsnake fleet.
-  remote_write: {
-    url: "http://localhost:8000",
-    queue_config: {
-      capacity: 100000,
-    },
-  },
+  remote_write: [
+    {
+      url: "http://localhost:8000",
+      queue_config: {
+        capacity: 100000,
+      },
+    }
+  ],
   
   scrape_configs: [
     {
