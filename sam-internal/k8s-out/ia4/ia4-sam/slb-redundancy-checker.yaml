@@ -33,7 +33,7 @@ spec:
         - --deploymentsToMonitor=slb-ipvs,slb-nginx-config-b,slb-vip-watchdog,slb-dns-register
         - --hostsConfigFile=/sfdchosts/hosts.json
         - --kernelVersionNodeFilter=pool=ia4-slb
-        - --kernelVersionPrefixList=3.10.0-862,3.10.0-957
+        - --kernelVersionPrefixList=3.10.0-862,3.10.0-957,3.10.0-1062
         env:
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig-platform
