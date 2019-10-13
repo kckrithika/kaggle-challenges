@@ -70,6 +70,18 @@
           source_labels: [ "__meta_kubernetes_pod_label_spark_role" ],
           target_label: "spark_role",
         },
+        
+        # JMX Beans sometimes have a "service" label, but this collides with the Argus definition
+        # of service.  So copy it to another tag and drop the original.
+        {
+          source_labels: [ "service" ],
+          target_label: "jmx_service"
+        },
+        {
+          regex: [ "service" ],
+          action: "labeldrop",
+        },
+
       ],
       
       # Rules for metrics and general tags
