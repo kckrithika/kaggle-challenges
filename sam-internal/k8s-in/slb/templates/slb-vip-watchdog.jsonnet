@@ -112,7 +112,7 @@ if slbconfigs.isSlbEstate then configs.deploymentBase("slb") {
                                             ),
                                            "--client.serverInterface=lo",
                                            "--metricsBatchTimeout=30s",
-                                        ] + (if slbimages.phaseNum <= 3 then [
+                                        ] + (if slbimages.phaseNum <= 4 then [
                                             "--keyfile=/cert3/client/keys/client-key.pem",
                                             "--certfile=/cert3/client/certificates/client.pem",
                                             "--cafile=/cert3/ca/cabundle.pem",
