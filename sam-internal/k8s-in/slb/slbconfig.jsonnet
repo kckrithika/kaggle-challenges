@@ -56,7 +56,7 @@
 
     kernelVersionNodeFilter: "pool=" + $.slbEstate,
     kernelVersionPrefixList: (
-            "3.10.0-862,3.10.0-957"
+            "3.10.0-862,3.10.0-957,3.10.0-1062"
     ),
 
     perCluster: {
