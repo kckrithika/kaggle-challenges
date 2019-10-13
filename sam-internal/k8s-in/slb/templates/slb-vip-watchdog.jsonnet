@@ -9,6 +9,7 @@ local slbdnsregisterconfig = import "slb-dns-register.jsonnet";
 local certDirs = ["cert3"];
 local madkub = (import "slbmadkub.jsonnet") + { templateFileName:: std.thisFile, dirSuffix:: "slb-nginx-config-b" };
 
+
 if slbconfigs.isSlbEstate then configs.deploymentBase("slb") {
     metadata: {
         labels: {
@@ -111,7 +112,13 @@ if slbconfigs.isSlbEstate then configs.deploymentBase("slb") {
                                             ),
                                            "--client.serverInterface=lo",
                                            "--metricsBatchTimeout=30s",
-                                        ] + (if slbflights.alertOnlyOnProxyErrorCode then [
+                                        ] + (if slbimages.phaseNum <= 2 then [
+                                            "--keyfile=/cert3/client/keys/client-key.pem",
+                                            "--certfile=/cert3/client/certificates/client.pem",
+                                            "--cafile=/cert3/ca/cabundle.pem",
+                                            "--ddi=" + slbconfigs.ddiService,
+                                        ] else [])
+                                        + (if slbflights.alertOnlyOnProxyErrorCode then [
                                            "--featureFlagAlertOnlyOnProxyErrorCode=true",
                                        ] else [])
                                        + slbconfigs.vipwdConfigOptions

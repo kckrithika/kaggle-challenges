@@ -75,6 +75,10 @@ spec:
         - --monitorFrequency=10s
         - --client.serverInterface=lo
         - --metricsBatchTimeout=30s
+        - --keyfile=/cert3/client/keys/client-key.pem
+        - --certfile=/cert3/client/certificates/client.pem
+        - --cafile=/cert3/ca/cabundle.pem
+        - --ddi=https://ddi-api-prd.data.sfdc.net
         - --veryImportantVips=sledge-*.slb.sfdc.net:*,ops0-artifactrepo2-0-prd.slb.sfdc.net:443,ops0-artifactrepo1-0-prd.slb.sfdc.net:443,ops0-dvaregistryssl1-0-prd.slb.sfdc.net:443,ops0-dvaregistry1-0-prd.slb.sfdc.net:*,jtuley-rsui-lb.user-jtuley.prd-sam.prd.slb.sfdc.net:*,rsui-func-lb.retail-rsui.prd-sam.prd.slb.sfdc.net:*,rsui-perf-lb.retail-rsui.prd-sam.prd.slb.sfdc.net:8080,kubernetes-api-flowsnake-prd.slb.sfdc.net:443,ingress-flowsnake-prd.slb.sfdc.net:443
         - --slaOptOutVips=us99-sfproxytest-vip-vijay-kota-prd.slb.sfdc.net:*,us98-mist61sfproxy-lb.core-on-sam-sp2.prd-sam.prd.slb.sfdc.net:*,aqueduct.user-varun-vyas.prd-sam.prd.slb.sfdc.net:*,*-prd-steam-prd*,shared1-argustsdbw1-0-prd.slb.sfdc.net:*,zipkin-alpha.distributed-tracing.prd-sam.prd.slb.sfdc.net:80,ceph0-dash-prd.slb.sfdc.net:*,mysql.flowsnake.prd-sam.prd.slb.sfdc.net:*,topology-svc-lb.topology-svc.prd-sam.prd.slb.sfdc.net:*,*.firefly-*.prd-sam.prd.slb.sfdc.net:*,slb-canary-envoy-svc.sam-system.prd-sam.prd.slb.sfdc.net:8443,*.user-*.prd-sam.*,*slb-portal-service*
         - --client.socketDir=/host/data/slb/config/slb-vip-watchdog

@@ -77,6 +77,10 @@ spec:
         - --monitorFrequency=10s
         - --client.serverInterface=lo
         - --metricsBatchTimeout=30s
+        - --keyfile=/cert3/client/keys/client-key.pem
+        - --certfile=/cert3/client/certificates/client.pem
+        - --cafile=/cert3/ca/cabundle.pem
+        - --ddi=https://ddi-api-prd.data.sfdc.net
         - --veryImportantVips=slb-canary-proxy-http.sam-system.prd-sdc.prd.slb.sfdc.net:*
         - --slaOptOutVips=slb-canary-envoy-svc.sam-system.prd-sdc.prd.slb.sfdc.net:8443,*slb-portal-service*
         - --client.socketDir=/host/data/slb/config/slb-vip-watchdog
