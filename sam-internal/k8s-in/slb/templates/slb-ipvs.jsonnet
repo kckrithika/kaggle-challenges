@@ -68,7 +68,7 @@ if slbconfigs.isSlbEstate then configs.deploymentBase("slb") {
                             "--period=5s",
                             "--metricsEndpoint=" + configs.funnelVIP,
                             "--log_dir=" + slbconfigs.logsDir,
-                            "--IpvsPath=" + if slbimages.phaseNum <= 4 then "20191010" else "20190114",
+                            "--IpvsPath=20191010",
                             configs.sfdchosts_arg,
                             "--ipvsConnTabBits=20",
                         ],
