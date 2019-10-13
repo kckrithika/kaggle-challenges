@@ -14,7 +14,8 @@ items:
       "__address__"], "target_label": "__address__"}, {"source_labels": ["__meta_kubernetes_pod_node_name"],
       "target_label": "device"}, {"source_labels": ["__meta_kubernetes_namespace"],
       "target_label": "subservice"}, {"source_labels": ["__meta_kubernetes_pod_label_spark_role"],
-      "target_label": "spark_role"}]}]}'
+      "target_label": "spark_role"}, {"source_labels": ["service"], "target_label":
+      "jmx_service"}, {"action": "labeldrop", "regex": ["service"]}]}]}'
   kind: ConfigMap
   metadata:
     labels:
