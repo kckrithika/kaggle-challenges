@@ -23,9 +23,10 @@ apps:
   - iad/iad-sam_warden
   - ukb/ukb-sam_warden
   - phx/phx-sam_warden
- prod-mysql-shard-a-alternate:
+ prod-mysql-shard-a-drop-1-1:
   - dfw/dfw-sam_warden
   - ord/ord-sam_warden
+ prod-mysql-shard-a-frf:
   - frf/frf-sam_warden
  prod-mysql-shard-a-fast:
   - par/par-sam_warden
