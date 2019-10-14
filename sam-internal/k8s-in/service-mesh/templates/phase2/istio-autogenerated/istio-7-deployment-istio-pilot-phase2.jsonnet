@@ -119,6 +119,7 @@ if (istioPhases.phaseNum == 2) then
           {
             args: [
               "discovery",
+              "--registries=Kubernetes",
               "--monitoringAddr=:15014",
               "--log_output_level=default:warn",
               "--domain",
@@ -231,8 +232,10 @@ if (istioPhases.phaseNum == 2) then
               "/etc/istio/proxy/envoy_pilot.yaml.tmpl",
               "--controlPlaneAuthPolicy",
               "MUTUAL_TLS",
+              "--proxyLogLevel=info",
+              "--log_output_level=default:warn",
               "--envoyMetricsService",
-              "{\"address\":\"switchboard.service-mesh:15001\",\"tls_settings\":{\"mode\":2,\"client_certificate\":\"/client-certs/client/certificates/client.pem\",\"private_key\":\"/client-certs/client/keys/client-key.pem\",\"ca_certificates\":\"/client-certs/ca.pem\"},\"tcp_keepalive\":{\"probes\":3,\"time\":{\"seconds\":10},\"interval\":{\"seconds\":10}}}",
+              "{\"address\":\"switchboard.service-mesh:15001\",\"tls_settings\":{\"mode\":2,\"client_certificate\":\"/client-certs/client/certificates/client.pem\",\"private_key\":\"/client-certs/client/keys/client-key.pem\",\"ca_certificates\":\"/client-certs/ca.pem\"},\"tcp_keepalive\":{\"probes\":3,\"time\":\"10s\",\"interval\":\"10s\"}}",
               "--proxyAdminPort",
               "15373",
             ],
@@ -357,7 +360,7 @@ if (istioPhases.phaseNum == 2) then
               },
             },
             securityContext: {
-              runAsUser: 7557,
+              runAsUser: 1337,
             },
             volumeMounts: [
               {
@@ -586,13 +589,14 @@ if (istioPhases.phaseNum == 2) then
             ],
           },
           {
-            args: [
+            command: [
+              "istio-iptables",
               "-p",
               "15002",
               "-z",
               "15006",
               "-u",
-              "7557",
+              "1337",
               "-m",
               "REDIRECT",
               "-i",
@@ -610,7 +614,7 @@ if (istioPhases.phaseNum == 2) then
                 value: "1",
               },
             ],
-            image: mcpIstioConfig.proxyInitImage,
+            image: mcpIstioConfig.proxyImage,
             imagePullPolicy: "IfNotPresent",
             name: "istio-init",
             resources: {

@@ -93,6 +93,7 @@ spec:
       containers:
       - args:
         - discovery
+        - --registries=Kubernetes
         - --monitoringAddr=:15014
         - --log_output_level=default:warn
         - --domain
@@ -162,8 +163,10 @@ spec:
         - /etc/istio/proxy/envoy_pilot.yaml.tmpl
         - --controlPlaneAuthPolicy
         - MUTUAL_TLS
+        - --proxyLogLevel=info
+        - --log_output_level=default:warn
         - --envoyMetricsService
-        - '{"address":"switchboard.service-mesh:15001","tls_settings":{"mode":2,"client_certificate":"/client-certs/client/certificates/client.pem","private_key":"/client-certs/client/keys/client-key.pem","ca_certificates":"/client-certs/ca.pem"},"tcp_keepalive":{"probes":3,"time":{"seconds":10},"interval":{"seconds":10}}}'
+        - '{"address":"switchboard.service-mesh:15001","tls_settings":{"mode":2,"client_certificate":"/client-certs/client/certificates/client.pem","private_key":"/client-certs/client/keys/client-key.pem","ca_certificates":"/client-certs/ca.pem"},"tcp_keepalive":{"probes":3,"time":"10s","interval":"10s"}}'
         - --proxyAdminPort
         - "15373"
         env:
@@ -230,7 +233,7 @@ spec:
             cpu: 100m
             memory: 128Mi
         securityContext:
-          runAsUser: 7557
+          runAsUser: 1337
         volumeMounts:
         - mountPath: /client-certs
           name: tls-client-cert
@@ -372,13 +375,14 @@ spec:
           name: tls-client-cert
         - mountPath: /server-cert
           name: tls-server-cert
-      - args:
+      - command:
+        - istio-iptables
         - -p
         - "15002"
         - -z
         - "15006"
         - -u
-        - "7557"
+        - "1337"
         - -m
         - REDIRECT
         - -i
@@ -392,7 +396,7 @@ spec:
         env:
         - name: DISABLE_REDIRECTION_ON_LOCAL_LOOPBACK
           value: "1"
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/sfci/servicemesh/istio-packaging/proxy_init:ba071fdd8d98c63ba91caf4141978e8f33f35900
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/sfci/servicemesh/istio-packaging/proxy:ba071fdd8d98c63ba91caf4141978e8f33f35900
         imagePullPolicy: IfNotPresent
         name: istio-init
         resources:
