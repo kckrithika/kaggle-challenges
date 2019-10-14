@@ -31,5 +31,6 @@ apps:
   aqueduct-hotfix:
   # Group 1 of Private Kingdoms: 1 production private Kingdom
   aqueduct-private-group-1:
+      - name: frf/frf-sam_eventbus
   # Group 2 of Private Kingdoms: Rest of private Kingdoms
   aqueduct-private-group-2:
