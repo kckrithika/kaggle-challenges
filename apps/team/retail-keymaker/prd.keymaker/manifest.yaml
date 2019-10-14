@@ -5,10 +5,26 @@ system:
     containers:
     - name: keymaker
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/ccp/keymaker:a76bdc6
+
       command: ["/opt/keymaker/sbin/keymaker-samtest.sh"]
+
       livenessProbe:
         exec:
           command:
             - "true"
         initialDelaySeconds: 120
         periodSeconds: 5
+
+      volumeMounts:
+      - mountPath: /client-certs
+        name: client-certs
+      - mountPath: /server-certs
+        name: server-certs
+
+    volumes:
+    - name: client-certs
+      maddogCert:
+        type: client
+    - name: server-certs
+      maddogCert:
+        type: server
