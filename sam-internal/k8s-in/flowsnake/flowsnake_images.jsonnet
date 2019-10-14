@@ -175,8 +175,23 @@ local utils = import "util_functions.jsonnet";
         # EMEA (Europe Middle East Africa): FRF, PAR
         # off-peak: 1pm-9pm PDT
         "prod-emea": self.prod {
-            image_tags+: {
-            },
+          image_tags+: {
+              integration_test_tag: "22",
+              hbase_integration_test_tag: "22",
+          },
+          feature_flags+: {
+              # --- flag A (Do not edit ... ---
+              # --- flag B (these comments ... ---
+              # --- flag C (and place only ... ---
+              # --- flag D (one flag between ... ---
+              # --- flag E (each pair. ... ---
+              # --- flag F (Their only purpose ... ---
+              watchdog_refactoring: "",
+              # --- flag G (is to assist ... ---
+              # --- flag H (git's diff logic ... ---
+              # --- flag I (to reduce the ---
+              # --- flag J (likelihood of merge conflicts.) ---
+          },
         },
 
         # NA (North America): DFW, IAD, IA2, ORD, PHX, PH2, YHU, YUL
