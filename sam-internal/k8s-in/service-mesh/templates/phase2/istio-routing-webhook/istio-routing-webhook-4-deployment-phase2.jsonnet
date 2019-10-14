@@ -139,7 +139,7 @@ configs.deploymentBase("service-mesh") {
               "--connectTimeout",
               "10s",
               "--envoyMetricsService",
-              '{"address":"switchboard.service-mesh:15001","tls_settings":{"mode":2,"client_certificate":"/client-certs/client/certificates/client.pem","private_key":"/client-certs/client/keys/client-key.pem","ca_certificates":"/client-certs/ca.pem"},"tcp_keepalive":{"probes":3,"time":{"seconds":10},"interval":{"seconds":10}}}',
+              '{"address":"switchboard.service-mesh:15001","tls_settings":{"mode":2,"client_certificate":"/client-certs/client/certificates/client.pem","private_key":"/client-certs/client/keys/client-key.pem","ca_certificates":"/client-certs/ca.pem"},"tcp_keepalive":{"probes":3,"time":"10s","interval":"10s"}}',
               "--proxyAdminPort",
               "15373",
               "--concurrency",
@@ -148,6 +148,7 @@ configs.deploymentBase("service-mesh") {
               "MUTUAL_TLS",
               "--statusPort",
               "15020",
+              "--controlPlaneBootstrap=false",
             ],
             env: [
               {
@@ -293,7 +294,7 @@ configs.deploymentBase("service-mesh") {
             },
             securityContext: {
               readOnlyRootFilesystem: true,
-              runAsUser: 7557,
+              runAsUser: 1337,
             },
             terminationMessagePath: "/dev/termination-log",
             terminationMessagePolicy: "File",
@@ -344,7 +345,7 @@ configs.deploymentBase("service-mesh") {
               "-z",
               "15006",
               "-u",
-              "7557",
+              "1337",
               "-m",
               "REDIRECT",
               "-i",
@@ -362,7 +363,7 @@ configs.deploymentBase("service-mesh") {
                 value: "1",
               },
             ],
-            image: mcpIstioConfig.proxyInitImage,
+            image: mcpIstioConfig.proxyImage,
             imagePullPolicy: "IfNotPresent",
             name: "istio-init",
             resources: {

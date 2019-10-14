@@ -110,7 +110,7 @@ spec:
         - --zipkinAddress
         - zipkin.service-mesh:9411
         - --envoyMetricsService
-        - '{"address":"switchboard.service-mesh:15001","tls_settings":{"mode":2,"client_certificate":"/client-certs/client/certificates/client.pem","private_key":"/client-certs/client/keys/client-key.pem","ca_certificates":"/client-certs/ca.pem"},"tcp_keepalive":{"probes":3,"time":{"seconds":10},"interval":{"seconds":10}}}'
+        - '{"address":"switchboard.service-mesh:15001","tls_settings":{"mode":2,"client_certificate":"/client-certs/client/certificates/client.pem","private_key":"/client-certs/client/keys/client-key.pem","ca_certificates":"/client-certs/ca.pem"},"tcp_keepalive":{"probes":3,"time":"10s","interval":"10s"}}'
         - --proxyAdminPort
         - "15373"
         - --statusPort
@@ -119,6 +119,7 @@ spec:
         - MUTUAL_TLS
         - --discoveryAddress
         - istio-pilot.mesh-control-plane:15011
+        - --controlPlaneBootstrap=false
         env:
         - name: ESTATE
           value: prd-sp2-sam_coreapp
@@ -203,7 +204,7 @@ spec:
           value: kubernetes://api/apps/v1/namespaces/mesh-control-plane/deployments/istio-ingressgateway
         - name: ISTIO_META_ROUTER_MODE
           value: sni-dnat
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/sfci/servicemesh/istio-packaging/proxy:ba071fdd8d98c63ba91caf4141978e8f33f35900
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/sfci/servicemesh/istio-packaging/proxy:6d20b8281ccd6ffaddfae194b37979f93bd7674d
         imagePullPolicy: IfNotPresent
         name: istio-proxy
         ports:
@@ -227,7 +228,7 @@ spec:
             memory: 1024Mi
         securityContext:
           readOnlyRootFilesystem: true
-          runAsUser: 7557
+          runAsUser: 1337
         volumeMounts:
         - mountPath: /client-certs
           name: tls-client-cert

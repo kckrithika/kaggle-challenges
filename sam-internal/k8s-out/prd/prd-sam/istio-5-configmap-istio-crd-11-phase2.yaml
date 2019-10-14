@@ -22,6 +22,8 @@ data:
         - istio-io
         - networking-istio-io
       scope: Namespaced
+      subresources:
+        status: {}
       versions:
         - name: v1alpha3
           served: true
