@@ -11,8 +11,9 @@ system:
     containers:
 
     - name: shipping
-      # https://sfcirelease.dop.sfdc.net/job/services/job/sfdc-bazel_projects_services_examples_shipping/job/sfdc-bazel/job/master/5
-      image: sfci/services/sfdc-bazel/scone/shipping:685f3d3e5
+      # Image build:
+      # https://sfcirelease.dop.sfdc.net/job/services/job/sfdc-bazel_projects_services_examples_shipping/job/sfdc-bazel/job/master/91
+      image: sfci/services/sfdc-bazel/scone/shipping:7572acf02
       env:
       - name: SFDC_ENVIRONMENT
         value: mesh

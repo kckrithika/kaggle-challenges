@@ -9,8 +9,9 @@ system:
       "sherpa-injector.service-mesh/canary": "enabled"
     containers:
     - name: ordering
-      # https://sfcirelease.dop.sfdc.net/job/services/job/sfdc-bazel_projects_services_examples_ordering/job/sfdc-bazel/job/master/5
-      image: sfci/services/sfdc-bazel/scone/ordering:685f3d3e5
+      # Image build:
+      # https://sfcirelease.dop.sfdc.net/job/services/job/sfdc-bazel_projects_services_examples_ordering/job/sfdc-bazel/job/master/92
+      image: sfci/services/sfdc-bazel/scone/ordering:7572acf02
       args:
       - --shipping.interval=2000
       env:
