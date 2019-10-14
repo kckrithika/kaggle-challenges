@@ -16,9 +16,11 @@ system:
           maxUnavailable: 1
       containers:
       - name: fawkes-stage-func
-        image: dva/casp/fawkes_strata:jenkins-CASP-fawkes-dev-51-itest
+        image: dva/casp/fawkes_strata:jenkins-CASP-fawkes-master-32-itest
         env:
         - name: STAGING_FAWKES
+          value: "True"
+        - name: STAGING_ENABLE_SENSOR
           value: "True"
         - name: HTTP_PROXY
           value: "http://public0-proxy1-0-prd.data.sfdc.net:8080"
