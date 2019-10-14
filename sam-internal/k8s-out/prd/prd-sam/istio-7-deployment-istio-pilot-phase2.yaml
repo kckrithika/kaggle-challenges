@@ -130,7 +130,7 @@ spec:
           value: "true"
         - name: PILOT_ENABLE_PROTOCOL_SNIFFING_FOR_INBOUND
           value: "false"
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/sfci/servicemesh/istio-packaging/pilot:ba071fdd8d98c63ba91caf4141978e8f33f35900
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/sfci/servicemesh/istio-packaging/pilot:6d20b8281ccd6ffaddfae194b37979f93bd7674d
         imagePullPolicy: IfNotPresent
         name: discovery
         ports:
@@ -217,7 +217,7 @@ spec:
           value: prd
         - name: SDS_ENABLED
           value: "false"
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/sfci/servicemesh/istio-packaging/proxy:ba071fdd8d98c63ba91caf4141978e8f33f35900
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/sfci/servicemesh/istio-packaging/proxy:6d20b8281ccd6ffaddfae194b37979f93bd7674d
         imagePullPolicy: IfNotPresent
         name: istio-proxy
         ports:
@@ -396,7 +396,7 @@ spec:
         env:
         - name: DISABLE_REDIRECTION_ON_LOCAL_LOOPBACK
           value: "1"
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/sfci/servicemesh/istio-packaging/proxy:ba071fdd8d98c63ba91caf4141978e8f33f35900
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/sfci/servicemesh/istio-packaging/proxy:6d20b8281ccd6ffaddfae194b37979f93bd7674d
         imagePullPolicy: IfNotPresent
         name: istio-init
         resources:
