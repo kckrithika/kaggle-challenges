@@ -217,7 +217,7 @@ system:
       - name: PATCH_RELEASE_NUMBER
         value: 0
       - name: CURRENT_RELEASE_VERSION
-        value: green
+        value: blue
       - name: NEW_RELEASE_VERSION
         value: blue
       - name: CASAM_DEPLOYMENT_ID
