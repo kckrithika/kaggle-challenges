@@ -66,7 +66,7 @@ items:
             valueFrom:
               fieldRef:
                 fieldPath: spec.nodeName
-          image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/k4a-caiman-watchdog:188-1a2eea531348158bba8403b396bda392b49e2bec
+          image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/k4a-caiman-watchdog:189-41164519c700e2af86d1a5cdeb0719a1e547b6b6
           name: watchdog
           resources:
             limits:
@@ -233,7 +233,7 @@ items:
             valueFrom:
               fieldRef:
                 fieldPath: spec.nodeName
-          image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/k4a-caiman-watchdog:188-1a2eea531348158bba8403b396bda392b49e2bec
+          image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/k4a-caiman-watchdog:189-41164519c700e2af86d1a5cdeb0719a1e547b6b6
           name: watchdog
           resources:
             limits:
@@ -400,7 +400,7 @@ items:
             valueFrom:
               fieldRef:
                 fieldPath: spec.nodeName
-          image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/k4a-caiman-watchdog:188-1a2eea531348158bba8403b396bda392b49e2bec
+          image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/k4a-caiman-watchdog:189-41164519c700e2af86d1a5cdeb0719a1e547b6b6
           name: watchdog
           resources:
             limits:
@@ -567,7 +567,7 @@ items:
             valueFrom:
               fieldRef:
                 fieldPath: spec.nodeName
-          image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/k4a-caiman-watchdog:188-1a2eea531348158bba8403b396bda392b49e2bec
+          image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/k4a-caiman-watchdog:189-41164519c700e2af86d1a5cdeb0719a1e547b6b6
           name: watchdog
           resources:
             limits:
@@ -734,7 +734,7 @@ items:
             valueFrom:
               fieldRef:
                 fieldPath: spec.nodeName
-          image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/k4a-caiman-watchdog:188-1a2eea531348158bba8403b396bda392b49e2bec
+          image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/k4a-caiman-watchdog:189-41164519c700e2af86d1a5cdeb0719a1e547b6b6
           name: watchdog
           resources:
             limits:
@@ -901,7 +901,7 @@ items:
             valueFrom:
               fieldRef:
                 fieldPath: spec.nodeName
-          image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/k4a-caiman-watchdog:188-1a2eea531348158bba8403b396bda392b49e2bec
+          image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/k4a-caiman-watchdog:189-41164519c700e2af86d1a5cdeb0719a1e547b6b6
           name: watchdog
           resources:
             limits:
@@ -1068,7 +1068,7 @@ items:
             valueFrom:
               fieldRef:
                 fieldPath: spec.nodeName
-          image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/k4a-caiman-watchdog:188-1a2eea531348158bba8403b396bda392b49e2bec
+          image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/k4a-caiman-watchdog:189-41164519c700e2af86d1a5cdeb0719a1e547b6b6
           name: watchdog
           resources:
             limits:
@@ -1235,7 +1235,7 @@ items:
             valueFrom:
               fieldRef:
                 fieldPath: spec.nodeName
-          image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/k4a-caiman-watchdog:188-1a2eea531348158bba8403b396bda392b49e2bec
+          image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/k4a-caiman-watchdog:189-41164519c700e2af86d1a5cdeb0719a1e547b6b6
           name: watchdog
           resources:
             limits:
@@ -1400,7 +1400,7 @@ items:
             valueFrom:
               fieldRef:
                 fieldPath: spec.nodeName
-          image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/k4a-caiman-watchdog:188-1a2eea531348158bba8403b396bda392b49e2bec
+          image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/k4a-caiman-watchdog:189-41164519c700e2af86d1a5cdeb0719a1e547b6b6
           name: watchdog
           resources:
             limits:
