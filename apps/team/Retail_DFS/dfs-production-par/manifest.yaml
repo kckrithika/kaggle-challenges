@@ -1,0 +1,125 @@
+# Manifest Syntax: https://sfdc.co/sam-manifest-format
+apiVersion: v1
+ 
+system:
+  functions:
+  - name: dfs-production
+    count: 3
+    identity:
+      serviceName: dfs
+    # maps the dfslogvol volumnMount to a directory on the host machine
+    volumes:
+    - name: logvol
+      hostPath:
+        path: /home/sfdc-dfs/logs
+    - name: dfs-server-cert
+      maddogCert:
+        type: server
+        lbnames:
+        - dfs-production-lb
+    - name: dfs-client-cert
+      maddogCert:
+        type: client
+
+    containers:
+    - name: dfs
+      image: sfci/dfs/sfdc-platform-dfs:0.24.14
+      # associate the log directory to a logical volume.
+      volumeMounts:
+      - name: logvol
+        mountPath: /home/scone/logs
+      - name: dfs-client-cert
+        mountPath: /client-certs
+      env:
+      - name: SFDC_ENVIRONMENT
+        value: prod
+      - name: LOAD_CC_CERT
+        value: false
+      - name: MDS_DESTINATION
+        value: metadata-service.retail-mds.localhost.mesh.force.com:5443
+      - name: GDOT_USER
+        value: datafederationservice
+      - name: SCONE_SERVER_SECURITY_MUTUALAUTH
+        value: true
+      - name: INCLUDE_ALL_STACK_TRACES
+        value: false
+      - name: JVM_ARGS
+        value: "-Dspring.profiles.active=prod -Djava.util.concurrent.ForkJoinPool.common.parallelism=50
+                -verbose:gc -XX:+PrintGCDateStamps -XX:+PrintHeapAtGC
+                -XX:+PrintPromotionFailure -XX:+PrintTenuringDistribution -XX:+PrintGCDetails
+                -XX:+PrintGCDateStamps -XX:+PrintGCApplicationStoppedTime
+                -XX:+PrintGCApplicationConcurrentTime -XX:+PrintGCCause -XX:+DisableExplicitGC
+                -Xloggc:/home/scone/logs/dfs/verbosegc_$(FUNCTION_INSTANCE_NAME).log
+                -XX:+HeapDumpOnOutOfMemoryError  -XX:HeapDumpPath=/home/scone/logs/dfs
+                -Dcom.sun.management.jmxremote.port=8898
+                -Dcom.sun.management.jmxremote.rmi.port=8898
+                -Dcom.sun.management.jmxremote.ssl=false
+                -Dcom.sun.management.jmxremote.authenticate=false
+                -Xmx2G -Xms2G -XX:ParallelGCThreads=8"
+      resources:
+        limits: { cpu: "4", memory: "4Gi" }
+        requests: { cpu: "4", memory: "3Gi" }
+      ports:
+      - containerPort: 7022
+      - containerPort: 15372
+      livenessProbe:
+        initialDelaySeconds: 120
+        periodSeconds: 30
+        timeoutSeconds: 30
+        httpGet:
+          path: /manage/health
+          port: 15372
+          scheme: HTTP
+
+    - name: sherpa-dfs
+      image: sfci/servicelibs/sherpa-envoy:1.0.4
+      volumeMounts:
+      - name: dfs-server-cert
+        mountPath: /server-certs
+      - name: dfs-client-cert
+        mountPath: /client-certs
+      env:
+        - name: SFDC_ENVIRONMENT
+          value: prod
+      resources:
+        limits: { cpu: "1", memory: "1Gi" }
+        requests: { cpu: "1", memory: "1Gi" }
+      ports:
+        - containerPort: 7442
+        - containerPort: 15373
+      livenessProbe:
+        exec:
+          command:
+          - "./bin/is-alive"
+        initialDelaySeconds: 60
+        periodSeconds: 120
+      readinessProbe:
+        exec:
+          command:
+          - "./bin/is-ready"
+        initialDelaySeconds: 60
+        periodSeconds: 120
+
+    - name: beacon-dfs
+      image: sfci/servicelibs/beacon:853c4db9f14805018be6f5e7607ffe65b5648822
+      env:
+      - name: SFDC_ENVIRONMENT
+        value: prod
+      resources:
+        limits: { cpu: "1", memory: "1Gi" }
+        requests: { cpu: "1", memory: "1Gi" }
+      args:
+      - -endpoint
+      - retail-dfs/dfs:DATACENTER:7442
+      livenessProbe:
+        initialDelaySeconds: 5
+        exec:
+          command:
+            - "/home/scone/is-alive.sh"
+  loadbalancers:
+  - lbname: dfs-production-lb
+    function: dfs-production
+    slbEnabled: true
+    ports:
+    - port: 7442
+      targetport: 7442

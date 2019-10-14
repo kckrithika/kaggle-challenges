@@ -12,10 +12,15 @@ apps:
     - name: prd/prd-sam_crosscloudplatform
   dfs-fakecc-perf: # fake CC instance for perf testing
     - name: prd/prd-sam_crosscloudplatform
-  dfs-production:
+  dfs-production-iad:
     - name: iad/iad-sam_crosscloudplatform
+  dfs-production-ord:
     - name: ord/ord-sam_crosscloudplatform
+  dfs-production-frf:
     - name: frf/frf-sam_crosscloudplatform
+  dfs-production-par:
     - name: par/par-sam_crosscloudplatform
+  dfs-production-ukb:
     - name: ukb/ukb-sam_crosscloudplatform
+  dfs-production-hnd:
     - name: hnd/hnd-sam_crosscloudplatform
