@@ -53,7 +53,7 @@ system:
         ####################################### INGEST environment variables ###############################
         ####################################################################################################
         - name: INGEST_ANNOTATIONS_PKI_NAME
-          value: cre-engine-ccp-func
+          value: cre-engine-ccp-dev
         - name: INGEST_K4A_VAULT
           value: cre-engine-dev
         ####################################################################################################
@@ -75,7 +75,7 @@ system:
         ####################################### EXPORT environment variables ###############################
         ####################################################################################################
         - name: EXPORT_ANNOTATIONS_PKI_NAME
-          value: cre-engine-ccp-func
+          value: cre-engine-ccp-dev
         - name: EXPORT_K4A_VAULT
           value: cre-dds-dev
         - name: EXPORT_DRIVER_CORES
