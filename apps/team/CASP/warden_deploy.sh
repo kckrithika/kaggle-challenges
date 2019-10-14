@@ -50,6 +50,19 @@ cantor() {
     cantor_prod
 }
 
+cantor_service_prd() {
+    perl -i -pe"s/image: dva\/casp\/cantor_http_strata:[0-9]*/image: dva\/casp\/cantor_http_strata:$NEWVERSION/g" prd-cantor-http-server/manifest.yaml
+}
+
+cantor_service_prod() {
+    perl -i -pe"s/image: dva\/casp\/cantor_http_strata:[0-9]*/image: dva\/casp\/cantor_http_strata:$NEWVERSION/g" prod-cantor-http-server/manifest.yaml
+}
+
+cantor_service() {
+    cantor_service_prd
+    cantor_service_prod
+}
+
 mysql_prd() {
     perl -i -pe"s/image: dva\/casp\/mysql_strata:[0-9]*/image: dva\/casp\/mysql_strata:$NEWVERSION/g" prd-mysql-shard-a/manifest.yaml
     perl -i -pe"s/image: dva\/casp\/mysql_strata:[0-9]*/image: dva\/casp\/mysql_strata:$NEWVERSION/g" prd-mysql-shard-a-stage/manifest.yaml
