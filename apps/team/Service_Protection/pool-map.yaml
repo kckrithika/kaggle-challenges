@@ -3,8 +3,9 @@ apps:
   - prd/prd-sam_serviceprotection  # the SAM Sandbox uses the prd/prd-sam host cluster
   - ord/ord-sam_serviceprotection
   - iad/iad-sam_serviceprotection
- spaasmesh:    
-  - prd/prd-sam_gater
+ spaasmesh: 
+  - prd/prd-sam_serviceprotection  #for latency testing purposes
+  # - prd/prd-sam_gater
  spaasmeshprod: 
   - cdg/cdg-sam_gater
   - dfw/dfw-sam_gater
