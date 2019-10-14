@@ -78,14 +78,14 @@ configs.deploymentBase("authz-injector") {
         containers: [
           {
             name: "injector",
-            image: "ops0-artifactrepo2-0-prd.data.sfdc.net/dva/electron-opa-injection-webhook:22-57dec549a0dc3d87277a1e782492dc20b4968411",
+            image: versions.injectorImage,
             imagePullPolicy: "IfNotPresent",
             terminationMessagePolicy: "FallbackToLogsOnError",
             args: [
               "--opa-template=%s" % "/config/electron-opa-container.yaml.template",  // This is the template that we have stored in a ConfigMap in k8s
               "--opa-istio-template=%s" % "/config/electron-opa-istio-container.yaml.template",  // This is the template that we have stored in a ConfigMap in k8s
-              "--opa-image=ops0-artifactrepo2-0-prd.data.sfdc.net/dva/electron_opa:9-406399d98e8627a11303098578e595b3d84ab4ed",
-              "--opa-istio-image=ops0-artifactrepo2-0-prd.data.sfdc.net/dva/electron_opa_istio:9-406399d98e8627a11303098578e595b3d84ab4ed",
+              "--opa-image=%s" % versions.opaImage,
+              "--opa-istio-image=%s" % versions.opaIstioImage,
               "--log-level=debug",
               "--port=17442",
               "--cert=/server-certs/server/certificates/server.pem",

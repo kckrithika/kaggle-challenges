@@ -57,8 +57,8 @@ spec:
       - args:
         - --opa-template=/config/electron-opa-container.yaml.template
         - --opa-istio-template=/config/electron-opa-istio-container.yaml.template
-        - --opa-image=ops0-artifactrepo2-0-prd.data.sfdc.net/dva/electron_opa:9-406399d98e8627a11303098578e595b3d84ab4ed
-        - --opa-istio-image=ops0-artifactrepo2-0-prd.data.sfdc.net/dva/electron_opa_istio:9-406399d98e8627a11303098578e595b3d84ab4ed
+        - --opa-image=ops0-artifactrepo2-0-prd.data.sfdc.net/dva/electron-opa:v0.14.2
+        - --opa-istio-image=ops0-artifactrepo2-0-prd.data.sfdc.net/dva/electron-opa-istio:v0.14.2
         - --log-level=debug
         - --port=17442
         - --cert=/server-certs/server/certificates/server.pem
