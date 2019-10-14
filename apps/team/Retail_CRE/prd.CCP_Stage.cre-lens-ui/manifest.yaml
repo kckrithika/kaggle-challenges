@@ -1,11 +1,11 @@
 apiVersion: v1
 system:
   functions:
-  - name: default
+  - name: cre-lens-ui
     count: 1
     containers:
     - name: sam-lensui
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cre/cre-lens-ui:ffd4d50
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cre/cre-lens-ui:9b4ef08
       ports:
       - containerPort: 3000
       livenessProbe:
@@ -14,7 +14,7 @@ system:
           port: 3000
   loadbalancers:
   - lbname: sam-lensui-lb
-    function: default
+    function: cre-lens-ui
     slbEnabled: true
     ports:
       - port: 80
