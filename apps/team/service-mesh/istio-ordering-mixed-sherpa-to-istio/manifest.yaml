@@ -17,8 +17,8 @@ system:
     containers:
     - name: ordering
       # Image build:
-      # https://sfcirelease.dop.sfdc.net/job/services/job/sfdc-bazel_projects_services_examples_ordering/job/sfdc-bazel/job/master/75/
-      image: sfci/services/sfdc-bazel/scone/ordering:b51d7f786
+      # https://sfcirelease.dop.sfdc.net/job/services/job/sfdc-bazel_projects_services_examples_ordering/job/sfdc-bazel/job/master/92
+      image: sfci/services/sfdc-bazel/scone/ordering:7572acf02
       env:
       - name: SFDC_ENVIRONMENT
         value: istio

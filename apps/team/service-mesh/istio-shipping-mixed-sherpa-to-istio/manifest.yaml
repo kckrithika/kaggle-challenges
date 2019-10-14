@@ -21,8 +21,8 @@ system:
       # Shipping Config
       #   https://git.soma.salesforce.com/services/sfdc-bazel/blob/master/projects/services/shipping/shipping-scone/src/main/resources/config/application.properties
       # Image build:
-      # https://sfcirelease.dop.sfdc.net/job/services/job/sfdc-bazel_projects_services_examples_shipping/job/sfdc-bazel/job/master/73/
-      image: sfci/services/sfdc-bazel/scone/shipping:b51d7f786
+      # https://sfcirelease.dop.sfdc.net/job/services/job/sfdc-bazel_projects_services_examples_shipping/job/sfdc-bazel/job/master/91
+      image: sfci/services/sfdc-bazel/scone/shipping:7572acf02
       env:
       - name: SFDC_ENVIRONMENT
         value: istio
