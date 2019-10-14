@@ -80,6 +80,9 @@ apps:
   shipping-authz-policy:
     - prd/prd-sam_gater
 
+  niko-geoip:
+    - prd/prd-sam_gater
+
 # Service mesh test harness for rolling upgrade resiliency tests
 # https://git.soma.salesforce.com/servicelibs/servicemesh-resiliency
 # Note that resiliency-server and resiliency-server2 are created by resiliency-client.

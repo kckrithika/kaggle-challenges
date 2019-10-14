@@ -5,14 +5,28 @@ system:
     email:
     - meshcontrol@salesforce.com
   functions:
-  - name: istio-geoip
-    count: 3
+  - name: niko-geoip
+    count: 1
     labels:
-      app: istio-geoip
-      settings_path: istio.-.prd.-.istio-geoip
+      app: niko-geoip
+      settings_path: istio.-.prd.-.niko-geoip
     annotations:
       sidecar.istio.io/inject: "true"
     containers:
+    - name: geoip-database
+      image: tnrp/ccait/geoip2-database:20170918
+      args:
+      - -d
+      volumeMounts:
+      - mountPath: /database
+        name: maxmind-volume
+      livenessProbe:
+        exec:
+          command:
+          - ls
+          - /database/GeoIP2-City.mmdb
+        initialDelaySeconds: 10
+        periodSeconds: 5
     - name: geoip
       # 2019-10-11: One of the old monorepo buidls, without huge Latency problems
       image: sfci/services/sfdc-bazel/geoip:51e8676 # monorepo build
@@ -48,20 +62,6 @@ system:
           path: /manage/health
           port: 15372
         initialDelaySeconds: 115
-    - name: geoip-database
-      image: tnrp/ccait/geoip2-database:20170918
-      args:
-      - -d
-      volumeMounts:
-      - mountPath: /database
-        name: maxmind-volume
-      livenessProbe:
-        exec:
-          command:
-          - ls
-          - /database/GeoIP2-City.mmdb
-        initialDelaySeconds: 10
-        periodSeconds: 5
     - name: beacon
       # https://git.soma.salesforce.com/services/sfdc-bazel/tree/master/projects/sidecars/beacon#docker-image
       image: sfci/services/sfdc-bazel/disco/beacon:d7f1640
@@ -88,13 +88,13 @@ system:
         type: server
 
   loadbalancers:
-  - lbname: istio-geoip
-    function: istio-geoip
+  - lbname: niko-geoip
+    function: niko-geoip
     annotations:
       routing.mesh.sfdc.net/enabled: "true"
     labels:
-      app: istio-geoip
-      settings_path: istio.-.prd.-.istio-geoip
+      app: niko-geoip
+      settings_path: istio.-.prd.-.niko-geoip
     ports:
       - lbtype: dsr
         nodeExposed: false
