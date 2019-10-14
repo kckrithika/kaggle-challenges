@@ -82,8 +82,8 @@ configs.deploymentBase("authz-injector") {
             imagePullPolicy: "IfNotPresent",
             terminationMessagePolicy: "FallbackToLogsOnError",
             args: [
-              "--opa-template=%s" % "/config-opa/electron-opa-container.yaml.template",  // This is the template that we have stored in a ConfigMap in k8s
-              "--opa-istio-template=%s" % "/config-opa-istio/electron-opa-istio-container.yaml.template",  // This is the template that we have stored in a ConfigMap in k8s
+              "--opa-template=%s" % "/config/electron-opa-container.yaml.template",  // This is the template that we have stored in a ConfigMap in k8s
+              "--opa-istio-template=%s" % "/config/electron-opa-istio-container.yaml.template",  // This is the template that we have stored in a ConfigMap in k8s
               "--opa-image=%s" % versions.opaImage,
               "--opa-istio-image=%s" % versions.opaIstioImage,
               "--log-level=debug",
@@ -174,12 +174,24 @@ configs.deploymentBase("authz-injector") {
                 mountPath: "/client-certs",
               },
               {
-                name: "electron-opa-injector-configs-data-volume-opa",
-                mountPath: "/config-opa",
+                name: "electron-opa-sherpa-container",
+                mountPath: "/config/electron-opa-container.yaml.template",
+                subPath: "electron-opa-container.yaml.template"
               },
               {
-                name: "electron-opa-injector-configs-data-volume-opa-istio",
-                mountPath: "/config-opa-istio",
+                name: "electron-opa-istio-sherpa-container",
+                mountPath: "/config/electron-opa-istio-container.yaml.template",
+                subPath: "electron-opa-istio-container.yaml.template"
+              },
+              {
+                name: "electron-opa-no-sherpa-container",
+                mountPath: "/config/electron-opa-no-sherpa-container.yaml.template",
+                subPath: "electron-opa-no-sherpa-container.yaml.template"
+              },
+              {
+                name: "electron-opa-istio-no-sherpa-container",
+                mountPath: "/config/electron-opa-istio-no-sherpa-container.yaml.template",
+                subPath: "electron-opa-istio-no-sherpa-container.yaml.template"
               },
             ],
             ports+: [
@@ -246,15 +258,27 @@ configs.deploymentBase("authz-injector") {
           },
           {
             configMap: {
-              name: "electron-opa-injector-configs-opa-container",
+              name: "electron-opa-sherpa-container",
             },
-            name: "electron-opa-injector-configs-data-volume-opa",
+            name: "electron-opa-sherpa-container",
           },
           {
             configMap: {
-              name: "electron-opa-injector-configs-opa-istio-container",
+              name: "electron-opa-istio-sherpa-container",
             },
-            name: "electron-opa-injector-configs-data-volume-opa-istio",
+            name: "electron-opa-istio-sherpa-container",
+          },
+          {
+            configMap: {
+              name: "electron-opa-no-sherpa-container",
+            },
+            name: "electron-opa-no-sherpa-container",
+          },
+          {
+            configMap: {
+              name: "electron-opa-istio-no-sherpa-container",
+            },
+            name: "electron-opa-istio-no-sherpa-container",
           },
         ] +
         if utils.is_pcn(configs.kingdom) then

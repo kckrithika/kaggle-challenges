@@ -23,7 +23,7 @@ data:
   sidecarconfig.yaml: |-
     containers:
         - name: electron-opa
-          image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/electron_opa:5-abe14d5cf848440ecc9d517baf63a77cdc2efd4a
+          image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/electron-opa:v0.14.2
           env:
           - name: SFDC_ENVIRONMENT
             value: mesh
@@ -63,7 +63,7 @@ data:
           - name: SFDC_METRICS_SERVICE_PORT
             value: "80"
         - name: electron-opa-istio
-          image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/openpolicyagent/opa:0.13.2-istio-with-config-2
+          image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/electron-opa-istio:v0.14.2
           env:
           - name: SFDC_ENVIRONMENT
             value: mesh
