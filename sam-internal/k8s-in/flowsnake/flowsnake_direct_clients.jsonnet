@@ -144,6 +144,7 @@ local cre_production = {
                     "retail-cre.jboard",
                     "retail-cre.kdaszkowski",
                     "retail-cre.mariusz.tycz",
+                    "retail-cre.aboboc",
                     "retail-cre.cre-control-plane",
                     "retail-cre.cre-control-plane-ccp-func",
                     "retail-cre.cre-control-plane-ccp-dev",
