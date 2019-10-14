@@ -1,4 +1,4 @@
-apiVersion: v1
+catapiVersion: v1
 
 system:
     notifications:
@@ -27,7 +27,7 @@ system:
         - name: SUBDOMAIN
           value: "ops"
         - name: MYSQL_SHARDS
-          value: "shared0-samminionwarden1-1-$KINGDOM.ops.sfdc.net:7015;shared0-samminionwarden2-1-$KINGDOM.ops.sfdc.net:7015;shared0-samminionwarden3-1-$KINGDOM.ops.sfdc.net:7015"
+          value: "shared0-samminionwarden1-1-$KINGDOM.ops.sfdc.net:7015\\;shared0-samminionwarden2-1-$KINGDOM.ops.sfdc.net:7015\\;shared0-samminionwarden3-1-$KINGDOM.ops.sfdc.net:7015"
         - name: NODENAME
           valueFrom:
             fieldRef:
