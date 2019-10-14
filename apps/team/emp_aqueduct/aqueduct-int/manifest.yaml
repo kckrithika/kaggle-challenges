@@ -16,7 +16,7 @@ system:
           type: client
       containers:
       - name: aqueduct
-        image: sfci/messagingplatform/aqueduct:1.1
+        image: sfci/messagingplatform/aqueduct:v2.0
         env:
         - name: SFDC_ENVIRONMENT
           value: "prod" # Use whatever environment your kpod uses
