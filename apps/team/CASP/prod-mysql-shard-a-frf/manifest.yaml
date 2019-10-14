@@ -13,7 +13,7 @@ system:
           maxSurge: 0
           maxUnavailable: 1
       containers:
-      - name: prod-mysql-shard-a-drop-1-1
+      - name: prod-mysql-shard-a-frf
         image: dva/casp/mysql_strata:55
         ports:
         - name: mysql-shard-a
