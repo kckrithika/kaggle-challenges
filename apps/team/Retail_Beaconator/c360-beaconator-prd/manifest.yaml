@@ -44,10 +44,10 @@ system:
       resources:
         limits:
           cpu: "0.1"
-          memory: 32Mi
+          memory: 64Mi
         requests:
           cpu: "0.1"
-          memory: 32Mi
+          memory: 64Mi
       livenessProbe:
         initialDelaySeconds: 5
         exec:
@@ -76,10 +76,10 @@ system:
       resources:
         limits:
           cpu: "0.1"
-          memory: 32Mi
+          memory: 64Mi
         requests:
           cpu: "0.1"
-          memory: 32Mi
+          memory: 64Mi
       livenessProbe:
         initialDelaySeconds: 5
         exec:
@@ -106,10 +106,10 @@ system:
       resources:
         limits:
           cpu: "0.1"
-          memory: 32Mi
+          memory: 64Mi
         requests:
           cpu: "0.1"
-          memory: 32Mi
+          memory: 64Mi
       livenessProbe:
         initialDelaySeconds: 5
         exec:
@@ -140,10 +140,10 @@ system:
       resources:
         limits:
           cpu: "0.1"
-          memory: 32Mi
+          memory: 64Mi
         requests:
           cpu: "0.1"
-          memory: 32Mi
+          memory: 64Mi
       livenessProbe:
         initialDelaySeconds: 5
         exec:
@@ -196,10 +196,10 @@ system:
       resources:
         limits:
           cpu: "0.1"
-          memory: 32Mi
+          memory: 64Mi
         requests:
           cpu: "0.1"
-          memory: 32Mi
+          memory: 64Mi
       livenessProbe:
         initialDelaySeconds: 5
         exec:
