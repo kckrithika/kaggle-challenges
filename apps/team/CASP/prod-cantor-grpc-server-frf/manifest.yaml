@@ -27,7 +27,7 @@ system:
         - name: SUBDOMAIN
           value: "ops"
         - name: MYSQL_SHARDS
-          value: "shared0-samminionwarden1-1-frf.ops.sfdc.net:7015;shared0-samminionwarden1-2-frf.ops.sfdc.net:7015"
+          value: "shared0-samminionwarden1-1-frf.ops.sfdc.net:7015,shared0-samminionwarden1-2-frf.ops.sfdc.net:7015"
         - name: NODENAME
           valueFrom:
             fieldRef:
