@@ -148,6 +148,7 @@ configs.deploymentBase("service-mesh") {
               "MUTUAL_TLS",
               "--statusPort",
               "15020",
+              "--controlPlaneBootstrap=false",
             ],
             env: [
               {
