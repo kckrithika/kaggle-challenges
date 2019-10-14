@@ -57,7 +57,8 @@ mysql_prd() {
 
 mysql_prod() {
     perl -i -pe"s/image: dva\/casp\/mysql_strata:[0-9]*/image: dva\/casp\/mysql_strata:$NEWVERSION/g" prod-mysql-shard-a/manifest.yaml
-    perl -i -pe"s/image: dva\/casp\/mysql_strata:[0-9]*/image: dva\/casp\/mysql_strata:$NEWVERSION/g" prod-mysql-shard-a-alternate/manifest.yaml
+    perl -i -pe"s/image: dva\/casp\/mysql_strata:[0-9]*/image: dva\/casp\/mysql_strata:$NEWVERSION/g" prod-mysql-shard-a-drop-1-1/manifest.yaml
+    perl -i -pe"s/image: dva\/casp\/mysql_strata:[0-9]*/image: dva\/casp\/mysql_strata:$NEWVERSION/g" prod-mysql-shard-a-frf/manifest.yaml
     perl -i -pe"s/image: dva\/casp\/mysql_strata:[0-9]*/image: dva\/casp\/mysql_strata:$NEWVERSION/g" prod-mysql-shard-a-fast/manifest.yaml
 }
 
