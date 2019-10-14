@@ -9,7 +9,12 @@ local apiserverEstates = {
     "cdu-sam": true,
     "chx-sam": true,
     "dfw-sam": true,
+    "fra-sam": true,
+    "frf-sam": true,
     "hio-sam": true,
+    "hnd-sam": true,
+    "ia2-sam": true,
+    "ia4-sam": true,
     "ttd-sam": true,
     "wax-sam": true
 };
