@@ -1,6 +1,6 @@
 apps:
  spaas:    # this must match the name of your application (it is case sensitive)
-  - prd/prd-sam_serviceprotection  # the SAM Sandbox uses the prd/prd-sam host cluster
+  # - prd/prd-sam_serviceprotection  # the SAM Sandbox uses the prd/prd-sam host cluster
   - ord/ord-sam_serviceprotection
   - iad/iad-sam_serviceprotection
  spaasmesh: 
