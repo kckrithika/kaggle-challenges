@@ -223,7 +223,7 @@ spec:
           valueFrom:
             fieldRef:
               fieldPath: metadata.labels['cluster']
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/sfci/servicemesh/istio-packaging/proxy:6d20b8281ccd6ffaddfae194b37979f93bd7674d
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/sfci/servicemesh/istio-packaging/proxy:abc19b71279da65c92ba35ed1f667fd3f8dc5ac9
         imagePullPolicy: IfNotPresent
         name: istio-proxy
         ports:
@@ -336,7 +336,7 @@ spec:
         env:
         - name: DISABLE_REDIRECTION_ON_LOCAL_LOOPBACK
           value: "1"
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/sfci/servicemesh/istio-packaging/proxy:6d20b8281ccd6ffaddfae194b37979f93bd7674d
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/sfci/servicemesh/istio-packaging/proxy:abc19b71279da65c92ba35ed1f667fd3f8dc5ac9
         imagePullPolicy: IfNotPresent
         name: istio-init
         resources:
