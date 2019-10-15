@@ -2,6 +2,7 @@ apps:
   syncmaster:
   - prd/prd-sam
   - dfw/dfw-sam_dp
+  - yhu/yhu-sam_dp
   archival-worker:
   - dfw/dfw-sam_dp
   dbaas-backup:
