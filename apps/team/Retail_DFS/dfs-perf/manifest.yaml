@@ -28,7 +28,7 @@ system:
 
     containers:
     - name: dfs
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/dfs/service:dfs-0.25.3
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/dfs/service:dfs-0.25.2
       # associate the log directory to a logical volume.
       volumeMounts:
       - name: logvol
