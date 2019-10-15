@@ -34,3 +34,8 @@ apps:
       - name: frf/frf-sam_eventbus
   # Group 2 of Private Kingdoms: Rest of private Kingdoms
   aqueduct-private-group-2:
+      - name: ord/ord-sam_eventbus
+      - name: ia2/ia2-sam_eventbus
+      - name: ph2/ph2-sam_eventbus
+      - name: hnd/hnd-sam_eventbus
+      - name: ukb/ukb-sam_eventbus
