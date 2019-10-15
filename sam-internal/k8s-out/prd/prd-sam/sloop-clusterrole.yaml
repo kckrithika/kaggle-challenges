@@ -75,3 +75,28 @@ rules:
   verbs:
   - list
   - watch
+- apiGroups:
+  - apiextensions.k8s.io
+  resources:
+  - customresourcedefinitions
+  verbs:
+  - list
+  - watch
+- apiGroups:
+  - argoproj.io
+  - authentication.istio.io
+  - config.istio.io
+  - csp.storage.salesforce.com
+  - fds.storage.salesforce.com
+  - mesh.sfdc.net
+  - networking.istio.io
+  - rbac.istio.io
+  - samcrd.salesforce.com
+  - security.istio.io
+  - sfstore.storage.salesforce.com
+  - storage.salesforce.com
+  resources:
+  - '*'
+  verbs:
+  - list
+  - watch
