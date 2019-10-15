@@ -29,7 +29,7 @@ system:
         secretName: solrcloudcli-keytab-prd
     containers:
     - name: universal-search
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/universal-search/universal-search:1.6.2
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/universal-search/universal-search:1.6.3
       ports:
       - name: service-port
         containerPort: 7020
@@ -59,6 +59,8 @@ system:
         value: '300000'
       - name: BACKUPMANAGER_CONTROLLER_ENABLE
         value: 'true'
+      - name: COLLECTION_BACKUP_ENABLE
+        value: 'false'
       volumeMounts:
       - name: client-cert-vol
         mountPath: /certs
