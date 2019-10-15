@@ -7,7 +7,7 @@ system:
 
   functions:
   - name: beaconator
-    count: 1
+    count: 2
 
     strategy:
       type: RollingUpdate
@@ -16,31 +16,195 @@ system:
         maxUnavailable: 0
 
     containers:
-    - name: beaconator
+    - name: beaconator-stmfa
       image: sfci/servicelibs/beacon:853c4db9f14805018be6f5e7607ffe65b5648822
+      env:
+      - name: SFDC_ENVIRONMENT
+        value: stmfa
       args:
       - -logging.dir
       - /log
       - -endpoint
-      - metadata-service-prd-func-freeze:DATACENTER_ALLENV:7443:metadata-service-prd-func-freeze-lb.retail-mds.prd-sam.prd.slb.sfdc.net
-      env:
-      - name: DUMMY_FORCE_PUSH 
-        value: 3 # increse value to force push without any other changes 
+      - retail-dfs/dfs:DATACENTER:7442:dfs-lb.retail-dfs.prd-sam.prd.slb.sfdc.net
+      - -endpoint
+      - retail-dfs/dfs-dev:DATACENTER:7442:dfs-lbdv.retail-dfs.prd-sam.prd.slb.sfdc.net
+      - -endpoint
+      - metadata-service:DATACENTER:7012:metadata-service-prd-func-lb.retail-mds.prd-sam.prd.slb.sfdc.net
+      - -endpoint
+      - retail-mds/metadata-service:DATACENTER:7443:metadata-service-prd-func-lb.retail-mds.prd-sam.prd.slb.sfdc.net
+      - -endpoint
+      - retail-rsui/hub-persistence:DATACENTER:7442:hub-persistence-func-lb.retail-rsui.prd-sam.prd.slb.sfdc.net
+      - -endpoint
+      - retail-rsui/retail-setup:DATACENTER:7443:rsui-func-lb.retail-rsui.prd-sam.prd.slb.sfdc.net
+      - -endpoint
+      - retail-rsui/retail-setup-standalone:DATACENTER:7443:rsui-standalone-lb.retail-rsui.prd-sam.prd.slb.sfdc.net
       volumeMounts:
       - mountPath: /log
         name: logvolbeacon
       resources:
         limits:
-          cpu: "1"
-          memory: 1Gi
+          cpu: "0.1"
+          memory: 64Mi
         requests:
-          cpu: "1"
-          memory: 1Gi
+          cpu: "0.1"
+          memory: 64Mi
       livenessProbe:
         initialDelaySeconds: 5
         exec:
           command:
-          - "/home/scone/is-alive.sh"
+          - "/opt/beacon/is-alive.sh"
+
+    - name: beaconator-stmfb
+      image: sfci/servicelibs/beacon:853c4db9f14805018be6f5e7607ffe65b5648822
+      env:
+      - name: SFDC_ENVIRONMENT
+        value: stmfb
+      args:
+      - -logging.dir
+      - /log
+      - -endpoint
+      - retail-dfs/dfs:DATACENTER:7442:dfs-func-patch-lb.retail-dfs.prd-sam.prd.slb.sfdc.net
+      - -endpoint
+      - retail-mds/metadata-service:DATACENTER:7443:metadata-service-prd-func-patch-lb.retail-mds.prd-sam.prd.slb.sfdc.net
+      - -endpoint
+      - retail-rsui/hub-persistence:DATACENTER:7442:hub-persistence-func-patch-lb.retail-rsui.prd-sam.prd.slb.sfdc.net
+      - -endpoint
+      - retail-rsui/retail-setup:DATACENTER:7443:rsui-func-patch-lb.retail-rsui.prd-sam.prd.slb.sfdc.net
+      volumeMounts:
+      - mountPath: /log
+        name: logvolbeacon
+      resources:
+        limits:
+          cpu: "0.1"
+          memory: 64Mi
+        requests:
+          cpu: "0.1"
+          memory: 64Mi
+      livenessProbe:
+        initialDelaySeconds: 5
+        exec:
+          command:
+          - "/opt/beacon/is-alive.sh"
+
+    - name: beaconator-stmfc
+      image: sfci/servicelibs/beacon:853c4db9f14805018be6f5e7607ffe65b5648822
+      env:
+      - name: SFDC_ENVIRONMENT
+        value: stmfc
+      args:
+      - -logging.dir
+      - /log
+      - -endpoint
+      - retail-dfs/dfs:DATACENTER:7442:dfs-func-freeze-lb.retail-dfs.prd-sam.prd.slb.sfdc.net
+      - -endpoint
+      - retail-mds/metadata-service:DATACENTER:7443:metadata-service-prd-func-freeze-lb.retail-mds.prd-sam.prd.slb.sfdc.net
+      - -endpoint
+      - retail-rsui/retail-setup:DATACENTER:7443:rsui-func-freeze-lb.retail-rsui.prd-sam.prd.slb.sfdc.net
+      volumeMounts:
+      - mountPath: /log
+        name: logvolbeacon
+      resources:
+        limits:
+          cpu: "0.1"
+          memory: 64Mi
+        requests:
+          cpu: "0.1"
+          memory: 64Mi
+      livenessProbe:
+        initialDelaySeconds: 5
+        exec:
+          command:
+          - "/opt/beacon/is-alive.sh"
+
+    - name: beaconator-mist
+      image: sfci/servicelibs/beacon:853c4db9f14805018be6f5e7607ffe65b5648822
+      env:
+      - name: SFDC_ENVIRONMENT
+        value: mist
+      args:
+      - -logging.dir
+      - /log
+      - -endpoint
+      - retail-dfs/dfs:DATACENTER:7442:dfs-lbpf.retail-dfs.prd-sam.prd.slb.sfdc.net
+      - -endpoint
+      - metadata-service:DATACENTER:7012:metadata-service-prd-perf-lb.retail-mds.prd-sam.prd.slb.sfdc.net
+      - -endpoint
+      - retail-mds/metadata-service:DATACENTER:7443:metadata-service-prd-perf-lb.retail-mds.prd-sam.prd.slb.sfdc.net
+      - -endpoint
+      - retail-rsui/hub-persistence:DATACENTER:7442:hub-persistence-perf-lb.retail-rsui.prd-sam.prd.slb.sfdc.net
+      - -endpoint
+      - retail-rsui/retail-setup:DATACENTER:7443:rsui-perf-lb.retail-rsui.prd-sam.prd.slb.sfdc.net
+      volumeMounts:
+      - mountPath: /log
+        name: logvolbeacon
+      resources:
+        limits:
+          cpu: "0.1"
+          memory: 64Mi
+        requests:
+          cpu: "0.1"
+          memory: 64Mi
+      livenessProbe:
+        initialDelaySeconds: 5
+        exec:
+          command:
+          - "/opt/beacon/is-alive.sh"
+
+    - name: beaconator
+      image: sfci/servicelibs/beacon:853c4db9f14805018be6f5e7607ffe65b5648822
+      env:
+      - name: DUMMY_FORCE_PUSH 
+        value: 3 # increse value to force push without any other changes 
+      args:
+      - -logging.dir
+      - /log
+      - -endpoint
+      - retail-cre/cre-api-ccp-dev:DATACENTER_ALLENV:7442:cre-api-ccp-dev-lb.retail-cre.prd-sam.prd.slb.sfdc.net
+      - -endpoint
+      - retail-cre/cre-api-ccp-func:DATACENTER_ALLENV:7442:cre-api-ccp-func-lb.retail-cre.prd-sam.prd.slb.sfdc.net
+      - -endpoint
+      - retail-cre/cre-api-ccp-perf:DATACENTER_ALLENV:7442:cre-api-ccp-perf-lb.retail-cre.prd-sam.prd.slb.sfdc.net
+      - -endpoint
+      - retail-cre/cre-api-ccp-stage:DATACENTER_ALLENV:7442:cre-api-ccp-stage-lb.retail-cre.prd-sam.prd.slb.sfdc.net
+      - -endpoint
+      - retail-cre/cre-api-cre-test:DATACENTER_ALLENV:7442:cre-api-cre-test-lb.retail-cre.prd-sam.prd.slb.sfdc.net
+
+      - -endpoint
+      - retail-cre/cre-control-plane-ccp-dev:DATACENTER_ALLENV:7442:cre-control-plane-ccp-dev-lb.retail-cre.prd-sam.prd.slb.sfdc.net
+      - -endpoint
+      - retail-cre/cre-control-plane-ccp-func:DATACENTER_ALLENV:7442:cre-control-plane-ccp-func-lb.retail-cre.prd-sam.prd.slb.sfdc.net
+      - -endpoint
+      - retail-cre/cre-control-plane-ccp-perf:DATACENTER_ALLENV:7442:cre-control-plane-ccp-perf-lb.retail-cre.prd-sam.prd.slb.sfdc.net
+      - -endpoint
+      - retail-cre/cre-control-plane-ccp-stage:DATACENTER_ALLENV:7442:cre-control-plane-ccp-stage-lb.retail-cre.prd-sam.prd.slb.sfdc.net
+      - -endpoint
+      - retail-cre/cre-control-plane-cre-test:DATACENTER_ALLENV:7443:cre-control-plane-cre-test-lb.retail-cre.prd-sam.prd.slb.sfdc.net
+
+      - -endpoint
+      - retail-cre/cre-sp-ccp-dev:DATACENTER_ALLENV:7442:cre-sp-ccp-dev-lb.retail-cre.prd-sam.prd.slb.sfdc.net
+      - -endpoint
+      - retail-cre/cre-sp-ccp-func:DATACENTER_ALLENV:7442:cre-sp-ccp-func-lb.retail-cre.prd-sam.prd.slb.sfdc.net
+      - -endpoint
+      - retail-cre/cre-sp-ccp-perf:DATACENTER_ALLENV:7442:cre-sp-ccp-perf-lb.retail-cre.prd-sam.prd.slb.sfdc.net
+      - -endpoint
+      - retail-cre/cre-sp-ccp-stage:DATACENTER_ALLENV:7442:cre-sp-ccp-stage-lb.retail-cre.prd-sam.prd.slb.sfdc.net
+      - -endpoint
+      - retail-cre/cre-sp-cre-test:DATACENTER_ALLENV:7443:cre-sp-cre-test-lb.retail-cre.prd-sam.prd.slb.sfdc.net
+      volumeMounts:
+      - mountPath: /log
+        name: logvolbeacon
+      resources:
+        limits:
+          cpu: "0.1"
+          memory: 64Mi
+        requests:
+          cpu: "0.1"
+          memory: 64Mi
+      livenessProbe:
+        initialDelaySeconds: 5
+        exec:
+          command:
+          - "/opt/beacon/is-alive.sh"
     volumes:
     - name: logvolbeacon
       hostPath:
