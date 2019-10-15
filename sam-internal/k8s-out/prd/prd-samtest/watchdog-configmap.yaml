@@ -21,7 +21,6 @@ data:
       "deployer-smtpServer": "smtpops-prd-sp1.data.sfdc.net:25",
       "deploymentNamespacePrefixWhitelist": "sam-system",
       "email-subject-prefix": "SAMWD",
-      "enableK4aChecks": true,
       "enableMaddogCertChecks": true,
       "filesystemCheckDirs": [
         "/data/",
