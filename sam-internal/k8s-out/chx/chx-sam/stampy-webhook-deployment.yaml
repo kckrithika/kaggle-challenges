@@ -139,6 +139,7 @@ spec:
           name: maddog-certs
         - mountPath: /tokens
           name: tokens
+      hostNetwork: true
       initContainers:
       - args:
         - /sam/madkub-client
