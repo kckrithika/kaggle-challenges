@@ -38,7 +38,7 @@ if (samfeatureflags.sloop) then configs.deploymentBase("sam") {
                         command: [
                             "/bin/sloop",
                         ],
-                        image: "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/ndzhumakaliev/sloop:ndzhumakaliev-20190926_105401-0acb2a2",
+                        image: "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/dharlan/sloop:dharlan-20191015_170243-e287917",
                         volumeMounts: [
                             {
                                 name: "sloop-data",
