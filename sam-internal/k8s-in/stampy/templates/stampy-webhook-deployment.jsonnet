@@ -9,6 +9,14 @@ local utils = import "util_functions.jsonnet";
 local funnelEndpointHost = std.split(configs.funnelVIP, ":")[0];
 local funnelEndpointPort = std.split(configs.funnelVIP, ":")[1];
 
+# When requesting maddog certs for the watchdog in hio/ttd, madkubserver enforces that the request's
+# IP address matches the IP address of the requesting pod. However, for non-host network pods, there's
+# currently an issue where the request is proxied by the host, so madkubserver ends up seeing the host's
+# IP address instead of the pod's IP address and fails the request.
+# As a workaround, use host network for the pod in gia. This ensures the pod's IP address matches the
+# host's IP address, and madkubserver thus allows the request.
+local hostNetworkIfGia = if utils.is_gia(configs.kingdom) then { hostNetwork: true } else {};
+
 if stampy_utils.apiserver.featureFlag then
 configs.deploymentBase("stampy") {
   metadata+: {
@@ -193,7 +201,8 @@ configs.deploymentBase("stampy") {
           maddogInit.madkubInitContainer,
           maddogPermissions.permissionSetterInitContainer,
         ],
-      },
+      }
+      + hostNetworkIfGia,
     },
   },
 } else "SKIP"
