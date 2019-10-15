@@ -17,7 +17,7 @@ system:
 
     containers:
     - name: beaconator-stmfa
-      image: sfci/servicelibs/beacon:853c4db9f14805018be6f5e7607ffe65b5648822
+      image: sfci/services/sfdc-bazel/disco/beacon:be0423a5b
       env:
       - name: SFDC_ENVIRONMENT
         value: stmfa
@@ -55,7 +55,7 @@ system:
           - "/opt/beacon/is-alive.sh"
 
     - name: beaconator-stmfb
-      image: sfci/servicelibs/beacon:853c4db9f14805018be6f5e7607ffe65b5648822
+      image: sfci/services/sfdc-bazel/disco/beacon:be0423a5b
       env:
       - name: SFDC_ENVIRONMENT
         value: stmfb
@@ -87,7 +87,7 @@ system:
           - "/opt/beacon/is-alive.sh"
 
     - name: beaconator-stmfc
-      image: sfci/servicelibs/beacon:853c4db9f14805018be6f5e7607ffe65b5648822
+      image: sfci/services/sfdc-bazel/disco/beacon:be0423a5b
       env:
       - name: SFDC_ENVIRONMENT
         value: stmfc
@@ -117,7 +117,7 @@ system:
           - "/opt/beacon/is-alive.sh"
 
     - name: beaconator-mist
-      image: sfci/servicelibs/beacon:853c4db9f14805018be6f5e7607ffe65b5648822
+      image: sfci/services/sfdc-bazel/disco/beacon:be0423a5b
       env:
       - name: SFDC_ENVIRONMENT
         value: mist
@@ -151,7 +151,7 @@ system:
           - "/opt/beacon/is-alive.sh"
 
     - name: beaconator
-      image: sfci/servicelibs/beacon:853c4db9f14805018be6f5e7607ffe65b5648822
+      image: sfci/services/sfdc-bazel/disco/beacon:be0423a5b
       env:
       - name: DUMMY_FORCE_PUSH 
         value: 3 # increse value to force push without any other changes 
