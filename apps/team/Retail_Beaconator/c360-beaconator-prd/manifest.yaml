@@ -38,10 +38,10 @@ system:
       - retail-rsui/retail-setup-standalone:DATACENTER:7443:rsui-standalone-lb.retail-rsui.prd-sam.prd.slb.sfdc.net
       resources:
         limits:
-          cpu: "0.1"
+          cpu: "1"
           memory: 64Mi
         requests:
-          cpu: "0.1"
+          cpu: "1"
           memory: 64Mi
       livenessProbe:
         initialDelaySeconds: 5
@@ -65,10 +65,10 @@ system:
       - retail-rsui/retail-setup:DATACENTER:7443:rsui-func-patch-lb.retail-rsui.prd-sam.prd.slb.sfdc.net
       resources:
         limits:
-          cpu: "0.1"
+          cpu: "1"
           memory: 64Mi
         requests:
-          cpu: "0.1"
+          cpu: "1"
           memory: 64Mi
       livenessProbe:
         initialDelaySeconds: 5
@@ -90,10 +90,10 @@ system:
       - retail-rsui/retail-setup:DATACENTER:7443:rsui-func-freeze-lb.retail-rsui.prd-sam.prd.slb.sfdc.net
       resources:
         limits:
-          cpu: "0.1"
+          cpu: "1"
           memory: 64Mi
         requests:
-          cpu: "0.1"
+          cpu: "1"
           memory: 64Mi
       livenessProbe:
         initialDelaySeconds: 5
@@ -119,10 +119,10 @@ system:
       - retail-rsui/retail-setup:DATACENTER:7443:rsui-perf-lb.retail-rsui.prd-sam.prd.slb.sfdc.net
       resources:
         limits:
-          cpu: "0.1"
+          cpu: "1"
           memory: 64Mi
         requests:
-          cpu: "0.1"
+          cpu: "1"
           memory: 64Mi
       livenessProbe:
         initialDelaySeconds: 5
@@ -168,13 +168,6 @@ system:
       - retail-cre/cre-sp-ccp-stage:DATACENTER_ALLENV:7442:cre-sp-ccp-stage-lb.retail-cre.prd-sam.prd.slb.sfdc.net
       - -endpoint
       - retail-cre/cre-sp-cre-test:DATACENTER_ALLENV:7443:cre-sp-cre-test-lb.retail-cre.prd-sam.prd.slb.sfdc.net
-      resources:
-        limits:
-          cpu: "0.1"
-          memory: 64Mi
-        requests:
-          cpu: "0.1"
-          memory: 64Mi
       livenessProbe:
         initialDelaySeconds: 5
         exec:
