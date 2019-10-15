@@ -1,0 +1,21 @@
+apiVersion: v1
+data:
+  sammanifestcasevalidator.json: |-
+    {
+      "enable-case-validator": true,
+      "ghe-tokenfile": "/etc/git-secret/github-token.txt",
+      "git-org": "sam",
+      "git-repo": "test-manifests",
+      "git-url": "https://git.soma.salesforce.com/api/v3/",
+      "gus-secrets-folder": "/etc/gus-secrets",
+      "num-worker-threads": 5,
+      "webhook-on": true,
+      "webhook-tokenfile": "/etc/webhook-secret/webhook-token.txt"
+    }
+kind: ConfigMap
+metadata:
+  creationTimestamp: null
+  labels:
+    sam.data.sfdc.net/owner: sam
+  name: sam-manifest-case-validator
+  namespace: default

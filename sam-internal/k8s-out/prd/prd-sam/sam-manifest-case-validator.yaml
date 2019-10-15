@@ -1,0 +1,59 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  labels:
+    name: sam-manifest-case-validator
+    sam.data.sfdc.net/owner: sam
+  name: sam-manifest-case-validator
+  namespace: default
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      apptype: control
+      name: sam-manifest-case-validator
+      sam.data.sfdc.net/owner: sam
+  template:
+    metadata:
+      labels:
+        apptype: control
+        name: sam-manifest-case-validator
+        sam.data.sfdc.net/owner: sam
+    spec:
+      containers:
+      - command:
+        - /sam/sam-manifest-case-validator
+        - --config=/config/sammanifestcasevalidator.json
+        - --v=99
+        - --alsologtostderr
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/sam/hypersam:2814-bdc65579e01f6a124d636d2cb837cb7e6d4afd6f
+        name: sam-manifest-case-validator
+        volumeMounts:
+        - mountPath: /config
+          name: config
+        - mountPath: /etc/webhook-secret
+          name: webhook-token
+          readOnly: true
+        - mountPath: /etc/git-secret
+          name: git-token
+          readOnly: true
+        - mountPath: /etc/gus-secrets
+          name: gus-secrets
+          readOnly: true
+      dnsPolicy: ClusterFirstWithHostNet
+      hostNetwork: true
+      nodeSelector:
+        master: "true"
+      volumes:
+      - configMap:
+          name: sam-manifest-case-validator
+        name: config
+      - name: webhook-token
+        secret:
+          secretName: case-validator-webhook-token
+      - name: git-token
+        secret:
+          secretName: case-validator-git-token
+      - name: gus-secrets
+        secret:
+          secretName: case-validator-gus-secrets
