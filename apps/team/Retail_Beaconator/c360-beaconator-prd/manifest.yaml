@@ -22,8 +22,6 @@ system:
       - name: SFDC_ENVIRONMENT
         value: stmfa
       args:
-      - -logging.dir
-      - /log
       - -endpoint
       - retail-dfs/dfs:DATACENTER:7442:dfs-lb.retail-dfs.prd-sam.prd.slb.sfdc.net
       - -endpoint
@@ -38,9 +36,6 @@ system:
       - retail-rsui/retail-setup:DATACENTER:7443:rsui-func-lb.retail-rsui.prd-sam.prd.slb.sfdc.net
       - -endpoint
       - retail-rsui/retail-setup-standalone:DATACENTER:7443:rsui-standalone-lb.retail-rsui.prd-sam.prd.slb.sfdc.net
-      volumeMounts:
-      - mountPath: /log
-        name: logvolbeacon
       resources:
         limits:
           cpu: "0.1"
@@ -60,8 +55,6 @@ system:
       - name: SFDC_ENVIRONMENT
         value: stmfb
       args:
-      - -logging.dir
-      - /log
       - -endpoint
       - retail-dfs/dfs:DATACENTER:7442:dfs-func-patch-lb.retail-dfs.prd-sam.prd.slb.sfdc.net
       - -endpoint
@@ -70,9 +63,6 @@ system:
       - retail-rsui/hub-persistence:DATACENTER:7442:hub-persistence-func-patch-lb.retail-rsui.prd-sam.prd.slb.sfdc.net
       - -endpoint
       - retail-rsui/retail-setup:DATACENTER:7443:rsui-func-patch-lb.retail-rsui.prd-sam.prd.slb.sfdc.net
-      volumeMounts:
-      - mountPath: /log
-        name: logvolbeacon
       resources:
         limits:
           cpu: "0.1"
@@ -92,17 +82,12 @@ system:
       - name: SFDC_ENVIRONMENT
         value: stmfc
       args:
-      - -logging.dir
-      - /log
       - -endpoint
       - retail-dfs/dfs:DATACENTER:7442:dfs-func-freeze-lb.retail-dfs.prd-sam.prd.slb.sfdc.net
       - -endpoint
       - retail-mds/metadata-service:DATACENTER:7443:metadata-service-prd-func-freeze-lb.retail-mds.prd-sam.prd.slb.sfdc.net
       - -endpoint
       - retail-rsui/retail-setup:DATACENTER:7443:rsui-func-freeze-lb.retail-rsui.prd-sam.prd.slb.sfdc.net
-      volumeMounts:
-      - mountPath: /log
-        name: logvolbeacon
       resources:
         limits:
           cpu: "0.1"
@@ -122,8 +107,6 @@ system:
       - name: SFDC_ENVIRONMENT
         value: mist
       args:
-      - -logging.dir
-      - /log
       - -endpoint
       - retail-dfs/dfs:DATACENTER:7442:dfs-lbpf.retail-dfs.prd-sam.prd.slb.sfdc.net
       - -endpoint
@@ -134,9 +117,6 @@ system:
       - retail-rsui/hub-persistence:DATACENTER:7442:hub-persistence-perf-lb.retail-rsui.prd-sam.prd.slb.sfdc.net
       - -endpoint
       - retail-rsui/retail-setup:DATACENTER:7443:rsui-perf-lb.retail-rsui.prd-sam.prd.slb.sfdc.net
-      volumeMounts:
-      - mountPath: /log
-        name: logvolbeacon
       resources:
         limits:
           cpu: "0.1"
@@ -156,8 +136,6 @@ system:
       - name: DUMMY_FORCE_PUSH 
         value: 3 # increse value to force push without any other changes 
       args:
-      - -logging.dir
-      - /log
       - -endpoint
       - retail-cre/cre-api-ccp-dev:DATACENTER_ALLENV:7442:cre-api-ccp-dev-lb.retail-cre.prd-sam.prd.slb.sfdc.net
       - -endpoint
@@ -190,9 +168,6 @@ system:
       - retail-cre/cre-sp-ccp-stage:DATACENTER_ALLENV:7442:cre-sp-ccp-stage-lb.retail-cre.prd-sam.prd.slb.sfdc.net
       - -endpoint
       - retail-cre/cre-sp-cre-test:DATACENTER_ALLENV:7443:cre-sp-cre-test-lb.retail-cre.prd-sam.prd.slb.sfdc.net
-      volumeMounts:
-      - mountPath: /log
-        name: logvolbeacon
       resources:
         limits:
           cpu: "0.1"
@@ -205,7 +180,3 @@ system:
         exec:
           command:
           - "/opt/beacon/is-alive.sh"
-    volumes:
-    - name: logvolbeacon
-      hostPath:
-        path: /home/sfdc-scone-beaconator/logs
