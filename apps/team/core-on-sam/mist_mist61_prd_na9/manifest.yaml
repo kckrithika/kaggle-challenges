@@ -455,15 +455,13 @@ system:
       livenessProbe:
         exec:
           command:
-          - touch
-          - ./livez
+          - echo
         initialDelaySeconds: 5
         periodSeconds: 5
       readinessProbe:
         exec:
           command:
-          - touch
-          - ./readyz
+          - echo
         initialDelaySeconds: 5
         periodSeconds: 5
       volumeMounts:
