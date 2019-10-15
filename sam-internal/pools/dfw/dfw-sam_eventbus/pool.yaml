@@ -1,0 +1,11 @@
+---
+# List of teams that can deploy apps to this pool.
+# Team name must match the folder under apps/.  If that folder does not yet exist have the customer follow steps here:
+# https://git.soma.salesforce.com/sam/manifests/blob/master/apps/team/README.md
+# Run k8s-in/build.sh after updating pools
+access:
+  - 'team/emp_aqueduct'
+
+# Each pool is managed by a SAM control stack running in one estate
+# Name here is an exact match on a file under estates/estates repo
+controlEstate: dfw/dfw-sam
