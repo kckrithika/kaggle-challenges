@@ -1213,6 +1213,10 @@ data:
           ],
           "name": "ProductionStatistics",
           "note": "This shows statistics for SAM in Production"
+        },
+        {
+          "name": "Stuck Init Containers Including MadKub",
+          "sql": "select \n  controlEstate, \n  namespace, \n  name as podName,\n  Payload-\u003e\u003e'$.spec.nodeName' as nodeName, \n  Payload-\u003e\u003e'$.status.phase' as phase,\n  Payload-\u003e\u003e'$.status.initContainerStatuses[*].restartCount' as initContainerRestartCount,\n  Payload-\u003e\u003e'$.status.initContainerStatuses[*].state.*.message' as initContainerMessage,\n  Payload-\u003e\u003e'$.status.message' as message\nfrom k8s_resource\nwhere apikind = 'Pod' and Payload-\u003e\u003e'$.status.phase' = 'Pending' and Payload-\u003e\u003e'$.status.initContainerStatuses[*].state.*.message' is not null"
         }
       ]
     }
