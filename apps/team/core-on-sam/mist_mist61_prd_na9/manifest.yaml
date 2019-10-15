@@ -449,6 +449,33 @@ system:
         type: client
       name: tls-client-cert
   - containers:
+    - name: sfproxy-debug
+      command: ['sh', '-c', 'trap "echo Done; exit 0" SIGINT SIGTERM; while true; do echo Sleeping...; sleep 3600; done']
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/victor.li/hyperslb:victor.li-201909181103
+      livenessProbe:
+        exec:
+          command:
+          - echo ok
+        initialDelaySeconds: 5
+        periodSeconds: 5
+      readinessProbe:
+        exec:
+          command:
+          - echo ok
+        initialDelaySeconds: 5
+        periodSeconds: 5
+      volumeMounts:
+      - mountPath: /client-certs
+        name: tls-client-cert
+    count: 1
+    identity:
+      pod: na9
+    name: na9-mist61sfproxy-debug-prd
+    volumes:
+    - maddogCert:
+        type: client
+      name: tls-client-cert
+  - containers:
     - args:
       - --clusters.external-clusters[0]=ajnafunneldirect:HTTP1
       - --clusters.external-clusters[1]=spaasmesh:HTTP2
