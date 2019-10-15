@@ -136,7 +136,7 @@
         (
           select
             ControlEstate,
-            LEAST(FLOOR(PodAgeInMinutes/60.0/24.0),10) as PodAgeDays,
+            LEAST(FLOOR(PodAgeInMinutes/60.0/24.0),5) as PodAgeDays,
             1 as Count
           from podDetailView
           where IsSamApp = True and ProduceAgeInMinutes<60 and name not like 'syntheticwd%'
@@ -153,16 +153,6 @@
           select '" + bed + "' as ControlEstate, 4 as PodAgeDays, 0 as Count
           union all
           select '" + bed + "' as ControlEstate, 5 as PodAgeDays, 0 as Count
-          union all
-          select '" + bed + "' as ControlEstate, 6 as PodAgeDays, 0 as Count
-          union all
-          select '" + bed + "' as ControlEstate, 7 as PodAgeDays, 0 as Count
-          union all
-          select '" + bed + "' as ControlEstate, 8 as PodAgeDays, 0 as Count
-          union all
-          select '" + bed + "' as ControlEstate, 9 as PodAgeDays, 0 as Count
-          union all
-          select '" + bed + "' as ControlEstate, 10 as PodAgeDays, 0 as Count
         ) as ss
         where PodAgeDays IS NOT NULL
         group by ControlEstate, PodAgeDays
