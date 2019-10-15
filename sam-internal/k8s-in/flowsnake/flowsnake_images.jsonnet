@@ -181,8 +181,9 @@ local utils = import "util_functions.jsonnet";
         # off-peak: 1pm-9pm PDT
         "prod-emea": self.prod {
             image_tags+: {
-                            spark_operator_image_tag: "jenkins-dva-transformation-spark-on-k8s-operator-PR-40-5-itest",  # 10/2 image that bumps up client throttle
-                        },
+                spark_operator_image_tag: "jenkins-dva-transformation-spark-on-k8s-operator-PR-40-5-itest",  # 10/2 image that bumps up client throttle
+                prometheus_funnel_image_tag: "37",
+            },
         },
 
         # NA (North America): DFW, IAD, IA2, ORD, PHX, PH2, YHU, YUL
