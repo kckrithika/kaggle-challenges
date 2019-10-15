@@ -4,8 +4,8 @@
     scrape_interval: "60s",
   },
   
-  # This section configures posting to the Prometheus-Funnel bridge available
-  # in the Flowsnake fleet.
+  # This section configures posting to the Prometheus-Funnel bridge.
+  # Please use it as-is.
   remote_write: [
     {
       url: "http://localhost:8000",
@@ -25,7 +25,7 @@
         {
           role: "pod",
           namespaces: {
-            names: [ "carl-spark-test" ],
+            names: [ "retail-cre" ],
           }
         }
       ],
@@ -70,7 +70,7 @@
           source_labels: [ "__meta_kubernetes_pod_label_spark_role" ],
           target_label: "spark_role",
         },
-        
+       
       ],
       
       # Rules for metrics and general tags
@@ -94,7 +94,7 @@
           regex: "jvm_.*",
           action: "drop",
         },
-
+ 
         # JMX Beans sometimes have a "service" label, but this collides with the Argus definition
         # of service.  So copy it to another tag and drop the original.
         {
@@ -105,7 +105,6 @@
           regex: "service",
           action: "labeldrop",
         },
-
       ],
     },
   ],

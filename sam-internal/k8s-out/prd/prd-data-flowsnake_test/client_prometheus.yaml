@@ -8,7 +8,7 @@ items:
       "role": "pod"}], "metric_relabel_configs": [{"action": "labeldrop", "regex":
       "job"}, {"action": "labeldrop", "regex": "instance"}, {"action": "drop", "regex":
       "jvm_.*", "source_labels": ["__name__"]}, {"source_labels": ["service"], "target_label":
-      "jmx_service"}, {"action": "labeldrop", "regex": ["service"]}], "relabel_configs":
+      "jmx_service"}, {"action": "labeldrop", "regex": "service"}], "relabel_configs":
       [{"action": "keep", "regex": "true;[0-9]+", "source_labels": ["__meta_kubernetes_pod_annotation_prometheus_io_scrape",
       "__meta_kubernetes_pod_annotation_prometheus_io_port"]}, {"action": "replace",
       "regex": "([0-9]+);(.*):.*", "replacement": "${2}:${1}", "source_labels": ["__meta_kubernetes_pod_annotation_prometheus_io_port",
