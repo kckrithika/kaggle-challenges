@@ -1,0 +1,31 @@
+system:
+  functions:
+  - name: keymaker-dev
+    count: 1
+    containers:
+    - name: keymaker
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/ccp/keymaker:3e51f90
+      env:
+          - name: KEYMAKER_SLEEP_INTERVAL
+            value: 15
+
+      livenessProbe:
+        exec:
+          command:
+            - "true"
+        initialDelaySeconds: 120
+        periodSeconds: 5
+
+      volumeMounts:
+      - mountPath: /client-certs
+        name: client-certs
+      - mountPath: /server-certs
+        name: server-certs
+
+    volumes:
+    - name: client-certs
+      maddogCert:
+        type: client
+    - name: server-certs
+      maddogCert:
+        type: server
