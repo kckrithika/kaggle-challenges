@@ -8,8 +8,8 @@ system:
       count: 1
       containers:
         - name: task-service-service
-          #      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/vsonnathi/task-service:1
-          image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/vsonnathi/task-service:vsonnathi-20191015-c77890b
+          #      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/vsonnathi/task-service:1  vsonnathi-20191015-c77890b
+          image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/vsonnathi/task-service:vsonnathi-20191015-0a43423
           # If your service doesn't serve HTTP traffic then you can remove the scone-http 8080 port.
           ports:
             - containerPort: 8080
