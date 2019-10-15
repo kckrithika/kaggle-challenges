@@ -229,9 +229,4 @@ system:
           lbtype: http
           tls: true
           reencrypt: true
-        - port: 9090
-          targetport: 7014
-          lbtype: http
-          tls: false
-          reencrypt: false
 

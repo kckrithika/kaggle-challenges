@@ -236,7 +236,7 @@ system:
   # SLB
   #####################################################################################
   loadbalancers:
-    - lbname: cast-test
+    - lbname: cast-dev
       function: cast-prd-dev
       slbEnabled: true
       ports:
