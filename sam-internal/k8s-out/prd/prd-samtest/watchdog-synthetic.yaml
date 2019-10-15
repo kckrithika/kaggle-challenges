@@ -27,7 +27,7 @@ spec:
         - -alertThreshold=1h
         - -emailFrequency=336h
         - -laddr=0.0.0.0:8083
-        - -imageName=ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/sam/hypersam:2814-bdc65579e01f6a124d636d2cb837cb7e6d4afd6f
+        - -imageName=ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/sam/hypersam:2820-4e0e30a3d1a2b2331cadc44509f6d16da6829c64
         - -watchDogKind=Deployment
         - -enableStatefulChecks=true
         - -funnelEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80
@@ -38,7 +38,7 @@ spec:
         env:
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig-platform
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/sam/hypersam:2814-bdc65579e01f6a124d636d2cb837cb7e6d4afd6f
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/sam/hypersam:2820-4e0e30a3d1a2b2331cadc44509f6d16da6829c64
         name: watchdog-synthetic
         ports:
         - containerPort: 8083
