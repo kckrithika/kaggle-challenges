@@ -1,11 +1,16 @@
+# This is the default config template for client Prometheus instances.
+# To use, copy it to a folder with the name of the namespace you're deploying the
+# Prometheus into, and then replace the <<YOUR NAMESPACE HERE>> token below
+# with the name of the namespace.
+
 {
   global: {
     # Update metrics every minute. This is the finest granularity Argus displays.
     scrape_interval: "60s",
   },
   
-  # This section configures posting to the Prometheus-Funnel bridge available
-  # in the Flowsnake fleet.
+  # This section configures posting to the Prometheus-Funnel bridge.
+  # Please use it as-is.
   remote_write: [
     {
       url: "http://localhost:8000",
@@ -25,7 +30,7 @@
         {
           role: "pod",
           namespaces: {
-            names: [ "carl-spark-test" ],
+            names: [ "<<YOUR NAMESPACE HERE>>" ],
           }
         }
       ],
@@ -94,7 +99,7 @@
           regex: "jvm_.*",
           action: "drop",
         },
-
+        
         # JMX Beans sometimes have a "service" label, but this collides with the Argus definition
         # of service.  So copy it to another tag and drop the original.
         {
@@ -104,8 +109,7 @@
         {
           regex: "service",
           action: "labeldrop",
-        },
-
+        },        
       ],
     },
   ],

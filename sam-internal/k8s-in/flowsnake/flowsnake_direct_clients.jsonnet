@@ -107,6 +107,7 @@ local cre_production = {
                 owner_name: "CRE",
                 namespace: "retail-cre",
                 pki_namespace: "retail-cre",
+                prometheus_config: import "configs/client/retail-cre/prometheus-config.jsonnet",
                 users: [
                     "retail-cre.pmadisetti",
                     "retail-cre.lbackstrom",
