@@ -24,13 +24,10 @@ system:
       - {name: PKI_TRUSTSTORE_DIR, value: /home/scone/client-certs}
       - {name: PKI_KEYSTORE_DIR, value: /home/scone/client-certs/client}
       - {name: JAVA_OPTS, value: '-server -XX:MaxMetaspaceSize=256m -Xmx1024m -Xms1024m'}
-      - {name: TESTRECIPE_INTERVAL, value: 300s}
-      - {name: TESTRECIPE_TIMEOUT, value: 240s}
-      - {name: TESTRECIPE_LASTSUCCESSTARGET, value: 360s}
       - {name: TESTRECIPE_MAESTROPINGTEST, value: 'true'}
       - {name: DEPLOYMENT_ID, value: frf-group1}
       - {name: HANDLED_PODS_PATTERN, value: 'cs[0-9]+|moana-driver-group1'}
-      image: sfci/insights/moana-driver:release-2019.09.a.27-78c6ef1
+      image: sfci/insights/moana-driver:release-2019.09.a.28-84adc9b
       livenessProbe:
         httpGet: {path: /manage/health, port: 15372}
         initialDelaySeconds: 30
@@ -66,7 +63,7 @@ system:
       - {name: K8S_CPU_LIMIT_APPLY, value: 'false'}
       - {name: STARTUP_JOB_ENABLED, value: 'false'}
       - {name: HANDLED_PODS_PATTERN, value: 'cs[0-9]+|moana-driver-group1'}
-      image: sfci/insights/jobcontroller:release-2019.08.c.28-5197207
+      image: sfci/insights/jobcontroller:release-2019.09.a.29-0a9f30e
       livenessProbe:
         httpGet: {path: /manage/health, port: 15372}
         initialDelaySeconds: 90
