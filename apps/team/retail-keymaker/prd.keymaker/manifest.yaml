@@ -4,9 +4,10 @@ system:
     count: 1
     containers:
     - name: keymaker
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/ccp/keymaker:a76bdc6
-
-      command: ["/opt/keymaker/sbin/keymaker-samtest.sh"]
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/ccp/keymaker:5ae0dc8
+      env:
+          - name: KEYMAKER_SLEEP_INTERVAL
+            value: 15
 
       livenessProbe:
         exec:
