@@ -84,6 +84,10 @@ data:
     # configuration.
     rootNamespace: mesh-control-plane
 
+    # Configures DNS certificates provisioned through Chiron linked into Pilot.
+    certificates:
+      []
+
     defaultConfig:
       #
       # TCP connection timeout between Envoy & the application, and between Envoys.  Used for static clusters

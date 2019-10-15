@@ -13,10 +13,7 @@
 #
 gateways:
   enabled: true
-#
-# sidecar-injector webhook configuration, refer to the
-# charts/sidecarInjectorWebhook/values.yaml for detailed configuration
-#
+
   istio-ingressgateway:
     enabled: true
     autoscaleEnabled: false
@@ -29,17 +26,24 @@ gateways:
   istio-ilbgateway:
     rollingMaxSurge: 1
     rollingMaxUnavailable: 0
+
+#
+# sidecar-injector webhook configuration, refer to the
+# charts/sidecarInjectorWebhook/values.yaml for detailed configuration
+#
 sidecarInjectorWebhook:
   enabled: true
+  replicaCount: 3
+  rollingMaxSurge: 3
+  rollingMaxUnavailable: 1
+
 #
 # galley configuration, refer to charts/galley/values.yaml
 # for detailed configuration
 #
-  replicaCount: 3
-  rollingMaxSurge: 3
-  rollingMaxUnavailable: 1
 galley:
   enabled: false
+
 #
 # mixer configuration
 #
@@ -53,19 +57,17 @@ mixer:
     rollingMaxUnavailable: 1
   telemetry:
     enabled: false
-#
-# pilot configuration
-#
-# @see charts/pilot/values.yaml
     replicaCount: 3
     rollingMaxSurge: 3
     rollingMaxUnavailable: 1
   enabled: false
+
+#
+# pilot configuration
+#
+# @see charts/pilot/values.yaml
 pilot:
   enabled: true
-#
-# security configuration
-#
   resources:
     limits:
       cpu: 4000m
@@ -80,6 +82,10 @@ pilot:
   sidecar: true
   env:
     PILOT_PUSH_THROTTLE: 10
+
+#
+# security configuration
+#
 security:
   enabled: false
 #
@@ -87,31 +93,37 @@ security:
 #
 nodeagent:
   enabled: false
+
 #
 # addon grafana configuration
 #
 grafana:
   enabled: false
+
 #
 # addon prometheus configuration
 #
 prometheus:
   enabled: false
+
 #
 # addon jaeger tracing configuration
 #
 tracing:
   enabled: false
+
 #
 # addon kiali tracing configuration
 #
 kiali:
   enabled: false
+
 #
 # addon certmanager configuration
 #
 certmanager:
   enabled: false
+
 #
 # Istio CNI plugin enabled
 #   This must be enabled to use the CNI plugin in Istio.  The CNI plugin is installed separately.
@@ -120,10 +132,12 @@ certmanager:
 #
 istio_cni:
   enabled: false
+
 # addon Istio CoreDNS configuration
 #
 istiocoredns:
   enabled: false
+
 # Common settings used among istio subcharts.
 global:
   # Default hub for Istio images.

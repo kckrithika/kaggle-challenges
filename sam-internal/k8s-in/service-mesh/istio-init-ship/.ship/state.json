@@ -3,13 +3,13 @@
     "config": null,
     "releaseName": "istio-init",
     "namespace": "mesh-control-plane",
-    "upstream": "https://github.com/istio/istio/tree/cae30f7ab8efae3fe943be30ee437d7b08bd68a1/install/kubernetes/helm/istio-init",
+    "upstream": "https://github.com/istio/istio/tree/bddfeebe2e388b6619860862d893ddd0eaee68f8/install/kubernetes/helm/istio-init",
     "metadata": {
       "applicationType": "helm",
       "sequence": 0,
       "icon": "https://istio.io/favicons/android-192x192.png",
       "name": "istio-init",
-      "releaseNotes": "Add jobs resources to avoid forbidden by some policies (#17433)",
+      "releaseNotes": "Add standalone istioctl to the release and update to use new dev builds (#17762)\n\n* Add standalone istioctl to release\n\n* Update to use dev builds\n\n* Add operator",
       "version": "1.1.0",
       "license": {
         "id": "",
@@ -34,7 +34,7 @@
         "arch": "amd64"
       }
     },
-    "contentSHA": "1bb43f1299c5ce3f2d4ae2f2cd7a2faae1f2e7e3b5e2a9a48e3f5b5a0fb1fd7e",
+    "contentSHA": "d6441c52caca386d8ad9fd785cbf5e833c669ab239b35094eb817f7301c14700",
     "lifecycle": {
       "stepsCompleted": {
         "intro": true,

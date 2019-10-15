@@ -3,13 +3,13 @@
     "config": null,
     "releaseName": "istio",
     "namespace": "mesh-control-plane",
-    "upstream": "https://github.com/istio/istio/tree/cae30f7ab8efae3fe943be30ee437d7b08bd68a1/install/kubernetes/helm/istio",
+    "upstream": "https://github.com/istio/istio/tree/bddfeebe2e388b6619860862d893ddd0eaee68f8/install/kubernetes/helm/istio",
     "metadata": {
       "applicationType": "helm",
       "sequence": 0,
       "icon": "https://istio.io/favicons/android-192x192.png",
       "name": "istio",
-      "releaseNotes": "Allow to configure service registries via helm (#16853)\n\n* Allow to configure service registries via helm\n\n* Fix Consul spelling",
+      "releaseNotes": "fix trailing space in meshNetworks to allow edits (#17847)\n\nrelated https://github.com/istio/istio/pull/16820",
       "version": "1.1.0",
       "license": {
         "id": "",
@@ -34,7 +34,7 @@
         "arch": "amd64"
       }
     },
-    "contentSHA": "110597b502dd55bfe500177e83f09ab96bb20338de7d928fdde559867bfd3035",
+    "contentSHA": "eac96961d64d89229a569f896458f0ac13edfc8bdcd66507a7437fbee65d9f21",
     "lifecycle": {
       "stepsCompleted": {
         "intro": true,
