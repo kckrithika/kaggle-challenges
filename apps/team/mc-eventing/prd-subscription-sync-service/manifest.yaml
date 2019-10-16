@@ -1,0 +1,47 @@
+# created by scone-gen 3a0c48cea
+
+apiVersion: v1
+
+system:
+  notifications:
+    email:
+      - gmercer@salesforce.com
+#      - mc-devbigdata@salesforce.com
+#      - MC-MessagingInboundTeam@salesforce.com
+  functions:
+    - name: subscription-sync-service
+      identity:
+        serviceName: wh-con
+      count: 1
+      containers:
+        - name: subscription-sync-service
+          # image: sfci/mc-eventing/subscription-sync:1
+          image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mc-eventing/subscription-sync:GM_TEST
+          # This line makes sure that the last lines of the log on the console gets sent to Splunk on early termination
+          terminationMessagePolicy: "FallbackToLogsOnError"
+          # If your service doesn't serve HTTP traffic then you can remove the scone-http 8080 port.
+          ports:
+            - containerPort: 7020
+              name: grpc-svc
+            - containerPort: 15372
+              name: scone-mgmt
+          livenessProbe:
+            initialDelaySeconds: 30
+            httpGet:
+              path: /manage/health
+              port: 15372
+          readinessProbe:
+            timeoutSeconds: 10
+            httpGet:
+              path: /manage/ready
+              port: 15372
+          volumeMounts:
+            - name: cert
+              mountPath: /certs
+          resources:
+            limits: { cpu: "2", memory: "4Gi" }
+            requests: { cpu: "2", memory: "2Gi" }
+      volumes:
+        - name: cert
+          maddogCert:
+            type: client
