@@ -5,7 +5,7 @@ system:
       - atulsingh@salesforce.com
   functions:
   - name: gadget-sam-test
-    count: 1
+    count: 2
     containers:
     - name: gadget-sam-test-service
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/atulsingh/gadget/gadget-core:latest
