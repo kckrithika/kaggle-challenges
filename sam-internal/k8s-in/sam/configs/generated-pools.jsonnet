@@ -39,6 +39,18 @@
     },
     {
       "namespaces": [
+        "emp-aqueduct"
+      ],
+      "access": [
+        "team/emp_aqueduct"
+      ],
+      "controlEstate": "cdg-sam",
+      "estate": "cdg-sam_eventbus",
+      "kingdom": "cdg",
+      "superPod": "None"
+    },
+    {
+      "namespaces": [
         "gater",
         "ccait",
         "service-mesh",
@@ -375,6 +387,18 @@
     },
     {
       "namespaces": [
+        "emp-aqueduct"
+      ],
+      "access": [
+        "team/emp_aqueduct"
+      ],
+      "controlEstate": "dfw-sam",
+      "estate": "dfw-sam_eventbus",
+      "kingdom": "dfw",
+      "superPod": "None"
+    },
+    {
+      "namespaces": [
         "gater",
         "ccait",
         "service-mesh",
@@ -588,6 +612,18 @@
       ],
       "controlEstate": "fra-sam",
       "estate": "fra-sam_dp",
+      "kingdom": "fra",
+      "superPod": "None"
+    },
+    {
+      "namespaces": [
+        "emp-aqueduct"
+      ],
+      "access": [
+        "team/emp_aqueduct"
+      ],
+      "controlEstate": "fra-sam",
+      "estate": "fra-sam_eventbus",
       "kingdom": "fra",
       "superPod": "None"
     },
@@ -1871,6 +1907,18 @@
     },
     {
       "namespaces": [
+        "emp-aqueduct"
+      ],
+      "access": [
+        "team/emp_aqueduct"
+      ],
+      "controlEstate": "iad-sam",
+      "estate": "iad-sam_eventbus",
+      "kingdom": "iad",
+      "superPod": "None"
+    },
+    {
+      "namespaces": [
         "gater",
         "ccait",
         "service-mesh",
@@ -2095,6 +2143,18 @@
     },
     {
       "namespaces": [
+        "emp-aqueduct"
+      ],
+      "access": [
+        "team/emp_aqueduct"
+      ],
+      "controlEstate": "lo2-sam",
+      "estate": "lo2-sam_eventbus",
+      "kingdom": "lo2",
+      "superPod": "None"
+    },
+    {
+      "namespaces": [
         "gater",
         "ccait",
         "service-mesh",
@@ -2210,6 +2270,18 @@
       ],
       "controlEstate": "lo3-sam",
       "estate": "lo3-sam_dp",
+      "kingdom": "lo3",
+      "superPod": "None"
+    },
+    {
+      "namespaces": [
+        "emp-aqueduct"
+      ],
+      "access": [
+        "team/emp_aqueduct"
+      ],
+      "controlEstate": "lo3-sam",
+      "estate": "lo3-sam_eventbus",
       "kingdom": "lo3",
       "superPod": "None"
     },
@@ -2779,6 +2851,18 @@
     },
     {
       "namespaces": [
+        "emp-aqueduct"
+      ],
+      "access": [
+        "team/emp_aqueduct"
+      ],
+      "controlEstate": "par-sam",
+      "estate": "par-sam_eventbus",
+      "kingdom": "par",
+      "superPod": "None"
+    },
+    {
+      "namespaces": [
         "gater",
         "ccait",
         "service-mesh",
@@ -3214,6 +3298,18 @@
       ],
       "controlEstate": "phx-sam",
       "estate": "phx-sam_eaas",
+      "kingdom": "phx",
+      "superPod": "None"
+    },
+    {
+      "namespaces": [
+        "emp-aqueduct"
+      ],
+      "access": [
+        "team/emp_aqueduct"
+      ],
+      "controlEstate": "phx-sam",
+      "estate": "phx-sam_eventbus",
       "kingdom": "phx",
       "superPod": "None"
     },

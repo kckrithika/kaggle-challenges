@@ -222,6 +222,30 @@ items:
 - apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: RoleBinding
   metadata:
+    name: emp-aqueduct:dfw-sam_eventbus:rolebinding
+    namespace: emp-aqueduct
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: minion:role
+  subjects:
+  - kind: User
+    name: shared0-samminionaqueduct1-1-dfw.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionaqueduct1-2-dfw.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionaqueduct1-3-dfw.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionaqueduct2-1-dfw.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionaqueduct2-2-dfw.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionaqueduct3-1-dfw.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionaqueduct3-2-dfw.ops.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1beta1
+  kind: RoleBinding
+  metadata:
     name: ccait:dfw-sam_gater:rolebinding
     namespace: ccait
   roleRef:
