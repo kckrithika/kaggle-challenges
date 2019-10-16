@@ -9,7 +9,7 @@ system:
   functions:
   - name: metadata-service-prd-func-freeze
     identity:
-      serviceName: metadata-service
+      serviceName: metadata-service-prd-func-patch
     count: 1
     labels:
       app: metadata-service
