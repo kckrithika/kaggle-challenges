@@ -2,8 +2,6 @@
     "kingdomEstates": [
       "prd/prd-samtest",
       "prd/prd-samdev",
-      "prd/prd-sam",
-      "xrd/xrd-sam",
       "cdg/cdg-sam",
       "cdu/cdu-sam",
       "chx/chx-sam",
@@ -14,8 +12,10 @@
       "hnd/hnd-sam",
       "ia2/ia2-sam",
       "ia4/ia4-sam",
-      "hio/hio-sam",
+      "ia5/ia5-sam",
+      "prd/prd-sam",
       "ttd/ttd-sam",
-      "was/wax-sam"
+      "wax/wax-sam",
+      "xrd/xrd-sam"
     ]
   }  
