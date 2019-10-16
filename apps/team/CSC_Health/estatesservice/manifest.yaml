@@ -5,7 +5,7 @@ system:
       - estates@salesforce.com
   functions:
   - name: estatesservice
-    count: 2
+    count: 3
     volumes:
     - name: server-cert
       maddogCert:
