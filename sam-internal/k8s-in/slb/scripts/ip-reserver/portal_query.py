@@ -34,29 +34,31 @@ def __get_portal_info(url):
     if url in portal_info_cache:
         return portal_info_cache[url]
 
-    print("Connecting to {}".format(url))
+    try:
+        ssl._create_default_https_context = ssl._create_unverified_context
+        conn = urllib.request.urlopen(url)
+        byte_response = conn.read()
 
-    ssl._create_default_https_context = ssl._create_unverified_context
-    conn = urllib.request.urlopen(url)
-    byte_response = conn.read()
+        str_response = byte_response.decode("utf8")
+        conn.close()
 
-    str_response = byte_response.decode("utf8")
-    conn.close()
+        tree = etree.parse(StringIO(str_response), etree.HTMLParser())
 
-    tree = etree.parse(StringIO(str_response), etree.HTMLParser())
+        root = tree.getroot()
+        results = root.xpath("//table[@id='serviceTable']/tr/td[position() = 1]|//table[@id='serviceTable']/tr/td[position() = 2]/a|//table[@id='serviceTable']/tr/td[position() = 3]")
 
-    root = tree.getroot()
-    results = root.xpath("//table[@id='serviceTable']/tr/td[position() = 1]|//table[@id='serviceTable']/tr/td[position() = 2]/a|//table[@id='serviceTable']/tr/td[position() = 3]")
+        portal_entries = []
+        index = 0
+        while index < len(results):
+            portal_entries.append(PortalEntry(results[index].text, results[index + 1].text, results[index + 2].text))
+            index += 3
 
-    portal_entries = []
-    index = 0
-    while index < len(results):
-        portal_entries.append(PortalEntry(results[index].text, results[index + 1].text, results[index + 2].text))
-        index += 3
+        portal_info_cache[url] = portal_entries
+        return portal_entries
+    except urllib.error.HTTPError as e:
+        print("Failed to reach {}: {}".format(url, e))
+        return []
 
-    portal_info_cache[url] = portal_entries
-
-    return portal_entries
 
 
 def get_portal_entry_from_portal(kingdom, cluster, evaluator, value):

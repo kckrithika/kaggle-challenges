@@ -7,10 +7,19 @@ import os
 import yaml
 
 DEFAULT_CLUSTER = "sam"
+DEFAULT_IP_TYPE = "private_nonreserved"
+
 FQDN_SUFFIX = ".slb.sfdc.net"
 
+IP_TYPE_PRIVATE_NON_RESERVED = DEFAULT_IP_TYPE
+IP_TYPE_PRIVATE_RESERVED = "private_reserved"
+IP_TYPE_PUBLIC_RESERVED = "public_reserved"
+IP_TYPE_PUBLIC_ACTIVE = "public_active"
+
+KINGDOMS = ["frf", "phx", "iad", "ord", "dfw", "hnd", "xrd", "cdg", "fra", "ia2", "ph2", "par", "ukb", "lo2", "lo3", "ia4", "prd-sam", "prd-samtwo"]
+
+MANIFEST_YAML_ANNOTATIONS_FIELD_NAME = "annotations"
 MANIFEST_YAML_FILE_NAME = "manifest.yaml"
-MANIFEST_YAML_KINGDOMS_FIELD_NAME = "kingdoms"
 MANIFEST_YAML_LOAD_BALANCERS_FIELD_NAME = "loadbalancers"
 MANIFEST_YAML_SYSTEM_FIELD_NAME = "system"
 
@@ -25,19 +34,17 @@ SPACES_IN_TAB = "  "
 VIPS_YAML_FILE_NAME = "vips.yaml"
 VIPS_YAML_LBNAME_FIELD_NAME = "lbname"
 VIPS_YAML_CUSTOM_LBNAME_FIELD_NAME = "customlbname"
-VIPS_YAML_PUBLIC_FIELD_NAME = "public"
-VIPS_YAML_RESERVED_FIELD_NAME = "reserved"
+VIPS_YAML_IP_TYPE_FIELD_NAME = "iptype"
 
 vips_file_path_regex = re.compile(r".*team/([a-zA-Z0-9-_]+)/vips/([a-z][a-z0-9]{2,})/(([a-zA-Z0-9-_]+)/)?vips\.yaml")
 
 
 class VipMetadata:
-    def __init__(self, kingdom, cluster, fqdn, reserved, public):
+    def __init__(self, kingdom, cluster, fqdn, ip_type):
         self.kingdom = kingdom
         self.cluster = cluster
         self.fqdn = fqdn
-        self.reserved = reserved
-        self.public = public
+        self.ip_type = ip_type
 
 
 def get_vip_metadata_from_vip_yaml(vip, vip_file_path):
@@ -49,10 +56,9 @@ def get_vip_metadata_from_vip_yaml(vip, vip_file_path):
     if cluster is None:
         cluster = kingdom + "-" + DEFAULT_CLUSTER
 
-    reserved = vip[VIPS_YAML_RESERVED_FIELD_NAME] if VIPS_YAML_RESERVED_FIELD_NAME in vip else None
-    public = vip[VIPS_YAML_PUBLIC_FIELD_NAME] if VIPS_YAML_PUBLIC_FIELD_NAME in vip else None
+    ip_type = vip[VIPS_YAML_IP_TYPE_FIELD_NAME] if VIPS_YAML_IP_TYPE_FIELD_NAME in vip else DEFAULT_IP_TYPE
 
-    return VipMetadata(kingdom, cluster, get_fqdn(vip, kingdom, team_name), reserved, public)
+    return VipMetadata(kingdom, cluster, get_fqdn(vip, kingdom, team_name), ip_type)
 
 
 def get_fqdn(vip, kingdom, team_name):
@@ -72,7 +78,7 @@ def get_fqdn_from_portal(kingdom, cluster, lbname):
     if portal_entry is not None:
         return portal_entry.fqdn
 
-    raise Exception("Could not find fqdn for {}".format(lbname))
+    return None
 
 
 def get_first_three_octets(subnet):
@@ -91,16 +97,16 @@ def get_vip_metadatas(file_name, path):
         if MANIFEST_YAML_LOAD_BALANCERS_FIELD_NAME not in manifest:
             return []
 
-        load_balancers = manifest[MANIFEST_YAML_LOAD_BALANCERS_FIELD_NAME]
         vip_metadatas = []
-        for lb in load_balancers:
-            if MANIFEST_YAML_KINGDOMS_FIELD_NAME not in lb:
-                continue
+        for lb in manifest[MANIFEST_YAML_LOAD_BALANCERS_FIELD_NAME]:
 
-            reserved = lb[VIPS_YAML_RESERVED_FIELD_NAME] if VIPS_YAML_RESERVED_FIELD_NAME in lb else None
-            public = lb[VIPS_YAML_PUBLIC_FIELD_NAME] if VIPS_YAML_PUBLIC_FIELD_NAME in lb else None
+            ip_type = DEFAULT_IP_TYPE
+            if MANIFEST_YAML_ANNOTATIONS_FIELD_NAME in lb:
+                annotations = lb[MANIFEST_YAML_ANNOTATIONS_FIELD_NAME]
+                if VIPS_YAML_IP_TYPE_FIELD_NAME in annotations:
+                    ip_type = annotations[VIPS_YAML_IP_TYPE_FIELD_NAME]
 
-            for kingdom in lb[MANIFEST_YAML_KINGDOMS_FIELD_NAME]:
+            for kingdom in KINGDOMS:
                 cluster = kingdom + "-" + DEFAULT_CLUSTER
 
                 # This is the case where the user has provided a cluster such as prd-sam, prd-samtwo etc
@@ -108,8 +114,11 @@ def get_vip_metadatas(file_name, path):
                     cluster = kingdom
                     kingdom = kingdom.split("-")[0]
 
-                lbname = lb[VIPS_YAML_LBNAME_FIELD_NAME]
-                vip_metadatas.append(VipMetadata(kingdom, cluster, get_fqdn_from_portal(kingdom, cluster, lbname), reserved, public))
+                fqdn = get_fqdn_from_portal(kingdom, cluster, lb[VIPS_YAML_LBNAME_FIELD_NAME])
+                if fqdn is None:
+                    continue
+
+                vip_metadatas.append(VipMetadata(kingdom, cluster, fqdn, ip_type))
         return vip_metadatas
 
     elif file_name == VIPS_YAML_FILE_NAME:
@@ -132,20 +141,17 @@ def process_vip_files(root_vip_yaml_path, public_reserved_ips, private_reserved_
             vip_metadatas = get_vip_metadatas(file_name, full_path)
 
             for vip_metadata in vip_metadatas:
-                if vip_metadata.reserved is None:
-                    continue
-
-                # Ignores the public field when reserved is false in case the public field is set improperly
-                # The script will delete the reserved IP wherever it is
-                if not vip_metadata.reserved:
-                    public_vips_to_delete.append(vip_metadata)
-                    delete_ip(vip_metadata.fqdn, vip_metadata.cluster, private_reserved_ips)
-                elif vip_metadata.public is None or not vip_metadata.public:
-                    public_vips_to_delete.append(vip_metadata)
-                    add_private_ip(vip_metadata.kingdom, vip_metadata.cluster, vip_metadata.fqdn, private_reserved_ips)
-                else:
+                if vip_metadata.ip_type == IP_TYPE_PUBLIC_ACTIVE or vip_metadata.ip_type == IP_TYPE_PUBLIC_RESERVED:
                     delete_ip(vip_metadata.fqdn, vip_metadata.cluster, private_reserved_ips)
                     public_vips_to_add.append(vip_metadata)
+                else:
+                    public_vips_to_delete.append(vip_metadata)
+                    if vip_metadata.ip_type == IP_TYPE_PRIVATE_RESERVED:
+                        add_private_ip(vip_metadata.kingdom, vip_metadata.cluster, vip_metadata.fqdn, private_reserved_ips)
+                    elif vip_metadata.ip_type == IP_TYPE_PRIVATE_NON_RESERVED:
+                        delete_ip(vip_metadata.fqdn, vip_metadata.cluster, private_reserved_ips)
+                    else:
+                        raise Exception("{} in {} has an invalid ip type".format(vip_metadata.fqdn, full_path))
 
     # Delete happens first in order to allow for IP reuse
     for vip_metadata in public_vips_to_delete:
@@ -166,8 +172,7 @@ def parse_yaml(yaml_file_path):
     with open(yaml_file_path, "r") as file:
         yaml_text = file.read().replace("\t", SPACES_IN_TAB)
         try:
-            vip_data = yaml.safe_load(yaml_text)
-            return vip_data
+            return yaml.safe_load(yaml_text)
         except yaml.YAMLError as exc:
             print("Failed to parse {}: {}".format(yaml_file_path, exc))
         return []
@@ -221,10 +226,6 @@ def add_private_ip(kingdom, cluster, fqdn, private_reserved_ips):
     print("Added {} to {} with private IP {}".format(fqdn, cluster, matching_portal_entry.ip))
 
 
-def get_reserved_inactive_fqdn(fqdn):
-    return "_" + fqdn
-
-
 def add_public_ip(fqdn,
                   kingdom,
                   cluster,
@@ -269,29 +270,11 @@ if __name__ == "__main__":
     with open(config_file_path, "r") as slbconfig_file:
         public_subnets = json.load(slbconfig_file)
 
-    if len(sys.argv) == 6:
-        kingdom_lbname_data = sys.argv[5].split(":")
-
-        kingdom = kingdom_lbname_data[0]
-        cluster = kingdom + "-" + DEFAULT_CLUSTER
-        if "-" in kingdom:
-            cluster = kingdom
-            kingdom = kingdom.split("-")[0]
-
-        lbnames = kingdom_lbname_data[1].split(",")
-
-        fqdns = []
-        for lbname in lbnames:
-            fqdns.append(get_fqdn_from_portal(kingdom, cluster, lbname))
-
-        for fqdn in fqdns:
-            add_public_ip(get_reserved_inactive_fqdn(fqdn), kingdom, cluster, public_reserved_ips, public_subnets, minimum_octet)
-    else:
-        process_vip_files(root_vip_yaml_path,
-                          public_reserved_ips,
-                          private_reserved_ips,
-                          public_subnets,
-                          minimum_octet)
+    process_vip_files(root_vip_yaml_path,
+                      public_reserved_ips,
+                      private_reserved_ips,
+                      public_subnets,
+                      minimum_octet)
 
     # Sorts each kingdom's data by fourth octet value
     for kingdom, data in public_reserved_ips.items():
