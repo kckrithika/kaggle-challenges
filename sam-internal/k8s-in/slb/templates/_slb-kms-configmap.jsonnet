@@ -7,11 +7,12 @@ local kmsconfig = {
     CAPath: "/cert2/ca.pem",
     ClientCertPath: "/cert2/client/certificates/client.pem",
     ClientCertPrivateKeyPath: "/cert2/client/keys/client-key.pem",
-    LogLevel: "10",
-    LogMode: "2",
+    PipeLogging: {
+    Enabled: true,
     FileName: "/tmp/kms_client.log",
-    MetricConnectionType: "udp",
-    MetricPort: "8125",
+    NumPipes: "auto",
+    PipeSize: 1048576,
+  },
 };
 
 if slbconfigs.isSlbEstate && slbconfigs.hsmNginxEnabledEstate then {
