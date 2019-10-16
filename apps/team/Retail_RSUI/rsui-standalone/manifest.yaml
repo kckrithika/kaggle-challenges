@@ -81,9 +81,11 @@ system:
       - name: TENANT_SERVICE_ALLOWDATASOURCEADD
         value: true
       - name: CRE_SERVER_TARGET
-        value: http://cre-api-ccp-func.retail-cre.localhost.mesh.force.com:5442
+        value: http://cre-api-ccp-dev.retail-cre.localhost.mesh.force.com:5442
+      - name: CRE_CP_SERVER_TARGET
+        value: http://cre-control-plane-ccp-dev.retail-cre.localhost.mesh.force.com:5442
       - name: CRE_MODE
-        value: cre-stub
+        value: cre-live
       - name: C2C_PATH
         value: https://login.stmfa.stm.salesforce.com/empire/cloudatlas/scim
       - name: CORE_OAUTH_URL
