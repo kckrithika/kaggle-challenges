@@ -131,6 +131,8 @@ system:
   #
   loadbalancers:
     - lbname: hub-persistence-lb
+      annotations:
+        "slb.sfdc.net/iptype": "private_reserved"
       function: hub-persistence
       slbEnabled: true
       ports:

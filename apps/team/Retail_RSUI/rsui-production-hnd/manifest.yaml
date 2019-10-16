@@ -247,6 +247,8 @@ system:
         tlskey: secret_service:slbvip_hnd-test.salesforce-hub.com_1562891602:private_key
 
   - lbname: rsui-service-hnd-lb
+    annotations:
+      "slb.sfdc.net/iptype": "private_reserved"
     function: rsui-production-hnd
     slbEnabled: true
     ports:
