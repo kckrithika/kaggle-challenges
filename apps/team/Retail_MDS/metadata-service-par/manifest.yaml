@@ -121,6 +121,8 @@ system:
           - "/home/scone/is-alive.sh"
   loadbalancers:
   - lbname: metadata-service-lb
+    annotations:
+      slb.sfdc.net/iptype: private_reserved
     function: metadata-service
     slbEnabled: true
     ports:

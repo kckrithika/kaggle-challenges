@@ -232,6 +232,8 @@ system:
         tlscertificate: secret_service:cstoolkit_ord.salesforce-hub.com_20190204-215232:EndEntity
         tlskey: secret_service:cstoolkit_ord.salesforce-hub.com_20190204-215232:Key
   - lbname: rsui-production-ord-test-lb
+    annotations:
+      slb.sfdc.net/iptype: public_active
     function: rsui-production-ord
     slbEnabled: true
     ports:
@@ -243,6 +245,8 @@ system:
         tlscertificate: secret_service:cstoolkit_ord-test.salesforce-hub.com_20190204-215232:EndEntity
         tlskey: secret_service:cstoolkit_ord-test.salesforce-hub.com_20190204-215232:Key
   - lbname: rsui-service-ord-lb
+    annotations:
+      slb.sfdc.net/iptype: private_reserved
     function: rsui-production-ord
     slbEnabled: true
     ports:

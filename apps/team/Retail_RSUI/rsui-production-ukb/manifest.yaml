@@ -230,6 +230,8 @@ system:
         tlscertificate: secret_service:slbvip_ukb.salesforce-hub.com_1562892929:certificate
         tlskey: secret_service:slbvip_ukb.salesforce-hub.com_1562892929:private_key
   - lbname: rsui-production-ukb-test-lb
+    annotations:
+      slb.sfdc.net/iptype: public_active
     function: rsui-production-ukb
     slbEnabled: true
     ports:
@@ -242,6 +244,8 @@ system:
         tlskey: secret_service:slbvip_ukb-test.salesforce-hub.com_1562892804:private_key
   
   - lbname: rsui-service-ukb-lb
+    annotations:
+      slb.sfdc.net/iptype: private_reserved
     function: rsui-production-ukb
     slbEnabled: true
     ports:

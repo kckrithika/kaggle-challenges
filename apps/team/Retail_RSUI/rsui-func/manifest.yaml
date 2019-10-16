@@ -228,6 +228,8 @@ system:
 
   loadbalancers:
   - lbname: rsui-func-lb
+    annotations:
+      slb.sfdc.net/iptype: private_reserved
     function: rsui-func
     slbEnabled: true
     ports:

@@ -118,6 +118,8 @@ system:
             - "/home/scone/is-alive.sh"
   loadbalancers:
   - lbname: dfs-production-lb
+    annotations:
+      slb.sfdc.net/iptype: private_reserved
     function: dfs-production
     slbEnabled: true
     ports:

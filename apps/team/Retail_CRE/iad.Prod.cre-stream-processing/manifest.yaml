@@ -142,6 +142,8 @@ system:
         path: /home/sfdc-sherpa/logs
   loadbalancers:
   - lbname: cre-sp-lb
+    annotations:
+      slb.sfdc.net/iptype: private_reserved
     function: cre-sp
     nodeExposed: true
     slbenabled: true
