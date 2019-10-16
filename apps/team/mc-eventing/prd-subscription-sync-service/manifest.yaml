@@ -16,7 +16,7 @@ system:
       containers:
         - name: subscription-sync-service
           # image: sfci/mc-eventing/subscription-sync:1
-          image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mc-eventing/subscription-sync:GM_TEST_3
+          image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mc-eventing/subscription-sync:GM_TEST_4
           # This line makes sure that the last lines of the log on the console gets sent to Splunk on early termination
           terminationMessagePolicy: "FallbackToLogsOnError"
           # If your service doesn't serve HTTP traffic then you can remove the scone-http 8080 port.
