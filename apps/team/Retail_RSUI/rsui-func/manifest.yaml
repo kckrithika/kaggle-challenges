@@ -38,7 +38,7 @@ system:
 
     containers:
     - name: retail-setup
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/retail/retail-setup:2.1.167
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/retail/retail-setup:2.1.174
       ports:
       # Jetty http1 ports for incoming public traffic via SLB
       - containerPort: 7022
@@ -76,16 +76,6 @@ system:
         value: /servercerts/ca/cacerts.pem
       - name: SFDC_ENVIRONMENT
         value: stmfa
-      - name: TENANT_SOURCE_KEYS
-        value: core/stmfana48ice1/00DC20000000MOqMAM,commercecloud/production/bbkhdev,cre/prd/00DRM0000048cre
-      - name: TENANT_SOURCE_NAMES
-        value: Service Cloud,Commerce cloud tenant,CRE tenant
-      - name: TENANT_CANONICAL
-        value: mds/stmfa/ST0000000000001
-      - name: TENANT_SUPER
-        value: core/stmfana48ice1/00DC20000000MOgMAM
-      - name: TENANT_SERVICE
-        value: core/stmfana48ice1/00DC20000000MOqMAM
       - name: CRE_SERVER_TARGET
         value: http://cre-api-ccp-func.retail-cre.localhost.mesh.force.com:5442
       - name: C2C_PATH
