@@ -12,7 +12,7 @@ system:
     annotations:
       "routing.mesh.sfdc.net/enabled": "true"
     containers:
-    - name: cre-api-ccp-dev
+    - name: cre-api-ccp-func
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cre/cre-api:2.1.1.develop-at-test.ad4e080.53
       env:
         - name: GDOT_BASE_PATH
