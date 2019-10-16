@@ -102,9 +102,9 @@ system:
         - name: c2c_service_id
           value: giddataservice-cast-prd-dev
         - name: ldaps_hostname
-          value: http://cloudatlas-gidv2.global-identity.prd-sam.prd.slb.sfdc.net
+          value: cloudatlas-gidv2.global-identity.prd-sam.prd.slb.sfdc.net
         - name: ca_service_host
-          value: http://cloudatlas-gidv2.global-identity.prd-sam.prd.slb.sfdc.net
+          value: cloudatlas-gidv2.global-identity.prd-sam.prd.slb.sfdc.net
         - name: c2c_common_gdotBasePath
           value: http://cloudatlas-gidv2.global-identity.prd-sam.prd.slb.sfdc.net/scim
       ports:
