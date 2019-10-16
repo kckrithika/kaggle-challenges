@@ -21,6 +21,7 @@ KINGDOMS = ["frf", "phx", "iad", "ord", "dfw", "hnd", "xrd", "cdg", "fra", "ia2"
 MANIFEST_YAML_ANNOTATIONS_FIELD_NAME = "annotations"
 MANIFEST_YAML_FILE_NAME = "manifest.yaml"
 MANIFEST_YAML_LOAD_BALANCERS_FIELD_NAME = "loadbalancers"
+MANIFEST_YAML_SLB_ANNOTATION_PREFIX = "slb.sfdc.net/"
 MANIFEST_YAML_SYSTEM_FIELD_NAME = "system"
 
 MAX_OCTET_VALUE = 255
@@ -99,12 +100,12 @@ def get_vip_metadatas(file_name, path):
 
         vip_metadatas = []
         for lb in manifest[MANIFEST_YAML_LOAD_BALANCERS_FIELD_NAME]:
-
             ip_type = DEFAULT_IP_TYPE
             if MANIFEST_YAML_ANNOTATIONS_FIELD_NAME in lb:
                 annotations = lb[MANIFEST_YAML_ANNOTATIONS_FIELD_NAME]
-                if VIPS_YAML_IP_TYPE_FIELD_NAME in annotations:
-                    ip_type = annotations[VIPS_YAML_IP_TYPE_FIELD_NAME]
+                ip_type_annotation_name = MANIFEST_YAML_SLB_ANNOTATION_PREFIX + VIPS_YAML_IP_TYPE_FIELD_NAME
+                if ip_type_annotation_name in annotations:
+                    ip_type = annotations[ip_type_annotation_name]
 
             for kingdom in KINGDOMS:
                 cluster = kingdom + "-" + DEFAULT_CLUSTER
@@ -237,14 +238,6 @@ def add_public_ip(fqdn,
 
     if cluster in public_reserved_ips:
         if fqdn in public_reserved_ips[cluster]:
-            return
-
-        reserved_inactive_fqdn = get_reserved_inactive_fqdn(fqdn)
-        if reserved_inactive_fqdn in public_reserved_ips[cluster]:
-            new_ip = public_reserved_ips[cluster][reserved_inactive_fqdn]
-            public_reserved_ips[cluster][fqdn] = new_ip
-            print("Added {} to {} with previously reserved public IP {}".format(fqdn, cluster, new_ip))
-            del public_reserved_ips[cluster][reserved_inactive_fqdn]
             return
     else:
         public_reserved_ips[cluster] = {}
