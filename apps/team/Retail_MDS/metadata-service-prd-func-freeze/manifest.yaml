@@ -30,7 +30,7 @@ system:
         value: "15523"
       - name: JVM_ARGS
         value:  -Xmx2G -Xms2G -XX:ParallelGCThreads=8
-                -Ddatabase.name=metadataservice
+                -Ddatabase.name=metadataservice4
                 -Ddatabase.discovery.params=connectTimeout=10000&dropDatabase=true
                 -Dstartup.task.run=false
       resources:
