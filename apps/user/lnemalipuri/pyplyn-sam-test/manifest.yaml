@@ -4,11 +4,11 @@ system:
     email:
       - lnemalipuri@salesforce.com
   functions:
-  - name: pyplyn-sam-test 
+  - name: pyplyn-test 
     count: 1
     containers:
-    - name: pyplyn-sam-test-service
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/lnemalipuri/pyplyn-sam-test:latest
+    - name: pyplyn-test-service
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/lnemalipuri/pyplyn-test:latest
       livenessProbe:
         exec:
            command:
