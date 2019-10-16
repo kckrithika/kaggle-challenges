@@ -410,6 +410,7 @@ system:
       - --appFunctionLabel=$(APP_FUNCTION_LABEL)
       - --metricsEndpoint=$(SFDC_METRICS_SERVICE_HOST):$(SFDC_METRICS_SERVICE_PORT)
       - --hostnameOverride=$(NODE_NAME)
+      - --debug=true
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/victor.li/hyperslb:victor.li-201909181103
       env:
       - name: SFPROXY_VIP
