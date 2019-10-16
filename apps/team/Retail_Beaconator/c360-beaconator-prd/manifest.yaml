@@ -155,6 +155,8 @@ system:
       - -endpoint
       - retail-cre/cre-control-plane-ccp-perf:DATACENTER_ALLENV:7442:cre-control-plane-ccp-perf-lb.retail-cre.prd-sam.prd.slb.sfdc.net
       - -endpoint
+      - retail-cre/cre-control-plane-ccp-prod:DATACENTER_ALLENV:7442:cre-control-plane-ccp-prod-lb.retail-cre.prd-sam.prd.slb.sfdc.net
+      - -endpoint
       - retail-cre/cre-control-plane-ccp-stage:DATACENTER_ALLENV:7442:cre-control-plane-ccp-stage-lb.retail-cre.prd-sam.prd.slb.sfdc.net
       - -endpoint
       - retail-cre/cre-control-plane-cre-test:DATACENTER_ALLENV:7443:cre-control-plane-cre-test-lb.retail-cre.prd-sam.prd.slb.sfdc.net
@@ -165,6 +167,8 @@ system:
       - retail-cre/cre-sp-ccp-func:DATACENTER_ALLENV:7442:cre-sp-ccp-func-lb.retail-cre.prd-sam.prd.slb.sfdc.net
       - -endpoint
       - retail-cre/cre-sp-ccp-perf:DATACENTER_ALLENV:7442:cre-sp-ccp-perf-lb.retail-cre.prd-sam.prd.slb.sfdc.net
+      - -endpoint
+      - retail-cre/cre-sp-ccp-prod:DATACENTER_ALLENV:7442:cre-sp-ccp-prod-lb.retail-cre.prd-sam.prd.slb.sfdc.net
       - -endpoint
       - retail-cre/cre-sp-ccp-stage:DATACENTER_ALLENV:7442:cre-sp-ccp-stage-lb.retail-cre.prd-sam.prd.slb.sfdc.net
       - -endpoint
