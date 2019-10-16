@@ -91,26 +91,6 @@ system:
           - /home/sfdc-sherpa/bin/is-ready
         initialDelaySeconds: 60
         periodSeconds: 120
-    - name: beacon-mds
-      image: sfci/servicelibs/beacon:ce3b9722faf59dc7550a1df2905ecff794fbb2e3
-      args:
-      - -endpoint
-      - retail-mds/metadata-service:DATACENTER:7443
-      env:
-      - name: SFDC_ENVIRONMENT
-        value: stmfb
-      resources:
-        limits:
-          cpu: "1"
-          memory: 1Gi
-        requests:
-          cpu: "1"
-          memory: 1Gi
-      livenessProbe:
-        exec:
-          command:
-          - /home/scone/is-alive.sh
-        initialDelaySeconds: 5
     volumes:
     - name: mds-server-cert
       maddogCert:
