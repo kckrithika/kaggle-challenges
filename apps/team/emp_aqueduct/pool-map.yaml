@@ -39,3 +39,11 @@ apps:
       - name: ph2/ph2-sam_eventbus
       - name: hnd/hnd-sam_eventbus
       - name: ukb/ukb-sam_eventbus
+      - name: par/par-sam_eventbus
+      - name: iad/iad-sam_eventbus
+      - name: dfw/dfw-sam_eventbus
+      - name: lo2/lo2-sam_eventbus
+      - name: lo3/lo3-sam_eventbus
+      - name: cdg/cdg-sam_eventbus
+      - name: fra/fra-sam_eventbus
+      - name: phx/phx-sam_eventbus
