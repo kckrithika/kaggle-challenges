@@ -11,7 +11,7 @@ system:
     count: 1
     containers:
     - name: ml-spaas
-      image: dva/ml-spaas-service-docker:13
+      image: dva/ml-spaas-service-docker:15
       ports:
       - containerPort: 7020
       livenessProbe:
