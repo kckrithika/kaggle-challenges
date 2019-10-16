@@ -46,8 +46,8 @@ apps:
   - name: prd/prd-sam_mc_consumer
 
   # subscription-sync-service
-  prd-subscription-sync-service:
-    - name: prd/prd-sam_mc_consumer
+#  prd-subscription-sync-service:
+#  - name: prd/prd-sam_mc_consumer
 #  prod-subscription-sync-service:
 #  - name: cdg/cdg-sam_mc_consumer
 #  prod-subscription-sync-service:
