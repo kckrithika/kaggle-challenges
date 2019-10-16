@@ -1,0 +1,15 @@
+apiVersion: v1
+system:
+  notifications:
+    email:
+      - lnemalipuri@salesforce.com
+  functions:
+  - name: pyplyn-test-kishore 
+    count: 1
+    containers:
+    - name: ppyplyn-test-kishore-service
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/lnemalipuri/pyplyn-test-kishore:latest
+      livenessProbe:
+        exec:
+           command:
+           - /usr/bin/true
