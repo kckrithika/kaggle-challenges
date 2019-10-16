@@ -233,6 +233,8 @@ system:
         tlskey: secret_service:slbvip_hnd.salesforce-hub.com_1562892704:private_key
         
   - lbname: rsui-production-hnd-test-lb
+    annotations:
+      "slb.sfdc.net/iptype": "public_active"
     function: rsui-production-hnd
     slbEnabled: true
     ports:

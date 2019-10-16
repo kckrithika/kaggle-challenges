@@ -232,6 +232,8 @@ system:
         tlscertificate: secret_service:slbvip_frf.salesforce-hub.com_1562892629:certificate
         tlskey: secret_service:slbvip_frf.salesforce-hub.com_1562892629:private_key
   - lbname: rsui-production-frf-test-lb
+    annotations:
+      "slb.sfdc.net/iptype": "public_active"
     function: rsui-production-frf
     slbEnabled: true
     ports:

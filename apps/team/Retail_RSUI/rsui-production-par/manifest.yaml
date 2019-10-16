@@ -232,6 +232,8 @@ system:
         tlscertificate: secret_service:slbvip_par.salesforce-hub.com_1562892346:certificate
         tlskey: secret_service:slbvip_par.salesforce-hub.com_1562892346:private_key
   - lbname: rsui-production-par-test-lb
+    annotations:
+      "slb.sfdc.net/iptype": "public_active"
     function: rsui-production-par
     slbEnabled: true
     ports:
