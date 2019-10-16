@@ -26,7 +26,6 @@ local utils = import "util_functions.jsonnet";
                 watchdog_image_tag: "2722-a1231485debac6b17dfa76e7a1af01750e0f4f8b",  # 05/2019 image
                 integration_test_tag: "22",
                 hbase_integration_test_tag: "22",
-                spark_operator_image_tag: "jenkins-dva-transformation-spark-on-k8s-operator-PR-40-5-itest",  # 10/2 image that bumps up client throttle
                 prometheus_funnel_image_tag: "37",
             },
             feature_flags+: {
@@ -83,7 +82,6 @@ local utils = import "util_functions.jsonnet";
         # prd-dev: Exceptions vs the rest of phase 2 only
         "2-prd-dev": self["2"] {
             image_tags+: {
-                spark_operator_image_tag: "jenkins-dva-transformation-spark-on-k8s-operator-PR-40-5-itest",  # 10/2 image that bumps up client throttle
                 service_mesh_image_tag: "1.0.13",
             },
             feature_flags+: {
@@ -99,7 +97,6 @@ local utils = import "util_functions.jsonnet";
         # prd-data: Exceptions vs. the rest of phase 2 only
         "2-prd-data": self["2"] {
             image_tags+: {
-                spark_operator_image_tag: "jenkins-dva-transformation-spark-on-k8s-operator-PR-40-5-itest",  # 10/2 image that bumps up client throttle
             },
             feature_flags+: {
                 # Note: the *value* of the flags is ignored. jsonnet lacks array search, so we use a an object.
@@ -132,7 +129,7 @@ local utils = import "util_functions.jsonnet";
 
                 # Flowsnake v2 images
                 impersonation_proxy_image_tag: "8-9ced7803391be70dd7dc41cd3211800cda818f50",  # exec's nginx for signal propagation
-                spark_operator_image_tag: "jenkins-dva-transformation-spark-on-k8s-operator-PR-16-7-itest",  # 06/24 image with the augmented operator instrumentation
+                spark_operator_image_tag: "jenkins-dva-transformation-spark-on-k8s-operator-PR-40-5-itest",  # 10/2 image that bumps up client throttle
                 # to remove
                 watchdog_spark_operator_image_tag: "jenkins-dva-transformation-spark-on-k8s-sample-apps-PR-2-1-itest",
                 integration_test_tag: "18",
@@ -181,7 +178,6 @@ local utils = import "util_functions.jsonnet";
         # off-peak: 1pm-9pm PDT
         "prod-emea": self.prod {
             image_tags+: {
-                spark_operator_image_tag: "jenkins-dva-transformation-spark-on-k8s-operator-PR-40-5-itest",  # 10/2 image that bumps up client throttle
                 prometheus_funnel_image_tag: "37",
             },
         },
@@ -190,7 +186,6 @@ local utils = import "util_functions.jsonnet";
         # off-peak: 6pm-4am PDT
         "prod-na": self.prod {
             image_tags+: {
-                            spark_operator_image_tag: "jenkins-dva-transformation-spark-on-k8s-operator-PR-40-5-itest",  # 10/2 image that bumps up client throttle
                         },
         },
 
