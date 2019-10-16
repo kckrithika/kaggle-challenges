@@ -185,13 +185,14 @@ local utils = import "util_functions.jsonnet";
         # NA (North America): DFW, IAD, IA2, ORD, PHX, PH2, YHU, YUL
         # off-peak: 6pm-4am PDT
         "prod-na": self.prod {
-            image_tags+: {
-                        },
         },
 
         # APAC (Asia Pacific): HND, UKB, CDU, SYD
         # off-peak: 6am-1pm PDT
         "prod-apac": self.prod {
+            image_tags+: {
+                prometheus_funnel_image_tag: "37",
+            },
         },
 
 
