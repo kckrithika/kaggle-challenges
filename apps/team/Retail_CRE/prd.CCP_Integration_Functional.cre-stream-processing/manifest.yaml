@@ -120,19 +120,6 @@ system:
           - "/home/sfdc-sherpa/bin/is-ready"
         initialDelaySeconds: 110
         periodSeconds: 5
-    - name: beacon
-      image: sfci/servicelibs/beacon:f6445b2b299f232eda1e0be9739b8242153478ea
-      args:
-      - -endpoint
-      - retail-cre/cre-sp-ccp-func:DATACENTER_ALLENV:7442
-      resources:
-        limits: { cpu: "1", memory: "1Gi" }
-        requests: { cpu: "1", memory: "1Gi" }
-      livenessProbe:
-        initialDelaySeconds: 5
-        exec:
-          command:
-          - "/home/scone/is-alive.sh"
     volumes:
     - name: logvol
       hostPath:
