@@ -84,7 +84,7 @@ system:
         initialDelaySeconds: 50
         periodSeconds: 5
     - name: perf-universal-search-xlt-certs
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/irahim/perf-universal-search-xlt:irahim-20180906-608512d
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/irahim/perf-universal-search-xlt:aboboc-20191016-bcd8e41
       args: ["-d"]
       livenessProbe:
         initialDelaySeconds: 30
