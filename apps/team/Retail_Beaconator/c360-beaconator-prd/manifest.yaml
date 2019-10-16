@@ -17,10 +17,7 @@ system:
 
     containers:
     - name: beaconator-stmfa
-      image: sfci/services/sfdc-bazel/disco/beacon:be0423a5b
-      env:
-      - name: LOGGING_LEVEL_ROOT
-        value: INFO
+      image: sfci/services/sfdc-bazel/disco/beacon:d7f1640
       args:
       - -path
       - stmfa.-.prd.-.beaconator
@@ -54,10 +51,7 @@ system:
           - "/opt/beacon/is-alive.sh"
 
     - name: beaconator-stmfb
-      image: sfci/services/sfdc-bazel/disco/beacon:be0423a5b
-      env:
-      - name: LOGGING_LEVEL_ROOT
-        value: INFO
+      image: sfci/services/sfdc-bazel/disco/beacon:d7f1640
       args:
       - -path
       - stmfb.-.prd.-.beaconator
@@ -85,10 +79,7 @@ system:
           - "/opt/beacon/is-alive.sh"
 
     - name: beaconator-stmfc
-      image: sfci/services/sfdc-bazel/disco/beacon:be0423a5b
-      env:
-      - name: LOGGING_LEVEL_ROOT
-        value: INFO
+      image: sfci/services/sfdc-bazel/disco/beacon:d7f1640
       args:
       - -path
       - stmfc.-.prd.-.beaconator
@@ -114,10 +105,7 @@ system:
           - "/opt/beacon/is-alive.sh"
 
     - name: beaconator-mist
-      image: sfci/services/sfdc-bazel/disco/beacon:be0423a5b
-      env:
-      - name: LOGGING_LEVEL_ROOT
-        value: INFO
+      image: sfci/services/sfdc-bazel/disco/beacon:d7f1640
       args:
       - -path
       - mist.-.prd.-.beaconator
@@ -147,10 +135,7 @@ system:
           - "/opt/beacon/is-alive.sh"
 
     - name: beaconator
-      image: sfci/services/sfdc-bazel/disco/beacon:be0423a5b
-      env:
-      - name: LOGGING_LEVEL_ROOT
-        value: INFO
+      image: sfci/services/sfdc-bazel/disco/beacon:d7f1640
       args:
       - -endpoint
       - retail-cre/cre-api-ccp-dev:DATACENTER_ALLENV:7442:cre-api-ccp-dev-lb.retail-cre.prd-sam.prd.slb.sfdc.net
