@@ -1,0 +1,150 @@
+apiVersion: v1
+
+system:
+  notifications:
+    email:
+      - gid_runtime@salesforce.com
+  functions:
+  - name: local-gid-service
+    count: 1
+    strategy:
+      type: RollingUpdate
+      rollingUpdate:
+        maxSurge: 0
+        maxUnavailable: 1
+    hostnetwork: false
+    containers:
+    #####################################################################################
+    # Service Mesh / Envoy / Sherpa
+    #####################################################################################
+    - name: sherpa-envoy
+      image: sfci/servicelibs/sherpa-envoy:1.0.8
+      env:
+      - name: SFDC_ENVIRONMENT
+        value: "stmfa"
+      resources:
+        limits: { cpu: "1", memory: "1Gi" }
+        requests: { cpu: "1", memory: "1Gi" }
+      volumeMounts:
+      - name: client-cert
+        mountPath: /client-certs
+      - name: server-cert
+        mountPath: /server-certs
+      - mountPath: /log
+        name: logvolsherpa
+      ports:
+      - containerPort: 7012
+        name: http2-in
+      - containerPort: 7014
+        name: http1-in
+      - containerPort: 7443
+        name: http2-tls-in
+      - containerPort: 7442
+        name: http1-tls-in
+      - containerPort: 15373
+        name: sherpa-adm
+      livenessProbe:
+        exec:
+          command:
+          - "/home/sfdc-sherpa/bin/is-alive"
+        initialDelaySeconds: 120
+        periodSeconds: 5
+      readinessProbe:
+        exec:
+          command:
+          - "/home/sfdc-sherpa/bin/is-ready"
+        initialDelaySeconds: 110
+        periodSeconds: 5
+    #####################################################################################
+    # Service Beacon
+    #####################################################################################
+    - name: beacon
+      image: sfci/servicelibs/beacon:7ad9e771192cd0b3e43393eea2e1e5c1de81dfda
+      env:
+      - name: SFDC_ENVIRONMENT
+        value: "stmfa"
+      volumeMounts:
+      - mountPath: /log
+        name: logvolbeacon
+      resources:
+        limits: { cpu: "1", memory: "1Gi" }
+        requests: { cpu: "1", memory: "1Gi" }
+      args:
+        - -endpoint
+        - $(FUNCTION_NAMESPACE)/$(FUNCTION):DATACENTER_ALLENV:7442
+      livenessProbe:
+        exec:
+          command:
+          - "/home/scone/is-alive.sh"
+        initialDelaySeconds: 5
+        periodSeconds: 5
+    #####################################################################################
+    # GID Data service
+    #####################################################################################
+    - name: local-gid-service
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/gid/gid-service:d1753c4
+      imagePullPolicy: Always
+      env:
+        - name: directory_server_host
+          valueFrom:
+           fieldRef:
+            fieldPath: spec.nodeName
+        - name: server_port
+          value: 8081
+        - name: management_server_port
+          value: 15371
+        - name: security_client_dynamickeystore_cadir
+          value: /certs/ca
+        - name: security_client_dynamickeystore_monitoredDirectory
+          value: /clientcerts/client
+        - name: c2c_common_callerContext
+          value: giddataservice-cast-prd-dev
+        - name: c2c_service_id
+          value: giddataservice-cast-prd-dev
+        - name: ldaps_hostname
+          value: http://cloudatlas-gidv2.global-identity.prd-sam.prd.slb.sfdc.net
+        - name: ca_service_host
+          value: http://cloudatlas-gidv2.global-identity.prd-sam.prd.slb.sfdc.net
+        - name: c2c_common_gdotBasePath
+          value: http://cloudatlas-gidv2.global-identity.prd-sam.prd.slb.sfdc.net/scim
+      ports:
+        - containerPort: 8081
+        - containerPort: 15371
+      livenessProbe:
+        httpGet:
+          path: /manage/health
+          port: 15371
+      volumeMounts:
+        - name: server-cert
+          mountPath: /certs
+        - mountPath: /clientcerts
+          name: client-cert
+    #####################################################################################
+    # Volumes Needed
+    #####################################################################################
+    volumes:
+    - name: server-cert
+      maddogCert:
+        type: server
+    - name: client-cert
+      maddogCert:
+        type: client
+    - name: logvolsherpa
+      hostPath:
+        path: /home/sfdc-gid-runtime-sherpa/logs
+    - name: logvolbeacon
+      hostPath:
+        path: /home/sfdc-gid-runtime-beacon/logs
+  #####################################################################################
+  # SLB
+  #####################################################################################
+  loadbalancers:
+    - lbname: localgidservice
+      function: local-gid-service
+      slbEnabled: true
+      ports:
+        - port: 9090
+          targetport: 8081
+          lbtype: http
+          tls: false
+          reencrypt: false
