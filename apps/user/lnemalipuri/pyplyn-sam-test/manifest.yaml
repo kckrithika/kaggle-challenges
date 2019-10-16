@@ -1,0 +1,24 @@
+apiVersion: v1
+system:
+  notifications:
+    email:
+      - lnemalipuri@salesforce.com
+  functions:
+  - name: pyplyn-sam-test 
+    count: 1
+    containers:
+    - name: pyplyn-sam-test-service
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/lnemalipuri/pyplyn-sam-test:latest
+      ports:
+      - containerPort: 10001
+      livenessProbe:
+        exec:
+           command:
+           - /usr/bin/true
+  loadbalancers:
+  - lbname: pyplyn-sam-lb
+    slbEnabled: true
+    function: pyplyn-sam-test
+    ports:
+      - port: 10001
+        targetport: 10001
