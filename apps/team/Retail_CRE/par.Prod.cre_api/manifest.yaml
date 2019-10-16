@@ -139,7 +139,7 @@ system:
   loadbalancers:
   - lbname: cre-api-lb
     annotations:
-      "slb.sfdc.net/iptype": "private_reserved"
+      slb.sfdc.net/iptype: private_reserved
     function: cre-api
     slbenabled: true
     ports:

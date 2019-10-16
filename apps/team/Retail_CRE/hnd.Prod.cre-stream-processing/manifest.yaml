@@ -143,7 +143,7 @@ system:
   loadbalancers:
   - lbname: cre-sp-lb
     annotations:
-      "slb.sfdc.net/iptype": "private_reserved"
+      slb.sfdc.net/iptype: private_reserved
     function: cre-sp
     nodeExposed: true
     slbenabled: true

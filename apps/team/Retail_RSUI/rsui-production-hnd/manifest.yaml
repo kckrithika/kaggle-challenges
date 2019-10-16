@@ -234,7 +234,7 @@ system:
         
   - lbname: rsui-production-hnd-test-lb
     annotations:
-      "slb.sfdc.net/iptype": "public_active"
+      slb.sfdc.net/iptype: public_active
     function: rsui-production-hnd
     slbEnabled: true
     ports:
@@ -248,7 +248,7 @@ system:
 
   - lbname: rsui-service-hnd-lb
     annotations:
-      "slb.sfdc.net/iptype": "private_reserved"
+      slb.sfdc.net/iptype: private_reserved
     function: rsui-production-hnd
     slbEnabled: true
     ports:

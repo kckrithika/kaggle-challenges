@@ -119,7 +119,7 @@ system:
   loadbalancers:
   - lbname: dfs-production-lb
     annotations:
-      "slb.sfdc.net/iptype": "private_reserved"
+      slb.sfdc.net/iptype: private_reserved
     function: dfs-production
     slbEnabled: true
     ports:

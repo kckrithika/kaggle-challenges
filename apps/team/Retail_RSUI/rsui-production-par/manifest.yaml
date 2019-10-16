@@ -233,7 +233,7 @@ system:
         tlskey: secret_service:slbvip_par.salesforce-hub.com_1562892346:private_key
   - lbname: rsui-production-par-test-lb
     annotations:
-      "slb.sfdc.net/iptype": "public_active"
+      slb.sfdc.net/iptype: public_active
     function: rsui-production-par
     slbEnabled: true
     ports:
@@ -246,7 +246,7 @@ system:
         tlskey: secret_service:slbvip_par-test.salesforce-hub.com_1562892045:private_key
   - lbname: rsui-service-par-lb
     annotations:
-      "slb.sfdc.net/iptype": "private_reserved"
+      slb.sfdc.net/iptype: private_reserved
     function: rsui-production-par
     slbEnabled: true
     ports:

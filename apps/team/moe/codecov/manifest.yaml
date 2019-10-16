@@ -261,7 +261,7 @@ system:
           lbtype: tcp
     - lbname: codecov
       annotations:
-        "slb.sfdc.net/iptype": "private_reserved"
+        slb.sfdc.net/iptype: private_reserved
       function: core
       slbEnabled: true
       nodeExposed: false

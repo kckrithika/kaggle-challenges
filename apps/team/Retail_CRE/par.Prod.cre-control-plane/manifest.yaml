@@ -228,7 +228,7 @@ system:
   loadbalancers:
     - lbname: cre-control-plane-lb
       annotations:
-        "slb.sfdc.net/iptype": "private_reserved"
+        slb.sfdc.net/iptype: private_reserved
       function: cre-control-plane
       slbEnabled: true
       ports:

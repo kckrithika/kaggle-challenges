@@ -523,7 +523,7 @@ system:
   ## entries for cs103.my.salesforcecom VIP
   - lbname: cs103app-my-lb
     annotations:
-      "slb.sfdc.net/iptype": "public_active"
+      slb.sfdc.net/iptype: public_active
     function: cs103-sfproxy-fra
     nodeExposed: false
     slbEnabled: true

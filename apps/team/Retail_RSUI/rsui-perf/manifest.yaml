@@ -226,7 +226,7 @@ system:
   loadbalancers:
   - lbname: rsui-perf-lb
     annotations:
-      "slb.sfdc.net/iptype": "private_reserved"
+      slb.sfdc.net/iptype: private_reserved
     function: rsui-perf
     slbEnabled: true
     ports:

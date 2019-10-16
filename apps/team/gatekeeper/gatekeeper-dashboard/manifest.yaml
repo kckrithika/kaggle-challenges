@@ -40,7 +40,7 @@ system:
   loadbalancers:
   - lbname: gatekeeper-dashboardlb
     annotations:
-      "slb.sfdc.net/iptype": "private_reserved"
+      slb.sfdc.net/iptype: private_reserved
     function: gatekeeper-dashboard
     slbEnabled: true
     ports:
