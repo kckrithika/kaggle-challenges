@@ -53,6 +53,8 @@ spec:
         - "10443"
         - --funnel-address
         - ajnafunneldirecttls.funnel.svc.mesh.sfdc.net:7442
+        - --default-policy-opt-in
+        - "false"
         env:
         - name: SETTINGS_SUPERPOD
           value: '-'
@@ -60,7 +62,7 @@ spec:
           value: -.-.prd.-.istio-routing-webhook
         - name: ESTATE
           value: prd-sam
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/sfci/servicemesh/servicemesh/istio-routing-webhook:21b05ffaaf87dd1f7da1f5ea8f130138a89e50bc
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/sfci/servicemesh/servicemesh/istio-routing-webhook:84271f0c157a7524d18751b0da378c9d4f7a6cca
         imagePullPolicy: IfNotPresent
         name: istio-routing-webhook
         ports:

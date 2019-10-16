@@ -68,6 +68,8 @@ configs.deploymentBase("service-mesh") {
               "10443",
               "--funnel-address",
               mcpIstioConfig.funnelEndpoint,
+              "--default-policy-opt-in",
+              "false",
             ],
             env: [
               {
