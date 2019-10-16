@@ -37,9 +37,6 @@ system:
         name: server-cert
       - mountPath: /clientcerts
         name: client-cert
-      - mountPath: /secrets
-        name: secretsvol
-        readOnly: true
       - mountPath: /k4asecrets
         name: k4a-secrets
         readOnly: true
@@ -77,9 +74,6 @@ system:
     - name: client-cert
       maddogCert:
         type: client
-    - name: secretsvol
-      secret:
-        secretName: passwd
     - name: k4a-secrets
       k4asecret:
         secretName: ca-secrets
