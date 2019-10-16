@@ -16,12 +16,101 @@ system:
         maxUnavailable: 0
 
     containers:
-    - name: beaconator-mist
-      image: sfci/services/sfdc-bazel/disco/beacon:d7f1640
-      env:
-      - name: SFDC_ENVIRONMENT
-        value: mist
+    - name: beaconator-stmfa
+      image: sfci/services/sfdc-bazel/disco/beacon:be0423a5b
       args:
+      - -path
+      - stmfa.-.prd.-.beaconator
+      - -spod
+      - "-"
+      - -endpoint
+      - retail-dfs/dfs:DATACENTER:7442:dfs-lb.retail-dfs.prd-sam.prd.slb.sfdc.net
+      - -endpoint
+      - retail-dfs/dfs-dev:DATACENTER:7442:dfs-lbdv.retail-dfs.prd-sam.prd.slb.sfdc.net
+      - -endpoint
+      - metadata-service:DATACENTER:7012:metadata-service-prd-func-lb.retail-mds.prd-sam.prd.slb.sfdc.net
+      - -endpoint
+      - retail-mds/metadata-service:DATACENTER:7443:metadata-service-prd-func-lb.retail-mds.prd-sam.prd.slb.sfdc.net
+      - -endpoint
+      - retail-rsui/hub-persistence:DATACENTER:7442:hub-persistence-func-lb.retail-rsui.prd-sam.prd.slb.sfdc.net
+      - -endpoint
+      - retail-rsui/retail-setup:DATACENTER:7443:rsui-func-lb.retail-rsui.prd-sam.prd.slb.sfdc.net
+      - -endpoint
+      - retail-rsui/retail-setup-standalone:DATACENTER:7443:rsui-standalone-lb.retail-rsui.prd-sam.prd.slb.sfdc.net
+      resources:
+        limits:
+          cpu: "500m"
+          memory: 1Gi
+        requests:
+          cpu: "500m"
+          memory: 1Gi
+      livenessProbe:
+        initialDelaySeconds: 5
+        exec:
+          command:
+          - "/opt/beacon/is-alive.sh"
+
+    - name: beaconator-stmfb
+      image: sfci/services/sfdc-bazel/disco/beacon:be0423a5b
+      args:
+      - -path
+      - stmfb.-.prd.-.beaconator
+      - -spod
+      - "-"
+      - -endpoint
+      - retail-dfs/dfs:DATACENTER:7442:dfs-func-patch-lb.retail-dfs.prd-sam.prd.slb.sfdc.net
+      - -endpoint
+      - retail-mds/metadata-service:DATACENTER:7443:metadata-service-prd-func-patch-lb.retail-mds.prd-sam.prd.slb.sfdc.net
+      - -endpoint
+      - retail-rsui/hub-persistence:DATACENTER:7442:hub-persistence-func-patch-lb.retail-rsui.prd-sam.prd.slb.sfdc.net
+      - -endpoint
+      - retail-rsui/retail-setup:DATACENTER:7443:rsui-func-patch-lb.retail-rsui.prd-sam.prd.slb.sfdc.net
+      resources:
+        limits:
+          cpu: "500m"
+          memory: 1Gi
+        requests:
+          cpu: "500m"
+          memory: 1Gi
+      livenessProbe:
+        initialDelaySeconds: 5
+        exec:
+          command:
+          - "/opt/beacon/is-alive.sh"
+
+    - name: beaconator-stmfc
+      image: sfci/services/sfdc-bazel/disco/beacon:be0423a5b
+      args:
+      - -path
+      - stmfc.-.prd.-.beaconator
+      - -spod
+      - "-"
+      - -endpoint
+      - retail-dfs/dfs:DATACENTER:7442:dfs-func-freeze-lb.retail-dfs.prd-sam.prd.slb.sfdc.net
+      - -endpoint
+      - retail-mds/metadata-service:DATACENTER:7443:metadata-service-prd-func-freeze-lb.retail-mds.prd-sam.prd.slb.sfdc.net
+      - -endpoint
+      - retail-rsui/retail-setup:DATACENTER:7443:rsui-func-freeze-lb.retail-rsui.prd-sam.prd.slb.sfdc.net
+      resources:
+        limits:
+          cpu: "500m"
+          memory: 1Gi
+        requests:
+          cpu: "500m"
+          memory: 1Gi
+      livenessProbe:
+        initialDelaySeconds: 5
+        exec:
+          command:
+          - "/opt/beacon/is-alive.sh"
+
+    - name: beaconator-mist
+      image: sfci/services/sfdc-bazel/disco/beacon:be0423a5b
+      args:
+      - -path
+      - mist.-.prd.-.beaconator
+      - -spod
+      - "-"
       - -endpoint
       - retail-dfs/dfs:DATACENTER:7442:dfs-lbpf.retail-dfs.prd-sam.prd.slb.sfdc.net
       - -endpoint
@@ -32,7 +121,22 @@ system:
       - retail-rsui/hub-persistence:DATACENTER:7442:hub-persistence-perf-lb.retail-rsui.prd-sam.prd.slb.sfdc.net
       - -endpoint
       - retail-rsui/retail-setup:DATACENTER:7443:rsui-perf-lb.retail-rsui.prd-sam.prd.slb.sfdc.net
+      resources:
+        limits:
+          cpu: "500m"
+          memory: 1Gi
+        requests:
+          cpu: "500m"
+          memory: 1Gi
+      livenessProbe:
+        initialDelaySeconds: 5
+        exec:
+          command:
+          - "/opt/beacon/is-alive.sh"
 
+    - name: beaconator
+      image: sfci/services/sfdc-bazel/disco/beacon:be0423a5b
+      args:
       - -endpoint
       - retail-cre/cre-api-ccp-dev:DATACENTER_ALLENV:7442:cre-api-ccp-dev-lb.retail-cre.prd-sam.prd.slb.sfdc.net
       - -endpoint
@@ -67,10 +171,10 @@ system:
       - retail-cre/cre-sp-cre-test:DATACENTER_ALLENV:7443:cre-sp-cre-test-lb.retail-cre.prd-sam.prd.slb.sfdc.net
       resources:
         limits:
-          cpu: "1"
+          cpu: "500m"
           memory: 1Gi
         requests:
-          cpu: "1"
+          cpu: "500m"
           memory: 1Gi
       livenessProbe:
         initialDelaySeconds: 5
