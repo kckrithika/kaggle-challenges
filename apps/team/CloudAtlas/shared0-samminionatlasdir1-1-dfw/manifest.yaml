@@ -17,11 +17,15 @@ system:
     hostnetwork: true
     containers:
     - name: cloudatlas-pdm-install
-      image: sfci/cloud-atlas/cloudatlas/cloudatlas-pdm:3.4rc1
+      image: sfci/cloud-atlas/cloudatlas/cloudatlas-pdm:3.6rc1
       command: ["/opt/pdm/pdm.customer/bin/entrypoint.sh"]
       env:
       - name: UBID_DEPLOYMENT_STAGE
         value: ALL
+      - name: PUBLIC_PROXY_URL
+        value: public0-proxy1-0-dfw.data.sfdc.net:8080
+      - name: ANNOUNCE_FUNCTION
+        value: cloudatlas-ds
       volumeMounts:
       - mountPath: /home/sfdc-atlas
         name: hosthomevol
@@ -33,9 +37,6 @@ system:
         name: server-cert
       - mountPath: /clientcerts
         name: client-cert
-      - mountPath: /secrets
-        name: secretsvol
-        readOnly: true
       - mountPath: /k4asecrets
         name: k4a-secrets
         readOnly: true
@@ -73,9 +74,6 @@ system:
     - name: client-cert
       maddogCert:
         type: client
-    - name: secretsvol
-      secret:
-        secretName: passwd
     - name: k4a-secrets
       k4asecret:
         secretName: ca-secrets
