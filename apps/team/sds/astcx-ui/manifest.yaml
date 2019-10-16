@@ -3,7 +3,7 @@ system:
   notifications:
     email:
       - juppala@salesforce.com
-      - astcx-dev@salesforce.com
+      - ast-dev@salesforce.com
   functions:
   - name: astcx-ui
     count: 1
@@ -19,7 +19,7 @@ system:
           type: client
     containers:
     - name: astcx-ui
-      image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/ast-portal:10
+      image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/ast-portal:12
       env:
       - name: AST_CX_SERVER_TYPE
         value: "cron"
