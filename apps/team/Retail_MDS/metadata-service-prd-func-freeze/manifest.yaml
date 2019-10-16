@@ -17,7 +17,7 @@ system:
       "routing.mesh.sfdc.net/enabled": "true"
     containers:
     - name: metadata-service
-      image: sfci/metadata-cannon/metadata-service:0.7.76
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/metadata-cannon/metadata-service:0.11.38
       ports:
       - containerPort: 9091
       - containerPort: 15523
@@ -29,7 +29,10 @@ system:
       - name: MANAGEMENT_PORT
         value: "15523"
       - name: JVM_ARGS
-        value: -Ddatabase.name=metadataservice6 -Dsystem.service-instance.global-server-id=13 -Xmx2G -Xms2G -XX:ParallelGCThreads=8
+        value:  -Xmx2G -Xms2G -XX:ParallelGCThreads=8
+                -Ddatabase.name=metadataservice6
+                -Ddatabase.discovery.params=connectTimeout=10000&dropDatabase=true
+                -Dstartup.task.run=false
       resources:
         limits:
           cpu: "4"
@@ -53,7 +56,7 @@ system:
         periodSeconds: 60
         timeoutSeconds: 90
     - name: sherpa-mds
-      image: sfci/servicelibs/sherpa-envoy:1.0.3
+      image: sfci/servicelibs/sherpa-envoy:1.0.8
       args:
       - --server-ca
       - /server-certs/ca_test/cacerts.pem
@@ -61,6 +64,9 @@ system:
       - name: sherpa-h2-tls
         containerPort: 7443
       - containerPort: 15373
+        # A plain-text sherpa-inbound port. Used by internal tooling and developers. Must not be exposed in production.
+      - name: sherpa-h2-plain
+        containerPort: 7012      
       env:
       - name: SFDC_ENVIRONMENT
         value: stmfc
@@ -94,7 +100,9 @@ system:
       image: sfci/servicelibs/beacon:ce3b9722faf59dc7550a1df2905ecff794fbb2e3
       args:
       - -endpoint
-      - retail-mds/metadata-service:DATACENTER:7443
+      - metadata-service:DATACENTER:7012
+      - -endpoint
+      - retail-mds/metadata-service:DATACENTER:7443:metadata-service-prd-func-freeze-lb.retail-mds.prd-sam.prd.slb.sfdc.net
       env:
       - name: SFDC_ENVIRONMENT
         value: stmfc
@@ -114,6 +122,8 @@ system:
     - name: mds-server-cert
       maddogCert:
         type: server
+        lbnames:
+        - metadata-service-prd-func-freeze-lb
     - name: mds-client-cert
       maddogCert:
         type: client
@@ -131,11 +141,22 @@ system:
     function: metadata-service-prd-func-freeze
     slbEnabled: true
     ports:
+    - port: 7443
+      targetport: 7443
+      name: mds-freeze
+      # A plain-text HTTP port that serves REST API and developer utilities. Must not be exposed in production.
     - port: 9093
       targetport: 9091
-  - lbname: metadata-service-prd-func-freeze 
-    function: metadata-service-prd-func-freeze 
+      # A plain-text sherpa-inbound port. Used by internal tooling and developers.
+    - port: 7012
+      targetport: 7012
+  - lbname: metadata-service-prd-func-freeze
+    function: metadata-service-prd-func-freeze
     ports:
     - port: 7443
       targetport: 7443
       name: grpc-func
+      # A plain-text sherpa-inbound port. Used by internal tooling and developers.
+    - port: 7012
+      targetport: 7012
+      name: grpc-plainfunc
