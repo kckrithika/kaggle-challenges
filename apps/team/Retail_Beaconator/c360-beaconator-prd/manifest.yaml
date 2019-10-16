@@ -18,6 +18,9 @@ system:
     containers:
     - name: beaconator-stmfa
       image: sfci/services/sfdc-bazel/disco/beacon:be0423a5b
+      env:
+      - name: LOGGING_LEVEL_ROOT
+        value: INFO
       args:
       - -path
       - stmfa.-.prd.-.beaconator
@@ -52,6 +55,9 @@ system:
 
     - name: beaconator-stmfb
       image: sfci/services/sfdc-bazel/disco/beacon:be0423a5b
+      env:
+      - name: LOGGING_LEVEL_ROOT
+        value: INFO
       args:
       - -path
       - stmfb.-.prd.-.beaconator
@@ -80,6 +86,9 @@ system:
 
     - name: beaconator-stmfc
       image: sfci/services/sfdc-bazel/disco/beacon:be0423a5b
+      env:
+      - name: LOGGING_LEVEL_ROOT
+        value: INFO
       args:
       - -path
       - stmfc.-.prd.-.beaconator
@@ -106,6 +115,9 @@ system:
 
     - name: beaconator-mist
       image: sfci/services/sfdc-bazel/disco/beacon:be0423a5b
+      env:
+      - name: LOGGING_LEVEL_ROOT
+        value: INFO
       args:
       - -path
       - mist.-.prd.-.beaconator
@@ -136,6 +148,9 @@ system:
 
     - name: beaconator
       image: sfci/services/sfdc-bazel/disco/beacon:be0423a5b
+      env:
+      - name: LOGGING_LEVEL_ROOT
+        value: INFO
       args:
       - -endpoint
       - retail-cre/cre-api-ccp-dev:DATACENTER_ALLENV:7442:cre-api-ccp-dev-lb.retail-cre.prd-sam.prd.slb.sfdc.net
