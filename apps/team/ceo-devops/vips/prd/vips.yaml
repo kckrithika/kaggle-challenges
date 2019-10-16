@@ -470,3 +470,1205 @@
     healthport: 80
     healthprotocol: http
     healthpath: /
+
+### Prod VIPs###
+- lbname: cjemaster01
+  customlbname: cjemaster01
+  cnames:
+  - cname: ciaawci.slb.sfdc.net
+  servers:
+  - cjemaster01a.dop.sfdc.net
+  - cjemaster01b.dop.sfdc.net
+  ports:
+  - port: 443
+    targetport: 8080
+    lbtype: http
+    tls: true
+    reencrypt: false
+    healthport: 8080
+    healthprotocol: http
+    healthpath: /ha/health-check
+  - port: 80
+    targetport: 80
+    lbtype: http
+    tls: false
+    reencrypt: false
+    healthport: 80
+    healthprotocol: http
+    healthpath: /
+
+- lbname: cjemaster02
+  customlbname: cjemaster02
+  cnames:
+  - cname: groci.slb.sfdc.net
+  servers:
+  - cjemaster02a.dop.sfdc.net
+  - cjemaster02b.dop.sfdc.net
+  ports:
+  - port: 443
+    targetport: 8080
+    lbtype: http
+    tls: true
+    reencrypt: false
+    healthport: 8080
+    healthprotocol: http
+    healthpath: /ha/health-check
+  - port: 80
+    targetport: 80
+    lbtype: http
+    tls: false
+    reencrypt: false
+    healthport: 80
+    healthprotocol: http
+    healthpath: /
+
+- lbname: cjemaster03
+  customlbname: cjemaster03
+  cnames:
+  - cname: raptorci.slb.sfdc.net
+  servers:
+  - cjemaster03a.dop.sfdc.net
+  - cjemaster03b.dop.sfdc.net
+  ports:
+  - port: 443
+    targetport: 8080
+    lbtype: http
+    tls: true
+    reencrypt: false
+    healthport: 8080
+    healthprotocol: http
+    healthpath: /ha/health-check
+  - port: 80
+    targetport: 80
+    lbtype: http
+    tls: false
+    reencrypt: false
+    healthport: 80
+    healthprotocol: http
+    healthpath: /
+
+- lbname: cjemaster04
+  customlbname: cjemaster04
+  cnames:
+  - cname: chatbotci.slb.sfdc.net
+  servers:
+  - cjemaster04a.dop.sfdc.net
+  - cjemaster04b.dop.sfdc.net
+  ports:
+  - port: 443
+    targetport: 8080
+    lbtype: http
+    tls: true
+    reencrypt: false
+    healthport: 8080
+    healthprotocol: http
+    healthpath: /ha/health-check
+  - port: 80
+    targetport: 80
+    lbtype: http
+    tls: false
+    reencrypt: false
+    healthport: 80
+    healthprotocol: http
+    healthpath: /
+
+- lbname: cjemaster05
+  customlbname: cjemaster05
+  cnames:
+  - cname: metadataci.slb.sfdc.net
+  servers:
+  - cjemaster05a.dop.sfdc.net
+  - cjemaster05b.dop.sfdc.net
+  ports:
+  - port: 443
+    targetport: 8080
+    lbtype: http
+    tls: true
+    reencrypt: false
+    healthport: 8080
+    healthprotocol: http
+    healthpath: /ha/health-check
+  - port: 80
+    targetport: 80
+    lbtype: http
+    tls: false
+    reencrypt: false
+    healthport: 80
+    healthprotocol: http
+    healthpath: /
+
+- lbname: cjemaster06
+  customlbname: cjemaster06
+  cnames:
+  - cname: c360ci.slb.sfdc.net
+  servers:
+  - cjemaster06a.dop.sfdc.net
+  - cjemaster06b.dop.sfdc.net
+  ports:
+  - port: 443
+    targetport: 8080
+    lbtype: http
+    tls: true
+    reencrypt: false
+    healthport: 8080
+    healthprotocol: http
+    healthpath: /ha/health-check
+  - port: 80
+    targetport: 80
+    lbtype: http
+    tls: false
+    reencrypt: false
+    healthport: 80
+    healthprotocol: http
+    healthpath: /
+
+- lbname: cjemaster07
+  customlbname: cjemaster07
+  cnames:
+  - cname: livemessageci.slb.sfdc.net
+  servers:
+  - cjemaster07a.dop.sfdc.net
+  - cjemaster07b.dop.sfdc.net
+  ports:
+  - port: 443
+    targetport: 8080
+    lbtype: http
+    tls: true
+    reencrypt: false
+    healthport: 8080
+    healthprotocol: http
+    healthpath: /ha/health-check
+  - port: 80
+    targetport: 80
+    lbtype: http
+    tls: false
+    reencrypt: false
+    healthport: 80
+    healthprotocol: http
+    healthpath: /
+
+- lbname: cjemaster08
+  customlbname: cjemaster08
+  cnames:
+  - cname: industriesci.slb.sfdc.net
+  servers:
+  - cjemaster08a.dop.sfdc.net
+  - cjemaster08b.dop.sfdc.net
+  ports:
+  - port: 443
+    targetport: 8080
+    lbtype: http
+    tls: true
+    reencrypt: false
+    healthport: 8080
+    healthprotocol: http
+    healthpath: /ha/health-check
+  - port: 80
+    targetport: 80
+    lbtype: http
+    tls: false
+    reencrypt: false
+    healthport: 80
+    healthprotocol: http
+    healthpath: /
+
+- lbname: cjemaster09
+  customlbname: cjemaster09
+  cnames:
+  - cname: sfcimetricsci.slb.sfdc.net
+  servers:
+  - cjemaster09a.dop.sfdc.net
+  - cjemaster09b.dop.sfdc.net
+  ports:
+  - port: 443
+    targetport: 8080
+    lbtype: http
+    tls: true
+    reencrypt: false
+    healthport: 8080
+    healthprotocol: http
+    healthpath: /ha/health-check
+  - port: 80
+    targetport: 80
+    lbtype: http
+    tls: false
+    reencrypt: false
+    healthport: 80
+    healthprotocol: http
+    healthpath: /
+
+- lbname: cjemaster10
+  customlbname: cjemaster10
+  cnames:
+  - cname: service-cloud-realtimeci.slb.sfdc.net
+  servers:
+  - cjemaster10a.dop.sfdc.net
+  - cjemaster10b.dop.sfdc.net
+  ports:
+  - port: 443
+    targetport: 8080
+    lbtype: http
+    tls: true
+    reencrypt: false
+    healthport: 8080
+    healthprotocol: http
+    healthpath: /ha/health-check
+  - port: 80
+    targetport: 80
+    lbtype: http
+    tls: false
+    reencrypt: false
+    healthport: 80
+    healthprotocol: http
+    healthpath: /
+
+- lbname: cjemaster11
+  customlbname: cjemaster11
+  cnames:
+  - cname: pintci.slb.sfdc.net
+  servers:
+  - cjemaster11a.dop.sfdc.net
+  - cjemaster11b.dop.sfdc.net
+  ports:
+  - port: 443
+    targetport: 8080
+    lbtype: http
+    tls: true
+    reencrypt: false
+    healthport: 8080
+    healthprotocol: http
+    healthpath: /ha/health-check
+  - port: 80
+    targetport: 80
+    lbtype: http
+    tls: false
+    reencrypt: false
+    healthport: 80
+    healthprotocol: http
+    healthpath: /
+
+- lbname: cjemaster12
+  customlbname: cjemaster12
+  cnames:
+  - cname: os-patch-perf-testingci.slb.sfdc.net
+  servers:
+  - cjemaster12a.dop.sfdc.net
+  - cjemaster12b.dop.sfdc.net
+  ports:
+  - port: 443
+    targetport: 8080
+    lbtype: http
+    tls: true
+    reencrypt: false
+    healthport: 8080
+    healthprotocol: http
+    healthpath: /ha/health-check
+  - port: 80
+    targetport: 80
+    lbtype: http
+    tls: false
+    reencrypt: false
+    healthport: 80
+    healthprotocol: http
+    healthpath: /
+
+- lbname: cjemaster13
+  customlbname: cjemaster13
+  cnames:
+  - cname: tzci.slb.sfdc.net
+  servers:
+  - cjemaster13a.dop.sfdc.net
+  - cjemaster13b.dop.sfdc.net
+  ports:
+  - port: 443
+    targetport: 8080
+    lbtype: http
+    tls: true
+    reencrypt: false
+    healthport: 8080
+    healthprotocol: http
+    healthpath: /ha/health-check
+  - port: 80
+    targetport: 80
+    lbtype: http
+    tls: false
+    reencrypt: false
+    healthport: 80
+    healthprotocol: http
+    healthpath: /
+
+- lbname: cjemaster14
+  customlbname: cjemaster14
+  cnames:
+  - cname: cbatchci.slb.sfdc.net
+  servers:
+  - cjemaster14a.dop.sfdc.net
+  - cjemaster14b.dop.sfdc.net
+  ports:
+  - port: 443
+    targetport: 8080
+    lbtype: http
+    tls: true
+    reencrypt: false
+    healthport: 8080
+    healthprotocol: http
+    healthpath: /ha/health-check
+  - port: 80
+    targetport: 80
+    lbtype: http
+    tls: false
+    reencrypt: false
+    healthport: 80
+    healthprotocol: http
+    healthpath: /
+
+- lbname: cjemaster15
+  customlbname: cjemaster15
+  cnames:
+  - cname: lightningdataci.slb.sfdc.net
+  servers:
+  - cjemaster15a.dop.sfdc.net
+  - cjemaster15b.dop.sfdc.net
+  ports:
+  - port: 443
+    targetport: 8080
+    lbtype: http
+    tls: true
+    reencrypt: false
+    healthport: 8080
+    healthprotocol: http
+    healthpath: /ha/health-check
+  - port: 80
+    targetport: 80
+    lbtype: http
+    tls: false
+    reencrypt: false
+    healthport: 80
+    healthprotocol: http
+    healthpath: /
+
+- lbname: cjemaster16
+  customlbname: cjemaster16
+  cnames:
+  - cname: component-libraryci.slb.sfdc.net
+  servers:
+  - cjemaster16a.dop.sfdc.net
+  - cjemaster16b.dop.sfdc.net
+  ports:
+  - port: 443
+    targetport: 8080
+    lbtype: http
+    tls: true
+    reencrypt: false
+    healthport: 8080
+    healthprotocol: http
+    healthpath: /ha/health-check
+  - port: 80
+    targetport: 80
+    lbtype: http
+    tls: false
+    reencrypt: false
+    healthport: 80
+    healthprotocol: http
+    healthpath: /
+
+- lbname: cjemaster17
+  customlbname: cjemaster17
+  cnames:
+  - cname: retail-mc-event-handlerci.slb.sfdc.net
+  servers:
+  - cjemaster17a.dop.sfdc.net
+  - cjemaster17b.dop.sfdc.net
+  ports:
+  - port: 443
+    targetport: 8080
+    lbtype: http
+    tls: true
+    reencrypt: false
+    healthport: 8080
+    healthprotocol: http
+    healthpath: /ha/health-check
+  - port: 80
+    targetport: 80
+    lbtype: http
+    tls: false
+    reencrypt: false
+    healthport: 80
+    healthprotocol: http
+    healthpath: /
+
+- lbname: cjemaster18
+  customlbname: cjemaster18
+  cnames:
+  - cname: mc-eventingci.slb.sfdc.net
+  servers:
+  - cjemaster18a.dop.sfdc.net
+  - cjemaster18b.dop.sfdc.net
+  ports:
+  - port: 443
+    targetport: 8080
+    lbtype: http
+    tls: true
+    reencrypt: false
+    healthport: 8080
+    healthprotocol: http
+    healthpath: /ha/health-check
+  - port: 80
+    targetport: 80
+    lbtype: http
+    tls: false
+    reencrypt: false
+    healthport: 80
+    healthprotocol: http
+    healthpath: /
+
+- lbname: cjemaster19
+  customlbname: cjemaster19
+  cnames:
+  - cname: trailblazeridentityci.slb.sfdc.net
+  servers:
+  - cjemaster19a.dop.sfdc.net
+  - cjemaster19b.dop.sfdc.net
+  ports:
+  - port: 443
+    targetport: 8080
+    lbtype: http
+    tls: true
+    reencrypt: false
+    healthport: 8080
+    healthprotocol: http
+    healthpath: /ha/health-check
+  - port: 80
+    targetport: 80
+    lbtype: http
+    tls: false
+    reencrypt: false
+    healthport: 80
+    healthprotocol: http
+    healthpath: /
+
+- lbname: cjemaster20
+  customlbname: cjemaster20
+  cnames:
+  - cname: productivityq3ci.slb.sfdc.net
+  servers:
+  - cjemaster20a.dop.sfdc.net
+  - cjemaster20b.dop.sfdc.net
+  ports:
+  - port: 443
+    targetport: 8080
+    lbtype: http
+    tls: true
+    reencrypt: false
+    healthport: 8080
+    healthprotocol: http
+    healthpath: /ha/health-check
+  - port: 80
+    targetport: 80
+    lbtype: http
+    tls: false
+    reencrypt: false
+    healthport: 80
+    healthprotocol: http
+    healthpath: /
+
+- lbname: cjemaster21
+  customlbname: cjemaster21
+  cnames:
+  - cname: zeroci.slb.sfdc.net
+  servers:
+  - cjemaster21a.dop.sfdc.net
+  - cjemaster21b.dop.sfdc.net
+  ports:
+  - port: 443
+    targetport: 8080
+    lbtype: http
+    tls: true
+    reencrypt: false
+    healthport: 8080
+    healthprotocol: http
+    healthpath: /ha/health-check
+  - port: 80
+    targetport: 80
+    lbtype: http
+    tls: false
+    reencrypt: false
+    healthport: 80
+    healthprotocol: http
+    healthpath: /
+
+- lbname: cjemaster22
+  customlbname: cjemaster22
+  cnames:
+  - cname: serviceprotectionci.slb.sfdc.net
+  servers:
+  - cjemaster22a.dop.sfdc.net
+  - cjemaster22b.dop.sfdc.net
+  ports:
+  - port: 443
+    targetport: 8080
+    lbtype: http
+    tls: true
+    reencrypt: false
+    healthport: 8080
+    healthprotocol: http
+    healthpath: /ha/health-check
+  - port: 80
+    targetport: 80
+    lbtype: http
+    tls: false
+    reencrypt: false
+    healthport: 80
+    healthprotocol: http
+    healthpath: /
+
+- lbname: cjemaster23
+  customlbname: cjemaster23
+  cnames:
+  - cname: marketing-cloud-socialci.slb.sfdc.net
+  servers:
+  - cjemaster23a.dop.sfdc.net
+  - cjemaster23b.dop.sfdc.net
+  ports:
+  - port: 443
+    targetport: 8080
+    lbtype: http
+    tls: true
+    reencrypt: false
+    healthport: 8080
+    healthprotocol: http
+    healthpath: /ha/health-check
+  - port: 80
+    targetport: 80
+    lbtype: http
+    tls: false
+    reencrypt: false
+    healthport: 80
+    healthprotocol: http
+    healthpath: /
+
+- lbname: cjemaster24
+  customlbname: cjemaster24
+  cnames:
+  - cname: retail-setupci.slb.sfdc.net
+  servers:
+  - cjemaster24a.dop.sfdc.net
+  - cjemaster24b.dop.sfdc.net
+  ports:
+  - port: 443
+    targetport: 8080
+    lbtype: http
+    tls: true
+    reencrypt: false
+    healthport: 8080
+    healthprotocol: http
+    healthpath: /ha/health-check
+  - port: 80
+    targetport: 80
+    lbtype: http
+    tls: false
+    reencrypt: false
+    healthport: 80
+    healthprotocol: http
+    healthpath: /
+
+- lbname: cjemaster25
+  customlbname: cjemaster25
+  cnames:
+  - cname: cccipci.slb.sfdc.net
+  servers:
+  - cjemaster25a.dop.sfdc.net
+  - cjemaster25b.dop.sfdc.net
+  ports:
+  - port: 443
+    targetport: 8080
+    lbtype: http
+    tls: true
+    reencrypt: false
+    healthport: 8080
+    healthprotocol: http
+    healthpath: /ha/health-check
+  - port: 80
+    targetport: 80
+    lbtype: http
+    tls: false
+    reencrypt: false
+    healthport: 80
+    healthprotocol: http
+    healthpath: /
+
+- lbname: cjemaster26
+  customlbname: cjemaster26
+  cnames:
+  - cname: apex-compilerci.slb.sfdc.net
+  servers:
+  - cjemaster26a.dop.sfdc.net
+  - cjemaster26b.dop.sfdc.net
+  ports:
+  - port: 443
+    targetport: 8080
+    lbtype: http
+    tls: true
+    reencrypt: false
+    healthport: 8080
+    healthprotocol: http
+    healthpath: /ha/health-check
+  - port: 80
+    targetport: 80
+    lbtype: http
+    tls: false
+    reencrypt: false
+    healthport: 80
+    healthprotocol: http
+    healthpath: /
+
+- lbname: cjemaster27
+  customlbname: cjemaster27
+  cnames:
+  - cname: infrasecurityci.slb.sfdc.net
+  servers:
+  - cjemaster27a.dop.sfdc.net
+  - cjemaster27b.dop.sfdc.net
+  ports:
+  - port: 443
+    targetport: 8080
+    lbtype: http
+    tls: true
+    reencrypt: false
+    healthport: 8080
+    healthprotocol: http
+    healthpath: /ha/health-check
+  - port: 80
+    targetport: 80
+    lbtype: http
+    tls: false
+    reencrypt: false
+    healthport: 80
+    healthprotocol: http
+    healthpath: /
+
+- lbname: cjemaster28
+  customlbname: cjemaster28
+  cnames:
+  - cname: auraci.slb.sfdc.net
+  servers:
+  - cjemaster28a.dop.sfdc.net
+  - cjemaster28b.dop.sfdc.net
+  ports:
+  - port: 443
+    targetport: 8080
+    lbtype: http
+    tls: true
+    reencrypt: false
+    healthport: 8080
+    healthprotocol: http
+    healthpath: /ha/health-check
+  - port: 80
+    targetport: 80
+    lbtype: http
+    tls: false
+    reencrypt: false
+    healthport: 80
+    healthprotocol: http
+    healthpath: /
+
+- lbname: cjemaster29
+  customlbname: cjemaster29
+  cnames:
+  - cname: thtbidci.slb.sfdc.net
+  servers:
+  - cjemaster29a.dop.sfdc.net
+  - cjemaster29b.dop.sfdc.net
+  ports:
+  - port: 443
+    targetport: 8080
+    lbtype: http
+    tls: true
+    reencrypt: false
+    healthport: 8080
+    healthprotocol: http
+    healthpath: /ha/health-check
+  - port: 80
+    targetport: 80
+    lbtype: http
+    tls: false
+    reencrypt: false
+    healthport: 80
+    healthprotocol: http
+    healthpath: /
+
+- lbname: cjemaster30
+  customlbname: cjemaster30
+  cnames:
+  - cname: commeditorci.slb.sfdc.net
+  servers:
+  - cjemaster30a.dop.sfdc.net
+  - cjemaster30b.dop.sfdc.net
+  ports:
+  - port: 443
+    targetport: 8080
+    lbtype: http
+    tls: true
+    reencrypt: false
+    healthport: 8080
+    healthprotocol: http
+    healthpath: /ha/health-check
+  - port: 80
+    targetport: 80
+    lbtype: http
+    tls: false
+    reencrypt: false
+    healthport: 80
+    healthprotocol: http
+    healthpath: /
+
+- lbname: cjemaster31
+  customlbname: cjemaster31
+  cnames:
+  - cname: log-governanceci.slb.sfdc.net
+  servers:
+  - cjemaster31a.dop.sfdc.net
+  - cjemaster31b.dop.sfdc.net
+  ports:
+  - port: 443
+    targetport: 8080
+    lbtype: http
+    tls: true
+    reencrypt: false
+    healthport: 8080
+    healthprotocol: http
+    healthpath: /ha/health-check
+  - port: 80
+    targetport: 80
+    lbtype: http
+    tls: false
+    reencrypt: false
+    healthport: 80
+    healthprotocol: http
+    healthpath: /
+
+- lbname: cjemaster32
+  customlbname: cjemaster32
+  cnames:
+  - cname: communitiesci.slb.sfdc.net
+  servers:
+  - cjemaster32a.dop.sfdc.net
+  - cjemaster32b.dop.sfdc.net
+  ports:
+  - port: 443
+    targetport: 8080
+    lbtype: http
+    tls: true
+    reencrypt: false
+    healthport: 8080
+    healthprotocol: http
+    healthpath: /ha/health-check
+  - port: 80
+    targetport: 80
+    lbtype: http
+    tls: false
+    reencrypt: false
+    healthport: 80
+    healthprotocol: http
+    healthpath: /
+
+- lbname: cjemaster33
+  customlbname: cjemaster33
+  cnames:
+  - cname: samci.slb.sfdc.net
+  servers:
+  - cjemaster33a.dop.sfdc.net
+  - cjemaster33b.dop.sfdc.net
+  ports:
+  - port: 443
+    targetport: 8080
+    lbtype: http
+    tls: true
+    reencrypt: false
+    healthport: 8080
+    healthprotocol: http
+    healthpath: /ha/health-check
+  - port: 80
+    targetport: 80
+    lbtype: http
+    tls: false
+    reencrypt: false
+    healthport: 80
+    healthprotocol: http
+    healthpath: /
+
+- lbname: cjemaster34
+  customlbname: cjemaster34
+  cnames:
+  - cname: sdnci.slb.sfdc.net
+  servers:
+  - cjemaster34a.dop.sfdc.net
+  - cjemaster34b.dop.sfdc.net
+  ports:
+  - port: 443
+    targetport: 8080
+    lbtype: http
+    tls: true
+    reencrypt: false
+    healthport: 8080
+    healthprotocol: http
+    healthpath: /ha/health-check
+  - port: 80
+    targetport: 80
+    lbtype: http
+    tls: false
+    reencrypt: false
+    healthport: 80
+    healthprotocol: http
+    healthpath: /
+
+- lbname: cjemaster35
+  customlbname: cjemaster35
+  cnames:
+  - cname: product-defenseci.slb.sfdc.net
+  servers:
+  - cjemaster35a.dop.sfdc.net
+  - cjemaster35b.dop.sfdc.net
+  ports:
+  - port: 443
+    targetport: 8080
+    lbtype: http
+    tls: true
+    reencrypt: false
+    healthport: 8080
+    healthprotocol: http
+    healthpath: /ha/health-check
+  - port: 80
+    targetport: 80
+    lbtype: http
+    tls: false
+    reencrypt: false
+    healthport: 80
+    healthprotocol: http
+    healthpath: /
+
+- lbname: cjemaster36
+  customlbname: cjemaster36
+  cnames:
+  - cname: docker-mobileci.slb.sfdc.net
+  servers:
+  - cjemaster36a.dop.sfdc.net
+  - cjemaster36b.dop.sfdc.net
+  ports:
+  - port: 443
+    targetport: 8080
+    lbtype: http
+    tls: true
+    reencrypt: false
+    healthport: 8080
+    healthprotocol: http
+    healthpath: /ha/health-check
+  - port: 80
+    targetport: 80
+    lbtype: http
+    tls: false
+    reencrypt: false
+    healthport: 80
+    healthprotocol: http
+    healthpath: /
+
+- lbname: cjemaster37
+  customlbname: cjemaster37
+  cnames:
+  - cname: schemasecurityscalingci.slb.sfdc.net
+  servers:
+  - cjemaster37a.dop.sfdc.net
+  - cjemaster37b.dop.sfdc.net
+  ports:
+  - port: 443
+    targetport: 8080
+    lbtype: http
+    tls: true
+    reencrypt: false
+    healthport: 8080
+    healthprotocol: http
+    healthpath: /ha/health-check
+  - port: 80
+    targetport: 80
+    lbtype: http
+    tls: false
+    reencrypt: false
+    healthport: 80
+    healthprotocol: http
+    healthpath: /
+
+- lbname: cjemaster38
+  customlbname: cjemaster38
+  cnames:
+  - cname: productivityci.slb.sfdc.net
+  servers:
+  - cjemaster38a.dop.sfdc.net
+  - cjemaster38b.dop.sfdc.net
+  ports:
+  - port: 443
+    targetport: 8080
+    lbtype: http
+    tls: true
+    reencrypt: false
+    healthport: 8080
+    healthprotocol: http
+    healthpath: /ha/health-check
+  - port: 80
+    targetport: 80
+    lbtype: http
+    tls: false
+    reencrypt: false
+    healthport: 80
+    healthprotocol: http
+    healthpath: /
+
+- lbname: cjemaster39
+  customlbname: cjemaster39
+  cnames:
+  - cname: atfci.slb.sfdc.net
+  servers:
+  - cjemaster39a.dop.sfdc.net
+  - cjemaster39b.dop.sfdc.net
+  ports:
+  - port: 443
+    targetport: 8080
+    lbtype: http
+    tls: true
+    reencrypt: false
+    healthport: 8080
+    healthprotocol: http
+    healthpath: /ha/health-check
+  - port: 80
+    targetport: 80
+    lbtype: http
+    tls: false
+    reencrypt: false
+    healthport: 80
+    healthprotocol: http
+    healthpath: /
+
+- lbname: cjemaster40
+  customlbname: cjemaster40
+  cnames:
+  - cname: vagabondci.slb.sfdc.net
+  servers:
+  - cjemaster40a.dop.sfdc.net
+  - cjemaster40b.dop.sfdc.net
+  ports:
+  - port: 443
+    targetport: 8080
+    lbtype: http
+    tls: true
+    reencrypt: false
+    healthport: 8080
+    healthprotocol: http
+    healthpath: /ha/health-check
+  - port: 80
+    targetport: 80
+    lbtype: http
+    tls: false
+    reencrypt: false
+    healthport: 80
+    healthprotocol: http
+    healthpath: /
+
+- lbname: cjemaster41
+  customlbname: cjemaster41
+  cnames:
+  - cname: scone-starter-hbaseci.slb.sfdc.net
+  servers:
+  - cjemaster41a.dop.sfdc.net
+  - cjemaster41b.dop.sfdc.net
+  ports:
+  - port: 443
+    targetport: 8080
+    lbtype: http
+    tls: true
+    reencrypt: false
+    healthport: 8080
+    healthprotocol: http
+    healthpath: /ha/health-check
+  - port: 80
+    targetport: 80
+    lbtype: http
+    tls: false
+    reencrypt: false
+    healthport: 80
+    healthprotocol: http
+    healthpath: /
+
+- lbname: cjemaster42
+  customlbname: cjemaster42
+  cnames:
+  - cname: artifactp2pci.slb.sfdc.net
+  servers:
+  - cjemaster42a.dop.sfdc.net
+  - cjemaster42b.dop.sfdc.net
+  ports:
+  - port: 443
+    targetport: 8080
+    lbtype: http
+    tls: true
+    reencrypt: false
+    healthport: 8080
+    healthprotocol: http
+    healthpath: /ha/health-check
+  - port: 80
+    targetport: 80
+    lbtype: http
+    tls: false
+    reencrypt: false
+    healthport: 80
+    healthprotocol: http
+    healthpath: /
+
+- lbname: cjemaster43
+  customlbname: cjemaster43
+  cnames:
+  - cname: reviewci.slb.sfdc.net
+  servers:
+  - cjemaster43a.dop.sfdc.net
+  - cjemaster43b.dop.sfdc.net
+  ports:
+  - port: 443
+    targetport: 8080
+    lbtype: http
+    tls: true
+    reencrypt: false
+    healthport: 8080
+    healthprotocol: http
+    healthpath: /ha/health-check
+  - port: 80
+    targetport: 80
+    lbtype: http
+    tls: false
+    reencrypt: false
+    healthport: 80
+    healthprotocol: http
+    healthpath: /
+
+- lbname: cjemaster44
+  customlbname: cjemaster44
+  cnames:
+  - cname: ccdxci.slb.sfdc.net
+  servers:
+  - cjemaster44a.dop.sfdc.net
+  - cjemaster44b.dop.sfdc.net
+  ports:
+  - port: 443
+    targetport: 8080
+    lbtype: http
+    tls: true
+    reencrypt: false
+    healthport: 8080
+    healthprotocol: http
+    healthpath: /ha/health-check
+  - port: 80
+    targetport: 80
+    lbtype: http
+    tls: false
+    reencrypt: false
+    healthport: 80
+    healthprotocol: http
+    healthpath: /
+
+- lbname: cjemaster45
+  customlbname: cjemaster45
+  cnames:
+  - cname: slds-toolingci.slb.sfdc.net
+  servers:
+  - cjemaster45a.dop.sfdc.net
+  - cjemaster45b.dop.sfdc.net
+  ports:
+  - port: 443
+    targetport: 8080
+    lbtype: http
+    tls: true
+    reencrypt: false
+    healthport: 8080
+    healthprotocol: http
+    healthpath: /ha/health-check
+  - port: 80
+    targetport: 80
+    lbtype: http
+    tls: false
+    reencrypt: false
+    healthport: 80
+    healthprotocol: http
+    healthpath: /
+
+- lbname: cjemaster46
+  customlbname: cjemaster46
+  cnames:
+  - cname: tcjemaster46.slb.sfdc.net
+  servers:
+  - cjemaster46a.dop.sfdc.net
+  - cjemaster46b.dop.sfdc.net
+  ports:
+  - port: 443
+    targetport: 8080
+    lbtype: http
+    tls: true
+    reencrypt: false
+    healthport: 8080
+    healthprotocol: http
+    healthpath: /ha/health-check
+  - port: 80
+    targetport: 80
+    lbtype: http
+    tls: false
+    reencrypt: false
+    healthport: 80
+    healthprotocol: http
+    healthpath: /
+
+- lbname: cjemaster47
+  customlbname: cjemaster47
+  cnames:
+  - cname: devopstest1ci.slb.sfdc.net
+  servers:
+  - cjemaster47a.dop.sfdc.net
+  - cjemaster47b.dop.sfdc.net
+  ports:
+  - port: 443
+    targetport: 8080
+    lbtype: http
+    tls: true
+    reencrypt: false
+    healthport: 8080
+    healthprotocol: http
+    healthpath: /ha/health-check
+  - port: 80
+    targetport: 80
+    lbtype: http
+    tls: false
+    reencrypt: false
+    healthport: 80
+    healthprotocol: http
+    healthpath: /
+
+- lbname: cjemaster48
+  customlbname: cjemaster48
+  cnames:
+  - cname: devopstest1ci.slb.sfdc.net
+  servers:
+  - cjemaster48a.dop.sfdc.net
+  - cjemaster48b.dop.sfdc.net
+  ports:
+  - port: 443
+    targetport: 8080
+    lbtype: http
+    tls: true
+    reencrypt: false
+    healthport: 8080
+    healthprotocol: http
+    healthpath: /ha/health-check
+  - port: 80
+    targetport: 80
+    lbtype: http
+    tls: false
+    reencrypt: false
+    healthport: 80
+    healthprotocol: http
+    healthpath: /
+
