@@ -35,8 +35,6 @@ system:
       volumeMounts:
         - name: datavol-insights-iworker
           mountPath: /data
-      securityContext:
-          privileged: true          
     volumes: 
         - hostPath: 
             path: /data/ea/insights-iworker/data
