@@ -29,7 +29,7 @@ spec:
         - --storage.tsdb.path=/prometheus-storage
         - --web.external-url=http://localhost/
         - --web.enable-lifecycle
-        image: ops0-artifactrepo1-0-hnd.data.sfdc.net/dva/prome_for_k8s:36
+        image: ops0-artifactrepo1-0-hnd.data.sfdc.net/dva/prome_for_k8s:37
         livenessProbe:
           httpGet:
             path: /metrics
@@ -57,7 +57,7 @@ spec:
         - --tagDefault=estate:hnd-flowsnake_prod
         - --batchSize=512
         - --funnelUrl=http://ajna0-funnel1-0-hnd.data.sfdc.net:80
-        image: ops0-artifactrepo1-0-hnd.data.sfdc.net/dva/funnel_writer:36
+        image: ops0-artifactrepo1-0-hnd.data.sfdc.net/dva/funnel_writer:37
         livenessProbe:
           httpGet:
             path: /
