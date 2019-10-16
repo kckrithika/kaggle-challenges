@@ -36,8 +36,6 @@ system:
           cpu: "24"
           memory: "24Gi"
       env:
-      - name: SERVICE_THREADCOUNT
-        value: '250'
       - name: JVM_OPTS
         value: '-Xms16g -Xmx16g'
       - name: KRB5_CONF
