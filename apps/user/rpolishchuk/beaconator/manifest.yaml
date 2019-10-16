@@ -17,32 +17,24 @@ system:
 
     containers:
     - name: beaconator
-      image: sfci/servicelibs/beacon:853c4db9f14805018be6f5e7607ffe65b5648822
+      image: sfci/services/sfdc-bazel/disco/beacon:be0423a5b
       args:
-      - -logging.dir
-      - /log
+      - -loglevel
+      - INFO
       - -endpoint
       - beaconator-service:DATACENTER_ALLENV:7443:metadata-service-prd-func-lb.retail-mds.prd-sam.prd.slb.sfdc.net
       env:
       - name: DUMMY_FORCE_PUSH 
         value: 3 # increse value to force push without any other changes 
-      volumeMounts:
-      - mountPath: /log
-        name: logvolbeacon
       resources:
         limits:
           cpu: "500m"
-          memory: 1Gi
+          memory: 512Mi
         requests:
           cpu: "500m"
-          memory: 1Gi
+          memory: 512Mi
       livenessProbe:
         initialDelaySeconds: 5
         exec:
           command:
-          - "/home/scone/is-alive.sh"
-    volumes:
-    - name: logvolbeacon
-      hostPath:
-        path: /home/sfdc-scone-beaconator/logs
-
+          - "/opt/scone/is-alive.sh"
