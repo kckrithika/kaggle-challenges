@@ -186,7 +186,8 @@ local utils = import "util_functions.jsonnet";
         # off-peak: 6pm-4am PDT
         "prod-na": self.prod {
             image_tags+: {
-                        },
+                prometheus_funnel_image_tag: "37",
+            },
         },
 
         # APAC (Asia Pacific): HND, UKB, CDU, SYD
