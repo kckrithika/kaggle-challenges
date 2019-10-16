@@ -9,7 +9,7 @@ system:
     terminationGracePeriodSeconds: 30
     containers:
     - name: insights-redis
-      image: dva-registry.internal.salesforce.com/dva/insights-redis
+      image: dva-registry.internal.salesforce.com/dva/insights-redis:5
       resources:
         requests:
           memory: "1Gi"

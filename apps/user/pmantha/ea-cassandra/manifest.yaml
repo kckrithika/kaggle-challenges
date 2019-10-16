@@ -8,7 +8,7 @@ system:
     lbname: insights-cassandra
     containers:
     - name: insights-cassandra
-      image: dva-registry.internal.salesforce.com/dva/insights-cassandra
+      image: dva-registry.internal.salesforce.com/dva/insights-cassandra:10
       imagePullPolicy: Always
       # command: ["/bin/sh"]
       # args: ["-c", "while :; do  sleep 1; done"]      
