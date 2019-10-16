@@ -1,7 +1,7 @@
 local configs = import "config.jsonnet";
 local utils = import "util_functions.jsonnet";
 local name = "crd-watcher";
- if configs.kingdom != "mvp" && (configs.estate != "prd-samtest" && configs.estate != "prd-samdev") then {
+ if configs.kingdom != "mvp" && (configs.estate == "prd-samtest" || configs.estate == "prd-samdev") then {
         kind: "ConfigMap",
         apiVersion: "v1",
         metadata: {
