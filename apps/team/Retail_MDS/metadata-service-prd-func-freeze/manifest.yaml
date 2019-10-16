@@ -10,7 +10,7 @@ system:
   - name: metadata-service-prd-func-freeze
     identity:
       serviceName: metadata-service
-    count: 1
+    count: 0
     labels:
       app: metadata-service
     annotations:
@@ -30,9 +30,6 @@ system:
         value: "15523"
       - name: JVM_ARGS
         value:  -Xmx2G -Xms2G -XX:ParallelGCThreads=8
-                -Ddatabase.name=metadataserviceitest
-                -Ddatabase.discovery.params=connectTimeout=10000&dropDatabase=true
-                -Dstartup.task.run=false
       resources:
         limits:
           cpu: "4"
