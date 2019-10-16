@@ -5,3 +5,6 @@ apps:
   - prd/prd-sam
  my-sam-gadget-ui-test:
   - prd/prd-sam
+ pyplyn-sam-test:
+  - prd/prd-sam
+
