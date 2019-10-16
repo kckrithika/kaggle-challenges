@@ -47,7 +47,7 @@ spec:
         - -webhook-namespace-selector=spark-operator-webhook=enabled
         command:
         - /usr/bin/spark-operator
-        image: ops0-artifactrepo1-0-ph2.data.sfdc.net/dva/kubernetes-spark-operator-2.4.0-sfdc-0.0.1:jenkins-dva-transformation-spark-on-k8s-operator-PR-16-7-itest
+        image: ops0-artifactrepo1-0-ph2.data.sfdc.net/dva/kubernetes-spark-operator-2.4.0-sfdc-0.0.1:jenkins-dva-transformation-spark-on-k8s-operator-PR-40-5-itest
         imagePullPolicy: Always
         name: spark-operator
         ports:

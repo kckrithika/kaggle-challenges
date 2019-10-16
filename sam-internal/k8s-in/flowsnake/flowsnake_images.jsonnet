@@ -189,6 +189,9 @@ local utils = import "util_functions.jsonnet";
         # NA (North America): DFW, IAD, IA2, ORD, PHX, PH2, YHU, YUL
         # off-peak: 6pm-4am PDT
         "prod-na": self.prod {
+            image_tags+: {
+                            spark_operator_image_tag: "jenkins-dva-transformation-spark-on-k8s-operator-PR-40-5-itest",  # 10/2 image that bumps up client throttle
+                        },
         },
 
         # APAC (Asia Pacific): HND, UKB, CDU, SYD
