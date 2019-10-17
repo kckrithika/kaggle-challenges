@@ -266,7 +266,7 @@ spec:
               fieldPath: metadata.namespace
         - name: ESTATE
           value: par-sam_gater
-        image: ops0-artifactrepo1-0-par.data.sfdc.net/tnrp/sam/madkub:1.0.0-0000081-ddcaa288
+        image: ops0-artifactrepo1-0-par.data.sfdc.net/tnrp/sam/madkub:1.0.0-0000082-3d5c21b4
         imagePullPolicy: IfNotPresent
         name: madkub-refresher
         resources: {}
@@ -342,7 +342,7 @@ spec:
             fieldRef:
               apiVersion: v1
               fieldPath: metadata.namespace
-        image: ops0-artifactrepo1-0-par.data.sfdc.net/tnrp/sam/madkub:1.0.0-0000081-ddcaa288
+        image: ops0-artifactrepo1-0-par.data.sfdc.net/tnrp/sam/madkub:1.0.0-0000082-3d5c21b4
         imagePullPolicy: IfNotPresent
         name: madkub-init
         volumeMounts:
