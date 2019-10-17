@@ -83,7 +83,7 @@ spec:
         - --marker=/host/data/slb/ipvs.marker
         - --period=5s
         - --log_dir=/host/data/slb/logs/slb-ipvs
-        - --maximumDeleteCount=50
+        - --maximumDeleteCount=1000
         - --hostsConfigFile=/sfdchosts/hosts.json
         - --client.serverPort=12081
         - --client.serverInterface=lo

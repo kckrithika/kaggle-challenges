@@ -29,7 +29,7 @@ spec:
         - --netInterfaceName=eth0
         - --metricsEndpoint=ajna0-funnel1-0-vpod.data.sfdc.net:80
         - --log_dir=/host/data/slb/logs/slb-vpod-nginx
-        - --maxDeleteServiceCount=100
+        - --maxDeleteServiceCount=1000
         - --hostsConfigFile=/sfdchosts/hosts.json
         - --client.serverInterface=lo
         - --hostnameOverride=$(NODE_NAME)
