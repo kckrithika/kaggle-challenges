@@ -159,7 +159,7 @@ system:
            fieldRef:
             fieldPath: spec.nodeName
         - name: gid_service_ca_entityApi_basePath
-          value: http://127.0.0.1:7030/empire
+          value: http://cloudatlas-gidv2.global-identity.prd-sam.prd.slb.sfdc.net:7030/empire
         - name: ca_service_host
           value: 127.0.0.1
         - name: server_port
@@ -174,7 +174,7 @@ system:
           value: giddataservice-cast-prd-dev
         - name: c2c_service_id
           value: giddataservice-cast-prd-dev
-        - name: ldaps_hostname_xxx
+        - name: ldaps_hostname
           value: cloudatlas-gidv2.global-identity.prd-sam.prd.slb.sfdc.net
         - name: c2c_common_gdotBasePath
           value: http://cloudatlas-gidv2.global-identity.prd-sam.prd.slb.sfdc.net/scim
