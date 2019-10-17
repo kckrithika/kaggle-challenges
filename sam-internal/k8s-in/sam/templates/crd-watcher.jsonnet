@@ -4,6 +4,8 @@ local utils = import "util_functions.jsonnet";
 local name = "crd-watcher";
 local samreleases = import "samreleases.json";
 
+# [karthik-sudana] We are migrating from crd-watcher to zrd-watcher because we want it to deploy after
+# the watchdog services, as the autodeployer goes in alphabetical order.
 if configs.kingdom != "mvp" && (configs.estate != "prd-samtest" && configs.estate != "prd-samdev") then {
         kind: "Deployment",
         spec: {
