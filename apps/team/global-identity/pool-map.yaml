@@ -21,5 +21,7 @@ apps:
     - name: prd/prd-sam_cloudatlas
   gid-runtime-service-mit:
     - name: prd/prd-sam_cloudatlas
+  gid-runtime-service-dev:
+    - name: prd/prd-sam_cloudatlas
   local-gid-service:
     - name: prd/prd-sam_cloudatlas
