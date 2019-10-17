@@ -163,11 +163,10 @@ items:
           - --logsMaxAge=1h
           - --filesDirToCleanup=/host/data/slb/config/slb-portal-frf
           - --shouldSkipServiceRecords=true
-          - --shouldNotDeleteAllFiles=true
           - --log_dir=/host/data/slb/logs/slb-portal-frf
           - --shouldSkipSlbBlock=true
           - --skipFilesWithSuffix=.sock
-          - --maxDeleteFileCount=20
+          - --shouldNotDeleteAllFiles=false
           image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/slb/hyperslb:2251-85aa611f8716aca8d3f31d3de175efdfef9d1a05
           name: slb-cleanup-config-processor
           securityContext:
@@ -543,11 +542,10 @@ items:
           - --logsMaxAge=1h
           - --filesDirToCleanup=/host/data/slb/config/slb-portal-phx
           - --shouldSkipServiceRecords=true
-          - --shouldNotDeleteAllFiles=true
           - --log_dir=/host/data/slb/logs/slb-portal-phx
           - --shouldSkipSlbBlock=true
           - --skipFilesWithSuffix=.sock
-          - --maxDeleteFileCount=20
+          - --shouldNotDeleteAllFiles=false
           image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/slb/hyperslb:2251-85aa611f8716aca8d3f31d3de175efdfef9d1a05
           name: slb-cleanup-config-processor
           securityContext:
@@ -923,11 +921,10 @@ items:
           - --logsMaxAge=1h
           - --filesDirToCleanup=/host/data/slb/config/slb-portal-iad
           - --shouldSkipServiceRecords=true
-          - --shouldNotDeleteAllFiles=true
           - --log_dir=/host/data/slb/logs/slb-portal-iad
           - --shouldSkipSlbBlock=true
           - --skipFilesWithSuffix=.sock
-          - --maxDeleteFileCount=20
+          - --shouldNotDeleteAllFiles=false
           image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/slb/hyperslb:2251-85aa611f8716aca8d3f31d3de175efdfef9d1a05
           name: slb-cleanup-config-processor
           securityContext:
@@ -1303,11 +1300,10 @@ items:
           - --logsMaxAge=1h
           - --filesDirToCleanup=/host/data/slb/config/slb-portal-ord
           - --shouldSkipServiceRecords=true
-          - --shouldNotDeleteAllFiles=true
           - --log_dir=/host/data/slb/logs/slb-portal-ord
           - --shouldSkipSlbBlock=true
           - --skipFilesWithSuffix=.sock
-          - --maxDeleteFileCount=20
+          - --shouldNotDeleteAllFiles=false
           image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/slb/hyperslb:2251-85aa611f8716aca8d3f31d3de175efdfef9d1a05
           name: slb-cleanup-config-processor
           securityContext:
@@ -1683,11 +1679,10 @@ items:
           - --logsMaxAge=1h
           - --filesDirToCleanup=/host/data/slb/config/slb-portal-dfw
           - --shouldSkipServiceRecords=true
-          - --shouldNotDeleteAllFiles=true
           - --log_dir=/host/data/slb/logs/slb-portal-dfw
           - --shouldSkipSlbBlock=true
           - --skipFilesWithSuffix=.sock
-          - --maxDeleteFileCount=20
+          - --shouldNotDeleteAllFiles=false
           image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/slb/hyperslb:2251-85aa611f8716aca8d3f31d3de175efdfef9d1a05
           name: slb-cleanup-config-processor
           securityContext:
@@ -2063,11 +2058,10 @@ items:
           - --logsMaxAge=1h
           - --filesDirToCleanup=/host/data/slb/config/slb-portal-hnd
           - --shouldSkipServiceRecords=true
-          - --shouldNotDeleteAllFiles=true
           - --log_dir=/host/data/slb/logs/slb-portal-hnd
           - --shouldSkipSlbBlock=true
           - --skipFilesWithSuffix=.sock
-          - --maxDeleteFileCount=20
+          - --shouldNotDeleteAllFiles=false
           image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/slb/hyperslb:2251-85aa611f8716aca8d3f31d3de175efdfef9d1a05
           name: slb-cleanup-config-processor
           securityContext:
@@ -2443,11 +2437,10 @@ items:
           - --logsMaxAge=1h
           - --filesDirToCleanup=/host/data/slb/config/slb-portal-xrd
           - --shouldSkipServiceRecords=true
-          - --shouldNotDeleteAllFiles=true
           - --log_dir=/host/data/slb/logs/slb-portal-xrd
           - --shouldSkipSlbBlock=true
           - --skipFilesWithSuffix=.sock
-          - --maxDeleteFileCount=20
+          - --shouldNotDeleteAllFiles=false
           image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/slb/hyperslb:2251-85aa611f8716aca8d3f31d3de175efdfef9d1a05
           name: slb-cleanup-config-processor
           securityContext:
@@ -2823,11 +2816,10 @@ items:
           - --logsMaxAge=1h
           - --filesDirToCleanup=/host/data/slb/config/slb-portal-cdg
           - --shouldSkipServiceRecords=true
-          - --shouldNotDeleteAllFiles=true
           - --log_dir=/host/data/slb/logs/slb-portal-cdg
           - --shouldSkipSlbBlock=true
           - --skipFilesWithSuffix=.sock
-          - --maxDeleteFileCount=20
+          - --shouldNotDeleteAllFiles=false
           image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/slb/hyperslb:2251-85aa611f8716aca8d3f31d3de175efdfef9d1a05
           name: slb-cleanup-config-processor
           securityContext:
@@ -3203,11 +3195,10 @@ items:
           - --logsMaxAge=1h
           - --filesDirToCleanup=/host/data/slb/config/slb-portal-fra
           - --shouldSkipServiceRecords=true
-          - --shouldNotDeleteAllFiles=true
           - --log_dir=/host/data/slb/logs/slb-portal-fra
           - --shouldSkipSlbBlock=true
           - --skipFilesWithSuffix=.sock
-          - --maxDeleteFileCount=20
+          - --shouldNotDeleteAllFiles=false
           image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/slb/hyperslb:2251-85aa611f8716aca8d3f31d3de175efdfef9d1a05
           name: slb-cleanup-config-processor
           securityContext:
@@ -3583,11 +3574,10 @@ items:
           - --logsMaxAge=1h
           - --filesDirToCleanup=/host/data/slb/config/slb-portal-ia2
           - --shouldSkipServiceRecords=true
-          - --shouldNotDeleteAllFiles=true
           - --log_dir=/host/data/slb/logs/slb-portal-ia2
           - --shouldSkipSlbBlock=true
           - --skipFilesWithSuffix=.sock
-          - --maxDeleteFileCount=20
+          - --shouldNotDeleteAllFiles=false
           image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/slb/hyperslb:2251-85aa611f8716aca8d3f31d3de175efdfef9d1a05
           name: slb-cleanup-config-processor
           securityContext:
@@ -3963,11 +3953,10 @@ items:
           - --logsMaxAge=1h
           - --filesDirToCleanup=/host/data/slb/config/slb-portal-ph2
           - --shouldSkipServiceRecords=true
-          - --shouldNotDeleteAllFiles=true
           - --log_dir=/host/data/slb/logs/slb-portal-ph2
           - --shouldSkipSlbBlock=true
           - --skipFilesWithSuffix=.sock
-          - --maxDeleteFileCount=20
+          - --shouldNotDeleteAllFiles=false
           image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/slb/hyperslb:2251-85aa611f8716aca8d3f31d3de175efdfef9d1a05
           name: slb-cleanup-config-processor
           securityContext:
@@ -4343,11 +4332,10 @@ items:
           - --logsMaxAge=1h
           - --filesDirToCleanup=/host/data/slb/config/slb-portal-par
           - --shouldSkipServiceRecords=true
-          - --shouldNotDeleteAllFiles=true
           - --log_dir=/host/data/slb/logs/slb-portal-par
           - --shouldSkipSlbBlock=true
           - --skipFilesWithSuffix=.sock
-          - --maxDeleteFileCount=20
+          - --shouldNotDeleteAllFiles=false
           image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/slb/hyperslb:2251-85aa611f8716aca8d3f31d3de175efdfef9d1a05
           name: slb-cleanup-config-processor
           securityContext:
@@ -4723,11 +4711,10 @@ items:
           - --logsMaxAge=1h
           - --filesDirToCleanup=/host/data/slb/config/slb-portal-ukb
           - --shouldSkipServiceRecords=true
-          - --shouldNotDeleteAllFiles=true
           - --log_dir=/host/data/slb/logs/slb-portal-ukb
           - --shouldSkipSlbBlock=true
           - --skipFilesWithSuffix=.sock
-          - --maxDeleteFileCount=20
+          - --shouldNotDeleteAllFiles=false
           image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/slb/hyperslb:2251-85aa611f8716aca8d3f31d3de175efdfef9d1a05
           name: slb-cleanup-config-processor
           securityContext:
@@ -5103,11 +5090,10 @@ items:
           - --logsMaxAge=1h
           - --filesDirToCleanup=/host/data/slb/config/slb-portal-lo2
           - --shouldSkipServiceRecords=true
-          - --shouldNotDeleteAllFiles=true
           - --log_dir=/host/data/slb/logs/slb-portal-lo2
           - --shouldSkipSlbBlock=true
           - --skipFilesWithSuffix=.sock
-          - --maxDeleteFileCount=20
+          - --shouldNotDeleteAllFiles=false
           image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/slb/hyperslb:2251-85aa611f8716aca8d3f31d3de175efdfef9d1a05
           name: slb-cleanup-config-processor
           securityContext:
@@ -5483,11 +5469,10 @@ items:
           - --logsMaxAge=1h
           - --filesDirToCleanup=/host/data/slb/config/slb-portal-lo3
           - --shouldSkipServiceRecords=true
-          - --shouldNotDeleteAllFiles=true
           - --log_dir=/host/data/slb/logs/slb-portal-lo3
           - --shouldSkipSlbBlock=true
           - --skipFilesWithSuffix=.sock
-          - --maxDeleteFileCount=20
+          - --shouldNotDeleteAllFiles=false
           image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/slb/hyperslb:2251-85aa611f8716aca8d3f31d3de175efdfef9d1a05
           name: slb-cleanup-config-processor
           securityContext:
@@ -5863,11 +5848,10 @@ items:
           - --logsMaxAge=1h
           - --filesDirToCleanup=/host/data/slb/config/slb-portal-ia4
           - --shouldSkipServiceRecords=true
-          - --shouldNotDeleteAllFiles=true
           - --log_dir=/host/data/slb/logs/slb-portal-ia4
           - --shouldSkipSlbBlock=true
           - --skipFilesWithSuffix=.sock
-          - --maxDeleteFileCount=20
+          - --shouldNotDeleteAllFiles=false
           image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/slb/hyperslb:2251-85aa611f8716aca8d3f31d3de175efdfef9d1a05
           name: slb-cleanup-config-processor
           securityContext:
@@ -6243,11 +6227,10 @@ items:
           - --logsMaxAge=1h
           - --filesDirToCleanup=/host/data/slb/config/slb-portal-ia5
           - --shouldSkipServiceRecords=true
-          - --shouldNotDeleteAllFiles=true
           - --log_dir=/host/data/slb/logs/slb-portal-ia5
           - --shouldSkipSlbBlock=true
           - --skipFilesWithSuffix=.sock
-          - --maxDeleteFileCount=20
+          - --shouldNotDeleteAllFiles=false
           image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/slb/hyperslb:2251-85aa611f8716aca8d3f31d3de175efdfef9d1a05
           name: slb-cleanup-config-processor
           securityContext:

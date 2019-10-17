@@ -122,12 +122,15 @@
       "--logsMaxAge=1h",
       "--filesDirToCleanup=" + slbconfigs.configDir,
       "--shouldSkipServiceRecords=true",
-      "--shouldNotDeleteAllFiles=true",
       "--log_dir=" + slbconfigs.logsDir,
       "--shouldSkipSlbBlock=true",
       "--skipFilesWithSuffix=.sock",
-      "--maxDeleteFileCount=20",
-    ],
+    ] + (if configs.estate == "prd-sam" then [
+        "--shouldNotDeleteAllFiles=false",
+    ] else [
+        "--shouldNotDeleteAllFiles=true",
+        "--maxDeleteFileCount=20",
+    ]),
     volumeMounts: std.prune([
       slbconfigs.slb_volume_mount,
       slbconfigs.slb_config_volume_mount,

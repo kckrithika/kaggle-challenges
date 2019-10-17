@@ -245,10 +245,10 @@ spec:
         - --logsMaxAge=1h
         - --filesDirToCleanup=/host/data/slb/config/slb-ipvs
         - --shouldSkipServiceRecords=true
-        - --shouldNotDeleteAllFiles=true
         - --log_dir=/host/data/slb/logs/slb-ipvs
         - --shouldSkipSlbBlock=true
         - --skipFilesWithSuffix=.sock
+        - --shouldNotDeleteAllFiles=true
         - --maxDeleteFileCount=20
         image: ops0-artifactrepo1-0-lo3.data.sfdc.net/dva/slb/hyperslb:2247-59458d4bb3489d4df4f4bdbb0de3eca69657c834
         name: slb-cleanup-config-processor

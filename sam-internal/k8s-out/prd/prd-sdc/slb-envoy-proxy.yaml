@@ -359,10 +359,10 @@ spec:
         - --logsMaxAge=1h
         - --filesDirToCleanup=/host/data/slb/config/slb-envoy-proxy
         - --shouldSkipServiceRecords=true
-        - --shouldNotDeleteAllFiles=true
         - --log_dir=/host/data/slb/logs/slb-envoy-proxy
         - --shouldSkipSlbBlock=true
         - --skipFilesWithSuffix=.sock
+        - --shouldNotDeleteAllFiles=true
         - --maxDeleteFileCount=20
         image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/slb/hyperslb:2251-85aa611f8716aca8d3f31d3de175efdfef9d1a05
         name: slb-cleanup-config-processor
