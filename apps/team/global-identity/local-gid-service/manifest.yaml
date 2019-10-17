@@ -17,136 +17,136 @@ system:
     #####################################################################################
     # Service Mesh / Envoy / Sherpa
     #####################################################################################
-    - name: sherpa-envoy
-      image: sfci/servicelibs/sherpa-envoy:1.0.8
-      env:
-      - name: SFDC_ENVIRONMENT
-        value: "stmfa"
-      resources:
-        limits: { cpu: "1", memory: "1Gi" }
-        requests: { cpu: "1", memory: "1Gi" }
-      volumeMounts:
-      - name: client-cert
-        mountPath: /client-certs
-      - name: server-cert
-        mountPath: /server-certs
-      - mountPath: /log
-        name: logvolsherpa
-      ports:
-      - containerPort: 7012
-        name: http2-in
-      - containerPort: 7014
-        name: http1-in
-      - containerPort: 7443
-        name: http2-tls-in
-      - containerPort: 7442
-        name: http1-tls-in
-      - containerPort: 15373
-        name: sherpa-adm
-      livenessProbe:
-        exec:
-          command:
-          - "/home/sfdc-sherpa/bin/is-alive"
-        initialDelaySeconds: 120
-        periodSeconds: 5
-      readinessProbe:
-        exec:
-          command:
-          - "/home/sfdc-sherpa/bin/is-ready"
-        initialDelaySeconds: 110
-        periodSeconds: 5
-    #####################################################################################
-    # Service Beacon
-    #####################################################################################
-    - name: beacon
-      image: sfci/servicelibs/beacon:7ad9e771192cd0b3e43393eea2e1e5c1de81dfda
-      env:
-      - name: SFDC_ENVIRONMENT
-        value: "stmfa"
-      volumeMounts:
-      - mountPath: /log
-        name: logvolbeacon
-      resources:
-        limits: { cpu: "1", memory: "1Gi" }
-        requests: { cpu: "1", memory: "1Gi" }
-      args:
-        - -endpoint
-        - $(FUNCTION_NAMESPACE)/$(FUNCTION):DATACENTER_ALLENV:7442
-      livenessProbe:
-        exec:
-          command:
-          - "/home/scone/is-alive.sh"
-        initialDelaySeconds: 5
-        periodSeconds: 5
-    #####################################################################################
-    # Entity API
-    #####################################################################################
-    - name: cloudatlas-service
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cloud-atlas/cloudatlas/cloudatlas-service:0a9cf41
-      command: ["java", "-jar", "cloudatlas-service.jar"]
-      env:
-        - name: DIRECTORY_SERVER_HOST
-          value: cloudatlas-gidv2.global-identity.prd-sam.prd.slb.sfdc.net
-        - name: server_port
-          value: 7032
-        - name: management_server_port
-          value: 15374
-        - name: cloudatlas_http_server_port_servicemesh
-          value: 7080
-      volumeMounts:
-      - mountPath: /log
-        name: logvol
-      - mountPath: /certs
-        name: server-cert
-      - mountPath: /clientcerts
-        name: client-cert
-      ports:
-      - containerPort: 7030
-      - containerPort: 7032
-      - containerPort: 7080
-      - containerPort: 15374
-      livenessProbe:
-        httpGet:
-          path: /manage/health
-          port: 15374
-        initialDelaySeconds: 60
-        periodSeconds: 30
-      readinessProbe:
-        httpGet:
-          path: /manage/health
-          port: 15374
-        initialDelaySeconds: 60
-        periodSeconds: 5
-        failureThreshold: 120
-    #####################################################################################
-    # C2C service
-    #####################################################################################
-    - name: c2c-service
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/gid/c2c-service:20191008173906-6755dab
-      imagePullPolicy: Always
-      env:
-        - name: directory_server_host
-          valueFrom:
-           fieldRef:
-            fieldPath: spec.nodeName
-        - name: server_port
-          value: 8082
-        - name: management_server_port
-          value: 15372
-        - name: c2c_common_gdotBasePath
-          value: http://cloudatlas-gidv2.global-identity.prd-sam.prd.slb.sfdc.net/scim
-        - name: GDOT_URL
-          value: http://cloudatlas-gidv2.global-identity.prd-sam.prd.slb.sfdc.net/scim
-      ports:
-        - containerPort: 8082
-        - containerPort: 15372
-      livenessProbe:
-        httpGet:
-          path: /manage/health
-          port: 15372
-      volumeMounts:
-        - name: server-cert
-          mountPath: /certs
+    # - name: sherpa-envoy
+    #   image: sfci/servicelibs/sherpa-envoy:1.0.8
+    #   env:
+    #   - name: SFDC_ENVIRONMENT
+    #     value: "stmfa"
+    #   resources:
+    #     limits: { cpu: "1", memory: "1Gi" }
+    #     requests: { cpu: "1", memory: "1Gi" }
+    #   volumeMounts:
+    #   - name: client-cert
+    #     mountPath: /client-certs
+    #   - name: server-cert
+    #     mountPath: /server-certs
+    #   - mountPath: /log
+    #     name: logvolsherpa
+    #   ports:
+    #   - containerPort: 7012
+    #     name: http2-in
+    #   - containerPort: 7014
+    #     name: http1-in
+    #   - containerPort: 7443
+    #     name: http2-tls-in
+    #   - containerPort: 7442
+    #     name: http1-tls-in
+    #   - containerPort: 15373
+    #     name: sherpa-adm
+    #   livenessProbe:
+    #     exec:
+    #       command:
+    #       - "/home/sfdc-sherpa/bin/is-alive"
+    #     initialDelaySeconds: 120
+    #     periodSeconds: 5
+    #   readinessProbe:
+    #     exec:
+    #       command:
+    #       - "/home/sfdc-sherpa/bin/is-ready"
+    #     initialDelaySeconds: 110
+    #     periodSeconds: 5
+    # #####################################################################################
+    # # Service Beacon
+    # #####################################################################################
+    # - name: beacon
+    #   image: sfci/servicelibs/beacon:7ad9e771192cd0b3e43393eea2e1e5c1de81dfda
+    #   env:
+    #   - name: SFDC_ENVIRONMENT
+    #     value: "stmfa"
+    #   volumeMounts:
+    #   - mountPath: /log
+    #     name: logvolbeacon
+    #   resources:
+    #     limits: { cpu: "1", memory: "1Gi" }
+    #     requests: { cpu: "1", memory: "1Gi" }
+    #   args:
+    #     - -endpoint
+    #     - $(FUNCTION_NAMESPACE)/$(FUNCTION):DATACENTER_ALLENV:7442
+    #   livenessProbe:
+    #     exec:
+    #       command:
+    #       - "/home/scone/is-alive.sh"
+    #     initialDelaySeconds: 5
+    #     periodSeconds: 5
+    # #####################################################################################
+    # # Entity API
+    # #####################################################################################
+    # - name: cloudatlas-service
+    #   image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cloud-atlas/cloudatlas/cloudatlas-service:0a9cf41
+    #   command: ["java", "-jar", "cloudatlas-service.jar"]
+    #   env:
+    #     - name: DIRECTORY_SERVER_HOST
+    #       value: cloudatlas-gidv2.global-identity.prd-sam.prd.slb.sfdc.net
+    #     - name: server_port
+    #       value: 7032
+    #     - name: management_server_port
+    #       value: 15374
+    #     - name: cloudatlas_http_server_port_servicemesh
+    #       value: 7080
+    #   volumeMounts:
+    #   - mountPath: /log
+    #     name: logvol
+    #   - mountPath: /certs
+    #     name: server-cert
+    #   - mountPath: /clientcerts
+    #     name: client-cert
+    #   ports:
+    #   - containerPort: 7030
+    #   - containerPort: 7032
+    #   - containerPort: 7080
+    #   - containerPort: 15374
+    #   livenessProbe:
+    #     httpGet:
+    #       path: /manage/health
+    #       port: 15374
+    #     initialDelaySeconds: 60
+    #     periodSeconds: 30
+    #   readinessProbe:
+    #     httpGet:
+    #       path: /manage/health
+    #       port: 15374
+    #     initialDelaySeconds: 60
+    #     periodSeconds: 5
+    #     failureThreshold: 120
+    # #####################################################################################
+    # # C2C service
+    # #####################################################################################
+    # - name: c2c-service
+    #   image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/gid/c2c-service:20191008173906-6755dab
+    #   imagePullPolicy: Always
+    #   env:
+    #     - name: directory_server_host
+    #       valueFrom:
+    #        fieldRef:
+    #         fieldPath: spec.nodeName
+    #     - name: server_port
+    #       value: 8082
+    #     - name: management_server_port
+    #       value: 15372
+    #     - name: c2c_common_gdotBasePath
+    #       value: http://cloudatlas-gidv2.global-identity.prd-sam.prd.slb.sfdc.net/scim
+    #     - name: GDOT_URL
+    #       value: http://cloudatlas-gidv2.global-identity.prd-sam.prd.slb.sfdc.net/scim
+    #   ports:
+    #     - containerPort: 8082
+    #     - containerPort: 15372
+    #   livenessProbe:
+    #     httpGet:
+    #       path: /manage/health
+    #       port: 15372
+    #   volumeMounts:
+    #     - name: server-cert
+    #       mountPath: /certs
     #####################################################################################
     # GID Data service
     #####################################################################################
@@ -154,14 +154,8 @@ system:
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/gid/gid-service:89a7513
       imagePullPolicy: Always
       env:
-        - name: directory_server_host
-          valueFrom:
-           fieldRef:
-            fieldPath: spec.nodeName
-        - name: gid_service_ca_entityApi_basePath
-          value: http://cloudatlas-gidv2.global-identity.prd-sam.prd.slb.sfdc.net:7030/empire
-        - name: ca_service_host
-          value: 127.0.0.1
+        # - name: gid_service_ca_entityApi_basePath
+        #   value: http://cloudatlas-gidv2.global-identity.prd-sam.prd.slb.sfdc.net:7030/empire
         - name: server_port
           value: 8081
         - name: management_server_port
@@ -174,6 +168,8 @@ system:
           value: giddataservice-cast-prd-dev
         - name: c2c_service_id
           value: giddataservice-cast-prd-dev
+        - name: ca_service_host
+          value: cloudatlas-gidv2.global-identity.prd-sam.prd.slb.sfdc.net
         - name: ldaps_hostname
           value: cloudatlas-gidv2.global-identity.prd-sam.prd.slb.sfdc.net
         - name: c2c_common_gdotBasePath
@@ -200,15 +196,15 @@ system:
     - name: client-cert
       maddogCert:
         type: client
-    - name: logvolsherpa
-      hostPath:
-        path: /home/sfdc-gid-runtime-sherpa/logs
-    - name: logvolbeacon
-      hostPath:
-        path: /home/sfdc-gid-runtime-beacon/logs
-    - name: logvol
-      hostPath:
-        path: /home/sfdc-atlas/logs
+    # - name: logvolsherpa
+    #   hostPath:
+    #     path: /home/sfdc-gid-runtime-sherpa/logs
+    # - name: logvolbeacon
+    #   hostPath:
+    #     path: /home/sfdc-gid-runtime-beacon/logs
+    # - name: logvol
+    #   hostPath:
+    #     path: /home/sfdc-atlas/logs
   #####################################################################################
   # SLB
   #####################################################################################
@@ -217,7 +213,7 @@ system:
       function: local-gid-service
       slbEnabled: true
       ports:
-        - port: 9090
+        - port: 80
           targetport: 8081
           lbtype: http
           tls: false
