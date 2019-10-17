@@ -91,7 +91,7 @@ if slbconfigs.isSlbEstate then configs.deploymentBase("slb") {
                           slbconfigs.cleanup_logs_volume,
                           slbconfigs.proxyconfig_volume,
                       ]
-                      + (if slbimages.phaseNum > 4 then [slbconfigs.reservedips_volume] else [])
+                      + (if slbimages.phaseNum > 5 then [slbconfigs.reservedips_volume] else [])
                       + madkub.madkubSlbCertVolumes(certDirs) + madkub.madkubSlbMadkubVolumes()),
                       containers: [
                           {
@@ -128,7 +128,7 @@ if slbconfigs.isSlbEstate then configs.deploymentBase("slb") {
                                   slbconfigs.logs_volume_mount,
                                   configs.sfdchosts_volume_mount,
                               ]
-                              + (if slbimages.phaseNum > 4 then [slbconfigs.reservedips_volume_mount] else [])
+                              + (if slbimages.phaseNum > 5 then [slbconfigs.reservedips_volume_mount] else [])
                               + madkub.madkubSlbCertVolumeMounts(certDirs)),
                               env: [
                                   slbconfigs.node_name_env,
