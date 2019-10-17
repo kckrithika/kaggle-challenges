@@ -20,7 +20,7 @@ system:
     function: samhello
     # slbenabled: true
     ports:
-      - port: 9090
+      - port: 80
         targetport: 9090
         lbtype: tcp
 
