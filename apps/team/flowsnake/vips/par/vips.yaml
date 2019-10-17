@@ -1,5 +1,4 @@
 - lbname: kubernetes-api
-  iptype: private_reserved
   ports:
       - port: 443
         targetport: 8444

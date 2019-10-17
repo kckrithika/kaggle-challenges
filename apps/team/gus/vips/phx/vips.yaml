@@ -1,5 +1,4 @@
 - lbname: gs0
-  iptype: public_reserved
   customlbname: gs0-bofa-phx
   servers:
     - gs0-app1-3-phx.ops.sfdc.net

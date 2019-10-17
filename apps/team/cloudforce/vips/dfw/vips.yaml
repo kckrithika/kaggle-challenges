@@ -1,5 +1,4 @@
 - lbname: login-cloudforce-dfw
-  iptype: public_reserved
   customlbname: login-cloudforce-dfw
   servers:
   - na40-app2-4-dfw.ops.sfdc.net

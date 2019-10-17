@@ -1,5 +1,4 @@
 - lbname: sledge
-  iptype: public_reserved
   customlbname: sledge-ukb
   servers:
    - edge0-accelerator1-1-ukb.ops.sfdc.net
