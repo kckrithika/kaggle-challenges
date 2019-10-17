@@ -4,17 +4,22 @@ system:
     email:
     - metadataservice@salesforce.com
   functions:
+  # Pod prefix
   - name: metadata-service
+    # Replica set size
     count: 3
     labels:
       app: metadata-service
     annotations:
       "routing.mesh.sfdc.net/enabled": "true"
     containers:
+    # Primary service container
     - name: metadata-service
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/metadata-cannon/metadata-service:0.11.38
       ports:
+      # Server port
       - containerPort: 9091
+      # Management port
       - containerPort: 15523
       env:
       - name: SFDC_ENVIRONMENT
@@ -24,10 +29,20 @@ system:
       - name: MANAGEMENT_PORT
         value: "15523"
       - name: JVM_ARGS
+        # Environment specific configuration parameters
         value: -Xmx2G -Xms2G -XX:ParallelGCThreads=8 -Dc2c.group.cache.enabled=false
-        # An environment variable used to trigger containers redeployment without making other changes to the manifest
+      # An environment variable used to trigger containers redeployment without making other changes to the manifest
       - name: RESTART
         value: May-16-2019
+      # Liveness probe configuration
+      livenessProbe:
+        httpGet:
+          path: /manage/health
+          port: 15523
+        initialDelaySeconds: 60
+        periodSeconds: 60
+        timeoutSeconds: 90
+      # Memory and CPU settings
       resources:
         limits:
           cpu: "4"
@@ -35,6 +50,7 @@ system:
         requests:
           cpu: "4"
           memory: 3Gi
+      # Mount paths for certs/secrets
       volumeMounts:
       - mountPath: /client-certs
         name: mds-client-cert
@@ -43,13 +59,7 @@ system:
       - mountPath: /home/sfdc-mds/secrets
         name: gdot-secrets-volume
         readOnly: true
-      livenessProbe:
-        httpGet:
-          path: /manage/health
-          port: 15523
-        initialDelaySeconds: 60
-        periodSeconds: 60
-        timeoutSeconds: 90
+    # Sherpa sidecar container
     - name: sherpa-mds
       image: sfci/servicelibs/sherpa-envoy:1.0.8
       args:
@@ -59,12 +69,27 @@ system:
       - name: sherpa-h2-tls
         containerPort: 7443
       - containerPort: 15373
-        # A plain-text sherpa-inbound port. Used by internal tooling and developers. Must not be exposed in production.
+      # A plain-text sherpa-inbound port. Used by internal tooling and developers. Must not be exposed in production.
       - name: sherpa-h2-plain
         containerPort: 7012
       env:
       - name: SFDC_ENVIRONMENT
         value: stmfa
+      # Liveness probe configuration
+      livenessProbe:
+        exec:
+          command:
+          - /home/sfdc-sherpa/bin/is-alive
+        initialDelaySeconds: 60
+        periodSeconds: 120
+      # Readiness probe configuration
+      readinessProbe:
+        exec:
+          command:
+          - /home/sfdc-sherpa/bin/is-ready
+        initialDelaySeconds: 60
+        periodSeconds: 120
+      # Memory and CPU settings
       resources:
         limits:
           cpu: "1"
@@ -72,6 +97,7 @@ system:
         requests:
           cpu: "1"
           memory: 1Gi
+      # Mount paths for certs/secrets
       volumeMounts:
       - mountPath: /log
         name: sherpa-log-volume
@@ -79,18 +105,7 @@ system:
         name: mds-client-cert
       - mountPath: /server-certs
         name: mds-server-cert
-      livenessProbe:
-        exec:
-          command:
-          - /home/sfdc-sherpa/bin/is-alive
-        initialDelaySeconds: 60
-        periodSeconds: 120
-      readinessProbe:
-        exec:
-          command:
-          - /home/sfdc-sherpa/bin/is-ready
-        initialDelaySeconds: 60
-        periodSeconds: 120
+    # Secrets/Certs volume configuration
     volumes:
     - name: mds-server-cert
       maddogCert:
@@ -109,6 +124,7 @@ system:
     - name: gdot-secrets-volume
       k4aSecret:
         secretName: mds-gdot-secrets-prd
+  # Load balancer configuration
   loadbalancers:
   - lbname: metadata-service-prd-func-lb
     function: metadata-service
@@ -117,19 +133,20 @@ system:
     - port: 7443
       targetport: 7443
       name: mds-func
-      # A plain-text HTTP port that serves REST API and developer utilities. Must not be exposed in production.
+    # A plain-text HTTP port that serves REST API and developer utilities. Must not be exposed in production.
     - port: 9091
       targetport: 9091
-      # A plain-text sherpa-inbound port. Used by internal tooling and developers.
+    # A plain-text sherpa-inbound port. Used by internal tooling and developers.
     - port: 7012
       targetport: 7012
+      lbalgorithm: roundrobin
   - lbname: metadata-service
     function: metadata-service
     ports:
     - port: 7443
       targetport: 7443
       name: grpc-func
-      # A plain-text sherpa-inbound port. Used by internal tooling and developers.
+    # A plain-text sherpa-inbound port. Used by internal tooling and developers.
     - port: 7012
       targetport: 7012
       name: grpc-plainfunc
