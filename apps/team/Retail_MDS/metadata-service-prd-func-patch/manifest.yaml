@@ -75,9 +75,6 @@ system:
       - name: sherpa-h2-tls
         containerPort: 7443
       - containerPort: 15373
-      # A plain-text sherpa-inbound port. Used by internal tooling and developers. Must not be exposed in production.
-      - name: sherpa-h2-plain
-        containerPort: 7012
       env:
       - name: SFDC_ENVIRONMENT
         value: stmfb
@@ -116,8 +113,6 @@ system:
     - name: mds-server-cert
       maddogCert:
         type: server
-        lbnames:
-        - metadata-service-prd-func-patch-lb
     - name: mds-client-cert
       maddogCert:
         type: client
@@ -138,21 +133,12 @@ system:
     ports:
     - port: 7443
       targetport: 7443
-      name: mds-patch
     # A plain-text HTTP port that serves REST API and developer utilities. Must not be exposed in production.
     - port: 9093
       targetport: 9091
-    # A plain-text sherpa-inbound port. Used by internal tooling and developers.
-    - port: 7012
-      targetport: 7012
-      lbalgorithm: roundrobin
   - lbname: metadata-service-prd-func-patch
     function: metadata-service-prd-func-patch
     ports:
     - port: 7443
       targetport: 7443
       name: grpc-patch
-    # A plain-text sherpa-inbound port. Used by internal tooling and developers.
-    - port: 7012
-      targetport: 7012
-      name: grpc-plainpatch
