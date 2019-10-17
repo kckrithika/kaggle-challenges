@@ -15,6 +15,13 @@ system:
         exec:
            command:
            - /usr/bin/true
+      volumeMounts:
+        - mountPath: /opt/gadget-sam-test/logs
+          name: gadget-log-vol-storage
+    volumes:
+      - name: gadget-log-vol-storage
+        hostPath:
+          path: /data/gadget-log-vol
   loadbalancers:
   - lbname: gadget-core-sam-poc
     slbEnabled: true
