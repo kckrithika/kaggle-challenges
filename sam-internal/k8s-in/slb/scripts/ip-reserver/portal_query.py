@@ -35,8 +35,9 @@ def __get_portal_info(url):
         return portal_info_cache[url]
 
     try:
+        print("Connecting to: " + url)
         ssl._create_default_https_context = ssl._create_unverified_context
-        conn = urllib.request.urlopen(url)
+        conn = urllib.request.urlopen(url, timeout=5)
         byte_response = conn.read()
 
         str_response = byte_response.decode("utf8")
@@ -55,8 +56,8 @@ def __get_portal_info(url):
 
         portal_info_cache[url] = portal_entries
         return portal_entries
-    except urllib.error.HTTPError as e:
-        print("Failed to reach {}: {}".format(url, e))
+    except (urllib.error.HTTPError, urllib.error.URLError):
+        portal_info_cache[url] = []
         return []
 
 
