@@ -222,6 +222,8 @@ system:
         tls: true
         lbtype: http
         reencrypt: true
+      - port: 7443
+        targetport: 7443
   - lbname: rsui-func-patch-test-lb
     function: rsui-func-patch
     slbEnabled: true

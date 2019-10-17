@@ -102,6 +102,9 @@ system:
       ports:
       - port: 443
         targetport: 7442
+      - port: 7442
+        targetport: 7442
+      - port: 80
         targetport: 7022
       - port: 15372
         targetport: 15372
