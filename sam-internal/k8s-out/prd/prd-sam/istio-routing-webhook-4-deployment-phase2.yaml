@@ -53,8 +53,7 @@ spec:
         - "10443"
         - --funnel-address
         - ajnafunneldirecttls.funnel.svc.mesh.sfdc.net:7442
-        - --default-policy-opt-in
-        - "false"
+        - --default-policy-opt-in=false
         env:
         - name: SETTINGS_SUPERPOD
           value: '-'
