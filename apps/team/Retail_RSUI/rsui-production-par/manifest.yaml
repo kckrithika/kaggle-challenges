@@ -221,6 +221,8 @@ system:
 
   loadbalancers:
   - lbname: rsui-production-par-lb
+    annotations:
+      slb.sfdc.net/iptype: public_active
     function: rsui-production-par
     slbEnabled: true
     ports:

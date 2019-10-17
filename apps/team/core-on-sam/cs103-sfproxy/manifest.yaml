@@ -157,6 +157,8 @@ system:
       targetport: 15372
   ## entries for cs103.salesforce.com VIP
   - lbname: cs103app-lb
+    annotations:
+      slb.sfdc.net/iptype: public_active
     function: cs103-sfproxy-fra
     nodeExposed: false
     slbEnabled: true
@@ -341,6 +343,8 @@ system:
       - 101.53.164.12/32
   ## entries for cs103.force.com VIP
   - lbname: cs103app-force-lb
+    annotations:
+      slb.sfdc.net/iptype: public_active
     function: cs103-sfproxy-fra
     nodeExposed: false
     slbEnabled: true
