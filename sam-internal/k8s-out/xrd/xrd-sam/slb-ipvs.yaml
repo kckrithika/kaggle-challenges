@@ -340,7 +340,7 @@ spec:
         - --hostsConfigFile=/sfdchosts/hosts.json
         - --client.socketDir=/host/data/slb/config/slb-ipvs
         - --client.dialSocket=true
-        - --maxDeleteLimit=20
+        - --maxDeleteLimit=400
         - --isRoleUsed=true
         - --metricsEndpoint=ajna0-funnel1-0-xrd.data.sfdc.net:80
         - --vcioptions.strict=true

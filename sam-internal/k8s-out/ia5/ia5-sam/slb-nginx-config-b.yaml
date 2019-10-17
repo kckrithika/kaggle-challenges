@@ -512,7 +512,7 @@ spec:
         - --hostsConfigFile=/sfdchosts/hosts.json
         - --client.socketDir=/host/data/slb/config/slb-nginx-config-b
         - --client.dialSocket=true
-        - --maxDeleteLimit=100
+        - --maxDeleteLimit=400
         - --isRoleUsed=true
         - --metricsEndpoint=ajna0-funnel1-0-ia5.data.sfdc.net:80
         - --vcioptions.strict=true
