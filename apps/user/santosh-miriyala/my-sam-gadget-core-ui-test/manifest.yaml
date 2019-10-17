@@ -28,7 +28,5 @@ system:
     slbEnabled: true
     function: gadget-sam-test-core-ui
     ports:
-      - port: 10001
-        targetport: 10001
       - port: 8443
         targetport: 8443
