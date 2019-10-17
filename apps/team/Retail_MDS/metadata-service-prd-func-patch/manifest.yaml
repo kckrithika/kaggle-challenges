@@ -112,6 +112,8 @@ system:
     function: metadata-service-prd-func-patch
     slbEnabled: true
     ports:
+    - port: 7443
+      targetport: 7443
     - port: 9093
       targetport: 9091
   - lbname: metadata-service-prd-func-patch
