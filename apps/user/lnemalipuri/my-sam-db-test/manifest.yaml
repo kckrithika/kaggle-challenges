@@ -17,7 +17,7 @@ system:
       livenessProbe:
         tcpSocket:
           port: 5432
-        initialDelaySeconds: 15
+        initialDelaySeconds: 16
         periodSeconds: 10
         failureThreshold: 100
     volumes:
