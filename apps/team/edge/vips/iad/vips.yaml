@@ -1,4 +1,5 @@
 - lbname: sledge
+  iptype: public_reserved
   customlbname: sledge-iad
   servers:
    - edge0-accelerator1-1-iad.ops.sfdc.net

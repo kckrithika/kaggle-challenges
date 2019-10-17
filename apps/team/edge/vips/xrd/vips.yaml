@@ -1,4 +1,5 @@
 - lbname: sledge-xrd
+  iptype: public_reserved
   # The customlbname ensures that the VIP retains its existing DNS name of sledge-xrd.slb.sfdc.net
   customlbname: sledge-xrd
   servers:

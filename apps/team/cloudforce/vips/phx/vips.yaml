@@ -1,4 +1,5 @@
 - lbname: login-cloudforce-phx
+  iptype: public_reserved
   customlbname: login-cloudforce-phx
   servers:
   - na34-app1-13-phx.ops.sfdc.net
