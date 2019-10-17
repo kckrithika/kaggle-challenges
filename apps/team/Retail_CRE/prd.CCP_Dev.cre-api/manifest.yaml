@@ -25,6 +25,8 @@ system:
           value: 0.1.4
         - name: UNIVERSAL_SEARCH_DESTINATION
           value: universal-search.universal-search.localhost.mesh.force.com:5443
+        - name: SPRING_PROFILES_ACTIVE
+          value: dev
         - name: METRICS_KAFKA_TOPIC
           value: sfdc.prod.cre__prd.ajna_local__cre_metrics_CCP_Shared_Dev
         - name: METRICS_KAFKA_SERVER
