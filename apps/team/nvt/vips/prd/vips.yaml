@@ -41,7 +41,6 @@
       healthpath: /
       healthprotocol: http
 - lbname: ops0-netlog1-0-prd
-  iptype: private_reserved
   customlbname: ops0-netlog1-0-prd
   servers:
     - ops0-netlog1-1-prd.eng.sfdc.net
