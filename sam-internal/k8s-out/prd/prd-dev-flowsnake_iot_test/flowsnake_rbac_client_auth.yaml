@@ -212,8 +212,6 @@ items:
   - kind: User
     name: retail-cre.kdaszkowski
   - kind: User
-    name: retail-cre.mariusz.tycz
-  - kind: User
     name: retail-cre.aboboc
   - kind: User
     name: retail-cre.cre-control-plane
@@ -326,8 +324,6 @@ items:
   - kind: User
     name: retail-cre.kdaszkowski
   - kind: User
-    name: retail-cre.mariusz.tycz
-  - kind: User
     name: retail-cre.aboboc
   - kind: User
     name: retail-cre.cre-control-plane
@@ -437,6 +433,8 @@ items:
     name: hbase-flowsnake.christine.feng
   - kind: User
     name: hbase-flowsnake.uttam.kumar
+  - kind: User
+    name: bdabuild
 - apiVersion: rbac.authorization.k8s.io/v1
   kind: RoleBinding
   metadata:
@@ -465,6 +463,8 @@ items:
     name: hbase-flowsnake.christine.feng
   - kind: User
     name: hbase-flowsnake.uttam.kumar
+  - kind: User
+    name: bdabuild
 - apiVersion: v1
   automountServiceAccountToken: true
   kind: ServiceAccount

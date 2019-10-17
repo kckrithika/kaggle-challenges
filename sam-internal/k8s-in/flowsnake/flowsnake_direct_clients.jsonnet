@@ -144,7 +144,6 @@ local cre_production = {
                     "retail-cre.ewulf",
                     "retail-cre.jboard",
                     "retail-cre.kdaszkowski",
-                    "retail-cre.mariusz.tycz",
                     "retail-cre.aboboc",
                     "retail-cre.cre-control-plane",
                     "retail-cre.cre-control-plane-ccp-func",
@@ -175,6 +174,7 @@ local cre_production = {
                     "hbase-flowsnake.nmaheshwari",
                     "hbase-flowsnake.christine.feng",
                     "hbase-flowsnake.uttam.kumar",
+                    "bdabuild",  # HBase team Jenkins server
                  ],
             },
             {
