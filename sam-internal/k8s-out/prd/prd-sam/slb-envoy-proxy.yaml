@@ -436,7 +436,7 @@ spec:
         - --nginxPodMode=true
         - --client.socketDir=/host/data/slb/config/slb-envoy-proxy
         - --client.dialSocket=true
-        - --maxDeleteVipCount=50
+        - --maxDeleteVipCount=1000
         image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/slb/hyperslb:2251-85aa611f8716aca8d3f31d3de175efdfef9d1a05
         name: slb-realsvrcfg
         securityContext:

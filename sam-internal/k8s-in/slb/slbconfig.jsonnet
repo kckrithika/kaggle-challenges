@@ -245,13 +245,13 @@
             },
 
         maxDeleteCount:
-            set_value_to_all_in_list($.maxDeleteDefault, $.testEstates)
+            set_value_to_all_in_list(1000, $.testEstates)
             + set_value_to_all_in_list($.maxDeleteDefault, $.prodEstates)
             + {
-                "prd-sam": 50,
+                "prd-sam": 1000,
                 "prd-samtwo": 50,
                 "xrd-sam": 20,
-                vpod: $.maxDeleteDefault,
+                vpod: 1000,
             },
 
         # The set of estates where the hsm-nginx pipeline is enabled.
