@@ -174,7 +174,7 @@ system:
           value: giddataservice-cast-prd-dev
         - name: c2c_service_id
           value: giddataservice-cast-prd-dev
-        - name: ldaps_hostname
+        - name: ldaps_hostname_xxx
           value: cloudatlas-gidv2.global-identity.prd-sam.prd.slb.sfdc.net
         - name: c2c_common_gdotBasePath
           value: http://cloudatlas-gidv2.global-identity.prd-sam.prd.slb.sfdc.net/scim
