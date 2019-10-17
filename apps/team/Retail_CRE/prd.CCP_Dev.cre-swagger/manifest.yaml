@@ -16,7 +16,7 @@ system:
         path: /home/sfdc-cre/logs
     containers:
     - name: cre-swagger
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cre/cre-swagger:a7932ae
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cre/cre-swagger:d5f4f4f
       ports:
       - containerPort: 7123
       - containerPort: 15372
