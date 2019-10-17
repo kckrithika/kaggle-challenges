@@ -164,10 +164,6 @@ system:
           value: /certs/ca
         - name: security_client_dynamickeystore_monitoredDirectory
           value: /clientcerts/client
-        - name: c2c_common_callerContext
-          value: giddataservice-cast-prd-dev
-        - name: c2c_service_id
-          value: giddataservice-cast-prd-dev
         - name: ca_service_host
           value: cloudatlas-gidv2.global-identity.prd-sam.prd.slb.sfdc.net
         - name: ldaps_hostname
