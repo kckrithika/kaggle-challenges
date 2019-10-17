@@ -5,7 +5,7 @@ system:
       - estates@salesforce.com
   functions:
   - name: estatesservice
-    count: 2
+    count: 3
     volumes:
     - name: server-cert
       maddogCert:
@@ -17,7 +17,7 @@ system:
         type: client
     containers:
     - name: estatesservice
-      image: dva/estates/estatesservice:60
+      image: dva/estates/estatesservice:66
       ports:
       - containerPort: 9090
       livenessProbe:

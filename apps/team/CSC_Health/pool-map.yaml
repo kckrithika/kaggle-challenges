@@ -181,3 +181,4 @@ apps:
     - lo3/lo3-sam_report_collector
   estatesservice:
     - prd/prd-sam_report_collector
+    - xrd/xrd-sam_report_collector
