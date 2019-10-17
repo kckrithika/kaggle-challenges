@@ -206,6 +206,9 @@ system:
     - name: logvolbeacon
       hostPath:
         path: /home/sfdc-gid-runtime-beacon/logs
+    - name: logvol
+      hostPath:
+        path: /home/sfdc-atlas/logs
   #####################################################################################
   # SLB
   #####################################################################################
