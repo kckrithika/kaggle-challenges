@@ -96,8 +96,6 @@ system:
         value: nagios-adapter
       - name: CHS_REPORTCOLLECTOR_OBSWHITELIST
         value: netmgt.nhal_client,netmgt.sandman,sandman
-      - name: CHS_REPORTCOLLECTOR_OBSWHITELISTUNTRUSTED
-        value: infrastructure-observer.system
       - name: CHS_REPORTCOLLECTOR_WDPOLLPERIOD
         value: 60s
       - name: CHS_REPORTCOLLECTOR_OBSPOLLPERIOD
@@ -114,6 +112,16 @@ system:
         export CHS_AJNA_DEVICE=${ESTATE}.${FUNCTION_NAMESPACE}.${FUNCTION}.${FUNCTION_INSTANCE_NAME} ;
         export CHS_GROK_ENDPOINT=https://ops0-grok1-0-${KINGDOM}.data.sfdc.net ;
         export CHS_REPORTCOLLECTOR_ENDPOINT=https://reportcollector-${KINGDOM}.data.sfdc.net:18444 ;
+
+        case ${KINGDOM} in
+          prd)
+            export CHS_REPORTCOLLECTOR_OBSWHITELISTUNTRUSTED=infrastructure-observer.grok ;
+            export CHS_LOG_LEVEL=DEBUG ;
+            ;;
+          *)
+            export CHS_REPORTCOLLECTOR_OBSWHITELISTUNTRUSTED=infrastructure-observer.system ;
+            ;;
+        esac;
         
         /candidateservice
       "]
