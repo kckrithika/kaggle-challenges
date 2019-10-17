@@ -111,7 +111,7 @@ system:
     # GID Data service
     #####################################################################################
     - name: local-gid-service
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/gid/gid-service:d1753c4
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/gid/gid-service:89a7513
       imagePullPolicy: Always
       env:
         - name: directory_server_host
