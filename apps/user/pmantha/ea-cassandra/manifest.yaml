@@ -8,10 +8,10 @@ system:
     lbname: insights-cassandra
     containers:
     - name: insights-cassandra
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/pmantha/insights-cassandra:3.0.13.7
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/pmantha/insights-cassandra:3.0.13.8
       imagePullPolicy: Always
-      # command: ["/bin/sh"]
-      # args: ["-c", "while :; do  sleep 1; done"]      
+      command: ["/bin/sh"]
+      args: ["-c", "while :; do  sleep 1; done"]      
       ports:
       - containerPort: 7000
         name: intra-node
@@ -29,16 +29,26 @@ system:
           cpu: "500m"
           memory: 4Gi
       livenessProbe:
-        tcpSocket:
-          port: 9042
-        failureThreshold: 3
-        initialDelaySeconds: 150
-        periodSeconds: 150
+        exec:
+          command:
+          - touch
+          - /tmp/healthy
       readinessProbe:
-        tcpSocket:
-          port: 9042
-        initialDelaySeconds: 150
-        periodSeconds: 150
+        exec:
+          command:
+          - touch
+          - /tmp/healthy                
+      # livenessProbe:
+      #   tcpSocket:
+      #     port: 9042
+      #   failureThreshold: 3
+      #   initialDelaySeconds: 150
+      #   periodSeconds: 150
+      # readinessProbe:
+      #   tcpSocket:
+      #     port: 9042
+      #   initialDelaySeconds: 150
+      #   periodSeconds: 150
       # These volume mounts are persistent. They are like inline claims,
       # but not exactly because the names need to match exactly one of
       # the stateful pod volumes.
