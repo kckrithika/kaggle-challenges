@@ -3,6 +3,8 @@ from lxml import etree
 import ssl
 import urllib.request
 
+ACCEPTED_CLUSTERS = ["cdg-sam", "dfw-sam", "fra-sam", "frf-sam", "hnd-sam", "ia2-sam", "iad-sam", "lo2-sam", "lo3-sam", "ord-sam", "par-sam", "ph2-sam", "phx-sam", "ukb-sam", "xrd-sam", "prd-sam", "prd-samtwo"]
+
 DEFAULT_CLUSTER = "sam"
 
 PRD_KINGDOM_NAME = "prd"
@@ -61,9 +63,8 @@ def __get_portal_info(url):
         return []
 
 
-
 def get_portal_entry_from_portal(kingdom, cluster, evaluator, value):
-    portal_entries = __get_portal_info(__get_portal_url(kingdom, cluster))
+    portal_entries = get_all_portal_entries(kingdom, cluster)
     for portal_entry in portal_entries:
         if value == evaluator(portal_entry):
             return portal_entry
@@ -71,5 +72,7 @@ def get_portal_entry_from_portal(kingdom, cluster, evaluator, value):
 
 
 def get_all_portal_entries(kingdom, cluster):
+    if cluster not in ACCEPTED_CLUSTERS:
+        return []
     return __get_portal_info(__get_portal_url(kingdom, cluster))
 
