@@ -6,7 +6,7 @@ system:
 
   functions:
   - name: pyplyn-test-kishore 
-    count: 2 
+    count: 3 
     containers:
     - name: ppyplyn-test-kishore-service
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/lnemalipuri/pyplyn-sam-v1:latest
