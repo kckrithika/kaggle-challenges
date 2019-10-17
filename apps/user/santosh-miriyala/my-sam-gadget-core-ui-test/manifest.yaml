@@ -25,8 +25,12 @@ system:
            - /usr/bin/true
   loadbalancers:
   - lbname: gadget-core-with-ui-sam-poc
-    slbEnabled: true
     function: gadget-sam-test-core-ui
+    slbEnabled: true
     ports:
       - port: 8443
         targetport: 8443
+        lbtype: http
+      - port: 10001
+        targetport: 10001
+        lbtype: http
