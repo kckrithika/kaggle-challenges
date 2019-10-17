@@ -82,6 +82,7 @@
       removeheaders:
         - "CipherSuite"
 - lbname: hammond-beta
+  iptype: private_reserved
   servers:
     - 10.231.82.167
     - 10.231.83.102
@@ -108,6 +109,7 @@
       removeheaders:
         - "CipherSuite"
 - lbname: hammond-charlie
+  iptype: public_reserved
   servers:
     - 10.231.82.167
     - 10.231.83.102

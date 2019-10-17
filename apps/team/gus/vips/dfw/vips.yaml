@@ -1,4 +1,5 @@
 - lbname: gs0
+  iptype: public_reserved
   customlbname: gs0-bofa-dfw
   servers:
     - gs0-app1-3-dfw.ops.sfdc.net

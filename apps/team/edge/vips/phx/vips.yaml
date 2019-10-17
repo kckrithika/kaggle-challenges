@@ -1,4 +1,5 @@
 - lbname: sledge
+  iptype: public_reserved
   customlbname: sledge-phx
   servers:
    - edge0-accelerator1-1-phx.ops.sfdc.net
