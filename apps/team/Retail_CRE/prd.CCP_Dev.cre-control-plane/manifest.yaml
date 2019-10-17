@@ -56,6 +56,8 @@ system:
           value: cre-engine-ccp-dev
         - name: INGEST_K4A_VAULT
           value: cre-engine-dev
+        - name: BUCKET_INGEST_MANIFEST_OVERRIDE_ENABLED
+          value: true
         ####################################################################################################
         ####################################### SAVE environment variables ###############################
         ####################################################################################################
