@@ -19,7 +19,6 @@ system:
       - mountPath: /home/sfdc-atlas/data/servers/ds
         name: hostdatavol     
       ports:
-      - containerPort: 7030  
       - containerPort: 7032
       - containerPort: 1636
       - containerPort: 1389
@@ -58,7 +57,4 @@ system:
         lbtype: tcp
       - port: 7032
         targetport: 7032
-        lbtype: tcp
-      - port: 7030
-        targetport: 7030
         lbtype: tcp
