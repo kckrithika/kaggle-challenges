@@ -5,10 +5,10 @@ system:
       - atulsingh@salesforce.com
   functions:
   - name: gadget-sam-test
-    count: 2
+    count: 1
     containers:
     - name: gadget-sam-test-service
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/atulsingh/gadget/gadget-core:v2
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/atulsingh/gadget/gadget-core:v3
       ports:
       - containerPort: 10001
       livenessProbe:
