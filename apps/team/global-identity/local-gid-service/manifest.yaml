@@ -158,6 +158,8 @@ system:
           valueFrom:
            fieldRef:
             fieldPath: spec.nodeName
+        - name: gid_service_ca_entityApi_basePath
+          value: http://127.0.0.1:7030/empire
         - name: ca_service_host
           value: 127.0.0.1
         - name: server_port
