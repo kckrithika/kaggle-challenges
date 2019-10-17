@@ -178,9 +178,12 @@ system:
         - containerPort: 8081
         - containerPort: 15371
       livenessProbe:
-        httpGet:
-          path: /manage/health
-          port: 15371
+        exec:
+          command:
+          - /bin/true
+        initialDelaySeconds: 60
+        periodSeconds: 30
+
       volumeMounts:
         - name: server-cert
           mountPath: /certs
