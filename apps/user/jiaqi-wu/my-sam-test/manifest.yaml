@@ -4,6 +4,8 @@ system:
   functions:
   - name: samhello
     count: 2
+    annotations:
+      sidecar.istio.io/inject: "true"
     containers:
     - name: samhello
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/jiaqi-wu/samhello:hello-20181009-2 # golang app
