@@ -50,7 +50,7 @@ spec:
         - --client.serverPort=12088
         - --client.serverInterface=lo
         - --restrictedSubnets=136.146.48.0/23,136.146.67.0/24,10.229.32.128/32,10.229.32.129/32
-        - --maxDeleteEntries=20
+        - --maxDeleteEntries=1000
         - --vipLimit=198
         - --client.socketDir=/host/data/slb/config/slb-dns-register
         - --client.dialSocket=true

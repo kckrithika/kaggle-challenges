@@ -43,7 +43,7 @@ spec:
         - --nginxPodMode=false
         - --client.socketDir=/host/data/slb/config/slb-realsvrcfg
         - --client.dialSocket=true
-        - --maxDeleteVipCount=100
+        - --maxDeleteVipCount=1000
         image: ops0-artifactrepo1-0-iad.data.sfdc.net/dva/slb/hyperslb:2247-59458d4bb3489d4df4f4bdbb0de3eca69657c834
         name: slb-realsvrcfg
         securityContext:
