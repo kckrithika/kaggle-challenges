@@ -90,8 +90,9 @@ if slbconfigs.isSlbEstate then configs.deploymentBase("slb") {
                           configs.kube_config_volume,
                           slbconfigs.cleanup_logs_volume,
                           slbconfigs.proxyconfig_volume,
-                          slbconfigs.reservedips_volume,
-                      ] + madkub.madkubSlbCertVolumes(certDirs) + madkub.madkubSlbMadkubVolumes()),
+                      ]
+                      + (if slbimages.phaseNum > 1 then [slbconfigs.reservedips_volume] else [])
+                      + madkub.madkubSlbCertVolumes(certDirs) + madkub.madkubSlbMadkubVolumes()),
                       containers: [
                           {
                               name: "slb-vip-watchdog",
@@ -126,9 +127,9 @@ if slbconfigs.isSlbEstate then configs.deploymentBase("slb") {
                                   slbconfigs.slb_volume_mount,
                                   slbconfigs.logs_volume_mount,
                                   configs.sfdchosts_volume_mount,
-                                  slbconfigs.reservedips_volume_mount,
-                              ] +
-                              madkub.madkubSlbCertVolumeMounts(certDirs)),
+                              ]
+                              + (if slbimages.phaseNum > 1 then [slbconfigs.reservedips_volume_mount] else [])
+                              + madkub.madkubSlbCertVolumeMounts(certDirs)),
                               env: [
                                   slbconfigs.node_name_env,
                                   slbconfigs.function_namespace_env,
