@@ -233,7 +233,7 @@
       "--log_dir=" + slbconfigs.logsDir,
       configs.sfdchosts_arg,
     ] + slbconfigs.getNodeApiClientSocketSettings()
-    + ["--maxDeleteLimit=" + slbconfigs.maxDeleteLimit(deleteLimitOverride)]
+    + ["--maxDeleteLimit=" + slbconfigs.maxDeleteLimit(400)]
     + (if slbflights.roleEnabled then [
       "--isRoleUsed=true",
     ] else [])
