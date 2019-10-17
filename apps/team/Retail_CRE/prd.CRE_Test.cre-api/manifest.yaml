@@ -146,9 +146,10 @@ system:
   loadbalancers:
   - lbname: cre-api-cre-test-lb
     function: cre-api-cre-test
-    nodeExposed: true
     slbenabled: true
     ports:
+      - port: 7442
+        targetport: 7442
       - port: 8074
         targetport: 7022
   - lbname: cre-api-cre-test

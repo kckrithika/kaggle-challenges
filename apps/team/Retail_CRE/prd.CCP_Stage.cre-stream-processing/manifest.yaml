@@ -139,9 +139,10 @@ system:
   loadbalancers:
   - lbname: cre-sp-ccp-stage-lb
     function: cre-sp-ccp-stage
-    nodeExposed: true
     slbenabled: true
     ports:
+      - port: 7442
+        targetport: 7442
       - port: 8097
         targetport: 7022
       - port: 15381

@@ -208,9 +208,10 @@ system:
   loadbalancers:
   - lbname: cre-control-plane-ccp-perf-lb
     function: cre-control-plane-ccp-perf
-    nodeExposed: true
     slbEnabled: true
     ports:
+      - port: 7442
+        targetport: 7442
       - port: 8096
         targetport: 7022
       - port: 9096

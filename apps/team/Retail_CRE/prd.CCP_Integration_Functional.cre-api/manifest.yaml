@@ -142,9 +142,10 @@ system:
   loadbalancers:
   - lbname: cre-api-ccp-func-lb
     function: cre-api-ccp-func
-    nodeExposed: true
     slbenabled: true
     ports:
+      - port: 7442
+        targetport: 7442
       - port: 8082
         targetport: 8080
   - lbname: cre-api-ccp-func

@@ -99,7 +99,7 @@ system:
         requests: { cpu: "1", memory: "1Gi" }
       ports:
       - containerPort: 7443
-        name: sh-in-http1-tls
+        name: sh-in-http2-tls
       - containerPort: 15373 # Sherpa admin port. This can be handy when debugging issues.
         name: sherpa-in-admin
       resources:
@@ -135,9 +135,10 @@ system:
   loadbalancers:
   - lbname: cre-sp-cre-test-lb
     function: cre-sp-cre-test
-    nodeExposed: true
     slbenabled: true
     ports:
+      - port: 7443
+        targetport: 7443
       - port: 8070
         targetport: 7022
   - lbname: cre-sp-cre-test

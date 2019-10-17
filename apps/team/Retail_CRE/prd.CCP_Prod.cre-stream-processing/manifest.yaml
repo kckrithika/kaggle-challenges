@@ -138,9 +138,10 @@ system:
   loadbalancers:
   - lbname: cre-sp-ccp-prod-lb
     function: cre-sp-ccp-prod
-    nodeExposed: true
     slbenabled: true
     ports:
+      - port: 7442
+        targetport: 7442
       - port: 8062
         targetport: 7022
       - port: 9062

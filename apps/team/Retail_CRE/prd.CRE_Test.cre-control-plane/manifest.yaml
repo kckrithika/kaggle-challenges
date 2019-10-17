@@ -187,9 +187,10 @@ system:
   loadbalancers:
   - lbname: cre-control-plane-cre-test-lb
     function: cre-control-plane-cre-test
-    nodeExposed: true
     slbEnabled: true
     ports:
+      - port: 7443
+        targetport: 7443
       - port: 8072
         targetport: 7020
   - lbname: cre-control-plane-cre-test
