@@ -1,5 +1,29 @@
 This folder contains spikes to testing out functionality on SAM
 
+# prd-cron-test
+This is a spike for standing up a test SDB container on SAM for use by cron service. There were 2 attempts:
+1. Use private Docker image of one of the SDB architects. Like DBaaS, it tries to use Zookeeper to bring up an HA version of SDB.
+   1. Though postgres came up fine, I couldn't get the database to come up.
+   1. I didn't follow up further on [Chatter](https://gus.lightning.force.com/lightning/r/0D5B000000x8zMXKAY/view).
+1. Next attempt was to use sdbgo container with few tweaks. With this I was able to successfully connect to `sdbmain` database
+
+## One-time image creation
+1. A base-image of official `sdbgo:v1` was used and some tweaks were made
+   1. `docker build -t samhello -f mysdb-Dockerfile .`
+   1. `docker tag samhello ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/vijay-kota/mysdb:<tag>`
+   1. `docker push ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/vijay-kota/mysdb:<tag>`
+1. Changes made to `sdbgo` are as follows:
+   1. `myinstall.sh` is a copy of `install.sh` to use hardcoded pre-built tars instead of logging into Nexus and downloading
+   1. Instead of user `sdb`, all permissions are given to uid 7447 which is the default in SAM
+
+## Testing
+1. Try to locate `psql` - command-line client for SDB. If you cannot find it under `~/blt`, try from CASAM container:
+   1. eg. `docker run --network=host --entrypoint /bin/bash -it ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/coreonsam/casam:release_222-patch_18976144`
+   1. `cd ~/salesforce/db/sayonaradb/binaries_centos/bin`
+1. `./psql -h cs66-sdb-lb.user-vijay-kota.prd-sam.prd.slb.sfdc.net -p 1521 -d sdbmain -U build`
+   1. This will take you to prompt where you can run commands
+   1. Use `\q` to exit from the shell
+
 # prd-qpid-test and prd-caas-test
 This spike is related to [W-6323983](https://gus.lightning.force.com/a07B0000007IlQzIAK). The attempt here is to test:
 1. Whether 2 stateful Qpid clusters in different pods can use same AMQP and HTTP port(s)
@@ -16,7 +40,7 @@ This spike is related to [W-6323983](https://gus.lightning.force.com/a07B0000007
 
 ## One-time image creation
 1. A base-image of official Sherpa envoy was used to create the broker and app server
-   1. `docker build -t samhello`
+   1. `docker build -t samhello .`
    1. `docker tag samhello ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/vijay-kota/myenvoy:<tag>`
    1. `docker push ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/vijay-kota/myenvoy:<tag>`
    1. Update manifests if needed
