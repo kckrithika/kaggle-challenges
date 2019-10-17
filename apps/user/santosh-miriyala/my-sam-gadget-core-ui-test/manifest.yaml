@@ -26,8 +26,8 @@ system:
   loadbalancers:
   - lbname: gadget-core-with-ui-sam-poc
     function: gadget-sam-test-core-ui
-    nodeExposed: false   
-    slbenabled: true
+    nodeExposed: true   
+    slbenabled: false
     ports:
       - port: 8443
         targetport: 8443
