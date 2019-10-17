@@ -1,0 +1,33 @@
+apiVersion: v1
+system:
+  notifications:
+    email:
+      - lnemalipuri@salesforce.com
+  functions:
+  - name: gadget-sam-db-test
+    count: 1
+    containers:
+    - name: gadget-sam-db-test-container
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/lnemalipuri/gadget/gadget-db-sam:latest
+      ports:
+        - containerPort: 5432
+      volumeMounts:
+        - name: postgres-sam-test
+          mountPath: /var/lib/postgresql/data
+      livenessProbe:
+        tcpSocket:
+          port: 5432
+        initialDelaySeconds: 15
+        periodSeconds: 10
+        failureThreshold: 100
+    volumes:
+    - name: postgres-sam-test
+      hostPath:
+        path: /data/my-pg-data/gadget-db-data
+  loadbalancers:
+  - lbname: postgres-db-sam-test
+    function: gadget-sam-db-test
+    slbEnabled: true
+    ports:
+      - port: 5432
+        targetport: 5432
