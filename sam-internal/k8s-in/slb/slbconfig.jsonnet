@@ -26,7 +26,7 @@
     testEstates: ['prd-sdc', 'prd-samdev', 'prd-samtest', 'prd-sam_storage'],
     slbEstates: $.prodEstates + $.testEstates,
     samrole: "samapp.slb",
-    maxDeleteDefault: 100,
+    maxDeleteDefault: 1000,
     trustedProxyDefault: "0.0.0.0/0",
 
     // These are deployment names.
@@ -245,13 +245,10 @@
             },
 
         maxDeleteCount:
-            set_value_to_all_in_list(1000, $.testEstates)
+            set_value_to_all_in_list($.maxDeleteDefault, $.testEstates)
             + set_value_to_all_in_list($.maxDeleteDefault, $.prodEstates)
             + {
-                "prd-sam": 1000,
-                "prd-samtwo": 50,
-                "xrd-sam": 20,
-                vpod: 1000,
+                vpod: $.maxDeleteDefault,
             },
 
         # The set of estates where the hsm-nginx pipeline is enabled.
