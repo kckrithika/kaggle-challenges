@@ -4,30 +4,17 @@ system:
     email:
       - lnemalipuri@salesforce.com
   functions:
-  - name: pyplyn_instance_1
+  - name: pyplyn-instance-1
     count: 1
     containers:
-    - name: pyplyn_service-1
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/lnemalipuri/pyplyn_service:v0
-      livenessProbe:
-        exec:
-           command:
-           - /usr/bin/true
-  - name: pyplyn_instance_2
-    count: 2
-    containers:
-    - name: pyplyn_service-2
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/lnemalipuri/pyplyn_service:v0
+    - name: pyplyn-service-1
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/lnemalipuri/pyplyn-service:v1
       livenessProbe:
         exec:
            command:
            - /usr/bin/true
   loadbalancers:
-  - lbname: lb_pyplyn_instance_1
-    function: pyplyn_instance_1
-    nodeExposed: false  
-    slbenabled: true
-  - lbname: lb_pyplyn_instance_2
-    function: pyplyn_instance_2
-    nodeExposed: false  
+  - lbname: lbpyplyn-instance-1
+    function: pyplyn-instance-1
+    nodeExposed: false
     slbenabled: true

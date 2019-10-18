@@ -1,4 +1,5 @@
 apps:
  pyplyn-test-kishore:
   - prd/prd-sam
-
+ pyplyn-service:
+  - prd/prd-sam
