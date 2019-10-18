@@ -4,6 +4,13 @@ system:
   functions:
   - name: samhello
     count: 2
+    volumes:
+      - name: servercert
+        maddogCert:
+          type: server
+      - name: clientcert
+        maddogCert:
+          type: client
     annotations:
       sidecar.istio.io/inject: "true"
     containers:
@@ -15,6 +22,11 @@ system:
         httpGet:
           path: /
           port: 9090
+      volumeMounts:
+      - name: servercert
+        mountPath: /servercerts
+      - name: clientcert
+        mountPath: /clientcerts
   loadbalancers:
   - lbname: samhellolb
     function: samhello
