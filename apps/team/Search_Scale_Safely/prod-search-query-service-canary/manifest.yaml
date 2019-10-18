@@ -14,7 +14,7 @@ system:
         maxUnavailable: 25%
     containers:
     - name: search-query-service
-      image: sfci/searchdev/search-query-execution-platform:6.4
+      image: sfci/searchdev/search-query-execution-platform:6.4.1
       ports:
       - name: service-port
         containerPort: 7020
