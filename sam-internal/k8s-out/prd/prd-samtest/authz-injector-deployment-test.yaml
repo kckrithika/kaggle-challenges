@@ -102,7 +102,7 @@ spec:
         - name: SFDC_METRICS_SERVICE_PORT
           value: "80"
         - name: FAKE_REDEPLOY_VAR
-          value: "0"
+          value: "1"
         image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/electron-opa-injection-webhook:22-57dec549a0dc3d87277a1e782492dc20b4968411
         imagePullPolicy: IfNotPresent
         livenessProbe:
