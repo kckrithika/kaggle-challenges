@@ -6,7 +6,7 @@ system:
       - cre@salesforce.com
   functions:
   - name: cre-api-cre-test
-    count: 1
+    count: 0
     labels:
       app: cre-api-cre-test
     annotations:
