@@ -219,6 +219,8 @@ system:
 
   loadbalancers:
   - lbname: rsui-production-ukb-lb
+    annotations:
+      slb.sfdc.net/iptype: public_active
     function: rsui-production-ukb
     slbEnabled: true
     ports:
