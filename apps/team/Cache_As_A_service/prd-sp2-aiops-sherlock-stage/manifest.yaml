@@ -13,7 +13,7 @@ system:
       type: Recreate
     containers:
     - name: sherlock-stage
-      image: dva/casp/sherlock_strata:jenkins-CASP-sherlock-dev-8-itest
+      image: dva/casp/sherlock_strata:jenkins-CASP-sherlock-dev-9-itest
       ports:
       - name: flower-http
         containerPort: 5555
@@ -29,11 +29,11 @@ system:
         - name: SAMCAAS2_CAASMINION3_6_PRD_KINGDOMS
           value: 'frf,cdg,customer_orgs,model_caching3,dbperfswat'
         - name: CELERY_LOG_LEVEL
-          value: 'info'
+          value: 'debug'
         - name: FLOWER_LOG_LEVEL
           value: 'info'
         - name: SHERLOCK_LOG_LEVEL
-          value: 'info'
+          value: 'debug'
         - name: SHERLOCK_ENV
           value: 'stage'
         - name: CELERY_CONCURRECY
