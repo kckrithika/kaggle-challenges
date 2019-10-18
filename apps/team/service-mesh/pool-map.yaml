@@ -130,10 +130,6 @@ apps:
 #  geoipnk:
 #    - prd/prd-sam_gater
 
-  authz-svc:
-    - prd/prd-sam_gater
-  authz-svc-opa:
-    - prd/prd-sam_gater
   demo-authz:
     - prd/prd-sam_gater
   demo-authz-http:
@@ -142,6 +138,8 @@ apps:
     - prd/prd-sam_gater
   authz-svc-mvp:
 #    - mvp/gsf-core-devmvp-sam2-sam
+  authz-svc-prod-0:
+    - prd/prd-sam_gater
   authz-svc-prod-1:
     - par/par-sam_gater
   authz-svc-prod-2:
@@ -166,6 +164,8 @@ apps:
     - ia2/ia2-sam_gater
     - ia4/ia4-sam_gater
     - ia5/ia5-sam_gater
+  authz-svc-prod-opa-0:
+    - prd/prd-sam_gater
   authz-svc-prod-opa-1:
     - par/par-sam_gater
   authz-svc-prod-opa-2:

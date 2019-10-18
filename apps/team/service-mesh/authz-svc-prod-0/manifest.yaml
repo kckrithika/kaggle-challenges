@@ -12,7 +12,9 @@ system:
       "sherpa-injector.service-mesh/inject": "enabled"
     containers:
     - name: authz-svc
-      image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/electron_sam:106
+      image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/electron_sam:107
+      args:
+      - --extra-authz-clients=dns=authz-svc.service-mesh.sfdc-role
       env:
       - name: SFDC_ENVIRONMENT
         value: mesh
@@ -38,6 +40,20 @@ system:
         initialDelaySeconds: 30
         periodSeconds: 5
         timeoutSeconds: 4
+    - name: authz-svc-grpc-client
+      image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/electron_client:107
+      args:
+      - -endpoint=localhost:7020
+      - -service=grpc
+      - -https=false
+      - -mtls=false
+      - -loopCount=-1
+      - -loopDelayInSeconds=60
+      - -spoof-xfcc=DNS=authz-svc.service-mesh.sfdc-role
+      livenessProbe:
+        exec:
+          command: ["/bin/true"]
+        initialDelaySeconds: 30
     - name: beacon
       # https://git.soma.salesforce.com/services/sfdc-bazel/tree/master/projects/sidecars/beacon#docker-image
       image: sfci/services/sfdc-bazel/disco/beacon:d7f1640
