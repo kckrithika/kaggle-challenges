@@ -27,7 +27,7 @@ system:
     containers:
     - name: dfs-func
       # Please update https://salesforce.quip.com/A9HVAFytGaqG with any changes.
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/dfs/service:dfs-0.25.4
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/dfs/service:dfs-0.25.5
       volumeMounts:
       - name: logvol
         mountPath: /home/scone/logs
@@ -49,7 +49,8 @@ system:
       - name: INCLUDE_ALL_STACK_TRACES
         value: false
       - name: JVM_ARGS
-        value: "-Dspring.profiles.active=prod -Djava.util.concurrent.ForkJoinPool.common.parallelism=50
+        value: "-Dspring.profiles.active=prod,perf,alertTriggeringExtensionsOn
+                -Djava.util.concurrent.ForkJoinPool.common.parallelism=50
                 -verbose:gc -XX:+PrintGCDateStamps -XX:+PrintHeapAtGC
                 -XX:+PrintPromotionFailure -XX:+PrintTenuringDistribution -XX:+PrintGCDetails
                 -XX:+PrintGCDateStamps -XX:+PrintGCApplicationStoppedTime
