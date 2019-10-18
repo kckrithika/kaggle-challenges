@@ -18,6 +18,8 @@ system:
       volumeMounts:
       - mountPath: /home/sfdc-atlas/data/servers/ds
         name: hostdatavol     
+      - mountPath: /certs
+        name: server-cert
       ports:
       - containerPort: 7032
       - containerPort: 1636
@@ -40,6 +42,9 @@ system:
     - name: hostdatavol
       hostPath:
         path: /data/gid/cloudatlas-ds
+    - name: server-cert
+      maddogCert:
+        type: server
 
   loadbalancers:
   - lbname: cloudatlas-gidv2
