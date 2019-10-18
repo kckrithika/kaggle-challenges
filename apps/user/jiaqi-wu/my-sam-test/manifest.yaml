@@ -15,9 +15,10 @@ system:
       sidecar.istio.io/inject: "true"
     containers:
     - name: samhello
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/jiaqi-wu/samhello:hello-20181009-2 # golang app
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/jiaqi-wu/samhello:3 # golang app
       ports:
       - containerPort: 9090
+      - containerPort: 8443
       livenessProbe:
         httpGet:
           path: /
@@ -35,4 +36,6 @@ system:
       - port: 80
         targetport: 9090
         lbtype: tcp
-
+      - port: 443
+        targetport: 8443
+        lbtype: tcp
