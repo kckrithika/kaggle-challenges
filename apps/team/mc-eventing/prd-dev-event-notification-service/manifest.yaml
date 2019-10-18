@@ -32,8 +32,8 @@ system:
         value: 15372
       - name: AJNA_NAMESPACE
         value: mc.test.mceventbusdev
-      - name: SESSION_TIMEOUT_MS
-        value: 6000
+      - name: JOINER_NUMTHREADS
+        value: 1
       livenessProbe:
         initialDelaySeconds: 60
         periodSeconds: 120

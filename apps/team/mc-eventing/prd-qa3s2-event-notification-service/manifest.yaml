@@ -33,8 +33,8 @@ system:
         value: mc.test.mceventbusqa3s2
       - name: EVENTCONSUMER_GROUP_ID
         value: eventing-notification-qa3s2
-      - name: SESSION_TIMEOUT_MS
-        value: 6000
+      - name: JOINER_NUMTHREADS
+        value: 1
       livenessProbe:
         initialDelaySeconds: 60
         periodSeconds: 120
