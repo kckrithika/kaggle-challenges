@@ -16,8 +16,17 @@ local notIsNewKingdom = configs.estate in { [e]: 1 for e in newKingdoms };
 local tlscertificate = if configs.estate == "prd-samtwo" then
     // Use chained cert for canary in prd-samtwo to improve ssllabs report.
     "secret_service:slb-prd:prd-cert-chain"
+else if configs.estate == "xrd-sam" then
+    "secret_service:SlbCanarySecrets:" + configs.kingdom + "-cert"
 else
     "secret_service:SlbPublicCanary:" + configs.kingdom + "-cert";
+
+
+local tlskey = if configs.estate == "xrd-sam" then
+    "secret_service:SlbCanarySecrets:" + configs.kingdom + "-key"
+else
+    "secret_service:SlbPublicCanary:" + configs.kingdom + "-key";
+
 
 local canaryPortConfig = [
     slbportconfiguration.newPortConfiguration(
@@ -36,7 +45,7 @@ local canaryPortConfig = [
         healthpath: "/health",
         healthprotocol: "http",
         tlscertificate: tlscertificate,
-        tlskey: "secret_service:SlbPublicCanary:" + configs.kingdom + "-key",
+        tlskey: tlskey,
         },
 ];
 
