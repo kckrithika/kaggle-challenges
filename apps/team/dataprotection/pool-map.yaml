@@ -13,8 +13,6 @@ apps:
   - ia2/ia2-sam_dp
   - ord/ord-sam_dp
   - par/par-sam_dp
-  - chx/chx-sam_dp
-  - wax/wax-sam_dp
   - yhu/yhu-sam_dp
 # sync:
 #   - prd/prd-sam
