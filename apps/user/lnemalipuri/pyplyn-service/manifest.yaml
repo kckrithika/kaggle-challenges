@@ -14,7 +14,7 @@ system:
            command:
            - /usr/bin/true
   - name: pyplyn_instance_2
-    count: 1
+    count: 2
     containers:
     - name: pyplyn_service-2
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/lnemalipuri/pyplyn_service:v0
