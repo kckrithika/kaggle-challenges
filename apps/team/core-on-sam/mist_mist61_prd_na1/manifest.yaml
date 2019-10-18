@@ -84,7 +84,8 @@ system:
       readinessProbe:
         exec:
           command:
-          - /home/sfdc/salesforce/casam/bin/live_probe.sh
+          - echo
+          - HEALTHY
         failureThreshold: 99999
         initialDelaySeconds: 120
         periodSeconds: 5
