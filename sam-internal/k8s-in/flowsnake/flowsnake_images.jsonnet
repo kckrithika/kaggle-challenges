@@ -26,7 +26,6 @@ local utils = import "util_functions.jsonnet";
                 watchdog_image_tag: "2722-a1231485debac6b17dfa76e7a1af01750e0f4f8b",  # 05/2019 image
                 integration_test_tag: "22",
                 hbase_integration_test_tag: "22",
-                prometheus_funnel_image_tag: "37",
             },
             feature_flags+: {
                 # Note: the *value* of the flags is ignored. jsonnet lacks array search, so we use a an object.
@@ -60,7 +59,6 @@ local utils = import "util_functions.jsonnet";
             image_tags+: {
                 integration_test_tag: "22",
                 hbase_integration_test_tag: "22",
-                prometheus_funnel_image_tag: "37",
             },
             feature_flags+: {
                 # --- flag A (Do not edit ... ---
@@ -135,7 +133,7 @@ local utils = import "util_functions.jsonnet";
                 integration_test_tag: "18",
                 hbase_integration_test_tag: "20",
                 kube_state_metrics_image_tag: "3",
-                prometheus_funnel_image_tag: "36",
+                prometheus_funnel_image_tag: "37",
                 spark_worker_23_hadoop_292_image_tag: "jenkins-dva-transformation-flowsnake-sample-apps-cre-hadoop-292-5-itest",
 
                 # Fleet components including SAM components
@@ -178,7 +176,6 @@ local utils = import "util_functions.jsonnet";
         # off-peak: 1pm-9pm PDT
         "prod-emea": self.prod {
             image_tags+: {
-                prometheus_funnel_image_tag: "37",
             },
         },
 
@@ -186,7 +183,6 @@ local utils = import "util_functions.jsonnet";
         # off-peak: 6pm-4am PDT
         "prod-na": self.prod {
             image_tags+: {
-                prometheus_funnel_image_tag: "37",
             },
         },
 
@@ -194,7 +190,6 @@ local utils = import "util_functions.jsonnet";
         # off-peak: 6am-1pm PDT
         "prod-apac": self.prod {
             image_tags+: {
-                prometheus_funnel_image_tag: "37",
             },
         },
 
