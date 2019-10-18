@@ -14,7 +14,7 @@ system:
         exec:
           command: ["true"]
     - name: webgoat
-      image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-sam/davidtee/webgoat-8.0:pd-20191004
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/davidtee/webgoat-8.0:pd-20191004
       ports:
       - name: web
         containerPort: 8000
