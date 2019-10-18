@@ -30,5 +30,5 @@ system:
     nodeExposed: true
     slbEnabled: false
     ports:
-      - port: 5432
+      - port: 25432
         targetport: 5432
