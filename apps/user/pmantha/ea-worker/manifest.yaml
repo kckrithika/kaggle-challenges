@@ -9,7 +9,7 @@ system:
     terminationGracePeriodSeconds: 30
     containers:
     - name: insights-iworker
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/pmantha/insights-iworker:6
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/pmantha/insights-iworker:7
       command: ["/bin/sh"]
       args: ["-c", "while :; do  sleep 1; done"]            
       ports:

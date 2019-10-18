@@ -8,7 +8,7 @@ system:
     lbname: insights-cassandra
     containers:
     - name: insights-cassandra
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/pmantha/insights-cassandra:3.0.13.9
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/pmantha/insights-cassandra:3.0.13.10
       imagePullPolicy: Always
       command: ["/bin/sh"]
       args: ["-c", "while :; do  sleep 1; done"]      
