@@ -2,7 +2,35 @@ apps:
   syncmaster:
   - prd/prd-sam
   - dfw/dfw-sam_dp
+  - phx/phx-sam_dp
+  - lo2/lo2-sam_dp
+  - lo3/lo3-sam_dp
+  - ph2/ph2-sam_dp
+  - ukb/ukb-sam_dp
+  - frf/frf-sam_dp
+  - fra/fra-sam_dp
+  - hnd/hnd-sam_dp
+  - ia2/ia2-sam_dp
+  - ord/ord-sam_dp
+  - par/par-sam_dp
   - yhu/yhu-sam_dp
+# sync:
+#   - prd/prd-sam
+#   - dfw/dfw-sam_dp
+#   - phx/phx-sam_dp
+#   - lo2/lo2-sam_dp
+#   - lo3/lo3-sam_dp
+#   - ph2/ph2-sam_dp
+#   - ukb/ukb-sam_dp
+#   - frf/frf-sam_dp
+#   - fra/fra-sam_dp
+#   - hnd/hnd-sam_dp
+#   - ia2/ia2-sam_dp
+#   - ord/ord-sam_dp
+#   - par/par-sam_dp
+#   - chx/chx-sam_dp
+#   - wax/wax-sam_dp
+#   - yhu/yhu-sam_dp
   archival-worker:
   - dfw/dfw-sam_dp
   dbaas-backup:
