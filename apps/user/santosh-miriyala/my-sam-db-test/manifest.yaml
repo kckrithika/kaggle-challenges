@@ -27,7 +27,8 @@ system:
   loadbalancers:
   - lbname: postgres-db-sam-test
     function: gadget-sam-db-test
-    slbEnabled: true
+    nodeExposed: true
+    slbEnabled: false
     ports:
       - port: 5432
         targetport: 5432
