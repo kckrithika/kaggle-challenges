@@ -12,7 +12,7 @@ system:
       "sherpa-injector.service-mesh/canary": "enabled"
     containers:
     - name: client
-      image: sfci/servicelibs/servicemesh-resiliency:6110ea8ee948f5c9784edf510219438d13eb9c47
+      image: sfci/servicelibs/servicemesh-resiliency:f819dbed8bfb7df5aef9cd656bf72c00244eabb3
       resources:
         limits: { cpu: "3", memory: "1Gi" }
         requests: { cpu: "3", memory: "1Gi" }
