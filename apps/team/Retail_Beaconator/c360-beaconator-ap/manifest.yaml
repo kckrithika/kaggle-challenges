@@ -7,24 +7,24 @@ system:
 
   functions:
   - name: beaconator
-    count: 1
+    count: 2
 
     strategy:
       type: RollingUpdate
       rollingUpdate:
         maxSurge: 1
-        maxUnavailable: 1
+        maxUnavailable: 0
 
     containers:
     - name: beaconator
-      image: sfci/servicelibs/beacon:853c4db9f14805018be6f5e7607ffe65b5648822
+      image: sfci/services/sfdc-bazel/disco/beacon:d7f1640
       args:
-      - -logging.dir
-      - /log
       - -endpoint
       - retail-cre/cre-api:DATACENTER_ALLENV:7442:cre-api-lb.retail-cre.ap01.cre.slb.sfdc.net
       - -endpoint
       - retail-cre/cre-control-plane:DATACENTER_ALLENV:7442:cre-control-plane-lb.retail-cre.ap01.cre.slb.sfdc.net
+      - -endpoint
+      - retail-cre/cre-sp:DATACENTER_ALLENV:7442:cre-sp-lb.retail-cre.ap01.cre.slb.sfdc.net
       - -endpoint
       - retail-dfs/dfs:DATACENTER_ALLENV:7442:dfs-production-lb.retail-dfs.ap01.cre.slb.sfdc.net
       - -endpoint
@@ -36,22 +36,15 @@ system:
       env:
       - name: DUMMY_FORCE_PUSH 
         value: 1 # increse value to force push without any other changes 
-      volumeMounts:
-      - mountPath: /log
-        name: logvolbeacon
       resources:
         limits:
-          cpu: "1"
+          cpu: 500m
           memory: 1Gi
         requests:
-          cpu: "1"
+          cpu: 500m
           memory: 1Gi
       livenessProbe:
         initialDelaySeconds: 5
         exec:
           command:
-          - "/home/scone/is-alive.sh"
-    volumes:
-    - name: logvolbeacon
-      hostPath:
-        path: /home/sfdc-scone-beaconator/logs
+          - "/opt/beacon/is-alive.sh"
