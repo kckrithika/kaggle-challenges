@@ -32,7 +32,3 @@ apps:
     - prd/prd-sam
   geoip-xlt-sandbox:
     - prd/prd-sam_gater
-
-  geoip-mvp:
-#    - mvp/gsf-core-devmvp-sam2-sam
-    
