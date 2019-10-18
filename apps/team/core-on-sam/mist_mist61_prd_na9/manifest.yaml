@@ -274,12 +274,6 @@ system:
         value: true
       - name: dns_override
         value: switchboard.core-on-sam.sfdc-role
-      - name: ca_cert
-        value: /certs/ca/cacerts.pem
-      - name: client_key
-        value: /certs/client/keys/client-key.pkcs8
-      - name: client_cert
-        value: /certs/client/certificates/client.pem
       - name: DISABLE_GUS
         value: 1
       - name: DISABLE_ARGUS
@@ -303,7 +297,7 @@ system:
         initialDelaySeconds: 60
         periodSeconds: 1
       volumeMounts:
-      - mountPath: /certs
+      - mountPath: /etc/identity
         name: client-cert
       - mountPath: /secrets/
         name: secretvol
