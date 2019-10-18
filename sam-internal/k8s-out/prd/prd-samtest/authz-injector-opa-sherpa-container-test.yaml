@@ -62,14 +62,14 @@ data:
           httpGet:
             scheme: HTTP
             port: 8181
-          initialDelaySeconds: 3
+          initialDelaySeconds: 5
           periodSeconds: 10
         readinessProbe:
           httpGet:
-            path: /health?bundle=false
+            path: /health?bundle=true
             scheme: HTTP
             port: 8181
-          initialDelaySeconds: 2
+          initialDelaySeconds: 5
           periodSeconds: 10
         terminationMessagePolicy: FallbackToLogsOnError
     volumes:
