@@ -6,6 +6,8 @@ system:
   functions:
   - containers:
     - env:
+      - name: CASAM_DEPLOYMENT_ID
+        value: na1-blue
       - name: DB_SID
         value: mist61b224utf
       - name: DB_INSTANCE_NAME
