@@ -98,9 +98,9 @@ system:
       - name: spe_ratelimit_timeWindow
         value: 5
       - name: spe_whitelist_disable
-        value: true
+        value: false
       - name: spe_whitelist_ipsubnets
-        value: 10.0.0.0/8,204.0.0.0/8
+        value: 204.0.0.0/8
 
       ports:
       - containerPort: 7022
