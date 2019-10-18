@@ -97,6 +97,8 @@ system:
         value: 5
       - name: spe_ratelimit_timeWindow
         value: 5
+      - name: spe_whitelist_disable
+        value: true
 
       ports:
       - containerPort: 7022
