@@ -13,8 +13,21 @@ system:
         exec:
            command:
            - /usr/bin/true
+  - name: pyplyn-instance-2
+    count: 2
+    containers:
+    - name: pyplyn-service-2
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/lnemalipuri/pyplyn-service:v1
+      livenessProbe:
+        exec:
+           command:
+           - /usr/bin/true
   loadbalancers:
   - lbname: lbpyplyn-instance-1
     function: pyplyn-instance-1
+    nodeExposed: false
+    slbenabled: true
+  - lbname: lb-pyplyn-instance-2
+    function: pyplyn-instance-2
     nodeExposed: false
     slbenabled: true
