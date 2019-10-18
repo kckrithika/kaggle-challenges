@@ -1,0 +1,10 @@
+- lbname: uiplatform-nucleus-prd-nodeport
+  servers:
+   - uiplatform-k8s-node-1-prd.eng.sfdc.net
+  ports:
+   - port: 443
+     targetport: 31234
+     lbtype: tcp
+  customlbname: nucleus-prd
+  cnames:
+   - cname: nucleus.data.sfdc.net
