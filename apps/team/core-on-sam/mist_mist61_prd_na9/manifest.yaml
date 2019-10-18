@@ -49,9 +49,9 @@ system:
       - name: SKIP_READY_RELEASE_CHECK
         value: true
       - name: CASAM_APP_COLOR
-        value: blue
+        value: green
       - name: CASAM_DEPLOYMENT_ID
-        value: na9-blue
+        value: na9-green
       - name: USE_K8S_COLOR_PERSISTENCE
         value: 0
       - name: SD_PORT_OVERRIDE
@@ -164,7 +164,7 @@ system:
     name: na9-mist61app-prd
     labels:
       settings-path: mist.mist61.prd.na9.app
-      casam-deployment-id: na9-blue
+      casam-deployment-id: na9-green
     progressDeadlineSeconds: 300
     strategy:
       rollingUpdate:
@@ -195,7 +195,7 @@ system:
   - containers:
     - env:
       - name: NONCE
-        value: 9303848066176023543
+        value: 7084933293216642834
       - name: DRY_RUN
         value: 0
       - name: CHATTER_GROUP_NAME
@@ -217,11 +217,11 @@ system:
       - name: PATCH_RELEASE_NUMBER
         value: 0
       - name: CURRENT_RELEASE_VERSION
-        value: green
-      - name: NEW_RELEASE_VERSION
         value: blue
+      - name: NEW_RELEASE_VERSION
+        value: green
       - name: CASAM_DEPLOYMENT_ID
-        value: na9-blue
+        value: na9-green
       - name: USE_K8S_COLOR_PERSISTENCE
         value: 0
       - name: USE_K8_SERVICE_DISCOVERY
