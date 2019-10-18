@@ -94,7 +94,7 @@ system:
       - name: proxy_routes_0_target
         value: http://localhost:8080
       - name: spe_ratelimit_limit
-        value: 1250
+        value: 5
       - name: spe_ratelimit_timeWindow
         value: 5
 
