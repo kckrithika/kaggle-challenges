@@ -140,6 +140,7 @@ system:
     - port: 7443
       targetport: 7443
       name: mds-perf
+      lbalgorithm: roundrobin
     # A plain-text HTTP port that serves REST API and developer utilities. Must not be exposed in production.
     - port: 9092
       targetport: 9091
