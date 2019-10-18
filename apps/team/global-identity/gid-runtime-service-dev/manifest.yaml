@@ -82,7 +82,7 @@ system:
     # Service Protection
     #####################################################################################
     - name: service-protection
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/gid/service-protection:4b7a846
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/gid/service-protection:a4e0903
       imagePullPolicy: Always
       env:
       - name: server_use_forward_headers
@@ -97,8 +97,6 @@ system:
         value: 5
       - name: spe_ratelimit_timeWindow
         value: 5
-      - name: spe_whitelist_disable
-        value: false
 
       ports:
       - containerPort: 7022
