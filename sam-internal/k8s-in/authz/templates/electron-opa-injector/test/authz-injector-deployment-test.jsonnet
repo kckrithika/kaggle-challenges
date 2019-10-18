@@ -161,7 +161,7 @@ configs.deploymentBase("authz-injector") {
               },
               {
                 name: "FAKE_REDEPLOY_VAR",
-                value: "0",
+                value: "1",
               },
             ],
             volumeMounts+: [
