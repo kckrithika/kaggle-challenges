@@ -9,7 +9,9 @@ apps:
     - name: xrd/xrd-sam_gater
 
   c360-beaconator-na:
+    - name: iad/iad-sam_gater
     - name: ia2/ia2-sam_gater
+    - name: ord/ord-sam_gater
     - name: ph2/ph2-sam_gater
     - name: dfw/dfw-sam_gater
 
