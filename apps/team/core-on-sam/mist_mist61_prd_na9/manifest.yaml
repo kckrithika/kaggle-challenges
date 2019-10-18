@@ -195,7 +195,7 @@ system:
   - containers:
     - env:
       - name: NONCE
-        value: 7268401863962209638
+        value: 9303848066176023543
       - name: DRY_RUN
         value: 0
       - name: CHATTER_GROUP_NAME
@@ -217,7 +217,7 @@ system:
       - name: PATCH_RELEASE_NUMBER
         value: 0
       - name: CURRENT_RELEASE_VERSION
-        value: blue
+        value: green
       - name: NEW_RELEASE_VERSION
         value: blue
       - name: CASAM_DEPLOYMENT_ID
