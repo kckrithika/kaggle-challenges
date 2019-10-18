@@ -94,11 +94,11 @@ system:
       - name: proxy_routes_0_target
         value: http://localhost:8080
       - name: spe_ratelimit_limit
-        value: 5
+        value: 125
       - name: spe_ratelimit_timeWindow
         value: 5
       - name: spe_whitelist_disable
-        value: false
+        value: true
       - name: spe_whitelist_ipsubnets
         value: 204.0.0.0/8
 
