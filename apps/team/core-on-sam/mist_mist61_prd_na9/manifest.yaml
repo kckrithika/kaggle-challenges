@@ -564,6 +564,8 @@ system:
       targetport: 12060
     - port: 8087
       targetport: 15373
+    - port: 8444
+      targetport: 18443
     slbEnabled: true
   - function: na9-mist61switchboard-prd
     lbname: na9-switchboard-lb
