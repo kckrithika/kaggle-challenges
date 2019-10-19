@@ -1,64 +1,3 @@
-- lbname: ceodevopsci
-  customlbname: ceodevopsci-prd
-  servers:
-  - devopsci01.dop.sfdc.net
-  - devopsci02.dop.sfdc.net
-  ports:
-  - port: 443
-    targetport: 443
-    lbtype: http
-    tls: true
-    reencrypt: true
-    healthport: 8080
-    healthprotocol: http
-    healthpath: /ha/health-check
-
-- lbname: sfcikubeapi
-  customlbname: sfcikubeapi-prd
-  servers:
-  - sfci0ceo0-pkubemaster2-1-prd.dop.sfdc.net 
-  - sfci0ceo0-pkubemaster2-2-prd.dop.sfdc.net
-  - sfci0ceo0-pkubemaster2-3-prd.dop.sfdc.net
-  - sfci0ceo0-pkubemaster2-4-prd.dop.sfdc.net
-  - sfci0ceo0-pkubemaster2-5-prd.dop.sfdc.net
-  ports:
-  - port: 443
-    targetport: 6443
-    lbtype: http
-    tls: true
-    healthport: 6443
-    healthprotocol: http
-    healthpath: healthz
-
-- lbname: devopssfcislbin
-  customlbname: devopssfcislbin-prd
-  servers:
-  - cjemaster46.dop.sfdc.net
-  ports:
-  - port: 443
-    targetport: 8080
-    lbtype: http
-    tls: true
-    reencrypt: false
-    healthport: 8080
-    healthprotocol: http
-    healthpath: /ha/health-check
-
-- lbname: devopssfcislbcn
-  customlbname: devopssfcislbcn-prd
-  servers:
-  - cjemaster47a.dop.sfdc.net
-  - cjemaster47b.dop.sfdc.net
-  ports:
-  - port: 443
-    targetport: 8080
-    lbtype: http
-    tls: true
-    reencrypt: false
-    healthport: 8080
-    healthprotocol: http
-    healthpath: /ha/health-check
-
 - lbname: sfci-splunknginx
   customlbname: sfci-splunknginx-prd
   servers:
@@ -86,3 +25,610 @@
     healthport: 8088
     healthprotocol: tcp
     lbalgorithm: roundrobin
+
+#######################
+#  SFCI Dev           #
+#######################
+- lbname: devsalesforceci
+  customlbname: devsalesforceci
+  servers:
+  - devsalesforceci01.dop.sfdc.net
+  - devsalesforceci02.dop.sfdc.net
+  ports:
+  - port: 443
+    targetport: 8888
+    lbtype: http
+    tls: true
+    reencrypt: false
+    healthport: 8888
+    healthprotocol: http
+    healthpath: /ha/health-check
+  - port: 80
+    targetport: 80
+    lbtype: http
+    tls: false
+    reencrypt: false
+    healthport: 80
+    healthprotocol: http
+    healthpath: /
+
+- lbname: devdopci
+  customlbname: devdopci
+  servers:
+  - devdopci01.dop.sfdc.net
+  ports:
+  - port: 443
+    targetport: 8080
+    lbtype: http
+    tls: true
+    reencrypt: false
+    healthport: 8080
+    healthprotocol: http
+    healthpath: /ha/health-check
+  - port: 80
+    targetport: 80
+    lbtype: http
+    tls: false
+    reencrypt: false
+    healthport: 80
+    healthprotocol: http
+    healthpath: /
+
+- lbname: devciaawci
+  customlbname: devciaawci
+  servers:
+  - devciaawci01.dop.sfdc.net
+  ports:
+  - port: 443
+    targetport: 8080
+    lbtype: http
+    tls: true
+    reencrypt: false
+    healthport: 8080
+    healthprotocol: http
+    healthpath: /ha/health-check
+  - port: 80
+    targetport: 80
+    lbtype: http
+    tls: false
+    reencrypt: false
+    healthport: 80
+    healthprotocol: http
+    healthpath: /
+
+#- lbname: devlightningperfci
+#  customlbname: devlightningperfci
+#  servers:
+#  - devlightningperfci01.dop.sfdc.net
+#  ports:
+#  - port: 443
+#    targetport: 8080
+#    lbtype: http
+#    tls: true
+#    reencrypt: false
+#    healthport: 8080
+#    healthprotocol: http
+#    healthpath: /ha/health-check
+#  - port: 80
+#    targetport: 80
+#    lbtype: http
+#    tls: false
+#    reencrypt: false
+#    healthport: 80
+#    healthprotocol: http
+#    healthpath: /
+
+#- lbname: devcjemaster01
+#  customlbname: devcjemaster01
+#  cnames:
+#  - cname: devrepurpose1ci.slb.sfdc.net
+#  servers:
+#  - devcjemaster01a.dop.sfdc.net
+#  ports:
+#  - port: 443
+#    targetport: 8080
+#    lbtype: http
+#    tls: true
+#    reencrypt: false
+#    healthport: 8080
+#    healthprotocol: http
+#    healthpath: /ha/health-check
+#  - port: 80
+#    targetport: 80
+#    lbtype: http
+#    tls: false
+#    reencrypt: false
+#    healthport: 80
+#    healthprotocol: http
+#    healthpath: /
+
+#- lbname: devcjemaster02
+#  customlbname: devcjemaster02
+#  cnames:
+#  - cname: devsetici.slb.sfdc.net
+#  servers:
+#  - devcjemaster02b.dop.sfdc.net
+#  ports:
+#  - port: 443
+#    targetport: 8080
+#    lbtype: http
+#    tls: true
+#    reencrypt: false
+#    healthport: 8080
+#    healthprotocol: http
+#    healthpath: /ha/health-check
+#  - port: 80
+#    targetport: 80
+#    lbtype: http
+#    tls: false
+#    reencrypt: false
+#    healthport: 80
+#    healthprotocol: http
+#    healthpath: /
+
+#- lbname: devcjemaster03
+#  customlbname: devcjemaster03
+#  cnames:
+#  - cname: dev-sfcimetricsci.slb.sfdc.net
+#  servers:
+#  - devcjemaster03a.dop.sfdc.net
+#  ports:
+#  - port: 443
+#    targetport: 8080
+#    lbtype: http
+#    tls: true
+#    reencrypt: false
+#    healthport: 8080
+#    healthprotocol: http
+#    healthpath: /ha/health-check
+#  - port: 80
+#    targetport: 80
+#    lbtype: http
+#    tls: false
+#    reencrypt: false
+#    healthport: 80
+#    healthprotocol: http
+#    healthpath: /
+
+- lbname: devcjemaster04
+  customlbname: devcjemaster04
+  cnames:
+  - cname: chatbot-staging.slb.sfdc.net
+  servers:
+  - devcjemaster04b.dop.sfdc.net
+  ports:
+  - port: 443
+    targetport: 8080
+    lbtype: http
+    tls: true
+    reencrypt: false
+    healthport: 8080
+    healthprotocol: http
+    healthpath: /ha/health-check
+  - port: 80
+    targetport: 80
+    lbtype: http
+    tls: false
+    reencrypt: false
+    healthport: 80
+    healthprotocol: http
+    healthpath: /
+
+- lbname: devcjemaster05
+  customlbname: devcjemaster05
+  cnames:
+  - cname: devciaawci-mirror.slb.sfdc.net
+  servers:
+  - devcjemaster05a.dop.sfdc.net
+  ports:
+  - port: 443
+    targetport: 8080
+    lbtype: http
+    tls: true
+    reencrypt: false
+    healthport: 8080
+    healthprotocol: http
+    healthpath: /ha/health-check
+  - port: 80
+    targetport: 80
+    lbtype: http
+    tls: false
+    reencrypt: false
+    healthport: 80
+    healthprotocol: http
+    healthpath: /
+
+#- lbname: devcjemaster06
+#  customlbname: devcjemaster06
+#  cnames:
+#  - cname: devautomatedcheckinci.slb.sfdc.net
+#  servers:
+#  - devcjemaster06b.dop.sfdc.net
+#  ports:
+#  - port: 443
+#    targetport: 8080
+#    lbtype: http
+#    tls: true
+#    reencrypt: false
+#    healthport: 8080
+#    healthprotocol: http
+#    healthpath: /ha/health-check
+#  - port: 80
+#    targetport: 80
+#    lbtype: http
+#    tls: false
+#    reencrypt: false
+#    healthport: 80
+#    healthprotocol: http
+#    healthpath: /
+
+- lbname: devcjemaster07
+  customlbname: devcjemaster07
+  cnames:
+  - cname: devciaawci-new.slb.sfdc.net
+  servers:
+  - devcjemaster07a.dop.sfdc.net
+  ports:
+  - port: 443
+    targetport: 8080
+    lbtype: http
+    tls: true
+    reencrypt: false
+    healthport: 8080
+    healthprotocol: http
+    healthpath: /ha/health-check
+  - port: 80
+    targetport: 80
+    lbtype: http
+    tls: false
+    reencrypt: false
+    healthport: 80
+    healthprotocol: http
+    healthpath: /
+
+#- lbname: devcjemaster08
+#  customlbname: devcjemaster08
+#  servers:
+#  - devcjemaster08b.dop.sfdc.net
+#  ports:
+#  - port: 443
+#    targetport: 8080
+#    lbtype: http
+#    tls: true
+#    reencrypt: false
+#    healthport: 8080
+#    healthprotocol: http
+#    healthpath: /ha/health-check
+#  - port: 80
+#    targetport: 80
+#    lbtype: http
+#    tls: false
+#    reencrypt: false
+#    healthport: 80
+#    healthprotocol: http
+#    healthpath: /
+
+- lbname: devcjemaster09
+  customlbname: devcjemaster09
+  cnames:
+  - cname: devsfcirelease.slb.sfdc.net
+  servers:
+  - devcjemaster09a.dop.sfdc.net
+  ports:
+  - port: 443
+    targetport: 8080
+    lbtype: http
+    tls: true
+    reencrypt: false
+    healthport: 8080
+    healthprotocol: http
+    healthpath: /ha/health-check
+  - port: 80
+    targetport: 80
+    lbtype: http
+    tls: false
+    reencrypt: false
+    healthport: 80
+    healthprotocol: http
+    healthpath: /
+
+#- lbname: devcjemaster10
+#  customlbname: devcjemaster10
+#  cnames:
+#  - cname: livemessage-staging.slb.sfdc.net
+#  servers:
+#  - devcjemaster10b.dop.sfdc.net
+#  ports:
+#  - port: 443
+#    targetport: 8080
+#    lbtype: http
+#    tls: true
+#    reencrypt: false
+#    healthport: 8080
+#    healthprotocol: http
+#    healthpath: /ha/health-check
+#  - port: 80
+#    targetport: 80
+#    lbtype: http
+#    tls: false
+#    reencrypt: false
+#    healthport: 80
+#    healthprotocol: http
+#    healthpath: /
+
+- lbname: devcjemaster11
+  customlbname: devcjemaster11
+  cnames:
+  - cname: devciaawci-old.slb.sfdc.net
+  servers:
+  - devcjemaster11a.dop.sfdc.net
+  ports:
+  - port: 443
+    targetport: 8080
+    lbtype: http
+    tls: true
+    reencrypt: false
+    healthport: 8080
+    healthprotocol: http
+    healthpath: /ha/health-check
+  - port: 80
+    targetport: 80
+    lbtype: http
+    tls: false
+    reencrypt: false
+    healthport: 80
+    healthprotocol: http
+    healthpath: /
+
+#- lbname: devcjemaster12
+#  customlbname: devcjemaster12
+#  servers:
+#  - devcjemaster12b.dop.sfdc.net
+#  ports:
+#  - port: 443
+#    targetport: 8080
+#    lbtype: http
+#    tls: true
+#    reencrypt: false
+#    healthport: 8080
+#    healthprotocol: http
+#    healthpath: /ha/health-check
+#  - port: 80
+#    targetport: 80
+#    lbtype: http
+#    tls: false
+#    reencrypt: false
+#    healthport: 80
+#    healthprotocol: http
+#    healthpath: /
+
+#######################
+#  SFCI Release       #
+#######################
+- lbname: sfci0ceo0-cjemaster1
+  customlbname: sfci0ceo0-cjemaster1
+  cnames:
+  - cname: sfcirelease.slb.sfdc.net
+  servers:
+  - sfci0ceo0-cjemaster1-1-prd.dop.sfdc.net
+  - sfci0ceo0-cjemaster1-2-prd.dop.sfdc.net
+  ports:
+  - port: 443
+    targetport: 8080
+    lbtype: http
+    tls: true
+    reencrypt: false
+    healthport: 8080
+    healthprotocol: http
+    healthpath: /ha/health-check
+  - port: 80
+    targetport: 80
+    lbtype: http
+    tls: false
+    reencrypt: false
+    healthport: 80
+    healthprotocol: http
+    healthpath: /
+
+- lbname: sfci0ceo0-cjemaster2
+  customlbname: sfci0ceo0-cjemaster2
+  cnames:
+  - cname: mirrorsfcirelease.slb.sfdc.net
+  servers:
+  - sfci0ceo0-cjemaster2-1-prd.dop.sfdc.net
+  - sfci0ceo0-cjemaster2-2-prd.dop.sfdc.net
+  ports:
+  - port: 443
+    targetport: 8080
+    lbtype: http
+    tls: true
+    reencrypt: false
+    healthport: 8080
+    healthprotocol: http
+    healthpath: /ha/health-check
+  - port: 80
+    targetport: 80
+    lbtype: http
+    tls: false
+    reencrypt: false
+    healthport: 80
+    healthprotocol: http
+    healthpath: /
+
+
+#######################
+#  SFCI Prod          #
+#######################
+- lbname: sfcigrafana
+  customlbname: sfcigrafana
+  servers:
+  - sfci0ceo0-pkubemaster2-1-prd.dop.sfdc.net
+  - sfci0ceo0-pkubemaster2-2-prd.dop.sfdc.net
+  - sfci0ceo0-pkubemaster2-3-prd.dop.sfdc.net
+  - sfci0ceo0-pkubemaster2-4-prd.dop.sfdc.net
+  - sfci0ceo0-pkubemaster2-5-prd.dop.sfdc.net
+  ports:
+  - port: 443
+    targetport: 30001
+    lbtype: http
+    tls: true
+    reencrypt: false
+    healthport: 30001
+    healthprotocol: http
+    healthpath: /
+
+- lbname: stage-kubemasterci1
+  customlbname: stage-kubemasterci1
+  servers:
+  - ceo0-stagekubemaster1-1-prd.dop.sfdc.net
+  - ceo0-stagekubemaster1-5-prd.dop.sfdc.net
+  ports:
+  - port: 443
+    targetport: 6443
+    lbtype: tcp
+    reencrypt: false
+    healthport: 6443
+    healthprotocol: tcp
+    lbalgorithm: roundrobin
+
+- lbname: dev-kubemasterci1
+  customlbname: dev-kubemasterci1
+  servers:
+  - sfci0ceo0-dkubemaster1-1-prd.dop.sfdc.net
+  - sfci0ceo0-dkubemaster1-2-prd.dop.sfdc.net
+  - sfci0ceo0-dkubemaster1-3-prd.dop.sfdc.net
+  ports:
+  - port: 443
+    targetport: 6443
+    lbtype: tcp
+    reencrypt: false
+    healthport: 6443
+    healthprotocol: tcp
+    lbalgorithm: roundrobin
+
+- lbname: prod-kubemasterci1
+  customlbname: prod-kubemasterci1
+  servers:
+  - sfci0ceo0-pkubemaster1-1-prd.dop.sfdc.net
+  - sfci0ceo0-pkubemaster1-2-prd.dop.sfdc.net
+  - sfci0ceo0-pkubemaster1-3-prd.dop.sfdc.net
+  ports:
+  - port: 443
+    targetport: 6443
+    lbtype: tcp
+    reencrypt: false
+    healthport: 6443
+    healthprotocol: tcp
+    lbalgorithm: roundrobin
+
+- lbname: rel-kubemasterci2
+  customlbname: rel-kubemasterci2
+  servers:
+  - sfci0ceo0-rkubemaster2-1-prd.dop.sfdc.net
+  - sfci0ceo0-rkubemaster2-2-prd.dop.sfdc.net
+  - sfci0ceo0-rkubemaster2-3-prd.dop.sfdc.net
+  ports:
+  - port: 443
+    targetport: 6443
+    lbtype: tcp
+    reencrypt: false
+    healthport: 6443
+    healthprotocol: tcp
+    lbalgorithm: roundrobin
+
+- lbname: salesforceci
+  customlbname: salesforceci
+  servers:
+  - salesforceci01.dop.sfdc.net
+  - salesforceci02.dop.sfdc.net
+  ports:
+  - port: 443
+    targetport: 8080
+    lbtype: http
+    tls: true
+    reencrypt: false
+    healthport: 8080
+    healthprotocol: http
+    healthpath: /ha/health-check
+  - port: 80
+    targetport: 80
+    lbtype: http
+    tls: false
+    reencrypt: false
+    healthport: 80
+    healthprotocol: http
+    healthpath: /
+
+- lbname: devopsci
+  customlbname: devopsci
+  servers:
+  - devopsci01.dop.sfdc.net
+  - devopsci02.dop.sfdc.net
+  ports:
+  - port: 443
+    targetport: 8080
+    lbtype: http
+    tls: true
+    reencrypt: false
+    healthport: 8080
+    healthprotocol: http
+    healthpath: /ha/health-check
+  - port: 80
+    targetport: 80
+    lbtype: http
+    tls: false
+    reencrypt: false
+    healthport: 80
+    healthprotocol: http
+    healthpath: /
+
+- lbname: cjemaster227
+  customlbname: cjemaster227
+  cnames:
+  - cname: adoptionappspkgingci.slb.sfdc.net
+  servers:
+  - cjemaster227-1-prd.dop.sfdc.net
+  - cjemaster227-2-prd.dop.sfdc.net
+  ports:
+  - port: 443
+    targetport: 8080
+    lbtype: http
+    tls: true
+    reencrypt: false
+    healthport: 8080
+    healthprotocol: http
+    healthpath: /ha/health-check
+  - port: 80
+    targetport: 80
+    lbtype: http
+    tls: false
+    reencrypt: false
+    healthport: 80
+    healthprotocol: http
+    healthpath: /
+
+- lbname: cjemaster300
+  customlbname: cjemaster300
+  cnames:
+  - cname: tcjemaster300.slb.sfdc.net
+  servers:
+  - cjemaster300-1-prd.dop.sfdc.net
+  - cjemaster300-2-prd.dop.sfdc.net
+  ports:
+  - port: 443
+    targetport: 8080
+    lbtype: http
+    tls: true
+    reencrypt: false
+    healthport: 8080
+    healthprotocol: http
+    healthpath: /ha/health-check
+  - port: 80
+    targetport: 80
+    lbtype: http
+    tls: false
+    reencrypt: false
+    healthport: 80
+    healthprotocol: http
+    healthpath: /
+
