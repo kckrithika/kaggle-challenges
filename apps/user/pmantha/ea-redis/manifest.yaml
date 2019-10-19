@@ -3,7 +3,7 @@ apiVersion: v1
 system:
   functions:
   - name: insights-redis
-    count: 2
+    count: 3
     type: stateful-set
     lbname: insights-redis
     terminationGracePeriodSeconds: 30
