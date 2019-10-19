@@ -128,22 +128,6 @@ system:
           - "./bin/is-ready"
         initialDelaySeconds: 110
         periodSeconds: 5
-    - name: beacon
-      image: sfci/servicelibs/beacon:853c4db9f14805018be6f5e7607ffe65b5648822
-      args:
-      - -endpoint
-      - retail-cre/cre-api-cre-test:DATACENTER_ALLENV:7442
-      # gRPC (http2) example without a namespace - myservice:DATACENTER:7012
-      # gRPC (http2) + namespace - <SAM team name>/<SAM function name>:DATACENTER:7012
-      # gRPC (http2) mTLS + namespace - <SAM team name>/<SAM function name>:DATACENTER:7443
-      resources:
-        limits: { cpu: "1", memory: "1Gi" }
-        requests: { cpu: "1", memory: "1Gi" }
-      livenessProbe:
-        initialDelaySeconds: 5
-        exec:
-          command:
-          - "/home/scone/is-alive.sh"
     volumes:
     - name: logvol
       hostPath:
@@ -162,9 +146,10 @@ system:
   loadbalancers:
   - lbname: cre-api-cre-test-lb
     function: cre-api-cre-test
-    nodeExposed: true
     slbenabled: true
     ports:
+      - port: 7442
+        targetport: 7442
       - port: 8074
         targetport: 7022
   - lbname: cre-api-cre-test

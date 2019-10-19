@@ -99,7 +99,7 @@ system:
         requests: { cpu: "1", memory: "1Gi" }
       ports:
       - containerPort: 7443
-        name: sh-in-http1-tls
+        name: sh-in-http2-tls
       - containerPort: 15373 # Sherpa admin port. This can be handy when debugging issues.
         name: sherpa-in-admin
       resources:
@@ -117,16 +117,6 @@ system:
           - "/home/sfdc-sherpa/bin/is-ready"
         initialDelaySeconds: 110
         periodSeconds: 5
-    - name: beacon
-      image: sfci/servicelibs/beacon:f6445b2b299f232eda1e0be9739b8242153478ea
-      args:
-      - -endpoint
-      - retail-cre/cre-sp-cre-test:DATACENTER_ALLENV:7443
-      livenessProbe:
-        initialDelaySeconds: 5
-        exec:
-          command:
-          - "/home/scone/is-alive.sh"
     volumes:
     - name: logvol
       hostPath:
@@ -145,9 +135,10 @@ system:
   loadbalancers:
   - lbname: cre-sp-cre-test-lb
     function: cre-sp-cre-test
-    nodeExposed: true
     slbenabled: true
     ports:
+      - port: 7443
+        targetport: 7443
       - port: 8070
         targetport: 7022
   - lbname: cre-sp-cre-test
