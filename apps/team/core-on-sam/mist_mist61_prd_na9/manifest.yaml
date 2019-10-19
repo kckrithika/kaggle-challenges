@@ -278,7 +278,7 @@ system:
         value: 1
       - name: DISABLE_ARGUS
         value: 0
-      image: sfci/casam/sequencer:7d8941
+      image: sfci/casam/sequencer:146d7e
       livenessProbe:
         exec:
           command:
@@ -370,6 +370,7 @@ system:
       - containerPort: 2525
       - containerPort: 12060
       - containerPort: 15373
+      - containerPort: 18443
       readinessProbe:
         exec:
           command:
@@ -564,6 +565,8 @@ system:
       targetport: 12060
     - port: 8087
       targetport: 15373
+    - port: 8444
+      targetport: 18443
     slbEnabled: true
   - function: na9-mist61switchboard-prd
     lbname: na9-switchboard-lb
