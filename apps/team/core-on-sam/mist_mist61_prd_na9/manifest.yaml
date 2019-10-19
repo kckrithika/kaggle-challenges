@@ -278,7 +278,7 @@ system:
         value: 1
       - name: DISABLE_ARGUS
         value: 0
-      image: sfci/casam/sequencer:7d8941
+      image: sfci/casam/sequencer:146d7e
       livenessProbe:
         exec:
           command:
