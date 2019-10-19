@@ -18,8 +18,8 @@ metadata:
         "port": 443,
         "targetport": 9116,
         "tls": true,
-        "tlscertificate": "secret_service:SlbPublicCanary:ia4-cert",
-        "tlskey": "secret_service:SlbPublicCanary:ia4-key"
+        "tlscertificate": "secret_service:SlbCanarySecrets:ia4-cert",
+        "tlskey": "secret_service:SlbCanarySecrets:ia4-key"
        }
       ]
   labels:
