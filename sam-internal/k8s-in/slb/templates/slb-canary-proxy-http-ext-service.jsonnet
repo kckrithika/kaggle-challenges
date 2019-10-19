@@ -25,9 +25,9 @@ else
 local tlskey = if configs.estate == "prd-samtwo" then
     "secret_service:SlbPublicCanary:" + configs.kingdom + "-key"
 else if slbimages.phaseNum == 3 || slbimages.phaseNum == 4 then
-    "secret_service:SlbSecrets:" + configs.kingdom + "-key"
+    "secret_service:SlbCanarySecrets:" + configs.kingdom + "-key"
 else
-    "secret_service:SlbCanary:" + configs.kingdom + "-key";
+    "secret_service:SlbPublicCanary:" + configs.kingdom + "-key";
 
 
 local canaryPortConfig = [

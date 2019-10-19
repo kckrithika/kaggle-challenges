@@ -19,7 +19,7 @@ metadata:
         "targetport": 9116,
         "tls": true,
         "tlscertificate": "secret_service:SlbPublicCanary:frf-cert",
-        "tlskey": "secret_service:SlbCanary:frf-key"
+        "tlskey": "secret_service:SlbPublicCanary:frf-key"
        }
       ]
   labels:

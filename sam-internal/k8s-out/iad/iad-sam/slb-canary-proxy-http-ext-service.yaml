@@ -19,7 +19,7 @@ metadata:
         "targetport": 9116,
         "tls": true,
         "tlscertificate": "secret_service:SlbCanarySecrets:iad-cert",
-        "tlskey": "secret_service:SlbSecrets:iad-key"
+        "tlskey": "secret_service:SlbCanarySecrets:iad-key"
        }
       ]
   labels:

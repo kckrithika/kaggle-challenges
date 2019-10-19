@@ -19,7 +19,7 @@ metadata:
         "targetport": 9116,
         "tls": true,
         "tlscertificate": "secret_service:SlbPublicCanary:cdg-cert",
-        "tlskey": "secret_service:SlbCanary:cdg-key"
+        "tlskey": "secret_service:SlbPublicCanary:cdg-key"
        }
       ]
   labels:

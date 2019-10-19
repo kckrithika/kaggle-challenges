@@ -19,7 +19,7 @@ metadata:
         "targetport": 9116,
         "tls": true,
         "tlscertificate": "secret_service:SlbCanarySecrets:phx-cert",
-        "tlskey": "secret_service:SlbSecrets:phx-key"
+        "tlskey": "secret_service:SlbCanarySecrets:phx-key"
        }
       ]
   labels:
