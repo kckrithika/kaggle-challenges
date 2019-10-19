@@ -370,6 +370,7 @@ system:
       - containerPort: 2525
       - containerPort: 12060
       - containerPort: 15373
+      - containerPort: 18443
       readinessProbe:
         exec:
           command:
