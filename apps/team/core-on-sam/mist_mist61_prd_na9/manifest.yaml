@@ -358,7 +358,7 @@ system:
       env:
       - name: SFDC_ENVIRONMENT
         value: mist61
-      image: sfci/frontend-gateway/sfproxy:aa38bba
+      image: sfci/frontend-gateway/sfproxy:f926aa8
       livenessProbe:
         exec:
           command:
@@ -512,7 +512,7 @@ system:
       env:
       - name: SFDC_ENVIRONMENT
         value: mist61
-      image: sfci/frontend-gateway/sfproxy:aa38bba
+      image: sfci/frontend-gateway/sfproxy:f926aa8
       livenessProbe:
         exec:
           command:
