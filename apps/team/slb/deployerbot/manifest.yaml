@@ -1,0 +1,157 @@
+apiVersion: v1
+
+system:
+  functions:
+  - name: deployerbot
+    count: 1
+    containers:
+    - name: deployerbot
+      image: dva/moe/deployerbot:2232-52c6f2bd1d8c35367afea1f4dbed660fd2e8454f
+      env:
+      - name: GO_PIPELINE_LABEL
+        value: 1
+      command: ["/moe/deployerbot"]
+      args:
+      - "-gheTokenPath=/secrets/ghe_pat"
+      - "-pgpkeypath=/gpgsecrets/moe-signing-key.asc"
+      - "-samInternalTeamName=SLB"
+      - "-slackWebhookURL=@/slack-secrets/slb-private-slack-notification.url"
+      - "-slackChannelToNotify=#slb-private"
+      - "-releaseFile=sam-internal/k8s-in/slb/slbreleases.json"
+      - "-promotion.image="
+      - "-promotion.intervalTime=1h"
+      - "-promotion.minBakeTime=1h"
+      - "-promotion.singlephase=false"
+      - "-heartbeat.defaultdecayduration=10m"
+      ports:
+      - containerPort: 8080
+      livenessProbe:
+        httpGet:
+          path: /healthz
+          port: 8080
+        initialDelaySeconds: 600
+        periodSeconds: 60
+      volumeMounts:
+      - mountPath: /secrets
+        name: deployerbot-ghe-pat
+        readOnly: true
+      - mountPath: /gpgsecrets
+        name: moe-gpg-signing-key
+        readOnly: true
+      - mountPath: /slack-secrets
+        name: slb-private-slack-notification
+        readOnly: true
+    - name: imagedeployer-hyperslb
+      image: dva/moe/deployerbot:2232-52c6f2bd1d8c35367afea1f4dbed660fd2e8454f
+      command: ["/moe/imagedeployer"]
+      args:
+      - "-deployerbotServiceEndpoint=http://localhost:8080/deploy"
+      - "-interval=10m"
+      - "-image=hyperslb"
+      - "-imageKey=hyperslb" # The name of the object to update in slbreleases.json.
+      - "-owner=slb"
+      - "-samInternalTeamName=SLB"
+      - "-targetPhaseNumber=1"
+      - "-imageRegistryEndpoint=ops0-artifactrepo2-0-prd.data.sfdc.net"
+      - "-imageRegistryImageSource=dva"
+      - "-heartbeat.defaultdecayduration=15m"
+      - "-livenessProbePort=8081"
+      ports:
+      - containerPort: 8081
+      livenessProbe:
+        httpGet:
+          path: /liveness-probe
+          port: 8081
+        initialDelaySeconds: 180
+        periodSeconds: 60
+    - name: imagedeployer-nginx
+      image: dva/moe/deployerbot:2232-52c6f2bd1d8c35367afea1f4dbed660fd2e8454f
+      command: ["/moe/imagedeployer"]
+      args:
+      - "-deployerbotServiceEndpoint=http://localhost:8080/deploy"
+      - "-interval=10m"
+      - "-image=nginx" # The name of the image in artifactory.
+      - "-owner=slb"
+      - "-imageKey=slbnginx" # The name of the object to update in slbreleases.json.
+      - "-samInternalTeamName=SLB"
+      - "-targetPhaseNumber=1"
+      - "-imageRegistryEndpoint=ops0-artifactrepo2-0-prd.data.sfdc.net"
+      - "-imageRegistryImageSource=dva"
+      - "-heartbeat.defaultdecayduration=15m"
+      - "-livenessProbePort=8082"
+      ports:
+      - containerPort: 8082
+      livenessProbe:
+        httpGet:
+          path: /liveness-probe
+          port: 8082
+        initialDelaySeconds: 180
+        periodSeconds: 60
+    - name: imagedeployer-nginx-kms
+      image: dva/moe/deployerbot:2232-52c6f2bd1d8c35367afea1f4dbed660fd2e8454f
+      command: ["/moe/imagedeployer"]
+      args:
+      - "-deployerbotServiceEndpoint=http://localhost:8080/deploy"
+      - "-interval=10m"
+      - "-image=nginx-kms" # The name of the image in artifactory.
+      - "-owner=slb"
+      - "-imageKey=kmsnginx" # The name of the object to update in slbreleases.json.
+      - "-samInternalTeamName=SLB"
+      - "-targetPhaseNumber=1"
+      - "-imageRegistryEndpoint=ops0-artifactrepo2-0-prd.data.sfdc.net"
+      - "-imageRegistryImageSource=dva"
+      - "-heartbeat.defaultdecayduration=15m"
+      - "-livenessProbePort=8083"
+      ports:
+      - containerPort: 8083
+      livenessProbe:
+        httpGet:
+          path: /liveness-probe
+          port: 8083
+        initialDelaySeconds: 180
+        periodSeconds: 60
+    - name: imagedeployer-envoy
+      image: dva/moe/deployerbot:2232-52c6f2bd1d8c35367afea1f4dbed660fd2e8454f
+      command: ["/moe/imagedeployer"]
+      args:
+      - "-deployerbotServiceEndpoint=http://localhost:8080/deploy"
+      - "-interval=10m"
+      - "-image=envoy" # The name of the image in artifactory.
+      - "-owner=slb"
+      - "-imageKey=slbenvoy" # The name of the object to update in slbreleases.json.
+      - "-samInternalTeamName=SLB"
+      - "-targetPhaseNumber=1"
+      - "-imageRegistryEndpoint=ops0-artifactrepo2-0-prd.data.sfdc.net"
+      - "-imageRegistryImageSource=dva"
+      - "-heartbeat.defaultdecayduration=15m"
+      - "-livenessProbePort=8084"
+      ports:
+      - containerPort: 8084
+      livenessProbe:
+        httpGet:
+          path: /liveness-probe
+          port: 8084
+        initialDelaySeconds: 180
+        periodSeconds: 60
+    volumes:
+    - name: deployerbot-ghe-pat
+      k4aSecret:
+        secretName: speedometer-ghe-pat
+    - name: moe-gpg-signing-key
+      k4aSecret:
+        secretName: moe-gpg-signing-key
+    - name: slb-private-slack-notification
+      k4aSecret:
+        secretName: slb-private-slack-notification
+  loadbalancers:
+  - lbname: deployerbot
+    function: deployerbot
+    slbenabled: true
+    ports:
+      - port: 80
+        targetport: 8080
+        lbtype: http
+      - port: 443
+        targetport: 8080
+        lbtype: http
+        tls: true
