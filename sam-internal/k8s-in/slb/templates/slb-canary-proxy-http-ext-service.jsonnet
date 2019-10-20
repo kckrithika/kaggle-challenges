@@ -16,7 +16,7 @@ local notIsNewKingdom = configs.estate in { [e]: 1 for e in newKingdoms };
 local tlscertificate = if configs.estate == "prd-samtwo" then
     // Use chained cert for canary in prd-samtwo to improve ssllabs report.
     "secret_service:slb-prd:prd-cert-chain"
-else if configs.estate == "dfw-sam" || configs.estate == "ph2-sam" then
+else if configs.estate == "ph2-sam" then
     "secret_service:SlbPublicCanary:" + configs.kingdom + "-cert"
 else
     "secret_service:SlbCanarySecrets:" + configs.kingdom + "-cert";
@@ -24,13 +24,13 @@ else
 
 local tlskey = if configs.estate == "prd-samtwo" then
     "secret_service:SlbPublicCanary:" + configs.kingdom + "-key"
-else if configs.estate == "dfw-sam" || configs.estate == "ph2-sam" then
+else if configs.estate == "ph2-sam" then
     "secret_service:SlbPublicCanary:" + configs.kingdom + "-key"
 else
     "secret_service:SlbCanarySecrets:" + configs.kingdom + "-key";
 
 
-local canaryPortConfig = [
+local canaryPortConfig1 = [
     slbportconfiguration.newPortConfiguration(
         port=80,
         targetPort=portconfigs.slb.canaryServiceProxyHttpPort,
@@ -51,6 +51,28 @@ local canaryPortConfig = [
         },
 ];
 
-if slbconfigs.isProdEstate && !notIsNewKingdom && configs.estate != "prd-sam" then
-    slbbaseservice.slbCanaryBaseService(canaryName, canaryPortConfig, serviceName, vipName) {
-} else "SKIP"
+local canaryPortConfig2 = [
+    slbportconfiguration.newPortConfiguration(
+        port=80,
+        targetPort=portconfigs.slb.canaryServiceProxyHttpPort,
+        lbType="http",
+        name="slb-canary-proxy-http-port",
+    ) { healthpath: "/health" },
+    slbportconfiguration.newPortConfiguration(
+        port=443,
+        targetPort=portconfigs.slb.canaryServiceProxyHttpPort,
+        lbType="http",
+        name="slb-canary-proxy-https-port",
+    ) {
+        tls: false,
+        healthpath: "/health",
+        healthprotocol: "http",
+        },
+];
+
+if slbconfigs.isProdEstate && !notIsNewKingdom && configs.estate != "prd-sam" && configs.estate != "ia4-sam" && configs.estate != "ia5-sam" then
+    slbbaseservice.slbCanaryBaseService(canaryName, canaryPortConfig1, serviceName, vipName) {
+} else if configs.estate == "ia4-sam" || configs.estate == "ia5-sam" then
+    slbbaseservice.slbCanaryBaseService(canaryName, canaryPortConfig2, serviceName, vipName) {
+}
+else "SKIP"
