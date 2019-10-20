@@ -17,9 +17,7 @@ metadata:
         "lbtype": "http",
         "port": 443,
         "targetport": 9116,
-        "tls": true,
-        "tlscertificate": "secret_service:SlbCanarySecrets:ia5-cert",
-        "tlskey": "secret_service:SlbCanarySecrets:ia5-key"
+        "tls": false
        }
       ]
   labels:
