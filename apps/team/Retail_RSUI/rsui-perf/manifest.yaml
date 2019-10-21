@@ -206,23 +206,6 @@ system:
         initialDelaySeconds: 110
         periodSeconds: 5
 
-    - name: beacon-rsui-perf
-      image: docker-sfci-dev/sfci/services/sfdc-bazel/disco/beacon:f804d14
-      env:
-      - name: SFDC_ENVIRONMENT
-        value: mist
-      resources:
-        limits: { cpu: "1", memory: "1Gi" }
-        requests: { cpu: "1", memory: "1Gi" }
-      args:
-      - -endpoint
-      - retail-rsui/retail-setup:DATACENTER:7443
-      livenessProbe:
-        initialDelaySeconds: 150
-        exec:
-          command:
-            - "/opt/beacon/is-alive.sh"
-
   loadbalancers:
   - lbname: rsui-perf-lb
     annotations:
@@ -235,6 +218,8 @@ system:
         tls: true
         lbtype: http
         reencrypt: true
+      - port: 7443
+        targetport: 7443
   - lbname: rsui-perf
     function: rsui-perf
     ports:
