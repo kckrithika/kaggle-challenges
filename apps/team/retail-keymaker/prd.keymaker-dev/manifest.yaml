@@ -1,10 +1,10 @@
 system:
   functions:
   - name: keymaker-dev
-    count: 0
+    count: 1
     containers:
     - name: keymaker
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/ccp/keymaker:8c4337c
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/ccp/keymaker:663c3f6
       env:
           - name: HTTPS_PROXY
             value: public0-proxy1-0-prd.data.sfdc.net:8080
