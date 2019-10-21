@@ -592,7 +592,7 @@ if (istioPhases.phaseNum == 1) then
             command: [
               "istio-iptables",
               "-p",
-              "15007",
+              "15002",
               "-z",
               "15006",
               "-u",
