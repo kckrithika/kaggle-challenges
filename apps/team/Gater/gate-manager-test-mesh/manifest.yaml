@@ -13,7 +13,7 @@ system:
       sidecar.istio.io/inject: "true"
     containers:
     - name: gater1
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/gater/gate-manager:dmachak-1567789412
+      image: sfci/services/sfdc-bazel/gater/gate-manager:1.16.2
       args:
       - --mesh.istio-mode=true
       - --server.port=9090
