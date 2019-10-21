@@ -20,7 +20,6 @@ system:
         ports:
         - name: cantor-grpc
           containerPort: 7443
-          hostPort: 17443
         livenessProbe:
           exec:
             command:
@@ -39,3 +38,5 @@ system:
       ports:
         - port: 11983
           targetport: 7443
+          lbalgorithm: roundrobin
+
