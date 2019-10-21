@@ -11,7 +11,6 @@ system:
       settings_path: blitz.-.prd.-.gater-mesh
     annotations:
       sidecar.istio.io/inject: "true"
-    hostnetwork: true
     containers:
     - name: gater1
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/gater/gate-manager:dmachak-1567789412
