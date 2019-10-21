@@ -28,6 +28,7 @@
                           WHERE
                             ApiKind = 'SamApp'
                             AND Payload->>'$.metadata.labels.deployed_by' IS NULL
+                            AND controlEstate NOT LIKE 'prd-sam%'
                       ) samApp
                       LEFT JOIN
                       (

@@ -360,7 +360,8 @@ data:
     as samAppNumResourceLinks,\n                            Payload->>''$.metadata.creationTimestamp''
     as samAppCreationTimestamp\n                          FROM\n                            k8s_resource\n                          WHERE\n                            ApiKind
     = ''SamApp''\n                            AND Payload->>''$.metadata.labels.deployed_by''
-    IS NULL\n                      ) samApp\n                      LEFT JOIN\n                      (\n                          SELECT\n                            controlEstate,\n                            name,\n                            namespace,\n                            Payload->>''$.status.state''
+    IS NULL\n                            AND controlEstate NOT LIKE ''prd-sam%''\n                      )
+    samApp\n                      LEFT JOIN\n                      (\n                          SELECT\n                            controlEstate,\n                            name,\n                            namespace,\n                            Payload->>''$.status.state''
     as bundleState,\n                            Payload->>''$.status'' as bundleStatus,\n                            Payload->>''$.metadata.creationTimestamp''
     as bundleCreationTimestamp\n                          FROM k8s_resource\n                          WHERE
     ApiKind = ''Bundle''\n                      ) bundle\n                      ON
@@ -377,8 +378,8 @@ data:
     as bundleDeploymentName,\n                    Payload->>''$.metadata.uid'' as
     UID\n                FROM k8s_resource\n                WHERE ApiKind = ''Bundle''\n                AND
     Payload->>''$.spec.K8sResourceList[*].kind'' like ''%Deployment%''\n                AND
-    controlEstate != ''prd-samdev''\n                AND controlEstate != ''prd-samtest''
-    \n            ) bundle\n            \n        LEFT JOIN\n            \n            (\n                SELECT\n                    controlEstate,\n                    name,\n                    namespace,\n                    Payload->>''$.metadata.ownerReferences[0].uid''
+    controlEstate NOT LIKE ''prd-sam%''\n            ) bundle\n            \n        LEFT
+    JOIN\n            \n            (\n                SELECT\n                    controlEstate,\n                    name,\n                    namespace,\n                    Payload->>''$.metadata.ownerReferences[0].uid''
     as ownerRef\n                FROM k8s_resource\n                WHERE ApiKind
     = ''Deployment''\n                AND namespace NOT LIKE ''%sam-system%''\n            )
     deployment\n            \n        ON bundle.controlEstate = deployment.controlEstate\n        AND
