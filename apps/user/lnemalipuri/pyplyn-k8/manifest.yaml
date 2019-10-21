@@ -7,8 +7,8 @@ system:
   - name: pyplyn-instance-k1
     count: 2
     containers:
-    - name: pyplyn-service-k8s
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/lnemalipuri/pyplyn-service-k8s:v1
+    - name: pyplyn-service-k8s2
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/lnemalipuri/pyplyn-service-k8s2:v1
       ports:
       - containerPort: 5701
       livenessProbe:
