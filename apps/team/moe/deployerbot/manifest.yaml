@@ -42,7 +42,7 @@ system:
         name: slb-private-slack-notification
         readOnly: true
     - name: imagedeployer-hyperslb
-      image: dva/moe/deployerbot:2232-52c6f2bd1d8c35367afea1f4dbed660fd2e8454f
+      image: dva/moe/deployerbot:2254-a6eeaa71de721666233533d3f0d02662c659a3bb
       command: ["/moe/imagedeployer"]
       args:
       - "-deployerbotServiceEndpoint=http://localhost:8080/deploy"
@@ -65,7 +65,7 @@ system:
         initialDelaySeconds: 180
         periodSeconds: 60
     - name: imagedeployer-nginx
-      image: dva/moe/deployerbot:2232-52c6f2bd1d8c35367afea1f4dbed660fd2e8454f
+      image: dva/moe/deployerbot:2254-a6eeaa71de721666233533d3f0d02662c659a3bb
       command: ["/moe/imagedeployer"]
       args:
       - "-deployerbotServiceEndpoint=http://localhost:8080/deploy"
@@ -88,7 +88,7 @@ system:
         initialDelaySeconds: 180
         periodSeconds: 60
     - name: imagedeployer-nginx-kms
-      image: dva/moe/deployerbot:2232-52c6f2bd1d8c35367afea1f4dbed660fd2e8454f
+      image: dva/moe/deployerbot:2254-a6eeaa71de721666233533d3f0d02662c659a3bb
       command: ["/moe/imagedeployer"]
       args:
       - "-deployerbotServiceEndpoint=http://localhost:8080/deploy"
@@ -111,7 +111,7 @@ system:
         initialDelaySeconds: 180
         periodSeconds: 60
     - name: imagedeployer-envoy
-      image: dva/moe/deployerbot:2232-52c6f2bd1d8c35367afea1f4dbed660fd2e8454f
+      image: dva/moe/deployerbot:2254-a6eeaa71de721666233533d3f0d02662c659a3bb
       command: ["/moe/imagedeployer"]
       args:
       - "-deployerbotServiceEndpoint=http://localhost:8080/deploy"
@@ -147,7 +147,7 @@ system:
     count: 1
     containers:
     - name: deployerbot
-      image: dva/moe/deployerbot:2232-52c6f2bd1d8c35367afea1f4dbed660fd2e8454f
+      image: dva/moe/deployerbot:2254-a6eeaa71de721666233533d3f0d02662c659a3bb
       env:
       - name: GO_PIPELINE_LABEL
         value: 1
@@ -183,7 +183,7 @@ system:
         name: sam-slack-notification
         readOnly: true
     - name: imagedeployer-hypersam
-      image: dva/moe/deployerbot:2232-52c6f2bd1d8c35367afea1f4dbed660fd2e8454f
+      image: dva/moe/deployerbot:2254-a6eeaa71de721666233533d3f0d02662c659a3bb
       command: ["/moe/imagedeployer"]
       args:
       - "-deployerbotServiceEndpoint=http://localhost:8080/deploy"
@@ -206,7 +206,7 @@ system:
         initialDelaySeconds: 180
         periodSeconds: 60
     - name: imagedeployer-madkub
-      image: dva/moe/deployerbot:2232-52c6f2bd1d8c35367afea1f4dbed660fd2e8454f
+      image: dva/moe/deployerbot:2254-a6eeaa71de721666233533d3f0d02662c659a3bb
       command: ["/moe/imagedeployer"]
       args:
       - "-deployerbotServiceEndpoint=http://localhost:8080/deploy"
@@ -229,7 +229,7 @@ system:
         initialDelaySeconds: 180
         periodSeconds: 60
     - name: imagedeployer-madkub-sidecar
-      image: dva/moe/deployerbot:2232-52c6f2bd1d8c35367afea1f4dbed660fd2e8454f
+      image: dva/moe/deployerbot:2254-a6eeaa71de721666233533d3f0d02662c659a3bb
       command: ["/moe/imagedeployer"]
       args:
       - "-deployerbotServiceEndpoint=http://localhost:8080/deploy"
@@ -265,7 +265,7 @@ system:
     count: 1
     containers:
     - name: deployerbot
-      image: dva/moe/deployerbot:2232-52c6f2bd1d8c35367afea1f4dbed660fd2e8454f
+      image: dva/moe/deployerbot:2254-a6eeaa71de721666233533d3f0d02662c659a3bb
       env:
       - name: GO_PIPELINE_LABEL
         value: 1
@@ -301,7 +301,7 @@ system:
         name: slb-private-slack-notification
         readOnly: true
     - name: imagedeployer-ss-watchdog
-      image: dva/moe/deployerbot:2232-52c6f2bd1d8c35367afea1f4dbed660fd2e8454f
+      image: dva/moe/deployerbot:2254-a6eeaa71de721666233533d3f0d02662c659a3bb
       command: ["/moe/imagedeployer"]
       args:
       - "-deployerbotServiceEndpoint=http://localhost:8080/deploy"
@@ -324,7 +324,7 @@ system:
         initialDelaySeconds: 180
         periodSeconds: 60
     - name: imagedeployer-k4a-caiman-watchdog
-      image: dva/moe/deployerbot:2232-52c6f2bd1d8c35367afea1f4dbed660fd2e8454f
+      image: dva/moe/deployerbot:2254-a6eeaa71de721666233533d3f0d02662c659a3bb
       command: ["/moe/imagedeployer"]
       args:
       - "-deployerbotServiceEndpoint=http://localhost:8080/deploy"
@@ -347,7 +347,7 @@ system:
         initialDelaySeconds: 180
         periodSeconds: 60
     - name: imagedeployer-k4a-sam-watchdog
-      image: dva/moe/deployerbot:2232-52c6f2bd1d8c35367afea1f4dbed660fd2e8454f
+      image: dva/moe/deployerbot:2254-a6eeaa71de721666233533d3f0d02662c659a3bb
       command: ["/moe/imagedeployer"]
       args:
       - "-deployerbotServiceEndpoint=http://localhost:8080/deploy"
