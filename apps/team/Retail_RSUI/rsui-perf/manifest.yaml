@@ -34,7 +34,7 @@ system:
         path: /home/sfdc-retail/files
     containers:
     - name: rsui-perf
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/retail/retail-setup:2.0.234
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/retail/retail-setup:2.1.201
       ports:
       - containerPort: 7022
         name: rsui-in-http1
