@@ -4,7 +4,7 @@ system:
     count: 0
     containers:
     - name: keymaker
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/ccp/keymaker:8c4337c
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/ccp/keymaker:0a977a6
       env:
           - name: HTTPS_PROXY
             value: public0-proxy1-0-prd.data.sfdc.net:8080
