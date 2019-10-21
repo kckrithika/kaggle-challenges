@@ -6,7 +6,7 @@ system:
     count: 2
     containers:
     - name: slack-forwarder
-      image: dva/moe/reverse-proxy:2232-52c6f2bd1d8c35367afea1f4dbed660fd2e8454f
+      image: dva/moe/reverse-proxy:2254-a6eeaa71de721666233533d3f0d02662c659a3bb
       command: ["/moe/reverse-proxy"]
       args:
       - "-publicProxyURL=http://public0-proxy1-0-prd.data.sfdc.net:8080"
