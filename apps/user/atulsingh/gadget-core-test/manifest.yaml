@@ -4,10 +4,10 @@ system:
     email:
       - atulsingh@salesforce.com
   functions:
-  - name: gadget-sam-test
+  - name: gadget-core-test
     count: 1
     containers:
-    - name: gadget-sam-test-service
+    - name: gadget-core-test-service
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/atulsingh/gadget/gadget-core:v3
       ports:
       - containerPort: 10001
@@ -25,7 +25,7 @@ system:
   loadbalancers:
   - lbname: gadget-core-sam-poc
     slbEnabled: true
-    function: gadget-sam-test
+    function: gadget-core-test
     ports:
       - port: 10001
         targetport: 10001
