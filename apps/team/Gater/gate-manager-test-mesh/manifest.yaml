@@ -6,11 +6,17 @@ system:
   functions:
   - name: gater-mesh
     count: 1
+    labels:
+      app: gater-mesh
+      settings_path: blitz.-.prd.-.gater-mesh
+    annotations:
+      sidecar.istio.io/inject: "true"
     hostnetwork: true
     containers:
     - name: gater1
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/gater/gate-manager:dmachak-1567789412
       args:
+      - --mesh.istio-mode=true
       - --server.port=9090
       - --logging.evaluator.level=ERRORS_ONLY
       - --gater-service.thread.pool.max-size=0
@@ -28,7 +34,7 @@ system:
       - --gater.grpc.threadpool.size=16
       - --gater.test.grpc.short-circuit=false
       ports:
-      - containerPort: 7020
+      - containerPort: 7443
       - containerPort: 9522
       - containerPort: 9523
       - containerPort: 9524
@@ -37,6 +43,8 @@ system:
       env:
       - name: SFDC_ENVIRONMENT
         value: blitz
+      - name: GRPC_SERVER_PORT
+        value: 7443
       resources:
         limits:
           cpu: "8"
@@ -66,46 +74,6 @@ system:
         initialDelaySeconds: 60 
         timeoutSeconds: 10
         periodSeconds: 10
-    - name: sherpa
-      # latest release:  https://git.soma.salesforce.com/servicelibs/sherpa-envoy/releases
-      image: sfci/servicelibs/sherpa-envoy:1.0.8
-      ports:
-      - name: http2-in
-        containerPort: 7012
-      - name: http2-tls-in
-        containerPort: 7443
-      - name: sherpa-adm
-        containerPort: 15373
-      volumeMounts:
-      - mountPath: /client-certs
-        name: tls-client-cert
-      - mountPath: /server-certs
-        name: tls-server-cert
-      livenessProbe:
-        exec:
-          command:
-          - ./bin/is-alive
-        initialDelaySeconds: 60
-        periodSeconds: 5
-      readinessProbe:
-        exec:
-          command:
-          - ./bin/is-ready
-        initialDelaySeconds: 50
-        periodSeconds: 5
-      terminationMessagePolicy: FallbackToLogsOnError
-
-    - name: beacon
-      image: sfci/servicelibs/beacon:cec13ceb9fc5aed0ce462031a01b2dd5ef73d5ee
-      args:
-      - -endpoint
-      - $(FUNCTION_NAMESPACE)/$(FUNCTION):DATACENTER_ALLENV:HTTP2_TLS
-      livenessProbe:
-        exec:
-          command:
-          - /home/scone/is-alive.sh
-        initialDelaySeconds: 5
-
     - name: perf-sidecar       # Sidecar container that deploys automation folder
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/kviphong/perfsidecar:20190625-1
       ports:
@@ -145,3 +113,13 @@ system:
       type: RollingUpdate
       rollingUpdate:
         maxUnavailable: 1
+  loadbalancers:
+  - lbname: gater-mesh
+    function: gater-mesh
+    labels:
+      app: gater-mesh
+    ports:
+      - lbtype: dsr
+        port: 7443
+        targetport: 7443
+        name: grpc-gater
