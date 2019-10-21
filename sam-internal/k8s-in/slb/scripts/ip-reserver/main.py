@@ -101,7 +101,6 @@ def process_sam_apps(pool_map_path, team_folder_path, pools, public_vips_to_add,
                 ip_type = get_ip_type(lb)
                 fqdn = get_fqdn_from_portal(kingdom, cluster, lb[vip.VIPS_YAML_LBNAME_FIELD_NAME])
                 vip_metadata = vip.VipMetadata(kingdom, cluster, fqdn, ip_type)
-                print("kingdom: {} {}".format(kingdom, lb))
                 process_vip_metadata(vip_metadata, public_vips_to_add, public_vips_to_delete, ip_handler)
 
 
@@ -116,19 +115,20 @@ def process_services(root_vip_yaml_path, ip_handler, pools_path):
         if os.path.isfile(team_folder_path):
             continue
 
-        pool_map_path = os.path.join(team_folder_path, POOL_MAP_FILE_NAME)
-        if os.path.isfile(pool_map_path):
-            process_sam_apps(pool_map_path, team_folder_path, pools, public_vips_to_add, public_vips_to_delete, ip_handler)
-        else:
-            for file_location, _, file_names_in_dir in os.walk(team_folder_path):
-                for file_name in file_names_in_dir:
-                    if file_name != VIPS_YAML_FILE_NAME:
-                        continue
-                    full_path = os.path.join(file_location, file_name)
-                    vip_metadatas = get_vip_metadatas(full_path)
+        for file_location, _, file_names_in_dir in os.walk(team_folder_path):
+            for file_name in file_names_in_dir:
+                full_path = os.path.join(file_location, file_name)
+                if file_name == POOL_MAP_FILE_NAME:
+                    process_sam_apps(full_path, team_folder_path, pools, public_vips_to_add, public_vips_to_delete, ip_handler)
+                    continue
 
-                    for vip_metadata in vip_metadatas:
-                        process_vip_metadata(vip_metadata, public_vips_to_add, public_vips_to_delete, ip_handler)
+                if file_name != VIPS_YAML_FILE_NAME:
+                    continue
+
+                vip_metadatas = get_vip_metadatas(full_path)
+
+                for vip_metadata in vip_metadatas:
+                    process_vip_metadata(vip_metadata, public_vips_to_add, public_vips_to_delete, ip_handler)
 
     # Delete happens first in order to allow for IP reuse
     for vip_metadata in public_vips_to_delete:
