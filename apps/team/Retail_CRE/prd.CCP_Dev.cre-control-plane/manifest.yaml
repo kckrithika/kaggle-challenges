@@ -13,7 +13,7 @@ system:
       "routing.mesh.sfdc.net/enabled": "true"
     containers:
     - name: cre-control-plane-ccp-dev
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cre-fusion/services:controlplane.2.1.0.0.develop.a4113a9.566
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cre-fusion/services:controlplane.2.1.0.0.develop.c2e11db.573
       env:
         ####################################################################################################
         ############################   ENGINE/DDS FLOWSNAKE ARTIFACTS ( Most frequently changed ) ##########
@@ -21,9 +21,9 @@ system:
         - name: INGEST_SPEC_IMAGE
           value: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cre/cre-engine:1.2.1.1.develop.7672aeb.286
         - name: EXPORT_SPEC_IMAGE
-          value: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cre/cre-dds-spark:2.1.1.pz-removeMode.3f17d75.1
+          value: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cre/cre-dds-spark:2.1.1.develop.13b521d.74
         - name: SAVE_SPEC_IMAGE
-          value: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cre/cre-dds-spark:2.1.1.pz-removeMode.3f17d75.1
+          value: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cre/cre-dds-spark:2.1.1.develop.13b521d.74
         ####################################################################################################
         ####################################### GLOBAL SHARED VALUES #######################################
         ####################################################################################################
@@ -47,26 +47,18 @@ system:
           value: prd
         - name: DISABLE_AUTO_TERMINATE_FLOWSNAKE
           value: true
-        - name: EXECUTE_NEW_PROVISIONING_FLOW
-          value: true
         ####################################################################################################
         ####################################### INGEST environment variables ###############################
         ####################################################################################################
         - name: INGEST_ANNOTATIONS_PKI_NAME
           value: cre-engine-ccp-dev
-        - name: INGEST_K4A_VAULT
-          value: cre-engine-dev
         - name: BUCKET_INGEST_MANIFEST_OVERRIDE_ENABLED
           value: true
         ####################################################################################################
         ####################################### SAVE environment variables ###############################
         ####################################################################################################
-        - name: CRE_DDS_ENV
-          value: Prd
         - name: SAVE_ANNOTATIONS_PKI_NAME
           value: cre-engine-ccp-dev
-        - name: SAVE_K4A_VAULT
-          value: cre-dds-dev
         - name: SAVE_EXECUTOR_INSTANCES
           value: 4
         - name: SAVE_SPARK_DEFAULT_PARALLELISM
@@ -78,8 +70,6 @@ system:
         ####################################################################################################
         - name: EXPORT_ANNOTATIONS_PKI_NAME
           value: cre-engine-ccp-dev
-        - name: EXPORT_K4A_VAULT
-          value: cre-dds-dev
         - name: EXPORT_DRIVER_CORES
           value: 16
         - name: EXPORT_EXECUTOR_CORES
