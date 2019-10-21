@@ -34,7 +34,7 @@ system:
       - --gater.grpc.threadpool.size=16
       - --gater.test.grpc.short-circuit=false
       ports:
-      - containerPort: 7020
+      - containerPort: 7443
       - containerPort: 9522
       - containerPort: 9523
       - containerPort: 9524
