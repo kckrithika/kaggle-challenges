@@ -16,7 +16,8 @@ data:
       mode: ALLOW_ANY
     rootNamespace: mesh-control-plane
     proxyListenPort: 15002
-    proxyHttpPort: 15007
+    # W-6798525: assigned a random available port to proxyHttpPort so that baremetal proxy can listen on 15002 without any conflicts
+    proxyHttpPort: 49150
     inboundClusterStatName: "local_service.%SERVICE_PORT%"
     outboundClusterStatName: "%SERVICE%.%SERVICE_PORT%"
     defaultConfig:
