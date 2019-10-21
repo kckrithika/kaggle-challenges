@@ -28,7 +28,7 @@ system:
         path: /home/sfdc-retail/logs
     - name: oauth-keys
       k4aSecret: 
-        secretName: rsui-oauth-keys
+        secretName: rsui-oauth-key-1
     - name: encryption-key1
       k4aSecret:
         secretName: rsui-encryption-key4
@@ -38,7 +38,7 @@ system:
 
     containers:
     - name: retail-setup
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/retail/retail-setup:2.1.191
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/retail/retail-setup:2.1.203
       ports:
       # Jetty http1 ports for incoming public traffic via SLB
       - containerPort: 7022
@@ -95,7 +95,7 @@ system:
       - name: RSUI_OAUTH_CALLBACK
         value: https://rsui-standalone-lb.retail-rsui.prd-sam.prd.slb.sfdc.net/service/oauth/callback
       - name: OAUTH_SECRETS_FILE_PATH
-        value: secrets/oauth-keys/rsui-oauth-keys.json
+        value: secrets/oauth-keys/rsui-oauth-keys-1.json
       - name: SECURITY_ENCRYPTION_KEY1_PATH
         value: secrets/encryption-key1/rsui-encryption-key4.key
       - name: SECURITY_ENCRYPTION_KEY2_PATH
