@@ -24,7 +24,7 @@ system:
         initialDelaySeconds: 10
         periodSeconds: 5
     - name: geoip
-      image: sfci/services/sfdc-bazel/geoip:8df08309e # monorepo build
+      image: sfci/services/sfdc-bazel/service-mesh/geoip:8df08309e # monorepo build
       env:
       - name: JAVA_OPTS
         value: -Xms1g -Xmx1g
