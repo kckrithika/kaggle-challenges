@@ -13,17 +13,17 @@ system:
       "routing.mesh.sfdc.net/enabled": "true"
     containers:
     - name: cre-control-plane-ccp-perf
-      image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-sfci-dev/sfci/cre-fusion/services:controlplane.v2.0.2.master.2db8e12.18
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cre-fusion/services:controlplane.2.1.0.0.develop.a4113a9.566
       env:
         ####################################################################################################
         ############################   ENGINE/DDS FLOWSNAKE ARTIFACTS ( Most frequently changed ) ##########
         ####################################################################################################
         - name: INGEST_SPEC_IMAGE
-          value: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-sfci-dev/sfci/cre/cre-engine:2.0.0.2.master.9cddaf3.22
+          value: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cre/cre-engine:1.2.1.1.develop.7672aeb.286
         - name: EXPORT_SPEC_IMAGE
-          value: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cre/cre-dds-spark:2.0-freeze-005.0.release-2.0.64a465d.8
+          value: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cre/cre-dds-spark:2.1.1.develop.f0a1dc6.68
         - name: SAVE_SPEC_IMAGE
-          value: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cre/cre-dds-spark:2.0-freeze-005.0.release-2.0.64a465d.8
+          value: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cre/cre-dds-spark:2.1.1.develop.f0a1dc6.68
         ####################################################################################################
         ####################################### GLOBAL SHARED VALUES #######################################
         ####################################################################################################
@@ -50,8 +50,6 @@ system:
           value: cre-engine-ccp-perf
         - name: INGEST_K4A_VAULT
           value: cre-engine-dev
-        - name: INGEST_JAVA_OPTIONS
-          value: "-Dfile.encoding=UTF-8 -Djars=/opt/cre/cre-engine.jar -XX:+UseParallelGC -verbose:jni"
         - name: INGEST_DRIVER_CORES
           value: 2
         - name: INGEST_DRIVER_MEMORY
