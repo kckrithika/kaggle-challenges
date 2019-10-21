@@ -16,7 +16,7 @@ data:
       mode: ALLOW_ANY
     rootNamespace: mesh-control-plane
     proxyListenPort: 15002
-    proxyHttpPort: 0
+    proxyHttpPort: 15007
     inboundClusterStatName: "local_service.%SERVICE_PORT%"
     outboundClusterStatName: "%SERVICE%.%SERVICE_PORT%"
     defaultConfig:

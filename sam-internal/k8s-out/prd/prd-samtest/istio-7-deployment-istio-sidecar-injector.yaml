@@ -416,7 +416,7 @@ spec:
       - command:
         - istio-iptables
         - -p
-        - "15002"
+        - "15007"
         - -z
         - "15006"
         - -u

@@ -340,7 +340,7 @@ data:
         command:
         - "istio-iptables"
         - "-p"
-        - "15002"
+        - "15007"
         - "-z"
         - "15006"
         - "-u"
@@ -788,7 +788,7 @@ data:
       mode: ALLOW_ANY
     rootNamespace: mesh-control-plane
     proxyListenPort: 15002
-    proxyHttpPort: 0
+    proxyHttpPort: 15007
     inboundClusterStatName: "local_service.%%SERVICE_PORT%%"
     outboundClusterStatName: "%%SERVICE%%.%%SERVICE_PORT%%"
     defaultConfig:
@@ -1617,7 +1617,7 @@ spec:
       - command:
         - istio-iptables
         - -p
-        - "15002"
+        - "15007"
         - -z
         - "15006"
         - -u
@@ -2069,7 +2069,7 @@ spec:
       - command:
         - istio-iptables
         - -p
-        - "15002"
+        - "15007"
         - -z
         - "15006"
         - -u
