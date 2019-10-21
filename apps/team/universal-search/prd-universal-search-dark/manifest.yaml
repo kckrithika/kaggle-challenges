@@ -49,6 +49,8 @@ system:
       # Monitor for schema changes every 5 minutes
       - name: CONTROLPLANE_MONITORING_FIXEDDELAYMS
         value: '300000'
+      - name: BACKUPMANAGER_CONTROLLER_ENABLE
+        value: 'false'
       volumeMounts:
       - name: client-cert-vol
         mountPath: /certs
