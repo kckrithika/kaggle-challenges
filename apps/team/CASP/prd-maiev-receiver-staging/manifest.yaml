@@ -32,7 +32,7 @@ system:
         - name: CANTOR_GRPC_TARGET
           value: "cantor.casp.$KINGDOM-sam.$KINGDOM.slb.sfdc.net:11983"
         - name: HTTP_PORT
-          value: "8086"
+          value: "8085"
         - name: BASE_PATH
           value: "/v1/*"
         - name: BRANCH
