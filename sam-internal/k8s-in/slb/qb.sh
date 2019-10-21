@@ -7,7 +7,7 @@ set -o errexit
 set -o nounset
 set -o pipefail
 
-: "${DEPLOYERBOT_BUDDYPR_ENDPOINT:=https://deployerbot.moe.prd-sam.prd.slb.sfdc.net/buddyPR}"
+: "${DEPLOYERBOT_BUDDYPR_ENDPOINT:=http://deployerbot.slb.prd-sam.prd.slb.sfdc.net/buddyPR}"
 : "${SLACK_CHANNEL:="#slb-private"}"
 
 # build_buddypr_yaml_request creates a yaml doc containing a buddyPR request payload.
