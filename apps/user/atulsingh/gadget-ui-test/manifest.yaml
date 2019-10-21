@@ -4,28 +4,28 @@ system:
     email:
       - atulsingh@salesforce.com
   functions:
-  - name: gadget-sam-test
+  - name: gadget-ui-test
     count: 1
     containers:
-    - name: gadget-sam-test-service
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/atulsingh/gadget/gadget-core:v3
+    - name: gadget-ui-test-service
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/atulsingh/gadget/gadget-test-ui:v1
       ports:
-      - containerPort: 10001
+      - containerPort: 10002
       livenessProbe:
         exec:
            command:
            - /usr/bin/true
       volumeMounts:
-        - mountPath: /opt/gadget-sam-test/logs
+        - mountPath: /data/gadget-ui-test/logs
           name: gadget-log-vol-storage
     volumes:
       - name: gadget-log-vol-storage
         hostPath:
-          path: /data/gadget-log-vol
+          path: /data/gadget-ui-test/logs
   loadbalancers:
-  - lbname: gadget-core-sam-poc
+  - lbname: gadget-ui-sam-poc
     slbEnabled: true
-    function: gadget-sam-test
+    function: gadget-ui-test
     ports:
-      - port: 10001
-        targetport: 10001
+      - port: 10002
+        targetport: 10002

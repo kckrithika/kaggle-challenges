@@ -1,0 +1,31 @@
+apiVersion: v1
+system:
+  notifications:
+    email:
+      - atulsingh@salesforce.com
+  functions:
+  - name: gadget-sam-test
+    count: 1
+    containers:
+    - name: gadget-sam-test-service
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/atulsingh/gadget/gadget-core:v3
+      ports:
+      - containerPort: 10001
+      livenessProbe:
+        exec:
+           command:
+           - /usr/bin/true
+      volumeMounts:
+        - mountPath: /data/gadget-core-test/logs
+          name: gadget-log-vol-storage
+    volumes:
+      - name: gadget-log-vol-storage
+        hostPath:
+          path: /data/gadget-core-test/logs
+  loadbalancers:
+  - lbname: gadget-core-sam-poc
+    slbEnabled: true
+    function: gadget-sam-test
+    ports:
+      - port: 10001
+        targetport: 10001
