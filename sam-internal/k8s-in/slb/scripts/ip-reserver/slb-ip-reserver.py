@@ -121,19 +121,21 @@ def process_services(root_vip_yaml_path, public_reserved_ips, private_reserved_i
         if os.path.isfile(team_folder_path):
             continue
 
-        pool_map_path = os.path.join(team_folder_path, POOL_MAP_FILE_NAME)
-        if os.path.isfile(pool_map_path):
-            process_sam_apps(pool_map_path, team_folder_path, pools, public_vips_to_add, public_vips_to_delete, private_reserved_ips)
-        else:
-            for file_location, _, file_names_in_dir in os.walk(team_folder_path):
-                for file_name in file_names_in_dir:
-                    if file_name != VIPS_YAML_FILE_NAME:
-                        continue
-                    full_path = os.path.join(file_location, file_name)
-                    vip_metadatas = get_vip_metadatas(full_path)
+        for file_location, _, file_names_in_dir in os.walk(team_folder_path):
+            for file_name in file_names_in_dir:
+                full_path = os.path.join(file_location, file_name)
 
-                    for vip_metadata in vip_metadatas:
-                        process_vip_metadata(vip_metadata, public_vips_to_add, public_vips_to_delete, private_reserved_ips)
+                if file_name == POOL_MAP_FILE_NAME:
+                    process_sam_apps(full_path, team_folder_path, pools, public_vips_to_add, public_vips_to_delete, private_reserved_ips)
+                    continue
+
+                if file_name != VIPS_YAML_FILE_NAME:
+                    continue
+
+                vip_metadatas = get_vip_metadatas(full_path)
+
+                for vip_metadata in vip_metadatas:
+                    process_vip_metadata(vip_metadata, public_vips_to_add, public_vips_to_delete, private_reserved_ips)
 
     # Delete happens first in order to allow for IP reuse
     for vip_metadata in public_vips_to_delete:
