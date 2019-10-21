@@ -2,7 +2,7 @@ apiVersion: v1
 system:
   functions:
   - name: gater-perf
-    count: 8
+    count: 1
     labels:
       app: gater-perf
       settings_path: blitz.-.prd.-.gater-perf
@@ -10,7 +10,7 @@ system:
       sidecar.istio.io/inject: "true"
     containers:
     - name: gater-perf
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/gater/gater-perf:c02acc7ad
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/gater/gater-perf:dmachak-1571690355
       args:
       - --mesh.istio-mode=true
       - --gater.grpc.endpoint=gater-mesh.gater.svc.mesh.sfdc.net
