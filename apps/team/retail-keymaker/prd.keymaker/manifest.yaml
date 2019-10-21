@@ -4,10 +4,14 @@ system:
     count: 1
     containers:
     - name: keymaker
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/ccp/keymaker:5ae0dc8
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/ccp/keymaker:8c4337c
       env:
-          - name: KEYMAKER_SLEEP_INTERVAL
-            value: 15
+          - name: HTTPS_PROXY
+            value: public0-proxy1-0-prd.data.sfdc.net:8080
+          - name: HTTP_PROXY
+            value: public0-proxy1-0-prd.data.sfdc.net:8080
+          - name: KEYMAKER_SLEEP_SECONDS
+            value: 300
 
       livenessProbe:
         exec:
