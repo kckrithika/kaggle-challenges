@@ -32,8 +32,7 @@
                 FROM k8s_resource
                 WHERE ApiKind = 'Bundle'
                 AND Payload->>'$.spec.K8sResourceList[*].kind' like '%Deployment%'
-                AND controlEstate != 'prd-samdev'
-                AND controlEstate != 'prd-samtest' 
+                AND controlEstate NOT LIKE 'prd-sam%'
             ) bundle
             
         LEFT JOIN
