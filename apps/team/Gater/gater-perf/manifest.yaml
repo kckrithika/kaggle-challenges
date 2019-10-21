@@ -3,18 +3,12 @@ system:
   functions:
   - name: gater-perf
     count: 1
-    labels:
-      app: gater-perf
-      settings_path: blitz.-.prd.-.gater-perf
-    annotations:
-      sidecar.istio.io/inject: "true"
     containers:
     - name: gater-perf
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/gater/gater-perf:dmachak-1571690355
       args:
-      - --mesh.istio-mode=true
-      - --gater.grpc.endpoint=gater-mesh.gater.svc.mesh.sfdc.net
-      - --gater.grpc.port=7443
+      - --gater.grpc.endpoint=gater-mesh.gater.localhost.mesh.force.com
+      - --gater.grpc.port=5443
       - --gater.client-mode=GRPC
       - --endpoints.bindings.names=/s/gater-mesh,/s/gater-mesh-metadata
       - --gater.thrift.service.destination=/s/gater-mesh
@@ -56,6 +50,33 @@ system:
           command:
           - /home/scone/is-alive.sh
         initialDelaySeconds: 5
+    - name: sherpa
+      image: sfci/servicelibs/sherpa-envoy:1.0.6
+      ports:
+      - name: http2-in
+        containerPort: 7012
+      - name: http2-tls-in
+        containerPort: 7443
+      - name: sherpa-adm
+        containerPort: 15373
+      volumeMounts:
+      - mountPath: /client-certs
+        name: tls-client-cert
+      - mountPath: /server-certs
+        name: tls-server-cert
+      livenessProbe:
+        exec:
+          command:
+          - ./bin/is-alive
+        initialDelaySeconds: 60
+        periodSeconds: 5
+      readinessProbe:
+        exec:
+          command:
+          - ./bin/is-ready
+        initialDelaySeconds: 50
+        periodSeconds: 5
+      terminationMessagePolicy: FallbackToLogsOnError
     volumes:
     - name: logvolservice
       hostPath:
