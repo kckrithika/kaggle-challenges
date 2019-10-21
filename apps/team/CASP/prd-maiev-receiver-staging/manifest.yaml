@@ -1,0 +1,63 @@
+apiVersion: v1
+
+system:
+    notifications:
+      email:
+        - akouthoofd@salesforce.com
+    functions:
+    - name: maiev-receiver-func-stage
+      count: 1
+      strategy:
+        type: RollingUpdate
+        rollingUpdate:
+          maxSurge: 0
+          maxUnavailable: 1
+      containers:
+      - name: prd-maiev-receiver-stage
+        image: dva/maiev-receiver:jenkins-CASP-maiev-alex-nginx-add-5-itest
+        ports:
+        - name: receiver-grpc
+          containerPort: 7442
+        - name: receiver-http
+          containerPort: 8086
+        - name: receiver-https
+          containerPort: 8443
+        livenessProbe:
+          exec:
+            command:
+            - /usr/bin/true
+        env:
+        - name: MASTER_GRPC_PORT
+          value: "7442"
+        - name: CANTOR_GRPC_TARGET
+          value: "cantor.casp.$KINGDOM-sam.$KINGDOM.slb.sfdc.net:11983"
+        - name: HTTP_PORT
+          value: "8086"
+        - name: BASE_PATH
+          value: "/v1/*"
+        - name: BRANCH
+          value: "eng_production"
+        - name: NODENAME
+          valueFrom:
+            fieldRef:
+              fieldPath: spec.nodeName
+        volumeMounts:
+        - mountPath: /home/sfdc-maiev/certs
+          name: maievservercert
+      volumes:
+      - name: maievservercert
+        maddogCert:
+          type: server
+          lbnames:
+          - maiev-receiver-stage
+    loadbalancers:
+    - lbname: maiev-receiver-stage
+      function: maiev-receiver-func-stage
+      slbEnabled: true
+      ports:
+        - port: 7442
+          targetport: 7442
+        - port: 80
+          targetport: 8086
+        - port: 443
+          targetport: 8443
