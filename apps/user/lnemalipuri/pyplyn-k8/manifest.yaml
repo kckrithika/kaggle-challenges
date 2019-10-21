@@ -1,0 +1,25 @@
+apiVersion: v1
+system:
+  notifications:
+    email:
+      - lnemalipuri@salesforce.com
+  functions:
+  - name: pyplyn-instance-k1
+    count: 2
+    containers:
+    - name: pyplyn-service-k8s
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/lnemalipuri/pyplyn-service-k8s:v1
+      ports:
+      - containerPort: 5701
+      livenessProbe:
+        exec:
+           command:
+           - /usr/bin/true
+  loadbalancers:
+  - lbname: lbpyplyn-instance-k1
+    function: pyplyn-instance-k1
+    nodeExposed: false
+    slbenabled: true
+    ports:
+      - port: 5701
+        targetport: 5701

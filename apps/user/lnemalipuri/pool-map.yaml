@@ -3,3 +3,5 @@ apps:
   - prd/prd-sam
  pyplyn-service:
   - prd/prd-sam
+ pyplyn-k8:
+  - prd/prd-sam
