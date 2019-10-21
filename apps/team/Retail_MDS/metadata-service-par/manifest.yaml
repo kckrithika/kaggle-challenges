@@ -99,26 +99,6 @@ system:
         initialDelaySeconds: 60
         periodSeconds: 120
 
-    - name: beacon-mds
-      image: sfci/servicelibs/beacon:ce3b9722faf59dc7550a1df2905ecff794fbb2e3
-      env:
-      - name: SFDC_ENVIRONMENT
-        value: prod
-      resources:
-        limits:
-          cpu: "1"
-          memory: 1Gi
-        requests:
-          cpu: "1"
-          memory: 1Gi
-      args:
-      - -endpoint
-      - retail-mds/metadata-service:DATACENTER:7443
-      livenessProbe:
-        initialDelaySeconds: 5
-        exec:
-          command:
-          - "/home/scone/is-alive.sh"
   loadbalancers:
   - lbname: metadata-service-lb
     annotations:
