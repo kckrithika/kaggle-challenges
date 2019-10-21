@@ -83,7 +83,7 @@ system:
       - {name: K8S_CPU_LIMIT_APPLY, value: 'false'}
       - {name: STARTUP_JOB_ENABLED, value: 'false'}
       - {name: HANDLED_PODS_PATTERN, value: stmfa\..*|moana-driver-master}
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/insights/jobcontroller:mb-interactivespark-int-2019.09.a.2-bc3ce4b
+      image: sfci/insights/jobcontroller:master-2019.10.a.103-6a85715
       livenessProbe:
         httpGet: {path: /manage/health, port: 15372}
         initialDelaySeconds: 90
