@@ -1,7 +1,7 @@
 system:
   functions:
   - name: keymaker-dev
-    count: 1
+    count: 0
     containers:
     - name: keymaker
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/ccp/keymaker:663c3f6
