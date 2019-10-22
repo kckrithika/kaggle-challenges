@@ -59,6 +59,8 @@ system:
         ####################################################################################################
         - name: SAVE_ANNOTATIONS_PKI_NAME
           value: cre-engine-ccp-dev
+        - name: HBASE_NAMESPACE
+          value: CRE2
         - name: SAVE_EXECUTOR_INSTANCES
           value: 4
         - name: SAVE_SPARK_DEFAULT_PARALLELISM
