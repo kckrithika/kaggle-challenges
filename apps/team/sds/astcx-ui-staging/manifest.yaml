@@ -14,12 +14,13 @@ system:
           lbnames:
             - astcx-stage
             - astcred-stage
+            - ast-stage
       - name: uiclientcert
         maddogCert:
           type: client
     containers:
     - name: astcx-ui
-      image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/ast-portal:13
+      image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/ast-portal:17
       env:
       - name: AST_CX_SERVER_TYPE
         value: "cron"
@@ -57,6 +58,14 @@ system:
         lbtype: tcp
         tls: false
   - lbname: astcred-stage
+    function: astcx-ui-staging
+    slbenabled: true
+    ports:
+      - port: 443
+        targetport: 8443
+        lbtype: tcp
+        tls: false
+  - lbname: ast-stage
     function: astcx-ui-staging
     slbenabled: true
     ports:
