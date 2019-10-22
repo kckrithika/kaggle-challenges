@@ -25,3 +25,5 @@ apps:
     - name: prd/prd-sam_cloudatlas
   local-gid-service:
     - name: prd/prd-sam_cloudatlas
+  gid-sdb:
+    - name: prd/prd-sam_cloudatlas
