@@ -1,18 +1,4 @@
 set -xe
-while test $# -gt 0; do
-  case "$1" in
-      -publicIpReserveOnly)
-          shift
-          kingdom_lbnames=$1
-          shift
-          ;;
-      *)
-         echo "$1 is not a recognized flag!"
-         return 1;
-         ;;
-  esac
-done
-
 # Set pip cache based on platform, set mount flag for MacOS
 if [[ "$(uname)" == "Darwin" ]]; then
     PIP_DOWNLOAD_CACHE="${HOME}/Library/Caches/pip"
