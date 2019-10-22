@@ -327,9 +327,9 @@ data:
     SUBSTRING_INDEX(Payload->>''$.spec.controlMap.pool'', ''/'', -1) as pool, count(*)
     as appCount\n  from k8s_resource\n  where apikind = ''samapp''\n  group by pool\n)
     as activePools\non ss2.minionpool = activePools.pool\nWHERE\n  ((TotalCount >=
-    10 AND NotReadyPerc >0.25) OR (TotalCount < 10 AND NotReadyCount >2))\n-- AND
-    NOT\n-- (minionpool like ''par-sam_warden'' AND now() < STR_TO_DATE(''2019-03-21'',
-    ''%Y-%m-%d'')) #as in https://gus.lightning.force.com/lightning/r/ADM_Work__c/a07B0000006UbTRIA0/view\n--
+    10 AND NotReadyPerc >0.25) OR (TotalCount < 10 AND NotReadyCount >2))\n  AND NOT
+    (minionpool like ''___-sam'')\n-- AND NOT\n-- (minionpool like ''par-sam_warden''
+    AND now() < STR_TO_DATE(''2019-03-21'', ''%Y-%m-%d'')) #as in https://gus.lightning.force.com/lightning/r/ADM_Work__c/a07B0000006UbTRIA0/view\n--
     AND NOT\n-- (minionpool like ''phx-sam_mgmt_hub'' AND now() < STR_TO_DATE(''2019-01-22'',
     ''%Y-%m-%d''))\n-- AND NOT\n-- (minionpool like ''ph2-sam_gater'' AND NotReadyPerc
     < 0.5 AND now() < STR_TO_DATE(''2019-01-30'', ''%Y-%m-%d''))\n", "watchdogFrequency":
