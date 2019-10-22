@@ -10,6 +10,8 @@ system:
             value: public0-proxy1-0-frf.data.sfdc.net:8080
           - name: HTTP_PROXY
             value: public0-proxy1-0-frf.data.sfdc.net:8080
+          - name: NO_PROXY
+            value: secretservice.dmz.salesforce.com
           - name: KEYMAKER_SLEEP_SECONDS
             value: 900
           - name: KEYMAKER_TEST
