@@ -718,6 +718,136 @@ items:
 - apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
+    name: role:shared0-samminionglobalidentity1-1-dfw.ops.sfdc.net
+  rules:
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-samminionglobalidentity1-1-dfw.ops.sfdc.net
+    resources:
+    - nodes/status
+    verbs:
+    - '*'
+- apiVersion: rbac.authorization.k8s.io/v1beta1
+  kind: ClusterRole
+  metadata:
+    name: role:shared0-samminionglobalidentity1-2-dfw.ops.sfdc.net
+  rules:
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-samminionglobalidentity1-2-dfw.ops.sfdc.net
+    resources:
+    - nodes/status
+    verbs:
+    - '*'
+- apiVersion: rbac.authorization.k8s.io/v1beta1
+  kind: ClusterRole
+  metadata:
+    name: role:shared0-samminionglobalidentity1-3-dfw.ops.sfdc.net
+  rules:
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-samminionglobalidentity1-3-dfw.ops.sfdc.net
+    resources:
+    - nodes/status
+    verbs:
+    - '*'
+- apiVersion: rbac.authorization.k8s.io/v1beta1
+  kind: ClusterRole
+  metadata:
+    name: role:shared0-samminionglobalidentity1-4-dfw.ops.sfdc.net
+  rules:
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-samminionglobalidentity1-4-dfw.ops.sfdc.net
+    resources:
+    - nodes/status
+    verbs:
+    - '*'
+- apiVersion: rbac.authorization.k8s.io/v1beta1
+  kind: ClusterRole
+  metadata:
+    name: role:shared0-samminionglobalidentity2-1-dfw.ops.sfdc.net
+  rules:
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-samminionglobalidentity2-1-dfw.ops.sfdc.net
+    resources:
+    - nodes/status
+    verbs:
+    - '*'
+- apiVersion: rbac.authorization.k8s.io/v1beta1
+  kind: ClusterRole
+  metadata:
+    name: role:shared0-samminionglobalidentity2-2-dfw.ops.sfdc.net
+  rules:
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-samminionglobalidentity2-2-dfw.ops.sfdc.net
+    resources:
+    - nodes/status
+    verbs:
+    - '*'
+- apiVersion: rbac.authorization.k8s.io/v1beta1
+  kind: ClusterRole
+  metadata:
+    name: role:shared0-samminionglobalidentity2-3-dfw.ops.sfdc.net
+  rules:
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-samminionglobalidentity2-3-dfw.ops.sfdc.net
+    resources:
+    - nodes/status
+    verbs:
+    - '*'
+- apiVersion: rbac.authorization.k8s.io/v1beta1
+  kind: ClusterRole
+  metadata:
+    name: role:shared0-samminionglobalidentity3-1-dfw.ops.sfdc.net
+  rules:
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-samminionglobalidentity3-1-dfw.ops.sfdc.net
+    resources:
+    - nodes/status
+    verbs:
+    - '*'
+- apiVersion: rbac.authorization.k8s.io/v1beta1
+  kind: ClusterRole
+  metadata:
+    name: role:shared0-samminionglobalidentity3-2-dfw.ops.sfdc.net
+  rules:
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-samminionglobalidentity3-2-dfw.ops.sfdc.net
+    resources:
+    - nodes/status
+    verbs:
+    - '*'
+- apiVersion: rbac.authorization.k8s.io/v1beta1
+  kind: ClusterRole
+  metadata:
+    name: role:shared0-samminionglobalidentity3-3-dfw.ops.sfdc.net
+  rules:
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-samminionglobalidentity3-3-dfw.ops.sfdc.net
+    resources:
+    - nodes/status
+    verbs:
+    - '*'
+- apiVersion: rbac.authorization.k8s.io/v1beta1
+  kind: ClusterRole
+  metadata:
     name: role:samkingdomcaas0-caasminion1-1-dfw.ops.sfdc.net
   rules:
   - apiGroups:
@@ -3296,6 +3426,116 @@ items:
   subjects:
   - kind: User
     name: shared0-samminiongwc2-2-dfw.ops.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1beta1
+  kind: ClusterRoleBinding
+  metadata:
+    name: rolebinding:shared0-samminionglobalidentity1-1-dfw.ops.sfdc.net
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: role:shared0-samminionglobalidentity1-1-dfw.ops.sfdc.net
+  subjects:
+  - kind: User
+    name: shared0-samminionglobalidentity1-1-dfw.ops.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1beta1
+  kind: ClusterRoleBinding
+  metadata:
+    name: rolebinding:shared0-samminionglobalidentity1-2-dfw.ops.sfdc.net
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: role:shared0-samminionglobalidentity1-2-dfw.ops.sfdc.net
+  subjects:
+  - kind: User
+    name: shared0-samminionglobalidentity1-2-dfw.ops.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1beta1
+  kind: ClusterRoleBinding
+  metadata:
+    name: rolebinding:shared0-samminionglobalidentity1-3-dfw.ops.sfdc.net
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: role:shared0-samminionglobalidentity1-3-dfw.ops.sfdc.net
+  subjects:
+  - kind: User
+    name: shared0-samminionglobalidentity1-3-dfw.ops.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1beta1
+  kind: ClusterRoleBinding
+  metadata:
+    name: rolebinding:shared0-samminionglobalidentity1-4-dfw.ops.sfdc.net
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: role:shared0-samminionglobalidentity1-4-dfw.ops.sfdc.net
+  subjects:
+  - kind: User
+    name: shared0-samminionglobalidentity1-4-dfw.ops.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1beta1
+  kind: ClusterRoleBinding
+  metadata:
+    name: rolebinding:shared0-samminionglobalidentity2-1-dfw.ops.sfdc.net
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: role:shared0-samminionglobalidentity2-1-dfw.ops.sfdc.net
+  subjects:
+  - kind: User
+    name: shared0-samminionglobalidentity2-1-dfw.ops.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1beta1
+  kind: ClusterRoleBinding
+  metadata:
+    name: rolebinding:shared0-samminionglobalidentity2-2-dfw.ops.sfdc.net
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: role:shared0-samminionglobalidentity2-2-dfw.ops.sfdc.net
+  subjects:
+  - kind: User
+    name: shared0-samminionglobalidentity2-2-dfw.ops.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1beta1
+  kind: ClusterRoleBinding
+  metadata:
+    name: rolebinding:shared0-samminionglobalidentity2-3-dfw.ops.sfdc.net
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: role:shared0-samminionglobalidentity2-3-dfw.ops.sfdc.net
+  subjects:
+  - kind: User
+    name: shared0-samminionglobalidentity2-3-dfw.ops.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1beta1
+  kind: ClusterRoleBinding
+  metadata:
+    name: rolebinding:shared0-samminionglobalidentity3-1-dfw.ops.sfdc.net
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: role:shared0-samminionglobalidentity3-1-dfw.ops.sfdc.net
+  subjects:
+  - kind: User
+    name: shared0-samminionglobalidentity3-1-dfw.ops.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1beta1
+  kind: ClusterRoleBinding
+  metadata:
+    name: rolebinding:shared0-samminionglobalidentity3-2-dfw.ops.sfdc.net
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: role:shared0-samminionglobalidentity3-2-dfw.ops.sfdc.net
+  subjects:
+  - kind: User
+    name: shared0-samminionglobalidentity3-2-dfw.ops.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1beta1
+  kind: ClusterRoleBinding
+  metadata:
+    name: rolebinding:shared0-samminionglobalidentity3-3-dfw.ops.sfdc.net
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: role:shared0-samminionglobalidentity3-3-dfw.ops.sfdc.net
+  subjects:
+  - kind: User
+    name: shared0-samminionglobalidentity3-3-dfw.ops.sfdc.net
 - apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRoleBinding
   metadata:

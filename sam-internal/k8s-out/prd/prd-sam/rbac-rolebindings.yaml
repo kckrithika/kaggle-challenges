@@ -139,55 +139,9 @@ items:
     name: minion:role
   subjects:
   - kind: User
-    name: shared0-samminioncephrd1-1-prd.eng.sfdc.net
-  - kind: User
-    name: shared0-samminioncephrd1-2-prd.eng.sfdc.net
-  - kind: User
-    name: shared0-samminioncephrd1-3-prd.eng.sfdc.net
-  - kind: User
-    name: shared0-samminioncephrd1-4-prd.eng.sfdc.net
-  - kind: User
     name: shared0-samminioncephrd1-5-prd.eng.sfdc.net
   - kind: User
-    name: shared0-samminioncephrd1-6-prd.eng.sfdc.net
-  - kind: User
-    name: shared0-samminioncephrd1-7-prd.eng.sfdc.net
-  - kind: User
-    name: shared0-samminioncephrd1-8-prd.eng.sfdc.net
-  - kind: User
-    name: shared0-samminioncephrd1-9-prd.eng.sfdc.net
-  - kind: User
-    name: shared0-samminioncephrd2-1-prd.eng.sfdc.net
-  - kind: User
-    name: shared0-samminioncephrd2-2-prd.eng.sfdc.net
-  - kind: User
     name: shared0-samminioncephrd2-3-prd.eng.sfdc.net
-  - kind: User
-    name: shared0-samminioncephrd2-4-prd.eng.sfdc.net
-  - kind: User
-    name: shared0-samminioncephrd2-5-prd.eng.sfdc.net
-  - kind: User
-    name: shared0-samminioncephrd2-6-prd.eng.sfdc.net
-  - kind: User
-    name: shared0-samminioncephrd2-7-prd.eng.sfdc.net
-  - kind: User
-    name: shared0-samminioncephrd2-8-prd.eng.sfdc.net
-  - kind: User
-    name: shared0-samminioncephrd3-1-prd.eng.sfdc.net
-  - kind: User
-    name: shared0-samminioncephrd3-2-prd.eng.sfdc.net
-  - kind: User
-    name: shared0-samminioncephrd3-3-prd.eng.sfdc.net
-  - kind: User
-    name: shared0-samminioncephrd3-4-prd.eng.sfdc.net
-  - kind: User
-    name: shared0-samminioncephrd3-5-prd.eng.sfdc.net
-  - kind: User
-    name: shared0-samminioncephrd3-6-prd.eng.sfdc.net
-  - kind: User
-    name: shared0-samminioncephrd3-7-prd.eng.sfdc.net
-  - kind: User
-    name: shared0-samminioncephrd3-8-prd.eng.sfdc.net
   - kind: User
     name: shared0-samminioncephrdtwo1-1-prd.eng.sfdc.net
   - kind: User
@@ -205,55 +159,9 @@ items:
     name: minion:role
   subjects:
   - kind: User
-    name: shared0-samminioncephrd1-1-prd.eng.sfdc.net
-  - kind: User
-    name: shared0-samminioncephrd1-2-prd.eng.sfdc.net
-  - kind: User
-    name: shared0-samminioncephrd1-3-prd.eng.sfdc.net
-  - kind: User
-    name: shared0-samminioncephrd1-4-prd.eng.sfdc.net
-  - kind: User
     name: shared0-samminioncephrd1-5-prd.eng.sfdc.net
   - kind: User
-    name: shared0-samminioncephrd1-6-prd.eng.sfdc.net
-  - kind: User
-    name: shared0-samminioncephrd1-7-prd.eng.sfdc.net
-  - kind: User
-    name: shared0-samminioncephrd1-8-prd.eng.sfdc.net
-  - kind: User
-    name: shared0-samminioncephrd1-9-prd.eng.sfdc.net
-  - kind: User
-    name: shared0-samminioncephrd2-1-prd.eng.sfdc.net
-  - kind: User
-    name: shared0-samminioncephrd2-2-prd.eng.sfdc.net
-  - kind: User
     name: shared0-samminioncephrd2-3-prd.eng.sfdc.net
-  - kind: User
-    name: shared0-samminioncephrd2-4-prd.eng.sfdc.net
-  - kind: User
-    name: shared0-samminioncephrd2-5-prd.eng.sfdc.net
-  - kind: User
-    name: shared0-samminioncephrd2-6-prd.eng.sfdc.net
-  - kind: User
-    name: shared0-samminioncephrd2-7-prd.eng.sfdc.net
-  - kind: User
-    name: shared0-samminioncephrd2-8-prd.eng.sfdc.net
-  - kind: User
-    name: shared0-samminioncephrd3-1-prd.eng.sfdc.net
-  - kind: User
-    name: shared0-samminioncephrd3-2-prd.eng.sfdc.net
-  - kind: User
-    name: shared0-samminioncephrd3-3-prd.eng.sfdc.net
-  - kind: User
-    name: shared0-samminioncephrd3-4-prd.eng.sfdc.net
-  - kind: User
-    name: shared0-samminioncephrd3-5-prd.eng.sfdc.net
-  - kind: User
-    name: shared0-samminioncephrd3-6-prd.eng.sfdc.net
-  - kind: User
-    name: shared0-samminioncephrd3-7-prd.eng.sfdc.net
-  - kind: User
-    name: shared0-samminioncephrd3-8-prd.eng.sfdc.net
   - kind: User
     name: shared0-samminioncephrdtwo1-1-prd.eng.sfdc.net
   - kind: User
@@ -1505,54 +1413,6 @@ items:
 - apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: RoleBinding
   metadata:
-    name: sf-store:prd-sam_sfstore:rolebinding
-    namespace: sf-store
-  roleRef:
-    apiGroup: rbac.authorization.k8s.io
-    kind: ClusterRole
-    name: minion:role
-  subjects:
-  - kind: User
-    name: shared0-samminionsfstore1-1-prd.eng.sfdc.net
-  - kind: User
-    name: shared0-samminionsfstore1-2-prd.eng.sfdc.net
-  - kind: User
-    name: shared0-samminionsfstore1-3-prd.eng.sfdc.net
-  - kind: User
-    name: shared0-samminionsfstore2-1-prd.eng.sfdc.net
-  - kind: User
-    name: shared0-samminionsfstore2-2-prd.eng.sfdc.net
-  - kind: User
-    name: shared0-samminionsfstore3-1-prd.eng.sfdc.net
-  - kind: User
-    name: shared0-samminionsfstore3-2-prd.eng.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1beta1
-  kind: RoleBinding
-  metadata:
-    name: storage-foundation:prd-sam_sfstore:rolebinding
-    namespace: storage-foundation
-  roleRef:
-    apiGroup: rbac.authorization.k8s.io
-    kind: ClusterRole
-    name: minion:role
-  subjects:
-  - kind: User
-    name: shared0-samminionsfstore1-1-prd.eng.sfdc.net
-  - kind: User
-    name: shared0-samminionsfstore1-2-prd.eng.sfdc.net
-  - kind: User
-    name: shared0-samminionsfstore1-3-prd.eng.sfdc.net
-  - kind: User
-    name: shared0-samminionsfstore2-1-prd.eng.sfdc.net
-  - kind: User
-    name: shared0-samminionsfstore2-2-prd.eng.sfdc.net
-  - kind: User
-    name: shared0-samminionsfstore3-1-prd.eng.sfdc.net
-  - kind: User
-    name: shared0-samminionsfstore3-2-prd.eng.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1beta1
-  kind: RoleBinding
-  metadata:
     name: podgroup-prebuild:prd-sam_tardis:rolebinding
     namespace: podgroup-prebuild
   roleRef:
@@ -1636,78 +1496,6 @@ items:
     name: shared0-samminionsme2-1-prd.eng.sfdc.net
   - kind: User
     name: shared0-samminionsme2-2-prd.eng.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1beta1
-  kind: RoleBinding
-  metadata:
-    name: sayonaradb:prd-sp1-sdb_kube:rolebinding
-    namespace: sayonaradb
-  roleRef:
-    apiGroup: rbac.authorization.k8s.io
-    kind: ClusterRole
-    name: minion:role
-  subjects:
-  - kind: User
-    name: shared0-sdbcompute1-1-prd.eng.sfdc.net
-  - kind: User
-    name: shared0-sdbcompute1-2-prd.eng.sfdc.net
-  - kind: User
-    name: shared0-sdbcompute2-1-prd.eng.sfdc.net
-  - kind: User
-    name: shared0-sdbcompute2-2-prd.eng.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1beta1
-  kind: RoleBinding
-  metadata:
-    name: user-sraspudic:prd-sp1-sdb_kube:rolebinding
-    namespace: user-sraspudic
-  roleRef:
-    apiGroup: rbac.authorization.k8s.io
-    kind: ClusterRole
-    name: minion:role
-  subjects:
-  - kind: User
-    name: shared0-sdbcompute1-1-prd.eng.sfdc.net
-  - kind: User
-    name: shared0-sdbcompute1-2-prd.eng.sfdc.net
-  - kind: User
-    name: shared0-sdbcompute2-1-prd.eng.sfdc.net
-  - kind: User
-    name: shared0-sdbcompute2-2-prd.eng.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1beta1
-  kind: RoleBinding
-  metadata:
-    name: chatbot-sp2:prd-sp2-sam_chatbot:rolebinding
-    namespace: chatbot-sp2
-  roleRef:
-    apiGroup: rbac.authorization.k8s.io
-    kind: ClusterRole
-    name: minion:role
-  subjects:
-  - kind: User
-    name: shared0-samminionchatbot1-1-prd.eng.sfdc.net
-  - kind: User
-    name: shared0-samminionchatbot1-2-prd.eng.sfdc.net
-  - kind: User
-    name: shared0-samminionchatbot2-1-prd.eng.sfdc.net
-  - kind: User
-    name: shared0-samminionchatbot2-2-prd.eng.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1beta1
-  kind: RoleBinding
-  metadata:
-    name: chatbot-ci:prd-sp2-sam_chatbot:rolebinding
-    namespace: chatbot-ci
-  roleRef:
-    apiGroup: rbac.authorization.k8s.io
-    kind: ClusterRole
-    name: minion:role
-  subjects:
-  - kind: User
-    name: shared0-samminionchatbot1-1-prd.eng.sfdc.net
-  - kind: User
-    name: shared0-samminionchatbot1-2-prd.eng.sfdc.net
-  - kind: User
-    name: shared0-samminionchatbot2-1-prd.eng.sfdc.net
-  - kind: User
-    name: shared0-samminionchatbot2-2-prd.eng.sfdc.net
 - apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: RoleBinding
   metadata:
@@ -1957,11 +1745,15 @@ items:
   - kind: User
     name: shared0-samminionuniversalsearchmt1-3-prd.eng.sfdc.net
   - kind: User
+    name: shared0-samminionuniversalsearchmt1-4-prd.eng.sfdc.net
+  - kind: User
     name: shared0-samminionuniversalsearchmt2-1-prd.eng.sfdc.net
   - kind: User
     name: shared0-samminionuniversalsearchmt2-2-prd.eng.sfdc.net
   - kind: User
     name: shared0-samminionuniversalsearchmt2-3-prd.eng.sfdc.net
+  - kind: User
+    name: shared0-samminionuniversalsearchmt2-4-prd.eng.sfdc.net
 - apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: RoleBinding
   metadata:
@@ -1979,10 +1771,14 @@ items:
   - kind: User
     name: shared0-samminionuniversalsearchmt1-3-prd.eng.sfdc.net
   - kind: User
+    name: shared0-samminionuniversalsearchmt1-4-prd.eng.sfdc.net
+  - kind: User
     name: shared0-samminionuniversalsearchmt2-1-prd.eng.sfdc.net
   - kind: User
     name: shared0-samminionuniversalsearchmt2-2-prd.eng.sfdc.net
   - kind: User
     name: shared0-samminionuniversalsearchmt2-3-prd.eng.sfdc.net
+  - kind: User
+    name: shared0-samminionuniversalsearchmt2-4-prd.eng.sfdc.net
 kind: List
 metadata: {}
