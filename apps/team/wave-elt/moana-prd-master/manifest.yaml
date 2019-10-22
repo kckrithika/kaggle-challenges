@@ -29,7 +29,7 @@ system:
       - {name: GRPC_HOST, value: datapool.wave-elt.localhost.mesh.force.com}
       - {name: GRPC_PORT, value: '5443'}
       - {name: HANDLED_PODS_PATTERN, value: stmfa\..*|moana-driver-master}
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/insights/moana-driver:mb-set-timeout-header-2019.10.a.1-d410bd3
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/insights/moana-driver:mb-set-timeout-header-2019.10.a.2-f42e6f5
       livenessProbe:
         httpGet: {path: /manage/health, port: 15372}
         initialDelaySeconds: 30
@@ -61,7 +61,7 @@ system:
         periodSeconds: 5
       volumeMounts:
       - {mountPath: /client-certs, name: tls-client-certs}
-    count: 3
+    count: 1
     hostnetwork: false
     identity: {serviceName: moana-driver}
     name: moana-driver-master
@@ -123,7 +123,7 @@ system:
           command: [/opt/beacon/is-alive.sh]
         initialDelaySeconds: 5
       name: beacon
-    count: 3
+    count: 1
     hostnetwork: false
     identity: {serviceName: datapool}
     name: jobcontroller-master
