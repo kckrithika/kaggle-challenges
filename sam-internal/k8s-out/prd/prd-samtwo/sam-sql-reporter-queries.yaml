@@ -1170,6 +1170,10 @@ data:
         {
           "name": "Stuck Init Containers Including MadKub",
           "sql": "select \n  controlEstate, \n  namespace, \n  name as podName,\n  Payload-\u003e\u003e'$.spec.nodeName' as nodeName, \n  Payload-\u003e\u003e'$.status.phase' as phase,\n  Payload-\u003e\u003e'$.status.initContainerStatuses[*].restartCount' as initContainerRestartCount,\n  Payload-\u003e\u003e'$.status.initContainerStatuses[*].state.*.message' as initContainerMessage,\n  Payload-\u003e\u003e'$.status.message' as message\nfrom k8s_resource\nwhere apikind = 'Pod' and Payload-\u003e\u003e'$.status.phase' = 'Pending' and Payload-\u003e\u003e'$.status.initContainerStatuses[*].state.*.message' is not null"
+        },
+        {
+          "name": "Nodes with POD network connectivity",
+          "sql": "select NodeName, ControlEstate from (\n\nselect NodeName, sum(HasHealthyCrd) as HasHealthyCrd, sum(HasRunningPod) as HasRunningPod from (\n\n  select Payload-\u003e\u003e'$.spec.nodeName' as NodeName,\n  0 as HasHealthyCrd,\n  1 as HasRunningPod\n  from k8s_resource\n  where apikind = 'Pod' and namespace = 'sam-system' and name like 'sam-network-reporter%' and Payload-\u003e\u003e'$.status.phase' = 'Running' and Payload-\u003e\u003e'$.status.message' is null\n\nunion all\n\n  select TRIM('connectivitylabelerchecker-' FROM name) as NodeName,\n  1 as HasHealthyCrd,\n  0 as HasRunningPod\n  from k8s_resource\n  where apikind = 'watchdog' \n                and name like 'connectivitylabelerchecker-%' \n                and Payload-\u003e\u003e'$.status.report.Success' = 'true'\n                and TIMESTAMPDIFF(MINUTE, STR_TO_DATE(Payload-\u003e\u003e'$.status.report.ReportCreatedAt', '%Y-%m-%dT%H:%i:%s.'), UTC_TIMESTAMP())\u003c90\n\n) sq1\ngroup by NodeName\nhaving HasHealthyCrd \u003c\u003e 1) sq2\nleft join k8s_resource \non sq2.NodeName=k8s_resource.Name\nwhere apikind='Node'\norder by ControlEstate"
         }
       ]
     }
