@@ -237,7 +237,7 @@
     + (if slbflights.roleEnabled then [
       "--isRoleUsed=true",
     ] else [])
-    + (if slbimages.phaseNum <= 1
+    + (if slbimages.phaseNum <= 2
     then
     [
           "--metricsEndpoint=" + configs.funnelVIP,
