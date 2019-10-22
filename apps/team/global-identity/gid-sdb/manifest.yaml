@@ -1,0 +1,26 @@
+apiVersion: v1
+system:
+  functions:
+    - name: gid-sdb
+      count: 1
+      containers:
+        - name: gid-sdb
+          image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/hub-persistence/sdb:0.0.3
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 5432
+          livenessProbe:
+            exec:
+              command:
+                - /bin/true
+            initialDelaySeconds: 60
+            periodSeconds: 30
+
+  loadbalancers:
+    - lbname: gid-sdb
+      function: gid-sdb
+      slbenabled: true
+      ports:
+        - port: 5432
+          targetport: 5432
+          lbtype: tcp
