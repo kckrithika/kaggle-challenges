@@ -4,7 +4,7 @@ local name = "crd-watcher";
 
 # [karthik-sudana] We are migrating from crd-watcher to zrd-watcher because we want it to deploy after
 # the watchdog services, as the autodeployer goes in alphabetical order.
-if configs.kingdom != "mvp" && (configs.estate == "prd-samtest" || configs.estate == "prd-samdev" || configs.estate == "prd-sam" || configs.estate == "xrd-sam") then {
+if configs.kingdom != "mvp" && (configs.kingdom == "prd" || configs.estate == "xrd-sam") then {
         kind: "ConfigMap",
         apiVersion: "v1",
         metadata: {
