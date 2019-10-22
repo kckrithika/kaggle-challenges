@@ -31,6 +31,8 @@ std.prune({
     ".*xrd.*",
     ".*yhu.*",
     ".*yul.*",
+    ".*ia4.*",
+    ".*ia5.*",
   ]),
   actionConditions: { reboot: (if configs.estate == "prd-samtest" then ["filesystemChecker", "kubeletChecker", "cliChecker.DockerDaemon", "kubeResourcesChecker.NodeHealth", "procUpTime"] else ["filesystemChecker", "kubeletChecker", "cliChecker.DockerDaemon", "procUpTime"]) },
 }) else "SKIP"

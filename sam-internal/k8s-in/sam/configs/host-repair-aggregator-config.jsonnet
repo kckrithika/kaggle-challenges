@@ -37,6 +37,8 @@ std.prune({
           "xrd-sam",
           "yhu-sam",
           "yul-sam",
+          "ia4-sam",
+          "ia5-sam",
   ]),
   dbHostname: mysql.dbHostname,
   dbUsername: "host-repair-agg",
