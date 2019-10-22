@@ -1,6 +1,13 @@
 {
     name: "Nodes with broken POD network connectivity",
-    sql: "select NodeName, ControlEstate from (
+    sql: "select NodeName, ControlEstate,
+case
+    when substring(ControlEstate,1,3) in ('CDU','HIO','SYD','TTD','WAX','YHU','YUL') then 'AWS'
+    when substring(ControlEstate,1,3) in ('DFW','FRF','HND','IAD','ORD','PAR','PHX','PRD','UKB','XRD') then 'v14.2'
+    when substring(ControlEstate,1,3) in ('CDG','FRA','IA2','IA4','IA5','LO2','LO3','PH2','RD1','RZ1') then 'v17.x'
+    else 'Unknown'
+end as NetworkVersion 
+from (
 
 select NodeName, sum(HasHealthyCrd) as HasHealthyCrd, sum(HasRunningPod) as HasRunningPod from (
 
