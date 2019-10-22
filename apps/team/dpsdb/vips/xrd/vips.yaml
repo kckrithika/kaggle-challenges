@@ -1,0 +1,8 @@
+- lbname: productivity-kibana
+  servers:
+   - metric-es-abs-001-xrd.eng.sfdc.net
+   - metric-elk-1-xrd.eng.sfdc.net
+  ports:
+   - port: 5601
+     targetport: 5601
+     lbtype: tcp
