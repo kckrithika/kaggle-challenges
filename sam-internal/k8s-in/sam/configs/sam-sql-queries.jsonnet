@@ -108,5 +108,6 @@ local bedhealth = (import "sam-sql-reporter/bedhealth.libsonnet").bedhealth;
     (import "sam-sql-reporter/prd-sam-sandbox-resources.libsonnet"),
     (import "sam-sql-reporter/sam-customer-stats.libsonnet"),
     (import "sam-sql-reporter/stuck-init-container-including-madkub.libsonnet"),
+    (import "sam-sql-reporter/nodes-cannot-report-connectivity.libsonnet"),    
   ],
 }
