@@ -9,7 +9,7 @@ system:
     identity:
       serviceName: metadata-service
     # Replica set size
-    count: 0
+    count: 3
     labels:
       app: metadata-service
     annotations:
