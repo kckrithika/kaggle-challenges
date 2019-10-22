@@ -58,3 +58,4 @@
      healthport: 12087
      healthpath: "/liveness-probe"
      healthprotocol: "http"
+  iptype: private_reserved
