@@ -63,14 +63,13 @@
           target_label: "device",
         },
         {
-          source_labels: [ "__meta_kubernetes_namespace" ],
-          target_label: "subservice",
-        },
-        {
           source_labels: [ "__meta_kubernetes_pod_label_spark_role" ],
           target_label: "spark_role",
         },
-        
+        {
+          source_labels: [ "__meta_kubernetes_pod_label_spark_exec_id" ],
+          target_label: "spark_executor_id",
+        }
       ],
       
       # Rules for metrics and general tags
@@ -103,6 +102,15 @@
         },
         {
           regex: "service",
+          action: "labeldrop",
+        },
+        # Repeat for subservice.
+        {
+          source_labels: [ "subservice" ],
+          target_label: "jmx_subservice"
+        },
+        {
+          regex: "subservice",
           action: "labeldrop",
         },
 
