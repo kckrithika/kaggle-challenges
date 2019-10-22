@@ -32,7 +32,7 @@ spec:
           valueFrom:
             fieldRef:
               fieldPath: metadata.name
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/sam/hypersam:2825-b5a8d6423b011966c76d2d81d09daa99cb2597a4
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/sam/hypersam:2827-7fb0c39a216ec391cfbb78f07037f1dd6f012c6e
         livenessProbe:
           httpGet:
             path: /info
