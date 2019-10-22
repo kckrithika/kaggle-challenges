@@ -3,8 +3,9 @@ import pool_map
 import portal_query
 import vip
 
-import sys
 import os
+import re
+import sys
 import yaml
 
 
@@ -27,10 +28,14 @@ SPACES_IN_TAB = "  "
 VIPS_YAML_FILE_NAME = "vips.yaml"
 
 
-def get_fqdn_from_portal(kingdom, cluster, lbname):
-    portal_entry = portal_query.get_portal_entry_from_portal(kingdom, cluster, lambda entry: entry.lbname, lbname)
-    if portal_entry is not None:
-        return portal_entry.fqdn
+def get_fqdn_from_portal(kingdom, cluster, team_name, lbname):
+    portal_entries = portal_query.get_all_portal_entries(kingdom, cluster)
+    # This regex matches the FQDN of a lb with the name lbname within the team called team_name
+    fqdn_regex = re.compile(r"^{}[^(a-z|A-Z)].*[^(a-z|A-Z)]?{}[^(a-z|A-Z)].*\.slb\.sfdc\.net$".format(lbname, team_name))
+
+    for portal_entry in portal_entries:
+        if portal_entry.lbname == lbname and fqdn_regex.match(portal_entry.fqdn):
+            return portal_entry.fqdn
 
     return None
 
@@ -98,8 +103,9 @@ def process_sam_apps(pool_map_path, team_folder_path, pools, public_vips_to_add,
                 else pools.get_kingdom_cluster_from_pool_name(pool['name'])
 
             for lb in load_balancers:
+                team_name = team_folder_path.split("/")[-1].lower().replace("_", "-")
+                fqdn = get_fqdn_from_portal(kingdom, cluster, team_name, lb[vip.VIPS_YAML_LBNAME_FIELD_NAME])
                 ip_type = get_ip_type(lb)
-                fqdn = get_fqdn_from_portal(kingdom, cluster, lb[vip.VIPS_YAML_LBNAME_FIELD_NAME])
                 vip_metadata = vip.VipMetadata(kingdom, cluster, fqdn, ip_type)
                 process_vip_metadata(vip_metadata, public_vips_to_add, public_vips_to_delete, ip_handler)
 
@@ -158,5 +164,6 @@ if __name__ == "__main__":
     ip_handler = ip_reserver.IpReserver(reserved_ips_file_path, config_file_path, minimum_octet)
 
     process_services(root_vip_yaml_path, ip_handler, pools_path)
+
     ip_handler.save_reserved_ips()
     print("Run successfully")
