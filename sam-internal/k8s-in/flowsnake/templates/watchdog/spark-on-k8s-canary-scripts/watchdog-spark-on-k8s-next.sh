@@ -194,6 +194,8 @@ pod_log() {
     if [[ -z "${POD_LOGS_COLLECTED[$1]+present}" ]]; then
         log_sub_heading "Begin $1 madkub-init Log"
         # || true to avoid failing script if pod has gone away.
+        KUBECTL_ATTEMPTS_SAVE=$KUBECTL_ATTEMPTS
+        KUBECTL_ATTEMPTS=1
         kcfw logs -c madkub-init $1 || true
         log_sub_heading "End $1 madkub-init Log"
         CONTAINER_NAME=""
@@ -203,6 +205,7 @@ pod_log() {
             kcfw logs -c $CONTAINER_NAME $1 || true
             log_sub_heading "End container $CONTAINER_NAME Log"
         done;
+        KUBECTL_ATTEMPTS=$KUBECTL_ATTEMPTS_SAVE
         POD_LOGS_COLLECTED["$1"]="true"
     fi
 }
@@ -319,8 +322,8 @@ while true; do
         LAST_LOGGED=${EPOCH}
     fi;
     sleep 1;
-    STATE=$(state)
     report_pod_changes
+    STATE=$(state)
 done;
 EXIT_CODE=$(echo ${STATE} | grep COMPLETED > /dev/null; echo $?)
 
