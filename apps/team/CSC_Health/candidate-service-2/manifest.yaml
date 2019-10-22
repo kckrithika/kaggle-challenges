@@ -114,9 +114,8 @@ system:
         export CHS_REPORTCOLLECTOR_ENDPOINT=https://reportcollector-${KINGDOM}.data.sfdc.net:18444 ;
 
         case ${KINGDOM} in
-          prd)
+          prd | dfw)
             export CHS_REPORTCOLLECTOR_OBSWHITELISTUNTRUSTED=infrastructure-observer.grok ;
-            export CHS_LOG_LEVEL=DEBUG ;
             ;;
           *)
             export CHS_REPORTCOLLECTOR_OBSWHITELISTUNTRUSTED=infrastructure-observer.system ;
