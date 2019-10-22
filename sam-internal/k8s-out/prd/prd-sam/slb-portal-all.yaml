@@ -275,7 +275,7 @@ items:
           - --maxDeleteLimit=400
           - --isRoleUsed=true
           - --metricsEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80
-          - --vcioptions.strict=true
+          - --vcioptions.strict=false
           - --client.allowStale=true
           - --control.manifestWatcherSentinel=/host/data/slb/config/slb-portal-frf/slb-manifest-watcher.sentinel
           - --vipdnsoptions.viplocation=frf-sam.frf
@@ -654,7 +654,7 @@ items:
           - --maxDeleteLimit=400
           - --isRoleUsed=true
           - --metricsEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80
-          - --vcioptions.strict=true
+          - --vcioptions.strict=false
           - --client.allowStale=true
           - --control.manifestWatcherSentinel=/host/data/slb/config/slb-portal-phx/slb-manifest-watcher.sentinel
           - --vipdnsoptions.viplocation=phx-sam.phx
@@ -1033,7 +1033,7 @@ items:
           - --maxDeleteLimit=400
           - --isRoleUsed=true
           - --metricsEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80
-          - --vcioptions.strict=true
+          - --vcioptions.strict=false
           - --client.allowStale=true
           - --control.manifestWatcherSentinel=/host/data/slb/config/slb-portal-iad/slb-manifest-watcher.sentinel
           - --vipdnsoptions.viplocation=iad-sam.iad
@@ -1412,7 +1412,7 @@ items:
           - --maxDeleteLimit=400
           - --isRoleUsed=true
           - --metricsEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80
-          - --vcioptions.strict=true
+          - --vcioptions.strict=false
           - --client.allowStale=true
           - --control.manifestWatcherSentinel=/host/data/slb/config/slb-portal-ord/slb-manifest-watcher.sentinel
           - --vipdnsoptions.viplocation=ord-sam.ord
@@ -1791,7 +1791,7 @@ items:
           - --maxDeleteLimit=400
           - --isRoleUsed=true
           - --metricsEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80
-          - --vcioptions.strict=true
+          - --vcioptions.strict=false
           - --client.allowStale=true
           - --control.manifestWatcherSentinel=/host/data/slb/config/slb-portal-dfw/slb-manifest-watcher.sentinel
           - --vipdnsoptions.viplocation=dfw-sam.dfw
@@ -2170,7 +2170,7 @@ items:
           - --maxDeleteLimit=400
           - --isRoleUsed=true
           - --metricsEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80
-          - --vcioptions.strict=true
+          - --vcioptions.strict=false
           - --client.allowStale=true
           - --control.manifestWatcherSentinel=/host/data/slb/config/slb-portal-hnd/slb-manifest-watcher.sentinel
           - --vipdnsoptions.viplocation=hnd-sam.hnd
@@ -2549,7 +2549,7 @@ items:
           - --maxDeleteLimit=400
           - --isRoleUsed=true
           - --metricsEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80
-          - --vcioptions.strict=true
+          - --vcioptions.strict=false
           - --client.allowStale=true
           - --control.manifestWatcherSentinel=/host/data/slb/config/slb-portal-xrd/slb-manifest-watcher.sentinel
           - --vipdnsoptions.viplocation=xrd-sam.xrd
@@ -2928,7 +2928,7 @@ items:
           - --maxDeleteLimit=400
           - --isRoleUsed=true
           - --metricsEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80
-          - --vcioptions.strict=true
+          - --vcioptions.strict=false
           - --client.allowStale=true
           - --control.manifestWatcherSentinel=/host/data/slb/config/slb-portal-cdg/slb-manifest-watcher.sentinel
           - --vipdnsoptions.viplocation=cdg-sam.cdg
@@ -3307,7 +3307,7 @@ items:
           - --maxDeleteLimit=400
           - --isRoleUsed=true
           - --metricsEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80
-          - --vcioptions.strict=true
+          - --vcioptions.strict=false
           - --client.allowStale=true
           - --control.manifestWatcherSentinel=/host/data/slb/config/slb-portal-fra/slb-manifest-watcher.sentinel
           - --vipdnsoptions.viplocation=fra-sam.fra
@@ -3686,7 +3686,7 @@ items:
           - --maxDeleteLimit=400
           - --isRoleUsed=true
           - --metricsEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80
-          - --vcioptions.strict=true
+          - --vcioptions.strict=false
           - --client.allowStale=true
           - --control.manifestWatcherSentinel=/host/data/slb/config/slb-portal-ia2/slb-manifest-watcher.sentinel
           - --vipdnsoptions.viplocation=ia2-sam.ia2
@@ -4065,7 +4065,7 @@ items:
           - --maxDeleteLimit=400
           - --isRoleUsed=true
           - --metricsEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80
-          - --vcioptions.strict=true
+          - --vcioptions.strict=false
           - --client.allowStale=true
           - --control.manifestWatcherSentinel=/host/data/slb/config/slb-portal-ph2/slb-manifest-watcher.sentinel
           - --vipdnsoptions.viplocation=ph2-sam.ph2
@@ -4444,7 +4444,7 @@ items:
           - --maxDeleteLimit=400
           - --isRoleUsed=true
           - --metricsEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80
-          - --vcioptions.strict=true
+          - --vcioptions.strict=false
           - --client.allowStale=true
           - --control.manifestWatcherSentinel=/host/data/slb/config/slb-portal-par/slb-manifest-watcher.sentinel
           - --vipdnsoptions.viplocation=par-sam.par
@@ -4823,7 +4823,7 @@ items:
           - --maxDeleteLimit=400
           - --isRoleUsed=true
           - --metricsEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80
-          - --vcioptions.strict=true
+          - --vcioptions.strict=false
           - --client.allowStale=true
           - --control.manifestWatcherSentinel=/host/data/slb/config/slb-portal-ukb/slb-manifest-watcher.sentinel
           - --vipdnsoptions.viplocation=ukb-sam.ukb
@@ -5202,7 +5202,7 @@ items:
           - --maxDeleteLimit=400
           - --isRoleUsed=true
           - --metricsEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80
-          - --vcioptions.strict=true
+          - --vcioptions.strict=false
           - --client.allowStale=true
           - --control.manifestWatcherSentinel=/host/data/slb/config/slb-portal-lo2/slb-manifest-watcher.sentinel
           - --vipdnsoptions.viplocation=lo2-sam.lo2
@@ -5581,7 +5581,7 @@ items:
           - --maxDeleteLimit=400
           - --isRoleUsed=true
           - --metricsEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80
-          - --vcioptions.strict=true
+          - --vcioptions.strict=false
           - --client.allowStale=true
           - --control.manifestWatcherSentinel=/host/data/slb/config/slb-portal-lo3/slb-manifest-watcher.sentinel
           - --vipdnsoptions.viplocation=lo3-sam.lo3
@@ -5960,7 +5960,7 @@ items:
           - --maxDeleteLimit=400
           - --isRoleUsed=true
           - --metricsEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80
-          - --vcioptions.strict=true
+          - --vcioptions.strict=false
           - --client.allowStale=true
           - --control.manifestWatcherSentinel=/host/data/slb/config/slb-portal-ia4/slb-manifest-watcher.sentinel
           - --vipdnsoptions.viplocation=ia4-sam.ia4
@@ -6339,7 +6339,7 @@ items:
           - --maxDeleteLimit=400
           - --isRoleUsed=true
           - --metricsEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80
-          - --vcioptions.strict=true
+          - --vcioptions.strict=false
           - --client.allowStale=true
           - --control.manifestWatcherSentinel=/host/data/slb/config/slb-portal-ia5/slb-manifest-watcher.sentinel
           - --vipdnsoptions.viplocation=ia5-sam.ia5
