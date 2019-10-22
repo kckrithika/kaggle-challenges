@@ -1,5 +1,5 @@
 {
-    name: "Nodes with POD network connectivity",
+    name: "Nodes with broken POD network connectivity",
     sql: "select NodeName, ControlEstate from (
 
 select NodeName, sum(HasHealthyCrd) as HasHealthyCrd, sum(HasRunningPod) as HasRunningPod from (
