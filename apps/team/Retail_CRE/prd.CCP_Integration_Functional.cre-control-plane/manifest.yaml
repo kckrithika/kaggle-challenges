@@ -29,8 +29,6 @@ system:
         ####################################################################################################
         - name: CONTROL_PLANE_ENDPOINT
           value: http://cre-control-plane-ccp-func.retail-cre.localhost.mesh.force.com:5442
-        - name: DUMMY_RESTART_VAR
-          value: 1
         - name: SFDC_ENVIRONMENT
           value: ccp-func
           ## KAFKA
