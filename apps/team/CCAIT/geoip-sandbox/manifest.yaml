@@ -9,27 +9,12 @@ system:
     labels:
       app: geoip
     containers:
-    - name: geoip-database
-      image: tnrp/ccait/geoip2-database:20170918
-      args:
-      - -d
-      volumeMounts:
-      - mountPath: /database
-        name: maxmind-volume
-      livenessProbe:
-        exec:
-          command:
-          - ls
-          - /database/GeoIP2-City.mmdb
-        initialDelaySeconds: 10
-        periodSeconds: 5
+    
     - name: geoip
-      image: sfci/services/sfdc-bazel/service-mesh/geoip:8df08309e # monorepo build
+      image: sfci/services/sfdc-bazel/service-mesh/geoip:b2c28917d # monorepo build
       env:
       - name: JAVA_OPTS
         value: -Xms1g -Xmx1g
-      - name: COM_MAXMIND_DATABASE_FILE
-        value: /dw/data/GeoIP2-City.mmdb
       - name: FAKE_ENV_VAR_INCREMENT_TO_TRIGGER_SAM_DEPLOY
         value: "2"
       resources:
@@ -39,9 +24,7 @@ system:
         requests:
           cpu: "4"
           memory: 10Gi
-      volumeMounts:
-      - mountPath: /dw/data
-        name: maxmind-volume
+      
       livenessProbe:
         httpGet:
           path: /manage/health
@@ -90,8 +73,7 @@ system:
           - /home/scone/is-alive.sh
         initialDelaySeconds: 5
     volumes:
-    - name: maxmind-volume
-      emptyDir: {}
+    
     - name: tls-client-cert
       maddogCert:
         type: client
