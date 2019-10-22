@@ -35,7 +35,7 @@ system:
       - retail-rsui/retail-setup:DATACENTER_ALLENV:7443:rsui-service-lb.retail-rsui.ap01.cre.slb.sfdc.net
       env:
       - name: DUMMY_FORCE_PUSH 
-        value: 1 # increse value to force push without any other changes 
+        value: 2 # increse value to force push without any other changes 
       resources:
         limits:
           cpu: 500m
