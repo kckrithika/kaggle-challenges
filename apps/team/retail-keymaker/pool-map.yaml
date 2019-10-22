@@ -12,3 +12,8 @@ apps:
     hostSubList:
         - shared0-samminioncustomerresolutionengine1-1-prd.eng.sfdc.net
         - shared0-samminioncustomerresolutionengine1-2-prd.eng.sfdc.net
+
+  frf.keymaker:
+  - name: frf/frf-sam_customerresolutionengine
+  par.keymaker:
+  - name: par/par-sam_customerresolutionengine
