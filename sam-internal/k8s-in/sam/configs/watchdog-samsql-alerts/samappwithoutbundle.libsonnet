@@ -1,5 +1,5 @@
 {
-                name: "SqlSamAppWithoutBundle",
+                name: "SamAppWithoutBundle",
                 instructions: "The following alert is for SamApp CRDs that dont have corresponding Bundle CRDs",
                 alertThreshold: "20m",
                 alertFrequency: "336h",

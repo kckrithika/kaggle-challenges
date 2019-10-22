@@ -1,5 +1,5 @@
 {
-    name: "SqlBundleWithoutDeployment",
+    name: "BundleWithoutDeployment",
     instructions: "This alert is for Bundle CRDs that do not have a corresponding deployment",
     alertThreshold: "20m",
     alertFrequency: "336h",

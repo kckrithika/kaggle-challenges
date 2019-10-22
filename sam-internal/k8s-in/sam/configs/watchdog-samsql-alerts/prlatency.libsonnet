@@ -1,5 +1,5 @@
 {
-    name: "SqlPRLatency",
+    name: "PRLatency",
       instructions: "Following PRs have failed to get deployed within 45 minutes of getting authorized.",
       alertThreshold: "10m",
       alertFrequency: "336h",

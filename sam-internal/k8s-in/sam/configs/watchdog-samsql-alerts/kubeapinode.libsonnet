@@ -1,6 +1,6 @@
 {
       sqlkubeapi(action, condition) :: {
-          name: "SqlKubeApiNode",
+          name: "KubeApiNode",
           instructions: "The following minion pools have kubeApi nodes down requiring attention during business hours. Debug Instructions: https://git.soma.salesforce.com/sam/sam/wiki/Repair-Failed-SAM-Host",
           alertThreshold: "20m",
           alertFrequency: "336h",

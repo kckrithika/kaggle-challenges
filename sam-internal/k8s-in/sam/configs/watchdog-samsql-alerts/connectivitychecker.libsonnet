@@ -1,5 +1,5 @@
 {
-      name: "SqlConnectivityChecker",
+      name: "ConnectivityChecker",
       alertThreshold: "5m",
       alertFrequency: "336h",
       watchdogFrequency: "5m",
