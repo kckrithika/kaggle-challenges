@@ -7,7 +7,7 @@ system:
   - name: metadata-service-itest
     identity:
       serviceName: metadata-service
-    count: 1
+    count: 0
     labels:
       app: metadata-service
     annotations:

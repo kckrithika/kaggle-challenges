@@ -7,7 +7,7 @@ system:
   # Pod prefix
   - name: metadata-service
     # Replica set size
-    count: 3
+    count: 0
     labels:
       app: metadata-service
     annotations:
