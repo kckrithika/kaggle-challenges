@@ -543,6 +543,116 @@ data:
           "superpod": "none"
         },
         {
+          "bomrolename": "sam_minion_globalidentity",
+          "controlestate": "phx-sam",
+          "devicerole": "samcompute",
+          "estate": "phx-sam_globalidentity",
+          "hostname": "shared0-samminionglobalidentity1-1-phx.ops.sfdc.net",
+          "kingdom": "phx",
+          "pod": "none",
+          "rack": "r28-40",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sam_minion_globalidentity",
+          "controlestate": "phx-sam",
+          "devicerole": "samcompute",
+          "estate": "phx-sam_globalidentity",
+          "hostname": "shared0-samminionglobalidentity1-2-phx.ops.sfdc.net",
+          "kingdom": "phx",
+          "pod": "none",
+          "rack": "w53-40",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sam_minion_globalidentity",
+          "controlestate": "phx-sam",
+          "devicerole": "samcompute",
+          "estate": "phx-sam_globalidentity",
+          "hostname": "shared0-samminionglobalidentity1-3-phx.ops.sfdc.net",
+          "kingdom": "phx",
+          "pod": "none",
+          "rack": "v44-40",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sam_minion_globalidentity",
+          "controlestate": "phx-sam",
+          "devicerole": "samcompute",
+          "estate": "phx-sam_globalidentity",
+          "hostname": "shared0-samminionglobalidentity1-4-phx.ops.sfdc.net",
+          "kingdom": "phx",
+          "pod": "none",
+          "rack": "y10-40",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sam_minion_globalidentity",
+          "controlestate": "phx-sam",
+          "devicerole": "samcompute",
+          "estate": "phx-sam_globalidentity",
+          "hostname": "shared0-samminionglobalidentity2-1-phx.ops.sfdc.net",
+          "kingdom": "phx",
+          "pod": "none",
+          "rack": "r28-40",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sam_minion_globalidentity",
+          "controlestate": "phx-sam",
+          "devicerole": "samcompute",
+          "estate": "phx-sam_globalidentity",
+          "hostname": "shared0-samminionglobalidentity2-2-phx.ops.sfdc.net",
+          "kingdom": "phx",
+          "pod": "none",
+          "rack": "w53-40",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sam_minion_globalidentity",
+          "controlestate": "phx-sam",
+          "devicerole": "samcompute",
+          "estate": "phx-sam_globalidentity",
+          "hostname": "shared0-samminionglobalidentity2-3-phx.ops.sfdc.net",
+          "kingdom": "phx",
+          "pod": "none",
+          "rack": "v44-40",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sam_minion_globalidentity",
+          "controlestate": "phx-sam",
+          "devicerole": "samcompute",
+          "estate": "phx-sam_globalidentity",
+          "hostname": "shared0-samminionglobalidentity3-1-phx.ops.sfdc.net",
+          "kingdom": "phx",
+          "pod": "none",
+          "rack": "r28-40",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sam_minion_globalidentity",
+          "controlestate": "phx-sam",
+          "devicerole": "samcompute",
+          "estate": "phx-sam_globalidentity",
+          "hostname": "shared0-samminionglobalidentity3-2-phx.ops.sfdc.net",
+          "kingdom": "phx",
+          "pod": "none",
+          "rack": "v44-40",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sam_minion_globalidentity",
+          "controlestate": "phx-sam",
+          "devicerole": "samcompute",
+          "estate": "phx-sam_globalidentity",
+          "hostname": "shared0-samminionglobalidentity3-3-phx.ops.sfdc.net",
+          "kingdom": "phx",
+          "pod": "none",
+          "rack": "y10-40",
+          "superpod": "none"
+        },
+        {
           "bomrolename": "sam_minion_kingdom_caas",
           "controlestate": "phx-sam",
           "devicerole": "samcompute",

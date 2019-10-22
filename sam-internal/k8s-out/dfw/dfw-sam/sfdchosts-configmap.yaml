@@ -664,6 +664,116 @@ data:
           "superpod": "none"
         },
         {
+          "bomrolename": "sam_minion_globalidentity",
+          "controlestate": "dfw-sam",
+          "devicerole": "samcompute",
+          "estate": "dfw-sam_globalidentity",
+          "hostname": "shared0-samminionglobalidentity1-1-dfw.ops.sfdc.net",
+          "kingdom": "dfw",
+          "pod": "none",
+          "rack": "d01-dh2",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sam_minion_globalidentity",
+          "controlestate": "dfw-sam",
+          "devicerole": "samcompute",
+          "estate": "dfw-sam_globalidentity",
+          "hostname": "shared0-samminionglobalidentity1-2-dfw.ops.sfdc.net",
+          "kingdom": "dfw",
+          "pod": "none",
+          "rack": "n32-dh4",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sam_minion_globalidentity",
+          "controlestate": "dfw-sam",
+          "devicerole": "samcompute",
+          "estate": "dfw-sam_globalidentity",
+          "hostname": "shared0-samminionglobalidentity1-3-dfw.ops.sfdc.net",
+          "kingdom": "dfw",
+          "pod": "none",
+          "rack": "k02-dh4",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sam_minion_globalidentity",
+          "controlestate": "dfw-sam",
+          "devicerole": "samcompute",
+          "estate": "dfw-sam_globalidentity",
+          "hostname": "shared0-samminionglobalidentity1-4-dfw.ops.sfdc.net",
+          "kingdom": "dfw",
+          "pod": "none",
+          "rack": "m12-dh4",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sam_minion_globalidentity",
+          "controlestate": "dfw-sam",
+          "devicerole": "samcompute",
+          "estate": "dfw-sam_globalidentity",
+          "hostname": "shared0-samminionglobalidentity2-1-dfw.ops.sfdc.net",
+          "kingdom": "dfw",
+          "pod": "none",
+          "rack": "d01-dh2",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sam_minion_globalidentity",
+          "controlestate": "dfw-sam",
+          "devicerole": "samcompute",
+          "estate": "dfw-sam_globalidentity",
+          "hostname": "shared0-samminionglobalidentity2-2-dfw.ops.sfdc.net",
+          "kingdom": "dfw",
+          "pod": "none",
+          "rack": "n32-dh4",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sam_minion_globalidentity",
+          "controlestate": "dfw-sam",
+          "devicerole": "samcompute",
+          "estate": "dfw-sam_globalidentity",
+          "hostname": "shared0-samminionglobalidentity2-3-dfw.ops.sfdc.net",
+          "kingdom": "dfw",
+          "pod": "none",
+          "rack": "k02-dh4",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sam_minion_globalidentity",
+          "controlestate": "dfw-sam",
+          "devicerole": "samcompute",
+          "estate": "dfw-sam_globalidentity",
+          "hostname": "shared0-samminionglobalidentity3-1-dfw.ops.sfdc.net",
+          "kingdom": "dfw",
+          "pod": "none",
+          "rack": "d01-dh2",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sam_minion_globalidentity",
+          "controlestate": "dfw-sam",
+          "devicerole": "samcompute",
+          "estate": "dfw-sam_globalidentity",
+          "hostname": "shared0-samminionglobalidentity3-2-dfw.ops.sfdc.net",
+          "kingdom": "dfw",
+          "pod": "none",
+          "rack": "k02-dh4",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sam_minion_globalidentity",
+          "controlestate": "dfw-sam",
+          "devicerole": "samcompute",
+          "estate": "dfw-sam_globalidentity",
+          "hostname": "shared0-samminionglobalidentity3-3-dfw.ops.sfdc.net",
+          "kingdom": "dfw",
+          "pod": "none",
+          "rack": "m12-dh4",
+          "superpod": "none"
+        },
+        {
           "bomrolename": "sam_minion_kingdom_caas",
           "controlestate": "dfw-sam",
           "devicerole": "samcompute",
