@@ -1,5 +1,5 @@
 {
-      name: "SqlSlaDepl",
+      name: "SlaDepl",
       instructions: "The following deployments are reported as bad customer deployments in Production. Debug Instructions: https://git.soma.salesforce.com/sam/sam/wiki/Debug-Failed-Deployment",
       alertThreshold: "10m",
       alertFrequency: "336h",

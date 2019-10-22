@@ -1,5 +1,5 @@
 {
-      name: "SqlPRImageUnavailable",
+      name: "PRImageUnavailable",
       instructions: "Following PRs have at least one image that's not available after 20 minutes of starting deployment",
       alertThreshold: "0m",
       alertFrequency: "336h",

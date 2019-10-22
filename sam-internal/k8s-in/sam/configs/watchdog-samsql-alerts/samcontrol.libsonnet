@@ -1,5 +1,5 @@
 {
-            name: "SqlSamControl",
+            name: "SamControl",
             instructions: "The following SAM control stack components dont have even 1 healhty pod",
             alertThreshold: "20m",
             alertFrequency: "336h",

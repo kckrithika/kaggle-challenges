@@ -1,5 +1,5 @@
 {
-      name: "SqlPRFailedToRunEvalPR",
+      name: "PRFailedToRunEvalPR",
       instructions: "Following PRs haven't run evaluatePR more than 30 mins after getting authorized.",
       alertThreshold: "10m",
       alertFrequency: "336h",

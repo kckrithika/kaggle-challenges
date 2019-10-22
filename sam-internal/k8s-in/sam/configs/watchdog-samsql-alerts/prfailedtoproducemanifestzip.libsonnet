@@ -1,5 +1,5 @@
 {
-      name: "SqlPRFailedToProduceManifestZip",
+      name: "PRFailedToProduceManifestZip",
       instructions: "Following PRs have failed to produce corresponding manifest.zip file after 30 minutes of getting  merged.",
       alertThreshold: "10m",
       alertFrequency: "336h",

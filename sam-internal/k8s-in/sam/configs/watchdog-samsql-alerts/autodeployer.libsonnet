@@ -1,5 +1,5 @@
 {
-            name: "SqlSamControlDeployer",
+            name: "SamControlDeployer",
             instructions: "The following SAM control stack components dont have a healhty autodeployer pod",
             alertThreshold: "20m",
             alertFrequency: "336h",

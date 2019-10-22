@@ -1,5 +1,5 @@
 {
-      name: "SqlTooManyPodsInNamespace",
+      name: "TooManyPodsInNamespace",
       alertThreshold: "5m",
       alertFrequency: "336h",
       watchdogFrequency: "5m",

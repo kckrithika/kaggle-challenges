@@ -1,5 +1,5 @@
 {
-      name: "SqlCustomerAppsWithImagePullErrorsProd",
+      name: "CustomerAppsWithImagePullErrorsProd",
       alertThreshold: "5m",
       alertFrequency: "336h",
       watchdogFrequency: "1m",
