@@ -31,7 +31,7 @@ local utils = import "util_functions.jsonnet";
     canaryInjectorImage: (
         // need to use a full image path. relative paths like 'sfci/servicelibs/sherpa-injector' won't work here.
         // https://sfcirelease.dop.sfdc.net/job/servicelibs/job/servicelibs-sherpa-injector/job/sherpa-injector/job/master/206/
-        "%s/sfci/servicelibs/sherpa-injector:0bd8300c7ea34c3e66ba7b03b9c5ae2b8e28e7b7" %
+        "%s/sfci/servicelibs/sherpa-injector:55ea0f4557b95322a0e8a0bb0f86121aecdec550" %
         if utils.is_pcn(configs.kingdom) then configs.registry + "/docker-gcp" else configs.registry
     ),
     injectorImage: (
