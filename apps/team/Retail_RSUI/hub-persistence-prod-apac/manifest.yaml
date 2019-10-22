@@ -109,23 +109,6 @@ system:
             initialDelaySeconds: 110
             periodSeconds: 5
 
-
-        - name: beacon-hub-persistence
-          image: sfci/servicelibs/beacon:ce3b9722faf59dc7550a1df2905ecff794fbb2e3
-          env:
-            - name: SFDC_ENVIRONMENT
-              value: prod
-          resources:
-            limits: { cpu: "1", memory: "1Gi" }
-            requests: { cpu: "1", memory: "1Gi" }
-          args:
-            - -endpoint
-            - retail-rsui/hub-persistence:DATACENTER:7442
-          livenessProbe:
-            initialDelaySeconds: 15
-            exec:
-              command:
-                - "/home/scone/is-alive.sh"
   #
   # SLB
   #
@@ -137,4 +120,6 @@ system:
       slbEnabled: true
       ports:
       - port: 443
+        targetport: 7442
+      - port: 7442
         targetport: 7442
