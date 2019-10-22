@@ -19,7 +19,7 @@ system:
     containers:
     # Primary service container
     - name: metadata-service
-      image: sfci/metadata-cannon/metadata-service:0.10.82
+      image: sfci/metadata-cannon/metadata-service:0.10.84
       ports:
       # Server port
       - containerPort: 9091
