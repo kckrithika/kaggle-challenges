@@ -336,29 +336,9 @@ data:
     ''%Y-%m-%d''))\n-- AND NOT\n-- (minionpool like ''ph2-sam_gater'' AND NotReadyPerc
     < 0.5 AND now() < STR_TO_DATE(''2019-01-30'', ''%Y-%m-%d''))\n", "watchdogFrequency":
     "5m"}, {"alertAction": "businesshours_pagerduty", "alertFrequency": "336h", "alertProfile":
-    "sam", "alertThreshold": "20m", "instructions": "The following SAM control stack
-    components dont have even 1 healhty pod", "name": "SamControl", "sql": "SELECT
-    * FROM\n                  (\n                    SELECT\n                      ControlEstate,\n                      Namespace,\n                      Name,\n                      JSON_EXTRACT(Payload,
-    ''$.metadata.labels.\"sam.data.sfdc.net/owner\"'') AS ownerlabel,\n                      JSON_EXTRACT(Payload,
-    ''$.spec.replicas'') AS desiredReplicas,\n                      JSON_EXTRACT(Payload,
-    ''$.status.availableReplicas'') AS availableReplicas,\n                      JSON_EXTRACT(Payload,
-    ''$.status.updatedReplicas'') AS updatedReplicas,\n                      (JSON_EXTRACT(Payload,
-    ''$.spec.replicas'') - JSON_EXTRACT(Payload, ''$.status.availableReplicas''))
-    AS kpodsDown,\n                      COALESCE(JSON_EXTRACT(Payload, ''$.status.availableReplicas'')
-    /nullif(JSON_EXTRACT(Payload, ''$.spec.replicas''), 0), 0) AS availability,\n                      CONCAT(''http://dashboard-'',SUBSTR(ControlEstate,
-    1, 3),''-sam.csc-sam.prd-sam.prd.slb.sfdc.net/#!/deployment/'',Namespace,''/'',Name,''?namespace='',Namespace)
-    AS Url\n                      FROM k8s_resource\n                      WHERE ApiKind
-    = ''Deployment''\n                  ) AS ss\n                  WHERE\n                     Namespace
-    = ''sam-system'' AND ownerlabel = ''sam'' AND\n                     (availableReplicas
-    < 1 OR availableReplicas IS NULL) AND\n                     ControlEstate NOT
-    LIKE ''%sdc%'' AND\n                     ControlEstate NOT LIKE ''%storage%''
-    AND\n                     ControlEstate NOT LIKE ''%sdn%'' AND\n                     ControlEstate
-    NOT LIKE ''%slb%'' AND\n                     ControlEstate != ''prd-samtest''
-    AND\n                     ControlEstate != ''prd-samdev'' AND\n                     desiredReplicas
-    != 0", "watchdogFrequency": "5m"}, {"alertAction": "businesshours_pagerduty",
-    "alertFrequency": "336h", "alertProfile": "sam", "alertThreshold": "20m", "instructions":
-    "The following alert is for SamApp CRDs that dont have corresponding Bundle CRDs",
-    "name": "SamAppWithoutBundle", "sql": "SELECT\n                        samApp.controlEstate,\n                        samApp.name,\n                        samApp.namespace,\n                        samAppCreationTimestamp,\n                        bundleCreationTimestamp,\n                        samAppNumResourceLinks,\n                        bundleState,\n                        bundleStatus\n                      FROM\n                      (\n                          SELECT\n                            controlEstate,\n                            name,\n                            namespace,\n                            json_length(Payload->''$.status.resourceLinks'')
+    "sam", "alertThreshold": "20m", "instructions": "The following alert is for SamApp
+    CRDs that dont have corresponding Bundle CRDs", "name": "SamAppWithoutBundle",
+    "sql": "SELECT\n                        samApp.controlEstate,\n                        samApp.name,\n                        samApp.namespace,\n                        samAppCreationTimestamp,\n                        bundleCreationTimestamp,\n                        samAppNumResourceLinks,\n                        bundleState,\n                        bundleStatus\n                      FROM\n                      (\n                          SELECT\n                            controlEstate,\n                            name,\n                            namespace,\n                            json_length(Payload->''$.status.resourceLinks'')
     as samAppNumResourceLinks,\n                            Payload->>''$.metadata.creationTimestamp''
     as samAppCreationTimestamp\n                          FROM\n                            k8s_resource\n                          WHERE\n                            ApiKind
     = ''SamApp''\n                            AND Payload->>''$.metadata.labels.deployed_by''

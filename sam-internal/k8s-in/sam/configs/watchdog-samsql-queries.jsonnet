@@ -21,7 +21,6 @@
     (import "watchdog-samsql-alerts/connectivitychecker.libsonnet"),
     (import "watchdog-samsql-alerts/customerpodswithimagepullerrors.libsonnet"),
     (import "watchdog-samsql-alerts/slanode.libsonnet"),
-    (import "watchdog-samsql-alerts/samcontrol.libsonnet"),
     (import "watchdog-samsql-alerts/samappwithoutbundle.libsonnet"),
     (import "watchdog-samsql-alerts/bundlewithoutdeployment.libsonnet"),
     (import "watchdog-samsql-alerts/prlatency.libsonnet"),
