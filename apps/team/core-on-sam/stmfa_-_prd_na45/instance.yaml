@@ -15,7 +15,7 @@ env:
   region: prd
   subEnvName: '-'
 images:
-  coreApp: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/coreonsam/casam:release_main_19486985
+  coreApp: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/coreonsam/casam:release_main_19489326
   coreAppOverrides: sfci/casam/coreapp_overrides:2e703d
   envoy: sfci/servicelibs/sherpa-envoy:1.0.4
   envoyConfig: sfci/casam/cyan-config:208cc2
@@ -24,6 +24,6 @@ images:
   switchboard: sfci/servicelibs/switchboard:26c3cdce981042262b9f0f26c226cab1841bf9fd
   switchboardEnvoy: sfci/frontend-gateway/sfproxy:bc7e1fa
 name: na45
-nonce: 1571854095726263595
+nonce: 1571864147342570385
 replicaCount: 1
 settingsSuperPod: sp2
