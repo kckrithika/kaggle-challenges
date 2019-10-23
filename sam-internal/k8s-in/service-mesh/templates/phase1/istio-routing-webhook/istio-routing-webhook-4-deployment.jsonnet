@@ -340,7 +340,8 @@ configs.deploymentBase("service-mesh") {
             volumeMounts+: madkub.madkubSamCertVolumeMounts(certConfigs),
           },
           {
-            args: [
+            command: [
+              "istio-iptables",
               "-p",
               "15002",
               "-z",
