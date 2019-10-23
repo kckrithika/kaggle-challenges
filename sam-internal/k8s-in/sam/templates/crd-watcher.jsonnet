@@ -6,7 +6,7 @@ local samreleases = import "samreleases.json";
 
 # [karthik-sudana] We are migrating from crd-watcher to zrd-watcher because we want it to deploy after
 # the watchdog services, as the autodeployer goes in alphabetical order.
-if configs.kingdom != "mvp" && configs.kingdom != "prd" && configs.estate != "xrd-sam" then {
+if configs.kingdom != "mvp" && configs.kingdom != "prd" && configs.estate != "xrd-sam" && configs.estate != "frf-sam" && configs.estate != "cdu-sam" then {
         kind: "Deployment",
         spec: {
             replicas: 1,
