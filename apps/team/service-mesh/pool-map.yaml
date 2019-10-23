@@ -124,6 +124,8 @@ apps:
   # Istio-powered version of Geoip
   istio-geoip:
     - prd/prd-sam_gater
+  istio-geoip-prod:
+    - par/par-sam_gater
 
 
 # Enable as needed:
