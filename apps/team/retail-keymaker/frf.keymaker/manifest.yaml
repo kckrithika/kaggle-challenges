@@ -1,7 +1,7 @@
 system:
   functions:
   - name: keymaker
-    count: 0
+    count: 1
     containers:
     - name: keymaker
       image: sfci/ccp/keymaker:24ab5c2
