@@ -1,6 +1,6 @@
 {
     name: "Nodes with broken POD network connectivity",
-    sql: "select NodeName, ControlEstate,
+    sql: "select NodeName, ControlEstate, datediff(utc_timestamp(),str_to_date(Payload->>'$.metadata.creationTimestamp','%Y-%m-%dT%H:%i:%sZ')) AS NodeAgeInDays,
 case
     when substring(ControlEstate,1,3) in ('CDU','HIO','SYD','TTD','WAX','YHU','YUL') then 'AWS'
     when substring(ControlEstate,1,3) in ('DFW','FRF','HND','IAD','ORD','PAR','PHX','PRD','UKB','XRD') then 'v14.2'
