@@ -15,7 +15,7 @@ system:
 
     containers:
     - name: fakecc
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/hpresnall/fakecc:20190926_162418
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/hpresnall/fakecc:20191021_140712
       # associate the log directory to a logical volume.
       volumeMounts:
       - name: server-cert
@@ -25,6 +25,8 @@ system:
         value: 100
       - name: DEFAULT_TENANT
         value: 00Dx00000005SyTEAU
+      - name: MAX_ORDER_COUNT
+        value: 200
       resources:
         limits: { cpu: "1", memory: "2Gi" }
         requests: { cpu: "1", memory: "1Gi" }
@@ -39,7 +41,7 @@ system:
           port: 7022
           scheme: HTTP
     - name: sherpa-fakecc
-      image: sfci/servicelibs/sherpa-envoy:1.0.4
+      image: sfci/servicelibs/sherpa-envoy:1.0.13
       volumeMounts:
       - name: server-cert
         mountPath: /server-certs

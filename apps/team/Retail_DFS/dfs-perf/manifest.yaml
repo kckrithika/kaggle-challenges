@@ -28,7 +28,7 @@ system:
 
     containers:
     - name: dfs
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/dfs/service:dfs-0.25.4
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/dfs/service:dfs-0.25.6
       # associate the log directory to a logical volume.
       volumeMounts:
       - name: logvol
@@ -82,8 +82,8 @@ system:
                 -Dcom.sun.management.jmxremote.authenticate=false
                 -Xmx2G -Xms2G -XX:ParallelGCThreads=8"
       resources:
-        limits: { cpu: "6", memory: "4Gi" }
-        requests: { cpu: "6", memory: "3Gi" }
+        limits: { cpu: "4", memory: "4Gi" }
+        requests: { cpu: "4", memory: "3Gi" }
       ports:
       - containerPort: 7022
       - containerPort: 15372
@@ -96,7 +96,7 @@ system:
           port: 15372
           scheme: HTTP
     - name: sherpa-dfs
-      image: sfci/servicelibs/sherpa-envoy:1.0.4
+      image: sfci/servicelibs/sherpa-envoy:1.0.13
       args:
       - --server-ca
       - /server-certs/ca_test/cacerts.pem
