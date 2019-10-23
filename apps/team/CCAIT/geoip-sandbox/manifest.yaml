@@ -5,7 +5,7 @@ system:
     - servicemesh@salesforce.com
   functions:
   - name: geoip
-    count: 3
+    count: 5
     labels:
       app: geoip
     containers:
