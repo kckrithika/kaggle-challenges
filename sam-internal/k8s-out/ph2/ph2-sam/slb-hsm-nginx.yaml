@@ -497,7 +497,7 @@ spec:
         - --maxDeleteLimit=400
         - --isRoleUsed=true
         - --metricsEndpoint=ajna0-funnel1-0-ph2.data.sfdc.net:80
-        - --vcioptions.strict=true
+        - --vcioptions.strict=false
         - --client.allowStale=true
         - --control.manifestWatcherSentinel=/host/data/slb/config/slb-hsm-nginx/slb-manifest-watcher.sentinel
         - --pipeline.supportedProxies=slb-hsm-nginx
