@@ -6,3 +6,17 @@
    - port: 5601
      targetport: 5601
      lbtype: tcp
+- lbname: coreengmetrics-elk
+  servers:
+   - metric-elk-1-xrd.eng.sfdc.net
+   - metric-es-abs-001-xrd.eng.sfdc.net
+   - metric-es-abs-002-xrd.eng.sfdc.net
+   - metric-es-abs-003-xrd.eng.sfdc.net
+   - metric-es-abs-004-xrd.eng.sfdc.net
+   - metric-es-build-001-xrd.eng.sfdc.net
+   - metric-es-build-002-xrd.eng.sfdc.net
+   - metric-es-prd-build-001.eng.sfdc.net
+  ports:
+   - port: 9200
+     targetport: 9200
+     lbtype: tcp  
