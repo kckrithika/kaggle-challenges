@@ -20,7 +20,7 @@ system:
           type: client
     containers:
     - name: astcx-ui
-      image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/ast-portal:19
+      image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/ast-portal:20
       env:
       - name: AST_CX_SERVER_TYPE
         value: "cron"
@@ -33,7 +33,9 @@ system:
       - name: AST_CX_SERVICE_URL
         value: "http://10.233.249.44:8085"
       - name: AST_CRED_SERVICE_URL
-        value: "http://10.233.249.20:8085"
+        value: "http://ast-master.eng.sfdc.net:8085"
+      - name: AST_CS_SERVICE_URL
+        value: "http://ast-master.eng.sfdc.net:8085"
       - name: AST_CX_SECRET_SERVICE_URL
         value: "https://secretservice.dmz.salesforce.com:8271/vaultczar/api/1.0/getSecretBySubscriber"
       ports:
