@@ -57,20 +57,23 @@
           target_label: "__address__",
         },
 
-        # These rules translate Kubernetes pod attributes into tags for Argus
+        # These rules translate Kubernetes/Spark pod attributes into tags for Argus
         {
           source_labels: [ "__meta_kubernetes_pod_node_name" ],
           target_label: "device",
         },
         {
-          source_labels: [ "__meta_kubernetes_namespace" ],
-          target_label: "subservice",
-        },
-        {
           source_labels: [ "__meta_kubernetes_pod_label_spark_role" ],
           target_label: "spark_role",
+        },       
+        {
+          source_labels: [ "__meta_kubernetes_pod_label_spark_exec_id" ],
+          target_label: "spark_executor_id",
         },
-       
+        {
+          source_labels: [ "__meta_kubernetes_pod_label_sparkoperator_k8s_io_app_name" ],
+          target_label: "spark_app_name",
+        },
       ],
       
       # Rules for metrics and general tags
@@ -103,6 +106,15 @@
         },
         {
           regex: "service",
+          action: "labeldrop",
+        },
+        # Repeat for subservice.
+        {
+          source_labels: [ "subservice" ],
+          target_label: "jmx_subservice"
+        },
+        {
+          regex: "subservice",
           action: "labeldrop",
         },
       ],
