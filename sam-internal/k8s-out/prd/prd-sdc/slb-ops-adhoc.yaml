@@ -25,7 +25,7 @@ spec:
         env:
         - name: IMMUTABLE_DEPLOYMENTS_ARE_GOOD
           value: "true"
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/slb/hyperslb:2251-85aa611f8716aca8d3f31d3de175efdfef9d1a05
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/slb/hyperslb:2255-5885c1e36fd3e7b618774fc6c1d90e9cb13c8d76
         name: slb-ops-adhoc
         resources:
           limits:
