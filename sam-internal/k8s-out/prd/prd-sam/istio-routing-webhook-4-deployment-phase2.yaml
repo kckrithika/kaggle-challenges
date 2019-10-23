@@ -316,7 +316,8 @@ spec:
           name: server-cert
         - mountPath: /client-cert
           name: client-cert
-      - args:
+      - command:
+        - istio-iptables
         - -p
         - "15002"
         - -z
