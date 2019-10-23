@@ -9,7 +9,7 @@ items:
     name: k4a-caiman-watchdog-xrd11
     namespace: sam-system
   spec:
-    replicas: 1
+    replicas: 2
     selector:
       matchLabels:
         name: k4a-caiman-watchdog-xrd11
@@ -171,7 +171,7 @@ items:
     name: k4a-caiman-watchdog-xrd12
     namespace: sam-system
   spec:
-    replicas: 1
+    replicas: 2
     selector:
       matchLabels:
         name: k4a-caiman-watchdog-xrd12
@@ -333,7 +333,7 @@ items:
     name: k4a-caiman-watchdog-xrd21
     namespace: sam-system
   spec:
-    replicas: 1
+    replicas: 2
     selector:
       matchLabels:
         name: k4a-caiman-watchdog-xrd21
@@ -495,7 +495,7 @@ items:
     name: k4a-caiman-watchdog-xrd22
     namespace: sam-system
   spec:
-    replicas: 1
+    replicas: 2
     selector:
       matchLabels:
         name: k4a-caiman-watchdog-xrd22
@@ -657,7 +657,7 @@ items:
     name: k4a-caiman-watchdog-xrdfailover
     namespace: sam-system
   spec:
-    replicas: 1
+    replicas: 2
     selector:
       matchLabels:
         name: k4a-caiman-watchdog-xrdfailover

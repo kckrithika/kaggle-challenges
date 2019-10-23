@@ -9,7 +9,7 @@ items:
     name: k4a-caiman-watchdog-crd11
     namespace: sam-system
   spec:
-    replicas: 1
+    replicas: 2
     selector:
       matchLabels:
         name: k4a-caiman-watchdog-crd11
@@ -176,7 +176,7 @@ items:
     name: k4a-caiman-watchdog-crd12
     namespace: sam-system
   spec:
-    replicas: 1
+    replicas: 2
     selector:
       matchLabels:
         name: k4a-caiman-watchdog-crd12
@@ -343,7 +343,7 @@ items:
     name: k4a-caiman-watchdog-crd21
     namespace: sam-system
   spec:
-    replicas: 1
+    replicas: 2
     selector:
       matchLabels:
         name: k4a-caiman-watchdog-crd21
@@ -510,7 +510,7 @@ items:
     name: k4a-caiman-watchdog-crd22
     namespace: sam-system
   spec:
-    replicas: 1
+    replicas: 2
     selector:
       matchLabels:
         name: k4a-caiman-watchdog-crd22
@@ -677,7 +677,7 @@ items:
     name: k4a-caiman-watchdog-prd11
     namespace: sam-system
   spec:
-    replicas: 1
+    replicas: 2
     selector:
       matchLabels:
         name: k4a-caiman-watchdog-prd11
@@ -844,7 +844,7 @@ items:
     name: k4a-caiman-watchdog-prd12
     namespace: sam-system
   spec:
-    replicas: 1
+    replicas: 2
     selector:
       matchLabels:
         name: k4a-caiman-watchdog-prd12
@@ -1011,7 +1011,7 @@ items:
     name: k4a-caiman-watchdog-prd21
     namespace: sam-system
   spec:
-    replicas: 1
+    replicas: 2
     selector:
       matchLabels:
         name: k4a-caiman-watchdog-prd21
@@ -1178,7 +1178,7 @@ items:
     name: k4a-caiman-watchdog-prd22
     namespace: sam-system
   spec:
-    replicas: 1
+    replicas: 2
     selector:
       matchLabels:
         name: k4a-caiman-watchdog-prd22
@@ -1345,7 +1345,7 @@ items:
     name: k4a-caiman-watchdog-prdfailover
     namespace: sam-system
   spec:
-    replicas: 1
+    replicas: 2
     selector:
       matchLabels:
         name: k4a-caiman-watchdog-prdfailover

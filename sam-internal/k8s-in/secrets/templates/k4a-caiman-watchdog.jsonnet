@@ -2,6 +2,7 @@ local configs = import "config.jsonnet";
 local secretsconfigs = import "secretsconfig.libsonnet";
 local secretsimages = (import "secretsimages.libsonnet") + { templateFilename:: std.thisFile };
 local madkub = (import "secretsmadkub.libsonnet") + { templateFileName:: std.thisFile };
+local secretsflights = (import "secretsflights.jsonnet");
 local utils = import "util_functions.jsonnet";
 
 local certDirs = ["client-certs"];
@@ -86,7 +87,7 @@ local k4aWatchdogDeployment(instanceTag) = configs.deploymentBase("secrets") {
     namespace: "sam-system",
   },
   spec+: {
-    replicas: 1,
+    replicas: if secretsflights.caimanWdSecondReplicaEnabled(instanceData.canary) then 2 else 1,
     template: {
       metadata: {
         annotations: {
