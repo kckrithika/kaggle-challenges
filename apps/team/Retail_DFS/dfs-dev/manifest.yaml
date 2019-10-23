@@ -73,7 +73,7 @@ system:
           port: 15372
           scheme: HTTP
     - name: sherpa-dfs
-      image: sfci/servicelibs/sherpa-envoy:1.0.4
+      image: sfci/servicelibs/sherpa-envoy:1.0.13
       volumeMounts:
         - name: dfs-server-cert
           mountPath: /server-certs
