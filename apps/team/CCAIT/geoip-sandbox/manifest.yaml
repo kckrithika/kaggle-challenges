@@ -11,7 +11,7 @@ system:
     containers:
     
     - name: geoip
-      image: sfci/services/sfdc-bazel/service-mesh/geoip:b2c28917d # monorepo build
+      image: sfci/services/sfdc-bazel/service-mesh/geoip:92f89ae98 # monorepo build
       env:
       - name: JAVA_OPTS
         value: -Xms1g -Xmx1g
