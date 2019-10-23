@@ -1,22 +1,22 @@
 apps:
     jaeger-test:
-    - prd/prd-sam_zipkin
+#    - prd/prd-sam_zipkin
     zipkin-frontend-test:
-    - prd/prd-sam_zipkin
+#    - prd/prd-sam_zipkin
     zipkin-frontend:
-    - prd/prd-sam_zipkin
+#    - prd/prd-sam_zipkin
     zipkin-server-beta:
-    - prd/prd-sam_zipkin
+#    - prd/prd-sam_zipkin
     zipkin-beta:
-    - prd/prd-sam_zipkin
+#    - prd/prd-sam_zipkin
     zipkin-collector-test:
-    - prd/prd-sam_zipkin
+#    - prd/prd-sam_zipkin
     zipkin-collector:
-    - prd/prd-sam_zipkin
+#    - prd/prd-sam_zipkin
     zipkin-collector1:
-    - prd/prd-sam_zipkin
+#    - prd/prd-sam_zipkin
     zipkin-spark-beta:
-    - prd/prd-sam_zipkin    
+#    - prd/prd-sam_zipkin    
     zipkin-kafka-proxy-test:
     - prd/prd-sam_report_collector
     zipkin-kafka-proxy:

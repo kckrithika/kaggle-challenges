@@ -3835,18 +3835,6 @@
     },
     {
       "namespaces": [
-        "distributed-tracing"
-      ],
-      "access": [
-        "team/distributed-tracing"
-      ],
-      "controlEstate": "prd-samtwo",
-      "estate": "prd-sam_zipkin",
-      "kingdom": "prd",
-      "superPod": "None"
-    },
-    {
-      "namespaces": [
         "*"
       ],
       "access": [
