@@ -1,7 +1,7 @@
 system:
   functions:
   - name: keymaker
-    count: 1
+    count: 0
     containers:
     - name: keymaker
       image: sfci/ccp/keymaker:24ab5c2
@@ -13,9 +13,7 @@ system:
           - name: NO_PROXY
             value: secretservice.dmz.salesforce.com
           - name: KEYMAKER_SLEEP_SECONDS
-            value: 900
-          - name: KEYMAKER_TEST
-            value: true
+            value: 180
 
       livenessProbe:
         exec:
