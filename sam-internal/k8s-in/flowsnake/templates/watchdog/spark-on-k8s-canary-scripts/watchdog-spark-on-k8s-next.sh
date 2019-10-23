@@ -193,9 +193,13 @@ pod_log() {
     # Checking for key with set -o nounset active: https://stackoverflow.com/a/13221491
     if [[ -z "${POD_LOGS_COLLECTED[$1]+present}" ]]; then
         log_sub_heading "Begin $1 madkub-init Log"
-        # || true to avoid failing script if pod has gone away.
+        # set KUBECTL_ATTEMPTS=1 so that in kcfw() we do not retry and wait for 
+        # getting the containers and their logs because the containers can exit
+        # thus getting the container log files is a best effort
+        # we will restore KUBECTL_ATTEMPTS to its previous value afterwards
         KUBECTL_ATTEMPTS_SAVE=$KUBECTL_ATTEMPTS
         KUBECTL_ATTEMPTS=1
+        # || true to avoid failing script if pod has gone away.
         kcfw logs -c madkub-init $1 || true
         log_sub_heading "End $1 madkub-init Log"
         CONTAINER_NAME=""
