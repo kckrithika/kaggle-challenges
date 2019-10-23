@@ -40,7 +40,7 @@ system:
 
     containers:
     - name: rsui-production-ukb
-      image: sfci/retail/retail-setup:2.0.237 # docker image
+      image: sfci/retail/retail-setup:2.0.241 # docker image
       ports:
       - containerPort: 7022
         name: rsui-in-http1
@@ -107,6 +107,8 @@ system:
         value: false
       - name: TRANSFORMATIONLIB_MDS_MODE
         value: live
+      - name: SCONE_SERVER_SECURITY_MUTUALAUTH
+        value: true
       - name: JVM_ARGS
         value: "-Dspring.profiles.active=prod -Djava.util.concurrent.ForkJoinPool.common.parallelism=50
                 -verbose:gc -XX:+PrintGCDateStamps -XX:+PrintHeapAtGC
