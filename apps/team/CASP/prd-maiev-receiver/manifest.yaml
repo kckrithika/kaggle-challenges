@@ -14,14 +14,14 @@ system:
           maxUnavailable: 1
       containers:
       - name: prd-maiev-receiver
-        image: dva/maiev-receiver:54
+        image: dva/maiev-receiver:58
         ports:
         - name: receiver-grpc
           containerPort: 7442
-          hostPort: 17444
         - name: receiver-http
-          containerPort: 8085
-          hostPort: 7022 # staying consistent with port on prod with ACL
+          containerPort: 8086
+        - name: receiver-https
+          containerPort: 8443
         livenessProbe:
           exec:
             command:
@@ -35,10 +35,21 @@ system:
           value: "8085"
         - name: BASE_PATH
           value: "/v1/*"
+        - name: BRANCH
+          value: "eng_production"
         - name: NODENAME
           valueFrom:
             fieldRef:
               fieldPath: spec.nodeName
+        volumeMounts:
+        - mountPath: /home/sfdc-maiev/certs
+          name: maievservercert
+      volumes:
+      - name: maievservercert
+        maddogCert:
+          type: server
+          lbnames:
+          - maiev-receiver
     loadbalancers:
     - lbname: maiev-receiver
       function: maiev-receiver-func
@@ -47,5 +58,6 @@ system:
         - port: 7442
           targetport: 7442
         - port: 80
-          targetport: 8085
-
+          targetport: 8086
+        - port: 443
+          targetport: 8443
