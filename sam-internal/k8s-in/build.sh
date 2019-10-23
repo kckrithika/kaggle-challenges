@@ -80,7 +80,7 @@ fi
 
 
 # Format input jsonnet files.  TODO: Auto-compute these directories
-for jdir in . sam sam/configs sam/templates sam/templates/rbac sdn sdn/templates secrets secrets/templates slb slb/templates flowsnake flowsnake/templates tnrp tnrp/templates service-mesh service-mesh/templates service-mesh/namespaces/templates service-mesh/sherpa-injector/templates service-mesh/switchboard/templates service-mesh/zoobernetes/templates dva-collection dva-collection/templates topology-svc/templates authz/templates stampy/templates; do
+for jdir in . sam sam/configs sam/templates sam/templates/rbac sdn sdn/templates secrets secrets/templates slb slb/templates flowsnake flowsnake/templates sfcd sfcd/templates tnrp tnrp/templates service-mesh service-mesh/templates service-mesh/namespaces/templates service-mesh/sherpa-injector/templates service-mesh/switchboard/templates service-mesh/zoobernetes/templates dva-collection dva-collection/templates topology-svc/templates authz/templates stampy/templates; do
   # We want to format both *.jsonnet and *.libsonnet.  Doing this with a wildcard is a little ugly, but we cant do it with 2 commands because the command will fail if any directory has one type of file but not the other
   jsonnet/jsonnet fmt -i $jdir/*.*sonnet
 done

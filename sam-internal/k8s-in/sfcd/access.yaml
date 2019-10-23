@@ -1,0 +1,14 @@
+#Use corp user name instead of git user ids e.g. prahlad.joshi instead of prahlad-joshi
+#If you are updating it, there is a high chance you need to update k8s-out/access.yaml
+#and tnrp/access.yaml
+admins:
+#  - sudha.subramanian
+#  - jvergara
+users:
+  #SFCD API team members
+  - jvergara
+  - sudha.subramanian
+  - apattan
+  - fsaltaji
+  - apoorv.mahajan
+  - abhishek.shukla
