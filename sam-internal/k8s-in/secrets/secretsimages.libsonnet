@@ -42,14 +42,13 @@ local secretsreleases = import "secretsreleases.json";
     ),
 
     # These are the images used by the templates
-    k4aCaimanWdPhaseNum(canary=false): std.parseInt($.sswatchdogPhase(canary)),
-
     sswatchdog(canary=false): imageFunc.do_override_for_pipeline_image($.overrides, null, "secretservice-watchdog", secretsreleases[$.sswatchdogPhase(canary)].sswatchdog.label),
     sswatchdog_build(canary=false): imageFunc.build_info_from_tag(secretsreleases[$.sswatchdogPhase(canary)].sswatchdog.label).buildNumber,
 
     k4aSamWatchdog: imageFunc.do_override_for_pipeline_image($.overrides, "sam", "hypersam", secretsreleases[$.k4aSamWatchdogPhase].k4asamwatchdog.label),
     k4aSamWatchdog_build: imageFunc.build_info_from_tag(secretsreleases[$.k4aSamWatchdogPhase].k4asamwatchdog.label).buildNumber,
 
+    k4aCaimanWdPhaseNum(canary=false): std.parseInt($.sswatchdogPhase(canary)),
     k4aCaimanWatchdog(canary=false): imageFunc.do_override_for_pipeline_image($.overrides, null, "k4a-caiman-watchdog", secretsreleases[$.sswatchdogPhase(canary)].k4acaimanwatchdog.label),
     k4aCaimanWatchdog_build(canary=false): imageFunc.build_info_from_tag(secretsreleases[$.sswatchdogPhase(canary)].k4acaimanwatchdog.label).buildNumber,
 
