@@ -2,37 +2,13 @@
 #If you are updating it, there is a high chance you need to update k8s-out/access.yaml
 #and sam-internal/access.yaml
 users:
-  #SAM team members
+  # This should be a small list.  Changes to this folder can easily break the pipeline or even break production apps
   - adhoot
-  - cbatra
-  - cdebains
   - d.smith
-  - jiayi.yan
-  - keith.smith
   - mayank.kumar
   - prabh.singh
-  - prahlad.joshi
-  - rbhat
-  - ssandke
   - thargrove
-  - xiao.zhou
-  - lizhang.li
-  - a.mitra
-  - alok.bansal
-  - amol.deshmukh
-  - ankan.mukherjee
-  - karim.elmaaroufi
   - tkuznets
-  - rgade
   - min.wang
-  - maureen.long
   - vyjayanthi.raja
-  - paverbuj
   - mgrass
-  - h.udhayakumar
-  - pperger
-  - hsuanyu.chen
-  - nkatta
-  - lmacneil
-  - p.allen
-  - pferriola

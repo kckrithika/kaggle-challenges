@@ -2,27 +2,11 @@
 #If you are updating it, there is a high chance you need to update k8s-out/access.yaml
 #and tnrp/access.yaml
 users:
-  #SAM team members
+  # This should be a small set of folks who only need to approve new teams
+  # Please rely on the per-team access.yaml for everything else
   - adhoot
-  - cdebains
-  - d.smith
-  - jiayi.yan
   - mayank.kumar
-  - prabh.singh
-  - small
   - thargrove
-  - arijeetmitra
   - tkuznets
-  - min.wang
-  - h.udhayakumar
-  - lmacneil
-  - p.allen
-  - pferriola
-  # SAM partners
   - mgrass
   - vyjayanthi.raja
-  - nkatta
-  - shravya.srinivas
-  - jiaqi.wu
-  - victor.li
-  - hammondpang
