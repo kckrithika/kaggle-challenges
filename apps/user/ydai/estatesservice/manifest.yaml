@@ -14,7 +14,7 @@ system:
         type: client
     containers:
     - name: estatesservice
-      image: dva/estates/estatesservice:46
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/ydai/estatesservice:ydai-20191023
       ports:
       - containerPort: 9090
       livenessProbe:
