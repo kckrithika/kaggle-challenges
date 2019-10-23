@@ -14,7 +14,7 @@ system:
           maxUnavailable: 1
       containers:
       - name: prd-maiev-receiver-stage
-        image: dva/maiev-receiver:jenkins-CASP-maiev-alex-nginx-add-7-itest
+        image: dva/maiev-receiver:jenkins-CASP-maiev-alex-ajna-handler-2-itest
         ports:
         - name: receiver-grpc
           containerPort: 7442
@@ -44,12 +44,17 @@ system:
         volumeMounts:
         - mountPath: /home/sfdc-maiev/certs
           name: maievservercert
+        - mountPath: /etc/pki_service/sfdc/maiev_agent
+          name: maievclientcert
       volumes:
       - name: maievservercert
         maddogCert:
           type: server
           lbnames:
           - maiev-receiver-stage
+      - name: maievclientcert
+        maddogCert:
+          type: client
     loadbalancers:
     - lbname: maiev-receiver-stage
       function: maiev-receiver-func-stage
