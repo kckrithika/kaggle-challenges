@@ -1,0 +1,12 @@
+- lbname: helloselfservice2
+  iptype: private_nonreserved
+  customlbname: hammond-prd-sdc
+  cnames:
+   - cname: slb-migration.slb.sfdc.net
+  servers:
+   - shared0-sdcsamcompute1-3-prd.eng.sfdc.net
+   - shared0-sdcsamcompute1-5-prd.eng.sfdc.net
+  ports:
+   - port: 80
+     targetport: 12087
+     lbtype: http
