@@ -1,4 +1,5 @@
 - lbname: ops0-dvaregistryssl1-0-prd
+  iptype: private_reserved
   customlbname: ops0-dvaregistryssl1-0-prd
   servers:
     - strataregproxy0ops0-strataregproxy1-1-prd.eng.sfdc.net
