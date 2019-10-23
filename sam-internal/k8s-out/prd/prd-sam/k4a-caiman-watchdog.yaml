@@ -33,6 +33,16 @@ items:
           sam.data.sfdc.net/owner: secrets
         namespace: sam-system
       spec:
+        affinity:
+          podAntiAffinity:
+            requiredDuringSchedulingIgnoredDuringExecution:
+            - labelSelector:
+                matchExpressions:
+                - key: name
+                  operator: In
+                  values:
+                  - k4a-caiman-watchdog-crd11
+              topologyKey: kubernetes.io/hostname
         containers:
         - args:
           - java
@@ -114,6 +124,7 @@ items:
             name: maddog-certs
           - mountPath: /tokens
             name: sam-maddog-token
+        hostNetwork: true
         initContainers:
         - args:
           - /sam/madkub-client
@@ -200,6 +211,16 @@ items:
           sam.data.sfdc.net/owner: secrets
         namespace: sam-system
       spec:
+        affinity:
+          podAntiAffinity:
+            requiredDuringSchedulingIgnoredDuringExecution:
+            - labelSelector:
+                matchExpressions:
+                - key: name
+                  operator: In
+                  values:
+                  - k4a-caiman-watchdog-crd12
+              topologyKey: kubernetes.io/hostname
         containers:
         - args:
           - java
@@ -281,6 +302,7 @@ items:
             name: maddog-certs
           - mountPath: /tokens
             name: sam-maddog-token
+        hostNetwork: true
         initContainers:
         - args:
           - /sam/madkub-client
@@ -367,6 +389,16 @@ items:
           sam.data.sfdc.net/owner: secrets
         namespace: sam-system
       spec:
+        affinity:
+          podAntiAffinity:
+            requiredDuringSchedulingIgnoredDuringExecution:
+            - labelSelector:
+                matchExpressions:
+                - key: name
+                  operator: In
+                  values:
+                  - k4a-caiman-watchdog-crd21
+              topologyKey: kubernetes.io/hostname
         containers:
         - args:
           - java
@@ -448,6 +480,7 @@ items:
             name: maddog-certs
           - mountPath: /tokens
             name: sam-maddog-token
+        hostNetwork: true
         initContainers:
         - args:
           - /sam/madkub-client
@@ -534,6 +567,16 @@ items:
           sam.data.sfdc.net/owner: secrets
         namespace: sam-system
       spec:
+        affinity:
+          podAntiAffinity:
+            requiredDuringSchedulingIgnoredDuringExecution:
+            - labelSelector:
+                matchExpressions:
+                - key: name
+                  operator: In
+                  values:
+                  - k4a-caiman-watchdog-crd22
+              topologyKey: kubernetes.io/hostname
         containers:
         - args:
           - java
@@ -615,6 +658,7 @@ items:
             name: maddog-certs
           - mountPath: /tokens
             name: sam-maddog-token
+        hostNetwork: true
         initContainers:
         - args:
           - /sam/madkub-client
@@ -701,6 +745,16 @@ items:
           sam.data.sfdc.net/owner: secrets
         namespace: sam-system
       spec:
+        affinity:
+          podAntiAffinity:
+            requiredDuringSchedulingIgnoredDuringExecution:
+            - labelSelector:
+                matchExpressions:
+                - key: name
+                  operator: In
+                  values:
+                  - k4a-caiman-watchdog-prd11
+              topologyKey: kubernetes.io/hostname
         containers:
         - args:
           - java
@@ -782,6 +836,7 @@ items:
             name: maddog-certs
           - mountPath: /tokens
             name: sam-maddog-token
+        hostNetwork: true
         initContainers:
         - args:
           - /sam/madkub-client
@@ -868,6 +923,16 @@ items:
           sam.data.sfdc.net/owner: secrets
         namespace: sam-system
       spec:
+        affinity:
+          podAntiAffinity:
+            requiredDuringSchedulingIgnoredDuringExecution:
+            - labelSelector:
+                matchExpressions:
+                - key: name
+                  operator: In
+                  values:
+                  - k4a-caiman-watchdog-prd12
+              topologyKey: kubernetes.io/hostname
         containers:
         - args:
           - java
@@ -949,6 +1014,7 @@ items:
             name: maddog-certs
           - mountPath: /tokens
             name: sam-maddog-token
+        hostNetwork: true
         initContainers:
         - args:
           - /sam/madkub-client
@@ -1035,6 +1101,16 @@ items:
           sam.data.sfdc.net/owner: secrets
         namespace: sam-system
       spec:
+        affinity:
+          podAntiAffinity:
+            requiredDuringSchedulingIgnoredDuringExecution:
+            - labelSelector:
+                matchExpressions:
+                - key: name
+                  operator: In
+                  values:
+                  - k4a-caiman-watchdog-prd21
+              topologyKey: kubernetes.io/hostname
         containers:
         - args:
           - java
@@ -1116,6 +1192,7 @@ items:
             name: maddog-certs
           - mountPath: /tokens
             name: sam-maddog-token
+        hostNetwork: true
         initContainers:
         - args:
           - /sam/madkub-client
@@ -1202,6 +1279,16 @@ items:
           sam.data.sfdc.net/owner: secrets
         namespace: sam-system
       spec:
+        affinity:
+          podAntiAffinity:
+            requiredDuringSchedulingIgnoredDuringExecution:
+            - labelSelector:
+                matchExpressions:
+                - key: name
+                  operator: In
+                  values:
+                  - k4a-caiman-watchdog-prd22
+              topologyKey: kubernetes.io/hostname
         containers:
         - args:
           - java
@@ -1283,6 +1370,7 @@ items:
             name: maddog-certs
           - mountPath: /tokens
             name: sam-maddog-token
+        hostNetwork: true
         initContainers:
         - args:
           - /sam/madkub-client
@@ -1369,6 +1457,16 @@ items:
           sam.data.sfdc.net/owner: secrets
         namespace: sam-system
       spec:
+        affinity:
+          podAntiAffinity:
+            requiredDuringSchedulingIgnoredDuringExecution:
+            - labelSelector:
+                matchExpressions:
+                - key: name
+                  operator: In
+                  values:
+                  - k4a-caiman-watchdog-prdfailover
+              topologyKey: kubernetes.io/hostname
         containers:
         - args:
           - java
@@ -1448,6 +1546,7 @@ items:
             name: maddog-certs
           - mountPath: /tokens
             name: sam-maddog-token
+        hostNetwork: true
         initContainers:
         - args:
           - /sam/madkub-client
