@@ -17,7 +17,7 @@ system:
   loadbalancers:
   - lbname: samhellolb
     annotations:
-      slb.sfdc.net/iptype: private_nonreserved
+      slb.sfdc.net/iptype: private_reserved
     function: default
     slbenabled: true
     ports:
