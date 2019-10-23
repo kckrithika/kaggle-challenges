@@ -69,6 +69,8 @@ system:
       - name: SECURITY_SERVER_DYNAMICKEYSTORE_CAFILE
         value: /servercerts/ca/cacerts.pem
       - name: SFDC_ENVIRONMENT
+        value: mist60
+      - name: MDS_ENVIRONMENT
         value: mist
       - name: TENANT_SOURCE_KEYS
         value: core/mist60ice1/00Dx00000005SubEAE,commercecloud/production/bbkhprd,cre/mist60ice1/00Dx00000005SuREAU
