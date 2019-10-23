@@ -1130,7 +1130,7 @@ items:
           - -estate=yhu-flowsnake_prod
           env:
           - name: DOCKER_TAG
-            value: "18"
+            value: "22"
           - name: S3_PROXY_HOST
             value: public0-proxy1-0-yhu.data.sfdc.net
           - name: DRIVER_SERVICE_ACCOUNT
@@ -1146,7 +1146,7 @@ items:
             value: yhu
           - name: ESTATE
             value: yhu-flowsnake_prod
-          image: ops0-artifactrepo1-0-yhu.data.sfdc.net/dva/flowsnake-spark-on-k8s-integration-test-runner:18
+          image: ops0-artifactrepo1-0-yhu.data.sfdc.net/dva/flowsnake-spark-on-k8s-integration-test-runner:22
           imagePullPolicy: IfNotPresent
           name: watchdog
           resources:

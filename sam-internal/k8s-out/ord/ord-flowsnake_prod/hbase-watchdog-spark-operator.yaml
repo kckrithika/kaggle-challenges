@@ -29,7 +29,7 @@ spec:
         - -emailFrequency=24h
         - -timeout=2s
         - -funnelEndpoint=ajna0-funnel1-0-ord.data.sfdc.net:80
-        - --config=/config/watchdog.json
+        - --config=/config/hbase-watchdog.json
         - -cliCheckerCommandTarget=SparkHbaseIntegrationTest
         - --hostsConfigFile=/sfdchosts/hosts.json
         - -watchdogFrequency=1m
@@ -38,7 +38,7 @@ spec:
         - -includeCommandOutput=true
         env:
         - name: DOCKER_TAG
-          value: "20"
+          value: "22"
         - name: S3_PROXY_HOST
           value: public0-proxy1-0-ord.data.sfdc.net
         - name: DRIVER_SERVICE_ACCOUNT
@@ -54,7 +54,7 @@ spec:
           value: ord
         - name: ESTATE
           value: ord-flowsnake_prod
-        image: ops0-artifactrepo1-0-ord.data.sfdc.net/dva/flowsnake-spark-on-k8s-integration-test-runner:20
+        image: ops0-artifactrepo1-0-ord.data.sfdc.net/dva/flowsnake-spark-on-k8s-integration-test-runner:22
         imagePullPolicy: IfNotPresent
         name: watchdog
         resources:
@@ -202,7 +202,7 @@ spec:
       serviceAccountName: watchdog-spark-operator-serviceaccount
       volumes:
       - configMap:
-          name: watchdog
+          name: hbase-watchdog
         name: config
       - configMap:
           defaultMode: 493
