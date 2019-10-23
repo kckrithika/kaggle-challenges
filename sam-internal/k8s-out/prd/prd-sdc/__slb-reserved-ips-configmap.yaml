@@ -1,6 +1,10 @@
 apiVersion: v1
 data:
-  slb-reserved-ips-prd.json: '{}'
+  slb-reserved-ips-prd.json: |-
+    {
+      "hammond-prd-sdc.slb.sfdc.net": "10.254.247.11",
+      "samhellolb.user-amushtaq.prd-sdc.prd.slb.sfdc.net": "10.254.247.109"
+    }
 kind: ConfigMap
 metadata:
   creationTimestamp: null
