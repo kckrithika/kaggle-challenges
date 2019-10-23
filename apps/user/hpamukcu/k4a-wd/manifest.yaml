@@ -13,7 +13,7 @@ system:
       - "-jar"
       - "/caiman-watchdog/caiman-watchdog-0.0.15-SNAPSHOT.jar"
       - "-secretsFile"
-      - "/caiman-watchdog/classes/samapp.user-hpamukcu.k4a-watchdog-prd.zip"
+      - "/caiman-watchdog/classes/samapp.user-unknown.k4a-watchdog-prd.zip"
       - "-certPath"
       - "/clientcert"
       - "-sleepTime"
