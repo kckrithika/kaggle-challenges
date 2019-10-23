@@ -96,6 +96,8 @@ system:
         value: nagios-adapter
       - name: CHS_REPORTCOLLECTOR_OBSWHITELIST
         value: netmgt.nhal_client,netmgt.sandman,sandman
+      - name: CHS_REPORTCOLLECTOR_OBSWHITELISTUNTRUSTED
+        value: infrastructure-observer.grok
       - name: CHS_REPORTCOLLECTOR_WDPOLLPERIOD
         value: 60s
       - name: CHS_REPORTCOLLECTOR_OBSPOLLPERIOD
@@ -115,10 +117,8 @@ system:
 
         case ${KINGDOM} in
           prd | dfw)
-            export CHS_REPORTCOLLECTOR_OBSWHITELISTUNTRUSTED=infrastructure-observer.grok ;
             ;;
           *)
-            export CHS_REPORTCOLLECTOR_OBSWHITELISTUNTRUSTED=infrastructure-observer.system ;
             ;;
         esac;
         
