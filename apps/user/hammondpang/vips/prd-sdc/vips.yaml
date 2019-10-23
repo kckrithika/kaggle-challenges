@@ -1,5 +1,5 @@
 - lbname: helloselfservice2
-  iptype: private_nonreserved
+  iptype: private_reserved
   customlbname: hammond-prd-sdc
   cnames:
    - cname: slb-migration.slb.sfdc.net
