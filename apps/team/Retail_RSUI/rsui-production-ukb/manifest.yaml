@@ -86,7 +86,7 @@ system:
       - name: CRE_SERVER_TARGET
         value: http://cre-api.retail-cre.localhost.mesh.force.com:5442
       - name: CRE_CP_SERVER_TARGET
-        value: ttp://cre-control-plane.retail-cre.localhost.mesh.force.com:5442
+        value: http://cre-control-plane.retail-cre.localhost.mesh.force.com:5442
       - name: C2C_PATH
         value: https://cloudatlas.salesforce.com/empire/cloudatlas/scim
       - name: CORE_OAUTH_URL
