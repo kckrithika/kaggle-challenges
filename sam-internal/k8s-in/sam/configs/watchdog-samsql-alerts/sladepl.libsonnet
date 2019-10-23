@@ -45,6 +45,11 @@
                              AND NOT
                              (controlestate like 'cdg-sam' AND namespace like 'mc-eventing' AND now() < STR_TO_DATE('2019-03-21', '%Y-%m-%d'))
                              AND NOT
-                             (controlestate like 'frf-sam' AND namespace like 'casp' AND now() < STR_TO_DATE('2019-03-21', '%Y-%m-%d'))",
+                             (controlestate like 'frf-sam' AND namespace like 'casp' AND now() < STR_TO_DATE('2019-03-21', '%Y-%m-%d'))"
+                             
+                           # Only report bad deployments for specific namespaces to avoid flaky alert triggered by abandond old apps 
+                             + "
+                             AND
+                             ((namespace like 'retail%') OR (namespace like 'cloudatlas') OR (namespace like 'gater'))",
 
     }

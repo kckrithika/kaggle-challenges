@@ -295,9 +295,11 @@ data:
     NOT\n                             (controlestate like ''cdg-sam'' AND namespace
     like ''mc-eventing'' AND now() < STR_TO_DATE(''2019-03-21'', ''%Y-%m-%d''))\n                             AND
     NOT\n                             (controlestate like ''frf-sam'' AND namespace
-    like ''casp'' AND now() < STR_TO_DATE(''2019-03-21'', ''%Y-%m-%d''))", "watchdogFrequency":
-    "10m"}, {"alertAction": "businesshours_pagerduty", "alertFrequency": "336h", "alertProfile":
-    "sam", "alertThreshold": "5m", "name": "ConnectivityChecker", "sql": "select\n                           TRIM(''connectivitylabelerchecker-''
+    like ''casp'' AND now() < STR_TO_DATE(''2019-03-21'', ''%Y-%m-%d''))\n                             AND\n                             ((namespace
+    like ''retail%'') OR (namespace like ''cloudatlas'') OR (namespace like ''gater''))",
+    "watchdogFrequency": "10m"}, {"alertAction": "businesshours_pagerduty", "alertFrequency":
+    "336h", "alertProfile": "sam", "alertThreshold": "5m", "name": "ConnectivityChecker",
+    "sql": "select\n                           TRIM(''connectivitylabelerchecker-''
     FROM name) as HostName,\n                           controlestate,\n                           Payload->>''$.status.report.Target''
     as Target,\n                           Payload->>''$.status.report.Success'' as
     Connectivity,\n                           TIMESTAMPDIFF(MINUTE, STR_TO_DATE(Payload->>''$.status.report.ReportCreatedAt'',
