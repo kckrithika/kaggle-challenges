@@ -5,7 +5,7 @@ system:
       count: 1
       containers:
         - name: gid-sdb
-          image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/hub-persistence/sdb:0.0.3
+          image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/gid/sdb:1.0.0
           imagePullPolicy: Always
           ports:
             - containerPort: 5432
