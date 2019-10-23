@@ -56,13 +56,14 @@
                 "*.kms.slb.sfdc.net",
                 "*.moe." + configs.estate + "." + configs.kingdom + ".slb.sfdc.net",
                 "*.internal.salesforce.com",
-            ] + (if configs.estate == "prd-sam" || configs.estate == "prd-samtwo" then (steamVipSans + [
+            ] + (if configs.estate == "prd-sam" then (steamVipSans + [
                 "*.retail-rsui." + configs.estate + "." + configs.kingdom + ".slb.sfdc.net",
                 "*.stmfa.stm.salesforce-hub.com",
                 "*.my.stmfa.stm.salesforce-hub.com",
                 "*.my.stmfb.stm.salesforce-hub.com",
                 "*.my.mist60.stm.salesforce-hub.com",
-            ]) else []),
+            ]) else [])
+            + (if configs.estate == "prd-samtwo" then (["*.dop.sfdc.net"]) else []),
         },
     },
 
