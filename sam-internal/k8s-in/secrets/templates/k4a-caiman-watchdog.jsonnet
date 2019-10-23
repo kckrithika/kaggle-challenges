@@ -2,6 +2,7 @@ local configs = import "config.jsonnet";
 local secretsconfigs = import "secretsconfig.libsonnet";
 local secretsimages = (import "secretsimages.libsonnet") + { templateFilename:: std.thisFile };
 local madkub = (import "secretsmadkub.libsonnet") + { templateFileName:: std.thisFile };
+local secretsflights = (import "secretsflights.jsonnet");
 local utils = import "util_functions.jsonnet";
 
 local certDirs = ["client-certs"];
@@ -71,10 +72,29 @@ local getInstanceDataWithDefaults(instanceTag) = (
 # When requesting maddog certs for the watchdog in hio/ttd, madkubserver enforces that the request's
 # IP address matches the IP address of the requesting pod. However, for non-host network pods, there's
 # currently an issue where the request is proxied by the host, so madkubserver ends up seeing the host's
-# IP address instead of the pod's IP address and fails the request.
-# As a workaround, use host network for the pod in gia. This ensures the pod's IP address matches the
-# host's IP address, and madkubserver thus allows the request.
-local hostNetworkIfGia = if utils.is_gia(configs.kingdom) then { hostNetwork: true } else {};
+# IP address instead of the pod's IP address and fails the request. So we need to use hostnetwork in gia.
+# For other sites we want to run the Caiman watchdog on host network to minimize the number of IP addresses
+# we consume.
+local hostNetworkIfEnabled(canary) = if utils.is_gia(configs.kingdom) || secretsflights.caimanWdSecondReplicaEnabled(canary) then { hostNetwork: true } else {};
+
+local podAntiAffinityIfEnabled(podLabel, canary) = if secretsflights.caimanWdSecondReplicaEnabled(canary) then {
+  affinity: {
+     podAntiAffinity: {
+        requiredDuringSchedulingIgnoredDuringExecution: [{
+           labelSelector: {
+             matchExpressions: [{
+                key: "name",
+                operator: "In",
+                values: [
+                  podLabel,
+                ],
+             }],
+           },
+        topologyKey: "kubernetes.io/hostname",
+      }],
+     },
+  },
+} else {};
 
 local k4aWatchdogDeployment(instanceTag) = configs.deploymentBase("secrets") {
   local instanceData = getInstanceDataWithDefaults(instanceTag),
@@ -86,7 +106,7 @@ local k4aWatchdogDeployment(instanceTag) = configs.deploymentBase("secrets") {
     namespace: "sam-system",
   },
   spec+: {
-    replicas: 1,
+    replicas: if secretsflights.caimanWdSecondReplicaEnabled(instanceData.canary) then 2 else 1,
     template: {
       metadata: {
         annotations: {
@@ -137,7 +157,8 @@ local k4aWatchdogDeployment(instanceTag) = configs.deploymentBase("secrets") {
       }
       + configs.nodeSelector
       + secretsconfigs.samPodSecurityContext
-      + hostNetworkIfGia,
+      + hostNetworkIfEnabled(instanceData.canary)
+      + podAntiAffinityIfEnabled(instanceData.name, instanceData.canary),
     },
   },
 };
