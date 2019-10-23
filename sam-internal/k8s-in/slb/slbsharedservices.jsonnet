@@ -237,21 +237,13 @@
     + (if slbflights.roleEnabled then [
       "--isRoleUsed=true",
     ] else [])
-    + (if slbimages.phaseNum <= 4
-    then
-    [
-          "--metricsEndpoint=" + configs.funnelVIP,
-          "--vcioptions.strict=false",
-          "--client.allowStale=true",
-          "--control.manifestWatcherSentinel=" + mwSentinel,
-    ]
-    else
+    +
     [
       "--metricsEndpoint=" + configs.funnelVIP,
-      "--vcioptions.strict=true",
+      "--vcioptions.strict=false",
       "--client.allowStale=true",
       "--control.manifestWatcherSentinel=" + mwSentinel,
-    ]) + (if std.length(supportedProxies) > 0 then [
+    ] + (if std.length(supportedProxies) > 0 then [
       "--pipeline.supportedProxies=" + std.join(",", supportedProxies),
     ] else [])
     + (if includeSlbPortalOverride then [
