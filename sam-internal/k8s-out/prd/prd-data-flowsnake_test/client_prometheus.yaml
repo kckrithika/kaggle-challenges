@@ -17,7 +17,8 @@ items:
       "target_label": "__address__"}, {"source_labels": ["__meta_kubernetes_pod_node_name"],
       "target_label": "device"}, {"source_labels": ["__meta_kubernetes_pod_label_spark_role"],
       "target_label": "spark_role"}, {"source_labels": ["__meta_kubernetes_pod_label_spark_exec_id"],
-      "target_label": "spark_executor_id"}]}]}'
+      "target_label": "spark_executor_id"}, {"source_labels": ["__meta_kubernetes_pod_label_sparkoperator_k8s_io_app_name"],
+      "target_label": "spark_app_name"}]}]}'
   kind: ConfigMap
   metadata:
     labels:

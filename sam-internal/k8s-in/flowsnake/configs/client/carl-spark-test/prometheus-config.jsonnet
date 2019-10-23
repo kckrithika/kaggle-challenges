@@ -69,6 +69,10 @@
         {
           source_labels: [ "__meta_kubernetes_pod_label_spark_exec_id" ],
           target_label: "spark_executor_id",
+        },
+        {
+          source_labels: [ "__meta_kubernetes_pod_label_sparkoperator_k8s_io_app_name" ],
+          target_label: "spark_app_name",
         }
       ],
       
