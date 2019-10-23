@@ -76,7 +76,7 @@ system:
           port: 15372
           scheme: HTTP
     - name: sherpa-dfs
-      image: sfci/servicelibs/sherpa-envoy:1.0.13
+      image: sfci/servicelibs/sherpa-envoy:1.0.4
       args:
       - --server-ca
       - /server-certs/ca_test/cacerts.pem
