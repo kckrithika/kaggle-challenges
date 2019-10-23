@@ -301,6 +301,10 @@
     "xrd-sam": {
       "ssh-to-somewhere-slb-xrd.slb.sfdc.net": "10.229.32.129",
       "check-slb-xrd.slb.sfdc.net": "10.229.32.128"
+    },
+    "prd-sdc": {
+      "hammond-prd-sdc.slb.sfdc.net": "10.254.247.11",
+      "samhellolb.user-amushtaq.prd-sdc.prd.slb.sfdc.net": "10.254.247.109"
     }
   }
 }
