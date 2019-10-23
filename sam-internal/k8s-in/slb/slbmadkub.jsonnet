@@ -62,7 +62,8 @@
                 "*.my.stmfa.stm.salesforce-hub.com",
                 "*.my.stmfb.stm.salesforce-hub.com",
                 "*.my.mist60.stm.salesforce-hub.com",
-            ]) else []),
+            ]) else [])
+            + (if configs.estate == "prd-samtwo" then (["*.dop.sfdc.net"]) else []),
         },
     },
 
