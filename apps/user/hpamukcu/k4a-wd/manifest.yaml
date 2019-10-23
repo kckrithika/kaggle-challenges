@@ -6,7 +6,7 @@ system:
     count: 1
     containers:
     - name: k4a-watchdog
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/hpamukcu/caiman-watchdog/k4a-20191022:latest
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/hpamukcu/caiman-watchdog/k4a-20191022-2:latest
       command:
       - "java"
       - "-Duser.home=/tmp"
