@@ -101,6 +101,8 @@ spec:
         - --keepaliveMaxServerConnectionAge
         - 30m
         - --secureGrpcAddr=
+        - --resync
+        - 5m
         env:
         - name: ESTATE
           value: prd-samtest

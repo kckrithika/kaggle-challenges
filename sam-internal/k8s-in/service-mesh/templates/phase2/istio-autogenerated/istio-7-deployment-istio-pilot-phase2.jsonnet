@@ -127,6 +127,8 @@ if (istioPhases.phaseNum == 2) then
               "--keepaliveMaxServerConnectionAge",
               "30m",
               "--secureGrpcAddr=",
+              "--resync",
+              "5m",
             ],
             env: [
               {
