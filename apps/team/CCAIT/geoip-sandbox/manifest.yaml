@@ -9,22 +9,18 @@ system:
     labels:
       app: geoip
     containers:
-    
     - name: geoip
-      image: sfci/services/sfdc-bazel/service-mesh/geoip:92f89ae98 # monorepo build
+      image: sfci/services/sfdc-bazel/service-mesh/geoip:c51567428 # monorepo build
       env:
-      - name: JAVA_OPTS
-        value: -Xms1g -Xmx1g
       - name: FAKE_ENV_VAR_INCREMENT_TO_TRIGGER_SAM_DEPLOY
-        value: "2"
+        value: "0"
       resources:
         limits:
-          cpu: "4"
-          memory: 10Gi
+          cpu: "8"
+          memory: 18Gi
         requests:
-          cpu: "4"
-          memory: 10Gi
-      
+          cpu: "8"
+          memory: 18Gi
       livenessProbe:
         httpGet:
           path: /manage/health
