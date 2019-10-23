@@ -44,7 +44,6 @@ local utils = import "util_functions.jsonnet";
                 prometheus_funnel_update: "",
                 # --- flag H (git's diff logic ... ---
                 # --- flag I (to reduce the ---
-                next_analysis_script: "test",
                 # --- flag J (likelihood of merge conflicts.) ---
                 central_prometheus_forwarder: "試行中",
             },
@@ -72,7 +71,6 @@ local utils = import "util_functions.jsonnet";
                 # --- flag G (is to assist ... ---
                 # --- flag H (git's diff logic ... ---
                 # --- flag I (to reduce the ---
-                next_analysis_script: "test",
                 # --- flag J (likelihood of merge conflicts.) ---
                 upcase_pki_kingdom: "",
             },
