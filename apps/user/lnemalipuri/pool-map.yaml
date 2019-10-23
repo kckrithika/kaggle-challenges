@@ -1,7 +1,3 @@
 apps:
- pyplyn-test-kishore:
-  - prd/prd-sam
- pyplyn-service:
-  - prd/prd-sam
- pyplyn-k8:
+ hc_pyplyn:
   - prd/prd-sam
