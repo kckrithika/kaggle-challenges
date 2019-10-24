@@ -21,7 +21,6 @@ data:
         {
           "proxyname": "slb-hsm-nginx",
           "vips": [
-            "login-cloudforce-phx.slb.sfdc.net",
             "gs0-bofa-phx.slb.sfdc.net",
             "org-cce2e-cs3-slb-phx.slb.sfdc.net",
             "org-cce2e-cs7-slb-phx.slb.sfdc.net",
