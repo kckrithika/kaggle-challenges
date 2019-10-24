@@ -132,6 +132,38 @@ if (istioPhases.phaseNum == 3) then
         "watch",
       ],
     },
+    {
+      apiGroups: [
+        "",
+      ],
+      resources: [
+        "secrets",
+      ],
+      verbs: [
+        "create",
+        "get",
+        "watch",
+        "list",
+        "update",
+        "delete",
+      ],
+    },
+    {
+      apiGroups: [
+        "certificates.k8s.io",
+      ],
+      resources: [
+        "certificatesigningrequests",
+        "certificatesigningrequests/approval",
+        "certificatesigningrequests/status",
+      ],
+      verbs: [
+        "update",
+        "create",
+        "get",
+        "delete",
+      ],
+    },
   ],
 }
 else "SKIP"
