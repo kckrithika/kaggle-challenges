@@ -7,7 +7,7 @@ system:
   functions:
   - name: cloudatlas-prd-dev-dir1-1
     identity:
-      serviceName: cloudatlas-prd-dev-dir
+      serviceName: cloudatlas-prd-dev-service
     count: 1
     strategy:
       type: RollingUpdate
@@ -16,8 +16,73 @@ system:
         maxUnavailable: 1
     hostnetwork: true
     containers:
+    #####################################################################################
+    # Service Mesh / Envoy / Sherpa
+    #####################################################################################
+    - name: sherpa-cloudatlas-client
+      image: sfci/servicelibs/sherpa-envoy:1.0.7
+      env:
+      - name: SFDC_ENVIRONMENT
+        value: "stmfa"
+      resources:
+        limits: { cpu: "1", memory: "1Gi" }
+        requests: { cpu: "1", memory: "1Gi" }
+      volumeMounts:
+      - name: client-cert
+        mountPath: /client-certs
+      - name: server-cert
+        mountPath: /server-certs
+      - mountPath: /log
+        name: logvolsherpa
+      ports:
+      - containerPort: 7012
+        name: sherpa-in
+      - containerPort: 7014
+        name: http1-in
+      - containerPort: 7442
+        name: http1-tls-in
+      - containerPort: 15373
+        name: sherpa-adm
+      livenessProbe:
+        exec:
+          command:
+          - "/home/sfdc-sherpa/bin/is-alive"
+        initialDelaySeconds: 120
+        periodSeconds: 5
+      readinessProbe:
+        exec:
+          command:
+          - "/home/sfdc-sherpa/bin/is-ready"
+        initialDelaySeconds: 110
+        periodSeconds: 5
+    #####################################################################################
+    # Service Beacon
+    #####################################################################################
+    - name: beacon-cloudatlas
+      image: sfci/servicelibs/beacon:7ad9e771192cd0b3e43393eea2e1e5c1de81dfda
+      env:
+      - name: SFDC_ENVIRONMENT
+        value: "stmfa"
+      volumeMounts:
+      - mountPath: /log
+        name: logvolbeacon
+      resources:
+        limits: { cpu: "1", memory: "1Gi" }
+        requests: { cpu: "1", memory: "1Gi" }
+      args:
+        - -endpoint
+        - $(FUNCTION_NAMESPACE)/cloudatlas-prd-dev-service:DATACENTER_ALLENV:7442
+      livenessProbe:
+        exec:
+          command:
+          - "/home/scone/is-alive.sh"
+        initialDelaySeconds: 5
+        periodSeconds: 5
+    #####################################################################################
+    # Cloud Atlas Directory Server 
+    #####################################################################################
     - name: cloudatlas-pdm-install
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cloud-atlas/cloudatlas/cloudatlas-pdm:0a9cf41
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cloud-atlas/cloudatlas/cloudatlas-pdm:e325f44
       command: ["/opt/pdm/pdm.customer/bin/entrypoint.sh"]
       env:
       - name: UBID_DEPLOYMENT_STAGE
@@ -28,6 +93,10 @@ system:
         value: public0-proxy1-0-prd.data.sfdc.net:8080
       - name: ANNOUNCE_FUNCTION
         value: cloudatlas/cloudatlas-ds
+      - name: CAST_SERVICE_SLB_URL
+        value: https://cast-stage.cast.prd-sam.prd.slb.sfdc.net:443
+      - name: AWS_BACKUP_SECRET_SERVICE_VAULT
+        value: cloud-atlas-dev
       volumeMounts:
       - mountPath: /home/sfdc-atlas
         name: hosthomevol
@@ -63,6 +132,9 @@ system:
         initialDelaySeconds: 60
         periodSeconds: 5
         failureThreshold: 120
+    #####################################################################################
+    # Volumes Needed
+    #####################################################################################
     volumes:
     - name: hosthomevol
       hostPath:
