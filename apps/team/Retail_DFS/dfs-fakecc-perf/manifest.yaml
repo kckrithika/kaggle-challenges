@@ -15,18 +15,18 @@ system:
 
     containers:
     - name: fakecc
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/hpresnall/fakecc:20191024_171314
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/hpresnall/fakecc:20191024_210735
       # associate the log directory to a logical volume.
       volumeMounts:
       - name: server-cert
         mountPath: /server-certs
       env:
       - name: DELAY
-        value: 100
+        value: 50
       - name: DEFAULT_TENANT
         value: 00Dx00000005SyTEAU
       - name: MAX_ORDER_COUNT
-        value: 200
+        value: 5
       resources:
         limits: { cpu: "4", memory: "4Gi" }
         requests: { cpu: "4", memory: "2Gi" }
