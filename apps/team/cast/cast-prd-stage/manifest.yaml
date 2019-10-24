@@ -154,7 +154,7 @@ system:
     # GID service
     #####################################################################################
     - name: gid-service
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/gid/gid-service:5e51285
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/gid/gid-service:179c76a
       imagePullPolicy: Always
       env:
         - name: directory_server_host
@@ -174,7 +174,7 @@ system:
         - name: security_client_dynamickeystore_monitoredDirectory
           value: /clientcerts/client
         - name: c2c_common_callerContext
-          value: sfdc.giddataservice
+          value: giddataservice
         - name: c2c_service_id
           value: giddataservice
       ports:
