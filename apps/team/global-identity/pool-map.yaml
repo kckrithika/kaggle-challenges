@@ -27,3 +27,5 @@ apps:
     - name: prd/prd-sam_cloudatlas
   gid-sdb:
     - name: prd/prd-sam_cloudatlas
+  gid-h2database:
+    - name: prd/prd-sam_cloudatlas
