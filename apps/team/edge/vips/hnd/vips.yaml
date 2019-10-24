@@ -1,4 +1,5 @@
 - lbname: sledge
+  iptype: public_active
   customlbname: sledge-hnd
   servers:
    - edge0-accelerator1-1-hnd.ops.sfdc.net
