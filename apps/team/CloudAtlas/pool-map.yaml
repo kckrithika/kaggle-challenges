@@ -34,13 +34,6 @@ apps:
         - test0shared0-samminionatlasdir1-2-prd.eng.sfdc.net
         - test0shared0-samminionatlasdir2-1-prd.eng.sfdc.net
 
-  # PRD-Dev Cloud Atlas Service
-  prd-dev-samminionatlasservice-prd:
-    - name: prd/prd-sam_cloudatlas_dir
-      hostSubList:
-        - test0shared0-samminionatlasdir1-2-prd.eng.sfdc.net
-        - test0shared0-samminionatlasdir2-1-prd.eng.sfdc.net
-
   # XRD Topomaster
   shared0-samminionatlasdir1-1-xrd:
     - name: xrd/xrd-sam_cloudatlas_dir
