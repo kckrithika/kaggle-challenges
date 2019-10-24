@@ -28,7 +28,7 @@ system:
       - {name: DEPLOYMENT_ID, value: prd-release}
       - {name: HANDLED_PODS_PATTERN, value: stmfa\..*|moana-driver-master}
       - {name: HANDLED_PODS_INVERT_MATCH, value: 'true'}
-      image: sfci/insights/moana-driver:release-2019.09.a.29-e7853eb
+      image: sfci/insights/moana-driver:release-2019.10.a.30-b845189
       livenessProbe:
         httpGet: {path: /manage/health, port: 15372}
         initialDelaySeconds: 30
