@@ -13,7 +13,7 @@ system:
       "routing.mesh.sfdc.net/enabled": "true"
     containers:
     - name: cre-control-plane-ccp-dev
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cre-fusion/services:controlplane.2.1.0.0.PR-946.1919629.1
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cre-fusion/services:controlplane.2.1.0.0.develop.db346e5.592
       env:
         ####################################################################################################
         ############################   ENGINE/DDS FLOWSNAKE ARTIFACTS ( Most frequently changed ) ##########
@@ -21,9 +21,9 @@ system:
         - name: INGEST_SPEC_IMAGE
           value: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cre/cre-engine:1.2.1.1.develop.7672aeb.286
         - name: EXPORT_SPEC_IMAGE
-          value: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cre/cre-dds-spark:2.1.1.fixFfFileNames.28df7e1.6
+          value: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cre/cre-dds-spark:2.1.1.develop.29e545d.76
         - name: SAVE_SPEC_IMAGE
-          value: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cre/cre-dds-spark:2.1.1.fixFfFileNames.28df7e1.6
+          value: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cre/cre-dds-spark:2.1.1.develop.29e545d.76
         ####################################################################################################
         ####################################### GLOBAL SHARED VALUES #######################################
         ####################################################################################################
@@ -56,11 +56,17 @@ system:
           value: true
         - name: BUCKET_INGEST_CONCURRENCY_CONTROL_ENABLED
           value: true
+        - name: BUCKET_INGEST_SMALL_CONCURRENCY_CONTROL
+          value: 2
         ####################################################################################################
         ####################################### SAVE environment variables ###############################
         ####################################################################################################
         - name: SAVE_ANNOTATIONS_PKI_NAME
           value: cre-engine-ccp-dev
+        - name: SAVE_CONCURRENCY_CONTROL_ENABLED
+          value: true
+        - name: SAVE_CONCURRENCY_CONTROL
+          value: 1
         - name: SAVE_EXECUTOR_INSTANCES
           value: 4
         - name: SAVE_SPARK_DEFAULT_PARALLELISM
@@ -72,6 +78,10 @@ system:
         ####################################################################################################
         - name: EXPORT_ANNOTATIONS_PKI_NAME
           value: cre-engine-ccp-dev
+        - name: EXPORT_CONCURRENCY_CONTROL_ENABLED
+          value: true
+        - name: EXPORT_CONCURRENCY_CONTROL
+          value: 2
         - name: EXPORT_DRIVER_CORES
           value: 16
         - name: EXPORT_EXECUTOR_CORES
