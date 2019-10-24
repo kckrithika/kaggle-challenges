@@ -52,7 +52,6 @@
       healthpath: "/ping.jsp"
       healthprotocol: "http"
 - lbname: sledgeapi-xrd
-  iptype: public_reserved
   # The customlbname ensures that the VIP retains its existing DNS name of sledgeapi-xrd.slb.sfdc.net
   customlbname: sledgeapi-xrd
   servers:
@@ -76,7 +75,7 @@
       healthport: 2379
       healthprotocol: "tcp"
 - lbname: external-sledgeapi-xrd
-  iptype: public_reserved
+  iptype: public_active
   customlbname: external-sledgeapi-xrd
   servers:
     - 10.210.197.194
