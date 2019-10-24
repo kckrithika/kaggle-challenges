@@ -14,13 +14,13 @@ system:
           maxUnavailable: 1
       containers:
       - name: prod-maiev-receiver
-        image: dva/maiev-receiver:54
+        image: dva/maiev-receiver:58
         ports:
         - name: receiver-grpc
           containerPort: 7442
           hostPort: 17444
         - name: receiver-http
-          containerPort: 8085
+          containerPort: 8086
           hostPort: 7022
         livenessProbe:
           exec:
@@ -35,6 +35,8 @@ system:
           value: "8085"
         - name: BASE_PATH
           value: "/v1/*"
+        - name: BRANCH
+          value: "ops_production"
         - name: NODENAME
           valueFrom:
             fieldRef:
@@ -47,4 +49,4 @@ system:
         - port: 7442
           targetport: 7442
         - port: 80
-          targetport: 8085
+          targetport: 8086
