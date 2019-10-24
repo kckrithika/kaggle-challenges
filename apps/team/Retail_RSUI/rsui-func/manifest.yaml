@@ -27,8 +27,8 @@ system:
       hostPath:
         path: /home/sfdc-retail/logs
     - name: oauth-keys
-      k4aSecret:
-        secretName: rsui-oauth-keys
+      k4aSecret: 
+        secretName: rsui-oauth-key-1
     - name: encryption-key1
       k4aSecret:
         secretName: rsui-encryption-key3
@@ -87,7 +87,7 @@ system:
       - name: RSUI_OAUTH_CALLBACK
         value: https://rsui-func-lb.retail-rsui.prd-sam.prd.slb.sfdc.net/service/oauth/callback
       - name: OAUTH_SECRETS_FILE_PATH
-        value: secrets/oauth-keys/rsui-oauth-keys.json
+        value: secrets/oauth-keys/rsui-oauth-keys-1.json
       - name: SECURITY_ENCRYPTION_KEY1_PATH
         value: secrets/encryption-key1/rsui-encryption-key3.key
       - name: SECURITY_ENCRYPTION_KEY2_PATH
