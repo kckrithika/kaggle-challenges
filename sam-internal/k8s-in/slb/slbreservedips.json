@@ -222,7 +222,7 @@
       "hammond-alpha-slb-prd.slb.sfdc.net":  "96.43.157.120"
     },
     "xrd-sam": {
-      "_sledgeapi-xrd.slb.sfdc.net": "136.146.48.1",
+      "external-sledgeapi-xrd.slb.sfdc.net": "136.146.48.1",
       "sledge-xrd.slb.sfdc.net": "136.146.67.13"
     }
   },
