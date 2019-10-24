@@ -153,6 +153,11 @@
       "--client.serverInterface=lo",
       "--control.realsvrCfgSentinel=" + realsvrCfgSentinel,
     ]
+    + (if slbimages.phaseNum <= 1 then
+    [
+    "--metricsEndpoint=" + configs.funnelVIP,
+    "--hostnameOverride=$(NODE_NAME)",
+    ] else [])
     + (if $.dirSuffix == "slb-nginx-config-b" then [
       "--control.sentinelExpiration=1200s",
     ] else [])
@@ -161,15 +166,21 @@
     ]
     + slbconfigs.getNodeApiClientSocketSettings()
     + ["--maxDeleteVipCount=" + slbconfigs.maxDeleteLimit(deleteLimitOverride)],
+}
+    + (if slbimages.phaseNum <= 1 then {
+        env: [
+          slbconfigs.node_name_env,
+        ],
+    } else {}) + {
     volumeMounts: std.prune([
-      slbconfigs.slb_volume_mount,
-      slbconfigs.sbin_volume_mount,
-      slbconfigs.logs_volume_mount,
-      configs.sfdchosts_volume_mount,
-    ]),
-    securityContext: {
-      privileged: true,
-    },
+          slbconfigs.slb_volume_mount,
+          slbconfigs.sbin_volume_mount,
+          slbconfigs.logs_volume_mount,
+          configs.sfdchosts_volume_mount,
+        ]),
+        securityContext: {
+          privileged: true,
+        },
   },
   slbFileWatcher: {
     name: "slb-file-watcher",
