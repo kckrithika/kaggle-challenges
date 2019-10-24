@@ -21,7 +21,7 @@ system:
         - name: STAGING_FAWKES
           value: "True"
         - name: STAGING_ENABLE_SENSOR
-          value: "True"
+          value: "False"
         - name: HTTP_PROXY
           value: "http://public0-proxy1-0-prd.data.sfdc.net:8080"
         - name: HTTPS_PROXY
