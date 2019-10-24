@@ -36,7 +36,7 @@ spec:
         - /sdn/slb-node-os-stats
         - --metricsEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80
         - --log_dir=/host/data/slb/logs/
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/slb/hyperslb:2259-3002cff5bf942bc89c0c879f5d1a0d7e345d4dd2
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/slb/hyperslb:2260-c0f8b413769cc130d6b3fef429c3008de08425a3
         name: slb-node-os-stats
         resources:
           limits:
