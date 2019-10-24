@@ -66,7 +66,7 @@ system:
       - {name: STARTUP_JOB_ENABLED, value: 'false'}
       - {name: HANDLED_PODS_PATTERN, value: stmfa\..*|moana-driver-master}
       - {name: HANDLED_PODS_INVERT_MATCH, value: 'true'}
-      image: sfci/insights/jobcontroller:release-2019.10.a.31-7bfd352
+      image: sfci/insights/jobcontroller:release-2019.10.a.32-7bfd352
       livenessProbe:
         httpGet: {path: /manage/health, port: 15372}
         initialDelaySeconds: 90
