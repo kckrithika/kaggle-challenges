@@ -27,7 +27,6 @@ data:
           "proxyname": "slb-hsm-nginx",
           "vips": [
             "mist51-app-hsm-prd.slb.sfdc.net",
-            "mist51-app-prd.slb.sfdc.net",
             "encinoman1-slawrance-prd.slb.sfdc.net",
             "encinoman2-slawrance-prd.slb.sfdc.net",
             "encinoman3-slawrance-prd.slb.sfdc.net",

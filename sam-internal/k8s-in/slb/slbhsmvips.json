@@ -1,7 +1,6 @@
 { 
   "prd-sam":[ 
     "mist51-app-hsm-prd.slb.sfdc.net",
-    "mist51-app-prd.slb.sfdc.net",
     "encinoman1-slawrance-prd.slb.sfdc.net",
     "encinoman2-slawrance-prd.slb.sfdc.net",
     "encinoman3-slawrance-prd.slb.sfdc.net",
@@ -23,7 +22,6 @@
     "vonage-mist51-na1-slb-prd.slb.sfdc.net"
   ],
   "phx-sam":[ 
-    "login-cloudforce-phx.slb.sfdc.net",
     "gs0-bofa-phx.slb.sfdc.net",
     "org-cce2e-cs3-slb-phx.slb.sfdc.net",
     "org-cce2e-cs7-slb-phx.slb.sfdc.net",
@@ -60,7 +58,6 @@
     "org-cce2e-na47-slb-phx.slb.sfdc.net"
   ],
   "dfw-sam":[ 
-    "login-cloudforce-dfw.slb.sfdc.net",
     "gs0-bofa-dfw.slb.sfdc.net",
     "org-cce2e-cs3-slb-dfw.slb.sfdc.net",
     "org-cce2e-cs7-slb-dfw.slb.sfdc.net",
