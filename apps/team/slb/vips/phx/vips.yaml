@@ -1,5 +1,5 @@
 - lbname: org-cce2e-cs3
-  iptype: public_reserved
+  iptype: public_active
   servers:
     - cs3-app1-4-phx.ops.sfdc.net
     - cs3-app2-5-phx.ops.sfdc.net
@@ -82,7 +82,7 @@
 
 
 - lbname: org-cce2e-cs7
-  iptype: public_reserved
+  iptype: public_active
   servers:
     - cs7-app1-1-phx.ops.sfdc.net
     - cs7-app2-5-phx.ops.sfdc.net
@@ -165,7 +165,7 @@
 
 
 - lbname: org-cce2e-cs9
-  iptype: public_reserved
+  iptype: public_active
   servers:
     - cs9-app2-2-phx.ops.sfdc.net
     - cs9-app1-3-phx.ops.sfdc.net
@@ -248,7 +248,7 @@
 
 
 - lbname: org-cce2e-cs10
-  iptype: public_reserved
+  iptype: public_active
   servers:
     - cs10-app1-3-phx.ops.sfdc.net
     - cs10-app1-2-phx.ops.sfdc.net
@@ -330,7 +330,7 @@
 
 
 - lbname: org-cce2e-cs11
-  iptype: public_reserved
+  iptype: public_active
   servers:
     - cs11-app1-1-phx.ops.sfdc.net
     - cs11-app1-2-phx.ops.sfdc.net
@@ -413,7 +413,7 @@
 
 
 - lbname: org-cce2e-cs12
-  iptype: public_reserved
+  iptype: public_active
   servers:
     - cs12-app1-2-phx.ops.sfdc.net
     - cs12-app1-4-phx.ops.sfdc.net
@@ -495,7 +495,7 @@
 
 
 - lbname: org-cce2e-cs13
-  iptype: public_reserved
+  iptype: public_active
   servers:
     - cs13-app1-4-phx.ops.sfdc.net
     - cs13-app1-5-phx.ops.sfdc.net
@@ -578,7 +578,7 @@
 
 
 - lbname: org-cce2e-cs19
-  iptype: public_reserved
+  iptype: public_active
   servers:
     - cs19-app1-1-phx.ops.sfdc.net
     - cs19-app1-3-phx.ops.sfdc.net
@@ -661,7 +661,7 @@
 
 
 - lbname: org-cce2e-cs20
-  iptype: public_reserved
+  iptype: public_active
   servers:
     - cs20-app1-3-phx.ops.sfdc.net
     - cs20-app2-2-phx.ops.sfdc.net
@@ -744,7 +744,7 @@
 
 
 - lbname: org-cce2e-cs21
-  iptype: public_reserved
+  iptype: public_active
   servers:
     - cs21-app1-5-phx.ops.sfdc.net
     - cs21-app2-2-phx.ops.sfdc.net
@@ -827,7 +827,7 @@
 
 
 - lbname: org-cce2e-cs23
-  iptype: public_reserved
+  iptype: public_active
   servers:
     - cs23-app2-3-phx.ops.sfdc.net
     - cs23-app2-5-phx.ops.sfdc.net
@@ -910,7 +910,7 @@
 
 
 - lbname: org-cce2e-cs25
-  iptype: public_reserved
+  iptype: public_active
   servers:
     - cs25-app1-1-phx.ops.sfdc.net
     - cs25-app1-3-phx.ops.sfdc.net
@@ -993,7 +993,7 @@
 
 
 - lbname: org-cce2e-cs26
-  iptype: public_reserved
+  iptype: public_active
   servers:
     - cs26-app1-2-phx.ops.sfdc.net
     - cs26-app1-5-phx.ops.sfdc.net
@@ -1076,7 +1076,7 @@
 
 
 - lbname: org-cce2e-cs30
-  iptype: public_reserved
+  iptype: public_active
   servers:
     - cs30-app1-2-phx.ops.sfdc.net
     - cs30-app1-3-phx.ops.sfdc.net
@@ -1159,7 +1159,7 @@
 
 
 - lbname: org-cce2e-cs50
-  iptype: public_reserved
+  iptype: public_active
   servers:
     - cs50-app2-3-phx.ops.sfdc.net
     - cs50-app2-1-phx.ops.sfdc.net
@@ -1242,7 +1242,7 @@
 
 
 - lbname: org-cce2e-cs51
-  iptype: public_reserved
+  iptype: public_active
   servers:
     - cs51-app1-3-phx.ops.sfdc.net
     - cs51-app1-4-phx.ops.sfdc.net
@@ -1325,7 +1325,7 @@
 
 
 - lbname: org-cce2e-cs52
-  iptype: public_reserved
+  iptype: public_active
   servers:
     - cs52-app1-1-phx.ops.sfdc.net
     - cs52-app1-2-phx.ops.sfdc.net
@@ -1408,7 +1408,7 @@
 
 
 - lbname: org-cce2e-cs53
-  iptype: public_reserved
+  iptype: public_active
   servers:
     - cs53-app2-2-phx.ops.sfdc.net
     - cs53-app2-3-phx.ops.sfdc.net
@@ -1491,7 +1491,7 @@
 
 
 - lbname: org-cce2e-cs54
-  iptype: public_reserved
+  iptype: public_active
   servers:
     - cs54-app1-1-phx.ops.sfdc.net
     - cs54-app2-1-phx.ops.sfdc.net
@@ -1574,7 +1574,7 @@
 
 
 - lbname: org-cce2e-cs59
-  iptype: public_reserved
+  iptype: public_active
   servers:
     - cs59-app1-4-phx.ops.sfdc.net
     - cs59-app1-5-phx.ops.sfdc.net
@@ -1657,7 +1657,7 @@
 
 
 - lbname: org-cce2e-cs60
-  iptype: public_reserved
+  iptype: public_active
   servers:
     - cs60-app1-4-phx.ops.sfdc.net
     - cs60-app1-2-phx.ops.sfdc.net
@@ -1740,7 +1740,7 @@
 
 
 - lbname: org-cce2e-cs61
-  iptype: public_reserved
+  iptype: public_active
   servers:
     - cs61-app1-1-phx.ops.sfdc.net
     - cs61-app1-3-phx.ops.sfdc.net
@@ -1823,7 +1823,7 @@
 
 
 - lbname: org-cce2e-cs62
-  iptype: public_reserved
+  iptype: public_active
   servers:
     - cs62-app1-2-phx.ops.sfdc.net
     - cs62-app1-3-phx.ops.sfdc.net
@@ -1906,7 +1906,7 @@
 
 
 - lbname: org-cce2e-cs63
-  iptype: public_reserved
+  iptype: public_active
   servers:
     - cs63-app1-1-phx.ops.sfdc.net
     - cs63-app2-1-phx.ops.sfdc.net
@@ -1989,7 +1989,7 @@
 
 
 - lbname: org-cce2e-cs68
-  iptype: public_reserved
+  iptype: public_active
   servers:
     - cs68-app1-2-phx.ops.sfdc.net
     - cs68-app1-3-phx.ops.sfdc.net
@@ -2072,7 +2072,7 @@
 
 
 - lbname: org-cce2e-cs69
-  iptype: public_reserved
+  iptype: public_active
   servers:
     - cs69-app1-2-phx.ops.sfdc.net
     - cs69-app1-4-phx.ops.sfdc.net
@@ -2155,7 +2155,7 @@
 
 
 - lbname: org-cce2e-cs70
-  iptype: public_reserved
+  iptype: public_active
   servers:
     - cs70-app1-1-phx.ops.sfdc.net
     - cs70-app1-2-phx.ops.sfdc.net
@@ -2238,7 +2238,7 @@
 
 
 - lbname: org-cce2e-cs71
-  iptype: public_reserved
+  iptype: public_active
   servers:
     - cs71-app2-4-phx.ops.sfdc.net
     - cs71-app1-5-phx.ops.sfdc.net
@@ -2321,7 +2321,7 @@
 
 
 - lbname: org-cce2e-cs90
-  iptype: public_reserved
+  iptype: public_active
   servers:
     - cs90-app2-5-phx.ops.sfdc.net
     - cs90-app1-3-phx.ops.sfdc.net
@@ -2404,7 +2404,7 @@
 
 
 - lbname: org-cce2e-cs91
-  iptype: public_reserved
+  iptype: public_active
   servers:
     - cs91-app1-3-phx.ops.sfdc.net
     - cs91-app1-5-phx.ops.sfdc.net
@@ -2487,7 +2487,7 @@
 
 
 - lbname: org-cce2e-cs999
-  iptype: public_reserved
+  iptype: public_active
   servers:
     - cs999-app1-2-phx.ops.sfdc.net
     - cs999-app2-2-phx.ops.sfdc.net
@@ -2565,7 +2565,7 @@
       value: "SLB"
 
 - lbname: org-orgcerttest-gs0
-  iptype: public_reserved
+  iptype: public_active
   servers:
     - gs0-app1-3-phx.ops.sfdc.net
     - gs0-app1-6-phx.ops.sfdc.net
@@ -2666,7 +2666,7 @@
       value: "SLB"      
 
 - lbname: org-cce2e-na47
-  iptype: public_reserved
+  iptype: public_active
   servers:
     - na47-app1-14-phx.ops.sfdc.net
     - na47-app1-12-phx.ops.sfdc.net
