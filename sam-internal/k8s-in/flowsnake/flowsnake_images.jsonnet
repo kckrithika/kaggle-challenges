@@ -220,6 +220,21 @@ local utils = import "util_functions.jsonnet";
         # off-peak: 6am-1pm PDT
         "prod-apac": self.prod {
             image_tags+: {
+                integration_test_tag: "22",
+                hbase_integration_test_tag: "22",
+            },
+            feature_flags+: {
+                # --- flag A (Do not edit ... ---
+                # --- flag B (these comments ... ---
+                # --- flag C (and place only ... ---
+                # --- flag D (one flag between ... ---
+                # --- flag E (each pair. ... ---
+                # --- flag F (Their only purpose ... ---
+                watchdog_refactoring: "",
+                # --- flag G (is to assist ... ---
+                # --- flag H (git's diff logic ... ---
+                # --- flag I (to reduce the ---
+                # --- flag J (likelihood of merge conflicts.) ---
             },
         },
 
