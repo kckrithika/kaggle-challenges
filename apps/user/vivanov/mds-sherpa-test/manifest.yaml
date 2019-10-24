@@ -44,6 +44,7 @@ system:
     - lbname: metadata-servicelb
       function: metadata-service
       nodeExposed: true
+      slbEnabled: true
       ports:
         - port: 9091
           targetport: 9091
