@@ -9,7 +9,7 @@ system:
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/alokjha/topology-ui:16
       env:
         - name: FALCONS
-          value: "https://topology.topology.foundation.rddev.aws.sfdc.cl:443"
+          value: "https://topology.topology.foundation.rddev.aws.sfdc.cl:443,https://topology.topology.foundation.dev1-uswest2.aws.sfdc.cl:443"
         - name: CA
           value: "/client-certs/ca/cacerts.pem"
         - name: CERT
@@ -21,7 +21,7 @@ system:
         - name: https_proxy
           value: "http://public0-proxy1-0-prd.data.sfdc.net:8080"
         - name: TOPOSPHERES
-          value: "https://topology.topology.foundation.rddev.aws.sfdc.cl"
+          value: "https://topology.topology.foundation.rddev.aws.sfdc.cl,https://topology.topology.foundation.dev1-uswest2.aws.sfdc.cl"
       ports:
       - containerPort: 8080
         name: http
