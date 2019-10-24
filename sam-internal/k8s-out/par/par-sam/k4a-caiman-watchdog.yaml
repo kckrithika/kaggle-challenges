@@ -9,7 +9,7 @@ items:
     name: k4a-caiman-watchdog-par11
     namespace: sam-system
   spec:
-    replicas: 1
+    replicas: 2
     selector:
       matchLabels:
         name: k4a-caiman-watchdog-par11
@@ -33,6 +33,16 @@ items:
           sam.data.sfdc.net/owner: secrets
         namespace: sam-system
       spec:
+        affinity:
+          podAntiAffinity:
+            requiredDuringSchedulingIgnoredDuringExecution:
+            - labelSelector:
+                matchExpressions:
+                - key: name
+                  operator: In
+                  values:
+                  - k4a-caiman-watchdog-par11
+              topologyKey: kubernetes.io/hostname
         containers:
         - args:
           - java
@@ -66,7 +76,7 @@ items:
             valueFrom:
               fieldRef:
                 fieldPath: spec.nodeName
-          image: ops0-artifactrepo1-0-par.data.sfdc.net/dva/k4a-caiman-watchdog:190-8f53ccd03691c41e2f20d15487d7286f1789d89c
+          image: ops0-artifactrepo1-0-par.data.sfdc.net/dva/k4a-caiman-watchdog:195-8d32d7ce74e4f961e3525947a3fc811080cbd5df
           name: watchdog
           volumeMounts:
           - mountPath: /clientcert
@@ -109,6 +119,7 @@ items:
             name: maddog-certs
           - mountPath: /tokens
             name: sam-maddog-token
+        hostNetwork: true
         initContainers:
         - args:
           - /sam/madkub-client
@@ -171,7 +182,7 @@ items:
     name: k4a-caiman-watchdog-par12
     namespace: sam-system
   spec:
-    replicas: 1
+    replicas: 2
     selector:
       matchLabels:
         name: k4a-caiman-watchdog-par12
@@ -195,6 +206,16 @@ items:
           sam.data.sfdc.net/owner: secrets
         namespace: sam-system
       spec:
+        affinity:
+          podAntiAffinity:
+            requiredDuringSchedulingIgnoredDuringExecution:
+            - labelSelector:
+                matchExpressions:
+                - key: name
+                  operator: In
+                  values:
+                  - k4a-caiman-watchdog-par12
+              topologyKey: kubernetes.io/hostname
         containers:
         - args:
           - java
@@ -228,7 +249,7 @@ items:
             valueFrom:
               fieldRef:
                 fieldPath: spec.nodeName
-          image: ops0-artifactrepo1-0-par.data.sfdc.net/dva/k4a-caiman-watchdog:190-8f53ccd03691c41e2f20d15487d7286f1789d89c
+          image: ops0-artifactrepo1-0-par.data.sfdc.net/dva/k4a-caiman-watchdog:195-8d32d7ce74e4f961e3525947a3fc811080cbd5df
           name: watchdog
           volumeMounts:
           - mountPath: /clientcert
@@ -271,6 +292,7 @@ items:
             name: maddog-certs
           - mountPath: /tokens
             name: sam-maddog-token
+        hostNetwork: true
         initContainers:
         - args:
           - /sam/madkub-client
@@ -333,7 +355,7 @@ items:
     name: k4a-caiman-watchdog-par21
     namespace: sam-system
   spec:
-    replicas: 1
+    replicas: 2
     selector:
       matchLabels:
         name: k4a-caiman-watchdog-par21
@@ -357,6 +379,16 @@ items:
           sam.data.sfdc.net/owner: secrets
         namespace: sam-system
       spec:
+        affinity:
+          podAntiAffinity:
+            requiredDuringSchedulingIgnoredDuringExecution:
+            - labelSelector:
+                matchExpressions:
+                - key: name
+                  operator: In
+                  values:
+                  - k4a-caiman-watchdog-par21
+              topologyKey: kubernetes.io/hostname
         containers:
         - args:
           - java
@@ -390,7 +422,7 @@ items:
             valueFrom:
               fieldRef:
                 fieldPath: spec.nodeName
-          image: ops0-artifactrepo1-0-par.data.sfdc.net/dva/k4a-caiman-watchdog:190-8f53ccd03691c41e2f20d15487d7286f1789d89c
+          image: ops0-artifactrepo1-0-par.data.sfdc.net/dva/k4a-caiman-watchdog:195-8d32d7ce74e4f961e3525947a3fc811080cbd5df
           name: watchdog
           volumeMounts:
           - mountPath: /clientcert
@@ -433,6 +465,7 @@ items:
             name: maddog-certs
           - mountPath: /tokens
             name: sam-maddog-token
+        hostNetwork: true
         initContainers:
         - args:
           - /sam/madkub-client
@@ -495,7 +528,7 @@ items:
     name: k4a-caiman-watchdog-par22
     namespace: sam-system
   spec:
-    replicas: 1
+    replicas: 2
     selector:
       matchLabels:
         name: k4a-caiman-watchdog-par22
@@ -519,6 +552,16 @@ items:
           sam.data.sfdc.net/owner: secrets
         namespace: sam-system
       spec:
+        affinity:
+          podAntiAffinity:
+            requiredDuringSchedulingIgnoredDuringExecution:
+            - labelSelector:
+                matchExpressions:
+                - key: name
+                  operator: In
+                  values:
+                  - k4a-caiman-watchdog-par22
+              topologyKey: kubernetes.io/hostname
         containers:
         - args:
           - java
@@ -552,7 +595,7 @@ items:
             valueFrom:
               fieldRef:
                 fieldPath: spec.nodeName
-          image: ops0-artifactrepo1-0-par.data.sfdc.net/dva/k4a-caiman-watchdog:190-8f53ccd03691c41e2f20d15487d7286f1789d89c
+          image: ops0-artifactrepo1-0-par.data.sfdc.net/dva/k4a-caiman-watchdog:195-8d32d7ce74e4f961e3525947a3fc811080cbd5df
           name: watchdog
           volumeMounts:
           - mountPath: /clientcert
@@ -595,6 +638,7 @@ items:
             name: maddog-certs
           - mountPath: /tokens
             name: sam-maddog-token
+        hostNetwork: true
         initContainers:
         - args:
           - /sam/madkub-client
@@ -657,7 +701,7 @@ items:
     name: k4a-caiman-watchdog-parfailover
     namespace: sam-system
   spec:
-    replicas: 1
+    replicas: 2
     selector:
       matchLabels:
         name: k4a-caiman-watchdog-parfailover
@@ -681,6 +725,16 @@ items:
           sam.data.sfdc.net/owner: secrets
         namespace: sam-system
       spec:
+        affinity:
+          podAntiAffinity:
+            requiredDuringSchedulingIgnoredDuringExecution:
+            - labelSelector:
+                matchExpressions:
+                - key: name
+                  operator: In
+                  values:
+                  - k4a-caiman-watchdog-parfailover
+              topologyKey: kubernetes.io/hostname
         containers:
         - args:
           - java
@@ -712,7 +766,7 @@ items:
             valueFrom:
               fieldRef:
                 fieldPath: spec.nodeName
-          image: ops0-artifactrepo1-0-par.data.sfdc.net/dva/k4a-caiman-watchdog:190-8f53ccd03691c41e2f20d15487d7286f1789d89c
+          image: ops0-artifactrepo1-0-par.data.sfdc.net/dva/k4a-caiman-watchdog:195-8d32d7ce74e4f961e3525947a3fc811080cbd5df
           name: watchdog
           volumeMounts:
           - mountPath: /clientcert
@@ -755,6 +809,7 @@ items:
             name: maddog-certs
           - mountPath: /tokens
             name: sam-maddog-token
+        hostNetwork: true
         initContainers:
         - args:
           - /sam/madkub-client
