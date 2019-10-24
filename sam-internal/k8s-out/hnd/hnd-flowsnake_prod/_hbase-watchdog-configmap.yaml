@@ -1,0 +1,126 @@
+apiVersion: v1
+data:
+  hbase-watchdog.json: |-
+    {
+      "caFile": "/etc/pki_service/ca/cabundle.pem",
+      "certFile": "/etc/pki_service/platform/platform-client/certificates/platform-client.pem",
+      "cliCheckerFullCommands": {
+        "0.12.5": {
+          "SparkLocal": "java -jar  -Dintegration.test.target=canary -Dflowsnake.api.host=flowsnake-hnd.data.sfdc.net -Dflowsnake.project.version=0.12.5 junit.jar -cp integration-test.jar -n '.*' -c com.salesforce.dva.transform.flowsnake.SparkLocalDriverDemoJobIT",
+          "SparkStandalone": "java -jar  -Dintegration.test.target=canary -Dflowsnake.api.host=flowsnake-hnd.data.sfdc.net -Dflowsnake.project.version=0.12.5 junit.jar -cp integration-test.jar -n '.*' -c com.salesforce.dva.transform.flowsnake.SparkStandaloneDemoJobIT"
+        },
+        "DockerDaemon": {
+          "DockerDaemon": "/test-docker.sh"
+        },
+        "SparkHbaseIntegrationTest": {
+          "HbasePhoenixSparkProdTest": "/watchdog-spark-scripts/analysis.py --hostname $NODENAME --metrics --sfdchosts /sfdchosts/hosts.json --watchdog-config /config/watchdog.json --command /watchdog-spark-scripts/check-spark-operator.sh --timeout-mins 10 /strata-test-specs-in/hbase-integration-prod.jsonnet"
+        },
+        "SparkOperatorTest": {
+          "ImpersonationProxyMinimalTest": "/watchdog-spark-scripts/check-impersonation.sh /watchdog-spark-scripts/kubeconfig-impersonation-proxy",
+          "ImpersonationProxySparkTest": "/watchdog-spark-scripts/analysis.py --hostname $NODENAME --metrics --sfdchosts /sfdchosts/hosts.json --watchdog-config /config/watchdog.json --command /watchdog-spark-scripts/check-spark-operator.sh --kubeconfig /watchdog-spark-scripts/kubeconfig-impersonation-proxy /strata-test-specs-in/basic-spark-impersonation.jsonnet",
+          "SparkOperatorTest": "/watchdog-spark-scripts/analysis.py --hostname $NODENAME --metrics --sfdchosts /sfdchosts/hosts.json --watchdog-config /config/watchdog.json --command /watchdog-spark-scripts/check-spark-operator.sh /strata-test-specs-in/basic-spark-pi.jsonnet"
+        }
+      },
+      "deployer-funnelEndpoint": "ajna0-funnel1-0-hnd.data.sfdc.net:80",
+      "deployer-imageName": "ops0-artifactrepo1-0-hnd.data.sfdc.net/dva/sam/hypersam:2653-de840aef94cedaeb0b971120b108b3570db4eb59",
+      "deployer-rcImtEndpoint": "https://reportcollector-hnd.data.sfdc.net:18443/v1/bark",
+      "deployer-recipient": "bigdataatscale@salesforce.com",
+      "deployer-sender": "bigdataatscale@salesforce.com",
+      "deployer-smtpServer": "ops0-mta2-1-hnd.ops.sfdc.net:25",
+      "email-subject-prefix": "HBASEWD",
+      "funnelEndpoint": "ajna0-funnel1-0-hnd.data.sfdc.net:80",
+      "imageName": "ops0-artifactrepo1-0-hnd.data.sfdc.net/dva/sam/hypersam:2687-6c147b04d2d506c9fd591d50f400bd86c485b155",
+      "keyFile": "/etc/pki_service/platform/platform-client/keys/platform-client-key.pem",
+      "kubeResourceNamespacePrefixBlacklist": "sam-watchdog",
+      "kubeResourceNamespacePrefixWhitelist": "sam-system,flowsnake,kube-system",
+      "maxUptimeSampleSize": 5,
+      "monitoredProcesses": {
+        "docker-containerd.*docker-bootstrap": "age.dockercontainerdbootstrap",
+        "docker-containerd.*docker-containerd.sock": "age.dockercontainerd",
+        "dockerd.*docker-bootstrap": "age.dockerbootstrap",
+        "dockerd.*docker.sock": "age.dockermain",
+        "hyperkube.*apiserver": "age.kubeapiserver",
+        "hyperkube.*controller-manager": "age.kubecontrollermanager",
+        "hyperkube.*kubelet": "age.kubelet",
+        "hyperkube.*proxy": "age.kubeproxy",
+        "hyperkube.*scheduler": "age.kubescheduler",
+        "name=etcd": "age.etcd"
+      },
+      "publishAlertsToKafka": false,
+      "rcImtEndpoint": "https://reportcollector-hnd.data.sfdc.net:18443/v1/bark",
+      "recipient": "bigdataatscale@salesforce.com",
+      "sdpEndpoint": "http://localhost:39999",
+      "sender": "bigdataatscale@salesforce.com",
+      "smtpServer": "ops0-mta2-1-hnd.ops.sfdc.net:25",
+      "snooze": [
+        {
+          "checker": "kubeletChecker",
+          "estates": [
+            "iad-flowsnake_prod"
+          ],
+          "until": "2018/04/30"
+        },
+        {
+          "checker": "kubeletChecker",
+          "estates": [
+            "ord-flowsnake_prod"
+          ],
+          "until": "2018/04/30"
+        },
+        {
+          "checker": "nodeChecker",
+          "estates": [
+            "iad-flowsnake_prod"
+          ],
+          "until": "2018/04/30"
+        },
+        {
+          "checker": "nodeChecker",
+          "estates": [
+            "ord-flowsnake_prod"
+          ],
+          "until": "2018/04/30"
+        },
+        {
+          "checker": "podChecker",
+          "estates": [
+            "iad-flowsnake_prod"
+          ],
+          "until": "2018/04/30"
+        },
+        {
+          "checker": "podChecker",
+          "estates": [
+            "ord-flowsnake_prod"
+          ],
+          "until": "2018/04/30"
+        },
+        {
+          "checker": "kubeResourcesChecker",
+          "estates": [
+            "iad-flowsnake_prod"
+          ],
+          "until": "2018/04/30"
+        },
+        {
+          "checker": "kubeResourcesChecker",
+          "estates": [
+            "ord-flowsnake_prod"
+          ],
+          "until": "2018/04/30"
+        }
+      ],
+      "tlsEnabled": true,
+      "universalProcesses": [
+        "dockerd.*docker-bootstrap",
+        "dockerd.*docker.sock",
+        "hyperkube.*kubelet",
+        "docker-containerd.*docker-containerd.sock",
+        "docker-containerd.*docker-bootstrap"
+      ]
+    }
+kind: ConfigMap
+metadata:
+  creationTimestamp: null
+  name: hbase-watchdog
+  namespace: flowsnake
