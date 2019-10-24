@@ -35,7 +35,7 @@ system:
             - name: MANAGEMENT_PORT
               value: 15523
             - name: JVM_ARGS
-              value: -Dsettings.path=dev.mydev.landmark.-.metadata-service
+              value: -Dsettings.path=dev.mydev.landmark.-.metadata-service -Dgrpc.server-bind-endpoint=tcp://0.0.0.0:7020
           volumeMounts:
             - mountPath: /home/sfdc-mds/logs
               name: logvol
