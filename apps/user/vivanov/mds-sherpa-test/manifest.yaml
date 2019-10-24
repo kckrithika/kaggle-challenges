@@ -13,15 +13,13 @@ system:
         - name: logvol
           hostPath:
             path: /home/sfdc-mds/logs
-        - name: mds-client-cert
-          maddogCert:
-            type: client
       containers:
         - name: metadata-service
           image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/vivanov/metadata-service:stream01
           ports:
             - containerPort: 9091
             - containerPort: 15523
+            - containerPort: 7020
           livenessProbe:
             initialDelaySeconds: 60
             periodSeconds: 60
@@ -41,8 +39,6 @@ system:
           volumeMounts:
             - mountPath: /home/sfdc-mds/logs
               name: logvol
-            - mountPath: /client-certs
-              name: mds-client-cert
 
         - name: sherpa-mds
           image: sfci/servicelibs/sherpa-envoy:1.0.8
