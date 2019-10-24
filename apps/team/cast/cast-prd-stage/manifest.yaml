@@ -150,33 +150,45 @@ system:
       volumeMounts:
         - name: server-cert
           mountPath: /certs
-#    #####################################################################################
-#    # GID service
-#    #####################################################################################
-#    - name: gid-service
-#      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/gid/gid-service:5e51285
-#      imagePullPolicy: Always
-#      env:
-#        - name: server_port
-#          value: 8081
-#        - name: management_server_port
-#          value: 15371
-#        - name: ca_service_host
-#          value: 127.0.0.1
-#        - name: security_client_dynamickeystore_cadir
-#          value: /certs
-#        - name: security_client_dynamickeystore_monitoredDirectory
-#          value: /certs
-#      ports:
-#        - containerPort: 8081
-#        - containerPort: 15371
-#      livenessProbe:
-#        httpGet:
-#          path: /manage/health
-#          port: 15371
-#      volumeMounts:
-#        - name: server-cert
-#          mountPath: /certs
+    #####################################################################################
+    # GID service
+    #####################################################################################
+    - name: gid-service
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/gid/gid-service:5e51285
+      imagePullPolicy: Always
+      env:
+        - name: directory_server_host
+          valueFrom:
+           fieldRef:
+            fieldPath: spec.nodeName
+        - name: server_port
+          value: 8081
+        - name: management_server_port
+          value: 15371
+        - name: ca_service_host
+          value: 127.0.0.1
+        - name: c2c_common_gdotBasePath
+          value: http://${directory_server_host}:8080/scim
+        - name: security_client_dynamickeystore_cadir
+          value: /certs/ca
+        - name: security_client_dynamickeystore_monitoredDirectory
+          value: /clientcerts/client
+        - name: c2c_common_callerContext
+          value: sfdc.giddataservice
+        - name: c2c_service_id
+          value: giddataservice
+      ports:
+        - containerPort: 8081
+        - containerPort: 15371
+      livenessProbe:
+        httpGet:
+          path: /manage/health
+          port: 15371
+      volumeMounts:
+        - name: server-cert
+          mountPath: /certs
+        - mountPath: /clientcerts
+          name: client-cert
     #####################################################################################
     # NGINX Rev Proxy
     #####################################################################################
