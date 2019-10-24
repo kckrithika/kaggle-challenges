@@ -15,7 +15,7 @@ system:
 
     containers:
     - name: fakecc
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/hpresnall/fakecc:20191023_211236
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/hpresnall/fakecc:20191024_171314
       # associate the log directory to a logical volume.
       volumeMounts:
       - name: server-cert
@@ -28,8 +28,8 @@ system:
       - name: MAX_ORDER_COUNT
         value: 200
       resources:
-        limits: { cpu: "1", memory: "2Gi" }
-        requests: { cpu: "1", memory: "1Gi" }
+        limits: { cpu: "4", memory: "4Gi" }
+        requests: { cpu: "4", memory: "2Gi" }
       ports:
       - containerPort: 7022
       livenessProbe:
