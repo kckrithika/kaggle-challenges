@@ -1,4 +1,4 @@
 {
    local secretsimages = import "secretsimages.libsonnet",
-   caimanWdSecondReplicaEnabled(canary=false): (secretsimages.k4aCaimanWdPhaseNum(canary) <= 2),
+   caimanWdSecondReplicaEnabled(canary=false): (secretsimages.k4aCaimanWatchdog_build(canary) >= 195),
 }
