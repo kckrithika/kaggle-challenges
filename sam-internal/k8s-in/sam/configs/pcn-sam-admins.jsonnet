@@ -29,6 +29,7 @@
     "jiaqi.wu@salesforce.com",
     "victor.li@salesforce.com",
     "hammondpang@salesforce.com",
+    "arandhawa@salesforce.com",
     # Service-Mesh Team
     "npshenichnyy@salesforce.com",
     # DVA Team
