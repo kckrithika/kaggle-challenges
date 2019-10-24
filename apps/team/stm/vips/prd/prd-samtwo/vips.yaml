@@ -1,5 +1,5 @@
 - lbname: na44-stmfa1-0-prd
-  iptype: public_reserved
+  iptype: public_active
   customlbname: na44-stmfa1-0-prd
   servers:
   - stmfana44ice1-app1-5-prd.eng.sfdc.net
@@ -61,7 +61,7 @@
       value: "SLB"
 
 - lbname: na44-stmfb1-0-prd
-  iptype: public_reserved
+  iptype: public_active
   customlbname: na44-stmfb1-0-prd
   servers:
   - stmfbna44ice1-app1-4-prd.eng.sfdc.net
@@ -124,7 +124,7 @@
       value: "SLB"
 
 - lbname: na44-stmfc1-0-prd
-  iptype: public_reserved
+  iptype: public_active
   customlbname: na44-stmfc1-0-prd
   servers:
   - stmfcna44ice1-app1-1-prd.eng.sfdc.net
