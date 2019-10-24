@@ -1,6 +1,6 @@
 local configs = import "config.jsonnet";
 {
-   is_api_enabled:
+   is_firebom_api_enabled:
       configs.estate == "prd-samtwo",
 
 }
