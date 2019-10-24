@@ -22,6 +22,8 @@ local samreleases = import "samreleases.json";
         #   # [alias] Added this override to fix issue xxx
         #   "prd,prd-sam,samcontrol,hypersam": "2690-3c76e4d1bc7bebf17bfa304fd309dc9332acd196",
 
+        "prd,prd-sam,sam-api-proxy,hypersam": "2831-e1f4baf39a722485c90b3db42ab6c2e74c2e8545",
+
         # Added this override to fix the peimission issue of connectivitylabeler watchdog
         "prd,prd-samtest,sam-network-reporter,hypersam": "2754-365539f3b19f1f92f8ee7f1778f157769fae2a07",
         "prd,prd-samdev,sam-network-reporter,hypersam": "2754-365539f3b19f1f92f8ee7f1778f157769fae2a07",
