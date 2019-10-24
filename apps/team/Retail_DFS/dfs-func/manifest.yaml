@@ -3,7 +3,7 @@ apiVersion: v1
  
 system:
   functions:
-  - name: dfs
+  - name: dfs-func-main
     count: 3
     labels:
       app: dfs
@@ -110,7 +110,7 @@ system:
 
   loadbalancers:
   - lbname: dfs-lb
-    function: dfs
+    function: dfs-func-main
     slbEnabled: true
     ports:
     - port: 7442
@@ -118,7 +118,7 @@ system:
     - port: 15372
       targetport: 15372
   - lbname: dfs
-    function: dfs
+    function: dfs-func-main
     ports:
       - lbtype: dsr
         port: 7442
