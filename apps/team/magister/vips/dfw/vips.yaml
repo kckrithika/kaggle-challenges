@@ -1,4 +1,5 @@
 - lbname: sec0-magister1-0-dfw
+  iptype: private_reserved
   customlbname: sec0-magister1-0-dfw
   cnames:
    - cname: sec0-magister1-0-dfw.data.sfdc.net
