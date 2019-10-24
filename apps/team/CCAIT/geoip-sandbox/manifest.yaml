@@ -10,17 +10,17 @@ system:
       app: geoip
     containers:
     - name: geoip
-      image: sfci/services/sfdc-bazel/service-mesh/geoip:c51567428 # monorepo build
+      image: sfci/services/sfdc-bazel/service-mesh/geoip:3c0c98d04 # monorepo build
       env:
       - name: FAKE_ENV_VAR_INCREMENT_TO_TRIGGER_SAM_DEPLOY
         value: "0"
       resources:
         limits:
           cpu: "8"
-          memory: 18Gi
+          memory: 10Gi
         requests:
           cpu: "8"
-          memory: 18Gi
+          memory: 10Gi
       livenessProbe:
         httpGet:
           path: /manage/health
