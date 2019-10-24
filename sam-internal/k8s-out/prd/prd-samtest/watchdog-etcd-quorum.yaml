@@ -25,6 +25,9 @@ spec:
         - -watchdogFrequency=10s
         - -alertThreshold=2m
         - -watchDogKind=Deployment
+        - --caFile=/etc/pki_service/ca/cabundle.pem
+        - --keyFile=/etc/pki_service/platform/platform-client/keys/platform-client-key.pem
+        - --certFile=/etc/pki_service/platform/platform-client/certificates/platform-client.pem
         - -funnelEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80
         - --config=/config/watchdog.json
         - --hostsConfigFile=/sfdchosts/hosts.json

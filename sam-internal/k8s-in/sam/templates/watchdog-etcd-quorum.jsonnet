@@ -19,7 +19,13 @@ local samimages = (import "samimages.jsonnet") + { templateFilename:: std.thisFi
                                      "-watchdogFrequency=10s",
                                      "-alertThreshold=2m",
                                      "-watchDogKind=" + $.kind,
-                                 ]
+                                 ] + (
+                                         if configs.kingdom == "prd" && configs.estate == "prd-samtest" then [
+                                             "--caFile=/etc/pki_service/ca/cabundle.pem",
+                                             "--keyFile=/etc/pki_service/platform/platform-client/keys/platform-client-key.pem",
+                                             "--certFile=/etc/pki_service/platform/platform-client/certificates/platform-client.pem",
+                                         ] else []
+                                  )
                                  + samwdconfig.pagerduty_args
                                  + samwdconfig.shared_args
                                  + ["-emailFrequency=336h"],
