@@ -1,4 +1,5 @@
 - lbname: org-cce2e-cs8
+  iptype: public_active
   servers:
     - cs8-app2-1-iad.ops.sfdc.net
     - cs8-app1-3-iad.ops.sfdc.net
@@ -81,6 +82,7 @@
 
 
 - lbname: org-cce2e-cs14
+  iptype: public_active
   servers:
     - cs14-app1-4-iad.ops.sfdc.net
     - cs14-app2-3-iad.ops.sfdc.net
@@ -163,6 +165,7 @@
 
 
 - lbname: org-cce2e-cs15
+  iptype: public_active
   servers:
     - cs15-app2-3-iad.ops.sfdc.net
     - cs15-app1-2-iad.ops.sfdc.net
@@ -245,6 +248,7 @@
 
 
 - lbname: org-cce2e-cs16
+  iptype: public_active
   servers:
     - cs16-app1-2-iad.ops.sfdc.net
     - cs16-app1-3-iad.ops.sfdc.net
@@ -327,6 +331,7 @@
 
 
 - lbname: org-cce2e-cs17
+  iptype: public_active
   servers:
     - cs17-app1-4-iad.ops.sfdc.net
     - cs17-app2-3-iad.ops.sfdc.net
@@ -409,6 +414,7 @@
 
 
 - lbname: org-cce2e-cs18
+  iptype: public_active
   servers:
     - cs18-app2-5-iad.ops.sfdc.net
     - cs18-app1-4-iad.ops.sfdc.net
@@ -491,6 +497,7 @@
 
 
 - lbname: org-cce2e-cs47
+  iptype: public_active
   servers:
     - cs47-app2-1-iad.ops.sfdc.net
     - cs47-app2-3-iad.ops.sfdc.net
@@ -573,6 +580,7 @@
 
 
 - lbname: org-cce2e-cs64
+  iptype: public_active
   servers:
     - cs64-app2-5-iad.ops.sfdc.net
     - cs64-app1-2-iad.ops.sfdc.net
@@ -655,6 +663,7 @@
 
 
 - lbname: org-cce2e-cs65
+  iptype: public_active
   servers:
     - cs65-app1-3-iad.ops.sfdc.net
     - cs65-app1-1-iad.ops.sfdc.net
@@ -737,6 +746,7 @@
 
 
 - lbname: org-cce2e-cs66
+  iptype: public_active
   servers:
     - cs66-app1-1-iad.ops.sfdc.net
     - cs66-app2-5-iad.ops.sfdc.net
@@ -819,6 +829,7 @@
 
 
 - lbname: org-cce2e-cs67
+  iptype: public_active
   servers:
     - cs67-app1-3-iad.ops.sfdc.net
     - cs67-app2-1-iad.ops.sfdc.net
@@ -901,6 +912,7 @@
 
 
 - lbname: org-cce2e-cs77
+  iptype: public_active
   servers:
     - cs77-app2-2-iad.ops.sfdc.net
     - cs77-app2-3-iad.ops.sfdc.net
@@ -983,6 +995,7 @@
 
 
 - lbname: org-cce2e-cs78
+  iptype: public_active
   servers:
     - cs78-app2-4-iad.ops.sfdc.net
     - cs78-app1-5-iad.ops.sfdc.net
@@ -1065,6 +1078,7 @@
 
 
 - lbname: org-cce2e-cs79
+  iptype: public_active
   servers:
     - cs79-app1-1-iad.ops.sfdc.net
     - cs79-app1-3-iad.ops.sfdc.net
@@ -1147,6 +1161,7 @@
 
 
 - lbname: org-cce2e-cs92
+  iptype: public_active
   servers:
     - cs92-app1-3-iad.ops.sfdc.net
     - cs92-app2-4-iad.ops.sfdc.net
@@ -1229,6 +1244,7 @@
 
 
 - lbname: org-cce2e-cs93
+  iptype: public_active
   servers:
     - cs93-app2-2-iad.ops.sfdc.net
     - cs93-app1-2-iad.ops.sfdc.net
@@ -1311,6 +1327,7 @@
 
 
 - lbname: org-cce2e-cs94
+  iptype: public_active
   servers:
     - cs94-app1-1-iad.ops.sfdc.net
     - cs94-app2-2-iad.ops.sfdc.net
@@ -1393,6 +1410,7 @@
 
 
 - lbname: org-cce2e-cs95
+  iptype: public_active
   servers:
     - cs95-app1-3-iad.ops.sfdc.net
     - cs95-app2-2-iad.ops.sfdc.net
@@ -1475,6 +1493,7 @@
 
 
 - lbname: org-cce2e-cs96
+  iptype: public_active
   servers:
     - cs96-app1-3-iad.ops.sfdc.net
     - cs96-app1-4-iad.ops.sfdc.net
@@ -1557,6 +1576,7 @@
 
 
 - lbname: org-cce2e-cs97
+  iptype: public_active
   servers:
     - cs97-app2-2-iad.ops.sfdc.net
     - cs97-app1-4-iad.ops.sfdc.net
