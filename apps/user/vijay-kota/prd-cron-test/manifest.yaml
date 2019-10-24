@@ -34,6 +34,159 @@ system:
         - name: sdblogs
           emptyDir: {}
 
+    - name: cs66-demo
+      count: 1
+      identity:
+        serviceName: crondemo
+        pod: cs66
+      containers:
+        - name: cron-demo
+          image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/vijay-kota/crondemo:24Oct19
+          ports:
+            - name: http-port
+              containerPort: 7022
+            - name: scone-port
+              containerPort: 15372
+          env:
+            - name: SFDC_ENVIRONMENT
+              value: mesh
+          resources:
+            limits: { cpu: "1", memory: "1Gi" }
+            requests: { cpu: "1", memory: "1Gi" }
+          livenessProbe:
+            exec:
+              command: ["/bin/true"]
+            initialDelaySeconds: 10
+            timeoutSeconds: 10
+            periodSeconds: 60
+          readinessProbe:
+            exec:
+              command: ["/bin/true"]
+            initialDelaySeconds: 10
+            timeoutSeconds: 10
+          volumeMounts:
+            - mountPath: /var/log/web
+              name: logvol
+
+      volumes:
+        - name: logvol
+          hostpath:
+            path: /var/log/web
+
+    - name: cs66-cron
+      count: 1
+      identity:
+        serviceName: cron
+        pod: cs66
+      containers:
+        - name: cron-service
+          image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/vijay-kota/cronsvc:24Oct19
+          args: ["7020"]
+          ports:
+            - name: grpc-port
+              containerPort: 7020
+          env:
+            - name: SFDC_ENVIRONMENT
+              value: mesh
+          resources:
+            limits: { cpu: "1", memory: "1Gi" }
+            requests: { cpu: "1", memory: "1Gi" }
+          livenessProbe:
+            exec:
+              command: ["/bin/true"]
+            initialDelaySeconds: 10
+            timeoutSeconds: 10
+            periodSeconds: 60
+          readinessProbe:
+            exec:
+              command: ["/bin/true"]
+            initialDelaySeconds: 10
+            timeoutSeconds: 10
+          volumeMounts:
+            - mountPath: /var/log/cron
+              name: logvol
+
+        - name: beacon-cron
+          image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/servicemesh/beacon:1.0.0
+          command: ["/bin/sh"]
+          # BUMP UP cluster# with each deployment for debuggability
+          args: ["-c", "export port=$GRPC_PORT ; /usr/bin/java -jar /home/scone/service.jar -endpoint cron/cron-cs66-1:POD:${port}"]
+            # -endpoint
+            # samapp/$(FUNCTION_NAMESPACE)/$(FUNCTION)-http:DATACENTER_ALLENV:7014
+            # samapp/$(FUNCTION_NAMESPACE)/$(FUNCTION)-https:DATACENTER_ALLENV:7442
+          env:
+            - name: SFDC_ENVIRONMENT
+              value: mesh
+            - name: GRPC_PORT
+              value: 7012
+          livenessProbe:
+            initialDelaySeconds: 5
+            exec:
+              command:
+                # "/home/scone/is-alive.sh"
+                - "/bin/true"
+          resources:
+            limits: { cpu: "1", memory: "1Gi" }
+            requests: { cpu: "1", memory: "1Gi" }
+          volumeMounts:
+            - mountPath: /home/scone/logs
+              name: beacon-log-volume
+
+        - name: sherpa-cron
+          # https://sconelibci.dop.sfdc.net/job/servicelibs/job/sherpa-envoy/job/master/73
+          image: sfci/servicelibs/sherpa-envoy:1.0.7
+          # See https://git.soma.salesforce.com/servicelibs/sherpa#ports
+          ports:
+          - containerPort: 7012
+            name: http2-in
+          - containerPort: 15373
+            name: sherpa-adm
+          resources:
+            limits: { cpu: "1", memory: "1Gi" }
+            requests: { cpu: "1", memory: "1Gi" }
+          env:
+            - name: SFDC_ENVIRONMENT
+              value: mesh
+            # name: ENVOY_DEBUG_OPTIONS
+            # value: --log-level trace --log-path /home/sfdc-sherpa/envoy.log
+          livenessProbe:
+            exec:
+              command:
+              - "./bin/is-alive"
+            initialDelaySeconds: 120
+            periodSeconds: 5
+          readinessProbe:
+            exec:
+              command:
+              - "./bin/is-ready"
+            initialDelaySeconds: 110
+            periodSeconds: 5
+          # Mount volumes with certificates. The paths here match the defaults assumed by sherpa
+          volumeMounts:
+          - name: sherpaclientcert
+            mountPath: /client-certs
+          - name: sherpaservercert
+            mountPath: /server-certs
+          - name: sherpa-log-volume
+            mountPath: /log
+
+      volumes:
+        - name: logvol
+          hostpath:
+            path: /var/log/qpid
+        - name: sherpaclientcert
+          maddogCert:
+            type: client
+        - name: sherpaservercert
+          maddogCert:
+            type: server
+        - name: sherpa-log-volume
+          hostPath:
+            path: /home/sfdc-sherpa/logs
+        - name: beacon-log-volume
+          hostPath:
+            path: /home/sfdc-beacon/logs
+
     - name: cs66-sdbha
       count: 1
       identity:
@@ -99,3 +252,23 @@ system:
     ports:
       - port: 1521
         targetport: 1521
+  - lbname: cs66-demo-lb
+    function: cs66-demo
+    slbenabled: true
+    ports:
+      - port: 7022
+        targetport: 7022
+      - port: 15372
+        targetport: 15372
+  - lbname: cs66-cron-lb
+    function: cs66-cron
+    slbenabled: true
+    ports:
+      - port: 7012
+        targetport: 7012
+      - port: 7020
+        targetport: 7020
+      # port: 15372
+      # targetport: 15372
+      - port: 15373
+        targetport: 15373
