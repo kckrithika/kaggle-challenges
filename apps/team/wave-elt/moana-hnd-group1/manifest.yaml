@@ -7,7 +7,7 @@ apiVersion: v1
 system:
   functions:
   - containers:
-    - image: ops0-artifactrepo1-0-hnd.data.sfdc.net/sfci/insights/moanaengine:release-2019.08.c.22-3e66661
+    - image: ops0-artifactrepo1-0-hnd.data.sfdc.net/sfci/insights/moanaengine:release-2019.10.a.25-3d1581a
       livenessProbe:
         exec:
           command: [ls]
@@ -27,7 +27,7 @@ system:
       - {name: TESTRECIPE_MAESTROPINGTEST, value: 'true'}
       - {name: DEPLOYMENT_ID, value: hnd-group1}
       - {name: HANDLED_PODS_PATTERN, value: 'cs[0-9]+|moana-driver-group1'}
-      image: sfci/insights/moana-driver:release-2019.09.a.28-84adc9b
+      image: sfci/insights/moana-driver:release-2019.10.a.30-b845189
       livenessProbe:
         httpGet: {path: /manage/health, port: 15372}
         initialDelaySeconds: 30
@@ -55,7 +55,7 @@ system:
       - {name: MANAGEMENT_SERVER_PORT, value: '15372'}
       - {name: LOGGING_JSON_STDOUT_LEVEL, value: ALL}
       - {name: LOGGING_STDERR_LEVEL, value: ALL}
-      - {name: MOANA_SPARK_ENGINE_IMAGE, value: 'ops0-artifactrepo1-0-hnd.data.sfdc.net/sfci/insights/moanaengine:release-2019.08.c.22-3e66661'}
+      - {name: MOANA_SPARK_ENGINE_IMAGE, value: 'ops0-artifactrepo1-0-hnd.data.sfdc.net/sfci/insights/moanaengine:release-2019.10.a.25-3d1581a'}
       - {name: KAFKA_GROUP_ID, value: moana-jobcontroller-group1}
       - {name: DEPLOYMENT_ID, value: hnd-group1}
       - {name: JAVA_OPTS, value: '-server -XX:MaxMetaspaceSize=512m -Xmx2048m -Xms2048m'}
@@ -63,7 +63,7 @@ system:
       - {name: K8S_CPU_LIMIT_APPLY, value: 'false'}
       - {name: STARTUP_JOB_ENABLED, value: 'false'}
       - {name: HANDLED_PODS_PATTERN, value: 'cs[0-9]+|moana-driver-group1'}
-      image: sfci/insights/jobcontroller:release-2019.09.a.29-0a9f30e
+      image: sfci/insights/jobcontroller:release-2019.10.a.32-7bfd352
       livenessProbe:
         httpGet: {path: /manage/health, port: 15372}
         initialDelaySeconds: 90
