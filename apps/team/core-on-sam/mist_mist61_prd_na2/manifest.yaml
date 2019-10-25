@@ -11,7 +11,7 @@ system:
             - name: DB_INSTANCE_NAME
               value: mist61b224utf-1
             - name: DB_USER
-              value: doc
+              value: bashful
             - name: DB_STATS_USER
               value: snowwhite
             - name: DB_CONN_NUM
