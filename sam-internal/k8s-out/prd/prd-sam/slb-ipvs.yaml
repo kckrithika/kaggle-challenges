@@ -54,7 +54,7 @@ spec:
         - --IpvsPath=20191010
         - --hostsConfigFile=/sfdchosts/hosts.json
         - --ipvsConnTabBits=20
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/slb/hyperslb:2259-3002cff5bf942bc89c0c879f5d1a0d7e345d4dd2
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/slb/hyperslb:2251-85aa611f8716aca8d3f31d3de175efdfef9d1a05
         name: slb-ipvs-installer
         securityContext:
           capabilities:
@@ -108,7 +108,7 @@ spec:
             fieldRef:
               apiVersion: v1
               fieldPath: metadata.name
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/slb/hyperslb:2259-3002cff5bf942bc89c0c879f5d1a0d7e345d4dd2
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/slb/hyperslb:2251-85aa611f8716aca8d3f31d3de175efdfef9d1a05
         name: slb-ipvs-processor
         securityContext:
           privileged: true
@@ -134,7 +134,7 @@ spec:
         - --connPort=9107
         - --log_dir=/host/data/slb/logs/slb-ipvs
         - --hostsConfigFile=/sfdchosts/hosts.json
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/slb/hyperslb:2259-3002cff5bf942bc89c0c879f5d1a0d7e345d4dd2
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/slb/hyperslb:2251-85aa611f8716aca8d3f31d3de175efdfef9d1a05
         livenessProbe:
           httpGet:
             path: /
@@ -169,7 +169,7 @@ spec:
         - --iprange.InternalIpRange=10.231.187.0/24,10.254.230.0/23
         - --client.socketDir=/host/data/slb/config/slb-ipvs
         - --client.dialSocket=true
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/slb/hyperslb:2259-3002cff5bf942bc89c0c879f5d1a0d7e345d4dd2
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/slb/hyperslb:2251-85aa611f8716aca8d3f31d3de175efdfef9d1a05
         name: slb-ipvs-conntrack
         securityContext:
           privileged: true
@@ -216,7 +216,7 @@ spec:
           valueFrom:
             fieldRef:
               fieldPath: spec.nodeName
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/slb/hyperslb:2259-3002cff5bf942bc89c0c879f5d1a0d7e345d4dd2
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/slb/hyperslb:2251-85aa611f8716aca8d3f31d3de175efdfef9d1a05
         livenessProbe:
           httpGet:
             path: /liveness-probe
@@ -254,7 +254,7 @@ spec:
         - --shouldSkipSlbBlock=true
         - --skipFilesWithSuffix=.sock
         - --shouldNotDeleteAllFiles=false
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/slb/hyperslb:2259-3002cff5bf942bc89c0c879f5d1a0d7e345d4dd2
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/slb/hyperslb:2251-85aa611f8716aca8d3f31d3de175efdfef9d1a05
         name: slb-cleanup-config-processor
         securityContext:
           privileged: true
@@ -278,7 +278,7 @@ spec:
         - --readOnly=false
         - --checkMwSentinel=true
         - --control.manifestWatcherSentinel=/host/data/slb/config/slb-ipvs/slb-manifest-watcher.sentinel
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/slb/hyperslb:2259-3002cff5bf942bc89c0c879f5d1a0d7e345d4dd2
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/slb/hyperslb:2251-85aa611f8716aca8d3f31d3de175efdfef9d1a05
         name: slb-node-api
         volumeMounts:
         - mountPath: /host/data/slb
@@ -294,7 +294,7 @@ spec:
         - --log_dir=/host/data/slb/logs/slb-ipvs
         - --hostsConfigFile=/sfdchosts/hosts.json
         - --subnet=10.251.196.0/22,96.43.157.0/24
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/slb/hyperslb:2259-3002cff5bf942bc89c0c879f5d1a0d7e345d4dd2
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/slb/hyperslb:2251-85aa611f8716aca8d3f31d3de175efdfef9d1a05
         name: slb-iface-processor
         securityContext:
           privileged: true
@@ -320,7 +320,7 @@ spec:
         env:
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig-platform
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/slb/hyperslb:2259-3002cff5bf942bc89c0c879f5d1a0d7e345d4dd2
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/slb/hyperslb:2251-85aa611f8716aca8d3f31d3de175efdfef9d1a05
         name: slb-cleanup
         securityContext:
           privileged: true
@@ -357,7 +357,7 @@ spec:
           valueFrom:
             fieldRef:
               fieldPath: spec.nodeName
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/slb/hyperslb:2259-3002cff5bf942bc89c0c879f5d1a0d7e345d4dd2
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/slb/hyperslb:2251-85aa611f8716aca8d3f31d3de175efdfef9d1a05
         name: slb-manifest-watcher
         securityContext:
           privileged: true
@@ -377,7 +377,7 @@ spec:
         - /sdn/slb-cleanup-log.sh
         - /var/log/kern.*
         - "3600"
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/slb/hyperslb:2259-3002cff5bf942bc89c0c879f5d1a0d7e345d4dd2
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/slb/hyperslb:2251-85aa611f8716aca8d3f31d3de175efdfef9d1a05
         name: slb-cleanup-kern-logs
         volumeMounts:
         - mountPath: /var/log
