@@ -140,7 +140,14 @@ system:
         value: http://gid-sso-client.global-identity.prd-sam.prd.slb.sfdc.net/vaas
       - name: spring_datasource_url
         value: jdbc:postgresql://gid-sdb.global-identity.prd-sam.prd.slb.sfdc.net:5432/mds
-
+      - name: spring_datasource_driver-class-name
+        value: org.postgresql.Driver
+      - name: spring_datasource_username
+        value: sdb
+      - name: spring_datasource_password
+        value:
+      - name: database_name
+        value: mds
       volumeMounts:
       - name: client-cert
         mountPath: /client-certs
