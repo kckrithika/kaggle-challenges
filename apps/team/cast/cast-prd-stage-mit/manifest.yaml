@@ -138,7 +138,7 @@ system:
         - name: c2c_common_gdotBasePath
           value: http://test1shared0-samminionatlasdir1-1-prd.eng.sfdc.net:8080/scim
         - name: GDOT_URL
-          value: http://${directory_server_host}:8080/scim
+          value: http://test1shared0-samminionatlasdir1-1-prd.eng.sfdc.net:8080/scim
       ports:
         - containerPort: 8082
         - containerPort: 15372
