@@ -1,0 +1,253 @@
+local madkub = (import "madkub.jsonnet") + { templateFileName:: std.thisFile };
+local images = import "sfcdimages.jsonnet";
+local configs = import "config.jsonnet";
+local portconfigs = import "portconfig.jsonnet";
+local envConfig = import "configs/firebom_service_conf.jsonnet";
+{
+  // Required arguments for this template
+  serviceName:: error "serviceName must be specified",
+  portAnnotations:: error "portAnnotations must be specified",
+  portConfigs:: error "portConfigs must be specified",
+  replicas:: error "Replicas must be specified",
+  role:: error "Role must be specified for certificate generation",
+  dockerImage:: error "dockerImage must be specified ",
+  command:: error "command must be specified ",
+  env:: error "env must be specified ",
+  volumeMounts:: error "volumeMounts must be specified ",
+  namespace:: error "namespace must be specified",
+
+  local configs = import "config.jsonnet",
+  local sfcd_feature_flags = import "sfcd_feature_flags.jsonnet",
+
+  serviceConf:: {},
+  commonVolMounts:: [
+    {
+      name: "certs",
+      mountPath: "/certs",
+    },
+    {
+      name: "git-ssh-keys",
+      mountPath: "/root/.ssh/",
+    },
+    {
+      name: 'app-config-volume',
+      mountPath: '/etc/' + $.serviceName +'/config',
+    },
+  ],
+  // arguments for template
+  commonEnv:: [
+    {
+      name: "MY_NODE_NAME",
+      valueFrom:
+      {
+        fieldRef: { fieldPath: "spec.nodeName", apiVersion: "v1" },
+      },
+    },
+    {
+      name: "MY_POD_NAME",
+      valueFrom:
+      {
+        fieldRef: { fieldPath: "metadata.name", apiVersion: "v1" },
+      },
+    },
+    {
+      name: "MY_POD_IP",
+      valueFrom:
+      {
+        fieldRef: { fieldPath: "status.podIP", apiVersion: "v1" },
+      },
+    },
+    {
+      name: 'MY_POD_NAMESPACE',
+      valueFrom:
+      {
+        fieldRef: { fieldPath: 'metadata.namespace', apiVersion: "v1" },
+      },
+    },
+    {
+      name: 'MY_APP_NAME',
+      valueFrom:
+      {
+        fieldRef: { fieldPath: 'metadata.labels[\'name\']', apiVersion: "v1" },
+      },
+    },
+  ],
+
+  local configmap = {
+    apiVersion: 'v1',
+    kind: 'ConfigMap',
+    metadata: {
+      name: $.serviceName + '-configmap',
+      namespace: $.namespace,
+      labels: {} + configs.ownerLabel.sfcd,
+    },
+    data: $.data,
+  },
+
+  local service = {
+    kind: 'Service',
+    apiVersion: 'v1',
+    metadata: {
+      name: $.serviceName + '-service',
+      namespace: $.namespace,
+      labels: {
+        app: $.serviceName,
+      } + configs.ownerLabel.sfcd,
+      [if sfcd_feature_flags.is_slb_enabled then "annotations"]: {
+        "slb.sfdc.net/cnames": std.toString(
+          std.manifestJsonEx(
+            // Example of cname: firefly-intake-prd-sam.slb.sfcd.net
+            [{"cname": std.format("%s-%s.%s", [$.serviceName, configs.estate, "slb.sfdc.net"])}],
+            "  "
+          )
+        ),
+        "slb.sfdc.net/name": $.serviceName,
+        "slb.sfdc.net/portconfigurations": std.toString(
+          std.manifestJsonEx($.portAnnotations, "  "),
+        ),
+      },
+    },
+    spec: {
+      type: if sfcd_feature_flags.is_slb_enabled then 'NodePort' else 'LoadBalancer',
+      ports: $.portConfigs,
+      selector: {
+         name: if 'selectorName' in $ then $.selectorName else $.serviceName,
+      },
+    },
+  },
+
+  local deployment = configs.deploymentBase("sfcd") {
+    metadata: {
+      name: $.serviceName + '-deployment',
+      namespace: $.namespace,
+      labels: {
+        name: if 'selectorName' in $ then $.selectorName else $.serviceName,
+      } + configs.ownerLabel.sfcd,
+    },
+    spec+: {
+      replicas: $.replicas,
+      template: {
+        metadata: {
+          namespace: $.namespace,
+          name: $.serviceName + '-deployment',
+          labels: {
+            name: if 'selectorName' in $ then $.selectorName else $.serviceName,
+          } + configs.ownerLabel.sfcd,
+          local certReqs = [
+            {"name": "certs", "cert-type":"client", "kingdom":"prd", "role": $.role},
+            ],
+          annotations: {
+            'madkub.sam.sfdc.net/allcerts': std.manifestJson({"certreqs" : certReqs}),
+          },
+        },
+        spec: {
+          initContainers: [
+            madkub.madkubInitContainer(),
+          ],
+          containers: [
+            madkub.madkubRefreshContainer(),
+            {
+              name: $.serviceName,
+              image: $.dockerImage,
+              command: $.command,
+              imagePullPolicy: 'Always',
+              env: $.env,
+              ports: [
+                {
+                  name: "admin-port",
+                  protocol: "TCP",
+                  containerPort: $.serviceConf.healthPort,
+                },
+              ] + if std.length($.serviceConf.port) < 0 then [] else $.serviceConf.port,
+              volumeMounts: $.volumeMounts,
+              livenessProbe: {
+                httpGet: {
+                path: '/actuator',
+                port: 'admin-port',
+                },
+                initialDelaySeconds: 30,
+                timeoutSeconds: 30,
+                periodSeconds: 30,
+                successThreshold: 1,
+                failureThreshold: 10,
+              },
+//              [if std.startsWith($.serviceName, "firefly-intake") then "readinessProbe"]: {
+//                httpGet: {
+//                path: '/actuator/health',
+//                port: 'admin-port',
+//                },
+//                initialDelaySeconds: 30,
+//                timeoutSeconds: 30,
+//                periodSeconds: 60,
+//                successThreshold: 1,
+//                failureThreshold: 10,
+//              },
+            } + configs.ipAddressResourceRequest,
+          ],
+          volumes: [
+            {
+              name: 'app-config-volume',
+              projected: {
+                sources: [
+                  {
+                    configMap: {
+                      name: $.serviceName + '-configmap',
+                      items: [
+                        {
+                          key: 'application.yml',
+                          path: 'application.yml',
+                        },
+                      ],
+                    },
+                  },
+                ],
+              },
+            },
+            {
+              name: "docker-build-dir",
+              emptyDir: {},
+            },
+            {
+              name: "sfcdapi-root-dir",
+              emptyDir: {},
+            },
+            {
+              name: "tokens",
+              emptyDir: {
+                medium: "Memory",
+              },
+            },
+            {
+              name: "certs",
+              emptyDir: {
+                medium: "Memory",
+              },
+            },
+            {
+              name: "git-ssh-keys",
+              emptyDir: {
+                medium: "Memory",
+              },
+            },
+            configs.maddog_cert_volume,
+          ],
+          terminationGracePeriodSeconds: 10,
+          nodeSelector: {
+            pool: $.serviceConf.pool,
+          },
+        },
+      },
+      strategy: {
+        type: "RollingUpdate",
+        rollingUpdate: {
+          maxUnavailable: 1,
+          maxSurge: 0,
+        },
+      },
+    },
+  },
+
+  apiVersion: 'v1',
+  kind: 'List',
+  items: [configmap, service, deployment],
+}
