@@ -129,16 +129,14 @@ system:
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/gid/c2c-service:20191008173906-6755dab
       imagePullPolicy: Always
       env:
-        - name: directory_server_host
-          valueFrom:
-           fieldRef:
-            fieldPath: spec.nodeName
         - name: server_port
           value: 8082
         - name: management_server_port
           value: 15372
+        # Pointing to prd-stage host directly. MIT does not support specifying hostlist 
+        # This pod could be deployed to any of 6 nodes in prd/prd-sam_cloudatlas_dir pool
         - name: c2c_common_gdotBasePath
-          value: http://${directory_server_host}:8080/scim
+          value: http://test1shared0-samminionatlasdir1-1-prd.eng.sfdc.net:8080/scim
         - name: GDOT_URL
           value: http://${directory_server_host}:8080/scim
       ports:
@@ -146,13 +144,11 @@ system:
         - containerPort: 15372
       livenessProbe:
         httpGet:
-          path: /manage/info
+          path: /manage/health
           port: 15372
       volumeMounts:
         - name: server-cert
           mountPath: /certs
-        - name: client-cert
-          mountPath: /certs/client
     # #####################################################################################
     # # GID Data service
     # #####################################################################################
@@ -186,7 +182,7 @@ system:
     # NGINX Rev Proxy
     #####################################################################################
     - name: nginx-rev-proxy
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/gid/gid-nginx:9499a45
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/gid/gid-nginx:0370225
       imagePullPolicy: Always
       ports:
         - containerPort: 7022
