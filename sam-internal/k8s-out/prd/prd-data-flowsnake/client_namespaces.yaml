@@ -26,6 +26,17 @@ items:
   kind: Namespace
   metadata:
     annotations:
+      sfdc.net/flowsnake.owner_name: DVA LogAnalytics
+      sfdc.net/pki-namespace: Splunk
+    labels:
+      madkub-injector: enabled
+      service-mesh-injector: enabled
+      spark-operator-webhook: enabled
+    name: loganalytics
+- apiVersion: v1
+  kind: Namespace
+  metadata:
+    annotations:
       sfdc.net/flowsnake.owner_name: Flowsnake
       sfdc.net/pki-namespace: flowsnake_test
     labels:

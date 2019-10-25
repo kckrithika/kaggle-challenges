@@ -59,6 +59,14 @@ local cre_production = {
                     "universal-search.irahim",
                 ],
             },
+            {
+                owner_name: "DVA LogAnalytics",
+                namespace: "loganalytics",
+                pki_namespace: "Splunk",
+                users: [
+                    "Splunk.vgandrapu",
+                ],
+            },
         ],
 
         # ------------------------------------
