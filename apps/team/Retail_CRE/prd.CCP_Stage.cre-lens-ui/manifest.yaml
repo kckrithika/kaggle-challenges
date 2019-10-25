@@ -5,17 +5,17 @@ system:
     count: 1
     containers:
     - name: sam-lensui
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cre/cre-lens-ui:ea-test-1
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cre/cre-lens-ui:61a03f8
       ports:
-      - containerPort: 32004
+      - containerPort: 3000
       livenessProbe:
         httpGet:
           path: /
-          port: 32004
+          port: 3000
   loadbalancers:
   - lbname: sam-lensui-lb
     function: cre-lens-ui
     slbEnabled: true
     ports:
-      - port: 80
-        targetport: 32004
+      - port: 3000
+        targetport: 3000
