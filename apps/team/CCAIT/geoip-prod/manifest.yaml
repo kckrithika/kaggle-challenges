@@ -6,7 +6,7 @@ system:
     - servicemesh@salesforce.com
   functions:
   - name: geoip
-    count: 3
+    count: 5
     containers:
     - name: geoip-database
       image: tnrp/ccait/geoip2-database:20170918
