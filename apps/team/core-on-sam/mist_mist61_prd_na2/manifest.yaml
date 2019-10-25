@@ -4,472 +4,508 @@
 apiVersion: v1
 system:
   functions:
-  - containers:
-    - env:
-      - name: DB_SID
-        value: mist61a222utf
-      - name: DB_INSTANCE_NAME
-        value: mist61a222utf-1
-      - name: DB_USER
-        value: sleepy
-      - name: DB_STATS_USER
-        value: snowwhite
-      - name: DB_CONN_NUM
-        value: 25
-      - name: IP_DB
-        value: mist61ice1-db1-1-prd.eng.sfdc.net
-      - name: DB_PASSWORD
-        value: rotate
-      - name: DB_STATS_PASSWORD
-        value: rotate
-      - name: IP_MNDS1
-        value: 127.0.0.1
-      - name: OFFLINE
-        value: true
-      - name: SERVER_ID
-        value: x
-      - name: PUBLIC_PORT
-        value: 8443
-      - name: PUBLIC_PORT_IS_SECURE
-        value: true
-      - name: PUBLIC_HOST_NAME
-        value: us2-sfproxy-lb.core-on-sam-sp2.prd-sam.prd.slb.sfdc.net
-      - name: SFPROXY_VIP
-        value: https://us2-sfproxy-lb.core-on-sam-sp2.prd-sam.prd.slb.sfdc.net:8443
-      - name: HTTP_PORT
-        value: 8085
-      - name: SPORT
-        value: 8443
-      - name: S2PORT
-        value: 12098
-      - name: PLSQL_UPDATE_RUNSTATS
-        value: false
-      - name: DISABLE_AUTH_RELEASE_CHECK
-        value: true
-      - name: SKIP_READY_RELEASE_CHECK
-        value: true
-      - name: CASAM_APP_COLOR
-        value: blue
-      - name: SD_PORT_OVERRIDE
-        value: 13065
-      - name: CASAM_SETTINGS_PATH
-        value: mist.mist61.prd.na2.app
-      - name: CLUSTER_NAME
-        value: na2
-      - name: DEPLOYMENT
-        value: B
-      - name: ZDT
-        value: true
-      - name: CASAM_DEPLOYMENT_ID
-        value: 12345
-      - name: CASAM_HOST_NAME
-        valueFrom:
-          fieldRef:
-            fieldPath: spec.nodeName
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/coreonsam/casam:release_222-patch_19057694
-      livenessProbe:
-        exec:
-          command:
-          - /home/sfdc/salesforce/casam/bin/live_probe.sh
-        failureThreshold: 99999
-        initialDelaySeconds: 120
-        periodSeconds: 5
-        timeoutSeconds: 5
-      name: coreapp
-      ports:
-      - containerPort: 8998
-      - containerPort: 8085
-      - containerPort: 11211
-      - containerPort: 12098
-      - containerPort: 8443
-      readinessProbe:
-        exec:
-          command:
-          - /home/sfdc/salesforce/casam/bin/ready_probe.sh
-        failureThreshold: 99999
-        initialDelaySeconds: 120
-        periodSeconds: 5
-        timeoutSeconds: 5
-      volumeMounts:
-      - mountPath: /home/sfdc/logs/sfdc
-        name: log-volume-sfdc
-      - mountPath: /home/sfdc/logs/jvm
-        name: log-volume-jvm
-      - mountPath: /etc/pki_service
-        name: tls-client-cert
-      - mountPath: /certs/cert-server
-        name: tls-server-cert
-      - mountPath: /home/sfdc/salesforce/casam
-        name: coreapp-casam-volume
-      - mountPath: /home/sfdc/salesforce/config/settings/overrides/caas-cluster-casam-sp2
-        name: secretvol
-        readOnly: true
-    - env:
-      - name: CASAM_SETTINGS_PATH
-        value: mist.mist61.prd.na2.app
-      image: sfci/casam/coreapp_overrides:43048d
-      livenessProbe:
-        exec:
-          command:
-          - cat
-          - /tmp/live
-        initialDelaySeconds: 10
-        periodSeconds: 5
-      name: casam-sidecar
-      readinessProbe:
-        exec:
-          command:
-          - cat
-          - /tmp/ready
-        initialDelaySeconds: 10
-        periodSeconds: 5
-      volumeMounts:
-      - mountPath: /home/sfdc/salesforce/casam
-        name: coreapp-casam-volume
-    - args:
-      - --template
-      - /cyan-config/tls-terminator-config.yaml.template
-      env:
-      - name: SFDC_ENVIRONMENT
-        value: envoy-sidecar
-      image: sfci/servicelibs/sherpa-envoy:1.0.4
-      livenessProbe:
-        exec:
-          command:
-          - ./bin/is-alive
-        initialDelaySeconds: 20
-        periodSeconds: 5
-      name: envoy-sidecar
-      ports:
-      - containerPort: 13065
-      - containerPort: 15373
-      readinessProbe:
-        exec:
-          command:
-          - ./bin/is-ready
-        initialDelaySeconds: 15
-        periodSeconds: 5
-      volumeMounts:
-      - mountPath: /cyan-config
-        name: envoy-config-volume
-      - mountPath: /certs/cert-client
-        name: tls-client-cert
-      - mountPath: /certs/cert-server
-        name: tls-server-cert
-    - env:
-      - name: CONFIG_DIR
-        value: /home/sfdc-sherpa/sherpa-envoy-config-volume
-      image: sfci/casam/cyan-config:208cc2
-      livenessProbe:
-        exec:
-          command:
-          - cat
-          - /tmp/live
-        initialDelaySeconds: 10
-        periodSeconds: 5
-      name: envoy-sidecar-config
-      readinessProbe:
-        exec:
-          command:
-          - cat
-          - /tmp/ready
-        initialDelaySeconds: 10
-        periodSeconds: 5
-      volumeMounts:
-      - mountPath: /home/sfdc-sherpa/sherpa-envoy-config-volume
-        name: envoy-config-volume
-    count: 1
-    identity:
-      pod: na2
-      serviceName: app
-    name: na2-mist61app-prd
-    progressDeadlineSeconds: 300
-    strategy:
-      rollingUpdate:
-        maxSurge: 200%
-        maxUnavailable: 0
-      type: RollingUpdate
-    terminationGracePeriodSeconds: 120
-    volumes:
-    - emptyDir: {}
-      name: envoy-config-volume
-    - emptyDir: {}
-      name: coreapp-casam-volume
-    - maddogCert:
-        type: client
-      name: tls-client-cert
-    - maddogCert:
-        type: server
-      name: tls-server-cert
-    - hostPath:
-        path: /data/logs/sfdc
-      name: log-volume-sfdc
-    - hostPath:
-        path: /data/logs/jvm
-      name: log-volume-jvm
-    - k4aSecret:
-        secretName: caas-k4a-secret-prd
-      name: secretvol
-  - containers:
-    - env:
-      - name: NONCE
-        value: 1560290423349956352
-      - name: DRY_RUN
-        value: 0
-      - name: CHATTER_GROUP_NAME
-        value: casam-alpha
-      - name: SFPROXY_VIP
-        value: https://us2-sfproxy-lb.core-on-sam-sp2.prd-sam.prd.slb.sfdc.net:8443
-      - name: SWITCH_BOARD_ADDRESS
-        value: na2-switchboard-lb.core-on-sam-sp2.prd-sam.prd.slb.sfdc.net:8088
-      - name: RELEASE_VESION
-        value: ""
-      - name: RELEASE_TYPE
-        value: MINOR
-      - name: MAJOR_RELEASE_NUMBER
-        value: 218
-      - name: DB_EDITION
-        value: 218
-      - name: MINOR_RELEASE_NUMBER
-        value: 0
-      - name: PATCH_RELEASE_NUMBER
-        value: 0
-      - name: CURRENT_RELEASE_VERSION
-        value: green
-      - name: NEW_RELEASE_VERSION
-        value: blue
-      - name: READY_SERVER_COUNT
-        value: 1
-      - name: DB_SID
-        value: mist61b218utf
-      - name: ENABLE_DB_SCHEMA_UPGRADE
-        value: 0
-      - name: OLD_DWARF
-        value: sneezy
-      - name: KILL_DWARF
-        value: 0
-      - name: LOCK_DWARF
-        value: 0
-      - name: TRIGGER_CAFFEINE
-        value: 0
-      - name: UNLOCK_DWARF
-        value: 0
-      - name: SNOWWHITE_PWD
-        value: rotate
-      - name: MADDOG_CLIENT
-        value: /certs
-      - name: SFPROXY_SETTINGS_PATH
-        value: mist61.-.prd.na2.sfproxy
-      - name: CASAM_SUPERPOD
-        value: sp2
-      - name: HTTP_PROXY
-        value: public0-proxy1-0-prd.data.sfdc.net:8080
-      - name: SKIP_KAIJU
-        value: 1
-      - name: ZDT
-        value: true
-      - name: KAIJU_REFOCUS_GETRESULT_URL
-        value: https://refocus.internal.salesforce.com/v1/samples/
-      - name: KAIJU_RUNTIME_TIMEOUT_MS
-        value: 360000
-      image: sfci/casam/sequencer:9e29a6
-      livenessProbe:
-        exec:
-          command:
-          - /usr/local/bin/ready_probe.sh
-        failureThreshold: 10
-        initialDelaySeconds: 60
-        periodSeconds: 1
-      name: sequencer
-      ports:
-      - containerPort: 12062
-      readinessProbe:
-        exec:
-          command:
-          - /usr/local/bin/ready_probe.sh
-        failureThreshold: 10
-        initialDelaySeconds: 60
-        periodSeconds: 1
-      volumeMounts:
-      - mountPath: /certs
-        name: cert
-      - mountPath: /secrets/
-        name: secretvol
-        readOnly: true
-      - mountPath: /kaiju-secrets/
-        name: kaiju-secret-vol
-        readOnly: true
-    count: 1
-    identity:
-      pod: na2
-      serviceName: sequencer
-    name: na2-mist61sequencer-prd
-    progressDeadlineSeconds: 300
-    terminationGracePeriodSeconds: 60
-    volumes:
-    - maddogCert:
-        type: client
-      name: cert
-    - k4aSecret:
-        secretName: sequencer-gus
-      name: secretvol
-    - k4aSecret:
-        secretName: sequencer-kaiju
-      name: kaiju-secret-vol
-  - containers:
-    - args:
-      - --template=/home/sfdc-sherpa/sfproxy/config/core-on-sam/sfproxy-rds.yaml.template
-      - --switchboard=na2-switchboard-lb.core-on-sam-sp2.prd-sam.prd.slb.sfdc.net:8088
-      - --log-level=trace
-      env:
-      - name: ENVOY_DEBUG_OPTIONS
-        value: --log-path /home/sfdc-sherpa/envoy.log
-      - name: SFDC_ENVIRONMENT
-        value: mist61
-      image: sfci/frontend-gateway/sfproxy:a290f27
-      livenessProbe:
-        exec:
-          command:
-          - ./bin/is-alive
-        initialDelaySeconds: 20
-        periodSeconds: 5
-      name: sfproxy-envoy
-      ports:
-      - containerPort: 2525
-      - containerPort: 12060
-      - containerPort: 15373
-      readinessProbe:
-        exec:
-          command:
-          - ./bin/is-ready
-        initialDelaySeconds: 15
-        periodSeconds: 5
-      volumeMounts:
-      - mountPath: /client-certs
-        name: tls-client-cert
-      - mountPath: /server-certs
-        name: tls-server-cert
-    count: 1
-    identity:
-      pod: na2
-      serviceName: sfproxy
-    name: na2-mist61sfproxy-prd
-    volumes:
-    - maddogCert:
-        type: client
-      name: tls-client-cert
-    - maddogCert:
-        lbnames:
-        - us2-sfproxy-lb
-        type: server
-      name: tls-server-cert
-  - containers:
-    - args:
-      - --clusters.external-clusters[0]=ajnafunneldirect:HTTP1
-      - --clusters.external-clusters[1]=spaasmesh:HTTP2
-      - --metrics.maxNumberOfCollectedMetrics=100000
-      - --metrics.funnelTimeOut=90000
-      - --routeupdates.use.k8s=true
-      env:
-      - name: SFDC_ENVIRONMENT
-        value: mist61
-      - name: GRPC_SERVER_PORT
-        value: 7020
-      - name: JVM_HEAP_MAX
-        value: 4G
-      image: sfci/servicelibs/switchboard:98471950537d76a57ccbf65d72f823d5724ef3bf
-      livenessProbe:
-        httpGet:
-          path: /manage/health
-          port: 15372
-        initialDelaySeconds: 20
-        periodSeconds: 5
-      name: switchboard
-      ports:
-      - containerPort: 7020
-      - containerPort: 15372
-      readinessProbe:
-        httpGet:
-          path: /manage/health
-          port: 15372
-        initialDelaySeconds: 15
-        periodSeconds: 5
-      volumeMounts:
-      - mountPath: /home/sfdc-switchboard/sherpa-envoy-config-volume
-        name: envoy-config-volume
-    - args:
-      - --template
-      - /home/sfdc-sherpa/sfproxy/config/switchboard-sidecar/sfproxy-switchboard-sidecar.config.yaml.template
-      - --log-level
-      - trace
-      env:
-      - name: SFDC_ENVIRONMENT
-        value: mist61
-      - name: ENVOY_DEBUG_OPTIONS
-        value: --log-path /home/sfdc-sherpa/envoy.log
-      image: sfci/frontend-gateway/sfproxy:bc7e1fa
-      livenessProbe:
-        exec:
-          command:
-          - ./bin/is-alive
-        initialDelaySeconds: 20
-        periodSeconds: 5
-      name: envoy-sidecar
-      ports:
-      - containerPort: 15001
-      - containerPort: 15373
-      readinessProbe:
-        exec:
-          command:
-          - ./bin/is-ready
-        initialDelaySeconds: 15
-        periodSeconds: 5
-      volumeMounts:
-      - mountPath: /switchboard-config
-        name: envoy-config-volume
-      - mountPath: /client-certs
-        name: tls-client-cert
-      - mountPath: /server-certs
-        name: tls-server-cert
-    count: 1
-    identity:
-      pod: na2
-      serviceName: switchboard
-    name: na2-mist61switchboard-prd
-    serviceAccountName: switchboard-service-account
-    volumes:
-    - emptyDir: {}
-      name: envoy-config-volume
-    - maddogCert:
-        type: client
-      name: tls-client-cert
-    - maddogCert:
-        lbnames:
-        - na2-switchboard-lb
-        type: server
-      name: tls-server-cert
+    - containers:
+        - env:
+            - name: DB_SID
+              value: mist61b224utf
+            - name: DB_INSTANCE_NAME
+              value: mist61b224utf-1
+            - name: DB_USER
+              value: doc
+            - name: DB_STATS_USER
+              value: snowwhite
+            - name: DB_CONN_NUM
+              value: 25
+            - name: IP_DB
+              value: mist61ice1-db1-1-prd.eng.sfdc.net
+            - name: DB_PASSWORD
+              value: rotate
+            - name: DB_STATS_PASSWORD
+              value: rotate
+            - name: IP_MNDS1
+              value: 127.0.0.1
+            - name: OFFLINE
+              value: true
+            - name: SERVER_ID
+              value: x
+            - name: PUBLIC_PORT
+              value: 8443
+            - name: PUBLIC_PORT_IS_SECURE
+              value: true
+            - name: PUBLIC_HOST_NAME
+              value: us2-sfproxy-lb.core-on-sam-sp2.prd-sam.prd.slb.sfdc.net
+            - name: SFPROXY_VIP
+              value: https://us2-sfproxy-lb.core-on-sam-sp2.prd-sam.prd.slb.sfdc.net:8443
+            - name: HTTP_PORT
+              value: 7022
+            - name: SPORT
+              value: 8443
+            - name: S2PORT
+              value: 12098
+            - name: PLSQL_UPDATE_RUNSTATS
+              value: false
+            - name: DISABLE_AUTH_RELEASE_CHECK
+              value: true
+            - name: SKIP_READY_RELEASE_CHECK
+              value: true
+            - name: CASAM_APP_COLOR
+              value: blue
+            - name: CASAM_DEPLOYMENT_ID
+              value: na2-blue
+            - name: USE_K8S_COLOR_PERSISTENCE
+              value: 0
+            - name: SD_PORT_OVERRIDE
+              value: 7442
+            - name: CASAM_SETTINGS_PATH
+              value: mist.mist61.prd.na2.app
+            - name: CLUSTER_NAME
+              value: na2
+            - name: DEPLOYMENT
+              value: B
+            - name: ZDT
+              value: true
+            - name: CASAM_DEPLOYMENT_ID
+              value: 12345
+            - name: CASAM_HOST_NAME
+              valueFrom:
+                fieldRef:
+                  fieldPath: spec.nodeName
+          image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/coreonsam/casam:release_main_19195167
+          livenessProbe:
+            exec:
+              command:
+                - echo
+                - HEALTHY
+            failureThreshold: 99999
+            initialDelaySeconds: 120
+            periodSeconds: 5
+            timeoutSeconds: 5
+          name: coreapp
+          ports:
+            - containerPort: 8998
+            - containerPort: 8085
+            - containerPort: 11211
+            - containerPort: 12098
+            - containerPort: 8443
+          readinessProbe:
+            exec:
+              command:
+                - echo
+                - HEALTHY
+            failureThreshold: 99999
+            initialDelaySeconds: 120
+            periodSeconds: 5
+            timeoutSeconds: 5
+          volumeMounts:
+            - mountPath: /home/sfdc/logs/sfdc
+              name: log-volume-sfdc
+            - mountPath: /home/sfdc/logs/jvm
+              name: log-volume-jvm
+            - mountPath: /etc/pki_service
+              name: tls-client-cert
+            - mountPath: /certs/cert-server
+              name: tls-server-cert
+            - mountPath: /home/sfdc/salesforce/casam
+              name: coreapp-casam-volume
+            - mountPath: /home/sfdc/salesforce/config/settings/overrides/caas-cluster-casam-sp2
+              name: secretvol
+              readOnly: true
+        - env:
+            - name: CASAM_SETTINGS_PATH
+              value: mist.mist61.prd.na2.app
+          image: sfci/casam/coreapp_overrides:ef45c9
+          livenessProbe:
+            exec:
+              command:
+                - cat
+                - /tmp/live
+            initialDelaySeconds: 10
+            periodSeconds: 5
+          name: casam-sidecar
+          readinessProbe:
+            exec:
+              command:
+                - cat
+                - /tmp/ready
+            initialDelaySeconds: 10
+            periodSeconds: 5
+          volumeMounts:
+            - mountPath: /home/sfdc/salesforce/casam
+              name: coreapp-casam-volume
+
+        - name: sherpa
+          # Use the latest release version from https://git.soma.salesforce.com/servicelibs/sherpa-envoy/releases
+          image: sfci/servicelibs/sherpa-envoy:1.0.6
+          # See https://git.soma.salesforce.com/servicelibs/sherpa#ports
+          ports:
+            - containerPort: 7442
+              name: http1-tls-in
+            - containerPort: 15373
+              name: sherpa-adm
+          livenessProbe:
+            exec:
+              command:
+                - ./bin/is-alive
+            initialDelaySeconds: 60
+            periodSeconds: 5
+          readinessProbe:
+            exec:
+              command:
+                - ./bin/is-ready
+            initialDelaySeconds: 50
+            periodSeconds: 5
+          volumeMounts:
+            - name: tls-client-cert
+              mountPath: /client-certs
+            - name: tls-server-cert
+              mountPath: /server-certs
+      count: 1
+      identity:
+        pod: na2
+        serviceName: app
+      name: na2-mist61app-prd
+      labels:
+        settings-path: mist.mist61.prd.na2.app
+        casam-deployment-id: na2-green
+      progressDeadlineSeconds: 300
+      strategy:
+        rollingUpdate:
+          maxSurge: 200%
+          maxUnavailable: 0
+        type: RollingUpdate
+      terminationGracePeriodSeconds: 120
+      volumes:
+        - emptyDir: {}
+          name: envoy-config-volume
+        - emptyDir: {}
+          name: coreapp-casam-volume
+        - maddogCert:
+            type: client
+          name: tls-client-cert
+        - maddogCert:
+            type: server
+          name: tls-server-cert
+        - hostPath:
+            path: /data/logs/sfdc
+          name: log-volume-sfdc
+        - hostPath:
+            path: /data/logs/jvm
+          name: log-volume-jvm
+        - k4aSecret:
+            secretName: caas-k4a-secret-prd
+          name: secretvol
+    - containers:
+        - env:
+            - name: NONCE
+              value: 5592127231642326369
+            - name: DRY_RUN
+              value: 0
+            - name: CHATTER_GROUP_NAME
+              value: casam-alpha
+            - name: SFPROXY_VIP
+              value: https://us2-sfproxy-lb.core-on-sam-sp2.prd-sam.prd.slb.sfdc.net:8443
+            - name: SWITCH_BOARD_ADDRESS
+              value: na2-switchboard-lb.core-on-sam-sp2.prd-sam.prd.slb.sfdc.net:8088
+            - name: RELEASE_VESION
+              value: ""
+            - name: RELEASE_TYPE
+              value: MINOR
+            - name: MAJOR_RELEASE_NUMBER
+              value: 224
+            - name: DB_EDITION
+              value: SFDC_224
+            - name: MINOR_RELEASE_NUMBER
+              value: 0
+            - name: PATCH_RELEASE_NUMBER
+              value: 0
+            - name: CURRENT_RELEASE_VERSION
+              value: green
+            - name: NEW_RELEASE_VERSION
+              value: blue
+            - name: CASAM_DEPLOYMENT_ID
+              value: na2-blue
+            - name: USE_K8S_COLOR_PERSISTENCE
+              value: 0
+            - name: USE_K8_SERVICE_DISCOVERY
+              value: 1
+            - name: READY_SERVER_COUNT
+              value: 1
+            - name: DB_SID
+              value: mist61b224utf-1
+            - name: ENABLE_DB_SCHEMA_UPGRADE
+              value: 0
+            - name: OLD_DWARF
+              value: sneezy
+            - name: KILL_DWARF
+              value: 0
+            - name: LOCK_DWARF
+              value: 0
+            - name: TRIGGER_CAFFEINE
+              value: 0
+            - name: UNLOCK_DWARF
+              value: 0
+            - name: SNOWWHITE_PWD
+              value: rotate
+            - name: MADDOG_CLIENT
+              value: /certs
+            - name: SFPROXY_SETTINGS_PATH
+              value: mist61.-.prd.na2.sfproxy
+            - name: CASAM_SUPERPOD
+              value: sp2
+            - name: HTTP_PROXY
+              value: public0-proxy1-0-prd.data.sfdc.net:8080
+            - name: SKIP_KAIJU
+              value: 1
+            - name: ZDT
+              value: true
+            - name: KAIJU_REFOCUS_GETRESULT_URL
+              value: https://refocus.internal.salesforce.com/v1/samples/
+            - name: KAIJU_RUNTIME_TIMEOUT_MS
+              value: 360000
+            - name: DB_HOST
+              value: mist61ice1-db1-1-prd.eng.sfdc.net
+            - name: DB_PORT
+              value: 1521
+            - name: DB_VENDOR
+              value: oracle
+            - name: SQLMX_PASSWD
+              value: test1234
+            - name: COREAPP_SETTINGS_PATH
+              value: mist.mist61.prd.na2.app
+            - name: dns_override_enabled
+              value: true
+            - name: dns_override
+              value: switchboard.core-on-sam.sfdc-role
+            - name: DISABLE_GUS
+              value: 1
+            - name: DISABLE_ARGUS
+              value: 0
+          image: sfci/casam/sequencer:80e6d8
+          livenessProbe:
+            exec:
+              command:
+                - /usr/local/bin/ready_probe.sh
+            failureThreshold: 10
+            initialDelaySeconds: 60
+            periodSeconds: 1
+          name: sequencer
+          ports:
+            - containerPort: 12062
+          readinessProbe:
+            exec:
+              command:
+                - /usr/local/bin/ready_probe.sh
+            failureThreshold: 10
+            initialDelaySeconds: 60
+            periodSeconds: 1
+          volumeMounts:
+            - mountPath: /etc/identity
+              name: client-cert
+            - mountPath: /secrets/
+              name: secretvol
+              readOnly: true
+            - mountPath: /kaiju-secrets/
+              name: kaiju-secret-vol
+              readOnly: true
+        - name: sherpa
+          # Use the latest release version from https://git.soma.salesforce.com/servicelibs/sherpa-envoy/releases
+          image: sfci/servicelibs/sherpa-envoy:1.0.6
+          # See https://git.soma.salesforce.com/servicelibs/sherpa#ports
+          ports:
+            - containerPort: 15373
+              name: sherpa-adm
+          livenessProbe:
+            exec:
+              command:
+                - ./bin/is-alive
+            initialDelaySeconds: 60
+            periodSeconds: 5
+          readinessProbe:
+            exec:
+              command:
+                - ./bin/is-ready
+            initialDelaySeconds: 50
+            periodSeconds: 5
+          volumeMounts:
+            - name: client-cert
+              mountPath: /client-certs
+            - name: server-cert
+              mountPath: /server-certs
+      count: 1
+      identity:
+        pod: na2
+        serviceName: sequencer
+      name: na2-mist61sequencer-prd
+      serviceAccountName: casamserviceaccount
+      progressDeadlineSeconds: 300
+      terminationGracePeriodSeconds: 60
+      volumes:
+        - maddogCert:
+            type: client
+          name: client-cert
+        - maddogCert:
+            type: server
+          name: server-cert
+        - k4aSecret:
+            secretName: sequencer-gus
+          name: secretvol
+        - k4aSecret:
+            secretName: sequencer-kaiju
+          name: kaiju-secret-vol
+    - containers:
+        - args:
+            - --template=/home/sfdc-sherpa/sfproxy/config/core-on-sam/sfproxy-public-cloud-rds.yaml.template
+            - --switchboard=na2-switchboard-lb.core-on-sam-sp2.prd-sam.prd.slb.sfdc.net:8088
+            - --log-level=debug
+          env:
+            - name: SFDC_ENVIRONMENT
+              value: mist61
+          image: sfci/frontend-gateway/sfproxy:f926aa8
+          livenessProbe:
+            exec:
+              command:
+                - ./bin/is-alive
+            initialDelaySeconds: 20
+            periodSeconds: 5
+          name: sfproxy-envoy
+          ports:
+            - containerPort: 2525
+            - containerPort: 12060
+            - containerPort: 15373
+            - containerPort: 18443
+          readinessProbe:
+            exec:
+              command:
+                - ./bin/is-ready
+            initialDelaySeconds: 15
+            periodSeconds: 5
+          volumeMounts:
+            - mountPath: /client-certs
+              name: tls-client-cert
+            - mountPath: /server-certs
+              name: tls-server-cert
+      count: 1
+      identity:
+        pod: na2
+        serviceName: sfproxy
+      name: na2-mist61sfproxy-prd
+      volumes:
+        - maddogCert:
+            type: client
+          name: tls-client-cert
+        - maddogCert:
+            lbnames:
+              - us2-sfproxy-lb
+            type: server
+          name: tls-server-cert
+
+    - containers:
+        - args:
+            - --clusters.external-clusters[0]=ajnafunneldirect:HTTP1
+            - --clusters.external-clusters[1]=spaasmesh:HTTP2
+            - --metrics.maxNumberOfCollectedMetrics=100000
+            - --metrics.funnelTimeOut=90000
+            - --metrics.funnelEndPointURL=http://ajna0-funnel1-0-prd.data.sfdc.net:80
+            - --routes.frontProxy.isTrueFrontProxy=true
+            - --routeupdates.use.k8s=true
+          env:
+            - name: SFDC_ENVIRONMENT
+              value: mist61
+            - name: GRPC_SERVER_BIND_ENDPOINT
+              value: "tcp://0.0.0.0:7020"
+            - name: JVM_HEAP_MAX
+              value: 4G
+          image: sfci/servicelibs/switchboard:2d8189e3fa84fab3672869b29009e416870906bc
+          livenessProbe:
+            httpGet:
+              path: /manage/health
+              port: 15372
+            initialDelaySeconds: 20
+            periodSeconds: 5
+          name: switchboard
+          ports:
+            - containerPort: 7020
+            - containerPort: 15372
+          readinessProbe:
+            httpGet:
+              path: /manage/health
+              port: 15372
+            initialDelaySeconds: 15
+            periodSeconds: 5
+          volumeMounts:
+            - mountPath: /home/sfdc-switchboard/sherpa-envoy-config-volume
+              name: envoy-config-volume
+        - args:
+            - --template /home/sfdc-sherpa/sfproxy/config/switchboard-sidecar/sfproxy-switchboard-sidecar.config.yaml.template
+            - --log-level=debug
+          env:
+            - name: SFDC_ENVIRONMENT
+              value: mist61
+          image: sfci/frontend-gateway/sfproxy:f926aa8
+          livenessProbe:
+            exec:
+              command:
+                - ./bin/is-alive
+            initialDelaySeconds: 20
+            periodSeconds: 5
+          name: envoy-sidecar
+          ports:
+            - containerPort: 15001
+            - containerPort: 15373
+          readinessProbe:
+            exec:
+              command:
+                - ./bin/is-ready
+            initialDelaySeconds: 15
+            periodSeconds: 5
+          volumeMounts:
+            - mountPath: /switchboard-config
+              name: envoy-config-volume
+            - mountPath: /client-certs
+              name: tls-client-cert
+            - mountPath: /server-certs
+              name: tls-server-cert
+      count: 1
+      identity:
+        pod: na2
+        serviceName: switchboard
+      serviceAccountName: switchboard-service-account
+      name: na2-mist61switchboard-prd
+      volumes:
+        - emptyDir: {}
+          name: envoy-config-volume
+        - maddogCert:
+            type: client
+          name: tls-client-cert
+        - maddogCert:
+            lbnames:
+              - na2-switchboard-lb
+            type: server
+          name: tls-server-cert
   loadbalancers:
-  - function: na2-mist61sfproxy-prd
-    lbname: us2-sfproxy-lb
-    nodeExposed: false
-    ports:
-    - port: 2525
-      targetport: 2525
-    - port: 8443
-      targetport: 12060
-    - port: 8087
-      targetport: 15373
-    slbEnabled: true
-  - function: na2-mist61switchboard-prd
-    lbname: na2-switchboard-lb
-    nodeExposed: false
-    ports:
-    - port: 8088
-      targetport: 15001
-    - port: 8089
-      targetport: 15372
-    - port: 8090
-      targetport: 15373
-    - port: 8888
-      targetport: 7020
-    slbEnabled: true
+    - function: na2-mist61sfproxy-prd
+      lbname: us2-sfproxy-lb
+      nodeExposed: false
+      ports:
+        - port: 2525
+          targetport: 2525
+        - port: 8443
+          targetport: 12060
+        - port: 8087
+          targetport: 15373
+        - port: 8444
+          targetport: 18443
+      slbEnabled: true
+    - function: na2-mist61switchboard-prd
+      lbname: na2-switchboard-lb
+      nodeExposed: false
+      ports:
+        - port: 8088
+          targetport: 15001
+        - port: 8089
+          targetport: 15372
+        - port: 8090
+          targetport: 15373
+        - port: 8888
+          targetport: 7020
+      slbEnabled: true
