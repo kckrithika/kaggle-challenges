@@ -24,6 +24,9 @@ local samreleases = import "samreleases.json";
 
         "prd,prd-sam,sam-api-proxy,hypersam": "2831-e1f4baf39a722485c90b3db42ab6c2e74c2e8545",
 
+        # [dharlan] - New build of samappcontroller that supports injecting istio labels
+        "prd,prd-samdev,samapp-controller,hypersam": "2837-4cfc9518ca0450f6667d2a69ec86884c57005b81",
+
         # Added this override to fix the peimission issue of connectivitylabeler watchdog
         "prd,prd-samtest,sam-network-reporter,hypersam": "2754-365539f3b19f1f92f8ee7f1778f157769fae2a07",
         "prd,prd-samdev,sam-network-reporter,hypersam": "2754-365539f3b19f1f92f8ee7f1778f157769fae2a07",
