@@ -7,6 +7,9 @@ system:
         - name: gid-sdb
           image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/gid/sdb:322.130.1
           imagePullPolicy: Always
+          volumeMounts:
+            - mountPath: /home/sdb/current
+              name: hostdatavol
           ports:
             - containerPort: 5432
           livenessProbe:
@@ -15,6 +18,10 @@ system:
                 - /bin/true
             initialDelaySeconds: 60
             periodSeconds: 30
+      volumes:
+        - name: hostdatavol
+          hostPath:
+            path: /data/gid/sdb
 
   loadbalancers:
     - lbname: gid-sdb
