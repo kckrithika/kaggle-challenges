@@ -136,9 +136,9 @@ system:
         # Pointing to prd-stage host directly. MIT does not support specifying hostlist 
         # This pod could be deployed to any of 6 nodes in prd/prd-sam_cloudatlas_dir pool
         - name: c2c_common_gdotBasePath
-          value: http://test1shared0-samminionatlasdir2-1-prd.eng.sfdc.net:8080/scim
+          value: http://test1shared0-samminionatlasdir2-1-prd.eng.sfdc.net:7022/scim
         - name: GDOT_URL
-          value: http://test1shared0-samminionatlasdir2-1-prd.eng.sfdc.net:8080/scim
+          value: http://test1shared0-samminionatlasdir2-1-prd.eng.sfdc.net:7022/scim
       ports:
         - containerPort: 8082
         - containerPort: 15372
