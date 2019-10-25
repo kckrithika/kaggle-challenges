@@ -20,4 +20,7 @@ apps:
  sam-c2c-jmh-perftestingapp-c2cservice-slb-capacity-2:    # this must match the name of your application. It must be lower case.
   - prd/prd-sam  # the SAM Sandbox uses the prd/prd-sam host cluster
                  # you can also specify other pools
+ sam-c2c-jmh-perftestingapp-c2cservice-slb-capacity-4:    # this must match the name of your application. It must be lower case.
+  - prd/prd-sam  # the SAM Sandbox uses the prd/prd-sam host cluster
+                 # you can also specify other pools
 
