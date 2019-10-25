@@ -1,0 +1,63 @@
+apiVersion: v1
+kind: DaemonSet
+metadata:
+  annotations:
+    manifestctl.sam.data.sfdc.net/swagger: disable
+  labels:
+    flowsnakeOwner: dva-transform
+    flowsnakeRole: ImagePrefetcher
+    name: flowsnake-image-prefetcher-ds
+    service: image-prefetcher
+  name: flowsnake-image-prefetcher-ds
+  namespace: flowsnake
+spec:
+  selector:
+    matchLabels:
+      flowsnakeOwner: dva-transform
+      flowsnakeRole: ImagePrefetcher
+      name: flowsnake-image-prefetcher-ds
+      service: image-prefetcher
+  template:
+    metadata:
+      labels:
+        flowsnakeOwner: dva-transform
+        flowsnakeRole: ImagePrefetcher
+        name: flowsnake-image-prefetcher-ds
+        service: image-prefetcher
+    spec:
+      containers:
+      - command:
+        - /bin/bash
+        - /prefetcher-resources/prefetcher.sh
+        env:
+        - name: KINGDOM
+          value: prd
+        - name: ESTATE
+          value: prd-data-flowsnake_test
+        - name: FUNNEL_ENDPOINT
+          value: http://ajna0-funnel1-0-prd.data.sfdc.net:80
+        - name: NODE_NAME
+          valueFrom:
+            fieldRef:
+              fieldPath: spec.nodeName
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/flowsnake-ops-tools:2
+        name: prefetcher
+        volumeMounts:
+        - mountPath: /host-var-run
+          name: host-var-run
+        - mountPath: /prefetcher-resources
+          name: prefetcher-resources
+      hostNetwork: true
+      restartPolicy: Always
+      serviceAccountName: default
+      volumes:
+      - hostPath:
+          path: /var/run
+        name: host-var-run
+      - configMap:
+          name: flowsnake-prefetcher-configmap
+        name: prefetcher-resources
+  updateStrategy:
+    rollingUpdate:
+      maxUnavailable: 50%
+    type: rollingUpdate
