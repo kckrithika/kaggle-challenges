@@ -14,7 +14,7 @@ data:
       },
       "deleteSyntheticDeployment": false,
       "deployer-funnelEndpoint": "ajna0-funnel1-0-prd.data.sfdc.net:80",
-      "deployer-imageName": "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/sam/hypersam:2835-03048a69599d4c65ed47e06d25fb6d223b31ad76",
+      "deployer-imageName": "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/sam/hypersam:2837-4cfc9518ca0450f6667d2a69ec86884c57005b81",
       "deployer-rcImtEndpoint": "https://reportcollector-prd.data.sfdc.net:18443/v1/bark",
       "deployer-recipient": "",
       "deployer-sender": "sam-alerts@salesforce.com",
@@ -34,7 +34,7 @@ data:
         "/home/"
       ],
       "funnelEndpoint": "ajna0-funnel1-0-prd.data.sfdc.net:80",
-      "imageName": "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/sam/hypersam:2835-03048a69599d4c65ed47e06d25fb6d223b31ad76",
+      "imageName": "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/sam/hypersam:2837-4cfc9518ca0450f6667d2a69ec86884c57005b81",
       "k8sproxyEndpoint": "http://localhost:40000",
       "keyFile": "/etc/pki_service/platform/platform-client/keys/platform-client-key.pem",
       "kubeResourceNamespacePrefixBlacklist": "sam-watchdog",
