@@ -145,7 +145,7 @@ system:
       - name: spring_datasource_username
         value: sdb
       - name: spring_datasource_password
-        value:
+        value: ""
       - name: database_name
         value: mds
       volumeMounts:
