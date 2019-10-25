@@ -9,7 +9,7 @@ local utils = import "util_functions.jsonnet";
 local funnelEndpointHost = std.split(configs.funnelVIP, ":")[0];
 local funnelEndpointPort = std.split(configs.funnelVIP, ":")[1];
 
-if electron_opa_utils.is_electron_opa_injector_prod_cluster(configs.estate) then
+if electron_opa_utils.is_electron_opa_injector_prod_cluster(configs.estate) && electron_opa_utils.can_deploy(configs.kingdom) then
 configs.deploymentBase("authz-injector") {
   metadata+: {
     name: "electron-opa-injector",
