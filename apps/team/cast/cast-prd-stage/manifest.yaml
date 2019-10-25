@@ -83,7 +83,7 @@ system:
     # Entity API
     #####################################################################################
     - name: cloudatlas-service
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cloud-atlas/cloudatlas/cloudatlas-service:5774b48
+      image: sfci/cloud-atlas/cloudatlas/cloudatlas-service:3.7.0rc1
       command: ["java", "-jar", "cloudatlas-service.jar"]
       env:
         - name: DIRECTORY_SERVER_HOST
@@ -137,9 +137,9 @@ system:
         - name: management_server_port
           value: 15372
         - name: c2c_common_gdotBasePath
-          value: http://${directory_server_host}:8080/scim
+          value: http://cloudatlas-prd-stage-service.cloudatlas.localhost.mesh.force.com:5442/scim
         - name: GDOT_URL
-          value: http://${directory_server_host}:8080/scim
+          value: http://cloudatlas-prd-stage-service.cloudatlas.localhost.mesh.force.com:5442/scim
       ports:
         - containerPort: 8082
         - containerPort: 15372
@@ -168,7 +168,7 @@ system:
         - name: ca_service_host
           value: 127.0.0.1
         - name: c2c_common_gdotBasePath
-          value: http://${directory_server_host}:8080/scim
+          value: http://cloudatlas-prd-stage-service.cloudatlas.localhost.mesh.force.com:5442/scim
         - name: security_client_dynamickeystore_cadir
           value: /certs/ca
         - name: security_client_dynamickeystore_monitoredDirectory
