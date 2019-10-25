@@ -23,11 +23,8 @@ local istioSvcNamespaces = {
 
 
   // Determines if an NS in an individual file should be deployed to a Kingdom
-  //
-  // TODO:NIKO: Remove the "prd only" part from this condition, when releasing to PAR
-  //
   shouldDeployToKingdom(namespaceName, kingdom):: 
-    ((configs.kingdom == "prd") && (std.count(istioSvcNamespaces[kingdom], namespaceName) > 0)),
+    (std.count(istioSvcNamespaces[kingdom], namespaceName) > 0),
   
   newMeshNamespace(namespaceName):: {
     apiVersion: "v1",

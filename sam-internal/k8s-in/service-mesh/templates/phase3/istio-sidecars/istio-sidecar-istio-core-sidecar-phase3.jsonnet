@@ -42,8 +42,8 @@ if (istioPhases.phaseNum == 3) then
     ],
     egress: [
       egress(7443, "GRPC", "grpc-egress"),
+      egress(7442, "HTTP", "http-egress"),
 //      egress(7012, "GRPC", "grpc-egress2"),
-//      egress(7442, "HTTP", "http-egress"),
 //      egress(7014, "HTTP", "http-egress2"),
     ],
   },

@@ -29,6 +29,16 @@ if (istioPhases.phaseNum == 3) then
             image: "%(istioHub)s/kubectl:%(istioTag)s" % mcpIstioConfig,
             imagePullPolicy: "IfNotPresent",
             name: "istio-init-crd-14",
+            resources: {
+              limits: {
+                cpu: "100m",
+                memory: "200Mi",
+              },
+              requests: {
+                cpu: "10m",
+                memory: "50Mi",
+              },
+            },
             volumeMounts: [
               {
                 mountPath: "/etc/istio/crd-14",
