@@ -2,7 +2,7 @@ local flowsnake_images = (import "flowsnake_images.jsonnet") + { templateFilenam
 local flowsnakeconfig = import "flowsnake_config.jsonnet";
 local watchdog = import "watchdog.jsonnet";
 local hbasewatchdog = import "hbase-watchdog.libsonnet";
-if watchdog.watchdog_enabled && std.objectHas(flowsnake_images.feature_flags, "watchdog_refactoring") && flowsnakeconfig.hbase_enabled then
+if watchdog.watchdog_enabled && flowsnakeconfig.hbase_enabled then
 {
     kind: "ConfigMap",
     apiVersion: "v1",

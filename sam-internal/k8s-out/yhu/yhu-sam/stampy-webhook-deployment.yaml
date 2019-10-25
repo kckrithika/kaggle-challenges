@@ -1,0 +1,218 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  labels:
+    app: stampy-webhook
+  name: stampy-webhook-deployment
+  namespace: stampy-webhook
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: stampy-webhook
+      name: stampy-webhook
+      stampy-webhook/disable: "true"
+  template:
+    metadata:
+      annotations:
+        madkub.sam.sfdc.net/allcerts: |-
+          {
+           "certreqs": [
+            {
+             "cert-type": "server",
+             "kingdom": "yhu",
+             "name": "cert1",
+             "role": "stampy-webhook",
+             "san": [
+              "stampy-webhook",
+              "stampy-webhook.stampy-webhook",
+              "stampy-webhook.stampy-webhook.svc",
+              "stampy-webhook.stampy-webhook.svc.cluster.local",
+              "stampy-webhook.stampy-webhook.svc.yhu-sam.yhu.sam.sfdc.net"
+             ]
+            },
+            {
+             "cert-type": "client",
+             "kingdom": "yhu",
+             "name": "cert2",
+             "role": "stampy-webhook",
+             "san": [
+              "stampy-webhook",
+              "stampy-webhook.stampy-webhook",
+              "stampy-webhook.stampy-webhook.svc",
+              "stampy-webhook.stampy-webhook.svc.cluster.local",
+              "stampy-webhook.stampy-webhook.svc.yhu-sam.yhu.sam.sfdc.net"
+             ]
+            }
+           ]
+          }
+        scheduler.alpha.kubernetes.io/critical-pod: ""
+        stampy-webhook/disable: "true"
+      labels:
+        app: stampy-webhook
+        name: stampy-webhook
+        stampy-webhook/disable: "true"
+    spec:
+      containers:
+      - args:
+        - -tls-port=17772
+        - -http-port=17773
+        - -cert-file-path=/server-certs/server/certificates/server.pem
+        - -key-file-path=/server-certs/server/keys/server-key.pem
+        - -allow-if-error=true
+        - -log-level=debug
+        env:
+        - name: KINGDOM
+          value: yhu
+        - name: ESTATE
+          value: yhu-sam
+        - name: SUPERPOD
+          value: '-'
+        - name: POD
+          value: '-'
+        - name: FUNCTION_INSTANCE_NAME
+          valueFrom:
+            fieldRef:
+              apiVersion: v1
+              fieldPath: metadata.name
+        - name: FUNCTION_INSTANCE_IP
+          valueFrom:
+            fieldRef:
+              apiVersion: v1
+              fieldPath: status.podIP
+        - name: SFDC_SETTINGS_PATH
+          value: stampy.-.yhu.-.stampy-webhook
+        - name: SFDC_METRICS_SERVICE_HOST
+          value: ajna0-funnel1-0-yhu.data.sfdc.net
+        - name: SFDC_METRICS_SERVICE_PORT
+          value: "80"
+        image: ops0-artifactrepo1-0-yhu.data.sfdc.net/dva/stampy-webhook-admission-controller-1p:19
+        imagePullPolicy: Always
+        name: stampy-webhook
+        ports:
+        - containerPort: 17772
+        terminationMessagePolicy: FallbackToLogsOnError
+        volumeMounts:
+        - mountPath: /server-certs
+          name: cert1
+        - mountPath: /client-certs
+          name: cert2
+      - args:
+        - /sam/madkub-client
+        - --madkub-endpoint=https://10.254.208.254:32007
+        - --maddog-endpoint=https://all.pkicontroller.pki.blank.yhu.prod.non-estates.sfdcsd.net:8443
+        - --maddog-server-ca=/maddog-certs/ca/security-ca.pem
+        - --madkub-server-ca=/maddog-certs/ca/cacerts.pem
+        - --cert-folders=cert1:/cert1/
+        - --cert-folders=cert2:/cert2/
+        - --token-folder=/tokens/
+        - --ca-folder=/maddog-certs/ca
+        - --refresher
+        - --run-init-for-refresher-mode
+        env:
+        - name: MADKUB_NODENAME
+          valueFrom:
+            fieldRef:
+              apiVersion: v1
+              fieldPath: spec.nodeName
+        - name: MADKUB_NAME
+          valueFrom:
+            fieldRef:
+              apiVersion: v1
+              fieldPath: metadata.name
+        - name: MADKUB_NAMESPACE
+          valueFrom:
+            fieldRef:
+              apiVersion: v1
+              fieldPath: metadata.namespace
+        - name: ESTATE
+          value: yhu-sam
+        image: ops0-artifactrepo1-0-yhu.data.sfdc.net/tnrp/sam/madkub:1.0.0-0000082-3d5c21b4
+        imagePullPolicy: IfNotPresent
+        name: madkub-refresher
+        volumeMounts:
+        - mountPath: /cert1
+          name: cert1
+        - mountPath: /cert2
+          name: cert2
+        - mountPath: /maddog-certs/
+          name: maddog-certs
+        - mountPath: /tokens
+          name: tokens
+      initContainers:
+      - args:
+        - /sam/madkub-client
+        - --madkub-endpoint=https://10.254.208.254:32007
+        - --maddog-endpoint=https://all.pkicontroller.pki.blank.yhu.prod.non-estates.sfdcsd.net:8443
+        - --maddog-server-ca=/maddog-certs/ca/security-ca.pem
+        - --madkub-server-ca=/maddog-certs/ca/cacerts.pem
+        - --cert-folders=cert1:/cert1/
+        - --cert-folders=cert2:/cert2/
+        - --token-folder=/tokens/
+        - --ca-folder=/maddog-certs/ca
+        env:
+        - name: MADKUB_NODENAME
+          valueFrom:
+            fieldRef:
+              apiVersion: v1
+              fieldPath: spec.nodeName
+        - name: MADKUB_NAME
+          valueFrom:
+            fieldRef:
+              apiVersion: v1
+              fieldPath: metadata.name
+        - name: MADKUB_NAMESPACE
+          valueFrom:
+            fieldRef:
+              apiVersion: v1
+              fieldPath: metadata.namespace
+        - name: ESTATE
+          value: yhu-sam
+        image: ops0-artifactrepo1-0-yhu.data.sfdc.net/tnrp/sam/madkub:1.0.0-0000082-3d5c21b4
+        imagePullPolicy: IfNotPresent
+        name: madkub-init
+        volumeMounts:
+        - mountPath: /cert1
+          name: cert1
+        - mountPath: /cert2
+          name: cert2
+        - mountPath: /maddog-certs/
+          name: maddog-certs
+        - mountPath: /tokens
+          name: tokens
+      - command:
+        - bash
+        - -c
+        - |
+          set -ex
+          chmod 775 -R /cert1 && chown -R 7447:7447 /cert1
+          chmod 775 -R /cert2 && chown -R 7447:7447 /cert2
+        image: ops0-artifactrepo1-0-yhu.data.sfdc.net/tnrp/sam/hypersam:sam-1ebeb0ac-657
+        imagePullPolicy: IfNotPresent
+        name: permissionsetterinitcontainer
+        securityContext:
+          runAsNonRoot: false
+          runAsUser: 0
+        volumeMounts:
+        - mountPath: /cert1
+          name: cert1
+        - mountPath: /cert2
+          name: cert2
+      nodeSelector:
+        pool: yhu-sam
+      volumes:
+      - hostPath:
+          path: /etc/pki_service
+        name: maddog-certs
+      - hostPath:
+          path: /etc/kubernetes
+        name: kubeconfig
+      - emptyDir:
+          medium: Memory
+        name: cert1
+      - emptyDir:
+          medium: Memory
+        name: cert2
+      - emptyDir:
+          medium: Memory
+        name: tokens

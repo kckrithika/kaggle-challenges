@@ -24,8 +24,6 @@ local utils = import "util_functions.jsonnet";
         "1": self["2"] {
             image_tags+: {
                 watchdog_image_tag: "2722-a1231485debac6b17dfa76e7a1af01750e0f4f8b",  # 05/2019 image
-                integration_test_tag: "22",
-                hbase_integration_test_tag: "22",
             },
             feature_flags+: {
                 # Note: the *value* of the flags is ignored. jsonnet lacks array search, so we use a an object.
@@ -39,7 +37,6 @@ local utils = import "util_functions.jsonnet";
                 # --- flag E (each pair. ... ---
                 v1beta1_original: "",
                 # --- flag F (Their only purpose ... ---
-                watchdog_refactoring: "",
                 # --- flag G (is to assist ... ---
                 prometheus_funnel_update: "",
                 # --- flag H (git's diff logic ... ---
@@ -57,8 +54,6 @@ local utils = import "util_functions.jsonnet";
         # Only include new things not yet promoted to next phase. To promote, move line items to next phase.
         "2": self.prod {
             image_tags+: {
-                integration_test_tag: "22",
-                hbase_integration_test_tag: "22",
             },
             feature_flags+: {
                 # --- flag A (Do not edit ... ---
@@ -67,7 +62,6 @@ local utils = import "util_functions.jsonnet";
                 # --- flag D (one flag between ... ---
                 # --- flag E (each pair. ... ---
                 # --- flag F (Their only purpose ... ---
-                watchdog_refactoring: "",
                 # --- flag G (is to assist ... ---
                 # --- flag H (git's diff logic ... ---
                 # --- flag I (to reduce the ---
@@ -130,8 +124,8 @@ local utils = import "util_functions.jsonnet";
                 spark_operator_image_tag: "jenkins-dva-transformation-spark-on-k8s-operator-PR-40-5-itest",  # 10/2 image that bumps up client throttle
                 # to remove
                 watchdog_spark_operator_image_tag: "jenkins-dva-transformation-spark-on-k8s-sample-apps-PR-2-1-itest",
-                integration_test_tag: "18",
-                hbase_integration_test_tag: "20",
+                integration_test_tag: "22",
+                hbase_integration_test_tag: "22",
                 kube_state_metrics_image_tag: "3",
                 prometheus_funnel_image_tag: "37",
                 spark_worker_23_hadoop_292_image_tag: "jenkins-dva-transformation-flowsnake-sample-apps-cre-hadoop-292-5-itest",
@@ -176,8 +170,6 @@ local utils = import "util_functions.jsonnet";
         # off-peak: 1pm-9pm PDT
         "prod-emea": self.prod {
           image_tags+: {
-              integration_test_tag: "22",
-              hbase_integration_test_tag: "22",
           },
           feature_flags+: {
               # --- flag A (Do not edit ... ---
@@ -186,7 +178,6 @@ local utils = import "util_functions.jsonnet";
               # --- flag D (one flag between ... ---
               # --- flag E (each pair. ... ---
               # --- flag F (Their only purpose ... ---
-              watchdog_refactoring: "",
               # --- flag G (is to assist ... ---
               # --- flag H (git's diff logic ... ---
               # --- flag I (to reduce the ---
@@ -198,8 +189,6 @@ local utils = import "util_functions.jsonnet";
         # off-peak: 6pm-4am PDT
         "prod-na": self.prod {
             image_tags+: {
-                integration_test_tag: "22",
-                hbase_integration_test_tag: "22",
             },
             feature_flags+: {
                 # --- flag A (Do not edit ... ---
@@ -208,7 +197,6 @@ local utils = import "util_functions.jsonnet";
                 # --- flag D (one flag between ... ---
                 # --- flag E (each pair. ... ---
                 # --- flag F (Their only purpose ... ---
-                watchdog_refactoring: "",
                 # --- flag G (is to assist ... ---
                 # --- flag H (git's diff logic ... ---
                 # --- flag I (to reduce the ---
@@ -220,6 +208,18 @@ local utils = import "util_functions.jsonnet";
         # off-peak: 6am-1pm PDT
         "prod-apac": self.prod {
             image_tags+: {
+            },
+            feature_flags+: {
+                # --- flag A (Do not edit ... ---
+                # --- flag B (these comments ... ---
+                # --- flag C (and place only ... ---
+                # --- flag D (one flag between ... ---
+                # --- flag E (each pair. ... ---
+                # --- flag F (Their only purpose ... ---
+                # --- flag G (is to assist ... ---
+                # --- flag H (git's diff logic ... ---
+                # --- flag I (to reduce the ---
+                # --- flag J (likelihood of merge conflicts.) ---
             },
         },
 
@@ -248,22 +248,7 @@ local utils = import "util_functions.jsonnet";
         },
 
         frf: self["prod-emea"] {
-          image_tags+: {
-              integration_test_tag: "22",
-              hbase_integration_test_tag: "22",
-          },
           feature_flags+: {
-              # --- flag A (Do not edit ... ---
-              # --- flag B (these comments ... ---
-              # --- flag C (and place only ... ---
-              # --- flag D (one flag between ... ---
-              # --- flag E (each pair. ... ---
-              # --- flag F (Their only purpose ... ---
-              watchdog_refactoring: "",
-              # --- flag G (is to assist ... ---
-              # --- flag H (git's diff logic ... ---
-              # --- flag I (to reduce the ---
-              # --- flag J (likelihood of merge conflicts.) ---
               upcase_pki_kingdom: "",
           },
         },
@@ -275,22 +260,7 @@ local utils = import "util_functions.jsonnet";
         ukb: self["prod-apac"] {
         },
         cdu: self["prod-apac"] {
-          image_tags+: {
-              integration_test_tag: "22",
-              hbase_integration_test_tag: "22",
-          },
           feature_flags+: {
-              # --- flag A (Do not edit ... ---
-              # --- flag B (these comments ... ---
-              # --- flag C (and place only ... ---
-              # --- flag D (one flag between ... ---
-              # --- flag E (each pair. ... ---
-              # --- flag F (Their only purpose ... ---
-              watchdog_refactoring: "",
-              # --- flag G (is to assist ... ---
-              # --- flag H (git's diff logic ... ---
-              # --- flag I (to reduce the ---
-              # --- flag J (likelihood of merge conflicts.) ---
               upcase_pki_kingdom: "",
           },
           version_mapping: {},  # No legacy Flowsnake in Public Cloud; therefore force empty verson_mapping
@@ -379,9 +349,6 @@ local utils = import "util_functions.jsonnet";
     kube_state_metrics: flowsnakeconfig.strata_registry + "/kube-state-metrics-sfdc-0.0.1:" + $.per_phase[$.phase].image_tags.kube_state_metrics_image_tag,
     spark_worker_23_hadoop_292: flowsnakeconfig.strata_registry + "/flowsnake-spark-worker_2.3.0-hadoop_2.9.2-cre:" + $.per_phase[$.phase].image_tags.spark_worker_23_hadoop_292_image_tag,
     # to remove V
-    watchdog_spark_operator: flowsnakeconfig.strata_registry + "/flowsnake-spark-on-k8s-sample-apps:" + $.per_phase[$.phase].image_tags.watchdog_spark_operator_image_tag,
-    spark_on_k8s_sample_apps: flowsnakeconfig.strata_registry + "/flowsnake-spark-on-k8s-sample-apps:" + $.per_phase[$.phase].image_tags.integration_test_tag,
-    hbase_spark_on_k8s_sample_apps: flowsnakeconfig.strata_registry + "/flowsnake-spark-on-k8s-sample-apps:" + $.per_phase[$.phase].image_tags.hbase_integration_test_tag,
 
     feature_flags: $.per_phase[$.phase].feature_flags,
     # Convert to the format expected by std.manifestIni for generating Windows-style .ini files

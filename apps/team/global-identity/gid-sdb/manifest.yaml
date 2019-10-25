@@ -15,6 +15,10 @@ system:
                 - /bin/true
             initialDelaySeconds: 60
             periodSeconds: 30
+      volumes:
+        - name: hostdatavol
+          hostPath:
+            path: /data/gid/sdb
 
   loadbalancers:
     - lbname: gid-sdb

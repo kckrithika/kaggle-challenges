@@ -9,7 +9,7 @@ set -e
 DIR="${BASH_SOURCE%/*}"
 if [[ ! -d "$DIR" ]]; then DIR="$PWD"; fi
 . "$DIR/hypersam.sh"
-. "$DIR/slbmb.sh"
+. "$DIR/k8s-in/slb/slbmb.sh"
 
 # Get docker-specific vars
 . "$DIR/docker-vars.sh"

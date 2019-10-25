@@ -35,45 +35,22 @@ system:
             - name: MANAGEMENT_PORT
               value: 15523
             - name: JVM_ARGS
-              value: -Dsettings.path=dev.mydev.landmark.-.metadata-service
+              value: -Dsettings.path=dev.mydev.landmark.-.metadata-service -Dgrpc.server-bind-endpoint=tcp://0.0.0.0:7020
           volumeMounts:
             - mountPath: /home/sfdc-mds/logs
               name: logvol
-
-        - name: sherpa-mds
-          image: sfci/servicelibs/sherpa-envoy:1.0.8
-          ports:
-            - containerPort: 15373
-            - name: sherpa-h2-plain
-              containerPort: 7012
-          env:
-            - name: SFDC_ENVIRONMENT
-              value: dev
-          # Liveness probe configuration
-          livenessProbe:
-            exec:
-              command:
-                - /home/sfdc-sherpa/bin/is-alive
-            initialDelaySeconds: 60
-            periodSeconds: 120
-          # Readiness probe configuration
-          readinessProbe:
-            exec:
-              command:
-                - /home/sfdc-sherpa/bin/is-ready
-            initialDelaySeconds: 60
-            periodSeconds: 120
 
   loadbalancers:
     - lbname: metadata-servicelb
       function: metadata-service
       nodeExposed: true
+      slbEnabled: true
       ports:
         - port: 9091
           targetport: 9091
         - port: 15523
           targetport: 15523
-        - port: 7012
-          targetport: 7012
+        - port: 7020
+          targetport: 7020
           lbtype: tcp
           lbalgorithm: roundrobin

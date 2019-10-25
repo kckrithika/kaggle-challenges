@@ -161,7 +161,7 @@ system:
       - "-releaseFile=sam-internal/k8s-in/sam/samreleases.json"
       - "-promotion.image="
       - "-promotion.intervalTime=1h"
-      - "-promotion.minBakeTime=12h"
+      - "-promotion.minBakeTime=2h"
       - "-promotion.singlephase=true"
       - "-heartbeat.defaultdecayduration=10m"
       ports:

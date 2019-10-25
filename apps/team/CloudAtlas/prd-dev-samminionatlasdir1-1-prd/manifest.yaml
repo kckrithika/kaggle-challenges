@@ -94,7 +94,7 @@ system:
       - name: ANNOUNCE_FUNCTION
         value: cloudatlas/cloudatlas-ds
       - name: CAST_SERVICE_SLB_URL
-        value: https://cast-stage.cast.prd-sam.prd.slb.sfdc.net:443
+        value: https://cast-dev.cast.prd-sam.prd.slb.sfdc.net:443
       - name: AWS_BACKUP_SECRET_SERVICE_VAULT
         value: cloud-atlas-dev
       volumeMounts:

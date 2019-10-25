@@ -110,10 +110,10 @@ system:
           path: /manage/health
           port: 15376
     #####################################################################################
-    # Global Identity Loing and Runtime Service
+    # Global Identity Login and Runtime Service
     #####################################################################################
     - name: gid-runtime-service
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/gid/gid-runtime-service:9c1e205
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/gid/gid-runtime-service:8824a65
       imagePullPolicy: Always
       env:
       - name: server_use_forward_headers
@@ -138,7 +138,16 @@ system:
         value: http://cloudatlas-gidv2.global-identity.prd-sam.prd.slb.sfdc.net/scim
       - name: vaas_baseUrl
         value: http://gid-sso-client.global-identity.prd-sam.prd.slb.sfdc.net/vaas
-
+      - name: spring_datasource_url
+        value: jdbc:postgresql://gid-sdb.global-identity.prd-sam.prd.slb.sfdc.net:5432/mds
+      - name: spring_datasource_driverClassName
+        value: org.postgresql.Driver
+      - name: spring_datasource_username
+        value: sdb
+      - name: spring_datasource_password
+        value: ""
+      - name: database_name
+        value: mds
       volumeMounts:
       - name: client-cert
         mountPath: /client-certs

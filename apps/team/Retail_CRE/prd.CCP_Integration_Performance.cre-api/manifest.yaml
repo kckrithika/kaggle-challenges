@@ -13,7 +13,7 @@ system:
       "routing.mesh.sfdc.net/enabled": "true"
     containers:
     - name: cre-api-ccp-perf
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cre/cre-api:2.1.1.develop.3a30af3.121
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cre/cre-api:2.1.1.testing_histograms.f4a1798.2
       env:
         - name: GDOT_BASE_PATH
           value: http://cloudatlas-prd-stage-service.cloudatlas.localhost.mesh.force.com:5442/scim

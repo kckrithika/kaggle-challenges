@@ -1,4 +1,5 @@
 - lbname: sledge-xrd
+  iptype: public_active
   # The customlbname ensures that the VIP retains its existing DNS name of sledge-xrd.slb.sfdc.net
   customlbname: sledge-xrd
   servers:
@@ -53,6 +54,29 @@
 - lbname: sledgeapi-xrd
   # The customlbname ensures that the VIP retains its existing DNS name of sledgeapi-xrd.slb.sfdc.net
   customlbname: sledgeapi-xrd
+  servers:
+   - 10.210.197.194
+   - 10.210.197.202
+   - 10.210.197.195
+  ports:
+   - port: 443
+     targetport: 443
+     lbtype: tcp
+     healthport: 443
+     healthprotocol: "tcp"
+   - port: 8443
+     targetport: 8443
+     lbtype: tcp
+     healthport: 8443
+     healthprotocol: "tcp"
+   - port: 2379
+     targetport: 2379
+     lbtype: tcp
+     healthport: 2379
+     healthprotocol: "tcp"
+- lbname: external-sledgeapi-xrd
+  iptype: public_active
+  customlbname: external-sledgeapi-xrd
   servers:
    - 10.210.197.194
    - 10.210.197.202

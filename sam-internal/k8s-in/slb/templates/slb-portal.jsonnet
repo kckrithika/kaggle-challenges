@@ -71,6 +71,9 @@ if slbconfigs.isSlbEstate && configs.estate != "prd-samtest" then configs.deploy
                                            "--cafile=/cert3/ca/cabundle.pem",
                                            configs.sfdchosts_arg,
                                        ]
+                                       + (if slbimages.phaseNum <= 2 then [
+                                           "--metricsEndpoint=" + configs.funnelVIP,
+                                       ] else [])
                                        + (if slbconfigs.isTestEstate then [
                                                 "--slbEstate=" + configs.estate,
                                             ] else [])

@@ -6,7 +6,7 @@ system:
     - universalsearch@salesforce.com
   functions:
   - name: universal-search
-    count: 6
+    count: 8
     labels:
       app: universal-search
     annotations:
@@ -29,7 +29,7 @@ system:
         secretName: solrcloudcli-keytab-prd
     containers:
     - name: universal-search
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/universal-search/universal-search:1.6.9
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/universal-search/universal-search:1.6.11
       ports:
       - name: service-port
         containerPort: 7020

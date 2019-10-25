@@ -40,7 +40,7 @@ spec:
         env:
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig-platform
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/sam/hypersam:2821-06bf0414a9c79483689212db958582736039b5bf
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/sam/hypersam:2828-66a213039cc3d696cf5b35fe6275bf76b841c5a8
         name: snapshot-consumer-prod-mtls
         resources:
           limits:

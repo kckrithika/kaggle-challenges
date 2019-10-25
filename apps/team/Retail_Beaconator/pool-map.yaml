@@ -19,8 +19,10 @@ apps:
   c360-beaconator-eu:
     - name: cdg/cdg-sam_gater
     - name: fra/fra-sam_gater
+    - name: frf/frf-sam_gater
     - name: lo2/lo2-sam_gater
     - name: lo3/lo3-sam_gater
+    - name: par/par-sam_gater
 
   c360-beaconator-ap:
     - name: cdu/cdu-sam_gater
