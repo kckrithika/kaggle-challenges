@@ -153,7 +153,7 @@
       "--client.serverInterface=lo",
       "--control.realsvrCfgSentinel=" + realsvrCfgSentinel,
     ]
-    + (if slbimages.phaseNum <= 2 then
+    + (if slbimages.phaseNum <= 1 then
     [
     "--metricsEndpoint=" + configs.funnelVIP,
     "--hostnameOverride=$(NODE_NAME)",
@@ -167,7 +167,7 @@
     + slbconfigs.getNodeApiClientSocketSettings()
     + ["--maxDeleteVipCount=" + slbconfigs.maxDeleteLimit(deleteLimitOverride)],
 }
-    + (if slbimages.phaseNum <= 2 then {
+    + (if slbimages.phaseNum <= 1 then {
         env: [
           slbconfigs.node_name_env,
         ],
