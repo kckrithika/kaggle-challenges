@@ -10,18 +10,22 @@ system:
       routing.mesh.sfdc.net/enabled: "true"
     containers:
     - name: switchboard
-      image: sfci/servicelibs/switchboard:e705d6d727762043d2f86284b40873a0cf6f8dbc
+      image: sfci/servicelibs/switchboard:a28616d4de4f1eb68a849c0cd888bb00de47803d
       args:
+      ############################## PRODUCTION CONFIGURATION ##########################################
+      # Any configuration that needs to go to production should be added here.
       - --clusters.external-clusters[0]=ajnafunneldirect:HTTP1
       - --clusters.external-clusters[1]=ajnafunneldirecttls.funnel:HTTP1_TLS
       - --clusters.external-clusters[2]=spaasmesh:HTTP2
-      - --metrics.maxNumberOfCollectedMetrics=150000
-      - --metrics.funnelTimeOut=100000
-      - --metrics.sherpaFunnelServiceURL=http://ajnafunneldirecttls.funnel.localhost.mesh.force.com:5442
-      - --healthIndicator.maxThreadCount=1300
       - --clusters.zkScraper.scrapeTimeoutMs=120000
       - --cluster.scraper.delayMs=120000
+      - --healthIndicator.maxThreadCount=1300
+      - --metrics.sherpaFunnelServiceURL=http://ajnafunneldirecttls.funnel.localhost.mesh.force.com:5442
       - --authz.dest=authz-svc.service-mesh.localhost.mesh.force.com:5443
+      ############################# PRODUCTION CONFIGURATION - OVERRIDDEN VALUES ######################
+      # The following configuration exists in production manifests as well with different values. 
+      - --metrics.maxNumberOfCollectedMetrics=150000
+      - --metrics.funnelTimeOut=100000
       ports:
       - containerPort: 15372
       env:
