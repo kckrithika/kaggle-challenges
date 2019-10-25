@@ -37,7 +37,6 @@ def __get_portal_info(url):
         return portal_info_cache[url]
 
     try:
-        print("Connecting to: " + url)
         ssl._create_default_https_context = ssl._create_unverified_context
         conn = urllib.request.urlopen(url, timeout=5)
         byte_response = conn.read()
