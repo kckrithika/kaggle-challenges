@@ -7,8 +7,6 @@ system:
   functions:
   - name: envoy-canary
     count: 1
-    identity:
-      serviceName: envoy-canary-test
     labels:
       chaos.sfdc.net/podDelete: true
       chaos.sfdc.net/podDeletePeriod: 4h
