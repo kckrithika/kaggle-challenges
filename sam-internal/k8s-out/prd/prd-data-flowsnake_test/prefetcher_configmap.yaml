@@ -1,0 +1,43 @@
+apiVersion: v1
+data:
+  prefetch_images.txt: |-
+    ops0-artifactrepo2-0-prd.data.sfdc.net/sfci/insights/moanaengine:release-2019.10.a.25-3d1581a
+    ops0-artifactrepo2-0-prd.data.sfdc.net/dva//flowsnake-spark-on-k8s-integration-test-runner:22
+    ops0-artifactrepo2-0-prd.data.sfdc.net/dva/flowsnake-basic-operator-integration:22
+    ops0-artifactrepo2-0-prd.data.sfdc.net/dva/flowsnake-ops-tools:2
+  prefetcher.sh: "#! /bin/bash\n\nSCRIPT_DIR=$(cd $(dirname $0); pwd)\nIMAGE_FILE=${SCRIPT_DIR}/prefetch_images.txt\nSTASHED_SCRIPT_FILE=/root/.prefetcher.sh.copy\n\nif
+    [ -z \"${FUNNEL_ENDPOINT}\" ] ; then\n    echo \"Environment variable FUNNEL_ENDPOINT
+    not set\"\n    exit 2\nfi\n\nif [ -z \"${KINGDOM}\" ] ; then\n    echo \"Environment
+    variable KINGDOM not set\"\n    exit 2\nfi\n\nif [ -z \"${ESTATE}\" ] ; then\n
+    \   echo \"Environment variable ESTATE not set\"\n    exit 2\nfi\n\nif [ -z \"${NODE_NAME}\"
+    ] ; then\n    echo \"Environment variable NODE_NAME not set\"\n    exit 2\nfi\n\n\nFUNNEL_URL=\"${FUNNEL_ENDPOINT}/funnel/v1/publishBatch?avroSchemaFingerprint=AVG7NnlcHNdk4t_zn2JBnQ\"\n\n#
+    stash a copy of ourselves for later reference\ncp \"$0\" \"${STASHED_SCRIPT_FILE}\"\n\npost_to_funnel
+    () {\n    ERR_CT=${1}\n    METRIC_TIMESTAMP=$(date +%s)\n    METRIC_VAL=$( cat
+    <<EOF\n      [\n        {\n          \"service\":\"flowsnake\",\n          \"subservice\":\"image-prefetcher\",\n
+    \         \"tags\": {\n            \"datacenter\":\"${KINGDOM}\",\n            \"pod\":\"${ESTATE}\",\n
+    \           \"host\":\"${NODE_NAME}\"\n          },\n          \"metricName\":
+    [\"FlowsnakeDockerImagePrefetcher.failureCount\"],\n          \"metricValue\":
+    ${ERR_CT},\n          \"timestamp\": ${METRIC_TIMESTAMP}\n        }\n     ]\nEOF\n)\n
+    \   HTTP_STATUS=$(timeout 10 curl -sSi -w '%{http_code}' -o /tmp/flowsnake-prefetcher-response.txt
+    -XPOST -H \"Content-Type: application/json\" --data-binary \"${METRIC_VAL}\" \"${FUNNEL_URL}\"
+    2> /tmp/flowsnake-prefetcher-stderr.txt)\n    CURL_STATUS=\"$?\"\n    echo\n    if
+    [ \"${CURL_STATUS}\" == \"124\" ] ; then\n        echo \"WARNING: Timed out posting
+    to Funnel\"\n    elif [ \"${CURL_STATUS}\" != \"0\" ] ; then\n        echo \"WARNING:
+    Error posting to Funnel at URL ${FUNNEL_URL} . curl error message:\"\n        cat
+    \ /tmp/flowsnake-prefetcher-stderr.out\n    elif [ \"${HTTP_STATUS}\" != \"200\"
+    ] ; then\n        echo \"WARNING: Funnel returned status ${HTTP_STATUS}. Response:\"\n
+    \       cat /tmp/flowsnake-prefetcher-response.txt\n    fi\n}\n\nwhile true; do\n\n
+    \   # When the configmap with this script is updated, the pod running it won't
+    necessarily be restarted.\n    # So detect changes and force a restart here.\n
+    \   if ! diff -q \"$0\" \"${STASHED_SCRIPT_FILE}\" > /dev/null ; then\n        echo
+    Script change detected - exiting\n        exit 0\n    fi\n    \n    FAILED_IMAGE_CT=0\n
+    \   echo \"Starting image prefetch at $(date)\"\n    for img in $(cat ${IMAGE_FILE})
+    ; do\n        docker -H unix:///host-var-run/docker.sock pull \"${img}\"\n        if
+    [ \"$?\" != \"0\" ] ; then\n            FAILED_IMAGE_CT=$((FAILED_IMAGE_CT + 1))\n
+    \       fi\n    done\n\n    post_to_funnel ${FAILED_IMAGE_CT}\n\n    sleep $((RANDOM
+    % 20 + 50))m\n\ndone\n"
+kind: ConfigMap
+metadata:
+  creationTimestamp: null
+  name: flowsnake-prefetcher-configmap
+  namespace: flowsnake

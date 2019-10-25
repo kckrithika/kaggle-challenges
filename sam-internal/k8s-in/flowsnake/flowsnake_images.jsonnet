@@ -42,7 +42,7 @@ local utils = import "util_functions.jsonnet";
                 # --- flag H (git's diff logic ... ---
                 # --- flag I (to reduce the ---
                 # --- flag J (likelihood of merge conflicts.) ---
-                central_prometheus_forwarder: "試行中",
+                prefetcher_enabled: "this value irrelevant",
             },
             # prd-test offers legacy version mappings. Phase 2 does not, so cannot inherit from there.
             # Start with 2-prd-dev (which also have legacy version mappings),
@@ -145,6 +145,7 @@ local utils = import "util_functions.jsonnet";
                 snapshot_consumer_image_tag: "2782-642a31c27d65c41109e7abe97ab07c984fe6385a",
                 snapshoter_image_tag: "sam-0002052-bc0d9ea5",
                 watchdog_image_tag: "2687-6c147b04d2d506c9fd591d50f400bd86c485b155",  # Add stdout/stderr to watchdog report email for cli-checker
+                flowsnake_ops_tools_tag: "2",
             },
             feature_flags: {
                 # After promoting a feature-flag to phase 4, please submit a follow-on PR to remove the flag and
@@ -315,11 +316,15 @@ local utils = import "util_functions.jsonnet";
             "2-prd-dev"
         else if estate == "prd-data-flowsnake" then
             "2-prd-data"
-        else if flowsnakeconfig.is_prod_fleet then
+        # Need this extra check because SAM is calling us for the watchdog image and they
+        # deploy into all sorts of kingdoms we don't have config for.
+        else if kingdom in self.per_phase then
             kingdom
         else
             "prod"
         ),
+
+    image_tags: $.per_phase[$.phase].image_tags,
 
     # These are the images used by the templates
     # Only change when image name change from https://git.soma.salesforce.com/dva-transformation/flowsnake-platform
@@ -348,7 +353,7 @@ local utils = import "util_functions.jsonnet";
     phoenix_spark_hbase_integration: flowsnakeconfig.strata_registry + "/flowsnake-phoenix-spark-hbase-integration:" + $.per_phase[$.phase].image_tags.hbase_integration_test_tag,
     kube_state_metrics: flowsnakeconfig.strata_registry + "/kube-state-metrics-sfdc-0.0.1:" + $.per_phase[$.phase].image_tags.kube_state_metrics_image_tag,
     spark_worker_23_hadoop_292: flowsnakeconfig.strata_registry + "/flowsnake-spark-worker_2.3.0-hadoop_2.9.2-cre:" + $.per_phase[$.phase].image_tags.spark_worker_23_hadoop_292_image_tag,
-    # to remove V
+    flowsnake_ops_tools: flowsnakeconfig.strata_registry + "/flowsnake-ops-tools:" + $.per_phase[$.phase].image_tags.flowsnake_ops_tools_tag,
 
     feature_flags: $.per_phase[$.phase].feature_flags,
     # Convert to the format expected by std.manifestIni for generating Windows-style .ini files

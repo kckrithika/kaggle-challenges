@@ -155,27 +155,20 @@ local flowsnake_all_kes = (import "flowsnakeEstates.json").kingdomEstates + ["pr
     is_test: (
         estate == "prd-data-flowsnake_test"
     ),
-    is_prod_fleet: (
-        kingdom == "dfw" ||
-        kingdom == "iad" ||
-        kingdom == "ia2" ||
-        kingdom == "ord" ||
-        kingdom == "phx" ||
-        kingdom == "ph2" ||
-        kingdom == "yhu" ||
-        kingdom == "yul" ||
-        kingdom == "frf" ||
-        kingdom == "par" ||
-        kingdom == "hnd" ||
-        kingdom == "ukb" ||
-        kingdom == "cdu" ||
-        kingdom == "syd"
-    ),
-    is_phase2_fleet: (
-        estate == "prd-data-flowsnake" || estate == "prd-dev-flowsnake_iot_test"
-    ),
     is_r_and_d: (
         kingdom == "prd"
+    ),
+    deployment_region:: (
+        if std.count(["frf", "par"], kingdom) > 0 then
+            "emea"
+        else if std.count(["hnd", "ukb", "syd", "cdu"], kingdom) > 0 then
+            "apac"
+        else if std.count(["iad", "ia2", "ord", "phx", "ph2", "dfw", "yul", "yhu"], kingdom) > 0 then
+            "na"
+        else if kingdom == "prd" then
+            estate
+        else
+            error "Unknown kingdom " + kingdom + ", cannot determine deployment region."
     ),
     snapshots_enabled: !self.is_minikube,
     registry: if self.is_minikube then "minikube" else configs.registry,
@@ -257,15 +250,6 @@ local flowsnake_all_kes = (import "flowsnakeEstates.json").kingdomEstates + ["pr
     ),
 
     # estate that has hbase connections & have watchdog runnign on
-    hbase_enabled_estates: [
-        "prd-dev-flowsnake_iot_test",
-        "iad-flowsnake_prod",
-        "ord-flowsnake_prod",
-        "frf-flowsnake_prod",
-        "par-flowsnake_prod",
-        "hnd-flowsnake_prod",
-        "ukb-flowsnake_prod",
-    ],
     hbase_dev_estates: [
         "prd-dev-flowsnake_iot_test",
     ],
@@ -277,6 +261,8 @@ local flowsnake_all_kes = (import "flowsnakeEstates.json").kingdomEstates + ["pr
         "hnd-flowsnake_prod",
         "ukb-flowsnake_prod",
     ],
+    hbase_enabled_estates: self.hbase_dev_estates + self.hbase_prod_estates,
+
     hbase_enabled: std.count(self.hbase_enabled_estates, estate) > 0,
     hbase_dev_watchdog_enabled: std.count(self.hbase_dev_estates, estate) > 0,
     hbase_prod_watchdog_enabled: std.count(self.hbase_prod_estates, estate) > 0,
