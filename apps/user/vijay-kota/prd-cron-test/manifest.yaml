@@ -41,7 +41,7 @@ system:
         pod: cs66
       containers:
         - name: cron-demo
-          image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/vijay-kota/crondemo:24Oct19
+          image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/vijay-kota/crondemo:25Oct19
           ports:
             - name: http-port
               containerPort: 7022
@@ -80,8 +80,7 @@ system:
         pod: cs66
       containers:
         - name: cron-service
-          image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/vijay-kota/cronsvc:24Oct19
-          args: ["7020"]
+          image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/vijay-kota/cronsvc:25Oct19
           ports:
             - name: grpc-port
               containerPort: 7020
