@@ -11,7 +11,7 @@ system:
             - name: DB_INSTANCE_NAME
               value: mist61b224utf-1
             - name: DB_USER
-              value: bashful
+              value: sneezy
             - name: DB_STATS_USER
               value: snowwhite
             - name: DB_CONN_NUM
@@ -70,12 +70,11 @@ system:
               valueFrom:
                 fieldRef:
                   fieldPath: spec.nodeName
-          image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/coreonsam/casam:release_main_19195167
+          image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/coreonsam/casam:release_main_19534348
           livenessProbe:
             exec:
               command:
-                - echo
-                - HEALTHY
+                - /home/sfdc/salesforce/casam/bin/live_probe.sh
             failureThreshold: 99999
             initialDelaySeconds: 120
             periodSeconds: 5
@@ -90,8 +89,7 @@ system:
           readinessProbe:
             exec:
               command:
-                - echo
-                - HEALTHY
+                - /home/sfdc/salesforce/casam/bin/ready_probe.sh
             failureThreshold: 99999
             initialDelaySeconds: 120
             periodSeconds: 5
