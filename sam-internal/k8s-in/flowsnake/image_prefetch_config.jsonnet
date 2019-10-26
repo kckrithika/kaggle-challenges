@@ -1,7 +1,7 @@
 local flowsnake_images = import "flowsnake_images.jsonnet";
 
 local flowsnake_watchdog_images = [
-    "dva//flowsnake-spark-on-k8s-integration-test-runner:" + flowsnake_images.image_tags.integration_test_tag,
+    "dva/flowsnake-spark-on-k8s-integration-test-runner:" + flowsnake_images.image_tags.integration_test_tag,
     "dva/flowsnake-basic-operator-integration:" + flowsnake_images.image_tags.integration_test_tag,
 ];
 
