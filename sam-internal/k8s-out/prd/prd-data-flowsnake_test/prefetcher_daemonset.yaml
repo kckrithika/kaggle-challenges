@@ -1,4 +1,4 @@
-apiVersion: v1
+apiVersion: apps/v1
 kind: DaemonSet
 metadata:
   annotations:
@@ -60,4 +60,4 @@ spec:
   updateStrategy:
     rollingUpdate:
       maxUnavailable: 50%
-    type: rollingUpdate
+    type: RollingUpdate
