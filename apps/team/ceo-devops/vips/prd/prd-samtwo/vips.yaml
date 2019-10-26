@@ -191,31 +191,380 @@
 #######################
 #  SFCI Prod          #
 #######################
+- lbname: caasci
+  customlbname: caasci
+  cnames:
+  - cname: caasci.slb.sfdc.net
+  servers:
+  - caasci01.dop.sfdc.net
+  - caasci02.dop.sfdc.net
+  ports:
+  - port: 443
+    targetport: 8080
+    lbtype: http
+    tls: true
+    reencrypt: false
+    healthport: 8080
+    healthprotocol: http
+    healthpath: /ha/health-check
+  - port: 80
+    targetport: 80
+    lbtype: http
+    tls: false
+    reencrypt: false
+    healthport: 80
+    healthprotocol: http
+    healthpath: /
 
-#- lbname: cjemaster227
-#  customlbname: cjemaster227
-#  cnames:
-#  - cname: adoptionappspkgingci.slb.sfdc.net
-#  servers:
-#  - cjemaster227-1-prd.dop.sfdc.net
-#  - cjemaster227-2-prd.dop.sfdc.net
-#  ports:
-#  - port: 443
-#    targetport: 8080
-#    lbtype: http
-#    tls: true
-#    reencrypt: false
-#    healthport: 8080
-#    healthprotocol: http
-#    healthpath: /ha/health-check
-#  - port: 80
-#    targetport: 80
-#    lbtype: http
-#    tls: false
-#    reencrypt: false
-#    healthport: 80
-#    healthprotocol: http
-#    healthpath: /
+- lbname: sconelibci
+  customlbname: sconelibci
+  cnames:
+  - cname: sconelibci.slb.sfdc.net
+  servers:
+  - sconelibci01.dop.sfdc.net
+  - sconelibci02.dop.sfdc.net
+  ports:
+  - port: 443
+    targetport: 8080
+    lbtype: http
+    tls: true
+    reencrypt: false
+    healthport: 8080
+    healthprotocol: http
+    healthpath: /ha/health-check
+  - port: 80
+    targetport: 80
+    lbtype: http
+    tls: false
+    reencrypt: false
+    healthport: 80
+    healthprotocol: http
+    healthpath: /
+
+- lbname: wardenci
+  customlbname: wardenci
+  cnames:
+  - cname: wardenci.slb.sfdc.net
+  servers:
+  - wardenci01.dop.sfdc.net
+  - wardenci02.dop.sfdc.net
+  ports:
+  - port: 443
+    targetport: 8080
+    lbtype: http
+    tls: true
+    reencrypt: false
+    healthport: 8080
+    healthprotocol: http
+    healthpath: /ha/health-check
+  - port: 80
+    targetport: 80
+    lbtype: http
+    tls: false
+    reencrypt: false
+    healthport: 80
+    healthprotocol: http
+    healthpath: /
+
+- lbname: retailcloudcreci
+  customlbname: retailcloudcreci
+  cnames:
+  - cname: retailcloudcreci.slb.sfdc.net
+  servers:
+  - retailcloudcreci01.dop.sfdc.net
+  - retailcloudcreci02.dop.sfdc.net
+  ports:
+  - port: 443
+    targetport: 8080
+    lbtype: http
+    tls: true
+    reencrypt: false
+    healthport: 8080
+    healthprotocol: http
+    healthpath: /ha/health-check
+  - port: 80
+    targetport: 80
+    lbtype: http
+    tls: false
+    reencrypt: false
+    healthport: 80
+    healthprotocol: http
+    healthpath: /
+
+- lbname: retailclouduici
+  customlbname: retailclouduici
+  cnames:
+  - cname: retailclouduici.slb.sfdc.net
+  servers:
+  - retailclouduici01.dop.sfdc.net
+  - retailclouduici02.dop.sfdc.net
+  ports:
+  - port: 443
+    targetport: 8080
+    lbtype: http
+    tls: true
+    reencrypt: false
+    healthport: 8080
+    healthprotocol: http
+    healthpath: /ha/health-check
+  - port: 80
+    targetport: 80
+    lbtype: http
+    tls: false
+    reencrypt: false
+    healthport: 80
+    healthprotocol: http
+    healthpath: /
+
+- lbname: ccaitci
+  customlbname: ccaitci
+  cnames:
+  - cname: ccaitci.slb.sfdc.net
+  servers:
+  - ccaitci01.dop.sfdc.net
+  - ccaitci02.dop.sfdc.net
+  ports:
+  - port: 443
+    targetport: 8080
+    lbtype: http
+    tls: true
+    reencrypt: false
+    healthport: 8080
+    healthprotocol: http
+    healthpath: /ha/health-check
+  - port: 80
+    targetport: 80
+    lbtype: http
+    tls: false
+    reencrypt: false
+    healthport: 80
+    healthprotocol: http
+    healthpath: /
+
+- lbname: dfsci
+  customlbname: dfsci
+  cnames:
+  - cname: dfsci.slb.sfdc.net
+  servers:
+  - dfsci01.dop.sfdc.net
+  - dfsci02.dop.sfdc.net
+  ports:
+  - port: 443
+    targetport: 8080
+    lbtype: http
+    tls: true
+    reencrypt: false
+    healthport: 8080
+    healthprotocol: http
+    healthpath: /ha/health-check
+  - port: 80
+    targetport: 80
+    lbtype: http
+    tls: false
+    reencrypt: false
+    healthport: 80
+    healthprotocol: http
+    healthpath: /
+
+- lbname: jettyci
+  customlbname: jettyci
+  cnames:
+  - cname: jettyci.slb.sfdc.net
+  servers:
+  - jettyci01.dop.sfdc.net
+  - jettyci02.dop.sfdc.net
+  ports:
+  - port: 443
+    targetport: 8080
+    lbtype: http
+    tls: true
+    reencrypt: false
+    healthport: 8080
+    healthprotocol: http
+    healthpath: /ha/health-check
+  - port: 80
+    targetport: 80
+    lbtype: http
+    tls: false
+    reencrypt: false
+    healthport: 80
+    healthprotocol: http
+    healthpath: /
+
+- lbname: c2cci
+  customlbname: c2cci
+  cnames:
+  - cname: c2cci.slb.sfdc.net
+  servers:
+  - c2cci01.dop.sfdc.net
+  - c2cci02.dop.sfdc.net
+  ports:
+  - port: 443
+    targetport: 8080
+    lbtype: http
+    tls: true
+    reencrypt: false
+    healthport: 8080
+    healthprotocol: http
+    healthpath: /ha/health-check
+  - port: 80
+    targetport: 80
+    lbtype: http
+    tls: false
+    reencrypt: false
+    healthport: 80
+    healthprotocol: http
+    healthpath: /
+
+- lbname: tnrpci
+  customlbname: tnrpci
+  cnames:
+  - cname: tnrpci.slb.sfdc.net
+  servers:
+  - tnrpci01.dop.sfdc.net
+  - tnrpci02.dop.sfdc.net
+  ports:
+  - port: 443
+    targetport: 8080
+    lbtype: http
+    tls: true
+    reencrypt: false
+    healthport: 8080
+    healthprotocol: http
+    healthpath: /ha/health-check
+  - port: 80
+    targetport: 80
+    lbtype: http
+    tls: false
+    reencrypt: false
+    healthport: 80
+    healthprotocol: http
+    healthpath: /
+
+- lbname: lightningperfci
+  customlbname: lightningperfci
+  cnames:
+  - cname: lightningperfci.slb.sfdc.net
+  servers:
+  - lightningperfci01.dop.sfdc.net
+  - lightningperfci02.dop.sfdc.net
+  ports:
+  - port: 443
+    targetport: 8080
+    lbtype: http
+    tls: true
+    reencrypt: false
+    healthport: 8080
+    healthprotocol: http
+    healthpath: /ha/health-check
+  - port: 80
+    targetport: 80
+    lbtype: http
+    tls: false
+    reencrypt: false
+    healthport: 80
+    healthprotocol: http
+    healthpath: /
+
+- lbname: datassci
+  customlbname: datassci
+  cnames:
+  - cname: datassci.slb.sfdc.net
+  servers:
+  - datassci01.dop.sfdc.net
+  - datassci02.dop.sfdc.net
+  ports:
+  - port: 443
+    targetport: 8080
+    lbtype: http
+    tls: true
+    reencrypt: false
+    healthport: 8080
+    healthprotocol: http
+    healthpath: /ha/health-check
+  - port: 80
+    targetport: 80
+    lbtype: http
+    tls: false
+    reencrypt: false
+    healthport: 80
+    healthprotocol: http
+    healthpath: /
+
+- lbname: sdeci
+  customlbname: sdeci
+  cnames:
+  - cname: sdeci.slb.sfdc.net
+  servers:
+  - sdeci01.dop.sfdc.net
+  - sdeci02.dop.sfdc.net
+  ports:
+  - port: 443
+    targetport: 8080
+    lbtype: http
+    tls: true
+    reencrypt: false
+    healthport: 8080
+    healthprotocol: http
+    healthpath: /ha/health-check
+  - port: 80
+    targetport: 80
+    lbtype: http
+    tls: false
+    reencrypt: false
+    healthport: 80
+    healthprotocol: http
+    healthpath: /
+
+- lbname: atlasci
+  customlbname: atlasci
+  cnames:
+  - cname: atlasci.slb.sfdc.net
+  servers:
+  - atlasci01.dop.sfdc.net
+  - atlasci02.dop.sfdc.net
+  ports:
+  - port: 443
+    targetport: 8080
+    lbtype: http
+    tls: true
+    reencrypt: false
+    healthport: 8080
+    healthprotocol: http
+    healthpath: /ha/health-check
+  - port: 80
+    targetport: 80
+    lbtype: http
+    tls: false
+    reencrypt: false
+    healthport: 80
+    healthprotocol: http
+    healthpath: /
+
+- lbname: cjemaster227
+  customlbname: cjemaster227
+  cnames:
+  - cname: adoptionappspkgingci.slb.sfdc.net
+  servers:
+  - cjemaster227-1-prd.dop.sfdc.net
+  - cjemaster227-2-prd.dop.sfdc.net
+  ports:
+  - port: 443
+    targetport: 8080
+    lbtype: http
+    tls: true
+    reencrypt: false
+    healthport: 8080
+    healthprotocol: http
+    healthpath: /ha/health-check
+  - port: 80
+    targetport: 80
+    lbtype: http
+    tls: false
+    reencrypt: false
+    healthport: 80
+    healthprotocol: http
+    healthpath: /
 
 #- lbname: cjemaster300
 #  customlbname: cjemaster300
@@ -241,3 +590,4 @@
 #    healthport: 80
 #    healthprotocol: http
 #    healthpath: /
+### Prod VIPs###
