@@ -5,8 +5,11 @@ system:
       count: 1
       containers:
         - name: gid-sdb
-          image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/gid/sdb:322.130.1
+          image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/gid/sdb:fixedpgdata
           imagePullPolicy: Always
+          volumeMounts:
+            - mountPath: /home/sdb/data
+              name: hostdatavol
           ports:
             - containerPort: 5432
           livenessProbe:
