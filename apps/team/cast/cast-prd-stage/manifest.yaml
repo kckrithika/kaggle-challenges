@@ -137,9 +137,9 @@ system:
         - name: management_server_port
           value: 15372
         - name: c2c_common_gdotBasePath
-          value: http://cloudatlas-prd-stage-service.cloudatlas.localhost.mesh.force.com:5442/scim
+          value: http://${directory_server_host}:7022/scim
         - name: GDOT_URL
-          value: http://cloudatlas-prd-stage-service.cloudatlas.localhost.mesh.force.com:5442/scim
+          value: http://${directory_server_host}:7022/scim
       ports:
         - containerPort: 8082
         - containerPort: 15372
@@ -168,7 +168,7 @@ system:
         - name: ca_service_host
           value: 127.0.0.1
         - name: c2c_common_gdotBasePath
-          value: http://cloudatlas-prd-stage-service.cloudatlas.localhost.mesh.force.com:5442/scim
+          value: http://${directory_server_host}:7022/scim
         - name: security_client_dynamickeystore_cadir
           value: /certs/ca
         - name: security_client_dynamickeystore_monitoredDirectory
