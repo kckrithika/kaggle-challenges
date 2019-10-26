@@ -2,7 +2,7 @@ apiVersion: v1
 data:
   prefetch_images.txt: |-
     ops0-artifactrepo2-0-prd.data.sfdc.net/sfci/insights/moanaengine:release-2019.10.a.25-3d1581a
-    ops0-artifactrepo2-0-prd.data.sfdc.net/dva//flowsnake-spark-on-k8s-integration-test-runner:22
+    ops0-artifactrepo2-0-prd.data.sfdc.net/dva/flowsnake-spark-on-k8s-integration-test-runner:22
     ops0-artifactrepo2-0-prd.data.sfdc.net/dva/flowsnake-basic-operator-integration:22
     ops0-artifactrepo2-0-prd.data.sfdc.net/dva/flowsnake-ops-tools:2
   prefetcher.sh: "#! /bin/bash\n\nSCRIPT_DIR=$(cd $(dirname $0); pwd)\nIMAGE_FILE=${SCRIPT_DIR}/prefetch_images.txt\nSTASHED_SCRIPT_FILE=/root/.prefetcher.sh.copy\n\nif
