@@ -80,7 +80,7 @@ system:
         pod: cs66
       containers:
         - name: cron-service
-          image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/vijay-kota/cronsvc:25Oct19v2
+          image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/vijay-kota/cronsvc:26Oct19
           ports:
             - name: grpc-port
               containerPort: 7020
