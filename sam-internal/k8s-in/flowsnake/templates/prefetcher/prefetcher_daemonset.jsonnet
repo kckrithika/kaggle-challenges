@@ -14,7 +14,7 @@ else
             name: "flowsnake-image-prefetcher-ds",            
         },
     kind: "DaemonSet",
-    apiVersion: "v1",
+    apiVersion: "apps/v1",
     metadata: {
         name: "flowsnake-image-prefetcher-ds",
         namespace: "flowsnake",
@@ -28,7 +28,7 @@ else
             matchLabels: common_labels,
         },
         updateStrategy: {
-            type: "rollingUpdate",
+            type: "RollingUpdate",
             rollingUpdate: {
                 maxUnavailable: "50%",
             },
