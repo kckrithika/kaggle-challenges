@@ -40,7 +40,7 @@ system:
         serviceName: crondemo
         pod: cs66
       containers:
-        - name: cron-demo
+        - name: crondemo
           image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/vijay-kota/crondemo:25Oct19v2
           ports:
             - name: http-port
@@ -79,7 +79,7 @@ system:
         serviceName: cron
         pod: cs66
       containers:
-        - name: cron-service
+        - name: cronsvc
           image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/vijay-kota/cronsvc:26Oct19
           ports:
             - name: grpc-port
@@ -105,11 +105,11 @@ system:
             - mountPath: /var/log/cron
               name: logvol
 
-        - name: beacon-cron
+        - name: beacon
           image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/servicemesh/beacon:1.0.0
-        # command: ["/bin/sh"]
+          command: ["/bin/sh"]
         # # BUMP UP cluster# with each deployment for debuggability
-        # args: ["-c", "export port=$GRPC_PORT ; /usr/bin/java -jar /home/scone/service.jar -endpoint cron/cron-cs66-1:POD:${port}"]
+          args: ["-c", "export port=$GRPC_PORT ; /usr/bin/java -jar /home/scone/service.jar -endpoint cron-cluster-cs66:POD:${port}"]
         #   # -endpoint
         #   # samapp/$(FUNCTION_NAMESPACE)/$(FUNCTION)-http:DATACENTER_ALLENV:7014
         #   # samapp/$(FUNCTION_NAMESPACE)/$(FUNCTION)-https:DATACENTER_ALLENV:7442
@@ -131,7 +131,7 @@ system:
             - mountPath: /home/scone/logs
               name: beacon-log-volume
 
-        - name: sherpa-cron
+        - name: sherpa
           # https://sconelibci.dop.sfdc.net/job/servicelibs/job/sherpa-envoy/job/master/73
           image: sfci/servicelibs/sherpa-envoy:1.0.7
           # See https://git.soma.salesforce.com/servicelibs/sherpa#ports
@@ -263,11 +263,11 @@ system:
     function: cs66-cron
     slbenabled: true
     ports:
-      # port: 7012
-      # targetport: 7012
+      - port: 7012
+        targetport: 7012
       - port: 7020
         targetport: 7020
-      # port: 15372
-      # targetport: 15372
-      # port: 15373
-      # targetport: 15373
+      - port: 15373
+        targetport: 15373
+      - port: 15374
+        targetport: 15374
