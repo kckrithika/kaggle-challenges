@@ -8,3 +8,13 @@
   customlbname: nucleus-prd
   cnames:
    - cname: nucleus.data.sfdc.net
+- lbname: uiplatform-nucleus-prd-nodeport-staging
+  servers:
+   - uiplatform-k8s-node-1-prd.eng.sfdc.net
+  ports:
+   - port: 443
+     targetport: 31235
+     lbtype: tcp
+  customlbname: nucleus-prd-staging
+  cnames:
+   - cname: nucleus-staging.data.sfdc.net
