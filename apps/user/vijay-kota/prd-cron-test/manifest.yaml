@@ -84,6 +84,8 @@ system:
           ports:
             - name: grpc-port
               containerPort: 7020
+            - name: scone-port
+              containerPort: 15374
           env:
             - name: SFDC_ENVIRONMENT
               value: mesh
