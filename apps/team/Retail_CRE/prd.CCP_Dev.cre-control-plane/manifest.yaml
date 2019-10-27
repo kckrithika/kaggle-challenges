@@ -13,7 +13,7 @@ system:
       "routing.mesh.sfdc.net/enabled": "true"
     containers:
     - name: cre-control-plane-ccp-dev
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cre-fusion/services:controlplane.2.1.0.0.PR-968.9095c1c.4
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cre-fusion/services:controlplane.2.1.0.0.develop.fd7bafc.612
       env:
         ####################################################################################################
         ############################   ENGINE/DDS FLOWSNAKE ARTIFACTS ( Most frequently changed ) ##########
@@ -56,8 +56,6 @@ system:
           value: true
         - name: BUCKET_INGEST_CONCURRENCY_CONTROL_ENABLED
           value: true
-        - name: BUCKET_INGEST_SMALL_CONCURRENCY_CONTROL
-          value: 2
         ####################################################################################################
         ####################################### SAVE environment variables ###############################
         ####################################################################################################
@@ -65,8 +63,6 @@ system:
           value: cre-engine-ccp-dev
         - name: SAVE_CONCURRENCY_CONTROL_ENABLED
           value: true
-        - name: SAVE_CONCURRENCY_CONTROL
-          value: 1
         - name: SAVE_EXECUTOR_INSTANCES
           value: 4
         - name: SAVE_SPARK_DEFAULT_PARALLELISM
@@ -80,8 +76,6 @@ system:
           value: cre-engine-ccp-dev
         - name: EXPORT_CONCURRENCY_CONTROL_ENABLED
           value: true
-        - name: EXPORT_CONCURRENCY_CONTROL
-          value: 2
         - name: EXPORT_DRIVER_CORES
           value: 16
         - name: EXPORT_EXECUTOR_CORES
@@ -98,9 +92,9 @@ system:
         ####################################### DELETE environment variables ###############################
         ####################################################################################################
         - name: DELETE_CONCURRENCY_CONTROL_ENABLED
-          value: false
+          value: true
         - name: DELETE_CONCURRENCY_CONTROL
-          value: 4
+          value: 40
         ####################################################################################################
         ##################################### APP Config environment variables #############################
         ####################################################################################################
