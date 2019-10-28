@@ -339,10 +339,12 @@
     },
     {
       "namespaces": [
-        "cloudatlas"
+        "cloudatlas",
+        "cast"
       ],
       "access": [
-        "team/CloudAtlas"
+        "team/CloudAtlas",
+        "team/cast"
       ],
       "controlEstate": "dfw-sam",
       "estate": "dfw-sam_cloudatlas_dir",
@@ -801,10 +803,12 @@
     },
     {
       "namespaces": [
-        "cloudatlas"
+        "cloudatlas",
+        "cast"
       ],
       "access": [
-        "team/CloudAtlas"
+        "team/CloudAtlas",
+        "team/cast"
       ],
       "controlEstate": "frf-sam",
       "estate": "frf-sam_cloudatlas_dir",
@@ -1169,10 +1173,12 @@
     },
     {
       "namespaces": [
-        "cloudatlas"
+        "cloudatlas",
+        "cast"
       ],
       "access": [
-        "team/CloudAtlas"
+        "team/CloudAtlas",
+        "team/cast"
       ],
       "controlEstate": "hnd-sam",
       "estate": "hnd-sam_cloudatlas_dir",
@@ -1823,10 +1829,12 @@
     },
     {
       "namespaces": [
-        "cloudatlas"
+        "cloudatlas",
+        "cast"
       ],
       "access": [
-        "team/CloudAtlas"
+        "team/CloudAtlas",
+        "team/cast"
       ],
       "controlEstate": "iad-sam",
       "estate": "iad-sam_cloudatlas_dir",
@@ -2421,10 +2429,12 @@
     },
     {
       "namespaces": [
-        "cloudatlas"
+        "cloudatlas",
+        "cast"
       ],
       "access": [
-        "team/CloudAtlas"
+        "team/CloudAtlas",
+        "team/cast"
       ],
       "controlEstate": "ord-sam",
       "estate": "ord-sam_cloudatlas_dir",
@@ -2765,10 +2775,12 @@
     },
     {
       "namespaces": [
-        "cloudatlas"
+        "cloudatlas",
+        "cast"
       ],
       "access": [
-        "team/CloudAtlas"
+        "team/CloudAtlas",
+        "team/cast"
       ],
       "controlEstate": "par-sam",
       "estate": "par-sam_cloudatlas_dir",
@@ -3255,10 +3267,12 @@
     },
     {
       "namespaces": [
-        "cloudatlas"
+        "cloudatlas",
+        "cast"
       ],
       "access": [
-        "team/CloudAtlas"
+        "team/CloudAtlas",
+        "team/cast"
       ],
       "controlEstate": "phx-sam",
       "estate": "phx-sam_cloudatlas_dir",
@@ -4299,10 +4313,12 @@
     },
     {
       "namespaces": [
-        "cloudatlas"
+        "cloudatlas",
+        "cast"
       ],
       "access": [
-        "team/CloudAtlas"
+        "team/CloudAtlas",
+        "team/cast"
       ],
       "controlEstate": "ukb-sam",
       "estate": "ukb-sam_cloudatlas_dir",
@@ -4605,10 +4621,12 @@
     },
     {
       "namespaces": [
-        "cloudatlas"
+        "cloudatlas",
+        "cast"
       ],
       "access": [
-        "team/CloudAtlas"
+        "team/CloudAtlas",
+        "team/cast"
       ],
       "controlEstate": "xrd-sam",
       "estate": "xrd-sam_cloudatlas_dir",
