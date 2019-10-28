@@ -145,8 +145,9 @@ system:
     annotations:
       slb.sfdc.net/iptype: private_reserved
     function: cre-sp
-    nodeExposed: true
     slbenabled: true
     ports:
+      - port: 7442
+        targetport: 7442
       - port: 8091
         targetport: 8080
