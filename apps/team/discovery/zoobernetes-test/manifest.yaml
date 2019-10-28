@@ -6,14 +6,13 @@ system:
 
     containers:
     - name: zoobernetes
-      image: sfci/services/sfdc-bazel/disco/zoobernetes:4e735c525
+      image: sfci/services/sfdc-bazel/disco/zoobernetes:28da8a495
       args:
       - >- #Multiline argument
         --z9s.whitelisted.services=app:stmfa-cs1,stmfa-na43,app;
         casam:green,blue;
         service-mesh:ajnafunneldirect,zipkin;
         funnel:ajnafunneldirecttls
-      - --logging.level.com.salesforce.disco.xroad=DEBUG #Temporary for debugging. Will remove later
 
       #Used to trigger redeploy
       env:
