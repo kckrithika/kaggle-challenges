@@ -8,7 +8,7 @@ system:
     count: 3
     containers:
     - name: eaas-grpc-client
-      image: docker-sfci-dev/sfci/eaas/grpc-client:1.0.28-30ec240d2023ef3b84adc601cf0c684aeafa2554
+      image: docker-sfci-dev/sfci/eaas/grpc-client:1.0.29-eff7aa0176006ab5035ee0805dbdf770995a1f77
       env:
       - name: SFDC_ENVIRONMENT
         value: sam
