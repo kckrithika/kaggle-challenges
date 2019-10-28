@@ -1,0 +1,232 @@
+apiVersion: v1
+
+system:
+  notifications:
+    email:
+      - cloudatlas-dev@salesforce.com
+      - cloudtocloud@salesforce.com
+  functions:
+  - name: cast-prd-stage
+    identity:
+      serviceName: cast-prd-stage
+    count: 3
+    strategy:
+      type: RollingUpdate
+      rollingUpdate:
+        maxSurge: 0
+        maxUnavailable: 1
+    hostnetwork: false
+    containers:
+    #####################################################################################
+    # Service Mesh / Envoy / Sherpa
+    #####################################################################################
+    - name: sherpa-envoy
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/gid/sherpa-evnoy-debug:1.0.13
+      env:
+      - name: SFDC_ENVIRONMENT
+        value: "stmfa"
+      resources:
+        limits: { cpu: "1", memory: "1Gi" }
+        requests: { cpu: "1", memory: "1Gi" }
+      volumeMounts:
+      - name: client-cert
+        mountPath: /client-certs
+      - name: server-cert
+        mountPath: /server-certs
+      - mountPath: /log
+        name: logvolsherpa
+      ports:
+      - containerPort: 7012
+        name: sherpa-in
+      - containerPort: 7014
+        name: http1-in
+      - containerPort: 7442
+        name: http1-tls-in
+      - containerPort: 15373
+        name: sherpa-adm
+      livenessProbe:
+        exec:
+          command:
+          - "/home/sfdc-sherpa/bin/is-alive"
+        initialDelaySeconds: 120
+        periodSeconds: 5
+      readinessProbe:
+        exec:
+          command:
+          - "/home/sfdc-sherpa/bin/is-ready"
+        initialDelaySeconds: 110
+        periodSeconds: 5
+    #####################################################################################
+    # Service Beacon
+    #####################################################################################
+    - name: beacon-cast
+      image: sfci/servicelibs/beacon:7ad9e771192cd0b3e43393eea2e1e5c1de81dfda
+      env:
+      - name: SFDC_ENVIRONMENT
+        value: "stmfa"
+      volumeMounts:
+      - mountPath: /log
+        name: logvolbeacon
+      resources:
+        limits: { cpu: "1", memory: "1Gi" }
+        requests: { cpu: "1", memory: "1Gi" }
+      args:
+        - -endpoint
+        - $(FUNCTION_NAMESPACE)/cast-prd-stage:DATACENTER_ALLENV:7442
+      livenessProbe:
+        exec:
+          command:
+          - "/home/scone/is-alive.sh"
+        initialDelaySeconds: 5
+        periodSeconds: 5
+    #####################################################################################
+    # Entity API
+    #####################################################################################
+    - name: cloudatlas-service
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cloud-atlas/cloudatlas/cloudatlas-service:5774b48
+      command: ["java", "-jar", "cloudatlas-service.jar"]
+      env:
+        - name: DIRECTORY_SERVER_HOST
+          valueFrom:
+           fieldRef:
+            fieldPath: spec.nodeName
+        - name: server_port
+          value: 7032
+        - name: management_server_port
+          value: 15374
+        - name: cloudatlas_http_server_port_servicemesh
+          value: 7080
+      volumeMounts:
+      - mountPath: /log
+        name: logvol
+      - mountPath: /certs
+        name: server-cert
+      - mountPath: /clientcerts
+        name: client-cert
+      ports:
+      - containerPort: 7030
+      - containerPort: 7032
+      - containerPort: 7080
+      - containerPort: 15374
+      livenessProbe:
+        httpGet:
+          path: /manage/health
+          port: 15374
+        initialDelaySeconds: 60
+        periodSeconds: 30
+      readinessProbe:
+        httpGet:
+          path: /manage/health
+          port: 15374
+        initialDelaySeconds: 60
+        periodSeconds: 5
+        failureThreshold: 120
+    #####################################################################################
+    # C2C service
+    #####################################################################################
+    - name: c2c-service
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/gid/c2c-service:20191008173906-6755dab
+      imagePullPolicy: Always
+      env:
+        - name: directory_server_host
+          valueFrom:
+           fieldRef:
+            fieldPath: spec.nodeName
+        - name: server_port
+          value: 8082
+        - name: management_server_port
+          value: 15372
+        - name: c2c_common_gdotBasePath
+          value: http://${directory_server_host}:8080/scim
+        - name: GDOT_URL
+          value: http://${directory_server_host}:8080/scim
+      ports:
+        - containerPort: 8082
+        - containerPort: 15372
+      livenessProbe:
+        httpGet:
+          path: /manage/health
+          port: 15372
+      volumeMounts:
+        - name: server-cert
+          mountPath: /certs
+#    #####################################################################################
+#    # GID service
+#    #####################################################################################
+#    - name: gid-service
+#      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/gid/gid-service:5e51285
+#      imagePullPolicy: Always
+#      env:
+#        - name: server_port
+#          value: 8081
+#        - name: management_server_port
+#          value: 15371
+#        - name: ca_service_host
+#          value: 127.0.0.1
+#        - name: security_client_dynamickeystore_cadir
+#          value: /certs
+#        - name: security_client_dynamickeystore_monitoredDirectory
+#          value: /certs
+#      ports:
+#        - containerPort: 8081
+#        - containerPort: 15371
+#      livenessProbe:
+#        httpGet:
+#          path: /manage/health
+#          port: 15371
+#      volumeMounts:
+#        - name: server-cert
+#          mountPath: /certs
+    #####################################################################################
+    # NGINX Rev Proxy
+    #####################################################################################
+    - name: nginx-rev-proxy
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/gid/gid-nginx:0370225
+      imagePullPolicy: Always
+      ports:
+        - containerPort: 7022
+      livenessProbe:
+        httpGet:
+          path: /health
+          port: 7022
+        initialDelaySeconds: 15
+        timeoutSeconds: 10
+        periodSeconds: 30
+      volumeMounts:
+        - mountPath: /var/cache/nginx/client_temp
+          name: cache-volume
+    #####################################################################################
+    # Volumes Needed
+    #####################################################################################
+    volumes:
+    - name: server-cert
+      maddogCert:
+        type: server
+    - name: client-cert
+      maddogCert:
+        type: client
+    - name: logvolsherpa
+      hostPath:
+        path: /home/sfdc-scone-hellodiscovery-sherpa/logs
+    - name: logvolbeacon
+      hostPath:
+        path: /home/sfdc-scone-hellodiscovery-beacon/logs
+    - name: cache-volume
+      emptyDir: {}
+    - name: logvol
+      hostPath:
+        path: /home/sfdc-atlas/logs-cast
+  #####################################################################################
+  # SLB
+  #####################################################################################
+  loadbalancers:
+    - lbname: cast-stage
+      function: cast-prd-stage
+      slbEnabled: true
+      ports:
+        - port: 443
+          targetport: 7442
+          lbtype: http
+          tls: true
+          reencrypt: true
+
