@@ -20,6 +20,8 @@ system:
         env:
         - name: BRANCH
           value: "eng_production"
+        - name: PRODUCTION_MODE
+          value: "True"
         - name: HTTP_PROXY
           value: "http://public0-proxy1-0-prd.data.sfdc.net:8080"
         - name: HTTPS_PROXY
