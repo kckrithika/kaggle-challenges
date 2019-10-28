@@ -44,7 +44,6 @@ local utils = import "util_functions.jsonnet";
                 # --- flag H (git's diff logic ... ---
                 # --- flag I (to reduce the ---
                 # --- flag J (likelihood of merge conflicts.) ---
-                prefetcher_enabled: "this value irrelevant",
             },
             # prd-test offers legacy version mappings. Phase 2 does not, so cannot inherit from there.
             # Start with 2-prd-dev (which also have legacy version mappings),
@@ -66,6 +65,7 @@ local utils = import "util_functions.jsonnet";
                 # --- flag F (Their only purpose ... ---
                 # --- flag G (is to assist ... ---
                 # --- flag H (git's diff logic ... ---
+                prefetcher_enabled: "this value irrelevant",
                 # --- flag I (to reduce the ---
                 # --- flag J (likelihood of merge conflicts.) ---
                 upcase_pki_kingdom: "",
