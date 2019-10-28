@@ -9,7 +9,7 @@ system:
   - name: cast-prd-stage
     identity:
       serviceName: cast-prd-stage
-    count: 3
+    count: 1
     strategy:
       type: RollingUpdate
       rollingUpdate:
