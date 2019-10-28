@@ -10,4 +10,6 @@ apps:
     # - name: prd/prd-sam
     # c2c-ca-minimal:
     # - name: xrd/xrd-sampool
+    cast-prd-stage:
+        - name: prd/prd-sam
 
