@@ -48,6 +48,8 @@ spec:
         - mountPath: /prefetcher-resources
           name: prefetcher-resources
       hostNetwork: true
+      nodeSelector:
+        master: "false"
       restartPolicy: Always
       serviceAccountName: default
       volumes:

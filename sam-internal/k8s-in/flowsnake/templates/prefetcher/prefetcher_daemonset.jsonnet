@@ -41,6 +41,9 @@ else
                 hostNetwork: true,
                 restartPolicy: "Always",
                 serviceAccountName: "default",
+                nodeSelector: {
+                    master: "false",
+                },
                 volumes: [
                     {
                         name: "host-var-run",
