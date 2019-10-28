@@ -5,7 +5,7 @@ system:
       count: 1
       containers:
         - name: gid-sdb
-          image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/gid/sdb:112819.1
+          image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/gid/sdb:112819.2
           imagePullPolicy: Always
           env:
           - name: PGDATA
