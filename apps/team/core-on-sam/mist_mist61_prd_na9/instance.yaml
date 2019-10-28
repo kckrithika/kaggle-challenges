@@ -21,9 +21,9 @@ images:
   envoy: sfci/servicelibs/sherpa-envoy:1.0.4
   envoyConfig: sfci/casam/cyan-config:208cc2
   sequencer: sfci/casam/sequencer:180d92
-  sfProxy: sfci/frontend-gateway/sfproxy:33e43ab
-  switchboard: sfci/servicelibs/switchboard:db4c69eded9a83a094ddc8a851a61bee177f52e9
-  switchboardEnvoy: sfci/frontend-gateway/sfproxy:33e43ab
+  sfProxy: sfci/frontend-gateway/sfproxy:f926aa8
+  switchboard: sfci/servicelibs/switchboard:2d8189e3fa84fab3672869b29009e416870906bc
+  switchboardEnvoy: sfci/frontend-gateway/sfproxy:f926aa8
 name: na9
 nonce: 1555875562200038000
 replicaCount: 1
