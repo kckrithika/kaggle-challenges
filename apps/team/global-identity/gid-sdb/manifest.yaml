@@ -9,7 +9,7 @@ system:
           imagePullPolicy: Always
           env:
           - name: PGDATA
-            value: /home/sdb/data-gid          
+            value: /home/sdb/current
           volumeMounts:
             - mountPath: /home/sdb/data-gid
               name: hostdatavol
