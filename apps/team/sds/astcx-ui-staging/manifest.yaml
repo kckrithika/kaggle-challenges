@@ -20,7 +20,7 @@ system:
           type: client
     containers:
     - name: astcx-ui
-      image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/ast-portal:20
+      image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/ast-portal:22
       env:
       - name: AST_CX_SERVER_TYPE
         value: "cron"
@@ -28,7 +28,7 @@ system:
         value: "dev"
       - name: AST_CX_HTTPS_PROXY
         value: "http://public0-proxy1-0-xrd.data.sfdc.net:8080"
-      - name: AST_CX_BASE_URL
+      - name: AST_GUS_BASE_URL
         value: "https://gus--zonesintk.my.salesforce.com"
       - name: AST_CX_SERVICE_URL
         value: "http://10.233.249.44:8085"
