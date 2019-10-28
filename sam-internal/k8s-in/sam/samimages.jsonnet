@@ -24,8 +24,29 @@ local samreleases = import "samreleases.json";
 
         "prd,prd-sam,sam-api-proxy,hypersam": "2831-e1f4baf39a722485c90b3db42ab6c2e74c2e8545",
 
-        # [dharlan] - New build of samappcontroller that supports injecting istio labels
-        "prd,prd-samdev,samapp-controller,hypersam": "2837-4cfc9518ca0450f6667d2a69ec86884c57005b81",
+        # [ndzhumakaliev] - pin etcdquorumchecker to a new version to fix false alarms
+        "cdg,cdg-sam,watchdog-etcd-quorum,hypersam": "2838-bb0b18d18d0cfb389547ae7a3e5df9b23ba51e11",
+        "cdu,cdu-sam,watchdog-etcd-quorum,hypersam": "2838-bb0b18d18d0cfb389547ae7a3e5df9b23ba51e11",
+        "chx,chx-sam,watchdog-etcd-quorum,hypersam": "2838-bb0b18d18d0cfb389547ae7a3e5df9b23ba51e11",
+        "dfw,dfw-sam,watchdog-etcd-quorum,hypersam": "2838-bb0b18d18d0cfb389547ae7a3e5df9b23ba51e11",
+        "fra,fra-sam,watchdog-etcd-quorum,hypersam": "2838-bb0b18d18d0cfb389547ae7a3e5df9b23ba51e11",
+        "frf,frf-sam,watchdog-etcd-quorum,hypersam": "2838-bb0b18d18d0cfb389547ae7a3e5df9b23ba51e11",
+        "hio,hio-sam,watchdog-etcd-quorum,hypersam": "2838-bb0b18d18d0cfb389547ae7a3e5df9b23ba51e11",
+        "hnd,hnd-sam,watchdog-etcd-quorum,hypersam": "2838-bb0b18d18d0cfb389547ae7a3e5df9b23ba51e11",
+        "ia2,ia2-sam,watchdog-etcd-quorum,hypersam": "2838-bb0b18d18d0cfb389547ae7a3e5df9b23ba51e11",
+        "iad,iad-sam,watchdog-etcd-quorum,hypersam": "2838-bb0b18d18d0cfb389547ae7a3e5df9b23ba51e11",
+        "lo2,lo2-sam,watchdog-etcd-quorum,hypersam": "2838-bb0b18d18d0cfb389547ae7a3e5df9b23ba51e11",
+        "lo3,lo3-sam,watchdog-etcd-quorum,hypersam": "2838-bb0b18d18d0cfb389547ae7a3e5df9b23ba51e11",
+        "ord,ord-sam,watchdog-etcd-quorum,hypersam": "2838-bb0b18d18d0cfb389547ae7a3e5df9b23ba51e11",
+        "par,par-sam,watchdog-etcd-quorum,hypersam": "2838-bb0b18d18d0cfb389547ae7a3e5df9b23ba51e11",
+        "ph2,ph2-sam,watchdog-etcd-quorum,hypersam": "2838-bb0b18d18d0cfb389547ae7a3e5df9b23ba51e11",
+        "phx,phx-sam,watchdog-etcd-quorum,hypersam": "2838-bb0b18d18d0cfb389547ae7a3e5df9b23ba51e11",
+        "syd,syd-sam,watchdog-etcd-quorum,hypersam": "2838-bb0b18d18d0cfb389547ae7a3e5df9b23ba51e11",
+        "ttd,ttd-sam,watchdog-etcd-quorum,hypersam": "2838-bb0b18d18d0cfb389547ae7a3e5df9b23ba51e11",
+        "ukb,ukb-sam,watchdog-etcd-quorum,hypersam": "2838-bb0b18d18d0cfb389547ae7a3e5df9b23ba51e11",
+        "wax,wax-sam,watchdog-etcd-quorum,hypersam": "2838-bb0b18d18d0cfb389547ae7a3e5df9b23ba51e11",
+        "yhu,yhu-sam,watchdog-etcd-quorum,hypersam": "2838-bb0b18d18d0cfb389547ae7a3e5df9b23ba51e11",
+        "yul,yul-sam,watchdog-etcd-quorum,hypersam": "2838-bb0b18d18d0cfb389547ae7a3e5df9b23ba51e11",
 
         # Added this override to fix the peimission issue of connectivitylabeler watchdog
         "prd,prd-samtest,sam-network-reporter,hypersam": "2754-365539f3b19f1f92f8ee7f1778f157769fae2a07",
