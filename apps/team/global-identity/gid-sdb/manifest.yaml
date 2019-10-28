@@ -5,13 +5,13 @@ system:
       count: 1
       containers:
         - name: gid-sdb
-          image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/gid/sdb:112819.2
+          image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/gid/sdb:2.0.0
           imagePullPolicy: Always
           env:
           - name: PGDATA
-            value: /home/sdb/data-gid
+            value: /home/sdb/gid-data
           volumeMounts:
-            - mountPath: /home/sdb/data-gid
+            - mountPath: /home/sdb/gid-data
               name: hostdatavol
           ports:
             - containerPort: 5432
