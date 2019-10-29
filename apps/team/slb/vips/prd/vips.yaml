@@ -135,7 +135,7 @@
       removeheaders:
         - "CipherSuite"
 - lbname: hammond-delta
-  iptype: public_reserved
+  iptype: public_active
   servers:
     - 10.231.82.167
     - 10.231.83.102
