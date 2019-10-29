@@ -134,6 +134,16 @@ system:
         value: http://cloudatlas-gidv2.global-identity.prd-sam.prd.slb.sfdc.net/scim
       - name: vaas_baseUrl
         value: http://gid-sso-client.global-identity.prd-sam.prd.slb.sfdc.net/vaas
+      - name: spring_datasource_url
+        value: jdbc:postgresql://gid-sdb.global-identity.prd-sam.prd.slb.sfdc.net:5432/gid_mit
+      - name: spring_datasource_driverClassName
+        value: org.postgresql.Driver
+      - name: spring_datasource_username
+        value: sdb
+      - name: spring_datasource_password
+        value: ""
+      - name: database_name
+        value: gid_mit
 
       volumeMounts:
       - name: client-cert
