@@ -28,6 +28,11 @@ low_urgency_pagerduty_args: (if utils.is_production(configs.kingdom) || configs.
         "-recipient=" + $.recipient + (if $.recipient != "" then "," else "") + "csc-sam-rnd-business-hours-only@salesforce.pagerduty.com",
 ] else []),
 
+
+testbed_low_urgency_pagerduty_args: (if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" then [
+        "-recipient=csc-sam-rnd-business-hours-only@salesforce.pagerduty.com",
+] else []),
+
 filesystem_watchdog_args: (
 [
         "-recipient=" + $.recipient + (if $.recipient != "" then "," else "") + "make@salesforce.com",

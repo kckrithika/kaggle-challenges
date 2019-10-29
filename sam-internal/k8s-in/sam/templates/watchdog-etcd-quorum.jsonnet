@@ -19,12 +19,9 @@ local samimages = (import "samimages.jsonnet") + { templateFilename:: std.thisFi
                                      "-watchdogFrequency=10s",
                                      "-alertThreshold=2m",
                                      "-watchDogKind=" + $.kind,
-                                 ] + (
-                                         if configs.kingdom == "prd" && configs.estate == "prd-samtest" then [
-                                             "-recipient=csc-sam-rnd-business-hours-only@salesforce.pagerduty.com",
-                                         ] else []
-                                  )
+                                 ]
                                  + samwdconfig.pagerduty_args
+                                 + samwdconfig.testbed_low_urgency_pagerduty_args
                                  + samwdconfig.shared_args
                                  + ["-emailFrequency=336h"],
                         volumeMounts+: [
