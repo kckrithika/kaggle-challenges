@@ -25,6 +25,7 @@ spec:
         - -watchdogFrequency=10s
         - -alertThreshold=2m
         - -watchDogKind=Deployment
+        - -recipient=csc-sam-rnd-business-hours-only@salesforce.pagerduty.com
         - -funnelEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80
         - --config=/config/watchdog.json
         - --hostsConfigFile=/sfdchosts/hosts.json
