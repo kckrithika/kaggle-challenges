@@ -18,3 +18,13 @@
   customlbname: nucleus-prd-staging
   cnames:
    - cname: nucleus-staging.data.sfdc.net
+- lbname: uiplatform-hellotrailblazer-prd-nodeport
+  servers:
+   - uiplatform-k8s-node-1-prd.eng.sfdc.net
+  ports:
+   - port: 443
+     targetport: 31236
+     lbtype: tcp
+  customlbname: hellotrailblazer-prd
+  cnames:
+   - cname: hellotrailblazer-prd.data.sfdc.net
