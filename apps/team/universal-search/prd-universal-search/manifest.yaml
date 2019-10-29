@@ -326,7 +326,7 @@ system:
         type: client
     containers:
     - name: nginx-reverse-proxy-cre
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/irahim/universal-search-nginx-reverse-proxy:20191029
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/irahim/universal-search-nginx-reverse-proxy:201910290245
       ports:
       - containerPort: 8000
         name: nginx-http
