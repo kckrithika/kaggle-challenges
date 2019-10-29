@@ -264,11 +264,22 @@ data:
     0 END) as NodeRunning,\n                          \tMinionPool\n                          from
     nodeDetailView\n                          group by MinionPool, kingdom\n                    )
     ss2\n                    ON ss1.MinionPool = ss2.MinionPool AND ss1.kingdom =
-    ss2.kingdom", "watchdogFrequency": "5m"}], "sql_alerts": [{"alertAction": "businesshours_pagerduty",
-    "alertFrequency": "336h", "alertProfile": "sam", "alertThreshold": "10m", "instructions":
-    "The following deployments are reported as bad customer deployments in Production.
-    Debug Instructions: https://git.soma.salesforce.com/sam/sam/wiki/Debug-Failed-Deployment",
-    "name": "SlaDepl", "sql": "SELECT * FROM\n                        (\n                          SELECT\n                            ControlEstate,\n                            Namespace,\n                            Name,\n                            JSON_EXTRACT(Payload,
+    ss2.kingdom", "watchdogFrequency": "5m"}, {"name": "MinionPoolAvailability", "sql":
+    "select\n\t''GLOBAL'' as Kingdom,\n\t''NONE'' as SuperPod,\n\t''global'' as Estate,\n\t''sql.minionPoolAvailability''
+    as Metric,\n\t(sum(case when ReadyCount = 0 then 0 else 1 end)+0.0) / count(*)
+    as Value\nfrom (\nselect\n\tpool,\n\tsum(case when KubeletReady = ''True'' then
+    1 else 0 end) as ReadyCount,\n\tsum(case when KubeletReady = ''True'' then 0 else
+    1 end) as NotReadyCount\nfrom (\nselect\n\tPayload->>''$.metadata.labels.pool''
+    as pool,\n\tjson_unquote(json_extract(Payload, concat(''$.status.conditions['',substring(json_search(Payload->>''$.status.conditions'',
+    ''one'', ''KubeletReady''), 4, 1),''].status''))) as KubeletReady\nfrom k8s_resource\nwhere
+    apiKind = ''Node'' and (ControlEstate not like ''prd%'') and (ControlEstate not
+    like ''xrd%'')\n) as ss\nwhere pool not like ''%ceph%'' and pool not like ''%chatbot%''
+    and pool not like ''%sfstore%''\ngroup by pool\n) as ss2", "watchdogFrequency":
+    "15m"}], "sql_alerts": [{"alertAction": "businesshours_pagerduty", "alertFrequency":
+    "336h", "alertProfile": "sam", "alertThreshold": "10m", "instructions": "The following
+    deployments are reported as bad customer deployments in Production. Debug Instructions:
+    https://git.soma.salesforce.com/sam/sam/wiki/Debug-Failed-Deployment", "name":
+    "SlaDepl", "sql": "SELECT * FROM\n                        (\n                          SELECT\n                            ControlEstate,\n                            Namespace,\n                            Name,\n                            JSON_EXTRACT(Payload,
     ''$.metadata.annotations.\"smb.sam.data.sfdc.net/emailTo\"'') AS email,\n                            CASE
     WHEN JSON_EXTRACT(Payload, ''$.metadata.labels.sam_app'') is NULL then False\n                                 ELSE
     True END AS IsSamApp,\n                            JSON_EXTRACT(Payload, ''$.spec.replicas'')

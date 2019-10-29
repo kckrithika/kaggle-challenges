@@ -74,6 +74,7 @@
    (import "watchdog-samsql-metrics/ipaddresscapacity.libsonnet"),
    (import "watchdog-samsql-metrics/samavailability.libsonnet"),
    (import "watchdog-samsql-metrics/samavailabilityperpool.libsonnet"),
+   (import "watchdog-samsql-metrics/minionpoolavailability.libsonnet"),
   ],
 
 }
