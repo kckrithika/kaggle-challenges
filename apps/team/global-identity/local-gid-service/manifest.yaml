@@ -151,7 +151,7 @@ system:
     # GID Data service
     #####################################################################################
     - name: gid-service
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/gid/gid-service:89a7513
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/gid/gid-service:5bc3ab7
       imagePullPolicy: Always
       env:
         # - name: gid_service_ca_entityApi_basePath
