@@ -35,7 +35,8 @@ spec:
               "*.data.sfdc.net",
               "*.kms.slb.sfdc.net",
               "*.moe.ukb-sam.ukb.slb.sfdc.net",
-              "*.internal.salesforce.com"
+              "*.internal.salesforce.com",
+              "*.cast.ukb-sam.ukb.slb.sfdc.net"
              ]
             },
             {
