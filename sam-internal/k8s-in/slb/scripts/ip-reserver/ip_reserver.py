@@ -90,7 +90,7 @@ class IpReserver:
 
         new_ip = self.get_next_public_ip(cluster)
         self.public_reserved_ips[cluster][fqdn] = new_ip
-        print("Added {} to {} with public IP {}".format(fqdn, cluster, new_ip))
+        print("Reserved {} for {} in {}".format(new_ip, fqdn, cluster))
 
 
 def get_first_three_octets(subnet):
