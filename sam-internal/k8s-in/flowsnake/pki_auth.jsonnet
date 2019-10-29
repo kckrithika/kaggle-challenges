@@ -107,7 +107,7 @@ if flowsnake_config.is_v1_enabled then {
         {
             namespace: "retail-cre",
             authorizedLdapGroups: ["CRE_AD"],
-            authorizedClientCerts: ["retail-cre.cre-control-plane-ccp-func", "retail-cre.cre-control-plane-ccp-perf", "retail-cre.cre-control-plane-ccp-dev", "retail-cre.cre-control-plane-ccp-stage", "retail-cre.cre-control-plane-cre-test"],
+            authorizedClientCerts: ["retail-cre.cre-control-plane-ccp-func", "retail-cre.cre-control-plane-ccp-perf", "retail-cre.cre-control-plane-ccp-dev", "retail-cre.cre-control-plane-ccp-stage", "retail-cre.cre-control-plane-cre-test", "retail-cre.cre-control-plane-ccp-prod"],
         },
         {
             namespace: "universal-search",
