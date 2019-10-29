@@ -226,6 +226,8 @@ items:
   - kind: User
     name: retail-cre.cre-control-plane-ccp-perf
   - kind: User
+    name: retail-cre.cre-control-plane-ccp-prod
+  - kind: User
     name: hbase-flowsnake.xyan
   - kind: User
     name: hbase-flowsnake.daniel.wong
@@ -337,6 +339,8 @@ items:
     name: retail-cre.cre-control-plane-cre-test
   - kind: User
     name: retail-cre.cre-control-plane-ccp-perf
+  - kind: User
+    name: retail-cre.cre-control-plane-ccp-prod
   - kind: User
     name: hbase-flowsnake.xyan
   - kind: User

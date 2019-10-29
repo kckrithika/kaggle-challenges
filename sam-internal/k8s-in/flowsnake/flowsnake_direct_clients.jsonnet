@@ -159,6 +159,7 @@ local cre_production = {
                     "retail-cre.cre-control-plane-ccp-stage",
                     "retail-cre.cre-control-plane-cre-test",
                     "retail-cre.cre-control-plane-ccp-perf",
+                    "retail-cre.cre-control-plane-ccp-prod",
                     "hbase-flowsnake.xyan",
                     "hbase-flowsnake.daniel.wong",
                     "hbase-flowsnake.ckulkarni",

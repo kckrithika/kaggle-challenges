@@ -5,13 +5,13 @@ data:
     ["flowsnake_test"], "authorizedLdapGroups": ["Flowsnake_Platform"], "namespace":
     "flowsnake_test"}, {"authorizedClientCerts": ["retail-cre.cre-control-plane-ccp-func",
     "retail-cre.cre-control-plane-ccp-perf", "retail-cre.cre-control-plane-ccp-dev",
-    "retail-cre.cre-control-plane-ccp-stage", "retail-cre.cre-control-plane-cre-test"],
-    "authorizedLdapGroups": ["CRE_AD"], "namespace": "retail-cre"}, {"authorizedClientCerts":
-    ["universal-search.universal-search"], "authorizedLdapGroups": ["universal-search"],
-    "namespace": "universal-search"}, {"authorizedClientCerts": ["iot.provisioning",
-    "iot.provisioning-ftest", "iot.provisioning-provisioningtest"], "authorizedLdapGroups":
-    ["IoT-RM-Flowsnake"], "namespace": "iot"}, {"authorizedClientCerts": ["wave-elt.datapool",
-    "wave-elt.datapool-test1", "wave-elt.datapool-test2", "wave-elt.datapool-steelthread"],
+    "retail-cre.cre-control-plane-ccp-stage", "retail-cre.cre-control-plane-cre-test",
+    "retail-cre.cre-control-plane-ccp-prod"], "authorizedLdapGroups": ["CRE_AD"],
+    "namespace": "retail-cre"}, {"authorizedClientCerts": ["universal-search.universal-search"],
+    "authorizedLdapGroups": ["universal-search"], "namespace": "universal-search"},
+    {"authorizedClientCerts": ["iot.provisioning", "iot.provisioning-ftest", "iot.provisioning-provisioningtest"],
+    "authorizedLdapGroups": ["IoT-RM-Flowsnake"], "namespace": "iot"}, {"authorizedClientCerts":
+    ["wave-elt.datapool", "wave-elt.datapool-test1", "wave-elt.datapool-test2", "wave-elt.datapool-steelthread"],
     "authorizedLdapGroups": ["Analytics-DataPool"], "namespace": "wave-elt"}, {"authorizedClientCerts":
     [ ], "authorizedLdapGroups": ["hbase_flowsnake_integration"], "namespace": "hbase-flowsnake"}]'
 kind: ConfigMap
