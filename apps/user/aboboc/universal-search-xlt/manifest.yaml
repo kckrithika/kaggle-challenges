@@ -1,0 +1,161 @@
+apiVersion: v1
+
+system:
+  notifications:
+    email:
+    - universalsearch@salesforce.com
+  functions:
+  - name: xlt-agent
+    count: 10
+    volumes:
+    - name: client-cert-vol
+      maddogCert:
+        type: client
+    - name: server-cert-vol
+      maddogCert:
+        type: server
+    - name: sherpa-log-vol
+      hostpath:
+        path: /home/sfdc-sherpa/logs
+    - name: secret-vol
+      k4aSecret:
+        secretName: solrcloudcli-keytab-prd
+    - name: test
+      hostpath:
+        path: /data/test
+    containers:
+    - name: usmt-xlt-agent
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/irahim/xlt-agent:irahim-20180904-a824c0c
+      ports:
+      - containerPort: 8500
+        name: usmt-xlt-port
+      livenessProbe:
+        exec:
+          command:
+          - cat
+          - ./bin/agentcontroller.sh
+      readinessProbe:
+        exec:
+          command:
+          - cat
+          - ./bin/agentcontroller.sh
+      env:
+      - name: KRB5_CONF
+        value: /data/test/data/krb-config/krb5_searchzk_prd.conf
+      - name: JAAS_CONF
+        value: /data/test/data/krb-config/jaas-prd.conf
+      volumeMounts:
+      - name: client-cert-vol
+        mountPath: /certs
+      - name: secret-vol
+        mountPath: /secrets/
+        readOnly: true
+      - name: test
+        mountPath: /data/test
+    - name: sherpa-xlt
+      image: sfci/servicelibs/sherpa-envoy:1.0.8
+      ports:
+      # HTTP port for exposing to SLB for IoT
+      - containerPort: 7012
+        name: sherpa-xlt-in
+      - containerPort: 7011
+        name: sherpa-xlt-out
+      - containerPort: 7443
+        name: sherpa-xlt-tls
+      - containerPort: 15373
+        name: sherpa-xlt-adm
+      volumeMounts:
+      - name: server-cert-vol
+        mountPath: /server-certs
+      - name: client-cert-vol  # Client certs required here for zipkin
+        mountPath: /client-certs
+      - name: sherpa-log-vol
+        mountPath: /log
+      livenessProbe:
+        exec:
+          command:
+          - "./bin/is-alive"
+        initialDelaySeconds: 60
+        periodSeconds: 5
+      readinessProbe:
+        exec:
+          command:
+          - "./bin/is-ready"
+        initialDelaySeconds: 50
+        periodSeconds: 5
+    - name: perf-universal-search-xlt-certs
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/irahim/perf-universal-search-xlt:aboboc-20191016-bcd8e41
+      args: ["-d"]
+      livenessProbe:
+        initialDelaySeconds: 30
+        exec:
+          command: ["true"]
+      volumeMounts:
+      - name: test
+        mountPath: /data/test
+  - name: xlt-master
+    count: 1
+    volumes:
+    - name: test
+      hostpath:
+        path: /data/test
+    - name: test-results
+      hostpath:
+        path: /data/test-results
+    - name: client-cert-vol
+      maddogCert:
+        type: client
+    - name: secret-vol
+      k4aSecret:
+        secretName: solrcloudcli-keytab-prd
+    containers:
+    - name: master-xlt-controller
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/irahim/master-xlt-controller:irahim-20180906-fe3e4da
+      args: ["-d"]
+      livenessProbe:
+        initialDelaySeconds: 30
+        exec:
+          command: ["true"]
+      volumeMounts:
+      - name: test-results
+        mountPath: /data/test-results
+      - name: test
+        mountPath: /data/test
+      - name: client-cert-vol
+        mountPath: /certs
+      - name: secret-vol
+        mountPath: /secrets/
+        readOnly: true
+    - name: universal-search-perf-report-server
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/irahim/universal-search-perf-report-server:irahim-20180820-73716f1
+      # If your service doesn't serve HTTP traffic then you can remove the scone-http 8080 port.
+      ports:
+      - containerPort: 8080
+        name: report-http
+      livenessProbe:
+        initialDelaySeconds: 30
+        httpGet:
+          path: /
+          port: 8080
+      volumeMounts:
+      - name: test-results
+        mountPath: /data/test-results
+        readOnly: true
+    - name: perf-universal-search-xlt
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/irahim/perf-universal-search-xlt:aboboc-20191016-bcd8e41
+      args: ["-d"]
+      livenessProbe:
+        initialDelaySeconds: 30
+        exec:
+          command: ["true"]
+      volumeMounts:
+      - name: test
+        mountPath: /data/test
+  loadbalancers:
+  - function: xlt-master
+    lbname: xlt
+    ports:
+    - lbtype: http
+      port: 8080
+      targetport: 8080
+    slbEnabled: true
