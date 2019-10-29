@@ -21,9 +21,7 @@ local samimages = (import "samimages.jsonnet") + { templateFilename:: std.thisFi
                                      "-watchDogKind=" + $.kind,
                                  ] + (
                                          if configs.kingdom == "prd" && configs.estate == "prd-samtest" then [
-                                             "--caFile=/etc/pki_service/ca/cabundle.pem",
-                                             "--keyFile=/etc/pki_service/platform/platform-client/keys/platform-client-key.pem",
-                                             "--certFile=/etc/pki_service/platform/platform-client/certificates/platform-client.pem",
+                                             "-recipient=csc-sam-rnd-business-hours-only@salesforce.pagerduty.com",
                                          ] else []
                                   )
                                  + samwdconfig.pagerduty_args
