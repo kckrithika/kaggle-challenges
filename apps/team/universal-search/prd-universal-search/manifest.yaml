@@ -318,6 +318,22 @@ system:
       volumeMounts:
       - mountPath: /home/scone/logs
         name: logvolservice
+  - name: nginx-reverse-proxy-cre
+    count: 1
+    volumes:
+    - name: client-cert-vol
+      maddogCert:
+        type: client
+    containers:
+    - name: nginx-reverse-proxy-cre
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/irahim/universal-search-nginx-reverse-proxy:20191029
+      livenessProbe:
+        initialDelaySeconds: 30
+        exec:
+          command: ["true"]
+      volumeMounts:
+      - name: client-cert-vol
+        mountPath: /certs
   loadbalancers:
   - function: universal-search
     lbname: universal-search-slb
@@ -361,3 +377,10 @@ system:
         port: 7443
         targetport: 7443
         name: grpc-search
+  - function: nginx-reverse-proxy-cre
+    lbname: nginx-reverse-proxy-cre-slb
+    ports:
+    - lbtype: http
+      port: 8000
+      targetport: 8000
+    slbEnabled: true
