@@ -36,7 +36,7 @@ system:
 
     containers:
     - name: retail-setup
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/retail/retail-setup:2.0.241
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/retail/retail-setup:2.1.253
       ports:
       # Jetty http1 ports for incoming public traffic via SLB
       - containerPort: 7022
@@ -80,14 +80,12 @@ system:
         value: stmfb
       - name: TENANT_SERVICE_ALLOWDATASOURCEADD
         value: true
-      - name: TENANT_CANONICAL
-        value: mds/stmfb/ST0000000000001
       - name: CRE_SERVER_TARGET
         value: http://cre-api-ccp-stage.retail-cre.localhost.mesh.force.com:5442
       - name: CRE_CP_SERVER_TARGET
         value: http://cre-control-plane-ccp-stage.retail-cre.localhost.mesh.force.com:5442
       - name: C2C_PATH
-        value: https://login.stmfa.stm.salesforce.com/empire/cloudatlas/scim
+        value: http://cloudatlas-prd-stage-service.cloudatlas.localhost.mesh.force.com:5442/scim,https://login.stmfa.stm.salesforce.com/empire/cloudatlas/scim
       - name: CORE_OAUTH_URL
         value: https://login.stmfb.stm.salesforce.com
       - name: CORE_OAUTH_SANDBOXURL
