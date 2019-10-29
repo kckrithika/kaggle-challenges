@@ -9,9 +9,9 @@ system:
       image: dva/moe/reverse-proxy:2503-d38b06b3de7a503254991f4f9e5562b91a82f4c9
       command: ["/moe/reverse-proxy"]
       args:
-      - "-publicProxyURL=http://public0-proxy1-0-prd.data.sfdc.net:8080"
-      - "-targetURL=https://hooks.slack.com/services/"
-      - "-listenPort=8080"
+      - "-reverse-proxy.publicProxyURL=http://public0-proxy1-0-prd.data.sfdc.net:8080"
+      - "-reverse-proxy.targetURL=https://hooks.slack.com/services/"
+      - "-reverse-proxy.listenPort=8080"
       ports:
       - containerPort: 8080
       livenessProbe:
