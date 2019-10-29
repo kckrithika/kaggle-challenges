@@ -64,7 +64,8 @@
                 "*.my.stmfb.stm.salesforce-hub.com",
                 "*.my.mist60.stm.salesforce-hub.com",
             ]) else [])
-            + (if configs.estate == "prd-samtwo" then (["*.dop.sfdc.net"]) else []),
+            + (if configs.estate == "prd-samtwo" then (["*.dop.sfdc.net"]) else [])
+            + (if configs.estate == "dfw-sam" || configs.estate == "iad-sam" || configs.estate == "frf-sam" || configs.estate == "ord-sam" || configs.estate == "phx-sam" || configs.estate == "par-sam" || configs.estate == "ukb-sam" || configs.estate == "hnd-sam" then ["*.cast." + configs.estate + "." + configs.kingdom + ".slb.sfdc.net"] else []),
         },
     },
 
