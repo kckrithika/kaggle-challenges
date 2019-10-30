@@ -7,7 +7,7 @@
           watchdogFrequency: "5m",
           alertProfile: "sam",
           alertAction: action,
-          instanceColumn: "NewNotReadyNodes",
+          instanceColumn: "minionpool",
           sql: "SELECT
                       minionpool,
                         TotalApiCount,
