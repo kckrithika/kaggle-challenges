@@ -24,5 +24,6 @@ where
   and (Kingdom = 'PRD' or Kingdom = 'XRD')
   and CheckerName != 'puppetChecker' and CheckerName != 'kubeResourcesChecker' and CheckerName != 'nodeChecker' and CheckerName not like 'Sql%'
   and Instance not like '%samminionceph%'
+  and Stale = ''
 order by CheckerName, Kingdom, ReportAgeInMinutes",
     }
