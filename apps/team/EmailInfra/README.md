@@ -3,9 +3,9 @@
 https://git.soma.salesforce.com/eaas/EmailService
 
 # Architecture
-## GCP
+## Falcon
 
-![GCP](https://www.lucidchart.com/publicSegments/view/b4497b39-7ced-4553-a1bf-cbcef346ad47/image.png)
+![Falcon](images/Falcon.png)
 1. Core send the grpc email to `eaas.emailinfra.localhost.mesh.force.com:5443` which routes to the Sherpa sidecar
 1. Sherpa(Core) looks up `emailinfra/eaas` on Zookeeper for its kingdom.
 1. Sherpa(Core) sends the grpc request to Sherpa(Eaas) on port 7443 using mTLS.
@@ -18,7 +18,7 @@ A. Based on [manifest](https://git.soma.salesforce.com/sam/manifests/blob/4b0e09
 
 ## On Premise
 
-![On Premise](https://www.lucidchart.com/publicSegments/view/531eb7a9-997c-4396-80f6-b1dd167ea46d/image.png)
+![On Premise](images/On-prem.png)
 1. Core send the grpc email to `eaas.emailinfra.localhost.mesh.force.com:5443` which routes to the Sherpa sidecar
 1. Sherpa(Core) looks up `emailinfra/eaas` on Zookeeper for its kingdom.
 1. Sherpa(Core) sends the grpc request to Sherpa(Eaas) on port 7443 using mTLS.
@@ -32,7 +32,7 @@ B. MTA is registered as 1 of 4 MTAs for that superpod under the superpod MX addr
 
 ## Pureleaf (Deprecrated)
 
-![Pureleaf](https://www.lucidchart.com/publicSegments/view/26d24b25-86c4-45a6-8cfa-ad611e1a12f4/image.png)
+![Pureleaf](images/Pureleaf.png)
 
 1. Core send the grpc email to `eaas.emailinfra.localhost.mesh.force.com:5443` which routes to the Sherpa sidecar
 1. Sherpa(Core) looks up `emailinfra/eaas` on Zookeeper for its kingdom.
