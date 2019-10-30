@@ -2,6 +2,7 @@ local configs = import "config.jsonnet";
 local samwdconfig = import "samwdconfig.jsonnet";
 local samimages = (import "samimages.jsonnet") + { templateFilename:: std.thisFile };
 local utils = import "util_functions.jsonnet";
+local mysql = import "sammysqlconfig.jsonnet";
 
 if configs.estate == "prd-sam" || configs.estate == "prd-samtwo" then {
     kind: "Deployment",
@@ -20,7 +21,7 @@ if configs.estate == "prd-sam" || configs.estate == "prd-samtwo" then {
                 containers: [
                     configs.containerWithKubeConfigAndMadDog {
                         name: "watchdog-visibility",
-                        image: "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/d.smith/hypersam:20191030_114804.b68098f1.clean.duncsmith-ltm1",
+                        image: samimages.hypersam,
                         command: [
                                      "/sam/watchdog",
                                      "-role=VISIBILITY",
@@ -31,6 +32,10 @@ if configs.estate == "prd-sam" || configs.estate == "prd-samtwo" then {
                                      "-emailFrequency=10000h",
                                      "--visibilityVirtualApi=http://pseudo-kubeapi.csc-sam.prd-sam.prd.slb.sfdc.net:40001/prd-sam",
                                      "--visibilityRealApi=shared0-samkubeapi1-1-prd.eng.sfdc.net:40000",
+                                     "--sqlDbUsername=watchdog",
+                                     "--sqlDbPasswordFile=/var/secrets/watchdog",
+                                     "--sqlDbHostname=" + mysql.dbHostname,
+                                     "--sqlK8sResourceDbName=" + mysql.visibilityDBName,
                                     ]
                                  + samwdconfig.shared_args
                                  + (if configs.estate == "prd-sam" || configs.estate == "prd-samtwo" then samwdconfig.low_urgency_pagerduty_args else []),
@@ -38,6 +43,11 @@ if configs.estate == "prd-sam" || configs.estate == "prd-samtwo" then {
                             configs.sfdchosts_volume_mount,
                             configs.cert_volume_mount,
                             configs.config_volume_mount,
+                            {
+                                mountPath: "/var/secrets/",
+                                name: "mysql",
+                                readOnly: true,
+                            },
                         ],
                     },
                 ],
@@ -45,6 +55,12 @@ if configs.estate == "prd-sam" || configs.estate == "prd-samtwo" then {
                     configs.sfdchosts_volume,
                     configs.cert_volume,
                     configs.config_volume("watchdog"),
+                    {
+                        name: "mysql",
+                        secret: {
+                            secretName: "mysql-passwords",
+                        },
+                    },
                 ],
                 nodeSelector: { master: "true" },
             },

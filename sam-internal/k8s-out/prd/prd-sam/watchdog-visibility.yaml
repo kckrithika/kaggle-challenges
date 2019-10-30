@@ -28,6 +28,10 @@ spec:
         - -emailFrequency=10000h
         - --visibilityVirtualApi=http://pseudo-kubeapi.csc-sam.prd-sam.prd.slb.sfdc.net:40001/prd-sam
         - --visibilityRealApi=shared0-samkubeapi1-1-prd.eng.sfdc.net:40000
+        - --sqlDbUsername=watchdog
+        - --sqlDbPasswordFile=/var/secrets/watchdog
+        - --sqlDbHostname=mysql-inmem-service.sam-system.prd-sam.prd.slb.sfdc.net
+        - --sqlK8sResourceDbName=sam_kube_resource
         - -funnelEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80
         - --config=/config/watchdog.json
         - --hostsConfigFile=/sfdchosts/hosts.json
@@ -36,7 +40,7 @@ spec:
         env:
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig-platform
-        image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/d.smith/hypersam:20191030_114804.b68098f1.clean.duncsmith-ltm1
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/sam/hypersam:2846-b68098f16568015b05c14af48ba366e6d3aa3c52
         name: watchdog-visibility
         volumeMounts:
         - mountPath: /etc/pki_service
@@ -49,6 +53,9 @@ spec:
           name: certs
         - mountPath: /config
           name: config
+        - mountPath: /var/secrets/
+          name: mysql
+          readOnly: true
       hostNetwork: true
       nodeSelector:
         master: "true"
@@ -68,3 +75,6 @@ spec:
       - configMap:
           name: watchdog
         name: config
+      - name: mysql
+        secret:
+          secretName: mysql-passwords
