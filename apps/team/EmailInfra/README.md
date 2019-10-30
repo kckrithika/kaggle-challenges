@@ -5,7 +5,7 @@ https://git.soma.salesforce.com/eaas/EmailService
 # Architecture
 ## Falcon
 
-![Falcon](images/falcon.png)
+![Falcon](images/Falcon.png)
 1. Core send the grpc email to `eaas.emailinfra.localhost.mesh.force.com:5443` which routes to the Sherpa sidecar
 1. Sherpa(Core) looks up `emailinfra/eaas` on Zookeeper for its kingdom.
 1. Sherpa(Core) sends the grpc request to Sherpa(Eaas) on port 7443 using mTLS.
@@ -18,7 +18,7 @@ A. Based on [manifest](https://git.soma.salesforce.com/sam/manifests/blob/4b0e09
 
 ## On Premise
 
-![On Premise](images/on-prem.png)
+![On Premise](images/On-prem.png)
 1. Core send the grpc email to `eaas.emailinfra.localhost.mesh.force.com:5443` which routes to the Sherpa sidecar
 1. Sherpa(Core) looks up `emailinfra/eaas` on Zookeeper for its kingdom.
 1. Sherpa(Core) sends the grpc request to Sherpa(Eaas) on port 7443 using mTLS.
