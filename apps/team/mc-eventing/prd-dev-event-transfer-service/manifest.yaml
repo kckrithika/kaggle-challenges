@@ -12,7 +12,7 @@ system:
   functions:
   - name: eventtransferservice
     identity:
-      serviceName: wh-con
+      serviceName: eventtransferservice
     count: 3
     volumes:
     - name: credsvol
