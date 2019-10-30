@@ -470,6 +470,38 @@ system:
       volumeMounts:
       - mountPath: /tmp
         name: temp
+    - name: dashboard-hio
+      args:
+        - --logtostderr=true
+        - --apiserver-host=http://pseudo-kubeapi.csc-sam.prd-sam.prd.slb.sfdc.net:40001/hio-sam
+        - --insecure-port=9121
+        - --system-banner-webhook=http://pseudo-kubeapi.csc-sam.prd-sam.prd.slb.sfdc.net:40001/hio-sam/dashboard-webhook
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/d.smith/dashboard:webhook
+      ports:
+        - containerPort: 9121
+      livenessProbe:
+        httpGet:
+          path: /
+          port: 9121
+      volumeMounts:
+        - mountPath: /tmp
+          name: temp
+    - name: dashboard-ttd
+      args:
+        - --logtostderr=true
+        - --apiserver-host=http://pseudo-kubeapi.csc-sam.prd-sam.prd.slb.sfdc.net:40001/ttd-sam
+        - --insecure-port=9122
+        - --system-banner-webhook=http://pseudo-kubeapi.csc-sam.prd-sam.prd.slb.sfdc.net:40001/ttd-sam/dashboard-webhook
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/d.smith/dashboard:webhook
+      ports:
+        - containerPort: 9122
+      livenessProbe:
+        httpGet:
+          path: /
+          port: 9122
+      volumeMounts:
+        - mountPath: /tmp
+          name: temp
     volumes:
     - name: temp
       emptyDir: {}
@@ -648,3 +680,15 @@ system:
     ports:
       - port: 80
         targetport: 9120
+  - lbname: dashboard-hio-sam
+    function: dashboard
+    slbEnabled: true
+    ports:
+      - port: 80
+        targetport: 9121
+  - lbname: dashboard-ttd-sam
+    function: dashboard
+    slbEnabled: true
+    ports:
+      - port: 80
+        targetport: 9122
