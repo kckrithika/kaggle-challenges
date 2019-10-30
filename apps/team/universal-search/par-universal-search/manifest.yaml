@@ -184,10 +184,10 @@ system:
           command: ["true"]
       readinessProbe:
         exec:
-          command:
-          - "/home/sfdc-usmt/run.sh"
-          - "--domain"
-          - "synthetics-shared"
+          command: ["true"]
+#           - "/home/sfdc-usmt/run.sh"
+#           - "--domain"
+#           - "synthetics-shared"
         initialDelaySeconds: 120
         timeoutSeconds: 30
         periodSeconds: 900
