@@ -49,14 +49,14 @@
       order by ControlEstate, Image
       ) ss5
       order by Count desc",
-              },
+      },
 
               # ===
 
-              {
-                name: "Unhealthy Pods in Sam-System",
-                note: "Problems with our control stack should be investigated.  DaemonSets on down machines are not blocking, but we should try to get the machines back online.",
-                sql: "select
+      {
+        name: "Unhealthy Pods in Sam-System",
+        note: "Problems with our control stack should be investigated.  DaemonSets on down machines are not blocking, but we should try to get the machines back online.",
+        sql: "select
         case when (Message like 'Node % which was running pod % is unresponsive') then 'YELLOW' else 'RED' end as Status,
         ControlEstate,
         Namespace,
@@ -73,56 +73,68 @@
         and Phase <> 'Failed'
         and Name not like '%slb%'
         and Name not like '%sdn%'",
-              },
-
-              # ===
-
-              {
-                name: "Watchdog failures",
-                note: "For phased releases, items in red should be fixed.",
-                sql: "select * from (
-        select
-        case when SUM(FailureCount)=0 then '' when CheckerName in ('puppetChecker', 'kubeResourcesChecker', 'nodeChecker', 'deploymentChecker') then 'YELLOW' else 'RED' end as Status,
-        CheckerName,
-        SUM(SuccessCount) as SuccessCount,
-        SUM(FailureCount) as FailureCount,
-        SUM(SuccessCount)/(SUM(SuccessCount)+SUM(FailureCount)) as SuccessPct,
-        MIN(ReportAgeInMinutes) as ReportAgeInMinutes,
-        GROUP_CONCAT(Error, '') as Errors,
-        CONCAT('https://argus-ui.data.sfdc.net/argus/#/viewmetrics?expression=-14d:sam.watchdog.',Kingdom,'.NONE.',ControlEstate,':',CheckerName,'.status%7Bdevice%3D*%7D:avg') as Argus
-      from
-      (
-      select
-        CAST(ControlEstate as CHAR CHARACTER SET utf8) AS ControlEstate,
-        CAST(upper(substr(ControlEstate,1,3)) as CHAR CHARACTER SET utf8) AS Kingdom,
-        Payload->>'$.status.report.CheckerName' as CheckerName,
-        case when Payload->>'$.status.report.Success' = 'true' then 1 else 0 end as SuccessCount,
-        case when Payload->>'$.status.report.Success' = 'false' then 1 else 0 end as FailureCount,
-        case when Payload->>'$.status.report.ErrorMessage' = 'null' then null else
-          case when Payload->>'$.status.report.CheckerName' like 'cliChecker%' then
-            concat(Payload->>'$.status.report.Hostname', ': ', Payload->>'$.status.report.ErrorMessage')
-          else
-            Payload->>'$.status.report.ErrorMessage'
-          end
-        end as Error,
-        TIMESTAMPDIFF(MINUTE, STR_TO_DATE(Payload->>'$.status.report.ReportCreatedAt', '%Y-%m-%dT%H:%i:%s.'), UTC_TIMESTAMP()) as ReportAgeInMinutes
-      from k8s_resource
-      where ApiKind = 'WatchDog'
-      and controlestate = '" + bed + "'
-      ) as ss
-      where CheckerName not like 'Sql%' and
-      CheckerName not like 'MachineCount%'
-      group by CheckerName
-      ) as ss2
-      order by SuccessPct",
       },
 
               # ===
 
-              {
-                name: "SAM Customer App Pod Age",
-                note: "When doign a phased release, apps with low age need to be investigated to make sure we did not change PodSpecTemplate by accident.  Steps to investigate pod restarts can be found <a href='https://git.soma.salesforce.com/sam/sam/wiki/Deploy-SAM'>here</a>",
-                sql: "select
+      {
+        name: "Watchdog failures",
+        note: "For phased releases, items in red should be fixed.",
+        sql: "SELECT *
+FROM
+  (SELECT CASE
+              WHEN SUM(FailureCount)=0 THEN ''
+              WHEN CheckerName IN ('puppetChecker',
+                                   'kubeResourcesChecker',
+                                   'nodeChecker',
+                                   'deploymentChecker') THEN 'YELLOW'
+              ELSE 'RED'
+          END AS Status,
+          CheckerName,
+          SUM(SuccessCount) AS SuccessCount,
+          SUM(FailureCount) AS FailureCount,
+          SUM(SuccessCount)/(SUM(SuccessCount)+SUM(FailureCount)) AS SuccessPct,
+          MIN(ReportAgeInMinutes) AS ReportAgeInMinutes,
+          GROUP_CONCAT(Error, '') AS Errors,
+          CONCAT('https://argus-ui.data.sfdc.net/argus/#/viewmetrics?expression=-14d:sam.watchdog.', Kingdom, '.NONE.', ControlEstate, ':', CheckerName, '.status%7Bdevice%3D*%7D:avg') AS Argus
+   FROM
+     (SELECT CAST(ControlEstate AS CHAR CHARACTER
+                  SET utf8) AS ControlEstate,
+             CAST(upper(substr(ControlEstate, 1, 3)) AS CHAR CHARACTER
+                  SET utf8) AS Kingdom,
+             Payload->>'$.status.report.CheckerName' AS CheckerName,
+                       Payload->>'$.status.report.Description' AS CheckDescription,
+                                 CASE
+                                     WHEN Payload->>'$.status.report.Success' = 'true' THEN 1
+                                     ELSE 0
+                                 END AS SuccessCount,
+                                 CASE
+                                     WHEN Payload->>'$.status.report.Success' = 'false' THEN 1
+                                     ELSE 0
+                                 END AS FailureCount,
+                                 CASE
+                                     WHEN Payload->>'$.status.report.ErrorMessage' = 'null' THEN NULL
+                                     ELSE CASE
+                                              WHEN Payload->>'$.status.report.CheckerName' LIKE 'cliChecker%' THEN concat(Payload->>'$.status.report.Hostname', ': ', Payload->>'$.status.report.ErrorMessage')
+                                              ELSE Payload->>'$.status.report.ErrorMessage'
+                                          END
+                                 END AS Error,
+                                 TIMESTAMPDIFF(MINUTE, STR_TO_DATE(Payload->>'$.status.report.ReportCreatedAt', '%Y-%m-%dT%H:%i:%s.'), UTC_TIMESTAMP()) AS ReportAgeInMinutes
+      FROM k8s_resource
+      WHERE ApiKind = 'WatchDog'
+        AND controlestate = 'prd-sam' ) AS ss
+   WHERE CheckDescription NOT LIKE 'MySQL Checker:%'
+     AND CheckerName NOT LIKE 'MachineCount%'
+   GROUP BY CheckerName) AS ss2
+ORDER BY SuccessPct",
+      },
+
+              # ===
+
+      {
+        name: "SAM Customer App Pod Age",
+        note: "When doign a phased release, apps with low age need to be investigated to make sure we did not change PodSpecTemplate by accident.  Steps to investigate pod restarts can be found <a href='https://git.soma.salesforce.com/sam/sam/wiki/Deploy-SAM'>here</a>",
+        sql: "select
         ControlEstate,
         PodAgeDays,
         PodsWithThisAge
@@ -158,13 +170,13 @@
         group by ControlEstate, PodAgeDays
       ) as ss2
       group by ControlEstate, PodAgeDays",
-              },
+      },
 
               # ===
 
-              {
-                name: "List of customer pods ordered by PodAge (top 20)",
-                sql: "select
+      {
+        name: "List of customer pods ordered by PodAge (top 20)",
+        sql: "select
             case when (LEAST(FLOOR(PodAgeInMinutes/60.0/24.0),10)<2) then 'YELLOW' else '' end as Status,
             Name,
             Namespace,
@@ -176,13 +188,13 @@
           and ControlEstate = '" + bed + "'
           order by PodAgeDays
           limit 20",
-              },
+      },
 
-             # ===
+            # ===
 
-             {
-               name: "Unhealthy customer pods (top 20)",
-               sql: "select 
+      {
+        name: "Unhealthy customer pods (top 20)",
+        sql: "select 
   Name,
   Namespace,
   ControlEstate,
@@ -194,7 +206,7 @@ from podDetailView
 where IsSamApp = True and ProduceAgeInMinutes<60
 and ControlEstate = '" + bed + "' and Phase != 'Running' and Phase != 'Failed' and name not like 'syntheticwd%'
 limit 20",
-            },
+      },
 
     ],
     }
