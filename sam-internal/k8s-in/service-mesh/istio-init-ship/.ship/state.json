@@ -1,6 +1,6 @@
 {
   "v1": {
-    "config": null,
+    "config": {},
     "releaseName": "istio-init",
     "namespace": "mesh-control-plane",
     "upstream": "https://github.com/istio/istio/tree/a640018e6ec8ddd7744d4c7c8a3c9d194f86222e/install/kubernetes/helm/istio-init",
@@ -9,7 +9,7 @@
       "sequence": 0,
       "icon": "https://istio.io/favicons/android-192x192.png",
       "name": "istio-init",
-      "releaseNotes": "Add standalone istioctl to the release and update to use new dev builds (#17762)\n\n* Add standalone istioctl to release\n\n* Update to use dev builds\n\n* Add operator",
+      "releaseNotes": "Simplify CRD files (#18340)\n\n* Simplify CRD files\n\n* fix CRD file\n\n* changes to makefile",
       "version": "1.1.0",
       "license": {
         "id": "",
@@ -21,7 +21,7 @@
     },
     "shipVersion": {
       "version": "0.51.0",
-      "buildTime": "2019-08-30T01:31:21Z",
+      "buildTime": "2019-08-30T01:34:10Z",
       "dependencies": {
         "helm": "v2.14.1",
         "kustomize": "v2.0.3",
@@ -34,16 +34,6 @@
         "arch": "amd64"
       }
     },
-    "contentSHA": "d6441c52caca386d8ad9fd785cbf5e833c669ab239b35094eb817f7301c14700",
-    "lifecycle": {
-      "stepsCompleted": {
-        "intro": true,
-        "kustomize": true,
-        "kustomize-intro": true,
-        "outro": true,
-        "render": true,
-        "values": true
-      }
-    }
+    "contentSHA": "fe16f62cb05e6d7848e6b4d2e293a9343caa9d3f3bdf8cdefe6208c1147aeac9"
   }
 }

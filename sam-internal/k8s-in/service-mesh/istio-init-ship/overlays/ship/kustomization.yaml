@@ -3,9 +3,8 @@ apiversion: ""
 patchesStrategicMerge:
 - clusterrole.yaml
 - clusterrolebinding.yaml
-- job-crd-10.yaml
-- job-crd-11.yaml
-- job-crd-14.yaml
+- job-crd-all.yaml
+- job-crd-mixer.yaml
 - serviceaccount.yaml
 bases:
 - ../defaults
