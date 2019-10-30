@@ -28,3 +28,13 @@
   customlbname: hellotrailblazer-prd
   cnames:
    - cname: hellotrailblazer-prd.data.sfdc.net
+- lbname: uiplatform-hellotrailblazer-xrd-nodeport
+  servers:
+   - uiplatform-k8s-node-1-xrd.eng.sfdc.net
+  ports:
+   - port: 443
+     targetport: 31236
+     lbtype: tcp
+  customlbname: hellotrailblazer-xrd
+  cnames:
+   - cname: hellotrailblazer-xrd.data.sfdc.net
