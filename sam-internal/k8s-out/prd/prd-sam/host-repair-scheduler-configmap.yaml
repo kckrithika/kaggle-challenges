@@ -22,6 +22,8 @@ data:
         ".*hio.*",
         ".*hnd.*",
         ".*ia2.*",
+        ".*ia4.*",
+        ".*ia5.*",
         ".*iad.*",
         ".*ord.*",
         ".*par.*",
@@ -33,9 +35,7 @@ data:
         ".*ukb.*",
         ".*xrd.*",
         ".*yhu.*",
-        ".*yul.*",
-        ".*ia4.*",
-        ".*ia5.*"
+        ".*yul.*"
       ],
       "perEstateRepairFrequency": "30m",
       "perEstateRepairPct": 0.001,

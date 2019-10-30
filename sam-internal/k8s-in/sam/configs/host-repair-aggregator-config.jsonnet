@@ -1,5 +1,6 @@
 local configs = import "config.jsonnet";
 local mysql = import "sammysqlconfig.jsonnet";
+local utils = import "util_functions.jsonnet";
 
 if configs.estate == "prd-samtest" || configs.estate == "prd-sam" then
 std.prune({
@@ -13,32 +14,9 @@ std.prune({
   k8sCeListFromDB: (if configs.estate == "prd-samtest" then [
           "prd-samtest",
   ] else [
-          "cdg-sam",
-          "cdu-sam",
-          "dfw-sam",
-          "fra-sam",
-          "frf-sam",
-          "hio-sam",
-          "hnd-sam",
-          "ia2-sam",
-          "iad-sam",
-          "lo2-sam",
-          "lo3-sam",
-          "ord-sam",
-          "par-sam",
-          "ph2-sam",
-          "phx-sam",
-          "prd-sam",
-          "prd-samtwo",
-          "prd-samdev",
-          "syd-sam",
-          "ttd-sam",
-          "ukb-sam",
-          "xrd-sam",
-          "yhu-sam",
-          "yul-sam",
-          "ia4-sam",
-          "ia5-sam",
+          estate
+          for estate in utils.get_all_estates()
+          if !std.setMember(estate, ["chx-sam", "prd-samtest", "prd-sdc", "wax-sam"])
   ]),
   dbHostname: mysql.dbHostname,
   dbUsername: "host-repair-agg",

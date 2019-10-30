@@ -1,4 +1,5 @@
 local configs = import "config.jsonnet";
+local utils = import "util_functions.jsonnet";
 
 if configs.estate == "prd-samtest" || configs.estate == "prd-sam" then
 std.prune({
@@ -9,30 +10,11 @@ std.prune({
   perKingdomRepairPct: 0.01,
   conditionStableTime: "35m",
   hostRegexWhitelist: (if configs.estate == "prd-samtest" then [
-   ".*samtest.*",
+    ".*samtest.*",
   ] else [
-    ".*cdg.*",
-    ".*chx.*",
-    ".*dfw.*",
-    ".*fra.*",
-    ".*frf.*",
-    ".*hio.*",
-    ".*hnd.*",
-    ".*ia2.*",
-    ".*iad.*",
-    ".*ord.*",
-    ".*par.*",
-    ".*ph2.*",
-    ".*phx.*",
-    ".*prd.*",
-    ".*syd.*",
-    ".*ttd.*",
-    ".*ukb.*",
-    ".*xrd.*",
-    ".*yhu.*",
-    ".*yul.*",
-    ".*ia4.*",
-    ".*ia5.*",
+    ".*" + kingdom + ".*"
+    for kingdom in utils.get_all_kingdoms()
+    if !std.setMember(kingdom, ["cdu", "chd", "lo2", "lo3", "wax"])
   ]),
   actionConditions: { reboot: (if configs.estate == "prd-samtest" then ["filesystemChecker", "kubeletChecker", "cliChecker.DockerDaemon", "kubeResourcesChecker.NodeHealth", "procUpTime"] else ["filesystemChecker", "kubeletChecker", "cliChecker.DockerDaemon", "procUpTime"]) },
 }) else "SKIP"
