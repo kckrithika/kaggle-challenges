@@ -265,11 +265,11 @@ data:
     nodeDetailView\n                          group by MinionPool, kingdom\n                    )
     ss2\n                    ON ss1.MinionPool = ss2.MinionPool AND ss1.kingdom =
     ss2.kingdom", "watchdogFrequency": "5m"}, {"name": "MinionPoolAvailability", "sql":
-    "select\n\t''GLOBAL'' as Kingdom,\n\t''NONE'' as SuperPod,\n\t''global'' as Estate,\n\t''sql.minionPoolAvailability''
-    as Metric,\n\t(sum(case when ReadyCount = 0 then 0 else 1 end)+0.0) / count(*)
-    as Value\nfrom (\nselect\n\tpool,\n\tsum(case when KubeletReady = ''True'' then
-    1 else 0 end) as ReadyCount,\n\tsum(case when KubeletReady = ''True'' then 0 else
-    1 end) as NotReadyCount\nfrom (\nselect\n\tPayload->>''$.metadata.labels.pool''
+    "select\n\t''GLOBAL'' as Kingdom,\n\t''NONE'' as SuperPod,\n\t''global'' as Estate,\n\t''''
+    as Tags,\n\t''sql.minionPoolAvailability'' as Metric,\n\t(sum(case when ReadyCount
+    = 0 then 0 else 1 end)+0.0) / count(*) as Value\nfrom (\nselect\n\tpool,\n\tsum(case
+    when KubeletReady = ''True'' then 1 else 0 end) as ReadyCount,\n\tsum(case when
+    KubeletReady = ''True'' then 0 else 1 end) as NotReadyCount\nfrom (\nselect\n\tPayload->>''$.metadata.labels.pool''
     as pool,\n\tjson_unquote(json_extract(Payload, concat(''$.status.conditions['',substring(json_search(Payload->>''$.status.conditions'',
     ''one'', ''KubeletReady''), 4, 1),''].status''))) as KubeletReady\nfrom k8s_resource\nwhere
     apiKind = ''Node'' and (ControlEstate not like ''prd%'') and (ControlEstate not
