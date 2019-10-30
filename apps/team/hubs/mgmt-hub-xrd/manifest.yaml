@@ -16,7 +16,7 @@ system:
         path: /home/sfdc-mgmt/logs
     containers:
     - name: mgmt-hub
-      image: dva/mgmt-hub:3-49c8b54aa4304b79c6f98f0825ba7b3e5e990e05
+      image: dva/mgmt-hub:7
       env:
       - name: KEYSTORE_CA_DIRECTORY
         value: /certs/ca
