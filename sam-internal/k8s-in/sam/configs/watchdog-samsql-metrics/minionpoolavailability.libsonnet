@@ -5,6 +5,7 @@
 	'GLOBAL' as Kingdom,
 	'NONE' as SuperPod,
 	'global' as Estate,
+	'' as Tags,
 	'sql.minionPoolAvailability' as Metric,
 	(sum(case when ReadyCount = 0 then 0 else 1 end)+0.0) / count(*) as Value
 from (
