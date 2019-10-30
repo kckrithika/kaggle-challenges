@@ -1,0 +1,101 @@
+apiVersion: v1
+
+system:
+  notifications:
+    email:
+      - steve.crouse@salesforce.com
+      - charles.cox@salesforce.com
+      - ehsan.sherkat@salesforce.com
+      - jcormier@salesforce.com
+      - dkilgore@salesforce.com
+      - qkong@salesforce.com
+  functions:
+  - name: eventtransferservice
+    identity:
+      serviceName: wh-con
+    count: 3
+    volumes:
+    - name: credsvol
+      k4aSecret:
+        secretName: eventtransferservice
+    - name: eventbusajna-ens-v1
+      k4aSecret:
+        secretName: eventbusajna-ens-v1
+    - name: clientcert
+      maddogCert:
+        type: client
+    - name: logvol
+      hostPath:
+        path: /home/sfdc-ets/logs
+    - name: sherpa-log-volume
+      hostPath:
+        path: /home/sfdc-ets/logs
+    containers:
+    - name: event-transfer-service
+      image: sfci/ets/event-transfer-service:0.0.45
+      ports:
+        - containerPort: 8080
+        - containerPort: 15382
+      resources:
+        limits: { cpu: "2", memory: "5Gi" }
+        requests: { cpu: "2", memory: "5Gi" }
+      env:
+        - name: SFDC_ENVIRONMENT
+          value: iad
+        - name: SERVER_PORT
+          value: 8080
+        - name: MANAGEMENT_PORT
+          value: 15382
+        - name: JVM_ARGS
+          value: "-Xmx3G -Xms512m"
+        - name: IDENTITY
+          value: mc.test.mceventbusqa1s1
+        - name: TOPIC_ENVIRONMENT
+          value: iad.ajna_local
+        - name: DECRYPTION_KEY_EXPIRE_MS
+          value: 600000
+        - name: DECRYPTION_KEY_PATH
+          value: /secrets/eventbusajna-ens-v1/eventbusajna-ens-v1
+      livenessProbe:
+        initialDelaySeconds: 60
+        periodSeconds: 60
+        timeoutSeconds: 90
+        httpGet:
+          path: /manage/health
+          port: 15382
+      volumeMounts:
+      - name: clientcert
+        mountPath: /clientcert
+      - name: eventbusajna-ens-v1
+        mountPath: /secrets/eventbusajna-ens-v1
+        readOnly: true
+      - name: logvol
+        mountPath: /home/sfdc-ets/logs
+      - name: credsvol
+        mountPath: /secrets/creds
+        readOnly: true
+
+    - name: sherpa-event-transfer-service
+      image: sfci/servicelibs/sherpa-envoy:213d5137f0015e81c59afe6f93f6ab775dc4798b
+      env:
+      - name: SFDC_ENVIRONMENT
+        value: iad
+      ports:
+        - containerPort: 15373
+      volumeMounts:
+        - name: sherpa-log-volume
+          mountPath: /home/sfdc-ets/logs
+        - name: clientcert
+          mountPath: /client-certs
+      livenessProbe:
+        exec:
+          command:
+          - "./bin/is-alive"
+        initialDelaySeconds: 60
+        periodSeconds: 120
+      readinessProbe:
+        exec:
+          command:
+          - "./bin/is-ready"
+        initialDelaySeconds: 60
+        periodSeconds: 120

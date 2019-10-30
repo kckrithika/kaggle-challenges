@@ -44,6 +44,8 @@ apps:
   - name: prd/prd-sam_mc_consumer
   prd-dev-engagement-event-service:
   - name: prd/prd-sam_mc_consumer
+  iad-event-transfer-service:
+    - name: iad/iad-sam_mc_consumer
 
   # subscription-sync-service
   prd-subscription-sync-service:
