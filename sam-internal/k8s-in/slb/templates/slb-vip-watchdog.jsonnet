@@ -105,12 +105,7 @@ if slbconfigs.isSlbEstate then configs.deploymentBase("slb") {
                                            "--metricsEndpoint=" + configs.funnelVIP,
                                            "--httpTimeout=3s",
                                            "--vipLoop=1",
-                                           (
-                                                if configs.estate == "dfw-sam" then
-                                                "--monitorFrequency=600s"
-                                                else
-                                                "--monitorFrequency=10s"
-                                            ),
+                                           "--monitorFrequency=60s",
                                            "--client.serverInterface=lo",
                                            "--metricsBatchTimeout=30s",
                                             "--keyfile=/cert3/client/keys/client-key.pem",

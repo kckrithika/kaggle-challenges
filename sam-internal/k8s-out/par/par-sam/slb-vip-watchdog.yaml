@@ -68,7 +68,7 @@ spec:
         - --metricsEndpoint=mandm-funnel-par1.data.sfdc.net:8080
         - --httpTimeout=3s
         - --vipLoop=1
-        - --monitorFrequency=10s
+        - --monitorFrequency=60s
         - --client.serverInterface=lo
         - --metricsBatchTimeout=30s
         - --keyfile=/cert3/client/keys/client-key.pem
