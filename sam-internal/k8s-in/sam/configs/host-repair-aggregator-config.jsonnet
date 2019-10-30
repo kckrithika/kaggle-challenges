@@ -16,7 +16,6 @@ std.prune({
   ] else [
           estate
           for estate in utils.get_all_estates()
-          if !std.setMember(estate, ["chx-sam", "prd-samtest", "prd-sdc", "wax-sam"])
   ]),
   dbHostname: mysql.dbHostname,
   dbUsername: "host-repair-agg",
