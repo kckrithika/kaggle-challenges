@@ -187,8 +187,6 @@ apps:
 
   # ======= LENS UI ===== #
   # ======= MASTER ======== #  
-  prd.CCP_Stage.cre-lens-ui:
-  - name: prd/prd-sam_customerresolutionengine
   prd.CCP_Dev.cre-lens-ui:
   - name: prd/prd-sam_customerresolutionengine
     hostSubList:
