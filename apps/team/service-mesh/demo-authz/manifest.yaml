@@ -15,7 +15,8 @@ system:
     - name: demo-authz
       image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/electron_sam:111
       args:
-      - --grpc-synthetic-clients=dns=test-jwt.sfdc-role,uri=spiffe://salesforce.com/ns/service-mesh/sa/demo-authz,uri=spiffe://salesforce.com/ns/service-mesh/sa/demo-authz-client
+      - --grpc-synthetic-clients=uri=spiffe://salesforce.com/ns/service-mesh/sa/demo-authz,uri=spiffe://salesforce.com/ns/service-mesh/sa/demo-authz-client
+      - --http-synthetic-client-ids=demo-authz.service-mesh
       - --authz-paths=opt/identity/authz/test-internal/,opt/identity/authz/opa-policies/,opt/identity/authz/
       env:
       - name: SFDC_ENVIRONMENT
@@ -50,6 +51,7 @@ system:
       - -loopCount=-1
       - -loopDelayInSeconds=60
       - -timeoutInSeconds=3600
+      - -spoof-xfcc=uri=spiffe://salesforce.com/ns/service-mesh/sa/demo-authz
       livenessProbe:
         exec:
           command: ["/bin/true"]
@@ -61,6 +63,7 @@ system:
       - -endpoint=localhost:7020
       - -loopCount=-1
       - -loopDelayInSeconds=60
+      - -spoof-xfcc=uri=spiffe://salesforce.com/ns/service-mesh/sa/demo-authz
       livenessProbe:
         exec:
           command: ["/bin/true"]
@@ -72,6 +75,7 @@ system:
       - -endpoint=localhost:7022
       - -loopCount=-1
       - -loopDelayInSeconds=60
+      - -spoof-xfcc=uri=spiffe://salesforce.com/ns/service-mesh/sa/demo-authz
       livenessProbe:
         exec:
           command: ["/bin/true"]
