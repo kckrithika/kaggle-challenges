@@ -20,15 +20,15 @@
       }
     },
     "shipVersion": {
-      "version": "0.51.0",
-      "buildTime": "2019-08-30T01:31:21Z",
+      "version": "0.52.0",
+      "buildTime": "2019-10-19T07:29:48Z",
       "dependencies": {
         "helm": "v2.14.1",
         "kustomize": "v2.0.3",
         "terraform": "v0.11.14"
       },
       "go": {
-        "version": "go1.12.9",
+        "version": "go1.13.3",
         "compiler": "gc",
         "os": "darwin",
         "arch": "amd64"
