@@ -24,7 +24,7 @@
   ports:
    - port: 443
      targetport: 31236
-     lbtype: tcp
+     lbtype: http
   customlbname: hellotrailblazer-prd
   cnames:
    - cname: hellotrailblazer-prd.data.sfdc.net
@@ -34,7 +34,7 @@
   ports:
    - port: 443
      targetport: 31236
-     lbtype: tcp
+     lbtype: http
   customlbname: hellotrailblazer-xrd
   cnames:
    - cname: hellotrailblazer-xrd.data.sfdc.net
