@@ -1,5 +1,6 @@
 local estate = std.extVar("estate");
 local kingdom = std.extVar("kingdom");
+local pools = import "configs/generated-pools.jsonnet";
 
 # Public functions
 {
@@ -105,4 +106,13 @@ local kingdom = std.extVar("kingdom");
     string_replace(str, to_replace, replace_with):: (
             std.join("", std.map(function(x) if x == to_replace then replace_with else x, std.stringChars(str)))
     ),
+
+    # This returns the kingdom of an estate
+    get_kingdom(estate):: std.substr(estate, 0, 3),
+
+    # This returns a unique set of estates
+    get_all_estates():: std.set([pool.controlEstate for pool in pools.generatedPools]),
+
+    # This returns a unique set of kingdoms
+    get_all_kingdoms():: std.set([pool.kingdom for pool in pools.generatedPools]),
 }
