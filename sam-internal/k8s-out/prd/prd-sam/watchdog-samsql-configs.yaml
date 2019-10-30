@@ -440,7 +440,7 @@ data:
     IN (''PRD'', ''XRD'', ''LO2'', ''LO3''))\n            ) as ss\n            GROUP
     BY controlEstate\n            ORDER BY NotRunning desc\n            ) as ss1\n            WHERE\n             Running
     < NotRunning", "watchdogFrequency": "1m"}, {"alertAction": "pagerduty", "alertFrequency":
-    "336h", "alertProfile": "sam", "alertThreshold": "20m", "instance": "NewNotReadyNodes",
+    "336h", "alertProfile": "sam", "alertThreshold": "20m", "instanceColumn": "minionpool",
     "instructions": "The following minion pools have kubeApi nodes down requiring
     attention during business hours. Debug Instructions: https://git.soma.salesforce.com/sam/sam/wiki/Repair-Failed-SAM-Host",
     "name": "KubeApiNode", "sql": "SELECT\n                      minionpool,\n                        TotalApiCount,\n                        NotReadyApiCount,\n                        NewNotReadyNodes,\n                        dist\n                      FROM\n                      (\n                        SELECT\n                            minionpool,\n                            TotalApiCount,\n                            (TotalApiCount
@@ -462,9 +462,9 @@ data:
     > STR_TO_DATE(''2019-07-10'', ''%Y-%m-%d'') OR Name != ''shared0-samtestkubeapi3-1-prd.eng.sfdc.net'')\n                          GROUP
     BY minionpool\n                        ) ss\n                        ) ss2\n                where
     NotReadyApiCount>0 and dist=0", "watchdogFrequency": "5m"}, {"alertAction": "businesshours_pagerduty",
-    "alertFrequency": "336h", "alertProfile": "sam", "alertThreshold": "20m", "instance":
-    "NewNotReadyNodes", "instructions": "The following minion pools have kubeApi nodes
-    down requiring attention during business hours. Debug Instructions: https://git.soma.salesforce.com/sam/sam/wiki/Repair-Failed-SAM-Host",
+    "alertFrequency": "336h", "alertProfile": "sam", "alertThreshold": "20m", "instanceColumn":
+    "minionpool", "instructions": "The following minion pools have kubeApi nodes down
+    requiring attention during business hours. Debug Instructions: https://git.soma.salesforce.com/sam/sam/wiki/Repair-Failed-SAM-Host",
     "name": "KubeApiNode", "sql": "SELECT\n                      minionpool,\n                        TotalApiCount,\n                        NotReadyApiCount,\n                        NewNotReadyNodes,\n                        dist\n                      FROM\n                      (\n                        SELECT\n                            minionpool,\n                            TotalApiCount,\n                            (TotalApiCount
     - ReadyApiCount) as NotReadyApiCount,\n                            (ReadyApiCount
     - floor(TotalApiCount/2 +1)) as dist,\n                            NewNotReadyNodes\n                        FROM\n                        (\n                          SELECT\n                            COUNT(*)
