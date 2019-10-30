@@ -37,6 +37,9 @@ shared0-samminiontnrppromoter2-1-prd.eng.sfdc.net,10.231.167.82/29,10.251.154.0/
 shared0-samminiontnrpsigner1-1-prd.eng.sfdc.net,10.231.167.138/29,10.251.172.64/27,v06-02,prd-sam_tnrp_signer,65009
 shared0-samminiontnrpsigner1-2-prd.eng.sfdc.net,10.231.167.130/29,10.251.172.32/27,v03-02,prd-sam_tnrp_signer,65009
 shared0-samminiontnrpsigner2-1-prd.eng.sfdc.net,10.231.167.146/29,10.251.172.0/27,u04-02,prd-sam_tnrp_signer,65009
+shared0-samminionwarden1-1-prd.eng.sfdc.net,10.231.102.82/29,10.251.142.0/27,q07-02,prd-sam_warden,65009
+shared0-samminionwarden1-2-prd.eng.sfdc.net,10.231.102.66/29,10.251.142.32/27,r10-02,prd-sam_warden,65009
+shared0-samminionwarden2-1-prd.eng.sfdc.net,10.231.102.74/29,10.251.142.64/27,x34-02,prd-sam_warden,65009
 shared0-samminionzipkin1-1-prd.eng.sfdc.net,10.240.131.74/29,10.254.245.128/27,u09-02,prd-sam_zipkin,65009
 shared0-samminionzipkin1-10-prd.eng.sfdc.net,10.231.97.162/28,10.251.139.128/27,n09-02,prd-sam_zipkin,65009
 shared0-samminionzipkin1-11-prd.eng.sfdc.net,10.240.131.107/29,10.251.138.64/27,bb38-02,prd-sam_zipkin,65009

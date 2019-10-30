@@ -136,6 +136,39 @@ data:
           "superpod": "none"
         },
         {
+          "bomrolename": "sam_minion_warden",
+          "controlestate": "prd-samtwo",
+          "devicerole": "samcompute",
+          "estate": "prd-sam_warden",
+          "hostname": "shared0-samminionwarden1-1-prd.eng.sfdc.net",
+          "kingdom": "prd",
+          "pod": "none",
+          "rack": "q07-45",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sam_minion_warden",
+          "controlestate": "prd-samtwo",
+          "devicerole": "samcompute",
+          "estate": "prd-sam_warden",
+          "hostname": "shared0-samminionwarden1-2-prd.eng.sfdc.net",
+          "kingdom": "prd",
+          "pod": "none",
+          "rack": "r10-45",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sam_minion_warden",
+          "controlestate": "prd-samtwo",
+          "devicerole": "samcompute",
+          "estate": "prd-sam_warden",
+          "hostname": "shared0-samminionwarden2-1-prd.eng.sfdc.net",
+          "kingdom": "prd",
+          "pod": "none",
+          "rack": "x34-45",
+          "superpod": "none"
+        },
+        {
           "bomrolename": "sam_minion_zipkin",
           "controlestate": "prd-samtwo",
           "devicerole": "samcompute",
