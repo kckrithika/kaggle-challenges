@@ -7,7 +7,7 @@ if (istioPhases.phaseNum == 1) then
   apiVersion: "batch/v1",
   kind: "Job",
   metadata: {
-    name: "istio-init-crd-10-%(istioTag)s" % mcpIstioConfig,
+    name: "istio-init-crd-all-%(istioTag)s" % mcpIstioConfig,
     namespace: "mesh-control-plane",
   },
   spec: {
@@ -24,11 +24,11 @@ if (istioPhases.phaseNum == 1) then
               "kubectl",
               "apply",
               "-f",
-              "/etc/istio/crd-10/crd-10.yaml",
+              "/etc/istio/crd-all/crd-all.gen.yaml",
             ],
             image: "%(istioHub)s/kubectl:%(istioTag)s" % mcpIstioConfig,
             imagePullPolicy: "IfNotPresent",
-            name: "istio-init-crd-10",
+            name: "istio-init-crd-all",
             resources: {
               limits: {
                 cpu: "100m",
@@ -41,8 +41,8 @@ if (istioPhases.phaseNum == 1) then
             },
             volumeMounts: [
               {
-                mountPath: "/etc/istio/crd-10",
-                name: "crd-10",
+                mountPath: "/etc/istio/crd-all",
+                name: "crd-all",
                 readOnly: true,
               },
             ],
@@ -56,9 +56,9 @@ if (istioPhases.phaseNum == 1) then
         volumes: [
           {
             configMap: {
-              name: "istio-crd-10",
+              name: "istio-crd-all",
             },
-            name: "crd-10",
+            name: "crd-all",
           },
         ],
       },

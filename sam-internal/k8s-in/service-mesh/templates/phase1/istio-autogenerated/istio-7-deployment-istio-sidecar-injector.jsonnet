@@ -140,7 +140,7 @@ if (istioPhases.phaseNum == 1) then
                 command: [
                   "/usr/local/bin/sidecar-injector",
                   "probe",
-                  "--probe-path=/health",
+                  "--probe-path=/tmp/health",
                   "--interval=4s",
                 ],
               },
@@ -158,7 +158,7 @@ if (istioPhases.phaseNum == 1) then
                 command: [
                   "/usr/local/bin/sidecar-injector",
                   "probe",
-                  "--probe-path=/health",
+                  "--probe-path=/tmp/health",
                   "--interval=4s",
                 ],
               },
