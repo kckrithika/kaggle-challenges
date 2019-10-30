@@ -40,7 +40,7 @@ spec:
         env:
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig-platform
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/sam/hypersam:2846-b68098f16568015b05c14af48ba366e6d3aa3c52
+        image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/d.smith/hypersam:20191030_151213.b68098f1.dirty.duncsmith-ltm1
         name: watchdog-visibility
         volumeMounts:
         - mountPath: /etc/pki_service
