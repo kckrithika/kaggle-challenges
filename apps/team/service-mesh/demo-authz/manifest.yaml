@@ -49,7 +49,6 @@ system:
       - -loopCount=-1
       - -loopDelayInSeconds=60
       - -timeoutInSeconds=3600
-      - -verbose=true
       livenessProbe:
         exec:
           command: ["/bin/true"]
@@ -61,7 +60,6 @@ system:
       - -endpoint=demo-authz.service-mesh.localhost.mesh.force.com:5443
       - -loopCount=-1
       - -loopDelayInSeconds=60
-      - -verbose=true
       livenessProbe:
         exec:
           command: ["/bin/true"]
@@ -73,7 +71,6 @@ system:
       - -endpoint=demo-authz-http.service-mesh.localhost.mesh.force.com:5442
       - -loopCount=-1
       - -loopDelayInSeconds=60
-      - -verbose=true
       livenessProbe:
         exec:
           command: ["/bin/true"]
