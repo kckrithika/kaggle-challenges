@@ -5,6 +5,7 @@ system:
     email:
     - aman.gulati@salesforce.com
     - matthew.klosak@salesforce.com
+    - electron@salesforce.com
   functions:
   - name: demo-authz
     count: 1
