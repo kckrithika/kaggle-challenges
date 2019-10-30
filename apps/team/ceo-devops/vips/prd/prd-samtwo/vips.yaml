@@ -2263,4 +2263,4 @@
     reencrypt: false
     healthport: 80
     healthprotocol: http
-    healthpath: 
+    healthpath: /
