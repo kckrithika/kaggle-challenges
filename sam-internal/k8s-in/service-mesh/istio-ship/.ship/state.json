@@ -1,6 +1,6 @@
 {
   "v1": {
-    "config": null,
+    "config": {},
     "releaseName": "istio",
     "namespace": "mesh-control-plane",
     "upstream": "https://github.com/istio/istio/tree/a640018e6ec8ddd7744d4c7c8a3c9d194f86222e/install/kubernetes/helm/istio",
@@ -9,7 +9,7 @@
       "sequence": 0,
       "icon": "https://istio.io/favicons/android-192x192.png",
       "name": "istio",
-      "releaseNotes": "fix trailing space in meshNetworks to allow edits (#17847)\n\nrelated https://github.com/istio/istio/pull/16820",
+      "releaseNotes": "The format of template has been changed since 1.2 (#18415)\n\nThe format of template has been changed since 1.2. Change the comment to the one we are currently using:\r\nFor example: https://raw.githubusercontent.com/istio/istio/release-1.2/install/kubernetes/helm/istio/example-values/values-istio-multicluster-gateways.yaml\r\n```\r\n  - \"{{ valueOrDefault .DeploymentMeta.Namespace \\\"default\\\" }}.global\"\r\n```\r\n, otherwise it will trigger error:\r\n```\r\nInternal error occurred: admission webhook \"sidecar-injector.istio.io\" denied the request: failed parsing generated injected YAML (check Istio sidecar injector configuration): error converting YAML to JSON: yaml: line 169: did not find expected '-' indicator\r\n```\r\n\r\n\r\n\r\n[ ] Configuration Infrastructure\r\n[ ] Docs\r\n[ ] Installation\r\n[ ] Networking\r\n[ ] Performance and Scalability\r\n[ ] Policies and Telemetry\r\n[ ] Security\r\n[ ] Test and Release\r\n[ ] User Experience\r\n[ ] Developer Infrastructure",
       "version": "1.1.0",
       "license": {
         "id": "",
@@ -20,30 +20,20 @@
       }
     },
     "shipVersion": {
-      "version": "0.52.0",
-      "buildTime": "2019-10-19T07:29:48Z",
+      "version": "0.51.0",
+      "buildTime": "2019-08-30T01:34:10Z",
       "dependencies": {
         "helm": "v2.14.1",
         "kustomize": "v2.0.3",
         "terraform": "v0.11.14"
       },
       "go": {
-        "version": "go1.13.3",
+        "version": "go1.12.9",
         "compiler": "gc",
         "os": "darwin",
         "arch": "amd64"
       }
     },
-    "contentSHA": "eac96961d64d89229a569f896458f0ac13edfc8bdcd66507a7437fbee65d9f21",
-    "lifecycle": {
-      "stepsCompleted": {
-        "intro": true,
-        "kustomize": true,
-        "kustomize-intro": true,
-        "outro": true,
-        "render": true,
-        "values": true
-      }
-    }
+    "contentSHA": "ce5260fd6af8a5d8e1f2e952d725c0675a80f997c0e46b1783080b09afa28efd"
   }
 }
