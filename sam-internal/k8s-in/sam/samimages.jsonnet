@@ -73,6 +73,10 @@ local samreleases = import "samreleases.json";
         "yhu,yhu-sam,sam-network-reporter,hypersam": "2754-365539f3b19f1f92f8ee7f1778f157769fae2a07",
         "yul,yul-sam,sam-network-reporter,hypersam": "2754-365539f3b19f1f92f8ee7f1778f157769fae2a07",
 
+        "prd,prd-sam,watchdog-visibility,hypersam": "2846-b68098f16568015b05c14af48ba366e6d3aa3c52",
+        "prd,prd-samtwo,watchdog-visibility,hypersam": "2846-b68098f16568015b05c14af48ba366e6d3aa3c52",
+
+
         },
 
     ### Per-phase image tags have been moved to samreleases.json

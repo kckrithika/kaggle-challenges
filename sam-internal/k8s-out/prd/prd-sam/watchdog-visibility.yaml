@@ -1,0 +1,70 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  labels:
+    name: watchdog-visibility
+  name: watchdog-visibility
+  namespace: sam-system
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      name: watchdog-visibility
+  template:
+    metadata:
+      labels:
+        apptype: monitoring
+        name: watchdog-visibility
+        sam.data.sfdc.net/owner: sam
+      namespace: sam-system
+    spec:
+      containers:
+      - command:
+        - /sam/watchdog
+        - -role=VISIBILITY
+        - -watchdogFrequency=30s
+        - -alertThreshold=15m
+        - -watchDogKind=Deployment
+        - -emailFrequency=10000h
+        - --visibilityVirtualApi=http://pseudo-kubeapi.csc-sam.prd-sam.prd.slb.sfdc.net:40001/prd-sam
+        - --visibilityRealApi=shared0-samkubeapi1-1-prd.eng.sfdc.net:40000
+        - -funnelEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80
+        - --config=/config/watchdog.json
+        - --hostsConfigFile=/sfdchosts/hosts.json
+        - -timeout=2s
+        - -recipient=csc-sam-rnd-business-hours-only@salesforce.pagerduty.com
+        env:
+        - name: KUBECONFIG
+          value: /kubeconfig/kubeconfig-platform
+        image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/d.smith/hypersam:20191030_114804.b68098f1.clean.duncsmith-ltm1
+        name: watchdog-visibility
+        volumeMounts:
+        - mountPath: /etc/pki_service
+          name: maddog-certs
+        - mountPath: /kubeconfig
+          name: kubeconfig
+        - mountPath: /sfdchosts
+          name: sfdchosts
+        - mountPath: /data/certs
+          name: certs
+        - mountPath: /config
+          name: config
+      hostNetwork: true
+      nodeSelector:
+        master: "true"
+      volumes:
+      - hostPath:
+          path: /etc/pki_service
+        name: maddog-certs
+      - hostPath:
+          path: /etc/kubernetes
+        name: kubeconfig
+      - configMap:
+          name: sfdchosts
+        name: sfdchosts
+      - hostPath:
+          path: /data/certs
+        name: certs
+      - configMap:
+          name: watchdog
+        name: config
