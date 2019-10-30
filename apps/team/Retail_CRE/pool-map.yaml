@@ -190,7 +190,12 @@ apps:
   prd.CCP_Stage.cre-lens-ui:
   - name: prd/prd-sam_customerresolutionengine
   prd.CCP_Dev.cre-lens-ui:
-  - name: prd/prd-sam
+  - name: prd/prd-sam_customerresolutionengine
+    hostSubList:
+        - shared0-samminioncustomerresolutionengine1-1-prd.eng.sfdc.net
+        - shared0-samminioncustomerresolutionengine1-2-prd.eng.sfdc.net
+        - shared0-samminioncustomerresolutionengine2-1-prd.eng.sfdc.net
+        - shared0-samminioncustomerresolutionengine2-2-prd.eng.sfdc.net
 
   # ======= Swagger ===== #
   prd.CCP_Dev.cre-swagger:
