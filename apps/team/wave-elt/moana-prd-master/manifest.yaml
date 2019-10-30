@@ -83,7 +83,7 @@ system:
       - {name: K8S_CPU_LIMIT_APPLY, value: 'false'}
       - {name: STARTUP_JOB_ENABLED, value: 'false'}
       - {name: HANDLED_PODS_PATTERN, value: stmfa\..*|moana-driver-master}
-      - {name: K8S_ADDITIONAL_JVM_ARGS, value: '-XX:+UseG1GC -verbose:gc -XX:+PrintGCDateStamps -XX:+PrintGCDetails -Xss1M'}
+      - {name: K8S_ADDITIONAL_JVM_ARGS, value: '-XX:+UseG1GC -verbose:gc -XX:+PrintGCDateStamps -XX:+PrintGCDetails -Xss2M'}
       image: ops0-artifactrepo2-0-prd.data.sfdc.net/sfci/insights/jobcontroller:master-2019.10.b.108-f85aac5
       livenessProbe:
         httpGet: {path: /manage/health, port: 15372}
