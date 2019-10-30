@@ -77,8 +77,6 @@ local samreleases = import "samreleases.json";
 
         "prd,prd-sam,watchdog-visibility,hypersam": "2846-b68098f16568015b05c14af48ba366e6d3aa3c52",
         "prd,prd-samtwo,watchdog-visibility,hypersam": "2846-b68098f16568015b05c14af48ba366e6d3aa3c52",
-
-
         },
 
     ### Per-phase image tags have been moved to samreleases.json

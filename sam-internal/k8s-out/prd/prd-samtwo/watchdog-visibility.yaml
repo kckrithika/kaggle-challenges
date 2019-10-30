@@ -56,9 +56,6 @@ spec:
         - mountPath: /var/secrets/
           name: mysql
           readOnly: true
-        - mountPath: /var/queries/
-          name: queries
-          readOnly: true
       hostNetwork: true
       nodeSelector:
         master: "true"

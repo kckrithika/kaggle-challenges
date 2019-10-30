@@ -48,11 +48,6 @@ if configs.estate == "prd-sam" || configs.estate == "prd-samtwo" then {
                                 name: "mysql",
                                 readOnly: true,
                             },
-                            {
-                                mountPath: "/var/queries/",
-                                name: "queries",
-                                readOnly: true,
-                            },
                         ],
                     },
                 ],
