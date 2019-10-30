@@ -8,12 +8,9 @@ system:
   - name: stans-report-collector
     count: 1
     volumes:
-      - name: server-cert
+      - name: pki-server-cert
         maddogCert:
           type: server
-      - name: client-cert
-        maddogCert:
-          type: client
       - name: redisauthvol
         secret:
           secretName: csc-redis-auth-0
@@ -22,7 +19,7 @@ system:
           path: /var/log/report-collector
     containers:
     - name: report-collectorha
-      image: tnrp/csc-health/report-collector:1.20.0-0000303-b11ea32b
+      image: dva/report-collector:14
       ports:
       - name: admin
         containerPort: 8082
@@ -33,14 +30,11 @@ system:
       volumeMounts:
       - mountPath: /var/log/report-collector
         name: logvol
-      - mountPath: /var/lib/report-collector/certificates/server/
-        name: server-cert
-        readOnly: true
-      - mountPath: /var/lib/report-collector/certificates/client/
-        name: client-cert
-        readOnly: true
       - mountPath: /var/secrets/redis
         name: redisauthvol
+        readOnly: true
+      - mountPath: /serverCert
+        name: pki-server-cert
         readOnly: true
       env:
       - name: DUMMY_UNUSED_ENV_VAR_FOR_POD_BOUNCE
@@ -60,9 +54,9 @@ system:
       - name: ReportCollector_app_https_clientAuth
         value: REQUEST
       - name: ReportCollector_app_https_dynamicCertificateOptions_caCert
-        value: /var/lib/report-collector/certificates/server/ca.pem
+        value: /serverCert/ca.pem
       - name: ReportCollector_app_https_dynamicCertificateOptions_certificateDir
-        value: /var/lib/report-collector/certificates/server/server/
+        value: /serverCert/server/
       - name: ReportCollector_app_https_supportDecompression
         value: true
       - name: ReportCollector_app_https_supportCompression
@@ -74,15 +68,9 @@ system:
       - name: ReportCollector_app_serviceProtection_enabled
         value: true
       - name: ReportCollector_app_serviceProtection_publishPeriodMs
-        value: 600000
+        value: 300000
       - name: ReportCollector_ajna_publishEnabled
         value: true
-      - name: ReportCollector_ajna_https_enabled
-        value: true
-      - name: ReportCollector_ajna_https_dynamicCertificateOptions_caCert
-        value: /var/lib/report-collector/certificates/client/ca.pem
-      - name: ReportCollector_ajna_https_dynamicCertificateOptions_certificateDir
-        value: /var/lib/report-collector/certificates/client/client/
       - name: ReportCollector_app_verticleCounts_ProviderEndpointVerticle
         value: 10
       - name: ReportCollector_app_verticleCounts_ConsumerEndpointVerticle
@@ -99,23 +87,22 @@ system:
       args: ["
       export ReportCollector_ajna_funnelHost=${SFDC_METRICS_SERVICE_HOST} ;
       export ReportCollector_ajna_funnelPort=${SFDC_METRICS_SERVICE_PORT} ;
-      export ReportCollector_ajna_funnelHost=ajna0-funnel1-1-prd.eng.sfdc.net ;
-      export ReportCollector_ajna_funnelPort=11443 ;
       export ReportCollector_ajna_datacenter=TEST ;
       export ReportCollector_ajna_device=stans-reportcollector ;
       ${JAVA_HOME}/bin/java
         -Dlogback.configurationFile=${APP_DIR}/logback-docker.xml
-        -Dvertx.disableFileCPResolving=true
+        -Dvertx.cacheDirBase=${CACHE_DIR}
         -Dvertx.logger-delegate-factory-class-name=io.vertx.core.logging.SLF4JLogDelegateFactory
         -Dvertx.metrics.options.enabled=true
         -Dvertx.metrics.options.registryName=vertx-registry
+        -Dvertx.metrics.options.configPath=metric-options.json
         -Dvertx.disableDnsResolver=true
         -Dlog_dir=${LOG_DIR}
         -Dinstance=${FUNCTION_INSTANCE_NAME}
         -jar ${JAR_PATH}
       "]
     - name: csc-health-stale-log-cleaner
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/stanfield.chu/report-collector:1.20.0-20180809-funnelDynamicCerts
+      image: dva/report-collector:14
       volumeMounts:
         - mountPath: /var/log/report-collector
           name: logvol
@@ -156,7 +143,7 @@ system:
           secretName: csc-redis-auth-0
     containers:
     - name: redis
-      image: tnrp/csc-health/redis-auth:4.0.8-0000008-24e58629
+      image: dva/csc-health-redis-auth:1
       volumeMounts:
       - mountPath: /var/secrets/redis
         name: redisauthvol
@@ -167,6 +154,9 @@ system:
         tcpSocket:
           port: 6379
         initialDelaySeconds: 5
+      env:
+      - name: DUMMY_UNUSED_ENV_VAR_FOR_POD_BOUNCE
+        value: 0
 
   loadbalancers:
   - lbname: stansreportcollectorlb
