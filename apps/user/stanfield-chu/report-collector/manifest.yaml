@@ -173,5 +173,5 @@ system:
     function: redis
     nodeExposed: true
     ports:
-      - port: 26379
+      - port: 16379
         targetport: 6379
