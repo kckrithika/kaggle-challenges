@@ -15,6 +15,7 @@ data:
       "funnelEndpoint": "ajna0-funnel1-0-prd.data.sfdc.net:80",
       "hostRegexWhitelist": [
         ".*cdg.*",
+        ".*cdu.*",
         ".*chx.*",
         ".*dfw.*",
         ".*fra.*",
@@ -25,6 +26,8 @@ data:
         ".*ia4.*",
         ".*ia5.*",
         ".*iad.*",
+        ".*lo2.*",
+        ".*lo3.*",
         ".*ord.*",
         ".*par.*",
         ".*ph2.*",
@@ -33,6 +36,7 @@ data:
         ".*syd.*",
         ".*ttd.*",
         ".*ukb.*",
+        ".*wax.*",
         ".*xrd.*",
         ".*yhu.*",
         ".*yul.*"

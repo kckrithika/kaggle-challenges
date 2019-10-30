@@ -12,6 +12,7 @@ data:
       "k8sCeListFromDB": [
         "cdg-sam",
         "cdu-sam",
+        "chx-sam",
         "dfw-sam",
         "fra-sam",
         "frf-sam",
@@ -29,10 +30,13 @@ data:
         "phx-sam",
         "prd-sam",
         "prd-samdev",
+        "prd-samtest",
         "prd-samtwo",
+        "prd-sdc",
         "syd-sam",
         "ttd-sam",
         "ukb-sam",
+        "wax-sam",
         "xrd-sam",
         "yhu-sam",
         "yul-sam"

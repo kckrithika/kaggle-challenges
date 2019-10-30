@@ -32,8 +32,8 @@ local utils = import "util_functions.jsonnet";
 #    }
 
     std.flattenArrays([
-        [bedhealth("R&D", estate) for estate in utils.get_all_estates() if (utils.is_test_cluster(estate) || estate == "prd-samtwo") && !std.setMember(estate, ["prd-samdevpool", "prd-samtestpool", "prd-sdc"])],
-        [bedhealth("PROD", estate) for estate in utils.get_all_estates() if utils.is_production(utils.get_kingdom(estate)) && !std.setMember(estate, ["lo2-sam", "lo3-sam"])],
+        [bedhealth("R&D", estate) for estate in utils.get_all_estates() if (utils.is_test_cluster(estate) || estate == "prd-samtwo") && estate != "prd-sdc"],
+        [bedhealth("PROD", estate) for estate in utils.get_all_estates() if utils.is_production(utils.get_kingdom(estate))],
         [
 
         (import "sam-sql-reporter/kube-resource-kafka-pipeline-latencies-bycontrolestate.libsonnet"),
