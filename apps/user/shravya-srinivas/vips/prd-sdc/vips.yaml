@@ -1,0 +1,9 @@
+- lbname: helloselfservice2
+  customlbname: hammond-delta-slb-prd
+  servers:
+    - shared0-sdcsamcompute1-3-prd.eng.sfdc.net
+    - shared0-sdcsamcompute1-5-prd.eng.sfdc.net
+  ports:
+    - port: 80
+      targetport: 12087
+      lbtype: http
