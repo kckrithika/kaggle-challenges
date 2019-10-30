@@ -18,106 +18,211 @@ if electron_opa_utils.is_electron_opa_injector_dev_cluster(configs.estate) then
   },
   data: {
 "sidecarconfig.yaml":
-  'containers:
-    - name: electron-opa
-      image: ' + versions.opaImage + '
-      env:
-      - name: SFDC_ENVIRONMENT
-        value: mesh
-      - name: SETTINGS_SERVICENAME
-        value: electron-opa
-      - name: FUNCTION_NAMESPACE
-        valueFrom:
-          fieldRef:
-            apiVersion: v1
-            fieldPath: metadata.namespace
-      - name: FUNCTION_INSTANCE_NAME
-        valueFrom:
-          fieldRef:
-            apiVersion: v1
-            fieldPath: metadata.name
-      - name: FUNCTION_INSTANCE_IP
-        valueFrom:
-          fieldRef:
-            apiVersion: v1
-            fieldPath: status.podIP
-      - name: FUNCTION
-        value: electron-opa
-      - name: KINGDOM
-        value: prd
-      - name: ESTATE
-        value: prd-samdev
-      - name: SUPERPOD
-        value: "-"
-      - name: SETTINGS_SUPERPOD
-        value: "-"
-      - name: SETTINGS_PATH
-        value: mesh.-.prd.-.electron-opa
-      - name: SFDC_SETTINGS_PATH
-        value: mesh.-.prd.-.electron-opa
-      - name: SFDC_METRICS_SERVICE_HOST
-        value: ajna0-funnel1-0-prd.data.sfdc.net
-      - name: SFDC_METRICS_SERVICE_PORT
-        value: "80"
-    - name: electron-opa-istio
-      image: ' + versions.opaIstioImage + '
-      env:
-      - name: SFDC_ENVIRONMENT
-        value: mesh
-      - name: SETTINGS_SERVICENAME
-        value: electron-opa-istio
-      - name: FUNCTION_NAMESPACE
-        valueFrom:
-          fieldRef:
-            apiVersion: v1
-            fieldPath: metadata.namespace
-      - name: FUNCTION_INSTANCE_NAME
-        valueFrom:
-          fieldRef:
-            apiVersion: v1
-            fieldPath: metadata.name
-      - name: FUNCTION_INSTANCE_IP
-        valueFrom:
-          fieldRef:
-            apiVersion: v1
-            fieldPath: status.podIP
-      - name: FUNCTION
-        value: electron-opa-istio
-      - name: KINGDOM
-        value: prd
-      - name: ESTATE
-        value: prd-samdev
-      - name: SUPERPOD
-        value: "-"
-      - name: SETTINGS_SUPERPOD
-        value: "-"
-      - name: SETTINGS_PATH
-        value: mesh.-.prd.-.electron-opa-istio
-      - name: SFDC_SETTINGS_PATH
-        value: mesh.-.prd.-.electron-opa-istio
-      - name: SFDC_METRICS_SERVICE_HOST
-        value: ajna0-funnel1-0-prd.data.sfdc.net
-      - name: SFDC_METRICS_SERVICE_PORT
-        value: "80"',
+'initContainers:
+  - name: authz-config-init
+    image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/collection-erb-config-gen:19
+    imagePullPolicy: IfNotPresent
+    command: ["bash", "-c"]
+    env:
+      - name: ELECTRON_OPA_CONFIG
+        value: |
+          services:
+            electron:
+              url: https://authz-svc-opa.service-mesh.localhost.mesh.force.com:7442
+              allow_insecure_tls: true
+              credentials:
+                client_tls:
+                  cert: /client-certs/client/certificates/client.pem
+                  private_key: /client-certs/client/keys/client-key.pem
+          bundles:
+            authz:
+              resource: v1/authzpolicy
+              service: electron
+              polling:
+                min_delay_seconds: 300
+                max_delay_seconds: 360
+      - name: ELECTRON_OPA_ISTIO_CONFIG
+        value: |
+          services:
+            electron:
+              url: https://authz-svc-opa.service-mesh.localhost.mesh.force.com:7442
+              allow_insecure_tls: true
+              credentials:
+                client_tls:
+                  cert: /client-certs/client/certificates/client.pem
+                  private_key: /client-certs/client/keys/client-key.pem
+          bundles:
+            authz:
+              resource: v1/authzpolicy
+              service: electron
+              polling:
+                min_delay_seconds: 300
+                max_delay_seconds: 360
+          plugins:
+            envoy_ext_authz_grpc:
+              addr: :9191
+              query: data.httpapi.authz.allow
+              dry-run: false
+              enable-reflection: false
+    args:
+      - echo -e "${ELECTRON_OPA_CONFIG}" > /config/opa_config.yaml &&
+        echo -e "${ELECTRON_OPA_ISTIO_CONFIG}" > /config/opa_istio_config.yaml &&
+        chmod -R 777 /client-certs/client
+    volumeMounts:
+      - name: config
+        mountPath: /config
+      - name: tls-client-cert
+        mountPath: /client-certs
+  - name: authz-config-init-sherpa
+    image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/collection-erb-config-gen:19
+    imagePullPolicy: IfNotPresent
+    command: ["bash", "-c"]
+    env:
+      - name: ELECTRON_OPA_CONFIG
+        value: |
+          services:
+            electron:
+              url: http://authz-svc-opa.service-mesh.localhost.mesh.force.com:5442
+              allow_insecure_tls: true
+              credentials:
+                client_tls:
+                  cert: /client-certs/client/certificates/client.pem
+                  private_key: /client-certs/client/keys/client-key.pem
+          bundles:
+            authz:
+              resource: v1/authzpolicy
+              service: electron
+              polling:
+                min_delay_seconds: 300
+                max_delay_seconds: 360
+      - name: ELECTRON_OPA_ISTIO_CONFIG
+        value: |
+          services:
+            electron:
+              url: http://authz-svc-opa.service-mesh.localhost.mesh.force.com:5442
+              allow_insecure_tls: true
+              credentials:
+                client_tls:
+                  cert: /client-certs/client/certificates/client.pem
+                  private_key: /client-certs/client/keys/client-key.pem
+          bundles:
+            authz:
+              resource: v1/authzpolicy
+              service: electron
+              polling:
+                min_delay_seconds: 300
+                max_delay_seconds: 360
+          plugins:
+            envoy_ext_authz_grpc:
+              addr: :9191
+              query: data.httpapi.authz.allow
+              dry-run: false
+              enable-reflection: false
+    args:
+      - echo -e "${ELECTRON_OPA_CONFIG}" > /config/opa_config.yaml &&
+        echo -e "${ELECTRON_OPA_ISTIO_CONFIG}" > /config/opa_istio_config.yaml &&
+        chmod -R 777 /client-certs/client
+    volumeMounts:
+      - name: config
+        mountPath: /config
+      - name: tls-client-cert
+        mountPath: /client-certs
+containers:
+  - name: electron-opa
+    image: ' + versions.opaIstioImage + '
+    imagePullPolicy: IfNotPresent
+    ports:
+      - name: http
+        containerPort: 8181
+    args:
+      - run
+      - --server
+      - --config-file=/config/opa_config.yaml
+      - --log-level=debug
+    volumeMounts:
+      - name: config
+        mountPath: /config
+      - name: tls-client-cert
+        mountPath: /client-certs
+    livenessProbe:
+      httpGet:
+        scheme: HTTP
+        port: 8181
+      initialDelaySeconds: 5
+      periodSeconds: 10
+    readinessProbe:
+      httpGet:
+        path: /health?bundle=false
+        scheme: HTTP
+        port: 8181
+      initialDelaySeconds: 5
+      periodSeconds: 10
+  - name: electron-opa-istio
+    image: ' + versions.opaIstioImage + '
+    imagePullPolicy: IfNotPresent
+    args:
+      - run
+      - --server
+      - --config-file=/config/opa_istio_config.yaml
+      - --log-level=debug
+    volumeMounts:
+      - name: config
+        mountPath: /config
+      - name: tls-client-cert
+        mountPath: /client-certs
+    livenessProbe:
+      httpGet:
+        scheme: HTTP
+        port: 8181
+      initialDelaySeconds: 5
+      periodSeconds: 10
+    readinessProbe:
+      httpGet:
+        path: /health?bundle=false
+        scheme: HTTP
+        port: 8181
+      initialDelaySeconds: 5
+      periodSeconds: 10
+volumes:
+  - name: config
+    emptyDir: {}',
 "mutationconfig.yaml":
-  'mutationConfigs:
-    - name: "electron-opa"
-      annotationNamespace: "electron-opa-injector.authz"
-      annotationTrigger: "inject"
-      initcontainers: []
-      containers: ["electron-opa"]
-      volumes: []
-      volumeMounts: []
-      ignoreNamespaces: []
-      whitelistNamespaces: []
-    - name: "electron-opa-istio"
-      annotationNamespace: "electron-opa-istio-injector.authz"
-      annotationTrigger: "inject"
-      initcontainers: []
-      containers: ["electron-opa-istio"]
-      volumes: []
-      volumeMounts: []
-      ignoreNamespaces: []
-      whitelistNamespaces: []'
+'mutationConfigs:
+  - name: "electron-opa-non-sherpa"
+    annotationNamespace: "electron-opa-injector.authz"
+    annotationTrigger: "inject"
+    initContainers: ["authz-config-init"]
+    containers: ["electron-opa"]
+    volumes: ["config"]
+    volumeMounts: []
+    ignoreNamespaces: ["authz-injector"]
+    whitelistNamespaces: []
+  - name: "electron-opa-istio-non-sherpa"
+    annotationNamespace: "electron-opa-istio-injector.authz"
+    annotationTrigger: "inject"
+    initContainers: ["authz-config-init"]
+    containers: ["electron-opa-istio"]
+    volumes: ["config"]
+    volumeMounts: []
+    ignoreNamespaces: ["authz-injector"]
+    whitelistNamespaces: []
+  - name: "electron-opa-sherpa"
+    annotationNamespace: "electron-opa-sherpa-injector.authz"
+    annotationTrigger: "inject"
+    initContainers: ["authz-config-init-sherpa"]
+    containers: ["electron-opa"]
+    volumes: ["config"]
+    volumeMounts: []
+    ignoreNamespaces: ["authz-injector"]
+    whitelistNamespaces: []
+  - name: "electron-opa-istio-sherpa"
+    annotationNamespace: "electron-opa-istio-sherpa-injector.authz"
+    annotationTrigger: "inject"
+    initContainers: ["authz-config-init-sherpa"]
+    containers: ["electron-opa-istio"]
+    volumes: ["config"]
+    volumeMounts: []
+    ignoreNamespaces: ["authz-injector"]
+    whitelistNamespaces: []'
   }
 } else "SKIP"
