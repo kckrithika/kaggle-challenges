@@ -128,6 +128,7 @@
             + set_value_to_all_in_list(200, $.prodEstates)
             + {
                 "prd-sam": 1000,
+                "prd-samtwo": 500,
                 "lo2-sam": 1000,
                 "lo3-sam": 1000,
                 "ia2-sam": 1000,
