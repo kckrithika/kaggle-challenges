@@ -49,7 +49,7 @@ system:
         - name: JVM_ARGS
           value: "-Xmx3G -Xms512m"
         - name: IDENTITY
-          value: mc.test.mceventbusqa1s1
+          value: mc.prod.mceventbusprod
         - name: TOPIC_ENVIRONMENT
           value: iad.ajna_local
         - name: DECRYPTION_KEY_EXPIRE_MS
