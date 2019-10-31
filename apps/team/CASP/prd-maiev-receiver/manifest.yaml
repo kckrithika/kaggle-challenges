@@ -30,7 +30,7 @@ system:
         - name: MASTER_GRPC_PORT
           value: "7442"
         - name: CANTOR_GRPC_TARGET
-          value: "cantor.casp.$KINGDOM-sam.$KINGDOM.slb.sfdc.net:11983"
+          value: "cantor.casp.$KINGDOM-samtwo.$KINGDOM.slb.sfdc.net:11983"
         - name: HTTP_PORT
           value: "8085"
         - name: BASE_PATH
