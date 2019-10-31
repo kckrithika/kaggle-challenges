@@ -20,15 +20,6 @@ webhooks:
       istio-injection: enabled
   rules:
   - apiGroups:
-    - extensions
-    apiVersions:
-    - v1beta1
-    operations:
-    - CREATE
-    - UPDATE
-    resources:
-    - deployments
-  - apiGroups:
     - apps
     apiVersions:
     - v1
