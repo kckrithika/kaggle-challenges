@@ -138,6 +138,22 @@ items:
 - apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: RoleBinding
   metadata:
+    name: sfcdapi-firebom:prd-sam_tnrp_promoter:rolebinding
+    namespace: sfcdapi-firebom
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: minion:role
+  subjects:
+    - kind: User
+      name: shared0-samminiontnrppromoter1-1-prd.eng.sfdc.net
+    - kind: User
+      name: shared0-samminiontnrppromoter1-2-prd.eng.sfdc.net
+    - kind: User
+      name: shared0-samminiontnrppromoter2-1-prd.eng.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1beta1
+  kind: RoleBinding
+  metadata:
     name: test-release:prd-sam_tnrp_promoter:rolebinding
     namespace: test-release
   roleRef:
