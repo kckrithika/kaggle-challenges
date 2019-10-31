@@ -80,7 +80,7 @@ local deployments = [
                                                 configs.sfdchosts_arg,
                                                 "--vipdnsoptions.viplocation=" + vipLocation,
                                             ]
-                                            + (if slbimages.phaseNum <= 4 then [
+                                            + (if slbimages.phaseNum <= 5 then [
                                                 "--metricsEndpoint=" + configs.funnelVIP,
                                             ] else [])
                                             + (if slbconfigs.isTestEstate then [
