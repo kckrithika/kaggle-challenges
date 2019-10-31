@@ -12,3 +12,14 @@
    - port: 443
      targetport: 443
      lbtype: tcp
+   - port: 8080
+     targetport: 8080
+     lbtype: tcp
+   # cerebro
+   - port: 9000
+     targetport: 9000
+     lbtype: tcp
+   # airflow
+   - port: 9001
+     targetport: 9001
+     lbtype: tcp
