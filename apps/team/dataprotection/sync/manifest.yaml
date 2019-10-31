@@ -5,7 +5,7 @@ system:
     count: 5
     containers:
     - name: sync
-      image: dva/winterfell-sync:19-e89ef4c30b0ab2a0cd7fcf62238533c278dbe782
+      image: dva/winterfell-sync:81
       env:
       - name: DC
         value: $(KINGDOM)
