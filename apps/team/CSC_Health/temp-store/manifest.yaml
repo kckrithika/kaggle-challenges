@@ -16,7 +16,7 @@ system:
           secretName: csc-redis-auth-0
     containers:
     - name: temp-store
-      image: dva/report-collector:12
+      image: dva/report-collector:14
       ports:
       - name: provider-https
         containerPort: 8443
@@ -160,9 +160,12 @@ system:
       livenessProbe:
         httpGet:
           scheme: HTTPS
-          path: /healthz
+          path: /redisHealth
           port: 8443
         initialDelaySeconds: 5
+        periodSeconds: 10
+        timeoutSeconds: 5
+        failureThreshold: 6
       command: ["/bin/sh", "-c"]
       args: ["
       export ReportCollector_ajna_funnelHost=${SFDC_METRICS_SERVICE_HOST} ;
