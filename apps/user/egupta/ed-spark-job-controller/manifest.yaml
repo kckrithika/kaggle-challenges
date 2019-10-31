@@ -1,0 +1,56 @@
+apiVersion: v1
+system:
+  functions:
+  - containers:
+    - image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/ed-spark-driver:87
+      livenessProbe:
+        exec:
+          command: [ls]
+        initialDelaySeconds: 5
+      name: ed-spark-engine
+    count: 0
+    name: ed-spark-release
+  - containers:
+    - env:
+      - {name: MANAGEMENT_SERVER_PORT, value: '15372'}
+      - {name: LOGGING_JSON_STDOUT_LEVEL, value: ALL}
+      - {name: LOGGING_STDERR_LEVEL, value: ALL}
+      - {name: MOANA_SPARK_ENGINE_IMAGE, value: 'ops0-artifactrepo2-0-prd.data.sfdc.net/dva/ed-spark-driver:87'}
+      - {name: KAFKA_GROUP_ID, value: ed-jobcontroller-master}
+      - {name: DEPLOYMENT_ID, value: prd-ed-master}
+      - {name: JAVA_OPTS, value: '-server -XX:MaxMetaspaceSize=512m -Xmx2048m -Xms2048m'}
+      - {name: SIZING_MEMORY_OVERHEAD, value: '1024'}
+      - {name: K8S_CPU_LIMIT_APPLY, value: 'false'}
+      - {name: STARTUP_JOB_ENABLED, value: 'false'}
+      - {name: HANDLED_PODS_PATTERN, value: stmfa\..*|ed-driver-master}
+      - {name: K8S_ADDITIONAL_JVM_ARGS, value: '-XX:+UseG1GC -verbose:gc -XX:+PrintGCDateStamps -XX:+PrintGCDetails -Xss10M'}
+      image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/insights/wave-ed-job-controller:1
+      livenessProbe:
+        httpGet: {path: /manage/health, port: 15372}
+        initialDelaySeconds: 90
+        periodSeconds: 60
+        timeoutSeconds: 30
+      name: jobcontroller
+      ports:
+      - {containerPort: 15372, name: mgmt}
+      resources:
+        limits: {cpu: 2, memory: 4G}
+        requests: {cpu: 2, memory: 4G}
+      volumeMounts:
+      - {mountPath: /home/datapool/logs, name: logvol}
+      - {mountPath: /home/datapool/client-certs, name: tls-client-certs}
+    count: 1
+    hostnetwork: false
+    identity: {serviceName: ed-spark-job-controller}
+    name: jobcontroller-master
+    volumes:
+    - hostPath: {path: /data/sam/egupta/log/ed-job-controller}
+      name: logvol
+    - hostPath: {path: /home/sfdc-sherpa/logs}
+      name: sherpa-log-volume
+    - maddogCert: {type: server}
+      name: tls-server-certs
+    - maddogCert: {type: client}
+      name: tls-client-certs
+  notifications:
+    email: [egupta@salesforce.com]
