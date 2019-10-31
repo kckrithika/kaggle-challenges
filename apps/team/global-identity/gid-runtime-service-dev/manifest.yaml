@@ -105,6 +105,7 @@ system:
       ports:
       - containerPort: 7022
       - containerPort: 15376
+      - containerPort: 5701
       livenessProbe:
         httpGet:
           path: /manage/health
@@ -113,7 +114,7 @@ system:
     # Global Identity Login and Runtime Service
     #####################################################################################
     - name: gid-runtime-service
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/gid/gid-runtime-service:e88c97b
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/gid/gid-runtime-service:4df424d
       imagePullPolicy: Always
       env:
       - name: server_use_forward_headers
