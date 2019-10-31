@@ -1,10 +1,8 @@
 import ip_reserver
 import pool_map
-import portal_query
 import vip
 
 import os
-import re
 import sys
 import yaml
 
@@ -28,16 +26,11 @@ SPACES_IN_TAB = "  "
 VIPS_YAML_FILE_NAME = "vips.yaml"
 
 
-def get_fqdn_from_portal(kingdom, cluster, team_name, lbname):
-    portal_entries = portal_query.get_all_portal_entries(kingdom, cluster)
-    # This regex matches the FQDN of a lb with the name lbname within the team called team_name
-    fqdn_regex = re.compile(r"^{}[^(a-z|A-Z)].*[^(a-z|A-Z)]?{}[^(a-z|A-Z)].*\.slb\.sfdc\.net$".format(lbname, team_name))
-
-    for portal_entry in portal_entries:
-        if portal_entry.lbname == lbname and fqdn_regex.match(portal_entry.fqdn):
-            return portal_entry.fqdn
-
-    return None
+def get_sam_app_fqdn(kingdom, cluster, team_name, super_pod, lbname):
+    namespace = team_name
+    if super_pod is not None:
+        namespace += "-" + super_pod
+    return "{}.{}.{}.{}{}".format(lbname, namespace, cluster, kingdom, vip.FQDN_SUFFIX)
 
 
 def get_load_balancers_from_manifest_yaml(path):
@@ -99,12 +92,12 @@ def process_sam_apps(pool_map_path, team_folder_path, pools, public_vips_to_add,
         load_balancers = get_load_balancers_from_manifest_yaml(os.path.join(team_folder_path, app, MANIFEST_YAML_FILE_NAME))
 
         for pool in app_data:
-            kingdom, cluster = pools.get_kingdom_cluster_from_pool_name(pool) if type(pool) is str \
-                else pools.get_kingdom_cluster_from_pool_name(pool['name'])
+            kingdom, cluster, super_pod = pools.get_info_from_pool_name(pool) if type(pool) is str \
+                else pools.get_info_from_pool_name(pool['name'])
 
             for lb in load_balancers:
                 team_name = team_folder_path.split("/")[-1].lower().replace("_", "-")
-                fqdn = get_fqdn_from_portal(kingdom, cluster, team_name, lb[vip.VIPS_YAML_LBNAME_FIELD_NAME])
+                fqdn = get_sam_app_fqdn(kingdom, cluster, team_name, super_pod, lb[vip.VIPS_YAML_LBNAME_FIELD_NAME])
                 ip_type = get_ip_type(lb)
                 vip_metadata = vip.VipMetadata(kingdom, cluster, fqdn, ip_type)
                 process_vip_metadata(vip_metadata, public_vips_to_add, public_vips_to_delete, ip_handler)
