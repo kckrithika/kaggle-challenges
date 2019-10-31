@@ -3790,7 +3790,7 @@
       "access": [
         "team/CASP"
       ],
-      "controlEstate": "prd-sam",
+      "controlEstate": "prd-samtwo",
       "estate": "prd-sam_warden",
       "kingdom": "prd",
       "superPod": "None"
