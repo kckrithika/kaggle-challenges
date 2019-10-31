@@ -5,7 +5,7 @@ system:
     count: 1
     containers:
     - name: sam-c2c-jmh-perftestingapp-servicemesh
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/pbarlota/sam-c2c-jmh-perftestingapp-servicemesh:latest
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/pbarlota/sam-c2c-jmh-perftestingapp-servicemesh:latest-1
       ports:
       - containerPort: 9090
       livenessProbe:
