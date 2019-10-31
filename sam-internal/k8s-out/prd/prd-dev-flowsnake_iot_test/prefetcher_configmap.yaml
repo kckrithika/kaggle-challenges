@@ -23,7 +23,7 @@ data:
     [ \"${CURL_STATUS}\" == \"124\" ] ; then\n        echo \"WARNING: Timed out posting
     to Funnel\"\n    elif [ \"${CURL_STATUS}\" != \"0\" ] ; then\n        echo \"WARNING:
     Error posting to Funnel at URL ${FUNNEL_URL} . curl error message:\"\n        cat
-    \ /tmp/flowsnake-prefetcher-stderr.out\n    elif [ \"${HTTP_STATUS}\" != \"200\"
+    \ /tmp/flowsnake-prefetcher-stderr.txt\n    elif [ \"${HTTP_STATUS}\" != \"200\"
     ] ; then\n        echo \"WARNING: Funnel returned status ${HTTP_STATUS}. Response:\"\n
     \       cat /tmp/flowsnake-prefetcher-response.txt\n    fi\n}\n\nwhile true; do\n\n
     \   # When the configmap with this script is updated, the pod running it won't
