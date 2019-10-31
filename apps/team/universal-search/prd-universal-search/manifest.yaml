@@ -319,7 +319,7 @@ system:
       - mountPath: /home/scone/logs
         name: logvolservice
   - name: nginx-reverse-proxy-cre
-    count: 1
+    count: 2
     volumes:
     - name: client-cert-vol
       maddogCert:
