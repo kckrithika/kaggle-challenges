@@ -108,6 +108,20 @@ if flowsnake_config.madkub_enabled then
         namespace: "flowsnake",
     },
     data: {
-        "spec.jaysawn": std.toString(containerspec("usercerts", 7447))
+        "spec.jaysawn": std.toString(containerspec([
+                                                    {
+                                                        name: "usercerts",
+                                                        dir: "/certs",
+                                                        type: "client",
+                                                        volume: "datacerts",
+                                                    }]
+                                                    + (if std.objectHas(flowsnake_images.feature_flags, "madkub_injector_server_cert") then
+                                                        [{
+                                                            name: "servercerts",
+                                                            dir: "/servercerts",
+                                                            type: "server",
+                                                            volume: "servercerts",
+                                                        }] else [])
+                                                    , 7447))
     }
 } else "SKIP"
