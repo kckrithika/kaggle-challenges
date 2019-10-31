@@ -3,13 +3,13 @@
     "config": {},
     "releaseName": "istio-init",
     "namespace": "mesh-control-plane",
-    "upstream": "https://github.com/istio/istio/tree/a640018e6ec8ddd7744d4c7c8a3c9d194f86222e/install/kubernetes/helm/istio-init",
+    "upstream": "https://github.com/istio/istio/tree/d6827a9cabcefcc0d172d117e5b6079a157d4bed/install/kubernetes/helm/istio-init",
     "metadata": {
       "applicationType": "helm",
       "sequence": 0,
       "icon": "https://istio.io/favicons/android-192x192.png",
       "name": "istio-init",
-      "releaseNotes": "Simplify CRD files (#18340)\n\n* Simplify CRD files\n\n* fix CRD file\n\n* changes to makefile",
+      "releaseNotes": "",
       "version": "1.1.0",
       "license": {
         "id": "",
@@ -34,6 +34,6 @@
         "arch": "amd64"
       }
     },
-    "contentSHA": "fe16f62cb05e6d7848e6b4d2e293a9343caa9d3f3bdf8cdefe6208c1147aeac9"
+    "contentSHA": "9f830bbf3284926e24d626c5fb9e728ce67c2020007459f7e1e56cffaf279ff2"
   }
 }

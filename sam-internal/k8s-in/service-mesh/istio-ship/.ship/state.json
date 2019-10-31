@@ -3,7 +3,7 @@
     "config": {},
     "releaseName": "istio",
     "namespace": "mesh-control-plane",
-    "upstream": "https://github.com/istio/istio/tree/a640018e6ec8ddd7744d4c7c8a3c9d194f86222e/install/kubernetes/helm/istio",
+    "upstream": "https://github.com/istio/istio/tree/d6827a9cabcefcc0d172d117e5b6079a157d4bed/install/kubernetes/helm/istio",
     "metadata": {
       "applicationType": "helm",
       "sequence": 0,
@@ -34,6 +34,6 @@
         "arch": "amd64"
       }
     },
-    "contentSHA": "ce5260fd6af8a5d8e1f2e952d725c0675a80f997c0e46b1783080b09afa28efd"
+    "contentSHA": "268426eb6ad27f8d2a416633733968e268597716f6e715de2c42ad59085716de"
   }
 }
