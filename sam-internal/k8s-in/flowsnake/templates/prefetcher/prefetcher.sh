@@ -57,7 +57,7 @@ EOF
         echo "WARNING: Timed out posting to Funnel"
     elif [ "${CURL_STATUS}" != "0" ] ; then
         echo "WARNING: Error posting to Funnel at URL ${FUNNEL_URL} . curl error message:"
-        cat  /tmp/flowsnake-prefetcher-stderr.out
+        cat  /tmp/flowsnake-prefetcher-stderr.txt
     elif [ "${HTTP_STATUS}" != "200" ] ; then
         echo "WARNING: Funnel returned status ${HTTP_STATUS}. Response:"
         cat /tmp/flowsnake-prefetcher-response.txt
