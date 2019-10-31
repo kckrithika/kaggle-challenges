@@ -5,16 +5,18 @@ system:
     email:
     - aman.gulati@salesforce.com
     - matthew.klosak@salesforce.com
+    - electron@salesforce.com
   functions:
-  - name: demo-authz-http
+  - name: demo-authz-opa
     count: 1
     annotations:
       "sherpa-injector.service-mesh/inject": "enabled"
     containers:
-    - name: demo-authz-http
-      image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/electron_sam:107
+    - name: demo-authz-opa
+      image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/electron_sam:111
       args:
-      - --extra-authz-clients=dns=test-jwt.sfdc-role,uri=spiffe://salesforce.com/ns/service-mesh/sa/demo-authz-client
+      - --grpc-synthetic-clients=uri=spiffe://salesforce.com/ns/service-mesh/sa/demo-authz,uri=spiffe://salesforce.com/ns/service-mesh/sa/demo-authz-client
+      - --http-synthetic-client-ids=demo-authz.service-mesh,demo-authz-client.service-mesh
       - --authz-paths=opt/identity/authz/test-internal/,opt/identity/authz/opa-policies/,opt/identity/authz/
       env:
       - name: SFDC_ENVIRONMENT
@@ -41,28 +43,39 @@ system:
         initialDelaySeconds: 30
         periodSeconds: 5
         timeoutSeconds: 4
-    - name: demo-authz-grpc-client
-      image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/electron_client:107
+    - name: demo-authz-grpc-stream-client
+      image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/electron_client:111
       args:
+      - -service=grpc-stream
       - -endpoint=localhost:7020
-      - -service=grpc
-      - -https=false
       - -loopCount=-1
       - -loopDelayInSeconds=60
-      - -spoof-xfcc=DNS=test-jwt.sfdc-role
+      - -timeoutInSeconds=3600
+      - -spoof-xfcc=uri=spiffe://salesforce.com/ns/service-mesh/sa/demo-authz
+      livenessProbe:
+        exec:
+          command: ["/bin/true"]
+        initialDelaySeconds: 30
+    - name: demo-authz-grpc-client
+      image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/electron_client:111
+      args:
+      - -service=grpc
+      - -endpoint=localhost:7020
+      - -loopCount=-1
+      - -loopDelayInSeconds=60
+      - -spoof-xfcc=uri=spiffe://salesforce.com/ns/service-mesh/sa/demo-authz
       livenessProbe:
         exec:
           command: ["/bin/true"]
         initialDelaySeconds: 30
     - name: demo-authz-http-client
-      image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/electron_client:107
+      image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/electron_client:111
       args:
-      - -endpoint=localhost:7022
       - -service=http
-      - -https=false
+      - -endpoint=localhost:7022
       - -loopCount=-1
       - -loopDelayInSeconds=60
-      - -spoof-xfcc=DNS=test-jwt.sfdc-role
+      - -spoof-xfcc=uri=spiffe://salesforce.com/ns/service-mesh/sa/demo-authz
       livenessProbe:
         exec:
           command: ["/bin/true"]
