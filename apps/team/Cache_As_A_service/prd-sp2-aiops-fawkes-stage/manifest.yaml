@@ -18,8 +18,8 @@ system:
       - name: fawkes-stage-func
         image: dva/casp/fawkes_strata:jenkins-CASP-fawkes-dev-64-itest
         env:
-        - name: STAGING_FAWKES
-          value: "True"
+        - name: FAWKES_ENV
+          value: "stg"
         - name: STAGING_ENABLE_SENSOR
           value: "True"
         - name: HTTP_PROXY
