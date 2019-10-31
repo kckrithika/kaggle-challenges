@@ -75,7 +75,7 @@ system:
       - {name: MANAGEMENT_SERVER_PORT, value: '15372'}
       - {name: LOGGING_JSON_STDOUT_LEVEL, value: ALL}
       - {name: LOGGING_STDERR_LEVEL, value: ALL}
-      - {name: MOANA_SPARK_ENGINE_IMAGE, value: 'ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/insights/moanaengine:afield-local-checkpoint-2019.10.b.1-30e21ec'}
+      - {name: MOANA_SPARK_ENGINE_IMAGE, value: 'ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/insights/moanaengine:pr-924-2019.10.b.3-6c874d2'}
       - {name: KAFKA_GROUP_ID, value: moana-jobcontroller-master}
       - {name: DEPLOYMENT_ID, value: prd-master}
       - {name: JAVA_OPTS, value: '-server -XX:MaxMetaspaceSize=512m -Xmx2048m -Xms2048m'}
