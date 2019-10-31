@@ -1429,22 +1429,6 @@ items:
 - apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: RoleBinding
   metadata:
-    name: casp:prd-sam_warden:rolebinding
-    namespace: casp
-  roleRef:
-    apiGroup: rbac.authorization.k8s.io
-    kind: ClusterRole
-    name: minion:role
-  subjects:
-  - kind: User
-    name: shared0-samminionwarden1-1-prd.eng.sfdc.net
-  - kind: User
-    name: shared0-samminionwarden1-2-prd.eng.sfdc.net
-  - kind: User
-    name: shared0-samminionwarden2-1-prd.eng.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1beta1
-  kind: RoleBinding
-  metadata:
     name: search-scale-safely:prd-search_model_executor:rolebinding
     namespace: search-scale-safely
   roleRef:

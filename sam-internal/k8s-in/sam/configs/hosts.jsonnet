@@ -46797,7 +46797,7 @@
     },
     {
       bomrolename: "sam_minion_warden",
-      controlestate: "prd-sam",
+      controlestate: "prd-samtwo",
       devicerole: "samcompute",
       estate: "prd-sam_warden",
       hostname: "shared0-samminionwarden1-1-prd.eng.sfdc.net",
@@ -46808,7 +46808,7 @@
     },
     {
       bomrolename: "sam_minion_warden",
-      controlestate: "prd-sam",
+      controlestate: "prd-samtwo",
       devicerole: "samcompute",
       estate: "prd-sam_warden",
       hostname: "shared0-samminionwarden1-2-prd.eng.sfdc.net",
@@ -46819,7 +46819,7 @@
     },
     {
       bomrolename: "sam_minion_warden",
-      controlestate: "prd-sam",
+      controlestate: "prd-samtwo",
       devicerole: "samcompute",
       estate: "prd-sam_warden",
       hostname: "shared0-samminionwarden2-1-prd.eng.sfdc.net",
