@@ -6,9 +6,22 @@
    - loptr.eng.sfdc.net
    - frejya.eng.sfdc.net
   ports:
+   # heimdall
    - port: 80
      targetport: 80
      lbtype: tcp
    - port: 443
      targetport: 443
+     lbtype: tcp
+   # jenkins
+   - port: 8080
+     targetport: 8080
+     lbtype: tcp
+   # cerebro
+   - port: 9000
+     targetport: 9000
+     lbtype: tcp
+   # airflow
+   - port: 9001
+     targetport: 9001
      lbtype: tcp
