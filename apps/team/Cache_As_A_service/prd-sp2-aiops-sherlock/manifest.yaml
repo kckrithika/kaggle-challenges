@@ -89,3 +89,4 @@ system:
         lbtype: http
         tls: true
         reencrypt: true
+        lbalgorithm: roundrobin
