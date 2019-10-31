@@ -19,7 +19,7 @@ system:
           path: /var/log/report-collector
     containers:
     - name: report-collectorha
-      image: dva/report-collector:12
+      image: dva/report-collector:14
       ports:
       - name: admin
         containerPort: 8082
@@ -74,9 +74,12 @@ system:
       livenessProbe:
         httpGet:
           scheme: HTTPS
-          path: /healthz
+          path: /redisHealth
           port: 8443
         initialDelaySeconds: 5
+        periodSeconds: 10
+        timeoutSeconds: 5
+        failureThreshold: 6
       command: ["/bin/sh", "-c"]
       args: ["
       export ReportCollector_ajna_funnelHost=${SFDC_METRICS_SERVICE_HOST} ;
@@ -96,7 +99,7 @@ system:
         -jar ${JAR_PATH}
       "]
     - name: csc-health-stale-log-cleaner
-      image: dva/report-collector:12
+      image: dva/report-collector:14
       volumeMounts:
         - mountPath: /var/log/report-collector
           name: logvol
