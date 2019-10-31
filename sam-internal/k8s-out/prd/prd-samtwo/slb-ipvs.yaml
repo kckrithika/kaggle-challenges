@@ -191,7 +191,7 @@ spec:
         - --podPhaseCheck=true
         - --namespace=
         - --podstatus=running
-        - --subnet=10.254.252.0/22,10.251.72.0/22
+        - --subnet=10.254.252.0/22
         - --k8sapiserver=
         - --serviceList=
         - --useVipLabelToSelectSvcs=true
@@ -291,7 +291,7 @@ spec:
         - --metricsEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80
         - --log_dir=/host/data/slb/logs/slb-ipvs
         - --hostsConfigFile=/sfdchosts/hosts.json
-        - --subnet=10.254.252.0/22,10.251.72.0/22,136.146.214.0/23
+        - --subnet=10.254.252.0/22,136.146.214.0/23
         image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/slb/hyperslb:2269-85d67758318f6a2085309508d290c704e4952929
         name: slb-iface-processor
         securityContext:
