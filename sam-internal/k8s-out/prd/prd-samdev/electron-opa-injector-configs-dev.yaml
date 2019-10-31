@@ -150,7 +150,7 @@ data:
             mountPath: /client-certs
     containers:
       - name: electron-opa
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/electron-opa-istio:v0.14.2
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/electron-opa:v0.14.2
         imagePullPolicy: IfNotPresent
         ports:
           - name: http

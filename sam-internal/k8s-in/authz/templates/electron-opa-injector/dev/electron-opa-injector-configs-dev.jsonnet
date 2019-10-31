@@ -129,7 +129,7 @@ if electron_opa_utils.is_electron_opa_injector_dev_cluster(configs.estate) then
         mountPath: /client-certs
 containers:
   - name: electron-opa
-    image: ' + versions.opaIstioImage + '
+    image: ' + versions.opaImage + '
     imagePullPolicy: IfNotPresent
     ports:
       - name: http
