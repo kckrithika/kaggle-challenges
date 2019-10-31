@@ -134,7 +134,7 @@ apps:
 
   demo-authz:
     - prd/prd-sam_gater
-  demo-authz-http:
+  demo-authz-opa:
     - prd/prd-sam_gater
   demo-authz-client:
     - prd/prd-sam_gater
