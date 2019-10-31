@@ -29,7 +29,6 @@ system:
       - {name: GRPC_HOST, value: datapool.wave-elt.localhost.mesh.force.com}
       - {name: GRPC_PORT, value: '5443'}
       - {name: HANDLED_PODS_PATTERN, value: stmfa\..*|moana-driver-master}
-      - {name: SPARK_DRIVER_JAVA_OPTIONS, value: '-Xss5m'}
       image: ops0-artifactrepo2-0-prd.data.sfdc.net/sfci/insights/moana-driver:master-2019.10.b.68-0fabe8e
       livenessProbe:
         httpGet: {path: /manage/health, port: 15372}
@@ -84,7 +83,7 @@ system:
       - {name: K8S_CPU_LIMIT_APPLY, value: 'false'}
       - {name: STARTUP_JOB_ENABLED, value: 'false'}
       - {name: HANDLED_PODS_PATTERN, value: stmfa\..*|moana-driver-master}
-      - {name: SPARK_DRIVER_JAVA_OPTIONS, value: '-Xss10m'}
+      - {name: SPARK_DRIVER_JAVA_OPTIONS, value: '-Xss5m'}
       image: ops0-artifactrepo2-0-prd.data.sfdc.net/sfci/insights/jobcontroller:master-2019.10.b.110-7402141
       livenessProbe:
         httpGet: {path: /manage/health, port: 15372}
