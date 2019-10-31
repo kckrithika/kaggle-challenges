@@ -80,9 +80,12 @@ system:
       livenessProbe:
         httpGet:
           scheme: HTTPS
-          path: /healthz
+          path: /redisHealth
           port: 8443
         initialDelaySeconds: 5
+        periodSeconds: 10
+        timeoutSeconds: 5
+        failureThreshold: 4
       command: ["/bin/sh", "-c"]
       args: ["
       export ReportCollector_ajna_funnelHost=${SFDC_METRICS_SERVICE_HOST} ;
