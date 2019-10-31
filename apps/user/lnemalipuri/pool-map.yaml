@@ -1,3 +1,3 @@
 apps:
- hc_pyplyn:
+ pyplyn-k8:
   - prd/prd-sam
