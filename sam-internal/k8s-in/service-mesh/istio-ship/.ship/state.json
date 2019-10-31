@@ -9,7 +9,7 @@
       "sequence": 0,
       "icon": "https://istio.io/favicons/android-192x192.png",
       "name": "istio",
-      "releaseNotes": "The format of template has been changed since 1.2 (#18415)\n\nThe format of template has been changed since 1.2. Change the comment to the one we are currently using:\r\nFor example: https://raw.githubusercontent.com/istio/istio/release-1.2/install/kubernetes/helm/istio/example-values/values-istio-multicluster-gateways.yaml\r\n```\r\n  - \"{{ valueOrDefault .DeploymentMeta.Namespace \\\"default\\\" }}.global\"\r\n```\r\n, otherwise it will trigger error:\r\n```\r\nInternal error occurred: admission webhook \"sidecar-injector.istio.io\" denied the request: failed parsing generated injected YAML (check Istio sidecar injector configuration): error converting YAML to JSON: yaml: line 169: did not find expected '-' indicator\r\n```\r\n\r\n\r\n\r\n[ ] Configuration Infrastructure\r\n[ ] Docs\r\n[ ] Installation\r\n[ ] Networking\r\n[ ] Performance and Scalability\r\n[ ] Policies and Telemetry\r\n[ ] Security\r\n[ ] Test and Release\r\n[ ] User Experience\r\n[ ] Developer Infrastructure",
+      "releaseNotes": "",
       "version": "1.1.0",
       "license": {
         "id": "",

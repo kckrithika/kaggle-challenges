@@ -196,6 +196,10 @@ data:
           valueFrom:
             fieldRef:
               fieldPath: spec.serviceAccountName
+        {{- if .Values.global.mtls.auto }}
+        - name: ISTIO_AUTO_MTLS_ENABLED
+          value: "true"
+        {{- end }}
       {{- if eq .Values.global.proxy.tracer "datadog" }}
         - name: HOST_IP
           valueFrom:
@@ -258,6 +262,18 @@ data:
         {{- else if .Values.global.trustDomain }}
         - name: ISTIO_META_MESH_ID
           value: "{{ .Values.global.trustDomain }}"
+        {{- end }}
+        {{- if eq .Values.global.proxy.tracer "stackdriver" }}
+        - name: STACKDRIVER_TRACING_ENABLED
+          value: "true"
+        - name: STACKDRIVER_TRACING_DEBUG
+          value: "{{ .ProxyConfig.GetTracing.GetStackdriver.GetDebug }}"
+        - name: STACKDRIVER_TRACING_MAX_NUMBER_OF_ANNOTATIONS
+          value: "{{ .ProxyConfig.GetTracing.GetStackdriver.GetMaxNumberOfAnnotations }}"
+        - name: STACKDRIVER_TRACING_MAX_NUMBER_OF_ATTRIBUTES
+          value: "{{ .ProxyConfig.GetTracing.GetStackdriver.GetMaxNumberOfAttributes }}"
+        - name: STACKDRIVER_TRACING_MAX_NUMBER_OF_MESSAGE_EVENTS
+          value: "{{ .ProxyConfig.GetTracing.GetStackdriver.GetMaxNumberOfMessageEvents }}"
         {{- end }}
         ###
         # Start metadata fields used by switchboard for building metric tags.
@@ -327,7 +343,7 @@ data:
             - NET_ADMIN
           runAsGroup: 1337
           {{ else -}}
-          {{ if and .Values.global.sds.enabled .Values.global.sds.useTrustworthyJwt }}
+          {{ if .Values.global.sds.enabled }}
           runAsGroup: 1337
           {{- end }}
           runAsUser: 1337
@@ -354,7 +370,7 @@ data:
         - mountPath: /etc/istio/proxy
           name: istio-envoy
         {{- if .Values.global.sds.enabled }}
-        - mountPath: /var/run/sds/uds_path
+        - mountPath: /var/run/sds
           name: sds-uds-path
           readOnly: true
         - mountPath: /var/run/secrets/tokens

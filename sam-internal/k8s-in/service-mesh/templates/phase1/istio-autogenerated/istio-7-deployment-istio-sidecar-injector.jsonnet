@@ -122,7 +122,7 @@ if (istioPhases.phaseNum == 1) then
               "--injectConfig=/etc/istio/inject/config",
               "--meshConfig=/etc/istio/config/mesh",
               "--healthCheckInterval=2s",
-              "--healthCheckFile=/health",
+              "--healthCheckFile=/tmp/health",
               "--reconcileWebhookConfig=true",
               "--port=15009",
               "--monitoringPort=8080",
