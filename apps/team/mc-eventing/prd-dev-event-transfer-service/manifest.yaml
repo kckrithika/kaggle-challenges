@@ -56,6 +56,8 @@ system:
           value: 600000
         - name: DECRYPTION_KEY_PATH
           value: /secrets/eventbusajna-ens-v1/eventbusajna-ens-v1
+        - name: HELLO
+          value: WORLD
       livenessProbe:
         initialDelaySeconds: 60
         periodSeconds: 60
