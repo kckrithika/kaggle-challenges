@@ -7,7 +7,7 @@ system:
     - name: sync
       image: dva/winterfell-sync:81
       env:
-       - name: SFDC_ENVIRONMENT
+      - name: SFDC_ENVIRONMENT
         value: prod
       - name: SPRING_CONFIG_NAME
         value: prod
