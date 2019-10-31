@@ -18,6 +18,12 @@ system:
   - lbname: samhellolb
     annotations:
       slb.sfdc.net/iptype: private_reserved
+      slb.sfdc.net/cnames: |-
+        [
+         {
+          "cname": "slb-testing-prd-sdc.slb.sfdc.net"
+         }
+        ]
     function: default
     slbenabled: true
     ports:
