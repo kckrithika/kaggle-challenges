@@ -83,6 +83,7 @@ system:
       - {name: K8S_CPU_LIMIT_APPLY, value: 'false'}
       - {name: STARTUP_JOB_ENABLED, value: 'false'}
       - {name: HANDLED_PODS_PATTERN, value: stmfa\..*|moana-driver-master}
+      - {name: SPARK_DRIVER_JAVA_OPTIONS, value: '-Xss5m'}
       image: ops0-artifactrepo2-0-prd.data.sfdc.net/sfci/insights/jobcontroller:master-2019.10.b.110-7402141
       livenessProbe:
         httpGet: {path: /manage/health, port: 15372}
