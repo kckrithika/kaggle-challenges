@@ -19,15 +19,15 @@ local utils = import "util_functions.jsonnet";
         else if configs.estate == "cdg-sam" then
             "%s/dva/stampy-webhook-admission-controller-1p:23" % configs.registry
         else if configs.estate == "cdu-sam" then
-            "%s/dva/stampy-webhook-admission-controller-1p:19" % configs.registry
+            "%s/dva/stampy-webhook-admission-controller-1p:23" % configs.registry
         else if configs.estate == "dfw-sam" then
-            "%s/dva/stampy-webhook-admission-controller-1p:19" % configs.registry
+            "%s/dva/stampy-webhook-admission-controller-1p:23" % configs.registry
         else if configs.estate == "fra-sam" then
-            "%s/dva/stampy-webhook-admission-controller-1p:19" % configs.registry
+            "%s/dva/stampy-webhook-admission-controller-1p:23" % configs.registry
         else if configs.estate == "frf-sam" then
-            "%s/dva/stampy-webhook-admission-controller-1p:19" % configs.registry
+            "%s/dva/stampy-webhook-admission-controller-1p:23" % configs.registry
         else if configs.estate == "hio-sam" then
-            "%s/dva/stampy-webhook-admission-controller-1p:19" % configs.registry
+            "%s/dva/stampy-webhook-admission-controller-1p:23" % configs.registry
         else if configs.estate == "hnd-sam" then
             "%s/dva/stampy-webhook-admission-controller-1p:19" % configs.registry
         else if configs.estate == "ia2-sam" then
@@ -59,7 +59,7 @@ local utils = import "util_functions.jsonnet";
         else if configs.estate == "ukb-sam" then
             "%s/dva/stampy-webhook-admission-controller-1p:19" % configs.registry
         else if configs.estate == "wax-sam" then
-            "%s/dva/stampy-webhook-admission-controller-1p:19" % configs.registry
+            "%s/dva/stampy-webhook-admission-controller-1p:23" % configs.registry
         else if configs.estate == "xrd-sam" then
             "%s/dva/stampy-webhook-admission-controller-1p:23" % configs.registry
         else if configs.estate == "yhu-sam" then
