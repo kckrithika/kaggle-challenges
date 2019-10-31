@@ -15,9 +15,9 @@ local utils = import "util_functions.jsonnet";
         if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" then 
             "%s/dva/stampy-webhook-admission-controller-1p:23" % configs.registry
         else if configs.estate == "chx-sam" then
-            "%s/dva/stampy-webhook-admission-controller-1p:19" % configs.registry
+            "%s/dva/stampy-webhook-admission-controller-1p:23" % configs.registry
         else if configs.estate == "cdg-sam" then
-            "%s/dva/stampy-webhook-admission-controller-1p:19" % configs.registry
+            "%s/dva/stampy-webhook-admission-controller-1p:23" % configs.registry
         else if configs.estate == "cdu-sam" then
             "%s/dva/stampy-webhook-admission-controller-1p:19" % configs.registry
         else if configs.estate == "dfw-sam" then
@@ -51,17 +51,17 @@ local utils = import "util_functions.jsonnet";
         else if configs.estate == "phx-sam" then
             "%s/dva/stampy-webhook-admission-controller-1p:19" % configs.registry
         else if configs.estate == "prd-sam" then
-            "%s/dva/stampy-webhook-admission-controller-1p:19" % configs.registry
+            "%s/dva/stampy-webhook-admission-controller-1p:23" % configs.registry
         else if configs.estate == "syd-sam" then
             "%s/dva/stampy-webhook-admission-controller-1p:19" % configs.registry
         else if configs.estate == "ttd-sam" then
-            "%s/dva/stampy-webhook-admission-controller-1p:19" % configs.registry
+            "%s/dva/stampy-webhook-admission-controller-1p:23" % configs.registry
         else if configs.estate == "ukb-sam" then
             "%s/dva/stampy-webhook-admission-controller-1p:19" % configs.registry
         else if configs.estate == "wax-sam" then
             "%s/dva/stampy-webhook-admission-controller-1p:19" % configs.registry
         else if configs.estate == "xrd-sam" then
-            "%s/dva/stampy-webhook-admission-controller-1p:19" % configs.registry
+            "%s/dva/stampy-webhook-admission-controller-1p:23" % configs.registry
         else if configs.estate == "yhu-sam" then
             "%s/dva/stampy-webhook-admission-controller-1p:19" % configs.registry
         else if configs.estate == "yul-sam" then
