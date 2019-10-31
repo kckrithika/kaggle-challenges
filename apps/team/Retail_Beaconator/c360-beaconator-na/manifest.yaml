@@ -19,8 +19,6 @@ system:
     - name: beaconator
       image: sfci/services/sfdc-bazel/disco/beacon:d7f1640
       args:
-      - -logging.dir
-      - /log
       - -endpoint
       - retail-cre/cre-api:DATACENTER_ALLENV:7442:cre-api-lb.retail-cre.na01.cre.slb.sfdc.net
       - -endpoint
