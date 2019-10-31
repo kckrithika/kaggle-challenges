@@ -89,7 +89,7 @@
             "ph2-sam": "10.163.156.0/22",
             "ia4-sam": "10.184.12.0/22",
             "ia5-sam": "10.184.140.0/22",
-            "prd-samtwo": "10.254.252.0/22,10.251.72.0/22",
+            "prd-samtwo": "10.254.252.0/22",
             vpod: "192.0.2.1/32",  # Placeholder subnet value since SLB doesn't manage IP allocation in VPOD-land
         },
 
