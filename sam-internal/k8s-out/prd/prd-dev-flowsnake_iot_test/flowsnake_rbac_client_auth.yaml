@@ -188,6 +188,8 @@ items:
   - kind: User
     name: retail-cre.mariusz.tycz
   - kind: User
+    name: retail-cre.cre_k8s_e2e
+  - kind: User
     name: retail-cre.kdaszkowski
   - kind: User
     name: retail-cre.dkardach
@@ -301,6 +303,8 @@ items:
     name: retail-cre.sonia.wu
   - kind: User
     name: retail-cre.mariusz.tycz
+  - kind: User
+    name: retail-cre.cre_k8s_e2e
   - kind: User
     name: retail-cre.kdaszkowski
   - kind: User
