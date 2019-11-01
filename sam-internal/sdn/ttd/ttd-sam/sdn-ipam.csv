@@ -1,0 +1,4 @@
+Hostname,HostIP/MaskLength,DockerSubnet/MaskLength,RackName,Estate,RemoteAs
+shared0-samminionwarden1-1-ttd.ops.sfdc.net,10.160.215.164/28,10.160.214.32/27,NONE,ttd-sam_warden,65009
+shared0-samminionwarden2-1-ttd.ops.sfdc.net,10.160.215.165/28,10.160.214.96/27,NONE,ttd-sam_warden,65009
+shared0-samminionwarden3-1-ttd.ops.sfdc.net,10.160.215.166/28,10.160.214.64/27,NONE,ttd-sam_warden,65009

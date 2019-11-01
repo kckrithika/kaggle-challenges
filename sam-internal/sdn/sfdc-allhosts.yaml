@@ -44814,15 +44814,6 @@ hosts:
   controlestate: xrd-sam
   devicerole: samkubeapi
   estate: xrd-sam
-  hostname: shared0-samkubeapi1-3-xrd.eng.sfdc.net
-  kingdom: xrd
-  pod: none
-  rack: c05-cr08
-  superpod: none
-- bomrolename: sam_kube_api
-  controlestate: xrd-sam
-  devicerole: samkubeapi
-  estate: xrd-sam
   hostname: shared0-samkubeapi2-1-xrd.eng.sfdc.net
   kingdom: xrd
   pod: none
@@ -44842,15 +44833,6 @@ hosts:
   devicerole: samkubeapi
   estate: xrd-sam
   hostname: shared0-samkubeapi3-1-xrd.eng.sfdc.net
-  kingdom: xrd
-  pod: none
-  rack: b04-cr08
-  superpod: none
-- bomrolename: sam_kube_api
-  controlestate: xrd-sam
-  devicerole: samkubeapi
-  estate: xrd-sam
-  hostname: shared0-samkubeapi3-2-xrd.eng.sfdc.net
   kingdom: xrd
   pod: none
   rack: b04-cr08
