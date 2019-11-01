@@ -5,14 +5,15 @@ system:
     email:
     - aman.gulati@salesforce.com
     - matthew.klosak@salesforce.com
+    - electron@salesforce.com
   functions:
   - name: authz-svc
     count: 2
     containers:
     - name: authz-svc
-      image: dva/electron_sam:107
+      image: dva/electron_sam:111
       args:
-      - --extra-authz-clients=dns=authz-svc.service-mesh.sfdc-role
+      - --grpc-synthetic-clients=dns=authz-svc.service-mesh.sfdc-role,uri=spiffe://salesforce.com/ns/service-mesh/sa/authz-svc
       env:
       - name: SFDC_ENVIRONMENT
         value: prod
@@ -39,12 +40,10 @@ system:
         periodSeconds: 5
         timeoutSeconds: 4
     - name: authz-svc-grpc-client
-      image: dva/electron_client:107
+      image: dva/electron_client:111
       args:
       - -endpoint=localhost:7020
       - -service=grpc
-      - -https=false
-      - -mtls=false
       - -loopCount=-1
       - -loopDelayInSeconds=60
       - -spoof-xfcc=DNS=authz-svc.service-mesh.sfdc-role

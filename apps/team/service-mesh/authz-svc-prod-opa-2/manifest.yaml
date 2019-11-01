@@ -5,12 +5,15 @@ system:
     email:
     - aman.gulati@salesforce.com
     - matthew.klosak@salesforce.com
+    - electron@salesforce.com
   functions:
   - name: authz-svc-opa
     count: 2
     containers:
     - name: authz-svc-opa
-      image: dva/electron_sam:107
+      image: dva/electron_sam:111
+      args:
+      - --http-synthetic-client-ids=authz-svc.service-mesh
       env:
       - name: SFDC_ENVIRONMENT
         value: prod
@@ -37,15 +40,12 @@ system:
         periodSeconds: 5
         timeoutSeconds: 4
     - name: authz-svc-http-client
-      image: dva/electron_client:107
+      image: dva/electron_client:111
       args:
       - -endpoint=localhost:7022
       - -service=http
-      - -https=false
-      - -mtls=false
       - -loopCount=-1
       - -loopDelayInSeconds=60
-      - -callerName=authz-svc.service-mesh
       - -spoof-xfcc=DNS=authz-svc.service-mesh.sfdc-role
       livenessProbe:
         exec:
