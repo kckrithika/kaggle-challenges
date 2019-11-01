@@ -106,7 +106,7 @@ if slbconfigs.isSlbEstate then configs.deploymentBase("slb") {
                                                        "--client.dialSocket=true",
                                                        "--commonoptions.metricsendpoint=" + configs.funnelVIP,
                                                        "--commonoptions.hostname=$(NODE_NAME)",
-                                                       "--deletelimits.maxDeleteLimit=20",
+                                                       "--deletelimits.maxDeleteLimit=1000",
                                                      ]
                                                      + roleBasedSecretArgs,
                                            volumeMounts: configs.filter_empty([

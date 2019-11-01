@@ -51,7 +51,7 @@ spec:
         - --client.serverInterface=lo
         - --restrictedSubnets=85.222.140.0/23
         - --maxDeleteEntries=1000
-        - --vipLimit=198
+        - --vipLimit=998
         - --client.socketDir=/host/data/slb/config/slb-dns-register
         - --client.dialSocket=true
         env:
@@ -285,7 +285,7 @@ spec:
         - --client.dialSocket=true
         - --commonoptions.metricsendpoint=ajna0-funnel1-0-fra.data.sfdc.net:80
         - --commonoptions.hostname=$(NODE_NAME)
-        - --deletelimits.maxDeleteLimit=20
+        - --deletelimits.maxDeleteLimit=1000
         - --keyfile=/cert3/client/keys/client-key.pem
         - --certfile=/cert3/client/certificates/client.pem
         - --cafile=/cert3/ca/cabundle.pem
