@@ -41,7 +41,7 @@ system:
         pod: cs66
       containers:
         - name: crondemo
-          image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/vijay-kota/crondemo:25Oct19v2
+          image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/vijay-kota/crondemo:01Nov19
           ports:
             - name: http-port
               containerPort: 7022
@@ -50,6 +50,84 @@ system:
           env:
             - name: SFDC_ENVIRONMENT
               value: mesh
+            - name: DEMO_SVC
+              value: cs66-cron-lb.user-vijay-kota.prd-sam.prd.slb.sfdc.net:7012
+            - name: DEMO_DATA
+              value: crondemo_10,http://cs66-demo-lb.user-vijay-kota.prd-sam.prd.slb.sfdc.net:7022/api/v1/demo,*/10 * * * * ?,myorg
+          #esources:
+          # limits: { cpu: "1", memory: "1Gi" }
+          # requests: { cpu: "1", memory: "1Gi" }
+          livenessProbe:
+            exec:
+              command: ["/bin/true"]
+            initialDelaySeconds: 10
+            timeoutSeconds: 10
+            periodSeconds: 60
+          readinessProbe:
+            exec:
+              command: ["/bin/true"]
+            initialDelaySeconds: 10
+            timeoutSeconds: 10
+          volumeMounts:
+            - mountPath: /var/log/web
+              name: logvol
+
+      volumes:
+        - name: logvol
+          hostpath:
+            path: /var/log/web
+
+    - name: cs66-exec
+      count: 1
+      identity:
+        serviceName: cronexec
+        pod: cs66
+      containers:
+        - name: croncar
+          image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/vijay-kota/croncar:01Nov19
+          ports:
+            - name: grpc-port
+              containerPort: 17020
+          args:
+            - --scheduler.service.hostname=cs66-cron-lb.user-vijay-kota.prd-sam.prd.slb.sfdc.net
+            - --scheduler.service.port=7012
+            - --scheduler.client.appserverid=demo
+            - --scheduler.client.tpsize=20
+          env:
+            - name: SFDC_ENVIRONMENT
+              value: mesh
+          #esources:
+          # limits: { cpu: "1", memory: "1Gi" }
+          # requests: { cpu: "1", memory: "1Gi" }
+          livenessProbe:
+            exec:
+              command: ["/bin/true"]
+            initialDelaySeconds: 10
+            timeoutSeconds: 10
+            periodSeconds: 60
+          readinessProbe:
+            exec:
+              command: ["/bin/true"]
+            initialDelaySeconds: 10
+            timeoutSeconds: 10
+          volumeMounts:
+            - mountPath: /var/log/web
+              name: logvol
+
+        - name: crondemo
+          image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/vijay-kota/crondemo:01Nov19
+          ports:
+            - name: http-port
+              containerPort: 7022
+            - name: scone-port
+              containerPort: 15372
+          env:
+            - name: SFDC_ENVIRONMENT
+              value: mesh
+            - name: DEMO_SVC
+              value: localhost:17020
+            - name: DEMO_DATA
+              value: name,url,expression,org
           #esources:
           # limits: { cpu: "1", memory: "1Gi" }
           # requests: { cpu: "1", memory: "1Gi" }
@@ -80,7 +158,7 @@ system:
         pod: cs66
       containers:
         - name: cronsvc
-          image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/vijay-kota/cronsvc:26Oct19
+          image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/vijay-kota/cronsvc:01Nov19
           ports:
             - name: grpc-port
               containerPort: 7020
@@ -261,6 +339,16 @@ system:
         targetport: 7022
       - port: 15372
         targetport: 15372
+  - lbname: cs66-exec-lb
+    function: cs66-exec
+    slbenabled: true
+    ports:
+      - port: 7022
+        targetport: 7022
+      - port: 15372
+        targetport: 15372
+      - port: 17020
+        targetport: 17020
   - lbname: cs66-cron-lb
     function: cs66-cron
     slbenabled: true
