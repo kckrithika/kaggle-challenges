@@ -3,6 +3,7 @@ apiversion: ""
 patchesStrategicMerge:
 - clusterrole.yaml
 - clusterrolebinding.yaml
+- configmap-crd-all.yaml
 - job-crd-all.yaml
 - job-crd-mixer.yaml
 - serviceaccount.yaml

@@ -1,20 +1,16 @@
 global:
   # Default hub for Istio images.
   # Releases are published to docker hub under 'istio' project.
-  # Daily builds from prow are on gcr.io
-  hub: "%(istioHub)s"
-
+  # Dev builds from prow are on gcr.io
+  hub: '%(istioHub)s'
   # Default tag for Istio images.
-  tag: "%(istioTag)s"
-
+  tag: '%(istioTag)s'
   # imagePullPolicy is applied to istio control plane components.
   # local tests require IfNotPresent, to avoid uploading to dockerhub.
   # TODO: Switch to Always as default, and override in the local tests.
   imagePullPolicy: IfNotPresent
-
 certmanager:
   enabled: false
-
 job:
   resources:
     requests:
