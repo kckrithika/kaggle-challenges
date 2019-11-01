@@ -6,6 +6,10 @@
 kubectl -n sam-system logs samcontrol-deployer-5db54b4897-d52w6 samcontrol-deployer | less
 ```
 
+## SLBs
+
+- [prd-samtwo](http://slb-portal-service.sam-system.prd-samtwo.prd.slb.sfdc.net:9112/)
+
 ## SFCD-API FireBOM Webhook
 
 * First sync your enlistment
@@ -26,3 +30,9 @@ $ git push
 * Wait for Firefly to deliver
 * Wait for SAM to deploy
 
+### Endpoints
+
+- [Swagger](https://sfcdapi-firebom-webhook.sfcd.prd-samtwo.prd.slb.sfdc.net:8443/swagger-ui.html)
+- [GHE Firebom Webhook](https://sfcdapi-firebom-webhook.sfcd.prd-samtwo.prd.slb.sfdc.net:8443/sfcdapi/v1/webhook/firebom/pipelinetemplates/masterdeploy)
+- [GHE Firebom Master Deploy API](https://sfcdapi-firebom-webhook.sfcd.prd-samtwo.prd.slb.sfdc.net:8443/sfcdapi/v1/ghe/firebom/pipelinetemplates/masterdeploy)
+- [Firebom Master Deploy API](https://sfcdapi-firebom-webhook.sfcd.prd-samtwo.prd.slb.sfdc.net:8443/sfcdapi/v1/firebom/pipelinetemplates/masterdeploy)
