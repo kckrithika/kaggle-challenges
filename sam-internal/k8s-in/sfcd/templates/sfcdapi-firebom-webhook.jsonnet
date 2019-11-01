@@ -6,8 +6,7 @@ local sfcd_feature_flags = import "sfcd_feature_flags.jsonnet";
 local firebomConfig = import "configs/firebom-webhook.jsonnet";
 local sfcdConfigs = import "sfcdconfigs.jsonnet";
 
-if sfcd_feature_flags.is_firebom_webhook_enabled then
-{
+if sfcd_feature_flags.is_firebom_webhook_enabled then {
   local firebomWebhook = serviceDeployment {
     serviceConf:: {
       dindEnabled: false,
@@ -15,15 +14,15 @@ if sfcd_feature_flags.is_firebom_webhook_enabled then
       pool: if configs.estate == "prd-samtwo" then 'prd-sam_tnrp_promoter' else configs.estate,
       port: [
         {
-          name: "sfcdapi-firebom-http",
+          name: "sfcdfirebom-http",
           protocol: "TCP",
           containerPort: portConfig.sfcdapi.firebom_http,
         },
       ],
     },
     serviceName:: "sfcdapi-firebom-webhook",
-    namespace:: "sfcdapi-firebom",
-    role:: "firebom",
+    namespace:: "sfcd",
+    role:: "sfcd-api",
     dockerImage:: images.sfcdapifirebomwebhook,
     portAnnotations:: [
       {
@@ -45,14 +44,14 @@ if sfcd_feature_flags.is_firebom_webhook_enabled then
     ],
     portConfigs:: [
       {
-        name: 'sfcdapi-firebom-webhook-http',
+        name: 'sfcdfirebom-http',
         protocol: 'TCP',
         port: portConfig.sfcdapi.firebom_http,
         targetPort: portConfig.sfcdapi.firebom_http,
         [if !sfcd_feature_flags.is_slb_enabled then "nodePort"]: portConfig.sfcdapi.firebom_http_nodeport,
       },
       {
-        name: 'sfcdapi-firebom-webhook-https',
+        name: 'sfcdfirebom-https',
         protocol: 'TCP',
         port: portConfig.sfcdapi.firebom_https,
         targetPort: portConfig.sfcdapi.firebom_http,
@@ -67,7 +66,7 @@ if sfcd_feature_flags.is_firebom_webhook_enabled then
       },
     ],
     replicas:: 1,
-    command:: ["java", "-jar", "/sfcdapi-firebom-webhook.jar", "--spring.profiles.active=" + configs.estate, "--spring.config.location=/etc/firebom/config/"],
+    command:: ["java", "-jar", "/sfcdapi-firebom-svc.jar", "--spring.profiles.active=" + configs.estate, "--spring.config.location=/etc/firebom/config/"],
     env:: super.commonEnv + [
       {
         name: "CONFIG_VERSION",

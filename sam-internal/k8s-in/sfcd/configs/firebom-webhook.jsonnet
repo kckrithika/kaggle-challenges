@@ -18,7 +18,7 @@ local templatesRepoConfig = import "configs/firebom-templates-repo.jsonnet";
         'com.salesforce': 'INFO',
       },
       pattern: {
-        console: '%d{yyyy-MM-dd HH:mm:ss} - %C:%L[%thread] %-5level%n',
+        console: "%d{yyyy-MM-dd HH:mm:ss} - %C:%L[%thread gua=%X{userAgent} ghd=%X{gitHubDelivery}] %-5level - e=%X{eventType} sha=%X{sha} repo=%X{repo} pr=%X{pr} c=%X{committer} - details=[%msg]  %n"
       },
     },
     scm: {

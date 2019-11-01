@@ -48,12 +48,12 @@ local configs = import "config.jsonnet";
 
         ### Release Phase 2 - prd-sam (Canary)
         "2": $.per_phase["3"] {
-             sfcdapifirebomwebhook: "24",
+             sfcdapifirebomwebhook: "36",
             },
 
         ### Release Phase 3 - prd-samtwo (production)
         "3": $.per_phase["4"] {
-             sfcdapifirebomwebhook: "24",
+             sfcdapifirebomwebhook: "36",
             },
 
         ### Release Phase 4 - Rest of Prod + Pub + Gia
@@ -87,6 +87,6 @@ local configs = import "config.jsonnet";
     # ====== DO NOT EDIT BELOW HERE ======
 
     # These are the images used by the templates
-    sfcdapifirebomwebhook: configs.registry + "/dva/sfcdapi-firebom-webhook:" + $.per_phase[$.phase].sfcdapifirebomwebhook,
+    sfcdapifirebomwebhook: configs.registry + "/dva/sfcdapi-firebom:" + $.per_phase[$.phase].sfcdapifirebomwebhook,
 
 }

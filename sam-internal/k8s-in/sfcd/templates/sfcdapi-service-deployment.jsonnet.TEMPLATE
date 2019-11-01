@@ -26,10 +26,6 @@ local envConfig = import "configs/firebom_service_conf.jsonnet";
       mountPath: "/certs",
     },
     {
-      name: "git-ssh-keys",
-      mountPath: "/root/.ssh/",
-    },
-    {
       name: 'app-config-volume',
       mountPath: '/etc/' + $.serviceName +'/config',
     },
@@ -171,17 +167,6 @@ local envConfig = import "configs/firebom_service_conf.jsonnet";
                 successThreshold: 1,
                 failureThreshold: 10,
               },
-//              [if std.startsWith($.serviceName, "firefly-intake") then "readinessProbe"]: {
-//                httpGet: {
-//                path: '/actuator/health',
-//                port: 'admin-port',
-//                },
-//                initialDelaySeconds: 30,
-//                timeoutSeconds: 30,
-//                periodSeconds: 60,
-//                successThreshold: 1,
-//                failureThreshold: 10,
-//              },
             } + configs.ipAddressResourceRequest,
           ],
           volumes: [
@@ -204,10 +189,6 @@ local envConfig = import "configs/firebom_service_conf.jsonnet";
               },
             },
             {
-              name: "docker-build-dir",
-              emptyDir: {},
-            },
-            {
               name: "sfcdapi-root-dir",
               emptyDir: {},
             },
@@ -219,12 +200,6 @@ local envConfig = import "configs/firebom_service_conf.jsonnet";
             },
             {
               name: "certs",
-              emptyDir: {
-                medium: "Memory",
-              },
-            },
-            {
-              name: "git-ssh-keys",
               emptyDir: {
                 medium: "Memory",
               },

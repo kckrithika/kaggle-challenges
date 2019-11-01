@@ -3,4 +3,4 @@ kind: Namespace
 metadata:
   labels:
     sam.data.sfdc.net/owner: sfcd
-  name: sfcdapi-firebom
+  name: sfcd

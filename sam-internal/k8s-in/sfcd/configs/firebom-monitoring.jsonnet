@@ -2,7 +2,7 @@ local configs = import "config.jsonnet";
 
 {
   monitor(serviceName):: {
-    'report-frequency': if configs.estate == 'prd-samtwo' then 1 else 1,
+    'report-frequency': 1,
     'system-exception-threshold': 5,
     'metric-fields': {
       'datacenter': configs.kingdom,

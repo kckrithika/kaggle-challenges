@@ -3,13 +3,12 @@ local portConfig = import "portconfig.jsonnet";
 
 {
     common:: {
-        firebomEndpoint:: "http://firefly-intake.firefly." + configs.estate + "." + configs.kingdom + ".slb.sfdc.net:" + portConfig.sfcd.firebom_http,
         webHookSecretTokenValidationEnabled:: false,
         gitHttpLogging:: 'NONE',
     },
     prod:: $.common {
-        gitUser: 'svc-tnrp-git-rw',
-        gitOauthToken: '${gitRWPassword#FromSecretService}',
+        gitUser: 'tok-cdapigitrw',
+        gitOauthToken: '${ghe_rw_token#FromSecretService}',
     },
     prdsamtwo:: $.prod {
     },

@@ -10,7 +10,7 @@ items:
                   "org": "INFO"
               },
               "pattern": {
-                  "console": "%d{yyyy-MM-dd HH:mm:ss} - %C:%L[%thread] %-5level%n"
+                  "console": "%d{yyyy-MM-dd HH:mm:ss} - %C:%L[%thread gua=%X{userAgent} ghd=%X{gitHubDelivery}] %-5level - e=%X{eventType} sha=%X{sha} repo=%X{repo} pr=%X{pr} c=%X{committer} - details=[%msg]  %n"
               }
           },
           "management": {
@@ -44,10 +44,10 @@ items:
                   "keep-alive-duration": "60000ms",
                   "max-attempts": 3,
                   "max-idle-connections": 10,
-                  "oauth-token": "${gitRWPassword#FromSecretService}",
+                  "oauth-token": "${ghe_rw_token#FromSecretService}",
                   "read-timeout": "60s",
                   "url": "https://git.soma.salesforce.com",
-                  "user": "svc-tnrp-git-rw",
+                  "user": "tok-cdapigitrw",
                   "write-timeout": "60s"
               }
           },
@@ -114,7 +114,7 @@ items:
     labels:
       sam.data.sfdc.net/owner: sfcd
     name: sfcdapi-firebom-webhook-configmap
-    namespace: sfcdapi-firebom
+    namespace: sfcd
 - apiVersion: v1
   kind: Service
   metadata:
@@ -149,14 +149,14 @@ items:
       app: sfcdapi-firebom-webhook
       sam.data.sfdc.net/owner: sfcd
     name: sfcdapi-firebom-webhook-service
-    namespace: sfcdapi-firebom
+    namespace: sfcd
   spec:
     ports:
-    - name: sfcdapi-firebom-webhook-http
+    - name: sfcdfirebom-http
       port: 8080
       protocol: TCP
       targetPort: 8080
-    - name: sfcdapi-firebom-webhook-https
+    - name: sfcdfirebom-https
       port: 8443
       protocol: TCP
       targetPort: 8080
@@ -174,7 +174,7 @@ items:
       name: sfcdapi-firebom-webhook
       sam.data.sfdc.net/owner: sfcd
     name: sfcdapi-firebom-webhook-deployment
-    namespace: sfcdapi-firebom
+    namespace: sfcd
   spec:
     replicas: 1
     selector:
@@ -196,7 +196,7 @@ items:
                         "cert-type": "client",
                         "kingdom": "prd",
                         "name": "certs",
-                        "role": "firebom"
+                        "role": "sfcd-api"
                     }
                 ]
             }
@@ -204,7 +204,7 @@ items:
           name: sfcdapi-firebom-webhook
           sam.data.sfdc.net/owner: sfcd
         name: sfcdapi-firebom-webhook-deployment
-        namespace: sfcdapi-firebom
+        namespace: sfcd
       spec:
         containers:
         - args:
@@ -253,7 +253,7 @@ items:
         - command:
           - java
           - -jar
-          - /sfcdapi-firebom-webhook.jar
+          - /sfcdapi-firebom-svc.jar
           - --spring.profiles.active=prd-samtwo
           - --spring.config.location=/etc/firebom/config/
           env:
@@ -284,9 +284,7 @@ items:
                 fieldPath: metadata.labels['name']
           - name: CONFIG_VERSION
             value: "1"
-          - name: DARKLAUNCH
-            value: "false"
-          image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/sfcdapi-firebom-webhook:24
+          image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/sfcdapi-firebom:36
           imagePullPolicy: Always
           livenessProbe:
             failureThreshold: 10
@@ -303,13 +301,11 @@ items:
             name: admin-port
             protocol: TCP
           - containerPort: 8080
-            name: sfcdapi-firebom-http
+            name: sfcdfirebom-http
             protocol: TCP
           volumeMounts:
           - mountPath: /certs
             name: certs
-          - mountPath: /root/.ssh/
-            name: git-ssh-keys
           - mountPath: /etc/sfcdapi-firebom-webhook/config
             name: app-config-volume
         initContainers:
@@ -370,8 +366,6 @@ items:
                   path: application.yml
                 name: sfcdapi-firebom-webhook-configmap
         - emptyDir: {}
-          name: docker-build-dir
-        - emptyDir: {}
           name: sfcdapi-root-dir
         - emptyDir:
             medium: Memory
@@ -379,9 +373,6 @@ items:
         - emptyDir:
             medium: Memory
           name: certs
-        - emptyDir:
-            medium: Memory
-          name: git-ssh-keys
         - hostPath:
             path: /etc/pki_service
           name: maddog-certs
