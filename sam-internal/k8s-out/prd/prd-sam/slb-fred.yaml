@@ -42,6 +42,7 @@ spec:
         - --commonoptions.hostname=$(NODE_NAME)
         - --vipName=slb-canary-proxy-http.sam-system.prd-sam.prd.slb.sfdc.net
         - --port=9116
+        - --monitorFrequency=1m
         env:
         - name: SFDCLOC_NODE_NAME
           valueFrom:
