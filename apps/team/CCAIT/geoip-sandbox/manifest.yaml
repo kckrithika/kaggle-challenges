@@ -52,15 +52,3 @@ system:
       maddogCert:
         type: server
 
-  loadbalancers:
-  - lbname: geoip
-    function: geoip
-    labels:
-      app: geoip
-    annotations:
-      "routing.mesh.sfdc.net/enabled": "true"
-    ports:
-      - lbtype: dsr
-        port: 7443
-        targetport: 7443
-        name: grpc-geoip
