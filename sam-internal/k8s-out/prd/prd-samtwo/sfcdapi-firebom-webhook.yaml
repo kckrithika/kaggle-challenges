@@ -247,7 +247,7 @@ items:
                         "cert-type": "client",
                         "kingdom": "prd",
                         "name": "certs",
-                        "role": "sfcd-api"
+                        "role": "sfcd.sfcd-api"
                     }
                 ]
             }

@@ -12,19 +12,19 @@ local configs = import "config.jsonnet";
     ### Global overrides - Anything here will override anything below
     overrides: {
         #
-        # This section lets you override any Firefly image for a given kingdom,estate,template,image.
+        # This section lets you override any image for a given kingdom,estate,template,image.
         # Image name
         #
         # Example:
         #   # [alias] Added this override to fix issue xxx
-        #   "prd,prd-samtwo,firefly-rabbitmq-rcs,rabbitmq": "xxxxx",
+        #   "prd,prd-samtwo": "xxxxx",
 
         },
 
     ### Per-phase image tags
     per_phase: {
 
-        ### Release Phase 0 - Nightly deployment of the most recent firefly to prd-samtest
+        ### Release Phase 0 - Nightly deployment of the most recent to prd-samtest
         # Under normal cirumstances we should not need to change this section.
         # Overrides work just fine in this phase.
 
