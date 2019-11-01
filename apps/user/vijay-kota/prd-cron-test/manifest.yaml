@@ -88,6 +88,7 @@ system:
           ports:
             - name: grpc-port
               containerPort: 17020
+          command: ["./launcher.sh"]
           args:
             - --scheduler.service.hostname=cs66-cron-lb.user-vijay-kota.prd-sam.prd.slb.sfdc.net
             - --scheduler.service.port=7012
