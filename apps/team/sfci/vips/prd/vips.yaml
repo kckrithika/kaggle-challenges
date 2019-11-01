@@ -11,6 +11,7 @@
     tls: true
     reencrypt: true
     healthport: 9080
+    healthprotocol: tcp
 
 - lbname: sfci-ai
   customlbname: sfci-ai
@@ -24,3 +25,4 @@
     tls: true
     reencrypt: true
     healthport: 9080
+    healthprotocol: tcp
