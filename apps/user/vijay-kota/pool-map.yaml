@@ -1,6 +1,6 @@
 apps:
-    prd-qpid-test:
-        - prd/prd-sam
+    #rd-qpid-test:
+    #   - prd/prd-sam
     #rd-caas-test:
     #   - prd/prd-sam
     prd-cron-test:

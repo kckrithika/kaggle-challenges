@@ -1,7 +1,7 @@
 This folder contains spikes to testing out functionality on SAM
 
 # prd-cron-test
-This is a spike for standing up a test SDB container on SAM for use by cron service. There were 2 attempts:
+This is a spike for standing up Scheduler Service using a test SDB container on SAM. There were 2 attempts for dockerized SDB:
 1. Use private Docker image of one of the SDB architects. Like DBaaS, it tries to use Zookeeper to bring up an HA version of SDB.
    1. Though postgres came up fine, I couldn't get the database to come up.
    1. I didn't follow up further on [Chatter](https://gus.lightning.force.com/lightning/r/0D5B000000x8zMXKAY/view).
@@ -18,6 +18,7 @@ This is a spike for standing up a test SDB container on SAM for use by cron serv
    1. Modify `myinstall.sh` to use the downloaded artifacts
       1. `myinstall.sh` is a copy of `install.sh` that uses hardcoded pre-built tars instead of logging into Nexus and downloading
    1. Instead of user `sdb`, all permissions are given to uid 7447 which is the default in SAM
+1. All cron images were built using sources at https://git.soma.salesforce.com/Scheduler/scheduler-service
 
 ## Testing
 1. Try to locate `psql` - command-line client for SDB. If you cannot find it under `~/blt`, try from CASAM container:
@@ -26,6 +27,11 @@ This is a spike for standing up a test SDB container on SAM for use by cron serv
 1. `./psql -h cs66-sdb-lb.user-vijay-kota.prd-sam.prd.slb.sfdc.net -p 1521 -d sdbmain -U build`
    1. This will take you to prompt where you can run commands
    1. Use `\q` to exit from the shell
+1. Scheduler service (`cronsvc`) listens on gRPC port 7012 (behind Sherpa)
+1. Scheduler UI and demo HTTP endpoint (`crondemo`) are accessed via `api/v1/index` and `api/v1/demo`
+    1. Create a job using http://cs66-demo-lb.user-vijay-kota.prd-sam.prd.slb.sfdc.net:7022/api/v1/demo_add
+1. Executor service (`croncar`) listens on gRPC port 17020 for calls from demo client
+    1. Force an `acquireTriggers()` RPC using http://cs66-exec-lb.user-vijay-kota.prd-sam.prd.slb.sfdc.net:7022/api/v1/demo_acquire
 
 # prd-qpid-test and prd-caas-test
 This spike is related to [W-6323983](https://gus.lightning.force.com/a07B0000007IlQzIAK). The attempt here is to test:
