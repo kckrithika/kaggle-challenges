@@ -1,15 +1,15 @@
 {
   "v1": {
-    "config": null,
+    "config": {},
     "releaseName": "istio",
     "namespace": "mesh-control-plane",
-    "upstream": "https://github.com/istio/istio/tree/bddfeebe2e388b6619860862d893ddd0eaee68f8/install/kubernetes/helm/istio",
+    "upstream": "https://github.com/istio/istio/tree/d6827a9cabcefcc0d172d117e5b6079a157d4bed/install/kubernetes/helm/istio",
     "metadata": {
       "applicationType": "helm",
       "sequence": 0,
       "icon": "https://istio.io/favicons/android-192x192.png",
       "name": "istio",
-      "releaseNotes": "fix trailing space in meshNetworks to allow edits (#17847)\n\nrelated https://github.com/istio/istio/pull/16820",
+      "releaseNotes": "",
       "version": "1.1.0",
       "license": {
         "id": "",
@@ -20,30 +20,20 @@
       }
     },
     "shipVersion": {
-      "version": "0.52.0",
-      "buildTime": "2019-10-19T07:29:48Z",
+      "version": "0.51.0",
+      "buildTime": "2019-08-30T01:34:10Z",
       "dependencies": {
         "helm": "v2.14.1",
         "kustomize": "v2.0.3",
         "terraform": "v0.11.14"
       },
       "go": {
-        "version": "go1.13.3",
+        "version": "go1.12.9",
         "compiler": "gc",
         "os": "darwin",
         "arch": "amd64"
       }
     },
-    "contentSHA": "eac96961d64d89229a569f896458f0ac13edfc8bdcd66507a7437fbee65d9f21",
-    "lifecycle": {
-      "stepsCompleted": {
-        "intro": true,
-        "kustomize": true,
-        "kustomize-intro": true,
-        "outro": true,
-        "render": true,
-        "values": true
-      }
-    }
+    "contentSHA": "268426eb6ad27f8d2a416633733968e268597716f6e715de2c42ad59085716de"
   }
 }

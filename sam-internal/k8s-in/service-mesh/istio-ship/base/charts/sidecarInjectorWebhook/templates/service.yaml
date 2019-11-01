@@ -15,6 +15,7 @@ spec:
   ports:
   - port: 443
     name: https-inject
+    targetPort: 9443
   - port: 15014
     name: http-monitoring
   selector:

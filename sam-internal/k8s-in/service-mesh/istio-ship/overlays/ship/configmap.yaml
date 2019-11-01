@@ -11,9 +11,12 @@ data:
     accessLogFormat: ""
     accessLogEncoding: 'TEXT'
     ingressService: istio-ingressgateway
+    connectTimeout: 10s
+    protocolDetectionTimeout: 100ms
     dnsRefreshRate: 300s
     sdsUdsPath:
     enableSdsTokenMount: false
+    enableAutoMtls: false
     sdsUseK8sSaJwt: false
     trustDomain:
     outboundTrafficPolicy:

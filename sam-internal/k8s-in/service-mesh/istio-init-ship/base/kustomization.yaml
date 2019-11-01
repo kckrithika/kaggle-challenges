@@ -3,10 +3,8 @@ apiversion: ""
 resources:
 - clusterrole.yaml
 - clusterrolebinding.yaml
-- configmap-crd-10.yaml
-- configmap-crd-11.yaml
-- configmap-crd-14.yaml
-- job-crd-10.yaml
-- job-crd-11.yaml
-- job-crd-14.yaml
+- configmap-crd-all.yaml
+- configmap-crd-mixer.yaml
+- job-crd-all.yaml
+- job-crd-mixer.yaml
 - serviceaccount.yaml
