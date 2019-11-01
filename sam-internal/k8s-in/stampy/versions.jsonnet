@@ -39,15 +39,15 @@ local utils = import "util_functions.jsonnet";
         else if configs.estate == "iad-sam" then
             "%s/dva/stampy-webhook-admission-controller-1p:23" % configs.registry
         else if configs.estate == "lo2-sam" then
-            "%s/dva/stampy-webhook-admission-controller-1p:19" % configs.registry
+            "%s/dva/stampy-webhook-admission-controller-1p:23" % configs.registry
         else if configs.estate == "lo3-sam" then
-            "%s/dva/stampy-webhook-admission-controller-1p:19" % configs.registry
+            "%s/dva/stampy-webhook-admission-controller-1p:23" % configs.registry
         else if configs.estate == "ord-sam" then
-            "%s/dva/stampy-webhook-admission-controller-1p:19" % configs.registry
+            "%s/dva/stampy-webhook-admission-controller-1p:23" % configs.registry
         else if configs.estate == "par-sam" then
-            "%s/dva/stampy-webhook-admission-controller-1p:19" % configs.registry
+            "%s/dva/stampy-webhook-admission-controller-1p:23" % configs.registry
         else if configs.estate == "ph2-sam" then
-            "%s/dva/stampy-webhook-admission-controller-1p:19" % configs.registry
+            "%s/dva/stampy-webhook-admission-controller-1p:23" % configs.registry
         else if configs.estate == "phx-sam" then
             "%s/dva/stampy-webhook-admission-controller-1p:19" % configs.registry
         else if configs.estate == "prd-sam" then
