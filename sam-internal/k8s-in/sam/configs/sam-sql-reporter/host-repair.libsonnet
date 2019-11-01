@@ -9,7 +9,8 @@
   controlEstate,
   Payload->>'$.status.details.totalRebootCount' as TotalRebootCount,
   Payload->>'$.observation.healthInfo.health' as Healthy,
-  Payload->>'$.spec.startTime' as LastRebootTime
+  Payload->>'$.spec.startTime' as LastRebootTime,
+  Payload->>'$.status.conditions[*].message' as Messages
 from k8s_resource
 where ApiKind = 'HostRepair' and (TIMESTAMPDIFF(MINUTE, STR_TO_DATE(Payload->>'$.spec.startTime','%Y-%m-%dT%H:%i:%s'), NOW())/60.0/24.0)<14
 ",
