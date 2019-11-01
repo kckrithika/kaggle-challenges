@@ -26,6 +26,8 @@ system:
         env:
         - name: SUBDOMAIN
           value: "eng"
+        - name: SAM_ENVIRONMENT
+          value: "samtwo"
         - name: STORAGE_TYPE
           value: "grpc"
     loadbalancers:

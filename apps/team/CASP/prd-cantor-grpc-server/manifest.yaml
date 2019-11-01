@@ -27,8 +27,6 @@ system:
         env:
         - name: SUBDOMAIN
           value: "eng"
-        - name: SAM_ENVIRONMENT
-          value: "samtwo"
         - name: NODENAME
           valueFrom:
             fieldRef:
