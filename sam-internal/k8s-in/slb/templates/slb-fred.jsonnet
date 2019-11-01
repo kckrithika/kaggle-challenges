@@ -37,7 +37,7 @@ if slbconfigs.isSlbEstate && configs.estate != "prd-samtest" then configs.deploy
                                      "--commonoptions.hostname=$(NODE_NAME)",
                                      "--vipName=slb-canary-proxy-http.sam-system.%(estate)s.%(kingdom)s.slb.sfdc.net" % configs,
                                      "--port=%(canaryServiceProxyHttpPort)d" % slbports.slb,
-                                 ] + (if slbimages.phaseNum <= 1 then ["--monitorFrequency=1m"] else []),
+                                 ] + (if slbimages.phaseNum <= 3 then ["--monitorFrequency=1m"] else []),
                         volumeMounts: std.prune([
                             slbconfigs.logs_volume_mount,
                         ]),
