@@ -14,6 +14,9 @@ apps:
 
   gid-sso-client-prd:
     - name: prd/prd-sam_cloudatlas
+      hostSubList:
+      - test0shared0-samminionatlasfe1-1-prd.eng.sfdc.net
+    
   # c2c-ca:
   #   # - prd/prd-sam
   #   - name: xrd/xrd-sampool

@@ -81,35 +81,35 @@ system:
     #####################################################################################
     # Service Protection
     #####################################################################################
-    # - name: service-protection
-    #   image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/gid/service-protection:a4e0903
-    #   imagePullPolicy: Always
-    #   env:
-    #   - name: server_use_forward_headers
-    #     value: true
-    #   - name: server_port
-    #     value: 7022
-    #   - name: management_server_port
-    #     value: 15376
-    #   - name: proxy_routes_0_target
-    #     value: http://localhost:8080
-    #   - name: spe_ratelimit_limit
-    #     value: 125
-    #   - name: spe_ratelimit_timeWindow
-    #     value: 5
-    #   - name: spe_whitelist_disable
-    #     value: true
-    #   - name: spe_whitelist_ipsubnets
-    #     value: 204.0.0.0/8
+    - name: service-protection
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/gid/service-protection:a4e0903
+      imagePullPolicy: Always
+      env:
+      - name: server_use_forward_headers
+        value: true
+      - name: server_port
+        value: 7022
+      - name: management_server_port
+        value: 15376
+      - name: proxy_routes_0_target
+        value: http://localhost:8080
+      - name: spe_ratelimit_limit
+        value: 10000
+      - name: spe_ratelimit_timeWindow
+        value: 60
+      - name: spe_whitelist_disable
+        value: true
+      - name: spe_whitelist_ipsubnets
+        value: 204.0.0.0/8
 
-    #   ports:
-    #   - containerPort: 7022
-    #   - containerPort: 15376
-    #   - containerPort: 5701
-    #   livenessProbe:
-    #     httpGet:
-    #       path: /manage/health
-    #       port: 15376
+      ports:
+      - containerPort: 7022
+      - containerPort: 15376
+      - containerPort: 5701
+      livenessProbe:
+        httpGet:
+          path: /manage/health
+          port: 15376
     #####################################################################################
     # Global Identity Login and Runtime Service
     #####################################################################################
@@ -120,7 +120,7 @@ system:
       - name: server_use_forward_headers
         value: true
       - name: server_port
-        value: 7022
+        value: 8080
       - name: management_server_port
         value: 15375
       - name: login_public_url
@@ -153,16 +153,16 @@ system:
       - name: client-cert
         mountPath: /client-certs
       ports:
-      - containerPort: 7022
+      - containerPort: 8080
       - containerPort: 15375
       livenessProbe:
         httpGet:
           path: /manage/health
-          port: 7022
+          port: 8080
       readinessProbe:
         httpGet:
           path: /manage/health
-          port: 7022
+          port: 8080
         initialDelaySeconds: 60
         periodSeconds: 5
         failureThreshold: 120
