@@ -94,9 +94,9 @@ system:
       - name: proxy_routes_0_target
         value: http://localhost:8080
       - name: spe_ratelimit_limit
-        value: 1250
+        value: 10000
       - name: spe_ratelimit_timeWindow
-        value: 5
+        value: 60
 
       ports:
       - containerPort: 7022
@@ -144,6 +144,8 @@ system:
         value: ""
       - name: database_name
         value: gid_mit
+      - name: hazelcast_samFunctionName
+        value: gid-runtime-service-mit
 
       volumeMounts:
       - name: client-cert
@@ -153,8 +155,15 @@ system:
       - containerPort: 15375
       livenessProbe:
         httpGet:
-          path: /manage/info
-          port: 15375
+          path: /manage/health
+          port: 8080
+      readinessProbe:
+        httpGet:
+          path: /manage/health
+          port: 8080
+        initialDelaySeconds: 60
+        periodSeconds: 5
+        failureThreshold: 120
     #####################################################################################
     # Volumes Needed
     #####################################################################################

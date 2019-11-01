@@ -16,14 +16,16 @@ apps:
     - name: prd/prd-sam_cloudatlas
       hostSubList:
       - test0shared0-samminionatlasfe1-1-prd.eng.sfdc.net
-    
-  # c2c-ca:
-  #   # - prd/prd-sam
-  #   - name: xrd/xrd-sampool
+
   gid-runtime-service-staging:
     - name: prd/prd-sam_cloudatlas
+      hostSubList:
+      - test0shared0-samminionatlasfe1-1-prd.eng.sfdc.net
+
   gid-runtime-service-mit:
     - name: prd/prd-sam_cloudatlas
+      hostSubList:
+      - test0shared0-samminionatlasfe1-1-prd.eng.sfdc.net
 
   gid-runtime-service-dev:
     - name: prd/prd-sam_cloudatlas
