@@ -36,3 +36,6 @@ $ git push
 - [GHE Firebom Webhook](https://sfcdapi-firebom-webhook.sfcd.prd-samtwo.prd.slb.sfdc.net:8443/sfcdapi/v1/webhook/firebom/pipelinetemplates/masterdeploy)
 - [GHE Firebom Master Deploy API](https://sfcdapi-firebom-webhook.sfcd.prd-samtwo.prd.slb.sfdc.net:8443/sfcdapi/v1/ghe/firebom/pipelinetemplates/masterdeploy)
 - [Firebom Master Deploy API](https://sfcdapi-firebom-webhook.sfcd.prd-samtwo.prd.slb.sfdc.net:8443/sfcdapi/v1/firebom/pipelinetemplates/masterdeploy)
+
+# References
+- [Certificates for SAM kPods](https://confluence.internal.salesforce.com/display/SAM/Getting+Certificates+for+SAM+kPods)

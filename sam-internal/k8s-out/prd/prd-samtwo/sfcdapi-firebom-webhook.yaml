@@ -335,7 +335,7 @@ items:
                 fieldPath: metadata.labels['name']
           - name: CONFIG_VERSION
             value: "1"
-          image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/sfcdapi-firebom:40
+          image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/sfcdapi-firebom:41
           imagePullPolicy: Always
           name: sfcdapi-firebom-webhook
           ports:
