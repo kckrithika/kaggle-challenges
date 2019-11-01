@@ -9,7 +9,7 @@
       "sequence": 0,
       "icon": "https://istio.io/favicons/android-192x192.png",
       "name": "istio",
-      "releaseNotes": "",
+      "releaseNotes": "fix(injection template): correct owner string format (#18485)\n\n* fix(injection template): correct owner string format\n\nSigned-off-by: Douglas Reid \u003cdouglas-reid@users.noreply.github.com\u003e\n\n* refresh golden files",
       "version": "1.1.0",
       "license": {
         "id": "",

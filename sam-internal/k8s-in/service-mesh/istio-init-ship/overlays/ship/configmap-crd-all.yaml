@@ -1,3 +1,7 @@
+### Mesh Control Plane:
+###  Almost identical to the base file, but:
+###    - `spec.validation` attribute was removed, because our k8s version doesn't seem to understand the unset `additionalProperties`
+###    - `spec.version` is added and it matches `spec.versions[0]`; our k8s version fails if `spec.version` is not provided since it's required.
 ---
 # Source: istio-init/templates/configmap-crd-all.yaml
 apiVersion: v1
