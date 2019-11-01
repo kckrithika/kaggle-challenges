@@ -16,7 +16,7 @@ system:
           maxUnavailable: 1
       containers:
       - name: fawkes-stage-func
-        image: dva/casp/fawkes_strata:jenkins-CASP-fawkes-dev-65-itest
+        image: dva/casp/fawkes_strata:jenkins-CASP-fawkes-dev-63-itest
         env:
         - name: FAWKES_ENV
           value: "stg"
@@ -42,7 +42,7 @@ system:
           name: fawkes-staging-logs-vol
         livenessProbe:
           exec:
-            command: ["/bin/true"]
+            command: ["/opt/stackstorm/sfdc/scripts/liveness_probe.sh"]
       volumes:
       - name: argus
         k4aSecret:
