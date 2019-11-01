@@ -16,7 +16,7 @@ system:
           maxUnavailable: 1
       containers:
       - name: prd-cantor-grpc-server
-        image: dva/casp/cantor_strata:116
+        image: dva/casp/cantor_strata:120
         ports:
         - name: cantor-grpc
           containerPort: 7443
@@ -27,6 +27,8 @@ system:
         env:
         - name: SUBDOMAIN
           value: "eng"
+        - name: SAM_ENVIRONMENT
+          value: "samtwo"
         - name: NODENAME
           valueFrom:
             fieldRef:
