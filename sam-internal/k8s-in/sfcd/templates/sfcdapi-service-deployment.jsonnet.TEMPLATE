@@ -156,17 +156,17 @@ local envConfig = import "configs/firebom_service_conf.jsonnet";
                 },
               ] + if std.length($.serviceConf.port) < 0 then [] else $.serviceConf.port,
               volumeMounts: $.volumeMounts,
-              livenessProbe: {
-                httpGet: {
-                path: '/actuator',
-                port: 'admin-port',
-                },
-                initialDelaySeconds: 30,
-                timeoutSeconds: 30,
-                periodSeconds: 30,
-                successThreshold: 1,
-                failureThreshold: 10,
-              },
+//              livenessProbe: {
+//                httpGet: {
+//                path: '/actuator',
+//                port: 'admin-port',
+//                },
+//                initialDelaySeconds: 30,
+//                timeoutSeconds: 30,
+//                periodSeconds: 30,
+//                successThreshold: 1,
+//                failureThreshold: 10,
+//              },
             } + configs.ipAddressResourceRequest,
           ],
           volumes: [

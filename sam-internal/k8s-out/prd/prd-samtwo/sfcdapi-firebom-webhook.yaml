@@ -286,15 +286,6 @@ items:
             value: "1"
           image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/sfcdapi-firebom:36
           imagePullPolicy: Always
-          livenessProbe:
-            failureThreshold: 10
-            httpGet:
-              path: /actuator
-              port: admin-port
-            initialDelaySeconds: 30
-            periodSeconds: 30
-            successThreshold: 1
-            timeoutSeconds: 30
           name: sfcdapi-firebom-webhook
           ports:
           - containerPort: 8081
