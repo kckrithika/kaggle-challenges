@@ -11,7 +11,7 @@ system:
             - name: DB_INSTANCE_NAME
               value: mist61b224utf-1
             - name: DB_USER
-              value: doc
+              value: sneezy
             - name: DB_STATS_USER
               value: snowwhite
             - name: DB_CONN_NUM
@@ -197,7 +197,7 @@ system:
     - containers:
         - env:
             - name: NONCE
-              value: 5592127231642326369
+              value: 5592127231642326360
             - name: DRY_RUN
               value: 0
             - name: CHATTER_GROUP_NAME
