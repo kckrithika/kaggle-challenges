@@ -5,7 +5,7 @@ if sfcd_feature_flags.is_firebom_webhook_enabled then {
   apiVersion: 'v1',
   kind: 'Namespace',
   metadata: {
-    name: 'sfcdapi-firebom',
+    name: 'sfcd',
     labels: {} + configs.ownerLabel.sfcd,
   },
 } else "SKIP"
