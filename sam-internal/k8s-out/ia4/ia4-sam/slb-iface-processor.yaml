@@ -38,7 +38,7 @@ spec:
         - --metricsEndpoint=ajna0-funnel1-0-ia4.data.sfdc.net:80
         - --log_dir=/host/data/slb/logs/slb-iface-processor
         - --hostsConfigFile=/sfdchosts/hosts.json
-        - --subnet=10.184.12.0/22,
+        - --subnet=10.184.12.0/22,13.109.180.0/23
         image: ops0-artifactrepo1-0-ia4.data.sfdc.net/dva/slb/hyperslb:2269-85d67758318f6a2085309508d290c704e4952929
         name: slb-iface-processor
         securityContext:
