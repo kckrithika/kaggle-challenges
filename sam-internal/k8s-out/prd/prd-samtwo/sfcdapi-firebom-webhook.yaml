@@ -35,6 +35,22 @@ items:
                   "port": 8081
               }
           },
+          "pipeline": {
+              "templates": {
+                  "composition": {
+                      "cleanup-interval": 0,
+                      "default-read-id": "test",
+                      "env-type-hierarchy-map": {
+                          "default": [
+                              "dev",
+                              "test",
+                              "prod"
+                          ]
+                      },
+                      "working-directory": "/tmp/sfcdapifirebom"
+                  }
+              }
+          },
           "scm": {
               "ghe": {
                   "api-url": "https://git.soma.salesforce.com/api/v3/",
@@ -58,8 +74,14 @@ items:
               "firebom": {
                   "template": {
                       "enable-webhook-secret": false,
-                      "fire-bom-regex": "lib/fire/.*/boms/.*json"
+                      "fire-bom-black-list": "",
+                      "fire-bom-white-list": "lib/fire/.*/boms/.*json"
                   }
+              },
+              "ghe": {
+                  "commit-signing": false,
+                  "context-prefix": "",
+                  "webhook-secret-token-validation": false
               },
               "monitoring": {
                   "enable-funnel-publisher": true,
@@ -96,14 +118,43 @@ items:
                   "composed-templates": {
                       "location": "lib/templates",
                       "master-deployment-pipeline-templates": {
-                          "cell_master": "cell_master_01-00.j2",
-                          "env_type_master": "env_type_master_01-00.j2",
-                          "fd_master": "fd_master_01-00.j2",
-                          "fi_master": "fi_master_01-00.j2",
-                          "service_master": "service_master_01-00.j2"
+                          "cell-aggregate": {
+                              "config_json": "templatesrepo/master_config.json",
+                              "pipeline_template": "cell_master_01-00.j2",
+                              "stages_json": "templatesrepo/master_deployment_stages.json",
+                              "vars_json": "templatesrepo/master_deployment_vars.json"
+                          },
+                          "env-type-aggregate": {
+                              "config_json": "templatesrepo/master_config.json",
+                              "pipeline_template": "env_type_master_01-00.j2",
+                              "stages_json": "templatesrepo/master_deployment_stages.json",
+                              "vars_json": "templatesrepo/master_env_type_deployment_vars.json"
+                          },
+                          "fd-aggregate": {
+                              "config_json": "templatesrepo/master_config.json",
+                              "pipeline_template": "fd_master_01-00.j2",
+                              "stages_json": "templatesrepo/master_deployment_stages.json",
+                              "vars_json": "templatesrepo/master_deployment_vars.json"
+                          },
+                          "fi-aggregate": {
+                              "config_json": "templatesrepo/master_config.json",
+                              "pipeline_template": "fi_master_01-00.j2",
+                              "stages_json": "templatesrepo/master_deployment_stages.json",
+                              "vars_json": "templatesrepo/master_deployment_vars.json"
+                          },
+                          "service-master": {
+                              "config_json": "templatesrepo/master_config.json",
+                              "pipeline_template": "service_master_01-00.j2",
+                              "stages_json": "templatesrepo/master_deployment_stages.json",
+                              "vars_json": "templatesrepo/master_service_deployment_vars.json"
+                          }
                       },
                       "master-pipelines-dir": "pipelines/masterpipeline"
                   },
+                  "enable-approve-pr": true,
+                  "enable-pr-creation": true,
+                  "enable-push-to-origin": true,
+                  "enable-self-approve-pr": true,
                   "repo-name": "test-spinnaker-templates",
                   "repo-org": "sfcd"
               }
@@ -284,7 +335,7 @@ items:
                 fieldPath: metadata.labels['name']
           - name: CONFIG_VERSION
             value: "1"
-          image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/sfcdapi-firebom:36
+          image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/sfcdapi-firebom:40
           imagePullPolicy: Always
           name: sfcdapi-firebom-webhook
           ports:
