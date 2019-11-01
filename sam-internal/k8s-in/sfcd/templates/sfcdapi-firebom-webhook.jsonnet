@@ -21,7 +21,7 @@ if sfcd_feature_flags.is_firebom_webhook_enabled then {
     },
     serviceName:: "sfcdapi-firebom-webhook",
     namespace:: "sfcd",
-    role:: "sfcd-api",
+    role:: "sfcd.sfcd-api",
     dockerImage:: images.sfcdapifirebomwebhook,
     portAnnotations:: [
       {
