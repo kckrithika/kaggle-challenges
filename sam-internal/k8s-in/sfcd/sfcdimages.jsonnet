@@ -48,12 +48,12 @@ local configs = import "config.jsonnet";
 
         ### Release Phase 2 - prd-sam (Canary)
         "2": $.per_phase["3"] {
-             sfcdapifirebomwebhook: "36",
+             sfcdapifirebomwebhook: "40",
             },
 
         ### Release Phase 3 - prd-samtwo (production)
         "3": $.per_phase["4"] {
-             sfcdapifirebomwebhook: "36",
+             sfcdapifirebomwebhook: "40",
             },
 
         ### Release Phase 4 - Rest of Prod + Pub + Gia

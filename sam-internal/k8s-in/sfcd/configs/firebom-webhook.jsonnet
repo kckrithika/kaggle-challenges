@@ -5,6 +5,7 @@ local envConfig = import "configs/firebom_service_conf.jsonnet";
 local monitoringConfig = import "configs/firebom-monitoring.jsonnet";
 local gheConfig = import "configs/firebom-ghe.jsonnet";
 local templatesRepoConfig = import "configs/firebom-templates-repo.jsonnet";
+local templatesCompositionConfig = import "configs/firebom-templates-composition.jsonnet";
 
 {
   config(serviceName):: {
@@ -27,12 +28,23 @@ local templatesRepoConfig = import "configs/firebom-templates-repo.jsonnet";
     templates: {
       repo: templatesRepoConfig,
     },
+    pipeline: {
+      templates: {
+        composition: templatesCompositionConfig,
+      }
+    },
     sfcdapi: {
       firebom: {
         template: {
           'enable-webhook-secret': false,
-          'fire-bom-regex': "lib/fire/.*/boms/.*json"
+          'fire-bom-white-list': "lib/fire/.*/boms/.*json",
+          'fire-bom-black-list': "",
         }
+      },
+      ghe: {
+        'commit-signing': false,
+        'webhook-secret-token-validation': false,
+        'context-prefix': "",
       },
       local custom_monitoring_configs = {
         'enable-metrics-logging': false,
