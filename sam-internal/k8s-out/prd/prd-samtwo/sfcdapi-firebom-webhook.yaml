@@ -152,11 +152,11 @@ items:
     namespace: sfcd
   spec:
     ports:
-    - name: sfcdfirebom-http
+    - name: sfcdapifb-http
       port: 8080
       protocol: TCP
       targetPort: 8080
-    - name: sfcdfirebom-https
+    - name: sfcdapifb-https
       port: 8443
       protocol: TCP
       targetPort: 8080
@@ -301,7 +301,7 @@ items:
             name: admin-port
             protocol: TCP
           - containerPort: 8080
-            name: sfcdfirebom-http
+            name: sfcdapifb-http
             protocol: TCP
           volumeMounts:
           - mountPath: /certs
