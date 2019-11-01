@@ -63,7 +63,7 @@ system:
       - name: ReportCollector_ajna_publishEnabled
         value: true
       - name: ReportCollector_app_verticleCounts_ProviderEndpointVerticle
-        value: 1
+        value: 3
       - name: ReportCollector_app_verticleCounts_ConsumerEndpointVerticle
         value: 10
       - name: ReportCollector_cacheBuilder_enabled
