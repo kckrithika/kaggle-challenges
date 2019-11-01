@@ -1,0 +1,26 @@
+# SFCI P2P service
+- lbname: sfci-p2p
+  customlbname: sfci-p2p
+  servers:
+  - sfci-p2p-1.dop.sfdc.net
+  - sfci-p2p-0.dop.sfdc.net
+  ports:
+  - port: 443
+    targetport: 9080
+    lbtype: http
+    tls: true
+    reencrypt: true
+    healthport: 9080
+
+- lbname: sfci-ai
+  customlbname: sfci-ai
+  servers:
+  - sfci-ai-1.dop.sfdc.net
+  - sfci-ai-0.dop.sfdc.net
+  ports:
+  - port: 443
+    targetport: 9080
+    lbtype: http
+    tls: true
+    reencrypt: true
+    healthport: 9080
