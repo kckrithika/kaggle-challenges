@@ -124,11 +124,11 @@
             },
 
         prefixLimit:
-            set_value_to_all_in_list(60, $.testEstates)
-            + set_value_to_all_in_list(200, $.prodEstates)
+            set_value_to_all_in_list(1000, $.testEstates)
+            + set_value_to_all_in_list(1000, $.prodEstates)
             + {
                 "prd-sam": 1000,
-                "prd-samtwo": 500,
+                "prd-samtwo": 1000,
                 "lo2-sam": 1000,
                 "lo3-sam": 1000,
                 "ia2-sam": 1000,

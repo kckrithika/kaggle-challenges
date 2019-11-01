@@ -51,7 +51,7 @@ spec:
         - --client.serverInterface=lo
         - --restrictedSubnets=185.79.142.0/23,10.214.112.103/32,10.214.112.107/32,10.214.112.124/32,10.214.112.129/32,10.214.112.131/32,10.214.112.132/32,10.214.112.135/32,10.214.112.14/32
         - --maxDeleteEntries=1000
-        - --vipLimit=198
+        - --vipLimit=998
         - --client.socketDir=/host/data/slb/config/slb-dns-register
         - --client.dialSocket=true
         env:
@@ -285,7 +285,7 @@ spec:
         - --client.dialSocket=true
         - --commonoptions.metricsendpoint=mandm-funnel-par1.data.sfdc.net:8080
         - --commonoptions.hostname=$(NODE_NAME)
-        - --deletelimits.maxDeleteLimit=20
+        - --deletelimits.maxDeleteLimit=1000
         - --keyfile=/cert3/client/keys/client-key.pem
         - --certfile=/cert3/client/certificates/client.pem
         - --cafile=/cert3/ca/cabundle.pem
