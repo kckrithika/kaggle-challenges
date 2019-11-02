@@ -13,7 +13,7 @@ system:
           maxSurge: 0
           maxUnavailable: 1
       containers:
-      - name: prod-cantor-grpc-server-frf
+      - name: prod-cantor-grpc-server-drop-1-2
         image: dva/casp/cantor_strata:116
         ports:
         - name: cantor-grpc
@@ -27,7 +27,7 @@ system:
         - name: SUBDOMAIN
           value: "ops"
         - name: MYSQL_SHARDS
-          value: "shared0-samminionwarden1-1-frf.ops.sfdc.net:7015,shared0-samminionwarden1-2-frf.ops.sfdc.net:7015"
+          value: "shared0-samminionwarden1-1-$KINGDOM.ops.sfdc.net:7015,shared0-samminionwarden2-1-$KINGDOM.ops.sfdc.net:7015"
         - name: NODENAME
           valueFrom:
             fieldRef:

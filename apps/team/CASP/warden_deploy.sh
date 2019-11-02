@@ -40,8 +40,9 @@ cantor_prd() {
 
 cantor_prod() {
     perl -i -pe"s/image: dva\/casp\/cantor_strata:[0-9]*/image: dva\/casp\/cantor_strata:$NEWVERSION/g" prod-cantor-grpc-server/manifest.yaml
-    perl -i -pe"s/image: dva\/casp\/cantor_strata:[0-9]*/image: dva\/casp\/cantor_strata:$NEWVERSION/g" prod-cantor-grpc-server-frf/manifest.yaml
     perl -i -pe"s/image: dva\/casp\/cantor_strata:[0-9]*/image: dva\/casp\/cantor_strata:$NEWVERSION/g" prod-cantor-grpc-server-drop-1-1/manifest.yaml
+    perl -i -pe"s/image: dva\/casp\/cantor_strata:[0-9]*/image: dva\/casp\/cantor_strata:$NEWVERSION/g" prod-cantor-grpc-server-drop-1-2/manifest.yaml
+    perl -i -pe"s/image: dva\/casp\/cantor_strata:[0-9]*/image: dva\/casp\/cantor_strata:$NEWVERSION/g" prod-cantor-grpc-server-drop-2-1/manifest.yaml
     perl -i -pe"s/image: dva\/casp\/cantor_strata:[0-9]*/image: dva\/casp\/cantor_strata:$NEWVERSION/g" prod-cantor-grpc-server-alternate/manifest.yaml
 }
 
@@ -71,7 +72,8 @@ mysql_prd() {
 mysql_prod() {
     perl -i -pe"s/image: dva\/casp\/mysql_strata:[0-9]*/image: dva\/casp\/mysql_strata:$NEWVERSION/g" prod-mysql-shard-a/manifest.yaml
     perl -i -pe"s/image: dva\/casp\/mysql_strata:[0-9]*/image: dva\/casp\/mysql_strata:$NEWVERSION/g" prod-mysql-shard-a-drop-1-1/manifest.yaml
-    perl -i -pe"s/image: dva\/casp\/mysql_strata:[0-9]*/image: dva\/casp\/mysql_strata:$NEWVERSION/g" prod-mysql-shard-a-frf/manifest.yaml
+    perl -i -pe"s/image: dva\/casp\/mysql_strata:[0-9]*/image: dva\/casp\/mysql_strata:$NEWVERSION/g" prod-mysql-shard-a-drop-1-2/manifest.yaml
+    perl -i -pe"s/image: dva\/casp\/mysql_strata:[0-9]*/image: dva\/casp\/mysql_strata:$NEWVERSION/g" prod-mysql-shard-a-drop-2-1/manifest.yaml
     perl -i -pe"s/image: dva\/casp\/mysql_strata:[0-9]*/image: dva\/casp\/mysql_strata:$NEWVERSION/g" prod-mysql-shard-a-fast/manifest.yaml
 }
 
