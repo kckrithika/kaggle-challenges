@@ -1,11 +1,17 @@
 This folder contains spikes to testing out functionality on SAM
 
 # prd-cron-test
-This is a spike for standing up Scheduler Service using a test SDB container on SAM. There were 2 attempts for dockerized SDB:
+This is a spike for standing up Scheduler Service using an SDB container on SAM. There were 2 attempts for dockerized SDB:
 1. Use private Docker image of one of the SDB architects. Like DBaaS, it tries to use Zookeeper to bring up an HA version of SDB.
    1. Though postgres came up fine, I couldn't get the database to come up.
    1. I didn't follow up further on [Chatter](https://gus.lightning.force.com/lightning/r/0D5B000000x8zMXKAY/view).
 1. Next attempt was to use `sdbgo` container with few tweaks. With this I was able to successfully connect to `sdbmain` database
+
+## Topology
+1. Scheduler service (`cronsvc`) listens on gRPC port 7012 (behind Sherpa)
+1. Scheduler UI and demo HTTP endpoint (`crondemo`) are accessed via HTTP port 7022
+1. Executor service sidecar (`croncar`) listens on gRPC port `localhost:17020` for calls from demo client (`crondemo`)
+   1. `crondemo` also has an HTTP endpoint at `localhost:7022`
 
 ## One-time image creation
 1. A base-image of official `sdbgo:v1` was used and some tweaks were made
@@ -24,14 +30,14 @@ This is a spike for standing up Scheduler Service using a test SDB container on 
 1. Try to locate `psql` - command-line client for SDB. If you cannot find it under `~/blt`, try from CASAM container:
    1. eg. `docker run --network=host --entrypoint /bin/bash -it ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/coreonsam/casam:release_222-patch_18976144`
    1. `cd ~/salesforce/db/sayonaradb/binaries_centos/bin`
-1. `./psql -h cs66-sdb-lb.user-vijay-kota.prd-sam.prd.slb.sfdc.net -p 1521 -d sdbmain -U build`
+1. Check SDB: `./psql -h cs66-sdb-lb.user-vijay-kota.prd-sam.prd.slb.sfdc.net -p 1521 -d sdbmain -U build`
    1. This will take you to prompt where you can run commands
    1. Use `\q` to exit from the shell
-1. Scheduler service (`cronsvc`) listens on gRPC port 7012 (behind Sherpa)
-1. Scheduler UI and demo HTTP endpoint (`crondemo`) are accessed via `api/v1/index` and `api/v1/demo`
-    1. Create a job using http://cs66-demo-lb.user-vijay-kota.prd-sam.prd.slb.sfdc.net:7022/api/v1/demo_add
-1. Executor service (`croncar`) listens on gRPC port 17020 for calls from demo client
-    1. Force an `acquireTriggers()` RPC using http://cs66-exec-lb.user-vijay-kota.prd-sam.prd.slb.sfdc.net:7022/api/v1/demo_acquire
+1. Create a job using http://cs66-demo-lb.user-vijay-kota.prd-sam.prd.slb.sfdc.net:7022/api/v1/demo_add
+   1. Uses pre-configured environment variables for job data
+1. Force an `acquireTriggers()` RPC from demo client using http://cs66-exec-lb.user-vijay-kota.prd-sam.prd.slb.sfdc.net:7022/api/v1/demo_acquire
+   1. Check `crondemo` container logs at http://dashboard-prd-sam.csc-sam.prd-sam.prd.slb.sfdc.net/#!/pod?namespace=user-vijay-kota
+   1. Log lines regarding HTTP call should be seen 
 
 # prd-qpid-test and prd-caas-test
 This spike is related to [W-6323983](https://gus.lightning.force.com/a07B0000007IlQzIAK). The attempt here is to test:
