@@ -305,7 +305,7 @@ items:
           - java
           - -jar
           - /sfcdapi-firebom-svc.jar
-          - --spring.profiles.active=prd-samtwo
+          - --spring.profiles.active=sfcd-api
           - --spring.config.location=/etc/sfcdapi-firebom-webhook/config/
           env:
           - name: MY_NODE_NAME
