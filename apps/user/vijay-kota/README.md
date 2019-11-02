@@ -11,7 +11,7 @@ This is a spike for standing up Scheduler Service using an SDB container on SAM.
 1. Scheduler service (`cronsvc`) listens on gRPC port 7012 (behind Sherpa)
 1. Scheduler UI and demo HTTP endpoint (`crondemo`) are accessed via HTTP port 7022
 1. Executor service sidecar (`croncar`) listens on gRPC port `localhost:17020` for calls from demo client (`crondemo`)
-   1. `crondemo` also has an HTTP endpoint at `localhost:7022`
+   1. `crondemo` also has a debug HTTP endpoint at `localhost:7022`
 
 ## One-time image creation
 1. A base-image of official `sdbgo:v1` was used and some tweaks were made
@@ -33,11 +33,13 @@ This is a spike for standing up Scheduler Service using an SDB container on SAM.
 1. Check SDB: `./psql -h cs66-sdb-lb.user-vijay-kota.prd-sam.prd.slb.sfdc.net -p 1521 -d sdbmain -U build`
    1. This will take you to prompt where you can run commands
    1. Use `\q` to exit from the shell
-1. Create a job using http://cs66-demo-lb.user-vijay-kota.prd-sam.prd.slb.sfdc.net:7022/api/v1/demo_add
-   1. Uses pre-configured environment variables for job data
-1. Force an `acquireTriggers()` RPC from demo client using http://cs66-exec-lb.user-vijay-kota.prd-sam.prd.slb.sfdc.net:7022/api/v1/demo_acquire
+1. Create a job using "Add Job" from [UI](http://cs66-demo-lb.user-vijay-kota.prd-sam.prd.slb.sfdc.net:7022/api/v1/index)
+   1. Can also use pre-configured environment variables by calling http://cs66-demo-lb.user-vijay-kota.prd-sam.prd.slb.sfdc.net:7022/api/v1/demo_add
+1. Force an `acquireTriggers()` RPC from [demo client](http://cs66-exec-lb.user-vijay-kota.prd-sam.prd.slb.sfdc.net:7022/api/v1/demo_acquire)
+   1. `while [ true ]; do curl http://cs66-exec-lb.user-vijay-kota.prd-sam.prd.slb.sfdc.net:7022/api/v1/demo_acquire;sleep 1;done`
+   1. Check "Actions" --> "Demo Triggers" from the UI
    1. Check `crondemo` container logs at http://dashboard-prd-sam.csc-sam.prd-sam.prd.slb.sfdc.net/#!/pod?namespace=user-vijay-kota
-   1. Log lines regarding HTTP call should be seen 
+   1. Log lines regarding triggers and HTTP calls should be seen
 
 # prd-qpid-test and prd-caas-test
 This spike is related to [W-6323983](https://gus.lightning.force.com/a07B0000007IlQzIAK). The attempt here is to test:
@@ -68,7 +70,7 @@ Modify either of the manifest.yaml files and __generate__ the other one. For eg:
 
 ## Conclusion
 1. Validation done using PRD switchboard (IP can be obtained from [switchboard service](http://dashboard-prd-sam.csc-sam.prd-sam.prd.slb.sfdc.net/#!/service/service-mesh/switchboard?namespace=service-mesh) in `service-mesh` namespace)
-   * Cluster detection failed with `duplicate cluster`. From http://10.240.128.178:15370/manage/metrics 
+   * Cluster detection failed with `duplicate cluster`. From http://10.240.128.178:15370/manage/metrics
      ```
      "switchboard.duplicateClusters.mq-cluster9-cs55-2050.qpid.2050": 1,
      "switchboard.duplicateClusters.mq-cluster9-cs55-2053.qpid.2053": 2,
