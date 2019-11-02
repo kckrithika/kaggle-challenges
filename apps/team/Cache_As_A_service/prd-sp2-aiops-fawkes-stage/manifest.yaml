@@ -42,7 +42,7 @@ system:
           name: fawkes-staging-logs-vol
         livenessProbe:
           exec:
-            command: ["/opt/stackstorm/sfdc/scripts/liveness_probe.sh"]
+            command: ["/bin/true"]
       volumes:
       - name: argus
         k4aSecret:
