@@ -41,12 +41,15 @@ local configs = import "config.jsonnet";
       metrics: {
         enabled: true,
       },
+      env: {
+        enabled: true,
+      }
     },
     endpoints: {
       'enabled-by-default': 'false',
       web: {
         exposure: {
-          include: 'health, metrics',
+          include: 'health, metrics, env',
         },
       },
     },

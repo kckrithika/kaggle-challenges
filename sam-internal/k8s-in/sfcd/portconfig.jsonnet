@@ -12,7 +12,7 @@ local sfcd_feature_flags = import "sfcd_feature_flags.jsonnet";
   sfcdapi:
     {
       firebom_http: 8080,
-      firebom_https: 8443,
+      firebom_https: 443,
       firebom_mgmt: 8081,
       firebom_http_nodeport: 32080,
       firebom_https_nodeport: 32443,

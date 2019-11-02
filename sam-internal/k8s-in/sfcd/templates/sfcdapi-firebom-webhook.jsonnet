@@ -43,13 +43,6 @@ if sfcd_feature_flags.is_firebom_webhook_enabled then {
     ],
     portConfigs:: [
       {
-        name: 'sfcdapifb-http',
-        protocol: 'TCP',
-        port: portConfig.sfcdapi.firebom_http,
-        targetPort: portConfig.sfcdapi.firebom_http,
-        [if !sfcd_feature_flags.is_slb_enabled then "nodePort"]: portConfig.sfcdapi.firebom_http_nodeport,
-      },
-      {
         name: 'sfcdapifb-https',
         protocol: 'TCP',
         port: portConfig.sfcdapi.firebom_https,

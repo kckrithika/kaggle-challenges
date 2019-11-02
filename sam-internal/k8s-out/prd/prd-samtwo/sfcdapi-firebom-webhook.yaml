@@ -15,6 +15,9 @@ items:
           },
           "management": {
               "endpoint": {
+                  "env": {
+                      "enabled": true
+                  },
                   "health": {
                       "enabled": true,
                       "show-details": "always"
@@ -27,7 +30,7 @@ items:
                   "enabled-by-default": "false",
                   "web": {
                       "exposure": {
-                          "include": "health, metrics"
+                          "include": "health, metrics, env"
                       }
                   }
               },
@@ -189,7 +192,7 @@ items:
           },
           {
             "lbtype": "http",
-            "port": 8443,
+            "port": 443,
             "reencrypt": false,
             "sticky": 0,
             "targetPort": 8080,
@@ -203,12 +206,8 @@ items:
     namespace: sfcd
   spec:
     ports:
-    - name: sfcdapifb-http
-      port: 8080
-      protocol: TCP
-      targetPort: 8080
     - name: sfcdapifb-https
-      port: 8443
+      port: 443
       protocol: TCP
       targetPort: 8080
     - name: admin-port
@@ -334,7 +333,7 @@ items:
                 apiVersion: v1
                 fieldPath: metadata.labels['name']
           - name: CONFIG_VERSION
-            value: "3"
+            value: "4"
           image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/sfcdapi-firebom:48
           imagePullPolicy: Always
           livenessProbe:
