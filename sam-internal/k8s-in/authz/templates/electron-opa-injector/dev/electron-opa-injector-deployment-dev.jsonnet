@@ -306,7 +306,7 @@ configs.deploymentBase("authz-injector") {
             ],
             volumeMounts+: [
               {
-                name: "webhook-config",
+                name: "electron-opa-injector-config",
                 mountPath: "/config",
               },
               {
