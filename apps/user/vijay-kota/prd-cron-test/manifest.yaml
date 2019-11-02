@@ -41,7 +41,7 @@ system:
         pod: cs66
       containers:
         - name: crondemo
-          image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/vijay-kota/crondemo:01Nov19
+          image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/vijay-kota/crondemo:02Nov19
           ports:
             - name: http-port
               containerPort: 7022
@@ -53,7 +53,7 @@ system:
             - name: DEMO_SVC
               value: cs66-cron-lb.user-vijay-kota.prd-sam.prd.slb.sfdc.net:7012
             - name: DEMO_DATA
-              value: crondemo_10,http://cs66-demo-lb.user-vijay-kota.prd-sam.prd.slb.sfdc.net:7022/api/v1/demo,*/10 * * * * ?,myorg
+              value: crondemo_20,http://cs66-demo-lb.user-vijay-kota.prd-sam.prd.slb.sfdc.net:7022/api/v1/demo?q=TWENTY,*/20 * * * * ?,myorg
           #esources:
           # limits: { cpu: "1", memory: "1Gi" }
           # requests: { cpu: "1", memory: "1Gi" }
@@ -116,7 +116,7 @@ system:
               name: logvol
 
         - name: crondemo
-          image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/vijay-kota/crondemo:01Nov19
+          image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/vijay-kota/crondemo:02Nov19
           ports:
             - name: http-port
               containerPort: 7022
