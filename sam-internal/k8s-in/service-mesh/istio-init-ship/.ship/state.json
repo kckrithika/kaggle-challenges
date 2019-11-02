@@ -9,7 +9,7 @@
       "sequence": 0,
       "icon": "https://istio.io/favicons/android-192x192.png",
       "name": "istio-init",
-      "releaseNotes": "",
+      "releaseNotes": "Fix CRD jobs to have DNS-compatible names (#18483)\n\nThe name field of CRD jobs comes from a truncated .Value.global.tag.\nThis could end in a hyphen, which is not a legal k8s name.\nTrim any hyphen from the end of the name.",
       "version": "1.1.0",
       "license": {
         "id": "",

@@ -1,4 +1,13 @@
+### Mesh Control Plane:
+###  Almost identical to the base file, but:
+###    - `spec.version` is added and it matches `spec.versions[0]`; our k8s version fails if `spec.version` is not provided since it's required.
+---
+# Source: istio-init/templates/configmap-crd-mixer.yaml
 apiVersion: v1
+kind: ConfigMap
+metadata:
+  namespace: mesh-control-plane
+  name: istio-crd-mixer
 data:
   crd-mixer.yaml: |-
     kind: CustomResourceDefinition
@@ -125,8 +134,4 @@ data:
           served: true
           storage: true
     ---
-kind: ConfigMap
-metadata:
-  creationTimestamp: null
-  name: istio-crd-mixer
-  namespace: mesh-control-plane
+    
