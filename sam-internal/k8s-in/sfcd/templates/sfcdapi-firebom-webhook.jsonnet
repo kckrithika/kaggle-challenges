@@ -65,7 +65,7 @@ if sfcd_feature_flags.is_firebom_webhook_enabled then {
       },
     ],
     replicas:: 1,
-    command:: ["java", "-jar", "/sfcdapi-firebom-svc.jar", "--spring.profiles.active=" + configs.estate, "--spring.config.location=/etc/sfcdapi-firebom-webhook/config/"],
+    command:: ["java", "-jar", "/sfcdapi-firebom-svc.jar", "--spring.profiles.active=sfcd-api", "--spring.config.location=/etc/sfcdapi-firebom-webhook/config/"],
     env:: super.commonEnv + [
       {
         name: "CONFIG_VERSION",
