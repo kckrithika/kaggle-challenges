@@ -306,7 +306,7 @@ items:
           - -jar
           - /sfcdapi-firebom-svc.jar
           - --spring.profiles.active=prd-samtwo
-          - --spring.config.location=/etc/firebom/config/
+          - --spring.config.location=/etc/sfcdapi-firebom-webhook/config/
           env:
           - name: MY_NODE_NAME
             valueFrom:
@@ -334,9 +334,18 @@ items:
                 apiVersion: v1
                 fieldPath: metadata.labels['name']
           - name: CONFIG_VERSION
-            value: "1"
+            value: "2"
           image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/sfcdapi-firebom:48
           imagePullPolicy: Always
+          livenessProbe:
+            failureThreshold: 10
+            httpGet:
+              path: /actuator
+              port: admin-port
+            initialDelaySeconds: 30
+            periodSeconds: 30
+            successThreshold: 1
+            timeoutSeconds: 30
           name: sfcdapi-firebom-webhook
           ports:
           - containerPort: 8081
