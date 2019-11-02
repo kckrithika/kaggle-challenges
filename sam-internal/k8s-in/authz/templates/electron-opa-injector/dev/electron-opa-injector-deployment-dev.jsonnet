@@ -16,9 +16,7 @@ configs.deploymentBase("authz-injector") {
     namespace: versions.injectorNamespace,
     labels: {
       app: "electron-opa-injector",
-    } +
-    // samlabelfilter.json requires this label to be present on GCP deployments
-    if utils.is_pcn(configs.kingdom) then configs.pcnEnableLabel else {},
+    },
   },
   spec+: {
     replicas: 1,
@@ -78,12 +76,13 @@ configs.deploymentBase("authz-injector") {
         containers: [
           {
             name: "injector",
-            image: "ops0-artifactrepo2-0-prd.data.sfdc.net/dva/mutating-webhook:120-198f5792279c9a1ca1e490c0281590bb1efd275c",
+            image: "ops0-artifactrepo2-0-prd.data.sfdc.net/dva/mutating-webhook:125-ecf4466e49ca0d09bb486ea9e53b58d7a0e8c3a3",
             imagePullPolicy: "IfNotPresent",
             terminationMessagePolicy: "FallbackToLogsOnError",
             args: [
               "/mutating-webhook/mutating-webhook",
               "--port=17442",
+              "--http-port=17773",
               "--sidecar-config-file=/config/sidecarconfig.yaml",
               "--mutation-config-file=/config/mutationconfig.yaml",
               "--cert-file-path=/server-certs/server/certificates/server.pem",
@@ -183,30 +182,50 @@ configs.deploymentBase("authz-injector") {
             ],
             livenessProbe: {
               httpGet: {
-                scheme: "HTTPS",
+                scheme: "HTTP",
                 path: "/healthz",
-                port: 17442,
+                port: 17773,
               },
               initialDelaySeconds: 2,
               periodSeconds: 10,
             },
             readinessProbe: {
               httpGet: {
-                scheme: "HTTPS",
+                scheme: "HTTP",
                 path: "/healthz",
-                port: 17442,
+                port: 17773,
               },
               initialDelaySeconds: 5,
               periodSeconds: 10,
             },
             resources: {},
           } + configs.ipAddressResourceRequest,
+          {
+            name: "prom-to-argus",
+            image: versions.opencensusImage,
+            command: [
+              "ocagent",
+              "--config=/config/opencensus.yaml"
+            ],
+            volumeMounts+: [
+              {
+                name: "opencensus-config",
+                mountPath: "/config",
+              },
+            ],
+            livenessProbe: {
+              httpGet: {
+                path: "/debug/rpcz",
+                port: 55679
+              },
+            },
+          },
           maddogRefresher.madkubRefresherContainer,
         ],
         # In PRD only kubeapi (master) nodes get cluster-admin permission
         # In production, SAM control estate nodes get cluster-admin permission
         nodeSelector: {} +
-          if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" || configs.estate == "prd-sam" then {
+          if configs.kingdom == "prd" then {
               master: "true",
           } else {
               pool: configs.estate,
@@ -231,23 +250,71 @@ configs.deploymentBase("authz-injector") {
             name: "tokens",
           },
           {
+            emptyDir: {},
+            name: "opencensus-config",
+          },
+          {
             configMap: {
               name: "electron-opa-injector-config",
             },
             name: "electron-opa-injector-config",
           },
-        ] +
-        if utils.is_pcn(configs.kingdom) then
-        [
-          {
-            hostPath: {
-              path: "/etc/pki_service",
-            },
-            name: "maddog-certs",
-          },
-        ]
-        else [],
+        ],
         initContainers+: [
+          {
+            name: "prom-to-argus-init",
+            image: versions.configInitImage,
+            imagePullPolicy: "IfNotPresent",
+            env: [
+              {
+                name: "KINGDOM",
+                value: configs.kingdom,
+              },
+              {
+                name: "ESTATE",
+                value: configs.estate,
+              },
+              {
+                name: "FUNCTION_INSTANCE_NAME",
+                valueFrom:
+                {
+                  fieldRef: { fieldPath: "metadata.name", apiVersion: "v1" },
+                },
+              },
+              {
+                name: "NAMESPACE",
+                valueFrom:
+                {
+                  fieldRef: { fieldPath: "metadata.namespace", apiVersion: "v1" },
+                },
+              },
+              {
+                name: "SFDC_METRICS_SERVICE_HOST",
+                value: funnelEndpointHost,
+              },
+              {
+                name: "SFDC_METRICS_SERVICE_PORT",
+                value: funnelEndpointPort,
+              },
+            ],
+            command: [
+              "/app/config_gen.rb",
+              "-t",
+              "/config/opencensus.yaml.erb",
+              "-o",
+              "/config2/opencensus.yaml",
+            ],
+            volumeMounts+: [
+              {
+                name: "webhook-config",
+                mountPath: "/config",
+              },
+              {
+                name: "opencensus-config",
+                mountPath: "/config2",
+              },
+            ],
+          },
           maddogInit.madkubInitContainer,
           maddogPermissions.permissionSetterInitContainer,
         ],

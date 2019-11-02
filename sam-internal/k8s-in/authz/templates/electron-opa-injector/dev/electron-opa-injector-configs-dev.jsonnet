@@ -17,10 +17,40 @@ if electron_opa_utils.is_electron_opa_injector_dev_cluster(configs.estate) then
     if utils.is_pcn(configs.kingdom) then configs.pcnEnableLabel else {},
   },
   data: {
+"opencensus.yaml.erb":
+"receivers:
+  prometheus:
+    config:
+      global:
+        scrape_interval: 60s
+        scrape_timeout: 8s
+      scrape_configs:
+        - job_name: kubernetes-pods-0
+          metrics_path: /metrics
+          static_configs:
+            - targets: ['localhost:17773']
+              labels:
+                _service: kubernetes-pods
+                k8s_container_name: xauthz-opa-webhook
+          metric_relabel_configs: []
+exporters:
+  funnel:
+    host: <%= ENV['SFDC_METRICS_SERVICE_HOST'] %>
+    port: <%= ENV['SFDC_METRICS_SERVICE_PORT'] %>
+    enable_mtls: false
+    gzip: true
+    labels:
+      k8s_pod_name: <%= ENV['FUNCTION_INSTANCE_NAME'] %>
+      k8s_namespace: <%= ENV['NAMESPACE'] %>
+      k8s_cluster: <%= ENV['ESTATE'] %>
+      device: <%= ENV['FUNCTION_INSTANCE_NAME'] %>
+      environment: <%= ENV['KINGDOM'] %>
+zpages:
+  port: 55679",
 "sidecarconfig.yaml":
 'initContainers:
   - name: authz-config-init
-    image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/collection-erb-config-gen:19
+    image: ' + versions.configInitImage + '
     imagePullPolicy: IfNotPresent
     command: ["bash", "-c"]
     env:
@@ -74,7 +104,7 @@ if electron_opa_utils.is_electron_opa_injector_dev_cluster(configs.estate) then
       - name: tls-client-cert
         mountPath: /client-certs
   - name: authz-config-init-sherpa
-    image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/collection-erb-config-gen:19
+    image: ' + versions.configInitImage + '
     imagePullPolicy: IfNotPresent
     command: ["bash", "-c"]
     env:
