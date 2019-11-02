@@ -36,7 +36,7 @@ system:
             fieldRef:
               fieldPath: spec.nodeName
         - name: MYSQL_SHARDS
-          value: "shared0-samminionwarden1-1-frf.ops.sfdc.net:7015,shared0-samminionwarden1-2-frf.ops.sfdc.net:7015"
+          value: "shared0-samminionwarden1-1-$KINGDOM.ops.sfdc.net:7015,shared0-samminionwarden1-2-$KINGDOM.ops.sfdc.net:7015"
       volumes:
       - name: mysql-data-vol
         hostPath:
