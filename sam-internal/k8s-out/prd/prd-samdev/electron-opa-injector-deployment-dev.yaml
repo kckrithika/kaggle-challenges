@@ -219,7 +219,7 @@ spec:
         name: prom-to-argus-init
         volumeMounts:
         - mountPath: /config
-          name: webhook-config
+          name: electron-opa-injector-config
         - mountPath: /config2
           name: opencensus-config
       - args:
