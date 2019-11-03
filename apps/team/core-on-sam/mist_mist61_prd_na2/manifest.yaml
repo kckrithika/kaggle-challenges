@@ -64,8 +64,6 @@ system:
               value: B
             - name: ZDT
               value: true
-            - name: CASAM_DEPLOYMENT_ID
-              value: 12345
             - name: CASAM_HOST_NAME
               valueFrom:
                 fieldRef:
@@ -166,7 +164,7 @@ system:
       name: na2-mist61app-prd
       labels:
         settings-path: mist.mist61.prd.na2.app
-        casam-deployment-id: na2-green
+        casam-deployment-id: na2-blue
       progressDeadlineSeconds: 300
       strategy:
         rollingUpdate:
@@ -197,7 +195,7 @@ system:
     - containers:
         - env:
             - name: NONCE
-              value: 5592127231642326360
+              value: 5592127231642329999
             - name: DRY_RUN
               value: 0
             - name: CHATTER_GROUP_NAME
