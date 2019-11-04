@@ -1492,7 +1492,7 @@
       value: "SLB"
 
 
-- lbname: org-cce2e-cs46
+- lbname: org-orgcerttest-cs46
   iptype: public_active
   servers:
     - cs46-app1-2-ia2.ops.sfdc.net
@@ -1515,8 +1515,8 @@
     healthpath: /ping.jsp?allBusy
     sticky: 86400
     tls: true
-    tlscertificate: secret_service:BofA-Stmfa-VIP-Certs:ia2.cce2e.my-salesforce.com.crt
-    tlskey: kms:1:2:B79A5F5D32C69C340DC39183EA315A164E1E7B3D76B680258E4EED91817177AE:14499d00-b8da-4c91-9ecf-469d69d9417f
+    tlscertificate: secret_service:BofA-Stmfa-VIP-Certs:ia2.orgcerttest.my-salesforce.com.crt
+    tlskey: kms:1:2:B79A5F5D32C69C340DC39183EA315A164E1E7B3D76B680258E4EED91817177AE:763b5b2d-b03c-4a83-ba1a-17cc38714c02
     addheaders:
     - name: "X-Salesforce-VIP"
       value: "SLB"
@@ -1542,8 +1542,8 @@
     sticky: 86400
     tls: true
     mtls: true
-    tlscertificate: secret_service:BofA-Stmfa-VIP-Certs:ia2.cce2e.my-salesforce.com.crt
-    tlskey: kms:1:2:B79A5F5D32C69C340DC39183EA315A164E1E7B3D76B680258E4EED91817177AE:14499d00-b8da-4c91-9ecf-469d69d9417f
+    tlscertificate: secret_service:BofA-Stmfa-VIP-Certs:ia2.orgcerttest.my-salesforce.com.crt
+    tlskey: kms:1:2:B79A5F5D32C69C340DC39183EA315A164E1E7B3D76B680258E4EED91817177AE:763b5b2d-b03c-4a83-ba1a-17cc38714c02
     addheaders:
     - name: "X-Salesforce-VIP"
       value: "SLB"
@@ -1575,7 +1575,7 @@
       value: "SLB"
 
 
-- lbname: org-cce2e-cs49
+- lbname: org-orgcerttest-cs49
   iptype: public_active
   servers:
     - cs49-app1-5-ia2.ops.sfdc.net
@@ -1598,8 +1598,8 @@
     healthpath: /ping.jsp?allBusy
     sticky: 86400
     tls: true
-    tlscertificate: secret_service:BofA-Stmfa-VIP-Certs:ia2.cce2e.my-salesforce.com.crt
-    tlskey: kms:1:2:B79A5F5D32C69C340DC39183EA315A164E1E7B3D76B680258E4EED91817177AE:14499d00-b8da-4c91-9ecf-469d69d9417f
+    tlscertificate: secret_service:BofA-Stmfa-VIP-Certs:ia2.orgcerttest.my-salesforce.com.crt
+    tlskey: kms:1:2:B79A5F5D32C69C340DC39183EA315A164E1E7B3D76B680258E4EED91817177AE:763b5b2d-b03c-4a83-ba1a-17cc38714c02
     addheaders:
     - name: "X-Salesforce-VIP"
       value: "SLB"
@@ -1625,8 +1625,8 @@
     sticky: 86400
     tls: true
     mtls: true
-    tlscertificate: secret_service:BofA-Stmfa-VIP-Certs:ia2.cce2e.my-salesforce.com.crt
-    tlskey: kms:1:2:B79A5F5D32C69C340DC39183EA315A164E1E7B3D76B680258E4EED91817177AE:14499d00-b8da-4c91-9ecf-469d69d9417f
+    tlscertificate: secret_service:BofA-Stmfa-VIP-Certs:ia2.orgcerttest.my-salesforce.com.crt
+    tlskey: kms:1:2:B79A5F5D32C69C340DC39183EA315A164E1E7B3D76B680258E4EED91817177AE:763b5b2d-b03c-4a83-ba1a-17cc38714c02
     addheaders:
     - name: "X-Salesforce-VIP"
       value: "SLB"
