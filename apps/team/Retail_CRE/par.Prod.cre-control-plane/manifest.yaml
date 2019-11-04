@@ -40,9 +40,6 @@ system:
               value: prod
             - name: HBASE_DATACENTER
               value: par
-              ## FLOWSNAKE
-            - name: MAX_FLOWSNAKE_ENVIRONMENTS
-              value: 25
             ####################################################################################################
             ####################################### INGEST environment variables ###############################
             ####################################################################################################
@@ -50,20 +47,6 @@ system:
               value: cre-engine
             - name: INGEST_K4A_VAULT
               value: cre-engine-eu-1
-            - name: INGEST_JAVA_OPTIONS
-              value: "-Dfile.encoding=UTF-8 -Djars=/opt/cre/cre-engine.jar -XX:+UseParallelGC -verbose:jni"
-            - name: INGEST_DRIVER_CORES
-              value: 2
-            - name: INGEST_DRIVER_MEMORY
-              value: 8g
-            - name: INGEST_DRIVER_MEMORY_OVERHEAD
-              value: 4g
-            - name: INGEST_EXECUTOR_MEMORY
-              value: 36g
-            - name: INGEST_EXECUTOR_MEMORY_OVERHEAD
-              value: 4g
-            - name: INGEST_EXECUTOR_CORE_REQUESTS
-              value: 10
             - name: BUCKET_INGEST_MANIFEST_OVERRIDE_ENABLED
               value: true
             ####################################################################################################
