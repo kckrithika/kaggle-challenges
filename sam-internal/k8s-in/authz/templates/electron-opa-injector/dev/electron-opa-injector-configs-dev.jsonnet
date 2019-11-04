@@ -9,7 +9,7 @@ if electron_opa_utils.is_electron_opa_injector_dev_cluster(configs.estate) then
   kind: "ConfigMap",
   metadata: {
     name: "electron-opa-injector-config",
-    namespace: versions.injectorNamespace,
+    namespace: versions.newInjectorNamespace,
     labels: {
       app: "electron-opa-injector",
     } +
@@ -225,7 +225,7 @@ volumes:
     containers: ["electron-opa"]
     volumes: ["config"]
     volumeMounts: []
-    ignoreNamespaces: ["authz-injector"]
+    ignoreNamespaces: ["' + versions.newInjectorNamespace + '"]
     whitelistNamespaces: []
   - name: "electron-opa-istio-non-sherpa"
     annotationNamespace: "electron-opa-istio-injector.authz"
@@ -234,7 +234,7 @@ volumes:
     containers: ["electron-opa-istio"]
     volumes: ["config"]
     volumeMounts: []
-    ignoreNamespaces: ["authz-injector"]
+    ignoreNamespaces: ["' + versions.newInjectorNamespace + '"]
     whitelistNamespaces: []
   - name: "electron-opa-sherpa"
     annotationNamespace: "electron-opa-sherpa-injector.authz"
@@ -243,7 +243,7 @@ volumes:
     containers: ["electron-opa"]
     volumes: ["config"]
     volumeMounts: []
-    ignoreNamespaces: ["authz-injector"]
+    ignoreNamespaces: ["' + versions.newInjectorNamespace + '"]
     whitelistNamespaces: []
   - name: "electron-opa-istio-sherpa"
     annotationNamespace: "electron-opa-istio-sherpa-injector.authz"
@@ -252,7 +252,7 @@ volumes:
     containers: ["electron-opa-istio"]
     volumes: ["config"]
     volumeMounts: []
-    ignoreNamespaces: ["authz-injector"]
+    ignoreNamespaces: ["' + versions.newInjectorNamespace + '"]
     whitelistNamespaces: []'
   }
 } else "SKIP"
