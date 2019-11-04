@@ -42,7 +42,9 @@ system:
           name: fawkes-staging-logs-vol
         livenessProbe:
           exec:
-            command: ["/bin/true"]
+            command: ["/opt/stackstorm/sfdc/scripts/liveness_probe.sh"]
+          initialDelaySeconds: 120
+          periodSeconds: 60
       volumes:
       - name: argus
         k4aSecret:
