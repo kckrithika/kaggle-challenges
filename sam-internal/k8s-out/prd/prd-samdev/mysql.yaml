@@ -111,11 +111,7 @@ spec:
           periodSeconds: 5
           successThreshold: 1
           timeoutSeconds: 5
-        resources:
-          limits:
-            sam.sfdc.net/ip-address: "1"
-          requests:
-            sam.sfdc.net/ip-address: "1"
+        resources: {}
         terminationMessagePath: /dev/termination-log
         terminationMessagePolicy: File
         volumeMounts:
