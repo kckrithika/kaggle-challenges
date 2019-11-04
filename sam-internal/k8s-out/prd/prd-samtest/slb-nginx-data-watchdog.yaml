@@ -45,7 +45,7 @@ spec:
               fieldPath: spec.nodeName
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig-platform
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/slb/hyperslb:2272-7e11ed369c9869c4e73b4829756ea79b6a74b974
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/slb/hyperslb:2274-05577ee0f254227a5dc2149e40a32b89e30604de
         name: slb-nginx-data-watchdog
         resources:
           limits:
@@ -76,7 +76,7 @@ spec:
         env:
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig-platform
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/slb/hyperslb:2272-7e11ed369c9869c4e73b4829756ea79b6a74b974
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/slb/hyperslb:2274-05577ee0f254227a5dc2149e40a32b89e30604de
         name: slb-cleanup
         securityContext:
           privileged: true
