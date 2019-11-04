@@ -160,13 +160,21 @@ system:
       - containerPort: 8080
       - containerPort: 15375
       livenessProbe:
-        httpGet:
-          path: /manage/health
-          port: 8080
+        # httpGet:
+        #   path: /manage/health
+        #   port: 8080
+        exec:
+          command:
+          - /bin/true        
+
       readinessProbe:
-        httpGet:
-          path: /manage/health
-          port: 8080
+        # httpGet:
+        #   path: /manage/health
+        #   port: 8080
+        exec:
+          command:
+          - /bin/true        
+                  
         initialDelaySeconds: 60
         periodSeconds: 5
         failureThreshold: 120
