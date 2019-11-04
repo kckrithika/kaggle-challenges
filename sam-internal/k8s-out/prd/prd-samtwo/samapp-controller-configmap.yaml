@@ -6,6 +6,7 @@ data:
       "dockerRegistry": "ops0-artifactrepo2-0-prd.data.sfdc.net",
       "enableDNS": true,
       "enableIdentityEnvVar": true,
+      "enableIstioLabels": true,
       "enableMaddog": true,
       "enableMaddogCopyTestCA": true,
       "enableStatefulSet": true,
