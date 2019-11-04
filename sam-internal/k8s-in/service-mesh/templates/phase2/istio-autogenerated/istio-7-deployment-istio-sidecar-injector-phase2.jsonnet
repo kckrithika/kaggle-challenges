@@ -122,7 +122,7 @@ if (istioPhases.phaseNum == 2) then
               "--injectConfig=/etc/istio/inject/config",
               "--meshConfig=/etc/istio/config/mesh",
               "--healthCheckInterval=2s",
-              "--healthCheckFile=/tmp/health",
+              "--healthCheckFile=/health",
               "--reconcileWebhookConfig=true",
               "--port=15009",
               "--monitoringPort=8080",
@@ -140,7 +140,7 @@ if (istioPhases.phaseNum == 2) then
                 command: [
                   "/usr/local/bin/sidecar-injector",
                   "probe",
-                  "--probe-path=/tmp/health",
+                  "--probe-path=/health",
                   "--interval=4s",
                 ],
               },
@@ -158,7 +158,7 @@ if (istioPhases.phaseNum == 2) then
                 command: [
                   "/usr/local/bin/sidecar-injector",
                   "probe",
-                  "--probe-path=/tmp/health",
+                  "--probe-path=/health",
                   "--interval=4s",
                 ],
               },

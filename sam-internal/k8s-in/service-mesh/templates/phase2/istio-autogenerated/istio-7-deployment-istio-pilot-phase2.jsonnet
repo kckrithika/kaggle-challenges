@@ -203,7 +203,7 @@ if (istioPhases.phaseNum == 2) then
                 port: 8080,
               },
               initialDelaySeconds: 5,
-              periodSeconds: 5,
+              periodSeconds: 30,
               timeoutSeconds: 5,
             },
             resources: {
