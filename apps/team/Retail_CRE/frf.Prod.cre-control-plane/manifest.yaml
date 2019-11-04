@@ -9,7 +9,7 @@ system:
       count: 3
       containers:
         - name: cre-control-plane
-          image: sfci/cre-fusion/services:controlplane.v2.0.2.master.2db8e12.18
+          image: sfci/cre-fusion/services:controlplane.2.1.0.0.master.9176c7d.20
           env:
             - name: K8S_API_ENDPOINT
               value: https://kubernetes-api-flowsnake-frf.slb.sfdc.net
@@ -64,6 +64,8 @@ system:
               value: 4g
             - name: INGEST_EXECUTOR_CORE_REQUESTS
               value: 10
+            - name: BUCKET_INGEST_MANIFEST_OVERRIDE_ENABLED
+              value: true
             ####################################################################################################
             ####################################### SAVE environment variables ###############################
             ####################################################################################################
