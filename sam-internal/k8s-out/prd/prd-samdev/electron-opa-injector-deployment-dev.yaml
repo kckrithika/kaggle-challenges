@@ -4,7 +4,7 @@ metadata:
   labels:
     app: electron-opa-injector
   name: electron-opa-injector
-  namespace: authz-injector
+  namespace: authz-opa-webhook
 spec:
   replicas: 1
   selector:
@@ -26,10 +26,10 @@ spec:
              "role": "electron-opa-injector",
              "san": [
               "electron-opa-injector",
-              "electron-opa-injector.authz-injector",
-              "electron-opa-injector.authz-injector.svc",
-              "electron-opa-injector.authz-injector.svc.cluster.local",
-              "electron-opa-injector.authz-injector.svc.prd-samdev.prd.sam.sfdc.net"
+              "electron-opa-injector.authz-opa-webhook",
+              "electron-opa-injector.authz-opa-webhook.svc",
+              "electron-opa-injector.authz-opa-webhook.svc.cluster.local",
+              "electron-opa-injector.authz-opa-webhook.svc.prd-samdev.prd.sam.sfdc.net"
              ]
             },
             {
@@ -39,10 +39,10 @@ spec:
              "role": "electron-opa-injector",
              "san": [
               "electron-opa-injector",
-              "electron-opa-injector.authz-injector",
-              "electron-opa-injector.authz-injector.svc",
-              "electron-opa-injector.authz-injector.svc.cluster.local",
-              "electron-opa-injector.authz-injector.svc.prd-samdev.prd.sam.sfdc.net"
+              "electron-opa-injector.authz-opa-webhook",
+              "electron-opa-injector.authz-opa-webhook.svc",
+              "electron-opa-injector.authz-opa-webhook.svc.cluster.local",
+              "electron-opa-injector.authz-opa-webhook.svc.prd-samdev.prd.sam.sfdc.net"
              ]
             }
            ]

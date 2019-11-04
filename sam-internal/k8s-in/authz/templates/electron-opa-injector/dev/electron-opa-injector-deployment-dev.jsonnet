@@ -10,10 +10,10 @@ local funnelEndpointHost = std.split(configs.funnelVIP, ":")[0];
 local funnelEndpointPort = std.split(configs.funnelVIP, ":")[1];
 
 if electron_opa_utils.is_electron_opa_injector_dev_cluster(configs.estate) then
-configs.deploymentBase("authz-injector") {
+configs.deploymentBase(versions.newInjectorNamespace) {
   metadata+: {
     name: "electron-opa-injector",
-    namespace: versions.injectorNamespace,
+    namespace: versions.newInjectorNamespace,
     labels: {
       app: "electron-opa-injector",
     },
@@ -42,11 +42,11 @@ configs.deploymentBase("authz-injector") {
                     role: "electron-opa-injector",
                     san: [
                       "electron-opa-injector",
-                      "electron-opa-injector.%s" % versions.injectorNamespace,
-                      "electron-opa-injector.%s.svc" % versions.injectorNamespace,
-                      "electron-opa-injector.%s.svc.cluster.local" % versions.injectorNamespace,
+                      "electron-opa-injector.%s" % versions.newInjectorNamespace,
+                      "electron-opa-injector.%s.svc" % versions.newInjectorNamespace,
+                      "electron-opa-injector.%s.svc.cluster.local" % versions.newInjectorNamespace,
                       "electron-opa-injector.%s.svc.%s" % [
-                        versions.injectorNamespace,
+                        versions.newInjectorNamespace,
                         (if configs.estate == "gsf-core-devmvp-sam2-sam" then "gsf-core-devmvp-sam2-samtest.mvp.sam.sfdc.net" else configs.dnsdomain),
                       ],
                     ],
@@ -58,11 +58,11 @@ configs.deploymentBase("authz-injector") {
                     role: "electron-opa-injector",
                     san: [
                       "electron-opa-injector",
-                      "electron-opa-injector.%s" % versions.injectorNamespace,
-                      "electron-opa-injector.%s.svc" % versions.injectorNamespace,
-                      "electron-opa-injector.%s.svc.cluster.local" % versions.injectorNamespace,
+                      "electron-opa-injector.%s" % versions.newInjectorNamespace,
+                      "electron-opa-injector.%s.svc" % versions.newInjectorNamespace,
+                      "electron-opa-injector.%s.svc.cluster.local" % versions.newInjectorNamespace,
                       "electron-opa-injector.%s.svc.%s" % [
-                        versions.injectorNamespace,
+                        versions.newInjectorNamespace,
                         (if configs.estate == "gsf-core-devmvp-sam2-sam" then "gsf-core-devmvp-sam2-samtest.mvp.sam.sfdc.net" else configs.dnsdomain),
                       ],
                     ],

@@ -9,7 +9,7 @@ data:
         containers: ["electron-opa"]
         volumes: ["config"]
         volumeMounts: []
-        ignoreNamespaces: ["authz-injector"]
+        ignoreNamespaces: ["authz-opa-webhook"]
         whitelistNamespaces: []
       - name: "electron-opa-istio-non-sherpa"
         annotationNamespace: "electron-opa-istio-injector.authz"
@@ -18,7 +18,7 @@ data:
         containers: ["electron-opa-istio"]
         volumes: ["config"]
         volumeMounts: []
-        ignoreNamespaces: ["authz-injector"]
+        ignoreNamespaces: ["authz-opa-webhook"]
         whitelistNamespaces: []
       - name: "electron-opa-sherpa"
         annotationNamespace: "electron-opa-sherpa-injector.authz"
@@ -27,7 +27,7 @@ data:
         containers: ["electron-opa"]
         volumes: ["config"]
         volumeMounts: []
-        ignoreNamespaces: ["authz-injector"]
+        ignoreNamespaces: ["authz-opa-webhook"]
         whitelistNamespaces: []
       - name: "electron-opa-istio-sherpa"
         annotationNamespace: "electron-opa-istio-sherpa-injector.authz"
@@ -36,7 +36,7 @@ data:
         containers: ["electron-opa-istio"]
         volumes: ["config"]
         volumeMounts: []
-        ignoreNamespaces: ["authz-injector"]
+        ignoreNamespaces: ["authz-opa-webhook"]
         whitelistNamespaces: []
   opencensus.yaml.erb: |-
     receivers:
@@ -243,4 +243,4 @@ metadata:
   labels:
     app: electron-opa-injector
   name: electron-opa-injector-config
-  namespace: authz-injector
+  namespace: authz-opa-webhook

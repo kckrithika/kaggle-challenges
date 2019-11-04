@@ -3,8 +3,11 @@ local utils = import "util_functions.jsonnet";
 
 {
     injectorNamespace: (
-        // k8s namespace to which the injector should be deployed
         "authz-injector"
+    ),
+
+    newInjectorNamespace: (
+        "authz-opa-webhook"
     ),
 
     // =========
