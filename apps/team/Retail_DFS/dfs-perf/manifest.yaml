@@ -56,9 +56,9 @@ system:
       - name: QUERY_LIMIT
         value: 200
       - name: DFS_MAXCONNECTIONPERROUTE
-        value: 50
-      - name: DFS_MAXCONNECTIONTOTAL
         value: 100
+      - name: DFS_MAXCONNECTIONTOTAL
+        value: 200
       - name: LOG_LINES_ENVIRONMENTS
         value: mist
       - name: USE_CC_PROXY
