@@ -152,6 +152,8 @@ system:
       volumeMounts:
       - name: client-cert
         mountPath: /client-certs
+      - name: runtime-home
+        mountPath: /home/scone
       ports:
       - containerPort: 8080
       - containerPort: 15375
@@ -189,6 +191,10 @@ system:
     - name: logvolbeacon
       hostPath:
         path: /home/sfdc-gid-runtime-beacon/logs
+    - name: runtime-home
+      hostPath:
+        path: /data/gid/runtime/home
+
   #####################################################################################
   # SLB
   #####################################################################################
