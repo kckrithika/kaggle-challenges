@@ -207,7 +207,7 @@ if configs.estate == "prd-sam" || configs.estate == "prd-samdev" || configs.esta
                                       readOnly: true,
                                     },
                                 ],
-                            } + configs.ipAddressResourceRequest,
+                            },
                             {
                               command: [
                                   "bash",
