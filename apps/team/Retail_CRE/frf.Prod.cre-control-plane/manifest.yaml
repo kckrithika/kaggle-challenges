@@ -19,9 +19,9 @@ system:
             - name: INGEST_SPEC_IMAGE
               value: ops0-artifactrepo1-0-frf.data.sfdc.net/sfci/cre/cre-engine:2.0.0.12.master.2853013.32
             - name: EXPORT_SPEC_IMAGE
-              value: ops0-artifactrepo1-0-frf.data.sfdc.net/sfci/cre/cre-dds-spark:2.0.1.master.c5ad758.18
+              value: ops0-artifactrepo1-0-frf.data.sfdc.net/sfci/cre/cre-dds-spark:2.1.1.master.07f636a.21
             - name: SAVE_SPEC_IMAGE
-              value: ops0-artifactrepo1-0-frf.data.sfdc.net/sfci/cre/cre-dds-spark:2.0.1.master.c5ad758.18
+              value: ops0-artifactrepo1-0-frf.data.sfdc.net/sfci/cre/cre-dds-spark:2.1.1.master.07f636a.21
             ####################################################################################################
             ####################################### GLOBAL SHARED VALUES #######################################
             ####################################################################################################
