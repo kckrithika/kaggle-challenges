@@ -26,7 +26,6 @@ local utils = import "util_functions.jsonnet";
                 watchdog_image_tag: "2722-a1231485debac6b17dfa76e7a1af01750e0f4f8b",  # 05/2019 image
                 spark_operator_image_tag: "jenkins-dva-transformation-spark-on-k8s-operator-PR-41-2-itest",
                 integration_test_tag: "33",
-                madkub_injector_image_tag: "14",
             },
             feature_flags+: {
                 # Note: the *value* of the flags is ignored. jsonnet lacks array search, so we use a an object.
@@ -43,7 +42,6 @@ local utils = import "util_functions.jsonnet";
                 # --- flag G (is to assist ... ---
                 prometheus_funnel_update: "",
                 # --- flag H (git's diff logic ... ---
-                madkub_injector_server_cert: "",
                 # --- flag I (to reduce the ---
                 # --- flag J (likelihood of merge conflicts.) ---
             },
@@ -57,10 +55,12 @@ local utils = import "util_functions.jsonnet";
         # Only include new things not yet promoted to next phase. To promote, move line items to next phase.
         "2": self.prod {
             image_tags+: {
+                madkub_injector_image_tag: "14",
             },
             feature_flags+: {
                 # --- flag A (Do not edit ... ---
                 # --- flag B (these comments ... ---
+                madkub_injector_server_cert: "",
                 # --- flag C (and place only ... ---
                 # --- flag D (one flag between ... ---
                 # --- flag E (each pair. ... ---
