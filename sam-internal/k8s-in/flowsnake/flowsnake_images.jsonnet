@@ -70,7 +70,6 @@ local utils = import "util_functions.jsonnet";
                 prefetcher_enabled: "this value irrelevant",
                 # --- flag I (to reduce the ---
                 # --- flag J (likelihood of merge conflicts.) ---
-                upcase_pki_kingdom: "",
             },
             version_mapping+: {
             },
