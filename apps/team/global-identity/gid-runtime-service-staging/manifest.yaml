@@ -6,6 +6,7 @@ system:
       - gid_runtime@salesforce.com
   functions:
   - name: gid-runtime-service-staging
+    type: stateful-set
     count: 2
     strategy:
       type: RollingUpdate
@@ -174,7 +175,7 @@ system:
         exec:
           command:
           - /bin/true        
-                  
+
         initialDelaySeconds: 60
         periodSeconds: 5
         failureThreshold: 120
