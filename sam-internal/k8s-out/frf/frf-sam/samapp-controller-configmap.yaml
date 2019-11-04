@@ -6,6 +6,7 @@ data:
       "dockerRegistry": "ops0-artifactrepo1-0-frf.data.sfdc.net",
       "enableDNS": true,
       "enableIdentityEnvVar": false,
+      "enableIstioLabels": true,
       "enableMaddog": true,
       "enableStatefulSet": true,
       "funnelEndpoint": "mandm-funnel-frf1.data.sfdc.net:8080",

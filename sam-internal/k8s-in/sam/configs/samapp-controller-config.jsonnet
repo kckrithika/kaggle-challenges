@@ -43,5 +43,5 @@ std.prune({
   #imagePullPolicy
   imagePullPolicy: (if configs.kingdom == "prd" then "Always" else "IfNotPresent"),
 
-  [if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" || configs.estate == "xrd-sam" || configs.estate == "prd-sam" || configs.estate == "par-sam" then "enableIstioLabels"]: true,
+  enableIstioLabels: true,
 })
