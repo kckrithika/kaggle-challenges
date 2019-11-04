@@ -114,7 +114,7 @@ system:
     # Global Identity Login and Runtime Service
     #####################################################################################
     - name: gid-runtime-service
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/gid/gid-runtime-service:fbd9f83
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/gid/gid-runtime-service:19a7ab7
       imagePullPolicy: Always
       env:
       - name: server_use_forward_headers
@@ -152,25 +152,21 @@ system:
       volumeMounts:
       - name: client-cert
         mountPath: /client-certs
-      - name: runtime-home
-        mountPath: /home/scone
       ports:
       - containerPort: 8080
       - containerPort: 15375
       livenessProbe:
-        exec:
-          command:
-          - /bin/true        
-        # httpGet:
-        #   path: /manage/health
-        #   port: 8080
+        httpGet:
+          path: /manage/health
+          port: 8080
+        initialDelaySeconds: 120
+        periodSeconds: 5
+        failureThreshold: 120
+
       readinessProbe:
-        exec:
-          command:
-          - /bin/true        
-        # httpGet:
-        #   path: /manage/health
-        #   port: 8080
+        httpGet:
+          path: /manage/health
+          port: 8080
         initialDelaySeconds: 120
         periodSeconds: 5
         failureThreshold: 120
@@ -191,9 +187,6 @@ system:
     - name: logvolbeacon
       hostPath:
         path: /home/sfdc-gid-runtime-beacon/logs
-    - name: runtime-home
-      hostPath:
-        path: /data/gid/runtime/home
 
   #####################################################################################
   # SLB
