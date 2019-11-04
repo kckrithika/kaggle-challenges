@@ -29,7 +29,7 @@ system:
   loadbalancers:
   - lbname: samhello
     function: samhello
-    # slbenabled: true
+    slbenabled: true
     ports:
     - port: 443
       targetport: 8443
