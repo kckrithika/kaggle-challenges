@@ -22,6 +22,9 @@ items:
                       "enabled": true,
                       "show-details": "always"
                   },
+                  "info": {
+                      "enabled": true
+                  },
                   "metrics": {
                       "enabled": true
                   }
@@ -30,7 +33,7 @@ items:
                   "enabled-by-default": "false",
                   "web": {
                       "exposure": {
-                          "include": "health, metrics"
+                          "include": "health, metrics, info"
                       }
                   }
               },
@@ -160,7 +163,7 @@ items:
                   "enable-pr-creation": true,
                   "enable-push-to-origin": true,
                   "enable-self-approve-pr": true,
-                  "repo-name": "test-spinnaker-templates",
+                  "repo-name": "e2etest-spinnaker-templates",
                   "repo-org": "sfcd"
               }
           }
@@ -335,7 +338,7 @@ items:
                 apiVersion: v1
                 fieldPath: metadata.labels['name']
           - name: CONFIG_VERSION
-            value: "6"
+            value: "7"
           image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/sfcdapi-firebom:49
           imagePullPolicy: Always
           livenessProbe:

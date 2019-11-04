@@ -41,6 +41,9 @@ local configs = import "config.jsonnet";
       metrics: {
         enabled: true,
       },
+      info: {
+        enabled: true,
+      },
       env: {
         enabled: false,
       }
@@ -49,7 +52,7 @@ local configs = import "config.jsonnet";
       'enabled-by-default': 'false',
       web: {
         exposure: {
-          include: 'health, metrics',
+          include: 'health, metrics, info',
         },
       },
     },
