@@ -2,6 +2,14 @@ local configs = import "config.jsonnet";
 local samimages = (import "samimages.jsonnet") + { templateFilename:: std.thisFile };
 # Yeah, I know this is not a watchdog.  Will fix with a refactor
 local wdconfig = import "samwdconfig.jsonnet";
+local featureflags = import "sam-feature-flags.jsonnet";
+local maddogcertsmount = if featureflags.etcd3 then 'maddog-certs' else null;
+local volumemounts = std.prune(['backup', 'cowdata', maddogcertsmount]);
+local volumemountpoints = {
+  backup: '/data/etcdbackup',
+  cowdata: '/cowdata',
+  'maddog-certs': '/etc/pki_service',
+};
 
 configs.daemonSetBase("sam") {
     spec+: {
@@ -21,13 +29,10 @@ configs.daemonSetBase("sam") {
                         name: "etcdbackup",
                         volumeMounts: configs.filter_empty([
                             {
-                                name: "backup",
-                                mountPath: "/data/etcdbackup",
-                            },
-                            {
-                                name: "cowdata",
-                                mountPath: "/cowdata",
-                            },
+                                name: x,
+                                mountPath: volumemountpoints[x],
+                            }
+                            for x in volumemounts
                         ]),
                         env: [
                             configs.kube_config_env,
@@ -37,17 +42,11 @@ configs.daemonSetBase("sam") {
                 volumes: configs.filter_empty([
                     {
                         hostPath: {
-                            path: "/data/etcdbackup",
+                            path: volumemountpoints[x],
                         },
-                        name: "backup",
-                    },
-
-                    {
-                        hostPath: {
-                            path: "/cowdata",
-                        },
-                        name: "cowdata",
-                    },
+                        name: x,
+                    }
+                    for x in volumemounts
                 ]),
                 nodeSelector: {
                     etcd_installed: "true",

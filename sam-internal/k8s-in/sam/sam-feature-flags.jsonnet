@@ -55,4 +55,7 @@ local utils = import "util_functions.jsonnet";
 
      sloop:
        configs.estate == "prd-sam",
+
+     etcd3:
+       configs.estate == "prd-samtest" || configs.estate == "prd-samdev",
 }
