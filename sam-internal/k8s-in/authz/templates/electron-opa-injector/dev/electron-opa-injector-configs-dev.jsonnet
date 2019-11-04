@@ -54,9 +54,40 @@ zpages:
     imagePullPolicy: IfNotPresent
     command: ["bash", "-c"]
     env:
+      - name: OPA_METRICS_ENABLED
+        valueFrom:
+          fieldRef:
+            apiVersion: v1
+            fieldPath: metadata.annotations["electron-opa.k8s-integration.sfdc.com/opa-metrics-enabled"]
+      - name: OPA_METRICS_PORT
+        valueFrom:
+          fieldRef:
+            apiVersion: v1
+            fieldPath: metadata.annotations["electron-opa.k8s-integration.sfdc.com/opa-metrics-port"]
+      - name: OPA_METRICS_SCOPE
+        valueFrom:
+          fieldRef:
+            apiVersion: v1
+            fieldPath: metadata.annotations["electron-opa.k8s-integration.sfdc.com/opa-metrics-scope"]
+      - name: POD_NAME
+        valueFrom:
+          fieldRef:
+            apiVersion: v1
+            fieldPath: metadata.name
+      - name: KINGDOM
+        value: ' + configs.kingdom + '
       - name: ELECTRON_OPA_CONFIG
         value: |
+          <%-
+          def env?(v) ENV.key?(v) and ENV[v].length > 0 end
+
+          metrics_port = env?("OPA_METRICS_PORT") ? ENV["OPA_METRICS_PORT"] : ":9192"
+          metrics_scope = env?("OPA_METRICS_SCOPE") ? ENV["OPA_METRICS_SCOPE"] : ENV["POD_NAME"] + "." + ENV["KINGDOM"]
+          funnel_url = ENV["SFDC_METRICS_SERVICE_HOST"] + ":" + ENV["SFDC_METRICS_SERVICE_PORT"]
+          -%>
           services:
+            metrics:
+              url: http://<%= metrics_port %>/
             electron:
               url: https://authz-svc-opa.service-mesh.localhost.mesh.force.com:7442
               allow_insecure_tls: true
@@ -71,9 +102,31 @@ zpages:
               polling:
                 min_delay_seconds: 300
                 max_delay_seconds: 360
+          status:
+            service: metrics
+          decision_logs:
+            service: metrics
+            reporting:
+              min_delay_seconds: 300
+              max_delay_seconds: 360
+          plugins:
+            argus_metrics:
+              server_port: <%= metrics_port %>
+              funnel_url: <%= funnel_url %>
+              metrics_scope: <%= metrics_scope -%>
       - name: ELECTRON_OPA_ISTIO_CONFIG
         value: |
+          <%-
+          def env?(v) ENV.key?(v) and ENV[v].length > 0 end
+
+          metrics_port = env?("OPA_METRICS_PORT") ? ENV["OPA_METRICS_PORT"] : ":9192"
+          metrics_scope = env?("OPA_METRICS_SCOPE") ? ENV["OPA_METRICS_SCOPE"] : ENV["POD_NAME"] + "." + ENV["KINGDOM"]
+          funnel_url = ENV["SFDC_METRICS_SERVICE_HOST"] + ":" + ENV["SFDC_METRICS_SERVICE_PORT"]
+          -%>
+
           services:
+            metrics:
+                url: http://<%= metrics_port %>/
             electron:
               url: https://authz-svc-opa.service-mesh.localhost.mesh.force.com:7442
               allow_insecure_tls: true
@@ -88,19 +141,34 @@ zpages:
               polling:
                 min_delay_seconds: 300
                 max_delay_seconds: 360
+          status:
+            service: metrics
+          decision_logs:
+            service: metrics
+            reporting:
+              min_delay_seconds: 300
+              max_delay_seconds: 360
           plugins:
             envoy_ext_authz_grpc:
               addr: :9191
               query: data.httpapi.authz.allow
               dry-run: false
               enable-reflection: false
+            argus_metrics:
+              server_port: <%= metrics_port %>
+              funnel_url: <%= funnel_url %>
+              metrics_scope: <%= metrics_scope -%>
     args:
-      - echo -e "${ELECTRON_OPA_CONFIG}" > /config/opa_config.yaml &&
-        echo -e "${ELECTRON_OPA_ISTIO_CONFIG}" > /config/opa_istio_config.yaml &&
+      - echo -e "${ELECTRON_OPA_CONFIG}" > /templated-config/opa_config.yaml &&
+        /app/config_gen.rb -t /templated-config/opa_config.yaml.erb -o /generated-config/opa_config.yaml &&
+        echo -e "${ELECTRON_OPA_ISTIO_CONFIG}" > /templated-config/opa_istio_config.yaml &&
+        /app/config_gen.rb -t /templated-config/opa_istio_config.yaml.erb -o /generated-config/opa_istio_config.yaml &&
         chmod -R 777 /client-certs/client
     volumeMounts:
-      - name: config
-        mountPath: /config
+      - name: templated-config
+        mountPath: /templated-config
+      - name: generated-config
+        mountPath: /generated-config
       - name: tls-client-cert
         mountPath: /client-certs
   - name: authz-config-init-sherpa
@@ -108,9 +176,41 @@ zpages:
     imagePullPolicy: IfNotPresent
     command: ["bash", "-c"]
     env:
+      - name: OPA_METRICS_ENABLED
+        valueFrom:
+          fieldRef:
+            apiVersion: v1
+            fieldPath: metadata.annotations["electron-opa.k8s-integration.sfdc.com/opa-metrics-enabled"]
+      - name: OPA_METRICS_PORT
+        valueFrom:
+          fieldRef:
+            apiVersion: v1
+            fieldPath: metadata.annotations["electron-opa.k8s-integration.sfdc.com/opa-metrics-port"]
+      - name: OPA_METRICS_SCOPE
+        valueFrom:
+          fieldRef:
+            apiVersion: v1
+            fieldPath: metadata.annotations["electron-opa.k8s-integration.sfdc.com/opa-metrics-scope"]
+      - name: POD_NAME
+        valueFrom:
+          fieldRef:
+            apiVersion: v1
+            fieldPath: metadata.name
+      - name: KINGDOM
+        value: ' + configs.kingdom + '
       - name: ELECTRON_OPA_CONFIG
         value: |
+          <%-
+          def env?(v) ENV.key?(v) and ENV[v].length > 0 end
+
+          metrics_port = env?("OPA_METRICS_PORT") ? ENV["OPA_METRICS_PORT"] : ":9192"
+          metrics_scope = env?("OPA_METRICS_SCOPE") ? ENV["OPA_METRICS_SCOPE"] : ENV["POD_NAME"] + "." + ENV["KINGDOM"]
+          funnel_url = ENV["SFDC_METRICS_SERVICE_HOST"] + ":" + ENV["SFDC_METRICS_SERVICE_PORT"]
+          -%>
+
           services:
+            metrics:
+                url: http://<%= metrics_port %>/
             electron:
               url: http://authz-svc-opa.service-mesh.localhost.mesh.force.com:5442
               allow_insecure_tls: true
@@ -125,9 +225,31 @@ zpages:
               polling:
                 min_delay_seconds: 300
                 max_delay_seconds: 360
+          status:
+            service: metrics
+          decision_logs:
+            service: metrics
+            reporting:
+              min_delay_seconds: 300
+              max_delay_seconds: 360
+          plugins:
+            argus_metrics:
+              server_port: <%= metrics_port %>
+              funnel_url: <%= funnel_url %>
+              metrics_scope: <%= metrics_scope -%>
       - name: ELECTRON_OPA_ISTIO_CONFIG
         value: |
+          <%-
+          def env?(v) ENV.key?(v) and ENV[v].length > 0 end
+
+          metrics_port = env?("OPA_METRICS_PORT") ? ENV["OPA_METRICS_PORT"] : ":9192"
+          metrics_scope = env?("OPA_METRICS_SCOPE") ? ENV["OPA_METRICS_SCOPE"] : ENV["POD_NAME"] + "." + ENV["KINGDOM"]
+          funnel_url = ENV["SFDC_METRICS_SERVICE_HOST"] + ":" + ENV["SFDC_METRICS_SERVICE_PORT"]
+          -%>
+
           services:
+            metrics:
+                url: http://<%= metrics_port %>/
             electron:
               url: http://authz-svc-opa.service-mesh.localhost.mesh.force.com:5442
               allow_insecure_tls: true
@@ -142,24 +264,39 @@ zpages:
               polling:
                 min_delay_seconds: 300
                 max_delay_seconds: 360
+          status:
+            service: metrics
+          decision_logs:
+            service: metrics
+            reporting:
+              min_delay_seconds: 300
+              max_delay_seconds: 360
           plugins:
             envoy_ext_authz_grpc:
               addr: :9191
               query: data.httpapi.authz.allow
               dry-run: false
               enable-reflection: false
+            argus_metrics:
+              server_port: <%= metrics_port %>
+              funnel_url: <%= funnel_url %>
+              metrics_scope: <%= metrics_scope -%>
     args:
-      - echo -e "${ELECTRON_OPA_CONFIG}" > /config/opa_config.yaml &&
-        echo -e "${ELECTRON_OPA_ISTIO_CONFIG}" > /config/opa_istio_config.yaml &&
+      - echo -e "${ELECTRON_OPA_CONFIG}" > /templated-config/opa_config.yaml &&
+        /app/config_gen.rb -t /templated-config/opa_config.yaml.erb -o /generated-config/opa_config.yaml &&
+        echo -e "${ELECTRON_OPA_ISTIO_CONFIG}" > /templated-config/opa_istio_config.yaml &&
+        /app/config_gen.rb -t /templated-config/opa_istio_config.yaml.erb -o /generated-config/opa_istio_config.yaml &&
         chmod -R 777 /client-certs/client
     volumeMounts:
-      - name: config
-        mountPath: /config
+      - name: templated-config
+        mountPath: /templated-config
+      - name: generated-config
+        mountPath: /generated-config
       - name: tls-client-cert
         mountPath: /client-certs
 containers:
   - name: electron-opa
-    image: ' + versions.opaImage + '
+    image: ' + versions.newOpaImage + '
     imagePullPolicy: IfNotPresent
     ports:
       - name: http
@@ -170,7 +307,7 @@ containers:
       - --config-file=/config/opa_config.yaml
       - --log-level=debug
     volumeMounts:
-      - name: config
+      - name: generated-config
         mountPath: /config
       - name: tls-client-cert
         mountPath: /client-certs
@@ -188,7 +325,7 @@ containers:
       initialDelaySeconds: 5
       periodSeconds: 10
   - name: electron-opa-istio
-    image: ' + versions.opaIstioImage + '
+    image: ' + versions.newOpaIstioImage + '
     imagePullPolicy: IfNotPresent
     args:
       - run
@@ -196,7 +333,7 @@ containers:
       - --config-file=/config/opa_istio_config.yaml
       - --log-level=debug
     volumeMounts:
-      - name: config
+      - name: generated-config
         mountPath: /config
       - name: tls-client-cert
         mountPath: /client-certs
@@ -214,43 +351,45 @@ containers:
       initialDelaySeconds: 5
       periodSeconds: 10
 volumes:
-  - name: config
+  - name: templated-config
+    emptyDir: {}
+  - name: generated-config
     emptyDir: {}',
 "mutationconfig.yaml":
 'mutationConfigs:
   - name: "electron-opa-non-sherpa"
-    annotationNamespace: "electron-opa-injector.authz"
+    annotationNamespace: "electron-opa.k8s-integration.sfdc.com"
     annotationTrigger: "inject"
     initContainers: ["authz-config-init"]
     containers: ["electron-opa"]
-    volumes: ["config"]
+    volumes: ["templated-config", "generated-config"]
     volumeMounts: []
     ignoreNamespaces: ["' + versions.newInjectorNamespace + '"]
     whitelistNamespaces: []
   - name: "electron-opa-istio-non-sherpa"
-    annotationNamespace: "electron-opa-istio-injector.authz"
+    annotationNamespace: "electron-opa-istio.k8s-integration.sfdc.com"
     annotationTrigger: "inject"
     initContainers: ["authz-config-init"]
     containers: ["electron-opa-istio"]
-    volumes: ["config"]
+    volumes: ["templated-config", "generated-config"]
     volumeMounts: []
     ignoreNamespaces: ["' + versions.newInjectorNamespace + '"]
     whitelistNamespaces: []
   - name: "electron-opa-sherpa"
-    annotationNamespace: "electron-opa-sherpa-injector.authz"
+    annotationNamespace: "electron-opa-sherpa.k8s-integration.sfdc.com"
     annotationTrigger: "inject"
     initContainers: ["authz-config-init-sherpa"]
     containers: ["electron-opa"]
-    volumes: ["config"]
+    volumes: ["templated-config", "generated-config"]
     volumeMounts: []
     ignoreNamespaces: ["' + versions.newInjectorNamespace + '"]
     whitelistNamespaces: []
   - name: "electron-opa-istio-sherpa"
-    annotationNamespace: "electron-opa-istio-sherpa-injector.authz"
+    annotationNamespace: "electron-opa-istio-sherpa.k8s-integration.sfdc.com"
     annotationTrigger: "inject"
     initContainers: ["authz-config-init-sherpa"]
     containers: ["electron-opa-istio"]
-    volumes: ["config"]
+    volumes: ["templated-config", "generated-config"]
     volumeMounts: []
     ignoreNamespaces: ["' + versions.newInjectorNamespace + '"]
     whitelistNamespaces: []'
