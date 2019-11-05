@@ -82,10 +82,10 @@ data:
                 fieldPath: metadata.name
           - name: KINGDOM
             value: prd
-          - name: SFDC_METRICS_SERVICE_HOST,
-            value: ajna0-funnel1-0-prd.data.sfdc.net,
-          - name: SFDC_METRICS_SERVICE_PORT,
-            value: 80,
+          - name: SFDC_METRICS_SERVICE_HOST
+            value: ajna0-funnel1-0-prd.data.sfdc.net
+          - name: SFDC_METRICS_SERVICE_PORT
+            value: 80
           - name: ELECTRON_OPA_CONFIG
             value: |
               <%-
@@ -189,10 +189,10 @@ data:
                 fieldPath: metadata.name
           - name: KINGDOM
             value: prd
-          - name: SFDC_METRICS_SERVICE_HOST,
-            value: ajna0-funnel1-0-prd.data.sfdc.net,
-          - name: SFDC_METRICS_SERVICE_PORT,
-            value: 80,
+          - name: SFDC_METRICS_SERVICE_HOST
+            value: ajna0-funnel1-0-prd.data.sfdc.net
+          - name: SFDC_METRICS_SERVICE_PORT
+            value: 80
           - name: ELECTRON_OPA_CONFIG
             value: |
               <%-

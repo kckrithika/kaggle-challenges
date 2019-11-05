@@ -63,10 +63,10 @@ zpages:
             fieldPath: metadata.name
       - name: KINGDOM
         value: ' + configs.kingdom + '
-      - name: SFDC_METRICS_SERVICE_HOST,
-        value: ' + funnelEndpointHost + ',
-      - name: SFDC_METRICS_SERVICE_PORT,
-        value: ' + funnelEndpointPort + ',
+      - name: SFDC_METRICS_SERVICE_HOST
+        value: ' + funnelEndpointHost + '
+      - name: SFDC_METRICS_SERVICE_PORT
+        value: ' + funnelEndpointPort + '
       - name: ELECTRON_OPA_CONFIG
         value: |
           <%-
@@ -170,10 +170,10 @@ zpages:
             fieldPath: metadata.name
       - name: KINGDOM
         value: ' + configs.kingdom + '
-      - name: SFDC_METRICS_SERVICE_HOST,
-        value: ' + funnelEndpointHost + ',
-      - name: SFDC_METRICS_SERVICE_PORT,
-        value: ' + funnelEndpointPort + ',
+      - name: SFDC_METRICS_SERVICE_HOST
+        value: ' + funnelEndpointHost + '
+      - name: SFDC_METRICS_SERVICE_PORT
+        value: ' + funnelEndpointPort + '
       - name: ELECTRON_OPA_CONFIG
         value: |
           <%-
