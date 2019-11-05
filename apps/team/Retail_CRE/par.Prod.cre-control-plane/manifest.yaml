@@ -138,20 +138,20 @@ system:
               value: true
             - name: EXPORT_CONCURRENCY_CONTROL
               value: 15
+            - name: EXPORT_DRIVER_MEMORY
+              value: 7g
             - name: EXPORT_DRIVER_MEMORY_OVERHEAD
               value: 1g
             - name: EXPORT_EXECUTOR_CORES
               value: 10
-            - name: EXPORT_DRIVER_MEMORY
-              value: 7g
-            - name: EXPORT_SPARK_DEFAULT_PARALLELISM
-              value: 20
-            - name: EXPORT_SPARK_SQL_SHUFFLE_PARTITIONS
-              value: 20
             - name: EXPORT_EXECUTOR_CORE_REQUESTS
               value: 10
             - name: EXPORT_EXECUTOR_MEMORY
               value: 30g
+            - name: EXPORT_SPARK_SQL_SHUFFLE_PARTITIONS
+              value: 20
+            - name: EXPORT_SPARK_DEFAULT_PARALLELISM
+              value: 20
             ####################################################################################################
             ##################################### APP Config environment variables #############################
             ####################################################################################################
