@@ -1,7 +1,7 @@
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: istio-init-crd-all-4342afc1c6521165bf2e5f7fd2c9feb6bd549c24
+  name: istio-init-crd-14-abc19b71279da65c92ba35ed1f667fd3f8dc5ac9
   namespace: mesh-control-plane
 spec:
   template:
@@ -14,10 +14,10 @@ spec:
         - kubectl
         - apply
         - -f
-        - /etc/istio/crd-all/crd-all.gen.yaml
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/sfci/servicemesh/istio-packaging/kubectl:4342afc1c6521165bf2e5f7fd2c9feb6bd549c24
+        - /etc/istio/crd-14/crd-14.yaml
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/sfci/servicemesh/istio-packaging/kubectl:abc19b71279da65c92ba35ed1f667fd3f8dc5ac9
         imagePullPolicy: IfNotPresent
-        name: istio-init-crd-all
+        name: istio-init-crd-14
         resources:
           limits:
             cpu: 100m
@@ -26,8 +26,8 @@ spec:
             cpu: 10m
             memory: 50Mi
         volumeMounts:
-        - mountPath: /etc/istio/crd-all
-          name: crd-all
+        - mountPath: /etc/istio/crd-14
+          name: crd-14
           readOnly: true
       nodeSelector:
         pool: prd-sam_gater
@@ -35,5 +35,5 @@ spec:
       serviceAccountName: istio-init-service-account
       volumes:
       - configMap:
-          name: istio-crd-all
-        name: crd-all
+          name: istio-crd-14
+        name: crd-14

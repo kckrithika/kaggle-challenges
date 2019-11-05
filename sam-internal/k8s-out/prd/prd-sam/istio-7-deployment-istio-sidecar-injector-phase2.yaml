@@ -95,21 +95,21 @@ spec:
         - --injectConfig=/etc/istio/inject/config
         - --meshConfig=/etc/istio/config/mesh
         - --healthCheckInterval=2s
-        - --healthCheckFile=/tmp/health
+        - --healthCheckFile=/health
         - --reconcileWebhookConfig=true
         - --port=15009
         - --monitoringPort=8080
         env:
         - name: ESTATE
           value: prd-sam_gater
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/sfci/servicemesh/istio-packaging/sidecar_injector:4342afc1c6521165bf2e5f7fd2c9feb6bd549c24
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/sfci/servicemesh/istio-packaging/sidecar_injector:abc19b71279da65c92ba35ed1f667fd3f8dc5ac9
         imagePullPolicy: IfNotPresent
         livenessProbe:
           exec:
             command:
             - /usr/local/bin/sidecar-injector
             - probe
-            - --probe-path=/tmp/health
+            - --probe-path=/health
             - --interval=4s
           initialDelaySeconds: 4
           periodSeconds: 4
@@ -121,7 +121,7 @@ spec:
             command:
             - /usr/local/bin/sidecar-injector
             - probe
-            - --probe-path=/tmp/health
+            - --probe-path=/health
             - --interval=4s
           initialDelaySeconds: 4
           periodSeconds: 4
@@ -319,7 +319,7 @@ spec:
           value: prd-sam_gater
         - name: KINGDOM
           value: prd
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/sfci/servicemesh/istio-packaging/proxy:4342afc1c6521165bf2e5f7fd2c9feb6bd549c24
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/sfci/servicemesh/istio-packaging/proxy:abc19b71279da65c92ba35ed1f667fd3f8dc5ac9
         imagePullPolicy: IfNotPresent
         name: istio-proxy
         ports:
@@ -434,7 +434,7 @@ spec:
         env:
         - name: DISABLE_REDIRECTION_ON_LOCAL_LOOPBACK
           value: "1"
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/sfci/servicemesh/istio-packaging/proxy:4342afc1c6521165bf2e5f7fd2c9feb6bd549c24
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/sfci/servicemesh/istio-packaging/proxy:abc19b71279da65c92ba35ed1f667fd3f8dc5ac9
         imagePullPolicy: IfNotPresent
         name: istio-init
         resources:

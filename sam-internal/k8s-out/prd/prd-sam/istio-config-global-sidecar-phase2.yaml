@@ -8,22 +8,74 @@ metadata:
   namespace: mesh-control-plane
 spec:
   egress:
-  - hosts: '*/*'
+  - hosts:
+    - mesh-control-plane/*
+    - z9s-default/*
+    - app/*
+    - casam/*
+    - ccait/*
+    - core-on-sam-sp2/*
+    - emailinfra/*
+    - funnel/*
+    - gater/*
+    - scone/*
+    - search-scale-safely/*
+    - service-mesh/*
+    - universal-search/*
     port:
       name: grpc-tls
       number: 7443
       protocol: GRPC
-  - hosts: '*/*'
+  - hosts:
+    - mesh-control-plane/*
+    - z9s-default/*
+    - app/*
+    - casam/*
+    - ccait/*
+    - core-on-sam-sp2/*
+    - emailinfra/*
+    - funnel/*
+    - gater/*
+    - scone/*
+    - search-scale-safely/*
+    - service-mesh/*
+    - universal-search/*
     port:
       name: http-tls
       number: 7442
       protocol: HTTP
-  - hosts: '*/*'
+  - hosts:
+    - mesh-control-plane/*
+    - z9s-default/*
+    - app/*
+    - casam/*
+    - ccait/*
+    - core-on-sam-sp2/*
+    - emailinfra/*
+    - funnel/*
+    - gater/*
+    - scone/*
+    - search-scale-safely/*
+    - service-mesh/*
+    - universal-search/*
     port:
       name: http-plain
       number: 7014
       protocol: HTTP
-  - hosts: '*/*'
+  - hosts:
+    - mesh-control-plane/*
+    - z9s-default/*
+    - app/*
+    - casam/*
+    - ccait/*
+    - core-on-sam-sp2/*
+    - emailinfra/*
+    - funnel/*
+    - gater/*
+    - scone/*
+    - search-scale-safely/*
+    - service-mesh/*
+    - universal-search/*
     port:
       name: grpc-plain
       number: 7012
