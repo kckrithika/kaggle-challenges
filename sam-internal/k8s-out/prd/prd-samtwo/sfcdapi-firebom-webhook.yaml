@@ -46,12 +46,26 @@ items:
                   "composition": {
                       "cleanup-interval": 0,
                       "default-read-id": "test",
-                      "env-type-hierarchy-map": {
-                          "default": [
-                              "dev",
-                              "test",
-                              "prod"
-                          ]
+                      "env-type-hierarchies": {
+                          "default": {
+                              "dev": {
+                                  "add-promotion-stage": false
+                              },
+                              "prod": {
+                                  "add-promotion-stage": true,
+                                  "depends-on": [
+                                      "test"
+                                  ],
+                                  "skip-promotion-wait": false
+                              },
+                              "test": {
+                                  "add-promotion-stage": true,
+                                  "depends-on": [
+                                      "dev"
+                                  ],
+                                  "skip-promotion-wait": true
+                              }
+                          }
                       },
                       "working-directory": "/tmp/sfcdapifirebom"
                   }
@@ -127,34 +141,34 @@ items:
                       "location": "lib/templates",
                       "master-deployment-pipeline-templates": {
                           "cell-aggregate": {
-                              "config_json": "templatesrepo/master_config.json",
-                              "pipeline_template": "cell_master_01-00.j2",
-                              "stages_json": "templatesrepo/master_deployment_stages.json",
-                              "vars_json": "templatesrepo/master_deployment_vars.json"
+                              "config-json": "templatesrepo/master_config.json",
+                              "pipeline-template": "cell_master_01-00.j2",
+                              "stages-json": "templatesrepo/master_deployment_stages.json",
+                              "vars-json": "templatesrepo/master_deployment_vars.json"
                           },
                           "env-type-aggregate": {
-                              "config_json": "templatesrepo/master_config.json",
-                              "pipeline_template": "env_type_master_01-00.j2",
-                              "stages_json": "templatesrepo/master_deployment_stages.json",
-                              "vars_json": "templatesrepo/master_env_type_deployment_vars.json"
+                              "config-json": "templatesrepo/master_config.json",
+                              "pipeline-template": "env_type_master_01-00.j2",
+                              "stages-json": "templatesrepo/master_deployment_stages.json",
+                              "vars-json": "templatesrepo/master_env_type_deployment_vars.json"
                           },
                           "fd-aggregate": {
-                              "config_json": "templatesrepo/master_config.json",
-                              "pipeline_template": "fd_master_01-00.j2",
-                              "stages_json": "templatesrepo/master_deployment_stages.json",
-                              "vars_json": "templatesrepo/master_deployment_vars.json"
+                              "config-json": "templatesrepo/master_config.json",
+                              "pipeline-template": "fd_master_01-00.j2",
+                              "stages-json": "templatesrepo/master_deployment_stages.json",
+                              "vars-json": "templatesrepo/master_deployment_vars.json"
                           },
                           "fi-aggregate": {
-                              "config_json": "templatesrepo/master_config.json",
-                              "pipeline_template": "fi_master_01-00.j2",
-                              "stages_json": "templatesrepo/master_deployment_stages.json",
-                              "vars_json": "templatesrepo/master_deployment_vars.json"
+                              "config-json": "templatesrepo/master_config.json",
+                              "pipeline-template": "fi_master_01-00.j2",
+                              "stages-json": "templatesrepo/master_deployment_stages.json",
+                              "vars-json": "templatesrepo/master_deployment_vars.json"
                           },
                           "service-master": {
-                              "config_json": "templatesrepo/master_config.json",
-                              "pipeline_template": "service_master_01-00.j2",
-                              "stages_json": "templatesrepo/master_deployment_stages.json",
-                              "vars_json": "templatesrepo/master_service_deployment_vars.json"
+                              "config-json": "templatesrepo/master_config.json",
+                              "pipeline-template": "service_master_01-00.j2",
+                              "stages-json": "templatesrepo/master_deployment_stages.json",
+                              "vars-json": "templatesrepo/master_service_deployment_vars.json"
                           }
                       },
                       "master-pipelines-dir": "pipelines/masterpipeline"
@@ -338,7 +352,7 @@ items:
                 apiVersion: v1
                 fieldPath: metadata.labels['name']
           - name: CONFIG_VERSION
-            value: "7"
+            value: "8"
           image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/sfcdapi-firebom:53
           imagePullPolicy: Always
           livenessProbe:
