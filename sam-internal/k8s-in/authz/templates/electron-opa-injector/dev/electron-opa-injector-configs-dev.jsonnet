@@ -68,7 +68,7 @@ zpages:
       - name: ELECTRON_OPA_CONFIG
         value: |
           <%-
-          split_pod_name = ENV["POD_NAME"].split()
+          split_pod_name = ENV["POD_NAME"].split("-")
           metrics_scope = split_pod_name[0..(split_pod_name).length-3].join("-") + "." + ENV["KINGDOM"]
           funnel_url = "http://" + ENV["SFDC_METRICS_SERVICE_HOST"] + "/"
           -%>
@@ -105,7 +105,7 @@ zpages:
       - name: ELECTRON_OPA_ISTIO_CONFIG
         value: |
           <%-
-          split_pod_name = ENV["POD_NAME"].split()
+          split_pod_name = ENV["POD_NAME"].split("-")
           metrics_scope = split_pod_name[0..(split_pod_name).length-3].join("-") + "." + ENV["KINGDOM"]
           funnel_url = "http://" + ENV["SFDC_METRICS_SERVICE_HOST"] + "/"
           -%>
@@ -175,7 +175,7 @@ zpages:
       - name: ELECTRON_OPA_CONFIG
         value: |
           <%-
-          split_pod_name = ENV["POD_NAME"].split()
+          split_pod_name = ENV["POD_NAME"].split("-")
           metrics_scope = split_pod_name[0..(split_pod_name).length-3].join("-") + "." + ENV["KINGDOM"]
           funnel_url = "http://" + ENV["SFDC_METRICS_SERVICE_HOST"] + "/"
           -%>
@@ -213,7 +213,7 @@ zpages:
       - name: ELECTRON_OPA_ISTIO_CONFIG
         value: |
           <%-
-          split_pod_name = ENV["POD_NAME"].split()
+          split_pod_name = ENV["POD_NAME"].split("-")
           metrics_scope = split_pod_name[0..(split_pod_name).length-3].join("-") + "." + ENV["KINGDOM"]
           funnel_url = "http://" + ENV["SFDC_METRICS_SERVICE_HOST"] + "/"
           -%>
