@@ -141,31 +141,31 @@ items:
                       "location": "lib/templates",
                       "master-deployment-pipeline-templates": {
                           "cell-aggregate": {
-                              "config-json": "templatesrepo/master_config.json",
+                              "config-json": "templatesrepo/master_deployment_config.json",
                               "pipeline-template": "cell_master_01-00.j2",
                               "stages-json": "templatesrepo/master_deployment_stages.json",
                               "vars-json": "templatesrepo/master_deployment_vars.json"
                           },
                           "env-type-aggregate": {
-                              "config-json": "templatesrepo/master_config.json",
+                              "config-json": "templatesrepo/master_deployment_config.json",
                               "pipeline-template": "env_type_master_01-00.j2",
                               "stages-json": "templatesrepo/master_deployment_stages.json",
-                              "vars-json": "templatesrepo/master_env_type_deployment_vars.json"
+                              "vars-json": "templatesrepo/master_deployment_vars.json"
                           },
                           "fd-aggregate": {
-                              "config-json": "templatesrepo/master_config.json",
+                              "config-json": "templatesrepo/master_deployment_config.json",
                               "pipeline-template": "fd_master_01-00.j2",
                               "stages-json": "templatesrepo/master_deployment_stages.json",
                               "vars-json": "templatesrepo/master_deployment_vars.json"
                           },
                           "fi-aggregate": {
-                              "config-json": "templatesrepo/master_config.json",
+                              "config-json": "templatesrepo/master_deployment_config.json",
                               "pipeline-template": "fi_master_01-00.j2",
                               "stages-json": "templatesrepo/master_deployment_stages.json",
                               "vars-json": "templatesrepo/master_deployment_vars.json"
                           },
                           "service-master": {
-                              "config-json": "templatesrepo/master_config.json",
+                              "config-json": "templatesrepo/master_deployment_config.json",
                               "pipeline-template": "service_master_01-00.j2",
                               "stages-json": "templatesrepo/master_deployment_stages.json",
                               "vars-json": "templatesrepo/master_service_deployment_vars.json"
@@ -353,7 +353,7 @@ items:
                 fieldPath: metadata.labels['name']
           - name: CONFIG_VERSION
             value: "8"
-          image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/sfcdapi-firebom:56
+          image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/sfcdapi-firebom:58
           imagePullPolicy: Always
           livenessProbe:
             failureThreshold: 10

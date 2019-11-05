@@ -15,31 +15,31 @@ local configs = import 'config.jsonnet';
         'service-master': {
           'pipeline-template': 'service_master_01-00.j2',
           'vars-json': 'templatesrepo/master_service_deployment_vars.json',
-          'config-json': 'templatesrepo/master_config.json',
+          'config-json': 'templatesrepo/master_deployment_config.json',
           'stages-json': 'templatesrepo/master_deployment_stages.json',
         },
         'env-type-aggregate': {
           'pipeline-template': 'env_type_master_01-00.j2',
-          'vars-json': 'templatesrepo/master_env_type_deployment_vars.json',
-          'config-json': 'templatesrepo/master_config.json',
+          'vars-json': 'templatesrepo/master_deployment_vars.json',
+          'config-json': 'templatesrepo/master_deployment_config.json',
           'stages-json': 'templatesrepo/master_deployment_stages.json',
         },
         'fi-aggregate': {
           'pipeline-template': 'fi_master_01-00.j2',
           'vars-json': 'templatesrepo/master_deployment_vars.json',
-          'config-json': 'templatesrepo/master_config.json',
+          'config-json': 'templatesrepo/master_deployment_config.json',
           'stages-json': 'templatesrepo/master_deployment_stages.json',
         },
         'fd-aggregate': {
           'pipeline-template': 'fd_master_01-00.j2',
           'vars-json': 'templatesrepo/master_deployment_vars.json',
-          'config-json': 'templatesrepo/master_config.json',
+          'config-json': 'templatesrepo/master_deployment_config.json',
           'stages-json': 'templatesrepo/master_deployment_stages.json',
         },
         'cell-aggregate': {
           'pipeline-template': 'cell_master_01-00.j2',
           'vars-json': 'templatesrepo/master_deployment_vars.json',
-          'config-json': 'templatesrepo/master_config.json',
+          'config-json': 'templatesrepo/master_deployment_config.json',
           'stages-json': 'templatesrepo/master_deployment_stages.json',
         }
       }
