@@ -1,11 +1,11 @@
 apiVersion: v1
 system:
   functions:
-  - name: sam-c2c-jmh-perftestingapp-c2cservice-slb-capacity-2
+  - name: sam-c2c-jmh-perftestingapp-c2cservice-slb-capacity-10
     count: 1
     containers:
-    - name: sam-c2c-jmh-perftestingapp-c2cservice-slb-capacity-2
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/pbarlota/sam-c2c-jmh-perftestingapp-c2cservice-slb-capacity-2:latest-1
+    - name: sam-c2c-jmh-perftestingapp-c2cservice-slb-capacity-10
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/pbarlota/sam-c2c-jmh-perftestingapp-c2cservice-slb-capacity-10:latest-1
       ports:
       - containerPort: 9090
       volumeMounts:
@@ -59,8 +59,8 @@ system:
       maddogCert:
         type: client
   loadbalancers:
-  - lbname: sam-c2c-jmh-perftestingapp-c2cservice-slb-capacity-2-lb
-    function: sam-c2c-jmh-perftestingapp-c2cservice-slb-capacity-2
+  - lbname: sam-c2c-jmh-perftestingapp-c2cservice-slb-capacity-10-lb
+    function: sam-c2c-jmh-perftestingapp-c2cservice-slb-capacity-10
     slbenabled: true
     ports:
       - port: 9090
