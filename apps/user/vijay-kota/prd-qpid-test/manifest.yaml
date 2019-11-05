@@ -5,95 +5,95 @@ system:
     email:
       - vijay.kota@salesforce.com
   functions:
-    - name: cs55-app
-      count: 1
-      identity:
-        serviceName: app
-        pod: cs55
-      containers:
-        - name: app
-          image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/vijay-kota/myenvoy:10Jul19
-          command: ["/usr/bin/python"]
-          args: ["/home/sfdc-sherpa/myscripts/myapp.py"]
-          ports:
-            - containerPort: 12345
-              name: client-port
-          env:
-            - name: CLIENT_PORT
-              value: 12345
-          resources:
-            limits: { cpu: "8", memory: "16Gi" }
-            requests: { cpu: "8", memory: "16Gi" }
-          livenessProbe:
-            exec:
-              command: ["/bin/true"]
-            initialDelaySeconds: 10
-            timeoutSeconds: 10
-            periodSeconds: 60
-          readinessProbe:
-            exec:
-              command: ["/bin/true"]
-            initialDelaySeconds: 10
-            timeoutSeconds: 10
-          volumeMounts:
-            - mountPath: /var/log/qpid
-              name: logvol
+    # name: cs55-app
+    # count: 1
+    # identity:
+    #   serviceName: app
+    #   pod: cs55
+    # containers:
+    #   - name: app
+    #     image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/vijay-kota/myenvoy:10Jul19
+    #     command: ["/usr/bin/python"]
+    #     args: ["/home/sfdc-sherpa/myscripts/myapp.py"]
+    #     ports:
+    #       - containerPort: 12345
+    #         name: client-port
+    #     env:
+    #       - name: CLIENT_PORT
+    #         value: 12345
+    #     resources:
+    #       limits: { cpu: "8", memory: "16Gi" }
+    #       requests: { cpu: "8", memory: "16Gi" }
+    #     livenessProbe:
+    #       exec:
+    #         command: ["/bin/true"]
+    #       initialDelaySeconds: 10
+    #       timeoutSeconds: 10
+    #       periodSeconds: 60
+    #     readinessProbe:
+    #       exec:
+    #         command: ["/bin/true"]
+    #       initialDelaySeconds: 10
+    #       timeoutSeconds: 10
+    #     volumeMounts:
+    #       - mountPath: /var/log/qpid
+    #         name: logvol
 
-        - name: sherpa-app
-          # https://sconelibci.dop.sfdc.net/job/servicelibs/job/sherpa-envoy/job/master/73
-          image: sfci/servicelibs/sherpa-envoy:1.0.7
-          # See https://git.soma.salesforce.com/servicelibs/sherpa#ports
-          ports:
-          - containerPort: 15373
-            name: sherpa-adm
-          resources:
-            limits: { cpu: "1", memory: "1Gi" }
-            requests: { cpu: "1", memory: "1Gi" }
-          env:
-            - name: SFDC_ENVIRONMENT
-              value: mesh
-            - name: ENVOY_DEBUG_OPTIONS
-              value: --log-level trace --log-path /home/sfdc-sherpa/envoy.log
-          livenessProbe:
-            exec:
-              command:
-              - "./bin/is-alive"
-            initialDelaySeconds: 120
-            periodSeconds: 5
-          readinessProbe:
-            exec:
-              command:
-              - "./bin/is-ready"
-            initialDelaySeconds: 110
-            periodSeconds: 5
-          # Mount volumes with certificates. The paths here match the defaults assumed by sherpa
-          volumeMounts:
-          - name: sherpaclientcert
-            mountPath: /client-certs
-          - name: sherpaservercert
-            mountPath: /server-certs
-          - name: sherpa-log-volume
-            mountPath: /log
+    #   - name: sherpa-app
+    #     # https://sconelibci.dop.sfdc.net/job/servicelibs/job/sherpa-envoy/job/master/73
+    #     image: sfci/servicelibs/sherpa-envoy:1.0.7
+    #     # See https://git.soma.salesforce.com/servicelibs/sherpa#ports
+    #     ports:
+    #     - containerPort: 15373
+    #       name: sherpa-adm
+    #     resources:
+    #       limits: { cpu: "1", memory: "1Gi" }
+    #       requests: { cpu: "1", memory: "1Gi" }
+    #     env:
+    #       - name: SFDC_ENVIRONMENT
+    #         value: mesh
+    #       - name: ENVOY_DEBUG_OPTIONS
+    #         value: --log-level trace --log-path /home/sfdc-sherpa/envoy.log
+    #     livenessProbe:
+    #       exec:
+    #         command:
+    #         - "./bin/is-alive"
+    #       initialDelaySeconds: 120
+    #       periodSeconds: 5
+    #     readinessProbe:
+    #       exec:
+    #         command:
+    #         - "./bin/is-ready"
+    #       initialDelaySeconds: 110
+    #       periodSeconds: 5
+    #     # Mount volumes with certificates. The paths here match the defaults assumed by sherpa
+    #     volumeMounts:
+    #     - name: sherpaclientcert
+    #       mountPath: /client-certs
+    #     - name: sherpaservercert
+    #       mountPath: /server-certs
+    #     - name: sherpa-log-volume
+    #       mountPath: /log
 
-      volumes:
-        - name: logvol
-          hostpath:
-            path: /var/log/qpid
-        - name: sherpaclientcert
-          maddogCert:
-            type: client
-        - name: sherpaservercert
-          maddogCert:
-            type: server
-        - name: sherpa-log-volume
-          hostPath:
-            path: /home/sfdc-sherpa/logs
-        - name: beacon-log-volume
-          hostPath:
-            path: /home/sfdc-beacon/logs
+    # volumes:
+    #   - name: logvol
+    #     hostpath:
+    #       path: /var/log/qpid
+    #   - name: sherpaclientcert
+    #     maddogCert:
+    #       type: client
+    #   - name: sherpaservercert
+    #     maddogCert:
+    #       type: server
+    #   - name: sherpa-log-volume
+    #     hostPath:
+    #       path: /home/sfdc-sherpa/logs
+    #   - name: beacon-log-volume
+    #     hostPath:
+    #       path: /home/sfdc-beacon/logs
 
     - name: cs55-qpid
-#type: stateful-set
+      type: stateful-set
       count: 2
       identity:
         serviceName: qpid
@@ -138,7 +138,7 @@ system:
         - name: beacon-qpid
           image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/servicemesh/beacon:1.0.0
           command: ["/bin/sh"]
-          args: ["-c", "if [[ $FUNCTION_INSTANCE_NAME = *-0 ]]; then export port=$SHERPA0 ; else export port=$SHERPA1 ; fi; /usr/bin/java -jar /home/scone/service.jar -endpoint qpid/mq-cluster9-cs55-${port}:POD:${port}"]
+          args: ["-c", "if [[ $FUNCTION_INSTANCE_NAME = *-0 ]]; then export port=$SHERPA0 ; else export port=$SHERPA1 ; fi; /usr/bin/java -jar /home/scone/service.jar -endpoint qpid/mq-cluster10-cs55-${port}:POD:${port}"]
             # -endpoint
             # samapp/$(FUNCTION_NAMESPACE)/$(FUNCTION)-http:DATACENTER_ALLENV:7014
             # samapp/$(FUNCTION_NAMESPACE)/$(FUNCTION)-https:DATACENTER_ALLENV:7442
@@ -206,7 +206,7 @@ system:
           - name: sherpa-log-volume
             mountPath: /log
 
-      #lbname: cs55-qpid-lb
+      lbname: cs55-qpid-lb
 
       volumes:
         - name: logvol
