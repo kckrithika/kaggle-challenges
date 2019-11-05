@@ -187,6 +187,9 @@ system:
         httpGet:
           path: /manage/health
           port: 15371
+        initialDelaySeconds: 60
+        periodSeconds: 5
+        failureThreshold: 60
       volumeMounts:
         - name: server-cert
           mountPath: /certs
