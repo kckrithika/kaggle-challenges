@@ -137,54 +137,23 @@
     - cs4-app2-4-ia2.ops.sfdc.net  
   ports:
   - port: 443
-    targetport: 8090
-    reencrypt: true
-    healthport: 8085
+    targetport: 8085
     lbtype: http
     healthprotocol: http
     healthpath: /ping.jsp?allBusy
     sticky: 86400
-    tls: true
-    tlscertificate: secret_service:BofA-Stmfa-VIP-Certs:ia2.cce2e.my-salesforce.com.crt
-    tlskey: kms:1:2:B79A5F5D32C69C340DC39183EA315A164E1E7B3D76B680258E4EED91817177AE:14499d00-b8da-4c91-9ecf-469d69d9417f
     addheaders:
     - name: "X-Salesforce-VIP"
       value: "SLB"
-    removeheaders:
-    - "X-Forwarded-Proto"
-    - "X-Forwarded-For"
-    - "X-Client-Verify"
-    - "X-Real-IP"
-    - "X-Client-Cert"
-    - "X-Client-Fingerprint" 
-    - "SSL_CLIENT_S_DN"
-    - "SSL_CLIENT_M_SERIAL"
-    - "SSL_CLIENT_I_DN"
-    - "SSL_SHA1_HASH"
-    - "SSL_CLIENT_V_REMAIN" 
   - port: 8443
-    targetport: 8090
-    reencrypt: true
-    healthport: 8085
+    targetport: 8085
     lbtype: http
     healthprotocol: http
     healthpath: /ping.jsp?allBusy
     sticky: 86400
-    tls: true
-    mtls: true
-    tlscertificate: secret_service:BofA-Stmfa-VIP-Certs:ia2.cce2e.my-salesforce.com.crt
-    tlskey: kms:1:2:B79A5F5D32C69C340DC39183EA315A164E1E7B3D76B680258E4EED91817177AE:14499d00-b8da-4c91-9ecf-469d69d9417f
     addheaders:
     - name: "X-Salesforce-VIP"
-      value: "SLB"
-    removeheaders:
-    - "X-Forwarded-Proto"
-    - "X-Forwarded-For"
-    - "X-Client-Verify"
-    - "X-Real-IP"
-    - "X-Client-Cert"
-    - "X-Client-Fingerprint"  
-    - "SSL_CLIENT_V_REMAIN"   
+      value: "SLB"   
   - port: 80
     targetport: 8085
     lbtype: http
@@ -192,19 +161,9 @@
     healthpath: /ping.jsp?allBusy
     removeheaders:
     - "CipherSuite"
-    - "X-Forwarded-Proto" 
-    - "X-Forwarded-For" 
-    - "X-Real-IP"
-    - "SSL_CLIENT_S_DN"
-    - "SSL_CLIENT_M_SERIAL"
-    - "SSL_CLIENT_I_DN"
-    - "SSL_SHA1_HASH"
-    - "SSL_CLIENT_V_REMAIN" 
     addheaders:
     - name: "X-Salesforce-VIP"
       value: "SLB"
-
-
 - lbname: org-cce2e-cs22
   iptype: public_active
   servers:
@@ -220,54 +179,23 @@
     - cs22-app1-5-ia2.ops.sfdc.net  
   ports:
   - port: 443
-    targetport: 8090
-    reencrypt: true
-    healthport: 8085
+    targetport: 8085
     lbtype: http
     healthprotocol: http
     healthpath: /ping.jsp?allBusy
     sticky: 86400
-    tls: true
-    tlscertificate: secret_service:BofA-Stmfa-VIP-Certs:ia2.cce2e.my-salesforce.com.crt
-    tlskey: kms:1:2:B79A5F5D32C69C340DC39183EA315A164E1E7B3D76B680258E4EED91817177AE:14499d00-b8da-4c91-9ecf-469d69d9417f
     addheaders:
     - name: "X-Salesforce-VIP"
       value: "SLB"
-    removeheaders:
-    - "X-Forwarded-Proto"
-    - "X-Forwarded-For"
-    - "X-Client-Verify"
-    - "X-Real-IP"
-    - "X-Client-Cert"
-    - "X-Client-Fingerprint" 
-    - "SSL_CLIENT_S_DN"
-    - "SSL_CLIENT_M_SERIAL"
-    - "SSL_CLIENT_I_DN"
-    - "SSL_SHA1_HASH"
-    - "SSL_CLIENT_V_REMAIN" 
   - port: 8443
-    targetport: 8090
-    reencrypt: true
-    healthport: 8085
+    targetport: 8085
     lbtype: http
     healthprotocol: http
     healthpath: /ping.jsp?allBusy
     sticky: 86400
-    tls: true
-    mtls: true
-    tlscertificate: secret_service:BofA-Stmfa-VIP-Certs:ia2.cce2e.my-salesforce.com.crt
-    tlskey: kms:1:2:B79A5F5D32C69C340DC39183EA315A164E1E7B3D76B680258E4EED91817177AE:14499d00-b8da-4c91-9ecf-469d69d9417f
     addheaders:
     - name: "X-Salesforce-VIP"
-      value: "SLB"
-    removeheaders:
-    - "X-Forwarded-Proto"
-    - "X-Forwarded-For"
-    - "X-Client-Verify"
-    - "X-Real-IP"
-    - "X-Client-Cert"
-    - "X-Client-Fingerprint"  
-    - "SSL_CLIENT_V_REMAIN"   
+      value: "SLB"   
   - port: 80
     targetport: 8085
     lbtype: http
@@ -275,18 +203,9 @@
     healthpath: /ping.jsp?allBusy
     removeheaders:
     - "CipherSuite"
-    - "X-Forwarded-Proto" 
-    - "X-Forwarded-For" 
-    - "X-Real-IP"
-    - "SSL_CLIENT_S_DN"
-    - "SSL_CLIENT_M_SERIAL"
-    - "SSL_CLIENT_I_DN"
-    - "SSL_SHA1_HASH"
-    - "SSL_CLIENT_V_REMAIN" 
     addheaders:
     - name: "X-Salesforce-VIP"
       value: "SLB"
-
 - lbname: org-cce2e-cs24
   iptype: public_active
   servers:
