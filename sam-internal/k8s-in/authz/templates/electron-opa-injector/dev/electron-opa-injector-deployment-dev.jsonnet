@@ -158,7 +158,7 @@ configs.deploymentBase(versions.newInjectorNamespace) {
               },
               {
                 name: "FAKE_REDEPLOY_VAR",
-                value: "1",
+                value: "0",
               },
             ],
             volumeMounts+: [

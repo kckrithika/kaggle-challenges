@@ -146,9 +146,9 @@ zpages:
               funnel_url: <%= funnel_url %>
               metrics_scope: <%= metrics_scope -%>
     args:
-      - echo -e "${ELECTRON_OPA_CONFIG}" > /templated-config/opa_config.yaml &&
+      - echo -e "${ELECTRON_OPA_CONFIG}" > /templated-config/opa_config.yaml.erb &&
         /app/config_gen.rb -t /templated-config/opa_config.yaml.erb -o /generated-config/opa_config.yaml &&
-        echo -e "${ELECTRON_OPA_ISTIO_CONFIG}" > /templated-config/opa_istio_config.yaml &&
+        echo -e "${ELECTRON_OPA_ISTIO_CONFIG}" > /templated-config/opa_istio_config.yaml.erb &&
         /app/config_gen.rb -t /templated-config/opa_istio_config.yaml.erb -o /generated-config/opa_istio_config.yaml &&
         chmod -R 777 /client-certs/client
     volumeMounts:
@@ -254,9 +254,9 @@ zpages:
               funnel_url: <%= funnel_url %>
               metrics_scope: <%= metrics_scope -%>
     args:
-      - echo -e "${ELECTRON_OPA_CONFIG}" > /templated-config/opa_config.yaml &&
+      - echo -e "${ELECTRON_OPA_CONFIG}" > /templated-config/opa_config.yaml.erb &&
         /app/config_gen.rb -t /templated-config/opa_config.yaml.erb -o /generated-config/opa_config.yaml &&
-        echo -e "${ELECTRON_OPA_ISTIO_CONFIG}" > /templated-config/opa_istio_config.yaml &&
+        echo -e "${ELECTRON_OPA_ISTIO_CONFIG}" > /templated-config/opa_istio_config.yaml.erb &&
         /app/config_gen.rb -t /templated-config/opa_istio_config.yaml.erb -o /generated-config/opa_istio_config.yaml &&
         chmod -R 777 /client-certs/client
     volumeMounts:
