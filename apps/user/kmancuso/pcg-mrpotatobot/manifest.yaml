@@ -8,7 +8,7 @@ system:
     containers:
     - name: pcg-mrpotatobot
       image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/pcg-mrpotatobot:22
-      command: ["sleep 1000000"]
+      command: ["/bin/sleep 1000000"]
       ports:
         - containerPort: 8080
       livenessProbe:
