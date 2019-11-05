@@ -14,7 +14,7 @@ system:
           maxUnavailable: 1
       containers:
       - name: prd-maiev-receiver
-        image: dva/maiev-receiver:jenkins-CASP-maiev-alex-ajna-handler-6-itest
+        image: dva/maiev-receiver:jenkins-CASP-maiev-alex-ajna-handler-14-itest
         ports:
         - name: receiver-grpc
           containerPort: 7442
@@ -45,7 +45,7 @@ system:
             fieldRef:
               fieldPath: spec.nodeName
         volumeMounts:
-        - mountPath: /home/sfdc-maiev/certs/server
+        - mountPath: /home/sfdc-maiev/certs
           name: maievservercert
         - mountPath: /home/sfdc-maiev/certs/client
           name: maievclientcert
