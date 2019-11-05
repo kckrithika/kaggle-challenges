@@ -195,4 +195,3 @@ apps:
   authz-injector-test:
     - prd/prd-sam_gater
     - prd/prd-samtest
-    - prd/prd-samdev
