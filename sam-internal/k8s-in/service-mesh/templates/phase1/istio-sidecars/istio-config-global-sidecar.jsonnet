@@ -22,7 +22,7 @@ if (istioPhases.phaseNum == 1) then
             protocol: "GRPC",
             name: "grpc-tls",
         },
-        hosts: "*/*",
+        hosts: ["*/*"],
         // Temporary. Need to revert when a bug in Pilot is fixed W-6873971
         //hosts: mcpIstioConfig.sidecarEgressHosts,
       },
@@ -32,7 +32,7 @@ if (istioPhases.phaseNum == 1) then
             protocol: "HTTP",
             name: "http-tls",
         },
-        hosts: "*/*",
+        hosts: ["*/*"],
         // Temporary. Need to revert when a bug in Pilot is fixed W-6873971
         //hosts: mcpIstioConfig.sidecarEgressHosts,
       },
@@ -42,7 +42,7 @@ if (istioPhases.phaseNum == 1) then
             protocol: "HTTP",
             name: "http-plain",
         },
-        hosts: "*/*",
+        hosts: ["*/*"],
         // Temporary. Need to revert when a bug in Pilot is fixed W-6873971
         //hosts: mcpIstioConfig.sidecarEgressHosts,
       },
@@ -52,7 +52,7 @@ if (istioPhases.phaseNum == 1) then
             protocol: "GRPC",
             name: "grpc-plain",
         },
-        hosts: "*/*",
+        hosts: ["*/*"],
         // Temporary. Need to revert when a bug in Pilot is fixed W-6873971
         //hosts: mcpIstioConfig.sidecarEgressHosts,
       },

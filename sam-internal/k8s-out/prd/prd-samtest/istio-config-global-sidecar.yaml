@@ -8,22 +8,26 @@ metadata:
   namespace: mesh-control-plane
 spec:
   egress:
-  - hosts: '*/*'
+  - hosts:
+    - '*/*'
     port:
       name: grpc-tls
       number: 7443
       protocol: GRPC
-  - hosts: '*/*'
+  - hosts:
+    - '*/*'
     port:
       name: http-tls
       number: 7442
       protocol: HTTP
-  - hosts: '*/*'
+  - hosts:
+    - '*/*'
     port:
       name: http-plain
       number: 7014
       protocol: HTTP
-  - hosts: '*/*'
+  - hosts:
+    - '*/*'
     port:
       name: grpc-plain
       number: 7012
