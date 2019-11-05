@@ -26,7 +26,7 @@ spec:
         - --v=10
         - --ciNamespaceConfigFile=/ci/ci-namespaces.json
         - -alsologtostderr
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/sam/hypersam:2844-28ba0b4033ea9351b5eec024b6f8ba00239cba61
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/sam/hypersam:2852-f8ce04b05e6c1e898eb36ba5e58c96ac9202a5a1
         name: sam-api-proxy
         volumeMounts:
         - mountPath: /config
