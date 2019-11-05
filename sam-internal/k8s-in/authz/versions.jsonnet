@@ -18,7 +18,7 @@ local utils = import "util_functions.jsonnet";
     ),
 
     newOpaImage: (
-        "%s/dva/electron-opa:v0.14.2-metrics" % configs.registry
+        "%s/dva/electron-opa:v0.14.2-1-metrics" % configs.registry
     ),
 
     // =========
@@ -29,7 +29,7 @@ local utils = import "util_functions.jsonnet";
     ),
 
     newOpaIstioImage: (
-        "%s/dva/electron-opa-istio:v0.14.2-metrics" % configs.registry
+        "%s/dva/electron-opa-istio:v0.14.2-1-metrics" % configs.registry
     ),
 
     // =========
