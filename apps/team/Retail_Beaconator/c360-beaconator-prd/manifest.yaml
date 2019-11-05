@@ -35,6 +35,8 @@ system:
       - retail-rsui/hub-persistence:DATACENTER:7442:hub-persistence-func-lb.retail-rsui.prd-sam.prd.slb.sfdc.net
       - -endpoint
       - retail-rsui/retail-setup:DATACENTER:7443:rsui-func-lb.retail-rsui.prd-sam.prd.slb.sfdc.net
+      - -endpoint
+      - retail-rsui/retail-setup-standalone:DATACENTER:7443:rsui-standalone-lb.retail-rsui.prd-sam.prd.slb.sfdc.net
       resources:
         limits:
           cpu: "500m"
