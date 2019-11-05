@@ -4,8 +4,6 @@ system:
   functions:
   - name: rsui-standalone
     count: 1
-    identity:
-     serviceName: retail-setup
     labels:
       app: retail-setup
     annotations:
@@ -38,7 +36,7 @@ system:
 
     containers:
     - name: retail-setup
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/retail/retail-setup:b28f2ac
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/retail/retail-setup:7fa7ca8
       ports:
       # Jetty http1 ports for incoming public traffic via SLB
       - containerPort: 7022
