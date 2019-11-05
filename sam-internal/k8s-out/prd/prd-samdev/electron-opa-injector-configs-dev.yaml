@@ -87,7 +87,8 @@ data:
           - name: ELECTRON_OPA_CONFIG
             value: |
               <%-
-              metrics_scope = ENV["POD_NAME"] + "." + ENV["KINGDOM"]
+              split_pod_name = ENV["POD_NAME"].split()
+              metrics_scope = split_pod_name[0..(split_pod_name).length-3].join("-") + "." + ENV["KINGDOM"]
               funnel_url = "http://" + ENV["SFDC_METRICS_SERVICE_HOST"] + "/"
               -%>
               services:
@@ -123,7 +124,8 @@ data:
           - name: ELECTRON_OPA_ISTIO_CONFIG
             value: |
               <%-
-              metrics_scope = ENV["POD_NAME"] + "." + ENV["KINGDOM"]
+              split_pod_name = ENV["POD_NAME"].split()
+              metrics_scope = split_pod_name[0..(split_pod_name).length-3].join("-") + "." + ENV["KINGDOM"]
               funnel_url = "http://" + ENV["SFDC_METRICS_SERVICE_HOST"] + "/"
               -%>
 
@@ -192,7 +194,8 @@ data:
           - name: ELECTRON_OPA_CONFIG
             value: |
               <%-
-              metrics_scope = ENV["POD_NAME"] + "." + ENV["KINGDOM"]
+              split_pod_name = ENV["POD_NAME"].split()
+              metrics_scope = split_pod_name[0..(split_pod_name).length-3].join("-") + "." + ENV["KINGDOM"]
               funnel_url = "http://" + ENV["SFDC_METRICS_SERVICE_HOST"] + "/"
               -%>
 
@@ -229,7 +232,8 @@ data:
           - name: ELECTRON_OPA_ISTIO_CONFIG
             value: |
               <%-
-              metrics_scope = ENV["POD_NAME"] + "." + ENV["KINGDOM"]
+              split_pod_name = ENV["POD_NAME"].split()
+              metrics_scope = split_pod_name[0..(split_pod_name).length-3].join("-") + "." + ENV["KINGDOM"]
               funnel_url = "http://" + ENV["SFDC_METRICS_SERVICE_HOST"] + "/"
               -%>
 
@@ -283,7 +287,7 @@ data:
             mountPath: /client-certs
     containers:
       - name: electron-opa
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/electron-opa:v0.14.2-metrics
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/electron-opa:v0.14.2-1-metrics
         imagePullPolicy: IfNotPresent
         ports:
           - name: http
@@ -312,7 +316,7 @@ data:
           initialDelaySeconds: 5
           periodSeconds: 10
       - name: electron-opa-istio
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/electron-opa-istio:v0.14.2-metrics
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/electron-opa-istio:v0.14.2-1-metrics
         imagePullPolicy: IfNotPresent
         args:
           - run
