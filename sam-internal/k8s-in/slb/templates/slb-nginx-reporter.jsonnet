@@ -1,6 +1,7 @@
 local configs = import "config.jsonnet";
 local serviceName = "slb-nginx-reporter";
 local slbconfigs = (import "slbconfig.jsonnet") + { dirSuffix:: serviceName };
+local slbshared = (import "slbsharedservices.jsonnet") + { dirSuffix:: serviceName };
 local slbimages = (import "slbimages.jsonnet") + { templateFilename:: std.thisFile };
 local slbflights = (import "slbflights.jsonnet") + { dirSuffix:: "slb-portal" };
 
@@ -59,7 +60,7 @@ if slbconfigs.isSlbEstate then configs.deploymentBase("slb") {
                             configs.kube_config_env,
                         ],
                     } + resourceLimit + configs.ipAddressResourceRequest,
-                ],
+                ] + (if slbimages.phaseNum <= 1 then [slbshared.slbLogCleanup] else []),
             } + slbconfigs.getGracePeriod()
               + slbconfigs.slbEstateNodeSelector,
             metadata: {

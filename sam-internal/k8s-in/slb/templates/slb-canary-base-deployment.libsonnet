@@ -1,6 +1,7 @@
 local configs = import "config.jsonnet";
-local slbconfigs = import "slbconfig.jsonnet";
 local slbimages = (import "slbimages.jsonnet") + { templateFilename:: std.thisFile };
+local slbconfigs = (import "slbconfig.jsonnet") + (if slbimages.phaseNum <= 1 then { dirSuffix:: "slb-canary-service" } else {});
+local slbshared = (import "slbsharedservices.jsonnet") + { dirSuffix:: "slb-canary-service" };
 local portconfigs = import "portconfig.jsonnet";
 local slbflights = import "slbflights.jsonnet";
 local utils = import "util_functions.jsonnet";
@@ -170,7 +171,7 @@ local getMadkubAnnotations(tlsPorts) = (
                     + getCanaryLivenessProbe(ports[0])
                     + getVolumeMounts(tlsPorts),
                     getMadkubRefreshContainer(tlsPorts),
-                ]),
+                ] + (if slbimages.phaseNum <= 1 then [slbshared.slbLogCleanup] else [])),
                 nodeSelector: {
                     pool: configs.estate,
                 },

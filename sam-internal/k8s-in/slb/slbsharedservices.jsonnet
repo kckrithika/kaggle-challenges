@@ -125,8 +125,8 @@
       "--log_dir=" + slbconfigs.logsDir,
       "--shouldSkipSlbBlock=true",
       "--skipFilesWithSuffix=.sock",
-    ] + (if configs.estate == "prd-sam" then [
-        "--shouldNotDeleteAllFiles=false",
+    ] + (if slbimages.phaseNum <= 1 then [
+        "--shouldNotDeleteAllFiles=true",
     ] else [
         "--shouldNotDeleteAllFiles=true",
         "--maxDeleteFileCount=20",

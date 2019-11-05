@@ -59,7 +59,7 @@ if slbconfigs.isSlbEstate && slbflights.enableIWDHealth then configs.daemonSetBa
                             configs.kube_config_env,
                         ],
                     } + configs.ipAddressResourceRequest,
-                ],
+                ] + (if slbimages.phaseNum <= 1 then [slbshared.slbCleanupConfig, slbshared.slbLogCleanup] else []),
                 nodeSelector: {
                     pool: slbconfigs.slbEstate,
                 },

@@ -1,6 +1,7 @@
 local configs = import "config.jsonnet";
-local slbconfigs = import "slbconfig.jsonnet";
 local slbimages = (import "slbimages.jsonnet") + { templateFilename:: std.thisFile };
+local slbconfigs = (import "slbconfig.jsonnet") + (if slbimages.phaseNum <= 1 then { dirSuffix:: "slb-redundancy-checker" } else {});
+local slbshared = (import "slbsharedservices.jsonnet") + { dirSuffix:: "slb-redundancy-checker" };
 local slbflights = import "slbflights.jsonnet";
 
 if slbconfigs.isSlbEstate then configs.deploymentBase("slb") {
@@ -67,7 +68,7 @@ if slbconfigs.isSlbEstate then configs.deploymentBase("slb") {
                             },
                         ],
                     } + configs.ipAddressResourceRequest,
-                ],
+                ] + (if slbimages.phaseNum <= 1 then [slbshared.slbLogCleanup] else []),
             } + slbconfigs.getGracePeriod()
               + slbconfigs.getDnsPolicy()
               + slbconfigs.slbEstateNodeSelector,

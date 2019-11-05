@@ -1,7 +1,8 @@
 local configs = import "config.jsonnet";
-local slbconfigs = (import "slbconfig.jsonnet");
 local slbflights = import "slbflights.jsonnet";
 local slbimages = (import "slbimages.jsonnet") + { templateFilename:: std.thisFile };
+local slbconfigs = (import "slbconfig.jsonnet") + (if slbimages.phaseNum <= 1 then { dirSuffix:: "slb-george" } else {});
+local slbshared = (import "slbsharedservices.jsonnet") + { dirSuffix:: "slb-george" };
 local slbports = import "slbports.jsonnet";
 
 if slbconfigs.isSlbEstate && configs.estate != "prd-samtest" then configs.deploymentBase("slb") {
@@ -53,7 +54,7 @@ if slbconfigs.isSlbEstate && configs.estate != "prd-samtest" then configs.deploy
                             slbconfigs.sfdcloc_node_name_env,
                         ],
                     } + configs.ipAddressResourceRequest,
-                ],
+                ] + (if slbimages.phaseNum <= 1 then [slbshared.slbLogCleanup] else []),
                 nodeSelector: {
                     pool: configs.estate,
                 },

@@ -1,7 +1,7 @@
 local configs = import "config.jsonnet";
-local slbconfigs = import "slbconfig.jsonnet";
 local slbimages = (import "slbimages.jsonnet") + { templateFilename:: std.thisFile };
 local slbconfigs = (import "slbconfig.jsonnet") + { dirSuffix:: "slb-estate-installer" };
+local slbshared = (import "slbsharedservices.jsonnet") + { dirSuffix:: "slb-estate-installer" };
 local slbflights = import "slbflights.jsonnet";
 
 // Free up docker ip addresses in sdc by running this pod as host-network in prd-sdc.
@@ -99,7 +99,7 @@ if slbconfigs.isSlbEstate then configs.daemonSetBase("slb") {
                             slbconfigs.node_name_env,
                         ],
                     } + ipAddressResourceRequestIfNonHostNetwork,
-                ],
+                ] + (if slbimages.phaseNum <= 1 then [slbshared.slbLogCleanup] else []),
             } + slbconfigs.getGracePeriod()
               + slbconfigs.getDnsPolicy()
               + hostNetworkIfEnabled,
