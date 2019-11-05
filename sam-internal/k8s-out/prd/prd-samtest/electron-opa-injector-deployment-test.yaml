@@ -4,7 +4,7 @@ metadata:
   labels:
     app: electron-opa-injector
   name: electron-opa-injector
-  namespace: authz-injector
+  namespace: authz-opa-webhook
 spec:
   replicas: 1
   selector:
@@ -26,10 +26,10 @@ spec:
              "role": "electron-opa-injector",
              "san": [
               "electron-opa-injector",
-              "electron-opa-injector.authz-injector",
-              "electron-opa-injector.authz-injector.svc",
-              "electron-opa-injector.authz-injector.svc.cluster.local",
-              "electron-opa-injector.authz-injector.svc.prd-samtest.prd.sam.sfdc.net"
+              "electron-opa-injector.authz-opa-webhook",
+              "electron-opa-injector.authz-opa-webhook.svc",
+              "electron-opa-injector.authz-opa-webhook.svc.cluster.local",
+              "electron-opa-injector.authz-opa-webhook.svc.prd-samtest.prd.sam.sfdc.net"
              ]
             },
             {
@@ -39,10 +39,10 @@ spec:
              "role": "electron-opa-injector",
              "san": [
               "electron-opa-injector",
-              "electron-opa-injector.authz-injector",
-              "electron-opa-injector.authz-injector.svc",
-              "electron-opa-injector.authz-injector.svc.cluster.local",
-              "electron-opa-injector.authz-injector.svc.prd-samtest.prd.sam.sfdc.net"
+              "electron-opa-injector.authz-opa-webhook",
+              "electron-opa-injector.authz-opa-webhook.svc",
+              "electron-opa-injector.authz-opa-webhook.svc.cluster.local",
+              "electron-opa-injector.authz-opa-webhook.svc.prd-samtest.prd.sam.sfdc.net"
              ]
             }
            ]
@@ -57,6 +57,7 @@ spec:
       - args:
         - /mutating-webhook/mutating-webhook
         - --port=17442
+        - --http-port=17773
         - --sidecar-config-file=/config/sidecarconfig.yaml
         - --mutation-config-file=/config/mutationconfig.yaml
         - --cert-file-path=/server-certs/server/certificates/server.pem
@@ -100,14 +101,14 @@ spec:
         - name: SFDC_METRICS_SERVICE_PORT
           value: "80"
         - name: FAKE_REDEPLOY_VAR
-          value: "0"
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/mutating-webhook:120-198f5792279c9a1ca1e490c0281590bb1efd275c
+          value: "1"
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/mutating-webhook:125-ecf4466e49ca0d09bb486ea9e53b58d7a0e8c3a3
         imagePullPolicy: IfNotPresent
         livenessProbe:
           httpGet:
             path: /healthz
-            port: 17442
-            scheme: HTTPS
+            port: 17773
+            scheme: HTTP
           initialDelaySeconds: 2
           periodSeconds: 10
         name: injector
@@ -116,8 +117,8 @@ spec:
         readinessProbe:
           httpGet:
             path: /healthz
-            port: 17442
-            scheme: HTTPS
+            port: 17773
+            scheme: HTTP
           initialDelaySeconds: 5
           periodSeconds: 10
         resources:
@@ -133,6 +134,18 @@ spec:
           name: cert2
         - mountPath: /config
           name: electron-opa-injector-config
+      - command:
+        - ocagent
+        - --config=/config/opencensus.yaml
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/opencensus-service:13-75d5d20e22eec757a5399028a945fa0851bab367
+        livenessProbe:
+          httpGet:
+            path: /debug/rpcz
+            port: 55679
+        name: prom-to-argus
+        volumeMounts:
+        - mountPath: /config
+          name: opencensus-config
       - args:
         - /sam/madkub-client
         - --madkub-endpoint=https://10.254.208.254:32007
@@ -176,6 +189,39 @@ spec:
         - mountPath: /tokens
           name: tokens
       initContainers:
+      - command:
+        - /app/config_gen.rb
+        - -t
+        - /config/opencensus.yaml.erb
+        - -o
+        - /config2/opencensus.yaml
+        env:
+        - name: KINGDOM
+          value: prd
+        - name: ESTATE
+          value: prd-samtest
+        - name: FUNCTION_INSTANCE_NAME
+          valueFrom:
+            fieldRef:
+              apiVersion: v1
+              fieldPath: metadata.name
+        - name: NAMESPACE
+          valueFrom:
+            fieldRef:
+              apiVersion: v1
+              fieldPath: metadata.namespace
+        - name: SFDC_METRICS_SERVICE_HOST
+          value: ajna0-funnel1-0-prd.data.sfdc.net
+        - name: SFDC_METRICS_SERVICE_PORT
+          value: "80"
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/collection-erb-config-gen:19-70c45ccd33d3772cd6519e1f7dfe2cf5c2bc7b0e
+        imagePullPolicy: IfNotPresent
+        name: prom-to-argus-init
+        volumeMounts:
+        - mountPath: /config
+          name: electron-opa-injector-config
+        - mountPath: /config2
+          name: opencensus-config
       - args:
         - /sam/madkub-client
         - --madkub-endpoint=https://10.254.208.254:32007
@@ -252,6 +298,8 @@ spec:
       - emptyDir:
           medium: Memory
         name: tokens
+      - emptyDir: {}
+        name: opencensus-config
       - configMap:
           name: electron-opa-injector-config
         name: electron-opa-injector-config
