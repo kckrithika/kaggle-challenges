@@ -57,7 +57,7 @@ system:
             - name: BUCKET_INGEST_SMALL_THRESHOLD_SIZE_MAX_CSV
               value: 40M
             - name: BUCKET_INGEST_SMALL_CONCURRENCY_CONTROL
-              value: 50
+              value: 40
             - name: BUCKET_INGEST_SMALL_SPARK_EXECUTOR_CORES
               value: 5
             - name: BUCKET_INGEST_SMALL_SPARK_EXECUTOR_CORE_REQUESTS
@@ -74,11 +74,11 @@ system:
             - name: BUCKET_INGEST_MEDIUM_THRESHOLD_SIZE_MIN_JSON
               value: 80M
             - name: BUCKET_INGEST_MEDIUM_THRESHOLD_SIZE_MAX_JSON
-              value: 2G
+              value: 1200M
             - name: BUCKET_INGEST_MEDIUM_THRESHOLD_SIZE_MIN_CSV
               value: 40M
             - name: BUCKET_INGEST_MEDIUM_THRESHOLD_SIZE_MAX_CSV
-              value: 1G
+              value: 600M
             - name: BUCKET_INGEST_MEDIUM_CONCURRENCY_CONTROL
               value: 25
             - name: BUCKET_INGEST_MEDIUM_SPARK_DRIVER_MEMORY
@@ -91,9 +91,9 @@ system:
               value: "-Djars=/opt/cre/cre-engine.jar -XX:+UseParallelGC -verbose:jni"
             ####################################### Bucket Large variables #######################################
             - name: BUCKET_INGEST_LARGE_THRESHOLD_SIZE_MIN_JSON
-              value: 2G
+              value: 1200M
             - name: BUCKET_INGEST_LARGE_THRESHOLD_SIZE_MIN_CSV
-              value: 1G
+              value: 600M
             - name: BUCKET_INGEST_LARGE_CONCURRENCY_CONTROL
               value: 10
             - name: BUCKET_INGEST_LARGE_SPARK_DRIVER_MEMORY
