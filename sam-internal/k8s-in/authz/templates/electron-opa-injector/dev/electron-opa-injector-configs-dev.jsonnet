@@ -65,13 +65,11 @@ zpages:
         value: ' + configs.kingdom + '
       - name: SFDC_METRICS_SERVICE_HOST
         value: ' + funnelEndpointHost + '
-      - name: SFDC_METRICS_SERVICE_PORT
-        value: ' + funnelEndpointPort + '
       - name: ELECTRON_OPA_CONFIG
         value: |
           <%-
           metrics_scope = ENV["POD_NAME"] + "." + ENV["KINGDOM"]
-          funnel_url = ENV["SFDC_METRICS_SERVICE_HOST"] + ":" + ENV["SFDC_METRICS_SERVICE_PORT"]
+          funnel_url = "http://" + ENV["SFDC_METRICS_SERVICE_HOST"] + "/"
           -%>
           services:
             metrics:
@@ -107,7 +105,7 @@ zpages:
         value: |
           <%-
           metrics_scope = ENV["POD_NAME"] + "." + ENV["KINGDOM"]
-          funnel_url = ENV["SFDC_METRICS_SERVICE_HOST"] + ":" + ENV["SFDC_METRICS_SERVICE_PORT"]
+          funnel_url = "http://" + ENV["SFDC_METRICS_SERVICE_HOST"] + "/"
           -%>
 
           services:
@@ -172,13 +170,11 @@ zpages:
         value: ' + configs.kingdom + '
       - name: SFDC_METRICS_SERVICE_HOST
         value: ' + funnelEndpointHost + '
-      - name: SFDC_METRICS_SERVICE_PORT
-        value: ' + funnelEndpointPort + '
       - name: ELECTRON_OPA_CONFIG
         value: |
           <%-
           metrics_scope = ENV["POD_NAME"] + "." + ENV["KINGDOM"]
-          funnel_url = ENV["SFDC_METRICS_SERVICE_HOST"] + ":" + ENV["SFDC_METRICS_SERVICE_PORT"]
+          funnel_url = "http://" + ENV["SFDC_METRICS_SERVICE_HOST"] + "/"
           -%>
 
           services:
@@ -215,7 +211,7 @@ zpages:
         value: |
           <%-
           metrics_scope = ENV["POD_NAME"] + "." + ENV["KINGDOM"]
-          funnel_url = ENV["SFDC_METRICS_SERVICE_HOST"] + ":" + ENV["SFDC_METRICS_SERVICE_PORT"]
+          funnel_url = "http://" + ENV["SFDC_METRICS_SERVICE_HOST"] + "/"
           -%>
 
           services:
