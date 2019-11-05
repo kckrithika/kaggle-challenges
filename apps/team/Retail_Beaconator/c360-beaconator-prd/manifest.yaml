@@ -175,6 +175,14 @@ system:
       - retail-cre/cre-sp-cre-test:DATACENTER_ALLENV:7443:cre-sp-cre-test-lb.retail-cre.prd-sam.prd.slb.sfdc.net
 
       - -endpoint
+      - retail-rsui/rsui-func:DATACENTER_ALLENV:7443:rsui-func-lb.retail-rsui.prd-sam.prd.slb.sfdc.net
+      - -endpoint
+      - retail-rsui/rsui-func-freeze:DATACENTER_ALLENV:7443:rsui-func-freeze-lb.retail-rsui.prd-sam.prd.slb.sfdc.net
+      - -endpoint
+      - retail-rsui/rsui-func-patch:DATACENTER_ALLENV:7443:rsui-func-patch-lb.retail-rsui.prd-sam.prd.slb.sfdc.net
+      - -endpoint
+      - retail-rsui/rsui-perf:DATACENTER_ALLENV:7443:rsui-perf-lb.retail-rsui.prd-sam.prd.slb.sfdc.net
+      - -endpoint
       - retail-rsui/rsui-standalone:DATACENTER_ALLENV:7443:rsui-standalone-lb.retail-rsui.prd-sam.prd.slb.sfdc.net
       resources:
         limits:
