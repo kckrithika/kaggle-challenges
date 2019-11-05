@@ -84,13 +84,11 @@ data:
             value: prd
           - name: SFDC_METRICS_SERVICE_HOST
             value: ajna0-funnel1-0-prd.data.sfdc.net
-          - name: SFDC_METRICS_SERVICE_PORT
-            value: 80
           - name: ELECTRON_OPA_CONFIG
             value: |
               <%-
               metrics_scope = ENV["POD_NAME"] + "." + ENV["KINGDOM"]
-              funnel_url = ENV["SFDC_METRICS_SERVICE_HOST"] + ":" + ENV["SFDC_METRICS_SERVICE_PORT"]
+              funnel_url = "http://" + ENV["SFDC_METRICS_SERVICE_HOST"] + "/"
               -%>
               services:
                 metrics:
@@ -126,7 +124,7 @@ data:
             value: |
               <%-
               metrics_scope = ENV["POD_NAME"] + "." + ENV["KINGDOM"]
-              funnel_url = ENV["SFDC_METRICS_SERVICE_HOST"] + ":" + ENV["SFDC_METRICS_SERVICE_PORT"]
+              funnel_url = "http://" + ENV["SFDC_METRICS_SERVICE_HOST"] + "/"
               -%>
 
               services:
@@ -191,13 +189,11 @@ data:
             value: prd
           - name: SFDC_METRICS_SERVICE_HOST
             value: ajna0-funnel1-0-prd.data.sfdc.net
-          - name: SFDC_METRICS_SERVICE_PORT
-            value: 80
           - name: ELECTRON_OPA_CONFIG
             value: |
               <%-
               metrics_scope = ENV["POD_NAME"] + "." + ENV["KINGDOM"]
-              funnel_url = ENV["SFDC_METRICS_SERVICE_HOST"] + ":" + ENV["SFDC_METRICS_SERVICE_PORT"]
+              funnel_url = "http://" + ENV["SFDC_METRICS_SERVICE_HOST"] + "/"
               -%>
 
               services:
@@ -234,7 +230,7 @@ data:
             value: |
               <%-
               metrics_scope = ENV["POD_NAME"] + "." + ENV["KINGDOM"]
-              funnel_url = ENV["SFDC_METRICS_SERVICE_HOST"] + ":" + ENV["SFDC_METRICS_SERVICE_PORT"]
+              funnel_url = "http://" + ENV["SFDC_METRICS_SERVICE_HOST"] + "/"
               -%>
 
               services:
