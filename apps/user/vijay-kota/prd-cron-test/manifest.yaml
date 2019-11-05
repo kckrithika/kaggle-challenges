@@ -159,7 +159,7 @@ system:
         pod: cs66
       containers:
         - name: cronsvc
-          image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/vijay-kota/cronsvc:01Nov19
+          image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/vijay-kota/cronsvc:05Nov19
           ports:
             - name: grpc-port
               containerPort: 7020
