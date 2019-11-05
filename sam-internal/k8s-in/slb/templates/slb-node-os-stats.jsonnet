@@ -1,6 +1,7 @@
 local configs = import "config.jsonnet";
-local slbconfigs = import "slbconfig.jsonnet";
 local slbimages = (import "slbimages.jsonnet") + { templateFilename:: std.thisFile };
+local slbconfigs = (import "slbconfig.jsonnet") + (if slbimages.phaseNum <= 1 then { dirSuffix:: "slb-node-os-stats" } else {});
+local slbshared = (import "slbsharedservices.jsonnet") + { dirSuffix:: "slb-node-os-stats" };
 local slbflights = import "slbflights.jsonnet";
 
 if configs.estate == "prd-sdc" then configs.deploymentBase("slb") {
@@ -61,7 +62,7 @@ if configs.estate == "prd-sdc" then configs.deploymentBase("slb") {
                             privileged: true,
                         },
                     } + configs.ipAddressResourceRequest,
-                ],
+                ] + (if slbimages.phaseNum <= 1 then [slbshared.slbLogCleanup] else []),
             } + slbconfigs.getGracePeriod()
               + slbconfigs.getDnsPolicy(),
         },
