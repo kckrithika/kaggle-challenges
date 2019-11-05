@@ -1,0 +1,68 @@
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  labels:
+    name: pseudo-kubeapi
+    sam.data.sfdc.net/owner: sam
+  name: pseudo-kubeapi
+  namespace: csc-sam
+spec:
+  replicas: 5
+  selector:
+    matchLabels:
+      name: pseudo-kubeapi
+  template:
+    metadata:
+      labels:
+        name: pseudo-kubeapi
+        sam.data.sfdc.net/owner: sam
+    spec:
+      containers:
+      - command:
+        - /sam/virtual-api
+        - --config=/config/pseudo-kubeapi.json
+        env:
+        - name: KUBECONFIG
+          value: /kubeconfig/kubeconfig-platform
+        image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/d.smith/hypersam:20180518_123833.16f51950.dirty.duncsmith-ltm
+        imagePullPolicy: Always
+        livenessProbe:
+          failureThreshold: 3
+          httpGet:
+            path: /healthz
+            port: 7002
+            scheme: HTTP
+          periodSeconds: 10
+          successThreshold: 1
+          timeoutSeconds: 1
+        name: pseudo-kubeapi
+        ports:
+        - containerPort: 7002
+          protocol: TCP
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+        volumeMounts:
+        - mountPath: /var/secrets/
+          name: mysql
+          readOnly: true
+      hostNetwork: true
+      securityContext:
+        fsGroup: 0
+        runAsUser: 0
+      volumes:
+      - hostPath:
+          path: /etc/pki_service
+        name: maddog-certs
+      - hostPath:
+          path: /etc/kubernetes
+        name: kubeconfig
+      - configMap:
+          name: sfdchosts
+        name: sfdchosts
+      - hostPath:
+          path: /data/certs
+        name: certs
+      - name: mysql
+        secret:
+          defaultMode: 420
+          secretName: mysql-passwords
