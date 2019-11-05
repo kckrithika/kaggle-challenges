@@ -9,7 +9,7 @@ system:
     count: 1
     containers:
     - name: cre-api
-      image: sfci/cre/cre-api:2.0.2.master.21e74a5.5
+      image: sfci/cre/cre-api:2.1.1.master.6b03749.6
       env:
         - name: DOMAIN_ID
           value: cre
@@ -122,6 +122,8 @@ system:
         path: /home/sfdc-sherpa/logs
   loadbalancers:
   - lbname: cre-api-lb
+    annotations:
+      slb.sfdc.net/iptype: private_reserved
     function: cre-api
     slbenabled: true
     ports:
