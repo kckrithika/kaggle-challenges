@@ -1,0 +1,43 @@
+---
+apiVersion: v1
+
+system:
+  functions:
+  - name: pcg-mrpotatobot
+    count: 1
+    containers:
+    - name: pcg-mrpotatobot
+      image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/pcg-mrpotatobot:22
+      command: ["sleep 1000000"]
+      ports:
+        - containerPort: 8080
+      livenessProbe:
+        exec:
+          command: ["true"]
+        initialDelaySeconds: 60
+        periodSeconds: 5
+      env:
+      - name: HTTP_PROXY
+        value: public0-proxy1-0-prd.data.sfdc.net:8080
+      - name: HTTPS_PROXY
+        value: public0-proxy1-0-prd.data.sfdc.net:8080
+      - name: PLACEBO
+        value: 0001
+      volumeMounts:
+      - mountPath: /secrets/
+        name: mrpotatobot
+        readOnly: true
+    volumes:
+    - name: mrpotatobot
+      k4aSecret:
+        secretName: mrpotatobot
+
+  loadbalancers:
+  - lbname: pcg-mrpotatobot
+    function: pcg-mrpotatobot
+    slbenabled: true
+    ports:
+      - port: 443
+        targetport: 8080
+        lbtype: http
+        tls: true
