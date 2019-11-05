@@ -49,6 +49,57 @@ system:
               value: cre-engine-eu-1
             - name: BUCKET_INGEST_MANIFEST_OVERRIDE_ENABLED
               value: true
+            - name: BUCKET_INGEST_CONCURRENCY_CONTROL_ENABLED
+              value: true
+            ####################################### Bucket Small variables #####################################
+            - name: BUCKET_INGEST_SMALL_THRESHOLD_SIZE_MAX_JSON
+              value: 80M
+            - name: BUCKET_INGEST_SMALL_THRESHOLD_SIZE_MAX_CSV
+              value: 40M
+            - name: BUCKET_INGEST_SMALL_CONCURRENCY_CONTROL
+              value: 50
+            - name: BUCKET_INGEST_SMALL_SPARK_EXECUTOR_CORES
+              value: 5
+            - name: BUCKET_INGEST_SMALL_SPARK_EXECUTOR_CORE_REQUESTS
+              value: 5
+            - name: BUCKET_INGEST_SMALL_SPARK_EXECUTOR_MEMORY
+              value: 16g
+            - name: BUCKET_INGEST_SMALL_SPARK_EXECUTOR_MEMORY_OVERHEAD
+              value: 1g
+            - name: BUCKET_INGEST_SMALL_SPARK_SQL_SHUFFLE_PARTITIONS
+              value: 200
+            - name: BUCKET_INGEST_SMALL_SPARK_JAVA_OPTIONS
+              value: "-Djars=/opt/cre/cre-engine.jar -XX:+UseParallelGC -verbose:jni"
+            ####################################### Bucket Medium variables #####################################
+            - name: BUCKET_INGEST_MEDIUM_THRESHOLD_SIZE_MIN_JSON
+              value: 80M
+            - name: BUCKET_INGEST_MEDIUM_THRESHOLD_SIZE_MAX_JSON
+              value: 2G
+            - name: BUCKET_INGEST_MEDIUM_THRESHOLD_SIZE_MIN_CSV
+              value: 40M
+            - name: BUCKET_INGEST_MEDIUM_THRESHOLD_SIZE_MAX_CSV
+              value: 1G
+            - name: BUCKET_INGEST_MEDIUM_CONCURRENCY_CONTROL
+              value: 25
+            - name: BUCKET_INGEST_MEDIUM_SPARK_DRIVER_MEMORY
+              value: 7g
+            - name: BUCKET_INGEST_MEDIUM_SPARK_DRIVER_MEMORY_OVERHEAD
+              value: 1g
+            - name: BUCKET_INGEST_MEDIUM_SPARK_EXECUTOR_MEMORY
+              value: 30g
+            - name: BUCKET_INGEST_MEDIUM_SPARK_JAVA_OPTIONS
+              value: "-Djars=/opt/cre/cre-engine.jar -XX:+UseParallelGC -verbose:jni"
+            ####################################### Bucket Large variables #######################################
+            - name: BUCKET_INGEST_LARGE_THRESHOLD_SIZE_MIN_JSON
+              value: 2G
+            - name: BUCKET_INGEST_LARGE_THRESHOLD_SIZE_MIN_CSV
+              value: 1G
+            - name: BUCKET_INGEST_LARGE_CONCURRENCY_CONTROL
+              value: 10
+            - name: BUCKET_INGEST_LARGE_SPARK_DRIVER_MEMORY
+              value: 8g
+            - name: BUCKET_INGEST_LARGE_SPARK_JAVA_OPTIONS
+              value: "-Djars=/opt/cre/cre-engine.jar -XX:+UseParallelGC -verbose:jni"
             ####################################################################################################
             ####################################### SAVE environment variables ###############################
             ####################################################################################################
@@ -56,12 +107,26 @@ system:
               value: cre-engine
             - name: SAVE_K4A_VAULT
               value: cre-dds-eu-1
+            - name: SAVE_CONCURRENCY_CONTROL_ENABLED
+              value: true
+            - name: SAVE_CONCURRENCY_CONTROL
+              value: 25
+            - name: SAVE_DRIVER_MEMORY
+              value: 7g
+            - name: SAVE_DRIVER_MEMORY_OVERHEAD
+              value: 1g
             - name: SAVE_EXECUTOR_INSTANCES
-              value: 4
-            - name: SAVE_SPARK_DEFAULT_PARALLELISM
-              value: 60
+              value: 2
+            - name: SAVE_EXECUTOR_CORES
+              value: 10
+            - name: SAVE_EXECUTOR_CORE_REQUESTS
+              value: 10
+            - name: SAVE_EXECUTOR_MEMORY
+              value: 30g
             - name: SAVE_SPARK_SQL_SHUFFLE_PARTITIONS
-              value: 60
+              value: 20
+            - name: SAVE_SPARK_DEFAULT_PARALLELISM
+              value: 20
             ####################################################################################################
             ####################################### EXPORT environment variables ###############################
             ####################################################################################################
@@ -69,18 +134,24 @@ system:
               value: cre-engine
             - name: EXPORT_K4A_VAULT
               value: cre-dds-eu-1
-            - name: EXPORT_DRIVER_CORES
-              value: 16
-            - name: EXPORT_EXECUTOR_CORES
+            - name: EXPORT_CONCURRENCY_CONTROL_ENABLED
+              value: true
+            - name: EXPORT_CONCURRENCY_CONTROL
               value: 15
-            - name: EXPORT_EXECUTOR_INSTANCES
-              value: 4
+            - name: EXPORT_DRIVER_MEMORY_OVERHEAD
+              value: 1g
+            - name: EXPORT_EXECUTOR_CORES
+              value: 10
             - name: EXPORT_DRIVER_MEMORY
-              value: 16g
+              value: 7g
             - name: EXPORT_SPARK_DEFAULT_PARALLELISM
-              value: 60
+              value: 20
             - name: EXPORT_SPARK_SQL_SHUFFLE_PARTITIONS
-              value: 60
+              value: 20
+            - name: EXPORT_EXECUTOR_CORE_REQUESTS
+              value: 10
+            - name: EXPORT_EXECUTOR_MEMORY
+              value: 30g
             ####################################################################################################
             ##################################### APP Config environment variables #############################
             ####################################################################################################
