@@ -47,7 +47,7 @@ spec:
       - command:
         - /sdn/slb-canary-service
         - --serviceName=slb-canary-passthrough-tls
-        - --log_dir=/host/data/slb/logs/
+        - --log_dir=/host/data/slb/logs/slb-canary-service
         - --ports=9114
         image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/slb/hyperslb:2274-05577ee0f254227a5dc2149e40a32b89e30604de
         livenessProbe:
@@ -63,13 +63,46 @@ spec:
           requests:
             sam.sfdc.net/ip-address: "1"
         volumeMounts:
-        - mountPath: /host/data/slb/logs/
+        - mountPath: /host/data/slb/logs/slb-canary-service
           name: var-logs-volume
+      - command:
+        - /sdn/slb-cleanup
+        - --period=1800s
+        - --logsMaxAge=48h
+        - --log_dir=/host/data/slb/logs/slb-canary-service/cleanup
+        - --filesDirToCleanup=/host/data/slb/logs/slb-canary-service
+        - --shouldSkipServiceRecords=false
+        - --shouldNotDeleteAllFiles=false
+        env:
+        - name: KUBECONFIG
+          value: /kubeconfig/kubeconfig-platform
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/slb/hyperslb:2274-05577ee0f254227a5dc2149e40a32b89e30604de
+        livenessProbe:
+          exec:
+            command:
+            - test
+            - '`find /slb-cleanup-heartbeat -mmin -.5`'
+          initialDelaySeconds: 15
+          periodSeconds: 15
+        name: slb-cleanup
+        securityContext:
+          privileged: true
+        volumeMounts:
+        - mountPath: /host/data/slb
+          name: var-slb-volume
+        - mountPath: /host/data/slb/config/slb-canary-service
+          name: var-config-volume
+        - mountPath: /host/data/slb/logs/slb-canary-service
+          name: var-logs-volume
+        - mountPath: /sfdchosts
+          name: sfdchosts
+        - mountPath: /host/data/slb/logs/slb-canary-service/cleanup
+          name: var-cleanup-logs-volume
       dnsPolicy: Default
       nodeSelector:
         pool: prd-sdc
       terminationGracePeriodSeconds: 5
       volumes:
       - hostPath:
-          path: /data/slb/logs/
+          path: /data/slb/logs/slb-canary-service
         name: var-logs-volume
