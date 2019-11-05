@@ -50,7 +50,7 @@ system:
         initialDelaySeconds: 110
         timeoutSeconds: 10
     - name: beacon
-      image: sfci/services/sfdc-bazel/disco/beacon:98fa2b0b0
+      image: sfci/services/sfdc-bazel/disco/beacon:3a02b95e6
       args:
       - -endpoint
       - search-scale-safely/search-query-service:DATACENTER_ALLENV:7443
