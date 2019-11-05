@@ -2,6 +2,8 @@ local configs = import "config.jsonnet";
 local versions = import "authz/versions.jsonnet";
 local electron_opa_utils = import "authz/electron_opa_utils.jsonnet";
 local utils = import "util_functions.jsonnet";
+local funnelEndpointHost = std.split(configs.funnelVIP, ":")[0];
+local funnelEndpointPort = std.split(configs.funnelVIP, ":")[1];
 
 if electron_opa_utils.is_electron_opa_injector_dev_cluster(configs.estate) then
 {
@@ -54,21 +56,6 @@ zpages:
     imagePullPolicy: IfNotPresent
     command: ["bash", "-c"]
     env:
-      - name: OPA_METRICS_ENABLED
-        valueFrom:
-          fieldRef:
-            apiVersion: v1
-            fieldPath: metadata.annotations["electron-opa.k8s-integration.sfdc.com/opa-metrics-enabled"]
-      - name: OPA_METRICS_PORT
-        valueFrom:
-          fieldRef:
-            apiVersion: v1
-            fieldPath: metadata.annotations["electron-opa.k8s-integration.sfdc.com/opa-metrics-port"]
-      - name: OPA_METRICS_SCOPE
-        valueFrom:
-          fieldRef:
-            apiVersion: v1
-            fieldPath: metadata.annotations["electron-opa.k8s-integration.sfdc.com/opa-metrics-scope"]
       - name: POD_NAME
         valueFrom:
           fieldRef:
@@ -76,18 +63,19 @@ zpages:
             fieldPath: metadata.name
       - name: KINGDOM
         value: ' + configs.kingdom + '
+      - name: SFDC_METRICS_SERVICE_HOST,
+        value: ' + funnelEndpointHost + ',
+      - name: SFDC_METRICS_SERVICE_PORT,
+        value: ' + funnelEndpointPort + ',
       - name: ELECTRON_OPA_CONFIG
         value: |
           <%-
-          def env?(v) ENV.key?(v) and ENV[v].length > 0 end
-
-          metrics_port = env?("OPA_METRICS_PORT") ? ENV["OPA_METRICS_PORT"] : ":9192"
-          metrics_scope = env?("OPA_METRICS_SCOPE") ? ENV["OPA_METRICS_SCOPE"] : ENV["POD_NAME"] + "." + ENV["KINGDOM"]
+          metrics_scope = ENV["POD_NAME"] + "." + ENV["KINGDOM"]
           funnel_url = ENV["SFDC_METRICS_SERVICE_HOST"] + ":" + ENV["SFDC_METRICS_SERVICE_PORT"]
           -%>
           services:
             metrics:
-              url: http://<%= metrics_port %>/
+              url: http://:9192/
             electron:
               url: https://authz-svc-opa.service-mesh.localhost.mesh.force.com:7442
               allow_insecure_tls: true
@@ -111,22 +99,20 @@ zpages:
               max_delay_seconds: 360
           plugins:
             argus_metrics:
-              server_port: <%= metrics_port %>
+              enabled: true
+              server_port: :9192
               funnel_url: <%= funnel_url %>
               metrics_scope: <%= metrics_scope -%>
       - name: ELECTRON_OPA_ISTIO_CONFIG
         value: |
           <%-
-          def env?(v) ENV.key?(v) and ENV[v].length > 0 end
-
-          metrics_port = env?("OPA_METRICS_PORT") ? ENV["OPA_METRICS_PORT"] : ":9192"
-          metrics_scope = env?("OPA_METRICS_SCOPE") ? ENV["OPA_METRICS_SCOPE"] : ENV["POD_NAME"] + "." + ENV["KINGDOM"]
+          metrics_scope = ENV["POD_NAME"] + "." + ENV["KINGDOM"]
           funnel_url = ENV["SFDC_METRICS_SERVICE_HOST"] + ":" + ENV["SFDC_METRICS_SERVICE_PORT"]
           -%>
 
           services:
             metrics:
-                url: http://<%= metrics_port %>/
+                url: http://:9192/
             electron:
               url: https://authz-svc-opa.service-mesh.localhost.mesh.force.com:7442
               allow_insecure_tls: true
@@ -155,7 +141,8 @@ zpages:
               dry-run: false
               enable-reflection: false
             argus_metrics:
-              server_port: <%= metrics_port %>
+              enabled: true
+              server_port: :9192
               funnel_url: <%= funnel_url %>
               metrics_scope: <%= metrics_scope -%>
     args:
@@ -176,21 +163,6 @@ zpages:
     imagePullPolicy: IfNotPresent
     command: ["bash", "-c"]
     env:
-      - name: OPA_METRICS_ENABLED
-        valueFrom:
-          fieldRef:
-            apiVersion: v1
-            fieldPath: metadata.annotations["electron-opa.k8s-integration.sfdc.com/opa-metrics-enabled"]
-      - name: OPA_METRICS_PORT
-        valueFrom:
-          fieldRef:
-            apiVersion: v1
-            fieldPath: metadata.annotations["electron-opa.k8s-integration.sfdc.com/opa-metrics-port"]
-      - name: OPA_METRICS_SCOPE
-        valueFrom:
-          fieldRef:
-            apiVersion: v1
-            fieldPath: metadata.annotations["electron-opa.k8s-integration.sfdc.com/opa-metrics-scope"]
       - name: POD_NAME
         valueFrom:
           fieldRef:
@@ -198,19 +170,20 @@ zpages:
             fieldPath: metadata.name
       - name: KINGDOM
         value: ' + configs.kingdom + '
+      - name: SFDC_METRICS_SERVICE_HOST,
+        value: ' + funnelEndpointHost + ',
+      - name: SFDC_METRICS_SERVICE_PORT,
+        value: ' + funnelEndpointPort + ',
       - name: ELECTRON_OPA_CONFIG
         value: |
           <%-
-          def env?(v) ENV.key?(v) and ENV[v].length > 0 end
-
-          metrics_port = env?("OPA_METRICS_PORT") ? ENV["OPA_METRICS_PORT"] : ":9192"
-          metrics_scope = env?("OPA_METRICS_SCOPE") ? ENV["OPA_METRICS_SCOPE"] : ENV["POD_NAME"] + "." + ENV["KINGDOM"]
+          metrics_scope = ENV["POD_NAME"] + "." + ENV["KINGDOM"]
           funnel_url = ENV["SFDC_METRICS_SERVICE_HOST"] + ":" + ENV["SFDC_METRICS_SERVICE_PORT"]
           -%>
 
           services:
             metrics:
-                url: http://<%= metrics_port %>/
+                url: http://:9192/
             electron:
               url: http://authz-svc-opa.service-mesh.localhost.mesh.force.com:5442
               allow_insecure_tls: true
@@ -234,22 +207,20 @@ zpages:
               max_delay_seconds: 360
           plugins:
             argus_metrics:
-              server_port: <%= metrics_port %>
+              enabled: true
+              server_port: :9192
               funnel_url: <%= funnel_url %>
               metrics_scope: <%= metrics_scope -%>
       - name: ELECTRON_OPA_ISTIO_CONFIG
         value: |
           <%-
-          def env?(v) ENV.key?(v) and ENV[v].length > 0 end
-
-          metrics_port = env?("OPA_METRICS_PORT") ? ENV["OPA_METRICS_PORT"] : ":9192"
-          metrics_scope = env?("OPA_METRICS_SCOPE") ? ENV["OPA_METRICS_SCOPE"] : ENV["POD_NAME"] + "." + ENV["KINGDOM"]
+          metrics_scope = ENV["POD_NAME"] + "." + ENV["KINGDOM"]
           funnel_url = ENV["SFDC_METRICS_SERVICE_HOST"] + ":" + ENV["SFDC_METRICS_SERVICE_PORT"]
           -%>
 
           services:
             metrics:
-                url: http://<%= metrics_port %>/
+                url: http://:9192/
             electron:
               url: http://authz-svc-opa.service-mesh.localhost.mesh.force.com:5442
               allow_insecure_tls: true
@@ -278,7 +249,8 @@ zpages:
               dry-run: false
               enable-reflection: false
             argus_metrics:
-              server_port: <%= metrics_port %>
+              enabled: true
+              server_port: :9192
               funnel_url: <%= funnel_url %>
               metrics_scope: <%= metrics_scope -%>
     args:
