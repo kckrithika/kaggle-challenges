@@ -61,6 +61,11 @@ zpages:
           fieldRef:
             apiVersion: v1
             fieldPath: metadata.name
+      - name: POD_NAMESPACE
+        valueFrom:
+          fieldRef:
+            apiVersion: v1
+            fieldPath: metadata.namespace
       - name: KINGDOM
         value: ' + configs.kingdom + '
       - name: SFDC_METRICS_SERVICE_HOST
@@ -69,7 +74,7 @@ zpages:
         value: |
           <%-
           split_pod_name = ENV["POD_NAME"].split("-")
-          metrics_scope = split_pod_name[0..(split_pod_name).length-3].join("-") + "." + ENV["KINGDOM"]
+          metrics_scope = split_pod_name[0..(split_pod_name).length-3].join("-") + "." + ENV["POD_NAMESPACE"] + "." + ENV["KINGDOM"]
           funnel_url = "http://" + ENV["SFDC_METRICS_SERVICE_HOST"] + "/"
           -%>
           services:
@@ -94,8 +99,8 @@ zpages:
           decision_logs:
             service: metrics
             reporting:
-              min_delay_seconds: 300
-              max_delay_seconds: 360
+              min_delay_seconds: 55
+              max_delay_seconds: 65
           plugins:
             argus_metrics:
               enabled: true
@@ -106,7 +111,7 @@ zpages:
         value: |
           <%-
           split_pod_name = ENV["POD_NAME"].split("-")
-          metrics_scope = split_pod_name[0..(split_pod_name).length-3].join("-") + "." + ENV["KINGDOM"]
+          metrics_scope = split_pod_name[0..(split_pod_name).length-3].join("-") + "." + ENV["POD_NAMESPACE"] + "." + ENV["KINGDOM"]
           funnel_url = "http://" + ENV["SFDC_METRICS_SERVICE_HOST"] + "/"
           -%>
 
@@ -132,8 +137,8 @@ zpages:
           decision_logs:
             service: metrics
             reporting:
-              min_delay_seconds: 300
-              max_delay_seconds: 360
+              min_delay_seconds: 55
+              max_delay_seconds: 65
           plugins:
             envoy_ext_authz_grpc:
               addr: :9191
@@ -168,6 +173,11 @@ zpages:
           fieldRef:
             apiVersion: v1
             fieldPath: metadata.name
+      - name: POD_NAMESPACE
+        valueFrom:
+          fieldRef:
+            apiVersion: v1
+            fieldPath: metadata.namespace
       - name: KINGDOM
         value: ' + configs.kingdom + '
       - name: SFDC_METRICS_SERVICE_HOST
@@ -176,7 +186,7 @@ zpages:
         value: |
           <%-
           split_pod_name = ENV["POD_NAME"].split("-")
-          metrics_scope = split_pod_name[0..(split_pod_name).length-3].join("-") + "." + ENV["KINGDOM"]
+          metrics_scope = split_pod_name[0..(split_pod_name).length-3].join("-") + "." + ENV["POD_NAMESPACE"] + "." + ENV["KINGDOM"]
           funnel_url = "http://" + ENV["SFDC_METRICS_SERVICE_HOST"] + "/"
           -%>
 
@@ -202,8 +212,8 @@ zpages:
           decision_logs:
             service: metrics
             reporting:
-              min_delay_seconds: 300
-              max_delay_seconds: 360
+              min_delay_seconds: 55
+              max_delay_seconds: 65
           plugins:
             argus_metrics:
               enabled: true
@@ -214,7 +224,7 @@ zpages:
         value: |
           <%-
           split_pod_name = ENV["POD_NAME"].split("-")
-          metrics_scope = split_pod_name[0..(split_pod_name).length-3].join("-") + "." + ENV["KINGDOM"]
+          metrics_scope = split_pod_name[0..(split_pod_name).length-3].join("-") + "." + ENV["POD_NAMESPACE"] + "." + ENV["KINGDOM"]
           funnel_url = "http://" + ENV["SFDC_METRICS_SERVICE_HOST"] + "/"
           -%>
 
@@ -240,8 +250,8 @@ zpages:
           decision_logs:
             service: metrics
             reporting:
-              min_delay_seconds: 300
-              max_delay_seconds: 360
+              min_delay_seconds: 55
+              max_delay_seconds: 65
           plugins:
             envoy_ext_authz_grpc:
               addr: :9191
