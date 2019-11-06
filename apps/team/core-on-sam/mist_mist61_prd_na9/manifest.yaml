@@ -487,7 +487,7 @@ system:
         value: "tcp://0.0.0.0:7020"
       - name: JVM_HEAP_MAX
         value: 4G
-      image: sfci/servicelibs/switchboard:2d8189e3fa84fab3672869b29009e416870906bc
+      image: sfci/servicelibs/switchboard:e323d84f37433b26a80f296630b2f4cbb7700d0c
       livenessProbe:
         httpGet:
           path: /manage/health
