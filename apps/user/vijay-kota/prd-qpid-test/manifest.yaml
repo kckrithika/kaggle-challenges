@@ -39,7 +39,7 @@ system:
             - mountPath: /var/log/qpid
               name: logvol
 
-        - name: sherpa-app
+        - name: sherpa
           # https://sconelibci.dop.sfdc.net/job/servicelibs/job/sherpa-envoy/job/master/73
           image: sfci/servicelibs/sherpa-envoy:1.0.7
           # See https://git.soma.salesforce.com/servicelibs/sherpa#ports
@@ -99,7 +99,7 @@ system:
         serviceName: qpid
         pod: cs55
       containers:
-        - name: qpid-broker-runtime
+        - name: qpid
           image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/vijay-kota/myenvoy:10Jul19
           command: ["/bin/sh"]
           args: ["-c", "if [[ $FUNCTION_INSTANCE_NAME = *-0 ]]; then export AMQP_PORT=$AMQP0 ; else export AMQP_PORT=$AMQP1 ; fi; /usr/bin/python /home/sfdc-sherpa/myscripts/myqpid.py"]
@@ -135,10 +135,10 @@ system:
             - mountPath: /var/log/qpid
               name: logvol
 
-        - name: beacon-qpid
+        - name: beacon
           image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/servicemesh/beacon:1.0.0
           command: ["/bin/sh"]
-          args: ["-c", "if [[ $FUNCTION_INSTANCE_NAME = *-0 ]]; then export port=$SHERPA0 ; else export port=$SHERPA1 ; fi; /usr/bin/java -jar /home/scone/service.jar -endpoint mq-cluster11-cs55-${port}:POD:${port}"]
+          args: ["-c", "if [[ $FUNCTION_INSTANCE_NAME = *-0 ]]; then export port=$SHERPA0 ; else export port=$SHERPA1 ; fi; /usr/bin/java -jar /home/scone/service.jar -endpoint samapp/user-vijay-kota/qpid:POD:${port}"]
             # -endpoint
             # samapp/$(FUNCTION_NAMESPACE)/$(FUNCTION)-http:DATACENTER_ALLENV:7014
             # samapp/$(FUNCTION_NAMESPACE)/$(FUNCTION)-https:DATACENTER_ALLENV:7442
@@ -164,7 +164,7 @@ system:
             - mountPath: /home/scone/logs
               name: beacon-log-volume
 
-        - name: sherpa-qpid
+        - name: sherpa
           # https://sconelibci.dop.sfdc.net/job/servicelibs/job/sherpa-envoy/job/master/73
           image: sfci/servicelibs/sherpa-envoy:1.0.7
           # See https://git.soma.salesforce.com/servicelibs/sherpa#ports
@@ -206,7 +206,7 @@ system:
           - name: sherpa-log-volume
             mountPath: /log
 
-      lbname: cs55-qpid-lb
+      lbname: cs55-qpid-stateful-lb
 
       volumes:
         - name: logvol
@@ -234,3 +234,11 @@ system:
         targetport: 12345
       - port: 15373
         targetport: 15373
+  - lbname: cs55-qpid-lb
+    function: cs55-qpid
+    slbenabled: true
+    ports:
+      - port: 2031
+        targetport: 2031
+      - port: 2034
+        targetport: 2034
