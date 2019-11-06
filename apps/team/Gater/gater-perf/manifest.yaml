@@ -41,22 +41,6 @@ system:
           port: 15375
         initialDelaySeconds: 60
         timeoutSeconds: 10
-    - name: beacon
-      # https://git.soma.salesforce.com/services/sfdc-bazel/tree/master/projects/sidecars/beacon#docker-image
-      image: sfci/services/sfdc-bazel/disco/beacon:d7f1640
-      env:
-        - name: SFDC_ENVIRONMENT
-          value: blitz
-      args:
-      - -endpoint
-      - $(FUNCTION):DATACENTER_ALLENV:HTTP2
-      - -endpoint
-      - $(FUNCTION_NAMESPACE)/$(FUNCTION):DATACENTER_ALLENV:HTTP2_TLS
-      livenessProbe:
-        initialDelaySeconds: 5
-        exec:
-          command:
-            - "/opt/beacon/is-alive.sh"
     volumes:
     - name: logvolservice
       hostPath:
