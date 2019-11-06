@@ -8,7 +8,7 @@ system:
     count: 1
     labels:
       app: gater-mesh
-      settings_path: blitz.-.prd.-.gater-mesh
+      settings_path: blitz.-.prd.-.gater-mesh      
     annotations:
       sidecar.istio.io/inject: "true"
     containers:
@@ -115,8 +115,11 @@ system:
   loadbalancers:
   - lbname: gater-mesh
     function: gater-mesh
+    annotations:
+      routing.mesh.sfdc.net/enabled: "true"
     labels:
       app: gater-mesh
+      settings_path: blitz.-.prd.-.gater-mesh
     ports:
       - lbtype: dsr
         port: 7443
