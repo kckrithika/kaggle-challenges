@@ -3,12 +3,12 @@ local samimages = (import "samimages.jsonnet") + { templateFilename:: std.thisFi
 # Yeah, I know this is not a watchdog.  Will fix with a refactor
 local wdconfig = import "samwdconfig.jsonnet";
 local featureflags = import "sam-feature-flags.jsonnet";
-local maddogcertsmount = if featureflags.etcd3 then 'maddog-certs' else null;
-local volumemounts = std.prune(['backup', 'cowdata', maddogcertsmount]);
+local maddogcertsmount = if featureflags.etcd3 then "maddog-certs" else null;
+local volumemounts = std.prune(["backup", "cowdata", maddogcertsmount]);
 local volumemountpoints = {
-  backup: '/data/etcdbackup',
-  cowdata: '/cowdata',
-  'maddog-certs': '/etc/pki_service',
+  backup: "/data/etcdbackup",
+  cowdata: "/cowdata",
+  "maddog-certs": "/etc/pki_service",
 };
 
 configs.daemonSetBase("sam") {
