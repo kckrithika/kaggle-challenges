@@ -16,7 +16,7 @@ system:
           maxUnavailable: 1
       containers:
       - name: fawkes-stage-func
-        image: dva/casp/fawkes_strata:jenkins-CASP-fawkes-dev-63-itest
+        image: dva/casp/fawkes_strata:jenkins-CASP-fawkes-date_time_formating-1-itest
         env:
         - name: FAWKES_ENV
           value: "stg"
