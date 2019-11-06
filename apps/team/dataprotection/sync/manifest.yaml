@@ -100,7 +100,7 @@ system:
       - port: 8080
         targetport: 7022
       - port: 15372
-        targetport: 15572
+        targetport: 15372
       - port: 7443
         targetport: 7020
 
