@@ -25,7 +25,7 @@ system:
         secretName: solrcloudcli-keytab-private
     containers:
     - name: universal-search
-      image: sfci/searchdev/universal-search:1.6.13
+      image: sfci/searchdev/universal-search:1.6.19
       ports:
       - name: service-port
         containerPort: 7020
@@ -58,8 +58,16 @@ system:
         timeoutSeconds: 10
         periodSeconds: 120
         failureThreshold: 1
+      readinessProbe:
+        httpGet:
+          path: /manage/health
+          port: 15372
+        initialDelaySeconds: 60
+        timeoutSeconds: 10
+        periodSeconds: 120
+        failureThreshold: 1
     - name: sherpa
-      image: sfci/servicelibs/sherpa-envoy:1.0.8
+      image: sfci/servicelibs/sherpa-envoy:1.0.13
       ports:
       - containerPort: 7443
         name: sherpa-tls
@@ -133,7 +141,7 @@ system:
         periodSeconds: 900
         failureThreshold: 1
     - name: sherpa
-      image: sfci/servicelibs/sherpa-envoy:1.0.8
+      image: sfci/servicelibs/sherpa-envoy:1.0.13
       ports:
       - containerPort: 15373
         name: sherpa-adm
@@ -193,7 +201,7 @@ system:
         periodSeconds: 900
         failureThreshold: 1
     - name: sherpa
-      image: sfci/servicelibs/sherpa-envoy:1.0.8
+      image: sfci/servicelibs/sherpa-envoy:1.0.13
       ports:
       - containerPort: 15373
         name: sherpa-adm
