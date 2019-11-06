@@ -30,7 +30,7 @@ if slbconfigs.isSlbEstate then configs.deploymentBase("slb") {
                     configs.cert_volume,
                     configs.kube_config_volume,
                     configs.sfdchosts_volume,
-                ] + (if slbimages.phaseNum <= 1 then
+                ] + (if slbimages.phaseNum <= 2 then
                         [slbconfigs.slb_config_volume, slbconfigs.cleanup_logs_volume]
                      else [])),
                 containers: [
@@ -62,7 +62,7 @@ if slbconfigs.isSlbEstate then configs.deploymentBase("slb") {
                             configs.kube_config_env,
                         ],
                     } + resourceLimit + configs.ipAddressResourceRequest,
-                ] + (if slbimages.phaseNum <= 1 then [slbshared.slbLogCleanup] else []),
+                ] + (if slbimages.phaseNum <= 2 then [slbshared.slbLogCleanup] else []),
             } + slbconfigs.getGracePeriod()
               + slbconfigs.slbEstateNodeSelector,
             metadata: {
