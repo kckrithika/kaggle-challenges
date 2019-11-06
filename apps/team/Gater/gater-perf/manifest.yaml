@@ -29,6 +29,7 @@ system:
       - --gater.timeout-in-millis=1000
       - --gater.perf.should-log=false
       - --gater.client.log-opts=NEVER_LOG
+      - --metrics.funnelEndPointURL=http://ajnafunneldirecttls.funnel.svc.mesh.sfdc.net:7442
       ports:
       - containerPort: 8081
       - containerPort: 15375
