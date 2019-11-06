@@ -119,3 +119,9 @@ spec:
       - hostPath:
           path: /etc/pki_service
         name: maddog-certs
+      - hostPath:
+          path: /data/slb/config/slb-redundancy-checker
+        name: var-config-volume
+      - hostPath:
+          path: /data/slb/logs/slb-redundancy-checker/cleanup
+        name: var-cleanup-logs-volume

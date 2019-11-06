@@ -96,3 +96,15 @@ spec:
       - hostPath:
           path: /data/slb/logs/slb-fred
         name: var-logs-volume
+      - hostPath:
+          path: /data/slb
+        name: var-slb-volume
+      - configMap:
+          name: sfdchosts
+        name: sfdchosts
+      - hostPath:
+          path: /data/slb/config/slb-fred
+        name: var-config-volume
+      - hostPath:
+          path: /data/slb/logs/slb-fred/cleanup
+        name: var-cleanup-logs-volume

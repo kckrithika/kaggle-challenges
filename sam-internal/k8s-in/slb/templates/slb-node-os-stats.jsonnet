@@ -43,7 +43,9 @@ if configs.estate == "prd-sdc" then configs.deploymentBase("slb") {
                     slbconfigs.slb_volume,
                     slbconfigs.logs_volume,
                     slbconfigs.proc_volume,
-                ]),
+                ] + (if slbimages.phaseNum <= 1 then
+                        [configs.sfdchosts_volume, slbconfigs.slb_config_volume, slbconfigs.cleanup_logs_volume]
+                     else [])),
                 containers: [
                     {
                         name: "slb-node-os-stats",

@@ -30,7 +30,9 @@ if slbconfigs.isSlbEstate then configs.deploymentBase("slb") {
                     configs.cert_volume,
                     configs.kube_config_volume,
                     configs.sfdchosts_volume,
-                ]),
+                ] + (if slbimages.phaseNum <= 1 then
+                        [slbconfigs.slb_config_volume, slbconfigs.cleanup_logs_volume]
+                     else [])),
                 containers: [
                     {
                         name: serviceName,

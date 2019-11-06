@@ -107,6 +107,15 @@ spec:
       - hostPath:
           path: /data/slb/logs/slb-estate-installer
         name: var-logs-volume
+      - configMap:
+          name: sfdchosts
+        name: sfdchosts
+      - hostPath:
+          path: /data/slb/config/slb-estate-installer
+        name: var-config-volume
+      - hostPath:
+          path: /data/slb/logs/slb-estate-installer/cleanup
+        name: var-cleanup-logs-volume
   updateStrategy:
     rollingUpdate:
       maxUnavailable: 1

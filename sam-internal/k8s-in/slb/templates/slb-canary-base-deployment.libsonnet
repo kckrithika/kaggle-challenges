@@ -86,6 +86,9 @@ local getVolumes(tlsPorts) = ({
         slbconfigs.logs_volume,
     ] + (if tlsRequired(tlsPorts) then
             madkub.madkubSlbCertVolumes(madkubCertDirs) + madkub.madkubSlbMadkubVolumes() + [configs.maddog_cert_volume]
+         else [])
+      + (if slbimages.phaseNum <= 1 then
+            [slbconfigs.slb_volume, configs.sfdchosts_volume, slbconfigs.slb_config_volume, slbconfigs.cleanup_logs_volume]
          else []),),
 });
 
