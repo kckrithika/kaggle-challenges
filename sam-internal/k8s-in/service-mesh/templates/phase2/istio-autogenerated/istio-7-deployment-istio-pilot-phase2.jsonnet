@@ -178,6 +178,10 @@ if (istioPhases.phaseNum == 2) then
                 value: "1",
               },
               {
+                name: "PILOT_ENABLE_UNSAFE_REGEX",
+                value: "true",
+              },
+              {
                 name: "PILOT_ENABLE_PROTOCOL_SNIFFING_FOR_OUTBOUND",
                 value: "true",
               },

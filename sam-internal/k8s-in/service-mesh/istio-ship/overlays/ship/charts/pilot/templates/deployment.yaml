@@ -48,6 +48,7 @@ spec:
         - name: PILOT_PUSH_THROTTLE
         - name: PILOT_TRACE_SAMPLING
         - name: PILOT_DISABLE_XDS_MARSHALING_TO_ANY
+        - name: PILOT_ENABLE_UNSAFE_REGEX
         $setElementOrder/volumeMounts:
         - mountPath: /etc/istio/config
         args:
@@ -75,6 +76,8 @@ spec:
           value: 10s
         - name: PILOT_PUSH_THROTTLE
           value: "100"
+        - name: PILOT_ENABLE_UNSAFE_REGEX
+          value: "true"
         name: discovery
         volumeMounts:
         - $patch: delete
