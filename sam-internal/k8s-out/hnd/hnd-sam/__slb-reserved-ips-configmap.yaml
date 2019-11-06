@@ -2,6 +2,7 @@ apiVersion: v1
 data:
   slb-reserved-ips-hnd.json: |-
     {
+      "cre-api-lb.retail-cre.hnd-sam.hnd.slb.sfdc.net": "10.213.100.14",
       "cre-api-lb.retail-cre.par-sam.hnd.slb.sfdc.net": "10.213.100.14",
       "cre-control-plane-lb.retail-cre.hnd-sam.hnd.slb.sfdc.net": "10.213.100.136",
       "cre-sp-lb.retail-cre.hnd-sam.hnd.slb.sfdc.net": "10.213.100.137",

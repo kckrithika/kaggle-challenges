@@ -3,6 +3,7 @@ data:
   slb-reserved-ips-ukb.json: |-
     {
       "cre-api-lb.retail-cre.par-sam.ukb.slb.sfdc.net": "10.213.36.125",
+      "cre-api-lb.retail-cre.ukb-sam.ukb.slb.sfdc.net": "10.213.36.125",
       "cre-control-plane-lb.retail-cre.ukb-sam.ukb.slb.sfdc.net": "10.213.36.109",
       "cre-sp-lb.retail-cre.ukb-sam.ukb.slb.sfdc.net": "10.213.36.117",
       "dfs-production-lb.retail-dfs.ukb-sam.ukb.slb.sfdc.net": "10.213.36.121",

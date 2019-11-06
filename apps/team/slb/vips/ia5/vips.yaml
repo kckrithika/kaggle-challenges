@@ -1,16 +1,16 @@
 - lbname: org-cce2e-cs59
   iptype: public_reserved
   servers:
-    - cs59-app1-2-ia4.ops.sfdc.net
-    - cs59-app2-2-ia4.ops.sfdc.net
-    - cs59-app1-1-ia4.ops.sfdc.net
-    - cs59-app1-3-ia4.ops.sfdc.net
-    - cs59-app1-4-ia4.ops.sfdc.net
-    - cs59-app1-5-ia4.ops.sfdc.net
-    - cs59-app2-1-ia4.ops.sfdc.net
-    - cs59-app2-3-ia4.ops.sfdc.net
-    - cs59-app2-4-ia4.ops.sfdc.net
-    - cs59-app2-5-ia4.ops.sfdc.net  
+    - cs59-app1-2-ia5.ops.sfdc.net
+    - cs59-app2-2-ia5.ops.sfdc.net
+    - cs59-app1-1-ia5.ops.sfdc.net
+    - cs59-app1-3-ia5.ops.sfdc.net
+    - cs59-app1-4-ia5.ops.sfdc.net
+    - cs59-app1-5-ia5.ops.sfdc.net
+    - cs59-app2-1-ia5.ops.sfdc.net
+    - cs59-app2-3-ia5.ops.sfdc.net
+    - cs59-app2-4-ia5.ops.sfdc.net
+    - cs59-app2-5-ia5.ops.sfdc.net  
   ports:
   - port: 443
     targetport: 8085
@@ -44,16 +44,16 @@
 - lbname: org-cce2e-cs60
   iptype: public_reserved
   servers:
-    - cs60-app2-3-ia4.ops.sfdc.net
-    - cs60-app1-1-ia4.ops.sfdc.net
-    - cs60-app1-3-ia4.ops.sfdc.net
-    - cs60-app1-4-ia4.ops.sfdc.net
-    - cs60-app1-5-ia4.ops.sfdc.net
-    - cs60-app2-1-ia4.ops.sfdc.net
-    - cs60-app2-2-ia4.ops.sfdc.net
-    - cs60-app2-5-ia4.ops.sfdc.net
-    - cs60-app1-2-ia4.ops.sfdc.net
-    - cs60-app2-4-ia4.ops.sfdc.net  
+    - cs60-app2-3-ia5.ops.sfdc.net
+    - cs60-app1-1-ia5.ops.sfdc.net
+    - cs60-app1-3-ia5.ops.sfdc.net
+    - cs60-app1-4-ia5.ops.sfdc.net
+    - cs60-app1-5-ia5.ops.sfdc.net
+    - cs60-app2-1-ia5.ops.sfdc.net
+    - cs60-app2-2-ia5.ops.sfdc.net
+    - cs60-app2-5-ia5.ops.sfdc.net
+    - cs60-app1-2-ia5.ops.sfdc.net
+    - cs60-app2-4-ia5.ops.sfdc.net  
   ports:
   - port: 443
     targetport: 8085
@@ -87,16 +87,16 @@
 - lbname: org-cce2e-cs123
   iptype: public_reserved
   servers:
-    - cs123-app1-4-ia4.ops.sfdc.net
-    - cs123-app2-4-ia4.ops.sfdc.net
-    - cs123-app2-3-ia4.ops.sfdc.net
-    - cs123-app1-1-ia4.ops.sfdc.net
-    - cs123-app1-5-ia4.ops.sfdc.net
-    - cs123-app1-2-ia4.ops.sfdc.net
-    - cs123-app2-1-ia4.ops.sfdc.net
-    - cs123-app1-3-ia4.ops.sfdc.net
-    - cs123-app2-5-ia4.ops.sfdc.net
-    - cs123-app2-2-ia4.ops.sfdc.net  
+    - cs123-app1-4-ia5.ops.sfdc.net
+    - cs123-app2-4-ia5.ops.sfdc.net
+    - cs123-app2-3-ia5.ops.sfdc.net
+    - cs123-app1-1-ia5.ops.sfdc.net
+    - cs123-app1-5-ia5.ops.sfdc.net
+    - cs123-app1-2-ia5.ops.sfdc.net
+    - cs123-app2-1-ia5.ops.sfdc.net
+    - cs123-app1-3-ia5.ops.sfdc.net
+    - cs123-app2-5-ia5.ops.sfdc.net
+    - cs123-app2-2-ia5.ops.sfdc.net  
   ports:
   - port: 443
     targetport: 8085
@@ -130,16 +130,16 @@
 - lbname: org-cce2e-cs124
   iptype: public_reserved
   servers:
-    - cs124-app2-2-ia4.ops.sfdc.net
-    - cs124-app1-4-ia4.ops.sfdc.net
-    - cs124-app1-2-ia4.ops.sfdc.net
-    - cs124-app2-1-ia4.ops.sfdc.net
-    - cs124-app2-3-ia4.ops.sfdc.net
-    - cs124-app2-5-ia4.ops.sfdc.net
-    - cs124-app1-1-ia4.ops.sfdc.net
-    - cs124-app1-3-ia4.ops.sfdc.net
-    - cs124-app1-5-ia4.ops.sfdc.net
-    - cs124-app2-4-ia4.ops.sfdc.net  
+    - cs124-app2-2-ia5.ops.sfdc.net
+    - cs124-app1-4-ia5.ops.sfdc.net
+    - cs124-app1-2-ia5.ops.sfdc.net
+    - cs124-app2-1-ia5.ops.sfdc.net
+    - cs124-app2-3-ia5.ops.sfdc.net
+    - cs124-app2-5-ia5.ops.sfdc.net
+    - cs124-app1-1-ia5.ops.sfdc.net
+    - cs124-app1-3-ia5.ops.sfdc.net
+    - cs124-app1-5-ia5.ops.sfdc.net
+    - cs124-app2-4-ia5.ops.sfdc.net  
   ports:
   - port: 443
     targetport: 8085
@@ -173,16 +173,16 @@
 - lbname: org-cce2e-cs125
   iptype: public_reserved
   servers:
-    - cs125-app1-1-ia4.ops.sfdc.net
-    - cs125-app1-3-ia4.ops.sfdc.net
-    - cs125-app2-1-ia4.ops.sfdc.net
-    - cs125-app1-2-ia4.ops.sfdc.net
-    - cs125-app1-4-ia4.ops.sfdc.net
-    - cs125-app2-3-ia4.ops.sfdc.net
-    - cs125-app2-4-ia4.ops.sfdc.net
-    - cs125-app2-5-ia4.ops.sfdc.net
-    - cs125-app1-5-ia4.ops.sfdc.net
-    - cs125-app2-2-ia4.ops.sfdc.net  
+    - cs125-app1-1-ia5.ops.sfdc.net
+    - cs125-app1-3-ia5.ops.sfdc.net
+    - cs125-app2-1-ia5.ops.sfdc.net
+    - cs125-app1-2-ia5.ops.sfdc.net
+    - cs125-app1-4-ia5.ops.sfdc.net
+    - cs125-app2-3-ia5.ops.sfdc.net
+    - cs125-app2-4-ia5.ops.sfdc.net
+    - cs125-app2-5-ia5.ops.sfdc.net
+    - cs125-app1-5-ia5.ops.sfdc.net
+    - cs125-app2-2-ia5.ops.sfdc.net  
   ports:
   - port: 443
     targetport: 8085
