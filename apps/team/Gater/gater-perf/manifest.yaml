@@ -32,7 +32,6 @@ system:
       - --metrics.funnelEndPointURL=http://ajnafunneldirecttls.funnel.svc.mesh.sfdc.net:7442
       ports:
       - containerPort: 8081
-      - containerPort: 15375
       volumeMounts:
       - mountPath: /home/scone/logs
         name: logvolservice
@@ -80,9 +79,6 @@ system:
     - lbtype: http
       port: 80
       targetport: 8081
-    - lbtype: http
-      port: 15372
-      targetport: 15375
   - lbname: gater-perf
     function: gater-perf
     annotations:
