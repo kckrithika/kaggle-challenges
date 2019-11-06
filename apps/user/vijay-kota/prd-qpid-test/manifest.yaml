@@ -104,15 +104,15 @@ system:
           command: ["/bin/sh"]
           args: ["-c", "if [[ $FUNCTION_INSTANCE_NAME = *-0 ]]; then export AMQP_PORT=$AMQP0 ; else export AMQP_PORT=$AMQP1 ; fi; /usr/bin/python /home/sfdc-sherpa/myscripts/myqpid.py"]
           ports:
-            - containerPort: 2031
-            - containerPort: 2034
+            - containerPort: 2041
+            - containerPort: 2044
             # name: http-port
             # containerPort: 7022
           env:
             - name: AMQP0
-              value: 2031
+              value: 2041
             - name: AMQP1
-              value: 2034
+              value: 2044
             # name: HTTP_PORT
             # value: 7022
             - name: QPID_JAVA_HEAPSZ
@@ -143,14 +143,14 @@ system:
             # samapp/$(FUNCTION_NAMESPACE)/$(FUNCTION)-http:DATACENTER_ALLENV:7014
             # samapp/$(FUNCTION_NAMESPACE)/$(FUNCTION)-https:DATACENTER_ALLENV:7442
             # -endpoint
-            # samapp/$(FUNCTION_NAMESPACE)/$(FUNCTION):DATACENTER_ALLENV:2030
+            # samapp/$(FUNCTION_NAMESPACE)/$(FUNCTION):DATACENTER_ALLENV:2040
           env:
             - name: SFDC_ENVIRONMENT
               value: mesh
             - name: SHERPA0
-              value: 2030
+              value: 2040
             - name: SHERPA1
-              value: 2033
+              value: 2043
           livenessProbe:
             initialDelaySeconds: 5
             exec:
@@ -171,8 +171,8 @@ system:
           ports:
           - containerPort: 15373
             name: sherpa-adm
-          - containerPort: 2030
-          - containerPort: 2033
+          - containerPort: 2040
+          - containerPort: 2043
           # containerPort: 7014
           # name: http1-in
           # containerPort: 7442
@@ -238,7 +238,11 @@ system:
     function: cs55-qpid
     slbenabled: true
     ports:
-      - port: 2031
-        targetport: 2031
-      - port: 2034
-        targetport: 2034
+      - port: 2040
+        targetport: 2040
+      - port: 2041
+        targetport: 2041
+      - port: 2043
+        targetport: 2043
+      - port: 2044
+        targetport: 2044
