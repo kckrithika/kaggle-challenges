@@ -125,7 +125,7 @@
       "--log_dir=" + slbconfigs.logsDir,
       "--shouldSkipSlbBlock=true",
       "--skipFilesWithSuffix=.sock",
-    ] + (if slbimages.phaseNum <= 1 then [
+    ] + (if slbimages.phaseNum <= 2 then [
         "--shouldNotDeleteAllFiles=true",
     ] else [
         "--shouldNotDeleteAllFiles=true",
