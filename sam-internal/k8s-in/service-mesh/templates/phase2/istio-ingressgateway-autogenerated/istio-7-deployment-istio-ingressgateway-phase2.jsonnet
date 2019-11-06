@@ -121,6 +121,7 @@ if (istioPhases.phaseNum == 2) then
               "router",
               "--domain",
               "$(POD_NAMESPACE).svc.cluster.local",
+              "--proxyLogLevel=info",
               "--log_output_level",
               "default:info",
               "--drainDuration",
