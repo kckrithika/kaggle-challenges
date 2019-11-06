@@ -5,7 +5,7 @@ system:
     count: 5
     containers:
     - name: sync
-      image: dva/winterfell-sync:85
+      image: dva/winterfell-sync:86
       env:
       - name: SFDC_ENVIRONMENT
         value: prod
@@ -19,16 +19,16 @@ system:
       ports:
       - containerPort: 7020
       - containerPort: 7022
-      - containerPort: 15572
+      - containerPort: 15372
       livenessProbe:
         httpGet:
           path: /manage/health
-          port: 15572
+          port: 15372
         initialDelaySeconds: 130
       readinessProbe:
         httpGet:
           path: /manage/health
-          port: 15572
+          port: 15372
         initialDelaySeconds: 115
       volumeMounts:
         - name: tls-client-cert

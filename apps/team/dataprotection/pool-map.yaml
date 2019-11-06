@@ -23,11 +23,11 @@ apps:
   - prd/prd-sam
   - fra/fra-sam_dp #  1 (10/31/2019)
   - cdg/cdg-sam_dp # 2 (10/31/2019)
-  # - lo2/lo2-sam_dp  # 3 (11/05/2019)
-  #  - lo3/lo3-sam_dp #  4 (11/05/2019)
-  # - ia2/ia2-sam_dp  # 5 (11/07/2019)
-  # - ph2/ph2-sam_dp #  6 (11/07/2019)
-  # - dfw/dfw-sam_dp #  7 (11/07/2019)
+  - lo2/lo2-sam_dp  # 3 (11/05/2019)
+  - lo3/lo3-sam_dp #  4 (11/05/2019)
+  - ia2/ia2-sam_dp  # 5 (11/07/2019)
+  - ph2/ph2-sam_dp #  6 (11/07/2019)
+  - dfw/dfw-sam_dp #  7 (11/07/2019)
 
 # We have RAC issues on the following datacenters:
  # - phx/phx-sam_dp # 7 (TBD)
