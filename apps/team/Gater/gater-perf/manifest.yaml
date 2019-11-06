@@ -52,8 +52,6 @@ system:
       - $(FUNCTION):DATACENTER_ALLENV:HTTP2
       - -endpoint
       - $(FUNCTION_NAMESPACE)/$(FUNCTION):DATACENTER_ALLENV:HTTP2_TLS
-      - -logging.dir
-      - /log
       livenessProbe:
         initialDelaySeconds: 5
         exec:
