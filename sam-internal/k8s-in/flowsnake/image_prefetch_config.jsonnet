@@ -15,7 +15,12 @@ local flowsnake_watchdog_images = [
 
     # ALL PROD
     local prod = [
-
+        # CRE Ingest
+        "sfci/cre/cre-engine:1.2.1.1.master.871cb95.36",
+        # CRE Export
+        "sfci/cre/cre-dds-spark:2.1.1.master.07f636a.21",
+        # CRE Save
+        "sfci/cre/cre-dds-spark:2.1.1.master.07f636a.21",
     ]
     + flowsnake_watchdog_images,
 
@@ -37,6 +42,12 @@ local flowsnake_watchdog_images = [
     local rnd = [
         # Moana
         "sfci/insights/moanaengine:release-2019.10.a.25-3d1581a",
+        # CRE Ingest
+        "sfci/cre/cre-engine:1.2.1.1.master.871cb95.36",
+        # CRE Export
+        "sfci/cre/cre-dds-spark:2.1.1.master.07f636a.21",
+        # CRE Save
+        "sfci/cre/cre-dds-spark:2.1.1.master.07f636a.21",
     ]
     + flowsnake_watchdog_images,
 
@@ -50,7 +61,6 @@ local flowsnake_watchdog_images = [
 
     # PRD TEST
     "prd-data-flowsnake_test": rnd + [
-        "dva/flowsnake-ops-tools:2",  # for testing
     ],
 
 
