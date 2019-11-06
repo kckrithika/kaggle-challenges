@@ -115,8 +115,11 @@ system:
   loadbalancers:
   - lbname: gater-mesh
     function: gater-mesh
+    annotations:
+      routing.mesh.sfdc.net/enabled: "true"
     labels:
       app: gater-mesh
+      settings_path: blitz.-.prd.-.gater-mesh
     ports:
       - lbtype: dsr
         port: 7443
