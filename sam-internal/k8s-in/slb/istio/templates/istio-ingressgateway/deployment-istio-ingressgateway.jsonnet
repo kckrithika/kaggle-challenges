@@ -13,7 +13,8 @@ if configs.estate == "prd-sam" then
          "istio": "ingressgateway",
          "release": "istio"
       },
-      "name": "istio-ingressgateway"
+      "name": "istio-ingressgateway",
+      "namespace": "slb"
    },
    "spec": {
       "replicas": 1,

@@ -8,7 +8,8 @@ if configs.estate == "prd-sam" then
       "annotations": {
          "manifestctl.sam.data.sfdc.net/swagger": "disable"
       },
-      "name": "istio-ingressgateway-sds"
+      "name": "istio-ingressgateway-sds",
+      "namespace": "slb"
    },
    "rules": [
       {
