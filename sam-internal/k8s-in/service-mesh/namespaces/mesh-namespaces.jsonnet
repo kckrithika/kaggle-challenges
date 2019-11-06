@@ -20,8 +20,6 @@ local istioSvcNamespaces = {
   // Returns a list of all possible NS variations to iterate over and create individual files for each NS
   allNs: mesh_namespaces,
 
-
-
   // Determines if an NS in an individual file should be deployed to a Kingdom
   shouldDeployToKingdom(namespaceName, kingdom):: 
     (std.count(istioSvcNamespaces[kingdom], namespaceName) > 0),
@@ -33,6 +31,8 @@ local istioSvcNamespaces = {
       labels: {
         "istio-injection": "enabled",
       } + (if namespaceName == "service-mesh" && (configs.kingdom == "prd" || configs.kingdom == "mvp" || configs.kingdom == "par") then
+        { "sherpa-injection": "enabled" } else {}) +
+        (if namespaceName == "ccait" && (configs.kingdom == "prd") then
         { "sherpa-injection": "enabled" } else {}) +
         (if namespaceName == "service-mesh" && configs.kingdom == "prd" then
         { "electron-opa-injection": "enabled" } else {})

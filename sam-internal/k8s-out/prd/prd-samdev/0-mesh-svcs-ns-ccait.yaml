@@ -3,4 +3,5 @@ kind: Namespace
 metadata:
   labels:
     istio-injection: enabled
+    sherpa-injection: enabled
   name: ccait
