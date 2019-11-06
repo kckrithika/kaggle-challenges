@@ -302,7 +302,7 @@ system:
     serviceAccountName: switchboard-service-account
     containers:
     - name: sfproxy-switchboard-server
-      image: sfci/servicelibs/switchboard:2d8189e3fa84fab3672869b29009e416870906bc
+      image: sfci/servicelibs/switchboard:e323d84f37433b26a80f296630b2f4cbb7700d0c
       args:
       - --clusters.external-clusters[0]=ajnafunneldirect:HTTP1
       - --clusters.external-clusters[1]=spaasmesh:HTTP2
