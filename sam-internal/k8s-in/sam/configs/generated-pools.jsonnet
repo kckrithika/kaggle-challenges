@@ -4000,11 +4000,13 @@
     {
       "namespaces": [
         "cache-as-a-service-sp2",
-        "schema-security-scaling-sp2"
+        "schema-security-scaling-sp2",
+        "lightning-data-accelerator-sp2"
       ],
       "access": [
         "team/Cache_As_A_service",
-        "team/Schema_Security_Scaling"
+        "team/Schema_Security_Scaling",
+        "team/lightning-data-accelerator"
       ],
       "controlEstate": "prd-samtwo",
       "estate": "prd-sp2-sam_caas",
