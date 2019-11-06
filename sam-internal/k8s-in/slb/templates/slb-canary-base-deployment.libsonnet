@@ -91,7 +91,11 @@ local getVolumes(tlsPorts) = ({
 
 local getVolumeMounts(tlsPorts) = ({
     volumeMounts: std.prune([
+        slbconfigs.slb_volume,
         slbconfigs.logs_volume_mount,
+        configs.sfdchosts_volume,
+        slbconfigs.slb_config_volume,
+        slbconfigs.cleanup_logs_volume,
     ] + (if tlsRequired(tlsPorts) then
             madkub.madkubSlbCertVolumeMounts(madkubCertDirs)
          else [])),

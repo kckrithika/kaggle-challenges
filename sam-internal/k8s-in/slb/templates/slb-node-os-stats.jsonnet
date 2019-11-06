@@ -42,6 +42,9 @@ if configs.estate == "prd-sdc" then configs.deploymentBase("slb") {
                 volumes: configs.filter_empty([
                     slbconfigs.slb_volume,
                     slbconfigs.logs_volume,
+                    configs.sfdchosts_volume,
+                    slbconfigs.slb_config_volume,
+                    slbconfigs.cleanup_logs_volume,
                     slbconfigs.proc_volume,
                 ]),
                 containers: [

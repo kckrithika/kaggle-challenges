@@ -31,6 +31,7 @@ if slbconfigs.isSlbEstate && slbflights.enableIWDHealth then configs.daemonSetBa
                     slbconfigs.slb_volume,
                     slbconfigs.logs_volume,
                     slbconfigs.slb_config_volume,
+                    slbconfigs.cleanup_logs_volume,
                     configs.kube_config_volume,
                     configs.sfdchosts_volume,
                 ]),

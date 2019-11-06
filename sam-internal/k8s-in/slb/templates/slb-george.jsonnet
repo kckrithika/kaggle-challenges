@@ -25,7 +25,11 @@ if slbconfigs.isSlbEstate && configs.estate != "prd-samtest" then configs.deploy
             },
             spec: {
                 volumes: std.prune([
+                    slbconfigs.slb_volume,
                     slbconfigs.logs_volume,
+                    configs.sfdchosts_volume,
+                    slbconfigs.slb_config_volume,
+                    slbconfigs.cleanup_logs_volume,
                 ]),
                 containers: [
                     {

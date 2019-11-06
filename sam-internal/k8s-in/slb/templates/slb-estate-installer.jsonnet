@@ -49,6 +49,9 @@ if slbconfigs.isSlbEstate then configs.daemonSetBase("slb") {
                     },
                     slbconfigs.slb_volume,
                     slbconfigs.logs_volume,
+                    configs.sfdchosts_volume,
+                    slbconfigs.slb_config_volume,
+                    slbconfigs.cleanup_logs_volume,
                 ]),
                 affinity: {
                     nodeAffinity: {
