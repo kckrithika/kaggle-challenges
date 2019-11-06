@@ -4,5 +4,5 @@
 local nsbase = import "namespaces/mesh-namespaces.jsonnet";
 local configs = import "config.jsonnet";
 if (nsbase.shouldDeployToKingdom("cloudatlas", configs.kingdom)) then
-        nsbase.newMeshNamespace("cloudatlas")
+        nsbase.newMeshNamespace("cloudatlas", configs.kingdom)
 else "SKIP"

@@ -1,45 +1,68 @@
 ###
 #
-# Do not forget to RUN ./generate-namespaces.sh if changing this file
+# Do not forget to RUN ./generate-namespaces.sh after changing this file
 #
 ###
-
-## istio-inject: enabled enables both the webhooks - istio-sidecar-injector & istio-routing-webhook
 local utils = import "util_functions.jsonnet";
 local configs = import "config.jsonnet";
-local mesh_namespaces = ["app", "service-mesh", "funnel", "gater", "ccait", "core-on-sam-sp2", "core-on-sam", "casam", "emailinfra", "universal-search", "search-scale-safely", "retail-cre", "retail-dfs", "retail-dss", "cloudatlas", "retail-eventlistener", "retail-mds", "retail-rrps", "retail-rsui", "retail-setup", "scone"];
 
-local istioSvcNamespaces = {
-  prd: mesh_namespaces,
-  mvp: mesh_namespaces,
+// A full list of all known namespaces that run Mesh
+local all_known_mesh_namespaces = ["app", "service-mesh", "funnel", "gater", "ccait", "core-on-sam-sp2", "core-on-sam", "casam", "emailinfra", "universal-search", "search-scale-safely", "retail-cre", "retail-dfs", "retail-dss", "cloudatlas", "retail-eventlistener", "retail-mds", "retail-rrps", "retail-rsui", "retail-setup", "scone"];
+
+// Kingdoms and namespaces where `Sherpa Injection` is enabled
+local sherpaInjectionEnabled = {
+  prd: ["service-mesh", "ccait"],
+  mvp: ["service-mesh", "ccait"],
+  par: ["service-mesh"],
+};
+
+// Kingdoms and namespaces where `Electron OPA Injection` is enabled
+local electronOpaInjectionEnabled = {
+  prd: ["service-mesh"],
+};
+
+// Kingdoms and namespaces where `Istio Injection` is enabled
+local istioInjectionEnabled = {
+  prd: all_known_mesh_namespaces,
+  mvp: all_known_mesh_namespaces,
   par: ["app", "funnel", "service-mesh"],
 };
 
 
 {
   // Returns a list of all possible NS variations to iterate over and create individual files for each NS
-  allNs: mesh_namespaces,
+  allNs: all_known_mesh_namespaces,
 
   // Determines if an NS in an individual file should be deployed to a Kingdom
-  shouldDeployToKingdom(namespaceName, kingdom):: 
-    (std.count(istioSvcNamespaces[kingdom], namespaceName) > 0),
+  shouldDeployToKingdom(namespaceName, kingdom):: (
+      ((std.objectHas(istioInjectionEnabled, kingdom)) && (std.count(istioInjectionEnabled[kingdom], namespaceName) > 0)) || 
+      ((std.objectHas(electronOpaInjectionEnabled, kingdom)) && (std.count(electronOpaInjectionEnabled[kingdom], namespaceName) > 0)) || 
+      ((std.objectHas(sherpaInjectionEnabled, kingdom)) && (std.count(sherpaInjectionEnabled[kingdom], namespaceName) > 0)) 
+    ),
   
-  newMeshNamespace(namespaceName):: {
+  newMeshNamespace(namespaceName, kingdom):: {
     apiVersion: "v1",
     kind: "Namespace",
     metadata: {
-      labels: {
-        "istio-injection": "enabled",
-      } + (if namespaceName == "service-mesh" && (configs.kingdom == "prd" || configs.kingdom == "mvp" || configs.kingdom == "par") then
-        { "sherpa-injection": "enabled" } else {}) +
-        (if namespaceName == "ccait" && (configs.kingdom == "prd") then
-        { "sherpa-injection": "enabled" } else {}) +
-        (if namespaceName == "service-mesh" && configs.kingdom == "prd" then
-        { "electron-opa-injection": "enabled" } else {})
-      +
-      // samlabelfilter.json requires this label to be present on GCP deployments
-      if utils.is_pcn(configs.kingdom) && namespaceName == "service-mesh" then configs.pcnEnableLabel else {},
-      name: namespaceName,
+      labels: {} +
+        (
+          if (std.objectHas(istioInjectionEnabled, kingdom)) && (std.count(istioInjectionEnabled[kingdom], namespaceName) > 0) then
+            { "istio-injection": "enabled" } 
+          else {}
+        ) +
+        (
+          if (std.objectHas(electronOpaInjectionEnabled, kingdom)) && (std.count(electronOpaInjectionEnabled[kingdom], namespaceName) > 0) then
+            { "electron-opa-injection": "enabled" } 
+          else {}
+        ) +
+        (
+          if (std.objectHas(sherpaInjectionEnabled, kingdom)) && (std.count(sherpaInjectionEnabled[kingdom], namespaceName) > 0) then
+            { "sherpa-injection": "enabled" } 
+          else {}
+        ) +
+        // samlabelfilter.json requires this label to be present on GCP deployments
+        if utils.is_pcn(configs.kingdom) && namespaceName == "service-mesh" then configs.pcnEnableLabel else {},
+        name: namespaceName,
     },
   },
 }

@@ -4,5 +4,5 @@
 local nsbase = import "namespaces/mesh-namespaces.jsonnet";
 local configs = import "config.jsonnet";
 if (nsbase.shouldDeployToKingdom("retail-eventlistener", configs.kingdom)) then
-        nsbase.newMeshNamespace("retail-eventlistener")
+        nsbase.newMeshNamespace("retail-eventlistener", configs.kingdom)
 else "SKIP"

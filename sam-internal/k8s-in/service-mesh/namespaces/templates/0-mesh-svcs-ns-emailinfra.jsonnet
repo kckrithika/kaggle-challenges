@@ -4,5 +4,5 @@
 local nsbase = import "namespaces/mesh-namespaces.jsonnet";
 local configs = import "config.jsonnet";
 if (nsbase.shouldDeployToKingdom("emailinfra", configs.kingdom)) then
-        nsbase.newMeshNamespace("emailinfra")
+        nsbase.newMeshNamespace("emailinfra", configs.kingdom)
 else "SKIP"
