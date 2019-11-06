@@ -137,6 +137,9 @@ spec:
       - configMap:
           name: sfdchosts
         name: sfdchosts
+      - hostPath:
+          path: /data/slb/logs/slb-iwd-health/cleanup
+        name: var-cleanup-logs-volume
   updateStrategy:
     rollingUpdate:
       maxUnavailable: 20%

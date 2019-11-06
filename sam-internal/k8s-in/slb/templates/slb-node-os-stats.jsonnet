@@ -44,7 +44,7 @@ if configs.estate == "prd-sdc" then configs.deploymentBase("slb") {
                     slbconfigs.logs_volume,
                     slbconfigs.proc_volume,
                 ] + (if slbimages.phaseNum <= 1 then
-                        [configs.sfdchosts_volume, slbconfigs.slb_config_volume, slbconfigs.cleanup_logs_volume,]
+                        [configs.sfdchosts_volume, slbconfigs.slb_config_volume, slbconfigs.cleanup_logs_volume]
                      else [])),
                 containers: [
                     {

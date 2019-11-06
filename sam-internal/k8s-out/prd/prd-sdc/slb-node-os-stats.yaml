@@ -97,3 +97,12 @@ spec:
       - hostPath:
           path: /proc
         name: proc-volume
+      - configMap:
+          name: sfdchosts
+        name: sfdchosts
+      - hostPath:
+          path: /data/slb/config/slb-node-os-stats
+        name: var-config-volume
+      - hostPath:
+          path: /data/slb/logs/slb-node-os-stats/cleanup
+        name: var-cleanup-logs-volume

@@ -27,7 +27,7 @@ if slbconfigs.isSlbEstate && configs.estate != "prd-samtest" then configs.deploy
                 volumes: std.prune([
                     slbconfigs.logs_volume,
                 ] + (if slbimages.phaseNum <= 1 then
-                        [slbconfigs.slb_volume, configs.sfdchosts_volume, slbconfigs.slb_config_volume, slbconfigs.cleanup_logs_volume,]
+                        [slbconfigs.slb_volume, configs.sfdchosts_volume, slbconfigs.slb_config_volume, slbconfigs.cleanup_logs_volume]
                      else [])),
                 containers: [
                     {

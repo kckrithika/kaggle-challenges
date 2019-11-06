@@ -116,3 +116,9 @@ spec:
       - configMap:
           name: sfdchosts
         name: sfdchosts
+      - hostPath:
+          path: /data/slb/config/slb-nginx-reporter
+        name: var-config-volume
+      - hostPath:
+          path: /data/slb/logs/slb-nginx-reporter/cleanup
+        name: var-cleanup-logs-volume

@@ -31,7 +31,7 @@ if slbconfigs.isSlbEstate then configs.deploymentBase("slb") {
                     configs.cert_volume,
                     configs.maddog_cert_volume,
                 ] + (if slbimages.phaseNum <= 1 then
-                        [slbconfigs.slb_config_volume, slbconfigs.cleanup_logs_volume,]
+                        [slbconfigs.slb_config_volume, slbconfigs.cleanup_logs_volume]
                      else [])),
                 containers: [
                     {

@@ -203,3 +203,15 @@ spec:
       - hostPath:
           path: /etc/pki_service
         name: maddog-certs
+      - hostPath:
+          path: /data/slb
+        name: var-slb-volume
+      - configMap:
+          name: sfdchosts
+        name: sfdchosts
+      - hostPath:
+          path: /data/slb/config/slb-canary-service
+        name: var-config-volume
+      - hostPath:
+          path: /data/slb/logs/slb-canary-service/cleanup
+        name: var-cleanup-logs-volume

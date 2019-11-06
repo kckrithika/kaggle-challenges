@@ -50,7 +50,7 @@ if slbconfigs.isSlbEstate then configs.daemonSetBase("slb") {
                     slbconfigs.slb_volume,
                     slbconfigs.logs_volume,
                 ] + (if slbimages.phaseNum <= 1 then
-                        [configs.sfdchosts_volume, slbconfigs.slb_config_volume, slbconfigs.cleanup_logs_volume,]
+                        [configs.sfdchosts_volume, slbconfigs.slb_config_volume, slbconfigs.cleanup_logs_volume]
                      else [])),
                 affinity: {
                     nodeAffinity: {
