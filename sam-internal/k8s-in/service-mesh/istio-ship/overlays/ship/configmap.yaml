@@ -37,7 +37,7 @@ data:
       proxyAdminPort: 15373
       tracing:
         zipkin:
-          address: zipkin.service-mesh:9411
+          address: zipkindirecttls.funnel.svc.mesh.sfdc.net:7442
       envoyMetricsService:
         address: switchboard.service-mesh:15001
         tlsSettings:

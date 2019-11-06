@@ -350,7 +350,7 @@ global:
     zipkin:
       # Host:Port for reporting trace data in zipkin format. If not specified, will default to
       # zipkin service (port 9411) in the same namespace as the other istio components.
-      address: ""
+      address: zipkindirecttls.funnel.svc.mesh.sfdc.net:7442
     datadog:
       # Host:Port for submitting traces to the Datadog agent.
       address: $(HOST_IP):8126

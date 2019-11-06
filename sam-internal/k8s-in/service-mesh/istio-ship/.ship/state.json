@@ -20,20 +20,30 @@
       }
     },
     "shipVersion": {
-      "version": "0.51.0",
-      "buildTime": "2019-08-30T01:34:10Z",
+      "version": "0.52.0",
+      "buildTime": "2019-10-19T07:29:48Z",
       "dependencies": {
         "helm": "v2.14.1",
         "kustomize": "v2.0.3",
         "terraform": "v0.11.14"
       },
       "go": {
-        "version": "go1.12.9",
+        "version": "go1.13.3",
         "compiler": "gc",
         "os": "darwin",
         "arch": "amd64"
       }
     },
-    "contentSHA": "268426eb6ad27f8d2a416633733968e268597716f6e715de2c42ad59085716de"
+    "contentSHA": "268426eb6ad27f8d2a416633733968e268597716f6e715de2c42ad59085716de",
+    "lifecycle": {
+      "stepsCompleted": {
+        "intro": true,
+        "kustomize": true,
+        "kustomize-intro": true,
+        "outro": true,
+        "render": true,
+        "values": true
+      }
+    }
   }
 }
