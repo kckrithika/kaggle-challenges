@@ -38,7 +38,6 @@ system:
       - containerPort: 9523
       - containerPort: 9524
       - containerPort: 9090
-      - containerPort: 15372
       env:
       - name: SFDC_ENVIRONMENT
         value: blitz
