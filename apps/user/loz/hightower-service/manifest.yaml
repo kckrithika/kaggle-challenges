@@ -8,8 +8,8 @@ system:
     count: 1
     containers:
     - name: hightower-service
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/instrumentation/hightower-service:loz-1573064123
-      # If your service doesn't serve HTTP traffic then you can remove the scone-http 8080 port.
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/instrumentation/hightower-service:demo
+      # If your service doesn't serve HTTP traffic then you can remove the scone-http port.
       ports:
       - containerPort: 8088
         name: scone-http
