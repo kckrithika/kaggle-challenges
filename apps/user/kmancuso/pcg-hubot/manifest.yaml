@@ -7,7 +7,7 @@ system:
     count: 1
     containers:
     - name: pcg-hubot
-      image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/pcg-mrpotatobot:22
+      image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/pcg-mrpotatobot:28
       command: ["/opt/mrpotatobot/run.sh"]
       ports:
         - containerPort: 8080
