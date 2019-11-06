@@ -4,5 +4,5 @@
 local nsbase = import "namespaces/mesh-namespaces.jsonnet";
 local configs = import "config.jsonnet";
 if (nsbase.shouldDeployToKingdom("search-scale-safely", configs.kingdom)) then
-        nsbase.newMeshNamespace("search-scale-safely")
+        nsbase.newMeshNamespace("search-scale-safely", configs.kingdom)
 else "SKIP"

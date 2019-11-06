@@ -17,6 +17,6 @@ for namespaceName in $all_namespaces; do
     echo -e "local nsbase = import \"namespaces/mesh-namespaces.jsonnet\";" >> $out_file_name
     echo -e "local configs = import \"config.jsonnet\";" >> $out_file_name
     echo -e "if (nsbase.shouldDeployToKingdom(\"${namespaceName}\", configs.kingdom)) then" >> $out_file_name
-    echo -e "        nsbase.newMeshNamespace(\"${namespaceName}\")" >> $out_file_name
+    echo -e "        nsbase.newMeshNamespace(\"${namespaceName}\", configs.kingdom)" >> $out_file_name
     echo -e "else \"SKIP\"" >> $out_file_name
 done
