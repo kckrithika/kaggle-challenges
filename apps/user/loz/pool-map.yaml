@@ -1,0 +1,5 @@
+apps:
+ hightower-service:
+  - prd/prd-sam
+ hightower-client:
+  - prd/prd-sam
