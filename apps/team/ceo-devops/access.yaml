@@ -1,10 +1,11 @@
 # Admins are responsible for ensuring only approved changes are made during moratoriums.  See https://sfdc.co/sam-admins
 admins:
-  - sbhaskaran 
   - ndong
-users:
   - bpati
+users:
+  - sbhaskaran 
   - smeadusani
   - lkaranam
   - ppenmetsa
   - lgan
+  - tmeals
