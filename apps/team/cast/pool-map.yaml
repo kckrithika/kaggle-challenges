@@ -31,3 +31,10 @@ apps:
   cast-prod-group2:
     - name: frf/frf-sam_cloudatlas_dir
     - name: hnd/hnd-sam_cloudatlas_dir
+
+  cast-prod-group3:
+    - name: iad/iad-sam_cloudatlas_dir
+    - name: phx/phx-sam_cloudatlas_dir
+    - name: ord/ord-sam_cloudatlas_dir
+    - name: ukb/ukb-sam_cloudatlas_dir
+    - name: par/par-sam_cloudatlas_dir
