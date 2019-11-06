@@ -18,7 +18,9 @@ local configs = import "config.jsonnet";
   ),
 
   sidecarEgressHosts: (
-    [
+    // TODO: Drop the phase override on the next release to PAR.
+    if ($.phaseNum == 1 || $.phaseNum == 2) then ["*/*"]
+    else [
       // System namespaces
       "mesh-control-plane/*",
       "z9s-default/*",

@@ -1,0 +1,39 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: istio-init-crd-mixer-4342afc1c6521165bf2e5f7fd2c9feb6bd549c24
+  namespace: mesh-control-plane
+spec:
+  template:
+    metadata:
+      annotations:
+        sidecar.istio.io/inject: "false"
+    spec:
+      containers:
+      - command:
+        - kubectl
+        - apply
+        - -f
+        - /etc/istio/crd-mixer/crd-mixer.yaml
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/sfci/servicemesh/istio-packaging/kubectl:4342afc1c6521165bf2e5f7fd2c9feb6bd549c24
+        imagePullPolicy: IfNotPresent
+        name: istio-init-crd-mixer
+        resources:
+          limits:
+            cpu: 100m
+            memory: 200Mi
+          requests:
+            cpu: 10m
+            memory: 50Mi
+        volumeMounts:
+        - mountPath: /etc/istio/crd-mixer
+          name: crd-mixer
+          readOnly: true
+      nodeSelector:
+        pool: prd-sam_gater
+      restartPolicy: OnFailure
+      serviceAccountName: istio-init-service-account
+      volumes:
+      - configMap:
+          name: istio-crd-mixer
+        name: crd-mixer
