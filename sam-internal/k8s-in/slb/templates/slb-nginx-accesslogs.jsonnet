@@ -1,6 +1,6 @@
 local configs = import "config.jsonnet";
 local slbimages = (import "slbimages.jsonnet") + { templateFilename:: std.thisFile };
-local slbconfigs = (import "slbconfig.jsonnet") + (if slbimages.phaseNum <= 2 then { dirSuffix:: "slb-nginx-accesslogs" } else {});
+local slbconfigs = (import "slbconfig.jsonnet") + (if slbimages.phaseNum <= 3 then { dirSuffix:: "slb-nginx-accesslogs" } else {});
 local slbshared = (import "slbsharedservices.jsonnet") + { dirSuffix:: "slb-nginx-accesslogs" };
 local slbflights = import "slbflights.jsonnet";
 local slbports = import "slbports.jsonnet";
@@ -29,7 +29,7 @@ if slbconfigs.isSlbEstate && slbflights.enableNginxAccessLogsAggregation then co
                     configs.kube_config_volume,
                     configs.cert_volume,
                     configs.maddog_cert_volume,
-                    ] + (if slbimages.phaseNum <= 2 then
+                    ] + (if slbimages.phaseNum <= 3 then
                             [slbconfigs.slb_volume, configs.sfdchosts_volume, slbconfigs.slb_config_volume, slbconfigs.cleanup_logs_volume]
                          else [])),
                 containers: [
@@ -58,7 +58,7 @@ if slbconfigs.isSlbEstate && slbflights.enableNginxAccessLogsAggregation then co
                             },
                         },
                     } + configs.ipAddressResourceRequest,
-                ] + (if slbimages.phaseNum <= 2 then [slbshared.slbLogCleanup] else []),
+                ] + (if slbimages.phaseNum <= 3 then [slbshared.slbLogCleanup] else []),
             }
             + slbconfigs.slbEstateNodeSelector
             + slbconfigs.getGracePeriod()
