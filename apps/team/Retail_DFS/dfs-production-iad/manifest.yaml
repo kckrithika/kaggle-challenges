@@ -23,7 +23,7 @@ system:
 
     containers:
     - name: dfs
-      image: sfci/dfs/sfdc-platform-dfs:0.24.14
+      image: sfci/dfs/sfdc-platform-dfs:0.25.10
       # associate the log directory to a logical volume.
       volumeMounts:
       - name: logvol
@@ -51,10 +51,6 @@ system:
                 -XX:+PrintGCApplicationConcurrentTime -XX:+PrintGCCause -XX:+DisableExplicitGC
                 -Xloggc:/home/scone/logs/dfs/verbosegc_$(FUNCTION_INSTANCE_NAME).log
                 -XX:+HeapDumpOnOutOfMemoryError  -XX:HeapDumpPath=/home/scone/logs/dfs
-                -Dcom.sun.management.jmxremote.port=8898
-                -Dcom.sun.management.jmxremote.rmi.port=8898
-                -Dcom.sun.management.jmxremote.ssl=false
-                -Dcom.sun.management.jmxremote.authenticate=false
                 -Xmx2G -Xms2G -XX:ParallelGCThreads=8"
       resources:
         limits: { cpu: "4", memory: "4Gi" }
@@ -72,7 +68,7 @@ system:
           scheme: HTTP
 
     - name: sherpa-dfs
-      image: sfci/servicelibs/sherpa-envoy:1.0.4
+      image: sfci/servicelibs/sherpa-envoy:1.0.13
       volumeMounts:
       - name: dfs-server-cert
         mountPath: /server-certs
