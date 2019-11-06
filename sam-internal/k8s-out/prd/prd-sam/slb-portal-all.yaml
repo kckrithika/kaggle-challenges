@@ -168,7 +168,6 @@ items:
           - --shouldSkipSlbBlock=true
           - --skipFilesWithSuffix=.sock
           - --shouldNotDeleteAllFiles=true
-          - --maxDeleteFileCount=20
           image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/slb/hyperslb:2274-05577ee0f254227a5dc2149e40a32b89e30604de
           name: slb-cleanup-config-processor
           securityContext:
@@ -549,7 +548,6 @@ items:
           - --shouldSkipSlbBlock=true
           - --skipFilesWithSuffix=.sock
           - --shouldNotDeleteAllFiles=true
-          - --maxDeleteFileCount=20
           image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/slb/hyperslb:2274-05577ee0f254227a5dc2149e40a32b89e30604de
           name: slb-cleanup-config-processor
           securityContext:
@@ -930,7 +928,6 @@ items:
           - --shouldSkipSlbBlock=true
           - --skipFilesWithSuffix=.sock
           - --shouldNotDeleteAllFiles=true
-          - --maxDeleteFileCount=20
           image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/slb/hyperslb:2274-05577ee0f254227a5dc2149e40a32b89e30604de
           name: slb-cleanup-config-processor
           securityContext:
@@ -1311,7 +1308,6 @@ items:
           - --shouldSkipSlbBlock=true
           - --skipFilesWithSuffix=.sock
           - --shouldNotDeleteAllFiles=true
-          - --maxDeleteFileCount=20
           image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/slb/hyperslb:2274-05577ee0f254227a5dc2149e40a32b89e30604de
           name: slb-cleanup-config-processor
           securityContext:
@@ -1692,7 +1688,6 @@ items:
           - --shouldSkipSlbBlock=true
           - --skipFilesWithSuffix=.sock
           - --shouldNotDeleteAllFiles=true
-          - --maxDeleteFileCount=20
           image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/slb/hyperslb:2274-05577ee0f254227a5dc2149e40a32b89e30604de
           name: slb-cleanup-config-processor
           securityContext:
@@ -2073,7 +2068,6 @@ items:
           - --shouldSkipSlbBlock=true
           - --skipFilesWithSuffix=.sock
           - --shouldNotDeleteAllFiles=true
-          - --maxDeleteFileCount=20
           image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/slb/hyperslb:2274-05577ee0f254227a5dc2149e40a32b89e30604de
           name: slb-cleanup-config-processor
           securityContext:
@@ -2454,7 +2448,6 @@ items:
           - --shouldSkipSlbBlock=true
           - --skipFilesWithSuffix=.sock
           - --shouldNotDeleteAllFiles=true
-          - --maxDeleteFileCount=20
           image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/slb/hyperslb:2274-05577ee0f254227a5dc2149e40a32b89e30604de
           name: slb-cleanup-config-processor
           securityContext:
@@ -2835,7 +2828,6 @@ items:
           - --shouldSkipSlbBlock=true
           - --skipFilesWithSuffix=.sock
           - --shouldNotDeleteAllFiles=true
-          - --maxDeleteFileCount=20
           image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/slb/hyperslb:2274-05577ee0f254227a5dc2149e40a32b89e30604de
           name: slb-cleanup-config-processor
           securityContext:
@@ -3216,7 +3208,6 @@ items:
           - --shouldSkipSlbBlock=true
           - --skipFilesWithSuffix=.sock
           - --shouldNotDeleteAllFiles=true
-          - --maxDeleteFileCount=20
           image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/slb/hyperslb:2274-05577ee0f254227a5dc2149e40a32b89e30604de
           name: slb-cleanup-config-processor
           securityContext:
@@ -3597,7 +3588,6 @@ items:
           - --shouldSkipSlbBlock=true
           - --skipFilesWithSuffix=.sock
           - --shouldNotDeleteAllFiles=true
-          - --maxDeleteFileCount=20
           image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/slb/hyperslb:2274-05577ee0f254227a5dc2149e40a32b89e30604de
           name: slb-cleanup-config-processor
           securityContext:
@@ -3978,7 +3968,6 @@ items:
           - --shouldSkipSlbBlock=true
           - --skipFilesWithSuffix=.sock
           - --shouldNotDeleteAllFiles=true
-          - --maxDeleteFileCount=20
           image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/slb/hyperslb:2274-05577ee0f254227a5dc2149e40a32b89e30604de
           name: slb-cleanup-config-processor
           securityContext:
@@ -4359,7 +4348,6 @@ items:
           - --shouldSkipSlbBlock=true
           - --skipFilesWithSuffix=.sock
           - --shouldNotDeleteAllFiles=true
-          - --maxDeleteFileCount=20
           image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/slb/hyperslb:2274-05577ee0f254227a5dc2149e40a32b89e30604de
           name: slb-cleanup-config-processor
           securityContext:
@@ -4740,7 +4728,6 @@ items:
           - --shouldSkipSlbBlock=true
           - --skipFilesWithSuffix=.sock
           - --shouldNotDeleteAllFiles=true
-          - --maxDeleteFileCount=20
           image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/slb/hyperslb:2274-05577ee0f254227a5dc2149e40a32b89e30604de
           name: slb-cleanup-config-processor
           securityContext:
@@ -5121,7 +5108,6 @@ items:
           - --shouldSkipSlbBlock=true
           - --skipFilesWithSuffix=.sock
           - --shouldNotDeleteAllFiles=true
-          - --maxDeleteFileCount=20
           image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/slb/hyperslb:2274-05577ee0f254227a5dc2149e40a32b89e30604de
           name: slb-cleanup-config-processor
           securityContext:
@@ -5502,7 +5488,6 @@ items:
           - --shouldSkipSlbBlock=true
           - --skipFilesWithSuffix=.sock
           - --shouldNotDeleteAllFiles=true
-          - --maxDeleteFileCount=20
           image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/slb/hyperslb:2274-05577ee0f254227a5dc2149e40a32b89e30604de
           name: slb-cleanup-config-processor
           securityContext:
@@ -5883,7 +5868,6 @@ items:
           - --shouldSkipSlbBlock=true
           - --skipFilesWithSuffix=.sock
           - --shouldNotDeleteAllFiles=true
-          - --maxDeleteFileCount=20
           image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/slb/hyperslb:2274-05577ee0f254227a5dc2149e40a32b89e30604de
           name: slb-cleanup-config-processor
           securityContext:
@@ -6264,7 +6248,6 @@ items:
           - --shouldSkipSlbBlock=true
           - --skipFilesWithSuffix=.sock
           - --shouldNotDeleteAllFiles=true
-          - --maxDeleteFileCount=20
           image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/slb/hyperslb:2274-05577ee0f254227a5dc2149e40a32b89e30604de
           name: slb-cleanup-config-processor
           securityContext:
