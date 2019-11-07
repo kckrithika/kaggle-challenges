@@ -8,8 +8,9 @@ system:
     count: 1
     containers:
     - name: gater-mesh2
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/sortiz/gate-manager:sortiz-08062019_02
+      image: sfci/services/sfdc-bazel/gater/gate-manager:1.16.2
       args:
+      - --mesh.istio-mode=true
       - --server.port=9090
       - --logging.evaluator.level=ERRORS_ONLY
       - --gater-service.thread.pool.max-size=0
@@ -17,6 +18,15 @@ system:
       - --gater.thrift.metadata.endpoint=gater-mesh2-metadata
       - --gater.thrift.admin.endpoint=gater-mesh2-admin
       - --metrics.collectionInterval=60
+      - --synctask.host-affinity=false
+      - --logging.sfdc.stderr.level=OFF
+      - --logging.json.stdout.level=OFF
+      - --logging.sfdc.level=OFF
+      - --logging.json.level=OFF
+      - --metrics.container=gater-mesh2
+      - --gater.grpc.use_direct_executor=false
+      - --gater.grpc.threadpool.size=16
+      - --gater.test.grpc.short-circuit=false
       ports:
       - containerPort: 7020
       - containerPort: 9522
@@ -48,7 +58,7 @@ system:
         periodSeconds: 5
     - name: sherpa
       # latest release:  https://git.soma.salesforce.com/servicelibs/sherpa-envoy/releases
-      image: sfci/servicelibs/sherpa-envoy:1.0.6
+      image: sfci/servicelibs/sherpa-envoy:1.0.13
       ports:
       - name: http2-in
         containerPort: 7012
@@ -76,14 +86,18 @@ system:
       terminationMessagePolicy: FallbackToLogsOnError
 
     - name: beacon
-      image: sfci/servicelibs/beacon:cec13ceb9fc5aed0ce462031a01b2dd5ef73d5ee
+      # https://git.soma.salesforce.com/services/sfdc-bazel/tree/master/projects/sidecars/beacon#docker-image
+      image: sfci/services/sfdc-bazel/disco/beacon:d7f1640
+      env:
+        - name: SFDC_ENVIRONMENT
+          value: blitz
       args:
       - -endpoint
       - $(FUNCTION_NAMESPACE)/$(FUNCTION):DATACENTER_ALLENV:HTTP2_TLS
       livenessProbe:
         exec:
           command:
-          - /home/scone/is-alive.sh
+            - "/opt/beacon/is-alive.sh"
         initialDelaySeconds: 5
 
     - name: perf-sidecar       # Sidecar container that deploys automation folder
