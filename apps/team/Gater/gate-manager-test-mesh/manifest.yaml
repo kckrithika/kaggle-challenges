@@ -32,6 +32,7 @@ system:
       - --gater.grpc.use_direct_executor=false
       - --gater.grpc.threadpool.size=16
       - --gater.test.grpc.short-circuit=false
+      - --metrics.funnelEndPointURL=http://ajnafunneldirecttls.funnel.svc.mesh.sfdc.net:7442
       ports:
       - containerPort: 7443
       - containerPort: 9522
@@ -41,7 +42,7 @@ system:
       env:
       - name: SFDC_ENVIRONMENT
         value: blitz
-      - name: GRPC_SERVER_PORT
+      - name: GATER_GRPC_SERVER_PORT
         value: 7443
       resources:
         limits:
