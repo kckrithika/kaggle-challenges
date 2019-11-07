@@ -27,8 +27,8 @@ system:
       - name: SFDC_ENVIRONMENT
         value: "stmfa"
       resources:
-        limits: { cpu: "1", memory: "1Gi" }
-        requests: { cpu: "1", memory: "1Gi" }
+        limits: { cpu: "5", memory: "1Gi" }
+        requests: { cpu: "5", memory: "1Gi" }
       volumeMounts:
       - name: client-cert
         mountPath: /client-certs
