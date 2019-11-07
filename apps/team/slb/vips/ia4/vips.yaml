@@ -81,7 +81,7 @@
       value: "SLB"
 
 - lbname: org-cce2e-cs60
-  iptype: public_reserved
+  iptype: private_nonreserved
   servers:
     - cs60-app2-3-ia4.ops.sfdc.net
     - cs60-app1-1-ia4.ops.sfdc.net
