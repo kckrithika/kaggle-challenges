@@ -20,7 +20,9 @@ data:
       "proxyvipmappings": [
         {
           "proxyname": "slb-hsm-nginx",
-          "vips": []
+          "vips": [
+            "org-cce2e-cs59-slb-ia4.slb.sfdc.net"
+          ]
         }
       ]
     }
