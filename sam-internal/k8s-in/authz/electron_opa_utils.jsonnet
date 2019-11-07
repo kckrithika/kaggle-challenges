@@ -1,5 +1,5 @@
 local prodRollout1Enabled = true;
-local prodRollout2Enabled = false;
+local prodRollout2Enabled = true;
 local prodRollout3Enabled = false;
 local prodRollout4Enabled = false;
 local prodRollout5Enabled = false;
