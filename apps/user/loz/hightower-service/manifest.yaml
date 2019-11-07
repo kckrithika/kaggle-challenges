@@ -46,3 +46,14 @@ system:
       - name: ssh
         k4aSecret:
           secretName: ssh
+  loadbalancers:
+  - lbname: hightower-service
+    function: hightower-service
+    slbEnabled: true
+    ports:
+      - port: 8088
+        targetport: 8088
+        lbtype: http
+      - port: 15372
+        targetport: 15372
+        lbtype: http
