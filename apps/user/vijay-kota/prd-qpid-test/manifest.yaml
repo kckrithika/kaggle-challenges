@@ -104,15 +104,15 @@ system:
           command: ["/bin/sh"]
           args: ["-c", "if [[ $FUNCTION_INSTANCE_NAME = *-0 ]]; then export AMQP_PORT=$AMQP0 ; else export AMQP_PORT=$AMQP1 ; fi; /usr/bin/python /home/sfdc-sherpa/myscripts/myqpid.py"]
           ports:
-            - containerPort: 2041
-            - containerPort: 2044
+            - containerPort: 2051
+            - containerPort: 2054
             # name: http-port
             # containerPort: 7022
           env:
             - name: AMQP0
-              value: 2041
+              value: 2051
             - name: AMQP1
-              value: 2044
+              value: 2054
             # name: HTTP_PORT
             # value: 7022
             - name: QPID_JAVA_HEAPSZ
@@ -138,19 +138,19 @@ system:
         - name: beacon
           image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/servicemesh/beacon:1.0.0
           command: ["/bin/sh"]
-          args: ["-c", "if [[ $FUNCTION_INSTANCE_NAME = *-0 ]]; then export port=$SHERPA0 ; else export port=$SHERPA1 ; fi; /usr/bin/java -jar /home/scone/service.jar -endpoint samapp/user-vijay-kota/qpid:POD:${port}"]
+          args: ["-c", "if [[ $FUNCTION_INSTANCE_NAME = *-0 ]]; then export port=$SHERPA0; export spod=SP1 ; else export port=$SHERPA1 ; export spod=SP2; fi; /usr/bin/java -jar /home/scone/service.jar -spod ${spod} -endpoint samapp/user-vijay-kota/qpid:POD:${port}"]
             # -endpoint
             # samapp/$(FUNCTION_NAMESPACE)/$(FUNCTION)-http:DATACENTER_ALLENV:7014
             # samapp/$(FUNCTION_NAMESPACE)/$(FUNCTION)-https:DATACENTER_ALLENV:7442
             # -endpoint
-            # samapp/$(FUNCTION_NAMESPACE)/$(FUNCTION):DATACENTER_ALLENV:2040
+            # samapp/$(FUNCTION_NAMESPACE)/$(FUNCTION):DATACENTER_ALLENV:2050
           env:
             - name: SFDC_ENVIRONMENT
               value: mesh
             - name: SHERPA0
-              value: 2040
+              value: 2050
             - name: SHERPA1
-              value: 2043
+              value: 2053
           livenessProbe:
             initialDelaySeconds: 5
             exec:
@@ -171,8 +171,8 @@ system:
           ports:
           - containerPort: 15373
             name: sherpa-adm
-          - containerPort: 2040
-          - containerPort: 2043
+          - containerPort: 2050
+          - containerPort: 2053
           # containerPort: 7014
           # name: http1-in
           # containerPort: 7442
@@ -238,11 +238,11 @@ system:
     function: cs55-qpid
     slbenabled: true
     ports:
-      - port: 2040
-        targetport: 2040
-      - port: 2041
-        targetport: 2041
-      - port: 2043
-        targetport: 2043
-      - port: 2044
-        targetport: 2044
+      - port: 2050
+        targetport: 2050
+      - port: 2051
+        targetport: 2051
+      - port: 2053
+        targetport: 2053
+      - port: 2054
+        targetport: 2054
