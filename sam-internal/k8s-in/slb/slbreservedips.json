@@ -84,6 +84,20 @@
       "org-orgcerttest-cs46-slb-ia2.slb.sfdc.net": "13.110.50.119",
       "org-orgcerttest-cs49-slb-ia2.slb.sfdc.net": "13.110.50.120"
     },
+    "ia4-sam": {
+      "org-cce2e-cs59-slb-ia4.slb.sfdc.net": "13.109.180.11",
+      "org-cce2e-cs60-slb-ia4.slb.sfdc.net": "13.109.180.12",
+      "org-cce2e-cs123-slb-ia4.slb.sfdc.net": "13.109.180.13",
+      "org-cce2e-cs124-slb-ia4.slb.sfdc.net": "13.109.180.14",
+      "org-cce2e-cs125-slb-ia4.slb.sfdc.net": "13.109.180.15"
+    },
+    "ia5-sam": {
+      "org-cce2e-cs59-slb-ia5.slb.sfdc.net": "13.109.182.11",
+      "org-cce2e-cs60-slb-ia5.slb.sfdc.net": "13.109.182.12",
+      "org-cce2e-cs123-slb-ia5.slb.sfdc.net": "13.109.182.13",
+      "org-cce2e-cs124-slb-ia5.slb.sfdc.net": "13.109.182.14",
+      "org-cce2e-cs125-slb-ia5.slb.sfdc.net": "13.109.182.15"
+    },
     "iad-sam": {
       "org-cce2e-cs8-slb-iad.slb.sfdc.net": "13.110.24.101",
       "org-cce2e-cs14-slb-iad.slb.sfdc.net": "13.110.24.102",
@@ -244,6 +258,7 @@
       "dfs-production-lb.retail-dfs.hnd-sam.hnd.slb.sfdc.net": "10.213.100.138",
       "rsui-service-hnd-lb.retail-rsui.hnd-sam.hnd.slb.sfdc.net": "10.213.100.139",
       "cre-api-lb.retail-cre.par-sam.hnd.slb.sfdc.net": "10.213.100.14",
+      "cre-api-lb.retail-cre.hnd-sam.hnd.slb.sfdc.net": "10.213.100.14",
       "metadata-service-lb.retail-mds.hnd-sam.hnd.slb.sfdc.net": "10.213.100.140",
       "hub-persistence-lb.retail-rsui.hnd-sam.hnd.slb.sfdc.net": "10.213.100.141"
     },
@@ -297,6 +312,7 @@
       "dfs-production-lb.retail-dfs.ukb-sam.ukb.slb.sfdc.net": "10.213.36.121",
       "rsui-service-ukb-lb.retail-rsui.ukb-sam.ukb.slb.sfdc.net": "10.213.36.122",
       "cre-api-lb.retail-cre.par-sam.ukb.slb.sfdc.net": "10.213.36.125",
+      "cre-api-lb.retail-cre.ukb-sam.ukb.slb.sfdc.net": "10.213.36.125",
       "metadata-service-lb.retail-mds.ukb-sam.ukb.slb.sfdc.net": "10.213.36.126",
       "hub-persistence-lb.retail-rsui.ukb-sam.ukb.slb.sfdc.net": "10.213.36.127"
     },
