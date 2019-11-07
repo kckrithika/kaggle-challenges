@@ -11,7 +11,7 @@ if configs.estate == "prd-sam" then
       },
       labels: {
          app: "istio-ingressgateway",
-         slb-istio: "ingressgateway",
+         slbistio: "ingressgateway",
          owner: "slb",
       },
       name: "istio-ingressgateway",
@@ -34,7 +34,7 @@ if configs.estate == "prd-sam" then
       ],
       selector: {
          app: "istio-ingressgateway",
-         slb-istio: "ingressgateway",
+         slbistio: "ingressgateway",
       },
       type: "LoadBalancer",
    },
