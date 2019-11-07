@@ -174,9 +174,11 @@ local utils = import "util_functions.jsonnet";
         # off-peak: 1pm-9pm PDT
         "prod-emea": self.prod {
           image_tags+: {
+              integration_test_tag: "33",
           },
           feature_flags+: {
               # --- flag A (Do not edit ... ---
+              prefetcher_enabled: "this value irrelevant",
               # --- flag B (these comments ... ---
               # --- flag C (and place only ... ---
               # --- flag D (one flag between ... ---
@@ -252,9 +254,6 @@ local utils = import "util_functions.jsonnet";
         },
 
         frf: self["prod-emea"] {
-          feature_flags+: {
-              upcase_pki_kingdom: "",
-          },
         },
         par: self["prod-emea"] {
         },

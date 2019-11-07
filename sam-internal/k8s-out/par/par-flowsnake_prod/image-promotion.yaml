@@ -104,11 +104,11 @@ spec:
         name: flowsnake-zookeeper
       - image: ops0-artifactrepo1-0-par.data.sfdc.net/dva/watchdog-canary:jenkins-dva-transformation-flowsnake-platform-master-781-itest
         name: extra-image-0
-      - image: ops0-artifactrepo1-0-par.data.sfdc.net/dva/flowsnake-spark-on-k8s-integration-test-runner:22
+      - image: ops0-artifactrepo1-0-par.data.sfdc.net/dva/flowsnake-spark-on-k8s-integration-test-runner:33
         name: extra-image-1
       - image: ops0-artifactrepo1-0-par.data.sfdc.net/dva/sam/hypersam:2687-6c147b04d2d506c9fd591d50f400bd86c485b155
         name: extra-image-2
-      - image: ops0-artifactrepo1-0-par.data.sfdc.net/dva/flowsnake-basic-operator-integration:22
+      - image: ops0-artifactrepo1-0-par.data.sfdc.net/dva/flowsnake-basic-operator-integration:33
         name: extra-image-3
       - image: ops0-artifactrepo1-0-par.data.sfdc.net/dva/kube-state-metrics-sfdc-0.0.1:3
         name: extra-image-4
