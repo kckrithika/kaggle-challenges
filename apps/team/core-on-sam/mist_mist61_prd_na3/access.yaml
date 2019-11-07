@@ -1,8 +1,9 @@
 # Use corp user name instead of git user ids e.g. prahlad.joshi instead of prahlad-joshi
 admins:
-  - pnambiar
-  - mgainsborough
+#  - pnambiar
+#  - mgainsborough
 users:
+  - mgainsborough
   - sathish.santhanam
   - saurabh.ahuja
   - ccamacho

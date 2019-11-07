@@ -1,8 +1,10 @@
 # Admins are responsible for ensuring only approved changes are made during moratoriums.  See https://sfdc.co/sam-admins
 admins:
+#  - swisniewski
+#  - ajayamohan
+users:
   - swisniewski
   - ajayamohan
-users:
   - jmodi
   - dshnayder
   - ajay-mohan
