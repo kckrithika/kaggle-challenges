@@ -40,7 +40,7 @@ system:
 
     containers:
     - name: rsui-production-ord
-      image: sfci/retail/retail-setup:2.0.241 # docker image
+      image: sfci/retail/retail-setup:2.1.294 # docker image
       ports:
       - containerPort: 7022
         name: rsui-in-http1
@@ -88,7 +88,7 @@ system:
       - name: CRE_CP_SERVER_TARGET
         value: http://cre-control-plane.retail-cre.localhost.mesh.force.com:5442
       - name: C2C_PATH
-        value: https://cloudatlas.salesforce.com/empire/cloudatlas/scim
+        value: http://cloudatlas-ord-service.cloudatlas.localhost.mesh.force.com:5442/scim, https://cloudatlas.salesforce.com/empire/cloudatlas/scim
       - name: CORE_OAUTH_URL
         value: https://login.salesforce.com
       - name: CORE_OAUTH_SANDBOXURL
