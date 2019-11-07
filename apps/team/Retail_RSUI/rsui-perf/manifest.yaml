@@ -87,7 +87,7 @@ system:
       - name: CRE_CP_SERVER_TARGET
         value: http://cre-control-plane-ccp-perf.retail-cre.localhost.mesh.force.com:5442
       - name: C2C_PATH
-        value: https://login.stmfa.stm.salesforce.com/empire/cloudatlas/scim
+        value: http://cloudatlas-prd-stage-service.cloudatlas.localhost.mesh.force.com:5442/scim,https://login.stmfa.stm.salesforce.com/empire/cloudatlas/scim
       - name: OAUTH_SHADOW_CONSUMERKEY
         value: 3MVG9lKcPoNINVBKJMizaZu4JcS_p1XaCVAZPvgCHu5XJewumazSzJL6GPWIDmPvYwVT_dxGNoYX62.qGDvqg
       - name: OAUTH_SHADOW_CONSUMERSECRET
