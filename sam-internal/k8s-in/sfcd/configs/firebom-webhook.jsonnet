@@ -38,7 +38,7 @@ local templatesCompositionConfig = import "configs/firebom-templates-composition
         pipeline: {
           template: {
             'enable-webhook-secret': false,
-            'fire-bom-white-list': "lib/fire/.*/boms/.*json",
+            'fire-bom-white-list': "lib/fire/.*/boms/test_sfcdapi.*json",
             'fire-bom-black-list': "lib/fire/.*/boms/mock.*json",
           }
         }
