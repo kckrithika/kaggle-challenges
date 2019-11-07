@@ -6,7 +6,7 @@ system:
       - cloudatlas-dev@salesforce.com
   functions:
   - name: cloudatlas-iad-service
-    count: 0
+    count: 3
     strategy:
       type: RollingUpdate
       rollingUpdate:
