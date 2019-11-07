@@ -176,11 +176,13 @@ local utils = import "util_functions.jsonnet";
           image_tags+: {
               integration_test_tag: "33",
               spark_operator_image_tag: "jenkins-dva-transformation-spark-on-k8s-operator-development-sfdc-9-itest",
+              madkub_injector_image_tag: "jenkins-dva-transformation-madkub-injector-webhook-PR-25-7-itest",
           },
           feature_flags+: {
               # --- flag A (Do not edit ... ---
               prefetcher_enabled: "this value irrelevant",
               # --- flag B (these comments ... ---
+              madkub_injector_server_cert: "",
               # --- flag C (and place only ... ---
               # --- flag D (one flag between ... ---
               # --- flag E (each pair. ... ---
