@@ -9,7 +9,7 @@ system:
     containers:
     # LDA container
     - name: ace-lda
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/ace-lda/ace-lda:ace-lda-e6c0672e1de0a5d09e871280f1269630d8997700
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/ace-lda/ace-lda:ace-lda-64fbaaa45766426973b5edcc913009f283f7f40d
       args:
       - --server.port=7022
       - --settings.path=mesh.meshredis.prd.sp2.ace-lda
