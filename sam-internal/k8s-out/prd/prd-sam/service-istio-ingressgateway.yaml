@@ -28,8 +28,8 @@ metadata:
       ]
   labels:
     app: istio-ingressgateway
-    istio: ingressgateway
-    release: istio
+    owner: slb
+    slbistio: ingressgateway
   name: istio-ingressgateway
   namespace: slb
 spec:
@@ -42,6 +42,5 @@ spec:
     port: 2525
   selector:
     app: istio-ingressgateway
-    istio: ingressgateway
-    release: istio
+    slbistio: ingressgateway
   type: LoadBalancer

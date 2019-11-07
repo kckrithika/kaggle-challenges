@@ -5,8 +5,9 @@ metadata:
     manifestctl.sam.data.sfdc.net/swagger: disable
   labels:
     app: istio-ingressgateway
-    istio: ingressgateway
+    owner: slb
     release: istio
+    slbistio: ingressgateway
   name: istio-ingressgateway
   namespace: slb
 spec:
@@ -14,7 +15,7 @@ spec:
   selector:
     matchLabels:
       app: istio-ingressgateway
-      istio: ingressgateway
+      slbistio: ingressgateway
   strategy:
     rollingUpdate:
       maxSurge: 1
@@ -52,11 +53,10 @@ spec:
       labels:
         app: istio-ingressgateway
         chart: gateways
-        cluster: prd-sam_gater
         heritage: Tiller
-        istio: ingressgateway
         name: istio-ingressgateway
-        release: istio
+        owner: slb
+        slbistio: ingressgateway
     spec:
       affinity:
         nodeAffinity:
