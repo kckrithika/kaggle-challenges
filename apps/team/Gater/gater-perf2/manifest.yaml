@@ -5,7 +5,10 @@ system:
     count: 1
     containers:
     - name: gater-perf2
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/gater/gater-perf:sortiz-1565357261
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/gater/gater-perf:dmachak-1571690355
+      env:
+        - name: SFDC_ENVIRONMENT
+          value: blitz
       args:
       - --gater.grpc.endpoint=gater-mesh2.gater.localhost.mesh.force.com
       - --gater.grpc.port=5443
@@ -17,10 +20,10 @@ system:
       - --management.server.port=15375
       - --server.port=8081
       - --metrics.collectionInterval=60
-      - --gater.grpc.deadline-ms=40
-      - --gater.timeout-in-millis=20
-      - --gater.perf.should-log=true
-      - --gater.client.log-opts=ALWAYS_LOG
+      - --gater.grpc.deadline-ms=1000
+      - --gater.timeout-in-millis=1000
+      - --gater.perf.should-log=false
+      - --gater.client.log-opts=NEVER_LOG
       ports:
       - containerPort: 8081
       - containerPort: 15375
@@ -34,7 +37,11 @@ system:
         initialDelaySeconds: 60
         timeoutSeconds: 10
     - name: beacon
-      image: sfci/servicelibs/beacon:cec13ceb9fc5aed0ce462031a01b2dd5ef73d5ee
+      # https://git.soma.salesforce.com/services/sfdc-bazel/tree/master/projects/sidecars/beacon#docker-image
+      image: sfci/services/sfdc-bazel/disco/beacon:d7f1640
+      env:
+        - name: SFDC_ENVIRONMENT
+          value: blitz
       args:
       - -endpoint
       - $(FUNCTION):DATACENTER_ALLENV:HTTP2
@@ -42,16 +49,14 @@ system:
       - $(FUNCTION_NAMESPACE)/$(FUNCTION):DATACENTER_ALLENV:HTTP2_TLS
       - -logging.dir
       - /log
-      volumeMounts:
-      - mountPath: /log
-        name: logvolbeacon
       livenessProbe:
         exec:
           command:
-          - /home/scone/is-alive.sh
+          - "/opt/beacon/is-alive.sh"
         initialDelaySeconds: 5
     - name: sherpa
-      image: sfci/servicelibs/sherpa-envoy:1.0.6
+      # latest release:  https://git.soma.salesforce.com/servicelibs/sherpa-envoy/releases
+      image: sfci/servicelibs/sherpa-envoy:1.0.13
       ports:
       - name: http2-in
         containerPort: 7012
@@ -81,9 +86,6 @@ system:
     - name: logvolservice
       hostPath:
         path: /home/sfdc-scone-gater-perf/logs
-    - name: logvolbeacon
-      hostPath:
-        path: /home/sfdc-scone-gater-perf-beacon/logs
     - name: tls-client-cert
       maddogCert:
         type: client
