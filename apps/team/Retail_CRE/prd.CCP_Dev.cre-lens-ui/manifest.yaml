@@ -15,6 +15,19 @@ system:
         httpGet:
           path: /
           port: 3000
+          
+  - name: cre-engine-service
+    count: 1
+    containers:
+    - name: cre-engine-service
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cre/cre-express:1.1
+      ports:
+      - containerPort: 3001
+      livenessProbe:
+        httpGet:
+          path: /
+          port: 3001
+
   loadbalancers:
   - lbname: cre-lens-ui-lb
     function: cre-lens-ui
