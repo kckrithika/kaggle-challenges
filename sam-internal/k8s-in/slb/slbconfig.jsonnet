@@ -264,6 +264,8 @@
             "ord-sam",
             "ph2-sam",
             "ia2-sam",
+            "ia4-sam",
+            "ia5-sam",
         ]),
 
         envoyEnabledVips:
