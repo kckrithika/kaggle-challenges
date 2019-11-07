@@ -9,7 +9,7 @@
     targetport: 443
     lbtype: http
     tls: true
-    reencrypt: false
+    reencrypt: true
     healthport: 443
     healthprotocol: tcp
 
@@ -23,6 +23,6 @@
     targetport: 443
     lbtype: http
     tls: true
-    reencrypt: false
+    reencrypt: true
     healthport: 443
     healthprotocol: tcp
