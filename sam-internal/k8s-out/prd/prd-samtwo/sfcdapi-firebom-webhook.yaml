@@ -41,6 +41,35 @@ items:
                   "port": 8081
               }
           },
+          "monitoring": {
+              "enable-funnel-publisher": true,
+              "enable-metrics-logging": false,
+              "funnel": {
+                  "avro-schema-fingerprint": "AVG7NnlcHNdk4t_zn2JBnQ",
+                  "backoff-time": 1,
+                  "base-path": "funnel",
+                  "endpoint": "ajna0-funnel1-0-prd.data.sfdc.net",
+                  "funnel-api-version": "v1",
+                  "http-port": 80,
+                  "https-port": 443,
+                  "max-publish-tries": 3,
+                  "publish-api": "publishBatch",
+                  "ssl-enabled": false
+              },
+              "metric-fields": {
+                  "common-tags": {
+                      "k8.namespace": "${MY_POD_NAMESPACE}",
+                      "k8.node.name": "${MY_NODE_NAME}"
+                  },
+                  "datacenter": "prd",
+                  "pod": "sfcdapi-firebom-webhook",
+                  "service": "sfcdapi-firebom-webhook",
+                  "subservice": "${MY_APP_NAME}",
+                  "superpod": "prd-samtwo"
+              },
+              "report-frequency": 1,
+              "system-exception-threshold": 5
+          },
           "pipeline": {
               "templates": {
                   "composition": {
@@ -109,35 +138,6 @@ items:
                   "commit-signing": false,
                   "context-prefix": "",
                   "webhook-secret-token-validation": false
-              },
-              "monitoring": {
-                  "enable-funnel-publisher": true,
-                  "enable-metrics-logging": false,
-                  "funnel": {
-                      "avro-schema-fingerprint": "AVG7NnlcHNdk4t_zn2JBnQ",
-                      "backoff-time": 1,
-                      "base-path": "funnel",
-                      "endpoint": "ajna0-funnel1-0-prd.data.sfdc.net",
-                      "funnel-api-version": "v1",
-                      "http-port": 80,
-                      "https-port": 443,
-                      "max-publish-tries": 3,
-                      "publish-api": "publishBatch",
-                      "ssl-enabled": false
-                  },
-                  "metric-fields": {
-                      "common-tags": {
-                          "k8.namespace": "${MY_POD_NAMESPACE}",
-                          "k8.node.name": "${MY_NODE_NAME}"
-                      },
-                      "datacenter": "prd",
-                      "pod": "sfcdapi-firebom-webhook",
-                      "service": "sfcdapi-firebom-webhook",
-                      "subservice": "${MY_APP_NAME}",
-                      "superpod": "prd-samtwo"
-                  },
-                  "report-frequency": 1,
-                  "system-exception-threshold": 5
               }
           },
           "templates": {
@@ -364,7 +364,7 @@ items:
                 fieldPath: metadata.labels['name']
           - name: CONFIG_VERSION
             value: "9"
-          image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/sfcdapi-firebom:55
+          image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/sfcdapi-firebom:57
           imagePullPolicy: Always
           livenessProbe:
             failureThreshold: 10
