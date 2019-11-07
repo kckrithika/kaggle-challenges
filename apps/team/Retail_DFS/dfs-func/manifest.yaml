@@ -46,7 +46,7 @@ system:
         value: true
       - name: GDOT_BASEPATHOVERRIDE
         value: https://login.stmfa.stm.salesforce.com/empire/cloudatlas/scim
-      - name: INCLUDE_ALL_STACK_TRACES
+      - name: INCLUDEALLSTACKTRACES
         value: false
       - name: JVM_ARGS
         value: "-Dspring.profiles.active=prod,perf,alertTriggeringExtensionsOn
