@@ -175,6 +175,7 @@ local utils = import "util_functions.jsonnet";
         "prod-emea": self.prod {
           image_tags+: {
               integration_test_tag: "33",
+              spark_operator_image_tag: "jenkins-dva-transformation-spark-on-k8s-operator-development-sfdc-9-itest",
           },
           feature_flags+: {
               # --- flag A (Do not edit ... ---
