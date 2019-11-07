@@ -11,7 +11,7 @@ system:
       serviceName: app
     containers:
     - name: coreapp
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/coreonsam/casam:release_222-patch_19057694
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/coreonsam/casam:release_main_19581350
       ports:
       - containerPort: 8998
       - containerPort: 8085
@@ -20,13 +20,13 @@ system:
       - containerPort: 8443
       env:
       - name: DB_SID
-        value: mist61a222utf
+        value: mist61b224utf
       - name: DB_INSTANCE_NAME
-        value: mist61a222utf-1
+        value: mist61b224utf-1
       - name: DB_USER
-        value: doc
+        value: bashful
       - name: DB_STATS_USER
-        value: happy
+        value: snowwhite
       - name: DB_CONN_NUM
         value: 25
       - name: IP_DB
@@ -62,7 +62,11 @@ system:
       - name: SKIP_READY_RELEASE_CHECK
         value: true
       - name: CASAM_APP_COLOR
-        value: blue
+        value: green
+      - name: CASAM_DEPLOYMENT_ID
+        value: na5-green
+      - name: USE_K8S_COLOR_PERSISTENCE
+        value: 0
       - name: SD_PORT_OVERRIDE
         value: 7442
       - name: CASAM_SETTINGS_PATH
@@ -71,6 +75,10 @@ system:
         value: na5
       - name: DEPLOYMENT
         value: B
+      - name: ZDT
+        value: true
+      - name: CASAM_DEPLOYMENT_ID
+        value: 12345
       - name: CASAM_HOST_NAME
         valueFrom:
           fieldRef:
@@ -106,7 +114,7 @@ system:
         name: secretvol
         readOnly: true
     - name: casam-sidecar
-      image: sfci/casam/coreapp_overrides:4bcada
+      image: sfci/casam/coreapp_overrides:c3ba16
       env:
       - name: CASAM_SETTINGS_PATH
         value: mist.mist61.prd.na5.app
@@ -129,7 +137,7 @@ system:
         name: coreapp-casam-volume
     - name: sherpa-envoy
       # Use the latest release version from https://git.soma.salesforce.com/servicelibs/sherpa-envoy/releases
-      image: sfci/servicelibs/sherpa-envoy:33101eda4a3280cf3b4b8458da27a9494b0aa9ae
+      image: sfci/servicelibs/sherpa-envoy:1.0.8
       # See https://git.soma.salesforce.com/servicelibs/sherpa#ports
       ports:
       - containerPort: 7442
@@ -153,6 +161,9 @@ system:
         mountPath: /client-certs
       - name: tls-server-cert
         mountPath: /server-certs
+    labels:
+      settings-path: mist.mist61.prd.na5.app
+      casam-deployment-id: na5-green
     progressDeadlineSeconds: 300
     strategy:
       rollingUpdate:
@@ -187,11 +198,11 @@ system:
       serviceName: sfproxy
     containers:
     - name: sfproxy-envoy
-      image: sfci/frontend-gateway/sfproxy:a290f27
+      image: sfci/frontend-gateway/sfproxy:f926aa8
       args:
       - --template=/home/sfdc-sherpa/sfproxy/config/core-on-sam/sfproxy-public-cloud-rds.yaml.template
       - --switchboard=na5-switchboard-lb.core-on-sam-sp2.prd-sam.prd.slb.sfdc.net:8088
-      - --log-level=trace
+      - --log-level=debug
       env:
       - name: ENVOY_DEBUG_OPTIONS
         value: --log-path /home/sfdc-sherpa/envoy.log
@@ -235,8 +246,8 @@ system:
       serviceName: sfproxy-switchboard
     serviceAccountName: switchboard-service-account
     containers:
-    - name: sfproxy-switchboard-server
-      image: sfci/servicelibs/switchboard:98471950537d76a57ccbf65d72f823d5724ef3bf
+    - name: switchboard
+      image: sfci/servicelibs/switchboard:2d8189e3fa84fab3672869b29009e416870906bc
       args:
       - --clusters.external-clusters[0]=ajnafunneldirect:HTTP1
       - --clusters.external-clusters[1]=spaasmesh:HTTP2
@@ -248,8 +259,8 @@ system:
       env:
       - name: SFDC_ENVIRONMENT
         value: mist61
-      - name: GRPC_SERVER_PORT
-        value: 7020
+      - name: GRPC_SERVER_BIND_ENDPOINT
+        value: "tcp://0.0.0.0:7020"
       - name: JVM_HEAP_MAX
         value: 4G
       livenessProbe:
@@ -270,16 +281,14 @@ system:
       volumeMounts:
       - mountPath: /home/sfdc-switchboard/sherpa-envoy-config-volume
         name: envoy-config-volume
-    - name: sfproxy-switchboard-sherpa
-      image: sfci/frontend-gateway/sfproxy:a290f27
+    - name: envoy-sidecar
+      image: sfci/frontend-gateway/sfproxy:f926aa8
       ports:
       - containerPort: 15001
       - containerPort: 15373
       args:
-      - --template
-      - /home/sfdc-sherpa/sfproxy/config/switchboard-sidecar/sfproxy-switchboard-sidecar.config.yaml.template
-      - --log-level
-      - trace
+      - --template /home/sfdc-sherpa/sfproxy/config/switchboard-sidecar/sfproxy-switchboard-sidecar.config.yaml.template
+      - --log-level=debug
       env:
       - name: SFDC_ENVIRONMENT
         value: mist61
