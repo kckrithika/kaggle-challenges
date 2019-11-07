@@ -48,11 +48,11 @@ local templatesCompositionConfig = import "configs/firebom-templates-composition
         'webhook-secret-token-validation': false,
         'context-prefix': "",
       },
-      local custom_monitoring_configs = {
-        'enable-metrics-logging': false,
-        'enable-funnel-publisher': true,
-      },
-      monitoring: std.mergePatch(monitoringConfig.monitor(serviceName), custom_monitoring_configs)
-    }
+    },
+    local custom_monitoring_configs = {
+      'enable-metrics-logging': false,
+      'enable-funnel-publisher': true,
+    },
+    monitoring: std.mergePatch(monitoringConfig.monitor(serviceName), custom_monitoring_configs)
   }
 }
