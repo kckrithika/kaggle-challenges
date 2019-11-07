@@ -1,5 +1,5 @@
 - lbname: org-cce2e-cs59
-  iptype: public_reserved
+  iptype: private_nonreserved
   servers:
     - cs59-app1-2-ia5.ops.sfdc.net
     - cs59-app2-2-ia5.ops.sfdc.net
@@ -13,23 +13,56 @@
     - cs59-app2-5-ia5.ops.sfdc.net  
   ports:
   - port: 443
-    targetport: 8085
+    targetport: 8090
+    reencrypt: true
+    healthport: 8085
     lbtype: http
     healthprotocol: http
     healthpath: /ping.jsp?allBusy
     sticky: 86400
+    tls: true
+    tlscertificate: secret_service:BofA-Stmfa-VIP-Certs:ia5.cce2e.my-salesforce.com.crt
+    tlskey: kms:1:2:B79A5F5D32C69C340DC39183EA315A164E1E7B3D76B680258E4EED91817177AE:59c81775-653d-479a-8e0b-49bdef4f4c2b
+
     addheaders:
     - name: "X-Salesforce-VIP"
       value: "SLB"
+    removeheaders:
+    - "X-Forwarded-Proto"
+    - "X-Forwarded-For"
+    - "X-Client-Verify"
+    - "X-Real-IP"
+    - "X-Client-Cert"
+    - "X-Client-Fingerprint" 
+    - "SSL_CLIENT_S_DN"
+    - "SSL_CLIENT_M_SERIAL"
+    - "SSL_CLIENT_I_DN"
+    - "SSL_SHA1_HASH"
+    - "SSL_CLIENT_V_REMAIN" 
   - port: 8443
-    targetport: 8085
+    targetport: 8090
+    reencrypt: true
+    healthport: 8085
     lbtype: http
     healthprotocol: http
     healthpath: /ping.jsp?allBusy
     sticky: 86400
+    tls: true
+    mtls: true
+    tlscertificate: secret_service:BofA-Stmfa-VIP-Certs:ia5.cce2e.my-salesforce.com.crt
+    tlskey: kms:1:2:B79A5F5D32C69C340DC39183EA315A164E1E7B3D76B680258E4EED91817177AE:59c81775-653d-479a-8e0b-49bdef4f4c2b
+
     addheaders:
     - name: "X-Salesforce-VIP"
-      value: "SLB"   
+      value: "SLB"
+    removeheaders:
+    - "X-Forwarded-Proto"
+    - "X-Forwarded-For"
+    - "X-Client-Verify"
+    - "X-Real-IP"
+    - "X-Client-Cert"
+    - "X-Client-Fingerprint"  
+    - "SSL_CLIENT_V_REMAIN"   
   - port: 80
     targetport: 8085
     lbtype: http
@@ -37,12 +70,20 @@
     healthpath: /ping.jsp?allBusy
     removeheaders:
     - "CipherSuite"
+    - "X-Forwarded-Proto" 
+    - "X-Forwarded-For" 
+    - "X-Real-IP"
+    - "SSL_CLIENT_S_DN"
+    - "SSL_CLIENT_M_SERIAL"
+    - "SSL_CLIENT_I_DN"
+    - "SSL_SHA1_HASH"
+    - "SSL_CLIENT_V_REMAIN" 
     addheaders:
     - name: "X-Salesforce-VIP"
       value: "SLB"
 
 - lbname: org-cce2e-cs60
-  iptype: public_reserved
+  iptype: private_nonreserved
   servers:
     - cs60-app2-3-ia5.ops.sfdc.net
     - cs60-app1-1-ia5.ops.sfdc.net
@@ -56,23 +97,56 @@
     - cs60-app2-4-ia5.ops.sfdc.net  
   ports:
   - port: 443
-    targetport: 8085
+    targetport: 8090
+    reencrypt: true
+    healthport: 8085
     lbtype: http
     healthprotocol: http
     healthpath: /ping.jsp?allBusy
     sticky: 86400
+    tls: true
+    tlscertificate: secret_service:BofA-Stmfa-VIP-Certs:ia5.cce2e.my-salesforce.com.crt
+    tlskey: kms:1:2:B79A5F5D32C69C340DC39183EA315A164E1E7B3D76B680258E4EED91817177AE:59c81775-653d-479a-8e0b-49bdef4f4c2b
+
     addheaders:
     - name: "X-Salesforce-VIP"
       value: "SLB"
+    removeheaders:
+    - "X-Forwarded-Proto"
+    - "X-Forwarded-For"
+    - "X-Client-Verify"
+    - "X-Real-IP"
+    - "X-Client-Cert"
+    - "X-Client-Fingerprint" 
+    - "SSL_CLIENT_S_DN"
+    - "SSL_CLIENT_M_SERIAL"
+    - "SSL_CLIENT_I_DN"
+    - "SSL_SHA1_HASH"
+    - "SSL_CLIENT_V_REMAIN" 
   - port: 8443
-    targetport: 8085
+    targetport: 8090
+    reencrypt: true
+    healthport: 8085
     lbtype: http
     healthprotocol: http
     healthpath: /ping.jsp?allBusy
     sticky: 86400
+    tls: true
+    mtls: true
+    tlscertificate: secret_service:BofA-Stmfa-VIP-Certs:ia5.cce2e.my-salesforce.com.crt
+    tlskey: kms:1:2:B79A5F5D32C69C340DC39183EA315A164E1E7B3D76B680258E4EED91817177AE:59c81775-653d-479a-8e0b-49bdef4f4c2b
+
     addheaders:
     - name: "X-Salesforce-VIP"
-      value: "SLB"   
+      value: "SLB"
+    removeheaders:
+    - "X-Forwarded-Proto"
+    - "X-Forwarded-For"
+    - "X-Client-Verify"
+    - "X-Real-IP"
+    - "X-Client-Cert"
+    - "X-Client-Fingerprint"  
+    - "SSL_CLIENT_V_REMAIN"   
   - port: 80
     targetport: 8085
     lbtype: http
@@ -80,12 +154,20 @@
     healthpath: /ping.jsp?allBusy
     removeheaders:
     - "CipherSuite"
+    - "X-Forwarded-Proto" 
+    - "X-Forwarded-For" 
+    - "X-Real-IP"
+    - "SSL_CLIENT_S_DN"
+    - "SSL_CLIENT_M_SERIAL"
+    - "SSL_CLIENT_I_DN"
+    - "SSL_SHA1_HASH"
+    - "SSL_CLIENT_V_REMAIN" 
     addheaders:
     - name: "X-Salesforce-VIP"
       value: "SLB"
 
 - lbname: org-cce2e-cs123
-  iptype: public_reserved
+  iptype: private_nonreserved
   servers:
     - cs123-app1-4-ia5.ops.sfdc.net
     - cs123-app2-4-ia5.ops.sfdc.net
@@ -99,23 +181,56 @@
     - cs123-app2-2-ia5.ops.sfdc.net  
   ports:
   - port: 443
-    targetport: 8085
+    targetport: 8090
+    reencrypt: true
+    healthport: 8085
     lbtype: http
     healthprotocol: http
     healthpath: /ping.jsp?allBusy
     sticky: 86400
+    tls: true
+    tlscertificate: secret_service:BofA-Stmfa-VIP-Certs:ia5.cce2e.my-salesforce.com.crt
+    tlskey: kms:1:2:B79A5F5D32C69C340DC39183EA315A164E1E7B3D76B680258E4EED91817177AE:59c81775-653d-479a-8e0b-49bdef4f4c2b
+
     addheaders:
     - name: "X-Salesforce-VIP"
       value: "SLB"
+    removeheaders:
+    - "X-Forwarded-Proto"
+    - "X-Forwarded-For"
+    - "X-Client-Verify"
+    - "X-Real-IP"
+    - "X-Client-Cert"
+    - "X-Client-Fingerprint" 
+    - "SSL_CLIENT_S_DN"
+    - "SSL_CLIENT_M_SERIAL"
+    - "SSL_CLIENT_I_DN"
+    - "SSL_SHA1_HASH"
+    - "SSL_CLIENT_V_REMAIN" 
   - port: 8443
-    targetport: 8085
+    targetport: 8090
+    reencrypt: true
+    healthport: 8085
     lbtype: http
     healthprotocol: http
     healthpath: /ping.jsp?allBusy
     sticky: 86400
+    tls: true
+    mtls: true
+    tlscertificate: secret_service:BofA-Stmfa-VIP-Certs:ia5.cce2e.my-salesforce.com.crt
+    tlskey: kms:1:2:B79A5F5D32C69C340DC39183EA315A164E1E7B3D76B680258E4EED91817177AE:59c81775-653d-479a-8e0b-49bdef4f4c2b
+
     addheaders:
     - name: "X-Salesforce-VIP"
-      value: "SLB"   
+      value: "SLB"
+    removeheaders:
+    - "X-Forwarded-Proto"
+    - "X-Forwarded-For"
+    - "X-Client-Verify"
+    - "X-Real-IP"
+    - "X-Client-Cert"
+    - "X-Client-Fingerprint"  
+    - "SSL_CLIENT_V_REMAIN"   
   - port: 80
     targetport: 8085
     lbtype: http
@@ -123,12 +238,20 @@
     healthpath: /ping.jsp?allBusy
     removeheaders:
     - "CipherSuite"
+    - "X-Forwarded-Proto" 
+    - "X-Forwarded-For" 
+    - "X-Real-IP"
+    - "SSL_CLIENT_S_DN"
+    - "SSL_CLIENT_M_SERIAL"
+    - "SSL_CLIENT_I_DN"
+    - "SSL_SHA1_HASH"
+    - "SSL_CLIENT_V_REMAIN" 
     addheaders:
     - name: "X-Salesforce-VIP"
       value: "SLB"
 
 - lbname: org-cce2e-cs124
-  iptype: public_reserved
+  iptype: private_nonreserved
   servers:
     - cs124-app2-2-ia5.ops.sfdc.net
     - cs124-app1-4-ia5.ops.sfdc.net
@@ -142,23 +265,56 @@
     - cs124-app2-4-ia5.ops.sfdc.net  
   ports:
   - port: 443
-    targetport: 8085
+    targetport: 8090
+    reencrypt: true
+    healthport: 8085
     lbtype: http
     healthprotocol: http
     healthpath: /ping.jsp?allBusy
     sticky: 86400
+    tls: true
+    tlscertificate: secret_service:BofA-Stmfa-VIP-Certs:ia5.cce2e.my-salesforce.com.crt
+    tlskey: kms:1:2:B79A5F5D32C69C340DC39183EA315A164E1E7B3D76B680258E4EED91817177AE:59c81775-653d-479a-8e0b-49bdef4f4c2b
+
     addheaders:
     - name: "X-Salesforce-VIP"
       value: "SLB"
+    removeheaders:
+    - "X-Forwarded-Proto"
+    - "X-Forwarded-For"
+    - "X-Client-Verify"
+    - "X-Real-IP"
+    - "X-Client-Cert"
+    - "X-Client-Fingerprint" 
+    - "SSL_CLIENT_S_DN"
+    - "SSL_CLIENT_M_SERIAL"
+    - "SSL_CLIENT_I_DN"
+    - "SSL_SHA1_HASH"
+    - "SSL_CLIENT_V_REMAIN" 
   - port: 8443
-    targetport: 8085
+    targetport: 8090
+    reencrypt: true
+    healthport: 8085
     lbtype: http
     healthprotocol: http
     healthpath: /ping.jsp?allBusy
     sticky: 86400
+    tls: true
+    mtls: true
+    tlscertificate: secret_service:BofA-Stmfa-VIP-Certs:ia5.cce2e.my-salesforce.com.crt
+    tlskey: kms:1:2:B79A5F5D32C69C340DC39183EA315A164E1E7B3D76B680258E4EED91817177AE:59c81775-653d-479a-8e0b-49bdef4f4c2b
+
     addheaders:
     - name: "X-Salesforce-VIP"
-      value: "SLB"   
+      value: "SLB"
+    removeheaders:
+    - "X-Forwarded-Proto"
+    - "X-Forwarded-For"
+    - "X-Client-Verify"
+    - "X-Real-IP"
+    - "X-Client-Cert"
+    - "X-Client-Fingerprint"  
+    - "SSL_CLIENT_V_REMAIN"   
   - port: 80
     targetport: 8085
     lbtype: http
@@ -166,12 +322,20 @@
     healthpath: /ping.jsp?allBusy
     removeheaders:
     - "CipherSuite"
+    - "X-Forwarded-Proto" 
+    - "X-Forwarded-For" 
+    - "X-Real-IP"
+    - "SSL_CLIENT_S_DN"
+    - "SSL_CLIENT_M_SERIAL"
+    - "SSL_CLIENT_I_DN"
+    - "SSL_SHA1_HASH"
+    - "SSL_CLIENT_V_REMAIN" 
     addheaders:
     - name: "X-Salesforce-VIP"
       value: "SLB"
 
 - lbname: org-cce2e-cs125
-  iptype: public_reserved
+  iptype: private_nonreserved
   servers:
     - cs125-app1-1-ia5.ops.sfdc.net
     - cs125-app1-3-ia5.ops.sfdc.net
@@ -185,23 +349,56 @@
     - cs125-app2-2-ia5.ops.sfdc.net  
   ports:
   - port: 443
-    targetport: 8085
+    targetport: 8090
+    reencrypt: true
+    healthport: 8085
     lbtype: http
     healthprotocol: http
     healthpath: /ping.jsp?allBusy
     sticky: 86400
+    tls: true
+    tlscertificate: secret_service:BofA-Stmfa-VIP-Certs:ia5.cce2e.my-salesforce.com.crt
+    tlskey: kms:1:2:B79A5F5D32C69C340DC39183EA315A164E1E7B3D76B680258E4EED91817177AE:59c81775-653d-479a-8e0b-49bdef4f4c2b
+
     addheaders:
     - name: "X-Salesforce-VIP"
       value: "SLB"
+    removeheaders:
+    - "X-Forwarded-Proto"
+    - "X-Forwarded-For"
+    - "X-Client-Verify"
+    - "X-Real-IP"
+    - "X-Client-Cert"
+    - "X-Client-Fingerprint" 
+    - "SSL_CLIENT_S_DN"
+    - "SSL_CLIENT_M_SERIAL"
+    - "SSL_CLIENT_I_DN"
+    - "SSL_SHA1_HASH"
+    - "SSL_CLIENT_V_REMAIN" 
   - port: 8443
-    targetport: 8085
+    targetport: 8090
+    reencrypt: true
+    healthport: 8085
     lbtype: http
     healthprotocol: http
     healthpath: /ping.jsp?allBusy
     sticky: 86400
+    tls: true
+    mtls: true
+    tlscertificate: secret_service:BofA-Stmfa-VIP-Certs:ia5.cce2e.my-salesforce.com.crt
+    tlskey: kms:1:2:B79A5F5D32C69C340DC39183EA315A164E1E7B3D76B680258E4EED91817177AE:59c81775-653d-479a-8e0b-49bdef4f4c2b
+
     addheaders:
     - name: "X-Salesforce-VIP"
-      value: "SLB"   
+      value: "SLB"
+    removeheaders:
+    - "X-Forwarded-Proto"
+    - "X-Forwarded-For"
+    - "X-Client-Verify"
+    - "X-Real-IP"
+    - "X-Client-Cert"
+    - "X-Client-Fingerprint"  
+    - "SSL_CLIENT_V_REMAIN"   
   - port: 80
     targetport: 8085
     lbtype: http
@@ -209,6 +406,14 @@
     healthpath: /ping.jsp?allBusy
     removeheaders:
     - "CipherSuite"
+    - "X-Forwarded-Proto" 
+    - "X-Forwarded-For" 
+    - "X-Real-IP"
+    - "SSL_CLIENT_S_DN"
+    - "SSL_CLIENT_M_SERIAL"
+    - "SSL_CLIENT_I_DN"
+    - "SSL_SHA1_HASH"
+    - "SSL_CLIENT_V_REMAIN" 
     addheaders:
     - name: "X-Salesforce-VIP"
       value: "SLB"

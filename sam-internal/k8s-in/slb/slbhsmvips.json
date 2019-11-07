@@ -183,6 +183,16 @@
   ],
   "ia4-sam":[ 
     "org-cce2e-cs59-slb-ia4.slb.sfdc.net",
-    "org-cce2e-cs60-slb-ia4.slb.sfdc.net"
+    "org-cce2e-cs60-slb-ia4.slb.sfdc.net",
+    "org-cce2e-cs123-slb-ia4.slb.sfdc.net",
+    "org-cce2e-cs124-slb-ia4.slb.sfdc.net",
+    "org-cce2e-cs125-slb-ia4.slb.sfdc.net"
+  ],
+  "ia5-sam":[ 
+    "org-cce2e-cs59-slb-ia5.slb.sfdc.net",
+    "org-cce2e-cs60-slb-ia5.slb.sfdc.net",
+    "org-cce2e-cs123-slb-ia5.slb.sfdc.net",
+    "org-cce2e-cs124-slb-ia5.slb.sfdc.net",
+    "org-cce2e-cs125-slb-ia5.slb.sfdc.net"
   ]  
 }
