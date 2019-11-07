@@ -70,11 +70,12 @@ system:
         valueFrom:
           fieldRef:
             fieldPath: spec.nodeName
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/coreonsam/casam:release_main_19195167
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/coreonsam/casam:release_main_19581350
       livenessProbe:
         exec:
           command:
-          - /home/sfdc/salesforce/casam/bin/live_probe.sh
+            - echo
+            - HEALTHY
         failureThreshold: 99999
         initialDelaySeconds: 120
         periodSeconds: 5
@@ -89,7 +90,8 @@ system:
       readinessProbe:
         exec:
           command:
-          - /home/sfdc/salesforce/casam/bin/ready_probe.sh
+            - echo
+            - HEALTHY
         failureThreshold: 99999
         initialDelaySeconds: 120
         periodSeconds: 5
@@ -111,7 +113,7 @@ system:
     - env:
       - name: CASAM_SETTINGS_PATH
         value: mist.mist61.prd.na9.app
-      image: sfci/casam/coreapp_overrides:ef45c9
+      image: sfci/casam/coreapp_overrides:c3ba16
       livenessProbe:
         exec:
           command:
@@ -209,7 +211,7 @@ system:
       - name: RELEASE_TYPE
         value: MINOR
       - name: MAJOR_RELEASE_NUMBER
-        value: 222
+        value: 224
       - name: DB_EDITION
         value: SFDC_224
       - name: MINOR_RELEASE_NUMBER
