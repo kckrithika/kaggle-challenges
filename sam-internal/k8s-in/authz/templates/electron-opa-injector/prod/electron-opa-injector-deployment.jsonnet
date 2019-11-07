@@ -10,15 +10,13 @@ local funnelEndpointHost = std.split(configs.funnelVIP, ":")[0];
 local funnelEndpointPort = std.split(configs.funnelVIP, ":")[1];
 
 if electron_opa_utils.is_electron_opa_injector_prod_cluster(configs.estate) && electron_opa_utils.can_deploy(configs.kingdom) then
-configs.deploymentBase("authz-injector") {
+configs.deploymentBase(versions.newInjectorNamespace) {
   metadata+: {
     name: "electron-opa-injector",
-    namespace: versions.injectorNamespace,
+    namespace: versions.newInjectorNamespace,
     labels: {
       app: "electron-opa-injector",
-    } +
-    // samlabelfilter.json requires this label to be present on GCP deployments
-    if utils.is_pcn(configs.kingdom) then configs.pcnEnableLabel else {},
+    },
   },
   spec+: {
     replicas: 1,
@@ -44,11 +42,11 @@ configs.deploymentBase("authz-injector") {
                     role: "electron-opa-injector",
                     san: [
                       "electron-opa-injector",
-                      "electron-opa-injector.%s" % versions.injectorNamespace,
-                      "electron-opa-injector.%s.svc" % versions.injectorNamespace,
-                      "electron-opa-injector.%s.svc.cluster.local" % versions.injectorNamespace,
+                      "electron-opa-injector.%s" % versions.newInjectorNamespace,
+                      "electron-opa-injector.%s.svc" % versions.newInjectorNamespace,
+                      "electron-opa-injector.%s.svc.cluster.local" % versions.newInjectorNamespace,
                       "electron-opa-injector.%s.svc.%s" % [
-                        versions.injectorNamespace,
+                        versions.newInjectorNamespace,
                         (if configs.estate == "gsf-core-devmvp-sam2-sam" then "gsf-core-devmvp-sam2-samtest.mvp.sam.sfdc.net" else configs.dnsdomain),
                       ],
                     ],
@@ -60,11 +58,11 @@ configs.deploymentBase("authz-injector") {
                     role: "electron-opa-injector",
                     san: [
                       "electron-opa-injector",
-                      "electron-opa-injector.%s" % versions.injectorNamespace,
-                      "electron-opa-injector.%s.svc" % versions.injectorNamespace,
-                      "electron-opa-injector.%s.svc.cluster.local" % versions.injectorNamespace,
+                      "electron-opa-injector.%s" % versions.newInjectorNamespace,
+                      "electron-opa-injector.%s.svc" % versions.newInjectorNamespace,
+                      "electron-opa-injector.%s.svc.cluster.local" % versions.newInjectorNamespace,
                       "electron-opa-injector.%s.svc.%s" % [
-                        versions.injectorNamespace,
+                        versions.newInjectorNamespace,
                         (if configs.estate == "gsf-core-devmvp-sam2-sam" then "gsf-core-devmvp-sam2-samtest.mvp.sam.sfdc.net" else configs.dnsdomain),
                       ],
                     ],
@@ -82,14 +80,13 @@ configs.deploymentBase("authz-injector") {
             imagePullPolicy: "IfNotPresent",
             terminationMessagePolicy: "FallbackToLogsOnError",
             args: [
-              "--opa-template=%s" % "/config/electron-opa-container.yaml.template",  // This is the template that we have stored in a ConfigMap in k8s
-              "--opa-istio-template=%s" % "/config/electron-opa-istio-container.yaml.template",  // This is the template that we have stored in a ConfigMap in k8s
-              "--opa-image=%s" % versions.opaImage,
-              "--opa-istio-image=%s" % versions.opaIstioImage,
-              "--log-level=debug",
+              "/mutating-webhook/mutating-webhook",
               "--port=17442",
-              "--cert=/server-certs/server/certificates/server.pem",
-              "--key=/server-certs/server/keys/server-key.pem",
+              "--http-port=17773",
+              "--sidecar-config-file=/config/sidecarconfig.yaml",
+              "--mutation-config-file=/config/mutationconfig.yaml",
+              "--cert-file-path=/server-certs/server/certificates/server.pem",
+              "--key-file-path=/server-certs/server/keys/server-key.pem",
             ],
             env+: [
               {
@@ -174,24 +171,8 @@ configs.deploymentBase("authz-injector") {
                 mountPath: "/client-certs",
               },
               {
-                name: "electron-opa-sherpa-container",
-                mountPath: "/config/electron-opa-container.yaml.template",
-                subPath: "electron-opa-container.yaml.template"
-              },
-              {
-                name: "electron-opa-istio-sherpa-container",
-                mountPath: "/config/electron-opa-istio-container.yaml.template",
-                subPath: "electron-opa-istio-container.yaml.template"
-              },
-              {
-                name: "electron-opa-no-sherpa-container",
-                mountPath: "/config/electron-opa-no-sherpa-container.yaml.template",
-                subPath: "electron-opa-no-sherpa-container.yaml.template"
-              },
-              {
-                name: "electron-opa-istio-no-sherpa-container",
-                mountPath: "/config/electron-opa-istio-no-sherpa-container.yaml.template",
-                subPath: "electron-opa-istio-no-sherpa-container.yaml.template"
+                name: "electron-opa-injector-config",
+                mountPath: "/config",
               },
             ],
             ports+: [
@@ -200,39 +181,51 @@ configs.deploymentBase("authz-injector") {
               },
             ],
             livenessProbe: {
-              exec: {
-                command: [
-                  "./tools/is-alive.sh",
-                  "17442",
-                  // Pass the certificates folder for the liveness probe to use TLS
-                  "/client-certs/client/certificates/client.pem",
-                  "/client-certs/client/keys/client-key.pem",
-                ],
+              httpGet: {
+                scheme: "HTTP",
+                path: "/healthz",
+                port: 17773,
               },
               initialDelaySeconds: 2,
-              periodSeconds: 3,
+              periodSeconds: 10,
             },
             readinessProbe: {
-              exec: {
-                command: [
-                  "./tools/is-ready.sh",
-                  "17442",
-                  // Pass certificates for the readiness probe to use with TLS
-                  "/client-certs/client/certificates/client.pem",
-                  "/client-certs/client/keys/client-key.pem",
-                ],
+              httpGet: {
+                scheme: "HTTP",
+                path: "/healthz",
+                port: 17773,
               },
-              initialDelaySeconds: 4,
-              periodSeconds: 3,
+              initialDelaySeconds: 5,
+              periodSeconds: 10,
             },
             resources: {},
           } + configs.ipAddressResourceRequest,
+          {
+            name: "prom-to-argus",
+            image: versions.opencensusImage,
+            command: [
+              "ocagent",
+              "--config=/config/opencensus.yaml"
+            ],
+            volumeMounts+: [
+              {
+                name: "opencensus-config",
+                mountPath: "/config",
+              },
+            ],
+            livenessProbe: {
+              httpGet: {
+                path: "/debug/rpcz",
+                port: 55679
+              },
+            },
+          },
           maddogRefresher.madkubRefresherContainer,
         ],
         # In PRD only kubeapi (master) nodes get cluster-admin permission
         # In production, SAM control estate nodes get cluster-admin permission
         nodeSelector: {} +
-          if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" || configs.estate == "prd-sam" then {
+          if configs.kingdom == "prd" then {
               master: "true",
           } else {
               pool: configs.estate,
@@ -257,41 +250,71 @@ configs.deploymentBase("authz-injector") {
             name: "tokens",
           },
           {
-            configMap: {
-              name: "electron-opa-sherpa-container",
-            },
-            name: "electron-opa-sherpa-container",
+            emptyDir: {},
+            name: "opencensus-config",
           },
           {
             configMap: {
-              name: "electron-opa-istio-sherpa-container",
+              name: "electron-opa-injector-config",
             },
-            name: "electron-opa-istio-sherpa-container",
+            name: "electron-opa-injector-config",
           },
-          {
-            configMap: {
-              name: "electron-opa-no-sherpa-container",
-            },
-            name: "electron-opa-no-sherpa-container",
-          },
-          {
-            configMap: {
-              name: "electron-opa-istio-no-sherpa-container",
-            },
-            name: "electron-opa-istio-no-sherpa-container",
-          },
-        ] +
-        if utils.is_pcn(configs.kingdom) then
-        [
-          {
-            hostPath: {
-              path: "/etc/pki_service",
-            },
-            name: "maddog-certs",
-          },
-        ]
-        else [],
+        ],
         initContainers+: [
+          {
+            name: "prom-to-argus-init",
+            image: versions.configInitImage,
+            imagePullPolicy: "IfNotPresent",
+            env: [
+              {
+                name: "KINGDOM",
+                value: configs.kingdom,
+              },
+              {
+                name: "ESTATE",
+                value: configs.estate,
+              },
+              {
+                name: "FUNCTION_INSTANCE_NAME",
+                valueFrom:
+                {
+                  fieldRef: { fieldPath: "metadata.name", apiVersion: "v1" },
+                },
+              },
+              {
+                name: "NAMESPACE",
+                valueFrom:
+                {
+                  fieldRef: { fieldPath: "metadata.namespace", apiVersion: "v1" },
+                },
+              },
+              {
+                name: "SFDC_METRICS_SERVICE_HOST",
+                value: funnelEndpointHost,
+              },
+              {
+                name: "SFDC_METRICS_SERVICE_PORT",
+                value: funnelEndpointPort,
+              },
+            ],
+            command: [
+              "/app/config_gen.rb",
+              "-t",
+              "/config/opencensus.yaml.erb",
+              "-o",
+              "/config2/opencensus.yaml",
+            ],
+            volumeMounts+: [
+              {
+                name: "electron-opa-injector-config",
+                mountPath: "/config",
+              },
+              {
+                name: "opencensus-config",
+                mountPath: "/config2",
+              },
+            ],
+          },
           maddogInit.madkubInitContainer,
           maddogPermissions.permissionSetterInitContainer,
         ],

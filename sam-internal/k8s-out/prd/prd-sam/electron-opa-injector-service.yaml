@@ -4,7 +4,7 @@ metadata:
   labels:
     app: electron-opa-injector
   name: electron-opa-injector
-  namespace: authz-injector
+  namespace: authz-opa-webhook
 spec:
   ports:
   - name: h1-tls-in-port
