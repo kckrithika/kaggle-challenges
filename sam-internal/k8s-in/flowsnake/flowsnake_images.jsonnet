@@ -217,10 +217,12 @@ local utils = import "util_functions.jsonnet";
         # off-peak: 6am-1pm PDT
         "prod-apac": self.prod {
             image_tags+: {
+                madkub_injector_image_tag: "jenkins-dva-transformation-madkub-injector-webhook-PR-25-7-itest",
             },
             feature_flags+: {
                 # --- flag A (Do not edit ... ---
                 # --- flag B (these comments ... ---
+                madkub_injector_server_cert: "",
                 # --- flag C (and place only ... ---
                 # --- flag D (one flag between ... ---
                 # --- flag E (each pair. ... ---
