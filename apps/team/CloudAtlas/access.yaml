@@ -2,8 +2,8 @@
 
 # Admins are responsible for ensuring only approved changes are made during moratoriums.  See https://sfdc.co/sam-admins
 admins:
-#  - apetz
-#  - lravishankar
+  - sananthakrishnan
+  - lravishankar
 users:
   - anupam.jain
   - apetz
@@ -14,7 +14,8 @@ users:
   - mbahrenburg
   - sananthakrishnan  
   - seth-holloway
-  - seth.holloway  
+  - seth.holloway
+  - theodore.freeman
   - tian.wang
   - tim.hill
     # MIT service
