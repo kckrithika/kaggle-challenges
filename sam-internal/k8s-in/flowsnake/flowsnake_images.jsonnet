@@ -219,9 +219,11 @@ local utils = import "util_functions.jsonnet";
             image_tags+: {
                 madkub_injector_image_tag: "jenkins-dva-transformation-madkub-injector-webhook-PR-25-7-itest",
                 spark_operator_image_tag: "jenkins-dva-transformation-spark-on-k8s-operator-development-sfdc-9-itest",
+                integration_test_tag: "33",
             },
             feature_flags+: {
                 # --- flag A (Do not edit ... ---
+                prefetcher_enabled: "this value irrelevant",
                 # --- flag B (these comments ... ---
                 madkub_injector_server_cert: "",
                 # --- flag C (and place only ... ---
@@ -269,9 +271,6 @@ local utils = import "util_functions.jsonnet";
         ukb: self["prod-apac"] {
         },
         cdu: self["prod-apac"] {
-          feature_flags+: {
-              upcase_pki_kingdom: "",
-          },
           version_mapping: {},  # No legacy Flowsnake in Public Cloud; therefore force empty verson_mapping
         },
         syd: self["prod-apac"] {

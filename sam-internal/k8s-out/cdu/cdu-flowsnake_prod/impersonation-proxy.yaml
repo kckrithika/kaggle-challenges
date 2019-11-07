@@ -22,7 +22,7 @@ spec:
     metadata:
       annotations:
         madkub.sam.sfdc.net/allcerts: '{"certreqs": [{"cert-type": "server", "kingdom":
-          "CDU", "name": "impersonation-proxy", "role": "flowsnake.impersonation-proxy",
+          "cdu", "name": "impersonation-proxy", "role": "flowsnake.impersonation-proxy",
           "san": ["kubernetes-api-flowsnake-cdu.data.sfdc.net", "kubernetes-api.flowsnake.localhost.mesh.force.com"]}]}'
       labels:
         apptype: control
