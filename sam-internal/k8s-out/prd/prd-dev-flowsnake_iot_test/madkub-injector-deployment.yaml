@@ -29,7 +29,7 @@ spec:
         - -v
         - "2"
         - -alsologtostderr
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/flowsnake-madkub-injector-webhook:14
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/flowsnake-madkub-injector-webhook:jenkins-dva-transformation-madkub-injector-webhook-PR-25-7-itest
         imagePullPolicy: Always
         livenessProbe:
           httpGet:
