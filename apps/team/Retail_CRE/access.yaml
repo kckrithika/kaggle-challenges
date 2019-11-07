@@ -1,8 +1,8 @@
 #Use corp user name instead of git user ids e.g. prahlad.joshi instead of prahlad-joshi
 # Admins are responsible for ensuring only approved changes are made during moratoriums.  See https://sfdc.co/sam-admins
 admins:
-#  - pselvanandan
-#  - jboard
+  - pkashyap
+  - aadhavan.ramesh
 users:
   - aadhavan.ramesh
   - ahersans
