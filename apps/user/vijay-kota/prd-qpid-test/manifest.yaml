@@ -137,8 +137,10 @@ system:
 
         - name: beacon
           image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/servicemesh/beacon:1.0.0
-          command: ["/bin/sh"]
-          args: ["-c", "if [[ $FUNCTION_INSTANCE_NAME = *-0 ]]; then export port=$SHERPA0; export spod=SP1 ; else export port=$SHERPA1 ; export spod=SP2; fi; /usr/bin/java -jar /home/scone/service.jar -path ${SETTINGS_PATH} -spod ${spod} -endpoint samapp/user-vijay-kota/qpid:POD:${port}"]
+          command: ["/bin/sleep"]
+          args: ["701000"]
+          #ommand: ["/bin/sh"]
+          #rgs: ["-c", "if [[ $FUNCTION_INSTANCE_NAME = *-0 ]]; then export port=$SHERPA0; export spod=SP1 ; else export port=$SHERPA1 ; export spod=SP2; fi; /usr/bin/java -jar /home/scone/service.jar -path ${SETTINGS_PATH} -spod ${spod} -endpoint samapp/user-vijay-kota/qpid:POD:${port}"]
             # -endpoint
             # samapp/$(FUNCTION_NAMESPACE)/$(FUNCTION)-http:DATACENTER_ALLENV:7014
             # samapp/$(FUNCTION_NAMESPACE)/$(FUNCTION)-https:DATACENTER_ALLENV:7442
