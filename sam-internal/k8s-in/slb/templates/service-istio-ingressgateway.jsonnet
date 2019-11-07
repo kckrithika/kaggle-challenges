@@ -13,6 +13,7 @@ if configs.estate == "prd-sam" then
          app: "istio-ingressgateway",
          istio: "ingressgateway",
          release: "istio",
+         owner: "slb",
       },
       name: "istio-ingressgateway",
       namespace: "slb",

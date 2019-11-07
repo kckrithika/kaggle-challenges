@@ -12,6 +12,7 @@ if configs.estate == "prd-sam" then
          app: "istio-ingressgateway",
          istio: "ingressgateway",
          release: "istio",
+         owner: "slb",
       },
       name: "istio-ingressgateway",
       namespace: "slb",
@@ -39,11 +40,11 @@ if configs.estate == "prd-sam" then
             labels: {
                app: "istio-ingressgateway",
                chart: "gateways",
-               cluster: "prd-sam_gater",
                heritage: "Tiller",
                istio: "ingressgateway",
                name: "istio-ingressgateway",
                release: "istio",
+               owner: "slb",
             },
          },
          spec: {
