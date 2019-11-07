@@ -9,9 +9,9 @@
     targetport: 9080
     lbtype: http
     tls: true
-    reencrypt: false
-    healthport: 9080
-    healthprotocol: tcp
+    reencrypt: true
+#    healthport: 9080
+#    healthprotocol: tcp
 
 - lbname: sfci-ai
   customlbname: sfci-ai
@@ -23,6 +23,6 @@
     targetport: 9080
     lbtype: http
     tls: true
-    reencrypt: false
-    healthport: 9080
-    healthprotocol: tcp
+    reencrypt: true
+#    healthport: 9080
+#    healthprotocol: tcp
