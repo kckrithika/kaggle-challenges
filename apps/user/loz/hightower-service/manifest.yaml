@@ -1,4 +1,5 @@
 # created by scone-gen 3bd9a4697
+# k4a: https://confluence.internal.salesforce.com/display/SAM/Using+K4A+for+SAM+Secrets
 
 apiVersion: v1
 
@@ -9,6 +10,13 @@ system:
     containers:
     - name: hightower-service
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/instrumentation/hightower-service:demo
+      volumeMounts:
+        - mountPath: /secrets/gus/
+          name: gus
+          readOnly: true
+        - mountPath: /secrets/ssh/
+          name: ssh
+          readOnly: true
       # If your service doesn't serve HTTP traffic then you can remove the scone-http port.
       ports:
       - containerPort: 8088
@@ -31,3 +39,9 @@ system:
     # The volumes to mount for shipping logs to splunk
     # General rule is to use path that satisfies the pattern: /home/sfdc-*/logs/**/*.json
     volumes:
+      - name: gus
+        k4aSecret:
+          secretName: gus
+      - name: ssh
+        k4aSecret:
+          secretName: ssh
