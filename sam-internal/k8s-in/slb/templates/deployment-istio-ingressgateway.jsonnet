@@ -10,8 +10,9 @@ if configs.estate == "prd-sam" then
       },
       labels: {
          app: "istio-ingressgateway",
-         istio: "ingressgateway",
+         slbistio: "ingressgateway",
          release: "istio",
+         owner: "slb",
       },
       name: "istio-ingressgateway",
       namespace: "slb",
@@ -21,7 +22,7 @@ if configs.estate == "prd-sam" then
       selector: {
          matchLabels: {
             app: "istio-ingressgateway",
-            istio: "ingressgateway",
+            slbistio: "ingressgateway",
          },
       },
       strategy: {
@@ -39,11 +40,10 @@ if configs.estate == "prd-sam" then
             labels: {
                app: "istio-ingressgateway",
                chart: "gateways",
-               cluster: "prd-sam_gater",
                heritage: "Tiller",
-               istio: "ingressgateway",
+               slbistio: "ingressgateway",
                name: "istio-ingressgateway",
-               release: "istio",
+               owner: "slb",
             },
          },
          spec: {
