@@ -9,7 +9,7 @@
     targetport: 9080
     lbtype: http
     tls: true
-    reencrypt: true
+    reencrypt: false
     healthport: 9080
     healthprotocol: tcp
 
@@ -23,6 +23,6 @@
     targetport: 9080
     lbtype: http
     tls: true
-    reencrypt: true
+    reencrypt: false
     healthport: 9080
     healthprotocol: tcp
