@@ -21,6 +21,11 @@ data:
         {
           "proxyname": "slb-hsm-nginx",
           "vips": [
+            "org-cce2e-cs59-slb-ia5.slb.sfdc.net",
+            "org-cce2e-cs60-slb-ia5.slb.sfdc.net",
+            "org-cce2e-cs123-slb-ia5.slb.sfdc.net",
+            "org-cce2e-cs124-slb-ia5.slb.sfdc.net",
+            "org-cce2e-cs125-slb-ia5.slb.sfdc.net",
             "slb-canary-hsm.sam-system.ia5-sam.ia5.slb.sfdc.net"
           ]
         }
