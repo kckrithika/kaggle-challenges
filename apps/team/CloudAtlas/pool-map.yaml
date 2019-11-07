@@ -68,14 +68,6 @@ apps:
       - shared0-samminionatlasdir1-2-iad.ops.sfdc.net
       - shared0-samminionatlasdir2-1-iad.ops.sfdc.net
 
-  # IAD Cloud Atlas Service
-  shared0-samminionatlasservice-iad:
-    - name: iad/iad-sam_cloudatlas_dir
-      hostSubList:
-      - shared0-samminionatlasdir1-1-iad.ops.sfdc.net
-      - shared0-samminionatlasdir1-2-iad.ops.sfdc.net
-      - shared0-samminionatlasdir2-1-iad.ops.sfdc.net
-
   # FRF DS Nodes
   shared0-samminionatlasdir-frf:
     - name: frf/frf-sam_cloudatlas_dir
@@ -100,24 +92,8 @@ apps:
       - shared0-samminionatlasdir1-2-phx.ops.sfdc.net
       - shared0-samminionatlasdir2-1-phx.ops.sfdc.net
 
-  # PHX Cloud Atlas Service
-  shared0-samminionatlasservice-phx:
-    - name: phx/phx-sam_cloudatlas_dir
-      hostSubList:
-      - shared0-samminionatlasdir1-1-phx.ops.sfdc.net
-      - shared0-samminionatlasdir1-2-phx.ops.sfdc.net
-      - shared0-samminionatlasdir2-1-phx.ops.sfdc.net
-
   # PAR DS Nodes
   shared0-samminionatlasdir-par:
-    - name: par/par-sam_cloudatlas_dir
-      hostSubList:
-      - shared0-samminionatlasdir1-1-par.ops.sfdc.net
-      - shared0-samminionatlasdir1-2-par.ops.sfdc.net
-      - shared0-samminionatlasdir2-1-par.ops.sfdc.net
-
-  # PAR Cloud Atlas Service
-  shared0-samminionatlasservice-par:
     - name: par/par-sam_cloudatlas_dir
       hostSubList:
       - shared0-samminionatlasdir1-1-par.ops.sfdc.net
@@ -134,14 +110,6 @@ apps:
 
   # HND DS Nodes
   shared0-samminionatlasdir-hnd:
-    - name: hnd/hnd-sam_cloudatlas_dir
-      hostSubList:
-      - shared0-samminionatlasdir1-1-hnd.ops.sfdc.net
-      - shared0-samminionatlasdir1-2-hnd.ops.sfdc.net
-      - shared0-samminionatlasdir2-1-hnd.ops.sfdc.net              
-
-  # HND Cloud Atlas Service
-  shared0-samminionatlasservice-hnd:
     - name: hnd/hnd-sam_cloudatlas_dir
       hostSubList:
       - shared0-samminionatlasdir1-1-hnd.ops.sfdc.net
