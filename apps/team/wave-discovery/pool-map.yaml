@@ -1,0 +1,4 @@
+apps:
+ prd-job-controller:
+  - prd/prd-sam
+
