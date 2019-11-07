@@ -6,22 +6,22 @@ metadata:
     slb.sfdc.net/portconfigurations: |-
       [
        {
-        "lbtype": "dsr",
+        "lbtype": "tcp",
         "port": 15008,
         "targetport": 15008
        },
        {
-        "lbtype": "dsr",
+        "lbtype": "tcp",
         "port": 15009,
         "targetport": 15009
        },
        {
-        "lbtype": "dsr",
+        "lbtype": "tcp",
         "port": 8085,
         "targetport": 8085
        },
        {
-        "lbtype": "dsr",
+        "lbtype": "tcp",
         "port": 8443,
         "targetport": 8443
        }

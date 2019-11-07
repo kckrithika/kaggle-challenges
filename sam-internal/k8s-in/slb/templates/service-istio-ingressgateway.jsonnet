@@ -7,7 +7,7 @@ if configs.estate == "prd-sam" then
    metadata: {
       annotations: {
          "slb.sfdc.net/name": "istio-ingressgateway",
-         "slb.sfdc.net/portconfigurations": "[\n {\n  \"lbtype\": \"dsr\",\n  \"port\": 15008,\n  \"targetport\": 15008\n },\n {\n  \"lbtype\": \"dsr\",\n  \"port\": 15009,\n  \"targetport\": 15009\n },\n {\n  \"lbtype\": \"dsr\",\n  \"port\": 8085,\n  \"targetport\": 8085\n },\n {\n  \"lbtype\": \"dsr\",\n  \"port\": 8443,\n  \"targetport\": 8443\n }\n]",
+         "slb.sfdc.net/portconfigurations": "[\n {\n  \"lbtype\": \"tcp\",\n  \"port\": 15008,\n  \"targetport\": 15008\n },\n {\n  \"lbtype\": \"tcp\",\n  \"port\": 15009,\n  \"targetport\": 15009\n },\n {\n  \"lbtype\": \"tcp\",\n  \"port\": 8085,\n  \"targetport\": 8085\n },\n {\n  \"lbtype\": \"tcp\",\n  \"port\": 8443,\n  \"targetport\": 8443\n }\n]",
       },
       labels: {
          app: "istio-ingressgateway",
