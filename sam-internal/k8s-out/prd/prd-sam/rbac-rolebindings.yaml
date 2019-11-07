@@ -1483,6 +1483,56 @@ items:
 - apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: RoleBinding
   metadata:
+    name: slb:prd-slb:rolebinding
+    namespace: slb
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: minion:role
+  subjects:
+  - kind: User
+    name: shared0-slbminion1-1-prd.eng.sfdc.net
+  - kind: User
+    name: shared0-slbminion1-10-prd.eng.sfdc.net
+  - kind: User
+    name: shared0-slbminion1-2-prd.eng.sfdc.net
+  - kind: User
+    name: shared0-slbminion1-3-prd.eng.sfdc.net
+  - kind: User
+    name: shared0-slbminion1-4-prd.eng.sfdc.net
+  - kind: User
+    name: shared0-slbminion1-5-prd.eng.sfdc.net
+  - kind: User
+    name: shared0-slbminion1-6-prd.eng.sfdc.net
+  - kind: User
+    name: shared0-slbminion1-7-prd.eng.sfdc.net
+  - kind: User
+    name: shared0-slbminion1-8-prd.eng.sfdc.net
+  - kind: User
+    name: shared0-slbminion1-9-prd.eng.sfdc.net
+  - kind: User
+    name: shared0-slbminion2-1-prd.eng.sfdc.net
+  - kind: User
+    name: shared0-slbminion2-10-prd.eng.sfdc.net
+  - kind: User
+    name: shared0-slbminion2-2-prd.eng.sfdc.net
+  - kind: User
+    name: shared0-slbminion2-3-prd.eng.sfdc.net
+  - kind: User
+    name: shared0-slbminion2-4-prd.eng.sfdc.net
+  - kind: User
+    name: shared0-slbminion2-5-prd.eng.sfdc.net
+  - kind: User
+    name: shared0-slbminion2-6-prd.eng.sfdc.net
+  - kind: User
+    name: shared0-slbminion2-7-prd.eng.sfdc.net
+  - kind: User
+    name: shared0-slbminion2-8-prd.eng.sfdc.net
+  - kind: User
+    name: shared0-slbminion2-9-prd.eng.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1beta1
+  kind: RoleBinding
+  metadata:
     name: core-on-sam-sp2:prd-sp2-sam_coreapp:rolebinding
     namespace: core-on-sam-sp2
   roleRef:

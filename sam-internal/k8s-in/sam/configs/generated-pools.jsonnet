@@ -3985,6 +3985,18 @@
     },
     {
       "namespaces": [
+        "slb"
+      ],
+      "access": [
+        "team/slb"
+      ],
+      "controlEstate": "prd-sam",
+      "estate": "prd-slb",
+      "kingdom": "prd",
+      "superPod": "None"
+    },
+    {
+      "namespaces": [
         "sayonaradb",
         "user-sraspudic"
       ],
