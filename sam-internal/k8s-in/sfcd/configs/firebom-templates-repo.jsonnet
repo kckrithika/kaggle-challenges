@@ -2,7 +2,7 @@ local envConfig = import 'configs/firebom_service_conf.jsonnet';
 local configs = import 'config.jsonnet';
 
 {
-  'repo-name': 'e2etest-spinnaker-templates',
+  'repo-name': 'spinnaker',
   'repo-org': 'sfcd',
   'enable-push-to-origin': true,
   'enable-pr-creation': true,
