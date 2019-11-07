@@ -3,10 +3,12 @@
 # Use the corp user name instead of the git user id. For example
 # johann.dev instead of johann-dev
 admins:
-  - sanjay.thakkar
-  - sananthakrishnan
+#  - sanjay.thakkar
+#  - sananthakrishnan
 
 users:
+  - sanjay.thakkar
+  - sananthakrishnan
   - kthambundit
   - rbhat
   - rcurry
