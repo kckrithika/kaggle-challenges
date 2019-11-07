@@ -218,6 +218,7 @@ local utils = import "util_functions.jsonnet";
         "prod-apac": self.prod {
             image_tags+: {
                 madkub_injector_image_tag: "jenkins-dva-transformation-madkub-injector-webhook-PR-25-7-itest",
+                spark_operator_image_tag: "jenkins-dva-transformation-spark-on-k8s-operator-development-sfdc-9-itest",
             },
             feature_flags+: {
                 # --- flag A (Do not edit ... ---
