@@ -10,7 +10,7 @@ system:
       serviceName: dapp
     containers:
     - name: coreapp
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/coreonsam/casam:release_main_19195167
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/coreonsam/casam:release_main_19581350
       env:
       - name: DB_SID
         value: mist61b224utf
@@ -59,7 +59,7 @@ system:
       - name: SD_PORT_OVERRIDE
         value: 7442
       - name: CASAM_SETTINGS_PATH
-        value: mist.mist61.prd.na6.dapp
+        value: mist.mist61.prd.na6.debugserver
       - name: CLUSTER_NAME
         value: na6
       - name: DEPLOYMENT
@@ -114,10 +114,10 @@ system:
         name: secretvol
         readOnly: true
     - name: casam-sidecar
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/casam/coreapp_overrides:619b72
+      image: sfci/casam/coreapp_overrides:c3ba16
       env:
       - name: CASAM_SETTINGS_PATH
-        value: mist.mist61.prd.na6.dapp
+        value: mist.mist61.prd.na6.debugserver
       livenessProbe:
         exec:
           command:
@@ -384,7 +384,7 @@ system:
       serviceName: app
     containers:
     - name: coreapp
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/coreonsam/casam:release_main_19195167
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/coreonsam/casam:release_main_19581350
       ports:
       - containerPort: 8998
       - containerPort: 8085
@@ -479,7 +479,7 @@ system:
         name: secretvol
         readOnly: true
     - name: casam-sidecar
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/casam/coreapp_overrides:619b72
+      image: sfci/casam/coreapp_overrides:c3ba16
       env:
       - name: CASAM_SETTINGS_PATH
         value: mist.mist61.prd.na6.app
