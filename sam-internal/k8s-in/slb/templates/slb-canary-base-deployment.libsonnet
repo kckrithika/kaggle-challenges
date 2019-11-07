@@ -1,6 +1,6 @@
 local configs = import "config.jsonnet";
 local slbimages = (import "slbimages.jsonnet") + { templateFilename:: std.thisFile };
-local slbconfigs = (import "slbconfig.jsonnet") + (if slbimages.phaseNum <= 3 then { dirSuffix:: "slb-canary-service" } else {});
+local slbconfigs = (import "slbconfig.jsonnet") + (if slbimages.phaseNum <= 4 then { dirSuffix:: "slb-canary-service" } else {});
 local slbshared = (import "slbsharedservices.jsonnet") + { dirSuffix:: "slb-canary-service" };
 local portconfigs = import "portconfig.jsonnet";
 local slbflights = import "slbflights.jsonnet";
@@ -87,7 +87,7 @@ local getVolumes(tlsPorts) = ({
     ] + (if tlsRequired(tlsPorts) then
             madkub.madkubSlbCertVolumes(madkubCertDirs) + madkub.madkubSlbMadkubVolumes() + [configs.maddog_cert_volume]
          else [])
-      + (if slbimages.phaseNum <= 3 then
+      + (if slbimages.phaseNum <= 4 then
             [slbconfigs.slb_volume, configs.sfdchosts_volume, slbconfigs.slb_config_volume, slbconfigs.cleanup_logs_volume]
          else []),),
 });
@@ -174,7 +174,7 @@ local getMadkubAnnotations(tlsPorts) = (
                     + getCanaryLivenessProbe(ports[0])
                     + getVolumeMounts(tlsPorts),
                     getMadkubRefreshContainer(tlsPorts),
-                ] + (if slbimages.phaseNum <= 3 then [slbshared.slbLogCleanup] else [])),
+                ] + (if slbimages.phaseNum <= 4 then [slbshared.slbLogCleanup] else [])),
                 nodeSelector: {
                     pool: configs.estate,
                 },
