@@ -37,7 +37,7 @@ local utils = import "util_functions.jsonnet";
     // =========
     injectorImage: (
         // need to use a full image path. relative paths like 'dva/electron-opa-injector' won't work here.
-        "%s/dva/electron-opa-injection-webhook:22-57dec549a0dc3d87277a1e782492dc20b4968411" % configs.registry
+        "%s/dva/mutating-webhook:125-ecf4466e49ca0d09bb486ea9e53b58d7a0e8c3a3" % configs.registry
     ),
 
     // =========

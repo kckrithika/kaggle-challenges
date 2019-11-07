@@ -3,4 +3,4 @@ kind: Namespace
 metadata:
   labels:
     electron-opa-injection: disabled
-  name: authz-injector
+  name: authz-opa-webhook

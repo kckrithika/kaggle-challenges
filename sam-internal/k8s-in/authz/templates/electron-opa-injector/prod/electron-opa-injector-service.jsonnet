@@ -9,18 +9,16 @@ if electron_opa_utils.is_electron_opa_injector_prod_cluster(configs.estate) && e
   kind: "Service",
   metadata: {
     name: "electron-opa-injector",
-    namespace: versions.injectorNamespace,
+    namespace: versions.newInjectorNamespace,
     labels: {
       app: "electron-opa-injector",
-    } +
-    // samlabelfilter.json requires this label to be present on GCP deployments
-    if utils.is_pcn(configs.kingdom) then configs.pcnEnableLabel else {},
+    },
   },
   spec: {
     ports: [
       {
         name: "h1-tls-in-port",
-        port: if utils.is_pcn(configs.kingdom) then 443 else 17442,
+        port: 17442,
         targetPort: 17442,
       },
     ],
