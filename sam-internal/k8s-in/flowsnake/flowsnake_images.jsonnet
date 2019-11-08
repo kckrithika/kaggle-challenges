@@ -54,7 +54,6 @@ local utils = import "util_functions.jsonnet";
         "2": self.prod {
             image_tags+: {
                 integration_test_tag: "33",
-                spark_operator_image_tag: "jenkins-dva-transformation-spark-on-k8s-operator-development-sfdc-9-itest",
             },
             feature_flags+: {
                 # --- flag A (Do not edit ... ---
@@ -122,7 +121,7 @@ local utils = import "util_functions.jsonnet";
 
                 # Flowsnake v2 images
                 impersonation_proxy_image_tag: "8-9ced7803391be70dd7dc41cd3211800cda818f50",  # exec's nginx for signal propagation
-                spark_operator_image_tag: "jenkins-dva-transformation-spark-on-k8s-operator-PR-40-5-itest",  # 10/2 image that bumps up client throttle
+                spark_operator_image_tag: "jenkins-dva-transformation-spark-on-k8s-operator-development-sfdc-9-itest",  # 11/8 image that includes job start latency metric
                 # to remove
                 watchdog_spark_operator_image_tag: "jenkins-dva-transformation-spark-on-k8s-sample-apps-PR-2-1-itest",
                 integration_test_tag: "22",
@@ -174,8 +173,6 @@ local utils = import "util_functions.jsonnet";
         "prod-emea": self.prod {
           image_tags+: {
               integration_test_tag: "33",
-              spark_operator_image_tag: "jenkins-dva-transformation-spark-on-k8s-operator-development-sfdc-9-itest",
-
           },
           feature_flags+: {
               # --- flag A (Do not edit ... ---
@@ -215,7 +212,6 @@ local utils = import "util_functions.jsonnet";
         # off-peak: 6am-1pm PDT
         "prod-apac": self.prod {
             image_tags+: {
-                spark_operator_image_tag: "jenkins-dva-transformation-spark-on-k8s-operator-development-sfdc-9-itest",
                 integration_test_tag: "33",
             },
             feature_flags+: {
