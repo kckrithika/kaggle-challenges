@@ -41,6 +41,13 @@ system:
           port: 15375
         initialDelaySeconds: 60
         timeoutSeconds: 10
+      resources:
+        limits:
+          cpu: "8"
+          memory: 8Gi
+        requests:
+          cpu: "8"
+          memory: 8Gi
     volumes:
     - name: logvolservice
       hostPath:
