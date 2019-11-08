@@ -36,22 +36,13 @@ system:
           port: 15375
         initialDelaySeconds: 60
         timeoutSeconds: 10
-    - name: beacon
-      # https://git.soma.salesforce.com/services/sfdc-bazel/tree/master/projects/sidecars/beacon#docker-image
-      image: sfci/services/sfdc-bazel/disco/beacon:d7f1640
-      env:
-        - name: SFDC_ENVIRONMENT
-          value: blitz
-      args:
-      - -endpoint
-      - $(FUNCTION):DATACENTER_ALLENV:HTTP2
-      - -endpoint
-      - $(FUNCTION_NAMESPACE)/$(FUNCTION):DATACENTER_ALLENV:HTTP2_TLS
-      livenessProbe:
-        exec:
-          command:
-          - "/opt/beacon/is-alive.sh"
-        initialDelaySeconds: 5
+      resources:
+        limits:
+          cpu: "8"
+          memory: 8Gi
+        requests:
+          cpu: "8"
+          memory: 8Gi
     - name: sherpa
       # latest release:  https://git.soma.salesforce.com/servicelibs/sherpa-envoy/releases
       image: sfci/servicelibs/sherpa-envoy:1.0.13
@@ -80,6 +71,14 @@ system:
         initialDelaySeconds: 50
         periodSeconds: 5
       terminationMessagePolicy: FallbackToLogsOnError
+      # these resources match what we have in istio
+      resources:
+        limits:
+          cpu: "2"
+          memory: 1Gi
+        requests:
+          cpu: "100m"
+          memory: 128Mi
     volumes:
     - name: logvolservice
       hostPath:

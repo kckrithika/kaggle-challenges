@@ -91,7 +91,14 @@ system:
         initialDelaySeconds: 50
         periodSeconds: 5
       terminationMessagePolicy: FallbackToLogsOnError
-
+      # these resources match what we have in istio
+      resources:
+        limits:
+          cpu: "2"
+          memory: 1Gi
+        requests:
+          cpu: "100m"
+          memory: 128Mi
     - name: beacon
       # https://git.soma.salesforce.com/services/sfdc-bazel/tree/master/projects/sidecars/beacon#docker-image
       image: sfci/services/sfdc-bazel/disco/beacon:d7f1640
