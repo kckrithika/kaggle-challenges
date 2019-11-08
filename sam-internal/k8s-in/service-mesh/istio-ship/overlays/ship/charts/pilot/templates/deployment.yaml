@@ -49,6 +49,7 @@ spec:
         - name: PILOT_TRACE_SAMPLING
         - name: PILOT_DISABLE_XDS_MARSHALING_TO_ANY
         - name: PILOT_ENABLE_UNSAFE_REGEX
+        - name: PILOT_RESPECT_DNS_TTL
         $setElementOrder/volumeMounts:
         - mountPath: /etc/istio/config
         args:
@@ -78,6 +79,8 @@ spec:
           value: "100"
         - name: PILOT_ENABLE_UNSAFE_REGEX
           value: "true"
+        - name: PILOT_RESPECT_DNS_TTL
+          value: "false"
         name: discovery
         volumeMounts:
         - $patch: delete
