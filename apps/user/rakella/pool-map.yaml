@@ -1,3 +1,5 @@
 apps:
     prd-sdb-test:
         - prd/prd-sam
+    prd-cron-test:
+        - prd/prd-sam
