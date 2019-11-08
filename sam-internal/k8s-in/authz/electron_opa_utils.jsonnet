@@ -2,7 +2,7 @@ local prodRollout1Enabled = true;
 local prodRollout2Enabled = true;
 local prodRollout3Enabled = true;
 local prodRollout4Enabled = true;
-local prodRollout5Enabled = false;
+local prodRollout5Enabled = true;
 
 {
   local rolloutKingdoms = {
