@@ -1,0 +1,393 @@
+apiVersion: v1
+
+system:
+  notifications:
+    email:
+      - vijay.kota@salesforce.com
+  functions:
+    - name: cs77-sdb
+      count: 1
+      identity:
+        serviceName: cronsdb
+        pod: cs77
+      containers:
+        - name: sdbgo
+          image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/vijay-kota/mysdb:05Oct19
+          env:
+            - name: SFDC_ENVIRONMENT
+              value: mesh
+            # name: PGPORT
+            # value: "1521"
+          ports:
+            - containerPort: 1521
+              name: sdb-port
+          resources:
+            limits: { cpu: "1", memory: "1Gi" }
+            requests: { cpu: "1", memory: "1Gi" }
+          livenessProbe:
+            exec:
+              command: ["/bin/true"]
+            initialDelaySeconds: 10
+            timeoutSeconds: 10
+            periodSeconds: 60
+          readinessProbe:
+            exec:
+              command: ["/bin/true"]
+            initialDelaySeconds: 10
+            timeoutSeconds: 10
+          volumeMounts:
+            - mountPath: /var/log/sdb
+              name: logvol
+
+      volumes:
+        - name: logvol
+          emptyDir: {}
+        - name: sherpaclientcert
+          maddogCert:
+            type: client
+        - name: sherpaservercert
+          maddogCert:
+            type: server
+        - name: sherpa-log-volume
+          hostPath:
+            path: /home/sfdc-sherpa/logs
+        - name: beacon-log-volume
+          hostPath:
+            path: /home/sfdc-beacon/logs
+
+    - name: cs77-demo
+      count: 1
+      identity:
+        serviceName: crondemo
+        pod: cs77
+      containers:
+        - name: crondemo
+          image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/vijay-kota/crondemo:05Nov19
+          ports:
+            - name: http-port
+              containerPort: 7022
+            - name: scone-port
+              containerPort: 15372
+          env:
+            - name: SFDC_ENVIRONMENT
+              value: mesh
+            - name: DEMO_SVC
+              value: cs77-cron-lb.user-rakella.prd-sam.prd.slb.sfdc.net:7012
+            - name: DEMO_DATA
+              value: crondemo_20,http://cs77-demo-lb.user-rakella.prd-sam.prd.slb.sfdc.net:7022/api/v1/demo?q=TWENTY,*/20 * * * * ?,myorg
+          #esources:
+          # limits: { cpu: "1", memory: "1Gi" }
+          # requests: { cpu: "1", memory: "1Gi" }
+          livenessProbe:
+            exec:
+              command: ["/bin/true"]
+            initialDelaySeconds: 10
+            timeoutSeconds: 10
+            periodSeconds: 60
+          readinessProbe:
+            exec:
+              command: ["/bin/true"]
+            initialDelaySeconds: 10
+            timeoutSeconds: 10
+          volumeMounts:
+            - mountPath: /var/log/web
+              name: logvol
+
+      volumes:
+        - name: logvol
+          hostpath:
+            path: /var/log/web
+        - name: sherpaclientcert
+          maddogCert:
+            type: client
+        - name: sherpaservercert
+          maddogCert:
+            type: server
+        - name: sherpa-log-volume
+          hostPath:
+            path: /home/sfdc-sherpa/logs
+        - name: beacon-log-volume
+          hostPath:
+            path: /home/sfdc-beacon/logs
+
+    - name: cs77-exec
+      count: 1
+      identity:
+        serviceName: cronexec
+        pod: cs77
+      containers:
+        - name: croncar
+          image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/vijay-kota/croncar:01Nov19
+          ports:
+            - name: grpc-port
+              containerPort: 17020
+          command: ["./launcher.sh"]
+          args:
+            - --scheduler.service.hostname=cs77-cron-lb.user-rakella.prd-sam.prd.slb.sfdc.net
+            - --scheduler.service.port=7012
+            - --scheduler.client.appserverid=demo
+            - --scheduler.client.tpsize=20
+          env:
+            - name: SFDC_ENVIRONMENT
+              value: mesh
+          #esources:
+          # limits: { cpu: "1", memory: "1Gi" }
+          # requests: { cpu: "1", memory: "1Gi" }
+          livenessProbe:
+            exec:
+              command: ["/bin/true"]
+            initialDelaySeconds: 10
+            timeoutSeconds: 10
+            periodSeconds: 60
+          readinessProbe:
+            exec:
+              command: ["/bin/true"]
+            initialDelaySeconds: 10
+            timeoutSeconds: 10
+          volumeMounts:
+            - mountPath: /var/log/web
+              name: logvol
+
+        - name: crondemo
+          image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/vijay-kota/crondemo:05Nov19
+          ports:
+            - name: http-port
+              containerPort: 7022
+            - name: scone-port
+              containerPort: 15372
+          env:
+            - name: SFDC_ENVIRONMENT
+              value: mesh
+            - name: DEMO_SVC
+              value: localhost:17020
+            - name: DEMO_DATA
+              value: name,url,expression,org
+          #esources:
+          # limits: { cpu: "1", memory: "1Gi" }
+          # requests: { cpu: "1", memory: "1Gi" }
+          livenessProbe:
+            exec:
+              command: ["/bin/true"]
+            initialDelaySeconds: 10
+            timeoutSeconds: 10
+            periodSeconds: 60
+          readinessProbe:
+            exec:
+              command: ["/bin/true"]
+            initialDelaySeconds: 10
+            timeoutSeconds: 10
+          volumeMounts:
+            - mountPath: /var/log/web
+              name: logvol
+
+        # name: sherpa
+        # # https://sconelibci.dop.sfdc.net/job/servicelibs/job/sherpa-envoy/job/master/73
+        # image: sfci/servicelibs/sherpa-envoy:1.0.7
+        # # See https://git.soma.salesforce.com/servicelibs/sherpa#ports
+        # ports:
+        # - containerPort: 7014
+        #   name: http1-in
+        # - containerPort: 15373
+        #   name: sherpa-adm
+        # resources:
+        #   limits: { cpu: "1", memory: "1Gi" }
+        #   requests: { cpu: "1", memory: "1Gi" }
+        # env:
+        #   - name: SFDC_ENVIRONMENT
+        #     value: mesh
+        #   - name: ENVOY_DEBUG_OPTIONS
+        #     value: --log-level trace --log-path /home/sfdc-sherpa/envoy.log
+        # livenessProbe:
+        #   exec:
+        #     command:
+        #     - "./bin/is-alive"
+        #   initialDelaySeconds: 120
+        #   periodSeconds: 5
+        # readinessProbe:
+        #   exec:
+        #     command:
+        #     - "./bin/is-ready"
+        #   initialDelaySeconds: 110
+        #   periodSeconds: 5
+        # # Mount volumes with certificates. The paths here match the defaults assumed by sherpa
+        # volumeMounts:
+        # - name: sherpaclientcert
+        #   mountPath: /client-certs
+        # - name: sherpaservercert
+        #   mountPath: /server-certs
+        # - name: sherpa-log-volume
+        #   mountPath: /log
+
+      volumes:
+        - name: logvol
+          hostpath:
+            path: /var/log/app
+        - name: sherpaclientcert
+          maddogCert:
+            type: client
+        - name: sherpaservercert
+          maddogCert:
+            type: server
+        - name: sherpa-log-volume
+          hostPath:
+            path: /home/sfdc-sherpa/logs
+        - name: beacon-log-volume
+          hostPath:
+            path: /home/sfdc-beacon/logs
+
+    - name: cs77-cron
+      count: 1
+      identity:
+        serviceName: cron
+        pod: cs77
+      containers:
+        - name: cronsvc
+          image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/vijay-kota/cronsvc:05Nov19
+          ports:
+            - name: grpc-port
+              containerPort: 7020
+            - name: scone-port
+              containerPort: 15374
+          env:
+            - name: SFDC_ENVIRONMENT
+              value: mesh
+            - name: scheduler.database.url
+              value: jdbc:postgresql://10.251.198.91:1521/crondb               
+          #esources:
+          # limits: { cpu: "1", memory: "1Gi" }
+          # requests: { cpu: "1", memory: "1Gi" }
+          livenessProbe:
+            exec:
+              command: ["/bin/true"]
+            initialDelaySeconds: 10
+            timeoutSeconds: 10
+            periodSeconds: 60
+          readinessProbe:
+            exec:
+              command: ["/bin/true"]
+            initialDelaySeconds: 10
+            timeoutSeconds: 10
+          volumeMounts:
+            - mountPath: /var/log/cron
+              name: logvol
+
+        - name: beacon
+          image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/servicemesh/beacon:1.0.0
+          command: ["/bin/sh"]
+          # BUMP UP cluster# with each deployment for debuggability
+          args: ["-c", "export port=$GRPC_PORT ; /usr/bin/java -jar /home/scone/service.jar -endpoint cron-cluster-cs77:POD:${port}"]
+            # -endpoint
+            # samapp/$(FUNCTION_NAMESPACE)/$(FUNCTION)-http:DATACENTER_ALLENV:7014
+            # samapp/$(FUNCTION_NAMESPACE)/$(FUNCTION)-https:DATACENTER_ALLENV:7442
+          env:
+            - name: SFDC_ENVIRONMENT
+              value: mesh
+            - name: GRPC_PORT
+              value: 7012
+          livenessProbe:
+            initialDelaySeconds: 5
+            exec:
+              command:
+                # "/home/scone/is-alive.sh"
+                - "/bin/true"
+          resources:
+            limits: { cpu: "1", memory: "1Gi" }
+            requests: { cpu: "1", memory: "1Gi" }
+          volumeMounts:
+            - mountPath: /home/scone/logs
+              name: beacon-log-volume
+
+        - name: sherpa
+          # https://sconelibci.dop.sfdc.net/job/servicelibs/job/sherpa-envoy/job/master/73
+          image: sfci/servicelibs/sherpa-envoy:1.0.7
+          # See https://git.soma.salesforce.com/servicelibs/sherpa#ports
+          ports:
+          - containerPort: 7012
+            name: http2-in
+          - containerPort: 15373
+            name: sherpa-adm
+          resources:
+            limits: { cpu: "1", memory: "1Gi" }
+            requests: { cpu: "1", memory: "1Gi" }
+          env:
+            - name: SFDC_ENVIRONMENT
+              value: mesh
+            # name: ENVOY_DEBUG_OPTIONS
+            # value: --log-level trace --log-path /home/sfdc-sherpa/envoy.log
+          livenessProbe:
+            exec:
+              command:
+              - "./bin/is-alive"
+            initialDelaySeconds: 120
+            periodSeconds: 5
+          readinessProbe:
+            exec:
+              command:
+              - "./bin/is-ready"
+            initialDelaySeconds: 110
+            periodSeconds: 5
+          # Mount volumes with certificates. The paths here match the defaults assumed by sherpa
+          volumeMounts:
+          - name: sherpaclientcert
+            mountPath: /client-certs
+          - name: sherpaservercert
+            mountPath: /server-certs
+          - name: sherpa-log-volume
+            mountPath: /log
+
+      volumes:
+        - name: logvol
+          hostpath:
+            path: /var/log/qpid
+        - name: sherpaclientcert
+          maddogCert:
+            type: client
+        - name: sherpaservercert
+          maddogCert:
+            type: server
+        - name: sherpa-log-volume
+          hostPath:
+            path: /home/sfdc-sherpa/logs
+        - name: beacon-log-volume
+          hostPath:
+            path: /home/sfdc-beacon/logs
+
+  loadbalancers:
+  - lbname: cs77-sdb-lb
+    function: cs77-sdb
+    slbenabled: true
+    ports:
+      - port: 1521
+        targetport: 1521
+  - lbname: cs77-demo-lb
+    function: cs77-demo
+    slbenabled: true
+    ports:
+      - port: 7022
+        targetport: 7022
+      - port: 15372
+        targetport: 15372
+  - lbname: cs77-exec-lb
+    function: cs77-exec
+    slbenabled: true
+    ports:
+      - port: 7022
+        targetport: 7022
+      - port: 15372
+        targetport: 15372
+      # port: 15373
+      # targetport: 15373
+      - port: 17020
+        targetport: 17020
+  - lbname: cs77-cron-lb
+    function: cs77-cron
+    slbenabled: true
+    ports:
+      - port: 7012
+        targetport: 7012
+      - port: 7020
+        targetport: 7020
+      - port: 15373
+        targetport: 15373
+      - port: 15374
+        targetport: 15374
