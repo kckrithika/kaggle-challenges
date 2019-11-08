@@ -248,11 +248,11 @@ system:
               containerPort: 7020
             - name: scone-port
               containerPort: 15374
+          args:
+            - --scheduler.database.url=jdbc:postgresql://10.251.198.91:1521/crondb
           env:
             - name: SFDC_ENVIRONMENT
-              value: mesh
-            - name: scheduler.database.url
-              value: jdbc:postgresql://10.251.198.91:1521/crondb               
+              value: mesh              
           #esources:
           # limits: { cpu: "1", memory: "1Gi" }
           # requests: { cpu: "1", memory: "1Gi" }
