@@ -58,6 +58,32 @@ spec:
           name: kubeconfig
         - mountPath: /sfdchosts
           name: sfdchosts
+      - command:
+        - /sdn/slb-cleanup
+        - --period=1800s
+        - --logsMaxAge=48h
+        - --log_dir=/host/data/slb/logs/slb-nginx-reporter/cleanup
+        - --filesDirToCleanup=/host/data/slb/logs/slb-nginx-reporter
+        - --shouldSkipServiceRecords=false
+        - --shouldNotDeleteAllFiles=false
+        env:
+        - name: KUBECONFIG
+          value: /kubeconfig/kubeconfig-platform
+        image: ops0-artifactrepo1-0-fra.data.sfdc.net/dva/slb/hyperslb:2274-05577ee0f254227a5dc2149e40a32b89e30604de
+        name: slb-cleanup
+        securityContext:
+          privileged: true
+        volumeMounts:
+        - mountPath: /host/data/slb
+          name: var-slb-volume
+        - mountPath: /host/data/slb/config/slb-nginx-reporter
+          name: var-config-volume
+        - mountPath: /host/data/slb/logs/slb-nginx-reporter
+          name: var-logs-volume
+        - mountPath: /sfdchosts
+          name: sfdchosts
+        - mountPath: /host/data/slb/logs/slb-nginx-reporter/cleanup
+          name: var-cleanup-logs-volume
       nodeSelector:
         pool: fra-slb
       terminationGracePeriodSeconds: 5
@@ -80,3 +106,9 @@ spec:
       - configMap:
           name: sfdchosts
         name: sfdchosts
+      - hostPath:
+          path: /data/slb/config/slb-nginx-reporter
+        name: var-config-volume
+      - hostPath:
+          path: /data/slb/logs/slb-nginx-reporter/cleanup
+        name: var-cleanup-logs-volume

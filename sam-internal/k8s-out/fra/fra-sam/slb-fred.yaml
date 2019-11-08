@@ -34,7 +34,7 @@ spec:
       containers:
       - command:
         - /sdn/slb-fred
-        - --log_dir=/host/data/slb/logs/
+        - --log_dir=/host/data/slb/logs/slb-fred
         - --commonoptions.metricsendpoint=ajna0-funnel1-0-fra.data.sfdc.net:80
         - --commonoptions.hostname=$(NODE_NAME)
         - --vipName=slb-canary-proxy-http.sam-system.fra-sam.fra.slb.sfdc.net
@@ -47,13 +47,51 @@ spec:
         image: ops0-artifactrepo1-0-fra.data.sfdc.net/dva/slb/hyperslb:2274-05577ee0f254227a5dc2149e40a32b89e30604de
         name: slb-fred
         volumeMounts:
-        - mountPath: /host/data/slb/logs/
+        - mountPath: /host/data/slb/logs/slb-fred
           name: var-logs-volume
+      - command:
+        - /sdn/slb-cleanup
+        - --period=1800s
+        - --logsMaxAge=48h
+        - --log_dir=/host/data/slb/logs/slb-fred/cleanup
+        - --filesDirToCleanup=/host/data/slb/logs/slb-fred
+        - --shouldSkipServiceRecords=false
+        - --shouldNotDeleteAllFiles=false
+        env:
+        - name: KUBECONFIG
+          value: /kubeconfig/kubeconfig-platform
+        image: ops0-artifactrepo1-0-fra.data.sfdc.net/dva/slb/hyperslb:2274-05577ee0f254227a5dc2149e40a32b89e30604de
+        name: slb-cleanup
+        securityContext:
+          privileged: true
+        volumeMounts:
+        - mountPath: /host/data/slb
+          name: var-slb-volume
+        - mountPath: /host/data/slb/config/slb-fred
+          name: var-config-volume
+        - mountPath: /host/data/slb/logs/slb-fred
+          name: var-logs-volume
+        - mountPath: /sfdchosts
+          name: sfdchosts
+        - mountPath: /host/data/slb/logs/slb-fred/cleanup
+          name: var-cleanup-logs-volume
       dnsPolicy: Default
       nodeSelector:
         pool: fra-sam
       terminationGracePeriodSeconds: 5
       volumes:
       - hostPath:
-          path: /data/slb/logs/
+          path: /data/slb/logs/slb-fred
         name: var-logs-volume
+      - hostPath:
+          path: /data/slb
+        name: var-slb-volume
+      - configMap:
+          name: sfdchosts
+        name: sfdchosts
+      - hostPath:
+          path: /data/slb/config/slb-fred
+        name: var-config-volume
+      - hostPath:
+          path: /data/slb/logs/slb-fred/cleanup
+        name: var-cleanup-logs-volume
