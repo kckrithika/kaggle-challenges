@@ -25,14 +25,14 @@ if slbconfigs.isSlbEstate && slbflights.enableNginxAccessLogsAggregation then co
             },
             spec: {
                 volumes: std.prune([
-                    slbconfigs.slb_volume,
                     slbconfigs.logs_volume,
-                    configs.sfdchosts_volume,
-                    slbconfigs.slb_config_volume,
-                    slbconfigs.cleanup_logs_volume,
                     configs.kube_config_volume,
                     configs.cert_volume,
                     configs.maddog_cert_volume,
+                    slbconfigs.slb_volume,
+                    configs.sfdchosts_volume,
+                    slbconfigs.slb_config_volume,
+                    slbconfigs.cleanup_logs_volume,
                     ]),
                 containers: [
                     {

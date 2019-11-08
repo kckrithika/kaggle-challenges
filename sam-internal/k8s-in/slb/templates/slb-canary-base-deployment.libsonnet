@@ -83,8 +83,8 @@ local getCanaryLivenessProbe(port) = (
 
 local getVolumes(tlsPorts) = ({
     volumes: std.prune([
-        slbconfigs.slb_volume,
         slbconfigs.logs_volume,
+        slbconfigs.slb_volume,
         configs.sfdchosts_volume,
         slbconfigs.slb_config_volume,
         slbconfigs.cleanup_logs_volume,
