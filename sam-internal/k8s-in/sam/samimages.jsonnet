@@ -22,6 +22,10 @@ local samreleases = import "samreleases.json";
         #   # [alias] Added this override to fix issue xxx
         #   "prd,prd-sam,samcontrol,hypersam": "2690-3c76e4d1bc7bebf17bfa304fd309dc9332acd196",
 
+        # [pferriola] - need new hypersam to get backups working for etcd3
+        "prd,prd-samtest,etcdbackup,hypersam": "2851-a18ed04daa12cbb08bc22df86b3d461e445260ce",
+        "prd,prd-samdev,etcdbackup,hypersam": "2851-a18ed04daa12cbb08bc22df86b3d461e445260ce",
+
         # [ndzhumakaliev] - pin etcdquorumchecker to a new version to fix false alarms
         "cdg,cdg-sam,watchdog-etcd-quorum,hypersam": "2838-bb0b18d18d0cfb389547ae7a3e5df9b23ba51e11",
         "cdu,cdu-sam,watchdog-etcd-quorum,hypersam": "2838-bb0b18d18d0cfb389547ae7a3e5df9b23ba51e11",
