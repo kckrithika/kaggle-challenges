@@ -136,3 +136,8 @@ std.prune({
     },
     nodeUpdateWindow: "1h",
   }
+
+  #Enable CRD Tracker to track lastEmailSentTime for emailReporter from watchdog CRD of each checkers.
+  + (if configs.estate == "prd-samdev" || configs.estate == "prd-samtest" then {
+     enableCrdTrackLastEmailSentTime: true,
+     } else {})
