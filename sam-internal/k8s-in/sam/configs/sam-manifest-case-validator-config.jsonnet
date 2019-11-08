@@ -7,7 +7,7 @@ std.prune({
         "num-worker-threads": 5,
         "git-url": "https://git.soma.salesforce.com/api/v3/",
         "git-org": "sam",
-        "git-repo": "test-manifests",
+        "git-repo": "manifests",
         "ghe-tokenfile": "/etc/git-secret/github-token.txt",
         "gus-secrets-folder": "/etc/gus-secrets",
         "webhook-tokenfile": "/etc/webhook-secret/webhook-token.txt",
