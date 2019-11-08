@@ -49,9 +49,10 @@ if slbconfigs.isSlbEstate then configs.daemonSetBase("slb") {
                     },
                     slbconfigs.slb_volume,
                     slbconfigs.logs_volume,
-                ] + (if slbimages.phaseNum <= 4 then
-                        [configs.sfdchosts_volume, slbconfigs.slb_config_volume, slbconfigs.cleanup_logs_volume]
-                     else [])),
+                    configs.sfdchosts_volume,
+                    slbconfigs.slb_config_volume,
+                    slbconfigs.cleanup_logs_volume,
+                ]),
                 affinity: {
                     nodeAffinity: {
                         requiredDuringSchedulingIgnoredDuringExecution: {
@@ -101,7 +102,8 @@ if slbconfigs.isSlbEstate then configs.daemonSetBase("slb") {
                             slbconfigs.node_name_env,
                         ],
                     } + ipAddressResourceRequestIfNonHostNetwork,
-                ] + (if slbimages.phaseNum <= 4 then [slbshared.slbLogCleanup] else []),
+                    slbshared.slbLogCleanup,
+                ],
             } + slbconfigs.getGracePeriod()
               + slbconfigs.getDnsPolicy()
               + hostNetworkIfEnabled,

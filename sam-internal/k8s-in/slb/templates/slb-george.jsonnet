@@ -1,7 +1,7 @@
 local configs = import "config.jsonnet";
 local slbflights = import "slbflights.jsonnet";
 local slbimages = (import "slbimages.jsonnet") + { templateFilename:: std.thisFile };
-local slbconfigs = (import "slbconfig.jsonnet") + (if slbimages.phaseNum <= 4 then { dirSuffix:: "slb-george" } else {});
+local slbconfigs = (import "slbconfig.jsonnet") + { dirSuffix:: "slb-george" };
 local slbshared = (import "slbsharedservices.jsonnet") + { dirSuffix:: "slb-george" };
 local slbports = import "slbports.jsonnet";
 
@@ -25,10 +25,12 @@ if slbconfigs.isSlbEstate && configs.estate != "prd-samtest" then configs.deploy
             },
             spec: {
                 volumes: std.prune([
+                    slbconfigs.slb_volume,
                     slbconfigs.logs_volume,
-                ] + (if slbimages.phaseNum <= 4 then
-                        [slbconfigs.slb_volume, configs.sfdchosts_volume, slbconfigs.slb_config_volume, slbconfigs.cleanup_logs_volume]
-                     else [])),
+                    configs.sfdchosts_volume,
+                    slbconfigs.slb_config_volume,
+                    slbconfigs.cleanup_logs_volume,
+                ]),
                 containers: [
                     {
                         name: "slb-george",
@@ -56,7 +58,8 @@ if slbconfigs.isSlbEstate && configs.estate != "prd-samtest" then configs.deploy
                             slbconfigs.sfdcloc_node_name_env,
                         ],
                     } + configs.ipAddressResourceRequest,
-                ] + (if slbimages.phaseNum <= 4 then [slbshared.slbLogCleanup] else []),
+                    slbshared.slbLogCleanup,
+                ],
                 nodeSelector: {
                     pool: configs.estate,
                 },

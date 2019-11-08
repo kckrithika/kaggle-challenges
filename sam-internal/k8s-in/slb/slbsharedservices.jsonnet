@@ -125,11 +125,7 @@
       "--log_dir=" + slbconfigs.logsDir,
       "--shouldSkipSlbBlock=true",
       "--skipFilesWithSuffix=.sock",
-    ] + (if slbimages.phaseNum <= 4 then [
-        "--shouldNotDeleteAllFiles=true",
-    ] else [
-        "--shouldNotDeleteAllFiles=true",
-        "--maxDeleteFileCount=20",
+      "--shouldNotDeleteAllFiles=true",
     ]),
     volumeMounts: std.prune([
       slbconfigs.slb_volume_mount,
