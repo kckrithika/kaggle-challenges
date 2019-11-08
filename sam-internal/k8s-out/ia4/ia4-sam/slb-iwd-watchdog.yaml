@@ -51,6 +51,53 @@ spec:
           name: kubeconfig
         - mountPath: /sfdchosts
           name: sfdchosts
+      - command:
+        - /sdn/slb-cleanup
+        - --period=1800s
+        - --logsMaxAge=1h
+        - --filesDirToCleanup=/host/data/slb/config/slb-iwd-health
+        - --shouldSkipServiceRecords=true
+        - --log_dir=/host/data/slb/logs/slb-iwd-health
+        - --shouldSkipSlbBlock=true
+        - --skipFilesWithSuffix=.sock
+        - --shouldNotDeleteAllFiles=true
+        image: ops0-artifactrepo1-0-ia4.data.sfdc.net/dva/slb/hyperslb:2274-05577ee0f254227a5dc2149e40a32b89e30604de
+        name: slb-cleanup-config-processor
+        securityContext:
+          privileged: true
+        volumeMounts:
+        - mountPath: /host/data/slb
+          name: var-slb-volume
+        - mountPath: /host/data/slb/config/slb-iwd-health
+          name: var-config-volume
+        - mountPath: /host/data/slb/logs/slb-iwd-health
+          name: var-logs-volume
+      - command:
+        - /sdn/slb-cleanup
+        - --period=1800s
+        - --logsMaxAge=48h
+        - --log_dir=/host/data/slb/logs/slb-iwd-health/cleanup
+        - --filesDirToCleanup=/host/data/slb/logs/slb-iwd-health
+        - --shouldSkipServiceRecords=false
+        - --shouldNotDeleteAllFiles=false
+        env:
+        - name: KUBECONFIG
+          value: /kubeconfig/kubeconfig-platform
+        image: ops0-artifactrepo1-0-ia4.data.sfdc.net/dva/slb/hyperslb:2274-05577ee0f254227a5dc2149e40a32b89e30604de
+        name: slb-cleanup
+        securityContext:
+          privileged: true
+        volumeMounts:
+        - mountPath: /host/data/slb
+          name: var-slb-volume
+        - mountPath: /host/data/slb/config/slb-iwd-health
+          name: var-config-volume
+        - mountPath: /host/data/slb/logs/slb-iwd-health
+          name: var-logs-volume
+        - mountPath: /sfdchosts
+          name: sfdchosts
+        - mountPath: /host/data/slb/logs/slb-iwd-health/cleanup
+          name: var-cleanup-logs-volume
       dnsPolicy: Default
       hostNetwork: true
       nodeSelector:
@@ -78,6 +125,9 @@ spec:
       - configMap:
           name: sfdchosts
         name: sfdchosts
+      - hostPath:
+          path: /data/slb/logs/slb-iwd-health/cleanup
+        name: var-cleanup-logs-volume
   updateStrategy:
     rollingUpdate:
       maxUnavailable: 20%

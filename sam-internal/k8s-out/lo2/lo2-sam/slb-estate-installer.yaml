@@ -55,6 +55,32 @@ spec:
           name: var-slb-volume
         - mountPath: /host/data/slb/logs/slb-estate-installer
           name: var-logs-volume
+      - command:
+        - /sdn/slb-cleanup
+        - --period=1800s
+        - --logsMaxAge=48h
+        - --log_dir=/host/data/slb/logs/slb-estate-installer/cleanup
+        - --filesDirToCleanup=/host/data/slb/logs/slb-estate-installer
+        - --shouldSkipServiceRecords=false
+        - --shouldNotDeleteAllFiles=false
+        env:
+        - name: KUBECONFIG
+          value: /kubeconfig/kubeconfig-platform
+        image: ops0-artifactrepo1-0-lo2.data.sfdc.net/dva/slb/hyperslb:2274-05577ee0f254227a5dc2149e40a32b89e30604de
+        name: slb-cleanup
+        securityContext:
+          privileged: true
+        volumeMounts:
+        - mountPath: /host/data/slb
+          name: var-slb-volume
+        - mountPath: /host/data/slb/config/slb-estate-installer
+          name: var-config-volume
+        - mountPath: /host/data/slb/logs/slb-estate-installer
+          name: var-logs-volume
+        - mountPath: /sfdchosts
+          name: sfdchosts
+        - mountPath: /host/data/slb/logs/slb-estate-installer/cleanup
+          name: var-cleanup-logs-volume
       dnsPolicy: Default
       terminationGracePeriodSeconds: 5
       volumes:
@@ -73,6 +99,15 @@ spec:
       - hostPath:
           path: /data/slb/logs/slb-estate-installer
         name: var-logs-volume
+      - configMap:
+          name: sfdchosts
+        name: sfdchosts
+      - hostPath:
+          path: /data/slb/config/slb-estate-installer
+        name: var-config-volume
+      - hostPath:
+          path: /data/slb/logs/slb-estate-installer/cleanup
+        name: var-cleanup-logs-volume
   updateStrategy:
     rollingUpdate:
       maxUnavailable: 1

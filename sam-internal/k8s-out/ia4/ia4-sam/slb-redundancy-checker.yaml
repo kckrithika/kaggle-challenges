@@ -27,7 +27,7 @@ spec:
       containers:
       - command:
         - /sdn/slb-redundancy-checker
-        - --log_dir=/host/data/slb/logs/
+        - --log_dir=/host/data/slb/logs/slb-redundancy-checker
         - --hostnameOverride=$(NODE_NAME)
         - --metricsEndpoint=ajna0-funnel1-0-ia4.data.sfdc.net:80
         - --deploymentsToMonitor=slb-ipvs,slb-nginx-config-b,slb-vip-watchdog,slb-dns-register
@@ -48,7 +48,7 @@ spec:
         volumeMounts:
         - mountPath: /host/data/slb
           name: var-slb-volume
-        - mountPath: /host/data/slb/logs/
+        - mountPath: /host/data/slb/logs/slb-redundancy-checker
           name: var-logs-volume
         - mountPath: /sfdchosts
           name: sfdchosts
@@ -58,6 +58,32 @@ spec:
           name: certs
         - mountPath: /etc/pki_service
           name: maddog-certs
+      - command:
+        - /sdn/slb-cleanup
+        - --period=1800s
+        - --logsMaxAge=48h
+        - --log_dir=/host/data/slb/logs/slb-redundancy-checker/cleanup
+        - --filesDirToCleanup=/host/data/slb/logs/slb-redundancy-checker
+        - --shouldSkipServiceRecords=false
+        - --shouldNotDeleteAllFiles=false
+        env:
+        - name: KUBECONFIG
+          value: /kubeconfig/kubeconfig-platform
+        image: ops0-artifactrepo1-0-ia4.data.sfdc.net/dva/slb/hyperslb:2274-05577ee0f254227a5dc2149e40a32b89e30604de
+        name: slb-cleanup
+        securityContext:
+          privileged: true
+        volumeMounts:
+        - mountPath: /host/data/slb
+          name: var-slb-volume
+        - mountPath: /host/data/slb/config/slb-redundancy-checker
+          name: var-config-volume
+        - mountPath: /host/data/slb/logs/slb-redundancy-checker
+          name: var-logs-volume
+        - mountPath: /sfdchosts
+          name: sfdchosts
+        - mountPath: /host/data/slb/logs/slb-redundancy-checker/cleanup
+          name: var-cleanup-logs-volume
       dnsPolicy: Default
       nodeSelector:
         pool: ia4-slb
@@ -67,7 +93,7 @@ spec:
           path: /data/slb
         name: var-slb-volume
       - hostPath:
-          path: /data/slb/logs/
+          path: /data/slb/logs/slb-redundancy-checker
         name: var-logs-volume
       - configMap:
           name: sfdchosts
@@ -81,3 +107,9 @@ spec:
       - hostPath:
           path: /etc/pki_service
         name: maddog-certs
+      - hostPath:
+          path: /data/slb/config/slb-redundancy-checker
+        name: var-config-volume
+      - hostPath:
+          path: /data/slb/logs/slb-redundancy-checker/cleanup
+        name: var-cleanup-logs-volume

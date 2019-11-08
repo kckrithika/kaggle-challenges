@@ -26,19 +26,57 @@ spec:
       - command:
         - /sdn/slb-canary-service
         - --serviceName=slb-canary-proxy-tcp
-        - --log_dir=/host/data/slb/logs/
+        - --log_dir=/host/data/slb/logs/slb-canary-service
         - --ports=9115,8081
         - --proxyProtocolPorts=8081
         image: ops0-artifactrepo1-0-frf.data.sfdc.net/dva/slb/hyperslb:2274-05577ee0f254227a5dc2149e40a32b89e30604de
         name: slb-canary-proxy-tcp
         volumeMounts:
-        - mountPath: /host/data/slb/logs/
+        - mountPath: /host/data/slb/logs/slb-canary-service
           name: var-logs-volume
+      - command:
+        - /sdn/slb-cleanup
+        - --period=1800s
+        - --logsMaxAge=48h
+        - --log_dir=/host/data/slb/logs/slb-canary-service/cleanup
+        - --filesDirToCleanup=/host/data/slb/logs/slb-canary-service
+        - --shouldSkipServiceRecords=false
+        - --shouldNotDeleteAllFiles=false
+        env:
+        - name: KUBECONFIG
+          value: /kubeconfig/kubeconfig-platform
+        image: ops0-artifactrepo1-0-frf.data.sfdc.net/dva/slb/hyperslb:2274-05577ee0f254227a5dc2149e40a32b89e30604de
+        name: slb-cleanup
+        securityContext:
+          privileged: true
+        volumeMounts:
+        - mountPath: /host/data/slb
+          name: var-slb-volume
+        - mountPath: /host/data/slb/config/slb-canary-service
+          name: var-config-volume
+        - mountPath: /host/data/slb/logs/slb-canary-service
+          name: var-logs-volume
+        - mountPath: /sfdchosts
+          name: sfdchosts
+        - mountPath: /host/data/slb/logs/slb-canary-service/cleanup
+          name: var-cleanup-logs-volume
       dnsPolicy: Default
       nodeSelector:
         pool: frf-sam
       terminationGracePeriodSeconds: 5
       volumes:
       - hostPath:
-          path: /data/slb/logs/
+          path: /data/slb/logs/slb-canary-service
         name: var-logs-volume
+      - hostPath:
+          path: /data/slb
+        name: var-slb-volume
+      - configMap:
+          name: sfdchosts
+        name: sfdchosts
+      - hostPath:
+          path: /data/slb/config/slb-canary-service
+        name: var-config-volume
+      - hostPath:
+          path: /data/slb/logs/slb-canary-service/cleanup
+        name: var-cleanup-logs-volume

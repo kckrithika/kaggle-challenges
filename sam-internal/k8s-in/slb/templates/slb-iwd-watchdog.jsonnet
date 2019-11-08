@@ -33,9 +33,8 @@ if slbconfigs.isSlbEstate && slbflights.enableIWDHealth then configs.daemonSetBa
                     slbconfigs.slb_config_volume,
                     configs.kube_config_volume,
                     configs.sfdchosts_volume,
-                ] + (if slbimages.phaseNum <= 4 then
-                        [slbconfigs.cleanup_logs_volume]
-                     else [])),
+                    slbconfigs.cleanup_logs_volume,
+                ]),
                 containers: [
                     {
                         name: "slb-iwd-health",
@@ -61,7 +60,9 @@ if slbconfigs.isSlbEstate && slbflights.enableIWDHealth then configs.daemonSetBa
                             configs.kube_config_env,
                         ],
                     } + configs.ipAddressResourceRequest,
-                ] + (if slbimages.phaseNum <= 4 then [slbshared.slbCleanupConfig, slbshared.slbLogCleanup] else []),
+                    slbshared.slbCleanupConfig,
+                    slbshared.slbLogCleanup,
+                ],
                 nodeSelector: {
                     pool: slbconfigs.slbEstate,
                 },

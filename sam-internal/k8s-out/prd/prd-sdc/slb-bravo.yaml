@@ -198,15 +198,6 @@ spec:
       - hostPath:
           path: /data/slb/logs/slb-canary-service
         name: var-logs-volume
-      - emptyDir:
-          medium: Memory
-        name: canarycert
-      - emptyDir:
-          medium: Memory
-        name: tokens
-      - hostPath:
-          path: /etc/pki_service
-        name: maddog-certs
       - hostPath:
           path: /data/slb
         name: var-slb-volume
@@ -219,3 +210,12 @@ spec:
       - hostPath:
           path: /data/slb/logs/slb-canary-service/cleanup
         name: var-cleanup-logs-volume
+      - emptyDir:
+          medium: Memory
+        name: canarycert
+      - emptyDir:
+          medium: Memory
+        name: tokens
+      - hostPath:
+          path: /etc/pki_service
+        name: maddog-certs

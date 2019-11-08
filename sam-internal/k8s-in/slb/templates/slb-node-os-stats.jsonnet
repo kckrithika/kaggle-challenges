@@ -1,6 +1,6 @@
 local configs = import "config.jsonnet";
 local slbimages = (import "slbimages.jsonnet") + { templateFilename:: std.thisFile };
-local slbconfigs = (import "slbconfig.jsonnet") + (if slbimages.phaseNum <= 4 then { dirSuffix:: "slb-node-os-stats" } else {});
+local slbconfigs = (import "slbconfig.jsonnet") + { dirSuffix:: "slb-node-os-stats" };
 local slbshared = (import "slbsharedservices.jsonnet") + { dirSuffix:: "slb-node-os-stats" };
 local slbflights = import "slbflights.jsonnet";
 
@@ -43,9 +43,10 @@ if configs.estate == "prd-sdc" then configs.deploymentBase("slb") {
                     slbconfigs.slb_volume,
                     slbconfigs.logs_volume,
                     slbconfigs.proc_volume,
-                ] + (if slbimages.phaseNum <= 4 then
-                        [configs.sfdchosts_volume, slbconfigs.slb_config_volume, slbconfigs.cleanup_logs_volume]
-                     else [])),
+                    configs.sfdchosts_volume,
+                    slbconfigs.slb_config_volume,
+                    slbconfigs.cleanup_logs_volume,
+                ]),
                 containers: [
                     {
                         name: "slb-node-os-stats",
@@ -64,7 +65,8 @@ if configs.estate == "prd-sdc" then configs.deploymentBase("slb") {
                             privileged: true,
                         },
                     } + configs.ipAddressResourceRequest,
-                ] + (if slbimages.phaseNum <= 4 then [slbshared.slbLogCleanup] else []),
+                    slbshared.slbLogCleanup,
+                ],
             } + slbconfigs.getGracePeriod()
               + slbconfigs.getDnsPolicy(),
         },
