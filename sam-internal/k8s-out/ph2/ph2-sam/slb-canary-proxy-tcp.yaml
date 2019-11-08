@@ -29,7 +29,7 @@ spec:
         - --log_dir=/host/data/slb/logs/slb-canary-service
         - --ports=9115,8081
         - --proxyProtocolPorts=8081
-        image: ops0-artifactrepo1-0-ph2.data.sfdc.net/dva/slb/hyperslb:2278-bdd61355dd9e9f2a6197fe8d97cf1b01e0803a1e
+        image: ops0-artifactrepo1-0-ph2.data.sfdc.net/dva/slb/hyperslb:2280-6728d98d50b4d61992ce01b456c568dd1bc64dcc
         name: slb-canary-proxy-tcp
         volumeMounts:
         - mountPath: /host/data/slb/logs/slb-canary-service
@@ -45,7 +45,7 @@ spec:
         env:
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig-platform
-        image: ops0-artifactrepo1-0-ph2.data.sfdc.net/dva/slb/hyperslb:2278-bdd61355dd9e9f2a6197fe8d97cf1b01e0803a1e
+        image: ops0-artifactrepo1-0-ph2.data.sfdc.net/dva/slb/hyperslb:2280-6728d98d50b4d61992ce01b456c568dd1bc64dcc
         name: slb-cleanup
         securityContext:
           privileged: true
