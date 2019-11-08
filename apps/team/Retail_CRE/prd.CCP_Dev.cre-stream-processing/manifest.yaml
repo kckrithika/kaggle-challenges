@@ -139,6 +139,8 @@ system:
         targetport: 7022
       - port: 7442
         targetport: 7442
+      - port: 15301
+        targetport: 15372
   - lbname: cre-sp-ccp-dev
     function: cre-sp-ccp-dev
     ports:
