@@ -360,7 +360,7 @@ system:
       env:
       - name: SFDC_ENVIRONMENT
         value: mist61
-      image: sfci/frontend-gateway/sfproxy:f926aa8
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/jiaqi-wu/sfproxy:sni-6
       livenessProbe:
         exec:
           command:
