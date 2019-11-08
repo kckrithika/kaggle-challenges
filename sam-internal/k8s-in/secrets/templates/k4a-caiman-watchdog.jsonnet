@@ -13,12 +13,26 @@ local build_server_url(tag) = (
     urlHead + tag + urlTail
 );
 
-local getKingdomServerSpecificInstances(kingdom=configs.kingdom) = {
-    [kingdom + "11"]: { url: build_server_url("1-1-" + kingdom) },
-    [kingdom + "12"]: { url: build_server_url("1-2-" + kingdom) },
-    [kingdom + "21"]: { url: build_server_url("2-1-" + kingdom) },
-    [kingdom + "22"]: { url: build_server_url("2-2-" + kingdom) },
-};
+# Most kingdoms have four nodes (1-1, 1-2, 2-1, 2-2).
+# A select few kingdoms have fewer than four, see
+# https://argus-ui.data.sfdc.net/argus/#/viewmetrics?expression=ALIAS(GROUPBY(-90d:system.*.NONE.k4a:uptime.uptime%7Bdevice%3D*kfora*%7D:max:1h-max,%23system%5C.(%5BA-Z0-9%5D%7B3%7D)%5C.%23,%23COUNT%23),%20%23up-nodes%23,%20%23literal%23)
+# Only monitor instances that are available in each kingdom.
+local getKingdomServerSpecificInstances(kingdom=configs.kingdom) = (
+if kingdom == "dfw" then {
+  "dfw11": { url: build_server_url("1-1-dfw") },
+} else if kingdom == "chi" then {
+  "chi11": { url: build_server_url("1-1-chi") },
+  "chi12": { url: build_server_url("1-2-chi") },
+} else if kingdom == "wax" then {
+  "wax12": { url: build_server_url("1-2-wax") },
+  "wax21": { url: build_server_url("2-1-wax") },
+  "wax22": { url: build_server_url("2-2-wax") },
+} else {
+  [kingdom + "11"]: { url: build_server_url("1-1-" + kingdom) },
+  [kingdom + "12"]: { url: build_server_url("1-2-" + kingdom) },
+  [kingdom + "21"]: { url: build_server_url("2-1-" + kingdom) },
+  [kingdom + "22"]: { url: build_server_url("2-2-" + kingdom) },
+});
 
 # Some legacy (non-Jackson) datacenters have K4A, but do not have a SAM presence.
 # We still want to monitor K4A in those datacenters; we will do so from one of the sites
