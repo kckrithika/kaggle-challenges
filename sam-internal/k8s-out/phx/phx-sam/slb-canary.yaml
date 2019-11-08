@@ -43,7 +43,7 @@ spec:
         - --tlsPorts=9443
         - --privateKey=/canarycert/server/keys/server-key.pem
         - --publicKey=/canarycert/server/certificates/server.pem
-        image: ops0-artifactrepo1-0-phx.data.sfdc.net/dva/slb/hyperslb:2274-05577ee0f254227a5dc2149e40a32b89e30604de
+        image: ops0-artifactrepo1-0-phx.data.sfdc.net/dva/slb/hyperslb:2278-bdd61355dd9e9f2a6197fe8d97cf1b01e0803a1e
         name: slb-canary
         volumeMounts:
         - mountPath: /host/data/slb/logs/slb-canary-service
@@ -99,7 +99,7 @@ spec:
         env:
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig-platform
-        image: ops0-artifactrepo1-0-phx.data.sfdc.net/dva/slb/hyperslb:2274-05577ee0f254227a5dc2149e40a32b89e30604de
+        image: ops0-artifactrepo1-0-phx.data.sfdc.net/dva/slb/hyperslb:2278-bdd61355dd9e9f2a6197fe8d97cf1b01e0803a1e
         name: slb-cleanup
         securityContext:
           privileged: true
