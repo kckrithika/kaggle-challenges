@@ -1,5 +1,5 @@
-- lbname: horizon-prd
-  customlbname: horizon-prd
+- lbname: horizon-staging
+  customlbname: horizon-staging
   servers:
     - ina1shared0-infinsighthadoop1-2-prd.eng.sfdc.net
     - ina1shared0-infinsightapi1-2-prd.eng.sfdc.net
@@ -23,8 +23,8 @@
       targetport: 5432
       lbtype: tcp
 
-- lbname: horizon-staging-prd
-  customlbname: horizon-staging-prd
+- lbname: horizon-dev
+  customlbname: horizon-dev
   servers:
     - ina1shared0-infinsightapi2-1-prd.eng.sfdc.net
   ports:
