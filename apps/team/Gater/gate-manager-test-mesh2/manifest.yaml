@@ -37,6 +37,13 @@ system:
       env:
       - name: SFDC_ENVIRONMENT
         value: blitz
+      resources:
+        limits:
+          cpu: "8"
+          memory: 8Gi
+        requests:
+          cpu: "8"
+          memory: 8Gi
       volumeMounts:
       - mountPath: /log
         name: logvol
