@@ -53,7 +53,6 @@ local utils = import "util_functions.jsonnet";
         # Only include new things not yet promoted to next phase. To promote, move line items to next phase.
         "2": self.prod {
             image_tags+: {
-                integration_test_tag: "33",
             },
             feature_flags+: {
                 # --- flag A (Do not edit ... ---
@@ -64,7 +63,6 @@ local utils = import "util_functions.jsonnet";
                 # --- flag F (Their only purpose ... ---
                 # --- flag G (is to assist ... ---
                 # --- flag H (git's diff logic ... ---
-                prefetcher_enabled: "this value irrelevant",
                 # --- flag I (to reduce the ---
                 # --- flag J (likelihood of merge conflicts.) ---
             },
@@ -124,7 +122,7 @@ local utils = import "util_functions.jsonnet";
                 spark_operator_image_tag: "jenkins-dva-transformation-spark-on-k8s-operator-development-sfdc-9-itest",  # 11/8 image that includes job start latency metric
                 # to remove
                 watchdog_spark_operator_image_tag: "jenkins-dva-transformation-spark-on-k8s-sample-apps-PR-2-1-itest",
-                integration_test_tag: "22",
+                integration_test_tag: "33",
                 hbase_integration_test_tag: "22",
                 kube_state_metrics_image_tag: "3",
                 prometheus_funnel_image_tag: "37",
@@ -152,6 +150,7 @@ local utils = import "util_functions.jsonnet";
                 # associated conditional logic. That PR will not affect k8s-out, so you can self-approve it.
 
                 # --- flag A (Do not edit ... ---
+                prefetcher_enabled: "this value irrelevant",
                 # --- flag B (these comments ... ---
                 madkub_injector_server_cert: "",
                 # --- flag C (and place only ... ---
@@ -172,11 +171,9 @@ local utils = import "util_functions.jsonnet";
         # off-peak: 1pm-9pm PDT
         "prod-emea": self.prod {
           image_tags+: {
-              integration_test_tag: "33",
           },
           feature_flags+: {
               # --- flag A (Do not edit ... ---
-              prefetcher_enabled: "this value irrelevant",
               # --- flag B (these comments ... ---
               # --- flag C (and place only ... ---
               # --- flag D (one flag between ... ---
@@ -212,11 +209,9 @@ local utils = import "util_functions.jsonnet";
         # off-peak: 6am-1pm PDT
         "prod-apac": self.prod {
             image_tags+: {
-                integration_test_tag: "33",
             },
             feature_flags+: {
                 # --- flag A (Do not edit ... ---
-                prefetcher_enabled: "this value irrelevant",
                 # --- flag B (these comments ... ---
                 # --- flag C (and place only ... ---
                 # --- flag D (one flag between ... ---
