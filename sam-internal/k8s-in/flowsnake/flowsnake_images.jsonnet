@@ -53,14 +53,12 @@ local utils = import "util_functions.jsonnet";
         # Only include new things not yet promoted to next phase. To promote, move line items to next phase.
         "2": self.prod {
             image_tags+: {
-                madkub_injector_image_tag: "jenkins-dva-transformation-madkub-injector-webhook-PR-25-7-itest",
                 integration_test_tag: "33",
                 spark_operator_image_tag: "jenkins-dva-transformation-spark-on-k8s-operator-development-sfdc-9-itest",
             },
             feature_flags+: {
                 # --- flag A (Do not edit ... ---
                 # --- flag B (these comments ... ---
-                madkub_injector_server_cert: "",
                 # --- flag C (and place only ... ---
                 # --- flag D (one flag between ... ---
                 # --- flag E (each pair. ... ---
@@ -140,7 +138,7 @@ local utils = import "util_functions.jsonnet";
                 jdk8_base_tag: "33",
                 kubedns_image_tag: "1.14.9",
                 madkub_image_tag: "1.0.0-0000084-9f4a6ca6",  # Madkub server gets token for itself using host IP
-                madkub_injector_image_tag: "13",
+                madkub_injector_image_tag: "jenkins-dva-transformation-madkub-injector-webhook-PR-25-7-itest",
                 service_mesh_image_tag: "1.0.5",
                 service_injector_image_tag: "jenkins-dva-transformation-service-mesh-injector-webhook-PR-1-23-itest",
                 node_controller_image_tag: "sam-0001970-a296421d",
@@ -156,6 +154,7 @@ local utils = import "util_functions.jsonnet";
 
                 # --- flag A (Do not edit ... ---
                 # --- flag B (these comments ... ---
+                madkub_injector_server_cert: "",
                 # --- flag C (and place only ... ---
                 # --- flag D (one flag between ... ---
                 # --- flag E (each pair. ... ---
@@ -176,13 +175,12 @@ local utils = import "util_functions.jsonnet";
           image_tags+: {
               integration_test_tag: "33",
               spark_operator_image_tag: "jenkins-dva-transformation-spark-on-k8s-operator-development-sfdc-9-itest",
-              madkub_injector_image_tag: "jenkins-dva-transformation-madkub-injector-webhook-PR-25-7-itest",
+
           },
           feature_flags+: {
               # --- flag A (Do not edit ... ---
               prefetcher_enabled: "this value irrelevant",
               # --- flag B (these comments ... ---
-              madkub_injector_server_cert: "",
               # --- flag C (and place only ... ---
               # --- flag D (one flag between ... ---
               # --- flag E (each pair. ... ---
@@ -217,7 +215,6 @@ local utils = import "util_functions.jsonnet";
         # off-peak: 6am-1pm PDT
         "prod-apac": self.prod {
             image_tags+: {
-                madkub_injector_image_tag: "jenkins-dva-transformation-madkub-injector-webhook-PR-25-7-itest",
                 spark_operator_image_tag: "jenkins-dva-transformation-spark-on-k8s-operator-development-sfdc-9-itest",
                 integration_test_tag: "33",
             },
@@ -225,7 +222,6 @@ local utils = import "util_functions.jsonnet";
                 # --- flag A (Do not edit ... ---
                 prefetcher_enabled: "this value irrelevant",
                 # --- flag B (these comments ... ---
-                madkub_injector_server_cert: "",
                 # --- flag C (and place only ... ---
                 # --- flag D (one flag between ... ---
                 # --- flag E (each pair. ... ---
