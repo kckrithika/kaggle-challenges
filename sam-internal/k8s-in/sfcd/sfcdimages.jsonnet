@@ -52,7 +52,7 @@ local configs = import "config.jsonnet";
 
         ### Release Phase 3 - prd-samtwo (production)
         "3": $.per_phase["4"] {
-             sfcdapifirebomwebhook: "65",
+             sfcdapifirebomwebhook: "66",
             },
 
         ### Release Phase 4 - Rest of Prod + Pub + Gia
