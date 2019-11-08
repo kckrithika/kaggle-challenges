@@ -126,7 +126,7 @@
       "--shouldSkipSlbBlock=true",
       "--skipFilesWithSuffix=.sock",
       "--shouldNotDeleteAllFiles=true",
-    ]),
+    ],
     volumeMounts: std.prune([
       slbconfigs.slb_volume_mount,
       slbconfigs.slb_config_volume_mount,
