@@ -50,42 +50,16 @@ system:
         ####################################################################################################
         - name: INGEST_ANNOTATIONS_PKI_NAME
           value: cre-engine-ccp-dev
-        - name: BUCKET_INGEST_MANIFEST_OVERRIDE_ENABLED
-          value: true
-        - name: BUCKET_INGEST_CONCURRENCY_CONTROL_ENABLED
-          value: true
         ####################################################################################################
         ####################################### SAVE environment variables ###############################
         ####################################################################################################
         - name: SAVE_ANNOTATIONS_PKI_NAME
           value: cre-engine-ccp-dev
-        - name: SAVE_CONCURRENCY_CONTROL_ENABLED
-          value: true
-        - name: SAVE_EXECUTOR_INSTANCES
-          value: 4
-        - name: SAVE_SPARK_DEFAULT_PARALLELISM
-          value: 60
-        - name: SAVE_SPARK_SQL_SHUFFLE_PARTITIONS
-          value: 60
         ####################################################################################################
         ####################################### EXPORT environment variables ###############################
         ####################################################################################################
         - name: EXPORT_ANNOTATIONS_PKI_NAME
           value: cre-engine-ccp-dev
-        - name: EXPORT_CONCURRENCY_CONTROL_ENABLED
-          value: true
-        - name: EXPORT_DRIVER_CORES
-          value: 16
-        - name: EXPORT_EXECUTOR_CORES
-          value: 15
-        - name: EXPORT_EXECUTOR_INSTANCES
-          value: 4
-        - name: EXPORT_DRIVER_MEMORY
-          value: 16g
-        - name: EXPORT_SPARK_DEFAULT_PARALLELISM
-          value: 60
-        - name: EXPORT_SPARK_SQL_SHUFFLE_PARTITIONS
-          value: 60
         ####################################################################################################
         ####################################### DELETE environment variables ###############################
         ####################################################################################################
