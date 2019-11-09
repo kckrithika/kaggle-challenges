@@ -143,7 +143,7 @@ items:
           - mountPath: /tokens
             name: sam-maddog-token
         nodeSelector:
-          master: "true"
+          pool: xrd-sam
         securityContext:
           fsGroup: 7447
           runAsNonRoot: true
@@ -305,7 +305,7 @@ items:
           - mountPath: /tokens
             name: sam-maddog-token
         nodeSelector:
-          master: "true"
+          pool: xrd-sam
         securityContext:
           fsGroup: 7447
           runAsNonRoot: true
@@ -467,7 +467,7 @@ items:
           - mountPath: /tokens
             name: sam-maddog-token
         nodeSelector:
-          master: "true"
+          pool: xrd-sam
         securityContext:
           fsGroup: 7447
           runAsNonRoot: true
