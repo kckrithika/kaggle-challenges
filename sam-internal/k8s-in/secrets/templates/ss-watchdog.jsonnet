@@ -203,7 +203,7 @@ local ssWatchdogDeployment(instanceTag) = configs.deploymentBase("secrets") {
           configs.sfdchosts_volume,
         ] + madkub.volumes + madkub.certVolumes,
       }
-      + configs.nodeSelector
+      + secretsconfigs.nodeSelector
       + secretsconfigs.samPodSecurityContext
       + hostNetworkIfGia,
     },
