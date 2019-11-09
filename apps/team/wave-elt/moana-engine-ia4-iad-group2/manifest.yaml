@@ -1,0 +1,19 @@
+
+#
+# Generated manifest
+# DO NOT MODIFY - See https://git.soma.salesforce.com/insights/moana-release
+#
+apiVersion: v1
+system:
+  functions:
+  - containers:
+    - image: ops0-artifactrepo1-0-ia4.data.sfdc.net/sfci/insights/moanaengine:release-2019.10.b.27-ea8c606
+      livenessProbe:
+        exec:
+          command: [ls]
+        initialDelaySeconds: 5
+      name: moana-engine
+    count: 0
+    name: moana-engine-ia4-iad-group2
+  notifications:
+    email: [moanaserviceseng@salesforce.com]
