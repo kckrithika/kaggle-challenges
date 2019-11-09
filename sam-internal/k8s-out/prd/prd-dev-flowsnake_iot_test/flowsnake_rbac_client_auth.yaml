@@ -216,6 +216,8 @@ items:
   - kind: User
     name: retail-cre.aboboc
   - kind: User
+    name: retail-cre.pbryan
+  - kind: User
     name: retail-cre.cre-control-plane
   - kind: User
     name: retail-cre.cre-control-plane-ccp-func
@@ -331,6 +333,8 @@ items:
     name: retail-cre.kdaszkowski
   - kind: User
     name: retail-cre.aboboc
+  - kind: User
+    name: retail-cre.pbryan
   - kind: User
     name: retail-cre.cre-control-plane
   - kind: User
