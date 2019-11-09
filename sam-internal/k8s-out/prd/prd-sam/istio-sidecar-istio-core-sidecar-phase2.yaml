@@ -10,19 +10,7 @@ spec:
   - bind: 127.1.2.3
     captureMode: NONE
     hosts:
-    - mesh-control-plane/*
-    - z9s-default/*
-    - app/*
-    - casam/*
-    - ccait/*
-    - core-on-sam-sp2/*
-    - emailinfra/*
-    - funnel/*
-    - gater/*
-    - scone/*
-    - search-scale-safely/*
-    - service-mesh/*
-    - universal-search/*
+    - '*/*'
     port:
       name: grpc-egress
       number: 7443
@@ -30,19 +18,7 @@ spec:
   - bind: 127.1.2.3
     captureMode: NONE
     hosts:
-    - mesh-control-plane/*
-    - z9s-default/*
-    - app/*
-    - casam/*
-    - ccait/*
-    - core-on-sam-sp2/*
-    - emailinfra/*
-    - funnel/*
-    - gater/*
-    - scone/*
-    - search-scale-safely/*
-    - service-mesh/*
-    - universal-search/*
+    - '*/*'
     port:
       name: http-egress
       number: 7442
