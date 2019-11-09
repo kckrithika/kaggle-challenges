@@ -3,7 +3,7 @@ local kingdom = std.extVar("kingdom");
 local flowsnake_images = import "flowsnake_images.jsonnet";
 local flowsnake_config = import "flowsnake_config.jsonnet";
 
-if ! ("prefetcher_enabled" in flowsnake_images.feature_flags) then
+if ! ("prefetcher_enabled" in flowsnake_images.feature_flags) || flowsnake_config.is_minikube then
 "SKIP"
 else
 {
