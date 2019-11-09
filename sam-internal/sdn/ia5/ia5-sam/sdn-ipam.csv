@@ -23,6 +23,9 @@ shared0-samminionaqueduct2-1-ia5.ops.sfdc.net,10.182.161.106/29,10.184.132.0/27,
 shared0-samminionaqueduct2-2-ia5.ops.sfdc.net,10.182.161.107/29,10.184.132.32/27,n01-01,ia5-sam_eventbus,4206061201
 shared0-samminionaqueduct3-1-ia5.ops.sfdc.net,10.182.161.114/29,10.184.132.160/27,q01-01,ia5-sam_eventbus,4206041201
 shared0-samminionaqueduct3-2-ia5.ops.sfdc.net,10.182.161.115/29,10.184.132.192/27,q01-01,ia5-sam_eventbus,4206041201
+shared0-samminiondatapool1-1-ia5.ops.sfdc.net,10.182.172.202/29,10.184.133.128/27,n06-01,ia5-sam_datapool,4206061211
+shared0-samminiondatapool2-1-ia5.ops.sfdc.net,10.182.172.210/29,10.184.133.192/27,q06-01,ia5-sam_datapool,4206041211
+shared0-samminiondatapool3-1-ia5.ops.sfdc.net,10.182.172.194/29,10.184.133.160/27,n26-01,ia5-sam_datapool,4206051211
 shared0-samminiongater1-1-ia5.ops.sfdc.net,10.182.164.226/29,10.184.129.32/27,p01-01,ia5-sam_gater,4206061202
 shared0-samminiongater1-2-ia5.ops.sfdc.net,10.182.164.227/29,10.184.129.64/27,p01-01,ia5-sam_gater,4206061202
 shared0-samminiongater2-1-ia5.ops.sfdc.net,10.182.164.234/29,10.184.129.96/27,q01-01,ia5-sam_gater,4206041201
