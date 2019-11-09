@@ -1,6 +1,14 @@
 apps:
 
 
+  moana-engine-ia5-ord-group1:
+  - ord/ord-sam_datapool
+  moana-ia5-group1:
+  - ia5/ia5-sam_datapool
+  moana-engine-ia4-iad-group1:
+  - iad/iad-sam_datapool
+  moana-ia4-group1:
+  - ia4/ia4-sam_datapool
   moana-yhu-group2:
   - yhu/yhu-sam_datapool
   moana-yul-group2:
