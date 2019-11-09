@@ -1,0 +1,34 @@
+# created by scone-gen 3bd9a4697
+# k4a: https://confluence.internal.salesforce.com/display/SAM/Using+K4A+for+SAM+Secrets
+
+apiVersion: v1
+
+system:
+  functions:
+  - name: hightower-client
+    count: 1
+    containers:
+    - name: hightower-client
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/instrumentation/hightower-client:demo
+      ports:
+      - containerPort: 8080
+        name: express-http
+      livenessProbe:
+        initialDelaySeconds: 30
+        httpGet:
+          path: /manage/health
+          port: 8080
+      readinessProbe:
+        initialDelaySeconds: 30
+        timeoutSeconds: 10
+        httpGet:
+          path: /manage/ready
+          port: 8080
+  loadbalancers:
+  - lbname: hightower
+    function: hightower-client
+    slbEnabled: true
+    ports:
+      - port: 80
+        targetport: 8080
+        lbtype: http
