@@ -79,6 +79,9 @@ local samreleases = import "samreleases.json";
 
         "prd,prd-sam,watchdog-visibility,hypersam": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/d.smith/hypersam:20191030_151213.b68098f1.dirty.duncsmith-ltm1",
         "prd,prd-samtwo,watchdog-visibility,hypersam": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/d.smith/hypersam:20191030_151213.b68098f1.dirty.duncsmith-ltm1",
+
+        ### [karthik.sudana] - Temporary override for gus case validator
+        "prd,prd-sam,sam-manifest-case-validator,hypersam": "2853-e50301240b0d2764b1c98f09f6e07ea292539297",
         },
 
     ### Per-phase image tags have been moved to samreleases.json
