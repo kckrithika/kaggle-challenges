@@ -155,7 +155,7 @@ local k4aWatchdogDeployment(instanceTag) = configs.deploymentBase("secrets") {
         ],
         volumes: madkub.volumes + madkub.certVolumes,
       }
-      + configs.nodeSelector
+      + secretsconfigs.nodeSelector
       + secretsconfigs.samPodSecurityContext
       + hostNetworkIfEnabled(instanceData.canary)
       + podAntiAffinityIfEnabled(instanceData.name, instanceData.canary),

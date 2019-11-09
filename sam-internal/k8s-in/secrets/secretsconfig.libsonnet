@@ -19,6 +19,14 @@ local configs = import "config.jsonnet";
   ]),
   k4aSamWdEnabled: std.setMember(estate, $.k4aSamWdEstates),
 
+  # Pin to the sam estate -- our services shouldn't be running in customer estates, and
+  # have no need to run on master nodes.
+  nodeSelector: {
+    nodeSelector: {
+      pool: configs.estate,
+    },
+  },
+
   samPodSecurityContext: {
     securityContext: {
       fsGroup: 7447,
