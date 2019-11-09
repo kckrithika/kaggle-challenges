@@ -345,7 +345,7 @@ if (istioPhases.phaseNum == 2) then
               "--discoveryAddress",
               "istio-pilot.mesh-control-plane:15011",
               "--zipkinAddress",
-              "zipkin.service-mesh:9411",
+              "zipkindirecttls.funnel.svc.mesh.sfdc.net:7442",
               "--proxyLogLevel=info",
               "--dnsRefreshRate",
               "300s",
