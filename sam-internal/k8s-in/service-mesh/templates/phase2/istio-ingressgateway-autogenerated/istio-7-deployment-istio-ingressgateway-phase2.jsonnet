@@ -133,7 +133,7 @@ if (istioPhases.phaseNum == 2) then
               "--serviceCluster",
               "istio-ingressgateway",
               "--zipkinAddress",
-              "zipkin.service-mesh:9411",
+              "zipkindirecttls.funnel.svc.mesh.sfdc.net:7442",
               "--envoyMetricsService",
               "{\"address\":\"switchboard.service-mesh:15001\",\"tls_settings\":{\"mode\":2,\"client_certificate\":\"/client-certs/client/certificates/client.pem\",\"private_key\":\"/client-certs/client/keys/client-key.pem\",\"ca_certificates\":\"/client-certs/ca.pem\"},\"tcp_keepalive\":{\"probes\":3,\"time\":\"10s\",\"interval\":\"10s\"}}",
               "--proxyAdminPort",
@@ -303,7 +303,7 @@ if (istioPhases.phaseNum == 2) then
               },
               {
                 name: "ISTIO_META_ROUTER_MODE",
-                value: "sni-dnat",
+                value: "standard",
               },
             ],
             image: "%(istioHub)s/proxy:%(istioTag)s" % mcpIstioConfig,
