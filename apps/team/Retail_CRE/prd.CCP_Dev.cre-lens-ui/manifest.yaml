@@ -13,7 +13,7 @@ system:
           path: /
           port: 3001
     - name: cre-lens-ui
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cre/cre-lens-ui:test3
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cre/cre-lens-ui:dbde381
       ports:
         - containerPort: 3000
       env:
