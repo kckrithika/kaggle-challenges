@@ -16,6 +16,12 @@ system:
           command: ["/usr/bin/python"]
           args: ["/home/sfdc-sherpa/myscripts/myapp.py"]
           ports:
+            - containerPort: 2052
+              name: amqp0-port
+            - containerPort: 2055
+              name: amqp1-port
+            - containerPort: 5442
+              name: http1-tls-out
             - containerPort: 12345
               name: client-port
           env:
@@ -102,10 +108,11 @@ system:
         - name: qpid
           image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/vijay-kota/myenvoy:10Jul19
           command: ["/bin/sh"]
-          args: ["-c", "if [[ $FUNCTION_INSTANCE_NAME = *-0 ]]; then export AMQP_PORT=$AMQP0 ; else export AMQP_PORT=$AMQP1 ; fi; /usr/bin/python /home/sfdc-sherpa/myscripts/myqpid.py"]
+          args: ["-c", "if [[ $FUNCTION_INSTANCE_NAME = *-0 ]]; then export AMQP_PORT=$AMQP0 ; else export AMQP_PORT=$AMQP1 ; fi; nohup /usr/bin/python /home/sfdc-sherpa/myscripts/myqpid.py &; export AMQP_PORT=$HTTPX; /usr/bin/python /home/sfdc-sherpa/myscripts/myqpid.py"]
           ports:
             - containerPort: 2051
             - containerPort: 2054
+            - containerPort: 7022
             # name: http-port
             # containerPort: 7022
           env:
@@ -113,10 +120,10 @@ system:
               value: 2051
             - name: AMQP1
               value: 2054
-            # name: HTTP_PORT
-            # value: 7022
-            - name: QPID_JAVA_HEAPSZ
-              value: 8g
+            - name: HTTPX
+              value: 7022
+            # name: QPID_JAVA_HEAPSZ
+            # value: 8g
           resources:
             limits: { cpu: "8", memory: "16Gi" }
             requests: { cpu: "8", memory: "16Gi" }
@@ -137,15 +144,12 @@ system:
 
         - name: beacon
           image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/servicemesh/beacon:1.0.0
-          command: ["/bin/sleep"]
-          args: ["701000"]
-          #ommand: ["/bin/sh"]
-          #rgs: ["-c", "if [[ $FUNCTION_INSTANCE_NAME = *-0 ]]; then export port=$SHERPA0; export spod=SP1 ; else export port=$SHERPA1 ; export spod=SP2; fi; /usr/bin/java -jar /home/scone/service.jar -path ${SETTINGS_PATH} -spod ${spod} -endpoint samapp/user-vijay-kota/qpid:POD:${port}"]
+          #ommand: ["/bin/sleep"]
+          #rgs: ["701000"]
+          command: ["/bin/sh"]
+          args: ["-c", "if [[ $FUNCTION_INSTANCE_NAME = *-0 ]]; then export c1=qpid-0; export c2=qpid-2; export p=$SHERPA0 ; else export c1=qpid-1; export c2=qpid-3; export p=$SHERPA1 ; fi; /usr/bin/java -jar /home/scone/service.jar -endpoint samapp/user-vijay-kota/${c1}:POD:${p} -endpoint samapp/user-vijay-kota/${c2}:POD:$HTTPX"]
             # -endpoint
             # samapp/$(FUNCTION_NAMESPACE)/$(FUNCTION)-http:DATACENTER_ALLENV:7014
-            # samapp/$(FUNCTION_NAMESPACE)/$(FUNCTION)-https:DATACENTER_ALLENV:7442
-            # -endpoint
-            # samapp/$(FUNCTION_NAMESPACE)/$(FUNCTION):DATACENTER_ALLENV:2050
           env:
             - name: SFDC_ENVIRONMENT
               value: mesh
@@ -153,6 +157,8 @@ system:
               value: 2050
             - name: SHERPA1
               value: 2053
+            - name: HTTPX
+              value: 7442
           livenessProbe:
             initialDelaySeconds: 5
             exec:
@@ -177,8 +183,8 @@ system:
           - containerPort: 2053
           # containerPort: 7014
           # name: http1-in
-          # containerPort: 7442
-          # name: http1-tls-in
+          - containerPort: 7442
+            name: http1-tls-in
           resources:
             limits: { cpu: "1", memory: "1Gi" }
             requests: { cpu: "1", memory: "1Gi" }
@@ -232,6 +238,12 @@ system:
     function: cs55-app
     slbenabled: true
     ports:
+      - port: 2052
+        targetport: 2052
+      - port: 2055
+        targetport: 2055
+      - port: 5442
+        targetport: 5442
       - port: 12345
         targetport: 12345
       - port: 15373
@@ -248,3 +260,5 @@ system:
         targetport: 2053
       - port: 2054
         targetport: 2054
+      - port: 7022
+        targetport: 7022
