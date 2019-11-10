@@ -108,7 +108,7 @@ system:
         - name: qpid
           image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/vijay-kota/myenvoy:10Jul19
           command: ["/bin/sh"]
-          args: ["-c", "if [[ $FUNCTION_INSTANCE_NAME = *-0 ]]; then export AMQP_PORT=$AMQP0 ; else export AMQP_PORT=$AMQP1 ; fi; nohup /usr/bin/python /home/sfdc-sherpa/myscripts/myqpid.py &; export AMQP_PORT=$HTTPX; /usr/bin/python /home/sfdc-sherpa/myscripts/myqpid.py"]
+          args: ["-c", "if [[ $FUNCTION_INSTANCE_NAME = *-0 ]]; then export AMQP_PORT=$AMQP0 ; else export AMQP_PORT=$AMQP1 ; fi ; nohup /usr/bin/python /home/sfdc-sherpa/myscripts/myqpid.py & ; export AMQP_PORT=$HTTPX ; /usr/bin/python /home/sfdc-sherpa/myscripts/myqpid.py"]
           ports:
             - containerPort: 2051
             - containerPort: 2054
@@ -147,7 +147,7 @@ system:
           #ommand: ["/bin/sleep"]
           #rgs: ["701000"]
           command: ["/bin/sh"]
-          args: ["-c", "if [[ $FUNCTION_INSTANCE_NAME = *-0 ]]; then export c1=qpid-0; export c2=qpid-2; export p=$SHERPA0 ; else export c1=qpid-1; export c2=qpid-3; export p=$SHERPA1 ; fi; /usr/bin/java -jar /home/scone/service.jar -endpoint samapp/user-vijay-kota/${c1}:POD:${p} -endpoint samapp/user-vijay-kota/${c2}:POD:$HTTPX"]
+          args: ["-c", "if [[ $FUNCTION_INSTANCE_NAME = *-0 ]]; then export c1=qpid-0 ; export c2=qpid-2 ; export p=$SHERPA0 ; else export c1=qpid-1 ; export c2=qpid-3 ; export p=$SHERPA1 ; fi ; /usr/bin/java -jar /home/scone/service.jar -endpoint samapp/user-vijay-kota/${c1}:POD:${p} -endpoint samapp/user-vijay-kota/${c2}:POD:$HTTPX"]
             # -endpoint
             # samapp/$(FUNCTION_NAMESPACE)/$(FUNCTION)-http:DATACENTER_ALLENV:7014
           env:
