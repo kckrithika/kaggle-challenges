@@ -108,7 +108,7 @@ system:
         - name: qpid
           image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/vijay-kota/myenvoy:10Jul19
           command: ["/bin/sh"]
-          args: ["-c", "if [[ $FUNCTION_INSTANCE_NAME = *-0 ]]; then export AMQP_PORT=$AMQP0 ; else export AMQP_PORT=$AMQP1 ; fi ; nohup /usr/bin/python /home/sfdc-sherpa/myscripts/myqpid.py & ; export AMQP_PORT=$HTTPX ; /usr/bin/python /home/sfdc-sherpa/myscripts/myqpid.py"]
+          args: ["-c", "if [[ $FUNCTION_INSTANCE_NAME = *-0 ]]; then export AMQP_PORT=$AMQP0 ; else export AMQP_PORT=$AMQP1 ; fi ; nohup /usr/bin/python /home/sfdc-sherpa/myscripts/myqpid.py \\& ; export AMQP_PORT=$HTTPX ; /usr/bin/python /home/sfdc-sherpa/myscripts/myqpid.py"]
           ports:
             - containerPort: 2051
             - containerPort: 2054
