@@ -150,7 +150,6 @@ local utils = import "util_functions.jsonnet";
                 # associated conditional logic. That PR will not affect k8s-out, so you can self-approve it.
 
                 # --- flag A (Do not edit ... ---
-                prefetcher_enabled: "this value irrelevant",
                 # --- flag B (these comments ... ---
                 madkub_injector_server_cert: "",
                 # --- flag C (and place only ... ---

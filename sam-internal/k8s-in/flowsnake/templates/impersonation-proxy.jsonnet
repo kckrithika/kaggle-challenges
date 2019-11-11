@@ -1,10 +1,10 @@
 local flowsnake_config = import "flowsnake_config.jsonnet";
 local flowsnake_images = (import "flowsnake_images.jsonnet") + { templateFilename:: std.thisFile };
 local estate = std.extVar("estate");
+local kingdom = std.extVar("kingdom");
 local madkub_common = import "madkub_common.jsonnet";
 local flowsnake_images = import "flowsnake_images.jsonnet";
 local new_std = import "stdlib_0.12.1.jsonnet";
-local pki_kingdom = (if "upcase_pki_kingdom" in flowsnake_images.feature_flags then new_std.asciiUpper(std.extVar("kingdom")) else std.extVar("kingdom"));
 
 # app_name is used internally to identify the Kubernetes resources
 local app_name = "impersonation-proxy";
@@ -55,7 +55,7 @@ else
                                     flowsnake_config.service_mesh_fqdn(flowsnake_config.api_public_name),
                                 ],
                                 "cert-type": cert.type,
-                                kingdom: pki_kingdom,
+                                kingdom: kingdom,
                             },
                         ],
                     }),
