@@ -14,7 +14,6 @@ if (istioPhases.phaseNum == 2) then
     labels: {
       app: "istio",
       release: "istio",
-      "niko/fake.change.for.redeploy": "1",
     },
     name: "istio",
     namespace: "mesh-control-plane",

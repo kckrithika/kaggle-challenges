@@ -303,7 +303,7 @@ if (istioPhases.phaseNum == 1) then
               },
               {
                 name: "ISTIO_META_ROUTER_MODE",
-                value: "standard",
+                value: "sni-dnat",
               },
             ],
             image: "%(istioHub)s/proxy:%(istioTag)s" % mcpIstioConfig,

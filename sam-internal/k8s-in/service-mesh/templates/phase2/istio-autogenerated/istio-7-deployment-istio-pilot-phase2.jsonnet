@@ -15,7 +15,6 @@ if (istioPhases.phaseNum == 2) then
       app: "pilot",
       istio: "pilot",
       release: "istio",
-      "niko/fake.change.for.redeploy": "1",
     },
     name: "istio-pilot",
     namespace: "mesh-control-plane",
@@ -192,7 +191,7 @@ if (istioPhases.phaseNum == 2) then
               },
               {
                 name: "PILOT_ENABLE_PROTOCOL_SNIFFING_FOR_INBOUND",
-                value: "true",
+                value: "false",
               },
             ],
             image: "%(istioHub)s/pilot:%(istioTag)s" % mcpIstioConfig,
