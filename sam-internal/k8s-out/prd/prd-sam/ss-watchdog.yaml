@@ -9,7 +9,7 @@ items:
     name: secretservice-watchdog-crz11
     namespace: sam-system
   spec:
-    replicas: 1
+    replicas: 2
     selector:
       matchLabels:
         name: secretservice-watchdog-crz11
@@ -33,6 +33,16 @@ items:
           sam.data.sfdc.net/owner: secrets
         namespace: sam-system
       spec:
+        affinity:
+          podAntiAffinity:
+            requiredDuringSchedulingIgnoredDuringExecution:
+            - labelSelector:
+                matchExpressions:
+                - key: name
+                  operator: In
+                  values:
+                  - secretservice-watchdog-crz11
+              topologyKey: kubernetes.io/hostname
         containers:
         - args:
           - -ssEndpoint=ops-vaultczar1-1-crz.ops.sfdc.net
@@ -110,6 +120,7 @@ items:
             name: maddog-certs
           - mountPath: /tokens
             name: sam-maddog-token
+        hostNetwork: true
         initContainers:
         - args:
           - /sam/madkub-client
@@ -175,7 +186,7 @@ items:
     name: secretservice-watchdog-crz12
     namespace: sam-system
   spec:
-    replicas: 1
+    replicas: 2
     selector:
       matchLabels:
         name: secretservice-watchdog-crz12
@@ -199,6 +210,16 @@ items:
           sam.data.sfdc.net/owner: secrets
         namespace: sam-system
       spec:
+        affinity:
+          podAntiAffinity:
+            requiredDuringSchedulingIgnoredDuringExecution:
+            - labelSelector:
+                matchExpressions:
+                - key: name
+                  operator: In
+                  values:
+                  - secretservice-watchdog-crz12
+              topologyKey: kubernetes.io/hostname
         containers:
         - args:
           - -ssEndpoint=ops-vaultczar1-2-crz.ops.sfdc.net
@@ -276,6 +297,7 @@ items:
             name: maddog-certs
           - mountPath: /tokens
             name: sam-maddog-token
+        hostNetwork: true
         initContainers:
         - args:
           - /sam/madkub-client
@@ -341,7 +363,7 @@ items:
     name: secretservice-watchdog-crz21
     namespace: sam-system
   spec:
-    replicas: 1
+    replicas: 2
     selector:
       matchLabels:
         name: secretservice-watchdog-crz21
@@ -365,6 +387,16 @@ items:
           sam.data.sfdc.net/owner: secrets
         namespace: sam-system
       spec:
+        affinity:
+          podAntiAffinity:
+            requiredDuringSchedulingIgnoredDuringExecution:
+            - labelSelector:
+                matchExpressions:
+                - key: name
+                  operator: In
+                  values:
+                  - secretservice-watchdog-crz21
+              topologyKey: kubernetes.io/hostname
         containers:
         - args:
           - -ssEndpoint=ops-vaultczar2-1-crz.ops.sfdc.net
@@ -442,6 +474,7 @@ items:
             name: maddog-certs
           - mountPath: /tokens
             name: sam-maddog-token
+        hostNetwork: true
         initContainers:
         - args:
           - /sam/madkub-client
@@ -507,7 +540,7 @@ items:
     name: secretservice-watchdog-crz22
     namespace: sam-system
   spec:
-    replicas: 1
+    replicas: 2
     selector:
       matchLabels:
         name: secretservice-watchdog-crz22
@@ -531,6 +564,16 @@ items:
           sam.data.sfdc.net/owner: secrets
         namespace: sam-system
       spec:
+        affinity:
+          podAntiAffinity:
+            requiredDuringSchedulingIgnoredDuringExecution:
+            - labelSelector:
+                matchExpressions:
+                - key: name
+                  operator: In
+                  values:
+                  - secretservice-watchdog-crz22
+              topologyKey: kubernetes.io/hostname
         containers:
         - args:
           - -ssEndpoint=ops-vaultczar2-2-crz.ops.sfdc.net
@@ -608,6 +651,7 @@ items:
             name: maddog-certs
           - mountPath: /tokens
             name: sam-maddog-token
+        hostNetwork: true
         initContainers:
         - args:
           - /sam/madkub-client
@@ -673,7 +717,7 @@ items:
     name: secretservice-watchdog-dmz-from-prd
     namespace: sam-system
   spec:
-    replicas: 1
+    replicas: 2
     selector:
       matchLabels:
         name: secretservice-watchdog-dmz-from-prd
@@ -697,6 +741,16 @@ items:
           sam.data.sfdc.net/owner: secrets
         namespace: sam-system
       spec:
+        affinity:
+          podAntiAffinity:
+            requiredDuringSchedulingIgnoredDuringExecution:
+            - labelSelector:
+                matchExpressions:
+                - key: name
+                  operator: In
+                  values:
+                  - secretservice-watchdog-dmz-from-prd
+              topologyKey: kubernetes.io/hostname
         containers:
         - args:
           - -ssEndpoint=secretservice.dmz.salesforce.com
@@ -774,6 +828,7 @@ items:
             name: maddog-certs
           - mountPath: /tokens
             name: sam-maddog-token
+        hostNetwork: true
         initContainers:
         - args:
           - /sam/madkub-client
@@ -839,7 +894,7 @@ items:
     name: secretservice-watchdog-prd
     namespace: sam-system
   spec:
-    replicas: 1
+    replicas: 2
     selector:
       matchLabels:
         name: secretservice-watchdog-prd
@@ -863,6 +918,16 @@ items:
           sam.data.sfdc.net/owner: secrets
         namespace: sam-system
       spec:
+        affinity:
+          podAntiAffinity:
+            requiredDuringSchedulingIgnoredDuringExecution:
+            - labelSelector:
+                matchExpressions:
+                - key: name
+                  operator: In
+                  values:
+                  - secretservice-watchdog-prd
+              topologyKey: kubernetes.io/hostname
         containers:
         - args:
           - -ssEndpoint=secretservice-prd.data.sfdc.net
@@ -941,6 +1006,7 @@ items:
             name: maddog-certs
           - mountPath: /tokens
             name: sam-maddog-token
+        hostNetwork: true
         initContainers:
         - args:
           - /sam/madkub-client

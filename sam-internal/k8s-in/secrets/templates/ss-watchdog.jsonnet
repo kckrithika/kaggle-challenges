@@ -2,6 +2,7 @@ local configs = import "config.jsonnet";
 local secretsconfigs = import "secretsconfig.libsonnet";
 local secretsimages = (import "secretsimages.libsonnet") + { templateFilename:: std.thisFile };
 local madkub = (import "secretsmadkub.libsonnet") + { templateFileName:: std.thisFile };
+local secretsflights = (import "secretsflights.jsonnet");
 local utils = import "util_functions.jsonnet";
 
 local certDirs = ["client-certs"];
@@ -145,7 +146,26 @@ local getInstanceDataWithDefaults(instanceTag) = (
 # IP address instead of the pod's IP address and fails the request.
 # As a workaround, use host network for the pod in gia. This ensures the pod's IP address matches the
 # host's IP address, and madkubserver thus allows the request.
-local hostNetworkIfGia = if utils.is_gia(configs.kingdom) then { hostNetwork: true } else {};
+local hostNetworkIfEnabled(canary) = if utils.is_gia(configs.kingdom) || secretsflights.ssWdSecondReplicaEnabled(canary) then { hostNetwork: true } else {};
+
+local podAntiAffinityIfEnabled(podLabel, canary) = if secretsflights.ssWdSecondReplicaEnabled(canary) then {
+  affinity: {
+     podAntiAffinity: {
+        requiredDuringSchedulingIgnoredDuringExecution: [{
+           labelSelector: {
+             matchExpressions: [{
+                key: "name",
+                operator: "In",
+                values: [
+                  podLabel,
+                ],
+             }],
+           },
+        topologyKey: "kubernetes.io/hostname",
+      }],
+     },
+  },
+} else {};
 
 local ssWatchdogDeployment(instanceTag) = configs.deploymentBase("secrets") {
   local instanceData = getInstanceDataWithDefaults(instanceTag),
@@ -157,7 +177,7 @@ local ssWatchdogDeployment(instanceTag) = configs.deploymentBase("secrets") {
     namespace: "sam-system",
   },
   spec+: {
-    replicas: 1,
+    replicas: if secretsflights.ssWdSecondReplicaEnabled(instanceData.canary) then 2 else 1,
     template: {
       metadata: {
         annotations: {
@@ -205,7 +225,8 @@ local ssWatchdogDeployment(instanceTag) = configs.deploymentBase("secrets") {
       }
       + secretsconfigs.nodeSelector
       + secretsconfigs.samPodSecurityContext
-      + hostNetworkIfGia,
+      + hostNetworkIfEnabled(instanceData.canary)
+      + podAntiAffinityIfEnabled(instanceData.name, instanceData.canary),
     },
   },
 };
