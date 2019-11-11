@@ -7,6 +7,7 @@ metadata:
   labels:
     app: pilot
     istio: pilot
+    niko/fake.change.for.redeploy: "1"
     release: istio
   name: istio-pilot
   namespace: mesh-control-plane

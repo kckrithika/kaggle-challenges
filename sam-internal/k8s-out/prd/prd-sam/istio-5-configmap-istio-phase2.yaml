@@ -55,6 +55,7 @@ metadata:
   creationTimestamp: null
   labels:
     app: istio
+    niko/fake.change.for.redeploy: "1"
     release: istio
   name: istio
   namespace: mesh-control-plane

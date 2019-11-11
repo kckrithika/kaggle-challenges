@@ -6,6 +6,7 @@ metadata:
   labels:
     app: sidecarInjectorWebhook
     istio: sidecar-injector
+    niko/fake.change.for.redeploy: "1"
     release: istio
   name: istio-sidecar-injector
   namespace: mesh-control-plane

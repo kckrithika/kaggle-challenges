@@ -41,6 +41,7 @@ spec:
         app: istio-routing-webhook
         cluster: prd-sam_gater
         name: istio-routing-webhook
+        niko/fake.change.for.redeploy: "1"
     spec:
       containers:
       - args:

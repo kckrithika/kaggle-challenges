@@ -15,6 +15,7 @@ if (istioPhases.phaseNum == 2) then
       app: "istio",
       istio: "sidecar-injector",
       release: "istio",
+      "niko/fake.change.for.redeploy": "1",
     },
     name: "istio-sidecar-injector",
     namespace: "mesh-control-plane",

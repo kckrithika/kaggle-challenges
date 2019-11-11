@@ -15,6 +15,7 @@ if (istioPhases.phaseNum == 2) then
       app: "pilot",
       istio: "pilot",
       release: "istio",
+      "niko/fake.change.for.redeploy": "1",
     },
     name: "istio-pilot",
     namespace: "mesh-control-plane",

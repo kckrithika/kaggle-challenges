@@ -14,6 +14,7 @@ if (istioPhases.phaseNum == 2) then
       app: "sidecarInjectorWebhook",
       istio: "sidecar-injector",
       release: "istio",
+      "niko/fake.change.for.redeploy": "1",
     },
     name: "istio-sidecar-injector",
     namespace: "mesh-control-plane",
