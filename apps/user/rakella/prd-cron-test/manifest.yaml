@@ -242,17 +242,17 @@ system:
         pod: cs101
       containers:
         - name: cronsvc
-          image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/rakella/scheduler-service:nov11
+          image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/vijay-kota/cronsvc:05Nov19
           ports:
             - name: grpc-port
               containerPort: 7020
             - name: scone-port
               containerPort: 15374
+          args:
+            - --scheduler.database.url="jdbc:postgresql://10.251.198.91:1521/crondb"
           env:
             - name: SFDC_ENVIRONMENT
-              value: mesh  
-            - name: SCHEDULER_ARGS
-              value: --scheduler.database.url=jdbc:postgresql://10.251.198.91:1521/crondb --scheduler.database.username=cronuser --scheduler.database.password=cron
+              value: mesh              
           #esources:
           # limits: { cpu: "1", memory: "1Gi" }
           # requests: { cpu: "1", memory: "1Gi" }
