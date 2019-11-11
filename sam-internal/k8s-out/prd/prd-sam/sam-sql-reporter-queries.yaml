@@ -1249,7 +1249,7 @@ data:
         },
         {
           "name": "Nodes with cordon or taints",
-          "sql": "select\n\tcontrolEstate,\n\tname,\n\tjson_unquote(json_extract(Payload, concat('$.status.conditions[',substring(json_search(Payload-\u003e\u003e'$.status.conditions', 'one', 'KubeletReady'), 4, 1),'].status'))) as KubeletReady,\n\tpayload-\u003e\u003e'$.spec.unschedulable' as Cordoned,\n\tPayload-\u003e\u003e'$.metadata.labels.\"node.sam.sfdc.net/rack\"' as rack,\n\tPayload-\u003e\u003e'$.spec.taints' as Taints\nfrom\n\tk8s_resource\nwhere\n\tapikind = 'node' and\n\t(Payload-\u003e\u003e'$.spec.taints' is not null or payload-\u003e\u003e'$.spec.unschedulable' is not null)\norder by controlEstate, name"
+          "sql": "select\n\tcontrolEstate,\n\tname,\n\tjson_unquote(json_extract(Payload, concat('$.status.conditions[',substring(json_search(Payload-\u003e\u003e'$.status.conditions', 'one', 'KubeletReady'), 4, 1),'].status'))) as KubeletReady,\n\tPayload-\u003e\u003e'$.metadata.labels.\"node.sam.sfdc.net/rack\"' as rack,\n\tpayload-\u003e\u003e'$.spec.unschedulable' as Cordoned,\n\tPayload-\u003e\u003e'$.spec.taints' as Taints\nfrom\n\tk8s_resource\nwhere\n\tapikind = 'node' and\n\t(Payload-\u003e\u003e'$.spec.taints' is not null or payload-\u003e\u003e'$.spec.unschedulable' is not null)\norder by controlEstate, name"
         }
       ]
     }
