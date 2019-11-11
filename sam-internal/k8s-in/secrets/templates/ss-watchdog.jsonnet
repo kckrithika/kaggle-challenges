@@ -146,7 +146,7 @@ local getInstanceDataWithDefaults(instanceTag) = (
 # IP address instead of the pod's IP address and fails the request.
 # As a workaround, use host network for the pod in gia. This ensures the pod's IP address matches the
 # host's IP address, and madkubserver thus allows the request.
-local hostNetworkIfEnabled(canary) = if utils.is_gia(configs.kingdom) || secretsflights.ssSecondReplicaEnabled(canary) then { hostNetwork: true } else {};
+local hostNetworkIfEnabled(canary) = if utils.is_gia(configs.kingdom) || secretsflights.ssWdSecondReplicaEnabled(canary) then { hostNetwork: true } else {};
 
 local podAntiAffinityIfEnabled(podLabel, canary) = if secretsflights.ssWdSecondReplicaEnabled(canary) then {
   affinity: {
