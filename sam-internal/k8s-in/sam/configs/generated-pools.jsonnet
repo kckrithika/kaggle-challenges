@@ -1615,6 +1615,18 @@
     },
     {
       "namespaces": [
+        "wave-elt"
+      ],
+      "access": [
+        "team/wave-elt"
+      ],
+      "controlEstate": "ia4-sam",
+      "estate": "ia4-sam_datapool",
+      "kingdom": "ia4",
+      "superPod": "None"
+    },
+    {
+      "namespaces": [
         "emp-aqueduct"
       ],
       "access": [
@@ -1704,6 +1716,18 @@
       ],
       "controlEstate": "ia5-sam",
       "estate": "ia5-sam",
+      "kingdom": "ia5",
+      "superPod": "None"
+    },
+    {
+      "namespaces": [
+        "wave-elt"
+      ],
+      "access": [
+        "team/wave-elt"
+      ],
+      "controlEstate": "ia5-sam",
+      "estate": "ia5-sam_datapool",
       "kingdom": "ia5",
       "superPod": "None"
     },
