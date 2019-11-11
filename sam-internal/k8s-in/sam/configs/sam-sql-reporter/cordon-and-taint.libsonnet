@@ -11,6 +11,6 @@ from
 	k8s_resource
 where
 	apikind = 'node' and
-	(Payload->>'$.spec.taints' is not null or payload->>'$.spec.unschedulable' is not null) and controlEstate = 'prd-samtwo'
+	(Payload->>'$.spec.taints' is not null or payload->>'$.spec.unschedulable' is not null)
 order by controlEstate, name",
     }
