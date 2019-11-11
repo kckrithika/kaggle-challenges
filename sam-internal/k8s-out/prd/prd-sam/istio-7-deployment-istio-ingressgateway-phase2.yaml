@@ -6,6 +6,7 @@ metadata:
   labels:
     app: istio-ingressgateway
     istio: ingressgateway
+    niko/fake.change.for.redeploy: "1"
     release: istio
   name: istio-ingressgateway
   namespace: core-on-sam-sp2

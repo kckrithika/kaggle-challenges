@@ -14,6 +14,7 @@ if (istioPhases.phaseNum == 2) then
       app: "istio-ingressgateway",
       istio: "ingressgateway",
       release: "istio",
+      "niko/fake.change.for.redeploy": "1",
     },
     name: "istio-ingressgateway",
     namespace: "core-on-sam-sp2",
