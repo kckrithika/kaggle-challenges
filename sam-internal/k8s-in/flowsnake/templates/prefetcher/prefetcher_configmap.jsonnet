@@ -8,7 +8,7 @@ local images_to_prefetch = [
     ];
 
 
-if ! ("prefetcher_enabled" in flowsnake_images.feature_flags) || flowsnake_config.is_minikube then
+if flowsnake_config.is_minikube then
 "SKIP"
 else
 {
