@@ -14,7 +14,6 @@ if (istioPhases.phaseNum == 2) then
       app: "istio-ingressgateway",
       istio: "ingressgateway",
       release: "istio",
-      "niko/fake.change.for.redeploy": "1",
     },
     name: "istio-ingressgateway",
     namespace: "core-on-sam-sp2",
@@ -304,7 +303,7 @@ if (istioPhases.phaseNum == 2) then
               },
               {
                 name: "ISTIO_META_ROUTER_MODE",
-                value: "standard",
+                value: "sni-dnat",
               },
             ],
             image: "%(istioHub)s/proxy:%(istioTag)s" % mcpIstioConfig,
