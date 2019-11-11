@@ -3,13 +3,13 @@ apiVersion: v1
 system:
   notifications:
     email:
-      - vijay.kota@salesforce.com
+      - rakella@salesforce.com
   functions:
-    - name: cs77-sdb
+    - name: cs101-sdb
       count: 1
       identity:
         serviceName: cronsdb
-        pod: cs77
+        pod: cs101
       containers:
         - name: sdbgo
           image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/vijay-kota/mysdb:05Oct19
@@ -55,11 +55,11 @@ system:
           hostPath:
             path: /home/sfdc-beacon/logs
 
-    - name: cs77-demo
+    - name: cs101-demo
       count: 1
       identity:
         serviceName: crondemo
-        pod: cs77
+        pod: cs101
       containers:
         - name: crondemo
           image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/vijay-kota/crondemo:05Nov19
@@ -72,9 +72,9 @@ system:
             - name: SFDC_ENVIRONMENT
               value: mesh
             - name: DEMO_SVC
-              value: cs77-cron-lb.user-rakella.prd-sam.prd.slb.sfdc.net:7012
+              value: cs101-cron-lb.user-rakella.prd-sam.prd.slb.sfdc.net:7012
             - name: DEMO_DATA
-              value: crondemo_20,http://cs77-demo-lb.user-rakella.prd-sam.prd.slb.sfdc.net:7022/api/v1/demo?q=TWENTY,*/20 * * * * ?,myorg
+              value: crondemo_20,http://cs101-demo-lb.user-rakella.prd-sam.prd.slb.sfdc.net:7022/api/v1/demo?q=TWENTY,*/20 * * * * ?,myorg
           #esources:
           # limits: { cpu: "1", memory: "1Gi" }
           # requests: { cpu: "1", memory: "1Gi" }
@@ -110,11 +110,11 @@ system:
           hostPath:
             path: /home/sfdc-beacon/logs
 
-    - name: cs77-exec
+    - name: cs101-exec
       count: 1
       identity:
         serviceName: cronexec
-        pod: cs77
+        pod: cs101
       containers:
         - name: croncar
           image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/vijay-kota/croncar:01Nov19
@@ -123,7 +123,7 @@ system:
               containerPort: 17020
           command: ["./launcher.sh"]
           args:
-            - --scheduler.service.hostname=cs77-cron-lb.user-rakella.prd-sam.prd.slb.sfdc.net
+            - --scheduler.service.hostname=cs101-cron-lb.user-rakella.prd-sam.prd.slb.sfdc.net
             - --scheduler.service.port=7012
             - --scheduler.client.appserverid=demo
             - --scheduler.client.tpsize=20
@@ -235,14 +235,14 @@ system:
           hostPath:
             path: /home/sfdc-beacon/logs
 
-    - name: cs77-cron
+    - name: cs101-cron
       count: 1
       identity:
         serviceName: cron
-        pod: cs77
+        pod: cs101
       containers:
         - name: cronsvc
-          image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/vijay-kota/cronsvc:05Nov19
+          image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/rakella/scheduler-service:nov11
           ports:
             - name: grpc-port
               containerPort: 7020
@@ -251,10 +251,8 @@ system:
           env:
             - name: SFDC_ENVIRONMENT
               value: mesh  
-            - name: SCHEDULER_DB_URL
-              value: jdbc:postgresql://10.251.198.91:1521/crondb    
-          args:
-            - --scheduler.database.url=$(SCHEDULER_DB_URL)                                     
+            - name: SCHEDULER_ARGS
+              value: --scheduler.database.url=jdbc:postgresql://10.251.198.91:1521/crondb --scheduler.database.username=cronuser --scheduler.database.password=cron
           #esources:
           # limits: { cpu: "1", memory: "1Gi" }
           # requests: { cpu: "1", memory: "1Gi" }
@@ -277,7 +275,7 @@ system:
           image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/servicemesh/beacon:1.0.0
           command: ["/bin/sh"]
           # BUMP UP cluster# with each deployment for debuggability
-          args: ["-c", "export port=$GRPC_PORT ; /usr/bin/java -jar /home/scone/service.jar -endpoint cron-cluster-cs77:POD:${port}"]
+          args: ["-c", "export port=$GRPC_PORT ; /usr/bin/java -jar /home/scone/service.jar -endpoint cron-cluster-cs101:POD:${port}"]
             # -endpoint
             # samapp/$(FUNCTION_NAMESPACE)/$(FUNCTION)-http:DATACENTER_ALLENV:7014
             # samapp/$(FUNCTION_NAMESPACE)/$(FUNCTION)-https:DATACENTER_ALLENV:7442
@@ -355,22 +353,22 @@ system:
             path: /home/sfdc-beacon/logs
 
   loadbalancers:
-  - lbname: cs77-sdb-lb
-    function: cs77-sdb
+  - lbname: cs101-sdb-lb
+    function: cs101-sdb
     slbenabled: true
     ports:
       - port: 1521
         targetport: 1521
-  - lbname: cs77-demo-lb
-    function: cs77-demo
+  - lbname: cs101-demo-lb
+    function: cs101-demo
     slbenabled: true
     ports:
       - port: 7022
         targetport: 7022
       - port: 15372
         targetport: 15372
-  - lbname: cs77-exec-lb
-    function: cs77-exec
+  - lbname: cs101-exec-lb
+    function: cs101-exec
     slbenabled: true
     ports:
       - port: 7022
@@ -381,8 +379,8 @@ system:
       # targetport: 15373
       - port: 17020
         targetport: 17020
-  - lbname: cs77-cron-lb
-    function: cs77-cron
+  - lbname: cs101-cron-lb
+    function: cs101-cron
     slbenabled: true
     ports:
       - port: 7012
