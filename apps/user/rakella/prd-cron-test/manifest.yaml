@@ -248,6 +248,7 @@ system:
               containerPort: 7020
             - name: scone-port
               containerPort: 15374
+          command: ["./launcher.sh"]
           args:
             - --scheduler.database.url="jdbc:postgresql://10.251.198.91:1521/crondb"
           env:
