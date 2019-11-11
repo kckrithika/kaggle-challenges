@@ -1,13 +1,16 @@
 {
     name: "Nodes with broken POD network connectivity",
-    sql: "select NodeName, ControlEstate, datediff(utc_timestamp(),str_to_date(Payload->>'$.metadata.creationTimestamp','%Y-%m-%dT%H:%i:%sZ')) AS NodeAgeInDays, HasUnHealthyCrd, 
-	json_extract(Payload, concat('$.status.conditions[',substring(json_search(Payload->>'$.status.conditions', 'one', 'KubeletReady'), 4, 1),'].status')) as KubeletReady,
-case
-    when substring(ControlEstate,1,3) in ('CDU','HIO','SYD','TTD','WAX','YHU','YUL') then 'AWS'
-    when substring(ControlEstate,1,3) in ('DFW','FRF','HND','IAD','ORD','PAR','PHX','PRD','UKB','XRD') then 'v14.2'
-    when substring(ControlEstate,1,3) in ('CDG','FRA','IA2','IA4','IA5','LO2','LO3','PH2','RD1','RZ1') then 'v17.x'
-    else 'Unknown'
-end as NetworkVersion 
+    sql: "select ControlEstate, NodeName, datediff(utc_timestamp(),str_to_date(Payload->>'$.metadata.creationTimestamp','%Y-%m-%dT%H:%i:%sZ')) AS NodeAgeInDays, HasUnHealthyCrd, 
+	json_unquote(json_extract(Payload, concat('$.status.conditions[',substring(json_search(Payload->>'$.status.conditions', 'one', 'KubeletReady'), 4, 1),'].status'))) as KubeletReady,
+	case
+    	when substring(ControlEstate,1,3) in ('CDU','HIO','SYD','TTD','WAX','YHU','YUL') then 'AWS'
+    	when substring(ControlEstate,1,3) in ('DFW','FRF','HND','IAD','ORD','PAR','PHX','PRD','UKB','XRD') then 'v14.2'
+    	when substring(ControlEstate,1,3) in ('CDG','FRA','IA2','IA4','IA5','LO2','LO3','PH2','RD1','RZ1') then 'v17.x'
+    	else 'Unknown'
+	end as NetworkVersion,
+	Payload->>'$.metadata.labels.\"node.sam.sfdc.net/rack\"' as rack,
+	payload->>'$.spec.unschedulable' as Cordoned,
+	Payload->>'$.spec.taints' as Taints
 from (
 
 select NodeName, sum(HasHealthyCrd) as HasHealthyCrd, sum(HasUnHealthyCrd) as HasUnHealthyCrd, sum(HasRunningPod) as HasRunningPod from (
@@ -41,5 +44,5 @@ having HasHealthyCrd <> 1) sq2
 left join k8s_resource 
 on sq2.NodeName=k8s_resource.Name
 where apikind='Node' and Name not like '%slbminion%'
-order by ControlEstate",
+order by ControlEstate, NodeName",
 }
