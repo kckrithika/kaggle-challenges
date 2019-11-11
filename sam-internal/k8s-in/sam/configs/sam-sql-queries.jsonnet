@@ -79,6 +79,7 @@ local utils = import "util_functions.jsonnet";
         (import "sam-sql-reporter/stuck-init-container-including-madkub.libsonnet"),
         (import "sam-sql-reporter/nodes-cannot-report-connectivity.libsonnet"),
         (import "sam-sql-reporter/minion-pool-availability.libsonnet"),
+        (import "sam-sql-reporter/cordon-and-taint.libsonnet"),
        ],
     ]),
 }

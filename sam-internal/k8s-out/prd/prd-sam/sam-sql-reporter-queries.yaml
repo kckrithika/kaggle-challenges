@@ -1246,6 +1246,10 @@ data:
         {
           "name": "Minion-Pool-Availability",
           "sql": "select\n\tcontrolEstate,\n\tpool,\n\tsum(case when KubeletReady = 'True' then 1 else 0 end) as ReadyCount,\n\tsum(case when KubeletReady = 'True' then 0 else 1 end) as NotReadyCount,\n\tcase when sum(case when KubeletReady = 'True' then 1 else 0 end) = 0 then 'RED' else '' end as PoolHasMinAvailability\nfrom (\nselect\n\tcontrolEstate,\n\tPayload-\u003e\u003e'$.metadata.labels.pool' as pool,\n\tjson_unquote(json_extract(Payload, concat('$.status.conditions[',substring(json_search(Payload-\u003e\u003e'$.status.conditions', 'one', 'KubeletReady'), 4, 1),'].status'))) as KubeletReady\nfrom k8s_resource\nwhere apiKind = 'Node' and (ControlEstate not like 'prd%') and (ControlEstate not like 'xrd%')\n) as ss\nwhere pool not like '%ceph%' and pool not like '%chatbot%' and pool not like '%sfstore%'\ngroup by controlEstate, pool\norder by ReadyCount"
+        },
+        {
+          "name": "Nodes with cordon or taints",
+          "sql": "select\n\tcontrolEstate,\n\tname,\n\tjson_unquote(json_extract(Payload, concat('$.status.conditions[',substring(json_search(Payload-\u003e\u003e'$.status.conditions', 'one', 'KubeletReady'), 4, 1),'].status'))) as KubeletReady,\n\tpayload-\u003e\u003e'$.spec.unschedulable' as Cordoned,\n\tPayload-\u003e\u003e'$.spec.taints' as Taints\nfrom\n\tk8s_resource\nwhere\n\tapikind = 'node' and\n\t(Payload-\u003e\u003e'$.spec.taints' is not null or payload-\u003e\u003e'$.spec.unschedulable' is not null)\norder by controlEstate, name"
         }
       ]
     }
