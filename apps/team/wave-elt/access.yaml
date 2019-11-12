@@ -3,7 +3,8 @@
 # Admins are responsible for ensuring only approved changes are made during moratoriums.  See https://sfdc.co/sam-admins
 admins:
 #  - afield
-#  - agitelman
+  - agitelman
+  - mbyne
  
 users:
   - afield 
@@ -16,6 +17,7 @@ users:
   - spetschulat
   - stuart.jackson
   - mbyne
+  - bzenger
 
 # Service Accounts
   - svc.atf.user
