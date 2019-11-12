@@ -130,7 +130,7 @@ items:
             valueFrom:
               fieldRef:
                 fieldPath: spec.nodeName
-          image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/slb/hyperslb:2280-6728d98d50b4d61992ce01b456c568dd1bc64dcc
+          image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/slb/hyperslb:2282-b207005f44671a344a0f2e5cd3371b028b31d65f
           livenessProbe:
             httpGet:
               path: /liveness-probe
@@ -489,7 +489,7 @@ items:
             valueFrom:
               fieldRef:
                 fieldPath: spec.nodeName
-          image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/slb/hyperslb:2280-6728d98d50b4d61992ce01b456c568dd1bc64dcc
+          image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/slb/hyperslb:2282-b207005f44671a344a0f2e5cd3371b028b31d65f
           livenessProbe:
             httpGet:
               path: /liveness-probe
@@ -848,7 +848,7 @@ items:
             valueFrom:
               fieldRef:
                 fieldPath: spec.nodeName
-          image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/slb/hyperslb:2280-6728d98d50b4d61992ce01b456c568dd1bc64dcc
+          image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/slb/hyperslb:2282-b207005f44671a344a0f2e5cd3371b028b31d65f
           livenessProbe:
             httpGet:
               path: /liveness-probe
@@ -1207,7 +1207,7 @@ items:
             valueFrom:
               fieldRef:
                 fieldPath: spec.nodeName
-          image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/slb/hyperslb:2280-6728d98d50b4d61992ce01b456c568dd1bc64dcc
+          image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/slb/hyperslb:2282-b207005f44671a344a0f2e5cd3371b028b31d65f
           livenessProbe:
             httpGet:
               path: /liveness-probe
@@ -1566,7 +1566,7 @@ items:
             valueFrom:
               fieldRef:
                 fieldPath: spec.nodeName
-          image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/slb/hyperslb:2280-6728d98d50b4d61992ce01b456c568dd1bc64dcc
+          image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/slb/hyperslb:2282-b207005f44671a344a0f2e5cd3371b028b31d65f
           livenessProbe:
             httpGet:
               path: /liveness-probe
@@ -1925,7 +1925,7 @@ items:
             valueFrom:
               fieldRef:
                 fieldPath: spec.nodeName
-          image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/slb/hyperslb:2280-6728d98d50b4d61992ce01b456c568dd1bc64dcc
+          image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/slb/hyperslb:2282-b207005f44671a344a0f2e5cd3371b028b31d65f
           livenessProbe:
             httpGet:
               path: /liveness-probe
@@ -2284,7 +2284,7 @@ items:
             valueFrom:
               fieldRef:
                 fieldPath: spec.nodeName
-          image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/slb/hyperslb:2280-6728d98d50b4d61992ce01b456c568dd1bc64dcc
+          image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/slb/hyperslb:2282-b207005f44671a344a0f2e5cd3371b028b31d65f
           livenessProbe:
             httpGet:
               path: /liveness-probe
@@ -2643,7 +2643,7 @@ items:
             valueFrom:
               fieldRef:
                 fieldPath: spec.nodeName
-          image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/slb/hyperslb:2280-6728d98d50b4d61992ce01b456c568dd1bc64dcc
+          image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/slb/hyperslb:2282-b207005f44671a344a0f2e5cd3371b028b31d65f
           livenessProbe:
             httpGet:
               path: /liveness-probe
@@ -3002,7 +3002,7 @@ items:
             valueFrom:
               fieldRef:
                 fieldPath: spec.nodeName
-          image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/slb/hyperslb:2280-6728d98d50b4d61992ce01b456c568dd1bc64dcc
+          image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/slb/hyperslb:2282-b207005f44671a344a0f2e5cd3371b028b31d65f
           livenessProbe:
             httpGet:
               path: /liveness-probe
@@ -3361,7 +3361,7 @@ items:
             valueFrom:
               fieldRef:
                 fieldPath: spec.nodeName
-          image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/slb/hyperslb:2280-6728d98d50b4d61992ce01b456c568dd1bc64dcc
+          image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/slb/hyperslb:2282-b207005f44671a344a0f2e5cd3371b028b31d65f
           livenessProbe:
             httpGet:
               path: /liveness-probe
@@ -3720,7 +3720,7 @@ items:
             valueFrom:
               fieldRef:
                 fieldPath: spec.nodeName
-          image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/slb/hyperslb:2280-6728d98d50b4d61992ce01b456c568dd1bc64dcc
+          image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/slb/hyperslb:2282-b207005f44671a344a0f2e5cd3371b028b31d65f
           livenessProbe:
             httpGet:
               path: /liveness-probe
@@ -4079,7 +4079,7 @@ items:
             valueFrom:
               fieldRef:
                 fieldPath: spec.nodeName
-          image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/slb/hyperslb:2280-6728d98d50b4d61992ce01b456c568dd1bc64dcc
+          image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/slb/hyperslb:2282-b207005f44671a344a0f2e5cd3371b028b31d65f
           livenessProbe:
             httpGet:
               path: /liveness-probe
@@ -4438,7 +4438,7 @@ items:
             valueFrom:
               fieldRef:
                 fieldPath: spec.nodeName
-          image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/slb/hyperslb:2280-6728d98d50b4d61992ce01b456c568dd1bc64dcc
+          image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/slb/hyperslb:2282-b207005f44671a344a0f2e5cd3371b028b31d65f
           livenessProbe:
             httpGet:
               path: /liveness-probe
@@ -4797,7 +4797,7 @@ items:
             valueFrom:
               fieldRef:
                 fieldPath: spec.nodeName
-          image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/slb/hyperslb:2280-6728d98d50b4d61992ce01b456c568dd1bc64dcc
+          image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/slb/hyperslb:2282-b207005f44671a344a0f2e5cd3371b028b31d65f
           livenessProbe:
             httpGet:
               path: /liveness-probe
@@ -5156,7 +5156,7 @@ items:
             valueFrom:
               fieldRef:
                 fieldPath: spec.nodeName
-          image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/slb/hyperslb:2280-6728d98d50b4d61992ce01b456c568dd1bc64dcc
+          image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/slb/hyperslb:2282-b207005f44671a344a0f2e5cd3371b028b31d65f
           livenessProbe:
             httpGet:
               path: /liveness-probe
@@ -5515,7 +5515,7 @@ items:
             valueFrom:
               fieldRef:
                 fieldPath: spec.nodeName
-          image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/slb/hyperslb:2280-6728d98d50b4d61992ce01b456c568dd1bc64dcc
+          image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/slb/hyperslb:2282-b207005f44671a344a0f2e5cd3371b028b31d65f
           livenessProbe:
             httpGet:
               path: /liveness-probe
@@ -5874,7 +5874,7 @@ items:
             valueFrom:
               fieldRef:
                 fieldPath: spec.nodeName
-          image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/slb/hyperslb:2280-6728d98d50b4d61992ce01b456c568dd1bc64dcc
+          image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/slb/hyperslb:2282-b207005f44671a344a0f2e5cd3371b028b31d65f
           livenessProbe:
             httpGet:
               path: /liveness-probe
