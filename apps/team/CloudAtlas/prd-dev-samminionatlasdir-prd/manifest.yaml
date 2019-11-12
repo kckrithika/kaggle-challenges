@@ -83,13 +83,11 @@ system:
     # Cloud Atlas Directory Server 
     #####################################################################################
     - name: cloudatlas-pdm-install
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cloud-atlas/cloudatlas/cloudatlas-pdm:b94c4ff
+      image: sfci/cloud-atlas/cloudatlas/cloudatlas-pdm:3.7.0rc1
       command: ["/opt/pdm/pdm.customer/bin/entrypoint.sh"]
       env:
-      - name: UBID_REMOVE_EXISTING
-        value: TRUE
       - name: UBID_DEPLOYMENT_STAGE
-        value: NONE
+        value: ALL
       - name: AWS_BACKUP_S3_BUCKET
         value: cloud-atlas-dev-backup-us-east-1
       - name: PUBLIC_PROXY_URL
@@ -124,17 +122,7 @@ system:
       livenessProbe:
         exec:
           command:
-          - /opt/pdm/pdm.customer/bin/is-alive.sh
-        initialDelaySeconds: 60
-        periodSeconds: 30
-      readinessProbe:
-        exec:
-          command:
-          - cat
-          - /tmp/ready
-        initialDelaySeconds: 60
-        periodSeconds: 5
-        failureThreshold: 120
+          - /bin/true
     #####################################################################################
     # Volumes Needed
     #####################################################################################
