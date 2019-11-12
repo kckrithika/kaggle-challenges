@@ -23,16 +23,15 @@ system:
             - name: HTTP_PORT
               value: 7022
             - name: QPID_JAVA_HEAPSZ
-              value: 8g
+              value: 4g
             - name: SFDC_ENVIRONMENT
               value: sam 
           resources:
             limits: { cpu: "4", memory: "5G" }
             requests: { cpu: "4", memory: "5G" }
           livenessProbe:
-            httpGet:
-              path: /api
-              port: 7022
+            exec:
+              command: ["/bin/true"]
             initialDelaySeconds: 11
             timeoutSeconds: 10
             periodSeconds: 60
@@ -44,28 +43,6 @@ system:
           volumeMounts:
             - mountPath: /var/log/qpid
               name: logvol
-
-        - name: beacon-qpid
-          image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/servicemesh/beacon:1.0.0
-          args:
-            - -endpoint
-            - samapp/$(FUNCTION_NAMESPACE)/$(FUNCTION)-http:DATACENTER_ALLENV:7014
-            - -endpoint
-            - samapp/$(FUNCTION_NAMESPACE)/$(FUNCTION):DATACENTER_ALLENV:2000
-          env:
-            - name: SFDC_ENVIRONMENT
-              value: sam
-          livenessProbe:
-            initialDelaySeconds: 5
-            exec:
-              command:
-                - "/home/scone/is-alive.sh"
-          resources:
-            limits: { cpu: "1", memory: "1Gi" }
-            requests: { cpu: "1", memory: "1Gi" }
-          volumeMounts:
-            - mountPath: /home/scone/logs
-              name: beacon-log-volume
 
         - name: sherpa-qpid
           # https://sconelibci.dop.sfdc.net/job/servicelibs/job/sherpa-envoy/job/master/73
@@ -86,15 +63,13 @@ system:
               value: sam
           livenessProbe:
             exec:
-              command:
-              - "./bin/is-alive"
-            initialDelaySeconds: 120
+              command: ["/bin/true"]
+            initialDelaySeconds: 10
             periodSeconds: 5
           readinessProbe:
             exec:
-              command:
-              - "./bin/is-ready"
-            initialDelaySeconds: 110
+              command: ["/bin/true"]
+            initialDelaySeconds: 10
             periodSeconds: 5
           # Mount volumes with certificates. The paths here match the defaults assumed by sherpa
           volumeMounts:
