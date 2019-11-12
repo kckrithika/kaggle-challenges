@@ -38,8 +38,7 @@ system:
             periodSeconds: 60
           readinessProbe:
             exec:
-              command:
-                  - /opt/qpid/bin/readiness-probe.sh
+              command: ["/bin/true"]
             initialDelaySeconds: 10
             timeoutSeconds: 10
           volumeMounts:
