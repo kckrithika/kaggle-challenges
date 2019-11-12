@@ -7,7 +7,7 @@ metadata:
   name: secretservice-watchdog-dmz-from-phx
   namespace: sam-system
 spec:
-  replicas: 1
+  replicas: 2
   selector:
     matchLabels:
       name: secretservice-watchdog-dmz-from-phx
@@ -31,6 +31,16 @@ spec:
         sam.data.sfdc.net/owner: secrets
       namespace: sam-system
     spec:
+      affinity:
+        podAntiAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+          - labelSelector:
+              matchExpressions:
+              - key: name
+                operator: In
+                values:
+                - secretservice-watchdog-dmz-from-phx
+            topologyKey: kubernetes.io/hostname
       containers:
       - args:
         - -ssEndpoint=secretservice.dmz.salesforce.com
@@ -58,7 +68,7 @@ spec:
           valueFrom:
             fieldRef:
               fieldPath: spec.nodeName
-        image: ops0-artifactrepo1-0-phx.data.sfdc.net/dva/secretservice-watchdog:160-a45390f17bb5df789e408239a0f974250d3a16d6
+        image: ops0-artifactrepo1-0-phx.data.sfdc.net/dva/secretservice-watchdog:163-4903b141cdb7bb23704c19e65b94eb09bc1515e9
         name: watchdog
         volumeMounts:
         - mountPath: /sfdchosts
@@ -103,6 +113,7 @@ spec:
           name: maddog-certs
         - mountPath: /tokens
           name: sam-maddog-token
+      hostNetwork: true
       initContainers:
       - args:
         - /sam/madkub-client
