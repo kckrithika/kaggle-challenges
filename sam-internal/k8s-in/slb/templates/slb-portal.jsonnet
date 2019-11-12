@@ -93,7 +93,7 @@ if slbconfigs.isSlbEstate && configs.estate != "prd-samtest" then configs.deploy
                           slbshared.slbConfigProcessor(slbports.slb.slbConfigProcessorLivenessProbePort),
                           ]
                           + (
-                              if (configs.estate != "prd-sdc") then
+                              if (configs.estate != "prd-sdc" && configs.estate != "prd-sam") then
                                 [slbshared.slbCleanupConfig]
 
                                else []

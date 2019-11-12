@@ -44,7 +44,7 @@ if slbconfigs.isSlbEstate then configs.daemonSetBase("slb") {
                     ]
                     +
                     (
-                     if (configs.estate != "prd-sdc") then
+                     if (configs.estate != "prd-sdc" && configs.estate != "prd-sam") then
                       [slbshared.slbCleanupConfig]
 
                   else []

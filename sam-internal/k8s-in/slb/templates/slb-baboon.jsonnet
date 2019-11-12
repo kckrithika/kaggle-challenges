@@ -93,7 +93,7 @@ if (slbconfigs.isTestEstate || configs.estate == "prd-sam") && configs.estate !=
                     slbshared.slbConfigProcessor(portconfigs.slb.slbConfigProcessorLivenessProbePort),
                     ]
                     + (
-                  if (configs.estate != "prd-sdc") then
+                  if (configs.estate != "prd-sdc" && configs.estate != "prd-sam") then
                       [slbshared.slbCleanupConfig]
 
                   else []
