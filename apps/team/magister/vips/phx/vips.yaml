@@ -3,6 +3,7 @@
   cnames:
    - cname: sec0-magister1-0-phx.data.sfdc.net
   servers:
+   - sec0-magisterca1-1-phx.ops.sfdc.net  
    - sec0-magisterca1-2-phx.ops.sfdc.net
    - sec0-magisterca2-1-phx.ops.sfdc.net
    - sec0-magisterca2-2-phx.ops.sfdc.net
