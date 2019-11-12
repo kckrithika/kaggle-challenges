@@ -812,7 +812,8 @@ data:
     inboundClusterStatName: "local_service.%%SERVICE_PORT%%"
     outboundClusterStatName: "%%SERVICE%%.%%SERVICE_PORT%%"
     defaultConfig:
-      concurrency: 0
+      # Set concurrency to 8 based on the gater-perf tests. If set to zero, the number of `resource.limits.cpus` from a pod spec will be used as concurrency
+      concurrency: 8
       connectTimeout: 10s
       configPath: "/etc/istio/proxy"
       binaryPath: "/usr/local/bin/envoy"
