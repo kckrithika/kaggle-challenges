@@ -1,0 +1,22 @@
+apiVersion: v1
+system:
+  functions:
+  - name: default
+    count: 1
+    containers:
+    - name: cs-strata-docker-test
+      image: dva/cs-strata-docker-test:22
+      ports:
+      - containerPort: 9090
+      livenessProbe:
+        httpGet:
+          path: /
+          port: 9090
+  loadbalancers:
+  - lbname: cs-strata-docker-test-lb
+    function: default
+    slbenabled: true
+    ports:
+      - port: 9090
+        targetport: 9090
+
