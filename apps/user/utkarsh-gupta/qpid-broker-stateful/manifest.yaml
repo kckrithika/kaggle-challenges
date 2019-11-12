@@ -13,10 +13,10 @@ system:
           ports:
             - name: amqp-port
               containerPort: 2001
-              hostPort: 1002
+              hostPort: 9002
             - name: http-port
               containerPort: 7022
-              hostPort: 1003
+              hostPort: 9003
           env:
             - name: AMQP_PORT
               value: 2001
