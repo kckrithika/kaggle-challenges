@@ -16,7 +16,7 @@ system:
               hostPort: 2002
             - name: http-port
               containerPort: 7022
-              hostPort: 5000
+              hostPort: 5001
           env:
             - name: AMQP_PORT
               value: 2001
@@ -27,8 +27,8 @@ system:
             - name: SFDC_ENVIRONMENT
               value: sam 
           resources:
-            limits: { cpu: "8", memory: "16Gi" }
-            requests: { cpu: "8", memory: "16Gi" }
+            limits: { cpu: "4", memory: "5G" }
+            requests: { cpu: "4", memory: "5G" }
           livenessProbe:
             httpGet:
               path: /api
