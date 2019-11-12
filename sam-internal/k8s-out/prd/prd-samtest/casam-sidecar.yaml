@@ -20,10 +20,16 @@ spec:
     - app/*
     - casam/*
     - ccait/*
+    - cloudatlas/*
     - core-on-sam-sp2/*
     - emailinfra/*
     - funnel/*
     - gater/*
+    - gateway/*
+    - retail-cre/*
+    - retail-dfs/*
+    - retail-mds/*
+    - retail-rsui/*
     - scone/*
     - search-scale-safely/*
     - service-mesh/*
