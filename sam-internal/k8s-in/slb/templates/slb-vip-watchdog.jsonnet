@@ -132,7 +132,14 @@ if slbconfigs.isSlbEstate then configs.deploymentBase("slb") {
                               ],
                           } + configs.ipAddressResourceRequest,
                           slbshared.slbConfigProcessor(slbports.slb.slbConfigProcessorLivenessProbePort),
-                          slbshared.slbCleanupConfig,
+                          ]
+                          +
+                          (
+                  if (configs.estate != "prd-sdc") then
+                      [slbshared.slbCleanupConfig]
+
+                  else []
+                ) + [
                           slbshared.slbNodeApi(slbports.slb.slbNodeApiPort, true),
                           slbshared.slbLogCleanup,
                           slbshared.slbManifestWatcher(),

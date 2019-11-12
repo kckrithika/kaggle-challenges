@@ -60,7 +60,14 @@ if slbconfigs.isSlbEstate && slbflights.enableIWDHealth then configs.daemonSetBa
                             configs.kube_config_env,
                         ],
                     } + configs.ipAddressResourceRequest,
-                    slbshared.slbCleanupConfig,
+                    ]
+                    + (
+                  if (configs.estate != "prd-sdc") then
+                      [slbshared.slbCleanupConfig]
+
+                  else []
+                )
+                + [
                     slbshared.slbLogCleanup,
                 ],
                 nodeSelector: {

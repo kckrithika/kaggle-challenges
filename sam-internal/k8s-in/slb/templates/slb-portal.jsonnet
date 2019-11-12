@@ -91,11 +91,18 @@ if slbconfigs.isSlbEstate && configs.estate != "prd-samtest" then configs.deploy
                               ],
                           } + configs.ipAddressResourceRequest + healthProbes,
                           slbshared.slbConfigProcessor(slbports.slb.slbConfigProcessorLivenessProbePort),
-                          slbshared.slbCleanupConfig,
-                          slbshared.slbNodeApi(slbports.slb.slbNodeApiPort, true),
-                          slbshared.slbLogCleanup,
-                          madkub.madkubRefreshContainer(certDirs),
-                          slbshared.slbManifestWatcher(),
+                          ]
+                          + (
+                              if (configs.estate != "prd-sdc") then
+                                [slbshared.slbCleanupConfig]
+
+                               else []
+                            )
+                          + [
+slbshared.slbNodeApi(slbports.slb.slbNodeApiPort, true),
+                              slbshared.slbLogCleanup,
+                              madkub.madkubRefreshContainer(certDirs),
+                              slbshared.slbManifestWatcher(),
                       ],
                       nodeSelector: { pool: slbconfigs.slbEstate },
                       initContainers: [
