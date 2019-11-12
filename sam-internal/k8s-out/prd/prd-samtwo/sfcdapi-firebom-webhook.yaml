@@ -77,13 +77,20 @@ items:
                       "default-read-id": "test",
                       "env-type-hierarchies": {
                           "default": {
+                              "canary": {
+                                  "add-promotion-stage": true,
+                                  "depends-on": [
+                                      "test"
+                                  ],
+                                  "skip-promotion-wait": false
+                              },
                               "dev": {
                                   "add-promotion-stage": false
                               },
                               "prod": {
                                   "add-promotion-stage": true,
                                   "depends-on": [
-                                      "test"
+                                      "canary"
                                   ],
                                   "skip-promotion-wait": false
                               },
@@ -364,7 +371,7 @@ items:
                 fieldPath: metadata.labels['name']
           - name: CONFIG_VERSION
             value: "9"
-          image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/sfcdapi-firebom:72
+          image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/sfcdapi-firebom:75
           imagePullPolicy: Always
           livenessProbe:
             failureThreshold: 10
