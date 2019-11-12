@@ -12,8 +12,13 @@
         'add-promotion-stage': true,
         'skip-promotion-wait': true
       },
-      'prod': {
+      'canary': {
         'depends-on': ['test'],
+        'add-promotion-stage': true,
+        'skip-promotion-wait': false
+      },
+      'prod': {
+        'depends-on': ['canary'],
         'add-promotion-stage': true,
         'skip-promotion-wait': false
       }
