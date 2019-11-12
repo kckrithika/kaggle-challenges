@@ -52,7 +52,15 @@
               slbports.slb.slbConfigProcessorLivenessProbePort,
               supportedProxies=supportedProxies
             ),
-            slbshared.slbCleanupConfig,
+            ]
+            +
+               (
+                  if (configs.estate != "prd-sdc") then
+                      [slbshared.slbCleanupConfig]
+
+                  else []
+                )
+            + [
             slbshared.slbNodeApi(slbports.slb.slbNodeApiPort, true),
             slbshared.slbRealSvrCfg(slbports.slb.slbNodeApiPort, true, deleteLimitOverride=deleteLimitOverride),
             slbshared.slbLogCleanup,

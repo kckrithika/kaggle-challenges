@@ -40,7 +40,15 @@ if slbconfigs.isSlbEstate then configs.daemonSetBase("slb") {
                 containers: [
                     slbshared.slbIfaceProcessor(slbports.slb.slbNodeApiIfaceOverridePort),
                     slbshared.slbConfigProcessor(slbports.slb.slbConfigProcessorIfaceLivenessProbeOverridePort),
-                    slbshared.slbCleanupConfig,
+                    ]
+
+                    + (
+                  if (configs.estate != "prd-sdc") then
+                      [slbshared.slbCleanupConfig]
+
+                  else []
+                )
+                + [
                     slbshared.slbNodeApi(slbports.slb.slbNodeApiIfaceOverridePort, false),
                     slbshared.slbLogCleanup,
                 ],

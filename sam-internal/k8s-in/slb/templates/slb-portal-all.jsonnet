@@ -106,8 +106,15 @@ local deployments = [
                                     vipLocationName=vipLocation,
                                     pseudoApiServer=pseudoApiServerLink
                                 ),
-                                slbshared.slbCleanupConfig,
-                                slbshared.slbNodeApi(slbports.slb.slbNodeApiPort, true),
+]
+                                + (
+                  if (configs.estate != "prd-sdc") then
+                      [slbshared.slbCleanupConfig]
+
+                  else []
+                ) +
+                  [
+                               slbshared.slbNodeApi(slbports.slb.slbNodeApiPort, true),
                                 slbshared.slbLogCleanup,
                                 madkub.madkubRefreshContainer(certDirs),
                                 slbshared.slbManifestWatcher(includeSlbPortalOverride=slbconfigs.isSlbAggregatedPortalEstate, vipLocationName=vipLocation),

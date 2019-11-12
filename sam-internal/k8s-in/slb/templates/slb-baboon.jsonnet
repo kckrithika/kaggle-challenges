@@ -91,7 +91,13 @@ if (slbconfigs.isTestEstate || configs.estate == "prd-sam") && configs.estate !=
                         ],
                     } + configs.ipAddressResourceRequest,
                     slbshared.slbConfigProcessor(portconfigs.slb.slbConfigProcessorLivenessProbePort),
-                    slbshared.slbCleanupConfig,
+                    ]
+                    + (
+                  if (configs.estate != "prd-sdc") then
+                      [slbshared.slbCleanupConfig]
+
+                  else []
+                ) + [
                     slbshared.slbNodeApi(portconfigs.slb.slbNodeApiPort, false),
                     slbshared.slbLogCleanup,
                 ],

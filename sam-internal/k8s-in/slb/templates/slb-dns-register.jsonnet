@@ -89,7 +89,15 @@ if slbconfigs.isSlbEstate then configs.deploymentBase("slb") {
                                       }
                                       + configs.ipAddressResourceRequest,
                                       slbshared.slbConfigProcessor(portconfigs.slb.slbConfigProcessorDnsLivenessProbeOverridePort),
-                                      slbshared.slbCleanupConfig,
+                                      ]
+                                      +
+                                      (
+                                          if (configs.estate != "prd-sdc") then
+                                             [slbshared.slbCleanupConfig]
+
+                                        else []
+                                      )
+                                      + [
                                       slbshared.slbLogCleanup,
                                       slbshared.slbNodeApi(portconfigs.slb.slbNodeApiDnsOverridePort, true),
                                       madkub.madkubRefreshContainer(certDirs),
