@@ -187,7 +187,7 @@ global:
         memory: 128Mi
       limits:
         # This will affect --concurrency.
-        cpu: 8000m
+        cpu: 6000m
         memory: 1024Mi
     # Controls number of Proxy worker threads.
     # If set to 0, then start worker thread for each CPU thread/core.
