@@ -10,15 +10,16 @@ system:
       containers:
         - name: qpid-broker-runtime
           image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/utkarsh-gupta/qpid-broker-runtime:latest
-          ports:
-            - name: http-port
-              containerPort: 7022
-              hostPort: 9003
+          type: stateful-set
           env:
             - name: HTTP_PORT
               value: 7022
             - name: QPID_JAVA_HEAPSZ
               value: 4g
+            - name: BASE_AMQP_PORT
+              value: 6000
+            - name: CALCULATE_AMQP_PORT_INST
+              value: 1
             - name: SFDC_ENVIRONMENT
               value: sam 
           resources:
