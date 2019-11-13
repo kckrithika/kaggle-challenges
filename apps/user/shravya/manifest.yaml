@@ -1,0 +1,24 @@
+apiVersion: v1
+ 
+system:
+  functions:
+  - name: default
+    count: 1
+    containers:
+    - name: nginxtest1
+      image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/slb/nginx:134-9ba3cef27535befec8691412ca1b0c1d7f912b7e
+      ports:
+      - containerPort: 9090
+      livenessProbe:
+        httpGet:
+          path: /
+          port: 9090
+ 
+  loadbalancers:
+  - lbname: shrav-nginx-1
+    function: default
+    slbenabled: true
+    ports:
+      - port: 9090
+        targetport: 9090
+        lbtype: http
