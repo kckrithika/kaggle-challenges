@@ -1,0 +1,37 @@
+apiVersion: v1
+system:
+  functions:
+    - name: gid-mailhog
+      count: 1
+      containers:
+        - name: gid-mailhog
+          image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/gid/mailhog:1.0.0
+          imagePullPolicy: Always
+          env:
+          - name: DELETE_ME
+            value: /home/sdb/gid-data
+          volumeMounts:
+            - mountPath: /home/mailhog
+              name: hostdatavol
+          ports:
+            - containerPort: 1025
+            - containerPort: 8025
+          livenessProbe:
+            exec:
+              command:
+                - /bin/true
+            initialDelaySeconds: 60
+            periodSeconds: 30
+      volumes:
+        - name: hostdatavol
+          hostPath:
+            path: /data/gid/mailhog
+
+  loadbalancers:
+    - lbname: gid-mailhog
+      function: gid-mailhog
+      slbenabled: true
+      ports:
+        - port: 1025
+          targetport: 1025
+          lbtype: tcp
