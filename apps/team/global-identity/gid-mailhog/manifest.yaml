@@ -6,10 +6,7 @@ system:
       containers:
         - name: gid-mailhog
           image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/gid/mailhog:1.0.0
-          imagePullPolicy: Always
-          env:
-          - name: DELETE_ME
-            value: /home/sdb/gid-data
+          imagePullPolicy: Always        
           volumeMounts:
             - mountPath: /home/mailhog
               name: hostdatavol
@@ -34,4 +31,7 @@ system:
       ports:
         - port: 1025
           targetport: 1025
+          lbtype: tcp
+        - port: 8025
+          targetport: 8025
           lbtype: tcp
