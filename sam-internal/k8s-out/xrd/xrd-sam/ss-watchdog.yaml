@@ -172,20 +172,21 @@ items:
         - emptyDir:
             medium: Memory
           name: client-certs
-- apiVersion: extensions/v1beta1
-  kind: Deployment
+- apiVersion: apps/v1beta1
+  kind: StatefulSet
   metadata:
     labels:
-      name: secretservice-watchdog-infrasec1test-xrd
+      name: secretservice-watchdog-infrasec1test-xrd-sts
       sam.data.sfdc.net/owner: secrets
-    name: secretservice-watchdog-infrasec1test-xrd
+    name: secretservice-watchdog-infrasec1test-xrd-sts
     namespace: sam-system
   spec:
     replicas: 2
     selector:
       matchLabels:
-        name: secretservice-watchdog-infrasec1test-xrd
+        name: secretservice-watchdog-infrasec1test-xrd-sts
         sam.data.sfdc.net/owner: secrets
+    serviceName: xxx-notused-xxx
     template:
       metadata:
         annotations:
@@ -201,7 +202,7 @@ items:
              ]
             }
         labels:
-          name: secretservice-watchdog-infrasec1test-xrd
+          name: secretservice-watchdog-infrasec1test-xrd-sts
           sam.data.sfdc.net/owner: secrets
         namespace: sam-system
       spec:
@@ -213,14 +214,14 @@ items:
                 - key: name
                   operator: In
                   values:
-                  - secretservice-watchdog-infrasec1test-xrd
+                  - secretservice-watchdog-infrasec1test-xrd-sts
               topologyKey: kubernetes.io/hostname
         containers:
         - args:
           - -ssEndpoint=secretservice-infrasec1-xrd.data.sfdc.net
           - -ssWritePort=8272
           - -wdKingdom=XRD
-          - -vaultName=ss-watchdog-vault-infrasec1test-xrd
+          - -vaultName=ss-watchdog-vault-$(FUNCTION_INSTANCE_NAME)
           - -role=sam.secrets.secretservice-watchdog
           - -metricsEndpoint=ajna0-funnel1-0-xrd.data.sfdc.net:80
           - -logtostderr=true
@@ -345,20 +346,25 @@ items:
         - emptyDir:
             medium: Memory
           name: client-certs
-- apiVersion: extensions/v1beta1
-  kind: Deployment
+    updateStrategy:
+      rollingUpdate:
+        partition: 0
+      type: RollingUpdate
+- apiVersion: apps/v1beta1
+  kind: StatefulSet
   metadata:
     labels:
-      name: secretservice-watchdog-xrd
+      name: secretservice-watchdog-xrd-sts
       sam.data.sfdc.net/owner: secrets
-    name: secretservice-watchdog-xrd
+    name: secretservice-watchdog-xrd-sts
     namespace: sam-system
   spec:
     replicas: 2
     selector:
       matchLabels:
-        name: secretservice-watchdog-xrd
+        name: secretservice-watchdog-xrd-sts
         sam.data.sfdc.net/owner: secrets
+    serviceName: xxx-notused-xxx
     template:
       metadata:
         annotations:
@@ -374,7 +380,7 @@ items:
              ]
             }
         labels:
-          name: secretservice-watchdog-xrd
+          name: secretservice-watchdog-xrd-sts
           sam.data.sfdc.net/owner: secrets
         namespace: sam-system
       spec:
@@ -386,14 +392,14 @@ items:
                 - key: name
                   operator: In
                   values:
-                  - secretservice-watchdog-xrd
+                  - secretservice-watchdog-xrd-sts
               topologyKey: kubernetes.io/hostname
         containers:
         - args:
           - -ssEndpoint=secretservice-xrd.data.sfdc.net
           - -ssWritePort=8272
           - -wdKingdom=XRD
-          - -vaultName=ss-watchdog-vault-xrd
+          - -vaultName=ss-watchdog-vault-$(FUNCTION_INSTANCE_NAME)
           - -role=sam.secrets.secretservice-watchdog
           - -metricsEndpoint=ajna0-funnel1-0-xrd.data.sfdc.net:80
           - -logtostderr=true
@@ -518,5 +524,9 @@ items:
         - emptyDir:
             medium: Memory
           name: client-certs
+    updateStrategy:
+      rollingUpdate:
+        partition: 0
+      type: RollingUpdate
 kind: List
 metadata: {}
