@@ -17,6 +17,60 @@ system:
     hostnetwork: true
     containers:
     #####################################################################################
+    # Cloud Atlas Directory Server 
+    #####################################################################################
+    - name: cloudatlas-pdm-install
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cloud-atlas/cloudatlas/cloudatlas-pdm:5da629c
+      command: ["/opt/pdm/pdm.customer/bin/entrypoint.sh"]
+      env:
+      - name: UBID_DEPLOYMENT_STAGE
+        value: ALL
+      - name: AWS_BACKUP_S3_BUCKET
+        value: cloud-atlas-dev-backup-us-east-1
+      - name: PUBLIC_PROXY_URL
+        value: public0-proxy1-0-prd.data.sfdc.net:8080
+      - name: ANNOUNCE_FUNCTION
+        value: cloudatlas/cloudatlas-ds
+      - name: CAST_SERVICE_SLB_URL
+        value: https://cast-dev.cast.prd-sam.prd.slb.sfdc.net:443
+      - name: AWS_BACKUP_SECRET_SERVICE_VAULT
+        value: cloud-atlas-dev
+      volumeMounts:
+      - mountPath: /home/sfdc-atlas
+        name: hosthomevol
+      - mountPath: /home/sfdc-atlas/logs/servers/ds
+        name: pinglogvol
+      - mountPath: /log
+        name: logvol
+      - mountPath: /certs
+        name: server-cert
+      - mountPath: /clientcerts
+        name: client-cert
+      - mountPath: /secrets
+        name: secretsvol
+        readOnly: true
+      - mountPath: /k4asecrets
+        name: k4a-secrets
+        readOnly: true
+      ports:
+      - containerPort: 1389
+      - containerPort: 1636
+      - containerPort: 8989
+      livenessProbe:
+        exec:
+          command:
+          - /opt/pdm/pdm.customer/bin/is-alive.sh
+        initialDelaySeconds: 60
+        periodSeconds: 30
+      readinessProbe:
+        exec:
+          command:
+          - cat
+          - /tmp/ready
+        initialDelaySeconds: 60
+        periodSeconds: 5
+        failureThreshold: 120
+    #####################################################################################
     # Service Mesh / Envoy / Sherpa
     #####################################################################################
     - name: sherpa-cloudatlas-client
@@ -78,60 +132,6 @@ system:
           - "/home/scone/is-alive.sh"
         initialDelaySeconds: 5
         periodSeconds: 5
-    #####################################################################################
-    # Cloud Atlas Directory Server 
-    #####################################################################################
-    - name: cloudatlas-pdm-install
-      image: sfci/cloud-atlas/cloudatlas/cloudatlas-pdm:3.7.0rc1
-      command: ["/opt/pdm/pdm.customer/bin/entrypoint.sh"]
-      env:
-      - name: UBID_DEPLOYMENT_STAGE
-        value: ALL
-      - name: AWS_BACKUP_S3_BUCKET
-        value: cloud-atlas-dev-backup-us-east-1
-      - name: PUBLIC_PROXY_URL
-        value: public0-proxy1-0-prd.data.sfdc.net:8080
-      - name: ANNOUNCE_FUNCTION
-        value: cloudatlas/cloudatlas-ds
-      - name: CAST_SERVICE_SLB_URL
-        value: https://cast-dev.cast.prd-sam.prd.slb.sfdc.net:443
-      - name: AWS_BACKUP_SECRET_SERVICE_VAULT
-        value: cloud-atlas-dev
-      volumeMounts:
-      - mountPath: /home/sfdc-atlas
-        name: hosthomevol
-      - mountPath: /home/sfdc-atlas/logs/servers/ds
-        name: pinglogvol
-      - mountPath: /log
-        name: logvol
-      - mountPath: /certs
-        name: server-cert
-      - mountPath: /clientcerts
-        name: client-cert
-      - mountPath: /secrets
-        name: secretsvol
-        readOnly: true
-      - mountPath: /k4asecrets
-        name: k4a-secrets
-        readOnly: true
-      ports:
-      - containerPort: 1389
-      - containerPort: 1636
-      - containerPort: 8989
-      livenessProbe:
-        exec:
-          command:
-          - /opt/pdm/pdm.customer/bin/is-alive.sh
-        initialDelaySeconds: 60
-        periodSeconds: 30
-      readinessProbe:
-        exec:
-          command:
-          - cat
-          - /tmp/ready
-        initialDelaySeconds: 60
-        periodSeconds: 5
-        failureThreshold: 120
     #####################################################################################
     # Volumes Needed
     #####################################################################################
