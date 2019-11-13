@@ -1,19 +1,20 @@
 apiVersion: v1
 items:
-- apiVersion: extensions/v1beta1
-  kind: Deployment
+- apiVersion: apps/v1beta1
+  kind: StatefulSet
   metadata:
     labels:
-      name: secretservice-watchdog-crz11
+      name: secretservice-watchdog-crz11-sts
       sam.data.sfdc.net/owner: secrets
-    name: secretservice-watchdog-crz11
+    name: secretservice-watchdog-crz11-sts
     namespace: sam-system
   spec:
     replicas: 2
     selector:
       matchLabels:
-        name: secretservice-watchdog-crz11
+        name: secretservice-watchdog-crz11-sts
         sam.data.sfdc.net/owner: secrets
+    serviceName: xxx-notused-xxx
     template:
       metadata:
         annotations:
@@ -29,7 +30,7 @@ items:
              ]
             }
         labels:
-          name: secretservice-watchdog-crz11
+          name: secretservice-watchdog-crz11-sts
           sam.data.sfdc.net/owner: secrets
         namespace: sam-system
       spec:
@@ -41,14 +42,14 @@ items:
                 - key: name
                   operator: In
                   values:
-                  - secretservice-watchdog-crz11
+                  - secretservice-watchdog-crz11-sts
               topologyKey: kubernetes.io/hostname
         containers:
         - args:
           - -ssEndpoint=ops-vaultczar1-1-crz.ops.sfdc.net
           - -ssWritePort=8271
           - -wdKingdom=CRZ
-          - -vaultName=ss-watchdog-vault-crz11
+          - -vaultName=ss-watchdog-vault-$(FUNCTION_INSTANCE_NAME)
           - -role=sam.secrets.secretservice-watchdog
           - -metricsEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80
           - -logtostderr=true
@@ -70,7 +71,7 @@ items:
             valueFrom:
               fieldRef:
                 fieldPath: spec.nodeName
-          image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/secretservice-watchdog:171-0352e950128649f36d4df3b1185807f0cd93ba07
+          image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/secretservice-watchdog:173-e686f6a801c6ba92e2ac0494fc9fb27497908530
           name: watchdog
           resources:
             limits:
@@ -177,20 +178,25 @@ items:
         - emptyDir:
             medium: Memory
           name: client-certs
-- apiVersion: extensions/v1beta1
-  kind: Deployment
+    updateStrategy:
+      rollingUpdate:
+        partition: 0
+      type: RollingUpdate
+- apiVersion: apps/v1beta1
+  kind: StatefulSet
   metadata:
     labels:
-      name: secretservice-watchdog-crz12
+      name: secretservice-watchdog-crz12-sts
       sam.data.sfdc.net/owner: secrets
-    name: secretservice-watchdog-crz12
+    name: secretservice-watchdog-crz12-sts
     namespace: sam-system
   spec:
     replicas: 2
     selector:
       matchLabels:
-        name: secretservice-watchdog-crz12
+        name: secretservice-watchdog-crz12-sts
         sam.data.sfdc.net/owner: secrets
+    serviceName: xxx-notused-xxx
     template:
       metadata:
         annotations:
@@ -206,7 +212,7 @@ items:
              ]
             }
         labels:
-          name: secretservice-watchdog-crz12
+          name: secretservice-watchdog-crz12-sts
           sam.data.sfdc.net/owner: secrets
         namespace: sam-system
       spec:
@@ -218,14 +224,14 @@ items:
                 - key: name
                   operator: In
                   values:
-                  - secretservice-watchdog-crz12
+                  - secretservice-watchdog-crz12-sts
               topologyKey: kubernetes.io/hostname
         containers:
         - args:
           - -ssEndpoint=ops-vaultczar1-2-crz.ops.sfdc.net
           - -ssWritePort=8271
           - -wdKingdom=CRZ
-          - -vaultName=ss-watchdog-vault-crz12
+          - -vaultName=ss-watchdog-vault-$(FUNCTION_INSTANCE_NAME)
           - -role=sam.secrets.secretservice-watchdog
           - -metricsEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80
           - -logtostderr=true
@@ -247,7 +253,7 @@ items:
             valueFrom:
               fieldRef:
                 fieldPath: spec.nodeName
-          image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/secretservice-watchdog:171-0352e950128649f36d4df3b1185807f0cd93ba07
+          image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/secretservice-watchdog:173-e686f6a801c6ba92e2ac0494fc9fb27497908530
           name: watchdog
           resources:
             limits:
@@ -354,20 +360,25 @@ items:
         - emptyDir:
             medium: Memory
           name: client-certs
-- apiVersion: extensions/v1beta1
-  kind: Deployment
+    updateStrategy:
+      rollingUpdate:
+        partition: 0
+      type: RollingUpdate
+- apiVersion: apps/v1beta1
+  kind: StatefulSet
   metadata:
     labels:
-      name: secretservice-watchdog-crz21
+      name: secretservice-watchdog-crz21-sts
       sam.data.sfdc.net/owner: secrets
-    name: secretservice-watchdog-crz21
+    name: secretservice-watchdog-crz21-sts
     namespace: sam-system
   spec:
     replicas: 2
     selector:
       matchLabels:
-        name: secretservice-watchdog-crz21
+        name: secretservice-watchdog-crz21-sts
         sam.data.sfdc.net/owner: secrets
+    serviceName: xxx-notused-xxx
     template:
       metadata:
         annotations:
@@ -383,7 +394,7 @@ items:
              ]
             }
         labels:
-          name: secretservice-watchdog-crz21
+          name: secretservice-watchdog-crz21-sts
           sam.data.sfdc.net/owner: secrets
         namespace: sam-system
       spec:
@@ -395,14 +406,14 @@ items:
                 - key: name
                   operator: In
                   values:
-                  - secretservice-watchdog-crz21
+                  - secretservice-watchdog-crz21-sts
               topologyKey: kubernetes.io/hostname
         containers:
         - args:
           - -ssEndpoint=ops-vaultczar2-1-crz.ops.sfdc.net
           - -ssWritePort=8271
           - -wdKingdom=CRZ
-          - -vaultName=ss-watchdog-vault-crz21
+          - -vaultName=ss-watchdog-vault-$(FUNCTION_INSTANCE_NAME)
           - -role=sam.secrets.secretservice-watchdog
           - -metricsEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80
           - -logtostderr=true
@@ -424,7 +435,7 @@ items:
             valueFrom:
               fieldRef:
                 fieldPath: spec.nodeName
-          image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/secretservice-watchdog:171-0352e950128649f36d4df3b1185807f0cd93ba07
+          image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/secretservice-watchdog:173-e686f6a801c6ba92e2ac0494fc9fb27497908530
           name: watchdog
           resources:
             limits:
@@ -531,20 +542,25 @@ items:
         - emptyDir:
             medium: Memory
           name: client-certs
-- apiVersion: extensions/v1beta1
-  kind: Deployment
+    updateStrategy:
+      rollingUpdate:
+        partition: 0
+      type: RollingUpdate
+- apiVersion: apps/v1beta1
+  kind: StatefulSet
   metadata:
     labels:
-      name: secretservice-watchdog-crz22
+      name: secretservice-watchdog-crz22-sts
       sam.data.sfdc.net/owner: secrets
-    name: secretservice-watchdog-crz22
+    name: secretservice-watchdog-crz22-sts
     namespace: sam-system
   spec:
     replicas: 2
     selector:
       matchLabels:
-        name: secretservice-watchdog-crz22
+        name: secretservice-watchdog-crz22-sts
         sam.data.sfdc.net/owner: secrets
+    serviceName: xxx-notused-xxx
     template:
       metadata:
         annotations:
@@ -560,7 +576,7 @@ items:
              ]
             }
         labels:
-          name: secretservice-watchdog-crz22
+          name: secretservice-watchdog-crz22-sts
           sam.data.sfdc.net/owner: secrets
         namespace: sam-system
       spec:
@@ -572,14 +588,14 @@ items:
                 - key: name
                   operator: In
                   values:
-                  - secretservice-watchdog-crz22
+                  - secretservice-watchdog-crz22-sts
               topologyKey: kubernetes.io/hostname
         containers:
         - args:
           - -ssEndpoint=ops-vaultczar2-2-crz.ops.sfdc.net
           - -ssWritePort=8271
           - -wdKingdom=CRZ
-          - -vaultName=ss-watchdog-vault-crz22
+          - -vaultName=ss-watchdog-vault-$(FUNCTION_INSTANCE_NAME)
           - -role=sam.secrets.secretservice-watchdog
           - -metricsEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80
           - -logtostderr=true
@@ -601,7 +617,7 @@ items:
             valueFrom:
               fieldRef:
                 fieldPath: spec.nodeName
-          image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/secretservice-watchdog:171-0352e950128649f36d4df3b1185807f0cd93ba07
+          image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/secretservice-watchdog:173-e686f6a801c6ba92e2ac0494fc9fb27497908530
           name: watchdog
           resources:
             limits:
@@ -708,20 +724,25 @@ items:
         - emptyDir:
             medium: Memory
           name: client-certs
-- apiVersion: extensions/v1beta1
-  kind: Deployment
+    updateStrategy:
+      rollingUpdate:
+        partition: 0
+      type: RollingUpdate
+- apiVersion: apps/v1beta1
+  kind: StatefulSet
   metadata:
     labels:
-      name: secretservice-watchdog-dmz-from-prd
+      name: secretservice-watchdog-dmz-from-prd-sts
       sam.data.sfdc.net/owner: secrets
-    name: secretservice-watchdog-dmz-from-prd
+    name: secretservice-watchdog-dmz-from-prd-sts
     namespace: sam-system
   spec:
     replicas: 2
     selector:
       matchLabels:
-        name: secretservice-watchdog-dmz-from-prd
+        name: secretservice-watchdog-dmz-from-prd-sts
         sam.data.sfdc.net/owner: secrets
+    serviceName: xxx-notused-xxx
     template:
       metadata:
         annotations:
@@ -737,7 +758,7 @@ items:
              ]
             }
         labels:
-          name: secretservice-watchdog-dmz-from-prd
+          name: secretservice-watchdog-dmz-from-prd-sts
           sam.data.sfdc.net/owner: secrets
         namespace: sam-system
       spec:
@@ -749,14 +770,14 @@ items:
                 - key: name
                   operator: In
                   values:
-                  - secretservice-watchdog-dmz-from-prd
+                  - secretservice-watchdog-dmz-from-prd-sts
               topologyKey: kubernetes.io/hostname
         containers:
         - args:
           - -ssEndpoint=secretservice.dmz.salesforce.com
           - -ssWritePort=8272
           - -wdKingdom=CRZ
-          - -vaultName=ss-watchdog-vault-dmz-from-prd
+          - -vaultName=ss-watchdog-vault-$(FUNCTION_INSTANCE_NAME)
           - -role=sam.secrets.secretservice-watchdog
           - -metricsEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80
           - -logtostderr=true
@@ -778,7 +799,7 @@ items:
             valueFrom:
               fieldRef:
                 fieldPath: spec.nodeName
-          image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/secretservice-watchdog:171-0352e950128649f36d4df3b1185807f0cd93ba07
+          image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/secretservice-watchdog:173-e686f6a801c6ba92e2ac0494fc9fb27497908530
           name: watchdog
           resources:
             limits:
@@ -885,6 +906,10 @@ items:
         - emptyDir:
             medium: Memory
           name: client-certs
+    updateStrategy:
+      rollingUpdate:
+        partition: 0
+      type: RollingUpdate
 - apiVersion: apps/v1beta1
   kind: StatefulSet
   metadata:
