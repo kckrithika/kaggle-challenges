@@ -149,6 +149,8 @@ system:
         value: ""
       - name: database_name
         value: gid_dev
+      - name: mailhog_server
+        value: gid-mailhog.global-identity.prd-sam.prd.slb.sfdc.net
       volumeMounts:
       - name: client-cert
         mountPath: /client-certs
