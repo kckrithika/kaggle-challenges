@@ -5,6 +5,24 @@ local configs = import "config.jsonnet";
 
 # This file presents shared configurations for Secrets Team templates.
 {
+  statefulsetBase():: {
+    local sts = self,
+    kind: "StatefulSet",
+    apiVersion: "apps/v1beta1",
+    spec+: {
+      selector: {
+        matchLabels: sts.spec.template.metadata.labels,
+      },
+      template: {
+        metadata+: {
+          labels+: {
+            "sam.data.sfdc.net/owner": "secrets",
+          },
+        },
+      },
+    },
+  },
+
   secretsEstates: std.set([
     "prd-sam",
     "xrd-sam",

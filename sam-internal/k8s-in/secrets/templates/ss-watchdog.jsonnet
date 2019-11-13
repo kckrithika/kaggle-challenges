@@ -116,13 +116,17 @@ local getInstanceDataWithDefaults(instanceTag) = (
   local instanceData = instanceMap[configs.kingdom][instanceTag];
   # The instance name (unless provided) is formed as "secretservice-watchdog-<instanceTag>".
   local name = (if std.objectHas(instanceData, "name") then instanceData.name else "secretservice-watchdog-" + instanceTag);
+  local canary = (if std.objectHas(instanceData, "canary") && instanceData.canary then true else false);
 
   # defaultInstanceData supplies the schema and default values for instanceData.
   local defaultInstanceData = {
     # name is the name of the container for the instance.
     name: name,
     # vaultName is the name of the secret service vault that is accessed by the canary instance.
-    vaultName: "ss-watchdog-vault-" + instanceTag,
+    vaultName: (if secretsflights.ssWdAsStatefulSet(canary) then
+                  "ss-watchdog-vault-$(FUNCTION_INSTANCE_NAME)"
+                else
+                  "ss-watchdog-vault-" + instanceTag),
     # role indicates the maddog role that is requested for the client certs and allowed access to the named vault.
     role: "secrets.secretservice-watchdog",
     # wdKingdom indicates the kingdom hosting the target secret service that this watchdog is intended to monitor.
@@ -167,13 +171,42 @@ local podAntiAffinityIfEnabled(podLabel, canary) = if secretsflights.ssWdSecondR
   },
 } else {};
 
-local ssWatchdogDeployment(instanceTag) = configs.deploymentBase("secrets") {
+local resourceBase(instanceTag) = (
+  local instanceData = getInstanceDataWithDefaults(instanceTag);
+  if secretsflights.ssWdAsStatefulSet(instanceData.canary) then
+    secretsconfigs.statefulsetBase()
+  else
+    configs.deploymentBase("secrets")
+);
+
+local serviceNameIfEnabled(instanceData) =
+  if secretsflights.ssWdAsStatefulSet(instanceData.canary) then {
+    # StatefulSets require a servicename, even if we aren't using one. No need for this watchdog
+    # to have a k8s service.
+    serviceName: "xxx-notused-xxx",
+  } else {};
+
+local updateStrategyIfEnabled(instanceData) =
+  if secretsflights.ssWdAsStatefulSet(instanceData.canary) then {
+    updateStrategy: {
+      rollingUpdate: {
+        partition: 0,
+      },
+      type: "RollingUpdate",
+    },
+  } else {};
+
+local ssWatchdogDeployment(instanceTag) = resourceBase(instanceTag) {
   local instanceData = getInstanceDataWithDefaults(instanceTag),
+  local name = if secretsflights.ssWdAsStatefulSet(instanceData.canary) then
+                instanceData.name + "-sts"
+               else
+                instanceData.name,
   metadata: {
     labels: {
-      name: instanceData.name,
+      name: name,
     } + configs.ownerLabel.secrets,
-    name: instanceData.name,
+    name: name,
     namespace: "sam-system",
   },
   spec+: {
@@ -183,7 +216,7 @@ local ssWatchdogDeployment(instanceTag) = configs.deploymentBase("secrets") {
         annotations: {
         } + madkub.certsAnnotation(instanceData.role),
         labels: {
-          name: instanceData.name,
+          name: name,
         } + configs.ownerLabel.secrets,
         namespace: "sam-system",
       },
@@ -226,9 +259,10 @@ local ssWatchdogDeployment(instanceTag) = configs.deploymentBase("secrets") {
       + secretsconfigs.nodeSelector
       + secretsconfigs.samPodSecurityContext
       + hostNetworkIfEnabled(instanceData.canary)
-      + podAntiAffinityIfEnabled(instanceData.name, instanceData.canary),
+      + podAntiAffinityIfEnabled(name, instanceData.canary),
     },
-  },
+  } + serviceNameIfEnabled(instanceData)
+    + updateStrategyIfEnabled(instanceData),
 };
 
 local instanceTagsForKingdom = if std.objectHas(instanceMap, configs.kingdom) then std.objectFields(instanceMap[configs.kingdom]);
