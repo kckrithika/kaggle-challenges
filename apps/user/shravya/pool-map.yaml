@@ -1,3 +1,5 @@
 apps:
   shravya-nginx-test1:
     - prd/prd-sdc
+  shravya-nginx-test2:
+    - prd/prd-sdc

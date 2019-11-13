@@ -7,11 +7,17 @@ system:
     containers:
     - name: nginxtest1
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/nginx
+      command: ["/bin/bash"]
+      args:
+      - -c 
+      - "dd if=/dev/urandom of=file.txt count=1024 bs=1048576 &&  cp /usr/share/nginx/html/index.html  /usr/share/nginx/html/live.html &&
+         cp file.txt /usr/share/nginx/html/index.html && nginx -g 'daemon off;'" 
       ports:
       - containerPort: 80
       livenessProbe:
+        initialDelaySeconds : 120
         httpGet:
-          path: /
+          path: /live.html
           port: 80
  
   loadbalancers:
@@ -22,3 +28,11 @@ system:
       - port: 80
         targetport: 80
         lbtype: http
+  - lbname: shrav-nginx-2
+    function: default
+    slbenabled: true
+    ports:
+      - port: 80
+        targetport: 80
+        lbtype: http      
+
