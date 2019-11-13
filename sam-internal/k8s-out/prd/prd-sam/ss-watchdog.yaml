@@ -885,20 +885,21 @@ items:
         - emptyDir:
             medium: Memory
           name: client-certs
-- apiVersion: extensions/v1beta1
-  kind: Deployment
+- apiVersion: apps/v1beta1
+  kind: StatefulSet
   metadata:
     labels:
-      name: secretservice-watchdog-prd
+      name: secretservice-watchdog-prd-sts
       sam.data.sfdc.net/owner: secrets
-    name: secretservice-watchdog-prd
+    name: secretservice-watchdog-prd-sts
     namespace: sam-system
   spec:
     replicas: 2
     selector:
       matchLabels:
-        name: secretservice-watchdog-prd
+        name: secretservice-watchdog-prd-sts
         sam.data.sfdc.net/owner: secrets
+    serviceName: xxx-notused-xxx
     template:
       metadata:
         annotations:
@@ -914,7 +915,7 @@ items:
              ]
             }
         labels:
-          name: secretservice-watchdog-prd
+          name: secretservice-watchdog-prd-sts
           sam.data.sfdc.net/owner: secrets
         namespace: sam-system
       spec:
@@ -926,14 +927,14 @@ items:
                 - key: name
                   operator: In
                   values:
-                  - secretservice-watchdog-prd
+                  - secretservice-watchdog-prd-sts
               topologyKey: kubernetes.io/hostname
         containers:
         - args:
           - -ssEndpoint=secretservice-prd.data.sfdc.net
           - -ssWritePort=8272
           - -wdKingdom=PRD
-          - -vaultName=ss-watchdog-vault-prd
+          - -vaultName=ss-watchdog-vault-$(FUNCTION_INSTANCE_NAME)
           - -role=sam.secrets.secretservice-watchdog
           - -metricsEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80
           - -logtostderr=true
@@ -1063,5 +1064,9 @@ items:
         - emptyDir:
             medium: Memory
           name: client-certs
+    updateStrategy:
+      rollingUpdate:
+        partition: 0
+      type: RollingUpdate
 kind: List
 metadata: {}
