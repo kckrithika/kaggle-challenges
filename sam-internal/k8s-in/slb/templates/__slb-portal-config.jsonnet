@@ -20,6 +20,11 @@ local perKingdomConfig = {
         name: "prd-samtwo",
         href: "http://slb-portal-service.sam-system.prd-samtwo.prd.slb.sfdc.net:9112/",
     },
+    {
+        name: "prd-sdc",
+        href: "http://slb-portal-service.sam-system.prd-sdc.prd.slb.sfdc.net:9112/",
+    },
+
 ],
 };
 
