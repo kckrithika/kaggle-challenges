@@ -361,7 +361,7 @@ if (istioPhases.phaseNum == 1) then
             ],
             resources: {
               limits: {
-                cpu: "8000m",
+                cpu: "6000m",
                 memory: "1024Mi",
               },
               requests: {
