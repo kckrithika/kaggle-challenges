@@ -24,6 +24,8 @@
       }
     }
   },
+  'service-white-list': [ 'sfcdekstest1', 'strauz', 'sfcdec2test' ],
+  'soft-launch': true,
   'vmf-parser-configs': {
     'k8s-account': 'k8s-spinnaker1-v2-account',
     'namespace': 'apoorv-test', # To be changed once the official namespace is available

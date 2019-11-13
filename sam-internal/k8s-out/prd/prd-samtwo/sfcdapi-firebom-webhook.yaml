@@ -103,6 +103,12 @@ items:
                               }
                           }
                       },
+                      "service-white-list": [
+                          "sfcdekstest1",
+                          "strauz",
+                          "sfcdec2test"
+                      ],
+                      "soft-launch": true,
                       "vmf-parser-configs": {
                           "image": "gcr.io/gsf-mgmt-devmvp-spinnaker/dva/sfcd-vmf-parser:latest",
                           "k8s-account": "k8s-spinnaker1-v2-account",
@@ -371,7 +377,7 @@ items:
                 fieldPath: metadata.labels['name']
           - name: CONFIG_VERSION
             value: "9"
-          image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/sfcdapi-firebom:76
+          image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/sfcdapi-firebom:77
           imagePullPolicy: Always
           livenessProbe:
             failureThreshold: 10
