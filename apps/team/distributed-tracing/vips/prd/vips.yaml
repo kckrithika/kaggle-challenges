@@ -74,17 +74,23 @@
    - shared0-samminionzipkin1-26-prd.eng.sfdc.net
    - shared0-samminionzipkin1-27-prd.eng.sfdc.net
    - shared0-samminionzipkin1-28-prd.eng.sfdc.net
+   - shared0-samminionzipkin1-29-prd.eng.sfdc.net
    - shared0-samminionzipkin1-30-prd.eng.sfdc.net
    - shared0-samminionzipkin1-32-prd.eng.sfdc.net
    - shared0-samminionzipkin1-33-prd.eng.sfdc.net
    - shared0-samminionzipkin2-1-prd.eng.sfdc.net
+   - shared0-samminionzipkin2-16-prd.eng.sfdc.net
    - shared0-samminionzipkin2-17-prd.eng.sfdc.net
    - shared0-samminionzipkin2-19-prd.eng.sfdc.net
    - shared0-samminionzipkin2-20-prd.eng.sfdc.net
+   - shared0-samminionzipkin2-21-prd.eng.sfdc.net
+   - shared0-samminionzipkin2-22-prd.eng.sfdc.net
    - shared0-samminionzipkin2-24-prd.eng.sfdc.net
    - shared0-samminionzipkin2-28-prd.eng.sfdc.net
+   - shared0-samminionzipkin2-29-prd.eng.sfdc.net
    - shared0-samminionzipkin2-30-prd.eng.sfdc.net
    - shared0-samminionzipkin2-31-prd.eng.sfdc.net
+   - shared0-samminionzipkin2-32-prd.eng.sfdc.net
   ports:
    - port: 9200
      targetport: 9200
