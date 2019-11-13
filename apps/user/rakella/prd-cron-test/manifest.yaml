@@ -117,7 +117,7 @@ system:
         pod: cs101
       containers:
         - name: croncar
-          image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/vijay-kota/croncar:01Nov19
+          image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/rakella/scheduler-sidecar:nov13
           ports:
             - name: grpc-port
               containerPort: 17020
@@ -242,7 +242,7 @@ system:
         pod: cs101
       containers:
         - name: cronsvc
-          image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/vijay-kota/cronsvc:05Nov19
+          image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/rakella/scheduler-service:nov13
           ports:
             - name: grpc-port
               containerPort: 7020
