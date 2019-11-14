@@ -70,15 +70,3 @@ system:
     - lbtype: http
       port: 80
       targetport: 8081
-  - lbname: gater-perf
-    function: gater-perf
-    annotations:
-      routing.mesh.sfdc.net/enabled: "true"
-    labels:
-      app: gater-perf
-      settings_path: blitz.-.prd.-.gater-perf
-    ports:
-      - lbtype: dsr
-        port: 8081
-        targetport: 8081
-        name: http-gater
