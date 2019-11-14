@@ -189,9 +189,6 @@ local serviceNameIfEnabled(instanceData) =
 local updateStrategyIfEnabled(instanceData) =
   if secretsflights.ssWdAsStatefulSet(instanceData.canary) then {
     updateStrategy: {
-      rollingUpdate: {
-        partition: 0,
-      },
       type: "RollingUpdate",
     },
   } else {};
