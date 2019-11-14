@@ -9,6 +9,8 @@ system:
       type: stateful-set
       count: 3
       lbname: qpid-broker-mq-lb
+      annotations:
+          "sherpa-injector.service-mesh/inject": "enabled"
       containers:
         - name: qpid-broker-runtime
           image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/utkarsh-gupta/qpid-broker-runtime:latest
@@ -40,43 +42,29 @@ system:
           volumeMounts:
             - mountPath: /var/log/qpid
               name: logvol
-
-        - name: sherpa-qpid
-          # https://sconelibci.dop.sfdc.net/job/servicelibs/job/sherpa-envoy/job/master/73
-          image: sfci/servicelibs/sherpa-envoy:1.0.5
-          # See https://git.soma.salesforce.com/servicelibs/sherpa#ports
-          ports:
-          - containerPort: 15373
-            name: sherpa-adm
-          - containerPort: 2000
-            name: tcp-in
-          - containerPort: 7014
-            name: http1-in
+        - name: beacon
+          image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/servicemesh/beacon:1.0.0
+          command: ["/bin/sh"]
+          args: ["-c", "instNumber=${FUNCTION_INSTANCE_NAME: -1}; prefix=$(( instnumber + 3 )); export c2=qpid-$instNumber; export c1=qpid-$prefix; port=$(( 5999 + instNumber * 3 ));/usr/bin/java -jar /home/scone/service.jar -endpoint samapp/user-utkarsh-gupta/${c1}:POD:${port} -endpoint samapp/user-utkarsh-gupta/${c2}:POD:$HTTPX"]
+            # -endpoint
+            # samapp/$(FUNCTION_NAMESPACE)/$(FUNCTION)-http:DATACENTER_ALLENV:7014
+          env:
+            - name: SFDC_ENVIRONMENT
+              value: mesh
+            - name: HTTPX
+              value: 7442
+          livenessProbe:
+            initialDelaySeconds: 5
+            exec:
+              command:
+                # "/home/scone/is-alive.sh"
+                - "/bin/true"
           resources:
             limits: { cpu: "1", memory: "1Gi" }
             requests: { cpu: "1", memory: "1Gi" }
-          env:
-            - name: SFDC_ENVIRONMENT
-              value: sam
-          livenessProbe:
-            exec:
-              command: ["/bin/true"]
-            initialDelaySeconds: 10
-            periodSeconds: 5
-          readinessProbe:
-            exec:
-              command: ["/bin/true"]
-            initialDelaySeconds: 10
-            periodSeconds: 5
-          # Mount volumes with certificates. The paths here match the defaults assumed by sherpa
           volumeMounts:
-          - name: sherpaclientcert
-            mountPath: /client-certs
-          - name: sherpaservercert
-            mountPath: /server-certs
-          - name: sherpa-log-volume
-            mountPath: /log
-
+            - mountPath: /home/scone/logs
+              name: beacon-log-volume
       volumes:
         - name: logvol
           hostpath:
