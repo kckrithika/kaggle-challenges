@@ -9,6 +9,10 @@ system:
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/shravya/nginx:latest
       ports:
       - containerPort: 80
+      livenessProbe:
+        httpGet:
+          path: /
+          port: 80
  
   loadbalancers:
   - lbname: shrav-nginx-1
