@@ -14,7 +14,7 @@ system:
           maxUnavailable: 1
       containers:
       - name: prd-maiev-receiver
-        image: dva/maiev-receiver:jenkins-CASP-maiev-PR-679-2-itest
+        image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/akouthoofd/casp-maiev:latest
         ports:
         - name: receiver-grpc
           containerPort: 7442
