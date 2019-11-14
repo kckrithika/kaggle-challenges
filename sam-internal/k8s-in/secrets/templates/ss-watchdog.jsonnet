@@ -62,7 +62,7 @@ local instanceMap = {
   },
   xrd: {
     # WD monitoring staging SS.
-    "infrasec1test-xrd": {
+    "staging-xrd": {
       endpoint: "secretservice-infrasec1-xrd.data.sfdc.net",
       wdKingdom: "XRD",
       extraArgs: [
@@ -124,7 +124,7 @@ local getInstanceDataWithDefaults(instanceTag) = (
     name: name,
     # vaultName is the name of the secret service vault that is accessed by the canary instance.
     vaultName: (if secretsflights.ssWdAsStatefulSet(canary) then
-                  "ss-watchdog-vault-$(FUNCTION_INSTANCE_NAME)"
+                  "$(FUNCTION_INSTANCE_NAME)"
                 else
                   "ss-watchdog-vault-" + instanceTag),
     # role indicates the maddog role that is requested for the client certs and allowed access to the named vault.
