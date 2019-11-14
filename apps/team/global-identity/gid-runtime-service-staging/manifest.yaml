@@ -113,7 +113,7 @@ system:
     # Global Identity Loing and Runtime Service
     #####################################################################################
     - name: gid-runtime-service
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/gid/gid-runtime-service:08dd095
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/gid/gid-runtime-service:7c93f09
       imagePullPolicy: Always
       env:
       - name: server_use_forward_headers
@@ -161,23 +161,21 @@ system:
       - containerPort: 8080
       - containerPort: 15375
       livenessProbe:
-        # httpGet:
-        #   path: /manage/health
-        #   port: 8080
-        exec:
-          command:
-          - /bin/true        
+        httpGet:
+          path: /manage/health/liveness
+          port: 15375
+        initialDelaySeconds: 120
+        periodSeconds: 5
+        failureThreshold: 120
 
       readinessProbe:
-        # httpGet:
-        #   path: /manage/health
-        #   port: 8080
-        exec:
-          command:
-          - /bin/true        
+        httpGet:
+          path: /manage/health/readiness
+          port: 15375
         initialDelaySeconds: 60
         periodSeconds: 5
         failureThreshold: 120
+
     #####################################################################################
     # Volumes Needed
     #####################################################################################
