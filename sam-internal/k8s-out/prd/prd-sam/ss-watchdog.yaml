@@ -49,7 +49,7 @@ items:
           - -ssEndpoint=ops-vaultczar1-1-crz.ops.sfdc.net
           - -ssWritePort=8271
           - -wdKingdom=CRZ
-          - -vaultName=ss-watchdog-vault-$(FUNCTION_INSTANCE_NAME)
+          - -vaultName=$(FUNCTION_INSTANCE_NAME)
           - -role=sam.secrets.secretservice-watchdog
           - -metricsEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80
           - -logtostderr=true
@@ -231,7 +231,7 @@ items:
           - -ssEndpoint=ops-vaultczar1-2-crz.ops.sfdc.net
           - -ssWritePort=8271
           - -wdKingdom=CRZ
-          - -vaultName=ss-watchdog-vault-$(FUNCTION_INSTANCE_NAME)
+          - -vaultName=$(FUNCTION_INSTANCE_NAME)
           - -role=sam.secrets.secretservice-watchdog
           - -metricsEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80
           - -logtostderr=true
@@ -413,7 +413,7 @@ items:
           - -ssEndpoint=ops-vaultczar2-1-crz.ops.sfdc.net
           - -ssWritePort=8271
           - -wdKingdom=CRZ
-          - -vaultName=ss-watchdog-vault-$(FUNCTION_INSTANCE_NAME)
+          - -vaultName=$(FUNCTION_INSTANCE_NAME)
           - -role=sam.secrets.secretservice-watchdog
           - -metricsEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80
           - -logtostderr=true
@@ -595,7 +595,7 @@ items:
           - -ssEndpoint=ops-vaultczar2-2-crz.ops.sfdc.net
           - -ssWritePort=8271
           - -wdKingdom=CRZ
-          - -vaultName=ss-watchdog-vault-$(FUNCTION_INSTANCE_NAME)
+          - -vaultName=$(FUNCTION_INSTANCE_NAME)
           - -role=sam.secrets.secretservice-watchdog
           - -metricsEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80
           - -logtostderr=true
@@ -777,7 +777,7 @@ items:
           - -ssEndpoint=secretservice.dmz.salesforce.com
           - -ssWritePort=8272
           - -wdKingdom=CRZ
-          - -vaultName=ss-watchdog-vault-$(FUNCTION_INSTANCE_NAME)
+          - -vaultName=$(FUNCTION_INSTANCE_NAME)
           - -role=sam.secrets.secretservice-watchdog
           - -metricsEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80
           - -logtostderr=true
@@ -959,7 +959,7 @@ items:
           - -ssEndpoint=secretservice-prd.data.sfdc.net
           - -ssWritePort=8272
           - -wdKingdom=PRD
-          - -vaultName=ss-watchdog-vault-$(FUNCTION_INSTANCE_NAME)
+          - -vaultName=$(FUNCTION_INSTANCE_NAME)
           - -role=sam.secrets.secretservice-watchdog
           - -metricsEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80
           - -logtostderr=true
