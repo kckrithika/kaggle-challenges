@@ -44,7 +44,7 @@ spec:
         - --log_dir=/host/data/slb/logs/slb-iface-processor
         - --hostsConfigFile=/sfdchosts/hosts.json
         - --subnet=10.254.247.0/24,
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/slb/hyperslb:2282-b207005f44671a344a0f2e5cd3371b028b31d65f
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/slb/hyperslb:2284-e9dc8ec4da4728508b3b24e4334773312d933f8e
         name: slb-iface-processor
         securityContext:
           privileged: true
@@ -128,7 +128,7 @@ spec:
         - --readOnly=false
         - --checkMwSentinel=false
         - --control.manifestWatcherSentinel=/host/data/slb/config/slb-iface-processor/slb-manifest-watcher.sentinel
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/slb/hyperslb:2282-b207005f44671a344a0f2e5cd3371b028b31d65f
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/slb/hyperslb:2284-e9dc8ec4da4728508b3b24e4334773312d933f8e
         name: slb-node-api
         volumeMounts:
         - mountPath: /host/data/slb
@@ -148,7 +148,7 @@ spec:
         env:
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig-platform
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/slb/hyperslb:2282-b207005f44671a344a0f2e5cd3371b028b31d65f
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/slb/hyperslb:2284-e9dc8ec4da4728508b3b24e4334773312d933f8e
         livenessProbe:
           exec:
             command:

@@ -25,7 +25,7 @@ spec:
         - /sdn/slb-iwd-health
         - --metricsEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80
         - --k8sAPIServer=
-        - --deploymentsToMonitor=slb-ipvs=3,slb-nginx-config-b=6
+        - --deploymentsToMonitor=slb-ipvs=3,slb-nginx-config-b=4
         - --minPercentHealthy=1
         env:
         - name: NODE_NAME
@@ -34,7 +34,7 @@ spec:
               fieldPath: spec.nodeName
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig-platform
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/slb/hyperslb:2282-b207005f44671a344a0f2e5cd3371b028b31d65f
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/slb/hyperslb:2284-e9dc8ec4da4728508b3b24e4334773312d933f8e
         name: slb-iwd-health
         resources:
           limits:
@@ -67,7 +67,7 @@ spec:
         env:
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig-platform
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/slb/hyperslb:2282-b207005f44671a344a0f2e5cd3371b028b31d65f
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/slb/hyperslb:2284-e9dc8ec4da4728508b3b24e4334773312d933f8e
         livenessProbe:
           exec:
             command:

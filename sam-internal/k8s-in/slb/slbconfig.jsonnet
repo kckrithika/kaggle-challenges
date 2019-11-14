@@ -230,7 +230,7 @@
             set_value_to_all_in_list(2, $.testEstates)
             + set_value_to_all_in_list(8, $.prodEstates)
             + {
-                "prd-sdc": 6,
+                "prd-sdc": 4,
                 "prd-sam": 4,
                 "prd-samtest": 1,
                 "prd-samdev": 1,
