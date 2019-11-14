@@ -179,8 +179,6 @@ items:
             medium: Memory
           name: client-certs
     updateStrategy:
-      rollingUpdate:
-        partition: 0
       type: RollingUpdate
 - apiVersion: apps/v1beta1
   kind: StatefulSet
@@ -361,8 +359,6 @@ items:
             medium: Memory
           name: client-certs
     updateStrategy:
-      rollingUpdate:
-        partition: 0
       type: RollingUpdate
 - apiVersion: apps/v1beta1
   kind: StatefulSet
@@ -543,8 +539,6 @@ items:
             medium: Memory
           name: client-certs
     updateStrategy:
-      rollingUpdate:
-        partition: 0
       type: RollingUpdate
 - apiVersion: apps/v1beta1
   kind: StatefulSet
@@ -725,8 +719,6 @@ items:
             medium: Memory
           name: client-certs
     updateStrategy:
-      rollingUpdate:
-        partition: 0
       type: RollingUpdate
 - apiVersion: apps/v1beta1
   kind: StatefulSet
@@ -907,8 +899,6 @@ items:
             medium: Memory
           name: client-certs
     updateStrategy:
-      rollingUpdate:
-        partition: 0
       type: RollingUpdate
 - apiVersion: apps/v1beta1
   kind: StatefulSet
@@ -1090,8 +1080,6 @@ items:
             medium: Memory
           name: client-certs
     updateStrategy:
-      rollingUpdate:
-        partition: 0
       type: RollingUpdate
 kind: List
 metadata: {}
