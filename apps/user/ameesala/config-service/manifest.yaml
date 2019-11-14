@@ -1,0 +1,32 @@
+apiVersion: v1
+
+system:
+  functions:
+  - name: config-server
+    count: 1
+    containers:
+    - name: config-service-server
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/ameesala/config_service:ameesala-20191114-cd5e32f 
+      env:
+        - name: ARTIFACTS
+          value: "https://ops0-artifactrepo2-0-prd.data.sfdc.net/artifactory/content_repo_gcp/0/archive/serverpools/2019.10b.1573028391000/serverpools-2019.10b.1573028391000.zip"
+        - name: CONFIG_LOCATION
+          value: "/home/scone/configs"
+      ports:
+      - containerPort: 8888
+        name: http
+      - containerPort: 15372
+        name: mgmt
+      livenessProbe:
+        initialDelaySeconds: 30
+        httpGet:
+          path: /manage/health
+          port: 15372
+  loadbalancers:
+  - lbname: config-service
+    function: config-server
+    slbenabled: true
+    ports:
+      - port: 80
+        targetport: 8888
+        lbtype: tcp
