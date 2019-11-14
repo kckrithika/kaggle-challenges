@@ -2,11 +2,11 @@ apiVersion: v1
  
 system:
   functions:
-  - name: default
+  - name: default2
     count: 1
     containers:
     - name: nginxtest1
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/shravya/nginx:latest
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/shravya/nginx:2
       ports:
       - containerPort: 80
       livenessProbe:
@@ -16,7 +16,7 @@ system:
  
   loadbalancers:
   - lbname: shrav-nginx-1
-    function: default
+    function: default2
     slbenabled: true
     ports:
       - port: 80
