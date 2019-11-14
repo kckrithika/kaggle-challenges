@@ -6,19 +6,19 @@ system:
     count: 1
     containers:
     - name: nginxtest1
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/shravya/nginx:2
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/shravya/nginx:unprivileged
       ports:
-      - containerPort: 80
+      - containerPort: 8080
       livenessProbe:
         httpGet:
           path: /
-          port: 80
+          port: 8080
  
   loadbalancers:
   - lbname: shrav-nginx-1
     function: default2
     slbenabled: true
     ports:
-      - port: 80
-        targetport: 80
+      - port: 8080
+        targetport: 8080
         lbtype: http
