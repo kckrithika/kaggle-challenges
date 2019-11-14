@@ -16,8 +16,6 @@ system:
           env:
             - name: SFDC_ENVIRONMENT
               value: mesh
-            # name: PGPORT
-            # value: "1521"
           ports:
             - containerPort: 1521
               name: sdb-port
