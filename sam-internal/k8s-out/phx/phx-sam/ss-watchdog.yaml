@@ -1,17 +1,18 @@
-apiVersion: extensions/v1beta1
-kind: Deployment
+apiVersion: apps/v1beta1
+kind: StatefulSet
 metadata:
   labels:
-    name: secretservice-watchdog-dmz-from-phx
+    name: secretservice-watchdog-dmz-from-phx-sts
     sam.data.sfdc.net/owner: secrets
-  name: secretservice-watchdog-dmz-from-phx
+  name: secretservice-watchdog-dmz-from-phx-sts
   namespace: sam-system
 spec:
   replicas: 2
   selector:
     matchLabels:
-      name: secretservice-watchdog-dmz-from-phx
+      name: secretservice-watchdog-dmz-from-phx-sts
       sam.data.sfdc.net/owner: secrets
+  serviceName: xxx-notused-xxx
   template:
     metadata:
       annotations:
@@ -27,7 +28,7 @@ spec:
            ]
           }
       labels:
-        name: secretservice-watchdog-dmz-from-phx
+        name: secretservice-watchdog-dmz-from-phx-sts
         sam.data.sfdc.net/owner: secrets
       namespace: sam-system
     spec:
@@ -39,14 +40,14 @@ spec:
               - key: name
                 operator: In
                 values:
-                - secretservice-watchdog-dmz-from-phx
+                - secretservice-watchdog-dmz-from-phx-sts
             topologyKey: kubernetes.io/hostname
       containers:
       - args:
         - -ssEndpoint=secretservice.dmz.salesforce.com
         - -ssWritePort=8272
         - -wdKingdom=CRZ
-        - -vaultName=ss-watchdog-vault-dmz-from-phx
+        - -vaultName=$(FUNCTION_INSTANCE_NAME)
         - -role=sam.secrets.secretservice-watchdog
         - -metricsEndpoint=ajna0-funnel1-0-phx.data.sfdc.net:80
         - -logtostderr=true
@@ -68,7 +69,7 @@ spec:
           valueFrom:
             fieldRef:
               fieldPath: spec.nodeName
-        image: ops0-artifactrepo1-0-phx.data.sfdc.net/dva/secretservice-watchdog:171-0352e950128649f36d4df3b1185807f0cd93ba07
+        image: ops0-artifactrepo1-0-phx.data.sfdc.net/dva/secretservice-watchdog:173-e686f6a801c6ba92e2ac0494fc9fb27497908530
         name: watchdog
         volumeMounts:
         - mountPath: /sfdchosts
@@ -170,3 +171,5 @@ spec:
       - emptyDir:
           medium: Memory
         name: client-certs
+  updateStrategy:
+    type: RollingUpdate
