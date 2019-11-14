@@ -1,4 +1,5 @@
 apps:
-  topology-ui: 
+  config-service: 
     - prd/prd-sam
   pptest: 
+  topology-ui: 
