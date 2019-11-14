@@ -6,7 +6,7 @@ system:
     count: 1
     containers:
     - name: config-service-server
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/ameesala/config_service:ameesala-20191114-cd5e32f 
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/ameesala/config_service:ameesala-20191114-7f2bbf2
       env:
         - name: ARTIFACTS
           value: "https://ops0-artifactrepo2-0-prd.data.sfdc.net/artifactory/content_repo_gcp/0/archive/serverpools/2019.10b.1573028391000/serverpools-2019.10b.1573028391000.zip"
