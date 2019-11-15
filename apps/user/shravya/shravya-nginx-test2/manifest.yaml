@@ -9,7 +9,6 @@ system:
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/shravya/nginx:unprivileged3
       ports:
       - containerPort: 8080
-      livenessProbe:
         httpGet:
           path: /
           port: 8080
