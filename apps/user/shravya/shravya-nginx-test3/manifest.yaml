@@ -1,0 +1,47 @@
+apiVersion: v1
+
+system:
+  functions:
+    - name: default3
+      count: 1
+      containers:
+        - name: nginxtest1
+          image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/shravya/nginx:unprivileged
+          ports:
+            - containerPort: 8080
+          livenessProbe:
+            initialDelaySeconds: 900
+            httpGet:
+              path: /
+              port: 8080
+          volumeMounts:
+            - mountPath: /usr/share/nginx/html/
+              name: nginx-vol
+        - name: init-container
+          command: ["/bin/bash"]
+          args:
+            - -c
+            - "dd if=/dev/urandom of=file.txt count=1024 bs=1048576  &&
+          cp file.txt /usr/share/nginx/html/index_1g.html && dd if=/dev/urandom of=file2.txt count=1 bs=1024  && cp file2.txt /usr/share/nginx/html/index.html && sleep 99999h"
+          image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/slb/hyperslb:2280-6728d98d50b4d61992ce01b456c568dd1bc64dcc
+          livenessProbe:
+            initialDelaySeconds: 9000000000
+            httpGet:
+              path: /
+              port: 8080
+          volumeMounts:
+            - mountPath: /usr/share/nginx/html/
+              name: nginx-vol
+      volumes:
+      - name: nginx-vol
+        hostPath:
+          path: /data/slb/nginx-testing
+
+  loadbalancers:
+    - lbname: shrav-nginx-3
+      function: default3
+      slbenabled: true
+      ports:
+        - port: 8080
+          targetport: 8080
+          lbtype: http
