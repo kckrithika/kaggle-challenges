@@ -972,7 +972,7 @@ items:
             valueFrom:
               fieldRef:
                 fieldPath: spec.nodeName
-          image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/secretservice-watchdog:173-e686f6a801c6ba92e2ac0494fc9fb27497908530
+          image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/secretservice-watchdog:177-32163c58278bc26ebee8466939c336906c0a3c6e
           name: watchdog
           resources:
             limits:
