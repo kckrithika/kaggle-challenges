@@ -21,8 +21,8 @@ system:
           command: ["/bin/bash"]
           args:
             - -c
-            - "dd if=/dev/urandom of=file.txt count=1024 bs=1048576  &&
-          cp file.txt /usr/share/nginx/html/index_1g.html && dd if=/dev/urandom of=file2.txt count=1 bs=1024  && cp file2.txt /usr/share/nginx/html/index.html && sleep 99999h"
+            - "dd if=/dev/urandom of=/usr/share/nginx/html/index_1g.html count=1024 bs=1048576  &&
+           dd if=/dev/urandom of=/usr/share/nginx/html/index.html count=1 bs=1024 && sleep 99999h"
           image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/slb/hyperslb:2280-6728d98d50b4d61992ce01b456c568dd1bc64dcc
           livenessProbe:
             initialDelaySeconds: 90000000
