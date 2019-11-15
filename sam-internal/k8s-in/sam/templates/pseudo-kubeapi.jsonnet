@@ -13,6 +13,9 @@ if configs.estate == "prd-samdev" || configs.estate == "prd-samtwo" then {
                     runAsUser: 0,
                     fsGroup: 0,
                 },
+                nodeSelector: {
+                    pool: configs.estate,
+                },
                 containers: [
                     configs.containerWithKubeConfigAndMadDog {
                         command: [

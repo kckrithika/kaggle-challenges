@@ -46,6 +46,8 @@ spec:
           name: mysql
           readOnly: true
       hostNetwork: true
+      nodeSelector:
+        pool: prd-samdev
       securityContext:
         fsGroup: 0
         runAsUser: 0
