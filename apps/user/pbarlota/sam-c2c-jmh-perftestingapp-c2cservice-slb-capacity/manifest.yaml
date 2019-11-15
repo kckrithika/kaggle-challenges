@@ -9,8 +9,8 @@ system:
       ports:
       - containerPort: 9090
       resources:
-        limits: { cpu: "20", memory: "8Gi" }
-        requests: { cpu: "20", memory: "8Gi" }
+        limits: { cpu: "48", memory: "8Gi" }
+        requests: { cpu: "48", memory: "8Gi" }
       volumeMounts:
       - name: client-cert
         mountPath: /client-certs
