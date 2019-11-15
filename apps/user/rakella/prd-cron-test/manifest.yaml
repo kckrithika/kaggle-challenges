@@ -337,7 +337,7 @@ system:
       volumes:
         - name: logvol
           hostpath:
-            path: /var/log/cron
+            path: /var/log/qpid
         - name: sherpaclientcert
           maddogCert:
             type: client
