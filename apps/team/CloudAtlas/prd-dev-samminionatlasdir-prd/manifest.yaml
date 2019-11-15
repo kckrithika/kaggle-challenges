@@ -57,6 +57,7 @@ system:
       - containerPort: 1389
       - containerPort: 1636
       - containerPort: 8989
+      - containerPort: 5000
       livenessProbe:
         exec:
           command:
