@@ -3,4 +3,6 @@ apps:
     - prd/prd-sdc
   shravya-nginx-test2:
     - prd/prd-sdc   
+  shravya-nginx-test3:
+    - prd/prd-sdc     
   
