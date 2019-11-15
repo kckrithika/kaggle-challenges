@@ -27,7 +27,7 @@
   'service-white-list': [ 'sfcdekstest1', 'strauz', 'sfcdec2test' ],
   'soft-launch': true,
   'vmf-parser-configs': {
-    'k8s-account': 'k8s-spinnaker1-v2-account',
+    'k8s-account': 'aws-dev1-uswest2-sfcdtest-sfcdekstest1-platformcluster',
     'namespace': 'apoorv-test', # To be changed once the official namespace is available
     'image': '791719295754.dkr.ecr.us-east-2.amazonaws.com/dva/sfcd-vmf-parser:latest',
     'active-deadline-seconds': 180,
