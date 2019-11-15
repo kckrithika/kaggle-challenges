@@ -112,7 +112,7 @@ items:
                       "vmf-parser-configs": {
                           "active-deadline-seconds": 180,
                           "image": "791719295754.dkr.ecr.us-east-2.amazonaws.com/dva/sfcd-vmf-parser:latest",
-                          "k8s-account": "k8s-spinnaker1-v2-account",
+                          "k8s-account": "aws-dev1-uswest2-sfcdtest-sfcdekstest1-platformcluster",
                           "namespace": "apoorv-test",
                           "ttl-seconds-after-finished": 300
                       },
@@ -383,7 +383,7 @@ items:
                 apiVersion: v1
                 fieldPath: metadata.labels['name']
           - name: CONFIG_VERSION
-            value: "10"
+            value: "11"
           image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/sfcdapi-firebom:81
           imagePullPolicy: Always
           livenessProbe:
