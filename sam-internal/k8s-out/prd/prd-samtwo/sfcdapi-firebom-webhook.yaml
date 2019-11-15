@@ -111,7 +111,7 @@ items:
                       "soft-launch": true,
                       "vmf-parser-configs": {
                           "active-deadline-seconds": 180,
-                          "image": "gcr.io/gsf-mgmt-devmvp-spinnaker/dva/sfcd-vmf-parser:latest",
+                          "image": "791719295754.dkr.ecr.us-east-2.amazonaws.com/dva/sfcd-vmf-parser:latest",
                           "k8s-account": "k8s-spinnaker1-v2-account",
                           "namespace": "apoorv-test",
                           "ttl-seconds-after-finished": 300
@@ -383,7 +383,7 @@ items:
                 apiVersion: v1
                 fieldPath: metadata.labels['name']
           - name: CONFIG_VERSION
-            value: "9"
+            value: "10"
           image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/sfcdapi-firebom:79
           imagePullPolicy: Always
           livenessProbe:

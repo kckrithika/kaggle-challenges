@@ -29,7 +29,7 @@
   'vmf-parser-configs': {
     'k8s-account': 'k8s-spinnaker1-v2-account',
     'namespace': 'apoorv-test', # To be changed once the official namespace is available
-    'image': 'gcr.io/gsf-mgmt-devmvp-spinnaker/dva/sfcd-vmf-parser:latest',
+    'image': '791719295754.dkr.ecr.us-east-2.amazonaws.com/dva/sfcd-vmf-parser:latest',
     'active-deadline-seconds': 180,
     'ttl-seconds-after-finished': 300,
   }
