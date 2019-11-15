@@ -34,6 +34,8 @@ system:
         value: mc.test.mceventbusdev
       - name: JOINER_NUMTHREADS
         value: 1
+      - name: SUBSCRIPTIONCONSUMER_TOPICNAME
+        value: ${AJNA_NAMESPACE}__${KINGDOM}.ajna_local__eventnotification_subscriptions_v2
       livenessProbe:
         initialDelaySeconds: 60
         periodSeconds: 120
