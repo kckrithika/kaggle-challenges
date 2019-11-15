@@ -6,7 +6,7 @@ system:
       - h.chivukula@salesforce.com
   functions:
   - name: candidate-service-ha
-    count: 3
+    count: 2
     containers:
     - name: candidate-service-ha
       image: dva/csc-health/candidate-service:16
