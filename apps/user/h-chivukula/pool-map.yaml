@@ -1,0 +1,4 @@
+version: v2
+apps:
+ cans-ha:
+  - name: xrd/xrd-sampool
