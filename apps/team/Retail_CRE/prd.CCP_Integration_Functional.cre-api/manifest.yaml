@@ -13,7 +13,7 @@ system:
       "routing.mesh.sfdc.net/enabled": "true"
     containers:
     - name: cre-api-ccp-func
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cre/cre-api:2.1.2-TEST.0.develop-at-test.c09f94c.66
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cre/cre-api:2.1.2.0.mt-dvd-remove-jwt.2d6dbda.5
       env:
         - name: K4A_VAULT
           value: c360-dvd-user-manager-dev
@@ -57,8 +57,6 @@ system:
           value: cre-control-plane-ccp-func.retail-cre.localhost.mesh.force.com:5443
         - name: LOG_JWT
           value: true
-        - name: C2C_TENANT_GROUP_ONLY
-          value: false
         - name: CP_OU_NAME
           value: retail-cre.cre-control-plane-ccp-func
         - name: JVM_ARGS
