@@ -30,7 +30,7 @@
     'k8s-account': 'aws-dev1-uswest2-sfcdtest-sfcdekstest1-platformcluster',
     'namespace': 'apoorv-test', # To be changed once the official namespace is available
     'image': '791719295754.dkr.ecr.us-east-2.amazonaws.com/dva/sfcd-vmf-parser:latest',
-    'active-deadline-seconds': 180,
+    'active-deadline-seconds': 60,
     'ttl-seconds-after-finished': 300,
   }
 }
