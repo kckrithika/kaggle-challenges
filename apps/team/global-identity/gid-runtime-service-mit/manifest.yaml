@@ -97,6 +97,8 @@ system:
         value: 10000
       - name: spe_ratelimit_timeWindow
         value: 60
+      - name: proxy_maxThreads
+        value: 1000
 
       ports:
       - containerPort: 7022
@@ -158,15 +160,19 @@ system:
       - containerPort: 15375
       livenessProbe:
         httpGet:
-          path: /manage/health
-          port: 8080
+          path: /manage/health/liveness
+          port: 15375
+        initialDelaySeconds: 180
+        periodSeconds: 10
+        failureThreshold: 30
+
       readinessProbe:
         httpGet:
-          path: /manage/health
-          port: 8080
-        initialDelaySeconds: 60
-        periodSeconds: 5
-        failureThreshold: 120
+          path: /manage/health/readiness
+          port: 15375
+        initialDelaySeconds: 180
+        periodSeconds: 10
+        failureThreshold: 30
     #####################################################################################
     # Volumes Needed
     #####################################################################################
