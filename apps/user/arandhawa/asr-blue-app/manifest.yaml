@@ -1,0 +1,22 @@
+apiVersion: v1
+system:
+  functions:
+  - name: blue-func
+    count: 1
+    containers:
+    - name: blue
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/arandhawa/blue:asr-blue-20191116
+      ports:
+      - containerPort: 9090
+      livenessProbe:
+        httpGet:
+          path: /
+          port: 9090
+  loadbalancers:
+  - lbname: bluelb
+    function: blue-func
+    slbenabled: true
+    ports:
+      - port: 9090
+        targetport: 9090
+        lbtype: tcp

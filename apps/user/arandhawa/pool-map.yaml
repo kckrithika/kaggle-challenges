@@ -1,0 +1,7 @@
+apps:
+ asr-hello-app:
+  - prd/prd-sam
+ asr-blue-app:
+  - prd/prd-sam
+ asr-green-app:
+  - prd/prd-sam
