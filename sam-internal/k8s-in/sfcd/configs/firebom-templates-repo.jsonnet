@@ -18,41 +18,47 @@ local configs = import 'config.jsonnet';
     'master-pipelines-dir': 'pipelines/masterpipeline',
     'master-deployment-pipeline-templates': {
       'service-master': {
-        'pipeline-template': 'service_master_01-00.j2',
-        'vars-json': 'templatesrepo/master_service_deployment_vars.json',
-        'config-json': 'templatesrepo/master_deployment_config.json',
-        'stages-json': 'templatesrepo/master_deployment_stages.json',
-      },
+        'config-json': "service_master/service_master_deployment_config.json",
+        'pipeline-template': "service_master/service_master_01-00.j2",
+        'pipeline-template-dev': "service_master/service_master_01-00.j2",
+        'stages-json': "service_master/service_master_deployment_stages.json",
+        'vars-json': "service_master/service_master_deployment_vars.json",
+        },
       'env-type-aggregate': {
-        'pipeline-template': 'env_type_master_01-00.j2',
-        'vars-json': 'templatesrepo/master_deployment_vars.json',
-        'config-json': 'templatesrepo/master_deployment_config.json',
-        'stages-json': 'templatesrepo/master_deployment_stages.json',
-      },
+        'config-json': "env_type_aggregate/env_type_aggregate_deployment_config.json",
+        'pipeline-template': "env_type_aggregate/env_type_aggregate_01-00.j2",
+        'pipeline-template-dev': "env_type_aggregate/dev_env_type_aggregate_01-00.j2",
+        'stages-json': "env_type_aggregate/env_type_aggregate_deployment_stages.json",
+        'vars-json': "env_type_aggregate/env_type_aggregate_deployment_vars.json"
+        },
       'fi-aggregate': {
-        'pipeline-template': 'fi_master_01-00.j2',
-        'vars-json': 'templatesrepo/master_deployment_vars.json',
-        'config-json': 'templatesrepo/master_deployment_config.json',
-        'stages-json': 'templatesrepo/master_deployment_stages.json',
-      },
+        'config-json': "fi_aggregate/fi_aggregate_deployment_config.json",
+        'pipeline-template': "fi_aggregate/fi_aggregate_01-00.j2",
+        'pipeline-template-dev': "fi_aggregate/fi_aggregate_01-00.j2",
+        'stages-json': "fi_aggregate/fi_aggregate_stages.json",
+        'vars-json': "fi_aggregate/fi_aggregate_deployment_vars.json"
+        },
       'fd-aggregate': {
-        'pipeline-template': 'fd_master_01-00.j2',
-        'vars-json': 'templatesrepo/master_deployment_vars.json',
-        'config-json': 'templatesrepo/master_deployment_config.json',
-        'stages-json': 'templatesrepo/master_deployment_stages.json',
-      },
+        'config-json': "fd_aggregate/fd_aggregate_deployment_config.json",
+        'pipeline-template': "fd_aggregate/fd_aggregate_01-00.j2",
+        'pipeline-template-dev': "fd_aggregate/fd_aggregate_01-00.j2",
+        'stages-json': "fd_aggregate/fd_aggregate_stages.json",
+        'vars-json': "fd_aggregate/fd_aggregate_deployment_vars.json"
+        },
       'cell-aggregate': {
-        'pipeline-template': 'cell_master_01-00.j2',
-        'vars-json': 'templatesrepo/master_deployment_vars.json',
-        'config-json': 'templatesrepo/master_deployment_config.json',
-        'stages-json': 'templatesrepo/master_deployment_stages.json',
-      },
+        'config-json': "cell_aggregate/cell_aggregate_deployment_config.json",
+        'pipeline-template': "cell_aggregate/cell_aggregate_01-00.j2",
+        'pipeline-template-dev': "cell_aggregate/cell_aggregate_01-00.j2",
+        'stages-json': "cell_aggregate/cell_aggregate_stages.json",
+        'vars-json': "cell_aggregate/cell_aggregate_deployment_vars.json"
+        },
       'promote-release': {
-        'pipeline-template': 'promotion_01-00.j2',
-        'vars-json' : 'templatesrepo/promote_release_vars.json',
-        'config-json': 'templatesrepo/master_deployment_config.json',
-        'stages-json': 'templatesrepo/master_deployment_stages.json'
-      }
+        'config-json': "promotion/promotion_config.json",
+        'pipeline-template': "promotion/promotion_01-00.j2",
+        'pipeline-template-dev': "promotion/promotion_01-00.j2",
+        'stages-json': "promotion/promotion_stages.json",
+        'vars-json': "promotion/promotion_vars.json"
+        }
     }
   }
 }
