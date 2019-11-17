@@ -12,7 +12,7 @@ system:
       image: dva/gateway:24-830e47184783740a1692df09016f5573b9d62720
       livenessProbe:
         httpGet:
-          path: /rest/deployments/all/Steam/220
+          path: /rest/deployments/all/Steam/226
           port: 8080
         initialDelaySeconds: 60 
         timeoutSeconds: 10
