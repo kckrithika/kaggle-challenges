@@ -75,6 +75,7 @@ items:
                   "composition": {
                       "cleanup-interval": 0,
                       "default-read-id": "test",
+                      "dev-env-type": "dev",
                       "env-type-hierarchies": {
                           "default": {
                               "canary": {
@@ -205,11 +206,6 @@ items:
                       },
                       "master-pipelines-dir": "pipelines/masterpipeline"
                   },
-                  "dev-env-configs": {
-                      "expected-artifacts-vars-json": "templatesrepo/expected_artifacts/vars/dev_expected_artifacts.json",
-                      "triggers-vars-json": "templatesrepo/triggers/vars/dev_triggers.json"
-                  },
-                  "dev-env-type": "dev",
                   "enable-approve-pr": true,
                   "enable-pr-creation": true,
                   "enable-push-to-origin": true,
@@ -389,8 +385,8 @@ items:
                 apiVersion: v1
                 fieldPath: metadata.labels['name']
           - name: CONFIG_VERSION
-            value: "12"
-          image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/sfcdapi-firebom:84
+            value: "13"
+          image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/sfcdapi-firebom:86
           imagePullPolicy: Always
           livenessProbe:
             failureThreshold: 10
