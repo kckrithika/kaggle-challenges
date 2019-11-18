@@ -47,7 +47,9 @@ local slbreleases = import "slbreleases.json";
     phaseNum: std.parseInt($.phase),
 
     hyperslb_config_label: (
-        if (estate == "prd-sdc" || estate == "prd-sam") then
+        if (estate == "prd-sdc") then
+            "2286-3505b614ecc52c43e963ccbbf064c3f5bfb6ce99"
+        else if (estate == "prd-sam") then
             "2282-b207005f44671a344a0f2e5cd3371b028b31d65f"
         else
            "2280-6728d98d50b4d61992ce01b456c568dd1bc64dcc"
