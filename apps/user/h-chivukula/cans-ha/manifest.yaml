@@ -42,6 +42,8 @@ system:
         value: 8888
       - name: CHS_LOG_FILE
         value: /home/sfdc-csc-health/candidate-service/candidate-service.log
+      - name: CHS_LOG_LEVEL
+        value: debug
       - name: CHS_SMOOTHINGCONFIG_ENABLED
         value: true
       - name: CHS_SMOOTHINGCONFIG_SIZE
