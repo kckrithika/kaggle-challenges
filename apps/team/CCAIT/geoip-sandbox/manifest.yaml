@@ -14,6 +14,8 @@ system:
       env:
       - name: FAKE_ENV_VAR_INCREMENT_TO_TRIGGER_SAM_DEPLOY
         value: "0"
+      - name: SFDC_ENVIRONMENT
+        value: mesh
       resources:
         limits:
           cpu: "8"
@@ -21,6 +23,9 @@ system:
         requests:
           cpu: "8"
           memory: 10Gi
+      ports:
+      - containerPort: 7020
+        name: grpc
       livenessProbe:
         httpGet:
           path: /manage/health
@@ -34,6 +39,9 @@ system:
       terminationMessagePolicy: FallbackToLogsOnError
     - name: sherpa
       image: sfci/servicelibs/sherpa-envoy:1.0.13
+      env:
+      - name: SFDC_ENVIRONMENT
+        value: mesh
       ports:
       - name: http2-in
         containerPort: 7012
@@ -46,6 +54,9 @@ system:
         name: tls-client-cert
       - mountPath: /server-certs
         name: tls-server-cert
+      resources:
+        limits: { cpu: "1", memory: "1Gi" }
+        requests: { cpu: "1", memory: "1Gi" }
       livenessProbe:
         exec:
           command:
