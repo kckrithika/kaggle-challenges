@@ -123,7 +123,7 @@ system:
           args:
             - --scheduler.service.hostname=cs101-cron-lb.user-rakella.prd-sam.prd.slb.sfdc.net
             - --scheduler.service.port=7012
-            - --scheduler.client.appserverid=demo
+            - --scheduler.client.appserverid=cs101-app1
             - --scheduler.client.tpsize=20
           env:
             - name: SFDC_ENVIRONMENT
