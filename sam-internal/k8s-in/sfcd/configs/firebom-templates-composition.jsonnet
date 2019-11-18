@@ -2,6 +2,7 @@
   'working-directory': '/tmp/sfcdapifirebom',
   'default-read-id': 'test',
   'cleanup-interval': 0,
+  'dev-env-type': 'dev',
   'env-type-hierarchies': {
     'default': {
       'dev': {

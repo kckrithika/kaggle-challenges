@@ -8,11 +8,6 @@ local configs = import 'config.jsonnet';
   'enable-pr-creation': true,
   'enable-approve-pr': true,
   'enable-self-approve-pr': true,
-  'dev-env-configs': {
-    'expected-artifacts-vars-json': "templatesrepo/expected_artifacts/vars/dev_expected_artifacts.json",
-    'triggers-vars-json': "templatesrepo/triggers/vars/dev_triggers.json",
-  },
-  'dev-env-type': "dev",
   'composed-templates': {
     'location': 'lib/templates',
     'master-pipelines-dir': 'pipelines/masterpipeline',
@@ -62,4 +57,3 @@ local configs = import 'config.jsonnet';
     }
   }
 }
-
