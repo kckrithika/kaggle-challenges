@@ -61,7 +61,7 @@ system:
           livenessProbe:
             exec:
               command: ["/bin/true"]
-            initialDelaySeconds: 11
+            initialDelaySeconds: 12
             timeoutSeconds: 10
             periodSeconds: 60
           readinessProbe:
