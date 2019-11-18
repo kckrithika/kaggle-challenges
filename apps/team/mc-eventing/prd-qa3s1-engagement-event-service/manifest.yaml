@@ -36,7 +36,9 @@ system:
       - name: JOINER_NUMTHREADS
         value: 1
       - name: EVENTCONSUMER_TOPICNAME
-        value: mc.test.mceventbusqa3s1__prd.ajna_local__engagement_events
+        value: ${AJNA_NAMESPACE}__${KINGDOM}.ajna_local__engagement_events
+      - name: SUBSCRIPTIONCONSUMER_TOPICNAME
+        value: ${AJNA_NAMESPACE}__${KINGDOM}.ajna_local__eventnotification_subscriptions_v2
       livenessProbe:
         initialDelaySeconds: 60
         periodSeconds: 120
