@@ -20,6 +20,8 @@ system:
         value: 25
       - name: IP_DB
         value: mist61ice1-db1-1-prd.eng.sfdc.net
+      - name: dwarfUserKeyStorePassword
+        value: Welcome_1
       - name: DB_PASSWORD
         value: rotate
       - name: DB_STATS_PASSWORD
@@ -66,7 +68,7 @@ system:
         valueFrom:
           fieldRef:
             fieldPath: spec.nodeName
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/coreonsam/casam:release_main_19581350
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/coreonsam/casam:release_main_19793215
       livenessProbe:
         exec:
           command:
@@ -109,7 +111,7 @@ system:
     - env:
       - name: CASAM_SETTINGS_PATH
         value: mist.mist61.prd.na1.app
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/casam/ssdb_team_coreapp_overrides:ef6bac
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/casam/ssdb_team_coreapp_overrides:1c5518
       livenessProbe:
         exec:
           command:
