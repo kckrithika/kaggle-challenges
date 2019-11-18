@@ -283,6 +283,122 @@ items:
   metadata:
     annotations:
       manifestctl.sam.data.sfdc.net/swagger: disable
+    name: flowsnake-client-wave-discovery-Role
+    namespace: wave-discovery
+  rules:
+  - apiGroups:
+    - '*'
+    resources:
+    - pods
+    - replicationcontrollers
+    - deployments
+    - jobs
+    - replicasets
+    - secrets
+    - configmaps
+    - statefulsets
+    - services
+    - ingresses
+    - persistentvolumes
+    - sparkapplications
+    verbs:
+    - '*'
+  - apiGroups:
+    - '*'
+    resources:
+    - '*'
+    verbs:
+    - get
+    - list
+- apiVersion: rbac.authorization.k8s.io/v1
+  kind: ClusterRoleBinding
+  metadata:
+    annotations:
+      manifestctl.sam.data.sfdc.net/swagger: disable
+    name: flowsnake-client-wave-discovery-ClusterRoleBinding
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: client-cluster-role
+  subjects:
+  - kind: User
+    name: wave-discovery.ed-spark-job-controller
+  - kind: User
+    name: wave-discovery.ed-test-user
+  - kind: User
+    name: wave-discovery.spark-engine
+  - kind: User
+    name: wave-discovery.amber.mehta
+  - kind: User
+    name: wave-discovery.bharadwaj.tanikella
+  - kind: User
+    name: wave-discovery.egupta
+  - kind: User
+    name: wave-discovery.jlefrere
+  - kind: User
+    name: wave-discovery.kbyun
+  - kind: User
+    name: wave-discovery.lok.liu
+  - kind: User
+    name: wave-discovery.mtimmerman
+- apiVersion: rbac.authorization.k8s.io/v1
+  kind: RoleBinding
+  metadata:
+    annotations:
+      manifestctl.sam.data.sfdc.net/swagger: disable
+    name: flowsnake-client-wave-discovery-RoleBinding
+    namespace: wave-discovery
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: Role
+    name: flowsnake-client-wave-discovery-Role
+  subjects:
+  - kind: User
+    name: wave-discovery.ed-spark-job-controller
+  - kind: User
+    name: wave-discovery.ed-test-user
+  - kind: User
+    name: wave-discovery.spark-engine
+  - kind: User
+    name: wave-discovery.amber.mehta
+  - kind: User
+    name: wave-discovery.bharadwaj.tanikella
+  - kind: User
+    name: wave-discovery.egupta
+  - kind: User
+    name: wave-discovery.jlefrere
+  - kind: User
+    name: wave-discovery.kbyun
+  - kind: User
+    name: wave-discovery.lok.liu
+  - kind: User
+    name: wave-discovery.mtimmerman
+- apiVersion: v1
+  automountServiceAccountToken: true
+  kind: ServiceAccount
+  metadata:
+    name: spark-driver-wave-discovery
+    namespace: wave-discovery
+- apiVersion: rbac.authorization.k8s.io/v1
+  kind: RoleBinding
+  metadata:
+    annotations:
+      manifestctl.sam.data.sfdc.net/swagger: disable
+    name: spark-driver-wave-discovery-RoleBinding
+    namespace: wave-discovery
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: Role
+    name: flowsnake-client-wave-discovery-Role
+  subjects:
+  - kind: ServiceAccount
+    name: spark-driver-wave-discovery
+    namespace: wave-discovery
+- apiVersion: rbac.authorization.k8s.io/v1
+  kind: Role
+  metadata:
+    annotations:
+      manifestctl.sam.data.sfdc.net/swagger: disable
     name: flowsnake-client-flowsnake-test-Role
     namespace: flowsnake-test
   rules:

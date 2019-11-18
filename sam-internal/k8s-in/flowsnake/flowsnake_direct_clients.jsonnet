@@ -67,6 +67,26 @@ local cre_production = {
                     "Splunk.vgandrapu",
                 ],
             },
+            {
+                # Created by W-6897185
+                owner_name: "Einstein Discovery",
+                namespace: "wave-discovery",
+                pki_namespace: "wave-discovery",
+                users: [
+                    # Services
+                    "wave-discovery.ed-spark-job-controller",
+                    "wave-discovery.ed-test-user",
+                    "wave-discovery.spark-engine",
+                    # Individuals
+                    "wave-discovery.amber.mehta",
+                    "wave-discovery.bharadwaj.tanikella",
+                    "wave-discovery.egupta",
+                    "wave-discovery.jlefrere",
+                    "wave-discovery.kbyun",
+                    "wave-discovery.lok.liu",
+                    "wave-discovery.mtimmerman",
+                ],
+            },
         ],
 
         # ------------------------------------
