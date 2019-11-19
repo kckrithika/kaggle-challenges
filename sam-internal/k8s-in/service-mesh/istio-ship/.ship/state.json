@@ -3,13 +3,13 @@
     "config": {},
     "releaseName": "istio",
     "namespace": "mesh-control-plane",
-    "upstream": "https://github.com/istio/istio/tree/d6827a9cabcefcc0d172d117e5b6079a157d4bed/install/kubernetes/helm/istio",
+    "upstream": "https://github.com/istio/istio/tree/5cf691d566ca86b8d8b10360db120084025f281f/install/kubernetes/helm/istio",
     "metadata": {
       "applicationType": "helm",
       "sequence": 0,
       "icon": "https://istio.io/favicons/android-192x192.png",
       "name": "istio",
-      "releaseNotes": "fix(injection template): correct owner string format (#18485)\n\n* fix(injection template): correct owner string format\n\nSigned-off-by: Douglas Reid \u003cdouglas-reid@users.noreply.github.com\u003e\n\n* refresh golden files",
+      "releaseNotes": "",
       "version": "1.1.0",
       "license": {
         "id": "",
@@ -34,6 +34,6 @@
         "arch": "amd64"
       }
     },
-    "contentSHA": "268426eb6ad27f8d2a416633733968e268597716f6e715de2c42ad59085716de"
+    "contentSHA": "cc27dbea03af8a238702b5e89108e39f1ad229d86e295ae158dd0886151274f3"
   }
 }

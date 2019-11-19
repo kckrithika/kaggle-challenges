@@ -128,6 +128,8 @@ spec:
             valueFrom:
               fieldRef:
                 fieldPath: spec.serviceAccountName
+          - name: ISTIO_AUTO_MTLS_ENABLED
+            value: "true"
           - name: ISTIO_META_POD_NAME
             valueFrom:
               fieldRef:
@@ -149,7 +151,7 @@ spec:
           - name: ISTIO_META_OWNER
             value: kubernetes://api/apps/v1/namespaces/mesh-control-plane/deployments/istio-ingressgateway
           - name: ISTIO_META_ROUTER_MODE
-            value: sni-dnat
+            value: standard
           
           
           volumeMounts:
