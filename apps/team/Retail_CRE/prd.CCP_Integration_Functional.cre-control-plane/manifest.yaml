@@ -23,7 +23,7 @@ system:
             - name: EXPORT_SPEC_IMAGE
               value: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cre/cre-dds-spark:2.1.2.freeze-2.0.release-2.1.2.f57355d.6
             - name: SAVE_SPEC_IMAGE
-              value: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cre/cre-dds-spark:2.1.2.freeze-2.0.release-2.1.2.f57355d.6
+              value: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cre/cre-dds-spark:2.1.2.freeze-3.0.release-2.1.2-pz.42ea68c.5
             ####################################################################################################
             ####################################### GLOBAL SHARED VALUES #######################################
             ####################################################################################################
