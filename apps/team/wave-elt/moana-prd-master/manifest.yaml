@@ -116,7 +116,7 @@ system:
       volumeMounts:
       - {mountPath: /client-certs, name: tls-client-certs}
       - {mountPath: /server-certs, name: tls-server-certs}
-    - args: [-endpoint, '$(FUNCTION_NAMESPACE)/datapool:DATACENTER_ALLENV:HTTP2_TLS']
+    - args: [-endpoint, '$(FUNCTION_NAMESPACE)/$(FUNCTION):DATACENTER_ALLENV:HTTP2_TLS']
       image: sfci/services/sfdc-bazel/disco/beacon:d7f1640
       livenessProbe:
         exec:
@@ -125,7 +125,7 @@ system:
       name: beacon
     count: 3
     hostnetwork: false
-    identity: {serviceName: datapool}
+    identity: {serviceName: jobcontroller-master}
     name: jobcontroller-master
     volumes:
     - hostPath: {path: /data/sam/wave/log/datapool}
