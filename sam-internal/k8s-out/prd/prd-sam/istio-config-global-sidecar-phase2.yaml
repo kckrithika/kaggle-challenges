@@ -9,6 +9,8 @@ metadata:
 spec:
   egress:
   - hosts:
+    - mesh-control-plane/*
+    - z9s-default/*
     - app/*
     - service-mesh/*
     - funnel/*
@@ -35,6 +37,8 @@ spec:
       number: 7443
       protocol: GRPC
   - hosts:
+    - mesh-control-plane/*
+    - z9s-default/*
     - app/*
     - service-mesh/*
     - funnel/*
@@ -61,6 +65,8 @@ spec:
       number: 7442
       protocol: HTTP
   - hosts:
+    - mesh-control-plane/*
+    - z9s-default/*
     - app/*
     - service-mesh/*
     - funnel/*
@@ -87,6 +93,8 @@ spec:
       number: 7014
       protocol: HTTP
   - hosts:
+    - mesh-control-plane/*
+    - z9s-default/*
     - app/*
     - service-mesh/*
     - funnel/*

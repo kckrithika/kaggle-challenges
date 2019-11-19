@@ -20,10 +20,10 @@ local namespaces = (import "namespaces/mesh-namespaces.jsonnet") + { templateFil
 
   sidecarEgressHosts: (
   if ($.phaseNum < 3) then
-    [
-      ("%s/*" % ns)
-for ns in namespaces.istioEnabledNamespaces("prd")
-    ]
+    // System namespaces
+    ["mesh-control-plane/*", "z9s-default/*"] +
+    // App namespaces
+    [("%s/*" % ns) for ns in namespaces.istioEnabledNamespaces("prd")]
     else
     [
       // System namespaces
