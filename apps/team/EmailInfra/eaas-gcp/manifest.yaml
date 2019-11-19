@@ -9,7 +9,7 @@ system:
     terminationGracePeriodSeconds: 35
     containers:
     - name: eaas
-      image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-gcp/sfci/eaas/emailservice:2.0.105-de1676ea90c564294a2c6ac22c149776bd7c1942
+      image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-gcp/sfci/eaas/emailservice:2.0.106-f06cab8ad2f71e324f4d1544eaef2ffcdc2482f7
       ports:
       - name: grpc
         containerPort: 7020
