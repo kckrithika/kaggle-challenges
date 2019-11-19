@@ -3,7 +3,7 @@ apiVersion: v2
 system:
   functions:
   - name: sfcd-onboarding-test
-    count: 0
+    count: 1 
     identity:
       serviceName: sfcd-onboarding-test
     containers:
