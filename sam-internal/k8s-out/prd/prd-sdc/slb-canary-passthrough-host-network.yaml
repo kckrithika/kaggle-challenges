@@ -49,7 +49,7 @@ spec:
         - --serviceName=slb-canary-passthrough-host-network
         - --log_dir=/host/data/slb/logs/slb-canary-service
         - --ports=9113
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/slb/hyperslb:2286-3505b614ecc52c43e963ccbbf064c3f5bfb6ce99
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/slb/hyperslb:2287-61c485ebc440f2cf2e9f68f81c66ad5f956016b8
         livenessProbe:
           httpGet:
             path: /
@@ -71,7 +71,7 @@ spec:
         env:
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig-platform
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/slb/hyperslb:2286-3505b614ecc52c43e963ccbbf064c3f5bfb6ce99
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/slb/hyperslb:2287-61c485ebc440f2cf2e9f68f81c66ad5f956016b8
         livenessProbe:
           exec:
             command:
