@@ -33,6 +33,8 @@ local istioInjectionEnabled = {
   // Returns a list of all possible NS variations to iterate over and create individual files for each NS
   allNs: all_known_mesh_namespaces,
 
+  istioEnabledNamespaces(kingdom): istioInjectionEnabled[kingdom],
+
   // Determines if an NS in an individual file should be deployed to a Kingdom
   shouldDeployToKingdom(namespaceName, kingdom):: (
       ((std.objectHas(istioInjectionEnabled, kingdom)) && (std.count(istioInjectionEnabled[kingdom], namespaceName) > 0)) || 
