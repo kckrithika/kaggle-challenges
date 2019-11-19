@@ -1,0 +1,317 @@
+---
+# Source: istio/charts/sidecarInjectorWebhook/templates/deployment.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: istio-sidecar-injector
+  namespace: mesh-control-plane
+  labels:
+    app: sidecarInjectorWebhook
+    chart: sidecarInjectorWebhook
+    heritage: Tiller
+    release: RELEASE-NAME
+    istio: sidecar-injector
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      istio: sidecar-injector
+  strategy:
+    rollingUpdate:
+      maxSurge: 100%
+      maxUnavailable: 25%
+  template:
+    metadata:
+      labels:
+        app: sidecarInjectorWebhook
+        chart: sidecarInjectorWebhook
+        heritage: Tiller
+        release: RELEASE-NAME
+        istio: sidecar-injector
+      annotations:
+        sidecar.istio.io/inject: "false"
+    spec:
+      securityContext:
+        fsGroup: 7447
+        runAsNonRoot: true
+        runAsUser: 7447
+        
+      serviceAccountName: istio-sidecar-injector-service-account
+      automountServiceAccountToken: true
+      containers:
+        - name: sidecar-injector-webhook
+          image: "791719295754.dkr.ecr.us-east-2.amazonaws.com/sfci/servicemesh/istio-packaging/sidecar_injector:4560429101a9e635e4fa9e5d5f14feae98c17d20"
+          imagePullPolicy: IfNotPresent
+          args:
+            - --caCertFile=/etc/identity/ca/cacerts.pem
+            - --tlsCertFile=/etc/identity/server/certificates/server.pem
+            - --tlsKeyFile=/etc/identity/server/keys/server-key.pem
+            - --injectConfig=/etc/istio/inject/config
+            - --meshConfig=/etc/istio/config/mesh
+            - --healthCheckInterval=2s
+            - --port=15009
+            - --healthCheckFile=/tmp/health
+            - --reconcileWebhookConfig=true
+          volumeMounts:
+          - name: config-volume
+            mountPath: /etc/istio/config
+            readOnly: true
+          - name: inject-config
+            mountPath: /etc/istio/inject
+            readOnly: true
+          livenessProbe:
+            exec:
+              command:
+                - /usr/local/bin/sidecar-injector
+                - probe
+                - --probe-path=/tmp/health
+                - --interval=4s
+            initialDelaySeconds: 4
+            periodSeconds: 4
+          readinessProbe:
+            exec:
+              command:
+                - /usr/local/bin/sidecar-injector
+                - probe
+                - --probe-path=/tmp/health
+                - --interval=4s
+            initialDelaySeconds: 4
+            periodSeconds: 4
+          resources:
+            requests:
+              cpu: 10m
+            
+        - 
+          name: metrics-scraper
+          args:
+            - --debug-mode
+            - "true"
+            - --funnel-address
+            - ajnafunneldirecttls.funnel.svc.mesh.sfdc.net:7442
+            - --alt-tags
+            - cluster=svccluster
+          env:
+            - name: POD_NAME
+              valueFrom:
+                fieldRef:
+                  apiVersion: v1
+                  fieldPath: metadata.name
+            - name: POD_NAMESPACE
+              valueFrom:
+                fieldRef:
+                  apiVersion: v1
+                  fieldPath: metadata.namespace # Copy primary container's env values.
+            - name: ESTATE
+              value: "updated_by_firebom"
+            - name: SETTINGS_PATH
+              value: "updated_by_firebom"
+            - name: SETTINGS_SUPERPOD
+              value: "-"
+          image: 791719295754.dkr.ecr.us-east-2.amazonaws.com/sfci/servicemesh/servicemesh/metrics-scraper:4749a2d1bcb74c2325daf80e4bb0ba80724316f9
+          imagePullPolicy: IfNotPresent
+          readinessProbe:
+            exec:
+              command:
+                - /bin/true
+            initialDelaySeconds: 5
+            periodSeconds: 30
+            timeoutSeconds: 5
+          resources:
+            limits:
+              cpu: 2000m
+              memory: 2048Mi
+            requests:
+              cpu: 100m
+              memory: 512Mi
+            
+        - name: istio-proxy
+          image: "791719295754.dkr.ecr.us-east-2.amazonaws.com/sfci/servicemesh/istio-packaging/proxy:4560429101a9e635e4fa9e5d5f14feae98c17d20"
+          imagePullPolicy: IfNotPresent
+          securityContext:
+            runAsUser: 1337
+          args:
+            - proxy
+            - sidecar
+            - --domain
+            - $(POD_NAMESPACE).svc.cluster.local
+            - --configPath
+            - "/etc/istio/proxy"
+            - --binaryPath
+            - "/usr/local/bin/envoy"
+            - --serviceCluster
+            - "istio-sidecar-injector.$(POD_NAMESPACE)"
+            - --drainDuration
+            - '45s'
+            - --parentShutdownDuration
+            - '1m0s'
+            - --connectTimeout
+            - '10s'
+            - --zipkinAddress
+            - zipkin.mesh-control-plane:9411
+            - --envoyMetricsService
+            - '{"address":"metrics-service.service-mesh:15001","tlsSettings":{"caCertificates":"/etc/identity/ca/cacerts.pem","clientCertificate":"/etc/identity/client/certificates/client.pem","mode":"MUTUAL","privateKey":"/etc/identity/client/keys/client-key.pem","sni":null,"subjectAltNames":[]},"tcpKeepalive":{"interval":"10s","probes":3,"time":"10s"}}'
+            - --proxyAdminPort
+            - "15373"
+            - --statusPort
+            - "15020"
+            - --proxyLogLevel=info
+            - --dnsRefreshRate
+            - 300s
+            - --controlPlaneAuthPolicy
+            - MUTUAL_TLS
+            - --discoveryAddress
+            - istio-pilot.mesh-control-plane:15011
+            - --controlPlaneBootstrap=false
+          env:
+            - name: POD_NAME
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.name
+            - name: ISTIO_META_CLUSTER_ID
+              value: "updated_by_firebom"
+            - name: POD_NAMESPACE
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.namespace
+            - name: INSTANCE_IP
+              valueFrom:
+                fieldRef:
+                  fieldPath: status.podIP
+            - name: SERVICE_ACCOUNT
+              valueFrom:
+                fieldRef:
+                  fieldPath: spec.serviceAccountName
+            - name: ISTIO_AUTO_MTLS_ENABLED
+              value: "true"
+            - name: HOST_IP
+              valueFrom:
+                fieldRef:
+                  fieldPath: status.hostIP
+            - name: ISTIO_META_POD_NAME
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.name
+            - name: ISTIO_META_CONFIG_NAMESPACE
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.namespace
+            - name: SDS_ENABLED
+              value: "false"
+            - name: ISTIO_META_INTERCEPTION_MODE
+              value: "REDIRECT"
+            - name: ISTIO_METAJSON_LABELS
+              value: '{"settings_path": "updated_by_firebom", "superpod":"-"}'
+            - name: ISTIO_META_TLS_CLIENT_CERT_CHAIN
+              value: "/etc/identity/client/certificates/client.pem"
+            - name: ISTIO_META_TLS_CLIENT_KEY
+              value: "/etc/identity/client/keys/client-key.pem"
+            - name: ISTIO_META_TLS_CLIENT_ROOT_CERT
+              value: "/etc/identity/ca/cacerts.pem"
+            - name: ISTIO_META_TLS_SERVER_CERT_CHAIN
+              value: "/etc/identity/server/certificates/server.pem"
+            - name: ISTIO_META_TLS_SERVER_KEY
+              value: "/etc/identity/server/keys/server-key.pem"
+            - name: ISTIO_META_TLS_SERVER_ROOT_CERT
+              value: "/etc/identity/ca/cacerts.pem"
+            - name: ISTIO_META_hostname # Required by Metrics Service
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.name
+            - name: ISTIO_META_namespace # Required by Metrics Service
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.namespace
+          resources:
+            
+            limits:
+              cpu: 2000m
+              memory: 1024Mi
+            requests:
+              cpu: 100m
+              memory: 128Mi
+            
+          volumeMounts:
+      initContainers:
+        - args:
+            - -p
+            - "15002"
+            - -z
+            - "15006"
+            - -u
+            - "1337"
+            - -m
+            - "REDIRECT"
+            - -i
+            - "127.1.2.3/32"
+            - -x
+            - ""
+            - -b
+            - ""
+            - -d
+            - ""
+          env:
+            - name: DISABLE_REDIRECTION_ON_LOCAL_LOOPBACK
+              value: "1"
+          image: "791719295754.dkr.ecr.us-east-2.amazonaws.com/sfci/servicemesh/istio-packaging/proxy:4560429101a9e635e4fa9e5d5f14feae98c17d20"
+          imagePullPolicy: IfNotPresent
+          name: istio-init
+          resources:
+            limits:
+              cpu: 100m
+              memory: 50Mi
+            requests:
+              cpu: 10m
+              memory: 10Mi
+          securityContext:
+            capabilities:
+              add:
+                - NET_ADMIN
+            runAsNonRoot: false
+            runAsUser: 0
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+      volumes:
+      - name: config-volume
+        configMap:
+          name: istio
+      - name: inject-config
+        configMap:
+          name: istio-sidecar-injector
+          items:
+          - key: config
+            path: config
+          - key: values
+            path: values
+      affinity:      
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+            - matchExpressions:
+              - key: beta.kubernetes.io/arch
+                operator: In
+                values:
+                - "amd64"
+                - "ppc64le"
+                - "s390x"
+          preferredDuringSchedulingIgnoredDuringExecution:
+          - weight: 2
+            preference:
+              matchExpressions:
+              - key: beta.kubernetes.io/arch
+                operator: In
+                values:
+                - "amd64"
+          - weight: 2
+            preference:
+              matchExpressions:
+              - key: beta.kubernetes.io/arch
+                operator: In
+                values:
+                - "ppc64le"
+          - weight: 2
+            preference:
+              matchExpressions:
+              - key: beta.kubernetes.io/arch
+                operator: In
+                values:
+                - "s390x"      

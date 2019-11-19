@@ -1,0 +1,36 @@
+---
+# Source: istio/charts/gateways/templates/service.yaml
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: istio-ingressgateway
+  namespace: mesh-control-plane
+  annotations:
+    service.beta.kubernetes.io/aws-load-balancer-type: "nlb"
+  labels:
+    chart: gateways
+    heritage: Tiller
+    release: RELEASE-NAME
+    app: istio-ingressgateway
+    istio: ingressgateway
+spec:
+  type: LoadBalancer
+  selector:
+    release: RELEASE-NAME
+    app: istio-ingressgateway
+    istio: ingressgateway
+  ports:
+    -
+      name: https-core-443
+      port: 443
+    -
+      name: https-core-8443
+      port: 8443
+    -
+      name: https-core-8085
+      port: 8085
+    -
+      name: tcp-core-2525
+      port: 2525
+---

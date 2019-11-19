@@ -1,0 +1,61 @@
+# IMPORTANT - To preserve SAM k8s out yaml formatting, 
+#   do NOT leave any empty lines or comments in multi-line config values.
+# This would be of immense help when comparing the final k8s out directory & 
+#   would prevent bugs due to lack of readability in k8s-out for ConfigMap.
+apiVersion: v1
+data:
+  mesh: |-
+    disablePolicyChecks: false
+    enableTracing: true
+    accessLogFile: "%(accessLogFile)s"
+    accessLogFormat: ""
+    accessLogEncoding: 'TEXT'
+    ingressService: istio-ingressgateway
+    protocolDetectionTimeout: 100ms
+    dnsRefreshRate: 300s
+    sdsUdsPath:
+    enableSdsTokenMount: false
+    sdsUseK8sSaJwt: false
+    trustDomain:
+    outboundTrafficPolicy:
+      mode: ALLOW_ANY
+    rootNamespace: mesh-control-plane
+    proxyListenPort: 15002
+    # W-6798525: assigned a random available port to proxyHttpPort so that baremetal proxy can listen on 15002 without any conflicts
+    proxyHttpPort: 49150
+    inboundClusterStatName: "local_service.%%SERVICE_PORT%%"
+    outboundClusterStatName: "%%SERVICE%%.%%SERVICE_PORT%%"
+    defaultConfig:
+      concurrency: 0
+      connectTimeout: 10s
+      configPath: "/etc/istio/proxy"
+      binaryPath: "/usr/local/bin/envoy"
+      serviceCluster: istio-proxy
+      drainDuration: 45s
+      parentShutdownDuration: 1m0s
+      interceptionMode: REDIRECT
+      proxyAdminPort: 15373
+      tracing:
+        zipkin:
+          address: zipkindirecttls.funnel.svc.mesh.sfdc.net:7442
+      envoyMetricsService:
+        address: switchboard.service-mesh:15001
+        tlsSettings:
+          caCertificates: /client-certs/ca.pem
+          clientCertificate: /client-certs/client/certificates/client.pem
+          mode: MUTUAL
+          privateKey: /client-certs/client/keys/client-key.pem
+          sni: null
+          subjectAltNames: []
+        tcpKeepalive:
+          interval: 10s
+          probes: 3
+          time: 10s
+      controlPlaneAuthPolicy: MUTUAL_TLS
+      discoveryAddress: istio-pilot.mesh-control-plane:15011
+  meshNetworks: |-
+    networks: {}
+kind: ConfigMap
+metadata:
+  name: istio
+  namespace: mesh-control-plane

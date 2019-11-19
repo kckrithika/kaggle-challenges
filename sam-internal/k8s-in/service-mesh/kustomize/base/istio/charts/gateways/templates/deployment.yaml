@@ -1,0 +1,223 @@
+---
+# Source: istio/charts/gateways/templates/deployment.yaml
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: istio-ingressgateway
+  namespace: mesh-control-plane
+  labels:
+    app: istio-ingressgateway
+    chart: gateways
+    heritage: Tiller
+    istio: ingressgateway
+    release: RELEASE-NAME
+    
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: istio-ingressgateway
+      istio: ingressgateway
+  strategy:
+    rollingUpdate:
+      maxSurge: 100%
+      maxUnavailable: 25%
+  template:
+    metadata:
+      labels:
+        app: istio-ingressgateway
+        chart: gateways
+        heritage: Tiller
+        istio: ingressgateway
+        release: RELEASE-NAME
+        
+      annotations:
+        sidecar.istio.io/inject: "false"
+    spec:
+      securityContext:
+        fsGroup: 7447
+        runAsNonRoot: true
+        runAsUser: 7447
+        
+      serviceAccountName: istio-ingressgateway-service-account
+      automountServiceAccountToken: true
+      containers:
+        - name: istio-proxy
+          image: "791719295754.dkr.ecr.us-east-2.amazonaws.com/sfci/servicemesh/istio-packaging/proxy:4560429101a9e635e4fa9e5d5f14feae98c17d20"
+          imagePullPolicy: IfNotPresent
+          securityContext:
+            runAsUser: 0
+            runAsNonRoot: false
+          ports:
+            - containerPort: 443
+            - containerPort: 8443
+            - containerPort: 8085
+            - containerPort: 2525
+            - containerPort: 15090
+              protocol: TCP
+              name: http-envoy-prom
+          args:
+          - proxy
+          - router
+          - --domain
+          - $(POD_NAMESPACE).svc.cluster.local
+          - --proxyLogLevel=info
+          - --log_output_level=default:warn
+          - --drainDuration
+          - '45s' #drainDuration
+          - --parentShutdownDuration
+          - '1m0s' #parentShutdownDuration
+          - --connectTimeout
+          - '10s' #connectTimeout
+          - --serviceCluster
+          - istio-ingressgateway
+          - --zipkinAddress
+          - zipkin.mesh-control-plane:9411
+          - --envoyMetricsService
+          - '{"address":"metrics-service.service-mesh:15001","tlsSettings":{"caCertificates":"/etc/identity/ca/cacerts.pem","clientCertificate":"/etc/identity/client/certificates/client.pem","mode":"MUTUAL","privateKey":"/etc/identity/client/keys/client-key.pem","sni":null,"subjectAltNames":[]},"tcpKeepalive":{"interval":"10s","probes":3,"time":"10s"}}'
+          - --proxyAdminPort
+          - "15373"
+          - --statusPort
+          - "15020"
+          - --controlPlaneAuthPolicy
+          - MUTUAL_TLS
+          - --discoveryAddress
+          - istio-pilot.mesh-control-plane:15011
+          readinessProbe:
+            failureThreshold: 30
+            httpGet:
+              path: /healthz/ready
+              port: 15020
+              scheme: HTTP
+            initialDelaySeconds: 1
+            periodSeconds: 2
+            successThreshold: 1
+            timeoutSeconds: 1
+          resources:
+            limits:
+              cpu: 2000m
+              memory: 1024Mi
+            requests:
+              cpu: 100m
+              memory: 128Mi
+            
+          env:
+          - name: NODE_NAME
+            valueFrom:
+              fieldRef:
+                apiVersion: v1
+                fieldPath: spec.nodeName
+          - name: POD_NAME
+            valueFrom:
+              fieldRef:
+                apiVersion: v1
+                fieldPath: metadata.name
+          - name: POD_NAMESPACE
+            valueFrom:
+              fieldRef:
+                apiVersion: v1
+                fieldPath: metadata.namespace
+          - name: INSTANCE_IP
+            valueFrom:
+              fieldRef:
+                apiVersion: v1
+                fieldPath: status.podIP
+          - name: HOST_IP
+            valueFrom:
+              fieldRef:
+                apiVersion: v1
+                fieldPath: status.hostIP
+          - name: SERVICE_ACCOUNT
+            valueFrom:
+              fieldRef:
+                fieldPath: spec.serviceAccountName
+          - name: ISTIO_AUTO_MTLS_ENABLED
+            value: "true"
+          - name: ISTIO_META_POD_NAME
+            valueFrom:
+              fieldRef:
+                apiVersion: v1
+                fieldPath: metadata.name
+          - name: ISTIO_META_CONFIG_NAMESPACE
+            valueFrom:
+              fieldRef:
+                fieldPath: metadata.namespace
+          - name: ISTIO_METAJSON_LABELS
+            value: |
+              {"app":"istio-ingressgateway","chart":"gateways","heritage":"Tiller","istio":"ingressgateway","release":"RELEASE-NAME"}
+          - name: ISTIO_META_CLUSTER_ID
+            value: "Kubernetes"
+          - name: SDS_ENABLED
+            value: "false"
+          - name: ISTIO_META_WORKLOAD_NAME
+            value: istio-ingressgateway
+          - name: ISTIO_META_OWNER
+            value: kubernetes://api/apps/v1/namespaces/mesh-control-plane/deployments/istio-ingressgateway
+          - name: ESTATE
+            value: "updated_by_firebom"
+          - name: ISTIO_BOOTSTRAP
+            value: "/var/lib/istio/envoy/envoy_bootstrap_tmpl_sfdc_falcon.json"
+          - name: ISTIO_META_ROUTER_MODE
+            value: "standard"
+          - name: ISTIO_META_TLS_CLIENT_CERT_CHAIN
+            value: "/etc/identity/client/certificates/client.pem"
+          - name: ISTIO_META_TLS_CLIENT_KEY
+            value: "/etc/identity/client/keys/client-key.pem"
+          - name: ISTIO_META_TLS_CLIENT_ROOT_CERT
+            value: "/etc/identity/ca/cacerts.pem"
+          - name: ISTIO_META_TLS_SERVER_CERT_CHAIN
+            value: "/etc/identity/server/certificates/server.pem"
+          - name: ISTIO_META_TLS_SERVER_KEY
+            value: "/etc/identity/server/keys/server-key.pem"
+          - name: ISTIO_META_TLS_SERVER_ROOT_CERT
+            value: "/etc/identity/ca/cacerts.pem"
+          - name: SETTINGS_PATH
+            value: "updated_by_firebom"
+          - name: SETTINGS_SUPERPOD
+            value: "-"
+          
+          
+          volumeMounts:
+          - name: istio-certs
+            mountPath: /etc/certs
+            readOnly: true
+      volumes:
+      - name: istio-certs
+        secret:
+          secretName: istio.istio-ingressgateway-service-account
+          optional: true
+      affinity:      
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+            - matchExpressions:
+              - key: beta.kubernetes.io/arch
+                operator: In
+                values:
+                - "amd64"
+                - "ppc64le"
+                - "s390x"
+          preferredDuringSchedulingIgnoredDuringExecution:
+          - weight: 2
+            preference:
+              matchExpressions:
+              - key: beta.kubernetes.io/arch
+                operator: In
+                values:
+                - "amd64"
+          - weight: 2
+            preference:
+              matchExpressions:
+              - key: beta.kubernetes.io/arch
+                operator: In
+                values:
+                - "ppc64le"
+          - weight: 2
+            preference:
+              matchExpressions:
+              - key: beta.kubernetes.io/arch
+                operator: In
+                values:
+                - "s390x"      
+---
