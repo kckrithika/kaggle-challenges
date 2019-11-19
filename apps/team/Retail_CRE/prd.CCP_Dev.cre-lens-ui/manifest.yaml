@@ -5,7 +5,7 @@ system:
     count: 1
     containers:
     - name: cre-engine-service
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cre/cre-engine-service:2.2.0.ea-validation.4e35cb9.0
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cre/cre-engine-service:2.2.0.develop.e81a209.366
       ports:
         - containerPort: 8080
       livenessProbe:
