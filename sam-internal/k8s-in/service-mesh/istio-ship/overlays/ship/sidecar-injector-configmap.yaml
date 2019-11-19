@@ -48,13 +48,12 @@ data:
         - name: DISABLE_REDIRECTION_ON_LOCAL_LOOPBACK
           value: "1"
         imagePullPolicy: "{{ .Values.global.imagePullPolicy }}"
+      {{- if .Values.global.proxy.init.resources }}
         resources:
-          requests:
-            cpu: 10m
-            memory: 10Mi
-          limits:
-            cpu: 100m
-            memory: 50Mi
+          {{ toYaml .Values.global.proxy.init.resources | indent 4 }}
+      {{- else }}
+        resources: {}
+      {{- end }}
         securityContext:
           runAsUser: 0
           runAsNonRoot: false
@@ -224,8 +223,6 @@ data:
           value: {{ $.Values.global.sds.enabled }}
         - name: ISTIO_META_INTERCEPTION_MODE
           value: "{{ or (index .ObjectMeta.Annotations `sidecar.istio.io/interceptionMode`) .ProxyConfig.InterceptionMode.String }}"
-        - name: ISTIO_META_INCLUDE_INBOUND_PORTS
-          value: "{{ annotation .ObjectMeta `traffic.sidecar.istio.io/includeInboundPorts` (applicationPorts .Spec.Containers) }}"
         {{- if .Values.global.network }}
         - name: ISTIO_META_NETWORK
           value: "{{ .Values.global.network }}"

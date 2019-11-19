@@ -3,13 +3,13 @@
     "config": {},
     "releaseName": "istio-init",
     "namespace": "mesh-control-plane",
-    "upstream": "https://github.com/istio/istio/tree/0ce9610db3a13fb178bb7c19dcc6a7953f5cad27/install/kubernetes/helm/istio-init",
+    "upstream": "https://github.com/istio/istio/tree/5cf691d566ca86b8d8b10360db120084025f281f/install/kubernetes/helm/istio-init",
     "metadata": {
       "applicationType": "helm",
       "sequence": 0,
       "icon": "https://istio.io/favicons/android-192x192.png",
       "name": "istio-init",
-      "releaseNotes": "Override locality load balancer settings per host (#18406)\n\n* Fix version\n\n* Update istio api version to the latest.\n\n* Update test data to test the feature\n\n* Fix indentation and config.\n\n* Fix indentation round 2\n\n* Indentation fix round 3.\n\n* Update crds for tests.\n\n* remove yaml separator\n\n* Add loadbalancer mandatory attribute for test data.\n\n* Incorporate code review comments.\n\n* Updated to reflect existing behavior\n\n* Update import\n\n* Restore to original order.\n\n* Fix unit tests.\n\n* Fix lint errors.\n\n* Check in make gen output\n\n* Update istio api and redo make gen\n\n* Testing with rolled back api version\n\n* Keeping the old crd gen file.\n\n* fix json field names in tests and update to latest api\n\n* fix go sum\n\n* fix json naming in conformance tests",
+      "releaseNotes": "",
       "version": "1.1.0",
       "license": {
         "id": "",
@@ -34,6 +34,6 @@
         "arch": "amd64"
       }
     },
-    "contentSHA": "1241baee042f0a74436be4ec7b1f688bc220680b60ebd0cf0281a89b210b5181"
+    "contentSHA": "19c58cd3fe60c387f96103d812994f61b5b323692624b12eb688f94ade2586cc"
   }
 }

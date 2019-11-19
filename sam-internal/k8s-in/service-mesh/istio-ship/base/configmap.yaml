@@ -16,6 +16,8 @@ data:
     # Set the following variable to true to disable policy checks by Mixer.
     # Note that metrics will still be reported to Mixer.
     disablePolicyChecks: true
+
+    disableMixerHttpReports: false
     # reportBatchMaxEntries is the number of requests that are batched before telemetry data is sent to the mixer server
     reportBatchMaxEntries: 100
     # reportBatchMaxTime is the max waiting time before the telemetry data of a request is sent to the mixer server
@@ -77,7 +79,7 @@ data:
     # If true, automatically configure client side mTLS settings to match the corresponding service's
     # server side mTLS authentication policy, when destination rule for that service does not specify
     # TLS settings.
-    enableAutoMtls: false
+    enableAutoMtls: true
 
     # Set the default behavior of the sidecar for handling outbound traffic from the application:
     # ALLOW_ANY - outbound traffic to unknown destinations will be allowed, in case there are no
