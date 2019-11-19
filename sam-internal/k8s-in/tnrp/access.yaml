@@ -2,7 +2,7 @@
 #If you are updating it, there is a high chance you need to update k8s-out/access.yaml
 #and tnrp/access.yaml
 admins:
-#  - sudha.subramanian
+  - sudha.subramanian
 #  - jvergara
 users:
   #Firefly team members
