@@ -11,6 +11,8 @@ system:
       settings_path: blitz.-.prd.-.gater-mesh
     annotations:
       sidecar.istio.io/inject: "true"
+      sidecar.istio.io/proxyCPU: "6000m"
+      sidecar.istio.io/proxyMemory: "2048Mi"
     containers:
     - name: gater1
       image: sfci/services/sfdc-bazel/gater/gate-manager:1.16.2

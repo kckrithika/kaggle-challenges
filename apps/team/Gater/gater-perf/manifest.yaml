@@ -8,6 +8,8 @@ system:
       settings_path: blitz.-.prd.-.gater-perf
     annotations:
       sidecar.istio.io/inject: "true"
+      sidecar.istio.io/proxyCPU: "6000m"
+      sidecar.istio.io/proxyMemory: "2048Mi"
     containers:
     - name: gater-perf
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/gater/gater-perf:dmachak-1571690355
