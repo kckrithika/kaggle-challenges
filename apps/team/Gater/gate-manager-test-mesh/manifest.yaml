@@ -12,7 +12,7 @@ system:
     annotations:
       sidecar.istio.io/inject: "true"
       sidecar.istio.io/proxyCPU: "6000m"
-      sidecar.istio.io/proxyMemory: "2048Mi"
+      sidecar.istio.io/proxyMemory: "4096Mi"
     containers:
     - name: gater1
       image: sfci/services/sfdc-bazel/gater/gate-manager:1.16.2
