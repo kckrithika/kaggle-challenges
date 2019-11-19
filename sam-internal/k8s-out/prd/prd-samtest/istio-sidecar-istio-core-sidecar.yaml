@@ -13,26 +13,27 @@ spec:
     - mesh-control-plane/*
     - z9s-default/*
     - app/*
-    - service-mesh/*
-    - funnel/*
-    - gater/*
+    - casam/*
     - ccait/*
+    - cloudatlas/*
     - core-on-sam-sp2/*
     - core-on-sam/*
-    - casam/*
     - emailinfra/*
-    - universal-search/*
-    - search-scale-safely/*
+    - funnel/*
+    - gater/*
+    - gateway/*
     - retail-cre/*
     - retail-dfs/*
     - retail-dss/*
-    - cloudatlas/*
     - retail-eventlistener/*
     - retail-mds/*
     - retail-rrps/*
     - retail-rsui/*
     - retail-setup/*
     - scone/*
+    - search-scale-safely/*
+    - service-mesh/*
+    - universal-search/*
     port:
       name: grpc-egress
       number: 7443
@@ -43,26 +44,27 @@ spec:
     - mesh-control-plane/*
     - z9s-default/*
     - app/*
-    - service-mesh/*
-    - funnel/*
-    - gater/*
+    - casam/*
     - ccait/*
+    - cloudatlas/*
     - core-on-sam-sp2/*
     - core-on-sam/*
-    - casam/*
     - emailinfra/*
-    - universal-search/*
-    - search-scale-safely/*
+    - funnel/*
+    - gater/*
+    - gateway/*
     - retail-cre/*
     - retail-dfs/*
     - retail-dss/*
-    - cloudatlas/*
     - retail-eventlistener/*
     - retail-mds/*
     - retail-rrps/*
     - retail-rsui/*
     - retail-setup/*
     - scone/*
+    - search-scale-safely/*
+    - service-mesh/*
+    - universal-search/*
     port:
       name: http-egress
       number: 7442

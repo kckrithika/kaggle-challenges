@@ -7,7 +7,30 @@ local utils = import "util_functions.jsonnet";
 local configs = import "config.jsonnet";
 
 // A full list of all known namespaces that run Mesh
-local all_known_mesh_namespaces = ["app", "service-mesh", "funnel", "gater", "ccait", "core-on-sam-sp2", "core-on-sam", "casam", "emailinfra", "universal-search", "search-scale-safely", "retail-cre", "retail-dfs", "retail-dss", "cloudatlas", "retail-eventlistener", "retail-mds", "retail-rrps", "retail-rsui", "retail-setup", "scone"];
+local all_known_mesh_namespaces = [
+    "app", 
+    "casam", 
+    "ccait", 
+    "cloudatlas", 
+    "core-on-sam-sp2", 
+    "core-on-sam", 
+    "emailinfra", 
+    "funnel", 
+    "gater", 
+    "gateway",
+    "retail-cre", 
+    "retail-dfs", 
+    "retail-dss", 
+    "retail-eventlistener", 
+    "retail-mds", 
+    "retail-rrps", 
+    "retail-rsui", 
+    "retail-setup", 
+    "scone",
+    "search-scale-safely", 
+    "service-mesh", 
+    "universal-search", 
+  ];
 
 // Kingdoms and namespaces where `Sherpa Injection` is enabled
 local sherpaInjectionEnabled = {
