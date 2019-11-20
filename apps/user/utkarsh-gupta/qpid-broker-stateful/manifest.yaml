@@ -74,8 +74,14 @@ system:
               name: logvol
         - name: beacon
           image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/servicemesh/beacon:1.0.0
-          command: ["/bin/sh"]
-          args: ["-c", "instNumber=${FUNCTION_INSTANCE_NAME: -1}; prefix=$(( instnumber + 3 )); export c2=qpid-broker-mq-$instNumber; export c1=qpid-broker-mq-$prefix; port=$(( 3029 + instNumber * 3 ));/usr/bin/java -jar /home/scone/service.jar -endpoint samapp/user-utkarsh-gupta/${c1}:POD:${port} -endpoint samapp/user-utkarsh-gupta/${c2}:POD:$HTTPX"]
+          command: ["/bin/sh", "-c"]
+          args:
+            - "export instNumber=${FUNCTION_INSTANCE_NAME: -1};
+              export prefix=$(( instNumber + 3 ));
+              export port=$(( 3000 + instNumber * 3 ));
+              export httpPath=$FUNCTION_NAMESPACE/$FUNCTION_INSTANCE_NAME:POD:7442;
+              export amqpPath=$FUNCTION_NAMESPACE/${FUNCTION_INSTANCE_NAME:0:-2}-$prefix:POD:$port;
+              /usr/bin/java -jar /home/scone/service.jar -endpoint $amqpPath -endpoint $httpPath;"
             # -endpoint
             # samapp/$(FUNCTION_NAMESPACE)/$(FUNCTION)-http:DATACENTER_ALLENV:7014
           env:
