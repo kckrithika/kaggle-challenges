@@ -1,17 +1,14 @@
 apiVersion: v1
 system:
   functions:
-  - name: spydr1
+  - name: spydr
     count: 1
-    identity:
-      serviceName: 3app-3
-      pod: 4sp4
     volumes:
       - name: ajna-cert
         maddogCert:
           type: client
     containers:
-    - name: spydr1
+    - name: spydr
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/shassan/samspyderservice:shassan-20190315
       ports:
       - containerPort: 8080
@@ -23,8 +20,8 @@ system:
       - name: ajna-cert
         mountPath: /certs
   loadbalancers:
-  - lbname: spydr1
-    function: spydr1
+  - lbname: spydr
+    function: spydr
     slbenabled: true
     ports:
       - port: 80
