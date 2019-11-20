@@ -141,47 +141,18 @@ local getInstanceDataWithDefaults(instanceTag) = (
   defaultInstanceData + instanceData
 );
 
-# When requesting maddog certs for the watchdog in hio/ttd, madkubserver enforces that the request's
-# IP address matches the IP address of the requesting pod. However, for non-host network pods, there's
-# currently an issue where the request is proxied by the host, so madkubserver ends up seeing the host's
-# IP address instead of the pod's IP address and fails the request.
-# As a workaround, use host network for the pod in gia. This ensures the pod's IP address matches the
-# host's IP address, and madkubserver thus allows the request.
-local hostNetworkIfEnabled(canary) = if utils.is_gia(configs.kingdom) || secretsflights.ssWdSecondReplicaEnabled(canary) then { hostNetwork: true } else {};
-
-local podAntiAffinityIfEnabled(podLabel, canary) = if secretsflights.ssWdSecondReplicaEnabled(canary) then {
-  affinity: {
-     podAntiAffinity: {
-        requiredDuringSchedulingIgnoredDuringExecution: [{
-           labelSelector: {
-             matchExpressions: [{
-                key: "name",
-                operator: "In",
-                values: [
-                  podLabel,
-                ],
-             }],
-           },
-        topologyKey: "kubernetes.io/hostname",
-      }],
-     },
-  },
-} else {};
+local resourceRequestIfDisabled(canary) =
+  if secretsflights.podManagementPolicyEnabled(canary) then {}
+  else configs.ipAddressResourceRequest;
 
 local podManagementPolicyIfEnabled(instanceData) =
    if secretsflights.podManagementPolicyEnabled(instanceData.canary) then {
-     updateStrategy: {
-       type: "RollingUpdate",
-     },
+     podManagementPolicy: "Parallel",
    } else {};
 
-local ssWatchdogDeployment(instanceTag) = {
+local ssWatchdogDeployment(instanceTag) = secretsconfigs.statefulsetBase() {
   local instanceData = getInstanceDataWithDefaults(instanceTag),
-  local name = if secretsflights.ssWdAsStatefulSet(instanceData.canary) then
-                instanceData.name + "-sts"
-               else
-                instanceData.name,
-  secretsconfigs.statefulsetBase(),
+  local name = instanceData.name + "-sts",
   metadata: {
     labels: {
       name: name,
@@ -190,7 +161,8 @@ local ssWatchdogDeployment(instanceTag) = {
     namespace: "sam-system",
   },
   spec+: {
-    replicas: if secretsflights.ssWdSecondReplicaEnabled(instanceData.canary) then 2 else 1,
+    serviceName: "xxx-notused-xxx",
+    replicas: 2,
     template: {
       metadata: {
         annotations: {
@@ -201,6 +173,22 @@ local ssWatchdogDeployment(instanceTag) = {
         namespace: "sam-system",
       },
       spec: {
+        affinity: {
+          podAntiAffinity: {
+            requiredDuringSchedulingIgnoredDuringExecution: [{
+              labelSelector: {
+                matchExpressions: [{
+                  key: "name",
+                  operator: "In",
+                  values: [
+                    name,
+                  ],
+                }],
+              },
+              topologyKey: "kubernetes.io/hostname",
+            }],
+          },
+        },
         containers: [
           {
             name: "watchdog",
@@ -226,9 +214,10 @@ local ssWatchdogDeployment(instanceTag) = {
             volumeMounts: [
               configs.sfdchosts_volume_mount,
             ] + madkub.certVolumeMounts,
-          } + configs.ipAddressResourceRequest,
+          } + resourceRequestIfDisabled(instanceData.canary),
           madkub.refreshContainer,
         ],
+        hostNetwork: true,
         initContainers: [
           madkub.initContainer,
         ],
@@ -237,13 +226,10 @@ local ssWatchdogDeployment(instanceTag) = {
         ] + madkub.volumes + madkub.certVolumes,
       }
       + secretsconfigs.nodeSelector
-      + secretsconfigs.samPodSecurityContext
-      + hostNetworkIfEnabled(instanceData.canary)
-      + podAntiAffinityIfEnabled(name, instanceData.canary),
-      serviceName: "xxx-notused-xxx",
-      updateStrategy: {
-        type: "RollingUpdate",
-      },
+      + secretsconfigs.samPodSecurityContext,
+    },
+    updateStrategy: {
+      type: "RollingUpdate",
     },
   } + podManagementPolicyIfEnabled(instanceData),
 };

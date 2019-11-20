@@ -10,7 +10,6 @@ local configs = import "config.jsonnet";
     kind: "StatefulSet",
     apiVersion: "apps/v1beta1",
     spec+: {
-      podManagementPolicy: "Parallel",
       selector: {
         matchLabels: sts.spec.template.metadata.labels,
       },

@@ -909,6 +909,7 @@ items:
     name: secretservice-watchdog-prd-sts
     namespace: sam-system
   spec:
+    podManagementPolicy: Parallel
     replicas: 2
     selector:
       matchLabels:
@@ -974,11 +975,6 @@ items:
                 fieldPath: spec.nodeName
           image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/secretservice-watchdog:180-195c512830ddab15bfe81627852dfa09cbeb641f
           name: watchdog
-          resources:
-            limits:
-              sam.sfdc.net/ip-address: "1"
-            requests:
-              sam.sfdc.net/ip-address: "1"
           volumeMounts:
           - mountPath: /sfdchosts
             name: sfdchosts
