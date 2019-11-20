@@ -4,7 +4,7 @@ system:
   - name: spydr1
     count: 1
     identity:
-      serviceName: 3spydr3
+      serviceName: 3app-3
       pod: 4sp4
     volumes:
       - name: ajna-cert
