@@ -3,6 +3,10 @@ system:
   functions:
   - name: spydr
     count: 1
+    volumes:
+      - name: ajna-cert
+        maddogCert:
+          type: client
     containers:
     - name: spydr
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/shassan/samspyderservice:shassan-20190315
