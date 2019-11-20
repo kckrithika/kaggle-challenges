@@ -123,10 +123,7 @@ local getInstanceDataWithDefaults(instanceTag) = (
     # name is the name of the container for the instance.
     name: name,
     # vaultName is the name of the secret service vault that is accessed by the canary instance.
-    vaultName: (if secretsflights.ssWdAsStatefulSet(canary) then
-                  "$(FUNCTION_INSTANCE_NAME)"
-                else
-                  "ss-watchdog-vault-" + instanceTag),
+    vaultName: "$(FUNCTION_INSTANCE_NAME)",
     # role indicates the maddog role that is requested for the client certs and allowed access to the named vault.
     role: "secrets.secretservice-watchdog",
     # wdKingdom indicates the kingdom hosting the target secret service that this watchdog is intended to monitor.
@@ -144,61 +141,18 @@ local getInstanceDataWithDefaults(instanceTag) = (
   defaultInstanceData + instanceData
 );
 
-# When requesting maddog certs for the watchdog in hio/ttd, madkubserver enforces that the request's
-# IP address matches the IP address of the requesting pod. However, for non-host network pods, there's
-# currently an issue where the request is proxied by the host, so madkubserver ends up seeing the host's
-# IP address instead of the pod's IP address and fails the request.
-# As a workaround, use host network for the pod in gia. This ensures the pod's IP address matches the
-# host's IP address, and madkubserver thus allows the request.
-local hostNetworkIfEnabled(canary) = if utils.is_gia(configs.kingdom) || secretsflights.ssWdSecondReplicaEnabled(canary) then { hostNetwork: true } else {};
+local resourceRequestIfDisabled(canary) =
+  if secretsflights.podManagementPolicyEnabled(canary) then {}
+  else configs.ipAddressResourceRequest;
 
-local podAntiAffinityIfEnabled(podLabel, canary) = if secretsflights.ssWdSecondReplicaEnabled(canary) then {
-  affinity: {
-     podAntiAffinity: {
-        requiredDuringSchedulingIgnoredDuringExecution: [{
-           labelSelector: {
-             matchExpressions: [{
-                key: "name",
-                operator: "In",
-                values: [
-                  podLabel,
-                ],
-             }],
-           },
-        topologyKey: "kubernetes.io/hostname",
-      }],
-     },
-  },
-} else {};
+local podManagementPolicyIfEnabled(instanceData) =
+   if secretsflights.podManagementPolicyEnabled(instanceData.canary) then {
+     podManagementPolicy: "Parallel",
+   } else {};
 
-local resourceBase(instanceTag) = (
-  local instanceData = getInstanceDataWithDefaults(instanceTag);
-  if secretsflights.ssWdAsStatefulSet(instanceData.canary) then
-    secretsconfigs.statefulsetBase()
-  else
-    configs.deploymentBase("secrets")
-);
-
-local serviceNameIfEnabled(instanceData) =
-  if secretsflights.ssWdAsStatefulSet(instanceData.canary) then {
-    # StatefulSets require a servicename, even if we aren't using one. No need for this watchdog
-    # to have a k8s service.
-    serviceName: "xxx-notused-xxx",
-  } else {};
-
-local updateStrategyIfEnabled(instanceData) =
-  if secretsflights.ssWdAsStatefulSet(instanceData.canary) then {
-    updateStrategy: {
-      type: "RollingUpdate",
-    },
-  } else {};
-
-local ssWatchdogDeployment(instanceTag) = resourceBase(instanceTag) {
+local ssWatchdogDeployment(instanceTag) = secretsconfigs.statefulsetBase() {
   local instanceData = getInstanceDataWithDefaults(instanceTag),
-  local name = if secretsflights.ssWdAsStatefulSet(instanceData.canary) then
-                instanceData.name + "-sts"
-               else
-                instanceData.name,
+  local name = instanceData.name + "-sts",
   metadata: {
     labels: {
       name: name,
@@ -207,7 +161,8 @@ local ssWatchdogDeployment(instanceTag) = resourceBase(instanceTag) {
     namespace: "sam-system",
   },
   spec+: {
-    replicas: if secretsflights.ssWdSecondReplicaEnabled(instanceData.canary) then 2 else 1,
+    serviceName: "xxx-notused-xxx",
+    replicas: 2,
     template: {
       metadata: {
         annotations: {
@@ -218,6 +173,22 @@ local ssWatchdogDeployment(instanceTag) = resourceBase(instanceTag) {
         namespace: "sam-system",
       },
       spec: {
+        affinity: {
+          podAntiAffinity: {
+            requiredDuringSchedulingIgnoredDuringExecution: [{
+              labelSelector: {
+                matchExpressions: [{
+                  key: "name",
+                  operator: "In",
+                  values: [
+                    name,
+                  ],
+                }],
+              },
+              topologyKey: "kubernetes.io/hostname",
+            }],
+          },
+        },
         containers: [
           {
             name: "watchdog",
@@ -243,9 +214,10 @@ local ssWatchdogDeployment(instanceTag) = resourceBase(instanceTag) {
             volumeMounts: [
               configs.sfdchosts_volume_mount,
             ] + madkub.certVolumeMounts,
-          } + configs.ipAddressResourceRequest,
+          } + resourceRequestIfDisabled(instanceData.canary),
           madkub.refreshContainer,
         ],
+        hostNetwork: true,
         initContainers: [
           madkub.initContainer,
         ],
@@ -254,12 +226,12 @@ local ssWatchdogDeployment(instanceTag) = resourceBase(instanceTag) {
         ] + madkub.volumes + madkub.certVolumes,
       }
       + secretsconfigs.nodeSelector
-      + secretsconfigs.samPodSecurityContext
-      + hostNetworkIfEnabled(instanceData.canary)
-      + podAntiAffinityIfEnabled(name, instanceData.canary),
+      + secretsconfigs.samPodSecurityContext,
     },
-  } + serviceNameIfEnabled(instanceData)
-    + updateStrategyIfEnabled(instanceData),
+    updateStrategy: {
+      type: "RollingUpdate",
+    },
+  } + podManagementPolicyIfEnabled(instanceData),
 };
 
 local instanceTagsForKingdom = if std.objectHas(instanceMap, configs.kingdom) then std.objectFields(instanceMap[configs.kingdom]);
