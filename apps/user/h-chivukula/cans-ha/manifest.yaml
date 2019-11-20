@@ -1,0 +1,129 @@
+apiVersion: v1
+
+system:
+  notifications:
+    email:
+      - h.chivukula@salesforce.com
+  functions:
+  - name: candidate-service-ha
+    count: 2
+    containers:
+    - name: candidate-service-ha
+      image: dva/csc-health/candidate-service:16
+      ports:
+      - containerPort: 8888
+      volumeMounts:
+        - mountPath: /certs
+          name: client-cert
+        - mountPath: /home/sfdc-csc-health/candidate-service
+          name: logvol
+      env:
+      - name: CHS_AJNA_ENABLED
+        value: true
+      - name: CHS_AJNA_CERTPATH
+        value: /certs/client/certificates/client.pem
+      - name: CHS_AJNA_KEYPATH
+        value: /certs/client/keys/client-key.pem
+      - name: CHS_AJNA_CACERTPATH
+        value: /certs/ca.pem
+      - name: CHS_REPORTCOLLECTOR_CERTPATH
+        value: /certs/client/certificates/client.pem
+      - name: CHS_REPORTCOLLECTOR_KEYPATH
+        value: /certs/client/keys/client-key.pem
+      - name: CHS_REPORTCOLLECTOR_CACERTPATH
+        value: /certs/ca.pem
+      - name: CHS_GROK_CERTPATH
+        value: /certs/client/certificates/client.pem
+      - name: CHS_GROK_KEYPATH
+        value: /certs/client/keys/client-key.pem
+      - name: CHS_GROK_CACERTPATH
+        value: /certs/ca.pem
+      - name: CHS_HEALTH_PORT
+        value: 8888
+      - name: CHS_LOG_FILE
+        value: /home/sfdc-csc-health/candidate-service/candidate-service.log
+      - name: CHS_LOG_LEVEL
+        value: debug
+      - name: CHS_SMOOTHINGCONFIG_ENABLED
+        value: true
+      - name: CHS_SMOOTHINGCONFIG_SIZE
+        value: 10
+      - name: CHS_SMOOTHINGCONFIG_OPINIONLOOKBACK
+        value: 10
+      - name: CHS_SMOOTHINGCONFIG_FLAPLOOKBACK
+        value: 10
+      - name: CHS_SMOOTHINGCONFIG_FLAPTHRESHHOLD
+        value: 7
+      - name: CHS_SMOOTHINGCONFIG_HEALTHYOPTHRESHOLD
+        value: 80.0
+      - name: CHS_SMOOTHINGCONFIG_PROBEXITLOOKBACK
+        value: 10
+      - name: CHS_REPORTCOLLECTOR_WHITELISTUNTRUSTED
+        value: nagios-adapter
+      - name: CHS_STALENESS_WHITELIST
+        value: LOGICAL_HOST
+      - name: CHS_COORDINATOR_ENABLED
+        value: true
+      - name: CHS_COORDINATOR_LEASENAME
+        value: candidate_service_lease
+      - name: CHS_COORDINATOR_LEASEDURATION
+        value: 1m
+      - name: CHS_COORDINATOR_RPCADDR
+        value: ${FUNCTION_INSTANCE_IP}
+      - name: CHS_COORDINATOR_BINDADDR
+        value: ${FUNCTION_INSTANCE_IP}
+      - name: CHS_COORDINATOR_ADVERTISEADDR
+        value: ${FUNCTION_INSTANCE_IP}
+      - name: CHS_COORDINATOR_ADVERTISEPORT
+        value: 8888
+      - name: CHS_COORDINATOR_INSTANCENAME
+        value: candidate-service-${INSTANCE}
+      - name: CHS_COORDINATOR_BINDPORT
+        value: 8888
+      - name: CHS_COORDINATOR_RPCPORT
+        value: 1234
+      # - name: CHS_COORDINATOR_CLUSTERPORTS
+      #   value: 6661
+      # - name: CHS_COORDINATOR_CLUSTERADDR
+      #   value: ${FUNCTION_INSTANCE_IP}
+      livenessProbe:
+        httpGet:
+          path: /healthz
+          port: 8888
+        initialDelaySeconds: 5
+      command: ["/bin/sh", "-c"]
+      args: ["
+        export CHS_AJNA_FUNNELENDPOINT=http://${SFDC_METRICS_SERVICE_HOST}:${SFDC_METRICS_SERVICE_PORT} ;
+        export CHS_AJNA_DATACENTER=${KINGDOM} ;
+        export CHS_AJNA_DEVICE=${ESTATE}.${FUNCTION_NAMESPACE}.${FUNCTION}.${FUNCTION_INSTANCE_NAME} ;
+        export CHS_GROK_ENDPOINT=https://ops0-grok1-0-prd.data.sfdc.net ;
+        export CHS_REPORTCOLLECTOR_ENDPOINT=https://reportcollector-prd.data.sfdc.net:18444 ;
+
+        providers=grok.server_watchdog ;
+        providers+=,sandman ;
+        providers+=,netmgt.sandman ;
+        providers+=,mom ;
+        providers+=,*.infrastructure-watchdog-CP-health ;
+
+        export CHS_REPORTCOLLECTOR_WHITELIST=${providers} ;
+        export CHS_REPORTCOLLECTOR_POLLPERIOD=60s ;
+        ordinal_number=${FUNCTION_INSTANCE_NAME##*-} ;
+        export INSTANCE=${ordinal_number}
+
+        stateful_cluster_domain=${KINGDOM}-sam.${KINGDOM}.sam.sfdc.net ;
+        cans_pod_1=${FUNCTION}-0.${FUNCTION_NAMESPACE}.svc.${stateful_cluster_domain} ;
+        cans_pod_2=${FUNCTION}-1.${FUNCTION_NAMESPACE}.svc.${stateful_cluster_domain} ;
+        cans_pod_3=${FUNCTION}-2.${FUNCTION_NAMESPACE}.svc.${stateful_cluster_domain} ;
+
+        export CHS_COORDINATOR_CLUSTERPORTS=8888,8888,8888 ;
+        export CHS_COORDINATOR_CLUSTERADDR=${cans_pod_1},${cans_pod_2},${cans_pod_3}
+
+        /candidateservice
+      "]
+    volumes:
+      - name: client-cert
+        maddogCert:
+          type: client
+      - name: logvol
+        hostPath:
+          path: /home/sfdc-csc-health/candidate-service
