@@ -2,6 +2,9 @@ apiVersion: v1
 system:
   functions:
   - name: spydr
+    identity:
+      - namespace: app
+      - serviceName: maiev_agent
     count: 1
     containers:
     - name: spydr
@@ -12,6 +15,10 @@ system:
         httpGet:
           path: /index.html
           port: 8080
+    volumes:
+      - name: ajna-cert
+        maddogCert:
+          type: client
   loadbalancers:
   - lbname: spydr
     function: spydr
