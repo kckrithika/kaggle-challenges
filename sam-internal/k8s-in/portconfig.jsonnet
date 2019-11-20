@@ -60,6 +60,9 @@
         casamMVP_SFProxyMTLSNodePort: 31745,
         casamMVP_SFProxyHealthCheckNodePort: 32638,
     },
+    sloop: {
+        sloop: 31938,
+    },
     flowsnake: {
         nginx_ingress_http: 32080,
         nginx_ingress_https: 32443,

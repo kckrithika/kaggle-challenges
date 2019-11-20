@@ -2,7 +2,7 @@ local configs = import "config.jsonnet";
 local samimages = (import "samimages.jsonnet") + { templateFilename:: std.thisFile };
 local samfeatureflags = import "sam-feature-flags.jsonnet";
 
-if (samfeatureflags.sloop) then configs.deploymentBase("sam") {
+if (samfeatureflags.sloop && configs.estate == "prd-sam") then configs.deploymentBase("sam") {
     metadata+: {
         labels: {
             name: "sloop",

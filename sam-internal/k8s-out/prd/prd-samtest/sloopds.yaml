@@ -1,0 +1,60 @@
+apiVersion: extensions/v1beta1
+kind: DaemonSet
+metadata:
+  labels:
+    name: sloopds
+    sam.data.sfdc.net/owner: sam
+  name: sloopds
+spec:
+  selector:
+    matchLabels:
+      app: sloopds
+      apptype: monitoring
+      daemonset: "true"
+      sam.data.sfdc.net/owner: sam
+  template:
+    metadata:
+      labels:
+        app: sloopds
+        apptype: monitoring
+        daemonset: "true"
+        sam.data.sfdc.net/owner: sam
+      namespace: sam-system
+    spec:
+      containers:
+      - args:
+        - --config=/sloopconfig/sloop.yaml
+        command:
+        - /sloop
+        image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/thargrove/sloop:thargrove-20191114_170822-c2c0a76
+        name: sloopds
+        ports:
+        - containerPort: 31938
+          protocol: TCP
+        resources:
+          limits:
+            cpu: "1"
+            memory: 10Gi
+          requests:
+            cpu: "1"
+            memory: 10Gi
+        volumeMounts:
+        - mountPath: /data/
+          name: sloop-data
+        - mountPath: /sloopconfig/
+          name: sloopconfig
+      hostNetwork: true
+      nodeSelector:
+        kubernetes.io/hostname: shared0-samtestkubeapi3-1-prd.eng.sfdc.net
+        master: "true"
+      volumes:
+      - hostPath:
+          path: /data/sloop-data
+        name: sloop-data
+      - configMap:
+          name: sloop
+        name: sloopconfig
+  updateStrategy:
+    rollingUpdate:
+      maxUnavailable: 25%
+    type: RollingUpdate
