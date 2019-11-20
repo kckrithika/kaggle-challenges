@@ -25,6 +25,7 @@
       }
     }
   },
+  'populate-full-master-service-pipeline': true,
   'service-white-list': [ 'sfcdekstest1', 'strauz', 'sfcdec2test' ],
   'soft-launch': true,
   'vmf-parser-configs': {
