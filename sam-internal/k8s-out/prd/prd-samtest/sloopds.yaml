@@ -47,6 +47,7 @@ spec:
       nodeSelector:
         kubernetes.io/hostname: shared0-samtestkubeapi3-1-prd.eng.sfdc.net
         master: "true"
+      serviceAccountName: sloop
       volumes:
       - hostPath:
           path: /data/sloop-data
