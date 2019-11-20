@@ -52,12 +52,13 @@ local configs = import "config.jsonnet";
 
         ### Release Phase 2 - prd-sam (Canary)
         "2": $.per_phase["3"] {
-             fireflyintake: "446",
-             fireflysecintake: "446",
-             fireflycrawler: "446",
-             fireflypackage: "446",
-             fireflypromotion: "446",
-             fireflypullrequest: "446",
+             fireflyintake: "441",
+             fireflysecintake: "441",
+             fireflycrawler: "441",
+             fireflypackage: "441",
+             fireflypackagefalcon: "446",
+             fireflypromotion: "441",
+             fireflypullrequest: "441",
              fireflyevalresultmonitor: "327",
              fireflydind: "238",
              rabbitmq: "140",
@@ -66,12 +67,13 @@ local configs = import "config.jsonnet";
 
         ### Release Phase 3 - prd-samtwo (production)
         "3": $.per_phase["4"] {
-             fireflyintake: "446",
-             fireflysecintake: "446",
-             fireflycrawler: "446",
-             fireflypackage: "446",
-             fireflypromotion: "446",
-             fireflypullrequest: "446",
+             fireflyintake: "441",
+             fireflysecintake: "441",
+             fireflycrawler: "441",
+             fireflypackage: "441",
+             fireflypackagefalcon: "446",
+             fireflypromotion: "441",
+             fireflypullrequest: "441",
              fireflyevalresultmonitor: "325",
              fireflydind: "238",
              rabbitmq: "140",
@@ -116,6 +118,7 @@ local configs = import "config.jsonnet";
     fireflycrawler: configs.registry + "/dva/firefly-crawler:" + $.per_phase[$.phase].fireflycrawler,
     fireflypullrequest: configs.registry + "/dva/firefly-pullrequest:" + $.per_phase[$.phase].fireflypullrequest,
     fireflypackage: configs.registry + "/dva/firefly-package:" + $.per_phase[$.phase].fireflypackage,
+    fireflypackagefalcon: configs.registry + "/dva/firefly-package:" + $.per_phase[$.phase].fireflypackagefalcon,
     fireflypromotion: configs.registry + "/dva/firefly-promotion:" + $.per_phase[$.phase].fireflypromotion,
     fireflydind: configs.registry + "/dva/firefly-dind:" + $.per_phase[$.phase].fireflydind,
     fireflyevalresultmonitor: configs.registry + "/dva/firefly-evalresultmonitor:" + $.per_phase[$.phase].fireflyevalresultmonitor,

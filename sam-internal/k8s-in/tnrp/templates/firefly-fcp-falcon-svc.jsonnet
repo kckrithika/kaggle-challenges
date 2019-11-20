@@ -1,6 +1,7 @@
 local packagesvc = import "firefly-package-svc.jsonnet.TEMPLATE";
 local packagesvcsingleton = import "firefly-package-singleton-svc.jsonnet.TEMPLATE";
 local configs = import "config.jsonnet";
+local images = import "fireflyimages.jsonnet";
 local pullrequestsvc = import "firefly-pullrequest-svc.jsonnet.TEMPLATE";
 local promotionsvc = import "firefly-promotion-svc.jsonnet.TEMPLATE";
 local packageConfig = import "configs/firefly-package.jsonnet";
@@ -10,6 +11,7 @@ if configs.estate == "prd-samtwo" then
 {
   local package = packagesvc {
       serviceName:: "firefly-package-fcp-falcon",
+      dockerImage:: images.fireflypackagefalcon,
       replicas:: 5,
       env:: super.env + [
           {
@@ -51,6 +53,7 @@ if configs.estate == "prd-samtwo" then
   },
   local packagesingleton = packagesvcsingleton {
       serviceName:: "firefly-package-singleton-fcp-falcon",
+      dockerImage:: images.fireflypackagefalcon,
       env:: super.env + [
           {
               name: "INSTANCE_TYPE",

@@ -1271,7 +1271,7 @@ items:
             value: firefly-fcp-falcon
           - name: RABBIT_MQ_QUEUE_NAME
             value: firefly-fcp-falcon.pr
-          image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-pullrequest:446
+          image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-pullrequest:441
           imagePullPolicy: Always
           livenessProbe:
             failureThreshold: 10
