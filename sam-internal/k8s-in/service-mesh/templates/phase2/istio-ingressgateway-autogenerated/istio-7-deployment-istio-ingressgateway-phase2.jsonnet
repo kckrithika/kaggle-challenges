@@ -265,6 +265,10 @@ if (istioPhases.phaseNum == 2) then
                 },
               },
               {
+                name: "ISTIO_AUTO_MTLS_ENABLED",
+                value: "true",
+              },
+              {
                 name: "ISTIO_META_POD_NAME",
                 valueFrom: {
                   fieldRef: {
@@ -303,7 +307,7 @@ if (istioPhases.phaseNum == 2) then
               },
               {
                 name: "ISTIO_META_ROUTER_MODE",
-                value: "sni-dnat",
+                value: "standard",
               },
             ],
             image: "%(istioHub)s/proxy:%(istioTag)s" % mcpIstioConfig,
