@@ -47,9 +47,9 @@ system:
         volumeMounts:
         - mountPath: /home/sfdc-maiev/certs
           name: maievservercert
-        - mountPath: /home/sfdc-maiev/certs/client/client/certificates
+        - mountPath: /home/sfdc-maiev/certs/client/certificates
           name: maievclientcert
-        - mountPath: /home/sfdc-maiev/certs/client/client/keys
+        - mountPath: /home/sfdc-maiev/certs/client/keys
           name: maievclientkey
       volumes:
       - name: maievservercert
