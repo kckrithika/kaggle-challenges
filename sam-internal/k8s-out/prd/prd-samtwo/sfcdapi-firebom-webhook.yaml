@@ -104,6 +104,7 @@ items:
                               }
                           }
                       },
+                      "populate-full-master-service-pipeline": true,
                       "service-white-list": [
                           "sfcdekstest1",
                           "strauz",
@@ -385,7 +386,7 @@ items:
                 apiVersion: v1
                 fieldPath: metadata.labels['name']
           - name: CONFIG_VERSION
-            value: "14"
+            value: "15"
           image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/sfcdapi-firebom:92
           imagePullPolicy: Always
           livenessProbe:
