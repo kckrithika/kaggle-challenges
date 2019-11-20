@@ -43,7 +43,8 @@
 - lbname: es-test-coord
   servers:
    - shared0-samminionzipkin2-1-prd.eng.sfdc.net
-   - shared0-samminionzipkin2-15-prd.eng.sfdc.net
+   - shared0-samminionzipkin2-2-prd.eng.sfdc.net
+   - shared0-samminionzipkin2-25-prd.eng.sfdc.net
   ports:
    - port: 9200
      targetport: 9200
