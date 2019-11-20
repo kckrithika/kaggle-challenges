@@ -3,31 +3,37 @@
   servers:
     - ops0-mom2-1-prd.eng.sfdc.net
     - ops0-mom1-1-prd.eng.sfdc.net
+    - ops0-mom3-1-prd.eng.sfdc.net
   ports:
     - port: 8980
       targetport: 8980
       lbtype: tcp
       healthprotocol: tcp
+      lbalgorithm: roundrobin
 - lbname: ops0-momapi1-0-prd
   customlbname: ops0-momapi1-0-prd
   servers:
     - ops0-mom2-1-prd.eng.sfdc.net
     - ops0-mom1-1-prd.eng.sfdc.net
+    - ops0-mom3-1-prd.eng.sfdc.net
   ports:
     - port: 443
       targetport: 8443
       lbtype: tcp
       healthprotocol: tcp
+      lbalgorithm: roundrobin
 - lbname: ops0-pingmeshcontroller1-0-prd
   customlbname: ops0-pingmeshcontroller1-0-prd
   servers:
     - ops0-mom2-1-prd.eng.sfdc.net
     - ops0-mom1-1-prd.eng.sfdc.net
+    - ops0-mom3-1-prd.eng.sfdc.net    
   ports:
     - port: 8981
       targetport: 8981
       lbtype: tcp
       healthprotocol: tcp
+      lbalgorithm: roundrobin
 - lbname: ops0-nvtddicache1-0-prd
   customlbname: ops0-nvtddicache1-0-prd
   servers:
