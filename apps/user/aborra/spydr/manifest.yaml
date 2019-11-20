@@ -3,8 +3,8 @@ system:
   functions:
   - name: spydr
     identity:
-      - namespace: app
-      - serviceName: maiev_agent
+      namespace: app
+      serviceName: maiev-agent
     count: 1
     containers:
     - name: spydr
