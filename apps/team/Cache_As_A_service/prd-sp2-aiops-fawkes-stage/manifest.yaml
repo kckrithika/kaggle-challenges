@@ -40,6 +40,8 @@ system:
           readOnly: true
         - mountPath: /var/log/st2
           name: fawkes-staging-logs-vol
+        - mountPath: /ajna-certs
+          name: ajna-cert
         livenessProbe:
           exec:
             command: ["/opt/stackstorm/sfdc/scripts/liveness_probe.sh"]
@@ -58,3 +60,6 @@ system:
       - name: fawkes-staging-logs-vol
         hostPath:
           path: /data/fawkes-staging-logs
+      - name: ajna-cert
+        maddogCert:
+          type: client
