@@ -8,6 +8,7 @@ if (configs.estate == "prd-samtest") then configs.daemonSetBase("sam") {
         template: {
             spec: {
                 hostNetwork: true,
+                serviceAccountName: "sloop",
                 containers: [
                     {
                         name: "sloopds",
