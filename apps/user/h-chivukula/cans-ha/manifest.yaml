@@ -6,6 +6,9 @@ system:
       - h.chivukula@salesforce.com
   functions:
   - name: candidate-service-ha
+    type: stateful-set
+    lbname: candidate-service-ha-node-lb
+    hostnetwork: true
     count: 2
     containers:
     - name: candidate-service-ha
@@ -110,10 +113,11 @@ system:
         ordinal_number=${FUNCTION_INSTANCE_NAME##*-} ;
         export INSTANCE=${ordinal_number}
 
+        stateful_lb_name=candidate-service-ha-node-lb ;
         stateful_cluster_domain=${KINGDOM}-sam.${KINGDOM}.sam.sfdc.net ;
-        cans_pod_1=${FUNCTION}-0.${FUNCTION_NAMESPACE}.svc.${stateful_cluster_domain} ;
-        cans_pod_2=${FUNCTION}-1.${FUNCTION_NAMESPACE}.svc.${stateful_cluster_domain} ;
-        cans_pod_3=${FUNCTION}-2.${FUNCTION_NAMESPACE}.svc.${stateful_cluster_domain} ;
+        cans_pod_1=${FUNCTION}-0.${stateful_lb_name}.${FUNCTION_NAMESPACE}.svc.${stateful_cluster_domain} ;
+        cans_pod_2=${FUNCTION}-1.${stateful_lb_name}.${FUNCTION_NAMESPACE}.svc.${stateful_cluster_domain} ;
+        cans_pod_3=${FUNCTION}-2.${stateful_lb_name}.${FUNCTION_NAMESPACE}.svc.${stateful_cluster_domain} ;
 
         export CHS_COORDINATOR_CLUSTERPORTS=8888,8888,8888 ;
         export CHS_COORDINATOR_CLUSTERADDR=${cans_pod_1},${cans_pod_2},${cans_pod_3}
