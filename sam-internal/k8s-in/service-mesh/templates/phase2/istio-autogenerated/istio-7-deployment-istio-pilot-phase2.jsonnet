@@ -191,7 +191,7 @@ if (istioPhases.phaseNum == 2) then
               },
               {
                 name: "PILOT_ENABLE_PROTOCOL_SNIFFING_FOR_INBOUND",
-                value: "false",
+                value: "true",
               },
             ],
             image: "%(istioHub)s/pilot:%(istioTag)s" % mcpIstioConfig,
