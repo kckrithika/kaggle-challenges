@@ -47,8 +47,10 @@ system:
         volumeMounts:
         - mountPath: /home/sfdc-maiev/certs
           name: maievservercert
-        - mountPath: /home/sfdc-maiev/certs/client
+        - mountPath: /home/sfdc-maiev/certs/client/client/certificates
           name: maievclientcert
+        - mountPath: /home/sfdc-maiev/certs/client/client/keys
+          name: maievclientkey
       volumes:
       - name: maievservercert
         maddogCert:
@@ -56,8 +58,11 @@ system:
           lbnames:
           - maiev-receiver
       - name: maievclientcert
-        maddogCert:
-          type: client
+        k4aSecret:
+          secretName: client-certificate
+      - name: maievclientkey
+        k4aSecret:
+          secretName: client-key
     loadbalancers:
     - lbname: maiev-receiver
       function: maiev-receiver-func
