@@ -6,6 +6,8 @@ system:
       - h.chivukula@salesforce.com
   functions:
   - name: candidate-service-ha
+    type: stateful-set
+    hostnetwork: true
     count: 2
     containers:
     - name: candidate-service-ha
