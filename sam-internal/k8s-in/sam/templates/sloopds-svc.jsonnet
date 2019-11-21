@@ -1,4 +1,5 @@
 local configs = import "config.jsonnet";
+local portconfigs = import "portconfig.jsonnet";
 
 if configs.estate == "prd-samtest" then {
     kind: "Service",
@@ -15,7 +16,7 @@ if configs.estate == "prd-samtest" then {
                 [
                     {
                         port: 80,
-                        targetport: 8080,
+                        targetport: portconfigs.sloop.sloop,
                         nodeport: 0,
                         lbtype: "",
                         reencrypt: false,
@@ -31,7 +32,7 @@ if configs.estate == "prd-samtest" then {
                 name: "sloop-port",
                 port: 80,
                 protocol: "TCP",
-                targetPort: 8080,
+                targetPort: portconfigs.sloop.sloop,
             },
         ],
         selector: {
