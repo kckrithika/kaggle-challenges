@@ -38,7 +38,7 @@ system:
           value: "/v1/*"
         - name: BRANCH
           value: "eng_production"
-        - name: KAKFA_PROPERTIES
+        - name: KAFKA_PROPERTIES
           value: "/home/sfdc-maiev/receiver/kafka-producer.properties"
         - name: NODENAME
           valueFrom:
