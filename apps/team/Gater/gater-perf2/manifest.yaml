@@ -10,12 +10,17 @@ system:
         - name: SFDC_ENVIRONMENT
           value: blitz
       args:
-      - --gater.grpc.endpoint=gater-mesh2.gater.localhost.mesh.force.com
+      #- --gater.grpc.endpoint=gater-mesh2.gater.localhost.mesh.force.com
+      - --gater.grpc.endpoint=istio-gater.gater.localhost.mesh.force.com
       - --gater.grpc.port=5443
       - --gater.client-mode=GRPC
-      - --endpoints.bindings.names=/s/gater-mesh2,/s/gater-mesh2-metadata
-      - --gater.thrift.service.destination=/s/gater-mesh2
-      - --gater.thrift.metadata.destination=/s/gater-mesh2-metadata
+      #- --endpoints.bindings.names=/s/gater-mesh2,/s/gater-mesh2-metadata
+      #- --gater.thrift.service.destination=/s/gater-mesh2
+      #- --gater.thrift.metadata.destination=/s/gater-mesh2-metadata
+      - --endpoints.bindings.names=/s/istio-gater,/s/istio-gater-metadata
+      - --gater.thrift.service.destination=/s/istio-gater
+      - --gater.thrift.metadata.destination=/s/istio-gater-metadata
+      
       - --gater.perf.gate-names=com.salesforce.gater.perftest1
       - --management.server.port=15375
       - --server.port=8081
