@@ -6,7 +6,7 @@ system:
     count: 0
     containers:
     - name: sdbdocker
-      image: ops0-artifactrepo1-0-dfw.data.sfdc.net/dva/sdbdocker/sdbdocker:324.101.2-11e958b
+      image: ops0-artifactrepo1-0-dfw.data.sfdc.net/dva/sdbdocker/sdbdocker:324.101.2-2c6dbf6
       livenessProbe:
         httpGet:
             path: /health
