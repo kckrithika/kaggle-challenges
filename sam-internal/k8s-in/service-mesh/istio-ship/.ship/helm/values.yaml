@@ -68,6 +68,8 @@ mixer:
 # @see charts/pilot/values.yaml
 pilot:
   enabled: true
+  enableProtocolSniffingForOutbound: false
+  enableProtocolSniffingForInbound: false
   resources:
     limits:
       cpu: 4000m
