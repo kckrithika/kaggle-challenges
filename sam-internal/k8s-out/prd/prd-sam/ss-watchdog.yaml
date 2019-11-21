@@ -9,6 +9,7 @@ items:
     name: secretservice-watchdog-crz11-sts
     namespace: sam-system
   spec:
+    podManagementPolicy: Parallel
     replicas: 2
     selector:
       matchLabels:
@@ -71,13 +72,8 @@ items:
             valueFrom:
               fieldRef:
                 fieldPath: spec.nodeName
-          image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/secretservice-watchdog:177-32163c58278bc26ebee8466939c336906c0a3c6e
+          image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/secretservice-watchdog:180-195c512830ddab15bfe81627852dfa09cbeb641f
           name: watchdog
-          resources:
-            limits:
-              sam.sfdc.net/ip-address: "1"
-            requests:
-              sam.sfdc.net/ip-address: "1"
           volumeMounts:
           - mountPath: /sfdchosts
             name: sfdchosts
@@ -189,6 +185,7 @@ items:
     name: secretservice-watchdog-crz12-sts
     namespace: sam-system
   spec:
+    podManagementPolicy: Parallel
     replicas: 2
     selector:
       matchLabels:
@@ -251,13 +248,8 @@ items:
             valueFrom:
               fieldRef:
                 fieldPath: spec.nodeName
-          image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/secretservice-watchdog:177-32163c58278bc26ebee8466939c336906c0a3c6e
+          image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/secretservice-watchdog:180-195c512830ddab15bfe81627852dfa09cbeb641f
           name: watchdog
-          resources:
-            limits:
-              sam.sfdc.net/ip-address: "1"
-            requests:
-              sam.sfdc.net/ip-address: "1"
           volumeMounts:
           - mountPath: /sfdchosts
             name: sfdchosts
@@ -369,6 +361,7 @@ items:
     name: secretservice-watchdog-crz21-sts
     namespace: sam-system
   spec:
+    podManagementPolicy: Parallel
     replicas: 2
     selector:
       matchLabels:
@@ -431,13 +424,8 @@ items:
             valueFrom:
               fieldRef:
                 fieldPath: spec.nodeName
-          image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/secretservice-watchdog:177-32163c58278bc26ebee8466939c336906c0a3c6e
+          image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/secretservice-watchdog:180-195c512830ddab15bfe81627852dfa09cbeb641f
           name: watchdog
-          resources:
-            limits:
-              sam.sfdc.net/ip-address: "1"
-            requests:
-              sam.sfdc.net/ip-address: "1"
           volumeMounts:
           - mountPath: /sfdchosts
             name: sfdchosts
@@ -549,6 +537,7 @@ items:
     name: secretservice-watchdog-crz22-sts
     namespace: sam-system
   spec:
+    podManagementPolicy: Parallel
     replicas: 2
     selector:
       matchLabels:
@@ -611,13 +600,8 @@ items:
             valueFrom:
               fieldRef:
                 fieldPath: spec.nodeName
-          image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/secretservice-watchdog:177-32163c58278bc26ebee8466939c336906c0a3c6e
+          image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/secretservice-watchdog:180-195c512830ddab15bfe81627852dfa09cbeb641f
           name: watchdog
-          resources:
-            limits:
-              sam.sfdc.net/ip-address: "1"
-            requests:
-              sam.sfdc.net/ip-address: "1"
           volumeMounts:
           - mountPath: /sfdchosts
             name: sfdchosts
@@ -729,6 +713,7 @@ items:
     name: secretservice-watchdog-dmz-from-prd-sts
     namespace: sam-system
   spec:
+    podManagementPolicy: Parallel
     replicas: 2
     selector:
       matchLabels:
@@ -791,13 +776,8 @@ items:
             valueFrom:
               fieldRef:
                 fieldPath: spec.nodeName
-          image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/secretservice-watchdog:177-32163c58278bc26ebee8466939c336906c0a3c6e
+          image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/secretservice-watchdog:180-195c512830ddab15bfe81627852dfa09cbeb641f
           name: watchdog
-          resources:
-            limits:
-              sam.sfdc.net/ip-address: "1"
-            requests:
-              sam.sfdc.net/ip-address: "1"
           volumeMounts:
           - mountPath: /sfdchosts
             name: sfdchosts
