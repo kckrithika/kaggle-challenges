@@ -24,6 +24,7 @@ spec:
       containers:
       - args:
         - --config=/sloopconfig/sloop.yaml
+        - --port=31938
         command:
         - /sloop
         image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/thargrove/sloop:thargrove-20191114_170822-c2c0a76
@@ -45,7 +46,6 @@ spec:
           name: sloopconfig
       hostNetwork: true
       nodeSelector:
-        kubernetes.io/hostname: shared0-samtestkubeapi3-1-prd.eng.sfdc.net
         master: "true"
       serviceAccountName: sloop
       volumes:
