@@ -6,9 +6,6 @@ system:
   functions:
   - name: istio-gater
     count: 3
-    labels:
-      app: istio-gater
-      settings_path: blitz.-.prd.-.istio-gater
     annotations:
       sidecar.istio.io/inject: "true"
       sidecar.istio.io/proxyCPU: "8000m"
@@ -101,9 +98,6 @@ system:
         lbtype: tcp
   - lbname: istio-gater
     function: istio-gater
-    labels:
-      app: istio-gater
-      settings_path: blitz.-.prd.-.istio-gater
     annotations:
       routing.mesh.sfdc.net/enabled: "true"
     ports:
