@@ -6,7 +6,7 @@ metadata:
     slb.sfdc.net/portconfigurations: '[{"lbtype": "", "nodeport": 0, "port": 80, "reencrypt":
       false, "sticky": 0, "targetport": 31938}]'
   labels:
-    app: sloop
+    app: sloopds
     sam.data.sfdc.net/owner: sam
   name: sloopds
   namespace: sam-system
