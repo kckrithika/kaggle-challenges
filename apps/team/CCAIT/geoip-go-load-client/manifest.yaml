@@ -11,8 +11,10 @@ system:
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/ccait/geoip-client:2019.0.1
       env:
         - name: GEOIP_ADDRESS
-          value: geoip-go.ccait.localhost.mesh.force.com:5443
+          value: geoip.ccait.localhost.mesh.force.com:5443
         - name: GEOIP_TOTALRPS
+          value: 100
+        - name: GEOIP_CONCURRENCY
           value: 10
       resources:
         limits:
@@ -32,7 +34,7 @@ system:
           port: 15372
         initialDelaySeconds: 20
     - name: sherpa
-      image: sfci/servicelibs/sherpa-envoy:2b1e3e25691df0907008172519bb8c9d3aa1a12d
+      image: sfci/servicelibs/sherpa-envoy:1.0.13
       ports:
       - name: http2-in
         containerPort: 7012
