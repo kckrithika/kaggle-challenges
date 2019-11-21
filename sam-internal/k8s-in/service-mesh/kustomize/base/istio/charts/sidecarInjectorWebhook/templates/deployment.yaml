@@ -9,7 +9,7 @@ metadata:
     app: sidecarInjectorWebhook
     chart: sidecarInjectorWebhook
     heritage: Helm
-    release: RELEASE-NAME
+    release: istio
     istio: sidecar-injector
 spec:
   replicas: 1
@@ -26,7 +26,7 @@ spec:
         app: sidecarInjectorWebhook
         chart: sidecarInjectorWebhook
         heritage: Helm
-        release: RELEASE-NAME
+        release: istio
         istio: sidecar-injector
       annotations:
         sidecar.istio.io/inject: "false"

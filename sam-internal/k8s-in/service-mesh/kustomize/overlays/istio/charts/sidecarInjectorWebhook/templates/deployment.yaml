@@ -6,6 +6,11 @@ metadata:
   name: istio-sidecar-injector
   namespace: mesh-control-plane
 spec:
+  replicas: 3
+  strategy:
+    rollingUpdate:
+      maxSurge: 3
+      maxUnavailable: 1
   selector:
     matchLabels:
       istio: sidecar-injector
@@ -35,8 +40,16 @@ spec:
         - name: ESTATE
           value: mcpIstioConfig.istioEstate
         name: sidecar-injector-webhook
+        image: '%(istioHub)s/sidecar_injector:%(istioTag)s'
         ports:
         - containerPort: 15009
+        resources:
+          limits:
+            cpu: 1000m
+            memory: 256Mi
+          requests:
+            cpu: 100m
+            memory: 128Mi
         volumeMounts:
         - mountPath: /etc/pki_service
           name: maddog-certs
@@ -221,6 +234,16 @@ spec:
           value: mcpIstioConfig.istioEstate
         - name: KINGDOM
           value: mcpIstioConfig.kingdom
+        - name: ISTIO_META_CLUSTER_ID
+          $patch: delete
+        - name: SERVICE_ACCOUNT
+          $patch: delete
+        - name: ISTIO_AUTO_MTLS_ENABLED
+          $patch: delete
+        - name: SDS_ENABLED
+          $patch: delete
+        - name: HOST_IP
+          $patch: delete
         image: mcpIstioConfig.proxyImage
         imagePullPolicy: "IfNotPresent"
         name: istio-proxy

@@ -8,7 +8,7 @@ metadata:
     app: pilot
     chart: pilot
     heritage: Helm
-    release: RELEASE-NAME
+    release: istio
 rules:
 - apiGroups: ["config.istio.io"]
   resources: ["*"]

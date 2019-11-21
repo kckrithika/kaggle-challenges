@@ -10,6 +10,11 @@ metadata:
   name: istio-pilot
   namespace: mesh-control-plane
 spec:
+  replicas: 3
+  strategy:
+    rollingUpdate:
+      maxSurge: 3
+      maxUnavailable: 1
   selector:
     matchLabels:
       app: pilot
@@ -50,6 +55,8 @@ spec:
         - name: PILOT_DISABLE_XDS_MARSHALING_TO_ANY
         - name: PILOT_ENABLE_UNSAFE_REGEX
         - name: PILOT_RESPECT_DNS_TTL
+        - name: PILOT_ENABLE_PROTOCOL_SNIFFING_FOR_OUTBOUND
+        - name: PILOT_ENABLE_PROTOCOL_SNIFFING_FOR_INBOUND
         $setElementOrder/volumeMounts:
         - mountPath: /etc/istio/config
         args:
@@ -81,7 +88,19 @@ spec:
           value: "true"
         - name: PILOT_RESPECT_DNS_TTL
           value: "false"
+        - name: PILOT_ENABLE_PROTOCOL_SNIFFING_FOR_INBOUND
+          value: "false"
+        - name: SETTINGS_PATH
+          $patch: delete
+        - name: SETTINGS_SUPERPOD
+          $patch: delete
         name: discovery
+        image: '%(istioHub)s/pilot:%(istioTag)s'
+        resources:
+          limits:
+            cpu: 4000m
+          requests:
+            cpu: 1000m
         volumeMounts:
         - $patch: delete
           mountPath: /etc/certs
@@ -148,6 +167,10 @@ spec:
         - name: KINGDOM
           value: mcpIstioConfig.kingdom
         name: istio-proxy
+        image: '%(istioHub)s/proxy:%(istioTag)s'
+        resources:
+          limits:
+            cpu: 6000m
         securityContext:
           runAsUser: 1337
         volumeMounts:
@@ -155,8 +178,6 @@ spec:
           name: tls-client-cert
         - mountPath: /server-certs
           name: tls-server-cert
-        - $patch: delete
-          mountPath: /etc/certs
       - args:
         - /sam/madkub-client
         - --madkub-endpoint=%(madkubEndpoint)s
@@ -219,6 +240,12 @@ spec:
           value: mcpIstioConfig.pilotSettingsPath
         - name: ESTATE
           value: mcpIstioConfig.istioEstate
+        - name: PILOT_ENABLE_REDIS_FILTER
+          $patch: delete
+        - name: PILOT_PUSH_THROTTLE
+          $patch: delete
+        - name: PILOT_SIDECAR_USE_REMOTE_ADDRESS
+          $patch: delete
         image: mcpIstioConfig.metricsScraperImage
         imagePullPolicy: Always
         name: metrics-scraper

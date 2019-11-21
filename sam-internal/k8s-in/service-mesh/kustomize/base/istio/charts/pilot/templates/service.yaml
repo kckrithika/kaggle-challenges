@@ -9,7 +9,7 @@ metadata:
     app: pilot
     chart: pilot
     heritage: Helm
-    release: RELEASE-NAME
+    release: istio
     istio: pilot
 spec:
   ports:

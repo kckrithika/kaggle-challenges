@@ -9,7 +9,7 @@ metadata:
     app: sidecarInjectorWebhook
     chart: sidecarInjectorWebhook
     heritage: Helm
-    release: RELEASE-NAME
+    release: istio
     istio: sidecar-injector
 spec:
   ports:

@@ -10,6 +10,10 @@ spec:
     matchLabels:
       app: istio-ingressgateway
       istio: ingressgateway
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 0
   template:
     metadata:
       annotations:
@@ -83,7 +87,18 @@ spec:
           valueFrom:
             fieldRef:
               fieldPath: metadata.labels['cluster']
+        - name: ISTIO_AUTO_MTLS_ENABLED
+          $patch: delete
+        - name: ISTIO_BOOTSTRAP
+          $patch: delete
+        - name: ISTIO_META_ROUTER_MODE
+          value: sni-dnat
+        - name: SETTINGS_PATH
+          $patch: delete
+        - name: SETTINGS_SUPERPOD
+          $patch: delete
         name: istio-proxy
+        image: '%(istioHub)s/proxy:%(istioTag)s'
         ports:
         # coreapp https
         - containerPort: 8085

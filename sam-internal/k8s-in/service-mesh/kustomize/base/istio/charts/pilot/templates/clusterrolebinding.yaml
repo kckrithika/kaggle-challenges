@@ -8,7 +8,7 @@ metadata:
     app: pilot
     chart: pilot
     heritage: Helm
-    release: RELEASE-NAME
+    release: istio
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: ClusterRole

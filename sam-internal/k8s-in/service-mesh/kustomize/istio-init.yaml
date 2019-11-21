@@ -989,7 +989,7 @@ spec:
         - apply
         - -f
         - /etc/istio/crd-all/crd-all.gen.yaml
-        image: 791719295754.dkr.ecr.us-east-2.amazonaws.com/sfci/servicemesh/istio-packaging/kubectl:93992746ef0add6bb415af63b83d8284d9f38247
+        image: '%(istioHub)s/kubectl:%(istioTag)s'
         imagePullPolicy: IfNotPresent
         name: istio-init-crd-all
         resources:
@@ -1035,7 +1035,7 @@ spec:
         - apply
         - -f
         - /etc/istio/crd-mixer/crd-mixer.yaml
-        image: 791719295754.dkr.ecr.us-east-2.amazonaws.com/sfci/servicemesh/istio-packaging/kubectl:93992746ef0add6bb415af63b83d8284d9f38247
+        image: '%(istioHub)s/kubectl:%(istioTag)s'
         imagePullPolicy: IfNotPresent
         name: istio-init-crd-mixer
         resources:

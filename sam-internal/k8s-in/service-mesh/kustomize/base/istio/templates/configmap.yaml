@@ -9,7 +9,7 @@ metadata:
     app: istio
     chart: istio
     heritage: Helm
-    release: RELEASE-NAME
+    release: istio
   annotations:
     'strategy.spinnaker.io/versioned': 'false'
 data:

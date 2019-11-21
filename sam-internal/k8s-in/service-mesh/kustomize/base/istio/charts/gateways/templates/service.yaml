@@ -10,13 +10,13 @@ metadata:
   labels:
     chart: gateways
     heritage: Helm
-    release: RELEASE-NAME
+    release: istio
     app: istio-ingressgateway
     istio: ingressgateway
 spec:
   type: LoadBalancer
   selector:
-    release: RELEASE-NAME
+    release: istio
     app: istio-ingressgateway
     istio: ingressgateway
   ports:

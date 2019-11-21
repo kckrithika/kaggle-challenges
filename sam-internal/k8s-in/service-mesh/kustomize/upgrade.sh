@@ -20,16 +20,8 @@ tmp/istio-init
 
 ## Multiple namespaces support is in helm 3 but we are using helm 2.
 ## So, till helm 3, we will run each namespace helm command separately.
-# Generate pilot and sidecarInjectorWebhook manifests.
-helm template \
---output-dir base \
---namespace mesh-control-plane \
---values tmp/istio/sfdc-values/values.yaml \
---set gateways.enabled=false \
-tmp/istio
-
 # Generate gateways manifests in core-on-sam-sp2 namespace.
-helm template \
+helm template istio \
 --output-dir base \
 --namespace core-on-sam-sp2 \
 --values tmp/istio/sfdc-values/values.yaml \
@@ -38,8 +30,19 @@ helm template \
 --set global.omitSidecarInjectorConfigMap=true \
 tmp/istio
 
+# Generate pilot and sidecarInjectorWebhook manifests.
+helm template istio \
+--output-dir base \
+--namespace mesh-control-plane \
+--values tmp/istio/sfdc-values/values.yaml \
+--set gateways.enabled=false \
+tmp/istio
+
 # Delete tmp directory
 rm -rf tmp/
 
+./kustomize.sh
+
 # Replace ship generated yamls with kustomize ones.
-# TODO
+#cp istio-init.yaml ././../istio-init-ship/rendered.yaml
+#cp istio.yaml ././../istio-ship/rendered.yaml
