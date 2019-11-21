@@ -8,7 +8,7 @@ if configs.estate == "prd-samtest" then {
         name: "sloopds",
         namespace: "sam-system",
         labels: {
-            app: "sloop",
+            app: "sloopds",
         } + configs.ownerLabel.sam,
         annotations: {
             "slb.sfdc.net/name": "sloopds",
