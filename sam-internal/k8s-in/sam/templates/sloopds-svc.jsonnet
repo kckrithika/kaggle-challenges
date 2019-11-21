@@ -36,7 +36,7 @@ if configs.estate == "prd-samtest" then {
             },
         ],
         selector: {
-            name: "sloop",
+            name: "sloopds",
         },
     },
 } else "SKIP"
