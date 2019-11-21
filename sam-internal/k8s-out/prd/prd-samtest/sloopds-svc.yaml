@@ -4,7 +4,7 @@ metadata:
   annotations:
     slb.sfdc.net/name: sloopds
     slb.sfdc.net/portconfigurations: '[{"lbtype": "", "nodeport": 0, "port": 80, "reencrypt":
-      false, "sticky": 0, "targetport": 8080}]'
+      false, "sticky": 0, "targetport": 31938}]'
   labels:
     app: sloop
     sam.data.sfdc.net/owner: sam
@@ -15,6 +15,6 @@ spec:
   - name: sloop-port
     port: 80
     protocol: TCP
-    targetPort: 8080
+    targetPort: 31938
   selector:
     name: sloop
