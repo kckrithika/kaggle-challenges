@@ -44,5 +44,5 @@ rm -rf tmp/
 ./kustomize.sh
 
 # Replace ship generated yamls with kustomize ones.
-#cp istio-init.yaml ././../istio-init-ship/rendered.yaml
-#cp istio.yaml ././../istio-ship/rendered.yaml
+cp istio-init.yaml ././../istio-init-ship/rendered.yaml
+cp istio.yaml ././../istio-ship/rendered.yaml
