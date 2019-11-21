@@ -8,7 +8,7 @@ system:
       serviceName: sfcd-onboarding-test
     containers:
     - name: sfcd-onboarding-app
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/sfcd/sfcd-onboarding-app:latest
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/nbabin/sfcd-onboarding-app:latest
       command: [ "/etc/sfcd-onboarding/run_app.sh" ]
       ports:
       - containerPort: 7000
