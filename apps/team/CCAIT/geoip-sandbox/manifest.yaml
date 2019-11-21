@@ -10,7 +10,7 @@ system:
       app: geoip
     containers:
     - name: geoip
-      image: sfci/services/sfdc-bazel/service-mesh/geoip:30b7bcc92 # monorepo build
+      image: sfci/services/sfdc-bazel/service-mesh/geoip:3c0c98d04 # monorepo build
       env:
       - name: FAKE_ENV_VAR_INCREMENT_TO_TRIGGER_SAM_DEPLOY
         value: "0"
