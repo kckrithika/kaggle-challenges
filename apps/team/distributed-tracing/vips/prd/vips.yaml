@@ -87,7 +87,7 @@
   ports:
    - port: 9200
      targetport: 9200
-     lbtype: tcp
+     lbtype: http
 
 - lbname: zipkin-prod
   customlbname: zipkin-prod
