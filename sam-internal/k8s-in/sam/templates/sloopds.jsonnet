@@ -24,6 +24,7 @@ if (configs.estate == "prd-samtest") then configs.daemonSetBase("sam") {
                         },
                         args: [
                             "--config=/sloopconfig/sloop.yaml",
+                            "--port=" + portconfigs.sloop.sloop,
                         ],
                         command: [
                             "/sloop",
@@ -63,7 +64,6 @@ if (configs.estate == "prd-samtest") then configs.daemonSetBase("sam") {
                 ],
                 nodeSelector: {
                     master: "true",
-                    "kubernetes.io/hostname": "shared0-samtestkubeapi3-1-prd.eng.sfdc.net",
                 },
             },
             metadata: {
