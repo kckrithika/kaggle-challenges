@@ -8,7 +8,7 @@ metadata:
   labels:
     app: sidecarInjectorWebhook
     chart: sidecarInjectorWebhook
-    heritage: Tiller
+    heritage: Helm
     release: RELEASE-NAME
     istio: sidecar-injector
 spec:

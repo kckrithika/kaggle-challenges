@@ -16,7 +16,6 @@ spec:
         fsGroup: 7447
         runAsNonRoot: true
         runAsUser: 7447
-        
       serviceAccountName: istio-init-service-account
       automountServiceAccountToken: true
       containers:
@@ -30,7 +29,6 @@ spec:
           requests:
             cpu: 10m
             memory: 50Mi
-          
         volumeMounts:
         - name: crd-mixer
           mountPath: /etc/istio/crd-mixer

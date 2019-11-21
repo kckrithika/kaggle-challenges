@@ -9,7 +9,7 @@ metadata:
   labels:
     app: pilot
     chart: pilot
-    heritage: Tiller
+    heritage: Helm
     release: RELEASE-NAME
     istio: pilot
 spec:
@@ -26,7 +26,7 @@ spec:
       labels:
         app: pilot
         chart: pilot
-        heritage: Tiller
+        heritage: Helm
         release: RELEASE-NAME
         istio: pilot
       annotations:
@@ -36,12 +36,11 @@ spec:
         fsGroup: 7447
         runAsNonRoot: true
         runAsUser: 7447
-        
       serviceAccountName: istio-pilot-service-account
       automountServiceAccountToken: true
       containers:
         - name: discovery
-          image: "791719295754.dkr.ecr.us-east-2.amazonaws.com/sfci/servicemesh/istio-packaging/pilot:4560429101a9e635e4fa9e5d5f14feae98c17d20"
+          image: "791719295754.dkr.ecr.us-east-2.amazonaws.com/sfci/servicemesh/istio-packaging/pilot:91742345277d0ffb8f6d3c9c7edffa16de0acb1c"
           imagePullPolicy: IfNotPresent
           args:
           - "discovery"
@@ -100,12 +99,11 @@ spec:
             requests:
               cpu: 500m
               memory: 2048Mi
-            
           volumeMounts:
           - name: config-volume
             mountPath: /etc/istio/config
         - name: istio-proxy
-          image: "791719295754.dkr.ecr.us-east-2.amazonaws.com/sfci/servicemesh/istio-packaging/proxy:4560429101a9e635e4fa9e5d5f14feae98c17d20"
+          image: "791719295754.dkr.ecr.us-east-2.amazonaws.com/sfci/servicemesh/istio-packaging/proxy:91742345277d0ffb8f6d3c9c7edffa16de0acb1c"
           imagePullPolicy: IfNotPresent
           ports:
           - containerPort: 15003
@@ -161,13 +159,14 @@ spec:
             requests:
               cpu: 100m
               memory: 128Mi
-            
           volumeMounts:
           securityContext:
             runAsUser: 1337
         - 
           name: metrics-scraper
           args:
+            - --endpoint
+            - http://127.0.0.1:15014/metrics
             - --debug-mode
             - "true"
             - --funnel-address
@@ -197,7 +196,7 @@ spec:
               value: "updated_by_firebom"
             - name: SETTINGS_SUPERPOD
               value: "-"
-          image: 791719295754.dkr.ecr.us-east-2.amazonaws.com/sfci/servicemesh/servicemesh/metrics-scraper:4749a2d1bcb74c2325daf80e4bb0ba80724316f9
+          image: 791719295754.dkr.ecr.us-east-2.amazonaws.com/sfci/servicemesh/servicemesh/metrics-scraper:4f7edbecc3a92604c1fd6b11821e7925f0abe6ac
           imagePullPolicy: IfNotPresent
           readinessProbe:
             exec:
@@ -213,9 +212,9 @@ spec:
             requests:
               cpu: 100m
               memory: 512Mi
-            
       initContainers:
-        - args:
+        - command:
+            - istio-iptables
             - -p
             - "15002"
             - -z
@@ -235,7 +234,7 @@ spec:
           env:
             - name: DISABLE_REDIRECTION_ON_LOCAL_LOOPBACK
               value: "1"
-          image: "791719295754.dkr.ecr.us-east-2.amazonaws.com/sfci/servicemesh/istio-packaging/proxy:4560429101a9e635e4fa9e5d5f14feae98c17d20"
+          image: "791719295754.dkr.ecr.us-east-2.amazonaws.com/sfci/servicemesh/istio-packaging/proxy:91742345277d0ffb8f6d3c9c7edffa16de0acb1c"
           imagePullPolicy: IfNotPresent
           name: istio-init
           resources:
@@ -289,4 +288,4 @@ spec:
               - key: beta.kubernetes.io/arch
                 operator: In
                 values:
-                - "s390x"      
+                - "s390x"

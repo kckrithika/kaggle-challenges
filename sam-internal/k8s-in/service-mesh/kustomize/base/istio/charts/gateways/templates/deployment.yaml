@@ -1,18 +1,16 @@
 ---
 # Source: istio/charts/gateways/templates/deployment.yaml
-
 apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: istio-ingressgateway
-  namespace: mesh-control-plane
+  namespace: core-on-sam-sp2
   labels:
     app: istio-ingressgateway
     chart: gateways
-    heritage: Tiller
+    heritage: Helm
     istio: ingressgateway
     release: RELEASE-NAME
-    
 spec:
   replicas: 1
   selector:
@@ -28,10 +26,9 @@ spec:
       labels:
         app: istio-ingressgateway
         chart: gateways
-        heritage: Tiller
+        heritage: Helm
         istio: ingressgateway
         release: RELEASE-NAME
-        
       annotations:
         sidecar.istio.io/inject: "false"
     spec:
@@ -39,12 +36,11 @@ spec:
         fsGroup: 7447
         runAsNonRoot: true
         runAsUser: 7447
-        
       serviceAccountName: istio-ingressgateway-service-account
       automountServiceAccountToken: true
       containers:
         - name: istio-proxy
-          image: "791719295754.dkr.ecr.us-east-2.amazonaws.com/sfci/servicemesh/istio-packaging/proxy:4560429101a9e635e4fa9e5d5f14feae98c17d20"
+          image: "791719295754.dkr.ecr.us-east-2.amazonaws.com/sfci/servicemesh/istio-packaging/proxy:91742345277d0ffb8f6d3c9c7edffa16de0acb1c"
           imagePullPolicy: IfNotPresent
           securityContext:
             runAsUser: 0
@@ -101,7 +97,6 @@ spec:
             requests:
               cpu: 100m
               memory: 128Mi
-            
           env:
           - name: NODE_NAME
             valueFrom:
@@ -145,7 +140,7 @@ spec:
                 fieldPath: metadata.namespace
           - name: ISTIO_METAJSON_LABELS
             value: |
-              {"app":"istio-ingressgateway","chart":"gateways","heritage":"Tiller","istio":"ingressgateway","release":"RELEASE-NAME"}
+              {"app":"istio-ingressgateway","chart":"gateways","heritage":"Helm","istio":"ingressgateway","release":"RELEASE-NAME"}
           - name: ISTIO_META_CLUSTER_ID
             value: "Kubernetes"
           - name: SDS_ENABLED
@@ -153,7 +148,7 @@ spec:
           - name: ISTIO_META_WORKLOAD_NAME
             value: istio-ingressgateway
           - name: ISTIO_META_OWNER
-            value: kubernetes://api/apps/v1/namespaces/mesh-control-plane/deployments/istio-ingressgateway
+            value: kubernetes://api/apps/v1/namespaces/core-on-sam-sp2/deployments/istio-ingressgateway
           - name: ESTATE
             value: "updated_by_firebom"
           - name: ISTIO_BOOTSTRAP
@@ -219,5 +214,4 @@ spec:
               - key: beta.kubernetes.io/arch
                 operator: In
                 values:
-                - "s390x"      
----
+                - "s390x"

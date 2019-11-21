@@ -1,6 +1,6 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
-patchesStrategicMerge:
+resources:
 - templates/clusterrole.yaml
 - templates/clusterrolebinding.yaml
 - templates/configmap-crd-all.yaml
@@ -8,5 +8,3 @@ patchesStrategicMerge:
 - templates/job-crd-all.yaml
 - templates/job-crd-mixer.yaml
 - templates/serviceaccount.yaml
-resources:
-- defaults

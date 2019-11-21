@@ -1,16 +1,15 @@
 ---
 # Source: istio/charts/gateways/templates/service.yaml
-
 apiVersion: v1
 kind: Service
 metadata:
   name: istio-ingressgateway
-  namespace: mesh-control-plane
+  namespace: core-on-sam-sp2
   annotations:
     service.beta.kubernetes.io/aws-load-balancer-type: "nlb"
   labels:
     chart: gateways
-    heritage: Tiller
+    heritage: Helm
     release: RELEASE-NAME
     app: istio-ingressgateway
     istio: ingressgateway
@@ -33,4 +32,3 @@ spec:
     -
       name: tcp-core-2525
       port: 2525
----

@@ -8,7 +8,7 @@ metadata:
   labels:
     app: pilot
     chart: pilot
-    heritage: Tiller
+    heritage: Helm
     release: RELEASE-NAME
     istio: pilot
 spec:
