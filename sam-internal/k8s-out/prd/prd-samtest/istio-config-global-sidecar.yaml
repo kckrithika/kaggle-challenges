@@ -16,14 +16,19 @@ spec:
     - ccait/*
     - cloudatlas/*
     - core-on-sam-sp2/*
+    - core-on-sam/*
     - emailinfra/*
     - funnel/*
     - gater/*
     - gateway/*
     - retail-cre/*
     - retail-dfs/*
+    - retail-dss/*
+    - retail-eventlistener/*
     - retail-mds/*
+    - retail-rrps/*
     - retail-rsui/*
+    - retail-setup/*
     - scone/*
     - search-scale-safely/*
     - service-mesh/*
@@ -40,14 +45,19 @@ spec:
     - ccait/*
     - cloudatlas/*
     - core-on-sam-sp2/*
+    - core-on-sam/*
     - emailinfra/*
     - funnel/*
     - gater/*
     - gateway/*
     - retail-cre/*
     - retail-dfs/*
+    - retail-dss/*
+    - retail-eventlistener/*
     - retail-mds/*
+    - retail-rrps/*
     - retail-rsui/*
+    - retail-setup/*
     - scone/*
     - search-scale-safely/*
     - service-mesh/*
@@ -64,14 +74,19 @@ spec:
     - ccait/*
     - cloudatlas/*
     - core-on-sam-sp2/*
+    - core-on-sam/*
     - emailinfra/*
     - funnel/*
     - gater/*
     - gateway/*
     - retail-cre/*
     - retail-dfs/*
+    - retail-dss/*
+    - retail-eventlistener/*
     - retail-mds/*
+    - retail-rrps/*
     - retail-rsui/*
+    - retail-setup/*
     - scone/*
     - search-scale-safely/*
     - service-mesh/*
@@ -88,14 +103,19 @@ spec:
     - ccait/*
     - cloudatlas/*
     - core-on-sam-sp2/*
+    - core-on-sam/*
     - emailinfra/*
     - funnel/*
     - gater/*
     - gateway/*
     - retail-cre/*
     - retail-dfs/*
+    - retail-dss/*
+    - retail-eventlistener/*
     - retail-mds/*
+    - retail-rrps/*
     - retail-rsui/*
+    - retail-setup/*
     - scone/*
     - search-scale-safely/*
     - service-mesh/*

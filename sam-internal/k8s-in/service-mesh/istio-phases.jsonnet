@@ -1,6 +1,7 @@
 local estate = std.extVar("estate");
 local kingdom = std.extVar("kingdom");
 local configs = import "config.jsonnet";
+local namespaces = (import "namespaces/mesh-namespaces.jsonnet") + { templateFilename:: std.thisFile };
 
 {
   phase: (
@@ -19,30 +20,10 @@ local configs = import "config.jsonnet";
 
   sidecarEgressHosts: (
   if ($.phaseNum < 3) then
-    [
-      // System namespaces
-      "mesh-control-plane/*",
-      "z9s-default/*",
-
-      // App namespaces
-      "app/*",
-      "casam/*",
-      "ccait/*",
-      "cloudatlas/*",
-      "core-on-sam-sp2/*",
-      "emailinfra/*",
-      "funnel/*",
-      "gater/*",
-      "gateway/*",
-      "retail-cre/*",
-      "retail-dfs/*",
-      "retail-mds/*",
-      "retail-rsui/*",
-      "scone/*",
-      "search-scale-safely/*",
-      "service-mesh/*",
-      "universal-search/*",
-    ]
+    // System namespaces
+    ["mesh-control-plane/*", "z9s-default/*"] +
+    // App namespaces
+    [("%s/*" % ns) for ns in namespaces.istioEnabledNamespaces("prd")]
     else
     [
       // System namespaces
