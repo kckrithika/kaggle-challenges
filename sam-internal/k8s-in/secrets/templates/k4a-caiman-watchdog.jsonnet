@@ -19,20 +19,21 @@ local build_server_url(tag) = (
 # Only monitor instances that are available in each kingdom.
 local getKingdomServerSpecificInstances(kingdom=configs.kingdom) = (
 if kingdom == "dfw" then {
-  "dfw11": { url: build_server_url("1-1-dfw") },
+  dfw11: { url: build_server_url("1-1-dfw") },
 } else if kingdom == "chi" then {
-  "chi11": { url: build_server_url("1-1-chi") },
-  "chi12": { url: build_server_url("1-2-chi") },
+  chi11: { url: build_server_url("1-1-chi") },
+  chi12: { url: build_server_url("1-2-chi") },
 } else if kingdom == "wax" then {
-  "wax12": { url: build_server_url("1-2-wax") },
-  "wax21": { url: build_server_url("2-1-wax") },
-  "wax22": { url: build_server_url("2-2-wax") },
+  wax12: { url: build_server_url("1-2-wax") },
+  wax21: { url: build_server_url("2-1-wax") },
+  wax22: { url: build_server_url("2-2-wax") },
 } else {
   [kingdom + "11"]: { url: build_server_url("1-1-" + kingdom) },
   [kingdom + "12"]: { url: build_server_url("1-2-" + kingdom) },
   [kingdom + "21"]: { url: build_server_url("2-1-" + kingdom) },
   [kingdom + "22"]: { url: build_server_url("2-2-" + kingdom) },
-});
+}
+);
 
 # Some legacy (non-Jackson) datacenters have K4A, but do not have a SAM presence.
 # We still want to monitor K4A in those datacenters; we will do so from one of the sites
