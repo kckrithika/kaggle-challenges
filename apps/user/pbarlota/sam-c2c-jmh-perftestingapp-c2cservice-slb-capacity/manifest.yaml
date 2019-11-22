@@ -9,8 +9,8 @@ system:
       ports:
       - containerPort: 9090
       resources:
-        limits: { cpu: "20", memory: "8Gi" }
-        requests: { cpu: "20", memory: "8Gi" }
+        limits: { cpu: "48", memory: "8Gi" }
+        requests: { cpu: "48", memory: "8Gi" }
       volumeMounts:
       - name: client-cert
         mountPath: /client-certs
@@ -30,8 +30,8 @@ system:
       - name: SFDC_ENVIRONMENT
         value: "stmfa"
       resources:
-        limits: { cpu: "10", memory: "1Gi" }
-        requests: { cpu: "10", memory: "1Gi" }
+        limits: { cpu: "48", memory: "1Gi" }
+        requests: { cpu: "48", memory: "1Gi" }
       volumeMounts:
       - name: client-cert
         mountPath: /client-certs
