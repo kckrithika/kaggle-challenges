@@ -1,7 +1,8 @@
 local configs = import "config.jsonnet";
 local portconfigs = import "portconfig.jsonnet";
+local samfeatureflags = import "sam-feature-flags.jsonnet";
 
-if configs.estate == "prd-samtest" then {
+if samfeatureflags.sloop then {
     kind: "Service",
     apiVersion: "v1",
     metadata: {

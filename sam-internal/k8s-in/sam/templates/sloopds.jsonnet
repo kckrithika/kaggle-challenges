@@ -3,7 +3,7 @@ local portconfigs = import "portconfig.jsonnet";
 local samimages = (import "samimages.jsonnet") + { templateFilename:: std.thisFile };
 local samfeatureflags = import "sam-feature-flags.jsonnet";
 
-if (configs.estate == "prd-samtest") then configs.daemonSetBase("sam") {
+if samfeatureflags.sloop then configs.daemonSetBase("sam") {
     spec+: {
         template: {
             spec: {
