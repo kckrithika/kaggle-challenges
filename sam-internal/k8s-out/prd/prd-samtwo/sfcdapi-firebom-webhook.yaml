@@ -387,7 +387,7 @@ items:
                 fieldPath: metadata.labels['name']
           - name: CONFIG_VERSION
             value: "15"
-          image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/sfcdapi-firebom:101
+          image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/sfcdapi-firebom:102
           imagePullPolicy: Always
           livenessProbe:
             failureThreshold: 10
