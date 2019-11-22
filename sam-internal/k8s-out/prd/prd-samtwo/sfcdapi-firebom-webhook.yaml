@@ -73,6 +73,7 @@ items:
           "pipeline": {
               "templates": {
                   "composition": {
+                      "add-new-service-master-stages": false,
                       "cleanup-interval": 0,
                       "default-read-id": "test",
                       "dev-env-type": "dev",
@@ -115,7 +116,7 @@ items:
                           "active-deadline-seconds": 60,
                           "image": "791719295754.dkr.ecr.us-east-2.amazonaws.com/dva/sfcd-vmf-parser:latest",
                           "k8s-account": "aws-dev1-uswest2-sfcdtest-sfcdekstest1-platformcluster",
-                          "namespace": "apoorv-test",
+                          "namespace": "sfcd-vmf-parser",
                           "ttl-seconds-after-finished": 300
                       },
                       "working-directory": "/tmp/sfcdapifirebom"
@@ -386,7 +387,7 @@ items:
                 apiVersion: v1
                 fieldPath: metadata.labels['name']
           - name: CONFIG_VERSION
-            value: "15"
+            value: "16"
           image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/sfcdapi-firebom:102
           imagePullPolicy: Always
           livenessProbe:
