@@ -108,8 +108,8 @@ items:
                       "populate-full-master-service-pipeline": true,
                       "service-white-list": [
                           "sfcdekstest1",
-                          "strauz",
-                          "sfcdec2test"
+                          "sfcdec2test",
+                          "bastion"
                       ],
                       "soft-launch": true,
                       "vmf-parser-configs": {
@@ -148,7 +148,7 @@ items:
                       "template": {
                           "enable-webhook-secret": false,
                           "fire-bom-black-list": "lib/fire/.*/boms/mock.*json",
-                          "fire-bom-white-list": "lib/fire/.*/boms/test_sfcdapi.*json"
+                          "fire-bom-white-list": "lib/fire/.*/boms/hydrated.*json"
                       }
                   }
               },
@@ -387,7 +387,7 @@ items:
                 apiVersion: v1
                 fieldPath: metadata.labels['name']
           - name: CONFIG_VERSION
-            value: "16"
+            value: "17"
           image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/sfcdapi-firebom:102
           imagePullPolicy: Always
           livenessProbe:
