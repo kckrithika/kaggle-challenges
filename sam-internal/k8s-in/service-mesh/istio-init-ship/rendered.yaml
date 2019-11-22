@@ -475,7 +475,6 @@ data:
         served: true
         storage: true
 
-
     ---
     apiVersion: apiextensions.k8s.io/v1beta1
     kind: CustomResourceDefinition
@@ -861,14 +860,16 @@ metadata:
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: istio-init-crd-all-%(istioTag)s
+  name: istio-init-crd-all-93992746ef0add6bb415af63b83d8284
   namespace: mesh-control-plane
 spec:
   template:
     metadata:
       annotations:
         sidecar.istio.io/inject: "false"
+      labels: null
     spec:
+      automountServiceAccountToken: true
       containers:
       - command:
         - kubectl
@@ -892,6 +893,10 @@ spec:
       nodeSelector:
         pool: mcpIstioConfig.istioEstate
       restartPolicy: OnFailure
+      securityContext:
+        fsGroup: 7447
+        runAsNonRoot: true
+        runAsUser: 7447
       serviceAccountName: istio-init-service-account
       volumes:
       - configMap:
@@ -901,14 +906,16 @@ spec:
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: istio-init-crd-mixer-%(istioTag)s
+  name: istio-init-crd-mixer-93992746ef0add6bb415af63b83d8284
   namespace: mesh-control-plane
 spec:
   template:
     metadata:
       annotations:
         sidecar.istio.io/inject: "false"
+      labels: null
     spec:
+      automountServiceAccountToken: true
       containers:
       - command:
         - kubectl
@@ -932,6 +939,10 @@ spec:
       nodeSelector:
         pool: mcpIstioConfig.istioEstate
       restartPolicy: OnFailure
+      securityContext:
+        fsGroup: 7447
+        runAsNonRoot: true
+        runAsUser: 7447
       serviceAccountName: istio-init-service-account
       volumes:
       - configMap:
