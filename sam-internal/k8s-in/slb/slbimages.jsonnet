@@ -55,16 +55,8 @@ local slbreleases = import "slbreleases.json";
            "2280-6728d98d50b4d61992ce01b456c568dd1bc64dcc"
     ),
 
-    # for SFCI testing, using the phase-1 image in test estates.
-    hyperslb_label: (
-        if slbconfigs.isTestEstate then
-            slbreleases["1"].hyperslb.label
-        else
-           slbreleases[$.phase].hyperslb.label
-    ),
-
     # These are the images used by the templates
-    hyperslb: imageFunc.do_override_for_pipeline_image($.overrides, "slb", "hyperslb", $.hyperslb_label),
+    hyperslb: imageFunc.do_override_for_pipeline_image($.overrides, "slb", "hyperslb", slbreleases[$.phase].hyperslb.label),
 
     hyperslb_config: imageFunc.do_override_for_pipeline_image($.overrides, "slb", "hyperslb", $.hyperslb_config_label),
     hyperslb_build: imageFunc.build_info_from_tag(slbreleases[$.phase].hyperslb.label).buildNumber,
