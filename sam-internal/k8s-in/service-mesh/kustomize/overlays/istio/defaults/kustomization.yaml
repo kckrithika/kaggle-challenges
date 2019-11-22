@@ -2,190 +2,165 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 patchesJson6902:
   - target:
-      group: apps
+      group: rbac.authorization.k8s.io
       version: v1
-      kind: Deployment
+      kind: Role
       namespace: core-on-sam-sp2
-      name: istio-ingressgateway
-    path: chart-patch.json
+      name: istio-ingressgateway-sds
+    path: disable-swagger-patch.yaml
+  - target:
+      group: rbac.authorization.k8s.io
+      version: v1
+      kind: RoleBinding
+      namespace: core-on-sam-sp2
+      name: istio-ingressgateway-sds
+    path: disable-swagger-patch.yaml
   - target:
       group: apps
       version: v1
       kind: Deployment
       namespace: core-on-sam-sp2
       name: istio-ingressgateway
-    path: heritage-patch.json
+    path: delete-labels-patch.yaml
   - target:
       version: v1
       kind: Service
       namespace: core-on-sam-sp2
       name: istio-ingressgateway
-    path: chart-patch.json
+    path: delete-labels-patch.yaml
   - target:
       version: v1
-      kind: Service
+      kind: ServiceAccount
       namespace: core-on-sam-sp2
-      name: istio-ingressgateway
-    path: heritage-patch.json
+      name: istio-ingressgateway-service-account
+    path: delete-labels-patch.yaml
+  - target:
+      version: v1
+      kind: ServiceAccount
+      namespace: core-on-sam-sp2
+      name: istio-ingressgateway-service-account
+    path: disable-swagger-patch.yaml
   - target:
       group: rbac.authorization.k8s.io
       version: v1
       kind: ClusterRole
       name: istio-pilot-mesh-control-plane
-    path: chart-patch.json
+    path: delete-labels-patch.yaml
   - target:
       group: rbac.authorization.k8s.io
       version: v1
       kind: ClusterRole
       name: istio-pilot-mesh-control-plane
-    path: heritage-patch.json
+    path: disable-swagger-patch.yaml
   - target:
       group: rbac.authorization.k8s.io
       version: v1
       kind: ClusterRoleBinding
       name: istio-pilot-mesh-control-plane
-    path: chart-patch.json
+    path: delete-labels-patch.yaml
   - target:
       group: rbac.authorization.k8s.io
       version: v1
       kind: ClusterRoleBinding
       name: istio-pilot-mesh-control-plane
-    path: heritage-patch.json
+    path: disable-swagger-patch.yaml
   - target:
       group: apps
       version: v1
       kind: Deployment
       namespace: mesh-control-plane
       name: istio-pilot
-    path: chart-patch.json
-  - target:
-      group: apps
-      version: v1
-      kind: Deployment
-      namespace: mesh-control-plane
-      name: istio-pilot
-    path: heritage-patch.json
+    path: delete-labels-patch.yaml
   - target:
       version: v1
       kind: Service
       namespace: mesh-control-plane
       name: istio-pilot
-    path: chart-patch.json
-  - target:
-      version: v1
-      kind: Service
-      namespace: mesh-control-plane
-      name: istio-pilot
-    path: heritage-patch.json
+    path: delete-labels-patch.yaml
   - target:
       version: v1
       kind: ServiceAccount
       namespace: mesh-control-plane
       name: istio-pilot-service-account
-    path: chart-patch.json
+    path: delete-labels-patch.yaml
   - target:
       version: v1
       kind: ServiceAccount
       namespace: mesh-control-plane
       name: istio-pilot-service-account
-    path: heritage-patch.json
+    path: disable-swagger-patch.yaml
   - target:
       group: rbac.authorization.k8s.io
       version: v1
       kind: ClusterRole
       name: istio-sidecar-injector-mesh-control-plane
-    path: chart-patch.json
+    path: delete-labels-patch.yaml
   - target:
       group: rbac.authorization.k8s.io
       version: v1
       kind: ClusterRole
       name: istio-sidecar-injector-mesh-control-plane
-    path: heritage-patch.json
+    path: disable-swagger-patch.yaml
   - target:
       group: rbac.authorization.k8s.io
       version: v1
       kind: ClusterRoleBinding
       name: istio-sidecar-injector-admin-role-binding-mesh-control-plane
-    path: chart-patch.json
+    path: delete-labels-patch.yaml
   - target:
       group: rbac.authorization.k8s.io
       version: v1
       kind: ClusterRoleBinding
       name: istio-sidecar-injector-admin-role-binding-mesh-control-plane
-    path: heritage-patch.json
+    path: disable-swagger-patch.yaml
   - target:
       group: apps
       version: v1
       kind: Deployment
       namespace: mesh-control-plane
       name: istio-sidecar-injector
-    path: chart-patch.json
-  - target:
-      group: apps
-      version: v1
-      kind: Deployment
-      namespace: mesh-control-plane
-      name: istio-sidecar-injector
-    path: heritage-patch.json
+    path: delete-labels-patch.yaml
   - target:
       group: admissionregistration.k8s.io
       version: v1beta1
       kind: MutatingWebhookConfiguration
       name: istio-sidecar-injector
-    path: chart-patch.json
+    path: delete-labels-patch.yaml
   - target:
       group: admissionregistration.k8s.io
       version: v1beta1
       kind: MutatingWebhookConfiguration
       name: istio-sidecar-injector
-    path: heritage-patch.json
+    path: disable-swagger-patch.yaml
   - target:
       version: v1
       kind: Service
       namespace: mesh-control-plane
       name: istio-sidecar-injector
-    path: chart-patch.json
-  - target:
-      version: v1
-      kind: Service
-      namespace: mesh-control-plane
-      name: istio-sidecar-injector
-    path: heritage-patch.json
+    path: delete-labels-patch.yaml
   - target:
       version: v1
       kind: ServiceAccount
       namespace: mesh-control-plane
       name: istio-sidecar-injector-service-account
-    path: chart-patch.json
+    path: delete-labels-patch.yaml
   - target:
       version: v1
       kind: ServiceAccount
       namespace: mesh-control-plane
       name: istio-sidecar-injector-service-account
-    path: heritage-patch.json
+    path: disable-swagger-patch.yaml
   - target:
       version: v1
       kind: ConfigMap
       namespace: mesh-control-plane
       name: istio
-    path: chart-patch.json
-  - target:
-      version: v1
-      kind: ConfigMap
-      namespace: mesh-control-plane
-      name: istio
-    path: heritage-patch.json
+    path: delete-labels-patch.yaml
   - target:
       version: v1
       kind: ConfigMap
       namespace: mesh-control-plane
       name: istio-sidecar-injector
-    path: chart-patch.json
-  - target:
-      version: v1
-      kind: ConfigMap
-      namespace: mesh-control-plane
-      name: istio-sidecar-injector
-    path: heritage-patch.json
+    path: delete-labels-patch.yaml
 resources:
 - ../../../base/istio

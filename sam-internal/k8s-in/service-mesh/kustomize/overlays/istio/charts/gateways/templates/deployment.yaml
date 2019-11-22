@@ -6,10 +6,6 @@ metadata:
   name: istio-ingressgateway
   namespace: core-on-sam-sp2
 spec:
-  selector:
-    matchLabels:
-      app: istio-ingressgateway
-      istio: ingressgateway
   strategy:
     rollingUpdate:
       maxSurge: 1
@@ -25,36 +21,7 @@ spec:
         cluster: mcpIstioConfig.istioEstate
     spec:
       containers:
-      - args:
-        - proxy
-        - router
-        - --domain
-        - $(POD_NAMESPACE).svc.cluster.local
-        - --proxyLogLevel=info
-        - --log_output_level
-        - default:info
-        - --drainDuration
-        - 45s
-        - --parentShutdownDuration
-        - 1m0s
-        - --connectTimeout
-        - 10s
-        - --serviceCluster
-        - istio-ingressgateway
-        - --zipkinAddress
-        - zipkindirecttls.funnel.svc.mesh.sfdc.net:7442
-        - --envoyMetricsService
-        - '{"address":"switchboard.service-mesh:15001","tls_settings":{"mode":2,"client_certificate":"/client-certs/client/certificates/client.pem","private_key":"/client-certs/client/keys/client-key.pem","ca_certificates":"/client-certs/ca.pem"},"tcp_keepalive":{"probes":3,"time":"10s","interval":"10s"}}'
-        - --proxyAdminPort
-        - "15373"
-        - --statusPort
-        - "15020"
-        - --controlPlaneAuthPolicy
-        - MUTUAL_TLS
-        - --discoveryAddress
-        - istio-pilot.mesh-control-plane:15011
-        - --controlPlaneBootstrap=false
-        env:
+      - env:
         - name: ESTATE
           value: mcpIstioConfig.casamEstate
         - name: ISTIO_META_superpod
@@ -87,12 +54,8 @@ spec:
           valueFrom:
             fieldRef:
               fieldPath: metadata.labels['cluster']
-        - name: ISTIO_AUTO_MTLS_ENABLED
-          $patch: delete
         - name: ISTIO_BOOTSTRAP
           $patch: delete
-        - name: ISTIO_META_ROUTER_MODE
-          value: sni-dnat
         - name: SETTINGS_PATH
           $patch: delete
         - name: SETTINGS_SUPERPOD
@@ -100,17 +63,12 @@ spec:
         name: istio-proxy
         image: '%(istioHub)s/proxy:%(istioTag)s'
         ports:
-        # coreapp https
-        - containerPort: 8085
+        - containerPort: 8085 # coreapp https
         - $patch: replace
-        resources:
-          limits:
-            memory: 1024Mi
-          requests:
-            memory: 1024Mi
         securityContext:
           readOnlyRootFilesystem: true
           runAsUser: 1337
+          $patch: replace
         volumeMounts:
         - mountPath: /client-certs
           name: tls-client-cert
@@ -120,10 +78,6 @@ spec:
           name: istio-envoy
         - $patch: delete
           mountPath: /etc/certs
-        - $patch: delete
-          mountPath: /etc/istio/ingressgateway-ca-certs
-        - $patch: delete
-          mountPath: /etc/istio/ingressgateway-certs
       - args:
         - /sam/madkub-client
         - --madkub-endpoint=%(madkubEndpoint)s
@@ -242,9 +196,5 @@ spec:
       - emptyDir:
           medium: Memory
         name: istio-envoy
-      - $patch: delete
-        name: ingressgateway-ca-certs
-      - $patch: delete
-        name: ingressgateway-certs
       - $patch: delete
         name: istio-certs

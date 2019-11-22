@@ -145,16 +145,16 @@ data:
       tracing:
         zipkin:
           # Address of the Zipkin collector
-          address: zipkin.mesh-control-plane:9411
+          address: zipkindirecttls.funnel.svc.mesh.sfdc.net:7442
       #
       # Envoy's Metrics Service stats sink pushes Envoy metrics to a remote collector via the Metrics Service gRPC API.
       envoyMetricsService:
-        address: metrics-service.service-mesh:15001
+        address: switchboard.service-mesh:15001
         tlsSettings:
-          caCertificates: /etc/identity/ca/cacerts.pem
-          clientCertificate: /etc/identity/client/certificates/client.pem
+          caCertificates: /client-certs/ca.pem
+          clientCertificate: /client-certs/client/certificates/client.pem
           mode: MUTUAL
-          privateKey: /etc/identity/client/keys/client-key.pem
+          privateKey: /client-certs/client/keys/client-key.pem
           sni: null
           subjectAltNames: []
         tcpKeepalive:

@@ -1,0 +1,4 @@
+- op: add
+  path: "/metadata/annotations"
+  value:
+    manifestctl.sam.data.sfdc.net/swagger: disable

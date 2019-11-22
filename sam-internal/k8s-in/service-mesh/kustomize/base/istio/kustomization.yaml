@@ -5,7 +5,7 @@ resources:
 - charts/gateways/templates/role.yaml
 - charts/gateways/templates/rolebindings.yaml
 - charts/gateways/templates/service.yaml
-#- charts/gateways/templates/serviceaccount.yaml
+- charts/gateways/templates/serviceaccount.yaml
 - charts/pilot/templates/clusterrole.yaml
 - charts/pilot/templates/clusterrolebinding.yaml
 - charts/pilot/templates/deployment.yaml
@@ -17,8 +17,5 @@ resources:
 - charts/sidecarInjectorWebhook/templates/mutatingwebhook.yaml
 - charts/sidecarInjectorWebhook/templates/service.yaml
 - charts/sidecarInjectorWebhook/templates/serviceaccount.yaml
-#- templates/clusterrole.yaml
-#- templates/clusterrolebinding.yaml
 - templates/configmap.yaml
-#- templates/serviceaccount.yaml
 - templates/sidecar-injector-configmap.yaml
