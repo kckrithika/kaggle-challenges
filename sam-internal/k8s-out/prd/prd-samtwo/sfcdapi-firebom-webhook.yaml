@@ -109,7 +109,8 @@ items:
                       "service-white-list": [
                           "sfcdekstest1",
                           "sfcdec2test",
-                          "bastion"
+                          "bastion",
+                          "strauz"
                       ],
                       "soft-launch": true,
                       "vmf-parser-configs": {
@@ -387,7 +388,7 @@ items:
                 apiVersion: v1
                 fieldPath: metadata.labels['name']
           - name: CONFIG_VERSION
-            value: "17"
+            value: "18"
           image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/sfcdapi-firebom:102
           imagePullPolicy: Always
           livenessProbe:
