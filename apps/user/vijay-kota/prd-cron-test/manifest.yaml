@@ -11,7 +11,7 @@ system:
         serviceName: sdb
         pod: cs66
       containers:
-        - name: sdbgo
+        - name: mysdb
           image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/vijay-kota/mysdb:05Oct19
           #ommand: ["/bin/sleep"]
           #rgs: ["701000"]
@@ -94,6 +94,8 @@ system:
             - --scheduler.service.port=7012
             - --scheduler.client.appserverid=demo
             - --scheduler.client.tpsize=20
+            - --logging.json.level=ALL
+            - --logging.json.stdout.level=ALL
           env:
             - name: SFDC_ENVIRONMENT
               value: mesh
@@ -159,12 +161,18 @@ system:
         pod: cs66
       containers:
         - name: cronsvc
-          image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/vijay-kota/cronsvc:05Nov19
+          #mage: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/vijay-kota/cronsvc:05Nov19
+          image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/rakella/scheduler-service:nov20
           ports:
             - name: grpc-port
               containerPort: 7020
             - name: scone-port
               containerPort: 15374
+          command: ["./launcher.sh"]
+          args:
+            - --scheduler.database.url=jdbc:postgresql://10.251.198.91:1521/crondb
+            - --logging.json.level=ALL
+            - --logging.json.stdout.level=ALL
           env:
             - name: SFDC_ENVIRONMENT
               value: mesh
