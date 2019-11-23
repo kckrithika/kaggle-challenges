@@ -57,7 +57,7 @@ local slbreleases = import "slbreleases.json";
 
 
    hyperslb_nginx_config_label: (
-        if (estate == "prd-sdc" || estate == "prd-sam") then
+        if (estate == "prd-sdc" || estate == "prd-sam" || estate == "dfw-sam" || estate == "phx-sam") then
             "2289-b29b418b59e285c81c6397ebd9e819208918cdcb"
         else
            "2280-6728d98d50b4d61992ce01b456c568dd1bc64dcc"
