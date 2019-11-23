@@ -6,7 +6,7 @@ system:
       - cre@salesforce.com
   functions:
   - name: cre-sp-ccp-dev
-    count: 0
+    count: 1
     labels:
       app: cre-sp-ccp-dev
     annotations:
