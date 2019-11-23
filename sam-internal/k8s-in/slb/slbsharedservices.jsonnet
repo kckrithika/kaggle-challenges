@@ -217,7 +217,9 @@
       "--log_dir=" + slbconfigs.logsDir,
       configs.sfdchosts_arg,
       "--subnet=" + slbconfigs.subnet + "," + slbconfigs.publicSubnet,
-    ],
+    ] + (if slbimages.hyperslb_build >= 2287 then [
+           "--subnetMask=/32",
+         ] else []),
     volumeMounts: std.prune([
       slbconfigs.slb_volume_mount,
       slbconfigs.slb_config_volume_mount,

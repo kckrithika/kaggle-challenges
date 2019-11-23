@@ -44,6 +44,7 @@ spec:
         - --log_dir=/host/data/slb/logs/slb-iface-processor
         - --hostsConfigFile=/sfdchosts/hosts.json
         - --subnet=10.254.247.0/24,
+        - --subnetMask=/32
         image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/slb/hyperslb:2287-61c485ebc440f2cf2e9f68f81c66ad5f956016b8
         name: slb-iface-processor
         securityContext:
