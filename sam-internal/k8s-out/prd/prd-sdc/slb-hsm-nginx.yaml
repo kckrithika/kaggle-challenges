@@ -109,7 +109,7 @@ spec:
               fieldPath: spec.nodeName
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig-platform
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/slb/hyperslb:2287-61c485ebc440f2cf2e9f68f81c66ad5f956016b8
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/slb/hyperslb:2289-b29b418b59e285c81c6397ebd9e819208918cdcb
         name: slb-nginx-config
         ports:
         - containerPort: 32146
