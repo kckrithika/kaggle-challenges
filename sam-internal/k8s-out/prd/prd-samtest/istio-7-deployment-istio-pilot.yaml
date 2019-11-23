@@ -11,7 +11,7 @@ metadata:
   name: istio-pilot
   namespace: mesh-control-plane
 spec:
-  replicas: 3
+  replicas: 1
   selector:
     matchLabels:
       app: pilot

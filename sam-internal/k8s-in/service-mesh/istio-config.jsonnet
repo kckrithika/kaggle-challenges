@@ -129,4 +129,8 @@ local ingressGatewayCertConfigs = [ingressGatewayClientCertConfig, ingressGatewa
       name: "istio-envoy",
     },
   ],
+
+  pilotReplicasCount: istioPhases.pilotReplicasCount,
+  sidecarInjectorWebhookReplicasCount: istioPhases.sidecarInjectorWebhookReplicasCount,
+  routingWebhookReplicasCount: istioPhases.routingWebhookReplicasCount,
 }

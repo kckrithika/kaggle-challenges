@@ -48,4 +48,11 @@ local namespaces = (import "namespaces/mesh-namespaces.jsonnet") + { templateFil
       "universal-search/*",
     ]
   ),
+
+  # 1 Pilot instance in prd-samtest
+  pilotReplicasCount: if ($.phaseNum == 1) then 1 else 3,
+  # 1 sidecar-injector in prd-samtest
+  sidecarInjectorWebhookReplicasCount: if ($.phaseNum == 1) then 1 else 3,
+  # 1 routing webhook in prd-samtest
+  routingWebhookReplicasCount: if ($.phaseNum == 1) then 1 else 3,
 }
