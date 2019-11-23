@@ -119,7 +119,7 @@ if proxyType == "envoy" then
   ],
 
   local nginxSharedContainers(proxyImage, deleteLimitOverride=0, proxyFlavor="", slbUpstreamReporterEnabled=true) = [
-    slbshared.slbNginxConfig(deleteLimitOverride=deleteLimitOverride, tlsConfigEnabled=true, waitForRealsvrCfg=true),
+    slbshared.slbNginxConfig(deleteLimitOverride=deleteLimitOverride, tlsConfigEnabled=true, waitForRealsvrCfg=true, proxyFlavor=proxyFlavor),
     slbshared.slbNginxProxy(proxyImage, proxyFlavor, true),
     {
       name: "slb-nginx-data",
