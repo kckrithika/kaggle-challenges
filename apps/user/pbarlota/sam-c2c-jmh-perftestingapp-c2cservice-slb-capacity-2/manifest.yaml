@@ -5,12 +5,12 @@ system:
     count: 1
     containers:
     - name: sam-c2c-jmh-perftestingapp-c2cservice-slb-capacity-2
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/pbarlota/sam-c2c-jmh-perftestingapp-c2cservice-slb-capacity-2:latest
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/pbarlota/sam-c2c-jmh-perftestingapp-c2cservice-slb-capacity-2:latest-1
       ports:
       - containerPort: 9090
       resources:
-        limits: { cpu: "48", memory: "8Gi" }
-        requests: { cpu: "48", memory: "8Gi" }
+        limits: { cpu: "20", memory: "8Gi" }
+        requests: { cpu: "20", memory: "8Gi" }
       volumeMounts:
       - name: client-cert
         mountPath: /client-certs
