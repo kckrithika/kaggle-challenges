@@ -102,7 +102,7 @@ spec:
         env:
         - name: ESTATE
           value: par-sam_gater
-        image: ops0-artifactrepo1-0-par.data.sfdc.net/sfci/servicemesh/istio-packaging/sidecar_injector:91742345277d0ffb8f6d3c9c7edffa16de0acb1c
+        image: ops0-artifactrepo1-0-par.data.sfdc.net/sfci/servicemesh/istio-packaging/sidecar_injector:dc81a3faea15119f22c6f3330ed00e5e610fdf4a
         imagePullPolicy: IfNotPresent
         livenessProbe:
           exec:
@@ -319,7 +319,7 @@ spec:
           value: par-sam_gater
         - name: KINGDOM
           value: par
-        image: ops0-artifactrepo1-0-par.data.sfdc.net/sfci/servicemesh/istio-packaging/proxy:91742345277d0ffb8f6d3c9c7edffa16de0acb1c
+        image: ops0-artifactrepo1-0-par.data.sfdc.net/sfci/servicemesh/istio-packaging/proxy:dc81a3faea15119f22c6f3330ed00e5e610fdf4a
         imagePullPolicy: IfNotPresent
         name: istio-proxy
         ports:
@@ -434,7 +434,7 @@ spec:
         env:
         - name: DISABLE_REDIRECTION_ON_LOCAL_LOOPBACK
           value: "1"
-        image: ops0-artifactrepo1-0-par.data.sfdc.net/sfci/servicemesh/istio-packaging/proxy:91742345277d0ffb8f6d3c9c7edffa16de0acb1c
+        image: ops0-artifactrepo1-0-par.data.sfdc.net/sfci/servicemesh/istio-packaging/proxy:dc81a3faea15119f22c6f3330ed00e5e610fdf4a
         imagePullPolicy: IfNotPresent
         name: istio-init
         resources:
