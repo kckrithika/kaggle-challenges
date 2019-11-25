@@ -1293,7 +1293,7 @@ metadata:
   name: istio-pilot
   namespace: mesh-control-plane
 spec:
-  replicas: 3
+  replicas: mcpIstioConfig.pilotReplicasCount
   selector:
     matchLabels:
       app: pilot
@@ -1711,7 +1711,7 @@ metadata:
   name: istio-sidecar-injector
   namespace: mesh-control-plane
 spec:
-  replicas: 3
+  replicas: mcpIstioConfig.sidecarInjectorWebhookReplicasCount
   selector:
     matchLabels:
       istio: sidecar-injector

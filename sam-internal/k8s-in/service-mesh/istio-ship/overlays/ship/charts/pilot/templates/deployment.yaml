@@ -10,6 +10,7 @@ metadata:
   name: istio-pilot
   namespace: mesh-control-plane
 spec:
+  replicas: mcpIstioConfig.pilotReplicasCount
   selector:
     matchLabels:
       app: pilot

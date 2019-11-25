@@ -21,7 +21,7 @@ configs.deploymentBase("service-mesh") {
     namespace: "mesh-control-plane",
   },
   spec+: {
-    replicas: 3,
+    replicas: mcpIstioConfig.routingWebhookReplicasCount,
     selector: {
       matchLabels: {
         app: "istio-routing-webhook",

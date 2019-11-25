@@ -19,7 +19,7 @@ if (istioPhases.phaseNum == 2) then
     namespace: "mesh-control-plane",
   },
   spec: {
-    replicas: 3,
+    replicas: mcpIstioConfig.sidecarInjectorWebhookReplicasCount,
     selector: {
       matchLabels: {
         istio: "sidecar-injector",
