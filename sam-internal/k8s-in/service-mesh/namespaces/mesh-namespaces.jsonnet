@@ -49,6 +49,7 @@ local istioInjectionEnabled = {
   prd: all_known_mesh_namespaces,
   mvp: all_known_mesh_namespaces,
   par: ["app", "funnel", "service-mesh"],
+  lo3: ["app", "funnel", "service-mesh"],
 };
 
 
