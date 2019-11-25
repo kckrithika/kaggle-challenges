@@ -13,7 +13,6 @@ system:
       istio_app: test
     annotations:
       sidecar.istio.io/inject: "true"
-      routing.mesh.sfdc.net/enabled: "true"
     containers:
     - name: ordering
       # Ordering App
@@ -21,8 +20,8 @@ system:
       # Ordering Config
       #    https://git.soma.salesforce.com/services/sfdc-bazel/blob/master/projects/services/ordering/ordering-scone/src/main/resources/config/application.properties
       # Image build:
-      # https://sfcirelease.dop.sfdc.net/job/services/job/sfdc-bazel_projects_services_examples_ordering/job/sfdc-bazel/job/master/75/
-      image: sfci/services/sfdc-bazel/scone/ordering:b51d7f786
+      # https://sfcirelease.dop.sfdc.net/job/services/job/sfdc-bazel_projects_services_examples_ordering/job/sfdc-bazel/job/master/92
+      image: sfci/services/sfdc-bazel/scone/ordering:7572acf02
       env:
       - name: SFDC_ENVIRONMENT
         value: prod
@@ -31,7 +30,7 @@ system:
       - name: GRPC_PORT
         value: 7443
       - name: JAVA_OPTS
-        value: "-Dmesh.istio-mode=true -Dscone.service.name=istio-ordering -Dshipping.interval=5000 -Dmanagement.server.port=15372"
+        value: "-Dtracing.report=false -Dmesh.istio-mode=true -Dscone.service.name=istio-ordering -Dshipping.interval=5000 -Dmanagement.server.port=15372"
       - name: JAVA_HEAP_OPTS
         value: -Xmx64m
       ports:
