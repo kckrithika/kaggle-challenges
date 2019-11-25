@@ -8,6 +8,8 @@ system:
         - aborra@salesforce.com
     functions:
     - name: fawkes-func
+      identity:
+        serviceName: fawkes
       count: 1
       strategy:
         type: RollingUpdate
