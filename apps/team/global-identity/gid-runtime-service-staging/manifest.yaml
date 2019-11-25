@@ -156,6 +156,8 @@ system:
         value: gid-mailhog.global-identity.prd-sam.prd.slb.sfdc.net
       - name: otp_passwordReset_expiresInSeconds
         value: 300
+      - name: spring_datasource_hikari_connectionTimeout
+        value: 10000
       volumeMounts:
       - name: client-cert
         mountPath: /client-certs
