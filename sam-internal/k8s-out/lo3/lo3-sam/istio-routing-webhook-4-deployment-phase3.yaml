@@ -1,23 +1,14 @@
-apiVersion: apps/v1
+apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
-  annotations:
-    manifestctl.sam.data.sfdc.net/swagger: disable
-  labels:
-    app: sidecarInjectorWebhook
-    istio: sidecar-injector
-    release: istio
-  name: istio-sidecar-injector
+  name: istio-routing-webhook
   namespace: mesh-control-plane
 spec:
   replicas: 3
   selector:
     matchLabels:
-      istio: sidecar-injector
-  strategy:
-    rollingUpdate:
-      maxSurge: 3
-      maxUnavailable: 1
+      app: istio-routing-webhook
+      name: istio-routing-webhook
   template:
     metadata:
       annotations:
@@ -25,106 +16,63 @@ spec:
           {
            "certreqs": [
             {
-             "cert-type": "client",
-             "kingdom": "par",
-             "name": "tls-client-cert",
-             "role": "istio-sidecar-injector.mesh-control-plane"
+             "cert-type": "server",
+             "kingdom": "lo3",
+             "name": "server-cert",
+             "role": "istio-routing-webhook.mesh-control-plane",
+             "san": [
+              "istio-routing-webhook",
+              "istio-routing-webhook.mesh-control-plane",
+              "istio-routing-webhook.mesh-control-plane.svc",
+              "istio-routing-webhook.mesh-control-plane.svc.lo3-sam.lo3.sam.sfdc.net"
+             ]
             },
             {
-             "cert-type": "server",
-             "kingdom": "par",
-             "name": "tls-server-cert",
-             "role": "istio-sidecar-injector.mesh-control-plane",
-             "san": [
-              "istio-sidecar-injector",
-              "istio-sidecar-injector.mesh-control-plane",
-              "istio-sidecar-injector.mesh-control-plane.svc",
-              "istio-sidecar-injector.mesh-control-plane.svc.par-sam.par.sam.sfdc.net"
-             ]
+             "cert-type": "client",
+             "kingdom": "lo3",
+             "name": "client-cert",
+             "role": "istio-routing-webhook.mesh-control-plane"
             }
            ]
           }
+        scheduler.alpha.kubernetes.io/critical-pod: ""
         sidecar.istio.io/inject: "false"
       labels:
-        app: sidecarInjectorWebhook
-        chart: sidecarInjectorWebhook
-        cluster: par-sam_gater
-        heritage: Tiller
-        istio: sidecar-injector
-        name: istio-sidecar-injector
-        release: istio
+        app: istio-routing-webhook
+        cluster: lo3-sam_gater
+        name: istio-routing-webhook
     spec:
-      affinity:
-        nodeAffinity:
-          preferredDuringSchedulingIgnoredDuringExecution:
-          - preference:
-              matchExpressions:
-              - key: beta.kubernetes.io/arch
-                operator: In
-                values:
-                - amd64
-            weight: 2
-          - preference:
-              matchExpressions:
-              - key: beta.kubernetes.io/arch
-                operator: In
-                values:
-                - ppc64le
-            weight: 2
-          - preference:
-              matchExpressions:
-              - key: beta.kubernetes.io/arch
-                operator: In
-                values:
-                - s390x
-            weight: 2
-          requiredDuringSchedulingIgnoredDuringExecution:
-            nodeSelectorTerms:
-            - matchExpressions:
-              - key: beta.kubernetes.io/arch
-                operator: In
-                values:
-                - amd64
-                - ppc64le
-                - s390x
       containers:
       - args:
-        - --caCertFile=/server-cert/ca.pem
-        - --tlsCertFile=/server-cert/server/certificates/server.pem
-        - --tlsKeyFile=/server-cert/server/keys/server-key.pem
-        - --injectConfig=/etc/istio/inject/config
-        - --meshConfig=/etc/istio/config/mesh
-        - --healthCheckInterval=2s
-        - --healthCheckFile=/tmp/health
-        - --reconcileWebhookConfig=true
-        - --port=15009
-        - --monitoringPort=8080
+        - server
+        - --cert
+        - /server-cert/server/certificates/server.pem
+        - --key
+        - /server-cert/server/keys/server-key.pem
+        - --port
+        - "10443"
+        - --funnel-address
+        - ajnafunneldirecttls.funnel.svc.mesh.sfdc.net:7442
+        - --default-policy-opt-in=false
         env:
+        - name: SETTINGS_SUPERPOD
+          value: '-'
+        - name: SETTINGS_PATH
+          value: -.-.lo3.-.istio-routing-webhook
         - name: ESTATE
-          value: par-sam_gater
-        image: ops0-artifactrepo1-0-par.data.sfdc.net/sfci/servicemesh/istio-packaging/sidecar_injector:91742345277d0ffb8f6d3c9c7edffa16de0acb1c
+          value: lo3-sam
+        image: ops0-artifactrepo1-0-lo3.data.sfdc.net/sfci/servicemesh/servicemesh/istio-routing-webhook:4f7edbecc3a92604c1fd6b11821e7925f0abe6ac
         imagePullPolicy: IfNotPresent
-        livenessProbe:
-          exec:
-            command:
-            - /usr/local/bin/sidecar-injector
-            - probe
-            - --probe-path=/tmp/health
-            - --interval=4s
-          initialDelaySeconds: 4
-          periodSeconds: 4
-        name: sidecar-injector-webhook
+        name: istio-routing-webhook
         ports:
-        - containerPort: 15009
+        - containerPort: 10443
         readinessProbe:
           exec:
             command:
-            - /usr/local/bin/sidecar-injector
-            - probe
-            - --probe-path=/tmp/health
-            - --interval=4s
-          initialDelaySeconds: 4
-          periodSeconds: 4
+            - /bin/true
+          initialDelaySeconds: 5
+          periodSeconds: 30
+          timeoutSeconds: 5
         resources:
           limits:
             cpu: 1000m
@@ -136,21 +84,17 @@ spec:
         - mountPath: /etc/pki_service
           name: maddog-certs
         - mountPath: /server-cert
-          name: tls-server-cert
-        - mountPath: /etc/istio/config
-          name: config-volume
-          readOnly: true
-        - mountPath: /etc/istio/inject
-          name: inject-config
-          readOnly: true
+          name: server-cert
+        - mountPath: /client-cert
+          name: client-cert
       - args:
         - /sam/madkub-client
         - --madkub-endpoint=https://10.254.208.254:32007
-        - --maddog-endpoint=https://all.pkicontroller.pki.blank.par.prod.non-estates.sfdcsd.net:8443
+        - --maddog-endpoint=https://all.pkicontroller.pki.blank.lo3.prod.non-estates.sfdcsd.net:8443
         - --maddog-server-ca=/maddog-certs/ca/security-ca.pem
         - --madkub-server-ca=/maddog-certs/ca/cacerts.pem
-        - --cert-folders=tls-server-cert:/server-cert/
-        - --cert-folders=tls-client-cert:/client-cert/
+        - --cert-folders=server-cert:/server-cert/
+        - --cert-folders=client-cert:/client-cert/
         - --token-folder=/tokens/
         - --ca-folder=/maddog-certs/ca
         - --refresher
@@ -171,59 +115,19 @@ spec:
             fieldRef:
               apiVersion: v1
               fieldPath: metadata.namespace
-        - name: ESTATE
-          value: par-sam_gater
-        image: ops0-artifactrepo1-0-par.data.sfdc.net/tnrp/sam/madkub:1.0.0-0000082-3d5c21b4
+        image: ops0-artifactrepo1-0-lo3.data.sfdc.net/tnrp/sam/madkub:1.0.0-0000082-3d5c21b4
         imagePullPolicy: IfNotPresent
         name: madkub-refresher
         resources: {}
         volumeMounts:
         - mountPath: /server-cert
-          name: tls-server-cert
+          name: server-cert
         - mountPath: /client-cert
-          name: tls-client-cert
+          name: client-cert
         - mountPath: /maddog-certs/
           name: maddog-certs
         - mountPath: /tokens
           name: tokens
-      - args:
-        - --endpoint
-        - http://localhost:8080/metrics
-        - --debug-mode
-        - "true"
-        - --funnel-address
-        - ajnafunneldirecttls.funnel.svc.mesh.sfdc.net:7442
-        - --alt-tags
-        - cluster=svccluster
-        env:
-        - name: FUNCTION_NAMESPACE
-          valueFrom:
-            fieldRef:
-              apiVersion: v1
-              fieldPath: metadata.namespace
-        - name: SETTINGS_SUPERPOD
-          value: '-'
-        - name: SETTINGS_PATH
-          value: -.-.par.-.istio-sidecar-injector
-        - name: ESTATE
-          value: par-sam_gater
-        image: ops0-artifactrepo1-0-par.data.sfdc.net/sfci/servicemesh/servicemesh/metrics-scraper:4f7edbecc3a92604c1fd6b11821e7925f0abe6ac
-        imagePullPolicy: Always
-        name: metrics-scraper
-        readinessProbe:
-          exec:
-            command:
-            - /bin/true
-          initialDelaySeconds: 5
-          periodSeconds: 30
-          timeoutSeconds: 5
-        resources:
-          limits:
-            cpu: 2000m
-            memory: 2048Mi
-          requests:
-            cpu: 100m
-            memory: 512Mi
       - args:
         - proxy
         - sidecar
@@ -236,7 +140,7 @@ spec:
         - --binaryPath
         - /usr/local/bin/envoy
         - --serviceCluster
-        - istio-sidecar-injector.$(POD_NAMESPACE)
+        - istio-routing-webhook.$(POD_NAMESPACE)
         - --drainDuration
         - 45s
         - --parentShutdownDuration
@@ -244,7 +148,7 @@ spec:
         - --discoveryAddress
         - istio-pilot.mesh-control-plane:15011
         - --zipkinAddress
-        - zipkindirecttls.funnel.svc.mesh.sfdc.net:7442
+        - zipkin.service-mesh:9411
         - --proxyLogLevel=info
         - --dnsRefreshRate
         - 300s
@@ -254,6 +158,8 @@ spec:
         - '{"address":"switchboard.service-mesh:15001","tls_settings":{"mode":2,"client_certificate":"/client-certs/client/certificates/client.pem","private_key":"/client-certs/client/keys/client-key.pem","ca_certificates":"/client-certs/ca.pem"},"tcp_keepalive":{"probes":3,"time":"10s","interval":"10s"}}'
         - --proxyAdminPort
         - "15373"
+        - --concurrency
+        - "2"
         - --controlPlaneAuthPolicy
         - MUTUAL_TLS
         - --statusPort
@@ -290,15 +196,17 @@ spec:
         - name: ISTIO_META_hostname
           valueFrom:
             fieldRef:
+              apiVersion: v1
               fieldPath: metadata.name
         - name: ISTIO_META_namespace
           valueFrom:
             fieldRef:
+              apiVersion: v1
               fieldPath: metadata.namespace
         - name: ISTIO_METAJSON_METRICS_INCLUSIONS
           value: '{"sidecar.istio.io/statsInclusionPrefixes": "access_log_file,cluster,cluster_manager,control_plane,http,http2,http_mixer_filter,listener,listener_manager,redis,runtime,server,stats,tcp,tcp_mixer_filter,tracing"}'
         - name: ISTIO_METAJSON_LABELS
-          value: '{"settings_path": "-.-.par.-.istio-sidecar-injector", "superpod":"-"}'
+          value: '{"settings_path": "-.-.lo3.-.istio-routing-webhook", "superpod":"-"}'
         - name: ISTIO_META_TLS_CLIENT_CERT_CHAIN
           value: /client-certs/client/certificates/client.pem
         - name: ISTIO_META_TLS_CLIENT_KEY
@@ -315,11 +223,7 @@ spec:
           valueFrom:
             fieldRef:
               fieldPath: metadata.labels['cluster']
-        - name: ESTATE
-          value: par-sam_gater
-        - name: KINGDOM
-          value: par
-        image: ops0-artifactrepo1-0-par.data.sfdc.net/sfci/servicemesh/istio-packaging/proxy:91742345277d0ffb8f6d3c9c7edffa16de0acb1c
+        image: ops0-artifactrepo1-0-lo3.data.sfdc.net/sfci/servicemesh/istio-packaging/proxy:91742345277d0ffb8f6d3c9c7edffa16de0acb1c
         imagePullPolicy: IfNotPresent
         name: istio-proxy
         ports:
@@ -349,23 +253,22 @@ spec:
         terminationMessagePath: /dev/termination-log
         terminationMessagePolicy: File
         volumeMounts:
-        - mountPath: /client-certs
-          name: tls-client-cert
-        - mountPath: /server-certs
-          name: tls-server-cert
         - mountPath: /etc/istio/proxy
           name: istio-envoy
+        - mountPath: /client-certs
+          name: client-cert
+        - mountPath: /server-certs
+          name: server-cert
       initContainers:
       - args:
         - /sam/madkub-client
         - --madkub-endpoint=https://10.254.208.254:32007
-        - --maddog-endpoint=https://all.pkicontroller.pki.blank.par.prod.non-estates.sfdcsd.net:8443
+        - --maddog-endpoint=https://all.pkicontroller.pki.blank.lo3.prod.non-estates.sfdcsd.net:8443
         - --maddog-server-ca=/maddog-certs/ca/security-ca.pem
         - --madkub-server-ca=/maddog-certs/ca/cacerts.pem
-        - --cert-folders=tls-server-cert:/server-cert/
-        - --cert-folders=tls-client-cert:/client-cert/
+        - --cert-folders=server-cert:/server-cert/
+        - --cert-folders=client-cert:/client-cert/
         - --token-folder=/tokens/
-        - --requested-cert-type=client
         - --ca-folder=/maddog-certs/ca
         env:
         - name: MADKUB_NODENAME
@@ -383,14 +286,14 @@ spec:
             fieldRef:
               apiVersion: v1
               fieldPath: metadata.namespace
-        image: ops0-artifactrepo1-0-par.data.sfdc.net/tnrp/sam/madkub:1.0.0-0000082-3d5c21b4
+        image: ops0-artifactrepo1-0-lo3.data.sfdc.net/tnrp/sam/madkub:1.0.0-0000082-3d5c21b4
         imagePullPolicy: IfNotPresent
         name: madkub-init
         volumeMounts:
         - mountPath: /server-cert
-          name: tls-server-cert
+          name: server-cert
         - mountPath: /client-cert
-          name: tls-client-cert
+          name: client-cert
         - mountPath: /maddog-certs/
           name: maddog-certs
         - mountPath: /tokens
@@ -400,19 +303,19 @@ spec:
         - -c
         - |
           set -ex
-          chmod 775 -R /client-cert && chown -R 7447:7447 /client-cert
           chmod 775 -R /server-cert && chown -R 7447:7447 /server-cert
-        image: ops0-artifactrepo1-0-par.data.sfdc.net/tnrp/sam/hypersam:sam-1ebeb0ac-657
+          chmod 775 -R /client-cert && chown -R 7447:7447 /client-cert
+        image: ops0-artifactrepo1-0-lo3.data.sfdc.net/tnrp/sam/hypersam:sam-1ebeb0ac-657
         imagePullPolicy: Always
         name: permissionsetterinitcontainer
         securityContext:
           runAsNonRoot: false
           runAsUser: 0
         volumeMounts:
-        - mountPath: /client-cert
-          name: tls-client-cert
         - mountPath: /server-cert
-          name: tls-server-cert
+          name: server-cert
+        - mountPath: /client-cert
+          name: client-cert
       - command:
         - istio-iptables
         - -p
@@ -430,11 +333,11 @@ spec:
         - -b
         - ""
         - -d
-        - ""
+        - 15020,10443
         env:
         - name: DISABLE_REDIRECTION_ON_LOCAL_LOOPBACK
           value: "1"
-        image: ops0-artifactrepo1-0-par.data.sfdc.net/sfci/servicemesh/istio-packaging/proxy:91742345277d0ffb8f6d3c9c7edffa16de0acb1c
+        image: ops0-artifactrepo1-0-lo3.data.sfdc.net/sfci/servicemesh/istio-packaging/proxy:91742345277d0ffb8f6d3c9c7edffa16de0acb1c
         imagePullPolicy: IfNotPresent
         name: istio-init
         resources:
@@ -454,31 +357,20 @@ spec:
         terminationMessagePolicy: File
       nodeSelector:
         master: "true"
-      serviceAccountName: istio-sidecar-injector-service-account
+      serviceAccountName: istio-routing-webhook-service-account
       volumes:
       - hostPath:
           path: /etc/pki_service
         name: maddog-certs
       - emptyDir:
           medium: Memory
-        name: tls-client-cert
+        name: server-cert
       - emptyDir:
           medium: Memory
-        name: tls-server-cert
+        name: client-cert
       - emptyDir:
           medium: Memory
         name: tokens
       - emptyDir:
           medium: Memory
         name: istio-envoy
-      - configMap:
-          name: istio
-        name: config-volume
-      - configMap:
-          items:
-          - key: config
-            path: config
-          - key: values
-            path: values
-          name: istio-sidecar-injector
-        name: inject-config

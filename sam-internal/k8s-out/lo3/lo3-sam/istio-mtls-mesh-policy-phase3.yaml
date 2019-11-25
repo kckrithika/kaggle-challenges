@@ -1,0 +1,11 @@
+apiVersion: authentication.istio.io/v1alpha1
+kind: MeshPolicy
+metadata:
+  annotations:
+    manifestctl.sam.data.sfdc.net/swagger: disable
+    niko/fake.change.for.redeploy: "3"
+  name: default
+spec:
+  peer_is_optional: true
+  peers:
+  - mtls: {}
