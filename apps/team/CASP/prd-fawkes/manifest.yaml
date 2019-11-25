@@ -48,6 +48,8 @@ system:
           readOnly: true
         - mountPath: /var/log/st2
           name: fawkes-logs-vol
+        - mountPath: /ajna-certs
+          name: ajna-cert
         livenessProbe:
           exec:
             command: ["/bin/true"]
@@ -70,3 +72,6 @@ system:
       - name: fawkes-logs-vol
         hostPath:
           path: /data/fawkes-logs
+      - name: ajna-cert
+        maddogCert:
+          type: client
