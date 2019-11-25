@@ -1,6 +1,8 @@
 local configs = import "config.jsonnet";
+local portconfigs = import "portconfig.jsonnet";
+local samfeatureflags = import "sam-feature-flags.jsonnet";
 
-if configs.estate == "prd-sam" then {
+if samfeatureflags.sloop then {
     kind: "Service",
     apiVersion: "v1",
     metadata: {
@@ -15,15 +17,7 @@ if configs.estate == "prd-sam" then {
                 [
                     {
                         port: 80,
-                        targetport: 8080,
-                        nodeport: 0,
-                        lbtype: "",
-                        reencrypt: false,
-                        sticky: 0,
-                    },
-                    {
-                        port: 9090,
-                        targetport: 9090,
+                        targetport: portconfigs.sloop.sloop,
                         nodeport: 0,
                         lbtype: "",
                         reencrypt: false,
@@ -39,17 +33,11 @@ if configs.estate == "prd-sam" then {
                 name: "sloop-port",
                 port: 80,
                 protocol: "TCP",
-                targetPort: 8080,
-            },
-            {
-                name: "prom-port",
-                port: 9090,
-                protocol: "TCP",
-                targetPort: 9090,
+                targetPort: portconfigs.sloop.sloop,
             },
         ],
         selector: {
-            name: "sloop",
+            app: "sloopds",
         },
     },
 } else "SKIP"
