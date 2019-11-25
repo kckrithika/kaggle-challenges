@@ -9,7 +9,7 @@ system:
     functions:
     - name: fawkes-stage-func
       identity:
-        serviceName: fawkes-stage
+        serviceName: fawkes
       count: 1
       strategy:
         type: RollingUpdate
