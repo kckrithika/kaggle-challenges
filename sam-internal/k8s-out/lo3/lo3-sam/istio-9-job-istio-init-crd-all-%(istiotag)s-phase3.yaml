@@ -1,7 +1,7 @@
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: istio-init-crd-11-abc19b71279da65c92ba35ed1f667fd3f8dc5ac9
+  name: istio-init-crd-all-91742345277d0ffb8f6d3c9c7edffa16de0acb1c
   namespace: mesh-control-plane
 spec:
   template:
@@ -14,10 +14,10 @@ spec:
         - kubectl
         - apply
         - -f
-        - /etc/istio/crd-11/crd-11.yaml
-        image: ops0-artifactrepo1-0-par.data.sfdc.net/sfci/servicemesh/istio-packaging/kubectl:abc19b71279da65c92ba35ed1f667fd3f8dc5ac9
+        - /etc/istio/crd-all/crd-all.gen.yaml
+        image: ops0-artifactrepo1-0-lo3.data.sfdc.net/sfci/servicemesh/istio-packaging/kubectl:91742345277d0ffb8f6d3c9c7edffa16de0acb1c
         imagePullPolicy: IfNotPresent
-        name: istio-init-crd-11
+        name: istio-init-crd-all
         resources:
           limits:
             cpu: 100m
@@ -26,14 +26,14 @@ spec:
             cpu: 10m
             memory: 50Mi
         volumeMounts:
-        - mountPath: /etc/istio/crd-11
-          name: crd-11
+        - mountPath: /etc/istio/crd-all
+          name: crd-all
           readOnly: true
       nodeSelector:
-        pool: par-sam_gater
+        pool: lo3-sam_gater
       restartPolicy: OnFailure
       serviceAccountName: istio-init-service-account
       volumes:
       - configMap:
-          name: istio-crd-11
-        name: crd-11
+          name: istio-crd-all
+        name: crd-all

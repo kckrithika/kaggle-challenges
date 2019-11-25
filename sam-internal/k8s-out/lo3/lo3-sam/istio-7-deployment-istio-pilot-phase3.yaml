@@ -28,20 +28,20 @@ spec:
            "certreqs": [
             {
              "cert-type": "server",
-             "kingdom": "par",
+             "kingdom": "lo3",
              "name": "tls-server-cert",
              "role": "istio-pilot.mesh-control-plane",
              "san": [
               "istio-pilot",
               "istio-pilot.mesh-control-plane",
               "istio-pilot.mesh-control-plane.svc",
-              "istio-pilot.mesh-control-plane.svc.par-sam.par.sam.sfdc.net",
+              "istio-pilot.mesh-control-plane.svc.lo3-sam.lo3.sam.sfdc.net",
               "istio-pilot.mesh-control-plane.sfdc-role"
              ]
             },
             {
              "cert-type": "client",
-             "kingdom": "par",
+             "kingdom": "lo3",
              "name": "tls-client-cert",
              "role": "istio-pilot.mesh-control-plane"
             }
@@ -51,7 +51,7 @@ spec:
       labels:
         app: pilot
         chart: pilot
-        cluster: par-sam_gater
+        cluster: lo3-sam_gater
         heritage: Tiller
         istio: pilot
         name: istio-pilot
@@ -105,7 +105,7 @@ spec:
         - 5m
         env:
         - name: ESTATE
-          value: par-sam_gater
+          value: lo3-sam_gater
         - name: PILOT_SIDECAR_USE_REMOTE_ADDRESS
           value: "true"
         - name: PILOT_ENABLE_REDIS_FILTER
@@ -136,7 +136,7 @@ spec:
           value: "false"
         - name: PILOT_ENABLE_PROTOCOL_SNIFFING_FOR_INBOUND
           value: "false"
-        image: ops0-artifactrepo1-0-par.data.sfdc.net/sfci/servicemesh/istio-packaging/pilot:91742345277d0ffb8f6d3c9c7edffa16de0acb1c
+        image: ops0-artifactrepo1-0-lo3.data.sfdc.net/sfci/servicemesh/istio-packaging/pilot:91742345277d0ffb8f6d3c9c7edffa16de0acb1c
         imagePullPolicy: IfNotPresent
         name: discovery
         ports:
@@ -218,12 +218,12 @@ spec:
             fieldRef:
               fieldPath: metadata.labels['cluster']
         - name: ESTATE
-          value: par-sam_gater
+          value: lo3-sam_gater
         - name: KINGDOM
-          value: par
+          value: lo3
         - name: SDS_ENABLED
           value: "false"
-        image: ops0-artifactrepo1-0-par.data.sfdc.net/sfci/servicemesh/istio-packaging/proxy:91742345277d0ffb8f6d3c9c7edffa16de0acb1c
+        image: ops0-artifactrepo1-0-lo3.data.sfdc.net/sfci/servicemesh/istio-packaging/proxy:91742345277d0ffb8f6d3c9c7edffa16de0acb1c
         imagePullPolicy: IfNotPresent
         name: istio-proxy
         ports:
@@ -248,7 +248,7 @@ spec:
       - args:
         - /sam/madkub-client
         - --madkub-endpoint=https://10.254.208.254:32007
-        - --maddog-endpoint=https://all.pkicontroller.pki.blank.par.prod.non-estates.sfdcsd.net:8443
+        - --maddog-endpoint=https://all.pkicontroller.pki.blank.lo3.prod.non-estates.sfdcsd.net:8443
         - --maddog-server-ca=/maddog-certs/ca/security-ca.pem
         - --madkub-server-ca=/maddog-certs/ca/cacerts.pem
         - --cert-folders=tls-client-cert:/client-cert/
@@ -274,8 +274,8 @@ spec:
               apiVersion: v1
               fieldPath: metadata.namespace
         - name: ESTATE
-          value: par-sam_gater
-        image: ops0-artifactrepo1-0-par.data.sfdc.net/tnrp/sam/madkub:1.0.0-0000082-3d5c21b4
+          value: lo3-sam_gater
+        image: ops0-artifactrepo1-0-lo3.data.sfdc.net/tnrp/sam/madkub:1.0.0-0000082-3d5c21b4
         imagePullPolicy: IfNotPresent
         name: madkub-refresher
         resources: {}
@@ -304,10 +304,10 @@ spec:
         - name: SETTINGS_SUPERPOD
           value: '-'
         - name: SETTINGS_PATH
-          value: istio.-.par.-.istio-pilot
+          value: istio.-.lo3.-.istio-pilot
         - name: ESTATE
-          value: par-sam_gater
-        image: ops0-artifactrepo1-0-par.data.sfdc.net/sfci/servicemesh/servicemesh/metrics-scraper:4f7edbecc3a92604c1fd6b11821e7925f0abe6ac
+          value: lo3-sam_gater
+        image: ops0-artifactrepo1-0-lo3.data.sfdc.net/sfci/servicemesh/servicemesh/metrics-scraper:4f7edbecc3a92604c1fd6b11821e7925f0abe6ac
         imagePullPolicy: Always
         name: metrics-scraper
         readinessProbe:
@@ -328,7 +328,7 @@ spec:
       - args:
         - /sam/madkub-client
         - --madkub-endpoint=https://10.254.208.254:32007
-        - --maddog-endpoint=https://all.pkicontroller.pki.blank.par.prod.non-estates.sfdcsd.net:8443
+        - --maddog-endpoint=https://all.pkicontroller.pki.blank.lo3.prod.non-estates.sfdcsd.net:8443
         - --maddog-server-ca=/maddog-certs/ca/security-ca.pem
         - --madkub-server-ca=/maddog-certs/ca/cacerts.pem
         - --cert-folders=tls-client-cert:/client-cert/
@@ -351,7 +351,7 @@ spec:
             fieldRef:
               apiVersion: v1
               fieldPath: metadata.namespace
-        image: ops0-artifactrepo1-0-par.data.sfdc.net/tnrp/sam/madkub:1.0.0-0000082-3d5c21b4
+        image: ops0-artifactrepo1-0-lo3.data.sfdc.net/tnrp/sam/madkub:1.0.0-0000082-3d5c21b4
         imagePullPolicy: IfNotPresent
         name: madkub-init
         volumeMounts:
@@ -370,7 +370,7 @@ spec:
           set -ex
           chmod 775 -R /client-cert && chown -R 7447:7447 /client-cert
           chmod 775 -R /server-cert && chown -R 7447:7447 /server-cert
-        image: ops0-artifactrepo1-0-par.data.sfdc.net/tnrp/sam/hypersam:sam-1ebeb0ac-657
+        image: ops0-artifactrepo1-0-lo3.data.sfdc.net/tnrp/sam/hypersam:sam-1ebeb0ac-657
         imagePullPolicy: Always
         name: permissionsetterinitcontainer
         securityContext:
@@ -402,7 +402,7 @@ spec:
         env:
         - name: DISABLE_REDIRECTION_ON_LOCAL_LOOPBACK
           value: "1"
-        image: ops0-artifactrepo1-0-par.data.sfdc.net/sfci/servicemesh/istio-packaging/proxy:91742345277d0ffb8f6d3c9c7edffa16de0acb1c
+        image: ops0-artifactrepo1-0-lo3.data.sfdc.net/sfci/servicemesh/istio-packaging/proxy:91742345277d0ffb8f6d3c9c7edffa16de0acb1c
         imagePullPolicy: IfNotPresent
         name: istio-init
         resources:
@@ -421,7 +421,7 @@ spec:
         terminationMessagePath: /dev/termination-log
         terminationMessagePolicy: File
       nodeSelector:
-        pool: par-sam_gater
+        pool: lo3-sam_gater
       serviceAccountName: istio-pilot-service-account
       volumes:
       - hostPath:

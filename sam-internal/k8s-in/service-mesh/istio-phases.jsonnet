@@ -7,7 +7,7 @@ local namespaces = (import "namespaces/mesh-namespaces.jsonnet") + { templateFil
   phase: (
     if (estate == "prd-samtest") then "1"
     else if (estate == "prd-sam") then "2"
-    else if (estate == "par-sam") then "3"
+    else if (estate == "par-sam" || estate == "lo3-sam") then "3"
     else if (estate == "phx-sam") then "4"
     else "5"  # Deploy to all DCs
   ),
