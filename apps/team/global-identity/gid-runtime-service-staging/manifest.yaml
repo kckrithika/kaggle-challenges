@@ -144,8 +144,6 @@ system:
         value: jdbc:postgresql://gid-sdb.global-identity.prd-sam.prd.slb.sfdc.net:5432/gid_staging
       - name: spring_datasource_driverClassName
         value: org.postgresql.Driver
-      - name: spring_datasource_hikari_connectionTimeout
-        value: 10000
       - name: spring_datasource_username
         value: sdb
       - name: spring_datasource_password
@@ -178,7 +176,6 @@ system:
           port: 15375
         initialDelaySeconds: 180
         periodSeconds: 10
-        timeoutSeconds: 11
         failureThreshold: 30
 
     #####################################################################################
