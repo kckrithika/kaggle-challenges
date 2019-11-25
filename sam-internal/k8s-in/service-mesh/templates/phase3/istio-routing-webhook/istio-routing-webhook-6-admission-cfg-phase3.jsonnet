@@ -27,9 +27,9 @@ if (istioPhases.phaseNum == 3) then
       rules: [
         {
           operations: ["CREATE", "UPDATE"],
-          apiGroups: [""],
+          apiGroups: ["apps"],
           apiVersions: ["v1"],
-          resources: ["services"],
+          resources: ["deployments"],
         },
         {
           operations: ["CREATE", "UPDATE"],
