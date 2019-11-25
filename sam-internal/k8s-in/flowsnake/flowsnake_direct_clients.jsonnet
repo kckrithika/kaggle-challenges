@@ -65,6 +65,8 @@ local cre_production = {
                 pki_namespace: "Splunk",
                 users: [
                     "Splunk.vgandrapu",
+                    "Splunk.a.ho",
+                    "Splunk.rkhandelwal",
                 ],
             },
             {

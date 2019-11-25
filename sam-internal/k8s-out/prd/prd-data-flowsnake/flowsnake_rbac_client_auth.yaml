@@ -243,6 +243,10 @@ items:
   subjects:
   - kind: User
     name: Splunk.vgandrapu
+  - kind: User
+    name: Splunk.a.ho
+  - kind: User
+    name: Splunk.rkhandelwal
 - apiVersion: rbac.authorization.k8s.io/v1
   kind: RoleBinding
   metadata:
@@ -257,6 +261,10 @@ items:
   subjects:
   - kind: User
     name: Splunk.vgandrapu
+  - kind: User
+    name: Splunk.a.ho
+  - kind: User
+    name: Splunk.rkhandelwal
 - apiVersion: v1
   automountServiceAccountToken: true
   kind: ServiceAccount
