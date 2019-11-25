@@ -13,7 +13,6 @@ system:
           type: server
           lbnames:
             - astcx-stage
-            - astcred-stage
             - ast-stage
       - name: uiclientcert
         maddogCert:
@@ -52,14 +51,6 @@ system:
         mountPath: /clientcerts
   loadbalancers:
   - lbname: astcx-stage
-    function: astcx-ui-staging
-    slbenabled: true
-    ports:
-      - port: 443
-        targetport: 8443
-        lbtype: tcp
-        tls: false
-  - lbname: astcred-stage
     function: astcx-ui-staging
     slbenabled: true
     ports:
