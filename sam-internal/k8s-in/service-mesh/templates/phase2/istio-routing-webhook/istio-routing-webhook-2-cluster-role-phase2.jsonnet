@@ -37,7 +37,7 @@ if (istioPhases.phaseNum == 2) then
     },
     {
       apiGroups: [
-        "extenstions",  // for older deployments
+        "extensions",  // for older deployments
         "apps",
       ],
       resources: [
