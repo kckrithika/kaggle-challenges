@@ -35,6 +35,19 @@ if (istioPhases.phaseNum == 2) then
         "*",
       ],
     },
+    {
+      apiGroups: [
+        "extenstions",  // for older deployments
+        "apps",
+      ],
+      resources: [
+        "deployments",
+      ],
+      verbs: [
+       "get",
+       "list",
+      ],
+    },
   ],
 }
 else "SKIP"
