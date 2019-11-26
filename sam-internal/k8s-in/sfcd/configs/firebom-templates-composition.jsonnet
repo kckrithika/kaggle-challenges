@@ -3,7 +3,11 @@
   'default-read-id': 'test',
   'cleanup-interval': 0,
   'add-new-service-master-stages': false,
-  'dev-env-type': 'dev',
+  'dev-env-type': {
+    'name': 'dev',
+    'default-targets': ['dev1-uswest2'],
+    'default-foundation-targets': ['fdev1-uswest2'],
+  },
   'env-type-hierarchies': {
     'default': {
       'dev': {
@@ -27,7 +31,7 @@
     }
   },
   'populate-full-master-service-pipeline': true,
-  'service-white-list': [ 'sfcdekstest1', 'sfcdec2test', 'bastion', 'strauz', 'strauzstage'],
+  'service-white-list': ['sfcdekstest1', 'sfcdec2test', 'bastion', 'strauz', 'strauzstage'],
   'soft-launch': true,
   'vmf-parser-configs': {
     'k8s-account': 'aws-dev1-uswest2-sfcdtest-sfcdekstest1-platformcluster',

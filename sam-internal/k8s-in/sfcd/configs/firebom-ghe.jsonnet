@@ -14,4 +14,5 @@ local configs = import "config.jsonnet";
   'max-attempts': 3,
   'clone-timeout': '60s',
   'http-logging-interceptor-level': envConfig.environmentMapping[configs.estate].gitHttpLogging,
+  'enable-submodules': true
 }
