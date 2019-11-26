@@ -5,10 +5,10 @@ system:
     email:
       - utkarsh.gupta@salesforce.com
   functions:
-    - name: qpid-broker-mq
+    - name: qpid-broker
       type: stateful-set
       count: 3
-      lbname: qpid-broker-mq-lb
+      lbname: qpid-broker-lb
       containers:
         - name: sherpa
           image: sfci/servicelibs/sherpa-envoy:1.0.7
