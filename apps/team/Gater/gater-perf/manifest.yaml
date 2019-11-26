@@ -72,12 +72,3 @@ system:
     - lbtype: http
       port: 80
       targetport: 8081
-  - lbname: gater-perf
-    function: gater-perf
-    labels:
-      app: gater-perf
-    ports:
-      - lbtype: dsr
-        port: 8081
-        targetport: 8081
-        name: http-gater
