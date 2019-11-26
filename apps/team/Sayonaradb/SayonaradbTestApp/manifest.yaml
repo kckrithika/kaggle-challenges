@@ -6,9 +6,7 @@ system:
     count: 0
     containers:
     - name: sdbdocker
-# the commented out image is our default.  Using a different URL for Goutham. Will remove it afterwards the PR is approved.
-#      image: ops0-artifactrepo1-0-dfw.data.sfdc.net/dva/sdbdocker/sdbdocker:326.3.3-dd09a73
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-dva-rc/dva/sdbdocker/sdbdocker:jenkins-Sayonara-sdbdocker-master-642-itest
+      image: ops0-artifactrepo1-0-dfw.data.sfdc.net/dva/sdbdocker/sdbdocker:jenkins-Sayonara-sdbdocker-master-642-itest
       livenessProbe:
         httpGet:
             path: /health
