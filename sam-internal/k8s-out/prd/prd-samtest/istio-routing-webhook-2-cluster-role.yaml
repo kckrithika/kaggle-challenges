@@ -19,7 +19,7 @@ rules:
   verbs:
   - '*'
 - apiGroups:
-  - extenstions
+  - extensions
   - apps
   resources:
   - deployments
