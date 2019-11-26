@@ -128,7 +128,7 @@ apps:
     - prd/prd-sam_gater
   istio-geoip-prod:
     - par/par-sam_gater
-
+    - lo3/lo3-sam_gater
 
 # Enable as needed:
 #  geoipnk:
