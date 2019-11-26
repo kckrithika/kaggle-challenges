@@ -2,7 +2,7 @@ apiVersion: v1
 system:
   functions:
   - name: gater-perf
-    count: 8
+    count: 1
     labels:
       app: gater-perf
       settings_path: blitz.-.prd.-.gater-perf
