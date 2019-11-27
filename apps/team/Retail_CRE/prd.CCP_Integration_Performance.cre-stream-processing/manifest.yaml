@@ -13,7 +13,7 @@ system:
       "routing.mesh.sfdc.net/enabled": "true"
     containers:
     - name: cre-sp-ccp-perf
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cre-fusion/services:stream-processor.2.1.1.0.release-2.1.1.2ba82c8.8
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cre-fusion/services:stream-processor.2.1.2.0.release-2.1.2.6ca65c6.5
       env:
         - name: PUBLISHING_TOPIC
           value: sfdc.prod.cre__prd.ajna_local__cre_outbound_CCP_Integration_Performance
@@ -148,7 +148,7 @@ system:
       - port: 8085
         targetport: 7022
       - port: 15373
-        targetport: 15372        
+        targetport: 15372
   - lbname: cre-sp-ccp-perf
     function: cre-sp-ccp-perf
     ports:
