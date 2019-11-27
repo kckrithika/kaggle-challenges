@@ -24,6 +24,7 @@ local utils = import "util_functions.jsonnet";
         "1": self["2"] {
             image_tags+: {
                 watchdog_image_tag: "2722-a1231485debac6b17dfa76e7a1af01750e0f4f8b",  # 05/2019 image
+                service_mesh_injector_image_tag: "7",
             },
             feature_flags+: {
                 # Note: the *value* of the flags is ignored. jsonnet lacks array search, so we use a an object.
@@ -137,7 +138,7 @@ local utils = import "util_functions.jsonnet";
                 madkub_image_tag: "1.0.0-0000084-9f4a6ca6",  # Madkub server gets token for itself using host IP
                 madkub_injector_image_tag: "jenkins-dva-transformation-madkub-injector-webhook-PR-25-7-itest",
                 service_mesh_image_tag: "1.0.5",
-                service_injector_image_tag: "jenkins-dva-transformation-service-mesh-injector-webhook-PR-1-23-itest",
+                service_mesh_injector_image_tag: "jenkins-dva-transformation-service-mesh-injector-webhook-PR-1-23-itest",
                 node_controller_image_tag: "sam-0001970-a296421d",
                 nodeMonitor_image_tag: "jenkins-dva-transformation-flowsnake-platform-master-781-itest",
                 snapshot_consumer_image_tag: "2782-642a31c27d65c41109e7abe97ab07c984fe6385a",
@@ -338,7 +339,7 @@ local utils = import "util_functions.jsonnet";
     docker_daemon_watchdog: flowsnakeconfig.strata_registry + "/docker-daemon-watchdog:" + $.per_phase[$.phase].image_tags.docker_daemon_watchdog_image_tag,
     zookeeper: flowsnakeconfig.strata_registry + "/flowsnake-zookeeper:" + $.per_phase[$.phase].image_tags.zookeeper_image_tag,
     madkub_injector: flowsnakeconfig.strata_registry + "/flowsnake-madkub-injector-webhook:" + $.per_phase[$.phase].image_tags.madkub_injector_image_tag,
-    service_mesh_injector: flowsnakeconfig.strata_registry + "/flowsnake-service-mesh-injector-webhook:" + $.per_phase[$.phase].image_tags.service_injector_image_tag,
+    service_mesh_injector: flowsnakeconfig.strata_registry + "/flowsnake-service-mesh-injector-webhook:" + $.per_phase[$.phase].image_tags.service_mesh_injector_image_tag,
     spark_operator: flowsnakeconfig.strata_registry + "/kubernetes-spark-operator-2.4.0-sfdc-0.0.1:" + $.per_phase[$.phase].image_tags.spark_operator_image_tag,
     spark_operator_watchdog_canary: flowsnakeconfig.strata_registry + "/flowsnake-spark-on-k8s-integration-test-runner:" + $.per_phase[$.phase].image_tags.integration_test_tag,
     hbase_watchdog_canary: flowsnakeconfig.strata_registry + "/flowsnake-spark-on-k8s-integration-test-runner:" + $.per_phase[$.phase].image_tags.hbase_integration_test_tag,
