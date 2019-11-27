@@ -5,7 +5,7 @@ system:
     count: 1
     containers:
     - name: fawkes-maiev-bidi-grpc
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/rpothana/fawkes-maiev-bidi-grpc:latest 
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/rpothana/deadlocked_fawkes:version-1 
       ports:
       - containerPort: 7442
       livenessProbe:
