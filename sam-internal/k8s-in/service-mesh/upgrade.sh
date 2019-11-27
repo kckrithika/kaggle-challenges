@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-KUSTOMIZE_DIR=${BASH_SOURCE%/*}/kustomize/
+KUSTOMIZE_DIR=${BASH_SOURCE%/*}/kustomize
 TMP_DIR=${KUSTOMIZE_DIR}/tmp
 
 # Clone istio helm charts repo to tmp directory.
@@ -49,7 +49,8 @@ helm template istio \
 --set global.proxy.envoyMetricsService.tlsSettings.privateKey=/client-certs/client/keys/client-key.pem \
 ${TMP_DIR}/istio
 
-# Delete tmp directory
+# Delete tmp directory.
 rm -rf ${TMP_DIR}/
 
-. ./kustomize.sh # Sourcing the kustomize script so that it uses the KUSTOMIZE_DIR initialized here.
+# Sourcing the kustomize script so that it uses the KUSTOMIZE_DIR initialized here.
+. ${KUSTOMIZE_DIR}/kustomize.sh
