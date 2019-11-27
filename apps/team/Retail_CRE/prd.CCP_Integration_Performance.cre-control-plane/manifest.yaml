@@ -13,7 +13,7 @@ system:
         "routing.mesh.sfdc.net/enabled": "true"
       containers:
         - name: cre-control-plane-ccp-perf
-          image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cre-fusion/services:controlplane.2.1.1.0.release-2.1.1.2ba82c8.8
+          image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cre-fusion/services:controlplane.2.1.2.0.release-2.1.2.6ca65c6.5
           env:
             ####################################################################################################
             ############################ ENGINE/DDS FLOWSNAKE ARTIFACTS ( Most frequently changed ) ############
@@ -42,7 +42,7 @@ system:
             - name: HBASE_ENVIRONMENT
               value: kingdom-perf
             - name: HBASE_NAMESPACE
-              value: CRE_DUP
+              value: CRE_SCHEMA_TEST
             - name: HBASE_DATACENTER
               value: prd
             ####################################################################################################
