@@ -7,10 +7,9 @@ local utils = import "util_functions.jsonnet";
 
 local certDirs = ["client-certs"];
 
-local build_server_url(tag) = (
-    local urlHead = "https://sec0-kfora";
-    local urlTail = if utils.is_test_cluster(configs.estate) then ".eng.sfdc.net:8443" else ".ops.sfdc.net:8443";
-    urlHead + tag + urlTail
+local build_server_url(tag, kingdom, port=8443) = (
+    local domain = if utils.is_test_cluster(configs.estate) then "eng" else "ops";
+    "https://sec0-kfora%s-%s.%s.sfdc.net:%d" % [tag, kingdom, domain, port]
 );
 
 # Most kingdoms have four nodes (1-1, 1-2, 2-1, 2-2).
@@ -18,20 +17,26 @@ local build_server_url(tag) = (
 # https://argus-ui.data.sfdc.net/argus/#/viewmetrics?expression=ALIAS(GROUPBY(-90d:system.*.NONE.k4a:uptime.uptime%7Bdevice%3D*kfora*%7D:max:1h-max,%23system%5C.(%5BA-Z0-9%5D%7B3%7D)%5C.%23,%23COUNT%23),%20%23up-nodes%23,%20%23literal%23)
 # Only monitor instances that are available in each kingdom.
 local getKingdomServerSpecificInstances(kingdom=configs.kingdom) = (
-if kingdom == "dfw" then {
-  dfw11: { url: build_server_url("1-1-dfw") },
+if kingdom == "xrd" then {
+  local stagingClusterPort = 8444,
+  xrd11: { url: build_server_url("1-2", kingdom, stagingClusterPort) },
+  xrd12: { url: build_server_url("1-2", kingdom, stagingClusterPort) },
+  xrd21: { url: build_server_url("2-1", kingdom, stagingClusterPort) },
+  xrd22: { url: build_server_url("2-2", kingdom, stagingClusterPort) },
+} else if kingdom == "dfw" then {
+  dfw11: { url: build_server_url("1-1", kingdom) },
 } else if kingdom == "chi" then {
-  chi11: { url: build_server_url("1-1-chi") },
-  chi12: { url: build_server_url("1-2-chi") },
+  chi11: { url: build_server_url("1-1", kingdom) },
+  chi12: { url: build_server_url("1-2", kingdom) },
 } else if kingdom == "wax" then {
-  wax12: { url: build_server_url("1-2-wax") },
-  wax21: { url: build_server_url("2-1-wax") },
-  wax22: { url: build_server_url("2-2-wax") },
+  wax12: { url: build_server_url("1-2", kingdom) },
+  wax21: { url: build_server_url("2-1", kingdom) },
+  wax22: { url: build_server_url("2-2", kingdom) },
 } else {
-  [kingdom + "11"]: { url: build_server_url("1-1-" + kingdom) },
-  [kingdom + "12"]: { url: build_server_url("1-2-" + kingdom) },
-  [kingdom + "21"]: { url: build_server_url("2-1-" + kingdom) },
-  [kingdom + "22"]: { url: build_server_url("2-2-" + kingdom) },
+  [kingdom + "11"]: { url: build_server_url("1-1", kingdom) },
+  [kingdom + "12"]: { url: build_server_url("1-2", kingdom) },
+  [kingdom + "21"]: { url: build_server_url("2-1", kingdom) },
+  [kingdom + "22"]: { url: build_server_url("2-2", kingdom) },
 }
 );
 
