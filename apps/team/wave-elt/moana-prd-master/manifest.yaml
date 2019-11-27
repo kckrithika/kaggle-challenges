@@ -16,6 +16,15 @@ system:
     count: 0
     name: moana-engine-master
   - containers:
+    - image: ops0-artifactrepo2-0-prd.data.sfdc.net/sfci/insights/moanaengine:master-2019.11.b.216-0a6a8fe
+      livenessProbe:
+        exec:
+          command: [ls]
+        initialDelaySeconds: 5
+      name: moana-engine-beta
+    count: 0
+    name: moana-engine-beta-master
+  - containers:
     - env:
       - {name: MANAGEMENT_SERVER_PORT, value: '15372'}
       - {name: LOGGING_JSON_STDOUT_LEVEL, value: ALL}
@@ -76,6 +85,7 @@ system:
       - {name: LOGGING_JSON_STDOUT_LEVEL, value: ALL}
       - {name: LOGGING_STDERR_LEVEL, value: ALL}
       - {name: MOANA_SPARK_ENGINE_IMAGE, value: 'ops0-artifactrepo2-0-prd.data.sfdc.net/sfci/insights/moanaengine:master-2019.11.b.216-0a6a8fe'}
+      - {name: MOANA_SPARK_ENGINE_BETA_IMAGE, value: 'ops0-artifactrepo2-0-prd.data.sfdc.net/sfci/insights/moanaengine:master-2019.11.b.216-0a6a8fe'}
       - {name: KAFKA_GROUP_ID, value: moana-jobcontroller-master}
       - {name: DEPLOYMENT_ID, value: prd-master}
       - {name: JAVA_OPTS, value: '-server -XX:MaxMetaspaceSize=512m -Xmx2048m -Xms2048m'}
@@ -83,7 +93,7 @@ system:
       - {name: K8S_CPU_LIMIT_APPLY, value: 'false'}
       - {name: STARTUP_JOB_ENABLED, value: 'false'}
       - {name: HANDLED_PODS_PATTERN, value: stmfa\..*|moana-driver-master}
-      image: sfci/insights/jobcontroller:master-2019.11.b.131-2db6772
+      image: sfci/insights/jobcontroller:master-2019.11.b.132-e4b1be2
       livenessProbe:
         httpGet: {path: /manage/health, port: 15372}
         initialDelaySeconds: 90
