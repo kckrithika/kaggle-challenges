@@ -41,6 +41,8 @@ system:
           value: kingdom-perf
         - name: HBASE_DATA_CENTER
           value: prd
+        - name: HBASE_NAMESPACE
+          value: CRE_DUP
         - name: CONTROL_PLANE_URL
           value: cre-control-plane-ccp-perf.retail-cre.localhost.mesh.force.com:5443
         - name: LOG_JWT
