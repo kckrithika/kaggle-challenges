@@ -24,7 +24,7 @@ items:
                "cert-type": "client",
                "kingdom": "chx",
                "name": "client-certs",
-               "role": "secrets.k4a-watchdog-prod"
+               "role": "sam.secrets.k4a-watchdog-prod"
               }
              ]
             }
@@ -197,7 +197,7 @@ items:
                "cert-type": "client",
                "kingdom": "chx",
                "name": "client-certs",
-               "role": "secrets.k4a-watchdog-prod"
+               "role": "sam.secrets.k4a-watchdog-prod"
               }
              ]
             }
@@ -370,7 +370,7 @@ items:
                "cert-type": "client",
                "kingdom": "chx",
                "name": "client-certs",
-               "role": "secrets.k4a-watchdog-prod"
+               "role": "sam.secrets.k4a-watchdog-prod"
               }
              ]
             }
@@ -543,7 +543,7 @@ items:
                "cert-type": "client",
                "kingdom": "chx",
                "name": "client-certs",
-               "role": "secrets.k4a-watchdog-prod"
+               "role": "sam.secrets.k4a-watchdog-prod"
               }
              ]
             }
@@ -716,7 +716,7 @@ items:
                "cert-type": "client",
                "kingdom": "chx",
                "name": "client-certs",
-               "role": "secrets.k4a-watchdog-prod"
+               "role": "sam.secrets.k4a-watchdog-prod"
               }
              ]
             }

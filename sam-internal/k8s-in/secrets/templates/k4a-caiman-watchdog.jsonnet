@@ -68,7 +68,18 @@ local getInstanceDataWithDefaults(instanceTag) = (
   # defaultInstanceData supplies the schema and default values for instanceData.
   local defaultInstanceData = {
     # role indicates the maddog role that is requested for the client certs and allowed access to the named vault.
-    role: if utils.is_test_cluster(configs.estate) then "secrets.k4a-watchdog" else "secrets.k4a-watchdog-prod",
+    role:
+      if utils.is_test_cluster(configs.estate) then
+        "secrets.k4a-watchdog"
+      else if configs.kingdom == "chx" || configs.kingdom == "wax" then
+        # In "legacy" kingdoms -- and for us this means chx and wax (gia1) -- maddog doesn't automatically
+        # prefix the requested role with `sam`, whereas in non-legacy kingdoms it does. See
+        # https://git.soma.salesforce.com/Infrastructure-Security/security-controller/blob/ea164fa0d03c3860d88e5d2e458206b800121956/src/main/java/com/salesforce/sds/controller/rest/BaseEndpoint.java#L179-L185
+        # Caiman uses the role from the maddog client certificate to determine which secrets in
+        # the presented zip file to extract. Request the right role for these kingdoms.
+        "sam.secrets.k4a-watchdog-prod"
+      else
+        "secrets.k4a-watchdog-prod",
     # name is the name of the container for the instance.
     name: name,
     # secretsFile is the file path to the encrypted file
