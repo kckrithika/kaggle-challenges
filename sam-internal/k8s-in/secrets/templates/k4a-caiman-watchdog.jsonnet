@@ -116,6 +116,16 @@ local podAntiAffinityIfEnabled(podLabel, canary) = if secretsflights.caimanWdSec
   },
 } else {};
 
+# Temporarily override the node selector in the staging cluster so that our watchdog can communicate with
+# the staging cluster's port (8444). Once ACL changes are in place to permit access to port 8444 from
+# other estates, we can remove the override.
+local nodeSelector =
+  if configs.kingdom == "xrd" then {
+    nodeSelector: {
+      pool: "xrd-slb",
+    },
+  } else secretsconfigs.nodeSelector;
+
 local k4aWatchdogDeployment(instanceTag) = configs.deploymentBase("secrets") {
   local instanceData = getInstanceDataWithDefaults(instanceTag),
   metadata: {
@@ -175,7 +185,7 @@ local k4aWatchdogDeployment(instanceTag) = configs.deploymentBase("secrets") {
         ],
         volumes: madkub.volumes + madkub.certVolumes,
       }
-      + secretsconfigs.nodeSelector
+      + nodeSelector
       + secretsconfigs.samPodSecurityContext
       + hostNetworkIfEnabled(instanceData.canary)
       + podAntiAffinityIfEnabled(instanceData.name, instanceData.canary),
