@@ -1,44 +1,45 @@
 #!/usr/bin/env bash
 
-TMP_DIR=${BASH_SOURCE%/*}/kustomize/
+KUSTOMIZE_DIR=${BASH_SOURCE%/*}/kustomize/
+TMP_DIR=${KUSTOMIZE_DIR}/tmp
 
 # Clone istio helm charts repo to tmp directory.
-git clone --depth=1 --branch=master https://git.soma.salesforce.com/servicemesh/istio-helm-charts ${BASH_SOURCE%/*}/kustomize/tmp
-rm -rf ${BASH_SOURCE%/*}/kustomize/tmp/.git
+git clone --depth=1 --branch=master https://git.soma.salesforce.com/servicemesh/istio-helm-charts ${TMP_DIR}
+rm -rf ${TMP_DIR}/.git
 
 # Base directory for original helm generated manifests.
-mkdir -p ${BASH_SOURCE%/*}/kustomize/base
+mkdir -p ${KUSTOMIZE_DIR}/base
 
 # Clear out templates from base if they exist.
-rm -rf ${BASH_SOURCE%/*}/kustomize/base/*/charts
-rm -rf ${BASH_SOURCE%/*}/kustomize/base/*/templates
+rm -rf ${KUSTOMIZE_DIR}/base/*/charts
+rm -rf ${KUSTOMIZE_DIR}/base/*/templates
 
 # Generate istio-init manifests.
 helm template \
---output-dir ${BASH_SOURCE%/*}/kustomize/base \
+--output-dir ${KUSTOMIZE_DIR}/base \
 --namespace mesh-control-plane \
---values ${BASH_SOURCE%/*}/kustomize/tmp/istio-init/sfdc-values/values.yaml  \
-${BASH_SOURCE%/*}/kustomize/tmp/istio-init
+--values ${TMP_DIR}/istio-init/sfdc-values/values.yaml  \
+${TMP_DIR}/istio-init
 
 ## Multiple namespaces support is in helm 3 but we are using helm 2.
 ## So, till helm 3, we will run each namespace helm command separately.
 # Generate pilot and sidecarInjectorWebhook manifests.
 helm template istio \
---output-dir ${BASH_SOURCE%/*}/kustomize/base \
+--output-dir ${KUSTOMIZE_DIR}/base \
 --namespace mesh-control-plane \
---values ${BASH_SOURCE%/*}/kustomize/tmp/istio/sfdc-values/values.yaml \
+--values ${TMP_DIR}/istio/sfdc-values/values.yaml \
 --set gateways.enabled=false \
 --set global.proxy.envoyMetricsService.host=switchboard.service-mesh \
 --set global.proxy.envoyMetricsService.tlsSettings.caCertificates=/client-certs/ca.pem \
 --set global.proxy.envoyMetricsService.tlsSettings.clientCertificate=/client-certs/client/certificates/client.pem \
 --set global.proxy.envoyMetricsService.tlsSettings.privateKey=/client-certs/client/keys/client-key.pem \
-${BASH_SOURCE%/*}/kustomize/tmp/istio
+${TMP_DIR}/istio
 
 # Generate gateways manifests in core-on-sam-sp2 namespace.
 helm template istio \
---output-dir ${BASH_SOURCE%/*}/kustomize/base \
+--output-dir ${KUSTOMIZE_DIR}/base \
 --namespace core-on-sam-sp2 \
---values ${BASH_SOURCE%/*}/kustomize/tmp/istio/sfdc-values/values.yaml \
+--values ${TMP_DIR}/istio/sfdc-values/values.yaml \
 --set pilot.enabled=false \
 --set sidecarInjectorWebhook.enabled=false \
 --set global.omitSidecarInjectorConfigMap=true \
@@ -46,13 +47,9 @@ helm template istio \
 --set global.proxy.envoyMetricsService.tlsSettings.caCertificates=/client-certs/ca.pem \
 --set global.proxy.envoyMetricsService.tlsSettings.clientCertificate=/client-certs/client/certificates/client.pem \
 --set global.proxy.envoyMetricsService.tlsSettings.privateKey=/client-certs/client/keys/client-key.pem \
-${BASH_SOURCE%/*}/kustomize/tmp/istio
+${TMP_DIR}/istio
 
 # Delete tmp directory
-rm -rf tmp/
+rm -rf ${TMP_DIR}/
 
-./kustomize.sh
-
-# Replace ship generated yamls with kustomize ones.
-#cp istio-init.yaml ././../istio-init-ship/rendered.yaml
-#cp istio.yaml ././../istio-ship/rendered.yaml
+. ./kustomize.sh # Sourcing the kustomize script so that it uses the KUSTOMIZE_DIR initialized here.

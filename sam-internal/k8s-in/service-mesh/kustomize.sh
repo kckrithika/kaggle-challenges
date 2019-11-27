@@ -1,6 +1,12 @@
 #!/usr/bin/env bash
 
+echo ${KUSTOMIZE_DIR}
+
+KUSTOMIZE_DIR=${KUSTOMIZE_DIR:-${BASH_SOURCE%/*}/kustomize/}
+
+echo ${KUSTOMIZE_DIR}
+
 # Run kustomize build.
-kustomize build ${BASH_SOURCE%/*}/kustomize/overlays/istio-init/ -o istio-init.yaml
-kustomize build ${BASH_SOURCE%/*}/kustomize/overlays/istio/ -o istio.yaml
+kustomize build ${KUSTOMIZE_DIR}/overlays/istio-init/ -o ${KUSTOMIZE_DIR}/istio-init.yaml
+kustomize build ${KUSTOMIZE_DIR}/overlays/istio/ -o ${KUSTOMIZE_DIR}/istio.yaml
 
