@@ -1,0 +1,41 @@
+---
+# Source: istio-init/templates/job-crd-all.yaml
+apiVersion: batch/v1
+kind: Job
+metadata:
+  namespace: mesh-control-plane
+  name: istio-init-crd-all-93992746ef0add6bb415af63b83d8284
+spec:
+  template:
+    metadata:
+      annotations:
+        sidecar.istio.io/inject: "false"
+      labels:
+    spec:
+      securityContext:
+        fsGroup: 7447
+        runAsNonRoot: true
+        runAsUser: 7447
+      serviceAccountName: istio-init-service-account
+      automountServiceAccountToken: true
+      containers:
+      - name: istio-init-crd-all
+        image: "791719295754.dkr.ecr.us-east-2.amazonaws.com/sfci/servicemesh/istio-packaging/kubectl:93992746ef0add6bb415af63b83d8284d9f38247"
+        imagePullPolicy: IfNotPresent
+        resources:
+          limits:
+            cpu: 100m
+            memory: 200Mi
+          requests:
+            cpu: 10m
+            memory: 50Mi
+        volumeMounts:
+        - name: crd-all
+          mountPath: /etc/istio/crd-all
+          readOnly: true
+        command: ["kubectl",  "apply", "-f", "/etc/istio/crd-all/crd-all.gen.yaml"]
+      volumes:
+      - name: crd-all
+        configMap:
+          name: istio-crd-all
+      restartPolicy: OnFailure

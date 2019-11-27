@@ -1,0 +1,289 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    manifestctl.sam.data.sfdc.net/swagger: disable
+  name: istio-sidecar-injector
+  namespace: mesh-control-plane
+spec:
+  replicas: 3
+  strategy:
+    rollingUpdate:
+      maxSurge: 3
+      maxUnavailable: 1
+  template:
+    metadata:
+      annotations:
+        madkub.sam.sfdc.net/allcerts: mcpIstioConfig.sidecarInjectorMadkubAnnotations
+      labels:
+        app: sidecarInjectorWebhook
+        istio: sidecar-injector
+        name: istio-sidecar-injector
+        cluster: mcpIstioConfig.istioEstate
+    spec:
+      containers:
+      - args:
+        - --caCertFile=/server-cert/ca.pem
+        - --tlsCertFile=/server-cert/server/certificates/server.pem
+        - --tlsKeyFile=/server-cert/server/keys/server-key.pem
+        - --injectConfig=/etc/istio/inject/config
+        - --meshConfig=/etc/istio/config/mesh
+        - --healthCheckInterval=2s
+        - --healthCheckFile=/tmp/health
+        - --reconcileWebhookConfig=true
+        - --port=15009
+        - --monitoringPort=8080
+        env:
+        - name: ESTATE
+          value: mcpIstioConfig.istioEstate
+        name: sidecar-injector-webhook
+        image: '%(istioHub)s/sidecar_injector:%(istioTag)s'
+        ports:
+        - containerPort: 15009
+        resources:
+          limits:
+            cpu: 1000m
+            memory: 256Mi
+          requests:
+            cpu: 100m
+            memory: 128Mi
+        volumeMounts:
+        - mountPath: /etc/pki_service
+          name: maddog-certs
+        - mountPath: /server-cert
+          name: tls-server-cert
+        - $patch: delete
+          mountPath: /etc/istio/certs
+      - args:
+        - /sam/madkub-client
+        - --madkub-endpoint=%(madkubEndpoint)s
+        - --maddog-endpoint=%(maddogEndpoint)s
+        - --maddog-server-ca=/maddog-certs/ca/security-ca.pem
+        - --madkub-server-ca=/maddog-certs/ca/cacerts.pem
+        - --cert-folders=tls-server-cert:/server-cert/
+        - --cert-folders=tls-client-cert:/client-cert/
+        - --token-folder=/tokens/
+        - --ca-folder=/maddog-certs/ca
+        - --refresher
+        - --run-init-for-refresher-mode
+        env:
+        - name: MADKUB_NODENAME
+          valueFrom:
+            fieldRef:
+              apiVersion: v1
+              fieldPath: spec.nodeName
+        - name: MADKUB_NAME
+          valueFrom:
+            fieldRef:
+              apiVersion: v1
+              fieldPath: metadata.name
+        - name: MADKUB_NAMESPACE
+          valueFrom:
+            fieldRef:
+              apiVersion: v1
+              fieldPath: metadata.namespace
+        - name: ESTATE
+          value: mcpIstioConfig.istioEstate
+        image: mcpIstioConfig.madkubImage
+        imagePullPolicy: IfNotPresent
+        name: madkub-refresher
+        resources: {}
+        volumeMounts:
+        - mountPath: /server-cert
+          name: tls-server-cert
+        - mountPath: /client-cert
+          name: tls-client-cert
+        - mountPath: /maddog-certs/
+          name: maddog-certs
+        - mountPath: /tokens
+          name: tokens
+      - args:
+        - --endpoint
+        # Sidecar Injector webhook exposes metrics on this endpoint
+        - "http://localhost:8080/metrics"
+        - --debug-mode
+        - "true"
+        - --funnel-address
+        - mcpIstioConfig.funnelEndpoint
+        - --alt-tags
+        - cluster=svccluster
+        env:
+        - name: FUNCTION_NAMESPACE
+          valueFrom:
+            fieldRef:
+              apiVersion: v1
+              fieldPath: metadata.namespace
+        - name: SETTINGS_SUPERPOD
+          value: mcpIstioConfig.superpod
+        - name: SETTINGS_PATH
+          value: "-.-.%(kingdom)s.-.istio-sidecar-injector"
+        - name: ESTATE
+          value: mcpIstioConfig.istioEstate
+        image: mcpIstioConfig.metricsScraperImage
+        imagePullPolicy: Always
+        name: metrics-scraper
+        readinessProbe:
+          exec:
+            command:
+            - /bin/true
+          initialDelaySeconds: 5
+          periodSeconds: 30
+          timeoutSeconds: 5
+        resources:
+          limits:
+            cpu: 2000m
+            memory: 2048Mi
+          requests:
+            cpu: 100m
+            memory: 512Mi      
+      - env:
+        - name: ISTIO_METAJSON_METRICS_INCLUSIONS
+          value: '{"sidecar.istio.io/statsInclusionPrefixes": "access_log_file,cluster,cluster_manager,control_plane,http,http2,http_mixer_filter,listener,listener_manager,redis,runtime,server,stats,tcp,tcp_mixer_filter,tracing"}'
+        - name: ISTIO_METAJSON_LABELS
+          value: '{"settings_path": "-.-.%(kingdom)s.-.istio-sidecar-injector", "superpod":"%(superpod)s"}'
+        - name: ISTIO_META_TLS_CLIENT_CERT_CHAIN
+          value: /client-certs/client/certificates/client.pem
+        - name: ISTIO_META_TLS_CLIENT_KEY
+          value: /client-certs/client/keys/client-key.pem
+        - name: ISTIO_META_TLS_CLIENT_ROOT_CERT
+          value: /client-certs/ca.pem
+        - name: ISTIO_META_TLS_SERVER_CERT_CHAIN
+          value: /server-certs/server/certificates/server.pem
+        - name: ISTIO_META_TLS_SERVER_KEY
+          value: /server-certs/server/keys/server-key.pem
+        - name: ISTIO_META_TLS_SERVER_ROOT_CERT
+          value: /server-certs/ca.pem
+        - name: ISTIO_META_kubernetes_cluster_name
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.labels['cluster']
+        - name: ESTATE
+          value: mcpIstioConfig.istioEstate
+        - name: KINGDOM
+          value: mcpIstioConfig.kingdom
+        - name: ISTIO_META_CLUSTER_ID
+          $patch: delete
+        - name: SERVICE_ACCOUNT
+          $patch: delete
+        - name: ISTIO_AUTO_MTLS_ENABLED
+          $patch: delete
+        - name: SDS_ENABLED
+          $patch: delete
+        - name: HOST_IP
+          $patch: delete
+        image: mcpIstioConfig.proxyImage
+        imagePullPolicy: "IfNotPresent"
+        name: istio-proxy
+        ports:
+        - containerPort: 15090
+          name: "http-envoy-prom"
+          protocol: "TCP"
+        readinessProbe:
+          failureThreshold: 30
+          httpGet:
+            path: "/healthz/ready"
+            port: 15020
+            scheme: "HTTP"
+          initialDelaySeconds: 1
+          periodSeconds: 2
+          successThreshold: 1
+          timeoutSeconds: 1
+        resources:
+          limits:
+            cpu: "2"
+            memory: "1Gi"
+          requests: 
+            cpu: "100m"
+            memory: "128Mi"
+        securityContext: 
+          readOnlyRootFilesystem: true
+          runAsUser: 1337
+        terminationMessagePath: "/dev/termination-log"
+        terminationMessagePolicy: "File"
+        volumeMounts:
+        - mountPath: /client-certs
+          name: tls-client-cert
+        - mountPath: /server-certs
+          name: tls-server-cert
+        - mountPath: /etc/istio/proxy
+          name: istio-envoy
+      initContainers:
+      - args:
+        - /sam/madkub-client
+        - --madkub-endpoint=%(madkubEndpoint)s
+        - --maddog-endpoint=%(maddogEndpoint)s
+        - --maddog-server-ca=/maddog-certs/ca/security-ca.pem
+        - --madkub-server-ca=/maddog-certs/ca/cacerts.pem
+        - --cert-folders=tls-server-cert:/server-cert/
+        - --cert-folders=tls-client-cert:/client-cert/
+        - --token-folder=/tokens/
+        - --requested-cert-type=client
+        - --ca-folder=/maddog-certs/ca
+        env:
+        - name: MADKUB_NODENAME
+          valueFrom:
+            fieldRef:
+              apiVersion: v1
+              fieldPath: spec.nodeName
+        - name: MADKUB_NAME
+          valueFrom:
+            fieldRef:
+              apiVersion: v1
+              fieldPath: metadata.name
+        - name: MADKUB_NAMESPACE
+          valueFrom:
+            fieldRef:
+              apiVersion: v1
+              fieldPath: metadata.namespace
+        image: mcpIstioConfig.madkubImage
+        imagePullPolicy: IfNotPresent
+        name: madkub-init
+        volumeMounts:
+        - mountPath: /server-cert
+          name: tls-server-cert
+        - mountPath: /client-cert
+          name: tls-client-cert
+        - mountPath: /maddog-certs/
+          name: maddog-certs
+        - mountPath: /tokens
+          name: tokens
+      - command:
+        - bash
+        - -c
+        - |
+          set -ex
+          chmod 775 -R /client-cert && chown -R 7447:7447 /client-cert
+          chmod 775 -R /server-cert && chown -R 7447:7447 /server-cert
+        image: mcpIstioConfig.permissionInitContainer
+        imagePullPolicy: Always
+        name: permissionsetterinitcontainer
+        securityContext:
+          runAsNonRoot: false
+          runAsUser: 0
+        volumeMounts:
+        - mountPath: /client-cert
+          name: tls-client-cert
+        - mountPath: /server-cert
+          name: tls-server-cert
+      - image: mcpIstioConfig.proxyImage
+        name: istio-init
+      nodeSelector:
+        master: "true"
+      volumes:
+      - hostPath:
+          path: /etc/pki_service
+        name: maddog-certs
+      - emptyDir:
+          medium: Memory
+        name: tls-client-cert
+      - emptyDir:
+          medium: Memory
+        name: tls-server-cert
+      - emptyDir:
+          medium: Memory
+        name: tokens
+      - emptyDir:
+          medium: Memory
+        name: istio-envoy
+      - $patch: delete
+        name: certs
