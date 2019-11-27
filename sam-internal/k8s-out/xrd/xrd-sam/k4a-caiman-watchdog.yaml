@@ -60,7 +60,7 @@ items:
           - -argusUrl
           - http://ajna0-funnel1-0-xrd.data.sfdc.net:80
           - -url
-          - https://sec0-kfora1-1-xrd.eng.sfdc.net:8444
+          - https://sec0-kfora1-1-xrd.eng.sfdc.net:8443
           env:
           - name: FUNCTION_INSTANCE_NAME
             valueFrom:
@@ -233,7 +233,7 @@ items:
           - -argusUrl
           - http://ajna0-funnel1-0-xrd.data.sfdc.net:80
           - -url
-          - https://sec0-kfora1-2-xrd.eng.sfdc.net:8444
+          - https://sec0-kfora1-2-xrd.eng.sfdc.net:8443
           env:
           - name: FUNCTION_INSTANCE_NAME
             valueFrom:
@@ -406,7 +406,7 @@ items:
           - -argusUrl
           - http://ajna0-funnel1-0-xrd.data.sfdc.net:80
           - -url
-          - https://sec0-kfora2-1-xrd.eng.sfdc.net:8444
+          - https://sec0-kfora2-1-xrd.eng.sfdc.net:8443
           env:
           - name: FUNCTION_INSTANCE_NAME
             valueFrom:
@@ -579,7 +579,7 @@ items:
           - -argusUrl
           - http://ajna0-funnel1-0-xrd.data.sfdc.net:80
           - -url
-          - https://sec0-kfora2-2-xrd.eng.sfdc.net:8444
+          - https://sec0-kfora2-2-xrd.eng.sfdc.net:8443
           env:
           - name: FUNCTION_INSTANCE_NAME
             valueFrom:
