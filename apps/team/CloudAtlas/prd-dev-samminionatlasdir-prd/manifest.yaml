@@ -25,7 +25,7 @@ system:
       command: ["/opt/pdm/pdm.customer/bin/entrypoint.sh"]
       env:
       - name: JVM_ARGS_PASSED_AS_ENV_VAR
-        value: -Dcom.sun.management.jmxremote.port=5000 -Dcom.sun.management.jmxremote.rmi.port=5000 -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false -XX:ActiveProcessorCount=16
+        value: -Dcom.sun.management.jmxremote.port=5000 -Dcom.sun.management.jmxremote.rmi.port=5000 -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false -XX:ActiveProcessorCount=32
       - name: UBID_DEPLOYMENT_STAGE
         value: ALL
       - name: AWS_BACKUP_S3_BUCKET
