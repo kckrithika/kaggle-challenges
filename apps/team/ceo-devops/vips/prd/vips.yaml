@@ -1165,7 +1165,7 @@
 - lbname: codesearch-prod
   customlbname: codesearch-prod
   servers:
-  - rdi-opengrok2-1-prd.eng.sfdc.net
+  - rdi-opengrok2-2-prd.eng.sfdc.net
   ports:
   - port: 443
     targetport: 443
