@@ -10,7 +10,7 @@ system:
       sidecar.istio.io/inject: "true"
       sidecar.istio.io/proxyCPU: "8000m"
       sidecar.istio.io/proxyMemory: "4096Mi"
-      traffic.sidecar.istio.io/excludeInboundPorts: "9522,9523,9524"
+      traffic.sidecar.istio.io/excludeInboundPorts: "9522,9523,9524,15372"
     hostnetwork: false
     containers:
     - name: gater1
