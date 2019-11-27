@@ -76,7 +76,15 @@ items:
                       "add-new-service-master-stages": false,
                       "cleanup-interval": 0,
                       "default-read-id": "test",
-                      "dev-env-type": "dev",
+                      "dev-env-type": {
+                          "default-foundation-targets": [
+                              "fdev1-uswest2"
+                          ],
+                          "default-targets": [
+                              "dev1-uswest2"
+                          ],
+                          "name": "dev"
+                      },
                       "env-type-hierarchies": {
                           "default": {
                               "canary": {
@@ -130,6 +138,7 @@ items:
                   "api-url": "https://git.soma.salesforce.com/api/v3/",
                   "clone-timeout": "60s",
                   "connect-timeout": "60s",
+                  "enable-submodules": true,
                   "http-logging-interceptor-level": "NONE",
                   "keep-alive-duration": "60000ms",
                   "max-attempts": 3,
@@ -215,7 +224,8 @@ items:
                   "enable-push-to-origin": true,
                   "enable-self-approve-pr": true,
                   "repo-name": "spinnaker",
-                  "repo-org": "sfcd"
+                  "repo-org": "sfcd",
+                  "workspace-refresh-interval": "30s"
               }
           }
       }
@@ -389,8 +399,8 @@ items:
                 apiVersion: v1
                 fieldPath: metadata.labels['name']
           - name: CONFIG_VERSION
-            value: "19"
-          image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/sfcdapi-firebom:102
+            value: "20"
+          image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/sfcdapi-firebom:103
           imagePullPolicy: Always
           livenessProbe:
             failureThreshold: 10
