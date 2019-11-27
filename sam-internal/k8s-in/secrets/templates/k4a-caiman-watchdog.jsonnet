@@ -18,7 +18,9 @@ local build_server_url(tag, kingdom, port=8443) = (
 # Only monitor instances that are available in each kingdom.
 local getKingdomServerSpecificInstances(kingdom=configs.kingdom) = (
 if kingdom == "xrd" then {
-  local stagingClusterPort = 8444,
+  # Temporarily using port 8443 until https://gus.lightning.force.com/lightning/r/ADM_Team_Dependency__c/a0nB0000001SUjBIAW/view
+  # is complete (stmp needs to enable sitebridge connectivity to kfora in crd before we move xrd nodes to port 8444).
+  local stagingClusterPort = 8443,
   xrd11: { url: build_server_url("1-1", kingdom, stagingClusterPort) },
   xrd12: { url: build_server_url("1-2", kingdom, stagingClusterPort) },
   xrd21: { url: build_server_url("2-1", kingdom, stagingClusterPort) },
