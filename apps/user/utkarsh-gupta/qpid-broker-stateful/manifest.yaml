@@ -50,7 +50,7 @@ system:
             - name: QPID_JAVA_HEAPSZ
               value: 4g
             - name: BASE_AMQP_PORT
-              value: 3030
+              value: 4101
             - name: CALCULATE_AMQP_PORT_INST
               value: 1
             - name: SFDC_ENVIRONMENT
@@ -80,7 +80,7 @@ system:
               export name=${FUNCTION_INSTANCE_NAME:0:-2};
               export cell=ora1;
               export prefix=$(( instNumber + 3 ));
-              export port=$(( 3000 + instNumber * 3 ));
+              export port=$(( 4100 + instNumber * 3 ));
               export httpPath=$FUNCTION_NAMESPACE/$name-$cell$instNumber:POD:7442;
               export amqpPath=$FUNCTION_NAMESPACE/$name-$cell$prefix:POD:$port;
               /usr/bin/java -jar /home/scone/service.jar -endpoint $amqpPath -endpoint $httpPath;"
