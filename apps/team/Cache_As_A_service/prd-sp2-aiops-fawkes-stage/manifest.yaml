@@ -23,7 +23,7 @@ system:
         - name: FAWKES_ENV
           value: "stg"
         - name: STAGING_ENABLE_SENSOR
-          value: "False"
+          value: "True"
         - name: HTTP_PROXY
           value: "http://public0-proxy1-0-prd.data.sfdc.net:8080"
         - name: HTTPS_PROXY
