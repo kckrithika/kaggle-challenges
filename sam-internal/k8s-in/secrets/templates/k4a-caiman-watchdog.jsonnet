@@ -19,7 +19,7 @@ local build_server_url(tag, kingdom, port=8443) = (
 local getKingdomServerSpecificInstances(kingdom=configs.kingdom) = (
 if kingdom == "xrd" then {
   local stagingClusterPort = 8444,
-  xrd11: { url: build_server_url("1-2", kingdom, stagingClusterPort) },
+  xrd11: { url: build_server_url("1-1", kingdom, stagingClusterPort) },
   xrd12: { url: build_server_url("1-2", kingdom, stagingClusterPort) },
   xrd21: { url: build_server_url("2-1", kingdom, stagingClusterPort) },
   xrd22: { url: build_server_url("2-2", kingdom, stagingClusterPort) },
