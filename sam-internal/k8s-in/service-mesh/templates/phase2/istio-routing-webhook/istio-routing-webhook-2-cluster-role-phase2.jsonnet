@@ -48,6 +48,18 @@ if (istioPhases.phaseNum == 2) then
        "list",
       ],
     },
+    {
+      apiGroups: [
+        "core",
+      ],
+      resources: [
+        "namespaces",
+      ],
+      verbs: [
+       "get",
+       "list",
+      ],
+    },
   ],
 }
 else "SKIP"
