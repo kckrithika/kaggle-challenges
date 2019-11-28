@@ -5,7 +5,7 @@ system:
     - gater@salesforce.com
   functions:
   - name: gater-bazel
-    count: 0
+    count: 1
     labels:
       app: gater
     annotations:
@@ -13,10 +13,11 @@ system:
     hostnetwork: true
     containers:
     - name: gater1
-      image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-sfci-dev/sfci/services/sfdc-bazel/gater/gate-manager:ec998fb97
+      image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-sfci-dev/sfci/services/sfdc-bazel/gater/gate-manager:3c2d3becb
       args:
         - --server.port=9090
-        - --gater-service.thread.pool.max-size=0
+        - --gater-service.thread.pool.max-size=16
+        - --gater.grpc.threadpool.size=16
       volumeMounts:
       - mountPath: /log
         name: logvol
@@ -26,18 +27,18 @@ system:
         httpGet:
           path: /manage/health
           port: 15372
-        initialDelaySeconds: 60 
+        initialDelaySeconds: 60
         timeoutSeconds: 10
       readinessProbe:
         httpGet:
           path: /manage/health
           port: 15372
-        initialDelaySeconds: 60 
+        initialDelaySeconds: 60
         timeoutSeconds: 10
       ports:
       - containerPort: 7020
       - containerPort: 9522
-      - containerPort: 9523 
+      - containerPort: 9523
       - containerPort: 9090
       - containerPort: 15372
       env:
