@@ -12,7 +12,7 @@ system:
       app: switchboard
     containers:
     - name: switchboard
-      image: sfci/servicelibs/switchboard:06066795c08259dfff608d3a6c3a2dbbf9981641
+      image: sfci/servicelibs/switchboard:28570aeef298d34de0f39f1475c2a128d8d0e49b
       args:
       ############################## PRODUCTION CONFIGURATION ##########################################
       # Any configuration that needs to go to production should be added here.
