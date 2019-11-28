@@ -18,6 +18,9 @@ system:
     function: default
     slbenabled: true
     ports:
+      - port: 15375
+        targetport: 15375
+        lbtype: http
       - port: 7020
         targetport: 7020
         lbtype: tcp
