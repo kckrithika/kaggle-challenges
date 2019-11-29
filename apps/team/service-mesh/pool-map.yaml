@@ -88,7 +88,7 @@ apps:
 
   istio-ordering:
     - prd/prd-sam_gater
-    - prd/prd-samtest
+#    - prd/prd-samtest
   istio-ordering-prod:
     - par/par-sam_gater
     - lo3/lo3-sam_gater    
