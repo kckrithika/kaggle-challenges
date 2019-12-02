@@ -12,6 +12,11 @@ apps:
       hostSubList:
       - test0shared0-samminionatlasfe1-1-prd.eng.sfdc.net
 
+  cloudatlas-dev:
+    - name: prd/prd-sam_cloudatlas
+      hostSubList:
+      - test0shared0-samminionatlasfe1-1-prd.eng.sfdc.net
+
   gid-sso-client-prd:
     - name: prd/prd-sam_cloudatlas
       hostSubList:
