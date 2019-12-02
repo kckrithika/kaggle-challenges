@@ -5,7 +5,7 @@ system:
     email:
       - gid_runtime@salesforce.com
   functions:
-  - name: local-gid-service
+  - name: local-gid-service-staging
     count: 1
     strategy:
       type: RollingUpdate
@@ -208,8 +208,8 @@ system:
   # SLB
   #####################################################################################
   loadbalancers:
-    - lbname: localgidservice
-      function: local-gid-service
+    - lbname: localgidservice-staging
+      function: local-gid-service-staging
       slbEnabled: true
       ports:
         - port: 80

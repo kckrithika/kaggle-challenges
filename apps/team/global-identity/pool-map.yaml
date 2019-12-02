@@ -38,7 +38,7 @@ apps:
       - test1shared0-samminionatlasfe1-1-prd.eng.sfdc.net
       - test1shared0-samminionatlasfe2-1-prd.eng.sfdc.net
 
-  local-gid-service:
+  local-gid-service-staging:
     - name: prd/prd-sam_cloudatlas
       hostSubList:
       - test0shared0-samminionatlasfe1-1-prd.eng.sfdc.net
