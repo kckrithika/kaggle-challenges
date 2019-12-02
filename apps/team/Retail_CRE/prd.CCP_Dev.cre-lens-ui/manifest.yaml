@@ -13,7 +13,7 @@ system:
           path: /actuator/info
           port: 8080
     - name: cre-lens-ui
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cre/cre-lens-ui:3a72540
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cre/cre-lens-ui:7c9a21a
       ports:
         - containerPort: 3000
       env:
