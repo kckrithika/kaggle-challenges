@@ -7,7 +7,7 @@ apps:
   # cloudatlas-gid:
   #   - name: prd/prd-sam_cloudatlas
 
-  cloudatlas-gidv2:
+  cloudatlas-staging:
     - name: prd/prd-sam_cloudatlas
       hostSubList:
       - test0shared0-samminionatlasfe1-1-prd.eng.sfdc.net
