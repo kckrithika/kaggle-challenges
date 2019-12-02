@@ -3,6 +3,13 @@ system:
   functions:
   - name: samhello-func
     count: 1
+    volumes:
+    - name: myclientcert
+      maddogCert:
+        type: client
+    - name: myservercert
+      maddogCert:
+        type: server
     containers:
     - name: samhello
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/arandhawa/samhello:asr-samhello-20191116
@@ -12,6 +19,11 @@ system:
         httpGet:
           path: /
           port: 9090
+      volumeMounts:
+      - name: myclientcert
+        mountPath: /clientcert
+      - name: myservercert
+        mountPath: /servercert
   loadbalancers:
   - lbname: samhellolb
     function: samhello-func
