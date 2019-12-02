@@ -1,7 +1,7 @@
 apiVersion: v1
 system:
   functions:
-  - name: cloudatlasv2
+  - name: cloudatlas-staging
     count: 1
     containers:
     - name: cloudatlas
@@ -47,8 +47,8 @@ system:
         type: server
 
   loadbalancers:
-  - lbname: cloudatlas-gidv2
-    function: cloudatlasv2
+  - lbname: cloudatlas-staging
+    function: cloudatlas-staging
     slbenabled: true
     ports:
       - port: 1389
