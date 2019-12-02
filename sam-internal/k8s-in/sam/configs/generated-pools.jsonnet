@@ -3717,6 +3717,18 @@
     },
     {
       "namespaces": [
+        "global-identity"
+      ],
+      "access": [
+        "team/global-identity"
+      ],
+      "controlEstate": "prd-sam",
+      "estate": "prd-sam_globalidentity",
+      "kingdom": "prd",
+      "superPod": "None"
+    },
+    {
+      "namespaces": [
         "mc-eventing"
       ],
       "access": [
