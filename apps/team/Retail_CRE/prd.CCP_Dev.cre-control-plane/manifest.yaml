@@ -13,7 +13,7 @@ system:
       "routing.mesh.sfdc.net/enabled": "true"
     containers:
     - name: cre-control-plane-ccp-dev
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cre-fusion/services:controlplane.2.2.0.0.PR-1116.a6c8187.12
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cre-fusion/services:controlplane.2.2.0.0.yu-eventData.d24c26c.3
       env:
         ####################################################################################################
         ############################   ENGINE/DDS FLOWSNAKE ARTIFACTS ( Most frequently changed ) ##########
@@ -86,6 +86,8 @@ system:
         - name: CRE_API_ENDPOINT
           value: cre-api-ccp-dev.retail-cre.localhost.mesh.force.com:5442
         - name: LOGGING_LEVEL_ORG_SPRINGFRAMEWORK_WEB
+          value: DEBUG
+        - name: LOGGING_LEVEL_ORG_APACHE_HTTP
           value: DEBUG
         ####################################################################################################
         ####################################### PERF environment variables #################################
