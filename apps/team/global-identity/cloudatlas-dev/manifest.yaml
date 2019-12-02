@@ -16,8 +16,8 @@ system:
       - name: scone_srpc_announcingEnabled
         value: false     
       volumeMounts:
-      - mountPath: /home/sfdc-atlas/data/servers/ds
-        name: hostdatavol     
+      - mountPath: /home/sfdc-atlas/dummy
+        name: hostdatavol
       - mountPath: /certs
         name: server-cert
       ports:
