@@ -27,7 +27,7 @@ local slbconfigs = import "slbconfig.jsonnet";
     # This ensures dependent microservices are available.
     deploySLBEnvoyConfig: (
        slbimages.hyperslb_build >= 2166 &&  # Minimum build that contains slb-envoy-config
-       slbimages.phaseNum <= 1 &&  # Current deployment phase
+       slbimages.phaseNum <= 2 &&  # Current deployment phase
        (slbconfigs.isProdEstate || configs.estate == "prd-sdc")  # Only deploy to prd-sdc and ProdEstates
     ),
 
