@@ -268,9 +268,6 @@
             "ia5-sam",
         ]),
 
-        envoyEnabledVips:
-            set_value_to_all_in_list(["service-mesh-ingress.sam-system." + configs.estate + "." + configs.kingdom + ".slb.sfdc.net"], $.slbEstates),
-
         envoyProxyEnabledVips:
             set_value_to_all_in_list(["slb-canary-envoy-svc.sam-system." + configs.estate + "." + configs.kingdom + ".slb.sfdc.net"], $.slbEstates)
             {
@@ -639,7 +636,6 @@
         "slb-canary-hsm.sam-system.%(estate)s.%(kingdom)s.slb.sfdc.net" % configs,
     ] else [],
     hsmEnabledVips: slbhsmvips.hsmEnabledVips[estate] + self.hsmDefaultEnabledVips,
-    envoyEnabledVips: self.perCluster.envoyEnabledVips[estate],
     envoyProxyEnabledVips: self.perCluster.envoyProxyEnabledVips[estate],
     vipsToAcl: self.perCluster.vipsToAcl[estate],
     vipwdConfigOptions: slbvipwdconfig.getVipWdConfigOptions(estate),
