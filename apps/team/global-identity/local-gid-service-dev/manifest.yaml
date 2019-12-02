@@ -18,7 +18,7 @@ system:
     # GID Data service
     #####################################################################################
     - name: gid-service
-      image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dev/gid-service-pr/gid-service:db625e0
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/gid/gid-service:5bc3ab7
       imagePullPolicy: Always
       env:
         - name: server_port
