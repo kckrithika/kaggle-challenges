@@ -1,0 +1,63 @@
+- lbname: ops0-pm-controller1-0-ukb
+  customlbname: ops0-pm-controller1-0-ukb
+  servers:
+    - ops0-mom2-1-ukb.ops.sfdc.net
+    - ops0-mom1-1-ukb.ops.sfdc.net
+    - ops0-mom3-1-ukb.ops.sfdc.net
+  ports:
+    - port: 8980
+      targetport: 8980
+      lbtype: tcp
+      healthprotocol: tcp
+      lbalgorithm: roundrobin
+- lbname: ops0-momapi1-0-ukb
+  customlbname: ops0-momapi1-0-ukb
+  servers:
+    - ops0-mom2-1-ukb.ops.sfdc.net
+    - ops0-mom1-1-ukb.ops.sfdc.net
+    - ops0-mom3-1-ukb.ops.sfdc.net
+  ports:
+    - port: 443
+      targetport: 8443
+      lbtype: tcp
+      healthprotocol: tcp
+      lbalgorithm: roundrobin
+- lbname: ops0-pingmeshcontroller1-0-ukb
+  customlbname: ops0-pingmeshcontroller1-0-ukb
+  servers:
+    - ops0-mom2-1-ukb.ops.sfdc.net
+    - ops0-mom1-1-ukb.ops.sfdc.net
+    - ops0-mom3-1-ukb.ops.sfdc.net
+  ports:
+    - port: 8981
+      targetport: 8981
+      lbtype: tcp
+      healthprotocol: tcp
+      lbalgorithm: roundrobin
+- lbname: ops0-nvtddicache1-0-ukb
+  customlbname: ops0-nvtddicache1-0-ukb
+  servers:
+    - ops0-netmonitor1-1-ukb.ops.sfdc.net
+    - ops0-netmonitor2-1-ukb.ops.sfdc.net
+  ports:
+    - port: 13111
+      targetport: 13111
+      lbtype: tcp
+      healthport: 23111
+      healthpath: /
+      healthprotocol: http
+- lbname: ops0-netevents1-0-ukb
+  customlbname: ops0-netevents1-0-ukb
+  servers:
+    - ops0-netevents1-1-ukb.ops.sfdc.net
+    - ops0-netevents2-1-ukb.ops.sfdc.net
+    - ops0-netevents3-1-ukb.ops.sfdc.net
+  ports:
+    - port: 443
+      targetport: 8080
+      lbtype: http
+      tls: true
+      reencrypt: false
+      healthport: 8080
+      healthpath: /images/spinner.gif
+      healthprotocol: http
