@@ -1,0 +1,75 @@
+apiVersion: v1
+
+system:
+  notifications:
+    email:
+      - gid_runtime@salesforce.com
+  functions:
+  - name: local-gid-service-dev
+    count: 1
+    strategy:
+      type: RollingUpdate
+      rollingUpdate:
+        maxSurge: 0
+        maxUnavailable: 1
+    hostnetwork: false
+    containers:
+    #####################################################################################
+    # GID Data service
+    #####################################################################################
+    - name: gid-service
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/gid/gid-service:5bc3ab7
+      imagePullPolicy: Always
+      env:
+        - name: server_port
+          value: 8081
+        - name: management_server_port
+          value: 15371
+        - name: security_client_dynamickeystore_cadir
+          value: /certs/ca
+        - name: security_client_dynamickeystore_monitoredDirectory
+          value: /clientcerts/client
+        - name: ca_service_host
+          value: cloudatlas-gidv2.global-identity.prd-sam.prd.slb.sfdc.net
+        - name: ldaps_hostname
+          value: cloudatlas-gidv2.global-identity.prd-sam.prd.slb.sfdc.net
+        - name: c2c_common_gdotBasePath
+          value: http://cloudatlas-gidv2.global-identity.prd-sam.prd.slb.sfdc.net/scim
+      ports:
+        - containerPort: 8081
+        - containerPort: 15371
+      livenessProbe:
+        exec:
+          command:
+          - /bin/true
+        initialDelaySeconds: 60
+        periodSeconds: 30
+
+      volumeMounts:
+        - name: server-cert
+          mountPath: /certs
+        - mountPath: /clientcerts
+          name: client-cert
+    #####################################################################################
+    # Volumes Needed
+    #####################################################################################
+    volumes:
+    - name: server-cert
+      maddogCert:
+        type: server
+    - name: client-cert
+      maddogCert:
+        type: client
+  #####################################################################################
+  # SLB
+  #####################################################################################
+  loadbalancers:
+    - lbname: localgidservice-dev
+      function: local-gid-service-dev
+      slbEnabled: true
+      ports:
+        - port: 80
+          targetport: 8081
+          lbtype: http
+          tls: false
+          reencrypt: false

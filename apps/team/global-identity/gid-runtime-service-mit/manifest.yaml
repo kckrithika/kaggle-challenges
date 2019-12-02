@@ -133,7 +133,7 @@ system:
       - name: kms_serverUrl
         value: https://smsapi1-0-prd.data.sfdc.net
       - name: c2c_common_gdotBasePath
-        value: http://cloudatlas-gidv2.global-identity.prd-sam.prd.slb.sfdc.net/scim
+        value: http://cloudatlas-staging.global-identity.prd-sam.prd.slb.sfdc.net/scim
       - name: vaas_baseUrl
         value: http://gid-sso-client.global-identity.prd-sam.prd.slb.sfdc.net/vaas
       - name: spring_datasource_url
