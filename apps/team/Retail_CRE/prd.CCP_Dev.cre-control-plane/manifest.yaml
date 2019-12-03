@@ -96,7 +96,7 @@ system:
         ####################################################################################################
         - name: JVM_ARGS
           value: "-Djava.util.concurrent.ForkJoinPool.common.parallelism=8
-                  -verbose:gc -XX:+PrintHeapAtGC
+                  -verbose:gc
                   -XX:+PrintPromotionFailure -XX:+PrintTenuringDistribution -XX:+PrintGCDetails
                   -XX:+PrintGCApplicationStoppedTime
                   -XX:+PrintGCApplicationConcurrentTime -XX:+PrintGCCause -XX:+DisableExplicitGC
