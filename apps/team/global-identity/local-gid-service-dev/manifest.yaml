@@ -31,8 +31,6 @@ system:
           value: /clientcerts/client
         - name: ca_service_host
           value: cloudatlas-dev.global-identity.prd-sam.prd.slb.sfdc.net
-        - name: ldaps_bind_type
-          value: SIMPLE
         - name: ldaps_hostname
           value: cloudatlas-dev.global-identity.prd-sam.prd.slb.sfdc.net
         - name: c2c_common_gdotBasePath
