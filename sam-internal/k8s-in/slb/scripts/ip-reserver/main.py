@@ -158,5 +158,12 @@ if __name__ == "__main__":
 
     process_services(root_vip_yaml_path, ip_handler, pools_path)
 
+    modified_kingdom_estates = ip_handler.get_modified_kingdom_estates()
+
+    # Used for the build script
+    if len(modified_kingdom_estates) == 0:
+        print("No IP reservation changes found")
+    else:
+        print(",".join(modified_kingdom_estates))
+
     ip_handler.save_reserved_ips()
-    print("Run successfully")
