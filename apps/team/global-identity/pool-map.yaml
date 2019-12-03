@@ -2,6 +2,10 @@ version: v2
 apps:
   gid-runtime-service:
     - name: prd/prd-sam_cloudatlas
+
+  gid-runtime-service-demo:
+    - name: prd/prd-sam_globalidentity
+
   # gid-runtime-service-xrd-staging:
   #   - name: xrd/xrd-sampool
   # cloudatlas-gid:
