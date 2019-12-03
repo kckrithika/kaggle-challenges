@@ -28,7 +28,7 @@ system:
         - name: security_client_dynamickeystore_cadir
           value: /certs/ca
         - name: jwt_signing_keypath
-          value: /clientcerts/client/keys/client-key.pem
+          value: /clientcerts/client/keys/client-key.pkcs8            
         - name: security_client_dynamickeystore_monitoredDirectory
           value: /clientcerts/client
         - name: ca_service_host
