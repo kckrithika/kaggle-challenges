@@ -1,6 +1,9 @@
 apiVersion: v1
 data:
-  slb-reserved-ips-lo2.json: '{}'
+  slb-reserved-ips-lo2.json: |-
+    {
+      "sledge-lo2.slb.sfdc.net": "161.71.44.1"
+    }
 kind: ConfigMap
 metadata:
   creationTimestamp: null

@@ -1,5 +1,6 @@
 - lbname: sledge
   customlbname: sledge-lo2
+  iptype: public_active
   servers:
    - edge0-accelerator1-1-lo2.ops.sfdc.net
    - edge0-accelerator1-2-lo2.ops.sfdc.net
