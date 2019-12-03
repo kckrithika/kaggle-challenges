@@ -61,7 +61,7 @@ spec:
           value: -.-.prd.-.istio-routing-webhook
         - name: ESTATE
           value: prd-sam
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/sfci/servicemesh/servicemesh/istio-routing-webhook:4f7edbecc3a92604c1fd6b11821e7925f0abe6ac
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/sfci/servicemesh/servicemesh/istio-routing-webhook:37eb50632f589a181158ce155e1f5c92961d819b
         imagePullPolicy: IfNotPresent
         name: istio-routing-webhook
         ports:
@@ -223,7 +223,7 @@ spec:
           valueFrom:
             fieldRef:
               fieldPath: metadata.labels['cluster']
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/sfci/servicemesh/istio-packaging/proxy:dc81a3faea15119f22c6f3330ed00e5e610fdf4a
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/sfci/servicemesh/istio-packaging/proxy:83dfaaf723240b7b5d1c3de6a58ed55a2940ad7e
         imagePullPolicy: IfNotPresent
         name: istio-proxy
         ports:
@@ -337,7 +337,7 @@ spec:
         env:
         - name: DISABLE_REDIRECTION_ON_LOCAL_LOOPBACK
           value: "1"
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/sfci/servicemesh/istio-packaging/proxy:dc81a3faea15119f22c6f3330ed00e5e610fdf4a
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/sfci/servicemesh/istio-packaging/proxy:83dfaaf723240b7b5d1c3de6a58ed55a2940ad7e
         imagePullPolicy: IfNotPresent
         name: istio-init
         resources:
