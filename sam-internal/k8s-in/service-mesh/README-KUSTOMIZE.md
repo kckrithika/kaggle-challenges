@@ -1,6 +1,10 @@
 TODO: Replace contents of readme.md entirely with the contents of this file. 
 
 # Mesh Control Plane
+## System requirements
+Helm Version: 3.0.0 or higher
+Kustomize Version: 3.2.1 or higher
+
 ## Istio Pilot Update, Upgrade & Deployment 
 The [templates](./templates) directory contains Istio's k8s resources auto-generated from the [Istio helm charts](https://git.soma.salesforce.com/servicemesh/istio-helm-charts) using [Kustomize](https://github.com/kubernetes-sigs/kustomize/blob/master/README.md) and [Internal Istio Upgrade Tool](https://git.soma.salesforce.com/servicemesh/istio-upgrade). 
 
