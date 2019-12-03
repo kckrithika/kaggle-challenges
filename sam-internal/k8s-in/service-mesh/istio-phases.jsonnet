@@ -19,34 +19,10 @@ local namespaces = (import "namespaces/mesh-namespaces.jsonnet") + { templateFil
   ),
 
   sidecarEgressHosts: (
-  if ($.phaseNum < 3) then
     // System namespaces
     ["mesh-control-plane/*", "z9s-default/*"] +
     // App namespaces
-    [("%s/*" % ns) for ns in namespaces.istioEnabledNamespaces("prd")]
-    else
-    [
-      // System namespaces
-      "mesh-control-plane/*",
-      "z9s-default/*",
-
-      // App namespaces
-      "app/*",
-      "casam/*",
-      "ccait/*",
-      "core-on-sam-sp2/*",
-      "emailinfra/*",
-      "funnel/*",
-      "gater/*",
-      //"retail-cre/*",
-      //"retail-dfs/*",
-      //"retail-mds/*",
-      //"retail-rsui/*",
-      "scone/*",
-      "search-scale-safely/*",
-      "service-mesh/*",
-      "universal-search/*",
-    ]
+    [("%s/*" % ns) for ns in namespaces.istioEnabledNamespaces(kingdom)]
   ),
 
   # 1 Pilot instance in prd-samtest

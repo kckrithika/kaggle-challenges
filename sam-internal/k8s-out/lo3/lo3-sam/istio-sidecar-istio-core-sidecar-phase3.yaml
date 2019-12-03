@@ -13,16 +13,13 @@ spec:
     - mesh-control-plane/*
     - z9s-default/*
     - app/*
-    - casam/*
-    - ccait/*
-    - core-on-sam-sp2/*
-    - emailinfra/*
     - funnel/*
-    - gater/*
-    - scone/*
-    - search-scale-safely/*
     - service-mesh/*
+    - ccait/*
+    - gater/*
+    - search-scale-safely/*
     - universal-search/*
+    - gateway/*
     port:
       name: grpc-egress
       number: 7443
@@ -33,16 +30,13 @@ spec:
     - mesh-control-plane/*
     - z9s-default/*
     - app/*
-    - casam/*
-    - ccait/*
-    - core-on-sam-sp2/*
-    - emailinfra/*
     - funnel/*
-    - gater/*
-    - scone/*
-    - search-scale-safely/*
     - service-mesh/*
+    - ccait/*
+    - gater/*
+    - search-scale-safely/*
     - universal-search/*
+    - gateway/*
     port:
       name: http-egress
       number: 7442
