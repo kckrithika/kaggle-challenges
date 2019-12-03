@@ -8,6 +8,8 @@ apps:
 
   cloudatlas-gid:
     - name: prd/prd-sam_globalidentity
+    hostSubList:
+    - shared0-samminionglobalidentity1-2-prd.eng.sfdc.net
 
   # gid-runtime-service-xrd-staging:
   #   - name: xrd/xrd-sampool
