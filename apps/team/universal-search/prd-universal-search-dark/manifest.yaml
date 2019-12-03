@@ -29,10 +29,10 @@ system:
       ports:
       - name: service-port
         containerPort: 7020
-      - name: http-port
-        containerPort: 7022
       - name: admin-port
         containerPort: 15372
+      - name: http-port
+        containerPort: 7022
       resources:
         limits:
           cpu: "24"
@@ -89,6 +89,10 @@ system:
         name: sherpa-http1s
       - containerPort: 15373
         name: sherpa-adm
+      resources:
+        limits:
+          cpu: "2"
+          memory: "4Gi"
       volumeMounts:
       - name: server-cert-vol
         mountPath: /server-certs
@@ -132,4 +136,7 @@ system:
     - lbtype: http
       port: 15373
       targetport: 15373
+    - lbtype: http
+      port: 7022
+      targetport: 7022
     slbEnabled: true
