@@ -67,6 +67,8 @@ system:
           value: 10
         - name: DUMMY_VAR
           value: helloworld
+        - name: RSUI_OU_NAME
+          value: retail-rsui.retail-setup, retail-rsui.rsui-standalone
         - name: CP_OU_NAME
           value: retail-cre.cre-control-plane-ccp-dev
         - name: JVM_ARGS
