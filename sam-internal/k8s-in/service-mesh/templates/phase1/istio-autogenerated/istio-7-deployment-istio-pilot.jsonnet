@@ -245,7 +245,7 @@ if (istioPhases.phaseNum == 1) then
               "--proxyLogLevel=info",
               "--log_output_level=default:warn",
               "--envoyMetricsService",
-              "{\"address\":\"switchboard.service-mesh:15001\",\"tls_settings\":{\"mode\":2,\"client_certificate\":\"/client-certs/client/certificates/client.pem\",\"private_key\":\"/client-certs/client/keys/client-key.pem\",\"ca_certificates\":\"/client-certs/ca.pem\"},\"tcp_keepalive\":{\"probes\":3,\"time\":\"10s\",\"interval\":\"10s\"}}",
+              "{\"address\":\"%(envoyMetricsServiceHost)s:15001\",\"tls_settings\":{\"mode\":2,\"client_certificate\":\"/client-certs/client/certificates/client.pem\",\"private_key\":\"/client-certs/client/keys/client-key.pem\",\"ca_certificates\":\"/client-certs/ca.pem\"},\"tcp_keepalive\":{\"probes\":3,\"time\":\"10s\",\"interval\":\"10s\"}}" % mcpIstioConfig,
               "--proxyAdminPort",
               "15373",
             ],
@@ -336,6 +336,14 @@ if (istioPhases.phaseNum == 1) then
               {
                 name: "KINGDOM",
                 value: mcpIstioConfig.kingdom,
+              },
+              {
+                name: "ENVOY_METRICS_SERVICE_ADDRESS",
+                value: mcpIstioConfig.envoyMetricsServiceHost,
+              },
+              {
+                name: "ENVOY_METRICS_SERVICE_PORT",
+                value: "15001",
               },
               {
                 name: "SDS_ENABLED",
