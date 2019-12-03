@@ -109,7 +109,7 @@ system:
       - name: JVM_ARGS
         value: "-Dspring.profiles.active=prod -Djava.util.concurrent.ForkJoinPool.common.parallelism=50
                 -verbose:gc
-                -XX:+PrintPromotionFailure -Xlog:gc*
+                -Xlog:gc*
                 -Xlog:safepoint -XX:+DisableExplicitGC
                 -Xloggc:/home/scone/logs/retail-setup/verbosegc_$(FUNCTION_INSTANCE_NAME).log
                 -XX:+HeapDumpOnOutOfMemoryError  -XX:HeapDumpPath=/home/scone/logs/retail-setup
