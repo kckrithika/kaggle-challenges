@@ -5,3 +5,5 @@ apps:
   - prd/prd-sam
  asr-green-app:
   - prd/prd-sam
+ asr-http2-app:
+  - prd/prd-sam
