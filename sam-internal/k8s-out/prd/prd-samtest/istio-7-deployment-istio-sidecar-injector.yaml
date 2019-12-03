@@ -207,7 +207,7 @@ spec:
           value: -.-.prd.-.istio-sidecar-injector
         - name: ESTATE
           value: prd-samtest
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/sfci/servicemesh/servicemesh/metrics-scraper:23a61c749ca39d9f5e525a360ab79eac0766ba07
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/sfci/servicemesh/servicemesh/metrics-scraper:37eb50632f589a181158ce155e1f5c92961d819b
         imagePullPolicy: Always
         name: metrics-scraper
         readinessProbe:
