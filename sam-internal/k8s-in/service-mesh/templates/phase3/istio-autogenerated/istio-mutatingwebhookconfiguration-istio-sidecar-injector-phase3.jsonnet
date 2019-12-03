@@ -26,7 +26,7 @@ if (istioPhases.phaseNum == 3) then
           path: "/inject",
         },
       },
-      failurePolicy: "Fail",
+      failurePolicy: "Ignore",
       name: "sidecar-injector.istio.io",
       namespaceSelector: {
         matchLabels: {

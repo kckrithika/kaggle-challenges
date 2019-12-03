@@ -12,16 +12,13 @@ spec:
     - mesh-control-plane/*
     - z9s-default/*
     - app/*
-    - casam/*
-    - ccait/*
-    - core-on-sam-sp2/*
-    - emailinfra/*
     - funnel/*
-    - gater/*
-    - scone/*
-    - search-scale-safely/*
     - service-mesh/*
+    - ccait/*
+    - gater/*
+    - search-scale-safely/*
     - universal-search/*
+    - gateway/*
     port:
       name: grpc-tls
       number: 7443
@@ -30,16 +27,13 @@ spec:
     - mesh-control-plane/*
     - z9s-default/*
     - app/*
-    - casam/*
-    - ccait/*
-    - core-on-sam-sp2/*
-    - emailinfra/*
     - funnel/*
-    - gater/*
-    - scone/*
-    - search-scale-safely/*
     - service-mesh/*
+    - ccait/*
+    - gater/*
+    - search-scale-safely/*
     - universal-search/*
+    - gateway/*
     port:
       name: http-tls
       number: 7442
@@ -48,16 +42,13 @@ spec:
     - mesh-control-plane/*
     - z9s-default/*
     - app/*
-    - casam/*
-    - ccait/*
-    - core-on-sam-sp2/*
-    - emailinfra/*
     - funnel/*
-    - gater/*
-    - scone/*
-    - search-scale-safely/*
     - service-mesh/*
+    - ccait/*
+    - gater/*
+    - search-scale-safely/*
     - universal-search/*
+    - gateway/*
     port:
       name: http-plain
       number: 7014
@@ -66,16 +57,13 @@ spec:
     - mesh-control-plane/*
     - z9s-default/*
     - app/*
-    - casam/*
-    - ccait/*
-    - core-on-sam-sp2/*
-    - emailinfra/*
     - funnel/*
-    - gater/*
-    - scone/*
-    - search-scale-safely/*
     - service-mesh/*
+    - ccait/*
+    - gater/*
+    - search-scale-safely/*
     - universal-search/*
+    - gateway/*
     port:
       name: grpc-plain
       number: 7012

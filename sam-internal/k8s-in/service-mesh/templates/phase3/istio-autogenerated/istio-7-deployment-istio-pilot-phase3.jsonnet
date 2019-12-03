@@ -20,7 +20,7 @@ if (istioPhases.phaseNum == 3) then
     namespace: "mesh-control-plane",
   },
   spec: {
-    replicas: 3,
+    replicas: mcpIstioConfig.pilotReplicasCount,
     selector: {
       matchLabels: {
         app: "pilot",
