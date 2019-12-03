@@ -12,7 +12,7 @@ system:
     count: 1
     containers:
     - name: caas-load
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/caas/caas-load-test:2.10.1
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/caas/caas-load-test:2.11.0
       resources:
         limits: { memory: "6G" }
         requests: { memory: "6G" }
@@ -33,7 +33,7 @@ system:
         periodSeconds: 5
       env:
        - name: NOT_REQUIRED
-         value: newton18
+         value: newton19
        - name: PYTHONUNBUFFERED
          value: 1
        - name: SFDC_ENVIRONMENT
