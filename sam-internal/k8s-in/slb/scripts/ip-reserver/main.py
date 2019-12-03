@@ -3,7 +3,6 @@ import pool_map
 import vip
 
 import os
-import subprocess
 import sys
 import yaml
 
