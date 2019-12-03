@@ -16,9 +16,8 @@ system:
       ports:
       - containerPort: 9493
       livenessProbe:
-        httpGet:
-          path: /
-          port: 9493
+        exec:
+          command: ["true"]
       volumeMounts:
       - name: myclientcert
         mountPath: /clientcert
