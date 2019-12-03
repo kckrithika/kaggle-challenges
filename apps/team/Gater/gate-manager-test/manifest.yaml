@@ -13,7 +13,7 @@ system:
     hostnetwork: false
     containers:
     - name: gater1
-      image: sfci/services/sfdc-bazel/gater/gate-manager:1.17.0
+      image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-sfci-dev/sfci/services/sfdc-bazel/gater/gate-manager:3c2d3becb
       args:
         - --server.port=9090
         - --gater-service.thread.pool.max-size=16
@@ -31,18 +31,18 @@ system:
         httpGet:
           path: /manage/health
           port: 15372
-        initialDelaySeconds: 60 
+        initialDelaySeconds: 60
         timeoutSeconds: 10
       readinessProbe:
         httpGet:
           path: /manage/health
           port: 15372
-        initialDelaySeconds: 60 
+        initialDelaySeconds: 60
         timeoutSeconds: 10
       ports:
       - containerPort: 7020
       - containerPort: 9522
-      - containerPort: 9523 
+      - containerPort: 9523
       - containerPort: 9090
       - containerPort: 15372
       resources:
