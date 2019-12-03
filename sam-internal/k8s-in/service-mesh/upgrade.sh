@@ -4,7 +4,7 @@ KUSTOMIZE_DIR=${BASH_SOURCE%/*}/kustomize
 TMP_DIR=${KUSTOMIZE_DIR}/tmp
 
 # Clone istio helm charts repo to tmp directory.
-git clone --depth=1 --branch=master https://git.soma.salesforce.com/servicemesh/istio-helm-charts ${TMP_DIR}
+git clone --depth=1 --branch=master git@git.soma.salesforce.com:servicemesh/istio-helm-charts.git ${TMP_DIR}
 rm -rf ${TMP_DIR}/.git
 
 # Base directory for original helm generated manifests.
