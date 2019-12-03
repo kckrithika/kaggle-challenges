@@ -13,7 +13,7 @@ system:
       "sherpa-injector.service-mesh/inject": "enabled"
     containers:
     - name: demo-authz-opa
-      image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/electron_sam:111
+      image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/electron_sam:133
       args:
       - --grpc-synthetic-clients=uri=spiffe://salesforce.com/ns/service-mesh/sa/demo-authz,uri=spiffe://salesforce.com/ns/service-mesh/sa/demo-authz-client
       - --http-synthetic-client-ids=demo-authz.service-mesh,demo-authz-client.service-mesh
@@ -44,7 +44,7 @@ system:
         periodSeconds: 5
         timeoutSeconds: 4
     - name: demo-authz-grpc-stream-client
-      image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/electron_client:111
+      image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/electron_client:133
       args:
       - -service=grpc-stream
       - -endpoint=localhost:7020
@@ -57,7 +57,7 @@ system:
           command: ["/bin/true"]
         initialDelaySeconds: 30
     - name: demo-authz-grpc-client
-      image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/electron_client:111
+      image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/electron_client:133
       args:
       - -service=grpc
       - -endpoint=localhost:7020
@@ -69,7 +69,7 @@ system:
           command: ["/bin/true"]
         initialDelaySeconds: 30
     - name: demo-authz-http-client
-      image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/electron_client:111
+      image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/electron_client:133
       args:
       - -service=http
       - -endpoint=localhost:7022
