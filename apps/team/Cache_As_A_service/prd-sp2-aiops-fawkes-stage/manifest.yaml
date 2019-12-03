@@ -18,12 +18,12 @@ system:
           maxUnavailable: 1
       containers:
       - name: fawkes-stage-func
-        image: dva/casp/fawkes_strata:40
+        image: dva/casp/fawkes_strata:jenkins-CASP-fawkes-dev-69-itest
         env:
         - name: FAWKES_ENV
           value: "stg"
         - name: STAGING_ENABLE_SENSOR
-          value: "False"
+          value: "True"
         - name: HTTP_PROXY
           value: "http://public0-proxy1-0-prd.data.sfdc.net:8080"
         - name: HTTPS_PROXY
@@ -46,7 +46,7 @@ system:
           name: ajna-cert
         livenessProbe:
           exec:
-            command: ["/opt/stackstorm/sfdc/scripts/liveness_probe.sh"]
+            command: ["/bin/true"]
           initialDelaySeconds: 120
           periodSeconds: 60
       volumes:
