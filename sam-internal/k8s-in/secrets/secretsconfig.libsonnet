@@ -33,10 +33,6 @@ local configs = import "config.jsonnet";
   ]),
   isSecretsEstate: std.setMember(estate, $.secretsEstates),
 
-  k4aSamWdEstates: std.set([
-  ]),
-  k4aSamWdEnabled: std.setMember(estate, $.k4aSamWdEstates),
-
   # Pin to the sam estate -- our services shouldn't be running in customer estates, and
   # have no need to run on master nodes.
   nodeSelector: {

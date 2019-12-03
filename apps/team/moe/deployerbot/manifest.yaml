@@ -347,29 +347,6 @@ system:
           port: 8082
         initialDelaySeconds: 180
         periodSeconds: 60
-    - name: imagedeployer-k4a-sam-watchdog
-      image: dva/moe/deployerbot:2507-8eb6be5e433b0dd8b0eb8f69b580444872ec97b2
-      command: ["/moe/imagedeployer"]
-      args:
-      - "-deployerbotServiceEndpoint=http://localhost:8080/deploy"
-      - "-interval=10m"
-      - "-image=hypersam"
-      - "-imageKey=k4asamwatchdog" # The name of the object to update in secretsreleases.json.
-      - "-owner=sam"
-      - "-samInternalTeamName=Secrets"
-      - "-targetPhaseNumber=1"
-      - "-imageRegistryEndpoint=ops0-artifactrepo2-0-prd.data.sfdc.net"
-      - "-imageRegistryImageSource=dva"
-      - "-heartbeat.defaultdecayduration=15m"
-      - "-livenessProbePort=8083"
-      ports:
-      - containerPort: 8083
-      livenessProbe:
-        httpGet:
-          path: /liveness-probe
-          port: 8083
-        initialDelaySeconds: 180
-        periodSeconds: 60
     volumes:
     - name: deployerbot-ghe-pat
       k4aSecret:
