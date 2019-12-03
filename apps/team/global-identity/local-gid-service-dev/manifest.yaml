@@ -37,6 +37,12 @@ system:
           value: cloudatlas-dev.global-identity.prd-sam.prd.slb.sfdc.net
         - name: c2c_common_gdotBasePath
           value: http://cloudatlas-dev.global-identity.prd-sam.prd.slb.sfdc.net/scim
+        - name: ldaps_bind_password
+          value: 1insecureRootPassword!
+        - name: ldaps_bind_dn
+          value: cn=Directory Manager
+        - name: ldaps_bind_type
+          value: SIMPLE
       ports:
         - containerPort: 8081
         - containerPort: 15371
