@@ -14,9 +14,12 @@ output=$(docker run -u 0 --rm \
 
 estates=$(echo "$output" | tail -n 1)
 
-if [ "$estates" != "No IP reservation changes found" ]; then
-  ./../../../build.sh "$estates"
-fi
+noChangeMsg="No IP reservation changes found"
 
-# Print the output ignoring the estates
-echo "$output" | sed '$d'
+if [ "$estates" != "$noChangeMsg" ]; then
+  ./../../../build.sh "$estates"
+  # Print the output ignoring the estates
+  echo "$output" | sed '$d'
+else
+  echo "$noChangeMsg"
+fi
