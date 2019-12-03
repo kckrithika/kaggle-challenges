@@ -44,7 +44,7 @@ if (istioPhases.phaseNum == 3) then
           resources: ["serviceentries"],
         },
       ],
-      failurePolicy: "Fail",
+      failurePolicy: "Ignore",
       namespaceSelector: {
         matchLabels: {
           "istio-injection": "enabled",

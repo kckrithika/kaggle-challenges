@@ -14,7 +14,7 @@ webhooks:
       name: istio-sidecar-injector
       namespace: mesh-control-plane
       path: /inject
-  failurePolicy: Fail
+  failurePolicy: Ignore
   name: sidecar-injector.istio.io
   namespaceSelector:
     matchLabels:

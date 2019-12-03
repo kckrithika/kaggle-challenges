@@ -18,3 +18,18 @@ rules:
   - '*'
   verbs:
   - '*'
+- apiGroups:
+  - extensions
+  - apps
+  resources:
+  - deployments
+  verbs:
+  - get
+  - list
+- apiGroups:
+  - core
+  resources:
+  - namespaces
+  verbs:
+  - get
+  - list
