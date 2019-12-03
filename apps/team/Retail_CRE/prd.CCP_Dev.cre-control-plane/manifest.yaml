@@ -97,7 +97,7 @@ system:
         - name: JVM_ARGS
           value: "-Djava.util.concurrent.ForkJoinPool.common.parallelism=8
                   -verbose:gc
-                  -XX:+PrintPromotionFailure -XX:+PrintTenuringDistribution -XX:+PrintGCDetails
+                  -XX:+PrintTenuringDistribution -XX:+PrintGCDetails
                   -XX:+PrintGCApplicationStoppedTime
                   -XX:+PrintGCApplicationConcurrentTime -XX:+PrintGCCause -XX:+DisableExplicitGC
                   -Xloggc:/opt/cre/cre-control-plane-ccp-dev/verbosegc_$(FUNCTION_INSTANCE_NAME).log
