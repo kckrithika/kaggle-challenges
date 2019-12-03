@@ -5,7 +5,7 @@ system:
     - gater@salesforce.com
   functions:
   - name: gater-bazel
-    count: 1
+    count: 0
     labels:
       app: gater
     annotations:
