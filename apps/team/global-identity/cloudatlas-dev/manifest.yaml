@@ -24,7 +24,7 @@ system:
       - containerPort: 7032
       - containerPort: 1636
       - containerPort: 1389
-      - containerPort: 8080
+      - containerPort: 7022
       livenessProbe:
         exec:
           command:
@@ -58,7 +58,7 @@ system:
         targetport: 1636
         lbtype: tcp
       - port: 80
-        targetport: 8080
+        targetport: 7022
         lbtype: tcp
       - port: 7032
         targetport: 7032
