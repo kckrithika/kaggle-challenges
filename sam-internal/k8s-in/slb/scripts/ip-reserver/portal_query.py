@@ -3,7 +3,6 @@ from lxml import etree
 import ssl
 import urllib.request
 
-ACCEPTED_CLUSTERS = ["cdg-sam", "dfw-sam", "fra-sam", "frf-sam", "hnd-sam", "ia2-sam", "iad-sam", "lo2-sam", "lo3-sam", "ord-sam", "par-sam", "ph2-sam", "phx-sam", "ukb-sam", "xrd-sam", "prd-sam", "prd-samtwo"]
 
 DEFAULT_CLUSTER = "sam"
 
@@ -38,7 +37,7 @@ def __get_portal_info(url):
 
     try:
         ssl._create_default_https_context = ssl._create_unverified_context
-        conn = urllib.request.urlopen(url, timeout=5)
+        conn = urllib.request.urlopen(url, timeout=3)
         byte_response = conn.read()
 
         str_response = byte_response.decode("utf8")
@@ -71,7 +70,5 @@ def get_portal_entry_from_portal(kingdom, cluster, evaluator, value):
 
 
 def get_all_portal_entries(kingdom, cluster):
-    if cluster not in ACCEPTED_CLUSTERS:
-        return []
     return __get_portal_info(__get_portal_url(kingdom, cluster))
 
