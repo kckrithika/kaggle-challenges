@@ -96,9 +96,9 @@ system:
         ####################################################################################################
         - name: JVM_ARGS
           value: "-Djava.util.concurrent.ForkJoinPool.common.parallelism=8
-                  -verbose:gc -XX:+PrintGCDateStamps -XX:+PrintHeapAtGC
+                  -verbose:gc -XX:+PrintHeapAtGC
                   -XX:+PrintPromotionFailure -XX:+PrintTenuringDistribution -XX:+PrintGCDetails
-                  -XX:+PrintGCDateStamps -XX:+PrintGCApplicationStoppedTime
+                  -XX:+PrintGCApplicationStoppedTime
                   -XX:+PrintGCApplicationConcurrentTime -XX:+PrintGCCause -XX:+DisableExplicitGC
                   -Xloggc:/opt/cre/cre-control-plane-ccp-dev/verbosegc_$(FUNCTION_INSTANCE_NAME).log
                   -XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=/opt/cre/cre-control-plane-ccp-dev
