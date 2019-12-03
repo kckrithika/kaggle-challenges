@@ -1,6 +1,7 @@
 import portal_query
 
 from collections import OrderedDict
+import copy
 import json
 
 MAX_OCTET_VALUE = 255
@@ -19,7 +20,10 @@ class IpReserver:
             self.private_reserved_ips = self.reserved_ips[PRIVATE_RESERVED_IPS_FIELD_NAME]
             self.minimum_octet = minimum_octet
 
-        # Read slbpublicsubnets
+            self.original_public_reserved_ips = copy.deepcopy(self.public_reserved_ips)
+            self.original_private_reserved_ips = copy.deepcopy(self.private_reserved_ips)
+
+    # Read slbpublicsubnets
         with open(subnets_file_path, "r") as subnet_file:
             self.public_subnets = json.load(subnet_file)
 
@@ -91,6 +95,35 @@ class IpReserver:
         new_ip = self.get_next_public_ip(cluster)
         self.public_reserved_ips[cluster][fqdn] = new_ip
         print("Reserved {} for {} in {}".format(new_ip, fqdn, cluster))
+
+    def get_modified_kingdom_estates(self):
+        modified_kingdom_estates = set()
+        
+        # Checks if everything in original is in new
+        for estate, reserved_ips in self.original_public_reserved_ips.items():
+            if estate not in self.public_reserved_ips or reserved_ips != self.public_reserved_ips[estate]:
+                kingdom = estate.split("-")[0]
+                modified_kingdom_estates.add(kingdom + "/" + estate)
+
+        # Checks if new estates were added, equality of existing estates is done above
+        for estate, reserved_ips in self.public_reserved_ips.items():
+            if estate not in self.original_public_reserved_ips:
+                kingdom = estate.split("-")[0]
+                modified_kingdom_estates.add(kingdom + "/" + estate)
+
+        # Checks if everything in original is in new
+        for estate, reserved_ips in self.original_private_reserved_ips.items():
+            if estate not in self.private_reserved_ips or reserved_ips != self.private_reserved_ips[estate]:
+                kingdom = estate.split("-")[0]
+                modified_kingdom_estates.add(kingdom + "/" + estate)
+
+        # Checks if new estates were added, equality of existing estates is done above
+        for estate, reserved_ips in self.private_reserved_ips.items():
+            if estate not in self.original_private_reserved_ips:
+                kingdom = estate.split("-")[0]
+                modified_kingdom_estates.add(kingdom + "/" + estate)
+        
+        return modified_kingdom_estates
 
 
 def get_first_three_octets(subnet):
