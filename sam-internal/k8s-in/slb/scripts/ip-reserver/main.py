@@ -110,8 +110,6 @@ def process_services(root_vip_yaml_path, ip_handler, pools_path):
 
     pools = pool_map.PoolMap(pools_path)
 
-    modified_kingdom_estates = set()
-
     for team_folder_name in os.listdir(root_vip_yaml_path):
         team_folder_path = os.path.join(root_vip_yaml_path, team_folder_name)
         if os.path.isfile(team_folder_path):
