@@ -18,7 +18,7 @@ system:
       - {name: TESTRECIPE_MAESTROPINGTEST, value: 'true'}
       - {name: DEPLOYMENT_ID, value: cdg-group1}
       - {name: HANDLED_PODS_PATTERN, value: 'cs[0-9]+|moana-driver-group1'}
-      image: sfci/insights/moana-driver:release-2019.10.a.30-b845189
+      image: sfci/insights/moana-driver:release-2019.11.b.32-33207e7
       livenessProbe:
         httpGet: {path: /manage/health, port: 15372}
         initialDelaySeconds: 30
@@ -46,7 +46,8 @@ system:
       - {name: MANAGEMENT_SERVER_PORT, value: '15372'}
       - {name: LOGGING_JSON_STDOUT_LEVEL, value: ALL}
       - {name: LOGGING_STDERR_LEVEL, value: ALL}
-      - {name: MOANA_SPARK_ENGINE_IMAGE, value: 'ops0-artifactrepo1-0-par.data.sfdc.net/sfci/insights/moanaengine:release-2019.10.b.27-ea8c606'}
+      - {name: MOANA_SPARK_ENGINE_IMAGE, value: 'ops0-artifactrepo1-0-par.data.sfdc.net/sfci/insights/moanaengine:release-2019.11.a.28-53dcfe1'}
+      - {name: MOANA_SPARK_ENGINE_BETA_IMAGE, value: 'ops0-artifactrepo1-0-par.data.sfdc.net/sfci/insights/moanaengine:beta-20191129.2-c8731b7'}
       - {name: KAFKA_GROUP_ID, value: moana-jobcontroller-group1}
       - {name: DEPLOYMENT_ID, value: cdg-group1}
       - {name: JAVA_OPTS, value: '-server -XX:MaxMetaspaceSize=512m -Xmx2048m -Xms2048m'}
@@ -56,7 +57,7 @@ system:
       - {name: HANDLED_PODS_PATTERN, value: 'cs[0-9]+|moana-driver-group1'}
       - {name: K8S_API_ENDPOINT, value: 'https://kubernetes-api-flowsnake-par.slb.sfdc.net'}
       - {name: ARGUS_ENDPOINT, value: 'http://ajna0-funnel1-0-par.data.sfdc.net:8080'}
-      image: sfci/insights/jobcontroller:release-2019.10.b.33-e15dfe9
+      image: sfci/insights/jobcontroller:release-2019.11.a.35-ead8ad9
       livenessProbe:
         httpGet: {path: /manage/health, port: 15372}
         initialDelaySeconds: 90
