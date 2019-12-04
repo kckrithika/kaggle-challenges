@@ -24,6 +24,7 @@ system:
         - --logging.sfdc.stderr.level=OFF
         - --logging.json.stdout.level=INFO
         - --publish-specific-metrics=CONDITIONAL
+        - --mesh.istio-mode=true
       volumeMounts:
       - mountPath: /log
         name: logvol
@@ -99,8 +100,6 @@ system:
         lbtype: tcp
   - lbname: istio-gater
     function: istio-gater
-    annotations:
-      routing.mesh.sfdc.net/enabled: "true"
     ports:
       - lbtype: dsr
         port: 7443
