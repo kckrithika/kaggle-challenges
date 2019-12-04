@@ -1,0 +1,33 @@
+apiVersion: v1
+system:
+  functions:
+  - name: samhellohttp2client-func
+    count: 1
+    volumes:
+    - name: myclientcert
+      maddogCert:
+        type: client
+    containers:
+    - name: samhellohttp2client
+      command:
+      - /bin/samhelloclient
+      - --url="http://10.254.230.231"
+      - --port="8080"
+      - --httpVer=1
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/arandhawa/samhello:client-20191204
+      ports:
+      - containerPort: 9493
+      livenessProbe:
+        exec:
+          command: ["true"]
+      volumeMounts:
+      - name: myclientcert
+        mountPath: /clientcert
+  loadbalancers:
+  - lbname: samhellohttp2clientlb
+    function: samhellohttp2client-func
+    slbenabled: true
+    ports:
+      - port: 9493
+        targetport: 9493
+        lbtype: tcp
