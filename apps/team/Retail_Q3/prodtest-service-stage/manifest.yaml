@@ -4,7 +4,7 @@ apiVersion: v1
 
 system:
   functions:
-  - name: prodtest
+  - name: prodtest-stage
     count: 2
     containers:
     - name: prodtest-service-stage
@@ -50,7 +50,7 @@ system:
 
   loadbalancers:
     - lbname: prodtest-lb-stage
-      function: prodtest
+      function: prodtest-stage
       slbenabled: true
       ports:
         - port: 8080
