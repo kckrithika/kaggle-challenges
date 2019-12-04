@@ -180,5 +180,6 @@ apps:
     - lo2/lo2-sam_report_collector
     - lo3/lo3-sam_report_collector
   estatesservice:
+    - cdg/cdg-sam_report_collector
     - prd/prd-sam_report_collector
     - xrd/xrd-sam_report_collector
