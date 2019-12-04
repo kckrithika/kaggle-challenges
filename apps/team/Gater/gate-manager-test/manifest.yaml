@@ -24,7 +24,6 @@ system:
         - --logging.sfdc.stderr.level=OFF
         - --logging.json.stdout.level=INFO
         - --publish-specific-metrics=CONDITIONAL
-        - --mesh.istio-mode=true
       volumeMounts:
       - mountPath: /log
         name: logvol
@@ -58,6 +57,8 @@ system:
       env:
       - name: SFDC_ENVIRONMENT
         value: blitz
+      - name: JAVA_OPTS
+        value: "-Dmesh.istio-mode=true"
       terminationMessagePolicy: FallbackToLogsOnError
     - name: beacon
       image: sfci/servicelibs/beacon:cec13ceb9fc5aed0ce462031a01b2dd5ef73d5ee
