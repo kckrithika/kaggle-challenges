@@ -52,7 +52,6 @@ system:
                   -XX:+PrintGCDetails
                   -XX:+DisableExplicitGC
                   -Xloggc:/opt/cre/cre-sp-ccp-dev/verbosegc_$(FUNCTION_INSTANCE_NAME).log
-                  -XX:+UseGCLogFileRotation -XX:NumberOfGCLogFiles=5 -XX:GCLogFileSize=20M
                   -XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=/opt/cre/cre-sp-ccp-dev
                   -Dcom.sun.management.jmxremote.port=8898
                   -Dcom.sun.management.jmxremote.rmi.port=8898
