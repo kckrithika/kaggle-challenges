@@ -119,7 +119,10 @@ items:
                           "sfcdec2test",
                           "bastion",
                           "strauz",
-                          "strauzstage"
+                          "strauzstage",
+                          "kaaskeymaker",
+                          "kaasslavekdc",
+                          "kaaskeywatcher"
                       ],
                       "soft-launch": true,
                       "vmf-parser-configs": {
@@ -399,7 +402,7 @@ items:
                 apiVersion: v1
                 fieldPath: metadata.labels['name']
           - name: CONFIG_VERSION
-            value: "20"
+            value: "21"
           image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/sfcdapi-firebom:103
           imagePullPolicy: Always
           livenessProbe:
