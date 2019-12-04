@@ -1,5 +1,5 @@
 - lbname: org-cce2e-cs59
-  iptype: private_nonreserved
+  iptype: public_active
   servers:
     - cs59-app1-2-ia5.ops.sfdc.net
     - cs59-app2-2-ia5.ops.sfdc.net
@@ -23,7 +23,6 @@
     tls: true
     tlscertificate: secret_service:BofA-Stmfa-VIP-Certs:ia5.cce2e.my-salesforce.com.crt
     tlskey: kms:1:2:B79A5F5D32C69C340DC39183EA315A164E1E7B3D76B680258E4EED91817177AE:59c81775-653d-479a-8e0b-49bdef4f4c2b
-
     addheaders:
     - name: "X-Salesforce-VIP"
       value: "SLB"
@@ -51,7 +50,6 @@
     mtls: true
     tlscertificate: secret_service:BofA-Stmfa-VIP-Certs:ia5.cce2e.my-salesforce.com.crt
     tlskey: kms:1:2:B79A5F5D32C69C340DC39183EA315A164E1E7B3D76B680258E4EED91817177AE:59c81775-653d-479a-8e0b-49bdef4f4c2b
-
     addheaders:
     - name: "X-Salesforce-VIP"
       value: "SLB"
@@ -83,7 +81,7 @@
       value: "SLB"
 
 - lbname: org-cce2e-cs60
-  iptype: private_nonreserved
+  iptype: public_active
   servers:
     - cs60-app2-3-ia5.ops.sfdc.net
     - cs60-app1-1-ia5.ops.sfdc.net
@@ -107,7 +105,6 @@
     tls: true
     tlscertificate: secret_service:BofA-Stmfa-VIP-Certs:ia5.cce2e.my-salesforce.com.crt
     tlskey: kms:1:2:B79A5F5D32C69C340DC39183EA315A164E1E7B3D76B680258E4EED91817177AE:59c81775-653d-479a-8e0b-49bdef4f4c2b
-
     addheaders:
     - name: "X-Salesforce-VIP"
       value: "SLB"
@@ -135,7 +132,6 @@
     mtls: true
     tlscertificate: secret_service:BofA-Stmfa-VIP-Certs:ia5.cce2e.my-salesforce.com.crt
     tlskey: kms:1:2:B79A5F5D32C69C340DC39183EA315A164E1E7B3D76B680258E4EED91817177AE:59c81775-653d-479a-8e0b-49bdef4f4c2b
-
     addheaders:
     - name: "X-Salesforce-VIP"
       value: "SLB"
@@ -167,7 +163,7 @@
       value: "SLB"
 
 - lbname: org-cce2e-cs123
-  iptype: private_nonreserved
+  iptype: public_active
   servers:
     - cs123-app1-4-ia5.ops.sfdc.net
     - cs123-app2-4-ia5.ops.sfdc.net
@@ -191,7 +187,6 @@
     tls: true
     tlscertificate: secret_service:BofA-Stmfa-VIP-Certs:ia5.cce2e.my-salesforce.com.crt
     tlskey: kms:1:2:B79A5F5D32C69C340DC39183EA315A164E1E7B3D76B680258E4EED91817177AE:59c81775-653d-479a-8e0b-49bdef4f4c2b
-
     addheaders:
     - name: "X-Salesforce-VIP"
       value: "SLB"
@@ -219,7 +214,6 @@
     mtls: true
     tlscertificate: secret_service:BofA-Stmfa-VIP-Certs:ia5.cce2e.my-salesforce.com.crt
     tlskey: kms:1:2:B79A5F5D32C69C340DC39183EA315A164E1E7B3D76B680258E4EED91817177AE:59c81775-653d-479a-8e0b-49bdef4f4c2b
-
     addheaders:
     - name: "X-Salesforce-VIP"
       value: "SLB"
@@ -251,7 +245,7 @@
       value: "SLB"
 
 - lbname: org-cce2e-cs124
-  iptype: private_nonreserved
+  iptype: public_active
   servers:
     - cs124-app2-2-ia5.ops.sfdc.net
     - cs124-app1-4-ia5.ops.sfdc.net
@@ -275,7 +269,6 @@
     tls: true
     tlscertificate: secret_service:BofA-Stmfa-VIP-Certs:ia5.cce2e.my-salesforce.com.crt
     tlskey: kms:1:2:B79A5F5D32C69C340DC39183EA315A164E1E7B3D76B680258E4EED91817177AE:59c81775-653d-479a-8e0b-49bdef4f4c2b
-
     addheaders:
     - name: "X-Salesforce-VIP"
       value: "SLB"
@@ -303,7 +296,6 @@
     mtls: true
     tlscertificate: secret_service:BofA-Stmfa-VIP-Certs:ia5.cce2e.my-salesforce.com.crt
     tlskey: kms:1:2:B79A5F5D32C69C340DC39183EA315A164E1E7B3D76B680258E4EED91817177AE:59c81775-653d-479a-8e0b-49bdef4f4c2b
-
     addheaders:
     - name: "X-Salesforce-VIP"
       value: "SLB"
@@ -335,7 +327,7 @@
       value: "SLB"
 
 - lbname: org-cce2e-cs125
-  iptype: private_nonreserved
+  iptype: public_active
   servers:
     - cs125-app1-1-ia5.ops.sfdc.net
     - cs125-app1-3-ia5.ops.sfdc.net
@@ -359,7 +351,6 @@
     tls: true
     tlscertificate: secret_service:BofA-Stmfa-VIP-Certs:ia5.cce2e.my-salesforce.com.crt
     tlskey: kms:1:2:B79A5F5D32C69C340DC39183EA315A164E1E7B3D76B680258E4EED91817177AE:59c81775-653d-479a-8e0b-49bdef4f4c2b
-
     addheaders:
     - name: "X-Salesforce-VIP"
       value: "SLB"
@@ -387,7 +378,6 @@
     mtls: true
     tlscertificate: secret_service:BofA-Stmfa-VIP-Certs:ia5.cce2e.my-salesforce.com.crt
     tlskey: kms:1:2:B79A5F5D32C69C340DC39183EA315A164E1E7B3D76B680258E4EED91817177AE:59c81775-653d-479a-8e0b-49bdef4f4c2b
-
     addheaders:
     - name: "X-Salesforce-VIP"
       value: "SLB"

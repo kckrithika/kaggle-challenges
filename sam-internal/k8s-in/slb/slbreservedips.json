@@ -225,6 +225,20 @@
     "xrd-sam": {
       "external-sledgeapi-xrd.slb.sfdc.net": "136.146.48.1",
       "sledge-xrd.slb.sfdc.net": "136.146.67.13"
+    },
+    "ia4-sam": {
+      "org-cce2e-cs59-slb-ia4.slb.sfdc.net": "13.109.180.11",
+      "org-cce2e-cs60-slb-ia4.slb.sfdc.net": "13.109.180.12",
+      "org-cce2e-cs123-slb-ia4.slb.sfdc.net": "13.109.180.13",
+      "org-cce2e-cs124-slb-ia4.slb.sfdc.net": "13.109.180.14",
+      "org-cce2e-cs125-slb-ia4.slb.sfdc.net": "13.109.180.15"
+    },
+    "ia5-sam": {
+      "org-cce2e-cs59-slb-ia5.slb.sfdc.net": "13.109.182.11",
+      "org-cce2e-cs60-slb-ia5.slb.sfdc.net": "13.109.182.12",
+      "org-cce2e-cs123-slb-ia5.slb.sfdc.net": "13.109.182.13",
+      "org-cce2e-cs124-slb-ia5.slb.sfdc.net": "13.109.182.14",
+      "org-cce2e-cs125-slb-ia5.slb.sfdc.net": "13.109.182.15"
     }
   },
   "privateReservedIps": {
