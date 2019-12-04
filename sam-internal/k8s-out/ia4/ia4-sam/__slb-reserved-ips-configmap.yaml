@@ -1,6 +1,13 @@
 apiVersion: v1
 data:
-  slb-reserved-ips-ia4.json: '{}'
+  slb-reserved-ips-ia4.json: |-
+    {
+      "org-cce2e-cs123-slb-ia4.slb.sfdc.net": "13.109.180.13",
+      "org-cce2e-cs124-slb-ia4.slb.sfdc.net": "13.109.180.14",
+      "org-cce2e-cs125-slb-ia4.slb.sfdc.net": "13.109.180.15",
+      "org-cce2e-cs59-slb-ia4.slb.sfdc.net": "13.109.180.11",
+      "org-cce2e-cs60-slb-ia4.slb.sfdc.net": "13.109.180.12"
+    }
 kind: ConfigMap
 metadata:
   creationTimestamp: null
