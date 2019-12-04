@@ -142,6 +142,22 @@ system:
             - mountPath: /var/log/web
               name: logvol
 
+      volumes:
+        - name: logvol
+          hostpath:
+            path: /var/log/app
+        - name: sherpaclientcert
+          maddogCert:
+            type: client
+        - name: sherpaservercert
+          maddogCert:
+            type: server
+        - name: sherpa-log-volume
+          hostPath:
+            path: /home/sfdc-sherpa/logs
+        - name: beacon-log-volume
+          hostPath:
+            path: /home/sfdc-beacon/logs
 
     - name: cs101-cron
       count: 1
@@ -282,10 +298,6 @@ system:
         targetport: 9020
       - port: 15472
         targetport: 15472
-      # port: 15373
-      # targetport: 15373
-      - port: 17020
-        targetport: 17020
   - lbname: cs101-cron-lb
     function: cs101-cron
     slbenabled: true
