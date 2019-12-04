@@ -6,6 +6,8 @@ system:
         - akouthoofd@salesforce.com
     functions:
     - name: maiev-receiver-func
+      identity:
+        serviceName: maiev-agent
       count: 1
       strategy:
         type: RollingUpdate
@@ -47,10 +49,8 @@ system:
         volumeMounts:
         - mountPath: /home/sfdc-maiev/certs
           name: maievservercert
-        - mountPath: /home/sfdc-maiev/certs/client/certificates
+        - mountPath: /home/sfdc-maiev/clientcerts
           name: maievclientcert
-        - mountPath: /home/sfdc-maiev/certs/client/keys
-          name: maievclientkey
       volumes:
       - name: maievservercert
         maddogCert:
@@ -58,11 +58,8 @@ system:
           lbnames:
           - maiev-receiver
       - name: maievclientcert
-        k4aSecret:
-          secretName: client-certificate
-      - name: maievclientkey
-        k4aSecret:
-          secretName: client-key
+        maddogCert:
+          type: client
     loadbalancers:
     - lbname: maiev-receiver
       function: maiev-receiver-func
