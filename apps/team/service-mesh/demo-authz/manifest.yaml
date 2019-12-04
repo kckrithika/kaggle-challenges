@@ -19,6 +19,8 @@ system:
       - --http-synthetic-client-ids=demo-authz.service-mesh
       - --authz-paths=opt/identity/authz/test-internal/,opt/identity/authz/opa-policies/,opt/identity/authz/
       env:
+      - name: AUTHZ_ARCHIVE_LOC
+        value: rpm-rc-signed
       - name: SFDC_ENVIRONMENT
         value: mesh
       - name: FAKE_ENV_VAR_INCREMENT_TO_TRIGGER_SAM_DEPLOY
