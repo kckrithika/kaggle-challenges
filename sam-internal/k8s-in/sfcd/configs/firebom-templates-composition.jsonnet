@@ -31,7 +31,7 @@
     }
   },
   'populate-full-master-service-pipeline': true,
-  'service-white-list': ['sfcdekstest1', 'sfcdec2test', 'bastion', 'strauz', 'strauzstage', 'kaaskeymaker', 'kaasslavekdc', 'kaaskeywatcher'],
+  'service-white-list': ['sfcdekstest1', 'sfcdec2test', 'bastion', 'strauz', 'strauzstage', 'kaaskeymaker', 'slavekdc', 'keywatcher'],
   'soft-launch': true,
   'vmf-parser-configs': {
     'k8s-account': 'aws-dev1-uswest2-sfcdtest-sfcdekstest1-platformcluster',
