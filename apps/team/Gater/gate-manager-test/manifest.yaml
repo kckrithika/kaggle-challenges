@@ -6,16 +6,18 @@ system:
   functions:
   - name: gater
     count: 10
-    labels:
-      app: gater
     annotations:
-      "routing.mesh.sfdc.net/enabled": "true"
+      sidecar.istio.io/inject: "true"
+      sidecar.istio.io/proxyCPU: "8000m"
+      sidecar.istio.io/proxyMemory: "4096Mi"
+      traffic.sidecar.istio.io/excludeInboundPorts: "9522,9523,9524,15372"
     hostnetwork: false
     containers:
     - name: gater1
       image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-sfci-dev/sfci/services/sfdc-bazel/gater/gate-manager:3c2d3becb
       args:
         - --server.port=9090
+        - --gater.grpc.server.port=7443
         - --gater-service.thread.pool.max-size=16
         - --gater.grpc.threadpool.size=16
         - --synctask.host-affinity=false
@@ -40,7 +42,7 @@ system:
         initialDelaySeconds: 60
         timeoutSeconds: 10
       ports:
-      - containerPort: 7020
+      - containerPort: 7443
       - containerPort: 9522
       - containerPort: 9523
       - containerPort: 9090
@@ -55,33 +57,6 @@ system:
       env:
       - name: SFDC_ENVIRONMENT
         value: blitz
-      terminationMessagePolicy: FallbackToLogsOnError
-    - name: sherpa
-      image: sfci/servicelibs/sherpa-envoy:1.0.8
-      ports:
-      - name: http2-in
-        containerPort: 7012
-      - name: http2-tls-in
-        containerPort: 7443
-      - name: sherpa-adm
-        containerPort: 15373
-      volumeMounts:
-      - mountPath: /client-certs
-        name: tls-client-cert
-      - mountPath: /server-certs
-        name: tls-server-cert
-      livenessProbe:
-        exec:
-          command:
-          - ./bin/is-alive
-        initialDelaySeconds: 20
-        periodSeconds: 5
-      readinessProbe:
-        exec:
-          command:
-          - ./bin/is-ready
-        initialDelaySeconds: 15
-        periodSeconds: 5
       terminationMessagePolicy: FallbackToLogsOnError
     - name: beacon
       image: sfci/servicelibs/beacon:cec13ceb9fc5aed0ce462031a01b2dd5ef73d5ee
@@ -123,10 +98,6 @@ system:
         lbtype: tcp
   - lbname: gater
     function: gater
-    labels:
-      app: gater
-    annotations:
-      "routing.mesh.sfdc.net/enabled": "true"
     ports:
       - lbtype: dsr
         port: 7443
