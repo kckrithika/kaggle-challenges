@@ -7,3 +7,5 @@ apps:
   - prd/prd-sam
  asr-http2-app:
   - prd/prd-sam
+ asr-http2-client:
+  - prd/prd-sam
