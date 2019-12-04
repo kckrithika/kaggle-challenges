@@ -71,7 +71,6 @@
      healthpath: "/ping.jsp"
      healthprotocol: "http"
 - lbname: sledge-mist51-ead-lb
-  lbalgorithm: roundrobin
   servers:
    - mist51public0-gateway1-1-prd.eng.sfdc.net
    - mist51public0-gateway1-2-prd.eng.sfdc.net
@@ -84,16 +83,19 @@
      healthport: 81
      healthpath: "/ping.jsp"
      healthprotocol: "http"
+     lbalgorithm: roundrobin
    - port: 443
      targetport: 443
      lbtype: tcp
      healthport: 81
      healthpath: "/ping.jsp"
      healthprotocol: "http"
+     lbalgorithm: roundrobin
    - port: 8443
      targetport: 8443
      lbtype: tcp
      healthport: 81
      healthpath: "/ping.jsp"
      healthprotocol: "http"
+     lbalgorithm: roundrobin
 
