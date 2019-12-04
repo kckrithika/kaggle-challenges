@@ -58,6 +58,12 @@ system:
               value: 7442
             - name: CASAM_SETTINGS_PATH
               value: mist.mist61.prd.na2.app
+            - name: SETTINGS_SUPERPOD
+              value: sp2
+            - name: SETTINGS_ENV
+              value: mist
+            - name: SETTINGS_SUBENV
+              value: mist61
             - name: CLUSTER_NAME
               value: na2
             - name: DEPLOYMENT
@@ -111,7 +117,7 @@ system:
         - env:
             - name: CASAM_SETTINGS_PATH
               value: mist.mist61.prd.na2.app
-          image: sfci/casam/coreapp_overrides:a15f0d
+          image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/casam/coreapp_overrides:82751c
           livenessProbe:
             exec:
               command:
