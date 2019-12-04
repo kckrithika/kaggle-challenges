@@ -58,6 +58,12 @@ system:
               value: 7442
             - name: CASAM_SETTINGS_PATH
               value: mist.mist61.prd.na2.app
+            - name: SETTINGS_SUPERPOD
+              value: sp2
+            - name: SETTINGS_ENV
+              value: mist
+            - name: SETTINGS_SUBENV
+              value: mist61
             - name: CLUSTER_NAME
               value: na2
             - name: DEPLOYMENT
