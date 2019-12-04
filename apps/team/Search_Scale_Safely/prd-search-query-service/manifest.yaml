@@ -3,10 +3,8 @@ system:
   functions:
   - name: search-query-service
     count: 8
-    labels:
-      app: search-query-service
     annotations:
-      "routing.mesh.sfdc.net/enabled": "true"
+      sidecar.istio.io/inject: "true"
     containers:
     - name: search-query-service
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/searchdev/smt-search-query-service:9bd2ec9
@@ -14,6 +12,7 @@ system:
       - java
       - -Xdebug
       - -Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=8955
+      - -Dmesh.istio-mode=true
       - -jar
       - service.jar
       args:
@@ -21,12 +20,14 @@ system:
       - --modelstore.repo.manifests=model_repository_root/test_manifests/manifests
       ports:
       - name: service-port
-        containerPort: 7020
+        containerPort: 7443
       - name: admin-port
         containerPort: 15372
       env:
       - name: SFDC_ENVIRONMENT
         value: sam
+      - name: GRPC_SERVER_PORT
+        value: 7443
       resources:
         limits:
           cpu: "12"
@@ -50,49 +51,15 @@ system:
         initialDelaySeconds: 110
         timeoutSeconds: 10
     - name: beacon
-      image: sfci/services/sfdc-bazel/disco/beacon:3a02b95e6
+      image: sfci/services/sfdc-bazel/disco/beacon:c06c58ea0
       args:
       - -endpoint
-      - search-scale-safely/search-query-service:DATACENTER_ALLENV:7443
+      - search-scale-safely/search-query-service:DATACENTER_ALLENV:HTTP2_TLS
       livenessProbe:
         exec:
           command:
           - /opt/beacon/is-alive.sh
         initialDelaySeconds: 5
-    - name: sherpa-b
-      image: sfci/servicelibs/sherpa-envoy:1.0.13
-      ports:
-      - name: sherpa-b-tls
-        containerPort: 7443
-      - name: sherpa-b-adm
-        containerPort: 15373
-      env:
-      - name: SFDC_ENVIRONMENT
-        value: sam
-      resources:
-        limits:
-          cpu: "1"
-          memory: 1Gi
-        requests:
-          cpu: "1"
-          memory: 1Gi
-      volumeMounts:
-      - mountPath: /server-certs
-        name: tls-server-cert
-      - mountPath: /client-certs
-        name: tls-client-cert
-      livenessProbe:
-        exec:
-          command:
-          - ./bin/is-alive
-        initialDelaySeconds: 120
-        periodSeconds: 5
-      readinessProbe:
-        exec:
-          command:
-          - ./bin/is-ready
-        initialDelaySeconds: 110
-        periodSeconds: 5
     volumes:
     - name: tls-client-cert
       maddogCert:
