@@ -121,3 +121,15 @@ $SAMBINDIR/evaluate-pr \
 
 # Validate vips.yaml files for SLB, this does not copy any files to output
 /opt/slb/slb-manifest-builder -root $PWD -output $PWD -validate --vcioptions.strict -v=1
+
+
+echo -e "\nSMB check complete, now run manifestctl (packaging) checks\n"
+
+if [ -z "$OUTPUT_DIR" ]; then
+  OUTPUT_DIR=./
+fi
+
+$SAMBINDIR/manifestctl manifest-git-info --inputDir . -outputPath ${OUTPUT_DIR}/git-info.yaml -gitHistoryMode lib -alsologtostderr
+
+echo -e "\n"
+$SAMBINDIR/manifestctl build-repo -inputManifestDir . -outputDir ${OUTPUT_DIR} -alsologtostderr
