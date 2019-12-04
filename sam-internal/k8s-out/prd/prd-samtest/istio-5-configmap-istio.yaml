@@ -35,7 +35,7 @@ data:
         zipkin:
           address: zipkindirecttls.funnel.svc.mesh.sfdc.net:7442
       envoyMetricsService:
-        address: switchboard.service-mesh:15001
+        address: "switchboard.service-mesh:15001"
         tlsSettings:
           caCertificates: /client-certs/ca.pem
           clientCertificate: /client-certs/client/certificates/client.pem

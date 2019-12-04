@@ -1,7 +1,7 @@
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: istio-init-crd-all-83dfaaf723240b7b5d1c3de6a58ed55a2940ad7e
+  name: istio-init-crd-all-4f8f37f485b14cbd9e3f625791f7533fe7b6a734
   namespace: mesh-control-plane
 spec:
   template:
@@ -15,7 +15,7 @@ spec:
         - apply
         - -f
         - /etc/istio/crd-all/crd-all.gen.yaml
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/sfci/servicemesh/istio-packaging/kubectl:83dfaaf723240b7b5d1c3de6a58ed55a2940ad7e
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/sfci/servicemesh/istio-packaging/kubectl:4f8f37f485b14cbd9e3f625791f7533fe7b6a734
         imagePullPolicy: IfNotPresent
         name: istio-init-crd-all
         resources:

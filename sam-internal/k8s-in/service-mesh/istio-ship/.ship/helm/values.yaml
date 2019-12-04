@@ -292,7 +292,7 @@ global:
       port: null
     envoyMetricsService:
       enabled: true
-      host: switchboard.service-mesh
+      host: '%(envoyMetricsServiceHost)s'
       port: 15001
       tlsSettings:
         mode: MUTUAL
