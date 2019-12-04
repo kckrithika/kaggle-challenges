@@ -71,6 +71,7 @@
      healthpath: "/ping.jsp"
      healthprotocol: "http"
 - lbname: sledge-mist51-ead-lb
+  lbalgorithm: roundrobin
   servers:
    - mist51public0-gateway1-1-prd.eng.sfdc.net
    - mist51public0-gateway1-2-prd.eng.sfdc.net
