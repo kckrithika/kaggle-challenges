@@ -28,7 +28,7 @@ spec:
         - -v
         - "2"
         - -alsologtostderr
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/flowsnake-service-mesh-injector-webhook:jenkins-dva-transformation-service-mesh-injector-webhook-PR-1-23-itest
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/flowsnake-service-mesh-injector-webhook:7
         imagePullPolicy: Always
         livenessProbe:
           httpGet:
