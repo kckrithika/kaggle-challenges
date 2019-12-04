@@ -24,7 +24,7 @@ system:
         - --logging.sfdc.stderr.level=OFF
         - --logging.json.stdout.level=INFO
         - --publish-specific-metrics=CONDITIONAL
-        - --mesh.istio-mode=true
+        - --metrics.funnelEndPointURL=http://ajnafunneldirecttls.funnel.svc.mesh.sfdc.net:7442
       volumeMounts:
       - mountPath: /log
         name: logvol
@@ -58,6 +58,8 @@ system:
       env:
       - name: SFDC_ENVIRONMENT
         value: blitz
+      - name: JAVA_OPTS
+        value: "-Dmesh.istio-mode=true"
       terminationMessagePolicy: FallbackToLogsOnError
     - name: beacon
       # https://git.soma.salesforce.com/services/sfdc-bazel/tree/master/projects/sidecars/beacon#docker-image
