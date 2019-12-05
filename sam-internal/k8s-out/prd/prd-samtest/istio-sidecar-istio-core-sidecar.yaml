@@ -34,6 +34,7 @@ spec:
     - search-scale-safely/*
     - service-mesh/*
     - universal-search/*
+    - ci-gateway/*
     port:
       name: grpc-egress
       number: 7443
@@ -65,6 +66,7 @@ spec:
     - search-scale-safely/*
     - service-mesh/*
     - universal-search/*
+    - ci-gateway/*
     port:
       name: http-egress
       number: 7442

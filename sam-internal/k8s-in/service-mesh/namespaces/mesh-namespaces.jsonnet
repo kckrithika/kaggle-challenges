@@ -32,6 +32,10 @@ local all_known_mesh_namespaces = [
     "universal-search", 
   ];
 
+local ci_namespaces_prd_only = [
+    "ci-gateway",
+  ];
+
 // Kingdoms and namespaces where `Sherpa Injection` is enabled
 local sherpaInjectionEnabled = {
   prd: ["service-mesh", "ccait"],
@@ -46,7 +50,7 @@ local electronOpaInjectionEnabled = {
 
 // Kingdoms and namespaces where `Istio Injection` is enabled
 local istioInjectionEnabled = {
-  prd: all_known_mesh_namespaces,
+  prd: all_known_mesh_namespaces + ci_namespaces_prd_only,
   mvp: all_known_mesh_namespaces,
   par: ["app", "funnel", "service-mesh"],
   lo3: ["app", "funnel", "service-mesh", "ccait", "gater", "search-scale-safely", "universal-search", "gateway"],
@@ -55,7 +59,7 @@ local istioInjectionEnabled = {
 
 {
   // Returns a list of all possible NS variations to iterate over and create individual files for each NS
-  allNs: all_known_mesh_namespaces,
+  allNs: all_known_mesh_namespaces + ci_namespaces_prd_only,
 
   istioEnabledNamespaces(kingdom): istioInjectionEnabled[kingdom],
 
