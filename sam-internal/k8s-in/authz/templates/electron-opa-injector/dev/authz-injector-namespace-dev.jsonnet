@@ -10,6 +10,6 @@ if electron_opa_utils.is_electron_opa_injector_dev_cluster(configs.estate) then
     labels: {
       "electron-opa-injection": "disabled",
     },
-    name: versions.newInjectorNamespace,
+    name: versions.injectorNamespace,
   },
 } else "SKIP"

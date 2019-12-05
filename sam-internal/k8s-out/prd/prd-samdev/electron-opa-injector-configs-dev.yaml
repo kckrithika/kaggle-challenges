@@ -168,15 +168,12 @@ data:
           - echo -e "${ELECTRON_OPA_CONFIG}" > /templated-config/opa_config.yaml.erb &&
             /app/config_gen.rb -t /templated-config/opa_config.yaml.erb -o /generated-config/opa_config.yaml &&
             echo -e "${ELECTRON_OPA_ISTIO_CONFIG}" > /templated-config/opa_istio_config.yaml.erb &&
-            /app/config_gen.rb -t /templated-config/opa_istio_config.yaml.erb -o /generated-config/opa_istio_config.yaml &&
-            chmod -R 777 /client-certs/client
+            /app/config_gen.rb -t /templated-config/opa_istio_config.yaml.erb -o /generated-config/opa_istio_config.yaml
         volumeMounts:
           - name: templated-config
             mountPath: /templated-config
           - name: generated-config
             mountPath: /generated-config
-          - name: tls-client-cert
-            mountPath: /client-certs
       - name: authz-config-init-sherpa
         image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/collection-erb-config-gen:19-70c45ccd33d3772cd6519e1f7dfe2cf5c2bc7b0e
         imagePullPolicy: IfNotPresent
@@ -276,22 +273,16 @@ data:
           - echo -e "${ELECTRON_OPA_CONFIG}" > /templated-config/opa_config.yaml.erb &&
             /app/config_gen.rb -t /templated-config/opa_config.yaml.erb -o /generated-config/opa_config.yaml &&
             echo -e "${ELECTRON_OPA_ISTIO_CONFIG}" > /templated-config/opa_istio_config.yaml.erb &&
-            /app/config_gen.rb -t /templated-config/opa_istio_config.yaml.erb -o /generated-config/opa_istio_config.yaml &&
-            chmod -R 777 /client-certs/client
+            /app/config_gen.rb -t /templated-config/opa_istio_config.yaml.erb -o /generated-config/opa_istio_config.yaml
         volumeMounts:
           - name: templated-config
             mountPath: /templated-config
           - name: generated-config
             mountPath: /generated-config
-          - name: tls-client-cert
-            mountPath: /client-certs
     containers:
       - name: electron-opa
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/electron-opa:v0.14.2-2-metrics
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/electron-opa:v0.15.0-2
         imagePullPolicy: IfNotPresent
-        ports:
-          - name: http
-            containerPort: 8181
         args:
           - run
           - --server
@@ -302,21 +293,24 @@ data:
             mountPath: /config
           - name: tls-client-cert
             mountPath: /client-certs
+        securityContext:
+          runAsUser: 0
         livenessProbe:
-          httpGet:
-            scheme: HTTP
-            port: 8181
-          initialDelaySeconds: 5
-          periodSeconds: 10
-        readinessProbe:
           httpGet:
             path: /health?bundle=false
             scheme: HTTP
             port: 8181
           initialDelaySeconds: 5
           periodSeconds: 10
+        readinessProbe:
+          httpGet:
+            path: /health?bundle=true
+            scheme: HTTP
+            port: 8181
+          initialDelaySeconds: 5
+          periodSeconds: 10
       - name: electron-opa-istio
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/electron-opa-istio:v0.14.2-2-metrics
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/electron-opa-istio:v0.15.0-2
         imagePullPolicy: IfNotPresent
         args:
           - run
@@ -328,15 +322,18 @@ data:
             mountPath: /config
           - name: tls-client-cert
             mountPath: /client-certs
+        securityContext:
+          runAsUser: 0
         livenessProbe:
           httpGet:
+            path: /health?bundle=false
             scheme: HTTP
             port: 8181
           initialDelaySeconds: 5
           periodSeconds: 10
         readinessProbe:
           httpGet:
-            path: /health?bundle=false
+            path: /health?bundle=true
             scheme: HTTP
             port: 8181
           initialDelaySeconds: 5

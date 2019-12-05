@@ -3,10 +3,6 @@ local utils = import "util_functions.jsonnet";
 
 {
     injectorNamespace: (
-        "authz-injector"
-    ),
-
-    newInjectorNamespace: (
         "authz-opa-webhook"
     ),
 
@@ -14,30 +10,33 @@ local utils = import "util_functions.jsonnet";
     // OPA
     // =========
     opaImage: (
-        "%s/dva/electron-opa:v0.14.2" % configs.registry
+        "%s/dva/electron-opa:v0.14.2-2-metrics" % configs.registry
     ),
 
-    newOpaImage: (
-        "%s/dva/electron-opa:v0.14.2-2-metrics" % configs.registry
+    devOpaImage: (
+        "%s/dva/electron-opa:v0.15.0-2" % configs.registry
     ),
 
     // =========
     // OPA-ISTIO
     // =========
     opaIstioImage: (
-        "%s/dva/electron-opa-istio:v0.14.2" % configs.registry
+        "%s/dva/electron-opa-istio:v0.14.2-2-metrics" % configs.registry
     ),
 
-    newOpaIstioImage: (
-        "%s/dva/electron-opa-istio:v0.14.2-2-metrics" % configs.registry
+    devOpaIstioImage: (
+        "%s/dva/electron-opa-istio:v0.15.0-2" % configs.registry
     ),
 
     // =========
     // INJECTOR
     // =========
     injectorImage: (
-        // need to use a full image path. relative paths like 'dva/electron-opa-injector' won't work here.
         "%s/dva/mutating-webhook:125-ecf4466e49ca0d09bb486ea9e53b58d7a0e8c3a3" % configs.registry
+    ),
+
+    devInjectorImage: (
+        "%s/dva/mutating-webhook:127-9a1eac117d60fbe37df1c989a6cf51526166711d" % configs.registry
     ),
 
     // =========

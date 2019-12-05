@@ -11,7 +11,7 @@ if electron_opa_utils.is_electron_opa_injector_prod_cluster(configs.estate) && e
   kind: "ConfigMap",
   metadata: {
     name: "electron-opa-injector-config",
-    namespace: versions.newInjectorNamespace,
+    namespace: versions.injectorNamespace,
     labels: {
       app: "electron-opa-injector",
     } +
@@ -278,7 +278,7 @@ zpages:
         mountPath: /client-certs
 containers:
   - name: electron-opa
-    image: ' + versions.newOpaImage + '
+    image: ' + versions.opaImage + '
     imagePullPolicy: IfNotPresent
     ports:
       - name: http
@@ -307,7 +307,7 @@ containers:
       initialDelaySeconds: 5
       periodSeconds: 10
   - name: electron-opa-istio
-    image: ' + versions.newOpaIstioImage + '
+    image: ' + versions.opaIstioImage + '
     imagePullPolicy: IfNotPresent
     args:
       - run
@@ -346,7 +346,7 @@ volumes:
     containers: ["electron-opa"]
     volumes: ["templated-config", "generated-config"]
     volumeMounts: []
-    ignoreNamespaces: ["' + versions.newInjectorNamespace + '"]
+    ignoreNamespaces: ["' + versions.injectorNamespace + '"]
     whitelistNamespaces: []
   - name: "electron-opa-istio-non-sherpa"
     annotationNamespace: "electron-opa-istio.k8s-integration.sfdc.com"
@@ -355,7 +355,7 @@ volumes:
     containers: ["electron-opa-istio"]
     volumes: ["templated-config", "generated-config"]
     volumeMounts: []
-    ignoreNamespaces: ["' + versions.newInjectorNamespace + '"]
+    ignoreNamespaces: ["' + versions.injectorNamespace + '"]
     whitelistNamespaces: []
   - name: "electron-opa-sherpa"
     annotationNamespace: "electron-opa-sherpa.k8s-integration.sfdc.com"
@@ -364,7 +364,7 @@ volumes:
     containers: ["electron-opa"]
     volumes: ["templated-config", "generated-config"]
     volumeMounts: []
-    ignoreNamespaces: ["' + versions.newInjectorNamespace + '"]
+    ignoreNamespaces: ["' + versions.injectorNamespace + '"]
     whitelistNamespaces: []
   - name: "electron-opa-istio-sherpa"
     annotationNamespace: "electron-opa-istio-sherpa.k8s-integration.sfdc.com"
@@ -373,7 +373,7 @@ volumes:
     containers: ["electron-opa-istio"]
     volumes: ["templated-config", "generated-config"]
     volumeMounts: []
-    ignoreNamespaces: ["' + versions.newInjectorNamespace + '"]
+    ignoreNamespaces: ["' + versions.injectorNamespace + '"]
     whitelistNamespaces: []'
   }
 } else "SKIP"
