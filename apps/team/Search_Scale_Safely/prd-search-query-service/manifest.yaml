@@ -26,7 +26,7 @@ system:
       env:
       - name: SFDC_ENVIRONMENT
         value: sam
-      - name: GRPC_SERVER_PORT
+      - name: GRPC_PORT
         value: 7443
       resources:
         limits:
