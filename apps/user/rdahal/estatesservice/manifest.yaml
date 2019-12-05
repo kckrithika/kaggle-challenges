@@ -42,7 +42,7 @@ system:
       - name: ESTATESSERVICE_SERVER_KEY_FILEPATH
         value: /server-certs/server/keys/server-key.pem
       - name: ESTATESSERVICE_SUBSERVICE
-        value: $(FUNCTION_NAMESPACE).$(FUNCTION).$(FUNCTION_INSTANCE_NAME)
+        value: $(FUNCTION_NAMESPACE)-$(FUNCTION)-$(FUNCTION_INSTANCE_NAME)
       command:
         - /estatesservice/estatesservice
         - -port=$(ESTATESSERVICE_PORT)
@@ -61,3 +61,5 @@ system:
     ports:
       - port: 443
         targetport: 9090
+        lbtype: http
+        mtls: true
