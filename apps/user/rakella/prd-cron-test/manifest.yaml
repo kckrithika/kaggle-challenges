@@ -170,7 +170,7 @@ system:
         pod: cs101
       containers:
         - name: cronsvc
-          image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/rakella/scheduler-service:nov20
+          image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/rakella/scheduler-service:dec4
           ports:
             - name: grpc-port
               containerPort: 7020
