@@ -127,8 +127,6 @@ system:
     - name: server-certs
       maddogCert:
         type: server
-        lbnames:
-          - cre-api-ccp-perf-lb
     - name: sherpa-log-volume
       hostPath:
         path: /home/sfdc-sherpa/logs
