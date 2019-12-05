@@ -285,7 +285,7 @@ containers:
       periodSeconds: 10
     readinessProbe:
       httpGet:
-        path: /health?bundle=true
+        path: /health?bundle=false
         scheme: HTTP
         port: 8181
       initialDelaySeconds: 5
@@ -314,7 +314,7 @@ containers:
       periodSeconds: 10
     readinessProbe:
       httpGet:
-        path: /health?bundle=true
+        path: /health?bundle=false
         scheme: HTTP
         port: 8181
       initialDelaySeconds: 5
