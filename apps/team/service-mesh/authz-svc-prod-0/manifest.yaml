@@ -13,10 +13,12 @@ system:
       "sherpa-injector.service-mesh/inject": "enabled"
     containers:
     - name: authz-svc
-      image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/electron_sam:111
+      image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/electron_sam:135
       args:
       - --grpc-synthetic-clients=dns=authz-svc.service-mesh.sfdc-role,uri=spiffe://salesforce.com/ns/service-mesh/sa/authz-svc
       env:
+      - name: AUTHZ_ARCHIVE_LOC
+        value: rpm-rc-signed
       - name: SFDC_ENVIRONMENT
         value: mesh
       - name: FAKE_ENV_VAR_INCREMENT_TO_TRIGGER_SAM_DEPLOY
@@ -42,7 +44,7 @@ system:
         periodSeconds: 5
         timeoutSeconds: 4
     - name: authz-svc-grpc-client
-      image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/electron_client:111
+      image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/electron_client:135
       args:
       - -endpoint=localhost:7020
       - -service=grpc
