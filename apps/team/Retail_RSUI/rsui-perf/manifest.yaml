@@ -108,16 +108,7 @@ system:
         value: true
       - name: JVM_ARGS
         value: "-Dspring.profiles.active=prod -Djava.util.concurrent.ForkJoinPool.common.parallelism=50
-                -verbose:gc -XX:+PrintGCDateStamps -XX:+PrintHeapAtGC
-                -XX:+PrintPromotionFailure -XX:+PrintTenuringDistribution -XX:+PrintGCDetails
-                -XX:+PrintGCDateStamps -XX:+PrintGCApplicationStoppedTime
-                -XX:+PrintGCApplicationConcurrentTime -XX:+PrintGCCause -XX:+DisableExplicitGC
-                -Xloggc:/home/scone/logs/retail-setup/verbosegc_$(FUNCTION_INSTANCE_NAME).log
-                -XX:+HeapDumpOnOutOfMemoryError  -XX:HeapDumpPath=/home/scone/logs/retail-setup
-                -Dcom.sun.management.jmxremote.port=8898
-                -Dcom.sun.management.jmxremote.rmi.port=8898
-                -Dcom.sun.management.jmxremote.ssl=false
-                -Dcom.sun.management.jmxremote.authenticate=false
+                -XX:+DisableExplicitGC
                 -Xmx6G -Xms6G -XX:ParallelGCThreads=8 -Daura.production=true"
       - name: LOGGING_JSON_STDOUT_LEVEL
         value: ALL
