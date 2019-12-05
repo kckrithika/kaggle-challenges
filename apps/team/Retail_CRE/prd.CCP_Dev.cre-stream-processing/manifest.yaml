@@ -47,8 +47,8 @@ system:
           value: http://cre-control-plane-ccp-dev.retail-cre.localhost.mesh.force.com:5442
         - name: ENABLE_BATCH_ORPHAN_CHECKS
           value: true
-        - name: LOGGING_LEVEL_ORG_APACHE_HTTP
-          value: DEBUG
+        ## - name: LOGGING_LEVEL_ORG_APACHE_HTTP
+        ##  value: DEBUG
         - name: JVM_ARGS
           value: "-verbose:gc
                   -XX:+PrintGCDetails
