@@ -85,10 +85,10 @@ system:
           value: cre-sp-ccp-dev.retail-cre.localhost.mesh.force.com:5442
         - name: CRE_API_ENDPOINT
           value: cre-api-ccp-dev.retail-cre.localhost.mesh.force.com:5442
-        - name: LOGGING_LEVEL_ORG_SPRINGFRAMEWORK_WEB
-          value: DEBUG
-        - name: LOGGING_LEVEL_ORG_APACHE_HTTP
-          value: DEBUG
+        ## - name: LOGGING_LEVEL_ORG_SPRINGFRAMEWORK_WEB
+        ##   value: DEBUG
+        ## - name: LOGGING_LEVEL_ORG_APACHE_HTTP
+        ##   value: DEBUG
         - name: SCONE_SERVER_SECURITY_MUTUALAUTH
           value: false
         ####################################################################################################
