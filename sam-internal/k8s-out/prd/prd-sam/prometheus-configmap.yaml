@@ -105,6 +105,21 @@ data:
               ]
             }
           ]
+        },
+        {
+          "job_name": "sloop",
+          "scheme": "http",
+          "static_configs": [
+            {
+              "targets": [
+                "shared0-samkubeapi1-1-prd.eng.sfdc.net:31938",
+                "shared0-samkubeapi1-2-prd.eng.sfdc.net:31938",
+                "shared0-samkubeapi2-1-prd.eng.sfdc.net:31938",
+                "shared0-samkubeapi2-2-prd.eng.sfdc.net:31938",
+                "shared0-samkubeapi3-1-prd.eng.sfdc.net:31938"
+              ]
+            }
+          ]
         }
       ]
     }

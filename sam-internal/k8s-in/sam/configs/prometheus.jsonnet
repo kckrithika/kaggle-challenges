@@ -1,4 +1,6 @@
 local hosts = import "hosts.jsonnet";
+local portconfigs = import "portconfig.jsonnet";
+local samfeatureflags = import "sam-feature-flags.jsonnet";
 
 {
     global: {
@@ -138,5 +140,17 @@ local hosts = import "hosts.jsonnet";
             ],
         },
 */
-    ],
+    ]
+    + if samfeatureflags.sloop then [
+        # We dont use kube discovery for API servers because the UI shows the instance by IP not hostname.  Use jsonnet since we have it.a
+        {
+            job_name: "sloop",
+            static_configs: [
+                {
+                    targets: [h.hostname + ":" + portconfigs.sloop.sloop for h in hosts.hosts if h.estate == std.extVar("estate") && h.kingdom == std.extVar("kingdom") && h.devicerole == "samkubeapi"],
+                },
+            ],
+            scheme: "http",
+        },
+    ] else [],
 }
