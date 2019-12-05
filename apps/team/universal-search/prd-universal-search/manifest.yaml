@@ -340,6 +340,28 @@ system:
       volumeMounts:
       - name: client-cert-vol
         mountPath: /certs
+  - name: nginx-reverse-proxy-shared
+    count: 2
+    volumes:
+    - name: client-cert-vol
+      maddogCert:
+        type: client
+    containers:
+    - name: nginx-reverse-proxy-shared
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/irahim/us-nginx-reverse-proxy-master:irahim-201912051520
+      args: ["/scripts/run-nginx.sh"]
+      ports:
+      - containerPort: 8000
+        name: nginx-http
+      livenessProbe:
+        exec:
+          command: ["true"]
+      readinessProbe:
+        exec:
+          command: ["true"]
+      volumeMounts:
+      - name: client-cert-vol
+        mountPath: /certs
   loadbalancers:
   - function: universal-search
     lbname: universal-search-slb
@@ -385,6 +407,13 @@ system:
         name: grpc-search
   - function: nginx-reverse-proxy-cre
     lbname: nginx-reverse-proxy-cre-slb
+    ports:
+    - lbtype: http
+      port: 8000
+      targetport: 8000
+    slbEnabled: true
+  - function: nginx-reverse-proxy-shared
+    lbname: nginx-reverse-proxy-shared-slb
     ports:
     - lbtype: http
       port: 8000
