@@ -54,6 +54,8 @@ spec:
         - --funnel-address
         - ajnafunneldirecttls.funnel.svc.mesh.sfdc.net:7442
         - --default-policy-opt-in=false
+        - --gateway-namespace
+        - core-on-sam-sp2
         env:
         - name: SETTINGS_SUPERPOD
           value: '-'
