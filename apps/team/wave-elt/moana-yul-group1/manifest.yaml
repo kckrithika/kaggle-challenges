@@ -7,7 +7,7 @@ apiVersion: v1
 system:
   functions:
   - containers:
-    - image: ops0-artifactrepo1-0-yul.data.sfdc.net/sfci/insights/moanaengine:release-2019.10.b.27-ea8c606
+    - image: ops0-artifactrepo1-0-yul.data.sfdc.net/sfci/insights/moanaengine:release-2019.11.a.28-53dcfe1
       livenessProbe:
         exec:
           command: [ls]
@@ -15,6 +15,15 @@ system:
       name: moana-engine
     count: 0
     name: moana-engine-group1
+  - containers:
+    - image: ops0-artifactrepo1-0-yul.data.sfdc.net/sfci/insights/moanaengine:beta-20191129.2-c8731b7
+      livenessProbe:
+        exec:
+          command: [ls]
+        initialDelaySeconds: 5
+      name: moana-engine-beta
+    count: 0
+    name: moana-engine-beta-group1
   - containers:
     - env:
       - {name: MANAGEMENT_SERVER_PORT, value: '-1'}
@@ -29,7 +38,7 @@ system:
       - {name: HANDLED_PODS_PATTERN, value: 'cs[0-9]+|moana-driver-group1'}
       - {name: HEALTHCHECK_SELF_INTERVAL, value: '60'}
       - {name: SPRING_MAIN_WEB_APPLICATION_TYPE, value: NONE}
-      image: sfci/insights/moana-driver:release-2019.10.a.30-b845189
+      image: sfci/insights/moana-driver:release-2019.11.b.32-33207e7
       livenessProbe:
         exec:
           command: [bash, -c, find /tmp -mmin -2 -name health | grep -q "."]
@@ -56,7 +65,8 @@ system:
       - {name: MANAGEMENT_SERVER_PORT, value: '-1'}
       - {name: LOGGING_JSON_STDOUT_LEVEL, value: ALL}
       - {name: LOGGING_STDERR_LEVEL, value: ALL}
-      - {name: MOANA_SPARK_ENGINE_IMAGE, value: 'ops0-artifactrepo1-0-yul.data.sfdc.net/sfci/insights/moanaengine:release-2019.10.b.27-ea8c606'}
+      - {name: MOANA_SPARK_ENGINE_IMAGE, value: 'ops0-artifactrepo1-0-yul.data.sfdc.net/sfci/insights/moanaengine:release-2019.11.a.28-53dcfe1'}
+      - {name: MOANA_SPARK_ENGINE_BETA_IMAGE, value: 'ops0-artifactrepo1-0-yul.data.sfdc.net/sfci/insights/moanaengine:beta-20191129.2-c8731b7'}
       - {name: KAFKA_GROUP_ID, value: moana-jobcontroller-group1}
       - {name: DEPLOYMENT_ID, value: yul-group1}
       - {name: JAVA_OPTS, value: '-server -XX:MaxMetaspaceSize=512m -Xmx2048m -Xms2048m'}
@@ -68,7 +78,7 @@ system:
       - {name: MAESTRO_ENDPOINT, value: 'https://insights1-iworker{{superPodIndex}}-0-${kingdom}.data.sfdc.net:8008'}
       - {name: HEALTHCHECK_SELF_INTERVAL, value: '60'}
       - {name: SPRING_MAIN_WEB_APPLICATION_TYPE, value: NONE}
-      image: sfci/insights/jobcontroller:release-2019.10.b.33-e15dfe9
+      image: sfci/insights/jobcontroller:release-2019.11.a.35-ead8ad9
       livenessProbe:
         exec:
           command: [bash, -c, find /tmp -mmin -2 -name health | grep -q "."]
