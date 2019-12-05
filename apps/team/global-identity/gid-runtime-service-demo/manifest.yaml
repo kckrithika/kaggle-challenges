@@ -113,7 +113,7 @@ system:
     # Global Identity Loing and Runtime Service
     #####################################################################################
     - name: gid-runtime-service
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/gid/gid-runtime-service:8283f0d
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/gid/gid-runtime-service:99b75fd
       imagePullPolicy: Always
       env:
       - name: server_use_forward_headers
@@ -125,7 +125,7 @@ system:
       - name: login_public_url
         value: https://test.next.login.salesforce.com
       - name: login_vip_url
-        value: https://gid-runtime-demo.global-identity.prd-sam.prd.slb.sfdc.net
+        value: https://gid-runtime-demo.slb.sfdc.net
       - name: kms_kingdom
         value: prd
       - name: kms_role
