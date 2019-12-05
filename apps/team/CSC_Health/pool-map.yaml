@@ -181,5 +181,10 @@ apps:
     - lo3/lo3-sam_report_collector
   estatesservice:
     - cdg/cdg-sam_report_collector
+    - dfw/dfw-sam_report_collector
+    - fra/fra-sam_report_collector
+    - frf/frf-sam_report_collector
+    - hnd/hnd-sam_report_collector
+    - ia2/ia2-sam_report_collector
     - prd/prd-sam_report_collector
     - xrd/xrd-sam_report_collector
