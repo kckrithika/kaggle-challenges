@@ -118,7 +118,7 @@ system:
             - name: grpc-port
               containerPort: 9020
             - name: scone-port
-              containerPort: 15472 
+              containerPort: 15474
           command: ["./launcher.sh"]
           args:
             - --scheduler.service.hostname=cs101-cron-lb.user-rakella.prd-sam.prd.slb.sfdc.net
@@ -300,8 +300,8 @@ system:
     ports:
       - port: 9020
         targetport: 9020
-      - port: 15472
-        targetport: 15472
+      - port: 15474
+        targetport: 15474
   - lbname: cs101-cron-lb
     function: cs101-cron
     slbenabled: true
