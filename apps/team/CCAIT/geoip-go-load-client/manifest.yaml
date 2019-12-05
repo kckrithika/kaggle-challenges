@@ -13,9 +13,9 @@ system:
         - name: GEOIP_ADDRESS
           value: geoip2.ccait.localhost.mesh.force.com:5443
         - name: GEOIP_TOTALRPS
-          value: 25
+          value: 20
         - name: GEOIP_CONCURRENCY
-          value: 25
+          value: 20
       resources:
         limits:
           cpu: "1"

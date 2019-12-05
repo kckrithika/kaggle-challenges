@@ -10,7 +10,7 @@ system:
       app: geoip
     containers:
     - name: geoip
-      image: sfci/services/sfdc-bazel/service-mesh/geoip:77bd7df74
+      image: sfci/services/sfdc-bazel/service-mesh/geoip:414468b11
       env:
       - name: FAKE_ENV_VAR_INCREMENT_TO_TRIGGER_SAM_DEPLOY
         value: "0"
