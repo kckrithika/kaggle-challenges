@@ -4,10 +4,10 @@ system:
     email:
     - servicemesh@salesforce.com
   functions:
-  - name: geoip
+  - name: geoip2
     count: 2
     labels:
-      app: geoip
+      app: geoip2
     containers:
     - name: geoip
       image: sfci/services/sfdc-bazel/service-mesh/geoip:77bd7df74
@@ -91,10 +91,10 @@ system:
         type: server
 
   loadbalancers:
-  - lbname: geoip
-    function: geoip
+  - lbname: geoip2
+    function: geoip2
     labels:
-      app: geoip
+      app: geoip2
     annotations:
       "routing.mesh.sfdc.net/enabled": "true"
     ports:

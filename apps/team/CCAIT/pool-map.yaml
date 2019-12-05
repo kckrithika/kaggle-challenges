@@ -25,6 +25,8 @@ apps:
     - prd/prd-sam_gater
   geoip-go-sandbox:
     - prd/prd-sam_gater
+  geoip-sandbox2:
+    - prd/prd-sam_gater
   geoip-go-load-client:
     - prd/prd-sam_gater
 
