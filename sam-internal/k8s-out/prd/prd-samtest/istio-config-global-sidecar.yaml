@@ -33,6 +33,7 @@ spec:
     - search-scale-safely/*
     - service-mesh/*
     - universal-search/*
+    - ci-gateway/*
     port:
       name: grpc-tls
       number: 7443
@@ -62,6 +63,7 @@ spec:
     - search-scale-safely/*
     - service-mesh/*
     - universal-search/*
+    - ci-gateway/*
     port:
       name: http-tls
       number: 7442
@@ -91,6 +93,7 @@ spec:
     - search-scale-safely/*
     - service-mesh/*
     - universal-search/*
+    - ci-gateway/*
     port:
       name: http-plain
       number: 7014
@@ -120,6 +123,7 @@ spec:
     - search-scale-safely/*
     - service-mesh/*
     - universal-search/*
+    - ci-gateway/*
     port:
       name: grpc-plain
       number: 7012
