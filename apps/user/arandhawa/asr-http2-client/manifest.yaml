@@ -8,13 +8,14 @@ system:
       maddogCert:
         type: client
     containers:
-    - name: samhellohttp2client
+    - name: samhelloclient
       command:
       - /bin/samhelloclient
       - --url="http://10.254.230.231"
       - --port="8080"
       - --httpVer=1
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/arandhawa/samhello:client-20191204
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/arandhawa/samhello:http2client-20191204
+      name: samhelloclient
       ports:
       - containerPort: 9493
       livenessProbe:
