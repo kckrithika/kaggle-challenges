@@ -41,7 +41,7 @@ system:
     volumes:
     - name: hostdatavol
       hostPath:
-        path: /data/gid/cloudatlas-ds
+        path: /data/gid/cloudatlas-gid
     - name: server-cert
       maddogCert:
         type: server
