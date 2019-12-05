@@ -60,10 +60,14 @@ system:
         pod: cs101
       containers:
         - name: crondemo
-          image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/rakella/scheduler-demo-client:dec4
+          image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/rakella/scheduler-demo-client:dec5
           ports:
             - name: http-port
               containerPort: 9090
+          command: ["./launcher.sh"]
+          args:
+            - --scheduler.service.hostname=cs101-cron-lb.user-rakella.prd-sam.prd.slb.sfdc.net
+            - --scheduler.service.port=7012              
           env:
             - name: SFDC_ENVIRONMENT
               value: mesh
