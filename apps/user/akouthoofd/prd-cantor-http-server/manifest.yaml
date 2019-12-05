@@ -19,11 +19,9 @@ system:
         - name: cantor-http
           containerPort: 7022
         livenessProbe:
-          httpGet:
-            scheme: HTTP
-            path: /
-            port: 7022
-          initialDelaySeconds: 120
+          exec:
+            command:
+            - /usr/bin/true
         env:
         - name: SUBDOMAIN
           value: "eng"
