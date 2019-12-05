@@ -53,8 +53,15 @@ system:
       readinessProbe:
         exec:
           command:
-          - ./runcheck.sh
+          - java
+          - -jar
+          - monitor-query-service.jar
+          - --phrase
+          - "SAM Health Monitor"
+          - --timeout
           - "5"
+          - --destination
+          - "localhost:7443"
         initialDelaySeconds: 110
         timeoutSeconds: 10
     - name: beacon
