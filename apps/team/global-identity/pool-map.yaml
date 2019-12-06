@@ -41,7 +41,7 @@ apps:
     - name: prd/prd-sam_globalidentity
 
   local-gid-service-staging:
-    - name: prd/prd-sam_globalidentity
+    - name: prd/prd-sam_cloudatlas
       hostSubList:
       - test0shared0-samminionatlasfe1-1-prd.eng.sfdc.net
 
