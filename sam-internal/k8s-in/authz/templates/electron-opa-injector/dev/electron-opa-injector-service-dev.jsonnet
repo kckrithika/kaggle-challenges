@@ -9,7 +9,7 @@ if electron_opa_utils.is_electron_opa_injector_dev_cluster(configs.estate) then
   kind: "Service",
   metadata: {
     name: "electron-opa-injector",
-    namespace: versions.newInjectorNamespace,
+    namespace: versions.injectorNamespace,
     labels: {
       app: "electron-opa-injector",
     },

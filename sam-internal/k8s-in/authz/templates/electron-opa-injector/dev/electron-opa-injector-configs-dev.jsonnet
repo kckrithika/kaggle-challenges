@@ -11,7 +11,7 @@ if electron_opa_utils.is_electron_opa_injector_dev_cluster(configs.estate) then
   kind: "ConfigMap",
   metadata: {
     name: "electron-opa-injector-config",
-    namespace: versions.newInjectorNamespace,
+    namespace: versions.injectorNamespace,
     labels: {
       app: "electron-opa-injector",
     } +
@@ -149,15 +149,12 @@ zpages:
       - echo -e "${ELECTRON_OPA_CONFIG}" > /templated-config/opa_config.yaml.erb &&
         /app/config_gen.rb -t /templated-config/opa_config.yaml.erb -o /generated-config/opa_config.yaml &&
         echo -e "${ELECTRON_OPA_ISTIO_CONFIG}" > /templated-config/opa_istio_config.yaml.erb &&
-        /app/config_gen.rb -t /templated-config/opa_istio_config.yaml.erb -o /generated-config/opa_istio_config.yaml &&
-        chmod -R 777 /client-certs/client
+        /app/config_gen.rb -t /templated-config/opa_istio_config.yaml.erb -o /generated-config/opa_istio_config.yaml
     volumeMounts:
       - name: templated-config
         mountPath: /templated-config
       - name: generated-config
         mountPath: /generated-config
-      - name: tls-client-cert
-        mountPath: /client-certs
   - name: authz-config-init-sherpa
     image: ' + versions.configInitImage + '
     imagePullPolicy: IfNotPresent
@@ -257,22 +254,16 @@ zpages:
       - echo -e "${ELECTRON_OPA_CONFIG}" > /templated-config/opa_config.yaml.erb &&
         /app/config_gen.rb -t /templated-config/opa_config.yaml.erb -o /generated-config/opa_config.yaml &&
         echo -e "${ELECTRON_OPA_ISTIO_CONFIG}" > /templated-config/opa_istio_config.yaml.erb &&
-        /app/config_gen.rb -t /templated-config/opa_istio_config.yaml.erb -o /generated-config/opa_istio_config.yaml &&
-        chmod -R 777 /client-certs/client
+        /app/config_gen.rb -t /templated-config/opa_istio_config.yaml.erb -o /generated-config/opa_istio_config.yaml
     volumeMounts:
       - name: templated-config
         mountPath: /templated-config
       - name: generated-config
         mountPath: /generated-config
-      - name: tls-client-cert
-        mountPath: /client-certs
 containers:
   - name: electron-opa
-    image: ' + versions.newOpaImage + '
+    image: ' + versions.devOpaImage + '
     imagePullPolicy: IfNotPresent
-    ports:
-      - name: http
-        containerPort: 8181
     args:
       - run
       - --server
@@ -283,8 +274,11 @@ containers:
         mountPath: /config
       - name: tls-client-cert
         mountPath: /client-certs
+    securityContext:
+      runAsUser: 0
     livenessProbe:
       httpGet:
+        path: /health?bundle=false
         scheme: HTTP
         port: 8181
       initialDelaySeconds: 5
@@ -297,7 +291,7 @@ containers:
       initialDelaySeconds: 5
       periodSeconds: 10
   - name: electron-opa-istio
-    image: ' + versions.newOpaIstioImage + '
+    image: ' + versions.devOpaIstioImage + '
     imagePullPolicy: IfNotPresent
     args:
       - run
@@ -309,8 +303,11 @@ containers:
         mountPath: /config
       - name: tls-client-cert
         mountPath: /client-certs
+    securityContext:
+      runAsUser: 0
     livenessProbe:
       httpGet:
+        path: /health?bundle=false
         scheme: HTTP
         port: 8181
       initialDelaySeconds: 5
@@ -336,7 +333,7 @@ volumes:
     containers: ["electron-opa"]
     volumes: ["templated-config", "generated-config"]
     volumeMounts: []
-    ignoreNamespaces: ["' + versions.newInjectorNamespace + '"]
+    ignoreNamespaces: ["' + versions.injectorNamespace + '"]
     whitelistNamespaces: []
   - name: "electron-opa-istio-non-sherpa"
     annotationNamespace: "electron-opa-istio.k8s-integration.sfdc.com"
@@ -345,7 +342,7 @@ volumes:
     containers: ["electron-opa-istio"]
     volumes: ["templated-config", "generated-config"]
     volumeMounts: []
-    ignoreNamespaces: ["' + versions.newInjectorNamespace + '"]
+    ignoreNamespaces: ["' + versions.injectorNamespace + '"]
     whitelistNamespaces: []
   - name: "electron-opa-sherpa"
     annotationNamespace: "electron-opa-sherpa.k8s-integration.sfdc.com"
@@ -354,7 +351,7 @@ volumes:
     containers: ["electron-opa"]
     volumes: ["templated-config", "generated-config"]
     volumeMounts: []
-    ignoreNamespaces: ["' + versions.newInjectorNamespace + '"]
+    ignoreNamespaces: ["' + versions.injectorNamespace + '"]
     whitelistNamespaces: []
   - name: "electron-opa-istio-sherpa"
     annotationNamespace: "electron-opa-istio-sherpa.k8s-integration.sfdc.com"
@@ -363,7 +360,7 @@ volumes:
     containers: ["electron-opa-istio"]
     volumes: ["templated-config", "generated-config"]
     volumeMounts: []
-    ignoreNamespaces: ["' + versions.newInjectorNamespace + '"]
+    ignoreNamespaces: ["' + versions.injectorNamespace + '"]
     whitelistNamespaces: []'
   }
 } else "SKIP"
