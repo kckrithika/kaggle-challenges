@@ -8,7 +8,7 @@ system:
     count: 2
     containers:
     - name: sleep-service
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/drichelson/sleep:1
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/drichelson/sleep:220e714ea1b224a99af706ec45465e06804ef5515d3fd05a6777b13b1abe57ca
       # This line makes sure that the last lines of the log on the console gets sent to Splunk on early termination
       terminationMessagePolicy: "FallbackToLogsOnError"
       ports:
