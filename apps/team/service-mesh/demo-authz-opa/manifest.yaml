@@ -102,3 +102,16 @@ system:
     - name: tls-server-cert
       maddogCert:
         type: server
+  loadbalancers:
+    - lbname: demo-authz-opa-lb
+      function: demo-authz-opa
+      slbenabled: true
+      ports:
+        - port: 7020
+          targetport: 7020
+          lbtype: http
+          mtls: true
+        - port: 7022
+          targetport: 7022
+          lbtype: http
+          mtls: true
