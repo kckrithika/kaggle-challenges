@@ -6,6 +6,9 @@ system:
     containers:
     - name: sam-c2c-jmh-perftestingapp-coreproxy
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/pbarlota/sam-c2c-jmh-perftestingapp-coreproxy:latest
+      resources:
+        limits: { cpu: "20", memory: "8Gi" }
+        requests: { cpu: "20", memory: "8Gi" }
       ports:
       - containerPort: 9090
       livenessProbe:
@@ -22,8 +25,8 @@ system:
       - name: SFDC_ENVIRONMENT
         value: "stmfa"
       resources:
-        limits: { cpu: "1", memory: "1Gi" }
-        requests: { cpu: "1", memory: "1Gi" }
+        limits: { cpu: "10", memory: "1Gi" }
+        requests: { cpu: "10", memory: "1Gi" }
       volumeMounts:
       - name: client-cert
         mountPath: /client-certs
