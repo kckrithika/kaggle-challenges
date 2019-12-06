@@ -178,7 +178,7 @@ system:
               containerPort: 15374
           command: ["./launcher.sh"]
           args:
-            - --scheduler.database.url=jdbc:postgresql://10.251.198.91:1521/crondb
+            - --scheduler.database.url=jdbc:postgresql://ss-sdb-lb.user-rakella.prd-sam.prd.slb.sfdc.net:1521/crondb
           env:
             - name: SFDC_ENVIRONMENT
               value: mesh              
