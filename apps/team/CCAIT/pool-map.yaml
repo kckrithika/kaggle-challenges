@@ -5,7 +5,7 @@ apps:
     - lo2/lo2-sam_gater
     - syd/syd-sam_gater
     - ukb/ukb-sam_gater
-    - fra/fra-sam_gater
+    - par/par-sam_gater
     - hnd/hnd-sam_gater
     - lo3/lo3-sam_gater
     - yul/yul-sam_gater
@@ -20,7 +20,7 @@ apps:
     - ia4/ia4-sam_gater
     - ia5/ia5-sam_gater
   geoip-prod-canary:
-    - par/par-sam_gater
+    - fra/fra-sam_gater
   geoip-sandbox:
     - prd/prd-sam_gater
   geoip-go-sandbox:
