@@ -49,8 +49,8 @@ local configs = import 'config.jsonnet';
       },
       'promote-release': {
         'config-json': "promotion/promotion_config.json",
-        'pipeline-template': "promotion/promotion_01-01.j2",
-        'pipeline-template-dev': "promotion/promotion_01-01.j2",
+        'pipeline-template': "promotion/promotion_01-00.j2",
+        'pipeline-template-dev': "promotion/promotion_01-00.j2",
         'stages-json': "promotion/promotion_stages.json",
         'vars-json': "promotion/promotion_vars.json"
       }
