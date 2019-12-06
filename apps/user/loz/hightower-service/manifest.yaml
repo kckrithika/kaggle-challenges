@@ -55,9 +55,9 @@ system:
         targetport: 8088
         lbtype: http
         addheaders:
-    	- name: "Upgrade"
+    	  - name: "Upgrade"
       	  value: "$http_upgrade"
-   	- name: "Connection"
+   	    - name: "Connection"
       	  value: "\"Upgrade\""
       - port: 15372
         targetport: 15372
