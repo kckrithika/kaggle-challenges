@@ -11,11 +11,11 @@ system:
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/ccait/geoip-client:2019.0.1
       env:
         - name: GEOIP_ADDRESS
-          value: geoip2.ccait.localhost.mesh.force.com:5443
+          value: geoip.ccait.localhost.mesh.force.com:5443
         - name: GEOIP_TOTALRPS
-          value: 20
+          value: 30
         - name: GEOIP_CONCURRENCY
-          value: 20
+          value: 30
       resources:
         limits:
           cpu: "1"
