@@ -5,7 +5,7 @@ apiVersion: v1
 system:
   functions:
   - name: sleep
-    count: 1
+    count: 2
     containers:
     - name: sleep-service
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/drichelson/sleep:1
