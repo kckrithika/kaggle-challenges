@@ -44,6 +44,8 @@ system:
       volumeMounts:
         - mountPath: /client-certs
           name: tls-client-cert
+        - mountPath: /server-certs
+          name: tls-server-cert
 
     # Volumes used by auto-injected istio-proxy.
     volumes:
@@ -53,6 +55,8 @@ system:
     - name: tls-server-cert
       maddogCert:
         type: server
+        lbnames:
+          - istio-shipping
 
   loadbalancers:
     - lbname: istio-shipping
