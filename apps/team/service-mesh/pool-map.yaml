@@ -134,6 +134,10 @@ apps:
 #  geoipnk:
 #    - prd/prd-sam_gater
 
+  #Used for performance troubleshooting in PRD only.
+  sleep:
+    - prd/prd-sam_gater
+
   demo-authz:
     - prd/prd-sam_gater
   demo-authz-opa:
