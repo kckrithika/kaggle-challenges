@@ -7,7 +7,7 @@ system:
     functions:
     - name: maiev-receiver-func
       identity:
-        serviceName: maiev-agent
+        serviceName: maiev-receiver
       count: 1
       strategy:
         type: RollingUpdate
@@ -49,7 +49,7 @@ system:
         volumeMounts:
         - mountPath: /home/sfdc-maiev/certs
           name: maievservercert
-        - mountPath: /home/sfdc-maiev/clientcerts
+        - mountPath: /home/sfdc-maiev/client-certs
           name: maievclientcert
       volumes:
       - name: maievservercert
