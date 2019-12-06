@@ -6,6 +6,8 @@ system:
         - akouthoofd@salesforce.com
     functions:
     - name: cantor-http-server
+      identity:
+        serviceName: cantor-service
       count: 3
       strategy:
         type: RollingUpdate
