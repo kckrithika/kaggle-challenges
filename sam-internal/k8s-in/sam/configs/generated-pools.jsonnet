@@ -3717,10 +3717,12 @@
     },
     {
       "namespaces": [
-        "global-identity"
+        "global-identity",
+        "ci-global-identity"
       ],
       "access": [
-        "team/global-identity"
+        "team/global-identity",
+        "team/ci-global-identity"
       ],
       "controlEstate": "prd-sam",
       "estate": "prd-sam_globalidentity",
