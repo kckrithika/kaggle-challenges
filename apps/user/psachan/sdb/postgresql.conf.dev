@@ -1,0 +1,53 @@
+##################################################
+# BEGIN APP DEV CONFIG
+#
+# The following are config values that come from
+# .../src/test/config/postgresql.conf.dev
+#
+# These are the recommended settings to run the app
+# on sdb on Linux and OS X dev environments.  This
+# includes running ftests as well as ad hoc use.
+
+memstore_buffer_size = 1GB
+block_cache_size = 2GB
+fsync = off
+log_standard = true
+
+autoexpire = on
+extent_file_cache_size = 8
+
+logging_collector = on
+log_filename = 'sayonaradb-%a.log'
+log_truncate_on_rotation = on
+log_rotation_age = 1d
+log_rotation_size = 0
+log_lock_waits = on
+log_connections = on
+log_disconnections = on
+
+auto_explain.log_min_duration = '1000s'
+auto_explain.log_nested_statements = on
+auto_explain.log_analyze = on
+
+# W-2489082: This setting controls erroring or logging an error when a hint is incorrect.
+# This is temporarily set to false. Once W2489082 is fixed we will set it back to true.
+fail_on_plan_constraints_error = false
+
+autovacuum = off
+
+lsmxlog_group_commit_interval = 10us #Match wait on group commit to SSD latency  
+
+func_cache_size=512MB # (default is 256MB which might be too low?)
+
+sequence_default_cache_value = 100     # seq default cache of 100 for app W-4745068
+sequence_num_consume_before_xlog = 500 # xlog sequences infrequently
+
+pgfilestore_enable_aio = off
+
+dump_core_on_panic = full
+pmc_max_size = 300MB
+dump_pmc = on
+listen_addresses='*'
+#
+# END TEST CONFIG
+##################################################
