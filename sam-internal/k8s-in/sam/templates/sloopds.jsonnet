@@ -15,11 +15,11 @@ if samfeatureflags.sloop then configs.daemonSetBase("sam") {
                         resources: {
                             requests: {
                                 cpu: "1",
-                                memory: "10Gi",
+                                memory: "12Gi",
                             },
                             limits: {
                                 cpu: "1",
-                                memory: "10Gi",
+                                memory: "12Gi",
                             },
                         },
                         args: [
