@@ -1097,6 +1097,60 @@ items:
 - apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: RoleBinding
   metadata:
+    name: ci-global-identity:prd-sam_globalidentity:rolebinding
+    namespace: ci-global-identity
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: minion:role
+  subjects:
+  - kind: User
+    name: shared0-samminionglobalidentity1-1-prd.eng.sfdc.net
+  - kind: User
+    name: shared0-samminionglobalidentity1-2-prd.eng.sfdc.net
+  - kind: User
+    name: shared0-samminionglobalidentity1-3-prd.eng.sfdc.net
+  - kind: User
+    name: shared0-samminionglobalidentity1-4-prd.eng.sfdc.net
+  - kind: User
+    name: shared0-samminionglobalidentity1-5-prd.eng.sfdc.net
+  - kind: User
+    name: shared0-samminionglobalidentity1-6-prd.eng.sfdc.net
+  - kind: User
+    name: shared0-samminionglobalidentity1-7-prd.eng.sfdc.net
+  - kind: User
+    name: shared0-samminionglobalidentity1-8-prd.eng.sfdc.net
+  - kind: User
+    name: shared0-samminionglobalidentity2-1-prd.eng.sfdc.net
+  - kind: User
+    name: shared0-samminionglobalidentity2-2-prd.eng.sfdc.net
+  - kind: User
+    name: shared0-samminionglobalidentity2-3-prd.eng.sfdc.net
+  - kind: User
+    name: shared0-samminionglobalidentity2-4-prd.eng.sfdc.net
+  - kind: User
+    name: shared0-samminionglobalidentity2-5-prd.eng.sfdc.net
+  - kind: User
+    name: shared0-samminionglobalidentity2-6-prd.eng.sfdc.net
+  - kind: User
+    name: shared0-samminionglobalidentity2-7-prd.eng.sfdc.net
+  - kind: User
+    name: shared0-samminionglobalidentity3-1-prd.eng.sfdc.net
+  - kind: User
+    name: shared0-samminionglobalidentity3-2-prd.eng.sfdc.net
+  - kind: User
+    name: shared0-samminionglobalidentity3-3-prd.eng.sfdc.net
+  - kind: User
+    name: shared0-samminionglobalidentity3-4-prd.eng.sfdc.net
+  - kind: User
+    name: shared0-samminionglobalidentity3-5-prd.eng.sfdc.net
+  - kind: User
+    name: shared0-samminionglobalidentity3-6-prd.eng.sfdc.net
+  - kind: User
+    name: shared0-samminionglobalidentity3-7-prd.eng.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1beta1
+  kind: RoleBinding
+  metadata:
     name: global-identity:prd-sam_globalidentity:rolebinding
     namespace: global-identity
   roleRef:
