@@ -51,14 +51,14 @@ system:
     function: hightower-service
     slbEnabled: true
     ports:
-      - port: 8088
-        targetport: 8088
-        lbtype: http
-        addheaders:
-    	  - name: "Upgrade"
-      	  value: "$http_upgrade"
-   	    - name: "Connection"
-      	  value: "\"Upgrade\""
-      - port: 15372
-        targetport: 15372
-        lbtype: http
+    - port: 8088
+      targetport: 8088
+      lbtype: http
+      addheaders:
+      - name: "Upgrade"
+        value: "$http_upgrade"
+      - name: "Connection"
+        value: "\"Upgrade\""
+    - port: 15372
+      targetport: 15372
+      lbtype: http
