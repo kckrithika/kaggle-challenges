@@ -149,12 +149,15 @@ zpages:
       - echo -e "${ELECTRON_OPA_CONFIG}" > /templated-config/opa_config.yaml.erb &&
         /app/config_gen.rb -t /templated-config/opa_config.yaml.erb -o /generated-config/opa_config.yaml &&
         echo -e "${ELECTRON_OPA_ISTIO_CONFIG}" > /templated-config/opa_istio_config.yaml.erb &&
-        /app/config_gen.rb -t /templated-config/opa_istio_config.yaml.erb -o /generated-config/opa_istio_config.yaml
+        /app/config_gen.rb -t /templated-config/opa_istio_config.yaml.erb -o /generated-config/opa_istio_config.yaml &&
+        chmod -R 777 /client-certs/client
     volumeMounts:
       - name: templated-config
         mountPath: /templated-config
       - name: generated-config
         mountPath: /generated-config
+      - name: tls-client-cert
+        mountPath: /client-certs
   - name: authz-config-init-sherpa
     image: ' + versions.configInitImage + '
     imagePullPolicy: IfNotPresent
@@ -254,12 +257,15 @@ zpages:
       - echo -e "${ELECTRON_OPA_CONFIG}" > /templated-config/opa_config.yaml.erb &&
         /app/config_gen.rb -t /templated-config/opa_config.yaml.erb -o /generated-config/opa_config.yaml &&
         echo -e "${ELECTRON_OPA_ISTIO_CONFIG}" > /templated-config/opa_istio_config.yaml.erb &&
-        /app/config_gen.rb -t /templated-config/opa_istio_config.yaml.erb -o /generated-config/opa_istio_config.yaml
+        /app/config_gen.rb -t /templated-config/opa_istio_config.yaml.erb -o /generated-config/opa_istio_config.yaml &&
+        chmod -R 777 /client-certs/client
     volumeMounts:
       - name: templated-config
         mountPath: /templated-config
       - name: generated-config
         mountPath: /generated-config
+      - name: tls-client-cert
+        mountPath: /client-certs
 containers:
   - name: electron-opa
     image: ' + versions.devOpaImage + '
@@ -274,8 +280,6 @@ containers:
         mountPath: /config
       - name: tls-client-cert
         mountPath: /client-certs
-    securityContext:
-      runAsUser: 0
     livenessProbe:
       httpGet:
         path: /health?bundle=false
@@ -303,8 +307,6 @@ containers:
         mountPath: /config
       - name: tls-client-cert
         mountPath: /client-certs
-    securityContext:
-      runAsUser: 0
     livenessProbe:
       httpGet:
         path: /health?bundle=false
