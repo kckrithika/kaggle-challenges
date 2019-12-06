@@ -21,6 +21,7 @@ system:
         - --gater-service.thread.pool.max-size=16
         - --gater.grpc.threadpool.size=16
         - --synctask.host-affinity=false
+        - --synctask.version=V2
         - --logging.sfdc.stderr.level=OFF
         - --logging.json.stdout.level=INFO
         - --publish-specific-metrics=CONDITIONAL
