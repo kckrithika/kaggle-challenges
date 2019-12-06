@@ -16,6 +16,7 @@ system:
       - -jar
       - service.jar
       args:
+      - --metrics.funnelEndPointURL=http://ajnafunneldirecttls.funnel.svc.mesh.sfdc.net:7442
       - --modelstore.repo.models=model_repository_root/models
       - --modelstore.repo.manifests=model_repository_root/test_manifests/manifests
       ports:
