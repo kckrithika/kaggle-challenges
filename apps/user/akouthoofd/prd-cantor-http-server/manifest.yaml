@@ -17,7 +17,7 @@ system:
         image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/akouthoofd/cantor-http-server:latest
         ports:
         - name: cantor-http
-          containerPort: 7020
+          containerPort: 7022
         livenessProbe:
           exec:
             command:
@@ -35,10 +35,10 @@ system:
         image: sfci/servicelibs/sherpa-envoy:1.0.13
         # See https://git.soma.salesforce.com/servicelibs/sherpa#ports
         ports:
-        - name: http2-in
-          containerPort: 7012
-        - name: http2-tls-in
-          containerPort: 7443
+        - name: http-in
+          containerPort: 7014
+        - name: http-tls-in
+          containerPort: 7442
         - name: sherpa-adm
           containerPort: 15373
         livenessProbe:
@@ -72,10 +72,10 @@ system:
       function: cantor-http-server
       slbEnabled: true
       ports:
-        - port: 7020
-          targetport: 7020
-        - port: 7012
-          targetport: 7012
-        - port: 7443
-          targetport: 7443
+        - port: 7022
+          targetport: 7022
+        - port: 7014
+          targetport: 7014
+        - port: 7442
+          targetport: 7442
           lbalgorithm: roundrobin
