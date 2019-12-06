@@ -13,7 +13,7 @@ local utils = import "util_functions.jsonnet";
     stampyWebhookImage: (
         // need to use a full image path. relative paths like 'dva/stampy-webhook-admission-controller-1p' won't work here.
         if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" then 
-            "%s/dva/stampy-webhook-admission-controller-1p:26" % configs.registry
+            "%s/dva/stampy-webhook-admission-controller-1p:27" % configs.registry
         else if configs.estate == "chx-sam" then
             "%s/dva/stampy-webhook-admission-controller-1p:26" % configs.registry
         else if configs.estate == "cdg-sam" then
