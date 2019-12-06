@@ -72,7 +72,7 @@ items:
             valueFrom:
               fieldRef:
                 fieldPath: spec.nodeName
-          image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/secretservice-watchdog:180-195c512830ddab15bfe81627852dfa09cbeb641f
+          image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/secretservice-watchdog:191-4acd4ee582db728abe2631b5fd9b0161e5b2ebed
           name: watchdog
           volumeMounts:
           - mountPath: /sfdchosts
@@ -248,7 +248,7 @@ items:
             valueFrom:
               fieldRef:
                 fieldPath: spec.nodeName
-          image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/secretservice-watchdog:180-195c512830ddab15bfe81627852dfa09cbeb641f
+          image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/secretservice-watchdog:191-4acd4ee582db728abe2631b5fd9b0161e5b2ebed
           name: watchdog
           volumeMounts:
           - mountPath: /sfdchosts
@@ -424,7 +424,7 @@ items:
             valueFrom:
               fieldRef:
                 fieldPath: spec.nodeName
-          image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/secretservice-watchdog:180-195c512830ddab15bfe81627852dfa09cbeb641f
+          image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/secretservice-watchdog:191-4acd4ee582db728abe2631b5fd9b0161e5b2ebed
           name: watchdog
           volumeMounts:
           - mountPath: /sfdchosts
@@ -600,7 +600,7 @@ items:
             valueFrom:
               fieldRef:
                 fieldPath: spec.nodeName
-          image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/secretservice-watchdog:180-195c512830ddab15bfe81627852dfa09cbeb641f
+          image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/secretservice-watchdog:191-4acd4ee582db728abe2631b5fd9b0161e5b2ebed
           name: watchdog
           volumeMounts:
           - mountPath: /sfdchosts
@@ -776,7 +776,7 @@ items:
             valueFrom:
               fieldRef:
                 fieldPath: spec.nodeName
-          image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/secretservice-watchdog:180-195c512830ddab15bfe81627852dfa09cbeb641f
+          image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/secretservice-watchdog:191-4acd4ee582db728abe2631b5fd9b0161e5b2ebed
           name: watchdog
           volumeMounts:
           - mountPath: /sfdchosts
