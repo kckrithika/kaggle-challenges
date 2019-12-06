@@ -31,8 +31,6 @@ apps:
 
   gid-runtime-service-staging:
     - name: prd/prd-sam_cloudatlas
-      hostSubList:
-      - test0shared0-samminionatlasfe1-1-prd.eng.sfdc.net
 
   gid-runtime-service-mit:
     - name: prd/prd-sam_cloudatlas
@@ -40,15 +38,13 @@ apps:
       - test0shared0-samminionatlasfe1-1-prd.eng.sfdc.net
 
   gid-runtime-service-dev:
-    - name: prd/prd-sam_cloudatlas
-      hostSubList:
-      - test1shared0-samminionatlasfe1-1-prd.eng.sfdc.net
-      - test1shared0-samminionatlasfe2-1-prd.eng.sfdc.net
+    - name: prd/prd-sam_globalidentity
 
   local-gid-service-staging:
-    - name: prd/prd-sam_cloudatlas
+    - name: prd/prd-sam_globalidentity
       hostSubList:
       - test0shared0-samminionatlasfe1-1-prd.eng.sfdc.net
+
   local-gid-service-dev:
     - name: prd/prd-sam_cloudatlas
       hostSubList:
