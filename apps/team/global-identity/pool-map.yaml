@@ -33,9 +33,7 @@ apps:
     - name: prd/prd-sam_globalidentity
 
   gid-runtime-service-mit:
-    - name: prd/prd-sam_cloudatlas
-      hostSubList:
-      - test0shared0-samminionatlasfe1-1-prd.eng.sfdc.net
+    - name: prd/prd-sam_globalidentity
 
   gid-runtime-service-dev:
     - name: prd/prd-sam_globalidentity
