@@ -8,8 +8,6 @@ system:
   - name: istio-shipping
     count: 1
     labels:
-      app: istio-shipping
-      settings_path: istio.-.prd.-.istio-shipping
       istio_app: test
       chaos.sfdc.net/podDelete: true
       chaos.sfdc.net/podDeletePeriod: 4h
@@ -43,6 +41,9 @@ system:
         httpGet:
           path: /manage/health
           port: 15372
+      volumeMounts:
+        - mountPath: /client/certs
+          name: tls-client-cert
 
     # Volumes used by auto-injected istio-proxy.
     volumes:
@@ -56,12 +57,6 @@ system:
   loadbalancers:
     - lbname: istio-shipping
       function: istio-shipping
-      annotations:
-        routing.mesh.sfdc.net/enabled: "true"
-        fake.deploy: 1
-      labels:
-        app: istio-shipping
-        settings_path: istio.-.prd.-.istio-shipping
       ports:
         - lbtype: dsr
           nodeExposed: false
