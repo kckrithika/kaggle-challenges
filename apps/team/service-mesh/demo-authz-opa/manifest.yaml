@@ -109,7 +109,7 @@ system:
       ports:
         - port: 7020
           targetport: 7020
-          lbtype: http
+          lbtype: tcp
           mtls: true
         - port: 7022
           targetport: 7022
