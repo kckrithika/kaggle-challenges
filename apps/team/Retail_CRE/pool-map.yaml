@@ -63,7 +63,17 @@ apps:
     - shared0-samminioncustomerresolutionengine1-2-prd.eng.sfdc.net
     - shared0-samminioncustomerresolutionengine2-1-prd.eng.sfdc.net
     #  - shared0-samminioncustomerresolutionengine2-2-prd.eng.sfdc.net
-  prd.CCP_Integration_Performance.cre-api: # api perf test env instance
+  prd.CCP_Integration_Performance.cre-api: # api perf env instance
+  - name: prd/prd-sam_customerresolutionengine
+    hostSubList:
+    - shared0-samminioncustomerresolutionengine3-1-prd.eng.sfdc.net
+    - shared0-samminioncustomerresolutionengine3-2-prd.eng.sfdc.net
+  prd.CCP_Integration_Performance.cre-api-dev: # api perf dev env instance
+  - name: prd/prd-sam_customerresolutionengine
+    hostSubList:
+    - shared0-samminioncustomerresolutionengine3-1-prd.eng.sfdc.net
+    - shared0-samminioncustomerresolutionengine3-2-prd.eng.sfdc.net
+  prd.CCP_Integration_Performance.cre-api-test: # api perf test env instance
   - name: prd/prd-sam_customerresolutionengine
     hostSubList:
     - shared0-samminioncustomerresolutionengine3-1-prd.eng.sfdc.net
