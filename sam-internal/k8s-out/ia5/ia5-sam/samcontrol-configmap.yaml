@@ -20,7 +20,7 @@ data:
       "enableMaddog": true,
       "httpsDisableCertsCheck": true,
       "imageCheckV2": true,
-      "k4aInitContainerImage": "ops0-artifactrepo1-0-ia5.data.sfdc.net/dva/sam/hypersam:2778-29ee2fa3a4532165211b8adae39ecf04c451a410",
+      "k4aInitContainerImage": "ops0-artifactrepo1-0-ia5.data.sfdc.net/dva/sam/hypersam:2857-49f61d7400b7330433a29b09783ca3e7c827d973",
       "k8sapiserver": "",
       "keyFile": "/etc/pki_service/platform/platform-client/keys/platform-client-key.pem",
       "livenessProbePort": "22545",
