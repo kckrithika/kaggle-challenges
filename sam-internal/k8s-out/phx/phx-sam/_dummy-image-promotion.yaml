@@ -1,0 +1,24 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  labels:
+    name: dummy-image-promotion
+    sam.data.sfdc.net/owner: secrets
+  name: dummy-image-promotion
+  namespace: sam-system
+spec:
+  replicas: 0
+  selector:
+    matchLabels:
+      name: dummy-image-promotion
+      sam.data.sfdc.net/owner: secrets
+  template:
+    metadata:
+      labels:
+        name: dummy-image-promotion
+        sam.data.sfdc.net/owner: secrets
+      namespace: sam-system
+    spec:
+      containers:
+      - image: ops0-artifactrepo1-0-phx.data.sfdc.net/dva/sam/hypersam:2857-49f61d7400b7330433a29b09783ca3e7c827d973
+        name: image-promotion
