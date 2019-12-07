@@ -871,18 +871,3 @@
       value: "SLB"    
     removeheaders:
     - "CipherSuite"
-
-- lbname: corsa04-forceusercontent
-  servers:
-   - corsa04-perfeng2-2015290246.vpod.t.force.com
-  ports:
-  - port: 80
-    targetport: 80
-    lbtype: http
-    healthprotocol: http
-    healthpath: /ping.jsp?allBusy
-    addheaders:
-    - name: "X-Salesforce-VIP"
-      value: "SLB"
-    removeheaders:
-    - "CipherSuite"
