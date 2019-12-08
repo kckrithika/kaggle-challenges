@@ -13,7 +13,7 @@ system:
       "routing.mesh.sfdc.net/enabled": "true"
     containers:
     - name: cre-control-plane-ccp-dev
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cre-fusion/services:controlplane.2.2.0.0.develop.976bac6.752
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cre-fusion/services:controlplane.2.2.0.0.develop.4f1f6a1.753
       env:
         ####################################################################################################
         ############################   ENGINE/DDS FLOWSNAKE ARTIFACTS ( Most frequently changed ) ##########
@@ -77,7 +77,7 @@ system:
           value: maddog/maddog-client-truststore.json
           ## DBaaS
         - name: DATABASE_NAMESPACE
-          value: crecontrolplaneccpdev
+          value: crecontrolplaneccpdeva
         - name: SPRING_DATASOURCE_URL
           value: jdbc:discover:${database.namespace}
           ## Stream Processor
