@@ -9,6 +9,7 @@ system:
     containers:
     - name: sleep-client
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/service-mesh/sleep-client:2019.12.08
+      imagePullPolicy: Always
       env:
         - name: MANAGEMENT_PORT
           value: 15372
