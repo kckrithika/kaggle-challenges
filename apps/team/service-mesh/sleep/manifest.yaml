@@ -11,6 +11,13 @@ system:
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/drichelson/sleep:bazel-monorepo
       # This line makes sure that the last lines of the log on the console gets sent to Splunk on early termination
       terminationMessagePolicy: "FallbackToLogsOnError"
+      resources:
+        limits:
+          cpu: "8"
+          memory: 3Gi
+        requests:
+          cpu: "8"
+          memory: 3Gi
       ports:
       - containerPort: 7020
         name: grpc-svc
@@ -66,7 +73,9 @@ system:
         mountPath: /client-certs
       - name: sherpaservercert
         mountPath: /server-certs
-
+      resources:
+        limits: { cpu: "1", memory: "1Gi" }
+        requests: { cpu: "1", memory: "1Gi" }
     volumes:
     - name: sherpaclientcert
       maddogCert:
