@@ -137,6 +137,8 @@ apps:
   #Used for performance troubleshooting in PRD only.
   sleep:
     - prd/prd-sam_gater
+  sleep-client:
+    - prd/prd-sam_gater
 
   demo-authz:
     - prd/prd-sam_gater
