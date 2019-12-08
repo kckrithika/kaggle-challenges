@@ -8,7 +8,7 @@ system:
     count: 2
     containers:
     - name: sleep-client
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/sleep-client:2019.12.08
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/service-mesh/sleep-client:2019.12.08
       env:
         - name: SLEEP_ADDRESS
           value: sleep.service-mesh.localhost.mesh.force.com:5443
