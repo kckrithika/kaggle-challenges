@@ -10,6 +10,8 @@ system:
     - name: sleep-client
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/service-mesh/sleep-client:2019.12.08
       env:
+        - name: MANAGEMENT_PORT
+          value: 15372
         - name: SLEEP_ADDRESS
           value: sleep.service-mesh.localhost.mesh.force.com:5443
         - name: SLEEP_TOTALRPS
