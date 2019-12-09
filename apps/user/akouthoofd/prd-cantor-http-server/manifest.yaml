@@ -8,7 +8,7 @@ system:
     - name: cantor-http-server
       identity:
         serviceName: cantor-service
-      count: 3
+      count: 2
       strategy:
         type: RollingUpdate
         rollingUpdate:
@@ -73,6 +73,8 @@ system:
       function: cantor-http-server
       slbEnabled: true
       ports:
+        - port: 80
+          targetport: 15373
         - port: 7022
           targetport: 7022
         - port: 7014
