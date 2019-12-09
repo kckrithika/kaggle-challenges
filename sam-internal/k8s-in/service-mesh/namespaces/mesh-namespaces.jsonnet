@@ -30,6 +30,7 @@ local all_known_mesh_namespaces = [
     "search-scale-safely", 
     "service-mesh", 
     "universal-search", 
+    "wave-elt",
   ];
 
 local ci_namespaces_prd_only = [
