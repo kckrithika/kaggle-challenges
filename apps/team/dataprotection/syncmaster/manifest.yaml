@@ -5,7 +5,7 @@ system:
     count: 1
     containers:
     - name: syncmaster
-      image: dva/winterfell-syncmaster:45
+      image: dva/winterfell-syncmaster:47
       env:
       - name: SFDC_ENVIRONMENT
         value: prod
@@ -107,7 +107,7 @@ system:
       - port: 15372
         targetport: 15372
       - port: 7443
-        targetport: 7020
+        targetport: 7443
 
 
 
