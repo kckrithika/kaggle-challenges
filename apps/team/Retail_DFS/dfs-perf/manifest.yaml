@@ -134,6 +134,8 @@ system:
     ports:
     - port: 7442
       targetport: 7442
+      lbtype: http
+      lbalgorithm: roundrobin
     - port: 15373
       targetport: 15372
   - lbname: dfs-perf 
