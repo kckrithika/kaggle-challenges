@@ -39,7 +39,22 @@
     'strauzstage',
     'kaaskeymaker',
     'slavekdc',
-    'keywatcher'
+    'keywatcher',
+    'dns',
+    'funnel',
+    'funnellogs',
+    'magister',
+    'authsync',
+    'authval',
+    'praapp',
+    'pradsm',
+    'praui',
+    'pravm',
+    'preevaluated',
+    'quantumk',
+    'radius',
+    'secds',
+    'seciamsvc'
   ],
   'soft-launch': true
 }
