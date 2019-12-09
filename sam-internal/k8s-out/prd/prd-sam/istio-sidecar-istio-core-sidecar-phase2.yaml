@@ -34,7 +34,7 @@ spec:
     - search-scale-safely/*
     - service-mesh/*
     - universal-search/*
-    - wate-elt/*
+    - wave-elt/*
     - ci-gateway/*
     port:
       name: grpc-egress
@@ -67,7 +67,7 @@ spec:
     - search-scale-safely/*
     - service-mesh/*
     - universal-search/*
-    - wate-elt/*
+    - wave-elt/*
     - ci-gateway/*
     port:
       name: http-egress

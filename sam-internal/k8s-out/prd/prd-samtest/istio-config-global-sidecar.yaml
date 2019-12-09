@@ -33,7 +33,7 @@ spec:
     - search-scale-safely/*
     - service-mesh/*
     - universal-search/*
-    - wate-elt/*
+    - wave-elt/*
     - ci-gateway/*
     port:
       name: grpc-tls
@@ -64,7 +64,7 @@ spec:
     - search-scale-safely/*
     - service-mesh/*
     - universal-search/*
-    - wate-elt/*
+    - wave-elt/*
     - ci-gateway/*
     port:
       name: http-tls
@@ -95,7 +95,7 @@ spec:
     - search-scale-safely/*
     - service-mesh/*
     - universal-search/*
-    - wate-elt/*
+    - wave-elt/*
     - ci-gateway/*
     port:
       name: http-plain
@@ -126,7 +126,7 @@ spec:
     - search-scale-safely/*
     - service-mesh/*
     - universal-search/*
-    - wate-elt/*
+    - wave-elt/*
     - ci-gateway/*
     port:
       name: grpc-plain

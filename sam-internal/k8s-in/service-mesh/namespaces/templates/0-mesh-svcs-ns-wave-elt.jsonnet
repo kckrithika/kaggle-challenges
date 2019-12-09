@@ -3,6 +3,6 @@
 
 local nsbase = import "namespaces/mesh-namespaces.jsonnet";
 local configs = import "config.jsonnet";
-if (nsbase.shouldDeployToKingdom("wate-elt", configs.kingdom)) then
-        nsbase.newMeshNamespace("wate-elt", configs.kingdom)
+if (nsbase.shouldDeployToKingdom("wave-elt", configs.kingdom)) then
+        nsbase.newMeshNamespace("wave-elt", configs.kingdom)
 else "SKIP"
