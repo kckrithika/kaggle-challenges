@@ -35,6 +35,7 @@ system:
       - {name: JAVA_OPTS, value: '-server -XX:MaxMetaspaceSize=256m -Xmx1024m -Xms1024m'}
       - {name: TESTRECIPE_MAESTROPINGTEST, value: 'true'}
       - {name: DEPLOYMENT_ID, value: prd-release}
+      - {name: SFDC_ENVIRONMENT, value: stm}
       - {name: GRPC_HOST, value: jobcontroller-release.wave-elt.localhost.mesh.force.com}
       - {name: GRPC_PORT, value: '5443'}
       - {name: HANDLED_PODS_PATTERN, value: stmfa\..*|moana-driver-master}
@@ -93,6 +94,7 @@ system:
       - {name: SIZING_MEMORY_OVERHEAD, value: '1024'}
       - {name: K8S_CPU_LIMIT_APPLY, value: 'false'}
       - {name: STARTUP_JOB_ENABLED, value: 'false'}
+      - {name: SFDC_ENVIRONMENT, value: stm}
       - {name: HANDLED_PODS_PATTERN, value: stmfa\..*|moana-driver-master}
       - {name: HANDLED_PODS_INVERT_MATCH, value: 'true'}
       image: sfci/insights/jobcontroller:release-20191204.37-718a011
@@ -155,5 +157,9 @@ system:
     ports:
     - {lbalgorithm: roundrobin, lbtype: http, port: 8082, sticky: 0, targetport: 8080}
     slbEnabled: true
+  - function: jobcontroller-release
+    lbname: jobcontroller-release
+    ports:
+    - {lbtype: dsr, name: grpc-in, port: 7443, targetport: 7443}
   notifications:
     email: [moanaserviceseng@salesforce.com]
