@@ -221,6 +221,10 @@ spec:
           value: prd-sam_gater
         - name: KINGDOM
           value: prd
+        - name: ENVOY_METRICS_SERVICE_ADDRESS
+          value: switchboard.service-mesh
+        - name: ENVOY_METRICS_SERVICE_PORT
+          value: "15001"
         - name: SDS_ENABLED
           value: "false"
         image: ops0-artifactrepo2-0-prd.data.sfdc.net/sfci/servicemesh/istio-packaging/proxy:83dfaaf723240b7b5d1c3de6a58ed55a2940ad7e

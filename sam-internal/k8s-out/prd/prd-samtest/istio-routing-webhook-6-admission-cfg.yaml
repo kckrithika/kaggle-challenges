@@ -14,6 +14,7 @@ webhooks:
       namespace: mesh-control-plane
       path: /validate
   failurePolicy: Fail
+  matchPolicy: Equivalent
   name: istio-routing-webhook.sfdc.internal
   namespaceSelector:
     matchLabels:

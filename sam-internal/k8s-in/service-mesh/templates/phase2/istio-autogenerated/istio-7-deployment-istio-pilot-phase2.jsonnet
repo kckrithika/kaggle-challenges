@@ -338,6 +338,14 @@ if (istioPhases.phaseNum == 2) then
                 value: mcpIstioConfig.kingdom,
               },
               {
+                name: "ENVOY_METRICS_SERVICE_ADDRESS",
+                value: mcpIstioConfig.envoyMetricsServiceHost,
+              },
+              {
+                name: "ENVOY_METRICS_SERVICE_PORT",
+                value: "15001",
+              },
+              {
                 name: "SDS_ENABLED",
                 value: "false",
               },
