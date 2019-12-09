@@ -22,6 +22,8 @@ system:
         env:
         - name: FAWKES_ENV
           value: "stg"
+        - name: RELEASE_VAR
+          value: "70.0.0"
         - name: STAGING_ENABLE_SENSOR
           value: "True"
         - name: HTTP_PROXY
