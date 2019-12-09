@@ -2,11 +2,6 @@ This folder contains spikes to testing out functionality on SAM
 
 # prd-cron-test
 This is a spike for standing up Scheduler Service using an SDB container on SAM. There were 2 attempts for dockerized SDB:
-1. Use private Docker image of one of the SDB architects. Like DBaaS, it tries to use Zookeeper to bring up an HA version of SDB.
-   1. Though postgres came up fine, I couldn't get the database to come up.
-   1. I didn't follow up further on [Chatter](https://gus.lightning.force.com/lightning/r/0D5B000000x8zMXKAY/view).
-1. Next attempt was to use `sdbgo` container with few tweaks. With this I was able to successfully connect to `sdbmain` database
-
 ## Topology
 1. Scheduler service (`cronsvc`) listens on gRPC port 7012 (behind Sherpa)
 1. Scheduler UI and demo HTTP endpoint (`crondemo`) are accessed via HTTP port 7022
@@ -18,13 +13,19 @@ This is a spike for standing up Scheduler Service using an SDB container on SAM.
    1. `docker build -t samhello -f mysdb-Dockerfile .`
    1. `docker tag samhello ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/vijay-kota/mysdb:<tag>`
    1. `docker push ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/vijay-kota/mysdb:<tag>`
-1. Changes made to `sdbgo` are as follows:
-   1. Download `*.bz2` files from Nexus into same folder as `mysdb-Dockerfile`
+1. Changes made to [sdbgo](https://git.soma.salesforce.com/Sayonara/sdb-go-docker/blob/master/Dockerfile) are as follows:
+   1. Package `*.bz2` files downloaded from Nexus into same folder as `mysdb-Dockerfile`
       1. See `install.sh` for the Nexus urls to download from
-   1. Modify `myinstall.sh` to use the downloaded artifacts
-      1. `myinstall.sh` is a copy of `install.sh` that uses hardcoded pre-built tars instead of logging into Nexus and downloading
+   1. Copy all sql files required for scheduler service schema
    1. Instead of user `sdb`, all permissions are given to uid 7447 which is the default in SAM
+   1. Package `myinstall.sh` to use the downloaded artifacts and create schema
+      1. `myinstall.sh` is a copy of `install.sh` that uses hardcoded pre-built tars instead of logging into Nexus and downloading
+      1. It also executes the sql scripts used for scheduler service Liquibase schema creation
 1. All cron images were built using sources at https://git.soma.salesforce.com/Scheduler/scheduler-service
+1. In an earlier spike, we also tried to use private Docker image of one of the SDB architects. Like DBaaS, it tries to use Zookeeper to bring up an HA version of SDB.
+   1. Though postgres came up fine, I couldn't get the database to come up.
+   1. I didn't follow up further on [Chatter](https://gus.lightning.force.com/lightning/r/0D5B000000x8zMXKAY/view).
+
 
 ## Testing
 1. Try to locate `psql` - command-line client for SDB. If you cannot find it under `~/blt`, try from CASAM container:

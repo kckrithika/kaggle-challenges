@@ -12,7 +12,7 @@ system:
         pod: cs66
       containers:
         - name: mysdb
-          image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/vijay-kota/mysdb:05Oct19
+          image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/psachan/mysdb:06Dec19
           #ommand: ["/bin/sleep"]
           #rgs: ["701000"]
           env:
@@ -162,7 +162,7 @@ system:
       containers:
         - name: cronsvc
           #mage: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/vijay-kota/cronsvc:05Nov19
-          image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/rakella/scheduler-service:nov20
+          image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/rakella/scheduler-service:dec4
           ports:
             - name: grpc-port
               containerPort: 7020
@@ -170,7 +170,7 @@ system:
               containerPort: 15374
           command: ["./launcher.sh"]
           args:
-            - --scheduler.database.url=jdbc:postgresql://10.251.198.91:1521/crondb
+            - --scheduler.database.url=jdbc:postgresql://cs66-sdb-lb.user-vijay-kota.prd-sam.prd.slb.sfdc.net:1521/crondb
             - --logging.json.level=ALL
             - --logging.json.stdout.level=ALL
           env:
