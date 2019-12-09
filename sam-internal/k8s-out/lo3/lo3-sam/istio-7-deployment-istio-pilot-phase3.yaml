@@ -307,7 +307,7 @@ spec:
           value: istio.-.lo3.-.istio-pilot
         - name: ESTATE
           value: lo3-sam_gater
-        image: ops0-artifactrepo1-0-lo3.data.sfdc.net/sfci/servicemesh/servicemesh/metrics-scraper:37eb50632f589a181158ce155e1f5c92961d819b
+        image: ops0-artifactrepo1-0-lo3.data.sfdc.net/sfci/servicemesh/servicemesh/metrics-scraper:f210d5ff0f01b8a28a5d6bb2943220b3fdb3223b
         imagePullPolicy: Always
         name: metrics-scraper
         readinessProbe:

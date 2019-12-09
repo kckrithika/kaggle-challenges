@@ -61,7 +61,7 @@ spec:
           value: -.-.par.-.istio-routing-webhook
         - name: ESTATE
           value: par-sam
-        image: ops0-artifactrepo1-0-par.data.sfdc.net/sfci/servicemesh/servicemesh/istio-routing-webhook:37eb50632f589a181158ce155e1f5c92961d819b
+        image: ops0-artifactrepo1-0-par.data.sfdc.net/sfci/servicemesh/servicemesh/istio-routing-webhook:f210d5ff0f01b8a28a5d6bb2943220b3fdb3223b
         imagePullPolicy: IfNotPresent
         name: istio-routing-webhook
         ports:
