@@ -166,3 +166,4 @@ system:
     - name: logvolbeacon
       hostPath:
         path: /home/sfdc-scone-hellodiscovery-beacon/logs
+    terminationGracePeriodSeconds: 120
