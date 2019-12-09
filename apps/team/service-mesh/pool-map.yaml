@@ -8,7 +8,7 @@ apps:
   switchboard:
     - prd/prd-sam_gater
   switchboard-prod-1:
-    - par/par-sam_gater
+    - fra/fra-sam_gater
   switchboard-prod-2:
     - cdu/cdu-sam_gater
     - frf/frf-sam_gater
@@ -16,7 +16,7 @@ apps:
   switchboard-prod-3:
     - syd/syd-sam_gater
     - ukb/ukb-sam_gater
-    - fra/fra-sam_gater
+    - par/par-sam_gater 
     - hnd/hnd-sam_gater
     - lo3/lo3-sam_gater
   switchboard-prod-4:
