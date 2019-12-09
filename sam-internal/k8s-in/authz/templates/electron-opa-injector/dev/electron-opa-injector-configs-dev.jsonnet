@@ -76,7 +76,7 @@ zpages:
             metrics:
               url: http://:9192/
             electron:
-              url: https://authz-svc-opa.service-mesh.localhost.mesh.force.com:7442
+              url: https://demo-authz-opa-lb.service-mesh.prd-sam.prd.slb.sfdc.net:7022
               allow_insecure_tls: true
               credentials:
                 client_tls:
@@ -114,7 +114,7 @@ zpages:
             metrics:
                 url: http://:9192/
             electron:
-              url: https://authz-svc-opa.service-mesh.localhost.mesh.force.com:7442
+              url: https://demo-authz-opa-lb.service-mesh.prd-sam.prd.slb.sfdc.net:7022
               allow_insecure_tls: true
               credentials:
                 client_tls:
