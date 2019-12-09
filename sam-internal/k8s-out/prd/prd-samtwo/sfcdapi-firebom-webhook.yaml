@@ -122,7 +122,22 @@ items:
                           "strauzstage",
                           "kaaskeymaker",
                           "slavekdc",
-                          "keywatcher"
+                          "keywatcher",
+                          "dns",
+                          "funnel",
+                          "funnellogs",
+                          "magister",
+                          "authsync",
+                          "authval",
+                          "praapp",
+                          "pradsm",
+                          "praui",
+                          "pravm",
+                          "preevaluated",
+                          "quantumk",
+                          "radius",
+                          "secds",
+                          "seciamsvc"
                       ],
                       "soft-launch": true,
                       "working-directory": "/tmp/sfcdapifirebom"
@@ -395,7 +410,7 @@ items:
                 apiVersion: v1
                 fieldPath: metadata.labels['name']
           - name: CONFIG_VERSION
-            value: "22"
+            value: "23"
           image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/sfcdapi-firebom:104
           imagePullPolicy: Always
           livenessProbe:
