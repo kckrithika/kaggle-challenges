@@ -1,0 +1,97 @@
+apiVersion: v1
+system:
+  notifications:
+    email:
+      - kbotha@salesforce.com
+      - egcp@salesforce.com
+      - yangyangliu@salesforce.com
+      - mnagarajan@salesforce.com
+      - satish.raghunath@salesforce.com
+  functions:
+  - name: gateway-service
+    annotations:
+      sidecar.istio.io/inject: "true"
+      routing.mesh.sfdc.net/enabled: "true"
+    count: 3
+    volumes: 
+    - name: tls-client-cert
+      maddogCert:
+        type: client
+    - name: tls-server-cert
+      maddogCert:
+        type: server
+    - name: client-cert
+      maddogCert:
+        type: client
+    - name: server-cert
+      maddogCert:
+        type: server
+        lbnames:
+        - gateway-service
+    - name: logvol
+      hostPath:
+        path: /home/sfdc-gatewayconfig/logs
+    - name: logvolsherpa
+      hostPath:
+        path: /home/sfdc-gatewayconfig/logs
+    - name: logvolbeacon
+      hostPath:
+        path: /home/sfdc-gatewayconfig/logs
+    - name: repo
+      emptyDir:
+        medium: Memory
+    containers:
+    - name: gatewayconfig
+      image: sfci/gateway/gateway-service:2019-11-11-180032
+      env:
+      - name: SERVER_PORT
+        value: 7442
+      - name: PKI_CA_DIR
+        value: /server-certs
+      - name: PKI_MONITORDIR
+        value: /server-certs/server
+      - name: LOGGING_JSON_STDOUT_LEVEL
+        value: all
+      - name: LOGGING_STDERR_LEVEL
+        value: all
+      volumeMounts:
+      - name: client-cert
+        mountPath: /client-certs
+      - name: server-cert
+        mountPath: /server-certs
+      - name: logvol
+        mountPath: /log
+      - name: repo
+        mountPath: /repo
+      args:
+        - start
+      ports:
+      - containerPort: 7442
+      - containerPort: 15372
+      livenessProbe:
+        initialDelaySeconds: 21
+        periodSeconds: 15
+        httpGet:
+          path: /manage/health
+          port: 15372
+    - name: beacon
+      image: sfci/servicelibs/beacon:853c4db9f14805018be6f5e7607ffe65b5648822
+      args:
+      - -endpoint
+      - gateway/gateway-service:DATACENTER_ALLENV:7442
+      volumeMounts:
+      - name: logvolbeacon
+        mountPath: /log
+      livenessProbe:
+        initialDelaySeconds: 5
+        exec:
+          command:
+          - /home/scone/is-alive.sh
+  loadbalancers:
+  - lbname: gateway-service
+    function: gateway-service
+    ports:
+    - port: 7442
+      targetport: 7442
+      name: http-gateway
+
