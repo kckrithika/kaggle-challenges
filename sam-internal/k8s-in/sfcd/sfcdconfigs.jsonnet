@@ -30,7 +30,7 @@ local kingdom = std.extVar("kingdom");
 
         ### Release Phase 3 - prd-samtwo (production)
         "3": $.per_phase["4"] {
-             sfcdapifirebomwebhook: "24",
+             sfcdapifirebomwebhook: "25",
             },
 
         ### Release Phase 4 - Rest of Prod + Pub + Gia
