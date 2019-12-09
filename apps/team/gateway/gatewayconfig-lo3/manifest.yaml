@@ -10,8 +10,8 @@ system:
   functions:
   - name: gateway-service
     annotations:
-      sidecar.istio.io/inject: "true"
-      routing.mesh.sfdc.net/enabled: "true"
+      sidecar.istio.io/inject: true
+      routing.mesh.sfdc.net/enabled: true
     count: 3
     volumes: 
     - name: tls-client-cert
