@@ -16,6 +16,7 @@ if (istioPhases.phaseNum == 2) then
   webhooks: [
     {
       name: "istio-routing-webhook.sfdc.internal",
+      matchPolicy: "Equivalent",
       clientConfig: {
         service: {
           name: "istio-routing-webhook",
