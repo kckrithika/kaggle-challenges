@@ -277,12 +277,6 @@ system:
             path: /home/sfdc-beacon/logs
 
   loadbalancers:
-  - lbname: cs101-sdb-lb
-    function: cs101-sdb
-    slbenabled: true
-    ports:
-      - port: 1521
-        targetport: 1521
   - lbname: cs101-demo-lb
     function: cs101-demo
     slbenabled: true
