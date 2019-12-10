@@ -57,6 +57,13 @@ system:
   loadbalancers:
   - lbname: estatesservicelb
     function: estatesservice
+    annotations:
+      slb.sfdc.net/cnames: |-
+        [
+         {
+          "cname": "estatesservicelb-user-rdahal.slb.sfdc.net"
+         }
+        ]
     slbenabled: true
     ports:
       - port: 443
