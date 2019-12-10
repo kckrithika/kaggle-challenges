@@ -124,7 +124,6 @@ if (istioPhases.phaseNum == 2) then
         "services",
         "namespaces",
         "nodes",
-        "secrets",
       ],
       verbs: [
         "get",
