@@ -6,12 +6,12 @@ system:
       - gater@salesforce.com
   functions:
   - name: gater
-    count: 5
+    count: 4
     hostnetwork: true
     containers:
     - name: gate-manager
       # container image/version to run. published separately.
-      image: sfci/services/sfdc-bazel/gater/gate-manager:1.16.2
+      image: sfci/services/sfdc-bazel/gater/gate-manager:1.17.0
       args:
         - --server.port=9090
         - --gater-service.thread.pool.max-size=16
