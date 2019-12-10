@@ -179,6 +179,8 @@ apps:
     - ph2/ph2-sam_report_collector
     - lo2/lo2-sam_report_collector
     - lo3/lo3-sam_report_collector
+    - ia4/ia4-sam_report_collector
+    - ia5/ia5-sam_report_collector
   estatesservice:
     - cdg/cdg-sam_report_collector
     - dfw/dfw-sam_report_collector
