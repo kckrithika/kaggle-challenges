@@ -7,6 +7,8 @@ apps:
   - prd/prd-sam_warden
  prd-maiev-receiver:
   - prd/prd-sam_warden
+ prd-maiev-receiver-staging:
+  - prd/prd-sam_warden
  prd-warden:
   - prd/prd-sam_warden
  prd-warden-stage:
