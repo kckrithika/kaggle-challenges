@@ -6,6 +6,8 @@ system:
         - akouthoofd@salesforce.com
     functions:
     - name: maiev-receiver-func-stage
+      identity:
+        serviceName: maiev-receiver
       count: 1
       strategy:
         type: RollingUpdate
@@ -14,50 +16,97 @@ system:
           maxUnavailable: 1
       containers:
       - name: prd-maiev-receiver-stage
-        image: dva/maiev-receiver:jenkins-CASP-maiev-alex-nginx-add-7-itest
+        image: dva/maiev-receiver:64
         ports:
         - name: receiver-grpc
-          containerPort: 7442
+          containerPort: 7020
         - name: receiver-http
-          containerPort: 8086
-        - name: receiver-https
-          containerPort: 8443
+          containerPort: 7022
         livenessProbe:
           exec:
             command:
             - /usr/bin/true
         env:
         - name: MASTER_GRPC_PORT
-          value: "7442"
+          value: "7020"
         - name: CANTOR_GRPC_TARGET
-          value: "cantor.casp.$KINGDOM-sam.$KINGDOM.slb.sfdc.net:11983"
+          value: "cantor.casp.$KINGDOM-samtwo.$KINGDOM.slb.sfdc.net:11983"
         - name: HTTP_PORT
-          value: "8085"
+          value: "7022"
         - name: BASE_PATH
           value: "/v1/*"
         - name: BRANCH
           value: "eng_production"
+        - name: KAFKA_PROPERTIES
+          value: "/home/sfdc-maiev/receiver/kafka-producer.properties"
         - name: NODENAME
           valueFrom:
             fieldRef:
               fieldPath: spec.nodeName
         volumeMounts:
         - mountPath: /home/sfdc-maiev/certs
-          name: maievservercert
+          name: server-cert
+        - mountPath: /home/sfdc-maiev/client-certs
+          name: client-cert
+      - name: cantor-http-sherpa
+        # Use the latest release version from https://git.soma.salesforce.com/servicelibs/sherpa-envoy/releases
+        image: sfci/servicelibs/sherpa-envoy:1.0.13
+        # See https://git.soma.salesforce.com/servicelibs/sherpa#ports
+        ports:
+        - name: http-in
+          containerPort: 7014
+        - name: http-tls-in
+          containerPort: 7442
+        - name: http2-in
+          containerPort: 7012
+        - name: http2-tls-in
+          containerPort: 7443
+        - name: sherpa-adm
+          containerPort: 15373
+        livenessProbe:
+          exec:
+            command:
+              - ./bin/is-alive
+          initialDelaySeconds: 60
+          periodSeconds: 5
+        readinessProbe:
+          exec:
+            command:
+              - ./bin/is-ready
+          initialDelaySeconds: 50
+          periodSeconds: 5
+        # The cert names should match whatever you choose below in your volumes section.
+        # The mount paths match the defaults assumed by sherpa. Changing the paths requires a corresponding manual override in sherpa.
+        volumeMounts:
+          - name: client-cert
+            mountPath: /client-certs
+          - name: server-cert
+            mountPath: /server-certs
       volumes:
-      - name: maievservercert
+      - name: server-cert
         maddogCert:
           type: server
           lbnames:
-          - maiev-receiver-stage
+            - maiev-receiver-stage
+      - name: client-cert
+        maddogCert:
+          type: client
     loadbalancers:
     - lbname: maiev-receiver-stage
       function: maiev-receiver-func-stage
       slbEnabled: true
       ports:
-        - port: 7442
-          targetport: 7442
         - port: 80
-          targetport: 8086
+          targetport: 7014
         - port: 443
-          targetport: 8443
+          targetport: 7442
+        - port: 7012
+          targetport: 7012
+        - port: 7443
+          targetport: 7443
+        - port: 7022
+          targetport: 7022
+        - port: 7020
+          targetport: 7020
+        - port: 15373
+          targetport: 15373
