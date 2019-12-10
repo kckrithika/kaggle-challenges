@@ -132,7 +132,7 @@ system:
             - name: SFDC_ENVIRONMENT
               value: mesh
             - name: DEMO_SVC
-              value: cs101-cron-lb.scheduler-service.prd-sam.prd.slb.sfdc.net
+              value: cs101-cron-lb.scheduler-service.prd-sam.prd.slb.sfdc.net:7012
             - name: DEMO_DATA
               value: crondemo_20,HttpEndpoint,*/50 * * * * ?,SYSTEM_ORG
           #esources:
