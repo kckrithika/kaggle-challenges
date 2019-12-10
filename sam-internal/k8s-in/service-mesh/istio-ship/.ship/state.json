@@ -3,13 +3,13 @@
     "config": {},
     "releaseName": "istio",
     "namespace": "mesh-control-plane",
-    "upstream": "https://github.com/istio/istio/tree/5cf691d566ca86b8d8b10360db120084025f281f/install/kubernetes/helm/istio",
+    "upstream": "https://github.com/istio/istio/tree/5e86e9d27768c88555d70319722ef2a50d801296/install/kubernetes/helm/istio",
     "metadata": {
       "applicationType": "helm",
       "sequence": 0,
       "icon": "https://istio.io/favicons/android-192x192.png",
       "name": "istio",
-      "releaseNotes": "Update grafana dashboard for new kubernetes labels (#18989)\n\nSee https://github.com/istio/istio/issues/18827",
+      "releaseNotes": "Add scrape target for istio-sidecar-injector (#19301)",
       "version": "1.1.0",
       "license": {
         "id": "",
@@ -34,6 +34,6 @@
         "arch": "amd64"
       }
     },
-    "contentSHA": "cc27dbea03af8a238702b5e89108e39f1ad229d86e295ae158dd0886151274f3"
+    "contentSHA": "30b19a118654d3d65a0faf2f1ce1d97554fe98a2c0f19745d9eb5ad7673d53ae"
   }
 }

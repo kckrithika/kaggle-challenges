@@ -179,6 +179,10 @@ data:
       {{- if .Values.global.trustDomain }}
         - --trust-domain={{ .Values.global.trustDomain }}
       {{- end }}
+      {{- if .Values.global.proxy.lifecycle }}
+        lifecycle:
+          {{ toYaml .Values.global.proxy.lifecycle | indent 4 }}
+      {{- end }}
         env:
         - name: POD_NAME
           valueFrom:
@@ -187,9 +191,13 @@ data:
         - name: ISTIO_META_POD_PORTS
           value: |-
             [
+            {{- $first := true }}
             {{- range $index1, $c := .Spec.Containers }}
               {{- range $index2, $p := $c.Ports }}
-                {{if or (ne $index1 0) (ne $index2 0)}},{{end}}{{ structToJSON $p }}
+                {{- if (structToJSON $p) }}
+                {{if not $first}},{{end}}{{ structToJSON $p }}
+                {{- $first = false }}
+                {{- end }}
               {{- end}}
             {{- end}}
             ]
