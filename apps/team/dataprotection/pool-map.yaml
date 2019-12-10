@@ -5,8 +5,8 @@ apps:
   - cdg/cdg-sam_dp
   - lo2/lo2-sam_dp
   - lo3/lo3-sam_dp
-  - ia2/ia2-sam_dp
-  - ph2/ph2-sam_dp
+  # - ia2/ia2-sam_dp
+  # - ph2/ph2-sam_dp
   - dfw/dfw-sam_dp
 
 # We have RAC issues on the following datacenters:
