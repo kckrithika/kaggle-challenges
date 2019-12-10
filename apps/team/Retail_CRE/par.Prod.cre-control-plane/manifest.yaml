@@ -19,9 +19,9 @@ system:
             - name: INGEST_SPEC_IMAGE
               value: ops0-artifactrepo1-0-par.data.sfdc.net/sfci/cre/cre-engine:2.1.0.5.master.c4de222.42
             - name: EXPORT_SPEC_IMAGE
-              value: ops0-artifactrepo1-0-par.data.sfdc.net/sfci/cre/cre-dds-spark:2.1.1.master.07f636a.21
+              value: ops0-artifactrepo1-0-par.data.sfdc.net/sfci/cre/cre-dds-spark:2.1.4.0.master.40e17aa.23
             - name: SAVE_SPEC_IMAGE
-              value: ops0-artifactrepo1-0-par.data.sfdc.net/sfci/cre/cre-dds-spark:2.1.1.master.07f636a.21
+              value: ops0-artifactrepo1-0-par.data.sfdc.net/sfci/cre/cre-dds-spark:2.1.4.0.master.40e17aa.23
             ####################################################################################################
             ####################################### GLOBAL SHARED VALUES #######################################
             ####################################################################################################
@@ -60,13 +60,26 @@ system:
               value: cre-engine
             - name: SAVE_K4A_VAULT
               value: cre-dds-eu-1
+            # 2.1.4 PATCH ENVIRONMENT VARIABLES
+            - name: SAVE_EXECUTOR_INSTANCES
+              value: 4
+            - name: SAVE_EXECUTOR_CORES
+              value: 10
+            - name: SAVE_EXECUTOR_MEMORY
+              value: 36g
+            - name: SAVE_EXECUTOR_MEMORY_OVERHEAD
+              value: 4g
+            - name: SAVE_SPARK_DEFAULT_PARALLELISM
+              value: 40
+            - name: SAVE_SPARK_SQL_SHUFFLE_PARTITIONS
+              value: 40
             ####################################################################################################
             ####################################### EXPORT environment variables ###############################
             ####################################################################################################
             - name: EXPORT_ANNOTATIONS_PKI_NAME
               value: cre-engine
             - name: EXPORT_K4A_VAULT
-              value: cre-dds-eu-1
+              value: c360-dvd-rw-prod-eu-1 # 2.1.4 PATCH, dvd export job uses separate dvd vault
             ####################################################################################################
             ##################################### APP Config environment variables #############################
             ####################################################################################################
