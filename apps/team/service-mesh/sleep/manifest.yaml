@@ -12,7 +12,7 @@ system:
       imagePullPolicy: Always
       env:
         - name: FAKE_ENV_VAR_INCREMENT_TO_TRIGGER_SAM_DEPLOY
-          value: "0"
+          value: "1"
       # This line makes sure that the last lines of the log on the console gets sent to Splunk on early termination
       terminationMessagePolicy: "FallbackToLogsOnError"
       resources:
