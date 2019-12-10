@@ -28,12 +28,12 @@ fi
 ${BASH_SOURCE%/*}/format-istio-jsonnets.sh
 
 # Create phase directory if it doesn't exist.
-mkdir -p ${BASH_SOURCE%/*}/templates/phase$2
+mkdir -p ${BASH_SOURCE%/*}/templates/istio/phase$2
 
 # Clear contents of the new phase directory.
-rm -rf ${BASH_SOURCE%/*}/templates/phase$2/*
+rm -rf ${BASH_SOURCE%/*}/templates/istio/phase$2/*
 
-for path in ${BASH_SOURCE%/*}/templates/phase$1/*; do
+for path in ${BASH_SOURCE%/*}/templates/istio/phase$1/*; do
   [[ -d "${path}" ]] || continue # skip if not a directory
 
   dirname="$(basename "${path}")"
@@ -44,10 +44,10 @@ for path in ${BASH_SOURCE%/*}/templates/phase$1/*; do
   fi
 
   # Copy directory to new phase.
-  cp -r ${BASH_SOURCE%/*}/templates/phase$1/$dirname ${BASH_SOURCE%/*}/templates/phase$2
+  cp -r ${BASH_SOURCE%/*}/templates/istio/phase$1/$dirname ${BASH_SOURCE%/*}/templates/istio/phase$2
 
   # Rename files with phase suffix. This is required as build.sh checks for duplicate file names.
-  for file in ${BASH_SOURCE%/*}/templates/phase$2/$dirname/*; do
+  for file in ${BASH_SOURCE%/*}/templates/istio/phase$2/$dirname/*; do
     # Template phase string to replace.
     currentPhase="if (istioPhases.phaseNum == $1) then"
     nextPhase="if (istioPhases.phaseNum == $2) then"
@@ -67,7 +67,7 @@ for path in ${BASH_SOURCE%/*}/templates/phase$1/*; do
       filename=$(basename -- "$file")
       extension="${filename##*.}"
       filename="${filename%.*}"
-      newFilename=${BASH_SOURCE%/*}/templates/phase$2/$dirname/$filename-phase$2.$extension
+      newFilename=${BASH_SOURCE%/*}/templates/istio/phase$2/$dirname/$filename-phase$2.$extension
     fi
     mv $file $newFilename
   done
