@@ -49,6 +49,8 @@ system:
           value: true
         ## - name: LOGGING_LEVEL_ORG_APACHE_HTTP
         ##  value: DEBUG
+        - name: SCONE_SERVER_SECURITY_MUTUALAUTH
+          value: false
         - name: JVM_ARGS
           value: "-verbose:gc
                   -XX:+PrintGCDetails
