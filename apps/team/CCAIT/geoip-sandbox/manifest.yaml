@@ -19,10 +19,10 @@ system:
       resources:
         limits:
           cpu: "8"
-          memory: 3Gi
+          memory: 10Gi
         requests:
           cpu: "8"
-          memory: 3Gi
+          memory: 10Gi
       ports:
       - containerPort: 7020
         name: grpc
