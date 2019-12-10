@@ -10,6 +10,7 @@ data:
       "dbUsername": "host-repair-agg",
       "funnelEndpoint": "ajna0-funnel1-0-prd.data.sfdc.net:80",
       "k8sCeListFromDB": [
+        "ast-sam",
         "cdg-sam",
         "cdu-sam",
         "chx-sam",

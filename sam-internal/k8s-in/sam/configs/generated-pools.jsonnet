@@ -8,6 +8,44 @@
       "access": [
         "team/CSC_Sam"
       ],
+      "controlEstate": "ast-sam",
+      "estate": "ast-sam",
+      "kingdom": "ast",
+      "superPod": "None"
+    },
+    {
+      "namespaces": [
+        "gater",
+        "service-mesh"
+      ],
+      "access": [
+        "team/Gater",
+        "team/service-mesh"
+      ],
+      "controlEstate": "ast-sam",
+      "estate": "ast-sam_gater",
+      "kingdom": "ast",
+      "superPod": "None"
+    },
+    {
+      "namespaces": [
+        "csc-health"
+      ],
+      "access": [
+        "team/CSC_Health"
+      ],
+      "controlEstate": "ast-sam",
+      "estate": "ast-sam_report_collector",
+      "kingdom": "ast",
+      "superPod": "None"
+    },
+    {
+      "namespaces": [
+        "csc-sam"
+      ],
+      "access": [
+        "team/CSC_Sam"
+      ],
       "controlEstate": "cdg-sam",
       "estate": "cdg-sam",
       "kingdom": "cdg",

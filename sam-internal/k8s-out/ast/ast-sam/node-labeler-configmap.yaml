@@ -1,0 +1,19 @@
+apiVersion: v1
+data:
+  node-labeler-config.json: |-
+    {
+      "commands": {
+        "osPatch": "cat /etc/sfdc-release | grep -oP '(?\u003c=INSTALL ).*'"
+      },
+      "livenessProbePort": "21690",
+      "resync": "30m",
+      "runFreq": "10m",
+      "timeout": "1m"
+    }
+kind: ConfigMap
+metadata:
+  creationTimestamp: null
+  labels:
+    sam.data.sfdc.net/owner: sam
+  name: node-labeler
+  namespace: sam-system
