@@ -14,7 +14,7 @@ local utils = import "util_functions.jsonnet";
     ),
 
     devOpaImage: (
-        "%s/dva/electron-opa:v0.15.0-2" % configs.registry
+        "%s/dva/electron-opa:0.15.0-3" % configs.registry
     ),
 
     // =========
@@ -25,7 +25,7 @@ local utils = import "util_functions.jsonnet";
     ),
 
     devOpaIstioImage: (
-        "%s/dva/electron-opa-istio:v0.15.0-2" % configs.registry
+        "%s/dva/electron-opa-istio:0.15.0-3" % configs.registry
     ),
 
     // =========

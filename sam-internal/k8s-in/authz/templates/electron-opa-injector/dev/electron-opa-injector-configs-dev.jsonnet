@@ -149,8 +149,7 @@ zpages:
       - echo -e "${ELECTRON_OPA_CONFIG}" > /templated-config/opa_config.yaml.erb &&
         /app/config_gen.rb -t /templated-config/opa_config.yaml.erb -o /generated-config/opa_config.yaml &&
         echo -e "${ELECTRON_OPA_ISTIO_CONFIG}" > /templated-config/opa_istio_config.yaml.erb &&
-        /app/config_gen.rb -t /templated-config/opa_istio_config.yaml.erb -o /generated-config/opa_istio_config.yaml &&
-        chmod -R 777 /client-certs/client
+        /app/config_gen.rb -t /templated-config/opa_istio_config.yaml.erb -o /generated-config/opa_istio_config.yaml
     volumeMounts:
       - name: templated-config
         mountPath: /templated-config
@@ -257,8 +256,7 @@ zpages:
       - echo -e "${ELECTRON_OPA_CONFIG}" > /templated-config/opa_config.yaml.erb &&
         /app/config_gen.rb -t /templated-config/opa_config.yaml.erb -o /generated-config/opa_config.yaml &&
         echo -e "${ELECTRON_OPA_ISTIO_CONFIG}" > /templated-config/opa_istio_config.yaml.erb &&
-        /app/config_gen.rb -t /templated-config/opa_istio_config.yaml.erb -o /generated-config/opa_istio_config.yaml &&
-        chmod -R 777 /client-certs/client
+        /app/config_gen.rb -t /templated-config/opa_istio_config.yaml.erb -o /generated-config/opa_istio_config.yaml
     volumeMounts:
       - name: templated-config
         mountPath: /templated-config
@@ -275,6 +273,10 @@ containers:
       - --server
       - --config-file=/config/opa_config.yaml
       - --log-level=debug
+    securityContext:
+      fsGroup: 7447
+      runAsNonRoot: true
+      runAsUser: 7447
     volumeMounts:
       - name: generated-config
         mountPath: /config
@@ -302,6 +304,10 @@ containers:
       - --server
       - --config-file=/config/opa_istio_config.yaml
       - --log-level=debug
+    securityContext:
+      fsGroup: 7447
+      runAsNonRoot: true
+      runAsUser: 7447
     volumeMounts:
       - name: generated-config
         mountPath: /config
