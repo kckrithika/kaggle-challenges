@@ -33,7 +33,7 @@ system:
         periodSeconds: 5
       env:
        - name: NOT_REQUIRED
-         value: newton19
+         value: newton18
        - name: PYTHONUNBUFFERED
          value: 1
        - name: SFDC_ENVIRONMENT
