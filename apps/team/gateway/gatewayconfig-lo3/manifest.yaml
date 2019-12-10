@@ -46,6 +46,8 @@ system:
       env:
       - name: SERVER_PORT
         value: 7442
+      - name: SFDC_ENVIRONMENT
+        value: prod
       - name: PKI_CA_DIR
         value: /server-certs
       - name: PKI_MONITORDIR
