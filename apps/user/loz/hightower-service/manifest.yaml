@@ -17,6 +17,9 @@ system:
         - mountPath: /secrets/ssh/
           name: ssh
           readOnly: true
+        - mountPath: /secrets/splunk/
+          name: splunk
+          readOnly: true
       ports:
       - containerPort: 8088
         name: scone-http
