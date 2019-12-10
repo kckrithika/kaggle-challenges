@@ -1,0 +1,51 @@
+apiVersion: extensions/v1beta1
+kind: DaemonSet
+metadata:
+  labels:
+    name: etcdbackup
+    sam.data.sfdc.net/owner: sam
+  name: etcdbackup
+spec:
+  selector:
+    matchLabels:
+      daemonset: "true"
+      name: etcdbackup
+      sam.data.sfdc.net/owner: sam
+  template:
+    metadata:
+      labels:
+        daemonset: "true"
+        name: etcdbackup
+        sam.data.sfdc.net/owner: sam
+    spec:
+      containers:
+      - command:
+        - /sam/etcdbackup.sh
+        env:
+        - name: KUBECONFIG
+          value: /kubeconfig/kubeconfig-platform
+        image: ops0-artifactrepo1-0-ast.data.sfdc.net/dva/sam/hypersam:2838-bb0b18d18d0cfb389547ae7a3e5df9b23ba51e11
+        name: etcdbackup
+        volumeMounts:
+        - mountPath: /data/etcdbackup
+          name: backup
+        - mountPath: /cowdata
+          name: cowdata
+      hostNetwork: true
+      nodeSelector:
+        etcd_installed: "true"
+        master: "true"
+      securityContext:
+        fsGroup: 0
+        runAsUser: 0
+      volumes:
+      - hostPath:
+          path: /data/etcdbackup
+        name: backup
+      - hostPath:
+          path: /cowdata
+        name: cowdata
+  updateStrategy:
+    rollingUpdate:
+      maxUnavailable: 25%
+    type: RollingUpdate

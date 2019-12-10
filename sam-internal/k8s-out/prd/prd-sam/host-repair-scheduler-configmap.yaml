@@ -14,6 +14,7 @@ data:
       "crdNamespace": "sam-system",
       "funnelEndpoint": "ajna0-funnel1-0-prd.data.sfdc.net:80",
       "hostRegexWhitelist": [
+        ".*ast.*",
         ".*cdg.*",
         ".*cdu.*",
         ".*chx.*",
