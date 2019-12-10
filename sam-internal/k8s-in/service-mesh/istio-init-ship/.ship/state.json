@@ -3,13 +3,13 @@
     "config": {},
     "releaseName": "istio-init",
     "namespace": "mesh-control-plane",
-    "upstream": "https://github.com/istio/istio/tree/5cf691d566ca86b8d8b10360db120084025f281f/install/kubernetes/helm/istio-init",
+    "upstream": "https://github.com/istio/istio/tree/5e86e9d27768c88555d70319722ef2a50d801296/install/kubernetes/helm/istio-init",
     "metadata": {
       "applicationType": "helm",
       "sequence": 0,
       "icon": "https://istio.io/favicons/android-192x192.png",
       "name": "istio-init",
-      "releaseNotes": "",
+      "releaseNotes": "fix minor typo (#19037)",
       "version": "1.1.0",
       "license": {
         "id": "",
