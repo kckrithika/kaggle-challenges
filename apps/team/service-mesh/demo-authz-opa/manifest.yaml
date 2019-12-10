@@ -34,10 +34,12 @@ system:
       - containerPort: 7022
         name: http-svc
       livenessProbe:
-        tcpSocket:
+        httpGet:
+          path: /v1/health
           port: 7022
         initialDelaySeconds: 5
         periodSeconds: 5
+        timeoutSeconds: 4
       readinessProbe:
         httpGet:
           path: /v1/health
