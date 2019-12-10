@@ -137,7 +137,19 @@ items:
                           "quantumk",
                           "radius",
                           "secds",
-                          "seciamsvc"
+                          "seciamsvc",
+                          "publicproxy",
+                          "radius",
+                          "cdpactvsvc",
+                          "cdpadminsvc",
+                          "cdpdata",
+                          "cdpgdpr",
+                          "mathapi",
+                          "math",
+                          "cdpmetadata",
+                          "cdpscheduler",
+                          "cdpsegment",
+                          "cdpinjector"
                       ],
                       "soft-launch": true,
                       "working-directory": "/tmp/sfcdapifirebom"
@@ -410,7 +422,7 @@ items:
                 apiVersion: v1
                 fieldPath: metadata.labels['name']
           - name: CONFIG_VERSION
-            value: "24"
+            value: "25"
           image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/sfcdapi-firebom:104
           imagePullPolicy: Always
           livenessProbe:

@@ -54,7 +54,19 @@
     'quantumk',
     'radius',
     'secds',
-    'seciamsvc'
+    'seciamsvc',
+    'publicproxy',
+    'radius',
+    'cdpactvsvc',
+    'cdpadminsvc',
+    'cdpdata',
+    'cdpgdpr',
+    'mathapi',
+    'math',
+    'cdpmetadata',
+    'cdpscheduler',
+    'cdpsegment',
+    'cdpinjector'
   ],
   'soft-launch': true
 }
