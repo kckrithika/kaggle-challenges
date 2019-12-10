@@ -73,7 +73,6 @@ rules:
   - services
   - namespaces
   - nodes
-  - secrets
   verbs:
   - get
   - list
