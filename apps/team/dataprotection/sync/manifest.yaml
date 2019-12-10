@@ -5,7 +5,7 @@ system:
     count: 5
     containers:
     - name: sync
-      image: dva/winterfell-sync:116
+      image: dva/winterfell-sync:117
       env:
       - name: SFDC_ENVIRONMENT
         value: prod
