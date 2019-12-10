@@ -5,7 +5,6 @@ apps:
    - cdg/cdg-sam_gatewayconfig
    - fra/fra-sam_gatewayconfig
    - lo2/lo2-sam_gatewayconfig
-   - lo3/lo3-sam_gatewayconfig
    - ph2/ph2-sam_gatewayconfig
    - ia2/ia2-sam_gatewayconfig
    - ia4/ia4-sam_gatewayconfig
@@ -16,6 +15,8 @@ apps:
    - ukb/ukb-sam_kingdom_caas
    - par/par-sam_kingdom_caas
    - iad/iad-sam_kingdom_caas
+ gatewayconfig-lo3:
+   - lo3/lo3-sam_gatewayconfig
  gatewayconfig-gcp:
 #   - mvp/gsf-core-devmvp-sam2-sam
 
