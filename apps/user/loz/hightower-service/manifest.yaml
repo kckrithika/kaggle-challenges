@@ -17,7 +17,6 @@ system:
         - mountPath: /secrets/ssh/
           name: ssh
           readOnly: true
-      # If your service doesn't serve HTTP traffic then you can remove the scone-http port.
       ports:
       - containerPort: 8088
         name: scone-http
@@ -46,6 +45,9 @@ system:
       - name: ssh
         k4aSecret:
           secretName: ssh
+      - name: splunk
+        k4aSecret:
+          secretName: splunk
   loadbalancers:
   - lbname: hightower-service
     function: hightower-service
