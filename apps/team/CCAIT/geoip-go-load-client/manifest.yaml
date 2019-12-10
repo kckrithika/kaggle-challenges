@@ -5,7 +5,7 @@ system:
     - drichelson@salesforce.com
   functions:
   - name: geoip-go-load
-    count: 0
+    count: 1
     containers:
     - name: geoip-go-load
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/ccait/geoip-client:2019.0.1
@@ -13,7 +13,7 @@ system:
         - name: GEOIP_ADDRESS
           value: geoip.ccait.localhost.mesh.force.com:5443
         - name: GEOIP_TOTALRPS
-          value: 30
+          value: 90
         - name: GEOIP_CONCURRENCY
           value: 30
       resources:
