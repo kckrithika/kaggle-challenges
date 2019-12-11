@@ -49,12 +49,12 @@ spec:
         - --commonoptions.metricsendpoint=ajna0-funnel1-0-prd.data.sfdc.net:80
         - --log_dir=/host/data/slb/logs/slb-dns-register
         - --hostsConfigFile=/sfdchosts/hosts.json
-        - --subnet=10.251.196.0/22
+        - --subnet=10.251.196.0/22,10.254.251.0/25
         - --client.serverPort=12088
         - --client.serverInterface=lo
         - --restrictedSubnets=96.43.157.0/24,10.251.196.113/32,10.251.196.117/32,10.251.196.212/32,10.251.196.42/32,10.251.196.44/32,10.251.197.44/32,10.251.198.198/32
         - --maxDeleteEntries=1000
-        - --vipLimit=998
+        - --vipLimit=1146
         - --client.socketDir=/host/data/slb/config/slb-dns-register
         - --client.dialSocket=true
         env:
@@ -92,7 +92,7 @@ spec:
         - --podPhaseCheck=true
         - --namespace=
         - --podstatus=running
-        - --subnet=10.251.196.0/22
+        - --subnet=10.251.196.0/22,10.254.251.0/25
         - --k8sapiserver=
         - --serviceList=csrlb,controlplane-ptest
         - --useVipLabelToSelectSvcs=true

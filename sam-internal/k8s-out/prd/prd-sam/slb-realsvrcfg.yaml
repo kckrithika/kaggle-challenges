@@ -78,7 +78,7 @@ spec:
         - --podPhaseCheck=true
         - --namespace=
         - --podstatus=running
-        - --subnet=10.251.196.0/22
+        - --subnet=10.251.196.0/22,10.254.251.0/25
         - --k8sapiserver=
         - --serviceList=csrlb,controlplane-ptest
         - --useVipLabelToSelectSvcs=true
