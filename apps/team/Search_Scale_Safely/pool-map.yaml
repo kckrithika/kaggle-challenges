@@ -11,8 +11,8 @@ apps:
   - hnd/hnd-search_model_executor
   - ukb/ukb-search_model_executor
   - par/par-search_model_executor
- prod-search-query-service-half-capacity:
   - ord/ord-search_model_executor
+ prod-search-query-service-half-capacity:
   - ia2/ia2-search_model_executor
   - ph2/ph2-search_model_executor
   - cdg/cdg-search_model_executor

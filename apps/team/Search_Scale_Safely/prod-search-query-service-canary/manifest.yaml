@@ -6,7 +6,7 @@ system:
     - sqep@salesforce.com
   functions:
   - name: search-query-service
-    count: 16
+    count: 8
     strategy:
       type: RollingUpdate
       rollingUpdate:
@@ -21,8 +21,8 @@ system:
       - name: admin-port
         containerPort: 15372
       resources:
-        limits: { cpu: "24", memory: "20Gi" }
-        requests: { cpu: "24", memory: "20Gi" }
+        limits: { cpu: "20", memory: "20Gi" } # Reduced CPU since host machines only have 48 cores available
+        requests: { cpu: "20", memory: "20Gi" }
       livenessProbe:
         exec:
           command: ["./runcheck.sh", "5"]
@@ -76,3 +76,4 @@ system:
     - name: tls-server-cert
       maddogCert:
         type: server
+
