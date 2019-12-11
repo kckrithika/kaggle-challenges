@@ -15,6 +15,8 @@ apps:
   - frf/frf-sam_gater
   - lo2/lo2-sam_gater
   - lo3/lo3-sam_gater
+ gate-manager-eu-lo3-transition:
+  - lo3/lo3-sam_gater
  gate-manager-na:
   - iad/iad-sam_gater
   - dfw/dfw-sam_gater
