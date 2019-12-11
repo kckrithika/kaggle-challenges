@@ -55,8 +55,6 @@ spec:
           value: 10s
         - name: PILOT_PUSH_THROTTLE
           value: "100"
-        - name: PILOT_ENABLE_UNSAFE_REGEX
-          value: "true"
         - name: PILOT_RESPECT_DNS_TTL
           value: "false"
         - name: SETTINGS_PATH

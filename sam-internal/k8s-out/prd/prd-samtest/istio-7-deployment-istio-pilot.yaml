@@ -117,6 +117,8 @@ spec:
               fieldPath: metadata.namespace
         - name: ESTATE
           value: prd-samtest
+        - name: PILOT_ENABLE_CRD_VALIDATION
+          value: "true"
         - name: PILOT_SIDECAR_USE_REMOTE_ADDRESS
           value: "true"
         - name: PILOT_ENABLE_REDIS_FILTER
@@ -127,8 +129,6 @@ spec:
           value: 10s
         - name: PILOT_PUSH_THROTTLE
           value: "100"
-        - name: PILOT_ENABLE_UNSAFE_REGEX
-          value: "true"
         - name: PILOT_RESPECT_DNS_TTL
           value: "false"
         - name: PILOT_TRACE_SAMPLING
@@ -316,6 +316,8 @@ spec:
             fieldRef:
               apiVersion: v1
               fieldPath: metadata.namespace
+        - name: PILOT_ENABLE_CRD_VALIDATION
+          value: "true"
         - name: SETTINGS_SUPERPOD
           value: '-'
         - name: SETTINGS_PATH

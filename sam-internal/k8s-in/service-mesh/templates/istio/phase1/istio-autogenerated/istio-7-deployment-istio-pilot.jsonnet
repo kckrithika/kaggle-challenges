@@ -155,6 +155,10 @@ if (istioPhases.phaseNum == 1) then
                 value: mcpIstioConfig.istioEstate,
               },
               {
+                name: "PILOT_ENABLE_CRD_VALIDATION",
+                value: "true",
+              },
+              {
                 name: "PILOT_SIDECAR_USE_REMOTE_ADDRESS",
                 value: "true",
               },
@@ -173,10 +177,6 @@ if (istioPhases.phaseNum == 1) then
               {
                 name: "PILOT_PUSH_THROTTLE",
                 value: "100",
-              },
-              {
-                name: "PILOT_ENABLE_UNSAFE_REGEX",
-                value: "true",
               },
               {
                 name: "PILOT_RESPECT_DNS_TTL",
@@ -498,6 +498,10 @@ if (istioPhases.phaseNum == 1) then
                     fieldPath: "metadata.namespace",
                   },
                 },
+              },
+              {
+                name: "PILOT_ENABLE_CRD_VALIDATION",
+                value: "true",
               },
               {
                 name: "SETTINGS_SUPERPOD",

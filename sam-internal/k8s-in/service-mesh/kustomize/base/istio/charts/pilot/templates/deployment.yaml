@@ -76,6 +76,8 @@ spec:
                 fieldPath: metadata.namespace
           - name: ESTATE
             value: "updated_by_firebom"
+          - name: PILOT_ENABLE_CRD_VALIDATION
+            value: "true"
           - name: PILOT_ENABLE_REDIS_FILTER
             value: "true"
           - name: PILOT_PUSH_THROTTLE
@@ -198,6 +200,8 @@ spec:
                   fieldPath: metadata.namespace # Copy primary container's env values.
             - name: ESTATE
               value: "updated_by_firebom"
+            - name: PILOT_ENABLE_CRD_VALIDATION
+              value: "true"
             - name: PILOT_ENABLE_REDIS_FILTER
               value: "true"
             - name: PILOT_PUSH_THROTTLE
