@@ -6,7 +6,7 @@ system:
       - gid_runtime@salesforce.com
   functions:
   - name: gid-runtime-service-demo
-    count: 2
+    count: 1
     strategy:
       type: RollingUpdate
       rollingUpdate:
@@ -211,4 +211,10 @@ system:
           targetport: 7022
           lbtype: http
           tls: true
+          reencrypt: false
+        - port: 80
+          name: public2
+          targetport: 8080
+          lbtype: http
+          tls: false
           reencrypt: false
