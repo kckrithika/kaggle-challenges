@@ -10,7 +10,7 @@ metadata:
   name: istio-pilot
   namespace: mesh-control-plane
 spec:
-  replicas: 3
+  replicas: mcpIstioConfig.pilotReplicasCount
   strategy:
     rollingUpdate:
       maxSurge: 3
