@@ -29,7 +29,6 @@ spec:
         heritage: Helm
         release: istio
         istio: pilot
-        p_servicename: updated_by_firebom
       annotations:
         sidecar.istio.io/inject: "false"
     spec:

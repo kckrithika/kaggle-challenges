@@ -11,7 +11,6 @@ spec:
       annotations:
         sidecar.istio.io/inject: "false"
       labels:
-        p_servicename: updated_by_firebom
     spec:
       securityContext:
         fsGroup: 7447
