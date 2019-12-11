@@ -35,6 +35,9 @@ apps:
   gid-runtime-service-mit:
     - name: prd/prd-sam_globalidentity
 
+  gid-runtime-service-mitv2:
+    - name: prd/prd-sam_globalidentity
+
   gid-runtime-service-dev:
     - name: prd/prd-sam_globalidentity
 
