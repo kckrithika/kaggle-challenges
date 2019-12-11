@@ -33,7 +33,8 @@
   ports:
   - port: 80
     targetport: 443
-    lbtype: https
+    reencrypt: true
+    lbtype: http
     healthprotocol: tcp
     healthport: 80
     addheaders:
