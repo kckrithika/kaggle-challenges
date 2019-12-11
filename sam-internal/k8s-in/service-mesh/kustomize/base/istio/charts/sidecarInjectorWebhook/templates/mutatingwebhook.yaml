@@ -24,5 +24,12 @@ webhooks:
         resources: ["pods"]
     failurePolicy: Fail
     namespaceSelector:
-      matchLabels:
-        istio-injection: enabled
+      matchExpressions:
+      - key: name
+        operator: NotIn
+        values:
+        - mesh-control-plane
+      - key: istio-injection
+        operator: NotIn
+        values:
+        - disabled

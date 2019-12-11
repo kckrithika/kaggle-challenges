@@ -10,6 +10,7 @@ metadata:
     chart: gateways
     heritage: Helm
     istio: ingressgateway
+    p_servicename: updated_by_firebom
     release: istio
 spec:
   replicas: 1
@@ -28,6 +29,7 @@ spec:
         chart: gateways
         heritage: Helm
         istio: ingressgateway
+        p_servicename: updated_by_firebom
         release: istio
       annotations:
         sidecar.istio.io/inject: "false"
@@ -39,8 +41,8 @@ spec:
       serviceAccountName: istio-ingressgateway-service-account
       containers:
         - name: istio-proxy
-          image: "791719295754.dkr.ecr.us-east-2.amazonaws.com/sfci/servicemesh/istio-packaging/proxy:91742345277d0ffb8f6d3c9c7edffa16de0acb1c"
-          imagePullPolicy: IfNotPresent
+          image: "791719295754.dkr.ecr.us-east-2.amazonaws.com/sfci/servicemesh/istio-packaging/proxy:aa56850ad9a1bc39fc8583dcd4eda1d6720a724d"
+          imagePullPolicy: Always
           securityContext:
             runAsUser: 0
             runAsNonRoot: false
@@ -140,7 +142,7 @@ spec:
                 fieldPath: metadata.namespace
           - name: ISTIO_METAJSON_LABELS
             value: |
-              {"app":"istio-ingressgateway","chart":"gateways","heritage":"Helm","istio":"ingressgateway","release":"istio"}
+              {"app":"istio-ingressgateway","chart":"gateways","heritage":"Helm","istio":"ingressgateway","p_servicename":"updated_by_firebom","release":"istio"}
           - name: ISTIO_META_CLUSTER_ID
             value: "Kubernetes"
           - name: SDS_ENABLED

@@ -11,6 +11,7 @@ metadata:
     heritage: Helm
     release: istio
     istio: sidecar-injector
+    p_servicename: updated_by_firebom
 spec:
   ports:
   - port: 443

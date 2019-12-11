@@ -13,7 +13,7 @@ metadata:
     release: istio
     istio: pilot
 spec:
-  replicas: 1
+  replicas: 3
   strategy:
     rollingUpdate:
       maxSurge: 100%
@@ -29,6 +29,7 @@ spec:
         heritage: Helm
         release: istio
         istio: pilot
+        p_servicename: updated_by_firebom
       annotations:
         sidecar.istio.io/inject: "false"
     spec:
@@ -40,8 +41,8 @@ spec:
       automountServiceAccountToken: true
       containers:
         - name: discovery
-          image: "791719295754.dkr.ecr.us-east-2.amazonaws.com/sfci/servicemesh/istio-packaging/pilot:91742345277d0ffb8f6d3c9c7edffa16de0acb1c"
-          imagePullPolicy: IfNotPresent
+          image: "791719295754.dkr.ecr.us-east-2.amazonaws.com/sfci/servicemesh/istio-packaging/pilot:aa56850ad9a1bc39fc8583dcd4eda1d6720a724d"
+          imagePullPolicy: Always
           args:
           - "discovery"
           - --registries=Kubernetes
@@ -103,8 +104,8 @@ spec:
           - name: config-volume
             mountPath: /etc/istio/config
         - name: istio-proxy
-          image: "791719295754.dkr.ecr.us-east-2.amazonaws.com/sfci/servicemesh/istio-packaging/proxy:91742345277d0ffb8f6d3c9c7edffa16de0acb1c"
-          imagePullPolicy: IfNotPresent
+          image: "791719295754.dkr.ecr.us-east-2.amazonaws.com/sfci/servicemesh/istio-packaging/proxy:aa56850ad9a1bc39fc8583dcd4eda1d6720a724d"
+          imagePullPolicy: Always
           ports:
           - containerPort: 15003
           - containerPort: 15005
@@ -122,6 +123,8 @@ spec:
           - MUTUAL_TLS
           - --proxyLogLevel=info
           - --log_output_level=default:warn
+          - --envoyMetricsService
+          - '{"address":"switchboard.service-mesh:15001","tlsSettings":{"caCertificates":"/client-certs/ca.pem","clientCertificate":"/client-certs/client/certificates/client.pem","mode":"MUTUAL","privateKey":"/client-certs/client/keys/client-key.pem","sni":null,"subjectAltNames":[]},"tcpKeepalive":{"interval":"10s","probes":3,"time":"10s"}}'
           env:
           - name: POD_NAME
             valueFrom:
@@ -138,6 +141,10 @@ spec:
               fieldRef:
                 apiVersion: v1
                 fieldPath: status.podIP
+          - name: ESTATE
+            value: "updated_by_firebom"
+          - name: ISTIO_METAJSON_METRICS_INCLUSIONS
+            value: "{\"sidecar.istio.io/statsInclusionPrefixes\": \"access_log_file,cluster,cluster_manager,control_plane,http,http2,http_mixer_filter,listener,listener_manager,redis,runtime,server,stats,tcp,tcp_mixer_filter,tracing\"}"
           - name: ISTIO_META_TLS_CLIENT_CERT_CHAIN
             value: "/etc/identity/client/certificates/client.pem"
           - name: ISTIO_META_TLS_CLIENT_KEY
@@ -150,8 +157,14 @@ spec:
             value: "/etc/identity/server/keys/server-key.pem"
           - name: ISTIO_META_TLS_SERVER_ROOT_CERT
             value: "/etc/identity/ca/cacerts.pem"
+          - name: KINGDOM
+            value: "updated_by_firebom"
           - name: SDS_ENABLED
             value: "false"
+          - name: ENVOY_METRICS_SERVICE_ADDRESS
+            value: "switchboard.service-mesh"
+          - name: ENVOY_METRICS_SERVICE_PORT
+            value: "15001"
           resources:
             limits:
               cpu: 2000m
@@ -196,8 +209,8 @@ spec:
               value: "updated_by_firebom"
             - name: SETTINGS_SUPERPOD
               value: "-"
-          image: 791719295754.dkr.ecr.us-east-2.amazonaws.com/sfci/servicemesh/servicemesh/metrics-scraper:4f7edbecc3a92604c1fd6b11821e7925f0abe6ac
-          imagePullPolicy: IfNotPresent
+          image: 791719295754.dkr.ecr.us-east-2.amazonaws.com/sfci/servicemesh/servicemesh/metrics-scraper:f210d5ff0f01b8a28a5d6bb2943220b3fdb3223b
+          imagePullPolicy: Always
           readinessProbe:
             exec:
               command:
@@ -234,8 +247,8 @@ spec:
           env:
             - name: DISABLE_REDIRECTION_ON_LOCAL_LOOPBACK
               value: "1"
-          image: "791719295754.dkr.ecr.us-east-2.amazonaws.com/sfci/servicemesh/istio-packaging/proxy:91742345277d0ffb8f6d3c9c7edffa16de0acb1c"
-          imagePullPolicy: IfNotPresent
+          image: "791719295754.dkr.ecr.us-east-2.amazonaws.com/sfci/servicemesh/istio-packaging/proxy:aa56850ad9a1bc39fc8583dcd4eda1d6720a724d"
+          imagePullPolicy: Always
           name: istio-init
           resources:
             limits:

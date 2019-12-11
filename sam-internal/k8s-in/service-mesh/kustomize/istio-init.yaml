@@ -860,14 +860,15 @@ metadata:
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: istio-init-crd-all-93992746ef0add6bb415af63b83d8284
+  name: istio-init-crd-all-aa56850ad9a1bc39fc8583dcd4eda1d6
   namespace: mesh-control-plane
 spec:
   template:
     metadata:
       annotations:
         sidecar.istio.io/inject: "false"
-      labels: null
+      labels:
+        p_servicename: updated_by_firebom
     spec:
       automountServiceAccountToken: true
       containers:
@@ -877,7 +878,7 @@ spec:
         - -f
         - /etc/istio/crd-all/crd-all.gen.yaml
         image: '%(istioHub)s/kubectl:%(istioTag)s'
-        imagePullPolicy: IfNotPresent
+        imagePullPolicy: Always
         name: istio-init-crd-all
         resources:
           limits:
@@ -906,14 +907,15 @@ spec:
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: istio-init-crd-mixer-93992746ef0add6bb415af63b83d8284
+  name: istio-init-crd-mixer-aa56850ad9a1bc39fc8583dcd4eda1d6
   namespace: mesh-control-plane
 spec:
   template:
     metadata:
       annotations:
         sidecar.istio.io/inject: "false"
-      labels: null
+      labels:
+        p_servicename: updated_by_firebom
     spec:
       automountServiceAccountToken: true
       containers:
@@ -923,7 +925,7 @@ spec:
         - -f
         - /etc/istio/crd-mixer/crd-mixer.yaml
         image: '%(istioHub)s/kubectl:%(istioTag)s'
-        imagePullPolicy: IfNotPresent
+        imagePullPolicy: Always
         name: istio-init-crd-mixer
         resources:
           limits:

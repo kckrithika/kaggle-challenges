@@ -13,6 +13,7 @@ metadata:
     release: istio
     app: istio-ingressgateway
     istio: ingressgateway
+    p_servicename: updated_by_firebom
 spec:
   type: LoadBalancer
   selector:

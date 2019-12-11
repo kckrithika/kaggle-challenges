@@ -11,6 +11,7 @@ metadata:
     heritage: Helm
     release: istio
     istio: pilot
+    p_servicename: updated_by_firebom
 spec:
   ports:
   - port: 15010
