@@ -38,11 +38,6 @@ system:
           path: /v1/health
           port: 7022
         initialDelaySeconds: 60
-      readinessProbe:
-        httpGet:
-          path: /v1/health
-          port: 7022
-        initialDelaySeconds: 60
     - name: demo-authz-grpc-stream-client
       image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/electron_client:135
       args:
