@@ -5,23 +5,24 @@ local istioPhases = (import "service-mesh/istio-phases.jsonnet");
 if (istioPhases.phaseNum == 1) then
 {
   apiVersion: "rbac.authorization.k8s.io/v1",
-  kind: "RoleBinding",
+  kind: "ClusterRoleBinding",
   metadata: {
     annotations: {
       "manifestctl.sam.data.sfdc.net/swagger": "disable",
     },
-    name: "istio-ingressgateway-sds",
-    namespace: "core-on-sam-sp2",
+    labels: {},
+    name: "istio-multi",
   },
   roleRef: {
     apiGroup: "rbac.authorization.k8s.io",
-    kind: "Role",
-    name: "istio-ingressgateway-sds",
+    kind: "ClusterRole",
+    name: "istio-reader",
   },
   subjects: [
     {
       kind: "ServiceAccount",
-      name: "istio-ingressgateway-service-account",
+      name: "istio-multi",
+      namespace: "mesh-control-plane",
     },
   ],
 }

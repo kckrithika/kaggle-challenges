@@ -18,7 +18,7 @@ if (istioPhases.phaseNum == 1) then
   spec: {
     ports: [
       {
-        name: "https-inject",
+        name: "sidecar-injector-port",
         port: 443,
         targetPort: 15009,
       },

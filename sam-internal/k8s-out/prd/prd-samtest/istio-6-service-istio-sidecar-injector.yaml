@@ -9,7 +9,7 @@ metadata:
   namespace: mesh-control-plane
 spec:
   ports:
-  - name: https-inject
+  - name: sidecar-injector-port
     port: 443
     targetPort: 15009
   - name: http-monitoring
