@@ -32,10 +32,11 @@
    - corsa04-perfeng2-2015293579.vpod.t.force.com
   ports:
   - port: 80
-    targetport: 80
+    targetport: 443
+    reencrypt: true
     lbtype: http
-    healthprotocol: http
-    healthpath: /ping.jsp?allBusy
+    healthprotocol: tcp
+    healthport: 80
     addheaders:
     - name: "X-Salesforce-VIP"
       value: "SLB"
