@@ -8,7 +8,7 @@ system:
     count: 2
     containers:
     - name: prodtest-service-stage
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/ynagata/prodtest:kanchan.sannidhanam-20191210-f578c5f
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/ynagata/prodtest:kanchan.sannidhanam-20191211-f578c5f
       ports:
       - containerPort: 8080
         name: scone-http
@@ -16,7 +16,7 @@ system:
         name: scone-mgmt
       env:
         - name: IMAGE_NAME
-          value: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/ynagata/prodtest:kanchan.sannidhanam-20191210-f578c5f
+          value: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/ynagata/prodtest:kanchan.sannidhanam-20191211-f578c5f
         - name: MANIFEST_VERSION
           value: v1.1
         - name: WEBDRIVER_HOST
