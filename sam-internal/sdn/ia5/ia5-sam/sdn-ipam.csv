@@ -38,6 +38,11 @@ shared0-samminiongwc3-1-ia5.ops.sfdc.net,10.182.165.242/29,10.184.131.96/27,q03-
 shared0-samminionreportcollector1-1-ia5.ops.sfdc.net,10.182.164.178/29,10.184.133.64/27,r02-01,ia5-sam_report_collector,4206041204
 shared0-samminionreportcollector2-1-ia5.ops.sfdc.net,10.182.164.170/29,10.184.133.32/27,n24-01,ia5-sam_report_collector,4206051207
 shared0-samminionreportcollector3-1-ia5.ops.sfdc.net,10.182.164.162/29,10.184.133.0/27,l22-01,ia5-sam_report_collector,4206071203
+shared0-samminionsme1-1-ia5.ops.sfdc.net,10.182.173.34/29,10.184.134.96/27,q05-01,ia5-search_model_executor,4206041209
+shared0-samminionsme1-2-ia5.ops.sfdc.net,10.182.173.2/29,10.184.134.128/27,r04-01,ia5-search_model_executor,4206041208
+shared0-samminionsme2-1-ia5.ops.sfdc.net,10.182.173.10/29,10.184.134.32/27,p15-01,ia5-search_model_executor,4206061228
+shared0-samminionsme2-2-ia5.ops.sfdc.net,10.182.173.18/29,10.184.134.64/27,q04-01,ia5-search_model_executor,4206041207
+shared0-samminionsme3-1-ia5.ops.sfdc.net,10.182.173.26/29,10.184.134.0/27,l26-01,ia5-search_model_executor,4206071211
 shared0-slbminion1-1-ia5.ops.sfdc.net,10.182.162.82/28,10.184.137.0/27,q01-01,ia5-slb,4206041201
 shared0-slbminion1-10-ia5.ops.sfdc.net,10.182.162.98/28,10.184.137.192/27,q02-01,ia5-slb,4206041203
 shared0-slbminion1-2-ia5.ops.sfdc.net,10.182.162.66/28,10.184.136.0/27,m23-01,ia5-slb,4206071206

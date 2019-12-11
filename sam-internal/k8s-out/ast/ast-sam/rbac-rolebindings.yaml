@@ -73,6 +73,8 @@ items:
     name: shared0-samminiongater1-1-ast.ops.sfdc.net
   - kind: User
     name: shared0-samminiongater2-1-ast.ops.sfdc.net
+  - kind: User
+    name: shared0-samminiongater3-1-ast.ops.sfdc.net
 - apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: RoleBinding
   metadata:
@@ -87,6 +89,8 @@ items:
     name: shared0-samminiongater1-1-ast.ops.sfdc.net
   - kind: User
     name: shared0-samminiongater2-1-ast.ops.sfdc.net
+  - kind: User
+    name: shared0-samminiongater3-1-ast.ops.sfdc.net
 - apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: RoleBinding
   metadata:
@@ -101,5 +105,7 @@ items:
     name: shared0-samminionreportcollector1-1-ast.ops.sfdc.net
   - kind: User
     name: shared0-samminionreportcollector2-1-ast.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionreportcollector3-1-ast.ops.sfdc.net
 kind: List
 metadata: {}
