@@ -9,8 +9,24 @@ system:
     count: 1
     containers:
     - name: cre-api
-      image: sfci/cre/cre-api:2.1.1.master.6b03749.6
+      image: sfci/cre/cre-api:2.1.4.0.master.9d55085.7
       env:
+        #### 2.1.4 PATCH DVD ENVIRONMENT VARIABLES ####
+        - name: K4A_VAULT
+          value: c360-dvd-user-manager-prod
+        - name: BUCKET_NAME
+          value: sfdc-c360-ap-northeast-1
+        - name: ARRAY_OF_IP
+          value: '["101.53.172.8/32","101.53.164.8/32"]'
+        - name: BUCKET_KEY
+          value: arn:aws:kms:ap-northeast-1:438894530431:key/84df7603-6fbe-4ca8-8fab-a26b4a6ade66
+        - name: PERMISSIONS_BOUNDARY_ARN
+          value: arn:aws:iam::438894530431:policy/PCSKPermissionsBoundary
+        - name: HTTP_PROXY
+          value: public0-proxy1-0-hnd.data.sfdc.net:8080
+        - name: HTTPS_PROXY
+          value: public0-proxy1-0-hnd.data.sfdc.net:8080
+        #####################
         - name: DOMAIN_ID
           value: cre
         - name: SCHEMA_IDS
