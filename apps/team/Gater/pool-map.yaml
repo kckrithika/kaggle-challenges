@@ -31,7 +31,7 @@ apps:
  gate-manager-prod-canary:
   - cdg/cdg-sam_gater
   - cdu/cdu-sam_gater
-  - chx/chx-sam_gater
+  #- chx/chx-sam_gater
   - dfw/dfw-sam_gater
   - fra/fra-sam_gater
   - frf/frf-sam_gater
@@ -52,7 +52,7 @@ apps:
   - ukb/ukb-sam_gater
   - yhu/yhu-sam_gater
   - yul/yul-sam_gater
-  - wax/wax-sam_gater
+  #- wax/wax-sam_gater
  gate-manager-gia:
   - chx/chx-sam_gater
   - wax/wax-sam_gater
