@@ -41,7 +41,7 @@ if (istioPhases.phaseNum == 1) then
           app: "sidecarInjectorWebhook",
           chart: "sidecarInjectorWebhook",
           cluster: mcpIstioConfig.istioEstate,
-          heritage: "Helm",
+          heritage: "Tiller",
           istio: "sidecar-injector",
           name: "istio-sidecar-injector",
           release: "istio",
@@ -113,7 +113,6 @@ if (istioPhases.phaseNum == 1) then
             },
           },
         },
-        automountServiceAccountToken: true,
         containers: [
           {
             args: [
@@ -135,7 +134,7 @@ if (istioPhases.phaseNum == 1) then
               },
             ],
             image: "%(istioHub)s/sidecar_injector:%(istioTag)s" % mcpIstioConfig,
-            imagePullPolicy: "Always",
+            imagePullPolicy: "IfNotPresent",
             livenessProbe: {
               exec: {
                 command: [
@@ -289,24 +288,6 @@ if (istioPhases.phaseNum == 1) then
                 },
               },
               {
-                name: "POD_NAME",
-                valueFrom: {
-                  fieldRef: {
-                    apiVersion: "v1",
-                    fieldPath: "metadata.name",
-                  },
-                },
-              },
-              {
-                name: "POD_NAMESPACE",
-                valueFrom: {
-                  fieldRef: {
-                    apiVersion: "v1",
-                    fieldPath: "metadata.namespace",
-                  },
-                },
-              },
-              {
                 name: "SETTINGS_SUPERPOD",
                 value: mcpIstioConfig.superpod,
               },
@@ -349,6 +330,8 @@ if (istioPhases.phaseNum == 1) then
               "sidecar",
               "--domain",
               "$(POD_NAMESPACE).svc.cluster.local",
+              "--log_output_level",
+              "default:info",
               "--configPath",
               "/etc/istio/proxy",
               "--binaryPath",
@@ -359,23 +342,23 @@ if (istioPhases.phaseNum == 1) then
               "45s",
               "--parentShutdownDuration",
               "1m0s",
-              "--connectTimeout",
-              "10s",
+              "--discoveryAddress",
+              "istio-pilot.mesh-control-plane:15011",
               "--zipkinAddress",
               "zipkindirecttls.funnel.svc.mesh.sfdc.net:7442",
-              "--envoyMetricsService",
-              "{\"address\":\"switchboard.service-mesh:15001\",\"tlsSettings\":{\"caCertificates\":\"/client-certs/ca.pem\",\"clientCertificate\":\"/client-certs/client/certificates/client.pem\",\"mode\":\"MUTUAL\",\"privateKey\":\"/client-certs/client/keys/client-key.pem\",\"sni\":null,\"subjectAltNames\":[]},\"tcpKeepalive\":{\"interval\":\"10s\",\"probes\":3,\"time\":\"10s\"}}",
-              "--proxyAdminPort",
-              "15373",
-              "--statusPort",
-              "15020",
               "--proxyLogLevel=info",
               "--dnsRefreshRate",
               "300s",
+              "--connectTimeout",
+              "10s",
+              "--envoyMetricsService",
+              "{\"address\":\"%(envoyMetricsServiceHost)s:15001\",\"tls_settings\":{\"mode\":2,\"client_certificate\":\"/client-certs/client/certificates/client.pem\",\"private_key\":\"/client-certs/client/keys/client-key.pem\",\"ca_certificates\":\"/client-certs/ca.pem\"},\"tcp_keepalive\":{\"probes\":3,\"time\":\"10s\",\"interval\":\"10s\"}}" % mcpIstioConfig,
+              "--proxyAdminPort",
+              "15373",
               "--controlPlaneAuthPolicy",
               "MUTUAL_TLS",
-              "--discoveryAddress",
-              "istio-pilot.mesh-control-plane:15011",
+              "--statusPort",
+              "15020",
               "--controlPlaneBootstrap=false",
             ],
             env: [
@@ -383,6 +366,7 @@ if (istioPhases.phaseNum == 1) then
                 name: "POD_NAME",
                 valueFrom: {
                   fieldRef: {
+                    apiVersion: "v1",
                     fieldPath: "metadata.name",
                   },
                 },
@@ -391,6 +375,7 @@ if (istioPhases.phaseNum == 1) then
                 name: "POD_NAMESPACE",
                 valueFrom: {
                   fieldRef: {
+                    apiVersion: "v1",
                     fieldPath: "metadata.namespace",
                   },
                 },
@@ -399,6 +384,7 @@ if (istioPhases.phaseNum == 1) then
                 name: "INSTANCE_IP",
                 valueFrom: {
                   fieldRef: {
+                    apiVersion: "v1",
                     fieldPath: "status.podIP",
                   },
                 },
@@ -407,6 +393,7 @@ if (istioPhases.phaseNum == 1) then
                 name: "ISTIO_META_POD_NAME",
                 valueFrom: {
                   fieldRef: {
+                    apiVersion: "v1",
                     fieldPath: "metadata.name",
                   },
                 },
@@ -415,6 +402,7 @@ if (istioPhases.phaseNum == 1) then
                 name: "ISTIO_META_CONFIG_NAMESPACE",
                 valueFrom: {
                   fieldRef: {
+                    apiVersion: "v1",
                     fieldPath: "metadata.namespace",
                   },
                 },
@@ -422,6 +410,22 @@ if (istioPhases.phaseNum == 1) then
               {
                 name: "ISTIO_META_INTERCEPTION_MODE",
                 value: "REDIRECT",
+              },
+              {
+                name: "ISTIO_META_hostname",
+                valueFrom: {
+                  fieldRef: {
+                    fieldPath: "metadata.name",
+                  },
+                },
+              },
+              {
+                name: "ISTIO_META_namespace",
+                valueFrom: {
+                  fieldRef: {
+                    fieldPath: "metadata.namespace",
+                  },
+                },
               },
               {
                 name: "ISTIO_METAJSON_METRICS_INCLUSIONS",
@@ -470,22 +474,6 @@ if (istioPhases.phaseNum == 1) then
               {
                 name: "KINGDOM",
                 value: mcpIstioConfig.kingdom,
-              },
-              {
-                name: "ISTIO_META_hostname",
-                valueFrom: {
-                  fieldRef: {
-                    fieldPath: "metadata.name",
-                  },
-                },
-              },
-              {
-                name: "ISTIO_META_namespace",
-                valueFrom: {
-                  fieldRef: {
-                    fieldPath: "metadata.namespace",
-                  },
-                },
               },
             ],
             image: mcpIstioConfig.proxyImage,
@@ -658,7 +646,7 @@ if (istioPhases.phaseNum == 1) then
               },
             ],
             image: mcpIstioConfig.proxyImage,
-            imagePullPolicy: "Always",
+            imagePullPolicy: "IfNotPresent",
             name: "istio-init",
             resources: {
               limits: {
@@ -685,11 +673,6 @@ if (istioPhases.phaseNum == 1) then
         ],
         nodeSelector: {
           master: "true",
-        },
-        securityContext: {
-          fsGroup: 7447,
-          runAsNonRoot: true,
-          runAsUser: 7447,
         },
         serviceAccountName: "istio-sidecar-injector-service-account",
         volumes: [
