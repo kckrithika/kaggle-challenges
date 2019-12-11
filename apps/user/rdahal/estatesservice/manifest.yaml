@@ -70,3 +70,4 @@ system:
         targetport: 9090
         lbtype: http
         tls: true
+        reencrypt: true
