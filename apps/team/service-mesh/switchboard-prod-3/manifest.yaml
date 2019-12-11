@@ -10,7 +10,7 @@ system:
       routing.mesh.sfdc.net/enabled: "true"
     containers:
     - name: switchboard
-      image: sfci/servicelibs/switchboard:a28616d4de4f1eb68a849c0cd888bb00de47803d
+      image: sfci/servicelibs/switchboard:c200d0000bfb76ff944c43478255831509ec5013
       args:
       ############################## PRODUCTION CONFIGURATION ##########################################
       # Any configuration that needs to go to production should be added here.
