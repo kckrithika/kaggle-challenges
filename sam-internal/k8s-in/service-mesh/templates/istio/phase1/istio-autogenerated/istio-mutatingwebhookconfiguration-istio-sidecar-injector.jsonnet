@@ -29,9 +29,22 @@ if (istioPhases.phaseNum == 1) then
       failurePolicy: "Fail",
       name: "sidecar-injector.istio.io",
       namespaceSelector: {
-        matchLabels: {
-          "istio-injection": "enabled",
-        },
+        matchExpressions: [
+          {
+            key: "name",
+            operator: "NotIn",
+            values: [
+              "mesh-control-plane",
+            ],
+          },
+          {
+            key: "istio-injection",
+            operator: "NotIn",
+            values: [
+              "disabled",
+            ],
+          },
+        ],
       },
       rules: [
         {

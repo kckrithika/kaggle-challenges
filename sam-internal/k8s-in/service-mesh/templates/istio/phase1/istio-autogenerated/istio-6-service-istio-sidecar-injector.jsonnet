@@ -10,6 +10,7 @@ if (istioPhases.phaseNum == 1) then
     labels: {
       app: "sidecarInjectorWebhook",
       istio: "sidecar-injector",
+      p_servicename: "updated_by_firebom",
       release: "istio",
     },
     name: "istio-sidecar-injector",
@@ -18,7 +19,7 @@ if (istioPhases.phaseNum == 1) then
   spec: {
     ports: [
       {
-        name: "sidecar-injector-port",
+        name: "https-inject",
         port: 443,
         targetPort: 15009,
       },
