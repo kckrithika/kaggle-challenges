@@ -6,6 +6,7 @@ patchesStrategicMerge:
 - charts/pilot/templates/deployment.yaml
 - charts/pilot/templates/service.yaml
 - charts/sidecarInjectorWebhook/templates/deployment.yaml
+- charts/sidecarInjectorWebhook/templates/mutatingwebhook.yaml
 - templates/configmap.yaml
 - templates/sidecar-injector-configmap.yaml
 resources:

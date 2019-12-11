@@ -12,6 +12,8 @@ if (istioPhases.phaseNum == 1) then
     },
     labels: {
       app: "sidecarInjectorWebhook",
+      chart: "sidecarInjectorWebhook",
+      heritage: "Helm",
       release: "istio",
     },
     name: "istio-sidecar-injector",
@@ -29,22 +31,9 @@ if (istioPhases.phaseNum == 1) then
       failurePolicy: "Fail",
       name: "sidecar-injector.istio.io",
       namespaceSelector: {
-        matchExpressions: [
-          {
-            key: "name",
-            operator: "NotIn",
-            values: [
-              "mesh-control-plane",
-            ],
-          },
-          {
-            key: "istio-injection",
-            operator: "NotIn",
-            values: [
-              "disabled",
-            ],
-          },
-        ],
+        matchLabels: {
+          "istio-injection": "enabled",
+        },
       },
       rules: [
         {
