@@ -14,7 +14,6 @@ if (istioPhases.phaseNum == 1) then
     labels: {
       app: "pilot",
       istio: "pilot",
-      p_servicename: "updated_by_firebom",
       release: "istio",
     },
     name: "istio-pilot",

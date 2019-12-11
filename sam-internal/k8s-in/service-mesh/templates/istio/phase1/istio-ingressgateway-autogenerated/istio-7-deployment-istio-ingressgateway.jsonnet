@@ -13,7 +13,6 @@ if (istioPhases.phaseNum == 1) then
     labels: {
       app: "istio-ingressgateway",
       istio: "ingressgateway",
-      p_servicename: "updated_by_firebom",
       release: "istio",
     },
     name: "istio-ingressgateway",
@@ -46,7 +45,6 @@ if (istioPhases.phaseNum == 1) then
           heritage: "Helm",
           istio: "ingressgateway",
           name: "istio-ingressgateway",
-          p_servicename: "updated_by_firebom",
           release: "istio",
         },
       },
@@ -224,7 +222,7 @@ if (istioPhases.phaseNum == 1) then
               },
               {
                 name: "ISTIO_METAJSON_LABELS",
-                value: "{\"app\":\"istio-ingressgateway\",\"chart\":\"gateways\",\"heritage\":\"Helm\",\"istio\":\"ingressgateway\",\"p_servicename\":\"updated_by_firebom\",\"release\":\"istio\"}\n",
+                value: "{\"app\":\"istio-ingressgateway\",\"chart\":\"gateways\",\"heritage\":\"Helm\",\"istio\":\"ingressgateway\",\"release\":\"istio\"}\n",
               },
               {
                 name: "ISTIO_META_CLUSTER_ID",

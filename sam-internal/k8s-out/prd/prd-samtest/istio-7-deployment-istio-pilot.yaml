@@ -55,7 +55,6 @@ spec:
         heritage: Helm
         istio: pilot
         name: istio-pilot
-        p_servicename: updated_by_firebom
         release: istio
     spec:
       affinity:

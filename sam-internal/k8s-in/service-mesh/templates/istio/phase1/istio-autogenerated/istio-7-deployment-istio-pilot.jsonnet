@@ -46,7 +46,6 @@ if (istioPhases.phaseNum == 1) then
           heritage: "Helm",
           istio: "pilot",
           name: "istio-pilot",
-          p_servicename: "updated_by_firebom",
           release: "istio",
         },
       },

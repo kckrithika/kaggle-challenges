@@ -6,7 +6,6 @@ metadata:
   labels:
     app: istio-ingressgateway
     istio: ingressgateway
-    p_servicename: updated_by_firebom
     release: istio
   name: istio-ingressgateway
   namespace: core-on-sam-sp2
@@ -57,7 +56,6 @@ spec:
         heritage: Helm
         istio: ingressgateway
         name: istio-ingressgateway
-        p_servicename: updated_by_firebom
         release: istio
     spec:
       affinity:
@@ -165,7 +163,7 @@ spec:
               fieldPath: metadata.namespace
         - name: ISTIO_METAJSON_LABELS
           value: |
-            {"app":"istio-ingressgateway","chart":"gateways","heritage":"Helm","istio":"ingressgateway","p_servicename":"updated_by_firebom","release":"istio"}
+            {"app":"istio-ingressgateway","chart":"gateways","heritage":"Helm","istio":"ingressgateway","release":"istio"}
         - name: ISTIO_META_CLUSTER_ID
           value: Kubernetes
         - name: SDS_ENABLED

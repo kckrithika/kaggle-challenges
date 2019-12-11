@@ -44,7 +44,6 @@ if (istioPhases.phaseNum == 1) then
           heritage: "Helm",
           istio: "sidecar-injector",
           name: "istio-sidecar-injector",
-          p_servicename: "updated_by_firebom",
           release: "istio",
         },
       },

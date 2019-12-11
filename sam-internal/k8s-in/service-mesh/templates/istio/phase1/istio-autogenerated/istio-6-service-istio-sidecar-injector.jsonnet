@@ -10,7 +10,6 @@ if (istioPhases.phaseNum == 1) then
     labels: {
       app: "sidecarInjectorWebhook",
       istio: "sidecar-injector",
-      p_servicename: "updated_by_firebom",
       release: "istio",
     },
     name: "istio-sidecar-injector",

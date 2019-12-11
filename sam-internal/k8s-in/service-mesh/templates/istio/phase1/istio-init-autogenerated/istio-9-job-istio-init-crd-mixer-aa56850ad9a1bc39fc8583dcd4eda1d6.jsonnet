@@ -16,9 +16,7 @@ if (istioPhases.phaseNum == 1) then
         annotations: {
           "sidecar.istio.io/inject": "false",
         },
-        labels: {
-          p_servicename: "updated_by_firebom",
-        },
+        labels: null,
       },
       spec: {
         automountServiceAccountToken: true,
