@@ -1,10 +1,8 @@
 apps:
  prd-search-query-service:
   - prd/prd-search_model_executor
- gcp-search-query-service:
-#  - mvp/gsf-core-devmvp-sam2-sam
  prod-search-query-service-canary:
-  - ord/ord-search_model_executor
+  - lo3/lo3-search_model_executor
  prod-search-query-service:
   - phx/phx-search_model_executor
   - dfw/dfw-search_model_executor
@@ -14,10 +12,10 @@ apps:
   - ukb/ukb-search_model_executor
   - par/par-search_model_executor
  prod-search-query-service-half-capacity:
+  - ord/ord-search_model_executor
   - ia2/ia2-search_model_executor
   - ph2/ph2-search_model_executor
   - cdg/cdg-search_model_executor
   - fra/fra-search_model_executor
   - lo2/lo2-search_model_executor
-  - lo3/lo3-search_model_executor
   - xrd/xrd-search_model_executor
