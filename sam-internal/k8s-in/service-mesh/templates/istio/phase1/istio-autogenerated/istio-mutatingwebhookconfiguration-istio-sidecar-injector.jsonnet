@@ -12,6 +12,8 @@ if (istioPhases.phaseNum == 1) then
     },
     labels: {
       app: "sidecarInjectorWebhook",
+      chart: "sidecarInjectorWebhook",
+      heritage: "Helm",
       release: "istio",
     },
     name: "istio-sidecar-injector",

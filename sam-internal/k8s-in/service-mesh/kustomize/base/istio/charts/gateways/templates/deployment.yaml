@@ -39,8 +39,8 @@ spec:
       serviceAccountName: istio-ingressgateway-service-account
       containers:
         - name: istio-proxy
-          image: "791719295754.dkr.ecr.us-east-2.amazonaws.com/sfci/servicemesh/istio-packaging/proxy:91742345277d0ffb8f6d3c9c7edffa16de0acb1c"
-          imagePullPolicy: IfNotPresent
+          image: "791719295754.dkr.ecr.us-east-2.amazonaws.com/sfci/servicemesh/istio-packaging/proxy:aa56850ad9a1bc39fc8583dcd4eda1d6720a724d"
+          imagePullPolicy: Always
           securityContext:
             runAsUser: 0
             runAsNonRoot: false

@@ -1,0 +1,17 @@
+---
+# Source: istio/charts/sidecarInjectorWebhook/templates/mutatingwebhook.yaml
+apiVersion: admissionregistration.k8s.io/v1beta1
+kind: MutatingWebhookConfiguration
+metadata:
+  name: istio-sidecar-injector
+  labels:
+    app: sidecarInjectorWebhook
+    chart: sidecarInjectorWebhook
+    heritage: Helm
+    release: istio
+webhooks:
+  - name: sidecar-injector.istio.io
+    namespaceSelector:
+      matchExpressions: null
+      matchLabels:
+        istio-injection: enabled

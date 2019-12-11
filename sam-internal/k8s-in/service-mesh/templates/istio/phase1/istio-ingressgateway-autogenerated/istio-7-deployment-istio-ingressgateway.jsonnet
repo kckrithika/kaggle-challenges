@@ -42,7 +42,7 @@ if (istioPhases.phaseNum == 1) then
           app: "istio-ingressgateway",
           chart: "gateways",
           cluster: mcpIstioConfig.istioEstate,
-          heritage: "Tiller",
+          heritage: "Helm",
           istio: "ingressgateway",
           name: "istio-ingressgateway",
           release: "istio",
@@ -122,8 +122,7 @@ if (istioPhases.phaseNum == 1) then
               "--domain",
               "$(POD_NAMESPACE).svc.cluster.local",
               "--proxyLogLevel=info",
-              "--log_output_level",
-              "default:info",
+              "--log_output_level=default:warn",
               "--drainDuration",
               "45s",
               "--parentShutdownDuration",
@@ -135,7 +134,7 @@ if (istioPhases.phaseNum == 1) then
               "--zipkinAddress",
               "zipkindirecttls.funnel.svc.mesh.sfdc.net:7442",
               "--envoyMetricsService",
-              "{\"address\":\"%(envoyMetricsServiceHost)s:15001\",\"tls_settings\":{\"mode\":2,\"client_certificate\":\"/client-certs/client/certificates/client.pem\",\"private_key\":\"/client-certs/client/keys/client-key.pem\",\"ca_certificates\":\"/client-certs/ca.pem\"},\"tcp_keepalive\":{\"probes\":3,\"time\":\"10s\",\"interval\":\"10s\"}}" % mcpIstioConfig,
+              "{\"address\":\"switchboard.service-mesh:15001\",\"tlsSettings\":{\"caCertificates\":\"/client-certs/ca.pem\",\"clientCertificate\":\"/client-certs/client/certificates/client.pem\",\"mode\":\"MUTUAL\",\"privateKey\":\"/client-certs/client/keys/client-key.pem\",\"sni\":null,\"subjectAltNames\":[]},\"tcpKeepalive\":{\"interval\":\"10s\",\"probes\":3,\"time\":\"10s\"}}",
               "--proxyAdminPort",
               "15373",
               "--statusPort",
@@ -147,70 +146,6 @@ if (istioPhases.phaseNum == 1) then
               "--controlPlaneBootstrap=false",
             ],
             env: [
-              {
-                name: "ESTATE",
-                value: mcpIstioConfig.casamEstate,
-              },
-              {
-                name: "ISTIO_META_superpod",
-                value: mcpIstioConfig.superpod,
-              },
-              {
-                name: "ISTIO_META_settings_path",
-                value: mcpIstioConfig.ingressGatewaySettingsPath,
-              },
-              {
-                name: "ISTIO_META_hostname",
-                valueFrom: {
-                  fieldRef: {
-                    fieldPath: "metadata.name",
-                  },
-                },
-              },
-              {
-                name: "ISTIO_META_namespace",
-                valueFrom: {
-                  fieldRef: {
-                    fieldPath: "metadata.namespace",
-                  },
-                },
-              },
-              {
-                name: "ISTIO_METAJSON_METRICS_INCLUSIONS",
-                value: "{\"sidecar.istio.io/statsInclusionPrefixes\": \"access_log_file,cluster,cluster_manager,control_plane,http,http2,http_mixer_filter,listener,listener_manager,redis,runtime,server,stats,tcp,tcp_mixer_filter,tracing\"}",
-              },
-              {
-                name: "ISTIO_META_TLS_CLIENT_CERT_CHAIN",
-                value: "/client-certs/client/certificates/client.pem",
-              },
-              {
-                name: "ISTIO_META_TLS_CLIENT_KEY",
-                value: "/client-certs/client/keys/client-key.pem",
-              },
-              {
-                name: "ISTIO_META_TLS_CLIENT_ROOT_CERT",
-                value: "/client-certs/ca.pem",
-              },
-              {
-                name: "ISTIO_META_TLS_SERVER_CERT_CHAIN",
-                value: "/server-certs/server/certificates/server.pem",
-              },
-              {
-                name: "ISTIO_META_TLS_SERVER_KEY",
-                value: "/server-certs/server/keys/server-key.pem",
-              },
-              {
-                name: "ISTIO_META_TLS_SERVER_ROOT_CERT",
-                value: "/server-certs/ca.pem",
-              },
-              {
-                name: "ISTIO_META_kubernetes_cluster_name",
-                valueFrom: {
-                  fieldRef: {
-                    fieldPath: "metadata.labels['cluster']",
-                  },
-                },
-              },
               {
                 name: "NODE_NAME",
                 valueFrom: {
@@ -287,7 +222,7 @@ if (istioPhases.phaseNum == 1) then
               },
               {
                 name: "ISTIO_METAJSON_LABELS",
-                value: "{\"app\":\"istio-ingressgateway\",\"chart\":\"gateways\",\"heritage\":\"Tiller\",\"istio\":\"ingressgateway\",\"release\":\"istio\"}\n",
+                value: "{\"app\":\"istio-ingressgateway\",\"chart\":\"gateways\",\"heritage\":\"Helm\",\"istio\":\"ingressgateway\",\"release\":\"istio\"}\n",
               },
               {
                 name: "ISTIO_META_CLUSTER_ID",
@@ -303,15 +238,79 @@ if (istioPhases.phaseNum == 1) then
               },
               {
                 name: "ISTIO_META_OWNER",
-                value: "kubernetes://api/apps/v1/namespaces/mesh-control-plane/deployments/istio-ingressgateway",
+                value: "kubernetes://api/apps/v1/namespaces/core-on-sam-sp2/deployments/istio-ingressgateway",
+              },
+              {
+                name: "ESTATE",
+                value: mcpIstioConfig.casamEstate,
+              },
+              {
+                name: "ISTIO_META_superpod",
+                value: mcpIstioConfig.superpod,
+              },
+              {
+                name: "ISTIO_META_settings_path",
+                value: mcpIstioConfig.ingressGatewaySettingsPath,
+              },
+              {
+                name: "ISTIO_META_hostname",
+                valueFrom: {
+                  fieldRef: {
+                    fieldPath: "metadata.name",
+                  },
+                },
+              },
+              {
+                name: "ISTIO_META_namespace",
+                valueFrom: {
+                  fieldRef: {
+                    fieldPath: "metadata.namespace",
+                  },
+                },
+              },
+              {
+                name: "ISTIO_METAJSON_METRICS_INCLUSIONS",
+                value: "{\"sidecar.istio.io/statsInclusionPrefixes\": \"access_log_file,cluster,cluster_manager,control_plane,http,http2,http_mixer_filter,listener,listener_manager,redis,runtime,server,stats,tcp,tcp_mixer_filter,tracing\"}",
               },
               {
                 name: "ISTIO_META_ROUTER_MODE",
                 value: "standard",
               },
+              {
+                name: "ISTIO_META_TLS_CLIENT_CERT_CHAIN",
+                value: "/client-certs/client/certificates/client.pem",
+              },
+              {
+                name: "ISTIO_META_TLS_CLIENT_KEY",
+                value: "/client-certs/client/keys/client-key.pem",
+              },
+              {
+                name: "ISTIO_META_TLS_CLIENT_ROOT_CERT",
+                value: "/client-certs/ca.pem",
+              },
+              {
+                name: "ISTIO_META_TLS_SERVER_CERT_CHAIN",
+                value: "/server-certs/server/certificates/server.pem",
+              },
+              {
+                name: "ISTIO_META_TLS_SERVER_KEY",
+                value: "/server-certs/server/keys/server-key.pem",
+              },
+              {
+                name: "ISTIO_META_TLS_SERVER_ROOT_CERT",
+                value: "/server-certs/ca.pem",
+              },
+              {
+                name: "ISTIO_META_kubernetes_cluster_name",
+                valueFrom: {
+                  fieldRef: {
+                    fieldPath: "metadata.labels['cluster']",
+                  },
+                },
+              },
             ],
             image: "%(istioHub)s/proxy:%(istioTag)s" % mcpIstioConfig,
-            imagePullPolicy: "IfNotPresent",
+            imagePullPolicy: "Always",
             name: "istio-proxy",
             ports: [
               {
@@ -337,7 +336,7 @@ if (istioPhases.phaseNum == 1) then
               },
               requests: {
                 cpu: "100m",
-                memory: "1024Mi",
+                memory: "128Mi",
               },
             },
             securityContext: {
@@ -521,6 +520,11 @@ if (istioPhases.phaseNum == 1) then
         ],
         nodeSelector: {
           pool: mcpIstioConfig.casamEstate,
+        },
+        securityContext: {
+          fsGroup: 7447,
+          runAsNonRoot: true,
+          runAsUser: 7447,
         },
         serviceAccountName: "istio-ingressgateway-service-account",
         volumes: [

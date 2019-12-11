@@ -100,6 +100,9 @@ data:
     # The port proxy listens on for iptables redirected packets.
     proxyListenPort: 15002
 
+    inboundClusterStatName: "local_service.%SERVICE_PORT%"
+    outboundClusterStatName: "%SERVICE%.%SERVICE_PORT%"
+
     defaultConfig:
       #
       # TCP connection timeout between Envoy & the application, and between Envoys.  Used for static clusters

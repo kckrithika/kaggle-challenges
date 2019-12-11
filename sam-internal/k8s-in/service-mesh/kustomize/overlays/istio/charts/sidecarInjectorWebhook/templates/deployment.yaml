@@ -6,7 +6,7 @@ metadata:
   name: istio-sidecar-injector
   namespace: mesh-control-plane
 spec:
-  replicas: 3
+  replicas: mcpIstioConfig.sidecarInjectorWebhookReplicasCount
   strategy:
     rollingUpdate:
       maxSurge: 3
