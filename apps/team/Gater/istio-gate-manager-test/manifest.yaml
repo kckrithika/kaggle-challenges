@@ -10,20 +10,22 @@ system:
       sidecar.istio.io/inject: "true"
       sidecar.istio.io/proxyCPU: "8000m"
       sidecar.istio.io/proxyMemory: "4096Mi"
-      traffic.sidecar.istio.io/excludeInboundPorts: "9522,9523,9524,15372"
+      traffic.sidecar.istio.io/excludeInboundPorts: "9522,9523,9524,15372,9090"
     hostnetwork: false
     containers:
     - name: gater1
-      image: sfci/services/sfdc-bazel/gater/gate-manager:1.16.2
+      image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-sfci-dev/sfci/services/sfdc-bazel/gater/gate-manager:d326aa1f0
       args:
         - --server.port=9090
         - --gater.grpc.server.port=7443
         - --gater-service.thread.pool.max-size=16
         - --gater.grpc.threadpool.size=16
         - --synctask.host-affinity=false
+        - --synctask.version=V2
         - --logging.sfdc.stderr.level=OFF
         - --logging.json.stdout.level=INFO
         - --publish-specific-metrics=CONDITIONAL
+        - --backupservice.enabled=true
         - --metrics.funnelEndPointURL=http://ajnafunneldirecttls.funnel.svc.mesh.sfdc.net:7442
       volumeMounts:
       - mountPath: /log
@@ -62,15 +64,14 @@ system:
         value: "-Dmesh.istio-mode=true"
       terminationMessagePolicy: FallbackToLogsOnError
     - name: beacon
-      # https://git.soma.salesforce.com/services/sfdc-bazel/tree/master/projects/sidecars/beacon#docker-image
-      image: sfci/services/sfdc-bazel/disco/beacon:fba17e8b2
+      image: sfci/servicelibs/beacon:cec13ceb9fc5aed0ce462031a01b2dd5ef73d5ee
       args:
       - -endpoint
       - $(FUNCTION_NAMESPACE)/$(FUNCTION):DATACENTER_ALLENV:HTTP2_TLS
       livenessProbe:
         exec:
           command:
-          - "/opt/beacon/is-alive.sh"
+          - /home/scone/is-alive.sh
         initialDelaySeconds: 5
     volumes:
     - name: logvol
