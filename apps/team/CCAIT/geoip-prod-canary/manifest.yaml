@@ -8,7 +8,7 @@ system:
     count: 5
     containers:
     - name: geoip
-      image: sfci/services/sfdc-bazel/service-mesh/geoip:414468b11 # monorepo build
+      image: sfci/services/sfdc-bazel/service-mesh/geoip:ac4a23115 # monorepo build
       env:
       - name: FAKE_ENV_VAR_INCREMENT_TO_TRIGGER_SAM_DEPLOY
         value: "0"
