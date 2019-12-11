@@ -213,7 +213,7 @@ system:
           tls: true
           reencrypt: false
         - port: 80
-          name: public2
+          name: unsecure
           targetport: 8080
           lbtype: http
           tls: false
