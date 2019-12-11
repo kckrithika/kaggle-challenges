@@ -125,8 +125,8 @@ system:
         maxSurge: 1
         maxUnavailable: 1
   loadbalancers:
-  - lbname: gater
-    function: gater
+  - lbname: gater-lo3
+    function: gater-lo3
     ports:
       - lbtype: dsr
         port: 7443
