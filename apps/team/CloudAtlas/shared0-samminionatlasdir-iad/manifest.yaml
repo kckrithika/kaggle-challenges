@@ -20,7 +20,7 @@ system:
     # Cloud Atlas Directory Server
     #####################################################################################
     - name: cloudatlas-pdm-install
-      image: sfci/cloud-atlas/cloudatlas/cloudatlas-pdm:3.7.0rc1
+      image: sfci/cloud-atlas/cloudatlas/cloudatlas-pdm:4.1.0rc1
       command: ["/opt/pdm/pdm.customer/bin/entrypoint.sh"]
       env:
       - name: UBID_DEPLOYMENT_STAGE
@@ -71,7 +71,7 @@ system:
     # Service Mesh / Envoy / Sherpa
     #####################################################################################
     - name: sherpa-cloudatlas-client
-      image: sfci/servicelibs/sherpa-envoy:1.0.7
+      image: sfci/servicelibs/sherpa-envoy:1.0.13
       env:
       - name: SFDC_ENVIRONMENT
         value: "prod"
@@ -110,7 +110,7 @@ system:
     # Service Beacon
     #####################################################################################
     - name: beacon-cloudatlas
-      image: sfci/servicelibs/beacon:7ad9e771192cd0b3e43393eea2e1e5c1de81dfda
+      image: sfci/services/sfdc-bazel/disco/beacon:fba17e8b2
       env:
       - name: SFDC_ENVIRONMENT
         value: "prod"
@@ -122,13 +122,12 @@ system:
         requests: { cpu: "1", memory: "1Gi" }
       args:
         - -endpoint
-        - $(FUNCTION_NAMESPACE)/cloudatlas-iad-service:DATACENTER_ALLENV:7442
+        - $(FUNCTION_NAMESPACE)/cloudatlas-iad-service:DATACENTER_ALLENV:HTTP1_TLS
       livenessProbe:
         exec:
           command:
-          - "/home/scone/is-alive.sh"
+          - "/opt/beacon/is-alive.sh"
         initialDelaySeconds: 5
-        periodSeconds: 5
     #####################################################################################
     # Volumes Needed
     #####################################################################################
