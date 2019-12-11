@@ -1,0 +1,63 @@
+apiVersion: v1
+
+system:
+  functions:
+  - name: nagios-adapter
+    count: 1
+    volumes:
+    - name: nagiosauthvol
+      k4aSecret:
+        secretName: csc-nagios-auth
+    containers:
+    - name: nagios-adapter
+      image: dva/csc-health/nagios-adapter:51
+      volumeMounts:
+      - mountPath: /var/secrets/nagios-auth
+        name: nagiosauthvol
+        readOnly: true
+      livenessProbe:
+        exec:
+          command:
+          - echo
+          - always_healthy
+      env:
+      - name: nagiosadapter_general_nagios_manifests_directory
+        value: /nagios-adapter/watchdog-sdom-manifest/nagios_manifests/
+      - name: nagiosadapter_estates_estates_root_path
+        value: /nagios-adapter/estates-edl/
+      - name: nagiosadapter_estates_cnc_root_path
+        value: /nagios-adapter/racktastic/
+      - name: nagiosadapter_nagios_nagios_username
+        value: csc.health.serviceuser
+      - name: nagiosadapter_nagios_nagios_password_path
+        value: /var/secrets/nagios-auth/auth
+      - name: nagiosadapter_nagios_timeout
+        value: 120
+      - name: nagiosadapter_logger_log_file
+        value: /nagios-adapter/nagios-adapter/logs/nagiosAdapter.log
+      - name: nagiosadapter_logger_log_level
+        value: DEBUG
+      - name: nagiosadapter_script
+        value: /nagios-adapter/nagios-adapter/nagiosAdapter.py
+      - name: nagiosadapter_config_schema
+        value: /nagios-adapter/nagios-adapter/config_schema.json
+      - name: nagiosadapter_sleep_interval_seconds
+        value: 300
+      - name: nagiosadapter_ajna_api_endpoint
+        value: funnel/v1/publishBatch
+      - name: nagiosadapter_ajna_api_parameter
+        value: avroSchemaFingerprint
+      - name: nagiosadapter_ajna_avro_schema_fingerprint
+        value: AVG7NnlcHNdk4t_zn2JBnQ
+      - name: nagiosadapter_ajna_servicename
+        value: nagiosadapter
+      command: ["/bin/sh", "-c"]
+      args: ["
+      export nagiosadapter_general_kingdom=${KINGDOM};
+      export nagiosadapter_reportcollector_reportcollector_endpoint=https://reportcollector-${KINGDOM}.data.sfdc.net:18443/v1/barkBatch;
+      export nagiosadapter_ajna_funnel_vip=${SFDC_METRICS_SERVICE_HOST};
+      export nagiosadapter_ajna_funnel_port=${SFDC_METRICS_SERVICE_PORT};
+      export nagiosadapter_ajna_device=${ESTATE}.${FUNCTION_NAMESPACE}.${FUNCTION}.${FUNCTION_INSTANCE_NAME};
+
+      /nagios-adapter/nagios-adapter/startNagiosAdapterLoop.sh ${nagiosadapter_script} ${nagiosadapter_config_schema} ${nagiosadapter_sleep_interval_seconds}
+      "]
