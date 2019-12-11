@@ -24,7 +24,7 @@ system:
       command: ["/opt/pdm/pdm.customer/bin/entrypoint.sh"]
       env:
       - name: JVM_ARGS_PASSED_AS_ENV_VAR
-        value: -Dcom.sun.management.jmxremote.port=5000 -Dcom.sun.management.jmxremote.rmi.port=5000 -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false -XX:ActiveProcessorCount=56 -d64 -server -Xmx90g -Xms90g -XX:MaxNewSize=2g -XX:NewSize=2g -XX:+UseConcMarkSweepGC -XX:+CMSIncrementalMode -XX:+UseParNewGC -XX:+UseGCLogFileRotation -XX:NumberOfGCLogFiles=3 -XX:GCLogFileSize=100m -XX:+PrintGCDetails -XX:+PrintGCDateStamps -XX:+PrintCommandLineFlags -Xloggc:/log/pingserver/jvm/gc.log -XX:+UseBiasedLocking -XX:MaxTenuringThreshold=2 -XX:+HeapDumpOnOutOfMemoryError
+        value: -Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.port=5000 -Dcom.sun.management.jmxremote.rmi.port=5000 -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false -XX:ActiveProcessorCount=56 -d64 -server -Xmx90g -Xms90g -XX:MaxNewSize=2g -XX:NewSize=2g -XX:+UseConcMarkSweepGC -XX:+CMSIncrementalMode -XX:+UseParNewGC -XX:+UseGCLogFileRotation -XX:NumberOfGCLogFiles=3 -XX:GCLogFileSize=100m -XX:+PrintGCDetails -XX:+PrintGCDateStamps -XX:+PrintCommandLineFlags -Xloggc:/log/pingserver/jvm/gc.log -XX:+UseBiasedLocking -XX:MaxTenuringThreshold=2 -XX:+HeapDumpOnOutOfMemoryError
       - name: UBID_DEPLOYMENT_STAGE
         value: ALL
       - name: AWS_BACKUP_S3_BUCKET
