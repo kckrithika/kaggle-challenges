@@ -19,7 +19,7 @@ system:
           type: client
     containers:
     - name: soter
-      image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/soter:171
+      image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/soter:173
       ports:
       - containerPort: 8080
       - containerPort: 7090
