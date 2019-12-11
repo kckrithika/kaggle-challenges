@@ -62,7 +62,7 @@ spec:
           value: mesh.-.prd.-.route-update-service
         - name: FAKE_RESTART_VAR
           value: "2"
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/sfci/servicemesh/servicemesh/route-update-service:926b819500113ba0f917f74e70e09b257c957c4a
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/sfci/servicemesh/servicemesh/route-update-service:bd0c5edaa3fc8492fd84f43af2b3ef50f64faa10
         imagePullPolicy: IfNotPresent
         name: route-update-service
         ports:
