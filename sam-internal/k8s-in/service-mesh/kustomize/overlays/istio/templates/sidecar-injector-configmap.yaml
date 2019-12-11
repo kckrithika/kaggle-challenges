@@ -48,13 +48,12 @@ data:
         - name: DISABLE_REDIRECTION_ON_LOCAL_LOOPBACK
           value: "1"
         imagePullPolicy: "{{ .Values.global.imagePullPolicy }}"
+      {{- if .Values.global.proxy.init.resources }}
         resources:
-          requests:
-            cpu: 10m
-            memory: 10Mi
-          limits:
-            cpu: 100m
-            memory: 50Mi
+          {{ toYaml .Values.global.proxy.init.resources | indent 4 }}
+      {{- else }}
+        resources: {}
+      {{- end }}
         securityContext:
           runAsUser: 0
           runAsNonRoot: false
@@ -167,6 +166,10 @@ data:
       {{- if .Values.global.trustDomain }}
         - --trust-domain={{ .Values.global.trustDomain }}
       {{- end }}
+      {{- if .Values.global.proxy.lifecycle }}
+        lifecycle:
+          {{ toYaml .Values.global.proxy.lifecycle | indent 4 }}
+      {{- end }}
         - --controlPlaneBootstrap=false
         env:
         - name: POD_NAME
@@ -176,9 +179,13 @@ data:
         - name: ISTIO_META_POD_PORTS
           value: |-
             [
+            {{- $first := true }}
             {{- range $index1, $c := .Spec.Containers }}
               {{- range $index2, $p := $c.Ports }}
-                {{if or (ne $index1 0) (ne $index2 0)}},{{end}}{{ structToJSON $p }}
+                {{- if (structToJSON $p) }}
+                {{if not $first}},{{end}}{{ structToJSON $p }}
+                {{- $first = false }}
+                {{- end }}
               {{- end}}
             {{- end}}
             ]
