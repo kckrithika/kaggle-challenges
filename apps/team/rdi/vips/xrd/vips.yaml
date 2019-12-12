@@ -1362,6 +1362,15 @@
       healthport: 25843
       healthpath: /ping
       healthprotocol: http
+    - port: 9511
+      targetport: 9511
+      lbtype: http
+      sticky: 300
+      reencrypt: true
+      tls: true
+      healthport: 25843
+      healthpath: /ping
+      healthprotocol: http
     - port: 9696
       targetport: 9696
       lbtype: http
