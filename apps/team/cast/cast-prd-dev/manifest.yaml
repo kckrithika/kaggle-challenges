@@ -94,7 +94,7 @@ system:
           value: 7032
         - name: management_server_port
           value: 15374
-        - name: cloudatlas_http_server_port_servicemesh
+        - name: cloudatlas_http_server_port
           value: 7080
       volumeMounts:
       - mountPath: /log
