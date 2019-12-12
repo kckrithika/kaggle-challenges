@@ -50,6 +50,7 @@ spec:
         - name: PILOT_TRACE_SAMPLING
         - name: PILOT_DISABLE_XDS_MARSHALING_TO_ANY
         - name: PILOT_RESPECT_DNS_TTL
+        - name: PILOT_ENABLE_CRD_VALIDATION
         $setElementOrder/volumeMounts:
         - mountPath: /etc/istio/config
         args:
@@ -79,6 +80,8 @@ spec:
           value: "100"
         - name: PILOT_RESPECT_DNS_TTL
           value: "false"
+        - name: PILOT_ENABLE_CRD_VALIDATION
+          value: "true"
         name: discovery
         volumeMounts:
         - $patch: delete
