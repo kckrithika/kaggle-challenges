@@ -5,7 +5,7 @@ system:
     - drichelson@salesforce.com
   functions:
   - name: geoip-go
-    count: 1
+    count: 0
     containers:
     - name: geoip-database
       image: tnrp/ccait/geoip2-database:20170918
