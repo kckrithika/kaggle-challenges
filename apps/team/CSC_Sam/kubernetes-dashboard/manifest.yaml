@@ -140,6 +140,8 @@ system:
         - --apiserver-host=http://pseudo-kubeapi.csc-sam.prd-sam.prd.slb.sfdc.net:40001/prd-sam
         - --insecure-port=9099
         - --system-banner-webhook=http://pseudo-kubeapi.csc-sam.prd-sam.prd.slb.sfdc.net:40001/prd-sam/dashboard-webhook
+        - --system-banner=Want a historical view of the Kubernetes Cluster your app lives in? Check out <a href="http://sloop.sam-system.prd-sam.prd.slb.sfdc.net/"> Sloop! </a> (Currently prd-sam only. Ask us about prod support. Fork us on <a href="https://github.com/salesforce/sloop"> Github! </a>)
+        - --system-banner-severity=INFO
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/d.smith/dashboard:webhook
       ports:
       - containerPort: 9099
