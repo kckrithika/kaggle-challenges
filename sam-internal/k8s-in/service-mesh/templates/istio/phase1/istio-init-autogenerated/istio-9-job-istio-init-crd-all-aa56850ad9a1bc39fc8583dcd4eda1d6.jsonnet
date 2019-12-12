@@ -7,7 +7,7 @@ if (istioPhases.phaseNum == 1) then
   apiVersion: "batch/v1",
   kind: "Job",
   metadata: {
-    name: "istio-init-crd-mixer-%(istioTag)s" % mcpIstioConfig,
+    name: "istio-init-crd-all-aa56850ad9a1bc39fc8583dcd4eda1d6",
     namespace: "mesh-control-plane",
   },
   spec: {
@@ -16,19 +16,21 @@ if (istioPhases.phaseNum == 1) then
         annotations: {
           "sidecar.istio.io/inject": "false",
         },
+        labels: null,
       },
       spec: {
+        automountServiceAccountToken: true,
         containers: [
           {
             command: [
               "kubectl",
               "apply",
               "-f",
-              "/etc/istio/crd-mixer/crd-mixer.yaml",
+              "/etc/istio/crd-all/crd-all.gen.yaml",
             ],
             image: "%(istioHub)s/kubectl:%(istioTag)s" % mcpIstioConfig,
-            imagePullPolicy: "IfNotPresent",
-            name: "istio-init-crd-mixer",
+            imagePullPolicy: "Always",
+            name: "istio-init-crd-all",
             resources: {
               limits: {
                 cpu: "100m",
@@ -41,8 +43,8 @@ if (istioPhases.phaseNum == 1) then
             },
             volumeMounts: [
               {
-                mountPath: "/etc/istio/crd-mixer",
-                name: "crd-mixer",
+                mountPath: "/etc/istio/crd-all",
+                name: "crd-all",
                 readOnly: true,
               },
             ],
@@ -52,13 +54,18 @@ if (istioPhases.phaseNum == 1) then
           pool: mcpIstioConfig.istioEstate,
         },
         restartPolicy: "OnFailure",
+        securityContext: {
+          fsGroup: 7447,
+          runAsNonRoot: true,
+          runAsUser: 7447,
+        },
         serviceAccountName: "istio-init-service-account",
         volumes: [
           {
             configMap: {
-              name: "istio-crd-mixer",
+              name: "istio-crd-all",
             },
-            name: "crd-mixer",
+            name: "crd-all",
           },
         ],
       },

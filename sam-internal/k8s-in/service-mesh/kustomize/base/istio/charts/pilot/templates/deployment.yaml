@@ -40,7 +40,7 @@ spec:
       automountServiceAccountToken: true
       containers:
         - name: discovery
-          image: "791719295754.dkr.ecr.us-east-2.amazonaws.com/sfci/servicemesh/istio-packaging/pilot:aa56850ad9a1bc39fc8583dcd4eda1d6720a724d"
+          image: "%(istioHub)s/pilot:aa56850ad9a1bc39fc8583dcd4eda1d6720a724d"
           imagePullPolicy: Always
           args:
           - "discovery"
@@ -105,7 +105,7 @@ spec:
           - name: config-volume
             mountPath: /etc/istio/config
         - name: istio-proxy
-          image: "791719295754.dkr.ecr.us-east-2.amazonaws.com/sfci/servicemesh/istio-packaging/proxy:aa56850ad9a1bc39fc8583dcd4eda1d6720a724d"
+          image: "%(istioHub)s/proxy:aa56850ad9a1bc39fc8583dcd4eda1d6720a724d"
           imagePullPolicy: Always
           ports:
           - containerPort: 15003
@@ -250,7 +250,7 @@ spec:
           env:
             - name: DISABLE_REDIRECTION_ON_LOCAL_LOOPBACK
               value: "1"
-          image: "791719295754.dkr.ecr.us-east-2.amazonaws.com/sfci/servicemesh/istio-packaging/proxy:aa56850ad9a1bc39fc8583dcd4eda1d6720a724d"
+          image: "%(istioHub)s/proxy:aa56850ad9a1bc39fc8583dcd4eda1d6720a724d"
           imagePullPolicy: Always
           name: istio-init
           resources:

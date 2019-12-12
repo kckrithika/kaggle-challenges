@@ -23,8 +23,8 @@ data:
     proxyListenPort: 15002
     # W-6798525: assigned a random available port to proxyHttpPort so that baremetal proxy can listen on 15002 without any conflicts
     proxyHttpPort: 49150
-    inboundClusterStatName: "local_service.%%SERVICE_PORT%%"
-    outboundClusterStatName: "%%SERVICE%%.%%SERVICE_PORT%%"
+    inboundClusterStatName: "local_service.%SERVICE_PORT%"
+    outboundClusterStatName: "%SERVICE%.%SERVICE_PORT%"
     defaultConfig:
       concurrency: 0
       connectTimeout: 10s

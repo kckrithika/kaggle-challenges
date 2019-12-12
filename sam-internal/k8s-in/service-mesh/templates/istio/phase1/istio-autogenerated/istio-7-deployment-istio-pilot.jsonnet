@@ -43,7 +43,7 @@ if (istioPhases.phaseNum == 1) then
           app: "pilot",
           chart: "pilot",
           cluster: mcpIstioConfig.istioEstate,
-          heritage: "Tiller",
+          heritage: "Helm",
           istio: "pilot",
           name: "istio-pilot",
           release: "istio",
@@ -115,6 +115,7 @@ if (istioPhases.phaseNum == 1) then
             },
           },
         },
+        automountServiceAccountToken: true,
         containers: [
           {
             args: [
@@ -131,26 +132,6 @@ if (istioPhases.phaseNum == 1) then
               "5m",
             ],
             env: [
-              {
-                name: "ESTATE",
-                value: mcpIstioConfig.istioEstate,
-              },
-              {
-                name: "PILOT_SIDECAR_USE_REMOTE_ADDRESS",
-                value: "true",
-              },
-              {
-                name: "PILOT_ENABLE_REDIS_FILTER",
-                value: "true",
-              },
-              {
-                name: "PILOT_DEBOUNCE_AFTER",
-                value: "100ms",
-              },
-              {
-                name: "PILOT_DEBOUNCE_MAX",
-                value: "10s",
-              },
               {
                 name: "POD_NAME",
                 valueFrom: {
@@ -170,20 +151,40 @@ if (istioPhases.phaseNum == 1) then
                 },
               },
               {
-                name: "PILOT_PUSH_THROTTLE",
-                value: "100",
+                name: "ESTATE",
+                value: mcpIstioConfig.istioEstate,
               },
               {
-                name: "PILOT_TRACE_SAMPLING",
-                value: "1",
+                name: "PILOT_ENABLE_CRD_VALIDATION",
+                value: "true",
+              },
+              {
+                name: "PILOT_SIDECAR_USE_REMOTE_ADDRESS",
+                value: "true",
+              },
+              {
+                name: "PILOT_ENABLE_REDIS_FILTER",
+                value: "true",
+              },
+              {
+                name: "PILOT_DEBOUNCE_AFTER",
+                value: "100ms",
+              },
+              {
+                name: "PILOT_DEBOUNCE_MAX",
+                value: "10s",
+              },
+              {
+                name: "PILOT_PUSH_THROTTLE",
+                value: "100",
               },
               {
                 name: "PILOT_RESPECT_DNS_TTL",
                 value: "false",
               },
               {
-                name: "PILOT_ENABLE_CRD_VALIDATION",
-                value: "true",
+                name: "PILOT_TRACE_SAMPLING",
+                value: "1",
               },
               {
                 name: "PILOT_ENABLE_PROTOCOL_SNIFFING_FOR_OUTBOUND",
@@ -195,7 +196,7 @@ if (istioPhases.phaseNum == 1) then
               },
             ],
             image: "%(istioHub)s/pilot:%(istioTag)s" % mcpIstioConfig,
-            imagePullPolicy: "IfNotPresent",
+            imagePullPolicy: "Always",
             name: "discovery",
             ports: [
               {
@@ -245,7 +246,7 @@ if (istioPhases.phaseNum == 1) then
               "--proxyLogLevel=info",
               "--log_output_level=default:warn",
               "--envoyMetricsService",
-              "{\"address\":\"%(envoyMetricsServiceHost)s:15001\",\"tls_settings\":{\"mode\":2,\"client_certificate\":\"/client-certs/client/certificates/client.pem\",\"private_key\":\"/client-certs/client/keys/client-key.pem\",\"ca_certificates\":\"/client-certs/ca.pem\"},\"tcp_keepalive\":{\"probes\":3,\"time\":\"10s\",\"interval\":\"10s\"}}" % mcpIstioConfig,
+              "{\"address\":\"switchboard.service-mesh:15001\",\"tls_settings\":{\"mode\":2,\"client_certificate\":\"/client-certs/client/certificates/client.pem\",\"private_key\":\"/client-certs/client/keys/client-key.pem\",\"ca_certificates\":\"/client-certs/ca.pem\"},\"tcp_keepalive\":{\"probes\":3,\"time\":\"10s\",\"interval\":\"10s\"}}",
               "--proxyAdminPort",
               "15373",
             ],
@@ -338,20 +339,20 @@ if (istioPhases.phaseNum == 1) then
                 value: mcpIstioConfig.kingdom,
               },
               {
+                name: "SDS_ENABLED",
+                value: "false",
+              },
+              {
                 name: "ENVOY_METRICS_SERVICE_ADDRESS",
-                value: mcpIstioConfig.envoyMetricsServiceHost,
+                value: "switchboard.service-mesh",
               },
               {
                 name: "ENVOY_METRICS_SERVICE_PORT",
                 value: "15001",
               },
-              {
-                name: "SDS_ENABLED",
-                value: "false",
-              },
             ],
             image: "%(istioHub)s/proxy:%(istioTag)s" % mcpIstioConfig,
-            imagePullPolicy: "IfNotPresent",
+            imagePullPolicy: "Always",
             name: "istio-proxy",
             ports: [
               {
@@ -479,6 +480,28 @@ if (istioPhases.phaseNum == 1) then
                     fieldPath: "metadata.namespace",
                   },
                 },
+              },
+              {
+                name: "POD_NAME",
+                valueFrom: {
+                  fieldRef: {
+                    apiVersion: "v1",
+                    fieldPath: "metadata.name",
+                  },
+                },
+              },
+              {
+                name: "POD_NAMESPACE",
+                valueFrom: {
+                  fieldRef: {
+                    apiVersion: "v1",
+                    fieldPath: "metadata.namespace",
+                  },
+                },
+              },
+              {
+                name: "PILOT_ENABLE_CRD_VALIDATION",
+                value: "true",
               },
               {
                 name: "SETTINGS_SUPERPOD",
@@ -633,7 +656,7 @@ if (istioPhases.phaseNum == 1) then
               },
             ],
             image: mcpIstioConfig.proxyImage,
-            imagePullPolicy: "IfNotPresent",
+            imagePullPolicy: "Always",
             name: "istio-init",
             resources: {
               limits: {
@@ -660,6 +683,11 @@ if (istioPhases.phaseNum == 1) then
         ],
         nodeSelector: {
           pool: mcpIstioConfig.istioEstate,
+        },
+        securityContext: {
+          fsGroup: 7447,
+          runAsNonRoot: true,
+          runAsUser: 7447,
         },
         serviceAccountName: "istio-pilot-service-account",
         volumes: [
