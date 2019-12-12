@@ -66,7 +66,9 @@
     'cdpmetadata',
     'cdpscheduler',
     'cdpsegment',
-    'cdpinjector'
+    'cdpinjector',
+    'matlockauth',
+    'prazk'
   ],
   'soft-launch': true
 }
