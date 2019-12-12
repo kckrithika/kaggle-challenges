@@ -15,6 +15,20 @@ system:
     - name: cre-api-ccp-perf
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cre/cre-api:2.2-TEST.0.develop-at-test.0e62c21.71
       env:
+        - name: K4A_VAULT
+          value: c360-dvd-user-manager-dev
+        - name: BUCKET_NAME
+          value: sfdc-c360-dev-us-east-1
+        - name: ARRAY_OF_IP
+          value: '["37.47.14.209/32", "158.75.202.2/32", "204.14.239.0/24", "204.14.236.0/24", "136.146.95.8/32", "62.17.146.144/32", "202.95.77.83/32"]'
+        - name: BUCKET_KEY
+          value: arn:aws:kms:us-east-1:748405220275:key/141d089c-022d-4bf3-9510-5a558db4b2e9
+        - name: PERMISSIONS_BOUNDARY_ARN
+          value: arn:aws:iam::748405220275:policy/PCSKPermissionsBoundary
+        - name: HTTP_PROXY
+          value: http://public0-proxy1-0-prd.data.sfdc.net:8080
+        - name: HTTPS_PROXY
+          value: http://public0-proxy1-0-prd.data.sfdc.net:8080
         - name: GDOT_BASE_PATH
           value: http://cloudatlas-prd-stage-service.cloudatlas.localhost.mesh.force.com:5442/scim
         - name: DOMAIN_ID
