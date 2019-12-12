@@ -8,6 +8,7 @@ if (istioPhases.phaseNum == 1) then
   kind: "Service",
   metadata: {
     annotations: {
+      "service.beta.kubernetes.io/aws-load-balancer-type": "nlb",
       "slb.sfdc.net/name": "istio-ingressgateway",
       "slb.sfdc.net/portconfigurations": "[\n {\n  \"lbtype\": \"dsr\",\n  \"port\": 15008,\n  \"targetport\": 15008\n },\n {\n  \"lbtype\": \"dsr\",\n  \"port\": 15009,\n  \"targetport\": 15009\n },\n {\n  \"lbtype\": \"dsr\",\n  \"port\": 8085,\n  \"targetport\": 8085\n },\n {\n  \"lbtype\": \"dsr\",\n  \"port\": 8443,\n  \"targetport\": 8443\n }\n]",
     },
