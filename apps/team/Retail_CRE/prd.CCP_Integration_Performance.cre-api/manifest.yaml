@@ -13,7 +13,7 @@ system:
       "routing.mesh.sfdc.net/enabled": "true"
     containers:
     - name: cre-api-ccp-perf
-      image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-sfci-dev/sfci/cre/cre-api:2.1.4.0.master.9d55085.7
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cre/cre-api:2.2-TEST.0.develop-at-test.0e62c21.71
       env:
         - name: K4A_VAULT
           value: c360-dvd-user-manager-dev
