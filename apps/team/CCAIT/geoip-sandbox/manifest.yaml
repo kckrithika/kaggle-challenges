@@ -49,6 +49,8 @@ system:
       env:
       - name: SFDC_ENVIRONMENT
         value: mesh
+      - name: ENVOY_DEBUG_OPTIONS
+        value: --concurrency 8
       ports:
       - name: http2-in
         containerPort: 7012
