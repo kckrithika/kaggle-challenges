@@ -79,8 +79,8 @@ system:
       - name: sherpaservercert
         mountPath: /server-certs
       resources:
-        limits: { cpu: "4", memory: "1Gi" }
-        requests: { cpu: "4", memory: "1Gi" }
+        limits: { cpu: "8", memory: "1Gi" }
+        requests: { cpu: "8", memory: "1Gi" }
     volumes:
     - name: sherpaclientcert
       maddogCert:
