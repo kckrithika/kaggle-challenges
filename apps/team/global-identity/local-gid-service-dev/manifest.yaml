@@ -51,7 +51,7 @@ system:
       livenessProbe:
         httpGet:
           path: /manage/health
-          port: 15375
+          port: 15371
         initialDelaySeconds: 60
         periodSeconds: 5
 
