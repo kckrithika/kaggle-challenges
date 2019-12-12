@@ -178,12 +178,12 @@ if (istioPhases.phaseNum == 2) then
                 value: "1",
               },
               {
-                name: "PILOT_ENABLE_UNSAFE_REGEX",
-                value: "true",
-              },
-              {
                 name: "PILOT_RESPECT_DNS_TTL",
                 value: "false",
+              },
+              {
+                name: "PILOT_ENABLE_CRD_VALIDATION",
+                value: "true",
               },
               {
                 name: "PILOT_ENABLE_PROTOCOL_SNIFFING_FOR_OUTBOUND",
