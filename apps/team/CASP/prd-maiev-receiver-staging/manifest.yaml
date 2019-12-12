@@ -21,7 +21,9 @@ system:
         - name: receiver-grpc
           containerPort: 7020
         - name: receiver-http
-          containerPort: 7022
+          containerPort: 8086
+        - name: receiver-https
+          containerPort: 8443
         livenessProbe:
           exec:
             command:
@@ -32,7 +34,7 @@ system:
         - name: CANTOR_GRPC_TARGET
           value: "cantor.casp.$KINGDOM-samtwo.$KINGDOM.slb.sfdc.net:11983"
         - name: HTTP_PORT
-          value: "7022"
+          value: "8085"
         - name: BASE_PATH
           value: "/v1/*"
         - name: BRANCH
@@ -48,15 +50,12 @@ system:
           name: server-cert
         - mountPath: /home/sfdc-maiev/client-certs
           name: client-cert
+      # ------- sherpa envoy container -------
       - name: cantor-http-sherpa
         # Use the latest release version from https://git.soma.salesforce.com/servicelibs/sherpa-envoy/releases
         image: sfci/servicelibs/sherpa-envoy:1.0.13
         # See https://git.soma.salesforce.com/servicelibs/sherpa#ports
         ports:
-        - name: http-in
-          containerPort: 7014
-        - name: http-tls-in
-          containerPort: 7442
         - name: http2-in
           containerPort: 7012
         - name: http2-tls-in
@@ -82,6 +81,18 @@ system:
             mountPath: /client-certs
           - name: server-cert
             mountPath: /server-certs
+      # ------- beacon container - announces service so mesh proxy is aware -------
+      - name: beacon
+        image: docker-sfci-dev/sfci/services/sfdc-bazel/disco/beacon:fba17e8b2
+        livenessProbe:
+          exec:
+            command:
+              - /usr/bin/true
+        # FUNCTION_NAMESPACE: The Kubernetes namespace in which the container is running.
+        # FUNCTION: Value listed in the manifest for the function key.
+        args:
+          - -endpoint
+          - $(FUNCTION_NAMESPACE)/$(FUNCTION):DATACENTER:HTTP2_TLS
       volumes:
       - name: server-cert
         maddogCert:
@@ -96,17 +107,15 @@ system:
       function: maiev-receiver-func-stage
       slbEnabled: true
       ports:
-        - port: 80
-          targetport: 7014
-        - port: 443
-          targetport: 7442
-        - port: 7012
+        - port: 80 # http
+          targetport: 8086
+        - port: 443 # https
+          targetport: 8443
+        - port: 7012 # http2-in
           targetport: 7012
-        - port: 7443
+        - port: 7443 # http2-tls-in
           targetport: 7443
-        - port: 7022
-          targetport: 7022
-        - port: 7020
+        - port: 7020 # grpc sherpa bypass
           targetport: 7020
-        - port: 15373
+        - port: 15373 # sherpa admin
           targetport: 15373
