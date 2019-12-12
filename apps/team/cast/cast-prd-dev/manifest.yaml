@@ -95,7 +95,7 @@ system:
         - name: management_server_port
           value: 15374
         - name: cloudatlas_http_server_port
-          value: 7080
+          value: 7030
       volumeMounts:
       - mountPath: /log
         name: logvol
@@ -196,7 +196,7 @@ system:
     # NGINX Rev Proxy
     #####################################################################################
     - name: nginx-rev-proxy
-      image: sfci/globalidentity/nginx-routing:8e0ce47
+      image: sfci/globalidentity/nginx-routing:554f1b7
       imagePullPolicy: Always
       ports:
         - containerPort: 7022
