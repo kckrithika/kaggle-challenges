@@ -3,9 +3,9 @@ apiVersion: v1
 system:
     notifications:
       email:
-        - warden@salesforce.com
+        - akouthoofd@salesforce.com
     functions:
-    - name: maiev-receiver-func
+    - name: maiev-receiver-func-stage
       identity:
         serviceName: maiev-receiver
       count: 1
@@ -19,18 +19,19 @@ system:
         image: dva/maiev-receiver:64
         ports:
         - name: receiver-grpc
-          containerPort: 7442
-          hostPort: 17444
+          containerPort: 7020
         - name: receiver-http
           containerPort: 8086
           hostPort: 7022
+        - name: receiver-https
+          containerPort: 8443
         livenessProbe:
           exec:
             command:
             - /usr/bin/true
         env:
         - name: MASTER_GRPC_PORT
-          value: "7442"
+          value: "7020"
         - name: CANTOR_GRPC_TARGET
           value: "cantor.casp.$KINGDOM-sam.$KINGDOM.slb.sfdc.net:11983"
         - name: HTTP_PORT
@@ -39,32 +40,84 @@ system:
           value: "/v1/*"
         - name: BRANCH
           value: "ops_production"
-        - name: KAFKA_PROPERTIES
-          value: "/home/sfdc-maiev/receiver/kafka-producer.properties"
+        # disabling kafka on testing instance
+#        - name: KAFKA_PROPERTIES
+#          value: "/home/sfdc-maiev/receiver/kafka-producer.properties"
         - name: NODENAME
           valueFrom:
             fieldRef:
               fieldPath: spec.nodeName
         volumeMounts:
         - mountPath: /home/sfdc-maiev/certs
-          name: maievservercert
+          name: server-cert
         - mountPath: /home/sfdc-maiev/client-certs
-          name: maievclientcert
+          name: client-cert
+      # ------- sherpa envoy container -------
+      - name: cantor-http-sherpa
+        # Use the latest release version from https://git.soma.salesforce.com/servicelibs/sherpa-envoy/releases
+        image: sfci/servicelibs/sherpa-envoy:1.0.13
+        # See https://git.soma.salesforce.com/servicelibs/sherpa#ports
+        ports:
+        - name: http2-in
+          containerPort: 7012
+        - name: http2-tls-in
+          containerPort: 7443
+        - name: sherpa-adm
+          containerPort: 15373
+        livenessProbe:
+          exec:
+            command:
+              - ./bin/is-alive
+          initialDelaySeconds: 60
+          periodSeconds: 5
+        readinessProbe:
+          exec:
+            command:
+              - ./bin/is-ready
+          initialDelaySeconds: 50
+          periodSeconds: 5
+        # The cert names should match whatever you choose below in your volumes section.
+        # The mount paths match the defaults assumed by sherpa. Changing the paths requires a corresponding manual override in sherpa.
+        volumeMounts:
+          - name: client-cert
+            mountPath: /client-certs
+          - name: server-cert
+            mountPath: /server-certs
+      # ------- beacon container - announces service so mesh proxy is aware -------
+      - name: beacon
+        image: docker-sfci-dev/sfci/services/sfdc-bazel/disco/beacon:fba17e8b2
+        livenessProbe:
+          exec:
+            command:
+              - /usr/bin/true
+        # FUNCTION_NAMESPACE: The Kubernetes namespace in which the container is running.
+        # FUNCTION: Value listed in the manifest for the function key.
+        args:
+          - -endpoint
+          - $(FUNCTION_NAMESPACE)/$(FUNCTION):DATACENTER:HTTP2_TLS
       volumes:
-      - name: maievservercert
+      - name: server-cert
         maddogCert:
           type: server
           lbnames:
-            - maiev-receiver
-      - name: maievclientcert
+            - maiev-receiver-stage
+      - name: client-cert
         maddogCert:
           type: client
     loadbalancers:
-    - lbname: maiev-receiver
-      function: maiev-receiver-func
+    - lbname: maiev-receiver-stage
+      function: maiev-receiver-func-stage
       slbEnabled: true
       ports:
-        - port: 7442
-          targetport: 7442
-        - port: 80
+        - port: 80 # http
           targetport: 8086
+        - port: 443 # https
+          targetport: 8443
+        - port: 7012 # http2-in
+          targetport: 7012
+        - port: 7443 # http2-tls-in
+          targetport: 7443
+        - port: 7020 # grpc sherpa bypass
+          targetport: 7020
+        - port: 15373 # sherpa admin
+          targetport: 15373
