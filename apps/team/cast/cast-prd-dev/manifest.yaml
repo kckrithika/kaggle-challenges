@@ -157,7 +157,7 @@ system:
     # GID Data service
     #####################################################################################
     - name: gid-service
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/gid/gid-service:cd252d3
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/gid/gid-service:dcc51d3
       imagePullPolicy: Always
       env:
         - name: directory_server_host
@@ -169,7 +169,7 @@ system:
         - name: management_server_port
           value: 15371
         - name: ca_service_host
-          value: 127.0.0.1
+          value: ${directory_server_host}
         - name: c2c_common_gdotBasePath
           value: http://${directory_server_host}:7022/scim
         - name: security_client_dynamickeystore_cadir
@@ -180,6 +180,8 @@ system:
           value: giddataservice-cast-prd-dev
         - name: c2c_service_id
           value: giddataservice-cast-prd-dev
+        - name: ldaps_hostname
+          value: ${directory_server_host}
       ports:
         - containerPort: 8081
         - containerPort: 15371
