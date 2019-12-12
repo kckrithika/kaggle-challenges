@@ -1,3 +1,10 @@
+# ###
+#
+# IMPORTANT:
+#   When updating this manifest, please also update teams/service-mesh/istio-geoip/manifest.yaml
+#
+# ###
+
 apiVersion: v1
 system:
   notifications:
