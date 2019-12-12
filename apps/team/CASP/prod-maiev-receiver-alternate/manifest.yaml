@@ -85,7 +85,7 @@ system:
             mountPath: /server-certs
       # ------- beacon container - announces service so mesh proxy is aware -------
       - name: beacon
-        image: docker-sfci-dev/sfci/services/sfdc-bazel/disco/beacon:fba17e8b2
+        image: sfci/servicelibs/beacon:853c4db9f14805018be6f5e7607ffe65b5648822
         livenessProbe:
           exec:
             command:
@@ -94,7 +94,7 @@ system:
         # FUNCTION: Value listed in the manifest for the function key.
         args:
           - -endpoint
-          - $(FUNCTION_NAMESPACE)/$(FUNCTION):DATACENTER:HTTP2_TLS
+          - $(FUNCTION_NAMESPACE)/$(FUNCTION):DATACENTER_ALLENV:HTTP2_TLS
       volumes:
       - name: server-cert
         maddogCert:
