@@ -94,7 +94,7 @@ system:
           value: 7032
         - name: management_server_port
           value: 15374
-        - name: cloudatlas_http_server_port_servicemesh
+        - name: cloudatlas_http_server_port
           value: 7080
       volumeMounts:
       - mountPath: /log
@@ -157,7 +157,7 @@ system:
     # GID Data service
     #####################################################################################
     - name: gid-service
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/gid/gid-service:179c76a
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/gid/gid-service:cd252d3
       imagePullPolicy: Always
       env:
         - name: directory_server_host
