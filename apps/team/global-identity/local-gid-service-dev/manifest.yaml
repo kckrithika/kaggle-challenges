@@ -38,7 +38,7 @@ system:
         - name: ca_service_host
           value: cloudatlas-dev.global-identity.prd-sam.prd.slb.sfdc.net
         - name: c2c_common_gdotBasePath
-          value: http://cloudatlas-dev.global-identity.prd-sam.prd.slb.sfdc.net:7022/scim
+          value: http://cloudatlas-dev.global-identity.prd-sam.prd.slb.sfdc.net/scim
         - name: ldaps_bind_password
           value: 1insecureRootPassword!
         - name: ldaps_bind_dn
