@@ -1281,6 +1281,24 @@
       healthport: 25843
       healthpath: /ping
       healthprotocol: http
+    - port: 8000
+      targetport: 8000
+      lbtype: http
+      sticky: 300
+      reencrypt: true
+      tls: true
+      healthport: 25843
+      healthpath: /ping
+      healthprotocol: http
+    - port: 8003
+      targetport: 8003
+      lbtype: http
+      sticky: 300
+      reencrypt: true
+      tls: true
+      healthport: 25843
+      healthpath: /ping
+      healthprotocol: http
     - port: 8773
       targetport: 8773
       lbtype: http
@@ -1328,6 +1346,24 @@
       healthprotocol: http
     - port: 9292
       targetport: 9292
+      lbtype: http
+      sticky: 300
+      reencrypt: true
+      tls: true
+      healthport: 25843
+      healthpath: /ping
+      healthprotocol: http
+    - port: 9311
+      targetport: 9311
+      lbtype: http
+      sticky: 300
+      reencrypt: true
+      tls: true
+      healthport: 25843
+      healthpath: /ping
+      healthprotocol: http
+    - port: 9511
+      targetport: 9511
       lbtype: http
       sticky: 300
       reencrypt: true
