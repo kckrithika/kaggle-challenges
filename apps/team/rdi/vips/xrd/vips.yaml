@@ -1281,6 +1281,15 @@
       healthport: 25843
       healthpath: /ping
       healthprotocol: http
+    - port: 8000
+      targetport: 8000
+      lbtype: http
+      sticky: 300
+      reencrypt: true
+      tls: true
+      healthport: 25843
+      healthpath: /ping
+      healthprotocol: http
     - port: 8003
       targetport: 8003
       lbtype: http
