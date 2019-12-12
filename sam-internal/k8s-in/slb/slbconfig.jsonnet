@@ -71,7 +71,7 @@
             "prd-samdev": "10.254.250.128/25",
             "prd-sam_storage": "10.254.251.0/25",
             "prd-sam_storagedev": "",  # TODO: find a real subnet for this new estate.
-            "prd-sam": "10.251.196.0/22",
+            "prd-sam": "10.251.196.0/22,10.254.251.0/25",  # second subnet is from prd-sam_storage
             "frf-sam": "10.214.36.0/22",
             "par-sam": "10.214.112.0/22",
             "phx-sam": "10.208.208.0/22",
@@ -127,7 +127,7 @@
             set_value_to_all_in_list(1000, $.testEstates)
             + set_value_to_all_in_list(1000, $.prodEstates)
             + {
-                "prd-sam": 1000,
+                "prd-sam": 1148,
                 "prd-samtwo": 1000,
                 "lo2-sam": 1000,
                 "lo3-sam": 1000,
