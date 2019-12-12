@@ -35,8 +35,10 @@ system:
           value: cloudatlas-dev.global-identity.prd-sam.prd.slb.sfdc.net
         - name: ldaps_hostname
           value: cloudatlas-dev.global-identity.prd-sam.prd.slb.sfdc.net
+        - name: ca_service_host
+          value: cloudatlas-dev.global-identity.prd-sam.prd.slb.sfdc.net
         - name: c2c_common_gdotBasePath
-          value: http://cloudatlas-dev.global-identity.prd-sam.prd.slb.sfdc.net/scim
+          value: http://cloudatlas-dev.global-identity.prd-sam.prd.slb.sfdc.net:7022/scim
         - name: ldaps_bind_password
           value: 1insecureRootPassword!
         - name: ldaps_bind_dn
@@ -47,11 +49,11 @@ system:
         - containerPort: 8081
         - containerPort: 15371
       livenessProbe:
-        exec:
-          command:
-          - /bin/true
+        httpGet:
+          path: /manage/health
+          port: 15375
         initialDelaySeconds: 60
-        periodSeconds: 30
+        periodSeconds: 5
 
       volumeMounts:
         - name: server-cert
