@@ -15,7 +15,7 @@ system:
     containers:
     # Primary service container
     - name: metadata-service
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/metadata-cannon/metadata-service:0.12.68
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/metadata-cannon/metadata-service:0.12.70
       ports:
       # Server port
       - containerPort: 9091
