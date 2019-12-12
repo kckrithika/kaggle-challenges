@@ -30,7 +30,7 @@ system:
         value: "15523"
       - name: JVM_ARGS
         # Environment specific configuration parameters
-        value: -Xmx2G -Xms2G -XX:ParallelGCThreads=8
+        value: -Xmx2G -Xms2G -XX:ParallelGCThreads=8 -Dcore.refresh.chunk.size=50
       # An environment variable used to trigger containers redeployment without making other changes to the manifest
       - name: RESTART
         value: May-16-2019
