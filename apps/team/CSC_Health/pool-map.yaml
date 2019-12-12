@@ -172,6 +172,7 @@ apps:
     - ia2/ia2-sam_report_collector
     - ia4/ia4-sam_report_collector
     - ia5/ia5-sam_report_collector
+    - cdg/cdg-sam_report_collector
   nagios-adapter-stagger-3:
     - par/par-sam_report_collector
     - dfw/dfw-sam_report_collector
@@ -180,7 +181,6 @@ apps:
     - ord/ord-sam_report_collector
     - hnd/hnd-sam_report_collector
     - fra/fra-sam_report_collector
-    - cdg/cdg-sam_report_collector
     - ph2/ph2-sam_report_collector
     - lo2/lo2-sam_report_collector
     - lo3/lo3-sam_report_collector
