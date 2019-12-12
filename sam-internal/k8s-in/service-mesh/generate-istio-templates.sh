@@ -16,13 +16,13 @@ cp ${BASH_SOURCE%/*}/kustomize/istio-init.yaml /tmp/istio-upgrade/istio-init/ren
 cp ${BASH_SOURCE%/*}/kustomize/istio.yaml /tmp/istio-upgrade/istio/rendered.yaml
 
 # Run tool to convert yaml to jsonnet templates.
-docker pull ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/servicemesh/istio-upgrade:dev
+#docker pull ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/servicemesh/istio-upgrade:dev
 
 # Generate istio-init jsonnets.
 docker run \
   -v /tmp/istio-upgrade/istio-init:/istio-ship \
   -v /tmp/istio-upgrade/templates:/templates \
-  ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/servicemesh/istio-upgrade:dev \
+  istio-upgrade:dev \
   /
 
 # Move istio-init templates.
@@ -33,7 +33,7 @@ mv /tmp/istio-upgrade/templates/* ${BASH_SOURCE%/*}/templates/istio/phase1/istio
 docker run \
   -v /tmp/istio-upgrade/istio:/istio-ship \
   -v /tmp/istio-upgrade/templates:/templates \
-  ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/servicemesh/istio-upgrade:dev \
+  istio-upgrade:dev \
   /
 
 # Move istio templates.
