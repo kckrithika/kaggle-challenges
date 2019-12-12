@@ -5,7 +5,7 @@ system:
     - servicemesh@salesforce.com
   functions:
   - name: geoip-xlt
-    count: 1
+    count: 0
     containers:
 
     - name: geoip-xlt
