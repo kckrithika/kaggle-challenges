@@ -33,7 +33,10 @@ helm template istio \
 --set global.proxy.envoyMetricsService.tlsSettings.caCertificates=/client-certs/ca.pem \
 --set global.proxy.envoyMetricsService.tlsSettings.clientCertificate=/client-certs/client/certificates/client.pem \
 --set global.proxy.envoyMetricsService.tlsSettings.privateKey=/client-certs/client/keys/client-key.pem \
+--set global.hub=%\(istioHub\)s \
+--debug \
 ${TMP_DIR}/istio
+
 
 # Generate gateways manifests in core-on-sam-sp2 namespace.
 helm template istio \
@@ -47,6 +50,8 @@ helm template istio \
 --set global.proxy.envoyMetricsService.tlsSettings.caCertificates=/client-certs/ca.pem \
 --set global.proxy.envoyMetricsService.tlsSettings.clientCertificate=/client-certs/client/certificates/client.pem \
 --set global.proxy.envoyMetricsService.tlsSettings.privateKey=/client-certs/client/keys/client-key.pem \
+--set global.hub=%\(istioHub\)s \
+--debug \
 ${TMP_DIR}/istio
 
 # Delete tmp directory.

@@ -39,7 +39,7 @@ spec:
       automountServiceAccountToken: true
       containers:
         - name: sidecar-injector-webhook
-          image: "791719295754.dkr.ecr.us-east-2.amazonaws.com/sfci/servicemesh/istio-packaging/sidecar_injector:aa56850ad9a1bc39fc8583dcd4eda1d6720a724d"
+          image: "%(istioHub)s/sidecar_injector:aa56850ad9a1bc39fc8583dcd4eda1d6720a724d"
           imagePullPolicy: Always
           args:
             - --caCertFile=/etc/identity/ca/cacerts.pem
@@ -125,7 +125,7 @@ spec:
               cpu: 100m
               memory: 512Mi
         - name: istio-proxy
-          image: "791719295754.dkr.ecr.us-east-2.amazonaws.com/sfci/servicemesh/istio-packaging/proxy:aa56850ad9a1bc39fc8583dcd4eda1d6720a724d"
+          image: "%(istioHub)s/proxy:aa56850ad9a1bc39fc8583dcd4eda1d6720a724d"
           imagePullPolicy: Always
           securityContext:
             runAsUser: 1337
@@ -258,7 +258,7 @@ spec:
           env:
             - name: DISABLE_REDIRECTION_ON_LOCAL_LOOPBACK
               value: "1"
-          image: "791719295754.dkr.ecr.us-east-2.amazonaws.com/sfci/servicemesh/istio-packaging/proxy:aa56850ad9a1bc39fc8583dcd4eda1d6720a724d"
+          image: "%(istioHub)s/proxy:aa56850ad9a1bc39fc8583dcd4eda1d6720a724d"
           imagePullPolicy: Always
           name: istio-init
           resources:
