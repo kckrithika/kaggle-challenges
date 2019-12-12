@@ -95,6 +95,8 @@ apps:
   - ia2/ia2-sam_warden
   - ord/ord-sam_warden
   - frf/frf-sam_warden
+ prod-maiev-receiver-alternate:
+  - dfw/dfw-sam_warden
  prod-maiev-receiver-mofo:
   - cdu/cdu-sam_warden
   - syd/syd-sam_warden
