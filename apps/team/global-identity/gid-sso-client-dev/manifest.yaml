@@ -13,7 +13,7 @@ system:
       - name: management_server_port
         value: 15372
       - name: c2c_common_gdotBasePath
-        value: http://cloudatlas-gid.global-identity.prd-sam.prd.slb.sfdc.net/scim
+        value: http://cloudatlas-dev.global-identity.prd-sam.prd.slb.sfdc.net/scim
       - name: gid_default_idp_url
         value: https://gid-runtime-staging-prd.slb.sfdc.net
       - name: mail_restemailclient_proxy
