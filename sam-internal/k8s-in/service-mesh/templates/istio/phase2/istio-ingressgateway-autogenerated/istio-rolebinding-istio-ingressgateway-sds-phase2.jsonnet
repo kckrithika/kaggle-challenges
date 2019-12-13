@@ -22,6 +22,7 @@ if (istioPhases.phaseNum == 2) then
     {
       kind: "ServiceAccount",
       name: "istio-ingressgateway-service-account",
+      namespace: "core-on-sam-sp2",
     },
   ],
 }
