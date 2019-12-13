@@ -119,6 +119,7 @@ local ingressGatewayCertConfigs = [ingressGatewayClientCertConfig, ingressGatewa
 
   accessLogFile: if configs.kingdom == "prd" then "/dev/stdout" else "",
 
+  // TODO: Drop this field entirely once host whitelisting has been dropped in all phases.
   sidecarEgressHosts: istioPhases.sidecarEgressHosts,
 
   istioEnvoyVolumes():: [
