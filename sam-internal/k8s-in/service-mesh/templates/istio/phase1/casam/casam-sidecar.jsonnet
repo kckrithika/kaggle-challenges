@@ -27,7 +27,7 @@ if (istioPhases.phaseNum == 1) then
         bind: "0.0.0.0",  # We could choose to bind this to 127.1.2.3 or wildcard, wildcard aligns with how HTTP works.
       },
       {
-        hosts: mcpIstioConfig.sidecarEgressHosts,
+        hosts: ["*/*"],
       },
     ],
   },

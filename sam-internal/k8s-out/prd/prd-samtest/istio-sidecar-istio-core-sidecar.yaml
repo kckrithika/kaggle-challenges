@@ -10,32 +10,7 @@ spec:
   - bind: 127.1.2.3
     captureMode: NONE
     hosts:
-    - mesh-control-plane/*
-    - z9s-default/*
-    - app/*
-    - casam/*
-    - ccait/*
-    - cloudatlas/*
-    - core-on-sam-sp2/*
-    - core-on-sam/*
-    - emailinfra/*
-    - funnel/*
-    - gater/*
-    - gateway/*
-    - retail-cre/*
-    - retail-dfs/*
-    - retail-dss/*
-    - retail-eventlistener/*
-    - retail-mds/*
-    - retail-rrps/*
-    - retail-rsui/*
-    - retail-setup/*
-    - scone/*
-    - search-scale-safely/*
-    - service-mesh/*
-    - universal-search/*
-    - wave-elt/*
-    - ci-gateway/*
+    - '*/*'
     port:
       name: grpc-egress
       number: 7443
@@ -43,32 +18,7 @@ spec:
   - bind: 127.1.2.3
     captureMode: NONE
     hosts:
-    - mesh-control-plane/*
-    - z9s-default/*
-    - app/*
-    - casam/*
-    - ccait/*
-    - cloudatlas/*
-    - core-on-sam-sp2/*
-    - core-on-sam/*
-    - emailinfra/*
-    - funnel/*
-    - gater/*
-    - gateway/*
-    - retail-cre/*
-    - retail-dfs/*
-    - retail-dss/*
-    - retail-eventlistener/*
-    - retail-mds/*
-    - retail-rrps/*
-    - retail-rsui/*
-    - retail-setup/*
-    - scone/*
-    - search-scale-safely/*
-    - service-mesh/*
-    - universal-search/*
-    - wave-elt/*
-    - ci-gateway/*
+    - '*/*'
     port:
       name: http-egress
       number: 7442

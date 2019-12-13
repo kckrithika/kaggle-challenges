@@ -18,6 +18,7 @@ local namespaces = (import "namespaces/mesh-namespaces.jsonnet") + { templateFil
       "ajnafunneldirecttls.funnel.svc.mesh.sfdc.net:7442"
   ),
 
+  // TODO: Drop this field entirely once host whitelisting has been dropped in all phases.
   sidecarEgressHosts: (
     // System namespaces
     ["mesh-control-plane/*", "z9s-default/*"] +

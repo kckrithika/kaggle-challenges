@@ -9,125 +9,25 @@ metadata:
 spec:
   egress:
   - hosts:
-    - mesh-control-plane/*
-    - z9s-default/*
-    - app/*
-    - casam/*
-    - ccait/*
-    - cloudatlas/*
-    - core-on-sam-sp2/*
-    - core-on-sam/*
-    - emailinfra/*
-    - funnel/*
-    - gater/*
-    - gateway/*
-    - retail-cre/*
-    - retail-dfs/*
-    - retail-dss/*
-    - retail-eventlistener/*
-    - retail-mds/*
-    - retail-rrps/*
-    - retail-rsui/*
-    - retail-setup/*
-    - scone/*
-    - search-scale-safely/*
-    - service-mesh/*
-    - universal-search/*
-    - wave-elt/*
-    - ci-gateway/*
+    - '*/*'
     port:
       name: grpc-tls
       number: 7443
       protocol: GRPC
   - hosts:
-    - mesh-control-plane/*
-    - z9s-default/*
-    - app/*
-    - casam/*
-    - ccait/*
-    - cloudatlas/*
-    - core-on-sam-sp2/*
-    - core-on-sam/*
-    - emailinfra/*
-    - funnel/*
-    - gater/*
-    - gateway/*
-    - retail-cre/*
-    - retail-dfs/*
-    - retail-dss/*
-    - retail-eventlistener/*
-    - retail-mds/*
-    - retail-rrps/*
-    - retail-rsui/*
-    - retail-setup/*
-    - scone/*
-    - search-scale-safely/*
-    - service-mesh/*
-    - universal-search/*
-    - wave-elt/*
-    - ci-gateway/*
+    - '*/*'
     port:
       name: http-tls
       number: 7442
       protocol: HTTP
   - hosts:
-    - mesh-control-plane/*
-    - z9s-default/*
-    - app/*
-    - casam/*
-    - ccait/*
-    - cloudatlas/*
-    - core-on-sam-sp2/*
-    - core-on-sam/*
-    - emailinfra/*
-    - funnel/*
-    - gater/*
-    - gateway/*
-    - retail-cre/*
-    - retail-dfs/*
-    - retail-dss/*
-    - retail-eventlistener/*
-    - retail-mds/*
-    - retail-rrps/*
-    - retail-rsui/*
-    - retail-setup/*
-    - scone/*
-    - search-scale-safely/*
-    - service-mesh/*
-    - universal-search/*
-    - wave-elt/*
-    - ci-gateway/*
+    - '*/*'
     port:
       name: http-plain
       number: 7014
       protocol: HTTP
   - hosts:
-    - mesh-control-plane/*
-    - z9s-default/*
-    - app/*
-    - casam/*
-    - ccait/*
-    - cloudatlas/*
-    - core-on-sam-sp2/*
-    - core-on-sam/*
-    - emailinfra/*
-    - funnel/*
-    - gater/*
-    - gateway/*
-    - retail-cre/*
-    - retail-dfs/*
-    - retail-dss/*
-    - retail-eventlistener/*
-    - retail-mds/*
-    - retail-rrps/*
-    - retail-rsui/*
-    - retail-setup/*
-    - scone/*
-    - search-scale-safely/*
-    - service-mesh/*
-    - universal-search/*
-    - wave-elt/*
-    - ci-gateway/*
+    - '*/*'
     port:
       name: grpc-plain
       number: 7012
