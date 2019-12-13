@@ -52,7 +52,7 @@ spec:
         app: pilot
         chart: pilot
         cluster: prd-sam_gater
-        heritage: Tiller
+        heritage: Helm
         istio: pilot
         name: istio-pilot
         release: istio
@@ -90,6 +90,7 @@ spec:
                 - amd64
                 - ppc64le
                 - s390x
+      automountServiceAccountToken: true
       containers:
       - args:
         - discovery
@@ -104,16 +105,6 @@ spec:
         - --resync
         - 5m
         env:
-        - name: ESTATE
-          value: prd-sam_gater
-        - name: PILOT_SIDECAR_USE_REMOTE_ADDRESS
-          value: "true"
-        - name: PILOT_ENABLE_REDIS_FILTER
-          value: "true"
-        - name: PILOT_DEBOUNCE_AFTER
-          value: 100ms
-        - name: PILOT_DEBOUNCE_MAX
-          value: 10s
         - name: POD_NAME
           valueFrom:
             fieldRef:
@@ -124,20 +115,30 @@ spec:
             fieldRef:
               apiVersion: v1
               fieldPath: metadata.namespace
-        - name: PILOT_PUSH_THROTTLE
-          value: "100"
-        - name: PILOT_TRACE_SAMPLING
-          value: "1"
-        - name: PILOT_RESPECT_DNS_TTL
-          value: "false"
+        - name: ESTATE
+          value: prd-sam_gater
         - name: PILOT_ENABLE_CRD_VALIDATION
           value: "true"
+        - name: PILOT_SIDECAR_USE_REMOTE_ADDRESS
+          value: "true"
+        - name: PILOT_ENABLE_REDIS_FILTER
+          value: "true"
+        - name: PILOT_DEBOUNCE_AFTER
+          value: 100ms
+        - name: PILOT_DEBOUNCE_MAX
+          value: 10s
+        - name: PILOT_PUSH_THROTTLE
+          value: "100"
+        - name: PILOT_RESPECT_DNS_TTL
+          value: "false"
+        - name: PILOT_TRACE_SAMPLING
+          value: "1"
         - name: PILOT_ENABLE_PROTOCOL_SNIFFING_FOR_OUTBOUND
           value: "false"
         - name: PILOT_ENABLE_PROTOCOL_SNIFFING_FOR_INBOUND
           value: "false"
         image: ops0-artifactrepo2-0-prd.data.sfdc.net/sfci/servicemesh/istio-packaging/pilot:aa56850ad9a1bc39fc8583dcd4eda1d6720a724d
-        imagePullPolicy: IfNotPresent
+        imagePullPolicy: Always
         name: discovery
         ports:
         - containerPort: 8080
@@ -221,14 +222,14 @@ spec:
           value: prd-sam_gater
         - name: KINGDOM
           value: prd
+        - name: SDS_ENABLED
+          value: "false"
         - name: ENVOY_METRICS_SERVICE_ADDRESS
           value: switchboard.service-mesh
         - name: ENVOY_METRICS_SERVICE_PORT
           value: "15001"
-        - name: SDS_ENABLED
-          value: "false"
         image: ops0-artifactrepo2-0-prd.data.sfdc.net/sfci/servicemesh/istio-packaging/proxy:aa56850ad9a1bc39fc8583dcd4eda1d6720a724d
-        imagePullPolicy: IfNotPresent
+        imagePullPolicy: Always
         name: istio-proxy
         ports:
         - containerPort: 15003
@@ -305,6 +306,18 @@ spec:
             fieldRef:
               apiVersion: v1
               fieldPath: metadata.namespace
+        - name: POD_NAME
+          valueFrom:
+            fieldRef:
+              apiVersion: v1
+              fieldPath: metadata.name
+        - name: POD_NAMESPACE
+          valueFrom:
+            fieldRef:
+              apiVersion: v1
+              fieldPath: metadata.namespace
+        - name: PILOT_ENABLE_CRD_VALIDATION
+          value: "true"
         - name: SETTINGS_SUPERPOD
           value: '-'
         - name: SETTINGS_PATH
@@ -407,7 +420,7 @@ spec:
         - name: DISABLE_REDIRECTION_ON_LOCAL_LOOPBACK
           value: "1"
         image: ops0-artifactrepo2-0-prd.data.sfdc.net/sfci/servicemesh/istio-packaging/proxy:aa56850ad9a1bc39fc8583dcd4eda1d6720a724d
-        imagePullPolicy: IfNotPresent
+        imagePullPolicy: Always
         name: istio-init
         resources:
           limits:
@@ -426,6 +439,10 @@ spec:
         terminationMessagePolicy: File
       nodeSelector:
         pool: prd-sam_gater
+      securityContext:
+        fsGroup: 7447
+        runAsNonRoot: true
+        runAsUser: 7447
       serviceAccountName: istio-pilot-service-account
       volumes:
       - hostPath:
