@@ -37,7 +37,8 @@ spec:
               "*.data.sfdc.net",
               "*.kms.slb.sfdc.net",
               "*.moe.prd-samtest.prd.slb.sfdc.net",
-              "*.internal.salesforce.com"
+              "*.internal.salesforce.com",
+              "*.csc-sam.prd-samtest.prd.slb.sfdc.net"
              ]
             },
             {
