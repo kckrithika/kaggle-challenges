@@ -56,6 +56,7 @@
                 "*.kms.slb.sfdc.net",
                 "*.moe." + configs.estate + "." + configs.kingdom + ".slb.sfdc.net",
                 "*.internal.salesforce.com",
+                "*.csc-sam." + configs.estate + "." + configs.kingdom + ".slb.sfdc.net",
             ] + (if configs.estate == "prd-sam" then (steamVipSans + [
                 "*.retail-rsui." + configs.estate + "." + configs.kingdom + ".slb.sfdc.net",
                 "*.cast." + configs.estate + "." + configs.kingdom + ".slb.sfdc.net",

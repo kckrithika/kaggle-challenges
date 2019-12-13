@@ -35,7 +35,8 @@ spec:
               "*.data.sfdc.net",
               "*.kms.slb.sfdc.net",
               "*.moe.ph2-sam.ph2.slb.sfdc.net",
-              "*.internal.salesforce.com"
+              "*.internal.salesforce.com",
+              "*.csc-sam.ph2-sam.ph2.slb.sfdc.net"
              ]
             },
             {

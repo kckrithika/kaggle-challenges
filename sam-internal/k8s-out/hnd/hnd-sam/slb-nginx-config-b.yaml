@@ -36,6 +36,7 @@ spec:
               "*.kms.slb.sfdc.net",
               "*.moe.hnd-sam.hnd.slb.sfdc.net",
               "*.internal.salesforce.com",
+              "*.csc-sam.hnd-sam.hnd.slb.sfdc.net",
               "*.cast.hnd-sam.hnd.slb.sfdc.net"
              ]
             },
