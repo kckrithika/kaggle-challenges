@@ -29,6 +29,9 @@ apps:
       hostSubList:
       - test0shared0-samminionatlasfe1-1-prd.eng.sfdc.net
 
+  gid-sso-client-dev:
+    - name: prd/prd-sam_globalidentity
+
   gid-runtime-service-staging:
     - name: prd/prd-sam_globalidentity
 
