@@ -41,7 +41,8 @@ data:
       "org-orgcerttest-gs0-slb-dfw.slb.sfdc.net": "13.110.28.133",
       "sec0-magister1-0-dfw.slb.sfdc.net": "10.214.188.141",
       "slb-canary-proxy-http-ext.sam-system.dfw-sam.dfw.slb.sfdc.net": "13.110.28.5",
-      "sledge-dfw.slb.sfdc.net": "13.110.28.13"
+      "sledge-dfw.slb.sfdc.net": "13.110.28.13",
+      "smsapi1-0-dfw.slb.sfdc.net": "13.110.28.1"
     }
 kind: ConfigMap
 metadata:
