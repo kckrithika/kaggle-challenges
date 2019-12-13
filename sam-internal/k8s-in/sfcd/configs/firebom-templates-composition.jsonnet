@@ -68,7 +68,13 @@
     'cdpsegment',
     'cdpinjector',
     'matlockauth',
-    'prazk'
+    'prazk',
+    'fitcon',
+    'fitops',
+    'respublisher',
+    'fitval',
+    'controller',
+    'vault'
   ],
   'soft-launch': true
 }
