@@ -1735,6 +1735,18 @@
     },
     {
       "namespaces": [
+        "search-scale-safely"
+      ],
+      "access": [
+        "team/Search_Scale_Safely"
+      ],
+      "controlEstate": "ia4-sam",
+      "estate": "ia4-search_model_executor",
+      "kingdom": "ia4",
+      "superPod": "None"
+    },
+    {
+      "namespaces": [
         "cache-as-a-service-sp1"
       ],
       "access": [
@@ -1836,6 +1848,18 @@
       ],
       "controlEstate": "ia5-sam",
       "estate": "ia5-sam_report_collector",
+      "kingdom": "ia5",
+      "superPod": "None"
+    },
+    {
+      "namespaces": [
+        "search-scale-safely"
+      ],
+      "access": [
+        "team/Search_Scale_Safely"
+      ],
+      "controlEstate": "ia5-sam",
+      "estate": "ia5-search_model_executor",
       "kingdom": "ia5",
       "superPod": "None"
     },
