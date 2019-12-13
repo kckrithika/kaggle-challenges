@@ -28,6 +28,7 @@ system:
         - --backupservice.enabled=true
         - --metrics.funnelEndPointURL=http://ajnafunneldirecttls.funnel.svc.mesh.sfdc.net:7442
         - --scone.srpc.announcing-enabled=false
+        - --backupservice.grpc-location=archive-backup-service.gater.svc.mesh.sfdc.net
       volumeMounts:
       - mountPath: /log
         name: logvol
