@@ -111,3 +111,11 @@ system:
     - lbtype: http
       port: 15372
       targetport: 15372
+  - lbname: archive-backup-service
+    function: archive-backup-service
+    ports:
+      - lbtype: dsr
+        nodeExposed: false
+        port: 7443
+        targetport: 7443
+        name: grpc-abs
