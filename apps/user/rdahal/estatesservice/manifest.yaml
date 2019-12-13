@@ -61,7 +61,7 @@ system:
       slb.sfdc.net/cnames: |-
         [
          {
-          "cname": "estatesservicelb-user-rdahal-$(KINGDOM).slb.sfdc.net"
+          "cname": "estatesservicelb-user-rdahal.slb.sfdc.net"
          }
         ]
     slbenabled: true
