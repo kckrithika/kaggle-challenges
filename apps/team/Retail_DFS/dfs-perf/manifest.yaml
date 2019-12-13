@@ -134,7 +134,7 @@ system:
     ports:
     - port: 7442
       targetport: 7442
-      lbalgorithm: roundrobin
+      lbalgorithm: leastconn
     - port: 15373
       targetport: 15372
   - lbname: dfs-perf 
