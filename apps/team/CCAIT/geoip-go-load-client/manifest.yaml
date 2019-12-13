@@ -9,14 +9,6 @@ system:
     containers:
     - name: geoip-go-load
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/ccait/geoip-client:2019.0.1
-      env:
-        # These are commented so we can iterate more quickly on changes (by pushing a new image)
-#        - name: GEOIP_ADDRESS
-#          value: 10.251.131.74:7020
-#        - name: GEOIP_TOTALRPS
-#          value: 100
-#        - name: GEOIP_CONCURRENCY
-#          value: 50
       resources:
         limits:
           cpu: "1"
