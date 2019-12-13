@@ -1,0 +1,15 @@
+apiVersion: v1
+
+system:
+ functions:
+ - name: amddeploy
+   count: 1
+   containers:
+   - name: amddeploy
+     image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/rvazquez/samboomddeploy:rvazquez-20191206
+     command: ["/bin/md-deploy"]
+     volumeMounts:
+     - mountPath: /home/mddeploy/logs
+       name: logs
+
+
