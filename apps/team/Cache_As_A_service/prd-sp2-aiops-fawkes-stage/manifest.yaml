@@ -18,12 +18,12 @@ system:
           maxUnavailable: 1
       containers:
       - name: fawkes-stage-func
-        image: dva/casp/fawkes_strata:jenkins-CASP-fawkes-PR-127-7-itest
+        image: dva/casp/fawkes_strata:jenkins-CASP-fawkes-PR-127-8-itest
         env:
         - name: FAWKES_ENV
           value: "stg"
         - name: RELEASE_VAR
-          value: "70.0.3"
+          value: "70.0.4"
         - name: STAGING_ENABLE_SENSOR
           value: "True"
         - name: HTTP_PROXY
