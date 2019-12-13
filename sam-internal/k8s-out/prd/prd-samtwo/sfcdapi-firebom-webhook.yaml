@@ -151,7 +151,13 @@ items:
                           "cdpsegment",
                           "cdpinjector",
                           "matlockauth",
-                          "prazk"
+                          "prazk",
+                          "fitcon",
+                          "fitops",
+                          "respublisher",
+                          "fitval",
+                          "controller",
+                          "vault"
                       ],
                       "soft-launch": true,
                       "working-directory": "/tmp/sfcdapifirebom"
@@ -424,7 +430,7 @@ items:
                 apiVersion: v1
                 fieldPath: metadata.labels['name']
           - name: CONFIG_VERSION
-            value: "26"
+            value: "27"
           image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/sfcdapi-firebom:105
           imagePullPolicy: Always
           livenessProbe:
