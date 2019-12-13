@@ -5,11 +5,11 @@ system:
     email:
       - rakella@salesforce.com
   functions:
-    - name: cs101-sdb
+    - name: na111-sdb
       count: 1
       identity:
         serviceName: cronsdb
-        pod: cs101
+        pod: na111
       containers:
         - name: sdbgo
           image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/vijay-kota/mysdb:05Oct19
@@ -53,11 +53,11 @@ system:
           hostPath:
             path: /home/sfdc-beacon/logs
 
-    - name: cs101-demo
+    - name: na111-demo
       count: 1
       identity:
         serviceName: crondemo
-        pod: cs101
+        pod: na111
       containers:
         - name: crondemo
           image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/rakella/scheduler-demo-client:dec5-1
@@ -66,7 +66,7 @@ system:
               containerPort: 9090
           command: ["./launcher.sh"]
           args:
-            - --scheduler.service.hostname=cs101-cron-lb.user-rakella.prd-sam.prd.slb.sfdc.net
+            - --scheduler.service.hostname=na111-cron-lb.user-rakella.prd-sam.prd.slb.sfdc.net
             - --scheduler.service.port=7012              
           env:
             - name: SFDC_ENVIRONMENT
@@ -106,11 +106,11 @@ system:
           hostPath:
             path: /home/sfdc-beacon/logs
 
-    - name: cs101-exec
+    - name: na111-exec
       count: 1
       identity:
         serviceName: cronexec
-        pod: cs101
+        pod: na111
       containers:
         - name: croncar
           image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/rakella/executor-service:dec4
@@ -121,9 +121,9 @@ system:
               containerPort: 15474
           command: ["./launcher.sh"]
           args:
-            - --scheduler.service.hostname=cs101-cron-lb.user-rakella.prd-sam.prd.slb.sfdc.net
+            - --scheduler.service.hostname=na111-cron-lb.user-rakella.prd-sam.prd.slb.sfdc.net
             - --scheduler.service.port=7012
-            - --scheduler.client.appserverid=cs101-app1
+            - --scheduler.client.appserverid=na111-app1
             - --scheduler.client.tpsize=20
           env:
             - name: SFDC_ENVIRONMENT
@@ -163,11 +163,11 @@ system:
           hostPath:
             path: /home/sfdc-beacon/logs
 
-    - name: cs101-ui
+    - name: na111-ui
       count: 1
       identity:
         serviceName: scheduler-ui
-        pod: cs101
+        pod: na111
       containers:
         - name: scheduler-ui
           image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/rakella/scheduler-ui:dec9
@@ -180,7 +180,7 @@ system:
             - name: SFDC_ENVIRONMENT
               value: mesh
             - name: DEMO_SVC
-              value: cs101-cron-lb.user-rakella.prd-sam.prd.slb.sfdc.net:7012
+              value: na111-cron-lb.user-rakella.prd-sam.prd.slb.sfdc.net:7012
             - name: DEMO_DATA
               value: crondemo_20,HttpEndpoint,*/50 * * * * ?,SYSTEM_ORG
           #esources:
@@ -206,11 +206,11 @@ system:
           hostpath:
             path: /var/log/web
 
-    - name: cs101-cron
+    - name: na111-cron
       count: 1
       identity:
         serviceName: cron
-        pod: cs101
+        pod: na111
       containers:
         - name: cronsvc
           image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/rakella/scheduler-service:dec4
@@ -247,7 +247,7 @@ system:
           image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/servicemesh/beacon:1.0.0
           command: ["/bin/sh"]
           # BUMP UP cluster# with each deployment for debuggability
-          args: ["-c", "export port=$GRPC_PORT ; /usr/bin/java -jar /home/scone/service.jar -endpoint cron-cluster-cs101:POD:${port}"]
+          args: ["-c", "export port=$GRPC_PORT ; /usr/bin/java -jar /home/scone/service.jar -endpoint cron-cluster-na111:POD:${port}"]
             # -endpoint
             # samapp/$(FUNCTION_NAMESPACE)/$(FUNCTION)-http:DATACENTER_ALLENV:7014
             # samapp/$(FUNCTION_NAMESPACE)/$(FUNCTION)-https:DATACENTER_ALLENV:7442
@@ -325,36 +325,36 @@ system:
             path: /home/sfdc-beacon/logs
 
   loadbalancers:
-  - lbname: cs101-sdb-lb
-    function: cs101-sdb
+  - lbname: na111-sdb-lb
+    function: na111-sdb
     slbenabled: true
     ports:
       - port: 1521
         targetport: 1521
-  - lbname: cs101-demo-lb
-    function: cs101-demo
+  - lbname: na111-demo-lb
+    function: na111-demo
     slbenabled: true
     ports:
       - port: 9090
         targetport: 9090
-  - lbname: cs101-exec-lb
-    function: cs101-exec
+  - lbname: na111-exec-lb
+    function: na111-exec
     slbenabled: true
     ports:
       - port: 9020
         targetport: 9020
       - port: 15474
         targetport: 15474
-  - lbname: cs101-ui-lb
-    function: cs101-ui
+  - lbname: na111-ui-lb
+    function: na111-ui
     slbenabled: true
     ports:
       - port: 7022
         targetport: 7022
       - port: 15372
         targetport: 15372      
-  - lbname: cs101-cron-lb
-    function: cs101-cron
+  - lbname: na111-cron-lb
+    function: na111-cron
     slbenabled: true
     ports:
       - port: 7012
