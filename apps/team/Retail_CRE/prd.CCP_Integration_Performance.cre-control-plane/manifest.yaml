@@ -142,9 +142,8 @@ system:
             - mountPath: /opt/cre/cre-control-plane-ccp-perf
               name: logvol
         - name: sherpa-cre-control-plane
-          # Each commit to master for https://git.soma.salesforce.com/servicelibs/sherpa-envoy/commits/master has an image created.
-          # Use the full git SHA as the docker image tag.
-          image: sfci/servicelibs/sherpa-envoy:213d5137f0015e81c59afe6f93f6ab775dc4798b
+          # Sherpa latest releases: https://git.soma.salesforce.com/servicelibs/sherpa-envoy/releases
+          image: sfci/servicelibs/sherpa-envoy:1.0.13
           volumeMounts:
             - mountPath: /log
               name: sherpa-log-volume
