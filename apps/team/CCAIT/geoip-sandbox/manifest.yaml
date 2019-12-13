@@ -44,6 +44,28 @@ system:
           port: 15372
         initialDelaySeconds: 115
       terminationMessagePolicy: FallbackToLogsOnError
+    - name: geoip-go-load
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/ccait/geoip-client:2019.0.1
+      env:
+        - name: GEOIP_ADDRESS
+          value: localhost:7020
+      resources:
+        limits:
+          cpu: "1"
+          memory: 1Gi
+        requests:
+          cpu: "1"
+          memory: 1Gi
+      livenessProbe:
+        httpGet:
+          path: /manage/health
+          port: 15372
+        initialDelaySeconds: 20
+      readinessProbe:
+        httpGet:
+          path: /manage/health
+          port: 15372
+        initialDelaySeconds: 20
     - name: sherpa
       image: sfci/servicelibs/sherpa-envoy:410b9b128bae61fe3db928569412ea9dd07dfa0e
       env:
