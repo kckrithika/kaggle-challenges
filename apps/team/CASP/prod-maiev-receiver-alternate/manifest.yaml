@@ -94,7 +94,7 @@ system:
         # FUNCTION: Value listed in the manifest for the function key.
         args:
           - -endpoint
-          - $(FUNCTION_NAMESPACE)/$(FUNCTION):DATACENTER_ALLENV:HTTP2_TLS
+          - $(FUNCTION_NAMESPACE)/$(FUNCTION):DATACENTER_ALLENV:7443 # http2/gRPC tls port
       volumes:
       - name: server-cert
         maddogCert:
