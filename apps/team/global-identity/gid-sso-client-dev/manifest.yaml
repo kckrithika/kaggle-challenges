@@ -29,7 +29,7 @@ system:
       ports:
       - containerPort: 1025
       - containerPort: 8025
-      livenessProve:
+      livenessProbe:
         httpGet:
           path: /
           port: 8025
