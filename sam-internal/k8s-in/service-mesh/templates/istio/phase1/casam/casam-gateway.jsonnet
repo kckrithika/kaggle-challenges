@@ -57,7 +57,7 @@ if (istioPhases.phaseNum == 1) then
         port: {
           name: "tcp-secure-2525",
           number: 2525,
-          protocol: "TCP",
+          protocol: "TLS",
         },
         tls: {
           mode: "SIMPLE",
