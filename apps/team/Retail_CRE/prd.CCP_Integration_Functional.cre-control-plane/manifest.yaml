@@ -21,9 +21,9 @@ system:
             - name: INGEST_SPEC_IMAGE
               value: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-sfci-dev/sfci/cre/cre-engine:2.1.0.2.master.97c9f3e.39
             - name: EXPORT_SPEC_IMAGE
-              value: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-sfci-dev/sfci/cre/cre-dds-spark:2.1.4.0.master.40e17aa.23
+              value: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cre/cre-dds-spark:2.1.5-freeze-001.0.da-dvdSchemaFiles.4f48056.3
             - name: SAVE_SPEC_IMAGE
-              value: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-sfci-dev/sfci/cre/cre-dds-spark:2.1.4.0.master.40e17aa.23
+              value: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cre/cre-dds-spark:2.1.5-freeze-001.0.da-dvdSchemaFiles.4f48056.3
             ####################################################################################################
             ####################################### GLOBAL SHARED VALUES #######################################
             ####################################################################################################
