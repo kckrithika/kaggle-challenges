@@ -103,4 +103,6 @@ system:
         - port: 7022
           targetport: 7022
           lbtype: http
+          tls: true
           mtls: true
+          reencrypt: true
