@@ -103,3 +103,4 @@ system:
         - port: 7022
           targetport: 7022
           lbtype: http
+          mtls: true
