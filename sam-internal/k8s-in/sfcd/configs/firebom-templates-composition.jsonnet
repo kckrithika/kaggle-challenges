@@ -56,7 +56,6 @@
     'secds',
     'seciamsvc',
     'publicproxy',
-    'radius',
     'cdpactvsvc',
     'cdpadminsvc',
     'cdpdata',
@@ -74,7 +73,8 @@
     'respublisher',
     'fitval',
     'controller',
-    'vault'
+    'vault',
+    'topology'
   ],
   'soft-launch': true
 }
