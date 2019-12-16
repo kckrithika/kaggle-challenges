@@ -115,13 +115,6 @@ system:
         export CHS_GROK_ENDPOINT=https://ops0-grok1-0-${KINGDOM}.data.sfdc.net ;
         export CHS_REPORTCOLLECTOR_ENDPOINT=https://reportcollector-${KINGDOM}.data.sfdc.net:18444 ;
 
-        case ${KINGDOM} in
-          prd | dfw)
-            ;;
-          *)
-            ;;
-        esac;
-
         /candidateservice
       "]
     volumes:
