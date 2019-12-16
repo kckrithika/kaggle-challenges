@@ -36,6 +36,11 @@ shared0-samminionsearch3-2-yhu.ops.sfdc.net,10.221.88.175/27,10.169.20.128/27,NO
 shared0-samminionsearch3-3-yhu.ops.sfdc.net,10.221.88.176/27,10.169.21.64/27,NONE,yhu-sam_search,65009
 shared0-samminionsearch3-4-yhu.ops.sfdc.net,10.221.88.177/27,10.169.21.96/27,NONE,yhu-sam_search,65009
 shared0-samminionsearch3-5-yhu.ops.sfdc.net,10.221.88.178/27,10.169.20.224/27,NONE,yhu-sam_search,65009
+shared0-samminionsme1-1-yhu.ops.sfdc.net,10.221.81.196/28,10.169.22.32/27,NONE,yhu-search_model_executor,65009
+shared0-samminionsme1-2-yhu.ops.sfdc.net,10.221.81.197/28,10.169.22.96/27,NONE,yhu-search_model_executor,65009
+shared0-samminionsme2-1-yhu.ops.sfdc.net,10.221.81.198/28,10.169.22.128/27,NONE,yhu-search_model_executor,65009
+shared0-samminionsme2-2-yhu.ops.sfdc.net,10.221.81.199/28,10.169.22.160/27,NONE,yhu-search_model_executor,65009
+shared0-samminionsme3-1-yhu.ops.sfdc.net,10.221.81.200/28,10.169.22.64/27,NONE,yhu-search_model_executor,65009
 shared0-samminionwarden1-1-yhu.ops.sfdc.net,10.221.85.36/28,10.221.87.160/27,NONE,yhu-sam_warden,65009
 shared0-samminionwarden2-1-yhu.ops.sfdc.net,10.221.85.37/28,10.221.87.224/27,NONE,yhu-sam_warden,65009
 shared0-samminionwarden3-1-yhu.ops.sfdc.net,10.221.85.38/28,10.221.87.192/27,NONE,yhu-sam_warden,65009
