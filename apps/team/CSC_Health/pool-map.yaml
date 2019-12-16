@@ -167,6 +167,7 @@ apps:
   nagios-adapter-stagger-1:
     - prd/prd-sam_report_collector
     - phx/phx-sam_report_collector
+    - fra/fra-sam_report_collector
   nagios-adapter-stagger-2:
     - iad/iad-sam_report_collector
     - ia2/ia2-sam_report_collector
@@ -180,7 +181,6 @@ apps:
     - ukb/ukb-sam_report_collector
     - ord/ord-sam_report_collector
     - hnd/hnd-sam_report_collector
-    - fra/fra-sam_report_collector
     - ph2/ph2-sam_report_collector
     - lo2/lo2-sam_report_collector
     - lo3/lo3-sam_report_collector
