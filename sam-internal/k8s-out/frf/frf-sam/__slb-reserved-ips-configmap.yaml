@@ -13,7 +13,8 @@ data:
       "rsui-production-frf-test-lb.retail-rsui.frf-sam.frf.slb.sfdc.net": "185.79.140.15",
       "rsui-service-frf-lb.retail-rsui.frf-sam.frf.slb.sfdc.net": "10.214.36.145",
       "slb-canary-proxy-http-ext.sam-system.frf-sam.frf.slb.sfdc.net": "185.79.140.5",
-      "sledge-frf.slb.sfdc.net": "185.79.140.13"
+      "sledge-frf.slb.sfdc.net": "185.79.140.13",
+      "smsapi1-0-frf.slb.sfdc.net": "185.79.140.1"
     }
 kind: ConfigMap
 metadata:

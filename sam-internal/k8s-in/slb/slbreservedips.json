@@ -4,6 +4,7 @@
       "slb-canary-proxy-http-ext.sam-system.cdg-sam.cdg.slb.sfdc.net": "85.222.142.5"
     },
     "dfw-sam": {
+      "smsapi1-0-dfw.slb.sfdc.net": "13.110.28.1",
       "org-cce2e-cs3-slb-dfw.slb.sfdc.net": "13.110.28.101",
       "org-cce2e-cs7-slb-dfw.slb.sfdc.net": "13.110.28.102",
       "org-cce2e-cs9-slb-dfw.slb.sfdc.net": "13.110.28.103",
@@ -51,6 +52,7 @@
       "slb-canary-proxy-http-ext.sam-system.fra-sam.fra.slb.sfdc.net": "85.222.140.5"
     },
     "frf-sam": {
+      "smsapi1-0-frf.slb.sfdc.net": "185.79.140.1",
       "sledge-frf.slb.sfdc.net": "185.79.140.13",
       "rsui-production-frf-lb.retail-rsui.frf-sam.frf.slb.sfdc.net": "185.79.140.14",
       "rsui-production-frf-test-lb.retail-rsui.frf-sam.frf.slb.sfdc.net": "185.79.140.15",
@@ -99,6 +101,7 @@
       "org-cce2e-cs125-slb-ia5.slb.sfdc.net": "13.109.182.15"
     },
     "iad-sam": {
+      "smsapi1-0-iad.slb.sfdc.net": "13.110.24.1",
       "org-cce2e-cs8-slb-iad.slb.sfdc.net": "13.110.24.101",
       "org-cce2e-cs14-slb-iad.slb.sfdc.net": "13.110.24.102",
       "org-cce2e-cs15-slb-iad.slb.sfdc.net": "13.110.24.103",
@@ -128,6 +131,7 @@
       "sledge-lo2.slb.sfdc.net": "161.71.44.1"
     },
     "ord-sam": {
+      "smsapi1-0-ord.slb.sfdc.net": "13.110.26.1",
       "org-cce2e-cs8-slb-ord.slb.sfdc.net": "13.110.26.101",
       "org-cce2e-cs14-slb-ord.slb.sfdc.net": "13.110.26.102",
       "org-cce2e-cs15-slb-ord.slb.sfdc.net": "13.110.26.103",
@@ -154,6 +158,7 @@
       "slb-canary-proxy-http-ext.sam-system.iad-sam.iad.slb.sfdc.net": "13.110.26.5"
     },
     "par-sam": {
+      "smsapi1-0-par.slb.sfdc.net": "185.79.142.1",
       "sledge-par.slb.sfdc.net": "185.79.142.13",
       "rsui-production-par-lb.retail-rsui.par-sam.par.slb.sfdc.net": "185.79.142.14",
       "rsui-production-par-test-lb.retail-rsui.par-sam.par.slb.sfdc.net": "185.79.142.15"
@@ -182,6 +187,7 @@
       "slb-canary-proxy-http-ext.sam-system.ph2-sam.ph2.slb.sfdc.net": "13.110.52.5"
     },
     "phx-sam": {
+      "smsapi1-0-phx.slb.sfdc.net": "13.110.30.1",
       "org-cce2e-cs3-slb-phx.slb.sfdc.net": "13.110.30.101",
       "org-cce2e-cs7-slb-phx.slb.sfdc.net": "13.110.30.102",
       "org-cce2e-cs9-slb-phx.slb.sfdc.net": "13.110.30.103",

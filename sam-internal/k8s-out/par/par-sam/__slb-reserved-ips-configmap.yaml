@@ -12,7 +12,8 @@ data:
       "rsui-production-par-lb.retail-rsui.par-sam.par.slb.sfdc.net": "185.79.142.14",
       "rsui-production-par-test-lb.retail-rsui.par-sam.par.slb.sfdc.net": "185.79.142.15",
       "rsui-service-par-lb.retail-rsui.par-sam.par.slb.sfdc.net": "10.214.112.135",
-      "sledge-par.slb.sfdc.net": "185.79.142.13"
+      "sledge-par.slb.sfdc.net": "185.79.142.13",
+      "smsapi1-0-par.slb.sfdc.net": "185.79.142.1"
     }
 kind: ConfigMap
 metadata:
