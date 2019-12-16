@@ -61,6 +61,11 @@ zpages:
           fieldRef:
             apiVersion: v1
             fieldPath: metadata.name
+      - name: POD_NAMESPACE
+        valueFrom:
+          fieldRef:
+            apiVersion: v1
+            fieldPath: metadata.namespace
       - name: KINGDOM
         value: ' + configs.kingdom + '
       - name: SFDC_METRICS_SERVICE_HOST
@@ -76,7 +81,7 @@ zpages:
             metrics:
               url: http://:9192/
             electron:
-              url: https://demo-authz-opa-lb.service-mesh.prd-sam.prd.slb.sfdc.net:7022
+              url: https://demo-authz-opa-prd.slb.sfdc.net:7443
               allow_insecure_tls: true
               credentials:
                 client_tls:
@@ -105,8 +110,11 @@ zpages:
       - name: ELECTRON_OPA_ISTIO_CONFIG
         value: |
           <%-
+          def env?(v) ENV.key?(v) and ENV[v].length > 0 end
           split_pod_name = ENV["POD_NAME"].split("-")
-          metrics_scope = split_pod_name[0..(split_pod_name).length-3].join("-") + "." + ENV["KINGDOM"]
+          metrics_scope = split_pod_name[0..(split_pod_name).length-3].join("-")
+          metrics_scope += env?("POD_NAMESPACE") ? "." + ENV["POD_NAMESPACE"] : ""
+          metrics_scope += "." + ENV["KINGDOM"]
           funnel_url = "http://" + ENV["SFDC_METRICS_SERVICE_HOST"] + "/"
           -%>
 
@@ -114,7 +122,7 @@ zpages:
             metrics:
                 url: http://:9192/
             electron:
-              url: https://demo-authz-opa-lb.service-mesh.prd-sam.prd.slb.sfdc.net:7022
+              url: https://demo-authz-opa-prd.slb.sfdc.net:7443
               allow_insecure_tls: true
               credentials:
                 client_tls:
@@ -167,6 +175,11 @@ zpages:
           fieldRef:
             apiVersion: v1
             fieldPath: metadata.name
+      - name: POD_NAMESPACE
+        valueFrom:
+          fieldRef:
+            apiVersion: v1
+            fieldPath: metadata.namespace
       - name: KINGDOM
         value: ' + configs.kingdom + '
       - name: SFDC_METRICS_SERVICE_HOST
@@ -174,8 +187,11 @@ zpages:
       - name: ELECTRON_OPA_CONFIG
         value: |
           <%-
+          def env?(v) ENV.key?(v) and ENV[v].length > 0 end
           split_pod_name = ENV["POD_NAME"].split("-")
-          metrics_scope = split_pod_name[0..(split_pod_name).length-3].join("-") + "." + ENV["KINGDOM"]
+          metrics_scope = split_pod_name[0..(split_pod_name).length-3].join("-")
+          metrics_scope += env?("POD_NAMESPACE") ? "." + ENV["POD_NAMESPACE"] : ""
+          metrics_scope += "." + ENV["KINGDOM"]
           funnel_url = "http://" + ENV["SFDC_METRICS_SERVICE_HOST"] + "/"
           -%>
 
@@ -183,7 +199,7 @@ zpages:
             metrics:
                 url: http://:9192/
             electron:
-              url: http://authz-svc-opa.service-mesh.localhost.mesh.force.com:5442
+              url: https://demo-authz-opa-prd.slb.sfdc.net:7443
               allow_insecure_tls: true
               credentials:
                 client_tls:
@@ -221,7 +237,7 @@ zpages:
             metrics:
                 url: http://:9192/
             electron:
-              url: http://authz-svc-opa.service-mesh.localhost.mesh.force.com:5442
+              url: https://demo-authz-opa-prd.slb.sfdc.net:7443
               allow_insecure_tls: true
               credentials:
                 client_tls:
