@@ -97,6 +97,13 @@ system:
         type: server
   loadbalancers:
     - lbname: demo-authz-opa-lb
+      annotations:
+        slb.sfdc.net/cnames: |-
+          [
+           {
+            "cname": "demo-authz-opa-prd.slb.sfdc.net"
+           }
+          ]
       function: demo-authz-opa
       slbenabled: true
       ports:
