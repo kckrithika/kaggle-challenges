@@ -20,14 +20,14 @@ local kingdom = std.extVar("kingdom");
 
         ### Release Phase 1 - prd-sdc
         "1": {
-            hypersdn: "2293-97f02479db17762594df8cfddabd62ab759f6899",
+            hypersdn: "2296-b9f375d9fd1c89fbb591b1eb4cc75979a2205c43",
             bird: "503-94b968cf67a338280f71a5c932f0956d13e982bb",
             hyperelk: "v-0000102-91c9122c",
             },
 
         ### Release Phase 2 - PRD-SAMTEST/PRD-SAMDEV/PRD-DATA-FLOWSNAKE-TEST
         "2": {
-            hypersdn: "2293-97f02479db17762594df8cfddabd62ab759f6899",
+            hypersdn: "2296-b9f375d9fd1c89fbb591b1eb4cc75979a2205c43",
             bird: "503-94b968cf67a338280f71a5c932f0956d13e982bb",
             hyperelk: "v-0000102-91c9122c",
             },
