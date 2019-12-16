@@ -107,9 +107,8 @@ system:
       function: demo-authz-opa
       slbenabled: true
       ports:
-        - port: 7443
-          targetport: 7443
+        - port: 7022
+          targetport: 7022
           lbtype: http
           tls: true
           mtls: true
-          reencrypt: true
