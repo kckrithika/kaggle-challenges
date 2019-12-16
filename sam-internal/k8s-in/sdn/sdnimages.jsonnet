@@ -12,7 +12,7 @@ local kingdom = std.extVar("kingdom");
         #   "prd,prd-sam,samcontrol,hypersam": "sam-0000123-deadbeef",
         #
         # override in minimal prod estate to get image into prod for PCL canary testing.
-        "frf,frf-sam,sdn-vault-agent,hypersdn": "2293-97f02479db17762594df8cfddabd62ab759f6899",
+        "frf,frf-sam,sdn-vault-agent,hypersdn": "2296-b9f375d9fd1c89fbb591b1eb4cc75979a2205c43",
     },
 
     ### Per-phase image tags
