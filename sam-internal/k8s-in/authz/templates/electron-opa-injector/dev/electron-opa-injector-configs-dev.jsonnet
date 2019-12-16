@@ -81,7 +81,7 @@ zpages:
             metrics:
               url: http://:9192/
             electron:
-              url: https://demo-authz-opa-lb.service-mesh.prd-sam.prd.slb.sfdc.net:7022
+              url: https://demo-authz-opa-prd.slb.sfdc.net:7443
               allow_insecure_tls: true
               credentials:
                 client_tls:
@@ -122,7 +122,7 @@ zpages:
             metrics:
                 url: http://:9192/
             electron:
-              url: https://demo-authz-opa-lb.service-mesh.prd-sam.prd.slb.sfdc.net:7022
+              url: https://demo-authz-opa-prd.slb.sfdc.net:7443
               allow_insecure_tls: true
               credentials:
                 client_tls:
@@ -199,7 +199,7 @@ zpages:
             metrics:
                 url: http://:9192/
             electron:
-              url: http://authz-svc-opa.service-mesh.localhost.mesh.force.com:5442
+              url: https://demo-authz-opa-prd.slb.sfdc.net:7443
               allow_insecure_tls: true
               credentials:
                 client_tls:
@@ -237,7 +237,7 @@ zpages:
             metrics:
                 url: http://:9192/
             electron:
-              url: http://authz-svc-opa.service-mesh.localhost.mesh.force.com:5442
+              url: https://demo-authz-opa-prd.slb.sfdc.net:7443
               allow_insecure_tls: true
               credentials:
                 client_tls:
