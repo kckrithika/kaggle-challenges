@@ -1,0 +1,132 @@
+apiVersion: v1
+
+system:
+  notifications:
+    email:
+      - cre@salesforce.com
+  functions:
+  - name: cre-api-ccp-perf-dev
+    count: 1
+    labels:
+      app: cre-api-ccp-perf-dev
+    annotations:
+      "routing.mesh.sfdc.net/enabled": "true"
+    containers:
+    - name: cre-api-ccp-perf-dev
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cre/cre-api:2.1.4.0.master.9d55085.7
+      env:
+        - name: GDOT_BASE_PATH
+          value: http://cloudatlas-prd-stage-service.cloudatlas.localhost.mesh.force.com:5442/scim
+        - name: DOMAIN_ID
+          value: cre
+        - name: SCHEMA_IDS
+          value: records
+        - name: SCHEMA_VERSIONS
+          value: 0.1.4
+        - name: UNIVERSAL_SEARCH_DESTINATION
+          value: universal-search.universal-search.localhost.mesh.force.com:5443
+        - name: METRICS_KAFKA_TOPIC
+          value: sfdc.prod.cre__prd.ajna_local__cre_metrics_CCP_Integration_Performance
+        - name: METRICS_KAFKA_SERVER
+          value: ajna0-broker1-0-prd.data.sfdc.net:9093
+        - name: SFDC_ENVIRONMENT
+          value: ccp-perf
+        - name: METRICS_KAFKA_ENABLED
+          value: false
+        - name: MADDOG_CLIENT_KEYSTORE
+          value: maddog/maddog-client-keystore.json
+        - name: MADDOG_CLIENT_TRUSTSTORE
+          value: maddog/maddog-client-truststore.json
+        - name: HBASE_ENVIRONMENT
+          value: kingdom-perf
+        - name: HBASE_DATA_CENTER
+          value: prd
+        - name: HBASE_NAMESPACE
+          value: CRE_DUP
+        - name: CONTROL_PLANE_URL
+          value: cre-control-plane-ccp-perf.retail-cre.localhost.mesh.force.com:5443
+        - name: LOG_JWT
+          value: true
+        - name: JVM_ARGS
+          value: "-Djava.util.concurrent.ForkJoinPool.common.parallelism=8
+                  -verbose:gc -XX:+PrintGCDateStamps -XX:+PrintHeapAtGC
+                  -XX:+PrintPromotionFailure -XX:+PrintTenuringDistribution -XX:+PrintGCDetails
+                  -XX:+PrintGCDateStamps -XX:+PrintGCApplicationStoppedTime
+                  -XX:+PrintGCApplicationConcurrentTime -XX:+PrintGCCause -XX:+DisableExplicitGC
+                  -Xloggc:/opt/cre/cre-api-ccp-perf/verbosegc_$(FUNCTION_INSTANCE_NAME).log
+                  -XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=/opt/cre/cre-api-ccp-perf
+                  -Dcom.sun.management.jmxremote.port=8898
+                  -Dcom.sun.management.jmxremote.rmi.port=8898
+                  -Dcom.sun.management.jmxremote.ssl=false
+                  -Dcom.sun.management.jmxremote.authenticate=false
+                  -Xmx4G -Xms4G -XX:ParallelGCThreads=8
+                  -Dsun.security.krb5.debug=true"
+      resources:
+        limits: { cpu: "2", memory: "6Gi" }
+        requests: { cpu: "2", memory: "5Gi" }
+      ports:
+      - containerPort: 8080
+      - containerPort: 7022
+      - containerPort: 15372
+      livenessProbe:
+        initialDelaySeconds: 120
+        periodSeconds: 30
+        timeoutSeconds: 30
+        httpGet:
+          path: /manage/health
+          port: 15372
+          scheme: HTTP
+      volumeMounts:
+      - mountPath: /log
+        name: sherpa-log-volume
+      - mountPath: /client-certs
+        name: client-certs
+      - mountPath: /server-certs
+        name: server-certs
+      - mountPath: /opt/cre/cre-api-ccp-perf
+        name: logvol
+    - name: sherpa-cre-api
+      # Each commit to master for https://git.soma.salesforce.com/servicelibs/sherpa-envoy/commits/master has an image created.
+      # Use the full git SHA as the docker image tag.
+      image: sfci/servicelibs/sherpa-envoy:213d5137f0015e81c59afe6f93f6ab775dc4798b
+      volumeMounts:
+      - mountPath: /client-certs
+        name: client-certs
+      - mountPath: /server-certs
+        name: server-certs
+      env:
+        - name: SFDC_ENVIRONMENT
+          value: mist
+      resources:
+        limits: { cpu: "1", memory: "1Gi" }
+        requests: { cpu: "1", memory: "1Gi" }
+      ports:
+      - containerPort: 7442
+        name: sh-in-http1-tls
+      - containerPort: 15373 # Sherpa admin port. This can be handy when debugging issues.
+        name: sherpa-in-admin
+      livenessProbe:
+        exec:
+          command:
+          - "./bin/is-alive"
+        initialDelaySeconds: 120
+        periodSeconds: 5
+      readinessProbe:
+        exec:
+          command:
+          - "./bin/is-ready"
+        initialDelaySeconds: 110
+        periodSeconds: 5
+    volumes:
+    - name: logvol
+      hostPath:
+        path: /home/sfdc-cre/logs/cre-api-ccp-perf
+    - name: client-certs
+      maddogCert:
+        type: client
+    - name: server-certs
+      maddogCert:
+        type: server
+    - name: sherpa-log-volume
+      hostPath:
+        path: /home/sfdc-sherpa/logs
