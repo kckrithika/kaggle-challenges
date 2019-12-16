@@ -74,7 +74,9 @@
     'respublisher',
     'fitval',
     'controller',
-    'vault'
+    'vault',
+    'topology',
+    'slavekdc'
   ],
   'soft-launch': true
 }
