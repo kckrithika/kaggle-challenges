@@ -56,7 +56,6 @@
     'secds',
     'seciamsvc',
     'publicproxy',
-    'radius',
     'cdpactvsvc',
     'cdpadminsvc',
     'cdpdata',
@@ -75,8 +74,7 @@
     'fitval',
     'controller',
     'vault',
-    'topology',
-    'slavekdc'
+    'topology'
   ],
   'soft-launch': true
 }

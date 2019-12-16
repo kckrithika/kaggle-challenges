@@ -139,7 +139,6 @@ items:
                           "secds",
                           "seciamsvc",
                           "publicproxy",
-                          "radius",
                           "cdpactvsvc",
                           "cdpadminsvc",
                           "cdpdata",
@@ -158,8 +157,7 @@ items:
                           "fitval",
                           "controller",
                           "vault",
-                          "topology",
-                          "slavekdc"
+                          "topology"
                       ],
                       "soft-launch": true,
                       "working-directory": "/tmp/sfcdapifirebom"
