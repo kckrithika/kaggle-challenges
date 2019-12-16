@@ -17,7 +17,7 @@ system:
       app: geoip
     containers:
     - name: geoip
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/ccait/geoip:bazel-monorepo
+      image: sfci/services/sfdc-bazel/service-mesh/geoip:ac4a23115
       env:
       - name: FAKE_ENV_VAR_INCREMENT_TO_TRIGGER_SAM_DEPLOY
         value: "0"
