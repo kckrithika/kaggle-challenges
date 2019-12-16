@@ -14,7 +14,7 @@ system:
     hostnetwork: false
     containers:
     - name: gater1
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/gater/gate-manager:sortiz-1576520534
+      image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-sfci-dev/sfci/services/sfdc-bazel/gater/gate-manager:d326aa1f0
       args:
         - --server.port=9090
         - --gater.grpc.server.port=7443
