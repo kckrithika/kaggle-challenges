@@ -22,7 +22,7 @@ local egress(port, protocol, name) =
     name: name,
   },
   captureMode: "NONE",
-  hosts: mcpIstioConfig.sidecarEgressHosts,
+  hosts: ["*/*"],
 };
 
 if (istioPhases.phaseNum == 2) then

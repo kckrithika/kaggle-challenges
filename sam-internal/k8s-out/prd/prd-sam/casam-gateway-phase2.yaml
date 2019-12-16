@@ -37,7 +37,7 @@ spec:
     port:
       name: tcp-secure-2525
       number: 2525
-      protocol: TCP
+      protocol: TLS
     tls:
       caCertificates: /server-certs/ca.pem
       mode: SIMPLE

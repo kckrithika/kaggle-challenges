@@ -72,7 +72,7 @@ configs.deploymentBase("service-mesh") {
               "--gateway-namespace",
               "core-on-sam-sp2",
               "--namespace-selector",
-              "istio-injection=enabled"
+              "istio-injection=enabled",
             ],
             env: [
               {

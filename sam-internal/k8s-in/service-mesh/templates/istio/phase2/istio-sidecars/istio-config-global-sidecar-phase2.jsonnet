@@ -22,7 +22,7 @@ if (istioPhases.phaseNum == 2) then
             protocol: "GRPC",
             name: "grpc-tls",
         },
-        hosts: mcpIstioConfig.sidecarEgressHosts,
+        hosts: ["*/*"],
       },
       {
         port: {
@@ -30,7 +30,7 @@ if (istioPhases.phaseNum == 2) then
             protocol: "HTTP",
             name: "http-tls",
         },
-        hosts: mcpIstioConfig.sidecarEgressHosts,
+        hosts: ["*/*"],
       },
       {
         port: {
@@ -38,7 +38,7 @@ if (istioPhases.phaseNum == 2) then
             protocol: "HTTP",
             name: "http-plain",
         },
-        hosts: mcpIstioConfig.sidecarEgressHosts,
+        hosts: ["*/*"],
       },
       {
         port: {
@@ -46,7 +46,7 @@ if (istioPhases.phaseNum == 2) then
             protocol: "GRPC",
             name: "grpc-plain",
         },
-        hosts: mcpIstioConfig.sidecarEgressHosts,
+        hosts: ["*/*"],
       },
     ],
   },
