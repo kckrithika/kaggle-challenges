@@ -17,3 +17,5 @@ apps:
   - xrd/xrd-sdstoolsdev
   astcx-ui:
   - xrd/xrd-sdstools
+  case-mgmt-ui:
+  - xrd/xrd-sdstoolsdev
