@@ -1,4 +1,3 @@
-set -xe
 # Set pip cache based on platform, set mount flag for MacOS
 if [[ "$(uname)" == "Darwin" ]]; then
     PIP_DOWNLOAD_CACHE="${HOME}/Library/Caches/pip"
@@ -18,6 +17,14 @@ noChangeMsg="No IP reservation changes found"
 
 if [ "$estates" != "$noChangeMsg" ]; then
   ./../../../build.sh "$estates"
+
+  if [ $? -ne 0 ]; then
+    # Revert slbreservedips.json file changes
+    git checkout -- ../../slbreservedips.json
+    echo "The SAM build script failed, please review the errors above and rerun the reserve script" >&2
+    exit 1
+  fi
+
   # Print the output ignoring the estates
   echo "$output" | sed '$d'
 else
