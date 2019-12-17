@@ -53,6 +53,8 @@ system:
         value: http://cloudatlas-prd-stage-service.cloudatlas.localhost.mesh.force.com:5442/scim
       - name: C2C_SERVICEURLOVERRIDE
         value: https://login.stmfa.stm.salesforce.com/services/c2c
+      - name: USE_C2C_SERVICE
+        value: false
       - name: INCLUDEALLSTACKTRACES
         value: true
       - name: QUERY_LIMIT
