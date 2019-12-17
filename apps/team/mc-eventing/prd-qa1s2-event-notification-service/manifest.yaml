@@ -1,0 +1,62 @@
+apiVersion: v1
+
+system:
+  notifications:
+    email:
+      - mc-devbigdata@salesforce.com
+      - MC-MessagingInboundTeam@salesforce.com
+  functions:
+    - name: qa1s2-event-notification-service
+      identity:
+        serviceName: wh-con
+      count: 1
+      volumes:
+        - name: cert
+          maddogCert:
+            type: client
+        - name: eventbusajna-ens-v1
+          k4aSecret:
+            secretName: eventbusajna-ens-v1
+      containers:
+        - name: qa1s2-event-notification-service
+          image: sfci/mc-eventing/event-notification:1.0.17
+          ports:
+            - containerPort: 15372
+          env:
+            - name: JAVA_OPTS
+              value: -Xms1G -Xmx3G -XX:+UseG1GC
+            - name: SERVER_PORT
+              value: 8080
+            - name: MANAGEMENT_PORT
+              value: 15372
+            - name: AJNA_NAMESPACE
+              value: mc.test.mceventbusqa1s2
+            - name: EVENTCONSUMER_GROUP_ID
+              value: eventing-notification-qa1s2
+            - name: JOINER_NUMTHREADS
+              value: 1
+            - name: SUBSCRIPTIONCONSUMER_TOPICNAME
+              value: mc.test.mceventbusqa1s2__prd.ajna_local__eventnotification_subscriptions_v2
+          livenessProbe:
+            initialDelaySeconds: 60
+            periodSeconds: 120
+            timeoutSeconds: 130
+            httpGet:
+              path: /manage/health
+              port: 15372
+          volumeMounts:
+            - name: cert
+              mountPath: /certs
+            - name: eventbusajna-ens-v1
+              mountPath: /secrets/eventbusajna-ens-v1
+              readOnly: true
+          resources:
+            limits: { cpu: "2", memory: "4Gi" }
+            requests: { cpu: "2", memory: "2Gi" }
+  loadbalancers:
+    - lbname: qa1s2-event-notification-service-lb
+      function: qa1s2-event-notification-service
+      nodeExposed: true
+      ports:
+        - port: 15383
+          targetport: 15372
