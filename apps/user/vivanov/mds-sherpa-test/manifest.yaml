@@ -55,6 +55,51 @@ system:
             - mountPath: /home/sfdc-mds/logs
               name: logvol
 
+        - name: sherpa-mds
+          image: sfci/servicelibs/sherpa-envoy:1.0.8
+          args:
+            - --server-ca
+            - /server-certs/ca_test/cacerts.pem
+          ports:
+            - name: sherpa-h2-tls
+              containerPort: 7443
+            - containerPort: 15373
+            # A plain-text sherpa-inbound port. Used by internal tooling and developers. Must not be exposed in production.
+            - name: sherpa-h2-plain
+              containerPort: 7012
+          env:
+            - name: SFDC_ENVIRONMENT
+              value: dev
+          # Liveness probe configuration
+          livenessProbe:
+            exec:
+              command:
+                - /home/sfdc-sherpa/bin/is-alive
+            initialDelaySeconds: 60
+            periodSeconds: 120
+          # Readiness probe configuration
+          readinessProbe:
+            exec:
+              command:
+                - /home/sfdc-sherpa/bin/is-ready
+            initialDelaySeconds: 60
+            periodSeconds: 120
+          # Memory and CPU settings
+          resources:
+            limits:
+              cpu: "1"
+              memory: 1Gi
+            requests:
+              cpu: "1"
+              memory: 1Gi
+          # Mount paths for certs/secrets
+          volumeMounts:
+            - mountPath: /log
+              name: sherpa-log-volume
+            - mountPath: /client-certs
+              name: mds-client-cert
+            - mountPath: /server-certs
+              name: mds-server-cert
   loadbalancers:
     - lbname: metadata-api-servicelb
       function: metadata-service
