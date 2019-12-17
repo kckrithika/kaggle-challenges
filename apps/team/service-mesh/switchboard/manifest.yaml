@@ -12,7 +12,8 @@ system:
       app: switchboard
     containers:
     - name: switchboard
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/drichelson/sleep:bazel-monorepo
+      # WIP: build locally by drichelson:
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/service-mesh/switchboard:bazel-monorepo
       args:
       ############################## PRODUCTION CONFIGURATION ##########################################
       # Any configuration that needs to go to production should be added here.
