@@ -74,7 +74,9 @@
     'fitval',
     'controller',
     'vault',
-    'topology'
+    'topology',
+    'cwexporter',
+    'edge'
   ],
   'soft-launch': true
 }
