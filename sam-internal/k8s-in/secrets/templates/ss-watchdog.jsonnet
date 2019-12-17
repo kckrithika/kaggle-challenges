@@ -46,15 +46,6 @@ local instanceMap = {
       endpoint: "ops-vaultczar2-2-crz.ops.sfdc.net",
       writePort: 8271,
     },
-    # Watchdog monitoring the PRD SecretService vips.
-    prd: {
-      endpoint: "secretservice-prd.data.sfdc.net",
-      wdKingdom: "PRD",
-      extraArgs: [
-        "-enableLifecycleTest=true",
-      ],
-      canary: true,
-    },
     # WD monitoring production DMZ SecretService.
     "dmz-from-prd": {
       endpoint: "secretservice.dmz.salesforce.com",
