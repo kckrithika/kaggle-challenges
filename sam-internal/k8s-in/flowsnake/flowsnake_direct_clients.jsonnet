@@ -89,6 +89,25 @@ local cre_production = {
                     "wave-discovery.mtimmerman",
                 ],
             },
+            {
+                owner_name: "Edge Streaming",
+                namespace: "edge_intelligence",
+                pki_namespace: "edge_intelligence",
+                users: [
+                    "edge_intelligence.atorson",
+                    "edge_intelligence.dun.lu",
+                    "edge_intelligence.xche",
+                    "edge_intelligence.andrey.karapetov",
+                ],
+            },
+            {
+                owner_name: "LP Analytics",
+                namespace: "lp-analytics",
+                pki_namespace: "lp-analytics",
+                users: [
+                    "lp-analytics.james.wyatt",
+                ],
+            },
         ],
 
         # ------------------------------------

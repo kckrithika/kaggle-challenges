@@ -48,6 +48,28 @@ items:
   kind: Namespace
   metadata:
     annotations:
+      sfdc.net/flowsnake.owner_name: Edge Streaming
+      sfdc.net/pki-namespace: edge_intelligence
+    labels:
+      madkub-injector: enabled
+      service-mesh-injector: enabled
+      spark-operator-webhook: enabled
+    name: edge_intelligence
+- apiVersion: v1
+  kind: Namespace
+  metadata:
+    annotations:
+      sfdc.net/flowsnake.owner_name: LP Analytics
+      sfdc.net/pki-namespace: lp-analytics
+    labels:
+      madkub-injector: enabled
+      service-mesh-injector: enabled
+      spark-operator-webhook: enabled
+    name: lp-analytics
+- apiVersion: v1
+  kind: Namespace
+  metadata:
+    annotations:
       sfdc.net/flowsnake.owner_name: Flowsnake
       sfdc.net/pki-namespace: flowsnake_test
     labels:
