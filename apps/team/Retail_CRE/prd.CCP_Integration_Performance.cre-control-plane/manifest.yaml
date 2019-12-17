@@ -42,7 +42,7 @@ system:
             - name: HBASE_ENVIRONMENT
               value: kingdom-perf
             - name: HBASE_NAMESPACE
-              value: CRE_DUP
+              value: CRE
             - name: HBASE_DATACENTER
               value: prd
             ####################################################################################################
