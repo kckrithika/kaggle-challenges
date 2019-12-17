@@ -131,22 +131,6 @@ if (istioPhases.phaseNum == 1) then
         "watch",
       ],
     },
-    {
-      apiGroups: [
-        "certificates.k8s.io",
-      ],
-      resources: [
-        "certificatesigningrequests",
-        "certificatesigningrequests/approval",
-        "certificatesigningrequests/status",
-      ],
-      verbs: [
-        "update",
-        "create",
-        "get",
-        "delete",
-      ],
-    },
   ],
 }
 else "SKIP"

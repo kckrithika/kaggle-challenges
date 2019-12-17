@@ -37,14 +37,14 @@ rules:
 - apiGroups: [""]
   resources: ["endpoints", "pods", "services", "namespaces", "nodes"]
   verbs: ["get", "list", "watch"]
-# By default, pilot requests access to secrets for use with chiron (https://istio.io/docs/tasks/security/dns-cert/).
-# We're not currently using it, so we can drop the need to access secrets.
+# By default, pilot requests access to secrets and CSRs for use with chiron (https://istio.io/docs/tasks/security/dns-cert/).
+# We're not currently using it, so we can drop the need to access them.
 #- apiGroups: [""]
 #  resources: ["secrets"]
 #  verbs: ["create", "get", "watch", "list", "update", "delete"]
-- apiGroups: ["certificates.k8s.io"]
-  resources:
-    - "certificatesigningrequests"
-    - "certificatesigningrequests/approval"
-    - "certificatesigningrequests/status"
-  verbs: ["update", "create", "get", "delete"]
+#- apiGroups: ["certificates.k8s.io"]
+#  resources:
+#    - "certificatesigningrequests"
+#    - "certificatesigningrequests/approval"
+#    - "certificatesigningrequests/status"
+#  verbs: ["update", "create", "get", "delete"]
