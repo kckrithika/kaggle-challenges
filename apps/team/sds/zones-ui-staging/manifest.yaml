@@ -27,7 +27,7 @@ system:
       - name: ZONES_HTTPS_PROXY
         value: "http://public0-proxy1-0-xrd.data.sfdc.net:8080"
       - name: ZONES_BASE_URL
-        value: "https://gus--zonesintk.my.salesforce.com"
+        value: "https://gus--zonesintk.cs49.my.salesforce.com"
       - name: ZONES_SERVICE_URL
         value: "https://zones-intake-backend-staging-secure.sds.xrd-sam.xrd.slb.sfdc.net:4443"
       - name: ZONES_SECRET_SERVICE_URL

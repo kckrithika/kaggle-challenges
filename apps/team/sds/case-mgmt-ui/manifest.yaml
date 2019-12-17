@@ -24,7 +24,7 @@ system:
       - name: CM_HTTPS_PROXY
         value: "http://public0-proxy1-0-xrd.data.sfdc.net:8080"
       - name: CM_SALESFORCE_BASE_URL
-        value: "https://gus--zonesintk.my.salesforce.com"
+        value: "https://gus--zonesintk.cs49.my.salesforce.com"
       - name: CM_SERVICE_URL
         value: "https://dev.casemanagement.com"
       - name: CM_SECRET_SERVICE_URL
