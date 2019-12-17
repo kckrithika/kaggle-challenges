@@ -13,3 +13,5 @@ apps:
  astcx-ui:       # 
   - prd/prd-sam  # 
                  # 
+ case-mgmt-ui:
+  - prd/prd-sam
