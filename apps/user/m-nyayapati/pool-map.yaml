@@ -1,4 +1,3 @@
 apps:
- search-model-executor:
-# Stale app disabled by automation.  See https://sfdc.co/samsandbox
-#  - prd/prd-sam
+ search-query-execution-platform:
+  - prd/prd-sam
