@@ -111,7 +111,4 @@ system:
       ports:
         - port: 7442
           targetport: 7442
-          lbtype: http
-          reencrypt: true
-          tls: true
-          mtls: true
+          lbtype: dsr
