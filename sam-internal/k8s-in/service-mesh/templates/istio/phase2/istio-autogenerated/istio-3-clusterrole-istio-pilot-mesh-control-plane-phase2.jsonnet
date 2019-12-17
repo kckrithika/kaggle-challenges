@@ -133,22 +133,6 @@ if (istioPhases.phaseNum == 2) then
     },
     {
       apiGroups: [
-        "",
-      ],
-      resources: [
-        "secrets",
-      ],
-      verbs: [
-        "create",
-        "get",
-        "watch",
-        "list",
-        "update",
-        "delete",
-      ],
-    },
-    {
-      apiGroups: [
         "certificates.k8s.io",
       ],
       resources: [
