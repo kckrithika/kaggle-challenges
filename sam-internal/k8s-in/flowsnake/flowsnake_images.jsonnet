@@ -41,6 +41,7 @@ local utils = import "util_functions.jsonnet";
                 prometheus_funnel_update: "",
                 # --- flag H (git's diff logic ... ---
                 # --- flag I (to reduce the ---
+                sherpa_no_ready_delay: "AAA",
                 # --- flag J (likelihood of merge conflicts.) ---
             },
             # prd-test offers legacy version mappings. Phase 2 does not, so cannot inherit from there.
