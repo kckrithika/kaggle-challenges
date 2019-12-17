@@ -5,7 +5,7 @@ system:
     count: 2
     containers:
     - name: search-query-service
-      image: docker-sam/m.nyayapati/search-query-execution-platform:df0d704
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/m.nyayapati/search-query-execution-platform:df0d704
       ports:
       - name: service-port
         containerPort: 7020
