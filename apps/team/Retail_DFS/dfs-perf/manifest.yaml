@@ -28,7 +28,7 @@ system:
 
     containers:
     - name: dfs
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/dfs/service:dfs-0.25.10
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/dfs/service:dfs-0.26.1
       # associate the log directory to a logical volume.
       volumeMounts:
       - name: logvol
@@ -51,6 +51,8 @@ system:
         value: true
       - name: GDOT_BASEPATHOVERRIDE
         value: http://cloudatlas-prd-stage-service.cloudatlas.localhost.mesh.force.com:5442/scim
+      - name: C2C_SERVICEURLOVERRIDE
+        value: https://login.stmfa.stm.salesforce.com/services/c2c
       - name: INCLUDEALLSTACKTRACES
         value: true
       - name: QUERY_LIMIT
