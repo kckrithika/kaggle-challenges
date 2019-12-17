@@ -10,8 +10,7 @@ system:
         - name: SFDC_ENVIRONMENT
           value: blitz
       args:
-      #- --gater.grpc.endpoint=gater-mesh2.gater.localhost.mesh.force.com
-      - --gater.grpc.endpoint=istio-gater.gater.localhost.mesh.force.com
+      - --gater.grpc.endpoint=gater-mesh2.gater.localhost.mesh.force.com
       - --gater.grpc.port=5443
       - --gater.client-mode=GRPC
       - --endpoints.bindings.names=/s/gater-mesh2,/s/gater-mesh2-metadata
