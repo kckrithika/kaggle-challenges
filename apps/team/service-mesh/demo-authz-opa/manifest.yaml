@@ -33,6 +33,8 @@ system:
         name: grpc-svc
       - containerPort: 7022
         name: http-svc
+      - containerPort: 7442
+        name: sherpa-http-tls
       livenessProbe:
         httpGet:
           path: /v1/health
@@ -107,8 +109,9 @@ system:
       function: demo-authz-opa
       slbenabled: true
       ports:
-        - port: 7022
-          targetport: 7022
+        - port: 7442
+          targetport: 7442
           lbtype: http
+          reencrypt: true
           tls: true
           mtls: true
