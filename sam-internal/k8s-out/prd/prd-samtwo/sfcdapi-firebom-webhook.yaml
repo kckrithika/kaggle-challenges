@@ -157,7 +157,9 @@ items:
                           "fitval",
                           "controller",
                           "vault",
-                          "topology"
+                          "topology",
+                          "cwexporter",
+                          "edge"
                       ],
                       "soft-launch": true,
                       "working-directory": "/tmp/sfcdapifirebom"
@@ -430,7 +432,7 @@ items:
                 apiVersion: v1
                 fieldPath: metadata.labels['name']
           - name: CONFIG_VERSION
-            value: "28"
+            value: "29"
           image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/sfcdapi-firebom:105
           imagePullPolicy: Always
           livenessProbe:
