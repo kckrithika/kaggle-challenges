@@ -7,7 +7,7 @@ system:
     functions:
     - name: maiev-receiver-func-stage
       identity:
-        serviceName: maiev-receiver
+        serviceName: maiev-receiver-func-stage
       count: 1
       strategy:
         type: RollingUpdate
