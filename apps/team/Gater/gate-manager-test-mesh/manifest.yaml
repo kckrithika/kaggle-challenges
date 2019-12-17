@@ -13,10 +13,10 @@ system:
       sidecar.istio.io/inject: "true"
       sidecar.istio.io/proxyCPU: "8000m"
       sidecar.istio.io/proxyMemory: "4096Mi"
-      traffic.sidecar.istio.io/excludeInboundPorts: "9522,9523,9524"
+      traffic.sidecar.istio.io/excludeInboundPorts: "9522,9523,9524,15372,9090"
     containers:
     - name: gater1
-      image: sfci/services/sfdc-bazel/gater/gate-manager:1.16.2
+      image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-sfci-dev/sfci/services/sfdc-bazel/gater/gate-manager:3223bbee0
       args:
       - --mesh.istio-mode=true
       - --server.port=9090
