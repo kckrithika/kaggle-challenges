@@ -17,14 +17,14 @@ system:
           type: client
     containers:
     - name: case-mgmt-ui
-      image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/case-management:2
+      image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/case-management:3
       env:
       - name: CM_ENVIRONMENT
         value: "dev"
       - name: CM_HTTPS_PROXY
         value: "http://public0-proxy1-0-xrd.data.sfdc.net:8080"
       - name: CM_SALESFORCE_BASE_URL
-        value: "https://gus--zonesintk.cs49.my.salesforce.com"
+        value: "https://response--juppala.my.salesforce.com"
       - name: CM_SERVICE_URL
         value: "https://dev.casemanagement.com"
       - name: CM_SECRET_SERVICE_URL
