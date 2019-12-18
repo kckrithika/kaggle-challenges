@@ -54,16 +54,16 @@ def get_vip_metadatas(path):
     return vip_metadatas
 
 
-def process_vip_metadata(vip_metadata, public_vips_to_add, public_vips_to_delete, ip_handler):
+def process_vip_metadata(vip_metadata, public_vips_to_add, public_vips_to_delete, ip_handler, validate):
     if vip_metadata.ip_type == IP_TYPE_PUBLIC_ACTIVE or vip_metadata.ip_type == IP_TYPE_PUBLIC_RESERVED:
-        ip_handler.delete_ip(vip_metadata.fqdn, vip_metadata.cluster, public=False)
+        ip_handler.delete_ip(vip_metadata.fqdn, vip_metadata.cluster, public=False, validate=validate)
         public_vips_to_add.append(vip_metadata)
     else:
         public_vips_to_delete.append(vip_metadata)
         if vip_metadata.ip_type == IP_TYPE_PRIVATE_RESERVED:
-            ip_handler.add_private_ip(vip_metadata.kingdom, vip_metadata.cluster, vip_metadata.fqdn)
+            ip_handler.add_private_ip(vip_metadata.kingdom, vip_metadata.cluster, vip_metadata.fqdn, validate)
         elif vip_metadata.ip_type == IP_TYPE_PRIVATE_NON_RESERVED:
-            ip_handler.delete_ip(vip_metadata.fqdn, vip_metadata.cluster, public=False)
+            ip_handler.delete_ip(vip_metadata.fqdn, vip_metadata.cluster, public=False, validate=validate)
         else:
             raise Exception("{} has an invalid ip type".format(vip_metadata.fqdn))
 
@@ -79,7 +79,7 @@ def get_ip_type(loadbalancer):
     return ip_type
 
 
-def process_sam_apps(pool_map_path, team_folder_path, pools, public_vips_to_add, public_vips_to_delete, ip_handler):
+def process_sam_apps(pool_map_path, team_folder_path, pools, public_vips_to_add, public_vips_to_delete, ip_handler, validate):
     pool_yaml = parse_yaml(pool_map_path)
     apps = pool_yaml['apps']
     if apps is None:
@@ -100,10 +100,10 @@ def process_sam_apps(pool_map_path, team_folder_path, pools, public_vips_to_add,
                 fqdn = get_sam_app_fqdn(kingdom, cluster, team_name, super_pod, lb[vip.VIPS_YAML_LBNAME_FIELD_NAME])
                 ip_type = get_ip_type(lb)
                 vip_metadata = vip.VipMetadata(kingdom, cluster, fqdn, ip_type)
-                process_vip_metadata(vip_metadata, public_vips_to_add, public_vips_to_delete, ip_handler)
+                process_vip_metadata(vip_metadata, public_vips_to_add, public_vips_to_delete, ip_handler, validate)
 
 
-def process_services(root_vip_yaml_path, ip_handler, pools_path):
+def process_services(root_vip_yaml_path, ip_handler, pools_path, validate):
     public_vips_to_delete = []
     public_vips_to_add = []
 
@@ -118,7 +118,7 @@ def process_services(root_vip_yaml_path, ip_handler, pools_path):
             for file_name in file_names_in_dir:
                 full_path = os.path.join(file_location, file_name)
                 if file_name == POOL_MAP_FILE_NAME:
-                    process_sam_apps(full_path, team_folder_path, pools, public_vips_to_add, public_vips_to_delete, ip_handler)
+                    process_sam_apps(full_path, team_folder_path, pools, public_vips_to_add, public_vips_to_delete, ip_handler, validate)
                     continue
 
                 if file_name != VIPS_YAML_FILE_NAME:
@@ -127,7 +127,16 @@ def process_services(root_vip_yaml_path, ip_handler, pools_path):
                 vip_metadatas = get_vip_metadatas(full_path)
 
                 for vip_metadata in vip_metadatas:
-                    process_vip_metadata(vip_metadata, public_vips_to_add, public_vips_to_delete, ip_handler)
+                    process_vip_metadata(vip_metadata, public_vips_to_add, public_vips_to_delete, ip_handler, validate)
+
+    if validate:
+        if len(public_vips_to_delete) > 0:
+            raise Exception("{} should not have public reserved IPs based on their specified iptypes, please run the SLB reserve script"
+                            .format(", ".join([vip_metadata.fqdn for vip_metadata in public_vips_to_delete])))
+
+        if len(public_vips_to_add) > 0:
+            raise Exception("{} should have public reserved IPs based on their specified iptypes, please run the SLB reserve script"
+                            .format(", ".join([vip_metadata.fqdn for vip_metadata in public_vips_to_add])))
 
     # Delete happens first in order to allow for IP reuse
     for vip_metadata in public_vips_to_delete:
@@ -153,10 +162,11 @@ if __name__ == "__main__":
     reserved_ips_file_path = sys.argv[3]
     pools_path = sys.argv[4]
     minimum_octet = int(sys.argv[5])
+    validate = bool(sys.argv[6])
 
     ip_handler = ip_reserver.IpReserver(reserved_ips_file_path, config_file_path, minimum_octet)
 
-    process_services(root_vip_yaml_path, ip_handler, pools_path)
+    process_services(root_vip_yaml_path, ip_handler, pools_path, validate)
 
     modified_kingdom_estates = ip_handler.get_modified_kingdom_estates()
 

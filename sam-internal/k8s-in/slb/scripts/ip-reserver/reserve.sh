@@ -5,11 +5,16 @@ else
     PIP_DOWNLOAD_CACHE="${HOME}/.cache/pip"
 fi
 
+validate="False"
+if [ "$2" == "validate" ]; then
+  validate="True"
+fi
+
 output=$(docker run -u 0 --rm \
      -v ${PWD}/../../../../..:/manifests\
      -w /manifests \
      centos/python-36-centos7 \
-     sh -c "pip -q --cache-dir=${PIP_DOWNLOAD_CACHE} install --upgrade pip && pip -q --cache-dir=${PIP_DOWNLOAD_CACHE} install pyyaml lxml && python /manifests/sam-internal/k8s-in/slb/scripts/ip-reserver/main.py /manifests/apps/team /manifests/sam-internal/k8s-in/slb/slbpublicsubnets.json /manifests/sam-internal/k8s-in/slb/slbreservedips.json /manifests/sam-internal/pools 1")
+     sh -c "pip -q --cache-dir=${PIP_DOWNLOAD_CACHE} install --upgrade pip && pip -q --cache-dir=${PIP_DOWNLOAD_CACHE} install pyyaml lxml && python /manifests/sam-internal/k8s-in/slb/scripts/ip-reserver/main.py /manifests/apps/team /manifests/sam-internal/k8s-in/slb/slbpublicsubnets.json /manifests/sam-internal/k8s-in/slb/slbreservedips.json /manifests/sam-internal/pools 1 $validate")
 
 estates=$(echo "$output" | tail -n 1)
 

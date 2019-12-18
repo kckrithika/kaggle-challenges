@@ -45,12 +45,18 @@ class IpReserver:
         with open(self.reserved_ips_file_path, "w") as reserved_ips_file:
             json.dump(self.reserved_ips, reserved_ips_file, indent=2)
 
-    def delete_ip(self, fqdn, cluster, public):
+    def delete_ip(self, fqdn, cluster, public, validate):
         ips = self.public_reserved_ips if public else self.private_reserved_ips
         if cluster not in ips:
             return
 
         if fqdn in ips[cluster]:
+            # When the reserved IPs is in a valid state, no deletion should need to happen
+            # In this case, deletion needs to happen which means there is a reservation that should not exist
+            if validate:
+                type_str = "public" if public else "private"
+                raise Exception("{} should not have a {} reserved IP based on its specified iptype, please run the SLB reserve script".format(fqdn, type_str))
+
             ip = ips[cluster][fqdn]
             del ips[cluster][fqdn]
             print("Deleted {}'s reserved IP of {} from {}".format(fqdn, ip, cluster))
@@ -68,12 +74,16 @@ class IpReserver:
 
         raise Exception("There are no more free public IPs in: {}".format(cluster))
 
-    def add_private_ip(self, kingdom, cluster, fqdn):
+    def add_private_ip(self, kingdom, cluster, fqdn, validate):
         if cluster in self.private_reserved_ips:
             if fqdn in self.private_reserved_ips[cluster]:
                 return
         else:
             self.private_reserved_ips[cluster] = {}
+
+        if validate:
+            # The private IP should already exist and this should not be reached
+            raise Exception("{} should have a private reserved IP based on its specified iptype, please run the SLB reserve script".format(fqdn))
 
         matching_portal_entry = portal_query.get_portal_entry_from_portal(kingdom, cluster, lambda entry: entry.fqdn, fqdn)
         if matching_portal_entry is None:
