@@ -92,7 +92,7 @@ class IpReserver:
         self.private_reserved_ips[cluster][fqdn] = matching_portal_entry.ip
         print("Added {} to {} with private IP {}".format(fqdn, cluster, matching_portal_entry.ip))
 
-    def add_public_ip(self, fqdn, cluster):
+    def add_public_ip(self, fqdn, cluster, validate):
         if cluster not in self.public_subnets:
             raise Exception("No public subnet was found for {}".format(cluster))
 
