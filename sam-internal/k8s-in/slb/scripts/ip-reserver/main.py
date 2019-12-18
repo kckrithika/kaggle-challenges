@@ -153,7 +153,7 @@ if __name__ == "__main__":
     reserved_ips_file_path = sys.argv[3]
     pools_path = sys.argv[4]
     minimum_octet = int(sys.argv[5])
-    validate = bool(sys.argv[6])
+    validate = sys.argv[6] == "True"
 
     ip_handler = ip_reserver.IpReserver(reserved_ips_file_path, config_file_path, minimum_octet)
 
