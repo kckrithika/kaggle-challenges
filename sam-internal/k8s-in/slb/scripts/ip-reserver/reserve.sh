@@ -1,3 +1,5 @@
+set -e
+
 # Set pip cache based on platform, set mount flag for MacOS
 if [[ "$(uname)" == "Darwin" ]]; then
     PIP_DOWNLOAD_CACHE="${HOME}/Library/Caches/pip"

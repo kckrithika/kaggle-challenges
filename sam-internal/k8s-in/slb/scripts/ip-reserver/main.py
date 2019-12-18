@@ -129,21 +129,12 @@ def process_services(root_vip_yaml_path, ip_handler, pools_path, validate):
                 for vip_metadata in vip_metadatas:
                     process_vip_metadata(vip_metadata, public_vips_to_add, public_vips_to_delete, ip_handler, validate)
 
-    if validate:
-        if len(public_vips_to_delete) > 0:
-            raise Exception("{} should not have public reserved IPs based on their specified iptypes, please run the SLB reserve script"
-                            .format(", ".join([vip_metadata.fqdn for vip_metadata in public_vips_to_delete])))
-
-        if len(public_vips_to_add) > 0:
-            raise Exception("{} should have public reserved IPs based on their specified iptypes, please run the SLB reserve script"
-                            .format(", ".join([vip_metadata.fqdn for vip_metadata in public_vips_to_add])))
-
     # Delete happens first in order to allow for IP reuse
     for vip_metadata in public_vips_to_delete:
-        ip_handler.delete_ip(vip_metadata.fqdn, vip_metadata.cluster, public=True)
+        ip_handler.delete_ip(vip_metadata.fqdn, vip_metadata.cluster, public=True, validate=validate)
 
     for vip_metadata in public_vips_to_add:
-        ip_handler.add_public_ip(vip_metadata.fqdn, vip_metadata.cluster)
+        ip_handler.add_public_ip(vip_metadata.fqdn, vip_metadata.cluster, validate)
 
 
 def parse_yaml(yaml_file_path):

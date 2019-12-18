@@ -102,6 +102,10 @@ class IpReserver:
         else:
             self.public_reserved_ips[cluster] = {}
 
+        if validate:
+            # The public IP should already exist and this should not be reached
+            raise Exception("{} should have a public reserved IP based on its specified iptype, please run the SLB reserve script".format(fqdn))
+
         new_ip = self.get_next_public_ip(cluster)
         self.public_reserved_ips[cluster][fqdn] = new_ip
         print("Reserved {} for {} in {}".format(new_ip, fqdn, cluster))
