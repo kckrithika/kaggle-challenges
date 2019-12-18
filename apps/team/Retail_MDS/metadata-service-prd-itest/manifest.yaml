@@ -4,34 +4,45 @@ system:
     email:
     - metadataservice@salesforce.com
   functions:
+  # Pod prefix
   - name: metadata-service-itest
-    identity:
-      serviceName: metadata-service
+    # Replica set size
     count: 1
     labels:
       app: metadata-service
     annotations:
       "routing.mesh.sfdc.net/enabled": "true"
     containers:
+    # Primary service container
     - name: metadata-service
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/metadata-cannon/metadata-service:0.10.2
+      image: replace-me
       ports:
+      # Server port
       - containerPort: 9091
+      # Management port
       - containerPort: 15523
       env:
       - name: SFDC_ENVIRONMENT
-        value: itest
+        value: stmfa
       - name: SERVER_PORT
         value: "9091"
       - name: MANAGEMENT_PORT
         value: "15523"
       - name: JVM_ARGS
-        value: -Xmx2G -Xms2G -XX:ParallelGCThreads=8
-      - name: DATABASE_NAME
-        value: mdsitest
-        # An environment variable used to trigger containers redeployment without making other changes to the manifest
+        # Environment specific configuration parameters
+        value: -Xmx2G -Xms2G -XX:ParallelGCThreads=8 -Ddatabase.name=metadataserviceitest -Djwt-validation.enabled=false
+      # An environment variable used to trigger containers redeployment without making other changes to the manifest
       - name: RESTART
         value: May-16-2019
+      # Liveness probe configuration
+      livenessProbe:
+        httpGet:
+          path: /manage/health
+          port: 15523
+        initialDelaySeconds: 60
+        periodSeconds: 60
+        timeoutSeconds: 90
+      # Memory and CPU settings
       resources:
         limits:
           cpu: "4"
@@ -39,6 +50,7 @@ system:
         requests:
           cpu: "4"
           memory: 3Gi
+      # Mount paths for certs/secrets
       volumeMounts:
       - mountPath: /client-certs
         name: mds-client-cert
@@ -47,15 +59,9 @@ system:
       - mountPath: /home/sfdc-mds/secrets
         name: gdot-secrets-volume
         readOnly: true
-      livenessProbe:
-        httpGet:
-          path: /manage/health
-          port: 15523
-        initialDelaySeconds: 60
-        periodSeconds: 60
-        timeoutSeconds: 90
+    # Sherpa sidecar container
     - name: sherpa-mds
-      image: sfci/servicelibs/sherpa-envoy:1.0.3
+      image: sfci/servicelibs/sherpa-envoy:1.0.8
       args:
       - --server-ca
       - /server-certs/ca_test/cacerts.pem
@@ -63,9 +69,27 @@ system:
       - name: sherpa-h2-tls
         containerPort: 7443
       - containerPort: 15373
+      # A plain-text sherpa-inbound port. Used by internal tooling and developers. Must not be exposed in production.
+      - name: sherpa-h2-plain
+        containerPort: 7012
       env:
       - name: SFDC_ENVIRONMENT
         value: stmfa
+      # Liveness probe configuration
+      livenessProbe:
+        exec:
+          command:
+          - /home/sfdc-sherpa/bin/is-alive
+        initialDelaySeconds: 60
+        periodSeconds: 120
+      # Readiness probe configuration
+      readinessProbe:
+        exec:
+          command:
+          - /home/sfdc-sherpa/bin/is-ready
+        initialDelaySeconds: 60
+        periodSeconds: 120
+      # Memory and CPU settings
       resources:
         limits:
           cpu: "1"
@@ -73,6 +97,7 @@ system:
         requests:
           cpu: "1"
           memory: 1Gi
+      # Mount paths for certs/secrets
       volumeMounts:
       - mountPath: /log
         name: sherpa-log-volume
@@ -80,44 +105,13 @@ system:
         name: mds-client-cert
       - mountPath: /server-certs
         name: mds-server-cert
-      livenessProbe:
-        exec:
-          command:
-          - /home/sfdc-sherpa/bin/is-alive
-        initialDelaySeconds: 60
-        periodSeconds: 120
-      readinessProbe:
-        exec:
-          command:
-          - /home/sfdc-sherpa/bin/is-ready
-        initialDelaySeconds: 60
-        periodSeconds: 120
-    - name: beacon-mds
-      image: sfci/servicelibs/beacon:ce3b9722faf59dc7550a1df2905ecff794fbb2e3
-      args:
-      - -endpoint
-      - metadata-service:DATACENTER:7012
-      - -endpoint
-      - retail-mds/metadata-service:DATACENTER:7443:metadata-service-prd-func-lb.retail-mds.prd-sam.prd.slb.sfdc.net
-      env:
-      - name: SFDC_ENVIRONMENT
-        value: stmfa
-      resources:
-        limits:
-          cpu: "1"
-          memory: 1Gi
-        requests:
-          cpu: "1"
-          memory: 1Gi
-      livenessProbe:
-        exec:
-          command:
-          - /home/scone/is-alive.sh
-        initialDelaySeconds: 5
+    # Secrets/Certs volume configuration
     volumes:
     - name: mds-server-cert
       maddogCert:
         type: server
+        lbnames:
+        - metadata-service-prd-itest-lb
     - name: mds-client-cert
       maddogCert:
         type: client
@@ -130,3 +124,29 @@ system:
     - name: gdot-secrets-volume
       k4aSecret:
         secretName: mds-gdot-secrets-prd
+  # Load balancer configuration
+  loadbalancers:
+  - lbname: metadata-service-prd-itest-lb
+    function: metadata-service
+    slbEnabled: true
+    ports:
+    - port: 7443
+      targetport: 7443
+      name: mds-itest
+    # A plain-text HTTP port that serves REST API and developer utilities. Must not be exposed in production.
+    - port: 9091
+      targetport: 9091
+    # A plain-text sherpa-inbound port. Used by internal tooling and developers.
+    - port: 7012
+      targetport: 7012
+      lbalgorithm: roundrobin
+  - lbname: metadata-service
+    function: metadata-service
+    ports:
+    - port: 7443
+      targetport: 7443
+      name: grpc-itest
+    # A plain-text sherpa-inbound port. Used by internal tooling and developers.
+    - port: 7012
+      targetport: 7012
+      name: grpc-plainitest
