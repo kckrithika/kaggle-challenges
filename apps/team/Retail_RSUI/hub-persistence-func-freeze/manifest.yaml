@@ -2,7 +2,7 @@ apiVersion: v1
 
 system:
   functions:
-    - name: hub-persistence-func-patch
+    - name: hub-persistence-func-freeze
       identity:
         serviceName: hub-persistence
       count: 3
@@ -14,7 +14,7 @@ system:
           maddogCert:
             type: server
             lbnames:
-              - hub-persistence-func-patch-lb
+              - hub-persistence-func-freeze-lb
         - name: hp-client-cert
           maddogCert:
             type: client
@@ -34,11 +34,13 @@ system:
             - name: SERVER_PORT
               value: 7022
             - name: SFDC_ENVIRONMENT
-              value: stmfb
+              value: stmfc
             - name: JVM_ARGS
               value: -Xmx2G -Xms2G -XX:ParallelGCThreads=8
             - name: DUMMY_VALUE
               value: 2
+            - name: DATABASE_NAME
+              value: hps0c
           livenessProbe:
             httpGet:
               path: /manage/health
@@ -53,14 +55,14 @@ system:
             - name: hp-client-cert
               mountPath: /client-certs
 
-        - name: sherpa-hub-persistence-func-patch
+        - name: sherpa-hub-persistence-func-freeze
           image: sfci/servicelibs/sherpa-envoy:1.0.5
           args:
             - --server-ca
             - /server-certs/ca_test/cacerts.pem
           env:
             - name: SFDC_ENVIRONMENT
-              value: stmfb
+              value: stmfc
           resources:
             limits: { cpu: "1", memory: "1Gi" }
             requests: { cpu: "1", memory: "1Gi" }
@@ -93,8 +95,8 @@ system:
   # SLB
   #
   loadbalancers:
-    - lbname: hub-persistence-func-patch-lb
-      function: hub-persistence-func-patch
+    - lbname: hub-persistence-func-freeze-lb
+      function: hub-persistence-func-freeze
       slbEnabled: true
       ports:
       - port: 443
