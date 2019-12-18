@@ -76,7 +76,9 @@
     'vault',
     'topology',
     'cwexporter',
-    'edge'
+    'edge',
+    'ajnaendpoint',
+    'ajnakafka'
   ],
   'soft-launch': true
 }
