@@ -159,9 +159,9 @@ system:
       - name: mail_clientclass
         value: RestEmailClient
       - name: mail_restemailclient_baseAuthUrl
-        value: http://gid-sso-client-dev.global-identity.prd-sam.prd.slb.sfdc.net:80/gmail/auth
+        value: http://gid-sso-client.global-identity.prd-sam.prd.slb.sfdc.net:80/gmail/auth
       - name: mail_restemailclient_baseRestUrl
-        value: http://gid-sso-client-dev.global-identity.prd-sam.prd.slb.sfdc.net:80/gmail/rest
+        value: http://gid-sso-client.global-identity.prd-sam.prd.slb.sfdc.net:80/gmail/rest
       - name: otp_passwordReset_expiresInSeconds
         value: 300
       - name: spring_datasource_hikari_connectionTimeout

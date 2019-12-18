@@ -5,7 +5,7 @@ system:
     count: 1
     containers:
     - name: gid-sso-client
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/gid/gid-sso-client:v3
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/gid/gid-sso-client:dad87de
       imagePullPolicy: Always
       env:
       - name: server_port
@@ -16,13 +16,23 @@ system:
         value: http://cloudatlas-gid.global-identity.prd-sam.prd.slb.sfdc.net/scim
       - name: gid_default_idp_url
         value: https://gid-runtime-staging-prd.slb.sfdc.net
+      - name: mail_restemailclient_proxy
+        value: http://public0-proxy1-0-prd.data.sfdc.net:8080
       ports:
       - containerPort: 8080
       livenessProbe:
         httpGet:
           path: /manage/info
           port: 15372
-
+    - name: mailhog
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/gid/mailhog:1.0.0
+      ports:
+      - containerPort: 1025
+      - containerPort: 8025
+      livenessProbe:
+        httpGet:
+          path: /
+          port: 8025
   loadbalancers:
   - lbname: gid-sso-client
     function: gid-sso-client
@@ -31,3 +41,7 @@ system:
       - port: 80
         targetport: 8080
         lbtype: tcp
+      - port: 8025
+        targetport: 8025
+        lbtype: tcp
+
