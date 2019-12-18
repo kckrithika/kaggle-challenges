@@ -8,7 +8,7 @@ else
 fi
 
 validate="False"
-if [ "$2" == "validate" ]; then
+if [ "$1" == "validate" ]; then
   validate="True"
 fi
 
@@ -20,7 +20,7 @@ output=$(docker run -u 0 --rm \
 
 if [ "$validate" == "True" ]; then
   echo "$output"
-  exit
+  exit 0
 fi
 
 estates=$(echo "$output" | tail -n 1)
