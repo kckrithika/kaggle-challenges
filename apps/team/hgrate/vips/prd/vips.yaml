@@ -1,4 +1,4 @@
-- lbname: hws-dev7-prd
+- lbname: hws-dev7
   servers:
   - dev7hdaas-mnds1-1-prd.eng.sfdc.net
   - dev7hdaas-mnds2-1-prd.eng.sfdc.net
@@ -10,7 +10,7 @@
     lbalgorithm: roundrobin
 # Need to add healthcheck port and healthcheck path later.
 
-- lbname: hws-dev8-prd
+- lbname: hws-dev8
   servers:
   - dev8hdaas-mnds1-1-prd.eng.sfdc.net
   - dev8hdaas-mnds2-1-prd.eng.sfdc.net
