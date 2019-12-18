@@ -36,7 +36,7 @@ system:
 
     containers:
     - name: retail-setup
-      image: sfci/retail/retail-setup:0.1.7.120
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/retail/retail-setup:2.1.301
       ports:
       # Jetty http1 ports for incoming public traffic via SLB
       - containerPort: 7022
@@ -80,8 +80,6 @@ system:
         value: stmfc
       - name: TENANT_SERVICE_ALLOWDATASOURCEADD
         value: true
-      - name: TENANT_CANONICAL
-        value: mds/stmfc/ST0000000000001
       - name: CRE_SERVER_TARGET
         value: http://cre-api-ccp-stage.retail-cre.localhost.mesh.force.com:5442
       - name: C2C_PATH
@@ -103,11 +101,17 @@ system:
       - name: SECURITY_ENCRYPTION_KEY2_PATH
         value: secrets/encryption-key2/rsui-encryption-key1.key
       - name: RSUI_HOST
-        value: stmfc.stm.salesforce-hub.com
+        value: stmfc.stm.salesforce-hub.com      
+      - name: RSUI_HOST_REDIRECT_WHITELIST
+        value: salesforce-hub.com,prd-sam.prd.slb.sfdc.net
       - name: GATER_EMBEDDED_MODE
         value: false
       - name: TRANSFORMATIONLIB_MDS_MODE
         value: live
+      - name: SCONE_SERVER_SECURITY_MUTUALAUTH
+        value: true
+      - name: SHOW_INTERNAL_TRANSFORMATIONS
+        value: true
       - name: JVM_ARGS
         value: "-Dspring.profiles.active=prod -Djava.util.concurrent.ForkJoinPool.common.parallelism=50
                 -verbose:gc -XX:+PrintGCDateStamps -XX:+PrintHeapAtGC
