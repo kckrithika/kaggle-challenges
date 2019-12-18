@@ -152,6 +152,8 @@ system:
         value: gid-runtime-service-mit
       - name: mail_server
         value: gid-mailhog.global-identity.prd-sam.prd.slb.sfdc.net
+      - name: mail_clientclass
+        value: SMTPEmailClient
       volumeMounts:
       - name: client-cert
         mountPath: /client-certs
