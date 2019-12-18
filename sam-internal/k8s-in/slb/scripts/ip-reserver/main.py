@@ -163,7 +163,10 @@ if __name__ == "__main__":
 
     # Used for the build script
     if len(modified_kingdom_estates) == 0:
-        print("No IP reservation changes found")
+        if validate:
+            print("SLB VIP IP reservations are valid")
+        else:
+            print("No IP reservation changes found")
     else:
         print(",".join(modified_kingdom_estates))
 
