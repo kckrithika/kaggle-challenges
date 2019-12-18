@@ -39,7 +39,7 @@ system:
       - {name: GRPC_HOST, value: jobcontroller-master.wave-elt.localhost.mesh.force.com}
       - {name: GRPC_PORT, value: '5443'}
       - {name: HANDLED_PODS_PATTERN, value: stmfa\..*|moana-driver-master}
-      image: sfci/insights/moana-driver:master-20191213.81-8bd02fa
+      image: sfci/insights/moana-driver:master-20191217.82-b6a8eb8
       livenessProbe:
         httpGet: {path: /manage/health, port: 15372}
         initialDelaySeconds: 30
