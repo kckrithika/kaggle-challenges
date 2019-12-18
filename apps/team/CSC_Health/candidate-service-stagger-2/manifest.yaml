@@ -5,11 +5,11 @@ system:
     email:
       - cschealthcp@salesforce.com
   functions:
-  - name: candidate-service
+  - name: candidate-service-2
     count: 1
     containers:
-    - name: candidate-service-logrotator
-      image: dva/csc-health/candidate-service:13
+    - name: candidate-service-2-logrotator
+      image: dva/csc-health/candidate-service:15
       volumeMounts:
         - mountPath: /home/sfdc-csc-health/candidate-service
           name: logvol
@@ -38,8 +38,8 @@ system:
           sleep 21600;
         done
       ']
-    - name: candidate-service
-      image: dva/csc-health/candidate-service:13
+    - name: candidate-service-2
+      image: dva/csc-health/candidate-service:15
       ports:
       - containerPort: 8888
       volumeMounts:
@@ -49,6 +49,8 @@ system:
           name: logvol
       env:
       - name: CHS_AJNA_ENABLED
+        value: true
+      - name: CHS_AJNA_ENTITYHEALTH_ENABLED
         value: true
       - name: CHS_AJNA_CERTPATH
         value: /certs/client/certificates/client.pem
@@ -73,7 +75,7 @@ system:
       - name: CHS_LOG_FILE
         value: /home/sfdc-csc-health/candidate-service/candidate-service.log
       - name: CHS_SMOOTHINGCONFIG_ENABLED
-        value: true
+        value: false
       - name: CHS_SMOOTHINGCONFIG_SIZE
         value: 10
       - name: CHS_SMOOTHINGCONFIG_OPINIONLOOKBACK
@@ -86,10 +88,20 @@ system:
         value: 80.0
       - name: CHS_SMOOTHINGCONFIG_PROBEXITLOOKBACK
         value: 10
-      - name: CHS_REPORTCOLLECTOR_WHITELISTUNTRUSTED
-        value: nagios-adapter
       - name: CHS_STALENESS_WHITELIST
         value: LOGICAL_HOST
+      - name: CHS_REPORTCOLLECTOR_WDWHITELIST
+        value: grok.server_watchdog,sandman,netmgt.sandman,mom,*.infrastructure-watchdog-CP-health
+      - name: CHS_REPORTCOLLECTOR_WDWHITELISTUNTRUSTED
+        value: nagios-adapter
+      - name: CHS_REPORTCOLLECTOR_OBSWHITELIST
+        value: netmgt.nhal_client,netmgt.sandman,sandman
+      - name: CHS_REPORTCOLLECTOR_OBSWHITELISTUNTRUSTED
+        value: infrastructure-observer.grok
+      - name: CHS_REPORTCOLLECTOR_WDPOLLPERIOD
+        value: 60s
+      - name: CHS_REPORTCOLLECTOR_OBSPOLLPERIOD
+        value: 60s
       livenessProbe:
         httpGet:
           path: /healthz
@@ -103,15 +115,6 @@ system:
         export CHS_GROK_ENDPOINT=https://ops0-grok1-0-${KINGDOM}.data.sfdc.net ;
         export CHS_REPORTCOLLECTOR_ENDPOINT=https://reportcollector-${KINGDOM}.data.sfdc.net:18444 ;
 
-        providers=grok.server_watchdog ;
-        providers+=,sandman ;
-        providers+=,netmgt.sandman ;
-        providers+=,mom ;
-        providers+=,*.infrastructure-watchdog-CP-health ;
-
-        export CHS_REPORTCOLLECTOR_WHITELIST=${providers} ;
-        export CHS_REPORTCOLLECTOR_POLLPERIOD=60s ;
-
         /candidateservice
       "]
     volumes:
@@ -123,8 +126,8 @@ system:
           path: /home/sfdc-csc-health/candidate-service
 
   loadbalancers:
-  - lbname: candidateservicelb
-    function: candidate-service
+  - lbname: candidateservice2lb
+    function: candidate-service-2
     ports:
     - port: 80
       targetport: 8888
