@@ -2,7 +2,7 @@ apps:
   syncmaster:
   - prd/prd-sam
   - fra/fra-sam_dp
-  # - cdg/cdg-sam_dp # W-7036861
+  - cdg/cdg-sam_dp # W-7036861
   - lo2/lo2-sam_dp
   - lo3/lo3-sam_dp
   # - ia2/ia2-sam_dp
