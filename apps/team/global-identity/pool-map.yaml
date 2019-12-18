@@ -25,7 +25,7 @@ apps:
       - test0shared0-samminionatlasfe1-1-prd.eng.sfdc.net
 
   gid-sso-client-prd:
-    - name: prd/prd-sam_cloudatlas
+    - name: prd/prd-sam_globalidentity
       hostSubList:
       - test0shared0-samminionatlasfe1-1-prd.eng.sfdc.net
 
