@@ -1,0 +1,23 @@
+- lbname: hws-dev7
+  servers:
+  - dev7hdaas-mnds1-1-prd.eng.sfdc.net
+  - dev7hdaas-mnds2-1-prd.eng.sfdc.net
+  - dev7hdaas-mnds3-1-prd.eng.sfdc.net
+  ports:
+  - port: 8443
+    targetport: 8443
+    lbtype: tcp
+    lbalgorithm: roundrobin
+# Need to add healthcheck port and healthcheck path later.
+
+- lbname: hws-dev8
+  servers:
+  - dev8hdaas-mnds1-1-prd.eng.sfdc.net
+  - dev8hdaas-mnds2-1-prd.eng.sfdc.net
+  - dev8hdaas-mnds3-1-prd.eng.sfdc.net
+  ports:
+  - port: 8443
+    targetport: 8443
+    lbtype: tcp
+    lbalgorithm: roundrobin
+# Need to add healthcheck port and healthcheck path later.
