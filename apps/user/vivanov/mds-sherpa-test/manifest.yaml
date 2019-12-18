@@ -29,7 +29,7 @@ system:
         - name: metadata-service
           image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/metadata-cannon/metadata-service:0.12.70
           ports:
-            - containerPort: 9091
+            - containerPort: 7022
             - containerPort: 15523
             - containerPort: 7020
           livenessProbe:
@@ -43,7 +43,7 @@ system:
             - name: SFDC_ENVIRONMENT
               value: dev
             - name: SERVER_PORT
-              value: 9091
+              value: 7022
             - name: MANAGEMENT_PORT
               value: 15523
             - name: JVM_ARGS
@@ -61,12 +61,12 @@ system:
             - --server-ca
             - /server-certs/ca_test/cacerts.pem
           ports:
-#            - name: sherpa-h2-tls
-#              containerPort: 7443
-#            - containerPort: 15373
-            # A plain-text sherpa-inbound port. Used by internal tooling and developers. Must not be exposed in production.
+            - name: sherpa-h2-tls
+              containerPort: 7443
             - name: sherpa-h2-plain
               containerPort: 7012
+            - name: sherpa-h1-plain
+              containerPort: 7014
           env:
             - name: SFDC_ENVIRONMENT
               value: dev
@@ -106,10 +106,8 @@ system:
       nodeExposed: true
       slbEnabled: true
       ports:
-        - port: 9091
-          targetport: 9091
-        - port: 15523
-          targetport: 15523
+        - port: 7014
+          targetport: 7014
         - port: 7020
           targetport: 7020
           lbtype: tcp
