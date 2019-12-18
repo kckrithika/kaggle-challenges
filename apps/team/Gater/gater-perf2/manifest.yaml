@@ -20,8 +20,8 @@ system:
       - --management.server.port=15375
       - --server.port=8081
       - --metrics.collectionInterval=60
-      - --gater.grpc.deadline-ms=1000
-      - --gater.timeout-in-millis=1000
+      - --gater.grpc.deadline-ms=2
+      - --gater.timeout-in-millis=2
       - --gater.perf.should-log=false
       - --gater.client.log-opts=NEVER_LOG
       ports:
