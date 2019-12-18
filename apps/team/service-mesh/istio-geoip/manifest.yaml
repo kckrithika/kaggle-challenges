@@ -30,7 +30,7 @@ system:
           cpu: "8"
           memory: 10Gi
       ports:
-      - containerPort: 7020
+      - containerPort: 7443
         name: grpc
       livenessProbe:
         httpGet:
