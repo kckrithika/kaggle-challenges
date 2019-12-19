@@ -131,6 +131,22 @@ if (istioPhases.phaseNum == 2) then
         "watch",
       ],
     },
+    {
+      apiGroups: [
+        "",
+      ],
+      resources: [
+        "secrets",
+      ],
+      verbs: [
+        "create",
+        "get",
+        "watch",
+        "list",
+        "update",
+        "delete",
+      ],
+    },
   ],
 }
 else "SKIP"
