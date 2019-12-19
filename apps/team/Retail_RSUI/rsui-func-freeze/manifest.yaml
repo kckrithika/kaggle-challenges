@@ -82,18 +82,24 @@ system:
         value: true
       - name: CRE_SERVER_TARGET
         value: http://cre-api-ccp-stage.retail-cre.localhost.mesh.force.com:5442
+      - name: CRE_CP_SERVER_TARGET
+        value: http://cre-control-plane-ccp-prod.retail-cre.localhost.mesh.force.com:5442
       - name: C2C_PATH
-        value: https://login.stmfa.stm.salesforce.com/empire/cloudatlas/scim
+        value: http://cloudatlas-prd-stage-service.cloudatlas.localhost.mesh.force.com:5442/scim,https://login.stmfa.stm.salesforce.com/empire/cloudatlas/scim
       - name: CORE_OAUTH_URL
         value: https://login.stmfc.stm.salesforce.com
       - name: CORE_OAUTH_SANDBOXURL
         value: https://test.stmfc.stm.salesforce.com
       - name: RSUI_OAUTH_CALLBACK
         value: https://rsui-func-freeze-lb.retail-rsui.prd-sam.prd.slb.sfdc.net/service/oauth/callback
-      - name: OAUTH_CONSUMER_KEY
+      - name: OAUTH_SHADOW_CONSUMERKEY
         value: 3MVG9qKMKuRGRcbsDAbl8GAbGnBDpYIKMZi.POplacPBvbTSLZCtkFI3Ak.IdydhbEKWTcaAQuS57meuH0YBp
-      - name: OAUTH_CONSUMER_SECRET
+      - name: OAUTH_SHADOW_CONSUMERSECRET
         value: 449B2E5FFF3E25D6ED37922B967C3D9014CF1B2C6BB08AD9487B2856A5A6C67C
+      - name: OAUTH_SERVICE_CONSUMERKEY
+        value: 3MVG9qKMKuRGRcbsDAbl8GAbGnPYG9tRRDQt6IZT6WweyFwEQRK_TxDiKASUJ6ZmKe8jtbaukBMBaVd6EwxuU
+      - name: OAUTH_SERVICE_CONSUMERSECRET
+        value: 91339206DA5A0122E6E48B262E4378E53B844DBE5F2C18FEBC9A26FC9FB6EE59
       - name: SECURITY_REQUIRE_SECRETS
         value: false
       - name: SECURITY_ENCRYPTION_KEY1_PATH
