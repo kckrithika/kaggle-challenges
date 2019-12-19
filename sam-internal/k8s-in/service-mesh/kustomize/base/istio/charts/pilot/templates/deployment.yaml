@@ -181,8 +181,6 @@ spec:
           args:
             - --endpoint
             - http://127.0.0.1:15014/metrics
-            - --debug-mode
-            - "true"
             - --funnel-address
             - ajnafunneldirecttls.funnel.svc.mesh.sfdc.net:7442
             - --alt-tags
@@ -212,7 +210,7 @@ spec:
               value: "updated_by_firebom"
             - name: SETTINGS_SUPERPOD
               value: "-"
-          image: 791719295754.dkr.ecr.us-east-2.amazonaws.com/sfci/servicemesh/servicemesh/metrics-scraper:4dc8ebd49f9847721ba295531fa4ee0b2937dde1
+          image: 791719295754.dkr.ecr.us-east-2.amazonaws.com/sfci/servicemesh/servicemesh/metrics-scraper:9972d78059cf97f688118c39c739ab1844f8df73
           imagePullPolicy: Always
           readinessProbe:
             exec:

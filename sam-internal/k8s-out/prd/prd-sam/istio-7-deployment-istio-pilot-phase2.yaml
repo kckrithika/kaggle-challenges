@@ -294,8 +294,6 @@ spec:
         - mountPath: /tokens
           name: tokens
       - args:
-        - --debug-mode
-        - "true"
         - --funnel-address
         - ajnafunneldirecttls.funnel.svc.mesh.sfdc.net:7442
         - --alt-tags

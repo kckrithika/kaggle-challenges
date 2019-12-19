@@ -464,8 +464,6 @@ if (istioPhases.phaseNum == 1) then
           },
           {
             args: [
-              "--debug-mode",
-              "true",
               "--funnel-address",
               mcpIstioConfig.funnelEndpoint,
               "--alt-tags",

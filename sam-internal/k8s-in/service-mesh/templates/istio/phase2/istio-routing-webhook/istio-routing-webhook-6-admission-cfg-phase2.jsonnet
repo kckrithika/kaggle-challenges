@@ -45,7 +45,7 @@ if (istioPhases.phaseNum == 2) then
           resources: ["serviceentries"],
         },
       ],
-      failurePolicy: "Fail",
+      failurePolicy: mcpIstioConfig.webhookFailurePolicy,
       namespaceSelector: {
         matchLabels: {
           "istio-injection": "enabled",
