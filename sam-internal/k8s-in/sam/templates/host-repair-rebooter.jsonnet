@@ -33,7 +33,6 @@ if configs.estate == "prd-samtest" || configs.estate == "prd-sam" then {
                         command: [
                             "/sam/host-repair-rebooter",
                             "--config=/config/host-repair-rebooter.json",
-                            "-v=0",
                         ],
                         volumeMounts+: configs.filter_empty([
                             configs.sfdchosts_volume_mount,

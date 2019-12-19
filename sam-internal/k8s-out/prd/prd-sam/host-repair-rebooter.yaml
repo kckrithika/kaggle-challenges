@@ -20,11 +20,10 @@ spec:
       - command:
         - /sam/host-repair-rebooter
         - --config=/config/host-repair-rebooter.json
-        - -v=0
         env:
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig-platform
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/sam/hypersam:2838-bb0b18d18d0cfb389547ae7a3e5df9b23ba51e11
+        image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/d.smith/hypersam:20191219_115602.7b04ef6f.clean.duncsmith-ltm1
         name: host-repair-rebooter
         volumeMounts:
         - mountPath: /etc/pki_service

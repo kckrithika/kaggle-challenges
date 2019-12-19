@@ -7,4 +7,5 @@ std.prune({
   ginghamCertFile: "/etc/pki_service/platform/platform-client/certificates/platform-client.pem",
   ginghamKeyFile: "/etc/pki_service/platform/platform-client/keys/platform-client-key.pem",
   funnelEndpoint: configs.funnelVIP,
+  gusCaseId: "a07B0000007rnzDIAQ",
 }) else "SKIP"

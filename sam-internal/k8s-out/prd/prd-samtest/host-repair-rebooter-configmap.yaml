@@ -6,7 +6,8 @@ data:
       "crdNamespace": "sam-system",
       "funnelEndpoint": "ajna0-funnel1-0-prd.data.sfdc.net:80",
       "ginghamCertFile": "/etc/pki_service/platform/platform-client/certificates/platform-client.pem",
-      "ginghamKeyFile": "/etc/pki_service/platform/platform-client/keys/platform-client-key.pem"
+      "ginghamKeyFile": "/etc/pki_service/platform/platform-client/keys/platform-client-key.pem",
+      "gusCaseId": "a07B0000007rnzDIAQ"
     }
 kind: ConfigMap
 metadata:
