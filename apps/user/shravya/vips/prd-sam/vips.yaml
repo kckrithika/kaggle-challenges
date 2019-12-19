@@ -1,5 +1,4 @@
 - lbname: test-vip-thaavu
-  iptype: private_reserved
   customlbname: thaavu-prd-sam
   servers:
    - shared0-sdcsamcompute1-3-prd.eng.sfdc.net
