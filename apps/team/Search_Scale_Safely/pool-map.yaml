@@ -1,10 +1,8 @@
 apps:
  prd-sqep-parseltongue:
-  - prd/prd-sam
+  - prd/prd-search_model_executor
  prd-search-query-service:
   - prd/prd-search_model_executor
- gcp-search-query-service:
-#  - mvp/gsf-core-devmvp-sam2-sam
  prod-search-query-service-canary:
   - ord/ord-search_model_executor
  prod-search-query-service:
