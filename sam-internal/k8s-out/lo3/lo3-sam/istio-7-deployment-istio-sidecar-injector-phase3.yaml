@@ -190,8 +190,6 @@ spec:
       - args:
         - --endpoint
         - http://localhost:8080/metrics
-        - --debug-mode
-        - "true"
         - --funnel-address
         - ajnafunneldirecttls.funnel.svc.mesh.sfdc.net:7442
         - --alt-tags
