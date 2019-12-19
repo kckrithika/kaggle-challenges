@@ -48,7 +48,7 @@ system:
       image: sfci/services/sfdc-bazel/disco/beacon:d7f1640
       env:
         - name: SFDC_ENVIRONMENT
-          value: istio
+          value: prod
       args:
         - -endpoint
         - $(FUNCTION_NAMESPACE)/$(FUNCTION):DATACENTER_ALLENV:HTTP2_TLS
