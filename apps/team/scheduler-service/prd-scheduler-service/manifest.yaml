@@ -12,7 +12,7 @@ system:
         pod: cs101
       containers:
         - name: crondemo
-          image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/rakella/scheduler-demo-client:dec5-1
+          image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/rakella/scheduler-demo-client:dec19
           ports:
             - name: http-port
               containerPort: 9090
@@ -65,7 +65,7 @@ system:
         pod: cs101
       containers:
         - name: croncar
-          image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/rakella/executor-service:dec4
+          image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/rakella/executor-service:dec19
           ports:
             - name: grpc-port
               containerPort: 9020
@@ -165,7 +165,7 @@ system:
         pod: cs101
       containers:
         - name: cronsvc
-          image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/rakella/scheduler-service:dec4
+          image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/rakella/scheduler-service:dec19
           ports:
             - name: grpc-port
               containerPort: 7020
