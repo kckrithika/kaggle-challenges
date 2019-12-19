@@ -5,6 +5,8 @@ metadata:
     manifestctl.sam.data.sfdc.net/swagger: disable
   labels:
     app: sidecarInjectorWebhook
+    chart: sidecarInjectorWebhook
+    heritage: Helm
     release: istio
   name: istio-sidecar-injector
 webhooks:

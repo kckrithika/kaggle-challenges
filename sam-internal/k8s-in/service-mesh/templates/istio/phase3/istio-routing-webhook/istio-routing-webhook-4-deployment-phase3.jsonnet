@@ -69,6 +69,10 @@ configs.deploymentBase("service-mesh") {
               "--funnel-address",
               mcpIstioConfig.funnelEndpoint,
               "--default-policy-opt-in=false",
+              "--gateway-namespace",
+              "core-on-sam-sp2",
+              "--namespace-selector",
+              "istio-injection=enabled",
             ],
             env: [
               {

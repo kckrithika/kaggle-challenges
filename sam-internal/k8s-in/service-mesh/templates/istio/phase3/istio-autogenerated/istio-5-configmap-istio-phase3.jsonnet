@@ -11,6 +11,9 @@ if (istioPhases.phaseNum == 3) then
   },
   kind: "ConfigMap",
   metadata: {
+    annotations: {
+      "strategy.spinnaker.io/versioned": "false",
+    },
     labels: {
       app: "istio",
       release: "istio",

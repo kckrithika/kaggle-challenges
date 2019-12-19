@@ -12,6 +12,8 @@ if (istioPhases.phaseNum == 3) then
     },
     labels: {
       app: "sidecarInjectorWebhook",
+      chart: "sidecarInjectorWebhook",
+      heritage: "Helm",
       release: "istio",
     },
     name: "istio-sidecar-injector",
@@ -26,7 +28,7 @@ if (istioPhases.phaseNum == 3) then
           path: "/inject",
         },
       },
-      failurePolicy: "Ignore",
+      failurePolicy: mcpIstioConfig.webhookFailurePolicy,
       name: "sidecar-injector.istio.io",
       namespaceSelector: {
         matchLabels: {
