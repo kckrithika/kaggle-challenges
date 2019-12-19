@@ -148,8 +148,11 @@ system:
     function: metadata-service
     slbEnabled: true
     ports:
-      - port: 7442
+      - port: 443
         targetport: 7442
+        lbtype: http
+        tls: true
+        reencrypt: true
   - lbname: metadata-service
     function: metadata-service
     ports:
