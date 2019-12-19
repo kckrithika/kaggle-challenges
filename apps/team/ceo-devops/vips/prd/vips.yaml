@@ -110,6 +110,7 @@
     lbtype: http
     tls: true
     reencrypt: false
+    sticky: 300
     healthport: 8080
     healthprotocol: http
     healthpath: /ha/health-check
@@ -118,6 +119,7 @@
     lbtype: http
     tls: false
     reencrypt: false
+    sticky: 300
     healthport: 80
     healthprotocol: http
     healthpath: /
