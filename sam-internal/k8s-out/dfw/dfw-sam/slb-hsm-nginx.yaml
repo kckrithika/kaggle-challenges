@@ -111,7 +111,7 @@ spec:
               fieldPath: spec.nodeName
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig-platform
-        image: ops0-artifactrepo1-0-dfw.data.sfdc.net/dva/slb/hyperslb:2289-b29b418b59e285c81c6397ebd9e819208918cdcb
+        image: ops0-artifactrepo1-0-dfw.data.sfdc.net/dva/slb/hyperslb:2297-a3e79cccc8a9dd7068e43d0e4b984d75c261b3aa
         name: slb-nginx-config
         ports:
         - containerPort: 32146
