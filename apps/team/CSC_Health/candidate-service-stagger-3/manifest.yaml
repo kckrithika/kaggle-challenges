@@ -9,7 +9,7 @@ system:
     count: 1
     containers:
     - name: candidate-service-2-logrotator
-      image: dva/csc-health/candidate-service:15
+      image: dva/csc-health/candidate-service:17
       volumeMounts:
         - mountPath: /home/sfdc-csc-health/candidate-service
           name: logvol
@@ -39,7 +39,7 @@ system:
         done
       ']
     - name: candidate-service-2
-      image: dva/csc-health/candidate-service:15
+      image: dva/csc-health/candidate-service:17
       ports:
       - containerPort: 8888
       volumeMounts:
@@ -74,19 +74,19 @@ system:
         value: 8888
       - name: CHS_LOG_FILE
         value: /home/sfdc-csc-health/candidate-service/candidate-service.log
-      - name: CHS_SMOOTHINGCONFIG_ENABLED
+      - name: CHS_SMOOTHING_ENABLED
         value: false
-      - name: CHS_SMOOTHINGCONFIG_SIZE
+      - name: CHS_SMOOTHING_SIZE
         value: 10
-      - name: CHS_SMOOTHINGCONFIG_OPINIONLOOKBACK
+      - name: CHS_SMOOTHING_OPINIONLOOKBACK
         value: 10
-      - name: CHS_SMOOTHINGCONFIG_FLAPLOOKBACK
+      - name: CHS_SMOOTHING_FLAPLOOKBACK
         value: 10
-      - name: CHS_SMOOTHINGCONFIG_FLAPTHRESHHOLD
+      - name: CHS_SMOOTHING_FLAPTHRESHHOLD
         value: 7
-      - name: CHS_SMOOTHINGCONFIG_HEALTHYOPTHRESHOLD
+      - name: CHS_SMOOTHING_HEALTHYOPTHRESHOLD
         value: 80.0
-      - name: CHS_SMOOTHINGCONFIG_PROBEXITLOOKBACK
+      - name: CHS_SMOOTHING_PROBEXITLOOKBACK
         value: 10
       - name: CHS_STALENESS_WHITELIST
         value: LOGICAL_HOST
@@ -102,6 +102,8 @@ system:
         value: 60s
       - name: CHS_REPORTCOLLECTOR_OBSPOLLPERIOD
         value: 60s
+      - name: CHS_COORDINATOR_ENABLED
+        value: false
       livenessProbe:
         httpGet:
           path: /healthz
