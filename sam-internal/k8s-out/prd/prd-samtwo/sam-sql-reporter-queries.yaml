@@ -1219,7 +1219,11 @@ data:
           "multisql": [
             {
               "name": "Overview",
-              "sql": "select\n  controlEstate,\n  sum(case when Status = 'healthy' then 1 end) as HealthyCount,\n  group_concat(case when NodeNum = 'n1-1' then Status else NULL end) as node1_1old,\n  group_concat(case when NodeNum = 'n2-1' then Status else NULL end) as node2_1old,\n  group_concat(case when NodeNum = 'n3-1' then Status else NULL end) as node3_1old,\n  group_concat(case when NodeNum = 'n1-2' then Status else NULL end) as node1_2new,\n  group_concat(case when NodeNum = 'n2-2' then Status else NULL end) as node2_2new,\n  \n  group_concat(case when NodeNum = 'n1-3' then Status else NULL end) as extra_1_3,\n  group_concat(case when NodeNum = 'n3-2' then Status else NULL end) as extra_3_2\n  from\n(\nselect\n  controlEstate,\n  (case\n    when Success = 'true' and ReportAgeInHours\u003c90 then 'healthy'\n    when Success = 'true' and ReportAgeInHours\u003e=90 then concat('healthy\u003cbr\u003e(stale ',ReportAgeInHours,' hr)')\n    when Success = 'false' and ReportAgeInHours\u003c90 then 'bad'\n    when Success = 'false' and ReportAgeInHours\u003e=90 then concat('bad\u003cbr\u003e(stale ',ReportAgeInHours,' hr)')\n  end) as Status,\n  NodeNum\nfrom\n(\n\nselect\n  controlEstate,\n  Payload-\u003e\u003e'$.spec.checkername' as checkerName,\n  Payload-\u003e\u003e'$.status.report.Success' as Success,\n  TIMESTAMPDIFF(HOUR, STR_TO_DATE(Payload-\u003e\u003e'$.status.report.ReportCreatedAt', '%Y-%m-%dT%H:%i:%s.'), UTC_TIMESTAMP()) as ReportAgeInHours,\n  concat('n',MID(Payload-\u003e\u003e'$.spec.checkername',length(Payload-\u003e\u003e'$.spec.checkername')-19,3)) as NodeNum\nfrom k8s_resource\nwhere\n  apikind = 'watchdog'\n  and Payload-\u003e\u003e'$.spec.checkername' like 'etcdchecker-%kubeapi%'\n\n) as ss\n) as ss2\ngroup by ControlEstate\norder by controlEstate"
+              "sql": "select\n  controlEstate,\n  sum(case when Status = 'good' then 1 end) as HealthyCount,\n  group_concat(case when NodeNum = 'n1-1' then Status else NULL end) as node1_1,\n  group_concat(case when NodeNum = 'n2-1' then Status else NULL end) as node2_1,\n  group_concat(case when NodeNum = 'n3-1' then Status else NULL end) as node3_1,\n  group_concat(case when NodeNum = 'n1-2' then Status else NULL end) as node1_2,\n  group_concat(case when NodeNum = 'n2-2' then Status else NULL end) as node2_2\n  from\n(\nselect\n  controlEstate,\n  (case\n    when Success = 'true' and ReportAgeInHours\u003c1 then 'good'\n    when Success = 'true' and ReportAgeInHours\u003e=1 then concat('STALE ',ReportAgeInHours,' hr')\n    when Success = 'false' and ReportAgeInHours\u003c1 then 'FAILING'\n    when Success = 'false' and ReportAgeInHours\u003e=1 then concat('STALE ',ReportAgeInHours,' hr')\n  end) as Status,\n  NodeNum\nfrom\n(\n\nselect\n  controlEstate,\n  Payload-\u003e\u003e'$.spec.checkername' as checkerName,\n  Payload-\u003e\u003e'$.status.report.Success' as Success,\n  TIMESTAMPDIFF(HOUR, STR_TO_DATE(Payload-\u003e\u003e'$.status.report.ReportCreatedAt', '%Y-%m-%dT%H:%i:%s.'), UTC_TIMESTAMP()) as ReportAgeInHours,\n  concat('n',MID(Payload-\u003e\u003e'$.spec.checkername',length(Payload-\u003e\u003e'$.spec.checkername')-19,3)) as NodeNum\nfrom k8s_resource\nwhere\n  apikind = 'watchdog'\n  and Payload-\u003e\u003e'$.spec.checkername' like 'etcdchecker-%kubeapi%'\n\n) as ss\n) as ss2\ngroup by ControlEstate\norder by controlEstate"
+            },
+            {
+              "name": "Not Ready KubeApi Servers in Production",
+              "sql": "select controlEstate, name, produceAgeInMin, Messages from (\n  select\n    controlEstate,\n    name,\n    floor((time_to_sec(timediff(utc_timestamp(),from_unixtime((ProduceTime / 1000000000.0)))) / 60.0)) as ProduceAgeInMin,\n    json_unquote(json_extract(Payload, concat('$.status.conditions[',substring(json_search(Payload-\u003e\u003e'$.status.conditions', 'one', 'KubeletReady'), 4,1),'].status'))) as KubeletReady,\n    Payload-\u003e\u003e'$.status.conditions[*].message' as Messages,\n    isTombstone\n  from k8s_resource \n  where ApiKind = 'node' and ControlEstate not like '%prd%' and controlestate not like '%xrd%' and name like '%kubeapi%' and isTombstone = 0\n) as ss\nwhere ((KubeletReady is null) or (KubeletReady != 'True') or (ProduceAgeInMin \u003e 60))\norder by controlEstate, name"
             },
             {
               "name": "Detail View",
@@ -1227,7 +1231,7 @@ data:
             }
           ],
           "name": "Etcd Node Overview",
-          "note": "View of ETCD health based on etcdChecker CRD.  Stale means the watchdog CRD has not been updated in \u003e 3 hours.  Keep in mind the etcd watcher does not know what etcd nodes are in the ring.  Some errors are general broken etcd and some are members not added."
+          "note": "View of ETCD health based on etcdChecker CRD.  Stale means the watchdog CRD has not been updated in \u003e 1 hours.  Keep in mind the etcd watcher does not know what etcd nodes are in the ring.  Some errors are general broken etcd and some are members not added.  Also, a host can be online and have working etcd but it will show failing here because of a watchdog issue"
         },
         {
           "name": "NodeEnpoint-failure-detail",
@@ -1284,6 +1288,17 @@ data:
         {
           "name": "Nodes with cordon or taints",
           "sql": "select\n\tcontrolEstate,\n\tname,\n\tjson_unquote(json_extract(Payload, concat('$.status.conditions[',substring(json_search(Payload-\u003e\u003e'$.status.conditions', 'one', 'KubeletReady'), 4, 1),'].status'))) as KubeletReady,\n\tPayload-\u003e\u003e'$.metadata.labels.\"node.sam.sfdc.net/rack\"' as rack,\n\tpayload-\u003e\u003e'$.spec.unschedulable' as Cordoned,\n\tPayload-\u003e\u003e'$.spec.taints' as Taints\nfrom\n\tk8s_resource\nwhere\n\tapikind = 'node' and\n\t(Payload-\u003e\u003e'$.spec.taints' is not null or payload-\u003e\u003e'$.spec.unschedulable' is not null)\norder by controlEstate, name"
+        },
+        {
+          "multisql": [
+            {
+              "name": "Number of hosts up or down per estate",
+              "note": "",
+              "sql": "select\n  controlEstate,\n  pool,\n  sum(down) as downCount,\n  sum(up) as upCount,\n  count(*) as count,\n  group_concat(downHosts, '', '') as downHosts,\n  (0.0+sum(up))/(0.0+count(*)) as percentHostsUp\nfrom\n(\n  select \n    controlEstate,\n    name,\n    pool,\n    case when ((KubeletReady is null) or (KubeletReady != 'True') or (ProduceAgeInMin \u003e 60)) then 1 else 0 end as down,\n    case when ((KubeletReady is null) or (KubeletReady != 'True') or (ProduceAgeInMin \u003e 60)) then 0 else 1 end as up,\n    case when ((KubeletReady is null) or (KubeletReady != 'True') or (ProduceAgeInMin \u003e 60)) then name else null end as downHosts\n  from (\n    select\n      controlEstate,\n      name,\n      Payload-\u003e\u003e'$.metadata.labels.\"pool\"' as pool,\n      floor((time_to_sec(timediff(utc_timestamp(),from_unixtime((ProduceTime / 1000000000.0)))) / 60.0)) as ProduceAgeInMin,\n      json_unquote(json_extract(Payload, concat('$.status.conditions[',substring(json_search(Payload-\u003e\u003e'$.status.conditions', 'one', 'KubeletReady'), 4,1),'].status'))) as KubeletReady,\n      Payload-\u003e\u003e'$.status.conditions[*].message' as Messages,\n      isTombstone\n    from k8s_resource \n    where ApiKind = 'node' and isTombstone = 0\n  ) as ss\n) as ss2\ngroup by controlEstate, pool\norder by percentHostsUp desc"
+            }
+          ],
+          "name": "Hosts-Up-Per-Estate",
+          "note": ""
         }
       ]
     }

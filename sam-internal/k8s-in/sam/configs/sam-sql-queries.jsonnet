@@ -80,6 +80,7 @@ local utils = import "util_functions.jsonnet";
         (import "sam-sql-reporter/nodes-cannot-report-connectivity.libsonnet"),
         (import "sam-sql-reporter/minion-pool-availability.libsonnet"),
         (import "sam-sql-reporter/cordon-and-taint.libsonnet"),
+        (import "sam-sql-reporter/hosts-up-per-estate.libsonnet"),
        ],
     ]),
 }
