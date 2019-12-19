@@ -108,9 +108,9 @@ local getInstanceDataWithDefaults(instanceTag) = (
 # IP address instead of the pod's IP address and fails the request. So we need to use hostnetwork in gia.
 # For other sites we want to run the Caiman watchdog on host network to minimize the number of IP addresses
 # we consume.
-local hostNetworkIfEnabled(canary) = if utils.is_gia(configs.kingdom) || secretsflights.caimanWdSecondReplicaEnabled(canary) then { hostNetwork: true } else {};
+local hostNetwork() = { hostNetwork: true };
 
-local podAntiAffinityIfEnabled(podLabel, canary) = if secretsflights.caimanWdSecondReplicaEnabled(canary) then {
+local podAntiAffinity(podLabel) = {
   affinity: {
      podAntiAffinity: {
         requiredDuringSchedulingIgnoredDuringExecution: [{
@@ -127,7 +127,7 @@ local podAntiAffinityIfEnabled(podLabel, canary) = if secretsflights.caimanWdSec
       }],
      },
   },
-} else {};
+};
 
 # Temporarily override the node selector in the staging cluster so that our watchdog can communicate with
 # the staging cluster's port (8444). Once ACL changes are in place to permit access to port 8444 from
@@ -149,7 +149,7 @@ local k4aWatchdogDeployment(instanceTag) = configs.deploymentBase("secrets") {
     namespace: "sam-system",
   },
   spec+: {
-    replicas: if secretsflights.caimanWdSecondReplicaEnabled(instanceData.canary) then 2 else 1,
+    replicas: 2,
     template: {
       metadata: {
         annotations: {
@@ -200,8 +200,8 @@ local k4aWatchdogDeployment(instanceTag) = configs.deploymentBase("secrets") {
       }
       + nodeSelector
       + secretsconfigs.samPodSecurityContext
-      + hostNetworkIfEnabled(instanceData.canary)
-      + podAntiAffinityIfEnabled(instanceData.name, instanceData.canary),
+      + hostNetwork()
+      + podAntiAffinity(instanceData.name),
     },
   },
 };

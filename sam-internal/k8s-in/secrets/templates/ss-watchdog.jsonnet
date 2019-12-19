@@ -75,6 +75,13 @@ local instanceMap = {
       endpoint: "secretservice.dmz.salesforce.com",
     },
   },
+  ast: {
+    # Watchdog monitoring AST SecretService.
+    ast: {
+      endpoint: "secretservice-ast.data.sfdc.net",
+      wdKingdom: "AST",
+    },
+  },
   hio: {
     # Watchdog monitoring HIO SecretService.
     hio: {
@@ -132,14 +139,7 @@ local getInstanceDataWithDefaults(instanceTag) = (
   defaultInstanceData + instanceData
 );
 
-local resourceRequestIfDisabled(canary) =
-  if secretsflights.podManagementPolicyEnabled(canary) then {}
-  else configs.ipAddressResourceRequest;
-
-local podManagementPolicyIfEnabled(instanceData) =
-   if secretsflights.podManagementPolicyEnabled(instanceData.canary) then {
-     podManagementPolicy: "Parallel",
-   } else {};
+local podManagementPolicy() = { podManagementPolicy: "Parallel" };
 
 local ssWatchdogDeployment(instanceTag) = secretsconfigs.statefulsetBase() {
   local instanceData = getInstanceDataWithDefaults(instanceTag),
@@ -205,7 +205,7 @@ local ssWatchdogDeployment(instanceTag) = secretsconfigs.statefulsetBase() {
             volumeMounts: [
               configs.sfdchosts_volume_mount,
             ] + madkub.certVolumeMounts,
-          } + resourceRequestIfDisabled(instanceData.canary),
+          },
           madkub.refreshContainer,
         ],
         hostNetwork: true,
@@ -222,7 +222,7 @@ local ssWatchdogDeployment(instanceTag) = secretsconfigs.statefulsetBase() {
     updateStrategy: {
       type: "RollingUpdate",
     },
-  } + podManagementPolicyIfEnabled(instanceData),
+  } + podManagementPolicy(),
 };
 
 local instanceTagsForKingdom = if std.objectHas(instanceMap, configs.kingdom) then std.objectFields(instanceMap[configs.kingdom]);

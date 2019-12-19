@@ -28,6 +28,7 @@ local configs = import "config.jsonnet";
     "xrd-sam",
     "hio-sam",
     "ttd-sam",
+    "ast-sam",
     "phx-sam",
     "dfw-sam",
   ]),
