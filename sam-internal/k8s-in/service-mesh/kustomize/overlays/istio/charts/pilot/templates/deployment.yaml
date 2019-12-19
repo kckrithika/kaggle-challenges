@@ -189,8 +189,6 @@ spec:
         - mountPath: /tokens
           name: tokens
       - args:
-        - --debug-mode
-        - "true"
         - --funnel-address
         - mcpIstioConfig.funnelEndpoint
         - --alt-tags
