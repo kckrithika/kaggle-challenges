@@ -1,23 +1,25 @@
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: istio-init-crd-all-dc81a3faea15119f22c6f3330ed00e5e610fdf4a
+  name: istio-init-crd-mixer-aa56850ad9a1bc39fc8583dcd4eda1d6
   namespace: mesh-control-plane
 spec:
   template:
     metadata:
       annotations:
         sidecar.istio.io/inject: "false"
+      labels: null
     spec:
+      automountServiceAccountToken: true
       containers:
       - command:
         - kubectl
         - apply
         - -f
-        - /etc/istio/crd-all/crd-all.gen.yaml
-        image: ops0-artifactrepo1-0-lo3.data.sfdc.net/sfci/servicemesh/istio-packaging/kubectl:dc81a3faea15119f22c6f3330ed00e5e610fdf4a
-        imagePullPolicy: IfNotPresent
-        name: istio-init-crd-all
+        - /etc/istio/crd-mixer/crd-mixer.yaml
+        image: ops0-artifactrepo1-0-lo3.data.sfdc.net/sfci/servicemesh/istio-packaging/kubectl:aa56850ad9a1bc39fc8583dcd4eda1d6720a724d
+        imagePullPolicy: Always
+        name: istio-init-crd-mixer
         resources:
           limits:
             cpu: 100m
@@ -26,14 +28,18 @@ spec:
             cpu: 10m
             memory: 50Mi
         volumeMounts:
-        - mountPath: /etc/istio/crd-all
-          name: crd-all
+        - mountPath: /etc/istio/crd-mixer
+          name: crd-mixer
           readOnly: true
       nodeSelector:
         pool: lo3-sam_gater
       restartPolicy: OnFailure
+      securityContext:
+        fsGroup: 7447
+        runAsNonRoot: true
+        runAsUser: 7447
       serviceAccountName: istio-init-service-account
       volumes:
       - configMap:
-          name: istio-crd-all
-        name: crd-all
+          name: istio-crd-mixer
+        name: crd-mixer

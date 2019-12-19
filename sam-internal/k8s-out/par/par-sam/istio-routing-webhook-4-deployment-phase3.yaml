@@ -54,6 +54,10 @@ spec:
         - --funnel-address
         - ajnafunneldirecttls.funnel.svc.mesh.sfdc.net:7442
         - --default-policy-opt-in=false
+        - --gateway-namespace
+        - core-on-sam-sp2
+        - --namespace-selector
+        - istio-injection=enabled
         env:
         - name: SETTINGS_SUPERPOD
           value: '-'
@@ -61,7 +65,7 @@ spec:
           value: -.-.par.-.istio-routing-webhook
         - name: ESTATE
           value: par-sam
-        image: ops0-artifactrepo1-0-par.data.sfdc.net/sfci/servicemesh/servicemesh/istio-routing-webhook:f210d5ff0f01b8a28a5d6bb2943220b3fdb3223b
+        image: ops0-artifactrepo1-0-par.data.sfdc.net/sfci/servicemesh/servicemesh/istio-routing-webhook:9972d78059cf97f688118c39c739ab1844f8df73
         imagePullPolicy: IfNotPresent
         name: istio-routing-webhook
         ports:
@@ -223,7 +227,7 @@ spec:
           valueFrom:
             fieldRef:
               fieldPath: metadata.labels['cluster']
-        image: ops0-artifactrepo1-0-par.data.sfdc.net/sfci/servicemesh/istio-packaging/proxy:dc81a3faea15119f22c6f3330ed00e5e610fdf4a
+        image: ops0-artifactrepo1-0-par.data.sfdc.net/sfci/servicemesh/istio-packaging/proxy:aa56850ad9a1bc39fc8583dcd4eda1d6720a724d
         imagePullPolicy: IfNotPresent
         name: istio-proxy
         ports:
@@ -337,7 +341,7 @@ spec:
         env:
         - name: DISABLE_REDIRECTION_ON_LOCAL_LOOPBACK
           value: "1"
-        image: ops0-artifactrepo1-0-par.data.sfdc.net/sfci/servicemesh/istio-packaging/proxy:dc81a3faea15119f22c6f3330ed00e5e610fdf4a
+        image: ops0-artifactrepo1-0-par.data.sfdc.net/sfci/servicemesh/istio-packaging/proxy:aa56850ad9a1bc39fc8583dcd4eda1d6720a724d
         imagePullPolicy: IfNotPresent
         name: istio-init
         resources:

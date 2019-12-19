@@ -9,41 +9,25 @@ metadata:
 spec:
   egress:
   - hosts:
-    - mesh-control-plane/*
-    - z9s-default/*
-    - app/*
-    - funnel/*
-    - service-mesh/*
+    - '*/*'
     port:
       name: grpc-tls
       number: 7443
       protocol: GRPC
   - hosts:
-    - mesh-control-plane/*
-    - z9s-default/*
-    - app/*
-    - funnel/*
-    - service-mesh/*
+    - '*/*'
     port:
       name: http-tls
       number: 7442
       protocol: HTTP
   - hosts:
-    - mesh-control-plane/*
-    - z9s-default/*
-    - app/*
-    - funnel/*
-    - service-mesh/*
+    - '*/*'
     port:
       name: http-plain
       number: 7014
       protocol: HTTP
   - hosts:
-    - mesh-control-plane/*
-    - z9s-default/*
-    - app/*
-    - funnel/*
-    - service-mesh/*
+    - '*/*'
     port:
       name: grpc-plain
       number: 7012

@@ -43,7 +43,7 @@ if (istioPhases.phaseNum == 3) then
           app: "pilot",
           chart: "pilot",
           cluster: mcpIstioConfig.istioEstate,
-          heritage: "Tiller",
+          heritage: "Helm",
           istio: "pilot",
           name: "istio-pilot",
           release: "istio",
@@ -115,6 +115,7 @@ if (istioPhases.phaseNum == 3) then
             },
           },
         },
+        automountServiceAccountToken: true,
         containers: [
           {
             args: [
@@ -131,26 +132,6 @@ if (istioPhases.phaseNum == 3) then
               "5m",
             ],
             env: [
-              {
-                name: "ESTATE",
-                value: mcpIstioConfig.istioEstate,
-              },
-              {
-                name: "PILOT_SIDECAR_USE_REMOTE_ADDRESS",
-                value: "true",
-              },
-              {
-                name: "PILOT_ENABLE_REDIS_FILTER",
-                value: "true",
-              },
-              {
-                name: "PILOT_DEBOUNCE_AFTER",
-                value: "100ms",
-              },
-              {
-                name: "PILOT_DEBOUNCE_MAX",
-                value: "10s",
-              },
               {
                 name: "POD_NAME",
                 valueFrom: {
@@ -170,20 +151,40 @@ if (istioPhases.phaseNum == 3) then
                 },
               },
               {
+                name: "ESTATE",
+                value: mcpIstioConfig.istioEstate,
+              },
+              {
+                name: "PILOT_ENABLE_CRD_VALIDATION",
+                value: "true",
+              },
+              {
+                name: "PILOT_SIDECAR_USE_REMOTE_ADDRESS",
+                value: "true",
+              },
+              {
+                name: "PILOT_ENABLE_REDIS_FILTER",
+                value: "true",
+              },
+              {
+                name: "PILOT_DEBOUNCE_AFTER",
+                value: "100ms",
+              },
+              {
+                name: "PILOT_DEBOUNCE_MAX",
+                value: "10s",
+              },
+              {
                 name: "PILOT_PUSH_THROTTLE",
                 value: "100",
               },
               {
-                name: "PILOT_TRACE_SAMPLING",
-                value: "1",
-              },
-              {
-                name: "PILOT_ENABLE_UNSAFE_REGEX",
-                value: "true",
-              },
-              {
                 name: "PILOT_RESPECT_DNS_TTL",
                 value: "false",
+              },
+              {
+                name: "PILOT_TRACE_SAMPLING",
+                value: "1",
               },
               {
                 name: "PILOT_ENABLE_PROTOCOL_SNIFFING_FOR_OUTBOUND",
@@ -195,7 +196,7 @@ if (istioPhases.phaseNum == 3) then
               },
             ],
             image: "%(istioHub)s/pilot:%(istioTag)s" % mcpIstioConfig,
-            imagePullPolicy: "IfNotPresent",
+            imagePullPolicy: "Always",
             name: "discovery",
             ports: [
               {
@@ -341,9 +342,17 @@ if (istioPhases.phaseNum == 3) then
                 name: "SDS_ENABLED",
                 value: "false",
               },
+              {
+                name: "ENVOY_METRICS_SERVICE_ADDRESS",
+                value: "switchboard.service-mesh",
+              },
+              {
+                name: "ENVOY_METRICS_SERVICE_PORT",
+                value: "15001",
+              },
             ],
             image: "%(istioHub)s/proxy:%(istioTag)s" % mcpIstioConfig,
-            imagePullPolicy: "IfNotPresent",
+            imagePullPolicy: "Always",
             name: "istio-proxy",
             ports: [
               {
@@ -471,6 +480,28 @@ if (istioPhases.phaseNum == 3) then
                     fieldPath: "metadata.namespace",
                   },
                 },
+              },
+              {
+                name: "POD_NAME",
+                valueFrom: {
+                  fieldRef: {
+                    apiVersion: "v1",
+                    fieldPath: "metadata.name",
+                  },
+                },
+              },
+              {
+                name: "POD_NAMESPACE",
+                valueFrom: {
+                  fieldRef: {
+                    apiVersion: "v1",
+                    fieldPath: "metadata.namespace",
+                  },
+                },
+              },
+              {
+                name: "PILOT_ENABLE_CRD_VALIDATION",
+                value: "true",
               },
               {
                 name: "SETTINGS_SUPERPOD",
@@ -625,7 +656,7 @@ if (istioPhases.phaseNum == 3) then
               },
             ],
             image: mcpIstioConfig.proxyImage,
-            imagePullPolicy: "IfNotPresent",
+            imagePullPolicy: "Always",
             name: "istio-init",
             resources: {
               limits: {
@@ -652,6 +683,11 @@ if (istioPhases.phaseNum == 3) then
         ],
         nodeSelector: {
           pool: mcpIstioConfig.istioEstate,
+        },
+        securityContext: {
+          fsGroup: 7447,
+          runAsNonRoot: true,
+          runAsUser: 7447,
         },
         serviceAccountName: "istio-pilot-service-account",
         volumes: [

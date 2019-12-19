@@ -16,6 +16,7 @@ if (istioPhases.phaseNum == 3) then
   webhooks: [
     {
       name: "istio-routing-webhook.sfdc.internal",
+      matchPolicy: "Equivalent",
       clientConfig: {
         service: {
           name: "istio-routing-webhook",
@@ -44,7 +45,7 @@ if (istioPhases.phaseNum == 3) then
           resources: ["serviceentries"],
         },
       ],
-      failurePolicy: "Ignore",
+      failurePolicy: "Fail",
       namespaceSelector: {
         matchLabels: {
           "istio-injection": "enabled",
