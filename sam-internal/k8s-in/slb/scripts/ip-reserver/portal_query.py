@@ -1,8 +1,11 @@
 from io import StringIO
 from lxml import etree
 import ssl
-import urllib.request
-
+try:
+    from urllib.request import urlopen
+    from urllib.error import HTTPError, URLError
+except ImportError:
+    from urllib2 import urlopen, HTTPError, URLError
 
 DEFAULT_CLUSTER = "sam"
 
@@ -37,7 +40,7 @@ def __get_portal_info(url):
 
     try:
         ssl._create_default_https_context = ssl._create_unverified_context
-        conn = urllib.request.urlopen(url, timeout=3)
+        conn = urlopen(url, timeout=3)
         byte_response = conn.read()
 
         str_response = byte_response.decode("utf8")
@@ -56,7 +59,7 @@ def __get_portal_info(url):
 
         portal_info_cache[url] = portal_entries
         return portal_entries
-    except (urllib.error.HTTPError, urllib.error.URLError):
+    except (HTTPError, URLError):
         portal_info_cache[url] = []
         return []
 
