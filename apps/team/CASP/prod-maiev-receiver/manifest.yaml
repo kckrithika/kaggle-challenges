@@ -52,15 +52,13 @@ system:
         - mountPath: /home/sfdc-maiev/client-certs
           name: client-cert
       # ------- sherpa envoy container -------
-      - name: cantor-http-sherpa
+      - name: maiev-sherpa
         # Use the latest release version from https://git.soma.salesforce.com/servicelibs/sherpa-envoy/releases
         image: sfci/servicelibs/sherpa-envoy:1.0.13
         # See https://git.soma.salesforce.com/servicelibs/sherpa#ports
         ports:
         - name: http2-tls-in
           containerPort: 7443
-        - name: http2-tls-out
-          containerPort: 5443
         - name: sherpa-adm
           containerPort: 15373
         livenessProbe:
