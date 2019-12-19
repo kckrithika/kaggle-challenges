@@ -324,7 +324,7 @@ spec:
           value: istio.-.prd.-.istio-pilot
         - name: ESTATE
           value: prd-samtest
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/sfci/servicemesh/servicemesh/metrics-scraper:930ac26ef0e85043e5f93c4db0ea3d2635df6577
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/sfci/servicemesh/servicemesh/metrics-scraper:9972d78059cf97f688118c39c739ab1844f8df73
         imagePullPolicy: Always
         name: metrics-scraper
         readinessProbe:
