@@ -35,9 +35,6 @@ system:
 
     - name: sis-synthetics
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/searchdev/search-query-execution-platform-dev/sis-synthetics:cde6922
-      ports:
-      - name: service-port
-        containerPort: 7090
       env:
       - name: SFDC_ENVIRONMENT
         value: sam
