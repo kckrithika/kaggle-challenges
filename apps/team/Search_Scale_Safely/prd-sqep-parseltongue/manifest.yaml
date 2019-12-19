@@ -2,7 +2,7 @@ apiVersion: v1
 system:
   functions:
   - name: sqep-parseltongue
-    count: 2
+    count: 3
     annotations:
       sidecar.istio.io/inject: "true"
     containers:
