@@ -1,5 +1,4 @@
-a
-iVersion: v1
+apiVersion: v1
 system:
   functions:
   - name: sqep-parseltongue
@@ -30,6 +29,10 @@ system:
         value: sam
       - name: GRPC_PORT
         value: 7443
+      livenessProbe:
+        httpGet:
+          path: /manage/health
+        initialDelaySeconds: 60
       resources:
         limits:
           cpu: "4"
@@ -46,6 +49,10 @@ system:
       env:
       - name: SFDC_ENVIRONMENT
         value: sam
+      livenessProbe:
+        exec:
+          command: ['cat', '/dev/null']
+        initialDelaySeconds: 10
       resources:
         limits:
           cpu: "1"
@@ -117,7 +124,7 @@ system:
   - lbname: sqep-parseltongue
     function: sqep-parseltongue
     ports:
-      - lbtype: dsr
-        port: 7443
-        targetport: 7443
-        name: grpc-spt
+    - lbtype: dsr
+      port: 7443
+      targetport: 7443
+      name: grpc-spt
