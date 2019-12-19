@@ -101,10 +101,10 @@ system:
       ports:
         - port: 80
           targetport: 8889
-          lbalgorithm: roundrobin
+          lbalgorithm: hash
         - port: 443
           targetport: 8443
-          lbalgorithm: roundrobin
+          lbalgorithm: hash
         - port: 15372
           targetport: 15372
           lbalgorithm: roundrobin
