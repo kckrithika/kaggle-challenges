@@ -6,7 +6,8 @@ system:
     - name: aqueduct-func
       count: 3
       type: stateful-set
-      # identity:
+      identity:
+        serviceName: emp-aqueduct
       #   emptyServiceName: true
       #   namespace: emp_aqueduct
       lbname: aqueduct-func-lb
