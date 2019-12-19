@@ -7,15 +7,6 @@ system:
     containers:
     - name: qs-parseltongue
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/searchdev/search-query-execution-platform-dev/query-service:cde6922
-      command:
-      - java
-      - -Xdebug
-      - -Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=8955
-      - -jar
-      - service.jar
-      args:
-      - --modelstore.repo.models=model_repository_root/models
-      - --modelstore.repo.manifests=model_repository_root/test_manifests/manifests
       ports:
       - name: service-port
         containerPort: 7020
@@ -24,17 +15,8 @@ system:
       env:
       - name: SFDC_ENVIRONMENT
         value: sam
-      - name: GRPC_PORT
-        value: 7020
       livenessProbe:
-        httpGet:
-          path: /manage/health
+        exec:
+          command: ['cat', '/dev/null']
         initialDelaySeconds: 60
-      resources:
-        limits:
-          cpu: "4"
-          memory: 5Gi
-        requests:
-          cpu: "4"
-          memory: 5Gi
 
