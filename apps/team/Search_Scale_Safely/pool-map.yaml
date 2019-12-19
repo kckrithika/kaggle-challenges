@@ -1,6 +1,6 @@
 apps:
  prd-sqep-parseltongue:
-  - prd/prd-sam
+  - prd/prd-search_model_executor
  prd-search-query-service:
   - prd/prd-search_model_executor
  prod-search-query-service-canary:
