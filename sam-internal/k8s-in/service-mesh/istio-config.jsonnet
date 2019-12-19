@@ -134,6 +134,7 @@ local ingressGatewayCertConfigs = [ingressGatewayClientCertConfig, ingressGatewa
   pilotReplicasCount: istioPhases.pilotReplicasCount,
   sidecarInjectorWebhookReplicasCount: istioPhases.sidecarInjectorWebhookReplicasCount,
   routingWebhookReplicasCount: istioPhases.routingWebhookReplicasCount,
+  webhookFailurePolicy: istioPhases.webhookFailurePolicy,
 
   envoyMetricsServiceHost: "switchboard.service-mesh",
 }
