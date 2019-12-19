@@ -28,7 +28,7 @@ if (istioPhases.phaseNum == 1) then
           path: "/inject",
         },
       },
-      failurePolicy: "Fail",
+      failurePolicy: mcpIstioConfig.webhookFailurePolicy,
       name: "sidecar-injector.istio.io",
       namespaceSelector: {
         matchLabels: {

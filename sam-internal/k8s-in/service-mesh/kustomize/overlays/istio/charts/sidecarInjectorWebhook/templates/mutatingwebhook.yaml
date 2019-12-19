@@ -11,6 +11,7 @@ metadata:
     release: istio
 webhooks:
   - name: sidecar-injector.istio.io
+    failurePolicy: mcpIstioConfig.webhookFailurePolicy
     namespaceSelector:
       matchExpressions: null
       matchLabels:

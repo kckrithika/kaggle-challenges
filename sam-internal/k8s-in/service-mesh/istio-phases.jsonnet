@@ -32,4 +32,6 @@ local namespaces = (import "namespaces/mesh-namespaces.jsonnet") + { templateFil
   sidecarInjectorWebhookReplicasCount: if ($.phaseNum == 1) then 1 else 3,
   # 1 routing webhook in prd-samtest
   routingWebhookReplicasCount: if ($.phaseNum == 1) then 1 else 3,
+  # 1 webhook failurePolicy
+  webhookFailurePolicy: if ($.phaseNum > 2) then "Ignore" else "Fail",
 }
