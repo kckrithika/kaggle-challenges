@@ -2,69 +2,39 @@ apiVersion: v1
 
 system:
   functions:
-  - name: search-query-service
-    count: 2
+  - name: sqep-parseltongue
+    count: 1
     containers:
-    - name: search-query-service
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/m.krishnan/search-query-execution-platform:latest
+    - name: qs-parseltongue
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/searchdev/search-query-execution-platform-dev/query-service:cde6922
+      command:
+      - java
+      - -Xdebug
+      - -Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=8955
+      - -jar
+      - service.jar
+      args:
+      - --modelstore.repo.models=model_repository_root/models
+      - --modelstore.repo.manifests=model_repository_root/test_manifests/manifests
       ports:
       - name: service-port
         containerPort: 7020
       - name: admin-port
         containerPort: 15372
-      resources:
-        limits: { cpu: "8", memory: "5Gi" }
-        requests: { cpu: "8", memory: "5Gi" }
-      livenessProbe:
-        exec:
-          command: ["./runcheck.sh", "5"]
-        initialDelaySeconds: 120
-        timeoutSeconds: 10
-        periodSeconds: 60
-      readinessProbe:
-        exec:
-          command: ["./runcheck.sh", "5"]
-        initialDelaySeconds: 110
-        timeoutSeconds: 10
-    - name: beacon
-      image: sfci/services/sfdc-bazel/disco/beacon:6f46a7abf
-      args:
-      - -endpoint
-      - samapp/user-m-krishnan/search-query-service:DATACENTER_ALLENV:7443
-      livenessProbe:
-        initialDelaySeconds: 5
-        exec:
-          command:
-          - /opt/beacon/is-alive.sh
-    - name: sherpa
-      image: sfci/servicelibs/sherpa-envoy:1.0.8
       env:
       - name: SFDC_ENVIRONMENT
         value: sam
-      ports:
-      - name: sherpa-tls
-        containerPort: 7443
-      - name: sherpa-adm
-        containerPort: 15373
+      - name: GRPC_PORT
+        value: 7020
       livenessProbe:
-        exec:
-          command: ["./bin/is-alive"]
-        initialDelaySeconds: 120
-        periodSeconds: 5
-      readinessProbe:
-        exec:
-          command: ["./bin/is-ready"]
-        initialDelaySeconds: 120
-        periodSeconds: 5
-      volumeMounts:
-      - name: tls-server-cert
-        mountPath: /server-certs
-      - name: tls-client-cert
-        mountPath: /client-certs
-    volumes:
-    - name: tls-client-cert
-      maddogCert:
-        type: client
-    - name: tls-server-cert
-      maddogCert:
-        type: server
+        httpGet:
+          path: /manage/health
+        initialDelaySeconds: 60
+      resources:
+        limits:
+          cpu: "4"
+          memory: 5Gi
+        requests:
+          cpu: "4"
+          memory: 5Gi
+
