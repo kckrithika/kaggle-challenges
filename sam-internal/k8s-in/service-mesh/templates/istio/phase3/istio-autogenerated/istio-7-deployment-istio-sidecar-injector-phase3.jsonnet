@@ -271,8 +271,6 @@ if (istioPhases.phaseNum == 3) then
             args: [
               "--endpoint",
               "http://localhost:8080/metrics",
-              "--debug-mode",
-              "true",
               "--funnel-address",
               mcpIstioConfig.funnelEndpoint,
               "--alt-tags",

@@ -101,8 +101,6 @@ spec:
         - --endpoint
         # Sidecar Injector webhook exposes metrics on this endpoint
         - "http://localhost:8080/metrics"
-        - --debug-mode
-        - "true"
         - --funnel-address
         - mcpIstioConfig.funnelEndpoint
         - --alt-tags
