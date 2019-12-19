@@ -7,8 +7,6 @@ apps:
   - prd/prd-sam_warden
  prd-maiev-receiver:
   - prd/prd-sam_warden
- prd-maiev-receiver-staging:
-  - prd/prd-sam_warden
  prd-warden:
   - prd/prd-sam_warden
  prd-warden-stage:
@@ -94,7 +92,6 @@ apps:
   - ia2/ia2-sam_warden
   - ord/ord-sam_warden
   - frf/frf-sam_warden
- prod-maiev-receiver-alternate:
   - dfw/dfw-sam_warden
  prod-maiev-receiver-mofo:
   - cdu/cdu-sam_warden
