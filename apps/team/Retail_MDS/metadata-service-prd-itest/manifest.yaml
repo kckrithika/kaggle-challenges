@@ -127,7 +127,7 @@ system:
   # Load balancer configuration
   loadbalancers:
   - lbname: metadata-service-prd-itest-lb
-    function: metadata-service
+    function: metadata-service-itest
     slbEnabled: true
     ports:
     - port: 7443
@@ -140,8 +140,8 @@ system:
     - port: 7012
       targetport: 7012
       lbalgorithm: roundrobin
-  - lbname: metadata-service
-    function: metadata-service
+  - lbname: metadata-service-itest
+    function: metadata-service-itest
     ports:
     - port: 7443
       targetport: 7443
