@@ -6,9 +6,9 @@ system:
     - name: aqueduct-func
       count: 3
       type: stateful-set
-      identity:
-        emptyServiceName: true
-        namespace: emp_aqueduct
+      # identity:
+      #   emptyServiceName: true
+      #   namespace: emp_aqueduct
       lbname: aqueduct-func-lb
       volumes:
       - name: kafkaclientcerts
