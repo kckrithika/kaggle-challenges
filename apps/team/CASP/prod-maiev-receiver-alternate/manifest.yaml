@@ -3,7 +3,7 @@ apiVersion: v1
 system:
     notifications:
       email:
-        - akouthoofd@salesforce.com
+      - warden@salesforce.com
     functions:
     - name: maiev-receiver-func-stage
       identity:
@@ -15,7 +15,7 @@ system:
           maxSurge: 0
           maxUnavailable: 1
       containers:
-      - name: prod-maiev-receiver-alternate
+      - name: prod-maiev-receiver
         image: dva/maiev-receiver:64
         ports:
         - name: receiver-grpc
@@ -40,9 +40,8 @@ system:
           value: "/v1/*"
         - name: BRANCH
           value: "ops_production"
-        # disabling kafka on testing instance
-#        - name: KAFKA_PROPERTIES
-#          value: "/home/sfdc-maiev/receiver/kafka-producer.properties"
+        - name: KAFKA_PROPERTIES
+          value: "/home/sfdc-maiev/receiver/kafka-producer.properties"
         - name: NODENAME
           valueFrom:
             fieldRef:
@@ -58,8 +57,6 @@ system:
         image: sfci/servicelibs/sherpa-envoy:1.0.13
         # See https://git.soma.salesforce.com/servicelibs/sherpa#ports
         ports:
-        - name: http2-in
-          containerPort: 7012
         - name: http2-tls-in
           containerPort: 7443
         - name: http2-tls-out
@@ -102,12 +99,12 @@ system:
         maddogCert:
           type: server
           lbnames:
-            - maiev-receiver-stage
+            - maiev-receiver
       - name: client-cert
         maddogCert:
           type: client
     loadbalancers:
-    - lbname: maiev-receiver-stage
+    - lbname: maiev-receiver
       function: maiev-receiver-func-stage
       slbEnabled: true
       ports:
@@ -115,11 +112,9 @@ system:
           targetport: 8086
         - port: 443 # https
           targetport: 8443
-        - port: 7012 # http2-in
-          targetport: 7012
         - port: 7443 # http2-tls-in
           targetport: 7443
-        - port: 7020 # grpc sherpa bypass
+        - port: 7442 # grpc sherpa bypass
           targetport: 7020
         - port: 15373 # sherpa admin
           targetport: 15373
