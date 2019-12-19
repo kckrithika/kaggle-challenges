@@ -24,6 +24,7 @@
         sdn_aws_controller: 9122,
         sdn_elasticsearch: 9123,
         sdn_kibana: 9124,
+        sitebridge_endpoint_monitor: 9125,
     },
     slb: {
         ipvsDataConnPort: 9107,

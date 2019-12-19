@@ -21,6 +21,7 @@ local kingdom = std.extVar("kingdom");
         ### Release Phase 1 - prd-sdc
         "1": {
             hypersdn: "2296-b9f375d9fd1c89fbb591b1eb4cc75979a2205c43",
+            sitebridge: "875-b53133153d6f3c4c23d5ae0ccf031d435f088262",
             bird: "503-94b968cf67a338280f71a5c932f0956d13e982bb",
             hyperelk: "v-0000102-91c9122c",
             },
@@ -73,6 +74,7 @@ local kingdom = std.extVar("kingdom");
 
     # These are the images used by the templates
     hypersdn: imageFunc.do_override_for_pipeline_image($.overrides, "sdn", "hypersdn", $.per_phase[$.phase].hypersdn),
+    sitebridge: imageFunc.do_override_for_pipeline_image($.overrides, "sdn", "sitebridge", $.per_phase[$.phase].sitebridge),
     bird: imageFunc.do_override_for_pipeline_image($.overrides, "sdn", "bird", $.per_phase[$.phase].bird),
     hyperelk: imageFunc.do_override_for_pipeline_image($.overrides, "sdn", "hyperelk", $.per_phase[$.phase].hyperelk),
     elkagents: imageFunc.do_override_for_pipeline_image($.overrides, "sdn", "hypersdn", $.per_phase[$.phase].elkagents),
