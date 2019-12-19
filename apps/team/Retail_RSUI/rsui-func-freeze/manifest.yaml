@@ -91,9 +91,9 @@ system:
       - name: RSUI_OAUTH_CALLBACK
         value: https://rsui-func-freeze-lb.retail-rsui.prd-sam.prd.slb.sfdc.net/service/oauth/callback
       - name: OAUTH_CONSUMER_KEY
-        value: 3MVG9VwZxxW3bBQjGWLlCP2oRmnAzlmvAE_mytx5yGo1Ntkomu32m4Np5yPqc9VDYTqPWh9QeFHX7fqDmGPfi
+        value: 3MVG9qKMKuRGRcbsDAbl8GAbGnBDpYIKMZi.POplacPBvbTSLZCtkFI3Ak.IdydhbEKWTcaAQuS57meuH0YBp
       - name: OAUTH_CONSUMER_SECRET
-        value: 7DFC5947FABC63A032A430DAB8916E63AD4D4BC79A9675C81C2309D18E2336D4
+        value: 449B2E5FFF3E25D6ED37922B967C3D9014CF1B2C6BB08AD9487B2856A5A6C67C
       - name: SECURITY_REQUIRE_SECRETS
         value: false
       - name: SECURITY_ENCRYPTION_KEY1_PATH
