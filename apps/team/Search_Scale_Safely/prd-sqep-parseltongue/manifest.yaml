@@ -8,7 +8,7 @@ system:
       sidecar.istio.io/inject: "true"
     containers:
     - name: search-query-service
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/searchdev/search-query-execution-platform/query-service:cde6922
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/searchdev/search-query-execution-platform-dev/query-service:cde6922
       command:
       - java
       - -Xdebug
@@ -39,7 +39,7 @@ system:
           memory: 5Gi
 
     - name: sis-python
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/searchdev/search-query-execution-platform/sis-python:cde6922
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/searchdev/search-query-execution-platform-dev/sis-python:cde6922
       ports:
       - name: service-port
         containerPort: 7090
@@ -55,7 +55,7 @@ system:
           memory: 1Gi
 
     - name: sis-synthetics
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/searchdev/search-query-execution-platform/sis-synthetics:cde6922
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/searchdev/search-query-execution-platform-dev/sis-synthetics:cde6922
       env:
       - name: SFDC_ENVIRONMENT
         value: sam
