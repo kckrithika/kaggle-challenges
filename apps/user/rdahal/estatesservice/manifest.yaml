@@ -68,7 +68,4 @@ system:
     ports:
       - port: 443
         targetport: 9090
-        lbtype: http
-        tls: true
-        mtls: true
-        reencrypt: true
+        lbtype: tcp
