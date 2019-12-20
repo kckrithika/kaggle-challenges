@@ -25,10 +25,10 @@ spec:
         - --funnelEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80
         - --livenessProbePort=9125
         - --enableCurlAgent=true
-        - --enableResolveAgent=true
+        - --enableResolveAgent=false
         - --jobNames=gitTest
         - --resolveDomains=scm-ghe1-2.sfdctest.dev.sfdcsb.net
-        - --jobEndpoints=scm-ghe1-2.sfdctest.dev.sfdcsb.net
+        - --jobEndpoints=https://scm-ghe1-2.sfdctest.dev.sfdcsb.net
         - --jobCycleTimes=20
         - --log_dir=/var/logs/sdn/
         - --logtostderr=false
