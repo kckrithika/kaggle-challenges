@@ -78,19 +78,19 @@ configs.deploymentBase("service-mesh") {
         containers: [
           {
             name: "injector",
-            image: if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" then versions.canaryInjectorImage else versions.injectorImage,
+            image: versions.injectorImage,
             imagePullPolicy: "IfNotPresent",
             terminationMessagePolicy: "FallbackToLogsOnError",
             args: [
               "--template=%s" % "/config-data/sherpa-container.yaml.template",  // This is the template that we have stored in a ConfigMap in k8s
-              "--image=%s" % versions.sherpaImage,
+              "--image=%s" % versions["3"].sherpaImage,
               "--log-level=debug",
               "--port=17442",  // Similar to Sherpa (h1 TLS IN), but +10000, since we don't want to clash with sherpa ports
               "--cert=/server-certs/server/certificates/server.pem",
               "--key=/server-certs/server/keys/server-key.pem",
             ] +
-            if std.length(versions.canarySherpaImage) > 0 then [
-              "--canary-image=%s" % versions.canarySherpaImage,
+            if std.length(versions["3"].canarySherpaImage) > 0 then [
+              "--canary-image=%s" % versions["3"].canarySherpaImage,
             ],
             env+: [
               {
@@ -215,7 +215,7 @@ configs.deploymentBase("service-mesh") {
           maddogRefresher.madkubRefresherContainer,
           {
             name: "sherpa",
-            image: versions.sherpaImage,
+            image: versions["3"].sherpaImage,
             imagePullPolicy: "IfNotPresent",
             terminationMessagePolicy: "FallbackToLogsOnError",
             args+: [] +
