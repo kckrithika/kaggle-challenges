@@ -155,7 +155,7 @@ system:
     # GID Data service
     #####################################################################################
     - name: gid-service
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/gid/gid-service:179c76a
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/gid/gid-service:b8cd5bb
       imagePullPolicy: Always
       env:
         - name: directory_server_host
@@ -172,12 +172,24 @@ system:
           value: http://${directory_server_host}:7022/scim
         - name: security_client_dynamickeystore_cadir
           value: /certs/ca
+        - name: jwt_signing_keypath
+          value: /clientcerts/client/keys/client-key.pkcs8  
         - name: security_client_dynamickeystore_monitoredDirectory
           value: /clientcerts/client
         - name: c2c_common_callerContext
           value: giddataservice-cast-prd-dev
         - name: c2c_service_id
           value: giddataservice-cast-prd-dev
+        - name: ca_service_host
+          value: cloudatlas-dev.global-identity.prd-sam.prd.slb.sfdc.net
+        - name: ldaps_hostname
+          value: cloudatlas-dev.global-identity.prd-sam.prd.slb.sfdc.net
+        - name: ldaps_bind_password
+          value: 1insecureRootPassword!
+        - name: ldaps_bind_dn
+          value: cn=Directory Manager
+        - name: ldaps_bind_type
+          value: SIMPLE
       ports:
         - containerPort: 8081
         - containerPort: 15371
