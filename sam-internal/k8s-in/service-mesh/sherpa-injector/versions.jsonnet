@@ -15,21 +15,21 @@ local utils = import "util_functions.jsonnet";
     "1" : {
         canarySherpaImage: ("%s/sfci/servicelibs/sherpa-envoy:410b9b128bae61fe3db928569412ea9dd07dfa0e" % if utils.is_pcn(configs.kingdom) then configs.registry + "/docker-gcp" else configs.registry),
         sherpaImage: ("%s/sfci/servicelibs/sherpa-envoy:1.0.13" %
-        if utils.is_pcn(configs.kingdom) then configs.registry + "/docker-gcp" else configs.registry),
+        configs.registry),
         
     },
     // phase2 = TEST env (prd-sam)
     "2" : {
         canarySherpaImage: ("%s/sfci/servicelibs/sherpa-envoy:410b9b128bae61fe3db928569412ea9dd07dfa0e" % if utils.is_pcn(configs.kingdom) then configs.registry + "/docker-gcp" else configs.registry),
         sherpaImage: ("%s/sfci/servicelibs/sherpa-envoy:1.0.13" %
-        if utils.is_pcn(configs.kingdom) then configs.registry + "/docker-gcp" else configs.registry),
+        configs.registry),
         
     },
     // phase3 = PROD env (par etc...)
     "3" : {
         canarySherpaImage: ("%s/sfci/servicelibs/sherpa-envoy:1.0.13" % if utils.is_pcn(configs.kingdom) then configs.registry + "/docker-gcp" else configs.registry),
         sherpaImage: ("%s/sfci/servicelibs/sherpa-envoy:1.0.13" %
-        if utils.is_pcn(configs.kingdom) then configs.registry + "/docker-gcp" else configs.registry)
+        configs.registry)
     },
 
     // ========
