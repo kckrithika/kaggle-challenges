@@ -91,7 +91,7 @@ local cre_production = {
             },
             {
                 owner_name: "Edge Streaming",
-                namespace: "edge_intelligence",
+                namespace: "edge-intelligence",
                 pki_namespace: "edge_intelligence",
                 users: [
                     "edge_intelligence.atorson",

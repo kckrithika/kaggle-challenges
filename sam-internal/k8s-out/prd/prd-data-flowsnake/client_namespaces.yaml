@@ -54,7 +54,7 @@ items:
       madkub-injector: enabled
       service-mesh-injector: enabled
       spark-operator-webhook: enabled
-    name: edge_intelligence
+    name: edge-intelligence
 - apiVersion: v1
   kind: Namespace
   metadata:

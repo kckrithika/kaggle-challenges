@@ -407,8 +407,8 @@ items:
   metadata:
     annotations:
       manifestctl.sam.data.sfdc.net/swagger: disable
-    name: flowsnake-client-edge_intelligence-Role
-    namespace: edge_intelligence
+    name: flowsnake-client-edge-intelligence-Role
+    namespace: edge-intelligence
   rules:
   - apiGroups:
     - '*'
@@ -439,7 +439,7 @@ items:
   metadata:
     annotations:
       manifestctl.sam.data.sfdc.net/swagger: disable
-    name: flowsnake-client-edge_intelligence-ClusterRoleBinding
+    name: flowsnake-client-edge-intelligence-ClusterRoleBinding
   roleRef:
     apiGroup: rbac.authorization.k8s.io
     kind: ClusterRole
@@ -458,12 +458,12 @@ items:
   metadata:
     annotations:
       manifestctl.sam.data.sfdc.net/swagger: disable
-    name: flowsnake-client-edge_intelligence-RoleBinding
-    namespace: edge_intelligence
+    name: flowsnake-client-edge-intelligence-RoleBinding
+    namespace: edge-intelligence
   roleRef:
     apiGroup: rbac.authorization.k8s.io
     kind: Role
-    name: flowsnake-client-edge_intelligence-Role
+    name: flowsnake-client-edge-intelligence-Role
   subjects:
   - kind: User
     name: edge_intelligence.atorson
@@ -477,23 +477,23 @@ items:
   automountServiceAccountToken: true
   kind: ServiceAccount
   metadata:
-    name: spark-driver-edge_intelligence
-    namespace: edge_intelligence
+    name: spark-driver-edge-intelligence
+    namespace: edge-intelligence
 - apiVersion: rbac.authorization.k8s.io/v1
   kind: RoleBinding
   metadata:
     annotations:
       manifestctl.sam.data.sfdc.net/swagger: disable
-    name: spark-driver-edge_intelligence-RoleBinding
-    namespace: edge_intelligence
+    name: spark-driver-edge-intelligence-RoleBinding
+    namespace: edge-intelligence
   roleRef:
     apiGroup: rbac.authorization.k8s.io
     kind: Role
-    name: flowsnake-client-edge_intelligence-Role
+    name: flowsnake-client-edge-intelligence-Role
   subjects:
   - kind: ServiceAccount
-    name: spark-driver-edge_intelligence
-    namespace: edge_intelligence
+    name: spark-driver-edge-intelligence
+    namespace: edge-intelligence
 - apiVersion: rbac.authorization.k8s.io/v1
   kind: Role
   metadata:
