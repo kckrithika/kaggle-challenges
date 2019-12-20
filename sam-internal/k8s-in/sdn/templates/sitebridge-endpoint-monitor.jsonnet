@@ -76,7 +76,7 @@ if configs.estate == "prd-sdc" then configs.daemonSetBase("sdn") {
         updateStrategy: {
             type: "RollingUpdate",
             rollingUpdate: {
-            maxUnavailable: "25%",
+            maxUnavailable: "50%",
             },
         },
     },
