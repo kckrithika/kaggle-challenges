@@ -155,8 +155,11 @@ system:
     function: metadata-service-prd-perf
     slbEnabled: true
     ports:
-      - port: 7442
+      - port: 443
         targetport: 7442
+        lbtype: http
+        tls: true
+        reencrypt: true
   - lbname: metadata-service-prd-perf
     function: metadata-service-prd-perf
     ports:
