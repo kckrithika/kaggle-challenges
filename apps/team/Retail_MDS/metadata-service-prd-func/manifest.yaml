@@ -140,11 +140,18 @@ system:
     # A plain-text HTTP port. Disabled in production.
     - port: 9091
       targetport: 7014
-      # A plain-text gRPC port. Disabled in production.
+    # A plain-text gRPC port. Disabled in production.
     - port: 7012
       targetport: 7012
     # Load balancer for to-be-public endpoints. Disabled in production.
   - lbname: mds-public-prd-func
+    annotations:
+      slb.sfdc.net/cnames: |-
+        [
+         {
+          "cname": "mds-public-prd-func.slb.sfdc.net"
+         }
+        ]
     function: metadata-service
     slbEnabled: true
     ports:
