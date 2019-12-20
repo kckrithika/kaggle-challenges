@@ -3,169 +3,16 @@ apiVersion: v1
 system:
   notifications:
     email:
-      - rakella@salesforce.com
+      - cronscheduler-team@salesforce.com
   functions:
-    - name: cs101-demo
-      count: 1
-      identity:
-        serviceName: crondemo
-        pod: cs101
-      containers:
-        - name: crondemo
-          image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/rakella/scheduler-demo-client:dec19
-          ports:
-            - name: http-port
-              containerPort: 9090
-          command: ["./launcher.sh"]
-          args:
-            - --scheduler.service.hostname=cs101-cron-lb.scheduler-service.prd-sam.prd.slb.sfdc.net
-            - --scheduler.service.port=7012              
-          env:
-            - name: SFDC_ENVIRONMENT
-              value: mesh
-          #esources:
-          # limits: { cpu: "1", memory: "1Gi" }
-          # requests: { cpu: "1", memory: "1Gi" }
-          livenessProbe:
-            exec:
-              command: ["/bin/true"]
-            initialDelaySeconds: 10
-            timeoutSeconds: 10
-            periodSeconds: 60
-          readinessProbe:
-            exec:
-              command: ["/bin/true"]
-            initialDelaySeconds: 10
-            timeoutSeconds: 10
-          volumeMounts:
-            - mountPath: /var/log/web
-              name: logvol
-
-      volumes:
-        - name: logvol
-          hostpath:
-            path: /var/log/web
-        - name: sherpaclientcert
-          maddogCert:
-            type: client
-        - name: sherpaservercert
-          maddogCert:
-            type: server
-        - name: sherpa-log-volume
-          hostPath:
-            path: /home/sfdc-sherpa/logs
-        - name: beacon-log-volume
-          hostPath:
-            path: /home/sfdc-beacon/logs
-
-    - name: cs101-exec
-      count: 1
-      identity:
-        serviceName: cronexec
-        pod: cs101
-      containers:
-        - name: croncar
-          image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/rakella/executor-service:dec19
-          ports:
-            - name: grpc-port
-              containerPort: 9020
-            - name: scone-port
-              containerPort: 15474
-          command: ["./launcher.sh"]
-          args:
-            - --scheduler.service.hostname=cs101-cron-lb.scheduler-service.prd-sam.prd.slb.sfdc.net
-            - --scheduler.service.port=7012
-            - --scheduler.client.appserverid=cs101-app1
-            - --scheduler.client.tpsize=20
-          env:
-            - name: SFDC_ENVIRONMENT
-              value: mesh
-          #esources:
-          # limits: { cpu: "1", memory: "1Gi" }
-          # requests: { cpu: "1", memory: "1Gi" }
-          livenessProbe:
-            exec:
-              command: ["/bin/true"]
-            initialDelaySeconds: 10
-            timeoutSeconds: 10
-            periodSeconds: 60
-          readinessProbe:
-            exec:
-              command: ["/bin/true"]
-            initialDelaySeconds: 10
-            timeoutSeconds: 10
-          volumeMounts:
-            - mountPath: /var/log/web
-              name: logvol
-
-      volumes:
-        - name: logvol
-          hostpath:
-            path: /var/log/app
-        - name: sherpaclientcert
-          maddogCert:
-            type: client
-        - name: sherpaservercert
-          maddogCert:
-            type: server
-        - name: sherpa-log-volume
-          hostPath:
-            path: /home/sfdc-sherpa/logs
-        - name: beacon-log-volume
-          hostPath:
-            path: /home/sfdc-beacon/logs
-
-    - name: cs101-ui
-      count: 1
-      identity:
-        serviceName: scheduler-ui
-        pod: cs101
-      containers:
-        - name: scheduler-ui
-          image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/rakella/scheduler-ui:dec9
-          ports:
-            - name: http-port
-              containerPort: 7022
-            - name: scone-port
-              containerPort: 15372
-          env:
-            - name: SFDC_ENVIRONMENT
-              value: mesh
-            - name: DEMO_SVC
-              value: cs101-cron-lb.scheduler-service.prd-sam.prd.slb.sfdc.net:7012
-            - name: DEMO_DATA
-              value: crondemo_20,HttpEndpoint,*/50 * * * * ?,SYSTEM_ORG
-          #esources:
-          # limits: { cpu: "1", memory: "1Gi" }
-          # requests: { cpu: "1", memory: "1Gi" }
-          livenessProbe:
-            exec:
-              command: ["/bin/true"]
-            initialDelaySeconds: 10
-            timeoutSeconds: 10
-            periodSeconds: 60
-          readinessProbe:
-            exec:
-              command: ["/bin/true"]
-            initialDelaySeconds: 10
-            timeoutSeconds: 10
-          volumeMounts:
-            - mountPath: /var/log/web
-              name: logvol
-
-      volumes:
-        - name: logvol
-          hostpath:
-            path: /var/log/web
-
     - name: cs101-cron
       count: 1
       identity:
-        serviceName: cron
+        serviceName: scheduler-service
         pod: cs101
       containers:
         - name: cronsvc
-          image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/rakella/scheduler-service:dec19
+          image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/vijay-kota/scheduler-service:19Dec19
           ports:
             - name: grpc-port
               containerPort: 7020
@@ -176,7 +23,7 @@ system:
             - --scheduler.database.url=jdbc:postgresql://ss-sdb-lb.user-psachan.prd-sam.prd.slb.sfdc.net:1521/crondb
           env:
             - name: SFDC_ENVIRONMENT
-              value: mesh              
+              value: mesh
           #esources:
           # limits: { cpu: "1", memory: "1Gi" }
           # requests: { cpu: "1", memory: "1Gi" }
@@ -198,16 +45,11 @@ system:
         - name: beacon
           image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/servicemesh/beacon:1.0.0
           command: ["/bin/sh"]
-          # BUMP UP cluster# with each deployment for debuggability
-          args: ["-c", "export port=$GRPC_PORT ; /usr/bin/java -jar /home/scone/service.jar -endpoint cron-cluster-cs101:POD:${port}"]
-            # -endpoint
-            # samapp/$(FUNCTION_NAMESPACE)/$(FUNCTION)-http:DATACENTER_ALLENV:7014
-            # samapp/$(FUNCTION_NAMESPACE)/$(FUNCTION)-https:DATACENTER_ALLENV:7442
+          args:
+            - -endpoint samapp/$(FUNCTION_NAMESPACE)/scheduler-service-cs101:POD:7012
           env:
             - name: SFDC_ENVIRONMENT
               value: mesh
-            - name: GRPC_PORT
-              value: 7012
           livenessProbe:
             initialDelaySeconds: 5
             exec:
@@ -276,6 +118,138 @@ system:
           hostPath:
             path: /home/sfdc-beacon/logs
 
+    - name: cs101-exec
+      count: 1
+      identity:
+        serviceName: executor-service
+        pod: cs101
+      containers:
+        - name: cronexec
+          image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/vijay-kota/executor-service:19Dec19
+          ports:
+            - name: grpc-port
+              containerPort: 9020
+            - name: scone-port
+              containerPort: 15474
+          command: ["./launcher.sh"]
+          args:
+            - --scheduler.service.hostname=cs101-cron-lb.scheduler-service.prd-sam.prd.slb.sfdc.net
+            - --scheduler.service.port=7012
+            - --scheduler.client.appserverid=cs101-app1
+            - --scheduler.client.tpsize=20
+          env:
+            - name: SFDC_ENVIRONMENT
+              value: mesh
+          livenessProbe:
+            exec:
+              command: ["/bin/true"]
+            initialDelaySeconds: 10
+            timeoutSeconds: 10
+            periodSeconds: 60
+          readinessProbe:
+            exec:
+              command: ["/bin/true"]
+            initialDelaySeconds: 10
+            timeoutSeconds: 10
+          volumeMounts:
+            - mountPath: /var/log/cronexec
+              name: logvol
+
+      volumes:
+        - name: logvol
+          hostpath:
+            path: /var/log/cronexec
+        - name: sherpaclientcert
+          maddogCert:
+            type: client
+        - name: sherpaservercert
+          maddogCert:
+            type: server
+        - name: sherpa-log-volume
+          hostPath:
+            path: /home/sfdc-sherpa/logs
+
+    - name: cs101-ui
+      count: 1
+      identity:
+        serviceName: scheduler-ui
+        pod: cs101
+      containers:
+        - name: cronui
+          image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/vijay-kota/scheduler-ui:19Dec19
+          ports:
+            - name: http-port
+              containerPort: 7022
+            - name: scone-port
+              containerPort: 15372
+          env:
+            - name: SFDC_ENVIRONMENT
+              value: mesh
+            - name: DEMO_SVC
+              value: cs101-cron-lb.scheduler-service.prd-sam.prd.slb.sfdc.net:7012
+            - name: DEMO_DATA
+              value: DemoClient_50,http://cs101-demo-lb.scheduler-service.prd-sam.prd.slb.sfdc.net:9090/jobs/DemoClient_50,*/50 * * * * ?,SYSTEM_ORG
+          livenessProbe:
+            exec:
+              command: ["/bin/true"]
+            initialDelaySeconds: 10
+            timeoutSeconds: 10
+            periodSeconds: 60
+          readinessProbe:
+            exec:
+              command: ["/bin/true"]
+            initialDelaySeconds: 10
+            timeoutSeconds: 10
+          volumeMounts:
+            - mountPath: /var/log/cronui
+              name: logvol
+
+      volumes:
+        - name: logvol
+          hostpath:
+            path: /var/log/cronui
+
+    - name: cs101-demo
+      count: 1
+      identity:
+        serviceName: scheduler-demo-client
+        pod: cs101
+      containers:
+        - name: crondemo
+          image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/vijay-kota/scheduler-demo-client:19Dec19
+          ports:
+            - name: http-port
+              containerPort: 9090
+          command: ["./launcher.sh"]
+          args:
+            - --scheduler.service.hostname=cs101-cron-lb.scheduler-service.prd-sam.prd.slb.sfdc.net
+            - --scheduler.service.port=7012              
+          env:
+            - name: SFDC_ENVIRONMENT
+              value: mesh
+          resources:
+            limits: { cpu: "1", memory: "1Gi" }
+            requests: { cpu: "1", memory: "1Gi" }
+          livenessProbe:
+            exec:
+              command: ["/bin/true"]
+            initialDelaySeconds: 10
+            timeoutSeconds: 10
+            periodSeconds: 60
+          readinessProbe:
+            exec:
+              command: ["/bin/true"]
+            initialDelaySeconds: 10
+            timeoutSeconds: 10
+          volumeMounts:
+            - mountPath: /var/log/crondemo
+              name: logvol
+
+      volumes:
+        - name: logvol
+          hostpath:
+            path: /var/log/crondemo
+
   loadbalancers:
   - lbname: cs101-demo-lb
     function: cs101-demo
@@ -289,6 +263,7 @@ system:
     ports:
       - port: 9020
         targetport: 9020
+      # Following are only for debugging
       - port: 15474
         targetport: 15474
   - lbname: cs101-ui-lb
@@ -297,6 +272,7 @@ system:
     ports:
       - port: 7022
         targetport: 7022
+      # Following are only for debugging
       - port: 15372
         targetport: 15372      
   - lbname: cs101-cron-lb
@@ -305,6 +281,7 @@ system:
     ports:
       - port: 7012
         targetport: 7012
+      # Following are only for debugging
       - port: 7020
         targetport: 7020
       - port: 15373
