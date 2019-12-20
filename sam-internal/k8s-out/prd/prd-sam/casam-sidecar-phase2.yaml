@@ -16,3 +16,25 @@ spec:
       protocol: Redis
   - hosts:
     - '*/*'
+    port:
+      name: grpc-tls
+      number: 7443
+      protocol: GRPC
+  - hosts:
+    - '*/*'
+    port:
+      name: http-tls
+      number: 7442
+      protocol: HTTP
+  - hosts:
+    - '*/*'
+    port:
+      name: http-plain
+      number: 7014
+      protocol: HTTP
+  - hosts:
+    - '*/*'
+    port:
+      name: grpc-plain
+      number: 7012
+      protocol: GRPC
