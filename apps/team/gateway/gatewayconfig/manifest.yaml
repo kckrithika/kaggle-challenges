@@ -33,7 +33,7 @@ system:
         medium: Memory
     containers:
     - name: gatewayconfig
-      image: sfci/gateway/gateway-service:2019-11-11-180032
+      image: sfci/gateway/gateway-service:2019-12-19-141155
       env:
       - name: PKI_CA_DIR
         value: /server-certs
@@ -64,7 +64,7 @@ system:
           path: /manage/health
           port: 15372
     - name: sherpa
-      image: sfci/servicelibs/sherpa-envoy:213d5137f0015e81c59afe6f93f6ab775dc4798b
+      image: sfci/servicelibs/sherpa-envoy:1.0.13
       ports:
       - containerPort: 7442
         name: http1-tls-in
