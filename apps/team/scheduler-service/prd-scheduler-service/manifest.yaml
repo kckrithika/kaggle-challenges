@@ -46,7 +46,7 @@ system:
           image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/servicemesh/beacon:1.0.0
           command: ["/bin/sh"]
           args:
-            - -endpoint samapp/$(FUNCTION_NAMESPACE)/scheduler-service-cs101:POD:7012
+            - -endpoint samapp/$(SETTINGS_NAMESPACE)/scheduler-service-cs101:POD:7012
           env:
             - name: SFDC_ENVIRONMENT
               value: mesh
