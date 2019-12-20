@@ -6,7 +6,7 @@ system:
 
     containers:
     - name: search-query-service
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/searchdev/search-query-execution-platform-dev/query-service:cde6922
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/searchdev/search-query-execution-platform-dev/query-service:56ebe56
       ports:
       - name: service-port
         containerPort: 7020
@@ -21,7 +21,7 @@ system:
         initialDelaySeconds: 60
 
     - name: sis-python
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/searchdev/search-query-execution-platform-dev/sis-python:cde6922
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/searchdev/search-query-execution-platform-dev/sis-python:56ebe56
       ports:
       - name: service-port
         containerPort: 7090
@@ -34,7 +34,7 @@ system:
         initialDelaySeconds: 10
 
     - name: sis-synthetics
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/searchdev/search-query-execution-platform-dev/sis-synthetics:cde6922
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/searchdev/search-query-execution-platform-dev/sis-synthetics:56ebe56
       env:
       - name: SFDC_ENVIRONMENT
         value: sam
