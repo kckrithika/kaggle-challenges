@@ -36,7 +36,7 @@ system:
             - name: JOINER_NUMTHREADS
               value: 1
             - name: SUBSCRIPTIONCONSUMER_TOPICNAME
-              value: mc.test.mceventbusqa1s2__prd.ajna_local__eventnotification_subscriptions_v2
+              value: mc.test.mceventbusqa1s2__prd.ajna_local__eventnotification_subscriptions_v1
           livenessProbe:
             initialDelaySeconds: 60
             periodSeconds: 120
