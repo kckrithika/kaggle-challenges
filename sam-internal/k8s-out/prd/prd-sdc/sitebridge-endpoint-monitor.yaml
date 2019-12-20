@@ -1,0 +1,74 @@
+apiVersion: extensions/v1beta1
+kind: DaemonSet
+metadata:
+  labels:
+    name: sitebridge-endpoint-monitor
+  name: sitebridge-endpoint-monitor
+  namespace: sam-system
+spec:
+  selector:
+    matchLabels:
+      apptype: control
+      daemonset: "true"
+      name: sitebridge-endpoint-monitor
+  template:
+    metadata:
+      labels:
+        apptype: control
+        daemonset: "true"
+        name: sitebridge-endpoint-monitor
+      namespace: sam-system
+    spec:
+      containers:
+      - command:
+        - /sitebridge/sitebridge-endpoint-monitor
+        - --funnelEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80
+        - --livenessProbePort=9125
+        - --enableCurlAgent=true
+        - --enableResolveAgent=true
+        - --jobNames=gitTest
+        - --resolveDomains=scm-ghe1-2.sfdctest.dev.sfdcsb.net
+        - --jobEndpoints=scm-ghe1-2.sfdctest.dev.sfdcsb.net
+        - --jobCycleTimes=20
+        - --log_dir=/var/logs/sdn/
+        - --logtostderr=false
+        - --alsologtostderr=true
+        env:
+        - name: KUBECONFIG
+          value: /kubeconfig/kubeconfig-platform
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/sdn/sitebridge:875-b53133153d6f3c4c23d5ae0ccf031d435f088262
+        livenessProbe:
+          httpGet:
+            path: /liveness-probe
+            port: 9125
+          initialDelaySeconds: 5
+          periodSeconds: 20
+          timeoutSeconds: 5
+        name: sitebridge-endpoint-monitor
+        volumeMounts:
+        - mountPath: /sfdchosts
+          name: sfdchosts
+        - mountPath: /etc/pki_service
+          name: maddog-certs
+        - mountPath: /data/certs
+          name: certs
+        - mountPath: /var/logs/sdn/
+          name: sdnlogs
+      hostNetwork: true
+      volumes:
+      - configMap:
+          name: sfdchosts
+        name: sfdchosts
+      - hostPath:
+          path: /etc/pki_service
+        name: maddog-certs
+      - hostPath:
+          path: /data/certs
+        name: certs
+      - hostPath:
+          path: /var/logs/sdn/
+        name: sdnlogs
+  updateStrategy:
+    rollingUpdate:
+      maxUnavailable: 50%
+    type: RollingUpdate
