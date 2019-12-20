@@ -8,13 +8,13 @@ system:
       maddogCert:
         type: server
         lbnames:
-        - estatesservicedemo
+        - estatesservice-demo
     - name: client-cert
       maddogCert:
         type: client
     containers:
     - name: estatesservice-demo
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/rdahal/estatesservice:rdahal-201912102
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/rdahal/estatesservice:rdahal-201912201
       ports:
       - containerPort: 9090
       livenessProbe:
@@ -55,7 +55,7 @@ system:
         - -funnelendpoint=$(ESTATESSERVICE_FUNNEL_ENDPOINT)
         - -rpmurl=$(ESTATESSERVICE_RPMURL)
   loadbalancers:
-  - lbname: estatesservicedemo
+  - lbname: estatesservice-demo
     function: estatesservice-demo
     slbenabled: true
     ports:
