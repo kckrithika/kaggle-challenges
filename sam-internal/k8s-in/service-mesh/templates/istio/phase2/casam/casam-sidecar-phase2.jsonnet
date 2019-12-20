@@ -27,6 +27,35 @@ if (istioPhases.phaseNum == 2) then
         bind: "0.0.0.0",  # We could choose to bind this to 127.1.2.3 or wildcard, wildcard aligns with how HTTP works.
       },
       {
+        port: {
+            number: 7443,
+            protocol: "GRPC",
+            name: "grpc-tls",
+        },
+        hosts: ["*/*"],
+      },
+      {
+        port: {
+            number: 7442,
+            protocol: "HTTP",
+            name: "http-tls",
+        },
+        hosts: ["*/*"],
+      },
+      {
+        port: {
+            number: 7014,
+            protocol: "HTTP",
+            name: "http-plain",
+        },
+        hosts: ["*/*"],
+      },
+      {
+        port: {
+            number: 7012,
+            protocol: "GRPC",
+            name: "grpc-plain",
+        },
         hosts: ["*/*"],
       },
     ],
