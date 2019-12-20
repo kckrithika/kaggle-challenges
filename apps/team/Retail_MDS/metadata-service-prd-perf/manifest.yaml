@@ -150,8 +150,15 @@ system:
     # A plain-text gRPC port. Disabled in production.
     - port: 7012
       targetport: 7012
-  # Load balancer for to-be-public endpoints. Disabled in production.
+    # Load balancer for to-be-public endpoints. Disabled in production.
   - lbname: mds-public-prd-perf
+    annotations:
+      slb.sfdc.net/cnames: |-
+        [
+         {
+          "cname": "mds-public-prd-perf.slb.sfdc.net"
+         }
+        ]
     function: metadata-service-prd-perf
     slbEnabled: true
     ports:
