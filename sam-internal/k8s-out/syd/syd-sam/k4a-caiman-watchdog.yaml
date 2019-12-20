@@ -76,7 +76,7 @@ items:
             valueFrom:
               fieldRef:
                 fieldPath: spec.nodeName
-          image: ops0-artifactrepo1-0-syd.data.sfdc.net/dva/k4a-caiman-watchdog:212-5d21d293152a2545fac3b8122276b78a228e7fc0
+          image: ops0-artifactrepo1-0-syd.data.sfdc.net/dva/k4a-caiman-watchdog:215-67b28fa4fc3ac5c748c7912e51ead2c9131b1e0c
           name: watchdog
           volumeMounts:
           - mountPath: /clientcert
@@ -249,7 +249,7 @@ items:
             valueFrom:
               fieldRef:
                 fieldPath: spec.nodeName
-          image: ops0-artifactrepo1-0-syd.data.sfdc.net/dva/k4a-caiman-watchdog:212-5d21d293152a2545fac3b8122276b78a228e7fc0
+          image: ops0-artifactrepo1-0-syd.data.sfdc.net/dva/k4a-caiman-watchdog:215-67b28fa4fc3ac5c748c7912e51ead2c9131b1e0c
           name: watchdog
           volumeMounts:
           - mountPath: /clientcert
@@ -422,7 +422,7 @@ items:
             valueFrom:
               fieldRef:
                 fieldPath: spec.nodeName
-          image: ops0-artifactrepo1-0-syd.data.sfdc.net/dva/k4a-caiman-watchdog:212-5d21d293152a2545fac3b8122276b78a228e7fc0
+          image: ops0-artifactrepo1-0-syd.data.sfdc.net/dva/k4a-caiman-watchdog:215-67b28fa4fc3ac5c748c7912e51ead2c9131b1e0c
           name: watchdog
           volumeMounts:
           - mountPath: /clientcert
@@ -595,7 +595,7 @@ items:
             valueFrom:
               fieldRef:
                 fieldPath: spec.nodeName
-          image: ops0-artifactrepo1-0-syd.data.sfdc.net/dva/k4a-caiman-watchdog:212-5d21d293152a2545fac3b8122276b78a228e7fc0
+          image: ops0-artifactrepo1-0-syd.data.sfdc.net/dva/k4a-caiman-watchdog:215-67b28fa4fc3ac5c748c7912e51ead2c9131b1e0c
           name: watchdog
           volumeMounts:
           - mountPath: /clientcert
@@ -766,7 +766,7 @@ items:
             valueFrom:
               fieldRef:
                 fieldPath: spec.nodeName
-          image: ops0-artifactrepo1-0-syd.data.sfdc.net/dva/k4a-caiman-watchdog:212-5d21d293152a2545fac3b8122276b78a228e7fc0
+          image: ops0-artifactrepo1-0-syd.data.sfdc.net/dva/k4a-caiman-watchdog:215-67b28fa4fc3ac5c748c7912e51ead2c9131b1e0c
           name: watchdog
           volumeMounts:
           - mountPath: /clientcert
