@@ -13,7 +13,7 @@ system:
       "sherpa-injector.service-mesh/inject": "enabled"
     containers:
     - name: authz-svc-opa
-      image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/electron_sam:135
+      image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/electron_sam:139
       args:
       - --http-synthetic-client-ids=authz-svc.service-mesh
       env:
@@ -31,6 +31,8 @@ system:
         name: grpc-svc
       - containerPort: 7022
         name: http-svc
+      - containerPort: 7442
+        name: sherpa-http-tls
       livenessProbe:
         tcpSocket:
           port: 7022
@@ -75,3 +77,13 @@ system:
     - name: tls-server-cert
       maddogCert:
         type: server
+        lbnames:
+          - authz-svc-opa-lb
+  loadbalancers:
+    - lbname: authz-svc-opa-lb
+      function: authz-svc-opa
+      slbenabled: true
+      ports:
+        - port: 7442
+          targetport: 7442
+          lbtype: dsr
