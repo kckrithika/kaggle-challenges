@@ -45,7 +45,7 @@ system:
         initialDelaySeconds: 115
       terminationMessagePolicy: FallbackToLogsOnError
     - name: sherpa
-      image: sfci/servicelibs/sherpa-envoy:410b9b128bae61fe3db928569412ea9dd07dfa0e
+      image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-sfci-dev/sfci/services/sfdc-bazel/service-mesh/geoip:be49df199
       env:
       - name: SFDC_ENVIRONMENT
         value: mesh
