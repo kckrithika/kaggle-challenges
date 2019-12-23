@@ -3,7 +3,7 @@ apiVersion: v1
 system:
   notifications:
     email:
-      - cronscheduler-team@salesforce.com
+      - rakella@salesforce.com
   functions:
     - name: cs101-cron
       count: 1
