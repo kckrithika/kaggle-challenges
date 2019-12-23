@@ -29,7 +29,7 @@ system:
       image: sfci/services/sfdc-bazel/disco/beacon:3a02b95e6
       args:
       - -endpoint
-      - search-scale-safely/search-query-service-maya:DATACENTER_ALLENV:HTTP2_TLS
+      - samapp/user-m-nyayapati/search-query-service-maya:DATACENTER:7443
       livenessProbe:
         initialDelaySeconds: 5
         exec:
