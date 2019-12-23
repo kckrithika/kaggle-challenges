@@ -1,4 +1,5 @@
-FROM dva-registry.internal.salesforce.com/dva/sfdc_centos7_java:17
+FROM ops0-artifactrepo1-0-prd.data.sfdc.net/docker-dva-rc/dva/sfdc_centos7:latest
+
 
 ARG OWNER=sdb
 ENV BASE_DIR /home/$OWNER
@@ -13,7 +14,6 @@ RUN mkdir -p /home/sdb
 WORKDIR /home/sdb
 EXPOSE 1521
 RUN chown 1359:7033 /home/sdb
-COPY install.sh /home/sdb/install.sh
 COPY postgresql.conf.dev /home/sdb/postgresql.conf.dev
 RUN chmod 644 /home/sdb/postgresql.conf.dev
 

@@ -12,7 +12,7 @@ system:
         pod: ss
       containers:
         - name: sdbgo
-          image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/psachan/mysdb:06Dec19
+          image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/psachan/mysdb:23Dec19
           env:
           - name: SFDC_ENVIRONMENT
             value: mesh
