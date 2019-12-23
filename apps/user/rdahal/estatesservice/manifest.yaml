@@ -14,7 +14,7 @@ system:
         type: client
     containers:
     - name: estatesservice
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/rdahal/estatesservice:rdahal-201912102
+      image: dva/estates/estatesservice:83
       ports:
       - containerPort: 9090
       livenessProbe:
@@ -68,4 +68,4 @@ system:
     ports:
       - port: 443
         targetport: 9090
-        lbtype: tcp
+        # lbtype: tcp
