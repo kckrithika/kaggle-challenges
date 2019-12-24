@@ -16,8 +16,6 @@ system:
           env:
           - name: SFDC_ENVIRONMENT
             value: mesh
-          # name: PGPORT
-          # value: "1521"
           ports:
           # expose sdb port outside the container
           - containerPort: 1521
@@ -105,8 +103,8 @@ system:
           env:
             - name: SFDC_ENVIRONMENT
               value: mesh
-            # name: ENVOY_DEBUG_OPTIONS
-            # value: --log-level trace --log-path /home/sfdc-sherpa/envoy.log
+            - name: ENVOY_DEBUG_OPTIONS
+              value: --log-level trace --log-path /home/sfdc-sherpa/envoy.log
           livenessProbe:
             exec:
               command:
