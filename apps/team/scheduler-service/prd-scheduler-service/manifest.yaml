@@ -5,6 +5,31 @@ system:
     email:
       - rakella@salesforce.com
   functions:
+    - name: cs101-sdb
+      count: 1
+      identity:
+        serviceName: sdb
+        pod: cs101
+      containers:
+        - name: sdbgo
+          image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/psachan/mysdb:23Dec19
+          env:
+          - name: SFDC_ENVIRONMENT
+            value: mesh
+          ports:
+          # expose sdb port outside the container
+          - containerPort: 1521
+            name: sdb-port
+          livenessProbe:
+               exec:
+                 command: ["/bin/true"]
+               initialDelaySeconds: 10
+               timeoutSeconds: 10
+               periodSeconds: 60
+      volumes:
+        - name: sdblogs
+          emptyDir: {}
+
     - name: cs101-cron
       count: 1
       identity:
@@ -20,7 +45,7 @@ system:
               containerPort: 15374
           command: ["./launcher.sh"]
           args:
-            - --scheduler.database.url=jdbc:postgresql://ss-sdb-lb.user-psachan.prd-sam.prd.slb.sfdc.net:1521/crondb
+            - --scheduler.database.url=jdbc:postgresql://cs101-sdb-lb.scheduler-service.prd-sam.prd.slb.sfdc.net:1521/crondb
           env:
             - name: SFDC_ENVIRONMENT
               value: mesh
@@ -78,8 +103,8 @@ system:
           env:
             - name: SFDC_ENVIRONMENT
               value: mesh
-            # name: ENVOY_DEBUG_OPTIONS
-            # value: --log-level trace --log-path /home/sfdc-sherpa/envoy.log
+            - name: ENVOY_DEBUG_OPTIONS
+              value: --log-level trace --log-path /home/sfdc-sherpa/envoy.log
           livenessProbe:
             exec:
               command:
@@ -251,6 +276,12 @@ system:
             path: /var/log/crondemo
 
   loadbalancers:
+  - lbname: cs101-sdb-lb
+    function: cs101-sdb
+    slbenabled: true
+    ports:
+      - port: 1521
+        targetport: 1521
   - lbname: cs101-demo-lb
     function: cs101-demo
     slbenabled: true
