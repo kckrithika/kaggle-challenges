@@ -5,11 +5,11 @@ system:
     email:
       - rakella@salesforce.com
   functions:
-    - name: ss-sdb
+    - name: cs101-sdb
       count: 1
       identity:
         serviceName: sdb
-        pod: ss
+        pod: cs101
       containers:
         - name: sdbgo
           image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/psachan/mysdb:23Dec19
