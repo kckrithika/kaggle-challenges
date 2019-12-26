@@ -694,6 +694,7 @@ data:
           {{ toYaml .Values.global.proxy.resources | indent 4 }}
       {{- end }}
         {{  end -}}
+        terminationMessagePolicy: FallbackToLogsOnError
         volumeMounts:
         {{ if (isset .ObjectMeta.Annotations `sidecar.istio.io/bootstrapOverride`) }}
         - mountPath: /etc/istio/custom-bootstrap
