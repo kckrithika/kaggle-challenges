@@ -14,7 +14,7 @@ system:
       sidecar.istio.io/inject: "true"
     containers:
     - name: geoip
-      image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-sfci-dev/sfci/services/sfdc-bazel/service-mesh/geoip:be49df199
+      image: sfci/services/sfdc-bazel/service-mesh/geoip:be49df199
       env:
       - name: GRPC_SERVER_PORT
         value: "7443"
