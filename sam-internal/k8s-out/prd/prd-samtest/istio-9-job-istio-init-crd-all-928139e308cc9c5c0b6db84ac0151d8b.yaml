@@ -17,7 +17,7 @@ spec:
         - apply
         - -f
         - /etc/istio/crd-all/crd-all.gen.yaml
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/sfci/servicemesh/istio-packaging/kubectl:aa56850ad9a1bc39fc8583dcd4eda1d6720a724d
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/sfci/servicemesh/istio-packaging/kubectl:928139e308cc9c5c0b6db84ac0151d8bb857e703
         imagePullPolicy: Always
         name: istio-init-crd-all
         resources:
