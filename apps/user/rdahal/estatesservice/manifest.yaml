@@ -53,7 +53,7 @@ system:
         - -cert=$(ESTATESSERVICE_SERVER_CERT_FILEPATH)
         - -key=$(ESTATESSERVICE_SERVER_KEY_FILEPATH)
         - -publishmetrics
-        - -enableMTLS=$ENABLE_MTLS
+        - -enableMTLS=$(ENABLE_MTLS)
         - -datacenter=$(KINGDOM)
         - -subservice=$(ESTATESSERVICE_SUBSERVICE)
         - -funnelendpoint=$(ESTATESSERVICE_FUNNEL_ENDPOINT)
