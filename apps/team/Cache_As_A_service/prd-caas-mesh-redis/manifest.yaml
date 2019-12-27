@@ -12,7 +12,7 @@ system:
       pod: mist66
     containers:
     - name: redis
-      image: dva/caas/caas-redis-master:9
+      image: dva/caas/release/caas-redis-4.0.10:17
       resources:
         limits: { memory: "8G" }
         requests: { memory: "8G" }
