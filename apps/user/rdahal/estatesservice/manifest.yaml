@@ -14,12 +14,13 @@ system:
         type: client
     containers:
     - name: estatesservice
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/rdahal/estatesservice:rdahal-20191226002
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/rdahal/estatesservice:rdahal-20191226003
       ports:
       - containerPort: 9090
       - containerPort: 7090
       livenessProbe:
         httpGet:
+          scheme: HTTPS
           path: /v1.0/info
           port: 7090
         initialDelaySeconds: 500
