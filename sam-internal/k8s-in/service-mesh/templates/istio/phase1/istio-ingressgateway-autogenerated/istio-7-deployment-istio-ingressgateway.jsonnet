@@ -238,7 +238,7 @@ if (istioPhases.phaseNum == 1) then
               },
               {
                 name: "ISTIO_META_OWNER",
-                value: "kubernetes://api/apps/v1/namespaces/core-on-sam-sp2/deployments/istio-ingressgateway",
+                value: "kubernetes://apis/apps/v1/namespaces/core-on-sam-sp2/deployments/istio-ingressgateway",
               },
               {
                 name: "ESTATE",
