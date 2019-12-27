@@ -12,10 +12,7 @@ system:
       app: switchboard
     containers:
     - name: switchboard
-      # WIP: build locally by drichelson:
-      #image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/service-mesh/switchboard:bazel-monorepo
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/npshenichnyy/switchboard:monorepo-1226
-      #image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-sfci-dev/sfci/services/sfdc-bazel/service-mesh/switchboard:bf71bafc6
+      image: sfci/services/sfdc-bazel/service-mesh/switchboard:910a7b9fe
       args:
       ############################## PRODUCTION CONFIGURATION ##########################################
       # Any configuration that needs to go to production should be added here.
