@@ -204,3 +204,8 @@ apps:
     - prd/prd-sam_gater
     - prd/prd-samtest
     - prd/prd-samdev
+
+  # NIKO:TEST
+  switchboard-niko:
+    - prd/prd-sam_gater
+  
