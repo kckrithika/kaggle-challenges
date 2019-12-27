@@ -120,8 +120,10 @@ data:
         - --lightstepAccessToken
         - "{{ .ProxyConfig.GetTracing.GetLightstep.GetAccessToken }}"
         - --lightstepSecure={{ .ProxyConfig.GetTracing.GetLightstep.GetSecure }}
+      {{- if .ProxyConfig.GetTracing.GetLightstep.GetSecure }}
         - --lightstepCacertPath
         - "{{ .ProxyConfig.GetTracing.GetLightstep.GetCacertPath }}"
+      {{- end }}
       {{- else if eq .Values.global.proxy.tracer "zipkin" }}
         - --zipkinAddress
         - "{{ .ProxyConfig.GetTracing.GetZipkin.GetAddress }}"
@@ -134,6 +136,9 @@ data:
       {{- end}}
       {{- if .Values.global.proxy.componentLogLevel }}
         - --proxyComponentLogLevel={{ .Values.global.proxy.componentLogLevel }}
+      {{- end}}
+      {{- if .Values.global.proxy.outlierLogPath }}
+        - --outlierLogPath={{ .Values.global.proxy.outlierLogPath }}
       {{- end}}
         - --dnsRefreshRate
         - {{ .Values.global.proxy.dnsRefreshRate }}
