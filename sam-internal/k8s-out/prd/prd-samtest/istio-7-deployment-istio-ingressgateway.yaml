@@ -171,7 +171,7 @@ spec:
         - name: ISTIO_META_WORKLOAD_NAME
           value: istio-ingressgateway
         - name: ISTIO_META_OWNER
-          value: kubernetes://api/apps/v1/namespaces/core-on-sam-sp2/deployments/istio-ingressgateway
+          value: kubernetes://apis/apps/v1/namespaces/core-on-sam-sp2/deployments/istio-ingressgateway
         - name: ESTATE
           value: prd-samtest
         - name: ISTIO_META_superpod

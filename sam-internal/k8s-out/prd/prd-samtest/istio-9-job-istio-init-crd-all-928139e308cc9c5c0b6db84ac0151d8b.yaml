@@ -1,7 +1,7 @@
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: istio-init-crd-mixer-aa56850ad9a1bc39fc8583dcd4eda1d6
+  name: istio-init-crd-all-928139e308cc9c5c0b6db84ac0151d8b
   namespace: mesh-control-plane
 spec:
   template:
@@ -16,10 +16,10 @@ spec:
         - kubectl
         - apply
         - -f
-        - /etc/istio/crd-mixer/crd-mixer.yaml
+        - /etc/istio/crd-all/crd-all.gen.yaml
         image: ops0-artifactrepo2-0-prd.data.sfdc.net/sfci/servicemesh/istio-packaging/kubectl:aa56850ad9a1bc39fc8583dcd4eda1d6720a724d
         imagePullPolicy: Always
-        name: istio-init-crd-mixer
+        name: istio-init-crd-all
         resources:
           limits:
             cpu: 100m
@@ -28,8 +28,8 @@ spec:
             cpu: 10m
             memory: 50Mi
         volumeMounts:
-        - mountPath: /etc/istio/crd-mixer
-          name: crd-mixer
+        - mountPath: /etc/istio/crd-all
+          name: crd-all
           readOnly: true
       nodeSelector:
         pool: prd-samtest
@@ -41,5 +41,5 @@ spec:
       serviceAccountName: istio-init-service-account
       volumes:
       - configMap:
-          name: istio-crd-mixer
-        name: crd-mixer
+          name: istio-crd-all
+        name: crd-all
