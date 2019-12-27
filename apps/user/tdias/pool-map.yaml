@@ -1,0 +1,3 @@
+apps:
+ prd-redis-mesh:
+  - prd/prd-sam 

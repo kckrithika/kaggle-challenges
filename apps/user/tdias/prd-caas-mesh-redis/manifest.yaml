@@ -1,0 +1,83 @@
+apiVersion: v1
+
+system:
+  notifications:
+    email:
+      - tdias@salesforce.com
+  functions:
+  - name: prd-redis-mesh
+    count: 6
+    identity:
+      serviceName: caas
+      pod: mist66
+    containers:
+    - name: redis
+      image: dva/caas/caas-redis-master:9
+      resources:
+        limits: { memory: "8G" }
+        requests: { memory: "8G" }
+      args:
+        - --port=12081
+        - --maxMemoryMB=4096
+      volumeMounts:
+        - mountPath: /var/secrets
+          name: secretvol
+          readOnly: true
+      livenessProbe:
+        exec:
+          command:
+           - /opt/caas/redis/redis-livenessprobe.py
+           - --port=12081
+        initialDelaySeconds: 15
+        timeoutSeconds: 10
+      ports:
+      - containerPort: 12081
+    - name: redis-announcer
+      image: sfci/servicelibs/beacon:cec13ceb9fc5aed0ce462031a01b2dd5ef73d5ee
+      args:
+      - -endpoint
+      - caas/cluster/caas-cluster-1:POD:12081
+      livenessProbe:
+        initialDelaySeconds: 5
+        exec:
+          command:
+            - "/home/scone/is-alive.sh"
+      env:
+       - name: SFDC_ENVIRONMENT
+         value: redis
+       - name: NO_ENV_FOR_RESTART
+         value: new9
+       - name: SFDC_POD
+         value: mist66
+      resources:
+        limits: { memory: "500M" }
+        requests: { memory: "500M" }
+    - name: caas-metrics-publisher
+      image: sfci/cache-as-a-service/caas-metrics-publisher:4211bcd3d65c1c17f6a05e4be07eee67237ac058
+      args:
+      - --clusterName=caas-cluster-1
+      - --publishingIntervalInSecs=30
+      - --redisPort=12081
+      livenessProbe:
+        initialDelaySeconds: 5
+        exec:
+          command:
+            - "/home/caas/is-alive.sh"
+      volumeMounts:
+        - mountPath: /var/secrets
+          name: secretvol
+          readOnly: true
+      env:
+       - name: SFDC_ENVIRONMENT
+         value: redis
+       - name: NO_ENV_FOR_RESTART
+         value: new10
+       - name: SFDC_POD
+         value: mist66
+      resources:
+        limits: { memory: "20M" }
+        requests: { memory: "20M" }
+    volumes:
+    - name: secretvol
+      secret:
+        secretName: caas-secret-sp-c1
