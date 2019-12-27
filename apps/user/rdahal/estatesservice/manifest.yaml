@@ -20,7 +20,6 @@ system:
       - containerPort: 7090
       livenessProbe:
         httpGet:
-          scheme: HTTPS
           path: /v1.0/info
           port: 7090
         initialDelaySeconds: 500
