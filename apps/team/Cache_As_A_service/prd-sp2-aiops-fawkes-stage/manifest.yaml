@@ -18,7 +18,7 @@ system:
           maxUnavailable: 1
       containers:
       - name: fawkes-stage-func
-        image: dva/casp/fawkes_strata:jenkins-CASP-fawkes-dev-76-itest
+        image: dva/casp/fawkes_strata:jenkins-CASP-fawkes-dev-77-itest
         env:
         - name: FAWKES_ENV
           value: "stg"
@@ -32,6 +32,8 @@ system:
           value: "https://public0-proxy1-0-prd.data.sfdc.net:8080"
         - name: NO_PROXY
           value: "warden.sfdc.net,127.0.0.1,localhost"
+        - name: CANTOR_ENDPOINT
+          value: "cantor.casp.prd-samtwo.prd.slb.sfdc.net:11983"
         volumeMounts:
         - mountPath: /fawkes/argus-secrets
           name: argus
