@@ -133,6 +133,19 @@ if (istioPhases.phaseNum == 2) then
     },
     {
       apiGroups: [
+        "discovery.k8s.io",
+      ],
+      resources: [
+        "endpointslices",
+      ],
+      verbs: [
+        "get",
+        "list",
+        "watch",
+      ],
+    },
+    {
+      apiGroups: [
         "",
       ],
       resources: [

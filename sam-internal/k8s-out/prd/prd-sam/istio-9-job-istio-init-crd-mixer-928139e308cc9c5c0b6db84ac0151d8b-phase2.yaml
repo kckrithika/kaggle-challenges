@@ -1,7 +1,7 @@
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: istio-init-crd-mixer-aa56850ad9a1bc39fc8583dcd4eda1d6
+  name: istio-init-crd-mixer-928139e308cc9c5c0b6db84ac0151d8b
   namespace: mesh-control-plane
 spec:
   template:
@@ -17,7 +17,7 @@ spec:
         - apply
         - -f
         - /etc/istio/crd-mixer/crd-mixer.yaml
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/sfci/servicemesh/istio-packaging/kubectl:aa56850ad9a1bc39fc8583dcd4eda1d6720a724d
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/sfci/servicemesh/istio-packaging/kubectl:928139e308cc9c5c0b6db84ac0151d8bb857e703
         imagePullPolicy: Always
         name: istio-init-crd-mixer
         resources:
