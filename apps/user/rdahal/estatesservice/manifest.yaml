@@ -14,7 +14,7 @@ system:
         type: client
     containers:
     - name: estatesservice
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/rdahal/estatesservice:rdahal-20191231001
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/rdahal/estatesservice:rdahal-20200102001
       ports:
       - containerPort: 9090
       - containerPort: 7090
@@ -31,6 +31,8 @@ system:
       env:
       - name: ESTATESSERVICE_PORT
         value: 9090
+      - name: ESTATESSERVICE_HEALTH_PORT
+        value: 7090
       - name: ESTATESSERVICE_FUNNEL_ENDPOINT
         value: http://$(SFDC_METRICS_SERVICE_HOST):$(SFDC_METRICS_SERVICE_PORT)
       - name: ESTATESSERVICE_RPMURL
@@ -50,6 +52,7 @@ system:
       command:
         - /estatesservice/estatesservice
         - -port=$(ESTATESSERVICE_PORT)
+        - -healthPort=$(ESTATESSERVICE_HEALTH_PORT)
         - -swaggerdir=$(ESTATESSERVICE_SWAGGERUI_DIRECTORY)
         - -cert=$(ESTATESSERVICE_SERVER_CERT_FILEPATH)
         - -key=$(ESTATESSERVICE_SERVER_KEY_FILEPATH)
