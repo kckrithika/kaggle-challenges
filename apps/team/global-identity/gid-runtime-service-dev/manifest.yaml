@@ -158,6 +158,9 @@ system:
       volumeMounts:
       - name: client-cert
         mountPath: /client-certs
+      - name: secretvol
+        mountPath: /secrets
+        readOnly: true
       ports:
       - containerPort: 8080
       - containerPort: 15375
@@ -193,6 +196,9 @@ system:
     - name: logvolbeacon
       hostPath:
         path: /home/sfdc-gid-runtime-beacon/logs
+    - name: secretvol
+      k4aSecret:
+        secretName: gidmc
 
   #####################################################################################
   # SLB
