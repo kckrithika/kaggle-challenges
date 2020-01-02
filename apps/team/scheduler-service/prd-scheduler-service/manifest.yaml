@@ -202,7 +202,7 @@ system:
         pod: cs101
       containers:
         - name: cronui
-          image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/rakella/scheduler-ui:31dec19
+          image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/rakella/scheduler-ui:2jan20
           ports:
             - name: http-port
               containerPort: 7022
