@@ -44,9 +44,9 @@ system:
         httpGet:
           path: /v1/health
           port: 8440
-        initialDelaySeconds: 15
+        initialDelaySeconds: 30
         periodSeconds: 5
-        timeoutSeconds: 10
+        timeoutSeconds: 4
     - name: demo-authz-grpc-stream-client
       image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/electron_client:142
       args:
