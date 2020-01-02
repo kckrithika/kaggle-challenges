@@ -13,7 +13,7 @@ system:
       "sherpa-injector.service-mesh/inject": "enabled"
     containers:
     - name: authz-svc
-      image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/electron_sam:135
+      image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/electron_sam:142
       args:
       - --grpc-synthetic-clients=dns=authz-svc.service-mesh.sfdc-role,uri=spiffe://salesforce.com/ns/service-mesh/sa/authz-svc
       env:
@@ -31,20 +31,22 @@ system:
         name: grpc-svc
       - containerPort: 7022
         name: http-svc
+      - containerPort: 8440
+        name: http-noauth
       livenessProbe:
         tcpSocket:
-          port: 7022
+          port: 8440
         initialDelaySeconds: 5
         periodSeconds: 5
       readinessProbe:
         httpGet:
           path: /v1/health
-          port: 7022
+          port: 8440
         initialDelaySeconds: 30
         periodSeconds: 5
         timeoutSeconds: 4
     - name: authz-svc-grpc-client
-      image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/electron_client:135
+      image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/electron_client:142
       args:
       - -endpoint=localhost:7020
       - -service=grpc
