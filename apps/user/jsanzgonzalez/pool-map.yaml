@@ -1,3 +1,5 @@
 apps:
+  storage-ambassador:
+    - prd/prd-sam
   prod-debug:
     - prd/prd-sam
