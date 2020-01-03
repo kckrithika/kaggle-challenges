@@ -1,3 +1,5 @@
 apps:
  my-sam-test:
   - prd/prd-sam
+ tim-sine-test:
+  - prd/prd-sam
