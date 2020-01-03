@@ -16,6 +16,8 @@ apps:
   - ord/ord-search_model_executor
  prod-search-query-service-half-capacity:
   - ia2/ia2-search_model_executor
+  - ia4/ia4-search_model_executor
+  - ia5/ia5-search_model_executor
   - ph2/ph2-search_model_executor
   - cdg/cdg-search_model_executor
   - fra/fra-search_model_executor
