@@ -2,6 +2,7 @@ apiVersion: v1
 data:
   slb-reserved-ips-xrd.json: |-
     {
+      "aqueduct-func.emp-aqueduct.xrd-sam.xrd.slb.sfdc.net": "10.229.32.161",
       "check-slb-xrd.slb.sfdc.net": "10.229.32.128",
       "external-sledgeapi-xrd.slb.sfdc.net": "136.146.48.1",
       "sledge-xrd.slb.sfdc.net": "136.146.67.13",
