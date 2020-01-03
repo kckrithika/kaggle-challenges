@@ -8,7 +8,7 @@ system:
     count: 3
     containers:
     - name: eaas-grpc-client
-      image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-gcp/sfci/eaas/grpc-client:1.0.34-4ef0a8bba169c61ed392bd75233db3346b7722f2
+      image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-gcp/sfci/eaas/grpc-client:1.0.35-2f3997409947a90d7168c703fe7560ee868ca371
       env:
       - name: SFDC_ENVIRONMENT
         value: mesh
