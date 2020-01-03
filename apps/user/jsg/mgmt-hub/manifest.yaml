@@ -16,7 +16,7 @@ system:
         path: /home/sfdc-mgmt/logs
     containers:
     - name: mgmt-hub
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mgmt/mgmt-hub:mgmt-2020-01-03-07-41-15
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mgmt/mgmt-hub:mgmt-2020-01-03-08-57-54
       env:
       - name: KEYSTORE_CA_DIRECTORY
         value: /certs/ca
