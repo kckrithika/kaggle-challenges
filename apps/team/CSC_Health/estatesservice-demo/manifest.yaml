@@ -19,11 +19,12 @@ system:
     - name: estatesservice
       image: dva/estates/estatesservice:89
       ports:
-      - containerPort: 9090
-      - containerPort: 7090
+      - name: receiver-port
+        containerPort: 9090
+      - name: health-check-port
+        containerPort: 7090
       livenessProbe:
         httpGet:
-          scheme: HTTPS
           path: /health
           port: 7090
         initialDelaySeconds: 500
@@ -51,7 +52,7 @@ system:
         value: /server-certs/server/keys/server-key.pem
       - name: ESTATESSERVICE_SUBSERVICE
         value: $(FUNCTION_NAMESPACE)-$(FUNCTION)-$(FUNCTION_INSTANCE_NAME)
-      - name: ENABLE_MTLS
+      - name: ESTATESSERVICE_ENABLE_MTLS
         value: false
       command:
         - /estatesservice/estatesservice
@@ -61,7 +62,7 @@ system:
         - -cert=$(ESTATESSERVICE_SERVER_CERT_FILEPATH)
         - -key=$(ESTATESSERVICE_SERVER_KEY_FILEPATH)
         - -publishmetrics
-        - -enableMTLS=$(ENABLE_MTLS)
+        - -enableMTLS=$(ESTATESSERVICE_ENABLE_MTLS)
         - -caCert=$(ESTATESSERVICE_CACERT_FILEPATH)
         - -datacenter=$(KINGDOM)
         - -subservice=$(ESTATESSERVICE_SUBSERVICE)
