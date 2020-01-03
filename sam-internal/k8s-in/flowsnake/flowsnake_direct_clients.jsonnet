@@ -7,14 +7,22 @@ local wave_elt_production = {
         namespace: "wave-elt",
         pki_namespace: "wave-elt",
         users: ["wave-elt.datapool"],
-};
+} + (if flowsnake_config.deployment_region == "emea" then
+{
+        users+: ["wave-elt.jobcontroller-group1", "wave-elt.jobcontroller-group2"],
+}
+else {});
 
 local cre_production = {
         owner_name: "CRE",
         namespace: "retail-cre",
         pki_namespace: "retail-cre",
         users: ["retail-cre.cre-control-plane"],
-};
+} + (if flowsnake_config.deployment_region == "emea" then
+{
+        prometheus_config: import "configs/client/retail-cre/prometheus-config.jsonnet",
+}
+else {});
 
 {
     # add new Spark-on-kubernetes clients to this object.
