@@ -59,6 +59,10 @@ items:
   subjects:
   - kind: User
     name: wave-elt.datapool
+  - kind: User
+    name: wave-elt.jobcontroller-group1
+  - kind: User
+    name: wave-elt.jobcontroller-group2
 - apiVersion: rbac.authorization.k8s.io/v1
   kind: RoleBinding
   metadata:
@@ -73,6 +77,10 @@ items:
   subjects:
   - kind: User
     name: wave-elt.datapool
+  - kind: User
+    name: wave-elt.jobcontroller-group1
+  - kind: User
+    name: wave-elt.jobcontroller-group2
 - apiVersion: v1
   automountServiceAccountToken: true
   kind: ServiceAccount

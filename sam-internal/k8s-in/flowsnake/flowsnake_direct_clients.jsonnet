@@ -7,7 +7,7 @@ local wave_elt_production = {
         namespace: "wave-elt",
         pki_namespace: "wave-elt",
         users: ["wave-elt.datapool"],
-} + (if flowsnake_config.deployment_region == "emea" then
+} + (if flowsnake_config.deployment_region == "emea" || flowsnake_config.deployment_region == "na" then
 {
         users+: ["wave-elt.jobcontroller-group1", "wave-elt.jobcontroller-group2"],
 }
@@ -18,7 +18,7 @@ local cre_production = {
         namespace: "retail-cre",
         pki_namespace: "retail-cre",
         users: ["retail-cre.cre-control-plane"],
-} + (if flowsnake_config.deployment_region == "emea" then
+} + (if flowsnake_config.deployment_region == "emea" || flowsnake_config.deployment_region == "na" then
 {
         prometheus_config: import "configs/client/retail-cre/prometheus-config.jsonnet",
 }
