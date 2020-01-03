@@ -215,9 +215,11 @@ local utils = import "util_functions.jsonnet";
         # off-peak: 6am-1pm PDT
         "prod-apac": self.prod {
             image_tags+: {
+                service_mesh_injector_image_tag: "7",
             },
             feature_flags+: {
                 # --- flag A (Do not edit ... ---
+                sherpa_no_ready_delay: "AAA",
                 # --- flag B (these comments ... ---
                 # --- flag C (and place only ... ---
                 # --- flag D (one flag between ... ---
