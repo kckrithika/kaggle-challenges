@@ -14,7 +14,7 @@ system:
           port: 9090
   loadbalancers:
   - lbname: samhellolb
-    function: default
+    function: my-sam-test
     slbenabled: true
     ports:
       - port: 9090
