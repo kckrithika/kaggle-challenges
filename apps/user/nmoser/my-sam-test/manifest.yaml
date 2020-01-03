@@ -1,7 +1,7 @@
 apiVersion: v1
 system:
   functions:
-  - name: default
+  - name: my-sam-test
     count: 1
     containers:
     - name: samhello
