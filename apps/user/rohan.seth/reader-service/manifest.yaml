@@ -41,7 +41,7 @@ system:
       # FUNCTION_NAMESPACE: The Kubernetes namespace in which the container is running.
       args:
       - -endpoint
-      - $(FUNCTION_NAMESPACE)/$(FUNCTION):DATACENTER_ALLENV:7012
+      - samapp/user-rohan-seth/reader-service:DATACENTER_ALLENV:7012
       - -logging.dir
       - /log
       livenessProbe:
@@ -49,6 +49,9 @@ system:
         exec:
           command:
             - "/home/scone/is-alive.sh"
+      volumeMounts:
+        - mountPath: /log
+          name: logvolbeacon
     - name: sherpa
       # https://git.soma.salesforce.com/servicelibs/sherpa-envoy/releases
       image: sfci/servicelibs/sherpa-envoy:1.0.4
@@ -84,6 +87,9 @@ system:
     # The volumes to mount for shipping logs to splunk
     # General rule is to use path that satisfies the pattern: /home/sfdc-*/logs/**/*.json
     volumes:
+    - name: logvolbeacon
+      hostPath:
+        path: /home/sfdc-scone-reader-service-beacon/logs
     - name: sherpaclientcert
       maddogCert:
         type: client
