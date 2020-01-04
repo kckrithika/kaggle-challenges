@@ -8,7 +8,7 @@ system:
     count: 1
     containers:
     - name: reader-service-service
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/rohan.seth/reader-service:3bed85ca4f8763442a680ec6d6f3f61280a030ba4008ddf69c2e2383f872fb75
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/rohan.seth/reader-service:bazel-monorepo
       # This line makes sure that the last lines of the log on the console gets sent to Splunk on early termination
       terminationMessagePolicy: "FallbackToLogsOnError"
       # If your service doesn't serve HTTP traffic then you can remove the scone-http 8080 port.
