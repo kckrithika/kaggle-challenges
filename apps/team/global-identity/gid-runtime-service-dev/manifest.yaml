@@ -155,6 +155,10 @@ system:
         value: gid-mailhog.global-identity.prd-sam.prd.slb.sfdc.net
       - name: mail_restemailclient_credentialsPath
         value: file:/secrets
+      - name: mail_restemailclient_proxy
+        value: http://public0-proxy1-0-prd.data.sfdc.net:8080
+      - name: mail_restemailclient_mcSubdomain
+        value: mc-00tq6cdjppzlxr9vvx98rqyy1    
       - name: otp_passwordReset_expiresInSeconds
         value: 300
       volumeMounts:
