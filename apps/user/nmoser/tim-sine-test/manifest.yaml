@@ -10,14 +10,10 @@ system:
     containers:
     - name: tim-sine-test
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/nmoser/tim-sine-test:1
-      resources:
-        limits: { memory: "6G" }
-        requests: { memory: "6G" }
+      ports:
+      - containerPort: 9090
       livenessProbe:
         exec:
-          command: ["true"]
-        initialDelaySeconds: 120
-        periodSeconds: 5
-      env:
-       - name: NATE_TEST
-         value: nate_test_value
+          command:
+          - echo
+          - "OK"
