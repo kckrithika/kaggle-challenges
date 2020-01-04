@@ -29,9 +29,6 @@ system:
         httpGet:
           path: /manage/ready
           port: 15372
-      volumeMounts:
-        - mountPath: /home/container/logs
-          name: logvolservice
     - name: beacon
       # https://sconelibci.dop.sfdc.net/job/servicelibs/job/beacon/job/master/
       image: sfci/servicelibs/beacon:cec13ceb9fc5aed0ce462031a01b2dd5ef73d5ee
@@ -92,10 +89,7 @@ system:
     volumes:
     - name: logvolbeacon
       hostPath:
-        path: /home/reader-service-service-beacon/logs
-    - name: logvolservice
-      hostPath:
-        path: /home/reader-service-service-container/logs
+        path: /home/sfdc-scone-reader-service-beacon/logs
     - name: sherpaclientcert
       maddogCert:
         type: client
