@@ -153,6 +153,8 @@ system:
         value: gid_dev
       - name: mail_server
         value: gid-mailhog.global-identity.prd-sam.prd.slb.sfdc.net
+      - name: mail_restemailclient_credentialsPath
+        value: file:/secrets
       - name: otp_passwordReset_expiresInSeconds
         value: 300
       volumeMounts:
