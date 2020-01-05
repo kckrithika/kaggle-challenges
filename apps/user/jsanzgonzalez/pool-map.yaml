@@ -1,3 +1,5 @@
 apps:
+  metricsexample:
+    - prd/prd-sam
   prod-debug:
     - prd/prd-sam
