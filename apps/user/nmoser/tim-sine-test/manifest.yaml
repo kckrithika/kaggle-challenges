@@ -9,7 +9,7 @@ system:
     count: 1
     containers:
     - name: tim-sine-test
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/nmoser/tim-sine-test:3
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/nmoser/tim-sine-test:5
       ports:
       - containerPort: 9090
       livenessProbe:
