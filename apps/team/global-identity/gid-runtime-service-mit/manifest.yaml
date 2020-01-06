@@ -153,10 +153,21 @@ system:
       - name: mail_server
         value: gid-mailhog.global-identity.prd-sam.prd.slb.sfdc.net
       - name: mail_clientclass
-        value: SMTPEmailClient
+        value: RestEmailClient
+      - name: mail_restemailclient_credentialsPath
+        value: file:/secrets
+      - name: mail_restemailclient_proxy
+        value: http://public0-proxy1-0-prd.data.sfdc.net:8080
+      - name: mail_restemailclient_mcSubdomain
+        value: mc-00tq6cdjppzlxr9vvx98rqyy1
+      - name: mail_restemailclient_definitionKey
+        value: GIDResetPasswordDefKey
       volumeMounts:
       - name: client-cert
         mountPath: /client-certs
+      - name: secretvol
+        mountPath: /secrets
+        readOnly: true
       ports:
       - containerPort: 8080
       - containerPort: 15375
@@ -191,6 +202,9 @@ system:
     - name: logvolbeacon
       hostPath:
         path: /home/sfdc-gid-runtime-beacon/logs
+    - name: secretvol
+      k4aSecret:
+        secretName: gidmc
   #####################################################################################
   # SLB
   #####################################################################################
