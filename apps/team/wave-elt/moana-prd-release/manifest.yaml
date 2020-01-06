@@ -40,7 +40,7 @@ system:
       - {name: GRPC_PORT, value: '5443'}
       - {name: HANDLED_PODS_PATTERN, value: stmfa\..*|moana-driver-master}
       - {name: HANDLED_PODS_INVERT_MATCH, value: 'true'}
-      image: sfci/insights/moana-driver:release-20191216.34-664e585
+      image: sfci/insights/moana-driver:release-20200106.37-60f8764
       livenessProbe:
         httpGet: {path: /manage/health, port: 15372}
         initialDelaySeconds: 30
