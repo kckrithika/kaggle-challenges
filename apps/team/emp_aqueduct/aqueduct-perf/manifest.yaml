@@ -22,10 +22,10 @@ system:
           value: "prod" # Use whatever environment your kpod uses
         - name: SETTINGS_SERVICENAME
           value: emp-aqueduct
-        - name: SFDC_POD 
-          value: emp-aqueduct_sam_aqueduct 
-        - name: SETTINGS_SUPERPOD 
-          value: "NONE" 
+        - name: SFDC_POD
+          value: emp-aqueduct_sam_aqueduct
+        - name: SETTINGS_SUPERPOD
+          value: "NONE"
         ports:
         - containerPort: 8080
           name: ext-port
@@ -53,6 +53,8 @@ system:
   loadbalancers:
   # CName aqueduct-perf-xrd.slb.sfdc.net added as SLB cert doesn't have SLB VIP name in SAN
   - lbname: aqueduct-perf
+    annotations:
+      slb.sfdc.net/iptype: private_reserved
     function: aqueduct-perf
     slbenabled: true
     ports:
@@ -61,4 +63,3 @@ system:
         lbtype: http
         tls: true
         sticky: 300
-
