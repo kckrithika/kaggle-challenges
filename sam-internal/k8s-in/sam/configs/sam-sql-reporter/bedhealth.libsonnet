@@ -122,7 +122,7 @@ FROM
                                  TIMESTAMPDIFF(MINUTE, STR_TO_DATE(Payload->>'$.status.report.ReportCreatedAt', '%Y-%m-%dT%H:%i:%s.'), UTC_TIMESTAMP()) AS ReportAgeInMinutes
       FROM k8s_resource
       WHERE ApiKind = 'WatchDog'
-        AND controlestate = 'prd-sam' ) AS ss
+        AND controlestate = '" + bed + "' ) AS ss
    WHERE CheckDescription NOT LIKE 'MySQL Checker:%'
      AND CheckerName NOT LIKE 'MachineCount%'
    GROUP BY CheckerName) AS ss2
