@@ -9,7 +9,7 @@ system:
     type: stateful-set
     lbname: candidate-service-ha-node-lb
     hostnetwork: true
-    count: 2
+    count: 3
     containers:
     - name: candidate-service-ha
       image: dva/csc-health/candidate-service:17
@@ -87,12 +87,8 @@ system:
         value: $(FUNCTION_INSTANCE_IP)
       - name: CHS_COORDINATOR_ADVERTISEADDR
         value: $(FUNCTION_INSTANCE_IP)
-      - name: INSTANCE
-        value: $(FUNCTION_INSTANCE_NAME##*-)
       - name: CHS_COORDINATOR_ADVERTISEPORT
         value: 8888
-      - name: CHS_COORDINATOR_INSTANCENAME
-        value: candidate-service-$(INSTANCE)
       - name: CHS_COORDINATOR_BINDPORT
         value: 8888
       - name: CHS_COORDINATOR_RPCPORT
@@ -118,6 +114,8 @@ system:
 
         export CHS_COORDINATOR_CLUSTERPORTS=8888,8888,8888 ;
         export CHS_COORDINATOR_CLUSTERADDR=${cans_pod_1},${cans_pod_2},${cans_pod_3} ;
+        export INSTANCE=${FUNCTION_INSTANCE_NAME##*-} ;
+        export CHS_COORDINATOR_INSTANCENAME=candidate-service-${INSTANCE} ;
 
         /candidateservice
       "]
