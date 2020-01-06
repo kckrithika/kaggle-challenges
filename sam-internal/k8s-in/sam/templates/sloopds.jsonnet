@@ -47,6 +47,30 @@ if samfeatureflags.sloop then configs.daemonSetBase("sam") {
                             },
                         ],
                     },
+                    {
+                        name: "prometheus",
+                        args: [
+                            "--config.file",
+                            "/prometheusconfig/prometheus.json",
+                        ],
+                        image: samimages.prometheus,
+                        volumeMounts: [
+                            {
+                                name: "prom-data",
+                                mountPath: "/prometheus/",
+                            },
+                            {
+                                name: "sloopconfig",
+                                mountPath: "/prometheusconfig",
+                            },
+                        ],
+                        ports: [
+                            {
+                                containerPort: 9090,
+                                protocol: "TCP",
+                            },
+                        ],
+                    },
                 ],
                 volumes+: [
                     {
@@ -54,6 +78,12 @@ if samfeatureflags.sloop then configs.daemonSetBase("sam") {
                             path: "/data/sloop-data",
                         },
                         name: "sloop-data",
+                    },
+                    {
+                        hostPath: {
+                            path: "/data/sloop-prom-data",
+                        },
+                        name: "prom-data",
                     },
                     {
                         configMap: {
