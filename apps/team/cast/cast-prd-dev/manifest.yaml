@@ -155,7 +155,7 @@ system:
     # GID Data service
     #####################################################################################
     - name: gid-service
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/gid/gid-service:schema1202
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/gid/gid-service:b8cd5bb
       imagePullPolicy: Always
       env:
         - name: directory_server_host
@@ -167,29 +167,19 @@ system:
         - name: management_server_port
           value: 15371
         - name: ca_service_host
-          value: 127.0.0.1
+          value: ${directory_server_host}
         - name: c2c_common_gdotBasePath
           value: http://${directory_server_host}:7022/scim
         - name: security_client_dynamickeystore_cadir
           value: /certs/ca
-        - name: jwt_signing_keypath
-          value: /clientcerts/client/keys/client-key.pkcs8  
         - name: security_client_dynamickeystore_monitoredDirectory
           value: /clientcerts/client
         - name: c2c_common_callerContext
           value: giddataservice-cast-prd-dev
         - name: c2c_service_id
           value: giddataservice-cast-prd-dev
-        - name: ca_service_host
-          value: cloudatlas-dev.global-identity.prd-sam.prd.slb.sfdc.net
         - name: ldaps_hostname
-          value: cloudatlas-dev.global-identity.prd-sam.prd.slb.sfdc.net
-        - name: ldaps_bind_password
-          value: 1insecureRootPassword!
-        - name: ldaps_bind_dn
-          value: cn=Directory Manager
-        - name: ldaps_bind_type
-          value: SIMPLE
+          value: ${directory_server_host}
       ports:
         - containerPort: 8081
         - containerPort: 15371
@@ -202,24 +192,6 @@ system:
           mountPath: /certs
         - mountPath: /clientcerts
           name: client-cert
-    #####################################################################################
-    # NGINX Rev Proxy
-    #####################################################################################
-    - name: nginx-rev-proxy
-      image: sfci/globalidentity/nginx-routing:554f1b7
-      imagePullPolicy: Always
-      ports:
-        - containerPort: 7022
-      livenessProbe:
-        httpGet:
-          path: /health
-          port: 7022
-        initialDelaySeconds: 15
-        timeoutSeconds: 10
-        periodSeconds: 30
-      volumeMounts:
-        - mountPath: /var/cache/nginx/client_temp
-          name: cache-volume
     #####################################################################################
     # Volumes Needed
     #####################################################################################
