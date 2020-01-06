@@ -117,7 +117,7 @@ system:
         cans_pod_3=${FUNCTION}-2.${stateful_lb_name}.${FUNCTION_NAMESPACE}.svc.${stateful_cluster_domain} ;
 
         export CHS_COORDINATOR_CLUSTERPORTS=8888,8888,8888 ;
-        export CHS_COORDINATOR_CLUSTERADDR=${cans_pod_1},${cans_pod_2},${cans_pod_3}
+        export CHS_COORDINATOR_CLUSTERADDR=${cans_pod_1},${cans_pod_2},${cans_pod_3} ;
 
         /candidateservice
       "]
