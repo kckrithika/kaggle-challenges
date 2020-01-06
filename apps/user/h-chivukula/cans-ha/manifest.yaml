@@ -98,9 +98,9 @@ system:
       - name: CHS_COORDINATOR_RPCPORT
         value: 1234
       livenessProbe:
-        httpGet:
-          path: /healthz
-          port: 8888
+        exec:
+          command:
+          - ls
         initialDelaySeconds: 5
       command: ["/bin/sh", "-c"]
       args: ["
