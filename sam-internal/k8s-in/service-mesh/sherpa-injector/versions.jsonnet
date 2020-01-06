@@ -27,7 +27,7 @@ local utils = import "util_functions.jsonnet";
     },
     // phase3 = PROD env (par etc...)
     "3" : {
-        canarySherpaImage: ("%s/sfci/servicelibs/sherpa-envoy:1.0.13" % configs.registry),
+        canarySherpaImage: ("%s/sfci/servicelibs/sherpa-envoy:410b9b128bae61fe3db928569412ea9dd07dfa0e" % configs.registry),
         sherpaImage: ("%s/sfci/servicelibs/sherpa-envoy:1.0.13" %
         configs.registry)
     },
