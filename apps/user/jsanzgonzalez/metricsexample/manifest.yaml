@@ -14,9 +14,9 @@ system:
       # If your service doesn't serve HTTP traffic then you can remove the scone-http 8080 port.
       ports:
       - containerPort: 8080
-        name: metricsexample-http
+        name: scone-http
       - containerPort: 15372
-        name: metricsexample-mgmt
+        name: scone-mgmt
       livenessProbe:
         initialDelaySeconds: 30
         httpGet:
