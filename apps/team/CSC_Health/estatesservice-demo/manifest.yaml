@@ -11,7 +11,7 @@ system:
       maddogCert:
         type: server
         lbnames:
-        - estatesservicedemolb
+        - estatesservice-demo
     - name: client-cert
       maddogCert:
         type: client
@@ -69,7 +69,7 @@ system:
         - -funnelendpoint=$(ESTATESSERVICE_FUNNEL_ENDPOINT)
         - -rpmurl=$(ESTATESSERVICE_RPMURL)
   loadbalancers:
-  - lbname: estatesservicedemolb
+  - lbname: estatesservice-demo
     function: estatesservicedemo
     slbenabled: true
     ports:
