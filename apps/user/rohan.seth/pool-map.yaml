@@ -1,3 +1,5 @@
 apps:
     reader-service:
         - prd/prd-sam
+    reader-client:
+        - prd/prd-sam
