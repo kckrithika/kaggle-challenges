@@ -8,7 +8,7 @@ system:
     count: 2
     containers:
     - name: archive-backup-service-container
-      image: sfci/services/sfdc-bazel/gater/archive-backup-service:c35590337
+      image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-sfci-dev/sfci/services/sfdc-bazel/gater/archive-backup-service:28230a28d
       args:
       # Increment this arg when making noop manifest changes
       - --noop.arg=3
