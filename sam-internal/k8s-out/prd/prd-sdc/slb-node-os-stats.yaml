@@ -36,7 +36,7 @@ spec:
         - /sdn/slb-node-os-stats
         - --metricsEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80
         - --log_dir=/host/data/slb/logs/slb-node-os-stats
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/slb/hyperslb:2300-bd096f72157fe3419f1b89133cc0605052fa746b
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/slb/hyperslb:2301-6d3f3f03d65b8a75307df282ca70dba2b52bf21d
         name: slb-node-os-stats
         resources:
           limits:
@@ -63,7 +63,7 @@ spec:
         env:
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig-platform
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/slb/hyperslb:2300-bd096f72157fe3419f1b89133cc0605052fa746b
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/slb/hyperslb:2301-6d3f3f03d65b8a75307df282ca70dba2b52bf21d
         livenessProbe:
           exec:
             command:
