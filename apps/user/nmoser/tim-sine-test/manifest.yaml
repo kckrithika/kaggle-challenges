@@ -17,3 +17,12 @@ system:
           command:
           - echo
           - "OK"
+  loadbalancers:
+  - lbname: tim-sine-test-lb
+    function: tim-sine-test
+    slbenabled: true
+    ports:
+      - port: 9090
+        targetport: 9090
+        lbtype: tcp
+
