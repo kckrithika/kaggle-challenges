@@ -11,6 +11,36 @@ system:
     hostnetwork: true
     count: 3
     containers:
+    - name: candidate-service-ha-logrotator
+      image: dva/csc-health/candidate-service:17
+      volumeMounts:
+        - mountPath: /home/sfdc-csc-health/candidate-service
+          name: logvol
+      livenessProbe:
+        exec:
+          command:
+          - echo
+          - always_healthy
+        initialDelaySeconds: 5
+        periodSeconds: 30
+      command: ["/bin/sh", "-c"]
+      args: ['
+        printf "compress\n
+        /home/sfdc-csc-health/candidate-service/candidate-service.log {\n
+          rotate 30\n
+          daily\n
+          copytruncate\n
+          delaycompress\n
+        }" > /tmp/candidate-service-logrotate.conf;
+        status_file=/home/sfdc-csc-health/candidate-service/candidate-service-logrotate.status;
+        cmd="/usr/sbin/logrotate -v -s ${status_file} /tmp/candidate-service-logrotate.conf";
+        while true;
+        do
+          printf "\n`date`\n\n";
+          $cmd;
+          sleep 21600;
+        done
+      ']
     - name: candidate-service-ha
       image: dva/csc-health/candidate-service:17
       ports:
@@ -94,9 +124,9 @@ system:
       - name: CHS_COORDINATOR_RPCPORT
         value: 1234
       livenessProbe:
-        exec:
-          command:
-          - ls
+        httpGet:
+          path: /healthz
+          port: 8888
         initialDelaySeconds: 5
       command: ["/bin/sh", "-c"]
       args: ["
