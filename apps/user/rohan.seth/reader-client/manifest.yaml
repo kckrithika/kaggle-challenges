@@ -4,11 +4,11 @@ apiVersion: v1
 
 system:
   functions:
-  - name: reader-service
+  - name: reader-client
     count: 1
     containers:
-    - name: reader-service-service
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/rohan.seth/reader-service:bazel-monorepo
+    - name: reader-client-service
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/rohan.seth/reader-client:bazel-monorepo
       # This line makes sure that the last lines of the log on the console gets sent to Splunk on early termination
       terminationMessagePolicy: "FallbackToLogsOnError"
       # If your service doesn't serve HTTP traffic then you can remove the scone-http 8080 port.
@@ -41,7 +41,7 @@ system:
       # FUNCTION_NAMESPACE: The Kubernetes namespace in which the container is running.
       args:
       - -endpoint
-      - samapp/user-rohan-seth/reader-service:DATACENTER_ALLENV:7443
+      -  samapp/user-rohan-seth/reader-client:DATACENTER_ALLENV:7443
       - -logging.dir
       - /log
       livenessProbe:
@@ -89,7 +89,7 @@ system:
     volumes:
     - name: logvolbeacon
       hostPath:
-        path: /home/sfdc-scone-reader-service-beacon/logs
+        path: /home/sfdc-scone-reader-client-beacon/logs
     - name: sherpaclientcert
       maddogCert:
         type: client
