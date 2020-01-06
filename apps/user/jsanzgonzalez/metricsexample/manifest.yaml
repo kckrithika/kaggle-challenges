@@ -7,16 +7,14 @@ system:
   - name: metricsexample
     count: 1
     containers:
-    - name: metricsexample-service
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/jsanzgonzalez/metricsexample:jsanzgonzalez-20200105-603a1ab
+    - name: metricsexample
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/jsanzgonzalez/metricsexample:jsanzgonzalez-2020-01-06-08-20-11-49d7ba6
       # This line makes sure that the last lines of the log on the console gets sent to Splunk on early termination
       terminationMessagePolicy: "FallbackToLogsOnError"
       # If your service doesn't serve HTTP traffic then you can remove the scone-http 8080 port.
       ports:
       - containerPort: 8080
         name: scone-http
-      - containerPort: 7020
-        name: grpc-svc
       - containerPort: 15372
         name: scone-mgmt
       livenessProbe:
@@ -43,10 +41,6 @@ system:
       - port: 8080
         targetport: 8080
         lbtype: http
-        #tls: true
-        #reencrypt: true
       - port: 15372 
         targetport: 15372
         lbtype: http
-        #tls: true
-        #reencrypt: true
