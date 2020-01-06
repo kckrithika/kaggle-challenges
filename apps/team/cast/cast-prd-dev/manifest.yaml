@@ -193,6 +193,24 @@ system:
         - mountPath: /clientcerts
           name: client-cert
     #####################################################################################
+    # NGINX Rev Proxy
+    #####################################################################################
+    - name: nginx-rev-proxy
+      image: sfci/globalidentity/nginx-routing:554f1b7
+      imagePullPolicy: Always
+      ports:
+        - containerPort: 7022
+      livenessProbe:
+        httpGet:
+          path: /health
+          port: 7022
+        initialDelaySeconds: 15
+        timeoutSeconds: 10
+        periodSeconds: 30
+      volumeMounts:
+        - mountPath: /var/cache/nginx/client_temp
+          name: cache-volume
+    #####################################################################################
     # Volumes Needed
     #####################################################################################
     volumes:
