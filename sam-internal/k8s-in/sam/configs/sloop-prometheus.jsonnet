@@ -1,5 +1,3 @@
-local hosts = import "hosts.jsonnet";
-
 {
     global: {
         scrape_interval: "15s",
