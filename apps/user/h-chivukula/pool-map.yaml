@@ -1,4 +1,6 @@
 version: v2
 apps:
  cans-ha:
-  # - name: xrd/xrd-sampool
+  - name: xrd/xrd-sampool
+ cans-ha-watchdog:
+  - name: xrd/xrd-sampool
