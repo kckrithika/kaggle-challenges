@@ -204,3 +204,5 @@ apps:
     - prd/prd-sam_report_collector
     - ukb/ukb-sam_report_collector
     - xrd/xrd-sam_report_collector
+  estatesservice-demo:
+    - prd/prd-sam_report_collector
