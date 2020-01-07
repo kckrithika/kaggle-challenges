@@ -1,0 +1,17 @@
+apiVersion: v1
+system:
+  notifications:
+    email:
+      - nmoser@salesforce.com
+  functions:
+  - name: spec-jvm-2008
+    count: 1
+    containers:
+    - name: spec-jvm-2008
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/nmoser/spec-jvm-2008:1
+      livenessProbe:
+        exec:
+          command:
+          - echo
+          - "OK"
+
