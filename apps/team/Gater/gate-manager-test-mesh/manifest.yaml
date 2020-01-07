@@ -16,7 +16,7 @@ system:
       traffic.sidecar.istio.io/excludeInboundPorts: "9522,9523,9524,15372,9090"
     containers:
     - name: gater1
-      image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-sfci-dev/sfci/services/sfdc-bazel/gater/gate-manager:3223bbee0
+      image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-sfci-dev/sfci/services/sfdc-bazel/gater/gate-manager:32203de93
       args:
       - --mesh.istio-mode=true
       - --server.port=9090
