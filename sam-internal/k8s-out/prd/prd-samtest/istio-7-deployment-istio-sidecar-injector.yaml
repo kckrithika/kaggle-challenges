@@ -103,7 +103,7 @@ spec:
         env:
         - name: ESTATE
           value: prd-samtest
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/sfci/servicemesh/istio-packaging/sidecar_injector:928139e308cc9c5c0b6db84ac0151d8bb857e703
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/sfci/servicemesh/istio-packaging/sidecar_injector:a33d69901ed9c4505e5f3429de88a60f4e334cbd
         imagePullPolicy: Always
         livenessProbe:
           exec:
@@ -321,7 +321,7 @@ spec:
           valueFrom:
             fieldRef:
               fieldPath: metadata.namespace
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/sfci/servicemesh/istio-packaging/proxy:928139e308cc9c5c0b6db84ac0151d8bb857e703
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/sfci/servicemesh/istio-packaging/proxy:a33d69901ed9c4505e5f3429de88a60f4e334cbd
         imagePullPolicy: IfNotPresent
         name: istio-proxy
         ports:
@@ -436,7 +436,7 @@ spec:
         env:
         - name: DISABLE_REDIRECTION_ON_LOCAL_LOOPBACK
           value: "1"
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/sfci/servicemesh/istio-packaging/proxy:928139e308cc9c5c0b6db84ac0151d8bb857e703
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/sfci/servicemesh/istio-packaging/proxy:a33d69901ed9c4505e5f3429de88a60f4e334cbd
         imagePullPolicy: Always
         name: istio-init
         resources:

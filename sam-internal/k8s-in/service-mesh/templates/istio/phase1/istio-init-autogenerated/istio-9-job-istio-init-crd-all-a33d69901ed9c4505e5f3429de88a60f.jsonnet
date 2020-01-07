@@ -7,7 +7,7 @@ if (istioPhases.phaseNum == 1) then
   apiVersion: "batch/v1",
   kind: "Job",
   metadata: {
-    name: "istio-init-crd-all-928139e308cc9c5c0b6db84ac0151d8b",
+    name: "istio-init-crd-all-a33d69901ed9c4505e5f3429de88a60f",
     namespace: "mesh-control-plane",
   },
   spec: {
