@@ -1,5 +1,5 @@
 - lbname: smsapi1-0-ord
-  iptype: public_reserved
+  iptype: public_active
   customlbname: smsapi1-0-ord
   servers:
   - sec0-smsapi1-1-ord.ops.sfdc.net
