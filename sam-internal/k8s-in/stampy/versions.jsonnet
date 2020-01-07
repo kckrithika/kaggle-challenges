@@ -15,15 +15,15 @@ local utils = import "util_functions.jsonnet";
         if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" then
             "%s/dva/stampy-webhook-admission-controller-1p:28" % configs.registry
         else if configs.estate == "chx-sam" then
-            "%s/dva/stampy-webhook-admission-controller-1p:26" % configs.registry
+            "%s/dva/stampy-webhook-admission-controller-1p:28" % configs.registry
         else if configs.estate == "cdg-sam" then
-            "%s/dva/stampy-webhook-admission-controller-1p:26" % configs.registry
+            "%s/dva/stampy-webhook-admission-controller-1p:28" % configs.registry
         else if configs.estate == "cdu-sam" then
-            "%s/dva/stampy-webhook-admission-controller-1p:26" % configs.registry
+            "%s/dva/stampy-webhook-admission-controller-1p:28" % configs.registry
         else if configs.estate == "dfw-sam" then
-            "%s/dva/stampy-webhook-admission-controller-1p:26" % configs.registry
+            "%s/dva/stampy-webhook-admission-controller-1p:28" % configs.registry
         else if configs.estate == "fra-sam" then
-            "%s/dva/stampy-webhook-admission-controller-1p:26" % configs.registry
+            "%s/dva/stampy-webhook-admission-controller-1p:28" % configs.registry
         else if configs.estate == "frf-sam" then
             "%s/dva/stampy-webhook-admission-controller-1p:26" % configs.registry
         else if configs.estate == "hio-sam" then
