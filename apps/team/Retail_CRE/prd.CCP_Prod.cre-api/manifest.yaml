@@ -1,0 +1,167 @@
+apiVersion: v1
+
+system:
+  notifications:
+    email:
+      - cre@salesforce.com
+  functions:
+    - name: cre-api-ccp-prod
+      identity:
+        serviceName: cre-api-ccp-func # using ccp-func certs to communicate with ccp-func hbase and ajna namespaces
+      count: 2
+      labels:
+        app: cre-api-ccp-prod
+      annotations:
+        "routing.mesh.sfdc.net/enabled": "true"
+      containers:
+        - name: cre-api-ccp-prod
+          image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-sfci-dev/sfci/cre/cre-api:2.1.4.0.master.9d55085.7
+          env:
+            - name: K4A_VAULT
+              value: c360-dvd-user-manager-dev
+            - name: BUCKET_NAME
+              value: sfdc-c360-dev-us-east-1
+            - name: ARRAY_OF_IP
+              value: '["37.47.14.209/32", "158.75.202.2/32", "204.14.239.0/24", "204.14.236.0/24", "136.146.95.8/32", "62.17.146.144/32", "202.95.77.83/32"]'
+            - name: BUCKET_KEY
+              value: arn:aws:kms:us-east-1:748405220275:key/141d089c-022d-4bf3-9510-5a558db4b2e9
+            - name: PERMISSIONS_BOUNDARY_ARN
+              value: arn:aws:iam::748405220275:policy/PCSKPermissionsBoundary
+            - name: HTTP_PROXY
+              value: http://public0-proxy1-0-prd.data.sfdc.net:8080
+            - name: HTTPS_PROXY
+              value: http://public0-proxy1-0-prd.data.sfdc.net:8080
+            #Only seeing two endpoint for GDOT_BASE_PATH, one is dev other is stage, using stage for here
+            - name: GDOT_BASE_PATH
+              value: http://cloudatlas-prd-stage-service.cloudatlas.localhost.mesh.force.com:5442/scim
+            - name: DOMAIN_ID
+              value: cre
+            - name: SCHEMA_IDS
+              value: records
+            - name: SCHEMA_VERSIONS
+              value: 0.1.4
+            - name: UNIVERSAL_SEARCH_DESTINATION
+              value: universal-search.universal-search.localhost.mesh.force.com:5443
+            - name: METRICS_KAFKA_TOPIC
+              value: sfdc.prod.cre__prd.ajna_local__cre_metrics_CCP_Integration_Functional
+            - name: METRICS_KAFKA_SERVER
+              value: ajna0-broker1-0-prd.data.sfdc.net:9093
+            - name: SFDC_ENVIRONMENT
+              value: ccp-prod
+            - name: METRICS_KAFKA_ENABLED
+              value: false
+            - name: MADDOG_CLIENT_KEYSTORE
+              value: maddog/maddog-client-keystore.json
+            - name: MADDOG_CLIENT_TRUSTSTORE
+              value: maddog/maddog-client-truststore.json
+            - name: HBASE_ENVIRONMENT
+              value: kingdom-test
+            - name: HBASE_DATA_CENTER
+              value: prd
+            - name: HBASE_NAMESPACE
+              value: CRE
+            - name: CONTROL_PLANE_URL
+              value: cre-control-plane-ccp-prod.retail-cre.localhost.mesh.force.com:5443
+            - name: LOG_JWT
+              value: true
+            - name: C2C_TENANT_GROUP_ONLY
+              value: false
+            - name: JVM_ARGS
+              value: "-Djava.util.concurrent.ForkJoinPool.common.parallelism=8
+                  -verbose:gc -XX:+PrintGCDateStamps -XX:+PrintHeapAtGC
+                  -XX:+PrintPromotionFailure -XX:+PrintTenuringDistribution -XX:+PrintGCDetails
+                  -XX:+PrintGCDateStamps -XX:+PrintGCApplicationStoppedTime
+                  -XX:+PrintGCApplicationConcurrentTime -XX:+PrintGCCause -XX:+DisableExplicitGC
+                  -Xloggc:/opt/cre/cre-api-ccp-prod/verbosegc_$(FUNCTION_INSTANCE_NAME).log
+                  -XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=/opt/cre/cre-api-ccp-prod
+                  -Dcom.sun.management.jmxremote.port=8898
+                  -Dcom.sun.management.jmxremote.rmi.port=8898
+                  -Dcom.sun.management.jmxremote.ssl=false
+                  -Dcom.sun.management.jmxremote.authenticate=false
+                  -Xmx4G -Xms4G -XX:ParallelGCThreads=8"
+          resources:
+            limits: { cpu: "8", memory: "6Gi" }
+            requests: { cpu: "8", memory: "5Gi" }
+          ports:
+            - containerPort: 8080
+            - containerPort: 7022
+            - containerPort: 15372
+          livenessProbe:
+            initialDelaySeconds: 120
+            periodSeconds: 30
+            timeoutSeconds: 30
+            httpGet:
+              path: /manage/health
+              port: 15372
+              scheme: HTTP
+          volumeMounts:
+            - mountPath: /client-certs
+              name: client-certs
+            - mountPath: /server-certs
+              name: server-certs
+            - mountPath: /opt/cre/cre-api-ccp-prod
+              name: logvol
+        - name: sherpa-cre-api
+          # Sherpa latest releases: https://git.soma.salesforce.com/servicelibs/sherpa-envoy/releases
+          image: sfci/servicelibs/sherpa-envoy:1.0.13
+          volumeMounts:
+            - mountPath: /log
+              name: sherpa-log-volume
+            - mountPath: /client-certs
+              name: client-certs
+            - mountPath: /server-certs
+              name: server-certs
+          env:
+            - name: SFDC_ENVIRONMENT
+              value: stmfa
+          resources:
+            limits: { cpu: "1", memory: "1Gi" }
+            requests: { cpu: "1", memory: "1Gi" }
+          ports:
+            - containerPort: 7442
+              name: sh-in-http1-tls
+            - containerPort: 15373 # Sherpa admin port. This can be handy when debugging issues.
+              name: sherpa-in-admin
+          livenessProbe:
+            exec:
+              command:
+                - "./bin/is-alive"
+            initialDelaySeconds: 120
+            periodSeconds: 5
+          readinessProbe:
+            exec:
+              command:
+                - "./bin/is-ready"
+            initialDelaySeconds: 110
+            periodSeconds: 5
+      volumes:
+        - name: logvol
+          hostPath:
+            path: /home/sfdc-cre/logs/cre-api-ccp-prod
+        - name: client-certs
+          maddogCert:
+            type: client
+        - name: server-certs
+          maddogCert:
+            type: server
+            lbnames:
+              - cre-api-ccp-prod-lb
+        - name: sherpa-log-volume
+          hostPath:
+            path: /home/sfdc-sherpa/logs
+  loadbalancers:
+    - lbname: cre-api-ccp-prod-lb
+      function: cre-api-ccp-prod
+      slbenabled: true
+      ports:
+        - port: 7442
+          targetport: 7442
+        - port: 8099
+          targetport: 7022
+    - lbname: cre-api-ccp-prod
+      function: cre-api-ccp-prod
+      ports:
+        - lbtype: dsr
+          port: 7442
+          targetport: 7442
+          name: https-cre
