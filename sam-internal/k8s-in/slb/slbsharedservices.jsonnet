@@ -23,7 +23,7 @@
     pseudoApiServer="",
   ): {
     name: "slb-config-processor",
-    image: slbimages.hyperslb_config,
+    image: slbimages.hyperslb,
     command: [
       "/sdn/slb-config-processor",
       "--configDir=" + slbconfigs.configDir,

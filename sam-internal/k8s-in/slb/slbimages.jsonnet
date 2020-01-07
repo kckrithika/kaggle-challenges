@@ -46,19 +46,10 @@ local slbreleases = import "slbreleases.json";
     # ====== ONLY CHANGE THE STUFF BELOW WHEN ADDING A NEW IMAGE.  RELEASES SHOULD ONLY INVOLVE CHANGES ABOVE ======
     phaseNum: std.parseInt($.phase),
 
-    hyperslb_config_label: (
-        if (estate == "prd-sdc") then
-            "2286-3505b614ecc52c43e963ccbbf064c3f5bfb6ce99"
-        else if (estate == "prd-sam") then
-            "2282-b207005f44671a344a0f2e5cd3371b028b31d65f"
-        else
-           "2280-6728d98d50b4d61992ce01b456c568dd1bc64dcc"
-    ),
-
 
    hyperslb_nginx_config_label: (
-        if (estate == "prd-sdc" || estate == "prd-sam") then
-            "2289-b29b418b59e285c81c6397ebd9e819208918cdcb"
+        if ($.phase == "1" || $.phase == "2") then
+            "2303-6d58b6e96094dc19be93a7b4802ab8215bbab903"
         else if (estate == "dfw-sam" || estate == "phx-sam") then
            "2298-ca35f8b6b3543336a71d3db6474588c27b38689c"
         else
@@ -68,8 +59,6 @@ local slbreleases = import "slbreleases.json";
 
     # These are the images used by the templates
     hyperslb: imageFunc.do_override_for_pipeline_image($.overrides, "slb", "hyperslb", slbreleases[$.phase].hyperslb.label),
-
-    hyperslb_config: imageFunc.do_override_for_pipeline_image($.overrides, "slb", "hyperslb", $.hyperslb_config_label),
     hyperslb_nginx_config: imageFunc.do_override_for_pipeline_image($.overrides, "slb", "hyperslb", $.hyperslb_nginx_config_label),
     hyperslb_build: imageFunc.build_info_from_tag(slbreleases[$.phase].hyperslb.label).buildNumber,
 
