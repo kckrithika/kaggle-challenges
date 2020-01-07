@@ -48,8 +48,8 @@ local slbreleases = import "slbreleases.json";
 
 
    hyperslb_nginx_config_label: (
-        if ($.phase == "1" || $.phase == "2") then
-            slbreleases[$.phase].hyperslb.label
+        if ($.phase == "1" || $.phase == "2" || estate == "xrd") then
+            slbreleases["2"].hyperslb.label
         else if (estate == "dfw-sam" || estate == "phx-sam") then
            "2298-ca35f8b6b3543336a71d3db6474588c27b38689c"
         else
@@ -58,7 +58,12 @@ local slbreleases = import "slbreleases.json";
 
 
     # These are the images used by the templates
-    hyperslb: imageFunc.do_override_for_pipeline_image($.overrides, "slb", "hyperslb", slbreleases[$.phase].hyperslb.label),
+    hyperslb: (
+        if (estate == "xrd-sam") then
+           imageFunc.do_override_for_pipeline_image($.overrides, "slb", "hyperslb", slbreleases["2"].hyperslb.label)
+        else
+           imageFunc.do_override_for_pipeline_image($.overrides, "slb", "hyperslb", slbreleases[$.phase].hyperslb.label)
+    ),
     hyperslb_nginx_config: imageFunc.do_override_for_pipeline_image($.overrides, "slb", "hyperslb", $.hyperslb_nginx_config_label),
     hyperslb_build: imageFunc.build_info_from_tag(slbreleases[$.phase].hyperslb.label).buildNumber,
 
