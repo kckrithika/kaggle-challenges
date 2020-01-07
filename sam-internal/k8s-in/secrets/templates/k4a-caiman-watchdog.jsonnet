@@ -16,7 +16,13 @@ local build_server_url(tag, kingdom, port=8443) = (
 # A select few kingdoms have fewer than four, see
 # https://argus-ui.data.sfdc.net/argus/#/viewmetrics?expression=ALIAS(GROUPBY(-90d:system.*.NONE.k4a:uptime.uptime%7Bdevice%3D*kfora*%7D:max:1h-max,%23system%5C.(%5BA-Z0-9%5D%7B3%7D)%5C.%23,%23COUNT%23),%20%23up-nodes%23,%20%23literal%23)
 # Only monitor instances that are available in each kingdom.
-local getKingdomServerSpecificInstances(kingdom=configs.kingdom) = (
+local getKingdomServerSpecificInstances(k=configs.kingdom) = (
+# Monitor cdu from syd; Amazon is removing support for Cloud HSMs in SYD, so k4a will no longer be functional there.
+# We want to confirm via our watchdog in SYD that servers in CDU are available to serve requests; we no longer really
+# "care" about the availability of the k4a servers in SYD, and the service will be stood down in SYD until we are using
+# KMS as the HSM-as-a-service.
+local kingdom = if k == "syd" then "cdu" else k;
+
 if kingdom == "xrd" then {
   # Temporarily using port 8443 until https://gus.lightning.force.com/lightning/r/ADM_Team_Dependency__c/a0nB0000001SUjBIAW/view
   # is complete (stmp needs to enable sitebridge connectivity to kfora in crd before we move xrd nodes to port 8444).
