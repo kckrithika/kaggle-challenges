@@ -29,7 +29,7 @@ if samfeatureflags.sloop then configs.daemonSetBase("sam") {
                         command: [
                             "/sloop",
                         ],
-                        image: "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/thargrove/sloop:thargrove-20200106_083558-0acb2a2",
+                        image: "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/thargrove/sloop:thargrove-20200107_090601-0acb2a2",
                         volumeMounts: [
                             {
                                 name: "sloop-data",
