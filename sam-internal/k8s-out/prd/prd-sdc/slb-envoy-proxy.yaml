@@ -143,7 +143,7 @@ spec:
         env:
         - name: KINGDOM
           value: prd
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/slb/envoy:134-9ba3cef27535befec8691412ca1b0c1d7f912b7e
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/slb/envoy:137-b1645641bf9577e552e5fbdff7d91203e4528e4d
         livenessProbe:
           httpGet:
             path: /liveness-probe
@@ -326,7 +326,7 @@ spec:
           valueFrom:
             fieldRef:
               fieldPath: spec.nodeName
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/slb/hyperslb:2286-3505b614ecc52c43e963ccbbf064c3f5bfb6ce99
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/slb/hyperslb:2303-6d58b6e96094dc19be93a7b4802ab8215bbab903
         livenessProbe:
           httpGet:
             path: /liveness-probe

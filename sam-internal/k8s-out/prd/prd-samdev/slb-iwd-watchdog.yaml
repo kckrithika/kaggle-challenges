@@ -34,7 +34,7 @@ spec:
               fieldPath: spec.nodeName
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig-platform
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/slb/hyperslb:2301-6d3f3f03d65b8a75307df282ca70dba2b52bf21d
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/slb/hyperslb:2303-6d58b6e96094dc19be93a7b4802ab8215bbab903
         name: slb-iwd-health
         resources:
           limits:
@@ -66,7 +66,7 @@ spec:
         - --shouldSkipSlbBlock=true
         - --skipFilesWithSuffix=.sock
         - --shouldNotDeleteAllFiles=true
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/slb/hyperslb:2301-6d3f3f03d65b8a75307df282ca70dba2b52bf21d
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/slb/hyperslb:2303-6d58b6e96094dc19be93a7b4802ab8215bbab903
         name: slb-cleanup-config-processor
         securityContext:
           privileged: true
@@ -88,7 +88,7 @@ spec:
         env:
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig-platform
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/slb/hyperslb:2301-6d3f3f03d65b8a75307df282ca70dba2b52bf21d
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/slb/hyperslb:2303-6d58b6e96094dc19be93a7b4802ab8215bbab903
         name: slb-cleanup
         securityContext:
           privileged: true
