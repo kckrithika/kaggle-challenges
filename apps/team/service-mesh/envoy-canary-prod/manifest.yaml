@@ -48,8 +48,13 @@ system:
       volumeMounts:
         - name: tls-client-cert
           mountPath: /client-certs
+        - name: tls-server-cert
+          mountPath: /server-certs
 
     volumes:
       - name: tls-client-cert
         maddogCert:
           type: client
+      - name: tls-server-cert
+        maddogCert:
+          type: server
