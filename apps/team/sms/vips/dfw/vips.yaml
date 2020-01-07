@@ -1,5 +1,5 @@
 - lbname: smsapi1-0-dfw
-  iptype: public_reserved
+  iptype: public_active
   customlbname: smsapi1-0-dfw
   servers:
   - sec0-smsapi1-1-dfw.ops.sfdc.net
