@@ -14,10 +14,12 @@ system:
         type: client
     containers:
     - name: estatesservice
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/rdahal/estatesservice:rdahal-20200102002
+      image: dva/estates/estatesservice:89
       ports:
-      - containerPort: 9090
-      - containerPort: 7090
+      - name: receiver-port
+        containerPort: 9090
+      - name: health-port
+        containerPort: 7090
       livenessProbe:
         httpGet:
           path: /health
@@ -41,14 +43,14 @@ system:
         value: /estatesservice/apidocs/
       - name: ESTATESSERVICE_SERVER_CERT_FILEPATH
         value: /server-certs/server/certificates/server.pem
-      - name: ESTATESSERVICE_SERVER_KEY_FILEPATH
-        value: /server-certs/server/keys/server-key.pem
       - name: ESTATESSERVICE_CACERT_FILEPATH
         value: /server-certs/ca/cacerts.pem
+      - name: ESTATESSERVICE_SERVER_KEY_FILEPATH
+        value: /server-certs/server/keys/server-key.pem
       - name: ESTATESSERVICE_SUBSERVICE
         value: $(FUNCTION_NAMESPACE)-$(FUNCTION)-$(FUNCTION_INSTANCE_NAME)
-      - name: ENABLE_MTLS
-        value: true
+      - name: ESTATESSERVICE_ENABLE_MTLS
+        value: false
       command:
         - /estatesservice/estatesservice
         - -port=$(ESTATESSERVICE_PORT)
@@ -57,7 +59,7 @@ system:
         - -cert=$(ESTATESSERVICE_SERVER_CERT_FILEPATH)
         - -key=$(ESTATESSERVICE_SERVER_KEY_FILEPATH)
         - -publishmetrics
-        - -enableMTLS=$(ENABLE_MTLS)
+        - -enableMTLS=$(ESTATESSERVICE_ENABLE_MTLS)
         - -caCert=$(ESTATESSERVICE_CACERT_FILEPATH)
         - -datacenter=$(KINGDOM)
         - -subservice=$(ESTATESSERVICE_SUBSERVICE)
@@ -66,15 +68,7 @@ system:
   loadbalancers:
   - lbname: estatesservicelb
     function: estatesservice
-    annotations:
-      slb.sfdc.net/cnames: |-
-        [
-         {
-          "cname": "estatesservicelb-user-rdahal.slb.sfdc.net"
-         }
-        ]
     slbenabled: true
     ports:
       - port: 443
         targetport: 9090
-        lbtype: tcp
