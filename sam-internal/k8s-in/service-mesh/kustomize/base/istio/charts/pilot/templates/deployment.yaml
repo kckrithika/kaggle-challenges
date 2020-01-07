@@ -40,7 +40,7 @@ spec:
       automountServiceAccountToken: true
       containers:
         - name: discovery
-          image: "%(istioHub)s/pilot:928139e308cc9c5c0b6db84ac0151d8bb857e703"
+          image: "%(istioHub)s/pilot:a33d69901ed9c4505e5f3429de88a60f4e334cbd"
           imagePullPolicy: Always
           args:
           - "discovery"
@@ -105,7 +105,7 @@ spec:
           - name: config-volume
             mountPath: /etc/istio/config
         - name: istio-proxy
-          image: "%(istioHub)s/proxy:928139e308cc9c5c0b6db84ac0151d8bb857e703"
+          image: "%(istioHub)s/proxy:a33d69901ed9c4505e5f3429de88a60f4e334cbd"
           imagePullPolicy: Always
           ports:
           - containerPort: 15003
@@ -248,7 +248,7 @@ spec:
           env:
             - name: DISABLE_REDIRECTION_ON_LOCAL_LOOPBACK
               value: "1"
-          image: "%(istioHub)s/proxy:928139e308cc9c5c0b6db84ac0151d8bb857e703"
+          image: "%(istioHub)s/proxy:a33d69901ed9c4505e5f3429de88a60f4e334cbd"
           imagePullPolicy: Always
           name: istio-init
           resources:
