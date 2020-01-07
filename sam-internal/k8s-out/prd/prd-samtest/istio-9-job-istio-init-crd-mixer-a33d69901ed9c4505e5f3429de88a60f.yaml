@@ -17,7 +17,7 @@ spec:
         - apply
         - -f
         - /etc/istio/crd-mixer/crd-mixer.yaml
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/sfci/servicemesh/istio-packaging/kubectl:a33d69901ed9c4505e5f3429de88a60f4e334cbd
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/sfci/servicemesh/istio-packaging/kubectl:70f276dcd9bd1a6f0e53a7d6ffb6f7c3d738fb41
         imagePullPolicy: Always
         name: istio-init-crd-mixer
         resources:
