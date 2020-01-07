@@ -21,7 +21,7 @@ system:
       ports:
       - name: receiver-port
         containerPort: 9090
-      - name: health-check-port
+      - name: health-port
         containerPort: 7090
       livenessProbe:
         httpGet:
