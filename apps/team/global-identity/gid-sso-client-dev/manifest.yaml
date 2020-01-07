@@ -4,6 +4,13 @@ system:
   - name: gid-sso-client-dev
     count: 1
     containers:
+    - name: samhello
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/sanjay.thakkar/samhello:bob-test1234
+      imagePullPolicy: Always
+      livenessProbe:
+        exec:
+          command:
+            - /usr/bin/true
     - name: gid-sso-client
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/gid/gid-sso-client:dad87de
       imagePullPolicy: Always
