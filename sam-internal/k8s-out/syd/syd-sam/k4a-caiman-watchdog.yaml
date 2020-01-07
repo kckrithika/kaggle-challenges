@@ -4,15 +4,15 @@ items:
   kind: Deployment
   metadata:
     labels:
-      name: k4a-caiman-watchdog-syd11
+      name: k4a-caiman-watchdog-cdu11
       sam.data.sfdc.net/owner: secrets
-    name: k4a-caiman-watchdog-syd11
+    name: k4a-caiman-watchdog-cdu11
     namespace: sam-system
   spec:
     replicas: 2
     selector:
       matchLabels:
-        name: k4a-caiman-watchdog-syd11
+        name: k4a-caiman-watchdog-cdu11
         sam.data.sfdc.net/owner: secrets
     template:
       metadata:
@@ -29,7 +29,7 @@ items:
              ]
             }
         labels:
-          name: k4a-caiman-watchdog-syd11
+          name: k4a-caiman-watchdog-cdu11
           sam.data.sfdc.net/owner: secrets
         namespace: sam-system
       spec:
@@ -41,7 +41,7 @@ items:
                 - key: name
                   operator: In
                   values:
-                  - k4a-caiman-watchdog-syd11
+                  - k4a-caiman-watchdog-cdu11
               topologyKey: kubernetes.io/hostname
         containers:
         - args:
@@ -60,7 +60,7 @@ items:
           - -argusUrl
           - http://ajna0-funnel1-0-syd.data.sfdc.net:80
           - -url
-          - https://sec0-kfora1-1-syd.ops.sfdc.net:8443
+          - https://sec0-kfora1-1-cdu.ops.sfdc.net:8443
           env:
           - name: FUNCTION_INSTANCE_NAME
             valueFrom:
@@ -177,15 +177,15 @@ items:
   kind: Deployment
   metadata:
     labels:
-      name: k4a-caiman-watchdog-syd12
+      name: k4a-caiman-watchdog-cdu12
       sam.data.sfdc.net/owner: secrets
-    name: k4a-caiman-watchdog-syd12
+    name: k4a-caiman-watchdog-cdu12
     namespace: sam-system
   spec:
     replicas: 2
     selector:
       matchLabels:
-        name: k4a-caiman-watchdog-syd12
+        name: k4a-caiman-watchdog-cdu12
         sam.data.sfdc.net/owner: secrets
     template:
       metadata:
@@ -202,7 +202,7 @@ items:
              ]
             }
         labels:
-          name: k4a-caiman-watchdog-syd12
+          name: k4a-caiman-watchdog-cdu12
           sam.data.sfdc.net/owner: secrets
         namespace: sam-system
       spec:
@@ -214,7 +214,7 @@ items:
                 - key: name
                   operator: In
                   values:
-                  - k4a-caiman-watchdog-syd12
+                  - k4a-caiman-watchdog-cdu12
               topologyKey: kubernetes.io/hostname
         containers:
         - args:
@@ -233,7 +233,7 @@ items:
           - -argusUrl
           - http://ajna0-funnel1-0-syd.data.sfdc.net:80
           - -url
-          - https://sec0-kfora1-2-syd.ops.sfdc.net:8443
+          - https://sec0-kfora1-2-cdu.ops.sfdc.net:8443
           env:
           - name: FUNCTION_INSTANCE_NAME
             valueFrom:
@@ -350,15 +350,15 @@ items:
   kind: Deployment
   metadata:
     labels:
-      name: k4a-caiman-watchdog-syd21
+      name: k4a-caiman-watchdog-cdu21
       sam.data.sfdc.net/owner: secrets
-    name: k4a-caiman-watchdog-syd21
+    name: k4a-caiman-watchdog-cdu21
     namespace: sam-system
   spec:
     replicas: 2
     selector:
       matchLabels:
-        name: k4a-caiman-watchdog-syd21
+        name: k4a-caiman-watchdog-cdu21
         sam.data.sfdc.net/owner: secrets
     template:
       metadata:
@@ -375,7 +375,7 @@ items:
              ]
             }
         labels:
-          name: k4a-caiman-watchdog-syd21
+          name: k4a-caiman-watchdog-cdu21
           sam.data.sfdc.net/owner: secrets
         namespace: sam-system
       spec:
@@ -387,7 +387,7 @@ items:
                 - key: name
                   operator: In
                   values:
-                  - k4a-caiman-watchdog-syd21
+                  - k4a-caiman-watchdog-cdu21
               topologyKey: kubernetes.io/hostname
         containers:
         - args:
@@ -406,7 +406,7 @@ items:
           - -argusUrl
           - http://ajna0-funnel1-0-syd.data.sfdc.net:80
           - -url
-          - https://sec0-kfora2-1-syd.ops.sfdc.net:8443
+          - https://sec0-kfora2-1-cdu.ops.sfdc.net:8443
           env:
           - name: FUNCTION_INSTANCE_NAME
             valueFrom:
@@ -523,15 +523,15 @@ items:
   kind: Deployment
   metadata:
     labels:
-      name: k4a-caiman-watchdog-syd22
+      name: k4a-caiman-watchdog-cdu22
       sam.data.sfdc.net/owner: secrets
-    name: k4a-caiman-watchdog-syd22
+    name: k4a-caiman-watchdog-cdu22
     namespace: sam-system
   spec:
     replicas: 2
     selector:
       matchLabels:
-        name: k4a-caiman-watchdog-syd22
+        name: k4a-caiman-watchdog-cdu22
         sam.data.sfdc.net/owner: secrets
     template:
       metadata:
@@ -548,7 +548,7 @@ items:
              ]
             }
         labels:
-          name: k4a-caiman-watchdog-syd22
+          name: k4a-caiman-watchdog-cdu22
           sam.data.sfdc.net/owner: secrets
         namespace: sam-system
       spec:
@@ -560,7 +560,7 @@ items:
                 - key: name
                   operator: In
                   values:
-                  - k4a-caiman-watchdog-syd22
+                  - k4a-caiman-watchdog-cdu22
               topologyKey: kubernetes.io/hostname
         containers:
         - args:
@@ -579,7 +579,7 @@ items:
           - -argusUrl
           - http://ajna0-funnel1-0-syd.data.sfdc.net:80
           - -url
-          - https://sec0-kfora2-2-syd.ops.sfdc.net:8443
+          - https://sec0-kfora2-2-cdu.ops.sfdc.net:8443
           env:
           - name: FUNCTION_INSTANCE_NAME
             valueFrom:
