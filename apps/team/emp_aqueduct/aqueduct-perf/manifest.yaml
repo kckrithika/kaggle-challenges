@@ -63,3 +63,6 @@ system:
         lbtype: http
         tls: true
         sticky: 300
+      - port: 15372
+        targetport: 15372
+        lbtype: http
