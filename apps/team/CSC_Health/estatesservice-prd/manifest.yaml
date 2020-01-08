@@ -4,8 +4,8 @@ system:
     email:
       - estates@salesforce.com
   functions:
-  - name: estatesservice-prod
-    count: 2
+  - name: estatesservice-prd
+    count: 1
     volumes:
     - name: server-cert
       maddogCert:
@@ -70,7 +70,7 @@ system:
         - -rpmurl=$(ESTATESSERVICE_RPMURL)
   loadbalancers:
   - lbname: estatesservice
-    function: estatesservice-prod
+    function: estatesservice-prd
     slbenabled: true
     ports:
       - port: 443
