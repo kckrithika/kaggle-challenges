@@ -57,7 +57,7 @@ if samfeatureflags.sloop then configs.daemonSetBase("sam") {
                         volumeMounts: [
                             {
                                 name: "prom-data",
-                                mountPath: "/data",
+                                mountPath: "/prometheus/data",
                             },
                             {
                                 name: "sloopconfig",
