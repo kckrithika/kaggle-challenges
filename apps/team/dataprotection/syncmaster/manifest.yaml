@@ -20,7 +20,7 @@ system:
       ports:
       - containerPort: 7020
         name: grpc
-      - containerPort: 7022
+      - containerPort: 9090
         name: http
       - containerPort: 15372
         name: management
