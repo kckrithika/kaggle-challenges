@@ -4,27 +4,29 @@ system:
     email:
       - estates@salesforce.com
   functions:
-  - name: estatesservice
+  - name: estatesservice-prd
     count: 1
     volumes:
     - name: server-cert
       maddogCert:
         type: server
         lbnames:
-        - estatesservicelb
+        - estatesservice
     - name: client-cert
       maddogCert:
         type: client
     containers:
     - name: estatesservice
-      image: dva/estates/estatesservice:83
+      image: dva/estates/estatesservice:91
       ports:
-      - containerPort: 9090
+      - name: receiver-port
+        containerPort: 9090
+      - name: health-port
+        containerPort: 7090
       livenessProbe:
         httpGet:
-          scheme: HTTPS
-          path: /v1.0/info
-          port: 9090
+          path: /health
+          port: 7090
         initialDelaySeconds: 500
       volumeMounts:
         - mountPath: /server-certs
@@ -34,6 +36,8 @@ system:
       env:
       - name: ESTATESSERVICE_PORT
         value: 9090
+      - name: ESTATESSERVICE_HEALTH_PORT
+        value: 7090
       - name: ESTATESSERVICE_FUNNEL_ENDPOINT
         value: http://$(SFDC_METRICS_SERVICE_HOST):$(SFDC_METRICS_SERVICE_PORT)
       - name: ESTATESSERVICE_RPMURL
@@ -42,25 +46,33 @@ system:
         value: /estatesservice/apidocs/
       - name: ESTATESSERVICE_SERVER_CERT_FILEPATH
         value: /server-certs/server/certificates/server.pem
+      - name: ESTATESSERVICE_CACERT_FILEPATH
+        value: /server-certs/ca/cacerts.pem
       - name: ESTATESSERVICE_SERVER_KEY_FILEPATH
         value: /server-certs/server/keys/server-key.pem
       - name: ESTATESSERVICE_SUBSERVICE
         value: $(FUNCTION_NAMESPACE)-$(FUNCTION)-$(FUNCTION_INSTANCE_NAME)
+      - name: ESTATESSERVICE_ENABLE_MTLS
+        value: true
       command:
         - /estatesservice/estatesservice
         - -port=$(ESTATESSERVICE_PORT)
+        - -healthPort=$(ESTATESSERVICE_HEALTH_PORT)
         - -swaggerdir=$(ESTATESSERVICE_SWAGGERUI_DIRECTORY)
         - -cert=$(ESTATESSERVICE_SERVER_CERT_FILEPATH)
         - -key=$(ESTATESSERVICE_SERVER_KEY_FILEPATH)
         - -publishmetrics
+        - -enableMTLS=$(ESTATESSERVICE_ENABLE_MTLS)
+        - -caCert=$(ESTATESSERVICE_CACERT_FILEPATH)
         - -datacenter=$(KINGDOM)
         - -subservice=$(ESTATESSERVICE_SUBSERVICE)
         - -funnelendpoint=$(ESTATESSERVICE_FUNNEL_ENDPOINT)
         - -rpmurl=$(ESTATESSERVICE_RPMURL)
   loadbalancers:
-  - lbname: estatesservicelb
-    function: estatesservice
+  - lbname: estatesservice
+    function: estatesservice-prd
     slbenabled: true
     ports:
       - port: 443
         targetport: 9090
+        lbtype: tcp
