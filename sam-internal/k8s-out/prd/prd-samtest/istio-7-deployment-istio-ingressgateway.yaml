@@ -206,7 +206,7 @@ spec:
           valueFrom:
             fieldRef:
               fieldPath: metadata.labels['cluster']
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/sfci/servicemesh/istio-packaging/proxy:70f276dcd9bd1a6f0e53a7d6ffb6f7c3d738fb41
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/sfci/servicemesh/istio-packaging/proxy:8b37ee7ba7ac0624f0b8bc7a2e6d1bcc00a80d7a
         imagePullPolicy: Always
         name: istio-proxy
         ports:
