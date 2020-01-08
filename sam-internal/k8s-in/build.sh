@@ -22,19 +22,22 @@ cd $DIR
 # Script to generate yaml files for all our apps in all estates
 # ./build.sh
 
-if [ -z "$FIREFLY" ]; then
-   SAMBINDIR=/opt/sam
-else
-   echo "*** EXECUTING IN $FIREFLY ENVIRONMENT"
+if [ -n "${FIREFLY}" ]; then
+   echo "*** EXECUTING IN ${FIREFLY} ENVIRONMENT"
    SAMBINDIR=/sam
+elif [ -n "${LOCAL_SAM_BIN_PATH}" ]; then
+    SAMBINDIR="${LOCAL_SAM_BIN_PATH}"
+else
+    echo "No defined location for SAM binaries"
+    exit 1
 fi
 
 # Populate dir to cache jsonnet executable if not present
 JSONNET_EXEC_CACHE_DIR="${CACHE_DIR}/jsonnet_exec"
 JSONNET_EXEC_DIR="jsonnet"
 
-if [ ! -d ${JSONNET_EXEC_CACHE_DIR} ]; then
-    mkdir -p ${JSONNET_EXEC_CACHE_DIR}
+if [ ! -d "${JSONNET_EXEC_CACHE_DIR}" ]; then
+    mkdir -p "${JSONNET_EXEC_CACHE_DIR}"
 fi
 
 # Look for jsonnet in exec cache if not found here, copy over to avoid need to recompile

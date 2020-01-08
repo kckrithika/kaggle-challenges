@@ -1,0 +1,48 @@
+#!/bin/bash
+set -e
+
+NEW_PR_FOLDER=new_pr
+NEW_PR_PATH=/tmp/${NEW_PR_FOLDER}
+EVAL_BRANCH_NAME=eval_branch
+
+STEP3_SCRIPT=./tnrp/evaluate_pr
+
+prepare() {
+    EVAL_DIR="${PWD}"
+}
+
+get_pr() {
+    rm -rf ${NEW_PR_PATH} || true
+
+    printf "\nCloning repo: git.soma.salesforce.com:sam/%s\n" "${TNRP_PRODUCT}"
+    cd /tmp
+    git clone "git@git.soma.salesforce.com:sam/${TNRP_PRODUCT}.git" ${NEW_PR_FOLDER}
+    cd ${NEW_PR_FOLDER}
+
+    printf "Applying PR#%s\n" "${STAGE_PULL_REQUEST_ID}"
+    git fetch origin "pull/${STAGE_PULL_REQUEST_ID}/head:${EVAL_BRANCH_NAME}"
+    git checkout ${EVAL_BRANCH_NAME}
+}
+
+setup_ghe_access() {
+    cp "${EVAL_DIR}/token.txt" "${NEW_PR_PATH}/"
+}
+
+debug_modify_pr() {
+    cp "${EVAL_DIR}/evaluate_pr" "${NEW_PR_PATH}/tnrp/"
+    cp "${EVAL_DIR}/build.sh" "${NEW_PR_PATH}/sam-internal/k8s-in/"
+    #cp "${EVAL_DIR}/parallel_build.py" "${NEW_PR_PATH}/sam-internal/k8s-in/"
+}
+
+run_step3() {
+    cd ${NEW_PR_PATH}
+    . ${STEP3_SCRIPT}
+}
+
+printf "Starting step2\n"
+
+prepare
+get_pr
+setup_ghe_access
+debug_modify_pr
+run_step3
