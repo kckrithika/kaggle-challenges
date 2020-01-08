@@ -18,11 +18,11 @@ local kingdom = std.extVar("kingdom");
     ### Per-phase image tags
     per_phase: {
 
-        ### Release Phase 1 - prd-sdc
+        ### Release Phase 1 - prd-sdc, xrd-sdc
         "1": {
             hypersdn: "2296-b9f375d9fd1c89fbb591b1eb4cc75979a2205c43",
             sitebridge: "878-190c1fe926f8e03a212d8a0ca922140018530ad0",
-            bird: "503-94b968cf67a338280f71a5c932f0956d13e982bb",
+            bird: "510-089d973608446c4ee24e8ee0013d10620f61566c",
             hyperelk: "v-0000102-91c9122c",
             },
 
@@ -58,7 +58,7 @@ local kingdom = std.extVar("kingdom");
 
     ### Phase kingdom/estate mapping
     phase: (
-        if (estate == "prd-sdc") then
+        if (estate == "prd-sdc") || (estate == "xrd-sdc") then
             "1"
         else if (estate == "prd-samtest") || (estate == "prd-samdev") || (estate == "prd-data-flowsnake_test") then
             "2"
