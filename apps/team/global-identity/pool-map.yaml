@@ -30,6 +30,9 @@ apps:
   gid-sso-client-dev:
     - name: prd/prd-sam_globalidentity
 
+  cast-prd-dev:
+    - name: prd/prd-sam_globalidentity
+
   gid-runtime-service-staging:
     - name: prd/prd-sam_globalidentity
 
