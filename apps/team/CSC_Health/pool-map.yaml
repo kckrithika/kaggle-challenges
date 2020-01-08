@@ -206,3 +206,5 @@ apps:
     - xrd/xrd-sam_report_collector
   estatesservice-demo:
     - prd/prd-sam_report_collector
+  estatesservice-prod:
+    - prd/prd-sam_report_collector
