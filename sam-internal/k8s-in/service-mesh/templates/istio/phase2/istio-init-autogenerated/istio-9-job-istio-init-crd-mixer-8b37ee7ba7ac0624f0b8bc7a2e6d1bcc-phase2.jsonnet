@@ -7,7 +7,7 @@ if (istioPhases.phaseNum == 2) then
   apiVersion: "batch/v1",
   kind: "Job",
   metadata: {
-    name: "istio-init-crd-all-aa56850ad9a1bc39fc8583dcd4eda1d6",
+    name: "istio-init-crd-mixer-8b37ee7ba7ac0624f0b8bc7a2e6d1bcc",
     namespace: "mesh-control-plane",
   },
   spec: {
@@ -26,11 +26,11 @@ if (istioPhases.phaseNum == 2) then
               "kubectl",
               "apply",
               "-f",
-              "/etc/istio/crd-all/crd-all.gen.yaml",
+              "/etc/istio/crd-mixer/crd-mixer.yaml",
             ],
             image: "%(istioHub)s/kubectl:%(istioTag)s" % mcpIstioConfig,
             imagePullPolicy: "Always",
-            name: "istio-init-crd-all",
+            name: "istio-init-crd-mixer",
             resources: {
               limits: {
                 cpu: "100m",
@@ -43,8 +43,8 @@ if (istioPhases.phaseNum == 2) then
             },
             volumeMounts: [
               {
-                mountPath: "/etc/istio/crd-all",
-                name: "crd-all",
+                mountPath: "/etc/istio/crd-mixer",
+                name: "crd-mixer",
                 readOnly: true,
               },
             ],
@@ -63,9 +63,9 @@ if (istioPhases.phaseNum == 2) then
         volumes: [
           {
             configMap: {
-              name: "istio-crd-all",
+              name: "istio-crd-mixer",
             },
-            name: "crd-all",
+            name: "crd-mixer",
           },
         ],
       },
