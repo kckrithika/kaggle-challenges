@@ -8,7 +8,7 @@ system:
     count: 1
     containers:
     - name: spec-jvm-2008
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/nmoser/spec-jvm-2008:7
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/nmoser/spec-jvm-2008:8
       resources:
         limits: { cpu: "20", memory: "8Gi" }
         requests: { cpu: "20", memory: "8Gi" }
