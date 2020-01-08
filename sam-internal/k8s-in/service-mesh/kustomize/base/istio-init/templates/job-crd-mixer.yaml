@@ -4,7 +4,7 @@ apiVersion: batch/v1
 kind: Job
 metadata:
   namespace: mesh-control-plane
-  name: istio-init-crd-mixer-a33d69901ed9c4505e5f3429de88a60f
+  name: istio-init-crd-mixer-8b37ee7ba7ac0624f0b8bc7a2e6d1bcc
 spec:
   template:
     metadata:
@@ -20,7 +20,7 @@ spec:
       automountServiceAccountToken: true
       containers:
       - name: istio-init-crd-mixer
-        image: "791719295754.dkr.ecr.us-east-2.amazonaws.com/sfci/servicemesh/istio-packaging/kubectl:a33d69901ed9c4505e5f3429de88a60f4e334cbd"
+        image: "791719295754.dkr.ecr.us-east-2.amazonaws.com/sfci/servicemesh/istio-packaging/kubectl:8b37ee7ba7ac0624f0b8bc7a2e6d1bcc00a80d7a"
         imagePullPolicy: Always
         resources:
           limits:
