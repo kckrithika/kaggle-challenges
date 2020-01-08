@@ -48,12 +48,6 @@ system:
             path: /var/log/crondemo
 
   loadbalancers:
-  - lbname: cs101-sdb-lb
-    function: cs101-sdb
-    slbenabled: true
-    ports:
-      - port: 1521
-        targetport: 1521
   - lbname: cs101-demo-lb
     function: scheduler-demo-ssl
     slbenabled: true
