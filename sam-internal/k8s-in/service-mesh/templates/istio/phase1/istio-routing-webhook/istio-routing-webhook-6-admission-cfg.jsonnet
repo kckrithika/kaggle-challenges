@@ -34,6 +34,12 @@ if (istioPhases.phaseNum == 1) then
         },
         {
           operations: ["CREATE", "UPDATE"],
+          apiGroups: ["extensions"],
+          apiVersions: ["v1beta1"],
+          resources: ["deployments"],
+        },
+        {
+          operations: ["CREATE", "UPDATE"],
           apiGroups: ["mesh.sfdc.net"],
           apiVersions: ["v1"],
           resources: ["routingcontexts"],
