@@ -54,7 +54,7 @@ system:
       - name: C2C_SERVICEURLOVERRIDE
         value: https://cast-stage.cast.prd-sam.prd.slb.sfdc.net/services/c2c
       - name: USE_C2C_SERVICE
-        value: false
+        value: true
       - name: INCLUDEALLSTACKTRACES
         value: true
       - name: QUERY_LIMIT
