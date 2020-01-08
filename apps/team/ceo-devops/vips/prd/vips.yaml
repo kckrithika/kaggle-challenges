@@ -5951,4 +5951,4 @@
     reencrypt: false
     healthport: 9200
     healthprotocol: http
-    lbalgorithm: roundrobin
+    healthpath: /
