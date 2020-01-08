@@ -45,7 +45,7 @@ system:
       image: dva/csc-health/candidate-service:17
       ports:
       - containerPort: 8888
-        name: liveness-healthz
+        name: healthz
       - containerPort: 6666
         name: ha-cluster
       volumeMounts:
