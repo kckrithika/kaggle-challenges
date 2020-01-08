@@ -1,5 +1,3 @@
 apps:
-    prd-sdb-test:
-        - prd/prd-sam
-    prd-cron-test:
+    ss-client-demo-ssl:
         - prd/prd-sam
