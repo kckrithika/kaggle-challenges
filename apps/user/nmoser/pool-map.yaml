@@ -1,3 +1,5 @@
 apps:
+ spec-jvm-2008:
+  - prd/prd-sam
  my-sam-test:
   - prd/prd-sam

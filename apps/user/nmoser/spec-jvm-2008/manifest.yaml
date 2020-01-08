@@ -8,7 +8,7 @@ system:
     count: 1
     containers:
     - name: spec-jvm-2008
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/nmoser/spec-jvm-2008:5
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/nmoser/spec-jvm-2008:6
       livenessProbe:
         exec:
           command:
