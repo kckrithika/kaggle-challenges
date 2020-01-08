@@ -158,6 +158,7 @@ local envConfig = import "configs/firefly_service_conf.jsonnet";
           ] + if is_fcp_prod_certs_enabled then [
             {"name": "customer-certs", "cert-type":"client", "kingdom":"prd", "role": $.role + ".customer"},
             {"name": "nqa-certs", "cert-type":"client", "kingdom":"prd", "role": $.role + ".customer.nqa"},
+            {"name": "sam-certs", "cert-type":"client", "kingdom":"prd", "role": $.role + ".customer.sam"},
           ] else if is_mdp_prod_certs_enabled then [
             {"name": "mdp-certs", "cert-type":"client", "kingdom":"prd", "role": $.role + ".mdp"},
           ] else if is_mdp_test_certs_enabled then [
@@ -165,6 +166,7 @@ local envConfig = import "configs/firefly_service_conf.jsonnet";
           ] else if is_fcp_test_certs_enabled then [
             {"name": "customer-certs", "cert-type":"client", "kingdom":"prd", "role": $.role + ".customer"},
             {"name": "nqa-certs", "cert-type":"client", "kingdom":"prd", "role": $.role + ".customer.nqa"},
+            {"name": "sam-certs", "cert-type":"client", "kingdom":"prd", "role": $.role + ".customer.sam"},
             {"name": "tnrpfirefly-certs", "cert-type":"client", "kingdom":"prd", "role": $.role + ".customer.tnrpfirefly"},
           ] else [],
           annotations: {
@@ -179,6 +181,8 @@ local envConfig = import "configs/firefly_service_conf.jsonnet";
                 "customer-certs:/customer-certs/",
                 "--cert-folders",
                 "nqa-certs:/nqa-certs/",
+                "--cert-folders",
+                "sam-certs:/sam-certs/",
               ],
               volumeMounts +: [
                 {
@@ -188,6 +192,10 @@ local envConfig = import "configs/firefly_service_conf.jsonnet";
                 {
                   mountPath: "/nqa-certs/",
                   name: "nqa-certs",
+                },
+                {
+                  mountPath: "/sam-certs/",
+                  name: "sam-certs",
                 },
               ],
             } else if is_mdp_prod_certs_enabled then {
@@ -220,6 +228,8 @@ local envConfig = import "configs/firefly_service_conf.jsonnet";
                 "customer-certs:/customer-certs/",
                 "--cert-folders",
                 "nqa-certs:/nqa-certs/",
+                "--cert-folders",
+                "sam-certs:/sam-certs/",
               ],
               volumeMounts +: [
                 {
@@ -234,6 +244,10 @@ local envConfig = import "configs/firefly_service_conf.jsonnet";
                   mountPath: "/nqa-certs/",
                   name: "nqa-certs",
                 },
+                {
+                  mountPath: "/sam-certs/",
+                  name: "sam-certs",
+                },
               ],
             } else {},
           ],
@@ -244,6 +258,8 @@ local envConfig = import "configs/firefly_service_conf.jsonnet";
                 "customer-certs:/customer-certs/",
                 "--cert-folders",
                 "nqa-certs:/nqa-certs/",
+                "--cert-folders",
+                "sam-certs:/sam-certs/",
               ],
               volumeMounts +: [
                 {
@@ -253,6 +269,10 @@ local envConfig = import "configs/firefly_service_conf.jsonnet";
                 {
                   mountPath: "/nqa-certs/",
                   name: "nqa-certs",
+                },
+                {
+                  mountPath: "/sam-certs/",
+                  name: "sam-certs",
                 },
               ],
             } else if is_mdp_prod_certs_enabled then {
@@ -285,6 +305,8 @@ local envConfig = import "configs/firefly_service_conf.jsonnet";
                 "customer-certs:/customer-certs/",
                 "--cert-folders",
                 "nqa-certs:/nqa-certs/",
+                "--cert-folders",
+                "sam-certs:/sam-certs/",
               ],
               volumeMounts +: [
                 {
@@ -298,6 +320,10 @@ local envConfig = import "configs/firefly_service_conf.jsonnet";
                 {
                   mountPath: "/nqa-certs/",
                   name: "nqa-certs",
+                },
+                {
+                  mountPath: "/sam-certs/",
+                  name: "sam-certs",
                 },
               ],
             } else {},
@@ -367,6 +393,10 @@ local envConfig = import "configs/firefly_service_conf.jsonnet";
                   mountPath: "/nqa-certs/",
                   name: "nqa-certs",
                   },
+                  {
+                  mountPath: "/sam-certs/",
+                  name: "sam-certs",
+                  },
                 ] else if is_mdp_prod_certs_enabled then [
                   {
                     name: "mdp-certs",
@@ -385,6 +415,10 @@ local envConfig = import "configs/firefly_service_conf.jsonnet";
                   {
                   mountPath: "/nqa-certs/",
                   name: "nqa-certs",
+                  },
+                  {
+                  mountPath: "/sam-certs/",
+                  name: "sam-certs",
                   },
                   {
                     name: "tnrpfirefly-certs",
@@ -452,6 +486,12 @@ local envConfig = import "configs/firefly_service_conf.jsonnet";
                   medium: "Memory",
                 },
               },
+              {
+                name: "sam-certs",
+                emptyDir: {
+                  medium: "Memory",
+                },
+              },
           ] else if is_mdp_prod_certs_enabled then [
               {
                 name: "mdp-certs",
@@ -481,6 +521,12 @@ local envConfig = import "configs/firefly_service_conf.jsonnet";
               },
                {
                 name: "nqa-certs",
+                emptyDir: {
+                  medium: "Memory",
+                },
+              },
+              {
+                name: "sam-certs",
                 emptyDir: {
                   medium: "Memory",
                 },
