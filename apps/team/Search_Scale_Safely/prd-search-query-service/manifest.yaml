@@ -17,6 +17,7 @@ system:
       - service.jar
       args:
       - --metrics.funnelEndPointURL=http://ajnafunneldirecttls.funnel.svc.mesh.sfdc.net:7442
+      - --modelstore.repo.root=model_repository_root
       ports:
       - name: service-port
         containerPort: 7443
