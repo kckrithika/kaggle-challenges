@@ -9,6 +9,11 @@ apps:
   # - ph2/ph2-sam_dp
   - dfw/dfw-sam_dp
 
+  syncmaster-istio:
+  - lo3/lo3-sam_dp
+  sync-istio:
+  - lo3/lo3-sam_dp
+
 # We have RAC issues on the following datacenters:
  # - phx/phx-sam_dp # 7 (TBD)
  # - ukb/ukb-sam_dp # 8 (TBD)
