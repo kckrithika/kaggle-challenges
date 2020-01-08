@@ -1,7 +1,7 @@
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: istio-init-crd-all-a33d69901ed9c4505e5f3429de88a60f
+  name: istio-init-crd-all-8b37ee7ba7ac0624f0b8bc7a2e6d1bcc
   namespace: mesh-control-plane
 spec:
   template:
