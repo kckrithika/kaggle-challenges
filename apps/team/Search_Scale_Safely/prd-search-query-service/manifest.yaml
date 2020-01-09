@@ -12,7 +12,7 @@ system:
         maxUnavailable: 25%
     containers:
     - name: search-query-service
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-all/sfci/searchdev/search-query-execution-platform:7.1
+      image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-all/sfci/searchdev/search-query-execution-platform:7.1
       ports:
       - name: service-port
         containerPort: 7443
