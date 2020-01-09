@@ -103,6 +103,7 @@ spec:
         - --commonconfig.accessLogDirectory=/host/data/slb/logs/slb-hsm-nginx
         - --tcpconfig.accessLogFormat=basic
         - --httpconfig.accessLogDirectory=/host/data/slb/logs/slb-hsm-nginx
+        - --flagPushNginxLogsToSplunk=true
         env:
         - name: NODE_NAME
           valueFrom:
@@ -357,7 +358,6 @@ spec:
         - --hostnameOverride=$(NODE_NAME)
         - --control.configProcSentinel=/host/data/slb/config/slb-hsm-nginx/slb-config-proc.sentinel
         - --pipeline.supportedProxies=slb-hsm-nginx
-        - --flagPushNginxLogsToSplunk=true
         env:
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig-platform
