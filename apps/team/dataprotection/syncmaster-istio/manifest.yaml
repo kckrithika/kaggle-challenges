@@ -7,7 +7,7 @@ system:
       sidecar.istio.io/inject: "true"
       sidecar.istio.io/proxyCPU: "8000m"
       sidecar.istio.io/proxyMemory: "4096Mi"
-      traffic.sidecar.istio.io/excludeInboundPorts: "9522,9523,9524,15372,9090"
+      traffic.sidecar.istio.io/excludeInboundPorts: "9522,9523,9524,15372,9090,8080"
     containers:
     - name: syncmaster
       image: dva/winterfell-syncmaster:38
@@ -22,6 +22,8 @@ system:
         value: dc.$(KINGDOM),sam,oracle
       - name: GRPC_TLS
         value: false
+      - name: GRPC_PORT
+        value: 7443
       ports:
       - containerPort: 7443
         name: grpc
