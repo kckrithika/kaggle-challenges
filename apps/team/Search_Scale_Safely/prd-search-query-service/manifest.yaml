@@ -21,7 +21,7 @@ system:
       env:
       - name: JVM_OPTS
         # Funnel can be removed on QS 7.2
-        value: "'-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:5005' -Dmesh.istio-mode=true -Dgrpc.port=7443 -Dmetrics.funnelEndpointURL=http://ajnafunneldirecttls.funnel.svc.mesh.sfdc.net:7442"
+        value: "-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:5005 -Dmesh.istio-mode=true -Dgrpc.port=7443 -Dmetrics.funnelEndpointURL=http://ajnafunneldirecttls.funnel.svc.mesh.sfdc.net:7442"
       resources:
         limits:
           cpu: "12"
