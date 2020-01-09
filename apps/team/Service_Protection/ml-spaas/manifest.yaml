@@ -28,7 +28,7 @@ system:
         requests: { cpu: "1", memory: "4Gi" }
       args:
       - -endpoint
-      - $(FUNCTION):DATACENTER_ALLENV:HTTP2
+      - $(FUNCTION_NAMESPACE)/$(FUNCTION):DATACENTER_ALLENV:HTTP2
       - -endpoint
       - $(FUNCTION_NAMESPACE)/$(FUNCTION):DATACENTER_ALLENV:HTTP2_TLS
       livenessProbe:
