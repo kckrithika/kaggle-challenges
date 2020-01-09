@@ -1,0 +1,63 @@
+apiVersion: v1
+
+system:
+  functions:
+  - name: dbg-shipping-dst-fail1
+    count: 1
+    labels:
+      app: dbg-shipping-dst-fail1
+    annotations:
+      "sherpa-injector.service-mesh/inject": "enabled"
+      "sherpa-injector.service-mesh/canary": "enabled"
+      "routing.mesh.sfdc.net/enabled": "true"
+    containers:
+
+    - name: shipping
+      # Image build:
+      # https://sfcirelease.dop.sfdc.net/job/services/job/sfdc-bazel_projects_services_examples_shipping/job/sfdc-bazel/job/master/91
+      image: sfci/services/sfdc-bazel/scone/shipping:7572acf02
+      env:
+      - name: SFDC_ENVIRONMENT
+        value: mesh
+      - name: JAVA_OPTS
+        value: "-Xmx256m -Dscone.service.name=svc-dbg-shipping-dst-fail1 -Dmanagement.server.port=15372"
+      - name: FAKE_ENV_VAR_INCREMENT_TO_TRIGGER_SAM_DEPLOY
+        value: "1"
+      # Change to a random value, so that Sherpa can't access Scone service to introduce a Failure scenario
+      - name: GRPC_PORT
+        value: 1354
+      ports:
+      - containerPort: 7443
+        name: grpc-sherpa
+      - containerPort: 7020
+        name: grpc-svc
+      - containerPort: 15372
+        name: scone-mgmt
+      livenessProbe:
+        initialDelaySeconds: 15
+        httpGet:
+          path: /manage/health
+          port: 15372
+
+    - name: beacon
+      # https://git.soma.salesforce.com/services/sfdc-bazel/tree/master/projects/sidecars/beacon#docker-image
+      image: sfci/services/sfdc-bazel/disco/beacon:d7f1640
+      env:
+      - name: SFDC_ENVIRONMENT
+        value: mesh
+      args:
+      - -endpoint
+      - service-mesh/dbg-shipping-dst-fail1:DATACENTER:7443     
+      livenessProbe:
+        initialDelaySeconds: 5
+        exec:
+          command:
+          - "/opt/beacon/is-alive.sh"
+
+    volumes:
+    - name: tls-client-cert
+      maddogCert:
+        type: client
+    - name: tls-server-cert
+      maddogCert:
+        type: server
