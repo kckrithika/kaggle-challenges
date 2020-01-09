@@ -47,7 +47,7 @@ system:
       - name: GDOT_BASEPATHOVERRIDE
         value: http://cloudatlas-prd-stage-service.cloudatlas.localhost.mesh.force.com:5442/scim
       - name: INCLUDEALLSTACKTRACES
-        value: false
+        value: true
       - name: JVM_ARGS
         value: "-Dspring.profiles.active=prod -Djava.util.concurrent.ForkJoinPool.common.parallelism=50
                 -verbose:gc -XX:+PrintGCDateStamps -XX:+PrintHeapAtGC
