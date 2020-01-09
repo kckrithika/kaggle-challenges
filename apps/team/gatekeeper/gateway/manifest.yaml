@@ -9,10 +9,10 @@ system:
     count: 1
     containers:
     - name: gateway
-      image: dva/gateway:22-b46d307eb0edade48ac6a11394d03dbe7d3c9693
+      image: dva/gateway:27-2b14d356a02eb5c9380f1a6824041b1bdd6535c0
       livenessProbe:
         httpGet:
-          path: /rest/deployments/all/Steam/220
+          path: /rest/deployments/enabled
           port: 8080
         initialDelaySeconds: 60 
         timeoutSeconds: 10
