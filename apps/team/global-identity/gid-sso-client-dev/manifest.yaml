@@ -3,6 +3,7 @@ system:
   functions:
   - name: gid-sso-client-dev
     count: 1
+    hostnetwork: true
     containers:
     - name: samhello
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/sanjay.thakkar/samhello:bob-test1234
