@@ -314,6 +314,8 @@ apps:
  topology-ui:
   - name: prd/prd-sp2-sam_caas
 
+ freedom:
+  - name: prd/prd-sp2-sam_caas
 # GCP Alpha
  gcp-devmvp-caas-for-casam:
 #  - name: mvp/gsf-core-devmvp-sam2-sam
