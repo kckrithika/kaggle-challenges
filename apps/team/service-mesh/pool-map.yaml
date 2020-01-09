@@ -204,3 +204,17 @@ apps:
     - prd/prd-sam_gater
     - prd/prd-samtest
     - prd/prd-samdev
+
+  # Temporarily for `Mesh Debugging Tool` debuging
+  dbg-ordering-authz-fail:
+    - prd/prd-sam_gater
+  dbg-ordering-dst-fail1:
+    - prd/prd-sam_gater
+  dbg-ordering-identity-miss:
+    - prd/prd-sam_gater
+  dbg-shipping-authz-fail:
+    - prd/prd-sam_gater
+  dbg-shipping-dst-fail1:
+    - prd/prd-sam_gater
+  dbg-shipping-identity-miss:
+    - prd/prd-sam_gater
