@@ -43,6 +43,7 @@ on ss2.minionpool = activePools.pool
 WHERE
   ((TotalCount >= 10 AND NotReadyPerc >0.25) OR (TotalCount < 10 AND NotReadyCount >2))
   AND NOT (minionpool like '___-sam')
+  AND NOT (minionpool = 'yhu-sam_search')
 -- AND NOT
 -- (minionpool like 'par-sam_warden' AND now() < STR_TO_DATE('2019-03-21', '%Y-%m-%d')) #as in https://gus.lightning.force.com/lightning/r/ADM_Work__c/a07B0000006UbTRIA0/view
 -- AND NOT
