@@ -1,0 +1,602 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  annotations:
+    madkub.sam.sfdc.net/allcerts: '{"certreqs":[{"name":"tls-client-cert","san":null,"role":"service-mesh.istio-shipping","cert-type":"client","kingdom":"prd","superpod":"None"},{"name":"tls-server-cert","san":["istio-shipping.service-mesh.prd-sam.prd.slb.sfdc.net"],"role":"service-mesh.istio-shipping","cert-type":"server","kingdom":"prd","superpod":"None"}]}'
+    sidecar.istio.io/inject: "true"
+    sidecar.istio.io/status: '{"version":"1e25fafc2fc28ade152f3f10d37c353349548395706d011ce9cf6b809bcc97aa","initContainers":["istio-init"],"containers":["istio-proxy"],"volumes":["istio-envoy"],"imagePullSecrets":null}'
+  creationTimestamp: "2020-01-08T01:21:27Z"
+  generateName: istio-shipping-77dbc55b7-
+  labels:
+    app: istio-shipping
+    chaos.sfdc.net/podDelete: "true"
+    chaos.sfdc.net/podDeletePeriod: 4h
+    istio_app: test
+    pod-template-hash: "338671163"
+    sam_app: istio-shipping
+    sam_function: istio-shipping
+    security.istio.io/tlsMode: istio
+    settings_path: istio.-.prd.-.istio-shipping
+  name: istio-shipping-77dbc55b7-9q2hs
+  namespace: service-mesh
+  ownerReferences:
+  - apiVersion: extensions/v1beta1
+    blockOwnerDeletion: true
+    controller: true
+    kind: ReplicaSet
+    name: istio-shipping-77dbc55b7
+    uid: e2bd5782-180a-11ea-9e8d-1418774b3e9d
+  resourceVersion: "2928317117"
+  selfLink: /api/v1/namespaces/service-mesh/pods/istio-shipping-77dbc55b7-9q2hs
+  uid: 316971bf-31b5-11ea-b1a2-14187760f413
+spec:
+  affinity:
+    nodeAffinity:
+      requiredDuringSchedulingIgnoredDuringExecution:
+        nodeSelectorTerms:
+        - matchExpressions:
+          - key: pool
+            operator: In
+            values:
+            - prd-sam_gater
+  automountServiceAccountToken: true
+  containers:
+  - env:
+    - name: HOST_TYPE
+      value: SAM
+    - name: SFDC_METRICS_SERVICE_HOST
+      value: ajna0-funnel1-0-prd.data.sfdc.net
+    - name: SFDC_METRICS_SERVICE_PORT
+      value: "80"
+    - name: FUNCTION_NAMESPACE
+      valueFrom:
+        fieldRef:
+          apiVersion: v1
+          fieldPath: metadata.namespace
+    - name: FUNCTION_INSTANCE_NAME
+      valueFrom:
+        fieldRef:
+          apiVersion: v1
+          fieldPath: metadata.name
+    - name: FUNCTION_INSTANCE_IP
+      valueFrom:
+        fieldRef:
+          apiVersion: v1
+          fieldPath: status.podIP
+    - name: FUNCTION
+      value: istio-shipping
+    - name: KINGDOM
+      value: prd
+    - name: ESTATE
+      value: prd-sam_gater
+    - name: SUPERPOD
+      value: None
+    - name: SFDC_SETTINGS_PATH
+      value: istio.-.prd.-.istio-shipping
+    - name: SFDC_SETTINGS_SUPERPOD
+      value: '-'
+    - name: SETTINGS_PATH
+      value: istio.-.prd.-.istio-shipping
+    - name: SETTINGS_SUPERPOD
+      value: '-'
+    - name: SETTINGS_NAMESPACE
+      value: service-mesh
+    - name: SETTINGS_SERVICENAME
+      value: istio-shipping
+    - name: SFDC_ENVIRONMENT
+      value: istio
+    - name: GRPC_PORT
+      value: "7443"
+    - name: JAVA_OPTS
+      value: -Dtracing.report=true -Dtracing.sampleRate=1 -Dmesh.istio-mode=true -Dscone.service.name=istio-shipping
+        -Dmanagement.server.port=15372
+    - name: JAVA_HEAP_OPTS
+      value: -Xmx64m
+    image: ops0-artifactrepo2-0-prd.data.sfdc.net/sfci/services/sfdc-bazel/scone/shipping:7572acf02
+    imagePullPolicy: Always
+    livenessProbe:
+      failureThreshold: 3
+      httpGet:
+        path: /manage/health
+        port: 15372
+        scheme: HTTP
+      initialDelaySeconds: 15
+      periodSeconds: 10
+      successThreshold: 1
+      timeoutSeconds: 1
+    name: shipping
+    ports:
+    - containerPort: 7443
+      name: grpc-svc
+      protocol: TCP
+    - containerPort: 15372
+      name: scone-mgmt
+      protocol: TCP
+    resources:
+      limits:
+        sam.sfdc.net/ip-address: "1"
+      requests:
+        sam.sfdc.net/ip-address: "1"
+    securityContext:
+      runAsNonRoot: true
+      runAsUser: 7447
+    terminationMessagePath: /dev/termination-log
+    terminationMessagePolicy: File
+    volumeMounts:
+    - mountPath: /client-certs
+      name: tls-client-cert
+    - mountPath: /server-certs
+      name: tls-server-cert
+    - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+      name: default-token-fwm6f
+      readOnly: true
+  - args:
+    - /sam/madkub-client
+    - --madkub-endpoint
+    - https://10.254.208.254:32007
+    - --maddog-endpoint
+    - https://all.pkicontroller.pki.blank.prd.prod.non-estates.sfdcsd.net:8443
+    - --maddog-server-ca
+    - /maddog-hostdata/ca/security-ca.pem
+    - --madkub-server-ca
+    - /maddog-hostdata/ca/cacerts.pem
+    - --ca-folder
+    - /maddog-hostdata/ca
+    - --token-folder
+    - /tokens
+    - --funnel-endpoint
+    - http://ajna0-funnel1-0-prd.data.sfdc.net:80
+    - --kingdom
+    - prd
+    - --superpod
+    - None
+    - --estate
+    - prd-sam
+    - --refresher
+    - --testca-folder
+    - /maddog-hostdata/ca_test
+    - --cert-folders
+    - tls-client-cert:/certs-tls-client-cert
+    - --cert-folders
+    - tls-server-cert:/certs-tls-server-cert
+    env:
+    - name: MADKUB_NODENAME
+      valueFrom:
+        fieldRef:
+          apiVersion: v1
+          fieldPath: spec.nodeName
+    - name: MADKUB_NAME
+      valueFrom:
+        fieldRef:
+          apiVersion: v1
+          fieldPath: metadata.name
+    - name: MADKUB_NAMESPACE
+      valueFrom:
+        fieldRef:
+          apiVersion: v1
+          fieldPath: metadata.namespace
+    image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/madkub:1.0.0-0000082-3d5c21b4
+    imagePullPolicy: Always
+    name: sam-madkub-integration-refresher
+    resources: {}
+    terminationMessagePath: /dev/termination-log
+    terminationMessagePolicy: File
+    volumeMounts:
+    - mountPath: /maddog-hostdata
+      name: sam-maddog-cahost
+    - mountPath: /tokens
+      name: sam-maddog-token
+    - mountPath: /certs-tls-client-cert
+      name: tls-client-cert
+    - mountPath: /certs-tls-server-cert
+      name: tls-server-cert
+    - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+      name: default-token-fwm6f
+      readOnly: true
+  - args:
+    - proxy
+    - sidecar
+    - --domain
+    - $(POD_NAMESPACE).svc.cluster.local
+    - --configPath
+    - /etc/istio/proxy
+    - --binaryPath
+    - /usr/local/bin/envoy
+    - --serviceCluster
+    - istio-shipping.$(POD_NAMESPACE)
+    - --drainDuration
+    - 45s
+    - --parentShutdownDuration
+    - 1m0s
+    - --discoveryAddress
+    - istio-pilot.mesh-control-plane:15011
+    - --zipkinAddress
+    - zipkindirecttls.funnel.svc.mesh.sfdc.net:7442
+    - --proxyLogLevel=info
+    - --dnsRefreshRate
+    - 300s
+    - --connectTimeout
+    - 10s
+    - --envoyMetricsService
+    - '{"address":"switchboard.service-mesh:15001","tlsSettings":{"mode":"MUTUAL","clientCertificate":"/client-certs/client/certificates/client.pem","privateKey":"/client-certs/client/keys/client-key.pem","caCertificates":"/client-certs/ca.pem","subjectAltNames":[]},"tcpKeepalive":{"probes":3,"time":"10s","interval":"10s"}}'
+    - --proxyAdminPort
+    - "15373"
+    - --controlPlaneAuthPolicy
+    - MUTUAL_TLS
+    - --statusPort
+    - "15020"
+    - --controlPlaneBootstrap=false
+    - --concurrency
+    - "2"
+    env:
+    - name: POD_NAME
+      valueFrom:
+        fieldRef:
+          apiVersion: v1
+          fieldPath: metadata.name
+    - name: ISTIO_META_POD_PORTS
+      value: |-
+        [
+            {"name":"grpc-svc","containerPort":7443,"protocol":"TCP"}
+            ,{"name":"scone-mgmt","containerPort":15372,"protocol":"TCP"}
+        ]
+    - name: ISTIO_META_CLUSTER_ID
+      value: Kubernetes
+    - name: POD_NAMESPACE
+      valueFrom:
+        fieldRef:
+          apiVersion: v1
+          fieldPath: metadata.namespace
+    - name: INSTANCE_IP
+      valueFrom:
+        fieldRef:
+          apiVersion: v1
+          fieldPath: status.podIP
+    - name: SERVICE_ACCOUNT
+      valueFrom:
+        fieldRef:
+          apiVersion: v1
+          fieldPath: spec.serviceAccountName
+    - name: ISTIO_AUTO_MTLS_ENABLED
+      value: "true"
+    - name: ISTIO_META_POD_NAME
+      valueFrom:
+        fieldRef:
+          apiVersion: v1
+          fieldPath: metadata.name
+    - name: ISTIO_META_CONFIG_NAMESPACE
+      valueFrom:
+        fieldRef:
+          apiVersion: v1
+          fieldPath: metadata.namespace
+    - name: SDS_ENABLED
+      value: "false"
+    - name: ISTIO_META_INTERCEPTION_MODE
+      value: REDIRECT
+    - name: ISTIO_META_INCLUDE_INBOUND_PORTS
+      value: 7443,15372
+    - name: ISTIO_METAJSON_ANNOTATIONS
+      value: |
+        {"madkub.sam.sfdc.net/allcerts":"{\"certreqs\":[{\"name\":\"tls-client-cert\",\"san\":null,\"role\":\"service-mesh.istio-shipping\",\"cert-type\":\"client\",\"kingdom\":\"prd\",\"superpod\":\"None\"},{\"name\":\"tls-server-cert\",\"san\":[\"istio-shipping.service-mesh.prd-sam.prd.slb.sfdc.net\"],\"role\":\"service-mesh.istio-shipping\",\"cert-type\":\"server\",\"kingdom\":\"prd\",\"superpod\":\"None\"}]}","sidecar.istio.io/inject":"true"}
+    - name: ISTIO_METAJSON_LABELS
+      value: |
+        {"app":"istio-shipping","chaos.sfdc.net/podDelete":"true","chaos.sfdc.net/podDeletePeriod":"4h","istio_app":"test","pod-template-hash":"338671163","sam_app":"istio-shipping","sam_function":"istio-shipping","settings_path":"istio.-.prd.-.istio-shipping"}
+    - name: ISTIO_META_WORKLOAD_NAME
+      value: istio-shipping-77dbc55b7
+    - name: ISTIO_META_OWNER
+      value: kubernetes://apis/extensions/v1beta1/namespaces/service-mesh/replicasets/istio-shipping-77dbc55b7
+    - name: ISTIO_META_hostname
+      valueFrom:
+        fieldRef:
+          apiVersion: v1
+          fieldPath: metadata.name
+    - name: ISTIO_META_namespace
+      valueFrom:
+        fieldRef:
+          apiVersion: v1
+          fieldPath: metadata.namespace
+    - name: ISTIO_META_kubernetes_cluster_name
+      valueFrom:
+        fieldRef:
+          apiVersion: v1
+          fieldPath: metadata.labels['cluster']
+    - name: ISTIO_METAJSON_METRICS_INCLUSIONS
+      value: '{"sidecar.istio.io/statsInclusionPrefixes": "access_log_file,cluster,cluster_manager,control_plane,http,http2,http_mixer_filter,listener,listener_manager,redis,runtime,server,stats,tcp,tcp_mixer_filter,tracing"}'
+    - name: ISTIO_META_TLS_CLIENT_CERT_CHAIN
+      value: /client-certs/client/certificates/client.pem
+    - name: ISTIO_META_TLS_CLIENT_KEY
+      value: /client-certs/client/keys/client-key.pem
+    - name: ISTIO_META_TLS_CLIENT_ROOT_CERT
+      value: /client-certs/ca.pem
+    - name: ISTIO_META_TLS_SERVER_CERT_CHAIN
+      value: /server-certs/server/certificates/server.pem
+    - name: ISTIO_META_TLS_SERVER_KEY
+      value: /server-certs/server/keys/server-key.pem
+    - name: ISTIO_META_TLS_SERVER_ROOT_CERT
+      value: /server-certs/ca.pem
+    image: ops0-artifactrepo2-0-prd.data.sfdc.net/sfci/servicemesh/istio-packaging/proxy:aa56850ad9a1bc39fc8583dcd4eda1d6720a724d
+    imagePullPolicy: Always
+    name: istio-proxy
+    ports:
+    - containerPort: 15090
+      name: http-envoy-prom
+      protocol: TCP
+    readinessProbe:
+      failureThreshold: 30
+      httpGet:
+        path: /healthz/ready
+        port: 15020
+        scheme: HTTP
+      initialDelaySeconds: 1
+      periodSeconds: 2
+      successThreshold: 1
+      timeoutSeconds: 1
+    resources:
+      limits:
+        cpu: "2"
+        memory: 1Gi
+      requests:
+        cpu: 100m
+        memory: 128Mi
+    securityContext:
+      readOnlyRootFilesystem: true
+      runAsUser: 1337
+    terminationMessagePath: /dev/termination-log
+    terminationMessagePolicy: FallbackToLogsOnError
+    volumeMounts:
+    - mountPath: /etc/istio/proxy
+      name: istio-envoy
+    - mountPath: /client-certs
+      name: tls-client-cert
+    - mountPath: /server-certs
+      name: tls-server-cert
+    - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+      name: default-token-fwm6f
+      readOnly: true
+  dnsPolicy: ClusterFirstWithHostNet
+  initContainers:
+  - args:
+    - /sam/madkub-client
+    - --madkub-endpoint
+    - https://10.254.208.254:32007
+    - --maddog-endpoint
+    - https://all.pkicontroller.pki.blank.prd.prod.non-estates.sfdcsd.net:8443
+    - --maddog-server-ca
+    - /maddog-hostdata/ca/security-ca.pem
+    - --madkub-server-ca
+    - /maddog-hostdata/ca/cacerts.pem
+    - --ca-folder
+    - /maddog-hostdata/ca
+    - --token-folder
+    - /tokens
+    - --funnel-endpoint
+    - http://ajna0-funnel1-0-prd.data.sfdc.net:80
+    - --kingdom
+    - prd
+    - --superpod
+    - None
+    - --estate
+    - prd-sam
+    - --testca-folder
+    - /maddog-hostdata/ca_test
+    - --cert-folders
+    - tls-client-cert:/certs-tls-client-cert
+    - --cert-folders
+    - tls-server-cert:/certs-tls-server-cert
+    env:
+    - name: MADKUB_NODENAME
+      valueFrom:
+        fieldRef:
+          apiVersion: v1
+          fieldPath: spec.nodeName
+    - name: MADKUB_NAME
+      valueFrom:
+        fieldRef:
+          apiVersion: v1
+          fieldPath: metadata.name
+    - name: MADKUB_NAMESPACE
+      valueFrom:
+        fieldRef:
+          apiVersion: v1
+          fieldPath: metadata.namespace
+    image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/madkub:1.0.0-0000082-3d5c21b4
+    imagePullPolicy: Always
+    name: sam-madkub-integration-init
+    resources: {}
+    terminationMessagePath: /dev/termination-log
+    terminationMessagePolicy: File
+    volumeMounts:
+    - mountPath: /maddog-hostdata
+      name: sam-maddog-cahost
+    - mountPath: /tokens
+      name: sam-maddog-token
+    - mountPath: /certs-tls-client-cert
+      name: tls-client-cert
+    - mountPath: /certs-tls-server-cert
+      name: tls-server-cert
+    - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+      name: default-token-fwm6f
+      readOnly: true
+  - args:
+    - chmod -R 775 /vols/sam-maddog-cahost && chown -R 7447:7447 /vols/sam-maddog-cahost
+    command:
+    - /bin/sh
+    - -c
+    image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/hypersam:sam-c07d4afb-673
+    imagePullPolicy: Always
+    name: permissionsetterinitcontainer
+    resources: {}
+    securityContext:
+      runAsNonRoot: false
+      runAsUser: 0
+    terminationMessagePath: /dev/termination-log
+    terminationMessagePolicy: File
+    volumeMounts:
+    - mountPath: /vols/sam-maddog-cahost
+      name: sam-maddog-cahost
+    - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+      name: default-token-fwm6f
+      readOnly: true
+  - command:
+    - istio-iptables
+    - -p
+    - "15002"
+    - -z
+    - "15006"
+    - -u
+    - "1337"
+    - -m
+    - REDIRECT
+    - -i
+    - 127.1.2.3/32
+    - -x
+    - ""
+    - -b
+    - '*'
+    - -d
+    - "15020"
+    env:
+    - name: DISABLE_REDIRECTION_ON_LOCAL_LOOPBACK
+      value: "1"
+    image: ops0-artifactrepo2-0-prd.data.sfdc.net/sfci/servicemesh/istio-packaging/proxy:aa56850ad9a1bc39fc8583dcd4eda1d6720a724d
+    imagePullPolicy: Always
+    name: istio-init
+    resources:
+      limits:
+        cpu: 100m
+        memory: 50Mi
+      requests:
+        cpu: 10m
+        memory: 10Mi
+    securityContext:
+      capabilities:
+        add:
+        - NET_ADMIN
+      runAsNonRoot: false
+      runAsUser: 0
+    terminationMessagePath: /dev/termination-log
+    terminationMessagePolicy: File
+  nodeName: shared0-samminiongater2-3-prd.eng.sfdc.net
+  restartPolicy: Always
+  schedulerName: default-scheduler
+  securityContext:
+    fsGroup: 7447
+    runAsNonRoot: true
+    runAsUser: 7447
+  serviceAccount: default
+  serviceAccountName: default
+  terminationGracePeriodSeconds: 30
+  volumes:
+  - emptyDir:
+      medium: Memory
+    name: sam-maddog-token
+  - hostPath:
+      path: /etc/pki_service
+      type: ""
+    name: sam-maddog-cahost
+  - emptyDir:
+      medium: Memory
+    name: tls-client-cert
+  - emptyDir:
+      medium: Memory
+    name: tls-server-cert
+  - name: default-token-fwm6f
+    secret:
+      defaultMode: 420
+      secretName: default-token-fwm6f
+  - emptyDir:
+      medium: Memory
+    name: istio-envoy
+status:
+  conditions:
+  - lastProbeTime: null
+    lastTransitionTime: "2020-01-08T01:21:37Z"
+    status: "True"
+    type: Initialized
+  - lastProbeTime: null
+    lastTransitionTime: "2020-01-08T01:21:46Z"
+    status: "True"
+    type: Ready
+  - lastProbeTime: null
+    lastTransitionTime: "2020-01-08T01:21:27Z"
+    status: "True"
+    type: PodScheduled
+  containerStatuses:
+  - containerID: docker://95b3f7e9e4a80e57668d9e662802f2374b1e94457fa39076aae3bf576aa46308
+    image: ops0-artifactrepo2-0-prd.data.sfdc.net/sfci/servicemesh/istio-packaging/proxy:aa56850ad9a1bc39fc8583dcd4eda1d6720a724d
+    imageID: docker-pullable://ops0-artifactrepo2-0-prd.data.sfdc.net/sfci/servicemesh/istio-packaging/proxy@sha256:99e9711d97d67eeb6ca66077a7805956be37a6823fcdb5bac958695f8f289e88
+    lastState: {}
+    name: istio-proxy
+    ready: true
+    restartCount: 0
+    state:
+      running:
+        startedAt: "2020-01-08T01:21:40Z"
+  - containerID: docker://736e9d6c89d52f1efa04a0fc9b19b42660703b037bb41e497c860c10a8467a5b
+    image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/madkub:1.0.0-0000082-3d5c21b4
+    imageID: docker-pullable://ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/madkub@sha256:ff15a49e682ea73c5a4677f5a23df868b84d64b14e0e6a3ffa734f17ed0937ac
+    lastState: {}
+    name: sam-madkub-integration-refresher
+    ready: true
+    restartCount: 0
+    state:
+      running:
+        startedAt: "2020-01-08T01:21:39Z"
+  - containerID: docker://27407b1782b79c7c684c0edacf618b2976db680c7741215ddcee650c9227585f
+    image: ops0-artifactrepo2-0-prd.data.sfdc.net/sfci/services/sfdc-bazel/scone/shipping:7572acf02
+    imageID: docker-pullable://ops0-artifactrepo2-0-prd.data.sfdc.net/sfci/services/sfdc-bazel/scone/shipping@sha256:340cc0a0b7199529a16b526662d0231c2493e1ffa582c7c1fdf299bd147554e1
+    lastState: {}
+    name: shipping
+    ready: true
+    restartCount: 0
+    state:
+      running:
+        startedAt: "2020-01-08T01:21:38Z"
+  hostIP: 10.253.207.42
+  initContainerStatuses:
+  - containerID: docker://c2aa37580282a1740654d809eda97476cbbac8037a23cf1f8d88e0e597613125
+    image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/madkub:1.0.0-0000082-3d5c21b4
+    imageID: docker-pullable://ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/madkub@sha256:ff15a49e682ea73c5a4677f5a23df868b84d64b14e0e6a3ffa734f17ed0937ac
+    lastState: {}
+    name: sam-madkub-integration-init
+    ready: true
+    restartCount: 0
+    state:
+      terminated:
+        containerID: docker://c2aa37580282a1740654d809eda97476cbbac8037a23cf1f8d88e0e597613125
+        exitCode: 0
+        finishedAt: "2020-01-08T01:21:31Z"
+        reason: Completed
+        startedAt: "2020-01-08T01:21:29Z"
+  - containerID: docker://ce838544fd74f315778b6cc17ec7175571d6dc4e8017a67da1054b2dfebcbb5a
+    image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/hypersam:sam-c07d4afb-673
+    imageID: docker-pullable://ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/hypersam@sha256:9fa88d6777bae636e216782fc1a2083198b4a18134659baa749a6d1112bc4fc7
+    lastState: {}
+    name: permissionsetterinitcontainer
+    ready: true
+    restartCount: 0
+    state:
+      terminated:
+        containerID: docker://ce838544fd74f315778b6cc17ec7175571d6dc4e8017a67da1054b2dfebcbb5a
+        exitCode: 0
+        finishedAt: "2020-01-08T01:21:33Z"
+        reason: Completed
+        startedAt: "2020-01-08T01:21:33Z"
+  - containerID: docker://e17c3e745d30cf517e1120d950d9554ab6652faa34dd5340199c2b20bc738a5b
+    image: ops0-artifactrepo2-0-prd.data.sfdc.net/sfci/servicemesh/istio-packaging/proxy:aa56850ad9a1bc39fc8583dcd4eda1d6720a724d
+    imageID: docker-pullable://ops0-artifactrepo2-0-prd.data.sfdc.net/sfci/servicemesh/istio-packaging/proxy@sha256:99e9711d97d67eeb6ca66077a7805956be37a6823fcdb5bac958695f8f289e88
+    lastState: {}
+    name: istio-init
+    ready: true
+    restartCount: 0
+    state:
+      terminated:
+        containerID: docker://e17c3e745d30cf517e1120d950d9554ab6652faa34dd5340199c2b20bc738a5b
+        exitCode: 0
+        finishedAt: "2020-01-08T01:21:36Z"
+        reason: Completed
+        startedAt: "2020-01-08T01:21:35Z"
+  phase: Running
+  podIP: 10.251.131.15
+  qosClass: Burstable
+  startTime: "2020-01-08T01:21:27Z"
