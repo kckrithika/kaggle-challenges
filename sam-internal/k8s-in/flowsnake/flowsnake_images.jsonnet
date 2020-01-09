@@ -38,6 +38,7 @@ local utils = import "util_functions.jsonnet";
                 # --- flag E (each pair. ... ---
                 v1beta1_original: "",
                 # --- flag F (Their only purpose ... ---
+                next_analysis_script: "INTO THE FUTURE!",
                 # --- flag G (is to assist ... ---
                 prometheus_funnel_update: "",
                 # --- flag H (git's diff logic ... ---
