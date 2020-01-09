@@ -29,9 +29,13 @@ apps:
 
   gid-sso-client-dev:
     - name: prd/prd-sam_globalidentity
+      hostSubList:
+      - shared0-samminionglobalidentity1-5-prd.eng.sfdc.net
 
   cast-prd-dev:
     - name: prd/prd-sam_globalidentity
+      hostSubList:
+      - shared0-samminionglobalidentity1-5-prd.eng.sfdc.net
 
   gid-runtime-service-staging:
     - name: prd/prd-sam_globalidentity
