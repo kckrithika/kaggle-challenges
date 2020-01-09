@@ -5950,3 +5950,23 @@
     healthprotocol: http
     healthpath: /
 
+- lbname: esearch-sfcies
+  customlbname: esearch-sfcies
+  servers:
+  - esearch-sfcies1-1-prd.eng.sfdc.net
+  - esearch-sfcies1-2-prd.eng.sfdc.net
+  - esearch-sfcies1-3-prd.eng.sfdc.net
+  - esearch-sfcies1-4-prd.eng.sfdc.net
+  - esearch-sfcies1-5-prd.eng.sfdc.net
+  - esearch-sfcies1-6-prd.eng.sfdc.net
+  - esearch-sfcies1-7-prd.eng.sfdc.net
+  - esearch-sfcies1-8-prd.eng.sfdc.net
+  - esearch-sfcies1-10-prd.eng.sfdc.net
+  ports:
+  - port: 9200
+    targetport: 9200
+    lbtype: http
+    reencrypt: false
+    healthport: 9200
+    healthprotocol: http
+    healthpath: /
