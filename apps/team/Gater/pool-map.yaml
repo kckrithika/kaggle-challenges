@@ -43,7 +43,7 @@ apps:
   - ia5/ia5-sam_gater
   - iad/iad-sam_gater
   - lo2/lo2-sam_gater
-  - lo3/lo3-sam_gater
+  #- lo3/lo3-sam_gater
   - ord/ord-sam_gater
   - par/par-sam_gater
   - ph2/ph2-sam_gater
