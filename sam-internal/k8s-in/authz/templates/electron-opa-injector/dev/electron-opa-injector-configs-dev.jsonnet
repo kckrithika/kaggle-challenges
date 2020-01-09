@@ -66,27 +66,26 @@ zpages:
           fieldRef:
             apiVersion: v1
             fieldPath: metadata.namespace
-      - name: KINGDOM
-        value: ' + configs.kingdom + '
-      - name: SFDC_METRICS_SERVICE_HOST
-        value: ' + funnelEndpointHost + '
       - name: ELECTRON_OPA_CONFIG
         value: |
           <%-
+          def env?(v) ENV.key?(v) and ENV[v].length > 0 end
           split_pod_name = ENV["POD_NAME"].split("-")
-          metrics_scope = split_pod_name[0..(split_pod_name).length-3].join("-") + "." + ENV["KINGDOM"]
-          funnel_url = "http://" + ENV["SFDC_METRICS_SERVICE_HOST"] + "/"
+          metrics_scope = split_pod_name[0..(split_pod_name).length-3].join("-")
+          metrics_scope += env?("POD_NAMESPACE") ? "." + ENV["POD_NAMESPACE"] : ""
+          metrics_scope += ".' + configs.kingdom + '"
           -%>
           services:
             metrics:
-              url: http://:9192/
+              url: http://:9192
             electron:
-              url: https://demo-authz-opa-prd.slb.sfdc.net:7443
-              allow_insecure_tls: true
+              url: https://authz-svc-opa-lb.service-mesh.' + configs.kingdom + '-sam.' + configs.kingdom + '.slb.sfdc.net:7442
               credentials:
                 client_tls:
                   cert: /client-certs/client/certificates/client.pem
                   private_key: /client-certs/client/keys/client-key.pem
+                  cacerts: /client-certs/ca/cacerts.pem
+                  use_system_ca: true
           bundles:
             authz:
               resource: v1/authzpolicy
@@ -105,7 +104,7 @@ zpages:
             argus_metrics:
               enabled: true
               server_port: :9192
-              funnel_url: <%= funnel_url %>
+              funnel_url: http://' + funnelEndpointHost + '/
               metrics_scope: <%= metrics_scope -%>
       - name: ELECTRON_OPA_ISTIO_CONFIG
         value: |
@@ -114,20 +113,19 @@ zpages:
           split_pod_name = ENV["POD_NAME"].split("-")
           metrics_scope = split_pod_name[0..(split_pod_name).length-3].join("-")
           metrics_scope += env?("POD_NAMESPACE") ? "." + ENV["POD_NAMESPACE"] : ""
-          metrics_scope += "." + ENV["KINGDOM"]
-          funnel_url = "http://" + ENV["SFDC_METRICS_SERVICE_HOST"] + "/"
+          metrics_scope += ".' + configs.kingdom + '"
           -%>
-
           services:
             metrics:
-                url: http://:9192/
+                url: http://:9192
             electron:
-              url: https://demo-authz-opa-prd.slb.sfdc.net:7443
-              allow_insecure_tls: true
+              url: https://authz-svc-opa-lb.service-mesh.' + configs.kingdom + '-sam.' + configs.kingdom + '.slb.sfdc.net:7442
               credentials:
                 client_tls:
                   cert: /client-certs/client/certificates/client.pem
                   private_key: /client-certs/client/keys/client-key.pem
+                  cacerts: /client-certs/ca/cacerts.pem
+                  use_system_ca: true
           bundles:
             authz:
               resource: v1/authzpolicy
@@ -151,7 +149,7 @@ zpages:
             argus_metrics:
               enabled: true
               server_port: :9192
-              funnel_url: <%= funnel_url %>
+              funnel_url: http://' + funnelEndpointHost + '/
               metrics_scope: <%= metrics_scope -%>
     args:
       - echo -e "${ELECTRON_OPA_CONFIG}" > /templated-config/opa_config.yaml.erb &&
@@ -180,10 +178,6 @@ zpages:
           fieldRef:
             apiVersion: v1
             fieldPath: metadata.namespace
-      - name: KINGDOM
-        value: ' + configs.kingdom + '
-      - name: SFDC_METRICS_SERVICE_HOST
-        value: ' + funnelEndpointHost + '
       - name: ELECTRON_OPA_CONFIG
         value: |
           <%-
@@ -191,20 +185,19 @@ zpages:
           split_pod_name = ENV["POD_NAME"].split("-")
           metrics_scope = split_pod_name[0..(split_pod_name).length-3].join("-")
           metrics_scope += env?("POD_NAMESPACE") ? "." + ENV["POD_NAMESPACE"] : ""
-          metrics_scope += "." + ENV["KINGDOM"]
-          funnel_url = "http://" + ENV["SFDC_METRICS_SERVICE_HOST"] + "/"
+          metrics_scope += ".' + configs.kingdom + '"
           -%>
-
           services:
             metrics:
-                url: http://:9192/
+                url: http://:9192
             electron:
               url: https://demo-authz-opa-prd.slb.sfdc.net:7443
-              allow_insecure_tls: true
               credentials:
                 client_tls:
                   cert: /client-certs/client/certificates/client.pem
                   private_key: /client-certs/client/keys/client-key.pem
+                  cacerts: /client-certs/ca/cacerts.pem
+                  use_system_ca: true
           bundles:
             authz:
               resource: v1/authzpolicy
@@ -223,26 +216,28 @@ zpages:
             argus_metrics:
               enabled: true
               server_port: :9192
-              funnel_url: <%= funnel_url %>
+              funnel_url: http://' + funnelEndpointHost + '/
               metrics_scope: <%= metrics_scope -%>
       - name: ELECTRON_OPA_ISTIO_CONFIG
         value: |
           <%-
+          def env?(v) ENV.key?(v) and ENV[v].length > 0 end
           split_pod_name = ENV["POD_NAME"].split("-")
-          metrics_scope = split_pod_name[0..(split_pod_name).length-3].join("-") + "." + ENV["KINGDOM"]
-          funnel_url = "http://" + ENV["SFDC_METRICS_SERVICE_HOST"] + "/"
+          metrics_scope = split_pod_name[0..(split_pod_name).length-3].join("-")
+          metrics_scope += env?("POD_NAMESPACE") ? "." + ENV["POD_NAMESPACE"] : ""
+          metrics_scope += ".' + configs.kingdom + '"
           -%>
-
           services:
             metrics:
-                url: http://:9192/
+                url: http://:9192
             electron:
               url: https://demo-authz-opa-prd.slb.sfdc.net:7443
-              allow_insecure_tls: true
               credentials:
                 client_tls:
                   cert: /client-certs/client/certificates/client.pem
                   private_key: /client-certs/client/keys/client-key.pem
+                  cacerts: /client-certs/ca/cacerts.pem
+                  use_system_ca: true
           bundles:
             authz:
               resource: v1/authzpolicy
@@ -266,7 +261,7 @@ zpages:
             argus_metrics:
               enabled: true
               server_port: :9192
-              funnel_url: <%= funnel_url %>
+              funnel_url: http://' + funnelEndpointHost + '/
               metrics_scope: <%= metrics_scope -%>
     args:
       - echo -e "${ELECTRON_OPA_CONFIG}" > /templated-config/opa_config.yaml.erb &&
