@@ -19,7 +19,7 @@ system:
       - name: SFDC_ENVIRONMENT
         value: mesh
       - name: JAVA_OPTS
-        value: "-Xmx256m -Dscone.service.name=svc-dbg-shipping-dst-fail2 -Dmanagement.server.port=15372"
+        value: "-Dscone.service.name=svc-dbg-shipping-dst-fail2 -Dmanagement.server.port=15372"
       - name: FAKE_ENV_VAR_INCREMENT_TO_TRIGGER_SAM_DEPLOY
         value: "1"
       ports:
