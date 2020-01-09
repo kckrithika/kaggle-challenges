@@ -8,7 +8,7 @@ system:
     count: 1
     containers:
     - name: ml-spaas
-      image: dva/ml-spaas-service-docker:28
+      image: dva/ml-spaas-service-docker:29
       ports:
       - containerPort: 7020
       livenessProbe:
@@ -28,7 +28,7 @@ system:
         requests: { cpu: "1", memory: "4Gi" }
       args:
       - -endpoint
-      - $(FUNCTION):DATACENTER_ALLENV:HTTP2
+      - $(FUNCTION_NAMESPACE)/$(FUNCTION):DATACENTER_ALLENV:HTTP2
       - -endpoint
       - $(FUNCTION_NAMESPACE)/$(FUNCTION):DATACENTER_ALLENV:HTTP2_TLS
       livenessProbe:
