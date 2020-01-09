@@ -101,6 +101,8 @@ system:
               value: cre-sp-ccp-perf.retail-cre.localhost.mesh.force.com:5442
             - name: CRE_API_ENDPOINT
               value: cre-api-ccp-perf.retail-cre.localhost.mesh.force.com:5442
+            - name: REBOOT_VAR
+              value: true
             ####################################################################################################
             ####################################### PERF environment variables #################################
             ####################################################################################################
