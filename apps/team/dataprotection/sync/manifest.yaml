@@ -5,7 +5,7 @@ system:
     count: 5
     containers:
     - name: sync
-      image: dva/winterfell-sync:130
+      image: dva/winterfell-sync:132
       env:
       - name: SFDC_ENVIRONMENT
         value: prod
@@ -30,6 +30,7 @@ system:
           path: /manage/health
           port: 15372
         initialDelaySeconds: 115
+      terminationMessagePolicy: FallbackToLogsOnError
       volumeMounts:
         - name: tls-client-cert
           mountPath: /client-certs
