@@ -5,29 +5,23 @@ system:
     count: 8
     annotations:
       sidecar.istio.io/inject: "true"
+    strategy:
+      type: RollingUpdate
+      rollingUpdate:
+        maxSurge: 0
+        maxUnavailable: 25%
     containers:
     - name: search-query-service
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/searchdev/smt-search-query-service:a0ca91a
-      command:
-      - java
-      - -Xdebug
-      - -Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=8955
-      - -Dmesh.istio-mode=true
-      - -jar
-      - service.jar
-      args:
-      - --metrics.funnelEndPointURL=http://ajnafunneldirecttls.funnel.svc.mesh.sfdc.net:7442
-      - --modelstore.repo.root=model_repository_root
+      image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-all/sfci/searchdev/search-query-execution-platform:7.1
       ports:
       - name: service-port
         containerPort: 7443
       - name: admin-port
         containerPort: 15372
       env:
-      - name: SFDC_ENVIRONMENT
-        value: sam
-      - name: GRPC_PORT
-        value: 7443
+      - name: JVM_OPTS
+        # Funnel can be removed on QS 7.2
+        value: "'-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:5005' -Dmesh.istio-mode=true -Dgrpc.port=7443 -Dmetrics.funnelEndpointURL=http://ajnafunneldirecttls.funnel.svc.mesh.sfdc.net:7442"
       resources:
         limits:
           cpu: "12"
@@ -48,8 +42,8 @@ system:
           - --destination
           - "localhost:7443"
         initialDelaySeconds: 120
-        periodSeconds: 60
         timeoutSeconds: 10
+        periodSeconds: 60
       readinessProbe:
         exec:
           command:
@@ -89,3 +83,4 @@ system:
         port: 7443
         targetport: 7443
         name: grpc-sqs
+
