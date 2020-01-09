@@ -210,11 +210,15 @@ apps:
     - prd/prd-sam_gater
   dbg-ordering-dst-fail1:
     - prd/prd-sam_gater
+  dbg-ordering-dst-fail2:
+    - prd/prd-sam_gater 
   dbg-ordering-identity-miss:
     - prd/prd-sam_gater
   dbg-shipping-authz-fail:
     - prd/prd-sam_gater
   dbg-shipping-dst-fail1:
     - prd/prd-sam_gater
+  dbg-shipping-dst-fail2:
+    - prd/prd-sam_gater    
   dbg-shipping-identity-miss:
     - prd/prd-sam_gater
