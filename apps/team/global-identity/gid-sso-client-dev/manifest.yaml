@@ -12,7 +12,7 @@ system:
           command:
             - /usr/bin/true
     - name: gid-sso-client
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/gid/gid-sso-client:dad87de
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/gid/gid-sso-client:0a72ee6
       imagePullPolicy: Always
       env:
       - name: server_port
