@@ -139,3 +139,11 @@ system:
       port: 15374
       targetport: 15373
       name: http-envoy
+  - lbname: metrics-service # SLB VIP used by baremetal istio-proxy in bootstrap as metrics service socket address.
+    function: switchboard
+    slbEnabled: true
+    ports:
+    - lbtype: dsr
+      port: 15001
+      targetport: 15001
+      name: grpc-metrics
