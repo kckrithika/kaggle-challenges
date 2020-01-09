@@ -103,6 +103,7 @@ spec:
         - --commonconfig.accessLogDirectory=/host/data/slb/logs/slb-nginx-config-b
         - --tcpconfig.accessLogFormat=basic
         - --httpconfig.accessLogDirectory=/host/data/slb/logs/slb-nginx-config-b
+        - --flagPushNginxLogsToSplunk=true
         env:
         - name: NODE_NAME
           valueFrom:
@@ -135,7 +136,7 @@ spec:
         env:
         - name: KINGDOM
           value: xrd
-        image: ops0-artifactrepo1-0-xrd.data.sfdc.net/dva/slb/nginx:134-9ba3cef27535befec8691412ca1b0c1d7f912b7e
+        image: ops0-artifactrepo1-0-xrd.data.sfdc.net/dva/slb/nginx:137-b1645641bf9577e552e5fbdff7d91203e4528e4d
         livenessProbe:
           httpGet:
             path: /
