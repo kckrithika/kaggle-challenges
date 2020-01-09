@@ -217,7 +217,7 @@
       "--log_dir=" + slbconfigs.logsDir,
       configs.sfdchosts_arg,
       "--subnet=" + slbconfigs.subnet + "," + slbconfigs.publicSubnet,
-    ] + (if slbimages.hyperslb_build >= 2287 && slbimages.phaseNum <= 2 then [
+    ] + (if slbimages.hyperslb_build >= 2287 && (slbimages.phaseNum <= 2 || configs.estate == "xrd-sam") then [
            "--subnetMask=/27",
          ] else if slbimages.hyperslb_build >= 2287 then [
            "--subnetMask=/32",
