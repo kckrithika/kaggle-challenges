@@ -28,6 +28,7 @@ system:
         - --publish-specific-metrics=CONDITIONAL
         - --synctask.host-affinity=false
         - --spring.datasource.url=jdbc:h2:mem:gaterdb;DB_CLOSE_DELAY=-1
+        - --metrics.funnelEndPointURL=http://ajnafunneldirecttls.funnel.svc.mesh.sfdc.net:7442
       # associate the /log directory to a logical volume. logging.dir is set to this in the startup script args above,
       # and this volume mount is mapped to a host directory below in the volumes section. Underneath this directory
       # we will end up with the following sub-directories: gater/app, gater/jvm, gater/json. 
