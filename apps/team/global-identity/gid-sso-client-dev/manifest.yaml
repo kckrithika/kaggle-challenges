@@ -17,7 +17,7 @@ system:
       imagePullPolicy: Always
       env:
       - name: server_port
-        value: 8080
+        value: 8083
       - name: management_server_port
         value: 15372
       - name: c2c_common_gdotBasePath
@@ -27,7 +27,7 @@ system:
       - name: mail_restemailclient_proxy
         value: http://public0-proxy1-0-prd.data.sfdc.net:8080
       ports:
-      - containerPort: 8080
+      - containerPort: 8083
       livenessProbe:
         httpGet:
           path: /manage/info
@@ -47,7 +47,7 @@ system:
     slbenabled: true
     ports:
       - port: 80
-        targetport: 8080
+        targetport: 8083
         lbtype: tcp
       - port: 8025
         targetport: 8025
