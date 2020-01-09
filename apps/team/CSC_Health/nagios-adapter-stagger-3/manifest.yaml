@@ -21,8 +21,8 @@ system:
           - echo
           - always_healthy
       env:
-      - name: nagiosadapter_general_nagios_manifests_directory
-        value: /nagios-adapter/watchdog-sdom-manifest/nagios_manifests/
+      - name: nagiosadapter_general_local_storage
+        value: /nagios-adapter/nagios-adapter/local_storage/
       - name: nagiosadapter_estates_estates_root_path
         value: /nagios-adapter/estates-edl/
       - name: nagiosadapter_estates_cnc_root_path
