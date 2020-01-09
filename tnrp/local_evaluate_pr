@@ -1,0 +1,91 @@
+#!/bin/bash
+set -e
+
+TNRP_PRODUCT=manifests
+
+EVAL_FOLDER=local_eval
+CONSTRUCT_EVAL_PATH=/tmp/${EVAL_FOLDER}
+SAM_BIN_PATH=${GOPATH}/bin/linux_amd64
+GIT_ROOT=$(git rev-parse --show-toplevel)
+
+STEP2_SCRIPT=local_evaluate_pr_step2
+
+process_cmdline_args() {
+  PR=$1
+  if [ -z "$PR" ]; then
+    printf "Must specify PR #\n"
+    exit 1
+  fi
+
+  if [ -n "$2" ]; then
+    TNRP_PRODUCT=$2
+  fi
+}
+
+prepare() {
+  printf "Prepare for local evaluation: %s\n" $CONSTRUCT_EVAL_PATH
+  rm -rf $CONSTRUCT_EVAL_PATH || true
+  mkdir $CONSTRUCT_EVAL_PATH
+}
+
+ensure_docker_image() {
+  source "${GIT_ROOT}/sam-internal/hypersam.sh"
+  printf "Using docker image: %s\n" "${HYPERSAM}"
+  docker pull "${HYPERSAM}"
+}
+
+ensure_sam_binary() {
+  if [ ! -d "$SAM_BIN_PATH" ]; then
+    printf "Must have built linux version of sam"
+    exit 1
+  fi
+}
+
+setup_ghe_access() {
+  if [ ! -f "${HOME}/token.txt" ]; then
+    printf "\n\nERROR: ghe Personal Access token required (~/token.txt).\n\n"
+    exit 1
+  fi
+  cp "${HOME}/token.txt" "${CONSTRUCT_EVAL_PATH}/token.txt"
+}
+
+setup_extras() {
+  cp "${GIT_ROOT}/tnrp/${STEP2_SCRIPT}" "${CONSTRUCT_EVAL_PATH}/"
+  cp "${GIT_ROOT}/tnrp/evaluate_pr"  "${CONSTRUCT_EVAL_PATH}/"
+  cp "${GIT_ROOT}/sam-internal/k8s-in/build.sh"  "${CONSTRUCT_EVAL_PATH}/"
+  cp "${GIT_ROOT}/sam-internal/k8s-in/parallel_build.py"  "${CONSTRUCT_EVAL_PATH}/"
+}
+
+run_step2_in_docker_container() {
+  printf "\nStarting docker container. Execute: %s\n" "${STEP2_SCRIPT}"
+  docker run \
+    --rm \
+    -it \
+    --privileged=true \
+    -u root \
+    -w /${EVAL_FOLDER}/ \
+    \
+    -v ${CONSTRUCT_EVAL_PATH}/:/${EVAL_FOLDER}:cached \
+    -v ~/.ssh:/root/.ssh:cached \
+    -v "${SAM_BIN_PATH}":/${EVAL_FOLDER}/bin:cached \
+    \
+    -e GO_PIPELINE_LABEL=dummy_value \
+    -e LOCAL_SAM_BIN_PATH=/${EVAL_FOLDER}/bin \
+    -e STAGE_PULL_REQUEST_ID="${PR}" \
+    -e STAGE_GO_TRIGGER_USER="${USER}" \
+    -e TNRP_PRODUCT=${TNRP_PRODUCT} \
+    \
+    "${HYPERSAM}" \
+    /bin/bash "/${EVAL_FOLDER}/${STEP2_SCRIPT}"
+  printf "\nCompleted docker container\n"
+}
+
+process_cmdline_args "$1" "$2"
+prepare
+ensure_docker_image
+ensure_sam_binary
+
+setup_ghe_access
+setup_extras
+
+run_step2_in_docker_container

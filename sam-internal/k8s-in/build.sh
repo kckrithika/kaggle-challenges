@@ -22,11 +22,13 @@ cd $DIR
 # Script to generate yaml files for all our apps in all estates
 # ./build.sh
 
-if [ -z "$FIREFLY" ]; then
-   SAMBINDIR=/opt/sam
-else
-   echo "*** EXECUTING IN $FIREFLY ENVIRONMENT"
+if [ -n "${FIREFLY}" ]; then
+   echo "*** EXECUTING IN ${FIREFLY} ENVIRONMENT"
    SAMBINDIR=/sam
+elif [ -n "${LOCAL_SAM_BIN_PATH}" ]; then
+    SAMBINDIR="${LOCAL_SAM_BIN_PATH}"
+else
+    SAMBINDIR=/opt/sam
 fi
 
 # Populate dir to cache jsonnet executable if not present
