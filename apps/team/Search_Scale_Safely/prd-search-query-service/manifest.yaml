@@ -7,7 +7,7 @@ system:
       sidecar.istio.io/inject: "true"
     containers:
     - name: search-query-service
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/searchdev/smt-search-query-service:4a52b5e
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/searchdev/smt-search-query-service:a0ca91a
       command:
       - java
       - -Xdebug
