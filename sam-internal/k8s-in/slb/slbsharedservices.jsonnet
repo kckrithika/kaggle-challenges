@@ -61,6 +61,9 @@
     + (if includeSlbPortalOverride then [
       "--vipdnsoptions.viplocation=" + vipLocationName,
       "--k8sapiserver=" + pseudoApiServer,
+    ] else [])
+    + (if slbimages.phaseNum == 3 then [
+      "--flagPushNginxLogsToSplunk=true",
     ] else []),
     volumeMounts: std.prune([
       configs.maddog_cert_volume_mount,

@@ -97,6 +97,7 @@ spec:
         - --proxySelectorLabelValue=slb-nginx-config-b
         - --hostnameOverride=$(NODE_NAME)
         - --control.configProcSentinel=/host/data/slb/config/slb-dns-register/slb-config-proc.sentinel
+        - --flagPushNginxLogsToSplunk=true
         env:
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig-platform
