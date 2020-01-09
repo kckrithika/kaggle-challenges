@@ -3,8 +3,31 @@ apiVersion: v1
 system:
   functions:
     - name: moana-mock-maestro
+      volumes:
+      - maddogCert: {type: server}
+        name: tls-server-certs
+      - maddogCert: {type: client}
+        name: tls-client-certs
       count: 1
       containers:
+        - image: sfci/servicelibs/sherpa-envoy:1.0.13
+          livenessProbe:
+            exec:
+              command: [./bin/is-alive]
+            initialDelaySeconds: 60
+            periodSeconds: 5
+          name: sherpa
+          ports:
+            - {containerPort: 7442, name: http1-tls-in}
+          readinessProbe:
+            exec:
+              command: [./bin/is-ready]
+            initialDelaySeconds: 50
+            periodSeconds: 5
+          volumeMounts:
+            - {mountPath: /client-certs, name: tls-client-certs}
+            - {mountPath: /server-certs, name: tls-server-certs}
+
         - name: mock-maestro
           resources:
             limits: {cpu: 16, memory: 4G}
@@ -12,11 +35,12 @@ system:
           env:
           - {name: JAVA_OPTS, value: '-server -XX:MaxMetaspaceSize=512m -Xmx2048m -Xms2048m'}
           - {name: FILE_MANAGER_UNCOMPRESSED, value: '0'}
+          - {name: SERVER_PORT, value: '7022'}
           image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/insights/mock-maestro-gateway:master-21-f923e87
           ports:
             - containerPort: 15372
               name: manage
-            - containerPort: 8085
+            - containerPort: 7022
               name: http
           livenessProbe:
             httpGet: {path: /manage/health, port: 15372}
@@ -31,4 +55,6 @@ system:
       nodeExposed: true
       ports:
         - port: 8001
-          targetport: 8085
+          targetport: 7022
+        - port: 8011
+          targetport: 7442
