@@ -106,11 +106,8 @@ system:
   loadbalancers:
   - lbname: gater
     function: gater
-    slbEnabled: true
     ports:
-      - port: 9090
-        targetport: 9090
-        lbtype: tcp
-      - port: 15372
-        targetport: 15372
-        lbtype: tcp
+      - lbtype: dsr
+        port: 7443
+        targetport: 7443
+        name: grpc-gater
