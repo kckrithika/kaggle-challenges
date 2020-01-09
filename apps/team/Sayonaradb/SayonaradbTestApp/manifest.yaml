@@ -16,22 +16,22 @@ system:
         httpGet:
             path: /healthngupgrade
     - name: falconsdbproduction
-      image: ops0-artifactrepo1-0-dfw.data.sfdc.net/dva/sdd/sdbproduction:324.110.2-cf00739
+      image: ops0-artifactrepo1-0-dfw.data.sfdc.net/dva/sdd/sdbproduction:324.110.2-3932d25
       livenessProbe:
         httpGet:
             path: /healthfalconsdbproduction
     - name: falconsdbbootstrap
-      image: ops0-artifactrepo1-0-dfw.data.sfdc.net/dva/sdd/sdbbootstrap:324.110.2-cf00739
+      image: ops0-artifactrepo1-0-dfw.data.sfdc.net/dva/sdd/sdbbootstrap:324.110.2-3932d25
       livenessProbe:
         httpGet:
             path: /healthfalconsdbbootstrap
     - name: falconsdbupgrade
-      image: ops0-artifactrepo1-0-dfw.data.sfdc.net/dva/sdd/sdbupgrade:324.110.2-cf00739
+      image: ops0-artifactrepo1-0-dfw.data.sfdc.net/dva/sdd/sdbupgrade:324.110.2-3932d25
       livenessProbe:
         httpGet:
             path: /healthfalconsdbupgrade
     - name: falconsdbgenerationactivator
-      image: ops0-artifactrepo1-0-dfw.data.sfdc.net/dva/sdd/sdbgenerationactivator:324.110.2-cf00739
+      image: ops0-artifactrepo1-0-dfw.data.sfdc.net/dva/sdd/sdbgenerationactivator:324.110.2-3932d25
       livenessProbe:
         httpGet:
             path: /healthfalconsdbgenerationactivator
@@ -55,6 +55,11 @@ system:
       livenessProbe:
         httpGet:
             path: /healthfalconsdbgenerationactivatortest
+    - name: falconsdbconftest
+      image: ops0-artifactrepo1-0-dfw.data.sfdc.net/dva/sdd/sdbconf:63
+      livenessProbe:
+        httpGet:
+            path: /healthfalconsdbconftest
     - name: sdbperftools
       image: ops0-artifactrepo1-0-dfw.data.sfdc.net/dva/sdbperftools/sdbperftools:4
       livenessProbe:
