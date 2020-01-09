@@ -30,6 +30,15 @@ webhooks:
     resources:
     - deployments
   - apiGroups:
+    - extensions
+    apiVersions:
+    - v1beta1
+    operations:
+    - CREATE
+    - UPDATE
+    resources:
+    - deployments
+  - apiGroups:
     - mesh.sfdc.net
     apiVersions:
     - v1
