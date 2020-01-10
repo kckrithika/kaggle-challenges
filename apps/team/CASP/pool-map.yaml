@@ -80,12 +80,13 @@ apps:
   - lo2/lo2-sam_warden
   - lo3/lo3-sam_warden
  prod-maiev-receiver:
+  - cdg/cdg-sam_warden 
+ prod-maiev-receiver-alternate:
   - iad/iad-sam_warden
   - par/par-sam_warden
   - ukb/ukb-sam_warden
   - phx/phx-sam_warden
-  - fra/fra-sam_warden
-  - cdg/cdg-sam_warden
+  - fra/fra-sam_warden 
   - ph2/ph2-sam_warden
   - lo2/lo2-sam_warden
   - lo3/lo3-sam_warden
