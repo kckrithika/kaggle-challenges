@@ -57,4 +57,6 @@ system:
         - port: 8001
           targetport: 7022
         - port: 8011
-          targetport: 7442
+          lbtype: http
+          targetport: 7022
+          tls: true
