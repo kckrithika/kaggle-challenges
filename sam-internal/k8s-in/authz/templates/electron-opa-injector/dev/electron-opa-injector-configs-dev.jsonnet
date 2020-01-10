@@ -98,8 +98,8 @@ zpages:
           decision_logs:
             service: metrics
             reporting:
-              min_delay_seconds: 300
-              max_delay_seconds: 360
+              min_delay_seconds: 60
+              max_delay_seconds: 60
           plugins:
             argus_metrics:
               enabled: true
@@ -138,8 +138,8 @@ zpages:
           decision_logs:
             service: metrics
             reporting:
-              min_delay_seconds: 300
-              max_delay_seconds: 360
+              min_delay_seconds: 60
+              max_delay_seconds: 60
           plugins:
             envoy_ext_authz_grpc:
               addr: :9191
@@ -210,8 +210,8 @@ zpages:
           decision_logs:
             service: metrics
             reporting:
-              min_delay_seconds: 300
-              max_delay_seconds: 360
+              min_delay_seconds: 60
+              max_delay_seconds: 60
           plugins:
             argus_metrics:
               enabled: true
@@ -250,8 +250,8 @@ zpages:
           decision_logs:
             service: metrics
             reporting:
-              min_delay_seconds: 300
-              max_delay_seconds: 360
+              min_delay_seconds: 60
+              max_delay_seconds: 60
           plugins:
             envoy_ext_authz_grpc:
               addr: :9191
@@ -302,7 +302,7 @@ containers:
       periodSeconds: 10
     readinessProbe:
       httpGet:
-        path: /health?bundle=false
+        path: /health?bundle=true
         scheme: HTTP
         port: 8181
       initialDelaySeconds: 5
@@ -333,7 +333,7 @@ containers:
       periodSeconds: 10
     readinessProbe:
       httpGet:
-        path: /health?bundle=false
+        path: /health?bundle=true
         scheme: HTTP
         port: 8181
       initialDelaySeconds: 5
