@@ -1,5 +1,9 @@
 version: v2
 apps:
+  # PRD Global Identity Dev - GID Setup-owned Cast clone for active dev and testing
+  gid-setup-cast-dev:
+    - name: prd/prd-sam_globalidentity
+
   # PRD-Dev Cloud Atlas Service
   cast-prd-dev:
     - name: prd/prd-sam_cloudatlas_dir
