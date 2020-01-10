@@ -141,7 +141,7 @@ system:
       - name: dataservice_rootUri
         value: http://localgidservice-staging.global-identity.prd-sam.prd.slb.sfdc.net
       - name: vaas_baseUrl
-        value: https://vaas-distributed-dev.herokuapp.com
+        value: https://vaas-distributed-staging.herokuapp.com
       - name: spring_datasource_url
         value: jdbc:postgresql://gid-sdb.global-identity.prd-sam.prd.slb.sfdc.net:5432/gid_staging
       - name: spring_datasource_driverClassName
