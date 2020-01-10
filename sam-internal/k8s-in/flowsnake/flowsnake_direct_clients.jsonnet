@@ -218,6 +218,7 @@ local cre_production = {
                 owner_name: "Hbase",
                 namespace: "hbase-flowsnake",
                 pki_namespace: "hbase-flowsnake",
+                prometheus_config: import "configs/client/hbase-flowsnake/prometheus-config.jsonnet",
                 users: [
                     "hbase-flowsnake.xyan",
                     "hbase-flowsnake.daniel.wong",
