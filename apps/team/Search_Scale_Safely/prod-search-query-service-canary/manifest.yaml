@@ -24,6 +24,8 @@ system:
       - name: admin-port
         containerPort: 15372
       env:
+      - name: SFDC_ENVIRONMENT
+        value: prod
       - name: JVM_OPTS
         value: "-Dmesh.istio-mode=true -Dgrpc.port=7443 -Dmetrics.funnelEndPointURL=http://ajnafunneldirecttls.funnel.svc.mesh.sfdc.net:7442"
       resources:
