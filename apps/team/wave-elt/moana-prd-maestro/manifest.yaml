@@ -56,6 +56,18 @@ system:
       ports:
         - port: 8001
           targetport: 7022
+    - lbname: moana-mock-maestro-tls
+      annotations:
+        slb.sfdc.net/cnames: |-
+          [
+           {
+            "cname": "moana-mock-maestro-prd.slb.sfdc.net"
+           }
+          ]
+      function: moana-mock-maestro
+      slbEnabled: true
+      nodeExposed: true
+      ports:
         - port: 8011
           lbtype: http
           targetport: 7022
