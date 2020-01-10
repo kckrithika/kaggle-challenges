@@ -5,7 +5,6 @@ system:
     email:
       - cloudatlas-dev@salesforce.com
       - cloudtocloud@salesforce.com
-      - gid_setup@salesforce.com
   functions:
   - name: cast-prd-dev
     identity:
@@ -151,47 +150,6 @@ system:
       volumeMounts:
         - name: server-cert
           mountPath: /certs
-    #####################################################################################
-    # GID Data service
-    #####################################################################################
-    - name: gid-service
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/gid/gid-service:b8cd5bb
-      imagePullPolicy: Always
-      env:
-        - name: directory_server_host
-          valueFrom:
-           fieldRef:
-            fieldPath: spec.nodeName
-        - name: server_port
-          value: 8081
-        - name: management_server_port
-          value: 15371
-        - name: ca_service_host
-          value: test0shared0-samminionatlasdir1-2-prd.eng.sfdc.net
-        - name: c2c_common_gdotBasePath
-          value: http://${directory_server_host}:7022/scim
-        - name: security_client_dynamickeystore_cadir
-          value: /certs/ca
-        - name: security_client_dynamickeystore_monitoredDirectory
-          value: /clientcerts/client
-        - name: c2c_common_callerContext
-          value: giddataservice-cast-prd-dev
-        - name: c2c_service_id
-          value: giddataservice-cast-prd-dev
-        - name: ldaps_hostname
-          value: test0shared0-samminionatlasdir1-2-prd.eng.sfdc.net
-      ports:
-        - containerPort: 8081
-        - containerPort: 15371
-      livenessProbe:
-        httpGet:
-          path: /manage/health
-          port: 15371
-      volumeMounts:
-        - name: server-cert
-          mountPath: /certs
-        - mountPath: /clientcerts
-          name: client-cert
     #####################################################################################
     # NGINX Rev Proxy
     #####################################################################################
