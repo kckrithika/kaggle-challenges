@@ -80,6 +80,12 @@ system:
               value: cre-engine
             - name: EXPORT_K4A_VAULT
               value: c360-dvd-rw-dev-na-1 # 2.1.4 PATCH, dvd export job uses separate dvd vault
+            - name: CRE_DDS_FAT_JSON_SCALE_FACTOR # 2.1.6 PATCH excessive files on export in IAD/ORD
+              value: 500
+            - name: CRE_DDS_SKINNY_JSON_SCALE_FACTOR # 2.1.6 PATCH excessive files on export in IAD/ORD
+              value: 500
+            - name: CRE_DDS_SKINNY_CSV_SCALE_FACTOR # 2.1.6 PATCH excessive files on export in IAD/ORD
+              value: 500
             ####################################################################################################
             ##################################### APP Config environment variables #############################
             ####################################################################################################
