@@ -36,7 +36,7 @@ system:
         httpGet:
           path: /manage/health
           port: 15372
-        initialDelaySeconds: 115
+        initialDelaySeconds: 120
       terminationMessagePolicy: FallbackToLogsOnError
       volumeMounts:
         - name: tls-client-cert
