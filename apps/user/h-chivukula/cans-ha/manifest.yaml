@@ -12,7 +12,7 @@ system:
     count: 3
     containers:
     - name: candidate-service-ha-logrotator
-      image: dva/csc-health/candidate-service:17
+      image: dva/csc-health/candidate-service:jenkins-csc-health-candidate-service-PR-71-1-itest
       volumeMounts:
         - mountPath: /home/sfdc-csc-health/candidate-service
           name: logvol
@@ -42,7 +42,7 @@ system:
         done
       ']
     - name: candidate-service-ha
-      image: dva/csc-health/candidate-service:17
+      image: dva/csc-health/candidate-service:jenkins-csc-health-candidate-service-PR-71-1-itest
       ports:
       - containerPort: 8888
         name: healthz
@@ -127,10 +127,9 @@ system:
       - name: CHS_COORDINATOR_RPCPORT
         value: 1234
       livenessProbe:
-        exec:
-          command:
-          - echo
-          - always_healthy
+        httpGet:
+          path: /healthz
+          port: 8888
         initialDelaySeconds: 5
       command: ["/bin/sh", "-c"]
       args: ["
@@ -160,3 +159,10 @@ system:
       - name: logvol
         hostPath:
           path: /home/sfdc-csc-health/candidate-service
+
+  loadbalancers:
+  - lbname: candidateservice2lb
+    function: candidate-service-ha
+    ports:
+    - port: 80
+      targetport: 8888
