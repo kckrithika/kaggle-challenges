@@ -36,6 +36,8 @@ system:
           value: "cantor.casp.$KINGDOM-sam.$KINGDOM.slb.sfdc.net:11983"
         - name: HTTP_PORT
           value: "8085"
+        - name: HTTPS_PORT
+          value: "8443"
         - name: BASE_PATH
           value: "/v1/*"
         - name: BRANCH
