@@ -8,28 +8,29 @@ local configs = import "config.jsonnet";
 
 // A full list of all known namespaces that run Mesh
 local all_known_mesh_namespaces = [
-    "app", 
-    "casam", 
-    "ccait", 
-    "cloudatlas", 
-    "core-on-sam-sp2", 
-    "core-on-sam", 
-    "emailinfra", 
-    "funnel", 
-    "gater", 
+    "app",
+    "casam",
+    "ccait",
+    "cloudatlas",
+    "core-on-sam-sp2",
+    "core-on-sam",
+    "dataprotection",
+    "emailinfra",
+    "funnel",
+    "gater",
     "gateway",
-    "retail-cre", 
-    "retail-dfs", 
-    "retail-dss", 
-    "retail-eventlistener", 
-    "retail-mds", 
-    "retail-rrps", 
-    "retail-rsui", 
-    "retail-setup", 
+    "retail-cre",
+    "retail-dfs",
+    "retail-dss",
+    "retail-eventlistener",
+    "retail-mds",
+    "retail-rrps",
+    "retail-rsui",
+    "retail-setup",
     "scone",
-    "search-scale-safely", 
-    "service-mesh", 
-    "universal-search", 
+    "search-scale-safely",
+    "service-mesh",
+    "universal-search",
     "wave-elt",
   ];
 
@@ -53,8 +54,22 @@ local electronOpaInjectionEnabled = {
 local istioInjectionEnabled = {
   prd: all_known_mesh_namespaces + ci_namespaces_prd_only,
   mvp: all_known_mesh_namespaces,
-  par: ["app", "funnel", "service-mesh"],
-  lo3: ["app", "funnel", "service-mesh", "ccait", "gater", "search-scale-safely", "universal-search", "gateway"],
+  par: [
+    "app",
+    "funnel",
+    "service-mesh"
+  ],
+  lo3: [
+    "app",
+    "ccait",
+    "dataprotection",
+    "funnel",
+    "gater",
+    "gateway",
+    "search-scale-safely",
+    "service-mesh",
+    "universal-search"
+  ],
 };
 
 
