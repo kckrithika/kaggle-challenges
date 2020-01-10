@@ -66,27 +66,26 @@ zpages:
           fieldRef:
             apiVersion: v1
             fieldPath: metadata.namespace
-      - name: KINGDOM
-        value: ' + configs.kingdom + '
-      - name: SFDC_METRICS_SERVICE_HOST
-        value: ' + funnelEndpointHost + '
       - name: ELECTRON_OPA_CONFIG
         value: |
           <%-
+          def env?(v) ENV.key?(v) and ENV[v].length > 0 end
           split_pod_name = ENV["POD_NAME"].split("-")
-          metrics_scope = split_pod_name[0..(split_pod_name).length-3].join("-") + "." + ENV["POD_NAMESPACE"] + "." + ENV["KINGDOM"]
-          funnel_url = "http://" + ENV["SFDC_METRICS_SERVICE_HOST"] + "/"
+          metrics_scope = split_pod_name[0..(split_pod_name).length-3].join("-")
+          metrics_scope += env?("POD_NAMESPACE") ? "." + ENV["POD_NAMESPACE"] : ""
+          metrics_scope += ".' + configs.kingdom + '"
           -%>
           services:
             metrics:
-              url: http://:9192/
+              url: http://:9192
             electron:
-              url: https://authz-svc-opa.service-mesh.localhost.mesh.force.com:7442
-              allow_insecure_tls: true
+              url: https://authz-svc-opa-lb.service-mesh.' + configs.kingdom + '-sam.' + configs.kingdom + '.slb.sfdc.net:7442
               credentials:
                 client_tls:
                   cert: /client-certs/client/certificates/client.pem
                   private_key: /client-certs/client/keys/client-key.pem
+                  cacerts: /client-certs/ca/cacerts.pem
+                  use_system_ca: true
           bundles:
             authz:
               resource: v1/authzpolicy
@@ -99,32 +98,34 @@ zpages:
           decision_logs:
             service: metrics
             reporting:
-              min_delay_seconds: 55
-              max_delay_seconds: 65
+              min_delay_seconds: 60
+              max_delay_seconds: 60
           plugins:
             argus_metrics:
               enabled: true
               server_port: :9192
-              funnel_url: <%= funnel_url %>
+              funnel_url: http://' + funnelEndpointHost + '/
               metrics_scope: <%= metrics_scope -%>
       - name: ELECTRON_OPA_ISTIO_CONFIG
         value: |
           <%-
+          def env?(v) ENV.key?(v) and ENV[v].length > 0 end
           split_pod_name = ENV["POD_NAME"].split("-")
-          metrics_scope = split_pod_name[0..(split_pod_name).length-3].join("-") + "." + ENV["POD_NAMESPACE"] + "." + ENV["KINGDOM"]
-          funnel_url = "http://" + ENV["SFDC_METRICS_SERVICE_HOST"] + "/"
+          metrics_scope = split_pod_name[0..(split_pod_name).length-3].join("-")
+          metrics_scope += env?("POD_NAMESPACE") ? "." + ENV["POD_NAMESPACE"] : ""
+          metrics_scope += ".' + configs.kingdom + '"
           -%>
-
           services:
             metrics:
-                url: http://:9192/
+                url: http://:9192
             electron:
-              url: https://authz-svc-opa.service-mesh.localhost.mesh.force.com:7442
-              allow_insecure_tls: true
+              url: https://authz-svc-opa-lb.service-mesh.' + configs.kingdom + '-sam.' + configs.kingdom + '.slb.sfdc.net:7442
               credentials:
                 client_tls:
                   cert: /client-certs/client/certificates/client.pem
                   private_key: /client-certs/client/keys/client-key.pem
+                  cacerts: /client-certs/ca/cacerts.pem
+                  use_system_ca: true
           bundles:
             authz:
               resource: v1/authzpolicy
@@ -137,8 +138,8 @@ zpages:
           decision_logs:
             service: metrics
             reporting:
-              min_delay_seconds: 55
-              max_delay_seconds: 65
+              min_delay_seconds: 60
+              max_delay_seconds: 60
           plugins:
             envoy_ext_authz_grpc:
               addr: :9191
@@ -148,14 +149,13 @@ zpages:
             argus_metrics:
               enabled: true
               server_port: :9192
-              funnel_url: <%= funnel_url %>
+              funnel_url: http://' + funnelEndpointHost + '/
               metrics_scope: <%= metrics_scope -%>
     args:
       - echo -e "${ELECTRON_OPA_CONFIG}" > /templated-config/opa_config.yaml.erb &&
         /app/config_gen.rb -t /templated-config/opa_config.yaml.erb -o /generated-config/opa_config.yaml &&
         echo -e "${ELECTRON_OPA_ISTIO_CONFIG}" > /templated-config/opa_istio_config.yaml.erb &&
-        /app/config_gen.rb -t /templated-config/opa_istio_config.yaml.erb -o /generated-config/opa_istio_config.yaml &&
-        chmod -R 777 /client-certs/client
+        /app/config_gen.rb -t /templated-config/opa_istio_config.yaml.erb -o /generated-config/opa_istio_config.yaml
     volumeMounts:
       - name: templated-config
         mountPath: /templated-config
@@ -178,28 +178,26 @@ zpages:
           fieldRef:
             apiVersion: v1
             fieldPath: metadata.namespace
-      - name: KINGDOM
-        value: ' + configs.kingdom + '
-      - name: SFDC_METRICS_SERVICE_HOST
-        value: ' + funnelEndpointHost + '
       - name: ELECTRON_OPA_CONFIG
         value: |
           <%-
+          def env?(v) ENV.key?(v) and ENV[v].length > 0 end
           split_pod_name = ENV["POD_NAME"].split("-")
-          metrics_scope = split_pod_name[0..(split_pod_name).length-3].join("-") + "." + ENV["POD_NAMESPACE"] + "." + ENV["KINGDOM"]
-          funnel_url = "http://" + ENV["SFDC_METRICS_SERVICE_HOST"] + "/"
+          metrics_scope = split_pod_name[0..(split_pod_name).length-3].join("-")
+          metrics_scope += env?("POD_NAMESPACE") ? "." + ENV["POD_NAMESPACE"] : ""
+          metrics_scope += ".' + configs.kingdom + '"
           -%>
-
           services:
             metrics:
-                url: http://:9192/
+                url: http://:9192
             electron:
-              url: http://authz-svc-opa.service-mesh.localhost.mesh.force.com:5442
-              allow_insecure_tls: true
+              url: https://demo-authz-opa-prd.slb.sfdc.net:7443
               credentials:
                 client_tls:
                   cert: /client-certs/client/certificates/client.pem
                   private_key: /client-certs/client/keys/client-key.pem
+                  cacerts: /client-certs/ca/cacerts.pem
+                  use_system_ca: true
           bundles:
             authz:
               resource: v1/authzpolicy
@@ -212,32 +210,34 @@ zpages:
           decision_logs:
             service: metrics
             reporting:
-              min_delay_seconds: 55
-              max_delay_seconds: 65
+              min_delay_seconds: 60
+              max_delay_seconds: 60
           plugins:
             argus_metrics:
               enabled: true
               server_port: :9192
-              funnel_url: <%= funnel_url %>
+              funnel_url: http://' + funnelEndpointHost + '/
               metrics_scope: <%= metrics_scope -%>
       - name: ELECTRON_OPA_ISTIO_CONFIG
         value: |
           <%-
+          def env?(v) ENV.key?(v) and ENV[v].length > 0 end
           split_pod_name = ENV["POD_NAME"].split("-")
-          metrics_scope = split_pod_name[0..(split_pod_name).length-3].join("-") + "." + ENV["POD_NAMESPACE"] + "." + ENV["KINGDOM"]
-          funnel_url = "http://" + ENV["SFDC_METRICS_SERVICE_HOST"] + "/"
+          metrics_scope = split_pod_name[0..(split_pod_name).length-3].join("-")
+          metrics_scope += env?("POD_NAMESPACE") ? "." + ENV["POD_NAMESPACE"] : ""
+          metrics_scope += ".' + configs.kingdom + '"
           -%>
-
           services:
             metrics:
-                url: http://:9192/
+                url: http://:9192
             electron:
-              url: http://authz-svc-opa.service-mesh.localhost.mesh.force.com:5442
-              allow_insecure_tls: true
+              url: https://demo-authz-opa-prd.slb.sfdc.net:7443
               credentials:
                 client_tls:
                   cert: /client-certs/client/certificates/client.pem
                   private_key: /client-certs/client/keys/client-key.pem
+                  cacerts: /client-certs/ca/cacerts.pem
+                  use_system_ca: true
           bundles:
             authz:
               resource: v1/authzpolicy
@@ -250,8 +250,8 @@ zpages:
           decision_logs:
             service: metrics
             reporting:
-              min_delay_seconds: 55
-              max_delay_seconds: 65
+              min_delay_seconds: 60
+              max_delay_seconds: 60
           plugins:
             envoy_ext_authz_grpc:
               addr: :9191
@@ -261,14 +261,13 @@ zpages:
             argus_metrics:
               enabled: true
               server_port: :9192
-              funnel_url: <%= funnel_url %>
+              funnel_url: http://' + funnelEndpointHost + '/
               metrics_scope: <%= metrics_scope -%>
     args:
       - echo -e "${ELECTRON_OPA_CONFIG}" > /templated-config/opa_config.yaml.erb &&
         /app/config_gen.rb -t /templated-config/opa_config.yaml.erb -o /generated-config/opa_config.yaml &&
         echo -e "${ELECTRON_OPA_ISTIO_CONFIG}" > /templated-config/opa_istio_config.yaml.erb &&
-        /app/config_gen.rb -t /templated-config/opa_istio_config.yaml.erb -o /generated-config/opa_istio_config.yaml &&
-        chmod -R 777 /client-certs/client
+        /app/config_gen.rb -t /templated-config/opa_istio_config.yaml.erb -o /generated-config/opa_istio_config.yaml
     volumeMounts:
       - name: templated-config
         mountPath: /templated-config
@@ -278,16 +277,17 @@ zpages:
         mountPath: /client-certs
 containers:
   - name: electron-opa
-    image: ' + versions.opaImage + '
+    image: ' + versions.devOpaImage + '
     imagePullPolicy: IfNotPresent
-    ports:
-      - name: http
-        containerPort: 8181
     args:
       - run
       - --server
       - --config-file=/config/opa_config.yaml
       - --log-level=debug
+    securityContext:
+      fsGroup: 7447
+      runAsNonRoot: true
+      runAsUser: 7447
     volumeMounts:
       - name: generated-config
         mountPath: /config
@@ -295,25 +295,30 @@ containers:
         mountPath: /client-certs
     livenessProbe:
       httpGet:
+        path: /health?bundle=false
         scheme: HTTP
         port: 8181
       initialDelaySeconds: 5
       periodSeconds: 10
     readinessProbe:
       httpGet:
-        path: /health?bundle=false
+        path: /health?bundle=true
         scheme: HTTP
         port: 8181
       initialDelaySeconds: 5
       periodSeconds: 10
   - name: electron-opa-istio
-    image: ' + versions.opaIstioImage + '
+    image: ' + versions.devOpaIstioImage + '
     imagePullPolicy: IfNotPresent
     args:
       - run
       - --server
       - --config-file=/config/opa_istio_config.yaml
       - --log-level=debug
+    securityContext:
+      fsGroup: 7447
+      runAsNonRoot: true
+      runAsUser: 7447
     volumeMounts:
       - name: generated-config
         mountPath: /config
@@ -321,13 +326,14 @@ containers:
         mountPath: /client-certs
     livenessProbe:
       httpGet:
+        path: /health?bundle=false
         scheme: HTTP
         port: 8181
       initialDelaySeconds: 5
       periodSeconds: 10
     readinessProbe:
       httpGet:
-        path: /health?bundle=false
+        path: /health?bundle=true
         scheme: HTTP
         port: 8181
       initialDelaySeconds: 5
