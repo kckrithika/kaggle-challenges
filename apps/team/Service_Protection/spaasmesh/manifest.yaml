@@ -13,12 +13,12 @@ system:
     
     # number of instances ("kpods") to deploy and run
     # recommended min: 3 for availability
-    count: 3
+    count: 2
     
     # Docker image(s) that make up one instance of the service
     containers:
     - name: spaas
-      image: sfci/service-protection/sps:0.7.19
+      image: sfci/service-protection/sps:0.8.8
       # set container environment variables
       env:
       - name: SFDC_ENVIRONMENT
@@ -40,7 +40,8 @@ system:
       - name: grpc-mtls-port 
         containerPort: 7033
       resources:
-        limits: { cpu: "4", memory: "4Gi" }
+      # used to have max 4 cpu and 4Gi memory, changing both to 6 as we dropped one instance. Same resource usage.
+        limits: { cpu: "6", memory: "6Gi" }
         requests: { cpu: "1", memory: "1Gi" }
       # standard ports https://salesforce.quip.com/uHeqAb3s9qsR
 
