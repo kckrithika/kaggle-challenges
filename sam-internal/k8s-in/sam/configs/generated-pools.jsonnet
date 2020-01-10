@@ -3780,11 +3780,13 @@
     {
       "namespaces": [
         "global-identity",
-        "ci-global-identity"
+        "ci-global-identity",
+        "cast"
       ],
       "access": [
         "team/global-identity",
-        "team/ci-global-identity"
+        "team/ci-global-identity",
+        "team/cast"
       ],
       "controlEstate": "prd-sam",
       "estate": "prd-sam_globalidentity",
