@@ -159,9 +159,7 @@ system:
       - name: mail_restemailclient_baseRestUrl
         value: http://gid-sso-client.global-identity.prd-sam.prd.slb.sfdc.net:80/gmail/rest
       - name: mail_restemailclient_credentialsPath
-        value: classpath:/email
-      - name: mail_restemailclient_proxy
-        value: http://public0-proxy1-0-prd.data.sfdc.net:8080
+        value: classpath:/email  
       - name: mail_restemailclient_mcSubdomain
         value: mc-00tq6cdjppzlxr9vvx98rqyy1
       - name: mail_restemailclient_definitionKey
