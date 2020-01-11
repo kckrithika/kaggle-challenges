@@ -216,7 +216,7 @@ spec:
           value: -.-.prd.-.istio-sidecar-injector
         - name: ESTATE
           value: prd-sam_gater
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/sfci/servicemesh/servicemesh/metrics-scraper:9972d78059cf97f688118c39c739ab1844f8df73
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/sfci/servicemesh/servicemesh/metrics-scraper:d22413f73ef01b23fcde0a4152b3a615e872b857
         imagePullPolicy: Always
         name: metrics-scraper
         readinessProbe:
