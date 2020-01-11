@@ -13,7 +13,7 @@ system:
         "routing.mesh.sfdc.net/enabled": "true"
       containers:
         - name: cre-control-plane-ccp-perf
-          image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cre-fusion/services:controlplane.2.1.2.0.release-2.1.2.6ca65c6.5
+          image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cre-fusion/services:controlplane.2.2.0.0.develop.4c23f79.897
           env:
             ####################################################################################################
             ############################ ENGINE/DDS FLOWSNAKE ARTIFACTS ( Most frequently changed ) ############
@@ -95,7 +95,7 @@ system:
             - name: DATABASE_NAMESPACE
               value: crecontrolplaneccpperf
             - name: SPRING_DATASOURCE_URL
-              value: jdbc:discover://dbaas0-minionapp1-1-prd.eng.sfdc.net:1511,dbaas0-minionapp2-1-prd.eng.sfdc.net:1511,dbaas0-minionapp3-1-prd.eng.sfdc.net:1511/${database.namespace}?${database.discovery.params}
+              value: jdbc:discover:${database.namespace}
               ## Stream Processor
             - name: STREAM_PROCESSING_ENDPOINT
               value: cre-sp-ccp-perf.retail-cre.localhost.mesh.force.com:5442
@@ -108,10 +108,9 @@ system:
             ####################################################################################################
             - name: JVM_ARGS
               value: "-Djava.util.concurrent.ForkJoinPool.common.parallelism=8
-                  -verbose:gc -XX:+PrintGCDateStamps -XX:+PrintHeapAtGC
-                  -XX:+PrintPromotionFailure -XX:+PrintTenuringDistribution -XX:+PrintGCDetails
-                  -XX:+PrintGCDateStamps -XX:+PrintGCApplicationStoppedTime
-                  -XX:+PrintGCApplicationConcurrentTime -XX:+PrintGCCause -XX:+DisableExplicitGC
+                  -verbose:gc
+                  -XX:+PrintGCDetails
+                  -XX:+DisableExplicitGC
                   -Xloggc:/opt/cre/cre-control-plane-ccp-perf/verbosegc_$(FUNCTION_INSTANCE_NAME).log
                   -XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=/opt/cre/cre-control-plane-ccp-perf
                   -Dcom.sun.management.jmxremote.port=8898
