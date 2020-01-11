@@ -153,7 +153,11 @@ system:
       - name: mail_server
         value: gid-mailhog.global-identity.prd-sam.prd.slb.sfdc.net
       - name: mail_clientclass
-        value: SMTPEmailClient
+        value: RestEmailClient
+      - name: mail_restemailclient_baseAuthUrl
+        value: http://gid-sso-client.global-identity.prd-sam.prd.slb.sfdc.net:80/gmail/auth
+      - name: mail_restemailclient_baseRestUrl
+        value: http://gid-sso-client.global-identity.prd-sam.prd.slb.sfdc.net:80/gmail/rest
       - name: mail_restemailclient_credentialsPath
         value: file:/secrets
       - name: mail_restemailclient_proxy
