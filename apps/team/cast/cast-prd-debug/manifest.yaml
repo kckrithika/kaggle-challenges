@@ -1,0 +1,84 @@
+apiVersion: v1
+
+system:
+  notifications:
+    email:
+      - cloudatlas-dev@salesforce.com
+      - cloudtocloud@salesforce.com
+      - gid_setup@salesforce.com
+  functions:
+  - name: cast-prd-debug
+    identity:
+      serviceName: cast-prd-debug
+    count: 1
+    strategy:
+      type: RollingUpdate
+      rollingUpdate:
+        maxSurge: 0
+        maxUnavailable: 1
+    hostnetwork: false
+    containers:
+    #####################################################################################
+    # Service Mesh / Envoy / Sherpa
+    #####################################################################################
+    - name: sherpa-cast-client
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/zchen/sherpa-envoy-debug:latest
+      env:
+      - name: SFDC_ENVIRONMENT
+        value: "stmfa"
+      resources:
+        limits: { cpu: "1", memory: "1Gi" }
+        requests: { cpu: "1", memory: "1Gi" }
+      ports:
+      - containerPort: 7012
+        name: sherpa-in
+      - containerPort: 7014
+        name: http1-in
+      - containerPort: 7442
+        name: http1-tls-in
+      - containerPort: 15373
+        name: sherpa-adm
+      livenessProbe:
+        exec:
+          command:
+          - "/home/sfdc-sherpa/bin/is-alive"
+        initialDelaySeconds: 120
+        periodSeconds: 5
+      readinessProbe:
+        exec:
+          command:
+          - "/home/sfdc-sherpa/bin/is-ready"
+        initialDelaySeconds: 110
+        periodSeconds: 5
+    #####################################################################################
+    # Service Beacon
+    #####################################################################################
+    - name: beacon-cast
+      image: sfci/services/sfdc-bazel/disco/beacon:fba17e8b2
+      env:
+      - name: SFDC_ENVIRONMENT
+        value: "stmfa"
+      resources:
+        limits: { cpu: "1", memory: "1Gi" }
+        requests: { cpu: "1", memory: "1Gi" }
+      args:
+        - -endpoint
+        - $(FUNCTION_NAMESPACE)/cast-prd-debug:DATACENTER_ALLENV:HTTP1_TLS
+      livenessProbe:
+        exec:
+          command:
+          - "/opt/beacon/is-alive.sh"
+        initialDelaySeconds: 5
+  #####################################################################################
+  # SLB
+  #####################################################################################
+  loadbalancers:
+    - lbname: cast-debug
+      function: cast-prd-debug
+      slbEnabled: true
+      ports:
+        - port: 443
+          targetport: 7442
+          lbtype: http
+          tls: true
+          reencrypt: true
