@@ -29,13 +29,6 @@ system:
       resources:
         limits: { cpu: "1", memory: "1Gi" }
         requests: { cpu: "1", memory: "1Gi" }
-      volumeMounts:
-      - name: client-cert
-        mountPath: /client-certs
-      - name: server-cert
-        mountPath: /server-certs
-      - mountPath: /log
-        name: logvolsherpa
       ports:
       - containerPort: 7012
         name: sherpa-in
@@ -65,9 +58,6 @@ system:
       env:
       - name: SFDC_ENVIRONMENT
         value: "stmfa"
-      volumeMounts:
-      - mountPath: /log
-        name: logvolbeacon
       resources:
         limits: { cpu: "1", memory: "1Gi" }
         requests: { cpu: "1", memory: "1Gi" }
