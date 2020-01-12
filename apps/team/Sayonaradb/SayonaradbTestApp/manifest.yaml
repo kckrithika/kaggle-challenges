@@ -65,3 +65,8 @@ system:
       livenessProbe:
         httpGet:
             path: /healthsdbperftools
+    - name: sdbstore
+      image: ops0-artifactrepo1-0-dfw.data.sfdc.net/dva/sdbstore-docker:jenkins-SFStorage-bookkeeper-SFSTORE_326.7-4-itest
+      livenessProbe:
+        httpGet:
+            path: /healthsdbstoredocker
