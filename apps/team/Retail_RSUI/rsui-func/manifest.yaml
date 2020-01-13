@@ -27,7 +27,7 @@ system:
       hostPath:
         path: /home/sfdc-retail/logs
     - name: oauth-keys
-      k4aSecret: 
+      k4aSecret:
         secretName: rsui-oauth-key-1
     - name: encryption-key1
       k4aSecret:
@@ -38,7 +38,7 @@ system:
 
     containers:
     - name: retail-setup
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/retail/retail-setup:2.2.142
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/retail/retail-setup:2.2.145
       ports:
       # Jetty http1 ports for incoming public traffic via SLB
       - containerPort: 7022
