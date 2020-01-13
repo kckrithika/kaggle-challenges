@@ -168,7 +168,7 @@ system:
         mountPath: /client-certs
       - name: secretvol
         mountPath: /secrets
-        readOnly: true
+        readOnly: false
       ports:
       - containerPort: 8080
       - containerPort: 15375
