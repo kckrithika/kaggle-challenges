@@ -4,3 +4,5 @@ apps:
      # you can also specify other pools
  message-rendition-service:    
   - prd/prd-sam
+ siq-mock:
+  - prd/prd-sam

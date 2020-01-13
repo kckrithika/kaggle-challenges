@@ -1,0 +1,33 @@
+# created by scone-gen 769d1fd6f
+
+apiVersion: v1
+
+system:
+  functions:
+  - name: siq-mocks
+    count: 2
+    containers:
+    - name: siq-mock
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/bma/siq-mock:latest
+      ports:
+      - containerPort: 9002
+        name: grpc-svc
+      livenessProbe:
+        initialDelaySeconds: 30
+        httpGet:
+          path: /manage/health
+          port: 9002
+      readinessProbe:
+        timeoutSeconds: 10
+        httpGet:
+          path: /manage/ready
+          port: 9002
+
+  loadbalancers:
+  - lbname: siq-mock-lb
+    function: siq-mocks
+    slbenabled: true
+    ports:
+      - port: 9002
+        targetport: 9002
+        lbtype: dsr
