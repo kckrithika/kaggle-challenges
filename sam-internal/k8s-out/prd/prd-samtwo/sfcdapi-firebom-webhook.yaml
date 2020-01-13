@@ -89,6 +89,7 @@ items:
                           "default": {
                               "canary": {
                                   "add-promotion-stage": true,
+                                  "add-setup-change-case-stage": true,
                                   "depends-on": [
                                       "test"
                                   ],
@@ -98,6 +99,7 @@ items:
                                   "add-promotion-stage": false
                               },
                               "prod": {
+                                  "add-close-change-case-stage": true,
                                   "add-promotion-stage": true,
                                   "depends-on": [
                                       "canary"
@@ -434,8 +436,8 @@ items:
                 apiVersion: v1
                 fieldPath: metadata.labels['name']
           - name: CONFIG_VERSION
-            value: "30"
-          image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/sfcdapi-firebom:111
+            value: "31"
+          image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/sfcdapi-firebom:116
           imagePullPolicy: Always
           livenessProbe:
             failureThreshold: 10
