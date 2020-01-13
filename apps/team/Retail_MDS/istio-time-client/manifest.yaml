@@ -18,8 +18,8 @@ system:
     containers:
 
     - name: time-stmfa-na43
-      # https://sfcirelease.dop.sfdc.net/job/servicelibs/job/servicelibs-TimeService/job/TimeService/job/master/1
-      image: sfci/servicelibs/timeservice:b3c3a1327b0f33ff1fe541bcc7ed2e9f37c962ad
+      # https://sfcirelease.dop.sfdc.net/job/servicelibs/job/servicelibs-TimeService/job/TimeService/job/master/120
+      image: sfci/servicelibs/timeservice:638a17d9fed1696af5cd10e44ad8a85fb37f1fe4
       args:
       - ForeverClient
       - app-prd-stmfa-na43.app.svc.mesh.sfdc.net:7443
@@ -33,8 +33,8 @@ system:
           command: ["/bin/true"]
 
     - name: time-stmfb-na43
-      # https://sfcirelease.dop.sfdc.net/job/servicelibs/job/servicelibs-TimeService/job/TimeService/job/master/1
-      image: sfci/servicelibs/timeservice:b3c3a1327b0f33ff1fe541bcc7ed2e9f37c962ad
+      # https://sfcirelease.dop.sfdc.net/job/servicelibs/job/servicelibs-TimeService/job/TimeService/job/master/120
+      image: sfci/servicelibs/timeservice:638a17d9fed1696af5cd10e44ad8a85fb37f1fe4
       args:
       - ForeverClient
       - app-prd-stmfb-na43.app.svc.mesh.sfdc.net:7443
@@ -48,8 +48,8 @@ system:
           command: ["/bin/true"]
 
     - name: time-stmfc-na43
-      # https://sfcirelease.dop.sfdc.net/job/servicelibs/job/servicelibs-TimeService/job/TimeService/job/master/1
-      image: sfci/servicelibs/timeservice:b3c3a1327b0f33ff1fe541bcc7ed2e9f37c962ad
+      # https://sfcirelease.dop.sfdc.net/job/servicelibs/job/servicelibs-TimeService/job/TimeService/job/master/120
+      image: sfci/servicelibs/timeservice:638a17d9fed1696af5cd10e44ad8a85fb37f1fe4
       args:
       - ForeverClient
       - app-prd-stmfc-na43.app.svc.mesh.sfdc.net:7443
@@ -63,8 +63,8 @@ system:
           command: ["/bin/true"]
 
     - name: time-stmfb-na45
-      # https://sfcirelease.dop.sfdc.net/job/servicelibs/job/servicelibs-TimeService/job/TimeService/job/master/1
-      image: sfci/servicelibs/timeservice:b3c3a1327b0f33ff1fe541bcc7ed2e9f37c962ad
+      # https://sfcirelease.dop.sfdc.net/job/servicelibs/job/servicelibs-TimeService/job/TimeService/job/master/120
+      image: sfci/servicelibs/timeservice:638a17d9fed1696af5cd10e44ad8a85fb37f1fe4
       args:
       - ForeverClient
       - app-prd-stmfb-na45.app.svc.mesh.sfdc.net:7443
