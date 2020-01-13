@@ -76,7 +76,7 @@ configs.deploymentBase(versions.injectorNamespace) {
         containers: [
           {
             name: "injector",
-            image: versions.injectorImage,
+            image: versions.devInjectorImage,
             imagePullPolicy: "IfNotPresent",
             terminationMessagePolicy: "FallbackToLogsOnError",
             args: [
@@ -158,7 +158,7 @@ configs.deploymentBase(versions.injectorNamespace) {
               },
               {
                 name: "FAKE_REDEPLOY_VAR",
-                value: "1",
+                value: "0",
               },
             ],
             volumeMounts+: [
