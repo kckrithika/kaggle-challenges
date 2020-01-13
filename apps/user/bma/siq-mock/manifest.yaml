@@ -4,7 +4,7 @@ apiVersion: v1
 
 system:
   functions:
-  - name: siq-mock
+  - name: siq-mocks
     count: 2
     containers:
     - name: siq-mock
@@ -12,8 +12,6 @@ system:
       ports:
       - containerPort: 9002
         name: grpc-svc
-      - containerPort: 9002
-        name: scone-mgmt
       livenessProbe:
         initialDelaySeconds: 30
         httpGet:
@@ -27,7 +25,7 @@ system:
 
   loadbalancers:
   - lbname: siq-mock-lb
-    function: siq-mock
+    function: siq-mocks
     slbenabled: true
     ports:
       - port: 9002
