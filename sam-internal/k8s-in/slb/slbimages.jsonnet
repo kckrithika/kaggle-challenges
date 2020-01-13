@@ -48,9 +48,9 @@ local slbreleases = import "slbreleases.json";
 
 
    hyperslb_nginx_config_label: (
-        if ($.phase == "1" || $.phase == "2" || $.phase == "3") then
+        if ($.phase == "1" || $.phase == "2" || $.phase == "3" || $.phase == "4") then
             slbreleases[$.phase].hyperslb.label
-        else if (estate == "dfw-sam" || estate == "phx-sam") then
+        else if (estate == "dfw-sam") then
            "2298-ca35f8b6b3543336a71d3db6474588c27b38689c"
         else
            "2280-6728d98d50b4d61992ce01b456c568dd1bc64dcc"
