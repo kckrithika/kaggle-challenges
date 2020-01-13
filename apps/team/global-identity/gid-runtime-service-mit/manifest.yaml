@@ -154,12 +154,12 @@ system:
         value: gid-mailhog.global-identity.prd-sam.prd.slb.sfdc.net
       - name: mail_clientclass
         value: RestEmailClient
-      - name: mail_restemailclient_baseAuthUrl
-        value: http://gid-sso-client.global-identity.prd-sam.prd.slb.sfdc.net:80/gmail/auth
-      - name: mail_restemailclient_baseRestUrl
-        value: http://gid-sso-client.global-identity.prd-sam.prd.slb.sfdc.net:80/gmail/rest
+      - name: mail_restemailclient_mcSubdomain
+        value: mc-00tq6cdjppzlxr9vvx98rqyy1
       - name: mail_restemailclient_credentialsPath
-        value: classpath:/email  
+        value: file:/secrets
+      - name: mail_restemailclient_proxy
+        value: http://public0-proxy1-0-prd.data.sfdc.net:8080
       - name: mail_restemailclient_mcSubdomain
         value: mc-00tq6cdjppzlxr9vvx98rqyy1
       - name: mail_restemailclient_definitionKey
@@ -167,6 +167,9 @@ system:
       volumeMounts:
       - name: client-cert
         mountPath: /client-certs
+      - name: secretvol
+        mountPath: /secrets
+        readOnly: true
       ports:
       - containerPort: 8080
       - containerPort: 15375
@@ -200,7 +203,10 @@ system:
         path: /home/sfdc-gid-runtime-sherpa/logs
     - name: logvolbeacon
       hostPath:
-        path: /home/sfdc-gid-runtime-beacon/logs  
+        path: /home/sfdc-gid-runtime-beacon/logs
+    - name: secretvol
+      secret:
+        secretName: gidmc
   #####################################################################################
   # SLB
   #####################################################################################
