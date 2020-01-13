@@ -191,7 +191,7 @@ zpages:
             metrics:
                 url: http://:9192
             electron:
-              url: https://demo-authz-opa-prd.slb.sfdc.net:7443
+              url: https://authz-svc-opa-lb.service-mesh.' + configs.kingdom + '-sam.' + configs.kingdom + '.slb.sfdc.net:7442
               credentials:
                 client_tls:
                   cert: /client-certs/client/certificates/client.pem
@@ -231,7 +231,7 @@ zpages:
             metrics:
                 url: http://:9192
             electron:
-              url: https://demo-authz-opa-prd.slb.sfdc.net:7443
+              url: https://authz-svc-opa-lb.service-mesh.' + configs.kingdom + '-sam.' + configs.kingdom + '.slb.sfdc.net:7442
               credentials:
                 client_tls:
                   cert: /client-certs/client/certificates/client.pem
