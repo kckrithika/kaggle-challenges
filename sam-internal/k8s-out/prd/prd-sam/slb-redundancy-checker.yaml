@@ -44,7 +44,7 @@ spec:
           valueFrom:
             fieldRef:
               fieldPath: spec.nodeName
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/slb/hyperslb:2304-4f353e811f709c6181798d473ac815ca42d6ab53
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/slb/hyperslb:2305-3b2e1034d7d2d6ebca8b7d8d925705fd87edc805
         name: slb-redundancy-checker
         resources:
           limits:
@@ -77,7 +77,7 @@ spec:
         env:
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig-platform
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/slb/hyperslb:2304-4f353e811f709c6181798d473ac815ca42d6ab53
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/slb/hyperslb:2305-3b2e1034d7d2d6ebca8b7d8d925705fd87edc805
         name: slb-cleanup
         securityContext:
           privileged: true
