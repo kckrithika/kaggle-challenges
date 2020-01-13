@@ -21,12 +21,14 @@
       'canary': {
         'depends-on': ['test'],
         'add-promotion-stage': true,
-        'skip-promotion-wait': false
+        'skip-promotion-wait': false,
+        'add-setup-change-case-stage': true
       },
       'prod': {
         'depends-on': ['canary'],
         'add-promotion-stage': true,
-        'skip-promotion-wait': false
+        'skip-promotion-wait': false,
+        'add-close-change-case-stage': true
       }
     }
   },
