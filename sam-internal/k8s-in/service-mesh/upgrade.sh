@@ -34,6 +34,7 @@ helm template istio \
 --set global.proxy.envoyMetricsService.tlsSettings.clientCertificate=/client-certs/client/certificates/client.pem \
 --set global.proxy.envoyMetricsService.tlsSettings.privateKey=/client-certs/client/keys/client-key.pem \
 --set global.hub=%\(istioHub\)s \
+--set global.tag=%\(istioTag\)s \
 --debug \
 ${TMP_DIR}/istio
 
@@ -51,6 +52,7 @@ helm template istio \
 --set global.proxy.envoyMetricsService.tlsSettings.clientCertificate=/client-certs/client/certificates/client.pem \
 --set global.proxy.envoyMetricsService.tlsSettings.privateKey=/client-certs/client/keys/client-key.pem \
 --set global.hub=%\(istioHub\)s \
+--set global.tag=%\(istioTag\)s \
 --debug \
 ${TMP_DIR}/istio
 

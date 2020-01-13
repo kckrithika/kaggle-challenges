@@ -39,7 +39,7 @@ spec:
       serviceAccountName: istio-ingressgateway-service-account
       containers:
         - name: istio-proxy
-          image: "%(istioHub)s/proxy:68662a54f8059519f73429ae251595e229bf7ad1"
+          image: "%(istioHub)s/proxy:%(istioTag)s"
           imagePullPolicy: Always
           securityContext:
             runAsUser: 0
