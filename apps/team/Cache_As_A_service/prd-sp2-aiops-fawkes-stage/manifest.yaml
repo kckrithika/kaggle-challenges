@@ -18,7 +18,10 @@ system:
           maxUnavailable: 1
       containers:
       - name: fawkes-stage-func
-        image: dva/casp/fawkes_strata:jenkins-CASP-fawkes-dev-77-itest
+        image: dva/casp/fawkes_strata:jenkins-CASP-fawkes-PR-141-2-itest
+        ports:
+          - name: fawkes-http
+            containerPort: 5000
         env:
         - name: FAWKES_ENV
           value: "stg"
@@ -32,8 +35,6 @@ system:
           value: "https://public0-proxy1-0-prd.data.sfdc.net:8080"
         - name: NO_PROXY
           value: "warden.sfdc.net,127.0.0.1,localhost"
-        - name: CANTOR_ENDPOINT
-          value: "cantor.casp.prd-samtwo.prd.slb.sfdc.net:11983"
         volumeMounts:
         - mountPath: /fawkes/argus-secrets
           name: argus
@@ -48,6 +49,8 @@ system:
           name: fawkes-staging-logs-vol
         - mountPath: /ajna-certs
           name: ajna-cert
+        - mountPath: /certs
+          name: fawkes-stage-cert
         livenessProbe:
           exec:
             command: ["/bin/true"]
@@ -69,3 +72,19 @@ system:
       - name: ajna-cert
         maddogCert:
           type: client
+      - name: fawkes-stage-cert
+        maddogCert:
+          type: server
+          lbnames:
+            - fawkes-stage
+    loadbalancers:
+      - lbname: fawkes-stage
+        function: fawkes-stage-func
+        slbenabled: true
+        ports:
+          - port: 443
+            targetport: 5000
+            lbtype: http
+            tls: true
+            reencrypt: true
+            lbalgorithm: roundrobin
