@@ -59,5 +59,18 @@ ${TMP_DIR}/istio
 # Delete tmp directory.
 rm -rf ${TMP_DIR}/
 
+# Fix istio-init job names in overlays
+OUT_FILE=./kustomize/overlays/istio-init/templates/job-crd-all.yaml
+NEW=$(cat ./kustomize/base/istio-init/templates/job-crd-all.yaml | grep "name: istio-init-crd-all-")
+OLD=$(cat ${OUT_FILE} | grep "name: istio-init-crd-all-")
+sed "s/${OLD}/${NEW}/g" ${OUT_FILE} > ${OUT_FILE}_1
+mv ${OUT_FILE}_1 ${OUT_FILE}
+
+OUT_FILE=./kustomize/overlays/istio-init/templates/job-crd-mixer.yaml
+NEW=$(cat ./kustomize/base/istio-init/templates/job-crd-mixer.yaml | grep "name: istio-init-crd-mixer-")
+OLD=$(cat ${OUT_FILE} | grep "name: istio-init-crd-mixer-")
+sed "s/${OLD}/${NEW}/g" ${OUT_FILE} > ${OUT_FILE}_1
+mv ${OUT_FILE}_1 ${OUT_FILE}
+
 # Sourcing the kustomize script so that it uses the KUSTOMIZE_DIR initialized here.
 . ${KUSTOMIZE_DIR}/kustomize.sh
