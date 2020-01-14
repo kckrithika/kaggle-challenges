@@ -157,7 +157,7 @@ system:
       - name: mail_restemailclient_mcSubdomain
         value: mc-00tq6cdjppzlxr9vvx98rqyy1
       - name: mail_restemailclient_credentialsPath
-        value: file:/secrets
+        value: file:/k4asecrets
       - name: mail_restemailclient_proxy
         value: http://public0-proxy1-0-prd.data.sfdc.net:8080
       - name: mail_restemailclient_mcSubdomain
@@ -169,6 +169,9 @@ system:
         mountPath: /client-certs
       - name: secretvol
         mountPath: /secrets
+        readOnly: true
+      - name: k4asecretvol
+        mountPath: /k4asecrets
         readOnly: true
       ports:
       - containerPort: 8080
@@ -206,6 +209,9 @@ system:
         path: /home/sfdc-gid-runtime-beacon/logs
     - name: secretvol
       secret:
+        secretName: gidmc
+    - name: k4asecretvol
+      k4aSecret:
         secretName: gidmc
   #####################################################################################
   # SLB
