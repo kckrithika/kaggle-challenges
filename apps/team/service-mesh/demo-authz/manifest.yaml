@@ -113,7 +113,7 @@ system:
             "cname": "demo-authz-prd.slb.sfdc.net"
            }
           ]
-      function: demo-authz-opa
+      function: demo-authz
       slbenabled: true
       ports:
         - port: 7442
