@@ -123,3 +123,10 @@ system:
         - port: 7442
           targetport: 7442
           lbtype: dsr
+    - lbname: demo-authz-opa
+      function: demo-authz-opa
+      ports:
+        - lbtype: dsr
+          port: 7442
+          targetport: 7442
+          name: http-authz

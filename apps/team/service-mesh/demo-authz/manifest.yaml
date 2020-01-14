@@ -33,6 +33,8 @@ system:
         name: grpc-svc
       - containerPort: 7022
         name: http-svc
+      - containerPort: 7443
+        name: sherpa-grpc-tls
       - containerPort: 8440
         name: http-noauth
       livenessProbe:
@@ -116,6 +118,13 @@ system:
       function: demo-authz
       slbenabled: true
       ports:
-        - port: 7442
-          targetport: 7442
+        - port: 7443
+          targetport: 7443
           lbtype: dsr
+    - lbname: demo-authz
+      function: demo-authz
+      ports:
+        - lbtype: dsr
+          port: 7443
+          targetport: 7443
+          name: grpc-authz
