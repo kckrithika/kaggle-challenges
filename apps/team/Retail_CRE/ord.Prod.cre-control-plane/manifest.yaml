@@ -19,9 +19,9 @@ system:
             - name: INGEST_SPEC_IMAGE
               value: ops0-artifactrepo1-0-ord.data.sfdc.net/sfci/cre/cre-engine:2.1.0.7.master.0b1f4d4.45
             - name: EXPORT_SPEC_IMAGE
-              value: ops0-artifactrepo1-0-ord.data.sfdc.net/sfci/cre/cre-dds-spark:2.1.4.0.master.40e17aa.23
+              value: ops0-artifactrepo1-0-ord.data.sfdc.net/sfci/cre/cre-dds-spark:2.1.6.0.master.0831239.24
             - name: SAVE_SPEC_IMAGE
-              value: ops0-artifactrepo1-0-ord.data.sfdc.net/sfci/cre/cre-dds-spark:2.1.4.0.master.40e17aa.23
+              value: ops0-artifactrepo1-0-ord.data.sfdc.net/sfci/cre/cre-dds-spark:2.1.6.0.master.0831239.24
             ####################################################################################################
             ####################################### GLOBAL SHARED VALUES #######################################
             ####################################################################################################
@@ -80,6 +80,12 @@ system:
               value: cre-engine
             - name: EXPORT_K4A_VAULT
               value: c360-dvd-rw-dev-na-1 # 2.1.4 PATCH, dvd export job uses separate dvd vault
+            - name: CRE_DDS_FAT_JSON_SCALE_FACTOR # 2.1.6 PATCH excessive files on export in IAD/ORD
+              value: 500
+            - name: CRE_DDS_SKINNY_JSON_SCALE_FACTOR # 2.1.6 PATCH excessive files on export in IAD/ORD
+              value: 500
+            - name: CRE_DDS_SKINNY_CSV_SCALE_FACTOR # 2.1.6 PATCH excessive files on export in IAD/ORD
+              value: 500
             ####################################################################################################
             ##################################### APP Config environment variables #############################
             ####################################################################################################
