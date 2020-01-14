@@ -163,7 +163,8 @@ items:
                           "cwexporter",
                           "edge",
                           "ajnaendpoint",
-                          "ajnakafka"
+                          "ajnakafka",
+                          "ccecom"
                       ],
                       "soft-launch": true,
                       "working-directory": "/tmp/sfcdapifirebom"

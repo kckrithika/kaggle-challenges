@@ -80,7 +80,8 @@
     'cwexporter',
     'edge',
     'ajnaendpoint',
-    'ajnakafka'
+    'ajnakafka',
+    'ccecom'
   ],
   'soft-launch': true
 }
