@@ -312,7 +312,7 @@
         periodSeconds: 15,
     },
   } else {}),
-  slbNginxConfig(deleteLimitOverride=0, vipInterfaceName="", tlsConfigEnabled=false, waitForRealsvrCfg=false, proxyFlavor=""): {
+  slbNginxConfig(deleteLimitOverride=0, vipInterfaceName="", tlsConfigEnabled=false, waitForRealsvrCfg=false): {
     // TODO this can likely be deleted
     // TODO https://computecloud.slack.com/archives/G340CE86R/p1558639955057700
     ports: [
@@ -322,7 +322,7 @@
       },
     ],
     name: "slb-nginx-config",
-    image: if proxyFlavor == "hsm" then slbimages.hyperslb_nginx_config else slbimages.hyperslb,
+    image: slbimages.hyperslb,
     command: [
       "/sdn/slb-nginx-config",
       "--target=" + slbconfigs.nginx.containerTargetDir,
@@ -365,7 +365,7 @@
       "--tcpconfig.accessLogFormat=basic",
       "--httpconfig.accessLogDirectory=" + slbconfigs.logsDir,
     ]
-     + (if slbimages.phaseNum == 3 || slbimages.phaseNum == 4 then [
+     + (if slbimages.phaseNum >= 3 then [
       "--flagPushNginxLogsToSplunk=true",
     ] else []),
     volumeMounts: std.prune([

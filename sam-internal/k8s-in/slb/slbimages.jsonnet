@@ -47,19 +47,8 @@ local slbreleases = import "slbreleases.json";
     phaseNum: std.parseInt($.phase),
 
 
-   hyperslb_nginx_config_label: (
-        if ($.phase == "1" || $.phase == "2" || $.phase == "3" || $.phase == "4") then
-            slbreleases[$.phase].hyperslb.label
-        else if (estate == "dfw-sam") then
-           "2298-ca35f8b6b3543336a71d3db6474588c27b38689c"
-        else
-           "2280-6728d98d50b4d61992ce01b456c568dd1bc64dcc"
-    ),
-
-
     # These are the images used by the templates
     hyperslb: imageFunc.do_override_for_pipeline_image($.overrides, "slb", "hyperslb", slbreleases[$.phase].hyperslb.label),
-    hyperslb_nginx_config: imageFunc.do_override_for_pipeline_image($.overrides, "slb", "hyperslb", $.hyperslb_nginx_config_label),
     hyperslb_build: imageFunc.build_info_from_tag(slbreleases[$.phase].hyperslb.label).buildNumber,
 
     # An old hypersdn image that should be deployed on all current ipvs nodes.
