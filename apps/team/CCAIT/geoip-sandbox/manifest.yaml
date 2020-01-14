@@ -17,7 +17,7 @@ system:
       app: geoip
     containers:
     - name: geoip
-      image: sfci/services/sfdc-bazel/service-mesh/geoip:be49df199
+      image: sfci/services/sfdc-bazel/service-mesh/geoip:f532f87cc
       env:
       - name: FAKE_ENV_VAR_INCREMENT_TO_TRIGGER_SAM_DEPLOY
         value: "0"
@@ -45,7 +45,7 @@ system:
         initialDelaySeconds: 115
       terminationMessagePolicy: FallbackToLogsOnError
     - name: sherpa
-      image: sfci/servicelibs/sherpa-envoy:410b9b128bae61fe3db928569412ea9dd07dfa0e
+      image: sfci/servicelibs/sherpa-envoy:1.0.14
       env:
       - name: SFDC_ENVIRONMENT
         value: mesh
