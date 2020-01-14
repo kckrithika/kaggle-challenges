@@ -14,7 +14,7 @@ system:
     containers:
     - name: search-query-service
       # Funnel can be removed on QS 7.2
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/searchdev/smt-search-query-service:eabc330
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/searchdev/smt-search-query-service:3fe7c09
       ports:
       - name: service-port
         containerPort: 7443
