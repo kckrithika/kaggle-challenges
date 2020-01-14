@@ -33,6 +33,9 @@ system:
         name: http-svc
       - containerPort: 8440
         name: http-noauth
+      # SAM validation needs a containerPort to be exposed for LB to work
+      - containerPort: 7443
+        name: grpc-sherpa-lb
       livenessProbe:
         tcpSocket:
           port: 8440
@@ -77,3 +80,17 @@ system:
     - name: tls-server-cert
       maddogCert:
         type: server
+
+  loadbalancers:
+  - lbname: authz-svc
+    function: authz-svc
+    labels:
+      app: authz-svc
+    annotations:
+      "routing.mesh.sfdc.net/enabled": "true"
+    ports:
+      - lbtype: dsr
+        port: 7443
+        targetport: 7443
+        name: grpc-geoip
+      
