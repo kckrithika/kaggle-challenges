@@ -101,6 +101,7 @@ system:
         - name: management_server_port
           value: 15374
         - name: cloudatlas_http_server_port
+#TODO Need to update this?
           value: 7030
       volumeMounts:
       - mountPath: /log
@@ -141,7 +142,8 @@ system:
         - name: management_server_port
           value: 15372
         - name: c2c_common_gdotBasePath
-          value: "http://${directory_server_host}:7022/scim"
+#SLB is port 80
+          value: "http://${directory_server_host}:80/scim"
       ports:
         - containerPort: 8082
         - containerPort: 15372
@@ -174,7 +176,8 @@ system:
         - name: ca_service_host
           value: ${directory_server_host}
         - name: c2c_common_gdotBasePath
-          value: http://${directory_server_host}:7022/scim
+#SLB is port 80
+          value: http://${directory_server_host}:80/scim
         - name: security_client_dynamickeystore_cadir
           value: /certs/ca
         - name: security_client_dynamickeystore_monitoredDirectory
