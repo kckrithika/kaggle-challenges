@@ -101,10 +101,14 @@ system:
       ports:
         - port: 80
           targetport: 8889
+          lbtype: http
           lbalgorithm: hash
+          sticky: 3600
         - port: 443
           targetport: 8443
+          lbtype: http
           lbalgorithm: hash
+          sticky: 3600
         - port: 15372
           targetport: 15372
           lbalgorithm: roundrobin
