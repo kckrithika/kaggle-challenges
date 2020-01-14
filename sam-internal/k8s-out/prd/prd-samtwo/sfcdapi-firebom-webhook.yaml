@@ -151,7 +151,7 @@ items:
                           "cdpscheduler",
                           "cdpsegment",
                           "cdpinjector",
-                          "matlockauth",
+                          "auth",
                           "prazk",
                           "fitcon",
                           "fitops",
@@ -436,7 +436,7 @@ items:
                 apiVersion: v1
                 fieldPath: metadata.labels['name']
           - name: CONFIG_VERSION
-            value: "31"
+            value: "32"
           image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/sfcdapi-firebom:116
           imagePullPolicy: Always
           livenessProbe:
