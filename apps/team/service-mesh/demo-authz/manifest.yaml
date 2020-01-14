@@ -107,20 +107,6 @@ system:
       maddogCert:
         type: server
   loadbalancers:
-    - lbname: demo-authz-lb
-      annotations:
-        slb.sfdc.net/cnames: |-
-          [
-           {
-            "cname": "demo-authz-prd.slb.sfdc.net"
-           }
-          ]
-      function: demo-authz
-      slbenabled: true
-      ports:
-        - port: 7443
-          targetport: 7443
-          lbtype: dsr
     - lbname: demo-authz
       function: demo-authz
       ports:
