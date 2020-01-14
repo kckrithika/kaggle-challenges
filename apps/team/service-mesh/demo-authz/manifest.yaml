@@ -104,3 +104,18 @@ system:
     - name: tls-server-cert
       maddogCert:
         type: server
+  loadbalancers:
+    - lbname: demo-authz-lb
+      annotations:
+        slb.sfdc.net/cnames: |-
+          [
+           {
+            "cname": "demo-authz-prd.slb.sfdc.net"
+           }
+          ]
+      function: demo-authz-opa
+      slbenabled: true
+      ports:
+        - port: 7442
+          targetport: 7442
+          lbtype: dsr
