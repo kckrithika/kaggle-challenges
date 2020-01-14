@@ -183,7 +183,7 @@ system:
           value: 127.0.0.1 
         # GIDDS image 179c76a (~ Oct 11, 2019) uses Entity API and needs its base path
         - name: gid_service_ca_entityApi_basePath
-          value: ${ca_service_host}:7032
+          value: http://${ca_service_host}:7032
         # CA directory server hosted SCIM endpoint
         - name: c2c_common_gdotBasePath
           # CA directory server SLB port is 80
