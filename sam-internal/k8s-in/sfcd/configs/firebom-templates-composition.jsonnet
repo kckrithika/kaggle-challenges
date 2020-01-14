@@ -68,7 +68,7 @@
     'cdpscheduler',
     'cdpsegment',
     'cdpinjector',
-    'matlockauth',
+    'auth',
     'prazk',
     'fitcon',
     'fitops',
