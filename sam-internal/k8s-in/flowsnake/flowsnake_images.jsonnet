@@ -77,11 +77,13 @@ local utils = import "util_functions.jsonnet";
         "2-prd-dev": self["2"] {
             image_tags+: {
                 service_mesh_image_tag: "1.0.13",
+                integration_test_tag: "42",
             },
             feature_flags+: {
                 # Note: the *value* of the flags is ignored. jsonnet lacks array search, so we use a an object.
                 btrfs_watchdog_hard_reset: "",  # Was promoted to prd-dev before phasing refactor
                 sherpa_no_ready_delay: "AAA",
+                next_analysis_script: "INTO THE FUTURE!",
             },
             # prd-dev offers legacy version mappings. Phase 2 does not, so cannot inherit from there.
             # Start with iad-ord (which also have legacy version mappings),
