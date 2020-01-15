@@ -92,5 +92,4 @@ system:
       - lbtype: dsr
         port: 7443
         targetport: 7443
-        name: grpc-geoip
-      
+        name: grpc-authz
