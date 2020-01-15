@@ -12,10 +12,16 @@ system:
         type: server
     containers:
     - name: capadd
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/qwang/capadd:bob-20160630 # golang app
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/qwang/capadd:test-20200114
       volumeMounts:
         - name: capadd-client-cert
           mountPath: /clientcert
         - name: capadd-server-cert
           mountPath: /servercert
+      ports:
+      - containerPort: 8787
+      livenessProbe:
+        httpGet:
+          path: /capadd
+          port: 8787
 
