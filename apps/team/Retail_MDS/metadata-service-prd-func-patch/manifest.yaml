@@ -19,24 +19,20 @@ system:
     containers:
     # Primary service container
     - name: metadata-service
-      image: sfci/metadata-cannon/metadata-service:0.11.54
+      image: sfci/metadata-cannon/metadata-service:0.12.113
       ports:
-      # Server port
-      - containerPort: 9091
+      # HTTP port
+      - containerPort: 7022
+      # gRPC port
+      - containerPort: 7020
       # Management port
       - containerPort: 15523
       env:
       - name: SFDC_ENVIRONMENT
         value: stmfb
-      - name: SERVER_PORT
-        value: "9091"
-      - name: MANAGEMENT_PORT
-        value: "15523"
       - name: JVM_ARGS
         # Environment specific configuration parameters
-        value: -Ddatabase.name=metadataservice5
-          -Djwt-validation.enablement-per-role.app=false
-          -Xmx2G -Xms2G -XX:ParallelGCThreads=8
+        value: -Xmx2G -Xms2G -XX:ParallelGCThreads=8
       # An environment variable used to trigger containers redeployment without making other changes to the manifest
       - name: RESTART
         value: May-16-2019
@@ -74,7 +70,15 @@ system:
       ports:
       - name: sherpa-h2-tls
         containerPort: 7443
+      - name: sherpa-h1-tls
+        containerPort: 7442
       - containerPort: 15373
+      # A plain-text sherpa-inbound ports.
+      # Used by internal tooling and developers. Must not be exposed in production.
+      - name: sherpa-h2-plain
+        containerPort: 7012
+      - name: sherpa-h1-plain
+        containerPort: 7014
       env:
       - name: SFDC_ENVIRONMENT
         value: stmfb
@@ -113,6 +117,8 @@ system:
     - name: mds-server-cert
       maddogCert:
         type: server
+        lbnames:
+        - metadata-service-prd-func-patch-lb
     - name: mds-client-cert
       maddogCert:
         type: client
@@ -131,11 +137,15 @@ system:
     function: metadata-service-prd-func-patch
     slbEnabled: true
     ports:
+    # A tls gRPC port. Enabled in production.
     - port: 7443
       targetport: 7443
-    # A plain-text HTTP port that serves REST API and developer utilities. Must not be exposed in production.
+      # A plain-text HTTP port. Disabled in production.
     - port: 9093
-      targetport: 9091
+      targetport: 7014
+      # A plain-text gRPC port. Disabled in production.
+    - port: 7012
+      targetport: 7012
   - lbname: metadata-service-prd-func-patch
     function: metadata-service-prd-func-patch
     ports:
