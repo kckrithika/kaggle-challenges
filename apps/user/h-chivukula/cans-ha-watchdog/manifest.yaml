@@ -39,7 +39,7 @@ system:
       - name: HEWD_TARGET_DISPLAYNAME
         value: "Candidate Service"
       - name: HEWD_PUBLISHPRODUCTIONAVAILABILITYMETRIC
-        value: true
+        value: false
       - name: HEWD_LOGLEVEL
         value: debug
       command: ["/bin/sh", "-c"]
