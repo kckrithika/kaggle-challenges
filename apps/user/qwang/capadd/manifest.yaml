@@ -15,7 +15,7 @@ system:
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/qwang/capadd:bob-20160630 # golang app
       volumeMounts:
         - name: capadd-client-cert
-          mountPath: /capaddcert
+          mountPath: /clientcert
         - name: capadd-server-cert
-          mountPath: /capaddcert
+          mountPath: /servercert
 
