@@ -1,0 +1,21 @@
+apiVersion: v1
+system:
+  functions:
+  - name: default
+    count: 1
+    volumes:
+    - name: capadd-client-cert
+      maddogCert:
+        type: client
+    - name: capadd-server-cert
+      maddogCert:
+	type: server
+    containers:
+    - name: capadd
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/qwang/capadd:bob-20160630 # golang app
+      volumeMounts:
+        - name: capadd-client-cert
+          mountPath: /capaddcert
+        - name: capadd-server-cert
+          mountPath: /capaddcert
+
