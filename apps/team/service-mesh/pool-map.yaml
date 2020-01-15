@@ -27,7 +27,7 @@ apps:
     - ia2/ia2-sam_gater
     - ia4/ia4-sam_gater
     - ia5/ia5-sam_gater
- switchboard-prod-5:
+  switchboard-prod-5:
     - yul/yul-sam_gater
     - yhu/yhu-sam_gater
     - cdu/cdu-sam_gater
