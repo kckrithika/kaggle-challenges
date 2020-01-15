@@ -6,7 +6,7 @@ system:
     count: 0
     containers:
     - name: cre-dds
-      image: sfci/cre/cre-dds-spark:2.1.4.0.master.40e17aa.23
+      image: sfci/cre/cre-dds-spark:2.1.6.0.master.0831239.24
       livenessProbe:
         exec:
             command:
