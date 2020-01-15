@@ -12,7 +12,7 @@ system:
       app: switchboard
     containers:
     - name: switchboard
-      image: sfci/services/sfdc-bazel/service-mesh/switchboard:910a7b9fe
+      image: sfci/services/sfdc-bazel/service-mesh/switchboard:19d3d317f
       args:
       ############################## PRODUCTION CONFIGURATION ##########################################
       # Any configuration that needs to go to production should be added here.
