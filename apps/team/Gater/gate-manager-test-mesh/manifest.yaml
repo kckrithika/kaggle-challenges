@@ -16,7 +16,7 @@ system:
       traffic.sidecar.istio.io/excludeInboundPorts: "9522,9523,9524,15372,9090"
     containers:
     - name: gater1
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/rpulle/gate-manager:rpulle-1.0
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/rpulle/gate-manager:dmachak-1579117490
       args:
       - --mesh.istio-mode=true
       - --server.port=9090
