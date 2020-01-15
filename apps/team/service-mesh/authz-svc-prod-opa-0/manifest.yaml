@@ -95,4 +95,4 @@ system:
         - lbtype: dsr
           port: 7442
           targetport: 7442
-          name: http-authz-svc-opa
+          name: http-authz
