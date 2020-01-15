@@ -10,7 +10,7 @@ system:
   - name: authz-svc-opa
     count: 2
     annotations:
-      sidecar.istio.io/inject: "true"
+      "sherpa-injector.service-mesh/inject": "enabled"
     containers:
     - name: authz-svc-opa
       image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/electron_sam:142
@@ -20,7 +20,7 @@ system:
       - name: AUTHZ_ARCHIVE_LOC
         value: rpm-rc-signed
       - name: SFDC_ENVIRONMENT
-        value: stm
+        value: mesh
       - name: FAKE_ENV_VAR_INCREMENT_TO_TRIGGER_SAM_DEPLOY
         value: "1"        
       resources:
@@ -89,10 +89,3 @@ system:
         - port: 7442
           targetport: 7442
           lbtype: dsr
-    - lbname: authz-svc-opa
-      function: authz-svc-opa
-      ports:
-        - lbtype: dsr
-          port: 7442
-          targetport: 7442
-          name: http-authz

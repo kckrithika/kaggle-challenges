@@ -10,7 +10,7 @@ system:
   - name: authz-svc
     count: 2
     annotations:
-      sidecar.istio.io/inject: "true"
+      "sherpa-injector.service-mesh/inject": "enabled"
     containers:
     - name: authz-svc
       image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/electron_sam:142
@@ -20,7 +20,7 @@ system:
       - name: AUTHZ_ARCHIVE_LOC
         value: rpm-rc-signed
       - name: SFDC_ENVIRONMENT
-        value: stm
+        value: mesh
       - name: FAKE_ENV_VAR_INCREMENT_TO_TRIGGER_SAM_DEPLOY
         value: "1"        
       resources:
@@ -31,8 +31,6 @@ system:
         name: grpc-svc
       - containerPort: 7022
         name: http-svc
-      - containerPort: 7443
-        name: sherpa-grpc-tls
       - containerPort: 8440
         name: http-noauth
       livenessProbe:
@@ -79,11 +77,3 @@ system:
     - name: tls-server-cert
       maddogCert:
         type: server
-  loadbalancers:
-    - lbname: authz-svc
-      function: authz-svc
-      ports:
-        - lbtype: dsr
-          port: 7443
-          targetport: 7443
-          name: grpc-authz
