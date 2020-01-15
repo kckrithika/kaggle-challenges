@@ -203,7 +203,7 @@ system:
       hostPath:
         path: /home/sfdc-gid-runtime-beacon/logs
     - name: secretvol
-      secret:
+      k4aSecret:
         secretName: gidmc
   #####################################################################################
   # SLB
