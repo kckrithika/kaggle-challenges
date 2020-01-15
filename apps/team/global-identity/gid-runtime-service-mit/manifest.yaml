@@ -168,9 +168,6 @@ system:
       - name: secretvol
         mountPath: /secrets
         readOnly: true
-      - name: k4asecretvol
-        mountPath: /k4asecrets
-        readOnly: true
       ports:
       - containerPort: 8080
       - containerPort: 15375
@@ -207,9 +204,6 @@ system:
         path: /home/sfdc-gid-runtime-beacon/logs
     - name: secretvol
       secret:
-        secretName: gidmc
-    - name: k4asecretvol
-      k4aSecret:
         secretName: gidmc
   #####################################################################################
   # SLB
