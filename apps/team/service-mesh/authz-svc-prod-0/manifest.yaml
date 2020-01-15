@@ -84,10 +84,6 @@ system:
   loadbalancers:
   - lbname: authz-svc
     function: authz-svc
-    labels:
-      app: authz-svc
-    annotations:
-      "routing.mesh.sfdc.net/enabled": "true"
     ports:
       - lbtype: dsr
         port: 7443
