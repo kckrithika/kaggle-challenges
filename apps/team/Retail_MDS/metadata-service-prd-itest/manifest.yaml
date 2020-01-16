@@ -124,29 +124,3 @@ system:
     - name: gdot-secrets-volume
       k4aSecret:
         secretName: mds-gdot-secrets-prd
-  # Load balancer configuration
-  loadbalancers:
-  - lbname: metadata-service-prd-itest-lb
-    function: metadata-service-itest
-    slbEnabled: true
-    ports:
-    - port: 7443
-      targetport: 7443
-      name: mds-itest
-    # A plain-text HTTP port that serves REST API and developer utilities. Must not be exposed in production.
-    - port: 9091
-      targetport: 9091
-    # A plain-text sherpa-inbound port. Used by internal tooling and developers.
-    - port: 7012
-      targetport: 7012
-      lbalgorithm: roundrobin
-  - lbname: metadata-service-itest
-    function: metadata-service-itest
-    ports:
-    - port: 7443
-      targetport: 7443
-      name: grpc-itest
-    # A plain-text sherpa-inbound port. Used by internal tooling and developers.
-    - port: 7012
-      targetport: 7012
-      name: grpc-plainitest
