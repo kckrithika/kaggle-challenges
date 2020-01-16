@@ -41,9 +41,9 @@
 
 - lbname: es-test-coord
   servers:
-   - shared0-samminionzipkin2-1-prd.eng.sfdc.net
-   - shared0-samminionzipkin2-2-prd.eng.sfdc.net
-   - shared0-samminionzipkin2-25-prd.eng.sfdc.net
+   - shared0-samminionzipkin2-30-prd.eng.sfdc.net
+   - shared0-samminionzipkin2-31-prd.eng.sfdc.net
+   - shared0-samminionzipkin2-32-prd.eng.sfdc.net
   ports:
    - port: 9200
      targetport: 9200
@@ -56,38 +56,22 @@
 
 - lbname: es-test
   servers:
-   - shared0-samminionzipkin2-2-prd.eng.sfdc.net
-   - shared0-samminionzipkin2-4-prd.eng.sfdc.net
    - shared0-samminionzipkin2-11-prd.eng.sfdc.net
-   - shared0-samminionzipkin1-16-prd.eng.sfdc.net
-   - shared0-samminionzipkin1-17-prd.eng.sfdc.net
-   - shared0-samminionzipkin1-18-prd.eng.sfdc.net
-   - shared0-samminionzipkin1-19-prd.eng.sfdc.net
-   - shared0-samminionzipkin1-20-prd.eng.sfdc.net
-   - shared0-samminionzipkin1-21-prd.eng.sfdc.net
-   - shared0-samminionzipkin1-22-prd.eng.sfdc.net
-   - shared0-samminionzipkin1-23-prd.eng.sfdc.net
-   - shared0-samminionzipkin1-24-prd.eng.sfdc.net
-   - shared0-samminionzipkin1-25-prd.eng.sfdc.net
-   - shared0-samminionzipkin1-26-prd.eng.sfdc.net
-   - shared0-samminionzipkin1-27-prd.eng.sfdc.net
-   - shared0-samminionzipkin1-28-prd.eng.sfdc.net
-   - shared0-samminionzipkin1-29-prd.eng.sfdc.net
-   - shared0-samminionzipkin1-30-prd.eng.sfdc.net
-   - shared0-samminionzipkin1-32-prd.eng.sfdc.net
-   - shared0-samminionzipkin1-33-prd.eng.sfdc.net
+   - shared0-samminionzipkin2-15-prd.eng.sfdc.net
    - shared0-samminionzipkin2-16-prd.eng.sfdc.net
    - shared0-samminionzipkin2-17-prd.eng.sfdc.net
+   - shared0-samminionzipkin2-18-prd.eng.sfdc.net
    - shared0-samminionzipkin2-19-prd.eng.sfdc.net
    - shared0-samminionzipkin2-20-prd.eng.sfdc.net
    - shared0-samminionzipkin2-21-prd.eng.sfdc.net
    - shared0-samminionzipkin2-22-prd.eng.sfdc.net
    - shared0-samminionzipkin2-24-prd.eng.sfdc.net
+   - shared0-samminionzipkin2-25-prd.eng.sfdc.net
+   - shared0-samminionzipkin2-26-prd.eng.sfdc.net
+   - shared0-samminionzipkin2-27-prd.eng.sfdc.net
    - shared0-samminionzipkin2-28-prd.eng.sfdc.net
    - shared0-samminionzipkin2-29-prd.eng.sfdc.net
-   - shared0-samminionzipkin2-30-prd.eng.sfdc.net
-   - shared0-samminionzipkin2-31-prd.eng.sfdc.net
-   - shared0-samminionzipkin2-32-prd.eng.sfdc.net
+ 
   ports:
    - port: 9200
      targetport: 9200
@@ -121,8 +105,9 @@
   cnames:
    - cname: zipkintest.data.sfdc.net
   servers:
-   - shared0-samminionzipkin1-3-prd.eng.sfdc.net
-   - shared0-samminionzipkin1-15-prd.eng.sfdc.net
+   - shared0-samminionzipkin2-1-prd.eng.sfdc.net
+   - shared0-samminionzipkin2-2-prd.eng.sfdc.net
+   - shared0-samminionzipkin2-4-prd.eng.sfdc.net
   ports:
    - port: 443
      targetport: 9422
