@@ -3,8 +3,6 @@ apiVersion: v1
 system:
   notifications:
     email:
-    - aman.gulati@salesforce.com
-    - matthew.klosak@salesforce.com
     - electron@salesforce.com
   functions:
   - name: demo-authz
@@ -13,11 +11,13 @@ system:
       sidecar.istio.io/inject: "true"
     containers:
     - name: demo-authz
-      image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/electron_sam:145
+      image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/electron_sam:146
       args:
       - --grpc-synthetic-clients=uri=spiffe://salesforce.com/ns/service-mesh/sa/demo-authz,uri=spiffe://salesforce.com/ns/service-mesh/sa/demo-authz-client
       - --http-synthetic-client-ids=demo-authz.service-mesh
       - --authz-paths=opt/identity/authz/test-internal/,opt/identity/authz/opa-policies/,opt/identity/authz/
+      - --http-bind-addr=localhost:7442
+      - --grpc-bind-addr=localhost:7443
       env:
       - name: SFDC_ENVIRONMENT
         value: stm
@@ -29,11 +29,9 @@ system:
         limits: { cpu: "1", memory: "2Gi" }
         requests: { cpu: "1", memory: "2Gi" }
       ports:
-      - containerPort: 7020
-        targetPort: 7443
+      - containerPort: 7443
         name: grpc-svc
-      - containerPort: 7022
-        targetPort: 7442
+      - containerPort: 7442
         name: http-svc
       - containerPort: 8440
         name: http-noauth
@@ -50,7 +48,7 @@ system:
         periodSeconds: 5
         timeoutSeconds: 4
     - name: demo-authz-grpc-stream-client
-      image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/electron_client:145
+      image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/electron_client:146
       args:
       - -service=grpc-stream
       - -endpoint=localhost:7443
@@ -63,7 +61,7 @@ system:
           command: ["/bin/true"]
         initialDelaySeconds: 30
     - name: demo-authz-grpc-client
-      image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/electron_client:145
+      image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/electron_client:146
       args:
       - -service=grpc
       - -endpoint=localhost:7443
@@ -75,7 +73,7 @@ system:
           command: ["/bin/true"]
         initialDelaySeconds: 30
     - name: demo-authz-http-client
-      image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/electron_client:145
+      image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/electron_client:146
       args:
       - -service=http
       - -endpoint=localhost:7442
