@@ -19,7 +19,7 @@ spec:
              "cert-type": "server",
              "kingdom": "prd",
              "name": "server-cert",
-             "role": "istio-routing-webhook.mesh-control-plane",
+             "role": "mesh-control-plane.istio-routing-webhook",
              "san": [
               "istio-routing-webhook",
               "istio-routing-webhook.mesh-control-plane",
@@ -31,7 +31,7 @@ spec:
              "cert-type": "client",
              "kingdom": "prd",
              "name": "client-cert",
-             "role": "istio-routing-webhook.mesh-control-plane"
+             "role": "mesh-control-plane.istio-routing-webhook"
             }
            ]
           }

@@ -22,13 +22,13 @@ spec:
              "cert-type": "client",
              "kingdom": "prd",
              "name": "tls-client-cert",
-             "role": "route-update-service.service-mesh"
+             "role": "service-mesh.route-update-service"
             },
             {
              "cert-type": "server",
              "kingdom": "prd",
              "name": "tls-server-cert",
-             "role": "route-update-service.service-mesh",
+             "role": "service-mesh.route-update-service",
              "san": [
               "route-update-service",
               "route-update-service.service-mesh",
