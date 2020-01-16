@@ -29,6 +29,28 @@ if samfeatureflags.sloop then configs.daemonSetBase("sam") {
                         command: [
                             "/sloop",
                         ],
+                        livenessProbe: {
+                                httpGet: {
+                                    path: "/healthz",
+                                    port: 8080,
+                                },
+                                initialDelaySeconds: 30,
+                                timeoutSeconds: 5,
+                                periodSeconds: 10,
+                                successThreshold: 1,
+                                failureThreshold: 3,
+                            },
+                        readinessProbe: {
+                                 httpGet: {
+                                     path: "/healthz",
+                                     port: 8080,
+                                 },
+                                 initialDelaySeconds: 5,
+                                 timeoutSeconds: 5,
+                                 periodSeconds: 10,
+                                 successThreshold: 1,
+                                 failureThreshold: 3,
+                             },
                         image: "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/thargrove/sloop:thargrove-20200107_090601-0acb2a2",
                         volumeMounts: [
                             {
