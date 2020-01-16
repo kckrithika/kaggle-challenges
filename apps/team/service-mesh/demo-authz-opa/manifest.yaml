@@ -30,11 +30,11 @@ system:
         requests: { cpu: "1", memory: "2Gi" }
       ports:
       - containerPort: 7020
+        targetPort: 7443
         name: grpc-svc
       - containerPort: 7022
+        targetPort: 7442
         name: http-svc
-      - containerPort: 7442
-        name: sherpa-http-tls
       - containerPort: 8440
         name: http-noauth
       livenessProbe:
@@ -53,7 +53,7 @@ system:
       image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/electron_client:145
       args:
       - -service=grpc-stream
-      - -endpoint=localhost:7020
+      - -endpoint=localhost:7443
       - -loopCount=-1
       - -loopDelayInSeconds=60
       - -timeoutInSeconds=3600
@@ -66,7 +66,7 @@ system:
       image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/electron_client:145
       args:
       - -service=grpc
-      - -endpoint=localhost:7020
+      - -endpoint=localhost:7443
       - -loopCount=-1
       - -loopDelayInSeconds=60
       - -spoof-xfcc=uri=spiffe://salesforce.com/ns/service-mesh/sa/demo-authz
@@ -78,7 +78,7 @@ system:
       image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/electron_client:145
       args:
       - -service=http
-      - -endpoint=localhost:7022
+      - -endpoint=localhost:7442
       - -loopCount=-1
       - -loopDelayInSeconds=60
       - -spoof-xfcc=uri=spiffe://salesforce.com/ns/service-mesh/sa/demo-authz
