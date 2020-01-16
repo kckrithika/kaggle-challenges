@@ -40,7 +40,7 @@ system:
         initialDelaySeconds: 140
       readinessProbe:
         httpGet:
-          path: /manage/health
+          path: /manage/ready
           port: 15372
         initialDelaySeconds: 115
       terminationMessagePolicy: FallbackToLogsOnError
