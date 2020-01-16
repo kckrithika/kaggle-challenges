@@ -8,15 +8,18 @@ system:
   - name: mgmt-hub
     count: 1
     volumes:
-    - name: cert
+    - name: tls-client-cert
       maddogCert:
         type: client
+    - name: tls-server-cert
+      maddogCert:
+        type: server
     - name: logvol
       hostPath:
         path: /home/sfdc-mgmt/logs
     containers:
     - name: mgmt-hub
-      image: dva/mgmt-hub:7
+      image: dva/mgmt-hub:11
       env:
       - name: KEYSTORE_CA_DIRECTORY
         value: /certs/ca
@@ -35,7 +38,9 @@ system:
       - name: JMX_RETRIEVE_PASSWORD_FROM_SECRET_SERVICE
         value: true
       volumeMounts:
-      - name: cert
+      - name: tls-client-cert
+        mountPath: /certs
+      - name: tls-server-cert
         mountPath: /certs
       ports:
         - containerPort: 8080
