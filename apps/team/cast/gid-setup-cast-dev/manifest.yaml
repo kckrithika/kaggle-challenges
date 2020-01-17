@@ -4,99 +4,6 @@
 #
 #####################################################################################
 
-##START
-## Start with clone of global-identity/local-gid-service-dev
-##     (https://git.soma.salesforce.com/sam/manifests/blob/master/apps/team/global-identity/local-gid-service-dev/manifest.yaml)
-## since having problems with clone of cast/cast-prd-dev
-#apiVersion: v1
-#
-#system:
-#  notifications:
-#    email:
-#      - gid_setup@salesforce.com
-#  functions:
-#  - name: gid-setup-cast-dev
-#    count: 1
-#    strategy:
-#      type: RollingUpdate
-#      rollingUpdate:
-#        maxSurge: 0
-#        maxUnavailable: 1
-#    hostnetwork: false
-#    containers:
-#    #####################################################################################
-#    # GID Data service
-#    #####################################################################################
-#    - name: gid-service
-#      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/gid/gid-service:schema1202
-#      imagePullPolicy: Always
-#      env:
-#        - name: server_port
-#          value: 8081
-#        - name: management_server_port
-#          value: 15371
-#        - name: security_client_dynamickeystore_cadir
-#          value: /certs/ca
-#        - name: jwt_signing_keypath
-#          value: /clientcerts/client/keys/client-key.pkcs8            
-#        - name: security_client_dynamickeystore_monitoredDirectory
-#          value: /clientcerts/client
-#        - name: ca_service_host
-#          value: cloudatlas-dev.global-identity.prd-sam.prd.slb.sfdc.net
-#        - name: ldaps_hostname
-#          value: cloudatlas-dev.global-identity.prd-sam.prd.slb.sfdc.net
-#        - name: ca_service_host
-#          value: cloudatlas-dev.global-identity.prd-sam.prd.slb.sfdc.net
-#        - name: c2c_common_gdotBasePath
-#          value: http://cloudatlas-dev.global-identity.prd-sam.prd.slb.sfdc.net/scim
-#        - name: ldaps_bind_password
-#          value: 1insecureRootPassword!
-#        - name: ldaps_bind_dn
-#          value: cn=Directory Manager
-#        - name: ldaps_bind_type
-#          value: SIMPLE
-#      ports:
-#        - containerPort: 8081
-#        - containerPort: 15371
-#      livenessProbe:
-#        httpGet:
-#          path: /manage/health
-#          port: 15371
-#        initialDelaySeconds: 60
-#        periodSeconds: 5
-#
-#      volumeMounts:
-#        - name: server-cert
-#          mountPath: /certs
-#        - mountPath: /clientcerts
-#          name: client-cert
-#    #####################################################################################
-#    # Volumes Needed
-#    #####################################################################################
-#    volumes:
-#    - name: server-cert
-#      maddogCert:
-#        type: server
-#    - name: client-cert
-#      maddogCert:
-#        type: client
-#  #####################################################################################
-#  # SLB
-#  #####################################################################################
-#  loadbalancers:
-#    - lbname: gid-setup-cast-dev
-#      function: gid-setup-cast-dev
-#      slbEnabled: true
-#      ports:
-#        - port: 80
-#          targetport: 8081
-#          lbtype: http
-#          tls: false
-#          reencrypt: false
-##END
-
-#START
-# Start with cast/cast-prd-dev manifest and adapt to gid/cloudatlas-dev and gid pool
 #TODO Replace nginx with SPaaS
 
 apiVersion: v1
@@ -184,8 +91,16 @@ system:
     # Entity API
     #####################################################################################
 ## ====
-## Can't get this to deploy while pointed at CA in gid namespace (global-identity/cloudatlas-dev) due to SPaaS / HBase errors.
-## Not sure why.
+## Can't get this to deploy due to SPaaS / HBase errors. Not sure why.
+##
+## Config is the same as cast/cast-prd-dev (https://git.soma.salesforce.com/sam/manifests/blob/master/apps/team/cast/cast-prd-dev/manifest.yaml),
+## which deploys to pool prd/prd-sam_cloudatlas_dir, hosts
+##      - test0shared0-samminionatlasdir1-1-prd.eng.sfdc.net
+##      - test0shared0-samminionatlasdir2-1-prd.eng.sfdc.net
+##      - test0shared0-samminionatlasdir1-2-prd.eng.sfdc.net
+##
+## whereas this manifest deploys to pool prd/prd-sam_globalidentity
+##
 ## Error:
 ##   {"logRecordType":"spaas","timestamp":"1579296319903","threadId":"1","productArea":"cloudatlas__cloudatlas-api","teamId":"a6fB0000000Cb4XIAS","event":"PROPAGATION_TO_GROUP","message":"kind=configuration,method=setOnAll(0:1:1579296319399)"}
 ##   {"logRecordType":"spapi","timestamp":"1579296319930","threadId":"1","productArea":"cloudatlas__cloudatlas-api","teamId":"a6fB0000000Cb4XIAS","serviceName":"ProtectionConfigurationService","operation":"SET_CONFIGURATION_VALUE","status":"SUCCESS","errorCode":"StorageUnavailable","errorMessage":"Service is operating in degraded mode as HBase is currently unavailable.","arguments":"protection.svc.common.Constants.SPS_ENABLED,false"}
@@ -231,32 +146,32 @@ system:
     #####################################################################################
     # C2C service
     #####################################################################################
- #   - name: c2c-service
- #     image: sfci/c2c/c2c-service:20191104222121-ce2cf21
- #     imagePullPolicy: Always
- #     env:
- #       - name: directory_server_host
- #         value: cloudatlas-dev.global-identity.prd-sam.prd.slb.sfdc.net
- #       - name: server_port
- #         value: 8082
- #       - name: management_server_port
- #         value: 15372
- #       - name: c2c_common_gdotBasePath
- #         #SLB is port 80
- #         value: "http://${directory_server_host}:80/scim"
- #     ports:
- #       - containerPort: 8082
- #       - containerPort: 15372
- #     livenessProbe:
- #       httpGet:
- #         path: /manage/health
- #         port: 15372
- #       initialDelaySeconds: 60
- #       periodSeconds: 5
- #       failureThreshold: 10
- #     volumeMounts:
- #       - name: server-cert
- #         mountPath: /certs
+    - name: c2c-service
+      image: sfci/c2c/c2c-service:20191104222121-ce2cf21
+      imagePullPolicy: Always
+      env:
+        - name: directory_server_host
+          value: cloudatlas-dev.global-identity.prd-sam.prd.slb.sfdc.net
+        - name: server_port
+          value: 8082
+        - name: management_server_port
+          value: 15372
+        - name: c2c_common_gdotBasePath
+          #SLB is port 80
+          value: "http://${directory_server_host}:80/scim"
+      ports:
+        - containerPort: 8082
+        - containerPort: 15372
+      livenessProbe:
+        httpGet:
+          path: /manage/health
+          port: 15372
+        initialDelaySeconds: 60
+        periodSeconds: 5
+        failureThreshold: 10
+      volumeMounts:
+        - name: server-cert
+          mountPath: /certs
     #####################################################################################
     # GID Data service
     #####################################################################################
@@ -265,6 +180,10 @@ system:
 ## due to
 ##  1. global-identity/cloudatlas-dev CA not having latest SASL plugin changes (not yet merged to CA develop as of 17 Jan 2020)
 ##  2. could not get older version of gid-service, that does not rely on SASL to connect to CA, working in this deployment
+##
+## gid-service Docker image is a custom image built by GID Runtime team that does not need the latest SASL changes.
+## Not sure how recent / what is the latest commit.
+##
 ## ====
     - name: gid-service
       # GID Runtime custom gid-service image
@@ -367,4 +286,3 @@ system:
           lbtype: http
           tls: true
           reencrypt: true
-#END
