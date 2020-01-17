@@ -251,59 +251,59 @@ system:
     #####################################################################################
     # GID Data service
     #####################################################################################
-    - name: gid-service
-      # Recent image that requires the lastest SASL plugin to be deployed to CA
-      #image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/gid/gid-service:b8cd5bb
-      # Older image that doesn't use SASL
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/gid/gid-service:179c76a
-      imagePullPolicy: Always
-      env:
-        # CA directory server
-        - name: directory_server_host
-          # SLB hostname
-          value: cloudatlas-dev.global-identity.prd-sam.prd.slb.sfdc.net
-        # GIDDS server port
-        - name: server_port
-          value: 8081
-        # GIDDS mgmt port
-        - name: management_server_port
-          value: 15371
-        # CA Service / Entity API host
-        - name: ca_service_host
-          # Container in same pod
-          value: 127.0.0.1 
-        # GIDDS image 179c76a (~ Oct 11, 2019) uses Entity API and needs its base path
-        - name: gid_service_ca_entityApi_basePath
-          value: http://${ca_service_host}:7032
-        # CA directory server hosted SCIM endpoint
-        - name: c2c_common_gdotBasePath
-          # CA directory server SLB port is 80
-          value: http://${directory_server_host}:80/scim
-        - name: security_client_dynamickeystore_cadir
-          value: /certs/ca
-        - name: security_client_dynamickeystore_monitoredDirectory
-          value: /clientcerts/client
-        # Integration name in Cloud Atlas
-        - name: c2c_common_callerContext
-          value: sfdc.gid 
-        # Service name in Cloud Atlas
-        - name: c2c_service_id
-          value: giddataservice
-        # For GIDDS versions that connect to CA via CA Data Library (instead of using CA Service / Entity API)
-        - name: ldaps_hostname
-          value: ${directory_server_host}
-      ports:
-        - containerPort: 8081
-        - containerPort: 15371
-      livenessProbe:
-        httpGet:
-          path: /manage/health
-          port: 15371
-      volumeMounts:
-        - name: server-cert
-          mountPath: /certs
-        - mountPath: /clientcerts
-          name: client-cert
+#    - name: gid-service
+#      # Recent image that requires the lastest SASL plugin to be deployed to CA
+#      #image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/gid/gid-service:b8cd5bb
+#      # Older image that doesn't use SASL
+#      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/gid/gid-service:179c76a
+#      imagePullPolicy: Always
+#      env:
+#        # CA directory server
+#        - name: directory_server_host
+#          # SLB hostname
+#          value: cloudatlas-dev.global-identity.prd-sam.prd.slb.sfdc.net
+#        # GIDDS server port
+#        - name: server_port
+#          value: 8081
+#        # GIDDS mgmt port
+#        - name: management_server_port
+#          value: 15371
+#        # CA Service / Entity API host
+#        - name: ca_service_host
+#          # Container in same pod
+#          value: 127.0.0.1 
+#        # GIDDS image 179c76a (~ Oct 11, 2019) uses Entity API and needs its base path
+#        - name: gid_service_ca_entityApi_basePath
+#          value: http://${ca_service_host}:7032
+#        # CA directory server hosted SCIM endpoint
+#        - name: c2c_common_gdotBasePath
+#          # CA directory server SLB port is 80
+#          value: http://${directory_server_host}:80/scim
+#        - name: security_client_dynamickeystore_cadir
+#          value: /certs/ca
+#        - name: security_client_dynamickeystore_monitoredDirectory
+#          value: /clientcerts/client
+#        # Integration name in Cloud Atlas
+#        - name: c2c_common_callerContext
+#          value: sfdc.gid 
+#        # Service name in Cloud Atlas
+#        - name: c2c_service_id
+#          value: giddataservice
+#        # For GIDDS versions that connect to CA via CA Data Library (instead of using CA Service / Entity API)
+#        - name: ldaps_hostname
+#          value: ${directory_server_host}
+#      ports:
+#        - containerPort: 8081
+#        - containerPort: 15371
+#      livenessProbe:
+#        httpGet:
+#          path: /manage/health
+#          port: 15371
+#      volumeMounts:
+#        - name: server-cert
+#          mountPath: /certs
+#        - mountPath: /clientcerts
+#          name: client-cert
     #####################################################################################
     # NGINX Rev Proxy
     #####################################################################################
