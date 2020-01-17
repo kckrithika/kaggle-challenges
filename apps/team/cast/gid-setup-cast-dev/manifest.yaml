@@ -140,6 +140,8 @@ system:
         name: sherpa-in
       - containerPort: 7014
         name: http1-in
+      # Sherpa forwards 7442 to internal port 7022
+      # as per https://git.soma.salesforce.com/servicelibs/sherpa-envoy#ports
       - containerPort: 7442
         name: http1-tls-in
       - containerPort: 15373
@@ -181,44 +183,51 @@ system:
     #####################################################################################
     # Entity API
     #####################################################################################
-    - name: cloudatlas-service
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cloud-atlas/cloudatlas/cloudatlas-service:53bde25
-      command: ["java", "-jar", "cloudatlas-service.jar"]
-      env:
-        - name: DIRECTORY_SERVER_HOST
-          value: cloudatlas-dev.global-identity.prd-sam.prd.slb.sfdc.net
-        - name: server_port
-          value: 7032
-        - name: management_server_port
-          value: 15374
-        - name: cloudatlas_http_server_port
-          # CA directory server SLB port is 80
-          value: 80
-      volumeMounts:
-      - mountPath: /log
-        name: logvol
-      - mountPath: /certs
-        name: server-cert
-      - mountPath: /clientcerts
-        name: client-cert
-      ports:
-      - containerPort: 7030
-      - containerPort: 7032
-      - containerPort: 7080
-      - containerPort: 15374
-      livenessProbe:
-        httpGet:
-          path: /manage/health
-          port: 15374
-        initialDelaySeconds: 60
-        periodSeconds: 30
-      readinessProbe:
-        httpGet:
-          path: /manage/health
-          port: 15374
-        initialDelaySeconds: 60
-        periodSeconds: 5
-        failureThreshold: 120
+## ====
+## Can't get this to deploy while pointed at CA in gid namespace (global-identity/cloudatlas-dev) due to SPaaS / HBase errors.
+## Not sure why.
+## Error:
+##   {"logRecordType":"spaas","timestamp":"1579296319903","threadId":"1","productArea":"cloudatlas__cloudatlas-api","teamId":"a6fB0000000Cb4XIAS","event":"PROPAGATION_TO_GROUP","message":"kind=configuration,method=setOnAll(0:1:1579296319399)"}
+##   {"logRecordType":"spapi","timestamp":"1579296319930","threadId":"1","productArea":"cloudatlas__cloudatlas-api","teamId":"a6fB0000000Cb4XIAS","serviceName":"ProtectionConfigurationService","operation":"SET_CONFIGURATION_VALUE","status":"SUCCESS","errorCode":"StorageUnavailable","errorMessage":"Service is operating in degraded mode as HBase is currently unavailable.","arguments":"protection.svc.common.Constants.SPS_ENABLED,false"}
+## ====
+#    - name: cloudatlas-service
+#      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cloud-atlas/cloudatlas/cloudatlas-service:53bde25
+#      command: ["java", "-jar", "cloudatlas-service.jar"]
+#      env:
+#        - name: DIRECTORY_SERVER_HOST
+#          value: cloudatlas-dev.global-identity.prd-sam.prd.slb.sfdc.net
+#        - name: server_port
+#          value: 7032
+#        - name: management_server_port
+#          value: 15374
+#        - name: cloudatlas_http_server_port
+#          # CA directory server SLB port is 80
+#          value: 80
+#      volumeMounts:
+#      - mountPath: /log
+#        name: logvol
+#      - mountPath: /certs
+#        name: server-cert
+#      - mountPath: /clientcerts
+#        name: client-cert
+#      ports:
+#      - containerPort: 7030
+#      - containerPort: 7032
+#      - containerPort: 7080
+#      - containerPort: 15374
+#      livenessProbe:
+#        httpGet:
+#          path: /manage/health
+#          port: 15374
+#        initialDelaySeconds: 60
+#        periodSeconds: 30
+#      readinessProbe:
+#        httpGet:
+#          path: /manage/health
+#          port: 15374
+#        initialDelaySeconds: 60
+#        periodSeconds: 5
+#        failureThreshold: 120
     #####################################################################################
     # C2C service
     #####################################################################################
@@ -251,62 +260,61 @@ system:
     #####################################################################################
     # GID Data service
     #####################################################################################
-#    - name: gid-service
-#      # Recent image that requires the lastest SASL plugin to be deployed to CA
-#      #image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/gid/gid-service:b8cd5bb
-#      # Older image that doesn't use SASL
-#      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/gid/gid-service:179c76a
-#      imagePullPolicy: Always
-#      env:
-#        # CA directory server
-#        - name: directory_server_host
-#          # SLB hostname
-#          value: cloudatlas-dev.global-identity.prd-sam.prd.slb.sfdc.net
-#        # GIDDS server port
-#        - name: server_port
-#          value: 8081
-#        # GIDDS mgmt port
-#        - name: management_server_port
-#          value: 15371
-#        # CA Service / Entity API host
-#        - name: ca_service_host
-#          # Container in same pod
-#          value: 127.0.0.1 
-#        # GIDDS image 179c76a (~ Oct 11, 2019) uses Entity API and needs its base path
-#        - name: gid_service_ca_entityApi_basePath
-#          value: http://${ca_service_host}:7032
-#        # CA directory server hosted SCIM endpoint
-#        - name: c2c_common_gdotBasePath
-#          # CA directory server SLB port is 80
-#          value: http://${directory_server_host}:80/scim
-#        - name: security_client_dynamickeystore_cadir
-#          value: /certs/ca
-#        - name: security_client_dynamickeystore_monitoredDirectory
-#          value: /clientcerts/client
-#        # Integration name in Cloud Atlas
-#        - name: c2c_common_callerContext
-#          value: sfdc.gid 
-#        # Service name in Cloud Atlas
-#        - name: c2c_service_id
-#          value: giddataservice
-#        # For GIDDS versions that connect to CA via CA Data Library (instead of using CA Service / Entity API)
-#        - name: ldaps_hostname
-#          value: ${directory_server_host}
-#      ports:
-#        - containerPort: 8081
-#        - containerPort: 15371
-#      livenessProbe:
-#        httpGet:
-#          path: /manage/health
-#          port: 15371
-#      volumeMounts:
-#        - name: server-cert
-#          mountPath: /certs
-#        - mountPath: /clientcerts
-#          name: client-cert
+## ====
+## gid-service config copied from global-identity/local-gid-service-dev (https://git.soma.salesforce.com/sam/manifests/blob/master/apps/team/global-identity/local-gid-service-dev/manifest.yaml)
+## due to
+##  1. global-identity/cloudatlas-dev CA not having latest SASL plugin changes (not yet merged to CA develop as of 17 Jan 2020)
+##  2. could not get older version of gid-service, that does not rely on SASL to connect to CA, working in this deployment
+## ====
+    - name: gid-service
+      # GID Runtime custom gid-service image
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/gid/gid-service:schema1202
+      imagePullPolicy: Always
+      env:
+        - name: server_port
+          value: 8081
+        - name: management_server_port
+          value: 15371
+        - name: security_client_dynamickeystore_cadir
+          value: /certs/ca
+        - name: jwt_signing_keypath
+          value: /clientcerts/client/keys/client-key.pkcs8
+        - name: security_client_dynamickeystore_monitoredDirectory
+          value: /clientcerts/client
+        - name: ca_service_host
+          value: cloudatlas-dev.global-identity.prd-sam.prd.slb.sfdc.net
+        - name: ldaps_hostname
+          value: cloudatlas-dev.global-identity.prd-sam.prd.slb.sfdc.net
+        - name: ca_service_host
+          value: cloudatlas-dev.global-identity.prd-sam.prd.slb.sfdc.net
+        - name: c2c_common_gdotBasePath
+          value: http://cloudatlas-dev.global-identity.prd-sam.prd.slb.sfdc.net/scim
+        - name: ldaps_bind_password
+          value: 1insecureRootPassword!
+        - name: ldaps_bind_dn
+          value: cn=Directory Manager
+        - name: ldaps_bind_type
+          value: SIMPLE
+      ports:
+        - containerPort: 8081
+        - containerPort: 15371
+      livenessProbe:
+        httpGet:
+          path: /manage/health
+          port: 15371
+        initialDelaySeconds: 60
+        periodSeconds: 5
+
+      volumeMounts:
+        - name: server-cert
+          mountPath: /certs
+        - mountPath: /clientcerts
+          name: client-cert
     #####################################################################################
     # NGINX Rev Proxy
     #####################################################################################
+    # Forwards GIDDS-related URLs to 8081 (product) and 15371 (scone mgmt)
+    # as per https://git.soma.salesforce.com/globalIdentity/nginx-routing/blob/master/conf.nginx
     - name: nginx-rev-proxy
       image: sfci/globalidentity/nginx-routing:554f1b7
       imagePullPolicy: Always
