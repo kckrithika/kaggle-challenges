@@ -28,13 +28,13 @@ spec:
              "cert-type": "client",
              "kingdom": "prd",
              "name": "tls-client-cert",
-             "role": "istio-sidecar-injector.mesh-control-plane"
+             "role": "mesh-control-plane.istio-sidecar-injector"
             },
             {
              "cert-type": "server",
              "kingdom": "prd",
              "name": "tls-server-cert",
-             "role": "istio-sidecar-injector.mesh-control-plane",
+             "role": "mesh-control-plane.istio-sidecar-injector",
              "san": [
               "istio-sidecar-injector",
               "istio-sidecar-injector.mesh-control-plane",

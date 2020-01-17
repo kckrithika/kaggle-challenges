@@ -17,7 +17,9 @@
       name: name,
       "cert-type": "client",
       kingdom: configs.kingdom,
-      role: serviceName + "." + serviceNamespace,
+      // Note that the Role attribute for MadDog accepts `NS + ServiceName`, not the opposite
+      // TODO: Uncomment this when deploying to PROD
+      role: if configs.kingdom == "prd" then serviceNamespace + "." + serviceName else serviceName + "." + serviceNamespace,
     },
   },
 
@@ -36,7 +38,8 @@
       name: name,
       "cert-type": "server",
       kingdom: configs.kingdom,
-      role: serviceName + "." + serviceNamespace,
+      // TODO: Uncomment this when deploying to PROD
+      role: if configs.kingdom == "prd" then serviceNamespace + "." + serviceName else serviceName + "." + serviceNamespace,
       san: subjectAlternativeNames,
     },
   },

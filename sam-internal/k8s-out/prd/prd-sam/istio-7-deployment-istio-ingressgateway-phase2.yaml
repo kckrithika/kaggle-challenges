@@ -29,13 +29,13 @@ spec:
              "cert-type": "client",
              "kingdom": "prd",
              "name": "tls-client-cert",
-             "role": "istio-ingressgateway.core-on-sam-sp2"
+             "role": "core-on-sam-sp2.istio-ingressgateway"
             },
             {
              "cert-type": "server",
              "kingdom": "prd",
              "name": "tls-server-cert",
-             "role": "istio-ingressgateway.core-on-sam-sp2",
+             "role": "core-on-sam-sp2.istio-ingressgateway",
              "san": [
               "istio-ingressgateway",
               "istio-ingressgateway.core-on-sam-sp2",

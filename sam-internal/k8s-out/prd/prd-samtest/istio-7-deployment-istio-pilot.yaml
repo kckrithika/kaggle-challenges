@@ -30,7 +30,7 @@ spec:
              "cert-type": "server",
              "kingdom": "prd",
              "name": "tls-server-cert",
-             "role": "istio-pilot.mesh-control-plane",
+             "role": "mesh-control-plane.istio-pilot",
              "san": [
               "istio-pilot",
               "istio-pilot.mesh-control-plane",
@@ -43,7 +43,7 @@ spec:
              "cert-type": "client",
              "kingdom": "prd",
              "name": "tls-client-cert",
-             "role": "istio-pilot.mesh-control-plane"
+             "role": "mesh-control-plane.istio-pilot"
             }
            ]
           }
