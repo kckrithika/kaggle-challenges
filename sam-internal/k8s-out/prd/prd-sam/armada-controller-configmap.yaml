@@ -1,0 +1,22 @@
+apiVersion: v1
+data:
+  armada-config.json: |-
+    {
+      "armadaCITemplateFilePath": "scone-app/ci/.strata.yml",
+      "armadaRepoProvisioningTemplateFilePath": "repo-provision",
+      "armadaTemplatesBranchName": "master",
+      "armadaTemplatesGitOrgName": "armada",
+      "armadaTemplatesGitRepoName": "armada-templates",
+      "gusPollInterval": 10,
+      "secrets.cafile": "/etc/pki_service/ca/cabundle.pem",
+      "secrets.keyfile": "/etc/pki_service/platform/platform-client/keys/platform-client-key.pem",
+      "secrets.ssendpoint": "secretservice.dmz.salesforce.com",
+      "secrets:certfile": "/etc/pki_service/platform/platform-client/certificates/platform-client.pem"
+    }
+kind: ConfigMap
+metadata:
+  creationTimestamp: null
+  labels:
+    sam.data.sfdc.net/owner: sam
+  name: armada-controller
+  namespace: sam-system
