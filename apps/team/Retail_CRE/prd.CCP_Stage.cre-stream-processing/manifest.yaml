@@ -13,7 +13,7 @@ system:
       "routing.mesh.sfdc.net/enabled": "true"
     containers:
     - name: cre-sp-ccp-stage
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cre-fusion/services:stream-processor.2.1.2.0.release-2.1.2.6ca65c6.5
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cre-fusion/services:stream-processor.2.2.0.0.release-2.2.0762a19.3
       env:
         - name: PUBLISHING_TOPIC
           value: sfdc.prod.cre__prd.ajna_local__cre_outbound_CCP_Stage
@@ -48,12 +48,10 @@ system:
         - name: ENABLE_BATCH_ORPHAN_CHECKS
           value: true
         - name: JVM_ARGS
-          value: "-verbose:gc -XX:+PrintGCDateStamps -XX:+PrintHeapAtGC
-                  -XX:+PrintPromotionFailure -XX:+PrintTenuringDistribution -XX:+PrintGCDetails
-                  -XX:+PrintGCDateStamps -XX:+PrintGCApplicationStoppedTime
-                  -XX:+PrintGCApplicationConcurrentTime -XX:+PrintGCCause -XX:+DisableExplicitGC
+          value: "-verbose:gc
+                  -XX:+PrintGCDetails
+                  -XX:+DisableExplicitGC
                   -Xloggc:/opt/cre/cre-sp-ccp-stage/verbosegc_$(FUNCTION_INSTANCE_NAME).log
-                  -XX:+UseGCLogFileRotation -XX:NumberOfGCLogFiles=5 -XX:GCLogFileSize=20M
                   -XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=/opt/cre/cre-sp-ccp-stage
                   -Dcom.sun.management.jmxremote.port=8898
                   -Dcom.sun.management.jmxremote.rmi.port=8898
