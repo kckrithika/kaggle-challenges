@@ -4,98 +4,10 @@
 #
 #####################################################################################
 
-# Start with clone of global-identity/local-gid-service-dev
-#     (https://git.soma.salesforce.com/sam/manifests/blob/master/apps/team/global-identity/local-gid-service-dev/manifest.yaml)
-# since having problems with clone of cast/cast-prd-dev
-apiVersion: v1
-
-system:
-  notifications:
-    email:
-      - gid_setup@salesforce.com
-  functions:
-  - name: gid-setup-cast-dev
-    count: 1
-    strategy:
-      type: RollingUpdate
-      rollingUpdate:
-        maxSurge: 0
-        maxUnavailable: 1
-    hostnetwork: false
-    containers:
-    #####################################################################################
-    # GID Data service
-    #####################################################################################
-    - name: gid-service
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/gid/gid-service:schema1202
-      imagePullPolicy: Always
-      env:
-        - name: server_port
-          value: 8081
-        - name: management_server_port
-          value: 15371
-        - name: security_client_dynamickeystore_cadir
-          value: /certs/ca
-        - name: jwt_signing_keypath
-          value: /clientcerts/client/keys/client-key.pkcs8            
-        - name: security_client_dynamickeystore_monitoredDirectory
-          value: /clientcerts/client
-        - name: ca_service_host
-          value: cloudatlas-dev.global-identity.prd-sam.prd.slb.sfdc.net
-        - name: ldaps_hostname
-          value: cloudatlas-dev.global-identity.prd-sam.prd.slb.sfdc.net
-        - name: ca_service_host
-          value: cloudatlas-dev.global-identity.prd-sam.prd.slb.sfdc.net
-        - name: c2c_common_gdotBasePath
-          value: http://cloudatlas-dev.global-identity.prd-sam.prd.slb.sfdc.net/scim
-        - name: ldaps_bind_password
-          value: 1insecureRootPassword!
-        - name: ldaps_bind_dn
-          value: cn=Directory Manager
-        - name: ldaps_bind_type
-          value: SIMPLE
-      ports:
-        - containerPort: 8081
-        - containerPort: 15371
-      livenessProbe:
-        httpGet:
-          path: /manage/health
-          port: 15371
-        initialDelaySeconds: 60
-        periodSeconds: 5
-
-      volumeMounts:
-        - name: server-cert
-          mountPath: /certs
-        - mountPath: /clientcerts
-          name: client-cert
-    #####################################################################################
-    # Volumes Needed
-    #####################################################################################
-    volumes:
-    - name: server-cert
-      maddogCert:
-        type: server
-    - name: client-cert
-      maddogCert:
-        type: client
-  #####################################################################################
-  # SLB
-  #####################################################################################
-  loadbalancers:
-    - lbname: gid-setup-cast-dev
-      function: gid-setup-cast-dev
-      slbEnabled: true
-      ports:
-        - port: 80
-          targetport: 8081
-          lbtype: http
-          tls: false
-          reencrypt: false
-
-#
-##TODO Replace nginx with SPaaS
-#
+##START
+## Start with clone of global-identity/local-gid-service-dev
+##     (https://git.soma.salesforce.com/sam/manifests/blob/master/apps/team/global-identity/local-gid-service-dev/manifest.yaml)
+## since having problems with clone of cast/cast-prd-dev
 #apiVersion: v1
 #
 #system:
@@ -104,8 +16,6 @@ system:
 #      - gid_setup@salesforce.com
 #  functions:
 #  - name: gid-setup-cast-dev
-#    identity:
-#      serviceName: gid-setup-cast-dev
 #    count: 1
 #    strategy:
 #      type: RollingUpdate
@@ -115,180 +25,36 @@ system:
 #    hostnetwork: false
 #    containers:
 #    #####################################################################################
-#    # Service Mesh / Envoy / Sherpa
-#    #####################################################################################
-#    - name: sherpa-cast-client
-#      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/zchen/sherpa-envoy-debug:latest
-#      env:
-#      - name: SFDC_ENVIRONMENT
-#        value: "stmfa"
-#      resources:
-#        limits: { cpu: "1", memory: "1Gi" }
-#        requests: { cpu: "1", memory: "1Gi" }
-#      volumeMounts:
-#      - name: client-cert
-#        mountPath: /client-certs
-#      - name: server-cert
-#        mountPath: /server-certs
-#      - mountPath: /log
-#        name: logvolsherpa
-#      ports:
-#      - containerPort: 7012
-#        name: sherpa-in
-#      - containerPort: 7014
-#        name: http1-in
-#      - containerPort: 7442
-#        name: http1-tls-in
-#      - containerPort: 15373
-#        name: sherpa-adm
-#      livenessProbe:
-#        exec:
-#          command:
-#          - "/home/sfdc-sherpa/bin/is-alive"
-#        initialDelaySeconds: 120
-#        periodSeconds: 5
-#      readinessProbe:
-#        exec:
-#          command:
-#          - "/home/sfdc-sherpa/bin/is-ready"
-#        initialDelaySeconds: 110
-#        periodSeconds: 5
-#    #####################################################################################
-#    # Service Beacon
-#    #####################################################################################
-#    - name: beacon-cast
-#      image: sfci/services/sfdc-bazel/disco/beacon:fba17e8b2
-#      env:
-#      - name: SFDC_ENVIRONMENT
-#        value: "stmfa"
-#      volumeMounts:
-#      - mountPath: /log
-#        name: logvolbeacon
-#      resources:
-#        limits: { cpu: "1", memory: "1Gi" }
-#        requests: { cpu: "1", memory: "1Gi" }
-#      args:
-#        - -endpoint
-#        - $(FUNCTION_NAMESPACE)/gid-setup-cast-dev:DATACENTER_ALLENV:HTTP1_TLS
-#      livenessProbe:
-#        exec:
-#          command:
-#          - "/opt/beacon/is-alive.sh"
-#        initialDelaySeconds: 5
-#    #####################################################################################
-#    # Entity API
-#    #####################################################################################
-#    - name: cloudatlas-service
-#      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cloud-atlas/cloudatlas/cloudatlas-service:53bde25
-#      command: ["java", "-jar", "cloudatlas-service.jar"]
-#      env:
-#        - name: DIRECTORY_SERVER_HOST
-#          value: cloudatlas-dev.global-identity.prd-sam.prd.slb.sfdc.net
-#        - name: server_port
-#          value: 7032
-#        - name: management_server_port
-#          value: 15374
-#        - name: cloudatlas_http_server_port
-#          # CA directory server SLB port is 80
-#          value: 80
-#      volumeMounts:
-#      - mountPath: /log
-#        name: logvol
-#      - mountPath: /certs
-#        name: server-cert
-#      - mountPath: /clientcerts
-#        name: client-cert
-#      ports:
-#      - containerPort: 7030
-#      - containerPort: 7032
-#      - containerPort: 7080
-#      - containerPort: 15374
-#      livenessProbe:
-#        httpGet:
-#          path: /manage/health
-#          port: 15374
-#        initialDelaySeconds: 60
-#        periodSeconds: 30
-#      readinessProbe:
-#        httpGet:
-#          path: /manage/health
-#          port: 15374
-#        initialDelaySeconds: 60
-#        periodSeconds: 5
-#        failureThreshold: 120
-#    #####################################################################################
-#    # C2C service
-#    #####################################################################################
-# #   - name: c2c-service
-# #     image: sfci/c2c/c2c-service:20191104222121-ce2cf21
-# #     imagePullPolicy: Always
-# #     env:
-# #       - name: directory_server_host
-# #         value: cloudatlas-dev.global-identity.prd-sam.prd.slb.sfdc.net
-# #       - name: server_port
-# #         value: 8082
-# #       - name: management_server_port
-# #         value: 15372
-# #       - name: c2c_common_gdotBasePath
-# #         #SLB is port 80
-# #         value: "http://${directory_server_host}:80/scim"
-# #     ports:
-# #       - containerPort: 8082
-# #       - containerPort: 15372
-# #     livenessProbe:
-# #       httpGet:
-# #         path: /manage/health
-# #         port: 15372
-# #       initialDelaySeconds: 60
-# #       periodSeconds: 5
-# #       failureThreshold: 10
-# #     volumeMounts:
-# #       - name: server-cert
-# #         mountPath: /certs
-#    #####################################################################################
 #    # GID Data service
 #    #####################################################################################
 #    - name: gid-service
-#      # Recent image that requires the lastest SASL plugin to be deployed to CA
-#      #image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/gid/gid-service:b8cd5bb
-#      # Older image that doesn't use SASL
-#      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/gid/gid-service:179c76a
+#      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/gid/gid-service:schema1202
 #      imagePullPolicy: Always
 #      env:
-#        # CA directory server
-#        - name: directory_server_host
-#          # SLB hostname
-#          value: cloudatlas-dev.global-identity.prd-sam.prd.slb.sfdc.net
-#        # GIDDS server port
 #        - name: server_port
 #          value: 8081
-#        # GIDDS mgmt port
 #        - name: management_server_port
 #          value: 15371
-#        # CA Service / Entity API host
-#        - name: ca_service_host
-#          # Container in same pod
-#          value: 127.0.0.1 
-#        # GIDDS image 179c76a (~ Oct 11, 2019) uses Entity API and needs its base path
-#        - name: gid_service_ca_entityApi_basePath
-#          value: http://${ca_service_host}:7032
-#        # CA directory server hosted SCIM endpoint
-#        - name: c2c_common_gdotBasePath
-#          # CA directory server SLB port is 80
-#          value: http://${directory_server_host}:80/scim
 #        - name: security_client_dynamickeystore_cadir
 #          value: /certs/ca
+#        - name: jwt_signing_keypath
+#          value: /clientcerts/client/keys/client-key.pkcs8            
 #        - name: security_client_dynamickeystore_monitoredDirectory
 #          value: /clientcerts/client
-#        # Integration name in Cloud Atlas
-#        - name: c2c_common_callerContext
-#          value: sfdc.gid 
-#        # Service name in Cloud Atlas
-#        - name: c2c_service_id
-#          value: giddataservice
-#        # For GIDDS versions that connect to CA via CA Data Library (instead of using CA Service / Entity API)
+#        - name: ca_service_host
+#          value: cloudatlas-dev.global-identity.prd-sam.prd.slb.sfdc.net
 #        - name: ldaps_hostname
-#          value: ${directory_server_host}
+#          value: cloudatlas-dev.global-identity.prd-sam.prd.slb.sfdc.net
+#        - name: ca_service_host
+#          value: cloudatlas-dev.global-identity.prd-sam.prd.slb.sfdc.net
+#        - name: c2c_common_gdotBasePath
+#          value: http://cloudatlas-dev.global-identity.prd-sam.prd.slb.sfdc.net/scim
+#        - name: ldaps_bind_password
+#          value: 1insecureRootPassword!
+#        - name: ldaps_bind_dn
+#          value: cn=Directory Manager
+#        - name: ldaps_bind_type
+#          value: SIMPLE
 #      ports:
 #        - containerPort: 8081
 #        - containerPort: 15371
@@ -296,53 +62,24 @@ system:
 #        httpGet:
 #          path: /manage/health
 #          port: 15371
+#        initialDelaySeconds: 60
+#        periodSeconds: 5
+#
 #      volumeMounts:
 #        - name: server-cert
 #          mountPath: /certs
 #        - mountPath: /clientcerts
 #          name: client-cert
 #    #####################################################################################
-#    # NGINX Rev Proxy
-#    #####################################################################################
-#    - name: nginx-rev-proxy
-#      image: sfci/globalidentity/nginx-routing:554f1b7
-#      imagePullPolicy: Always
-#      ports:
-#        - containerPort: 7022
-#      livenessProbe:
-#        httpGet:
-#          path: /health
-#          port: 7022
-#        initialDelaySeconds: 15
-#        timeoutSeconds: 10
-#        periodSeconds: 30
-#      volumeMounts:
-#        - mountPath: /var/cache/nginx/client_temp
-#          name: cache-volume
-#    #####################################################################################
 #    # Volumes Needed
 #    #####################################################################################
 #    volumes:
-#    - name: hosthomevol
-#      hostPath:
-#        path: /data/ca-cluster-a
 #    - name: server-cert
 #      maddogCert:
 #        type: server
 #    - name: client-cert
 #      maddogCert:
 #        type: client
-#    - name: logvolsherpa
-#      hostPath:
-#        path: /home/sfdc-scone-hellodiscovery-sherpa/logs
-#    - name: logvolbeacon
-#      hostPath:
-#        path: /home/sfdc-scone-hellodiscovery-beacon/logs
-#    - name: cache-volume
-#      emptyDir: {}
-#    - name: logvol
-#      hostPath:
-#        path: /home/sfdc-atlas/logs
 #  #####################################################################################
 #  # SLB
 #  #####################################################################################
@@ -351,8 +88,275 @@ system:
 #      function: gid-setup-cast-dev
 #      slbEnabled: true
 #      ports:
-#        - port: 443
-#          targetport: 7442
+#        - port: 80
+#          targetport: 8081
 #          lbtype: http
-#          tls: true
-#          reencrypt: true
+#          tls: false
+#          reencrypt: false
+##END
+
+#START
+# Start with cast/cast-prd-dev manifest and adapt to gid/cloudatlas-dev and gid pool
+#TODO Replace nginx with SPaaS
+
+apiVersion: v1
+
+system:
+  notifications:
+    email:
+      - gid_setup@salesforce.com
+  functions:
+  - name: gid-setup-cast-dev
+    identity:
+      serviceName: gid-setup-cast-dev
+    count: 1
+    strategy:
+      type: RollingUpdate
+      rollingUpdate:
+        maxSurge: 0
+        maxUnavailable: 1
+    hostnetwork: false
+    containers:
+    #####################################################################################
+    # Service Mesh / Envoy / Sherpa
+    #####################################################################################
+    - name: sherpa-cast-client
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/zchen/sherpa-envoy-debug:latest
+      env:
+      - name: SFDC_ENVIRONMENT
+        value: "stmfa"
+      resources:
+        limits: { cpu: "1", memory: "1Gi" }
+        requests: { cpu: "1", memory: "1Gi" }
+      volumeMounts:
+      - name: client-cert
+        mountPath: /client-certs
+      - name: server-cert
+        mountPath: /server-certs
+      - mountPath: /log
+        name: logvolsherpa
+      ports:
+      - containerPort: 7012
+        name: sherpa-in
+      - containerPort: 7014
+        name: http1-in
+      - containerPort: 7442
+        name: http1-tls-in
+      - containerPort: 15373
+        name: sherpa-adm
+      livenessProbe:
+        exec:
+          command:
+          - "/home/sfdc-sherpa/bin/is-alive"
+        initialDelaySeconds: 120
+        periodSeconds: 5
+      readinessProbe:
+        exec:
+          command:
+          - "/home/sfdc-sherpa/bin/is-ready"
+        initialDelaySeconds: 110
+        periodSeconds: 5
+    #####################################################################################
+    # Service Beacon
+    #####################################################################################
+    - name: beacon-cast
+      image: sfci/services/sfdc-bazel/disco/beacon:fba17e8b2
+      env:
+      - name: SFDC_ENVIRONMENT
+        value: "stmfa"
+      volumeMounts:
+      - mountPath: /log
+        name: logvolbeacon
+      resources:
+        limits: { cpu: "1", memory: "1Gi" }
+        requests: { cpu: "1", memory: "1Gi" }
+      args:
+        - -endpoint
+        - $(FUNCTION_NAMESPACE)/gid-setup-cast-dev:DATACENTER_ALLENV:HTTP1_TLS
+      livenessProbe:
+        exec:
+          command:
+          - "/opt/beacon/is-alive.sh"
+        initialDelaySeconds: 5
+    #####################################################################################
+    # Entity API
+    #####################################################################################
+    - name: cloudatlas-service
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cloud-atlas/cloudatlas/cloudatlas-service:53bde25
+      command: ["java", "-jar", "cloudatlas-service.jar"]
+      env:
+        - name: DIRECTORY_SERVER_HOST
+          value: cloudatlas-dev.global-identity.prd-sam.prd.slb.sfdc.net
+        - name: server_port
+          value: 7032
+        - name: management_server_port
+          value: 15374
+        - name: cloudatlas_http_server_port
+          # CA directory server SLB port is 80
+          value: 80
+      volumeMounts:
+      - mountPath: /log
+        name: logvol
+      - mountPath: /certs
+        name: server-cert
+      - mountPath: /clientcerts
+        name: client-cert
+      ports:
+      - containerPort: 7030
+      - containerPort: 7032
+      - containerPort: 7080
+      - containerPort: 15374
+      livenessProbe:
+        httpGet:
+          path: /manage/health
+          port: 15374
+        initialDelaySeconds: 60
+        periodSeconds: 30
+      readinessProbe:
+        httpGet:
+          path: /manage/health
+          port: 15374
+        initialDelaySeconds: 60
+        periodSeconds: 5
+        failureThreshold: 120
+    #####################################################################################
+    # C2C service
+    #####################################################################################
+ #   - name: c2c-service
+ #     image: sfci/c2c/c2c-service:20191104222121-ce2cf21
+ #     imagePullPolicy: Always
+ #     env:
+ #       - name: directory_server_host
+ #         value: cloudatlas-dev.global-identity.prd-sam.prd.slb.sfdc.net
+ #       - name: server_port
+ #         value: 8082
+ #       - name: management_server_port
+ #         value: 15372
+ #       - name: c2c_common_gdotBasePath
+ #         #SLB is port 80
+ #         value: "http://${directory_server_host}:80/scim"
+ #     ports:
+ #       - containerPort: 8082
+ #       - containerPort: 15372
+ #     livenessProbe:
+ #       httpGet:
+ #         path: /manage/health
+ #         port: 15372
+ #       initialDelaySeconds: 60
+ #       periodSeconds: 5
+ #       failureThreshold: 10
+ #     volumeMounts:
+ #       - name: server-cert
+ #         mountPath: /certs
+    #####################################################################################
+    # GID Data service
+    #####################################################################################
+    - name: gid-service
+      # Recent image that requires the lastest SASL plugin to be deployed to CA
+      #image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/gid/gid-service:b8cd5bb
+      # Older image that doesn't use SASL
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/gid/gid-service:179c76a
+      imagePullPolicy: Always
+      env:
+        # CA directory server
+        - name: directory_server_host
+          # SLB hostname
+          value: cloudatlas-dev.global-identity.prd-sam.prd.slb.sfdc.net
+        # GIDDS server port
+        - name: server_port
+          value: 8081
+        # GIDDS mgmt port
+        - name: management_server_port
+          value: 15371
+        # CA Service / Entity API host
+        - name: ca_service_host
+          # Container in same pod
+          value: 127.0.0.1 
+        # GIDDS image 179c76a (~ Oct 11, 2019) uses Entity API and needs its base path
+        - name: gid_service_ca_entityApi_basePath
+          value: http://${ca_service_host}:7032
+        # CA directory server hosted SCIM endpoint
+        - name: c2c_common_gdotBasePath
+          # CA directory server SLB port is 80
+          value: http://${directory_server_host}:80/scim
+        - name: security_client_dynamickeystore_cadir
+          value: /certs/ca
+        - name: security_client_dynamickeystore_monitoredDirectory
+          value: /clientcerts/client
+        # Integration name in Cloud Atlas
+        - name: c2c_common_callerContext
+          value: sfdc.gid 
+        # Service name in Cloud Atlas
+        - name: c2c_service_id
+          value: giddataservice
+        # For GIDDS versions that connect to CA via CA Data Library (instead of using CA Service / Entity API)
+        - name: ldaps_hostname
+          value: ${directory_server_host}
+      ports:
+        - containerPort: 8081
+        - containerPort: 15371
+      livenessProbe:
+        httpGet:
+          path: /manage/health
+          port: 15371
+      volumeMounts:
+        - name: server-cert
+          mountPath: /certs
+        - mountPath: /clientcerts
+          name: client-cert
+    #####################################################################################
+    # NGINX Rev Proxy
+    #####################################################################################
+    - name: nginx-rev-proxy
+      image: sfci/globalidentity/nginx-routing:554f1b7
+      imagePullPolicy: Always
+      ports:
+        - containerPort: 7022
+      livenessProbe:
+        httpGet:
+          path: /health
+          port: 7022
+        initialDelaySeconds: 15
+        timeoutSeconds: 10
+        periodSeconds: 30
+      volumeMounts:
+        - mountPath: /var/cache/nginx/client_temp
+          name: cache-volume
+    #####################################################################################
+    # Volumes Needed
+    #####################################################################################
+    volumes:
+    - name: hosthomevol
+      hostPath:
+        path: /data/ca-cluster-a
+    - name: server-cert
+      maddogCert:
+        type: server
+    - name: client-cert
+      maddogCert:
+        type: client
+    - name: logvolsherpa
+      hostPath:
+        path: /home/sfdc-scone-hellodiscovery-sherpa/logs
+    - name: logvolbeacon
+      hostPath:
+        path: /home/sfdc-scone-hellodiscovery-beacon/logs
+    - name: cache-volume
+      emptyDir: {}
+    - name: logvol
+      hostPath:
+        path: /home/sfdc-atlas/logs
+  #####################################################################################
+  # SLB
+  #####################################################################################
+  loadbalancers:
+    - lbname: gid-setup-cast-dev
+      function: gid-setup-cast-dev
+      slbEnabled: true
+      ports:
+        - port: 443
+          targetport: 7442
+          lbtype: http
+          tls: true
+          reencrypt: true
+#END
