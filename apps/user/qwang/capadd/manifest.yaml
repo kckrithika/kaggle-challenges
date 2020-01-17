@@ -32,7 +32,7 @@ system:
               mode: 511
     containers:
     - name: capadd
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/qwang/capadd:certtest-20200117-1
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/qwang/capadd:test-20200117-1
       volumeMounts:
         - name: capadd-client-cert
           mountPath: /clientcert
