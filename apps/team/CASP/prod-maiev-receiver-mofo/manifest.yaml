@@ -16,7 +16,7 @@ system:
           maxUnavailable: 1
       containers:
       - name: prod-maiev-receiver
-        image: dva/maiev-receiver:65
+        image: dva/maiev-receiver:69
         ports:
         - name: receiver-grpc
           containerPort: 7442
