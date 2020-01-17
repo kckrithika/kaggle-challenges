@@ -64,16 +64,19 @@
      lbtype: tcp
      healthport: 443
      healthprotocol: "tcp"
+     lbalgorithm: roundrobin
    - port: 8443
      targetport: 8443
      lbtype: tcp
      healthport: 8443
      healthprotocol: "tcp"
+     lbalgorithm: roundrobin
    - port: 2379
      targetport: 2379
      lbtype: tcp
      healthport: 2379
      healthprotocol: "tcp"
+     lbalgorithm: roundrobin
 - lbname: external-sledgeapi-xrd
   iptype: public_active
   customlbname: external-sledgeapi-xrd
