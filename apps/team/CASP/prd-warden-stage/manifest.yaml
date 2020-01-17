@@ -47,6 +47,8 @@ system:
           name: warden-secrets-conf
         - mountPath: /warden-secrets/argus-secrets/
           name: argus-secrets
+        - mountPath: /mysql-secrets/
+          name: mysql-credentials
           readOnly: true
         - mountPath: /warden/secrets/gus-secrets/
           name: gus-credentials
@@ -84,6 +86,9 @@ system:
       - name: argus-secrets
         k4aSecret:
           secretName: argus-secrets
+      - name: mysql-credentials
+        k4aSecret:
+          secretName: mysql-secrets
       - name: gus-credentials
         k4aSecret:
           secretName: gus-secrets
@@ -95,10 +100,10 @@ system:
       ports:
         - port: 80
           targetport: 8889
-          lbalgorithm: roundrobin
+          lbalgorithm: hash
         - port: 443
           targetport: 8444
-          lbalgorithm: roundrobin
+          lbalgorithm: hash
         - port: 15372
           targetport: 15372
           lbalgorithm: roundrobin
