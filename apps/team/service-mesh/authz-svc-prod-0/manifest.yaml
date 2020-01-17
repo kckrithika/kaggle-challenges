@@ -4,8 +4,6 @@ system:
   notifications:
     email:
     - electron@salesforce.com
-    - aman.gulati@salesforce.com
-    - electron@salesforce.com
   functions:
   - name: authz-svc
     count: 2
@@ -13,7 +11,7 @@ system:
       "sherpa-injector.service-mesh/inject": "enabled"
     containers:
     - name: authz-svc
-      image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/electron_sam:142
+      image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/electron_sam:147
       args:
       - --grpc-synthetic-clients=dns=authz-svc.service-mesh.sfdc-role,uri=spiffe://salesforce.com/ns/service-mesh/sa/authz-svc
       env:
@@ -49,7 +47,7 @@ system:
         periodSeconds: 5
         timeoutSeconds: 4
     - name: authz-svc-grpc-client
-      image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/electron_client:142
+      image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/electron_client:147
       args:
       - -endpoint=localhost:7020
       - -service=grpc
