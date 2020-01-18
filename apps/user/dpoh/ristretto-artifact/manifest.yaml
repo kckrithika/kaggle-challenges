@@ -1,0 +1,86 @@
+apiVersion: v1
+system:
+  notifications:
+    email:
+      - dpoh@salesforce.com
+  functions:
+    - name: ristretto-artifact
+      count: 1
+      containers:
+      - name: ristretto-web
+        image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/dpoh/ristretto_web:2020-01-15a
+        command:
+          - /usr/local/bin/wrapper_web.sh
+        env:
+        - name: GITHUB_TOKEN_FILENAME
+          value: "github-token.txt"
+        - name: GITHUB_ORG_NAME
+          value: "DBIAAS"
+        - name: GITHUB_REPO_NAME
+          value: "Ristretto"
+        - name: GITHUB_BRANCH
+          value: "sam_artifact"
+        - name: WEB_DIRECTORY
+          value: "/ristretto-artifact"
+        ports:
+        - name: ristretto-http
+          containerPort: 30000
+        volumeMounts:
+        - mountPath: /secrets
+          name: ristretto-pass
+          readOnly: true
+        - name: shared-data
+          mountPath: /ristretto-artifact
+          readOnly: true
+        livenessProbe:
+          tcpSocket:
+            port: 3306
+          initialDelaySeconds: 60
+          periodSeconds: 5
+          failureThreshold: 100
+      - name: ristretto-monitor
+        image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/dpoh/ristretto_monitor:2020-01-15a
+        command:
+          - /usr/local/bin/wrapper_render_monitor.sh
+        env:
+        - name: GITHUB_TOKEN_FILENAME
+          value: "github-token.txt"
+        - name: GITHUB_ORG_NAME
+          value: "DBIAAS"
+        - name: GITHUB_REPO_NAME
+          value: "Ristretto"
+        - name: GITHUB_BRANCH
+          value: "sam_artifact"
+        - name: ARTIFACT_DIRECTORY
+          value: "/ristretto-artifact"
+        - name: REFRESH_INTERVAL
+          value: 60
+        volumeMounts:
+        - mountPath: /secrets
+          name: ristretto-pass
+          readOnly: true
+        - name: shared-data
+          mountPath: /ristretto-artifact
+        livenessProbe:
+          exec:
+            command:
+              - pgrep
+              - wrapper_render_monitor.sh
+          initialDelaySeconds: 120
+          periodSeconds: 5
+          failureThreshold: 100
+      identity:
+        serviceName: ristretto-web
+      volumes:
+      - name: ristretto-pass
+        k4aSecret:
+          secretName: ristretto
+      - name: shared-data
+        emptyDir: {}
+  loadbalancers:
+  - lbname: ristretto-artifact
+    function: ristretto-artifact
+    slbEnabled: true
+    ports:
+    - port: 80
+      targetport: 30000
