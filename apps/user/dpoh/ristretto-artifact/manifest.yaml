@@ -8,7 +8,7 @@ system:
       count: 1
       containers:
       - name: ristretto-web
-        image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/dpoh/ristretto_web:2020-01-18a
+        image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/dpoh/ristretto_web:2020-01-18b
         command:
           - /usr/local/bin/wrapper_web.sh
         env:
@@ -39,7 +39,7 @@ system:
           periodSeconds: 5
           failureThreshold: 100
       - name: ristretto-monitor
-        image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/dpoh/ristretto_monitor:2020-01-18a
+        image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/dpoh/ristretto_monitor:2020-01-18b
         command:
           - /usr/local/bin/wrapper_render_monitor.sh
         env:
