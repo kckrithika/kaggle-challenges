@@ -39,39 +39,39 @@ system:
             periodSeconds: 5
             failureThreshold: 100
         - name: ristretto-monitor
-            image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/dpoh/ristretto_monitor:2020-01-15a
-            command:
-              - /usr/local/bin/wrapper_render_monitor.sh
-            env:
-              - name: GITHUB_TOKEN_FILENAME
-                value: "github-token.txt"
-              - name: GITHUB_ORG_NAME
-                value: "DBIAAS"
-              - name: GITHUB_REPO_NAME
-                value: "Ristretto"
-              - name: GITHUB_BRANCH
-                value: "sam_artifact"
-              - name: ARTIFACT_DIRECTORY
-                value: "/ristretto-artifact"
-              - name: REFRESH_INTERVAL
-                value: 60
-            ports:
-              - name: ristretto-http
-                containerPort: 30000
-            volumeMounts:
-              - mountPath: /secrets
-                name: ristretto-pass
-                readOnly: true
-              - name: shared-data
-                mountPath: /ristretto-artifact
-            livenessProbe:
-              exec:
-                command:
-                  - pgrep
-                  - wrapper_render_monitor.sh
-              initialDelaySeconds: 120
-              periodSeconds: 5
-              failureThreshold: 100
+          image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/dpoh/ristretto_monitor:2020-01-15a
+          command:
+            - /usr/local/bin/wrapper_render_monitor.sh
+          env:
+            - name: GITHUB_TOKEN_FILENAME
+              value: "github-token.txt"
+            - name: GITHUB_ORG_NAME
+              value: "DBIAAS"
+            - name: GITHUB_REPO_NAME
+              value: "Ristretto"
+            - name: GITHUB_BRANCH
+              value: "sam_artifact"
+            - name: ARTIFACT_DIRECTORY
+              value: "/ristretto-artifact"
+            - name: REFRESH_INTERVAL
+              value: 60
+          ports:
+            - name: ristretto-http
+              containerPort: 30000
+          volumeMounts:
+            - mountPath: /secrets
+              name: ristretto-pass
+              readOnly: true
+            - name: shared-data
+              mountPath: /ristretto-artifact
+          livenessProbe:
+            exec:
+              command:
+                - pgrep
+                - wrapper_render_monitor.sh
+            initialDelaySeconds: 120
+            periodSeconds: 5
+            failureThreshold: 100
       identity:
         serviceName: ristretto-web
       volumes:
