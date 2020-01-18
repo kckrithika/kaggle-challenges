@@ -16,7 +16,7 @@ system:
           type: client
       containers:
       - name: aqueduct
-        image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/varun.vyas/aqueduct:gdotXRDtry1
+        image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/messagingplatform/aqueduct:6164187
         env:
         - name: SFDC_ENVIRONMENT
           value: "prod" # Use whatever environment your kpod uses
@@ -65,4 +65,5 @@ system:
         sticky: 300
       - port: 15372
         targetport: 15372
+        tls: true
         lbtype: http
