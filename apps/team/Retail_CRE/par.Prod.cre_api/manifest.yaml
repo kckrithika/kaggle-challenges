@@ -9,7 +9,7 @@ system:
     count: 1
     containers:
     - name: cre-api
-      image: sfci/cre/cre-api:2.1.4.0.master.9d55085.7
+      image: sfci/cre/cre-api:2.1.6.1.0.master.8d4d720.9
       env:
         #### 2.1.4 PATCH DVD ENVIRONMENT VARIABLES ####
         - name: K4A_VAULT
