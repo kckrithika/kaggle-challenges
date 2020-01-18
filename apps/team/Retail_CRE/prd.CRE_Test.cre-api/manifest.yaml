@@ -13,8 +13,22 @@ system:
       "routing.mesh.sfdc.net/enabled": "true"
     containers:
     - name: cre-api-cre-test
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cre/cre-api:2.1.1.develop.f60006a.127
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cre/cre-api:2.1.4-TEST.0.develop-at-test.c16c8c0.78
       env:
+        - name: K4A_VAULT
+          value: c360-dvd-user-manager-dev
+        - name: BUCKET_NAME
+          value: sfdc-c360-dev-us-east-1
+        - name: ARRAY_OF_IP
+          value: '["37.47.14.209/32", "158.75.202.2/32", "204.14.239.0/24", "204.14.236.0/24", "136.146.95.8/32", "62.17.146.144/32", "202.95.77.83/32"]'
+        - name: BUCKET_KEY
+          value: arn:aws:kms:us-east-1:748405220275:key/3fcd5cb6-4151-43ba-9f79-1e7f6bae280f
+        - name: PERMISSIONS_BOUNDARY_ARN
+          value: arn:aws:iam::748405220275:policy/PCSKPermissionsBoundary
+        - name: HTTP_PROXY
+          value: http://public0-proxy1-0-prd.data.sfdc.net:8080
+        - name: HTTPS_PROXY
+          value: http://public0-proxy1-0-prd.data.sfdc.net:8080
         - name: GDOT_BASE_PATH
           value: http://cloudatlas-prd-stage-service.cloudatlas.localhost.mesh.force.com:5442/scim
         - name: DOMAIN_ID
@@ -64,16 +78,6 @@ system:
                   -Dcom.sun.management.jmxremote.ssl=false
                   -Dcom.sun.management.jmxremote.authenticate=false
                   -Xmx4G -Xms4G -XX:ParallelGCThreads=8"
-        - name: K4A_VAULT
-          value: c360-dvd-user-manager-dev
-        - name: BUCKET_NAME
-          value: c360-dvd-dev-dvd-poc-us-east-1
-        - name: ARRAY_OF_IP
-          value: '["62.17.146.144/32","204.14.239.82/32","204.14.239.58/32","204.14.239.18/32","204.14.239.17/32","204.14.239.13/32","204.14.239.107/32","204.14.239.106/32","204.14.239.105/32","204.14.239.0/24","204.14.236.215/32","204.14.236.153/32","204.14.236.152/32","204.14.236.150/32","202.95.77.83/32","158.75.202.2/32","136.146.95.8/32"]'
-        - name: BUCKET_KEY
-          value: arn:aws:kms:us-east-1:748405220275:key/3fcd5cb6-4151-43ba-9f79-1e7f6bae280f
-        - name: PERMISSIONS_BONDARY_ARN
-          value: arn:aws:iam::748405220275:policy/PCSKPermissionsBoundary
       resources:
         limits: { cpu: "2", memory: "6Gi" }
         requests: { cpu: "2", memory: "5Gi" }
