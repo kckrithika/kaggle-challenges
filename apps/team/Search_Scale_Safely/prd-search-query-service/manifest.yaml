@@ -4,8 +4,10 @@ system:
   functions:
   - name: search-query-service
     count: 8
+    labels:
+      app: search-query-service
     annotations:
-      sidecar.istio.io/inject: "true"
+      routing.mesh.sfdc.net/enabled: "true"
     strategy:
       type: RollingUpdate
       rollingUpdate:
@@ -13,16 +15,15 @@ system:
         maxUnavailable: 25%
     containers:
     - name: search-query-service
-      # Funnel can be removed on QS 7.2
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/searchdev/smt-search-query-service:3fe7c09
       ports:
       - name: service-port
-        containerPort: 7443
+        containerPort: 7020
       - name: admin-port
         containerPort: 15372
       env:
       - name: JVM_OPTS
-        value: "-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:5005 -Dmesh.istio-mode=true -Dgrpc.port=7443 -Dmetrics.funnelEndPointURL=http://ajnafunneldirecttls.funnel.svc.mesh.sfdc.net:7442"
+        value: "-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:5005"
       resources:
         limits:
           cpu: "12"
@@ -32,31 +33,13 @@ system:
           memory: 10Gi
       livenessProbe:
         exec:
-          command:
-          - java
-          - -jar
-          - monitor-query-service.jar
-          - --phrase
-          - "SAM Health Monitor"
-          - --timeout
-          - "5"
-          - --destination
-          - "localhost:7443"
+          command: ["./runcheck.sh", "5"]
         initialDelaySeconds: 120
         timeoutSeconds: 10
         periodSeconds: 60
       readinessProbe:
         exec:
-          command:
-          - java
-          - -jar
-          - monitor-query-service.jar
-          - --phrase
-          - "SAM Health Monitor"
-          - --timeout
-          - "5"
-          - --destination
-          - "localhost:7443"
+          command: ["./runcheck.sh", "5"]
         initialDelaySeconds: 110
         timeoutSeconds: 10
     - name: beacon
@@ -69,6 +52,40 @@ system:
         exec:
           command:
           - /opt/beacon/is-alive.sh
+    - name: sherpa-b
+      image: sfci/servicelibs/sherpa-envoy:1.0.14
+      ports:
+      - name: sherpa-b-tls
+        containerPort: 7443
+      - name: sherpa-b-adm
+        containerPort: 15373
+      env:
+      - name: SFDC_ENVIRONMENT
+        value: sam
+      resources:
+        limits:
+          cpu: "1"
+          memory: 1Gi
+        requests:
+          cpu: "1"
+          memory: 1Gi
+      volumeMounts:
+      - mountPath: /server-certs
+        name: tls-server-cert
+      - mountPath: /client-certs
+        name: tls-client-cert
+      livenessProbe:
+        exec:
+          command:
+          - ./bin/is-alive
+        initialDelaySeconds: 120
+        periodSeconds: 5
+      readinessProbe:
+        exec:
+          command:
+          - ./bin/is-ready
+        initialDelaySeconds: 110
+        periodSeconds: 5
     volumes:
     - name: tls-client-cert
       maddogCert:
@@ -76,12 +93,4 @@ system:
     - name: tls-server-cert
       maddogCert:
         type: server
-  loadbalancers:
-  - lbname: search-query-service
-    function: search-query-service
-    ports:
-      - lbtype: dsr
-        port: 7443
-        targetport: 7443
-        name: grpc-sqs
 
