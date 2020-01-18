@@ -18,8 +18,10 @@ system:
       - {name: TESTRECIPE_MAESTROPINGTEST, value: 'true'}
       - {name: DEPLOYMENT_ID, value: cdg-group1}
       - {name: SFDC_ENVIRONMENT, value: prod}
+      - {name: GRPC_HOST, value: jobcontroller-group1.wave-elt.localhost.mesh.force.com}
+      - {name: GRPC_PORT, value: '5443'}
       - {name: HANDLED_PODS_PATTERN, value: 'cs[0-9]+|moana-driver-group1'}
-      image: sfci/insights/moana-driver:release-20200106.37-60f8764
+      image: sfci/insights/moana-driver:release-20200113.38-31fff2d
       livenessProbe:
         httpGet: {path: /manage/health, port: 15372}
         initialDelaySeconds: 30
@@ -33,6 +35,23 @@ system:
         requests: {cpu: 1, memory: 2G}
       volumeMounts:
       - {mountPath: /home/scone/client-certs, name: tls-client-certs}
+    - image: sfci/servicelibs/sherpa-envoy:1.0.13
+      livenessProbe:
+        exec:
+          command: [./bin/is-alive]
+        initialDelaySeconds: 60
+        periodSeconds: 5
+      name: sherpa
+      ports:
+      - {containerPort: 7443, name: http2-tls-in}
+      - {containerPort: 15373, name: sherpa-adm}
+      readinessProbe:
+        exec:
+          command: [./bin/is-ready]
+        initialDelaySeconds: 50
+        periodSeconds: 5
+      volumeMounts:
+      - {mountPath: /client-certs, name: tls-client-certs}
     count: 3
     hostnetwork: false
     identity: {serviceName: moana-driver}
@@ -44,10 +63,11 @@ system:
       name: tls-client-certs
   - containers:
     - env:
+      - {name: INTERACTIVE_SESSION_PROXY, value: 'true'}
       - {name: MANAGEMENT_SERVER_PORT, value: '15372'}
       - {name: LOGGING_JSON_STDOUT_LEVEL, value: ALL}
       - {name: LOGGING_STDERR_LEVEL, value: ALL}
-      - {name: MOANA_SPARK_ENGINE_IMAGE, value: 'ops0-artifactrepo1-0-par.data.sfdc.net/sfci/insights/moanaengine:release-20200106.31-e1acc5e'}
+      - {name: MOANA_SPARK_ENGINE_IMAGE, value: 'ops0-artifactrepo1-0-par.data.sfdc.net/sfci/insights/moanaengine:release-20200113.33-780ddbf'}
       - {name: MOANA_SPARK_ENGINE_BETA_IMAGE, value: 'ops0-artifactrepo1-0-par.data.sfdc.net/sfci/insights/moanaengine:beta-20191129.2-c8731b7'}
       - {name: KAFKA_GROUP_ID, value: moana-jobcontroller-group1}
       - {name: DEPLOYMENT_ID, value: cdg-group1}
@@ -59,7 +79,7 @@ system:
       - {name: HANDLED_PODS_PATTERN, value: 'cs[0-9]+|moana-driver-group1'}
       - {name: K8S_API_ENDPOINT, value: 'https://kubernetes-api-flowsnake-par.slb.sfdc.net'}
       - {name: ARGUS_ENDPOINT, value: 'http://ajna0-funnel1-0-par.data.sfdc.net:8080'}
-      image: sfci/insights/jobcontroller:release-20200106.40-40ae367
+      image: sfci/insights/jobcontroller:release-20200113.41-4aff7fd
       livenessProbe:
         httpGet: {path: /manage/health, port: 15372}
         initialDelaySeconds: 90
@@ -74,9 +94,34 @@ system:
       volumeMounts:
       - {mountPath: /home/datapool/logs, name: logvol}
       - {mountPath: /home/datapool/client-certs, name: tls-client-certs}
+    - image: sfci/servicelibs/sherpa-envoy:1.0.13
+      livenessProbe:
+        exec:
+          command: [./bin/is-alive]
+        initialDelaySeconds: 60
+        periodSeconds: 5
+      name: sherpa
+      ports:
+      - {containerPort: 7443, name: http2-tls-in}
+      - {containerPort: 15373, name: sherpa-adm}
+      readinessProbe:
+        exec:
+          command: [./bin/is-ready]
+        initialDelaySeconds: 50
+        periodSeconds: 5
+      volumeMounts:
+      - {mountPath: /client-certs, name: tls-client-certs}
+      - {mountPath: /server-certs, name: tls-server-certs}
+    - args: [-endpoint, '$(FUNCTION_NAMESPACE)/$(FUNCTION):DATACENTER_ALLENV:HTTP2_TLS']
+      image: sfci/services/sfdc-bazel/disco/beacon:d7f1640
+      livenessProbe:
+        exec:
+          command: [/opt/beacon/is-alive.sh]
+        initialDelaySeconds: 5
+      name: beacon
     count: 3
     hostnetwork: false
-    identity: {serviceName: datapool}
+    identity: {serviceName: jobcontroller-group1}
     name: jobcontroller-group1
     volumes:
     - hostPath: {path: /data/sam/wave/log/datapool}
