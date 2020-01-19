@@ -26,9 +26,9 @@ system:
         - name: PERMISSIONS_BOUNDARY_ARN
           value: arn:aws:iam::748405220275:policy/PCSKPermissionsBoundary
         - name: HTTP_PROXY
-          value: public0-proxy1-0-prd.data.sfdc.net:8080
+          value: http://public0-proxy1-0-prd.data.sfdc.net:8080
         - name: HTTPS_PROXY
-          value: public0-proxy1-0-prd.data.sfdc.net:8080
+          value: http://public0-proxy1-0-prd.data.sfdc.net:8080
         - name: DOMAIN_ID
           value: cre
         - name: SCHEMA_IDS
