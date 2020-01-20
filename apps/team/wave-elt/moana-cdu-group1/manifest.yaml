@@ -63,6 +63,7 @@ system:
       name: tls-client-certs
   - containers:
     - env:
+      - {name: INTERACTIVE_SESSION_PROXY, value: 'true'}
       - {name: MANAGEMENT_SERVER_PORT, value: '-1'}
       - {name: LOGGING_JSON_STDOUT_LEVEL, value: ALL}
       - {name: LOGGING_STDERR_LEVEL, value: ALL}
