@@ -365,7 +365,7 @@
       "--tcpconfig.accessLogFormat=basic",
       "--httpconfig.accessLogDirectory=" + slbconfigs.logsDir,
     ]
-     + (if slbimages.phaseNum >= 3 then [
+     + (if slbimages.phaseNum >= 3 || configs.estate == "prd-sam" then [
       "--flagPushNginxLogsToSplunk=true",
     ] else []),
     volumeMounts: std.prune([
