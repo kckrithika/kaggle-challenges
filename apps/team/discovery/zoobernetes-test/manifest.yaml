@@ -20,6 +20,8 @@ system:
       env:
       - name: DEMO_GREETING
         value: "Hello from environment"
+      - name: JAVA_OPTS
+        value: "-Dmesh.istio-mode=true"
 
       ports:
       - containerPort: 7020
