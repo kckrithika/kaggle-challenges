@@ -3,7 +3,7 @@ local utils = import "util_functions.jsonnet";
 
 if configs.estate == "prd-sam" then {
    apiVersion: "apiextensions.k8s.io/v1beta1",
-    kind: "CustomResourceDefinition",
+   kind: "CustomResourceDefinition",
     metadata: {
       name: "armadaapplications.armadacrd.salesforce.com",
       annotations: {
@@ -178,4 +178,4 @@ if configs.estate == "prd-sam" then {
 
         ],
       },
-}
+} else "SKIP"
