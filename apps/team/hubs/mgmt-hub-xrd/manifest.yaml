@@ -2,29 +2,30 @@ apiVersion: v1
 
 system:
   notifications:
-    email:
-    - hubs@salesforce.com
+         email:
+            - hubs@salesforce.com
   functions:
   - name: mgmt-hub
     count: 1
     volumes:
-    - name: tls-client-cert
+    - name: cert
       maddogCert:
         type: client
-    - name: tls-server-cert
-      maddogCert:
-        type: server
     - name: logvol
       hostPath:
         path: /home/sfdc-mgmt/logs
     containers:
     - name: mgmt-hub
-      image: dva/mgmt-hub:12
+      image: dva/mgmt-hub:7
       env:
-      - name: SPRING_PROFILES_ACTIVE
-        value: dev
+      - name: KEYSTORE_CA_DIRECTORY
+        value: /certs/ca
+      - name: KEYSTORE_CLIENT_DIRECTORY
+        value: /certs/client
       - name: KPODS_COUNT
         value: 1
+      - name: SPRING_PROFILES_ACTIVE
+        value: dev
       - name: APP_REMOTE_HOST
         value: stmfana44ice1-app1-4-prd
       - name: APP_DOMAIN
@@ -33,23 +34,9 @@ system:
         value: 8998
       - name: JMX_RETRIEVE_PASSWORD_FROM_SECRET_SERVICE
         value: true
-      - name: SERVER_SSL_ENABLED
-        value: "true"
-      - name: MANAGEMENT_SERVER_SSL_ENABLED
-        value: "false"
-      - name: SECURITY_SERVER_DYNAMICKEYSTORE_ENABLED
-        value: "true"
-      - name: SECURITY_SERVER_DYNAMICKEYSTORE_CADIR
-        value: "/certs/server-certs/ca"
-      - name: SECURITY_SERVER_DYNAMICKEYSTORE_MONITOREDDIRECTORY
-        value: "/certs/server-certs/server"
-      - name: SECURITY_SERVER_DYNAMICKEYSTORE_KEY_ALIAS
-        value: "server"
       volumeMounts:
-      - name: tls-client-cert
-        mountPath: /client-certs
-      - name: tls-server-cert
-        mountPath: /server-certs
+      - name: cert
+        mountPath: /certs
       ports:
         - containerPort: 8080
           name: scone-http
@@ -74,6 +61,10 @@ system:
             - "./bin/is-alive"
         initialDelaySeconds: 120
         periodSeconds: 5
+      # Mount volumes with certificates. The paths here match the defaults assumed by sherpa
+      volumeMounts:
+        - name: cert
+          mountPath: /client-certs
 
   loadbalancers:
   - lbname: mgmt-hub
@@ -81,10 +72,10 @@ system:
     nodeExposed: false
     slbenabled: true
     ports:
-      - port: 443
+      - port: 8080
         targetport: 8080
         lbtype: http
-        tls: true
+        #tls: true
         #reencrypt: true
       - port: 15372 
         targetport: 15372
