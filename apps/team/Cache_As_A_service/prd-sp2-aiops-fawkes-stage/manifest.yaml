@@ -18,10 +18,7 @@ system:
           maxUnavailable: 1
       containers:
       - name: fawkes-stage-func
-        image: dva/casp/fawkes_strata:jenkins-CASP-fawkes-PR-141-2-itest
-        ports:
-          - name: fawkes-http
-            containerPort: 5000
+        image: dva/casp/fawkes_strata:jenkins-CASP-fawkes-PR-141-11-itest
         env:
         - name: FAWKES_ENV
           value: "stg"
@@ -49,14 +46,6 @@ system:
           name: fawkes-staging-logs-vol
         - mountPath: /ajna-certs
           name: ajna-cert
-        - mountPath: /certs
-          name: fawkes-stage-cert
-        - mountPath: /fawkes/mongo-secrets
-          name: mongo
-          readOnly: true
-        - mountPath: /fawkes/mongo-admin-secrets
-          name: mongo-admin
-          readOnly: true
         livenessProbe:
           exec:
             command: ["/bin/true"]
@@ -78,25 +67,3 @@ system:
       - name: ajna-cert
         maddogCert:
           type: client
-      - name: fawkes-stage-cert
-        maddogCert:
-          type: server
-          lbnames:
-            - fawkes-stage
-      - name: mongo
-        k4aSecret:
-          secretName: fawkes-mongo
-      - name: mongo-admin
-        k4aSecret:
-          secretName: fawkes-mongo-admin      
-    loadbalancers:
-      - lbname: fawkes-stage
-        function: fawkes-stage-func
-        slbenabled: true
-        ports:
-          - port: 443
-            targetport: 5000
-            lbtype: http
-            tls: true
-            reencrypt: true
-            lbalgorithm: roundrobin
