@@ -70,7 +70,6 @@ spec:
           name: certs
         - mountPath: /config
           name: config
-      hostNetwork: true
       nodeSelector:
         master: "true"
       serviceAccount: armada-sa

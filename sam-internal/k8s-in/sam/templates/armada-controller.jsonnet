@@ -8,7 +8,6 @@ if configs.estate == "prd-sam" then {
         replicas: 1,
         template: {
             spec: configs.specWithKubeConfigAndMadDog {
-                hostNetwork: true,
                 containers: [
                     configs.containerWithKubeConfigAndMadDog {
                         name: "armada-controller",
