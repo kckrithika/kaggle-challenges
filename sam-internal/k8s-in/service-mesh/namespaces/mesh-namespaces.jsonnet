@@ -15,6 +15,7 @@ local all_known_mesh_namespaces = [
     "core-on-sam-sp2",
     "core-on-sam",
     "dataprotection",
+    "discovery",
     "emailinfra",
     "funnel",
     "gater",
