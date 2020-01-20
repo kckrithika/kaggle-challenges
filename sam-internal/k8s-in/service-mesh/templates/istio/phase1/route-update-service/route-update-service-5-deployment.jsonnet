@@ -31,7 +31,7 @@ configs.deploymentBase("service-mesh") {
   },
   spec+: {
     progressDeadlineSeconds: 600,
-    replicas: 1,
+    replicas: mcpIstioConfig.routeUpdateServiceReplicasCount,
     selector: {
       matchLabels: {
           app: "route-update-service",
