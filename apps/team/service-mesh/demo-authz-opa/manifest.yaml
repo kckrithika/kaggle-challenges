@@ -32,6 +32,7 @@ system:
       - containerPort: 7443
         name: grpc-svc
       - containerPort: 7442
+        protocol: http
         name: http-svc
       - containerPort: 8440
         name: http-noauth
