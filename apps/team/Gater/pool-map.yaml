@@ -60,6 +60,8 @@ apps:
  gate-manager-gia2:
   - hio/hio-sam_gater
   - ttd/ttd-sam_gater
+ gate-manager-gia2-test:
+  - ast/ast-sam_gater
  gate-manager-test:
   - prd/prd-sam_gater
  istio-gate-manager-test:
