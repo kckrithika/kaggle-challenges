@@ -1,0 +1,97 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  labels:
+    name: armadacontroller
+    sam.data.sfdc.net/owner: sam
+  name: armadacontroller
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      name: armadacontroller
+  template:
+    metadata:
+      labels:
+        apptype: control
+        name: armadacontroller
+        sam.data.sfdc.net/owner: sam
+      namespace: sam-system
+    spec:
+      containers:
+      - command:
+        - ./armadasvc
+        - --armadaTemplatesGitOrgName=armada
+        - --armadaTemplatesGitRepoName=armada-templates
+        - --armadaTemplatesGitBranchName=master
+        - --armadaRepoProvisioningTemplateFilePath=repo-provision
+        - --armadaCITemplateFilePath=scone-app/ci/.strata.yml
+        - --gusPollInterval=10
+        - --secrets.certFile=/etc/pki_service/platform/platform-client/certificates/platform-client.pem
+        - --secrets.keyFile=/etc/pki_service/platform/platform-client/keys/platform-client-key.pem
+        - --secrets.caFile=/etc/pki_service/ca/cabundle.pem
+        - --secrets.ssEndpoint=secretservice.dmz.salesforce.com
+        env:
+        - name: KUBECONFIG
+          value: /kubeconfig/kubeconfig-platform
+        - name: GITHUB_TOKEN
+          valueFrom:
+            secretKeyRef:
+              key: token1.txt
+              name: git
+        - name: GUS_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              key: p.txt
+              name: gus-cred
+        - name: GUS_USERNAME
+          valueFrom:
+            secretKeyRef:
+              key: username.txt
+              name: gus-cred
+        - name: GUS_SECRET
+          valueFrom:
+            secretKeyRef:
+              key: secret.txt
+              name: gus-cred
+        - name: GUS_KEY
+          valueFrom:
+            secretKeyRef:
+              key: key.txt
+              name: gus-cred
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/armada/armada:41-6b462f87d81e951ef0d83eb94faf6c5252808118
+        name: armada-controller
+        volumeMounts:
+        - mountPath: /etc/pki_service
+          name: maddog-certs
+        - mountPath: /kubeconfig
+          name: kubeconfig
+        - mountPath: /data/certs
+          name: certs
+        - mountPath: /config
+          name: config
+      nodeSelector:
+        master: "true"
+      serviceAccount: armada-sa
+      serviceAccountName: armada-sa
+      volumes:
+      - hostPath:
+          path: /etc/pki_service
+        name: maddog-certs
+      - hostPath:
+          path: /etc/kubernetes
+        name: kubeconfig
+      - hostPath:
+          path: /data/certs
+        name: certs
+      - configMap:
+          name: armada-controller
+        name: config
+      - name: gus-cred
+        secret:
+          defaultMode: 420
+          secretName: gus-cred
+      - name: git
+        secret:
+          defaultMode: 420
+          secretName: git
