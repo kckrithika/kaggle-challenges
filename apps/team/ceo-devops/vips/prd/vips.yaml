@@ -5778,7 +5778,7 @@
 - lbname: cjemaster304
   customlbname: cjemaster304
   cnames:
-  - cname: team-cjemaster304.slb.sfdc.net
+  - cname: hightowerci.slb.sfdc.net
   servers:
   - cjemaster304-1-prd.dop.sfdc.net
   - cjemaster304-2-prd.dop.sfdc.net
@@ -5803,7 +5803,7 @@
 - lbname: cjemaster305
   customlbname: cjemaster305
   cnames:
-  - cname: team-cjemaster305.slb.sfdc.net
+  - cname: apici.slb.sfdc.net
   servers:
   - cjemaster305-1-prd.dop.sfdc.net
   - cjemaster305-2-prd.dop.sfdc.net
@@ -5828,7 +5828,7 @@
 - lbname: cjemaster306
   customlbname: cjemaster306
   cnames:
-  - cname: team-cjemaster306.slb.sfdc.net
+  - cname: localizationmobileci.slb.sfdc.net
   servers:
   - cjemaster306-1-prd.dop.sfdc.net
   - cjemaster306-2-prd.dop.sfdc.net
@@ -5853,7 +5853,7 @@
 - lbname: cjemaster307
   customlbname: cjemaster307
   cnames:
-  - cname: team-cjemaster307.slb.sfdc.net
+  - cname: retech-rews-amplci.slb.sfdc.net
   servers:
   - cjemaster307-1-prd.dop.sfdc.net
   - cjemaster307-2-prd.dop.sfdc.net
