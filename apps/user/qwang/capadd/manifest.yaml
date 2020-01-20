@@ -35,5 +35,5 @@ system:
       livenessProbe:
         exec:
           command:
-            - true
+            - /bin/ls
 
