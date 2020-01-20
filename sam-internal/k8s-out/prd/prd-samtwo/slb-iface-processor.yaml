@@ -39,7 +39,7 @@ spec:
         - --log_dir=/host/data/slb/logs/slb-iface-processor
         - --hostsConfigFile=/sfdchosts/hosts.json
         - --subnet=10.254.252.0/22,136.146.214.0/23
-        - --subnetMask=/32
+        - --subnetMask=/27
         image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/slb/hyperslb:2305-3b2e1034d7d2d6ebca8b7d8d925705fd87edc805
         name: slb-iface-processor
         securityContext:
