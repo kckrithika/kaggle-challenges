@@ -18,7 +18,7 @@ system:
         secretName: oauthclient
     containers:
     - name: capadd
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/qwang/capadd:test-20200117-2
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/qwang/capadd:test-20200120-1
       volumeMounts:
         - name: capadd-client-cert
           mountPath: /clientcert
@@ -33,7 +33,8 @@ system:
       ports:
       - containerPort: 8787
       livenessProbe:
-        httpGet:
-          path: /capadd
-          port: 8787
+        exec:
+          command:
+            - cat
+            - /tmp
 
