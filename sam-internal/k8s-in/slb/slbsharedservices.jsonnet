@@ -367,7 +367,11 @@
     ]
      + (if slbimages.phaseNum >= 3 || configs.estate == "prd-sam" then [
       "--flagPushNginxLogsToSplunk=true",
+    ] else [])
+    + (if slbimages.phaseNum <= 2 then [
+      "--period=5m",
     ] else []),
+
     volumeMounts: std.prune([
       slbconfigs.nginx.target_config_volume_mount,
       slbconfigs.slb_volume_mount,
