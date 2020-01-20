@@ -27,8 +27,6 @@ system:
         name: grpc-svc
       - containerPort: 7022
         name: http-svc
-      - containerPort: 7442
-        name: sherpa-http-tls
       - containerPort: 8440
         name: http-noauth
       livenessProbe:
