@@ -24,6 +24,8 @@ system:
         value: "-Dmesh.istio-mode=true"
 
       ports:
+      - containerPort: 7443
+        name: grpc-sherpa
       - containerPort: 7020
         name: grpc-svc
       - containerPort: 15372
@@ -62,3 +64,13 @@ system:
       - name: server-cert
         maddogCert:
           type: server
+
+  loadbalancers:
+  - lbname: zoobernetes-test
+    function: zoobernetes-test
+    ports:
+      - lbtype: dsr
+        port: 7443
+        targetport: 7443
+        name: grpc-das
+
