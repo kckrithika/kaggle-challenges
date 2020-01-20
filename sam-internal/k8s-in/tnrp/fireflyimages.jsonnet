@@ -52,13 +52,13 @@ local configs = import "config.jsonnet";
 
         ### Release Phase 2 - prd-sam (Canary)
         "2": $.per_phase["3"] {
-             fireflyintake: "453",
-             fireflysecintake: "453",
-             fireflycrawler: "453",
-             fireflypackage: "453",
-             fireflypackagefalcon: "453",
-             fireflypromotion: "453",
-             fireflypullrequest: "453",
+             fireflyintake: "457",
+             fireflysecintake: "457",
+             fireflycrawler: "457",
+             fireflypackage: "457",
+             fireflypackagefalcon: "457",
+             fireflypromotion: "457",
+             fireflypullrequest: "457",
              fireflyevalresultmonitor: "327",
              fireflydind: "238",
              rabbitmq: "140",
@@ -67,13 +67,13 @@ local configs = import "config.jsonnet";
 
         ### Release Phase 3 - prd-samtwo (production)
         "3": $.per_phase["4"] {
-             fireflyintake: "453",
-             fireflysecintake: "453",
-             fireflycrawler: "453",
-             fireflypackage: "453",
-             fireflypackagefalcon: "453",
-             fireflypromotion: "453",
-             fireflypullrequest: "453",
+             fireflyintake: "457",
+             fireflysecintake: "457",
+             fireflycrawler: "457",
+             fireflypackage: "457",
+             fireflypackagefalcon: "457",
+             fireflypromotion: "457",
+             fireflypullrequest: "457",
              fireflyevalresultmonitor: "325",
              fireflydind: "238",
              rabbitmq: "140",
