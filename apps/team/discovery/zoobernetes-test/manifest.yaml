@@ -3,6 +3,8 @@ system:
   functions:
   - name: zoobernetes-test
     count: 1
+    annotations:
+      sidecar.istio.io/inject: "true"
 
     containers:
     - name: zoobernetes
@@ -18,8 +20,12 @@ system:
       env:
       - name: DEMO_GREETING
         value: "Hello from environment"
+      - name: JAVA_OPTS
+        value: "-Dmesh.istio-mode=true"
 
       ports:
+      - containerPort: 7443
+        name: grpc-sherpa
       - containerPort: 7020
         name: grpc-svc
       - containerPort: 15372
@@ -43,35 +49,6 @@ system:
       - mountPath: /home/scone/logs
         name: logvolservice
 
-    - name: sherpa
-      # Use the latest release version from https://git.soma.salesforce.com/servicelibs/sherpa-envoy/releases
-      image: sfci/servicelibs/sherpa-envoy:1.0.8
-      # See https://git.soma.salesforce.com/servicelibs/sherpa#ports
-      ports:
-      - containerPort: 7443
-        name: http2-tls-in
-      - containerPort: 15373
-        name: sherpa-adm
-      livenessProbe:
-        exec:
-          command:
-          - ./bin/is-alive
-        initialDelaySeconds: 60
-        periodSeconds: 5
-      readinessProbe:
-        exec:
-          command:
-          - ./bin/is-ready
-        initialDelaySeconds: 50
-        periodSeconds: 5
-      # The cert names should match whatever you choose below in your volumes section.
-      # The mount paths match the defaults assumed by sherpa. Changing the paths requires a corresponding manual override in sherpa.
-      volumeMounts:
-      - name: client-cert
-        mountPath: /client-certs
-      - name: server-cert
-        mountPath: /server-certs
-
     serviceAccountName: zoobernetessvcaccount
 
     volumes:
@@ -87,3 +64,13 @@ system:
       - name: server-cert
         maddogCert:
           type: server
+
+  loadbalancers:
+  - lbname: zoobernetes-test
+    function: zoobernetes-test
+    ports:
+      - lbtype: dsr
+        port: 7443
+        targetport: 7443
+        name: grpc-das
+
