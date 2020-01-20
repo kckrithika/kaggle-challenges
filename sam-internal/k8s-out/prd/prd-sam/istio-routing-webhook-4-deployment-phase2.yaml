@@ -51,6 +51,8 @@ spec:
         - /server-cert/server/keys/server-key.pem
         - --port
         - "10443"
+        - --probes-port
+        - "20443"
         - --funnel-address
         - ajnafunneldirecttls.funnel.svc.mesh.sfdc.net:7442
         - --default-policy-opt-in=false
@@ -65,15 +67,26 @@ spec:
           value: -.-.prd.-.istio-routing-webhook
         - name: ESTATE
           value: prd-sam
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/sfci/servicemesh/servicemesh/istio-routing-webhook:d22413f73ef01b23fcde0a4152b3a615e872b857
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/sfci/servicemesh/servicemesh/istio-routing-webhook:c964ad6e2e48e3b0729165b52f3a4fba5de8035c
         imagePullPolicy: IfNotPresent
+        livenessProbe:
+          httpGet:
+            path: /live
+            port: probes-port
+            scheme: HTTPS
+          initialDelaySeconds: 5
+          periodSeconds: 30
+          timeoutSeconds: 5
         name: istio-routing-webhook
         ports:
         - containerPort: 10443
+        - containerPort: 20443
+          name: probes-port
         readinessProbe:
-          exec:
-            command:
-            - /bin/true
+          httpGet:
+            path: /ready
+            port: probes-port
+            scheme: HTTPS
           initialDelaySeconds: 5
           periodSeconds: 30
           timeoutSeconds: 5

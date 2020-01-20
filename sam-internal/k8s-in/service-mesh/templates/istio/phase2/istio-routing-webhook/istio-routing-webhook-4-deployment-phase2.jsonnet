@@ -66,6 +66,8 @@ configs.deploymentBase("service-mesh") {
               "/server-cert/server/keys/server-key.pem",
               "--port",
               "10443",
+              "--probes-port",
+              "20443",
               "--funnel-address",
               mcpIstioConfig.funnelEndpoint,
               "--default-policy-opt-in=false",
@@ -92,12 +94,26 @@ configs.deploymentBase("service-mesh") {
               {
                 containerPort: 10443,
               },
+              {
+                name: "probes-port",
+                containerPort: 20443,
+              },
             ],
+            livenessProbe: {
+              httpGet: {
+                path: "/live",
+                port: "probes-port",
+                scheme: "HTTPS",
+              },
+              initialDelaySeconds: 5,
+              periodSeconds: 30,
+              timeoutSeconds: 5,
+            },
             readinessProbe: {
-              exec: {
-                command: [
-                  "/bin/true",
-                ],
+              httpGet: {
+                path: "/ready",
+                port: "probes-port",
+                scheme: "HTTPS",
               },
               initialDelaySeconds: 5,
               periodSeconds: 30,
