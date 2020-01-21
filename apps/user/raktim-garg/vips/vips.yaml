@@ -2,6 +2,6 @@
   servers:
    - internal-gadget.eng.sfdc.net
   ports:
-   - port: 25432
-     targetport: 5432
+   - port: 8443
+     targetport: 8443
      lbtype: tcp
