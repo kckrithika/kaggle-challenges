@@ -34,7 +34,7 @@ if samfeatureflags.sloop then configs.daemonSetBase("sam") {
                                     path: "/healthz",
                                     port: portconfigs.sloop.sloop,
                                 },
-                                initialDelaySeconds: 30,
+                                initialDelaySeconds: 300,
                                 timeoutSeconds: 5,
                                 periodSeconds: 10,
                                 successThreshold: 1,
