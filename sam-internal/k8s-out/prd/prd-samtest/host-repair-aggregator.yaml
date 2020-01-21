@@ -27,7 +27,7 @@ spec:
         env:
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig-platform
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/sam/hypersam:2881-3de26e7c5a1b9d976371788200b974bfd03b5f07
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/sam/hypersam:2884-769ac132f739c69e8f1f603ca3316a9ab3b70d1e
         name: host-repair-aggregator
         resources:
           limits:
