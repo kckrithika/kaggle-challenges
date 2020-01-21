@@ -32,7 +32,6 @@
 - lbname: sledge-ead-lb
   servers:
    - public0-gateway1-1-par.ops.sfdc.net
-   - public0-gateway1-2-par.ops.sfdc.net
    - public0-gateway1-3-par.ops.sfdc.net
    - public0-gateway1-4-par.ops.sfdc.net
    - public0-gateway1-5-par.ops.sfdc.net
