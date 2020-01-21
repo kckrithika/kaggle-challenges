@@ -45,6 +45,7 @@ local utils = import "util_functions.jsonnet";
                 # --- flag I (to reduce the ---
                 sherpa_no_ready_delay: "AAA",
                 # --- flag J (likelihood of merge conflicts.) ---
+                webhook_readiness_probes: "unverified",
             },
             # prd-test offers legacy version mappings. Phase 2 does not, so cannot inherit from there.
             # Start with 2-prd-dev (which also have legacy version mappings),

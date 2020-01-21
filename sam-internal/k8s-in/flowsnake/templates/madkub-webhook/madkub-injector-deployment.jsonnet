@@ -81,7 +81,19 @@ if flowsnake_config.madkub_enabled then
                             "2",
                             "-alsologtostderr",
                         ]
-                    },
+                    }
+                    + (if std.objectHas(flowsnake_images.feature_flags, "webhook_readiness_probes") then {
+                        readinessProbe:
+                            {
+                                httpGet: {
+                                    path: "/healthz",
+                                    port: 8443,
+                                    scheme: "HTTPS",
+                                },
+                                initialDelaySeconds: 5,
+                                periodSeconds: 5,
+                            }
+                        } else {}),
                     madkub_common.refresher_container(cert_name),
                 ],
                 initContainers: [ madkub_common.init_container(cert_name) ],
