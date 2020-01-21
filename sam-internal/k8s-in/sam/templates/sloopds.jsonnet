@@ -32,7 +32,7 @@ if samfeatureflags.sloop then configs.daemonSetBase("sam") {
                         livenessProbe: {
                                 httpGet: {
                                     path: "/healthz",
-                                    port: 8080,
+                                    port: portconfigs.sloop.sloop,
                                 },
                                 initialDelaySeconds: 30,
                                 timeoutSeconds: 5,
@@ -43,7 +43,7 @@ if samfeatureflags.sloop then configs.daemonSetBase("sam") {
                         readinessProbe: {
                                  httpGet: {
                                      path: "/healthz",
-                                     port: 8080,
+                                     port: portconfigs.sloop.sloop,
                                  },
                                  initialDelaySeconds: 5,
                                  timeoutSeconds: 5,
