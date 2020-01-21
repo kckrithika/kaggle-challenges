@@ -22,8 +22,6 @@ system:
         value: dc.$(KINGDOM),sam,oracle
       - name: GRPC_PORT
         value: 7443
-      - name: MESH_ISTIO-MODE
-        value: false
       ports:
       - containerPort: 7022
       - containerPort: 15372
