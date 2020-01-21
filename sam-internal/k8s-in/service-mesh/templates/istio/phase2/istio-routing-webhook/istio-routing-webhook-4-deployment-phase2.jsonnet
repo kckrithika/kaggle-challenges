@@ -75,6 +75,7 @@ configs.deploymentBase("service-mesh") {
               "core-on-sam-sp2",
               "--namespace-selector",
               "istio-injection=enabled",
+              "--authz-enabled=true",
             ],
             env: [
               {
