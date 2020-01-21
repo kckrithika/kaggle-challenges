@@ -1,9 +1,10 @@
 - lbname: gadget-vip-test
   servers:
    - internal-gadget.eng.sfdc.net
+   - prom-gadget.eng.sfdc.net
   ports:
-  - port: 8443
-    targetport: 8443
+  - port: 443
+    targetport: 443
     lbtype: http
     healthport: 9000
     healthprotocol: tcp
