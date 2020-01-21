@@ -18,7 +18,7 @@ system:
         secretName: oauthclient
     containers:
     - name: capadd
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/qwang/capadd:k4a-20200121-4
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/qwang/capadd:k4a-20200121-5
       volumeMounts:
         - name: capadd-client-cert
           mountPath: /clientcert
