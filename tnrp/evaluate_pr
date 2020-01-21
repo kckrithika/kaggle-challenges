@@ -101,6 +101,46 @@ ensure_git_personal_access_token() {
     fi
 }
 
+ensure_gus_client_credentials() {
+    if [ -n "$FIREFLY" ]; then
+      # This is a temporary work-around while we wait for secret support in Firefly.
+      # This is a pgp encrypted read-only git token.  We use the md5 of the firefly ssh key to decrypt this at runtime.
+
+      # gus key
+      echo "jA0EBwMCziL2J7zGzXPn0pYBqsxDW3w/6BaXFCBMVVHGYN4P7BynI4uXSnn2gPEqpelIBwp0HX+jkx8ZTsDlGx0E/TwjPcxpCNHaWFyYbVEkDCVX7eYx8KIOuFNBLKSqOcPbDnAelHG1hngDLoSxdFP9eK8/J53lR33V3cO0hSfOwn//FE6GC2QmR0PpFmxKVAnKwywEZcWYhy6RYdeJgW9yNQjZnnE=" | base64 -d > gus_key.txt.gpg
+      gpg --yes --batch --passphrase=$(md5sum /root/.ssh/id_rsa | cut -f1 -d" ") ./gus_key.txt.gpg &> /dev/nul
+
+      # gus secret
+      echo "jA0EBwMCYPSBCiS9vKnn0oMBpzp6gucVR32D7ZHnzWTJBsyaYRLpIFwbo5Dgv18XbzFrWtIMjcD+fXM9lY1gnmNZtdmcdUMaCKAZhvmKC4+c+rUofo53Z9K/9+pmn2lW6iMwe8MvoHwQ2J6MsOFXszeUKq8AYBlq3oc/pdcFZiDV1cLJ2G8a9Ywf3J/m2vfr7HLqcQ==" | base64 -d > gus_secret.txt.gpg
+      gpg --yes --batch --passphrase=$(md5sum /root/.ssh/id_rsa | cut -f1 -d" ") ./gus_secret.txt.gpg &> /dev/nul
+
+      # gus username
+      echo "jA0EBwMCNnlAuARB7wvr0lMBpbHfYIpZMAE5SemVyz7M8v+FymB35qwWjVcH4BtCGdYER2KSTMGsiKUBo+Gbh+hho0rcSeWylkECUPatE4IEAtWJgE8Y8OSsELHbLyZ5TcvUqg==" | base64 -d > gus_username.txt.gpg
+      gpg --yes --batch --passphrase=$(md5sum /root/.ssh/id_rsa | cut -f1 -d" ") ./gus_username.txt.gpg &> /dev/nul
+
+      # gus password
+      echo "jA0EBwMCRY+xGpf5UwTr0mgBnZlikKhwXOPm76iyk7NXVczA2lM9vtEB1L/5njDVy52X/hljHOu7CVjDno/AW6O2R6Y3zg7/06LDdfEB0oNkPBB+FX6VFYGGoQXnhg6MaQSSmrOQLqHMnwlOOXhv0GriqzXXzD40Yw==" | base64 -d > gus_password.txt.gpg
+      gpg --yes --batch --passphrase=$(md5sum /root/.ssh/id_rsa | cut -f1 -d" ") ./gus_password.txt.gpg &> /dev/nul
+    else
+      if [ ! -f "./gus_key.txt" ]; then
+          echo "gus key required"
+          exit 1
+      fi
+      if [ ! -f "./gus_secret.txt" ]; then
+          echo "gus secret required"
+          exit 1
+      fi
+      if [ ! -f "./gus_username.txt" ]; then
+          echo "gus username required"
+          exit 1
+      fi
+      if [ ! -f "./gus_password.txt" ]; then
+          echo "gus password required"
+          exit 1
+      fi
+    fi
+}
+
 execute_evaluate_pr() {
     IMAGE_EXISTS_TRIES=2
     EVAL_TIMEOUT=10m
@@ -174,6 +214,7 @@ get_original_repo_contents
 execute_aclrepo
 
 ensure_git_personal_access_token
+ensure_gus_client_credentials
 
 execute_evaluate_pr
 execute_validate_vips_yaml
