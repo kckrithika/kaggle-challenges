@@ -167,7 +167,7 @@ system:
         - name: management_server_port
           value: 15371
         - name: ca_service_host
-          value: test0shared0-samminionatlasdir1-2-prd.eng.sfdc.net
+          value: ${directory_server_host}
         - name: c2c_common_gdotBasePath
           value: http://${directory_server_host}:7022/scim
         - name: security_client_dynamickeystore_cadir
@@ -179,7 +179,7 @@ system:
         - name: c2c_service_id
           value: giddataservice-cast-prd-dev
         - name: ldaps_hostname
-          value: test0shared0-samminionatlasdir1-2-prd.eng.sfdc.net
+          value: ${directory_server_host}
       ports:
         - containerPort: 8081
         - containerPort: 15371
