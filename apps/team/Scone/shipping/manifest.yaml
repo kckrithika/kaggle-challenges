@@ -10,7 +10,9 @@ system:
       #   https://git.soma.salesforce.com/services/sfdc-bazel/tree/master/projects/services/shipping/shipping-scone
       # Shipping Config
       #   https://git.soma.salesforce.com/services/sfdc-bazel/blob/master/projects/services/shipping/shipping-scone/src/main/resources/config/application.properties
-      image:  ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/scone/shipping-service:bazel-monorepo
+      # Shipping Image Build Job (actually, it is for any service in the monorepo)
+      #   https://sfcirelease.dop.sfdc.net/job/services/job/services-sfdc-bazel-tools-build-Jenkinsfile.deploy/job/sfdc-bazel/job/master/
+      image:  ops0-artifactrepo2-0-prd.data.sfdc.net/docker-sfci-dev/sfci/services/sfdc-bazel/scone/shipping:bazel-monorepo
       env:
       - name: SFDC_ENVIRONMENT
         value: sconex
