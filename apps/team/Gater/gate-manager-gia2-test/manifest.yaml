@@ -6,7 +6,7 @@ system:
       - gater@salesforce.com
   functions:
   - name: gater
-    count: 2
+    count: 3
     hostnetwork: true
     containers:
     - name: gate-manager
@@ -20,7 +20,6 @@ system:
         - --logging.json.stdout.level=INFO
         - --publish-specific-metrics=CONDITIONAL
         - --synctask.override-artifact=test-gate-definitions
-        - --noop.config=none
       # associate the /log directory to a logical volume. logging.dir is set to this in the startup script args above,
       # and this volume mount is mapped to a host directory below in the volumes section. Underneath this directory
       # we will end up with the following sub-directories: gater/app, gater/jvm, gater/json.
