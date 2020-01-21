@@ -15,7 +15,8 @@ system:
         value: $(KINGDOM)
       - name: SPRING_PROFILES_ACTIVE 
         value: dc.$(KINGDOM),sam,oracle
-
+      - name: MESH_ISTIO-MODE
+        value: false
       ports:
       - containerPort: 7020
       - containerPort: 7022
