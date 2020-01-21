@@ -15,22 +15,20 @@ system:
     containers:
     # Primary service container
     - name: metadata-service
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/metadata-cannon/metadata-service:0.12.89
+      image: replace-me
       ports:
-      # Server port
-      - containerPort: 9091
+      # HTTP port
+      - containerPort: 7022
+      # gRPC port
+      - containerPort: 7020
       # Management port
       - containerPort: 15523
       env:
       - name: SFDC_ENVIRONMENT
         value: stmfa
-      - name: SERVER_PORT
-        value: "9091"
-      - name: MANAGEMENT_PORT
-        value: "15523"
       - name: JVM_ARGS
         # Environment specific configuration parameters
-        value: -Xmx2G -Xms2G -XX:ParallelGCThreads=8 -Ddatabase.name=metadataserviceitest -Djwt-validation.enabled=false
+        value: -Xmx2G -Xms2G -XX:ParallelGCThreads=8
       # An environment variable used to trigger containers redeployment without making other changes to the manifest
       - name: RESTART
         value: May-16-2019
@@ -68,8 +66,11 @@ system:
       ports:
       - name: sherpa-h2-tls
         containerPort: 7443
+      - name: sherpa-h1-tls
+        containerPort: 7442
       - containerPort: 15373
-      # A plain-text sherpa-inbound port. Used by internal tooling and developers. Must not be exposed in production.
+      # A plain-text sherpa-inbound ports.
+      # Used by internal tooling and developers. Must not be exposed in production.
       - name: sherpa-h2-plain
         containerPort: 7012
       - name: sherpa-h1-plain
@@ -112,8 +113,6 @@ system:
     - name: mds-server-cert
       maddogCert:
         type: server
-        lbnames:
-        - metadata-service-prd-itest-lb
     - name: mds-client-cert
       maddogCert:
         type: client
