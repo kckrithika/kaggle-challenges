@@ -21,7 +21,7 @@ system:
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/qwang/capadd:k4a-20200121-1
       env:
         - name: PUBLIC_PROXY
-          value: "public0-proxy1-0-cdg.data.sfdc.net:8080"
+          value: "public0-proxy1-0-prd.data.sfdc.net:8080"
       volumeMounts:
         - name: capadd-client-cert
           mountPath: /clientcert
