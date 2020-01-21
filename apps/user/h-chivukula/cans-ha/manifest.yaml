@@ -12,7 +12,7 @@ system:
     count: 3
     containers:
     - name: candidate-service-ha-logrotator
-      image: dva/csc-health/candidate-service:jenkins-csc-health-candidate-service-PR-71-4-itest
+      image: dva/csc-health/candidate-service:jenkins-csc-health-candidate-service-PR-71-7-itest
       volumeMounts:
         - mountPath: /home/sfdc-csc-health/candidate-service
           name: logvol
@@ -42,7 +42,7 @@ system:
         done
       ']
     - name: candidate-service-ha
-      image: dva/csc-health/candidate-service:jenkins-csc-health-candidate-service-PR-71-4-itest
+      image: dva/csc-health/candidate-service:jenkins-csc-health-candidate-service-PR-71-7-itest
       ports:
       - containerPort: 8888
         name: healthz
