@@ -135,9 +135,7 @@
   cnames:
    - cname: zipkintest.data.sfdc.net
   servers:
-   - shared0-samminionzipkin2-1-prd.eng.sfdc.net
-   - shared0-samminionzipkin2-2-prd.eng.sfdc.net
-   - shared0-samminionzipkin2-4-prd.eng.sfdc.net
+   - shared0-samminionzipkin1-15-prd.eng.sfdc.net
   ports:
    - port: 443
      targetport: 9422
