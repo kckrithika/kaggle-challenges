@@ -1,0 +1,10 @@
+- lbname: gadget-vip-test
+  servers:
+   - internal-gadget.eng.sfdc.net
+  ports:
+   - port: 25432
+     targetport: 5432
+     lbtype: tcp
+
+
+internal-gadget.eng.sfdc.net	
