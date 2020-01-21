@@ -6,6 +6,8 @@ system:
   functions:
   # Pod prefix
   - name: metadata-service-itest
+    identity:
+      serviceName: metadata-service
     # Replica set size
     count: 1
     labels:
