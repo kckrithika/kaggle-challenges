@@ -18,13 +18,15 @@ system:
           maxUnavailable: 1
       containers:
       - name: fawkes-stage-api
-        image: dva/casp/fawkes_api_strata:jenkins-CASP-fawkes-PR-141-11-itest
+        image: dva/casp/fawkes_api_strata:jenkins-CASP-fawkes-fix_api_launcher_script-1-itest
         ports:
           - name: fawkes-http
             containerPort: 5000
         env:
         - name: FAWKES_ENV
-          value: "stg"
+          value: 'stg'
+        - name: FAWKES_LOG_LEVEL
+          value: 'info'
         volumeMounts:
         - mountPath: /certs
           name: fawkes-stage-cert
@@ -34,6 +36,8 @@ system:
         - mountPath: /fawkes/mongo-admin-secrets
           name: mongo-admin
           readOnly: true
+        - mountPath: /opt/fawkes/logs
+          name: fawkes-logs-vol
         livenessProbe:
           exec:
             command: ["/bin/true"]
@@ -51,6 +55,9 @@ system:
       - name: mongo-admin
         k4aSecret:
           secretName: fawkes-mongo-admin
+      - name: fawkes-logs-vol
+        hostPath:
+          path: /data/fawkes-staging-logs
     loadbalancers:
       - lbname: fawkes-stage
         function: fawkes-stage-api
