@@ -24,7 +24,7 @@ system:
       - name: AUTHZ_ARCHIVE_LOC
         value: rpm-rc-signed
       - name: FAKE_ENV_VAR_INCREMENT_TO_TRIGGER_SAM_DEPLOY
-        value: "1"
+        value: "0"
       resources:
         limits: { cpu: "1", memory: "2Gi" }
         requests: { cpu: "1", memory: "2Gi" }
