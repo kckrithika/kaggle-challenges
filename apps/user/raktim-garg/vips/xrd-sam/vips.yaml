@@ -1,6 +1,6 @@
 - lbname: gadget-vip-test
   servers:
-   - prom-gadget.eng.sfdc.net
+   - internal-gadgetui-xrd.eng.sfdc.net
   ports:
   - port: 10002
     targetport: 10002
