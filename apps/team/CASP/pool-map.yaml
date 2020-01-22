@@ -79,10 +79,9 @@ apps:
   - ph2/ph2-sam_warden
   - lo2/lo2-sam_warden
   - lo3/lo3-sam_warden
- prod-maiev-receiver-alternate:
+ prod-maiev-receiver:
   - lo2/lo2-sam_warden
   - phx/phx-sam_warden
- prod-maiev-receiver:
   - iad/iad-sam_warden
   - par/par-sam_warden
   - ukb/ukb-sam_warden
