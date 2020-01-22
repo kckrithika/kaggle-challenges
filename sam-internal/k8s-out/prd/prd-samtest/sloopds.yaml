@@ -71,7 +71,7 @@ spec:
         - containerPort: 9090
           protocol: TCP
         volumeMounts:
-        - mountPath: /prometheus/data
+        - mountPath: /dummy-prometheus/data
           name: prom-data
         - mountPath: /prometheusconfig
           name: sloopconfig

@@ -79,7 +79,10 @@ if samfeatureflags.sloop then configs.daemonSetBase("sam") {
                         volumeMounts: [
                             {
                                 name: "prom-data",
-                                mountPath: "/prometheus/data",
+                                # For some reason we are getting permission denied on the host-mount
+                                # Moving this mount will mean prometheus writes to local docker FS
+                                # TODO: Fix this properly
+                                mountPath: "/dummy-prometheus/data",
                             },
                             {
                                 name: "sloopconfig",
