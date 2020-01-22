@@ -59,8 +59,6 @@ system:
         value: '300000'
       - name: BACKUPMANAGER_CONTROLLER_ENABLE
         value: 'true'
-      - name: COLLECTION_BACKUP_ENABLE
-        value: 'false'
       volumeMounts:
       - name: client-cert-vol
         mountPath: /certs
