@@ -47,6 +47,8 @@ system:
           value: http://cre-control-plane-ccp-stage.retail-cre.localhost.mesh.force.com:5442
         - name: ENABLE_BATCH_ORPHAN_CHECKS
           value: true
+        - name: GDOT_BASE_PATH
+          value: http://cloudatlas-prd-stage-service.cloudatlas.localhost.mesh.force.com:5442/scim          
         - name: JVM_ARGS
           value: "-verbose:gc
                   -XX:+PrintGCDetails

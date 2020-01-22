@@ -47,6 +47,8 @@ system:
           value: http://cre-control-plane-ccp-perf.retail-cre.localhost.mesh.force.com:5442
         - name: ENABLE_BATCH_ORPHAN_CHECKS
           value: true
+        - name: GDOT_BASE_PATH
+          value: http://cloudatlas-prd-stage-service.cloudatlas.localhost.mesh.force.com:5442/scim
         - name: JVM_ARGS_PERF
           value: "-Xloggc:/opt/cre/$(FUNCTION)/verbosegc_$(FUNCTION_INSTANCE_NAME).log
                   -XX:HeapDumpPath=/opt/cre/$(FUNCTION)
