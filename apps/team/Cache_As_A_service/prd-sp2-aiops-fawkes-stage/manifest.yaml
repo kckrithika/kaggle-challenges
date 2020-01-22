@@ -46,6 +46,12 @@ system:
           name: fawkes-staging-logs-vol
         - mountPath: /ajna-certs
           name: ajna-cert
+        - mountPath: /fawkes/mongo-secrets
+          name: mongo
+          readOnly: true
+        - mountPath: /fawkes/mongo-admin-secrets
+          name: mongo-admin
+          readOnly: true
         livenessProbe:
           exec:
             command: ["/bin/true"]
@@ -67,3 +73,9 @@ system:
       - name: ajna-cert
         maddogCert:
           type: client
+      - name: mongo
+        k4aSecret:
+          secretName: fawkes-mongo
+      - name: mongo-admin
+        k4aSecret:
+          secretName: fawkes-mongo-admin
