@@ -2,11 +2,10 @@
   servers:
    - prom-gadget.eng.sfdc.net
   ports:
-  - port: 8443
-    targetport: 8443
+  - port: 443
+    targetport: 443
     lbtype: http
     reencrypt: true
     tls: true
     healthport: 9000
     healthprotocol: tcp
-    lbalgorithm: roundrobin
