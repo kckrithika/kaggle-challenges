@@ -45,6 +45,8 @@ system:
               value: CRE_STAGE
             - name: HBASE_DATACENTER
               value: prd
+            - name: GDOT_BASE_PATH
+              value: http://cloudatlas-prd-stage-service.cloudatlas.localhost.mesh.force.com:5442/scim              
             ####################################################################################################
             ####################################### INGEST environment variables ###############################
             ####################################################################################################
