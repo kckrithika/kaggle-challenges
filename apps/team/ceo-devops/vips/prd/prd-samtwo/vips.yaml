@@ -51,7 +51,7 @@
   servers:
   - sfci0ceo0-dkubemaster1-3-prd.dop.sfdc.net
   - sfci0ceo0-dkubemaster1-4-prd.dop.sfdc.net
-  - sfci0ceo0-dkubemaster1-5-prd.dop.sfdc.net
+  #- sfci0ceo0-dkubemaster1-5-prd.dop.sfdc.net
   ports:
   - port: 443
     targetport: 6443
