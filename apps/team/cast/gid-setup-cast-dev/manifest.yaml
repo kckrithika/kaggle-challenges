@@ -47,8 +47,7 @@ system:
         name: sherpa-in
       - containerPort: 7014
         name: http1-in
-      # Sherpa forwards 7442 to internal port 7022
-      # as per https://git.soma.salesforce.com/servicelibs/sherpa-envoy#ports
+      # Sherpa forwards 7442 to internal port 7022, as per https://git.soma.salesforce.com/servicelibs/sherpa-envoy#ports
       - containerPort: 7442
         name: http1-tls-in
       - containerPort: 15373
@@ -87,6 +86,7 @@ system:
           command:
           - "/opt/beacon/is-alive.sh"
         initialDelaySeconds: 5
+#TODO Uncomment once CA and/or Runtime team resolve this issue
     #####################################################################################
     # Entity API
     #####################################################################################
@@ -177,16 +177,16 @@ system:
     #####################################################################################
     # GID Data service
     #####################################################################################
-## ====
-## gid-service config copied from global-identity/local-gid-service-dev (https://git.soma.salesforce.com/sam/manifests/blob/master/apps/team/global-identity/local-gid-service-dev/manifest.yaml)
-## due to
-##  1. global-identity/cloudatlas-dev CA not having latest SASL plugin changes (not yet merged to CA develop as of 17 Jan 2020)
-##  2. could not get older version of gid-service, that does not rely on SASL to connect to CA, working in this deployment
-##
-## gid-service Docker image is a custom image built by GID Runtime team that does not need the latest SASL changes.
-## Not sure how recent / what is the latest commit.
-##
-## ====
+    # gid-service config copied from global-identity/local-gid-service-dev 
+    # (https://git.soma.salesforce.com/sam/manifests/blob/master/apps/team/global-identity/local-gid-service-dev/manifest.yaml)
+    # due to
+    #  1. global-identity/cloudatlas-dev CA not having latest SASL plugin changes (not yet merged to CA develop as of 17 Jan 2020)
+    #  2. could not get older version of gid-service, that does not rely on SASL to connect to CA, working in this deployment
+    #
+    # gid-service Docker image is a custom image built by GID Runtime team that does not need the latest SASL changes.
+    # Not sure how recent / what is the latest commit.
+    #
+    #####################################################################################
     - name: gid-service
       # GID Runtime custom gid-service image
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/gid/gid-service:schema1202
@@ -225,32 +225,102 @@ system:
           port: 15371
         initialDelaySeconds: 60
         periodSeconds: 5
-
       volumeMounts:
         - name: server-cert
           mountPath: /certs
         - mountPath: /clientcerts
           name: client-cert
+#TODO Remove
+#    #####################################################################################
+#    # NGINX Rev Proxy
+#    #####################################################################################
+#    # Forwards GIDDS-related URLs to 8081 (product) and 15371 (scone mgmt)
+#    # as per https://git.soma.salesforce.com/globalIdentity/nginx-routing/blob/master/conf.nginx
+#    - name: nginx-rev-proxy
+#      image: sfci/globalidentity/nginx-routing:554f1b7
+#      imagePullPolicy: Always
+#      ports:
+#        - containerPort: 7022
+#      livenessProbe:
+#        httpGet:
+#          path: /health
+#          port: 7022
+#        initialDelaySeconds: 15
+#        timeoutSeconds: 10
+#        periodSeconds: 30
+#      volumeMounts:
+#        - mountPath: /var/cache/nginx/client_temp
+#          name: cache-volume
     #####################################################################################
-    # NGINX Rev Proxy
+    # Service Protection
     #####################################################################################
-    # Forwards GIDDS-related URLs to 8081 (product) and 15371 (scone mgmt)
-    # as per https://git.soma.salesforce.com/globalIdentity/nginx-routing/blob/master/conf.nginx
-    - name: nginx-rev-proxy
-      image: sfci/globalidentity/nginx-routing:554f1b7
+    - name: service-protection
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/gid/service-protection:a4e0903
       imagePullPolicy: Always
+      env:
+      - name: server_port
+        value: 7022
+      - name: management_server_port
+        value: 15376
+      - name: server_use_forward_headers
+        value: true
+      # Proxy route mappings.
+      # * A route mapping with no source path matches all incoming requests
+      # * Scone "/manage" routes not included because they make more sense per instance
+      # GID Data Service - authentication endpoints
+      - name: proxy_routes_0_sourcePath
+        value: /services/authentication
+      - name: proxy_routes_0_target
+        value: http://localhost:8081/authentication
+      # GID Data Service - management endpoints
+      - name: proxy_routes_1_sourcePath
+        value: /services/management
+      - name: proxy_routes_1_target
+        value: http://localhost:8081/management 
+      # GID Data Service - swagger service description 
+      - name: proxy_routes_2_sourcePath
+        value: /services/swagger
+      - name: proxy_routes_2_target
+        value: http://localhost:8081/swagger-ui.html
+      # C2C service
+      - name: proxy_routes_3_sourcePath
+        value: /services/c2c
+      - name: proxy_routes_3_target
+        value: http://localhost:8082
+      # CA service - empire
+      - name: proxy_routes_4_sourcePath
+        value: /empire
+      - name: proxy_routes_4_target
+        value: http://localhost:7032
+      # CA service - scim
+      - name: proxy_routes_5_sourcePath
+        value: /scim
+      - name: proxy_routes_5_target
+        value: http://localhost:7032
+      # Common properties for all routes / target containers
+      - name: spe_ratelimit_limit
+        value: 10000
+      - name: spe_ratelimit_timeWindow
+        value: 60
+      - name: spe_whitelist_disable
+        value: true
+      - name: proxy_maxThreads
+        value: 1000
+#TODO Is this subnet correct?
+      - name: spe_whitelist_ipsubnets
+        value: 204.0.0.0/8
+
       ports:
-        - containerPort: 7022
+      - containerPort: 7022
+      - containerPort: 15376
+      - containerPort: 5701
       livenessProbe:
         httpGet:
-          path: /health
-          port: 7022
+          path: /manage/health
+          port: 15376
         initialDelaySeconds: 15
         timeoutSeconds: 10
         periodSeconds: 30
-      volumeMounts:
-        - mountPath: /var/cache/nginx/client_temp
-          name: cache-volume
     #####################################################################################
     # Volumes Needed
     #####################################################################################
@@ -270,13 +340,20 @@ system:
     - name: logvolbeacon
       hostPath:
         path: /home/sfdc-scone-hellodiscovery-beacon/logs
-    - name: cache-volume
-      emptyDir: {}
+#TODO Remove
+#    # Only used by nginx-rev-proxy
+#    - name: cache-volume
+#      emptyDir: {}
     - name: logvol
       hostPath:
         path: /home/sfdc-atlas/logs
   #####################################################################################
   # SLB
+  #####################################################################################
+  # Forwards to Sherpa container
+  #   As per Koson, besides service discovery (which mainly used for Service Mesh), 
+  #   Envoy also provides other functionality such as HTTPs termination point, tracing header propagation.
+  #   That's why we still want requests from SLB to go through Envoy container first.
   #####################################################################################
   loadbalancers:
     - lbname: gid-setup-cast-dev
