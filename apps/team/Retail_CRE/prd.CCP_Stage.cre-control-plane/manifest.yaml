@@ -81,6 +81,10 @@ system:
               value: cre-engine-ccp-stage
             - name: EXPORT_K4A_VAULT
               value: c360-dvd-rw-dev-na-1
+            - name: EXPORT_EXECUTOR_MEMORY
+              value: 36g
+            - name: EXPORT_EXECUTOR_MEMORY_OVERHEAD
+              value: 4g
             ####################################################################################################
             ##################################### APP Config environment variables #############################
             ####################################################################################################
