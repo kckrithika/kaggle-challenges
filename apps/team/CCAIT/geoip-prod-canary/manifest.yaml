@@ -8,7 +8,7 @@ system:
     count: 5
     containers:
     - name: geoip
-      image: sfci/services/sfdc-bazel/service-mesh/geoip:f532f87cc # monorepo build
+      image: sfci/services/sfdc-bazel/service-mesh/geoip:cbabd6f10 # monorepo build
       env:
       - name: FAKE_ENV_VAR_INCREMENT_TO_TRIGGER_SAM_DEPLOY
         value: "0"
@@ -31,7 +31,7 @@ system:
         initialDelaySeconds: 140
       readinessProbe:
         httpGet:
-          path: /manage/health
+          path: /manage/ready
           port: 15372
         initialDelaySeconds: 115
       terminationMessagePolicy: FallbackToLogsOnError
