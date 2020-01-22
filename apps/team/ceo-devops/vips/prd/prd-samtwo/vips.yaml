@@ -65,9 +65,9 @@
 - lbname: dev-kubemasterci2-samtwo
   customlbname: dev-kubemasterci2-samtwo
   servers:
-  - sfci0ceo0-dkubemaster2-1-prd.dop.sfdc.net
-  - sfci0ceo0-dkubemaster2-2-prd.dop.sfdc.net
-  - sfci0ceo0-dkubemaster2-3-prd.dop.sfdc.net
+  - sfci0ceo0-dkubemaster1-3-prd.dop.sfdc.net
+#  - sfci0ceo0-dkubemaster2-2-prd.dop.sfdc.net
+#  - sfci0ceo0-dkubemaster2-3-prd.dop.sfdc.net
   ports:
   - port: 443
     targetport: 6443
