@@ -41,6 +41,8 @@ system:
               ## HBASE
             - name: HBASE_ENVIRONMENT
               value: kingdom-perf
+            - name: GDOT_BASE_PATH
+              value: http://cloudatlas-prd-stage-service.cloudatlas.localhost.mesh.force.com:5442/scim
             - name: HBASE_NAMESPACE
               value: CRE
             - name: HBASE_DATACENTER
