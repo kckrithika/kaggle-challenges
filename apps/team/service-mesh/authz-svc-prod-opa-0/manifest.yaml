@@ -8,29 +8,29 @@ system:
   - name: authz-svc-opa
     count: 2
     annotations:
-      "sherpa-injector.service-mesh/inject": "enabled"
+      sidecar.istio.io/inject: "true"
     containers:
     - name: authz-svc-opa
       image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/electron_sam:147
       args:
       - --http-synthetic-client-ids=authz-svc.service-mesh
+      - --http-bind-addr=localhost:7442
+      - --grpc-bind-addr=localhost:7443
       env:
       - name: AUTHZ_ARCHIVE_LOC
         value: rpm-rc-signed
       - name: SFDC_ENVIRONMENT
-        value: mesh
+        value: stm
       - name: FAKE_ENV_VAR_INCREMENT_TO_TRIGGER_SAM_DEPLOY
         value: "1"        
       resources:
         limits: { cpu: "2", memory: "4Gi" }
         requests: { cpu: "2", memory: "4Gi" }
       ports:
-      - containerPort: 7020
+      - containerPort: 7443
         name: grpc-svc
-      - containerPort: 7022
-        name: http-svc
       - containerPort: 7442
-        name: sherpa-http-tls
+        name: http-svc
       - containerPort: 8440
         name: http-noauth
       livenessProbe:
@@ -48,7 +48,7 @@ system:
     - name: authz-svc-http-client
       image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/electron_client:147
       args:
-      - -endpoint=localhost:7022
+      - -endpoint=localhost:7442
       - -service=http
       - -loopCount=-1
       - -loopDelayInSeconds=60
@@ -87,3 +87,4 @@ system:
         - port: 7442
           targetport: 7442
           lbtype: dsr
+          name: http-authz
