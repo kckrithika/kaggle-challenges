@@ -37,7 +37,7 @@ local templatesCompositionConfig = import "configs/firebom-templates-composition
       firebom: {
         pipeline: {
           template: {
-            'enable-webhook-secret': false,
+            'enable-webhook-secret': true,
             'fire-bom-white-list': "lib/fire/.*/boms/hydrated.*json",
             'fire-bom-black-list': "lib/fire/.*/boms/mock.*json",
           }
@@ -45,7 +45,7 @@ local templatesCompositionConfig = import "configs/firebom-templates-composition
       },
       ghe: {
         'commit-signing': false,
-        'webhook-secret-token-validation': false,
+        'webhook-secret-token-validation': true,
         'context-prefix': "",
       },
     },
