@@ -195,7 +195,7 @@ items:
               "firebom": {
                   "pipeline": {
                       "template": {
-                          "enable-webhook-secret": false,
+                          "enable-webhook-secret": true,
                           "fire-bom-black-list": "lib/fire/.*/boms/mock.*json",
                           "fire-bom-white-list": "lib/fire/.*/boms/hydrated.*json"
                       }
@@ -204,7 +204,7 @@ items:
               "ghe": {
                   "commit-signing": false,
                   "context-prefix": "",
-                  "webhook-secret-token-validation": false
+                  "webhook-secret-token-validation": true
               }
           },
           "templates": {
@@ -437,7 +437,7 @@ items:
                 apiVersion: v1
                 fieldPath: metadata.labels['name']
           - name: CONFIG_VERSION
-            value: "33"
+            value: "34"
           image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/sfcdapi-firebom:118
           imagePullPolicy: Always
           livenessProbe:
