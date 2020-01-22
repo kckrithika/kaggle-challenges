@@ -1,6 +1,6 @@
 - lbname: gadget-vip-test
   servers:
-   - 10.233.233.19
+   - prom-gadget.eng.sfdc.net
   ports:
   - port: 8443
     targetport: 8443
