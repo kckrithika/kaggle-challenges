@@ -78,11 +78,6 @@ items:
                 fieldPath: spec.nodeName
           image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/k4a-caiman-watchdog:217-6a4d41639a024a63612043568a89026fb7fe975f
           name: watchdog
-          resources:
-            limits:
-              sam.sfdc.net/ip-address: "1"
-            requests:
-              sam.sfdc.net/ip-address: "1"
           volumeMounts:
           - mountPath: /clientcert
             name: client-certs
@@ -256,11 +251,6 @@ items:
                 fieldPath: spec.nodeName
           image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/k4a-caiman-watchdog:217-6a4d41639a024a63612043568a89026fb7fe975f
           name: watchdog
-          resources:
-            limits:
-              sam.sfdc.net/ip-address: "1"
-            requests:
-              sam.sfdc.net/ip-address: "1"
           volumeMounts:
           - mountPath: /clientcert
             name: client-certs
@@ -434,11 +424,6 @@ items:
                 fieldPath: spec.nodeName
           image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/k4a-caiman-watchdog:217-6a4d41639a024a63612043568a89026fb7fe975f
           name: watchdog
-          resources:
-            limits:
-              sam.sfdc.net/ip-address: "1"
-            requests:
-              sam.sfdc.net/ip-address: "1"
           volumeMounts:
           - mountPath: /clientcert
             name: client-certs
@@ -612,11 +597,6 @@ items:
                 fieldPath: spec.nodeName
           image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/k4a-caiman-watchdog:217-6a4d41639a024a63612043568a89026fb7fe975f
           name: watchdog
-          resources:
-            limits:
-              sam.sfdc.net/ip-address: "1"
-            requests:
-              sam.sfdc.net/ip-address: "1"
           volumeMounts:
           - mountPath: /clientcert
             name: client-certs
@@ -790,11 +770,6 @@ items:
                 fieldPath: spec.nodeName
           image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/k4a-caiman-watchdog:217-6a4d41639a024a63612043568a89026fb7fe975f
           name: watchdog
-          resources:
-            limits:
-              sam.sfdc.net/ip-address: "1"
-            requests:
-              sam.sfdc.net/ip-address: "1"
           volumeMounts:
           - mountPath: /clientcert
             name: client-certs
@@ -968,11 +943,6 @@ items:
                 fieldPath: spec.nodeName
           image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/k4a-caiman-watchdog:217-6a4d41639a024a63612043568a89026fb7fe975f
           name: watchdog
-          resources:
-            limits:
-              sam.sfdc.net/ip-address: "1"
-            requests:
-              sam.sfdc.net/ip-address: "1"
           volumeMounts:
           - mountPath: /clientcert
             name: client-certs
@@ -1146,11 +1116,6 @@ items:
                 fieldPath: spec.nodeName
           image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/k4a-caiman-watchdog:217-6a4d41639a024a63612043568a89026fb7fe975f
           name: watchdog
-          resources:
-            limits:
-              sam.sfdc.net/ip-address: "1"
-            requests:
-              sam.sfdc.net/ip-address: "1"
           volumeMounts:
           - mountPath: /clientcert
             name: client-certs
@@ -1324,11 +1289,6 @@ items:
                 fieldPath: spec.nodeName
           image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/k4a-caiman-watchdog:217-6a4d41639a024a63612043568a89026fb7fe975f
           name: watchdog
-          resources:
-            limits:
-              sam.sfdc.net/ip-address: "1"
-            requests:
-              sam.sfdc.net/ip-address: "1"
           volumeMounts:
           - mountPath: /clientcert
             name: client-certs
@@ -1500,11 +1460,6 @@ items:
                 fieldPath: spec.nodeName
           image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/k4a-caiman-watchdog:217-6a4d41639a024a63612043568a89026fb7fe975f
           name: watchdog
-          resources:
-            limits:
-              sam.sfdc.net/ip-address: "1"
-            requests:
-              sam.sfdc.net/ip-address: "1"
           volumeMounts:
           - mountPath: /clientcert
             name: client-certs
