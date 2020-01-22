@@ -1,10 +1,8 @@
 #####################################################################################
 #
-# GID Setup's dev clone of Cast
+# GID Setup's clone of Cast, for development purposes without disrupting other teams
 #
 #####################################################################################
-
-#TODO Replace nginx with SPaaS
 
 apiVersion: v1
 
@@ -27,6 +25,9 @@ system:
     #####################################################################################
     # Service Mesh / Envoy / Sherpa
     #####################################################################################
+    # Sherpa forwards requests from port 7442 to internal port 7022,
+    # as per https://git.soma.salesforce.com/servicelibs/sherpa-envoy#ports
+    #####################################################################################
     - name: sherpa-cast-client
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/zchen/sherpa-envoy-debug:latest
       env:
@@ -47,7 +48,6 @@ system:
         name: sherpa-in
       - containerPort: 7014
         name: http1-in
-      # Sherpa forwards 7442 to internal port 7022, as per https://git.soma.salesforce.com/servicelibs/sherpa-envoy#ports
       - containerPort: 7442
         name: http1-tls-in
       - containerPort: 15373
@@ -86,10 +86,10 @@ system:
           command:
           - "/opt/beacon/is-alive.sh"
         initialDelaySeconds: 5
-#TODO Uncomment once CA and/or Runtime team resolve this issue
     #####################################################################################
     # Entity API
     #####################################################################################
+#TODO Uncomment once CA and/or Runtime team resolve this issue
 ## ====
 ## Can't get this to deploy due to SPaaS / HBase errors. Not sure why.
 ##
@@ -178,14 +178,13 @@ system:
     # GID Data service
     #####################################################################################
     # gid-service config copied from global-identity/local-gid-service-dev 
-    # (https://git.soma.salesforce.com/sam/manifests/blob/master/apps/team/global-identity/local-gid-service-dev/manifest.yaml)
+    #  (https://git.soma.salesforce.com/sam/manifests/blob/master/apps/team/global-identity/local-gid-service-dev/manifest.yaml)
     # due to
     #  1. global-identity/cloudatlas-dev CA not having latest SASL plugin changes (not yet merged to CA develop as of 17 Jan 2020)
     #  2. could not get older version of gid-service, that does not rely on SASL to connect to CA, working in this deployment
     #
     # gid-service Docker image is a custom image built by GID Runtime team that does not need the latest SASL changes.
     # Not sure how recent / what is the latest commit.
-    #
     #####################################################################################
     - name: gid-service
       # GID Runtime custom gid-service image
@@ -230,27 +229,6 @@ system:
           mountPath: /certs
         - mountPath: /clientcerts
           name: client-cert
-#TODO Remove
-#    #####################################################################################
-#    # NGINX Rev Proxy
-#    #####################################################################################
-#    # Forwards GIDDS-related URLs to 8081 (product) and 15371 (scone mgmt)
-#    # as per https://git.soma.salesforce.com/globalIdentity/nginx-routing/blob/master/conf.nginx
-#    - name: nginx-rev-proxy
-#      image: sfci/globalidentity/nginx-routing:554f1b7
-#      imagePullPolicy: Always
-#      ports:
-#        - containerPort: 7022
-#      livenessProbe:
-#        httpGet:
-#          path: /health
-#          port: 7022
-#        initialDelaySeconds: 15
-#        timeoutSeconds: 10
-#        periodSeconds: 30
-#      volumeMounts:
-#        - mountPath: /var/cache/nginx/client_temp
-#          name: cache-volume
     #####################################################################################
     # Service Protection
     #####################################################################################
@@ -264,9 +242,9 @@ system:
         value: 15376
       - name: server_use_forward_headers
         value: true
-      # Proxy route mappings.
+      # Proxy route mappings
       # * A route mapping with no source path matches all incoming requests
-      # * Scone "/manage" routes not included because they make more sense per instance
+      # * Scone "/manage/*" paths are not mapped because it is preferable to access them directly via each pod's URL
       # GID Data Service - authentication endpoints
       - name: proxy_routes_0_sourcePath
         value: /services/authentication
@@ -298,15 +276,14 @@ system:
       - name: proxy_routes_5_target
         value: http://localhost:7032
       # Common properties for all routes / target containers
+      - name: proxy_maxThreads
+        value: 1000
       - name: spe_ratelimit_limit
         value: 10000
       - name: spe_ratelimit_timeWindow
         value: 60
       - name: spe_whitelist_disable
         value: true
-      - name: proxy_maxThreads
-        value: 1000
-#TODO Is this subnet correct?
       - name: spe_whitelist_ipsubnets
         value: 204.0.0.0/8
 
@@ -340,10 +317,6 @@ system:
     - name: logvolbeacon
       hostPath:
         path: /home/sfdc-scone-hellodiscovery-beacon/logs
-#TODO Remove
-#    # Only used by nginx-rev-proxy
-#    - name: cache-volume
-#      emptyDir: {}
     - name: logvol
       hostPath:
         path: /home/sfdc-atlas/logs
