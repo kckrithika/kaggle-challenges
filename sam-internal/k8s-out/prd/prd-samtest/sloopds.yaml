@@ -76,7 +76,7 @@ spec:
           name: sloopconfig
       hostNetwork: true
       nodeSelector:
-        master: "true"
+        dummy: disabled
       serviceAccountName: sloop
       volumes:
       - hostPath:
