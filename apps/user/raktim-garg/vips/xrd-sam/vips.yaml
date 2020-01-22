@@ -4,6 +4,4 @@
   ports:
   - port: 443
     targetport: 10002
-    lbtype: http
-    reencrypt: true
-    tls: true
+    lbtype: tcp
