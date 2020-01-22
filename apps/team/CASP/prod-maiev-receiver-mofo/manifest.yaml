@@ -16,7 +16,7 @@ system:
           maxUnavailable: 1
       containers:
       - name: prod-maiev-receiver
-        image: dva/maiev-receiver:70
+        image: dva/maiev-receiver:72
         ports:
         - name: receiver-grpc
           containerPort: 7442
@@ -46,11 +46,16 @@ system:
             fieldRef:
               fieldPath: spec.nodeName
         volumeMounts:
+        - mountPath: /home/sfdc-maiev/logs
+          name: log-vol
         - mountPath: /home/sfdc-maiev/certs
           name: maievservercert
         - mountPath: /home/sfdc-maiev/client-certs
           name: maievclientcert
       volumes:
+      - name: log-vol
+        hostPath:
+          path: /home/sfdc-casp/maiev-logs
       - name: maievservercert
         maddogCert:
           type: server
