@@ -58,10 +58,10 @@ system:
         hostPath:
           path: /home/sfdc-scone-zoobernetes/logs
       # Volumes for maddog for sherpa
-      - name: client-cert
+      - name: tls-client-cert
         maddogCert:
           type: client
-      - name: server-cert
+      - name: tls-server-cert
         maddogCert:
           type: server
 
