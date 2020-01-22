@@ -149,9 +149,9 @@ system:
         periodSeconds: 5
         failureThreshold: 10
       readinessProbe:
-        exec:
-          command:
-          - /manage/ready
+        httpGet:
+          path: /manage/ready
+          port: 15372
         initialDelaySeconds: 60
         periodSeconds: 5
       volumeMounts:
