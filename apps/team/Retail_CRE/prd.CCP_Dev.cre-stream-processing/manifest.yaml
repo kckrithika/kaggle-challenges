@@ -51,6 +51,8 @@ system:
         ##  value: DEBUG
         - name: SCONE_SERVER_SECURITY_MUTUALAUTH
           value: false
+        - name: GDOT_BASE_PATH
+          value: http://cloudatlas-prd-stage-service.cloudatlas.localhost.mesh.force.com:5442/scim          
         - name: JVM_ARGS
           value: "-verbose:gc
                   -XX:+PrintGCDetails
