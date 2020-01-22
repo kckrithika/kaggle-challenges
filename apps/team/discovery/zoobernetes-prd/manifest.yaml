@@ -66,8 +66,8 @@ system:
           type: server
 
   loadbalancers:
-  - lbname: zoobernetes-test
-    function: zoobernetes-test
+  - lbname: zoobernetes
+    function: zoobernetes
     ports:
       - lbtype: dsr
         port: 7443
