@@ -8,4 +8,4 @@
     reencrypt: true
     tls: true
     healthport: 9000
-    healthprotocol: tcp
+    healthprotocol: http
