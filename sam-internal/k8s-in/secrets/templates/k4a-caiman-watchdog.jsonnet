@@ -196,7 +196,7 @@ local k4aWatchdogDeployment(instanceTag) = configs.deploymentBase("secrets") {
               secretsconfigs.sfdcloc_node_name_env,
             ],
             volumeMounts: madkub.certVolumeMounts,
-          } + configs.ipAddressResourceRequest,
+          },
           madkub.refreshContainer,
         ],
         initContainers: [
