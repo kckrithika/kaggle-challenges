@@ -117,7 +117,7 @@ if samfeatureflags.sloop then configs.daemonSetBase("sam") {
                     },
                 ],
                 nodeSelector: {
-                    master: "true",
+                    dummy: "disabled",
                 },
             },
             metadata: {
