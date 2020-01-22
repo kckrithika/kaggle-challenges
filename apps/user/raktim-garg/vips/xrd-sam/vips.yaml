@@ -2,8 +2,8 @@
   servers:
    - prom-gadget.eng.sfdc.net
   ports:
-  - port: 443
-    targetport: 443
+  - port: 10002
+    targetport: 10002
     lbtype: http
     reencrypt: true
     tls: true
