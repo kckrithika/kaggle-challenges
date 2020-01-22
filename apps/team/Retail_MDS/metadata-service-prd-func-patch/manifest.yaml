@@ -32,7 +32,7 @@ system:
         value: stmfb
       - name: JVM_ARGS
         # Environment specific configuration parameters
-        value: -Xmx2G -Xms2G -XX:ParallelGCThreads=8
+        value: -Xmx2G -Xms2G -XX:ParallelGCThreads=8 -Dc2c.service-url=#{null}
       # An environment variable used to trigger containers redeployment without making other changes to the manifest
       - name: RESTART
         value: May-16-2019
