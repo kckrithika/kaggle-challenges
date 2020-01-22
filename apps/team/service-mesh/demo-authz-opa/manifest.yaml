@@ -32,7 +32,6 @@ system:
       - containerPort: 7443
         name: grpc-svc
       - containerPort: 7442
-        protocol: http
         name: http-svc
       - containerPort: 8440
         name: http-noauth
@@ -122,6 +121,7 @@ system:
         - port: 7442
           targetport: 7442
           lbtype: dsr
+          name: http-authz
     - lbname: demo-authz-opa
       function: demo-authz-opa
       ports:
