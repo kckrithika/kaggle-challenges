@@ -7,9 +7,9 @@ system:
         - name: gid-sdb
           image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/gid/sdb:4.0.0
           imagePullPolicy: Always
-          # env:
-          # - name: PGDATA
-          #   value: /home/sdb/gid-data
+          env:
+          - name: PGDATA
+            value: /home/sdb/gid-data
           volumeMounts:
             - mountPath: /home/sdb/gid-data
               name: hostdatavol
