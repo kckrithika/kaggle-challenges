@@ -1,7 +1,7 @@
 apiVersion: v1
 system:
   functions:
-  - name: default
+  - name: capadd
     count: 1
     volumes:
     - name: capadd-client-cert
@@ -18,7 +18,7 @@ system:
         secretName: oauthclient
     containers:
     - name: capadd
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/qwang/capadd:k4a-20200122-3
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/qwang/capadd:ss-20200122-4
       volumeMounts:
         - name: capadd-client-cert
           mountPath: /clientcert
