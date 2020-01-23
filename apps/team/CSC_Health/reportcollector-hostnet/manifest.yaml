@@ -135,6 +135,7 @@ system:
       ']
   - name: redis
     count: 1
+    hostnetwork: true
     volumes:
       - name: redisauthvol
         secret:
@@ -159,7 +160,6 @@ system:
   loadbalancers:
   - lbname: reportcollectorlb
     function: report-collector
-    nodeExposed: true
     ports:
     - port: 8082
       targetport: 8082
@@ -167,7 +167,6 @@ system:
       targetport: 8443
   - lbname: redislb
     function: redis
-    nodeExposed: true
     ports:
       - port: 6379
         targetport: 6379
