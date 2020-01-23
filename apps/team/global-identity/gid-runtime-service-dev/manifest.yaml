@@ -142,7 +142,8 @@ system:
       - name: vaas_baseUrl
         value: https://vaas-distributed-staging.herokuapp.com
       - name: spring_datasource_url
-        value: jdbc:postgresql://gid-sdb.global-identity.prd-sam.prd.slb.sfdc.net:5432/gid_dev
+        value: jdbc:discover:giddev
+        #value: jdbc:postgresql://gid-sdb.global-identity.prd-sam.prd.slb.sfdc.net:5432/gid_dev
       - name: spring_datasource_driverClassName
         value: org.postgresql.Driver
       - name: spring_datasource_username
