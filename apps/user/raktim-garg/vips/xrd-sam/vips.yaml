@@ -2,6 +2,6 @@
   servers:
    - internal-gadgetui-xrd.eng.sfdc.net
   ports:
-  - port: 88888888443
+  - port: 8443
     targetport: 10002
     lbtype: dsr
