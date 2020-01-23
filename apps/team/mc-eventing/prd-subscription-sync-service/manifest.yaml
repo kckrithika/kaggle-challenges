@@ -5,9 +5,8 @@ apiVersion: v1
 system:
   notifications:
     email:
-      - gmercer@salesforce.com
-  #      - mc-devbigdata@salesforce.com
-  #      - MC-MessagingInboundTeam@salesforce.com
+      - mc-devbigdata@salesforce.com
+      - MC-MessagingInboundTeam@salesforce.com
   functions:
     - name: subscription-sync-service
       identity:
@@ -15,7 +14,7 @@ system:
       count: 1
       containers:
         - name: subscription-sync-service
-          image: sfci/mc-eventing/subscription-sync:0.0.2
+          image: sfci/mc-eventing/subscription-sync:0.0.4
           # This line makes sure that the last lines of the log on the console gets sent to Splunk on early termination
           terminationMessagePolicy: "FallbackToLogsOnError"
           # If your service doesn't serve HTTP traffic then you can remove the scone-http 8080 port.
