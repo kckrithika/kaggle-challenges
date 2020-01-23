@@ -10,26 +10,14 @@ system:
     - name: capadd-server-cert
       maddogCert:
         type: server
-    - name: secretvol
-      k4aSecret:
-        secretName: gus
-    - name: oauthsecretvol
-      k4aSecret:
-        secretName: oauthclient
     containers:
     - name: capadd
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/qwang/capadd:ss-20200122-5
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/qwang/capadd:ss-20200123-1
       volumeMounts:
         - name: capadd-client-cert
           mountPath: /clientcert
         - name: capadd-server-cert
           mountPath: /servercert
-        - name: secretvol
-          mountPath: /secrets
-          readOnly: true
-        - name: oauthsecretvol
-          mountPath: /oauthsecrets
-          readOnly: true
       ports:
       - containerPort: 8787
       livenessProbe:
