@@ -296,7 +296,7 @@ data:
             mountPath: /client-certs
     containers:
       - name: electron-opa
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/electron-opa:0.15.0-6
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/electron-opa:0.15.0-7
         imagePullPolicy: IfNotPresent
         args:
           - run
@@ -327,7 +327,7 @@ data:
           initialDelaySeconds: 5
           periodSeconds: 10
       - name: electron-opa-istio
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/electron-opa-istio:0.15.0-6
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/electron-opa-istio:0.15.0-7
         imagePullPolicy: IfNotPresent
         args:
           - run
