@@ -108,24 +108,10 @@ system:
           - demo-authz-opa-lb
   loadbalancers:
     - lbname: demo-authz-opa-lb
-      annotations:
-        slb.sfdc.net/cnames: |-
-          [
-           {
-            "cname": "demo-authz-opa-prd.slb.sfdc.net"
-           }
-          ]
       function: demo-authz-opa
       slbenabled: true
       ports:
         - port: 7442
           targetport: 7442
           lbtype: dsr
-          name: http-authz
-    - lbname: demo-authz-opa
-      function: demo-authz-opa
-      ports:
-        - lbtype: dsr
-          port: 7442
-          targetport: 7442
           name: http-authz
