@@ -26,7 +26,6 @@ system:
         - --logging.json.stdout.level=INFO
         - --publish-specific-metrics=CONDITIONAL
         - --backupservice.enabled=false
-        - --metrics.funnelEndPointURL=http://ajnafunneldirecttls.funnel.svc.mesh.sfdc.net:7442
         - --scone.srpc.announcing-enabled=false
         - --backupservice.grpc-location=archive-backup-service.gater.svc.mesh.sfdc.net
       volumeMounts:
