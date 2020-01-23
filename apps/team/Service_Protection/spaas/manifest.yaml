@@ -62,7 +62,7 @@ system:
         initialDelaySeconds: 60
 
     - name: sherpa
-      image: sfci/servicelibs/sherpa-envoy:1.0.4
+      image: sfci/servicelibs/sherpa-envoy:1.0.14
       ports:
       - name: sherpa-in
         containerPort: 7012
