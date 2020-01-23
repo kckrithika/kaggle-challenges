@@ -40,10 +40,10 @@ system:
       volumes:
       - name: mysql-data-vol
         hostPath:
-          path: /data/mysql-data/shard-a
+          path: /fastdata/mysql-data/shard-a
       - name: mysql-backups-vol
         hostPath:
-          path: /data/mysql-backups/shard-a
+          path: /fastdata/mysql-backups/shard-a
       - name: mysql-logs-vol
         hostPath:
-          path: /data/mysql-logs/shard-a
+          path: /fastdata/mysql-logs/shard-a
