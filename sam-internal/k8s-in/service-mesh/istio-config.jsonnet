@@ -138,4 +138,6 @@ local ingressGatewayCertConfigs = [ingressGatewayClientCertConfig, ingressGatewa
   webhookFailurePolicy: istioPhases.webhookFailurePolicy,
 
   envoyMetricsServiceHost: "switchboard.service-mesh",
+
+  authzEnabled: if configs.estate == "prd-samtest" then "false" else "true",
 }
