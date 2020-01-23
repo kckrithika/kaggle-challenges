@@ -54,6 +54,12 @@ system:
               value: cre-engine-ccp-stage
             - name: INGEST_K4A_VAULT
               value: cre-engine-dev
+            - name: METRICS_FUNNEL_ENABLED
+              value: true
+            - name: METRICS_FUNNEL_INTERVAL
+              value: 10
+            - name: METRICS_FUNNEL_URL
+              value: http://ajna0-funnel1-0-prd.data.sfdc.net
             ####################################################################################################
             ####################################### SAVE environment variables #################################
             ####################################################################################################
