@@ -1,2 +1,7 @@
 version: v2
+
 apps:
+  siteswitch-supervisor:
+    - name: prd/prd-sam
+  siteswitcher:
+    - name: prd/prd-sam
