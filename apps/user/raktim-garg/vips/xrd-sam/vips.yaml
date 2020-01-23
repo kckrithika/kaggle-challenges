@@ -4,6 +4,6 @@
   ports:
   - port: 443
     targetport: 10002
-    lbtype: http
+    lbtype: dsr
     reencrypt: false
-    tls: true
+    tls: false
