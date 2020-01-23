@@ -13,7 +13,7 @@ system:
       "routing.mesh.sfdc.net/enabled": "true"
     containers:
     - name: cre-sp-ccp-dev
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cre-fusion/services:stream-processor.2.2.0.0.develop.4c23f79.897
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cre-fusion/services:stream-processor.2.3.0.0.PR-1386.2a59213.13
       env:
         - name: PUBLISHING_TOPIC
           value: sfdc.prod.cre__prd.ajna_local__cre_outbound_CCP_Shared_Dev
@@ -66,6 +66,14 @@ system:
                   -Dlogging.level.com.salesforce=INFO
                   -Xmx4G -Xms4G -XX:ParallelGCThreads=8
                   -Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=6103"
+        - name: CLUSTER_ID
+          value: sp_dev
+        - name: CLUSTER_SIZE
+          value: 1
+        - name: CLUSTER_MASTER_KAFKA_TOPIC
+          value: sfdc.prod.cre__prd.ajna_local__cre_signaling_CCP_Shared_Dev
+        - name: CLUSTER_SUPERVISOR_KAFKA_TOPIC
+          value: sfdc.prod.cre__prd.ajna_local__cre_signaling_CCP_Shared_Dev
       ports:
       - containerPort: 8080
       - containerPort: 7022
