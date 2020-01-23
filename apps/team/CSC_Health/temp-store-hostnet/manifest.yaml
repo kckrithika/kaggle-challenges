@@ -19,6 +19,8 @@ system:
     - name: temp-store
       image: dva/report-collector:14
       ports:
+      - name: provider-https
+        containerPort: 8443
       - name: consumer-https
         containerPort: 8444
       volumeMounts:
@@ -62,7 +64,7 @@ system:
       - name: ReportCollector_ajna_publishEnabled
         value: true
       - name: ReportCollector_app_verticleCounts_ProviderEndpointVerticle
-        value: 0
+        value: 3
       - name: ReportCollector_app_verticleCounts_ConsumerEndpointVerticle
         value: 10
       - name: ReportCollector_cacheBuilder_enabled
@@ -157,10 +159,10 @@ system:
              ]
 
       livenessProbe:
-        exec:
-          command:
-          - echo
-          - always_healthy
+        httpGet:
+          scheme: HTTPS
+          path: /redisHealth
+          port: 8443
         initialDelaySeconds: 10
         periodSeconds: 60
         timeoutSeconds: 15

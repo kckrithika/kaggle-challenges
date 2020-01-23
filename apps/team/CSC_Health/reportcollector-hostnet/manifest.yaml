@@ -6,7 +6,7 @@ system:
       - cschealthcp@salesforce.com
   functions:
   - name: report-collector
-    count: 3
+    count: 2
     hostnetwork: true
     volumes:
       - name: pki-server-cert
