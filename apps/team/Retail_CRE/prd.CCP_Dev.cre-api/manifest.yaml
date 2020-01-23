@@ -15,6 +15,8 @@ system:
     - name: cre-api-ccp-dev
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cre/cre-api:2.2-freeze-002.0.release-2.2.7b8826e.3
       env:
+        - name: SPRING_PROFILES_ACTIVE # FOR TESTING PURPOSES
+          value: dev
         - name: K4A_VAULT
           value: c360-dvd-user-manager-dev
         - name: BUCKET_NAME
