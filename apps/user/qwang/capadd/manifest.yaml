@@ -12,7 +12,7 @@ system:
         type: server
     containers:
     - name: capadd
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/qwang/capadd:ss-20200123-4
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/qwang/capadd:ss-20200123-5
       volumeMounts:
         - name: capadd-client-cert
           mountPath: /clientcert
