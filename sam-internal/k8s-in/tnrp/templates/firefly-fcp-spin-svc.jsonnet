@@ -10,21 +10,21 @@ local prConfig = import "configs/firefly-pullrequest.jsonnet";
 if configs.estate == "prd-samtwo" then
 {
   local package = packagesvc {
-      serviceName:: "firefly-package-fcp-falcon",
-      dockerImage:: images.fireflypackagefalcon,
+      serviceName:: "firefly-package-fcp-spin",
+      dockerImage:: images.fireflypackagespin,
       replicas:: 3,
       env:: super.env + [
           {
               name: "INSTANCE_TYPE",
-              value: "firefly-fcp-falcon",
+              value: "firefly-fcp-spin",
           },
           {
               name: "PACKAGE_QUEUE",
-              value: "firefly-fcp-falcon.package",
+              value: "firefly-fcp-spin.package",
           },
           {
               name: "LATEST_FILE_QUEUE",
-              value: "firefly-fcp-falcon.latestfile",
+              value: "firefly-fcp-spin.latestfile",
           },
      ],
      data:: {
@@ -52,20 +52,20 @@ if configs.estate == "prd-samtwo" then
      },
   },
   local packagesingleton = packagesvcsingleton {
-      serviceName:: "firefly-package-singleton-fcp-falcon",
-      dockerImage:: images.fireflypackagefalcon,
+      serviceName:: "firefly-package-singleton-fcp-spin",
+      dockerImage:: images.fireflypackagespin,
       env:: super.env + [
           {
               name: "INSTANCE_TYPE",
-              value: "firefly-fcp-falcon",
+              value: "firefly-fcp-spin",
           },
           {
               name: "PACKAGE_QUEUE",
-              value: "firefly-fcp-falcon.package",
+              value: "firefly-fcp-spin.package",
           },
           {
               name: "LATEST_FILE_QUEUE",
-              value: "firefly-fcp-falcon.latestfile",
+              value: "firefly-fcp-spin.latestfile",
           },
       ],
       data:: {
@@ -93,23 +93,23 @@ if configs.estate == "prd-samtwo" then
       },
   },
   local pullrequest = pullrequestsvc {
-      serviceName:: "firefly-pullrequest-fcp-falcon",
+      serviceName:: "firefly-pullrequest-fcp-spin",
       replicas:: 5,
       env:: super.env + [
           {
               name: "INSTANCE_TYPE",
-              value: "firefly-fcp-falcon",
+              value: "firefly-fcp-spin",
           },
           {
               name: "RABBIT_MQ_QUEUE_NAME",
-              value: "firefly-fcp-falcon.pr",
+              value: "firefly-fcp-spin.pr",
           },
       ],
       data:: {
         local appConfig = prConfig.config("firefly-pullrequest") + {
           appconfig+: {
             "multi-repo-supported": true,
-            "self-auth-allowed": false,
+            "self-auth-allowed": true,
             docker+: {
               "force-create-container": true,
             },
