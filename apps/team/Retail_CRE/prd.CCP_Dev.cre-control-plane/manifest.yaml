@@ -13,7 +13,7 @@ system:
       "routing.mesh.sfdc.net/enabled": "true"
     containers:
     - name: cre-control-plane-ccp-dev
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cre-fusion/services:controlplane.2.3.0.0.PR-1386.3165f66.15
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cre-fusion/services:controlplane.2.3.0.0.PR-1386.3c6ba06.19
       env:
         ####################################################################################################
         ############################   ENGINE/DDS FLOWSNAKE ARTIFACTS ( Most frequently changed ) ##########
@@ -57,7 +57,7 @@ system:
         - name: METRICS_FUNNEL_INTERVAL
           value: 10
         - name: METRICS_FUNNEL_URL
-          value: http://ajna0-funnel1-0-prd.data.sfdc.net          
+          value: http://ajna0-funnel1-0-prd.data.sfdc.net
         ####################################################################################################
         ####################################### SAVE environment variables ###############################
         ####################################################################################################
