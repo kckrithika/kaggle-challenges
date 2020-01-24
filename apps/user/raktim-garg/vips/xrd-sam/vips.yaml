@@ -6,5 +6,5 @@
     targetport: 10002
     lbtype: http
     tls: true
-    mtls:true
-    reencrypt:true
+    mtls: true
+    reencrypt: true
