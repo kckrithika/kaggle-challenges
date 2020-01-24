@@ -507,6 +507,23 @@ items:
             name: maddog-certs
           - mountPath: /tokens
             name: tokens
+        - args:
+          - chmod -R 775 /vols/maddog-certs && chown -R 7447:7447 /vols/maddog-certs
+            && chmod -R 775 /vols/data-volume && chown -R 7447:7447 /vols/data-volume
+          command:
+          - /bin/sh
+          - -c
+          image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/hypersam:sam-c07d4afb-673
+          imagePullPolicy: Always
+          name: permissionsetterinitcontainer
+          securityContext:
+            runAsNonRoot: false
+            runAsUser: 0
+          volumeMounts:
+          - mountPath: /vols/maddog-certs
+            name: maddog-certs
+          - mountPath: /vols/data-volume
+            name: data-volume
         nodeSelector:
           pool: prd-sam_tnrp_promoter
         terminationGracePeriodSeconds: 10
