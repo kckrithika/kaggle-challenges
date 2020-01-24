@@ -74,6 +74,8 @@ system:
           value: sfdc.prod.cre__prd.ajna_local__cre_signaling_CCP_Shared_Dev
         - name: CLUSTER_SUPERVISOR_KAFKA_TOPIC
           value: sfdc.prod.cre__prd.ajna_local__cre_signaling_CCP_Shared_Dev
+        - name: DUMMY_RESTART_VAR
+          value: true
       ports:
       - containerPort: 8080
       - containerPort: 7022
