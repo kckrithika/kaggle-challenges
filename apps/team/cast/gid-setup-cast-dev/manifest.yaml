@@ -177,18 +177,8 @@ system:
     #####################################################################################
     # GID Data service
     #####################################################################################
-    # gid-service config copied from global-identity/local-gid-service-dev 
-    #  (https://git.soma.salesforce.com/sam/manifests/blob/master/apps/team/global-identity/local-gid-service-dev/manifest.yaml)
-    # due to
-    #  1. global-identity/cloudatlas-dev CA not having latest SASL plugin changes (not yet merged to CA develop as of 17 Jan 2020)
-    #  2. could not get older version of gid-service, that does not rely on SASL to connect to CA, working in this deployment
-    #
-    # gid-service Docker image is a custom image built by GID Runtime team that does not need the latest SASL changes.
-    # Not sure how recent / what is the latest commit.
-    #####################################################################################
     - name: gid-service
-      # GID Runtime custom gid-service image
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/gid/gid-service:schema1202
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/gid/gid-service:db4f75b
       imagePullPolicy: Always
       env:
         - name: server_port
@@ -279,9 +269,13 @@ system:
       - name: proxy_maxThreads
         value: 1000
       - name: spe_ratelimit_limit
-        value: 10000
+        #value: 10000
+        # Temporary lower value for testing
+        value: 10
       - name: spe_ratelimit_timeWindow
-        value: 60
+        #value: 60
+        # Temporary lower value for testing
+        value: 5
       - name: spe_whitelist_disable
         value: true
       - name: spe_whitelist_ipsubnets
