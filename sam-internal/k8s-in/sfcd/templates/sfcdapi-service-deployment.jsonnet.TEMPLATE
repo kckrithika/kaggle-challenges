@@ -2,6 +2,7 @@ local madkub = (import "madkub.jsonnet") + { templateFileName:: std.thisFile };
 local images = import "sfcdimages.jsonnet";
 local configs = import "config.jsonnet";
 local portconfigs = import "portconfig.jsonnet";
+local permsetter = (import "permsetter.jsonnet") + { templateFileName:: std.thisFile };
 local envConfig = import "configs/firebom_service_conf.jsonnet";
 {
   // Required arguments for this template
@@ -139,6 +140,7 @@ local envConfig = import "configs/firebom_service_conf.jsonnet";
         spec: {
           initContainers: [
             madkub.madkubInitContainer(),
+            permsetter.permsetterInitContainer(),
           ],
           containers: [
             madkub.madkubRefreshContainer(),
