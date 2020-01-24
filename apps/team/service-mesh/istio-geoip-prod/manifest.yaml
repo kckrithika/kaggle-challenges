@@ -14,7 +14,7 @@ system:
       sidecar.istio.io/inject: "true"
     containers:
     - name: geoip
-      image: sfci/services/sfdc-bazel/service-mesh/geoip:ac4a23115
+      image: sfci/services/sfdc-bazel/service-mesh/geoip:cbabd6f10
       env:
       - name: GRPC_SERVER_PORT
         value: "7443"
@@ -39,7 +39,7 @@ system:
         initialDelaySeconds: 140
       readinessProbe:
         httpGet:
-          path: /manage/health
+          path: /manage/ready
           port: 15372
         initialDelaySeconds: 115
       terminationMessagePolicy: FallbackToLogsOnError
