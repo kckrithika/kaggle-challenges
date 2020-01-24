@@ -81,7 +81,10 @@
     'edge',
     'ajnaendpoint',
     'ajnakafka',
-    'ccecom'
+    'ccecom',
+    'cdpairflow',
+    'cdpingw',
+    'jobuploader'
   ],
   'soft-launch': true
 }

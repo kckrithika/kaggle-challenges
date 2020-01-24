@@ -164,7 +164,10 @@ items:
                           "edge",
                           "ajnaendpoint",
                           "ajnakafka",
-                          "ccecom"
+                          "ccecom",
+                          "cdpairflow",
+                          "cdpingw",
+                          "jobuploader"
                       ],
                       "soft-launch": true,
                       "working-directory": "/tmp/sfcdapifirebom"
@@ -437,7 +440,7 @@ items:
                 apiVersion: v1
                 fieldPath: metadata.labels['name']
           - name: CONFIG_VERSION
-            value: "36"
+            value: "37"
           image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/sfcdapi-firebom:123
           imagePullPolicy: Always
           livenessProbe:
