@@ -4,4 +4,7 @@
   ports:
   - port: 8443
     targetport: 10002
-    lbtype: tcp
+    lbtype: http
+    tls: true
+    mtls: true
+    reencrypt: true
