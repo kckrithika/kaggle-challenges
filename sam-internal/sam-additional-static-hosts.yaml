@@ -92,6 +92,27 @@
             hostIp: 10.250.30.21/28
             hostname: shared0-samminiongater2-2-chx.ops.sfdc.net
             rack: F08-4
+    chx-sam_warden:
+      hosts:
+        -
+            bomrolename: sam_minion_warden
+            devicerole: samcompute
+            hostIp: 10.250.30.9/28
+            hostname: shared0-samminionwarden1-1-chx.ops.sfdc.net
+            rack: F07-38
+        -
+            bomrolename: sam_minion_warden
+            devicerole: samcompute
+            hostIp: 10.250.30.10/28
+            hostname: shared0-samminionwarden2-1-chx.ops.sfdc.net
+            rack: F07-39
+        - 
+            bomrolename: sam_minion_warden
+            devicerole: samcompute
+            hostIp: 10.250.30.24/28
+            hostname: shared0-samminionwarden3-1-chx.ops.sfdc.net
+            rack: F08-38
+
 -
   kingdom: wax
   vmIPRange:
@@ -185,3 +206,23 @@
             hostIp: 10.250.38.21/28
             hostname: shared0-samminiongater2-2-wax.ops.sfdc.net
             rack: C01-4
+    wax-sam_warden:
+      hosts:
+        -
+            bomrolename: sam_minion_warden
+            devicerole: samcompute
+            hostIp: 10.250.38.9/28
+            hostname: shared0-samminionwarden1-1-wax.ops.sfdc.net
+            rack: B01-38
+        -
+            bomrolename: sam_minion_warden
+            devicerole: samcompute
+            hostIp: 10.250.38.10/28
+            hostname: shared0-samminionwarden2-1-wax.ops.sfdc.net
+            rack: B01-39
+        - 
+            bomrolename: sam_minion_warden
+            devicerole: samcompute
+            hostIp: 10.250.38.24/28
+            hostname: shared0-samminionwarden3-1-wax.ops.sfdc.net
+            rack: C01-38
