@@ -523,6 +523,10 @@ items:
             name: maddog-certs
         nodeSelector:
           pool: prd-sam_tnrp_promoter
+        securityContext:
+          fsGroup: 7447
+          runAsNonRoot: true
+          runAsUser: 7447
         terminationGracePeriodSeconds: 10
         volumes:
         - name: app-config-volume

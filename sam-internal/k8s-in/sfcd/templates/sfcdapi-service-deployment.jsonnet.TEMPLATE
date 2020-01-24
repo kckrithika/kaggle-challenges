@@ -209,6 +209,11 @@ local envConfig = import "configs/firebom_service_conf.jsonnet";
             configs.maddog_cert_volume,
           ],
           terminationGracePeriodSeconds: 10,
+          securityContext: {
+            fsGroup: 7447,
+            runAsNonRoot: true,
+            runAsUser: 7447,
+          },
           nodeSelector: {
             pool: $.serviceConf.pool,
           },
