@@ -22,10 +22,6 @@ local samimages = (import "sam/samimages.jsonnet") + { templateFilename:: std.th
             mountPath: "/vols/maddog-certs",
             name: "maddog-certs",
         },
-        {
-            mountPath: "/vols/data-volume",
-            name: "data-volume",
-        },
         ],
     },
 
