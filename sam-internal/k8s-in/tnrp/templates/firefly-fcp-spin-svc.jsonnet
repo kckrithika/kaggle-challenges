@@ -94,7 +94,7 @@ if configs.estate == "prd-samtwo" then
   },
   local pullrequest = pullrequestsvc {
       serviceName:: "firefly-pullrequest-fcp-spin",
-      replicas:: 5,
+      replicas:: 2,
       env:: super.env + [
           {
               name: "INSTANCE_TYPE",
