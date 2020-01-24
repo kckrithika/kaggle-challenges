@@ -200,7 +200,7 @@ items:
   metadata:
     labels:
       sam.data.sfdc.net/owner: tnrp
-    name: firefly-package-fcp-falcon-configmap
+    name: firefly-package-fcp-spin-configmap
     namespace: firefly
 - apiVersion: v1
   kind: Service
@@ -209,10 +209,10 @@ items:
       slb.sfdc.net/cnames: |-
         [
           {
-            "cname": "firefly-package-fcp-falcon-prd-samtwo.slb.sfdc.net"
+            "cname": "firefly-package-fcp-spin-prd-samtwo.slb.sfdc.net"
           }
         ]
-      slb.sfdc.net/name: firefly-package-fcp-falcon
+      slb.sfdc.net/name: firefly-package-fcp-spin
       slb.sfdc.net/portconfigurations: |-
         [
           {
@@ -225,9 +225,9 @@ items:
           }
         ]
     labels:
-      app: firefly-package-fcp-falcon
+      app: firefly-package-fcp-spin
       sam.data.sfdc.net/owner: tnrp
-    name: firefly-package-fcp-falcon-service
+    name: firefly-package-fcp-spin-service
     namespace: firefly
   spec:
     ports:
@@ -236,21 +236,21 @@ items:
       protocol: TCP
       targetPort: 8081
     selector:
-      name: firefly-package-fcp-falcon
+      name: firefly-package-fcp-spin
     type: NodePort
 - apiVersion: extensions/v1beta1
   kind: Deployment
   metadata:
     labels:
-      name: firefly-package-fcp-falcon
+      name: firefly-package-fcp-spin
       sam.data.sfdc.net/owner: tnrp
-    name: firefly-package-fcp-falcon-deployment
+    name: firefly-package-fcp-spin-deployment
     namespace: firefly
   spec:
     replicas: 3
     selector:
       matchLabels:
-        name: firefly-package-fcp-falcon
+        name: firefly-package-fcp-spin
         sam.data.sfdc.net/owner: tnrp
     strategy:
       rollingUpdate:
@@ -272,9 +272,9 @@ items:
                 ]
             }
         labels:
-          name: firefly-package-fcp-falcon
+          name: firefly-package-fcp-spin
           sam.data.sfdc.net/owner: tnrp
-        name: firefly-package-fcp-falcon-deployment
+        name: firefly-package-fcp-spin-deployment
         namespace: firefly
       spec:
         containers:
@@ -360,11 +360,11 @@ items:
           - name: DARKLAUNCH
             value: "false"
           - name: INSTANCE_TYPE
-            value: firefly-fcp-falcon
+            value: firefly-fcp-spin
           - name: PACKAGE_QUEUE
-            value: firefly-fcp-falcon.package
+            value: firefly-fcp-spin.package
           - name: LATEST_FILE_QUEUE
-            value: firefly-fcp-falcon.latestfile
+            value: firefly-fcp-spin.latestfile
           image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-package:457
           imagePullPolicy: Always
           livenessProbe:
@@ -376,7 +376,7 @@ items:
             periodSeconds: 30
             successThreshold: 1
             timeoutSeconds: 30
-          name: firefly-package-fcp-falcon
+          name: firefly-package-fcp-spin
           ports:
           - containerPort: 8081
             name: admin-port
@@ -457,7 +457,7 @@ items:
                 items:
                 - key: application.yml
                   path: application.yml
-                name: firefly-package-fcp-falcon-configmap
+                name: firefly-package-fcp-spin-configmap
         - emptyDir: {}
           name: docker-build-dir
         - emptyDir: {}
@@ -674,7 +674,7 @@ items:
   metadata:
     labels:
       sam.data.sfdc.net/owner: tnrp
-    name: firefly-package-singleton-fcp-falcon-configmap
+    name: firefly-package-singleton-fcp-spin-configmap
     namespace: firefly
 - apiVersion: v1
   kind: Service
@@ -683,10 +683,10 @@ items:
       slb.sfdc.net/cnames: |-
         [
           {
-            "cname": "firefly-package-singleton-fcp-falcon-prd-samtwo.slb.sfdc.net"
+            "cname": "firefly-package-singleton-fcp-spin-prd-samtwo.slb.sfdc.net"
           }
         ]
-      slb.sfdc.net/name: firefly-package-singleton-fcp-falcon
+      slb.sfdc.net/name: firefly-package-singleton-fcp-spin
       slb.sfdc.net/portconfigurations: |-
         [
           {
@@ -699,9 +699,9 @@ items:
           }
         ]
     labels:
-      app: firefly-package-singleton-fcp-falcon
+      app: firefly-package-singleton-fcp-spin
       sam.data.sfdc.net/owner: tnrp
-    name: firefly-package-singleton-fcp-falcon-service
+    name: firefly-package-singleton-fcp-spin-service
     namespace: firefly
   spec:
     ports:
@@ -710,21 +710,21 @@ items:
       protocol: TCP
       targetPort: 8081
     selector:
-      name: firefly-package-singleton-fcp-falcon
+      name: firefly-package-singleton-fcp-spin
     type: NodePort
 - apiVersion: extensions/v1beta1
   kind: Deployment
   metadata:
     labels:
-      name: firefly-package-singleton-fcp-falcon
+      name: firefly-package-singleton-fcp-spin
       sam.data.sfdc.net/owner: tnrp
-    name: firefly-package-singleton-fcp-falcon-deployment
+    name: firefly-package-singleton-fcp-spin-deployment
     namespace: firefly
   spec:
     replicas: 1
     selector:
       matchLabels:
-        name: firefly-package-singleton-fcp-falcon
+        name: firefly-package-singleton-fcp-spin
         sam.data.sfdc.net/owner: tnrp
     strategy:
       rollingUpdate:
@@ -746,9 +746,9 @@ items:
                 ]
             }
         labels:
-          name: firefly-package-singleton-fcp-falcon
+          name: firefly-package-singleton-fcp-spin
           sam.data.sfdc.net/owner: tnrp
-        name: firefly-package-singleton-fcp-falcon-deployment
+        name: firefly-package-singleton-fcp-spin-deployment
         namespace: firefly
       spec:
         containers:
@@ -834,11 +834,11 @@ items:
           - name: DARKLAUNCH
             value: "false"
           - name: INSTANCE_TYPE
-            value: firefly-fcp-falcon
+            value: firefly-fcp-spin
           - name: PACKAGE_QUEUE
-            value: firefly-fcp-falcon.package
+            value: firefly-fcp-spin.package
           - name: LATEST_FILE_QUEUE
-            value: firefly-fcp-falcon.latestfile
+            value: firefly-fcp-spin.latestfile
           image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-package:457
           imagePullPolicy: Always
           livenessProbe:
@@ -850,7 +850,7 @@ items:
             periodSeconds: 30
             successThreshold: 1
             timeoutSeconds: 30
-          name: firefly-package-singleton-fcp-falcon
+          name: firefly-package-singleton-fcp-spin
           ports:
           - containerPort: 8081
             name: admin-port
@@ -918,7 +918,7 @@ items:
                 items:
                 - key: application.yml
                   path: application.yml
-                name: firefly-package-singleton-fcp-falcon-configmap
+                name: firefly-package-singleton-fcp-spin-configmap
         - emptyDir: {}
           name: docker-build-dir
         - emptyDir: {}
@@ -977,7 +977,7 @@ items:
               },
               "instance-type": "${INSTANCE_TYPE}",
               "multi-repo-supported": true,
-              "self-auth-allowed": false,
+              "self-auth-allowed": true,
               "workspace-config": {
                   "root-dir": "/firefly"
               }
@@ -1110,7 +1110,7 @@ items:
   metadata:
     labels:
       sam.data.sfdc.net/owner: tnrp
-    name: firefly-pullrequest-fcp-falcon-configmap
+    name: firefly-pullrequest-fcp-spin-configmap
     namespace: firefly
 - apiVersion: v1
   kind: Service
@@ -1119,10 +1119,10 @@ items:
       slb.sfdc.net/cnames: |-
         [
           {
-            "cname": "firefly-pullrequest-fcp-falcon-prd-samtwo.slb.sfdc.net"
+            "cname": "firefly-pullrequest-fcp-spin-prd-samtwo.slb.sfdc.net"
           }
         ]
-      slb.sfdc.net/name: firefly-pullrequest-fcp-falcon
+      slb.sfdc.net/name: firefly-pullrequest-fcp-spin
       slb.sfdc.net/portconfigurations: |-
         [
           {
@@ -1135,9 +1135,9 @@ items:
           }
         ]
     labels:
-      app: firefly-pullrequest-fcp-falcon
+      app: firefly-pullrequest-fcp-spin
       sam.data.sfdc.net/owner: tnrp
-    name: firefly-pullrequest-fcp-falcon-service
+    name: firefly-pullrequest-fcp-spin-service
     namespace: firefly
   spec:
     ports:
@@ -1146,21 +1146,21 @@ items:
       protocol: TCP
       targetPort: 8081
     selector:
-      name: firefly-pullrequest-fcp-falcon
+      name: firefly-pullrequest-fcp-spin
     type: NodePort
 - apiVersion: extensions/v1beta1
   kind: Deployment
   metadata:
     labels:
-      name: firefly-pullrequest-fcp-falcon
+      name: firefly-pullrequest-fcp-spin
       sam.data.sfdc.net/owner: tnrp
-    name: firefly-pullrequest-fcp-falcon-deployment
+    name: firefly-pullrequest-fcp-spin-deployment
     namespace: firefly
   spec:
     replicas: 2
     selector:
       matchLabels:
-        name: firefly-pullrequest-fcp-falcon
+        name: firefly-pullrequest-fcp-spin
         sam.data.sfdc.net/owner: tnrp
     strategy:
       rollingUpdate:
@@ -1182,9 +1182,9 @@ items:
                 ]
             }
         labels:
-          name: firefly-pullrequest-fcp-falcon
+          name: firefly-pullrequest-fcp-spin
           sam.data.sfdc.net/owner: tnrp
-        name: firefly-pullrequest-fcp-falcon-deployment
+        name: firefly-pullrequest-fcp-spin-deployment
         namespace: firefly
       spec:
         containers:
@@ -1268,9 +1268,9 @@ items:
           - name: DARKLAUNCH
             value: "false"
           - name: INSTANCE_TYPE
-            value: firefly-fcp-falcon
+            value: firefly-fcp-spin
           - name: RABBIT_MQ_QUEUE_NAME
-            value: firefly-fcp-falcon.pr
+            value: firefly-fcp-spin.pr
           image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-pullrequest:457
           imagePullPolicy: Always
           livenessProbe:
@@ -1282,7 +1282,7 @@ items:
             periodSeconds: 30
             successThreshold: 1
             timeoutSeconds: 30
-          name: firefly-pullrequest-fcp-falcon
+          name: firefly-pullrequest-fcp-spin
           ports:
           - containerPort: 8081
             name: admin-port
@@ -1365,7 +1365,7 @@ items:
                 items:
                 - key: application.yml
                   path: application.yml
-                name: firefly-pullrequest-fcp-falcon-configmap
+                name: firefly-pullrequest-fcp-spin-configmap
         - emptyDir: {}
           name: docker-build-dir
         - emptyDir: {}
