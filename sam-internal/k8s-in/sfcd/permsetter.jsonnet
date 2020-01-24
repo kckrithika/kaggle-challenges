@@ -5,7 +5,7 @@ local samimages = (import "sam/samimages.jsonnet") + { templateFilename:: std.th
     permsetterInitContainer():: {
         image: "" + samimages.permissionInitContainer + "",
         args: [
-        "chmod -R 775 /vols/maddog-certs && chown -R 7447:7447 /vols/maddog-certs && chmod -R 775 /vols/data-volume && chown -R 7447:7447 /vols/data-volume",
+        "chmod -R 775 /vols/maddog-certs && chown -R 7447:7447 /vols/maddog-certs",
         ],
         name: "permissionsetterinitcontainer",
         imagePullPolicy: "Always",
@@ -21,10 +21,6 @@ local samimages = (import "sam/samimages.jsonnet") + { templateFilename:: std.th
         {
             mountPath: "/vols/maddog-certs",
             name: "maddog-certs",
-        },
-        {
-            mountPath: "/vols/data-volume",
-            name: "data-volume",
         },
         ],
     },

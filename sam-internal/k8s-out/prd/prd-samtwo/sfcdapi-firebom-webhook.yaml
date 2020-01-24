@@ -437,7 +437,7 @@ items:
                 apiVersion: v1
                 fieldPath: metadata.labels['name']
           - name: CONFIG_VERSION
-            value: "35"
+            value: "36"
           image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/sfcdapi-firebom:123
           imagePullPolicy: Always
           livenessProbe:
@@ -509,7 +509,6 @@ items:
             name: tokens
         - args:
           - chmod -R 775 /vols/maddog-certs && chown -R 7447:7447 /vols/maddog-certs
-            && chmod -R 775 /vols/data-volume && chown -R 7447:7447 /vols/data-volume
           command:
           - /bin/sh
           - -c
@@ -522,8 +521,6 @@ items:
           volumeMounts:
           - mountPath: /vols/maddog-certs
             name: maddog-certs
-          - mountPath: /vols/data-volume
-            name: data-volume
         nodeSelector:
           pool: prd-sam_tnrp_promoter
         terminationGracePeriodSeconds: 10
