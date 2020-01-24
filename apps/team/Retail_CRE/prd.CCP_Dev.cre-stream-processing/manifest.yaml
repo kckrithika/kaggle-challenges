@@ -6,7 +6,7 @@ system:
       - cre@salesforce.com
   functions:
   - name: cre-sp-ccp-dev
-    count: 1
+    count: 3
     labels:
       app: cre-sp-ccp-dev
     annotations:
@@ -69,7 +69,7 @@ system:
         - name: CLUSTER_ID
           value: sp_dev
         - name: CLUSTER_SIZE
-          value: 1
+          value: 3
         - name: CLUSTER_MASTER_KAFKA_TOPIC
           value: sfdc.prod.cre__prd.ajna_local__cre_signaling_CCP_Shared_Dev
         - name: CLUSTER_SUPERVISOR_KAFKA_TOPIC
