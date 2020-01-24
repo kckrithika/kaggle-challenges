@@ -25,10 +25,10 @@ system:
       resources:
         limits:
           cpu: "8"
-          memory: 10Gi
+          memory: 3Gi
         requests:
           cpu: "8"
-          memory: 10Gi
+          memory: 3Gi
       ports:
       - containerPort: 7443
         name: grpc
