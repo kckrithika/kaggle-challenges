@@ -1,9 +1,10 @@
 - lbname: gadget-vip-test
-  cnames:
-  - cname:  internal-gadgetui-xrd.eng.sfdc.net
   servers:
    - internal-gadgetui-xrd.eng.sfdc.net
   ports:
-  - port: 443
+  - port: 8443
     targetport: 10002
-    lbtype: tcp
+    lbtype: http
+    tls: true
+    mtls:true
+    reencrypt:true
