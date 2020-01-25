@@ -21,7 +21,7 @@ system:
             - name: INGEST_SPEC_IMAGE
               value: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-sfci-dev/sfci/cre/cre-engine:2.2.0.0.release-2.2.1954b59.13
             - name: EXPORT_SPEC_IMAGE
-              value: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cre/cre-dds-spark:2.2-freeze-001.0.pz-export-default-value.6f280e4.1
+              value: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cre/cre-dds-spark:2.2-freeze-001.0.pz-export-default-value.8c77320.2
             - name: SAVE_SPEC_IMAGE
               value: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cre/cre-dds-spark:2.2-freeze-001.0.release-2.2.59f7d86.8
             ####################################################################################################
