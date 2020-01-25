@@ -4,7 +4,7 @@ system:
   - name: cloudatlas-staging
     count: 1
     strategy:
-      type: recreate
+      type: Recreate
     containers:
     - name: cloudatlas
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/c2c/c2c-ca-docker:b717dc5
