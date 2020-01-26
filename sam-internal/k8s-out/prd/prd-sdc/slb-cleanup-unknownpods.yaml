@@ -29,7 +29,7 @@ spec:
               fieldPath: spec.nodeName
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig-platform
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/slb/hyperslb:2307-2a654a3b51c35636c6411a1e090926fa182d524f
+        image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/shravya.srinivas/hyperslb:shravya.srinivas-202001260341
         name: slb-cleanup-unknownpods
         volumeMounts:
         - mountPath: /etc/pki_service
@@ -59,7 +59,7 @@ spec:
               fieldPath: spec.nodeName
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig-platform
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/slb/hyperslb:2307-2a654a3b51c35636c6411a1e090926fa182d524f
+        image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/shravya.srinivas/hyperslb:shravya.srinivas-202001260341
         name: slb-cleanup-unknownpodscanary
         volumeMounts:
         - mountPath: /etc/pki_service
