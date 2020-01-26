@@ -54,7 +54,12 @@ local slbreleases = import "slbreleases.json";
     ),
 
     # These are the images used by the templates
-    hyperslb: imageFunc.do_override_for_pipeline_image($.overrides, "slb", "hyperslb", slbreleases[$.phase].hyperslb.label),
+    hyperslb: (
+       if (estate == "prd-sdc") then
+           "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/shravya.srinivas/hyperslb:shravya.srinivas-202001260341"
+        else
+           imageFunc.do_override_for_pipeline_image($.overrides, "slb", "hyperslb", slbreleases[$.phase].hyperslb.label)
+    ),
     hyperslb_nginx_config: imageFunc.do_override_for_pipeline_image($.overrides, "slb", "hyperslb", $.hyperslb_nginx_config_label),
     hyperslb_build: imageFunc.build_info_from_tag(slbreleases[$.phase].hyperslb.label).buildNumber,
 
