@@ -21,7 +21,7 @@ system:
             - name: INGEST_SPEC_IMAGE
               value: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-sfci-dev/sfci/cre/cre-engine:2.2.0.0.release-2.2.1954b59.13
             - name: EXPORT_SPEC_IMAGE
-              value: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cre/cre-dds-spark:2.2-freeze-001.0.pz-export-default-value.3418586.6
+              value: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cre/cre-dds-spark:2.2-freeze-001.0.release-2.2.59f7d86.8
             - name: SAVE_SPEC_IMAGE
               value: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cre/cre-dds-spark:2.2-freeze-001.0.release-2.2.59f7d86.8
             ####################################################################################################
@@ -45,6 +45,9 @@ system:
               value: prd
             - name: GDOT_BASE_PATH
               value: http://cloudatlas-prd-stage-service.cloudatlas.localhost.mesh.force.com:5442/scim
+            ## temporarily to add this in due to a sreilization bug from fusion, should remove it once fixed
+            - name: HBASE_CLIENT_PAUSE
+              value: 10000
             ####################################################################################################
             ####################################### INGEST environment variables ###############################
             ####################################################################################################
