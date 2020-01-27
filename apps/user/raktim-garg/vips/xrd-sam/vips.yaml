@@ -4,9 +4,4 @@
   ports:
   - port: 8443
     targetport: 10002
-    lbtype: http
-    tls: true
-    tlscertificate: secret_service:pyplyn:gadget_slb_vip_certificate
-    tlskey: secret_service:pyplyn:gadget_slb_vip_key
-    reencrypt: true
-    mtls: true
+    lbtype: tcp
