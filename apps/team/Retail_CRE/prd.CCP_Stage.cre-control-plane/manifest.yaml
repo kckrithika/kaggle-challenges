@@ -211,9 +211,9 @@ system:
       ports:
         - port: 7442
           targetport: 7442
-        - port: 8098
+        - port: 7022
           targetport: 7022
-        - port: 9085
+        - port: 15372
           targetport: 15372
     - lbname: cre-control-plane-ccp-stage
       function: cre-control-plane-ccp-stage
