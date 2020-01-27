@@ -269,13 +269,9 @@ system:
       - name: proxy_maxThreads
         value: 1000
       - name: spe_ratelimit_limit
-        #value: 10000
-        # Temporary lower value for testing
-        value: 10
+        value: 10000
       - name: spe_ratelimit_timeWindow
-        #value: 60
-        # Temporary lower value for testing
-        value: 5
+        value: 60
       - name: spe_whitelist_disable
         value: true
       - name: spe_whitelist_ipsubnets
