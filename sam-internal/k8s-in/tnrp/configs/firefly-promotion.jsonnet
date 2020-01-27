@@ -48,12 +48,12 @@ local artifactoryConfig = import "configs/firefly-artifactory.jsonnet";
       artifactory: artifactoryConfig.prod,
       'context-prefix': '',
       'back-off-period': '2000ms',
-      gus: {
-            username: '${gusUserName#FromSecretService}',
-            password: '${gusUserPassword#FromSecretService}',
-            use_proxy: true,
-            enable_gus_case_check: false,
-            enforce_gus_case_check: false,
+      'gus': {
+            'username': '${gusUserName#FromSecretService}',
+            'password': '${gusUserPassword#FromSecretService}',
+            'use_proxy': true,
+            'enable_gus_case_check': false,
+            'enforce_gus_case_check': false,
       },
     },
     local custom_monitoring_configs = {

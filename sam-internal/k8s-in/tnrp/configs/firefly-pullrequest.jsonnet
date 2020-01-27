@@ -49,12 +49,12 @@ local dockerConfig = import "configs/firefly-docker.jsonnet";
       'back-off-period': '2000ms',
       'multi-repo-supported': false,
       'self-auth-allowed': true,
-      gus: {
-            username: '${gusUserName#FromSecretService}',
-            password: '${gusUserPassword#FromSecretService}',
-            use_proxy: true,
-            enable_gus_case_check: false,
-            enforce_gus_case_check: false,
+      'gus': {
+            'username': '${gusUserName#FromSecretService}',
+            'password': '${gusUserPassword#FromSecretService}',
+            'use_proxy': true,
+            'enable_gus_case_check': false,
+            'enforce_gus_case_check': false,
       },
     },
     local custom_monitoring_configs = {
