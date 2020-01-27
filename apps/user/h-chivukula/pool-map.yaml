@@ -1,14 +1,14 @@
 version: v2
 apps:
  cans-ha:
-  - name: xrd/xrd-sampool
-    hostSubList:
-    - shared0-sampool7-1-xrd.eng.sfdc.net
-    - shared0-sampool7-2-xrd.eng.sfdc.net
-    - shared0-sampool7-3-xrd.eng.sfdc.net
+  # - name: xrd/xrd-sampool
+  #   hostSubList:
+  #   - shared0-sampool7-1-xrd.eng.sfdc.net
+  #   - shared0-sampool7-2-xrd.eng.sfdc.net
+  #   - shared0-sampool7-3-xrd.eng.sfdc.net
  cans-ha-watchdog:
-  - name: xrd/xrd-sampool
-    hostSubList:
-    - shared0-sampool7-1-xrd.eng.sfdc.net
-    - shared0-sampool7-2-xrd.eng.sfdc.net
-    - shared0-sampool7-3-xrd.eng.sfdc.net
+  # - name: xrd/xrd-sampool
+  #   hostSubList:
+  #   - shared0-sampool7-1-xrd.eng.sfdc.net
+  #   - shared0-sampool7-2-xrd.eng.sfdc.net
+  #   - shared0-sampool7-3-xrd.eng.sfdc.net
