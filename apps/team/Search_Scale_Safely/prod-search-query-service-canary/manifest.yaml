@@ -16,8 +16,7 @@ system:
         maxUnavailable: 25%
     containers:
     - name: search-query-service
-      # Funnel can be removed on QS 7.2
-      image: sfci/searchdev/search-query-execution-platform:7.1
+      image: sfci/searchdev/search-query-execution-platform:7.2.1
       ports:
       - name: service-port
         containerPort: 7443
@@ -27,7 +26,7 @@ system:
       - name: SFDC_ENVIRONMENT
         value: prod
       - name: JVM_OPTS
-        value: "-Dmesh.istio-mode=true -Dgrpc.port=7443 -Dmetrics.funnelEndPointURL=http://ajnafunneldirecttls.funnel.svc.mesh.sfdc.net:7442"
+        value: "-Dmesh.istio-mode=true -Dgrpc.port=7443"
       resources:
         limits: { cpu: "20", memory: "20Gi" } # Reduced CPU since host machines only have 48 cores available
         requests: { cpu: "20", memory: "20Gi" }
