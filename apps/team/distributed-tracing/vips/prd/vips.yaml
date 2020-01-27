@@ -39,36 +39,6 @@
      # encrypted. For end-to-end encryption, both tls and reencrypt should be set to true.
      reencrypt: true
 
-- lbname: es-test
-  servers:
-   - shared0-samminionzipkin1-16-prd.eng.sfdc.net
-   - shared0-samminionzipkin1-17-prd.eng.sfdc.net
-   - shared0-samminionzipkin1-18-prd.eng.sfdc.net
-   - shared0-samminionzipkin1-19-prd.eng.sfdc.net
-   - shared0-samminionzipkin1-20-prd.eng.sfdc.net
-   - shared0-samminionzipkin1-21-prd.eng.sfdc.net
-   - shared0-samminionzipkin1-22-prd.eng.sfdc.net
-   - shared0-samminionzipkin1-23-prd.eng.sfdc.net
-   - shared0-samminionzipkin1-24-prd.eng.sfdc.net
-   - shared0-samminionzipkin1-25-prd.eng.sfdc.net
-   - shared0-samminionzipkin1-26-prd.eng.sfdc.net
-   - shared0-samminionzipkin1-27-prd.eng.sfdc.net
-   - shared0-samminionzipkin1-28-prd.eng.sfdc.net
-   - shared0-samminionzipkin1-29-prd.eng.sfdc.net
-   - shared0-samminionzipkin1-30-prd.eng.sfdc.net
-   - shared0-samminionzipkin1-32-prd.eng.sfdc.net
-   - shared0-samminionzipkin1-33-prd.eng.sfdc.net
- 
-  ports:
-   - port: 9200
-     targetport: 9200
-     lbtype: http
-     # tls indicates if the connection between the client and the VIP should be encrypted.
-     tls: true
-     # reencrypt indicates if the connection between the load balancer and the backend should be 
-     # encrypted. For end-to-end encryption, both tls and reencrypt should be set to true.
-     reencrypt: true
-
 - lbname: es-capacity-test-coord
   servers:
    - shared0-samminionzipkin2-30-prd.eng.sfdc.net
@@ -135,22 +105,6 @@
   cnames:
    - cname: zipkintest.data.sfdc.net
   servers:
-   - shared0-samminionzipkin1-15-prd.eng.sfdc.net
-  ports:
-   - port: 443
-     targetport: 9422
-     lbtype: http
-     # tls indicates if the connection between the client and the VIP should be encrypted.
-     tls: true
-     # reencrypt indicates if the connection between the load balancer and the backend should be
-     # encrypted. For end-to-end encryption, both tls and reencrypt should be set to true.
-     reencrypt: true
-
-- lbname: tracer-test
-  customlbname: tracer-test
-  cnames:
-   - cname: tracer.data.sfdc.net
-  servers:
    - shared0-samminionzipkin2-1-prd.eng.sfdc.net
    - shared0-samminionzipkin2-2-prd.eng.sfdc.net
    - shared0-samminionzipkin2-4-prd.eng.sfdc.net
@@ -162,4 +116,53 @@
      tls: true
      # reencrypt indicates if the connection between the load balancer and the backend should be
      # encrypted. For end-to-end encryption, both tls and reencrypt should be set to true.
-     reencrypt: true     
+     reencrypt: true
+
+- lbname: tracer-api
+  customlbname: tracer-api
+  cnames:
+   - cname: tracer-api.data.sfdc.net
+  servers:
+   - shared0-samminionzipkin1-31-prd.eng.sfdc.net  
+   - shared0-samminionzipkin1-32-prd.eng.sfdc.net
+   - shared0-samminionzipkin1-33-prd.eng.sfdc.net  
+  ports:
+   - port: 443
+     targetport: 9090
+     lbtype: http
+     # tls indicates if the connection between the client and the VIP should be encrypted.
+     tls: true
+     # reencrypt indicates if the connection between the load balancer and the backend should be
+     # encrypted. For end-to-end encryption, both tls and reencrypt should be set to true.
+     reencrypt: true
+
+- lbname: tracer-poc-api
+  customlbname: tracer-poc-api
+  cnames:
+   - cname: tracer-poc-api.data.sfdc.net
+  servers:
+   - shared0-samminionzipkin1-31-prd.eng.sfdc.net  
+   - shared0-samminionzipkin1-32-prd.eng.sfdc.net
+   - shared0-samminionzipkin1-33-prd.eng.sfdc.net  
+  ports:
+   - port: 443
+     targetport: 8090
+     lbtype: http
+     # tls indicates if the connection between the client and the VIP should be encrypted.
+     tls: true
+     # reencrypt indicates if the connection between the load balancer and the backend should be
+     # encrypted. For end-to-end encryption, both tls and reencrypt should be set to true.
+     reencrypt: true
+
+- lbname: cerebro-test
+  customlbname: cerebro-test
+  cnames:
+   - cname: cerebro-test.data.sfdc.net
+  servers:
+   - shared0-samminionzipkin2-30-prd.eng.sfdc.net  
+  ports:
+   - port: 443
+     targetport: 9000
+     lbtype: http
+     # tls indicates if the connection between the client and the VIP should be encrypted.
+     tls: false
