@@ -19,3 +19,5 @@ apps:
   - xrd/xrd-sdstools
   case-mgmt-ui:
   - xrd/xrd-sdstoolsdev
+  netpolicy-pipeline-staging:
+  - xrd/xrd-sdstoolsdev
