@@ -38,28 +38,28 @@ if configs.estate == "prd-samtwo" then
               "s3-grid-configs": [
               {
                   "environment-type": "ffdev",
-                  region: "us-east-2",
+                  "region": "us-east-2",
                   "access-key-id": "${s3AccessKeyId#FromSecretService}",
                   "secret-access-key": "${s3SecretAccessKey#FromSecretService}",
                   "bucket-configs-by-type": {
-                    helm: [
+                    "helm": [
                     {
                       "bucket-name": "sfcd-helm",
                     },
                     ],
-                    terraform: [
+                    "terraform": [
                     {
                       "bucket-name": "sfcd-terraform",
                     },
                     ],
-                    fcp: [
+                    "fcp": [
                     {
                       "bucket-name": "fcp-archive",
                     },
                     ],
                   },
-              },
-],
+                },
+              ],
             },
             "s3-bucket": "fcparchive",
             "multi-repo-supported": true,
