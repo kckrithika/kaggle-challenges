@@ -186,9 +186,9 @@ system:
       ports:
         - port: 7442
           targetport: 7442
-        - port: 8060
+        - port: 7022
           targetport: 7022
-        - port: 9060
+        - port: 15372
           targetport: 15372
     - lbname: cre-control-plane-ccp-prod
       function: cre-control-plane-ccp-prod
