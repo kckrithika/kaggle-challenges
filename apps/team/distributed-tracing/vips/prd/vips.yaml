@@ -162,5 +162,21 @@
      tls: true
      # reencrypt indicates if the connection between the load balancer and the backend should be
      # encrypted. For end-to-end encryption, both tls and reencrypt should be set to true.
-     reencrypt: true      
+     reencrypt: true
+
+- lbname: cerebro-test
+  customlbname: cerebro-test
+  cnames:
+   - cname: cerebro-test.data.sfdc.net
+  servers:
+   - shared0-samminionzipkin2-30-prd.eng.sfdc.net  
+  ports:
+   - port: 443
+     targetport: 9000
+     lbtype: http
+     # tls indicates if the connection between the client and the VIP should be encrypted.
+     tls: true
+     # reencrypt indicates if the connection between the load balancer and the backend should be
+     # encrypted. For end-to-end encryption, both tls and reencrypt should be set to true.
+     reencrypt: true   
 
