@@ -39,10 +39,10 @@ items:
                   "remote-docker-host": "http://localhost:2375"
               },
               "gus": {
-                  "enable_gus_ase_check": false,
+                  "enable_gus_case_check": false,
                   "enforce_gus_case_check": false,
                   "password": "${gusUserPassword#FromSecretService}",
-                  "use_proxy": "true",
+                  "use_proxy": true,
                   "username": "${gusUserName#FromSecretService}"
               },
               "image-promotion-yaml": "image-promotion.yaml",
@@ -589,10 +589,10 @@ items:
                   "remote-docker-host": "http://localhost:2375"
               },
               "gus": {
-                  "enable_gus_ase_check": false,
+                  "enable_gus_case_check": false,
                   "enforce_gus_case_check": false,
                   "password": "${gusUserPassword#FromSecretService}",
-                  "use_proxy": "true",
+                  "use_proxy": true,
                   "username": "${gusUserName#FromSecretService}"
               },
               "image-promotion-yaml": "image-promotion.yaml",
@@ -1052,10 +1052,10 @@ items:
                   "pipeline-manifest-json": "/tnrp/pipeline_manifest.json"
               },
               "gus": {
-                  "enable_gus_ase_check": false,
+                  "enable_gus_case_check": false,
                   "enforce_gus_case_check": false,
                   "password": "${gusUserPassword#FromSecretService}",
-                  "use_proxy": "true",
+                  "use_proxy": true,
                   "username": "${gusUserName#FromSecretService}"
               },
               "instance-type": "${INSTANCE_TYPE}",
