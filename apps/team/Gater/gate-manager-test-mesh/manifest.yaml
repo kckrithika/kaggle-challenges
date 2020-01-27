@@ -30,7 +30,7 @@ system:
       - --logging.sfdc.stderr.level=OFF
       - --logging.json.stdout.level=DEBUG
       - --logging.sfdc.level=OFF
-      - --logging.json.level=DEBUG
+      - --logging.json.level=OFF
       - --metrics.container=gater-mesh
       - --gater.grpc.use_direct_executor=false
       - --gater.grpc.threadpool.size=16
