@@ -151,10 +151,12 @@ system:
     function: cre-api-ccp-perf
     slbenabled: true
     ports:
+      - port: 7022
+        targetport: 7022
       - port: 7442
         targetport: 7442
-      - port: 8084
-        targetport: 7022
+      - port: 15372
+        targetport: 15372
   - lbname: cre-api-ccp-perf
     function: cre-api-ccp-perf
     ports:
