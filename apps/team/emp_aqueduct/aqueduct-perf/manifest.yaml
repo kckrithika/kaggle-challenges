@@ -4,7 +4,7 @@ apiVersion: v1
 system:
   functions:
     - name: aqueduct-perf
-      count: 7
+      count: 1
       type: stateful-set
       identity:
         emptyServiceName: true
@@ -16,7 +16,7 @@ system:
           type: client
       containers:
       - name: aqueduct
-        image: sfci/messagingplatform/aqueduct:1.1
+        image: sfci/messagingplatform/aqueduct:f35fa7c
         env:
         - name: SFDC_ENVIRONMENT
           value: "prod" # Use whatever environment your kpod uses
