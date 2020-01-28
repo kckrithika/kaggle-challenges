@@ -109,6 +109,18 @@ local cre_production = {
                     "lp-analytics.james.wyatt",
                 ],
             },
+            {
+                owner_name: "Search DLC",
+                namespace: "search-dlc",
+                pki_namespace: "search_dlc",
+                users: [
+                    "search_dlc.deepaksharma",
+                    "search_dlc.rama.raman",
+                    "search_dlc.jmannix",
+                    "search_dlc.cbradley",
+                    "search_dlc.s.singh",
+                ],
+            },
         ],
 
         # ------------------------------------

@@ -579,6 +579,102 @@ items:
   metadata:
     annotations:
       manifestctl.sam.data.sfdc.net/swagger: disable
+    name: flowsnake-client-search-dlc-Role
+    namespace: search-dlc
+  rules:
+  - apiGroups:
+    - '*'
+    resources:
+    - pods
+    - replicationcontrollers
+    - deployments
+    - jobs
+    - replicasets
+    - secrets
+    - configmaps
+    - statefulsets
+    - services
+    - ingresses
+    - persistentvolumes
+    - sparkapplications
+    verbs:
+    - '*'
+  - apiGroups:
+    - '*'
+    resources:
+    - '*'
+    verbs:
+    - get
+    - list
+- apiVersion: rbac.authorization.k8s.io/v1
+  kind: ClusterRoleBinding
+  metadata:
+    annotations:
+      manifestctl.sam.data.sfdc.net/swagger: disable
+    name: flowsnake-client-search-dlc-ClusterRoleBinding
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: client-cluster-role
+  subjects:
+  - kind: User
+    name: search_dlc.deepaksharma
+  - kind: User
+    name: search_dlc.rama.raman
+  - kind: User
+    name: search_dlc.jmannix
+  - kind: User
+    name: search_dlc.cbradley
+  - kind: User
+    name: search_dlc.s.singh
+- apiVersion: rbac.authorization.k8s.io/v1
+  kind: RoleBinding
+  metadata:
+    annotations:
+      manifestctl.sam.data.sfdc.net/swagger: disable
+    name: flowsnake-client-search-dlc-RoleBinding
+    namespace: search-dlc
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: Role
+    name: flowsnake-client-search-dlc-Role
+  subjects:
+  - kind: User
+    name: search_dlc.deepaksharma
+  - kind: User
+    name: search_dlc.rama.raman
+  - kind: User
+    name: search_dlc.jmannix
+  - kind: User
+    name: search_dlc.cbradley
+  - kind: User
+    name: search_dlc.s.singh
+- apiVersion: v1
+  automountServiceAccountToken: true
+  kind: ServiceAccount
+  metadata:
+    name: spark-driver-search-dlc
+    namespace: search-dlc
+- apiVersion: rbac.authorization.k8s.io/v1
+  kind: RoleBinding
+  metadata:
+    annotations:
+      manifestctl.sam.data.sfdc.net/swagger: disable
+    name: spark-driver-search-dlc-RoleBinding
+    namespace: search-dlc
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: Role
+    name: flowsnake-client-search-dlc-Role
+  subjects:
+  - kind: ServiceAccount
+    name: spark-driver-search-dlc
+    namespace: search-dlc
+- apiVersion: rbac.authorization.k8s.io/v1
+  kind: Role
+  metadata:
+    annotations:
+      manifestctl.sam.data.sfdc.net/swagger: disable
     name: flowsnake-client-flowsnake-test-Role
     namespace: flowsnake-test
   rules:
