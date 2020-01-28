@@ -38,6 +38,13 @@ items:
                   "read-timeout": "480000ms",
                   "remote-docker-host": "http://localhost:2375"
               },
+              "gus": {
+                  "enable_gus_case_check": true,
+                  "enforce_gus_case_check": false,
+                  "password": "${gusUserPassword#FromSecretService}",
+                  "use_proxy": true,
+                  "username": "${gusUserName#FromSecretService}"
+              },
               "image-promotion-yaml": "image-promotion.yaml",
               "instance-type": "${INSTANCE_TYPE}",
               "max-attempts": 4,
@@ -523,6 +530,13 @@ items:
               "evaluation-config": {
                   "pipeline-manifest-json": "/tnrp/pipeline_manifest.json"
               },
+              "gus": {
+                  "enable_gus_case_check": true,
+                  "enforce_gus_case_check": false,
+                  "password": "${gusUserPassword#FromSecretService}",
+                  "use_proxy": true,
+                  "username": "${gusUserName#FromSecretService}"
+              },
               "instance-type": "${INSTANCE_TYPE}",
               "multi-repo-supported": true,
               "self-auth-allowed": false,
@@ -979,14 +993,28 @@ items:
               },
               "back-off-period": "2000ms",
               "context-prefix": "",
+              "docker": {
+                  "connect-timeout": "480000ms",
+                  "docker-cert-path": "/etc/docker/certs.d",
+                  "force-create-container": "false",
+                  "read-timeout": "480000ms",
+                  "remote-docker-host": "http://localhost:2375"
+              },
+              "evaluation-config": {
+                  "pipeline-manifest-json": "/tnrp/pipeline_manifest.json"
+              },
+              "gus": {
+                  "enable_gus_case_check": "true",
+                  "enforce_gus_case_check": false,
+                  "password": "${gusUserPassword#FromSecretService}",
+                  "use_proxy": true,
+                  "username": "${gusUserName#FromSecretService}"
+              },
               "instance-type": "${INSTANCE_TYPE}",
-              "repo-config": {
-                  "manifest_driven_promotions": {
-                      "type": "artifacts"
-                  },
-                  "manifests": {
-                      "type": "content_and_artifacts"
-                  }
+              "multi-repo-supported": false,
+              "self-auth-allowed": true,
+              "workspace-config": {
+                  "root-dir": "/firefly"
               }
           },
           "firefly": {
@@ -1012,7 +1040,7 @@ items:
                           "repo": "${INSTANCE_TYPE}"
                       },
                       "datacenter": "prd",
-                      "pod": "firefly-promotion",
+                      "pod": "firefly-pullrequest",
                       "service": "firefly",
                       "subservice": "${MY_APP_NAME}",
                       "superpod": "prd-samtwo"
@@ -1029,7 +1057,7 @@ items:
                   "org": "INFO"
               },
               "pattern": {
-                  "console": "%d{yyyy-MM-dd HH:mm:ss} - %C:%L[%thread] %-5level - details=[%msg]  %n"
+                  "console": "%d{yyyy-MM-dd HH:mm:ss} - %C:%L[%thread] %-5level - e=%X{eventType} sha=%X{sha} repo=%X{repo} pr=%X{pr} c=%X{committer} - details=[%msg]  %n"
               }
           },
           "management": {
@@ -1056,7 +1084,6 @@ items:
           },
           "rabbitmq": {
               "exchange-name": "firefly.delivery",
-              "instance-type": "${INSTANCE_TYPE}",
               "queue-name": "${RABBIT_MQ_QUEUE_NAME}"
           },
           "scm": {

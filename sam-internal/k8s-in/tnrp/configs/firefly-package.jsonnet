@@ -62,6 +62,13 @@ local dockerConfig = import "configs/firefly-docker.jsonnet";
       'deliver-to-gcp': 'true',
       'image-promotion-yaml': 'image-promotion.yaml',
       'multi-repo-supported': false,
+      'gus': {
+            'username': '${gusUserName#FromSecretService}',
+            'password': '${gusUserPassword#FromSecretService}',
+            'use_proxy': true,
+            'enable_gus_case_check': false,
+            'enforce_gus_case_check': false,
+      },
     },
     local custom_monitoring_configs = {
       'enable-metrics-logging': false,

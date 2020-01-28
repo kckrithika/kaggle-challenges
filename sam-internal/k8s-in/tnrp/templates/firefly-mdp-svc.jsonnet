@@ -36,6 +36,9 @@ if configs.estate == "prd-samtwo" then
             docker+: {
               "force-create-container": true,
             },
+            gus+: {
+              enable_gus_case_check: true,
+            },
           },
         },
        "application.yml": std.manifestJson(appConfig),
@@ -62,6 +65,9 @@ if configs.estate == "prd-samtwo" then
             docker+: {
               "force-create-container": true,
             },
+            gus+: {
+              enable_gus_case_check: true,
+            },
           },
         },
         "application.yml": std.manifestJson(appConfig),
@@ -80,6 +86,16 @@ if configs.estate == "prd-samtwo" then
               value: "firefly-mdp.promotion",
           },
      ],
+     data:: {
+        local appConfig = prConfig.config("firefly-pullrequest") + {
+          appconfig+: {
+            gus+: {
+              enable_gus_case_check: "true",
+            },
+          },
+        },
+        "application.yml": std.manifestJson(appConfig),
+      },
 
   },
 

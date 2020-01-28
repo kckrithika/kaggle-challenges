@@ -41,8 +41,36 @@ if configs.estate == "prd-samtwo" then
               enabled: true,
               "s3-access-key-id": "${s3AccessKeyId#FromSecretService}",
               "s3-secret-access-key": "${s3SecretAccessKey#FromSecretService}",
+              "s3-grid-configs": [
+              {
+                  "environment-type": "ffdev",
+                  region: "us-east-2",
+                  "access-key-id": "${s3AccessKeyId#FromSecretService}",
+                  "secret-access-key": "${s3SecretAccessKey#FromSecretService}",
+                  "bucket-configs-by-type": {
+                    helm: [
+                    {
+                      "bucket-name": "sfcd-helm",
+                    },
+                    ],
+                    terraform: [
+                    {
+                      "bucket-name": "sfcd-terraform",
+                    },
+                    ],
+                    fcp: [
+                    {
+                      "bucket-name": "fcp-archive",
+                    },
+                    ],
+                  },
+                },
+              ],
             },
             "s3-bucket": "fcparchive",
+            gus+: {
+              enable_gus_case_check: true,
+            },
           },
         },
        "application.yml": std.manifestJson(appConfig),
@@ -80,8 +108,36 @@ if configs.estate == "prd-samtwo" then
               enabled: true,
               "s3-access-key-id": "${s3AccessKeyId#FromSecretService}",
               "s3-secret-access-key": "${s3SecretAccessKey#FromSecretService}",
+              "s3-grid-configs": [
+              {
+                  "environment-type": "ffdev",
+                  region: "us-east-2",
+                  "access-key-id": "${s3AccessKeyId#FromSecretService}",
+                  "secret-access-key": "${s3SecretAccessKey#FromSecretService}",
+                  "bucket-configs-by-type": {
+                    helm: [
+                    {
+                      "bucket-name": "sfcd-helm",
+                    },
+                    ],
+                    terraform: [
+                    {
+                      "bucket-name": "sfcd-terraform",
+                    },
+                    ],
+                    fcp: [
+                    {
+                      "bucket-name": "fcp-archive",
+                    },
+                    ],
+                  },
+                },
+              ],
             },
             "s3-bucket": "fcparchive",
+            gus+: {
+              enable_gus_case_check: true,
+            },
           },
         },
         "application.yml": std.manifestJson(appConfig),
@@ -107,6 +163,9 @@ if configs.estate == "prd-samtwo" then
             "self-auth-allowed": false,
             docker+: {
               "force-create-container": true,
+            },
+            gus+: {
+              enable_gus_case_check: true,
             },
           },
         },

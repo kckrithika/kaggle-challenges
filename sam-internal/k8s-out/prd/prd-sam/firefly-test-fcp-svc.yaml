@@ -38,6 +38,13 @@ items:
                   "read-timeout": "480000ms",
                   "remote-docker-host": "http://localhost:2375"
               },
+              "gus": {
+                  "enable_gus_case_check": false,
+                  "enforce_gus_case_check": false,
+                  "password": "${gusUserPassword#FromSecretService}",
+                  "use_proxy": true,
+                  "username": "${gusUserName#FromSecretService}"
+              },
               "image-promotion-yaml": "image-promotion.yaml",
               "instance-type": "${INSTANCE_TYPE}",
               "max-attempts": 4,
@@ -393,7 +400,7 @@ items:
             value: firefly-fcp.package
           - name: LATEST_FILE_QUEUE
             value: firefly-fcp.latestfile
-          image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-package:457
+          image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-package:462
           imagePullPolicy: Always
           livenessProbe:
             failureThreshold: 10
@@ -580,6 +587,13 @@ items:
                   "force-create-container": true,
                   "read-timeout": "480000ms",
                   "remote-docker-host": "http://localhost:2375"
+              },
+              "gus": {
+                  "enable_gus_case_check": false,
+                  "enforce_gus_case_check": false,
+                  "password": "${gusUserPassword#FromSecretService}",
+                  "use_proxy": true,
+                  "username": "${gusUserName#FromSecretService}"
               },
               "image-promotion-yaml": "image-promotion.yaml",
               "instance-type": "${INSTANCE_TYPE}",
@@ -896,7 +910,7 @@ items:
             value: firefly-fcp.package
           - name: LATEST_FILE_QUEUE
             value: firefly-fcp.latestfile
-          image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-package:457
+          image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-package:462
           imagePullPolicy: Always
           livenessProbe:
             failureThreshold: 10
@@ -1036,6 +1050,13 @@ items:
               },
               "evaluation-config": {
                   "pipeline-manifest-json": "/tnrp/pipeline_manifest.json"
+              },
+              "gus": {
+                  "enable_gus_case_check": false,
+                  "enforce_gus_case_check": false,
+                  "password": "${gusUserPassword#FromSecretService}",
+                  "use_proxy": true,
+                  "username": "${gusUserName#FromSecretService}"
               },
               "instance-type": "${INSTANCE_TYPE}",
               "multi-repo-supported": true,
@@ -1373,7 +1394,7 @@ items:
             value: firefly-fcp
           - name: RABBIT_MQ_QUEUE_NAME
             value: firefly-fcp.pr
-          image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-pullrequest:457
+          image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-pullrequest:462
           imagePullPolicy: Always
           livenessProbe:
             failureThreshold: 10
