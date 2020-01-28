@@ -17,7 +17,7 @@ system:
             ############################   ENGINE/DDS FLOWSNAKE ARTIFACTS ( Most frequently changed ) ##########
             ####################################################################################################
             - name: INGEST_SPEC_IMAGE
-              value: ops0-artifactrepo2-0-frf.data.sfdc.net/docker-sfci-dev/sfci/cre/cre-engine:2.2.0.1.release-2.2.f123933.14
+              value: ops0-artifactrepo1-0-frf.data.sfdc.net/sfci/cre/cre-engine:2.2.0.1.release-2.2.f123933.14
             - name: EXPORT_SPEC_IMAGE
               value: ops0-artifactrepo1-0-frf.data.sfdc.net/sfci/cre/cre-dds-spark:2.2.0.0.master.22d73c1.28
             - name: SAVE_SPEC_IMAGE
@@ -35,7 +35,7 @@ system:
             - name: METRICS_KAFKA_TOPIC
               value: sfdc.prod.cre__frf.ajna_local__cre_metrics
             - name: METRICS_KAFKA_SERVER
-              value: ajna0-broker1-0-frf.data.sfdc.net:9093
+              value: ajna0-broker1-0-par.data.sfdc.net:9093
               ## HBASE
             - name: HBASE_ENVIRONMENT
               value: prod
