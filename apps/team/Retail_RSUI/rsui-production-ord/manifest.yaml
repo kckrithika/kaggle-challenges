@@ -214,8 +214,8 @@ system:
         tls: true
         lbtype: http
         reencrypt: true
-        tlscertificate: secret_service:cstoolkit_ord.salesforce-hub.com_20190204-215232:EndEntity
-        tlskey: secret_service:cstoolkit_ord.salesforce-hub.com_20190204-215232:Key
+        tlscertificate: secret_service:slbvip_ord.salesforce-hub.com_1578333505:certificate
+        tlskey: secret_service:slbvip_ord.salesforce-hub.com_1578333505:private_key
   - lbname: rsui-production-ord-test-lb
     annotations:
       slb.sfdc.net/iptype: public_active
