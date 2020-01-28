@@ -62,7 +62,7 @@ if configs.estate == "prd-samtwo" then
                     ],
                     fcp: [
                     {
-                      "bucket-name": "fcp-archive",
+                      "bucket-name": "fcparchive",
                     },
                     ],
                   },
@@ -128,7 +128,7 @@ if configs.estate == "prd-samtwo" then
                     ],
                     fcp: [
                     {
-                      "bucket-name": "fcp-archive",
+                      "bucket-name": "fcparchive",
                     },
                     ],
                   },
