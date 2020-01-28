@@ -35,7 +35,7 @@ system:
             - name: METRICS_KAFKA_TOPIC
               value: sfdc.prod.cre__frf.ajna_local__cre_metrics
             - name: METRICS_KAFKA_SERVER
-              value: ajna0-broker1-0-par.data.sfdc.net:9093
+              value: ajna0-broker1-0-frf.data.sfdc.net:9093
               ## HBASE
             - name: HBASE_ENVIRONMENT
               value: prod
@@ -61,7 +61,7 @@ system:
             - name: METRICS_FUNNEL_INTERVAL
               value: 10
             - name: METRICS_FUNNEL_URL
-              value: http://ajna0-funnel1-0-frf.data.sfdc.net
+              value: http://ajna0-funnel1-0-par.data.sfdc.net
             ####################################################################################################
             ####################################### SAVE environment variables ###############################
             ####################################################################################################
