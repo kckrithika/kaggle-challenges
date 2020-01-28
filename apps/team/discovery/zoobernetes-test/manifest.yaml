@@ -3,6 +3,9 @@ system:
   functions:
   - name: zoobernetes-test
     count: 1
+    labels:
+      settings_path: istio.-.prd.-.zoobernetes-test
+      app: zoobernetes-test
     annotations:
       sidecar.istio.io/inject: "true"
 
