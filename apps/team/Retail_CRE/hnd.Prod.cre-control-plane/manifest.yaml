@@ -61,7 +61,7 @@ system:
             - name: METRICS_FUNNEL_INTERVAL
               value: 10
             - name: METRICS_FUNNEL_URL
-              value: http://ajna0-funnel1-0-ukb.data.sfdc.net
+              value: http://ajna0-funnel1-0-hnd.data.sfdc.net
             ####################################################################################################
             ####################################### SAVE environment variables ###############################
             ####################################################################################################
