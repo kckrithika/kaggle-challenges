@@ -114,11 +114,27 @@ items:
   - kind: User
     name: shared0-samminiongater1-2-ia5.ops.sfdc.net
   - kind: User
+    name: shared0-samminiongater1-3-ia5.ops.sfdc.net
+  - kind: User
+    name: shared0-samminiongater1-4-ia5.ops.sfdc.net
+  - kind: User
+    name: shared0-samminiongater1-5-ia5.ops.sfdc.net
+  - kind: User
     name: shared0-samminiongater2-1-ia5.ops.sfdc.net
   - kind: User
     name: shared0-samminiongater2-2-ia5.ops.sfdc.net
   - kind: User
+    name: shared0-samminiongater2-3-ia5.ops.sfdc.net
+  - kind: User
+    name: shared0-samminiongater2-4-ia5.ops.sfdc.net
+  - kind: User
     name: shared0-samminiongater3-1-ia5.ops.sfdc.net
+  - kind: User
+    name: shared0-samminiongater3-2-ia5.ops.sfdc.net
+  - kind: User
+    name: shared0-samminiongater3-3-ia5.ops.sfdc.net
+  - kind: User
+    name: shared0-samminiongater3-4-ia5.ops.sfdc.net
 - apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: RoleBinding
   metadata:
@@ -134,11 +150,27 @@ items:
   - kind: User
     name: shared0-samminiongater1-2-ia5.ops.sfdc.net
   - kind: User
+    name: shared0-samminiongater1-3-ia5.ops.sfdc.net
+  - kind: User
+    name: shared0-samminiongater1-4-ia5.ops.sfdc.net
+  - kind: User
+    name: shared0-samminiongater1-5-ia5.ops.sfdc.net
+  - kind: User
     name: shared0-samminiongater2-1-ia5.ops.sfdc.net
   - kind: User
     name: shared0-samminiongater2-2-ia5.ops.sfdc.net
   - kind: User
+    name: shared0-samminiongater2-3-ia5.ops.sfdc.net
+  - kind: User
+    name: shared0-samminiongater2-4-ia5.ops.sfdc.net
+  - kind: User
     name: shared0-samminiongater3-1-ia5.ops.sfdc.net
+  - kind: User
+    name: shared0-samminiongater3-2-ia5.ops.sfdc.net
+  - kind: User
+    name: shared0-samminiongater3-3-ia5.ops.sfdc.net
+  - kind: User
+    name: shared0-samminiongater3-4-ia5.ops.sfdc.net
 - apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: RoleBinding
   metadata:
@@ -154,11 +186,27 @@ items:
   - kind: User
     name: shared0-samminiongater1-2-ia5.ops.sfdc.net
   - kind: User
+    name: shared0-samminiongater1-3-ia5.ops.sfdc.net
+  - kind: User
+    name: shared0-samminiongater1-4-ia5.ops.sfdc.net
+  - kind: User
+    name: shared0-samminiongater1-5-ia5.ops.sfdc.net
+  - kind: User
     name: shared0-samminiongater2-1-ia5.ops.sfdc.net
   - kind: User
     name: shared0-samminiongater2-2-ia5.ops.sfdc.net
   - kind: User
+    name: shared0-samminiongater2-3-ia5.ops.sfdc.net
+  - kind: User
+    name: shared0-samminiongater2-4-ia5.ops.sfdc.net
+  - kind: User
     name: shared0-samminiongater3-1-ia5.ops.sfdc.net
+  - kind: User
+    name: shared0-samminiongater3-2-ia5.ops.sfdc.net
+  - kind: User
+    name: shared0-samminiongater3-3-ia5.ops.sfdc.net
+  - kind: User
+    name: shared0-samminiongater3-4-ia5.ops.sfdc.net
 - apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: RoleBinding
   metadata:
@@ -174,11 +222,27 @@ items:
   - kind: User
     name: shared0-samminiongater1-2-ia5.ops.sfdc.net
   - kind: User
+    name: shared0-samminiongater1-3-ia5.ops.sfdc.net
+  - kind: User
+    name: shared0-samminiongater1-4-ia5.ops.sfdc.net
+  - kind: User
+    name: shared0-samminiongater1-5-ia5.ops.sfdc.net
+  - kind: User
     name: shared0-samminiongater2-1-ia5.ops.sfdc.net
   - kind: User
     name: shared0-samminiongater2-2-ia5.ops.sfdc.net
   - kind: User
+    name: shared0-samminiongater2-3-ia5.ops.sfdc.net
+  - kind: User
+    name: shared0-samminiongater2-4-ia5.ops.sfdc.net
+  - kind: User
     name: shared0-samminiongater3-1-ia5.ops.sfdc.net
+  - kind: User
+    name: shared0-samminiongater3-2-ia5.ops.sfdc.net
+  - kind: User
+    name: shared0-samminiongater3-3-ia5.ops.sfdc.net
+  - kind: User
+    name: shared0-samminiongater3-4-ia5.ops.sfdc.net
 - apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: RoleBinding
   metadata:
@@ -194,11 +258,27 @@ items:
   - kind: User
     name: shared0-samminiongater1-2-ia5.ops.sfdc.net
   - kind: User
+    name: shared0-samminiongater1-3-ia5.ops.sfdc.net
+  - kind: User
+    name: shared0-samminiongater1-4-ia5.ops.sfdc.net
+  - kind: User
+    name: shared0-samminiongater1-5-ia5.ops.sfdc.net
+  - kind: User
     name: shared0-samminiongater2-1-ia5.ops.sfdc.net
   - kind: User
     name: shared0-samminiongater2-2-ia5.ops.sfdc.net
   - kind: User
+    name: shared0-samminiongater2-3-ia5.ops.sfdc.net
+  - kind: User
+    name: shared0-samminiongater2-4-ia5.ops.sfdc.net
+  - kind: User
     name: shared0-samminiongater3-1-ia5.ops.sfdc.net
+  - kind: User
+    name: shared0-samminiongater3-2-ia5.ops.sfdc.net
+  - kind: User
+    name: shared0-samminiongater3-3-ia5.ops.sfdc.net
+  - kind: User
+    name: shared0-samminiongater3-4-ia5.ops.sfdc.net
 - apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: RoleBinding
   metadata:
@@ -214,11 +294,27 @@ items:
   - kind: User
     name: shared0-samminiongater1-2-ia5.ops.sfdc.net
   - kind: User
+    name: shared0-samminiongater1-3-ia5.ops.sfdc.net
+  - kind: User
+    name: shared0-samminiongater1-4-ia5.ops.sfdc.net
+  - kind: User
+    name: shared0-samminiongater1-5-ia5.ops.sfdc.net
+  - kind: User
     name: shared0-samminiongater2-1-ia5.ops.sfdc.net
   - kind: User
     name: shared0-samminiongater2-2-ia5.ops.sfdc.net
   - kind: User
+    name: shared0-samminiongater2-3-ia5.ops.sfdc.net
+  - kind: User
+    name: shared0-samminiongater2-4-ia5.ops.sfdc.net
+  - kind: User
     name: shared0-samminiongater3-1-ia5.ops.sfdc.net
+  - kind: User
+    name: shared0-samminiongater3-2-ia5.ops.sfdc.net
+  - kind: User
+    name: shared0-samminiongater3-3-ia5.ops.sfdc.net
+  - kind: User
+    name: shared0-samminiongater3-4-ia5.ops.sfdc.net
 - apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: RoleBinding
   metadata:
