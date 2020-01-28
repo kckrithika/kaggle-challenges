@@ -70,7 +70,7 @@ spec:
           valueFrom:
             fieldRef:
               fieldPath: spec.nodeName
-        image: ops0-artifactrepo1-0-hio.data.sfdc.net/dva/secretservice-watchdog:227-c8d498bcd6fbc34aa4719ce84e777aae53bd3df5
+        image: ops0-artifactrepo1-0-hio.data.sfdc.net/dva/secretservice-watchdog:230-0392da7fa42ae5ce2ac16d3c8b368e1fa82bf118
         name: watchdog
         volumeMounts:
         - mountPath: /sfdchosts
