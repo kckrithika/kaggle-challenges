@@ -1,4 +1,5 @@
 - lbname: smsapi1-0-ukb
+  iptype: public_reserved
   customlbname: smsapi1-0-ukb
   servers:
   - sec0-smsapi1-1-ukb.ops.sfdc.net

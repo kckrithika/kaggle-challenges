@@ -12,7 +12,8 @@ data:
       "rsui-production-ukb-lb.retail-rsui.ukb-sam.ukb.slb.sfdc.net": "161.71.146.14",
       "rsui-production-ukb-test-lb.retail-rsui.ukb-sam.ukb.slb.sfdc.net": "161.71.146.15",
       "rsui-service-ukb-lb.retail-rsui.ukb-sam.ukb.slb.sfdc.net": "10.213.36.122",
-      "sledge-ukb.slb.sfdc.net": "161.71.146.13"
+      "sledge-ukb.slb.sfdc.net": "161.71.146.13",
+      "smsapi1-0-ukb.slb.sfdc.net": "161.71.146.1"
     }
 kind: ConfigMap
 metadata:
