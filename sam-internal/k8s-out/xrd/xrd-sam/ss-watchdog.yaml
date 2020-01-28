@@ -249,7 +249,7 @@ items:
             valueFrom:
               fieldRef:
                 fieldPath: spec.nodeName
-          image: ops0-artifactrepo1-0-xrd.data.sfdc.net/dva/secretservice-watchdog:232-9e8333b8693e9e0a3a3da6bb2d01de74073df971
+          image: ops0-artifactrepo1-0-xrd.data.sfdc.net/dva/secretservice-watchdog:234-c05dd2c600b0f72f866d5c0fe45441132b6be0be
           name: watchdog
           volumeMounts:
           - mountPath: /sfdchosts
@@ -426,7 +426,7 @@ items:
             valueFrom:
               fieldRef:
                 fieldPath: spec.nodeName
-          image: ops0-artifactrepo1-0-xrd.data.sfdc.net/dva/secretservice-watchdog:232-9e8333b8693e9e0a3a3da6bb2d01de74073df971
+          image: ops0-artifactrepo1-0-xrd.data.sfdc.net/dva/secretservice-watchdog:234-c05dd2c600b0f72f866d5c0fe45441132b6be0be
           name: watchdog
           volumeMounts:
           - mountPath: /sfdchosts
