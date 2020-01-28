@@ -110,6 +110,8 @@ system:
                 -Xmx6G -Xms6G -XX:ParallelGCThreads=8 -Daura.production=true"
       - name: LOGGING_JSON_STDOUT_LEVEL
         value: ALL
+      - name: COM_SALESFORCE_HUB_ALLOWHUBACCESS
+        value: true
       # Disable all management endpoints except for health
       - name: ENDPOINTS_HEALTH_ENABLED
         value: true
