@@ -33,14 +33,14 @@ system:
         secretName: rsui-oauth-keys1
     - name: encryption-key1
       k4aSecret:
-        secretName: rsui-encryption-key4
+        secretName: rsui-encryption-key5
     - name: encryption-key2
       k4aSecret:
-        secretName: rsui-encryption-key3
+        secretName: rsui-encryption-key4
 
     containers:
     - name: rsui-production-ukb
-      image: sfci/retail/retail-setup:2.1.302 # docker image
+      image: sfci/retail/retail-setup:2.2.156 # docker image
       ports:
       - containerPort: 7022
         name: rsui-in-http1
@@ -98,9 +98,9 @@ system:
       - name: OAUTH_SECRETS_FILE_PATH
         value: secrets/oauth-keys/rsui-oauth-keys1.json
       - name: SECURITY_ENCRYPTION_KEY1_PATH
-        value: secrets/encryption-key1/rsui-encryption-key4.key
+        value: secrets/encryption-key1/rsui-encryption-key5.key
       - name: SECURITY_ENCRYPTION_KEY2_PATH
-        value: secrets/encryption-key2/rsui-encryption-key3.key
+        value: secrets/encryption-key2/rsui-encryption-key4.key
       - name: RSUI_HOST
         value: salesforce-hub.com
       - name: GATER_EMBEDDED_MODE
