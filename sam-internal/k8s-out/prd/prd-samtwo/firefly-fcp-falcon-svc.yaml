@@ -74,7 +74,7 @@ items:
                           "bucket-configs-by-type": {
                               "fcp": [
                                   {
-                                      "bucket-name": "fcp-archive"
+                                      "bucket-name": "fcparchive"
                                   }
                               ],
                               "helm": [
@@ -388,7 +388,7 @@ items:
           - name: SERVICE_MODE
             value: multi
           - name: CONFIG_VERSION
-            value: "20"
+            value: "21"
           - name: DARKLAUNCH
             value: "false"
           - name: INSTANCE_TYPE
@@ -869,7 +869,7 @@ items:
           - name: SERVICE_MODE
             value: singleton
           - name: CONFIG_VERSION
-            value: "18"
+            value: "19"
           - name: DARKLAUNCH
             value: "false"
           - name: INSTANCE_TYPE
