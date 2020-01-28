@@ -50,7 +50,7 @@ if samfeatureflags.sloop then configs.daemonSetBase("sam") {
                                  successThreshold: 1,
                                  failureThreshold: 3,
                              },
-                        image: "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/thargrove/sloop:thargrove-20200107_090601-0acb2a2",
+                        image: "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/sjawad/sloop:sjawad-20200127_155000-8b51ce2",
                         volumeMounts: [
                             {
                                 name: "sloop-data",
@@ -117,7 +117,7 @@ if samfeatureflags.sloop then configs.daemonSetBase("sam") {
                     },
                 ],
                 nodeSelector: {
-                    dummy: "disabled",
+                    master: "true",
                 },
             },
             metadata: {
