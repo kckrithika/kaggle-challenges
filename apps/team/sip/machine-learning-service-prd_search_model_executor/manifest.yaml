@@ -21,7 +21,7 @@ system:
               - sip-mls-prd-slb
       containers:
         - name: sip-mls
-          image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/searchdev/sip-machine-learning-service:1.1
+          image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/searchdev/sip-machine-learning-service:1.2
           livenessProbe:
             initialDelaySeconds: 180
             periodSeconds: 60
