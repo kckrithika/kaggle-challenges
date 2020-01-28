@@ -1,0 +1,12 @@
+- lbname: smsapi1-0-ukb
+  customlbname: smsapi1-0-ukb
+  servers:
+  - sec0-smsapi1-1-ukb.ops.sfdc.net
+  - sec0-smsapi2-1-ukb.ops.sfdc.net
+  - sec0-smsapi3-1-ukb.ops.sfdc.net
+  ports:
+  - port: 443
+    targetport: 8443
+    lbtype: tcp
+    healthport: 8443
+    lbalgorithm: roundrobin
