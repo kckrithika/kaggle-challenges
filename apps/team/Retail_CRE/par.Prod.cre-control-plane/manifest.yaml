@@ -9,7 +9,7 @@ system:
       count: 3
       containers:
         - name: cre-control-plane
-          image: sfci/cre-fusion/services:controlplane.2.1.2.0.master.bad4a4c.23
+          image: sfci/cre-fusion/services:controlplane.2.2.0.1.master.9be4b48.28
           env:
             - name: K8S_API_ENDPOINT
               value: https://kubernetes-api-flowsnake-par.slb.sfdc.net
