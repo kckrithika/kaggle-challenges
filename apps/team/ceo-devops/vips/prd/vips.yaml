@@ -5858,7 +5858,7 @@
 - lbname: cjemaster308
   customlbname: cjemaster308
   cnames:
-  - cname: team-cjemaster308.slb.sfdc.net
+  - cname: os-pipelineci.slb.sfdc.net
   servers:
   - cjemaster308-1-prd.dop.sfdc.net
   - cjemaster308-2-prd.dop.sfdc.net
@@ -5883,7 +5883,7 @@
 - lbname: cjemaster309
   customlbname: cjemaster309
   cnames:
-  - cname: team-cjemaster309.slb.sfdc.net
+  - cname: sodi-deci.slb.sfdc.net
   servers:
   - cjemaster309-1-prd.dop.sfdc.net
   - cjemaster309-2-prd.dop.sfdc.net
