@@ -17,6 +17,22 @@ local cre_production = {
         prometheus_config: import "configs/client/retail-cre/prometheus-config.jsonnet",
 };
 
+local einstein_discovery_production = {
+          owner_name: "Einstein Discovery",
+          namespace: "wave-discovery",
+          pki_namespace: "wave-discovery",
+          users+: [
+                "wave-discovery.ed-spark-job-controller",
+                "wave-discovery.spark-engine",
+                "wave-discovery.egupta",
+                "wave-discovery.mtimmerman",
+                "wave-discovery.amber.mehta",
+                "wave-discovery.kbyun",
+                "wave-discovery.bharadwaj.tanikella",
+                "wave-discovery.lok.liu",
+],
+};
+
 {
     # add new Spark-on-kubernetes clients to this object.
     clients_per_estate: {
@@ -266,12 +282,12 @@ local cre_production = {
         # -------------------------------
         # ---------- IAD fleet ----------
         # -------------------------------
-        "iad-flowsnake_prod": [wave_elt_production, cre_production],
+        "iad-flowsnake_prod": [wave_elt_production, cre_production, einstein_discovery_production],
 
         # -------------------------------
         # ---------- ORD fleet ----------
         # -------------------------------
-        "ord-flowsnake_prod": [wave_elt_production, cre_production],
+        "ord-flowsnake_prod": [wave_elt_production, cre_production, einstein_discovery_production],
 
         # -------------------------------
         # ---------- PAR fleet ----------
