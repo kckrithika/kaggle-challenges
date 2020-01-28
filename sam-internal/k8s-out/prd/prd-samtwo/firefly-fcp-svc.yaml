@@ -43,6 +43,13 @@ items:
                   "service-account-key": "${gcsUploaderKey#FromSecretService}"
               },
               "gcs-bucket": "fcparchive",
+              "gus": {
+                  "enable_gus_case_check": true,
+                  "enforce_gus_case_check": false,
+                  "password": "${gusUserPassword#FromSecretService}",
+                  "use_proxy": true,
+                  "username": "${gusUserName#FromSecretService}"
+              },
               "image-promotion-yaml": "image-promotion.yaml",
               "instance-type": "${INSTANCE_TYPE}",
               "max-attempts": 4,
@@ -60,6 +67,31 @@ items:
               "s3": {
                   "enabled": true,
                   "s3-access-key-id": "${s3AccessKeyId#FromSecretService}",
+                  "s3-grid-configs": [
+                      {
+                          "access-key-id": "${s3AccessKeyId#FromSecretService}",
+                          "bucket-configs-by-type": {
+                              "fcp": [
+                                  {
+                                      "bucket-name": "fcp-archive"
+                                  }
+                              ],
+                              "helm": [
+                                  {
+                                      "bucket-name": "sfcd-helm"
+                                  }
+                              ],
+                              "terraform": [
+                                  {
+                                      "bucket-name": "sfcd-terraform"
+                                  }
+                              ]
+                          },
+                          "environment-type": "ffdev",
+                          "region": "us-east-2",
+                          "secret-access-key": "${s3SecretAccessKey#FromSecretService}"
+                      }
+                  ],
                   "s3-secret-access-key": "${s3SecretAccessKey#FromSecretService}"
               },
               "s3-bucket": "fcparchive",
@@ -573,6 +605,13 @@ items:
                   "service-account-key": "${gcsUploaderKey#FromSecretService}"
               },
               "gcs-bucket": "fcparchive",
+              "gus": {
+                  "enable_gus_case_check": true,
+                  "enforce_gus_case_check": false,
+                  "password": "${gusUserPassword#FromSecretService}",
+                  "use_proxy": true,
+                  "username": "${gusUserName#FromSecretService}"
+              },
               "image-promotion-yaml": "image-promotion.yaml",
               "instance-type": "${INSTANCE_TYPE}",
               "max-attempts": 4,
@@ -590,6 +629,31 @@ items:
               "s3": {
                   "enabled": true,
                   "s3-access-key-id": "${s3AccessKeyId#FromSecretService}",
+                  "s3-grid-configs": [
+                      {
+                          "access-key-id": "${s3AccessKeyId#FromSecretService}",
+                          "bucket-configs-by-type": {
+                              "fcp": [
+                                  {
+                                      "bucket-name": "fcp-archive"
+                                  }
+                              ],
+                              "helm": [
+                                  {
+                                      "bucket-name": "sfcd-helm"
+                                  }
+                              ],
+                              "terraform": [
+                                  {
+                                      "bucket-name": "sfcd-terraform"
+                                  }
+                              ]
+                          },
+                          "environment-type": "ffdev",
+                          "region": "us-east-2",
+                          "secret-access-key": "${s3SecretAccessKey#FromSecretService}"
+                      }
+                  ],
                   "s3-secret-access-key": "${s3SecretAccessKey#FromSecretService}"
               },
               "s3-bucket": "fcparchive",
@@ -1029,6 +1093,13 @@ items:
               },
               "evaluation-config": {
                   "pipeline-manifest-json": "/tnrp/pipeline_manifest.json"
+              },
+              "gus": {
+                  "enable_gus_case_check": true,
+                  "enforce_gus_case_check": false,
+                  "password": "${gusUserPassword#FromSecretService}",
+                  "use_proxy": true,
+                  "username": "${gusUserName#FromSecretService}"
               },
               "instance-type": "${INSTANCE_TYPE}",
               "multi-repo-supported": true,
