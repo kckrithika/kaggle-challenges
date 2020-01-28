@@ -29,7 +29,7 @@ system:
               value: http://cre-control-plane.retail-cre.localhost.mesh.force.com:5442
             - name: SFDC_ENVIRONMENT
               value: prod
-              ## KAFKA
+            ## KAFKA
             - name: METRICS_KAFKA_ENABLED
               value: true
             - name: METRICS_KAFKA_TOPIC
