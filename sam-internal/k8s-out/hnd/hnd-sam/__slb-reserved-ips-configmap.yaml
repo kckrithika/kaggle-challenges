@@ -13,7 +13,8 @@ data:
       "rsui-production-hnd-test-lb.retail-rsui.hnd-sam.hnd.slb.sfdc.net": "161.71.144.15",
       "rsui-service-hnd-lb.retail-rsui.hnd-sam.hnd.slb.sfdc.net": "10.213.100.139",
       "slb-canary-proxy-http-ext.sam-system.hnd-sam.hnd.slb.sfdc.net": "161.71.144.5",
-      "sledge-hnd.slb.sfdc.net": "161.71.144.13"
+      "sledge-hnd.slb.sfdc.net": "161.71.144.13",
+      "smsapi1-0-hnd.slb.sfdc.net": "161.71.144.1"
     }
 kind: ConfigMap
 metadata:
