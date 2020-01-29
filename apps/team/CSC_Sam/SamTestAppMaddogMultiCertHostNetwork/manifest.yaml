@@ -11,7 +11,7 @@ system:
     progressDeadlineSeconds: 120
     containers:
     - name: samtestapp
-      image: tnrp/sam/hypersam:sam-0001905-ea177527
+      image: dva/sam/hypersam:2838-bb0b18d18d0cfb389547ae7a3e5df9b23ba51e11
       command: ["/sam/sam-test-app"]
       args: ["-estate", "$(ESTATE)", "-kingdom", "$(KINGDOM)", "-port", "12000", "-tlsport", "12001"]
       env:
