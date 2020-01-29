@@ -23,7 +23,7 @@ system:
 
     containers:
     - name: dfs
-      image: sfci/dfs/sfdc-platform-dfs:0.25.10
+      image: sfci/dfs/sfdc-platform-dfs:0.26.3
       # associate the log directory to a logical volume.
       volumeMounts:
       - name: logvol
@@ -41,6 +41,8 @@ system:
         value: datafederationservice
       - name: SCONE_SERVER_SECURITY_MUTUALAUTH
         value: true
+      - name: USE_C2C_SERVICE
+        value: false
       - name: INCLUDE_ALL_STACK_TRACES
         value: false
       - name: JVM_ARGS
