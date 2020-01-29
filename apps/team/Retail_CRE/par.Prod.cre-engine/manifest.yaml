@@ -6,7 +6,7 @@ system:
     count: 0
     containers:
     - name: cre-engine
-      image: sfci/cre/cre-engine:2.1.0.7.master.0b1f4d4.45
+      image: sfci/cre/cre-engine:2.2.0.1.release-2.2.f123933.14
       livenessProbe:
         exec:
             command:
