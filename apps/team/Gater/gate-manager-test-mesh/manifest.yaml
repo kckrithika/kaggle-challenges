@@ -35,7 +35,7 @@ system:
       - --gater.grpc.use_direct_executor=false
       - --gater.grpc.threadpool.size=16
       - --gater.test.grpc.short-circuit=false
-      - --wardenagent.rate=0
+      - --wardenagent.rate=60
       ports:
       - containerPort: 7443
       - containerPort: 9522
