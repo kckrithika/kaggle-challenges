@@ -43,8 +43,8 @@ items:
                   "service-account-key": "${gcsUploaderKey#FromSecretService}"
               },
               "gus": {
-                  "enable_gus_case_check": true,
-                  "enforce_gus_case_check": true,
+                  "enable_gus_case_check": false,
+                  "enforce_gus_case_check": false,
                   "password": "${gusUserPassword#FromSecretService}",
                   "use_proxy": true,
                   "username": "${gusUserName#FromSecretService}"

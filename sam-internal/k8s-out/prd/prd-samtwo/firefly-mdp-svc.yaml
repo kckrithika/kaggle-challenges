@@ -40,7 +40,7 @@ items:
               },
               "gus": {
                   "enable_gus_case_check": true,
-                  "enforce_gus_case_check": true,
+                  "enforce_gus_case_check": false,
                   "password": "${gusUserPassword#FromSecretService}",
                   "use_proxy": true,
                   "username": "${gusUserName#FromSecretService}"
@@ -532,7 +532,7 @@ items:
               },
               "gus": {
                   "enable_gus_case_check": true,
-                  "enforce_gus_case_check": true,
+                  "enforce_gus_case_check": false,
                   "password": "${gusUserPassword#FromSecretService}",
                   "use_proxy": true,
                   "username": "${gusUserName#FromSecretService}"
@@ -1005,7 +1005,7 @@ items:
               },
               "gus": {
                   "enable_gus_case_check": "true",
-                  "enforce_gus_case_check": true,
+                  "enforce_gus_case_check": false,
                   "password": "${gusUserPassword#FromSecretService}",
                   "use_proxy": true,
                   "username": "${gusUserName#FromSecretService}"
