@@ -1,0 +1,57 @@
+apiVersion: v1
+
+system:
+  functions:
+  - name: redis-inspector
+    count: 1
+    hostnetwork: true
+    volumes:
+    - name: redisauthvol
+      secret:
+        secretName: csc-redis-auth-0
+    containers:
+    - name: redis-inspector
+      image: dva/redis-inspector:1
+      ports:
+      - containerPort: 18080
+      volumeMounts:
+      - mountPath: /var/secrets/redis
+        name: redisauthvol
+        readOnly: true
+      livenessProbe:
+        exec:
+          command:
+          - echo
+          - always_healthy
+      env:
+      - name: RINSP_COMMANDS_INFO_INTERVAL
+        value: 30s
+      - name: RINSP_COMMANDS_COMMANDSTATS_INTERVAL
+        value: 30s
+      - name: RINSP_COMMANDS_KEYSPACE_INTERVAL
+        value: 30s
+      - name: RINSP_COMMANDS_SLOWLOG_INTERVAL
+        value: 30s
+      - name: RINSP_AJNA_FLUSHINTERVAL
+        value: 60s
+      - name: RINSP_REDIS_AUTHPATH
+        value: /var/secrets/redis/auth
+      - name: RINSP_HEALTH_PORT
+        value: 18080
+      livenessProbe:
+        httpGet:
+          path: /healthz
+          port: 18080
+        initialDelaySeconds: 31
+      command: ["/bin/sh", "-c"]
+      args: ["
+      export RINSP_AJNA_FUNNEL_HOST=${SFDC_METRICS_SERVICE_HOST} ;
+      export RINSP_AJNA_FUNNEL_PORT=${SFDC_METRICS_SERVICE_PORT} ;
+      export RINSP_AJNA_DATACENTER=${KINGDOM} ;
+      export RINSP_AJNA_DEVICE=${ESTATE}.${FUNCTION_NAMESPACE}.${FUNCTION}.${FUNCTION_INSTANCE_NAME} ;
+
+      export RINSP_REDIS_HOST=$(REDISLB_SERVICE_HOST) ;
+      export RINSP_REDIS_PORT=$(REDISLB_SERVICE_PORT) ;
+
+      ./redis-inspector
+      "]
