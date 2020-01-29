@@ -1,14 +1,12 @@
 apiVersion: v1
 
 system:
-  email:
-    - a.mitra@salesforce.com
   functions:
   - name: ajnaconsumer
     count: 0
     containers:
     - name: ajnaconsumer
-      image: ops0-artifactrepo2-0-prd.data.sfdc.net/tnrp/sam/hypersam:sam-0001773-7dd8c461
+      image: dva/sam/hypersam:2838-bb0b18d18d0cfb389547ae7a3e5df9b23ba51e11
       command:
         - /sam/ajnaconsumer
         - --v=3
