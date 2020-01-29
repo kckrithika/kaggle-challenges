@@ -39,8 +39,8 @@ items:
                   "remote-docker-host": "http://localhost:2375"
               },
               "gus": {
-                  "enable_gus_case_check": true,
-                  "enforce_gus_case_check": true,
+                  "enable_gus_case_check": false,
+                  "enforce_gus_case_check": false,
                   "password": "${gusUserPassword#FromSecretService}",
                   "use_proxy": true,
                   "username": "${gusUserName#FromSecretService}"
@@ -589,8 +589,8 @@ items:
                   "remote-docker-host": "http://localhost:2375"
               },
               "gus": {
-                  "enable_gus_case_check": true,
-                  "enforce_gus_case_check": true,
+                  "enable_gus_case_check": false,
+                  "enforce_gus_case_check": false,
                   "password": "${gusUserPassword#FromSecretService}",
                   "use_proxy": true,
                   "username": "${gusUserName#FromSecretService}"
@@ -1052,8 +1052,8 @@ items:
                   "pipeline-manifest-json": "/tnrp/pipeline_manifest.json"
               },
               "gus": {
-                  "enable_gus_case_check": true,
-                  "enforce_gus_case_check": true,
+                  "enable_gus_case_check": false,
+                  "enforce_gus_case_check": false,
                   "password": "${gusUserPassword#FromSecretService}",
                   "use_proxy": true,
                   "username": "${gusUserName#FromSecretService}"
