@@ -14,7 +14,7 @@ system:
         type: client
     containers:
     - name: estatesservice
-      image: dva/estates/estatesservice:89
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/rdahal/estatesservice:rdahal-2020012901
       ports:
       - name: receiver-port
         containerPort: 9090
