@@ -125,6 +125,8 @@ system:
               value: false
             - name: GDOT_PROVISIONING_USER_NAME
               value: creprodprovisioner
+            - name: GDOT_BASE_PATH
+              value: https://cloudatlas.salesforce.com/empire/cloudatlas/scim
             - name: CRE_API_ENDPOINT
               value: cre-api.retail-cre.localhost.mesh.force.com:5442
             ####################################################################################################
