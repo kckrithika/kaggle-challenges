@@ -3,7 +3,7 @@ apiVersion: v1
  
 system:
   functions:
-  - name: dfs-production-par
+  - name: dfs-production
     count: 3
     identity:
       serviceName: dfs
@@ -102,7 +102,7 @@ system:
   - lbname: dfs-production-lb
     annotations:
       slb.sfdc.net/iptype: private_reserved
-    function: dfs-production-par
+    function: dfs-production
     slbEnabled: true
     ports:
     - port: 7442
