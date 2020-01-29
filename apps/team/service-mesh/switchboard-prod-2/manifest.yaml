@@ -10,7 +10,7 @@ system:
       routing.mesh.sfdc.net/enabled: "true"
     containers:
     - name: switchboard
-      image: sfci/services/sfdc-bazel/service-mesh/switchboard:0cb15679c
+      image: sfci/services/sfdc-bazel/service-mesh/switchboard:49f4819ca
       args:
       ############################## PRODUCTION CONFIGURATION ##########################################
       # Any configuration that needs to go to production should be added here.
