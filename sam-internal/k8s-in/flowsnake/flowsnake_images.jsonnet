@@ -220,6 +220,7 @@ local utils = import "util_functions.jsonnet";
         "prod-apac": self.prod {
             image_tags+: {
                 service_mesh_injector_image_tag: "7",
+                integration_test_tag: "42",
             },
             feature_flags+: {
                 # --- flag A (Do not edit ... ---
@@ -233,6 +234,7 @@ local utils = import "util_functions.jsonnet";
                 # --- flag H (git's diff logic ... ---
                 # --- flag I (to reduce the ---
                 # --- flag J (likelihood of merge conflicts.) ---
+                next_analysis_script: "INTO THE FUTURE!",
             },
         },
 
