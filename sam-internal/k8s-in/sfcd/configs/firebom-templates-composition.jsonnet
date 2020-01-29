@@ -84,7 +84,8 @@
     'ccecom',
     'cdpairflow',
     'cdpingw',
-    'jobuploader'
+    'jobuploader',
+    'authsvc'
   ],
   'soft-launch': true
 }
