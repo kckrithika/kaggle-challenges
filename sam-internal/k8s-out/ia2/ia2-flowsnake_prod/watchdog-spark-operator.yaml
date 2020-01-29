@@ -119,17 +119,17 @@ items:
       r_driver_pod_running = re.compile(r'\[(?P<epoch>[0-9]+)\] .* - Pod change detected: .*-driver(:| changed to) Running')
       r_driver_pod_completed = re.compile(r'\[(?P<epoch>[0-9]+)\] .* - Pod change detected: .*-driver changed to Completed')
       r_spark_submit_failed = re.compile(r'failed to run spark-submit')
-      r_driver_context_app_submitted = re.compile(r'(?P<spark_time>[- :0-9]*) INFO.*SparkContext.* - Submitted application')
-      r_driver_context_jar_added = re.compile(r'(?P<spark_time>[- :0-9]*) INFO.*SparkContext.* - Added JAR file:')
-      r_exec_allocator = re.compile(r'(?P<spark_time>[- :0-9]*) INFO.*ExecutorPodsAllocator.* - Going to request [0-9]* executors from Kubernetes')
+      r_driver_context_app_submitted = re.compile(r'(?P<spark_time>[- :0-9/]*) INFO.*SparkContext.* - Submitted application')
+      r_driver_context_jar_added = re.compile(r'(?P<spark_time>[- :0-9/]*) INFO.*SparkContext.* - Added JAR file:')
+      r_exec_allocator = re.compile(r'(?P<spark_time>[- :0-9/]*) INFO.*ExecutorPodsAllocator.* - Going to request [0-9]* executors from Kubernetes')
       r_timeout = re.compile(r'\[(?P<epoch>[0-9]+)\] .* - Timeout reached. Aborting wait for SparkApplication .* even though in non-terminal state (?P<state>\w*)\.')
       #r_ driver_running_event = re.compile(r'SparkDriverRunning\s+([0-9]+)([sm])\s+spark-operator\s+Driver .* is running')
       r_exec_pod_creation_event = re.compile(r'\[(?P<epoch>[0-9]+)\] .* - Pod change detected: .*-exec-[0-9]+: (?P<state>.*) on host.*')
       r_exec_pod_creation_event_pending = re.compile(r'\[(?P<epoch>[0-9]+)\] .* - Pod change detected: .*-exec-[0-9]+: Pending on host.*')
       r_exec_pod_initializing = re.compile(r'\[(?P<epoch>[0-9]+)\] .* - Pod change detected: .*-exec-[0-9]+(:| changed to) (PodInitializing|Init)')
       r_exec_pod_running = re.compile(r'\[(?P<epoch>[0-9]+)\] .* - Pod change detected: .*-exec-[0-9]+ changed to Running.')
-      r_exec_registered_time = re.compile(r'(?P<spark_time>[- :0-9]*) INFO.*KubernetesClusterSchedulerBackend.*Registered executor')
-      r_driver_job_finished = re.compile(r'(?P<spark_time>[- :0-9]*) INFO.*DAGScheduler.*Job 0 finished')
+      r_exec_registered_time = re.compile(r'(?P<spark_time>[- :0-9/]*) INFO.*KubernetesClusterSchedulerBackend.*Registered executor')
+      r_driver_job_finished = re.compile(r'(?P<spark_time>[- :0-9/]*) INFO.*DAGScheduler.*Job 0 finished')
       r_app_completed = re.compile(r'\[(?P<epoch>[0-9]+)\] .* - SparkApplication .* has terminated .* State is COMPLETED')
       r_complete = re.compile(r'\[(?P<epoch>[0-9]+)\] .* - .*Completion of .* test')
 
@@ -415,7 +415,7 @@ items:
           :param spark_time: UTC formatted e.g. 2019-05-15 00:31:56
           :return: unix epoch in seconds
           """
-          return calendar.timegm(time.strptime(spark_time, "%Y-%m-%d %H:%M:%S"))
+          return calendar.timegm(time.strptime(spark_time, "%y/%m/%d %H:%M:%S"))
 
 
       def compute_times(output, succeeded=False):
@@ -964,7 +964,7 @@ items:
           - -includeCommandOutput=true
           env:
           - name: DOCKER_TAG
-            value: "33"
+            value: "42"
           - name: S3_PROXY_HOST
             value: public0-proxy1-0-ia2.data.sfdc.net
           - name: DRIVER_SERVICE_ACCOUNT
@@ -980,7 +980,7 @@ items:
             value: ia2
           - name: ESTATE
             value: ia2-flowsnake_prod
-          image: ops0-artifactrepo1-0-ia2.data.sfdc.net/dva/flowsnake-spark-on-k8s-integration-test-runner:33
+          image: ops0-artifactrepo1-0-ia2.data.sfdc.net/dva/flowsnake-spark-on-k8s-integration-test-runner:42
           imagePullPolicy: IfNotPresent
           name: watchdog
           resources:
