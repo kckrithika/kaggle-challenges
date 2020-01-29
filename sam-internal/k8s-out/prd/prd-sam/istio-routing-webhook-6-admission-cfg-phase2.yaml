@@ -29,6 +29,7 @@ webhooks:
     - UPDATE
     resources:
     - deployments
+    - statefulsets
   - apiGroups:
     - extensions
     apiVersions:

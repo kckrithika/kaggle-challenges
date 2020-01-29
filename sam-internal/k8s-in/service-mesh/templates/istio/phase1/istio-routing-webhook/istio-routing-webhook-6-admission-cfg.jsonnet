@@ -30,7 +30,7 @@ if (istioPhases.phaseNum == 1) then
           operations: ["CREATE", "UPDATE"],
           apiGroups: ["apps"],
           apiVersions: ["v1"],
-          resources: ["deployments"],
+          resources: ["deployments", "statefulsets"],
         },
         {
           operations: ["CREATE", "UPDATE"],
