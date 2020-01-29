@@ -5,3 +5,6 @@
   - port: 8443
     targetport: 10002
     lbtype: tcp
+  - port: 443
+    targetport: 443
+    lbtype: tcp
