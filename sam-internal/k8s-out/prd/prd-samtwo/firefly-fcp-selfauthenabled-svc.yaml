@@ -1096,7 +1096,7 @@ items:
               },
               "gus": {
                   "enable_gus_case_check": true,
-                  "enforce_gus_case_check": false,
+                  "enforce_gus_case_check": true,
                   "password": "${gusUserPassword#FromSecretService}",
                   "use_proxy": true,
                   "username": "${gusUserName#FromSecretService}"
