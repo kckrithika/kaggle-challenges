@@ -10,6 +10,8 @@ system:
     lbname: istio-shipping-sts-lb
     count: 1
     labels:
+      app: istio-shipping-sts
+      settings_path: istio.-.prd.-.istio-shipping-sts
       istio_app: test
       chaos.sfdc.net/podDelete: true
       chaos.sfdc.net/podDeletePeriod: 4h
