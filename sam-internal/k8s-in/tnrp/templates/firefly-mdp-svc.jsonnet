@@ -67,6 +67,7 @@ if configs.estate == "prd-samtwo" then
             },
             gus+: {
               enable_gus_case_check: true,
+              enforce_gus_case_check: true,
             },
           },
         },
