@@ -39,6 +39,8 @@ system:
           value: http://cre-control-plane.retail-cre.localhost.mesh.force.com:5442
         - name: GDOT_ENVIRONMENT
           value: production
+        - name: GDOT_BASE_PATH
+          value: https://cloudatlas.salesforce.com/empire/cloudatlas/scim
         - name: OU_NAME
           value: retail-cre.cre-control-plane
         - name: ENABLE_BATCH_ORPHAN_CHECKS
