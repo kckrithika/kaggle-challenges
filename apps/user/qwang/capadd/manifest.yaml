@@ -25,25 +25,25 @@ system:
           command:
             - /bin/ls
   - name: git-work-flow
-      count: 1
-      volumes:
-        - name: capadd-client-cert
-          maddogCert:
-            type: client
-        - name: capadd-server-cert
-          maddogCert:
-            type: server
-      containers:
-        - name: git-work-flow
-          image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/qwang/git-work-flow:git-20200129-1
-          volumeMounts:
-            - name: capadd-client-cert
-              mountPath: /clientcert
-            - name: capadd-server-cert
-              mountPath: /servercert
-          ports:
-            - containerPort: 8989
-          livenessProbe:
-            exec:
-              command:
-                - /bin/ls
+    count: 1
+    volumes:
+      - name: capadd-client-cert
+        maddogCert:
+          type: client
+      - name: capadd-server-cert
+        maddogCert:
+          type: server
+    containers:
+      - name: git-work-flow
+        image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/qwang/git-work-flow:git-20200129-1
+        volumeMounts:
+          - name: capadd-client-cert
+            mountPath: /clientcert
+          - name: capadd-server-cert
+            mountPath: /servercert
+        ports:
+          - containerPort: 8989
+        livenessProbe:
+          exec:
+            command:
+              - /bin/ls
