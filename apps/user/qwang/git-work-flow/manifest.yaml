@@ -22,7 +22,7 @@ system:
             - name: capadd-server-cert
               mountPath: /servercert
           ports:
-            - containerPort: 8787
+            - containerPort: 8989
           livenessProbe:
             exec:
               command:
