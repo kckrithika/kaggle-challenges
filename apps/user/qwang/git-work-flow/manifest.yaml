@@ -4,7 +4,7 @@ system:
     email:
       - nqa@salesforce.com
   functions:
-    - name: gitworkflow
+    - name: git-work-flow
       count: 1
       volumes:
         - name: capadd-client-cert
@@ -15,7 +15,7 @@ system:
             type: server
       containers:
         - name: git-work-flow
-          image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/qwang/capadd:git-20200128
+          image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/qwang/capadd:git-20200129-1
           volumeMounts:
             - name: capadd-client-cert
               mountPath: /clientcert
