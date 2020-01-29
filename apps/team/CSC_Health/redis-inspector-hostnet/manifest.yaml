@@ -13,7 +13,7 @@ system:
     - name: redis-inspector
       image: dva/redis-inspector:1
       ports:
-      - containerPort: 8080
+      - containerPort: 18080
       volumeMounts:
       - mountPath: /var/secrets/redis
         name: redisauthvol
@@ -37,11 +37,11 @@ system:
       - name: RINSP_REDIS_AUTHPATH
         value: /var/secrets/redis/auth
       - name: RINSP_HEALTH_PORT
-        value: 8080
+        value: 18080
       livenessProbe:
         httpGet:
           path: /healthz
-          port: 8080
+          port: 18080
         initialDelaySeconds: 31
       command: ["/bin/sh", "-c"]
       args: ["
