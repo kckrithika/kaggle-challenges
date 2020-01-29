@@ -52,6 +52,10 @@ system:
       image: dva/sam/hypersam:2838-bb0b18d18d0cfb389547ae7a3e5df9b23ba51e11
       command: ["/sam/service-wd"]
       args: ["-service=lbappwithmulticerthostnetwork"]
+      livenessProbe:
+        httpGet:
+          path: /
+          port: 12000
   loadbalancers:
   - lbname: lbappwithmulticerthostnetwork
     function: samtestfnwithmaddogmulticerthostnetwork
