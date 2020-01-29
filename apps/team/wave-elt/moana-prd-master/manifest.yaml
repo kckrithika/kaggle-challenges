@@ -16,7 +16,7 @@ system:
     count: 0
     name: moana-engine-master
   - containers:
-    - image: ops0-artifactrepo2-0-prd.data.sfdc.net/sfci/insights/moanaengine:master-2019.11.b.216-0a6a8fe
+    - image: ops0-artifactrepo2-0-prd.data.sfdc.net/sfci/insights/moanaengine:beta-20191129.2-c8731b7
       livenessProbe:
         exec:
           command: [ls]
@@ -87,7 +87,7 @@ system:
       - {name: LOGGING_JSON_STDOUT_LEVEL, value: ALL}
       - {name: LOGGING_STDERR_LEVEL, value: ALL}
       - {name: MOANA_SPARK_ENGINE_IMAGE, value: 'ops0-artifactrepo2-0-prd.data.sfdc.net/sfci/insights/moanaengine:master-20200129.279-f71fd14'}
-      - {name: MOANA_SPARK_ENGINE_BETA_IMAGE, value: 'ops0-artifactrepo2-0-prd.data.sfdc.net/sfci/insights/moanaengine:master-2019.11.b.216-0a6a8fe'}
+      - {name: MOANA_SPARK_ENGINE_BETA_IMAGE, value: 'ops0-artifactrepo2-0-prd.data.sfdc.net/sfci/insights/moanaengine:beta-20191129.2-c8731b7'}
       - {name: KAFKA_GROUP_ID, value: moana-jobcontroller-master}
       - {name: DEPLOYMENT_ID, value: prd-master}
       - {name: JAVA_OPTS, value: '-server -XX:MaxMetaspaceSize=512m -Xmx2048m -Xms2048m'}
@@ -155,6 +155,15 @@ system:
     nodeExposed: true
     ports:
     - {lbalgorithm: roundrobin, lbtype: http, port: 8081, sticky: 0, targetport: 8080}
+    slbEnabled: true
+  - annotations: {slb.sfdc.net/cnames: '[{"cname": "moana-driver"+ utils.deploymentSuffix
+        +"-prd.slb.sfdc.net"}]'}
+    function: moana-driver-master
+    lbname: moana-driver-master-tls
+    nodeExposed: true
+    ports:
+    - {lbalgorithm: roundrobin, lbtype: http, port: 8091, sticky: 0, targetport: 8080,
+      tls: true}
     slbEnabled: true
   - function: jobcontroller-master
     lbname: jobcontroller-master
