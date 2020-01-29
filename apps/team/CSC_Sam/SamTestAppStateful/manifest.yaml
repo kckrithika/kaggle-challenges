@@ -10,7 +10,7 @@ system:
     count: 2
     containers:
     - name: stateful-hello
-      image: tnrp/sam/hypersam:sam-0000701-487f2675
+      image: dva/sam/hypersam:2838-bb0b18d18d0cfb389547ae7a3e5df9b23ba51e11
       command:
         - /sam/sam-test-app
       ports:
