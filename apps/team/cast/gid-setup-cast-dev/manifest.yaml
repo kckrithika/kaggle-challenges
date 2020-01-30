@@ -324,8 +324,8 @@ system:
       slbEnabled: true
       ports:
         - port: 80
-          name: public
           targetport: 7442
+          name: public
           lbtype: http
           tls: false
           reencrypt: false
