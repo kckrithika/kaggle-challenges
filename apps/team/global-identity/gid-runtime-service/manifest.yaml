@@ -138,7 +138,7 @@ system:
   # SLB
   #####################################################################################
   loadbalancers:
-    - lbname: gid-runtime-demo
+    - lbname: gid-runtime-service
       function: gid-runtime-service
       slbEnabled: true
       ports:
