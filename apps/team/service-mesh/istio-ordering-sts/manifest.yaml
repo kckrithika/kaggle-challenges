@@ -30,7 +30,7 @@ system:
       - name: SFDC_ENVIRONMENT
         value: istio
       - name: SCONE_SHIPPING_DEST
-        value: istio-shipping-0.service-mesh.${mesh.proxydomain}:${mesh.grpctlsport}
+        value: istio-shipping-sts-0.istio-shipping-sts.${mesh.proxydomain}:${mesh.grpctlsport}
       - name: GRPC_PORT
         value: 7443
       - name: JAVA_OPTS

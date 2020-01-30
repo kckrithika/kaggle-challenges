@@ -8,7 +8,7 @@ system:
   - name: istio-shipping-sts
     type: stateful-set
     lbname: istio-shipping-sts-lb
-    count: 1
+    count: 2
     labels:
       app: istio-shipping-sts
       settings_path: istio.-.prd.-.istio-shipping-sts
