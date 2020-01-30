@@ -5908,7 +5908,7 @@
 - lbname: cjemaster310
   customlbname: cjemaster310
   cnames:
-  - cname: team-cjemaster310.slb.sfdc.net
+  - cname: booservicemanagementci.slb.sfdc.net
   servers:
   - cjemaster310-1-prd.dop.sfdc.net
   - cjemaster310-2-prd.dop.sfdc.net
