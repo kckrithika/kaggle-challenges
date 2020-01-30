@@ -39,7 +39,7 @@ system:
           periodSeconds: 5
           failureThreshold: 100
       - name: ristretto-monitor
-        image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/dpoh/ristretto_monitor:2020-01-30b
+        image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/dpoh/ristretto_monitor:2020-01-30c
         command:
           - /usr/local/bin/wrapper_render_monitor.sh
         env:
