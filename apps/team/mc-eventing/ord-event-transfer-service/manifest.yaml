@@ -41,7 +41,7 @@ system:
         requests: { cpu: "2", memory: "5Gi" }
       env:
         - name: SFDC_ENVIRONMENT
-          value: iad
+          value: ord
         - name: SERVER_PORT
           value: 8080
         - name: MANAGEMENT_PORT
@@ -51,7 +51,7 @@ system:
         - name: IDENTITY
           value: mc.prod.mceventbusprod
         - name: TOPIC_ENVIRONMENT
-          value: iad.ajna_local
+          value: ord.ajna_local
         - name: DECRYPTION_KEY_EXPIRE_MS
           value: 600000
         - name: DECRYPTION_KEY_PATH
@@ -81,7 +81,7 @@ system:
       image: sfci/servicelibs/sherpa-envoy:213d5137f0015e81c59afe6f93f6ab775dc4798b
       env:
       - name: SFDC_ENVIRONMENT
-        value: iad
+        value: ord
       ports:
         - containerPort: 15373
       volumeMounts:
