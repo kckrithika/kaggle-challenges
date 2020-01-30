@@ -50,7 +50,7 @@ if (istioPhases.phaseNum == 1) then
     },
     {
       apiGroups: [
-        "apps",
+        "",
       ],
       resources: [
         "services",

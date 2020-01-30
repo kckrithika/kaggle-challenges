@@ -27,7 +27,7 @@ rules:
   - get
   - list
 - apiGroups:
-  - apps
+  - ""
   resources:
   - services
   verbs:
