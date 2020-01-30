@@ -170,10 +170,11 @@ items:
                           "ajnaendpoint",
                           "ajnakafka",
                           "ccecom",
-                          "cdpairflow",
                           "cdpingw",
                           "jobuploader",
-                          "authsvc"
+                          "authsvc",
+                          "caaspc",
+                          "coreapp"
                       ],
                       "soft-launch": true,
                       "working-directory": "/tmp/sfcdapifirebom"

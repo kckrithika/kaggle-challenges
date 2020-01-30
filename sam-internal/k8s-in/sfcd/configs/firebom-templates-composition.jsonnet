@@ -97,10 +97,11 @@
     'ajnaendpoint',
     'ajnakafka',
     'ccecom',
-    'cdpairflow',
     'cdpingw',
     'jobuploader',
-    'authsvc'
+    'authsvc',
+    'caaspc',
+    'coreapp'
   ],
   'soft-launch': true
 }
