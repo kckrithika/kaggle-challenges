@@ -1,6 +1,6 @@
 version: v2
 apps:
-   gid-runtime-service:
+  gid-runtime-service:
     - name: prd/prd-sam_globalidentity
 
   gid-runtime-service-demo:
