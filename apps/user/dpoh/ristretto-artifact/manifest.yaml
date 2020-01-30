@@ -19,7 +19,7 @@ system:
         - name: GITHUB_REPO_NAME
           value: "Ristretto"
         - name: GITHUB_BRANCH
-          value: "master"
+          value: "sam_artifact"
         - name: WEB_DIRECTORY
           value: "/ristretto-artifact"
         ports:
@@ -50,7 +50,7 @@ system:
         - name: GITHUB_REPO_NAME
           value: "Ristretto"
         - name: GITHUB_BRANCH
-          value: "master"
+          value: "sam_artifact"
         - name: ARTIFACT_DIRECTORY
           value: "/ristretto-artifact"
         - name: REFRESH_INTERVAL
