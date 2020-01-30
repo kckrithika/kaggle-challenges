@@ -78,6 +78,7 @@ local utils = import "util_functions.jsonnet";
             image_tags+: {
                 service_mesh_image_tag: "1.0.13",
                 integration_test_tag: "42",
+                hbase_integration_test_tag: "42",
             },
             feature_flags+: {
                 # Note: the *value* of the flags is ignored. jsonnet lacks array search, so we use a an object.
