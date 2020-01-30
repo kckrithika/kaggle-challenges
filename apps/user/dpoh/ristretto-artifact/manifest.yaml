@@ -13,7 +13,7 @@ system:
           - /usr/local/bin/wrapper_web.sh
         env:
         - name: GITHUB_TOKEN_FILENAME
-          value: "github-token.txt"
+          value: "/secrets/github-token.txt"
         - name: GITHUB_ORG_NAME
           value: "DBIAAS"
         - name: GITHUB_REPO_NAME
@@ -44,7 +44,7 @@ system:
           - /usr/local/bin/wrapper_render_monitor.sh
         env:
         - name: GITHUB_TOKEN_FILENAME
-          value: "github-token.txt"
+          value: "/secrets/github-token.txt"
         - name: GITHUB_ORG_NAME
           value: "DBIAAS"
         - name: GITHUB_REPO_NAME
