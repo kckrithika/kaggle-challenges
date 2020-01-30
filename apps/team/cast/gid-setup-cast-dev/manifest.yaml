@@ -323,8 +323,9 @@ system:
       function: gid-setup-cast-dev
       slbEnabled: true
       ports:
-        - port: 443
+        - port: 80
+          name: public
           targetport: 7442
           lbtype: http
-          tls: true
-          reencrypt: true
+          tls: false
+          reencrypt: false
