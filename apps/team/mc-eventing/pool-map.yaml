@@ -50,6 +50,8 @@ apps:
     - name: prd/prd-sam_mc_consumer
   iad-event-transfer-service:
     - name: iad/iad-sam_mc_consumer
+  ord-event-transfer-service:
+    - name: ord/ord-sam_mc_consumer
 
   # subscription-sync-service
   prd-subscription-sync-service:
