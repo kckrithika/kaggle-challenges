@@ -1,5 +1,3 @@
 apps:
   estatesservice:
     - prd/prd-sam
-  estatesservice-demo:
-    - prd/prd-sam
