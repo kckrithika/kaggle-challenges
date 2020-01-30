@@ -76,44 +76,49 @@ items:
                       "add-new-service-master-stages": false,
                       "cleanup-interval": 0,
                       "default-read-id": "test",
-                      "dev-env-type": {
-                          "default-foundation-targets": [
-                              "fdev1-uswest2"
-                          ],
-                          "default-targets": [
-                              "dev1-uswest2"
-                          ],
-                          "name": "dev"
-                      },
-                      "env-type-hierarchies": {
-                          "default": {
-                              "canary": {
+                      "dev-env-type-name": "dev",
+                      "env-type-configs": {
+                          "default": [
+                              {
+                                  "add-promotion-stage": false,
+                                  "default-foundation-targets": [
+                                      "fdev1-uswest2"
+                                  ],
+                                  "default-targets": [
+                                      "dev1-uswest2"
+                                  ],
+                                  "name": "dev"
+                              },
+                              {
+                                  "add-promotion-stage": true,
+                                  "depends-on": [
+                                      "dev"
+                                  ],
+                                  "name": "test",
+                                  "skip-promotion-wait": true
+                              },
+                              {
                                   "add-promotion-stage": true,
                                   "add-setup-change-case-stage": true,
                                   "depends-on": [
                                       "test"
                                   ],
+                                  "name": "canary",
                                   "skip-promotion-wait": false
                               },
-                              "dev": {
-                                  "add-promotion-stage": false
-                              },
-                              "prod": {
+                              {
                                   "add-close-change-case-stage": true,
                                   "add-promotion-stage": true,
+                                  "aliases": [
+                                      "esvc"
+                                  ],
                                   "depends-on": [
                                       "canary"
                                   ],
+                                  "name": "prod",
                                   "skip-promotion-wait": false
-                              },
-                              "test": {
-                                  "add-promotion-stage": true,
-                                  "depends-on": [
-                                      "dev"
-                                  ],
-                                  "skip-promotion-wait": true
                               }
-                          }
+                          ]
                       },
                       "populate-full-master-service-pipeline": true,
                       "service-white-list": [
@@ -411,7 +416,7 @@ items:
         - command:
           - java
           - -jar
-          - /sfcdapi-firebom-svc.jar
+          - /home/vmf/sfcdapi-firebom-svc.jar
           - --spring.profiles.active=sfcd-api
           - --spring.config.location=/etc/sfcdapi-firebom-webhook/config/
           env:
@@ -441,8 +446,8 @@ items:
                 apiVersion: v1
                 fieldPath: metadata.labels['name']
           - name: CONFIG_VERSION
-            value: "39"
-          image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/sfcdapi-firebom:123
+            value: "40"
+          image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/sfcdapi-firebom:125
           imagePullPolicy: Always
           livenessProbe:
             failureThreshold: 10
