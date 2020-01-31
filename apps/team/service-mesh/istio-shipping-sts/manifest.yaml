@@ -59,5 +59,3 @@ system:
     - name: tls-server-cert
       maddogCert:
         type: server
-        lbnames:
-          - istio-shipping-sts
