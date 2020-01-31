@@ -7,7 +7,7 @@ system:
   functions:
   - name: istio-shipping-sts
     type: stateful-set
-    lbname: istio-shipping-sts-lb
+    lbname: istio-shipping-sts
     count: 2
     labels:
       app: istio-shipping-sts
@@ -61,13 +61,3 @@ system:
         type: server
         lbnames:
           - istio-shipping-sts
-
-  loadbalancers:
-    - lbname: istio-shipping-sts
-      function: istio-shipping-sts
-      ports:
-        - lbtype: dsr
-          nodeExposed: false
-          port: 7443
-          targetport: 7443
-          name: grpc-shipping
