@@ -13,7 +13,7 @@ spec:
     listKind: ArmadaApplicationList
     plural: armadaapplications
     singular: armadaapplication
-  scope: ""
+  scope: Namespaced
   validation:
     openAPIV3Schema:
       description: ArmadaApp describes a Armada Application
