@@ -5,10 +5,18 @@ system:
     - gater@salesforce.com
   functions:
   - name: gater-mesh2
-    count: 0
+    count: 1
+    labels:
+      app: gater-mesh2
+      settings_path: blitz.-.prd.-.gater-mesh2
+    annotations:
+      sidecar.istio.io/inject: "true"
+      sidecar.istio.io/proxyCPU: "8000m"
+      sidecar.istio.io/proxyMemory: "4096Mi"
+      traffic.sidecar.istio.io/excludeInboundPorts: "9522,9523,9524,15372,9090"
     containers:
-    - name: gater-mesh2
-      image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-sfci-dev/sfci/services/sfdc-bazel/gater/gate-manager:88b84d3a5
+    - name: gater1
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/gater/gate-manager:sortiz-1580484919
       args:
       - --mesh.istio-mode=true
       - --server.port=9090
@@ -20,7 +28,7 @@ system:
       - --metrics.collectionInterval=60
       - --synctask.host-affinity=false
       - --logging.sfdc.stderr.level=OFF
-      - --logging.json.stdout.level=OFF
+      - --logging.json.stdout.level=DEBUG
       - --logging.sfdc.level=OFF
       - --logging.json.level=OFF
       - --metrics.container=gater-mesh2
@@ -28,15 +36,16 @@ system:
       - --gater.grpc.threadpool.size=16
       - --gater.test.grpc.short-circuit=false
       ports:
-      - containerPort: 7020
+      - containerPort: 7443
       - containerPort: 9522
       - containerPort: 9523
       - containerPort: 9524
       - containerPort: 9090
-      - containerPort: 15372
       env:
       - name: SFDC_ENVIRONMENT
         value: blitz
+      - name: GATER_GRPC_SERVER_PORT
+        value: 7443
       resources:
         limits:
           cpu: "8"
@@ -51,69 +60,21 @@ system:
         name: dbvol
       - mountPath: /home/sfdc/automation
         name: perf-automation-volume
+      - mountPath: /home/sfdc-java/Snapshots
+        name: logvol
       livenessProbe:
         httpGet:
           path: /manage/health
           port: 15372
-        initialDelaySeconds: 60
+        initialDelaySeconds: 60 
         timeoutSeconds: 10
       readinessProbe:
         httpGet:
           path: /manage/health
           port: 15372
-        initialDelaySeconds: 45
-        periodSeconds: 5
-    - name: sherpa
-      # latest release:  https://git.soma.salesforce.com/servicelibs/sherpa-envoy/releases
-      image: sfci/servicelibs/sherpa-envoy:1.0.13
-      ports:
-      - name: http2-in
-        containerPort: 7012
-      - name: http2-tls-in
-        containerPort: 7443
-      - name: sherpa-adm
-        containerPort: 15373
-      volumeMounts:
-      - mountPath: /client-certs
-        name: tls-client-cert
-      - mountPath: /server-certs
-        name: tls-server-cert
-      livenessProbe:
-        exec:
-          command:
-          - ./bin/is-alive
-        initialDelaySeconds: 60
-        periodSeconds: 5
-      readinessProbe:
-        exec:
-          command:
-          - ./bin/is-ready
-        initialDelaySeconds: 50
-        periodSeconds: 5
-      terminationMessagePolicy: FallbackToLogsOnError
-      # these resources match what we have in istio
-      resources:
-        limits:
-          cpu: "2"
-          memory: 1Gi
-        requests:
-          cpu: "100m"
-          memory: 128Mi
-    - name: beacon
-      # https://git.soma.salesforce.com/services/sfdc-bazel/tree/master/projects/sidecars/beacon#docker-image
-      image: sfci/services/sfdc-bazel/disco/beacon:d7f1640
-      env:
-        - name: SFDC_ENVIRONMENT
-          value: blitz
-      args:
-      - -endpoint
-      - $(FUNCTION_NAMESPACE)/$(FUNCTION):DATACENTER_ALLENV:HTTP2_TLS
-      livenessProbe:
-        exec:
-          command:
-            - "/opt/beacon/is-alive.sh"
-        initialDelaySeconds: 5
-
+        initialDelaySeconds: 60 
+        timeoutSeconds: 10
+        periodSeconds: 10
     - name: perf-sidecar       # Sidecar container that deploys automation folder
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/kviphong/perfsidecar:20190625-1
       ports:
@@ -132,6 +93,7 @@ system:
       volumeMounts:
         - mountPath: /home/sfdc/automation
           name: perf-automation-volume
+
     volumes:
     - name: logvol
       hostPath:

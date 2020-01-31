@@ -2,7 +2,7 @@ apiVersion: v1
 system:
   functions:
   - name: gater-perf2
-    count: 0
+    count: 1
     containers:
     - name: gater-perf2
       image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-sfci-dev/sfci/services/sfdc-bazel/gater/gater-perf:31fd9c8da
