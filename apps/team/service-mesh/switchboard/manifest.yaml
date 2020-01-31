@@ -33,6 +33,7 @@ system:
       # Configuration for External Auth Service
       - --listeners.external-auth-enabled-clusters[0]=tictactoe-server-service-envoy.service-mesh
       - --listeners.external-auth-enabled-clusters[1]=shipping-rate-limited.service-mesh
+      - --listeners.external-auth-enabled-clusters[2]=authz-test.service-mesh
       # Configuration for Ratelimiting Service
       - --listeners.rate-limit-enabled-clusters[0]=shipping-rate-limited.service-mesh
       - --listeners.rate-limit-enabled-clusters[1]=dfs.retail-dfs
