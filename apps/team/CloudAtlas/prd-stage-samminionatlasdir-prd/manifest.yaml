@@ -20,7 +20,7 @@ system:
     # Cloud Atlas Directory Server
     #####################################################################################
     - name: cloudatlas-pdm-install
-      image: sfci/cloud-atlas/cloudatlas/cloudatlas-pdm:4.1.0rc1
+      image: sfci/cloud-atlas/cloudatlas/cloudatlas-pdm:4.2.0rc1
       command: ["/opt/pdm/pdm.customer/bin/entrypoint.sh"]
       env:
       - name: JVM_ARGS_PASSED_AS_ENV_VAR
