@@ -20,7 +20,7 @@ system:
       image: dva/report-collector:14
       ports:
       - name: provider-https
-        containerPort: 8443
+        containerPort: 8442
       - name: consumer-https
         containerPort: 8444
       volumeMounts:
@@ -45,6 +45,8 @@ system:
         value: false
       - name: ReportCollector_app_https_enabled
         value: true
+      - name: ReportCollector_app_https_providerPort
+        value: 8442
       - name: ReportCollector_app_https_consumerPort
         value: 8444
       - name: ReportCollector_app_https_clientAuth
@@ -162,7 +164,7 @@ system:
         httpGet:
           scheme: HTTPS
           path: /redisHealth
-          port: 8443
+          port: 8442
         initialDelaySeconds: 10
         periodSeconds: 60
         timeoutSeconds: 15
