@@ -9,6 +9,7 @@
   estateList:
   - chx-sam
   - chx-sam_gater
+  - chx-sam_warden
   estates:
     chx-sam:
       hosts:
@@ -123,6 +124,7 @@
   estateList:
   - wax-sam
   - wax-sam_gater
+  - wax-sam_warden
   estates:
     wax-sam:
       hosts:
