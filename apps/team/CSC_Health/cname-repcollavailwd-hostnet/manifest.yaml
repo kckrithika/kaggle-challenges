@@ -7,6 +7,7 @@ system:
   functions:
   - name: cname-repcollavailwd
     count: 1
+    hostnetwork: true
     containers:
     - name: cname-repcollavailwd
       image: dva/report-collector-availability-watchdog:2
