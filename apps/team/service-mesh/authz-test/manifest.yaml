@@ -6,7 +6,7 @@ system:
     - electron@salesforce.com
   functions:
   - name: authz-test
-    count: 2
+    count: 1
     annotations:
       sherpa-injector.service-mesh/inject: "enabled"
       electron-opa-istio-sherpa-injector.authz/inject: "enabled"
@@ -78,5 +78,3 @@ system:
     - name: tls-server-cert
       maddogCert:
         type: server
-        lbnames:
-          - authz-test-lb
