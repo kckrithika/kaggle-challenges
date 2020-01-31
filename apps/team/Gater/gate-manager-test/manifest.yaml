@@ -57,7 +57,7 @@ system:
         value: blitz
       terminationMessagePolicy: FallbackToLogsOnError
     - name: sherpa
-      image: sfci/servicelibs/sherpa-envoy:1.0.8
+      image: sfci/servicelibs/sherpa-envoy:1.0.14
       ports:
       - name: http2-in
         containerPort: 7012
