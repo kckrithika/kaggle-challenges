@@ -5,19 +5,15 @@ system:
     - gater@salesforce.com
   functions:
   - name: gater
-    count: 7
+    count: 6
     annotations:
-      sidecar.istio.io/inject: "true"
-      sidecar.istio.io/proxyCPU: "8000m"
-      sidecar.istio.io/proxyMemory: "4096Mi"
-      traffic.sidecar.istio.io/excludeInboundPorts: "9522,9523,9524,15372,9090"
+      "routing.mesh.sfdc.net/enabled": "true"
     hostnetwork: false
     containers:
     - name: gater1
       image: sfci/services/sfdc-bazel/gater/gate-manager:1.18.0
       args:
         - --server.port=9090
-        - --gater.grpc.server.port=7443
         - --gater-service.thread.pool.max-size=16
         - --gater.grpc.threadpool.size=16
         - --synctask.host-affinity=false
@@ -44,7 +40,7 @@ system:
         initialDelaySeconds: 60
         timeoutSeconds: 10
       ports:
-      - containerPort: 7443
+      - containerPort: 7020
       - containerPort: 9522
       - containerPort: 9523
       - containerPort: 9090
@@ -59,8 +55,33 @@ system:
       env:
       - name: SFDC_ENVIRONMENT
         value: blitz
-      - name: JAVA_OPTS
-        value: "-Dmesh.istio-mode=true"
+      terminationMessagePolicy: FallbackToLogsOnError
+    - name: sherpa
+      image: sfci/servicelibs/sherpa-envoy:1.0.14
+      ports:
+      - name: http2-in
+        containerPort: 7012
+      - name: http2-tls-in
+        containerPort: 7443
+      - name: sherpa-adm
+        containerPort: 15373
+      volumeMounts:
+      - mountPath: /client-certs
+        name: tls-client-cert
+      - mountPath: /server-certs
+        name: tls-server-cert
+      livenessProbe:
+        exec:
+          command:
+          - ./bin/is-alive
+        initialDelaySeconds: 20
+        periodSeconds: 5
+      readinessProbe:
+        exec:
+          command:
+          - ./bin/is-ready
+        initialDelaySeconds: 15
+        periodSeconds: 5
       terminationMessagePolicy: FallbackToLogsOnError
     - name: beacon
       image: sfci/servicelibs/beacon:cec13ceb9fc5aed0ce462031a01b2dd5ef73d5ee
