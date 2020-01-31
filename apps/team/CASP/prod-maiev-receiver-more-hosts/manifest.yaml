@@ -8,7 +8,7 @@ system:
     - name: maiev-receiver
       identity:
         serviceName: maiev-receiver
-      count: 3
+      count: 5
       strategy:
         type: RollingUpdate
         rollingUpdate:
@@ -22,7 +22,6 @@ system:
           containerPort: 7020
         - name: receiver-http
           containerPort: 8086
-          hostPort: 7022
         - name: receiver-https
           containerPort: 8443
         livenessProbe:
