@@ -65,7 +65,7 @@ system:
                   -Dcom.sun.management.jmxremote.authenticate=false
                   -Dlogging.level.com.salesforce=INFO
                   -Xmx4G -Xms4G -XX:ParallelGCThreads=8
-                  -Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=6103"
+                  -Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=*:6103"
         - name: CLUSTER_ID
           value: sp_dev
         - name: CLUSTER_SIZE
