@@ -6,12 +6,13 @@ system:
     count: 1
     containers:
     - name: speedometer-extension
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/hsuanyu.chen/speedometer-extension:hsuanyu.chen-202001310125
-      command: ["bin/speedometer-extension"]
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/hsuanyu.chen/speedometer-extension:hsuanyu.chen-202001311500
+      command: ["/moe/speedometer-extension"]
       args:
       - "-gheTokenPath=/secrets/ghe_pat"
       - "-log_dir=/host/data/speedometer/logs"
       - "-argusPasswordPath=N8wfCCq2&@5h40$V"
+      - "-imageRepoMap=policy-manager-v2:Infrastructure-Security/infrasec-secrets/master,vaultconfig-api:Infrastructure-Security/infrasec-secrets/master,vault-init:Infrastructure-Security/infrasec-secrets/master,vault-watchdog:Infrastructure-Security/infrasec-secrets/master,vault:Infrastructure-Security/infrasec-secrets/master"
       ports:
       - containerPort: 8080
       livenessProbe:
