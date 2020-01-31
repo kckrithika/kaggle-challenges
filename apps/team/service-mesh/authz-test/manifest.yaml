@@ -49,7 +49,7 @@ system:
     - name: authz-test-http-client
       image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/electron_client:147
       args:
-      - -endpoint=localhost:7022
+      - -endpoint=authz-test.service-mesh.localhost.mesh.com:7442
       - -service=http
       - -loopCount=-1
       - -loopDelayInSeconds=60
@@ -80,11 +80,3 @@ system:
         type: server
         lbnames:
           - authz-test-lb
-  loadbalancers:
-    - lbname: authz-test-lb
-      function: authz-test
-      slbenabled: true
-      ports:
-        - port: 7442
-          targetport: 7442
-          lbtype: dsr
