@@ -6,27 +6,66 @@ system:
     - electron@salesforce.com
   functions:
   - name: authz-test
-    count: 1
+    count: 2
     annotations:
-      sidecar.istio.io/inject: "true"
+      sherpa-injector.service-mesh/inject: "enabled"
       electron-opa-istio-sherpa-injector.authz/inject: "enabled"
     containers:
     - name: authz-test
-      image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/nginx:latest"
+      image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/electron_sam:147
+      args:
+      - --http-synthetic-client-ids=authz-test.service-mesh
+      env:
+      - name: AUTHZ_ARCHIVE_LOC
+        value: rpm-rc-signed
+      - name: SFDC_ENVIRONMENT
+        value: mesh
+      - name: FAKE_ENV_VAR_INCREMENT_TO_TRIGGER_SAM_DEPLOY
+        value: "1"        
       resources:
-        limits: { cpu: "1", memory: "2Gi" }
-        requests: { cpu: "1", memory: "2Gi" }
+        limits: { cpu: "2", memory: "4Gi" }
+        requests: { cpu: "2", memory: "4Gi" }
       ports:
-      - containerPort: 80
-        name: http
+      - containerPort: 7020
+        name: grpc-svc
+      - containerPort: 7022
+        name: http-svc
+      - containerPort: 7442
+        name: sherpa-http-tls
+      - containerPort: 8440
+        name: http-noauth
+      livenessProbe:
+        tcpSocket:
+          port: 8440
+        initialDelaySeconds: 5
+        periodSeconds: 5
+      readinessProbe:
+        httpGet:
+          path: /v1/health
+          port: 8440
+        initialDelaySeconds: 30
+        periodSeconds: 5
+        timeoutSeconds: 4
+    - name: authz-test-http-client
+      image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/electron_client:147
+      args:
+      - -endpoint=localhost:7022
+      - -service=http
+      - -loopCount=-1
+      - -loopDelayInSeconds=60
+      - -spoof-xfcc=DNS=authz-test.service-mesh.sfdc-role
+      livenessProbe:
+        exec:
+          command: ["/bin/true"]
+        initialDelaySeconds: 30
     - name: beacon
       # https://git.soma.salesforce.com/services/sfdc-bazel/tree/master/projects/sidecars/beacon#docker-image
       image: sfci/services/sfdc-bazel/disco/beacon:d7f1640
       args:
       - -endpoint
-      - $(FUNCTION):DATACENTER_ALLENV:HTTP2
+      - $(FUNCTION):DATACENTER_ALLENV:HTTP1
       - -endpoint
-      - $(FUNCTION_NAMESPACE)/$(FUNCTION):DATACENTER_ALLENV:HTTP2_TLS
+      - $(FUNCTION_NAMESPACE)/$(FUNCTION):DATACENTER_ALLENV:HTTP1_TLS
       livenessProbe:
         exec:
           command:
@@ -39,11 +78,13 @@ system:
     - name: tls-server-cert
       maddogCert:
         type: server
+        lbnames:
+          - authz-test-lb
   loadbalancers:
-    - lbname: authz-test
+    - lbname: authz-test-lb
       function: authz-test
+      slbenabled: true
       ports:
-        - lbtype: dsr
-          port: 7014
-          targetport: 80
-          name: http
+        - port: 7442
+          targetport: 7442
+          lbtype: dsr
