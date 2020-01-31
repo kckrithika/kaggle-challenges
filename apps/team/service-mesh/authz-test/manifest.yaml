@@ -44,6 +44,6 @@ system:
       function: authz-test
       ports:
         - lbtype: dsr
-          port: 80
+          port: 7014
           targetport: 80
           name: http
