@@ -68,6 +68,8 @@ apps:
   - prd/prd-sam_gater
  gate-manager-test-canary:
   - prd/prd-sam_gater
+ gate-manager-test-canary-jdk11:
+  - prd/prd-sam_gater
  gate-manager-test-mesh:
   - prd/prd-sam_gater
  gate-manager-test-mesh2:
