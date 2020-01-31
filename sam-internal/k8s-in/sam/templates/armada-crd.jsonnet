@@ -19,7 +19,7 @@ if configs.estate == "prd-sam" then {
           plural: "armadaapplications",
           singular: "armadaapplication",
         },
-        scope: "",
+        scope: "Namespaced",
         validation: {
           openAPIV3Schema: {
             description: "ArmadaApp describes a Armada Application",
