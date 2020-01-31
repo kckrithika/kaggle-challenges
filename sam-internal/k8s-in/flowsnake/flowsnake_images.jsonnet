@@ -220,6 +220,7 @@ local utils = import "util_functions.jsonnet";
         "prod-apac": self.prod {
             image_tags+: {
                 service_mesh_injector_image_tag: "7",
+                hbase_integration_test_tag: "42",
                 integration_test_tag: "42",
             },
             feature_flags+: {
