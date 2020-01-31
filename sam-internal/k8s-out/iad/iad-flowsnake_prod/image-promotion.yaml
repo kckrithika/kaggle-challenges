@@ -286,7 +286,7 @@ spec:
         name: extra-image-4
       - image: ops0-artifactrepo1-0-iad.data.sfdc.net/dva/flowsnake-spark-worker_2.3.0-hadoop_2.9.2-cre:jenkins-dva-transformation-flowsnake-sample-apps-cre-hadoop-292-5-itest
         name: extra-image-5
-      - image: ops0-artifactrepo1-0-iad.data.sfdc.net/dva/flowsnake-spark-on-k8s-integration-test-runner:22
+      - image: ops0-artifactrepo1-0-iad.data.sfdc.net/dva/flowsnake-spark-on-k8s-integration-test-runner:42
         name: extra-image-6
-      - image: ops0-artifactrepo1-0-iad.data.sfdc.net/dva/flowsnake-phoenix-spark-hbase-integration:22
+      - image: ops0-artifactrepo1-0-iad.data.sfdc.net/dva/flowsnake-phoenix-spark-hbase-integration:42
         name: extra-image-7
