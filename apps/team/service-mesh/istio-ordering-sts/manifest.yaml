@@ -7,7 +7,7 @@ system:
   functions:
   - name: istio-ordering-sts
     type: stateful-set
-    lbname: istio-ordering-sts-lb
+    lbname: istio-ordering-sts
     count: 1
     labels:
       app: istio-ordering-sts
@@ -56,17 +56,3 @@ system:
     - name: tls-server-cert
       maddogCert:
         type: server
-
-  loadbalancers:
-    - lbname: istio-ordering-sts
-      function: istio-ordering-sts
-      annotations:
-        routing.mesh.sfdc.net/enabled: "true"
-      labels:
-        app: istio-ordering-sts
-        settings_path: istio.-.prd.-.istio-ordering-sts
-      ports:
-        - lbtype: dsr
-          port: 7443
-          targetport: 7443
-          name: grpc-ordering
