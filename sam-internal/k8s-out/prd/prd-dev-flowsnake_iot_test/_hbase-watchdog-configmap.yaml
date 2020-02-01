@@ -60,7 +60,7 @@ data:
       },
       "publishAlertsToKafka": false,
       "rcImtEndpoint": "https://reportcollector-prd.data.sfdc.net:18443/v1/bark",
-      "recipient": "bigdataatscale@salesforce.com",
+      "recipient": "",
       "sdpEndpoint": "http://localhost:39999",
       "sender": "bigdataatscale@salesforce.com",
       "smtpServer": "smtpops-prd-sp1.data.sfdc.net:25",
