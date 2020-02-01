@@ -39,7 +39,7 @@ system:
       - {name: GRPC_HOST, value: jobcontroller-master.wave-elt.localhost.mesh.force.com}
       - {name: GRPC_PORT, value: '5443'}
       - {name: HANDLED_PODS_PATTERN, value: stmfa\..*|moana-driver-master}
-      image: sfci/insights/moana-driver:master-20200130.91-3d15775
+      image: sfci/insights/moana-driver:master-20200131.92-2e8f11e
       livenessProbe:
         httpGet: {path: /manage/health, port: 15372}
         initialDelaySeconds: 30
@@ -156,7 +156,7 @@ system:
     ports:
     - {lbalgorithm: roundrobin, lbtype: http, port: 8081, sticky: 0, targetport: 8080}
     slbEnabled: true
-  - annotations: {slb.sfdc.net/cnames: '[{"cname": "moana-driver"-master"-prd.slb.sfdc.net"}]'}
+  - annotations: {slb.sfdc.net/cnames: '[{"cname": "moana-driver-master-prd.slb.sfdc.net"}]'}
     function: moana-driver-master
     lbname: moana-driver-master-tls
     nodeExposed: true
