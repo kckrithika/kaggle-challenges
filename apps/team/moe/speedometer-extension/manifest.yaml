@@ -6,12 +6,12 @@ system:
     count: 1
     containers:
     - name: speedometer-extension
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/hsuanyu.chen/speedometer-extension:hsuanyu.chen-202001311500
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/hsuanyu.chen/speedometer-extension:hsuanyu.chen-202001311606
       command: ["/moe/speedometer-extension"]
       args:
       - "-gheTokenPath=/secrets/ghe_pat"
       - "-log_dir=/host/data/speedometer/logs"
-      - "-argusPasswordPath=N8wfCCq2&@5h40$V"
+      - "-argusPasswordPath=/secrets/password.txt"
       - "-imageRepoMap=policy-manager-v2:Infrastructure-Security/infrasec-secrets/master,vaultconfig-api:Infrastructure-Security/infrasec-secrets/master,vault-init:Infrastructure-Security/infrasec-secrets/master,vault-watchdog:Infrastructure-Security/infrasec-secrets/master,vault:Infrastructure-Security/infrasec-secrets/master"
       ports:
       - containerPort: 8080
@@ -30,6 +30,9 @@ system:
       - mountPath: /secrets
         name: speedometer-ghe-pat
         readOnly: true
+      - mountPath: /secrets
+        name: tok-secrets
+        readOnly: true
     volumes:
     - name: logvol
       hostPath:
@@ -37,6 +40,9 @@ system:
     - name: speedometer-ghe-pat
       k4aSecret:
         secretName: speedometer-ghe-pat
+    - name: tok-secrets
+      k4aSecret:
+        secretName: tok-secrets
   loadbalancers:
   - lbname: speedometer-extension
     function: speedometer-extension
