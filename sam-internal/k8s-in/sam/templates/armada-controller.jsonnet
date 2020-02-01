@@ -11,7 +11,7 @@ if configs.estate == "prd-sam" then {
                 containers: [
                     configs.containerWithKubeConfigAndMadDog {
                         name: "armada-controller",
-                        image: "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/armada/armada:42",
+                        image: "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/armada/armada:53",
                         command: configs.filter_empty([
                             "./armadasvc",
                             "--armadaTemplatesGitOrgName=armada",
