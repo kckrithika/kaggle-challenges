@@ -220,6 +220,8 @@ system:
   loadbalancers:
     - lbname: gid-runtime-staging
       function: gid-runtime-service-staging
+      annotations:
+        slb.sfdc.net/iptype: public_reserved
       slbEnabled: true
       ports:
         - port: 443
