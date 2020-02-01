@@ -36,10 +36,10 @@ system:
           tcpSocket:
             port: 30000
           initialDelaySeconds: 60
-          periodSeconds: 5
-          failureThreshold: 100
+          periodSeconds: 10
+          failureThreshold: 5
       - name: ristretto-monitor
-        image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/dpoh/ristretto_monitor:2020-01-31a
+        image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/dpoh/ristretto_monitor:2020-02-01a
         command:
           - /usr/local/bin/wrapper_render_monitor.sh
         env:
@@ -64,11 +64,11 @@ system:
         livenessProbe:
           exec:
             command:
-              - pgrep
-              - wrapper_render_monitor.sh
-          initialDelaySeconds: 180
-          periodSeconds: 15
-          failureThreshold: 100
+              - /bin/bash
+              - /usr/local/bin/monitor_health.sh
+          initialDelaySeconds: 120
+          periodSeconds: 60
+          failureThreshold: 5
       identity:
         serviceName: ristretto-web
       volumes:
