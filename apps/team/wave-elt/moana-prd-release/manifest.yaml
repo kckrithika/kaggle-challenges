@@ -158,6 +158,14 @@ system:
     ports:
     - {lbalgorithm: roundrobin, lbtype: http, port: 8082, sticky: 0, targetport: 8080}
     slbEnabled: true
+  - annotations: {slb.sfdc.net/cnames: '[{"cname": "moana-driver-release-prd.slb.sfdc.net"}]'}
+    function: moana-driver-release
+    lbname: moana-driver-release-tls
+    nodeExposed: true
+    ports:
+    - {lbalgorithm: roundrobin, lbtype: http, port: 8092, sticky: 0, targetport: 8080,
+      tls: true}
+    slbEnabled: true
   - function: jobcontroller-release
     lbname: jobcontroller-release
     ports:
