@@ -59,7 +59,7 @@ spec:
             secretKeyRef:
               key: key.txt
               name: gus-cred
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/armada/armada:53
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/armada/armada:54
         name: armada-controller
         volumeMounts:
         - mountPath: /etc/pki_service
