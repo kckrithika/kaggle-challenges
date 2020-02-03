@@ -6,10 +6,10 @@ system:
       - cre@salesforce.com
   functions:
   - name: cre-api
-    count: 1
+    count: 3
     containers:
     - name: cre-api
-      image: sfci/cre/cre-api:2.1.6.2.0.master.6cc60b3.10
+      image: sfci/cre/cre-api:2.2.0.0.master.9539e61.12
       env:
         #### 2.1.4 PATCH DVD ENVIRONMENT VARIABLES ####
         - name: K4A_VAULT
