@@ -166,7 +166,6 @@ apps:
   cname-repcollavailwd-pc:
     - yhu/yhu-sam_report_collector
     - yul/yul-sam_report_collector
-  service-event-recorder:
   exptemp-store:
   nagios-adapter:
   nagios-adapter-stagger-1:
