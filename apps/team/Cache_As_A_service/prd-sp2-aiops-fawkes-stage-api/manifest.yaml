@@ -18,7 +18,7 @@ system:
           maxUnavailable: 1
       containers:
       - name: fawkes-stage-api
-        image: dva/casp/fawkes_api_strata:jenkins-CASP-fawkes-PR-154-2-itest
+        image: dva/casp/fawkes_api_strata:jenkins-CASP-fawkes-PR-157-5-itest
         ports:
           - name: fawkes-http
             containerPort: 5000
