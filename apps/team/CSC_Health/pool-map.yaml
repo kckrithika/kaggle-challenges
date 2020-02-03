@@ -20,7 +20,6 @@ apps:
     - ia4/ia4-sam_report_collector
     - ia5/ia5-sam_report_collector
     - syd/syd-sam_report_collector
-  locust:
   reportcollectorha:
   reportcollector:
     - prd/prd-sdc
