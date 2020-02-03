@@ -6,7 +6,7 @@ system:
     count: 1
     containers:
     - name: repcollavailwd
-      image: tnrp/csc-health/report-collector-availability-watchdog:2.8.0-0000111-84d23f37
+      image: dva/report-collector-availability-watchdog:2
       ports:
       - name: liveness
         containerPort: 8089
