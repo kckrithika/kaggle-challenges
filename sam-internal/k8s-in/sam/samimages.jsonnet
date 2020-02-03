@@ -51,9 +51,6 @@ local samreleases = import "samreleases.json";
         "yul,yul-sam,watchdog-etcd-quorum,hypersam": "2838-bb0b18d18d0cfb389547ae7a3e5df9b23ba51e11",
 
         # Added this override to fix the peimission issue of connectivitylabeler watchdog
-        "prd,prd-samtest,sam-network-reporter,hypersam": "2754-365539f3b19f1f92f8ee7f1778f157769fae2a07",
-        "prd,prd-samdev,sam-network-reporter,hypersam": "2754-365539f3b19f1f92f8ee7f1778f157769fae2a07",
-        "prd,prd-sam,sam-network-reporter,hypersam": "2754-365539f3b19f1f92f8ee7f1778f157769fae2a07",
         "cdg,cdg-sam,sam-network-reporter,hypersam": "2754-365539f3b19f1f92f8ee7f1778f157769fae2a07",
         "cdu,cdu-sam,sam-network-reporter,hypersam": "2754-365539f3b19f1f92f8ee7f1778f157769fae2a07",
         "chx,chx-sam,sam-network-reporter,hypersam": "2754-365539f3b19f1f92f8ee7f1778f157769fae2a07",
