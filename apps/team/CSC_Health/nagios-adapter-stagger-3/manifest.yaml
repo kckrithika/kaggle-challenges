@@ -8,19 +8,30 @@ system:
     - name: nagiosauthvol
       k4aSecret:
         secretName: csc-nagios-auth
+    - name: client-cert
+      maddogCert:
+        type: client
     containers:
     - name: nagios-adapter
-      image: dva/csc-health/nagios-adapter:54
+      image: dva/csc-health/nagios-adapter:55
       volumeMounts:
       - mountPath: /var/secrets/nagios-auth
         name: nagiosauthvol
         readOnly: true
+      - mountPath: /client-certs
+        name: client-cert
       livenessProbe:
         exec:
           command:
           - echo
           - always_healthy
       env:
+      - name: nagiosadapter_estates_client_cert_path
+        value: /client-certs/client/certificates/client.pem
+      - name: nagiosadapter_estates_client_key_path
+        value: /client-certs/client/keys/client-key.pem
+      - name: nagiosadapter_estates_root_ca_path
+        value: /client-certs/ca.pem
       - name: nagiosadapter_general_local_storage
         value: /nagios-adapter/nagios-adapter/local_storage/
       - name: nagiosadapter_estates_estates_root_path
@@ -56,6 +67,7 @@ system:
       export nagiosadapter_general_kingdom=${KINGDOM};
       export nagiosadapter_reportcollector_reportcollector_endpoint=https://reportcollector-${KINGDOM}.data.sfdc.net:18443/v1/barkBatch;
       export nagiosadapter_nagiosmanifestmanager_fcp_vip=ops0-piperepo1-0-${KINGDOM}.data.sfdc.net;
+      export nagiosadapter_estates_estates_endpoint=https://estatesservice.csc-health.${KINGDOM}-sam.${KINGDOM}.slb.sfdc.net/v1.0
       export nagiosadapter_ajna_funnel_vip=${SFDC_METRICS_SERVICE_HOST};
       export nagiosadapter_ajna_funnel_port=${SFDC_METRICS_SERVICE_PORT};
       export nagiosadapter_ajna_device=${ESTATE}.${FUNCTION_NAMESPACE}.${FUNCTION}.${FUNCTION_INSTANCE_NAME};
