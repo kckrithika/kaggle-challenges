@@ -3,16 +3,24 @@ system:
   functions:
   - name: gater-perf2
     count: 1
+    labels:
+      app: gater-perf2
+      settings_path: blitz.-.prd.-.gater-perf2
+    annotations:
+      sidecar.istio.io/inject: "true"
+      sidecar.istio.io/proxyCPU: "6000m"
+      sidecar.istio.io/proxyMemory: "2048Mi"
+      traffic.sidecar.istio.io/excludeInboundPorts: "8081"
     containers:
     - name: gater-perf2
-      image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-sfci-dev/sfci/services/sfdc-bazel/gater/gater-perf:31fd9c8da
+      image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-sfci-dev/sfci/services/sfdc-bazel/gater/gater-perf:88b84d3a5
       env:
         - name: SFDC_ENVIRONMENT
           value: blitz
       args:
-      - --gater.grpc.endpoint=gater-mesh2.gater.localhost.mesh.force.com
-      - --gater.grpc.port=5443
-      - --gater.client-mode=GRPC
+      - --gater.grpc.endpoint=gater-mesh2.gater.svc.mesh.sfdc.net
+      - --gater.grpc.port=7443
+      - --gater.client-mode=THRIFT
       - --endpoints.bindings.names=/s/gater-mesh2,/s/gater-mesh2-metadata
       - --gater.thrift.service.destination=/s/gater-mesh2
       - --gater.thrift.metadata.destination=/s/gater-mesh2-metadata
@@ -20,13 +28,13 @@ system:
       - --management.server.port=15375
       - --server.port=8081
       - --metrics.collectionInterval=60
-      - --gater.grpc.deadline-ms=2
-      - --gater.timeout-in-millis=2
+      - --gater.grpc.deadline-ms=1000
+      - --gater.timeout-in-millis=1000
       - --gater.perf.should-log=false
       - --gater.client.log-opts=NEVER_LOG
+      - --metrics.funnelEndPointURL=http://ajnafunneldirecttls.funnel.svc.mesh.sfdc.net:7442
       ports:
       - containerPort: 8081
-      - containerPort: 15375
       volumeMounts:
       - mountPath: /home/scone/logs
         name: logvolservice
@@ -43,42 +51,6 @@ system:
         requests:
           cpu: "8"
           memory: 8Gi
-    - name: sherpa
-      # latest release:  https://git.soma.salesforce.com/servicelibs/sherpa-envoy/releases
-      image: sfci/servicelibs/sherpa-envoy:1.0.13
-      ports:
-      - name: http2-in
-        containerPort: 7012
-      - name: http2-tls-in
-        containerPort: 7443
-      - name: sherpa-adm
-        containerPort: 15373
-      volumeMounts:
-      - mountPath: /client-certs
-        name: tls-client-cert
-      - mountPath: /server-certs
-        name: tls-server-cert
-      livenessProbe:
-        exec:
-          command:
-          - ./bin/is-alive
-        initialDelaySeconds: 60
-        periodSeconds: 5
-      readinessProbe:
-        exec:
-          command:
-          - ./bin/is-ready
-        initialDelaySeconds: 50
-        periodSeconds: 5
-      terminationMessagePolicy: FallbackToLogsOnError
-      # these resources match what we have in istio
-      resources:
-        limits:
-          cpu: "2"
-          memory: 1Gi
-        requests:
-          cpu: "100m"
-          memory: 128Mi
     volumes:
     - name: logvolservice
       hostPath:
@@ -93,3 +65,11 @@ system:
       type: RollingUpdate
       rollingUpdate:
         maxUnavailable: 1
+  loadbalancers:
+  - lbname: gater-perf2lb
+    function: gater-perf2
+    slbEnabled: true
+    ports:
+    - lbtype: http
+      port: 80
+      targetport: 8081
