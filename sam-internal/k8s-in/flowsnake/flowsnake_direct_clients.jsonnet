@@ -302,7 +302,7 @@ local einstein_discovery_production = {
         # -------------------------------
         # ---------- PHX fleet ----------
         # -------------------------------
-        "phx-flowsnake_prod": [wave_elt_production],
+        "phx-flowsnake_prod": [wave_elt_production, einstein_discovery_production],
 
         # -------------------------------
         # ---------- UKB fleet ----------
