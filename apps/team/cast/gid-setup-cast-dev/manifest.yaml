@@ -205,6 +205,8 @@ system:
           value: cn=Directory Manager
         - name: ldaps_bind_type
           value: SIMPLE
+        - name: metrics_startPublisher
+          value: true
       ports:
         - containerPort: 8081
         - containerPort: 15371
