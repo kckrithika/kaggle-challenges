@@ -186,9 +186,11 @@ apps:
   repcollavailwd-hostnet:
     - ast/ast-sam_report_collector
   expreportcollectorha:
-  exprepcollavailwd:
-  expcname-repcollavailwd:
   exptemp-store:
+  expcname-repcollavailwd:
+  exprepcollavailwd:
+
+  # Estates
   estatesservice-demo:
     - prd/prd-sam_report_collector
   estatesservice-prod:
