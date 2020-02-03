@@ -9,7 +9,7 @@ system:
     count: 1
     containers:
     - name: cre-sp
-      image: sfci/cre-fusion/services:stream-processor.2.1.2.0.master.bad4a4c.23
+      image: sfci/cre-fusion/services:stream-processor.2.2.0.3.master.4bd6e03.30
       env:
         - name: PUBLISHING_TOPIC
           value: sfdc.prod.cre__hnd.ajna_local__cre_outbound
@@ -39,17 +39,17 @@ system:
           value: http://cre-control-plane.retail-cre.localhost.mesh.force.com:5442
         - name: GDOT_ENVIRONMENT
           value: production
+        - name: GDOT_BASE_PATH
+          value: https://cloudatlas.salesforce.com/empire/cloudatlas/scim
         - name: OU_NAME
           value: retail-cre.cre-control-plane
         - name: ENABLE_BATCH_ORPHAN_CHECKS
           value: true
         - name: JVM_ARGS
-          value: "-verbose:gc -XX:+PrintHeapAtGC
-                  -XX:+PrintPromotionFailure -XX:+PrintTenuringDistribution -XX:+PrintGCDetails
-                  -XX:+PrintGCDateStamps -XX:+PrintGCApplicationStoppedTime
-                  -XX:+PrintGCApplicationConcurrentTime -XX:+PrintGCCause -XX:+DisableExplicitGC
+          value: "-verbose:gc
+                  -XX:+PrintGCDetails
+                  -XX:+DisableExplicitGC
                   -Xloggc:/opt/cre/cre-sp/verbosegc_$(FUNCTION_INSTANCE_NAME).log
-                  -XX:+UseGCLogFileRotation -XX:NumberOfGCLogFiles=5 -XX:GCLogFileSize=20M
                   -XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=/opt/cre/cre-sp
                   -Xmx4G -Xms4G -XX:ParallelGCThreads=8"
       ports:
