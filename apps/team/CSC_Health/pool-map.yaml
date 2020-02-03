@@ -99,9 +99,6 @@ apps:
   repcollavailwd-pc:
     - yhu/yhu-sam_report_collector
     - yul/yul-sam_report_collector
-  expobservation-service:
-  observation-service:
-  observation-service-watchdog:
   candidate-service-stagger-1:
     - prd/prd-sam_report_collector
     - xrd/xrd-sam_report_collector
