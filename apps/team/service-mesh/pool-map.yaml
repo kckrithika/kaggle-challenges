@@ -145,6 +145,8 @@ apps:
   sleep-client:
     - prd/prd-sam_gater
 
+  authz-test:
+    - prd/prd-sam_gater
   demo-authz:
     - prd/prd-sam_gater
   demo-authz-opa:
