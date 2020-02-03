@@ -63,6 +63,9 @@
     },
     sloop: {
         sloop: 31938,
+        prd_sam: 31938,
+        prd_samtest: 31939,
+        frf_sam: 31940,
     },
     flowsnake: {
         nginx_ingress_http: 32080,

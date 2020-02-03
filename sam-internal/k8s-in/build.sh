@@ -59,7 +59,7 @@ if [ -f ${JSONNET_EXEC_DIR}/jsonnet ]; then
   fi
 fi
 
-#Check if jsonnet is available, if not get it.
+# Check if jsonnet is available, if not get it.
 if [ ! -f jsonnet/jsonnet ]; then
     echo "Getting jsonnet..."
     git clone git@git.soma.salesforce.com:sam/jsonnet.git

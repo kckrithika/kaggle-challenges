@@ -1,6 +1,7 @@
 local estate = std.extVar("estate");
 local kingdom = std.extVar("kingdom");
 local pools = import "configs/generated-pools.jsonnet";
+local portconfigs = import "portconfig.jsonnet";
 
 # Public functions
 {
@@ -115,4 +116,21 @@ local pools = import "configs/generated-pools.jsonnet";
 
     # This returns a unique set of kingdoms
     get_all_kingdoms():: std.set([pool.kingdom for pool in pools.generatedPools]),
+
+    # TODO: std.mapwithkey(func, obj) +std.strReplace(str, from to) --> Replace all - to _ (underscore)
+    # Map all estates to their ports for sloop
+    # Increment port and target port
+    # Get the estates from the get_all_estates.
+    get_estate_port_mapping(kingdom):: [
+        {
+            estate: "prd-sam",
+            targetport: portconfigs.sloop.prd_sam,
+            port: 80,
+        },
+        {
+            estate: "frf-sam",
+            targetport: portconfigs.sloop.frf_sam,
+            port: 81,
+        },
+    ],
 }

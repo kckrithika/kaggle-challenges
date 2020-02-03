@@ -1,6 +1,23 @@
 local configs = import "config.jsonnet";
 local portconfigs = import "portconfig.jsonnet";
 local samfeatureflags = import "sam-feature-flags.jsonnet";
+local monitoredestates = (import "util_functions.jsonnet").get_estate_port_mapping(configs.kingdom);
+
+local genport(estate, port, targetport) = {
+    name: "sloop-port-" + estate,
+    port: port,
+    protocol: "TCP",
+    targetPort: targetport,
+};
+
+local genportannotation(estate, port, targetport) = {
+    port: port,
+    targetport: targetport,
+    nodeport: 0,
+    lbtype: "",
+    reencrypt: false,
+    sticky: 0,
+};
 
 if samfeatureflags.sloop then {
     kind: "Service",
@@ -12,30 +29,14 @@ if samfeatureflags.sloop then {
             app: "sloop",
         } + configs.ownerLabel.sam,
         annotations: {
-            "slb.sfdc.net/name": "sloop",
+            "slb.sfdc.net/name": "sloop-" + configs.estate,
             "slb.sfdc.net/portconfigurations": std.toString(
-                [
-                    {
-                        port: 80,
-                        targetport: portconfigs.sloop.sloop,
-                        nodeport: 0,
-                        lbtype: "",
-                        reencrypt: false,
-                        sticky: 0,
-                    },
-                ]
-            ),
+                [genportannotation(x.estate, x.port, x.targetport) for x in monitoredestates]
+),
         },
     },
     spec: {
-        ports: [
-            {
-                name: "sloop-port",
-                port: 80,
-                protocol: "TCP",
-                targetPort: portconfigs.sloop.sloop,
-            },
-        ],
+        ports: [genport(x.estate, x.port, x.targetport) for x in monitoredestates],
         selector: {
             app: "sloopds",
         },

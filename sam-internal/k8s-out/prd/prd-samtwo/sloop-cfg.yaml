@@ -1,0 +1,197 @@
+apiVersion: v1
+items:
+- apiVersion: extensions/v1beta1
+  kind: DaemonSet
+  metadata:
+    labels:
+      name: sloopds-prd-sam
+      sam.data.sfdc.net/owner: sam
+    name: sloopds-prd-sam
+  spec:
+    selector:
+      matchLabels:
+        app: sloopds
+        apptype: monitoring
+        daemonset: "true"
+        sam.data.sfdc.net/owner: sam
+    template:
+      metadata:
+        labels:
+          app: sloopds
+          apptype: monitoring
+          daemonset: "true"
+          sam.data.sfdc.net/owner: sam
+        namespace: sam-system
+      spec:
+        containers:
+        - args:
+          - --config=/sloopconfig/sloop.yaml
+          - --port=31938
+          - --context=prd-sam
+          command:
+          - /sloop
+          image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/sjawad/sloop:sjawad-20200127_155000-8b51ce2
+          livenessProbe:
+            failureThreshold: 3
+            httpGet:
+              path: /healthz
+              port: 31938
+            initialDelaySeconds: 1800
+            periodSeconds: 10
+            successThreshold: 1
+            timeoutSeconds: 5
+          name: sloopds
+          ports:
+          - containerPort: 31938
+            protocol: TCP
+          readinessProbe:
+            failureThreshold: 3
+            httpGet:
+              path: /healthz
+              port: 31938
+            periodSeconds: 10
+            successThreshold: 1
+            timeoutSeconds: 5
+          resources:
+            limits:
+              cpu: "1"
+              memory: 12Gi
+            requests:
+              cpu: "1"
+              memory: 12Gi
+          volumeMounts:
+          - mountPath: /data/
+            name: sloop-data
+          - mountPath: /sloopconfig/
+            name: sloopconfig
+        - args:
+          - --config.file
+          - /prometheusconfig/prometheus.json
+          image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cbatra/prometheus:20180124
+          name: prometheus
+          ports:
+          - containerPort: 9090
+            protocol: TCP
+          volumeMounts:
+          - mountPath: /dummy-prometheus/data
+            name: prom-data
+          - mountPath: /prometheusconfig
+            name: sloopconfig
+        hostNetwork: true
+        nodeSelector:
+        - node.sam.sfdc.net/role: samcompute
+        - pool: prd-samtwo
+        serviceAccountName: sloop
+        volumes:
+        - hostPath:
+            path: /data/sloop-data
+          name: sloop-data
+        - hostPath:
+            path: /data/sloop-prom-data
+          name: prom-data
+        - configMap:
+            name: sloop
+          name: sloopconfig
+    updateStrategy:
+      rollingUpdate:
+        maxUnavailable: 25%
+      type: RollingUpdate
+- apiVersion: extensions/v1beta1
+  kind: DaemonSet
+  metadata:
+    labels:
+      name: sloopds-frf-sam
+      sam.data.sfdc.net/owner: sam
+    name: sloopds-frf-sam
+  spec:
+    selector:
+      matchLabels:
+        app: sloopds
+        apptype: monitoring
+        daemonset: "true"
+        sam.data.sfdc.net/owner: sam
+    template:
+      metadata:
+        labels:
+          app: sloopds
+          apptype: monitoring
+          daemonset: "true"
+          sam.data.sfdc.net/owner: sam
+        namespace: sam-system
+      spec:
+        containers:
+        - args:
+          - --config=/sloopconfig/sloop.yaml
+          - --port=31940
+          - --context=frf-sam
+          command:
+          - /sloop
+          image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/sjawad/sloop:sjawad-20200127_155000-8b51ce2
+          livenessProbe:
+            failureThreshold: 3
+            httpGet:
+              path: /healthz
+              port: 31940
+            initialDelaySeconds: 1800
+            periodSeconds: 10
+            successThreshold: 1
+            timeoutSeconds: 5
+          name: sloopds
+          ports:
+          - containerPort: 31940
+            protocol: TCP
+          readinessProbe:
+            failureThreshold: 3
+            httpGet:
+              path: /healthz
+              port: 31940
+            periodSeconds: 10
+            successThreshold: 1
+            timeoutSeconds: 5
+          resources:
+            limits:
+              cpu: "1"
+              memory: 12Gi
+            requests:
+              cpu: "1"
+              memory: 12Gi
+          volumeMounts:
+          - mountPath: /data/
+            name: sloop-data
+          - mountPath: /sloopconfig/
+            name: sloopconfig
+        - args:
+          - --config.file
+          - /prometheusconfig/prometheus.json
+          image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cbatra/prometheus:20180124
+          name: prometheus
+          ports:
+          - containerPort: 9090
+            protocol: TCP
+          volumeMounts:
+          - mountPath: /dummy-prometheus/data
+            name: prom-data
+          - mountPath: /prometheusconfig
+            name: sloopconfig
+        hostNetwork: true
+        nodeSelector:
+        - node.sam.sfdc.net/role: samcompute
+        - pool: prd-samtwo
+        serviceAccountName: sloop
+        volumes:
+        - hostPath:
+            path: /data/sloop-data
+          name: sloop-data
+        - hostPath:
+            path: /data/sloop-prom-data
+          name: prom-data
+        - configMap:
+            name: sloop
+          name: sloopconfig
+    updateStrategy:
+      rollingUpdate:
+        maxUnavailable: 25%
+      type: RollingUpdate
+kind: List
+metadata:
+  namespace: sam-system

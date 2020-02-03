@@ -25,6 +25,7 @@ if samfeatureflags.sloop then configs.daemonSetBase("sam") {
                         args: [
                             "--config=/sloopconfig/sloop.yaml",
                             "--port=" + portconfigs.sloop.sloop,
+                            "--context=" + configs.estate,
                         ],
                         command: [
                             "/sloop",
@@ -117,7 +118,12 @@ if samfeatureflags.sloop then configs.daemonSetBase("sam") {
                     },
                 ],
                 nodeSelector: {
-                    master: "true",
+                    #if configs.estate == "prd-sam" {
+                        master: "true",
+                   # } else {
+                    #    node.sam.sfdc.net/role: "samcompute",
+                   #     pool: "prd-samtwo",
+                   # }
                 },
             },
             metadata: {
