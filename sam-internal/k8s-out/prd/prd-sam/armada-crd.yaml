@@ -3,9 +3,9 @@ kind: CustomResourceDefinition
 metadata:
   annotations:
     manifestctl.sam.data.sfdc.net/swagger: disable
+  creationTimestamp: null
   labels:
     sam.data.sfdc.net/owner: sam
-  name: armadaapplications.armadacrd.salesforce.com
 spec:
   group: armadacrd.salesforce.com
   names:
@@ -13,7 +13,7 @@ spec:
     listKind: ArmadaApplicationList
     plural: armadaapplications
     singular: armadaapplication
-  scope: Namespaced
+  scope: ""
   validation:
     openAPIV3Schema:
       description: ArmadaApp describes a Armada Application
@@ -48,8 +48,6 @@ spec:
                 - value
                 type: object
               type: array
-            name:
-              type: string
             org:
               type: string
             replicas:
@@ -67,11 +65,6 @@ spec:
                   type: string
                 memoryRequest:
                   type: string
-              required:
-              - cpuLimit
-              - cpuRequest
-              - memoryLimit
-              - memoryRequest
               type: object
             teamEmail:
               type: string
@@ -81,13 +74,9 @@ spec:
               type: string
           required:
           - appType
-          - name
           - org
           - repoName
-          - resourceLimits
-          - teamEmail
           - teamName
-          - teamSlackChannel
           type: object
         status:
           description: ArmadaAppStatus is the status of a ArmadaApp resource
@@ -102,6 +91,8 @@ spec:
               type: string
             gusTicketID:
               type: string
+            helmchartURL:
+              type: string
             spinnakerPipelineURL:
               type: string
           required:
@@ -110,6 +101,7 @@ spec:
           - dockerImage
           - githubRepo
           - gusTicketID
+          - helmchartURL
           - spinnakerPipelineURL
           type: object
       required:
