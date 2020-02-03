@@ -1,5 +1,5 @@
 apps:
-# Nagios Adapter
+  # Nagios Adapter
   nagios-adapter-stagger-1:
     - prd/prd-sam_report_collector
     - phx/phx-sam_report_collector
@@ -64,7 +64,7 @@ apps:
     - ia5/ia5-sam_report_collector
   expcandidate-service-watchdog:
 
-# Report Collector
+  # Report Collector
   reportcollector:
     - prd/prd-sdc
     - prd/prd-sam_report_collector
