@@ -8,12 +8,12 @@ system:
     - name: maiev-receiver
       identity:
         serviceName: maiev-receiver
-      count: 9
+      count: 3
       strategy:
         type: RollingUpdate
         rollingUpdate:
           maxSurge: 0
-          maxUnavailable: 3
+          maxUnavailable: 1
       containers:
       - name: prod-maiev-receiver
         image: dva/maiev-receiver:jenkins-CASP-maiev-dt-remove-streams-3-itest
