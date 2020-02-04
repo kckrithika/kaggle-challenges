@@ -14,12 +14,12 @@ system:
       ports:
       - name: liveness
         containerPort: 8088
-      resources:
-        requests: { cpu: "0.5", memory: "200M" }
       volumeMounts:
       - mountPath: /var/lib/report-collector-availability-watchdog/pki
         name: clientcertvol
       env:
+      - name: RC_WD_LIVENESS_PORT
+        value: 8088
       - name: RC_WD_INTERVALMS
         value: 60000
       - name: RC_WD_REPORTCOLLECTOR_PROVIDER_PORT
