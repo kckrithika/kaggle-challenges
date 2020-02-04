@@ -214,3 +214,5 @@ apps:
     - xrd/xrd-sam_report_collector
   estatesservice-prd:
     - prd/prd-sam_report_collector
+  cname-repcollavailwd-hostnet:
+    - ast/ast-sam_report_collector
