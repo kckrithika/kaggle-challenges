@@ -165,7 +165,6 @@ apps:
   authz-svc-prod-1:
     - fra/fra-sam_gater
   authz-svc-prod-2:
-    - cdu/cdu-sam_gater
     - frf/frf-sam_gater
     - lo2/lo2-sam_gater
   authz-svc-prod-3:
@@ -186,12 +185,13 @@ apps:
     - ia2/ia2-sam_gater
     - ia4/ia4-sam_gater
     - ia5/ia5-sam_gater
+  authz-svc-prod-5:
+    - cdu/cdu-sam_gater
   authz-svc-prod-opa-0:
     - prd/prd-sam_gater
   authz-svc-prod-opa-1:
     - fra/fra-sam_gater
   authz-svc-prod-opa-2:
-    - cdu/cdu-sam_gater
     - frf/frf-sam_gater
     - lo2/lo2-sam_gater
   authz-svc-prod-opa-3:
@@ -212,6 +212,8 @@ apps:
     - ia2/ia2-sam_gater
     - ia4/ia4-sam_gater
     - ia5/ia5-sam_gater
+  authz-svc-prod-opa-5:
+    - cdu/cdu-sam_gater
   authz-injector-test:
     - prd/prd-sam_gater
     - prd/prd-samtest
