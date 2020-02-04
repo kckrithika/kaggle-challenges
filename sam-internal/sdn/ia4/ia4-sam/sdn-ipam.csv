@@ -51,6 +51,9 @@ shared0-samminionsme1-2-ia4.ops.sfdc.net,10.180.172.243/29,10.184.10.32/27,u06-0
 shared0-samminionsme2-1-ia4.ops.sfdc.net,10.180.172.226/29,10.184.10.96/27,z25-01,ia4-search_model_executor,4205051210
 shared0-samminionsme2-2-ia4.ops.sfdc.net,10.180.172.227/29,10.184.10.128/27,z25-01,ia4-search_model_executor,4205051210
 shared0-samminionsme3-1-ia4.ops.sfdc.net,10.180.172.234/29,10.184.10.64/27,v15-01,ia4-search_model_executor,4205071228
+shared0-samminionwarden1-1-ia4.ops.sfdc.net,10.180.173.34/29,10.184.16.0/27,u05-01,ia4-sam_warden,4205071209
+shared0-samminionwarden2-1-ia4.ops.sfdc.net,10.180.173.42/29,10.184.16.64/27,y25-01,ia4-sam_warden,4205051209
+shared0-samminionwarden3-1-ia4.ops.sfdc.net,10.180.173.50/29,10.184.16.32/27,x35-01,ia4-sam_warden,4205061228
 shared0-slbminion1-1-ia4.ops.sfdc.net,10.180.156.146/28,10.184.4.192/27,u03-01,ia4-slb,4205071205
 shared0-slbminion1-10-ia4.ops.sfdc.net,10.180.156.130/28,10.184.4.0/27,u02-01,ia4-slb,4205071203
 shared0-slbminion1-2-ia4.ops.sfdc.net,10.180.156.147/28,10.184.4.224/27,u03-01,ia4-slb,4205071205
