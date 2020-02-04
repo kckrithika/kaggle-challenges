@@ -1,0 +1,70 @@
+# This app runs with istio-proxy getting configs from Istio Pilot. Note the annotation "sidecar.istio.io/inject".
+# Ordering (istio-proxy) -> Shipping (istio-proxy).
+
+apiVersion: v1
+
+system:
+  functions:
+  - name: istio-ordering-tcp
+    count: 1
+    labels:
+      app: istio-ordering-tcp
+      settings_path: istio.-.prd.-.istio-ordering-tcp
+      istio_app: test
+      chaos.sfdc.net/podDelete: true
+      chaos.sfdc.net/podDeletePeriod: 4h
+    annotations:
+      sidecar.istio.io/inject: "true"
+    containers:
+    - name: ordering
+      # Ordering App
+      #    https://git.soma.salesforce.com/services/sfdc-bazel/tree/master/projects/services/ordering/ordering-scone
+      # Ordering Config
+      #    https://git.soma.salesforce.com/services/sfdc-bazel/blob/master/projects/services/ordering/ordering-scone/src/main/resources/config/application.properties
+      # Image build:
+      # https://sfcirelease.dop.sfdc.net/job/services/job/sfdc-bazel_projects_services_examples_ordering/job/sfdc-bazel/job/master/92
+      image: sfci/services/sfdc-bazel/scone/ordering:7572acf02
+      env:
+      - name: SFDC_ENVIRONMENT
+        value: istio
+      - name: SCONE_SHIPPING_DEST
+        value: istio-shipping-tcp.service-mesh.${mesh.proxydomain}:4123
+      - name: GRPC_PORT
+        value: 7443
+      - name: JAVA_OPTS
+        value: "-Dtracing.report=true -Dtracing.sampleRate=1 -Dmesh.istio-mode=true -Dscone.service.name=istio-ordering-tcp -Dshipping.interval=5000 -Dmanagement.server.port=15372"
+      - name: JAVA_HEAP_OPTS
+        value: -Xmx64m
+      ports:
+      - containerPort: 7443
+        name: grpc-svc
+      - containerPort: 15372
+        name: scone-mgmt
+      livenessProbe:
+        initialDelaySeconds: 120
+        httpGet:
+          path: /manage/health
+          port: 15372
+
+    # Volumes used by auto-injected istio-proxy.
+    volumes:
+    - name: tls-client-cert
+      maddogCert:
+        type: client
+    - name: tls-server-cert
+      maddogCert:
+        type: server
+
+  loadbalancers:
+    - lbname: istio-ordering-tcp
+      function: istio-ordering-tcp
+      annotations:
+        routing.mesh.sfdc.net/enabled: "true"
+      labels:
+        app: istio-ordering-tcp
+        settings_path: istio.-.prd.-.istio-ordering-tcp
+      ports:
+        - lbtype: dsr
+          port: 7443
+          targetport: 7443
+          name: grpc-ordering
