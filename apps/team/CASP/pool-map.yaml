@@ -26,8 +26,8 @@ apps:
   - ord/ord-sam_warden
  prod-mysql-shard-a-drop-2-1:
   - frf/frf-sam_warden
-  - par/par-sam_warden
  prod-mysql-shard-a-fast:
+  - par/par-sam_warden
   - cdg/cdg-sam_warden
   - fra/fra-sam_warden
   - cdu/cdu-sam_warden
@@ -39,6 +39,7 @@ apps:
   - lo2/lo2-sam_warden
   - lo3/lo3-sam_warden
  prod-cantor-grpc-server:
+  - par/par-sam_warden
   - iad/iad-sam_warden
   - ukb/ukb-sam_warden
   - phx/phx-sam_warden
@@ -53,7 +54,6 @@ apps:
   - ord/ord-sam_warden
  prod-cantor-grpc-server-drop-2-1:
   - frf/frf-sam_warden
-  -  par/par-sam_warden
  prod-cantor-grpc-server-alternate:
   - cdu/cdu-sam_warden
   - syd/syd-sam_warden
