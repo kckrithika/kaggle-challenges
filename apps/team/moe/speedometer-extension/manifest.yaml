@@ -11,7 +11,7 @@ system:
       args:
       - "-gheTokenPath=/secrets/ghe_pat"
       - "-log_dir=/host/data/speedometer/logs"
-      - "-argusPasswordPath=/secrets/password.txt"
+      - "-argusPasswordPath=/arguspw/password.txt"
       - "-imageRepoMap=policy-manager-v2:Infrastructure-Security/infrasec-secrets/master,vaultconfig-api:Infrastructure-Security/infrasec-secrets/master,vault-init:Infrastructure-Security/infrasec-secrets/master,vault-watchdog:Infrastructure-Security/infrasec-secrets/master,vault:Infrastructure-Security/infrasec-secrets/master"
       ports:
       - containerPort: 8080
@@ -30,7 +30,7 @@ system:
       - mountPath: /secrets
         name: speedometer-ghe-pat
         readOnly: true
-      - mountPath: /secrets
+      - mountPath: /arguspw
         name: tok-secrets
         readOnly: true
     volumes:
