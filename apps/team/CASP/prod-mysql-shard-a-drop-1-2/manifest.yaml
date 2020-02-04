@@ -6,7 +6,7 @@ system:
         - warden@salesforce.com
     functions:
     - name: mysql-func-shard-a
-      count: 2
+      count: 3
       strategy:
         type: RollingUpdate
         rollingUpdate:
@@ -14,7 +14,7 @@ system:
           maxUnavailable: 1
       containers:
       - name: prod-mysql-shard-a-drop-1-2
-        image: dva/casp/mysql_strata:55
+        image: dva/casp/mysql_strata:53
         ports:
         - name: mysql-shard-a
           containerPort: 3306
@@ -35,8 +35,6 @@ system:
           valueFrom:
             fieldRef:
               fieldPath: spec.nodeName
-        - name: MYSQL_SHARDS
-          value: "shared0-samminionwarden1-1-$KINGDOM.ops.sfdc.net:7015,shared0-samminionwarden2-1-$KINGDOM.ops.sfdc.net:7015"
       volumes:
       - name: mysql-data-vol
         hostPath:
