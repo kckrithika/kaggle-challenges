@@ -110,6 +110,8 @@ apps:
       - prd/prd-sam_gater
   istio-shipping-tcp:
     - prd/prd-sam_gater
+  istio-shipping-redis:
+    - prd/prd-sam_gater
 
   # Mixed Mode: Sherpa -> Istio apps
   istio-ordering-mixed-sherpa-to-istio:

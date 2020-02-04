@@ -5,7 +5,7 @@ apiVersion: v1
 
 system:
   functions:
-  - name: istio-shipping-tcp
+  - name: istio-shipping-redis
     count: 1
     labels:
       istio_app: test
@@ -27,15 +27,14 @@ system:
       - name: SFDC_ENVIRONMENT
         value: istio
       - name: GRPC_PORT
-        # random port from the range 1024-5000 (TCP services ports range)
-        value: 4123 
+        value: 4234 
       - name: JAVA_OPTS
-        value: "-Dtracing.report=true -Dtracing.sampleRate=1 -Dmesh.istio-mode=true -Dscone.service.name=istio-shipping-tcp -Dmanagement.server.port=15372"
+        value: "-Dtracing.report=true -Dtracing.sampleRate=1 -Dmesh.istio-mode=true -Dscone.service.name=istio-shipping-redis -Dmanagement.server.port=15372"
       - name: JAVA_HEAP_OPTS
         value: -Xmx64m
       ports:
-      - containerPort: 4123
-        name: tcp-svc
+      - containerPort: 4234
+        name: redis-svc
       - containerPort: 15372
         name: scone-mgmt
       livenessProbe:
@@ -58,14 +57,14 @@ system:
       maddogCert:
         type: server
         lbnames:
-          - istio-shipping-tcp
+          - istio-shipping-redis
 
   loadbalancers:
-    - lbname: istio-shipping-tcp
-      function: istio-shipping-tcp
+    - lbname: istio-shipping-redis
+      function: istio-shipping-redis
       ports:
         - lbtype: dsr
           nodeExposed: false
-          port: 4123
-          targetport: 4123
-          name: tcp-shipp
+          port: 4234
+          targetport: 4234
+          name: redis-shippr
