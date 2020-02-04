@@ -13,7 +13,7 @@ spec:
     listKind: ArmadaApplicationList
     plural: armadaapplications
     singular: armadaapplication
-  scope: ""
+  scope: Namespaced
   validation:
     openAPIV3Schema:
       description: ArmadaApp describes a Armada Application
@@ -91,9 +91,13 @@ spec:
               type: string
             gusTicketID:
               type: string
+            gusTicketURL:
+              type: string
             helmchartURL:
               type: string
             spinnakerPipelineURL:
+              type: string
+            vipURL:
               type: string
           required:
           - ciURL
@@ -101,8 +105,10 @@ spec:
           - dockerImage
           - githubRepo
           - gusTicketID
+          - gusTicketURL
           - helmchartURL
           - spinnakerPipelineURL
+          - vipURL
           type: object
       required:
       - spec

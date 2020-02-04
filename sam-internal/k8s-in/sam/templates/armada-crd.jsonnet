@@ -19,7 +19,7 @@ if configs.estate == "prd-sam" then {
       plural: "armadaapplications",
       singular: "armadaapplication",
     },
-    scope: "",
+    scope: "Namespaced",
     validation: {
       openAPIV3Schema: {
         description: "ArmadaApp describes a Armada Application",
@@ -123,10 +123,16 @@ if configs.estate == "prd-sam" then {
               gusTicketID: {
                 type: "string",
               },
+              gusTicketURL: {
+                type: "string",
+              },
               helmchartURL: {
                 type: "string",
               },
               spinnakerPipelineURL: {
+                type: "string",
+              },
+              vipURL: {
                 type: "string",
               },
             },
@@ -136,8 +142,10 @@ if configs.estate == "prd-sam" then {
               "dockerImage",
               "githubRepo",
               "gusTicketID",
+              "gusTicketURL",
               "helmchartURL",
               "spinnakerPipelineURL",
+              "vipURL",
             ],
             type: "object",
           },
@@ -165,4 +173,5 @@ if configs.estate == "prd-sam" then {
     conditions: [],
     storedVersions: [],
   },
-} else "SKIP"
+}
+ else "SKIP"

@@ -31,6 +31,7 @@ spec:
         - --secrets.keyFile=/etc/pki_service/platform/platform-client/keys/platform-client-key.pem
         - --secrets.caFile=/etc/pki_service/ca/cabundle.pem
         - --secrets.ssEndpoint=secretservice.dmz.salesforce.com
+        - --spinnakerAppPath=armadabox/msftteamint
         env:
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig-platform
@@ -59,7 +60,7 @@ spec:
             secretKeyRef:
               key: key.txt
               name: gus-cred
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/armada/armada:54
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/armada/armada:55
         name: armada-controller
         volumeMounts:
         - mountPath: /etc/pki_service
