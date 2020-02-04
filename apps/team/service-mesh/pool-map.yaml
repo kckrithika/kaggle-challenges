@@ -97,6 +97,9 @@ apps:
     - prd/prd-sam_gater
   istio-ordering-sts:
       - prd/prd-sam_gater  
+  istio-ordering-tcp:
+    - prd/prd-sam_gater  
+  
   istio-shipping:
     - prd/prd-sam_gater
     - prd/prd-samtest
@@ -105,6 +108,8 @@ apps:
     - lo3/lo3-sam_gater    
   istio-shipping-sts:
       - prd/prd-sam_gater
+  istio-shipping-tcp:
+    - prd/prd-sam_gater
 
   # Mixed Mode: Sherpa -> Istio apps
   istio-ordering-mixed-sherpa-to-istio:
