@@ -67,4 +67,4 @@ system:
           nodeExposed: false
           port: 4123
           targetport: 4123
-          name: tcp-sh4123
+          name: tcp-shipping
