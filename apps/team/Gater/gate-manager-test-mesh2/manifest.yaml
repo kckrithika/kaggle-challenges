@@ -114,3 +114,17 @@ system:
       type: RollingUpdate
       rollingUpdate:
         maxUnavailable: 1
+
+  loadbalancers:
+  - lbname: gater-mesh2
+    function: gater-mesh2
+    annotations:
+      routing.mesh.sfdc.net/enabled: "true"
+    labels:
+      app: gater-mesh2
+      settings_path: blitz.-.prd.-.gater-mesh2
+    ports:
+      - lbtype: dsr
+        port: 7443
+        targetport: 7443
+        name: grpc-gater
