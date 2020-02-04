@@ -20,7 +20,7 @@ system:
       args:
       - --gater.grpc.endpoint=gater-mesh2.gater.svc.mesh.sfdc.net
       - --gater.grpc.port=7443
-      - --gater.client-mode=THRIFT
+      - --gater.client-mode=GRPC
       - --endpoints.bindings.names=/s/gater-mesh2,/s/gater-mesh2-metadata
       - --gater.thrift.service.destination=/s/gater-mesh2
       - --gater.thrift.metadata.destination=/s/gater-mesh2-metadata
