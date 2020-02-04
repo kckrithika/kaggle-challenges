@@ -6,10 +6,10 @@ system:
       - cre@salesforce.com
   functions:
     - name: cre-control-plane
-      count: 3
+      count: 0
       containers:
         - name: cre-control-plane
-          image: sfci/cre-fusion/services:controlplane.2.1.2.0.master.bad4a4c.23
+          image: sfci/cre-fusion/services:controlplane.2.2.0.2.master.1be2353.29
           env:
             - name: K8S_API_ENDPOINT
               value: https://kubernetes-api-flowsnake-ord.slb.sfdc.net
@@ -17,11 +17,11 @@ system:
             ############################   ENGINE/DDS FLOWSNAKE ARTIFACTS ( Most frequently changed ) ##########
             ####################################################################################################
             - name: INGEST_SPEC_IMAGE
-              value: ops0-artifactrepo1-0-ord.data.sfdc.net/sfci/cre/cre-engine:2.1.0.7.master.0b1f4d4.45
+              value: ops0-artifactrepo1-0-ord.data.sfdc.net/sfci/cre/cre-engine:2.2.0.1.release-2.2.f123933.14
             - name: EXPORT_SPEC_IMAGE
-              value: ops0-artifactrepo1-0-ord.data.sfdc.net/sfci/cre/cre-dds-spark:2.1.6.0.master.0831239.24
+              value: ops0-artifactrepo1-0-ord.data.sfdc.net/sfci/cre/cre-dds-spark:2.2.0.0.master.22d73c1.28
             - name: SAVE_SPEC_IMAGE
-              value: ops0-artifactrepo1-0-ord.data.sfdc.net/sfci/cre/cre-dds-spark:2.1.6.0.master.0831239.24
+              value: ops0-artifactrepo1-0-ord.data.sfdc.net/sfci/cre/cre-dds-spark:2.2.0.0.master.22d73c1.28
             ####################################################################################################
             ####################################### GLOBAL SHARED VALUES #######################################
             ####################################################################################################
@@ -29,6 +29,7 @@ system:
               value: http://cre-control-plane.retail-cre.localhost.mesh.force.com:5442
             - name: SFDC_ENVIRONMENT
               value: prod
+            ## KAFKA
             - name: METRICS_KAFKA_ENABLED
               value: true
             - name: METRICS_KAFKA_TOPIC
@@ -40,6 +41,8 @@ system:
               value: prod
             - name: HBASE_DATACENTER
               value: ord
+            - name: HBASE_CLIENT_PAUSE
+              value: 10000
             ####################################################################################################
             ####################################### INGEST environment variables ###############################
             ####################################################################################################
@@ -53,6 +56,12 @@ system:
               value: 10
             - name: BUCKET_INGEST_LARGE_CONCURRENCY_CONTROL
               value: 5
+            - name: METRICS_FUNNEL_ENABLED
+              value: true
+            - name: METRICS_FUNNEL_INTERVAL
+              value: 10
+            - name: METRICS_FUNNEL_URL
+              value: http://ajna0-funnel1-0-ord.data.sfdc.net
             ####################################################################################################
             ####################################### SAVE environment variables ###############################
             ####################################################################################################
@@ -79,13 +88,17 @@ system:
             - name: EXPORT_ANNOTATIONS_PKI_NAME
               value: cre-engine
             - name: EXPORT_K4A_VAULT
-              value: c360-dvd-rw-dev-na-1 # 2.1.4 PATCH, dvd export job uses separate dvd vault
+              value: c360-dvd-rw-prod-na-1 # 2.1.4 PATCH, dvd export job uses separate dvd vault
             - name: CRE_DDS_FAT_JSON_SCALE_FACTOR # 2.1.6 PATCH excessive files on export in IAD/ORD
               value: 500
             - name: CRE_DDS_SKINNY_JSON_SCALE_FACTOR # 2.1.6 PATCH excessive files on export in IAD/ORD
               value: 500
             - name: CRE_DDS_SKINNY_CSV_SCALE_FACTOR # 2.1.6 PATCH excessive files on export in IAD/ORD
               value: 500
+            - name: EXPORT_EXECUTOR_MEMORY
+              value: 36g
+            - name: EXPORT_EXECUTOR_MEMORY_OVERHEAD
+              value: 4g
             ####################################################################################################
             ##################################### APP Config environment variables #############################
             ####################################################################################################
@@ -100,7 +113,7 @@ system:
             - name: DATABASE_NAMESPACE
               value: crecontrolplane
             - name: SPRING_DATASOURCE_URL
-              value: jdbc:discover://dbaas0-minionapp1-1-ord.ops.sfdc.net:1511,dbaas0-minionapp2-1-ord.ops.sfdc.net:1511,dbaas0-minionapp3-1-ord.ops.sfdc.net:1511/${database.namespace}?${database.discovery.params}
+              value: jdbc:discover:${database.namespace}
               ## Stream Processor
             - name: STREAM_PROCESSING_ENDPOINT
               value: cre-sp.retail-cre.localhost.mesh.force.com:5442
@@ -112,6 +125,8 @@ system:
               value: false
             - name: GDOT_PROVISIONING_USER_NAME
               value: creprodprovisioner
+            - name: GDOT_BASE_PATH
+              value: https://cloudatlas.salesforce.com/empire/cloudatlas/scim
             - name: CRE_API_ENDPOINT
               value: cre-api.retail-cre.localhost.mesh.force.com:5442
             ####################################################################################################
@@ -119,12 +134,10 @@ system:
             ####################################################################################################
             - name: JVM_ARGS
               value: "-Djava.util.concurrent.ForkJoinPool.common.parallelism=8
-                  -verbose:gc -XX:+PrintHeapAtGC
-                  -XX:+PrintPromotionFailure -XX:+PrintTenuringDistribution -XX:+PrintGCDetails
-                  -XX:+PrintGCDateStamps -XX:+PrintGCApplicationStoppedTime
-                  -XX:+PrintGCApplicationConcurrentTime -XX:+PrintGCCause -XX:+DisableExplicitGC
+                  -verbose:gc
+                  -XX:+PrintGCDetails
+                  -XX:+DisableExplicitGC
                   -Xloggc:/opt/cre/cre-control-plane/verbosegc_$(FUNCTION_INSTANCE_NAME).log
-                  -XX:+UseGCLogFileRotation -XX:NumberOfGCLogFiles=5 -XX:GCLogFileSize=20M
                   -XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=/opt/cre/cre-control-plane
                   -Xmx4G -Xms4G -XX:ParallelGCThreads=8"
           resources:
