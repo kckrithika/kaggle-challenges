@@ -36,6 +36,7 @@ system:
       - {name: TESTRECIPE_MAESTROPINGTEST, value: 'true'}
       - {name: DEPLOYMENT_ID, value: prd-release}
       - {name: SFDC_ENVIRONMENT, value: stm}
+      - {name: TESTINTERACTIVE_ENABLED, value: 'true'}
       - {name: GRPC_HOST, value: jobcontroller-release.wave-elt.localhost.mesh.force.com}
       - {name: GRPC_PORT, value: '5443'}
       - {name: HANDLED_PODS_PATTERN, value: stmfa\..*|moana-driver-master}
@@ -84,6 +85,7 @@ system:
   - containers:
     - env:
       - {name: INTERACTIVE_SESSION_PROXY, value: 'true'}
+      - {name: READYPOOL_SIZE, value: '3'}
       - {name: MANAGEMENT_SERVER_PORT, value: '15372'}
       - {name: LOGGING_JSON_STDOUT_LEVEL, value: ALL}
       - {name: LOGGING_STDERR_LEVEL, value: ALL}
