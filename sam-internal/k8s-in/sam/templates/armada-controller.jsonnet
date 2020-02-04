@@ -11,7 +11,7 @@ if configs.estate == "prd-sam" then {
                 containers: [
                     configs.containerWithKubeConfigAndMadDog {
                         name: "armada-controller",
-                        image: "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/armada/armada:54",
+                        image: "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/armada/armada:55",
                         command: configs.filter_empty([
                             "./armadasvc",
                             "--armadaTemplatesGitOrgName=armada",
@@ -24,6 +24,7 @@ if configs.estate == "prd-sam" then {
                             "--secrets.keyFile=" + configs.keyFile,
                             "--secrets.caFile=" + configs.caFile,
                             "--secrets.ssEndpoint=secretservice.dmz.salesforce.com",
+                            "--spinnakerAppPath=armadabox/msftteamint",
                         ]),
                         volumeMounts+: configs.filter_empty([
                             configs.cert_volume_mount,
