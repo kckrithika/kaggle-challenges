@@ -96,9 +96,11 @@ local utils = import "util_functions.jsonnet";
         # prd-data: Exceptions vs. the rest of phase 2 only
         "2-prd-data": self["2"] {
             image_tags+: {
+                integration_test_tag: "42",
             },
             feature_flags+: {
                 # Note: the *value* of the flags is ignored. jsonnet lacks array search, so we use a an object.
+                next_analysis_script: "INTO THE FUTURE!",
             },
             # prd-data offers legacy version mappings. Phase 2 does not, so cannot inherit from there.
             # Start with iad-ord (which also have legacy version mappings),
