@@ -16,7 +16,7 @@ system:
       - >- #Multiline argument
         --z9s.whitelisted.services=
         casam:green,blue;
-        service-mesh:ajnafunneldirect;
+        service-mesh:ajnafunneldirect,secanchor;
         funnel:ajnafunneldirecttls,zipkindirecttls
 
       #Used to trigger redeploy
@@ -76,4 +76,3 @@ system:
         port: 7443
         targetport: 7443
         name: grpc-das
-
