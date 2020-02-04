@@ -24,7 +24,7 @@ if configs.estate == "prd-sam" then {
                             "--secrets.keyFile=" + configs.keyFile,
                             "--secrets.caFile=" + configs.caFile,
                             "--secrets.ssEndpoint=secretservice.dmz.salesforce.com",
-                            "--spinnakerAppPath=armadabox/msftteamint",
+                            "--sfcd.spinnakerAppPath=armadabox/msftteamint",
                         ]),
                         volumeMounts+: configs.filter_empty([
                             configs.cert_volume_mount,
