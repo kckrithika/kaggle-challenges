@@ -13,6 +13,7 @@ system:
       chaos.sfdc.net/podDeletePeriod: 4h
     annotations:
       sidecar.istio.io/inject: "true"
+      traffic.sidecar.istio.io/excludeInboundPorts: "15372"
     containers:
     - name: shipping
       # Shipping App
