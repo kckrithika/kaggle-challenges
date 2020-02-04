@@ -63,6 +63,7 @@ local utils = import "util_functions.jsonnet";
                 # --- flag B (these comments ... ---
                 # --- flag C (and place only ... ---
                 # --- flag D (one flag between ... ---
+                hbase_wd_no_email: "TRUE",
                 # --- flag E (each pair. ... ---
                 # --- flag F (Their only purpose ... ---
                 # --- flag G (is to assist ... ---
