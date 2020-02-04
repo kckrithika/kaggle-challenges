@@ -33,8 +33,8 @@ system:
       - name: JAVA_HEAP_OPTS
         value: -Xmx64m
       ports:
-      - containerPort: 4123
-        name: tcp-svc
+      - containerPort: 4234
+        name: redis-svc
       - containerPort: 15372
         name: scone-mgmt
       livenessProbe:
