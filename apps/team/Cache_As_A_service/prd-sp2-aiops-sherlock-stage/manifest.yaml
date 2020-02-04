@@ -8,7 +8,7 @@ system:
       - hmittal@salesforce.com
   functions:
   - name: sherlock-stage
-    count: 1
+    count: 2
     strategy:
       type: Recreate
     containers:
@@ -17,6 +17,7 @@ system:
       ports:
       - name: flower-http
         containerPort: 5555
+        hostPort: 5555
       - name: sherlock-http
         containerPort: 5000
       env:
