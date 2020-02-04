@@ -1,0 +1,69 @@
+# This app runs with istio-proxy getting configs from Istio Pilot. Note the annotation "sidecar.istio.io/inject".
+# Ordering (istio-proxy) -> Shipping (istio-proxy).
+
+apiVersion: v1
+
+system:
+  functions:
+  - name: istio-shipping-redis
+    count: 1
+    labels:
+      istio_app: test
+      chaos.sfdc.net/podDelete: true
+      chaos.sfdc.net/podDeletePeriod: 4h
+    annotations:
+      sidecar.istio.io/inject: "true"
+    containers:
+    - name: shipping
+      # Shipping App
+      #   https://git.soma.salesforce.com/services/sfdc-bazel/tree/master/projects/services/shipping/shipping-scone
+      # Shipping Config
+      #   https://git.soma.salesforce.com/services/sfdc-bazel/blob/master/projects/services/shipping/shipping-scone/src/main/resources/config/application.properties
+      # Image build:
+      # https://sfcirelease.dop.sfdc.net/job/services/job/sfdc-bazel_projects_services_examples_shipping/job/sfdc-bazel/job/master/91
+      image: sfci/services/sfdc-bazel/scone/shipping:7572acf02
+      env:
+      - name: SFDC_ENVIRONMENT
+        value: istio
+      - name: GRPC_PORT
+        value: 4234 
+      - name: JAVA_OPTS
+        value: "-Dtracing.report=true -Dtracing.sampleRate=1 -Dmesh.istio-mode=true -Dscone.service.name=istio-shipping-redis -Dmanagement.server.port=15372"
+      - name: JAVA_HEAP_OPTS
+        value: -Xmx64m
+      ports:
+      - containerPort: 4123
+        name: tcp-svc
+      - containerPort: 15372
+        name: scone-mgmt
+      livenessProbe:
+        initialDelaySeconds: 15
+        httpGet:
+          path: /manage/health
+          port: 15372
+      volumeMounts:
+        - mountPath: /client-certs
+          name: tls-client-cert
+        - mountPath: /server-certs
+          name: tls-server-cert
+
+    # Volumes used by auto-injected istio-proxy.
+    volumes:
+    - name: tls-client-cert
+      maddogCert:
+        type: client
+    - name: tls-server-cert
+      maddogCert:
+        type: server
+        lbnames:
+          - istio-shipping-redis
+
+  loadbalancers:
+    - lbname: istio-shipping-redis
+      function: istio-shipping-redis
+      ports:
+        - lbtype: dsr
+          nodeExposed: false
+          port: 4234
+          targetport: 4234
+          name: redis-shippr
