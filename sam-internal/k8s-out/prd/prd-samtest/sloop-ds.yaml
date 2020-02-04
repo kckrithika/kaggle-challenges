@@ -10,14 +10,14 @@ items:
   spec:
     selector:
       matchLabels:
-        app: sloopds
+        app: sloopds-prd-sam
         apptype: monitoring
         daemonset: "true"
         sam.data.sfdc.net/owner: sam
     template:
       metadata:
         labels:
-          app: sloopds
+          app: sloopds-prd-sam
           apptype: monitoring
           daemonset: "true"
           sam.data.sfdc.net/owner: sam
@@ -27,10 +27,11 @@ items:
         - args:
           - --config=/sloopconfig/sloop.yaml
           - --port=31938
-          - --context=prd-sam
+          - --display-context=prd-sam
+          - --apiserver-host=http://pseudo-kubeapi.csc-sam.prd-sam.prd.slb.sfdc.net:40001/prd-sam/
           command:
           - /sloop
-          image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/sjawad/sloop:sjawad-20200127_155000-8b51ce2
+          image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/sjawad/sloop:sjawad-20200204_102504-bbd2691
           livenessProbe:
             failureThreshold: 3
             httpGet:
@@ -77,17 +78,16 @@ items:
             name: prom-data
           - mountPath: /prometheusconfig
             name: sloopconfig
-        hostNetwork: true
         nodeSelector:
-        - node.sam.sfdc.net/role: samcompute
-        - pool: prd-samtwo
+          node.sam.sfdc.net/role: samcompute
+          pool: prd-samtwo
         serviceAccountName: sloop
         volumes:
         - hostPath:
-            path: /data/sloop-data
+            path: /data/sloop-data/prd-sam
           name: sloop-data
         - hostPath:
-            path: /data/sloop-prom-data
+            path: /data/sloop-prom-data/prd-sam
           name: prom-data
         - configMap:
             name: sloop
@@ -106,14 +106,14 @@ items:
   spec:
     selector:
       matchLabels:
-        app: sloopds
+        app: sloopds-frf-sam
         apptype: monitoring
         daemonset: "true"
         sam.data.sfdc.net/owner: sam
     template:
       metadata:
         labels:
-          app: sloopds
+          app: sloopds-frf-sam
           apptype: monitoring
           daemonset: "true"
           sam.data.sfdc.net/owner: sam
@@ -122,29 +122,30 @@ items:
         containers:
         - args:
           - --config=/sloopconfig/sloop.yaml
-          - --port=31940
-          - --context=frf-sam
+          - --port=31938
+          - --display-context=frf-sam
+          - --apiserver-host=http://pseudo-kubeapi.csc-sam.prd-sam.prd.slb.sfdc.net:40001/frf-sam/
           command:
           - /sloop
-          image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/sjawad/sloop:sjawad-20200127_155000-8b51ce2
+          image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/sjawad/sloop:sjawad-20200204_102504-bbd2691
           livenessProbe:
             failureThreshold: 3
             httpGet:
               path: /healthz
-              port: 31940
+              port: 31938
             initialDelaySeconds: 1800
             periodSeconds: 10
             successThreshold: 1
             timeoutSeconds: 5
           name: sloopds
           ports:
-          - containerPort: 31940
+          - containerPort: 31938
             protocol: TCP
           readinessProbe:
             failureThreshold: 3
             httpGet:
               path: /healthz
-              port: 31940
+              port: 31938
             periodSeconds: 10
             successThreshold: 1
             timeoutSeconds: 5
@@ -173,17 +174,16 @@ items:
             name: prom-data
           - mountPath: /prometheusconfig
             name: sloopconfig
-        hostNetwork: true
         nodeSelector:
-        - node.sam.sfdc.net/role: samcompute
-        - pool: prd-samtwo
+          node.sam.sfdc.net/role: samcompute
+          pool: prd-samtwo
         serviceAccountName: sloop
         volumes:
         - hostPath:
-            path: /data/sloop-data
+            path: /data/sloop-data/frf-sam
           name: sloop-data
         - hostPath:
-            path: /data/sloop-prom-data
+            path: /data/sloop-prom-data/frf-sam
           name: prom-data
         - configMap:
             name: sloop

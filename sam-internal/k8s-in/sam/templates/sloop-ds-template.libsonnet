@@ -1,12 +1,12 @@
 {
     local configs = import "config.jsonnet",
     local samimages = (import "samimages.jsonnet") + { templateFilename:: std.thisFile },
+    local portconfigs = import "portconfig.jsonnet",
 
-    templ(estate, port):: configs.daemonSetBase("sam") {
+    template(estate):: configs.daemonSetBase("sam") {
         spec+: {
             template: {
                 spec: {
-                    hostNetwork: true,
                     serviceAccountName: "sloop",
                     containers: [
                         {
@@ -23,8 +23,9 @@
                             },
                             args: [
                                 "--config=/sloopconfig/sloop.yaml",
-                                "--port=" + port,
-                                "--context=" + estate,
+                                "--port=" + portconfigs.sloop.sloop,
+                                "--display-context=" + estate,
+                                "--apiserver-host=http://pseudo-kubeapi.csc-sam.prd-sam.prd.slb.sfdc.net:40001/" + estate + "/",
                             ],
                             command: [
                                 "/sloop",
@@ -32,7 +33,7 @@
                             livenessProbe: {
                                     httpGet: {
                                         path: "/healthz",
-                                        port: port,
+                                        port: portconfigs.sloop.sloop,
                                     },
                                     initialDelaySeconds: 1800,
                                     timeoutSeconds: 5,
@@ -43,14 +44,14 @@
                             readinessProbe: {
                                     httpGet: {
                                         path: "/healthz",
-                                        port: port,
+                                        port: portconfigs.sloop.sloop,
                                     },
                                     timeoutSeconds: 5,
                                     periodSeconds: 10,
                                     successThreshold: 1,
                                     failureThreshold: 3,
                                 },
-                            image: "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/sjawad/sloop:sjawad-20200127_155000-8b51ce2",
+                            image: "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/sjawad/sloop:sjawad-20200204_102504-bbd2691",
                             volumeMounts: [
                                 {
                                     name: "sloop-data",
@@ -63,7 +64,7 @@
                             ],
                             ports: [
                                 {
-                                    containerPort: port,
+                                    containerPort: portconfigs.sloop.sloop,
                                     protocol: "TCP",
                                 },
                             ],
@@ -99,13 +100,13 @@
                     volumes+: [
                         {
                             hostPath: {
-                                path: "/data/sloop-data",
+                                path: "/data/sloop-data/" + estate,
                             },
                             name: "sloop-data",
                         },
                         {
                             hostPath: {
-                                path: "/data/sloop-prom-data",
+                                path: "/data/sloop-prom-data/" + estate,
                             },
                             name: "prom-data",
                         },
@@ -119,14 +120,14 @@
                     nodeSelector:
                         (
                             if configs.estate == "prd-sam" then
-                                [{ master: "true" }]
+                                { master: "true" }
                             else
-                                [{ "node.sam.sfdc.net/role": "samcompute" }, { pool: "prd-samtwo" }]
+                                { "node.sam.sfdc.net/role": "samcompute", pool: "prd-samtwo" }
                         ),
                 },
                 metadata: {
                     labels: {
-                        app: "sloopds",
+                        app: "sloopds-" + estate,
                         apptype: "monitoring",
                         daemonset: "true",
                     } + configs.ownerLabel.sam,

@@ -1,6 +1,7 @@
+local makeds = (import "templates/sloop-ds-template.libsonnet").template;
 local configs = import "config.jsonnet";
+local portconfigs = import "portconfig.jsonnet";
 local samfeatureflags = import "sam-feature-flags.jsonnet";
-local makesvc = (import "templates/sloop-svc-template.libsonnet").template;
 local monitoredestates = (import "util_functions.jsonnet").get_sloop_estates(configs.estate);
 
 if samfeatureflags.sloop then {
@@ -9,5 +10,5 @@ if samfeatureflags.sloop then {
   metadata: {
       namespace: "sam-system",
   },
-  items: [makesvc(x) for x in monitoredestates],
+  items: [makeds(x) for x in monitoredestates],
 } else "SKIP"
