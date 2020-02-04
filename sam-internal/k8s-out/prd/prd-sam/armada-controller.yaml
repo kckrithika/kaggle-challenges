@@ -31,7 +31,7 @@ spec:
         - --secrets.keyFile=/etc/pki_service/platform/platform-client/keys/platform-client-key.pem
         - --secrets.caFile=/etc/pki_service/ca/cabundle.pem
         - --secrets.ssEndpoint=secretservice.dmz.salesforce.com
-        - --spinnakerAppPath=armadabox/msftteamint
+        - --sfcd.spinnakerAppPath=armadabox/msftteamint
         env:
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig-platform
