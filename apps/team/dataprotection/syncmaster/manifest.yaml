@@ -17,7 +17,7 @@ system:
         value: dc.$(KINGDOM),sam,oracle
       - name: GRPC_TLS
         value: false
-      - name: MESH_ISTIO-MODE
+      - name: MESH_ISTIO_MODE
         value: false
       ports:
       - containerPort: 7020

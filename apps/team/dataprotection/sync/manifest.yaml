@@ -15,7 +15,7 @@ system:
         value: $(KINGDOM)
       - name: SPRING_PROFILES_ACTIVE 
         value: dc.$(KINGDOM),sam,oracle
-      - name: MESH_ISTIO-MODE
+      - name: MESH_ISTIO_MODE
         value: false
       - name: GRPC_PORT
         value: 7020
