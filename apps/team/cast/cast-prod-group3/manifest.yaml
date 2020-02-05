@@ -124,7 +124,7 @@ system:
     # C2C service
     #####################################################################################
     - name: c2c-service
-      image: sfci/c2c/c2c-service:20191104222121-ce2cf21
+      image: sfci/c2c/c2c-service:20200204143645-cc6aea0
       imagePullPolicy: Always
       env:
         - name: directory_server_host
@@ -148,7 +148,13 @@ system:
           port: 15372
         initialDelaySeconds: 60
         periodSeconds: 5
-        failureThreshold: 120
+        failureThreshold: 10
+      readinessProbe:
+        httpGet:
+          path: /manage/ready
+          port: 15372
+        initialDelaySeconds: 60
+        periodSeconds: 5
       volumeMounts:
         - name: server-cert
           mountPath: /certs
