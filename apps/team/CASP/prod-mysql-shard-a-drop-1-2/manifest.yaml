@@ -38,7 +38,7 @@ system:
       volumes:
       - name: mysql-data-vol
         hostPath:
-          path: /fastdata/mysql-data/shard-a
+          path: /fastdata/mysql-data/shard-b
       - name: mysql-backups-vol
         hostPath:
           path: /fastdata/mysql-backups/shard-a
