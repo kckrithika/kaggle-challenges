@@ -102,7 +102,7 @@ spec:
           value: "80"
         - name: FAKE_REDEPLOY_VAR
           value: "1"
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/mutating-webhook:125-ecf4466e49ca0d09bb486ea9e53b58d7a0e8c3a3
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/mutating-webhook:127-9a1eac117d60fbe37df1c989a6cf51526166711d
         imagePullPolicy: IfNotPresent
         livenessProbe:
           httpGet:
