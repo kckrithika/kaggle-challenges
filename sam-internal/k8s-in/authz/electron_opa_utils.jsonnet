@@ -6,8 +6,6 @@ local prodRollout5Enabled = true;
 
 {
   local rolloutKingdoms = {
-     "prd": prodRollout1Enabled,
-
      "par": prodRollout2Enabled,
 
      "cdu": prodRollout3Enabled,
