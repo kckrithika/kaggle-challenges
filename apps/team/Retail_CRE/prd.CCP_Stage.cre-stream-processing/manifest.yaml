@@ -61,6 +61,14 @@ system:
                   -Dcom.sun.management.jmxremote.authenticate=false
                   -Xmx2G -Xms2G -XX:ParallelGCThreads=8
                   -Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=6103"
+        - name: CLUSTER_ID
+          value: sp_stage
+        - name: CLUSTER_SIZE
+          value: 1
+        - name: CLUSTER_MASTER_KAFKA_TOPIC
+          value: sfdc.prod.cre__prd.ajna_local__cre_signaling_CCP_Stage
+        - name: CLUSTER_SUPERVISOR_KAFKA_TOPIC
+          value: sfdc.prod.cre__prd.ajna_local__cre_signaling_CCP_Stage
       ports:
       - containerPort: 8080
       - containerPort: 7022
