@@ -17,7 +17,7 @@ system:
       ports:
       - name: flower-http
         containerPort: 5555
-        hostPort: 5555
+        hostPort: 5556
       - name: sherlock-http
         containerPort: 5000
       env:
