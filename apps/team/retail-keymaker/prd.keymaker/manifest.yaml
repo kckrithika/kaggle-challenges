@@ -11,7 +11,7 @@ system:
           - name: HTTP_PROXY
             value: public0-proxy1-0-prd.data.sfdc.net:8080
           - name: KEYMAKER_SLEEP_SECONDS
-            value: 300
+            value: 301
 
       livenessProbe:
         exec:
