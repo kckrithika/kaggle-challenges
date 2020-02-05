@@ -36,6 +36,7 @@ system:
       - {name: TESTRECIPE_MAESTROPINGTEST, value: 'true'}
       - {name: DEPLOYMENT_ID, value: syd-group2}
       - {name: SFDC_ENVIRONMENT, value: prod}
+      - {name: TESTINTERACTIVE_ENABLED, value: 'false'}
       - {name: HANDLED_PODS_PATTERN, value: 'cs[0-9]+|moana-driver-group1'}
       - {name: HANDLED_PODS_INVERT_MATCH, value: 'true'}
       - {name: HEALTHCHECK_SELF_INTERVAL, value: '60'}
@@ -64,7 +65,8 @@ system:
       name: tls-client-certs
   - containers:
     - env:
-      - {name: INTERACTIVE_SESSION_PROXY, value: 'true'}
+      - {name: INTERACTIVE_SESSION_PROXY, value: 'false'}
+      - {name: READYPOOL_SIZE, value: '0'}
       - {name: MANAGEMENT_SERVER_PORT, value: '-1'}
       - {name: LOGGING_JSON_STDOUT_LEVEL, value: ALL}
       - {name: LOGGING_STDERR_LEVEL, value: ALL}
@@ -83,7 +85,7 @@ system:
       - {name: MAESTRO_ENDPOINT, value: 'https://insights1-iworker{{superPodIndex}}-0-${kingdom}.data.sfdc.net:8008'}
       - {name: HEALTHCHECK_SELF_INTERVAL, value: '60'}
       - {name: SPRING_MAIN_WEB_APPLICATION_TYPE, value: NONE}
-      image: sfci/insights/jobcontroller:release-20200128.42-e839962
+      image: sfci/insights/jobcontroller:release-20200204.43-2740c75
       livenessProbe:
         exec:
           command: [bash, -c, find /tmp -mmin -2 -name health | grep -q "."]
