@@ -7,6 +7,8 @@ apps:
   - prd/prd-sam_warden
  prd-maiev-receiver:
   - prd/prd-sam_warden
+ prd-maiev-receiver-staging:
+  - prd/prd-sam_warden
  prd-warden:
   - prd/prd-sam_warden
  prd-warden-stage:
@@ -82,6 +84,8 @@ apps:
   - ph2/ph2-sam_warden
   - dfw/dfw-sam_warden
   - ia2/ia2-sam_warden
+ prod-maiev-receiver-nine-hosts:
+  - cdg/cdg-sam_warden
  prod-maiev-receiver:
   - lo2/lo2-sam_warden
   - phx/phx-sam_warden
@@ -89,7 +93,6 @@ apps:
   - par/par-sam_warden
   - ukb/ukb-sam_warden
   - fra/fra-sam_warden
-  - cdg/cdg-sam_warden
   - lo3/lo3-sam_warden
   - ord/ord-sam_warden
   - frf/frf-sam_warden

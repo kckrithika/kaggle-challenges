@@ -3,20 +3,20 @@ apiVersion: v1
 system:
     notifications:
       email:
-        - akouthoofd@salesforce.com
+        - warden@salesforce.com
     functions:
-    - name: maiev-receiver-func-stage
+    - name: maiev-receiver
       identity:
         serviceName: maiev-receiver
-      count: 1
+      count: 9
       strategy:
         type: RollingUpdate
         rollingUpdate:
           maxSurge: 0
-          maxUnavailable: 1
+          maxUnavailable: 3
       containers:
-      - name: prd-maiev-receiver-stage
-        image: dva/maiev-receiver:jenkins-CASP-maiev-dt-ajna-results-1-itest
+      - name: prod-maiev-receiver
+        image: dva/maiev-receiver:76
         ports:
         - name: receiver-grpc
           containerPort: 7020
@@ -32,15 +32,13 @@ system:
         - name: MASTER_GRPC_PORT
           value: "7020"
         - name: CANTOR_GRPC_TARGET
-          value: "cantor.casp.$KINGDOM-samtwo.$KINGDOM.slb.sfdc.net:11983"
+          value: "cantor.casp.$KINGDOM-sam.$KINGDOM.slb.sfdc.net:11983"
         - name: HTTP_PORT
           value: "8085"
-        - name: HTTPS_PORT
-          value: "8443"
         - name: BASE_PATH
           value: "/v1/*"
         - name: BRANCH
-          value: "eng_production"
+          value: "ops_production"
         - name: KAFKA_PROPERTIES
           value: "/home/sfdc-maiev/receiver/kafka-producer.properties"
         - name: NODENAME
@@ -55,13 +53,11 @@ system:
         - mountPath: /home/sfdc-maiev/client-certs
           name: client-cert
       # ------- sherpa envoy container -------
-      - name: cantor-http-sherpa
+      - name: maiev-sherpa
         # Use the latest release version from https://git.soma.salesforce.com/servicelibs/sherpa-envoy/releases
         image: sfci/servicelibs/sherpa-envoy:1.0.13
         # See https://git.soma.salesforce.com/servicelibs/sherpa#ports
         ports:
-        - name: http2-in
-          containerPort: 7012
         - name: http2-tls-in
           containerPort: 7443
         - name: sherpa-adm
@@ -87,7 +83,7 @@ system:
             mountPath: /server-certs
       # ------- beacon container - announces service so mesh proxy is aware -------
       - name: beacon
-        image: docker-sfci-dev/sfci/services/sfdc-bazel/disco/beacon:fba17e8b2
+        image: sfci/servicelibs/beacon:853c4db9f14805018be6f5e7607ffe65b5648822
         livenessProbe:
           exec:
             command:
@@ -96,7 +92,7 @@ system:
         # FUNCTION: Value listed in the manifest for the function key.
         args:
           - -endpoint
-          - $(FUNCTION_NAMESPACE)/$(FUNCTION):DATACENTER:HTTP2_TLS
+          - $(FUNCTION_NAMESPACE)/$(FUNCTION):DATACENTER_ALLENV:7443 # http2/gRPC tls port
       volumes:
       - name: log-vol
         hostPath:
@@ -105,24 +101,22 @@ system:
         maddogCert:
           type: server
           lbnames:
-            - maiev-receiver-stage
+            - maiev-receiver
       - name: client-cert
         maddogCert:
           type: client
     loadbalancers:
-    - lbname: maiev-receiver-stage
-      function: maiev-receiver-func-stage
+    - lbname: maiev-receiver
+      function: maiev-receiver
       slbEnabled: true
       ports:
         - port: 80 # http
           targetport: 8086
         - port: 443 # https
           targetport: 8443
-        - port: 7012 # http2-in
-          targetport: 7012
         - port: 7443 # http2-tls-in
           targetport: 7443
-        - port: 7020 # grpc sherpa bypass
+        - port: 7442 # grpc sherpa bypass
           targetport: 7020
         - port: 15373 # sherpa admin
           targetport: 15373
