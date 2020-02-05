@@ -252,20 +252,25 @@ system:
         value: /services/swagger
       - name: proxy_routes_2_target
         value: http://localhost:8081/swagger-ui.html
-      # C2C service
+      # GID Data Service - scone manage endpoints
       - name: proxy_routes_3_sourcePath
-        value: /services/c2c
+        value: /manage/*
       - name: proxy_routes_3_target
+        value: http://localhost:15376/manage/*
+      # C2C service
+      - name: proxy_routes_4_sourcePath
+        value: /services/c2c
+      - name: proxy_routes_4_target
         value: http://localhost:8082
       # CA service - empire
-      - name: proxy_routes_4_sourcePath
+      - name: proxy_routes_5_sourcePath
         value: /empire
-      - name: proxy_routes_4_target
+      - name: proxy_routes_5_target
         value: http://localhost:7032
       # CA service - scim
-      - name: proxy_routes_5_sourcePath
+      - name: proxy_routes_6_sourcePath
         value: /scim
-      - name: proxy_routes_5_target
+      - name: proxy_routes_6_target
         value: http://localhost:7032
       # Common properties for all routes / target containers
       - name: proxy_maxThreads
