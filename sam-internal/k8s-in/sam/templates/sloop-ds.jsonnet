@@ -6,6 +6,7 @@ local samimages = (import "samimages.jsonnet") + { templateFilename:: std.thisFi
 # Node Selector for sloop deployment depending on hosting estate.
 local sloopNodeSelectors = {
   "prd-sam": { master: "true" },
+  "prd-samtest": { master: "true" },
   "prd-samtwo": { "node.sam.sfdc.net/role": "samcompute", pool: "prd-samtwo" },
 };
 

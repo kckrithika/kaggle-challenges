@@ -95,6 +95,19 @@ data:
               ]
             }
           ]
+        },
+        {
+          "job_name": "sloop",
+          "scheme": "http",
+          "static_configs": [
+            {
+              "targets": [
+                "shared0-samtestkubeapi1-1-prd.eng.sfdc.net:31938",
+                "shared0-samtestkubeapi2-1-prd.eng.sfdc.net:31938",
+                "shared0-samtestkubeapi3-1-prd.eng.sfdc.net:31938"
+              ]
+            }
+          ]
         }
       ]
     }

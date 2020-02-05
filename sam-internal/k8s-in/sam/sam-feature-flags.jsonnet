@@ -56,6 +56,7 @@ local utils = import "util_functions.jsonnet";
     sloopEstates: {
       "prd-sam": ["prd-sam"],
       "prd-samtwo": ["prd-sam", "frf-sam"],
+      "prd-samtest": ["prd-samtest"],
     },
 
     # Allowed estates for hosting sloop daemonsets.
