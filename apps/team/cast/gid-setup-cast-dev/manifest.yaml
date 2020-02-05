@@ -29,7 +29,7 @@ system:
     # as per https://git.soma.salesforce.com/servicelibs/sherpa-envoy#ports
     #####################################################################################
     - name: sherpa-cast-client
-      image: sfci/servicelibs/sherpa-envoy:1.0.13
+      image: sfci/servicelibs/sherpa-envoy:1.0.8
       env:
       - name: SFDC_ENVIRONMENT
         value: "stmfa"
@@ -149,7 +149,7 @@ system:
     # C2C service
     #####################################################################################
     - name: c2c-service
-      image: sfci/c2c/c2c-service:20191104222121-ce2cf21
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/gid/c2c-service:master-latest
       imagePullPolicy: Always
       env:
         - name: directory_server_host
@@ -171,6 +171,12 @@ system:
         initialDelaySeconds: 60
         periodSeconds: 5
         failureThreshold: 10
+      readinessProbe:	
+        httpGet:	
+          path: /manage/ready	
+          port: 15372	
+        initialDelaySeconds: 60	
+        periodSeconds: 5
       volumeMounts:
         - name: server-cert
           mountPath: /certs
@@ -215,6 +221,12 @@ system:
           path: /manage/health
           port: 15371
         initialDelaySeconds: 60
+        periodSeconds: 5
+      readinessProbe:	
+        httpGet:	
+          path: /manage/ready	
+          port: 15371	
+        initialDelaySeconds: 60	
         periodSeconds: 5
       volumeMounts:
         - name: server-cert
