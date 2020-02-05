@@ -116,11 +116,4 @@ local portconfigs = import "portconfig.jsonnet";
 
     # This returns a unique set of kingdoms
     get_all_kingdoms():: std.set([pool.kingdom for pool in pools.generatedPools]),
-
-    # TODO: std.mapwithkey(func, obj) +std.strReplace(str, from to) --> Replace all - to _ (underscore)
-    # Map all estates to their ports for sloop
-    # Increment port and target port
-    # Get the estates from the get_all_estates.
-    get_sloop_estates(kingdom)::
-        if kingdom == "prd-sam" then ["prd-sam"] else ["prd-sam", "frf-sam"],
 }

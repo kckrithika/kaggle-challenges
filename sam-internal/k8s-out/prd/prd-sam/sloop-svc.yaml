@@ -10,7 +10,7 @@ items:
     labels:
       app: sloop
       sam.data.sfdc.net/owner: sam
-    name: sloop
+    name: sloop-prd-sam
     namespace: sam-system
   spec:
     ports:
