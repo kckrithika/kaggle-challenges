@@ -77,12 +77,12 @@ system:
         failureThreshold: 2
       readinessProbe:
         httpGet:
-          path: /manage/health
+          path: /manage/ready
           port: 15372
-        initialDelaySeconds: 60
+        initialDelaySeconds: 30
         timeoutSeconds: 10
-        periodSeconds: 30
         failureThreshold: 2
+        periodSeconds: 30
     - name: sherpa
       image: sfci/servicelibs/sherpa-envoy:1.0.13
       ports:
