@@ -10,7 +10,7 @@ system:
       traffic.sidecar.istio.io/excludeInboundPorts: "9522,9523,9524,15372,9090,8080"
     containers:
     - name: sync
-      image: dva/winterfell-sync:134
+      image: dva/winterfell-sync:25060abae825776fd27c203a52d06caba4e27675
       env:
       - name: SFDC_ENVIRONMENT
         value: prod
