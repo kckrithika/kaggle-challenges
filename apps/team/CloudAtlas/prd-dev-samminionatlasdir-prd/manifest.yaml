@@ -167,13 +167,3 @@ system:
       hostPath:
         path: /home/sfdc-scone-hellodiscovery-beacon/logs
     terminationGracePeriodSeconds: 120
-  loadbalancers:
-    - lbname: cloudatlas-prd-dev-dir
-      function: cloudatlas-prd-dev-dir
-      ports:
-        - lbtype: dsr
-          #port to match your announcement to beacon
-          #port should not clash with SLB enabled port if any.
-          port: 7442 
-          targetport: 7442
-          name: http-cloudatlasprddevdir #protocol to match your service's protocol  
