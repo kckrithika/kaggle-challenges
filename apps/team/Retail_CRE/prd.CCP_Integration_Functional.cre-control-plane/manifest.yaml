@@ -19,7 +19,7 @@ system:
             ############################ ENGINE/DDS FLOWSNAKE ARTIFACTS ( Most frequently changed ) ############
             ####################################################################################################
             - name: INGEST_SPEC_IMAGE
-              value: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-sfci-dev/sfci/cre/cre-engine:2.3.0.0.develop.8a9b398.507
+              value: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cre/cre-engine:2.3.0.0.develop.f010392.508
             - name: EXPORT_SPEC_IMAGE
               value: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cre/cre-dds-spark:2.2-freeze-001.0.release-2.2.59f7d86.8
             - name: SAVE_SPEC_IMAGE
