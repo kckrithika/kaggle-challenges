@@ -29,7 +29,7 @@ items:
           - --port=31938
           - --display-context=prd-sam
           - --apiserver-host=http://pseudo-kubeapi.csc-sam.prd-sam.prd.slb.sfdc.net:40001/prd-sam/
-          - --max-look-back=336
+          - --max-look-back=336h
           command:
           - /sloop
           image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/sjawad/sloop:sjawad-20200204_102504-bbd2691

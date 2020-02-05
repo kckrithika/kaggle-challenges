@@ -52,21 +52,14 @@ local utils = import "util_functions.jsonnet";
     kafkaConsumer:
       configs.estate == "prd-sam" || configs.estate == "prd-samtwo",
 
-    # Allowed estates for hosting sloop daemonsets.
-    sloop:
-      configs.estate == "prd-sam" || configs.estate == "prd-samtest" || configs.estate == "prd-samtwo",
-
     # Estates for which sloop is deployed depending on the hosting estate.
     sloopEstates: {
       "prd-sam": ["prd-sam"],
       "prd-samtwo": ["prd-sam", "frf-sam"],
     },
 
-    # Node Selector for sloop deployment depending on hosting estate.
-    sloopNodeSelectors: {
-      "prd-sam": { master: "true" },
-      "prd-samtwo": { "node.sam.sfdc.net/role": "samcompute", pool: "prd-samtwo" },
-    },
+    # Allowed estates for hosting sloop daemonsets.
+    sloop: std.objectHas(self.sloopEstates, configs.estate),
 
     etcd3:
       configs.estate == "prd-samtest" || configs.estate == "prd-samdev",

@@ -1,7 +1,6 @@
 local estate = std.extVar("estate");
 local kingdom = std.extVar("kingdom");
 local pools = import "configs/generated-pools.jsonnet";
-local portconfigs = import "portconfig.jsonnet";
 
 # Public functions
 {

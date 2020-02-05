@@ -3,6 +3,12 @@ local portconfigs = import "portconfig.jsonnet";
 local samfeatureflags = import "sam-feature-flags.jsonnet";
 local samimages = (import "samimages.jsonnet") + { templateFilename:: std.thisFile };
 
+# Node Selector for sloop deployment depending on hosting estate.
+local sloopNodeSelectors = {
+  "prd-sam": { master: "true" },
+  "prd-samtwo": { "node.sam.sfdc.net/role": "samcompute", pool: "prd-samtwo" },
+};
+
 local makeds(estate) = configs.daemonSetBase("sam") {
   spec+: {
     template: {
@@ -12,10 +18,7 @@ local makeds(estate) = configs.daemonSetBase("sam") {
           {
             name: "sloopds",
             resources: {
-              requests: {
-                cpu: "1",
-                memory: "12Gi",
-              },
+              requests: self.limits,
               limits: {
                 cpu: "1",
                 memory: "12Gi",
@@ -27,7 +30,7 @@ local makeds(estate) = configs.daemonSetBase("sam") {
               "--display-context=" + estate,
               "--apiserver-host=http://pseudo-kubeapi.csc-sam.prd-sam.prd.slb.sfdc.net:40001/" + estate + "/",
               # Default maximum history stored - 2 weeks
-              "--max-look-back=336",
+              "--max-look-back=336h",
             ],
             command: [
               "/sloop",
@@ -117,7 +120,7 @@ local makeds(estate) = configs.daemonSetBase("sam") {
           },
         ],
         nodeSelector:
-          samfeatureflags.sloopNodeSelectors[configs.estate],
+          sloopNodeSelectors[configs.estate],
       },
       metadata: {
         labels: {
