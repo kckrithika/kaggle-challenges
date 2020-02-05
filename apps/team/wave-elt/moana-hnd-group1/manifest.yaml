@@ -36,6 +36,7 @@ system:
       - {name: TESTRECIPE_MAESTROPINGTEST, value: 'true'}
       - {name: DEPLOYMENT_ID, value: hnd-group1}
       - {name: SFDC_ENVIRONMENT, value: prod}
+      - {name: TESTINTERACTIVE_ENABLED, value: 'true'}
       - {name: GRPC_HOST, value: jobcontroller-group1.wave-elt.localhost.mesh.force.com}
       - {name: GRPC_PORT, value: '5443'}
       - {name: HANDLED_PODS_PATTERN, value: 'cs[0-9]+|moana-driver-group1'}
@@ -82,6 +83,7 @@ system:
   - containers:
     - env:
       - {name: INTERACTIVE_SESSION_PROXY, value: 'true'}
+      - {name: READYPOOL_SIZE, value: '3'}
       - {name: MANAGEMENT_SERVER_PORT, value: '15372'}
       - {name: LOGGING_JSON_STDOUT_LEVEL, value: ALL}
       - {name: LOGGING_STDERR_LEVEL, value: ALL}
@@ -95,7 +97,7 @@ system:
       - {name: STARTUP_JOB_ENABLED, value: 'false'}
       - {name: SFDC_ENVIRONMENT, value: prod}
       - {name: HANDLED_PODS_PATTERN, value: 'cs[0-9]+|moana-driver-group1'}
-      image: sfci/insights/jobcontroller:release-20200128.42-e839962
+      image: sfci/insights/jobcontroller:release-20200204.43-2740c75
       livenessProbe:
         httpGet: {path: /manage/health, port: 15372}
         initialDelaySeconds: 90
