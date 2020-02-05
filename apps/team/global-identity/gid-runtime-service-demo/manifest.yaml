@@ -176,12 +176,6 @@ system:
       function: gid-runtime-service-demo
       slbEnabled: true
       ports:
-        - port: 443
-          name: public
-          targetport: 7022
-          lbtype: http
-          tls: true
-          reencrypt: false
         - port: 80
           name: unsecure
           targetport: 8080
