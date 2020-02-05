@@ -5,7 +5,7 @@ system:
     count: 1
     containers:
     - name: syncmaster
-      image: dva/winterfell-syncmaster:38
+      image: dva/winterfell-syncmaster:e287348344abb1262d5f6bb02e5b758317445fd2
       env:
       - name: SFDC_ENVIRONMENT
         value: prod
@@ -16,6 +16,8 @@ system:
       - name: SPRING_PROFILES_ACTIVE 
         value: dc.$(KINGDOM),sam,oracle
       - name: GRPC_TLS
+        value: false
+      - name: MESH_ISTIO_MODE
         value: false
       ports:
       - containerPort: 7020
