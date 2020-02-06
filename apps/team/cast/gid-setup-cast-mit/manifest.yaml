@@ -29,7 +29,7 @@ system:
     # as per https://git.soma.salesforce.com/servicelibs/sherpa-envoy#ports
     #####################################################################################
     - name: sherpa-cast-client
-      image: sfci/servicelibs/sherpa-envoy:1.0.13
+      image: sfci/servicelibs/sherpa-envoy:1.0.8
       env:
       - name: SFDC_ENVIRONMENT
         value: "stmfa"
@@ -56,13 +56,13 @@ system:
         exec:
           command:
           - "/home/sfdc-sherpa/bin/is-alive"
-        initialDelaySeconds: 120
+        initialDelaySeconds: 60
         periodSeconds: 5
       readinessProbe:
         exec:
           command:
           - "/home/sfdc-sherpa/bin/is-ready"
-        initialDelaySeconds: 110
+        initialDelaySeconds: 60
         periodSeconds: 5
     #####################################################################################
     # Service Beacon
