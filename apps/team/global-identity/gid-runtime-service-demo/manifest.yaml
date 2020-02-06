@@ -107,7 +107,9 @@ system:
       - name: kms_serverUrl
         value: https://smsapi1-0-prd.data.sfdc.net
       - name: c2c_common_gdotBasePath
-        value: http://cloudatlas-staging.global-identity.prd-sam.prd.slb.sfdc.net/scim
+        value: http://cloudatlas-dev.global-identity.prd-sam.prd.slb.sfdc.net/scim
+      - name: dataservice_rootUri
+        value: http://localgidservice-dev.global-identity.prd-sam.prd.slb.sfdc.net
       - name: vaas_baseUrl
         value: https://vaas-distributed-staging.herokuapp.com
       - name: spring_datasource_url
@@ -129,7 +131,7 @@ system:
       - name: spring_datasource_hikari_connectionTimeout
         value: 10000
       - name: dataservice_rootUri
-        value: http://localgidservice-staging.global-identity.prd-sam.prd.slb.sfdc.net
+        value: http://localgidservice-dev.global-identity.prd-sam.prd.slb.sfdc.net
       volumeMounts:
       - name: client-cert
         mountPath: /client-certs
@@ -178,7 +180,7 @@ system:
       ports:
         - port: 80
           name: unsecure
-          targetport: 8080
+          targetport: 7014
           lbtype: http
           tls: false
           reencrypt: false
