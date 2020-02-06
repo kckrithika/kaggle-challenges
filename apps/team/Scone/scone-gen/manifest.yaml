@@ -9,8 +9,7 @@ system:
     count: 1
     containers:
     - name: sconegen
-      # master SHA e4d02613dfc260a5f2d6942d1a6624aba4a9b205
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/scone/scone-gen-bazel:bazel-monorepo
+      image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-sfci-dev/sfci/services/sfdc-bazel/scone/scone-gen:332a2f694
       env:
       - name: SFDC_ENVIRONMENT
         value: sconex
