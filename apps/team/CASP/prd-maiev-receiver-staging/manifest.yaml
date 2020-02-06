@@ -16,7 +16,7 @@ system:
           maxUnavailable: 1
       containers:
       - name: prd-maiev-receiver-stage
-        image: dva/maiev-receiver:jenkins-CASP-maiev-dt-ajna-results-2-itest
+        image: dva/maiev-receiver:jenkins-CASP-maiev-dt-ajna-results-3-itest
         ports:
         - name: receiver-grpc
           containerPort: 7020
