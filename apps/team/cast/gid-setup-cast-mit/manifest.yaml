@@ -105,46 +105,47 @@ system:
 ##   {"logRecordType":"spaas","timestamp":"1579296319903","threadId":"1","productArea":"cloudatlas__cloudatlas-api","teamId":"a6fB0000000Cb4XIAS","event":"PROPAGATION_TO_GROUP","message":"kind=configuration,method=setOnAll(0:1:1579296319399)"}
 ##   {"logRecordType":"spapi","timestamp":"1579296319930","threadId":"1","productArea":"cloudatlas__cloudatlas-api","teamId":"a6fB0000000Cb4XIAS","serviceName":"ProtectionConfigurationService","operation":"SET_CONFIGURATION_VALUE","status":"SUCCESS","errorCode":"StorageUnavailable","errorMessage":"Service is operating in degraded mode as HBase is currently unavailable.","arguments":"protection.svc.common.Constants.SPS_ENABLED,false"}
 ## ====
-#    - name: cloudatlas-service
-#      # Both images causing sp / hbase / storage errors
-#      #image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cloud-atlas/cloudatlas/cloudatlas-service:53bde25
-#      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cloud-atlas/cloudatlas/cloudatlas-service:26eb747
-#      command: ["java", "-jar", "cloudatlas-service.jar"]
-#      env:
-#        - name: DIRECTORY_SERVER_HOST
-#          value: cloudatlas-dev.global-identity.prd-sam.prd.slb.sfdc.net
-#        - name: server_port
-#          value: 7032
-#        - name: management_server_port
-#          value: 15374
-#        - name: cloudatlas_http_server_port
-#          # CA directory server SLB port is 80
-#          value: 80
-#      volumeMounts:
-#      - mountPath: /log
-#        name: logvol
-#      - mountPath: /certs
-#        name: server-cert
-#      - mountPath: /clientcerts
-#        name: client-cert
-#      ports:
-#      - containerPort: 7030
-#      - containerPort: 7032
-#      - containerPort: 7080
-#      - containerPort: 15374
-#      livenessProbe:
-#        httpGet:
-#          path: /manage/health
-#          port: 15374
-#        initialDelaySeconds: 60
-#        periodSeconds: 30
-#      readinessProbe:
-#        httpGet:
-#          path: /manage/health
-#          port: 15374
-#        initialDelaySeconds: 60
-#        periodSeconds: 5
-#        failureThreshold: 120
+    - name: cloudatlas-service
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cloud-atlas/cloudatlas/cloudatlas-service:26eb747
+      command: ["java", "-jar", "cloudatlas-service.jar"]
+      env:
+        - name: DIRECTORY_SERVER_HOST
+          valueFrom:
+           fieldRef:
+            fieldPath: spec.nodeName
+        - name: server_port
+          value: 7032
+        - name: management_server_port
+          value: 15374
+        - name: cloudatlas_http_server_port
+          value: 7030
+        - name: cerberus_grpc_port
+          value: 7021
+      volumeMounts:
+      - mountPath: /log
+        name: logvol
+      - mountPath: /certs
+        name: server-cert
+      - mountPath: /clientcerts
+        name: client-cert
+      ports:
+      - containerPort: 7030
+      - containerPort: 7032
+      - containerPort: 7080
+      - containerPort: 15374
+      livenessProbe:
+        httpGet:
+          path: /manage/health
+          port: 15374
+        initialDelaySeconds: 60
+        periodSeconds: 30
+      readinessProbe:
+        httpGet:
+          path: /manage/health
+          port: 15374
+        initialDelaySeconds: 60
+        periodSeconds: 5
+        failureThreshold: 120 
     #####################################################################################
     # C2C service
     #####################################################################################
