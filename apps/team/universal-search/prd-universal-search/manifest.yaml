@@ -79,7 +79,7 @@ system:
         httpGet:
           path: /manage/ready
           port: 15372
-        initialDelaySeconds: 30
+        initialDelaySeconds: 60
         timeoutSeconds: 10
         failureThreshold: 2
         periodSeconds: 30
