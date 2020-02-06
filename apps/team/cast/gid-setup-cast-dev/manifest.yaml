@@ -119,6 +119,8 @@ system:
           value: 15374
         - name: cloudatlas_http_server_port
           value: 7030
+        - name: cerberus_grpc_port
+          value: 7021
       volumeMounts:
       - mountPath: /log
         name: logvol
@@ -272,12 +274,12 @@ system:
       - name: proxy_routes_4_sourcePath
         value: /empire
       - name: proxy_routes_4_target
-        value: http://localhost:7030
+        value: http://localhost:7032
       # CA service - scim
       - name: proxy_routes_5_sourcePath
         value: /scim
       - name: proxy_routes_5_target
-        value: http://localhost:7030
+        value: http://localhost:7032
       # Common properties for all routes / target containers
       - name: proxy_maxThreads
         value: 1000
