@@ -58,6 +58,9 @@ system:
       env:
       - name: SFDC_ENVIRONMENT
         value: "stmfa"
+      volumeMounts:
+        - mountPath: /log
+          name: logvolbeacon
       resources:
         limits: { cpu: "1", memory: "1Gi" }
         requests: { cpu: "1", memory: "1Gi" }
@@ -69,6 +72,85 @@ system:
           command:
           - "/opt/beacon/is-alive.sh"
         initialDelaySeconds: 5
+    #####################################################################################
+    # NGINX Rev Proxy
+    #####################################################################################
+    - name: nginx-rev-proxy
+      image: sfci/globalidentity/nginx-routing:554f1b7
+      imagePullPolicy: Always
+      ports:
+        - containerPort: 7022
+      livenessProbe:
+        exec:
+          command:
+            - /bin/true
+        initialDelaySeconds: 15
+        timeoutSeconds: 10
+        periodSeconds: 30
+      volumeMounts:
+        - mountPath: /var/cache/nginx/client_temp
+          name: cache-volume
+    #####################################################################################
+    # Entity API
+    #####################################################################################
+    - name: cloudatlas-service
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cloud-atlas/cloudatlas/cloudatlas-service:26eb747
+      command: ["java", "-jar", "cloudatlas-service.jar"]
+      env:
+        - name: DIRECTORY_SERVER_HOST
+          valueFrom:
+            fieldRef:
+              fieldPath: spec.nodeName
+        - name: server_port
+          value: 7032
+        - name: management_server_port
+          value: 15374
+        - name: cloudatlas_http_server_port
+          value: 7030
+          # temporary port override to fix service protection conflicts until the service is updated
+        - name: cerberus_grpc_port
+          value: 7021
+      volumeMounts:
+        - mountPath: /log
+          name: logvol
+        - mountPath: /certs-error
+          name: server-cert
+        - mountPath: /clientcerts
+          name: client-cert
+      ports:
+        - containerPort: 7030
+        - containerPort: 7032
+        - containerPort: 7080
+        - containerPort: 15374
+      livenessProbe:
+        httpGet:
+          path: /manage/health
+          port: 15374
+        initialDelaySeconds: 60
+        periodSeconds: 30
+      readinessProbe:
+        httpGet:
+          path: /manage/health
+          port: 15374
+        initialDelaySeconds: 60
+        periodSeconds: 5
+        failureThreshold: 120
+  #####################################################################################
+  # Volumes Needed
+  #####################################################################################
+    volumes:
+      - name: server-cert
+        maddogCert:
+          type: server
+      - name: client-cert
+        maddogCert:
+          type: client
+      - name: logvolbeacon
+        emptyDir: {}
+      - name: cache-volume
+        emptyDir: {}
+      - name: logvol
+        emptyDir: {}
   #####################################################################################
   # SLB
   #####################################################################################
@@ -77,8 +159,8 @@ system:
       function: cast-prd-debug
       slbEnabled: true
       ports:
-        - port: 443
-          targetport: 7442
+        - port: 80
+          targetport: 7022
           lbtype: http
-          tls: true
-          reencrypt: true
+          tls: false
+          reencrypt: false
