@@ -15,42 +15,10 @@ system:
         path: /data/logs
     containers:
     - name: capadd
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/qwang/capadd:test-20200206-4 #20200127-3
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/qwang/capadd:test-20200206-5 #20200127-3
       env:
         - name: CAPADD_LOG_DIR
           value: "/data/logs/capadd-logs.txt"
-        - name: SF_OAUTH_CLIENT_KEY_SECRET_NAME
-          value: "OAuthClientKey"
-        - name: SF_OAUTH_CLIENT_SECRET_SECRET_NAME
-          value: "OAuthClientSecret"
-        - name: PUBLIC_PROXY
-          value: "public0-proxy1-0-prd.data.sfdc.net:8080"
-        - name: CAPADD_VAULT_SERVER
-          value: "dnagen"
-        - name: CAPADD_VAULT_GUSUSER_SECRET_NAME
-          value: "GusUsername"
-        - name: CAPADD_VAULT_GUSPASS_SECRET_NAME
-          value: "GusUserpass"
-        - name: CAPADD_GIT_VAULT_NAME
-          value: "nqa"
-        - name: CAPADD_GIT_SECRET_NAME
-          value: "netqa-git-token"
-        - name: CAPADD_EXPIRE_CACHE_INTERVAL_SEC
-          value: "900"
-        - name: CAPADD_ASSETFORCE_RETRIES
-          value: "3"
-        - name: CAPADD_CELL_LIST
-          value: "c3-cdg3,c3-fra3,c3-iad3,c4-iad4,c3-lhr3,c4-lhr4,c3-phx3,c4-phx3"
-        - name: NQA_CA
-          value: "/clientcert/ca/cacerts.pem"
-        - name: CAPADD_CLIENT_KEY
-          value: "/clientcert/client/keys/client-key.pem"
-        - name: CAPADD_CLIENT_CERT
-          value: "/clientcert/client/certificates/client.pem"
-        - name: CAPADD_SERVER_KEY
-          value: "/servercert/server/keys/server-key.pem"
-        - name: CAPADD_SERVER_CERT
-          value: "/servercert/server/certificates/server.pem"
       volumeMounts:
         - name: capadd-client-cert
           mountPath: /clientcert
