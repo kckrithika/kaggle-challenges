@@ -32,9 +32,9 @@ system:
         - name: CAPADD_VAULT_GUSPASS_SECRET_NAME
           value: "GusUserpass"
         - name: CAPADD_GIT_VAULT_NAME
-            value: "nqa"
+          value: "nqa"
         - name: CAPADD_GIT_SECRET_NAME
-            value: "netqa-git-token"
+          value: "netqa-git-token"
         - name: CAPADD_EXPIRE_CACHE_INTERVAL_SEC
           value: "900"
         - name: CAPADD_ASSETFORCE_RETRIES
