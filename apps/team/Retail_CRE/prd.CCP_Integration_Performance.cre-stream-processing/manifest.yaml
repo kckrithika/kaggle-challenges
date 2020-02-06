@@ -63,6 +63,14 @@ system:
                   -XX:+PrintStringTableStatistics
                   -XX:+HeapDumpOnOutOfMemoryError
                   -Xmx4G -Xms4G -XX:ParallelGCThreads=8"
+        - name: CLUSTER_ID
+          value: sp_perf
+        - name: CLUSTER_SIZE
+          value: 1
+        - name: CLUSTER_MASTER_KAFKA_TOPIC
+          value: sfdc.prod.cre__prd.ajna_local__cre_signaling_CCP_Integration_Performance
+        - name: CLUSTER_SUPERVISOR_KAFKA_TOPIC
+          value: sfdc.prod.cre__prd.ajna_local__cre_signaling_CCP_Integration_Performance                  
       ports:
       - containerPort: 8080
       - containerPort: 7022
