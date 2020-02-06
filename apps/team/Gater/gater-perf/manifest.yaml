@@ -13,7 +13,7 @@ system:
       traffic.sidecar.istio.io/excludeInboundPorts: "8081"
     containers:
     - name: gater-perf
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/gater/gater-perf:sortiz-1580938943
+      image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-sfci-dev/sfci/services/sfdc-bazel/gater/gater-perf:b9d8e3afb
       env:
         - name: SFDC_ENVIRONMENT
           value: blitz
