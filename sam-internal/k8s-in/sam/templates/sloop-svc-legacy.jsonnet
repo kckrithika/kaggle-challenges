@@ -36,7 +36,7 @@ if configs.estate == "prd-sam" then {
             },
         ],
         selector: {
-            app: "sloopds",
+            app: "sloopds-prd-sam",
         },
     },
 } else "SKIP"

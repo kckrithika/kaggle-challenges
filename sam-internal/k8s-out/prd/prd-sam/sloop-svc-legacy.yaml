@@ -17,4 +17,4 @@ spec:
     protocol: TCP
     targetPort: 31938
   selector:
-    app: sloopds
+    app: sloopds-prd-sam
