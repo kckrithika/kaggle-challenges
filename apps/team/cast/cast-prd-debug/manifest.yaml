@@ -150,7 +150,6 @@ system:
       - name: cache-volume
         emptyDir: {}
       - name: logvol
-        hostPath:
         emptyDir: {}
   #####################################################################################
   # SLB
