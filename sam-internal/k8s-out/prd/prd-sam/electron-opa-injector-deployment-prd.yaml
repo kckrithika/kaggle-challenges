@@ -101,7 +101,7 @@ spec:
         - name: SFDC_METRICS_SERVICE_PORT
           value: "80"
         - name: FAKE_REDEPLOY_VAR
-          value: "1"
+          value: "0"
         image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/mutating-webhook:127-9a1eac117d60fbe37df1c989a6cf51526166711d
         imagePullPolicy: IfNotPresent
         livenessProbe:
