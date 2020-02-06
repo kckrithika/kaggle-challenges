@@ -58,6 +58,9 @@ system:
       env:
       - name: SFDC_ENVIRONMENT
         value: "stmfa"
+      volumeMounts:
+        - mountPath: /log
+          name: logvolbeacon
       resources:
         limits: { cpu: "1", memory: "1Gi" }
         requests: { cpu: "1", memory: "1Gi" }
@@ -132,7 +135,23 @@ system:
         initialDelaySeconds: 60
         periodSeconds: 5
         failureThreshold: 120
-
+  #####################################################################################
+  # Volumes Needed
+  #####################################################################################
+    volumes:
+      - name: server-cert
+        maddogCert:
+          type: server
+      - name: client-cert
+        maddogCert:
+          type: client
+      - name: logvolbeacon
+        emptyDir: {}
+      - name: cache-volume
+        emptyDir: {}
+      - name: logvol
+        hostPath:
+        emptyDir: {}
   #####################################################################################
   # SLB
   #####################################################################################
