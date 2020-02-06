@@ -61,7 +61,8 @@ spec:
         - --namespace-selector
         - istio-injection=enabled
         - --authz-enabled=false
-        - --authz-canary-services=istio-shipping.service-mesh,switchboard.service-mesh,authz-svc.service-mesh,istio-geoip.service-mesh
+        - --authz-canary-services=authz-svc.service-mesh,switchboard.authz-svc,istio-shipping-tcp.service-mesh,istio-shipping-redis.service-mesh,istio-shipping.service-mesh,switchboard.service-mesh,authz-svc.service-mesh,istio-geoip.service-mesh
+        - --authz-shadow-rules=true
         env:
         - name: SETTINGS_SUPERPOD
           value: '-'
@@ -69,7 +70,7 @@ spec:
           value: -.-.prd.-.istio-routing-webhook
         - name: ESTATE
           value: prd-samtest
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/sfci/servicemesh/servicemesh/istio-routing-webhook:44b62ed435e0568920c4c95a64b5acf1b01c3eb4
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/sfci/servicemesh/servicemesh/istio-routing-webhook:337cea3cddffaffcfe69958d99bff7eab58fe9b0
         imagePullPolicy: IfNotPresent
         livenessProbe:
           httpGet:
