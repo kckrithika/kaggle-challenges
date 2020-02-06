@@ -1407,8 +1407,8 @@
 
 - lbname: cjemaster312
   customlbname: cjemaster312
-#  cnames:
-#  - cname: lpopci.slb.sfdc.net
+  cnames:
+  - cname: kalanici.slb.sfdc.net
   servers:
   - cjemaster312-1-prd.dop.sfdc.net
   - cjemaster312-2-prd.dop.sfdc.net
