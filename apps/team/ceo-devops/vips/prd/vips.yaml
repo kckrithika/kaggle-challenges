@@ -1182,7 +1182,7 @@
 - lbname: cjemaster121
   customlbname: cjemaster121
   cnames:
-  - cname: frameworkci.slb.sfdc.net 
+  - cname: frameworkci.slb.sfdc.net
   servers:
   - cjemaster121-1-prd.dop.sfdc.net
   - cjemaster121-2-prd.dop.sfdc.net
