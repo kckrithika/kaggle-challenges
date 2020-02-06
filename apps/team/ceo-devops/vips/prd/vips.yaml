@@ -1179,13 +1179,13 @@
     healthprotocol: tcp
 
 ### Prod VIPs###
-- lbname: cjemaster311
-  customlbname: cjemaster311
+- lbname: cjemaster121
+  customlbname: cjemaster121
   cnames:
-  - cname: lwrci.slb.sfdc.net 
+  - cname: frameworkci.slb.sfdc.net 
   servers:
-  - cjemaster311-1-prd.dop.sfdc.net
-  - cjemaster311-2-prd.dop.sfdc.net
+  - cjemaster121-1-prd.dop.sfdc.net
+  - cjemaster121-2-prd.dop.sfdc.net
   ports:
   - port: 443
     targetport: 8080

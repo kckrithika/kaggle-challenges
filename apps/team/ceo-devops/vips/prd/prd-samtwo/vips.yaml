@@ -1382,8 +1382,8 @@
 
 - lbname: cjemaster311
   customlbname: cjemaster311
-#  cnames:
-#  - cname: audi360ci.slb.sfdc.net
+  cnames:
+  - cname: lwrci.slb.sfdc.net 
   servers:
   - cjemaster311-1-prd.dop.sfdc.net
   - cjemaster311-2-prd.dop.sfdc.net
