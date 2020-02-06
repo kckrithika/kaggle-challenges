@@ -13,7 +13,7 @@ system:
       type: Recreate
     containers:
     - name: sherlock-stage-env
-      image: dva/casp/sherlock_strata:jenkins-CASP-sherlock-dev-26-itest
+      image: dva/casp/sherlock_strata:jenkins-CASP-sherlock-dev-27-itest
       ports:
       - name: flower-http
         containerPort: 5555
