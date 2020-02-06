@@ -67,6 +67,54 @@ if configs.estate == "prd-samtwo" then
                     ],
                   },
                 },
+                {
+                  "environment-type": "dev1",
+                  region: "us-west-2",
+                  "access-key-id": "${dev1_service_firefly_key#FromSecretService}",
+                  "secret-access-key": "${dev1_service_firefly_secret#FromSecretService}",
+                  "role-arn": "${dev1RoleArn#FromSecretService}",
+                  "bucket-configs-by-type": {
+                    helm: [
+                    {
+                      "bucket-name": "dev-us-west-2-sfcd-helm-archive",
+                    },
+                    ],
+                    terraform: [
+                    {
+                      "bucket-name": "dev-us-west-2-sfcd-terraform",
+                    },
+                    ],
+                    fcp: [
+                    {
+                      "bucket-name": "dev-us-west-2-sfcd-fcp-archive",
+                    },
+                    ],
+                  },
+                },
+                {
+                  "environment-type": "prod",
+                  region: "us-east-2",
+                  "access-key-id": "${ESVC1_service_firefly_key#FromSecretService}",
+                  "secret-access-key": "${ESVC1_service_firefly_secret#FromSecretService}",
+                  "role-arn": "${prodRoleArn#FromSecretService}",
+                  "bucket-configs-by-type": {
+                    helm: [
+                    {
+                      "bucket-name": "esvc-us-east-2-sfcd-helm-archive",
+                    },
+                    ],
+                    terraform: [
+                    {
+                      "bucket-name": "esvc-us-east-2-sfcd-terraform",
+                    },
+                    ],
+                    fcp: [
+                    {
+                      "bucket-name": "esvc-us-east-2-sfcd-fcp-archive",
+                    },
+                    ],
+                  },
+                },
               ],
             },
             "s3-bucket": "fcparchive",
@@ -129,6 +177,54 @@ if configs.estate == "prd-samtwo" then
                     fcp: [
                     {
                       "bucket-name": "fcparchive",
+                    },
+                    ],
+                  },
+                },
+                {
+                  "environment-type": "dev1",
+                  region: "us-west-2",
+                  "access-key-id": "${dev1_service_firefly_key#FromSecretService}",
+                  "secret-access-key": "${dev1_service_firefly_secret#FromSecretService}",
+                  "role-arn": "${dev1RoleArn#FromSecretService}",
+                  "bucket-configs-by-type": {
+                    helm: [
+                    {
+                      "bucket-name": "dev-us-west-2-sfcd-helm-archive",
+                    },
+                    ],
+                    terraform: [
+                    {
+                      "bucket-name": "dev-us-west-2-sfcd-terraform",
+                    },
+                    ],
+                    fcp: [
+                    {
+                      "bucket-name": "dev-us-west-2-sfcd-fcp-archive",
+                    },
+                    ],
+                  },
+                },
+                {
+                  "environment-type": "prod",
+                  region: "us-east-2",
+                  "access-key-id": "${ESVC1_service_firefly_key#FromSecretService}",
+                  "secret-access-key": "${ESVC1_service_firefly_secret#FromSecretService}",
+                  "role-arn": "${prodRoleArn#FromSecretService}",
+                  "bucket-configs-by-type": {
+                    helm: [
+                    {
+                      "bucket-name": "esvc-us-east-2-sfcd-helm-archive",
+                    },
+                    ],
+                    terraform: [
+                    {
+                      "bucket-name": "esvc-us-east-2-sfcd-terraform",
+                    },
+                    ],
+                    fcp: [
+                    {
+                      "bucket-name": "esvc-us-east-2-sfcd-fcp-archive",
                     },
                     ],
                   },
