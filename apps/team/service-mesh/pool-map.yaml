@@ -9,6 +9,11 @@ apps:
     - prd/prd-sam_gater
   switchboard-prod-1:
     - fra/fra-sam_gater
+  switchboard-prod-2-mofo:
+    - yul/yul-sam_gater
+    - yhu/yhu-sam_gater
+    - cdu/cdu-sam_gater
+    - syd/syd-sam_gater
   switchboard-prod-2:
     - frf/frf-sam_gater
     - lo2/lo2-sam_gater
@@ -27,11 +32,6 @@ apps:
     - ia2/ia2-sam_gater
     - ia4/ia4-sam_gater
     - ia5/ia5-sam_gater
-  switchboard-prod-4-mofo:
-    - yul/yul-sam_gater
-    - yhu/yhu-sam_gater
-    - cdu/cdu-sam_gater
-    - syd/syd-sam_gater
 
   time:
     - prd/prd-sam
