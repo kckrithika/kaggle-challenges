@@ -81,10 +81,10 @@ apps:
   - lo2/lo2-sam_warden
   - lo3/lo3-sam_warden
  prod-maiev-receiver-more-hosts:
-  - ph2/ph2-sam_warden
   - dfw/dfw-sam_warden
   - ia2/ia2-sam_warden
- prod-maiev-receiver-nine-hosts:
+ prod-maiev-receiver-twelve-hosts:
+  - ph2/ph2-sam_warden
   - cdg/cdg-sam_warden
  prod-maiev-receiver:
   - lo2/lo2-sam_warden
