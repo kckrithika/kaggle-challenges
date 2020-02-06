@@ -143,7 +143,7 @@ zpages:
           plugins:
             envoy_ext_authz_grpc:
               addr: :9191
-              query: data.authz.rules.proxy.x509
+              query: data.authz.rules.proxy.x509.allow
               dry-run: false
               enable-reflection: false
             argus_metrics:
@@ -255,7 +255,7 @@ zpages:
           plugins:
             envoy_ext_authz_grpc:
               addr: :9191
-              query: data.authz.rules.proxy.x509
+              query: data.authz.rules.proxy.x509.allow
               dry-run: false
               enable-reflection: false
             argus_metrics:
