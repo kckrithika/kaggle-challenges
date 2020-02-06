@@ -89,7 +89,7 @@ system:
       - name: server_use_forward_headers
         value: true
       - name: server_port
-        value: 8080
+        value: 7022
       - name: management_server_port
         value: 15375
       - name: login_public_url
@@ -134,7 +134,7 @@ system:
       - name: client-cert
         mountPath: /client-certs
       ports:
-      - containerPort: 8080
+      - containerPort: 7022
       - containerPort: 15375
       livenessProbe:
         httpGet:
