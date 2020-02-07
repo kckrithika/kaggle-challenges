@@ -166,7 +166,7 @@ system:
         path: /home/sfdc-scone-hellodiscovery-beacon/logs
     terminationGracePeriodSeconds: 120
   loadbalancers:
-    - lbname: cloudatlas-prd-dev-service
+    - lbname: cloudatlas-prd-dev-dir1-1
       function: cloudatlas-prd-dev-dir1-1
       ports:
         - lbtype: dsr
