@@ -17,7 +17,7 @@ system:
           - name: spe_whitelist_filterDefinition
             value: "{}"
           ports:
-            - containerPort: 80
+            - containerPort: 8092
           livenessProbe:
             exec:
               command:
