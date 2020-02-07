@@ -100,7 +100,7 @@ system:
       - name: spe_whitelist_enabled
         value: true
       - name: spe_whitelist_filterDefinition
-        value: '{ "/" : {"include" : ["10.20.113.80/19"], "/app/" : {"include" : ["10.9.235.27/23"]}, "/talon/" : {"include" : ["10.9.235.27/23"]}, "/api/" : {"include" : ["10.9.235.27/23"]} }'
+        value: '{"/" : {"include" : ["10.20.113.80/19"]}, "/app/" : {"include" : ["10.9.235.27/23"]}, "/talon/" : {"include" : ["10.9.235.27/23"]}, "/api/" : {"include" : ["10.9.235.27/23"]}}'
 
       ports:
       - containerPort: 7022
