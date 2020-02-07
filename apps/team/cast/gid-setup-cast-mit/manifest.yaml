@@ -20,7 +20,7 @@ system:
       rollingUpdate:
         maxSurge: 0
         maxUnavailable: 1
-    hostnetwork: false
+    hostnetwork: true
     containers:
     #####################################################################################
     # Service Mesh / Envoy / Sherpa
@@ -89,22 +89,6 @@ system:
     #####################################################################################
     # Entity API
     #####################################################################################
-#TODO Uncomment once CA and/or Runtime team resolve this issue
-## ====
-## Can't get this to deploy due to SPaaS / HBase errors. Not sure why.
-##
-## Config is the same as cast/cast-prd-dev (https://git.soma.salesforce.com/sam/manifests/blob/master/apps/team/cast/cast-prd-dev/manifest.yaml),
-## which deploys to pool prd/prd-sam_cloudatlas_dir, hosts
-##      - test0shared0-samminionatlasdir1-1-prd.eng.sfdc.net
-##      - test0shared0-samminionatlasdir2-1-prd.eng.sfdc.net
-##      - test0shared0-samminionatlasdir1-2-prd.eng.sfdc.net
-##
-## whereas this manifest deploys to pool prd/prd-sam_globalidentity
-##
-## Error:
-##   {"logRecordType":"spaas","timestamp":"1579296319903","threadId":"1","productArea":"cloudatlas__cloudatlas-api","teamId":"a6fB0000000Cb4XIAS","event":"PROPAGATION_TO_GROUP","message":"kind=configuration,method=setOnAll(0:1:1579296319399)"}
-##   {"logRecordType":"spapi","timestamp":"1579296319930","threadId":"1","productArea":"cloudatlas__cloudatlas-api","teamId":"a6fB0000000Cb4XIAS","serviceName":"ProtectionConfigurationService","operation":"SET_CONFIGURATION_VALUE","status":"SUCCESS","errorCode":"StorageUnavailable","errorMessage":"Service is operating in degraded mode as HBase is currently unavailable.","arguments":"protection.svc.common.Constants.SPS_ENABLED,false"}
-## ====
     - name: cloudatlas-service
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cloud-atlas/cloudatlas/cloudatlas-service:26eb747
       command: ["java", "-jar", "cloudatlas-service.jar"]
