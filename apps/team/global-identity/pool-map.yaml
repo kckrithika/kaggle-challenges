@@ -37,6 +37,9 @@ apps:
         #hostSubList:
         #- shared0-samminionglobalidentity1-5-prd.eng.sfdc.net
 
+  service-protection-demo:
+    - name: prd/prd-sam_globalidentity
+    
   gid-runtime-service-staging:
     - name: prd/prd-sam_globalidentity
 

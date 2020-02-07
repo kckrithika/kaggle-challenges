@@ -1,0 +1,36 @@
+apiVersion: v1
+system:
+  functions:
+    - name: service-protection-demo
+      count: 1
+      containers:
+        - name: service-protection
+          image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/gid/service-protection:20dc7e3
+          imagePullPolicy: Always
+          env:
+          - name: server_port
+            value: 80
+          - name: dynamicProp_contentUrl
+            value: https://ops0-artifactrepo2-0-prd.data.sfdc.net/artifactory/content_repo_rc/0/archive/dynamic-configuration/latest
+          - name: dynamicProp_contentPrefix
+            value: contents/sam/gid-runtime/demo
+          - name: spe_whitelist_filterDefinition
+            value: { }
+          ports:
+            - containerPort: 80
+          livenessProbe:
+            exec:
+              command:
+                - /bin/true
+            initialDelaySeconds: 60
+            periodSeconds: 30
+
+  loadbalancers:
+    - lbname: service-protection-demo
+      function: service-protection-demo
+      slbenabled: true
+      ports:
+        - port: 80
+          targetport: 80
+          lbtype: tcp
+
