@@ -11,11 +11,11 @@ system:
     containers:
     - name: gate-manager
       # container image/version to run. published separately.
-      image: sfci/services/sfdc-bazel/gater/gate-manager:1.17.0
+      image: sfci/services/sfdc-bazel/gater/gate-manager:1.18.0
       args:
         - --server.port=-1
-        - --gater-service.thread.pool.max-size=0
-        - --gater.grpc.threadpool.size=0
+        - --gater-service.thread.pool.max-size=16
+        - --gater.grpc.threadpool.size=16
         - --logging.sfdc.stderr.level=OFF
         - --logging.json.stdout.level=INFO
         - --publish-specific-metrics=CONDITIONAL
@@ -51,6 +51,7 @@ system:
       env:
       - name: SFDC_ENVIRONMENT
         value: prod
+      terminationMessagePolicy: FallbackToLogsOnError
 
     # maps the logval volumnMount to a directory on the host machine. Logs in this directory will be available
     # for a shart time after a docker image is shut down. The SAM splunk forwarders will handle the logs being
