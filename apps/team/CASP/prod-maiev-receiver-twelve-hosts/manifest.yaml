@@ -16,7 +16,7 @@ system:
           maxUnavailable: 3
       containers:
       - name: prod-maiev-receiver
-        image: dva/maiev-receiver:76
+        image: dva/maiev-receiver:jenkins-CASP-maiev-dt-remove-streams-3-itest
         ports:
         - name: receiver-grpc
           containerPort: 7020
