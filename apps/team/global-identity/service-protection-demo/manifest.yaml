@@ -5,11 +5,11 @@ system:
       count: 1
       containers:
         - name: service-protection
-          image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/gid/service-protection:20dc7e3
+          image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/gid/service-protection:d612dd6
           imagePullPolicy: Always
           env:
           - name: server_port
-            value: 80
+            value: 8092
           - name: dynamicProp_contentUrl
             value: https://ops0-artifactrepo2-0-prd.data.sfdc.net/artifactory/content_repo_rc/0/archive/dynamic-configuration/latest
           - name: dynamicProp_contentPrefix
@@ -31,6 +31,6 @@ system:
       slbenabled: true
       ports:
         - port: 80
-          targetport: 80
+          targetport: 8092
           lbtype: tcp
 
