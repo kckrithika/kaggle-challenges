@@ -51,7 +51,7 @@ local flowsnake_all_kes = (import "flowsnakeEstates.json").kingdomEstates + ["pr
     is_public_cloud: util.is_public_cloud(configs.kingdom),
     sdn_enabled: !self.is_minikube && !self.is_public_cloud,
     # no v1 in PCL
-    is_v1_enabled: !self.is_public_cloud && kingdom != "ph2" && kingdom != "ia2" && estate != "prd-data-flowsnake_test" && estate != "prd-dev-flowsnake_iot_test" && self.deployment_region != "emea" && self.deployment_region != "apac",
+    is_v1_enabled: estate == "prd-data-flowsnake" || std.substr(estate, 0, 13) == "prd-minikube-",
 
     # Whether the autodeployer should delete orphans.  This is an unreliable feature
     # and so is mostly disabled.  Additionally it CANNOT be enabled anywhere v1 is running
