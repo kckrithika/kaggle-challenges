@@ -139,5 +139,6 @@ local ingressGatewayCertConfigs = [ingressGatewayClientCertConfig, ingressGatewa
 
   envoyMetricsServiceHost: "switchboard.service-mesh",
 
-  authzEnabled: if configs.estate == "prd-samtest" then "false" else "true",
+  // Disable AuthZ for prd-samtest & production
+  authzEnabled: if configs.estate == "prd-sam" then "true" else "false",
 }
