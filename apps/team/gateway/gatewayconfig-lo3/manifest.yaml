@@ -42,7 +42,7 @@ system:
         medium: Memory
     containers:
     - name: gatewayconfig
-      image: sfci/gateway/gateway-service:2019-11-11-180032
+      image: sfci/gateway/gateway-service:2020-02-06-173826
       env:
       - name: SERVER_PORT
         value: 7442
