@@ -41,6 +41,7 @@ apps:
   - ph2/ph2-sam_warden
   - lo2/lo2-sam_warden
   - lo3/lo3-sam_warden
+  - hnd/hnd-sam_warden
  prod-cantor-grpc-server:
   - par/par-sam_warden
   - iad/iad-sam_warden
