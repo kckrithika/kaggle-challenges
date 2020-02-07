@@ -182,6 +182,24 @@ items:
 - apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: RoleBinding
   metadata:
+    name: wave-discovery:dfw-sam_datapool:rolebinding
+    namespace: wave-discovery
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: minion:role
+  subjects:
+  - kind: User
+    name: shared0-samminiondatapool1-1-dfw.ops.sfdc.net
+  - kind: User
+    name: shared0-samminiondatapool1-2-dfw.ops.sfdc.net
+  - kind: User
+    name: shared0-samminiondatapool2-1-dfw.ops.sfdc.net
+  - kind: User
+    name: shared0-samminiondatapool2-2-dfw.ops.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1beta1
+  kind: RoleBinding
+  metadata:
     name: wave-elt:dfw-sam_datapool:rolebinding
     namespace: wave-elt
   roleRef:

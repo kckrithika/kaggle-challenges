@@ -391,10 +391,12 @@
     },
     {
       "namespaces": [
-        "wave-elt"
+        "wave-elt",
+        "wave-discovery"
       ],
       "access": [
-        "team/wave-elt"
+        "team/wave-elt",
+        "team/wave-discovery"
       ],
       "controlEstate": "dfw-sam",
       "estate": "dfw-sam_datapool",
@@ -1977,10 +1979,12 @@
     },
     {
       "namespaces": [
-        "wave-elt"
+        "wave-elt",
+        "wave-discovery"
       ],
       "access": [
-        "team/wave-elt"
+        "team/wave-elt",
+        "team/wave-discovery"
       ],
       "controlEstate": "iad-sam",
       "estate": "iad-sam_datapool",
@@ -2577,10 +2581,12 @@
     },
     {
       "namespaces": [
-        "wave-elt"
+        "wave-elt",
+        "wave-discovery"
       ],
       "access": [
-        "team/wave-elt"
+        "team/wave-elt",
+        "team/wave-discovery"
       ],
       "controlEstate": "ord-sam",
       "estate": "ord-sam_datapool",
@@ -3367,10 +3373,12 @@
     },
     {
       "namespaces": [
-        "wave-elt"
+        "wave-elt",
+        "wave-discovery"
       ],
       "access": [
-        "team/wave-elt"
+        "team/wave-elt",
+        "team/wave-discovery"
       ],
       "controlEstate": "phx-sam",
       "estate": "phx-sam_datapool",
@@ -3729,10 +3737,12 @@
     },
     {
       "namespaces": [
-        "wave-elt"
+        "wave-elt",
+        "wave-discovery"
       ],
       "access": [
-        "team/wave-elt"
+        "team/wave-elt",
+        "team/wave-discovery"
       ],
       "controlEstate": "prd-sam",
       "estate": "prd-sam_datapool",
