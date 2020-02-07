@@ -42,6 +42,7 @@
    - public0-gateway2-3-dfw.ops.sfdc.net
    - public0-gateway2-4-dfw.ops.sfdc.net
    - public0-gateway2-5-dfw.ops.sfdc.net
+   - public0-gateway2-6-dfw.ops.sfdc.net
   ports:
    - port: 80
      targetport: 80
