@@ -76,7 +76,6 @@ configs.deploymentBase("service-mesh") {
               "--namespace-selector",
               "istio-injection=enabled",
               "--authz-enabled=" + mcpIstioConfig.authzEnabled,
-              "--authz-canary-services=authz-svc.service-mesh,switchboard.authz-svc,istio-shipping-tcp.service-mesh,istio-shipping-redis.service-mesh,istio-shipping.service-mesh,switchboard.service-mesh,authz-svc.service-mesh,istio-geoip.service-mesh",
               "--authz-shadow-rules=true",
             ],
             env: [
