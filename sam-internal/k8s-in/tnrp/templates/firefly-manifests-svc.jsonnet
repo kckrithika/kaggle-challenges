@@ -4,6 +4,7 @@ local pullrequestsvc = import "firefly-pullrequest-svc.jsonnet.TEMPLATE";
 local configs = import "config.jsonnet";
 local promotionsvc = import "firefly-promotion-svc.jsonnet.TEMPLATE";
 local packageConfig = import "configs/firefly-package.jsonnet";
+local s3Config = import "configs/firefly-s3.jsonnet";
 
 if configs.estate == "prd-samtwo" then
 {
@@ -37,36 +38,7 @@ if configs.estate == "prd-samtwo" then
                 "service-account-key": "${gcsUploaderKey#FromSecretService}",
               },
               "gcs-bucket": "fcparchive",
-              s3: {
-                enabled: true,
-                "s3-access-key-id": "${s3AccessKeyId#FromSecretService}",
-                "s3-secret-access-key": "${s3SecretAccessKey#FromSecretService}",
-                "s3-grid-configs": [
-                {
-                  "environment-type": "ffdev",
-                  region: "us-east-2",
-                  "access-key-id": "${s3AccessKeyId#FromSecretService}",
-                  "secret-access-key": "${s3SecretAccessKey#FromSecretService}",
-                  "bucket-configs-by-type": {
-                    helm: [
-                    {
-                      "bucket-name": "sfcd-helm",
-                    },
-                    ],
-                    terraform: [
-                    {
-                      "bucket-name": "sfcd-terraform",
-                    },
-                    ],
-                    fcp: [
-                    {
-                      "bucket-name": "fcparchive",
-                    },
-                    ],
-                  },
-                },
-              ],
-              },
+              s3: s3Config.s3,
               "s3-bucket": "fcparchive",
             },
           },
