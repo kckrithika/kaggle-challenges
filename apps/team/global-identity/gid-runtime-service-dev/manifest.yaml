@@ -98,9 +98,9 @@ system:
       - name: spe_ratelimit_timeWindow
         value: 60
       - name: spe_whitelist_enabled
-        value: true
+        value: false
       - name: spe_whitelist_filterDefinition
-        value: '{"/" : {"include" : ["10.9.235.27/23"]}, "/app/" : {"include" : ["10.20.113.80/19", "10.3.52.237/19"]}, "/talon/" : {"include" : ["10.20.113.80/19", "10.3.52.237/19"]}, "/api/" : {"include" : ["10.20.113.80/19", "10.3.52.237/19"]}}'
+        value: '{"/" : {"include" : ["10.0.0.0/8"]}}'
 
       ports:
       - containerPort: 7022
