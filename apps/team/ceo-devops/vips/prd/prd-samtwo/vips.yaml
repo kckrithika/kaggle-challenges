@@ -1432,8 +1432,8 @@
 
 - lbname: cjemaster313
   customlbname: cjemaster313
-#  cnames:
-#  - cname: gldrci.slb.sfdc.net
+  cnames:
+  - cname: pgcici.slb.sfdc.net
   servers:
   - cjemaster313-1-prd.dop.sfdc.net
   - cjemaster313-2-prd.dop.sfdc.net
@@ -1457,8 +1457,8 @@
 
 - lbname: cjemaster314
   customlbname: cjemaster314
-##  cnames:
-#  - cname: eaasci.slb.sfdc.net
+  cnames:
+  - cname: taleggioci.slb.sfdc.net
   servers:
   - cjemaster314-1-prd.dop.sfdc.net
   - cjemaster314-2-prd.dop.sfdc.net
