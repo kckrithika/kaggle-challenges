@@ -241,12 +241,12 @@ system:
       - name: proxy_routes_4_sourcePath
         value: /empire
       - name: proxy_routes_4_target
-        value: http://localhost:7032
+        value: http://localhost:7030
       # CA service - scim
       - name: proxy_routes_5_sourcePath
         value: /scim
       - name: proxy_routes_5_target
-        value: http://localhost:7032
+        value: http://localhost:7030
       # Common properties for all routes / target containers
       - name: proxy_maxThreads
         value: 1000
