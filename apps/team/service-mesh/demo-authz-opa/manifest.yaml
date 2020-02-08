@@ -9,6 +9,7 @@ system:
     count: 1
     annotations:
       sidecar.istio.io/inject: "true"
+      traffic.sidecar.istio.io/excludeInboundPorts: "15372,8440"
     containers:
     - name: demo-authz-opa
       image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/electron_sam:148
