@@ -11,7 +11,7 @@ system:
     containers:
     - name: gate-manager
       # container image/version to run. published separately.
-      image: sfci/services/sfdc-bazel/gater/gate-manager:1.17.0
+      image: sfci/services/sfdc-bazel/gater/gate-manager:1.18.0
       args:
         - --server.port=9090
         - --gater-service.thread.pool.max-size=16
@@ -21,7 +21,7 @@ system:
         - --publish-specific-metrics=CONDITIONAL
       # associate the /log directory to a logical volume. logging.dir is set to this in the startup script args above,
       # and this volume mount is mapped to a host directory below in the volumes section. Underneath this directory
-      # we will end up with the following sub-directories: gater/app, gater/jvm, gater/json. 
+      # we will end up with the following sub-directories: gater/app, gater/jvm, gater/json.
       volumeMounts:
       - mountPath: /log
         name: logvol
@@ -32,20 +32,20 @@ system:
         httpGet:
           path: /manage/health
           port: 15372
-        initialDelaySeconds: 60 
+        initialDelaySeconds: 60
         timeoutSeconds: 10
       readinessProbe:
         httpGet:
           path: /manage/health
           port: 15372
-        initialDelaySeconds: 60 
+        initialDelaySeconds: 60
         timeoutSeconds: 10
       # expose gater outside the container. Note that the host is already exposing port 8080, so we need to
       # change this to a different port for instances running in SAM. Note server.port above reflects this.
       # The ports listed here are exposed at the host network level. This is controlled by the hostnetwork setting above.
       ports:
       - containerPort: 9522
-      - containerPort: 9523 
+      - containerPort: 9523
       - containerPort: 15372
       env:
       - name: SFDC_ENVIRONMENT
