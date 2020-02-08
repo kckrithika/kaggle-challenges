@@ -54,6 +54,7 @@ apps:
   - lo2/lo2-sam_warden
   - lo3/lo3-sam_warden
   - dfw/dfw-sam_warden
+  - hnd/hnd-sam_warden
  prod-cantor-grpc-server-drop-1-1:
   - ord/ord-sam_warden
  prod-cantor-grpc-server-drop-2-1:
@@ -81,6 +82,7 @@ apps:
   - ph2/ph2-sam_warden
   - lo2/lo2-sam_warden
   - lo3/lo3-sam_warden
+  - hnd/hnd-sam_warden
  prod-maiev-receiver-more-hosts:
   - dfw/dfw-sam_warden
   - ia2/ia2-sam_warden
@@ -97,6 +99,7 @@ apps:
   - lo3/lo3-sam_warden
   - ord/ord-sam_warden
   - frf/frf-sam_warden
+  - hnd/hnd-sam_warden
  prod-maiev-receiver-mofo:
   - cdu/cdu-sam_warden
   - syd/syd-sam_warden
@@ -114,6 +117,7 @@ apps:
   - lo2/lo2-sam_warden
   - lo3/lo3-sam_warden
   - dfw/dfw-sam_warden
+  - hnd/hnd-sam_warden
  prod-warden-mofo:
   - cdu/cdu-sam_warden
   - syd/syd-sam_warden
