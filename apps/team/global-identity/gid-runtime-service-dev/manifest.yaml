@@ -82,7 +82,7 @@ system:
     # Service Protection
     #####################################################################################
     - name: service-protection
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/gid/service-protection:7cfb4b3
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/gid/service-protection:0c2fcb8
       imagePullPolicy: Always
       env:
       - name: server_use_forward_headers
@@ -218,7 +218,7 @@ system:
       ports:
         - port: 80
           name: public
-          targetport: 7022
+          targetport: 7014
           lbtype: http
           tls: false
           reencrypt: false
