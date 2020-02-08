@@ -17,7 +17,7 @@ system:
   loadbalancers:
   - lbname: hammondtest
     function: default
-    slbenabled: false
+    slbenabled: true
     ports:
       - port: 9090
         targetport: 9090
