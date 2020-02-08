@@ -21,3 +21,4 @@ system:
     ports:
       - port: 9090
         targetport: 9090
+        lbalgorithm: haship
