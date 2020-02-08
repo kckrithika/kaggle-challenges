@@ -6,7 +6,8 @@ system:
       - cre@salesforce.com
   functions:
   - name: cre-sp-ccp-dev
-    count: 1
+  ## The count value MUST equal the CLUSTER_SIZE property in env
+    count: 3
     labels:
       app: cre-sp-ccp-dev
     annotations:
