@@ -441,7 +441,7 @@ items:
           - name: SERVICE_MODE
             value: multi
           - name: CONFIG_VERSION
-            value: "22"
+            value: "23"
           - name: DARKLAUNCH
             value: "false"
           - name: INSTANCE_TYPE
@@ -676,30 +676,6 @@ items:
                           "environment-type": "ffdev",
                           "region": "us-east-2",
                           "secret-access-key": "${s3SecretAccessKey#FromSecretService}"
-                      },
-                      {
-                          "access-key-id": "${dev1_service_firefly_key#FromSecretService}",
-                          "bucket-configs-by-type": {
-                              "fcp": [
-                                  {
-                                      "bucket-name": "dev-us-west-2-sfcd-fcp-archive"
-                                  }
-                              ],
-                              "helm": [
-                                  {
-                                      "bucket-name": "dev-us-west-2-sfcd-helm-archive"
-                                  }
-                              ],
-                              "terraform": [
-                                  {
-                                      "bucket-name": "dev-us-west-2-sfcd-terraform"
-                                  }
-                              ]
-                          },
-                          "environment-type": "dev1",
-                          "region": "us-west-2",
-                          "role-arn": "${dev1RoleArn#FromSecretService}",
-                          "secret-access-key": "${dev1_service_firefly_secret#FromSecretService}"
                       },
                       {
                           "access-key-id": "${ESVC1_service_firefly_key#FromSecretService}",
@@ -1021,7 +997,7 @@ items:
           - name: SERVICE_MODE
             value: singleton
           - name: CONFIG_VERSION
-            value: "20"
+            value: "21"
           - name: DARKLAUNCH
             value: "false"
           - name: INSTANCE_TYPE
