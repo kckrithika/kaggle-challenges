@@ -10,3 +10,4 @@
    - port: 80
      targetport: 12087
      lbtype: http
+     lbalgorithm: haship
