@@ -6,8 +6,6 @@ system:
     count: 8
     labels:
       app: search-query-service
-    annotations:
-      routing.mesh.sfdc.net/enabled: "true"
     strategy:
       type: RollingUpdate
       rollingUpdate:
