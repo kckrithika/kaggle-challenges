@@ -26,4 +26,5 @@ system:
     ports:
       - port: 9090
         targetport: 9090
-        lbtype: tcp
+        lbtype: http
+        tls: false
