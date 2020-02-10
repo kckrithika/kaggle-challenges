@@ -9,7 +9,7 @@ system:
     count: 1
     containers:
     - name: candidate-service-2-logrotator
-      image: dva/csc-health/candidate-service:24
+      image: dva/csc-health/candidate-service:17
       volumeMounts:
         - mountPath: /home/sfdc-csc-health/candidate-service
           name: logvol
@@ -39,7 +39,7 @@ system:
         done
       ']
     - name: candidate-service-2
-      image: dva/csc-health/candidate-service:24
+      image: dva/csc-health/candidate-service:17
       ports:
       - containerPort: 8888
       volumeMounts:
