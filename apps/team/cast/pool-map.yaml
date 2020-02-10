@@ -2,14 +2,11 @@ version: v2
 apps:
   # PRD Global Identity Dev - GID Setup-owned Cast clone for active dev and testing
   gid-setup-cast-mit:
-# Commented out for MIT debugging
-#    - name: prd/prd-sam_globalidentity
+  # MIT environment runs on the cloudatlas pool but connects to globalidentity CA instance. Needed for an unstable pod bug 
     - name: prd/prd-sam_cloudatlas_dir
 
   gid-setup-cast-dev:
-# Commented out for MIT debugging
-#    - name: prd/prd-sam_globalidentity
-    - name: prd/prd-sam_cloudatlas_dir
+    - name: prd/prd-sam_globalidentity
     
   # PRD-Dev Cloud Atlas Service
   cast-prd-dev:
