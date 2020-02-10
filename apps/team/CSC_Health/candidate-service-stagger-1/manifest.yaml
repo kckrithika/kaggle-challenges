@@ -91,7 +91,7 @@ system:
       - name: CHS_STALENESS_WHITELIST
         value: LOGICAL_HOST
       - name: CHS_STALENESS_LIMIT
-        value: 900s
+        value: 900
       - name: CHS_STALENESS_FREQUENCY
         value: 60s
       - name: CHS_REPORTCOLLECTOR_WDWHITELIST
