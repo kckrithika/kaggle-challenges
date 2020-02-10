@@ -24,6 +24,7 @@ apps:
   - ukb/ukb-sam_warden
   - phx/phx-sam_warden
   - dfw/dfw-sam_warden
+  - ph2/ph2-sam_warden
  prod-mysql-shard-a-drop-1-1:
   - ord/ord-sam_warden
  prod-mysql-shard-a-drop-1-2:
@@ -38,7 +39,6 @@ apps:
   - yhu/yhu-sam_warden
   - yul/yul-sam_warden
   - ia2/ia2-sam_warden
-  - ph2/ph2-sam_warden
   - lo2/lo2-sam_warden
   - lo3/lo3-sam_warden
   - hnd/hnd-sam_warden
