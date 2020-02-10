@@ -15,10 +15,14 @@ system:
         path: /data/logs
     containers:
     - name: capadd
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/qwang/capadd:test-20200210 #20200127-3
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/qwang/capadd:test-20200210-2 #20200127-3
       env:
         - name: CAPADD_LOG_DIR
           value: "/data/logs/capadd-logs.txt"
+        - name: GITHUB_HOST
+          value: "git.soma.salesforce.com"
+        - name: GITHUB_USER
+          value: "netqa-git"
       volumeMounts:
         - name: capadd-client-cert
           mountPath: /clientcert
