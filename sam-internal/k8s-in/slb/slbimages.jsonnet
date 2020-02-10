@@ -49,6 +49,8 @@ local slbreleases = import "slbreleases.json";
     hyperslb_nginx_config_label: (
         if ($.phaseNum <= 1) then
             slbreleases[$.phase].hyperslb.label
+        else if (estate == "ord-sam") then
+                    "2307-2a654a3b51c35636c6411a1e090926fa182d524f"
         else
            "2305-3b2e1034d7d2d6ebca8b7d8d925705fd87edc805"
     ),
