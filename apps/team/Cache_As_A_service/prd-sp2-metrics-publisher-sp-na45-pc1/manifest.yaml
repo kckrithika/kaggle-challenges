@@ -39,6 +39,8 @@ system:
          value: stmfa
        - name: CAAS_ENVIRONMENT
          value: none
+       - name: RESTART_COUNT
+         value: 1
     volumes:
     - name: logvol
       hostPath:
