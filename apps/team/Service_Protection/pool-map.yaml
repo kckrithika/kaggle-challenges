@@ -17,15 +17,16 @@ apps:
   - ukb/ukb-sam_gater
   - ph2/ph2-sam_gater
   - ia2/ia2-sam_gater
- ml-spaas:
+ test-ml-spaas:
   - prd/prd-sam_gater
- ml-spaas-prod:
+ canary-prod-ml-spaas:
+  - iad/iad-sam_gater
+ ml-spaas:
   - dfw/dfw-sam_gater
   - cdg/cdg-sam_gater
   - phx/phx-sam_gater
   - fra/fra-sam_gater
   - ia2/ia2-sam_gater
-  - iad/iad-sam_gater
   - ord/ord-sam_gater
   - ph2/ph2-sam_gater
   - hnd/hnd-sam_gater
