@@ -196,14 +196,6 @@ items:
           },
           {
             "lbtype": "http",
-            "port": 8080,
-            "reencrypt": false,
-            "sticky": 0,
-            "targetPort": 8080,
-            "tls": false
-          },
-          {
-            "lbtype": "http",
             "port": 8443,
             "reencrypt": false,
             "sticky": 0,
@@ -218,10 +210,6 @@ items:
     namespace: firefly
   spec:
     ports:
-    - name: intake-http
-      port: 8080
-      protocol: TCP
-      targetPort: 8080
     - name: intake-https
       port: 8443
       protocol: TCP

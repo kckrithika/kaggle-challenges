@@ -34,15 +34,6 @@ if firefly_feature_flags.is_firefly_svc_enabled then
          sticky: 0,
       },
       {
-         // TODO: Remove once all customers have migrated to tls endpoint as part of W-5562772
-         port: portConfig.firefly.intake_http,
-         targetPort: portConfig.firefly.intake_http,
-         lbtype: "http",
-         tls: false,
-         reencrypt: false,
-         sticky: 0,
-      },
-      {
          port: portConfig.firefly.intake_https,
          targetPort: portConfig.firefly.intake_http,
          lbtype: "http",
@@ -52,13 +43,6 @@ if firefly_feature_flags.is_firefly_svc_enabled then
       },
     ],
     portConfigs:: [
-      {
-        name: 'intake-http',
-        protocol: 'TCP',
-        port: portConfig.firefly.intake_http,
-        targetPort: portConfig.firefly.intake_http,
-        [if !firefly_feature_flags.is_slb_enabled then "nodePort"]: portConfig.firefly.intake_http_nodeport,
-      },
       {
         name: 'intake-https',
         protocol: 'TCP',
