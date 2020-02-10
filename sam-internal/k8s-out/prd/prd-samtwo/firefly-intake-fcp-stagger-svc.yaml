@@ -210,6 +210,10 @@ items:
     namespace: firefly
   spec:
     ports:
+    - name: intake-http
+      port: 8080
+      protocol: TCP
+      targetPort: 8080
     - name: intake-https
       port: 8443
       protocol: TCP
