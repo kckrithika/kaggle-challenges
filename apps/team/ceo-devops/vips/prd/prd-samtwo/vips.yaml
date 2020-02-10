@@ -1482,8 +1482,8 @@
 
 - lbname: cjemaster315
   customlbname: cjemaster315
-#  cnames:
-#  - cname: forcedotcommonsci.slb.sfdc.net
+  cnames:
+  - cname: ciac-dbmgtci.slb.sfdc.net
   servers:
   - cjemaster315-1-prd.dop.sfdc.net
   - cjemaster315-2-prd.dop.sfdc.net
