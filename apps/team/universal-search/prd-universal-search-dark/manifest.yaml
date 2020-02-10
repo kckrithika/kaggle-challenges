@@ -69,7 +69,7 @@ system:
         failureThreshold: 1
       readinessProbe:
         httpGet:
-          path: /manage/health
+          path: /manage/ready
           port: 15372
         initialDelaySeconds: 60
         timeoutSeconds: 10
