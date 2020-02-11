@@ -10,3 +10,5 @@ apps:
     - name: xrd/xrd-sampool
  candidate-service:
     - name: xrd/xrd-sampool
+ candidate-service-watchdog:
+    - name: xrd/xrd-sampool
