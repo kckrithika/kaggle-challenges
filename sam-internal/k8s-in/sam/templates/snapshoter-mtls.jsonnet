@@ -51,7 +51,7 @@ configs.containerWithKubeConfigAndMadDog {
                         "--hostsConfigFile=/sfdchosts/hosts.json",
                         "--v=4",
                         "--alsologtostderr",
-                    ],
+                    ] + if !utils.is_production(configs.kingdom) then ["--kafka-max-throughput-kbps=3000"] else [],
                     volumeMounts+: configs.filter_empty([
                         configs.config_volume_mount,
                         configs.cert_volume_mount,
@@ -60,9 +60,6 @@ configs.containerWithKubeConfigAndMadDog {
                           + if utils.is_pcn(configs.kingdom) then [{ mountPath: "/etc/pki_service/", name: "maddog-certs" }] else []),
                     image: samimages.hypersam,
                     name: "snapshot-producer",
-                } + if configs.estate == "prd-sam" then {
-
-                } else {
                     livenessProbe: {
                         httpGet: {
                             path: "/",
