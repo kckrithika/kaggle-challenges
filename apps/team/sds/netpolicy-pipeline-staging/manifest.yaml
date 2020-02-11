@@ -19,9 +19,9 @@ system:
       - name: TLS_PORT
         value: 9090
       - name: TLS_CERTIFICATE
-        value: test_certs/server.cert
+        value: server.crt
       - name: TLS_PRIVATE_KEY
-        value: test_certs/server.key
+        value: server.key
       livenessProbe:
         httpGet:
           path: /netbot/v1/healthcheck
