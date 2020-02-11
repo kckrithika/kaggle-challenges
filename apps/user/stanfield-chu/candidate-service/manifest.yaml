@@ -129,7 +129,7 @@ system:
       args: ["
         export CHS_AJNA_FUNNELENDPOINT=http://${SFDC_METRICS_SERVICE_HOST}:${SFDC_METRICS_SERVICE_PORT} ;
         export CHS_AJNA_DATACENTER=${KINGDOM} ;
-        export CHS_AJNA_DEVICE=${ESTATE}.${FUNCTION_NAMESPACE}.${FUNCTION}.${FUNCTION_INSTANCE_NAME} ;
+        export CHS_AJNA_DEVICE=stanfield-chu.candidate-service ;
         export CHS_GROK_ENDPOINT=dummyendpoint+https://ops0-grok1-0-${KINGDOM}.data.sfdc.net ;
         export CHS_REPORTCOLLECTOR_ENDPOINT=https://reportcollector-${KINGDOM}.data.sfdc.net:18444 ;
         export CHS_ESTATES_DATACENTER=${KINGDOM} ;
