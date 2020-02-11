@@ -31,7 +31,8 @@ std.prune({
     dockerRegistry: (if !utils.is_pcn(configs.kingdom) then configs.registry else ""),
 
   namespaceHostSubList: (
-     if utils.is_production(configs.kingdom) then ["cloudatlas"]
+     if configs.kingdom == "par" || configs.kingdom == "ukb" then ["cloudatlas", "cast"]
+     else if utils.is_production(configs.kingdom) then ["cloudatlas"]
      else [".*"]
    ),
    ipAddressCapacityRequest: (if samfeatureflags.ipAddressCapacityRequest then true),
