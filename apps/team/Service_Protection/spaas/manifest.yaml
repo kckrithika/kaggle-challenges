@@ -16,7 +16,7 @@ system:
     # Docker image(s) that make up one instance of the service
     containers:
     - name: spaas 
-      image: sfci/service-protection/sps:0.8.8
+      image: sfci/service-protection/sps:0.8.16
       # set container environment variables
       env:
       - name: SFDC_ENVIRONMENT
