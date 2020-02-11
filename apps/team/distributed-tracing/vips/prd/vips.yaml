@@ -123,9 +123,9 @@
   cnames:
    - cname: tracer-api.data.sfdc.net
   servers:
-   - shared0-samminionzipkin1-31-prd.eng.sfdc.net  
-   - shared0-samminionzipkin1-32-prd.eng.sfdc.net
-   - shared0-samminionzipkin1-33-prd.eng.sfdc.net  
+   - shared0-samminionzipkin1-27-prd.eng.sfdc.net
+   - shared0-samminionzipkin1-28-prd.eng.sfdc.net
+   - shared0-samminionzipkin1-29-prd.eng.sfdc.net
   ports:
    - port: 443
      targetport: 9090
@@ -141,9 +141,9 @@
   cnames:
    - cname: tracer-poc-api.data.sfdc.net
   servers:
-   - shared0-samminionzipkin1-31-prd.eng.sfdc.net  
-   - shared0-samminionzipkin1-32-prd.eng.sfdc.net
-   - shared0-samminionzipkin1-33-prd.eng.sfdc.net  
+   - shared0-samminionzipkin1-27-prd.eng.sfdc.net
+   - shared0-samminionzipkin1-28-prd.eng.sfdc.net
+   - shared0-samminionzipkin1-29-prd.eng.sfdc.net
   ports:
    - port: 443
      targetport: 8090
