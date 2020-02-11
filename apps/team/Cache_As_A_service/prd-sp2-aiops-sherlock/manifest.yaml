@@ -28,7 +28,7 @@ system:
         - name: SAMCAAS2_CAASMINION2_2_PRD_KINGDOMS
           value: 'chx,yul,lo2,frf,par,phx,ia2,ph2,cdg,hnd,ia5,model_queue2,dbperfswat'
         - name: SAMCAAS2_CAASMINION3_6_PRD_KINGDOMS
-          value: 'cdg,hnd,ord,iad,ph2,model_queue3,dbperfswat'
+          value: 'model_queue3,dbperfswat'
         - name: CELERY_LOG_LEVEL
           value: 'info'
         - name: FLOWER_LOG_LEVEL
