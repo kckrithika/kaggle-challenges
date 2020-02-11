@@ -13,6 +13,19 @@ system:
       ports:
       - containerPort: 9090
       - containerPort: 7090
+      env:
+      - name: HOST
+        value: "0.0.0.0"
+      - name: PORT
+        value: 7090
+      - name: TLS_HOST
+        value: "0.0.0.0"
+      - name: TLS_PORT
+        value: 9090
+      - name: TLS_CERTIFICATE
+        value: test_certs/server.cert
+      - name: TLS_PRIVATE_KEY
+        value: test_certs/server.key
       livenessProbe:
         httpGet:
           path: /netbot/v1/healthcheck
@@ -27,5 +40,4 @@ system:
     ports:
       - port: 9090
         targetport: 9090
-        lbtype: http
-        tls: false
+        lbtype: tcp
