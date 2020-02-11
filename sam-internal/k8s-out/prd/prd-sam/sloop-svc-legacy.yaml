@@ -6,7 +6,7 @@ metadata:
     slb.sfdc.net/portconfigurations: '[{"lbtype": "", "nodeport": 0, "port": 80, "reencrypt":
       false, "sticky": 0, "targetport": 31938}]'
   labels:
-    name: sloop-redirect
+    name: sloop
     sam.data.sfdc.net/owner: sam
   name: sloop-legacy
   namespace: sam-system
@@ -17,4 +17,4 @@ spec:
     protocol: TCP
     targetPort: 31938
   selector:
-    app: sloopds-prd-sam
+    name: sloop-redirect
