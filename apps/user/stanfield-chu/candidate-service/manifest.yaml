@@ -91,9 +91,9 @@ system:
       - name: CHS_STALENESS_WHITELIST
         value: LOGICAL_HOST
       - name: CHS_STALENESS_LIMIT
-        value: 900s
-      - name: CHS_STALENESS_FREQUENCY
         value: 60s
+      - name: CHS_STALENESS_FREQUENCY
+        value: 10s
       - name: CHS_REPORTCOLLECTOR_WDWHITELIST
         value: grok.server_watchdog,sandman,netmgt.sandman,mom,*.infrastructure-watchdog-CP-health
       - name: CHS_REPORTCOLLECTOR_WDWHITELISTUNTRUSTED
@@ -117,7 +117,7 @@ system:
       - name: CHS_ESTATES_KEYPATH
         value: /certs/client/keys/client-key.pem
       - name: CHS_ESTATES_POLLPERIOD
-        value: 15m
+        value: 3m
       - name: CHS_COORDINATOR_ENABLED
         value: false
       livenessProbe:
