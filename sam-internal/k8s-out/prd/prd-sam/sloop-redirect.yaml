@@ -1,0 +1,31 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  labels:
+    name: sloop-redirect
+    sam.data.sfdc.net/owner: sam
+  name: sloop-redirect
+  namespace: sam-system
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      name: sloop-redirect
+  template:
+    metadata:
+      labels:
+        name: sloop-redirect
+        sam.data.sfdc.net/owner: sam
+      namespace: sam-system
+    spec:
+      containers:
+      - command:
+        - /redirect
+        - --port=31938
+        - --message=Moved to http://sfdc.co/sloop-prd-sam
+        image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/thargrove/redirect:latest
+        name: sloop-redirect
+        ports:
+        - containerPort: 31938
+      nodeSelector:
+        master: "true"
