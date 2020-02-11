@@ -23,7 +23,7 @@ spec:
         env:
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig-platform
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/sam/hypersam:2882-967cc5d8a50a64955d7668b2cabcc24013dd7b3f
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/sam/hypersam:2884-769ac132f739c69e8f1f603ca3316a9ab3b70d1e
         name: host-repair-rebooter
         volumeMounts:
         - mountPath: /etc/pki_service

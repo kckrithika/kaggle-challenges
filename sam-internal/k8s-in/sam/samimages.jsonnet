@@ -74,11 +74,7 @@ local samreleases = import "samreleases.json";
         "yhu,yhu-sam,sam-network-reporter,hypersam": "2754-365539f3b19f1f92f8ee7f1778f157769fae2a07",
         "yul,yul-sam,sam-network-reporter,hypersam": "2754-365539f3b19f1f92f8ee7f1778f157769fae2a07",
 
-        "prd,prd-sam,watchdog-visibility,hypersam": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/d.smith/hypersam:20191030_151213.b68098f1.dirty.duncsmith-ltm1",
-        "prd,prd-samtwo,watchdog-visibility,hypersam": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/d.smith/hypersam:20191030_151213.b68098f1.dirty.duncsmith-ltm1",
-
-        "prd,prd-sam,host-repair-rebooter,hypersam": "2882-967cc5d8a50a64955d7668b2cabcc24013dd7b3f",
-        "prd,prd-samtest,host-repair-rebooter,hypersam": "2882-967cc5d8a50a64955d7668b2cabcc24013dd7b3f",
+        "prd,prd-sam,snapshoter-mtls,hypersam": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/d.smith/hypersam:20200210_151929.92e653b7.dirty.duncsmith-ltm1",
 
         ### [karthik.sudana] - Temporary override for gus case validator
         "prd,prd-sam,sam-manifest-case-validator,hypersam": "2853-e50301240b0d2764b1c98f09f6e07ea292539297",
