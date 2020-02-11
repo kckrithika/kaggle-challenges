@@ -11,7 +11,7 @@ system:
       - qkong@salesforce.com
   functions:
   - name: eventtransfercontrolplane
-    count: 1
+    count: 3
     volumes:
     - name: servercert
       maddogCert:
