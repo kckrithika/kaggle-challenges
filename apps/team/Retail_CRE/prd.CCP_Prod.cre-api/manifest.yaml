@@ -8,7 +8,7 @@ system:
     - name: cre-api-ccp-prod
       identity:
         serviceName: cre-api-ccp-func # using ccp-func certs to communicate with ccp-func hbase and ajna namespaces
-      count: 3
+      count: 1
       labels:
         app: cre-api-ccp-prod
       annotations:
