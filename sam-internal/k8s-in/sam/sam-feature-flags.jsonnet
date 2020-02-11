@@ -54,7 +54,6 @@ local utils = import "util_functions.jsonnet";
 
     # Estates for which sloop is deployed depending on the hosting estate.
     sloopEstates: {
-      "prd-sam": ["prd-sam"],
       "prd-samtwo": ["prd-sam", "frf-sam"],
       "prd-samtest": ["prd-samtest"],
     },

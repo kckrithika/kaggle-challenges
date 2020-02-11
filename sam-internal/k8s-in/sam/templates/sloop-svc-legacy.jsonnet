@@ -8,7 +8,7 @@ if configs.estate == "prd-sam" then {
         name: "sloop-legacy",
         namespace: "sam-system",
         labels: {
-            app: "sloop",
+            name: "sloop-redirect",
         } + configs.ownerLabel.sam,
         annotations: {
             "slb.sfdc.net/name": "sloop",
