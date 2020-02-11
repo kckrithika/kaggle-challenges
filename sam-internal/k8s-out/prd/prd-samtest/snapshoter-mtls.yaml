@@ -38,6 +38,7 @@ spec:
         - --hostsConfigFile=/sfdchosts/hosts.json
         - --v=4
         - --alsologtostderr
+        - --kafka-max-throughput-kbps=3000
         env:
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig-platform
