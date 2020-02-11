@@ -39,5 +39,5 @@ system:
     slbenabled: true
     ports:
       - port: 9090
-        targetport: 9090
+        targetport: 7090
         lbtype: tcp
