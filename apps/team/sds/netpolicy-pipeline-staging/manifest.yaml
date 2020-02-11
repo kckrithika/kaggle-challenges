@@ -24,7 +24,7 @@ system:
         value: server.crt
       - name: TLS_PRIVATE_KEY
         value: server.key
-      - name: HOST
+      - name: TLS_HOST
         value: "0.0.0.0"
       livenessProbe:
         httpGet:
