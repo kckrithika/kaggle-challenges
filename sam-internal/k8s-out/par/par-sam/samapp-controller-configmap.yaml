@@ -15,7 +15,8 @@ data:
       "maddogMaddogEndpoint": "https://all.pkicontroller.pki.blank.par.prod.non-estates.sfdcsd.net:8443",
       "madkubImage": "ops0-artifactrepo1-0-par.data.sfdc.net/tnrp/sam/madkub:1.0.0-0000077-b1d3a629",
       "namespaceHostSubList": [
-        "cloudatlas"
+        "cloudatlas",
+        "cast"
       ],
       "volPermissionInitContainerImage": "ops0-artifactrepo1-0-par.data.sfdc.net/tnrp/sam/hypersam:sam-1ebeb0ac-657"
     }
