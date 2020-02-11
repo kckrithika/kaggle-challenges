@@ -9,7 +9,7 @@ system:
     count: 1
     containers:
     - name: candidate-service-2-logrotator
-      image: dva/csc-health/candidate-service:17
+      image: dva/csc-health/candidate-service:25
       volumeMounts:
         - mountPath: /home/sfdc-csc-health/candidate-service
           name: logvol
@@ -39,7 +39,7 @@ system:
         done
       ']
     - name: candidate-service-2
-      image: dva/csc-health/candidate-service:17
+      image: dva/csc-health/candidate-service:25
       ports:
       - containerPort: 8888
       volumeMounts:
@@ -91,9 +91,9 @@ system:
       - name: CHS_STALENESS_WHITELIST
         value: LOGICAL_HOST
       - name: CHS_STALENESS_LIMIT
-        value: 900
+        value: 15m
       - name: CHS_STALENESS_FREQUENCY
-        value: 60s
+        value: 1m
       - name: CHS_REPORTCOLLECTOR_WDWHITELIST
         value: grok.server_watchdog,sandman,netmgt.sandman,mom,*.infrastructure-watchdog-CP-health
       - name: CHS_REPORTCOLLECTOR_WDWHITELISTUNTRUSTED
@@ -117,7 +117,7 @@ system:
       - name: CHS_ESTATES_KEYPATH
         value: /certs/client/keys/client-key.pem
       - name: CHS_ESTATES_POLLPERIOD
-        value: 15m
+        value: 10m
       - name: CHS_COORDINATOR_ENABLED
         value: false
       livenessProbe:
