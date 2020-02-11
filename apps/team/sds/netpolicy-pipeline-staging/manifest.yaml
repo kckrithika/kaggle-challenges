@@ -9,17 +9,13 @@ system:
     count: 1
     containers:
     - name: netpolicy-pipeline
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/gagan.gangothri/netbot:zc3
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/gagan.gangothri/netbot:zc4
       ports:
       - containerPort: 9090
       - containerPort: 7090
       env:
-      - name: HOST
-        value: "0.0.0.0"
       - name: PORT
         value: 7090
-      - name: TLS_HOST
-        value: "0.0.0.0"
       - name: TLS_PORT
         value: 9090
       - name: TLS_CERTIFICATE
