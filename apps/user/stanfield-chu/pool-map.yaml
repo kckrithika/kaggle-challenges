@@ -8,3 +8,5 @@ apps:
     - shared0-sampool7-3-xrd.eng.sfdc.net
  report-collector:
     - name: xrd/xrd-sampool
+ candidate-service:
+    - name: xrd/xrd-sampool
