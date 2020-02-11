@@ -127,6 +127,9 @@ if slbconfigs.isSlbEstate then configs.deploymentBase("slb") {
                             "--httpTimeout=1s",
                             "--enableOnlyRunningStateProxy=true",
                         ]
+                        + (if slbflights.enableIpvsTrafficTest then [
+                             "--enableIpvsHostTesting=true",
+                        ] else [])
                         + slbconfigs.getNodeApiClientSocketSettings()
                         + [
                             "--healthcheck.riseCount=5",

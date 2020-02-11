@@ -56,6 +56,7 @@
         bravoServiceNodePort3: 32147,
         slbEchoServiceNodePort: 32148,
         slbIpvsControlPort: 32149,
+        slbIpvsTrafficTestPort: 32150,
 
         casamMVP_SFProxyHTTPSNodePort: 31006,
         casamMVP_SFProxyMTLSNodePort: 31745,

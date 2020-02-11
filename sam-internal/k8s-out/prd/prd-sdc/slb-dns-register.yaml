@@ -102,6 +102,7 @@ spec:
         - --proxySelectorLabelValue=slb-nginx-config-b
         - --hostnameOverride=$(NODE_NAME)
         - --control.configProcSentinel=/host/data/slb/config/slb-dns-register/slb-config-proc.sentinel
+        - --ipvsTestServiceName=slb-ipvs-traffic-test-service
         env:
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig-platform

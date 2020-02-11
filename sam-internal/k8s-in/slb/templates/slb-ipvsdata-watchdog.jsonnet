@@ -53,7 +53,12 @@ if configs.estate == "prd-sdc" || slbconfigs.isProdEstate then configs.deploymen
                             "--metricsEndpoint=" + configs.funnelVIP,
                             "--hostnameOverride=$(NODE_NAME)",
                             "--ignoreWeightsInConsistencyCheck=true",
-                        ],
+                        ] + (
+                        if slbflights.enableIpvsTrafficTest then
+                        [
+                            "--ignoreIpvsTestVipsWithPrefix=ipvs-",
+                        ] else []
+                        ),
                         volumeMounts: configs.filter_empty([
                             configs.maddog_cert_volume_mount,
                             slbconfigs.slb_volume_mount,

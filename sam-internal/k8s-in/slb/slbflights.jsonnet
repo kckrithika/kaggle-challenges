@@ -43,4 +43,6 @@ local slbconfigs = import "slbconfig.jsonnet";
 
     # enable slb-iwd-health
     enableIWDHealth: (slbimages.phaseNum <= 5),
+
+    enableIpvsTrafficTest: (slbimages.phaseNum <= 1),
 }

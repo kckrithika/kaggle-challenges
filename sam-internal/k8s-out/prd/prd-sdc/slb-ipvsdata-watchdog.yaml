@@ -54,6 +54,7 @@ spec:
         - --metricsEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80
         - --hostnameOverride=$(NODE_NAME)
         - --ignoreWeightsInConsistencyCheck=true
+        - --ignoreIpvsTestVipsWithPrefix=ipvs-
         env:
         - name: NODE_NAME
           valueFrom:

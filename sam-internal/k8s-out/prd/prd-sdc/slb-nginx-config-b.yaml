@@ -380,6 +380,7 @@ spec:
         - --hostnameOverride=$(NODE_NAME)
         - --control.configProcSentinel=/host/data/slb/config/slb-nginx-config-b/slb-config-proc.sentinel
         - --pipeline.supportedProxies=slb-nginx-config-b
+        - --ipvsTestServiceName=slb-ipvs-traffic-test-service
         env:
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig-platform

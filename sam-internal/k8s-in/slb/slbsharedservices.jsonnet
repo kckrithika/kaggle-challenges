@@ -61,6 +61,9 @@
     + (if includeSlbPortalOverride then [
       "--vipdnsoptions.viplocation=" + vipLocationName,
       "--k8sapiserver=" + pseudoApiServer,
+    ] else [])
+    + (if slbflights.enableIpvsTrafficTest then [
+          "--ipvsTestServiceName=slb-ipvs-traffic-test-service",
     ] else []),
     volumeMounts: std.prune([
       configs.maddog_cert_volume_mount,
