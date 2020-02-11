@@ -24,11 +24,11 @@ system:
         - name: BROKER_URL
           value: 'mycroft.cache-as-a-service-sp2.prd-samtwo.prd.slb.sfdc.net'
         - name: SAMCAAS2_CAASMINION2_1_PRD_KINGDOMS
-          value: 'syd,lo3,fra,ukb,dfw,ttd,hio,cdu,iad,ord,ia4,customer_orgs,model_queue1,dbperfswat'
+          value: 'syd,lo3,fra,ukb,dfw,ttd,hio,cdu,customer_orgs,model_queue1,dbperfswat'
         - name: SAMCAAS2_CAASMINION2_2_PRD_KINGDOMS
-          value: 'chx,yul,lo2,frf,par,phx,ia2,ph2,cdg,hnd,ia5,model_queue2,dbperfswat'
+          value: 'chx,yul,lo2,frf,par,phx,ia2,model_queue2,dbperfswat'
         - name: SAMCAAS2_CAASMINION3_6_PRD_KINGDOMS
-          value: 'model_queue3,dbperfswat'
+          value: 'iad,ord,ia4,ph2,cdg,hnd,ia5,model_queue3,dbperfswat'
         - name: CELERY_LOG_LEVEL
           value: 'info'
         - name: FLOWER_LOG_LEVEL
