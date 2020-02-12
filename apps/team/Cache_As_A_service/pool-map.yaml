@@ -211,11 +211,6 @@ apps:
      hostSublist:
      - samcaas2-caasminion2-1-prd.eng.sfdc.net
      - samcaas2-caasminion2-2-prd.eng.sfdc.net
- prd-sp2-aiops-sherlock-stage-env:
-   - name: prd/prd-sp2-sam_caas
-     hostSublist:
-       - samcaas2-caasminion2-1-prd.eng.sfdc.net
-       - samcaas2-caasminion2-2-prd.eng.sfdc.net
  prd-sp2-aiops-mycroft-stage:
    - name: prd/prd-sp2-sam_caas
      hostSublist:
