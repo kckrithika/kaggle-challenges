@@ -24,7 +24,7 @@ local makeds(estate) = configs.daemonSetBase("sam") {
                 # [tom] prd-sam has a high data rate and we are seeing it consistently using a full core,
                 # so bumping it up to see how much it need to keep current
                 cpu: (if configs.estate == "prd-samtwo" && estate == "prd-sam" then "2" else "1"),
-                memory: "12Gi",
+                memory: (if configs.estate == "prd-samtwo" && estate == "prd-samtwo" then "6Gi" else "12Gi"),
               },
             },
             args: [
