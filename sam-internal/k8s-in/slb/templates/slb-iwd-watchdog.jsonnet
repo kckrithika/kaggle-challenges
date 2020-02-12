@@ -43,7 +43,7 @@ if slbconfigs.isSlbEstate && slbflights.enableIWDHealth then configs.daemonSetBa
                             "/sdn/slb-iwd-health",
                             "--metricsEndpoint=" + configs.funnelVIP,
                             "--k8sAPIServer=",
-                            "--deploymentsToMonitor=slb-ipvs=" + slbconfigs.ipvsReplicaCount + ",slb-nginx-config-b=" + (if slbimages.phaseNum <= 1 then slbconfigs.nginxConfigReplicaCount / 2 else slbconfigs.nginxConfigReplicaCount),
+                            "--deploymentsToMonitor=slb-ipvs=" + slbconfigs.ipvsReplicaCount + ",slb-nginx-config-b=" + (if slbimages.phaseNum <= 2 then std.ceil(slbconfigs.nginxConfigReplicaCount / 2) else slbconfigs.nginxConfigReplicaCount),
                             "--minPercentHealthy=" + 1,
                         ],
                         volumeMounts: configs.filter_empty([

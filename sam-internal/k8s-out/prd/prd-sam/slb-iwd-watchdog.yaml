@@ -25,7 +25,7 @@ spec:
         - /sdn/slb-iwd-health
         - --metricsEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80
         - --k8sAPIServer=
-        - --deploymentsToMonitor=slb-ipvs=3,slb-nginx-config-b=4
+        - --deploymentsToMonitor=slb-ipvs=3,slb-nginx-config-b=2
         - --minPercentHealthy=1
         env:
         - name: NODE_NAME
