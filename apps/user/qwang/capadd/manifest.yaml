@@ -15,7 +15,7 @@ system:
         path: /data/logs
     containers:
     - name: capadd
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/qwang/capadd:test-20200212-3
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/qwang/capadd:test-20200212-4
       env:
         - name: CAPADD_LOG_DIR
           value: "/data/logs/capadd-logs.txt"
