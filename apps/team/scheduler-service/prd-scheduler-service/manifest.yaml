@@ -12,7 +12,7 @@ system:
         pod: cs101
       containers:
         - name: sdbgo
-          image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/rakella/scheduler-db:4feb20
+          image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/rakella/scheduler-db:11feb20
           env:
           - name: SFDC_ENVIRONMENT
             value: mesh
@@ -37,7 +37,7 @@ system:
         pod: cs101
       containers:
         - name: cronsvc
-          image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/rakella/scheduler-service:6feb20
+          image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/rakella/scheduler-service:11feb20
           ports:
             - name: grpc-port
               containerPort: 7020
@@ -144,6 +144,39 @@ system:
           hostPath:
             path: /home/sfdc-beacon/logs
 
+    - name: cs101-jds
+      count: 1
+      identity:
+        serviceName: scheduler-jds
+        pod: cs101
+      containers:
+        - name: jds
+          image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/rakella/scheduler-jds:11feb20
+          ports:
+            - name: scone-port
+              containerPort: 15376
+          command: ["./launcher.sh"]
+          args:
+            - --scheduler.database.url=jdbc:postgresql://cs101-sdb-lb.scheduler-service.prd-sam.prd.slb.sfdc.net:1521/crondb
+            - --logging.level.root=INFO
+          env:
+            - name: SFDC_ENVIRONMENT
+              value: mesh
+          livenessProbe:
+            exec:
+              command: ["/bin/true"]
+            initialDelaySeconds: 10
+            timeoutSeconds: 10
+            periodSeconds: 60
+          readinessProbe:
+            exec:
+              command: ["/bin/true"]
+            initialDelaySeconds: 10
+            timeoutSeconds: 10
+          volumeMounts:
+            - mountPath: /var/log/jds
+              name: logvol
+
     - name: cs101-exec
       count: 1
       identity:
@@ -151,7 +184,7 @@ system:
         pod: cs101
       containers:
         - name: cronexec
-          image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/rakella/executor-service:6feb20
+          image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/rakella/executor-service:11feb20
           ports:
             - name: grpc-port
               containerPort: 9020
@@ -202,7 +235,7 @@ system:
         pod: cs101
       containers:
         - name: cronui
-          image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/rakella/scheduler-ui:6feb20
+          image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/rakella/scheduler-ui:11feb20
           ports:
             - name: http-port
               containerPort: 7022
@@ -242,7 +275,7 @@ system:
         pod: cs101
       containers:
         - name: crondemo
-          image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/rakella/scheduler-demo-client:6feb20
+          image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/rakella/scheduler-demo-client:11feb20
           ports:
             - name: http-port
               containerPort: 9090
@@ -289,6 +322,13 @@ system:
     ports:
       - port: 9090
         targetport: 9090
+  - lbname: cs101-jds-lb
+    function: cs101-jds
+    slbenabled: true
+    ports:
+      # Following are only for debugging
+      - port: 15376
+        targetport: 15376     
   - lbname: cs101-exec-lb
     function: cs101-exec
     slbenabled: true
