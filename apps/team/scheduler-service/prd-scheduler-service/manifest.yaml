@@ -174,13 +174,13 @@ system:
             initialDelaySeconds: 10
             timeoutSeconds: 10
           volumeMounts:
-            - mountPath: /var/log/jds
+            - mountPath: /var/log/app
               name: logvol
       volumes:
         - name: logvol
           hostpath:
             path: /var/log/jds
-              
+
     - name: cs101-exec
       count: 1
       identity:
