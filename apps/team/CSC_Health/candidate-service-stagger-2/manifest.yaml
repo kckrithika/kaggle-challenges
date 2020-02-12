@@ -9,7 +9,7 @@ system:
     count: 1
     containers:
     - name: candidate-service-2-logrotator
-      image: dva/csc-health/candidate-service:17
+      image: dva/csc-health/candidate-service:25
       volumeMounts:
         - mountPath: /home/sfdc-csc-health/candidate-service
           name: logvol
@@ -39,7 +39,7 @@ system:
         done
       ']
     - name: candidate-service-2
-      image: dva/csc-health/candidate-service:17
+      image: dva/csc-health/candidate-service:25
       ports:
       - containerPort: 8888
       volumeMounts:
@@ -90,6 +90,10 @@ system:
         value: 10
       - name: CHS_STALENESS_WHITELIST
         value: LOGICAL_HOST
+      - name: CHS_STALENESS_LIMIT
+        value: 15m
+      - name: CHS_STALENESS_FREQUENCY
+        value: 1m
       - name: CHS_REPORTCOLLECTOR_WDWHITELIST
         value: grok.server_watchdog,sandman,netmgt.sandman,mom,*.infrastructure-watchdog-CP-health
       - name: CHS_REPORTCOLLECTOR_WDWHITELISTUNTRUSTED
@@ -102,6 +106,18 @@ system:
         value: 60s
       - name: CHS_REPORTCOLLECTOR_OBSPOLLPERIOD
         value: 60s
+      - name: CHS_ESTATES_ENABLED
+        value: true
+      - name: CHS_ESTATES_MTLSENABLED
+        value: true
+      - name: CHS_ESTATES_CACERTPATH
+        value: /certs/ca.pem
+      - name: CHS_ESTATES_CERTPATH
+        value: /certs/client/certificates/client.pem
+      - name: CHS_ESTATES_KEYPATH
+        value: /certs/client/keys/client-key.pem
+      - name: CHS_ESTATES_POLLPERIOD
+        value: 10m
       - name: CHS_COORDINATOR_ENABLED
         value: false
       livenessProbe:
@@ -116,6 +132,8 @@ system:
         export CHS_AJNA_DEVICE=${ESTATE}.${FUNCTION_NAMESPACE}.${FUNCTION}.${FUNCTION_INSTANCE_NAME} ;
         export CHS_GROK_ENDPOINT=https://ops0-grok1-0-${KINGDOM}.data.sfdc.net ;
         export CHS_REPORTCOLLECTOR_ENDPOINT=https://reportcollector-${KINGDOM}.data.sfdc.net:18444 ;
+        export CHS_ESTATES_DATACENTER=${KINGDOM} ;
+        export CHS_ESTATES_ENDPOINT=https://estatesservice.csc-health.${KINGDOM}-sam.${KINGDOM}.slb.sfdc.net ;
 
         /candidateservice
       "]
