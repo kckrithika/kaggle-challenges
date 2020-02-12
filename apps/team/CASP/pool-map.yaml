@@ -113,7 +113,6 @@ apps:
   - fra/fra-sam_warden
   - cdg/cdg-sam_warden
   - ia2/ia2-sam_warden
-  - ph2/ph2-sam_warden
   - lo2/lo2-sam_warden
   - lo3/lo3-sam_warden
   - dfw/dfw-sam_warden
@@ -126,3 +125,4 @@ apps:
  prod-warden-alternate:
   - ord/ord-sam_warden
   - frf/frf-sam_warden
+  - ph2/ph2-sam_warden
