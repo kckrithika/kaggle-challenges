@@ -14,6 +14,9 @@ system:
     - name: github-secret
       k4asecret:
         secretName: github-token
+    - name: database-staging-secret
+      k4asecret:
+        secretName: database-staging-credentials
     - name: client-cert-vol
       maddogCert:
         type: client
@@ -24,7 +27,7 @@ system:
           - sip-em-dev-slb
     containers:
     - name: sip-em 
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/searchdev/sip-experiment-manager:1.14-RC.0
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/srinath.venkatesan/em/sip:sip-em-20200211T1715
       livenessProbe:
         initialDelaySeconds: 180
         periodSeconds: 60
@@ -45,6 +48,9 @@ system:
         readOnly: true
       - mountPath: /secrets/github/
         name: github-secret
+        readOnly: true
+      - mountPath: /secrets/database/
+        name: database-staging-secret
         readOnly: true
       - name: client-cert-vol
         mountPath: /certs
