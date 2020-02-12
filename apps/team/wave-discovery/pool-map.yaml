@@ -1,4 +1,9 @@
 apps:
- prd-job-controller:
-  - prd/prd-sam
+  prd-master:
+  - prd/prd-sam_datapool
+
+  prd-release:
+  - prd/prd-sam_datapool
+
+
 
