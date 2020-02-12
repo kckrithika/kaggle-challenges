@@ -1080,56 +1080,6 @@
     healthprotocol: http
     healthpath: /
 
-- lbname: cjemaster47
-  customlbname: cjemaster47
-  cnames:
-  - cname: devopstest1ci.slb.sfdc.net
-  servers:
-  - cjemaster47a.dop.sfdc.net
-  - cjemaster47b.dop.sfdc.net
-  ports:
-  - port: 443
-    targetport: 8080
-    lbtype: http
-    tls: true
-    reencrypt: false
-    healthport: 8080
-    healthprotocol: http
-    healthpath: /ha/health-check
-  - port: 80
-    targetport: 80
-    lbtype: http
-    tls: false
-    reencrypt: false
-    healthport: 80
-    healthprotocol: http
-    healthpath: /
-
-- lbname: cjemaster48
-  customlbname: cjemaster48
-  cnames:
-  - cname: devopstest1ci.slb.sfdc.net
-  servers:
-  - cjemaster48a.dop.sfdc.net
-  - cjemaster48b.dop.sfdc.net
-  ports:
-  - port: 443
-    targetport: 8080
-    lbtype: http
-    tls: true
-    reencrypt: false
-    healthport: 8080
-    healthprotocol: http
-    healthpath: /ha/health-check
-  - port: 80
-    targetport: 80
-    lbtype: http
-    tls: false
-    reencrypt: false
-    healthport: 80
-    healthprotocol: http
-    healthpath: /
-
 - lbname: cjemaster101
   customlbname: cjemaster101
   cnames:
