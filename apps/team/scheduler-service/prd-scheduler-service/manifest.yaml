@@ -176,7 +176,11 @@ system:
           volumeMounts:
             - mountPath: /var/log/jds
               name: logvol
-
+      volumes:
+        - name: logvol
+          hostpath:
+            path: /var/log/jds
+              
     - name: cs101-exec
       count: 1
       identity:
