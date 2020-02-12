@@ -84,6 +84,7 @@ spec:
         - --metricsEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80
         - --httpTimeout=1s
         - --enableOnlyRunningStateProxy=true
+        - --enableIpvsHostTesting=true
         - --client.socketDir=/host/data/slb/config/slb-ipvs
         - --client.dialSocket=true
         - --healthcheck.riseCount=5
@@ -201,6 +202,7 @@ spec:
         - --proxySelectorLabelValue=slb-nginx-config-b
         - --hostnameOverride=$(NODE_NAME)
         - --control.configProcSentinel=/host/data/slb/config/slb-ipvs/slb-config-proc.sentinel
+        - --ipvsTestServiceName=slb-ipvs-traffic-test-service
         env:
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig-platform

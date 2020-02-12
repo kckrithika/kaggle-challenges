@@ -319,6 +319,7 @@ spec:
         - --hostnameOverride=$(NODE_NAME)
         - --control.configProcSentinel=/host/data/slb/config/slb-envoy-proxy/slb-config-proc.sentinel
         - --pipeline.supportedProxies=slb-envoy-proxy
+        - --ipvsTestServiceName=slb-ipvs-traffic-test-service
         env:
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig-platform
