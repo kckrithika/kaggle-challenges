@@ -178,7 +178,6 @@ execute_evaluate_pr() {
         --timeout=${EVAL_TIMEOUT} \
         --disableDedupFlag=false \
         --filenameRulePath=$PWD/sam-internal/k8s-in/sam/configs/filename-rules.json \
-        --enable-canary-check=true \
         ${EXTRA_EVAL_FLAGS} \
 
 }
