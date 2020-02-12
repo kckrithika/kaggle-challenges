@@ -51,7 +51,7 @@ local utils = import "util_functions.jsonnet";
         else if configs.estate == "phx-sam" then
             "%s/dva/stampy-webhook-admission-controller-1p:28" % configs.registry
         else if configs.estate == "prd-sam" then
-            "%s/dva/stampy-webhook-admission-controller-1p:28" % configs.registry
+            "%s/dva/stampy-webhook-admission-controller-1p:32" % configs.registry
         else if configs.estate == "syd-sam" then
             "%s/dva/stampy-webhook-admission-controller-1p:28" % configs.registry
         else if configs.estate == "ttd-sam" then
@@ -61,7 +61,7 @@ local utils = import "util_functions.jsonnet";
         else if configs.estate == "wax-sam" then
             "%s/dva/stampy-webhook-admission-controller-1p:28" % configs.registry
         else if configs.estate == "xrd-sam" then
-            "%s/dva/stampy-webhook-admission-controller-1p:28" % configs.registry
+            "%s/dva/stampy-webhook-admission-controller-1p:32" % configs.registry
         else if configs.estate == "yhu-sam" then
             "%s/dva/stampy-webhook-admission-controller-1p:28" % configs.registry
         else if configs.estate == "yul-sam" then
