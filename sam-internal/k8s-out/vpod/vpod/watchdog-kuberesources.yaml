@@ -6,7 +6,7 @@ metadata:
     sam.data.sfdc.net/owner: sam
   name: watchdog-kuberesources
 spec:
-  replicas: 1
+  replicas: 3
   selector:
     matchLabels:
       name: watchdog-kuberesources

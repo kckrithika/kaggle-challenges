@@ -5,7 +5,7 @@ local utils = import "util_functions.jsonnet";
 {
     kind: "Deployment",
     spec: {
-        replicas: 1,
+        replicas: 3,
         template: {
             spec: configs.specWithKubeConfigAndMadDog {
                 hostNetwork: true,
