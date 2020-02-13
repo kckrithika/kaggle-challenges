@@ -5,7 +5,7 @@ system:
       count: 1
       containers:
         - name: service-protection
-          image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/gid/service-protection:d612dd6
+          image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/gid/service-protection:93f3e8c
           imagePullPolicy: Always
           env:
           - name: server_port
