@@ -23,8 +23,6 @@ system:
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cloud-atlas/cloudatlas/cloudatlas-pdm:26eb747
       command: ["/opt/pdm/pdm.customer/bin/entrypoint.sh"]
       env:
-      - name: JVM_ARGS_PASSED_AS_ENV_VAR
-        value: -Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.port=9000 -Dcom.sun.management.jmxremote.rmi.port=9000 -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false
       - name: UBID_DEPLOYMENT_STAGE
         value: ALL
       - name: AWS_BACKUP_S3_BUCKET
@@ -58,7 +56,6 @@ system:
       - containerPort: 1389
       - containerPort: 1636
       - containerPort: 8989
-      - containerPort: 9000
       livenessProbe:
         exec:
           command:
