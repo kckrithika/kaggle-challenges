@@ -31,7 +31,7 @@ system:
           emptyDir: {}
 
     - name: cs101-cron
-      count: 1
+      count: 2
       identity:
         serviceName: scheduler-service
         pod: cs101
@@ -182,7 +182,7 @@ system:
             path: /var/log/jds
 
     - name: cs101-exec
-      count: 1
+      count: 2
       identity:
         serviceName: executor-service
         pod: cs101
