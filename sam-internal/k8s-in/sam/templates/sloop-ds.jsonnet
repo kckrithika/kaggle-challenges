@@ -34,7 +34,7 @@ local makeds(estate) = configs.daemonSetBase("sam") {
               "--apiserver-host=http://pseudo-kubeapi.csc-sam.prd-sam.prd.slb.sfdc.net:40001/" + estate + "/",
               # Default maximum history stored - 2 weeks
               "--max-look-back=336h",
-            ],
+            ] + (if configs.estate == "prd-samtwo" && estate == "frf-sam" then ["--badger-use-lsm-only-options=false"] else []),
             command: [
               "/sloop",
             ],

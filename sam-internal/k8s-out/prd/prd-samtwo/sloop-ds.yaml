@@ -117,6 +117,7 @@ items:
           - --display-context=frf-sam
           - --apiserver-host=http://pseudo-kubeapi.csc-sam.prd-sam.prd.slb.sfdc.net:40001/frf-sam/
           - --max-look-back=336h
+          - --badger-use-lsm-only-options=false
           command:
           - /sloop
           image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/sjawad/sloop:sjawad-20200204_102504-bbd2691
