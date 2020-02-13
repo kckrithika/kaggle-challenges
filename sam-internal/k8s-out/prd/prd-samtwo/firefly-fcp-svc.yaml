@@ -38,6 +38,7 @@ items:
                   "read-timeout": "480000ms",
                   "remote-docker-host": "http://localhost:2375"
               },
+              "enable-fcp-stagger": false,
               "gcs": {
                   "enabled": true,
                   "service-account-key": "${gcsUploaderKey#FromSecretService}"
@@ -441,7 +442,7 @@ items:
           - name: SERVICE_MODE
             value: multi
           - name: CONFIG_VERSION
-            value: "23"
+            value: "24"
           - name: DARKLAUNCH
             value: "false"
           - name: INSTANCE_TYPE
@@ -624,6 +625,7 @@ items:
                   "read-timeout": "480000ms",
                   "remote-docker-host": "http://localhost:2375"
               },
+              "enable-fcp-stagger": false,
               "gcs": {
                   "enabled": true,
                   "service-account-key": "${gcsUploaderKey#FromSecretService}"
@@ -997,7 +999,7 @@ items:
           - name: SERVICE_MODE
             value: singleton
           - name: CONFIG_VERSION
-            value: "21"
+            value: "22"
           - name: DARKLAUNCH
             value: "false"
           - name: INSTANCE_TYPE
