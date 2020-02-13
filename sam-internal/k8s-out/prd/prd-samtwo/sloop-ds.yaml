@@ -225,11 +225,11 @@ items:
             timeoutSeconds: 5
           resources:
             limits:
-              cpu: "2"
-              memory: 5Gi
+              cpu: "1"
+              memory: 4Gi
             requests:
-              cpu: "2"
-              memory: 5Gi
+              cpu: "1"
+              memory: 4Gi
           volumeMounts:
           - mountPath: /data/
             name: sloop-data
