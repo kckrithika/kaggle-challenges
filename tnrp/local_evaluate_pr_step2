@@ -28,6 +28,13 @@ setup_ghe_access() {
     cp "${EVAL_DIR}/token.txt" "${NEW_PR_PATH}/"
 }
 
+setup_gus_access() {
+  cp "${EVAL_DIR}/gus_key.txt" "${NEW_PR_PATH}/"
+  cp "${EVAL_DIR}/gus_secret.txt" "${NEW_PR_PATH}/"
+  cp "${EVAL_DIR}/gus_username.txt" "${NEW_PR_PATH}/"
+  cp "${EVAL_DIR}/gus_password.txt" "${NEW_PR_PATH}/"
+}
+
 debug_modify_pr() {
     cp "${EVAL_DIR}/evaluate_pr" "${NEW_PR_PATH}/tnrp/"
     cp "${EVAL_DIR}/build.sh" "${NEW_PR_PATH}/sam-internal/k8s-in/"
@@ -44,5 +51,6 @@ printf "Starting step2\n"
 prepare
 get_pr
 setup_ghe_access
+setup_gus_access
 debug_modify_pr
 run_step3
