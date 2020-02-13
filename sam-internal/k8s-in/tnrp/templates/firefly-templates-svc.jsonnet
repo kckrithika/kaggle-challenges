@@ -35,6 +35,7 @@ if configs.estate == "prd-samtwo" then
             s3: s3Config.s3,
             "s3-bucket": "fcparchive",
             "multi-repo-supported": true,
+            "opa-dry-run-mode": "false",
           },
         },
        "application.yml": std.manifestJson(appConfig),
