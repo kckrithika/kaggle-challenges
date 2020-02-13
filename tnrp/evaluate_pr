@@ -142,11 +142,9 @@ ensure_gus_client_credentials() {
 }
 
 execute_evaluate_pr() {
-    IMAGE_EXISTS_TRIES=2
     EVAL_TIMEOUT=10m
     if [ -z "$FIREFLY" ]; then
-        EXTRA_EVAL_FLAGS="-debug -logtostderr"
-        IMAGE_EXISTS_TRIES=1
+        EXTRA_EVAL_FLAGS="-debug -logtostderr -ignored-checks CheckImagePromotion"
         EVAL_TIMEOUT=15m
     fi
 
@@ -165,7 +163,7 @@ execute_evaluate_pr() {
         -repo-name="$TNRP_PRODUCT" \
         -unvalidated-image-prefixes "minikube,ops0-artifactrepo1-0-mvp,gcr.io,ops0-artifactrepo2-0-xrd.slb.sfdc.net,791719295754.dkr.ecr.us-east-2.amazonaws.com" \
         -full-schema \
-        -image-exists-tries=${IMAGE_EXISTS_TRIES} \
+        -image-exists-tries=2 \
         -image-exists-try-sleep-duration=10s \
         -validate-self-check-enabled=true \
         -self-authorize-check-regex="^(?:[^/]*/)sam-internal/k8s-out/([^/]*)/([^/]*)/,^(?:[^/]*/)apps/team/(?:[^/]*)/vips/" \

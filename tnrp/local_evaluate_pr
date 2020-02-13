@@ -7,6 +7,7 @@ EVAL_FOLDER=local_eval
 CONSTRUCT_EVAL_PATH=/tmp/${EVAL_FOLDER}
 SAM_BIN_PATH=${GOPATH}/bin/linux_amd64
 GIT_ROOT=$(git rev-parse --show-toplevel)
+LOCAL_CONFIG=${HOME}/local_evaluate_pr_config
 
 STEP2_SCRIPT=local_evaluate_pr_step2
 
@@ -42,11 +43,34 @@ ensure_sam_binary() {
 }
 
 setup_ghe_access() {
-  if [ ! -f "${HOME}/token.txt" ]; then
-    printf "\n\nERROR: ghe Personal Access token required (~/token.txt).\n\n"
+  if [ ! -f "${LOCAL_CONFIG}/token.txt" ]; then
+    printf "\n\nERROR: ghe Personal Access token required (${LOCAL_CONFIG}/token.txt).\n\n"
     exit 1
   fi
-  cp "${HOME}/token.txt" "${CONSTRUCT_EVAL_PATH}/token.txt"
+  cp "${LOCAL_CONFIG}/token.txt" "${CONSTRUCT_EVAL_PATH}/token.txt"
+}
+
+setup_gus_access() {
+  if [ ! -f "${LOCAL_CONFIG}/gus_key.txt" ]; then
+    printf "\n\nERROR: gus key required (${LOCAL_CONFIG}/gus_key.txt).\n\n"
+    exit 1
+  fi
+  if [ ! -f "${LOCAL_CONFIG}/gus_secret.txt" ]; then
+    printf "\n\nERROR: gus secret required (${LOCAL_CONFIG}/gus_secret.txt).\n\n"
+    exit 1
+  fi
+  if [ ! -f "${LOCAL_CONFIG}/gus_username.txt" ]; then
+    printf "\n\nERROR: gus username required (${LOCAL_CONFIG}/gus_username.txt).\n\n"
+    exit 1
+  fi
+  if [ ! -f "${LOCAL_CONFIG}/gus_password.txt" ]; then
+    printf "\n\nERROR: gus password required (${LOCAL_CONFIG}/gus_password.txt).\n\n"
+    exit 1
+  fi
+  cp "${LOCAL_CONFIG}/gus_key.txt" "${CONSTRUCT_EVAL_PATH}/"
+  cp "${LOCAL_CONFIG}/gus_secret.txt" "${CONSTRUCT_EVAL_PATH}/"
+  cp "${LOCAL_CONFIG}/gus_username.txt" "${CONSTRUCT_EVAL_PATH}/"
+  cp "${LOCAL_CONFIG}/gus_password.txt" "${CONSTRUCT_EVAL_PATH}/"
 }
 
 setup_extras() {
@@ -86,6 +110,7 @@ ensure_docker_image
 ensure_sam_binary
 
 setup_ghe_access
+setup_gus_access
 setup_extras
 
 run_step2_in_docker_container
