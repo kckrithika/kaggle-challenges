@@ -32,7 +32,7 @@ items:
           - --max-look-back=336h
           command:
           - /sloop
-          image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/sjawad/sloop:sjawad-20200204_102504-bbd2691
+          image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/sjawad/sloop:sjawad-20200213_140207-c374987
           livenessProbe:
             httpGet:
               path: /healthz
@@ -51,10 +51,10 @@ items:
           resources:
             limits:
               cpu: "1"
-              memory: 12Gi
+              memory: 2Gi
             requests:
               cpu: "1"
-              memory: 12Gi
+              memory: 2Gi
           volumeMounts:
           - mountPath: /data/
             name: sloop-data

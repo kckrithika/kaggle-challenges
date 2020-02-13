@@ -32,7 +32,7 @@ items:
           - --max-look-back=336h
           command:
           - /sloop
-          image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/sjawad/sloop:sjawad-20200204_102504-bbd2691
+          image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/sjawad/sloop:sjawad-20200213_140207-c374987
           livenessProbe:
             httpGet:
               path: /healthz
@@ -50,11 +50,11 @@ items:
             timeoutSeconds: 5
           resources:
             limits:
-              cpu: "2"
-              memory: 12Gi
+              cpu: "3"
+              memory: 15Gi
             requests:
-              cpu: "2"
-              memory: 12Gi
+              cpu: "3"
+              memory: 15Gi
           volumeMounts:
           - mountPath: /data/
             name: sloop-data
@@ -120,7 +120,7 @@ items:
           - --badger-use-lsm-only-options=false
           command:
           - /sloop
-          image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/sjawad/sloop:sjawad-20200204_102504-bbd2691
+          image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/sjawad/sloop:sjawad-20200213_140207-c374987
           livenessProbe:
             httpGet:
               path: /healthz
@@ -138,11 +138,11 @@ items:
             timeoutSeconds: 5
           resources:
             limits:
-              cpu: "1"
-              memory: 12Gi
+              cpu: "2"
+              memory: 5Gi
             requests:
-              cpu: "1"
-              memory: 12Gi
+              cpu: "2"
+              memory: 5Gi
           volumeMounts:
           - mountPath: /data/
             name: sloop-data
@@ -207,7 +207,7 @@ items:
           - --max-look-back=336h
           command:
           - /sloop
-          image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/sjawad/sloop:sjawad-20200204_102504-bbd2691
+          image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/sjawad/sloop:sjawad-20200213_140207-c374987
           livenessProbe:
             httpGet:
               path: /healthz
@@ -226,10 +226,10 @@ items:
           resources:
             limits:
               cpu: "1"
-              memory: 6Gi
+              memory: 2Gi
             requests:
               cpu: "1"
-              memory: 6Gi
+              memory: 2Gi
           volumeMounts:
           - mountPath: /data/
             name: sloop-data
@@ -258,6 +258,180 @@ items:
           name: sloop-data
         - hostPath:
             path: /data/sloop-prom-data/prd-samtwo
+          name: prom-data
+        - configMap:
+            name: sloop
+          name: sloopconfig
+- apiVersion: extensions/v1beta1
+  kind: DaemonSet
+  metadata:
+    labels:
+      name: sloopds-hnd-sam
+      sam.data.sfdc.net/owner: sam
+    name: sloopds-hnd-sam
+  spec:
+    selector:
+      matchLabels:
+        app: sloopds-hnd-sam
+        apptype: monitoring
+        daemonset: "true"
+        sam.data.sfdc.net/owner: sam
+    template:
+      metadata:
+        labels:
+          app: sloopds-hnd-sam
+          apptype: monitoring
+          daemonset: "true"
+          sam.data.sfdc.net/owner: sam
+        namespace: sam-system
+      spec:
+        containers:
+        - args:
+          - --config=/sloopconfig/sloop.yaml
+          - --port=31938
+          - --display-context=hnd-sam
+          - --apiserver-host=http://pseudo-kubeapi.csc-sam.prd-sam.prd.slb.sfdc.net:40001/hnd-sam/
+          - --max-look-back=336h
+          command:
+          - /sloop
+          image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/sjawad/sloop:sjawad-20200213_140207-c374987
+          livenessProbe:
+            httpGet:
+              path: /healthz
+              port: 31938
+            initialDelaySeconds: 1800
+            timeoutSeconds: 5
+          name: sloopds
+          ports:
+          - containerPort: 31938
+            protocol: TCP
+          readinessProbe:
+            httpGet:
+              path: /healthz
+              port: 31938
+            timeoutSeconds: 5
+          resources:
+            limits:
+              cpu: "2"
+              memory: 5Gi
+            requests:
+              cpu: "2"
+              memory: 5Gi
+          volumeMounts:
+          - mountPath: /data/
+            name: sloop-data
+          - mountPath: /sloopconfig/
+            name: sloopconfig
+        - args:
+          - --config.file
+          - /prometheusconfig/prometheus.json
+          image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cbatra/prometheus:20180124
+          name: prometheus
+          ports:
+          - containerPort: 9090
+            protocol: TCP
+          volumeMounts:
+          - mountPath: /dummy-prometheus/data
+            name: prom-data
+          - mountPath: /prometheusconfig
+            name: sloopconfig
+        nodeSelector:
+          node.sam.sfdc.net/role: samcompute
+          pool: prd-samtwo
+        serviceAccountName: sloop
+        volumes:
+        - hostPath:
+            path: /data/sloop-data/hnd-sam
+          name: sloop-data
+        - hostPath:
+            path: /data/sloop-prom-data/hnd-sam
+          name: prom-data
+        - configMap:
+            name: sloop
+          name: sloopconfig
+- apiVersion: extensions/v1beta1
+  kind: DaemonSet
+  metadata:
+    labels:
+      name: sloopds-par-sam
+      sam.data.sfdc.net/owner: sam
+    name: sloopds-par-sam
+  spec:
+    selector:
+      matchLabels:
+        app: sloopds-par-sam
+        apptype: monitoring
+        daemonset: "true"
+        sam.data.sfdc.net/owner: sam
+    template:
+      metadata:
+        labels:
+          app: sloopds-par-sam
+          apptype: monitoring
+          daemonset: "true"
+          sam.data.sfdc.net/owner: sam
+        namespace: sam-system
+      spec:
+        containers:
+        - args:
+          - --config=/sloopconfig/sloop.yaml
+          - --port=31938
+          - --display-context=par-sam
+          - --apiserver-host=http://pseudo-kubeapi.csc-sam.prd-sam.prd.slb.sfdc.net:40001/par-sam/
+          - --max-look-back=336h
+          command:
+          - /sloop
+          image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/sjawad/sloop:sjawad-20200213_140207-c374987
+          livenessProbe:
+            httpGet:
+              path: /healthz
+              port: 31938
+            initialDelaySeconds: 1800
+            timeoutSeconds: 5
+          name: sloopds
+          ports:
+          - containerPort: 31938
+            protocol: TCP
+          readinessProbe:
+            httpGet:
+              path: /healthz
+              port: 31938
+            timeoutSeconds: 5
+          resources:
+            limits:
+              cpu: "3"
+              memory: 15Gi
+            requests:
+              cpu: "3"
+              memory: 15Gi
+          volumeMounts:
+          - mountPath: /data/
+            name: sloop-data
+          - mountPath: /sloopconfig/
+            name: sloopconfig
+        - args:
+          - --config.file
+          - /prometheusconfig/prometheus.json
+          image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cbatra/prometheus:20180124
+          name: prometheus
+          ports:
+          - containerPort: 9090
+            protocol: TCP
+          volumeMounts:
+          - mountPath: /dummy-prometheus/data
+            name: prom-data
+          - mountPath: /prometheusconfig
+            name: sloopconfig
+        nodeSelector:
+          node.sam.sfdc.net/role: samcompute
+          pool: prd-samtwo
+        serviceAccountName: sloop
+        volumes:
+        - hostPath:
+            path: /data/sloop-data/par-sam
+          name: sloop-data
+        - hostPath:
+            path: /data/sloop-prom-data/par-sam
           name: prom-data
         - configMap:
             name: sloop

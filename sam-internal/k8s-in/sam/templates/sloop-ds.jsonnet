@@ -5,9 +5,36 @@ local samimages = (import "samimages.jsonnet") + { templateFilename:: std.thisFi
 
 # Node Selector for sloop deployment depending on hosting estate.
 local sloopNodeSelectors = {
-  "prd-sam": { master: "true" },
   "prd-samtest": { master: "true" },
   "prd-samtwo": { "node.sam.sfdc.net/role": "samcompute", pool: "prd-samtwo" },
+};
+
+local resourceRequirements = {
+  extra_small: {
+    cpu: "1",
+    memory: "1Gi",
+  },
+  small: {
+    cpu: "1",
+    memory: "2Gi",
+  },
+  medium: {
+    cpu: "2",
+    memory: "5Gi",
+  },
+  large: {
+    cpu: "3",
+    memory: "15Gi",
+  },
+};
+
+local kingdomResourceRequirements = {
+  "prd-samtwo": resourceRequirements.small,
+  "prd-samtest": resourceRequirements.small,
+  "hnd-sam": resourceRequirements.medium,
+  "frf-sam": resourceRequirements.medium,
+  "par-sam": resourceRequirements.large,
+  "prd-sam": resourceRequirements.large,
 };
 
 local makeds(estate) = configs.daemonSetBase("sam") {
@@ -20,12 +47,7 @@ local makeds(estate) = configs.daemonSetBase("sam") {
             name: "sloopds",
             resources: {
               requests: self.limits,
-              limits: {
-                # [tom] prd-sam has a high data rate and we are seeing it consistently using a full core,
-                # so bumping it up to see how much it need to keep current
-                cpu: (if configs.estate == "prd-samtwo" && estate == "prd-sam" then "2" else "1"),
-                memory: (if configs.estate == "prd-samtwo" && estate == "prd-samtwo" then "6Gi" else "12Gi"),
-              },
+              limits: kingdomResourceRequirements[estate],
             },
             args: [
               "--config=/sloopconfig/sloop.yaml",
@@ -56,7 +78,7 @@ local makeds(estate) = configs.daemonSetBase("sam") {
               },
               timeoutSeconds: 5,
             },
-            image: "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/sjawad/sloop:sjawad-20200204_102504-bbd2691",
+            image: "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/sjawad/sloop:sjawad-20200213_140207-c374987",
             volumeMounts: [
               {
                 name: "sloop-data",
