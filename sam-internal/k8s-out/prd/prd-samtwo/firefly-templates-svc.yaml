@@ -54,6 +54,7 @@ items:
               "max-attempts": 4,
               "max-latency": "600000ms",
               "multi-repo-supported": true,
+              "opa-dry-run-mode": "false",
               "repo-config": {
                   "manifest_driven_promotions": {
                       "type": "artifacts"
@@ -410,7 +411,7 @@ items:
           - name: SERVICE_MODE
             value: multi
           - name: CONFIG_VERSION
-            value: "24"
+            value: "25"
           - name: DARKLAUNCH
             value: "false"
           - name: INSTANCE_TYPE
