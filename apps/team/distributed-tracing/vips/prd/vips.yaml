@@ -123,7 +123,6 @@
   cnames:
    - cname: tracer-api.data.sfdc.net
   servers:
-   - shared0-samminionzipkin1-27-prd.eng.sfdc.net
    - shared0-samminionzipkin1-28-prd.eng.sfdc.net
    - shared0-samminionzipkin1-29-prd.eng.sfdc.net
   ports:
@@ -141,7 +140,6 @@
   cnames:
    - cname: tracer-poc-api.data.sfdc.net
   servers:
-   - shared0-samminionzipkin1-27-prd.eng.sfdc.net
    - shared0-samminionzipkin1-28-prd.eng.sfdc.net
    - shared0-samminionzipkin1-29-prd.eng.sfdc.net
   ports:
