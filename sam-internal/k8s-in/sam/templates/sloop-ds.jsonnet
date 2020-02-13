@@ -16,7 +16,7 @@ local resourceRequirements = {
   },
   small: {
     cpu: "1",
-    memory: "2Gi",
+    memory: "4Gi",
   },
   medium: {
     cpu: "2",
@@ -29,8 +29,8 @@ local resourceRequirements = {
 };
 
 local kingdomResourceRequirements = {
-  "prd-samtwo": resourceRequirements.small,
   "prd-samtest": resourceRequirements.small,
+  "prd-samtwo": resourceRequirements.small,
   "hnd-sam": resourceRequirements.medium,
   "frf-sam": resourceRequirements.medium,
   "par-sam": resourceRequirements.large,
