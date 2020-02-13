@@ -1,2 +1,4 @@
 version: v2
 apps:
+  ristretto-artifact:
+    - name: xrd/xrd-sampool
