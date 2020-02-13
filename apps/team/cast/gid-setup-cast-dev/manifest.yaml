@@ -14,7 +14,7 @@ system:
   - name: gid-setup-cast-dev
     identity:
       serviceName: gid-setup-cast-dev
-    count: 1
+    count: 3
     strategy:
       type: RollingUpdate
       rollingUpdate:
@@ -185,7 +185,7 @@ system:
     # GID Data service
     #####################################################################################
     - name: gid-service
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/gid/gid-service:db4f75b
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/gid/gid-service:f78bf29
       imagePullPolicy: Always
       env:
         - name: server_port
