@@ -16,6 +16,8 @@ system:
             value: contents/sam/gid-runtime/demo
           - name: spe_whitelist_filterDefinition
             value: "{}"
+          - name: proxy_routes_0_target
+            value: http://gid-runtime-service-dev.global-identity.prd-sam.prd.slb.sfdc.net
           ports:
             - containerPort: 8092
           livenessProbe:
