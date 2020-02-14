@@ -14,7 +14,7 @@ system:
       "routing.mesh.sfdc.net/enabled": "true"
     containers:
     - name: cre-sp-ccp-dev
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cre-fusion/services:stream-processor.2.3.0.0.PR-1472.beadace.1
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cre-fusion/services:stream-processor.2.3.0.0.develop.faa6ac1.1005
       env:
         - name: PUBLISHING_TOPIC
           value: sfdc.prod.cre__prd.ajna_local__cre_outbound_CCP_Shared_Dev
@@ -75,8 +75,6 @@ system:
           value: sfdc.prod.cre__prd.ajna_local__cre_signaling_CCP_Shared_Dev
         - name: CLUSTER_SUPERVISOR_KAFKA_TOPIC
           value: sfdc.prod.cre__prd.ajna_local__cre_signaling_CCP_Shared_Dev
-        - name: DUMMY_RESTART_VAR
-          value: true
       ports:
       - containerPort: 8080
       - containerPort: 7022
