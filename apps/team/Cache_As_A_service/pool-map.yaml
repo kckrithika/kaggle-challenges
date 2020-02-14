@@ -211,12 +211,24 @@ apps:
      hostSublist:
      - samcaas2-caasminion2-1-prd.eng.sfdc.net
      - samcaas2-caasminion2-2-prd.eng.sfdc.net
+ prd-sp2-aiops-sherlock-feature-stage:
+   - name: prd/prd-sp2-sam_caas
+     hostSublist:
+       - samcaas2-caasminion2-1-prd.eng.sfdc.net
+       - samcaas2-caasminion2-2-prd.eng.sfdc.net
+       - samcaas2-caasminion3-6-prd.eng.sfdc.net
  prd-sp2-aiops-mycroft-stage:
    - name: prd/prd-sp2-sam_caas
      hostSublist:
      - samcaas2-caasminion2-1-prd.eng.sfdc.net
      - samcaas2-caasminion2-2-prd.eng.sfdc.net
      - samcaas2-caasminion3-6-prd.eng.sfdc.net
+ prd-sp2-aiops-mycroft-feature-stage:
+   - name: prd/prd-sp2-sam_caas
+     hostSublist:
+       - samcaas2-caasminion2-1-prd.eng.sfdc.net
+       - samcaas2-caasminion2-2-prd.eng.sfdc.net
+       - samcaas2-caasminion3-6-prd.eng.sfdc.net
  dfw-sp3-metrics-publisher-sp-c1:
   - name: dfw/dfw-sp3-sam_caas
  dfw-sp3-redis-sp-c1-12050:

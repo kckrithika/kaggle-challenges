@@ -7,22 +7,21 @@ system:
       - ggopalakrishnan@salesforce.com
       - hmittal@salesforce.com
   functions:
-  - name: sherlock-stage
-    count: 2
+  - name: sherlock-feature-stage
+    count: 1
     strategy:
       type: Recreate
     containers:
-    - name: sherlock-stage
-      image: dva/casp/sherlock_strata:jenkins-CASP-sherlock-metarya-e2e_test_enhancement-13-itest
+    - name: sherlock-feature-stage
+      image: dva/casp/sherlock_strata:jenkins-CASP-sherlock-PR-350-8-itest
       ports:
       - name: flower-http
         containerPort: 5555
-        hostPort: 5556
       - name: sherlock-http
         containerPort: 5000
       env:
         - name: BROKER_URL
-          value: 'mycroft-stage.cache-as-a-service-sp2.prd-samtwo.prd.slb.sfdc.net'
+          value: 'mycroft-feature-stage.cache-as-a-service-sp2.prd-samtwo.prd.slb.sfdc.net'
         - name: SAMCAAS2_CAASMINION2_1_PRD_KINGDOMS
           value: 'dfw,lo3,customer_orgs,model_queue1,dbperfswat'
         - name: SAMCAAS2_CAASMINION2_2_PRD_KINGDOMS
@@ -40,7 +39,7 @@ system:
         - name: CELERY_CONCURRECY
           value: '10'
         - name: REL_VERSION
-          value: '1'   
+          value: '1'
         - name: MY_SAM_HOST_NAME
           valueFrom:
             fieldRef:
@@ -65,10 +64,10 @@ system:
     volumes:
       - name: sherlock-data-vol-stage
         hostPath:
-          path: /data/sherlock-stage
+          path: /data/sherlock-feature-stage
       - name: sherlock-logs-vol-stage
         hostPath:
-          path: /data/sherlock-logs-stage
+          path: /data/sherlock-logs-feature-stage
       - name: argus-secrets-vol
         k4aSecret:
           secretName: argus-secrets
@@ -76,10 +75,10 @@ system:
         maddogCert:
           type: server
           lbnames:
-          - sherlock-stage
+          - sherlock-feature-stage
   loadbalancers:
-  - lbname: sherlock-stage
-    function: sherlock-stage
+  - lbname: sherlock-feature-stage
+    function: sherlock-feature-stage
     slbenabled: true
     ports:
       - port: 5555

@@ -1,0 +1,44 @@
+apiVersion: v1
+system:
+  notifications:
+    email:
+      - aborra@salesforce.com
+      - rpothana@salesforce.com
+      - ggopalakrishnan@salesforce.com
+      - hmittal@salesforce.com
+  functions:
+  - name: mycroft-feature-stage
+    count: 1
+    containers:
+    - name: mycroft-feature-stage
+      image: dva/casp/mycroft_strata:jenkins-CASP-mycroft-dev-5-itest
+      ports:
+      - name: tcp
+        containerPort: 6379
+      env:
+        - name: CELERY_BEAT_LOG_LEVEL
+          value: 'info'
+        - name: MYCROFT_ENV
+          value: 'stage'
+      livenessProbe:
+        exec:
+          command:
+            - /opt/mycroft/bin/ping.sh
+        failureThreshold: 60
+        periodSeconds: 10
+        timeoutSeconds: 10
+        initialDelaySeconds: 30
+      volumeMounts:
+        - mountPath: /opt/mycroft/logs
+          name: mycroft-logs-vol-stage
+    volumes:
+      - name: mycroft-logs-vol-stage
+        hostPath:
+          path: /data/mycroft-logs-feature-stage
+  loadbalancers:
+  - lbname: mycroft-feature-stage
+    function: mycroft-feature-stage
+    slbenabled: true
+    ports:
+      - port: 6379
+        targetport: 6379
