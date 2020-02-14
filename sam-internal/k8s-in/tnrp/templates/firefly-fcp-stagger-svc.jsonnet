@@ -116,7 +116,7 @@ if configs.estate == "prd-samtwo" then
         local appConfig = prConfig.config("firefly-pullrequest") + {
           appconfig+: {
             "multi-repo-supported": true,
-            "self-auth-allowed": true,
+            "self-auth-allowed": false,
             docker+: {
               "force-create-container": true,
             },
