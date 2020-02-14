@@ -13,7 +13,7 @@ system:
       "routing.mesh.sfdc.net/enabled": "true"
     containers:
     - name: cre-api-ccp-dev
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cre/cre-api:2.3.0.develop.985996b.155
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cre/cre-api:2.3.0.develop.e6ce5f6.160
       env:
         - name: SPRING_PROFILES_ACTIVE # FOR TESTING PURPOSES
           value: dev
