@@ -5,5 +5,26 @@ apps:
   prd-release:
   - prd/prd-sam_datapool
 
+  discovery-dfw:
+  - dfw/dfw-sam_datapool
 
+  discovery-dfw-sandbox:
+  - dfw/dfw-sam_datapool
 
+  discovery-iad:
+  - iad/iad-sam_datapool
+
+  discovery-iad-sandbox:
+  - iad/iad-sam_datapool
+
+  discovery-phx:
+  - phx/phx-sam_datapool
+
+  discovery-phx-sandbox:
+  - phx/phx-sam_datapool
+
+  discovery-ord:
+  - ord/ord-sam_datapool
+
+  discovery-ord-sandbox:
+  - ord/ord-sam_datapool

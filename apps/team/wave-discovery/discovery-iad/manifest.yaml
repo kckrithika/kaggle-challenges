@@ -2,29 +2,30 @@ apiVersion: v1
 system:
   functions:
   - containers:
-    - image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/ed-spark-driver:29c7f7e1a9c70e73289aced5b075915f87da2bb8
+    - image: ops0-artifactrepo1-0-iad.data.sfdc.net/dva/ed-spark-driver:a0d9b8689b9c7de45d5828f622b7451e5e1d4ca1
       livenessProbe:
         exec:
           command: [ls]
         initialDelaySeconds: 5
       name: spark-engine
     count: 0
-    name: ed-spark-release
+    name: ed-spark-prod
   - containers:
     - env:
       - {name: MANAGEMENT_SERVER_PORT, value: '15372'}
       - {name: LOGGING_JSON_STDOUT_LEVEL, value: ALL}
       - {name: LOGGING_STDERR_LEVEL, value: ALL}
-      - {name: MOANA_SPARK_ENGINE_IMAGE, value: 'ops0-artifactrepo2-0-prd.data.sfdc.net/dva/ed-spark-driver:29c7f7e1a9c70e73289aced5b075915f87da2bb8'}
-      - {name: KAFKA_GROUP_ID, value: ed-jobcontroller-release}
-      - {name: DEPLOYMENT_ID, value: prd-ed-release}
+      - {name: MOANA_SPARK_ENGINE_IMAGE, value: 'ops0-artifactrepo1-0-iad.data.sfdc.net/dva/ed-spark-driver:a0d9b8689b9c7de45d5828f622b7451e5e1d4ca1'}
+      - {name: KAFKA_GROUP_ID, value: ed-jobcontroller-prod}
+      - {name: DEPLOYMENT_ID, value: iad-ed-prod}
       - {name: JAVA_OPTS, value: '-server -XX:MaxMetaspaceSize=512m -Xmx2048m -Xms2048m'}
       - {name: SIZING_MEMORY_OVERHEAD, value: '1024'}
       - {name: K8S_CPU_LIMIT_APPLY, value: 'false'}
       - {name: STARTUP_JOB_ENABLED, value: 'false'}
-      - {name: HANDLED_PODS_PATTERN, value: stmfb\..*|ed-driver-release}
       - {name: K8S_ADDITIONAL_JVM_ARGS, value: '-XX:+UseG1GC -verbose:gc -XX:+PrintGCDateStamps -XX:+PrintGCDetails -Xss10M'}
-      image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/insights/wave-ed-job-controller:cb97a325e4319c1cef835ca27718f40a8b06c78b
+      - {name: HANDLED_PODS_PATTERN, value: 'cs[0-9]+'}
+      - {name: HANDLED_PODS_INVERT_MATCH, value: 'true'}
+      image: ops0-artifactrepo1-0-iad.data.sfdc.net/dva/insights/wave-ed-job-controller:cb97a325e4319c1cef835ca27718f40a8b06c78b
       livenessProbe:
         httpGet: {path: /manage/health, port: 15372}
         initialDelaySeconds: 90
@@ -42,7 +43,7 @@ system:
     count: 1
     hostnetwork: false
     identity: {serviceName: ed-spark-job-controller}
-    name: jobcontroller-release
+    name: jobcontroller-prod
     volumes:
     - hostPath: {path: /data/sam/wave-discovery/log/ed-job-controller}
       name: logvol
@@ -51,4 +52,4 @@ system:
     - maddogCert: {type: client}
       name: tls-client-certs
   notifications:
-    email: [egupta@salesforce.com]
+    email: [ed_ie_engineers@salesforce.com]
