@@ -107,7 +107,6 @@ configs.deploymentBase("service-mesh") {
               httpGet: {
                 path: "/live",
                 port: "probes-port",
-                scheme: "HTTPS",
               },
               initialDelaySeconds: 5,
               periodSeconds: 30,
@@ -117,7 +116,6 @@ configs.deploymentBase("service-mesh") {
               httpGet: {
                 path: "/ready",
                 port: "probes-port",
-                scheme: "HTTPS",
               },
               initialDelaySeconds: 5,
               periodSeconds: 30,
