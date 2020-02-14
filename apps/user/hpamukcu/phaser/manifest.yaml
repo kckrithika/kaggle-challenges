@@ -17,13 +17,13 @@ system:
           command: ["/moe/deployerbot/phaser"]
           args:
             - "-gheTokenPath=/secrets/ghe_pat"
-            - "-pgpkeypath=/gpgsecrets/moe-signing-key.asc"
+            - "-pgpkeypath=/gpgsecrets/signing-key.asc"
           volumeMounts:
             - mountPath: /secrets
-              name: deployerbot-ghe-pat
+              name: phaser-ghe-pat
               readOnly: true
             - mountPath: /gpgsecrets
-              name: moe-gpg-signing-key
+              name: phaser-signing-key-asc
               readOnly: true
           livenessProbe:
             exec:
@@ -32,9 +32,9 @@ system:
             initialDelaySeconds: 5
             periodSeconds: 60
       volumes:
-        - name: deployerbot-ghe-pat
+        - name: phaser-ghe-pat
           k4aSecret:
-            secretName: speedometer-ghe-pat
-        - name: moe-gpg-signing-key
+            secretName: phaser-ghe-pat
+        - name: phaser-signing-key-asc
           k4aSecret:
-            secretName: moe-gpg-signing-key
+            secretName: phaser-signing-key-asc
