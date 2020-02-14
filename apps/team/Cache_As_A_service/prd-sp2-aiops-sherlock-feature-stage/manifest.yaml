@@ -23,7 +23,7 @@ system:
         - name: BROKER_URL
           value: 'mycroft-feature-stage.cache-as-a-service-sp2.prd-samtwo.prd.slb.sfdc.net'
         - name: SAMCAAS2_CAASMINION2_1_PRD_KINGDOMS
-          value: 'lo3,customer_orgs,model_queue1,dbperfswat'
+          value: 'dfw,lo3,customer_orgs,model_queue1,dbperfswat'
         - name: SAMCAAS2_CAASMINION2_2_PRD_KINGDOMS
           value: 'fra,lo2,customer_orgs,model_queue2,dbperfswat'
         - name: SAMCAAS2_CAASMINION3_6_PRD_KINGDOMS
