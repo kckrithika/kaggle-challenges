@@ -110,9 +110,7 @@ system:
       command: ["java", "-jar", "cloudatlas-service.jar"]
       env:
         - name: DIRECTORY_SERVER_HOST
-          valueFrom:
-           fieldRef:
-            fieldPath: spec.nodeName
+          value: cloudatlas-dev.global-identity.prd-sam.prd.slb.sfdc.net
         - name: server_port
           value: 7032
         - name: management_server_port
