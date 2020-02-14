@@ -25,7 +25,7 @@ system:
       - {name: K8S_ADDITIONAL_JVM_ARGS, value: '-XX:+UseG1GC -verbose:gc -XX:+PrintGCDateStamps -XX:+PrintGCDetails -Xss10M'}
       - {name: HANDLED_PODS_PATTERN, value: 'cs[0-9]+'}
       - {name: HANDLED_PODS_INVERT_MATCH, value: 'true'}
-      image: ops0-artifactrepo2-0-phx.data.sfdc.net/dva/insights/wave-ed-job-controller:cb03678c7cb58ef246bbc515ea9b067bbad6a107
+      image: ops0-artifactrepo2-0-phx.data.sfdc.net/dva/insights/wave-ed-job-controller:cb97a325e4319c1cef835ca27718f40a8b06c78b
       livenessProbe:
         httpGet: {path: /manage/health, port: 15372}
         initialDelaySeconds: 90
