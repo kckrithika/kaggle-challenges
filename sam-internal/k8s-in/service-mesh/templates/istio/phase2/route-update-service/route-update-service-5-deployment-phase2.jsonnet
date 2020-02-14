@@ -72,6 +72,8 @@ configs.deploymentBase("service-mesh") {
               "7443",
               "--funnel-address",
               mcpIstioConfig.funnelEndpoint,
+              "--probes-port",
+              "10080",
             ],
             env: [
               {
@@ -96,12 +98,26 @@ configs.deploymentBase("service-mesh") {
                 containerPort: 7443,
                 name: "grpc-svc",
               },
+              {
+                containerPort: 10080,
+                name: "probes-port",
+              },
             ],
+            livenessProbe: {
+              httpGet: {
+                path: "/live",
+                port: "probes-port",
+                scheme: "HTTPS",
+              },
+              initialDelaySeconds: 5,
+              periodSeconds: 30,
+              timeoutSeconds: 5,
+            },
             readinessProbe: {
-              exec: {
-                command: [
-                  "/bin/true",
-                ],
+              httpGet: {
+                path: "/ready",
+                port: "probes-port",
+                scheme: "HTTPS",
               },
               initialDelaySeconds: 5,
               periodSeconds: 30,

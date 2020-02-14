@@ -53,6 +53,8 @@ spec:
         - "7443"
         - --funnel-address
         - ajnafunneldirecttls.funnel.svc.mesh.sfdc.net:7442
+        - --probes-port
+        - "10080"
         env:
         - name: ESTATE
           value: prd-sam_gater
@@ -64,14 +66,25 @@ spec:
           value: "2"
         image: ops0-artifactrepo2-0-prd.data.sfdc.net/sfci/servicemesh/servicemesh/route-update-service:c8bfa791b937118e73234a162c6bede5ee9153bb
         imagePullPolicy: IfNotPresent
+        livenessProbe:
+          httpGet:
+            path: /live
+            port: probes-port
+            scheme: HTTPS
+          initialDelaySeconds: 5
+          periodSeconds: 30
+          timeoutSeconds: 5
         name: route-update-service
         ports:
         - containerPort: 7443
           name: grpc-svc
+        - containerPort: 10080
+          name: probes-port
         readinessProbe:
-          exec:
-            command:
-            - /bin/true
+          httpGet:
+            path: /ready
+            port: probes-port
+            scheme: HTTPS
           initialDelaySeconds: 5
           periodSeconds: 30
           timeoutSeconds: 5
