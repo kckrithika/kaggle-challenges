@@ -31,7 +31,7 @@ local containerspec = {
             ]
         },
         failureThreshold: 3,
-        initialDelaySeconds: (if "sherpa_no_ready_delay" in flowsnake_images.feature_flags then 5 else 110),
+        initialDelaySeconds: 5,
         periodSeconds: 5,
         successThreshold: 1,
         timeoutSeconds: 1
