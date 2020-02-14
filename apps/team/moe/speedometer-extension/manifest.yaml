@@ -33,6 +33,16 @@ system:
       - mountPath: /arguspw
         name: tok-secrets
         readOnly: true
+    volumes:
+    - name: logvol
+      hostPath:
+        path: /data/speedometer-extension/logs	
+    - name: speedometer-ghe-pat
+      k4aSecret:
+        secretName: speedometer-ghe-pat
+    - name: tok-secrets
+      k4aSecret:
+        secretName: tok-secrets
   loadbalancers:
   - lbname: speedometer-extension
     function: speedometer-extension
