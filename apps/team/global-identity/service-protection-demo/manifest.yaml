@@ -8,6 +8,8 @@ system:
           image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/gid/service-protection:93f3e8c
           imagePullPolicy: Always
           env:
+          - name: SFDC_ENVIRONMENT
+            value: "stmfa"
           - name: server_port
             value: 8092
           - name: dynamicProp_contentUrl
