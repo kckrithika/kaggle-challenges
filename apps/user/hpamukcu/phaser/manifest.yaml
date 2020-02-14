@@ -6,14 +6,14 @@ system:
       count: 1
       containers:
         - name: phaser
-          image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/hpamukcu/deployerbot]
+          image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/hpamukcu/deployerbot:hpamukcu-202002140939
           env:
             - name: GO_PIPELINE_LABEL
               value: 1
             - name: NODE_NAME
-                valueFrom:
-                  fieldRef:
-                    fieldPath: spec.nodeName
+              valueFrom:
+                fieldRef:
+                  fieldPath: spec.nodeName
           command: ["/moe/deployerbot/phaser"]
           args:
             - "-gheTokenPath=/secrets/ghe_pat"
