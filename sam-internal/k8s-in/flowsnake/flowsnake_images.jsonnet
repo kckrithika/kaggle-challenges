@@ -24,7 +24,6 @@ local utils = import "util_functions.jsonnet";
         "1": self["2"] {
             image_tags+: {
                 watchdog_image_tag: "2722-a1231485debac6b17dfa76e7a1af01750e0f4f8b",  # 05/2019 image
-                integration_test_tag: "42",
                 spark_operator_image_tag: "jenkins-dva-transformation-spark-on-k8s-operator-cm202002-update-spark-image-1-itest",
             },
             feature_flags+: {
@@ -39,12 +38,10 @@ local utils = import "util_functions.jsonnet";
                 # --- flag E (each pair. ... ---
                 v1beta1_original: "",
                 # --- flag F (Their only purpose ... ---
-                next_analysis_script: "INTO THE FUTURE!",
                 # --- flag G (is to assist ... ---
                 prometheus_funnel_update: "",
                 # --- flag H (git's diff logic ... ---
                 # --- flag I (to reduce the ---
-                sherpa_no_ready_delay: "AAA",
                 # --- flag J (likelihood of merge conflicts.) ---
             },
             # prd-test offers legacy version mappings. Phase 2 does not, so cannot inherit from there.
@@ -57,7 +54,6 @@ local utils = import "util_functions.jsonnet";
         # Only include new things not yet promoted to next phase. To promote, move line items to next phase.
         "2": self.prod {
             image_tags+: {
-                service_mesh_injector_image_tag: "7",
             },
             feature_flags+: {
                 # --- flag A (Do not edit ... ---
@@ -79,14 +75,10 @@ local utils = import "util_functions.jsonnet";
         "2-prd-dev": self["2"] {
             image_tags+: {
                 service_mesh_image_tag: "1.0.13",
-                integration_test_tag: "42",
-                hbase_integration_test_tag: "42",
             },
             feature_flags+: {
                 # Note: the *value* of the flags is ignored. jsonnet lacks array search, so we use a an object.
                 btrfs_watchdog_hard_reset: "",  # Was promoted to prd-dev before phasing refactor
-                sherpa_no_ready_delay: "AAA",
-                next_analysis_script: "INTO THE FUTURE!",
             },
             # prd-dev offers legacy version mappings. Phase 2 does not, so cannot inherit from there.
             # Start with iad-ord (which also have legacy version mappings),
@@ -97,11 +89,9 @@ local utils = import "util_functions.jsonnet";
         # prd-data: Exceptions vs. the rest of phase 2 only
         "2-prd-data": self["2"] {
             image_tags+: {
-                integration_test_tag: "42",
             },
             feature_flags+: {
                 # Note: the *value* of the flags is ignored. jsonnet lacks array search, so we use a an object.
-                next_analysis_script: "INTO THE FUTURE!",
             },
             # prd-data offers legacy version mappings. Phase 2 does not, so cannot inherit from there.
             # Start with iad-ord (which also have legacy version mappings),
@@ -134,8 +124,8 @@ local utils = import "util_functions.jsonnet";
                 spark_operator_image_tag: "jenkins-dva-transformation-spark-on-k8s-operator-development-sfdc-9-itest",  # 11/8 image that includes job start latency metric
                 # to remove
                 watchdog_spark_operator_image_tag: "jenkins-dva-transformation-spark-on-k8s-sample-apps-PR-2-1-itest",
-                integration_test_tag: "33",
-                hbase_integration_test_tag: "22",
+                integration_test_tag: "42",
+                hbase_integration_test_tag: "42",
                 kube_state_metrics_image_tag: "3",
                 prometheus_funnel_image_tag: "37",
                 spark_worker_23_hadoop_292_image_tag: "jenkins-dva-transformation-flowsnake-sample-apps-cre-hadoop-292-5-itest",
@@ -149,7 +139,7 @@ local utils = import "util_functions.jsonnet";
                 madkub_image_tag: "1.0.0-0000084-9f4a6ca6",  # Madkub server gets token for itself using host IP
                 madkub_injector_image_tag: "jenkins-dva-transformation-madkub-injector-webhook-PR-25-7-itest",
                 service_mesh_image_tag: "1.0.5",
-                service_mesh_injector_image_tag: "jenkins-dva-transformation-service-mesh-injector-webhook-PR-1-23-itest",
+                service_mesh_injector_image_tag: "7",
                 node_controller_image_tag: "sam-0001970-a296421d",
                 nodeMonitor_image_tag: "jenkins-dva-transformation-flowsnake-platform-master-781-itest",
                 snapshot_consumer_image_tag: "2782-642a31c27d65c41109e7abe97ab07c984fe6385a",
@@ -182,13 +172,9 @@ local utils = import "util_functions.jsonnet";
         # off-peak: 1pm-9pm PDT
         "prod-emea": self.prod {
           image_tags+: {
-                service_mesh_injector_image_tag: "7",
-                integration_test_tag: "42",
-                hbase_integration_test_tag: "42",
           },
           feature_flags+: {
               # --- flag A (Do not edit ... ---
-              sherpa_no_ready_delay: "AAA",
               # --- flag B (these comments ... ---
               # --- flag C (and place only ... ---
               # --- flag D (one flag between ... ---
@@ -198,7 +184,6 @@ local utils = import "util_functions.jsonnet";
               # --- flag H (git's diff logic ... ---
               # --- flag I (to reduce the ---
               # --- flag J (likelihood of merge conflicts.) ---
-              next_analysis_script: "INTO THE FUTURE!",
           },
         },
 
@@ -206,13 +191,9 @@ local utils = import "util_functions.jsonnet";
         # off-peak: 6pm-4am PDT
         "prod-na": self.prod {
             image_tags+: {
-                service_mesh_injector_image_tag: "7",
-                integration_test_tag: "42",
-                hbase_integration_test_tag: "42",
             },
             feature_flags+: {
                 # --- flag A (Do not edit ... ---
-                sherpa_no_ready_delay: "AAA",
                 # --- flag B (these comments ... ---
                 # --- flag C (and place only ... ---
                 # --- flag D (one flag between ... ---
@@ -222,7 +203,6 @@ local utils = import "util_functions.jsonnet";
                 # --- flag H (git's diff logic ... ---
                 # --- flag I (to reduce the ---
                 # --- flag J (likelihood of merge conflicts.) ---
-                next_analysis_script: "INTO THE FUTURE!",
             },
         },
 
@@ -230,13 +210,9 @@ local utils = import "util_functions.jsonnet";
         # off-peak: 6am-1pm PDT
         "prod-apac": self.prod {
             image_tags+: {
-                service_mesh_injector_image_tag: "7",
-                hbase_integration_test_tag: "42",
-                integration_test_tag: "42",
             },
             feature_flags+: {
                 # --- flag A (Do not edit ... ---
-                sherpa_no_ready_delay: "AAA",
                 # --- flag B (these comments ... ---
                 # --- flag C (and place only ... ---
                 # --- flag D (one flag between ... ---
@@ -246,7 +222,6 @@ local utils = import "util_functions.jsonnet";
                 # --- flag H (git's diff logic ... ---
                 # --- flag I (to reduce the ---
                 # --- flag J (likelihood of merge conflicts.) ---
-                next_analysis_script: "INTO THE FUTURE!",
             },
         },
 
