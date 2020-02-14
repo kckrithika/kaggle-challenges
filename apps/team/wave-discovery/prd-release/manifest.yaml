@@ -24,7 +24,7 @@ system:
       - {name: STARTUP_JOB_ENABLED, value: 'false'}
       - {name: HANDLED_PODS_PATTERN, value: stmfb\..*|ed-driver-release}
       - {name: K8S_ADDITIONAL_JVM_ARGS, value: '-XX:+UseG1GC -verbose:gc -XX:+PrintGCDateStamps -XX:+PrintGCDetails -Xss10M'}
-      image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/insights/wave-ed-job-controller:cb03678c7cb58ef246bbc515ea9b067bbad6a107
+      image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/insights/wave-ed-job-controller:cb97a325e4319c1cef835ca27718f40a8b06c78b
       livenessProbe:
         httpGet: {path: /manage/health, port: 15372}
         initialDelaySeconds: 90
