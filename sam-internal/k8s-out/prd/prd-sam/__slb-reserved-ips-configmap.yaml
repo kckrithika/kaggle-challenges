@@ -2,6 +2,7 @@ apiVersion: v1
 data:
   slb-reserved-ips-prd.json: |-
     {
+      "cast-stage.cast.prd-sam.prd.slb.sfdc.net": "96.43.157.6",
       "codecov.moe.prd-sam.prd.slb.sfdc.net": "10.251.196.117",
       "gatekeeper-dashboardlb.gatekeeper.prd-sam.prd.slb.sfdc.net": "10.251.196.212",
       "gid-runtime-staging.global-identity.prd-sam.prd.slb.sfdc.net": "96.43.157.5",
