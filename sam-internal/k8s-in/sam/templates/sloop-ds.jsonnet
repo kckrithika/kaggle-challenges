@@ -16,7 +16,7 @@ local resourceRequirements = {
   },
   small: {
     cpu: "1",
-    memory: "4Gi",
+    memory: "5Gi",
   },
   medium: {
     cpu: "2",
