@@ -6,7 +6,7 @@ system:
     count: 1
     containers:
     - name: speedometer-extension
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/hsuanyu.chen/speedometer-extension:hsuanyu.chen-202001311606
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/hsuanyu.chen/speedometer-extension:hsuanyu.chen-202002141517
       command: ["/moe/speedometer-extension"]
       args:
       - "-gheTokenPath=/secrets/ghe_pat"
@@ -36,7 +36,7 @@ system:
     volumes:
     - name: logvol
       hostPath:
-        path: /data/speedometer-extension/logs
+        path: /data/speedometer-extension/logs	
     - name: speedometer-ghe-pat
       k4aSecret:
         secretName: speedometer-ghe-pat
