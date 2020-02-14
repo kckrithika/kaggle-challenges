@@ -16,32 +16,32 @@ system:
         httpGet:
             path: /healthngupgrade
     - name: falconsdbproduction
-      image: ops0-artifactrepo1-0-dfw.data.sfdc.net/dva/sdd/sdbproduction:324.120.1-b7e23a3
+      image: ops0-artifactrepo1-0-dfw.data.sfdc.net/dva/sdd/sdbproduction:324.120.1-0abb0b1
       livenessProbe:
         httpGet:
             path: /healthfalconsdbproduction
     - name: falconsdbbootstrap
-      image: ops0-artifactrepo1-0-dfw.data.sfdc.net/dva/sdd/sdbbootstrap:324.120.1-b7e23a3
+      image: ops0-artifactrepo1-0-dfw.data.sfdc.net/dva/sdd/sdbbootstrap:324.120.1-0abb0b1
       livenessProbe:
         httpGet:
             path: /healthfalconsdbbootstrap
     - name: falconsdbupgrade
-      image: ops0-artifactrepo1-0-dfw.data.sfdc.net/dva/sdd/sdbupgrade:324.120.1-b7e23a3
+      image: ops0-artifactrepo1-0-dfw.data.sfdc.net/dva/sdd/sdbupgrade:324.120.1-0abb0b1
       livenessProbe:
         httpGet:
             path: /healthfalconsdbupgrade
     - name: falconsdbgenerationactivator
-      image: ops0-artifactrepo1-0-dfw.data.sfdc.net/dva/sdd/sdbgenerationactivator:324.120.1-b7e23a3
+      image: ops0-artifactrepo1-0-dfw.data.sfdc.net/dva/sdd/sdbgenerationactivator:324.120.1-0abb0b1
       livenessProbe:
         httpGet:
             path: /healthfalconsdbgenerationactivator
     - name: falconsdbrestoreagent
-      image: ops0-artifactrepo1-0-dfw.data.sfdc.net/dva/sdd/sdbrestoreagent:324.120.1-b7e23a3
+      image: ops0-artifactrepo1-0-dfw.data.sfdc.net/dva/sdd/sdbrestoreagent:324.120.1-0abb0b1
       livenessProbe:
         httpGet:
             path: /healthfalconsdbrestoreagent
     - name: falconsdbrestorevalidationagent
-      image: ops0-artifactrepo1-0-dfw.data.sfdc.net/dva/sdd/sdbrestorevalidationagent:324.120.1-b7e23a3
+      image: ops0-artifactrepo1-0-dfw.data.sfdc.net/dva/sdd/sdbrestorevalidationagent:324.120.1-0abb0b1
       livenessProbe:
         httpGet:
             path: /healthfalconsdbrestorevalidationagent
