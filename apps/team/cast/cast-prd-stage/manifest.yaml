@@ -242,6 +242,8 @@ system:
   #####################################################################################
   loadbalancers:
     - lbname: cast-stage
+      annotations:
+        slb.sfdc.net/iptype: public_reserved
       function: cast-prd-stage
       slbEnabled: true
       ports:
