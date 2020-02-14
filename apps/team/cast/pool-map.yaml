@@ -6,7 +6,7 @@ apps:
     - name: prd/prd-sam_cloudatlas_dir
 
   gid-setup-cast-dev:
-    - name: prd/prd-sam_cloudatlas_dir
+    - name: prd/prd-sam_globalidentity
     
   # PRD-Dev Cloud Atlas Service
   cast-prd-dev:
