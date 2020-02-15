@@ -53,7 +53,7 @@ system:
       - name: INCLUDEALLSTACKTRACES
         value: false
       - name: JVM_ARGS
-        value: "-Dspring.profiles.active=prod,perf,alertTriggeringExtensionsOn
+        value: "-Dspring.profiles.active=prod
                 -Djava.util.concurrent.ForkJoinPool.common.parallelism=50
                 -verbose:gc -XX:+PrintGCDateStamps -XX:+PrintHeapAtGC
                 -XX:+PrintPromotionFailure -XX:+PrintTenuringDistribution -XX:+PrintGCDetails
