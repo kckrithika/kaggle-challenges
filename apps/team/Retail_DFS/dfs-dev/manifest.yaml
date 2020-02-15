@@ -22,7 +22,7 @@ system:
 
     containers:
     - name: dfs-dev
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/dfs/service:dfs-0.27.1
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/dfs/service:dfs-0.27.2
       volumeMounts:
       - name: logvol
         mountPath: /home/scone/logs
@@ -41,6 +41,10 @@ system:
         value: true
       - name: GDOT_BASEPATHOVERRIDE
         value: http://cloudatlas-prd-stage-service.cloudatlas.localhost.mesh.force.com:5442/scim
+      - name: C2C_SERVICEURLOVERRIDE
+        value: https://login.stmfa.stm.salesforce.com/services/c2c
+      - name: USE_C2C_SERVICE
+        value: false
       - name: SCONE_SERVER_SECURITY_MUTUALAUTH
         value: false
       - name: INCLUDE_ALL_STACK_TRACES
