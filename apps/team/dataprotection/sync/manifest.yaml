@@ -5,7 +5,7 @@ system:
     count: 5
     containers:
     - name: sync
-      image: dva/winterfell-sync:433606025002ea08d16ae86a6b6aa59981742c15
+      image: dva/winterfell-sync:25060abae825776fd27c203a52d06caba4e27675
       env:
       - name: SFDC_ENVIRONMENT
         value: prod
