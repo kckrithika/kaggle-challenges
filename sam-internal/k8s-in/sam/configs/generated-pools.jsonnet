@@ -1684,6 +1684,7 @@
         "service-mesh",
         "mesh-control-plane",
         "service-protection",
+        "retail-beaconator",
         "discovery"
       ],
       "access": [
@@ -1692,6 +1693,7 @@
         "team/service-mesh",
         "team/mesh-control-plane",
         "team/Service_Protection",
+        "team/Retail_Beaconator",
         "team/discovery"
       ],
       "controlEstate": "ia4-sam",
@@ -1802,6 +1804,7 @@
         "service-mesh",
         "mesh-control-plane",
         "service-protection",
+        "retail-beaconator",
         "discovery"
       ],
       "access": [
@@ -1810,6 +1813,7 @@
         "team/service-mesh",
         "team/mesh-control-plane",
         "team/Service_Protection",
+        "team/Retail_Beaconator",
         "team/discovery"
       ],
       "controlEstate": "ia5-sam",

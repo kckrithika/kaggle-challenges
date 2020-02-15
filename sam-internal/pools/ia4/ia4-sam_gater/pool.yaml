@@ -9,6 +9,7 @@ access:
   - 'team/service-mesh'
   - 'team/mesh-control-plane'
   - 'team/Service_Protection'
+  - 'team/Retail_Beaconator'
   - 'team/discovery'
 
 # Each pool is managed by a SAM control stack running in one estate
