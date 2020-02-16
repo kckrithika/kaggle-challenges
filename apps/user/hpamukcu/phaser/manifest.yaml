@@ -6,7 +6,7 @@ system:
       count: 1
       containers:
         - name: phaser
-          image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/hpamukcu/deployerbot:hpamukcu-202002151648
+          image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/hpamukcu/deployerbot:hpamukcu-202002152127
           env:
             - name: GO_PIPELINE_LABEL
               value: 1
@@ -18,6 +18,7 @@ system:
           args:
             - "-gheTokenPath=/secrets/hpam-ghe-pat"
             - "-pgpkeypath=/gpgsecrets/hpam-gpg-key"
+            - "-repoBaseDir=/repo"
           volumeMounts:
             - mountPath: /secrets
               name: phaser-ghe-pat-hpam
@@ -25,6 +26,8 @@ system:
             - mountPath: /gpgsecrets
               name: phaser-gpg-key-hpam
               readOnly: true
+            - mountPath: /repo
+              name: repo-base
           livenessProbe:
             exec:
               command: ["ls", "/"]
@@ -38,3 +41,5 @@ system:
         - name: phaser-gpg-key-hpam
           k4aSecret:
             secretName: phaser-gpg-key-hpam
+        - name: repo-base
+          emptyDir: {}
