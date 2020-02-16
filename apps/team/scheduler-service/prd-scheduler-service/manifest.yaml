@@ -12,7 +12,7 @@ system:
         pod: cs101
       containers:
         - name: sdbgo
-          image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/rakella/scheduler-db:12feb20
+          image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/rakella/scheduler-db:16feb20
           env:
           - name: SFDC_ENVIRONMENT
             value: mesh
@@ -37,7 +37,7 @@ system:
         pod: cs101
       containers:
         - name: cronsvc
-          image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/rakella/scheduler-service:13feb20-1
+          image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/rakella/scheduler-service:16feb20
           ports:
             - name: grpc-port
               containerPort: 7020
@@ -151,7 +151,7 @@ system:
         pod: cs101
       containers:
         - name: jds
-          image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/rakella/scheduler-jds:13feb20-1
+          image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/rakella/scheduler-jds:16feb20
           ports:
             - name: scone-port
               containerPort: 15376
@@ -188,7 +188,7 @@ system:
         pod: cs101
       containers:
         - name: cronexec
-          image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/rakella/executor-service:13feb20-1
+          image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/rakella/executor-service:16feb20
           ports:
             - name: grpc-port
               containerPort: 9020
@@ -239,7 +239,7 @@ system:
         pod: cs101
       containers:
         - name: cronui
-          image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/rakella/scheduler-ui:13feb20-1
+          image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/rakella/scheduler-ui:16feb20
           ports:
             - name: http-port
               containerPort: 7022
@@ -279,7 +279,7 @@ system:
         pod: cs101
       containers:
         - name: crondemo
-          image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/rakella/scheduler-demo-client:13feb20-1
+          image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/rakella/scheduler-demo-client:16feb20
           ports:
             - name: http-port
               containerPort: 9090
