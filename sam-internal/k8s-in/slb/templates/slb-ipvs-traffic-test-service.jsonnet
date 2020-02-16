@@ -7,19 +7,42 @@ local slbbaseservice = import "slb-base-service.libsonnet";
 local slbflights = import "slbflights.jsonnet";
 local slbports = import "slbports.jsonnet";
 
-local canaryName = "slb-ipvs";
-local serviceName = "slb-ipvs-traffic-test-service";
-local vipName = canaryName;
+if slbflights.enableIpvsTrafficTest then {
+    apiVersion: "v1",
+    kind: "Service",
+    metadata: {
+        name: "slb-ipvs-traffic-test-service",
+        namespace: "sam-system",
+        labels: {
+            app: "slb-ipvs-traffic-test-service",
+        },
+        annotations: {
+            "slb.sfdc.net/portconfigurations": std.toString(
+                [
+                    {
+                        healthPath: "/",
+                        lbtype: "tcp",
+                        port: 9107,
+                        targetport: 9107,
+                    },
+                ]
+            ),
+        },
+    },
 
-local canaryPortConfig = [
-    slbportconfiguration.newPortConfiguration(
-        port=9107,
-        lbType="tcp",
-        name=canaryName + "-port",
-        nodePort=slbports.slb.slbIpvsTrafficTestPort,
-    ) { healthPath: "/" },
-];
-
-if slbflights.enableIpvsTrafficTest then
-   slbbaseservice.slbCanaryBaseService(canaryName, canaryPortConfig, serviceName, vipName) {
+    spec: {
+              ports: [
+                  {
+                      name: "slb-ipvs-traffic-test-port",
+                      nodePort: slbports.slb.slbIpvsTrafficTestPort,
+                      port: 9107,
+                      protocol: "TCP",
+                      targetPort: 9107,
+                  },
+              ],
+              selector: {
+                  name: "slb-ipvs",
+              },
+              type: "NodePort",
+          },
 } else "SKIP"

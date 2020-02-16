@@ -70,7 +70,7 @@ spec:
         - --podstatus=running
         - --subnet=10.254.247.0/24
         - --k8sapiserver=
-        - --serviceList=
+        - --serviceList=slb-ipvs-traffic-test-service
         - --useVipLabelToSelectSvcs=true
         - --metricsEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80
         - --log_dir=/host/data/slb/logs/slb-iface-processor

@@ -2,23 +2,15 @@ apiVersion: v1
 kind: Service
 metadata:
   annotations:
-    slb.sfdc.net/name: slb-ipvs
-    slb.sfdc.net/portconfigurations: |-
-      [
-       {
-        "healthPath": "/",
-        "lbtype": "tcp",
-        "port": 9107,
-        "targetport": 9107
-       }
-      ]
+    slb.sfdc.net/portconfigurations: '[{"healthPath": "/", "lbtype": "tcp", "port":
+      9107, "targetport": 9107}]'
   labels:
     app: slb-ipvs-traffic-test-service
   name: slb-ipvs-traffic-test-service
   namespace: sam-system
 spec:
   ports:
-  - name: slb-ipvs-port
+  - name: slb-ipvs-traffic-test-port
     nodePort: 32150
     port: 9107
     protocol: TCP
