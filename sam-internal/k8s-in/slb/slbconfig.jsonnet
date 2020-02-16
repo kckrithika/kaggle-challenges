@@ -150,10 +150,13 @@
                 vpod: $.trustedProxyDefault,
             },
 
-        serviceList: {
-            "prd-sam": "csrlb,controlplane-ptest",
-        } + set_value_to_all_in_list_skip("", $.slbEstates, "prd-sam")
-        + { vpod: "" },
+        serviceList:
+            set_value_to_all_in_list("", $.slbEstates)
+            {
+                "prd-sdc": "slb-ipvs-traffic-test-service",
+                "prd-sam": "csrlb,controlplane-ptest",
+                vpod: "",
+            },
 
         servicesToLbOverride: {
             "prd-sdc": "",
