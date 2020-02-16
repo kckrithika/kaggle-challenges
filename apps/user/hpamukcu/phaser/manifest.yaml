@@ -6,7 +6,7 @@ system:
       count: 1
       containers:
         - name: phaser
-          image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/hpamukcu/deployerbot:hpamukcu-202002140939
+          image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/hpamukcu/deployerbot:hpamukcu-202002151648
           env:
             - name: GO_PIPELINE_LABEL
               value: 1
@@ -14,16 +14,16 @@ system:
               valueFrom:
                 fieldRef:
                   fieldPath: spec.nodeName
-          command: ["/moe/deployerbot/phaser"]
+          command: ["/moe/phaser"]
           args:
-            - "-gheTokenPath=/secrets/ghe_pat"
-            - "-pgpkeypath=/gpgsecrets/signing-key.asc"
+            - "-gheTokenPath=/secrets/phaser-ghe-pat-hpam"
+            - "-pgpkeypath=/gpgsecrets/phaser-gpg-key-hpam"
           volumeMounts:
             - mountPath: /secrets
-              name: phaser-ghe-pat
+              name: phaser-ghe-pat-hpam
               readOnly: true
             - mountPath: /gpgsecrets
-              name: phaser-signing-key-asc
+              name: phaser-gpg-key-hpam
               readOnly: true
           livenessProbe:
             exec:
@@ -32,9 +32,9 @@ system:
             initialDelaySeconds: 5
             periodSeconds: 60
       volumes:
-        - name: phaser-ghe-pat
+        - name: phaser-ghe-pat-hpam
           k4aSecret:
-            secretName: phaser-ghe-pat
-        - name: phaser-signing-key-asc
+            secretName: phaser-ghe-pat-hpam
+        - name: phaser-gpg-key-hpam
           k4aSecret:
-            secretName: phaser-signing-key-asc
+            secretName: phaser-gpg-key-hpam
