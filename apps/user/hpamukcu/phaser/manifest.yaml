@@ -16,8 +16,8 @@ system:
                   fieldPath: spec.nodeName
           command: ["/moe/phaser"]
           args:
-            - "-gheTokenPath=/secrets/phaser-ghe-pat-hpam"
-            - "-pgpkeypath=/gpgsecrets/phaser-gpg-key-hpam"
+            - "-gheTokenPath=/secrets/hpam-ghe-pat"
+            - "-pgpkeypath=/gpgsecrets/hpam-gpg-key"
           volumeMounts:
             - mountPath: /secrets
               name: phaser-ghe-pat-hpam
