@@ -6,7 +6,7 @@ system:
       count: 1
       containers:
         - name: phaser
-          image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/hpamukcu/deployerbot:hpamukcu-202002152209
+          image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/hpamukcu/deployerbot:hpamukcu-202002161527
           env:
             - name: GO_PIPELINE_LABEL
               value: 1
@@ -19,6 +19,17 @@ system:
             - "-gheTokenPath=/secrets/hpam-ghe-pat"
             - "-pgpkeypath=/gpgsecrets/hpam-gpg-key"
             - "-repoBaseDir=/repo"
+            - "-upstreamOrgName=sfcd"
+            - "-repoName=spinnaker"
+            - "-gitURL=https://git.soma.salesforce.com/api/v3/"
+            - "-phaseFile=infrasecsecretsfire/vault/phases.j2"
+            - "-commitAppend=@tok-secrets"
+            - "-branchName=vault-phaser"
+            - "-phaseMarkerRegexp=.*{%- macro (.*)Params\\(pipeline\\) -%}.*"
+            - "-phaseEndMarkerRegexp=.*{%- endmacro %}.*"
+            - "-ignoreLinesRegexp=.*DEPLOYMENT_PHASE.*"
+            - "-ignoreLinesRegexp=^\\s*,"
+            - "-checkInterval=20m"
           volumeMounts:
             - mountPath: /secrets
               name: phaser-ghe-pat-hpam
