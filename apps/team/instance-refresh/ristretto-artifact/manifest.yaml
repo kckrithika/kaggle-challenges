@@ -13,6 +13,8 @@ system:
         command:
           - /usr/local/bin/wrapper_web.sh
         env:
+        - name: APP_RELEASE_VERSION
+          value: "1.0.0"
         - name: GITHUB_SSH_KEY
           value: "/secrets/github_sshkey"
         - name: GITHUB_ORG_NAME
@@ -44,6 +46,8 @@ system:
         command:
           - /usr/local/bin/wrapper_render_monitor.sh
         env:
+        - name: APP_RELEASE_VERSION
+          value: "1.0.0"
         - name: GITHUB_SSH_KEY
           value: "/secrets/github_sshkey"
         - name: GITHUB_ORG_NAME
