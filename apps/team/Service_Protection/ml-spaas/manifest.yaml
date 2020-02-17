@@ -31,8 +31,6 @@ system:
         requests: { cpu: "1", memory: "4Gi" }
       args:
       - -endpoint
-      - ml-spaas-prod:DATACENTER_ALLENV:HTTP2
-      - -endpoint
       - service-protection/ml-spaas-prod:DATACENTER_ALLENV:HTTP2_TLS
       livenessProbe:
         exec:
