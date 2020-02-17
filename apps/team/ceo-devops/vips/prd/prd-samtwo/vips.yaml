@@ -1457,8 +1457,8 @@
 
 - lbname: cjemaster316
   customlbname: cjemaster316
-  cnames:
-  - cname: desci.slb.sfdc.net
+#  cnames:
+#  - cname: desci.slb.sfdc.net
   servers:
   - cjemaster316-1-prd.dop.sfdc.net
   - cjemaster316-2-prd.dop.sfdc.net
