@@ -159,6 +159,7 @@ system:
           args:
             - --scheduler.database.url=jdbc:postgresql://cs101-sdb-lb.scheduler-service.prd-sam.prd.slb.sfdc.net:1521/crondb
             - --logging.level.root=INFO
+            - --scheduler.jds.interval=3000
           env:
             - name: SFDC_ENVIRONMENT
               value: mesh
@@ -198,8 +199,7 @@ system:
           args:
             - --scheduler.service.hostname=cs101-cron-lb.scheduler-service.prd-sam.prd.slb.sfdc.net
             - --scheduler.service.port=7012
-            - --scheduler.client.appserverid=cs101-app1
-            - --scheduler.client.tpsize=20
+            - --scheduler.executor.interval=3000
           env:
             - name: SFDC_ENVIRONMENT
               value: mesh
