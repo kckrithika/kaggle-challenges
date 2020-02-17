@@ -15,7 +15,7 @@ system:
         path: /data/logs
     containers:
     - name: capadd
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/qwang/capadd:test-20200217-3
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/qwang/capadd:test-20200217-2
       env:
         - name: CAPADD_LOG_DIR
           value: "/data/logs/capadd-logs.txt"
@@ -27,7 +27,7 @@ system:
         - name: logvol
           mountPath: /data/logs
       ports:
-      - containerPort: 8787
+        - containerPort: 8787
       livenessProbe:
         exec:
           command:
