@@ -224,7 +224,6 @@
             set_value_to_all_in_list(2, $.testEstates)
             + set_value_to_all_in_list(3, $.prodEstates)
             + {
-                    "prd-sdc": 3,
                     "prd-samtest": 1,
                     "prd-samtwo": 2,
             },
