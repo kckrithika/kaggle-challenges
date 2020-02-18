@@ -5,7 +5,7 @@ system:
     count: 1
     containers:
     - name: syncmaster
-      image: dva/winterfell-syncmaster:9db0cb975a0d3dc316e10c95c7a70806212652cb
+      image: dva/winterfell-syncmaster:1b8352a69dfa98a7940e9e8ff7da16b8931274f7
       env:
       - name: SFDC_ENVIRONMENT
         value: prod
