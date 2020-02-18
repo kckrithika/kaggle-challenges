@@ -836,7 +836,7 @@ items:
                 apiVersion: v1
                 fieldPath: metadata.labels['name']
           - name: CONFIG_VERSION
-            value: "20"
+            value: "21"
           - name: DARKLAUNCH
             value: "false"
           - name: INSTANCE_TYPE

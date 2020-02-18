@@ -10,7 +10,7 @@ if configs.estate == "prd-sam" then
   local package = packagesvc {
     serviceName:: "firefly-package-tsm",
     selectorName:: "firefly-package",
-    replicas:: 1,
+    replicas:: 0,
     env:: super.env + [
       {
         name: "INSTANCE_TYPE",
@@ -33,7 +33,7 @@ if configs.estate == "prd-sam" then
   local packagesingleton = packagesvcsingleton {
      serviceName:: "firefly-package-singleton-tsm",
      selectorName:: "firefly-package-singleton",
-     replicas:: 1,
+     replicas:: 0,
      env:: super.env + [
        {
          name: "INSTANCE_TYPE",
@@ -56,7 +56,7 @@ if configs.estate == "prd-sam" then
   local pullrequest = pullrequestsvc {
     serviceName:: "firefly-pullrequest-tsm",
     selectorName:: "firefly-pullrequest",
-    replicas:: 1,
+    replicas:: 0,
     env:: super.env + [
       {
         name: "INSTANCE_TYPE",
@@ -71,7 +71,7 @@ if configs.estate == "prd-sam" then
   local promotion = promotionsvc {
     serviceName:: "firefly-promotion-tsm",
     selectorName:: "firefly-promotion",
-    replicas:: 1,
+    replicas:: 0,
     env:: super.env + [
       {
         name: "INSTANCE_TYPE",

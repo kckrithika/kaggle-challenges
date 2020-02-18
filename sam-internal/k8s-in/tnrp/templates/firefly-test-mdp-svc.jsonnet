@@ -10,6 +10,7 @@ if configs.estate == "prd-sam" then
 {
   local package = packagesvc {
       serviceName:: "firefly-package-mdp",
+      replicas:: 1,
       env:: super.env + [
           {
               name: "INSTANCE_TYPE",
@@ -42,6 +43,7 @@ if configs.estate == "prd-sam" then
   },
   local pullrequest = pullrequestsvc {
       serviceName:: "firefly-pullrequest-mdp",
+      replicas:: 1,
       env:: super.env + [
           {
               name: "INSTANCE_TYPE",
@@ -67,6 +69,7 @@ if configs.estate == "prd-sam" then
   },
   local promotion = promotionsvc {
       serviceName:: "firefly-promotion-mdp",
+      replicas:: 1,
       env:: super.env + [
           {
               name: "INSTANCE_TYPE",

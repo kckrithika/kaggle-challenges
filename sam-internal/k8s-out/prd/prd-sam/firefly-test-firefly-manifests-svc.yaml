@@ -242,7 +242,7 @@ items:
     name: firefly-package-tfm-deployment
     namespace: firefly
   spec:
-    replicas: 1
+    replicas: 0
     selector:
       matchLabels:
         name: firefly-package
@@ -351,7 +351,7 @@ items:
           - name: SERVICE_MODE
             value: multi
           - name: CONFIG_VERSION
-            value: "24"
+            value: "25"
           - name: DARKLAUNCH
             value: "false"
           - name: INSTANCE_TYPE
@@ -718,7 +718,7 @@ items:
     name: firefly-package-singleton-tfm-deployment
     namespace: firefly
   spec:
-    replicas: 1
+    replicas: 0
     selector:
       matchLabels:
         name: firefly-package-singleton
@@ -827,7 +827,7 @@ items:
           - name: SERVICE_MODE
             value: singleton
           - name: CONFIG_VERSION
-            value: "22"
+            value: "23"
           - name: DARKLAUNCH
             value: "false"
           - name: INSTANCE_TYPE
@@ -1168,7 +1168,7 @@ items:
     name: firefly-pullrequest-tfm-deployment
     namespace: firefly
   spec:
-    replicas: 1
+    replicas: 0
     selector:
       matchLabels:
         name: firefly-pullrequest
@@ -1275,7 +1275,7 @@ items:
                 apiVersion: v1
                 fieldPath: metadata.labels['name']
           - name: CONFIG_VERSION
-            value: "25"
+            value: "26"
           - name: DARKLAUNCH
             value: "false"
           - name: INSTANCE_TYPE
@@ -1621,7 +1621,7 @@ items:
     name: firefly-promotion-tfm-deployment
     namespace: firefly
   spec:
-    replicas: 1
+    replicas: 0
     selector:
       matchLabels:
         name: firefly-promotion
@@ -1728,7 +1728,7 @@ items:
                 apiVersion: v1
                 fieldPath: metadata.labels['name']
           - name: CONFIG_VERSION
-            value: "17"
+            value: "18"
           - name: DARKLAUNCH
             value: "false"
           - name: INSTANCE_TYPE
