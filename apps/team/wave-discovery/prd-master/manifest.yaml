@@ -2,7 +2,7 @@ apiVersion: v1
 system:
   functions:
   - containers:
-    - image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/ed-spark-driver:29c7f7e1a9c70e73289aced5b075915f87da2bb8
+    - image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/ed-spark-driver:a36ca408d98ba01523d9285c19e7d84d7ca9b73d
       livenessProbe:
         exec:
           command: [ls]
@@ -15,7 +15,7 @@ system:
       - {name: MANAGEMENT_SERVER_PORT, value: '15372'}
       - {name: LOGGING_JSON_STDOUT_LEVEL, value: ALL}
       - {name: LOGGING_STDERR_LEVEL, value: ALL}
-      - {name: MOANA_SPARK_ENGINE_IMAGE, value: 'ops0-artifactrepo2-0-prd.data.sfdc.net/dva/ed-spark-driver:29c7f7e1a9c70e73289aced5b075915f87da2bb8'}
+      - {name: MOANA_SPARK_ENGINE_IMAGE, value: 'ops0-artifactrepo2-0-prd.data.sfdc.net/dva/ed-spark-driver:a36ca408d98ba01523d9285c19e7d84d7ca9b73d'}
       - {name: KAFKA_GROUP_ID, value: ed-jobcontroller-master}
       - {name: DEPLOYMENT_ID, value: prd-ed-master}
       - {name: JAVA_OPTS, value: '-server -XX:MaxMetaspaceSize=512m -Xmx2048m -Xms2048m'}
