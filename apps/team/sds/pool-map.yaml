@@ -20,4 +20,4 @@ apps:
   case-mgmt-ui:
   - xrd/xrd-sdstoolsdev
   netpolicy-pipeline-staging:
-  - xrd/xrd-sdstoolsdev
+  - prd/prd-sam
