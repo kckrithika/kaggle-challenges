@@ -135,7 +135,7 @@ if slbconfigs.isSlbEstate then configs.deploymentBase("slb") {
                           ]
                           +
                           (
-                  if slbimages.phaseNum > 3 then
+                  if slbimages.phaseNum > 4 then
                       [slbshared.slbCleanupConfig]
 
                   else []

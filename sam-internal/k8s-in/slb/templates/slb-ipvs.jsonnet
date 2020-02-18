@@ -218,7 +218,7 @@ if slbconfigs.isSlbEstate then configs.deploymentBase("slb") {
                     slbshared.slbConfigProcessor(slbports.slb.slbConfigProcessorIpvsLivenessProbeOverridePort),
                     ]
                     + (
-                  if slbimages.phaseNum > 3 then
+                  if slbimages.phaseNum > 4 then
                       [slbshared.slbCleanupConfig]
 
                   else []

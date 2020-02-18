@@ -371,7 +371,7 @@
      + (if slbimages.phaseNum >= 3 || configs.estate == "prd-sam" then [
       "--flagPushNginxLogsToSplunk=true",
     ] else [])
-    + (if slbimages.phaseNum <= 3 then [
+    + (if slbimages.phaseNum <= 4 then [
       "--period=5m",
     ] else []),
 
