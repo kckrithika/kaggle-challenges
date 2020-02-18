@@ -74,10 +74,10 @@ system:
       resources:
         limits:
           cpu: "8"
-          memory: 7Gi
+          memory: 8Gi
         requests:
           cpu: "8"
-          memory: 7Gi
+          memory: 8Gi
       volumeMounts:
       - mountPath: /home/sfdc-switchboard/sherpa-envoy-config-volume
         name: envoy-config-volume
