@@ -10,6 +10,7 @@ if configs.estate == "prd-sam" then
 {
   local package = packagesvc {
       serviceName:: "firefly-package-fcp",
+      replicas:: 1,
       env:: super.env + [
           {
               name: "INSTANCE_TYPE",
@@ -38,6 +39,7 @@ if configs.estate == "prd-sam" then
   },
   local packagesingleton = packagesvcsingleton {
       serviceName:: "firefly-package-singleton-fcp",
+      replicas:: 1,
       env:: super.env + [
           {
               name: "INSTANCE_TYPE",
@@ -66,6 +68,7 @@ if configs.estate == "prd-sam" then
   },
   local pullrequest = pullrequestsvc {
       serviceName:: "firefly-pullrequest-fcp",
+      replicas:: 1,
       env:: super.env + [
           {
               name: "INSTANCE_TYPE",

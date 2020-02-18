@@ -275,7 +275,7 @@ items:
                 apiVersion: v1
                 fieldPath: metadata.labels['name']
           - name: CONFIG_VERSION
-            value: "20"
+            value: "21"
           - name: DARKLAUNCH
             value: "false"
           image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-crawler:476
