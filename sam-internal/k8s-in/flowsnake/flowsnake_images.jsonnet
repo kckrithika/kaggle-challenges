@@ -24,7 +24,7 @@ local utils = import "util_functions.jsonnet";
         "1": self["2"] {
             image_tags+: {
                 watchdog_image_tag: "2722-a1231485debac6b17dfa76e7a1af01750e0f4f8b",  # 05/2019 image
-                spark_operator_image_tag: "jenkins-dva-transformation-spark-on-k8s-operator-cm202002-update-spark-image-1-itest",
+                spark_operator_image_tag: "jenkins-dva-transformation-spark-on-k8s-operator-shiqi-job-start-latency-count-4-itest",
             },
             feature_flags+: {
                 # Note: the *value* of the flags is ignored. jsonnet lacks array search, so we use a an object.
@@ -41,6 +41,7 @@ local utils = import "util_functions.jsonnet";
                 # --- flag G (is to assist ... ---
                 prometheus_funnel_update: "",
                 # --- flag H (git's diff logic ... ---
+                shiqi_operator_job_start_latency: "",
                 # --- flag I (to reduce the ---
                 # --- flag J (likelihood of merge conflicts.) ---
             },

@@ -68,7 +68,10 @@ local new_std = import "stdlib_0.12.1.jsonnet";
                             "-leader-election",
                             "-leader-election-lock-namespace=" + (if autodeployer.samcontroldeployer["delete-orphans"] then "spark-operator-lock" else "flowsnake"),
                             "-webhook-namespace-selector=spark-operator-webhook=enabled",
-                        ],
+                        ] + (
+                            if std.objectHas(flowsnake_images.feature_flags, "shiqi_operator_job_start_latency")
+                            then ["-metrics-labels=namespace"] else []
+                        ),
                         ports: [{
                             containerPort: 10254,
                             name: "metrics",
