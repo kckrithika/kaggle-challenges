@@ -49,8 +49,8 @@ apps:
   gid-runtime-service-dev:
     - name: prd/prd-sam_globalidentity
 
-  gid-runtime-service-loop:
-    - name: prd/prd-sam_globalidentity
+      #  gid-runtime-service-loop:
+      #- name: prd/prd-sam_globalidentity
 
   local-gid-service-staging:
     - name: prd/prd-sam_cloudatlas
