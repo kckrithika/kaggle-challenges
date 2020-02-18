@@ -14,7 +14,10 @@ system:
               valueFrom:
                 fieldRef:
                   fieldPath: spec.nodeName
-          command: ["cat", "/secrets/hpam-secret"]
+          command:
+            - /bin/bash
+            - -c
+            - "while [ 1 ]; do cat /secrets/hpam-secret; echo; sleep 10m; done"
           volumeMounts:
             - mountPath: /secrets
               name: hpam-secret
