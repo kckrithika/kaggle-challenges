@@ -91,6 +91,6 @@ local portConfig = [
 
 local cnames = [{ cname: "canary-envoy-" + commonutils.string_replace(configs.estate, "_", "-") + ".slb.sfdc.net" }];
 
-if (slbconfigs.isProdEstate || configs.estate == "prd-sdc") && slbflights.deploySLBEnvoyConfig then
+if slbconfigs.isProdEstate && slbflights.deploySLBEnvoyConfig then
     slbbaseservice.slbCanaryBaseService(canaryName, portConfig, serviceName, vipName, cnames) {
 } else "SKIP"
