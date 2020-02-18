@@ -92,7 +92,7 @@ if slbconfigs.isSlbEstate then configs.deploymentBase("slb") {
                                       ]
                                       +
                                       (
-                                          if (configs.estate != "prd-sdc" && configs.estate != "prd-sam") then
+                                          if slbimages.phaseNum > 3 then
                                              [slbshared.slbCleanupConfig]
 
                                         else []
