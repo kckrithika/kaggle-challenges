@@ -44,7 +44,7 @@ if slbconfigs.isSlbEstate then configs.daemonSetBase("slb") {
                     ]
                     +
                     (
-                     if slbimages.phaseNum > 3 then
+                     if slbimages.phaseNum > 4 then
                       [slbshared.slbCleanupConfig]
 
                   else []
