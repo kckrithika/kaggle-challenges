@@ -1,6 +1,7 @@
 {
   dirSuffix:: "",
   local configs = import "config.jsonnet",
+  local slbimages = (import "slbimages.jsonnet") + { templateFilename:: std.thisFile },
   local slbconfigs = (import "slbconfig.jsonnet") + { dirSuffix:: $.dirSuffix },
   local slbshared = (import "slbsharedservices.jsonnet") + { dirSuffix:: $.dirSuffix },
   local slbports = import "slbports.jsonnet",
@@ -55,7 +56,7 @@
             ]
             +
                (
-                  if (configs.estate != "prd-sdc" && configs.estate != "prd-sam") then
+                  if slbimages.phaseNum > 3 then
                       [slbshared.slbCleanupConfig]
 
                   else []
