@@ -421,7 +421,7 @@ items:
             value: firefly-fcp-falcon.package
           - name: LATEST_FILE_QUEUE
             value: firefly-fcp-falcon.latestfile
-          image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-package:473
+          image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-package:476
           imagePullPolicy: Always
           livenessProbe:
             failureThreshold: 10
@@ -598,6 +598,55 @@ items:
               "s3": {
                   "enabled": true,
                   "s3-access-key-id": "${s3AccessKeyId#FromSecretService}",
+                  "s3-grid-configs": [
+                      {
+                          "access-key-id": "${s3AccessKeyId#FromSecretService}",
+                          "bucket-configs-by-type": {
+                              "fcp": [
+                                  {
+                                      "bucket-name": "fcparchive"
+                                  }
+                              ],
+                              "helm": [
+                                  {
+                                      "bucket-name": "sfcd-helm"
+                                  }
+                              ],
+                              "terraform": [
+                                  {
+                                      "bucket-name": "sfcd-terraform"
+                                  }
+                              ]
+                          },
+                          "environment-type": "ffdev",
+                          "region": "us-east-2",
+                          "secret-access-key": "${s3SecretAccessKey#FromSecretService}"
+                      },
+                      {
+                          "access-key-id": "${ESVC1_service_firefly_key#FromSecretService}",
+                          "bucket-configs-by-type": {
+                              "fcp": [
+                                  {
+                                      "bucket-name": "esvc-us-east-2-sfcd-fcp-archive"
+                                  }
+                              ],
+                              "helm": [
+                                  {
+                                      "bucket-name": "esvc-us-east-2-sfcd-helm-archive"
+                                  }
+                              ],
+                              "terraform": [
+                                  {
+                                      "bucket-name": "esvc-us-east-2-sfcd-terraform"
+                                  }
+                              ]
+                          },
+                          "environment-type": "prod",
+                          "region": "us-east-2",
+                          "role-arn": "${prodRoleArn#FromSecretService}",
+                          "secret-access-key": "${ESVC1_service_firefly_secret#FromSecretService}"
+                      }
+                  ],
                   "s3-secret-access-key": "${s3SecretAccessKey#FromSecretService}"
               },
               "s3-bucket": "fcparchive",
@@ -902,7 +951,7 @@ items:
             value: firefly-fcp-falcon.package
           - name: LATEST_FILE_QUEUE
             value: firefly-fcp-falcon.latestfile
-          image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-package:473
+          image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-package:476
           imagePullPolicy: Always
           livenessProbe:
             failureThreshold: 10
@@ -1341,7 +1390,7 @@ items:
             value: firefly-fcp-falcon
           - name: RABBIT_MQ_QUEUE_NAME
             value: firefly-fcp-falcon.pr
-          image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-pullrequest:473
+          image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-pullrequest:476
           imagePullPolicy: Always
           livenessProbe:
             failureThreshold: 10

@@ -421,7 +421,7 @@ items:
             value: firefly-fcp-stagger.package
           - name: LATEST_FILE_QUEUE
             value: firefly-fcp-stagger.latestfile
-          image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-package:473
+          image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-package:476
           imagePullPolicy: Always
           livenessProbe:
             failureThreshold: 10
@@ -951,7 +951,7 @@ items:
             value: firefly-fcp-stagger.package
           - name: LATEST_FILE_QUEUE
             value: firefly-fcp-stagger.latestfile
-          image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-package:473
+          image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-package:476
           imagePullPolicy: Always
           livenessProbe:
             failureThreshold: 10
@@ -1096,7 +1096,7 @@ items:
               },
               "instance-type": "${INSTANCE_TYPE}",
               "multi-repo-supported": true,
-              "self-auth-allowed": true,
+              "self-auth-allowed": false,
               "workspace-config": {
                   "root-dir": "/firefly"
               }
@@ -1390,7 +1390,7 @@ items:
             value: firefly-fcp-stagger
           - name: RABBIT_MQ_QUEUE_NAME
             value: firefly-fcp-stagger.pr
-          image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-pullrequest:473
+          image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-pullrequest:476
           imagePullPolicy: Always
           livenessProbe:
             failureThreshold: 10
