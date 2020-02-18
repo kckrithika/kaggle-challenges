@@ -2474,6 +2474,33 @@ hosts:
   pod: none
   rack: F08-4
   superpod: none
+- bomrolename: sam_minion_warden
+  controlestate: chx-sam
+  devicerole: samcompute
+  estate: chx-sam_warden
+  hostname: shared0-samminionwarden1-1-chx.ops.sfdc.net
+  kingdom: chx
+  pod: none
+  rack: F07-38
+  superpod: none
+- bomrolename: sam_minion_warden
+  controlestate: chx-sam
+  devicerole: samcompute
+  estate: chx-sam_warden
+  hostname: shared0-samminionwarden2-1-chx.ops.sfdc.net
+  kingdom: chx
+  pod: none
+  rack: F07-39
+  superpod: none
+- bomrolename: sam_minion_warden
+  controlestate: chx-sam
+  devicerole: samcompute
+  estate: chx-sam_warden
+  hostname: shared0-samminionwarden3-1-chx.ops.sfdc.net
+  kingdom: chx
+  pod: none
+  rack: F08-38
+  superpod: none
 - bomrolename: flowsnake_master_prod
   controlestate: dfw-flowsnake_prod
   devicerole: samkubeapi
@@ -15074,6 +15101,33 @@ hosts:
   pod: none
   rack: z22-dh1
   superpod: none
+- bomrolename: sam_minion_warden
+  controlestate: ia4-sam
+  devicerole: samcompute
+  estate: ia4-sam_warden
+  hostname: shared0-samminionwarden1-1-ia4.ops.sfdc.net
+  kingdom: ia4
+  pod: none
+  rack: u05-dh1
+  superpod: none
+- bomrolename: sam_minion_warden
+  controlestate: ia4-sam
+  devicerole: samcompute
+  estate: ia4-sam_warden
+  hostname: shared0-samminionwarden2-1-ia4.ops.sfdc.net
+  kingdom: ia4
+  pod: none
+  rack: y25-dh1
+  superpod: none
+- bomrolename: sam_minion_warden
+  controlestate: ia4-sam
+  devicerole: samcompute
+  estate: ia4-sam_warden
+  hostname: shared0-samminionwarden3-1-ia4.ops.sfdc.net
+  kingdom: ia4
+  pod: none
+  rack: x35-dh1
+  superpod: none
 - bomrolename: sam_minion_sme
   controlestate: ia4-sam
   devicerole: samcompute
@@ -15721,6 +15775,33 @@ hosts:
   kingdom: ia5
   pod: none
   rack: l22-m100c
+  superpod: none
+- bomrolename: sam_minion_warden
+  controlestate: ia5-sam
+  devicerole: samcompute
+  estate: ia5-sam_warden
+  hostname: shared0-samminionwarden1-1-ia5.ops.sfdc.net
+  kingdom: ia5
+  pod: none
+  rack: r09-m100c
+  superpod: none
+- bomrolename: sam_minion_warden
+  controlestate: ia5-sam
+  devicerole: samcompute
+  estate: ia5-sam_warden
+  hostname: shared0-samminionwarden2-1-ia5.ops.sfdc.net
+  kingdom: ia5
+  pod: none
+  rack: p06-m100c
+  superpod: none
+- bomrolename: sam_minion_warden
+  controlestate: ia5-sam
+  devicerole: samcompute
+  estate: ia5-sam_warden
+  hostname: shared0-samminionwarden3-1-ia5.ops.sfdc.net
+  kingdom: ia5
+  pod: none
+  rack: l25-m100c
   superpod: none
 - bomrolename: sam_minion_sme
   controlestate: ia5-sam
@@ -37934,6 +38015,51 @@ hosts:
   pod: none
   rack: c01-45
   superpod: none
+- bomrolename: sam_minion_aqueduct
+  controlestate: prd-sam
+  devicerole: samcompute
+  estate: prd-sam_eventbus
+  hostname: shared0-samminionaqueduct1-1-prd.eng.sfdc.net
+  kingdom: prd
+  pod: none
+  rack: aa32-45
+  superpod: none
+- bomrolename: sam_minion_aqueduct
+  controlestate: prd-sam
+  devicerole: samcompute
+  estate: prd-sam_eventbus
+  hostname: shared0-samminionaqueduct1-2-prd.eng.sfdc.net
+  kingdom: prd
+  pod: none
+  rack: aa32-45
+  superpod: none
+- bomrolename: sam_minion_aqueduct
+  controlestate: prd-sam
+  devicerole: samcompute
+  estate: prd-sam_eventbus
+  hostname: shared0-samminionaqueduct2-1-prd.eng.sfdc.net
+  kingdom: prd
+  pod: none
+  rack: aa31-45
+  superpod: none
+- bomrolename: sam_minion_aqueduct
+  controlestate: prd-sam
+  devicerole: samcompute
+  estate: prd-sam_eventbus
+  hostname: shared0-samminionaqueduct2-2-prd.eng.sfdc.net
+  kingdom: prd
+  pod: none
+  rack: aa31-45
+  superpod: none
+- bomrolename: sam_minion_aqueduct
+  controlestate: prd-sam
+  devicerole: samcompute
+  estate: prd-sam_eventbus
+  hostname: shared0-samminionaqueduct3-1-prd.eng.sfdc.net
+  kingdom: prd
+  pod: none
+  rack: n09-45
+  superpod: none
 - bomrolename: sam_minion_gater
   controlestate: prd-sam
   devicerole: samcompute
@@ -45259,6 +45385,33 @@ hosts:
   kingdom: wax
   pod: none
   rack: C01-4
+  superpod: none
+- bomrolename: sam_minion_warden
+  controlestate: wax-sam
+  devicerole: samcompute
+  estate: wax-sam_warden
+  hostname: shared0-samminionwarden1-1-wax.ops.sfdc.net
+  kingdom: wax
+  pod: none
+  rack: B01-38
+  superpod: none
+- bomrolename: sam_minion_warden
+  controlestate: wax-sam
+  devicerole: samcompute
+  estate: wax-sam_warden
+  hostname: shared0-samminionwarden2-1-wax.ops.sfdc.net
+  kingdom: wax
+  pod: none
+  rack: B01-39
+  superpod: none
+- bomrolename: sam_minion_warden
+  controlestate: wax-sam
+  devicerole: samcompute
+  estate: wax-sam_warden
+  hostname: shared0-samminionwarden3-1-wax.ops.sfdc.net
+  kingdom: wax
+  pod: none
+  rack: C01-38
   superpod: none
 - bomrolename: sam_compute
   controlestate: xrd-sam
