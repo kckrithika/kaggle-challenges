@@ -187,9 +187,9 @@ apps:
     - ia5/ia5-sam_report_collector
     - syd/syd-sam_report_collector
     - cdu/cdu-sam_report_collector
-  repcollavailwd-pc:
     - yhu/yhu-sam_report_collector
     - yul/yul-sam_report_collector
+  repcollavailwd-pc:
   repcollavailwd-hostnet:
     - ast/ast-sam_report_collector
   expreportcollectorha:
