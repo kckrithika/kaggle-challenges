@@ -26,6 +26,7 @@ apps:
   - dfw/dfw-sam_warden
  prod-mysql-shard-a-drop-1-1:
   - ord/ord-sam_warden
+ prod-mysql-shard-a-drop-1-1-fast:
   - ph2/ph2-sam_warden
  prod-mysql-shard-a-drop-1-2:
   - par/par-sam_warden
