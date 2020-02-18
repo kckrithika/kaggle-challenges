@@ -6,7 +6,7 @@ system:
       - gid_runtime@salesforce.com
   functions:
   - name: gid-runtime-service-dev
-    count: 2
+    count: 1
     strategy:
       type: RollingUpdate
       rollingUpdate:
