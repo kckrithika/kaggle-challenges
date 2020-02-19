@@ -87,9 +87,9 @@ apps:
     - ia5/ia5-sam_report_collector
     - syd/syd-sam_report_collector
     - cdu/cdu-sam_report_collector
-    - yul/yul-sam_report_collector
   reportcollector-pc:
     - yhu/yhu-sam_report_collector
+    - yul/yul-sam_report_collector
   reportcollector-hostnet:
     - ast/ast-sam_report_collector
   temp-store:
@@ -114,7 +114,6 @@ apps:
     - ia5/ia5-sam_report_collector
     - syd/syd-sam_report_collector
     - cdu/cdu-sam_report_collector
-    - yul/yul-sam_report_collector
   temp-store-hostnet:
     - ast/ast-sam_report_collector
   redis-inspector:
@@ -138,7 +137,6 @@ apps:
     - ia5/ia5-sam_report_collector
     - syd/syd-sam_report_collector
     - cdu/cdu-sam_report_collector
-    - yul/yul-sam_report_collector
   redis-inspector-hostnet:
     - ast/ast-sam_report_collector
   cname-repcollavailwd:
@@ -164,6 +162,7 @@ apps:
     - cdu/cdu-sam_report_collector
   cname-repcollavailwd-pc:
     - yhu/yhu-sam_report_collector
+    - yul/yul-sam_report_collector
   cname-repcollavailwd-hostnet:
     - ast/ast-sam_report_collector
   repcollavailwd:
@@ -188,9 +187,9 @@ apps:
     - ia5/ia5-sam_report_collector
     - syd/syd-sam_report_collector
     - cdu/cdu-sam_report_collector
-    - yul/yul-sam_report_collector
   repcollavailwd-pc:
     - yhu/yhu-sam_report_collector
+    - yul/yul-sam_report_collector
   repcollavailwd-hostnet:
     - ast/ast-sam_report_collector
   expreportcollectorha:
