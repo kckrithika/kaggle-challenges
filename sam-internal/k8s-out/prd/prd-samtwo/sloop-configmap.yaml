@@ -15,6 +15,12 @@ data:
           "static_configs": [
             {
               "targets": [
+                "localhost:31943",
+                "localhost:31941",
+                "localhost:31939",
+                "localhost:31940",
+                "localhost:31942",
+                "localhost:31944",
                 "localhost:31938"
               ]
             }

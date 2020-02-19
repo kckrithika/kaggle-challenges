@@ -1,3 +1,7 @@
+local configs = import "config.jsonnet";
+local samfeatureflags = import "sam-feature-flags.jsonnet";
+local sloop = import "configs/sloop-config.jsonnet";
+
 {
     global: {
         scrape_interval: "15s",
@@ -12,8 +16,9 @@
             static_configs: [
               {
                 targets: [
-                    "localhost:31938",
-                ],
+                    "localhost:" + sloop.estateConfigs[est].containerPort
+                    for est in samfeatureflags.sloopEstates[configs.estate]
+                ] + (if configs.estate != "prd-samtest" then ["localhost:31938"] else []),  // TODO: remove this section once test changes are verified
               },
             ],
         },

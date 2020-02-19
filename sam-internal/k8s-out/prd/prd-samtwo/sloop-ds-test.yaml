@@ -1,0 +1,273 @@
+apiVersion: extensions/v1beta1
+kind: DaemonSet
+metadata:
+  labels:
+    name: sloopds
+    sam.data.sfdc.net/owner: sam
+  name: sloopds
+spec:
+  selector:
+    matchLabels:
+      app: sloopds
+      apptype: monitoring
+      daemonset: "true"
+      sam.data.sfdc.net/owner: sam
+  template:
+    metadata:
+      labels:
+        app: sloopds
+        apptype: monitoring
+        daemonset: "true"
+        sam.data.sfdc.net/owner: sam
+      namespace: sam-system
+    spec:
+      containers:
+      - args:
+        - --config.file
+        - /prometheusconfig/prometheus.json
+        image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cbatra/prometheus:20180124
+        name: prometheus
+        ports:
+        - containerPort: 9090
+          protocol: TCP
+        volumeMounts:
+        - mountPath: /dummy-prometheus/data
+          name: prom-data
+        - mountPath: /prometheusconfig
+          name: sloopconfig
+      - args:
+        - --config=/sloopconfig/sloop.yaml
+        - --port=31943
+        - --display-context=prd-sam
+        - --apiserver-host=http://pseudo-kubeapi.csc-sam.prd-sam.prd.slb.sfdc.net:40001/prd-sam/
+        - --max-look-back=336h
+        command:
+        - /sloop
+        image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/sjawad/sloop:sjawad-20200218_151159-bbd2691
+        livenessProbe:
+          httpGet:
+            path: /healthz
+            port: 31943
+          initialDelaySeconds: 1800
+          timeoutSeconds: 5
+        name: sloopds-prd-sam
+        ports:
+        - containerPort: 31943
+          protocol: TCP
+        readinessProbe:
+          httpGet:
+            path: /healthz
+            port: 31943
+          timeoutSeconds: 5
+        resources:
+          limits:
+            cpu: "3"
+            memory: 15Gi
+          requests:
+            cpu: "3"
+            memory: 15Gi
+        volumeMounts:
+        - mountPath: /data/prd-sam
+          name: sloop-data
+        - mountPath: /sloopconfig/
+          name: sloopconfig
+      - args:
+        - --config=/sloopconfig/sloop.yaml
+        - --port=31941
+        - --display-context=frf-sam
+        - --apiserver-host=http://pseudo-kubeapi.csc-sam.prd-sam.prd.slb.sfdc.net:40001/frf-sam/
+        - --max-look-back=336h
+        command:
+        - /sloop
+        image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/sjawad/sloop:sjawad-20200218_151159-bbd2691
+        livenessProbe:
+          httpGet:
+            path: /healthz
+            port: 31941
+          initialDelaySeconds: 1800
+          timeoutSeconds: 5
+        name: sloopds-frf-sam
+        ports:
+        - containerPort: 31941
+          protocol: TCP
+        readinessProbe:
+          httpGet:
+            path: /healthz
+            port: 31941
+          timeoutSeconds: 5
+        resources:
+          limits:
+            cpu: "2"
+            memory: 8Gi
+          requests:
+            cpu: "2"
+            memory: 8Gi
+        volumeMounts:
+        - mountPath: /data/frf-sam
+          name: sloop-data
+        - mountPath: /sloopconfig/
+          name: sloopconfig
+      - args:
+        - --config=/sloopconfig/sloop.yaml
+        - --port=31939
+        - --display-context=prd-samtwo
+        - --apiserver-host=http://pseudo-kubeapi.csc-sam.prd-sam.prd.slb.sfdc.net:40001/prd-samtwo/
+        - --max-look-back=336h
+        command:
+        - /sloop
+        image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/sjawad/sloop:sjawad-20200218_151159-bbd2691
+        livenessProbe:
+          httpGet:
+            path: /healthz
+            port: 31939
+          initialDelaySeconds: 1800
+          timeoutSeconds: 5
+        name: sloopds-prd-samtwo
+        ports:
+        - containerPort: 31939
+          protocol: TCP
+        readinessProbe:
+          httpGet:
+            path: /healthz
+            port: 31939
+          timeoutSeconds: 5
+        resources:
+          limits:
+            cpu: "1"
+            memory: 8Gi
+          requests:
+            cpu: "1"
+            memory: 8Gi
+        volumeMounts:
+        - mountPath: /data/prd-samtwo
+          name: sloop-data
+        - mountPath: /sloopconfig/
+          name: sloopconfig
+      - args:
+        - --config=/sloopconfig/sloop.yaml
+        - --port=31940
+        - --display-context=hnd-sam
+        - --apiserver-host=http://pseudo-kubeapi.csc-sam.prd-sam.prd.slb.sfdc.net:40001/hnd-sam/
+        - --max-look-back=336h
+        command:
+        - /sloop
+        image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/sjawad/sloop:sjawad-20200218_151159-bbd2691
+        livenessProbe:
+          httpGet:
+            path: /healthz
+            port: 31940
+          initialDelaySeconds: 1800
+          timeoutSeconds: 5
+        name: sloopds-hnd-sam
+        ports:
+        - containerPort: 31940
+          protocol: TCP
+        readinessProbe:
+          httpGet:
+            path: /healthz
+            port: 31940
+          timeoutSeconds: 5
+        resources:
+          limits:
+            cpu: "2"
+            memory: 8Gi
+          requests:
+            cpu: "2"
+            memory: 8Gi
+        volumeMounts:
+        - mountPath: /data/hnd-sam
+          name: sloop-data
+        - mountPath: /sloopconfig/
+          name: sloopconfig
+      - args:
+        - --config=/sloopconfig/sloop.yaml
+        - --port=31942
+        - --display-context=par-sam
+        - --apiserver-host=http://pseudo-kubeapi.csc-sam.prd-sam.prd.slb.sfdc.net:40001/par-sam/
+        - --max-look-back=336h
+        command:
+        - /sloop
+        image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/sjawad/sloop:sjawad-20200218_151159-bbd2691
+        livenessProbe:
+          httpGet:
+            path: /healthz
+            port: 31942
+          initialDelaySeconds: 1800
+          timeoutSeconds: 5
+        name: sloopds-par-sam
+        ports:
+        - containerPort: 31942
+          protocol: TCP
+        readinessProbe:
+          httpGet:
+            path: /healthz
+            port: 31942
+          timeoutSeconds: 5
+        resources:
+          limits:
+            cpu: "3"
+            memory: 15Gi
+          requests:
+            cpu: "3"
+            memory: 15Gi
+        volumeMounts:
+        - mountPath: /data/par-sam
+          name: sloop-data
+        - mountPath: /sloopconfig/
+          name: sloopconfig
+      - args:
+        - --config=/sloopconfig/sloop.yaml
+        - --port=31944
+        - --display-context=ast-sam
+        - --apiserver-host=http://pseudo-kubeapi.csc-sam.prd-sam.prd.slb.sfdc.net:40001/ast-sam/
+        - --max-look-back=336h
+        - --badger-use-lsm-only-options=false
+        - --badger-max-table-size=1<<20
+        - --badger-number-of-compactors=1
+        - --badger-number-of-level-zero-tables=1
+        - --badger-number-of-zero-tables-stall=2
+        - --badger-sync-writes=false
+        command:
+        - /sloop
+        image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/sjawad/sloop:sjawad-20200218_151159-bbd2691
+        livenessProbe:
+          httpGet:
+            path: /healthz
+            port: 31944
+          initialDelaySeconds: 1800
+          timeoutSeconds: 5
+        name: sloopds-ast-sam
+        ports:
+        - containerPort: 31944
+          protocol: TCP
+        readinessProbe:
+          httpGet:
+            path: /healthz
+            port: 31944
+          timeoutSeconds: 5
+        resources:
+          limits:
+            cpu: "1"
+            memory: 1Gi
+          requests:
+            cpu: "1"
+            memory: 1Gi
+        volumeMounts:
+        - mountPath: /data/ast-sam
+          name: sloop-data
+        - mountPath: /sloopconfig/
+          name: sloopconfig
+      nodeSelector:
+        node.sam.sfdc.net/role: samcompute
+        pool: prd-samtwo
+      serviceAccountName: sloop
+      volumes:
+      - hostPath:
+          path: /data/sloop-data/
+        name: sloop-data
+      - hostPath:
+          path: /data/sloop-prom-data/
+        name: prom-data
+      - configMap:
+          name: sloop
+        name: sloopconfig

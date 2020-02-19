@@ -1,0 +1,46 @@
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    slb.sfdc.net/name: sloop
+    slb.sfdc.net/portconfigurations: '[{"lbtype": "", "nodeport": 0, "port": 85, "reencrypt":
+      false, "sticky": 0, "targetport": 31943}, {"lbtype": "", "nodeport": 0, "port":
+      83, "reencrypt": false, "sticky": 0, "targetport": 31941}, {"lbtype": "", "nodeport":
+      0, "port": 81, "reencrypt": false, "sticky": 0, "targetport": 31939}, {"lbtype":
+      "", "nodeport": 0, "port": 82, "reencrypt": false, "sticky": 0, "targetport":
+      31940}, {"lbtype": "", "nodeport": 0, "port": 84, "reencrypt": false, "sticky":
+      0, "targetport": 31942}, {"lbtype": "", "nodeport": 0, "port": 86, "reencrypt":
+      false, "sticky": 0, "targetport": 31944}]'
+  labels:
+    app: sloop
+    sam.data.sfdc.net/owner: sam
+  name: sloop
+  namespace: sam-system
+spec:
+  ports:
+  - name: sloop-prd-sam
+    port: 85
+    protocol: TCP
+    targetPort: 31943
+  - name: sloop-frf-sam
+    port: 83
+    protocol: TCP
+    targetPort: 31941
+  - name: sloop-prd-samtwo
+    port: 81
+    protocol: TCP
+    targetPort: 31939
+  - name: sloop-hnd-sam
+    port: 82
+    protocol: TCP
+    targetPort: 31940
+  - name: sloop-par-sam
+    port: 84
+    protocol: TCP
+    targetPort: 31942
+  - name: sloop-ast-sam
+    port: 86
+    protocol: TCP
+    targetPort: 31944
+  selector:
+    app: sloopds
