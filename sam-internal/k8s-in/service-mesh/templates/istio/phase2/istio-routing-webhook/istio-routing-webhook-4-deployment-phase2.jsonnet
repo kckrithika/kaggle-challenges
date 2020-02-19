@@ -76,7 +76,7 @@ configs.deploymentBase("service-mesh") {
               "--namespace-selector",
               "istio-injection=enabled",
               "--authz-enabled=" + mcpIstioConfig.authzEnabled,
-              "--authz-shadow-rules=true",
+              "--authz-shadow-rules=false",
             ],
             env: [
               {

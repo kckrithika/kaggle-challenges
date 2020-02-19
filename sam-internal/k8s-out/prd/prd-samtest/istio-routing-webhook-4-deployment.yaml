@@ -61,7 +61,7 @@ spec:
         - --namespace-selector
         - istio-injection=enabled
         - --authz-enabled=false
-        - --authz-shadow-rules=true
+        - --authz-shadow-rules=false
         env:
         - name: SETTINGS_SUPERPOD
           value: '-'
