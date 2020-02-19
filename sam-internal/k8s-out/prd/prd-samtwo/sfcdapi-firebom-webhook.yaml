@@ -174,7 +174,10 @@ items:
                           "jobuploader",
                           "authsvc",
                           "caaspc",
-                          "coreapp"
+                          "coreapp",
+                          "flowsnakeip",
+                          "flowsnake",
+                          "flowsnakeso"
                       ],
                       "soft-launch": true,
                       "working-directory": "/tmp/sfcdapifirebom"
@@ -447,7 +450,7 @@ items:
                 apiVersion: v1
                 fieldPath: metadata.labels['name']
           - name: CONFIG_VERSION
-            value: "41"
+            value: "42"
           image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/sfcdapi-firebom:127
           imagePullPolicy: Always
           livenessProbe:

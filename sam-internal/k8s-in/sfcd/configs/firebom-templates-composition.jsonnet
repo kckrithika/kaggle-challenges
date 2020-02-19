@@ -101,7 +101,10 @@
     'jobuploader',
     'authsvc',
     'caaspc',
-    'coreapp'
+    'coreapp',
+    'flowsnakeip',
+    'flowsnake',
+    'flowsnakeso'
   ],
   'soft-launch': true
 }
