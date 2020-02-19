@@ -26,15 +26,15 @@ system:
         - name: SAMCAAS2_CAASMINION2_1_PRD_KINGDOMS
           value: 'dfw,lo3,customer_orgs,model_queue1,dbperfswat'
         - name: SAMCAAS2_CAASMINION2_2_PRD_KINGDOMS
-          value: 'fra,lo2,customer_orgs,model_queue2,dbperfswat'
+          value: 'fra,lo2,model_queue2,dbperfswat'
         - name: SAMCAAS2_CAASMINION3_6_PRD_KINGDOMS
-          value: 'frf,cdg,customer_orgs,model_queue3,dbperfswat'
+          value: 'frf,cdg,model_queue3,dbperfswat'
         - name: CELERY_LOG_LEVEL
           value: 'debug'
         - name: FLOWER_LOG_LEVEL
           value: 'info'
         - name: SHERLOCK_LOG_LEVEL
-          value: 'debug'
+          value: 'DEBUG'
         - name: SHERLOCK_ENV
           value: 'stage'
         - name: CELERY_CONCURRECY
