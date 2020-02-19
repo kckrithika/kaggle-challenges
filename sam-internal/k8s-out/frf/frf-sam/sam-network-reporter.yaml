@@ -32,7 +32,7 @@ spec:
           valueFrom:
             fieldRef:
               fieldPath: spec.nodeName
-        image: ops0-artifactrepo1-0-frf.data.sfdc.net/dva/sam/hypersam:2754-365539f3b19f1f92f8ee7f1778f157769fae2a07
+        image: ops0-artifactrepo1-0-frf.data.sfdc.net/dva/sam/hypersam:2884-769ac132f739c69e8f1f603ca3316a9ab3b70d1e
         name: sam-network-reporter
         ports:
         - containerPort: 53353
@@ -60,7 +60,7 @@ spec:
           valueFrom:
             fieldRef:
               fieldPath: spec.nodeName
-        image: ops0-artifactrepo1-0-frf.data.sfdc.net/dva/sam/hypersam:2754-365539f3b19f1f92f8ee7f1778f157769fae2a07
+        image: ops0-artifactrepo1-0-frf.data.sfdc.net/dva/sam/hypersam:2884-769ac132f739c69e8f1f603ca3316a9ab3b70d1e
         name: sam-watchdog-connectivitylabeler
         ports:
         - containerPort: 53353
