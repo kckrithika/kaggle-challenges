@@ -3,5 +3,7 @@ apps:
  redis-ha:
  report-collector:
     - name: xrd/xrd-sampool
+ repcollavailwd:
+    - name: xrd/xrd-sampool
  candidate-service:
  candidate-service-watchdog:
