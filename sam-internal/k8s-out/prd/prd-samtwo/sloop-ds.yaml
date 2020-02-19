@@ -32,7 +32,7 @@ items:
           - --max-look-back=336h
           command:
           - /sloop
-          image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/sjawad/sloop:sjawad-20200213_140207-c374987
+          image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/sjawad/sloop:sjawad-20200218_151159-bbd2691
           livenessProbe:
             httpGet:
               path: /healthz
@@ -117,10 +117,9 @@ items:
           - --display-context=frf-sam
           - --apiserver-host=http://pseudo-kubeapi.csc-sam.prd-sam.prd.slb.sfdc.net:40001/frf-sam/
           - --max-look-back=336h
-          - --badger-use-lsm-only-options=false
           command:
           - /sloop
-          image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/sjawad/sloop:sjawad-20200213_140207-c374987
+          image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/sjawad/sloop:sjawad-20200218_151159-bbd2691
           livenessProbe:
             httpGet:
               path: /healthz
@@ -139,10 +138,10 @@ items:
           resources:
             limits:
               cpu: "2"
-              memory: 5Gi
+              memory: 8Gi
             requests:
               cpu: "2"
-              memory: 5Gi
+              memory: 8Gi
           volumeMounts:
           - mountPath: /data/
             name: sloop-data
@@ -207,7 +206,7 @@ items:
           - --max-look-back=336h
           command:
           - /sloop
-          image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/sjawad/sloop:sjawad-20200213_140207-c374987
+          image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/sjawad/sloop:sjawad-20200218_151159-bbd2691
           livenessProbe:
             httpGet:
               path: /healthz
@@ -226,10 +225,10 @@ items:
           resources:
             limits:
               cpu: "1"
-              memory: 5Gi
+              memory: 8Gi
             requests:
               cpu: "1"
-              memory: 5Gi
+              memory: 8Gi
           volumeMounts:
           - mountPath: /data/
             name: sloop-data
@@ -294,7 +293,7 @@ items:
           - --max-look-back=336h
           command:
           - /sloop
-          image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/sjawad/sloop:sjawad-20200213_140207-c374987
+          image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/sjawad/sloop:sjawad-20200218_151159-bbd2691
           livenessProbe:
             httpGet:
               path: /healthz
@@ -313,10 +312,10 @@ items:
           resources:
             limits:
               cpu: "2"
-              memory: 5Gi
+              memory: 8Gi
             requests:
               cpu: "2"
-              memory: 5Gi
+              memory: 8Gi
           volumeMounts:
           - mountPath: /data/
             name: sloop-data
@@ -381,7 +380,7 @@ items:
           - --max-look-back=336h
           command:
           - /sloop
-          image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/sjawad/sloop:sjawad-20200213_140207-c374987
+          image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/sjawad/sloop:sjawad-20200218_151159-bbd2691
           livenessProbe:
             httpGet:
               path: /healthz
