@@ -67,7 +67,8 @@ local resourceRequirements = {
             hostPort: 86,
             flags: [
                 "--badger-use-lsm-only-options=false",
-                "--badger-max-table-size=1<<20",
+                // 1<<20 (1048576 bytes = 1 Mb)
+                "--badger-max-table-size=1048576",
                 "--badger-number-of-compactors=1",
                 "--badger-number-of-level-zero-tables=1",
                 "--badger-number-of-zero-tables-stall=2",

@@ -222,7 +222,7 @@ spec:
         - --apiserver-host=http://pseudo-kubeapi.csc-sam.prd-sam.prd.slb.sfdc.net:40001/ast-sam/
         - --max-look-back=336h
         - --badger-use-lsm-only-options=false
-        - --badger-max-table-size=1<<20
+        - --badger-max-table-size=1048576
         - --badger-number-of-compactors=1
         - --badger-number-of-level-zero-tables=1
         - --badger-number-of-zero-tables-stall=2
