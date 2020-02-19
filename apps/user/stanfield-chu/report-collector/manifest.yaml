@@ -87,7 +87,7 @@ system:
       export ReportCollector_ajna_funnelHost=${SFDC_METRICS_SERVICE_HOST} ;
       export ReportCollector_ajna_funnelPort=${SFDC_METRICS_SERVICE_PORT} ;
       export ReportCollector_ajna_datacenter=TEST ;
-      export ReportCollector_ajna_device=stans-reportcollector ;
+      export ReportCollector_ajna_device=stans-reportcollector.${FUNCTION_INSTANCE_NAME} ;
       ${JAVA_HOME}/bin/java
         -Dlogback.configurationFile=${APP_DIR}/logback-docker.xml
         -Dvertx.cacheDirBase=${CACHE_DIR}
@@ -300,7 +300,7 @@ system:
       export ReportCollector_ajna_funnelHost=${SFDC_METRICS_SERVICE_HOST} ;
       export ReportCollector_ajna_funnelPort=${SFDC_METRICS_SERVICE_PORT} ;
       export ReportCollector_ajna_datacenter=TEST ;
-      export ReportCollector_ajna_device=stans-tempstore;
+      export ReportCollector_ajna_device=stans-tempstore.${FUNCTION_INSTANCE_NAME};
 
       ${JAVA_HOME}/bin/java
         -Dlogback.configurationFile=${APP_DIR}/logback-docker.xml
