@@ -119,7 +119,7 @@ ensure_gus_client_credentials() {
       gpg --yes --batch --passphrase=$(md5sum /root/.ssh/id_rsa | cut -f1 -d" ") ./gus_username.txt.gpg &> /dev/nul
 
       # gus password
-      echo "jA0EBwMCRY+xGpf5UwTr0mgBnZlikKhwXOPm76iyk7NXVczA2lM9vtEB1L/5njDVy52X/hljHOu7CVjDno/AW6O2R6Y3zg7/06LDdfEB0oNkPBB+FX6VFYGGoQXnhg6MaQSSmrOQLqHMnwlOOXhv0GriqzXXzD40Yw==" | base64 -d > gus_password.txt.gpg
+      echo "jA0EBwMC9jXX2r7hG6jr0moB/8ir8lMQ2Ns+9ZKDKuOZJ2rU5aLVbgwQKz8ouS9epoOi3j4+i5XF+Fq3gF2df9cWcWk680hKOQP3RW90we+TZ3Q+0tdIHZqlZTcC6ysO26gIEYFt5aoNSvjL2NWdpjhlmqjezSwJudrn" | base64 -d > gus_password.txt.gpg
       gpg --yes --batch --passphrase=$(md5sum /root/.ssh/id_rsa | cut -f1 -d" ") ./gus_password.txt.gpg &> /dev/nul
     else
       if [ ! -f "./gus_key.txt" ]; then
