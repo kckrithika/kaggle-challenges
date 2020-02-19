@@ -50,30 +50,6 @@ local samreleases = import "samreleases.json";
         "yhu,yhu-sam,watchdog-etcd-quorum,hypersam": "2838-bb0b18d18d0cfb389547ae7a3e5df9b23ba51e11",
         "yul,yul-sam,watchdog-etcd-quorum,hypersam": "2838-bb0b18d18d0cfb389547ae7a3e5df9b23ba51e11",
 
-        # Added this override to fix the peimission issue of connectivitylabeler watchdog
-        "cdg,cdg-sam,sam-network-reporter,hypersam": "2754-365539f3b19f1f92f8ee7f1778f157769fae2a07",
-        "cdu,cdu-sam,sam-network-reporter,hypersam": "2754-365539f3b19f1f92f8ee7f1778f157769fae2a07",
-        "chx,chx-sam,sam-network-reporter,hypersam": "2754-365539f3b19f1f92f8ee7f1778f157769fae2a07",
-        "dfw,dfw-sam,sam-network-reporter,hypersam": "2754-365539f3b19f1f92f8ee7f1778f157769fae2a07",
-        "fra,fra-sam,sam-network-reporter,hypersam": "2754-365539f3b19f1f92f8ee7f1778f157769fae2a07",
-        "frf,frf-sam,sam-network-reporter,hypersam": "2754-365539f3b19f1f92f8ee7f1778f157769fae2a07",
-        "hio,hio-sam,sam-network-reporter,hypersam": "2754-365539f3b19f1f92f8ee7f1778f157769fae2a07",
-        "hnd,hnd-sam,sam-network-reporter,hypersam": "2754-365539f3b19f1f92f8ee7f1778f157769fae2a07",
-        "ia2,ia2-sam,sam-network-reporter,hypersam": "2754-365539f3b19f1f92f8ee7f1778f157769fae2a07",
-        "iad,iad-sam,sam-network-reporter,hypersam": "2754-365539f3b19f1f92f8ee7f1778f157769fae2a07",
-        "lo2,lo2-sam,sam-network-reporter,hypersam": "2754-365539f3b19f1f92f8ee7f1778f157769fae2a07",
-        "lo3,lo3-sam,sam-network-reporter,hypersam": "2754-365539f3b19f1f92f8ee7f1778f157769fae2a07",
-        "ord,ord-sam,sam-network-reporter,hypersam": "2754-365539f3b19f1f92f8ee7f1778f157769fae2a07",
-        "par,par-sam,sam-network-reporter,hypersam": "2754-365539f3b19f1f92f8ee7f1778f157769fae2a07",
-        "ph2,ph2-sam,sam-network-reporter,hypersam": "2754-365539f3b19f1f92f8ee7f1778f157769fae2a07",
-        "phx,phx-sam,sam-network-reporter,hypersam": "2754-365539f3b19f1f92f8ee7f1778f157769fae2a07",
-        "syd,syd-sam,sam-network-reporter,hypersam": "2754-365539f3b19f1f92f8ee7f1778f157769fae2a07",
-        "ttd,ttd-sam,sam-network-reporter,hypersam": "2754-365539f3b19f1f92f8ee7f1778f157769fae2a07",
-        "ukb,ukb-sam,sam-network-reporter,hypersam": "2754-365539f3b19f1f92f8ee7f1778f157769fae2a07",
-        "wax,wax-sam,sam-network-reporter,hypersam": "2754-365539f3b19f1f92f8ee7f1778f157769fae2a07",
-        "yhu,yhu-sam,sam-network-reporter,hypersam": "2754-365539f3b19f1f92f8ee7f1778f157769fae2a07",
-        "yul,yul-sam,sam-network-reporter,hypersam": "2754-365539f3b19f1f92f8ee7f1778f157769fae2a07",
-
         "prd,prd-sam,snapshoter-mtls,hypersam": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/d.smith/hypersam:20200210_151929.92e653b7.dirty.duncsmith-ltm1",
 
         ### [karthik.sudana] - Temporary override for gus case validator
