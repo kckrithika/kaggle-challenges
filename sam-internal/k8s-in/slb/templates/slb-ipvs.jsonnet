@@ -154,7 +154,10 @@ if slbconfigs.isSlbEstate then configs.deploymentBase("slb") {
                             configs.kube_config_env,
                             slbconfigs.function_namespace_env,
                             slbconfigs.function_instance_name_env,
-                        ],
+                        ]
+                        + (if slbflights.enableIpvsTrafficTest then [
+                            slbconfigs.node_name_env,
+                        ] else []),
                     },
                     {
                         name: "slb-ipvs-data",
