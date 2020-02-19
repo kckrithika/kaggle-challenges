@@ -1,0 +1,86 @@
+apiVersion: extensions/v1beta1
+kind: DaemonSet
+metadata:
+  labels:
+    name: sloopds
+    sam.data.sfdc.net/owner: sam
+  name: sloopds
+spec:
+  selector:
+    matchLabels:
+      app: sloopds
+      apptype: monitoring
+      daemonset: "true"
+      sam.data.sfdc.net/owner: sam
+  template:
+    metadata:
+      labels:
+        app: sloopds
+        apptype: monitoring
+        daemonset: "true"
+        sam.data.sfdc.net/owner: sam
+      namespace: sam-system
+    spec:
+      containers:
+      - args:
+        - --config.file
+        - /prometheusconfig/prometheus.json
+        image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cbatra/prometheus:20180124
+        name: prometheus
+        ports:
+        - containerPort: 9090
+          protocol: TCP
+        volumeMounts:
+        - mountPath: /dummy-prometheus/data
+          name: prom-data
+        - mountPath: /prometheusconfig
+          name: sloopconfig
+      - args:
+        - --config=/sloopconfig/sloop.yaml
+        - --port=31938
+        - --display-context=prd-samtest
+        - --apiserver-host=http://pseudo-kubeapi.csc-sam.prd-sam.prd.slb.sfdc.net:40001/prd-samtest/
+        - --max-look-back=336h
+        command:
+        - /sloop
+        image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/sjawad/sloop:sjawad-20200218_151159-bbd2691
+        livenessProbe:
+          httpGet:
+            path: /healthz
+            port: 31938
+          initialDelaySeconds: 1800
+          timeoutSeconds: 5
+        name: sloopds-prd-samtest
+        ports:
+        - containerPort: 31938
+          protocol: TCP
+        readinessProbe:
+          httpGet:
+            path: /healthz
+            port: 31938
+          timeoutSeconds: 5
+        resources:
+          limits:
+            cpu: "1"
+            memory: 8Gi
+          requests:
+            cpu: "1"
+            memory: 8Gi
+        volumeMounts:
+        - mountPath: /data/prd-samtest
+          name: sloop-data
+        - mountPath: /sloopconfig/
+          name: sloopconfig
+      nodeSelector:
+        master: "true"
+      serviceAccountName: sloop
+      volumes:
+      - hostPath:
+          path: /data/sloop-data/
+        name: sloop-data
+      - hostPath:
+          path: /data/sloop-prom-data/
+        name: prom-data
+      - configMap:
+          name: sloop
+        name: sloopconfig
