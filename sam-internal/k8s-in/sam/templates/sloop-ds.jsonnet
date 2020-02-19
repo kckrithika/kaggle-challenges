@@ -2,40 +2,7 @@ local configs = import "config.jsonnet";
 local portconfigs = import "portconfig.jsonnet";
 local samfeatureflags = import "sam-feature-flags.jsonnet";
 local samimages = (import "samimages.jsonnet") + { templateFilename:: std.thisFile };
-
-# Node Selector for sloop deployment depending on hosting estate.
-local sloopNodeSelectors = {
-  "prd-samtest": { master: "true" },
-  "prd-samtwo": { "node.sam.sfdc.net/role": "samcompute", pool: "prd-samtwo" },
-};
-
-local resourceRequirements = {
-  extra_small: {
-    cpu: "1",
-    memory: "1Gi",
-  },
-  small: {
-    cpu: "1",
-    memory: "5Gi",
-  },
-  medium: {
-    cpu: "2",
-    memory: "5Gi",
-  },
-  large: {
-    cpu: "3",
-    memory: "15Gi",
-  },
-};
-
-local kingdomResourceRequirements = {
-  "prd-samtest": resourceRequirements.small,
-  "prd-samtwo": resourceRequirements.small,
-  "hnd-sam": resourceRequirements.medium,
-  "frf-sam": resourceRequirements.medium,
-  "par-sam": resourceRequirements.large,
-  "prd-sam": resourceRequirements.large,
-};
+local sloop = import "configs/sloop-config.jsonnet";
 
 local makeds(estate) = configs.daemonSetBase("sam") {
   spec+: {
@@ -47,7 +14,7 @@ local makeds(estate) = configs.daemonSetBase("sam") {
             name: "sloopds",
             resources: {
               requests: self.limits,
-              limits: kingdomResourceRequirements[estate],
+              limits: sloop.estateConfigs[estate].limits,
             },
             args: [
               "--config=/sloopconfig/sloop.yaml",
@@ -56,7 +23,7 @@ local makeds(estate) = configs.daemonSetBase("sam") {
               "--apiserver-host=http://pseudo-kubeapi.csc-sam.prd-sam.prd.slb.sfdc.net:40001/" + estate + "/",
               # Default maximum history stored - 2 weeks
               "--max-look-back=336h",
-            ] + (if configs.estate == "prd-samtwo" && estate == "frf-sam" then ["--badger-use-lsm-only-options=false"] else []),
+            ] + sloop.estateConfigs[estate].flags,
             command: [
               "/sloop",
             ],
@@ -78,7 +45,7 @@ local makeds(estate) = configs.daemonSetBase("sam") {
               },
               timeoutSeconds: 5,
             },
-            image: "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/sjawad/sloop:sjawad-20200213_140207-c374987",
+            image: "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/sjawad/sloop:sjawad-20200218_151159-bbd2691",
             volumeMounts: [
               {
                 name: "sloop-data",
@@ -145,7 +112,7 @@ local makeds(estate) = configs.daemonSetBase("sam") {
           },
         ],
         nodeSelector:
-          sloopNodeSelectors[configs.estate],
+          sloop.sloopNodeSelectors[configs.estate],
       },
       metadata: {
         labels: {
