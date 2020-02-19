@@ -45,6 +45,8 @@ system:
       args:
       - -endpoint
       - $(FUNCTION_NAMESPACE)/$(FUNCTION):DATACENTER:7443
+      - -logging.dir
+      - /log
       livenessProbe:
         initialDelaySeconds: 5
         exec:
