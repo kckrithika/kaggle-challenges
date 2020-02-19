@@ -54,13 +54,6 @@
               supportedProxies=supportedProxies
             ),
             ]
-            +
-               (
-                  if slbimages.phaseNum > 3 then
-                      [slbshared.slbCleanupConfig]
-
-                  else []
-                )
             + [
             slbshared.slbNodeApi(slbports.slb.slbNodeApiPort, true),
             slbshared.slbRealSvrCfg(slbports.slb.slbNodeApiPort, true, deleteLimitOverride=deleteLimitOverride),

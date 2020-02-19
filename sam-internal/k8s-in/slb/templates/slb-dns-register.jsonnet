@@ -90,13 +90,6 @@ if slbconfigs.isSlbEstate then configs.deploymentBase("slb") {
                                       + configs.ipAddressResourceRequest,
                                       slbshared.slbConfigProcessor(portconfigs.slb.slbConfigProcessorDnsLivenessProbeOverridePort),
                                       ]
-                                      +
-                                      (
-                                          if slbimages.phaseNum > 4 then
-                                             [slbshared.slbCleanupConfig]
-
-                                        else []
-                                      )
                                       + [
                                       slbshared.slbLogCleanup,
                                       slbshared.slbNodeApi(portconfigs.slb.slbNodeApiDnsOverridePort, true),

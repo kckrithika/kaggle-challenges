@@ -42,13 +42,6 @@ if slbconfigs.isSlbEstate then configs.daemonSetBase("slb") {
                     slbshared.slbRealSvrCfg(slbports.slb.slbNodeApiRealSvrOverridePort, false),
                     slbshared.slbConfigProcessor(slbports.slb.slbConfigProcessorRealSvrLivenessProbeOverridePort, "slb-nginx-config-b", "", ""),
                     ]
-                    +
-                    (
-                     if slbimages.phaseNum > 4 then
-                      [slbshared.slbCleanupConfig]
-
-                  else []
-                )
                 + [
                     # Realsvrcfg currently only configures the tunnel interface for SAM apps so it does not have manifest watcher running in its pod
                     # So, it does not need to check the manifest watcher sentinel

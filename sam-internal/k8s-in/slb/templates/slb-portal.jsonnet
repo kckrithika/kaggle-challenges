@@ -92,12 +92,6 @@ if slbconfigs.isSlbEstate && configs.estate != "prd-samtest" then configs.deploy
                           } + configs.ipAddressResourceRequest + healthProbes,
                           slbshared.slbConfigProcessor(slbports.slb.slbConfigProcessorLivenessProbePort),
                           ]
-                          + (
-                              if slbimages.phaseNum > 4 then
-                                [slbshared.slbCleanupConfig]
-
-                               else []
-                            )
                           + [
 slbshared.slbNodeApi(slbports.slb.slbNodeApiPort, true),
                               slbshared.slbLogCleanup,
