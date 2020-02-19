@@ -258,11 +258,16 @@ system:
         value: /services/management
       - name: proxy_routes_1_target
         value: http://localhost:8081/management 
-      # GID Data Service - swagger service description 
+      # GID Data Service - swagger description UI
       - name: proxy_routes_2_sourcePath
         value: /services/swagger
       - name: proxy_routes_2_target
         value: http://localhost:8081/swagger-ui.html
+      # GID Data Service - swagger service description (json)
+      - name: proxy_routes_6_sourcePath
+        value: /services/v2/api-docs-custom
+      - name: proxy_routes_6_target
+        value: http://localhost:8081/v2/api-docs-custom
       # C2C service
       - name: proxy_routes_3_sourcePath
         value: /services/c2c
