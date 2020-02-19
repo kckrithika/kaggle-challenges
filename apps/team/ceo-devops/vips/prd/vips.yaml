@@ -5603,7 +5603,7 @@
     healthport: 80
     healthprotocol: http
     healthpath: /
-
+#Do not re purpose this slb as we are assigning to customer.
 - lbname: cjemaster298
   customlbname: cjemaster298
   cnames:
@@ -5628,7 +5628,7 @@
     healthport: 80
     healthprotocol: http
     healthpath: /
-
+#Do not re purpose this slb as we are assigning to customer.
 - lbname: cjemaster299
   customlbname: cjemaster299
   cnames:
