@@ -165,6 +165,7 @@ apps:
     - syd/syd-sam_report_collector
     - cdu/cdu-sam_report_collector
     - yul/yul-sam_report_collector
+    - yhu/yhu-sam_report_collector
   cname-repcollavailwd-pc:
   cname-repcollavailwd-hostnet:
     - ast/ast-sam_report_collector
