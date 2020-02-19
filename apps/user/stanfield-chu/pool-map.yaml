@@ -1,14 +1,9 @@
 version: v2
 apps:
  redis-ha:
-  - name: xrd/xrd-sampool
-    hostSubList:
-    - shared0-sampool7-1-xrd.eng.sfdc.net
-    - shared0-sampool7-2-xrd.eng.sfdc.net
-    - shared0-sampool7-3-xrd.eng.sfdc.net
  report-collector:
     - name: xrd/xrd-sampool
+ repcollavailwd:
+    - name: xrd/xrd-sampool
  candidate-service:
-    - name: xrd/xrd-sampool
  candidate-service-watchdog:
-    - name: xrd/xrd-sampool

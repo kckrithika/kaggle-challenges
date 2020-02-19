@@ -9,30 +9,26 @@ system:
     count: 1
     containers:
     - name: stans-repcollavailwd
-      image: tnrp/csc-health/report-collector-availability-watchdog:2.8.0-0000111-84d23f37
+      image: dva/report-collector-availability-watchdog:2
       ports:
       - name: liveness
         containerPort: 8089
       resources:
         requests: { cpu: "0.5", memory: "200M" }
       volumeMounts:
+      - mountPath: /var/log/report-collector-availability-watchdog
+        name: logvol
       - mountPath: /var/lib/report-collector-availability-watchdog/pki
         name: clientcertvol
       env:
-      - name: DUMMY_UNUSED_ENV_VAR_FOR_POD_BOUNCE
-        value: 1
-      - name: RC_WD_REPORTCOLLECTOR_PROVIDER_HOST
-        value: $(STANSREPORTCOLLECTORLB_SERVICE_HOST)
-      - name: RC_WD_REPORTCOLLECTOR_PROVIDER_PORT
-        value: $(STANSREPORTCOLLECTORLB_SERVICE_PORT_TCP28443)
+      - name: RC_WD_INTERVALMS
+        value: 60000
       - name: RC_WD_REPORTCOLLECTOR_PROVIDER_PROTOCOL
         value: https
-      - name: RC_WD_REPORTCOLLECTOR_CONSUMER_HOST
-        value: $(STANSREPORTCOLLECTORLB_SERVICE_HOST)
-      - name: RC_WD_REPORTCOLLECTOR_CONSUMER_PORT
-        value: $(STANSREPORTCOLLECTORLB_SERVICE_PORT_TCP28444)
       - name: RC_WD_REPORTCOLLECTOR_CONSUMER_PROTOCOL
         value: https
+      - name: RC_WD_REPORTCOLLECTOR_CONSUMER_TIMEOUTMS
+        value: 90000
       - name: RC_WD_VERIFYREPORTISTRUSTED
         value: true
       - name: RC_WD_SSL_VERIFYSERVERIDENTITY
@@ -45,8 +41,12 @@ system:
         value: /var/lib/report-collector-availability-watchdog/pki/client/keys/client-key.pem
       - name: RC_WD_SSL_AUTH_CA
         value: /var/lib/report-collector-availability-watchdog/pki/ca.pem
+      - name: RC_WD_LOGGER_LOGDIR
+        value: /var/log/report-collector-availability-watchdog
       - name: RC_WD_LOGGER_LEVEL
         value: debug
+      - name: RC_WD_LIVENESS_FRESHNESSMS
+        value: 130000
       - name: RC_WD_AJNA_SHOULDPUBLISHPRODUCTIONMETRICS
         value: false
       - name: RC_WD_AJNA_STRICTSSL
@@ -60,9 +60,15 @@ system:
       command: ["/bin/sh", "-c"]
       args: ["
       export RC_WD_AJNA_FUNNELVIP=http://${SFDC_METRICS_SERVICE_HOST}:${SFDC_METRICS_SERVICE_PORT} ;
-      export RC_WD_AJNA_DEVICE=stans-RCWD ;
       export RC_WD_AJNA_DATACENTER=TEST ;
-      node --harmony ${APP_DIR}/lib/watchdog.js
+      export RC_WD_AJNA_DEVICE=stans-rcwd ;
+
+      export RC_WD_REPORTCOLLECTOR_PROVIDER_HOST=$(STANSREPORTCOLLECTORLB_SERVICE_HOST) ;
+      export RC_WD_REPORTCOLLECTOR_PROVIDER_PORT=$(STANSREPORTCOLLECTORLB_SERVICE_PORT_TCP8443) ;
+      export RC_WD_REPORTCOLLECTOR_CONSUMER_HOST=$(STANSTEMPSTORELB_SERVICE_HOST) ;
+      export RC_WD_REPORTCOLLECTOR_CONSUMER_PORT=$(STANSTEMPSTORELB_SERVICE_PORT) ;
+
+      node --harmony ${APP_DIR}/lib/watchdog.js ;
       "]
       livenessProbe:
         httpGet:
@@ -71,6 +77,9 @@ system:
         initialDelaySeconds: 5
         periodSeconds: 5
     volumes:
+    - name: logvol
+      hostPath:
+        path: /var/log/report-collector-availability-watchdog
     - name: clientcertvol
       maddogCert:
         type: client
