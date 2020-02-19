@@ -64,7 +64,7 @@ spec:
         - --tlsPorts=443
         - --privateKey=/canarycert/server/keys/server-key.pem
         - --publicKey=/canarycert/server/certificates/server.pem
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/slb/hyperslb:2315-2214e6315388f9618b585fa1391c3de50d087462
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/slb/hyperslb:2316-2def339bedfafff0e5d284b40dfe78f55a5ac414
         livenessProbe:
           httpGet:
             path: /
@@ -131,7 +131,7 @@ spec:
         env:
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig-platform
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/slb/hyperslb:2315-2214e6315388f9618b585fa1391c3de50d087462
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/slb/hyperslb:2316-2def339bedfafff0e5d284b40dfe78f55a5ac414
         livenessProbe:
           exec:
             command:
