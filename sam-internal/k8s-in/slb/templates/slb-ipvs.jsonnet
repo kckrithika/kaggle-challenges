@@ -129,6 +129,7 @@ if slbconfigs.isSlbEstate then configs.deploymentBase("slb") {
                         ]
                         + (if slbflights.enableIpvsTrafficTest then [
                              "--enableIpvsHostTesting=true",
+                             "--hostnameOverride=$(NODE_NAME)",
                         ] else [])
                         + slbconfigs.getNodeApiClientSocketSettings()
                         + [

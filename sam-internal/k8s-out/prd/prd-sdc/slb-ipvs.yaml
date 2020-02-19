@@ -85,6 +85,7 @@ spec:
         - --httpTimeout=1s
         - --enableOnlyRunningStateProxy=true
         - --enableIpvsHostTesting=true
+        - --hostnameOverride=$(NODE_NAME)
         - --client.socketDir=/host/data/slb/config/slb-ipvs
         - --client.dialSocket=true
         - --healthcheck.riseCount=5
