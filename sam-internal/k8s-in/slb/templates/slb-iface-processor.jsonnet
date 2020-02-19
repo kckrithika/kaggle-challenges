@@ -41,13 +41,6 @@ if slbconfigs.isSlbEstate then configs.daemonSetBase("slb") {
                     slbshared.slbIfaceProcessor(slbports.slb.slbNodeApiIfaceOverridePort),
                     slbshared.slbConfigProcessor(slbports.slb.slbConfigProcessorIfaceLivenessProbeOverridePort),
                     ]
-
-                    + (
-                  if slbimages.phaseNum > 4 then
-                      [slbshared.slbCleanupConfig]
-
-                  else []
-                )
                 + [
                     slbshared.slbNodeApi(slbports.slb.slbNodeApiIfaceOverridePort, false),
                     slbshared.slbLogCleanup,

@@ -61,12 +61,6 @@ if slbconfigs.isSlbEstate && slbflights.enableIWDHealth then configs.daemonSetBa
                         ],
                     } + configs.ipAddressResourceRequest,
                     ]
-                    + (
-                  if slbimages.phaseNum > 4 then
-                      [slbshared.slbCleanupConfig]
-
-                  else []
-                )
                 + [
                     slbshared.slbLogCleanup,
                 ],

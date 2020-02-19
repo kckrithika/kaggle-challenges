@@ -133,13 +133,7 @@ if slbconfigs.isSlbEstate then configs.deploymentBase("slb") {
                           } + configs.ipAddressResourceRequest,
                           slbshared.slbConfigProcessor(slbports.slb.slbConfigProcessorLivenessProbePort),
                           ]
-                          +
-                          (
-                  if slbimages.phaseNum > 4 then
-                      [slbshared.slbCleanupConfig]
-
-                  else []
-                ) + [
+                        + [
                           slbshared.slbNodeApi(slbports.slb.slbNodeApiPort, true),
                           slbshared.slbLogCleanup,
                           slbshared.slbManifestWatcher(),

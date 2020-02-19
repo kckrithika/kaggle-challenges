@@ -107,12 +107,7 @@ local deployments = [
                                     pseudoApiServer=pseudoApiServerLink
                                 ),
 ]
-                                + (
-                  if slbimages.phaseNum > 4 then
-                      [slbshared.slbCleanupConfig]
-
-                  else []
-                ) +
+                           +
                   [
                                slbshared.slbNodeApi(slbports.slb.slbNodeApiPort, true),
                                 slbshared.slbLogCleanup,
