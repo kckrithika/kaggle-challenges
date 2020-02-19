@@ -13,6 +13,7 @@
     healthport: 443
     healthprotocol: tcp
 
+# SFCI AI service
 - lbname: sfci-ai
   customlbname: sfci-ai
   servers:
@@ -26,3 +27,61 @@
     reencrypt: true
     healthport: 443
     healthprotocol: tcp
+
+# SFCI P2P mirror service
+- lbname: sfci-p2p-mirror
+  customlbname: sfci-p2p-mirror
+  servers:
+  - mirror-sfci-p2p-1.dop.sfdc.net
+  - mirror-sfci-p2p-0.dop.sfdc.net
+  ports:
+  - port: 443
+    targetport: 443
+    lbtype: http
+    tls: true
+    reencrypt: true
+    healthport: 443
+    healthprotocol: tcp
+
+ # SFCI P2P stage service
+- lbname: sfci-p2p-stage
+  customlbname: sfci-p2p-stage
+  servers:
+  - stage-sfci-p2p-1.dop.sfdc.net
+  ports:
+  - port: 443
+    targetport: 443
+    lbtype: http
+    tls: true
+    reencrypt: true
+    healthport: 443
+    healthprotocol: tcp
+
+# SFCI AI mirror service
+- lbname: sfci-ai-mirror
+  customlbname: sfci-ai-mirror
+  servers:
+  - mirror-sfci-ai-1.dop.sfdc.net
+  - mirror-sfci-ai-0.dop.sfdc.net
+  ports:
+  - port: 443
+    targetport: 443
+    lbtype: http
+    tls: true
+    reencrypt: true
+    healthport: 443
+    healthprotocol: tcp
+
+ # SFCI AI stage service
+- lbname: sfci-ai-stage
+  customlbname: sfci-ai-stage
+  servers:
+  - stage-sfci-ai-0.dop.sfdc.net
+  ports:
+  - port: 443
+    targetport: 443
+    lbtype: http
+    tls: true
+    reencrypt: true
+    healthport: 443
+    healthprotocol: tcp      
