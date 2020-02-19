@@ -24,6 +24,10 @@ system:
         value: false
       - name: GRPC_PORT
         value: 7443
+      - name: MESH_ISTIO_MODE
+        value: true
+      - name: METRICS_FUNNELENDPOINTURL
+        value: "http://ajnafunneldirecttls.funnel.svc.mesh.sfdc.net:7442"
       ports:
       - containerPort: 7443
         name: grpc
@@ -82,6 +86,8 @@ system:
         targetport: 7442
       - port: 15372
         targetport: 15372
+      - port: 8443
+        targetport: 7443
   - lbname: syncmaster
     function: syncmaster
     ports:

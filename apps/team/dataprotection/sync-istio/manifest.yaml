@@ -10,7 +10,7 @@ system:
       traffic.sidecar.istio.io/excludeInboundPorts: "9522,9523,9524,15372,9090,8080"
     containers:
     - name: sync
-      image: dva/winterfell-sync:e33c1f156179b4dbd71f08d5b91902dbf7cc2d08
+      image: dva/winterfell-sync:6992a66109e59e7cff21f632b7ae5b1e771d24a7
       env:
       - name: SFDC_ENVIRONMENT
         value: prod
@@ -20,8 +20,15 @@ system:
         value: $(KINGDOM)
       - name: SPRING_PROFILES_ACTIVE 
         value: dc.$(KINGDOM),sam,oracle
+      - name: GRPC_TLS
+        value: false
       - name: GRPC_PORT
         value: 7443
+      - name: MESH_ISTIO_MODE
+        value: true
+      - name: METRICS_FUNNELENDPOINTURL
+        value: "http://ajnafunneldirecttls.funnel.svc.mesh.sfdc.net:7442"
+
       ports:
       - containerPort: 7022
       - containerPort: 15372
