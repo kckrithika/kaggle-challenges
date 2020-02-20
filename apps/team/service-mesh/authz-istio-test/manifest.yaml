@@ -80,9 +80,9 @@ system:
       maddogCert:
         type: server
         lbnames:
-          - authz-istio-test-lb
+          - authz-istio-test
   loadbalancers:
-    - lbname: authz-istio-test-lb
+    - lbname: authz-istio-test
       function: authz-istio-test
       slbenabled: true
       ports:
