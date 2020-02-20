@@ -53,7 +53,7 @@ system:
 
     - name: sherpa
       # https://sconelibci.dop.sfdc.net/job/servicelibs/job/sherpa-envoy/job/master/75
-      image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-sfci-dev/sfci/services/sfdc-bazel/disco/beacon:fad710268
+      image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-sfci-dev/sfci/services/sfdc-bazel/disco/beacon:70d3cc487
       env:
       - name: SFDC_ENVIRONMENT
         value: sconex
