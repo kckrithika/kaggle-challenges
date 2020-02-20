@@ -50,7 +50,7 @@ system:
     - name: authz-istio-test-http-client
       image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/electron_client:147
       args:
-      - -endpoint=authz-istio-test.service-mesh.localhost.mesh.force.com:7442
+      - -endpoint=authz-istio-test.service-mesh.svc.mesh.sfdc.net:7442
       - -service=http
       - -loopCount=-1
       - -loopDelayInSeconds=60
@@ -80,7 +80,7 @@ system:
       maddogCert:
         type: server
         lbnames:
-          - authz-istio-test-opa-lb
+          - authz-istio-test-lb
   loadbalancers:
     - lbname: authz-istio-test-lb
       function: authz-istio-test
