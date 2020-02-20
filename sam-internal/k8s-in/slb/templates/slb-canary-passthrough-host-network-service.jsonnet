@@ -20,6 +20,6 @@ local canaryPortConfig = [
     },
 ];
 
-if configs.estate == "prd-sdc" || slbconfigs.slbInProdKingdom then
+if slbconfigs.slbInProdKingdom then
     slbbaseservice.slbCanaryBaseService(canaryName, canaryPortConfig, serviceName, vipName) {
 } else "SKIP"
