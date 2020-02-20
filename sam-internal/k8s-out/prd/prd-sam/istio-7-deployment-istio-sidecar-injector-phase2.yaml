@@ -216,7 +216,7 @@ spec:
           value: -.-.prd.-.istio-sidecar-injector
         - name: ESTATE
           value: prd-sam_gater
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/sfci/servicemesh/servicemesh/metrics-scraper:c8bfa791b937118e73234a162c6bede5ee9153bb
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/sfci/servicemesh/servicemesh/metrics-scraper:7792ac10d47d9899f94e696b0f7a5e3a1c3fadfe
         imagePullPolicy: Always
         name: metrics-scraper
         readinessProbe:
@@ -290,7 +290,7 @@ spec:
         - name: ISTIO_META_INTERCEPTION_MODE
           value: REDIRECT
         - name: ISTIO_METAJSON_METRICS_INCLUSIONS
-          value: '{"sidecar.istio.io/statsInclusionPrefixes": "access_log_file,cluster,cluster_manager,control_plane,http,http2,http_mixer_filter,listener,listener_manager,redis,runtime,server,stats,tcp,tcp_mixer_filter,tracing"}'
+          value: '{"sidecar.istio.io/statsInclusionPrefixes": "access_log_file,cluster,cluster_manager,control_plane,http,http2,http_mixer_filter,listener,listener_manager,redis,runtime,server,stats,tcp,tcp_mixer_filter,tracing,authz"}'
         - name: ISTIO_METAJSON_LABELS
           value: '{"settings_path": "-.-.prd.-.istio-sidecar-injector", "superpod":"-"}'
         - name: ISTIO_META_TLS_CLIENT_CERT_CHAIN
