@@ -39,6 +39,8 @@ system:
         value: 0
       - name: ReportCollector_redis_host
         value: $(REDISLB_SERVICE_HOST)
+      - name: ReportCollector_redis_port
+        value: $(REDISLB_SERVICE_PORT)
       - name: ReportCollector_redis_fullPathToAuthFile
         value: /var/secrets/redis/auth
       - name: ReportCollector_app_https_enabled
@@ -210,27 +212,6 @@ system:
                 "maxDelay": 20000 },
               { "filter": { "type": "watchdog", "providerId": "netmgt.sandman", "trusted": true },
                 "maxDelay": 20000 },
-              { "filter": { "type": "watchdog", "providerId": "app.infrastructure-watchdog-cpt", "trusted": true },
-                "minDelay": 60000,
-                "maxDelay": 120000 },
-              { "filter": { "type": "watchdog", "providerId": "cbatch.infrastructure-watchdog-cpt", "trusted": true },
-                "minDelay": 60000,
-                "maxDelay": 120000 },
-              { "filter": { "type": "watchdog", "providerId": "dapp.infrastructure-watchdog-cpt", "trusted": true },
-                "minDelay": 60000,
-                "maxDelay": 120000 },
-              { "filter": { "type": "watchdog", "providerId": "ffx.infrastructure-watchdog-cpt", "trusted": true },
-                "minDelay": 60000,
-                "maxDelay": 120000 },
-              { "filter": { "type": "watchdog", "providerId": "health.infrastructure-watchdog-cpt", "trusted": true },
-                "minDelay": 60000,
-                "maxDelay": 120000 },
-              { "filter": { "type": "watchdog", "providerId": "search.infrastructure-watchdog-cpt", "trusted": true },
-                "minDelay": 60000,
-                "maxDelay": 120000 },
-              { "filter": { "type": "watchdog", "providerId": "*.infrastructure-watchdog-cpt", "trusted": true },
-                "minDelay": 60000,
-                "maxDelay": 120000 },
               { "filter": { "type": "watchdog", "providerId": "*.infrastructure-watchdog-CP-health", "trusted": true },
                 "minDelay": 60000,
                 "maxDelay": 120000 },
