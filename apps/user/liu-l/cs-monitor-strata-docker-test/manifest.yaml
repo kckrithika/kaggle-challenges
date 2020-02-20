@@ -5,7 +5,7 @@ system:
     count: 1
     containers:
     - name: cs-monitor-strata-docker-test
-      image: dva/cs-monitor-strata-docker-test:22
+      image: dva/cs-monitor-strata-docker-test:latest
       ports:
       - containerPort: 9090
       livenessProbe:
