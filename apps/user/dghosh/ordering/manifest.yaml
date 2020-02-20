@@ -39,8 +39,8 @@ system:
       args:
       - -endpoint
       - dghosh/ordering-dghosh:DATACENTER:7443
-      - -logging.dir
-      - /log
+      # - -logging.dir
+      # - /log
       livenessProbe:
         initialDelaySeconds: 5
         exec:
