@@ -45,6 +45,11 @@ system:
       livenessProbe:
         httpGet:
             path: /healthfalconsdbrestorevalidationagent
+    - name: falconsdbrestorevalidationagenttest
+      image: dva-registry.internal.salesforce.com/dva/sdd/sdbrestorevalidationagenttest:324.120.1-431960e
+      livenessProbe:
+        httpGet:
+            path: /healthfalconsdbrestorevalidationagent
     - name: falconsdbproductiontest
       image: ops0-artifactrepo1-0-dfw.data.sfdc.net/dva/sdd/sdbproductiontest:64
       livenessProbe:
