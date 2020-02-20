@@ -423,7 +423,7 @@ if (istioPhases.phaseNum == 1) then
               },
               {
                 name: "ISTIO_METAJSON_METRICS_INCLUSIONS",
-                value: "{\"sidecar.istio.io/statsInclusionPrefixes\": \"access_log_file,cluster,cluster_manager,control_plane,http,http2,http_mixer_filter,listener,listener_manager,redis,runtime,server,stats,tcp,tcp_mixer_filter,tracing\"}",
+                value: "{\"sidecar.istio.io/statsInclusionPrefixes\": \"access_log_file,cluster,cluster_manager,control_plane,http,http2,http_mixer_filter,listener,listener_manager,redis,runtime,server,stats,tcp,tcp_mixer_filter,tracing,authz\"}",
               },
               {
                 name: "ISTIO_METAJSON_LABELS",

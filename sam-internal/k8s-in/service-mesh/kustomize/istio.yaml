@@ -655,7 +655,7 @@ data:
         ###
         # We currently want to include all envoy metrics, so the inclusion list includes all known prefixes.
         - name: ISTIO_METAJSON_METRICS_INCLUSIONS
-          value: "{\"sidecar.istio.io/statsInclusionPrefixes\": \"access_log_file,cluster,cluster_manager,control_plane,http,http2,http_mixer_filter,listener,listener_manager,redis,runtime,server,stats,tcp,tcp_mixer_filter,tracing\"}"
+          value: "{\"sidecar.istio.io/statsInclusionPrefixes\": \"access_log_file,cluster,cluster_manager,control_plane,http,http2,http_mixer_filter,listener,listener_manager,redis,runtime,server,stats,tcp,tcp_mixer_filter,tracing,authz\"}"
         ###
         # End metadata fields for configuring sidecar metrics.
         ###
@@ -1092,7 +1092,7 @@ spec:
             fieldRef:
               fieldPath: metadata.namespace
         - name: ISTIO_METAJSON_METRICS_INCLUSIONS
-          value: '{"sidecar.istio.io/statsInclusionPrefixes": "access_log_file,cluster,cluster_manager,control_plane,http,http2,http_mixer_filter,listener,listener_manager,redis,runtime,server,stats,tcp,tcp_mixer_filter,tracing"}'
+          value: '{"sidecar.istio.io/statsInclusionPrefixes": "access_log_file,cluster,cluster_manager,control_plane,http,http2,http_mixer_filter,listener,listener_manager,redis,runtime,server,stats,tcp,tcp_mixer_filter,tracing,authz"}'
         - name: ISTIO_META_ROUTER_MODE
           value: standard
         - name: ISTIO_META_TLS_CLIENT_CERT_CHAIN
@@ -1447,7 +1447,7 @@ spec:
             fieldRef:
               fieldPath: metadata.namespace
         - name: ISTIO_METAJSON_METRICS_INCLUSIONS
-          value: '{"sidecar.istio.io/statsInclusionPrefixes": "access_log_file,cluster,cluster_manager,control_plane,http,http2,http_mixer_filter,listener,listener_manager,redis,runtime,server,stats,tcp,tcp_mixer_filter,tracing"}'
+          value: '{"sidecar.istio.io/statsInclusionPrefixes": "access_log_file,cluster,cluster_manager,control_plane,http,http2,http_mixer_filter,listener,listener_manager,redis,runtime,server,stats,tcp,tcp_mixer_filter,tracing,authz"}'
         - name: ISTIO_META_TLS_CLIENT_CERT_CHAIN
           value: /client-certs/client/certificates/client.pem
         - name: ISTIO_META_TLS_CLIENT_KEY
@@ -1975,7 +1975,7 @@ spec:
         - name: ISTIO_META_INTERCEPTION_MODE
           value: REDIRECT
         - name: ISTIO_METAJSON_METRICS_INCLUSIONS
-          value: '{"sidecar.istio.io/statsInclusionPrefixes": "access_log_file,cluster,cluster_manager,control_plane,http,http2,http_mixer_filter,listener,listener_manager,redis,runtime,server,stats,tcp,tcp_mixer_filter,tracing"}'
+          value: '{"sidecar.istio.io/statsInclusionPrefixes": "access_log_file,cluster,cluster_manager,control_plane,http,http2,http_mixer_filter,listener,listener_manager,redis,runtime,server,stats,tcp,tcp_mixer_filter,tracing,authz"}'
         - name: ISTIO_METAJSON_LABELS
           value: '{"settings_path": "-.-.%(kingdom)s.-.istio-sidecar-injector", "superpod":"%(superpod)s"}'
         - name: ISTIO_META_TLS_CLIENT_CERT_CHAIN

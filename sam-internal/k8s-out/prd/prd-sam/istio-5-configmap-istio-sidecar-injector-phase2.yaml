@@ -328,7 +328,7 @@ data:
         ###
         # We currently want to include all envoy metrics, so the inclusion list includes all known prefixes.
         - name: ISTIO_METAJSON_METRICS_INCLUSIONS
-          value: "{\"sidecar.istio.io/statsInclusionPrefixes\": \"access_log_file,cluster,cluster_manager,control_plane,http,http2,http_mixer_filter,listener,listener_manager,redis,runtime,server,stats,tcp,tcp_mixer_filter,tracing\"}"
+          value: "{\"sidecar.istio.io/statsInclusionPrefixes\": \"access_log_file,cluster,cluster_manager,control_plane,http,http2,http_mixer_filter,listener,listener_manager,redis,runtime,server,stats,tcp,tcp_mixer_filter,tracing,authz\"}"
         ###
         # End metadata fields for configuring sidecar metrics.
         ###
