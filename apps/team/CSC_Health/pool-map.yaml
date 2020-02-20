@@ -69,7 +69,10 @@ apps:
   reportcollector-stagger-1:
    - syd/syd-sam_report_collector
   reportcollector-stagger-2:
+   - cdu/cdu-sam_report_collector
+   - yhu/yhu-sam_report_collector
   reportcollector-stagger-3:
+   - yul/yul-sam_report_collector
 
   reportcollector:
     - prd/prd-sdc
@@ -91,9 +94,6 @@ apps:
     - xrd/xrd-sam_report_collector
     - ia4/ia4-sam_report_collector
     - ia5/ia5-sam_report_collector
-    - cdu/cdu-sam_report_collector
-    - yul/yul-sam_report_collector
-    - yhu/yhu-sam_report_collector
   reportcollector-hostnet:
     - ast/ast-sam_report_collector
   temp-store:
@@ -116,9 +116,6 @@ apps:
     - xrd/xrd-sam_report_collector
     - ia4/ia4-sam_report_collector
     - ia5/ia5-sam_report_collector
-    - cdu/cdu-sam_report_collector
-    - yul/yul-sam_report_collector
-    - yhu/yhu-sam_report_collector
   temp-store-hostnet:
     - ast/ast-sam_report_collector
   redis-inspector:
@@ -165,6 +162,7 @@ apps:
     - xrd/xrd-sam_report_collector
     - ia4/ia4-sam_report_collector
     - ia5/ia5-sam_report_collector
+    - syd/syd-sam_report_collector
     - cdu/cdu-sam_report_collector
     - yul/yul-sam_report_collector
     - yhu/yhu-sam_report_collector
