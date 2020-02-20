@@ -35,8 +35,8 @@ system:
       args:
       - -endpoint
       - dghosh/shipping-dghosh:DATACENTER:7443
-      - -logging.dir
-      - /log
+      # - -logging.dir
+      # - /log
       livenessProbe:
         initialDelaySeconds: 30
         exec:
