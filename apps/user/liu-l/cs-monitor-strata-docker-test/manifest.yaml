@@ -8,9 +8,7 @@ system:
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/liu-l/cs-monitor-strata-docker-test:latest
       ports:
       - containerPort: 9090
-        name: test result
       - containerPort: 443
-        name: https
       livenessProbe:
         httpGet:
           path: /
