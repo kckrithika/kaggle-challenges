@@ -183,7 +183,7 @@ system:
             path: /var/log/jds
 
     - name: cs101-exec
-      count: 2
+      count: 4
       identity:
         serviceName: executor-service
         pod: cs101
