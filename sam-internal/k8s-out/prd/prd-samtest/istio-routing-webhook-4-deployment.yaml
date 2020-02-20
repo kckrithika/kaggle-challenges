@@ -69,7 +69,7 @@ spec:
           value: -.-.prd.-.istio-routing-webhook
         - name: ESTATE
           value: prd-samtest
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/sfci/servicemesh/servicemesh/istio-routing-webhook:c8bfa791b937118e73234a162c6bede5ee9153bb
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/sfci/servicemesh/servicemesh/istio-routing-webhook:7792ac10d47d9899f94e696b0f7a5e3a1c3fadfe
         imagePullPolicy: IfNotPresent
         livenessProbe:
           httpGet:
