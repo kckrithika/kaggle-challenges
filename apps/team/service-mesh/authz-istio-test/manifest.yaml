@@ -1,0 +1,92 @@
+apiVersion: v1
+
+system:
+  notifications:
+    email:
+    - electron@salesforce.com
+  functions:
+  - name: authz-istio-test
+    count: 1
+    annotations:
+      sidecar.istio.io/inject: "true"
+      traffic.sidecar.istio.io/excludeInboundPorts: "15372,8440"
+      electron-opa-istio-sherpa.k8s-integration.sfdc.com/inject: enabled
+    containers:
+    - name: authz-istio-test
+      image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/electron_sam:147
+      args:
+      - --http-synthetic-client-ids=authz-istio-test.service-mesh
+      - --http-bind-addr=localhost:7442
+      - --grpc-bind-addr=localhost:7443
+      env:
+      - name: AUTHZ_ARCHIVE_LOC
+        value: rpm-rc-signed
+      - name: SFDC_ENVIRONMENT
+        value: stm
+      - name: FAKE_ENV_VAR_INCREMENT_TO_TRIGGER_SAM_DEPLOY
+        value: "1"        
+      resources:
+        limits: { cpu: "2", memory: "4Gi" }
+        requests: { cpu: "2", memory: "4Gi" }
+      ports:
+      - containerPort: 7443
+        name: grpc-svc
+      - containerPort: 7442
+        name: http-svc
+      - containerPort: 8440
+        name: http-noauth
+      livenessProbe:
+        tcpSocket:
+          port: 8440
+        initialDelaySeconds: 5
+        periodSeconds: 5
+      readinessProbe:
+        httpGet:
+          path: /v1/health
+          port: 8440
+        initialDelaySeconds: 30
+        periodSeconds: 5
+        timeoutSeconds: 4
+    - name: authz-istio-test-http-client
+      image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/electron_client:147
+      args:
+      - -endpoint=authz-istio-test.service-mesh.svc.mesh.sfdc.net:7442
+      - -service=http
+      - -loopCount=-1
+      - -loopDelayInSeconds=60
+      - -spoof-xfcc=DNS=authz-istio-test.service-mesh.sfdc-role
+      livenessProbe:
+        exec:
+          command: ["/bin/true"]
+        initialDelaySeconds: 30
+    - name: beacon
+      # https://git.soma.salesforce.com/services/sfdc-bazel/tree/master/projects/sidecars/beacon#docker-image
+      image: sfci/services/sfdc-bazel/disco/beacon:d7f1640
+      args:
+      - -endpoint
+      - $(FUNCTION):DATACENTER_ALLENV:HTTP1
+      - -endpoint
+      - $(FUNCTION_NAMESPACE)/$(FUNCTION):DATACENTER_ALLENV:HTTP1_TLS
+      livenessProbe:
+        exec:
+          command:
+          - "/opt/beacon/is-alive.sh"
+        initialDelaySeconds: 10
+    volumes:
+    - name: tls-client-cert
+      maddogCert:
+        type: client
+    - name: tls-server-cert
+      maddogCert:
+        type: server
+        lbnames:
+          - authz-istio-test-lb
+  loadbalancers:
+    - lbname: authz-istio-test-lb
+      function: authz-istio-test
+      slbenabled: true
+      ports:
+        - port: 7442
+          targetport: 7442
+          lbtype: dsr
+          name: http-authz
