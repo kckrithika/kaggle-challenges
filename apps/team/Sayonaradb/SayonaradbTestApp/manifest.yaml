@@ -46,7 +46,7 @@ system:
         httpGet:
             path: /healthfalconsdbrestorevalidationagent
     - name: falconsdbrestorevalidationagenttest
-      image: ops0-artifactrepo1-0-dfw.data.sfdc.net/dva/sdd/sdbrestorevalidationagenttest:81
+      image: ops0-artifactrepo1-0-dfw.data.sfdc.net/dva/sdd/sdbrestorevalidationagenttest:83
       livenessProbe:
         httpGet:
             path: /healthfalconsdbrestorevalidationagent
