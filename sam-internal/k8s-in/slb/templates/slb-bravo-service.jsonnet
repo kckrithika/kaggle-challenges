@@ -40,6 +40,6 @@ local bravoPortConfig = [
 
 local cnames = [{ cname: "bravo-" + commonutils.string_replace(configs.estate, "_", "-") + ".slb.sfdc.net" }];
 
-if configs.estate == "prd-sdc" || slbconfigs.isProdEstate then
+if slbconfigs.isProdEstate then
     slbbaseservice.slbCanaryBaseService(canaryName, bravoPortConfig, serviceName, vipName, cnames) {
 } else "SKIP"
