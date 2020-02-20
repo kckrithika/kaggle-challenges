@@ -98,7 +98,7 @@ system:
       - {name: STARTUP_JOB_ENABLED, value: 'false'}
       - {name: SFDC_ENVIRONMENT, value: stm}
       - {name: HANDLED_PODS_PATTERN, value: stmfa\..*|moana-driver-master}
-      image: sfci/insights/jobcontroller:master-20200218.180-b47257c
+      image: sfci/insights/jobcontroller:master-20200220.181-04b35f5
       livenessProbe:
         httpGet: {path: /manage/health, port: 15372}
         initialDelaySeconds: 90
