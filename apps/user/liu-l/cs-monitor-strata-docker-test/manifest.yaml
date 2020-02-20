@@ -5,7 +5,7 @@ system:
     count: 1
     containers:
     - name: cs-monitor-strata-docker-test
-      image: dva/cs-monitor-strata-docker-test:ll
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cs-monitor-strata-docker-test:ll
       ports:
       - containerPort: 9090
       livenessProbe:
