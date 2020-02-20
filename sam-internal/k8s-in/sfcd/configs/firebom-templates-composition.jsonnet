@@ -50,6 +50,7 @@
   'populate-full-master-service-pipeline': true,
   'service-white-list': [
     'sfcdekstest1',
+    'sfcdekstest2',
     'sfcdec2test',
     'bastion',
     'strauz',
