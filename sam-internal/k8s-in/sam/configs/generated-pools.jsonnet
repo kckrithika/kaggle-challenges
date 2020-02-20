@@ -293,6 +293,18 @@
     },
     {
       "namespaces": [
+        "search-scale-safely"
+      ],
+      "access": [
+        "team/Search_Scale_Safely"
+      ],
+      "controlEstate": "cdu-sam",
+      "estate": "cdu-search_model_executor",
+      "kingdom": "cdu",
+      "superPod": "None"
+    },
+    {
+      "namespaces": [
         "csc-sam",
         "govsecdev-analytics"
       ],
@@ -1737,6 +1749,18 @@
     },
     {
       "namespaces": [
+        "casp"
+      ],
+      "access": [
+        "team/CASP"
+      ],
+      "controlEstate": "ia4-sam",
+      "estate": "ia4-sam_warden",
+      "kingdom": "ia4",
+      "superPod": "None"
+    },
+    {
+      "namespaces": [
         "search-scale-safely"
       ],
       "access": [
@@ -1850,6 +1874,18 @@
       ],
       "controlEstate": "ia5-sam",
       "estate": "ia5-sam_report_collector",
+      "kingdom": "ia5",
+      "superPod": "None"
+    },
+    {
+      "namespaces": [
+        "casp"
+      ],
+      "access": [
+        "team/CASP"
+      ],
+      "controlEstate": "ia5-sam",
+      "estate": "ia5-sam_warden",
       "kingdom": "ia5",
       "superPod": "None"
     },
@@ -4321,6 +4357,18 @@
     },
     {
       "namespaces": [
+        "search-scale-safely"
+      ],
+      "access": [
+        "team/Search_Scale_Safely"
+      ],
+      "controlEstate": "syd-sam",
+      "estate": "syd-search_model_executor",
+      "kingdom": "syd",
+      "superPod": "None"
+    },
+    {
+      "namespaces": [
         "csc-sam"
       ],
       "access": [
@@ -4975,6 +5023,18 @@
     },
     {
       "namespaces": [
+        "search-scale-safely"
+      ],
+      "access": [
+        "team/Search_Scale_Safely"
+      ],
+      "controlEstate": "yhu-sam",
+      "estate": "yhu-search_model_executor",
+      "kingdom": "yhu",
+      "superPod": "None"
+    },
+    {
+      "namespaces": [
         "csc-sam"
       ],
       "access": [
@@ -5074,6 +5134,18 @@
       ],
       "controlEstate": "yul-sam",
       "estate": "yul-sdn_control",
+      "kingdom": "yul",
+      "superPod": "None"
+    },
+    {
+      "namespaces": [
+        "search-scale-safely"
+      ],
+      "access": [
+        "team/Search_Scale_Safely"
+      ],
+      "controlEstate": "yul-sam",
+      "estate": "yul-search_model_executor",
       "kingdom": "yul",
       "superPod": "None"
     }
