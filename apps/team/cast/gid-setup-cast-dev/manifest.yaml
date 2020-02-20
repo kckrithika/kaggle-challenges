@@ -260,7 +260,7 @@ system:
         value: http://localhost:8081/management 
       # GID Data Service - swagger UI (index.html)
       - name: proxy_routes_2_sourcePath
-        value: /services/swagger
+        value: /services/swagger-ui.html
       - name: proxy_routes_2_target
         value: http://localhost:8081/swagger-ui.html
       # GID Data Service - swagger UI (static resources, e.g., css, js, etc)
