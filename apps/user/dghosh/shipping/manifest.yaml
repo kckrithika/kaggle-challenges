@@ -31,7 +31,7 @@ system:
 
     - name: beacon
       # https://sconelibci.dop.sfdc.net/job/servicelibs/job/beacon/job/master/216/
-      image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-sfci-dev/sfci/services/sfdc-bazel/disco/beacon:fad710268
+      image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-sfci-dev/sfci/services/sfdc-bazel/disco/beacon:70d3cc487
       args:
       - -endpoint
       - dghosh/shipping-dghosh:DATACENTER:7443
