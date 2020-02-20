@@ -1,25 +1,24 @@
 local configs = import "config.jsonnet";
 local samfeatureflags = import "sam-feature-flags.jsonnet";
 local portconfigs = import "portconfig.jsonnet";
-local sloop = import "configs/sloop-config.jsonnet";
+local legacyEstate = "prd-sam";
 
-local makesvc(estate) = {
+if samfeatureflags.sloop then {
   kind: "Service",
   apiVersion: "v1",
   metadata: {
-    name: "sloop-" + estate,
+    name: "sloop-legacy-" + legacyEstate,
     namespace: "sam-system",
     labels: {
       app: "sloop",
     } + configs.ownerLabel.sam,
     annotations: {
-      // TODO: remove if clause for prd-sam when removing legacy sloop
-      "slb.sfdc.net/name": "sloop-" + estate + (if estate == "prd-sam" then "-2" else ""),
+      "slb.sfdc.net/name": "sloop-" + legacyEstate,
       "slb.sfdc.net/portconfigurations": std.toString(
         [
           {
             port: 80,
-            targetport: sloop.estateConfigs[estate].containerPort,
+            targetport: portconfigs.sloop.sloop,
             nodeport: 0,
             lbtype: "",
             reencrypt: false,
@@ -35,20 +34,11 @@ local makesvc(estate) = {
         name: "sloop-port",
         port: 80,
         protocol: "TCP",
-        targetPort: sloop.estateConfigs[estate].containerPort,
+        targetPort: portconfigs.sloop.sloop,
       },
     ],
     selector: {
-      app: "sloopds",
+      app: "sloop-" + legacyEstate,
     },
   },
-};
-
-if samfeatureflags.sloop then {
-  apiVersion: "v1",
-  kind: "List",
-  metadata: {
-      namespace: "sam-system",
-  },
-  items: [makesvc(x) for x in samfeatureflags.sloopEstates[configs.estate]],
 } else "SKIP"

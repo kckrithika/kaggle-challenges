@@ -4,65 +4,66 @@ local samfeatureflags = import "sam-feature-flags.jsonnet";
 local samimages = (import "samimages.jsonnet") + { templateFilename:: std.thisFile };
 local sloop = import "configs/sloop-config.jsonnet";
 
-local makeds(estate) = configs.daemonSetBase("sam") {
+local estateContainer(estate) = {
+  name: "sloopds-" + estate,
+  resources: {
+    requests: self.limits,
+    limits: sloop.estateConfigs[estate].resource.limits,
+  },
+  args: [
+    "--config=/sloopconfig/sloop.yaml",
+    "--port=" + sloop.estateConfigs[estate].containerPort,
+    "--display-context=" + estate,
+    "--apiserver-host=http://pseudo-kubeapi.csc-sam.prd-sam.prd.slb.sfdc.net:40001/" + estate + "/",
+    # Default maximum history stored - 2 weeks
+    "--max-look-back=336h",
+  ] + sloop.estateConfigs[estate].resource.flags,
+  command: [
+    "/sloop",
+  ],
+  livenessProbe: {
+    httpGet: {
+      path: "/healthz",
+      port: sloop.estateConfigs[estate].containerPort,
+    },
+    # We have a 30 minute startup - badger has to load AND compact all data before sloop starts the web server.
+    # If we have a lot of data on disk it can take a long time to start.
+    # If liveness kills sloop before it finishes compacting then we go into an infinite death loop with complete downtime for users which is not ideal.
+    initialDelaySeconds: 1800,
+    timeoutSeconds: 5,
+  },
+  readinessProbe: {
+    httpGet: {
+      path: "/healthz",
+      port: sloop.estateConfigs[estate].containerPort,
+    },
+    timeoutSeconds: 5,
+  },
+  image: "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/sjawad/sloop:sjawad-20200220_160659-e77a2d5",
+  volumeMounts: [
+    {
+      name: "sloop-data",
+      mountPath: "/data/" + estate,
+    },
+    {
+      name: "sloopconfig",
+      mountPath: "/sloopconfig/",
+    },
+  ],
+  ports: [
+    {
+      containerPort: sloop.estateConfigs[estate].containerPort,
+      protocol: "TCP",
+    },
+  ],
+};
+
+if samfeatureflags.sloop then configs.daemonSetBase("sam") {
   spec+: {
     template: {
       spec: {
         serviceAccountName: "sloop",
         containers: [
-          {
-            name: "sloopds",
-            resources: {
-              requests: self.limits,
-              limits: sloop.estateConfigs[estate].limits,
-            },
-            args: [
-              "--config=/sloopconfig/sloop.yaml",
-              "--port=" + portconfigs.sloop.sloop,
-              "--display-context=" + estate,
-              "--apiserver-host=http://pseudo-kubeapi.csc-sam.prd-sam.prd.slb.sfdc.net:40001/" + estate + "/",
-              # Default maximum history stored - 2 weeks
-              "--max-look-back=336h",
-            ] + sloop.estateConfigs[estate].flags,
-            command: [
-              "/sloop",
-            ],
-            livenessProbe: {
-              httpGet: {
-                path: "/healthz",
-                port: portconfigs.sloop.sloop,
-              },
-              # We have a 30 minute startup - badger has to load AND compact all data before sloop starts the web server.
-              # If we have a lot of data on disk it can take a long time to start.
-              # If liveness kills sloop before it finishes compacting then we go into an infinite death loop with complete downtime for users which is not ideal.
-              initialDelaySeconds: 1800,
-              timeoutSeconds: 5,
-            },
-            readinessProbe: {
-              httpGet: {
-                path: "/healthz",
-                port: portconfigs.sloop.sloop,
-              },
-              timeoutSeconds: 5,
-            },
-            image: "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/sjawad/sloop:sjawad-20200218_151159-bbd2691",
-            volumeMounts: [
-              {
-                name: "sloop-data",
-                mountPath: "/data/",
-              },
-              {
-                name: "sloopconfig",
-                mountPath: "/sloopconfig/",
-              },
-            ],
-            ports: [
-              {
-                containerPort: portconfigs.sloop.sloop,
-                protocol: "TCP",
-              },
-            ],
-          },
           {
             name: "prometheus",
             args: [
@@ -90,17 +91,17 @@ local makeds(estate) = configs.daemonSetBase("sam") {
               },
             ],
           },
-        ],
+        ] + [estateContainer(est) for est in samfeatureflags.sloopEstates[configs.estate]],
         volumes+: [
           {
             hostPath: {
-                path: "/data/sloop-data/" + estate,
+              path: "/data/sloop-data/",
             },
             name: "sloop-data",
           },
           {
             hostPath: {
-                path: "/data/sloop-prom-data/" + estate,
+              path: "/data/sloop-prom-data/",
             },
             name: "prom-data",
           },
@@ -116,7 +117,7 @@ local makeds(estate) = configs.daemonSetBase("sam") {
       },
       metadata: {
         labels: {
-          app: "sloopds-" + estate,
+          app: "sloopds",
           apptype: "monitoring",
           daemonset: "true",
         } + configs.ownerLabel.sam,
@@ -126,17 +127,8 @@ local makeds(estate) = configs.daemonSetBase("sam") {
   },
   metadata+: {
       labels: {
-          name: "sloopds-" + estate,
+          name: "sloopds",
       } + configs.ownerLabel.sam,
-      name: "sloopds-" + estate,
+      name: "sloopds",
   },
-};
-
-if samfeatureflags.sloop then {
-  apiVersion: "v1",
-  kind: "List",
-  metadata: {
-      namespace: "sam-system",
-  },
-  items: [makeds(x) for x in samfeatureflags.sloopEstates[configs.estate]],
 } else "SKIP"

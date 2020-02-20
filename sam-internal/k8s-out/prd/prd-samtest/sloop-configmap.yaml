@@ -9,13 +9,13 @@ data:
       },
       "scrape_configs": [
         {
-          "job_name": "sloop",
+          "job_name": "sloop-prd-samtest",
           "metrics_path": "/metrics",
           "scheme": "http",
           "static_configs": [
             {
               "targets": [
-                "localhost:31938"
+                "localhost:31943"
               ]
             }
           ]
