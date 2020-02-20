@@ -10,7 +10,7 @@ system:
       routing.mesh.sfdc.net/enabled: "true"
     containers:
     - name: switchboard
-      image: sfci/services/sfdc-bazel/service-mesh/switchboard:001503b86
+      image: sfci/services/sfdc-bazel/service-mesh/switchboard:c8ab62300
       args:
       ############################## PRODUCTION CONFIGURATION ##########################################
       # Any configuration that needs to go to production should be added here.
@@ -33,17 +33,19 @@ system:
         value: prod
       - name: GRPC_SERVER_BIND_ENDPOINT
         value: tcp://127.0.0.1:7020
+      - name: JVM_HEAP_MIN
+        value: 6G
       - name: JVM_HEAP_MAX
-        value: 4G
+        value: 6G
       - name: FAKE_ENV_VAR_INCREMENT_TO_TRIGGER_SAM_DEPLOY
         value: "0"
       resources:
         limits:
-          cpu: "8"
-          memory: 6Gi
+          cpu: "4"
+          memory: 8Gi
         requests:
-          cpu: "8"
-          memory: 6Gi
+          cpu: "4"
+          memory: 8Gi
       volumeMounts:
       - mountPath: /home/sfdc-switchboard/sherpa-envoy-config-volume
         name: envoy-config-volume
