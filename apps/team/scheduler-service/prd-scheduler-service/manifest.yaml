@@ -160,6 +160,7 @@ system:
             - --scheduler.database.url=jdbc:postgresql://cs101-sdb-lb.scheduler-service.prd-sam.prd.slb.sfdc.net:1521/crondb
             - --logging.level.root=INFO
             - --scheduler.jds.interval=3000
+            - --scheduler.jds.batchsize=200
           env:
             - name: SFDC_ENVIRONMENT
               value: mesh
