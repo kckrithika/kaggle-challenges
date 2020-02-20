@@ -16,8 +16,8 @@ system:
                   fieldPath: spec.nodeName
           command: ["/moe/phaser"]
           args:
-            - "-gheTokenPath=/secrets/hpam-ghe-pat"
-            - "-pgpkeypath=/gpgsecrets/hpam-gpg-key"
+            - "-gheTokenPath=/secrets/moe-ghe-pat"
+            - "-pgpkeypath=/gpgsecrets/moe-gpg-key"
             - "-repoBaseDir=/repo"
             - "-upstreamOrgName=sfcd"
             - "-repoName=spinnaker"
@@ -32,10 +32,10 @@ system:
             - "-checkInterval=20m"
           volumeMounts:
             - mountPath: /secrets
-              name: phaser-ghe-pat-hpam
+              name: phaser-ghe-pat-moe
               readOnly: true
             - mountPath: /gpgsecrets
-              name: phaser-gpg-key-hpam
+              name: phaser-gpg-key-moe
               readOnly: true
             - mountPath: /repo
               name: repo-base
@@ -46,11 +46,11 @@ system:
             initialDelaySeconds: 5
             periodSeconds: 60
       volumes:
-        - name: phaser-ghe-pat-hpam
+        - name: phaser-ghe-pat-moe
           k4aSecret:
-            secretName: phaser-ghe-pat-hpam
-        - name: phaser-gpg-key-hpam
+            secretName: phaser-ghe-pat-moe
+        - name: phaser-gpg-key-moe
           k4aSecret:
-            secretName: phaser-gpg-key-hpam
+            secretName: phaser-gpg-key-moe
         - name: repo-base
           emptyDir: {}
