@@ -37,7 +37,7 @@ system:
         pod: cs101
       containers:
         - name: cronsvc
-          image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/rakella/scheduler-service:20feb20
+          image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/rakella/scheduler-service:20feb20-1
           ports:
             - name: grpc-port
               containerPort: 7020
@@ -151,7 +151,7 @@ system:
         pod: cs101
       containers:
         - name: jds
-          image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/rakella/scheduler-jds:20feb20
+          image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/rakella/scheduler-jds:20feb20-1
           ports:
             - name: scone-port
               containerPort: 15376
@@ -189,7 +189,7 @@ system:
         pod: cs101
       containers:
         - name: cronexec
-          image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/rakella/executor-service:20feb20
+          image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/rakella/executor-service:20feb20-1
           ports:
             - name: grpc-port
               containerPort: 9020
@@ -240,7 +240,7 @@ system:
         pod: cs101
       containers:
         - name: cronui
-          image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/rakella/scheduler-ui:20feb20
+          image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/rakella/scheduler-ui:20feb20-1
           ports:
             - name: http-port
               containerPort: 7022
@@ -280,7 +280,7 @@ system:
         pod: cs101
       containers:
         - name: crondemo
-          image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/rakella/scheduler-demo-client:20feb20
+          image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/rakella/scheduler-demo-client:20feb20-1
           ports:
             - name: http-port
               containerPort: 9090
