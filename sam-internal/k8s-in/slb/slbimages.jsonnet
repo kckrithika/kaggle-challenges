@@ -31,7 +31,7 @@ local slbreleases = import "slbreleases.json";
             "2"
         else if (estate == "prd-samtwo" || kingdom in { [k]: 1 for k in ['prd', 'xrd'] }) then
             "3"
-        else if kingdom in { [k]: 1 for k in ['phx', 'iad'] } then
+        else if kingdom in { [k]: 1 for k in ['frf', 'iad'] } then
             "4"
         else
             "5"
