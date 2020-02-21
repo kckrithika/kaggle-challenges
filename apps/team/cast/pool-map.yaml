@@ -1,5 +1,10 @@
 version: v2
 apps:
+
+  # MIT Proxy Service for PRD 
+  mit-proxy-prd:
+    - name: prd/prd-sam_globalidentity
+
   # PRD Global Identity Dev - GID Setup-owned Cast clone for active dev and testing
   gid-setup-cast-mit:
   # MIT environment runs on the cloudatlas pool but connects to globalidentity CA instance. Needed for an unstable pod bug 
