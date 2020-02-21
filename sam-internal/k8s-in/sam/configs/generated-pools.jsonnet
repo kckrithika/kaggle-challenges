@@ -3791,6 +3791,18 @@
     },
     {
       "namespaces": [
+        "emp-aqueduct"
+      ],
+      "access": [
+        "team/emp_aqueduct"
+      ],
+      "controlEstate": "prd-sam",
+      "estate": "prd-sam_eventbus",
+      "kingdom": "prd",
+      "superPod": "None"
+    },
+    {
+      "namespaces": [
         "gater",
         "ccait",
         "service-mesh",
