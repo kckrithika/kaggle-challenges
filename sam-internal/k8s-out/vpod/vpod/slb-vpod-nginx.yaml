@@ -50,6 +50,7 @@ spec:
         - --tcpconfig.accessLogFormat=basic
         - --httpconfig.accessLogDirectory=/host/data/slb/logs/slb-vpod-nginx
         - --period=5m
+        - --featureflagRREnableRotate=true
         env:
         - name: NODE_NAME
           valueFrom:
