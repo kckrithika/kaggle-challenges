@@ -34,7 +34,15 @@ local resourceRequirements = {
             cpu: "2",
             memory: "8Gi",
         },
-        flags: [],
+        flags: [
+            "--badger-use-lsm-only-options=false",
+            // 32<<20 (33554432 bytes = 32 Mb)
+            "--badger-max-table-size=33554432",
+            "--badger-number-of-compactors=1",
+            "--badger-number-of-level-zero-tables=2",
+            "--badger-number-of-zero-tables-stall=3",
+            "--badger-sync-writes=false",
+        ],
     },
     large: {
         limits: {

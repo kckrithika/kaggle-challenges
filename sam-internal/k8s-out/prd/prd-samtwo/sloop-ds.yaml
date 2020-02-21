@@ -85,6 +85,12 @@ spec:
         - --apiserver-host=http://pseudo-kubeapi.csc-sam.prd-sam.prd.slb.sfdc.net:40001/dfw-sam/
         - --store-root=./data/dfw-sam
         - --max-look-back=336h
+        - --badger-use-lsm-only-options=false
+        - --badger-max-table-size=33554432
+        - --badger-number-of-compactors=1
+        - --badger-number-of-level-zero-tables=2
+        - --badger-number-of-zero-tables-stall=3
+        - --badger-sync-writes=false
         command:
         - /sloop
         image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/sjawad/sloop:sjawad-20200220_160659-e77a2d5
@@ -122,6 +128,12 @@ spec:
         - --apiserver-host=http://pseudo-kubeapi.csc-sam.prd-sam.prd.slb.sfdc.net:40001/frf-sam/
         - --store-root=./data/frf-sam
         - --max-look-back=336h
+        - --badger-use-lsm-only-options=false
+        - --badger-max-table-size=33554432
+        - --badger-number-of-compactors=1
+        - --badger-number-of-level-zero-tables=2
+        - --badger-number-of-zero-tables-stall=3
+        - --badger-sync-writes=false
         command:
         - /sloop
         image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/sjawad/sloop:sjawad-20200220_160659-e77a2d5
@@ -159,6 +171,12 @@ spec:
         - --apiserver-host=http://pseudo-kubeapi.csc-sam.prd-sam.prd.slb.sfdc.net:40001/hnd-sam/
         - --store-root=./data/hnd-sam
         - --max-look-back=336h
+        - --badger-use-lsm-only-options=false
+        - --badger-max-table-size=33554432
+        - --badger-number-of-compactors=1
+        - --badger-number-of-level-zero-tables=2
+        - --badger-number-of-zero-tables-stall=3
+        - --badger-sync-writes=false
         command:
         - /sloop
         image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/sjawad/sloop:sjawad-20200220_160659-e77a2d5
@@ -196,6 +214,12 @@ spec:
         - --apiserver-host=http://pseudo-kubeapi.csc-sam.prd-sam.prd.slb.sfdc.net:40001/iad-sam/
         - --store-root=./data/iad-sam
         - --max-look-back=336h
+        - --badger-use-lsm-only-options=false
+        - --badger-max-table-size=33554432
+        - --badger-number-of-compactors=1
+        - --badger-number-of-level-zero-tables=2
+        - --badger-number-of-zero-tables-stall=3
+        - --badger-sync-writes=false
         command:
         - /sloop
         image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/sjawad/sloop:sjawad-20200220_160659-e77a2d5
@@ -307,6 +331,12 @@ spec:
         - --apiserver-host=http://pseudo-kubeapi.csc-sam.prd-sam.prd.slb.sfdc.net:40001/phx-sam/
         - --store-root=./data/phx-sam
         - --max-look-back=336h
+        - --badger-use-lsm-only-options=false
+        - --badger-max-table-size=33554432
+        - --badger-number-of-compactors=1
+        - --badger-number-of-level-zero-tables=2
+        - --badger-number-of-zero-tables-stall=3
+        - --badger-sync-writes=false
         command:
         - /sloop
         image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/sjawad/sloop:sjawad-20200220_160659-e77a2d5
@@ -424,6 +454,12 @@ spec:
         - --apiserver-host=http://pseudo-kubeapi.csc-sam.prd-sam.prd.slb.sfdc.net:40001/ukb-sam/
         - --store-root=./data/ukb-sam
         - --max-look-back=336h
+        - --badger-use-lsm-only-options=false
+        - --badger-max-table-size=33554432
+        - --badger-number-of-compactors=1
+        - --badger-number-of-level-zero-tables=2
+        - --badger-number-of-zero-tables-stall=3
+        - --badger-sync-writes=false
         command:
         - /sloop
         image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/sjawad/sloop:sjawad-20200220_160659-e77a2d5
@@ -461,6 +497,12 @@ spec:
         - --apiserver-host=http://pseudo-kubeapi.csc-sam.prd-sam.prd.slb.sfdc.net:40001/xrd-sam/
         - --store-root=./data/xrd-sam
         - --max-look-back=336h
+        - --badger-use-lsm-only-options=false
+        - --badger-max-table-size=33554432
+        - --badger-number-of-compactors=1
+        - --badger-number-of-level-zero-tables=2
+        - --badger-number-of-zero-tables-stall=3
+        - --badger-sync-writes=false
         command:
         - /sloop
         image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/sjawad/sloop:sjawad-20200220_160659-e77a2d5

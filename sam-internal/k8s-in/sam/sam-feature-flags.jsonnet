@@ -56,7 +56,7 @@ local utils = import "util_functions.jsonnet";
     sloopEstates: {
       // prd-samtwo will eventually host for all kingdoms.
       // This will need to be replaced with get_all_estates() func from util_functions.jsonnet
-      "prd-samtwo": ["ast-sam","dfw-sam","frf-sam","hnd-sam","iad-sam","ord-sam","par-sam","phx-sam","prd-sam","prd-samtwo","ukb-sam","xrd-sam"],
+      "prd-samtwo": ["ast-sam", "dfw-sam", "frf-sam", "hnd-sam", "iad-sam", "ord-sam", "par-sam", "phx-sam", "prd-sam", "prd-samtwo", "ukb-sam", "xrd-sam"],
       "prd-samtest": ["prd-samtest"],
     },
 
