@@ -2,7 +2,7 @@ apiVersion: v1
 system:
   functions:
   - name: sam-c2c-jmh-perftestingapp-c2cservice-slb-capacity-1
-    count: 1
+    count: 2
     containers:
     - name: sam-c2c-jmh-perftestingapp-c2cservice-slb-capacity-1
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/pbarlota/sam-c2c-jmh-perftestingapp-c2cservice-slb-capacity-1:latest
