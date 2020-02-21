@@ -17,7 +17,7 @@ system:
           type: client
     containers:
     - name: amp-ui
-      image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/amp-ui:3
+      image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/amp-ui:4
       env:
       - name: AMP_ENVIRONMENT
         value: "prod"
