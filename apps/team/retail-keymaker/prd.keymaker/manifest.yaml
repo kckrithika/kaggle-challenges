@@ -4,7 +4,7 @@ system:
     count: 1
     containers:
     - name: keymaker
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/ccp/keymaker:1e77338
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/ccp/keymaker:ac05598
       env:
           - name: HTTPS_PROXY
             value: public0-proxy1-0-prd.data.sfdc.net:8080
@@ -12,6 +12,10 @@ system:
             value: public0-proxy1-0-prd.data.sfdc.net:8080
           - name: KEYMAKER_SLEEP_SECONDS
             value: 301
+          - name: METRICS_HOST
+            value: ajna-api.salesforce.com
+          - name: METRICS_SERVICE_NAME
+            value: c360-keymaker-dev
 
       livenessProbe:
         exec:
@@ -25,7 +29,7 @@ system:
         name: client-certs
       - mountPath: /server-certs
         name: server-certs
- 
+
     volumes:
     - name: client-certs
       maddogCert:
