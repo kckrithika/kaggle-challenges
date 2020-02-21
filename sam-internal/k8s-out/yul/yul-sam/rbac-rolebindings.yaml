@@ -339,5 +339,25 @@ items:
     name: shared0-sdncontrol1-2-yul.ops.sfdc.net
   - kind: User
     name: shared0-sdncontrol1-3-yul.ops.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1beta1
+  kind: RoleBinding
+  metadata:
+    name: search-scale-safely:yul-search_model_executor:rolebinding
+    namespace: search-scale-safely
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: minion:role
+  subjects:
+  - kind: User
+    name: shared0-samminionsme1-1-yul.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionsme1-2-yul.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionsme2-1-yul.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionsme2-2-yul.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionsme3-1-yul.ops.sfdc.net
 kind: List
 metadata: {}
