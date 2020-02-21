@@ -70,6 +70,8 @@ apps:
     - prd/prd-sam_report_collector
     - xrd/xrd-sam_report_collector
   reportcollector-stagger-1:
+    - fra/fra-sam_report_collector
+    - ia4/ia4-sam_report_collector
     - syd/syd-sam_report_collector
   reportcollector-stagger-2:
     - cdu/cdu-sam_report_collector
@@ -86,13 +88,11 @@ apps:
     - iad/iad-sam_report_collector
     - hnd/hnd-sam_report_collector
     - ord/ord-sam_report_collector
-    - fra/fra-sam_report_collector
     - cdg/cdg-sam_report_collector
     - ia2/ia2-sam_report_collector
     - ph2/ph2-sam_report_collector
     - lo2/lo2-sam_report_collector
     - lo3/lo3-sam_report_collector
-    - ia4/ia4-sam_report_collector
     - ia5/ia5-sam_report_collector
   reportcollector-hostnet:
     - ast/ast-sam_report_collector
@@ -105,13 +105,11 @@ apps:
     - iad/iad-sam_report_collector
     - hnd/hnd-sam_report_collector
     - ord/ord-sam_report_collector
-    - fra/fra-sam_report_collector
     - cdg/cdg-sam_report_collector
     - ia2/ia2-sam_report_collector
     - ph2/ph2-sam_report_collector
     - lo2/lo2-sam_report_collector
     - lo3/lo3-sam_report_collector
-    - ia4/ia4-sam_report_collector
     - ia5/ia5-sam_report_collector
   temp-store-hostnet:
     - ast/ast-sam_report_collector
