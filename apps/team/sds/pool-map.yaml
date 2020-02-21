@@ -21,3 +21,5 @@ apps:
   - xrd/xrd-sdstoolsdev
   netpolicy-pipeline-staging:
   - prd/prd-sam
+  amp-ui:
+  - xrd/xrd-sdstools
