@@ -374,7 +374,7 @@
     + [
       "--period=5m",
     ]
-    + (if slbimages.phaseNum <= 1 then [
+    + (if slbimages.phaseNum <= 2 then [
       "--featureflagRREnableRotate=true",
     ] else []),
 
