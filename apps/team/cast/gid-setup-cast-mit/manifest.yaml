@@ -163,7 +163,7 @@ system:
     # GID Data service
     #####################################################################################
     - name: gid-service
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/gid/gid-service:7b69712
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/gid/gid-service:7da1dc1
       imagePullPolicy: Always
       env:
         - name: server_port
