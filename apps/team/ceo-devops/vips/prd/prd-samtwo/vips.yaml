@@ -179,6 +179,24 @@
     healthprotocol: tcp
     lbalgorithm: roundrobin
 
+- lbname: gradlebuildcache-prd
+  customlbname: gradlebuildcache-prd
+  servers:
+  - sfci0ceo0-pkubemaster1-1-prd.dop.sfdc.net
+  - sfci0ceo0-pkubemaster1-2-prd.dop.sfdc.net
+  - sfci0ceo0-pkubemaster1-3-prd.dop.sfdc.net
+  - sfci0ceo0-pkubemaster1-4-prd.dop.sfdc.net
+  - sfci0ceo0-pkubemaster1-5-prd.dop.sfdc.net
+  ports:
+  - port: 443
+    targetport: 30002
+    lbtype: http
+    tls: true
+    reencrypt: false
+    healthport: 30002
+    healthprotocol: http
+    healthpath: /
+
 ### Prod VIPs###
 - lbname: cjemaster11
   customlbname: cjemaster11
@@ -1579,29 +1597,3 @@
     healthport: 80
     healthprotocol: http
     healthpath: /
-
-#- lbname: cjemaster227
-#  customlbname: cjemaster227
-#  cnames:
-#  - cname: adoptionappspkgingci.slb.sfdc.net
-#  servers:
-#  - cjemaster227-1-prd.dop.sfdc.net
-#  - cjemaster227-2-prd.dop.sfdc.net
-#  ports:
-#  - port: 443
-#    targetport: 8080
-#    lbtype: http
-#    tls: true
-#    reencrypt: false
-#    healthport: 8080
-#    healthprotocol: http
-#    healthpath: /ha/health-check
-#  - port: 80
-#    targetport: 80
-#    lbtype: http
-#    tls: false
-#    reencrypt: false
-#    healthport: 80
-#    healthprotocol: http
-#    healthpath: /
-
