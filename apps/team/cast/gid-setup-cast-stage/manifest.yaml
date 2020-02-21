@@ -1,0 +1,333 @@
+#####################################################################################
+#
+# GID Setup's clone of Cast, for development purposes without disrupting other teams
+#
+#####################################################################################
+
+apiVersion: v1
+
+system:
+  notifications:
+    email:
+      - gid_setup@salesforce.com
+  functions:
+  - name: gid-setup-cast-stage
+    identity:
+      serviceName: gid-setup-cast-stage
+    count: 1
+    strategy:
+      type: RollingUpdate
+      rollingUpdate:
+        maxSurge: 0
+        maxUnavailable: 1
+    hostnetwork: false
+    containers:
+    #####################################################################################
+    # Service Mesh / Envoy / Sherpa
+    #####################################################################################
+    # Sherpa forwards requests from port 7442 to internal port 7022,
+    # as per https://git.soma.salesforce.com/servicelibs/sherpa-envoy#ports
+    #####################################################################################
+    - name: sherpa-cast-client
+      image: sfci/servicelibs/sherpa-envoy:1.0.8
+      env:
+      - name: SFDC_ENVIRONMENT
+        value: "stmfa"
+      resources:
+        limits: { cpu: "1", memory: "1Gi" }
+        requests: { cpu: "1", memory: "1Gi" }
+      volumeMounts:
+      - name: client-cert
+        mountPath: /client-certs
+      - name: server-cert
+        mountPath: /server-certs
+      - mountPath: /log
+        name: logvolsherpa
+      ports:
+      - containerPort: 7012
+        name: sherpa-in
+      - containerPort: 7014
+        name: http1-in
+      - containerPort: 7442
+        name: http1-tls-in
+      - containerPort: 15373
+        name: sherpa-adm
+      livenessProbe:
+        exec:
+          command:
+          - "/home/sfdc-sherpa/bin/is-alive"
+        initialDelaySeconds: 120
+        periodSeconds: 5
+      readinessProbe:
+        exec:
+          command:
+          - "/home/sfdc-sherpa/bin/is-ready"
+        initialDelaySeconds: 110
+        periodSeconds: 5
+    #####################################################################################
+    # Service Beacon
+    #####################################################################################
+    - name: beacon-cast
+      image: sfci/services/sfdc-bazel/disco/beacon:fba17e8b2
+      env:
+      - name: SFDC_ENVIRONMENT
+        value: "stmfa"
+      volumeMounts:
+      - mountPath: /log
+        name: logvolbeacon
+      resources:
+        limits: { cpu: "1", memory: "1Gi" }
+        requests: { cpu: "1", memory: "1Gi" }
+      args:
+        - -endpoint
+        - $(FUNCTION_NAMESPACE)/gid-setup-cast-stage:DATACENTER_ALLENV:HTTP1_TLS
+      livenessProbe:
+        exec:
+          command:
+          - "/opt/beacon/is-alive.sh"
+        initialDelaySeconds: 5
+    #####################################################################################
+    # Entity API
+    #####################################################################################
+    - name: cloudatlas-service
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cloud-atlas/cloudatlas/cloudatlas-service:26eb747
+      command: ["java", "-jar", "cloudatlas-service.jar"]
+      env:
+        - name: DIRECTORY_SERVER_HOST
+          value: cloudatlas-dev.global-identity.prd-sam.prd.slb.sfdc.net
+        - name: server_port
+          value: 7032
+        - name: management_server_port
+          value: 15374
+        - name: cloudatlas_http_server_port
+          value: 7030
+        - name: cerberus_grpc_port
+          value: 7021
+      volumeMounts:
+      - mountPath: /log
+        name: logvol
+      - mountPath: /certs
+        name: server-cert
+      - mountPath: /clientcerts
+        name: client-cert
+      ports:
+      - containerPort: 7030
+      - containerPort: 7032
+      - containerPort: 7080
+      - containerPort: 15374
+      livenessProbe:
+        httpGet:
+          path: /manage/health
+          port: 15374
+        initialDelaySeconds: 60
+        periodSeconds: 30
+      readinessProbe:
+        httpGet:
+          path: /manage/health
+          port: 15374
+        initialDelaySeconds: 60
+        periodSeconds: 5
+        failureThreshold: 120
+    #####################################################################################
+    # C2C service
+    #####################################################################################
+    - name: c2c-service
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/gid/c2c-service:master-latest
+      imagePullPolicy: Always
+      env:
+        - name: directory_server_host
+          value: cloudatlas-dev.global-identity.prd-sam.prd.slb.sfdc.net
+        - name: server_port
+          value: 8082
+        - name: management_server_port
+          value: 15372
+        - name: c2c_common_gdotBasePath
+          #SLB is port 80
+          value: "http://${directory_server_host}:80/scim"
+      ports:
+        - containerPort: 8082
+        - containerPort: 15372
+      livenessProbe:
+        httpGet:
+          path: /manage/health
+          port: 15372
+        initialDelaySeconds: 60
+        periodSeconds: 5
+        failureThreshold: 10
+      readinessProbe:	
+        httpGet:	
+          path: /manage/ready	
+          port: 15372	
+        initialDelaySeconds: 60	
+        periodSeconds: 5
+      volumeMounts:
+        - name: server-cert
+          mountPath: /certs
+    #####################################################################################
+    # GID Data service
+    #####################################################################################
+    - name: gid-service
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/gid/gid-service:f78bf29
+      imagePullPolicy: Always
+      env:
+        - name: server_port
+          value: 8081
+        - name: management_server_port
+          value: 15371
+        - name: security_client_dynamickeystore_cadir
+          value: /certs/ca
+        - name: jwt_signing_keypath
+          value: /clientcerts/client/keys/client-key.pkcs8
+        - name: security_client_dynamickeystore_monitoredDirectory
+          value: /clientcerts/client
+        - name: ca_service_host
+          value: cloudatlas-dev.global-identity.prd-sam.prd.slb.sfdc.net
+        - name: ldaps_hostname
+          value: cloudatlas-dev.global-identity.prd-sam.prd.slb.sfdc.net
+        - name: ca_service_host
+          value: cloudatlas-dev.global-identity.prd-sam.prd.slb.sfdc.net
+        - name: c2c_common_gdotBasePath
+          value: http://cloudatlas-dev.global-identity.prd-sam.prd.slb.sfdc.net/scim
+        - name: ldaps_bind_password
+          value: 1insecureRootPassword!
+        - name: ldaps_bind_dn
+          value: cn=Directory Manager
+        - name: ldaps_bind_type
+          value: SIMPLE
+        - name: metrics_startPublisher
+          value: true
+      ports:
+        - containerPort: 8081
+        - containerPort: 15371
+      livenessProbe:
+        httpGet:
+          path: /manage/health
+          port: 15371
+        initialDelaySeconds: 60
+        periodSeconds: 5
+      readinessProbe:	
+        httpGet:	
+          path: /manage/ready	
+          port: 15371	
+        initialDelaySeconds: 60	
+        periodSeconds: 5
+      volumeMounts:
+        - name: server-cert
+          mountPath: /certs
+        - mountPath: /clientcerts
+          name: client-cert
+    #####################################################################################
+    # Service Protection
+    #####################################################################################
+    - name: service-protection
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/gid/service-protection:a4e0903
+      imagePullPolicy: Always
+      env:
+      - name: server_port
+        value: 7022
+      - name: management_server_port
+        value: 15376
+      - name: server_use_forward_headers
+        value: true
+      # Proxy route mappings
+      # * A route mapping with no source path matches all incoming requests
+      # * Scone "/manage/*" paths are not mapped because it is preferable to access them directly via each pod's URL
+      # GID Data Service - authentication endpoints
+      - name: proxy_routes_0_sourcePath
+        value: /services/authentication
+      - name: proxy_routes_0_target
+        value: http://localhost:8081/authentication
+      # GID Data Service - management endpoints
+      - name: proxy_routes_1_sourcePath
+        value: /services/management
+      - name: proxy_routes_1_target
+        value: http://localhost:8081/management 
+      # GID Data Service - swagger description UI
+      - name: proxy_routes_2_sourcePath
+        value: /services/swagger
+      - name: proxy_routes_2_target
+        value: http://localhost:8081/swagger-ui.html
+      # GID Data Service - swagger service description (json)
+      - name: proxy_routes_6_sourcePath
+        value: /services/v2/api-docs-custom
+      - name: proxy_routes_6_target
+        value: http://localhost:8081/v2/api-docs-custom
+      # C2C service
+      - name: proxy_routes_3_sourcePath
+        value: /services/c2c
+      - name: proxy_routes_3_target
+        value: http://localhost:8082
+      # CA service - empire
+      - name: proxy_routes_4_sourcePath
+        value: /empire
+      - name: proxy_routes_4_target
+        value: http://localhost:7030
+      # CA service - scim
+      - name: proxy_routes_5_sourcePath
+        value: /scim
+      - name: proxy_routes_5_target
+        value: http://localhost:7030
+      # Common properties for all routes / target containers
+      - name: proxy_maxThreads
+        value: 1000
+      - name: spe_ratelimit_limit
+        value: 10000
+      - name: spe_ratelimit_timeWindow
+        value: 60
+      - name: spe_whitelist_disable
+        value: true
+      - name: spe_whitelist_ipsubnets
+        value: 204.0.0.0/8
+
+      ports:
+      - containerPort: 7022
+      - containerPort: 15376
+      - containerPort: 5701
+      livenessProbe:
+        httpGet:
+          path: /manage/health
+          port: 15376
+        initialDelaySeconds: 15
+        timeoutSeconds: 10
+        periodSeconds: 30
+    #####################################################################################
+    # Volumes Needed
+    #####################################################################################
+    volumes:
+    - name: hosthomevol
+      hostPath:
+        path: /data/ca-cluster-a
+    - name: server-cert
+      maddogCert:
+        type: server
+    - name: client-cert
+      maddogCert:
+        type: client
+    - name: logvolsherpa
+      hostPath:
+        path: /home/sfdc-scone-hellodiscovery-sherpa/logs
+    - name: logvolbeacon
+      hostPath:
+        path: /home/sfdc-scone-hellodiscovery-beacon/logs
+    - name: logvol
+      hostPath:
+        path: /home/sfdc-atlas/logs
+  #####################################################################################
+  # SLB
+  #####################################################################################
+  # Forwards to Sherpa container
+  #   As per Koson, besides service discovery (which mainly used for Service Mesh), 
+  #   Envoy also provides other functionality such as HTTPs termination point, tracing header propagation.
+  #   That's why we still want requests from SLB to go through Envoy container first.
+  #####################################################################################
+  loadbalancers:
+    - lbname: gid-setup-cast-stage
+      function: gid-setup-cast-stage
+      slbEnabled: true
+      ports:
+        - port: 80
+          name: public
+          targetport: 7014
+          lbtype: http
+          tls: false
+          reencrypt: false
