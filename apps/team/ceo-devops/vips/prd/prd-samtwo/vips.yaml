@@ -1482,8 +1482,8 @@
 
 - lbname: cjemaster317
   customlbname: cjemaster317
-#  cnames:
-#  - cname: datapoolci.slb.sfdc.net
+  cnames:
+  - cname: heroku-rocksalt-client-javaci.slb.sfdc.net
   servers:
   - cjemaster317-1-prd.dop.sfdc.net
   - cjemaster317-2-prd.dop.sfdc.net
