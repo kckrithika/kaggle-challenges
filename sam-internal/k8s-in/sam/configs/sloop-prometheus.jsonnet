@@ -2,6 +2,19 @@ local configs = import "config.jsonnet";
 local samfeatureflags = import "sam-feature-flags.jsonnet";
 local sloop = import "configs/sloop-config.jsonnet";
 
+local promconfig(estate) = {
+    job_name: "sloop-" + estate,
+    metrics_path: "/metrics",
+    scheme: "http",
+    static_configs: [
+        {
+            targets: [
+                "localhost:" + sloop.estateConfigs[estate].containerPort,
+            ],
+        },
+    ],
+};
+
 {
     global: {
         scrape_interval: "15s",
@@ -9,18 +22,7 @@ local sloop = import "configs/sloop-config.jsonnet";
         evaluation_interval: "15s",
     },
     scrape_configs: [
-        {
-            job_name: "sloop",
-            metrics_path: "/metrics",
-            scheme: "http",
-            static_configs: [
-              {
-                targets: [
-                    "localhost:" + sloop.estateConfigs[est].containerPort
-                    for est in samfeatureflags.sloopEstates[configs.estate]
-                ] + (if configs.estate != "prd-samtest" then ["localhost:31938"] else []),  // TODO: remove this section once test changes are verified
-              },
-            ],
-        },
+        promconfig(est)
+        for est in samfeatureflags.sloopEstates[configs.estate]
     ],
 }
