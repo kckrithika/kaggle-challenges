@@ -54,7 +54,9 @@ local utils = import "util_functions.jsonnet";
 
     # Estates for which sloop is deployed depending on the hosting estate.
     sloopEstates: {
-      "prd-samtwo": ["prd-sam", "frf-sam", "prd-samtwo", "hnd-sam", "par-sam", "ast-sam"],
+      // prd-samtwo will eventually host for all kingdoms.
+      // This will need to be replaced with get_all_estates() func from util_functions.jsonnet
+      "prd-samtwo": ["ast-sam","dfw-sam","frf-sam","hnd-sam","iad-sam","ord-sam","par-sam","phx-sam","prd-sam","prd-samtwo","ukb-sam","xrd-sam"],
       "prd-samtest": ["prd-samtest"],
     },
 

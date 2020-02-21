@@ -37,9 +37,10 @@ spec:
           name: sloopconfig
       - args:
         - --config=/sloopconfig/sloop.yaml
-        - --port=31943
+        - --port=31947
         - --display-context=prd-samtest
         - --apiserver-host=http://pseudo-kubeapi.csc-sam.prd-sam.prd.slb.sfdc.net:40001/prd-samtest/
+        - --store-root=./data/prd-samtest
         - --max-look-back=336h
         - --badger-use-lsm-only-options=false
         - --badger-max-table-size=16777216
@@ -53,25 +54,25 @@ spec:
         livenessProbe:
           httpGet:
             path: /healthz
-            port: 31943
+            port: 31947
           initialDelaySeconds: 1800
           timeoutSeconds: 5
         name: sloopds-prd-samtest
         ports:
-        - containerPort: 31943
+        - containerPort: 31947
           protocol: TCP
         readinessProbe:
           httpGet:
             path: /healthz
-            port: 31943
+            port: 31947
           timeoutSeconds: 5
         resources:
           limits:
             cpu: "1"
-            memory: 8Gi
+            memory: 5Gi
           requests:
             cpu: "1"
-            memory: 8Gi
+            memory: 5Gi
         volumeMounts:
         - mountPath: /data/prd-samtest
           name: sloop-data

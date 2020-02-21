@@ -9,19 +9,19 @@ data:
       },
       "scrape_configs": [
         {
-          "job_name": "sloop-prd-sam",
+          "job_name": "sloop-ast-sam",
           "metrics_path": "/metrics",
           "scheme": "http",
           "static_configs": [
             {
               "targets": [
-                "localhost:31942"
+                "localhost:31938"
               ]
             }
           ]
         },
         {
-          "job_name": "sloop-frf-sam",
+          "job_name": "sloop-dfw-sam",
           "metrics_path": "/metrics",
           "scheme": "http",
           "static_configs": [
@@ -33,19 +33,7 @@ data:
           ]
         },
         {
-          "job_name": "sloop-prd-samtwo",
-          "metrics_path": "/metrics",
-          "scheme": "http",
-          "static_configs": [
-            {
-              "targets": [
-                "localhost:31944"
-              ]
-            }
-          ]
-        },
-        {
-          "job_name": "sloop-hnd-sam",
+          "job_name": "sloop-frf-sam",
           "metrics_path": "/metrics",
           "scheme": "http",
           "static_configs": [
@@ -57,7 +45,7 @@ data:
           ]
         },
         {
-          "job_name": "sloop-par-sam",
+          "job_name": "sloop-hnd-sam",
           "metrics_path": "/metrics",
           "scheme": "http",
           "static_configs": [
@@ -69,13 +57,97 @@ data:
           ]
         },
         {
-          "job_name": "sloop-ast-sam",
+          "job_name": "sloop-iad-sam",
           "metrics_path": "/metrics",
           "scheme": "http",
           "static_configs": [
             {
               "targets": [
-                "localhost:31938"
+                "localhost:31942"
+              ]
+            }
+          ]
+        },
+        {
+          "job_name": "sloop-ord-sam",
+          "metrics_path": "/metrics",
+          "scheme": "http",
+          "static_configs": [
+            {
+              "targets": [
+                "localhost:31943"
+              ]
+            }
+          ]
+        },
+        {
+          "job_name": "sloop-par-sam",
+          "metrics_path": "/metrics",
+          "scheme": "http",
+          "static_configs": [
+            {
+              "targets": [
+                "localhost:31944"
+              ]
+            }
+          ]
+        },
+        {
+          "job_name": "sloop-phx-sam",
+          "metrics_path": "/metrics",
+          "scheme": "http",
+          "static_configs": [
+            {
+              "targets": [
+                "localhost:31945"
+              ]
+            }
+          ]
+        },
+        {
+          "job_name": "sloop-prd-sam",
+          "metrics_path": "/metrics",
+          "scheme": "http",
+          "static_configs": [
+            {
+              "targets": [
+                "localhost:31946"
+              ]
+            }
+          ]
+        },
+        {
+          "job_name": "sloop-prd-samtwo",
+          "metrics_path": "/metrics",
+          "scheme": "http",
+          "static_configs": [
+            {
+              "targets": [
+                "localhost:31948"
+              ]
+            }
+          ]
+        },
+        {
+          "job_name": "sloop-ukb-sam",
+          "metrics_path": "/metrics",
+          "scheme": "http",
+          "static_configs": [
+            {
+              "targets": [
+                "localhost:31949"
+              ]
+            }
+          ]
+        },
+        {
+          "job_name": "sloop-xrd-sam",
+          "metrics_path": "/metrics",
+          "scheme": "http",
+          "static_configs": [
+            {
+              "targets": [
+                "localhost:31950"
               ]
             }
           ]
