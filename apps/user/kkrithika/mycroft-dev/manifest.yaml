@@ -1,0 +1,41 @@
+apiVersion: v1
+system:
+  notifications:
+    email:
+      - kkrithika@salesforce.com
+  functions:
+  - name: mycroft-dev
+    count: 1
+    containers:
+    - name: mycroft-dev
+      image: dva/casp/mycroft_strata:jenkins-CASP-mycroft-dev-5-itest
+      ports:
+      - name: tcp
+        containerPort: 6379
+      env:
+        - name: CELERY_BEAT_LOG_LEVEL
+          value: 'info'
+        - name: MYCROFT_ENV
+          value: 'stage'
+      livenessProbe:
+        exec:
+          command:
+            - /opt/mycroft/bin/ping.sh
+        failureThreshold: 60
+        periodSeconds: 10
+        timeoutSeconds: 10
+        initialDelaySeconds: 30
+      volumeMounts:
+        - mountPath: /opt/mycroft/logs
+          name: mycroft-logs-vol-dev
+    volumes:
+      - name: mycroft-logs-vol-dev
+        hostPath:
+          path: /data/mycroft-logs-dev
+  loadbalancers:
+  - lbname: mycroft-dev
+    function: mycroft-dev
+    slbenabled: true
+    ports:
+      - port: 6379
+        targetport: 6379

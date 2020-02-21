@@ -1,0 +1,5 @@
+apps:
+  sherlock-dev:
+    - prd/prd-sam
+  mycroft-dev:
+    - prd/prd-sam
