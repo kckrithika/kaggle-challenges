@@ -373,7 +373,10 @@
     ] else [])
     + [
       "--period=5m",
-    ],
+    ]
+    + (if slbimages.phaseNum <= 1 then [
+      "--featureflagRREnableRotate=true",
+    ] else []),
 
     volumeMounts: std.prune([
       slbconfigs.nginx.target_config_volume_mount,
