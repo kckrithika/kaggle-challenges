@@ -15,7 +15,6 @@ local estateContainer(estate) = {
     "--port=" + sloop.estateConfigs[estate].containerPort,
     "--display-context=" + estate,
     "--apiserver-host=http://pseudo-kubeapi.csc-sam.prd-sam.prd.slb.sfdc.net:40001/" + estate + "/",
-    "--store-root=./data/" + estate,
     # Default maximum history stored - 2 weeks
     "--max-look-back=336h",
   ] + sloop.estateConfigs[estate].resource.flags,

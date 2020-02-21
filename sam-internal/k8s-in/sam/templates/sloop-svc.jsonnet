@@ -13,8 +13,7 @@ local makesvc(estate) = {
       app: "sloop",
     } + configs.ownerLabel.sam,
     annotations: {
-      // TODO: remove if clause for prd-sam when removing legacy sloop
-      "slb.sfdc.net/name": "sloop-" + estate + (if estate == "prd-sam" then "-2" else ""),
+      "slb.sfdc.net/name": "sloop-" + estate,
       "slb.sfdc.net/portconfigurations": std.toString(
         [
           {

@@ -24,26 +24,6 @@ items:
   kind: Service
   metadata:
     annotations:
-      slb.sfdc.net/name: sloop-dfw-sam
-      slb.sfdc.net/portconfigurations: '[{"lbtype": "", "nodeport": 0, "port": 80,
-        "reencrypt": false, "sticky": 0, "targetport": 31939}]'
-    labels:
-      app: sloop
-      sam.data.sfdc.net/owner: sam
-    name: sloop-dfw-sam
-    namespace: sam-system
-  spec:
-    ports:
-    - name: sloop-port
-      port: 80
-      protocol: TCP
-      targetPort: 31939
-    selector:
-      app: sloopds
-- apiVersion: v1
-  kind: Service
-  metadata:
-    annotations:
       slb.sfdc.net/name: sloop-frf-sam
       slb.sfdc.net/portconfigurations: '[{"lbtype": "", "nodeport": 0, "port": 80,
         "reencrypt": false, "sticky": 0, "targetport": 31940}]'
@@ -84,46 +64,6 @@ items:
   kind: Service
   metadata:
     annotations:
-      slb.sfdc.net/name: sloop-iad-sam
-      slb.sfdc.net/portconfigurations: '[{"lbtype": "", "nodeport": 0, "port": 80,
-        "reencrypt": false, "sticky": 0, "targetport": 31942}]'
-    labels:
-      app: sloop
-      sam.data.sfdc.net/owner: sam
-    name: sloop-iad-sam
-    namespace: sam-system
-  spec:
-    ports:
-    - name: sloop-port
-      port: 80
-      protocol: TCP
-      targetPort: 31942
-    selector:
-      app: sloopds
-- apiVersion: v1
-  kind: Service
-  metadata:
-    annotations:
-      slb.sfdc.net/name: sloop-ord-sam
-      slb.sfdc.net/portconfigurations: '[{"lbtype": "", "nodeport": 0, "port": 80,
-        "reencrypt": false, "sticky": 0, "targetport": 31943}]'
-    labels:
-      app: sloop
-      sam.data.sfdc.net/owner: sam
-    name: sloop-ord-sam
-    namespace: sam-system
-  spec:
-    ports:
-    - name: sloop-port
-      port: 80
-      protocol: TCP
-      targetPort: 31943
-    selector:
-      app: sloopds
-- apiVersion: v1
-  kind: Service
-  metadata:
-    annotations:
       slb.sfdc.net/name: sloop-par-sam
       slb.sfdc.net/portconfigurations: '[{"lbtype": "", "nodeport": 0, "port": 80,
         "reencrypt": false, "sticky": 0, "targetport": 31944}]'
@@ -144,27 +84,7 @@ items:
   kind: Service
   metadata:
     annotations:
-      slb.sfdc.net/name: sloop-phx-sam
-      slb.sfdc.net/portconfigurations: '[{"lbtype": "", "nodeport": 0, "port": 80,
-        "reencrypt": false, "sticky": 0, "targetport": 31945}]'
-    labels:
-      app: sloop
-      sam.data.sfdc.net/owner: sam
-    name: sloop-phx-sam
-    namespace: sam-system
-  spec:
-    ports:
-    - name: sloop-port
-      port: 80
-      protocol: TCP
-      targetPort: 31945
-    selector:
-      app: sloopds
-- apiVersion: v1
-  kind: Service
-  metadata:
-    annotations:
-      slb.sfdc.net/name: sloop-prd-sam-2
+      slb.sfdc.net/name: sloop-prd-sam
       slb.sfdc.net/portconfigurations: '[{"lbtype": "", "nodeport": 0, "port": 80,
         "reencrypt": false, "sticky": 0, "targetport": 31946}]'
     labels:
@@ -218,26 +138,6 @@ items:
       port: 80
       protocol: TCP
       targetPort: 31949
-    selector:
-      app: sloopds
-- apiVersion: v1
-  kind: Service
-  metadata:
-    annotations:
-      slb.sfdc.net/name: sloop-xrd-sam
-      slb.sfdc.net/portconfigurations: '[{"lbtype": "", "nodeport": 0, "port": 80,
-        "reencrypt": false, "sticky": 0, "targetport": 31950}]'
-    labels:
-      app: sloop
-      sam.data.sfdc.net/owner: sam
-    name: sloop-xrd-sam
-    namespace: sam-system
-  spec:
-    ports:
-    - name: sloop-port
-      port: 80
-      protocol: TCP
-      targetPort: 31950
     selector:
       app: sloopds
 kind: List
