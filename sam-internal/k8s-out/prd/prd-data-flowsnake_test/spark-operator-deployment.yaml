@@ -50,6 +50,11 @@ spec:
         - /usr/bin/spark-operator
         image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/kubernetes-spark-operator-2.4.0-sfdc-0.0.1:jenkins-dva-transformation-spark-on-k8s-operator-shiqi-job-start-latency-count-4-itest
         imagePullPolicy: Always
+        livenessProbe:
+          initialDelaySeconds: 5
+          periodSeconds: 5
+          tcpSocket:
+            port: 8443
         name: spark-operator
         ports:
         - containerPort: 10254
@@ -58,6 +63,11 @@ spec:
         - containerPort: 8443
           name: webhook
           protocol: TCP
+        readinessProbe:
+          initialDelaySeconds: 5
+          periodSeconds: 5
+          tcpSocket:
+            port: 8443
         volumeMounts:
         - mountPath: /certs
           name: datacerts

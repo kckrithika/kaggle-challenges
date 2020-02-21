@@ -82,7 +82,25 @@ local new_std = import "stdlib_0.12.1.jsonnet";
                             protocol: "TCP",
                         }],
                         volumeMounts: madkub_common.cert_mounts(cert_name),
-                        },
+                        }
+                        + (if std.objectHas(flowsnake_images.feature_flags, "webhook_readiness_probes") then {
+                                livenessProbe:
+                                {
+                                    tcpSocket: {
+                                        port: 8443,
+                                    },
+                                    initialDelaySeconds: 5,
+                                    periodSeconds: 5,
+                                },
+                                readinessProbe:
+                                {
+                                    tcpSocket: {
+                                        port: 8443,
+                                    },
+                                    initialDelaySeconds: 5,
+                                    periodSeconds: 5,
+                                }
+                           } else {}),
                         madkub_common.refresher_container(cert_name)
                 ],
                 volumes: madkub_common.cert_volumes(cert_name),
