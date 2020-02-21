@@ -418,6 +418,24 @@
     healthprotocol: http
     healthpath: /
 
+- lbname: gradlebuildcache-prd
+  customlbname: gradlebuildcache-prd
+  servers:
+  - sfci0ceo0-pkubemaster1-1-prd.dop.sfdc.net
+  - sfci0ceo0-pkubemaster1-2-prd.dop.sfdc.net
+  - sfci0ceo0-pkubemaster1-3-prd.dop.sfdc.net
+  - sfci0ceo0-pkubemaster1-4-prd.dop.sfdc.net
+  - sfci0ceo0-pkubemaster1-5-prd.dop.sfdc.net
+  ports:
+  - port: 443
+    targetport: 30002
+    lbtype: http
+    tls: true
+    reencrypt: false
+    healthport: 30002
+    healthprotocol: http
+    healthpath: /
+
 ##########################
 #######################
 #  SFCI Dev           #
