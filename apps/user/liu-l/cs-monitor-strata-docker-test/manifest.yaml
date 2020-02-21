@@ -13,6 +13,8 @@ system:
         httpGet:
           path: /
           port: 9090
+        initialDelaySeconds: 60
+        periodSeconds: 30
   loadbalancers:
   - lbname: cs-monitor-strata-docker-test-lb
     function: default
