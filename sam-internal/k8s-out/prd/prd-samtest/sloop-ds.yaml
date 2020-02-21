@@ -40,7 +40,6 @@ spec:
         - --port=31947
         - --display-context=prd-samtest
         - --apiserver-host=http://pseudo-kubeapi.csc-sam.prd-sam.prd.slb.sfdc.net:40001/prd-samtest/
-        - --store-root=./data/prd-samtest
         - --max-look-back=336h
         - --badger-use-lsm-only-options=false
         - --badger-max-table-size=16777216
