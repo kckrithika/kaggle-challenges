@@ -15,7 +15,7 @@ system:
     - name: authz-istio-test
       image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/electron_sam:147
       args:
-      - --http-synthetic-client-ids=authz-istio-test.service-mesh
+      - --http-synthetic-client-ids=authz-istio-test-client.service-mesh
       - --http-bind-addr=localhost:7442
       - --grpc-bind-addr=localhost:7443
       env:
@@ -47,18 +47,6 @@ system:
         initialDelaySeconds: 30
         periodSeconds: 5
         timeoutSeconds: 4
-    - name: authz-istio-test-http-client
-      image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/electron_client:147
-      args:
-      - -endpoint=authz-istio-test.service-mesh.svc.mesh.sfdc.net:7442
-      - -service=http
-      - -loopCount=-1
-      - -loopDelayInSeconds=60
-      - -spoof-xfcc=DNS=authz-istio-test.service-mesh.sfdc-role
-      livenessProbe:
-        exec:
-          command: ["/bin/true"]
-        initialDelaySeconds: 30
     - name: beacon
       # https://git.soma.salesforce.com/services/sfdc-bazel/tree/master/projects/sidecars/beacon#docker-image
       image: sfci/services/sfdc-bazel/disco/beacon:d7f1640
