@@ -177,6 +177,7 @@ execute_evaluate_pr() {
         --disableDedupFlag=false \
         --filenameRulePath=$PWD/sam-internal/k8s-in/sam/configs/filename-rules.json \
         --validate-gus-case-enabled=true \
+        --enable-canary-check=true \
         ${EXTRA_EVAL_FLAGS} \
 
 }
