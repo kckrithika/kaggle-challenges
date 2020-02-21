@@ -2,7 +2,7 @@ local resourceRequirements = {
     extra_small: {
         limits: {
             cpu: "1",
-            memory: "1Gi",
+            memory: "1.5Gi",
         },
         flags: [
             "--badger-use-lsm-only-options=false",
@@ -17,7 +17,7 @@ local resourceRequirements = {
     small: {
         limits: {
             cpu: "1",
-            memory: "8Gi",
+            memory: "5Gi",
         },
         flags: [
             "--badger-use-lsm-only-options=false",
@@ -34,7 +34,15 @@ local resourceRequirements = {
             cpu: "2",
             memory: "8Gi",
         },
-        flags: [],
+        flags: [
+            "--badger-use-lsm-only-options=false",
+            // 32<<20 (33554432 bytes = 32 Mb)
+            "--badger-max-table-size=33554432",
+            "--badger-number-of-compactors=1",
+            "--badger-number-of-level-zero-tables=2",
+            "--badger-number-of-zero-tables-stall=3",
+            "--badger-sync-writes=false",
+        ],
     },
     large: {
         limits: {
@@ -57,29 +65,53 @@ local resourceRequirements = {
             resource: resourceRequirements.extra_small,
             containerPort: 31938,
         },
-        "frf-sam": {
+        "dfw-sam": {
             resource: resourceRequirements.medium,
             containerPort: 31939,
         },
-        "hnd-sam": {
+        "frf-sam": {
             resource: resourceRequirements.medium,
             containerPort: 31940,
         },
+        "hnd-sam": {
+            resource: resourceRequirements.medium,
+            containerPort: 31941,
+        },
+        "iad-sam": {
+            resource: resourceRequirements.medium,
+            containerPort: 31942,
+        },
+        "ord-sam": {
+            resource: resourceRequirements.large,
+            containerPort: 31943,
+        },
         "par-sam": {
             resource: resourceRequirements.large,
-            containerPort: 31941,
+            containerPort: 31944,
+        },
+        "phx-sam": {
+            resource: resourceRequirements.medium,
+            containerPort: 31945,
         },
         "prd-sam": {
             resource: resourceRequirements.large,
-            containerPort: 31942,
+            containerPort: 31946,
         },
         "prd-samtest": {
             resource: resourceRequirements.small,
-            containerPort: 31943,
+            containerPort: 31947,
         },
         "prd-samtwo": {
             resource: resourceRequirements.small,
-            containerPort: 31944,
+            containerPort: 31948,
+        },
+        "ukb-sam": {
+            resource: resourceRequirements.medium,
+            containerPort: 31949,
+        },
+        "xrd-sam": {
+            resource: resourceRequirements.medium,
+            containerPort: 31950,
         },
     },
 }

@@ -6,7 +6,7 @@ items:
     annotations:
       slb.sfdc.net/name: sloop-prd-samtest
       slb.sfdc.net/portconfigurations: '[{"lbtype": "", "nodeport": 0, "port": 80,
-        "reencrypt": false, "sticky": 0, "targetport": 31943}]'
+        "reencrypt": false, "sticky": 0, "targetport": 31947}]'
     labels:
       app: sloop
       sam.data.sfdc.net/owner: sam
@@ -17,7 +17,7 @@ items:
     - name: sloop-port
       port: 80
       protocol: TCP
-      targetPort: 31943
+      targetPort: 31947
     selector:
       app: sloopds
 kind: List
