@@ -1,0 +1,68 @@
+#####################################################################################
+#
+# Deployment of the MIT Proxy service withing CAST 
+#
+#####################################################################################
+
+apiVersion: v1
+
+system:
+  notifications:
+    email:
+      - gid_setup@salesforce.com
+  functions:
+  - name: mit-proxy-prd 
+    identity:
+      serviceName: mit-proxy-prd 
+    count: 1
+    strategy:
+      type: RollingUpdate
+      rollingUpdate:
+        maxSurge: 0
+        maxUnavailable: 1
+    hostnetwork: false
+    containers:
+    #####################################################################################
+    # MIT Proxy Container 
+    #####################################################################################
+    - name: mit-proxy 
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mac.vogelsang/mit-proxy:latest
+      imagePullPolicy: Always
+      env:
+      - name: server_port
+        value: 8095
+      - name: management_server_port
+        value: 15376
+      - name: server_use_forward_headers
+        value: true
+      ports:
+      - containerPort: 8095
+      - containerPort: 15376
+      livenessProbe:
+        httpGet:
+          path: /manage/health
+          port: 15376
+        initialDelaySeconds: 15
+        timeoutSeconds: 10
+        periodSeconds: 30
+    #####################################################################################
+    # Volumes Needed
+    #####################################################################################
+    volumes:
+    - name: hosthomevol
+      hostPath:
+        path: /data/ca-cluster-a
+  #####################################################################################
+  # SLB - Provides a persistent VIP for the proxy service 
+  #####################################################################################
+  loadbalancers:
+    - lbname: mit-proxy
+      function: mit-proxy-prd
+      slbEnabled: true
+      ports:
+        - port: 80
+          name: public
+          targetport: 8095
+          lbtype: http
+          tls: false
+          reencrypt: false
