@@ -4903,11 +4903,11 @@
     healthport: 80
     healthprotocol: http
     healthpath: /
-
+#Don't re purpose this slb as we are assigning to customer.
 - lbname: cjemaster270
   customlbname: cjemaster270
   cnames:
-  - cname: team-cjemaster270.slb.sfdc.net
+  - cname: debitterci.slb.sfdc.net
   servers:
   - cjemaster270-1-prd.dop.sfdc.net
   - cjemaster270-2-prd.dop.sfdc.net
