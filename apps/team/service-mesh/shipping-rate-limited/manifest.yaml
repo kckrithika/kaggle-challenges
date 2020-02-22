@@ -7,7 +7,7 @@ system:
     annotations:
       "sherpa-injector.service-mesh/inject": "enabled"      
       "sherpa-injector.service-mesh/canary": "enabled"
-      "electron-opa-istio-injector.authz/inject": "enabled"
+      "electron-opa-istio.k8s-integration.sfdc.com/inject": "enabled"
     containers:
 
     - name: shipping
