@@ -9,7 +9,7 @@ system:
     terminationGracePeriodSeconds: 30
     containers:
     - name: wca
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/pmantha/ea-wca:1
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/pmantha/ea-wca:2
       resources:
         requests:
           memory: "10Gi"
