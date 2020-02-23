@@ -1,0 +1,47 @@
+apiVersion: v1
+
+system:
+  functions:
+  - name: wca
+    count: 5
+    type: stateful-set
+    lbname: ea-wca
+    terminationGracePeriodSeconds: 30
+    containers:
+    - name: wca
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/pmantha/ea-wca:1
+      resources:
+        requests:
+          memory: "10Gi"
+          cpu: "8"
+        limits:
+          memory: "10Gi"
+          cpu: "8"
+      ports:
+      - containerPort: 7780
+      readinessProbe:
+        tcpSocket:
+          port: 7780
+        initialDelaySeconds: 60
+        periodSeconds: 10
+      livenessProbe:
+        tcpSocket:
+          port: 7780
+        failureThreshold: 3
+        initialDelaySeconds: 5
+        periodSeconds: 60
+      volumeMounts:
+        - name: datavol-wca
+          mountPath: /data
+    volumes: 
+        - hostPath: 
+            path: /data/ea/wca/data
+          name: datavol-wca
+  loadbalancers: 
+  - lbname: ea-wca-lb
+    function: wca
+    slbEnabled: true
+    ports:
+    - port: 7780
+      targetport: 7780
+      lbtype: http 
