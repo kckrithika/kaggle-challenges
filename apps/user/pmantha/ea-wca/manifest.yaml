@@ -39,7 +39,7 @@ system:
           name: datavol-wca
   loadbalancers: 
   - lbname: ea-wca-lb
-    function: ea-wca
+    function: wca
     slbEnabled: true
     ports:
     - port: 7780
