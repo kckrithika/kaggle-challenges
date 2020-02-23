@@ -4,6 +4,7 @@ system:
   functions:
   - name: wca
     count: 5
+    type: stateful-set
     lbname: ea-wca
     terminationGracePeriodSeconds: 30
     containers:
