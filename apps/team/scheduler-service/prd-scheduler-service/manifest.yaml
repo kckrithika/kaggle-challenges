@@ -204,7 +204,6 @@ system:
             - --logging.level.com.salesforce.scheduler.executor=INFO
             - --scheduler.executor.executorThreadPoolSize=60
             - --scheduler.executor.batchsize=50
-            - --scheduler.executor.interval=3000
           env:
             - name: SFDC_ENVIRONMENT
               value: mesh
