@@ -37,7 +37,7 @@ system:
         pod: cs101
       containers:
         - name: cronsvc
-          image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/rakella/scheduler-service:24feb20-1
+          image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/rakella/scheduler-service:24feb2020
           ports:
             - name: grpc-port
               containerPort: 7020
@@ -151,7 +151,7 @@ system:
         pod: cs101
       containers:
         - name: jds
-          image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/rakella/scheduler-jds:23feb20
+          image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/rakella/scheduler-jds:24feb2020
           ports:
             - name: scone-port
               containerPort: 15376
@@ -190,7 +190,7 @@ system:
         pod: cs101
       containers:
         - name: cronexec
-          image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/rakella/executor-service:23feb20
+          image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/rakella/executor-service:24feb2020
           ports:
             - name: grpc-port
               containerPort: 9020
@@ -201,9 +201,8 @@ system:
             - --scheduler.service.hostname=cs101-cron-lb.scheduler-service.prd-sam.prd.slb.sfdc.net
             - --scheduler.service.port=7012
             - --scheduler.executor.interval=3000
-            - --logging.level.com.salesforce.scheduler.executor=INFO
             - --scheduler.executor.executorThreadPoolSize=60
-            - --scheduler.executor.batchsize=50
+            - --logging.level.com.salesforce.scheduler.executor=INFO
           env:
             - name: SFDC_ENVIRONMENT
               value: mesh
@@ -243,7 +242,7 @@ system:
         pod: cs101
       containers:
         - name: cronui
-          image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/rakella/scheduler-ui:20feb20
+          image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/rakella/scheduler-ui:24feb2020
           ports:
             - name: http-port
               containerPort: 7022
@@ -283,7 +282,7 @@ system:
         pod: cs101
       containers:
         - name: crondemo
-          image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/rakella/scheduler-demo-client:23feb20
+          image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/rakella/scheduler-demo-client:24feb2020
           ports:
             - name: http-port
               containerPort: 9090
