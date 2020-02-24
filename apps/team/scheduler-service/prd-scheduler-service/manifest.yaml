@@ -37,7 +37,7 @@ system:
         pod: cs101
       containers:
         - name: cronsvc
-          image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/rakella/scheduler-service:24feb20
+          image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/rakella/scheduler-service:24feb20-1
           ports:
             - name: grpc-port
               containerPort: 7020
@@ -47,7 +47,6 @@ system:
           args:
             - --scheduler.database.url=jdbc:postgresql://cs101-sdb-lb.scheduler-service.prd-sam.prd.slb.sfdc.net:1521/crondb
             - --logging.level.root=INFO
-            - --scheduler.executor.maxTriggersFromTempQueue=50
           env:
             - name: SFDC_ENVIRONMENT
               value: mesh
