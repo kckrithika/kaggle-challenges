@@ -10,7 +10,7 @@ system:
       type: Recreate
     containers:
     - name: sherlock-dev
-      image: dva/casp/sherlock_strata:jenkins-CASP-sherlock-kkrithika-create-sherlock-dev-env-1-itest
+      image: dva/casp/sherlock_strata:jenkins-CASP-sherlock-kkrithika-create-sherlock-dev-env-2-itest
       ports:
       - name: flower-http
         containerPort: 5555
